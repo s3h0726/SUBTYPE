@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "documents": {
+    "tokyo-metro": "https://www.tokyometro.jp/lang_kr/station/index.html",
+    "toei": "https://www.kotsu.metro.tokyo.jp/kor/index.html",
+    "midosuji": "https://metronine.osaka/ko/metro_station/midosuji/",
+    "yurikamome": "https://www.yurikamome.co.jp/ko/"
+  },
+  "operators": [
+    { "id": "tokyo-metro", "ko": "도쿄 메트로", "document": "tokyo-metro" },
+    { "id": "yurikamome", "ko": "유리카모메", "document": "yurikamome" }
+  ],
+  "lines": [
+    { "id": "line-28001", "ko": "긴자선", "document": "tokyo-metro" },
+    { "id": "line-28002", "ko": "마루노우치선", "document": "tokyo-metro" },
+    { "id": "line-28003", "ko": "히비야선", "document": "tokyo-metro" },
+    { "id": "line-28004", "ko": "도자이선", "document": "tokyo-metro" },
+    { "id": "line-28005", "ko": "치요다선", "document": "tokyo-metro" },
+    { "id": "line-28006", "ko": "유라쿠초선", "document": "tokyo-metro" },
+    { "id": "line-28008", "ko": "한조몬선", "document": "tokyo-metro" },
+    { "id": "line-28009", "ko": "난보쿠선", "document": "tokyo-metro" },
+    { "id": "line-28010", "ko": "후쿠토신선", "document": "tokyo-metro" },
+    { "id": "line-99618", "ko": "미도스지선", "document": "midosuji" },
+    { "id": "line-99311", "ko": "유리카모메", "document": "yurikamome" }
+  ],
+  "stations": [
+    { "lineId": "line-99311", "stationId": "station-mlit-003872", "code": "U01", "ko": "신바시", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-003887", "code": "U02", "ko": "시오도메", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-003958", "code": "U03", "ko": "다케시바", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-003979", "code": "U04", "ko": "히노데", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004030", "code": "U05", "ko": "시바우라 후토", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004091", "code": "U06", "ko": "오다이바 카이힌코엔", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004112", "code": "U07", "ko": "다이바", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004128", "code": "U08", "ko": "도쿄 국제 크루즈 터미널", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004144", "code": "U09", "ko": "텔레콤센터", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004119", "code": "U10", "ko": "아오미", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004087", "code": "U11", "ko": "도쿄빅사이트", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004064", "code": "U12", "ko": "아리아케", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004037", "code": "U13", "ko": "아리아케 테니스노모리", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-004001", "code": "U14", "ko": "시조마에", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-003981", "code": "U15", "ko": "신토요스", "document": "yurikamome" },
+    { "lineId": "line-99311", "stationId": "station-mlit-003951", "code": "U16", "ko": "도요스", "document": "yurikamome" }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-32003",
+    "sourceLineId": "32003",
+    "category": "private",
+    "operatorId": "op-22",
+    "operator": {
+      "ja": "南海電鉄",
+      "en": "Nankaidentetsu",
+      "ko": "난카이덴테츠"
+    },
+    "line": {
+      "ja": "南海和歌山港線",
+      "kana": "なんかいわかやまこうせん",
+      "en": "NankaiwakayamakōSen",
+      "ko": "난카이와카야마코우선",
+      "aliases": [
+        "南海和歌山港線",
+        "ナンカイワカヤマコウセン",
+        "南海和歌山港線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(68 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3200301",
+        "sourceId": "3200301",
+        "stationMasterId": "station-1164003",
+        "ja": "和歌山市",
+        "kana": "わかやまし",
+        "romaji": "Wakayamashi",
+        "ko": "와카야마시",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.236925,
+        "longitude": 135.166538,
+        "prefectureCode": 30,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.113
+      },
+      {
+        "id": "3200302",
+        "sourceId": "3200302",
+        "stationMasterId": "station-3200302",
+        "ja": "和歌山港",
+        "kana": "わかやまこう",
+        "romaji": "Wakayamakō",
+        "ko": "와카야마코우",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.217321,
+        "longitude": 135.146488,
+        "prefectureCode": 30,
+        "inTokyo": false,
+        "geometryIndex": 18,
+        "geometrySnapKm": 0.034
+      }
+    ],
+    "stationSequence": [
+      "station-1164003",
+      "station-3200302"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-32003.json",
+    "geometry": [
+      [
+        34.23621,
+        135.16566
+      ],
+      [
+        34.23587,
+        135.16511
+      ],
+      [
+        34.23494,
+        135.16371
+      ],
+      [
+        34.23372,
+        135.16279
+      ],
+      [
+        34.23335,
+        135.16265
+      ],
+      [
+        34.23117,
+        135.16151
+      ],
+      [
+        34.22994,
+        135.16091
+      ],
+      [
+        34.22904,
+        135.16051
+      ],
+      [
+        34.22775,
+        135.15995
+      ],
+      [
+        34.22669,
+        135.15936
+      ],
+      [
+        34.22574,
+        135.15865
+      ],
+      [
+        34.2254,
+        135.15835
+      ],
+      [
+        34.22464,
+        135.15742
+      ],
+      [
+        34.22244,
+        135.15375
+      ],
+      [
+        34.22171,
+        135.15261
+      ],
+      [
+        34.22036,
+        135.15005
+      ],
+      [
+        34.21954,
+        135.14844
+      ],
+      [
+        34.21824,
+        135.1469
+      ],
+      [
+        34.21761,
+        135.1466
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "route": {
+    "id": "line-33005",
+    "legacyId": "line-33005",
+    "category": "private",
+    "operatorId": "keihandentetsu",
+    "operator": {
+      "ja": "京阪電鉄",
+      "ko": "케이한덴테츠",
+      "en": "Keihandentetsu"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 京阪電鉄 케이한덴테츠 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "石清水八幡宮参道ケーブル",
+      "kana": "いわしみずはちまんぐうさんどうけーぶる",
+      "ko": "이와시미즈하치만구우산도우케부루",
+      "en": "IwashimizuhachimangūSandōKēBuru"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 石清水八幡宮参道ケーブル 이와시미즈하치만구우산도우케부루 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "hsl(341 62% 46%)",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 石清水八幡宮参道ケーブル 이와시미즈하치만구우산도우케부루 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "keihandentetsu",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-3300115",
+        "internalId": "station-3300115",
+        "stationMasterId": "station-3300115",
+        "sourceId": "station-3300115",
+        "ja": "石清水八幡宮",
+        "kana": "いわしみずはちまんぐう",
+        "ko": "이와시미즈하치만구우",
+        "romaji": "Iwashimizuhachimangū",
+        "koAliases": [],
+        "latitude": 34.884651,
+        "longitude": 135.69996,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 石清水八幡宮駅 이와시미즈하치만구우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-3300502",
+        "internalId": "station-3300502",
+        "stationMasterId": "station-3300502",
+        "sourceId": "station-3300502",
+        "ja": "ケーブル八幡宮山上",
+        "kana": "けーぶるはちまんぐうさんじょう",
+        "ko": "케부루하치만구우산조우",
+        "romaji": "KēBuruhachimangūSanjō",
+        "koAliases": [],
+        "latitude": 34.881061,
+        "longitude": 135.699796,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki ケーブル八幡宮山上駅 케부루하치만구우산조우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 4
+      }
+    ],
+    "geometry": [
+      [
+        34.88458,
+        135.69948
+      ],
+      [
+        34.884311,
+        135.699371
+      ],
+      [
+        34.883635,
+        135.699288
+      ],
+      [
+        34.882789,
+        135.699424
+      ],
+      [
+        34.881325,
+        135.699767
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-3300115",
+        "toStationId": "station-3300502",
+        "geometry": [
+          [
+            34.88458,
+            135.69948
+          ],
+          [
+            34.884311,
+            135.699371
+          ],
+          [
+            34.883635,
+            135.699288
+          ],
+          [
+            34.882789,
+            135.699424
+          ],
+          [
+            34.881325,
+            135.699767
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "workspace": {
+      "folder": "data/lines/keihandentetsu/iwashimizuhachimangusandokeburu",
+      "linePath": "data/lines/keihandentetsu/iwashimizuhachimangusandokeburu/line.json",
+      "stationsPath": "data/lines/keihandentetsu/iwashimizuhachimangusandokeburu/stations.json",
+      "geometryPath": "data/lines/keihandentetsu/iwashimizuhachimangusandokeburu/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 石清水八幡宮参道ケーブル 이와시미즈하치만구우산도우케부루 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "nationwide-source-line"
+  }
+}

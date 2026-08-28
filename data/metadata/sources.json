@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "verified": "2026-08-22",
+  "sources": [
+    {
+      "id": "mlit-n02-2025",
+      "name": "National Land Numerical Information Railway Data N02 (2025)",
+      "publisher": "Ministry of Land, Infrastructure, Transport and Tourism, Japan",
+      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-2025.html",
+      "use": [
+        "station geometry",
+        "station group cross-check",
+        "operator and line cross-check"
+      ]
+    },
+    {
+      "id": "ekidata",
+      "name": "駅データ.jp",
+      "publisher": "Value and Vision Co., Ltd.",
+      "url": "https://www.ekidata.jp/",
+      "terms": "https://www.ekidata.jp/agreement.php",
+      "use": [
+        "route order",
+        "station and line identifiers",
+        "coordinates",
+        "operating status",
+        "prefecture"
+      ]
+    },
+    {
+      "id": "tokyo-metro-official",
+      "name": "Tokyo Metro Route/Station Information",
+      "url": "https://www.tokyometro.jp/lang_en/station/index.html",
+      "use": [
+        "official line and station cross-check"
+      ]
+    },
+    {
+      "id": "toei-official",
+      "name": "Bureau of Transportation, Tokyo Metropolitan Government station information",
+      "url": "https://www.kotsu.metro.tokyo.jp/subway/stations/index.html",
+      "use": [
+        "official line, station and numbering cross-check"
+      ]
+    },
+    {
+      "id": "osm",
+      "name": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/copyright",
+      "use": [
+        "interactive basemap tiles"
+      ]
+    }
+  ]
+}

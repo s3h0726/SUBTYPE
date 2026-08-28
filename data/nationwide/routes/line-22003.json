@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-22003",
+    "sourceLineId": "22003",
+    "category": "private",
+    "operatorId": "op-12",
+    "operator": {
+      "ja": "西武鉄道",
+      "en": "Seibu",
+      "ko": "세이부 철도"
+    },
+    "line": {
+      "ja": "西武有楽町線",
+      "kana": "せいぶゆうらくちょうせん",
+      "en": "SeibuyūRakuchōSen",
+      "ko": "세이부유우라쿠초우선",
+      "aliases": [
+        "西武有楽町線",
+        "セイブユウラクチョウセン",
+        "西武有楽町線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(307 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "2200301",
+        "sourceId": "2200301",
+        "stationMasterId": "station-2200301",
+        "ja": "小竹向原",
+        "kana": "こたけむかいはら",
+        "romaji": "Kotakemukaihara",
+        "ko": "코타케무카이하라",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.743803,
+        "longitude": 139.678572,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.011
+      },
+      {
+        "id": "2200302",
+        "sourceId": "2200302",
+        "stationMasterId": "station-2200302",
+        "ja": "新桜台",
+        "kana": "しんさくらだい",
+        "romaji": "Shinsakuradai",
+        "ko": "신사쿠라다이",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.74077,
+        "longitude": 139.6683,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 5,
+        "geometrySnapKm": 0.015
+      },
+      {
+        "id": "2200303",
+        "sourceId": "2200303",
+        "stationMasterId": "station-2200106",
+        "ja": "練馬",
+        "kana": "ねりま",
+        "romaji": "Nerima",
+        "ko": "네리마",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.737893,
+        "longitude": 139.654368,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 12,
+        "geometrySnapKm": 0.096
+      }
+    ],
+    "stationSequence": [
+      "station-2200301",
+      "station-2200302",
+      "station-2200106"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-22003.json",
+    "geometry": [
+      [
+        35.74388,
+        139.6785
+      ],
+      [
+        35.74501,
+        139.67588
+      ],
+      [
+        35.74501,
+        139.67546
+      ],
+      [
+        35.74489,
+        139.67406
+      ],
+      [
+        35.74167,
+        139.66964
+      ],
+      [
+        35.74086,
+        139.66842
+      ],
+      [
+        35.73962,
+        139.66611
+      ],
+      [
+        35.73907,
+        139.66462
+      ],
+      [
+        35.73861,
+        139.66258
+      ],
+      [
+        35.73843,
+        139.66133
+      ],
+      [
+        35.73814,
+        139.65853
+      ],
+      [
+        35.73792,
+        139.65633
+      ],
+      [
+        35.73783,
+        139.65331
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

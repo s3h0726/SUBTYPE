@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-30011",
+    "sourceLineId": "30011",
+    "category": "private",
+    "operatorId": "op-20",
+    "operator": {
+      "ja": "名古屋鉄道",
+      "en": "Nagoyatetsudō",
+      "ko": "나고야테츠도우"
+    },
+    "line": {
+      "ja": "名鉄築港線",
+      "kana": "めいてつちっこうせん",
+      "en": "MeitetsuchikkōSen",
+      "ko": "메이테츠칬코우선",
+      "aliases": [
+        "名鉄築港線",
+        "メイテツチッコウセン",
+        "名鉄築港線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(275 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3001101",
+        "sourceId": "3001101",
+        "stationMasterId": "station-3000807",
+        "ja": "大江",
+        "kana": "おおえ",
+        "romaji": "ōE",
+        "ko": "오오에",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.093258,
+        "longitude": 136.912758,
+        "prefectureCode": 23,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.049
+      },
+      {
+        "id": "3001102",
+        "sourceId": "3001102",
+        "stationMasterId": "station-3001102",
+        "ja": "東名古屋港",
+        "kana": "ひがしなごやこう",
+        "romaji": "Higashinagoyakō",
+        "ko": "히가시나고야코우",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.089091,
+        "longitude": 136.899255,
+        "prefectureCode": 23,
+        "inTokyo": false,
+        "geometryIndex": 10,
+        "geometrySnapKm": 0.04
+      }
+    ],
+    "stationSequence": [
+      "station-3000807",
+      "station-3001102"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-30011.json",
+    "geometry": [
+      [
+        35.09282,
+        136.9128
+      ],
+      [
+        35.09218,
+        136.91246
+      ],
+      [
+        35.09146,
+        136.91194
+      ],
+      [
+        35.09113,
+        136.91154
+      ],
+      [
+        35.09063,
+        136.91043
+      ],
+      [
+        35.09055,
+        136.90998
+      ],
+      [
+        35.0901,
+        136.90752
+      ],
+      [
+        35.08972,
+        136.90539
+      ],
+      [
+        35.08944,
+        136.90344
+      ],
+      [
+        35.08925,
+        136.90187
+      ],
+      [
+        35.08912,
+        136.89969
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

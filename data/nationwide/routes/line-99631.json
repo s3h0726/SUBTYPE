@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-99631",
+    "sourceLineId": "99631",
+    "category": "private",
+    "operatorId": "op-203",
+    "operator": {
+      "ja": "神戸高速鉄道",
+      "en": "KōBekōSokutetsudō",
+      "ko": "코우베코우소쿠테츠도우"
+    },
+    "line": {
+      "ja": "神戸高速南北線",
+      "kana": "こうべこうそくなんぼくせん",
+      "en": "KōBekōSokunambokusen",
+      "ko": "코우베코우소쿠난보쿠선",
+      "aliases": [
+        "神戸高速南北線",
+        "コウベコウソクナンボクセン",
+        "神戸高速南北線"
+      ]
+    },
+    "code": "",
+    "lineColor": "2560A8",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "9963101",
+        "sourceId": "9963101",
+        "stationMasterId": "station-9963006",
+        "ja": "新開地",
+        "kana": "しんかいち",
+        "romaji": "Shinkaichi",
+        "ko": "신카이치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.675981,
+        "longitude": 135.169291,
+        "prefectureCode": 28,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.04
+      },
+      {
+        "id": "9963102",
+        "sourceId": "9963102",
+        "stationMasterId": "station-9963102",
+        "ja": "湊川",
+        "kana": "みなとがわ",
+        "romaji": "Minatogawa",
+        "ko": "미나토가와",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.679153,
+        "longitude": 135.166426,
+        "prefectureCode": 28,
+        "inTokyo": false,
+        "geometryIndex": 2,
+        "geometrySnapKm": 0.02
+      }
+    ],
+    "stationSequence": [
+      "station-9963006",
+      "station-9963102"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-99631.json",
+    "geometry": [
+      [
+        34.67634,
+        135.16923
+      ],
+      [
+        34.6769,
+        135.16871
+      ],
+      [
+        34.67897,
+        135.16644
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SUBTYPE Rail Data Editor</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="./rail-data-editor.css">
+  <link rel="stylesheet" href="./rail-data-editor-source.css">
+</head>
+<body>
+  <header><div><b>SUBTYPE</b><span>Rail Data Editor</span></div><a href="../index.html#home">게임으로 돌아가기</a></header>
+  <main>
+    <aside>
+      <label>노선 검색<input id="route-search" type="search" placeholder="한국어·日本語·Romaji·코드"></label>
+      <div class="source-filters" aria-label="한국어 출처 필터">
+        <button class="active" data-source-filter="all">전체</button><button data-source-filter="namuwiki">NAMUWIKI ✓</button><button data-source-filter="review">검수 필요</button><button data-source-filter="blocked">접근 불가</button>
+      </div>
+      <div id="review-count" class="review-count" aria-live="polite"></div>
+      <div id="route-tree" class="route-tree" role="tree" aria-label="운영사별 철도 노선"></div>
+      <div class="counts" id="data-counts"></div>
+    </aside>
+    <section class="workspace">
+      <nav class="tabs" aria-label="데이터 편집 탭">
+        <button class="active" data-tab="line">기본정보</button><button data-tab="stations">역 순서</button><button data-tab="geometry">지도/Geometry</button><button data-tab="assets">로고</button><button data-tab="sign">역명판</button><button data-tab="validate">검증</button>
+      </nav>
+      <div id="editor-panel"></div>
+    </section>
+  </main>
+  <footer><span id="save-status">현재 노선만 내보냅니다. 다른 노선에는 영향이 없습니다.</span><button id="import-button">JSON 가져오기</button><input id="import-file" type="file" accept="application/json" hidden><button id="validate-button">검증</button><button id="export-button" class="primary">현재 노선 내보내기</button></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="../js/rail-data.js"></script>
+  <script src="../js/line-workspace-data.js"></script>
+  <script src="../js/nationwide-data.js"></script>
+  <script src="../js/service-data.js"></script>
+  <script src="../js/line-theme-data.js"></script>
+  <script src="../js/operator-asset-data.js"></script>
+  <script src="../js/line-badge-data.js"></script>
+  <script src="../js/route-symbol-data.js"></script>
+  <script src="../js/rail-system-data.js"></script>
+  <script type="module" src="./rail-data-editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+{
+  "generated": "2026-08-24T15:21:38.711Z",
+  "status": "PARTIAL_WITH_AUDITED_GAPS",
+  "scope": {
+    "operators": 164,
+    "lines": 596,
+    "uniqueStations": 8824,
+    "routeChunks": 596
+  },
+  "completeness": {
+    "routeChunksPresent": true,
+    "requiredStationFields": 10590,
+    "totalStationEntries": 10590,
+    "missingKoreanLines": 0,
+    "missingKoreanStations": 0
+  },
+  "geometry": {
+    "matched": 583,
+    "missing": 13,
+    "failedStationPairs": 1,
+    "distanceOutliers": [
+      {
+        "routeId": "line-11342",
+        "from": "宮内",
+        "to": "長岡",
+        "directKm": 3.09,
+        "railKm": 42.19
+      },
+      {
+        "routeId": "line-11407",
+        "from": "三才",
+        "to": "豊野",
+        "directKm": 3.8,
+        "railKm": 41.2
+      },
+      {
+        "routeId": "line-11612",
+        "from": "下関",
+        "to": "門司",
+        "directKm": 5.2,
+        "railKm": 21.32
+      }
+    ],
+    "yurikamomeLoop": {
+      "from": "芝浦ふ頭",
+      "to": "お台場海浜公園",
+      "points": 26,
+      "directKm": 2.299,
+      "railKm": 2.96,
+      "curvatureRatio": 1.29,
+      "pass": true
+    },
+    "missingFile": "./GEOMETRY_MISSING.json"
+  },
+  "names": {
+    "humanReviewRequired": 8657,
+    "japaneseCharactersInKorean": 0,
+    "exceptions": [],
+    "reviewFile": "./REVIEW_REQUIRED.json"
+  },
+  "symbols": {
+    "realAssets": 11,
+    "policy": "Render verified local official assets only. Hide the symbol area when no verified asset is available. No pseudo-symbols or generic wrappers.",
+    "nationwideCoverageAudit": "INCOMPLETE"
+  },
+  "ui": {
+    "generated": "2026-08-24T15:19:28.515Z",
+    "status": "PARTIAL_WITH_AUDITED_GAPS",
+    "checks": {
+      "inputValueIsNfcSoleSource": true,
+      "stationBadgeUsesOfficialCodeOnly": true,
+      "koreanProgressUsesAnswerLength": true,
+      "autoAdvance150ms": true,
+      "routeGridWindowed": true,
+      "osakaMetroCanonical": true,
+      "hitoyoshiCanonical": true,
+      "hitoyoshiInternalIdNotPromoted": true,
+      "firstAnswerIsNextStation": true,
+      "typedArrivalInvariant": true,
+      "duplicateCompleteGuard": true,
+      "noJapaneseInKoreanFields": true
+    },
+    "typingEngine": {
+      "criticalChecksPassed": 12,
+      "criticalChecksTotal": 12,
+      "browserRegression": "PASSED",
+      "browserResults": {
+        "catalog": "601개 노선, 첫 카드가 1280x720 한 화면에 표시",
+        "directGameAccess": "#game 접근 시 #rail-map으로 복귀하고 노선 선택 안내",
+        "yamanoteInitial": "현재역 도쿄 / 정답 칸다 / mapIndex 0",
+        "yamanoteArrival": "칸다 입력 후 현재역 JY02 / 다음역 JY03 / mapIndex 1 / input clear / focus restored",
+        "yurikamomeInitial": "현재역 신바시 / 정답 시오도메 / mapIndex 0",
+        "yurikamomeArrival": "시오도메 입력 후 현재역 U2 / 다음역 U3 / mapIndex 1",
+        "autoWithoutSpace": true,
+        "koreanImeOrder": "PASS",
+        "lastCharacterRegistered": true,
+        "singleViewportGame": "1280x720 overflow X/Y 0",
+        "productionCatalogBaseline": "601 LINES",
+        "productionConsoleErrors": 0,
+        "localConsoleErrors": 0,
+        "brokenImages": 0
+      }
+    },
+    "officialStationCodes": {
+      "stationEntries": 133,
+      "displayPolicy": "Only explicit or verified officialCode values may be rendered. Internal station IDs stay data-only."
+    },
+    "logos": {
+      "nationwideOperators": 164,
+      "operatorsWithVerifiedLocalAssets": 22,
+      "verifiedAssetRecords": 22,
+      "knownGaps": 142,
+      "status": "INCOMPLETE"
+    },
+    "lineSymbols": {
+      "verifiedAssetRecords": 11,
+      "status": "INCOMPLETE"
+    },
+    "stationSigns": {
+      "dedicatedOperators": 17,
+      "families": 9,
+      "status": "PARTIAL_WITH_AUDITED_GAPS"
+    },
+    "railwayEmoji": {
+      "generated": "2026-08-24T15:19:27.381Z",
+      "status": "PASS",
+      "counts": {
+        "productionUi": 0,
+        "lineSymbol": 0,
+        "operatorLogo": 0,
+        "trainMarker": 0,
+        "stationIcon": 0,
+        "buttonIcon": 0
+      },
+      "matches": []
+    },
+    "authentication": {
+      "status": "BLOCKED_CONFIGURATION",
+      "provider": "Supabase Auth",
+      "publicConfigPresent": false,
+      "guestMode": "PASS",
+      "fakeLocalPasswordStorage": false
+    },
+    "strictPass": false,
+    "blockers": [
+      "Nationwide operator-logo coverage is not exhaustive.",
+      "Nationwide official line-symbol coverage is not exhaustive.",
+      "Station-sign templates remain family approximations for operators without a dedicated audited template.",
+      "Supabase public URL and anon key are not configured, so account E2E cannot pass."
+    ]
+  },
+  "strictPass": false,
+  "blockers": [
+    "13 routes do not have accepted MLIT geometry.",
+    "8657 station names still require human Korean-name review.",
+    "Nationwide official symbol asset coverage is incomplete.",
+    "3 rail-distance outliers and 1 disconnected station pair(s) require manual geometry review."
+  ]
+}

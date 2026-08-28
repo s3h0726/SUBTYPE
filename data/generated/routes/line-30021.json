@@ -1,0 +1,313 @@
+{
+  "route": {
+    "id": "line-30021",
+    "legacyId": "line-30021",
+    "category": "private",
+    "operatorId": "nagoyatetsudo",
+    "operator": {
+      "ja": "名古屋鉄道",
+      "ko": "나고야테츠도우",
+      "en": "Nagoyatetsudō"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 名古屋鉄道 나고야테츠도우 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "名鉄羽島線",
+      "kana": "めいてつはしません",
+      "ko": "메이테츠하시마선",
+      "en": "Meitetsuhashimasen"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 名鉄羽島線 메이테츠하시마선 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "hsl(306 62% 46%)",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 名鉄羽島線 메이테츠하시마선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "nagoyatetsudo",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-3002009",
+        "internalId": "station-3002009",
+        "stationMasterId": "station-3002009",
+        "sourceId": "station-3002009",
+        "ja": "江吉良",
+        "kana": "えぎら",
+        "ko": "에기라",
+        "romaji": "Egira",
+        "koAliases": [],
+        "latitude": 35.31543,
+        "longitude": 136.699686,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 江吉良駅 에기라 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-3002102",
+        "internalId": "station-3002102",
+        "stationMasterId": "station-3002102",
+        "sourceId": "station-3002102",
+        "ja": "新羽島",
+        "kana": "しんはしま",
+        "ko": "신하시마",
+        "romaji": "Shinhashima",
+        "koAliases": [],
+        "latitude": 35.315471,
+        "longitude": 136.686582,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 新羽島駅 신하시마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 16
+      }
+    ],
+    "geometry": [
+      [
+        35.31512,
+        136.69971
+      ],
+      [
+        35.31478,
+        136.69948
+      ],
+      [
+        35.31408,
+        136.69892
+      ],
+      [
+        35.31373,
+        136.69798
+      ],
+      [
+        35.31347,
+        136.69693
+      ],
+      [
+        35.31312,
+        136.6956
+      ],
+      [
+        35.31306,
+        136.6949
+      ],
+      [
+        35.31314,
+        136.69422
+      ],
+      [
+        35.31325,
+        136.69347
+      ],
+      [
+        35.31345,
+        136.69225
+      ],
+      [
+        35.31355,
+        136.69149
+      ],
+      [
+        35.31363,
+        136.69057
+      ],
+      [
+        35.31364,
+        136.68967
+      ],
+      [
+        35.31375,
+        136.68918
+      ],
+      [
+        35.31406,
+        136.68861
+      ],
+      [
+        35.3151,
+        136.68721
+      ],
+      [
+        35.31556,
+        136.68668
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-3002009",
+        "toStationId": "station-3002102",
+        "geometry": [
+          [
+            35.31512,
+            136.69971
+          ],
+          [
+            35.31478,
+            136.69948
+          ],
+          [
+            35.31408,
+            136.69892
+          ],
+          [
+            35.31373,
+            136.69798
+          ],
+          [
+            35.31347,
+            136.69693
+          ],
+          [
+            35.31312,
+            136.6956
+          ],
+          [
+            35.31306,
+            136.6949
+          ],
+          [
+            35.31314,
+            136.69422
+          ],
+          [
+            35.31325,
+            136.69347
+          ],
+          [
+            35.31345,
+            136.69225
+          ],
+          [
+            35.31355,
+            136.69149
+          ],
+          [
+            35.31363,
+            136.69057
+          ],
+          [
+            35.31364,
+            136.68967
+          ],
+          [
+            35.31375,
+            136.68918
+          ],
+          [
+            35.31406,
+            136.68861
+          ],
+          [
+            35.3151,
+            136.68721
+          ],
+          [
+            35.31556,
+            136.68668
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "workspace": {
+      "folder": "data/lines/nagoyatetsudo/meitetsuhashimasen",
+      "linePath": "data/lines/nagoyatetsudo/meitetsuhashimasen/line.json",
+      "stationsPath": "data/lines/nagoyatetsudo/meitetsuhashimasen/stations.json",
+      "geometryPath": "data/lines/nagoyatetsudo/meitetsuhashimasen/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 名鉄羽島線 메이테츠하시마선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "nationwide-source-line"
+  }
+}

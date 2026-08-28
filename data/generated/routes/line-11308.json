@@ -1,0 +1,6281 @@
+{
+  "route": {
+    "id": "line-11308",
+    "legacyId": "line-11308",
+    "category": "jr",
+    "operatorId": "jr-east",
+    "operator": {
+      "ja": "JR東日本",
+      "ko": "JR 동일본",
+      "en": "JR East"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki JR東日本 JR 동일본 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": {
+      "asset": "./data/operators/jr-east/logo.svg",
+      "label": "JR East",
+      "source": "https://commons.wikimedia.org/wiki/File:JR_East_logomark.svg",
+      "logoVerified": true,
+      "metadata": {
+        "asset": "./logo.svg",
+        "source": "https://commons.wikimedia.org/wiki/File:JR_East_logomark.svg",
+        "verified": true,
+        "identificationSource": "namuwiki-unresolved",
+        "identificationUrl": "",
+        "identificationSearch": "site:namu.wiki JR東日本 JR 동일본 로고",
+        "sourceAccess": "blocked",
+        "assetSource": "wikimedia",
+        "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:JR_East_logomark.svg",
+        "licenseVerified": false,
+        "identificationFamily": "namuwiki",
+        "identificationMethod": "unresolved",
+        "identificationVerified": false
+      }
+    },
+    "line": {
+      "ja": "横須賀線",
+      "kana": "",
+      "ko": "요코스카선",
+      "en": "Yokosuka Line"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 横須賀線 요코스카선 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "JO",
+    "lineColor": "#0066b3",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 横須賀線 요코스카선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "jr-east",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-mlit-003766",
+        "internalId": "station-mlit-003766",
+        "stationMasterId": "station-mlit-003766",
+        "sourceId": "station-mlit-003766",
+        "ja": "東京",
+        "kana": "とうきょう",
+        "ko": "도쿄",
+        "romaji": "Tokyo",
+        "koAliases": [],
+        "latitude": 35.68117,
+        "longitude": 139.767553,
+        "officialCode": "JO19",
+        "stationCode": "JO19",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 東京駅 도쿄 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-mlit-003872",
+        "internalId": "station-mlit-003872",
+        "stationMasterId": "station-mlit-003872",
+        "sourceId": "station-mlit-003872",
+        "ja": "新橋",
+        "kana": "しんばし",
+        "ko": "신바시",
+        "romaji": "Shimbashi",
+        "koAliases": [],
+        "latitude": 35.66639,
+        "longitude": 139.7582,
+        "officialCode": "JO18",
+        "stationCode": "JO18",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 新橋駅 신바시 역",
+        "sourceAccess": "accessible",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 18
+      },
+      {
+        "id": "station-mlit-004095",
+        "internalId": "station-mlit-004095",
+        "stationMasterId": "station-mlit-004095",
+        "sourceId": "station-mlit-004095",
+        "ja": "品川",
+        "kana": "しながわ",
+        "ko": "시나가와",
+        "romaji": "Shinagawa",
+        "koAliases": [],
+        "latitude": 35.628135,
+        "longitude": 139.738535,
+        "officialCode": "JO17",
+        "stationCode": "JO17",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 品川駅 시나가와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 60
+      },
+      {
+        "id": "station-mlit-004235",
+        "internalId": "station-mlit-004235",
+        "stationMasterId": "station-mlit-004235",
+        "sourceId": "station-mlit-004235",
+        "ja": "西大井",
+        "kana": "にしおおい",
+        "ko": "니시오오이",
+        "romaji": "NishiōI",
+        "koAliases": [],
+        "latitude": 35.601766,
+        "longitude": 139.721636,
+        "officialCode": "JO16",
+        "stationCode": "JO16",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 西大井駅 니시오오이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 94
+      },
+      {
+        "id": "station-mlit-004301",
+        "internalId": "station-mlit-004301",
+        "stationMasterId": "station-mlit-004301",
+        "sourceId": "station-mlit-004301",
+        "ja": "武蔵小杉",
+        "kana": "むさしこすぎ",
+        "ko": "무사시코스기",
+        "romaji": "Musashikosugi",
+        "koAliases": [],
+        "latitude": 35.574875,
+        "longitude": 139.663382,
+        "officialCode": "JO15",
+        "stationCode": "JO15",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 武蔵小杉駅 무사시코스기 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 145
+      },
+      {
+        "id": "station-mlit-004358",
+        "internalId": "station-mlit-004358",
+        "stationMasterId": "station-mlit-004358",
+        "sourceId": "station-mlit-004358",
+        "ja": "新川崎",
+        "kana": "しんかわさき",
+        "ko": "신카와사키",
+        "romaji": "Shinkawasaki",
+        "koAliases": [],
+        "latitude": 35.551588,
+        "longitude": 139.671604,
+        "officialCode": "JO14",
+        "stationCode": "JO14",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 新川崎駅 신카와사키 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 164
+      },
+      {
+        "id": "station-mlit-004633",
+        "internalId": "station-mlit-004633",
+        "stationMasterId": "station-mlit-004633",
+        "sourceId": "station-mlit-004633",
+        "ja": "横浜",
+        "kana": "よこはま",
+        "ko": "요코하마",
+        "romaji": "Yokohama",
+        "koAliases": [],
+        "latitude": 35.465408,
+        "longitude": 139.622253,
+        "officialCode": "JO13",
+        "stationCode": "JO13",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 横浜駅 요코하마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 292
+      },
+      {
+        "id": "station-1130807",
+        "internalId": "station-1130807",
+        "stationMasterId": "station-1130807",
+        "sourceId": "station-1130807",
+        "ja": "保土ケ谷",
+        "kana": "ほどがや",
+        "ko": "호도가야",
+        "romaji": "Hodogaya",
+        "koAliases": [],
+        "latitude": 35.446746,
+        "longitude": 139.599671,
+        "officialCode": "JO12",
+        "stationCode": "JO12",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 保土ケ谷駅 호도가야 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 308
+      },
+      {
+        "id": "station-mlit-004741",
+        "internalId": "station-mlit-004741",
+        "stationMasterId": "station-mlit-004741",
+        "sourceId": "station-mlit-004741",
+        "ja": "東戸塚",
+        "kana": "ひがしとつか",
+        "ko": "히가시토츠카",
+        "romaji": "Higashitotsuka",
+        "koAliases": [],
+        "latitude": 35.430008,
+        "longitude": 139.556504,
+        "officialCode": "JO11",
+        "stationCode": "JO11",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 東戸塚駅 히가시토츠카 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 338
+      },
+      {
+        "id": "station-mlit-004818",
+        "internalId": "station-mlit-004818",
+        "stationMasterId": "station-mlit-004818",
+        "sourceId": "station-mlit-004818",
+        "ja": "戸塚",
+        "kana": "とつか",
+        "ko": "토츠카",
+        "romaji": "Totsuka",
+        "koAliases": [],
+        "latitude": 35.400099,
+        "longitude": 139.534413,
+        "officialCode": "JO10",
+        "stationCode": "JO10",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 戸塚駅 토츠카 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 372
+      },
+      {
+        "id": "station-mlit-004961",
+        "internalId": "station-mlit-004961",
+        "stationMasterId": "station-mlit-004961",
+        "sourceId": "station-mlit-004961",
+        "ja": "大船",
+        "kana": "おおぶね",
+        "ko": "오오부네",
+        "romaji": "ōBune",
+        "koAliases": [],
+        "latitude": 35.354143,
+        "longitude": 139.53116,
+        "officialCode": "JO09",
+        "stationCode": "JO09",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 大船駅 오오부네 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 410
+      },
+      {
+        "id": "station-mlit-004998",
+        "internalId": "station-mlit-004998",
+        "stationMasterId": "station-mlit-004998",
+        "sourceId": "station-mlit-004998",
+        "ja": "北鎌倉",
+        "kana": "きたかまくら",
+        "ko": "키타카마쿠라",
+        "romaji": "Kitakamakura",
+        "koAliases": [],
+        "latitude": 35.33794,
+        "longitude": 139.544565,
+        "officialCode": "JO08",
+        "stationCode": "JO08",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 北鎌倉駅 키타카마쿠라 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 428
+      },
+      {
+        "id": "station-mlit-005055",
+        "internalId": "station-mlit-005055",
+        "stationMasterId": "station-mlit-005055",
+        "sourceId": "station-mlit-005055",
+        "ja": "鎌倉",
+        "kana": "かまくら",
+        "ko": "카마쿠라",
+        "romaji": "Kamakura",
+        "koAliases": [],
+        "latitude": 35.319271,
+        "longitude": 139.550427,
+        "officialCode": "JO07",
+        "stationCode": "JO07",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 鎌倉駅 카마쿠라 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 464
+      },
+      {
+        "id": "station-mlit-005121",
+        "internalId": "station-mlit-005121",
+        "stationMasterId": "station-mlit-005121",
+        "sourceId": "station-mlit-005121",
+        "ja": "逗子",
+        "kana": "ずし",
+        "ko": "즈시",
+        "romaji": "Zushi",
+        "koAliases": [],
+        "latitude": 35.297406,
+        "longitude": 139.578354,
+        "officialCode": "JO06",
+        "stationCode": "JO06",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 逗子駅 즈시 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 527
+      },
+      {
+        "id": "station-mlit-005118",
+        "internalId": "station-mlit-005118",
+        "stationMasterId": "station-mlit-005118",
+        "sourceId": "station-mlit-005118",
+        "ja": "東逗子",
+        "kana": "ひがしずし",
+        "ko": "히가시즈시",
+        "romaji": "Higashizushi",
+        "koAliases": [],
+        "latitude": 35.298765,
+        "longitude": 139.60182,
+        "officialCode": "JO05",
+        "stationCode": "JO05",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 東逗子駅 히가시즈시 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 542
+      },
+      {
+        "id": "station-mlit-005133",
+        "internalId": "station-mlit-005133",
+        "stationMasterId": "station-mlit-005133",
+        "sourceId": "station-mlit-005133",
+        "ja": "田浦",
+        "kana": "たうら",
+        "ko": "타우라",
+        "romaji": "Taura",
+        "koAliases": [],
+        "latitude": 35.29284,
+        "longitude": 139.637525,
+        "officialCode": "JO04",
+        "stationCode": "JO04",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 田浦駅 타우라 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 572
+      },
+      {
+        "id": "station-mlit-005149",
+        "internalId": "station-mlit-005149",
+        "stationMasterId": "station-mlit-005149",
+        "sourceId": "station-mlit-005149",
+        "ja": "横須賀",
+        "kana": "よこすか",
+        "ko": "요코스카",
+        "romaji": "Yokosuka",
+        "koAliases": [],
+        "latitude": 35.28424,
+        "longitude": 139.654813,
+        "officialCode": "JO03",
+        "stationCode": "JO03",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 横須賀駅 요코스카 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 596
+      },
+      {
+        "id": "station-mlit-005210",
+        "internalId": "station-mlit-005210",
+        "stationMasterId": "station-mlit-005210",
+        "sourceId": "station-mlit-005210",
+        "ja": "衣笠",
+        "kana": "きぬがさ",
+        "ko": "키누가사",
+        "romaji": "Kinugasa",
+        "koAliases": [],
+        "latitude": 35.25711,
+        "longitude": 139.66099,
+        "officialCode": "JO02",
+        "stationCode": "JO02",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 衣笠駅 키누가사 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 631
+      },
+      {
+        "id": "station-mlit-005273",
+        "internalId": "station-mlit-005273",
+        "stationMasterId": "station-mlit-005273",
+        "sourceId": "station-mlit-005273",
+        "ja": "久里浜",
+        "kana": "くりはま",
+        "ko": "쿠리하마",
+        "romaji": "Kurihama",
+        "koAliases": [],
+        "latitude": 35.233067,
+        "longitude": 139.70096,
+        "officialCode": "JO01",
+        "stationCode": "JO01",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 久里浜駅 쿠리하마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 666
+      }
+    ],
+    "geometry": [
+      [
+        35.68112,
+        139.7678
+      ],
+      [
+        35.67945,
+        139.76708
+      ],
+      [
+        35.6779,
+        139.76586
+      ],
+      [
+        35.67662,
+        139.76499
+      ],
+      [
+        35.67626,
+        139.76471
+      ],
+      [
+        35.6756,
+        139.76398
+      ],
+      [
+        35.67448,
+        139.76254
+      ],
+      [
+        35.6741,
+        139.76206
+      ],
+      [
+        35.67345,
+        139.7618
+      ],
+      [
+        35.67238,
+        139.76089
+      ],
+      [
+        35.67224,
+        139.76075
+      ],
+      [
+        35.67161,
+        139.76042
+      ],
+      [
+        35.67096,
+        139.76008
+      ],
+      [
+        35.66991,
+        139.75957
+      ],
+      [
+        35.66872,
+        139.75889
+      ],
+      [
+        35.66848,
+        139.75876
+      ],
+      [
+        35.66823,
+        139.75866
+      ],
+      [
+        35.66734,
+        139.75864
+      ],
+      [
+        35.66702,
+        139.75866
+      ],
+      [
+        35.66539,
+        139.7588
+      ],
+      [
+        35.66432,
+        139.75842
+      ],
+      [
+        35.66291,
+        139.7586
+      ],
+      [
+        35.66209,
+        139.7586
+      ],
+      [
+        35.66084,
+        139.75847
+      ],
+      [
+        35.65987,
+        139.75824
+      ],
+      [
+        35.65958,
+        139.75817
+      ],
+      [
+        35.65678,
+        139.75745
+      ],
+      [
+        35.65614,
+        139.75728
+      ],
+      [
+        35.65468,
+        139.75697
+      ],
+      [
+        35.65357,
+        139.75666
+      ],
+      [
+        35.6527,
+        139.75642
+      ],
+      [
+        35.65196,
+        139.75609
+      ],
+      [
+        35.65073,
+        139.75551
+      ],
+      [
+        35.64968,
+        139.7547
+      ],
+      [
+        35.64888,
+        139.75371
+      ],
+      [
+        35.64834,
+        139.75294
+      ],
+      [
+        35.64766,
+        139.75153
+      ],
+      [
+        35.64611,
+        139.74824
+      ],
+      [
+        35.64528,
+        139.74677
+      ],
+      [
+        35.64431,
+        139.74504
+      ],
+      [
+        35.64332,
+        139.74376
+      ],
+      [
+        35.642128,
+        139.743276
+      ],
+      [
+        35.641614,
+        139.743204
+      ],
+      [
+        35.64109,
+        139.743109
+      ],
+      [
+        35.639958,
+        139.742852
+      ],
+      [
+        35.63977,
+        139.7429
+      ],
+      [
+        35.63931,
+        139.74264
+      ],
+      [
+        35.63888,
+        139.74254
+      ],
+      [
+        35.63846,
+        139.74253
+      ],
+      [
+        35.63785,
+        139.74253
+      ],
+      [
+        35.63733,
+        139.74246
+      ],
+      [
+        35.63689,
+        139.74238
+      ],
+      [
+        35.63593,
+        139.74213
+      ],
+      [
+        35.63511,
+        139.74189
+      ],
+      [
+        35.63417,
+        139.74152
+      ],
+      [
+        35.63368,
+        139.7413
+      ],
+      [
+        35.63267,
+        139.74087
+      ],
+      [
+        35.63039,
+        139.73983
+      ],
+      [
+        35.62975,
+        139.73956
+      ],
+      [
+        35.62894,
+        139.73942
+      ],
+      [
+        35.62849,
+        139.73939
+      ],
+      [
+        35.62764,
+        139.73936
+      ],
+      [
+        35.62724,
+        139.73934
+      ],
+      [
+        35.62681,
+        139.73914
+      ],
+      [
+        35.6265,
+        139.73903
+      ],
+      [
+        35.62589,
+        139.73892
+      ],
+      [
+        35.62549,
+        139.73881
+      ],
+      [
+        35.62455,
+        139.73855
+      ],
+      [
+        35.6234,
+        139.73829
+      ],
+      [
+        35.6226,
+        139.73812
+      ],
+      [
+        35.6206,
+        139.73764
+      ],
+      [
+        35.62031,
+        139.73753
+      ],
+      [
+        35.61901,
+        139.73695
+      ],
+      [
+        35.61869,
+        139.73668
+      ],
+      [
+        35.61828,
+        139.73634
+      ],
+      [
+        35.61761,
+        139.7356
+      ],
+      [
+        35.61708,
+        139.73454
+      ],
+      [
+        35.61691,
+        139.73399
+      ],
+      [
+        35.61684,
+        139.73342
+      ],
+      [
+        35.61669,
+        139.73247
+      ],
+      [
+        35.61655,
+        139.73205
+      ],
+      [
+        35.61612,
+        139.73106
+      ],
+      [
+        35.61565,
+        139.73019
+      ],
+      [
+        35.61528,
+        139.72972
+      ],
+      [
+        35.61494,
+        139.72941
+      ],
+      [
+        35.61453,
+        139.7291
+      ],
+      [
+        35.61366,
+        139.72857
+      ],
+      [
+        35.61273,
+        139.728
+      ],
+      [
+        35.61002,
+        139.72636
+      ],
+      [
+        35.60957,
+        139.726
+      ],
+      [
+        35.60774,
+        139.72452
+      ],
+      [
+        35.60622,
+        139.7236
+      ],
+      [
+        35.60472,
+        139.72292
+      ],
+      [
+        35.60255,
+        139.72197
+      ],
+      [
+        35.60207,
+        139.72177
+      ],
+      [
+        35.60112,
+        139.72136
+      ],
+      [
+        35.60085,
+        139.72124
+      ],
+      [
+        35.59754,
+        139.71978
+      ],
+      [
+        35.59611,
+        139.71861
+      ],
+      [
+        35.59542,
+        139.71779
+      ],
+      [
+        35.59422,
+        139.71516
+      ],
+      [
+        35.59321,
+        139.7116
+      ],
+      [
+        35.59237,
+        139.70858
+      ],
+      [
+        35.5919,
+        139.70746
+      ],
+      [
+        35.59184,
+        139.70724
+      ],
+      [
+        35.59156,
+        139.70624
+      ],
+      [
+        35.59142,
+        139.70571
+      ],
+      [
+        35.59119,
+        139.70484
+      ],
+      [
+        35.59087,
+        139.70372
+      ],
+      [
+        35.59079,
+        139.70343
+      ],
+      [
+        35.59043,
+        139.70215
+      ],
+      [
+        35.59013,
+        139.70106
+      ],
+      [
+        35.58978,
+        139.69978
+      ],
+      [
+        35.58934,
+        139.69821
+      ],
+      [
+        35.58919,
+        139.69767
+      ],
+      [
+        35.58909,
+        139.6973
+      ],
+      [
+        35.58891,
+        139.69665
+      ],
+      [
+        35.58875,
+        139.69607
+      ],
+      [
+        35.58802,
+        139.6935
+      ],
+      [
+        35.58782,
+        139.69285
+      ],
+      [
+        35.58751,
+        139.69188
+      ],
+      [
+        35.58733,
+        139.69126
+      ],
+      [
+        35.58704,
+        139.69026
+      ],
+      [
+        35.58692,
+        139.68986
+      ],
+      [
+        35.58645,
+        139.68837
+      ],
+      [
+        35.58601,
+        139.68682
+      ],
+      [
+        35.58497,
+        139.68322
+      ],
+      [
+        35.58417,
+        139.68039
+      ],
+      [
+        35.58334,
+        139.67752
+      ],
+      [
+        35.58268,
+        139.67561
+      ],
+      [
+        35.58234,
+        139.67463
+      ],
+      [
+        35.58096,
+        139.67064
+      ],
+      [
+        35.58017,
+        139.66847
+      ],
+      [
+        35.57983,
+        139.66757
+      ],
+      [
+        35.57934,
+        139.66628
+      ],
+      [
+        35.57919,
+        139.66596
+      ],
+      [
+        35.578878,
+        139.665382
+      ],
+      [
+        35.578508,
+        139.664806
+      ],
+      [
+        35.577997,
+        139.66429
+      ],
+      [
+        35.577771,
+        139.664108
+      ],
+      [
+        35.577257,
+        139.663768
+      ],
+      [
+        35.576851,
+        139.663558
+      ],
+      [
+        35.576327,
+        139.663389
+      ],
+      [
+        35.575727,
+        139.663271
+      ],
+      [
+        35.575272,
+        139.663268
+      ],
+      [
+        35.57486,
+        139.66332
+      ],
+      [
+        35.574058,
+        139.663523
+      ],
+      [
+        35.573348,
+        139.663747
+      ],
+      [
+        35.572505,
+        139.664044
+      ],
+      [
+        35.569176,
+        139.665131
+      ],
+      [
+        35.568282,
+        139.66539
+      ],
+      [
+        35.567587,
+        139.665628
+      ],
+      [
+        35.56557,
+        139.66632
+      ],
+      [
+        35.56373,
+        139.66695
+      ],
+      [
+        35.5619,
+        139.66756
+      ],
+      [
+        35.5617,
+        139.66763
+      ],
+      [
+        35.56029,
+        139.66816
+      ],
+      [
+        35.55925,
+        139.66852
+      ],
+      [
+        35.55828,
+        139.66886
+      ],
+      [
+        35.55667,
+        139.66945
+      ],
+      [
+        35.55505,
+        139.67004
+      ],
+      [
+        35.5539,
+        139.67049
+      ],
+      [
+        35.55309,
+        139.67088
+      ],
+      [
+        35.55184,
+        139.6715
+      ],
+      [
+        35.55148,
+        139.67166
+      ],
+      [
+        35.55035,
+        139.67218
+      ],
+      [
+        35.5495,
+        139.6726
+      ],
+      [
+        35.548051,
+        139.673256
+      ],
+      [
+        35.546983,
+        139.673618
+      ],
+      [
+        35.544555,
+        139.674451
+      ],
+      [
+        35.54381,
+        139.674656
+      ],
+      [
+        35.54145,
+        139.675293
+      ],
+      [
+        35.538111,
+        139.67636
+      ],
+      [
+        35.537504,
+        139.676517
+      ],
+      [
+        35.53628,
+        139.676723
+      ],
+      [
+        35.535771,
+        139.67686
+      ],
+      [
+        35.534103,
+        139.677283
+      ],
+      [
+        35.530318,
+        139.678566
+      ],
+      [
+        35.527273,
+        139.679536
+      ],
+      [
+        35.526066,
+        139.679905
+      ],
+      [
+        35.5254,
+        139.680013
+      ],
+      [
+        35.524362,
+        139.680238
+      ],
+      [
+        35.523258,
+        139.680388
+      ],
+      [
+        35.521485,
+        139.680956
+      ],
+      [
+        35.520643,
+        139.68121
+      ],
+      [
+        35.519808,
+        139.681372
+      ],
+      [
+        35.519615,
+        139.681396
+      ],
+      [
+        35.519351,
+        139.681389
+      ],
+      [
+        35.519106,
+        139.681357
+      ],
+      [
+        35.518802,
+        139.681311
+      ],
+      [
+        35.518528,
+        139.68124
+      ],
+      [
+        35.518283,
+        139.681149
+      ],
+      [
+        35.518087,
+        139.681054
+      ],
+      [
+        35.517735,
+        139.680858
+      ],
+      [
+        35.516393,
+        139.6798
+      ],
+      [
+        35.514817,
+        139.678801
+      ],
+      [
+        35.513651,
+        139.678101
+      ],
+      [
+        35.51347,
+        139.678013
+      ],
+      [
+        35.513191,
+        139.677905
+      ],
+      [
+        35.512334,
+        139.677616
+      ],
+      [
+        35.511306,
+        139.677176
+      ],
+      [
+        35.510963,
+        139.677068
+      ],
+      [
+        35.510336,
+        139.67695
+      ],
+      [
+        35.506517,
+        139.676128
+      ],
+      [
+        35.5049,
+        139.6754
+      ],
+      [
+        35.50387,
+        139.67512
+      ],
+      [
+        35.50326,
+        139.6749
+      ],
+      [
+        35.50265,
+        139.67449
+      ],
+      [
+        35.50182,
+        139.67385
+      ],
+      [
+        35.5014,
+        139.67347
+      ],
+      [
+        35.50082,
+        139.67291
+      ],
+      [
+        35.50041,
+        139.6724
+      ],
+      [
+        35.50002,
+        139.67193
+      ],
+      [
+        35.49674,
+        139.66801
+      ],
+      [
+        35.49643,
+        139.66764
+      ],
+      [
+        35.49607,
+        139.66723
+      ],
+      [
+        35.49485,
+        139.66573
+      ],
+      [
+        35.49427,
+        139.66503
+      ],
+      [
+        35.4939,
+        139.66463
+      ],
+      [
+        35.49359,
+        139.66429
+      ],
+      [
+        35.49346,
+        139.66408
+      ],
+      [
+        35.49327,
+        139.66385
+      ],
+      [
+        35.49282,
+        139.66355
+      ],
+      [
+        35.49258,
+        139.66336
+      ],
+      [
+        35.49232,
+        139.66313
+      ],
+      [
+        35.49209,
+        139.6629
+      ],
+      [
+        35.49181,
+        139.66257
+      ],
+      [
+        35.49122,
+        139.66181
+      ],
+      [
+        35.49065,
+        139.66096
+      ],
+      [
+        35.48994,
+        139.65986
+      ],
+      [
+        35.48924,
+        139.65856
+      ],
+      [
+        35.48835,
+        139.65687
+      ],
+      [
+        35.488,
+        139.65625
+      ],
+      [
+        35.48734,
+        139.65507
+      ],
+      [
+        35.48695,
+        139.6544
+      ],
+      [
+        35.48669,
+        139.65388
+      ],
+      [
+        35.48643,
+        139.6533
+      ],
+      [
+        35.48603,
+        139.65226
+      ],
+      [
+        35.48574,
+        139.65129
+      ],
+      [
+        35.48558,
+        139.65049
+      ],
+      [
+        35.4855,
+        139.64927
+      ],
+      [
+        35.48548,
+        139.64874
+      ],
+      [
+        35.48544,
+        139.64798
+      ],
+      [
+        35.48532,
+        139.647
+      ],
+      [
+        35.48521,
+        139.6462
+      ],
+      [
+        35.48511,
+        139.64563
+      ],
+      [
+        35.48496,
+        139.64535
+      ],
+      [
+        35.48489,
+        139.64522
+      ],
+      [
+        35.48472,
+        139.64482
+      ],
+      [
+        35.4846,
+        139.64444
+      ],
+      [
+        35.48446,
+        139.64401
+      ],
+      [
+        35.48432,
+        139.64352
+      ],
+      [
+        35.48425,
+        139.64329
+      ],
+      [
+        35.48396,
+        139.64229
+      ],
+      [
+        35.48367,
+        139.64131
+      ],
+      [
+        35.48308,
+        139.63923
+      ],
+      [
+        35.48302,
+        139.63905
+      ],
+      [
+        35.48294,
+        139.6388
+      ],
+      [
+        35.48286,
+        139.6386
+      ],
+      [
+        35.48274,
+        139.63836
+      ],
+      [
+        35.48263,
+        139.63812
+      ],
+      [
+        35.48249,
+        139.63789
+      ],
+      [
+        35.48234,
+        139.63763
+      ],
+      [
+        35.48213,
+        139.63734
+      ],
+      [
+        35.48198,
+        139.63711
+      ],
+      [
+        35.48175,
+        139.63684
+      ],
+      [
+        35.48151,
+        139.63657
+      ],
+      [
+        35.4812,
+        139.63628
+      ],
+      [
+        35.48049,
+        139.6356
+      ],
+      [
+        35.48007,
+        139.63524
+      ],
+      [
+        35.47977,
+        139.63495
+      ],
+      [
+        35.47869,
+        139.63393
+      ],
+      [
+        35.47706,
+        139.6324
+      ],
+      [
+        35.47639,
+        139.63178
+      ],
+      [
+        35.47613,
+        139.63157
+      ],
+      [
+        35.47575,
+        139.6312
+      ],
+      [
+        35.47541,
+        139.63088
+      ],
+      [
+        35.47507,
+        139.63057
+      ],
+      [
+        35.47478,
+        139.6303
+      ],
+      [
+        35.47442,
+        139.62997
+      ],
+      [
+        35.4738,
+        139.62939
+      ],
+      [
+        35.4735,
+        139.62911
+      ],
+      [
+        35.47296,
+        139.62863
+      ],
+      [
+        35.47253,
+        139.62825
+      ],
+      [
+        35.47182,
+        139.62765
+      ],
+      [
+        35.47046,
+        139.62648
+      ],
+      [
+        35.46965,
+        139.62579
+      ],
+      [
+        35.46863,
+        139.62489
+      ],
+      [
+        35.46773,
+        139.62412
+      ],
+      [
+        35.46758,
+        139.62399
+      ],
+      [
+        35.46732,
+        139.62376
+      ],
+      [
+        35.46681,
+        139.62335
+      ],
+      [
+        35.46536,
+        139.62217
+      ],
+      [
+        35.46475,
+        139.62133
+      ],
+      [
+        35.46401,
+        139.62055
+      ],
+      [
+        35.46325,
+        139.61986
+      ],
+      [
+        35.46153,
+        139.61829
+      ],
+      [
+        35.46068,
+        139.61752
+      ],
+      [
+        35.45893,
+        139.6159
+      ],
+      [
+        35.45771,
+        139.61479
+      ],
+      [
+        35.45587,
+        139.61298
+      ],
+      [
+        35.45444,
+        139.61092
+      ],
+      [
+        35.45374,
+        139.6096
+      ],
+      [
+        35.45264,
+        139.60766
+      ],
+      [
+        35.45124,
+        139.60516
+      ],
+      [
+        35.45099,
+        139.60473
+      ],
+      [
+        35.4496,
+        139.60286
+      ],
+      [
+        35.44846,
+        139.60167
+      ],
+      [
+        35.44598,
+        139.59907
+      ],
+      [
+        35.44565,
+        139.59856
+      ],
+      [
+        35.44531,
+        139.59787
+      ],
+      [
+        35.44507,
+        139.59724
+      ],
+      [
+        35.44498,
+        139.59692
+      ],
+      [
+        35.44485,
+        139.595
+      ],
+      [
+        35.44516,
+        139.59281
+      ],
+      [
+        35.44536,
+        139.59115
+      ],
+      [
+        35.44579,
+        139.58824
+      ],
+      [
+        35.44648,
+        139.58346
+      ],
+      [
+        35.44699,
+        139.57961
+      ],
+      [
+        35.44695,
+        139.57852
+      ],
+      [
+        35.44673,
+        139.57746
+      ],
+      [
+        35.4464,
+        139.57668
+      ],
+      [
+        35.44582,
+        139.57557
+      ],
+      [
+        35.44528,
+        139.57451
+      ],
+      [
+        35.44295,
+        139.56987
+      ],
+      [
+        35.44266,
+        139.5693
+      ],
+      [
+        35.44101,
+        139.56587
+      ],
+      [
+        35.43921,
+        139.56242
+      ],
+      [
+        35.43878,
+        139.56187
+      ],
+      [
+        35.4382,
+        139.56128
+      ],
+      [
+        35.43693,
+        139.56012
+      ],
+      [
+        35.43612,
+        139.55943
+      ],
+      [
+        35.43477,
+        139.55821
+      ],
+      [
+        35.4335,
+        139.55741
+      ],
+      [
+        35.43256,
+        139.55708
+      ],
+      [
+        35.43158,
+        139.5569
+      ],
+      [
+        35.43115,
+        139.55649
+      ],
+      [
+        35.43057,
+        139.5565
+      ],
+      [
+        35.43017,
+        139.5565
+      ],
+      [
+        35.42939,
+        139.55651
+      ],
+      [
+        35.42876,
+        139.55652
+      ],
+      [
+        35.42805,
+        139.55642
+      ],
+      [
+        35.42775,
+        139.55633
+      ],
+      [
+        35.42676,
+        139.55595
+      ],
+      [
+        35.42514,
+        139.55527
+      ],
+      [
+        35.42438,
+        139.55493
+      ],
+      [
+        35.4237,
+        139.5545
+      ],
+      [
+        35.42317,
+        139.55409
+      ],
+      [
+        35.42258,
+        139.55357
+      ],
+      [
+        35.422,
+        139.55292
+      ],
+      [
+        35.42128,
+        139.55183
+      ],
+      [
+        35.42106,
+        139.55143
+      ],
+      [
+        35.42063,
+        139.55065
+      ],
+      [
+        35.41994,
+        139.54953
+      ],
+      [
+        35.41875,
+        139.54736
+      ],
+      [
+        35.41662,
+        139.54331
+      ],
+      [
+        35.415,
+        139.54026
+      ],
+      [
+        35.41476,
+        139.53981
+      ],
+      [
+        35.41366,
+        139.53807
+      ],
+      [
+        35.41339,
+        139.53764
+      ],
+      [
+        35.41284,
+        139.53684
+      ],
+      [
+        35.4124,
+        139.53631
+      ],
+      [
+        35.41168,
+        139.53568
+      ],
+      [
+        35.4111,
+        139.53534
+      ],
+      [
+        35.41002,
+        139.53477
+      ],
+      [
+        35.40907,
+        139.5345
+      ],
+      [
+        35.40812,
+        139.53433
+      ],
+      [
+        35.40639,
+        139.5341
+      ],
+      [
+        35.40452,
+        139.53383
+      ],
+      [
+        35.40252,
+        139.53379
+      ],
+      [
+        35.4017,
+        139.53392
+      ],
+      [
+        35.40076,
+        139.5342
+      ],
+      [
+        35.3999,
+        139.53448
+      ],
+      [
+        35.39956,
+        139.53458
+      ],
+      [
+        35.39908,
+        139.53473
+      ],
+      [
+        35.39793,
+        139.53511
+      ],
+      [
+        35.39659,
+        139.53552
+      ],
+      [
+        35.39519,
+        139.53572
+      ],
+      [
+        35.39349,
+        139.53564
+      ],
+      [
+        35.39148,
+        139.53545
+      ],
+      [
+        35.38921,
+        139.53524
+      ],
+      [
+        35.38661,
+        139.535
+      ],
+      [
+        35.38394,
+        139.53476
+      ],
+      [
+        35.38238,
+        139.53458
+      ],
+      [
+        35.3808,
+        139.53433
+      ],
+      [
+        35.37875,
+        139.53362
+      ],
+      [
+        35.37736,
+        139.53296
+      ],
+      [
+        35.3756,
+        139.53199
+      ],
+      [
+        35.37492,
+        139.5316
+      ],
+      [
+        35.37354,
+        139.53083
+      ],
+      [
+        35.37313,
+        139.5306
+      ],
+      [
+        35.37173,
+        139.52997
+      ],
+      [
+        35.37118,
+        139.52971
+      ],
+      [
+        35.36993,
+        139.52957
+      ],
+      [
+        35.36915,
+        139.52971
+      ],
+      [
+        35.3679,
+        139.53001
+      ],
+      [
+        35.3665,
+        139.5304
+      ],
+      [
+        35.36576,
+        139.53043
+      ],
+      [
+        35.36545,
+        139.53039
+      ],
+      [
+        35.36478,
+        139.53021
+      ],
+      [
+        35.36386,
+        139.52984
+      ],
+      [
+        35.36325,
+        139.52959
+      ],
+      [
+        35.36266,
+        139.52936
+      ],
+      [
+        35.362,
+        139.52923
+      ],
+      [
+        35.36091,
+        139.52922
+      ],
+      [
+        35.35926,
+        139.53002
+      ],
+      [
+        35.35829,
+        139.53077
+      ],
+      [
+        35.3571,
+        139.53156
+      ],
+      [
+        35.35591,
+        139.53173
+      ],
+      [
+        35.35542,
+        139.53164
+      ],
+      [
+        35.35412,
+        139.53115
+      ],
+      [
+        35.353028,
+        139.531127
+      ],
+      [
+        35.3526,
+        139.53102
+      ],
+      [
+        35.35209,
+        139.53081
+      ],
+      [
+        35.35101,
+        139.53043
+      ],
+      [
+        35.35024,
+        139.53022
+      ],
+      [
+        35.3495,
+        139.53022
+      ],
+      [
+        35.34853,
+        139.53069
+      ],
+      [
+        35.34758,
+        139.53144
+      ],
+      [
+        35.34651,
+        139.53245
+      ],
+      [
+        35.3462,
+        139.53275
+      ],
+      [
+        35.34515,
+        139.53371
+      ],
+      [
+        35.34425,
+        139.53461
+      ],
+      [
+        35.34339,
+        139.53579
+      ],
+      [
+        35.34272,
+        139.53782
+      ],
+      [
+        35.34221,
+        139.53927
+      ],
+      [
+        35.34134,
+        139.54087
+      ],
+      [
+        35.33991,
+        139.54243
+      ],
+      [
+        35.33867,
+        139.54377
+      ],
+      [
+        35.33721,
+        139.54536
+      ],
+      [
+        35.33661,
+        139.54601
+      ],
+      [
+        35.33619,
+        139.54647
+      ],
+      [
+        35.33579,
+        139.5469
+      ],
+      [
+        35.33514,
+        139.54759
+      ],
+      [
+        35.33493,
+        139.54778
+      ],
+      [
+        35.33443,
+        139.54817
+      ],
+      [
+        35.33416,
+        139.5483
+      ],
+      [
+        35.3336,
+        139.5485
+      ],
+      [
+        35.33331,
+        139.54852
+      ],
+      [
+        35.33305,
+        139.54858
+      ],
+      [
+        35.33283,
+        139.5486
+      ],
+      [
+        35.33249,
+        139.54861
+      ],
+      [
+        35.3321,
+        139.54861
+      ],
+      [
+        35.33198,
+        139.54862
+      ],
+      [
+        35.33149,
+        139.54858
+      ],
+      [
+        35.3305,
+        139.54856
+      ],
+      [
+        35.3301,
+        139.54853
+      ],
+      [
+        35.32938,
+        139.54852
+      ],
+      [
+        35.32864,
+        139.5485
+      ],
+      [
+        35.3284,
+        139.54848
+      ],
+      [
+        35.32787,
+        139.54852
+      ],
+      [
+        35.32736,
+        139.54868
+      ],
+      [
+        35.3271,
+        139.54881
+      ],
+      [
+        35.3265,
+        139.54915
+      ],
+      [
+        35.32611,
+        139.54948
+      ],
+      [
+        35.32551,
+        139.54999
+      ],
+      [
+        35.32495,
+        139.55038
+      ],
+      [
+        35.32429,
+        139.55069
+      ],
+      [
+        35.32413,
+        139.55073
+      ],
+      [
+        35.32335,
+        139.5508
+      ],
+      [
+        35.32288,
+        139.55078
+      ],
+      [
+        35.32194,
+        139.55071
+      ],
+      [
+        35.32054,
+        139.55054
+      ],
+      [
+        35.31969,
+        139.55044
+      ],
+      [
+        35.31933,
+        139.55041
+      ],
+      [
+        35.31887,
+        139.5504
+      ],
+      [
+        35.31826,
+        139.55039
+      ],
+      [
+        35.31792,
+        139.55041
+      ],
+      [
+        35.31752,
+        139.55047
+      ],
+      [
+        35.31716,
+        139.55054
+      ],
+      [
+        35.3165,
+        139.55073
+      ],
+      [
+        35.31611,
+        139.55085
+      ],
+      [
+        35.31554,
+        139.55107
+      ],
+      [
+        35.31495,
+        139.55135
+      ],
+      [
+        35.31423,
+        139.5518
+      ],
+      [
+        35.31391,
+        139.55202
+      ],
+      [
+        35.31323,
+        139.5526
+      ],
+      [
+        35.31292,
+        139.55293
+      ],
+      [
+        35.31236,
+        139.55359
+      ],
+      [
+        35.3119,
+        139.55425
+      ],
+      [
+        35.31148,
+        139.55494
+      ],
+      [
+        35.31111,
+        139.55563
+      ],
+      [
+        35.31073,
+        139.55663
+      ],
+      [
+        35.31036,
+        139.55799
+      ],
+      [
+        35.31024,
+        139.55862
+      ],
+      [
+        35.31017,
+        139.55895
+      ],
+      [
+        35.31005,
+        139.55963
+      ],
+      [
+        35.30998,
+        139.56007
+      ],
+      [
+        35.3098,
+        139.56064
+      ],
+      [
+        35.30965,
+        139.561
+      ],
+      [
+        35.30939,
+        139.56156
+      ],
+      [
+        35.30927,
+        139.56179
+      ],
+      [
+        35.30909,
+        139.56216
+      ],
+      [
+        35.30889,
+        139.56253
+      ],
+      [
+        35.30859,
+        139.56309
+      ],
+      [
+        35.30834,
+        139.56358
+      ],
+      [
+        35.3081,
+        139.56402
+      ],
+      [
+        35.30767,
+        139.56484
+      ],
+      [
+        35.30738,
+        139.56543
+      ],
+      [
+        35.30711,
+        139.56593
+      ],
+      [
+        35.30696,
+        139.56622
+      ],
+      [
+        35.30688,
+        139.56643
+      ],
+      [
+        35.30673,
+        139.5667
+      ],
+      [
+        35.30654,
+        139.56719
+      ],
+      [
+        35.30636,
+        139.56764
+      ],
+      [
+        35.30602,
+        139.56813
+      ],
+      [
+        35.30569,
+        139.56857
+      ],
+      [
+        35.30527,
+        139.56901
+      ],
+      [
+        35.30452,
+        139.56951
+      ],
+      [
+        35.30394,
+        139.56976
+      ],
+      [
+        35.30306,
+        139.57011
+      ],
+      [
+        35.30248,
+        139.57034
+      ],
+      [
+        35.30198,
+        139.57054
+      ],
+      [
+        35.30096,
+        139.57095
+      ],
+      [
+        35.30029,
+        139.57133
+      ],
+      [
+        35.2997,
+        139.57174
+      ],
+      [
+        35.29926,
+        139.57214
+      ],
+      [
+        35.29894,
+        139.57252
+      ],
+      [
+        35.29869,
+        139.57286
+      ],
+      [
+        35.29817,
+        139.57356
+      ],
+      [
+        35.29803,
+        139.57382
+      ],
+      [
+        35.29778,
+        139.57436
+      ],
+      [
+        35.29761,
+        139.57483
+      ],
+      [
+        35.29743,
+        139.57561
+      ],
+      [
+        35.29733,
+        139.57621
+      ],
+      [
+        35.29729,
+        139.57708
+      ],
+      [
+        35.29731,
+        139.5777
+      ],
+      [
+        35.29739,
+        139.57836
+      ],
+      [
+        35.29747,
+        139.57894
+      ],
+      [
+        35.29759,
+        139.57965
+      ],
+      [
+        35.29805,
+        139.58209
+      ],
+      [
+        35.29825,
+        139.58316
+      ],
+      [
+        35.29858,
+        139.58492
+      ],
+      [
+        35.29887,
+        139.58645
+      ],
+      [
+        35.29924,
+        139.58861
+      ],
+      [
+        35.29954,
+        139.59031
+      ],
+      [
+        35.2997,
+        139.59139
+      ],
+      [
+        35.29966,
+        139.59301
+      ],
+      [
+        35.29941,
+        139.59538
+      ],
+      [
+        35.2993,
+        139.59669
+      ],
+      [
+        35.29906,
+        139.59899
+      ],
+      [
+        35.29897,
+        139.59988
+      ],
+      [
+        35.29884,
+        139.60121
+      ],
+      [
+        35.29869,
+        139.60243
+      ],
+      [
+        35.2985,
+        139.6042
+      ],
+      [
+        35.29835,
+        139.6056
+      ],
+      [
+        35.29824,
+        139.60669
+      ],
+      [
+        35.29808,
+        139.60806
+      ],
+      [
+        35.29793,
+        139.60941
+      ],
+      [
+        35.29775,
+        139.61088
+      ],
+      [
+        35.29761,
+        139.61164
+      ],
+      [
+        35.29734,
+        139.6128
+      ],
+      [
+        35.29714,
+        139.61352
+      ],
+      [
+        35.29673,
+        139.61474
+      ],
+      [
+        35.29568,
+        139.61676
+      ],
+      [
+        35.29527,
+        139.61743
+      ],
+      [
+        35.2945,
+        139.61874
+      ],
+      [
+        35.29383,
+        139.62021
+      ],
+      [
+        35.29342,
+        139.62126
+      ],
+      [
+        35.29327,
+        139.62179
+      ],
+      [
+        35.29313,
+        139.62251
+      ],
+      [
+        35.29304,
+        139.62289
+      ],
+      [
+        35.29284,
+        139.62372
+      ],
+      [
+        35.29272,
+        139.62428
+      ],
+      [
+        35.29265,
+        139.62576
+      ],
+      [
+        35.29294,
+        139.6284
+      ],
+      [
+        35.29316,
+        139.6302
+      ],
+      [
+        35.29333,
+        139.6319
+      ],
+      [
+        35.29338,
+        139.63295
+      ],
+      [
+        35.29333,
+        139.63359
+      ],
+      [
+        35.29323,
+        139.63441
+      ],
+      [
+        35.2931,
+        139.63542
+      ],
+      [
+        35.29292,
+        139.63689
+      ],
+      [
+        35.29276,
+        139.63816
+      ],
+      [
+        35.29266,
+        139.63893
+      ],
+      [
+        35.29254,
+        139.63973
+      ],
+      [
+        35.29246,
+        139.64004
+      ],
+      [
+        35.29238,
+        139.64037
+      ],
+      [
+        35.29223,
+        139.64086
+      ],
+      [
+        35.29191,
+        139.64157
+      ],
+      [
+        35.29176,
+        139.6419
+      ],
+      [
+        35.291,
+        139.64355
+      ],
+      [
+        35.29049,
+        139.6446
+      ],
+      [
+        35.28996,
+        139.6457
+      ],
+      [
+        35.28929,
+        139.64712
+      ],
+      [
+        35.28916,
+        139.64739
+      ],
+      [
+        35.28886,
+        139.64797
+      ],
+      [
+        35.28854,
+        139.64855
+      ],
+      [
+        35.28825,
+        139.64903
+      ],
+      [
+        35.2877,
+        139.64976
+      ],
+      [
+        35.28695,
+        139.65064
+      ],
+      [
+        35.28634,
+        139.65129
+      ],
+      [
+        35.28578,
+        139.65181
+      ],
+      [
+        35.2853,
+        139.65239
+      ],
+      [
+        35.28478,
+        139.65321
+      ],
+      [
+        35.28459,
+        139.65355
+      ],
+      [
+        35.28427,
+        139.65463
+      ],
+      [
+        35.28397,
+        139.65599
+      ],
+      [
+        35.28367,
+        139.6567
+      ],
+      [
+        35.28328,
+        139.65734
+      ],
+      [
+        35.28303,
+        139.65766
+      ],
+      [
+        35.28262,
+        139.65786
+      ],
+      [
+        35.28221,
+        139.6579
+      ],
+      [
+        35.28193,
+        139.65789
+      ],
+      [
+        35.2812,
+        139.65779
+      ],
+      [
+        35.27997,
+        139.65754
+      ],
+      [
+        35.27844,
+        139.65734
+      ],
+      [
+        35.27656,
+        139.65707
+      ],
+      [
+        35.2751,
+        139.65674
+      ],
+      [
+        35.27349,
+        139.65644
+      ],
+      [
+        35.27152,
+        139.65612
+      ],
+      [
+        35.26983,
+        139.65575
+      ],
+      [
+        35.26747,
+        139.65535
+      ],
+      [
+        35.26652,
+        139.65519
+      ],
+      [
+        35.2656,
+        139.65504
+      ],
+      [
+        35.26426,
+        139.65483
+      ],
+      [
+        35.26377,
+        139.65478
+      ],
+      [
+        35.26287,
+        139.65472
+      ],
+      [
+        35.26255,
+        139.65476
+      ],
+      [
+        35.26186,
+        139.65488
+      ],
+      [
+        35.26155,
+        139.65497
+      ],
+      [
+        35.26099,
+        139.65511
+      ],
+      [
+        35.26072,
+        139.65522
+      ],
+      [
+        35.26006,
+        139.65555
+      ],
+      [
+        35.25955,
+        139.65596
+      ],
+      [
+        35.25941,
+        139.65608
+      ],
+      [
+        35.25908,
+        139.65644
+      ],
+      [
+        35.25872,
+        139.65691
+      ],
+      [
+        35.25855,
+        139.65717
+      ],
+      [
+        35.25822,
+        139.65774
+      ],
+      [
+        35.25791,
+        139.65851
+      ],
+      [
+        35.2575,
+        139.65974
+      ],
+      [
+        35.25672,
+        139.66224
+      ],
+      [
+        35.2563,
+        139.66351
+      ],
+      [
+        35.2557,
+        139.66551
+      ],
+      [
+        35.25495,
+        139.66808
+      ],
+      [
+        35.25483,
+        139.66849
+      ],
+      [
+        35.25402,
+        139.67132
+      ],
+      [
+        35.25343,
+        139.67333
+      ],
+      [
+        35.25315,
+        139.67419
+      ],
+      [
+        35.25265,
+        139.67579
+      ],
+      [
+        35.25221,
+        139.67676
+      ],
+      [
+        35.25173,
+        139.67755
+      ],
+      [
+        35.25114,
+        139.67839
+      ],
+      [
+        35.25074,
+        139.67888
+      ],
+      [
+        35.24961,
+        139.68028
+      ],
+      [
+        35.24909,
+        139.68093
+      ],
+      [
+        35.24782,
+        139.68248
+      ],
+      [
+        35.24706,
+        139.68341
+      ],
+      [
+        35.24584,
+        139.68493
+      ],
+      [
+        35.24518,
+        139.68573
+      ],
+      [
+        35.24445,
+        139.68668
+      ],
+      [
+        35.24332,
+        139.68832
+      ],
+      [
+        35.24267,
+        139.68945
+      ],
+      [
+        35.24214,
+        139.69039
+      ],
+      [
+        35.24161,
+        139.69132
+      ],
+      [
+        35.24089,
+        139.69259
+      ],
+      [
+        35.24033,
+        139.69362
+      ],
+      [
+        35.23977,
+        139.69457
+      ],
+      [
+        35.23932,
+        139.69528
+      ],
+      [
+        35.23886,
+        139.69589
+      ],
+      [
+        35.23823,
+        139.6966
+      ],
+      [
+        35.23733,
+        139.69757
+      ],
+      [
+        35.23644,
+        139.69855
+      ],
+      [
+        35.23597,
+        139.69905
+      ],
+      [
+        35.23489,
+        139.70004
+      ],
+      [
+        35.23284,
+        139.70108
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-mlit-003766",
+        "toStationId": "station-mlit-003872",
+        "geometry": [
+          [
+            35.68112,
+            139.7678
+          ],
+          [
+            35.67945,
+            139.76708
+          ],
+          [
+            35.6779,
+            139.76586
+          ],
+          [
+            35.67662,
+            139.76499
+          ],
+          [
+            35.67626,
+            139.76471
+          ],
+          [
+            35.6756,
+            139.76398
+          ],
+          [
+            35.67448,
+            139.76254
+          ],
+          [
+            35.6741,
+            139.76206
+          ],
+          [
+            35.67345,
+            139.7618
+          ],
+          [
+            35.67238,
+            139.76089
+          ],
+          [
+            35.67224,
+            139.76075
+          ],
+          [
+            35.67161,
+            139.76042
+          ],
+          [
+            35.67096,
+            139.76008
+          ],
+          [
+            35.66991,
+            139.75957
+          ],
+          [
+            35.66872,
+            139.75889
+          ],
+          [
+            35.66848,
+            139.75876
+          ],
+          [
+            35.66823,
+            139.75866
+          ],
+          [
+            35.66734,
+            139.75864
+          ],
+          [
+            35.66702,
+            139.75866
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-003872",
+        "toStationId": "station-mlit-004095",
+        "geometry": [
+          [
+            35.66702,
+            139.75866
+          ],
+          [
+            35.66539,
+            139.7588
+          ],
+          [
+            35.66432,
+            139.75842
+          ],
+          [
+            35.66291,
+            139.7586
+          ],
+          [
+            35.66209,
+            139.7586
+          ],
+          [
+            35.66084,
+            139.75847
+          ],
+          [
+            35.65987,
+            139.75824
+          ],
+          [
+            35.65958,
+            139.75817
+          ],
+          [
+            35.65678,
+            139.75745
+          ],
+          [
+            35.65614,
+            139.75728
+          ],
+          [
+            35.65468,
+            139.75697
+          ],
+          [
+            35.65357,
+            139.75666
+          ],
+          [
+            35.6527,
+            139.75642
+          ],
+          [
+            35.65196,
+            139.75609
+          ],
+          [
+            35.65073,
+            139.75551
+          ],
+          [
+            35.64968,
+            139.7547
+          ],
+          [
+            35.64888,
+            139.75371
+          ],
+          [
+            35.64834,
+            139.75294
+          ],
+          [
+            35.64766,
+            139.75153
+          ],
+          [
+            35.64611,
+            139.74824
+          ],
+          [
+            35.64528,
+            139.74677
+          ],
+          [
+            35.64431,
+            139.74504
+          ],
+          [
+            35.64332,
+            139.74376
+          ],
+          [
+            35.642128,
+            139.743276
+          ],
+          [
+            35.641614,
+            139.743204
+          ],
+          [
+            35.64109,
+            139.743109
+          ],
+          [
+            35.639958,
+            139.742852
+          ],
+          [
+            35.63977,
+            139.7429
+          ],
+          [
+            35.63931,
+            139.74264
+          ],
+          [
+            35.63888,
+            139.74254
+          ],
+          [
+            35.63846,
+            139.74253
+          ],
+          [
+            35.63785,
+            139.74253
+          ],
+          [
+            35.63733,
+            139.74246
+          ],
+          [
+            35.63689,
+            139.74238
+          ],
+          [
+            35.63593,
+            139.74213
+          ],
+          [
+            35.63511,
+            139.74189
+          ],
+          [
+            35.63417,
+            139.74152
+          ],
+          [
+            35.63368,
+            139.7413
+          ],
+          [
+            35.63267,
+            139.74087
+          ],
+          [
+            35.63039,
+            139.73983
+          ],
+          [
+            35.62975,
+            139.73956
+          ],
+          [
+            35.62894,
+            139.73942
+          ],
+          [
+            35.62849,
+            139.73939
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004095",
+        "toStationId": "station-mlit-004235",
+        "geometry": [
+          [
+            35.62849,
+            139.73939
+          ],
+          [
+            35.62764,
+            139.73936
+          ],
+          [
+            35.62724,
+            139.73934
+          ],
+          [
+            35.62681,
+            139.73914
+          ],
+          [
+            35.6265,
+            139.73903
+          ],
+          [
+            35.62589,
+            139.73892
+          ],
+          [
+            35.62549,
+            139.73881
+          ],
+          [
+            35.62455,
+            139.73855
+          ],
+          [
+            35.6234,
+            139.73829
+          ],
+          [
+            35.6226,
+            139.73812
+          ],
+          [
+            35.6206,
+            139.73764
+          ],
+          [
+            35.62031,
+            139.73753
+          ],
+          [
+            35.61901,
+            139.73695
+          ],
+          [
+            35.61869,
+            139.73668
+          ],
+          [
+            35.61828,
+            139.73634
+          ],
+          [
+            35.61761,
+            139.7356
+          ],
+          [
+            35.61708,
+            139.73454
+          ],
+          [
+            35.61691,
+            139.73399
+          ],
+          [
+            35.61684,
+            139.73342
+          ],
+          [
+            35.61669,
+            139.73247
+          ],
+          [
+            35.61655,
+            139.73205
+          ],
+          [
+            35.61612,
+            139.73106
+          ],
+          [
+            35.61565,
+            139.73019
+          ],
+          [
+            35.61528,
+            139.72972
+          ],
+          [
+            35.61494,
+            139.72941
+          ],
+          [
+            35.61453,
+            139.7291
+          ],
+          [
+            35.61366,
+            139.72857
+          ],
+          [
+            35.61273,
+            139.728
+          ],
+          [
+            35.61002,
+            139.72636
+          ],
+          [
+            35.60957,
+            139.726
+          ],
+          [
+            35.60774,
+            139.72452
+          ],
+          [
+            35.60622,
+            139.7236
+          ],
+          [
+            35.60472,
+            139.72292
+          ],
+          [
+            35.60255,
+            139.72197
+          ],
+          [
+            35.60207,
+            139.72177
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004235",
+        "toStationId": "station-mlit-004301",
+        "geometry": [
+          [
+            35.60207,
+            139.72177
+          ],
+          [
+            35.60112,
+            139.72136
+          ],
+          [
+            35.60085,
+            139.72124
+          ],
+          [
+            35.59754,
+            139.71978
+          ],
+          [
+            35.59611,
+            139.71861
+          ],
+          [
+            35.59542,
+            139.71779
+          ],
+          [
+            35.59422,
+            139.71516
+          ],
+          [
+            35.59321,
+            139.7116
+          ],
+          [
+            35.59237,
+            139.70858
+          ],
+          [
+            35.5919,
+            139.70746
+          ],
+          [
+            35.59184,
+            139.70724
+          ],
+          [
+            35.59156,
+            139.70624
+          ],
+          [
+            35.59142,
+            139.70571
+          ],
+          [
+            35.59119,
+            139.70484
+          ],
+          [
+            35.59087,
+            139.70372
+          ],
+          [
+            35.59079,
+            139.70343
+          ],
+          [
+            35.59043,
+            139.70215
+          ],
+          [
+            35.59013,
+            139.70106
+          ],
+          [
+            35.58978,
+            139.69978
+          ],
+          [
+            35.58934,
+            139.69821
+          ],
+          [
+            35.58919,
+            139.69767
+          ],
+          [
+            35.58909,
+            139.6973
+          ],
+          [
+            35.58891,
+            139.69665
+          ],
+          [
+            35.58875,
+            139.69607
+          ],
+          [
+            35.58802,
+            139.6935
+          ],
+          [
+            35.58782,
+            139.69285
+          ],
+          [
+            35.58751,
+            139.69188
+          ],
+          [
+            35.58733,
+            139.69126
+          ],
+          [
+            35.58704,
+            139.69026
+          ],
+          [
+            35.58692,
+            139.68986
+          ],
+          [
+            35.58645,
+            139.68837
+          ],
+          [
+            35.58601,
+            139.68682
+          ],
+          [
+            35.58497,
+            139.68322
+          ],
+          [
+            35.58417,
+            139.68039
+          ],
+          [
+            35.58334,
+            139.67752
+          ],
+          [
+            35.58268,
+            139.67561
+          ],
+          [
+            35.58234,
+            139.67463
+          ],
+          [
+            35.58096,
+            139.67064
+          ],
+          [
+            35.58017,
+            139.66847
+          ],
+          [
+            35.57983,
+            139.66757
+          ],
+          [
+            35.57934,
+            139.66628
+          ],
+          [
+            35.57919,
+            139.66596
+          ],
+          [
+            35.578878,
+            139.665382
+          ],
+          [
+            35.578508,
+            139.664806
+          ],
+          [
+            35.577997,
+            139.66429
+          ],
+          [
+            35.577771,
+            139.664108
+          ],
+          [
+            35.577257,
+            139.663768
+          ],
+          [
+            35.576851,
+            139.663558
+          ],
+          [
+            35.576327,
+            139.663389
+          ],
+          [
+            35.575727,
+            139.663271
+          ],
+          [
+            35.575272,
+            139.663268
+          ],
+          [
+            35.57486,
+            139.66332
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004301",
+        "toStationId": "station-mlit-004358",
+        "geometry": [
+          [
+            35.57486,
+            139.66332
+          ],
+          [
+            35.574058,
+            139.663523
+          ],
+          [
+            35.573348,
+            139.663747
+          ],
+          [
+            35.572505,
+            139.664044
+          ],
+          [
+            35.569176,
+            139.665131
+          ],
+          [
+            35.568282,
+            139.66539
+          ],
+          [
+            35.567587,
+            139.665628
+          ],
+          [
+            35.56557,
+            139.66632
+          ],
+          [
+            35.56373,
+            139.66695
+          ],
+          [
+            35.5619,
+            139.66756
+          ],
+          [
+            35.5617,
+            139.66763
+          ],
+          [
+            35.56029,
+            139.66816
+          ],
+          [
+            35.55925,
+            139.66852
+          ],
+          [
+            35.55828,
+            139.66886
+          ],
+          [
+            35.55667,
+            139.66945
+          ],
+          [
+            35.55505,
+            139.67004
+          ],
+          [
+            35.5539,
+            139.67049
+          ],
+          [
+            35.55309,
+            139.67088
+          ],
+          [
+            35.55184,
+            139.6715
+          ],
+          [
+            35.55148,
+            139.67166
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004358",
+        "toStationId": "station-mlit-004633",
+        "geometry": [
+          [
+            35.55148,
+            139.67166
+          ],
+          [
+            35.55035,
+            139.67218
+          ],
+          [
+            35.5495,
+            139.6726
+          ],
+          [
+            35.548051,
+            139.673256
+          ],
+          [
+            35.546983,
+            139.673618
+          ],
+          [
+            35.544555,
+            139.674451
+          ],
+          [
+            35.54381,
+            139.674656
+          ],
+          [
+            35.54145,
+            139.675293
+          ],
+          [
+            35.538111,
+            139.67636
+          ],
+          [
+            35.537504,
+            139.676517
+          ],
+          [
+            35.53628,
+            139.676723
+          ],
+          [
+            35.535771,
+            139.67686
+          ],
+          [
+            35.534103,
+            139.677283
+          ],
+          [
+            35.530318,
+            139.678566
+          ],
+          [
+            35.527273,
+            139.679536
+          ],
+          [
+            35.526066,
+            139.679905
+          ],
+          [
+            35.5254,
+            139.680013
+          ],
+          [
+            35.524362,
+            139.680238
+          ],
+          [
+            35.523258,
+            139.680388
+          ],
+          [
+            35.521485,
+            139.680956
+          ],
+          [
+            35.520643,
+            139.68121
+          ],
+          [
+            35.519808,
+            139.681372
+          ],
+          [
+            35.519615,
+            139.681396
+          ],
+          [
+            35.519351,
+            139.681389
+          ],
+          [
+            35.519106,
+            139.681357
+          ],
+          [
+            35.518802,
+            139.681311
+          ],
+          [
+            35.518528,
+            139.68124
+          ],
+          [
+            35.518283,
+            139.681149
+          ],
+          [
+            35.518087,
+            139.681054
+          ],
+          [
+            35.517735,
+            139.680858
+          ],
+          [
+            35.516393,
+            139.6798
+          ],
+          [
+            35.514817,
+            139.678801
+          ],
+          [
+            35.513651,
+            139.678101
+          ],
+          [
+            35.51347,
+            139.678013
+          ],
+          [
+            35.513191,
+            139.677905
+          ],
+          [
+            35.512334,
+            139.677616
+          ],
+          [
+            35.511306,
+            139.677176
+          ],
+          [
+            35.510963,
+            139.677068
+          ],
+          [
+            35.510336,
+            139.67695
+          ],
+          [
+            35.506517,
+            139.676128
+          ],
+          [
+            35.5049,
+            139.6754
+          ],
+          [
+            35.50387,
+            139.67512
+          ],
+          [
+            35.50326,
+            139.6749
+          ],
+          [
+            35.50265,
+            139.67449
+          ],
+          [
+            35.50182,
+            139.67385
+          ],
+          [
+            35.5014,
+            139.67347
+          ],
+          [
+            35.50082,
+            139.67291
+          ],
+          [
+            35.50041,
+            139.6724
+          ],
+          [
+            35.50002,
+            139.67193
+          ],
+          [
+            35.49674,
+            139.66801
+          ],
+          [
+            35.49643,
+            139.66764
+          ],
+          [
+            35.49607,
+            139.66723
+          ],
+          [
+            35.49485,
+            139.66573
+          ],
+          [
+            35.49427,
+            139.66503
+          ],
+          [
+            35.4939,
+            139.66463
+          ],
+          [
+            35.49359,
+            139.66429
+          ],
+          [
+            35.49346,
+            139.66408
+          ],
+          [
+            35.49327,
+            139.66385
+          ],
+          [
+            35.49282,
+            139.66355
+          ],
+          [
+            35.49258,
+            139.66336
+          ],
+          [
+            35.49232,
+            139.66313
+          ],
+          [
+            35.49209,
+            139.6629
+          ],
+          [
+            35.49181,
+            139.66257
+          ],
+          [
+            35.49122,
+            139.66181
+          ],
+          [
+            35.49065,
+            139.66096
+          ],
+          [
+            35.48994,
+            139.65986
+          ],
+          [
+            35.48924,
+            139.65856
+          ],
+          [
+            35.48835,
+            139.65687
+          ],
+          [
+            35.488,
+            139.65625
+          ],
+          [
+            35.48734,
+            139.65507
+          ],
+          [
+            35.48695,
+            139.6544
+          ],
+          [
+            35.48669,
+            139.65388
+          ],
+          [
+            35.48643,
+            139.6533
+          ],
+          [
+            35.48603,
+            139.65226
+          ],
+          [
+            35.48574,
+            139.65129
+          ],
+          [
+            35.48558,
+            139.65049
+          ],
+          [
+            35.4855,
+            139.64927
+          ],
+          [
+            35.48548,
+            139.64874
+          ],
+          [
+            35.48544,
+            139.64798
+          ],
+          [
+            35.48532,
+            139.647
+          ],
+          [
+            35.48521,
+            139.6462
+          ],
+          [
+            35.48511,
+            139.64563
+          ],
+          [
+            35.48496,
+            139.64535
+          ],
+          [
+            35.48489,
+            139.64522
+          ],
+          [
+            35.48472,
+            139.64482
+          ],
+          [
+            35.4846,
+            139.64444
+          ],
+          [
+            35.48446,
+            139.64401
+          ],
+          [
+            35.48432,
+            139.64352
+          ],
+          [
+            35.48425,
+            139.64329
+          ],
+          [
+            35.48396,
+            139.64229
+          ],
+          [
+            35.48367,
+            139.64131
+          ],
+          [
+            35.48308,
+            139.63923
+          ],
+          [
+            35.48302,
+            139.63905
+          ],
+          [
+            35.48294,
+            139.6388
+          ],
+          [
+            35.48286,
+            139.6386
+          ],
+          [
+            35.48274,
+            139.63836
+          ],
+          [
+            35.48263,
+            139.63812
+          ],
+          [
+            35.48249,
+            139.63789
+          ],
+          [
+            35.48234,
+            139.63763
+          ],
+          [
+            35.48213,
+            139.63734
+          ],
+          [
+            35.48198,
+            139.63711
+          ],
+          [
+            35.48175,
+            139.63684
+          ],
+          [
+            35.48151,
+            139.63657
+          ],
+          [
+            35.4812,
+            139.63628
+          ],
+          [
+            35.48049,
+            139.6356
+          ],
+          [
+            35.48007,
+            139.63524
+          ],
+          [
+            35.47977,
+            139.63495
+          ],
+          [
+            35.47869,
+            139.63393
+          ],
+          [
+            35.47706,
+            139.6324
+          ],
+          [
+            35.47639,
+            139.63178
+          ],
+          [
+            35.47613,
+            139.63157
+          ],
+          [
+            35.47575,
+            139.6312
+          ],
+          [
+            35.47541,
+            139.63088
+          ],
+          [
+            35.47507,
+            139.63057
+          ],
+          [
+            35.47478,
+            139.6303
+          ],
+          [
+            35.47442,
+            139.62997
+          ],
+          [
+            35.4738,
+            139.62939
+          ],
+          [
+            35.4735,
+            139.62911
+          ],
+          [
+            35.47296,
+            139.62863
+          ],
+          [
+            35.47253,
+            139.62825
+          ],
+          [
+            35.47182,
+            139.62765
+          ],
+          [
+            35.47046,
+            139.62648
+          ],
+          [
+            35.46965,
+            139.62579
+          ],
+          [
+            35.46863,
+            139.62489
+          ],
+          [
+            35.46773,
+            139.62412
+          ],
+          [
+            35.46758,
+            139.62399
+          ],
+          [
+            35.46732,
+            139.62376
+          ],
+          [
+            35.46681,
+            139.62335
+          ],
+          [
+            35.46536,
+            139.62217
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004633",
+        "toStationId": "station-1130807",
+        "geometry": [
+          [
+            35.46536,
+            139.62217
+          ],
+          [
+            35.46475,
+            139.62133
+          ],
+          [
+            35.46401,
+            139.62055
+          ],
+          [
+            35.46325,
+            139.61986
+          ],
+          [
+            35.46153,
+            139.61829
+          ],
+          [
+            35.46068,
+            139.61752
+          ],
+          [
+            35.45893,
+            139.6159
+          ],
+          [
+            35.45771,
+            139.61479
+          ],
+          [
+            35.45587,
+            139.61298
+          ],
+          [
+            35.45444,
+            139.61092
+          ],
+          [
+            35.45374,
+            139.6096
+          ],
+          [
+            35.45264,
+            139.60766
+          ],
+          [
+            35.45124,
+            139.60516
+          ],
+          [
+            35.45099,
+            139.60473
+          ],
+          [
+            35.4496,
+            139.60286
+          ],
+          [
+            35.44846,
+            139.60167
+          ],
+          [
+            35.44598,
+            139.59907
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1130807",
+        "toStationId": "station-mlit-004741",
+        "geometry": [
+          [
+            35.44598,
+            139.59907
+          ],
+          [
+            35.44565,
+            139.59856
+          ],
+          [
+            35.44531,
+            139.59787
+          ],
+          [
+            35.44507,
+            139.59724
+          ],
+          [
+            35.44498,
+            139.59692
+          ],
+          [
+            35.44485,
+            139.595
+          ],
+          [
+            35.44516,
+            139.59281
+          ],
+          [
+            35.44536,
+            139.59115
+          ],
+          [
+            35.44579,
+            139.58824
+          ],
+          [
+            35.44648,
+            139.58346
+          ],
+          [
+            35.44699,
+            139.57961
+          ],
+          [
+            35.44695,
+            139.57852
+          ],
+          [
+            35.44673,
+            139.57746
+          ],
+          [
+            35.4464,
+            139.57668
+          ],
+          [
+            35.44582,
+            139.57557
+          ],
+          [
+            35.44528,
+            139.57451
+          ],
+          [
+            35.44295,
+            139.56987
+          ],
+          [
+            35.44266,
+            139.5693
+          ],
+          [
+            35.44101,
+            139.56587
+          ],
+          [
+            35.43921,
+            139.56242
+          ],
+          [
+            35.43878,
+            139.56187
+          ],
+          [
+            35.4382,
+            139.56128
+          ],
+          [
+            35.43693,
+            139.56012
+          ],
+          [
+            35.43612,
+            139.55943
+          ],
+          [
+            35.43477,
+            139.55821
+          ],
+          [
+            35.4335,
+            139.55741
+          ],
+          [
+            35.43256,
+            139.55708
+          ],
+          [
+            35.43158,
+            139.5569
+          ],
+          [
+            35.43115,
+            139.55649
+          ],
+          [
+            35.43057,
+            139.5565
+          ],
+          [
+            35.43017,
+            139.5565
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004741",
+        "toStationId": "station-mlit-004818",
+        "geometry": [
+          [
+            35.43017,
+            139.5565
+          ],
+          [
+            35.42939,
+            139.55651
+          ],
+          [
+            35.42876,
+            139.55652
+          ],
+          [
+            35.42805,
+            139.55642
+          ],
+          [
+            35.42775,
+            139.55633
+          ],
+          [
+            35.42676,
+            139.55595
+          ],
+          [
+            35.42514,
+            139.55527
+          ],
+          [
+            35.42438,
+            139.55493
+          ],
+          [
+            35.4237,
+            139.5545
+          ],
+          [
+            35.42317,
+            139.55409
+          ],
+          [
+            35.42258,
+            139.55357
+          ],
+          [
+            35.422,
+            139.55292
+          ],
+          [
+            35.42128,
+            139.55183
+          ],
+          [
+            35.42106,
+            139.55143
+          ],
+          [
+            35.42063,
+            139.55065
+          ],
+          [
+            35.41994,
+            139.54953
+          ],
+          [
+            35.41875,
+            139.54736
+          ],
+          [
+            35.41662,
+            139.54331
+          ],
+          [
+            35.415,
+            139.54026
+          ],
+          [
+            35.41476,
+            139.53981
+          ],
+          [
+            35.41366,
+            139.53807
+          ],
+          [
+            35.41339,
+            139.53764
+          ],
+          [
+            35.41284,
+            139.53684
+          ],
+          [
+            35.4124,
+            139.53631
+          ],
+          [
+            35.41168,
+            139.53568
+          ],
+          [
+            35.4111,
+            139.53534
+          ],
+          [
+            35.41002,
+            139.53477
+          ],
+          [
+            35.40907,
+            139.5345
+          ],
+          [
+            35.40812,
+            139.53433
+          ],
+          [
+            35.40639,
+            139.5341
+          ],
+          [
+            35.40452,
+            139.53383
+          ],
+          [
+            35.40252,
+            139.53379
+          ],
+          [
+            35.4017,
+            139.53392
+          ],
+          [
+            35.40076,
+            139.5342
+          ],
+          [
+            35.3999,
+            139.53448
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004818",
+        "toStationId": "station-mlit-004961",
+        "geometry": [
+          [
+            35.3999,
+            139.53448
+          ],
+          [
+            35.39956,
+            139.53458
+          ],
+          [
+            35.39908,
+            139.53473
+          ],
+          [
+            35.39793,
+            139.53511
+          ],
+          [
+            35.39659,
+            139.53552
+          ],
+          [
+            35.39519,
+            139.53572
+          ],
+          [
+            35.39349,
+            139.53564
+          ],
+          [
+            35.39148,
+            139.53545
+          ],
+          [
+            35.38921,
+            139.53524
+          ],
+          [
+            35.38661,
+            139.535
+          ],
+          [
+            35.38394,
+            139.53476
+          ],
+          [
+            35.38238,
+            139.53458
+          ],
+          [
+            35.3808,
+            139.53433
+          ],
+          [
+            35.37875,
+            139.53362
+          ],
+          [
+            35.37736,
+            139.53296
+          ],
+          [
+            35.3756,
+            139.53199
+          ],
+          [
+            35.37492,
+            139.5316
+          ],
+          [
+            35.37354,
+            139.53083
+          ],
+          [
+            35.37313,
+            139.5306
+          ],
+          [
+            35.37173,
+            139.52997
+          ],
+          [
+            35.37118,
+            139.52971
+          ],
+          [
+            35.36993,
+            139.52957
+          ],
+          [
+            35.36915,
+            139.52971
+          ],
+          [
+            35.3679,
+            139.53001
+          ],
+          [
+            35.3665,
+            139.5304
+          ],
+          [
+            35.36576,
+            139.53043
+          ],
+          [
+            35.36545,
+            139.53039
+          ],
+          [
+            35.36478,
+            139.53021
+          ],
+          [
+            35.36386,
+            139.52984
+          ],
+          [
+            35.36325,
+            139.52959
+          ],
+          [
+            35.36266,
+            139.52936
+          ],
+          [
+            35.362,
+            139.52923
+          ],
+          [
+            35.36091,
+            139.52922
+          ],
+          [
+            35.35926,
+            139.53002
+          ],
+          [
+            35.35829,
+            139.53077
+          ],
+          [
+            35.3571,
+            139.53156
+          ],
+          [
+            35.35591,
+            139.53173
+          ],
+          [
+            35.35542,
+            139.53164
+          ],
+          [
+            35.35412,
+            139.53115
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004961",
+        "toStationId": "station-mlit-004998",
+        "geometry": [
+          [
+            35.35412,
+            139.53115
+          ],
+          [
+            35.353028,
+            139.531127
+          ],
+          [
+            35.3526,
+            139.53102
+          ],
+          [
+            35.35209,
+            139.53081
+          ],
+          [
+            35.35101,
+            139.53043
+          ],
+          [
+            35.35024,
+            139.53022
+          ],
+          [
+            35.3495,
+            139.53022
+          ],
+          [
+            35.34853,
+            139.53069
+          ],
+          [
+            35.34758,
+            139.53144
+          ],
+          [
+            35.34651,
+            139.53245
+          ],
+          [
+            35.3462,
+            139.53275
+          ],
+          [
+            35.34515,
+            139.53371
+          ],
+          [
+            35.34425,
+            139.53461
+          ],
+          [
+            35.34339,
+            139.53579
+          ],
+          [
+            35.34272,
+            139.53782
+          ],
+          [
+            35.34221,
+            139.53927
+          ],
+          [
+            35.34134,
+            139.54087
+          ],
+          [
+            35.33991,
+            139.54243
+          ],
+          [
+            35.33867,
+            139.54377
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-004998",
+        "toStationId": "station-mlit-005055",
+        "geometry": [
+          [
+            35.33867,
+            139.54377
+          ],
+          [
+            35.33721,
+            139.54536
+          ],
+          [
+            35.33661,
+            139.54601
+          ],
+          [
+            35.33619,
+            139.54647
+          ],
+          [
+            35.33579,
+            139.5469
+          ],
+          [
+            35.33514,
+            139.54759
+          ],
+          [
+            35.33493,
+            139.54778
+          ],
+          [
+            35.33443,
+            139.54817
+          ],
+          [
+            35.33416,
+            139.5483
+          ],
+          [
+            35.3336,
+            139.5485
+          ],
+          [
+            35.33331,
+            139.54852
+          ],
+          [
+            35.33305,
+            139.54858
+          ],
+          [
+            35.33283,
+            139.5486
+          ],
+          [
+            35.33249,
+            139.54861
+          ],
+          [
+            35.3321,
+            139.54861
+          ],
+          [
+            35.33198,
+            139.54862
+          ],
+          [
+            35.33149,
+            139.54858
+          ],
+          [
+            35.3305,
+            139.54856
+          ],
+          [
+            35.3301,
+            139.54853
+          ],
+          [
+            35.32938,
+            139.54852
+          ],
+          [
+            35.32864,
+            139.5485
+          ],
+          [
+            35.3284,
+            139.54848
+          ],
+          [
+            35.32787,
+            139.54852
+          ],
+          [
+            35.32736,
+            139.54868
+          ],
+          [
+            35.3271,
+            139.54881
+          ],
+          [
+            35.3265,
+            139.54915
+          ],
+          [
+            35.32611,
+            139.54948
+          ],
+          [
+            35.32551,
+            139.54999
+          ],
+          [
+            35.32495,
+            139.55038
+          ],
+          [
+            35.32429,
+            139.55069
+          ],
+          [
+            35.32413,
+            139.55073
+          ],
+          [
+            35.32335,
+            139.5508
+          ],
+          [
+            35.32288,
+            139.55078
+          ],
+          [
+            35.32194,
+            139.55071
+          ],
+          [
+            35.32054,
+            139.55054
+          ],
+          [
+            35.31969,
+            139.55044
+          ],
+          [
+            35.31933,
+            139.55041
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-005055",
+        "toStationId": "station-mlit-005121",
+        "geometry": [
+          [
+            35.31933,
+            139.55041
+          ],
+          [
+            35.31887,
+            139.5504
+          ],
+          [
+            35.31826,
+            139.55039
+          ],
+          [
+            35.31792,
+            139.55041
+          ],
+          [
+            35.31752,
+            139.55047
+          ],
+          [
+            35.31716,
+            139.55054
+          ],
+          [
+            35.3165,
+            139.55073
+          ],
+          [
+            35.31611,
+            139.55085
+          ],
+          [
+            35.31554,
+            139.55107
+          ],
+          [
+            35.31495,
+            139.55135
+          ],
+          [
+            35.31423,
+            139.5518
+          ],
+          [
+            35.31391,
+            139.55202
+          ],
+          [
+            35.31323,
+            139.5526
+          ],
+          [
+            35.31292,
+            139.55293
+          ],
+          [
+            35.31236,
+            139.55359
+          ],
+          [
+            35.3119,
+            139.55425
+          ],
+          [
+            35.31148,
+            139.55494
+          ],
+          [
+            35.31111,
+            139.55563
+          ],
+          [
+            35.31073,
+            139.55663
+          ],
+          [
+            35.31036,
+            139.55799
+          ],
+          [
+            35.31024,
+            139.55862
+          ],
+          [
+            35.31017,
+            139.55895
+          ],
+          [
+            35.31005,
+            139.55963
+          ],
+          [
+            35.30998,
+            139.56007
+          ],
+          [
+            35.3098,
+            139.56064
+          ],
+          [
+            35.30965,
+            139.561
+          ],
+          [
+            35.30939,
+            139.56156
+          ],
+          [
+            35.30927,
+            139.56179
+          ],
+          [
+            35.30909,
+            139.56216
+          ],
+          [
+            35.30889,
+            139.56253
+          ],
+          [
+            35.30859,
+            139.56309
+          ],
+          [
+            35.30834,
+            139.56358
+          ],
+          [
+            35.3081,
+            139.56402
+          ],
+          [
+            35.30767,
+            139.56484
+          ],
+          [
+            35.30738,
+            139.56543
+          ],
+          [
+            35.30711,
+            139.56593
+          ],
+          [
+            35.30696,
+            139.56622
+          ],
+          [
+            35.30688,
+            139.56643
+          ],
+          [
+            35.30673,
+            139.5667
+          ],
+          [
+            35.30654,
+            139.56719
+          ],
+          [
+            35.30636,
+            139.56764
+          ],
+          [
+            35.30602,
+            139.56813
+          ],
+          [
+            35.30569,
+            139.56857
+          ],
+          [
+            35.30527,
+            139.56901
+          ],
+          [
+            35.30452,
+            139.56951
+          ],
+          [
+            35.30394,
+            139.56976
+          ],
+          [
+            35.30306,
+            139.57011
+          ],
+          [
+            35.30248,
+            139.57034
+          ],
+          [
+            35.30198,
+            139.57054
+          ],
+          [
+            35.30096,
+            139.57095
+          ],
+          [
+            35.30029,
+            139.57133
+          ],
+          [
+            35.2997,
+            139.57174
+          ],
+          [
+            35.29926,
+            139.57214
+          ],
+          [
+            35.29894,
+            139.57252
+          ],
+          [
+            35.29869,
+            139.57286
+          ],
+          [
+            35.29817,
+            139.57356
+          ],
+          [
+            35.29803,
+            139.57382
+          ],
+          [
+            35.29778,
+            139.57436
+          ],
+          [
+            35.29761,
+            139.57483
+          ],
+          [
+            35.29743,
+            139.57561
+          ],
+          [
+            35.29733,
+            139.57621
+          ],
+          [
+            35.29729,
+            139.57708
+          ],
+          [
+            35.29731,
+            139.5777
+          ],
+          [
+            35.29739,
+            139.57836
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-005121",
+        "toStationId": "station-mlit-005118",
+        "geometry": [
+          [
+            35.29739,
+            139.57836
+          ],
+          [
+            35.29747,
+            139.57894
+          ],
+          [
+            35.29759,
+            139.57965
+          ],
+          [
+            35.29805,
+            139.58209
+          ],
+          [
+            35.29825,
+            139.58316
+          ],
+          [
+            35.29858,
+            139.58492
+          ],
+          [
+            35.29887,
+            139.58645
+          ],
+          [
+            35.29924,
+            139.58861
+          ],
+          [
+            35.29954,
+            139.59031
+          ],
+          [
+            35.2997,
+            139.59139
+          ],
+          [
+            35.29966,
+            139.59301
+          ],
+          [
+            35.29941,
+            139.59538
+          ],
+          [
+            35.2993,
+            139.59669
+          ],
+          [
+            35.29906,
+            139.59899
+          ],
+          [
+            35.29897,
+            139.59988
+          ],
+          [
+            35.29884,
+            139.60121
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-005118",
+        "toStationId": "station-mlit-005133",
+        "geometry": [
+          [
+            35.29884,
+            139.60121
+          ],
+          [
+            35.29869,
+            139.60243
+          ],
+          [
+            35.2985,
+            139.6042
+          ],
+          [
+            35.29835,
+            139.6056
+          ],
+          [
+            35.29824,
+            139.60669
+          ],
+          [
+            35.29808,
+            139.60806
+          ],
+          [
+            35.29793,
+            139.60941
+          ],
+          [
+            35.29775,
+            139.61088
+          ],
+          [
+            35.29761,
+            139.61164
+          ],
+          [
+            35.29734,
+            139.6128
+          ],
+          [
+            35.29714,
+            139.61352
+          ],
+          [
+            35.29673,
+            139.61474
+          ],
+          [
+            35.29568,
+            139.61676
+          ],
+          [
+            35.29527,
+            139.61743
+          ],
+          [
+            35.2945,
+            139.61874
+          ],
+          [
+            35.29383,
+            139.62021
+          ],
+          [
+            35.29342,
+            139.62126
+          ],
+          [
+            35.29327,
+            139.62179
+          ],
+          [
+            35.29313,
+            139.62251
+          ],
+          [
+            35.29304,
+            139.62289
+          ],
+          [
+            35.29284,
+            139.62372
+          ],
+          [
+            35.29272,
+            139.62428
+          ],
+          [
+            35.29265,
+            139.62576
+          ],
+          [
+            35.29294,
+            139.6284
+          ],
+          [
+            35.29316,
+            139.6302
+          ],
+          [
+            35.29333,
+            139.6319
+          ],
+          [
+            35.29338,
+            139.63295
+          ],
+          [
+            35.29333,
+            139.63359
+          ],
+          [
+            35.29323,
+            139.63441
+          ],
+          [
+            35.2931,
+            139.63542
+          ],
+          [
+            35.29292,
+            139.63689
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-005133",
+        "toStationId": "station-mlit-005149",
+        "geometry": [
+          [
+            35.29292,
+            139.63689
+          ],
+          [
+            35.29276,
+            139.63816
+          ],
+          [
+            35.29266,
+            139.63893
+          ],
+          [
+            35.29254,
+            139.63973
+          ],
+          [
+            35.29246,
+            139.64004
+          ],
+          [
+            35.29238,
+            139.64037
+          ],
+          [
+            35.29223,
+            139.64086
+          ],
+          [
+            35.29191,
+            139.64157
+          ],
+          [
+            35.29176,
+            139.6419
+          ],
+          [
+            35.291,
+            139.64355
+          ],
+          [
+            35.29049,
+            139.6446
+          ],
+          [
+            35.28996,
+            139.6457
+          ],
+          [
+            35.28929,
+            139.64712
+          ],
+          [
+            35.28916,
+            139.64739
+          ],
+          [
+            35.28886,
+            139.64797
+          ],
+          [
+            35.28854,
+            139.64855
+          ],
+          [
+            35.28825,
+            139.64903
+          ],
+          [
+            35.2877,
+            139.64976
+          ],
+          [
+            35.28695,
+            139.65064
+          ],
+          [
+            35.28634,
+            139.65129
+          ],
+          [
+            35.28578,
+            139.65181
+          ],
+          [
+            35.2853,
+            139.65239
+          ],
+          [
+            35.28478,
+            139.65321
+          ],
+          [
+            35.28459,
+            139.65355
+          ],
+          [
+            35.28427,
+            139.65463
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-005149",
+        "toStationId": "station-mlit-005210",
+        "geometry": [
+          [
+            35.28427,
+            139.65463
+          ],
+          [
+            35.28397,
+            139.65599
+          ],
+          [
+            35.28367,
+            139.6567
+          ],
+          [
+            35.28328,
+            139.65734
+          ],
+          [
+            35.28303,
+            139.65766
+          ],
+          [
+            35.28262,
+            139.65786
+          ],
+          [
+            35.28221,
+            139.6579
+          ],
+          [
+            35.28193,
+            139.65789
+          ],
+          [
+            35.2812,
+            139.65779
+          ],
+          [
+            35.27997,
+            139.65754
+          ],
+          [
+            35.27844,
+            139.65734
+          ],
+          [
+            35.27656,
+            139.65707
+          ],
+          [
+            35.2751,
+            139.65674
+          ],
+          [
+            35.27349,
+            139.65644
+          ],
+          [
+            35.27152,
+            139.65612
+          ],
+          [
+            35.26983,
+            139.65575
+          ],
+          [
+            35.26747,
+            139.65535
+          ],
+          [
+            35.26652,
+            139.65519
+          ],
+          [
+            35.2656,
+            139.65504
+          ],
+          [
+            35.26426,
+            139.65483
+          ],
+          [
+            35.26377,
+            139.65478
+          ],
+          [
+            35.26287,
+            139.65472
+          ],
+          [
+            35.26255,
+            139.65476
+          ],
+          [
+            35.26186,
+            139.65488
+          ],
+          [
+            35.26155,
+            139.65497
+          ],
+          [
+            35.26099,
+            139.65511
+          ],
+          [
+            35.26072,
+            139.65522
+          ],
+          [
+            35.26006,
+            139.65555
+          ],
+          [
+            35.25955,
+            139.65596
+          ],
+          [
+            35.25941,
+            139.65608
+          ],
+          [
+            35.25908,
+            139.65644
+          ],
+          [
+            35.25872,
+            139.65691
+          ],
+          [
+            35.25855,
+            139.65717
+          ],
+          [
+            35.25822,
+            139.65774
+          ],
+          [
+            35.25791,
+            139.65851
+          ],
+          [
+            35.2575,
+            139.65974
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-005210",
+        "toStationId": "station-mlit-005273",
+        "geometry": [
+          [
+            35.2575,
+            139.65974
+          ],
+          [
+            35.25672,
+            139.66224
+          ],
+          [
+            35.2563,
+            139.66351
+          ],
+          [
+            35.2557,
+            139.66551
+          ],
+          [
+            35.25495,
+            139.66808
+          ],
+          [
+            35.25483,
+            139.66849
+          ],
+          [
+            35.25402,
+            139.67132
+          ],
+          [
+            35.25343,
+            139.67333
+          ],
+          [
+            35.25315,
+            139.67419
+          ],
+          [
+            35.25265,
+            139.67579
+          ],
+          [
+            35.25221,
+            139.67676
+          ],
+          [
+            35.25173,
+            139.67755
+          ],
+          [
+            35.25114,
+            139.67839
+          ],
+          [
+            35.25074,
+            139.67888
+          ],
+          [
+            35.24961,
+            139.68028
+          ],
+          [
+            35.24909,
+            139.68093
+          ],
+          [
+            35.24782,
+            139.68248
+          ],
+          [
+            35.24706,
+            139.68341
+          ],
+          [
+            35.24584,
+            139.68493
+          ],
+          [
+            35.24518,
+            139.68573
+          ],
+          [
+            35.24445,
+            139.68668
+          ],
+          [
+            35.24332,
+            139.68832
+          ],
+          [
+            35.24267,
+            139.68945
+          ],
+          [
+            35.24214,
+            139.69039
+          ],
+          [
+            35.24161,
+            139.69132
+          ],
+          [
+            35.24089,
+            139.69259
+          ],
+          [
+            35.24033,
+            139.69362
+          ],
+          [
+            35.23977,
+            139.69457
+          ],
+          [
+            35.23932,
+            139.69528
+          ],
+          [
+            35.23886,
+            139.69589
+          ],
+          [
+            35.23823,
+            139.6966
+          ],
+          [
+            35.23733,
+            139.69757
+          ],
+          [
+            35.23644,
+            139.69855
+          ],
+          [
+            35.23597,
+            139.69905
+          ],
+          [
+            35.23489,
+            139.70004
+          ],
+          [
+            35.23284,
+            139.70108
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "workspace": {
+      "folder": "data/lines/jr-east/yokosuka-line",
+      "linePath": "data/lines/jr-east/yokosuka-line/line.json",
+      "stationsPath": "data/lines/jr-east/yokosuka-line/stations.json",
+      "geometryPath": "data/lines/jr-east/yokosuka-line/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 横須賀線 요코스카선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "full-source-line"
+  }
+}

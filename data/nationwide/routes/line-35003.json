@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-35003",
+    "sourceLineId": "35003",
+    "category": "private",
+    "operatorId": "op-25",
+    "operator": {
+      "ja": "阪神電鉄",
+      "en": "Hanshindentetsu",
+      "ko": "한신덴테츠"
+    },
+    "line": {
+      "ja": "阪神武庫川線",
+      "kana": "はんしんむこがわせん",
+      "en": "Hanshinmukogawasen",
+      "ko": "한신무코가와선",
+      "aliases": [
+        "阪神武庫川線",
+        "ハンシンムコガワセン",
+        "阪神武庫川線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(161 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3500301",
+        "sourceId": "3500301",
+        "stationMasterId": "station-3500112",
+        "ja": "武庫川",
+        "kana": "むこがわ",
+        "romaji": "Mukogawa",
+        "ko": "무코가와",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.718154,
+        "longitude": 135.383654,
+        "prefectureCode": 28,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.212
+      },
+      {
+        "id": "3500302",
+        "sourceId": "3500302",
+        "stationMasterId": "station-3500302",
+        "ja": "東鳴尾",
+        "kana": "ひがしなるお",
+        "romaji": "Higashinaruo",
+        "ko": "히가시나루오",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.712646,
+        "longitude": 135.379065,
+        "prefectureCode": 28,
+        "inTokyo": false,
+        "geometryIndex": 5,
+        "geometrySnapKm": 0.029
+      },
+      {
+        "id": "3500303",
+        "sourceId": "3500303",
+        "stationMasterId": "station-3500303",
+        "ja": "洲先",
+        "kana": "すさき",
+        "romaji": "Susaki",
+        "ko": "스사키",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.709046,
+        "longitude": 135.378049,
+        "prefectureCode": 28,
+        "inTokyo": false,
+        "geometryIndex": 8,
+        "geometrySnapKm": 0.03
+      },
+      {
+        "id": "3500304",
+        "sourceId": "3500304",
+        "stationMasterId": "station-3500304",
+        "ja": "武庫川団地前",
+        "kana": "むこがわだんちまえ",
+        "romaji": "Mukogawadanchimae",
+        "ko": "무코가와단치마에",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.704894,
+        "longitude": 135.374757,
+        "prefectureCode": 28,
+        "inTokyo": false,
+        "geometryIndex": 15,
+        "geometrySnapKm": 0.029
+      }
+    ],
+    "stationSequence": [
+      "station-3500112",
+      "station-3500302",
+      "station-3500303",
+      "station-3500304"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-35003.json",
+    "geometry": [
+      [
+        34.71865,
+        135.38141
+      ],
+      [
+        34.71805,
+        135.38104
+      ],
+      [
+        34.7161,
+        135.37999
+      ],
+      [
+        34.71484,
+        135.37954
+      ],
+      [
+        34.71305,
+        135.3792
+      ],
+      [
+        34.71239,
+        135.3791
+      ],
+      [
+        34.71118,
+        135.37883
+      ],
+      [
+        34.71032,
+        135.37855
+      ],
+      [
+        34.70931,
+        135.3781
+      ],
+      [
+        34.70869,
+        135.37782
+      ],
+      [
+        34.70801,
+        135.37753
+      ],
+      [
+        34.70735,
+        135.37718
+      ],
+      [
+        34.70658,
+        135.37606
+      ],
+      [
+        34.70638,
+        135.37577
+      ],
+      [
+        34.70523,
+        135.375
+      ],
+      [
+        34.70464,
+        135.37471
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

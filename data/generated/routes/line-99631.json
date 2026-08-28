@@ -1,0 +1,201 @@
+{
+  "route": {
+    "id": "line-99631",
+    "legacyId": "line-99631",
+    "category": "private",
+    "operatorId": "kobekosokutetsudo",
+    "operator": {
+      "ja": "神戸高速鉄道",
+      "ko": "코우베코우소쿠테츠도우",
+      "en": "KōBekōSokutetsudō"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 神戸高速鉄道 코우베코우소쿠테츠도우 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "神戸高速南北線",
+      "kana": "こうべこうそくなんぼくせん",
+      "ko": "코우베코우소쿠난보쿠선",
+      "en": "KōBekōSokunambokusen"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 神戸高速南北線 코우베코우소쿠난보쿠선 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "2560A8",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 神戸高速南北線 코우베코우소쿠난보쿠선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "kobekosokutetsudo",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-9963006",
+        "internalId": "station-9963006",
+        "stationMasterId": "station-9963006",
+        "sourceId": "station-9963006",
+        "ja": "新開地",
+        "kana": "しんかいち",
+        "ko": "신카이치",
+        "romaji": "Shinkaichi",
+        "koAliases": [],
+        "latitude": 34.675981,
+        "longitude": 135.169291,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 新開地駅 신카이치 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-9963102",
+        "internalId": "station-9963102",
+        "stationMasterId": "station-9963102",
+        "sourceId": "station-9963102",
+        "ja": "湊川",
+        "kana": "みなとがわ",
+        "ko": "미나토가와",
+        "romaji": "Minatogawa",
+        "koAliases": [],
+        "latitude": 34.679153,
+        "longitude": 135.166426,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 湊川駅 미나토가와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 2
+      }
+    ],
+    "geometry": [
+      [
+        34.67634,
+        135.16923
+      ],
+      [
+        34.6769,
+        135.16871
+      ],
+      [
+        34.67897,
+        135.16644
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-9963006",
+        "toStationId": "station-9963102",
+        "geometry": [
+          [
+            34.67634,
+            135.16923
+          ],
+          [
+            34.6769,
+            135.16871
+          ],
+          [
+            34.67897,
+            135.16644
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "workspace": {
+      "folder": "data/lines/kobekosokutetsudo/kobekosokunambokusen",
+      "linePath": "data/lines/kobekosokutetsudo/kobekosokunambokusen/line.json",
+      "stationsPath": "data/lines/kobekosokutetsudo/kobekosokunambokusen/stations.json",
+      "geometryPath": "data/lines/kobekosokutetsudo/kobekosokunambokusen/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 神戸高速南北線 코우베코우소쿠난보쿠선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "nationwide-source-line"
+  }
+}

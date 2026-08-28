@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-33004",
+    "sourceLineId": "33004",
+    "category": "private",
+    "operatorId": "op-23",
+    "operator": {
+      "ja": "京阪電鉄",
+      "en": "Keihandentetsu",
+      "ko": "케이한덴테츠"
+    },
+    "line": {
+      "ja": "京阪鴨東線",
+      "kana": "けいはんおうとうせん",
+      "en": "KeihanōTōSen",
+      "ko": "케이한오우토우선",
+      "aliases": [
+        "京阪鴨東線",
+        "ケイハンオウトウセン",
+        "京阪鴨東線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(340 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3300401",
+        "sourceId": "3300401",
+        "stationMasterId": "station-3300401",
+        "ja": "出町柳",
+        "kana": "でまちやなぎ",
+        "romaji": "Demachiyanagi",
+        "ko": "데마치야나기",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.029654,
+        "longitude": 135.772519,
+        "prefectureCode": 26,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.005
+      },
+      {
+        "id": "3300402",
+        "sourceId": "3300402",
+        "stationMasterId": "station-3300402",
+        "ja": "神宮丸太町",
+        "kana": "じんぐうまるたまち",
+        "romaji": "JingūMarutamachi",
+        "ko": "진구우마루타마치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.017555,
+        "longitude": 135.772283,
+        "prefectureCode": 26,
+        "inTokyo": false,
+        "geometryIndex": 9,
+        "geometrySnapKm": 0.003
+      },
+      {
+        "id": "3300403",
+        "sourceId": "3300403",
+        "stationMasterId": "station-3300101",
+        "ja": "三条",
+        "kana": "さんじょう",
+        "romaji": "Sanjō",
+        "ko": "산조우",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.009114,
+        "longitude": 135.772274,
+        "prefectureCode": 26,
+        "inTokyo": false,
+        "geometryIndex": 17,
+        "geometrySnapKm": 0.012
+      }
+    ],
+    "stationSequence": [
+      "station-3300401",
+      "station-3300402",
+      "station-3300101"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-33004.json",
+    "geometry": [
+      [
+        35.02962,
+        135.77249
+      ],
+      [
+        35.02865,
+        135.77242
+      ],
+      [
+        35.02751,
+        135.77241
+      ],
+      [
+        35.02529,
+        135.77231
+      ],
+      [
+        35.02365,
+        135.77227
+      ],
+      [
+        35.02175,
+        135.77223
+      ],
+      [
+        35.01902,
+        135.77224
+      ],
+      [
+        35.01867,
+        135.77224
+      ],
+      [
+        35.01859,
+        135.77224
+      ],
+      [
+        35.01757,
+        135.77226
+      ],
+      [
+        35.01674,
+        135.77227
+      ],
+      [
+        35.0154,
+        135.77231
+      ],
+      [
+        35.01452,
+        135.77233
+      ],
+      [
+        35.01313,
+        135.77235
+      ],
+      [
+        35.01193,
+        135.77237
+      ],
+      [
+        35.01095,
+        135.77236
+      ],
+      [
+        35.00961,
+        135.77235
+      ],
+      [
+        35.00902,
+        135.77234
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

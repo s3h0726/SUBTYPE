@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-99906",
+    "sourceLineId": "99906",
+    "category": "subway",
+    "operatorId": "op-231",
+    "operator": {
+      "ja": "福岡市交通局",
+      "en": "FukuokashikōTsūKyoku",
+      "ko": "후쿠오카시코우츠우쿄쿠"
+    },
+    "line": {
+      "ja": "福岡市営地下鉄箱崎線",
+      "kana": "ふくおかしえいちかてつはこざきせん",
+      "en": "Fukuokashieichikatetsuhakozakisen",
+      "ko": "후쿠오카시에이치카테츠하코자키선",
+      "aliases": [
+        "福岡市営地下鉄箱崎線",
+        "フクオカシエイチカテツハコザキセン",
+        "福岡市営地下鉄箱崎線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(183 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "9990601",
+        "sourceId": "9990601",
+        "stationMasterId": "station-9990505",
+        "ja": "中洲川端",
+        "kana": "なかすかわばた",
+        "romaji": "Nakasukawabata",
+        "ko": "나카스카와바타",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 33.594749,
+        "longitude": 130.406418,
+        "prefectureCode": 40,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.041
+      },
+      {
+        "id": "9990602",
+        "sourceId": "9990602",
+        "stationMasterId": "station-9990602",
+        "ja": "呉服町",
+        "kana": "ごふくまち",
+        "romaji": "Gofukumachi",
+        "ko": "고후쿠마치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 33.59829,
+        "longitude": 130.409892,
+        "prefectureCode": 40,
+        "inTokyo": false,
+        "geometryIndex": 4,
+        "geometrySnapKm": 0.029
+      },
+      {
+        "id": "9990603",
+        "sourceId": "9990603",
+        "stationMasterId": "station-9990603",
+        "ja": "千代県庁口",
+        "kana": "ちよけんちょうぐち",
+        "romaji": "ChiyokenchōGuchi",
+        "ko": "치요켄초우구치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 33.602456,
+        "longitude": 130.414336,
+        "prefectureCode": 40,
+        "inTokyo": false,
+        "geometryIndex": 8,
+        "geometrySnapKm": 0.013
+      },
+      {
+        "id": "9990604",
+        "sourceId": "9990604",
+        "stationMasterId": "station-9990604",
+        "ja": "馬出九大病院前",
+        "kana": "まいだしきゅうだいびょういんまえ",
+        "romaji": "MaidashikyūDaibyōImmae",
+        "ko": "마이다시큐우다이뵤우인마에",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 33.6094,
+        "longitude": 130.419336,
+        "prefectureCode": 40,
+        "inTokyo": false,
+        "geometryIndex": 16,
+        "geometrySnapKm": 0.013
+      },
+      {
+        "id": "9990605",
+        "sourceId": "9990605",
+        "stationMasterId": "station-9990605",
+        "ja": "箱崎宮前",
+        "kana": "はこざきみやまえ",
+        "romaji": "Hakozakimiyamae",
+        "ko": "하코자키미야마에",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 33.615788,
+        "longitude": 130.419613,
+        "prefectureCode": 40,
+        "inTokyo": false,
+        "geometryIndex": 24,
+        "geometrySnapKm": 0.007
+      },
+      {
+        "id": "9990606",
+        "sourceId": "9990606",
+        "stationMasterId": "station-9990606",
+        "ja": "箱崎九大前",
+        "kana": "はこざききゅうだいまえ",
+        "romaji": "HakozakikyūDaimae",
+        "ko": "하코자키큐우다이마에",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 33.622177,
+        "longitude": 130.421002,
+        "prefectureCode": 40,
+        "inTokyo": false,
+        "geometryIndex": 31,
+        "geometrySnapKm": 0.031
+      },
+      {
+        "id": "9990607",
+        "sourceId": "9990607",
+        "stationMasterId": "station-3600401",
+        "ja": "貝塚",
+        "kana": "かいづか",
+        "romaji": "Kaizuka",
+        "ko": "카이즈카",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 33.632906,
+        "longitude": 130.425612,
+        "prefectureCode": 40,
+        "inTokyo": false,
+        "geometryIndex": 38,
+        "geometrySnapKm": 0.017
+      }
+    ],
+    "stationSequence": [
+      "station-9990505",
+      "station-9990602",
+      "station-9990603",
+      "station-9990604",
+      "station-9990605",
+      "station-9990606",
+      "station-3600401"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-99906.json",
+    "geometry": [
+      [
+        33.595,
+        130.40674
+      ],
+      [
+        33.59572,
+        130.40745
+      ],
+      [
+        33.59624,
+        130.40796
+      ],
+      [
+        33.59763,
+        130.40935
+      ],
+      [
+        33.59804,
+        130.40979
+      ],
+      [
+        33.59949,
+        130.41128
+      ],
+      [
+        33.60065,
+        130.41247
+      ],
+      [
+        33.60206,
+        130.41391
+      ],
+      [
+        33.60256,
+        130.41441
+      ],
+      [
+        33.60314,
+        130.41501
+      ],
+      [
+        33.60371,
+        130.41558
+      ],
+      [
+        33.60439,
+        130.41587
+      ],
+      [
+        33.60482,
+        130.41591
+      ],
+      [
+        33.60534,
+        130.41628
+      ],
+      [
+        33.60677,
+        130.41744
+      ],
+      [
+        33.60821,
+        130.4186
+      ],
+      [
+        33.6093,
+        130.41941
+      ],
+      [
+        33.60994,
+        130.41988
+      ],
+      [
+        33.61086,
+        130.42055
+      ],
+      [
+        33.61208,
+        130.42132
+      ],
+      [
+        33.61273,
+        130.42128
+      ],
+      [
+        33.61348,
+        130.42088
+      ],
+      [
+        33.61411,
+        130.4205
+      ],
+      [
+        33.61496,
+        130.42
+      ],
+      [
+        33.61578,
+        130.41954
+      ],
+      [
+        33.61638,
+        130.41919
+      ],
+      [
+        33.61735,
+        130.4188
+      ],
+      [
+        33.61797,
+        130.41871
+      ],
+      [
+        33.61857,
+        130.41885
+      ],
+      [
+        33.61906,
+        130.41911
+      ],
+      [
+        33.62017,
+        130.41984
+      ],
+      [
+        33.62234,
+        130.42128
+      ],
+      [
+        33.62435,
+        130.42258
+      ],
+      [
+        33.62565,
+        130.42335
+      ],
+      [
+        33.62681,
+        130.42393
+      ],
+      [
+        33.62899,
+        130.42486
+      ],
+      [
+        33.63,
+        130.42516
+      ],
+      [
+        33.63237,
+        130.42568
+      ],
+      [
+        33.63302,
+        130.42573
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

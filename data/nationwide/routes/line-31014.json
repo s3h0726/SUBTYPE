@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-31014",
+    "sourceLineId": "31014",
+    "category": "private",
+    "operatorId": "op-247",
+    "operator": {
+      "ja": "四日市あすなろう鉄道",
+      "en": "YokkaichiasunarōTetsudō",
+      "ko": "욨카이치아스나로우테츠도우"
+    },
+    "line": {
+      "ja": "八王子線",
+      "kana": "はちおうじせん",
+      "en": "HachiōJisen",
+      "ko": "하치오우지선",
+      "aliases": [
+        "八王子線",
+        "ハチオウジセン",
+        "八王子線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(189 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3101401",
+        "sourceId": "3101401",
+        "stationMasterId": "station-3100801",
+        "ja": "あすなろう四日市",
+        "kana": "あすなろうよんにちし",
+        "romaji": "AsunarōYonnichishi",
+        "ko": "아스나로우욘니치시",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.966495,
+        "longitude": 136.618352,
+        "prefectureCode": 24,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 1.696
+      },
+      {
+        "id": "3101402",
+        "sourceId": "3101402",
+        "stationMasterId": "station-3101302",
+        "ja": "赤堀",
+        "kana": "あかほり",
+        "romaji": "Akahori",
+        "ko": "아카호리",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.95919,
+        "longitude": 136.6104,
+        "prefectureCode": 24,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.624
+      },
+      {
+        "id": "3101403",
+        "sourceId": "3101403",
+        "stationMasterId": "station-3101303",
+        "ja": "日永",
+        "kana": "ひなが",
+        "romaji": "Hinaga",
+        "ko": "히나가",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.95594,
+        "longitude": 136.604409,
+        "prefectureCode": 24,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.036
+      },
+      {
+        "id": "3101404",
+        "sourceId": "3101404",
+        "stationMasterId": "station-3101404",
+        "ja": "西日野",
+        "kana": "にしひの",
+        "romaji": "Nishihino",
+        "ko": "니시히노",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.952896,
+        "longitude": 136.591163,
+        "prefectureCode": 24,
+        "inTokyo": false,
+        "geometryIndex": 8,
+        "geometrySnapKm": 0.029
+      }
+    ],
+    "stationSequence": [
+      "station-3100801",
+      "station-3101302",
+      "station-3101303",
+      "station-3101404"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-31014.json",
+    "geometry": [
+      [
+        34.95623,
+        136.60458
+      ],
+      [
+        34.95564,
+        136.604
+      ],
+      [
+        34.95562,
+        136.60282
+      ],
+      [
+        34.95565,
+        136.60188
+      ],
+      [
+        34.95573,
+        136.59975
+      ],
+      [
+        34.95574,
+        136.59878
+      ],
+      [
+        34.95479,
+        136.59588
+      ],
+      [
+        34.95307,
+        136.59153
+      ],
+      [
+        34.95283,
+        136.59085
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

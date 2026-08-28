@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-30021",
+    "sourceLineId": "30021",
+    "category": "private",
+    "operatorId": "op-20",
+    "operator": {
+      "ja": "名古屋鉄道",
+      "en": "Nagoyatetsudō",
+      "ko": "나고야테츠도우"
+    },
+    "line": {
+      "ja": "名鉄羽島線",
+      "kana": "めいてつはしません",
+      "en": "Meitetsuhashimasen",
+      "ko": "메이테츠하시마선",
+      "aliases": [
+        "名鉄羽島線",
+        "メイテツハシマセン",
+        "名鉄羽島線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(306 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3002101",
+        "sourceId": "3002101",
+        "stationMasterId": "station-3002009",
+        "ja": "江吉良",
+        "kana": "えぎら",
+        "romaji": "Egira",
+        "ko": "에기라",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.31543,
+        "longitude": 136.699686,
+        "prefectureCode": 21,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.035
+      },
+      {
+        "id": "3002102",
+        "sourceId": "3002102",
+        "stationMasterId": "station-3002102",
+        "ja": "新羽島",
+        "kana": "しんはしま",
+        "romaji": "Shinhashima",
+        "ko": "신하시마",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.315471,
+        "longitude": 136.686582,
+        "prefectureCode": 21,
+        "inTokyo": false,
+        "geometryIndex": 16,
+        "geometrySnapKm": 0.013
+      }
+    ],
+    "stationSequence": [
+      "station-3002009",
+      "station-3002102"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-30021.json",
+    "geometry": [
+      [
+        35.31512,
+        136.69971
+      ],
+      [
+        35.31478,
+        136.69948
+      ],
+      [
+        35.31408,
+        136.69892
+      ],
+      [
+        35.31373,
+        136.69798
+      ],
+      [
+        35.31347,
+        136.69693
+      ],
+      [
+        35.31312,
+        136.6956
+      ],
+      [
+        35.31306,
+        136.6949
+      ],
+      [
+        35.31314,
+        136.69422
+      ],
+      [
+        35.31325,
+        136.69347
+      ],
+      [
+        35.31345,
+        136.69225
+      ],
+      [
+        35.31355,
+        136.69149
+      ],
+      [
+        35.31363,
+        136.69057
+      ],
+      [
+        35.31364,
+        136.68967
+      ],
+      [
+        35.31375,
+        136.68918
+      ],
+      [
+        35.31406,
+        136.68861
+      ],
+      [
+        35.3151,
+        136.68721
+      ],
+      [
+        35.31556,
+        136.68668
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

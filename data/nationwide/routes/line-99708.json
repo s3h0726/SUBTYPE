@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-99708",
+    "sourceLineId": "99708",
+    "category": "private",
+    "operatorId": "op-220",
+    "operator": {
+      "ja": "スカイレールサービス",
+      "en": "SukairēRusāBisu",
+      "ko": "스카이레루사비스"
+    },
+    "line": {
+      "ja": "スカイレールみどり坂線",
+      "kana": "すかいれーるみどりざかせん",
+      "en": "SukairēRumidorizakasen",
+      "ko": "스카이레루미도리자카선",
+      "aliases": [
+        "スカイレールみどり坂線",
+        "スカイレールミドリザカセン",
+        "広島短距離交通瀬野線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(63 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "9970801",
+        "sourceId": "9970801",
+        "stationMasterId": "station-1161109",
+        "ja": "みどり口",
+        "kana": "みどりぐち",
+        "romaji": "Midoriguchi",
+        "ko": "미도리구치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.422294,
+        "longitude": 132.596248,
+        "prefectureCode": 34,
+        "inTokyo": false
+      },
+      {
+        "id": "9970802",
+        "sourceId": "9970802",
+        "stationMasterId": "station-9970802",
+        "ja": "みどり中街",
+        "kana": "みどりちゅうがい",
+        "romaji": "MidorichūGai",
+        "ko": "미도리추우가이",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.42771,
+        "longitude": 132.594804,
+        "prefectureCode": 34,
+        "inTokyo": false
+      },
+      {
+        "id": "9970803",
+        "sourceId": "9970803",
+        "stationMasterId": "station-9970803",
+        "ja": "みどり中央",
+        "kana": "みどりちゅうおう",
+        "romaji": "Midorichūō",
+        "ko": "미도리추우오우",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.430248,
+        "longitude": 132.589435,
+        "prefectureCode": 34,
+        "inTokyo": false
+      }
+    ],
+    "stationSequence": [
+      "station-1161109",
+      "station-9970802",
+      "station-9970803"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-99708.json"
+  }
+}

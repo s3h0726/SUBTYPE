@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-11613",
+    "sourceLineId": "11613",
+    "category": "jr",
+    "operatorId": "op-4",
+    "operator": {
+      "ja": "JR西日本",
+      "en": "JR West",
+      "ko": "JR 서일본"
+    },
+    "line": {
+      "ja": "山陽本線(兵庫～和田岬)",
+      "kana": "さんようほんせん(ひょうご～わだみさき)",
+      "en": "San'YōHonsen(HyōGo~Wadamisaki)",
+      "ko": "산요우혼선효우고～와다미사키",
+      "aliases": [
+        "JR山陽本線(兵庫～和田岬)",
+        "サンヨウホンセン",
+        "JR山陽本線(兵庫～和田岬)"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(312 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "1161301",
+        "sourceId": "1161301",
+        "stationMasterId": "station-1160802",
+        "ja": "兵庫",
+        "kana": "ひょうご",
+        "romaji": "HyōGo",
+        "ko": "효우고",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.668343,
+        "longitude": 135.164706,
+        "prefectureCode": 28,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.039
+      },
+      {
+        "id": "1161302",
+        "sourceId": "1161302",
+        "stationMasterId": "station-1161302",
+        "ja": "和田岬",
+        "kana": "わだみさき",
+        "romaji": "Wadamisaki",
+        "ko": "와다미사키",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.657278,
+        "longitude": 135.174268,
+        "prefectureCode": 28,
+        "inTokyo": false,
+        "geometryIndex": 20,
+        "geometrySnapKm": 0.015
+      }
+    ],
+    "stationSequence": [
+      "station-1160802",
+      "station-1161302"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-11613.json",
+    "geometry": [
+      [
+        34.668,
+        135.164774
+      ],
+      [
+        34.667392,
+        135.163731
+      ],
+      [
+        34.667075,
+        135.163194
+      ],
+      [
+        34.666859,
+        135.162758
+      ],
+      [
+        34.666561,
+        135.162193
+      ],
+      [
+        34.666058,
+        135.161345
+      ],
+      [
+        34.66571,
+        135.16092
+      ],
+      [
+        34.66527,
+        135.1604
+      ],
+      [
+        34.66497,
+        135.16024
+      ],
+      [
+        34.66449,
+        135.16015
+      ],
+      [
+        34.66416,
+        135.16015
+      ],
+      [
+        34.66376,
+        135.16027
+      ],
+      [
+        34.66338,
+        135.16049
+      ],
+      [
+        34.66308,
+        135.16076
+      ],
+      [
+        34.66295,
+        135.16092
+      ],
+      [
+        34.66275,
+        135.16129
+      ],
+      [
+        34.66087,
+        135.16573
+      ],
+      [
+        34.66007,
+        135.16767
+      ],
+      [
+        34.65885,
+        135.17061
+      ],
+      [
+        34.65778,
+        135.17309
+      ],
+      [
+        34.65722,
+        135.17442
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

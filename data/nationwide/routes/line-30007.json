@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-30007",
+    "sourceLineId": "30007",
+    "category": "private",
+    "operatorId": "op-20",
+    "operator": {
+      "ja": "名古屋鉄道",
+      "en": "Nagoyatetsudō",
+      "ko": "나고야테츠도우"
+    },
+    "line": {
+      "ja": "名鉄空港線",
+      "kana": "めいてつくうこうせん",
+      "en": "MeitetsukūKōSen",
+      "ko": "메이테츠쿠우코우선",
+      "aliases": [
+        "名鉄空港線",
+        "メイテツクウコウセン",
+        "名鉄空港線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(250 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3000701",
+        "sourceId": "3000701",
+        "stationMasterId": "station-3000701",
+        "ja": "常滑",
+        "kana": "とこなめ",
+        "romaji": "Tokoname",
+        "ko": "토코나메",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.891167,
+        "longitude": 136.834992,
+        "prefectureCode": 23,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.051
+      },
+      {
+        "id": "3000702",
+        "sourceId": "3000702",
+        "stationMasterId": "station-3000702",
+        "ja": "りんくう常滑",
+        "kana": "りんくうとこなめ",
+        "romaji": "Rinkuutokoname",
+        "ko": "린쿠우토코나메",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.87967,
+        "longitude": 136.828164,
+        "prefectureCode": 23,
+        "inTokyo": false,
+        "geometryIndex": 13,
+        "geometrySnapKm": 0.08
+      },
+      {
+        "id": "3000703",
+        "sourceId": "3000703",
+        "stationMasterId": "station-3000703",
+        "ja": "中部国際空港",
+        "kana": "ちゅうぶこくさいくうこう",
+        "romaji": "ChūBukokusaikūKō",
+        "ko": "추우부코쿠사이쿠우코우",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.859262,
+        "longitude": 136.816382,
+        "prefectureCode": 23,
+        "inTokyo": false,
+        "geometryIndex": 26,
+        "geometrySnapKm": 0.082
+      }
+    ],
+    "stationSequence": [
+      "station-3000701",
+      "station-3000702",
+      "station-3000703"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-30007.json",
+    "geometry": [
+      [
+        34.89159,
+        136.83478
+      ],
+      [
+        34.89002,
+        136.83585
+      ],
+      [
+        34.8892,
+        136.8361
+      ],
+      [
+        34.88883,
+        136.83617
+      ],
+      [
+        34.88616,
+        136.83654
+      ],
+      [
+        34.88488,
+        136.83654
+      ],
+      [
+        34.88415,
+        136.83631
+      ],
+      [
+        34.88347,
+        136.83584
+      ],
+      [
+        34.88316,
+        136.83553
+      ],
+      [
+        34.88267,
+        136.83489
+      ],
+      [
+        34.88193,
+        136.83336
+      ],
+      [
+        34.88106,
+        136.83088
+      ],
+      [
+        34.88081,
+        136.83019
+      ],
+      [
+        34.88014,
+        136.82883
+      ],
+      [
+        34.87909,
+        136.82737
+      ],
+      [
+        34.8751,
+        136.82203
+      ],
+      [
+        34.87336,
+        136.8197
+      ],
+      [
+        34.87258,
+        136.81872
+      ],
+      [
+        34.87044,
+        136.81731
+      ],
+      [
+        34.86944,
+        136.81679
+      ],
+      [
+        34.86804,
+        136.8157
+      ],
+      [
+        34.86683,
+        136.81521
+      ],
+      [
+        34.8652,
+        136.81502
+      ],
+      [
+        34.8642,
+        136.81509
+      ],
+      [
+        34.86204,
+        136.81551
+      ],
+      [
+        34.86126,
+        136.81567
+      ],
+      [
+        34.85853,
+        136.81628
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

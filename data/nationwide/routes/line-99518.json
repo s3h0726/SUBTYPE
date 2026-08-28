@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-99518",
+    "sourceLineId": "99518",
+    "category": "subway",
+    "operatorId": "op-179",
+    "operator": {
+      "ja": "名古屋市交通局",
+      "en": "NagoyashikōTsūKyoku",
+      "ko": "나고야시코우츠우쿄쿠"
+    },
+    "line": {
+      "ja": "名古屋市営地下鉄上飯田線",
+      "kana": "なごやしえいちかてつかみいいだせん",
+      "en": "NagoyashieichikatetsukamiīDasen",
+      "ko": "나고야시에이치카테츠카미이이다선",
+      "aliases": [
+        "名古屋市営地下鉄上飯田線",
+        "ナゴヤシエイチカテツカミイイダセン",
+        "名古屋市営地下鉄上飯田線"
+      ]
+    },
+    "code": "",
+    "lineColor": "FF66C4",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "9951801",
+        "sourceId": "9951801",
+        "stationMasterId": "station-9951403",
+        "ja": "平安通",
+        "kana": "へいあんどおり",
+        "romaji": "HeiandōRi",
+        "ko": "헤이안도오리",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.195934,
+        "longitude": 136.929784,
+        "prefectureCode": 23,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.081
+      },
+      {
+        "id": "9951802",
+        "sourceId": "9951802",
+        "stationMasterId": "station-3001801",
+        "ja": "上飯田",
+        "kana": "かみいいだ",
+        "romaji": "KamiīDa",
+        "ko": "카미이이다",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.203845,
+        "longitude": 136.929642,
+        "prefectureCode": 23,
+        "inTokyo": false,
+        "geometryIndex": 3,
+        "geometrySnapKm": 0.073
+      }
+    ],
+    "stationSequence": [
+      "station-9951403",
+      "station-3001801"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-99518.json",
+    "geometry": [
+      [
+        35.19521,
+        136.92979
+      ],
+      [
+        35.19723,
+        136.92973
+      ],
+      [
+        35.20271,
+        136.92968
+      ],
+      [
+        35.2045,
+        136.92968
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

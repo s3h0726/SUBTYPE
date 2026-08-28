@@ -1,0 +1,8 @@
+export class TypingController{
+  constructor(input,{onChange,onSubmit}){this.input=input;this.onChange=onChange;this.onSubmit=onSubmit;this.composing=false;this.handlers={compositionstart:()=>{this.composing=true},compositionend:event=>{this.composing=false;this.evaluate(event.target.value)},input:event=>{if(!this.composing)this.evaluate(event.target.value)},keydown:event=>{if(event.key==='Enter'&&!this.composing)this.evaluate(event.target.value,true)}};Object.entries(this.handlers).forEach(([event,handler])=>input.addEventListener(event,handler))}
+  setTarget(values){this.targets=[...new Set(values.filter(Boolean).map(value=>String(value).normalize('NFC')))];this.input.value='';this.input.closest('.typing-box')?.classList.remove('wrong','correct')}
+  evaluate(rawValue=this.input.value,force=false){const value=String(rawValue).normalize('NFC'),target=this.targets?.[0]||'';if(!value){this.onChange?.({value,state:'empty'});return}const exact=this.targets.includes(value);const prefix=this.targets.some(candidate=>candidate.startsWith(value));const state=exact?'correct':prefix?'typing':'wrong';this.onChange?.({value,state,target});if(exact){this.input.closest('.typing-box')?.classList.add('correct');this.onSubmit?.(value)}else if(force||!prefix)this.input.closest('.typing-box')?.classList.add('wrong');else this.input.closest('.typing-box')?.classList.remove('wrong')}
+  focus(){if(this.input.disabled)return;this.input.focus({preventScroll:true});requestAnimationFrame(()=>{if(document.activeElement!==this.input&&!this.input.disabled)this.input.focus({preventScroll:true})})}
+  isComposing(){return this.composing}
+  destroy(){Object.entries(this.handlers).forEach(([e,h])=>this.input.removeEventListener(e,h))}
+}

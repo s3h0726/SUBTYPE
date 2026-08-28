@@ -1,0 +1,265 @@
+{
+  "route": {
+    "id": "line-30011",
+    "legacyId": "line-30011",
+    "category": "private",
+    "operatorId": "nagoyatetsudo",
+    "operator": {
+      "ja": "名古屋鉄道",
+      "ko": "나고야테츠도우",
+      "en": "Nagoyatetsudō"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 名古屋鉄道 나고야테츠도우 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "名鉄築港線",
+      "kana": "めいてつちっこうせん",
+      "ko": "메이테츠칬코우선",
+      "en": "MeitetsuchikkōSen"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 名鉄築港線 메이테츠칬코우선 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "hsl(275 62% 46%)",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 名鉄築港線 메이테츠칬코우선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "nagoyatetsudo",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-3000807",
+        "internalId": "station-3000807",
+        "stationMasterId": "station-3000807",
+        "sourceId": "station-3000807",
+        "ja": "大江",
+        "kana": "おおえ",
+        "ko": "오오에",
+        "romaji": "ōE",
+        "koAliases": [],
+        "latitude": 35.093258,
+        "longitude": 136.912758,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 大江駅 오오에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-3001102",
+        "internalId": "station-3001102",
+        "stationMasterId": "station-3001102",
+        "sourceId": "station-3001102",
+        "ja": "東名古屋港",
+        "kana": "ひがしなごやこう",
+        "ko": "히가시나고야코우",
+        "romaji": "Higashinagoyakō",
+        "koAliases": [],
+        "latitude": 35.089091,
+        "longitude": 136.899255,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 東名古屋港駅 히가시나고야코우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 10
+      }
+    ],
+    "geometry": [
+      [
+        35.09282,
+        136.9128
+      ],
+      [
+        35.09218,
+        136.91246
+      ],
+      [
+        35.09146,
+        136.91194
+      ],
+      [
+        35.09113,
+        136.91154
+      ],
+      [
+        35.09063,
+        136.91043
+      ],
+      [
+        35.09055,
+        136.90998
+      ],
+      [
+        35.0901,
+        136.90752
+      ],
+      [
+        35.08972,
+        136.90539
+      ],
+      [
+        35.08944,
+        136.90344
+      ],
+      [
+        35.08925,
+        136.90187
+      ],
+      [
+        35.08912,
+        136.89969
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-3000807",
+        "toStationId": "station-3001102",
+        "geometry": [
+          [
+            35.09282,
+            136.9128
+          ],
+          [
+            35.09218,
+            136.91246
+          ],
+          [
+            35.09146,
+            136.91194
+          ],
+          [
+            35.09113,
+            136.91154
+          ],
+          [
+            35.09063,
+            136.91043
+          ],
+          [
+            35.09055,
+            136.90998
+          ],
+          [
+            35.0901,
+            136.90752
+          ],
+          [
+            35.08972,
+            136.90539
+          ],
+          [
+            35.08944,
+            136.90344
+          ],
+          [
+            35.08925,
+            136.90187
+          ],
+          [
+            35.08912,
+            136.89969
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "workspace": {
+      "folder": "data/lines/nagoyatetsudo/meitetsuchikkosen",
+      "linePath": "data/lines/nagoyatetsudo/meitetsuchikkosen/line.json",
+      "stationsPath": "data/lines/nagoyatetsudo/meitetsuchikkosen/stations.json",
+      "geometryPath": "data/lines/nagoyatetsudo/meitetsuchikkosen/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 名鉄築港線 메이테츠칬코우선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "nationwide-source-line"
+  }
+}

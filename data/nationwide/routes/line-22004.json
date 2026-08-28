@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-22004",
+    "sourceLineId": "22004",
+    "category": "private",
+    "operatorId": "op-12",
+    "operator": {
+      "ja": "西武鉄道",
+      "en": "Seibu",
+      "ko": "세이부 철도"
+    },
+    "line": {
+      "ja": "西武豊島線",
+      "kana": "せいぶとしません",
+      "en": "Seibutoshimasen",
+      "ko": "세이부토시마선",
+      "aliases": [
+        "西武豊島線",
+        "セイブトシマセン",
+        "西武豊島線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(308 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "2200401",
+        "sourceId": "2200401",
+        "stationMasterId": "station-2200106",
+        "ja": "練馬",
+        "kana": "ねりま",
+        "romaji": "Nerima",
+        "ko": "네리마",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.737893,
+        "longitude": 139.654368,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.096
+      },
+      {
+        "id": "2200402",
+        "sourceId": "2200402",
+        "stationMasterId": "station-2200402",
+        "ja": "豊島園",
+        "kana": "としまえん",
+        "romaji": "Toshimaen",
+        "ko": "토시마엔",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.742054,
+        "longitude": 139.647979,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 8,
+        "geometrySnapKm": 0.047
+      }
+    ],
+    "stationSequence": [
+      "station-2200106",
+      "station-2200402"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-22004.json",
+    "geometry": [
+      [
+        35.73783,
+        139.65331
+      ],
+      [
+        35.73767,
+        139.65115
+      ],
+      [
+        35.73777,
+        139.6497
+      ],
+      [
+        35.73804,
+        139.64889
+      ],
+      [
+        35.73835,
+        139.6484
+      ],
+      [
+        35.73885,
+        139.64802
+      ],
+      [
+        35.73975,
+        139.64791
+      ],
+      [
+        35.7416,
+        139.648
+      ],
+      [
+        35.74247,
+        139.64804
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

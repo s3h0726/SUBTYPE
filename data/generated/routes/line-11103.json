@@ -1,0 +1,9505 @@
+{
+  "route": {
+    "id": "line-11103",
+    "legacyId": "line-11103",
+    "category": "jr",
+    "operatorId": "jr-hokkaido",
+    "operator": {
+      "ja": "JR北海道",
+      "ko": "JR 홋카이도",
+      "en": "JR Hokkaido"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki JR北海道 JR 홋카이도 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": {
+      "asset": "./data/operators/jr-hokkaido/logo.svg",
+      "label": "JR Hokkaido",
+      "source": "https://www.jrhokkaido.co.jp/assets/images/logo.svg",
+      "logoVerified": true,
+      "metadata": {
+        "asset": "./logo.svg",
+        "source": "https://www.jrhokkaido.co.jp/assets/images/logo.svg",
+        "verified": true,
+        "identificationSource": "namuwiki-unresolved",
+        "identificationUrl": "",
+        "identificationSearch": "site:namu.wiki JR北海道 JR 홋카이도 로고",
+        "sourceAccess": "blocked",
+        "assetSource": "official-or-external",
+        "assetSourceUrl": "https://www.jrhokkaido.co.jp/assets/images/logo.svg",
+        "licenseVerified": false,
+        "identificationFamily": "namuwiki",
+        "identificationMethod": "unresolved",
+        "identificationVerified": false
+      }
+    },
+    "line": {
+      "ja": "函館本線(小樽～旭川)",
+      "kana": "はこだてほんせん(おたる～あさひかわ)",
+      "ko": "하코다테혼선오타루～아사히카와",
+      "en": "Hakodatehonsen(Otaru~Asahikawa)"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 函館本線(小樽～旭川) 하코다테혼선오타루～아사히카와 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "hsl(156 62% 46%)",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 函館本線(小樽～旭川) 하코다테혼선오타루～아사히카와 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "jr-hokkaido",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-1110219",
+        "internalId": "station-1110219",
+        "stationMasterId": "station-1110219",
+        "sourceId": "station-1110219",
+        "ja": "小樽",
+        "kana": "おたる",
+        "ko": "오타루",
+        "romaji": "Otaru",
+        "koAliases": [],
+        "latitude": 43.197172,
+        "longitude": 140.993653,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 小樽駅 오타루 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-1110302",
+        "internalId": "station-1110302",
+        "stationMasterId": "station-1110302",
+        "sourceId": "station-1110302",
+        "ja": "南小樽",
+        "kana": "みなみおたる",
+        "ko": "미나미오타루",
+        "romaji": "Minamiotaru",
+        "koAliases": [],
+        "latitude": 43.186529,
+        "longitude": 141.007883,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 南小樽駅 미나미오타루 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 29
+      },
+      {
+        "id": "station-1110303",
+        "internalId": "station-1110303",
+        "stationMasterId": "station-1110303",
+        "sourceId": "station-1110303",
+        "ja": "小樽築港",
+        "kana": "おたるちっこう",
+        "ko": "오타루칬코우",
+        "romaji": "Otaruchikkō",
+        "koAliases": [],
+        "latitude": 43.180752,
+        "longitude": 141.029051,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 小樽築港駅 오타루칬코우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 59
+      },
+      {
+        "id": "station-1110304",
+        "internalId": "station-1110304",
+        "stationMasterId": "station-1110304",
+        "sourceId": "station-1110304",
+        "ja": "朝里",
+        "kana": "あさり",
+        "ko": "아사리",
+        "romaji": "Asari",
+        "koAliases": [],
+        "latitude": 43.176868,
+        "longitude": 141.063923,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 朝里駅 아사리 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 104
+      },
+      {
+        "id": "station-1110305",
+        "internalId": "station-1110305",
+        "stationMasterId": "station-1110305",
+        "sourceId": "station-1110305",
+        "ja": "銭函",
+        "kana": "ぜにばこ",
+        "ko": "제니바코",
+        "romaji": "Zenibako",
+        "koAliases": [],
+        "latitude": 43.143403,
+        "longitude": 141.159868,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 銭函駅 제니바코 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 199
+      },
+      {
+        "id": "station-1110306",
+        "internalId": "station-1110306",
+        "stationMasterId": "station-1110306",
+        "sourceId": "station-1110306",
+        "ja": "ほしみ",
+        "kana": "ほしみ",
+        "ko": "호시미",
+        "romaji": "Hoshimi",
+        "koAliases": [],
+        "latitude": 43.13373,
+        "longitude": 141.191402,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki ほしみ駅 호시미 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 217
+      },
+      {
+        "id": "station-1110307",
+        "internalId": "station-1110307",
+        "stationMasterId": "station-1110307",
+        "sourceId": "station-1110307",
+        "ja": "星置",
+        "kana": "ほしおき",
+        "ko": "호시오키",
+        "romaji": "Hoshioki",
+        "koAliases": [],
+        "latitude": 43.132375,
+        "longitude": 141.210856,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 星置駅 호시오키 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 225
+      },
+      {
+        "id": "station-1110308",
+        "internalId": "station-1110308",
+        "stationMasterId": "station-1110308",
+        "sourceId": "station-1110308",
+        "ja": "稲穂",
+        "kana": "いなほ",
+        "ko": "이나호",
+        "romaji": "Inaho",
+        "koAliases": [],
+        "latitude": 43.128115,
+        "longitude": 141.222919,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 稲穂駅 이나호 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 235
+      },
+      {
+        "id": "station-1110309",
+        "internalId": "station-1110309",
+        "stationMasterId": "station-1110309",
+        "sourceId": "station-1110309",
+        "ja": "手稲",
+        "kana": "ていね",
+        "ko": "테이네",
+        "romaji": "Teine",
+        "koAliases": [],
+        "latitude": 43.120238,
+        "longitude": 141.243785,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 手稲駅 테이네 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 254
+      },
+      {
+        "id": "station-1110310",
+        "internalId": "station-1110310",
+        "stationMasterId": "station-1110310",
+        "sourceId": "station-1110310",
+        "ja": "稲積公園",
+        "kana": "いなづみこうえん",
+        "ko": "이나즈미코우엔",
+        "romaji": "InazumikōEn",
+        "koAliases": [],
+        "latitude": 43.112023,
+        "longitude": 141.257113,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 稲積公園駅 이나즈미코우엔 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 259
+      },
+      {
+        "id": "station-1110311",
+        "internalId": "station-1110311",
+        "stationMasterId": "station-1110311",
+        "sourceId": "station-1110311",
+        "ja": "発寒",
+        "kana": "はっさむ",
+        "ko": "핬사무",
+        "romaji": "Hassamu",
+        "koAliases": [],
+        "latitude": 43.099819,
+        "longitude": 141.277273,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 発寒駅 핬사무 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 265
+      },
+      {
+        "id": "station-1110312",
+        "internalId": "station-1110312",
+        "stationMasterId": "station-1110312",
+        "sourceId": "station-1110312",
+        "ja": "発寒中央",
+        "kana": "はっさむちゅうおう",
+        "ko": "핬사무추우오우",
+        "romaji": "Hassamuchūō",
+        "koAliases": [],
+        "latitude": 43.089271,
+        "longitude": 141.294497,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 発寒中央駅 핬사무추우오우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 269
+      },
+      {
+        "id": "station-1110313",
+        "internalId": "station-1110313",
+        "stationMasterId": "station-1110313",
+        "sourceId": "station-1110313",
+        "ja": "琴似",
+        "kana": "ことに",
+        "ko": "코토니",
+        "romaji": "Kotoni",
+        "koAliases": [],
+        "latitude": 43.081599,
+        "longitude": 141.307418,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 琴似駅 코토니 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 275
+      },
+      {
+        "id": "station-1110314",
+        "internalId": "station-1110314",
+        "stationMasterId": "station-1110314",
+        "sourceId": "station-1110314",
+        "ja": "桑園",
+        "kana": "そうえん",
+        "ko": "소우엔",
+        "romaji": "SōEn",
+        "koAliases": [],
+        "latitude": 43.070744,
+        "longitude": 141.332036,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 桑園駅 소우엔 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 288
+      },
+      {
+        "id": "station-1110315",
+        "internalId": "station-1110315",
+        "stationMasterId": "station-1110315",
+        "sourceId": "station-1110315",
+        "ja": "札幌",
+        "kana": "さっぽろ",
+        "ko": "삿포로",
+        "romaji": "Sapporo",
+        "koAliases": [],
+        "latitude": 43.068612,
+        "longitude": 141.350768,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 札幌駅 삿포로 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 302
+      },
+      {
+        "id": "station-1110316",
+        "internalId": "station-1110316",
+        "stationMasterId": "station-1110316",
+        "sourceId": "station-1110316",
+        "ja": "苗穂",
+        "kana": "なえぼ",
+        "ko": "나에보",
+        "romaji": "Naebo",
+        "koAliases": [],
+        "latitude": 43.068574,
+        "longitude": 141.377522,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 苗穂駅 나에보 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 313
+      },
+      {
+        "id": "station-1110317",
+        "internalId": "station-1110317",
+        "stationMasterId": "station-1110317",
+        "sourceId": "station-1110317",
+        "ja": "白石",
+        "kana": "しらいし",
+        "ko": "시라이시",
+        "romaji": "Shiraishi",
+        "koAliases": [],
+        "latitude": 43.054715,
+        "longitude": 141.413612,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 白石駅 시라이시 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 334
+      },
+      {
+        "id": "station-1110318",
+        "internalId": "station-1110318",
+        "stationMasterId": "station-1110318",
+        "sourceId": "station-1110318",
+        "ja": "厚別",
+        "kana": "あしべつ",
+        "ko": "아시베츠",
+        "romaji": "Ashibetsu",
+        "koAliases": [],
+        "latitude": 43.045154,
+        "longitude": 141.46369,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 厚別駅 아시베츠 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 382
+      },
+      {
+        "id": "station-1110319",
+        "internalId": "station-1110319",
+        "stationMasterId": "station-1110319",
+        "sourceId": "station-1110319",
+        "ja": "森林公園",
+        "kana": "しんりんこうえん",
+        "ko": "신린코우엔",
+        "romaji": "ShinrinkōEn",
+        "koAliases": [],
+        "latitude": 43.056456,
+        "longitude": 141.481332,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 森林公園駅 신린코우엔 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 393
+      },
+      {
+        "id": "station-1110320",
+        "internalId": "station-1110320",
+        "stationMasterId": "station-1110320",
+        "sourceId": "station-1110320",
+        "ja": "大麻",
+        "kana": "たいま",
+        "ko": "타이마",
+        "romaji": "Taima",
+        "koAliases": [],
+        "latitude": 43.072382,
+        "longitude": 141.496925,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 大麻駅 타이마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 408
+      },
+      {
+        "id": "station-1110321",
+        "internalId": "station-1110321",
+        "stationMasterId": "station-1110321",
+        "sourceId": "station-1110321",
+        "ja": "野幌",
+        "kana": "のっぽろ",
+        "ko": "놌포로",
+        "romaji": "Nopporo",
+        "koAliases": [],
+        "latitude": 43.092559,
+        "longitude": 141.52984,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 野幌駅 놌포로 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 429
+      },
+      {
+        "id": "station-1110322",
+        "internalId": "station-1110322",
+        "stationMasterId": "station-1110322",
+        "sourceId": "station-1110322",
+        "ja": "高砂",
+        "kana": "たかさご",
+        "ko": "타카사고",
+        "romaji": "Takasago",
+        "koAliases": [],
+        "latitude": 43.100084,
+        "longitude": 141.540752,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 高砂駅 타카사고 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 434
+      },
+      {
+        "id": "station-1110323",
+        "internalId": "station-1110323",
+        "stationMasterId": "station-1110323",
+        "sourceId": "station-1110323",
+        "ja": "江別",
+        "kana": "えべつ",
+        "ko": "에베츠",
+        "romaji": "Ebetsu",
+        "koAliases": [],
+        "latitude": 43.110189,
+        "longitude": 141.55679,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 江別駅 에베츠 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 443
+      },
+      {
+        "id": "station-1110324",
+        "internalId": "station-1110324",
+        "stationMasterId": "station-1110324",
+        "sourceId": "station-1110324",
+        "ja": "豊幌",
+        "kana": "とよほろ",
+        "ko": "토요호로",
+        "romaji": "Toyohoro",
+        "koAliases": [],
+        "latitude": 43.136446,
+        "longitude": 141.62466,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 豊幌駅 토요호로 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 488
+      },
+      {
+        "id": "station-1110325",
+        "internalId": "station-1110325",
+        "stationMasterId": "station-1110325",
+        "sourceId": "station-1110325",
+        "ja": "幌向",
+        "kana": "ほろむい",
+        "ko": "호로무이",
+        "romaji": "Horomui",
+        "koAliases": [],
+        "latitude": 43.151348,
+        "longitude": 141.655839,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 幌向駅 호로무이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 520
+      },
+      {
+        "id": "station-1110326",
+        "internalId": "station-1110326",
+        "stationMasterId": "station-1110326",
+        "sourceId": "station-1110326",
+        "ja": "上幌向",
+        "kana": "かみほろむい",
+        "ko": "카미호로무이",
+        "romaji": "Kamihoromui",
+        "koAliases": [],
+        "latitude": 43.18183,
+        "longitude": 141.715391,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 上幌向駅 카미호로무이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 547
+      },
+      {
+        "id": "station-1110327",
+        "internalId": "station-1110327",
+        "stationMasterId": "station-1110327",
+        "sourceId": "station-1110327",
+        "ja": "岩見沢",
+        "kana": "いわみざわ",
+        "ko": "이와미자와",
+        "romaji": "Iwamizawa",
+        "koAliases": [],
+        "latitude": 43.204201,
+        "longitude": 141.759359,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 岩見沢駅 이와미자와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 573
+      },
+      {
+        "id": "station-1110328",
+        "internalId": "station-1110328",
+        "stationMasterId": "station-1110328",
+        "sourceId": "station-1110328",
+        "ja": "峰延",
+        "kana": "みねのぶ",
+        "ko": "미네노부",
+        "romaji": "Minenobu",
+        "koAliases": [],
+        "latitude": 43.264694,
+        "longitude": 141.814673,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 峰延駅 미네노부 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 605
+      },
+      {
+        "id": "station-1110329",
+        "internalId": "station-1110329",
+        "stationMasterId": "station-1110329",
+        "sourceId": "station-1110329",
+        "ja": "光珠内",
+        "kana": "こうしゅない",
+        "ko": "코우슈나이",
+        "romaji": "KōShunai",
+        "koAliases": [],
+        "latitude": 43.292658,
+        "longitude": 141.844655,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 光珠内駅 코우슈나이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 612
+      },
+      {
+        "id": "station-1110330",
+        "internalId": "station-1110330",
+        "stationMasterId": "station-1110330",
+        "sourceId": "station-1110330",
+        "ja": "美唄",
+        "kana": "びばい",
+        "ko": "비바이",
+        "romaji": "Bibai",
+        "koAliases": [],
+        "latitude": 43.330751,
+        "longitude": 141.862157,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 美唄駅 비바이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 632
+      },
+      {
+        "id": "station-1110331",
+        "internalId": "station-1110331",
+        "stationMasterId": "station-1110331",
+        "sourceId": "station-1110331",
+        "ja": "茶志内",
+        "kana": "ちゃしない",
+        "ko": "차시나이",
+        "romaji": "Chashinai",
+        "koAliases": [],
+        "latitude": 43.369842,
+        "longitude": 141.87336,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 茶志内駅 차시나이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 641
+      },
+      {
+        "id": "station-1110332",
+        "internalId": "station-1110332",
+        "stationMasterId": "station-1110332",
+        "sourceId": "station-1110332",
+        "ja": "奈井江",
+        "kana": "ないえ",
+        "ko": "나이에",
+        "romaji": "Naie",
+        "koAliases": [],
+        "latitude": 43.423718,
+        "longitude": 141.889115,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 奈井江駅 나이에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 656
+      },
+      {
+        "id": "station-1110333",
+        "internalId": "station-1110333",
+        "stationMasterId": "station-1110333",
+        "sourceId": "station-1110333",
+        "ja": "豊沼",
+        "kana": "とよぬま",
+        "ko": "토요누마",
+        "romaji": "Toyonuma",
+        "koAliases": [],
+        "latitude": 43.464224,
+        "longitude": 141.901032,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 豊沼駅 토요누마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 667
+      },
+      {
+        "id": "station-1110334",
+        "internalId": "station-1110334",
+        "stationMasterId": "station-1110334",
+        "sourceId": "station-1110334",
+        "ja": "砂川",
+        "kana": "すながわ",
+        "ko": "스나가와",
+        "romaji": "Sunagawa",
+        "koAliases": [],
+        "latitude": 43.493468,
+        "longitude": 141.909642,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 砂川駅 스나가와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 678
+      },
+      {
+        "id": "station-1110335",
+        "internalId": "station-1110335",
+        "stationMasterId": "station-1110335",
+        "sourceId": "station-1110335",
+        "ja": "滝川",
+        "kana": "たきがわ",
+        "ko": "타키가와",
+        "romaji": "Takigawa",
+        "koAliases": [],
+        "latitude": 43.555278,
+        "longitude": 141.900807,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 滝川駅 타키가와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 721
+      },
+      {
+        "id": "station-1110336",
+        "internalId": "station-1110336",
+        "stationMasterId": "station-1110336",
+        "sourceId": "station-1110336",
+        "ja": "江部乙",
+        "kana": "えべおつ",
+        "ko": "에베오츠",
+        "romaji": "Ebeotsu",
+        "koAliases": [],
+        "latitude": 43.627564,
+        "longitude": 141.935937,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 江部乙駅 에베오츠 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 752
+      },
+      {
+        "id": "station-1110337",
+        "internalId": "station-1110337",
+        "stationMasterId": "station-1110337",
+        "sourceId": "station-1110337",
+        "ja": "妹背牛",
+        "kana": "もせうし",
+        "ko": "모세우시",
+        "romaji": "Moseushi",
+        "koAliases": [],
+        "latitude": 43.690841,
+        "longitude": 141.966591,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 妹背牛駅 모세우시 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 776
+      },
+      {
+        "id": "station-1110338",
+        "internalId": "station-1110338",
+        "stationMasterId": "station-1110338",
+        "sourceId": "station-1110338",
+        "ja": "深川",
+        "kana": "ふかがわ",
+        "ko": "후카가와",
+        "romaji": "Fukagawa",
+        "koAliases": [],
+        "latitude": 43.721021,
+        "longitude": 142.041642,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 深川駅 후카가와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 800
+      },
+      {
+        "id": "station-1110339",
+        "internalId": "station-1110339",
+        "stationMasterId": "station-1110339",
+        "sourceId": "station-1110339",
+        "ja": "納内",
+        "kana": "おさむない",
+        "ko": "오사무나이",
+        "romaji": "Osamunai",
+        "koAliases": [],
+        "latitude": 43.732509,
+        "longitude": 142.130072,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 納内駅 오사무나이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 819
+      },
+      {
+        "id": "station-1110341",
+        "internalId": "station-1110341",
+        "stationMasterId": "station-1110341",
+        "sourceId": "station-1110341",
+        "ja": "近文",
+        "kana": "ちかぶみ",
+        "ko": "치카부미",
+        "romaji": "Chikabumi",
+        "koAliases": [],
+        "latitude": 43.789193,
+        "longitude": 142.325327,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 近文駅 치카부미 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 919
+      },
+      {
+        "id": "station-1110342",
+        "internalId": "station-1110342",
+        "stationMasterId": "station-1110342",
+        "sourceId": "station-1110342",
+        "ja": "旭川",
+        "kana": "あさひかわ",
+        "ko": "아사히카와",
+        "romaji": "Asahikawa",
+        "koAliases": [],
+        "latitude": 43.763492,
+        "longitude": 142.357803,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 旭川駅 아사히카와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 948
+      }
+    ],
+    "geometry": [
+      [
+        43.19808,
+        140.99317
+      ],
+      [
+        43.19616,
+        140.99419
+      ],
+      [
+        43.19567,
+        140.99447
+      ],
+      [
+        43.19457,
+        140.99513
+      ],
+      [
+        43.19426,
+        140.99536
+      ],
+      [
+        43.19417,
+        140.99545
+      ],
+      [
+        43.19401,
+        140.99565
+      ],
+      [
+        43.19394,
+        140.99575
+      ],
+      [
+        43.19381,
+        140.99599
+      ],
+      [
+        43.19371,
+        140.99621
+      ],
+      [
+        43.1936,
+        140.99654
+      ],
+      [
+        43.19349,
+        140.99696
+      ],
+      [
+        43.19339,
+        140.99739
+      ],
+      [
+        43.19335,
+        140.99791
+      ],
+      [
+        43.19335,
+        140.99814
+      ],
+      [
+        43.19332,
+        140.99882
+      ],
+      [
+        43.19325,
+        140.99931
+      ],
+      [
+        43.19315,
+        140.99969
+      ],
+      [
+        43.1931,
+        140.99984
+      ],
+      [
+        43.19289,
+        141.00028
+      ],
+      [
+        43.19271,
+        141.00056
+      ],
+      [
+        43.19204,
+        141.00135
+      ],
+      [
+        43.19114,
+        141.0022
+      ],
+      [
+        43.1906,
+        141.00274
+      ],
+      [
+        43.18973,
+        141.00378
+      ],
+      [
+        43.18932,
+        141.0043
+      ],
+      [
+        43.18866,
+        141.00513
+      ],
+      [
+        43.1882,
+        141.00575
+      ],
+      [
+        43.18766,
+        141.00642
+      ],
+      [
+        43.18704,
+        141.00713
+      ],
+      [
+        43.18602,
+        141.00865
+      ],
+      [
+        43.18592,
+        141.00881
+      ],
+      [
+        43.18492,
+        141.01037
+      ],
+      [
+        43.18487,
+        141.01045
+      ],
+      [
+        43.18444,
+        141.01114
+      ],
+      [
+        43.1841,
+        141.01166
+      ],
+      [
+        43.18364,
+        141.01241
+      ],
+      [
+        43.18349,
+        141.01274
+      ],
+      [
+        43.18343,
+        141.01288
+      ],
+      [
+        43.18331,
+        141.01325
+      ],
+      [
+        43.18328,
+        141.01351
+      ],
+      [
+        43.18322,
+        141.01411
+      ],
+      [
+        43.18322,
+        141.01492
+      ],
+      [
+        43.18329,
+        141.01561
+      ],
+      [
+        43.18339,
+        141.01624
+      ],
+      [
+        43.18343,
+        141.01724
+      ],
+      [
+        43.18327,
+        141.01858
+      ],
+      [
+        43.1831,
+        141.01921
+      ],
+      [
+        43.18298,
+        141.01967
+      ],
+      [
+        43.18276,
+        141.02053
+      ],
+      [
+        43.18253,
+        141.02142
+      ],
+      [
+        43.18237,
+        141.02206
+      ],
+      [
+        43.1823,
+        141.02232
+      ],
+      [
+        43.18208,
+        141.02314
+      ],
+      [
+        43.18198,
+        141.02353
+      ],
+      [
+        43.18168,
+        141.02469
+      ],
+      [
+        43.18129,
+        141.0262
+      ],
+      [
+        43.18107,
+        141.02707
+      ],
+      [
+        43.18075,
+        141.02862
+      ],
+      [
+        43.18073,
+        141.02884
+      ],
+      [
+        43.18068,
+        141.02933
+      ],
+      [
+        43.18072,
+        141.03017
+      ],
+      [
+        43.1808,
+        141.03064
+      ],
+      [
+        43.18102,
+        141.03158
+      ],
+      [
+        43.18118,
+        141.03214
+      ],
+      [
+        43.18126,
+        141.03244
+      ],
+      [
+        43.18145,
+        141.03334
+      ],
+      [
+        43.18139,
+        141.03433
+      ],
+      [
+        43.18121,
+        141.03504
+      ],
+      [
+        43.18085,
+        141.03653
+      ],
+      [
+        43.18043,
+        141.03741
+      ],
+      [
+        43.17969,
+        141.03808
+      ],
+      [
+        43.17946,
+        141.03837
+      ],
+      [
+        43.17914,
+        141.0389
+      ],
+      [
+        43.17889,
+        141.03946
+      ],
+      [
+        43.17879,
+        141.03983
+      ],
+      [
+        43.17867,
+        141.04052
+      ],
+      [
+        43.17868,
+        141.04112
+      ],
+      [
+        43.1787,
+        141.04164
+      ],
+      [
+        43.17878,
+        141.04225
+      ],
+      [
+        43.17891,
+        141.04295
+      ],
+      [
+        43.17909,
+        141.04392
+      ],
+      [
+        43.17924,
+        141.04474
+      ],
+      [
+        43.17942,
+        141.04566
+      ],
+      [
+        43.17963,
+        141.04678
+      ],
+      [
+        43.17977,
+        141.04766
+      ],
+      [
+        43.17983,
+        141.04847
+      ],
+      [
+        43.17981,
+        141.04922
+      ],
+      [
+        43.17978,
+        141.05023
+      ],
+      [
+        43.17973,
+        141.05131
+      ],
+      [
+        43.17968,
+        141.05189
+      ],
+      [
+        43.1796,
+        141.05256
+      ],
+      [
+        43.17946,
+        141.05377
+      ],
+      [
+        43.17942,
+        141.0548
+      ],
+      [
+        43.17937,
+        141.05568
+      ],
+      [
+        43.17934,
+        141.05624
+      ],
+      [
+        43.17925,
+        141.05683
+      ],
+      [
+        43.17892,
+        141.05772
+      ],
+      [
+        43.17877,
+        141.058
+      ],
+      [
+        43.17843,
+        141.05869
+      ],
+      [
+        43.17822,
+        141.05911
+      ],
+      [
+        43.17796,
+        141.05964
+      ],
+      [
+        43.17758,
+        141.06066
+      ],
+      [
+        43.17728,
+        141.06193
+      ],
+      [
+        43.17669,
+        141.06478
+      ],
+      [
+        43.17592,
+        141.06815
+      ],
+      [
+        43.17574,
+        141.06893
+      ],
+      [
+        43.17561,
+        141.06943
+      ],
+      [
+        43.17529,
+        141.07035
+      ],
+      [
+        43.17483,
+        141.07102
+      ],
+      [
+        43.17431,
+        141.0716
+      ],
+      [
+        43.17394,
+        141.07202
+      ],
+      [
+        43.17364,
+        141.07236
+      ],
+      [
+        43.17342,
+        141.07272
+      ],
+      [
+        43.17326,
+        141.07298
+      ],
+      [
+        43.1729,
+        141.07385
+      ],
+      [
+        43.17265,
+        141.0751
+      ],
+      [
+        43.17248,
+        141.07604
+      ],
+      [
+        43.17189,
+        141.07788
+      ],
+      [
+        43.17175,
+        141.07832
+      ],
+      [
+        43.17163,
+        141.07945
+      ],
+      [
+        43.17159,
+        141.08181
+      ],
+      [
+        43.17158,
+        141.08257
+      ],
+      [
+        43.17147,
+        141.08518
+      ],
+      [
+        43.17127,
+        141.08661
+      ],
+      [
+        43.17118,
+        141.0873
+      ],
+      [
+        43.17112,
+        141.08774
+      ],
+      [
+        43.17104,
+        141.08832
+      ],
+      [
+        43.17083,
+        141.08926
+      ],
+      [
+        43.17065,
+        141.08973
+      ],
+      [
+        43.17037,
+        141.09031
+      ],
+      [
+        43.16999,
+        141.091
+      ],
+      [
+        43.16964,
+        141.09162
+      ],
+      [
+        43.16927,
+        141.09222
+      ],
+      [
+        43.16886,
+        141.09296
+      ],
+      [
+        43.16801,
+        141.09503
+      ],
+      [
+        43.16732,
+        141.09711
+      ],
+      [
+        43.16629,
+        141.10015
+      ],
+      [
+        43.16553,
+        141.10218
+      ],
+      [
+        43.16493,
+        141.10404
+      ],
+      [
+        43.16446,
+        141.10595
+      ],
+      [
+        43.16419,
+        141.10687
+      ],
+      [
+        43.1638,
+        141.10799
+      ],
+      [
+        43.16331,
+        141.10958
+      ],
+      [
+        43.16279,
+        141.11154
+      ],
+      [
+        43.16253,
+        141.11255
+      ],
+      [
+        43.16211,
+        141.11325
+      ],
+      [
+        43.1616,
+        141.11374
+      ],
+      [
+        43.16119,
+        141.11412
+      ],
+      [
+        43.16056,
+        141.11497
+      ],
+      [
+        43.1602,
+        141.11584
+      ],
+      [
+        43.15975,
+        141.11702
+      ],
+      [
+        43.15878,
+        141.11909
+      ],
+      [
+        43.15821,
+        141.11998
+      ],
+      [
+        43.15685,
+        141.12197
+      ],
+      [
+        43.15641,
+        141.12287
+      ],
+      [
+        43.15591,
+        141.12418
+      ],
+      [
+        43.15561,
+        141.12474
+      ],
+      [
+        43.15496,
+        141.12575
+      ],
+      [
+        43.15445,
+        141.12667
+      ],
+      [
+        43.15435,
+        141.12688
+      ],
+      [
+        43.15409,
+        141.12778
+      ],
+      [
+        43.15392,
+        141.12892
+      ],
+      [
+        43.15368,
+        141.12961
+      ],
+      [
+        43.15356,
+        141.1299
+      ],
+      [
+        43.15326,
+        141.13053
+      ],
+      [
+        43.15286,
+        141.13153
+      ],
+      [
+        43.15264,
+        141.13229
+      ],
+      [
+        43.15247,
+        141.13301
+      ],
+      [
+        43.15233,
+        141.13395
+      ],
+      [
+        43.1522,
+        141.13547
+      ],
+      [
+        43.15219,
+        141.1377
+      ],
+      [
+        43.15215,
+        141.13925
+      ],
+      [
+        43.15201,
+        141.14065
+      ],
+      [
+        43.1519,
+        141.14113
+      ],
+      [
+        43.15153,
+        141.14205
+      ],
+      [
+        43.15135,
+        141.14237
+      ],
+      [
+        43.15087,
+        141.14315
+      ],
+      [
+        43.15067,
+        141.14368
+      ],
+      [
+        43.15047,
+        141.14436
+      ],
+      [
+        43.15025,
+        141.1449
+      ],
+      [
+        43.15004,
+        141.14534
+      ],
+      [
+        43.14932,
+        141.14642
+      ],
+      [
+        43.14906,
+        141.1468
+      ],
+      [
+        43.14833,
+        141.14785
+      ],
+      [
+        43.14807,
+        141.14825
+      ],
+      [
+        43.1477,
+        141.14893
+      ],
+      [
+        43.14752,
+        141.14941
+      ],
+      [
+        43.14729,
+        141.14998
+      ],
+      [
+        43.147,
+        141.15081
+      ],
+      [
+        43.14671,
+        141.15171
+      ],
+      [
+        43.14635,
+        141.15237
+      ],
+      [
+        43.14614,
+        141.15273
+      ],
+      [
+        43.14581,
+        141.15373
+      ],
+      [
+        43.1458,
+        141.15376
+      ],
+      [
+        43.14529,
+        141.15511
+      ],
+      [
+        43.14484,
+        141.15614
+      ],
+      [
+        43.14439,
+        141.15712
+      ],
+      [
+        43.14382,
+        141.15881
+      ],
+      [
+        43.14375,
+        141.15903
+      ],
+      [
+        43.14308,
+        141.16082
+      ],
+      [
+        43.14273,
+        141.16156
+      ],
+      [
+        43.14224,
+        141.16247
+      ],
+      [
+        43.1419,
+        141.16292
+      ],
+      [
+        43.14141,
+        141.16344
+      ],
+      [
+        43.14051,
+        141.16441
+      ],
+      [
+        43.13989,
+        141.16555
+      ],
+      [
+        43.13937,
+        141.1675
+      ],
+      [
+        43.13914,
+        141.16842
+      ],
+      [
+        43.13871,
+        141.1702
+      ],
+      [
+        43.13798,
+        141.1732
+      ],
+      [
+        43.13719,
+        141.17641
+      ],
+      [
+        43.13662,
+        141.17871
+      ],
+      [
+        43.13611,
+        141.18081
+      ],
+      [
+        43.13553,
+        141.18315
+      ],
+      [
+        43.13482,
+        141.18604
+      ],
+      [
+        43.13386,
+        141.18987
+      ],
+      [
+        43.1336,
+        141.19091
+      ],
+      [
+        43.1329,
+        141.19413
+      ],
+      [
+        43.13255,
+        141.19683
+      ],
+      [
+        43.13232,
+        141.19936
+      ],
+      [
+        43.13214,
+        141.20132
+      ],
+      [
+        43.1319,
+        141.20475
+      ],
+      [
+        43.13193,
+        141.20668
+      ],
+      [
+        43.13214,
+        141.20962
+      ],
+      [
+        43.13241,
+        141.21167
+      ],
+      [
+        43.13257,
+        141.21351
+      ],
+      [
+        43.13252,
+        141.21474
+      ],
+      [
+        43.13236,
+        141.21558
+      ],
+      [
+        43.13208,
+        141.21644
+      ],
+      [
+        43.13181,
+        141.21702
+      ],
+      [
+        43.13144,
+        141.21765
+      ],
+      [
+        43.13077,
+        141.21872
+      ],
+      [
+        43.12939,
+        141.22087
+      ],
+      [
+        43.12879,
+        141.22185
+      ],
+      [
+        43.12801,
+        141.22303
+      ],
+      [
+        43.12719,
+        141.22435
+      ],
+      [
+        43.12711,
+        141.22453
+      ],
+      [
+        43.12669,
+        141.22549
+      ],
+      [
+        43.1264,
+        141.22655
+      ],
+      [
+        43.1262,
+        141.22725
+      ],
+      [
+        43.12592,
+        141.2283
+      ],
+      [
+        43.12569,
+        141.22918
+      ],
+      [
+        43.12559,
+        141.22956
+      ],
+      [
+        43.12532,
+        141.23056
+      ],
+      [
+        43.12511,
+        141.23138
+      ],
+      [
+        43.12479,
+        141.23262
+      ],
+      [
+        43.12447,
+        141.23381
+      ],
+      [
+        43.12414,
+        141.23504
+      ],
+      [
+        43.12387,
+        141.23608
+      ],
+      [
+        43.12313,
+        141.23821
+      ],
+      [
+        43.12248,
+        141.23964
+      ],
+      [
+        43.12231,
+        141.23997
+      ],
+      [
+        43.12102,
+        141.24234
+      ],
+      [
+        43.12072,
+        141.24286
+      ],
+      [
+        43.11953,
+        141.24484
+      ],
+      [
+        43.11866,
+        141.24632
+      ],
+      [
+        43.11515,
+        141.25204
+      ],
+      [
+        43.11272,
+        141.25609
+      ],
+      [
+        43.1119,
+        141.25743
+      ],
+      [
+        43.1088,
+        141.26248
+      ],
+      [
+        43.10643,
+        141.26636
+      ],
+      [
+        43.10625,
+        141.26666
+      ],
+      [
+        43.10354,
+        141.27112
+      ],
+      [
+        43.10066,
+        141.27584
+      ],
+      [
+        43.09971,
+        141.27742
+      ],
+      [
+        43.09429,
+        141.28628
+      ],
+      [
+        43.09191,
+        141.29019
+      ],
+      [
+        43.09087,
+        141.29194
+      ],
+      [
+        43.08967,
+        141.29389
+      ],
+      [
+        43.08886,
+        141.29526
+      ],
+      [
+        43.0871,
+        141.29817
+      ],
+      [
+        43.08577,
+        141.30038
+      ],
+      [
+        43.08486,
+        141.30186
+      ],
+      [
+        43.08315,
+        141.30465
+      ],
+      [
+        43.08185,
+        141.30679
+      ],
+      [
+        43.08117,
+        141.30799
+      ],
+      [
+        43.08087,
+        141.30853
+      ],
+      [
+        43.08006,
+        141.31031
+      ],
+      [
+        43.07895,
+        141.31288
+      ],
+      [
+        43.07804,
+        141.31502
+      ],
+      [
+        43.07717,
+        141.31701
+      ],
+      [
+        43.07596,
+        141.31982
+      ],
+      [
+        43.07515,
+        141.32169
+      ],
+      [
+        43.07483,
+        141.32242
+      ],
+      [
+        43.07351,
+        141.32548
+      ],
+      [
+        43.07219,
+        141.32857
+      ],
+      [
+        43.07151,
+        141.33012
+      ],
+      [
+        43.0705,
+        141.33247
+      ],
+      [
+        43.06957,
+        141.33464
+      ],
+      [
+        43.06853,
+        141.33705
+      ],
+      [
+        43.06772,
+        141.3391
+      ],
+      [
+        43.06753,
+        141.33962
+      ],
+      [
+        43.06732,
+        141.34041
+      ],
+      [
+        43.06713,
+        141.3415
+      ],
+      [
+        43.06706,
+        141.34282
+      ],
+      [
+        43.0671,
+        141.34374
+      ],
+      [
+        43.06721,
+        141.34461
+      ],
+      [
+        43.06738,
+        141.34561
+      ],
+      [
+        43.06758,
+        141.34667
+      ],
+      [
+        43.06784,
+        141.34778
+      ],
+      [
+        43.068278,
+        141.349122
+      ],
+      [
+        43.068569,
+        141.350801
+      ],
+      [
+        43.068785,
+        141.352689
+      ],
+      [
+        43.06886,
+        141.35565
+      ],
+      [
+        43.06882,
+        141.35767
+      ],
+      [
+        43.06878,
+        141.36038
+      ],
+      [
+        43.06872,
+        141.36487
+      ],
+      [
+        43.06869,
+        141.36659
+      ],
+      [
+        43.06865,
+        141.36922
+      ],
+      [
+        43.06862,
+        141.37131
+      ],
+      [
+        43.06858,
+        141.372988
+      ],
+      [
+        43.06863,
+        141.374648
+      ],
+      [
+        43.0689,
+        141.37794
+      ],
+      [
+        43.06909,
+        141.38006
+      ],
+      [
+        43.06944,
+        141.38384
+      ],
+      [
+        43.0696,
+        141.38621
+      ],
+      [
+        43.06961,
+        141.38662
+      ],
+      [
+        43.06952,
+        141.38761
+      ],
+      [
+        43.06942,
+        141.38814
+      ],
+      [
+        43.06894,
+        141.38948
+      ],
+      [
+        43.0687,
+        141.38988
+      ],
+      [
+        43.06808,
+        141.39105
+      ],
+      [
+        43.06748,
+        141.39208
+      ],
+      [
+        43.06713,
+        141.39289
+      ],
+      [
+        43.06687,
+        141.39354
+      ],
+      [
+        43.06648,
+        141.3944
+      ],
+      [
+        43.06609,
+        141.39509
+      ],
+      [
+        43.06583,
+        141.39551
+      ],
+      [
+        43.06469,
+        141.39742
+      ],
+      [
+        43.06279,
+        141.4006
+      ],
+      [
+        43.06109,
+        141.40346
+      ],
+      [
+        43.05962,
+        141.40593
+      ],
+      [
+        43.05759,
+        141.40936
+      ],
+      [
+        43.05567,
+        141.41258
+      ],
+      [
+        43.05385,
+        141.41556
+      ],
+      [
+        43.05337,
+        141.41638
+      ],
+      [
+        43.05254,
+        141.41776
+      ],
+      [
+        43.0515,
+        141.41948
+      ],
+      [
+        43.05062,
+        141.4208
+      ],
+      [
+        43.05023,
+        141.42145
+      ],
+      [
+        43.04956,
+        141.42272
+      ],
+      [
+        43.04924,
+        141.42352
+      ],
+      [
+        43.04902,
+        141.42414
+      ],
+      [
+        43.04872,
+        141.42503
+      ],
+      [
+        43.0483,
+        141.42693
+      ],
+      [
+        43.04816,
+        141.42746
+      ],
+      [
+        43.0479,
+        141.42831
+      ],
+      [
+        43.0478,
+        141.42863
+      ],
+      [
+        43.04747,
+        141.4297
+      ],
+      [
+        43.04732,
+        141.43023
+      ],
+      [
+        43.0472,
+        141.43078
+      ],
+      [
+        43.04711,
+        141.43123
+      ],
+      [
+        43.04701,
+        141.43184
+      ],
+      [
+        43.04685,
+        141.43266
+      ],
+      [
+        43.04675,
+        141.43319
+      ],
+      [
+        43.04667,
+        141.43371
+      ],
+      [
+        43.04626,
+        141.43591
+      ],
+      [
+        43.04618,
+        141.43632
+      ],
+      [
+        43.04598,
+        141.43736
+      ],
+      [
+        43.04587,
+        141.43796
+      ],
+      [
+        43.04548,
+        141.44029
+      ],
+      [
+        43.04554,
+        141.44147
+      ],
+      [
+        43.04552,
+        141.44212
+      ],
+      [
+        43.04535,
+        141.44285
+      ],
+      [
+        43.04519,
+        141.44356
+      ],
+      [
+        43.04485,
+        141.44529
+      ],
+      [
+        43.04462,
+        141.44646
+      ],
+      [
+        43.04425,
+        141.44828
+      ],
+      [
+        43.04419,
+        141.44857
+      ],
+      [
+        43.04389,
+        141.45012
+      ],
+      [
+        43.04376,
+        141.45075
+      ],
+      [
+        43.04353,
+        141.45206
+      ],
+      [
+        43.04338,
+        141.45297
+      ],
+      [
+        43.04337,
+        141.45312
+      ],
+      [
+        43.04326,
+        141.45449
+      ],
+      [
+        43.0432,
+        141.45526
+      ],
+      [
+        43.04319,
+        141.45552
+      ],
+      [
+        43.04321,
+        141.45666
+      ],
+      [
+        43.04352,
+        141.45827
+      ],
+      [
+        43.04359,
+        141.45904
+      ],
+      [
+        43.04465,
+        141.46235
+      ],
+      [
+        43.0453,
+        141.46412
+      ],
+      [
+        43.04595,
+        141.46589
+      ],
+      [
+        43.04728,
+        141.46951
+      ],
+      [
+        43.04816,
+        141.47201
+      ],
+      [
+        43.04869,
+        141.47345
+      ],
+      [
+        43.04976,
+        141.47618
+      ],
+      [
+        43.05004,
+        141.47672
+      ],
+      [
+        43.05079,
+        141.47794
+      ],
+      [
+        43.05116,
+        141.47842
+      ],
+      [
+        43.05224,
+        141.47958
+      ],
+      [
+        43.05392,
+        141.48051
+      ],
+      [
+        43.05552,
+        141.48113
+      ],
+      [
+        43.05737,
+        141.48192
+      ],
+      [
+        43.05913,
+        141.4826
+      ],
+      [
+        43.06055,
+        141.48324
+      ],
+      [
+        43.06168,
+        141.48386
+      ],
+      [
+        43.062,
+        141.48409
+      ],
+      [
+        43.06364,
+        141.4855
+      ],
+      [
+        43.06587,
+        141.48798
+      ],
+      [
+        43.06593,
+        141.48806
+      ],
+      [
+        43.06797,
+        141.49032
+      ],
+      [
+        43.06936,
+        141.49184
+      ],
+      [
+        43.07029,
+        141.49288
+      ],
+      [
+        43.07101,
+        141.49394
+      ],
+      [
+        43.07176,
+        141.49545
+      ],
+      [
+        43.07198,
+        141.496
+      ],
+      [
+        43.07246,
+        141.49744
+      ],
+      [
+        43.0728,
+        141.4984
+      ],
+      [
+        43.07332,
+        141.50004
+      ],
+      [
+        43.07384,
+        141.50183
+      ],
+      [
+        43.0742,
+        141.50281
+      ],
+      [
+        43.0746,
+        141.50366
+      ],
+      [
+        43.07478,
+        141.50398
+      ],
+      [
+        43.07544,
+        141.50502
+      ],
+      [
+        43.07641,
+        141.50641
+      ],
+      [
+        43.07846,
+        141.50931
+      ],
+      [
+        43.0789,
+        141.50995
+      ],
+      [
+        43.08039,
+        141.5121
+      ],
+      [
+        43.08219,
+        141.5147
+      ],
+      [
+        43.08271,
+        141.51548
+      ],
+      [
+        43.08474,
+        141.51838
+      ],
+      [
+        43.08625,
+        141.52056
+      ],
+      [
+        43.08718,
+        141.52191
+      ],
+      [
+        43.08807,
+        141.5232
+      ],
+      [
+        43.08905,
+        141.52462
+      ],
+      [
+        43.08977,
+        141.52567
+      ],
+      [
+        43.09085,
+        141.52726
+      ],
+      [
+        43.092,
+        141.52894
+      ],
+      [
+        43.09364,
+        141.53124
+      ],
+      [
+        43.09435,
+        141.53226
+      ],
+      [
+        43.0956,
+        141.53406
+      ],
+      [
+        43.09908,
+        141.53912
+      ],
+      [
+        43.09972,
+        141.54006
+      ],
+      [
+        43.1006,
+        141.54134
+      ],
+      [
+        43.10297,
+        141.54475
+      ],
+      [
+        43.10449,
+        141.54702
+      ],
+      [
+        43.10617,
+        141.54944
+      ],
+      [
+        43.10728,
+        141.55116
+      ],
+      [
+        43.10803,
+        141.55259
+      ],
+      [
+        43.10882,
+        141.5541
+      ],
+      [
+        43.10936,
+        141.55511
+      ],
+      [
+        43.11092,
+        141.55804
+      ],
+      [
+        43.11227,
+        141.5605
+      ],
+      [
+        43.11327,
+        141.56264
+      ],
+      [
+        43.11357,
+        141.56419
+      ],
+      [
+        43.11344,
+        141.56587
+      ],
+      [
+        43.11306,
+        141.56747
+      ],
+      [
+        43.11272,
+        141.56927
+      ],
+      [
+        43.11265,
+        141.57099
+      ],
+      [
+        43.11289,
+        141.57264
+      ],
+      [
+        43.11333,
+        141.57412
+      ],
+      [
+        43.11358,
+        141.57483
+      ],
+      [
+        43.11434,
+        141.57703
+      ],
+      [
+        43.1147,
+        141.57807
+      ],
+      [
+        43.11514,
+        141.57981
+      ],
+      [
+        43.11522,
+        141.58037
+      ],
+      [
+        43.11533,
+        141.58185
+      ],
+      [
+        43.11535,
+        141.58406
+      ],
+      [
+        43.11533,
+        141.58721
+      ],
+      [
+        43.1153,
+        141.59048
+      ],
+      [
+        43.11527,
+        141.59164
+      ],
+      [
+        43.11528,
+        141.59381
+      ],
+      [
+        43.11531,
+        141.59427
+      ],
+      [
+        43.11552,
+        141.59523
+      ],
+      [
+        43.11563,
+        141.59556
+      ],
+      [
+        43.11589,
+        141.59615
+      ],
+      [
+        43.11612,
+        141.59659
+      ],
+      [
+        43.11667,
+        141.59728
+      ],
+      [
+        43.11691,
+        141.5975
+      ],
+      [
+        43.11758,
+        141.59794
+      ],
+      [
+        43.1188,
+        141.59848
+      ],
+      [
+        43.12072,
+        141.59937
+      ],
+      [
+        43.12265,
+        141.60026
+      ],
+      [
+        43.12366,
+        141.60073
+      ],
+      [
+        43.12518,
+        141.60187
+      ],
+      [
+        43.1264,
+        141.60385
+      ],
+      [
+        43.12754,
+        141.60625
+      ],
+      [
+        43.12839,
+        141.60803
+      ],
+      [
+        43.12908,
+        141.60948
+      ],
+      [
+        43.12995,
+        141.6113
+      ],
+      [
+        43.13045,
+        141.61235
+      ],
+      [
+        43.13202,
+        141.61564
+      ],
+      [
+        43.13284,
+        141.61733
+      ],
+      [
+        43.13341,
+        141.61851
+      ],
+      [
+        43.13387,
+        141.61947
+      ],
+      [
+        43.13475,
+        141.62129
+      ],
+      [
+        43.13604,
+        141.62383
+      ],
+      [
+        43.13693,
+        141.6257
+      ],
+      [
+        43.13811,
+        141.62815
+      ],
+      [
+        43.13866,
+        141.62927
+      ],
+      [
+        43.13914,
+        141.6305
+      ],
+      [
+        43.13944,
+        141.63222
+      ],
+      [
+        43.13947,
+        141.63304
+      ],
+      [
+        43.13948,
+        141.63429
+      ],
+      [
+        43.13953,
+        141.63587
+      ],
+      [
+        43.13972,
+        141.63638
+      ],
+      [
+        43.13997,
+        141.63723
+      ],
+      [
+        43.14009,
+        141.63768
+      ],
+      [
+        43.14021,
+        141.63805
+      ],
+      [
+        43.14046,
+        141.63881
+      ],
+      [
+        43.14064,
+        141.63924
+      ],
+      [
+        43.14083,
+        141.63964
+      ],
+      [
+        43.1411,
+        141.64011
+      ],
+      [
+        43.1413,
+        141.64046
+      ],
+      [
+        43.1417,
+        141.64103
+      ],
+      [
+        43.14189,
+        141.64131
+      ],
+      [
+        43.14228,
+        141.64182
+      ],
+      [
+        43.14307,
+        141.6428
+      ],
+      [
+        43.14331,
+        141.6431
+      ],
+      [
+        43.14356,
+        141.64342
+      ],
+      [
+        43.1441,
+        141.6441
+      ],
+      [
+        43.14453,
+        141.64469
+      ],
+      [
+        43.14557,
+        141.64611
+      ],
+      [
+        43.14673,
+        141.64759
+      ],
+      [
+        43.14758,
+        141.64869
+      ],
+      [
+        43.1484,
+        141.64977
+      ],
+      [
+        43.14991,
+        141.65225
+      ],
+      [
+        43.15125,
+        141.65494
+      ],
+      [
+        43.1518,
+        141.65605
+      ],
+      [
+        43.15307,
+        141.65852
+      ],
+      [
+        43.15428,
+        141.66097
+      ],
+      [
+        43.15514,
+        141.66267
+      ],
+      [
+        43.15611,
+        141.66461
+      ],
+      [
+        43.15726,
+        141.66689
+      ],
+      [
+        43.15861,
+        141.6696
+      ],
+      [
+        43.16106,
+        141.67449
+      ],
+      [
+        43.16309,
+        141.67853
+      ],
+      [
+        43.16332,
+        141.67899
+      ],
+      [
+        43.1644,
+        141.68114
+      ],
+      [
+        43.1651,
+        141.68254
+      ],
+      [
+        43.1662,
+        141.68473
+      ],
+      [
+        43.16755,
+        141.68736
+      ],
+      [
+        43.16911,
+        141.69045
+      ],
+      [
+        43.1702,
+        141.69257
+      ],
+      [
+        43.17114,
+        141.69445
+      ],
+      [
+        43.17216,
+        141.69643
+      ],
+      [
+        43.17323,
+        141.69851
+      ],
+      [
+        43.17419,
+        141.7004
+      ],
+      [
+        43.17525,
+        141.70242
+      ],
+      [
+        43.17619,
+        141.70429
+      ],
+      [
+        43.1771,
+        141.70607
+      ],
+      [
+        43.17796,
+        141.70775
+      ],
+      [
+        43.17904,
+        141.7099
+      ],
+      [
+        43.18009,
+        141.71194
+      ],
+      [
+        43.18105,
+        141.71381
+      ],
+      [
+        43.18241,
+        141.71644
+      ],
+      [
+        43.18378,
+        141.71915
+      ],
+      [
+        43.18473,
+        141.72106
+      ],
+      [
+        43.18579,
+        141.72312
+      ],
+      [
+        43.18682,
+        141.7251
+      ],
+      [
+        43.1882,
+        141.72766
+      ],
+      [
+        43.18888,
+        141.72891
+      ],
+      [
+        43.1899,
+        141.73084
+      ],
+      [
+        43.19105,
+        141.73269
+      ],
+      [
+        43.19191,
+        141.73406
+      ],
+      [
+        43.19294,
+        141.73574
+      ],
+      [
+        43.19335,
+        141.73637
+      ],
+      [
+        43.19402,
+        141.73739
+      ],
+      [
+        43.19479,
+        141.73879
+      ],
+      [
+        43.19575,
+        141.74067
+      ],
+      [
+        43.19671,
+        141.74254
+      ],
+      [
+        43.19707,
+        141.74323
+      ],
+      [
+        43.19766,
+        141.74479
+      ],
+      [
+        43.1981,
+        141.74627
+      ],
+      [
+        43.19848,
+        141.74753
+      ],
+      [
+        43.19918,
+        141.74947
+      ],
+      [
+        43.19984,
+        141.7508
+      ],
+      [
+        43.20035,
+        141.75179
+      ],
+      [
+        43.20097,
+        141.75299
+      ],
+      [
+        43.202,
+        141.75497
+      ],
+      [
+        43.20323,
+        141.75754
+      ],
+      [
+        43.20499,
+        141.76094
+      ],
+      [
+        43.20639,
+        141.76366
+      ],
+      [
+        43.20776,
+        141.76633
+      ],
+      [
+        43.21009,
+        141.77091
+      ],
+      [
+        43.21134,
+        141.77342
+      ],
+      [
+        43.21207,
+        141.77484
+      ],
+      [
+        43.2129,
+        141.77602
+      ],
+      [
+        43.21379,
+        141.77705
+      ],
+      [
+        43.21512,
+        141.77814
+      ],
+      [
+        43.21678,
+        141.7791
+      ],
+      [
+        43.21908,
+        141.78014
+      ],
+      [
+        43.22281,
+        141.78185
+      ],
+      [
+        43.22446,
+        141.78262
+      ],
+      [
+        43.22647,
+        141.78353
+      ],
+      [
+        43.23107,
+        141.78562
+      ],
+      [
+        43.23554,
+        141.78767
+      ],
+      [
+        43.23754,
+        141.78858
+      ],
+      [
+        43.23975,
+        141.78958
+      ],
+      [
+        43.24192,
+        141.79062
+      ],
+      [
+        43.24382,
+        141.79228
+      ],
+      [
+        43.24643,
+        141.79504
+      ],
+      [
+        43.24783,
+        141.79655
+      ],
+      [
+        43.25033,
+        141.79921
+      ],
+      [
+        43.25244,
+        141.80155
+      ],
+      [
+        43.25356,
+        141.80276
+      ],
+      [
+        43.25539,
+        141.80475
+      ],
+      [
+        43.25798,
+        141.80752
+      ],
+      [
+        43.25865,
+        141.80824
+      ],
+      [
+        43.2605,
+        141.81021
+      ],
+      [
+        43.26186,
+        141.81171
+      ],
+      [
+        43.26265,
+        141.81252
+      ],
+      [
+        43.26407,
+        141.81403
+      ],
+      [
+        43.26528,
+        141.81533
+      ],
+      [
+        43.26762,
+        141.81784
+      ],
+      [
+        43.27229,
+        141.82281
+      ],
+      [
+        43.27482,
+        141.82554
+      ],
+      [
+        43.27905,
+        141.83005
+      ],
+      [
+        43.28424,
+        141.83564
+      ],
+      [
+        43.28901,
+        141.84078
+      ],
+      [
+        43.29178,
+        141.84373
+      ],
+      [
+        43.29356,
+        141.84564
+      ],
+      [
+        43.29552,
+        141.84779
+      ],
+      [
+        43.29697,
+        141.84935
+      ],
+      [
+        43.29788,
+        141.85035
+      ],
+      [
+        43.299,
+        141.85163
+      ],
+      [
+        43.29961,
+        141.85216
+      ],
+      [
+        43.3002,
+        141.85262
+      ],
+      [
+        43.30075,
+        141.85301
+      ],
+      [
+        43.30205,
+        141.85368
+      ],
+      [
+        43.30398,
+        141.85431
+      ],
+      [
+        43.30818,
+        141.85558
+      ],
+      [
+        43.31306,
+        141.857
+      ],
+      [
+        43.31391,
+        141.85725
+      ],
+      [
+        43.31734,
+        141.85824
+      ],
+      [
+        43.31973,
+        141.85895
+      ],
+      [
+        43.32062,
+        141.85921
+      ],
+      [
+        43.32268,
+        141.85983
+      ],
+      [
+        43.32799,
+        141.86138
+      ],
+      [
+        43.3287,
+        141.86157
+      ],
+      [
+        43.33052,
+        141.86249
+      ],
+      [
+        43.33278,
+        141.86275
+      ],
+      [
+        43.33576,
+        141.86361
+      ],
+      [
+        43.33789,
+        141.86418
+      ],
+      [
+        43.34154,
+        141.86524
+      ],
+      [
+        43.36252,
+        141.87125
+      ],
+      [
+        43.36426,
+        141.87175
+      ],
+      [
+        43.36751,
+        141.87269
+      ],
+      [
+        43.36914,
+        141.87345
+      ],
+      [
+        43.37042,
+        141.87384
+      ],
+      [
+        43.37087,
+        141.87394
+      ],
+      [
+        43.37221,
+        141.87406
+      ],
+      [
+        43.37742,
+        141.87559
+      ],
+      [
+        43.38137,
+        141.87675
+      ],
+      [
+        43.38165,
+        141.87683
+      ],
+      [
+        43.38913,
+        141.87902
+      ],
+      [
+        43.39619,
+        141.88111
+      ],
+      [
+        43.39697,
+        141.88134
+      ],
+      [
+        43.40444,
+        141.88353
+      ],
+      [
+        43.40461,
+        141.88358
+      ],
+      [
+        43.41797,
+        141.88753
+      ],
+      [
+        43.41909,
+        141.88786
+      ],
+      [
+        43.42013,
+        141.88816
+      ],
+      [
+        43.42191,
+        141.88867
+      ],
+      [
+        43.42315,
+        141.88903
+      ],
+      [
+        43.42487,
+        141.88951
+      ],
+      [
+        43.4275,
+        141.89027
+      ],
+      [
+        43.43772,
+        141.89328
+      ],
+      [
+        43.44474,
+        141.89535
+      ],
+      [
+        43.44638,
+        141.89581
+      ],
+      [
+        43.45647,
+        141.89878
+      ],
+      [
+        43.45886,
+        141.89948
+      ],
+      [
+        43.45921,
+        141.89958
+      ],
+      [
+        43.46264,
+        141.90058
+      ],
+      [
+        43.46334,
+        141.90058
+      ],
+      [
+        43.46408,
+        141.90068
+      ],
+      [
+        43.46472,
+        141.90082
+      ],
+      [
+        43.46534,
+        141.90102
+      ],
+      [
+        43.46555,
+        141.90111
+      ],
+      [
+        43.46618,
+        141.90141
+      ],
+      [
+        43.46677,
+        141.90183
+      ],
+      [
+        43.46953,
+        141.90265
+      ],
+      [
+        43.47206,
+        141.9034
+      ],
+      [
+        43.47624,
+        141.90461
+      ],
+      [
+        43.49068,
+        141.90886
+      ],
+      [
+        43.4913,
+        141.90904
+      ],
+      [
+        43.49213,
+        141.90928
+      ],
+      [
+        43.49509,
+        141.91015
+      ],
+      [
+        43.49747,
+        141.91084
+      ],
+      [
+        43.50002,
+        141.91159
+      ],
+      [
+        43.50037,
+        141.91169
+      ],
+      [
+        43.50241,
+        141.91232
+      ],
+      [
+        43.50574,
+        141.9133
+      ],
+      [
+        43.50763,
+        141.91388
+      ],
+      [
+        43.50824,
+        141.91406
+      ],
+      [
+        43.51068,
+        141.91477
+      ],
+      [
+        43.5137,
+        141.91567
+      ],
+      [
+        43.515,
+        141.91602
+      ],
+      [
+        43.51637,
+        141.91643
+      ],
+      [
+        43.51813,
+        141.91696
+      ],
+      [
+        43.51986,
+        141.91751
+      ],
+      [
+        43.52086,
+        141.91779
+      ],
+      [
+        43.52224,
+        141.91795
+      ],
+      [
+        43.52291,
+        141.91792
+      ],
+      [
+        43.52435,
+        141.91758
+      ],
+      [
+        43.52472,
+        141.91745
+      ],
+      [
+        43.52656,
+        141.91611
+      ],
+      [
+        43.5281,
+        141.91448
+      ],
+      [
+        43.52998,
+        141.9124
+      ],
+      [
+        43.5321,
+        141.91003
+      ],
+      [
+        43.53267,
+        141.90945
+      ],
+      [
+        43.5338,
+        141.90848
+      ],
+      [
+        43.5342,
+        141.90807
+      ],
+      [
+        43.53482,
+        141.90741
+      ],
+      [
+        43.5366,
+        141.90547
+      ],
+      [
+        43.53833,
+        141.90358
+      ],
+      [
+        43.53924,
+        141.9026
+      ],
+      [
+        43.54033,
+        141.90142
+      ],
+      [
+        43.54196,
+        141.89965
+      ],
+      [
+        43.54347,
+        141.89843
+      ],
+      [
+        43.54479,
+        141.89775
+      ],
+      [
+        43.5463,
+        141.89739
+      ],
+      [
+        43.54731,
+        141.89738
+      ],
+      [
+        43.54831,
+        141.89758
+      ],
+      [
+        43.54917,
+        141.89799
+      ],
+      [
+        43.54975,
+        141.89831
+      ],
+      [
+        43.55126,
+        141.89908
+      ],
+      [
+        43.55327,
+        141.89978
+      ],
+      [
+        43.55354,
+        141.89991
+      ],
+      [
+        43.55689,
+        141.90166
+      ],
+      [
+        43.55722,
+        141.90183
+      ],
+      [
+        43.55934,
+        141.90295
+      ],
+      [
+        43.56041,
+        141.90348
+      ],
+      [
+        43.56171,
+        141.90409
+      ],
+      [
+        43.56298,
+        141.9047
+      ],
+      [
+        43.56587,
+        141.90611
+      ],
+      [
+        43.56717,
+        141.90675
+      ],
+      [
+        43.5694,
+        141.90783
+      ],
+      [
+        43.57208,
+        141.90913
+      ],
+      [
+        43.57289,
+        141.90952
+      ],
+      [
+        43.57499,
+        141.91056
+      ],
+      [
+        43.57738,
+        141.91169
+      ],
+      [
+        43.5798,
+        141.91287
+      ],
+      [
+        43.5816,
+        141.91375
+      ],
+      [
+        43.58574,
+        141.91576
+      ],
+      [
+        43.58758,
+        141.91662
+      ],
+      [
+        43.58967,
+        141.91763
+      ],
+      [
+        43.59078,
+        141.91817
+      ],
+      [
+        43.59356,
+        141.91951
+      ],
+      [
+        43.59482,
+        141.92011
+      ],
+      [
+        43.59626,
+        141.9208
+      ],
+      [
+        43.59893,
+        141.9221
+      ],
+      [
+        43.60337,
+        141.92423
+      ],
+      [
+        43.60464,
+        141.92483
+      ],
+      [
+        43.60628,
+        141.92565
+      ],
+      [
+        43.60736,
+        141.92616
+      ],
+      [
+        43.61188,
+        141.92834
+      ],
+      [
+        43.61224,
+        141.92851
+      ],
+      [
+        43.61652,
+        141.93058
+      ],
+      [
+        43.62054,
+        141.93252
+      ],
+      [
+        43.62675,
+        141.93551
+      ],
+      [
+        43.62851,
+        141.93633
+      ],
+      [
+        43.63241,
+        141.93824
+      ],
+      [
+        43.63955,
+        141.9417
+      ],
+      [
+        43.64214,
+        141.94294
+      ],
+      [
+        43.64489,
+        141.94427
+      ],
+      [
+        43.64651,
+        141.94506
+      ],
+      [
+        43.65027,
+        141.94688
+      ],
+      [
+        43.65467,
+        141.94901
+      ],
+      [
+        43.65735,
+        141.9503
+      ],
+      [
+        43.66162,
+        141.95238
+      ],
+      [
+        43.6655,
+        141.95428
+      ],
+      [
+        43.66603,
+        141.9544
+      ],
+      [
+        43.66759,
+        141.95506
+      ],
+      [
+        43.66865,
+        141.95562
+      ],
+      [
+        43.66907,
+        141.95583
+      ],
+      [
+        43.6701,
+        141.95632
+      ],
+      [
+        43.67063,
+        141.9566
+      ],
+      [
+        43.67268,
+        141.95764
+      ],
+      [
+        43.67424,
+        141.95853
+      ],
+      [
+        43.67663,
+        141.95974
+      ],
+      [
+        43.67684,
+        141.95984
+      ],
+      [
+        43.6831,
+        141.96287
+      ],
+      [
+        43.68474,
+        141.96365
+      ],
+      [
+        43.68971,
+        141.96605
+      ],
+      [
+        43.6922,
+        141.96725
+      ],
+      [
+        43.69527,
+        141.96874
+      ],
+      [
+        43.69619,
+        141.9692
+      ],
+      [
+        43.69757,
+        141.97009
+      ],
+      [
+        43.69802,
+        141.9705
+      ],
+      [
+        43.69872,
+        141.97133
+      ],
+      [
+        43.69898,
+        141.97172
+      ],
+      [
+        43.69963,
+        141.97291
+      ],
+      [
+        43.70002,
+        141.97375
+      ],
+      [
+        43.70049,
+        141.97495
+      ],
+      [
+        43.7011,
+        141.9769
+      ],
+      [
+        43.70151,
+        141.97821
+      ],
+      [
+        43.70197,
+        141.97969
+      ],
+      [
+        43.70293,
+        141.98271
+      ],
+      [
+        43.7045,
+        141.98767
+      ],
+      [
+        43.70715,
+        141.99622
+      ],
+      [
+        43.70965,
+        142.00415
+      ],
+      [
+        43.71194,
+        142.01156
+      ],
+      [
+        43.71542,
+        142.02268
+      ],
+      [
+        43.71853,
+        142.03268
+      ],
+      [
+        43.71941,
+        142.03551
+      ],
+      [
+        43.71988,
+        142.03701
+      ],
+      [
+        43.72083,
+        142.04008
+      ],
+      [
+        43.72167,
+        142.04281
+      ],
+      [
+        43.72266,
+        142.04603
+      ],
+      [
+        43.72639,
+        142.05817
+      ],
+      [
+        43.7271,
+        142.06043
+      ],
+      [
+        43.72929,
+        142.06758
+      ],
+      [
+        43.72939,
+        142.06789
+      ],
+      [
+        43.7304,
+        142.07119
+      ],
+      [
+        43.73165,
+        142.07515
+      ],
+      [
+        43.73214,
+        142.0772
+      ],
+      [
+        43.73235,
+        142.08065
+      ],
+      [
+        43.73236,
+        142.08421
+      ],
+      [
+        43.73237,
+        142.08534
+      ],
+      [
+        43.73241,
+        142.09718
+      ],
+      [
+        43.73242,
+        142.09862
+      ],
+      [
+        43.73244,
+        142.10844
+      ],
+      [
+        43.73249,
+        142.12121
+      ],
+      [
+        43.73255,
+        142.12766
+      ],
+      [
+        43.73267,
+        142.12824
+      ],
+      [
+        43.73273,
+        142.12888
+      ],
+      [
+        43.73273,
+        142.12955
+      ],
+      [
+        43.7327,
+        142.13196
+      ],
+      [
+        43.7327,
+        142.13204
+      ],
+      [
+        43.73257,
+        142.13541
+      ],
+      [
+        43.73258,
+        142.14183
+      ],
+      [
+        43.73258,
+        142.14293
+      ],
+      [
+        43.7326,
+        142.15045
+      ],
+      [
+        43.73262,
+        142.15788
+      ],
+      [
+        43.73266,
+        142.16554
+      ],
+      [
+        43.7327,
+        142.17298
+      ],
+      [
+        43.7327,
+        142.17489
+      ],
+      [
+        43.73279,
+        142.17884
+      ],
+      [
+        43.73284,
+        142.18079
+      ],
+      [
+        43.73302,
+        142.18784
+      ],
+      [
+        43.73319,
+        142.1914
+      ],
+      [
+        43.73367,
+        142.19331
+      ],
+      [
+        43.73486,
+        142.19659
+      ],
+      [
+        43.73624,
+        142.19946
+      ],
+      [
+        43.7393,
+        142.20566
+      ],
+      [
+        43.74092,
+        142.20893
+      ],
+      [
+        43.74307,
+        142.21324
+      ],
+      [
+        43.74522,
+        142.2176
+      ],
+      [
+        43.74561,
+        142.2184
+      ],
+      [
+        43.74753,
+        142.22229
+      ],
+      [
+        43.74923,
+        142.22572
+      ],
+      [
+        43.75029,
+        142.22787
+      ],
+      [
+        43.75151,
+        142.23032
+      ],
+      [
+        43.7524,
+        142.23202
+      ],
+      [
+        43.75405,
+        142.23482
+      ],
+      [
+        43.75621,
+        142.2387
+      ],
+      [
+        43.75691,
+        142.24003
+      ],
+      [
+        43.75763,
+        142.24153
+      ],
+      [
+        43.75795,
+        142.24231
+      ],
+      [
+        43.7584,
+        142.24381
+      ],
+      [
+        43.75863,
+        142.24491
+      ],
+      [
+        43.75894,
+        142.24648
+      ],
+      [
+        43.75887,
+        142.24779
+      ],
+      [
+        43.75875,
+        142.24947
+      ],
+      [
+        43.75843,
+        142.25237
+      ],
+      [
+        43.75819,
+        142.25398
+      ],
+      [
+        43.75784,
+        142.25573
+      ],
+      [
+        43.75733,
+        142.25776
+      ],
+      [
+        43.75703,
+        142.25959
+      ],
+      [
+        43.75693,
+        142.26093
+      ],
+      [
+        43.75683,
+        142.2623
+      ],
+      [
+        43.75681,
+        142.26318
+      ],
+      [
+        43.75692,
+        142.26486
+      ],
+      [
+        43.75707,
+        142.26619
+      ],
+      [
+        43.75735,
+        142.26729
+      ],
+      [
+        43.7575,
+        142.26774
+      ],
+      [
+        43.75821,
+        142.26895
+      ],
+      [
+        43.75852,
+        142.26926
+      ],
+      [
+        43.75951,
+        142.2701
+      ],
+      [
+        43.76043,
+        142.27059
+      ],
+      [
+        43.76151,
+        142.27103
+      ],
+      [
+        43.76383,
+        142.27194
+      ],
+      [
+        43.76599,
+        142.27282
+      ],
+      [
+        43.7684,
+        142.27376
+      ],
+      [
+        43.77,
+        142.27427
+      ],
+      [
+        43.77104,
+        142.27458
+      ],
+      [
+        43.77249,
+        142.27505
+      ],
+      [
+        43.77306,
+        142.27528
+      ],
+      [
+        43.77436,
+        142.2759
+      ],
+      [
+        43.77506,
+        142.27638
+      ],
+      [
+        43.7761,
+        142.27721
+      ],
+      [
+        43.77656,
+        142.27775
+      ],
+      [
+        43.77749,
+        142.2791
+      ],
+      [
+        43.77872,
+        142.28077
+      ],
+      [
+        43.78015,
+        142.28257
+      ],
+      [
+        43.78142,
+        142.28408
+      ],
+      [
+        43.7824,
+        142.28531
+      ],
+      [
+        43.78313,
+        142.28664
+      ],
+      [
+        43.78341,
+        142.28721
+      ],
+      [
+        43.78435,
+        142.28925
+      ],
+      [
+        43.78464,
+        142.28989
+      ],
+      [
+        43.78575,
+        142.29195
+      ],
+      [
+        43.78719,
+        142.29406
+      ],
+      [
+        43.78798,
+        142.29519
+      ],
+      [
+        43.78867,
+        142.29617
+      ],
+      [
+        43.78909,
+        142.29681
+      ],
+      [
+        43.78991,
+        142.29845
+      ],
+      [
+        43.79003,
+        142.29893
+      ],
+      [
+        43.79007,
+        142.29985
+      ],
+      [
+        43.78988,
+        142.30124
+      ],
+      [
+        43.78966,
+        142.30287
+      ],
+      [
+        43.78958,
+        142.30395
+      ],
+      [
+        43.7895,
+        142.30583
+      ],
+      [
+        43.78952,
+        142.30721
+      ],
+      [
+        43.78957,
+        142.30777
+      ],
+      [
+        43.78984,
+        142.31026
+      ],
+      [
+        43.78986,
+        142.31046
+      ],
+      [
+        43.79027,
+        142.31354
+      ],
+      [
+        43.79054,
+        142.3152
+      ],
+      [
+        43.79084,
+        142.31695
+      ],
+      [
+        43.79098,
+        142.31816
+      ],
+      [
+        43.79102,
+        142.3192
+      ],
+      [
+        43.79096,
+        142.3203
+      ],
+      [
+        43.79056,
+        142.32206
+      ],
+      [
+        43.79022,
+        142.3232
+      ],
+      [
+        43.78982,
+        142.3243
+      ],
+      [
+        43.78927,
+        142.32544
+      ],
+      [
+        43.78903,
+        142.32581
+      ],
+      [
+        43.78809,
+        142.32689
+      ],
+      [
+        43.78658,
+        142.32822
+      ],
+      [
+        43.78454,
+        142.33017
+      ],
+      [
+        43.78308,
+        142.33164
+      ],
+      [
+        43.78169,
+        142.33319
+      ],
+      [
+        43.78018,
+        142.33479
+      ],
+      [
+        43.77795,
+        142.33694
+      ],
+      [
+        43.77688,
+        142.33797
+      ],
+      [
+        43.77618,
+        142.33867
+      ],
+      [
+        43.77495,
+        142.33989
+      ],
+      [
+        43.77359,
+        142.34115
+      ],
+      [
+        43.77196,
+        142.34267
+      ],
+      [
+        43.77028,
+        142.34427
+      ],
+      [
+        43.76944,
+        142.3451
+      ],
+      [
+        43.76839,
+        142.34612
+      ],
+      [
+        43.76815,
+        142.34636
+      ],
+      [
+        43.76698,
+        142.34754
+      ],
+      [
+        43.76669,
+        142.34786
+      ],
+      [
+        43.76621,
+        142.34851
+      ],
+      [
+        43.76614,
+        142.34863
+      ],
+      [
+        43.76593,
+        142.34908
+      ],
+      [
+        43.76571,
+        142.34964
+      ],
+      [
+        43.76562,
+        142.34994
+      ],
+      [
+        43.76535,
+        142.35084
+      ],
+      [
+        43.76512,
+        142.35172
+      ],
+      [
+        43.7646,
+        142.35373
+      ],
+      [
+        43.76445,
+        142.35434
+      ],
+      [
+        43.76389,
+        142.35635
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-1110219",
+        "toStationId": "station-1110302",
+        "geometry": [
+          [
+            43.19808,
+            140.99317
+          ],
+          [
+            43.19616,
+            140.99419
+          ],
+          [
+            43.19567,
+            140.99447
+          ],
+          [
+            43.19457,
+            140.99513
+          ],
+          [
+            43.19426,
+            140.99536
+          ],
+          [
+            43.19417,
+            140.99545
+          ],
+          [
+            43.19401,
+            140.99565
+          ],
+          [
+            43.19394,
+            140.99575
+          ],
+          [
+            43.19381,
+            140.99599
+          ],
+          [
+            43.19371,
+            140.99621
+          ],
+          [
+            43.1936,
+            140.99654
+          ],
+          [
+            43.19349,
+            140.99696
+          ],
+          [
+            43.19339,
+            140.99739
+          ],
+          [
+            43.19335,
+            140.99791
+          ],
+          [
+            43.19335,
+            140.99814
+          ],
+          [
+            43.19332,
+            140.99882
+          ],
+          [
+            43.19325,
+            140.99931
+          ],
+          [
+            43.19315,
+            140.99969
+          ],
+          [
+            43.1931,
+            140.99984
+          ],
+          [
+            43.19289,
+            141.00028
+          ],
+          [
+            43.19271,
+            141.00056
+          ],
+          [
+            43.19204,
+            141.00135
+          ],
+          [
+            43.19114,
+            141.0022
+          ],
+          [
+            43.1906,
+            141.00274
+          ],
+          [
+            43.18973,
+            141.00378
+          ],
+          [
+            43.18932,
+            141.0043
+          ],
+          [
+            43.18866,
+            141.00513
+          ],
+          [
+            43.1882,
+            141.00575
+          ],
+          [
+            43.18766,
+            141.00642
+          ],
+          [
+            43.18704,
+            141.00713
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110302",
+        "toStationId": "station-1110303",
+        "geometry": [
+          [
+            43.18704,
+            141.00713
+          ],
+          [
+            43.18602,
+            141.00865
+          ],
+          [
+            43.18592,
+            141.00881
+          ],
+          [
+            43.18492,
+            141.01037
+          ],
+          [
+            43.18487,
+            141.01045
+          ],
+          [
+            43.18444,
+            141.01114
+          ],
+          [
+            43.1841,
+            141.01166
+          ],
+          [
+            43.18364,
+            141.01241
+          ],
+          [
+            43.18349,
+            141.01274
+          ],
+          [
+            43.18343,
+            141.01288
+          ],
+          [
+            43.18331,
+            141.01325
+          ],
+          [
+            43.18328,
+            141.01351
+          ],
+          [
+            43.18322,
+            141.01411
+          ],
+          [
+            43.18322,
+            141.01492
+          ],
+          [
+            43.18329,
+            141.01561
+          ],
+          [
+            43.18339,
+            141.01624
+          ],
+          [
+            43.18343,
+            141.01724
+          ],
+          [
+            43.18327,
+            141.01858
+          ],
+          [
+            43.1831,
+            141.01921
+          ],
+          [
+            43.18298,
+            141.01967
+          ],
+          [
+            43.18276,
+            141.02053
+          ],
+          [
+            43.18253,
+            141.02142
+          ],
+          [
+            43.18237,
+            141.02206
+          ],
+          [
+            43.1823,
+            141.02232
+          ],
+          [
+            43.18208,
+            141.02314
+          ],
+          [
+            43.18198,
+            141.02353
+          ],
+          [
+            43.18168,
+            141.02469
+          ],
+          [
+            43.18129,
+            141.0262
+          ],
+          [
+            43.18107,
+            141.02707
+          ],
+          [
+            43.18075,
+            141.02862
+          ],
+          [
+            43.18073,
+            141.02884
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110303",
+        "toStationId": "station-1110304",
+        "geometry": [
+          [
+            43.18073,
+            141.02884
+          ],
+          [
+            43.18068,
+            141.02933
+          ],
+          [
+            43.18072,
+            141.03017
+          ],
+          [
+            43.1808,
+            141.03064
+          ],
+          [
+            43.18102,
+            141.03158
+          ],
+          [
+            43.18118,
+            141.03214
+          ],
+          [
+            43.18126,
+            141.03244
+          ],
+          [
+            43.18145,
+            141.03334
+          ],
+          [
+            43.18139,
+            141.03433
+          ],
+          [
+            43.18121,
+            141.03504
+          ],
+          [
+            43.18085,
+            141.03653
+          ],
+          [
+            43.18043,
+            141.03741
+          ],
+          [
+            43.17969,
+            141.03808
+          ],
+          [
+            43.17946,
+            141.03837
+          ],
+          [
+            43.17914,
+            141.0389
+          ],
+          [
+            43.17889,
+            141.03946
+          ],
+          [
+            43.17879,
+            141.03983
+          ],
+          [
+            43.17867,
+            141.04052
+          ],
+          [
+            43.17868,
+            141.04112
+          ],
+          [
+            43.1787,
+            141.04164
+          ],
+          [
+            43.17878,
+            141.04225
+          ],
+          [
+            43.17891,
+            141.04295
+          ],
+          [
+            43.17909,
+            141.04392
+          ],
+          [
+            43.17924,
+            141.04474
+          ],
+          [
+            43.17942,
+            141.04566
+          ],
+          [
+            43.17963,
+            141.04678
+          ],
+          [
+            43.17977,
+            141.04766
+          ],
+          [
+            43.17983,
+            141.04847
+          ],
+          [
+            43.17981,
+            141.04922
+          ],
+          [
+            43.17978,
+            141.05023
+          ],
+          [
+            43.17973,
+            141.05131
+          ],
+          [
+            43.17968,
+            141.05189
+          ],
+          [
+            43.1796,
+            141.05256
+          ],
+          [
+            43.17946,
+            141.05377
+          ],
+          [
+            43.17942,
+            141.0548
+          ],
+          [
+            43.17937,
+            141.05568
+          ],
+          [
+            43.17934,
+            141.05624
+          ],
+          [
+            43.17925,
+            141.05683
+          ],
+          [
+            43.17892,
+            141.05772
+          ],
+          [
+            43.17877,
+            141.058
+          ],
+          [
+            43.17843,
+            141.05869
+          ],
+          [
+            43.17822,
+            141.05911
+          ],
+          [
+            43.17796,
+            141.05964
+          ],
+          [
+            43.17758,
+            141.06066
+          ],
+          [
+            43.17728,
+            141.06193
+          ],
+          [
+            43.17669,
+            141.06478
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110304",
+        "toStationId": "station-1110305",
+        "geometry": [
+          [
+            43.17669,
+            141.06478
+          ],
+          [
+            43.17592,
+            141.06815
+          ],
+          [
+            43.17574,
+            141.06893
+          ],
+          [
+            43.17561,
+            141.06943
+          ],
+          [
+            43.17529,
+            141.07035
+          ],
+          [
+            43.17483,
+            141.07102
+          ],
+          [
+            43.17431,
+            141.0716
+          ],
+          [
+            43.17394,
+            141.07202
+          ],
+          [
+            43.17364,
+            141.07236
+          ],
+          [
+            43.17342,
+            141.07272
+          ],
+          [
+            43.17326,
+            141.07298
+          ],
+          [
+            43.1729,
+            141.07385
+          ],
+          [
+            43.17265,
+            141.0751
+          ],
+          [
+            43.17248,
+            141.07604
+          ],
+          [
+            43.17189,
+            141.07788
+          ],
+          [
+            43.17175,
+            141.07832
+          ],
+          [
+            43.17163,
+            141.07945
+          ],
+          [
+            43.17159,
+            141.08181
+          ],
+          [
+            43.17158,
+            141.08257
+          ],
+          [
+            43.17147,
+            141.08518
+          ],
+          [
+            43.17127,
+            141.08661
+          ],
+          [
+            43.17118,
+            141.0873
+          ],
+          [
+            43.17112,
+            141.08774
+          ],
+          [
+            43.17104,
+            141.08832
+          ],
+          [
+            43.17083,
+            141.08926
+          ],
+          [
+            43.17065,
+            141.08973
+          ],
+          [
+            43.17037,
+            141.09031
+          ],
+          [
+            43.16999,
+            141.091
+          ],
+          [
+            43.16964,
+            141.09162
+          ],
+          [
+            43.16927,
+            141.09222
+          ],
+          [
+            43.16886,
+            141.09296
+          ],
+          [
+            43.16801,
+            141.09503
+          ],
+          [
+            43.16732,
+            141.09711
+          ],
+          [
+            43.16629,
+            141.10015
+          ],
+          [
+            43.16553,
+            141.10218
+          ],
+          [
+            43.16493,
+            141.10404
+          ],
+          [
+            43.16446,
+            141.10595
+          ],
+          [
+            43.16419,
+            141.10687
+          ],
+          [
+            43.1638,
+            141.10799
+          ],
+          [
+            43.16331,
+            141.10958
+          ],
+          [
+            43.16279,
+            141.11154
+          ],
+          [
+            43.16253,
+            141.11255
+          ],
+          [
+            43.16211,
+            141.11325
+          ],
+          [
+            43.1616,
+            141.11374
+          ],
+          [
+            43.16119,
+            141.11412
+          ],
+          [
+            43.16056,
+            141.11497
+          ],
+          [
+            43.1602,
+            141.11584
+          ],
+          [
+            43.15975,
+            141.11702
+          ],
+          [
+            43.15878,
+            141.11909
+          ],
+          [
+            43.15821,
+            141.11998
+          ],
+          [
+            43.15685,
+            141.12197
+          ],
+          [
+            43.15641,
+            141.12287
+          ],
+          [
+            43.15591,
+            141.12418
+          ],
+          [
+            43.15561,
+            141.12474
+          ],
+          [
+            43.15496,
+            141.12575
+          ],
+          [
+            43.15445,
+            141.12667
+          ],
+          [
+            43.15435,
+            141.12688
+          ],
+          [
+            43.15409,
+            141.12778
+          ],
+          [
+            43.15392,
+            141.12892
+          ],
+          [
+            43.15368,
+            141.12961
+          ],
+          [
+            43.15356,
+            141.1299
+          ],
+          [
+            43.15326,
+            141.13053
+          ],
+          [
+            43.15286,
+            141.13153
+          ],
+          [
+            43.15264,
+            141.13229
+          ],
+          [
+            43.15247,
+            141.13301
+          ],
+          [
+            43.15233,
+            141.13395
+          ],
+          [
+            43.1522,
+            141.13547
+          ],
+          [
+            43.15219,
+            141.1377
+          ],
+          [
+            43.15215,
+            141.13925
+          ],
+          [
+            43.15201,
+            141.14065
+          ],
+          [
+            43.1519,
+            141.14113
+          ],
+          [
+            43.15153,
+            141.14205
+          ],
+          [
+            43.15135,
+            141.14237
+          ],
+          [
+            43.15087,
+            141.14315
+          ],
+          [
+            43.15067,
+            141.14368
+          ],
+          [
+            43.15047,
+            141.14436
+          ],
+          [
+            43.15025,
+            141.1449
+          ],
+          [
+            43.15004,
+            141.14534
+          ],
+          [
+            43.14932,
+            141.14642
+          ],
+          [
+            43.14906,
+            141.1468
+          ],
+          [
+            43.14833,
+            141.14785
+          ],
+          [
+            43.14807,
+            141.14825
+          ],
+          [
+            43.1477,
+            141.14893
+          ],
+          [
+            43.14752,
+            141.14941
+          ],
+          [
+            43.14729,
+            141.14998
+          ],
+          [
+            43.147,
+            141.15081
+          ],
+          [
+            43.14671,
+            141.15171
+          ],
+          [
+            43.14635,
+            141.15237
+          ],
+          [
+            43.14614,
+            141.15273
+          ],
+          [
+            43.14581,
+            141.15373
+          ],
+          [
+            43.1458,
+            141.15376
+          ],
+          [
+            43.14529,
+            141.15511
+          ],
+          [
+            43.14484,
+            141.15614
+          ],
+          [
+            43.14439,
+            141.15712
+          ],
+          [
+            43.14382,
+            141.15881
+          ],
+          [
+            43.14375,
+            141.15903
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110305",
+        "toStationId": "station-1110306",
+        "geometry": [
+          [
+            43.14375,
+            141.15903
+          ],
+          [
+            43.14308,
+            141.16082
+          ],
+          [
+            43.14273,
+            141.16156
+          ],
+          [
+            43.14224,
+            141.16247
+          ],
+          [
+            43.1419,
+            141.16292
+          ],
+          [
+            43.14141,
+            141.16344
+          ],
+          [
+            43.14051,
+            141.16441
+          ],
+          [
+            43.13989,
+            141.16555
+          ],
+          [
+            43.13937,
+            141.1675
+          ],
+          [
+            43.13914,
+            141.16842
+          ],
+          [
+            43.13871,
+            141.1702
+          ],
+          [
+            43.13798,
+            141.1732
+          ],
+          [
+            43.13719,
+            141.17641
+          ],
+          [
+            43.13662,
+            141.17871
+          ],
+          [
+            43.13611,
+            141.18081
+          ],
+          [
+            43.13553,
+            141.18315
+          ],
+          [
+            43.13482,
+            141.18604
+          ],
+          [
+            43.13386,
+            141.18987
+          ],
+          [
+            43.1336,
+            141.19091
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110306",
+        "toStationId": "station-1110307",
+        "geometry": [
+          [
+            43.1336,
+            141.19091
+          ],
+          [
+            43.1329,
+            141.19413
+          ],
+          [
+            43.13255,
+            141.19683
+          ],
+          [
+            43.13232,
+            141.19936
+          ],
+          [
+            43.13214,
+            141.20132
+          ],
+          [
+            43.1319,
+            141.20475
+          ],
+          [
+            43.13193,
+            141.20668
+          ],
+          [
+            43.13214,
+            141.20962
+          ],
+          [
+            43.13241,
+            141.21167
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110307",
+        "toStationId": "station-1110308",
+        "geometry": [
+          [
+            43.13241,
+            141.21167
+          ],
+          [
+            43.13257,
+            141.21351
+          ],
+          [
+            43.13252,
+            141.21474
+          ],
+          [
+            43.13236,
+            141.21558
+          ],
+          [
+            43.13208,
+            141.21644
+          ],
+          [
+            43.13181,
+            141.21702
+          ],
+          [
+            43.13144,
+            141.21765
+          ],
+          [
+            43.13077,
+            141.21872
+          ],
+          [
+            43.12939,
+            141.22087
+          ],
+          [
+            43.12879,
+            141.22185
+          ],
+          [
+            43.12801,
+            141.22303
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110308",
+        "toStationId": "station-1110309",
+        "geometry": [
+          [
+            43.12801,
+            141.22303
+          ],
+          [
+            43.12719,
+            141.22435
+          ],
+          [
+            43.12711,
+            141.22453
+          ],
+          [
+            43.12669,
+            141.22549
+          ],
+          [
+            43.1264,
+            141.22655
+          ],
+          [
+            43.1262,
+            141.22725
+          ],
+          [
+            43.12592,
+            141.2283
+          ],
+          [
+            43.12569,
+            141.22918
+          ],
+          [
+            43.12559,
+            141.22956
+          ],
+          [
+            43.12532,
+            141.23056
+          ],
+          [
+            43.12511,
+            141.23138
+          ],
+          [
+            43.12479,
+            141.23262
+          ],
+          [
+            43.12447,
+            141.23381
+          ],
+          [
+            43.12414,
+            141.23504
+          ],
+          [
+            43.12387,
+            141.23608
+          ],
+          [
+            43.12313,
+            141.23821
+          ],
+          [
+            43.12248,
+            141.23964
+          ],
+          [
+            43.12231,
+            141.23997
+          ],
+          [
+            43.12102,
+            141.24234
+          ],
+          [
+            43.12072,
+            141.24286
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110309",
+        "toStationId": "station-1110310",
+        "geometry": [
+          [
+            43.12072,
+            141.24286
+          ],
+          [
+            43.11953,
+            141.24484
+          ],
+          [
+            43.11866,
+            141.24632
+          ],
+          [
+            43.11515,
+            141.25204
+          ],
+          [
+            43.11272,
+            141.25609
+          ],
+          [
+            43.1119,
+            141.25743
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110310",
+        "toStationId": "station-1110311",
+        "geometry": [
+          [
+            43.1119,
+            141.25743
+          ],
+          [
+            43.1088,
+            141.26248
+          ],
+          [
+            43.10643,
+            141.26636
+          ],
+          [
+            43.10625,
+            141.26666
+          ],
+          [
+            43.10354,
+            141.27112
+          ],
+          [
+            43.10066,
+            141.27584
+          ],
+          [
+            43.09971,
+            141.27742
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110311",
+        "toStationId": "station-1110312",
+        "geometry": [
+          [
+            43.09971,
+            141.27742
+          ],
+          [
+            43.09429,
+            141.28628
+          ],
+          [
+            43.09191,
+            141.29019
+          ],
+          [
+            43.09087,
+            141.29194
+          ],
+          [
+            43.08967,
+            141.29389
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110312",
+        "toStationId": "station-1110313",
+        "geometry": [
+          [
+            43.08967,
+            141.29389
+          ],
+          [
+            43.08886,
+            141.29526
+          ],
+          [
+            43.0871,
+            141.29817
+          ],
+          [
+            43.08577,
+            141.30038
+          ],
+          [
+            43.08486,
+            141.30186
+          ],
+          [
+            43.08315,
+            141.30465
+          ],
+          [
+            43.08185,
+            141.30679
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110313",
+        "toStationId": "station-1110314",
+        "geometry": [
+          [
+            43.08185,
+            141.30679
+          ],
+          [
+            43.08117,
+            141.30799
+          ],
+          [
+            43.08087,
+            141.30853
+          ],
+          [
+            43.08006,
+            141.31031
+          ],
+          [
+            43.07895,
+            141.31288
+          ],
+          [
+            43.07804,
+            141.31502
+          ],
+          [
+            43.07717,
+            141.31701
+          ],
+          [
+            43.07596,
+            141.31982
+          ],
+          [
+            43.07515,
+            141.32169
+          ],
+          [
+            43.07483,
+            141.32242
+          ],
+          [
+            43.07351,
+            141.32548
+          ],
+          [
+            43.07219,
+            141.32857
+          ],
+          [
+            43.07151,
+            141.33012
+          ],
+          [
+            43.0705,
+            141.33247
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110314",
+        "toStationId": "station-1110315",
+        "geometry": [
+          [
+            43.0705,
+            141.33247
+          ],
+          [
+            43.06957,
+            141.33464
+          ],
+          [
+            43.06853,
+            141.33705
+          ],
+          [
+            43.06772,
+            141.3391
+          ],
+          [
+            43.06753,
+            141.33962
+          ],
+          [
+            43.06732,
+            141.34041
+          ],
+          [
+            43.06713,
+            141.3415
+          ],
+          [
+            43.06706,
+            141.34282
+          ],
+          [
+            43.0671,
+            141.34374
+          ],
+          [
+            43.06721,
+            141.34461
+          ],
+          [
+            43.06738,
+            141.34561
+          ],
+          [
+            43.06758,
+            141.34667
+          ],
+          [
+            43.06784,
+            141.34778
+          ],
+          [
+            43.068278,
+            141.349122
+          ],
+          [
+            43.068569,
+            141.350801
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110315",
+        "toStationId": "station-1110316",
+        "geometry": [
+          [
+            43.068569,
+            141.350801
+          ],
+          [
+            43.068785,
+            141.352689
+          ],
+          [
+            43.06886,
+            141.35565
+          ],
+          [
+            43.06882,
+            141.35767
+          ],
+          [
+            43.06878,
+            141.36038
+          ],
+          [
+            43.06872,
+            141.36487
+          ],
+          [
+            43.06869,
+            141.36659
+          ],
+          [
+            43.06865,
+            141.36922
+          ],
+          [
+            43.06862,
+            141.37131
+          ],
+          [
+            43.06858,
+            141.372988
+          ],
+          [
+            43.06863,
+            141.374648
+          ],
+          [
+            43.0689,
+            141.37794
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110316",
+        "toStationId": "station-1110317",
+        "geometry": [
+          [
+            43.0689,
+            141.37794
+          ],
+          [
+            43.06909,
+            141.38006
+          ],
+          [
+            43.06944,
+            141.38384
+          ],
+          [
+            43.0696,
+            141.38621
+          ],
+          [
+            43.06961,
+            141.38662
+          ],
+          [
+            43.06952,
+            141.38761
+          ],
+          [
+            43.06942,
+            141.38814
+          ],
+          [
+            43.06894,
+            141.38948
+          ],
+          [
+            43.0687,
+            141.38988
+          ],
+          [
+            43.06808,
+            141.39105
+          ],
+          [
+            43.06748,
+            141.39208
+          ],
+          [
+            43.06713,
+            141.39289
+          ],
+          [
+            43.06687,
+            141.39354
+          ],
+          [
+            43.06648,
+            141.3944
+          ],
+          [
+            43.06609,
+            141.39509
+          ],
+          [
+            43.06583,
+            141.39551
+          ],
+          [
+            43.06469,
+            141.39742
+          ],
+          [
+            43.06279,
+            141.4006
+          ],
+          [
+            43.06109,
+            141.40346
+          ],
+          [
+            43.05962,
+            141.40593
+          ],
+          [
+            43.05759,
+            141.40936
+          ],
+          [
+            43.05567,
+            141.41258
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110317",
+        "toStationId": "station-1110318",
+        "geometry": [
+          [
+            43.05567,
+            141.41258
+          ],
+          [
+            43.05385,
+            141.41556
+          ],
+          [
+            43.05337,
+            141.41638
+          ],
+          [
+            43.05254,
+            141.41776
+          ],
+          [
+            43.0515,
+            141.41948
+          ],
+          [
+            43.05062,
+            141.4208
+          ],
+          [
+            43.05023,
+            141.42145
+          ],
+          [
+            43.04956,
+            141.42272
+          ],
+          [
+            43.04924,
+            141.42352
+          ],
+          [
+            43.04902,
+            141.42414
+          ],
+          [
+            43.04872,
+            141.42503
+          ],
+          [
+            43.0483,
+            141.42693
+          ],
+          [
+            43.04816,
+            141.42746
+          ],
+          [
+            43.0479,
+            141.42831
+          ],
+          [
+            43.0478,
+            141.42863
+          ],
+          [
+            43.04747,
+            141.4297
+          ],
+          [
+            43.04732,
+            141.43023
+          ],
+          [
+            43.0472,
+            141.43078
+          ],
+          [
+            43.04711,
+            141.43123
+          ],
+          [
+            43.04701,
+            141.43184
+          ],
+          [
+            43.04685,
+            141.43266
+          ],
+          [
+            43.04675,
+            141.43319
+          ],
+          [
+            43.04667,
+            141.43371
+          ],
+          [
+            43.04626,
+            141.43591
+          ],
+          [
+            43.04618,
+            141.43632
+          ],
+          [
+            43.04598,
+            141.43736
+          ],
+          [
+            43.04587,
+            141.43796
+          ],
+          [
+            43.04548,
+            141.44029
+          ],
+          [
+            43.04554,
+            141.44147
+          ],
+          [
+            43.04552,
+            141.44212
+          ],
+          [
+            43.04535,
+            141.44285
+          ],
+          [
+            43.04519,
+            141.44356
+          ],
+          [
+            43.04485,
+            141.44529
+          ],
+          [
+            43.04462,
+            141.44646
+          ],
+          [
+            43.04425,
+            141.44828
+          ],
+          [
+            43.04419,
+            141.44857
+          ],
+          [
+            43.04389,
+            141.45012
+          ],
+          [
+            43.04376,
+            141.45075
+          ],
+          [
+            43.04353,
+            141.45206
+          ],
+          [
+            43.04338,
+            141.45297
+          ],
+          [
+            43.04337,
+            141.45312
+          ],
+          [
+            43.04326,
+            141.45449
+          ],
+          [
+            43.0432,
+            141.45526
+          ],
+          [
+            43.04319,
+            141.45552
+          ],
+          [
+            43.04321,
+            141.45666
+          ],
+          [
+            43.04352,
+            141.45827
+          ],
+          [
+            43.04359,
+            141.45904
+          ],
+          [
+            43.04465,
+            141.46235
+          ],
+          [
+            43.0453,
+            141.46412
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110318",
+        "toStationId": "station-1110319",
+        "geometry": [
+          [
+            43.0453,
+            141.46412
+          ],
+          [
+            43.04595,
+            141.46589
+          ],
+          [
+            43.04728,
+            141.46951
+          ],
+          [
+            43.04816,
+            141.47201
+          ],
+          [
+            43.04869,
+            141.47345
+          ],
+          [
+            43.04976,
+            141.47618
+          ],
+          [
+            43.05004,
+            141.47672
+          ],
+          [
+            43.05079,
+            141.47794
+          ],
+          [
+            43.05116,
+            141.47842
+          ],
+          [
+            43.05224,
+            141.47958
+          ],
+          [
+            43.05392,
+            141.48051
+          ],
+          [
+            43.05552,
+            141.48113
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110319",
+        "toStationId": "station-1110320",
+        "geometry": [
+          [
+            43.05552,
+            141.48113
+          ],
+          [
+            43.05737,
+            141.48192
+          ],
+          [
+            43.05913,
+            141.4826
+          ],
+          [
+            43.06055,
+            141.48324
+          ],
+          [
+            43.06168,
+            141.48386
+          ],
+          [
+            43.062,
+            141.48409
+          ],
+          [
+            43.06364,
+            141.4855
+          ],
+          [
+            43.06587,
+            141.48798
+          ],
+          [
+            43.06593,
+            141.48806
+          ],
+          [
+            43.06797,
+            141.49032
+          ],
+          [
+            43.06936,
+            141.49184
+          ],
+          [
+            43.07029,
+            141.49288
+          ],
+          [
+            43.07101,
+            141.49394
+          ],
+          [
+            43.07176,
+            141.49545
+          ],
+          [
+            43.07198,
+            141.496
+          ],
+          [
+            43.07246,
+            141.49744
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110320",
+        "toStationId": "station-1110321",
+        "geometry": [
+          [
+            43.07246,
+            141.49744
+          ],
+          [
+            43.0728,
+            141.4984
+          ],
+          [
+            43.07332,
+            141.50004
+          ],
+          [
+            43.07384,
+            141.50183
+          ],
+          [
+            43.0742,
+            141.50281
+          ],
+          [
+            43.0746,
+            141.50366
+          ],
+          [
+            43.07478,
+            141.50398
+          ],
+          [
+            43.07544,
+            141.50502
+          ],
+          [
+            43.07641,
+            141.50641
+          ],
+          [
+            43.07846,
+            141.50931
+          ],
+          [
+            43.0789,
+            141.50995
+          ],
+          [
+            43.08039,
+            141.5121
+          ],
+          [
+            43.08219,
+            141.5147
+          ],
+          [
+            43.08271,
+            141.51548
+          ],
+          [
+            43.08474,
+            141.51838
+          ],
+          [
+            43.08625,
+            141.52056
+          ],
+          [
+            43.08718,
+            141.52191
+          ],
+          [
+            43.08807,
+            141.5232
+          ],
+          [
+            43.08905,
+            141.52462
+          ],
+          [
+            43.08977,
+            141.52567
+          ],
+          [
+            43.09085,
+            141.52726
+          ],
+          [
+            43.092,
+            141.52894
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110321",
+        "toStationId": "station-1110322",
+        "geometry": [
+          [
+            43.092,
+            141.52894
+          ],
+          [
+            43.09364,
+            141.53124
+          ],
+          [
+            43.09435,
+            141.53226
+          ],
+          [
+            43.0956,
+            141.53406
+          ],
+          [
+            43.09908,
+            141.53912
+          ],
+          [
+            43.09972,
+            141.54006
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110322",
+        "toStationId": "station-1110323",
+        "geometry": [
+          [
+            43.09972,
+            141.54006
+          ],
+          [
+            43.1006,
+            141.54134
+          ],
+          [
+            43.10297,
+            141.54475
+          ],
+          [
+            43.10449,
+            141.54702
+          ],
+          [
+            43.10617,
+            141.54944
+          ],
+          [
+            43.10728,
+            141.55116
+          ],
+          [
+            43.10803,
+            141.55259
+          ],
+          [
+            43.10882,
+            141.5541
+          ],
+          [
+            43.10936,
+            141.55511
+          ],
+          [
+            43.11092,
+            141.55804
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110323",
+        "toStationId": "station-1110324",
+        "geometry": [
+          [
+            43.11092,
+            141.55804
+          ],
+          [
+            43.11227,
+            141.5605
+          ],
+          [
+            43.11327,
+            141.56264
+          ],
+          [
+            43.11357,
+            141.56419
+          ],
+          [
+            43.11344,
+            141.56587
+          ],
+          [
+            43.11306,
+            141.56747
+          ],
+          [
+            43.11272,
+            141.56927
+          ],
+          [
+            43.11265,
+            141.57099
+          ],
+          [
+            43.11289,
+            141.57264
+          ],
+          [
+            43.11333,
+            141.57412
+          ],
+          [
+            43.11358,
+            141.57483
+          ],
+          [
+            43.11434,
+            141.57703
+          ],
+          [
+            43.1147,
+            141.57807
+          ],
+          [
+            43.11514,
+            141.57981
+          ],
+          [
+            43.11522,
+            141.58037
+          ],
+          [
+            43.11533,
+            141.58185
+          ],
+          [
+            43.11535,
+            141.58406
+          ],
+          [
+            43.11533,
+            141.58721
+          ],
+          [
+            43.1153,
+            141.59048
+          ],
+          [
+            43.11527,
+            141.59164
+          ],
+          [
+            43.11528,
+            141.59381
+          ],
+          [
+            43.11531,
+            141.59427
+          ],
+          [
+            43.11552,
+            141.59523
+          ],
+          [
+            43.11563,
+            141.59556
+          ],
+          [
+            43.11589,
+            141.59615
+          ],
+          [
+            43.11612,
+            141.59659
+          ],
+          [
+            43.11667,
+            141.59728
+          ],
+          [
+            43.11691,
+            141.5975
+          ],
+          [
+            43.11758,
+            141.59794
+          ],
+          [
+            43.1188,
+            141.59848
+          ],
+          [
+            43.12072,
+            141.59937
+          ],
+          [
+            43.12265,
+            141.60026
+          ],
+          [
+            43.12366,
+            141.60073
+          ],
+          [
+            43.12518,
+            141.60187
+          ],
+          [
+            43.1264,
+            141.60385
+          ],
+          [
+            43.12754,
+            141.60625
+          ],
+          [
+            43.12839,
+            141.60803
+          ],
+          [
+            43.12908,
+            141.60948
+          ],
+          [
+            43.12995,
+            141.6113
+          ],
+          [
+            43.13045,
+            141.61235
+          ],
+          [
+            43.13202,
+            141.61564
+          ],
+          [
+            43.13284,
+            141.61733
+          ],
+          [
+            43.13341,
+            141.61851
+          ],
+          [
+            43.13387,
+            141.61947
+          ],
+          [
+            43.13475,
+            141.62129
+          ],
+          [
+            43.13604,
+            141.62383
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110324",
+        "toStationId": "station-1110325",
+        "geometry": [
+          [
+            43.13604,
+            141.62383
+          ],
+          [
+            43.13693,
+            141.6257
+          ],
+          [
+            43.13811,
+            141.62815
+          ],
+          [
+            43.13866,
+            141.62927
+          ],
+          [
+            43.13914,
+            141.6305
+          ],
+          [
+            43.13944,
+            141.63222
+          ],
+          [
+            43.13947,
+            141.63304
+          ],
+          [
+            43.13948,
+            141.63429
+          ],
+          [
+            43.13953,
+            141.63587
+          ],
+          [
+            43.13972,
+            141.63638
+          ],
+          [
+            43.13997,
+            141.63723
+          ],
+          [
+            43.14009,
+            141.63768
+          ],
+          [
+            43.14021,
+            141.63805
+          ],
+          [
+            43.14046,
+            141.63881
+          ],
+          [
+            43.14064,
+            141.63924
+          ],
+          [
+            43.14083,
+            141.63964
+          ],
+          [
+            43.1411,
+            141.64011
+          ],
+          [
+            43.1413,
+            141.64046
+          ],
+          [
+            43.1417,
+            141.64103
+          ],
+          [
+            43.14189,
+            141.64131
+          ],
+          [
+            43.14228,
+            141.64182
+          ],
+          [
+            43.14307,
+            141.6428
+          ],
+          [
+            43.14331,
+            141.6431
+          ],
+          [
+            43.14356,
+            141.64342
+          ],
+          [
+            43.1441,
+            141.6441
+          ],
+          [
+            43.14453,
+            141.64469
+          ],
+          [
+            43.14557,
+            141.64611
+          ],
+          [
+            43.14673,
+            141.64759
+          ],
+          [
+            43.14758,
+            141.64869
+          ],
+          [
+            43.1484,
+            141.64977
+          ],
+          [
+            43.14991,
+            141.65225
+          ],
+          [
+            43.15125,
+            141.65494
+          ],
+          [
+            43.1518,
+            141.65605
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110325",
+        "toStationId": "station-1110326",
+        "geometry": [
+          [
+            43.1518,
+            141.65605
+          ],
+          [
+            43.15307,
+            141.65852
+          ],
+          [
+            43.15428,
+            141.66097
+          ],
+          [
+            43.15514,
+            141.66267
+          ],
+          [
+            43.15611,
+            141.66461
+          ],
+          [
+            43.15726,
+            141.66689
+          ],
+          [
+            43.15861,
+            141.6696
+          ],
+          [
+            43.16106,
+            141.67449
+          ],
+          [
+            43.16309,
+            141.67853
+          ],
+          [
+            43.16332,
+            141.67899
+          ],
+          [
+            43.1644,
+            141.68114
+          ],
+          [
+            43.1651,
+            141.68254
+          ],
+          [
+            43.1662,
+            141.68473
+          ],
+          [
+            43.16755,
+            141.68736
+          ],
+          [
+            43.16911,
+            141.69045
+          ],
+          [
+            43.1702,
+            141.69257
+          ],
+          [
+            43.17114,
+            141.69445
+          ],
+          [
+            43.17216,
+            141.69643
+          ],
+          [
+            43.17323,
+            141.69851
+          ],
+          [
+            43.17419,
+            141.7004
+          ],
+          [
+            43.17525,
+            141.70242
+          ],
+          [
+            43.17619,
+            141.70429
+          ],
+          [
+            43.1771,
+            141.70607
+          ],
+          [
+            43.17796,
+            141.70775
+          ],
+          [
+            43.17904,
+            141.7099
+          ],
+          [
+            43.18009,
+            141.71194
+          ],
+          [
+            43.18105,
+            141.71381
+          ],
+          [
+            43.18241,
+            141.71644
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110326",
+        "toStationId": "station-1110327",
+        "geometry": [
+          [
+            43.18241,
+            141.71644
+          ],
+          [
+            43.18378,
+            141.71915
+          ],
+          [
+            43.18473,
+            141.72106
+          ],
+          [
+            43.18579,
+            141.72312
+          ],
+          [
+            43.18682,
+            141.7251
+          ],
+          [
+            43.1882,
+            141.72766
+          ],
+          [
+            43.18888,
+            141.72891
+          ],
+          [
+            43.1899,
+            141.73084
+          ],
+          [
+            43.19105,
+            141.73269
+          ],
+          [
+            43.19191,
+            141.73406
+          ],
+          [
+            43.19294,
+            141.73574
+          ],
+          [
+            43.19335,
+            141.73637
+          ],
+          [
+            43.19402,
+            141.73739
+          ],
+          [
+            43.19479,
+            141.73879
+          ],
+          [
+            43.19575,
+            141.74067
+          ],
+          [
+            43.19671,
+            141.74254
+          ],
+          [
+            43.19707,
+            141.74323
+          ],
+          [
+            43.19766,
+            141.74479
+          ],
+          [
+            43.1981,
+            141.74627
+          ],
+          [
+            43.19848,
+            141.74753
+          ],
+          [
+            43.19918,
+            141.74947
+          ],
+          [
+            43.19984,
+            141.7508
+          ],
+          [
+            43.20035,
+            141.75179
+          ],
+          [
+            43.20097,
+            141.75299
+          ],
+          [
+            43.202,
+            141.75497
+          ],
+          [
+            43.20323,
+            141.75754
+          ],
+          [
+            43.20499,
+            141.76094
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110327",
+        "toStationId": "station-1110328",
+        "geometry": [
+          [
+            43.20499,
+            141.76094
+          ],
+          [
+            43.20639,
+            141.76366
+          ],
+          [
+            43.20776,
+            141.76633
+          ],
+          [
+            43.21009,
+            141.77091
+          ],
+          [
+            43.21134,
+            141.77342
+          ],
+          [
+            43.21207,
+            141.77484
+          ],
+          [
+            43.2129,
+            141.77602
+          ],
+          [
+            43.21379,
+            141.77705
+          ],
+          [
+            43.21512,
+            141.77814
+          ],
+          [
+            43.21678,
+            141.7791
+          ],
+          [
+            43.21908,
+            141.78014
+          ],
+          [
+            43.22281,
+            141.78185
+          ],
+          [
+            43.22446,
+            141.78262
+          ],
+          [
+            43.22647,
+            141.78353
+          ],
+          [
+            43.23107,
+            141.78562
+          ],
+          [
+            43.23554,
+            141.78767
+          ],
+          [
+            43.23754,
+            141.78858
+          ],
+          [
+            43.23975,
+            141.78958
+          ],
+          [
+            43.24192,
+            141.79062
+          ],
+          [
+            43.24382,
+            141.79228
+          ],
+          [
+            43.24643,
+            141.79504
+          ],
+          [
+            43.24783,
+            141.79655
+          ],
+          [
+            43.25033,
+            141.79921
+          ],
+          [
+            43.25244,
+            141.80155
+          ],
+          [
+            43.25356,
+            141.80276
+          ],
+          [
+            43.25539,
+            141.80475
+          ],
+          [
+            43.25798,
+            141.80752
+          ],
+          [
+            43.25865,
+            141.80824
+          ],
+          [
+            43.2605,
+            141.81021
+          ],
+          [
+            43.26186,
+            141.81171
+          ],
+          [
+            43.26265,
+            141.81252
+          ],
+          [
+            43.26407,
+            141.81403
+          ],
+          [
+            43.26528,
+            141.81533
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110328",
+        "toStationId": "station-1110329",
+        "geometry": [
+          [
+            43.26528,
+            141.81533
+          ],
+          [
+            43.26762,
+            141.81784
+          ],
+          [
+            43.27229,
+            141.82281
+          ],
+          [
+            43.27482,
+            141.82554
+          ],
+          [
+            43.27905,
+            141.83005
+          ],
+          [
+            43.28424,
+            141.83564
+          ],
+          [
+            43.28901,
+            141.84078
+          ],
+          [
+            43.29178,
+            141.84373
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110329",
+        "toStationId": "station-1110330",
+        "geometry": [
+          [
+            43.29178,
+            141.84373
+          ],
+          [
+            43.29356,
+            141.84564
+          ],
+          [
+            43.29552,
+            141.84779
+          ],
+          [
+            43.29697,
+            141.84935
+          ],
+          [
+            43.29788,
+            141.85035
+          ],
+          [
+            43.299,
+            141.85163
+          ],
+          [
+            43.29961,
+            141.85216
+          ],
+          [
+            43.3002,
+            141.85262
+          ],
+          [
+            43.30075,
+            141.85301
+          ],
+          [
+            43.30205,
+            141.85368
+          ],
+          [
+            43.30398,
+            141.85431
+          ],
+          [
+            43.30818,
+            141.85558
+          ],
+          [
+            43.31306,
+            141.857
+          ],
+          [
+            43.31391,
+            141.85725
+          ],
+          [
+            43.31734,
+            141.85824
+          ],
+          [
+            43.31973,
+            141.85895
+          ],
+          [
+            43.32062,
+            141.85921
+          ],
+          [
+            43.32268,
+            141.85983
+          ],
+          [
+            43.32799,
+            141.86138
+          ],
+          [
+            43.3287,
+            141.86157
+          ],
+          [
+            43.33052,
+            141.86249
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110330",
+        "toStationId": "station-1110331",
+        "geometry": [
+          [
+            43.33052,
+            141.86249
+          ],
+          [
+            43.33278,
+            141.86275
+          ],
+          [
+            43.33576,
+            141.86361
+          ],
+          [
+            43.33789,
+            141.86418
+          ],
+          [
+            43.34154,
+            141.86524
+          ],
+          [
+            43.36252,
+            141.87125
+          ],
+          [
+            43.36426,
+            141.87175
+          ],
+          [
+            43.36751,
+            141.87269
+          ],
+          [
+            43.36914,
+            141.87345
+          ],
+          [
+            43.37042,
+            141.87384
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110331",
+        "toStationId": "station-1110332",
+        "geometry": [
+          [
+            43.37042,
+            141.87384
+          ],
+          [
+            43.37087,
+            141.87394
+          ],
+          [
+            43.37221,
+            141.87406
+          ],
+          [
+            43.37742,
+            141.87559
+          ],
+          [
+            43.38137,
+            141.87675
+          ],
+          [
+            43.38165,
+            141.87683
+          ],
+          [
+            43.38913,
+            141.87902
+          ],
+          [
+            43.39619,
+            141.88111
+          ],
+          [
+            43.39697,
+            141.88134
+          ],
+          [
+            43.40444,
+            141.88353
+          ],
+          [
+            43.40461,
+            141.88358
+          ],
+          [
+            43.41797,
+            141.88753
+          ],
+          [
+            43.41909,
+            141.88786
+          ],
+          [
+            43.42013,
+            141.88816
+          ],
+          [
+            43.42191,
+            141.88867
+          ],
+          [
+            43.42315,
+            141.88903
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110332",
+        "toStationId": "station-1110333",
+        "geometry": [
+          [
+            43.42315,
+            141.88903
+          ],
+          [
+            43.42487,
+            141.88951
+          ],
+          [
+            43.4275,
+            141.89027
+          ],
+          [
+            43.43772,
+            141.89328
+          ],
+          [
+            43.44474,
+            141.89535
+          ],
+          [
+            43.44638,
+            141.89581
+          ],
+          [
+            43.45647,
+            141.89878
+          ],
+          [
+            43.45886,
+            141.89948
+          ],
+          [
+            43.45921,
+            141.89958
+          ],
+          [
+            43.46264,
+            141.90058
+          ],
+          [
+            43.46334,
+            141.90058
+          ],
+          [
+            43.46408,
+            141.90068
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110333",
+        "toStationId": "station-1110334",
+        "geometry": [
+          [
+            43.46408,
+            141.90068
+          ],
+          [
+            43.46472,
+            141.90082
+          ],
+          [
+            43.46534,
+            141.90102
+          ],
+          [
+            43.46555,
+            141.90111
+          ],
+          [
+            43.46618,
+            141.90141
+          ],
+          [
+            43.46677,
+            141.90183
+          ],
+          [
+            43.46953,
+            141.90265
+          ],
+          [
+            43.47206,
+            141.9034
+          ],
+          [
+            43.47624,
+            141.90461
+          ],
+          [
+            43.49068,
+            141.90886
+          ],
+          [
+            43.4913,
+            141.90904
+          ],
+          [
+            43.49213,
+            141.90928
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110334",
+        "toStationId": "station-1110335",
+        "geometry": [
+          [
+            43.49213,
+            141.90928
+          ],
+          [
+            43.49509,
+            141.91015
+          ],
+          [
+            43.49747,
+            141.91084
+          ],
+          [
+            43.50002,
+            141.91159
+          ],
+          [
+            43.50037,
+            141.91169
+          ],
+          [
+            43.50241,
+            141.91232
+          ],
+          [
+            43.50574,
+            141.9133
+          ],
+          [
+            43.50763,
+            141.91388
+          ],
+          [
+            43.50824,
+            141.91406
+          ],
+          [
+            43.51068,
+            141.91477
+          ],
+          [
+            43.5137,
+            141.91567
+          ],
+          [
+            43.515,
+            141.91602
+          ],
+          [
+            43.51637,
+            141.91643
+          ],
+          [
+            43.51813,
+            141.91696
+          ],
+          [
+            43.51986,
+            141.91751
+          ],
+          [
+            43.52086,
+            141.91779
+          ],
+          [
+            43.52224,
+            141.91795
+          ],
+          [
+            43.52291,
+            141.91792
+          ],
+          [
+            43.52435,
+            141.91758
+          ],
+          [
+            43.52472,
+            141.91745
+          ],
+          [
+            43.52656,
+            141.91611
+          ],
+          [
+            43.5281,
+            141.91448
+          ],
+          [
+            43.52998,
+            141.9124
+          ],
+          [
+            43.5321,
+            141.91003
+          ],
+          [
+            43.53267,
+            141.90945
+          ],
+          [
+            43.5338,
+            141.90848
+          ],
+          [
+            43.5342,
+            141.90807
+          ],
+          [
+            43.53482,
+            141.90741
+          ],
+          [
+            43.5366,
+            141.90547
+          ],
+          [
+            43.53833,
+            141.90358
+          ],
+          [
+            43.53924,
+            141.9026
+          ],
+          [
+            43.54033,
+            141.90142
+          ],
+          [
+            43.54196,
+            141.89965
+          ],
+          [
+            43.54347,
+            141.89843
+          ],
+          [
+            43.54479,
+            141.89775
+          ],
+          [
+            43.5463,
+            141.89739
+          ],
+          [
+            43.54731,
+            141.89738
+          ],
+          [
+            43.54831,
+            141.89758
+          ],
+          [
+            43.54917,
+            141.89799
+          ],
+          [
+            43.54975,
+            141.89831
+          ],
+          [
+            43.55126,
+            141.89908
+          ],
+          [
+            43.55327,
+            141.89978
+          ],
+          [
+            43.55354,
+            141.89991
+          ],
+          [
+            43.55689,
+            141.90166
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110335",
+        "toStationId": "station-1110336",
+        "geometry": [
+          [
+            43.55689,
+            141.90166
+          ],
+          [
+            43.55722,
+            141.90183
+          ],
+          [
+            43.55934,
+            141.90295
+          ],
+          [
+            43.56041,
+            141.90348
+          ],
+          [
+            43.56171,
+            141.90409
+          ],
+          [
+            43.56298,
+            141.9047
+          ],
+          [
+            43.56587,
+            141.90611
+          ],
+          [
+            43.56717,
+            141.90675
+          ],
+          [
+            43.5694,
+            141.90783
+          ],
+          [
+            43.57208,
+            141.90913
+          ],
+          [
+            43.57289,
+            141.90952
+          ],
+          [
+            43.57499,
+            141.91056
+          ],
+          [
+            43.57738,
+            141.91169
+          ],
+          [
+            43.5798,
+            141.91287
+          ],
+          [
+            43.5816,
+            141.91375
+          ],
+          [
+            43.58574,
+            141.91576
+          ],
+          [
+            43.58758,
+            141.91662
+          ],
+          [
+            43.58967,
+            141.91763
+          ],
+          [
+            43.59078,
+            141.91817
+          ],
+          [
+            43.59356,
+            141.91951
+          ],
+          [
+            43.59482,
+            141.92011
+          ],
+          [
+            43.59626,
+            141.9208
+          ],
+          [
+            43.59893,
+            141.9221
+          ],
+          [
+            43.60337,
+            141.92423
+          ],
+          [
+            43.60464,
+            141.92483
+          ],
+          [
+            43.60628,
+            141.92565
+          ],
+          [
+            43.60736,
+            141.92616
+          ],
+          [
+            43.61188,
+            141.92834
+          ],
+          [
+            43.61224,
+            141.92851
+          ],
+          [
+            43.61652,
+            141.93058
+          ],
+          [
+            43.62054,
+            141.93252
+          ],
+          [
+            43.62675,
+            141.93551
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110336",
+        "toStationId": "station-1110337",
+        "geometry": [
+          [
+            43.62675,
+            141.93551
+          ],
+          [
+            43.62851,
+            141.93633
+          ],
+          [
+            43.63241,
+            141.93824
+          ],
+          [
+            43.63955,
+            141.9417
+          ],
+          [
+            43.64214,
+            141.94294
+          ],
+          [
+            43.64489,
+            141.94427
+          ],
+          [
+            43.64651,
+            141.94506
+          ],
+          [
+            43.65027,
+            141.94688
+          ],
+          [
+            43.65467,
+            141.94901
+          ],
+          [
+            43.65735,
+            141.9503
+          ],
+          [
+            43.66162,
+            141.95238
+          ],
+          [
+            43.6655,
+            141.95428
+          ],
+          [
+            43.66603,
+            141.9544
+          ],
+          [
+            43.66759,
+            141.95506
+          ],
+          [
+            43.66865,
+            141.95562
+          ],
+          [
+            43.66907,
+            141.95583
+          ],
+          [
+            43.6701,
+            141.95632
+          ],
+          [
+            43.67063,
+            141.9566
+          ],
+          [
+            43.67268,
+            141.95764
+          ],
+          [
+            43.67424,
+            141.95853
+          ],
+          [
+            43.67663,
+            141.95974
+          ],
+          [
+            43.67684,
+            141.95984
+          ],
+          [
+            43.6831,
+            141.96287
+          ],
+          [
+            43.68474,
+            141.96365
+          ],
+          [
+            43.68971,
+            141.96605
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110337",
+        "toStationId": "station-1110338",
+        "geometry": [
+          [
+            43.68971,
+            141.96605
+          ],
+          [
+            43.6922,
+            141.96725
+          ],
+          [
+            43.69527,
+            141.96874
+          ],
+          [
+            43.69619,
+            141.9692
+          ],
+          [
+            43.69757,
+            141.97009
+          ],
+          [
+            43.69802,
+            141.9705
+          ],
+          [
+            43.69872,
+            141.97133
+          ],
+          [
+            43.69898,
+            141.97172
+          ],
+          [
+            43.69963,
+            141.97291
+          ],
+          [
+            43.70002,
+            141.97375
+          ],
+          [
+            43.70049,
+            141.97495
+          ],
+          [
+            43.7011,
+            141.9769
+          ],
+          [
+            43.70151,
+            141.97821
+          ],
+          [
+            43.70197,
+            141.97969
+          ],
+          [
+            43.70293,
+            141.98271
+          ],
+          [
+            43.7045,
+            141.98767
+          ],
+          [
+            43.70715,
+            141.99622
+          ],
+          [
+            43.70965,
+            142.00415
+          ],
+          [
+            43.71194,
+            142.01156
+          ],
+          [
+            43.71542,
+            142.02268
+          ],
+          [
+            43.71853,
+            142.03268
+          ],
+          [
+            43.71941,
+            142.03551
+          ],
+          [
+            43.71988,
+            142.03701
+          ],
+          [
+            43.72083,
+            142.04008
+          ],
+          [
+            43.72167,
+            142.04281
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110338",
+        "toStationId": "station-1110339",
+        "geometry": [
+          [
+            43.72167,
+            142.04281
+          ],
+          [
+            43.72266,
+            142.04603
+          ],
+          [
+            43.72639,
+            142.05817
+          ],
+          [
+            43.7271,
+            142.06043
+          ],
+          [
+            43.72929,
+            142.06758
+          ],
+          [
+            43.72939,
+            142.06789
+          ],
+          [
+            43.7304,
+            142.07119
+          ],
+          [
+            43.73165,
+            142.07515
+          ],
+          [
+            43.73214,
+            142.0772
+          ],
+          [
+            43.73235,
+            142.08065
+          ],
+          [
+            43.73236,
+            142.08421
+          ],
+          [
+            43.73237,
+            142.08534
+          ],
+          [
+            43.73241,
+            142.09718
+          ],
+          [
+            43.73242,
+            142.09862
+          ],
+          [
+            43.73244,
+            142.10844
+          ],
+          [
+            43.73249,
+            142.12121
+          ],
+          [
+            43.73255,
+            142.12766
+          ],
+          [
+            43.73267,
+            142.12824
+          ],
+          [
+            43.73273,
+            142.12888
+          ],
+          [
+            43.73273,
+            142.12955
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110339",
+        "toStationId": "station-1110341",
+        "geometry": [
+          [
+            43.73273,
+            142.12955
+          ],
+          [
+            43.7327,
+            142.13196
+          ],
+          [
+            43.7327,
+            142.13204
+          ],
+          [
+            43.73257,
+            142.13541
+          ],
+          [
+            43.73258,
+            142.14183
+          ],
+          [
+            43.73258,
+            142.14293
+          ],
+          [
+            43.7326,
+            142.15045
+          ],
+          [
+            43.73262,
+            142.15788
+          ],
+          [
+            43.73266,
+            142.16554
+          ],
+          [
+            43.7327,
+            142.17298
+          ],
+          [
+            43.7327,
+            142.17489
+          ],
+          [
+            43.73279,
+            142.17884
+          ],
+          [
+            43.73284,
+            142.18079
+          ],
+          [
+            43.73302,
+            142.18784
+          ],
+          [
+            43.73319,
+            142.1914
+          ],
+          [
+            43.73367,
+            142.19331
+          ],
+          [
+            43.73486,
+            142.19659
+          ],
+          [
+            43.73624,
+            142.19946
+          ],
+          [
+            43.7393,
+            142.20566
+          ],
+          [
+            43.74092,
+            142.20893
+          ],
+          [
+            43.74307,
+            142.21324
+          ],
+          [
+            43.74522,
+            142.2176
+          ],
+          [
+            43.74561,
+            142.2184
+          ],
+          [
+            43.74753,
+            142.22229
+          ],
+          [
+            43.74923,
+            142.22572
+          ],
+          [
+            43.75029,
+            142.22787
+          ],
+          [
+            43.75151,
+            142.23032
+          ],
+          [
+            43.7524,
+            142.23202
+          ],
+          [
+            43.75405,
+            142.23482
+          ],
+          [
+            43.75621,
+            142.2387
+          ],
+          [
+            43.75691,
+            142.24003
+          ],
+          [
+            43.75763,
+            142.24153
+          ],
+          [
+            43.75795,
+            142.24231
+          ],
+          [
+            43.7584,
+            142.24381
+          ],
+          [
+            43.75863,
+            142.24491
+          ],
+          [
+            43.75894,
+            142.24648
+          ],
+          [
+            43.75887,
+            142.24779
+          ],
+          [
+            43.75875,
+            142.24947
+          ],
+          [
+            43.75843,
+            142.25237
+          ],
+          [
+            43.75819,
+            142.25398
+          ],
+          [
+            43.75784,
+            142.25573
+          ],
+          [
+            43.75733,
+            142.25776
+          ],
+          [
+            43.75703,
+            142.25959
+          ],
+          [
+            43.75693,
+            142.26093
+          ],
+          [
+            43.75683,
+            142.2623
+          ],
+          [
+            43.75681,
+            142.26318
+          ],
+          [
+            43.75692,
+            142.26486
+          ],
+          [
+            43.75707,
+            142.26619
+          ],
+          [
+            43.75735,
+            142.26729
+          ],
+          [
+            43.7575,
+            142.26774
+          ],
+          [
+            43.75821,
+            142.26895
+          ],
+          [
+            43.75852,
+            142.26926
+          ],
+          [
+            43.75951,
+            142.2701
+          ],
+          [
+            43.76043,
+            142.27059
+          ],
+          [
+            43.76151,
+            142.27103
+          ],
+          [
+            43.76383,
+            142.27194
+          ],
+          [
+            43.76599,
+            142.27282
+          ],
+          [
+            43.7684,
+            142.27376
+          ],
+          [
+            43.77,
+            142.27427
+          ],
+          [
+            43.77104,
+            142.27458
+          ],
+          [
+            43.77249,
+            142.27505
+          ],
+          [
+            43.77306,
+            142.27528
+          ],
+          [
+            43.77436,
+            142.2759
+          ],
+          [
+            43.77506,
+            142.27638
+          ],
+          [
+            43.7761,
+            142.27721
+          ],
+          [
+            43.77656,
+            142.27775
+          ],
+          [
+            43.77749,
+            142.2791
+          ],
+          [
+            43.77872,
+            142.28077
+          ],
+          [
+            43.78015,
+            142.28257
+          ],
+          [
+            43.78142,
+            142.28408
+          ],
+          [
+            43.7824,
+            142.28531
+          ],
+          [
+            43.78313,
+            142.28664
+          ],
+          [
+            43.78341,
+            142.28721
+          ],
+          [
+            43.78435,
+            142.28925
+          ],
+          [
+            43.78464,
+            142.28989
+          ],
+          [
+            43.78575,
+            142.29195
+          ],
+          [
+            43.78719,
+            142.29406
+          ],
+          [
+            43.78798,
+            142.29519
+          ],
+          [
+            43.78867,
+            142.29617
+          ],
+          [
+            43.78909,
+            142.29681
+          ],
+          [
+            43.78991,
+            142.29845
+          ],
+          [
+            43.79003,
+            142.29893
+          ],
+          [
+            43.79007,
+            142.29985
+          ],
+          [
+            43.78988,
+            142.30124
+          ],
+          [
+            43.78966,
+            142.30287
+          ],
+          [
+            43.78958,
+            142.30395
+          ],
+          [
+            43.7895,
+            142.30583
+          ],
+          [
+            43.78952,
+            142.30721
+          ],
+          [
+            43.78957,
+            142.30777
+          ],
+          [
+            43.78984,
+            142.31026
+          ],
+          [
+            43.78986,
+            142.31046
+          ],
+          [
+            43.79027,
+            142.31354
+          ],
+          [
+            43.79054,
+            142.3152
+          ],
+          [
+            43.79084,
+            142.31695
+          ],
+          [
+            43.79098,
+            142.31816
+          ],
+          [
+            43.79102,
+            142.3192
+          ],
+          [
+            43.79096,
+            142.3203
+          ],
+          [
+            43.79056,
+            142.32206
+          ],
+          [
+            43.79022,
+            142.3232
+          ],
+          [
+            43.78982,
+            142.3243
+          ],
+          [
+            43.78927,
+            142.32544
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1110341",
+        "toStationId": "station-1110342",
+        "geometry": [
+          [
+            43.78927,
+            142.32544
+          ],
+          [
+            43.78903,
+            142.32581
+          ],
+          [
+            43.78809,
+            142.32689
+          ],
+          [
+            43.78658,
+            142.32822
+          ],
+          [
+            43.78454,
+            142.33017
+          ],
+          [
+            43.78308,
+            142.33164
+          ],
+          [
+            43.78169,
+            142.33319
+          ],
+          [
+            43.78018,
+            142.33479
+          ],
+          [
+            43.77795,
+            142.33694
+          ],
+          [
+            43.77688,
+            142.33797
+          ],
+          [
+            43.77618,
+            142.33867
+          ],
+          [
+            43.77495,
+            142.33989
+          ],
+          [
+            43.77359,
+            142.34115
+          ],
+          [
+            43.77196,
+            142.34267
+          ],
+          [
+            43.77028,
+            142.34427
+          ],
+          [
+            43.76944,
+            142.3451
+          ],
+          [
+            43.76839,
+            142.34612
+          ],
+          [
+            43.76815,
+            142.34636
+          ],
+          [
+            43.76698,
+            142.34754
+          ],
+          [
+            43.76669,
+            142.34786
+          ],
+          [
+            43.76621,
+            142.34851
+          ],
+          [
+            43.76614,
+            142.34863
+          ],
+          [
+            43.76593,
+            142.34908
+          ],
+          [
+            43.76571,
+            142.34964
+          ],
+          [
+            43.76562,
+            142.34994
+          ],
+          [
+            43.76535,
+            142.35084
+          ],
+          [
+            43.76512,
+            142.35172
+          ],
+          [
+            43.7646,
+            142.35373
+          ],
+          [
+            43.76445,
+            142.35434
+          ],
+          [
+            43.76389,
+            142.35635
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "workspace": {
+      "folder": "data/lines/jr-hokkaido/hakodatehonsen-otaru-asahikawa",
+      "linePath": "data/lines/jr-hokkaido/hakodatehonsen-otaru-asahikawa/line.json",
+      "stationsPath": "data/lines/jr-hokkaido/hakodatehonsen-otaru-asahikawa/stations.json",
+      "geometryPath": "data/lines/jr-hokkaido/hakodatehonsen-otaru-asahikawa/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 函館本線(小樽～旭川) 하코다테혼선오타루～아사히카와 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "nationwide-source-line"
+  }
+}

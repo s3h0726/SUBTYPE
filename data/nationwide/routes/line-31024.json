@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-31024",
+    "sourceLineId": "31024",
+    "category": "private",
+    "operatorId": "op-21",
+    "operator": {
+      "ja": "近畿日本鉄道",
+      "en": "Kinkinihontetsudō",
+      "ko": "킨키니혼테츠도우"
+    },
+    "line": {
+      "ja": "西信貴ケーブル",
+      "kana": "にししぎけーぶる",
+      "en": "NishishigikēBuru",
+      "ko": "니시시기케부루",
+      "aliases": [
+        "西信貴ケーブル",
+        "ニシシギケーブル",
+        "近鉄西信貴鋼索線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(220 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3102401",
+        "sourceId": "3102401",
+        "stationMasterId": "station-3102103",
+        "ja": "信貴山口",
+        "kana": "しぎやまぐち",
+        "romaji": "Shigiyamaguchi",
+        "ko": "시기야마구치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.619967,
+        "longitude": 135.642118,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.005
+      },
+      {
+        "id": "3102402",
+        "sourceId": "3102402",
+        "stationMasterId": "station-3102402",
+        "ja": "高安山",
+        "kana": "たかやすやま",
+        "romaji": "Takayasuyama",
+        "ko": "타카야스야마",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.613679,
+        "longitude": 135.653794,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "geometryIndex": 7,
+        "geometrySnapKm": 0.003
+      }
+    ],
+    "stationSequence": [
+      "station-3102103",
+      "station-3102402"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-31024.json",
+    "geometry": [
+      [
+        34.61992,
+        135.64213
+      ],
+      [
+        34.61909,
+        135.64497
+      ],
+      [
+        34.61829,
+        135.6476
+      ],
+      [
+        34.61785,
+        135.6483
+      ],
+      [
+        34.61699,
+        135.6495
+      ],
+      [
+        34.61647,
+        135.6502
+      ],
+      [
+        34.61463,
+        135.65259
+      ],
+      [
+        34.6137,
+        135.65381
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-11627",
+    "sourceLineId": "11627",
+    "category": "jr",
+    "operatorId": "op-4",
+    "operator": {
+      "ja": "JR西日本",
+      "en": "JR West",
+      "ko": "JR 서일본"
+    },
+    "line": {
+      "ja": "羽衣線",
+      "kana": "はごろもせん",
+      "en": "Hagoromosen",
+      "ko": "하고로모선",
+      "aliases": [
+        "羽衣線",
+        "ハゴロモセン",
+        "阪和線(鳳～東羽衣)"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(347 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "1162701",
+        "sourceId": "1162701",
+        "stationMasterId": "station-1162614",
+        "ja": "鳳",
+        "kana": "おおとり",
+        "romaji": "ōTori",
+        "ko": "오오토리",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.531674,
+        "longitude": 135.458734,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.04
+      },
+      {
+        "id": "1162702",
+        "sourceId": "1162702",
+        "stationMasterId": "station-1162702",
+        "ja": "東羽衣",
+        "kana": "ひがしはごろも",
+        "romaji": "Higashihagoromo",
+        "ko": "히가시하고로모",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.535029,
+        "longitude": 135.442824,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "geometryIndex": 18,
+        "geometrySnapKm": 0.035
+      }
+    ],
+    "stationSequence": [
+      "station-1162614",
+      "station-1162702"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-11627.json",
+    "geometry": [
+      [
+        34.53169,
+        135.4583
+      ],
+      [
+        34.53128,
+        135.45776
+      ],
+      [
+        34.53109,
+        135.45738
+      ],
+      [
+        34.53102,
+        135.45715
+      ],
+      [
+        34.53089,
+        135.45657
+      ],
+      [
+        34.53087,
+        135.4557
+      ],
+      [
+        34.53091,
+        135.4553
+      ],
+      [
+        34.53111,
+        135.45443
+      ],
+      [
+        34.53125,
+        135.45391
+      ],
+      [
+        34.53144,
+        135.45323
+      ],
+      [
+        34.53195,
+        135.4514
+      ],
+      [
+        34.53228,
+        135.45025
+      ],
+      [
+        34.53266,
+        135.44887
+      ],
+      [
+        34.53296,
+        135.44777
+      ],
+      [
+        34.53326,
+        135.44671
+      ],
+      [
+        34.53355,
+        135.44581
+      ],
+      [
+        34.53401,
+        135.44472
+      ],
+      [
+        34.53425,
+        135.44422
+      ],
+      [
+        34.53482,
+        135.44311
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

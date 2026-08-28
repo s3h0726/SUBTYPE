@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101820'/%3E%3Cpath d='M16 18h32v9H37v23H27V27H16z' fill='%2345c985'/%3E%3C/svg%3E">
+  <meta name="description" content="일본 전국 철도의 다음 역을 한국어로 입력하며 실제 노선 선형을 달리는 타이핑 게임">
+  <title>SUBTYPE — 일본 철도 타이핑</title>
+  <style id="critical-screen-visibility">[data-screen]:not(.active){display:none!important}html:not([data-navigation-bound]) [data-screen]:not(#screen-home){display:none!important}</style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/home-night.css?v=p0-sync-1">
+  <link rel="stylesheet" href="./css/game-upgrade.css?v=p0-sync-1">
+  <link rel="stylesheet" href="./css/station-sign-ui.css?v=real-map-1">
+  <link rel="stylesheet" href="./css/station-sign-families.css?v=20260823">
+  <link rel="stylesheet" href="./css/osm-single-screen.css?v=p0-sync-1">
+  <link rel="stylesheet" href="./css/typing-fit-fixes.css?v=p0-sync-1">
+</head>
+<body data-console-errors="0">
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="topbar">
+    <button class="brand" data-nav="home" aria-label="홈으로">
+      <span class="brand-mark" aria-hidden="true">T</span>
+      <span><b>SUBTYPE</b><small>일본 철도 타이핑</small></span>
+    </button>
+    <nav aria-label="주 메뉴">
+      <button data-nav="rail-map">PLAY</button>
+      <button data-nav="custom-list">CUSTOM</button>
+      <button data-nav="records">RECORDS</button>
+      <button data-nav="settings">SETTINGS</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="screen-home" data-screen="home" class="screen active night-home" aria-labelledby="hero-title">
+      <div class="rail-atmosphere" aria-hidden="true">
+        <i class="track track-a"></i><i class="track track-b"></i><i class="track track-c"></i><i class="track track-d"></i><i class="track track-e"></i>
+        <i class="node node-a"></i><i class="node node-b"></i><i class="node node-c"></i><i class="node node-d"></i><i class="node node-e"></i><i class="node node-f"></i>
+      </div>
+      <header class="home-top">
+        <button class="home-brand" data-nav="home" aria-label="SUBTYPE 홈"><span class="home-brand-mark">ST</span><span><b>SUBTYPE</b><strong>JAPAN RAIL</strong><small>일본 철도 타이핑</small></span></button>
+        <div class="home-status"><b id="clock">--:--</b><span>日本全国 · JAPAN</span><div class="auth-state" data-auth-state></div></div>
+      </header>
+      <div class="home-stage">
+        <div class="home-menu">
+          <p class="home-kicker">01 / DEPARTURE MENU</p>
+          <h1 id="hero-title">일본 철도를<br><span>타이핑하다.</span></h1>
+          <p class="home-intro">전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.</p>
+          <nav class="launch-menu" aria-label="게임 시작 메뉴">
+            <button data-nav="rail-map"><span>01</span><b>PLAY</b><small>일본 전국 철도에서 노선 선택</small><i>→</i></button>
+            <button data-nav="custom-list"><span>02</span><b>CUSTOM ROUTE</b><small>나만의 역과 노선 만들기</small><i>→</i></button>
+            <button data-nav="records"><span>03</span><b>RECORDS</b><small>운행 기록과 최고 점수</small><i>→</i></button>
+            <button data-nav="settings"><span>04</span><b>SETTINGS</b><small>언어와 플레이 환경</small><i>→</i></button>
+          </nav>
+        </div>
+        <aside class="route-feature" aria-labelledby="today-route-title">
+          <div class="feature-head"><p><i></i> TODAY'S ROUTE</p><span id="feature-counter">01 / 03</span></div>
+          <div class="feature-viewport" id="feature-viewport">
+            <article class="feature-card active" data-feature-index="0" style="--card-line:#80c241">
+              <div class="feature-number"></div><p>JR 동일본 · 순환 운행</p><h2 id="today-route-title">야마노테선</h2><h3>山手線 · Yamanote Line</h3><div class="feature-meta"><span>30개 역</span><span>약 59분</span></div><button data-feature-route="line-11302">바로 플레이 <span>↗</span></button>
+            </article>
+            <article class="feature-card" data-feature-index="1" style="--card-line:#f39700">
+              <div class="feature-number"></div><p>도쿄 메트로 · 도심 운행</p><h2>긴자선</h2><h3>銀座線 · Ginza Line</h3><div class="feature-meta"><span>19개 역</span><span>약 34분</span></div><button data-feature-route="line-28001">바로 플레이 <span>↗</span></button>
+            </article>
+            <article class="feature-card" data-feature-index="2" style="--card-line:#df4c72">
+              <div class="feature-number">＋</div><p>YOUR RAILWAY · CUSTOM SERVICE</p><h2>新路線</h2><h3>BUILD YOUR LINE</h3><div class="feature-meta"><span>UP TO 300</span><span>LOCAL SAVE</span></div><button data-action="custom-new">CREATE ROUTE <span>↗</span></button>
+            </article>
+          </div>
+          <div class="feature-controls" aria-label="추천 노선 슬라이드"><button data-slide="prev" aria-label="이전 노선">←</button><div><button class="active" data-slide-to="0" aria-label="야마노테선"></button><button data-slide-to="1" aria-label="긴자선"></button><button data-slide-to="2" aria-label="커스텀 노선"></button></div><button data-slide="next" aria-label="다음 노선">→</button></div>
+        </aside>
+      </div>
+      <footer class="home-footer"><span>SUBTYPE · 2026</span><span>일본 전국 철도 타이핑</span><span>OPENSTREETMAP</span></footer>
+      <div id="recent-list" class="home-recent" aria-live="polite"></div>
+    </section>
+
+    <section id="screen-select" data-screen="rail-map" class="screen line-select-screen" aria-labelledby="select-title">
+      <div class="line-select-heading"><div><p>JAPAN RAILWAY NETWORK / 日本</p><h2 id="select-title">노선 선택</h2><span>PHYSICAL LINE · ROUTE · SERVICE</span></div><button class="btn text" data-nav="home">← HOME</button></div>
+      <div id="data-summary" class="data-summary" role="status" aria-live="polite">철도 데이터를 불러오는 중...</div>
+      <div class="line-select-layout">
+        <section class="selected-line-panel" aria-labelledby="selected-line-heading">
+          <header><span>SELECTED LINE</span><button id="clear-route-selection" type="button">↻ 선택 초기화</button></header>
+          <div id="selected-line-preview" class="selected-line-preview" aria-live="polite">
+            <div class="selected-line-empty"><h3 id="selected-line-heading">노선을 선택하세요.</h3><p>오른쪽에서 플레이할 노선을 선택합니다.</p></div>
+          </div>
+        </section>
+        <section class="line-list-panel" aria-labelledby="line-list-heading">
+          <header><div><span>LINE LIST</span><h3 id="line-list-heading">플레이할 노선</h3></div><strong id="route-count">불러오는 중</strong></header>
+          <label class="line-search"><span>⌕</span><input id="route-search" type="search" placeholder="노선 검색 · 山手線 / 야마노테선" autocomplete="off"></label>
+          <div id="category-tabs" class="line-category-tabs" role="tablist" aria-label="노선 운영사 필터">
+            <button class="active" data-category="all">전체</button><button data-category="jr">JR</button><button data-category="subway">지하철</button><button data-category="private">사철</button><button data-category="third-sector">제3섹터</button><button data-category="tram">노면전차</button><button data-category="other">기타</button><button data-category="shinkansen">신칸센</button><button data-category="limited-express">특급</button><button data-category="custom">커스텀</button>
+          </div>
+          <div id="operator-filters" class="operator-logo-filters" role="tablist" aria-label="철도 운영사 로고 필터"></div>
+          <div id="route-grid" class="line-card-grid" aria-live="polite"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="screen-setup" data-screen="game-setup" class="screen" aria-labelledby="setup-title">
+      <div class="section-head"><div><p class="eyebrow">SERVICE SETUP</p><h2 id="setup-title">운행 설정</h2></div><button class="btn text" data-nav="rail-map">← 노선 선택</button></div>
+      <div class="setup-layout">
+        <div id="setup-route" class="route-ticket"></div>
+        <form id="setup-form" class="setup-form">
+          <fieldset><legend>GAME MODE · 입력 방식</legend><div class="segmented input-mode-choice"><label><input type="radio" name="inputMode" value="shadowing" checked><span><b>일반 · 따라쓰기</b><small>한국어 정답을 보고 입력</small></span></label><label><input type="radio" name="inputMode" value="memory"><span><b>암기</b><small>일본어·로마자만 보고 입력</small></span></label></div></fieldset>
+          <fieldset><legend>운행 방식</legend><div class="choice-grid">
+            <label><input type="radio" name="mode" value="complete" checked><span><b>노선 완주</b><small>출발역부터 순서대로</small></span></label>
+            <label><input type="radio" name="mode" value="random"><span><b>랜덤 60초</b><small>무작위 역명 타이핑</small></span></label>
+            <label><input type="radio" name="mode" value="order"><span><b>순서 맞히기</b><small>다음 역을 기억해서</small></span></label>
+            <label><input type="radio" name="mode" value="endless"><span><b>무한 모드</b><small>원할 때까지 계속</small></span></label>
+          </div></fieldset>
+          <fieldset id="through-service-fieldset" hidden><legend>DIRECT SERVICE · 직결운행</legend><div class="segmented"><label><input type="radio" name="directService" value="off" checked><span>OFF</span></label><label><input type="radio" name="directService" value="on"><span>ON</span></label></div><label class="through-destination">DESTINATION<select id="through-destination"></select></label></fieldset>
+          <div class="korean-only-notice"><b>한국어 전용 운행</b><span>일본어와 한국어 역명을 함께 보고, 표시된 한국어 역명을 입력합니다.</span></div>
+          <fieldset id="service-fieldset"><legend>열차 종류</legend><div id="service-options" class="service-options"></div></fieldset>
+          <div class="form-row"><label>운행 방향<select id="service-direction"><option value="forward">정방향</option><option value="reverse">반대 방향</option></select></label><div class="osm-only-notice"><b>OPENSTREETMAP</b><span>실제 역 좌표 단일 지도</span></div></div><input id="game-map-mode" type="hidden" value="geographic"><button id="map-view-toggle" type="button" hidden aria-hidden="true"></button>
+          <fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto" checked><span>AUTO · 자동 이동</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE · 확인 후 이동</span></label></div></fieldset>
+          <fieldset><legend>난이도</legend><div class="segmented"><label><input type="radio" name="difficulty" value="easy"><span>EASY</span></label><label><input type="radio" name="difficulty" value="normal" checked><span>NORMAL</span></label><label><input type="radio" name="difficulty" value="hard"><span>HARD</span></label></div></fieldset>
+          <button class="btn primary full" type="submit">운행 시작 <span>→</span></button>
+        </form>
+      </div>
+    </section>
+
+    <section id="screen-game" data-screen="game" class="screen game-screen" aria-labelledby="game-line-name">
+      <div class="game-top"><button id="quit-game" class="btn text">× 종료</button><div><p id="game-operator"></p><h2 id="game-line-name">노선을 먼저 선택해 주세요</h2><small id="game-service-name"></small></div><div class="game-actions"><button id="game-theme-toggle" class="btn text" aria-label="테마 전환">◐ 테마</button><button id="pause-button" class="btn ghost">Ⅱ 일시정지</button></div></div>
+      <div class="service-summary" aria-label="운행 정보"><div><small>기점</small><b id="service-origin-ja"></b><span id="service-origin-ko"></span></div><div class="service-summary-center"><strong id="service-stop-count"></strong><b id="service-route-summary"></b><span id="service-direction-summary"></span></div><div><small>종점</small><b id="service-destination-ja"></b><span id="service-destination-ko"></span></div></div>
+      <div class="hud-strip">
+        <div><span>시간</span><strong id="hud-time">00:00.00</strong></div><div><span>진행</span><strong id="hud-progress">0 / 0</strong></div><div><span>분당 타수</span><strong id="hud-cpm">0</strong></div><div><span>정확도</span><strong id="hud-accuracy">100%</strong></div><div><span>콤보</span><strong id="hud-combo">×0</strong></div>
+      </div>
+      <div class="map-shell game-map-shell"><div id="route-map" class="route-map game-rail-map" aria-label="OpenStreetMap 기반 게임 철도 지도"><div id="provider-basemap" class="provider-basemap"></div></div><div id="map-station-info" class="map-station-info" hidden></div><span id="basemap-status" class="basemap-status">OPENSTREETMAP · READY</span></div>
+      <div class="station-sign-hud">
+        <section id="station-sign" class="station-sign" data-sign-style="jr" aria-labelledby="prompt-main">
+          <div class="station-sign-strip"></div>
+          <div class="station-sign-brand"><div id="station-operator-mark" class="station-operator-mark"></div><span id="station-line-label"></span></div>
+          <div class="station-sign-main">
+            <div class="station-neighbor previous"><small>현재역</small><b id="previous-station-name"></b><span id="previous-station-romaji"></span><i>←</i></div>
+            <div class="station-current">
+              <p id="station-context">다음역</p>
+              <div id="station-badge" class="station-badge" hidden></div>
+              <h1 id="prompt-main"></h1>
+              <p id="prompt-ko" class="prompt-ko"></p>
+              <p id="prompt-kana" class="prompt-kana"></p>
+              <p id="prompt-sub" class="prompt-romaji"></p>
+              <div id="ko-progress" class="ko-progress" aria-label="한국어 입력 진행"></div>
+              <label class="typing-box station-sign-input"><span class="sr-only">한국어 역명 입력</span><input id="typing-input" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" lang="ko" placeholder="한국어 역명을 입력하세요"><span id="input-status">TYPE</span></label>
+              <button id="next-station-button" class="next-station-button" type="button" hidden>NEXT · 다음 역으로 출발</button>
+            </div>
+            <div class="station-neighbor next"><small>그다음 역</small><b id="next-station-name"></b><span id="next-station-romaji"></span><i>→</i></div>
+          </div>
+          <div class="station-sign-footer"><span>오타 <b id="error-count">0</b></span><span id="station-service-footer"></span><span>목표역 <b id="next-station"></b></span></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="screen-result" data-screen="result" class="screen result-screen" aria-labelledby="result-title">
+      <div class="result-card"><p class="eyebrow success">ROUTE COMPLETE</p><div id="result-operator-logo" class="result-operator-logo"></div><div id="result-line-badge" class="result-line-badge"></div><h2 id="result-title">운행 완료!</h2><div id="result-route" class="result-route"></div>
+      <div class="result-grid"><div><span>TIME</span><strong id="result-time">00:00.00</strong></div><div><span>ACCURACY</span><strong id="result-accuracy">100%</strong></div><div><span>TYPING</span><strong id="result-cpm">0 타/min</strong></div><div><span>ERRORS</span><strong id="result-errors">0</strong></div><div><span>MAX COMBO</span><strong id="result-combo">0</strong></div><div><span>WPM</span><strong id="result-wpm">0</strong></div></div>
+      <p id="record-notice" class="record-notice" hidden>NEW RECORD!</p><div class="result-actions"><button id="retry-game" class="btn primary">RETRY · 다시 플레이</button><button class="btn ghost" data-nav="rail-map">CHANGE LINE · 다른 노선</button><button class="btn text" data-nav="home">HOME · 메인 메뉴</button></div></div>
+    </section>
+
+    <section id="screen-custom-list" data-screen="custom-list" class="screen custom-library" aria-labelledby="custom-list-title">
+      <div class="section-head"><div><p class="eyebrow">CUSTOM ROUTE LIBRARY</p><h2 id="custom-list-title">나만의 노선</h2><p class="section-sub">직접 만든 역을 연결하고, 저장한 노선을 바로 플레이하세요.</p></div><button class="btn text" data-nav="home">← HOME</button></div>
+      <div class="library-actions"><button class="btn primary" data-action="custom-new">＋ CREATE NEW ROUTE</button><label class="btn ghost file-button">JSON 가져오기<input id="library-import" type="file" accept="application/json,.json"></label></div>
+      <div id="custom-route-library" class="custom-route-library" aria-live="polite"></div>
+    </section>
+
+    <section id="screen-custom" data-screen="custom-editor" class="screen" aria-labelledby="custom-title">
+      <div class="section-head"><div><p class="eyebrow">CUSTOM ROUTE STUDIO</p><h2 id="custom-title">나만의 노선 만들기</h2></div><button class="btn text" data-nav="custom-list">← MY ROUTES</button></div>
+      <div class="custom-toolbar"><button id="new-route" class="btn ghost">＋ 새 여정</button><button id="save-route" class="btn primary">COMPLETE · 완료/저장</button><button id="play-custom" class="btn ghost">▶ 바로 플레이</button><button id="export-route" class="btn ghost">JSON 내보내기</button><label class="btn ghost file-button">JSON 가져오기<input id="import-route" type="file" accept="application/json,.json"></label></div>
+      <div class="editor-layout">
+        <form id="route-form" class="editor-form">
+          <section class="station-master-search" aria-labelledby="station-search-title"><p class="eyebrow">START STATION / RAIL NETWORK</p><h3 id="station-search-title">출발역 검색</h3><p>첫 역을 선택한 뒤 실제 철도망의 인접역과 환승 노선으로 경로를 이어갑니다.</p><label class="station-search-box">역 검색<input id="station-master-search" type="search" autocomplete="off" placeholder="예: 신주쿠 / 新宿 / Shinjuku"></label><div id="station-search-results" class="station-search-results" aria-live="polite"><p>출발역 이름을 입력하세요.</p></div></section>
+          <section id="journey-options" class="journey-options" aria-live="polite"><p>출발역을 선택하면 이용 가능한 노선이 표시됩니다.</p></section>
+          <h3>노선 정보</h3><div class="form-grid"><label>운영사<input name="operator" maxlength="60" required></label><label>노선 코드<input name="code" maxlength="8" placeholder="CT"></label><label>日本語<input name="lineJa" maxlength="60" required></label><label>한국어<input name="lineKo" maxlength="60" required></label><label>English<input name="lineEn" maxlength="60" required></label><label>노선 색상<input name="color" type="color" value="#e84747"></label></div><label class="check"><input name="loop" type="checkbox"> 순환선</label>
+          <div class="editor-heading"><h3>선택한 실제 역 <small id="station-count">0 / 300</small></h3><button id="add-station" type="button" class="btn ghost">＋ 고급: 가상역</button></div><div id="station-editor" class="station-editor"></div>
+        </form>
+        <aside class="map-editor"><div class="map-editor-head"><h3>실제 좌표 미리보기</h3><span class="map-preview-label">OPENSTREETMAP</span></div><div id="schematic-editor" hidden><div id="custom-map" class="custom-map"></div></div><div id="geo-editor"><p class="hint">검색해 추가한 역의 실제 좌표가 자동으로 연결됩니다.</p><div id="custom-geo-map" class="custom-geo-map"></div><p id="geo-map-status" class="map-status">지도를 준비하고 있습니다…</p></div><h3>저장된 노선</h3><div id="saved-routes" class="saved-routes"></div></aside>
+      </div>
+    </section>
+
+    <section id="screen-stats" data-screen="records" class="screen" aria-labelledby="stats-title"><div class="section-head"><div><p class="eyebrow">YOUR JOURNEY</p><h2 id="stats-title">운행 기록</h2></div><button class="btn text" data-nav="home">← HOME</button></div><div id="stats-summary" class="stats-summary"></div><h3>노선별 기록</h3><div id="records-table" class="records-table"></div></section>
+
+    <section id="screen-settings" data-screen="settings" class="screen" aria-labelledby="settings-title"><div class="section-head"><div><p class="eyebrow">환경 설정</p><h2 id="settings-title">설정</h2><p><a class="btn ghost" href="./editor/">철도 데이터 에디터 열기</a></p></div><button class="btn text" data-nav="home">← HOME</button></div><form id="settings-form" class="settings-form"><fieldset><legend>화면 테마</legend><div class="segmented"><label><input type="radio" name="theme" value="dark"><span>어둡게</span></label><label><input type="radio" name="theme" value="light"><span>밝게</span></label><label><input type="radio" name="theme" value="system"><span>시스템 설정</span></label></div></fieldset><fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto"><span>자동으로 다음 역</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE로 다음 역</span></label></div></fieldset><div class="korean-only-notice"><b>입력 언어 · 한국어</b><span>일본어·가나·로마자는 문제 표시 전용입니다.</span></div><input type="hidden" name="mapMode" value="geographic"><label>지도 역명<select name="stationLabel"><option value="ja">日本語</option><option value="ja-romaji">日本語 + Romaji</option></select></label><label>지도 라벨 밀도<select name="mapLabels"><option value="low">낮음</option><option value="normal">보통</option><option value="high">높음</option></select></label><label class="check"><input name="sound" type="checkbox"> 효과음 사용</label><label class="check"><input name="motion" type="checkbox"> 열차 이동 애니메이션</label><label class="check"><input name="reducedMotion" type="checkbox"> 애니메이션 줄이기</label><button class="btn primary" type="submit">설정 저장</button></form></section>
+    <section id="screen-credits" data-screen="credits" class="screen credits-screen" aria-labelledby="credits-title"><div class="section-head"><div><p class="eyebrow">DATA & CREDITS</p><h2 id="credits-title">철도 데이터와 자산 출처</h2><p>검증일 2026-08-28 · 나무위키 canonical Korean naming policy</p></div><button class="btn text" data-nav="settings">← SETTINGS</button></div><div class="credits-grid"><article><h3>MAP</h3><p>Leaflet 1.9.4</p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></article><article><h3>STATION / LINE DATA</h3><p>일본어 공식 명칭, Kana, 역번호와 운행 정보는 각 철도 운영사의 공식 자료와 교차 검증합니다. 지도와 철도 선형은 국토교통성 및 OpenStreetMap 등 별도 공간정보 출처를 사용합니다.</p></article><article><h3>ROUTE SYMBOLS / LOGOS</h3><p>로고와 심볼의 식별 기준에는 나무위키를 사용하고, 실제 이미지 자산은 공식 배포자료 또는 사용 조건을 확인할 수 있는 원본을 사용합니다.</p><a href="./ASSET_CREDITS.md" target="_blank" rel="noopener">ASSET_CREDITS.md</a></article><article><h3>KOREAN NAMES</h3><p>SUBTYPE의 일본 철도 회사명·노선명·역명 등 한국어 표기는 나무위키의 한국어 철도 표기를 canonical 기준으로 사용합니다. 직접 접근이 제한되더라도 정책은 유지하며, 실제로 확인하지 못한 항목은 검수 필요 상태로 남깁니다.</p><a href="./DATA_SOURCES.md" target="_blank" rel="noopener">DATA_SOURCES.md</a></article></div></section>
+  </main>
+  <button class="credits-nav" data-nav="credits">DATA & CREDITS</button>
+
+  <div id="pause-overlay" class="overlay" hidden><div><p class="eyebrow">SERVICE PAUSED</p><h2>잠시 정차 중입니다</h2><p>타이머와 입력이 멈췄습니다.</p><button id="resume-game" class="btn primary">운행 계속</button></div></div>
+  <div id="departure-overlay" class="departure-overlay" hidden><div><p>운행 시작</p><h2 id="departure-line"></h2><strong id="departure-service"></strong><span id="departure-direction"></span></div></div>
+  <div id="auth-dialog" class="auth-dialog" hidden><form id="auth-form" class="auth-card"><button type="button" data-auth-close aria-label="닫기">×</button><p class="eyebrow">계정</p><h2>기록 이어하기</h2><div class="auth-tabs" role="tablist" aria-label="계정 작업"><button type="button" class="active" data-auth-mode="login" role="tab" aria-selected="true">로그인</button><button type="button" data-auth-mode="signup" role="tab" aria-selected="false">회원가입</button></div><input type="hidden" name="mode" value="login"><label>이메일<input id="auth-email" name="email" type="email" autocomplete="email" required></label><label>비밀번호<input name="password" type="password" autocomplete="current-password" minlength="6" required></label><label data-signup-field hidden>비밀번호 확인<input name="passwordConfirm" type="password" autocomplete="new-password" minlength="6"></label><label data-signup-field hidden>닉네임<input name="nickname" maxlength="24" value="철도러"></label><p id="auth-config-status">계정 연결 상태를 확인하고 있습니다.</p><p id="auth-error" class="auth-error" role="alert" hidden></p><button class="btn primary" type="submit">로그인</button></form></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script defer src="./js/bootstrap.js?v=p0-sync-1"></script>
+  <script defer src="./js/line-workspace-data.js?v=line-workspace-1"></script>
+  <script defer src="./js/rail-data.js"></script>
+  <script defer src="./js/nationwide-data.js?v=offline-all-1"></script>
+  <script defer src="./js/service-data.js"></script>
+  <script defer src="./js/line-theme-data.js"></script>
+  <script defer src="./js/operator-asset-data.js"></script>
+  <script defer src="./js/line-badge-data.js"></script>
+  <script defer src="./js/route-symbol-data.js"></script>
+  <script defer src="./js/rail-system-data.js"></script>
+  <script defer src="./js/auth-config.js"></script>
+  <script defer src="./js/app.bundle.js?v=p0-sync-1"></script>
+</body>
+</html>

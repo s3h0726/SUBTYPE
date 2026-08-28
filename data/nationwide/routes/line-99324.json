@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-99324",
+    "sourceLineId": "99324",
+    "category": "private",
+    "operatorId": "op-137",
+    "operator": {
+      "ja": "芝山鉄道",
+      "en": "Shibayamatetsudō",
+      "ko": "시바야마테츠도우"
+    },
+    "line": {
+      "ja": "芝山鉄道線",
+      "kana": "しばやまてつどうせん",
+      "en": "ShibayamatetsudōSen",
+      "ko": "시바야마테츠도우선",
+      "aliases": [
+        "芝山鉄道線",
+        "シバヤマテツドウセン",
+        "芝山鉄道線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(237 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "9932401",
+        "sourceId": "9932401",
+        "stationMasterId": "station-2300141",
+        "ja": "東成田",
+        "kana": "ひがしなりた",
+        "romaji": "Higashinarita",
+        "ko": "히가시나리타",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.770091,
+        "longitude": 140.387225,
+        "prefectureCode": 12,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.051
+      },
+      {
+        "id": "9932402",
+        "sourceId": "9932402",
+        "stationMasterId": "station-9932402",
+        "ja": "芝山千代田",
+        "kana": "しばやまちよだ",
+        "romaji": "Shibayamachiyoda",
+        "ko": "시바야마치요다",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.754248,
+        "longitude": 140.399215,
+        "prefectureCode": 12,
+        "inTokyo": false,
+        "geometryIndex": 9,
+        "geometrySnapKm": 0.024
+      }
+    ],
+    "stationSequence": [
+      "station-2300141",
+      "station-9932402"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-99324.json",
+    "geometry": [
+      [
+        35.77035,
+        140.38676
+      ],
+      [
+        35.76902,
+        140.38774
+      ],
+      [
+        35.76587,
+        140.39002
+      ],
+      [
+        35.76344,
+        140.39063
+      ],
+      [
+        35.76207,
+        140.39147
+      ],
+      [
+        35.76006,
+        140.393
+      ],
+      [
+        35.7585,
+        140.39411
+      ],
+      [
+        35.75621,
+        140.39582
+      ],
+      [
+        35.7549,
+        140.39747
+      ],
+      [
+        35.75429,
+        140.39895
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

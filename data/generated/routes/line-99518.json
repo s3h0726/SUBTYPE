@@ -1,0 +1,209 @@
+{
+  "route": {
+    "id": "line-99518",
+    "legacyId": "line-99518",
+    "category": "subway",
+    "operatorId": "nagoyashikotsukyoku",
+    "operator": {
+      "ja": "名古屋市交通局",
+      "ko": "나고야시코우츠우쿄쿠",
+      "en": "NagoyashikōTsūKyoku"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 名古屋市交通局 나고야시코우츠우쿄쿠 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "名古屋市営地下鉄上飯田線",
+      "kana": "なごやしえいちかてつかみいいだせん",
+      "ko": "나고야시에이치카테츠카미이이다선",
+      "en": "NagoyashieichikatetsukamiīDasen"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 名古屋市営地下鉄上飯田線 나고야시에이치카테츠카미이이다선 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "FF66C4",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 名古屋市営地下鉄上飯田線 나고야시에이치카테츠카미이이다선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "nagoyashikotsukyoku",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-9951403",
+        "internalId": "station-9951403",
+        "stationMasterId": "station-9951403",
+        "sourceId": "station-9951403",
+        "ja": "平安通",
+        "kana": "へいあんどおり",
+        "ko": "헤이안도오리",
+        "romaji": "HeiandōRi",
+        "koAliases": [],
+        "latitude": 35.195934,
+        "longitude": 136.929784,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 平安通駅 헤이안도오리 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-3001801",
+        "internalId": "station-3001801",
+        "stationMasterId": "station-3001801",
+        "sourceId": "station-3001801",
+        "ja": "上飯田",
+        "kana": "かみいいだ",
+        "ko": "카미이이다",
+        "romaji": "KamiīDa",
+        "koAliases": [],
+        "latitude": 35.203845,
+        "longitude": 136.929642,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 上飯田駅 카미이이다 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 3
+      }
+    ],
+    "geometry": [
+      [
+        35.19521,
+        136.92979
+      ],
+      [
+        35.19723,
+        136.92973
+      ],
+      [
+        35.20271,
+        136.92968
+      ],
+      [
+        35.2045,
+        136.92968
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-9951403",
+        "toStationId": "station-3001801",
+        "geometry": [
+          [
+            35.19521,
+            136.92979
+          ],
+          [
+            35.19723,
+            136.92973
+          ],
+          [
+            35.20271,
+            136.92968
+          ],
+          [
+            35.2045,
+            136.92968
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "workspace": {
+      "folder": "data/lines/nagoyashikotsukyoku/nagoyashieichikatetsukamiidasen",
+      "linePath": "data/lines/nagoyashikotsukyoku/nagoyashieichikatetsukamiidasen/line.json",
+      "stationsPath": "data/lines/nagoyashikotsukyoku/nagoyashieichikatetsukamiidasen/stations.json",
+      "geometryPath": "data/lines/nagoyashikotsukyoku/nagoyashieichikatetsukamiidasen/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 名古屋市営地下鉄上飯田線 나고야시에이치카테츠카미이이다선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "nationwide-source-line"
+  }
+}

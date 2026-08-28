@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-33005",
+    "sourceLineId": "33005",
+    "category": "private",
+    "operatorId": "op-23",
+    "operator": {
+      "ja": "京阪電鉄",
+      "en": "Keihandentetsu",
+      "ko": "케이한덴테츠"
+    },
+    "line": {
+      "ja": "石清水八幡宮参道ケーブル",
+      "kana": "いわしみずはちまんぐうさんどうけーぶる",
+      "en": "IwashimizuhachimangūSandōKēBuru",
+      "ko": "이와시미즈하치만구우산도우케부루",
+      "aliases": [
+        "石清水八幡宮参道ケーブル",
+        "イワシミズハチマングウサンドウケーブル",
+        "京阪鋼索線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(341 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3300501",
+        "sourceId": "3300501",
+        "stationMasterId": "station-3300115",
+        "ja": "ケーブル八幡宮口",
+        "kana": "けーぶるはちまんぐうぐち",
+        "romaji": "KēBuruhachimangūGuchi",
+        "ko": "케부루하치만구우구치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.88453597,
+        "longitude": 135.6995372,
+        "prefectureCode": 26,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.007
+      },
+      {
+        "id": "3300502",
+        "sourceId": "3300502",
+        "stationMasterId": "station-3300502",
+        "ja": "ケーブル八幡宮山上",
+        "kana": "けーぶるはちまんぐうさんじょう",
+        "romaji": "KēBuruhachimangūSanjō",
+        "ko": "케부루하치만구우산조우",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.881061,
+        "longitude": 135.699796,
+        "prefectureCode": 26,
+        "inTokyo": false,
+        "geometryIndex": 4,
+        "geometrySnapKm": 0.029
+      }
+    ],
+    "stationSequence": [
+      "station-3300115",
+      "station-3300502"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-33005.json",
+    "geometry": [
+      [
+        34.88458,
+        135.69948
+      ],
+      [
+        34.884311,
+        135.699371
+      ],
+      [
+        34.883635,
+        135.699288
+      ],
+      [
+        34.882789,
+        135.699424
+      ],
+      [
+        34.881325,
+        135.699767
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-29003",
+    "sourceLineId": "29003",
+    "category": "private",
+    "operatorId": "op-19",
+    "operator": {
+      "ja": "相模鉄道",
+      "en": "Sotetsu",
+      "ko": "소테츠"
+    },
+    "line": {
+      "ja": "相鉄・JR直通線",
+      "kana": "そうてつ・jrちょくつうせん",
+      "en": "Sotetsu Shin-yokohama Line",
+      "ko": "소테츠 신요코하마선",
+      "aliases": [
+        "相鉄・JR直通線",
+        "ソウテツ・ジェイアールチョクツウセン",
+        "相鉄新横浜線"
+      ]
+    },
+    "code": "SO",
+    "lineColor": "#0066b3",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "2900301",
+        "sourceId": "2900301",
+        "stationMasterId": "station-2900301",
+        "ja": "羽沢横浜国大",
+        "kana": "はざわよこはまこくだい",
+        "romaji": "Hazawayokohamakokudai",
+        "ko": "하자와요코하마코쿠다이",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.481389,
+        "longitude": 139.586389,
+        "prefectureCode": 14,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.083
+      },
+      {
+        "id": "2900302",
+        "sourceId": "2900302",
+        "stationMasterId": "station-2900108",
+        "ja": "西谷",
+        "kana": "にしたに",
+        "romaji": "Nishitani",
+        "ko": "니시타니",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.478092,
+        "longitude": 139.565721,
+        "prefectureCode": 14,
+        "inTokyo": false,
+        "geometryIndex": 16,
+        "geometrySnapKm": 0.09
+      }
+    ],
+    "stationSequence": [
+      "station-2900301",
+      "station-2900108"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-29003.json",
+    "geometry": [
+      [
+        35.481905,
+        139.587046
+      ],
+      [
+        35.480554,
+        139.585224
+      ],
+      [
+        35.479529,
+        139.583838
+      ],
+      [
+        35.478487,
+        139.581589
+      ],
+      [
+        35.477657,
+        139.578702
+      ],
+      [
+        35.476769,
+        139.57572
+      ],
+      [
+        35.476574,
+        139.574777
+      ],
+      [
+        35.476509,
+        139.573903
+      ],
+      [
+        35.476502,
+        139.573543
+      ],
+      [
+        35.476697,
+        139.572038
+      ],
+      [
+        35.476889,
+        139.571369
+      ],
+      [
+        35.477153,
+        139.570591
+      ],
+      [
+        35.477418,
+        139.569865
+      ],
+      [
+        35.477754,
+        139.568724
+      ],
+      [
+        35.477913,
+        139.568065
+      ],
+      [
+        35.477945,
+        139.567803
+      ],
+      [
+        35.478018,
+        139.56671
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

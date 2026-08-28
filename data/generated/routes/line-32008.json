@@ -1,0 +1,169 @@
+{
+  "route": {
+    "id": "line-32008",
+    "legacyId": "line-32008",
+    "category": "private",
+    "operatorId": "nankaidentetsu",
+    "operator": {
+      "ja": "南海電鉄",
+      "ko": "난카이덴테츠",
+      "en": "Nankaidentetsu"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 南海電鉄 난카이덴테츠 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "南海高野山ケーブル",
+      "kana": "なんかいこうやさんけーぶる",
+      "ko": "난카이코우야산케부루",
+      "en": "NankaikōYasankēBuru"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 南海高野山ケーブル 난카이코우야산케부루 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "hsl(73 62% 46%)",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 南海高野山ケーブル 난카이코우야산케부루 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "nankaidentetsu",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-3200742",
+        "internalId": "station-3200742",
+        "stationMasterId": "station-3200742",
+        "sourceId": "station-3200742",
+        "ja": "極楽橋",
+        "kana": "ごくらくばし",
+        "ko": "고쿠라쿠바시",
+        "romaji": "Gokurakubashi",
+        "koAliases": [],
+        "latitude": 34.23435,
+        "longitude": 135.582078,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 極楽橋駅 고쿠라쿠바시 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-3200802",
+        "internalId": "station-3200802",
+        "stationMasterId": "station-3200802",
+        "sourceId": "station-3200802",
+        "ja": "高野山",
+        "kana": "こうやさん",
+        "ko": "코우야산",
+        "romaji": "KōYasan",
+        "koAliases": [],
+        "latitude": 34.227789,
+        "longitude": 135.577619,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 高野山駅 코우야산 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      }
+    ],
+    "geometry": [],
+    "directedSegments": [],
+    "geometryReady": false,
+    "missingSegments": [
+      "station-3200742::station-3200802"
+    ],
+    "workspace": {
+      "folder": "data/lines/nankaidentetsu/nankaikoyasankeburu",
+      "linePath": "data/lines/nankaidentetsu/nankaikoyasankeburu/line.json",
+      "stationsPath": "data/lines/nankaidentetsu/nankaikoyasankeburu/stations.json",
+      "geometryPath": "data/lines/nankaidentetsu/nankaikoyasankeburu/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "imported",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 南海高野山ケーブル 난카이코우야산케부루 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "nationwide-source-line"
+  }
+}

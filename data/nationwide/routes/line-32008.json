@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-32008",
+    "sourceLineId": "32008",
+    "category": "private",
+    "operatorId": "op-22",
+    "operator": {
+      "ja": "南海電鉄",
+      "en": "Nankaidentetsu",
+      "ko": "난카이덴테츠"
+    },
+    "line": {
+      "ja": "南海高野山ケーブル",
+      "kana": "なんかいこうやさんけーぶる",
+      "en": "NankaikōYasankēBuru",
+      "ko": "난카이코우야산케부루",
+      "aliases": [
+        "南海高野山ケーブル",
+        "ナンカイコウヤサンケーブル",
+        "南海高野山ケーブル"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(73 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3200801",
+        "sourceId": "3200801",
+        "stationMasterId": "station-3200742",
+        "ja": "極楽橋",
+        "kana": "ごくらくばし",
+        "romaji": "Gokurakubashi",
+        "ko": "고쿠라쿠바시",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.23435,
+        "longitude": 135.582078,
+        "prefectureCode": 30,
+        "inTokyo": false
+      },
+      {
+        "id": "3200802",
+        "sourceId": "3200802",
+        "stationMasterId": "station-3200802",
+        "ja": "高野山",
+        "kana": "こうやさん",
+        "romaji": "KōYasan",
+        "ko": "코우야산",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.227789,
+        "longitude": 135.577619,
+        "prefectureCode": 30,
+        "inTokyo": false
+      }
+    ],
+    "stationSequence": [
+      "station-3200742",
+      "station-3200802"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-32008.json"
+  }
+}

@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const sectionPath=process.argv[2]||path.resolve(root,'../../work/N02-25/N02-25_GML/UTF-8/N02-25_RailroadSection.geojson');
+const read=file=>JSON.parse(fs.readFileSync(file,'utf8'));
+const write=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+const indexFile=path.join(root,'data','nationwide','index.json'),auditFile=path.join(root,'data','nationwide','AUDIT.json');
+const index=read(indexFile),sections=read(sectionPath).features;
+const norm=value=>String(value||'').normalize('NFKC').replace(/^(JR|東京メトロ|都営)/,'').replace(/株式会社|有限会社|旅客鉄道|鉄道|電鉄|交通局|高速鉄道|市|線|[・･\s（）()～〜]/g,'');
+const operatorAliases={JR北海道:'北海道旅客鉄道',JR東日本:'東日本旅客鉄道',JR東海:'東海旅客鉄道',JR西日本:'西日本旅客鉄道',JR四国:'四国旅客鉄道',JR九州:'九州旅客鉄道',東京メトロ:'東京地下鉄',東京都交通局:'東京都','Osaka Metro':'大阪市高速電気軌道',大阪メトロ:'大阪市高速電気軌道',京急電鉄:'京浜急行電鉄','IGRいわて銀河鉄道':'アイジーアールいわて銀河鉄道',箱根登山鉄道:'小田急箱根',富士急行:'富士山麓電気鉄道',京都丹後鉄道:'WILLER TRAINS',土佐電気鉄道:'とさでん交通'};
+const rad=value=>value*Math.PI/180;
+const km=(a,b)=>{const dLat=rad(b[1]-a[1]),dLon=rad(b[0]-a[0]),x=Math.sin(dLat/2)**2+Math.cos(rad(a[1]))*Math.cos(rad(b[1]))*Math.sin(dLon/2)**2;return 6371*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))};
+const pointKey=point=>`${point[0].toFixed(5)},${point[1].toFixed(5)}`;
+class Heap{constructor(){this.items=[]}push(item){this.items.push(item);let index=this.items.length-1;while(index){const parent=(index-1)>>1;if(this.items[parent][0]<=item[0])break;this.items[index]=this.items[parent];index=parent}this.items[index]=item}pop(){if(!this.items.length)return null;const top=this.items[0],last=this.items.pop();if(this.items.length){let index=0;while(true){const left=index*2+1,right=left+1;let child=left;if(right<this.items.length&&this.items[right][0]<this.items[left][0])child=right;if(left>=this.items.length||this.items[child][0]>=last[0])break;this.items[index]=this.items[child];index=child}this.items[index]=last}return top}}
+function buildGraph(features){
+ const graph=new Map(),points=new Map(),cells=new Map(),cellSize=.003;
+ const add=(a,b)=>{const ak=pointKey(a),bk=pointKey(b),distance=km(a,b);points.set(ak,a);points.set(bk,b);if(!graph.has(ak))graph.set(ak,[]);if(!graph.has(bk))graph.set(bk,[]);graph.get(ak).push([bk,distance]);graph.get(bk).push([ak,distance])};
+ for(const feature of features){const coordinates=feature.geometry.coordinates;for(let index=1;index<coordinates.length;index++)add(coordinates[index-1],coordinates[index])}
+ for(const [key,point]of points){const cell=`${Math.floor(point[0]/cellSize)},${Math.floor(point[1]/cellSize)}`;if(!cells.has(cell))cells.set(cell,[]);cells.get(cell).push([key,point])}
+ for(const [key,point]of points){const x=Math.floor(point[0]/cellSize),y=Math.floor(point[1]/cellSize);let best=null,distance=.3;for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++)for(const [other,next]of cells.get(`${x+dx},${y+dy}`)||[]){if(other===key||graph.get(key).some(edge=>edge[0]===other))continue;const candidate=km(point,next);if(candidate<distance){distance=candidate;best=next}}if(best)add(point,best)}
+ return{graph,points};
+}
+function nearest(points,target){let key=null,distance=Infinity;for(const [candidate,point]of points){const next=km(point,target);if(next<distance){key=candidate;distance=next}}return{key,distance}}
+function shortest(network,start,end){if(start===end)return[network.points.get(start)];const distance=new Map([[start,0]]),previous=new Map(),heap=new Heap();heap.push([0,start]);while(heap.items.length){const [score,current]=heap.pop();if(score!==distance.get(current))continue;if(current===end)break;for(const [next,weight]of network.graph.get(current)||[]){const candidate=score+weight;if(candidate<(distance.get(next)??Infinity)){distance.set(next,candidate);previous.set(next,current);heap.push([candidate,next])}}}if(!previous.has(end))return[];const points=[];for(let current=end;current;current=previous.get(current)){points.push(network.points.get(current));if(current===start)break}return points.reverse()}
+function operatorMatches(route,feature){const routeOperator=operatorAliases[route.operator.ja]||route.operator.ja,actual=feature.properties.N02_004;return norm(routeOperator)===norm(actual)||norm(routeOperator).includes(norm(actual))||norm(actual).includes(norm(routeOperator))}
+function lineMatches(route,feature){const physicalAliases=route.id==='shinkansen-hokuriku'?['東北新幹線','上越新幹線']:[],wanted=[route.line.ja,...physicalAliases,...(route.line.aliases||[])].map(norm).filter(Boolean),candidate=norm(feature.properties.N02_003),sameLine=wanted.some(name=>candidate.includes(name)||name.includes(candidate));return sameLine&&(route.category==='shinkansen'||operatorMatches(route,feature))}
+function operatorCorridor(route){const margin=.04,lats=route.stations.map(station=>station.latitude),lons=route.stations.map(station=>station.longitude),minLat=Math.min(...lats)-margin,maxLat=Math.max(...lats)+margin,minLon=Math.min(...lons)-margin,maxLon=Math.max(...lons)+margin;return sections.filter(feature=>operatorMatches(route,feature)&&feature.geometry.coordinates.some(point=>point[1]>=minLat&&point[1]<=maxLat&&point[0]>=minLon&&point[0]<=maxLon))}
+let matched=0,pairs=0,failedPairs=0,maxSnapKm=0;const missing=[],distanceOutliers=[],yurikamome=null;
+for(const meta of index.routes){
+ const file=path.join(root,'data','nationwide','routes',`${meta.id}.json`),payload=read(file),route=payload.route;let features=sections.filter(feature=>lineMatches(route,feature));
+ if(!features.length)features=operatorCorridor(route);
+ if(!features.length){missing.push({id:route.id,lineJa:route.line.ja,operatorJa:route.operator.ja,reason:'no-MLIT-line-match'});continue}
+ let network=buildGraph(features),snapChecks=route.stations.map(station=>nearest(network.points,[station.longitude,station.latitude]));
+ if(Math.max(...snapChecks.map(item=>item.distance))>3){features=operatorCorridor(route);network=buildGraph(features);snapChecks=route.stations.map(station=>nearest(network.points,[station.longitude,station.latitude]))}
+ const routeMaxSnap=Math.max(...snapChecks.map(item=>item.distance));if(!features.length||routeMaxSnap>3){missing.push({id:route.id,lineJa:route.line.ja,operatorJa:route.operator.ja,reason:'station-too-far-from-matched-geometry',maxSnapKm:+routeMaxSnap.toFixed(3)});continue}
+ const geometry=[];
+ for(let stationIndex=0;stationIndex<route.stations.length-1;stationIndex++){
+  const from=route.stations[stationIndex],to=route.stations[stationIndex+1],a=[from.longitude,from.latitude],b=[to.longitude,to.latitude],start=nearest(network.points,a),end=nearest(network.points,b);pairs++;maxSnapKm=Math.max(maxSnapKm,start.distance,end.distance);let segment=start.key&&end.key?shortest(network,start.key,end.key):[];
+  if(!segment.length){failedPairs++;continue}if(geometry.length&&pointKey(geometry.at(-1))===pointKey(segment[0]))segment=segment.slice(1);geometry.push(...segment);
+  const direct=km(a,b),rail=segment.slice(1).reduce((sum,point,index)=>sum+km(segment[index],point),0);if(direct>0&&rail/direct>4&&rail>15)distanceOutliers.push({routeId:route.id,from:from.ja,to:to.ja,directKm:+direct.toFixed(2),railKm:+rail.toFixed(2)});
+ }
+ if(geometry.length>1){route.geometry=geometry.map(point=>[+point[1].toFixed(6),+point[0].toFixed(6)]);route.geometrySource='MLIT-N02-2025';route.stations.forEach(station=>{const target=[station.longitude,station.latitude];let best=0,distance=Infinity;route.geometry.forEach((point,index)=>{const next=km([point[1],point[0]],target);if(next<distance){best=index;distance=next}});station.geometryIndex=best;station.geometrySnapKm=+distance.toFixed(3)});meta.geometryReady=true;matched++;write(file,payload)}
+ else missing.push({id:route.id,lineJa:route.line.ja,operatorJa:route.operator.ja,reason:'path-build-failed'});
+}
+const yuriMeta=index.routes.find(route=>route.line.ja==='ゆりかもめ'),yuri=yuriMeta&&read(path.join(root,'data','nationwide','routes',`${yuriMeta.id}.json`)).route;
+let yurikamomeLoop=null;if(yuri){const from=yuri.stations.find(station=>station.ja==='芝浦ふ頭'),to=yuri.stations.find(station=>station.ja==='お台場海浜公園');if(from&&to&&Number.isInteger(from.geometryIndex)&&Number.isInteger(to.geometryIndex)){const segment=yuri.geometry.slice(Math.min(from.geometryIndex,to.geometryIndex),Math.max(from.geometryIndex,to.geometryIndex)+1),direct=km([from.longitude,from.latitude],[to.longitude,to.latitude]),rail=segment.slice(1).reduce((sum,point,index)=>sum+km([segment[index][1],segment[index][0]],[point[1],point[0]]),0);yurikamomeLoop={from:from.ja,to:to.ja,points:segment.length,directKm:+direct.toFixed(3),railKm:+rail.toFixed(3),curvatureRatio:+(rail/direct).toFixed(2),pass:segment.length>20&&rail/direct>1.2}}}
+index.audit={...(index.audit||{}),geometryMatched:matched,geometryMissing:missing.length,stationPairs:pairs,failedStationPairs:failedPairs,maxStationSnapKm:+maxSnapKm.toFixed(3),distanceOutliers:distanceOutliers.length,yurikamomeLoop};write(indexFile,index);const audit=read(auditFile);Object.assign(audit,{geometryReady:matched,geometryMissing:missing.length,failedStationPairs:failedPairs,maxStationSnapKm:+maxSnapKm.toFixed(3),distanceOutliers,yurikamomeLoop});write(auditFile,audit);write(path.join(root,'data','nationwide','GEOMETRY_MISSING.json'),missing);console.log(JSON.stringify({routes:index.routes.length,geometryMatched:matched,geometryMissing:missing.length,failedStationPairs:failedPairs,maxStationSnapKm:+maxSnapKm.toFixed(3),distanceOutliers:distanceOutliers.length,yurikamomeLoop},null,2));

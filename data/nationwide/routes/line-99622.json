@@ -1,0 +1,641 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-99622",
+    "sourceLineId": "99622",
+    "category": "subway",
+    "operatorId": "op-249",
+    "operator": {
+      "ja": "Osaka Metro",
+      "en": "Osaka Metro",
+      "ko": "오사카 메트로"
+    },
+    "line": {
+      "ja": "千日前線",
+      "kana": "せんにちまえせん",
+      "en": "Sennichimae Line",
+      "ko": "센니치마에선",
+      "aliases": [
+        "大阪メトロ千日前線",
+        "オオサカメトロセンニチマエセン",
+        "高速電気軌道第5号線"
+      ]
+    },
+    "code": "S",
+    "lineColor": "#e44d93",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "9962201",
+        "sourceId": "9962201",
+        "stationMasterId": "station-1162506",
+        "ja": "野田阪神",
+        "kana": "のだはんしん",
+        "romaji": "Nodahanshin",
+        "ko": "노다한신",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.694384,
+        "longitude": 135.476031,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S11",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.12
+      },
+      {
+        "id": "9962202",
+        "sourceId": "9962202",
+        "stationMasterId": "station-1162308",
+        "ja": "玉川",
+        "kana": "たまがわ",
+        "romaji": "Tamagawa",
+        "ko": "타마가와",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.689607,
+        "longitude": 135.476187,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S12",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 3,
+        "geometrySnapKm": 0.064
+      },
+      {
+        "id": "9962203",
+        "sourceId": "9962203",
+        "stationMasterId": "station-9962106",
+        "ja": "阿波座",
+        "kana": "あわざ",
+        "romaji": "Awaza",
+        "ko": "아와자",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.681483,
+        "longitude": 135.486297,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S13",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 15,
+        "geometrySnapKm": 0.071
+      },
+      {
+        "id": "9962204",
+        "sourceId": "9962204",
+        "stationMasterId": "station-9962204",
+        "ja": "西長堀",
+        "kana": "にしながほり",
+        "romaji": "Nishinagahori",
+        "ko": "니시나가호리",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.675256,
+        "longitude": 135.487223,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S14",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 19,
+        "geometrySnapKm": 0.059
+      },
+      {
+        "id": "9962205",
+        "sourceId": "9962205",
+        "stationMasterId": "station-3200901",
+        "ja": "桜川",
+        "kana": "さくらがわ",
+        "romaji": "Sakuragawa",
+        "ko": "사쿠라가와",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.668427,
+        "longitude": 135.488839,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S15",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 27,
+        "geometrySnapKm": 0.012
+      },
+      {
+        "id": "9962206",
+        "sourceId": "9962206",
+        "stationMasterId": "station-3100101",
+        "ja": "なんば",
+        "kana": "なんば",
+        "romaji": "Namba",
+        "ko": "난바",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.667205,
+        "longitude": 135.499599,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S16",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 33,
+        "geometrySnapKm": 0.012
+      },
+      {
+        "id": "9962207",
+        "sourceId": "9962207",
+        "stationMasterId": "station-3100102",
+        "ja": "日本橋",
+        "kana": "にほんばし",
+        "romaji": "Nihombashi",
+        "ko": "니혼바시",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 34.667146,
+        "longitude": 135.506635,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S17",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 36,
+        "geometrySnapKm": 0.046
+      },
+      {
+        "id": "9962208",
+        "sourceId": "9962208",
+        "stationMasterId": "station-9961915",
+        "ja": "谷町九丁目",
+        "kana": "たにまちきゅうちょうめ",
+        "romaji": "TanimachikyūChōMe",
+        "ko": "타니마치큐우초우메",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.667146,
+        "longitude": 135.515801,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S18",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 40,
+        "geometrySnapKm": 0.061
+      },
+      {
+        "id": "9962209",
+        "sourceId": "9962209",
+        "stationMasterId": "station-1162317",
+        "ja": "鶴橋",
+        "kana": "つるはし",
+        "romaji": "Tsuruhashi",
+        "ko": "츠루하시",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.666032,
+        "longitude": 135.529393,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S19",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 47,
+        "geometrySnapKm": 0.062
+      },
+      {
+        "id": "9962210",
+        "sourceId": "9962210",
+        "stationMasterId": "station-9962210",
+        "ja": "今里",
+        "kana": "いまさと",
+        "romaji": "Imasato",
+        "ko": "이마사토",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.668617,
+        "longitude": 135.544274,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S20",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 55,
+        "geometrySnapKm": 0.027
+      },
+      {
+        "id": "9962211",
+        "sourceId": "9962211",
+        "stationMasterId": "station-9962211",
+        "ja": "新深江",
+        "kana": "しんふかえ",
+        "romaji": "Shinfukae",
+        "ko": "신후카에",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.668158,
+        "longitude": 135.553836,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S21",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 60,
+        "geometrySnapKm": 0.073
+      },
+      {
+        "id": "9962212",
+        "sourceId": "9962212",
+        "stationMasterId": "station-9962212",
+        "ja": "小路",
+        "kana": "こうじ",
+        "romaji": "KōJi",
+        "ko": "코우지",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.661531,
+        "longitude": 135.556245,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S22",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 66,
+        "geometrySnapKm": 0.105
+      },
+      {
+        "id": "9962213",
+        "sourceId": "9962213",
+        "stationMasterId": "station-9962213",
+        "ja": "北巽",
+        "kana": "きたたつみ",
+        "romaji": "Kitatatsumi",
+        "ko": "키타타츠미",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.652982,
+        "longitude": 135.554964,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S23",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 71,
+        "geometrySnapKm": 0.11
+      },
+      {
+        "id": "9962214",
+        "sourceId": "9962214",
+        "stationMasterId": "station-9962214",
+        "ja": "南巽",
+        "kana": "みなみたつみ",
+        "romaji": "Minamitatsumi",
+        "ko": "미나미타츠미",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.643261,
+        "longitude": 135.553298,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "officialCode": "S24",
+        "stationCodeSource": "Osaka Metro official route map",
+        "hasOfficialStationCode": true,
+        "geometryIndex": 76,
+        "geometrySnapKm": 0.044
+      }
+    ],
+    "stationSequence": [
+      "station-1162506",
+      "station-1162308",
+      "station-9962106",
+      "station-9962204",
+      "station-3200901",
+      "station-3100101",
+      "station-3100102",
+      "station-9961915",
+      "station-1162317",
+      "station-9962210",
+      "station-9962211",
+      "station-9962212",
+      "station-9962213",
+      "station-9962214"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-99622.json",
+    "geometry": [
+      [
+        34.6949,
+        135.47488
+      ],
+      [
+        34.69333,
+        135.47486
+      ],
+      [
+        34.69166,
+        135.47486
+      ],
+      [
+        34.6901,
+        135.47582
+      ],
+      [
+        34.68856,
+        135.47689
+      ],
+      [
+        34.68842,
+        135.47703
+      ],
+      [
+        34.68772,
+        135.47816
+      ],
+      [
+        34.68643,
+        135.48041
+      ],
+      [
+        34.6862,
+        135.48089
+      ],
+      [
+        34.68579,
+        135.48208
+      ],
+      [
+        34.68544,
+        135.48343
+      ],
+      [
+        34.68505,
+        135.48473
+      ],
+      [
+        34.68473,
+        135.48504
+      ],
+      [
+        34.68428,
+        135.48526
+      ],
+      [
+        34.68245,
+        135.48596
+      ],
+      [
+        34.68086,
+        135.48649
+      ],
+      [
+        34.67948,
+        135.48679
+      ],
+      [
+        34.67762,
+        135.48728
+      ],
+      [
+        34.67667,
+        135.48734
+      ],
+      [
+        34.67473,
+        135.48711
+      ],
+      [
+        34.67257,
+        135.48683
+      ],
+      [
+        34.67085,
+        135.48659
+      ],
+      [
+        34.67001,
+        135.48653
+      ],
+      [
+        34.66948,
+        135.4866
+      ],
+      [
+        34.66886,
+        135.48694
+      ],
+      [
+        34.66868,
+        135.4872
+      ],
+      [
+        34.66845,
+        135.48787
+      ],
+      [
+        34.66841,
+        135.48897
+      ],
+      [
+        34.66822,
+        135.49112
+      ],
+      [
+        34.66796,
+        135.49358
+      ],
+      [
+        34.66779,
+        135.49517
+      ],
+      [
+        34.66736,
+        135.49787
+      ],
+      [
+        34.66729,
+        135.49847
+      ],
+      [
+        34.66721,
+        135.49947
+      ],
+      [
+        34.66717,
+        135.50026
+      ],
+      [
+        34.66707,
+        135.50316
+      ],
+      [
+        34.66698,
+        135.50617
+      ],
+      [
+        34.66693,
+        135.5078
+      ],
+      [
+        34.66681,
+        135.51125
+      ],
+      [
+        34.66678,
+        135.5132
+      ],
+      [
+        34.6666,
+        135.51573
+      ],
+      [
+        34.66627,
+        135.51858
+      ],
+      [
+        34.66605,
+        135.52078
+      ],
+      [
+        34.666,
+        135.52272
+      ],
+      [
+        34.66603,
+        135.52465
+      ],
+      [
+        34.66601,
+        135.52562
+      ],
+      [
+        34.66597,
+        135.52772
+      ],
+      [
+        34.66598,
+        135.53007
+      ],
+      [
+        34.66608,
+        135.53154
+      ],
+      [
+        34.66622,
+        135.53333
+      ],
+      [
+        34.66633,
+        135.5347
+      ],
+      [
+        34.66668,
+        135.53575
+      ],
+      [
+        34.66795,
+        135.53975
+      ],
+      [
+        34.6685,
+        135.54141
+      ],
+      [
+        34.66889,
+        135.54272
+      ],
+      [
+        34.66872,
+        135.54401
+      ],
+      [
+        34.66824,
+        135.54582
+      ],
+      [
+        34.66766,
+        135.5481
+      ],
+      [
+        34.66762,
+        135.54931
+      ],
+      [
+        34.66806,
+        135.55226
+      ],
+      [
+        34.66813,
+        135.55304
+      ],
+      [
+        34.66821,
+        135.55576
+      ],
+      [
+        34.66788,
+        135.55657
+      ],
+      [
+        34.66713,
+        135.55684
+      ],
+      [
+        34.66562,
+        135.55666
+      ],
+      [
+        34.66431,
+        135.55653
+      ],
+      [
+        34.66247,
+        135.55639
+      ],
+      [
+        34.66021,
+        135.55615
+      ],
+      [
+        34.65906,
+        135.55601
+      ],
+      [
+        34.6568,
+        135.55565
+      ],
+      [
+        34.65454,
+        135.5552
+      ],
+      [
+        34.652,
+        135.5548
+      ],
+      [
+        34.65005,
+        135.55445
+      ],
+      [
+        34.64785,
+        135.55406
+      ],
+      [
+        34.64565,
+        135.55366
+      ],
+      [
+        34.64381,
+        135.55336
+      ],
+      [
+        34.64287,
+        135.5532
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

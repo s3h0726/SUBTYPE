@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "generated": "2026-08-27T21:35:04.178Z",
+  "status": "INCOMPLETE_REVIEW_REQUIRED",
+  "before": {
+    "operators": 161,
+    "lines": 601,
+    "stations": 9145,
+    "relations": 10719
+  },
+  "after": {
+    "operators": 161,
+    "lines": 601,
+    "stations": 9145,
+    "relations": 10719
+  },
+  "sources": {
+    "operators": {
+      "namuwiki": 0,
+      "official": 2,
+      "fallback": 0,
+      "review": 159
+    },
+    "lines": {
+      "namuwiki": 0,
+      "official": 11,
+      "fallback": 0,
+      "review": 590
+    },
+    "stations": {
+      "namuwiki": 0,
+      "official": 16,
+      "fallback": 8951,
+      "review": 178
+    }
+  },
+  "namuwikiAccess": {
+    "directPagesAccessible": 0,
+    "blockedOrUnavailable": 9879,
+    "noEntryFound": 0,
+    "verifiedThroughSearch": 0,
+    "crossVerifiedElsewhere": 29,
+    "stillRequiresReview": 9879
+  },
+  "stationCodes": {
+    "verified": 16,
+    "unverified": 1203,
+    "none": 9500,
+    "internalIdLike": 0
+  },
+  "assets": {
+    "operatorLogos": {
+      "applied": 22,
+      "licenseVerified": 0,
+      "review": 161
+    },
+    "lineSymbols": {
+      "exists": 7,
+      "applied": 7,
+      "licenseVerified": 0,
+      "review": 7
+    }
+  },
+  "koreanQa": {
+    "japaneseCharsInLineKo": 0,
+    "japaneseCharsInStationKo": 0,
+    "romajiFragments": 14,
+    "suspiciousMachineTransliteration": 188,
+    "operatorLineConcatenation": 90
+  },
+  "reviewRequired": 9879,
+  "preservation": {
+    "routeOrderChanges": [],
+    "geometryChanges": [],
+    "countsMatch": true
+  },
+  "limitations": [
+    "Namuwiki direct access is blocked in this environment. This is recorded as access-blocked, never as no-entry-found.",
+    "Search references are queries, not guessed page URLs and not evidence of verification.",
+    "No names, route order, geometry, stable IDs, logos, or symbols were automatically overwritten."
+  ]
+}

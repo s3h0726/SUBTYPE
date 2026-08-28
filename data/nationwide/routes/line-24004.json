@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-24004",
+    "sourceLineId": "24004",
+    "category": "private",
+    "operatorId": "op-14",
+    "operator": {
+      "ja": "京王電鉄",
+      "en": "Keio",
+      "ko": "게이오 전철"
+    },
+    "line": {
+      "ja": "京王競馬場線",
+      "kana": "けいおうけいばじょうせん",
+      "en": "KeiōKeibajōSen",
+      "ko": "게이오케이바조우선",
+      "aliases": [
+        "京王競馬場線",
+        "ケイオウケイバジョウセン",
+        "京王競馬場線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(130 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "2400401",
+        "sourceId": "2400401",
+        "stationMasterId": "station-2400123",
+        "ja": "東府中",
+        "kana": "ひがしふちゅう",
+        "romaji": "Higashifuchū",
+        "ko": "히가시후추우",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.668766,
+        "longitude": 139.495257,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.05
+      },
+      {
+        "id": "2400402",
+        "sourceId": "2400402",
+        "stationMasterId": "station-2400402",
+        "ja": "府中競馬正門前",
+        "kana": "ふちゅうけいばせいもんまえ",
+        "romaji": "FuchūKeibaseimonmae",
+        "ko": "후추우케이바세이몬마에",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.668288,
+        "longitude": 139.485019,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 7,
+        "geometrySnapKm": 0.049
+      }
+    ],
+    "stationSequence": [
+      "station-2400123",
+      "station-2400402"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-24004.json",
+    "geometry": [
+      [
+        35.669,
+        139.49478
+      ],
+      [
+        35.6693,
+        139.49285
+      ],
+      [
+        35.66915,
+        139.49182
+      ],
+      [
+        35.66901,
+        139.49133
+      ],
+      [
+        35.66865,
+        139.48978
+      ],
+      [
+        35.66842,
+        139.48871
+      ],
+      [
+        35.6683,
+        139.48657
+      ],
+      [
+        35.66838,
+        139.48449
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

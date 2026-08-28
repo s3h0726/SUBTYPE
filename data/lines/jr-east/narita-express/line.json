@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "id": "line-11328",
+  "legacyId": "line-11328",
+  "operatorId": "jr-east",
+  "category": "jr",
+  "names": {
+    "ja": "成田エクスプレス",
+    "kana": "",
+    "ko": "나리타 익스프레스",
+    "en": "Narita Express"
+  },
+  "code": "",
+  "color": "hsl(345 62% 46%)",
+  "symbol": {
+    "asset": null,
+    "officialSymbolExists": false,
+    "source": "",
+    "verified": false,
+    "identificationSource": "namuwiki-unresolved",
+    "identificationUrl": "",
+    "identificationSearch": "site:namu.wiki 成田エクスプレス 나리타 익스프레스 노선 심볼",
+    "sourceAccess": "blocked",
+    "assetSource": "none",
+    "assetSourceUrl": "",
+    "licenseVerified": false,
+    "identificationFamily": "namuwiki",
+    "identificationMethod": "unresolved",
+    "identificationVerified": false
+  },
+  "loop": false,
+  "stationSignTemplate": "jr-east",
+  "services": [
+    {
+      "id": "nex-shinjuku",
+      "names": {
+        "ja": "新宿方面",
+        "ko": "신주쿠 방면",
+        "en": "N'EX Shinjuku"
+      },
+      "stopPattern": [
+        "station-mlit-003700",
+        "station-mlit-003922",
+        "station-mlit-004095",
+        "station-mlit-003766",
+        "station-1132813",
+        "station-1132705"
+      ]
+    },
+    {
+      "id": "nex-ofuna",
+      "names": {
+        "ja": "大船方面",
+        "ko": "오후나 방면",
+        "en": "N'EX Ofuna"
+      },
+      "stopPattern": [
+        "station-mlit-004961",
+        "station-mlit-004818",
+        "station-mlit-004633",
+        "station-mlit-004301",
+        "station-mlit-004095",
+        "station-mlit-003766",
+        "station-1132813",
+        "station-1132705"
+      ]
+    }
+  ],
+  "throughServiceIds": [],
+  "sources": {
+    "official": "",
+    "korean": "",
+    "geometry": "MLIT-N02-2025",
+    "koreanName": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 成田エクスプレス 나리타 익스프레스 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    }
+  },
+  "legacy": {
+    "origin": "curated",
+    "coverage": "full-source-line",
+    "dataKind": "trainService"
+  },
+  "officialKoSource": null
+}

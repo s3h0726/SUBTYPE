@@ -1,0 +1,845 @@
+{
+  "route": {
+    "id": "line-22012",
+    "legacyId": "line-22012",
+    "category": "private",
+    "operatorId": "seibu",
+    "operator": {
+      "ja": "西武鉄道",
+      "ko": "세이부 철도",
+      "en": "Seibu"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 西武鉄道 세이부 철도 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": {
+      "asset": "./data/operators/seibu/logo.svg",
+      "label": "Seibu",
+      "source": "https://commons.wikimedia.org/wiki/File:SeibuRailway_logo.svg",
+      "logoVerified": true,
+      "metadata": {
+        "asset": "./logo.svg",
+        "source": "https://commons.wikimedia.org/wiki/File:SeibuRailway_logo.svg",
+        "verified": true,
+        "identificationSource": "namuwiki-unresolved",
+        "identificationUrl": "",
+        "identificationSearch": "site:namu.wiki 西武鉄道 세이부 철도 로고",
+        "sourceAccess": "blocked",
+        "assetSource": "wikimedia",
+        "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:SeibuRailway_logo.svg",
+        "licenseVerified": false,
+        "identificationFamily": "namuwiki",
+        "identificationMethod": "unresolved",
+        "identificationVerified": false
+      }
+    },
+    "line": {
+      "ja": "西武多摩川線",
+      "kana": "",
+      "ko": "세이부 다마가와선",
+      "en": "Seibutamagawasen"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 西武多摩川線 세이부 다마가와선 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "hsl(337 62% 46%)",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 西武多摩川線 세이부 다마가와선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "loop": false,
+    "stationSignTemplate": "seibu",
+    "services": [],
+    "stations": [
+      {
+        "id": "station-mlit-003590",
+        "internalId": "station-mlit-003590",
+        "stationMasterId": "station-mlit-003590",
+        "sourceId": "station-mlit-003590",
+        "ja": "武蔵境",
+        "kana": "むさしさかい",
+        "ko": "무사시사카이",
+        "romaji": "Musashisakai",
+        "koAliases": [],
+        "latitude": 35.70209,
+        "longitude": 139.543555,
+        "officialCode": "SW01",
+        "stationCode": "SW01",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 武蔵境駅 무사시사카이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-mlit-003653",
+        "internalId": "station-mlit-003653",
+        "stationMasterId": "station-mlit-003653",
+        "sourceId": "station-mlit-003653",
+        "ja": "新小金井",
+        "kana": "しんこがねい",
+        "ko": "신코가네이",
+        "romaji": "Shinkoganei",
+        "koAliases": [],
+        "latitude": 35.69592,
+        "longitude": 139.526745,
+        "officialCode": "SW02",
+        "stationCode": "SW02",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 新小金井駅 신코가네이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 12
+      },
+      {
+        "id": "station-mlit-003790",
+        "internalId": "station-mlit-003790",
+        "stationMasterId": "station-mlit-003790",
+        "sourceId": "station-mlit-003790",
+        "ja": "多磨",
+        "kana": "たま",
+        "ko": "타마",
+        "romaji": "Tama",
+        "koAliases": [],
+        "latitude": 35.676825,
+        "longitude": 139.51715,
+        "officialCode": "SW03",
+        "stationCode": "SW03",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 多磨駅 타마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 32
+      },
+      {
+        "id": "station-mlit-003873",
+        "internalId": "station-mlit-003873",
+        "stationMasterId": "station-mlit-003873",
+        "sourceId": "station-mlit-003873",
+        "ja": "白糸台",
+        "kana": "しらいとだい",
+        "ko": "시라이토다이",
+        "romaji": "Shiraitodai",
+        "koAliases": [],
+        "latitude": 35.666305,
+        "longitude": 139.509525,
+        "officialCode": "SW04",
+        "stationCode": "SW04",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 白糸台駅 시라이토다이 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 41
+      },
+      {
+        "id": "station-mlit-003943",
+        "internalId": "station-mlit-003943",
+        "stationMasterId": "station-mlit-003943",
+        "sourceId": "station-mlit-003943",
+        "ja": "競艇場前",
+        "kana": "きょうていじょうまえ",
+        "ko": "쿄우테이조우마에",
+        "romaji": "KyōTeijōMae",
+        "koAliases": [],
+        "latitude": 35.65621,
+        "longitude": 139.49966,
+        "officialCode": "SW05",
+        "stationCode": "SW05",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 競艇場前駅 쿄우테이조우마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 52
+      },
+      {
+        "id": "station-mlit-003944",
+        "internalId": "station-mlit-003944",
+        "stationMasterId": "station-mlit-003944",
+        "sourceId": "station-mlit-003944",
+        "ja": "是政",
+        "kana": "これまさ",
+        "ko": "코레마사",
+        "romaji": "Koremasa",
+        "koAliases": [],
+        "latitude": 35.656185,
+        "longitude": 139.48864,
+        "officialCode": "SW06",
+        "stationCode": "SW06",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 是政駅 코레마사 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 58
+      }
+    ],
+    "geometry": [
+      [
+        35.70192,
+        139.54474
+      ],
+      [
+        35.7019,
+        139.5431
+      ],
+      [
+        35.70187,
+        139.54086
+      ],
+      [
+        35.70182,
+        139.53862
+      ],
+      [
+        35.70176,
+        139.53641
+      ],
+      [
+        35.70147,
+        139.53525
+      ],
+      [
+        35.70133,
+        139.53495
+      ],
+      [
+        35.7009,
+        139.53424
+      ],
+      [
+        35.69977,
+        139.53249
+      ],
+      [
+        35.69918,
+        139.53158
+      ],
+      [
+        35.69798,
+        139.52971
+      ],
+      [
+        35.69732,
+        139.52869
+      ],
+      [
+        35.69623,
+        139.52711
+      ],
+      [
+        35.6951,
+        139.52593
+      ],
+      [
+        35.69493,
+        139.5258
+      ],
+      [
+        35.69418,
+        139.52538
+      ],
+      [
+        35.69295,
+        139.5248
+      ],
+      [
+        35.69216,
+        139.52441
+      ],
+      [
+        35.69073,
+        139.52373
+      ],
+      [
+        35.68985,
+        139.52331
+      ],
+      [
+        35.68873,
+        139.52278
+      ],
+      [
+        35.68833,
+        139.52259
+      ],
+      [
+        35.68746,
+        139.52218
+      ],
+      [
+        35.68661,
+        139.52178
+      ],
+      [
+        35.68583,
+        139.52141
+      ],
+      [
+        35.68509,
+        139.52106
+      ],
+      [
+        35.68434,
+        139.52071
+      ],
+      [
+        35.68285,
+        139.52001
+      ],
+      [
+        35.68198,
+        139.51959
+      ],
+      [
+        35.68028,
+        139.51878
+      ],
+      [
+        35.67941,
+        139.51837
+      ],
+      [
+        35.67784,
+        139.51763
+      ],
+      [
+        35.67731,
+        139.51738
+      ],
+      [
+        35.67634,
+        139.51692
+      ],
+      [
+        35.67508,
+        139.51634
+      ],
+      [
+        35.67444,
+        139.51604
+      ],
+      [
+        35.67309,
+        139.5154
+      ],
+      [
+        35.67136,
+        139.51458
+      ],
+      [
+        35.67046,
+        139.51414
+      ],
+      [
+        35.6688,
+        139.51287
+      ],
+      [
+        35.66823,
+        139.5123
+      ],
+      [
+        35.66682,
+        139.5103
+      ],
+      [
+        35.66546,
+        139.5083
+      ],
+      [
+        35.66385,
+        139.50608
+      ],
+      [
+        35.66274,
+        139.50465
+      ],
+      [
+        35.66169,
+        139.50392
+      ],
+      [
+        35.66092,
+        139.5037
+      ],
+      [
+        35.6593,
+        139.50327
+      ],
+      [
+        35.65802,
+        139.50285
+      ],
+      [
+        35.6572,
+        139.50231
+      ],
+      [
+        35.65682,
+        139.50174
+      ],
+      [
+        35.65644,
+        139.50063
+      ],
+      [
+        35.65635,
+        139.50028
+      ],
+      [
+        35.65607,
+        139.49904
+      ],
+      [
+        35.65585,
+        139.49757
+      ],
+      [
+        35.65584,
+        139.49679
+      ],
+      [
+        35.65604,
+        139.49168
+      ],
+      [
+        35.65616,
+        139.48921
+      ],
+      [
+        35.65621,
+        139.48807
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-mlit-003590",
+        "toStationId": "station-mlit-003653",
+        "geometry": [
+          [
+            35.70192,
+            139.54474
+          ],
+          [
+            35.7019,
+            139.5431
+          ],
+          [
+            35.70187,
+            139.54086
+          ],
+          [
+            35.70182,
+            139.53862
+          ],
+          [
+            35.70176,
+            139.53641
+          ],
+          [
+            35.70147,
+            139.53525
+          ],
+          [
+            35.70133,
+            139.53495
+          ],
+          [
+            35.7009,
+            139.53424
+          ],
+          [
+            35.69977,
+            139.53249
+          ],
+          [
+            35.69918,
+            139.53158
+          ],
+          [
+            35.69798,
+            139.52971
+          ],
+          [
+            35.69732,
+            139.52869
+          ],
+          [
+            35.69623,
+            139.52711
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-003653",
+        "toStationId": "station-mlit-003790",
+        "geometry": [
+          [
+            35.69623,
+            139.52711
+          ],
+          [
+            35.6951,
+            139.52593
+          ],
+          [
+            35.69493,
+            139.5258
+          ],
+          [
+            35.69418,
+            139.52538
+          ],
+          [
+            35.69295,
+            139.5248
+          ],
+          [
+            35.69216,
+            139.52441
+          ],
+          [
+            35.69073,
+            139.52373
+          ],
+          [
+            35.68985,
+            139.52331
+          ],
+          [
+            35.68873,
+            139.52278
+          ],
+          [
+            35.68833,
+            139.52259
+          ],
+          [
+            35.68746,
+            139.52218
+          ],
+          [
+            35.68661,
+            139.52178
+          ],
+          [
+            35.68583,
+            139.52141
+          ],
+          [
+            35.68509,
+            139.52106
+          ],
+          [
+            35.68434,
+            139.52071
+          ],
+          [
+            35.68285,
+            139.52001
+          ],
+          [
+            35.68198,
+            139.51959
+          ],
+          [
+            35.68028,
+            139.51878
+          ],
+          [
+            35.67941,
+            139.51837
+          ],
+          [
+            35.67784,
+            139.51763
+          ],
+          [
+            35.67731,
+            139.51738
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-003790",
+        "toStationId": "station-mlit-003873",
+        "geometry": [
+          [
+            35.67731,
+            139.51738
+          ],
+          [
+            35.67634,
+            139.51692
+          ],
+          [
+            35.67508,
+            139.51634
+          ],
+          [
+            35.67444,
+            139.51604
+          ],
+          [
+            35.67309,
+            139.5154
+          ],
+          [
+            35.67136,
+            139.51458
+          ],
+          [
+            35.67046,
+            139.51414
+          ],
+          [
+            35.6688,
+            139.51287
+          ],
+          [
+            35.66823,
+            139.5123
+          ],
+          [
+            35.66682,
+            139.5103
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-003873",
+        "toStationId": "station-mlit-003943",
+        "geometry": [
+          [
+            35.66682,
+            139.5103
+          ],
+          [
+            35.66546,
+            139.5083
+          ],
+          [
+            35.66385,
+            139.50608
+          ],
+          [
+            35.66274,
+            139.50465
+          ],
+          [
+            35.66169,
+            139.50392
+          ],
+          [
+            35.66092,
+            139.5037
+          ],
+          [
+            35.6593,
+            139.50327
+          ],
+          [
+            35.65802,
+            139.50285
+          ],
+          [
+            35.6572,
+            139.50231
+          ],
+          [
+            35.65682,
+            139.50174
+          ],
+          [
+            35.65644,
+            139.50063
+          ],
+          [
+            35.65635,
+            139.50028
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-003943",
+        "toStationId": "station-mlit-003944",
+        "geometry": [
+          [
+            35.65635,
+            139.50028
+          ],
+          [
+            35.65607,
+            139.49904
+          ],
+          [
+            35.65585,
+            139.49757
+          ],
+          [
+            35.65584,
+            139.49679
+          ],
+          [
+            35.65604,
+            139.49168
+          ],
+          [
+            35.65616,
+            139.48921
+          ],
+          [
+            35.65621,
+            139.48807
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "workspace": {
+      "folder": "data/lines/seibu/seibutamagawasen",
+      "linePath": "data/lines/seibu/seibutamagawasen/line.json",
+      "stationsPath": "data/lines/seibu/seibutamagawasen/stations.json",
+      "geometryPath": "data/lines/seibu/seibutamagawasen/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 西武多摩川線 세이부 다마가와선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "full-source-line"
+  }
+}

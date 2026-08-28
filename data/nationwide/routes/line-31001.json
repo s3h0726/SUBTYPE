@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-31001",
+    "sourceLineId": "31001",
+    "category": "private",
+    "operatorId": "op-21",
+    "operator": {
+      "ja": "近畿日本鉄道",
+      "en": "Kinkinihontetsudō",
+      "ko": "킨키니혼테츠도우"
+    },
+    "line": {
+      "ja": "近鉄難波線",
+      "kana": "きんてつなんばせん",
+      "en": "Kintetsunambasen",
+      "ko": "킨테츠난바선",
+      "aliases": [
+        "近鉄難波線",
+        "キンテツナンバセン",
+        "近鉄難波線"
+      ]
+    },
+    "code": "",
+    "lineColor": "hsl(155 62% 46%)",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "3100101",
+        "sourceId": "3100101",
+        "stationMasterId": "station-3100101",
+        "ja": "大阪難波",
+        "kana": "おおさかなんば",
+        "romaji": "ōSakanamba",
+        "ko": "오오사카난바",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.667113,
+        "longitude": 135.499144,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.025
+      },
+      {
+        "id": "3100102",
+        "sourceId": "3100102",
+        "stationMasterId": "station-3100102",
+        "ja": "近鉄日本橋",
+        "kana": "きんてつにほんばし",
+        "romaji": "Kintetsunihombashi",
+        "ko": "킨테츠니혼바시",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.666949,
+        "longitude": 135.505818,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "geometryIndex": 2,
+        "geometrySnapKm": 0.016
+      },
+      {
+        "id": "3100103",
+        "sourceId": "3100103",
+        "stationMasterId": "station-3100103",
+        "ja": "大阪上本町",
+        "kana": "おおさかうえほんまち",
+        "romaji": "ōSakauehonmachi",
+        "ko": "오오사카우에혼마치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 34.665513,
+        "longitude": 135.522189,
+        "prefectureCode": 27,
+        "inTokyo": false,
+        "geometryIndex": 7,
+        "geometrySnapKm": 0.139
+      }
+    ],
+    "stationSequence": [
+      "station-3100101",
+      "station-3100102",
+      "station-3100103"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-31001.json",
+    "geometry": [
+      [
+        34.66705,
+        135.49888
+      ],
+      [
+        34.66699,
+        135.50062
+      ],
+      [
+        34.66684,
+        135.5057
+      ],
+      [
+        34.66681,
+        135.50676
+      ],
+      [
+        34.66667,
+        135.51134
+      ],
+      [
+        34.66654,
+        135.5153
+      ],
+      [
+        34.66621,
+        135.51822
+      ],
+      [
+        34.66597,
+        135.52077
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}

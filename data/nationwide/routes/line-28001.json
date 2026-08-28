@@ -1,0 +1,885 @@
+{
+  "version": 1,
+  "route": {
+    "id": "line-28001",
+    "sourceLineId": "28001",
+    "category": "subway",
+    "operatorId": "op-18",
+    "operator": {
+      "ja": "東京メトロ",
+      "en": "Tokyo Metro",
+      "ko": "도쿄 메트로"
+    },
+    "line": {
+      "ja": "銀座線",
+      "kana": "ぎんざせん",
+      "en": "Ginza Line",
+      "ko": "긴자선",
+      "aliases": [
+        "東京メトロ銀座線",
+        "ギンザセン",
+        "東京メトロ銀座線"
+      ]
+    },
+    "code": "G",
+    "lineColor": "#f39700",
+    "loop": false,
+    "coverage": "nationwide-source-line",
+    "verified": "2026-08-22",
+    "stations": [
+      {
+        "id": "2800101",
+        "sourceId": "2800101",
+        "stationMasterId": "station-2100201",
+        "ja": "浅草",
+        "kana": "あさくさ",
+        "romaji": "Asakusa",
+        "ko": "아사쿠사",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.710733,
+        "longitude": 139.797592,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 0,
+        "geometrySnapKm": 0.014
+      },
+      {
+        "id": "2800102",
+        "sourceId": "2800102",
+        "stationMasterId": "station-2800102",
+        "ja": "田原町",
+        "kana": "たはらまち",
+        "romaji": "Taharamachi",
+        "ko": "타하라마치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.709897,
+        "longitude": 139.790897,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 8,
+        "geometrySnapKm": 0.012
+      },
+      {
+        "id": "2800103",
+        "sourceId": "2800103",
+        "stationMasterId": "station-2800103",
+        "ja": "稲荷町",
+        "kana": "いなりまち",
+        "romaji": "Inarimachi",
+        "ko": "이나리마치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.711273,
+        "longitude": 139.782593,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 15,
+        "geometrySnapKm": 0.029
+      },
+      {
+        "id": "2800104",
+        "sourceId": "2800104",
+        "stationMasterId": "station-1130220",
+        "ja": "上野",
+        "kana": "うえの",
+        "romaji": "Ueno",
+        "ko": "우에노",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.711482,
+        "longitude": 139.777122,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 22,
+        "geometrySnapKm": 0.082
+      },
+      {
+        "id": "2800105",
+        "sourceId": "2800105",
+        "stationMasterId": "station-1130221",
+        "ja": "上野広小路",
+        "kana": "うえのひろこうじ",
+        "romaji": "UenohirokōJi",
+        "ko": "우에노히로코우지",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.70768,
+        "longitude": 139.772877,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 30,
+        "geometrySnapKm": 0.047
+      },
+      {
+        "id": "2800106",
+        "sourceId": "2800106",
+        "stationMasterId": "station-2800106",
+        "ja": "末広町",
+        "kana": "すえひろまち",
+        "romaji": "Suehiromachi",
+        "ko": "스에히로마치",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.702972,
+        "longitude": 139.771713,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 36,
+        "geometrySnapKm": 0.006
+      },
+      {
+        "id": "2800107",
+        "sourceId": "2800107",
+        "stationMasterId": "station-1130223",
+        "ja": "神田",
+        "kana": "かんだ",
+        "romaji": "Kanda",
+        "ko": "칸다",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.693587,
+        "longitude": 139.770899,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 45,
+        "geometrySnapKm": 0.036
+      },
+      {
+        "id": "2800108",
+        "sourceId": "2800108",
+        "stationMasterId": "station-1131402",
+        "ja": "三越前",
+        "kana": "みつこしまえ",
+        "romaji": "Mitsukoshimae",
+        "ko": "미츠코시마에",
+        "koAliases": [],
+        "nameSource": "dictionary-transliteration",
+        "latitude": 35.687101,
+        "longitude": 139.773594,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 53,
+        "geometrySnapKm": 0.037
+      },
+      {
+        "id": "2800109",
+        "sourceId": "2800109",
+        "stationMasterId": "station-2800109",
+        "ja": "日本橋",
+        "kana": "にほんばし",
+        "romaji": "Nihombashi",
+        "ko": "니혼바시",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.682078,
+        "longitude": 139.773516,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 60,
+        "geometrySnapKm": 0.014
+      },
+      {
+        "id": "2800110",
+        "sourceId": "2800110",
+        "stationMasterId": "station-2800110",
+        "ja": "京橋",
+        "kana": "きょうばし",
+        "romaji": "Kyobashi",
+        "ko": "교바시",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.676856,
+        "longitude": 139.770126,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 68,
+        "geometrySnapKm": 0.018
+      },
+      {
+        "id": "2800111",
+        "sourceId": "2800111",
+        "stationMasterId": "station-2800111",
+        "ja": "銀座",
+        "kana": "ぎんざ",
+        "romaji": "Ginza",
+        "ko": "긴자",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.671989,
+        "longitude": 139.763965,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 74,
+        "geometrySnapKm": 0.132
+      },
+      {
+        "id": "2800112",
+        "sourceId": "2800112",
+        "stationMasterId": "station-1130102",
+        "ja": "新橋",
+        "kana": "しんばし",
+        "romaji": "Shimbashi",
+        "ko": "신바시",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.667434,
+        "longitude": 139.758432,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 80,
+        "geometrySnapKm": 0.022
+      },
+      {
+        "id": "2800113",
+        "sourceId": "2800113",
+        "stationMasterId": "station-2800113",
+        "ja": "虎ノ門",
+        "kana": "とらのもん",
+        "romaji": "Toranomon",
+        "ko": "토라노몬",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.670236,
+        "longitude": 139.749832,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 89,
+        "geometrySnapKm": 0.017
+      },
+      {
+        "id": "2800114",
+        "sourceId": "2800114",
+        "stationMasterId": "station-2800114",
+        "ja": "溜池山王",
+        "kana": "ためいけさんのう",
+        "romaji": "Tameike-sanno",
+        "ko": "타메이케산노",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.673621,
+        "longitude": 139.741419,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 96,
+        "geometrySnapKm": 0.161
+      },
+      {
+        "id": "2800115",
+        "sourceId": "2800115",
+        "stationMasterId": "station-2800115",
+        "ja": "赤坂見附",
+        "kana": "あかさかみつけ",
+        "romaji": "Akasaka-mitsuke",
+        "ko": "아카사카미츠케",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.677021,
+        "longitude": 139.737047,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 102,
+        "geometrySnapKm": 0.018
+      },
+      {
+        "id": "2800116",
+        "sourceId": "2800116",
+        "stationMasterId": "station-2800116",
+        "ja": "青山一丁目",
+        "kana": "あおやまいっちょうめ",
+        "romaji": "Aoyama-itchome",
+        "ko": "아오야마잇초메",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.672765,
+        "longitude": 139.724159,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 111,
+        "geometrySnapKm": 0.009
+      },
+      {
+        "id": "2800117",
+        "sourceId": "2800117",
+        "stationMasterId": "station-2800117",
+        "ja": "外苑前",
+        "kana": "がいえんまえ",
+        "romaji": "Gaiemmae",
+        "ko": "가이엔마에",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.670527,
+        "longitude": 139.717857,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 115,
+        "geometrySnapKm": 0.05
+      },
+      {
+        "id": "2800118",
+        "sourceId": "2800118",
+        "stationMasterId": "station-2800118",
+        "ja": "表参道",
+        "kana": "おもてさんどう",
+        "romaji": "Omote-sando",
+        "ko": "오모테산도",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.665247,
+        "longitude": 139.712314,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 119,
+        "geometrySnapKm": 0.025
+      },
+      {
+        "id": "2800119",
+        "sourceId": "2800119",
+        "stationMasterId": "station-1130205",
+        "ja": "渋谷",
+        "kana": "しぶや",
+        "romaji": "Shibuya",
+        "ko": "시부야",
+        "koAliases": [],
+        "nameSource": "verified-seed",
+        "latitude": 35.659066,
+        "longitude": 139.701,
+        "prefectureCode": 13,
+        "inTokyo": true,
+        "geometryIndex": 125,
+        "geometrySnapKm": 0.09
+      }
+    ],
+    "stationSequence": [
+      "station-2100201",
+      "station-2800102",
+      "station-2800103",
+      "station-1130220",
+      "station-1130221",
+      "station-2800106",
+      "station-1130223",
+      "station-1131402",
+      "station-2800109",
+      "station-2800110",
+      "station-2800111",
+      "station-1130102",
+      "station-2800113",
+      "station-2800114",
+      "station-2800115",
+      "station-2800116",
+      "station-2800117",
+      "station-2800118",
+      "station-1130205"
+    ],
+    "dataKind": "physicalRoute",
+    "lazySource": "./data/nationwide/routes/line-28001.json",
+    "geometry": [
+      [
+        35.71072,
+        139.79775
+      ],
+      [
+        35.70976,
+        139.79697
+      ],
+      [
+        35.70949,
+        139.79673
+      ],
+      [
+        35.70898,
+        139.79518
+      ],
+      [
+        35.70915,
+        139.79428
+      ],
+      [
+        35.70937,
+        139.79307
+      ],
+      [
+        35.70953,
+        139.7922
+      ],
+      [
+        35.70968,
+        139.79139
+      ],
+      [
+        35.70981,
+        139.79081
+      ],
+      [
+        35.71001,
+        139.7898
+      ],
+      [
+        35.71016,
+        139.789
+      ],
+      [
+        35.71039,
+        139.78776
+      ],
+      [
+        35.71058,
+        139.78678
+      ],
+      [
+        35.71088,
+        139.78505
+      ],
+      [
+        35.71109,
+        139.7839
+      ],
+      [
+        35.71126,
+        139.78291
+      ],
+      [
+        35.71151,
+        139.78151
+      ],
+      [
+        35.71168,
+        139.78056
+      ],
+      [
+        35.71176,
+        139.78011
+      ],
+      [
+        35.71197,
+        139.77896
+      ],
+      [
+        35.7121,
+        139.77817
+      ],
+      [
+        35.71223,
+        139.77709
+      ],
+      [
+        35.71213,
+        139.7767
+      ],
+      [
+        35.71175,
+        139.77531
+      ],
+      [
+        35.71163,
+        139.77487
+      ],
+      [
+        35.71122,
+        139.77414
+      ],
+      [
+        35.71054,
+        139.77383
+      ],
+      [
+        35.70977,
+        139.77354
+      ],
+      [
+        35.70916,
+        139.77333
+      ],
+      [
+        35.70838,
+        139.77315
+      ],
+      [
+        35.70726,
+        139.7729
+      ],
+      [
+        35.70635,
+        139.77241
+      ],
+      [
+        35.70587,
+        139.77215
+      ],
+      [
+        35.70519,
+        139.77202
+      ],
+      [
+        35.70448,
+        139.77195
+      ],
+      [
+        35.70381,
+        139.77188
+      ],
+      [
+        35.70296,
+        139.77178
+      ],
+      [
+        35.70237,
+        139.77172
+      ],
+      [
+        35.70186,
+        139.77166
+      ],
+      [
+        35.70082,
+        139.77154
+      ],
+      [
+        35.69967,
+        139.7714
+      ],
+      [
+        35.69768,
+        139.7712
+      ],
+      [
+        35.69581,
+        139.77047
+      ],
+      [
+        35.69485,
+        139.77043
+      ],
+      [
+        35.69427,
+        139.77066
+      ],
+      [
+        35.69329,
+        139.77107
+      ],
+      [
+        35.69315,
+        139.77113
+      ],
+      [
+        35.69203,
+        139.77155
+      ],
+      [
+        35.69158,
+        139.77176
+      ],
+      [
+        35.6902,
+        139.77234
+      ],
+      [
+        35.68938,
+        139.77269
+      ],
+      [
+        35.68864,
+        139.77299
+      ],
+      [
+        35.68747,
+        139.77346
+      ],
+      [
+        35.68679,
+        139.77374
+      ],
+      [
+        35.68628,
+        139.77396
+      ],
+      [
+        35.68546,
+        139.77429
+      ],
+      [
+        35.68433,
+        139.77456
+      ],
+      [
+        35.68356,
+        139.77433
+      ],
+      [
+        35.68347,
+        139.7743
+      ],
+      [
+        35.68252,
+        139.77373
+      ],
+      [
+        35.6822,
+        139.77354
+      ],
+      [
+        35.68138,
+        139.77302
+      ],
+      [
+        35.6808,
+        139.77265
+      ],
+      [
+        35.68003,
+        139.77216
+      ],
+      [
+        35.67968,
+        139.77194
+      ],
+      [
+        35.67878,
+        139.77138
+      ],
+      [
+        35.67776,
+        139.77076
+      ],
+      [
+        35.67709,
+        139.77035
+      ],
+      [
+        35.6767,
+        139.7701
+      ],
+      [
+        35.67619,
+        139.7698
+      ],
+      [
+        35.67526,
+        139.76918
+      ],
+      [
+        35.67384,
+        139.76779
+      ],
+      [
+        35.67294,
+        139.76687
+      ],
+      [
+        35.67201,
+        139.7659
+      ],
+      [
+        35.67124,
+        139.7651
+      ],
+      [
+        35.67105,
+        139.7649
+      ],
+      [
+        35.66942,
+        139.76315
+      ],
+      [
+        35.66854,
+        139.76221
+      ],
+      [
+        35.66739,
+        139.76092
+      ],
+      [
+        35.66707,
+        139.75939
+      ],
+      [
+        35.66734,
+        139.75864
+      ],
+      [
+        35.6676,
+        139.75788
+      ],
+      [
+        35.66764,
+        139.75775
+      ],
+      [
+        35.6677,
+        139.75756
+      ],
+      [
+        35.66806,
+        139.75641
+      ],
+      [
+        35.66852,
+        139.75501
+      ],
+      [
+        35.66903,
+        139.75344
+      ],
+      [
+        35.66931,
+        139.75258
+      ],
+      [
+        35.66991,
+        139.75082
+      ],
+      [
+        35.67032,
+        139.74968
+      ],
+      [
+        35.6705,
+        139.74886
+      ],
+      [
+        35.67041,
+        139.74809
+      ],
+      [
+        35.67031,
+        139.7475
+      ],
+      [
+        35.67043,
+        139.74544
+      ],
+      [
+        35.67071,
+        139.74376
+      ],
+      [
+        35.67161,
+        139.74178
+      ],
+      [
+        35.67228,
+        139.74075
+      ],
+      [
+        35.67288,
+        139.73985
+      ],
+      [
+        35.67372,
+        139.7389
+      ],
+      [
+        35.67467,
+        139.73849
+      ],
+      [
+        35.67552,
+        139.73814
+      ],
+      [
+        35.67621,
+        139.73773
+      ],
+      [
+        35.67699,
+        139.73724
+      ],
+      [
+        35.67779,
+        139.73678
+      ],
+      [
+        35.6776,
+        139.73573
+      ],
+      [
+        35.6761,
+        139.73319
+      ],
+      [
+        35.6755,
+        139.73216
+      ],
+      [
+        35.67474,
+        139.73032
+      ],
+      [
+        35.67405,
+        139.72796
+      ],
+      [
+        35.67357,
+        139.72644
+      ],
+      [
+        35.67311,
+        139.72511
+      ],
+      [
+        35.67276,
+        139.72406
+      ],
+      [
+        35.67247,
+        139.72318
+      ],
+      [
+        35.67174,
+        139.72114
+      ],
+      [
+        35.67077,
+        139.71883
+      ],
+      [
+        35.67059,
+        139.7184
+      ],
+      [
+        35.66998,
+        139.71679
+      ],
+      [
+        35.66903,
+        139.71591
+      ],
+      [
+        35.66578,
+        139.71314
+      ],
+      [
+        35.6651,
+        139.71253
+      ],
+      [
+        35.66388,
+        139.71143
+      ],
+      [
+        35.66285,
+        139.71027
+      ],
+      [
+        35.66154,
+        139.70826
+      ],
+      [
+        35.66064,
+        139.70681
+      ],
+      [
+        35.659772,
+        139.705066
+      ],
+      [
+        35.658869,
+        139.701968
+      ]
+    ],
+    "geometrySource": "MLIT-N02-2025"
+  }
+}
