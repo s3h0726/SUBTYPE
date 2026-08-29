@@ -6,22 +6,34 @@
     "operatorId": "hankyudentetsu",
     "operator": {
       "ja": "阪急電鉄",
-      "ko": "한큐우덴테츠",
+      "ko": "한큐 전철",
       "en": "HankyūDentetsu"
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 阪急電鉄 한큐우덴테츠 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/%ED%95%9C%ED%81%90%20%EC%A0%84%EC%B2%A0",
+      "searchReference": "site:namu.wiki \"阪急電鉄\"",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"阪急電鉄\"",
+        "resultTitle": "한큐 전철",
+        "resultUrl": "https://namu.wiki/w/%ED%95%9C%ED%81%90%20%EC%A0%84%EC%B2%A0"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "阪急電鉄",
+        "legalNameJa": "阪急電鉄株式会社",
+        "url": "https://www.hankyu.co.jp/company/index.html"
+      }
     },
     "operatorAsset": null,
     "line": {

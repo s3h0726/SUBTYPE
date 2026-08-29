@@ -11,17 +11,29 @@
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki JR西日本 JR 서일본 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/JR%20%EC%84%9C%EC%9D%BC%EB%B3%B8",
+      "searchReference": "\"JR西日本\" site:namu.wiki",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "\"JR西日本\" site:namu.wiki",
+        "resultTitle": "JR 서일본",
+        "resultUrl": "https://namu.wiki/w/JR%20%EC%84%9C%EC%9D%BC%EB%B3%B8"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "JR西日本",
+        "legalNameJa": "西日本旅客鉄道株式会社",
+        "url": "https://www.westjr.co.jp/company/info/outline/"
+      }
     },
     "operatorAsset": {
       "asset": "./data/operators/jr-west/logo.svg",

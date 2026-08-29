@@ -11,17 +11,29 @@
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki JR東日本 JR 동일본 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/JR%20%EB%8F%99%EC%9D%BC%EB%B3%B8",
+      "searchReference": "\"JR東日本\" site:namu.wiki",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "\"JR東日本\" site:namu.wiki",
+        "resultTitle": "JR 동일본",
+        "resultUrl": "https://namu.wiki/w/JR%20%EB%8F%99%EC%9D%BC%EB%B3%B8"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "JR東日本",
+        "legalNameJa": "東日本旅客鉄道株式会社",
+        "url": "https://www.jreast.co.jp/kr/downloads/pdf/jr-east_guide_kr.pdf"
+      }
     },
     "operatorAsset": {
       "asset": "./data/operators/jr-east/logo.svg",

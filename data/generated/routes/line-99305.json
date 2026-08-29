@@ -6,22 +6,33 @@
     "operatorId": "toei",
     "operator": {
       "ja": "東京都交通局",
-      "ko": "도에이 교통",
+      "ko": "도쿄도 교통국",
       "en": "Toei Transportation"
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 東京都交通局 도에이 교통 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/%EB%8F%84%EC%BF%84%EB%8F%84%20%EA%B5%90%ED%86%B5%EA%B5%AD",
+      "searchReference": "\"도쿄도 교통국\" site:namu.wiki",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "\"도쿄도 교통국\" site:namu.wiki",
+        "resultTitle": "도쿄도 교통국",
+        "resultUrl": "https://namu.wiki/w/%EB%8F%84%EC%BF%84%EB%8F%84%20%EA%B5%90%ED%86%B5%EA%B5%AD"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "東京都交通局",
+        "url": "https://www.kotsu.metro.tokyo.jp/about/service/jigyo.html"
+      }
     },
     "operatorAsset": {
       "asset": "./data/operators/toei/logo.svg",

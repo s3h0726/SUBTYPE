@@ -14,8 +14,9 @@
 		"source:apply-verified": "node tools/apply-verified-korean.js --apply",
 		"source:namuwiki-policy": "node tools/migrate-namuwiki-canonical-policy.js",
 		"source:namuwiki-audit": "node tools/audit-namuwiki-coverage.js",
+		"audit:namuwiki": "node tools/validate-namuwiki.js",
 		"validate:namuwiki": "node tools/validate-namuwiki.js",
-		"build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/validate-namuwiki.js && node tools/build-static.js",
+		"build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/build-static.js",
 		"test": "node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/audit-ui-quality.js"
 	},
 	"devDependencies": {

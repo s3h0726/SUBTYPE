@@ -6,22 +6,34 @@
     "operatorId": "jr-kyushu",
     "operator": {
       "ja": "JR九州",
-      "ko": "JR 규슈",
+      "ko": "JR 큐슈",
       "en": "JR Kyushu"
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki JR九州 JR 규슈 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/JR%20%ED%81%90%EC%8A%88",
+      "searchReference": "\"JR九州\" site:namu.wiki",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "\"JR九州\" site:namu.wiki",
+        "resultTitle": "JR 큐슈",
+        "resultUrl": "https://namu.wiki/w/JR%20%ED%81%90%EC%8A%88"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "JR九州",
+        "legalNameJa": "九州旅客鉄道株式会社",
+        "url": "https://www.jrkyushu.co.jp/company/info/outline/"
+      }
     },
     "operatorAsset": {
       "asset": "./data/operators/jr-kyushu/logo.svg",

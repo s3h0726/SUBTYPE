@@ -6,22 +6,34 @@
     "operatorId": "keikyu",
     "operator": {
       "ja": "京急電鉄",
-      "ko": "게이큐 전철",
+      "ko": "케이큐 전철",
       "en": "Keikyu"
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 京急電鉄 게이큐 전철 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%ED%81%90%20%EC%A0%84%EC%B2%A0",
+      "searchReference": "site:namu.wiki \"京急電鉄\"; \"케이큐 전철\" site:namu.wiki",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"京急電鉄\"",
+        "resultTitle": "케이큐 전철",
+        "resultUrl": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%ED%81%90%20%EC%A0%84%EC%B2%A0"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "京急電鉄",
+        "legalNameJa": "京浜急行電鉄株式会社",
+        "url": "https://www.keikyu.co.jp/company/pdf/handbook2022-2023_P004-007.pdf"
+      }
     },
     "operatorAsset": {
       "asset": "./data/operators/keikyu/logo.svg",

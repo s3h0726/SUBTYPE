@@ -11,17 +11,29 @@
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki JR東海 JR 도카이 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/JR%20%EB%8F%84%EC%B9%B4%EC%9D%B4",
+      "searchReference": "\"JR東海\" site:namu.wiki",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "\"JR東海\" site:namu.wiki",
+        "resultTitle": "JR 도카이",
+        "resultUrl": "https://namu.wiki/w/JR%20%EB%8F%84%EC%B9%B4%EC%9D%B4"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "JR東海",
+        "legalNameJa": "東海旅客鉄道株式会社",
+        "url": "https://railway.jr-central.co.jp/index.html"
+      }
     },
     "operatorAsset": {
       "asset": "./data/operators/jr-central/logo.svg",

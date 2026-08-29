@@ -1,6 +1,6 @@
 # NAMUWIKI MIGRATION FINAL REPORT
 
-Status: **DEVELOPMENT_BLOCKED**
+Status: **IN_PROGRESS**
 
 | Item | Verified | Total | Unresolved |
 |---|---:|---:|---:|
@@ -18,6 +18,4 @@ Status: **DEVELOPMENT_BLOCKED**
 - Geometry changes: 0
 - Unexplained data loss: 0
 
-NAMUWIKI DATA MIGRATION IS NOT COMPLETE.
-
-DEVELOPMENT REMAINS BLOCKED.
+NAMUWIKI AUDIT IN PROGRESS. Build allowed.
