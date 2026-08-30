@@ -75,6 +75,7 @@
       "identificationMethod": "unresolved",
       "identificationVerified": false
     },
+    "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "nankaidentetsu",
     "services": [],
@@ -141,7 +142,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 14
       },
       {
         "id": "station-3200503",
@@ -173,7 +174,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 26
+        "geometryIndex": 40
       },
       {
         "id": "station-3200504",
@@ -205,7 +206,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 30
+        "geometryIndex": 44
       },
       {
         "id": "station-3200505",
@@ -237,7 +238,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 35
+        "geometryIndex": 49
       },
       {
         "id": "station-3200506",
@@ -269,7 +270,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 41
+        "geometryIndex": 55
       },
       {
         "id": "station-3200507",
@@ -301,7 +302,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 45
+        "geometryIndex": 59
       },
       {
         "id": "station-3200508",
@@ -333,7 +334,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 50
+        "geometryIndex": 64
       },
       {
         "id": "station-3200509",
@@ -365,10 +366,66 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 72
+        "geometryIndex": 86
       }
     ],
     "geometry": [
+      [
+        34.23738,
+        135.16743
+      ],
+      [
+        34.23797,
+        135.16829
+      ],
+      [
+        34.23879,
+        135.16952
+      ],
+      [
+        34.24012,
+        135.17156
+      ],
+      [
+        34.24098,
+        135.17237
+      ],
+      [
+        34.2414,
+        135.17256
+      ],
+      [
+        34.24285,
+        135.1727
+      ],
+      [
+        34.24547,
+        135.17199
+      ],
+      [
+        34.24707,
+        135.17153
+      ],
+      [
+        34.24951,
+        135.17087
+      ],
+      [
+        34.25137,
+        135.17015
+      ],
+      [
+        34.25268,
+        135.16925
+      ],
+      [
+        34.25342,
+        135.16854
+      ],
+      [
+        34.25425,
+        135.16732
+      ],
       [
         34.25473,
         135.16637
@@ -663,6 +720,74 @@
       ]
     ],
     "directedSegments": [
+      {
+        "fromStationId": "station-1164003",
+        "toStationId": "station-3200139",
+        "geometry": [
+          [
+            34.23738,
+            135.16743
+          ],
+          [
+            34.23797,
+            135.16829
+          ],
+          [
+            34.23879,
+            135.16952
+          ],
+          [
+            34.24012,
+            135.17156
+          ],
+          [
+            34.24098,
+            135.17237
+          ],
+          [
+            34.2414,
+            135.17256
+          ],
+          [
+            34.24285,
+            135.1727
+          ],
+          [
+            34.24547,
+            135.17199
+          ],
+          [
+            34.24707,
+            135.17153
+          ],
+          [
+            34.24951,
+            135.17087
+          ],
+          [
+            34.25137,
+            135.17015
+          ],
+          [
+            34.25268,
+            135.16925
+          ],
+          [
+            34.25342,
+            135.16854
+          ],
+          [
+            34.25425,
+            135.16732
+          ],
+          [
+            34.25473,
+            135.16637
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-32001] (reversed)",
+        "verified": true
+      },
       {
         "fromStationId": "station-3200139",
         "toStationId": "station-3200503",
@@ -1036,9 +1161,13 @@
         "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-1164003::station-3200139"
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-1164003::station-3200139",
+        "workspaceId": "line-32001"
+      }
     ],
     "workspace": {
       "folder": "data/lines/nankaidentetsu/nankaikadasen",

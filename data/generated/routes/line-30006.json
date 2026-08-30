@@ -63,6 +63,7 @@
       "identificationMethod": "unresolved",
       "identificationVerified": false
     },
+    "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "nagoyatetsudo",
     "services": [],
@@ -129,7 +130,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 11
       },
       {
         "id": "station-3000603",
@@ -161,7 +162,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 33
+        "geometryIndex": 44
       },
       {
         "id": "station-3000604",
@@ -193,7 +194,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 56
+        "geometryIndex": 67
       },
       {
         "id": "station-3000605",
@@ -225,7 +226,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 81
+        "geometryIndex": 92
       },
       {
         "id": "station-3000606",
@@ -257,7 +258,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 101
+        "geometryIndex": 112
       },
       {
         "id": "station-3000607",
@@ -289,7 +290,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 126
+        "geometryIndex": 137
       },
       {
         "id": "station-3000608",
@@ -321,7 +322,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 144
+        "geometryIndex": 155
       },
       {
         "id": "station-3000609",
@@ -353,10 +354,54 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 177
+        "geometryIndex": 188
       }
     ],
     "geometry": [
+      [
+        35.08779,
+        137.15645
+      ],
+      [
+        35.08811,
+        137.15657
+      ],
+      [
+        35.08927,
+        137.15701
+      ],
+      [
+        35.0903,
+        137.15741
+      ],
+      [
+        35.09125,
+        137.15776
+      ],
+      [
+        35.09196,
+        137.15803
+      ],
+      [
+        35.09266,
+        137.15833
+      ],
+      [
+        35.09421,
+        137.15915
+      ],
+      [
+        35.09557,
+        137.15994
+      ],
+      [
+        35.09634,
+        137.16036
+      ],
+      [
+        35.09795,
+        137.1613
+      ],
       [
         35.09913,
         137.16198
@@ -1071,6 +1116,62 @@
       ]
     ],
     "directedSegments": [
+      {
+        "fromStationId": "station-3000519",
+        "toStationId": "station-3000520",
+        "geometry": [
+          [
+            35.08779,
+            137.15645
+          ],
+          [
+            35.08811,
+            137.15657
+          ],
+          [
+            35.08927,
+            137.15701
+          ],
+          [
+            35.0903,
+            137.15741
+          ],
+          [
+            35.09125,
+            137.15776
+          ],
+          [
+            35.09196,
+            137.15803
+          ],
+          [
+            35.09266,
+            137.15833
+          ],
+          [
+            35.09421,
+            137.15915
+          ],
+          [
+            35.09557,
+            137.15994
+          ],
+          [
+            35.09634,
+            137.16036
+          ],
+          [
+            35.09795,
+            137.1613
+          ],
+          [
+            35.09913,
+            137.16198
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-30005]",
+        "verified": true
+      },
       {
         "fromStationId": "station-3000520",
         "toStationId": "station-3000603",
@@ -1864,9 +1965,13 @@
         "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-3000519::station-3000520"
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-3000519::station-3000520",
+        "workspaceId": "line-30005"
+      }
     ],
     "workspace": {
       "folder": "data/lines/nagoyatetsudo/meitetsutoyodasen",

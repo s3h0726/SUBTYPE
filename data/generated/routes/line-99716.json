@@ -63,6 +63,7 @@
       "identificationMethod": "unresolved",
       "identificationVerified": false
     },
+    "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "hiroshimadentetsu",
     "services": [],
@@ -289,7 +290,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 13
+        "geometryIndex": 21
       },
       {
         "id": "station-9971416",
@@ -321,7 +322,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 13
+        "geometryIndex": 24
       },
       {
         "id": "station-9971417",
@@ -353,7 +354,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 13
+        "geometryIndex": 26
       },
       {
         "id": "station-9971418",
@@ -385,7 +386,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 13
+        "geometryIndex": 28
       },
       {
         "id": "station-9971419",
@@ -417,7 +418,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 13
+        "geometryIndex": 31
       },
       {
         "id": "station-9971420",
@@ -449,7 +450,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 13
+        "geometryIndex": 33
       }
     ],
     "geometry": [
@@ -508,6 +509,86 @@
       [
         34.3966,
         132.44685
+      ],
+      [
+        34.39476,
+        132.44636
+      ],
+      [
+        34.39426,
+        132.44631
+      ],
+      [
+        34.39476,
+        132.44636
+      ],
+      [
+        34.39426,
+        132.44631
+      ],
+      [
+        34.3914,
+        132.44594
+      ],
+      [
+        34.39033,
+        132.44555
+      ],
+      [
+        34.38932,
+        132.44498
+      ],
+      [
+        34.38923,
+        132.44492
+      ],
+      [
+        34.38841,
+        132.44441
+      ],
+      [
+        34.38688,
+        132.44345
+      ],
+      [
+        34.3856,
+        132.44266
+      ],
+      [
+        34.38353,
+        132.44139
+      ],
+      [
+        34.38318,
+        132.44117
+      ],
+      [
+        34.38234,
+        132.44068
+      ],
+      [
+        34.37986,
+        132.4393
+      ],
+      [
+        34.37785,
+        132.43835
+      ],
+      [
+        34.37538,
+        132.43738
+      ],
+      [
+        34.37515,
+        132.43729
+      ],
+      [
+        34.37478,
+        132.43715
+      ],
+      [
+        34.37234,
+        132.43603
       ]
     ],
     "directedSegments": [
@@ -622,16 +703,183 @@
         ],
         "source": "MLIT-N02-2025",
         "verified": true
+      },
+      {
+        "fromStationId": "station-9971114",
+        "toStationId": "station-9971415",
+        "geometry": [
+          [
+            34.39476,
+            132.44636
+          ],
+          [
+            34.39426,
+            132.44631
+          ],
+          [
+            34.39476,
+            132.44636
+          ],
+          [
+            34.39426,
+            132.44631
+          ],
+          [
+            34.3914,
+            132.44594
+          ],
+          [
+            34.39033,
+            132.44555
+          ],
+          [
+            34.38932,
+            132.44498
+          ],
+          [
+            34.38923,
+            132.44492
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99714]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9971415",
+        "toStationId": "station-9971416",
+        "geometry": [
+          [
+            34.38923,
+            132.44492
+          ],
+          [
+            34.38841,
+            132.44441
+          ],
+          [
+            34.38688,
+            132.44345
+          ],
+          [
+            34.3856,
+            132.44266
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99714]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9971416",
+        "toStationId": "station-9971417",
+        "geometry": [
+          [
+            34.3856,
+            132.44266
+          ],
+          [
+            34.38353,
+            132.44139
+          ],
+          [
+            34.38318,
+            132.44117
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99714]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9971417",
+        "toStationId": "station-9971418",
+        "geometry": [
+          [
+            34.38318,
+            132.44117
+          ],
+          [
+            34.38234,
+            132.44068
+          ],
+          [
+            34.37986,
+            132.4393
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99714]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9971418",
+        "toStationId": "station-9971419",
+        "geometry": [
+          [
+            34.37986,
+            132.4393
+          ],
+          [
+            34.37785,
+            132.43835
+          ],
+          [
+            34.37538,
+            132.43738
+          ],
+          [
+            34.37515,
+            132.43729
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99714]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9971419",
+        "toStationId": "station-9971420",
+        "geometry": [
+          [
+            34.37515,
+            132.43729
+          ],
+          [
+            34.37478,
+            132.43715
+          ],
+          [
+            34.37234,
+            132.43603
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99714]",
+        "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-9971114::station-9971415",
-      "station-9971415::station-9971416",
-      "station-9971416::station-9971417",
-      "station-9971417::station-9971418",
-      "station-9971418::station-9971419",
-      "station-9971419::station-9971420"
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-9971114::station-9971415",
+        "workspaceId": "line-99714"
+      },
+      {
+        "key": "station-9971415::station-9971416",
+        "workspaceId": "line-99714"
+      },
+      {
+        "key": "station-9971416::station-9971417",
+        "workspaceId": "line-99714"
+      },
+      {
+        "key": "station-9971417::station-9971418",
+        "workspaceId": "line-99714"
+      },
+      {
+        "key": "station-9971418::station-9971419",
+        "workspaceId": "line-99714"
+      },
+      {
+        "key": "station-9971419::station-9971420",
+        "workspaceId": "line-99714"
+      }
     ],
     "workspace": {
       "folder": "data/lines/hiroshimadentetsu/hiroden8gosen-yokogawasen",

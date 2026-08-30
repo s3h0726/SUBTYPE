@@ -3,6 +3,8 @@
 		"audit:recovery": "node tools/audit-data-recovery.js",
 		"build:data": "node tools/audit-data-recovery.js && node tools/build-static.js",
 		"audit:routes": "node tools/audit-route-integrity.js",
+		"audit:playability": "node tools/audit-playability.js",
+		"audit:visual-assets": "node tools/audit-visual-assets.js",
 		"editor:apply": "node tools/apply-editor-export.js",
 		"validate:data": "node tools/build-line-workspaces.js && node tools/audit-line-workspaces.js",
 		"validate:line": "node tools/validate-line.js",

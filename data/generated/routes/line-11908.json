@@ -95,6 +95,7 @@
       "identificationMethod": "unresolved",
       "identificationVerified": false
     },
+    "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "jr-kyushu",
     "services": [],
@@ -481,7 +482,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 179
+        "geometryIndex": 194
       }
     ],
     "geometry": [
@@ -1204,6 +1205,66 @@
       [
         33.60601,
         130.4233
+      ],
+      [
+        33.60457,
+        130.42273
+      ],
+      [
+        33.60428,
+        130.42256
+      ],
+      [
+        33.60308,
+        130.42209
+      ],
+      [
+        33.60257,
+        130.42192
+      ],
+      [
+        33.60147,
+        130.42163
+      ],
+      [
+        33.59976,
+        130.42133
+      ],
+      [
+        33.59842,
+        130.42125
+      ],
+      [
+        33.59638,
+        130.42112
+      ],
+      [
+        33.59524,
+        130.42104
+      ],
+      [
+        33.59469,
+        130.421
+      ],
+      [
+        33.59441,
+        130.42098
+      ],
+      [
+        33.59342,
+        130.42094
+      ],
+      [
+        33.59218,
+        130.42088
+      ],
+      [
+        33.59182,
+        130.42087
+      ],
+      [
+        33.591,
+        130.4206
       ]
     ],
     "directedSegments": [
@@ -2042,11 +2103,87 @@
         ],
         "source": "MLIT-N02-2025",
         "verified": true
+      },
+      {
+        "fromStationId": "station-1190230",
+        "toStationId": "station-1190101",
+        "geometry": [
+          [
+            33.60601,
+            130.4233
+          ],
+          [
+            33.60457,
+            130.42273
+          ],
+          [
+            33.60428,
+            130.42256
+          ],
+          [
+            33.60308,
+            130.42209
+          ],
+          [
+            33.60257,
+            130.42192
+          ],
+          [
+            33.60147,
+            130.42163
+          ],
+          [
+            33.59976,
+            130.42133
+          ],
+          [
+            33.59842,
+            130.42125
+          ],
+          [
+            33.59638,
+            130.42112
+          ],
+          [
+            33.59524,
+            130.42104
+          ],
+          [
+            33.59469,
+            130.421
+          ],
+          [
+            33.59441,
+            130.42098
+          ],
+          [
+            33.59342,
+            130.42094
+          ],
+          [
+            33.59218,
+            130.42088
+          ],
+          [
+            33.59182,
+            130.42087
+          ],
+          [
+            33.591,
+            130.4206
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-11902]",
+        "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-1190230::station-1190101"
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-1190230::station-1190101",
+        "workspaceId": "line-11902"
+      }
     ],
     "workspace": {
       "folder": "data/lines/jr-kyushu/fukukitayutakasen",

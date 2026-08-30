@@ -63,6 +63,7 @@
       "identificationMethod": "unresolved",
       "identificationVerified": false
     },
+    "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "iyotetsudo",
     "services": [],
@@ -257,7 +258,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 8
+        "geometryIndex": 13
       },
       {
         "id": "station-9980501",
@@ -289,7 +290,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 8
+        "geometryIndex": 19
       }
     ],
     "geometry": [
@@ -328,6 +329,50 @@
       [
         33.84049,
         132.75865
+      ],
+      [
+        33.8403,
+        132.75865
+      ],
+      [
+        33.83964,
+        132.75865
+      ],
+      [
+        33.83953,
+        132.75909
+      ],
+      [
+        33.83945,
+        132.76091
+      ],
+      [
+        33.83928,
+        132.76178
+      ],
+      [
+        33.8382,
+        132.76179
+      ],
+      [
+        33.836512,
+        132.761731
+      ],
+      [
+        33.836179,
+        132.761759
+      ],
+      [
+        33.83603,
+        132.761952
+      ],
+      [
+        33.836027,
+        132.762066
+      ],
+      [
+        33.83603,
+        132.762613
       ]
     ],
     "directedSegments": [
@@ -410,12 +455,83 @@
         ],
         "source": "MLIT-N02-2025",
         "verified": true
+      },
+      {
+        "fromStationId": "station-9980803",
+        "toStationId": "station-9980802",
+        "geometry": [
+          [
+            33.8403,
+            132.75865
+          ],
+          [
+            33.83964,
+            132.75865
+          ],
+          [
+            33.83953,
+            132.75909
+          ],
+          [
+            33.83945,
+            132.76091
+          ],
+          [
+            33.83928,
+            132.76178
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99811]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9980802",
+        "toStationId": "station-9980501",
+        "geometry": [
+          [
+            33.83928,
+            132.76178
+          ],
+          [
+            33.8382,
+            132.76179
+          ],
+          [
+            33.836512,
+            132.761731
+          ],
+          [
+            33.836179,
+            132.761759
+          ],
+          [
+            33.83603,
+            132.761952
+          ],
+          [
+            33.836027,
+            132.762066
+          ],
+          [
+            33.83603,
+            132.762613
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99809] (reversed)",
+        "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-9980803::station-9980802",
-      "station-9980802::station-9980501"
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-9980803::station-9980802",
+        "workspaceId": "line-99811"
+      },
+      {
+        "key": "station-9980802::station-9980501",
+        "workspaceId": "line-99809"
+      }
     ],
     "workspace": {
       "folder": "data/lines/iyotetsudo/iyotetsudohonchosen",

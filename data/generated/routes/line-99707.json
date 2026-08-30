@@ -63,6 +63,7 @@
       "identificationMethod": "unresolved",
       "identificationVerified": false
     },
+    "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "okayamadenkikido",
     "services": [],
@@ -129,7 +130,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 2
       },
       {
         "id": "station-9970603",
@@ -161,7 +162,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 1
+        "geometryIndex": 4
       },
       {
         "id": "station-9970704",
@@ -193,7 +194,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 6
+        "geometryIndex": 9
       },
       {
         "id": "station-9970705",
@@ -225,7 +226,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 9
+        "geometryIndex": 12
       },
       {
         "id": "station-9970706",
@@ -257,7 +258,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 11
+        "geometryIndex": 14
       },
       {
         "id": "station-9970707",
@@ -289,7 +290,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 13
+        "geometryIndex": 16
       },
       {
         "id": "station-9970709",
@@ -321,7 +322,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 15
+        "geometryIndex": 18
       },
       {
         "id": "station-9970708",
@@ -353,10 +354,22 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 19
+        "geometryIndex": 22
       }
     ],
     "geometry": [
+      [
+        34.66551,
+        133.91996
+      ],
+      [
+        34.66553,
+        133.92135
+      ],
+      [
+        34.66554,
+        133.92301
+      ],
       [
         34.66554,
         133.92506
@@ -439,6 +452,26 @@
       ]
     ],
     "directedSegments": [
+      {
+        "fromStationId": "station-1160917",
+        "toStationId": "station-9970602",
+        "geometry": [
+          [
+            34.66551,
+            133.91996
+          ],
+          [
+            34.66553,
+            133.92135
+          ],
+          [
+            34.66554,
+            133.92301
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99706]",
+        "verified": true
+      },
       {
         "fromStationId": "station-9970602",
         "toStationId": "station-9970603",
@@ -600,9 +633,13 @@
         "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-1160917::station-9970602"
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-1160917::station-9970602",
+        "workspaceId": "line-99706"
+      }
     ],
     "workspace": {
       "folder": "data/lines/okayamadenkikido/seikibashisen",

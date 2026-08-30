@@ -63,6 +63,7 @@
       "identificationMethod": "unresolved",
       "identificationVerified": false
     },
+    "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "yokkaichiasunarotetsudo",
     "services": [],
@@ -129,7 +130,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 9
       },
       {
         "id": "station-3101303",
@@ -161,7 +162,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 18
       },
       {
         "id": "station-3101404",
@@ -193,10 +194,82 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 8
+        "geometryIndex": 26
       }
     ],
     "geometry": [
+      [
+        34.96648,
+        136.6185
+      ],
+      [
+        34.96494,
+        136.61827
+      ],
+      [
+        34.96362,
+        136.61752
+      ],
+      [
+        34.9634,
+        136.61732
+      ],
+      [
+        34.96233,
+        136.61626
+      ],
+      [
+        34.96157,
+        136.61519
+      ],
+      [
+        34.96084,
+        136.61357
+      ],
+      [
+        34.96056,
+        136.61302
+      ],
+      [
+        34.95966,
+        136.61121
+      ],
+      [
+        34.95904,
+        136.61011
+      ],
+      [
+        34.95856,
+        136.60926
+      ],
+      [
+        34.95812,
+        136.60843
+      ],
+      [
+        34.95797,
+        136.60786
+      ],
+      [
+        34.95791,
+        136.60634
+      ],
+      [
+        34.95786,
+        136.60619
+      ],
+      [
+        34.95763,
+        136.60583
+      ],
+      [
+        34.9571,
+        136.60528
+      ],
+      [
+        34.95649,
+        136.60479
+      ],
       [
         34.95623,
         136.60458
@@ -235,6 +308,102 @@
       ]
     ],
     "directedSegments": [
+      {
+        "fromStationId": "station-3100801",
+        "toStationId": "station-3101302",
+        "geometry": [
+          [
+            34.96648,
+            136.6185
+          ],
+          [
+            34.96494,
+            136.61827
+          ],
+          [
+            34.96362,
+            136.61752
+          ],
+          [
+            34.9634,
+            136.61732
+          ],
+          [
+            34.96233,
+            136.61626
+          ],
+          [
+            34.96157,
+            136.61519
+          ],
+          [
+            34.96084,
+            136.61357
+          ],
+          [
+            34.96056,
+            136.61302
+          ],
+          [
+            34.95966,
+            136.61121
+          ],
+          [
+            34.95904,
+            136.61011
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-31013]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3101302",
+        "toStationId": "station-3101303",
+        "geometry": [
+          [
+            34.95904,
+            136.61011
+          ],
+          [
+            34.95856,
+            136.60926
+          ],
+          [
+            34.95812,
+            136.60843
+          ],
+          [
+            34.95797,
+            136.60786
+          ],
+          [
+            34.95791,
+            136.60634
+          ],
+          [
+            34.95786,
+            136.60619
+          ],
+          [
+            34.95763,
+            136.60583
+          ],
+          [
+            34.9571,
+            136.60528
+          ],
+          [
+            34.95649,
+            136.60479
+          ],
+          [
+            34.95623,
+            136.60458
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-31013]",
+        "verified": true
+      },
       {
         "fromStationId": "station-3101303",
         "toStationId": "station-3101404",
@@ -280,10 +449,17 @@
         "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-3100801::station-3101302",
-      "station-3101302::station-3101303"
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-3100801::station-3101302",
+        "workspaceId": "line-31013"
+      },
+      {
+        "key": "station-3101302::station-3101303",
+        "workspaceId": "line-31013"
+      }
     ],
     "workspace": {
       "folder": "data/lines/yokkaichiasunarotetsudo/hachiojisen",

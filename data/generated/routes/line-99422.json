@@ -63,6 +63,7 @@
       "identificationMethod": "unresolved",
       "identificationVerified": false
     },
+    "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "toyamachihotetsudo",
     "services": [],
@@ -257,7 +258,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 12
+        "geometryIndex": 14
       },
       {
         "id": "station-9941310",
@@ -289,7 +290,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 20
+        "geometryIndex": 23
       },
       {
         "id": "station-9941311",
@@ -321,7 +322,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 21
+        "geometryIndex": 24
       },
       {
         "id": "station-9941312",
@@ -353,7 +354,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 21
+        "geometryIndex": 26
       },
       {
         "id": "station-1140501",
@@ -385,7 +386,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 24
+        "geometryIndex": 30
       },
       {
         "id": "station-1140501",
@@ -417,7 +418,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 24
+        "geometryIndex": 36
       },
       {
         "id": "station-9941314",
@@ -449,7 +450,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 24
+        "geometryIndex": 41
       },
       {
         "id": "station-9941315",
@@ -481,7 +482,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 24
+        "geometryIndex": 44
       }
     ],
     "geometry": [
@@ -538,6 +539,18 @@
         137.21567
       ],
       [
+        36.689937,
+        137.215685
+      ],
+      [
+        36.69171,
+        137.21579
+      ],
+      [
+        36.6894,
+        137.21567
+      ],
+      [
         36.688788,
         137.215407
       ],
@@ -574,6 +587,18 @@
         137.211166
       ],
       [
+        36.69725,
+        137.21606
+      ],
+      [
+        36.69838,
+        137.21611
+      ],
+      [
+        36.691963,
+        137.211166
+      ],
+      [
         36.6921,
         137.20945
       ],
@@ -584,6 +609,62 @@
       [
         36.69271,
         137.20895
+      ],
+      [
+        36.70001,
+        137.21382
+      ],
+      [
+        36.700382,
+        137.212713
+      ],
+      [
+        36.700475,
+        137.212601
+      ],
+      [
+        36.700747,
+        137.212425
+      ],
+      [
+        36.700927,
+        137.212472
+      ],
+      [
+        36.701473,
+        137.212825
+      ],
+      [
+        36.700927,
+        137.212472
+      ],
+      [
+        36.700653,
+        137.212401
+      ],
+      [
+        36.700314,
+        137.212274
+      ],
+      [
+        36.69905,
+        137.21156
+      ],
+      [
+        36.69867,
+        137.21131
+      ],
+      [
+        36.69813,
+        137.21097
+      ],
+      [
+        36.69709,
+        137.21037
+      ],
+      [
+        36.69578,
+        137.20981
       ]
     ],
     "directedSegments": [
@@ -684,6 +765,22 @@
         "verified": true
       },
       {
+        "fromStationId": "station-9941321",
+        "toStationId": "station-9941309",
+        "geometry": [
+          [
+            36.689937,
+            137.215685
+          ],
+          [
+            36.69171,
+            137.21579
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99413]",
+        "verified": true
+      },
+      {
         "fromStationId": "station-9941309",
         "toStationId": "station-9941310",
         "geometry": [
@@ -744,6 +841,22 @@
         "verified": true
       },
       {
+        "fromStationId": "station-9941311",
+        "toStationId": "station-9941312",
+        "geometry": [
+          [
+            36.69725,
+            137.21606
+          ],
+          [
+            36.69838,
+            137.21611
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99413]",
+        "verified": true
+      },
+      {
         "fromStationId": "station-9941312",
         "toStationId": "station-1140501",
         "geometry": [
@@ -766,15 +879,119 @@
         ],
         "source": "MLIT-N02-2025",
         "verified": true
+      },
+      {
+        "fromStationId": "station-1140501",
+        "toStationId": "station-1140501",
+        "geometry": [
+          [
+            36.70001,
+            137.21382
+          ],
+          [
+            36.700382,
+            137.212713
+          ],
+          [
+            36.700475,
+            137.212601
+          ],
+          [
+            36.700747,
+            137.212425
+          ],
+          [
+            36.700927,
+            137.212472
+          ],
+          [
+            36.701473,
+            137.212825
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99413]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1140501",
+        "toStationId": "station-9941314",
+        "geometry": [
+          [
+            36.701473,
+            137.212825
+          ],
+          [
+            36.700927,
+            137.212472
+          ],
+          [
+            36.700653,
+            137.212401
+          ],
+          [
+            36.700314,
+            137.212274
+          ],
+          [
+            36.69905,
+            137.21156
+          ],
+          [
+            36.69867,
+            137.21131
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99413]",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941314",
+        "toStationId": "station-9941315",
+        "geometry": [
+          [
+            36.69867,
+            137.21131
+          ],
+          [
+            36.69813,
+            137.21097
+          ],
+          [
+            36.69709,
+            137.21037
+          ],
+          [
+            36.69578,
+            137.20981
+          ]
+        ],
+        "source": "MLIT-N02-2025 [line-99413]",
+        "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-9941321::station-9941309",
-      "station-9941311::station-9941312",
-      "station-1140501::station-1140501",
-      "station-1140501::station-9941314",
-      "station-9941314::station-9941315"
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-9941321::station-9941309",
+        "workspaceId": "line-99413"
+      },
+      {
+        "key": "station-9941311::station-9941312",
+        "workspaceId": "line-99413"
+      },
+      {
+        "key": "station-1140501::station-1140501",
+        "workspaceId": "line-99413"
+      },
+      {
+        "key": "station-1140501::station-9941314",
+        "workspaceId": "line-99413"
+      },
+      {
+        "key": "station-9941314::station-9941315",
+        "workspaceId": "line-99413"
+      }
     ],
     "workspace": {
       "folder": "data/lines/toyamachihotetsudo/toyamachitetsutoyamatoshinsen-3keito-kanjosen",
