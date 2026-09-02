@@ -1,0 +1,4921 @@
+{
+  "generated": "2026-08-30T03:18:59.930Z",
+  "policy": {
+    "straightLineFallback": false,
+    "sourcePriority": [
+      "existing-workspace-segment",
+      "OSM railway geometry",
+      "MLIT railway spatial data",
+      "official/public GIS"
+    ]
+  },
+  "lines": [
+    {
+      "lineId": "line-11416",
+      "operatorId": "jr-central",
+      "lineKo": "타카야마혼선",
+      "lineJa": "高山本線",
+      "stationCount": 45,
+      "segmentCount": 44,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1141601::station-1141602",
+          "fromStationId": "station-1141601",
+          "toStationId": "station-1141602",
+          "from": {
+            "ja": "岐阜",
+            "ko": "기후",
+            "lat": 35.409532,
+            "lng": 136.756514
+          },
+          "to": {
+            "ja": "長森",
+            "ko": "나가모리",
+            "lat": 35.402024,
+            "lng": 136.802981
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141602::station-1141603",
+          "fromStationId": "station-1141602",
+          "toStationId": "station-1141603",
+          "from": {
+            "ja": "長森",
+            "ko": "나가모리",
+            "lat": 35.402024,
+            "lng": 136.802981
+          },
+          "to": {
+            "ja": "那加",
+            "ko": "나카",
+            "lat": 35.400538,
+            "lng": 136.835466
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141603::station-1141604",
+          "fromStationId": "station-1141603",
+          "toStationId": "station-1141604",
+          "from": {
+            "ja": "那加",
+            "ko": "나카",
+            "lat": 35.400538,
+            "lng": 136.835466
+          },
+          "to": {
+            "ja": "蘇原",
+            "ko": "소하라",
+            "lat": 35.403167,
+            "lng": 136.871434
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141604::station-1141605",
+          "fromStationId": "station-1141604",
+          "toStationId": "station-1141605",
+          "from": {
+            "ja": "蘇原",
+            "ko": "소하라",
+            "lat": 35.403167,
+            "lng": 136.871434
+          },
+          "to": {
+            "ja": "各務ケ原",
+            "ko": "카가미가하라",
+            "lat": 35.403812,
+            "lng": 136.901106
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141605::station-1141606",
+          "fromStationId": "station-1141605",
+          "toStationId": "station-1141606",
+          "from": {
+            "ja": "各務ケ原",
+            "ko": "카가미가하라",
+            "lat": 35.403812,
+            "lng": 136.901106
+          },
+          "to": {
+            "ja": "鵜沼",
+            "ko": "우누마",
+            "lat": 35.397897,
+            "lng": 136.945122
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141606::station-1141607",
+          "fromStationId": "station-1141606",
+          "toStationId": "station-1141607",
+          "from": {
+            "ja": "鵜沼",
+            "ko": "우누마",
+            "lat": 35.397897,
+            "lng": 136.945122
+          },
+          "to": {
+            "ja": "坂祝",
+            "ko": "사카호기",
+            "lat": 35.426359,
+            "lng": 136.976868
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141607::station-1141608",
+          "fromStationId": "station-1141607",
+          "toStationId": "station-1141608",
+          "from": {
+            "ja": "坂祝",
+            "ko": "사카호기",
+            "lat": 35.426359,
+            "lng": 136.976868
+          },
+          "to": {
+            "ja": "美濃太田",
+            "ko": "미노오오타",
+            "lat": 35.445617,
+            "lng": 137.019467
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141608::station-1141609",
+          "fromStationId": "station-1141608",
+          "toStationId": "station-1141609",
+          "from": {
+            "ja": "美濃太田",
+            "ko": "미노오오타",
+            "lat": 35.445617,
+            "lng": 137.019467
+          },
+          "to": {
+            "ja": "古井",
+            "ko": "후루이",
+            "lat": 35.457295,
+            "lng": 137.047497
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141609::station-1141610",
+          "fromStationId": "station-1141609",
+          "toStationId": "station-1141610",
+          "from": {
+            "ja": "古井",
+            "ko": "후루이",
+            "lat": 35.457295,
+            "lng": 137.047497
+          },
+          "to": {
+            "ja": "中川辺",
+            "ko": "나카카와베",
+            "lat": 35.487143,
+            "lng": 137.065086
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141610::station-1141611",
+          "fromStationId": "station-1141610",
+          "toStationId": "station-1141611",
+          "from": {
+            "ja": "中川辺",
+            "ko": "나카카와베",
+            "lat": 35.487143,
+            "lng": 137.065086
+          },
+          "to": {
+            "ja": "下麻生",
+            "ko": "시모아사오",
+            "lat": 35.514973,
+            "lng": 137.087157
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141611::station-1141612",
+          "fromStationId": "station-1141611",
+          "toStationId": "station-1141612",
+          "from": {
+            "ja": "下麻生",
+            "ko": "시모아사오",
+            "lat": 35.514973,
+            "lng": 137.087157
+          },
+          "to": {
+            "ja": "上麻生",
+            "ko": "카미아사오",
+            "lat": 35.541293,
+            "lng": 137.11863
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141612::station-1141613",
+          "fromStationId": "station-1141612",
+          "toStationId": "station-1141613",
+          "from": {
+            "ja": "上麻生",
+            "ko": "카미아사오",
+            "lat": 35.541293,
+            "lng": 137.11863
+          },
+          "to": {
+            "ja": "白川口",
+            "ko": "시로카와구치",
+            "lat": 35.579345,
+            "lng": 137.184824
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141613::station-1141614",
+          "fromStationId": "station-1141613",
+          "toStationId": "station-1141614",
+          "from": {
+            "ja": "白川口",
+            "ko": "시로카와구치",
+            "lat": 35.579345,
+            "lng": 137.184824
+          },
+          "to": {
+            "ja": "下油井",
+            "ko": "시모유이",
+            "lat": 35.633214,
+            "lng": 137.183137
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141614::station-1141615",
+          "fromStationId": "station-1141614",
+          "toStationId": "station-1141615",
+          "from": {
+            "ja": "下油井",
+            "ko": "시모유이",
+            "lat": 35.633214,
+            "lng": 137.183137
+          },
+          "to": {
+            "ja": "飛騨金山",
+            "ko": "히다카나야마",
+            "lat": 35.662118,
+            "lng": 137.164333
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141615::station-1141616",
+          "fromStationId": "station-1141615",
+          "toStationId": "station-1141616",
+          "from": {
+            "ja": "飛騨金山",
+            "ko": "히다카나야마",
+            "lat": 35.662118,
+            "lng": 137.164333
+          },
+          "to": {
+            "ja": "焼石",
+            "ko": "야케이시",
+            "lat": 35.725763,
+            "lng": 137.200404
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141616::station-1141617",
+          "fromStationId": "station-1141616",
+          "toStationId": "station-1141617",
+          "from": {
+            "ja": "焼石",
+            "ko": "야케이시",
+            "lat": 35.725763,
+            "lng": 137.200404
+          },
+          "to": {
+            "ja": "下呂",
+            "ko": "게로",
+            "lat": 35.805345,
+            "lng": 137.239778
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141617::station-1141618",
+          "fromStationId": "station-1141617",
+          "toStationId": "station-1141618",
+          "from": {
+            "ja": "下呂",
+            "ko": "게로",
+            "lat": 35.805345,
+            "lng": 137.239778
+          },
+          "to": {
+            "ja": "禅昌寺",
+            "ko": "젠쇼우지",
+            "lat": 35.848937,
+            "lng": 137.225184
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141618::station-1141619",
+          "fromStationId": "station-1141618",
+          "toStationId": "station-1141619",
+          "from": {
+            "ja": "禅昌寺",
+            "ko": "젠쇼우지",
+            "lat": 35.848937,
+            "lng": 137.225184
+          },
+          "to": {
+            "ja": "飛騨萩原",
+            "ko": "히다하기와라",
+            "lat": 35.874766,
+            "lng": 137.213568
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141619::station-1141620",
+          "fromStationId": "station-1141619",
+          "toStationId": "station-1141620",
+          "from": {
+            "ja": "飛騨萩原",
+            "ko": "히다하기와라",
+            "lat": 35.874766,
+            "lng": 137.213568
+          },
+          "to": {
+            "ja": "上呂",
+            "ko": "조우로",
+            "lat": 35.910717,
+            "lng": 137.204562
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141620::station-1141621",
+          "fromStationId": "station-1141620",
+          "toStationId": "station-1141621",
+          "from": {
+            "ja": "上呂",
+            "ko": "조우로",
+            "lat": 35.910717,
+            "lng": 137.204562
+          },
+          "to": {
+            "ja": "飛騨宮田",
+            "ko": "히다미야타",
+            "lat": 35.928443,
+            "lng": 137.235595
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141621::station-1141622",
+          "fromStationId": "station-1141621",
+          "toStationId": "station-1141622",
+          "from": {
+            "ja": "飛騨宮田",
+            "ko": "히다미야타",
+            "lat": 35.928443,
+            "lng": 137.235595
+          },
+          "to": {
+            "ja": "飛騨小坂",
+            "ko": "히다오사카",
+            "lat": 35.950749,
+            "lng": 137.257084
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141622::station-1141623",
+          "fromStationId": "station-1141622",
+          "toStationId": "station-1141623",
+          "from": {
+            "ja": "飛騨小坂",
+            "ko": "히다오사카",
+            "lat": 35.950749,
+            "lng": 137.257084
+          },
+          "to": {
+            "ja": "渚",
+            "ko": "나기사",
+            "lat": 36.001416,
+            "lng": 137.287894
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141623::station-1141624",
+          "fromStationId": "station-1141623",
+          "toStationId": "station-1141624",
+          "from": {
+            "ja": "渚",
+            "ko": "나기사",
+            "lat": 36.001416,
+            "lng": 137.287894
+          },
+          "to": {
+            "ja": "久々野",
+            "ko": "쿠구노",
+            "lat": 36.052273,
+            "lng": 137.276778
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141624::station-1141625",
+          "fromStationId": "station-1141624",
+          "toStationId": "station-1141625",
+          "from": {
+            "ja": "久々野",
+            "ko": "쿠구노",
+            "lat": 36.052273,
+            "lng": 137.276778
+          },
+          "to": {
+            "ja": "飛騨一ノ宮",
+            "ko": "히다이치노미야",
+            "lat": 36.08836,
+            "lng": 137.247588
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141625::station-1141626",
+          "fromStationId": "station-1141625",
+          "toStationId": "station-1141626",
+          "from": {
+            "ja": "飛騨一ノ宮",
+            "ko": "히다이치노미야",
+            "lat": 36.08836,
+            "lng": 137.247588
+          },
+          "to": {
+            "ja": "高山",
+            "ko": "타카야마",
+            "lat": 36.140574,
+            "lng": 137.251301
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141626::station-1141627",
+          "fromStationId": "station-1141626",
+          "toStationId": "station-1141627",
+          "from": {
+            "ja": "高山",
+            "ko": "타카야마",
+            "lat": 36.140574,
+            "lng": 137.251301
+          },
+          "to": {
+            "ja": "上枝",
+            "ko": "호츠에",
+            "lat": 36.18095,
+            "lng": 137.245789
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141627::station-1141628",
+          "fromStationId": "station-1141627",
+          "toStationId": "station-1141628",
+          "from": {
+            "ja": "上枝",
+            "ko": "호츠에",
+            "lat": 36.18095,
+            "lng": 137.245789
+          },
+          "to": {
+            "ja": "飛騨国府",
+            "ko": "히다코쿠후",
+            "lat": 36.211001,
+            "lng": 137.215895
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141628::station-1141629",
+          "fromStationId": "station-1141628",
+          "toStationId": "station-1141629",
+          "from": {
+            "ja": "飛騨国府",
+            "ko": "히다코쿠후",
+            "lat": 36.211001,
+            "lng": 137.215895
+          },
+          "to": {
+            "ja": "飛騨古川",
+            "ko": "히다후루카와",
+            "lat": 36.236727,
+            "lng": 137.189681
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141629::station-1141630",
+          "fromStationId": "station-1141629",
+          "toStationId": "station-1141630",
+          "from": {
+            "ja": "飛騨古川",
+            "ko": "히다후루카와",
+            "lat": 36.236727,
+            "lng": 137.189681
+          },
+          "to": {
+            "ja": "杉崎",
+            "ko": "스기사키",
+            "lat": 36.250003,
+            "lng": 137.168638
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141630::station-1141631",
+          "fromStationId": "station-1141630",
+          "toStationId": "station-1141631",
+          "from": {
+            "ja": "杉崎",
+            "ko": "스기사키",
+            "lat": 36.250003,
+            "lng": 137.168638
+          },
+          "to": {
+            "ja": "飛騨細江",
+            "ko": "히다호소에",
+            "lat": 36.260926,
+            "lng": 137.146029
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141631::station-1141632",
+          "fromStationId": "station-1141631",
+          "toStationId": "station-1141632",
+          "from": {
+            "ja": "飛騨細江",
+            "ko": "히다호소에",
+            "lat": 36.260926,
+            "lng": 137.146029
+          },
+          "to": {
+            "ja": "角川",
+            "ko": "카도카와",
+            "lat": 36.30016,
+            "lng": 137.113223
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141632::station-1141633",
+          "fromStationId": "station-1141632",
+          "toStationId": "station-1141633",
+          "from": {
+            "ja": "角川",
+            "ko": "카도카와",
+            "lat": 36.30016,
+            "lng": 137.113223
+          },
+          "to": {
+            "ja": "坂上",
+            "ko": "사카가미",
+            "lat": 36.327902,
+            "lng": 137.140979
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141633::station-1141634",
+          "fromStationId": "station-1141633",
+          "toStationId": "station-1141634",
+          "from": {
+            "ja": "坂上",
+            "ko": "사카가미",
+            "lat": 36.327902,
+            "lng": 137.140979
+          },
+          "to": {
+            "ja": "打保",
+            "ko": "우츠보",
+            "lat": 36.383737,
+            "lng": 137.181902
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141634::station-1141635",
+          "fromStationId": "station-1141634",
+          "toStationId": "station-1141635",
+          "from": {
+            "ja": "打保",
+            "ko": "우츠보",
+            "lat": 36.383737,
+            "lng": 137.181902
+          },
+          "to": {
+            "ja": "杉原",
+            "ko": "스기하라",
+            "lat": 36.415806,
+            "lng": 137.192102
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141635::station-1141636",
+          "fromStationId": "station-1141635",
+          "toStationId": "station-1141636",
+          "from": {
+            "ja": "杉原",
+            "ko": "스기하라",
+            "lat": 36.415806,
+            "lng": 137.192102
+          },
+          "to": {
+            "ja": "猪谷",
+            "ko": "이노타니",
+            "lat": 36.471625,
+            "lng": 137.237975
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141636::station-1141637",
+          "fromStationId": "station-1141636",
+          "toStationId": "station-1141637",
+          "from": {
+            "ja": "猪谷",
+            "ko": "이노타니",
+            "lat": 36.471625,
+            "lng": 137.237975
+          },
+          "to": {
+            "ja": "楡原",
+            "ko": "니레하라",
+            "lat": 36.529323,
+            "lng": 137.22872
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141637::station-1141638",
+          "fromStationId": "station-1141637",
+          "toStationId": "station-1141638",
+          "from": {
+            "ja": "楡原",
+            "ko": "니레하라",
+            "lat": 36.529323,
+            "lng": 137.22872
+          },
+          "to": {
+            "ja": "笹津",
+            "ko": "사사즈",
+            "lat": 36.562129,
+            "lng": 137.211437
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141638::station-1141639",
+          "fromStationId": "station-1141638",
+          "toStationId": "station-1141639",
+          "from": {
+            "ja": "笹津",
+            "ko": "사사즈",
+            "lat": 36.562129,
+            "lng": 137.211437
+          },
+          "to": {
+            "ja": "東八尾",
+            "ko": "히가시야츠오",
+            "lat": 36.589645,
+            "lng": 137.174978
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141639::station-1141640",
+          "fromStationId": "station-1141639",
+          "toStationId": "station-1141640",
+          "from": {
+            "ja": "東八尾",
+            "ko": "히가시야츠오",
+            "lat": 36.589645,
+            "lng": 137.174978
+          },
+          "to": {
+            "ja": "越中八尾",
+            "ko": "엤추우야츠오",
+            "lat": 36.591391,
+            "lng": 137.138379
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141640::station-1141641",
+          "fromStationId": "station-1141640",
+          "toStationId": "station-1141641",
+          "from": {
+            "ja": "越中八尾",
+            "ko": "엤추우야츠오",
+            "lat": 36.591391,
+            "lng": 137.138379
+          },
+          "to": {
+            "ja": "千里",
+            "ko": "센리",
+            "lat": 36.634678,
+            "lng": 137.132396
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141641::station-1141642",
+          "fromStationId": "station-1141641",
+          "toStationId": "station-1141642",
+          "from": {
+            "ja": "千里",
+            "ko": "센리",
+            "lat": 36.634678,
+            "lng": 137.132396
+          },
+          "to": {
+            "ja": "速星",
+            "ko": "하야호시",
+            "lat": 36.664135,
+            "lng": 137.160428
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141642::station-1141645",
+          "fromStationId": "station-1141642",
+          "toStationId": "station-1141645",
+          "from": {
+            "ja": "速星",
+            "ko": "하야호시",
+            "lat": 36.664135,
+            "lng": 137.160428
+          },
+          "to": {
+            "ja": "婦中鵜坂",
+            "ko": "후추우우사카",
+            "lat": 36.676084,
+            "lng": 137.167625
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141645::station-1141643",
+          "fromStationId": "station-1141645",
+          "toStationId": "station-1141643",
+          "from": {
+            "ja": "婦中鵜坂",
+            "ko": "후추우우사카",
+            "lat": 36.676084,
+            "lng": 137.167625
+          },
+          "to": {
+            "ja": "西富山",
+            "ko": "니시토야마",
+            "lat": 36.699331,
+            "lng": 137.177029
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141643::station-1140501",
+          "fromStationId": "station-1141643",
+          "toStationId": "station-1140501",
+          "from": {
+            "ja": "西富山",
+            "ko": "니시토야마",
+            "lat": 36.699331,
+            "lng": 137.177029
+          },
+          "to": {
+            "ja": "富山",
+            "ko": "토야마",
+            "lat": 36.701384,
+            "lng": 137.213091
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1141601::station-1141602",
+        "station-1141602::station-1141603",
+        "station-1141603::station-1141604",
+        "station-1141604::station-1141605",
+        "station-1141605::station-1141606",
+        "station-1141606::station-1141607",
+        "station-1141607::station-1141608",
+        "station-1141608::station-1141609",
+        "station-1141609::station-1141610",
+        "station-1141610::station-1141611",
+        "station-1141611::station-1141612",
+        "station-1141612::station-1141613",
+        "station-1141613::station-1141614",
+        "station-1141614::station-1141615",
+        "station-1141615::station-1141616",
+        "station-1141616::station-1141617",
+        "station-1141617::station-1141618",
+        "station-1141618::station-1141619",
+        "station-1141619::station-1141620",
+        "station-1141620::station-1141621",
+        "station-1141621::station-1141622",
+        "station-1141622::station-1141623",
+        "station-1141623::station-1141624",
+        "station-1141624::station-1141625",
+        "station-1141625::station-1141626",
+        "station-1141626::station-1141627",
+        "station-1141627::station-1141628",
+        "station-1141628::station-1141629",
+        "station-1141629::station-1141630",
+        "station-1141630::station-1141631",
+        "station-1141631::station-1141632",
+        "station-1141632::station-1141633",
+        "station-1141633::station-1141634",
+        "station-1141634::station-1141635",
+        "station-1141635::station-1141636",
+        "station-1141636::station-1141637",
+        "station-1141637::station-1141638",
+        "station-1141638::station-1141639",
+        "station-1141639::station-1141640",
+        "station-1141640::station-1141641",
+        "station-1141641::station-1141642",
+        "station-1141642::station-1141645",
+        "station-1141645::station-1141643",
+        "station-1141643::station-1140501"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-11409",
+      "operatorId": "jr-east",
+      "lineKo": "키타아루푸스선",
+      "lineJa": "北アルプス線",
+      "stationCount": 41,
+      "segmentCount": 40,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1140901::station-1140902",
+          "fromStationId": "station-1140901",
+          "toStationId": "station-1140902",
+          "from": {
+            "ja": "松本",
+            "ko": "마츠모토",
+            "lat": 36.230393,
+            "lng": 137.96445
+          },
+          "to": {
+            "ja": "北松本",
+            "ko": "키타마츠혼",
+            "lat": 36.236971,
+            "lng": 137.960983
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140902::station-1140903",
+          "fromStationId": "station-1140902",
+          "toStationId": "station-1140903",
+          "from": {
+            "ja": "北松本",
+            "ko": "키타마츠혼",
+            "lat": 36.236971,
+            "lng": 137.960983
+          },
+          "to": {
+            "ja": "島内",
+            "ko": "토우나이",
+            "lat": 36.246991,
+            "lng": 137.944817
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140903::station-1140904",
+          "fromStationId": "station-1140903",
+          "toStationId": "station-1140904",
+          "from": {
+            "ja": "島内",
+            "ko": "토우나이",
+            "lat": 36.246991,
+            "lng": 137.944817
+          },
+          "to": {
+            "ja": "島高松",
+            "ko": "시마타카마츠",
+            "lat": 36.246322,
+            "lng": 137.931576
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140904::station-1140905",
+          "fromStationId": "station-1140904",
+          "toStationId": "station-1140905",
+          "from": {
+            "ja": "島高松",
+            "ko": "시마타카마츠",
+            "lat": 36.246322,
+            "lng": 137.931576
+          },
+          "to": {
+            "ja": "梓橋",
+            "ko": "아즈사바시",
+            "lat": 36.250162,
+            "lng": 137.918027
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140905::station-1140906",
+          "fromStationId": "station-1140905",
+          "toStationId": "station-1140906",
+          "from": {
+            "ja": "梓橋",
+            "ko": "아즈사바시",
+            "lat": 36.250162,
+            "lng": 137.918027
+          },
+          "to": {
+            "ja": "一日市場",
+            "ko": "이치니치시조우",
+            "lat": 36.2596,
+            "lng": 137.904136
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140906::station-1140907",
+          "fromStationId": "station-1140906",
+          "toStationId": "station-1140907",
+          "from": {
+            "ja": "一日市場",
+            "ko": "이치니치시조우",
+            "lat": 36.2596,
+            "lng": 137.904136
+          },
+          "to": {
+            "ja": "中萱",
+            "ko": "추우카야",
+            "lat": 36.273434,
+            "lng": 137.903353
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140907::station-1140908",
+          "fromStationId": "station-1140907",
+          "toStationId": "station-1140908",
+          "from": {
+            "ja": "中萱",
+            "ko": "추우카야",
+            "lat": 36.273434,
+            "lng": 137.903353
+          },
+          "to": {
+            "ja": "南豊科",
+            "ko": "미나미토요시나",
+            "lat": 36.291124,
+            "lng": 137.903457
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140908::station-1140909",
+          "fromStationId": "station-1140908",
+          "toStationId": "station-1140909",
+          "from": {
+            "ja": "南豊科",
+            "ko": "미나미토요시나",
+            "lat": 36.291124,
+            "lng": 137.903457
+          },
+          "to": {
+            "ja": "豊科",
+            "ko": "토요시나",
+            "lat": 36.299957,
+            "lng": 137.900896
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140909::station-1140910",
+          "fromStationId": "station-1140909",
+          "toStationId": "station-1140910",
+          "from": {
+            "ja": "豊科",
+            "ko": "토요시나",
+            "lat": 36.299957,
+            "lng": 137.900896
+          },
+          "to": {
+            "ja": "柏矢町",
+            "ko": "하쿠야초우",
+            "lat": 36.322529,
+            "lng": 137.888349
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140910::station-1140911",
+          "fromStationId": "station-1140910",
+          "toStationId": "station-1140911",
+          "from": {
+            "ja": "柏矢町",
+            "ko": "하쿠야초우",
+            "lat": 36.322529,
+            "lng": 137.888349
+          },
+          "to": {
+            "ja": "穂高",
+            "ko": "호타카",
+            "lat": 36.33906,
+            "lng": 137.881869
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140911::station-1140912",
+          "fromStationId": "station-1140911",
+          "toStationId": "station-1140912",
+          "from": {
+            "ja": "穂高",
+            "ko": "호타카",
+            "lat": 36.33906,
+            "lng": 137.881869
+          },
+          "to": {
+            "ja": "有明",
+            "ko": "아리아케",
+            "lat": 36.359949,
+            "lng": 137.878236
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140912::station-1140913",
+          "fromStationId": "station-1140912",
+          "toStationId": "station-1140913",
+          "from": {
+            "ja": "有明",
+            "ko": "아리아케",
+            "lat": 36.359949,
+            "lng": 137.878236
+          },
+          "to": {
+            "ja": "安曇追分",
+            "ko": "아즈미오이와케",
+            "lat": 36.371795,
+            "lng": 137.872736
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140913::station-1140914",
+          "fromStationId": "station-1140913",
+          "toStationId": "station-1140914",
+          "from": {
+            "ja": "安曇追分",
+            "ko": "아즈미오이와케",
+            "lat": 36.371795,
+            "lng": 137.872736
+          },
+          "to": {
+            "ja": "細野",
+            "ko": "호소노",
+            "lat": 36.397107,
+            "lng": 137.865722
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140914::station-1140915",
+          "fromStationId": "station-1140914",
+          "toStationId": "station-1140915",
+          "from": {
+            "ja": "細野",
+            "ko": "호소노",
+            "lat": 36.397107,
+            "lng": 137.865722
+          },
+          "to": {
+            "ja": "北細野",
+            "ko": "키타호소노",
+            "lat": 36.406439,
+            "lng": 137.862725
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140915::station-1140916",
+          "fromStationId": "station-1140915",
+          "toStationId": "station-1140916",
+          "from": {
+            "ja": "北細野",
+            "ko": "키타호소노",
+            "lat": 36.406439,
+            "lng": 137.862725
+          },
+          "to": {
+            "ja": "信濃松川",
+            "ko": "시나노마츠카와",
+            "lat": 36.424456,
+            "lng": 137.858631
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140916::station-1140917",
+          "fromStationId": "station-1140916",
+          "toStationId": "station-1140917",
+          "from": {
+            "ja": "信濃松川",
+            "ko": "시나노마츠카와",
+            "lat": 36.424456,
+            "lng": 137.858631
+          },
+          "to": {
+            "ja": "安曇沓掛",
+            "ko": "아즈미쿠츠카케",
+            "lat": 36.447795,
+            "lng": 137.854784
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140917::station-1140918",
+          "fromStationId": "station-1140917",
+          "toStationId": "station-1140918",
+          "from": {
+            "ja": "安曇沓掛",
+            "ko": "아즈미쿠츠카케",
+            "lat": 36.447795,
+            "lng": 137.854784
+          },
+          "to": {
+            "ja": "信濃常盤",
+            "ko": "시나노토키와",
+            "lat": 36.467403,
+            "lng": 137.847148
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140918::station-1140919",
+          "fromStationId": "station-1140918",
+          "toStationId": "station-1140919",
+          "from": {
+            "ja": "信濃常盤",
+            "ko": "시나노토키와",
+            "lat": 36.467403,
+            "lng": 137.847148
+          },
+          "to": {
+            "ja": "南大町",
+            "ko": "미나미오오마치",
+            "lat": 36.491536,
+            "lng": 137.856269
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140919::station-1140920",
+          "fromStationId": "station-1140919",
+          "toStationId": "station-1140920",
+          "from": {
+            "ja": "南大町",
+            "ko": "미나미오오마치",
+            "lat": 36.491536,
+            "lng": 137.856269
+          },
+          "to": {
+            "ja": "信濃大町",
+            "ko": "시나노오오마치",
+            "lat": 36.50031,
+            "lng": 137.861674
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140920::station-1140921",
+          "fromStationId": "station-1140920",
+          "toStationId": "station-1140921",
+          "from": {
+            "ja": "信濃大町",
+            "ko": "시나노오오마치",
+            "lat": 36.50031,
+            "lng": 137.861674
+          },
+          "to": {
+            "ja": "北大町",
+            "ko": "키타오오마치",
+            "lat": 36.517558,
+            "lng": 137.857913
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140921::station-1140922",
+          "fromStationId": "station-1140921",
+          "toStationId": "station-1140922",
+          "from": {
+            "ja": "北大町",
+            "ko": "키타오오마치",
+            "lat": 36.517558,
+            "lng": 137.857913
+          },
+          "to": {
+            "ja": "信濃木崎",
+            "ko": "시나노키자키",
+            "lat": 36.535643,
+            "lng": 137.846189
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140922::station-1140923",
+          "fromStationId": "station-1140922",
+          "toStationId": "station-1140923",
+          "from": {
+            "ja": "信濃木崎",
+            "ko": "시나노키자키",
+            "lat": 36.535643,
+            "lng": 137.846189
+          },
+          "to": {
+            "ja": "稲尾",
+            "ko": "이나오",
+            "lat": 36.554058,
+            "lng": 137.842575
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140923::station-1140924",
+          "fromStationId": "station-1140923",
+          "toStationId": "station-1140924",
+          "from": {
+            "ja": "稲尾",
+            "ko": "이나오",
+            "lat": 36.554058,
+            "lng": 137.842575
+          },
+          "to": {
+            "ja": "海ノ口",
+            "ko": "우미노쿠치",
+            "lat": 36.565652,
+            "lng": 137.841824
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140924::station-1140925",
+          "fromStationId": "station-1140924",
+          "toStationId": "station-1140925",
+          "from": {
+            "ja": "海ノ口",
+            "ko": "우미노쿠치",
+            "lat": 36.565652,
+            "lng": 137.841824
+          },
+          "to": {
+            "ja": "簗場",
+            "ko": "야나바",
+            "lat": 36.594666,
+            "lng": 137.844724
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140925::station-1140927",
+          "fromStationId": "station-1140925",
+          "toStationId": "station-1140927",
+          "from": {
+            "ja": "簗場",
+            "ko": "야나바",
+            "lat": 36.594666,
+            "lng": 137.844724
+          },
+          "to": {
+            "ja": "南神城",
+            "ko": "미나미카미시로",
+            "lat": 36.637105,
+            "lng": 137.841551
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140927::station-1140928",
+          "fromStationId": "station-1140927",
+          "toStationId": "station-1140928",
+          "from": {
+            "ja": "南神城",
+            "ko": "미나미카미시로",
+            "lat": 36.637105,
+            "lng": 137.841551
+          },
+          "to": {
+            "ja": "神城",
+            "ko": "신조우",
+            "lat": 36.658287,
+            "lng": 137.846586
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140928::station-1140929",
+          "fromStationId": "station-1140928",
+          "toStationId": "station-1140929",
+          "from": {
+            "ja": "神城",
+            "ko": "신조우",
+            "lat": 36.658287,
+            "lng": 137.846586
+          },
+          "to": {
+            "ja": "飯森",
+            "ko": "이이모리",
+            "lat": 36.670563,
+            "lng": 137.85006
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140929::station-1140930",
+          "fromStationId": "station-1140929",
+          "toStationId": "station-1140930",
+          "from": {
+            "ja": "飯森",
+            "ko": "이이모리",
+            "lat": 36.670563,
+            "lng": 137.85006
+          },
+          "to": {
+            "ja": "白馬",
+            "ko": "하쿠바",
+            "lat": 36.695922,
+            "lng": 137.863819
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140930::station-1140931",
+          "fromStationId": "station-1140930",
+          "toStationId": "station-1140931",
+          "from": {
+            "ja": "白馬",
+            "ko": "하쿠바",
+            "lat": 36.695922,
+            "lng": 137.863819
+          },
+          "to": {
+            "ja": "信濃森上",
+            "ko": "시나노모리우에",
+            "lat": 36.711132,
+            "lng": 137.871991
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140931::station-1140932",
+          "fromStationId": "station-1140931",
+          "toStationId": "station-1140932",
+          "from": {
+            "ja": "信濃森上",
+            "ko": "시나노모리우에",
+            "lat": 36.711132,
+            "lng": 137.871991
+          },
+          "to": {
+            "ja": "白馬大池",
+            "ko": "하쿠바오오이케",
+            "lat": 36.739918,
+            "lng": 137.885531
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140932::station-1140933",
+          "fromStationId": "station-1140932",
+          "toStationId": "station-1140933",
+          "from": {
+            "ja": "白馬大池",
+            "ko": "하쿠바오오이케",
+            "lat": 36.739918,
+            "lng": 137.885531
+          },
+          "to": {
+            "ja": "千国",
+            "ko": "센코쿠",
+            "lat": 36.763249,
+            "lng": 137.900895
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140933::station-1140934",
+          "fromStationId": "station-1140933",
+          "toStationId": "station-1140934",
+          "from": {
+            "ja": "千国",
+            "ko": "센코쿠",
+            "lat": 36.763249,
+            "lng": 137.900895
+          },
+          "to": {
+            "ja": "南小谷",
+            "ko": "미나미코타니",
+            "lat": 36.774604,
+            "lng": 137.908372
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140934::station-1140935",
+          "fromStationId": "station-1140934",
+          "toStationId": "station-1140935",
+          "from": {
+            "ja": "南小谷",
+            "ko": "미나미코타니",
+            "lat": 36.774604,
+            "lng": 137.908372
+          },
+          "to": {
+            "ja": "中土",
+            "ko": "나카츠치",
+            "lat": 36.80558,
+            "lng": 137.907879
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140935::station-1140936",
+          "fromStationId": "station-1140935",
+          "toStationId": "station-1140936",
+          "from": {
+            "ja": "中土",
+            "ko": "나카츠치",
+            "lat": 36.80558,
+            "lng": 137.907879
+          },
+          "to": {
+            "ja": "北小谷",
+            "ko": "키타오타리",
+            "lat": 36.842567,
+            "lng": 137.906451
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140936::station-1140937",
+          "fromStationId": "station-1140936",
+          "toStationId": "station-1140937",
+          "from": {
+            "ja": "北小谷",
+            "ko": "키타오타리",
+            "lat": 36.842567,
+            "lng": 137.906451
+          },
+          "to": {
+            "ja": "平岩",
+            "ko": "히라이와",
+            "lat": 36.88688,
+            "lng": 137.86561
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140937::station-1140938",
+          "fromStationId": "station-1140937",
+          "toStationId": "station-1140938",
+          "from": {
+            "ja": "平岩",
+            "ko": "히라이와",
+            "lat": 36.88688,
+            "lng": 137.86561
+          },
+          "to": {
+            "ja": "小滝",
+            "ko": "코다키",
+            "lat": 36.938155,
+            "lng": 137.85945
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140938::station-1140939",
+          "fromStationId": "station-1140938",
+          "toStationId": "station-1140939",
+          "from": {
+            "ja": "小滝",
+            "ko": "코다키",
+            "lat": 36.938155,
+            "lng": 137.85945
+          },
+          "to": {
+            "ja": "根知",
+            "ko": "네치",
+            "lat": 36.966683,
+            "lng": 137.86711
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140939::station-1140940",
+          "fromStationId": "station-1140939",
+          "toStationId": "station-1140940",
+          "from": {
+            "ja": "根知",
+            "ko": "네치",
+            "lat": 36.966683,
+            "lng": 137.86711
+          },
+          "to": {
+            "ja": "頸城大野",
+            "ko": "쿠비키오오노",
+            "lat": 37.006124,
+            "lng": 137.872447
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140940::station-1140941",
+          "fromStationId": "station-1140940",
+          "toStationId": "station-1140941",
+          "from": {
+            "ja": "頸城大野",
+            "ko": "쿠비키오오노",
+            "lat": 37.006124,
+            "lng": 137.872447
+          },
+          "to": {
+            "ja": "姫川",
+            "ko": "히메카와",
+            "lat": 37.020339,
+            "lng": 137.860914
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140941::station-1140516",
+          "fromStationId": "station-1140941",
+          "toStationId": "station-1140516",
+          "from": {
+            "ja": "姫川",
+            "ko": "히메카와",
+            "lat": 37.020339,
+            "lng": 137.860914
+          },
+          "to": {
+            "ja": "糸魚川",
+            "ko": "이토이가와",
+            "lat": 37.043631,
+            "lng": 137.861311
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1140901::station-1140902",
+        "station-1140902::station-1140903",
+        "station-1140903::station-1140904",
+        "station-1140904::station-1140905",
+        "station-1140905::station-1140906",
+        "station-1140906::station-1140907",
+        "station-1140907::station-1140908",
+        "station-1140908::station-1140909",
+        "station-1140909::station-1140910",
+        "station-1140910::station-1140911",
+        "station-1140911::station-1140912",
+        "station-1140912::station-1140913",
+        "station-1140913::station-1140914",
+        "station-1140914::station-1140915",
+        "station-1140915::station-1140916",
+        "station-1140916::station-1140917",
+        "station-1140917::station-1140918",
+        "station-1140918::station-1140919",
+        "station-1140919::station-1140920",
+        "station-1140920::station-1140921",
+        "station-1140921::station-1140922",
+        "station-1140922::station-1140923",
+        "station-1140923::station-1140924",
+        "station-1140924::station-1140925",
+        "station-1140925::station-1140927",
+        "station-1140927::station-1140928",
+        "station-1140928::station-1140929",
+        "station-1140929::station-1140930",
+        "station-1140930::station-1140931",
+        "station-1140931::station-1140932",
+        "station-1140932::station-1140933",
+        "station-1140933::station-1140934",
+        "station-1140934::station-1140935",
+        "station-1140935::station-1140936",
+        "station-1140936::station-1140937",
+        "station-1140937::station-1140938",
+        "station-1140938::station-1140939",
+        "station-1140939::station-1140940",
+        "station-1140940::station-1140941",
+        "station-1140941::station-1140516"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-11111",
+      "operatorId": "jr-hokkaido",
+      "lineKo": "히다카혼선",
+      "lineJa": "日高本線",
+      "stationCount": 29,
+      "segmentCount": 28,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1110434::station-1111102",
+          "fromStationId": "station-1110434",
+          "toStationId": "station-1111102",
+          "from": {
+            "ja": "苫小牧",
+            "ko": "토마코마이",
+            "lat": 42.639665,
+            "lng": 141.596837
+          },
+          "to": {
+            "ja": "勇払",
+            "ko": "유우후츠",
+            "lat": 42.632805,
+            "lng": 141.727667
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111102::station-1111103",
+          "fromStationId": "station-1111102",
+          "toStationId": "station-1111103",
+          "from": {
+            "ja": "勇払",
+            "ko": "유우후츠",
+            "lat": 42.632805,
+            "lng": 141.727667
+          },
+          "to": {
+            "ja": "浜厚真",
+            "ko": "하마아츠마",
+            "lat": 42.606725,
+            "lng": 141.837071
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111103::station-1111104",
+          "fromStationId": "station-1111103",
+          "toStationId": "station-1111104",
+          "from": {
+            "ja": "浜厚真",
+            "ko": "하마아츠마",
+            "lat": 42.606725,
+            "lng": 141.837071
+          },
+          "to": {
+            "ja": "浜田浦",
+            "ko": "하마타우라",
+            "lat": 42.590722,
+            "lng": 141.88362
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111104::station-1111105",
+          "fromStationId": "station-1111104",
+          "toStationId": "station-1111105",
+          "from": {
+            "ja": "浜田浦",
+            "ko": "하마타우라",
+            "lat": 42.590722,
+            "lng": 141.88362
+          },
+          "to": {
+            "ja": "鵡川",
+            "ko": "무카와",
+            "lat": 42.578953,
+            "lng": 141.923892
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111105::station-1111106",
+          "fromStationId": "station-1111105",
+          "toStationId": "station-1111106",
+          "from": {
+            "ja": "鵡川",
+            "ko": "무카와",
+            "lat": 42.578953,
+            "lng": 141.923892
+          },
+          "to": {
+            "ja": "汐見",
+            "ko": "시오미",
+            "lat": 42.550235,
+            "lng": 141.945255
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111106::station-1111107",
+          "fromStationId": "station-1111106",
+          "toStationId": "station-1111107",
+          "from": {
+            "ja": "汐見",
+            "ko": "시오미",
+            "lat": 42.550235,
+            "lng": 141.945255
+          },
+          "to": {
+            "ja": "富川",
+            "ko": "토미카와",
+            "lat": 42.516865,
+            "lng": 142.020855
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111107::station-1111108",
+          "fromStationId": "station-1111107",
+          "toStationId": "station-1111108",
+          "from": {
+            "ja": "富川",
+            "ko": "토미카와",
+            "lat": 42.516865,
+            "lng": 142.020855
+          },
+          "to": {
+            "ja": "日高門別",
+            "ko": "히다카몬베츠",
+            "lat": 42.481237,
+            "lng": 142.072692
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111108::station-1111109",
+          "fromStationId": "station-1111108",
+          "toStationId": "station-1111109",
+          "from": {
+            "ja": "日高門別",
+            "ko": "히다카몬베츠",
+            "lat": 42.481237,
+            "lng": 142.072692
+          },
+          "to": {
+            "ja": "豊郷",
+            "ko": "토요사토",
+            "lat": 42.470119,
+            "lng": 142.122493
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111109::station-1111110",
+          "fromStationId": "station-1111109",
+          "toStationId": "station-1111110",
+          "from": {
+            "ja": "豊郷",
+            "ko": "토요사토",
+            "lat": 42.470119,
+            "lng": 142.122493
+          },
+          "to": {
+            "ja": "清畠",
+            "ko": "키요하타",
+            "lat": 42.455709,
+            "lng": 142.176624
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111110::station-1111111",
+          "fromStationId": "station-1111110",
+          "toStationId": "station-1111111",
+          "from": {
+            "ja": "清畠",
+            "ko": "키요하타",
+            "lat": 42.455709,
+            "lng": 142.176624
+          },
+          "to": {
+            "ja": "厚賀",
+            "ko": "아츠가",
+            "lat": 42.430507,
+            "lng": 142.215896
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111111::station-1111112",
+          "fromStationId": "station-1111111",
+          "toStationId": "station-1111112",
+          "from": {
+            "ja": "厚賀",
+            "ko": "아츠가",
+            "lat": 42.430507,
+            "lng": 142.215896
+          },
+          "to": {
+            "ja": "大狩部",
+            "ko": "오오카리베",
+            "lat": 42.395695,
+            "lng": 142.259355
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111112::station-1111113",
+          "fromStationId": "station-1111112",
+          "toStationId": "station-1111113",
+          "from": {
+            "ja": "大狩部",
+            "ko": "오오카리베",
+            "lat": 42.395695,
+            "lng": 142.259355
+          },
+          "to": {
+            "ja": "節婦",
+            "ko": "셌푸",
+            "lat": 42.38248,
+            "lng": 142.275541
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111113::station-1111114",
+          "fromStationId": "station-1111113",
+          "toStationId": "station-1111114",
+          "from": {
+            "ja": "節婦",
+            "ko": "셌푸",
+            "lat": 42.38248,
+            "lng": 142.275541
+          },
+          "to": {
+            "ja": "新冠",
+            "ko": "니이캈푸",
+            "lat": 42.360667,
+            "lng": 142.312585
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111114::station-1111115",
+          "fromStationId": "station-1111114",
+          "toStationId": "station-1111115",
+          "from": {
+            "ja": "新冠",
+            "ko": "니이캈푸",
+            "lat": 42.360667,
+            "lng": 142.312585
+          },
+          "to": {
+            "ja": "静内",
+            "ko": "시즈나이",
+            "lat": 42.336559,
+            "lng": 142.360402
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111115::station-1111117",
+          "fromStationId": "station-1111115",
+          "toStationId": "station-1111117",
+          "from": {
+            "ja": "静内",
+            "ko": "시즈나이",
+            "lat": 42.336559,
+            "lng": 142.360402
+          },
+          "to": {
+            "ja": "東静内",
+            "ko": "히가시시즈나이",
+            "lat": 42.304416,
+            "lng": 142.450485
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111117::station-1111118",
+          "fromStationId": "station-1111117",
+          "toStationId": "station-1111118",
+          "from": {
+            "ja": "東静内",
+            "ko": "히가시시즈나이",
+            "lat": 42.304416,
+            "lng": 142.450485
+          },
+          "to": {
+            "ja": "春立",
+            "ko": "하루타치",
+            "lat": 42.268515,
+            "lng": 142.498943
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111118::station-1111119",
+          "fromStationId": "station-1111118",
+          "toStationId": "station-1111119",
+          "from": {
+            "ja": "春立",
+            "ko": "하루타치",
+            "lat": 42.268515,
+            "lng": 142.498943
+          },
+          "to": {
+            "ja": "日高東別",
+            "ko": "히다카히가시베츠",
+            "lat": 42.280837,
+            "lng": 142.521371
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111119::station-1111120",
+          "fromStationId": "station-1111119",
+          "toStationId": "station-1111120",
+          "from": {
+            "ja": "日高東別",
+            "ko": "히다카히가시베츠",
+            "lat": 42.280837,
+            "lng": 142.521371
+          },
+          "to": {
+            "ja": "日高三石",
+            "ko": "니치다카산세키",
+            "lat": 42.247269,
+            "lng": 142.566859
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111120::station-1111121",
+          "fromStationId": "station-1111120",
+          "toStationId": "station-1111121",
+          "from": {
+            "ja": "日高三石",
+            "ko": "니치다카산세키",
+            "lat": 42.247269,
+            "lng": 142.566859
+          },
+          "to": {
+            "ja": "蓬栄",
+            "ko": "호우에이",
+            "lat": 42.264636,
+            "lng": 142.604517
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111121::station-1111122",
+          "fromStationId": "station-1111121",
+          "toStationId": "station-1111122",
+          "from": {
+            "ja": "蓬栄",
+            "ko": "호우에이",
+            "lat": 42.264636,
+            "lng": 142.604517
+          },
+          "to": {
+            "ja": "本桐",
+            "ko": "혼키리",
+            "lat": 42.248205,
+            "lng": 142.630455
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111122::station-1111123",
+          "fromStationId": "station-1111122",
+          "toStationId": "station-1111123",
+          "from": {
+            "ja": "本桐",
+            "ko": "혼키리",
+            "lat": 42.248205,
+            "lng": 142.630455
+          },
+          "to": {
+            "ja": "荻伏",
+            "ko": "오기후시",
+            "lat": 42.206136,
+            "lng": 142.689432
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111123::station-1111124",
+          "fromStationId": "station-1111123",
+          "toStationId": "station-1111124",
+          "from": {
+            "ja": "荻伏",
+            "ko": "오기후시",
+            "lat": 42.206136,
+            "lng": 142.689432
+          },
+          "to": {
+            "ja": "絵笛",
+            "ko": "에후에",
+            "lat": 42.198428,
+            "lng": 142.736134
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111124::station-1111125",
+          "fromStationId": "station-1111124",
+          "toStationId": "station-1111125",
+          "from": {
+            "ja": "絵笛",
+            "ko": "에후에",
+            "lat": 42.198428,
+            "lng": 142.736134
+          },
+          "to": {
+            "ja": "浦河",
+            "ko": "우라카와",
+            "lat": 42.168366,
+            "lng": 142.769976
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111125::station-1111126",
+          "fromStationId": "station-1111125",
+          "toStationId": "station-1111126",
+          "from": {
+            "ja": "浦河",
+            "ko": "우라카와",
+            "lat": 42.168366,
+            "lng": 142.769976
+          },
+          "to": {
+            "ja": "東町",
+            "ko": "아즈마마치",
+            "lat": 42.156037,
+            "lng": 142.788931
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111126::station-1111127",
+          "fromStationId": "station-1111126",
+          "toStationId": "station-1111127",
+          "from": {
+            "ja": "東町",
+            "ko": "아즈마마치",
+            "lat": 42.156037,
+            "lng": 142.788931
+          },
+          "to": {
+            "ja": "日高幌別",
+            "ko": "히다카호로베츠",
+            "lat": 42.142338,
+            "lng": 142.834519
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111127::station-1111128",
+          "fromStationId": "station-1111127",
+          "toStationId": "station-1111128",
+          "from": {
+            "ja": "日高幌別",
+            "ko": "히다카호로베츠",
+            "lat": 42.142338,
+            "lng": 142.834519
+          },
+          "to": {
+            "ja": "鵜苫",
+            "ko": "우토마",
+            "lat": 42.134449,
+            "lng": 142.882513
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111128::station-1111129",
+          "fromStationId": "station-1111128",
+          "toStationId": "station-1111129",
+          "from": {
+            "ja": "鵜苫",
+            "ko": "우토마",
+            "lat": 42.134449,
+            "lng": 142.882513
+          },
+          "to": {
+            "ja": "西様似",
+            "ko": "니시사마니",
+            "lat": 42.138411,
+            "lng": 142.908737
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111129::station-1111130",
+          "fromStationId": "station-1111129",
+          "toStationId": "station-1111130",
+          "from": {
+            "ja": "西様似",
+            "ko": "니시사마니",
+            "lat": 42.138411,
+            "lng": 142.908737
+          },
+          "to": {
+            "ja": "様似",
+            "ko": "사마니",
+            "lat": 42.127936,
+            "lng": 142.93596
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1110434::station-1111102",
+        "station-1111102::station-1111103",
+        "station-1111103::station-1111104",
+        "station-1111104::station-1111105",
+        "station-1111105::station-1111106",
+        "station-1111106::station-1111107",
+        "station-1111107::station-1111108",
+        "station-1111108::station-1111109",
+        "station-1111109::station-1111110",
+        "station-1111110::station-1111111",
+        "station-1111111::station-1111112",
+        "station-1111112::station-1111113",
+        "station-1111113::station-1111114",
+        "station-1111114::station-1111115",
+        "station-1111115::station-1111117",
+        "station-1111117::station-1111118",
+        "station-1111118::station-1111119",
+        "station-1111119::station-1111120",
+        "station-1111120::station-1111121",
+        "station-1111121::station-1111122",
+        "station-1111122::station-1111123",
+        "station-1111123::station-1111124",
+        "station-1111124::station-1111125",
+        "station-1111125::station-1111126",
+        "station-1111126::station-1111127",
+        "station-1111127::station-1111128",
+        "station-1111128::station-1111129",
+        "station-1111129::station-1111130"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-11106",
+      "operatorId": "jr-hokkaido",
+      "lineKo": "네무로혼선타키카와～신토쿠",
+      "lineJa": "根室本線(滝川～新得)",
+      "stationCount": 17,
+      "segmentCount": 16,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1110335::station-1110602",
+          "fromStationId": "station-1110335",
+          "toStationId": "station-1110602",
+          "from": {
+            "ja": "滝川",
+            "ko": "타키가와",
+            "lat": 43.555278,
+            "lng": 141.900807
+          },
+          "to": {
+            "ja": "東滝川",
+            "ko": "히가시타키카와",
+            "lat": 43.574037,
+            "lng": 141.98031
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110602::station-1110603",
+          "fromStationId": "station-1110602",
+          "toStationId": "station-1110603",
+          "from": {
+            "ja": "東滝川",
+            "ko": "히가시타키카와",
+            "lat": 43.574037,
+            "lng": 141.98031
+          },
+          "to": {
+            "ja": "赤平",
+            "ko": "아카비라",
+            "lat": 43.555144,
+            "lng": 142.048669
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110603::station-1110604",
+          "fromStationId": "station-1110603",
+          "toStationId": "station-1110604",
+          "from": {
+            "ja": "赤平",
+            "ko": "아카비라",
+            "lat": 43.555144,
+            "lng": 142.048669
+          },
+          "to": {
+            "ja": "茂尻",
+            "ko": "모시리",
+            "lat": 43.537314,
+            "lng": 142.082156
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110604::station-1110605",
+          "fromStationId": "station-1110604",
+          "toStationId": "station-1110605",
+          "from": {
+            "ja": "茂尻",
+            "ko": "모시리",
+            "lat": 43.537314,
+            "lng": 142.082156
+          },
+          "to": {
+            "ja": "平岸",
+            "ko": "히라기시",
+            "lat": 43.541401,
+            "lng": 142.123872
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110605::station-1110606",
+          "fromStationId": "station-1110605",
+          "toStationId": "station-1110606",
+          "from": {
+            "ja": "平岸",
+            "ko": "히라기시",
+            "lat": 43.541401,
+            "lng": 142.123872
+          },
+          "to": {
+            "ja": "芦別",
+            "ko": "아시베츠",
+            "lat": 43.516636,
+            "lng": 142.184543
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110606::station-1110607",
+          "fromStationId": "station-1110606",
+          "toStationId": "station-1110607",
+          "from": {
+            "ja": "芦別",
+            "ko": "아시베츠",
+            "lat": 43.516636,
+            "lng": 142.184543
+          },
+          "to": {
+            "ja": "上芦別",
+            "ko": "카미아시베츠",
+            "lat": 43.48871,
+            "lng": 142.210855
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110607::station-1110608",
+          "fromStationId": "station-1110607",
+          "toStationId": "station-1110608",
+          "from": {
+            "ja": "上芦別",
+            "ko": "카미아시베츠",
+            "lat": 43.48871,
+            "lng": 142.210855
+          },
+          "to": {
+            "ja": "野花南",
+            "ko": "노카난",
+            "lat": 43.474418,
+            "lng": 142.261772
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110608::station-1110610",
+          "fromStationId": "station-1110608",
+          "toStationId": "station-1110610",
+          "from": {
+            "ja": "野花南",
+            "ko": "노카난",
+            "lat": 43.474418,
+            "lng": 142.261772
+          },
+          "to": {
+            "ja": "富良野",
+            "ko": "후라노",
+            "lat": 43.347114,
+            "lng": 142.391374
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110610::station-1110611",
+          "fromStationId": "station-1110610",
+          "toStationId": "station-1110611",
+          "from": {
+            "ja": "富良野",
+            "ko": "후라노",
+            "lat": 43.347114,
+            "lng": 142.391374
+          },
+          "to": {
+            "ja": "布部",
+            "ko": "누노베",
+            "lat": 43.291991,
+            "lng": 142.400595
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110611::station-1110612",
+          "fromStationId": "station-1110611",
+          "toStationId": "station-1110612",
+          "from": {
+            "ja": "布部",
+            "ko": "누노베",
+            "lat": 43.291991,
+            "lng": 142.400595
+          },
+          "to": {
+            "ja": "山部",
+            "ko": "야마베",
+            "lat": 43.244645,
+            "lng": 142.381522
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110612::station-1110613",
+          "fromStationId": "station-1110612",
+          "toStationId": "station-1110613",
+          "from": {
+            "ja": "山部",
+            "ko": "야마베",
+            "lat": 43.244645,
+            "lng": 142.381522
+          },
+          "to": {
+            "ja": "下金山",
+            "ko": "시모카나야마",
+            "lat": 43.197328,
+            "lng": 142.415402
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110613::station-1110614",
+          "fromStationId": "station-1110613",
+          "toStationId": "station-1110614",
+          "from": {
+            "ja": "下金山",
+            "ko": "시모카나야마",
+            "lat": 43.197328,
+            "lng": 142.415402
+          },
+          "to": {
+            "ja": "金山",
+            "ko": "카나야마",
+            "lat": 43.136115,
+            "lng": 142.416201
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110614::station-1110615",
+          "fromStationId": "station-1110614",
+          "toStationId": "station-1110615",
+          "from": {
+            "ja": "金山",
+            "ko": "카나야마",
+            "lat": 43.136115,
+            "lng": 142.416201
+          },
+          "to": {
+            "ja": "東鹿越",
+            "ko": "히가시시카고에",
+            "lat": 43.164011,
+            "lng": 142.523472
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110615::station-1110616",
+          "fromStationId": "station-1110615",
+          "toStationId": "station-1110616",
+          "from": {
+            "ja": "東鹿越",
+            "ko": "히가시시카고에",
+            "lat": 43.164011,
+            "lng": 142.523472
+          },
+          "to": {
+            "ja": "幾寅",
+            "ko": "이쿠토라",
+            "lat": 43.161582,
+            "lng": 142.569474
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110616::station-1110617",
+          "fromStationId": "station-1110616",
+          "toStationId": "station-1110617",
+          "from": {
+            "ja": "幾寅",
+            "ko": "이쿠토라",
+            "lat": 43.161582,
+            "lng": 142.569474
+          },
+          "to": {
+            "ja": "落合",
+            "ko": "오치아이",
+            "lat": 43.125055,
+            "lng": 142.669104
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1110617::station-1110618",
+          "fromStationId": "station-1110617",
+          "toStationId": "station-1110618",
+          "from": {
+            "ja": "落合",
+            "ko": "오치아이",
+            "lat": 43.125055,
+            "lng": 142.669104
+          },
+          "to": {
+            "ja": "新得",
+            "ko": "신토쿠",
+            "lat": 43.082501,
+            "lng": 142.832432
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1110335::station-1110602",
+        "station-1110602::station-1110603",
+        "station-1110603::station-1110604",
+        "station-1110604::station-1110605",
+        "station-1110605::station-1110606",
+        "station-1110606::station-1110607",
+        "station-1110607::station-1110608",
+        "station-1110608::station-1110610",
+        "station-1110610::station-1110611",
+        "station-1110611::station-1110612",
+        "station-1110612::station-1110613",
+        "station-1110613::station-1110614",
+        "station-1110614::station-1110615",
+        "station-1110615::station-1110616",
+        "station-1110616::station-1110617",
+        "station-1110617::station-1110618"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-11113",
+      "operatorId": "jr-hokkaido",
+      "lineKo": "루모에혼선",
+      "lineJa": "留萌本線",
+      "stationCount": 12,
+      "segmentCount": 11,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1110338::station-1111302",
+          "fromStationId": "station-1110338",
+          "toStationId": "station-1111302",
+          "from": {
+            "ja": "深川",
+            "ko": "후카가와",
+            "lat": 43.721021,
+            "lng": 142.041642
+          },
+          "to": {
+            "ja": "北一已",
+            "ko": "키타이츠찬",
+            "lat": 43.742021,
+            "lng": 142.014721
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111302::station-1111303",
+          "fromStationId": "station-1111302",
+          "toStationId": "station-1111303",
+          "from": {
+            "ja": "北一已",
+            "ko": "키타이츠찬",
+            "lat": 43.742021,
+            "lng": 142.014721
+          },
+          "to": {
+            "ja": "秩父別",
+            "ko": "칬푸베츠",
+            "lat": 43.769099,
+            "lng": 141.967757
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111303::station-1111304",
+          "fromStationId": "station-1111303",
+          "toStationId": "station-1111304",
+          "from": {
+            "ja": "秩父別",
+            "ko": "칬푸베츠",
+            "lat": 43.769099,
+            "lng": 141.967757
+          },
+          "to": {
+            "ja": "北秩父別",
+            "ko": "키타칬푸베츠",
+            "lat": 43.789375,
+            "lng": 141.960915
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111304::station-1111305",
+          "fromStationId": "station-1111304",
+          "toStationId": "station-1111305",
+          "from": {
+            "ja": "北秩父別",
+            "ko": "키타칬푸베츠",
+            "lat": 43.789375,
+            "lng": 141.960915
+          },
+          "to": {
+            "ja": "石狩沼田",
+            "ko": "이시카리누마타",
+            "lat": 43.810032,
+            "lng": 141.934266
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111305::station-1111306",
+          "fromStationId": "station-1111305",
+          "toStationId": "station-1111306",
+          "from": {
+            "ja": "石狩沼田",
+            "ko": "이시카리누마타",
+            "lat": 43.810032,
+            "lng": 141.934266
+          },
+          "to": {
+            "ja": "真布",
+            "ko": "맜푸",
+            "lat": 43.832965,
+            "lng": 141.906756
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111306::station-1111307",
+          "fromStationId": "station-1111306",
+          "toStationId": "station-1111307",
+          "from": {
+            "ja": "真布",
+            "ko": "맜푸",
+            "lat": 43.832965,
+            "lng": 141.906756
+          },
+          "to": {
+            "ja": "恵比島",
+            "ko": "에비시마",
+            "lat": 43.851296,
+            "lng": 141.88144
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111307::station-1111308",
+          "fromStationId": "station-1111307",
+          "toStationId": "station-1111308",
+          "from": {
+            "ja": "恵比島",
+            "ko": "에비시마",
+            "lat": 43.851296,
+            "lng": 141.88144
+          },
+          "to": {
+            "ja": "峠下",
+            "ko": "토우게시모",
+            "lat": 43.850789,
+            "lng": 141.818879
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111308::station-1111309",
+          "fromStationId": "station-1111308",
+          "toStationId": "station-1111309",
+          "from": {
+            "ja": "峠下",
+            "ko": "토우게시모",
+            "lat": 43.850789,
+            "lng": 141.818879
+          },
+          "to": {
+            "ja": "幌糠",
+            "ko": "호로누카",
+            "lat": 43.855521,
+            "lng": 141.758418
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111309::station-1111310",
+          "fromStationId": "station-1111309",
+          "toStationId": "station-1111310",
+          "from": {
+            "ja": "幌糠",
+            "ko": "호로누카",
+            "lat": 43.855521,
+            "lng": 141.758418
+          },
+          "to": {
+            "ja": "藤山",
+            "ko": "후지야마",
+            "lat": 43.88708,
+            "lng": 141.720588
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111310::station-1111311",
+          "fromStationId": "station-1111310",
+          "toStationId": "station-1111311",
+          "from": {
+            "ja": "藤山",
+            "ko": "후지야마",
+            "lat": 43.88708,
+            "lng": 141.720588
+          },
+          "to": {
+            "ja": "大和田",
+            "ko": "오오와다",
+            "lat": 43.913418,
+            "lng": 141.696528
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111311::station-1111312",
+          "fromStationId": "station-1111311",
+          "toStationId": "station-1111312",
+          "from": {
+            "ja": "大和田",
+            "ko": "오오와다",
+            "lat": 43.913418,
+            "lng": 141.696528
+          },
+          "to": {
+            "ja": "留萌",
+            "ko": "루모에",
+            "lat": 43.942848,
+            "lng": 141.651433
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1110338::station-1111302",
+        "station-1111302::station-1111303",
+        "station-1111303::station-1111304",
+        "station-1111304::station-1111305",
+        "station-1111305::station-1111306",
+        "station-1111306::station-1111307",
+        "station-1111307::station-1111308",
+        "station-1111308::station-1111309",
+        "station-1111309::station-1111310",
+        "station-1111310::station-1111311",
+        "station-1111311::station-1111312"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-11415",
+      "operatorId": "jr-west",
+      "lineKo": "호쿠리쿠혼선마이바라～카나자와",
+      "lineJa": "北陸本線(米原～金沢)",
+      "stationCount": 43,
+      "segmentCount": 42,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1141501::station-1141502",
+          "fromStationId": "station-1141501",
+          "toStationId": "station-1141502",
+          "from": {
+            "ja": "米原",
+            "ko": "마이바라",
+            "lat": 35.314657,
+            "lng": 136.289992
+          },
+          "to": {
+            "ja": "坂田",
+            "ko": "사카타",
+            "lat": 35.335777,
+            "lng": 136.287743
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141502::station-1141503",
+          "fromStationId": "station-1141502",
+          "toStationId": "station-1141503",
+          "from": {
+            "ja": "坂田",
+            "ko": "사카타",
+            "lat": 35.335777,
+            "lng": 136.287743
+          },
+          "to": {
+            "ja": "田村",
+            "ko": "타무라",
+            "lat": 35.356307,
+            "lng": 136.281813
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141503::station-1141504",
+          "fromStationId": "station-1141503",
+          "toStationId": "station-1141504",
+          "from": {
+            "ja": "田村",
+            "ko": "타무라",
+            "lat": 35.356307,
+            "lng": 136.281813
+          },
+          "to": {
+            "ja": "長浜",
+            "ko": "나가하마",
+            "lat": 35.378828,
+            "lng": 136.264901
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141504::station-1141505",
+          "fromStationId": "station-1141504",
+          "toStationId": "station-1141505",
+          "from": {
+            "ja": "長浜",
+            "ko": "나가하마",
+            "lat": 35.378828,
+            "lng": 136.264901
+          },
+          "to": {
+            "ja": "虎姫",
+            "ko": "토라히메",
+            "lat": 35.424539,
+            "lng": 136.257385
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141505::station-1141506",
+          "fromStationId": "station-1141505",
+          "toStationId": "station-1141506",
+          "from": {
+            "ja": "虎姫",
+            "ko": "토라히메",
+            "lat": 35.424539,
+            "lng": 136.257385
+          },
+          "to": {
+            "ja": "河毛",
+            "ko": "카와케",
+            "lat": 35.448425,
+            "lng": 136.249519
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141506::station-1141507",
+          "fromStationId": "station-1141506",
+          "toStationId": "station-1141507",
+          "from": {
+            "ja": "河毛",
+            "ko": "카와케",
+            "lat": 35.448425,
+            "lng": 136.249519
+          },
+          "to": {
+            "ja": "高月",
+            "ko": "타카츠키",
+            "lat": 35.470337,
+            "lng": 136.237716
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141507::station-1141508",
+          "fromStationId": "station-1141507",
+          "toStationId": "station-1141508",
+          "from": {
+            "ja": "高月",
+            "ko": "타카츠키",
+            "lat": 35.470337,
+            "lng": 136.237716
+          },
+          "to": {
+            "ja": "木ノ本",
+            "ko": "키노모토",
+            "lat": 35.505933,
+            "lng": 136.221706
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141508::station-1141509",
+          "fromStationId": "station-1141508",
+          "toStationId": "station-1141509",
+          "from": {
+            "ja": "木ノ本",
+            "ko": "키노모토",
+            "lat": 35.505933,
+            "lng": 136.221706
+          },
+          "to": {
+            "ja": "余呉",
+            "ko": "요고",
+            "lat": 35.53382,
+            "lng": 136.197591
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141509::station-1141510",
+          "fromStationId": "station-1141509",
+          "toStationId": "station-1141510",
+          "from": {
+            "ja": "余呉",
+            "ko": "요고",
+            "lat": 35.53382,
+            "lng": 136.197591
+          },
+          "to": {
+            "ja": "近江塩津",
+            "ko": "오우미시오츠",
+            "lat": 35.53978,
+            "lng": 136.151236
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141510::station-1141511",
+          "fromStationId": "station-1141510",
+          "toStationId": "station-1141511",
+          "from": {
+            "ja": "近江塩津",
+            "ko": "오우미시오츠",
+            "lat": 35.53978,
+            "lng": 136.151236
+          },
+          "to": {
+            "ja": "新疋田",
+            "ko": "신히키타",
+            "lat": 35.594239,
+            "lng": 136.100558
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141511::station-1141512",
+          "fromStationId": "station-1141511",
+          "toStationId": "station-1141512",
+          "from": {
+            "ja": "新疋田",
+            "ko": "신히키타",
+            "lat": 35.594239,
+            "lng": 136.100558
+          },
+          "to": {
+            "ja": "敦賀",
+            "ko": "츠루가",
+            "lat": 35.644767,
+            "lng": 136.076488
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141512::station-1141513",
+          "fromStationId": "station-1141512",
+          "toStationId": "station-1141513",
+          "from": {
+            "ja": "敦賀",
+            "ko": "츠루가",
+            "lat": 35.644767,
+            "lng": 136.076488
+          },
+          "to": {
+            "ja": "南今庄",
+            "ko": "미나미이마조우",
+            "lat": 35.757424,
+            "lng": 136.184723
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141513::station-1141514",
+          "fromStationId": "station-1141513",
+          "toStationId": "station-1141514",
+          "from": {
+            "ja": "南今庄",
+            "ko": "미나미이마조우",
+            "lat": 35.757424,
+            "lng": 136.184723
+          },
+          "to": {
+            "ja": "今庄",
+            "ko": "이마조우",
+            "lat": 35.772947,
+            "lng": 136.199279
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141514::station-1141515",
+          "fromStationId": "station-1141514",
+          "toStationId": "station-1141515",
+          "from": {
+            "ja": "今庄",
+            "ko": "이마조우",
+            "lat": 35.772947,
+            "lng": 136.199279
+          },
+          "to": {
+            "ja": "湯尾",
+            "ko": "유오",
+            "lat": 35.803251,
+            "lng": 136.193007
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141515::station-1141516",
+          "fromStationId": "station-1141515",
+          "toStationId": "station-1141516",
+          "from": {
+            "ja": "湯尾",
+            "ko": "유오",
+            "lat": 35.803251,
+            "lng": 136.193007
+          },
+          "to": {
+            "ja": "南条",
+            "ko": "난조우",
+            "lat": 35.831956,
+            "lng": 136.193391
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141516::station-1141517",
+          "fromStationId": "station-1141516",
+          "toStationId": "station-1141517",
+          "from": {
+            "ja": "南条",
+            "ko": "난조우",
+            "lat": 35.831956,
+            "lng": 136.193391
+          },
+          "to": {
+            "ja": "王子保",
+            "ko": "오우시오",
+            "lat": 35.866259,
+            "lng": 136.165595
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141517::station-1141518",
+          "fromStationId": "station-1141517",
+          "toStationId": "station-1141518",
+          "from": {
+            "ja": "王子保",
+            "ko": "오우시오",
+            "lat": 35.866259,
+            "lng": 136.165595
+          },
+          "to": {
+            "ja": "武生",
+            "ko": "타케후",
+            "lat": 35.903254,
+            "lng": 136.170913
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141518::station-1141519",
+          "fromStationId": "station-1141518",
+          "toStationId": "station-1141519",
+          "from": {
+            "ja": "武生",
+            "ko": "타케후",
+            "lat": 35.903254,
+            "lng": 136.170913
+          },
+          "to": {
+            "ja": "鯖江",
+            "ko": "사바에",
+            "lat": 35.943355,
+            "lng": 136.188852
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141519::station-1141520",
+          "fromStationId": "station-1141519",
+          "toStationId": "station-1141520",
+          "from": {
+            "ja": "鯖江",
+            "ko": "사바에",
+            "lat": 35.943355,
+            "lng": 136.188852
+          },
+          "to": {
+            "ja": "北鯖江",
+            "ko": "키타사바에",
+            "lat": 35.971496,
+            "lng": 136.198452
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141520::station-1141521",
+          "fromStationId": "station-1141520",
+          "toStationId": "station-1141521",
+          "from": {
+            "ja": "北鯖江",
+            "ko": "키타사바에",
+            "lat": 35.971496,
+            "lng": 136.198452
+          },
+          "to": {
+            "ja": "大土呂",
+            "ko": "오오도로",
+            "lat": 36.010546,
+            "lng": 136.216519
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141521::station-1141522",
+          "fromStationId": "station-1141521",
+          "toStationId": "station-1141522",
+          "from": {
+            "ja": "大土呂",
+            "ko": "오오도로",
+            "lat": 36.010546,
+            "lng": 136.216519
+          },
+          "to": {
+            "ja": "越前花堂",
+            "ko": "에치젠하난도우",
+            "lat": 36.038771,
+            "lng": 136.218073
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141523::station-1141524",
+          "fromStationId": "station-1141523",
+          "toStationId": "station-1141524",
+          "from": {
+            "ja": "福井",
+            "ko": "후쿠이",
+            "lat": 36.062057,
+            "lng": 136.223516
+          },
+          "to": {
+            "ja": "森田",
+            "ko": "모리타",
+            "lat": 36.109381,
+            "lng": 136.222516
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141524::station-1141525",
+          "fromStationId": "station-1141524",
+          "toStationId": "station-1141525",
+          "from": {
+            "ja": "森田",
+            "ko": "모리타",
+            "lat": 36.109381,
+            "lng": 136.222516
+          },
+          "to": {
+            "ja": "春江",
+            "ko": "하루에",
+            "lat": 36.129004,
+            "lng": 136.228487
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141525::station-1141526",
+          "fromStationId": "station-1141525",
+          "toStationId": "station-1141526",
+          "from": {
+            "ja": "春江",
+            "ko": "하루에",
+            "lat": 36.129004,
+            "lng": 136.228487
+          },
+          "to": {
+            "ja": "丸岡",
+            "ko": "마루오카",
+            "lat": 36.162595,
+            "lng": 136.233502
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141526::station-1141527",
+          "fromStationId": "station-1141526",
+          "toStationId": "station-1141527",
+          "from": {
+            "ja": "丸岡",
+            "ko": "마루오카",
+            "lat": 36.162595,
+            "lng": 136.233502
+          },
+          "to": {
+            "ja": "芦原温泉",
+            "ko": "아와라온선",
+            "lat": 36.214542,
+            "lng": 136.235069
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141527::station-1141528",
+          "fromStationId": "station-1141527",
+          "toStationId": "station-1141528",
+          "from": {
+            "ja": "芦原温泉",
+            "ko": "아와라온선",
+            "lat": 36.214542,
+            "lng": 136.235069
+          },
+          "to": {
+            "ja": "細呂木",
+            "ko": "호소로기",
+            "lat": 36.24125,
+            "lng": 136.256968
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141528::station-1141529",
+          "fromStationId": "station-1141528",
+          "toStationId": "station-1141529",
+          "from": {
+            "ja": "細呂木",
+            "ko": "호소로기",
+            "lat": 36.24125,
+            "lng": 136.256968
+          },
+          "to": {
+            "ja": "牛ノ谷",
+            "ko": "우시노야",
+            "lat": 36.259409,
+            "lng": 136.281618
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141529::station-1141530",
+          "fromStationId": "station-1141529",
+          "toStationId": "station-1141530",
+          "from": {
+            "ja": "牛ノ谷",
+            "ko": "우시노야",
+            "lat": 36.259409,
+            "lng": 136.281618
+          },
+          "to": {
+            "ja": "大聖寺",
+            "ko": "다이쇼우지",
+            "lat": 36.300311,
+            "lng": 136.314205
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141530::station-1141531",
+          "fromStationId": "station-1141530",
+          "toStationId": "station-1141531",
+          "from": {
+            "ja": "大聖寺",
+            "ko": "다이쇼우지",
+            "lat": 36.300311,
+            "lng": 136.314205
+          },
+          "to": {
+            "ja": "加賀温泉",
+            "ko": "카가온선",
+            "lat": 36.320562,
+            "lng": 136.350337
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141531::station-1141532",
+          "fromStationId": "station-1141531",
+          "toStationId": "station-1141532",
+          "from": {
+            "ja": "加賀温泉",
+            "ko": "카가온선",
+            "lat": 36.320562,
+            "lng": 136.350337
+          },
+          "to": {
+            "ja": "動橋",
+            "ko": "이부리하시",
+            "lat": 36.328428,
+            "lng": 136.383027
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141532::station-1141533",
+          "fromStationId": "station-1141532",
+          "toStationId": "station-1141533",
+          "from": {
+            "ja": "動橋",
+            "ko": "이부리하시",
+            "lat": 36.328428,
+            "lng": 136.383027
+          },
+          "to": {
+            "ja": "粟津",
+            "ko": "아와즈",
+            "lat": 36.35575,
+            "lng": 136.424544
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141533::station-1141534",
+          "fromStationId": "station-1141533",
+          "toStationId": "station-1141534",
+          "from": {
+            "ja": "粟津",
+            "ko": "아와즈",
+            "lat": 36.35575,
+            "lng": 136.424544
+          },
+          "to": {
+            "ja": "小松",
+            "ko": "코마츠",
+            "lat": 36.402545,
+            "lng": 136.452926
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141534::station-1141535",
+          "fromStationId": "station-1141534",
+          "toStationId": "station-1141535",
+          "from": {
+            "ja": "小松",
+            "ko": "코마츠",
+            "lat": 36.402545,
+            "lng": 136.452926
+          },
+          "to": {
+            "ja": "明峰",
+            "ko": "메이호우",
+            "lat": 36.425302,
+            "lng": 136.463114
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141535::station-1141536",
+          "fromStationId": "station-1141535",
+          "toStationId": "station-1141536",
+          "from": {
+            "ja": "明峰",
+            "ko": "메이호우",
+            "lat": 36.425302,
+            "lng": 136.463114
+          },
+          "to": {
+            "ja": "能美根上",
+            "ko": "노미네아가리",
+            "lat": 36.452053,
+            "lng": 136.459721
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141536::station-1141537",
+          "fromStationId": "station-1141536",
+          "toStationId": "station-1141537",
+          "from": {
+            "ja": "能美根上",
+            "ko": "노미네아가리",
+            "lat": 36.452053,
+            "lng": 136.459721
+          },
+          "to": {
+            "ja": "小舞子",
+            "ko": "쇼우마이코",
+            "lat": 36.476371,
+            "lng": 136.474925
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141537::station-1141538",
+          "fromStationId": "station-1141537",
+          "toStationId": "station-1141538",
+          "from": {
+            "ja": "小舞子",
+            "ko": "쇼우마이코",
+            "lat": 36.476371,
+            "lng": 136.474925
+          },
+          "to": {
+            "ja": "美川",
+            "ko": "미카와",
+            "lat": 36.486001,
+            "lng": 136.489205
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141538::station-1141539",
+          "fromStationId": "station-1141538",
+          "toStationId": "station-1141539",
+          "from": {
+            "ja": "美川",
+            "ko": "미카와",
+            "lat": 36.486001,
+            "lng": 136.489205
+          },
+          "to": {
+            "ja": "加賀笠間",
+            "ko": "카가카사마",
+            "lat": 36.502935,
+            "lng": 136.527434
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141539::station-1141540",
+          "fromStationId": "station-1141539",
+          "toStationId": "station-1141540",
+          "from": {
+            "ja": "加賀笠間",
+            "ko": "카가카사마",
+            "lat": 36.502935,
+            "lng": 136.527434
+          },
+          "to": {
+            "ja": "松任",
+            "ko": "맜토우",
+            "lat": 36.526706,
+            "lng": 136.566205
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141540::station-1141541",
+          "fromStationId": "station-1141540",
+          "toStationId": "station-1141541",
+          "from": {
+            "ja": "松任",
+            "ko": "맜토우",
+            "lat": 36.526706,
+            "lng": 136.566205
+          },
+          "to": {
+            "ja": "野々市",
+            "ko": "노노이치",
+            "lat": 36.541644,
+            "lng": 136.598044
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141541::station-1141542",
+          "fromStationId": "station-1141541",
+          "toStationId": "station-1141542",
+          "from": {
+            "ja": "野々市",
+            "ko": "노노이치",
+            "lat": 36.541644,
+            "lng": 136.598044
+          },
+          "to": {
+            "ja": "西金沢",
+            "ko": "니시카나자와",
+            "lat": 36.553212,
+            "lng": 136.621225
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1141542::station-1141543",
+          "fromStationId": "station-1141542",
+          "toStationId": "station-1141543",
+          "from": {
+            "ja": "西金沢",
+            "ko": "니시카나자와",
+            "lat": 36.553212,
+            "lng": 136.621225
+          },
+          "to": {
+            "ja": "金沢",
+            "ko": "카나자와",
+            "lat": 36.578117,
+            "lng": 136.648166
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1141501::station-1141502",
+        "station-1141502::station-1141503",
+        "station-1141503::station-1141504",
+        "station-1141504::station-1141505",
+        "station-1141505::station-1141506",
+        "station-1141506::station-1141507",
+        "station-1141507::station-1141508",
+        "station-1141508::station-1141509",
+        "station-1141509::station-1141510",
+        "station-1141510::station-1141511",
+        "station-1141511::station-1141512",
+        "station-1141512::station-1141513",
+        "station-1141513::station-1141514",
+        "station-1141514::station-1141515",
+        "station-1141515::station-1141516",
+        "station-1141516::station-1141517",
+        "station-1141517::station-1141518",
+        "station-1141518::station-1141519",
+        "station-1141519::station-1141520",
+        "station-1141520::station-1141521",
+        "station-1141521::station-1141522",
+        "station-1141523::station-1141524",
+        "station-1141524::station-1141525",
+        "station-1141525::station-1141526",
+        "station-1141526::station-1141527",
+        "station-1141527::station-1141528",
+        "station-1141528::station-1141529",
+        "station-1141529::station-1141530",
+        "station-1141530::station-1141531",
+        "station-1141531::station-1141532",
+        "station-1141532::station-1141533",
+        "station-1141533::station-1141534",
+        "station-1141534::station-1141535",
+        "station-1141535::station-1141536",
+        "station-1141536::station-1141537",
+        "station-1141537::station-1141538",
+        "station-1141538::station-1141539",
+        "station-1141539::station-1141540",
+        "station-1141540::station-1141541",
+        "station-1141541::station-1141542",
+        "station-1141542::station-1141543"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-11722",
+      "operatorId": "jr-west",
+      "lineKo": "미네선",
+      "lineJa": "美祢線",
+      "stationCount": 13,
+      "segmentCount": 12,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1170217::station-1172213",
+          "fromStationId": "station-1170217",
+          "toStationId": "station-1172213",
+          "from": {
+            "ja": "長門市",
+            "ko": "나가토시",
+            "lat": 34.375417,
+            "lng": 131.185722
+          },
+          "to": {
+            "ja": "仙崎",
+            "ko": "센자키",
+            "lat": 34.387841,
+            "lng": 131.198904
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1170217::station-1172213"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-11710",
+      "operatorId": "jr-west",
+      "lineKo": "세토오오하시선",
+      "lineJa": "瀬戸大橋線",
+      "stationCount": 6,
+      "segmentCount": 5,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1170908::station-1171002",
+          "fromStationId": "station-1170908",
+          "toStationId": "station-1171002",
+          "from": {
+            "ja": "茶屋町",
+            "ko": "차야마치",
+            "lat": 34.57694,
+            "lng": 133.825906
+          },
+          "to": {
+            "ja": "植松",
+            "ko": "우에마츠",
+            "lat": 34.551158,
+            "lng": 133.827979
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1171002::station-1171003",
+          "fromStationId": "station-1171002",
+          "toStationId": "station-1171003",
+          "from": {
+            "ja": "植松",
+            "ko": "우에마츠",
+            "lat": 34.551158,
+            "lng": 133.827979
+          },
+          "to": {
+            "ja": "木見",
+            "ko": "키미",
+            "lat": 34.52773,
+            "lng": 133.823785
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1171003::station-1171004",
+          "fromStationId": "station-1171003",
+          "toStationId": "station-1171004",
+          "from": {
+            "ja": "木見",
+            "ko": "키미",
+            "lat": 34.52773,
+            "lng": 133.823785
+          },
+          "to": {
+            "ja": "上の町",
+            "ko": "카미노초우",
+            "lat": 34.490944,
+            "lng": 133.815233
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1171004::station-1171005",
+          "fromStationId": "station-1171004",
+          "toStationId": "station-1171005",
+          "from": {
+            "ja": "上の町",
+            "ko": "카미노초우",
+            "lat": 34.490944,
+            "lng": 133.815233
+          },
+          "to": {
+            "ja": "児島",
+            "ko": "코지마",
+            "lat": 34.462817,
+            "lng": 133.807729
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1171005::station-1171006",
+          "fromStationId": "station-1171005",
+          "toStationId": "station-1171006",
+          "from": {
+            "ja": "児島",
+            "ko": "코지마",
+            "lat": 34.462817,
+            "lng": 133.807729
+          },
+          "to": {
+            "ja": "宇多津",
+            "ko": "우타즈",
+            "lat": 34.306271,
+            "lng": 133.813686
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1170908::station-1171002",
+        "station-1171002::station-1171003",
+        "station-1171003::station-1171004",
+        "station-1171004::station-1171005",
+        "station-1171005::station-1171006"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-23002",
+      "operatorId": "keisei",
+      "lineKo": "게이세이 오시아게선",
+      "lineJa": "京成押上線",
+      "stationCount": 7,
+      "segmentCount": 6,
+      "missingGeometrySegments": [
+        {
+          "key": "station-mlit-003280::station-2300110",
+          "fromStationId": "station-mlit-003280",
+          "toStationId": "station-2300110",
+          "from": {
+            "ja": "青砥",
+            "ko": "아오토",
+            "lat": 35.74587,
+            "lng": 139.85627
+          },
+          "to": {
+            "ja": "京成高砂",
+            "ko": "케이세이타카사고",
+            "lat": 35.750932,
+            "lng": 139.866875
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-mlit-003280::station-2300110"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-99630",
+      "operatorId": "kobekosokutetsudo",
+      "lineKo": "코우베코우소쿠토우자이선",
+      "lineJa": "神戸高速東西線",
+      "stationCount": 9,
+      "segmentCount": 8,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1160313::station-9963002",
+          "fromStationId": "station-1160313",
+          "toStationId": "station-9963002",
+          "from": {
+            "ja": "三ノ宮",
+            "ko": "산노미야",
+            "lat": 34.694766,
+            "lng": 135.195058
+          },
+          "to": {
+            "ja": "花隈",
+            "ko": "하나쿠마",
+            "lat": 34.686117,
+            "lng": 135.181524
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9963002::station-1160314",
+          "fromStationId": "station-9963002",
+          "toStationId": "station-1160314",
+          "from": {
+            "ja": "花隈",
+            "ko": "하나쿠마",
+            "lat": 34.686117,
+            "lng": 135.181524
+          },
+          "to": {
+            "ja": "元町",
+            "ko": "모토마치",
+            "lat": 34.689602,
+            "lng": 135.187401
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1160314::station-9963004",
+          "fromStationId": "station-1160314",
+          "toStationId": "station-9963004",
+          "from": {
+            "ja": "元町",
+            "ko": "모토마치",
+            "lat": 34.689602,
+            "lng": 135.187401
+          },
+          "to": {
+            "ja": "西元町",
+            "ko": "니시모토마치",
+            "lat": 34.683897,
+            "lng": 135.17959
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9963005::station-9963006",
+          "fromStationId": "station-9963005",
+          "toStationId": "station-9963006",
+          "from": {
+            "ja": "高速神戸",
+            "ko": "코우소쿠코우베",
+            "lat": 34.679362,
+            "lng": 135.174441
+          },
+          "to": {
+            "ja": "新開地",
+            "ko": "신카이치",
+            "lat": 34.675981,
+            "lng": 135.169291
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9963006::station-9963007",
+          "fromStationId": "station-9963006",
+          "toStationId": "station-9963007",
+          "from": {
+            "ja": "新開地",
+            "ko": "신카이치",
+            "lat": 34.675981,
+            "lng": 135.169291
+          },
+          "to": {
+            "ja": "大開",
+            "ko": "오오히라키",
+            "lat": 34.671179,
+            "lng": 135.161709
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9963008::station-9963009",
+          "fromStationId": "station-9963008",
+          "toStationId": "station-9963009",
+          "from": {
+            "ja": "高速長田",
+            "ko": "코우소쿠나가타",
+            "lat": 34.667254,
+            "lng": 135.151551
+          },
+          "to": {
+            "ja": "西代",
+            "ko": "니시다이",
+            "lat": 34.662374,
+            "lng": 135.144085
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1160313::station-9963002",
+        "station-9963002::station-1160314",
+        "station-1160314::station-9963004",
+        "station-9963005::station-9963006",
+        "station-9963006::station-9963007",
+        "station-9963008::station-9963009"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-99918",
+      "operatorId": "kumamotodenkitetsudo",
+      "lineKo": "쿠마모토덴테츠카미쿠마모토선",
+      "lineJa": "熊本電鉄上熊本線",
+      "stationCount": 6,
+      "segmentCount": 5,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1190340::station-9991802",
+          "fromStationId": "station-1190340",
+          "toStationId": "station-9991802",
+          "from": {
+            "ja": "上熊本",
+            "ko": "카미쿠마모토",
+            "lat": 32.817305,
+            "lng": 130.698831
+          },
+          "to": {
+            "ja": "韓々坂",
+            "ko": "가라가라자카",
+            "lat": 32.824201,
+            "lng": 130.701917
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9991802::station-9991803",
+          "fromStationId": "station-9991802",
+          "toStationId": "station-9991803",
+          "from": {
+            "ja": "韓々坂",
+            "ko": "가라가라자카",
+            "lat": 32.824201,
+            "lng": 130.701917
+          },
+          "to": {
+            "ja": "池田",
+            "ko": "이케다",
+            "lat": 32.827082,
+            "lng": 130.70748
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9991803::station-9991804",
+          "fromStationId": "station-9991803",
+          "toStationId": "station-9991804",
+          "from": {
+            "ja": "池田",
+            "ko": "이케다",
+            "lat": 32.827082,
+            "lng": 130.70748
+          },
+          "to": {
+            "ja": "打越",
+            "ko": "우치고시",
+            "lat": 32.823765,
+            "lng": 130.713796
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9991804::station-9991805",
+          "fromStationId": "station-9991804",
+          "toStationId": "station-9991805",
+          "from": {
+            "ja": "打越",
+            "ko": "우치고시",
+            "lat": 32.823765,
+            "lng": 130.713796
+          },
+          "to": {
+            "ja": "坪井川公園",
+            "ko": "츠보이가와코우엔",
+            "lat": 32.821427,
+            "lng": 130.718773
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9991805::station-9991703",
+          "fromStationId": "station-9991805",
+          "toStationId": "station-9991703",
+          "from": {
+            "ja": "坪井川公園",
+            "ko": "츠보이가와코우엔",
+            "lat": 32.821427,
+            "lng": 130.718773
+          },
+          "to": {
+            "ja": "北熊本",
+            "ko": "키타쿠마모토",
+            "lat": 32.827492,
+            "lng": 130.721981
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1190340::station-9991802",
+        "station-9991802::station-9991803",
+        "station-9991803::station-9991804",
+        "station-9991804::station-9991805",
+        "station-9991805::station-9991703"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-99108",
+      "operatorId": "michiminamiisaribitetsudo",
+      "lineKo": "미치미나미이사리비테츠도우선",
+      "lineJa": "道南いさりび鉄道線",
+      "stationCount": 13,
+      "segmentCount": 12,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1111806::station-1111911",
+          "fromStationId": "station-1111806",
+          "toStationId": "station-1111911",
+          "from": {
+            "ja": "木古内",
+            "ko": "키코나이",
+            "lat": 41.677642,
+            "lng": 140.434004
+          },
+          "to": {
+            "ja": "札苅",
+            "ko": "사츠카리",
+            "lat": 41.699271,
+            "lng": 140.468097
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111911::station-1111912",
+          "fromStationId": "station-1111911",
+          "toStationId": "station-1111912",
+          "from": {
+            "ja": "札苅",
+            "ko": "사츠카리",
+            "lat": 41.699271,
+            "lng": 140.468097
+          },
+          "to": {
+            "ja": "泉沢",
+            "ko": "이즈미사와",
+            "lat": 41.700867,
+            "lng": 140.506797
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111912::station-1111913",
+          "fromStationId": "station-1111912",
+          "toStationId": "station-1111913",
+          "from": {
+            "ja": "泉沢",
+            "ko": "이즈미사와",
+            "lat": 41.700867,
+            "lng": 140.506797
+          },
+          "to": {
+            "ja": "釜谷",
+            "ko": "카마야",
+            "lat": 41.712153,
+            "lng": 140.53718
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111913::station-1111914",
+          "fromStationId": "station-1111913",
+          "toStationId": "station-1111914",
+          "from": {
+            "ja": "釜谷",
+            "ko": "카마야",
+            "lat": 41.712153,
+            "lng": 140.53718
+          },
+          "to": {
+            "ja": "渡島当別",
+            "ko": "오시마토우베츠",
+            "lat": 41.737309,
+            "lng": 140.579109
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111914::station-1111915",
+          "fromStationId": "station-1111914",
+          "toStationId": "station-1111915",
+          "from": {
+            "ja": "渡島当別",
+            "ko": "오시마토우베츠",
+            "lat": 41.737309,
+            "lng": 140.579109
+          },
+          "to": {
+            "ja": "茂辺地",
+            "ko": "모헤지",
+            "lat": 41.766604,
+            "lng": 140.600561
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111915::station-1111916",
+          "fromStationId": "station-1111915",
+          "toStationId": "station-1111916",
+          "from": {
+            "ja": "茂辺地",
+            "ko": "모헤지",
+            "lat": 41.766604,
+            "lng": 140.600561
+          },
+          "to": {
+            "ja": "上磯",
+            "ko": "카미이소",
+            "lat": 41.81956,
+            "lng": 140.640599
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111916::station-1111917",
+          "fromStationId": "station-1111916",
+          "toStationId": "station-1111917",
+          "from": {
+            "ja": "上磯",
+            "ko": "카미이소",
+            "lat": 41.81956,
+            "lng": 140.640599
+          },
+          "to": {
+            "ja": "清川口",
+            "ko": "키요시카와구치",
+            "lat": 41.824615,
+            "lng": 140.652906
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111917::station-1111918",
+          "fromStationId": "station-1111917",
+          "toStationId": "station-1111918",
+          "from": {
+            "ja": "清川口",
+            "ko": "키요시카와구치",
+            "lat": 41.824615,
+            "lng": 140.652906
+          },
+          "to": {
+            "ja": "久根別",
+            "ko": "쿠네베츠",
+            "lat": 41.826727,
+            "lng": 140.666468
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111918::station-1111919",
+          "fromStationId": "station-1111918",
+          "toStationId": "station-1111919",
+          "from": {
+            "ja": "久根別",
+            "ko": "쿠네베츠",
+            "lat": 41.826727,
+            "lng": 140.666468
+          },
+          "to": {
+            "ja": "東久根別",
+            "ko": "히가시쿠네베츠",
+            "lat": 41.826005,
+            "lng": 140.679731
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111919::station-1111920",
+          "fromStationId": "station-1111919",
+          "toStationId": "station-1111920",
+          "from": {
+            "ja": "東久根別",
+            "ko": "히가시쿠네베츠",
+            "lat": 41.826005,
+            "lng": 140.679731
+          },
+          "to": {
+            "ja": "七重浜",
+            "ko": "나나에하마",
+            "lat": 41.817643,
+            "lng": 140.707957
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1111920::station-1110102",
+          "fromStationId": "station-1111920",
+          "toStationId": "station-1110102",
+          "from": {
+            "ja": "七重浜",
+            "ko": "나나에하마",
+            "lat": 41.817643,
+            "lng": 140.707957
+          },
+          "to": {
+            "ja": "五稜郭",
+            "ko": "고료우카쿠",
+            "lat": 41.803557,
+            "lng": 140.733539
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1111806::station-1111911",
+        "station-1111911::station-1111912",
+        "station-1111912::station-1111913",
+        "station-1111913::station-1111914",
+        "station-1111914::station-1111915",
+        "station-1111915::station-1111916",
+        "station-1111916::station-1111917",
+        "station-1111917::station-1111918",
+        "station-1111918::station-1111919",
+        "station-1111919::station-1111920",
+        "station-1111920::station-1110102"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-32008",
+      "operatorId": "nankaidentetsu",
+      "lineKo": "난카이코우야산케부루",
+      "lineJa": "南海高野山ケーブル",
+      "stationCount": 2,
+      "segmentCount": 1,
+      "missingGeometrySegments": [
+        {
+          "key": "station-3200742::station-3200802",
+          "fromStationId": "station-3200742",
+          "toStationId": "station-3200802",
+          "from": {
+            "ja": "極楽橋",
+            "ko": "고쿠라쿠바시",
+            "lat": 34.23435,
+            "lng": 135.582078
+          },
+          "to": {
+            "ja": "高野山",
+            "ko": "코우야산",
+            "lat": 34.227789,
+            "lng": 135.577619
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-3200742::station-3200802"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-99616",
+      "operatorId": "osakafutoshikaihatsu",
+      "lineKo": "선포쿠코우소쿠테츠도우선",
+      "lineJa": "泉北高速鉄道線",
+      "stationCount": 6,
+      "segmentCount": 5,
+      "missingGeometrySegments": [
+        {
+          "key": "station-3200715::station-9961602",
+          "fromStationId": "station-3200715",
+          "toStationId": "station-9961602",
+          "from": {
+            "ja": "中百舌鳥",
+            "ko": "나카모즈",
+            "lat": 34.556232,
+            "lng": 135.504454
+          },
+          "to": {
+            "ja": "深井",
+            "ko": "후카이",
+            "lat": 34.530398,
+            "lng": 135.497461
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9961602::station-9961603",
+          "fromStationId": "station-9961602",
+          "toStationId": "station-9961603",
+          "from": {
+            "ja": "深井",
+            "ko": "후카이",
+            "lat": 34.530398,
+            "lng": 135.497461
+          },
+          "to": {
+            "ja": "泉ヶ丘",
+            "ko": "이즈미가오카",
+            "lat": 34.497099,
+            "lng": 135.511575
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9961603::station-9961604",
+          "fromStationId": "station-9961603",
+          "toStationId": "station-9961604",
+          "from": {
+            "ja": "泉ヶ丘",
+            "ko": "이즈미가오카",
+            "lat": 34.497099,
+            "lng": 135.511575
+          },
+          "to": {
+            "ja": "栂・美木多",
+            "ko": "츠가·미키타",
+            "lat": 34.485087,
+            "lng": 135.490286
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9961604::station-9961605",
+          "fromStationId": "station-9961604",
+          "toStationId": "station-9961605",
+          "from": {
+            "ja": "栂・美木多",
+            "ko": "츠가·미키타",
+            "lat": 34.485087,
+            "lng": 135.490286
+          },
+          "to": {
+            "ja": "光明池",
+            "ko": "코우묘우이케",
+            "lat": 34.474712,
+            "lng": 135.475572
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9961605::station-9961606",
+          "fromStationId": "station-9961605",
+          "toStationId": "station-9961606",
+          "from": {
+            "ja": "光明池",
+            "ko": "코우묘우이케",
+            "lat": 34.474712,
+            "lng": 135.475572
+          },
+          "to": {
+            "ja": "和泉中央",
+            "ko": "이즈미추우오우",
+            "lat": 34.461211,
+            "lng": 135.456063
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-3200715::station-9961602",
+        "station-9961602::station-9961603",
+        "station-9961603::station-9961604",
+        "station-9961604::station-9961605",
+        "station-9961605::station-9961606"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-99104",
+      "operatorId": "sapporoshikotsukyoku",
+      "lineKo": "샀포로시덴야마하나선",
+      "lineJa": "札幌市電山鼻線",
+      "stationCount": 24,
+      "segmentCount": 23,
+      "missingGeometrySegments": [
+        {
+          "key": "station-9910108::station-9910404",
+          "fromStationId": "station-9910108",
+          "toStationId": "station-9910404",
+          "from": {
+            "ja": "西１１丁目",
+            "ko": "니시１１초우메",
+            "lat": 43.058557,
+            "lng": 141.341036
+          },
+          "to": {
+            "ja": "西１５丁目",
+            "ko": "니시１５초우메",
+            "lat": 43.056955,
+            "lng": 141.336108
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9910409::station-9910410",
+          "fromStationId": "station-9910409",
+          "toStationId": "station-9910410",
+          "from": {
+            "ja": "西線１６条",
+            "ko": "니시센１６조우",
+            "lat": 43.037733,
+            "lng": 141.336772
+          },
+          "to": {
+            "ja": "ロープウェイ入口",
+            "ko": "로푸웨이이리구치",
+            "lat": 43.03367,
+            "lng": 141.337287
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9910410::station-9910411",
+          "fromStationId": "station-9910410",
+          "toStationId": "station-9910411",
+          "from": {
+            "ja": "ロープウェイ入口",
+            "ko": "로푸웨이이리구치",
+            "lat": 43.03367,
+            "lng": 141.337287
+          },
+          "to": {
+            "ja": "電車事業所前",
+            "ko": "덴샤지교우쇼마에",
+            "lat": 43.031271,
+            "lng": 141.337609
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9910208::station-9910424",
+          "fromStationId": "station-9910208",
+          "toStationId": "station-9910424",
+          "from": {
+            "ja": "すすきの",
+            "ko": "스스키노",
+            "lat": 43.05578,
+            "lng": 141.353257
+          },
+          "to": {
+            "ja": "狸小路",
+            "ko": "타누키코우지",
+            "lat": 43.05727894,
+            "lng": 141.3529274
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-9910108::station-9910404",
+        "station-9910409::station-9910410",
+        "station-9910410::station-9910411",
+        "station-9910208::station-9910424"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-99403",
+      "operatorId": "shinanotetsudo",
+      "lineKo": "시나노테츠도우선",
+      "lineJa": "しなの鉄道線",
+      "stationCount": 23,
+      "segmentCount": 22,
+      "missingGeometrySegments": [
+        {
+          "key": "station-9940301::station-9940302",
+          "fromStationId": "station-9940301",
+          "toStationId": "station-9940302",
+          "from": {
+            "ja": "軽井沢",
+            "ko": "카루이자와",
+            "lat": 36.342889,
+            "lng": 138.635096
+          },
+          "to": {
+            "ja": "中軽井沢",
+            "ko": "나카카루이자와",
+            "lat": 36.347576,
+            "lng": 138.593147
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940302::station-9940303",
+          "fromStationId": "station-9940302",
+          "toStationId": "station-9940303",
+          "from": {
+            "ja": "中軽井沢",
+            "ko": "나카카루이자와",
+            "lat": 36.347576,
+            "lng": 138.593147
+          },
+          "to": {
+            "ja": "信濃追分",
+            "ko": "시나노오이와케",
+            "lat": 36.335538,
+            "lng": 138.558582
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940303::station-9940304",
+          "fromStationId": "station-9940303",
+          "toStationId": "station-9940304",
+          "from": {
+            "ja": "信濃追分",
+            "ko": "시나노오이와케",
+            "lat": 36.335538,
+            "lng": 138.558582
+          },
+          "to": {
+            "ja": "御代田",
+            "ko": "미요타",
+            "lat": 36.318986,
+            "lng": 138.50619
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940304::station-9940305",
+          "fromStationId": "station-9940304",
+          "toStationId": "station-9940305",
+          "from": {
+            "ja": "御代田",
+            "ko": "미요타",
+            "lat": 36.318986,
+            "lng": 138.50619
+          },
+          "to": {
+            "ja": "平原",
+            "ko": "헤이겐",
+            "lat": 36.308606,
+            "lng": 138.453926
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940305::station-1140131",
+          "fromStationId": "station-9940305",
+          "toStationId": "station-1140131",
+          "from": {
+            "ja": "平原",
+            "ko": "헤이겐",
+            "lat": 36.308606,
+            "lng": 138.453926
+          },
+          "to": {
+            "ja": "小諸",
+            "ko": "코모로",
+            "lat": 36.326337,
+            "lng": 138.422021
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-1140131::station-9940307",
+          "fromStationId": "station-1140131",
+          "toStationId": "station-9940307",
+          "from": {
+            "ja": "小諸",
+            "ko": "코모로",
+            "lat": 36.326337,
+            "lng": 138.422021
+          },
+          "to": {
+            "ja": "滋野",
+            "ko": "시게노",
+            "lat": 36.342586,
+            "lng": 138.363543
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940307::station-9940308",
+          "fromStationId": "station-9940307",
+          "toStationId": "station-9940308",
+          "from": {
+            "ja": "滋野",
+            "ko": "시게노",
+            "lat": 36.342586,
+            "lng": 138.363543
+          },
+          "to": {
+            "ja": "田中",
+            "ko": "타나카",
+            "lat": 36.354433,
+            "lng": 138.329414
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940308::station-9940309",
+          "fromStationId": "station-9940308",
+          "toStationId": "station-9940309",
+          "from": {
+            "ja": "田中",
+            "ko": "타나카",
+            "lat": 36.354433,
+            "lng": 138.329414
+          },
+          "to": {
+            "ja": "大屋",
+            "ko": "오오야",
+            "lat": 36.369566,
+            "lng": 138.297109
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940309::station-9940310",
+          "fromStationId": "station-9940309",
+          "toStationId": "station-9940310",
+          "from": {
+            "ja": "大屋",
+            "ko": "오오야",
+            "lat": 36.369566,
+            "lng": 138.297109
+          },
+          "to": {
+            "ja": "信濃国分寺",
+            "ko": "시나노코쿠분지",
+            "lat": 36.378592,
+            "lng": 138.273385
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940310::station-9940311",
+          "fromStationId": "station-9940310",
+          "toStationId": "station-9940311",
+          "from": {
+            "ja": "信濃国分寺",
+            "ko": "시나노코쿠분지",
+            "lat": 36.378592,
+            "lng": 138.273385
+          },
+          "to": {
+            "ja": "上田",
+            "ko": "우에다",
+            "lat": 36.396579,
+            "lng": 138.249298
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940311::station-9940312",
+          "fromStationId": "station-9940311",
+          "toStationId": "station-9940312",
+          "from": {
+            "ja": "上田",
+            "ko": "우에다",
+            "lat": 36.396579,
+            "lng": 138.249298
+          },
+          "to": {
+            "ja": "西上田",
+            "ko": "니시우에다",
+            "lat": 36.417318,
+            "lng": 138.20855
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940312::station-9940313",
+          "fromStationId": "station-9940312",
+          "toStationId": "station-9940313",
+          "from": {
+            "ja": "西上田",
+            "ko": "니시우에다",
+            "lat": 36.417318,
+            "lng": 138.20855
+          },
+          "to": {
+            "ja": "テクノさかき",
+            "ko": "테쿠노사카키",
+            "lat": 36.440584,
+            "lng": 138.188204
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940313::station-9940314",
+          "fromStationId": "station-9940313",
+          "toStationId": "station-9940314",
+          "from": {
+            "ja": "テクノさかき",
+            "ko": "테쿠노사카키",
+            "lat": 36.440584,
+            "lng": 138.188204
+          },
+          "to": {
+            "ja": "坂城",
+            "ko": "사카키",
+            "lat": 36.46195,
+            "lng": 138.181315
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940314::station-9940315",
+          "fromStationId": "station-9940314",
+          "toStationId": "station-9940315",
+          "from": {
+            "ja": "坂城",
+            "ko": "사카키",
+            "lat": 36.46195,
+            "lng": 138.181315
+          },
+          "to": {
+            "ja": "戸倉",
+            "ko": "토쿠라",
+            "lat": 36.492913,
+            "lng": 138.153017
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940315::station-9940319",
+          "fromStationId": "station-9940315",
+          "toStationId": "station-9940319",
+          "from": {
+            "ja": "戸倉",
+            "ko": "토쿠라",
+            "lat": 36.492913,
+            "lng": 138.153017
+          },
+          "to": {
+            "ja": "千曲",
+            "ko": "센쿄쿠",
+            "lat": 36.509039,
+            "lng": 138.141661
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940319::station-9940316",
+          "fromStationId": "station-9940319",
+          "toStationId": "station-9940316",
+          "from": {
+            "ja": "千曲",
+            "ko": "센쿄쿠",
+            "lat": 36.509039,
+            "lng": 138.141661
+          },
+          "to": {
+            "ja": "屋代",
+            "ko": "야시로",
+            "lat": 36.532062,
+            "lng": 138.128191
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940316::station-9940317",
+          "fromStationId": "station-9940316",
+          "toStationId": "station-9940317",
+          "from": {
+            "ja": "屋代",
+            "ko": "야시로",
+            "lat": 36.532062,
+            "lng": 138.128191
+          },
+          "to": {
+            "ja": "屋代高校前",
+            "ko": "야시로코우코우마에",
+            "lat": 36.547853,
+            "lng": 138.132489
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9940317::station-1140301",
+          "fromStationId": "station-9940317",
+          "toStationId": "station-1140301",
+          "from": {
+            "ja": "屋代高校前",
+            "ko": "야시로코우코우마에",
+            "lat": 36.547853,
+            "lng": 138.132489
+          },
+          "to": {
+            "ja": "篠ノ井",
+            "ko": "시노노이",
+            "lat": 36.5771,
+            "lng": 138.138046
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-9940301::station-9940302",
+        "station-9940302::station-9940303",
+        "station-9940303::station-9940304",
+        "station-9940304::station-9940305",
+        "station-9940305::station-1140131",
+        "station-1140131::station-9940307",
+        "station-9940307::station-9940308",
+        "station-9940308::station-9940309",
+        "station-9940309::station-9940310",
+        "station-9940310::station-9940311",
+        "station-9940311::station-9940312",
+        "station-9940312::station-9940313",
+        "station-9940313::station-9940314",
+        "station-9940314::station-9940315",
+        "station-9940315::station-9940319",
+        "station-9940319::station-9940316",
+        "station-9940316::station-9940317",
+        "station-9940317::station-1140301"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-99708",
+      "operatorId": "sukairerusabisu",
+      "lineKo": "스카이레루미도리자카선",
+      "lineJa": "スカイレールみどり坂線",
+      "stationCount": 3,
+      "segmentCount": 2,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1161109::station-9970802",
+          "fromStationId": "station-1161109",
+          "toStationId": "station-9970802",
+          "from": {
+            "ja": "瀬野",
+            "ko": "세노",
+            "lat": 34.421994,
+            "lng": 132.59674
+          },
+          "to": {
+            "ja": "みどり中街",
+            "ko": "미도리추우가이",
+            "lat": 34.42771,
+            "lng": 132.594804
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9970802::station-9970803",
+          "fromStationId": "station-9970802",
+          "toStationId": "station-9970803",
+          "from": {
+            "ja": "みどり中街",
+            "ko": "미도리추우가이",
+            "lat": 34.42771,
+            "lng": 132.594804
+          },
+          "to": {
+            "ja": "みどり中央",
+            "ko": "미도리추우오우",
+            "lat": 34.430248,
+            "lng": 132.589435
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1161109::station-9970802",
+        "station-9970802::station-9970803"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-26004",
+      "operatorId": "tokyu",
+      "lineKo": "도큐 오이마치선",
+      "lineJa": "東急大井町線",
+      "stationCount": 18,
+      "segmentCount": 17,
+      "missingGeometrySegments": [
+        {
+          "key": "station-2600308::station-2600309",
+          "fromStationId": "station-2600308",
+          "toStationId": "station-2600309",
+          "from": {
+            "ja": "二子新地",
+            "ko": "니시신치",
+            "lat": 35.606994,
+            "lng": 139.622338
+          },
+          "to": {
+            "ja": "高津",
+            "ko": "타카츠",
+            "lat": 35.603248,
+            "lng": 139.616934
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-2600309::station-1130310",
+          "fromStationId": "station-2600309",
+          "toStationId": "station-1130310",
+          "from": {
+            "ja": "高津",
+            "ko": "타카츠",
+            "lat": 35.603248,
+            "lng": 139.616934
+          },
+          "to": {
+            "ja": "溝の口",
+            "ko": "미조노쿠치",
+            "lat": 35.59984,
+            "lng": 139.610487
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-2600308::station-2600309",
+        "station-2600309::station-1130310"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    },
+    {
+      "lineId": "line-99819",
+      "operatorId": "tosadenkitetsudo",
+      "lineKo": "산바시선",
+      "lineJa": "桟橋線",
+      "stationCount": 11,
+      "segmentCount": 10,
+      "missingGeometrySegments": [
+        {
+          "key": "station-1180134::station-9981902",
+          "fromStationId": "station-1180134",
+          "toStationId": "station-9981902",
+          "from": {
+            "ja": "高知",
+            "ko": "고치",
+            "lat": 33.566758,
+            "lng": 133.543522
+          },
+          "to": {
+            "ja": "高知橋",
+            "ko": "코우치쿄우",
+            "lat": 33.564284,
+            "lng": 133.543442
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9981902::station-9981903",
+          "fromStationId": "station-9981902",
+          "toStationId": "station-9981903",
+          "from": {
+            "ja": "高知橋",
+            "ko": "코우치쿄우",
+            "lat": 33.564284,
+            "lng": 133.543442
+          },
+          "to": {
+            "ja": "蓮池町通",
+            "ko": "하스이케마치도오리",
+            "lat": 33.561066,
+            "lng": 133.543035
+          },
+          "selfSegment": false
+        },
+        {
+          "key": "station-9981903::station-9981733",
+          "fromStationId": "station-9981903",
+          "toStationId": "station-9981733",
+          "from": {
+            "ja": "蓮池町通",
+            "ko": "하스이케마치도오리",
+            "lat": 33.561066,
+            "lng": 133.543035
+          },
+          "to": {
+            "ja": "はりまや橋",
+            "ko": "하리마야쿄우",
+            "lat": 33.559617,
+            "lng": 133.542852
+          },
+          "selfSegment": false
+        }
+      ],
+      "existingReusableSegments": [],
+      "externalGeometryRequired": [
+        "station-1180134::station-9981902",
+        "station-9981902::station-9981903",
+        "station-9981903::station-9981733"
+      ],
+      "status": "EXTERNAL_REAL_GEOMETRY_REQUIRED"
+    }
+  ],
+  "summary": {
+    "lines": 19,
+    "missingSegments": 244,
+    "selfSegments": 0
+  }
+}

@@ -5,23 +5,33 @@
   ],
   "names": {
     "ja": "会津鉄道",
-    "ko": "아이즈테츠도우",
+    "ko": "아이즈 철도",
     "en": "Aizutetsudō"
   },
   "stationSignTemplate": "aizutetsudo",
   "sources": {
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
+      "method": "google-namuwiki-title-crosschecked",
+      "type": "namuwiki-search-crosschecked",
       "url": "",
       "searchReference": "site:namu.wiki 会津鉄道 아이즈테츠도우 운영사",
       "sourceAccess": "blocked",
       "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-09-01",
+      "status": "VERIFIED",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"会津鉄道\"",
+        "resultTitle": "아이즈 철도",
+        "resultDomain": "namu.wiki",
+        "searchEngine": "google"
+      },
+      "identityEvidence": {
+        "nameJa": "会津鉄道",
+        "nameEn": "Aizutetsudō"
+      },
       "canonicalPolicy": "namuwiki"
     }
   },

@@ -5,23 +5,33 @@
   ],
   "names": {
     "ja": "阿武隈急行",
-    "ko": "아부쿠마큐우코우",
+    "ko": "아부쿠마 급행",
     "en": "AbukumakyūKō"
   },
   "stationSignTemplate": "abukumakyuko",
   "sources": {
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
+      "method": "google-namuwiki-title-crosschecked",
+      "type": "namuwiki-search-crosschecked",
       "url": "",
       "searchReference": "site:namu.wiki 阿武隈急行 아부쿠마큐우코우 운영사",
       "sourceAccess": "blocked",
       "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-09-01",
+      "status": "VERIFIED",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"아부쿠마 급행\"",
+        "resultTitle": "아부쿠마 급행",
+        "resultDomain": "namu.wiki",
+        "searchEngine": "google"
+      },
+      "identityEvidence": {
+        "nameJa": "阿武隈急行",
+        "nameEn": "AbukumakyūKō"
+      },
       "canonicalPolicy": "namuwiki"
     }
   },

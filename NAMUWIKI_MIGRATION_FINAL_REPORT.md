@@ -15,7 +15,7 @@ Status: **IN_PROGRESS**
 - Review required: 9886
 - Count changes: 0
 - Route order changes: 0
-- Geometry changes: 0
+- Geometry changes: 3
 - Unexplained data loss: 0
 
 NAMUWIKI AUDIT IN PROGRESS. Build allowed.

@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+const fs=require('fs'),path=require('path');
+const{projectRoot,loadAll,writeAtomic}=require('./lib/line-workspaces');
+const plan=JSON.parse(fs.readFileSync(path.join(projectRoot,'data','source-audit','BLOCKED_GEOMETRY_PLAN.json'),'utf8')),data=loadAll(),byLine=new Map(data.workspaces.map(item=>[item.line.id,item])),lines=[];
+for(const line of plan.lines){const workspace=byLine.get(line.lineId),segments=line.missingGeometrySegments.map(item=>{const value=workspace?.geometry?.[item.key],resolved=Array.isArray(value?.geometry)&&value.geometry.length>=2;return{key:item.key,status:resolved?'resolved':'unresolved',method:resolved?(value.source==='OpenStreetMap railway ways'?'osm':'internal-reuse'):'unresolved',points:resolved?value.geometry.length:0,source:resolved?(value.source||'workspace'):''}});lines.push({lineId:line.lineId,lineKo:line.lineKo,lineJa:line.lineJa,expected:segments.length,resolved:segments.filter(item=>item.status==='resolved').length,unresolved:segments.filter(item=>item.status!=='resolved').length,segments})}
+const report={generated:new Date().toISOString(),planSegments:plan.summary.missingSegments,resolved:lines.reduce((sum,line)=>sum+line.resolved,0),unresolved:lines.reduce((sum,line)=>sum+line.unresolved,0),lines};
+writeAtomic(path.join(projectRoot,'data','source-audit','GEOMETRY_244_RECOVERY.json'),report);console.log(JSON.stringify({plan:report.planSegments,resolved:report.resolved,unresolved:report.unresolved,completedLines:lines.filter(line=>!line.unresolved).map(line=>line.lineId)},null,2));

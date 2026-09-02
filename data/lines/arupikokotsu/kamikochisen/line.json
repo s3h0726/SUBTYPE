@@ -7,7 +7,7 @@
   "names": {
     "ja": "上高地線",
     "kana": "かみこうちせん",
-    "ko": "카미코우치선",
+    "ko": "카미코치선",
     "en": "KamikōChisen"
   },
   "code": "",
@@ -38,16 +38,22 @@
     "geometry": "MLIT-N02-2025",
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
+      "method": "google-namuwiki-title-crosschecked",
+      "type": "namuwiki-search-crosschecked",
       "url": "",
       "searchReference": "site:namu.wiki 上高地線 카미코우치선 노선",
       "sourceAccess": "blocked",
       "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-09-01",
+      "status": "VERIFIED",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"가미코치선\"",
+        "resultTitle": "알피코 교통 카미코치선",
+        "resultDomain": "namu.wiki",
+        "searchEngine": "google"
+      },
       "canonicalPolicy": "namuwiki"
     }
   },

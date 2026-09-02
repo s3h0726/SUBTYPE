@@ -1,11 +1,11 @@
 {
-  "generated": "2026-08-30T02:40:29.720Z",
+  "generated": "2026-08-30T12:54:43.627Z",
   "status": "INCOMPLETE_GEOMETRY",
   "totals": {
     "lines": 601,
-    "playable": 582,
-    "blocked": 19,
-    "geometryReady": 582,
+    "playable": 584,
+    "blocked": 17,
+    "geometryReady": 584,
     "reusedGeometrySegments": 63,
     "skippedStations": 0,
     "reverseErrors": 0
@@ -246,16 +246,6 @@
       "error": "line-11415: missing railway segment station-1141501 -> station-1141502"
     },
     {
-      "id": "line-11722",
-      "lineJa": "美祢線",
-      "lineKo": "미네선",
-      "stations": 13,
-      "missingSegments": [
-        "station-1170217::station-1172213"
-      ],
-      "error": "line-11722: missing railway segment station-1170217 -> station-1172213"
-    },
-    {
       "id": "line-11710",
       "lineJa": "瀬戸大橋線",
       "lineKo": "세토오오하시선",
@@ -268,16 +258,6 @@
         "station-1171005::station-1171006"
       ],
       "error": "line-11710: missing railway geometry"
-    },
-    {
-      "id": "line-23002",
-      "lineJa": "京成押上線",
-      "lineKo": "게이세이 오시아게선",
-      "stations": 7,
-      "missingSegments": [
-        "station-mlit-003280::station-2300110"
-      ],
-      "error": "line-23002: missing railway segment station-mlit-003280 -> station-2300110"
     },
     {
       "id": "line-99630",
@@ -409,10 +389,9 @@
       "lineKo": "도큐 오이마치선",
       "stations": 18,
       "missingSegments": [
-        "station-2600308::station-2600309",
         "station-2600309::station-1130310"
       ],
-      "error": "line-26004: missing railway segment station-2600308 -> station-2600309"
+      "error": "line-26004: missing railway segment station-2600309 -> station-1130310"
     },
     {
       "id": "line-99819",
@@ -2572,6 +2551,13 @@
       "reusedSegments": []
     },
     {
+      "id": "line-11722",
+      "stations": 13,
+      "forwardSegments": 12,
+      "reverseSegments": 12,
+      "reusedSegments": []
+    },
+    {
       "id": "line-11419",
       "stations": 20,
       "forwardSegments": 19,
@@ -2978,6 +2964,13 @@
       "stations": 3,
       "forwardSegments": 2,
       "reverseSegments": 2,
+      "reusedSegments": []
+    },
+    {
+      "id": "line-23002",
+      "stations": 7,
+      "forwardSegments": 6,
+      "reverseSegments": 6,
       "reusedSegments": []
     },
     {

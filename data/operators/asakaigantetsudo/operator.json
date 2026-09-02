@@ -5,23 +5,33 @@
   ],
   "names": {
     "ja": "阿佐海岸鉄道",
-    "ko": "아사카이간테츠도우",
+    "ko": "아사 해안철도",
     "en": "Asakaigantetsudō"
   },
   "stationSignTemplate": "asakaigantetsudo",
   "sources": {
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
+      "method": "google-namuwiki-title-crosschecked",
+      "type": "namuwiki-search-crosschecked",
       "url": "",
       "searchReference": "site:namu.wiki 阿佐海岸鉄道 아사카이간테츠도우 운영사",
       "sourceAccess": "blocked",
       "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-09-03",
+      "status": "VERIFIED",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"阿佐海岸鉄道\"",
+        "resultTitle": "아사 해안철도",
+        "resultDomain": "namu.wiki",
+        "searchEngine": "google"
+      },
+      "identityEvidence": {
+        "nameJa": "阿佐海岸鉄道",
+        "nameEn": "Asakaigantetsudō"
+      },
       "canonicalPolicy": "namuwiki"
     }
   },

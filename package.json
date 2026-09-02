@@ -1,9 +1,11 @@
 {
 	"scripts": {
 		"audit:recovery": "node tools/audit-data-recovery.js",
-		"build:data": "node tools/audit-data-recovery.js && node tools/build-static.js",
+		"build:data": "node tools/audit-data-recovery.js && node tools/build-static.js && node tools/test-single-source.js",
 		"audit:routes": "node tools/audit-route-integrity.js",
 		"audit:playability": "node tools/audit-playability.js",
+		"plan:blocked-geometry": "node tools/plan-blocked-geometry.js",
+		"recover:osm-geometry": "node tools/recover-osm-geometry.js",
 		"audit:visual-assets": "node tools/audit-visual-assets.js",
 		"editor:apply": "node tools/apply-editor-export.js",
 		"validate:data": "node tools/build-line-workspaces.js && node tools/audit-line-workspaces.js",
@@ -16,10 +18,12 @@
 		"source:apply-verified": "node tools/apply-verified-korean.js --apply",
 		"source:namuwiki-policy": "node tools/migrate-namuwiki-canonical-policy.js",
 		"source:namuwiki-audit": "node tools/audit-namuwiki-coverage.js",
+		"source:namuwiki-name-queue": "node tools/build-namuwiki-name-queue.js",
 		"audit:namuwiki": "node tools/validate-namuwiki.js",
 		"validate:namuwiki": "node tools/validate-namuwiki.js",
-		"build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/build-static.js",
-		"test": "node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/audit-ui-quality.js"
+		"build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/build-static.js && node tools/test-single-source.js",
+		"test:single-source": "node tools/test-single-source.js",
+		"test": "node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/audit-ui-quality.js && node tools/test-single-source.js"
 	},
 	"devDependencies": {
 		"csv-parse": "^7.0.2",

@@ -5,23 +5,33 @@
   ],
   "names": {
     "ja": "あいの風とやま鉄道",
-    "ko": "아이노카제토야마테츠도우",
+    "ko": "아이노카제 도야마 철도",
     "en": "Ainokazetoyamatetsudō"
   },
   "stationSignTemplate": "ainokazetoyamatetsudo",
   "sources": {
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
+      "method": "google-namuwiki-title-crosschecked",
+      "type": "namuwiki-search-crosschecked",
       "url": "",
       "searchReference": "site:namu.wiki あいの風とやま鉄道 아이노카제토야마테츠도우 운영사",
       "sourceAccess": "blocked",
       "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-09-01",
+      "status": "VERIFIED",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"あいの風とやま鉄道\"",
+        "resultTitle": "아이노카제 도야마 철도",
+        "resultDomain": "namu.wiki",
+        "searchEngine": "google"
+      },
+      "identityEvidence": {
+        "nameJa": "あいの風とやま鉄道",
+        "nameEn": "Ainokazetoyamatetsudō"
+      },
       "canonicalPolicy": "namuwiki"
     }
   },

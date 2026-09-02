@@ -64,16 +64,27 @@
     },
     "koreanNameSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
+      "method": "google-namuwiki-title-crosschecked",
+      "type": "namuwiki-search-crosschecked",
       "url": "",
       "searchReference": "site:namu.wiki 八高線 하치코선 노선",
       "sourceAccess": "blocked",
       "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-09-01",
+      "status": "VERIFIED",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"八高線\"",
+        "resultTitle": "하치코선",
+        "resultDomain": "namu.wiki",
+        "searchEngine": "google"
+      },
+      "identityEvidence": {
+        "nameJa": "八高線",
+        "nameEn": "HachikōSen(HachiōJi~Komagawa)",
+        "operatorId": "jr-east"
+      },
       "canonicalPolicy": "namuwiki"
     },
     "code": "",
@@ -2620,16 +2631,27 @@
       "geometry": "MLIT-N02-2025",
       "koreanName": {
         "family": "namuwiki",
-        "method": "unresolved",
-        "type": "namuwiki-unresolved",
+        "method": "google-namuwiki-title-crosschecked",
+        "type": "namuwiki-search-crosschecked",
         "url": "",
         "searchReference": "site:namu.wiki 八高線 하치코선 노선",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "verified": false,
-        "confidence": "LOW",
-        "verifiedDate": null,
-        "status": "REVIEW_REQUIRED",
+        "verified": true,
+        "confidence": "HIGH",
+        "verifiedDate": "2026-09-01",
+        "status": "VERIFIED",
+        "namuwikiEvidence": {
+          "query": "site:namu.wiki \"八高線\"",
+          "resultTitle": "하치코선",
+          "resultDomain": "namu.wiki",
+          "searchEngine": "google"
+        },
+        "identityEvidence": {
+          "nameJa": "八高線",
+          "nameEn": "HachikōSen(HachiōJi~Komagawa)",
+          "operatorId": "jr-east"
+        },
         "canonicalPolicy": "namuwiki"
       }
     },

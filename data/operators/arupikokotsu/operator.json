@@ -5,23 +5,33 @@
   ],
   "names": {
     "ja": "アルピコ交通",
-    "ko": "아루피코코우츠우",
+    "ko": "알피코 교통",
     "en": "ArupikokōTsū"
   },
   "stationSignTemplate": "arupikokotsu",
   "sources": {
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
+      "method": "google-namuwiki-title-crosschecked",
+      "type": "namuwiki-search-crosschecked",
       "url": "",
       "searchReference": "site:namu.wiki アルピコ交通 아루피코코우츠우 운영사",
       "sourceAccess": "blocked",
       "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-09-01",
+      "status": "VERIFIED",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"アルピコ交通\"",
+        "resultTitle": "알피코 교통",
+        "resultDomain": "namu.wiki",
+        "searchEngine": "google"
+      },
+      "identityEvidence": {
+        "nameJa": "アルピコ交通",
+        "nameEn": "ArupikokōTsū"
+      },
       "canonicalPolicy": "namuwiki"
     }
   },
