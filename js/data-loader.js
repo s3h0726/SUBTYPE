@@ -2,18 +2,19 @@ const text=(...values)=>String(values.find(value=>typeof value==='string'&&value
 const cleanDisplayLineName=value=>text(value).replace(/^JR/,'').replace(/^東京メトロ/,'').replace(/^都営/,'').replace(/^大阪メトロ/,'');
 export function normalizeStation(raw={},index=0,lineCode='ST'){
   const source=Array.isArray(raw)?{id:raw[0],ja:raw[1],kana:raw[2],romaji:raw[3],ko:raw[4],latitude:raw[5],longitude:raw[6],koAliases:raw[7]}:raw;
+  const sourceNames=source.names||{};
   const fallbackName=text(source.nameJa,source.ja,source.stationName,source.japanese,source.name,source.nameKo,source.ko,source.romaji,source.en,source.kana,source.hiragana);
-  const ja=text(source.nameJa,source.ja,source.stationName,source.japanese,source.name,fallbackName);
+  const ja=text(sourceNames.ja,source.nameJa,source.ja,source.stationName,source.japanese,source.name,sourceNames.ko,fallbackName);
   const curated=globalThis.TRT_KOREAN_OVERRIDES?.[ja];
   const latitude=Number(source.latitude),longitude=Number(source.longitude);
   const aliases=[...(Array.isArray(source.koAliases)?source.koAliases:[]),...(curated?.aliases||[])].filter(x=>typeof x==='string'&&x.trim()).map(x=>x.normalize('NFC').trim());
   const internalId=text(source.internalId,source.id,source.sourceId,source.code)||`${lineCode}-internal-${index+1}`;
   const explicitCode=text(source.officialCode,source.stationCode),arrayCode=Array.isArray(raw)&&/^[A-Z]{1,4}\d{1,3}$/.test(text(source.id))?text(source.id):'',officialCode=explicitCode||arrayCode;
-  const ko=text(source.nameKo,source.ko)||'MISSING_KOREAN_NAME';
-  return{...source,id:internalId,internalId,officialCode,stationCode:officialCode,hasOfficialStationCode:source.hasOfficialStationCode??!!officialCode,stationCodeSource:source.stationCodeSource||text(source.codeSource)||(officialCode?(explicitCode?'source-explicit':'bundled-verified-array'):'none'),ja,kana:text(source.kana,source.hiragana,fallbackName),romaji:text(source.romaji,source.en,fallbackName),ko,koMissing:ko==='MISSING_KOREAN_NAME',koAliases:[...new Set(aliases)],koVerified:!!source.koVerified,koSource:source.koSource||'',latitude:Number.isFinite(latitude)?latitude:null,longitude:Number.isFinite(longitude)?longitude:null}
+  const ko=text(sourceNames.ko,source.nameKo,source.ko)||'MISSING_KOREAN_NAME';
+  return{...source,id:internalId,internalId,officialCode,stationCode:officialCode,hasOfficialStationCode:source.hasOfficialStationCode??!!officialCode,stationCodeSource:source.stationCodeSource||text(source.codeSource)||(officialCode?(explicitCode?'source-explicit':'bundled-verified-array'):'none'),ja,kana:text(sourceNames.kana,source.kana,source.hiragana,ko),romaji:text(sourceNames.en,source.romaji,source.en,ko),ko,koMissing:ko==='MISSING_KOREAN_NAME',koAliases:[...new Set(aliases)],koVerified:!!source.koVerified,koSource:source.koSource||'',latitude:Number.isFinite(latitude)&&source.latitude!==null?latitude:null,longitude:Number.isFinite(longitude)&&source.longitude!==null?longitude:null}
 }
 export function normalizeLine(raw={},defaults={}){
-  const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||{};
+  const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
   const verifiedTheme=globalThis.TRT_LINE_THEMES?.[id],resolvedCode=verifiedTheme?.code||code||'—';
   const stations=Array.isArray(raw.stations)?raw.stations.map((station,index)=>{const normalized=normalizeStation(station,index,resolvedCode),verifiedCode=verifiedTheme?.stationCodes?.[normalized.ja];return verifiedCode?{...normalized,officialCode:verifiedCode,stationCode:verifiedCode,hasOfficialStationCode:true,stationCodeSource:verifiedTheme.colorSource||'verified-line-theme'}:normalized}):[];
@@ -25,7 +26,7 @@ export function normalizeLine(raw={},defaults={}){
   const normalizedOperatorId=text(raw.operatorId,operatorRaw.id)||category,assetOperatorId=({'jr-east':'op-2','jr-central':'op-3','tokyo-metro':'op-18','toei':'op-119'})[normalizedOperatorId]||normalizedOperatorId;
   raw.operatorAsset=raw.operatorAsset?.asset?raw.operatorAsset:null;
   const lineJa=cleanDisplayLineName(text(lineRaw.ja,raw.nameJa,raw.japanese,raw.name,lineRaw.en,'新路線')),operatorJa=text(operatorRaw.ja,raw.operatorNameJa,raw.operatorName,operatorRaw.en,'Railway'),operatorKo=text(operatorRaw.ko),lineKo=text(lineRaw.ko);
-  return{...raw,id,category,operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Railway'),ko:operatorKo||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,'New Line'),ko:lineKo||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:lineTheme.color,loop:!!raw.loop,lineTheme,services,stations}
+  return{...raw,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:operatorKo||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:lineKo||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:lineTheme.color,loop:!!raw.loop,lineTheme,services,stations}
 }
 function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[]},{category:raw.category});return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:Number(raw.stationCount)||0,searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?raw.stationSequence:[]}}
 function validLine(line){return Array.isArray(line.stations)&&line.stations.length>=2&&line.stations.every(station=>station.ja||station.kana||station.romaji||station.ko)}
@@ -34,6 +35,12 @@ export async function loadRailData(){
   const workspaceData=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;if(!Array.isArray(workspaceData?.routes)||!workspaceData.routes.length)throw new Error('Canonical line workspace bundle is missing. Run npm run build:data.');
   const lines=workspaceData.routes.map(route=>normalizeLine(route,{category:route.category})),operators=Array.isArray(workspaceData.index?.operators)?workspaceData.index.operators:[],stationMap=new Map;for(const line of lines)for(const station of line.stations)if(!stationMap.has(station.id))stationMap.set(station.id,station);const stations=[...stationMap.values()],counts=[...new Set(lines.map(line=>line.category))].reduce((result,category)=>({...result,[category]:lines.filter(line=>line.category===category).length}),{});return{operators,lines,stations,assets:workspaceData.assets||{},errors:[],counts,fallbackUsed:false,source:'canonical-line-workspaces'}
 }
-export async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);return normalizeLine(payload.route||payload,{category:route.category})}
+export async function loadTransportData(countryId='jp'){
+  if(countryId==='jp')return loadRailData();
+  const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
+  const lines=(data.routes||[]).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
+  return{country:data.country,operators,lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
+}
+export async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);const normalized=normalizeLine(payload.route||payload,{category:route.category});normalized.directions=(payload.route||payload).directions||[];return normalized}
 export async function loadRoutes(){const data=await loadRailData();return{routes:data.lines,errors:data.errors,counts:data.counts,fallbackUsed:data.fallbackUsed}}
 export async function loadStationMaster(){const workspaceData=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;if(!Array.isArray(workspaceData?.routes))return[];const map=new Map;for(const route of workspaceData.routes)for(const station of route.stations||[])if(!map.has(station.id))map.set(station.id,normalizeStation(station,map.size,route.code));return[...map.values()]}

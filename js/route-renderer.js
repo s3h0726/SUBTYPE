@@ -11,7 +11,7 @@ function stationIcon(L,station,kind='other',color='#49c888'){
   const current=kind==='current',visible=kind!=='other',size=current?18:11;
   return L.divIcon({className:'osm-station-icon-wrap',html:`<span class="osm-station-dot ${kind}" style="--marker-color:${color};width:${size}px;height:${size}px"></span>${visible?`<span class="osm-station-label ${kind}"><b>${escapeHtml(station.ja)}</b><small>${escapeHtml(station.ko)}</small></span>`:''}`,iconSize:[20,20],iconAnchor:[10,10]})
 }
-function trainIcon(L,route){const badge=lineBadgeMeta(route),bullet=route.category==='shinkansen';return L.divIcon({className:'osm-train-wrap',html:`<span class="osm-train ${bullet?'shinkansen-train':''}" style="--train-color:${route.lineColor}" aria-label="${bullet?'신칸센':'열차'} 위치"><i aria-hidden="true"></i><b>${escapeHtml(badge.code)}</b></span>`,iconSize:[60,54],iconAnchor:[30,27]})}
+function vehicleIcon(L,route){const badge=lineBadgeMeta(route),mode=route.mode||'rail',kind=['bus','village_bus','express_bus'].includes(mode)?'bus':mode==='river_bus'?'boat':mode==='high_speed_rail'?'high-speed':'train',label=kind==='bus'?'버스':kind==='boat'?'한강버스':kind==='high-speed'?'고속열차':'열차';return L.divIcon({className:'osm-train-wrap',html:`<span class="osm-train vehicle-${kind}" style="--train-color:${route.lineColor}" aria-label="${label} 위치"><i aria-hidden="true"></i><b>${escapeHtml(badge.code)}</b></span>`,iconSize:[60,54],iconAnchor:[30,27]})}
 function updateDebug(){globalThis.__TRT_MAP_DEBUG__={mapObjects:gameRail?.map?1:0,tileLayers:gameRail?.tile?1:0,trainMarkers:gameRail?.train?1:0,stationMarkers:gameRail?.markers?.length||0,routeId:gameRail?.routeId||null,routeKey:gameRail?.routeKey||null,currentIndex:gameRail?.index??null,typingProgress:gameRail?.typingProgress??0};const target=$('#provider-basemap');if(target)Object.entries(globalThis.__TRT_MAP_DEBUG__).forEach(([key,value])=>target.dataset[key]=String(value))}
 async function ensureGameMap(target){
   if(gameRail?.map)return gameRail;
@@ -36,17 +36,17 @@ function createRouteLayers(rail,route,index,options={}){
   rail.remaining=L.polyline(points.slice(travel.offsets[index]),{color:route.lineColor,weight:7,opacity:.55,lineCap:'round'}).addTo(rail.railLayer);
   rail.completed=L.polyline(points.slice(0,travel.offsets[index]+1),{color:route.lineColor,weight:8,opacity:1,lineCap:'round'}).addTo(rail.railLayer);
   rail.markers=route.stations.map((station,i)=>L.marker(stationPoints[i],{interactive:false,keyboard:false,zIndexOffset:i===index?500:0,icon:stationIcon(L,station,i===index?'current':i===rail.nextIndex?'next':i===index-1?'previous':'other',route.lineColor)}).addTo(rail.stationLayer));
-  rail.train=L.marker(stationPoints[index],{interactive:false,keyboard:false,zIndexOffset:1000,icon:trainIcon(L,route)}).addTo(rail.trainLayer);
+  rail.train=L.marker(stationPoints[index],{interactive:false,keyboard:false,zIndexOffset:1000,icon:vehicleIcon(L,route)}).addTo(rail.trainLayer);
   requestAnimationFrame(()=>{map.invalidateSize();const pair=[stationPoints[index],stationPoints[rail.nextIndex]].filter(Boolean);if(pair.length>1)map.fitBounds(pair,{padding:[100,100],maxZoom:16});else map.setView(stationPoints[index],15)});updateDebug()
 }
 function updateRouteProgress(rail,route,index,motion,options={}){
   const nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1),currentPosition=rail.train?.getLatLng(),previous=currentPosition?[currentPosition.lat,currentPosition.lng]:rail.stationPoints[rail.index],next=rail.stationPoints[index];rail.remaining.setLatLngs(rail.points.slice(rail.stationOffsets[index]));rail.completed.setLatLngs(rail.points.slice(0,rail.stationOffsets[index]+1));
   rail.markers.forEach((marker,i)=>{const kind=i===index?'current':i===nextIndex?'next':i===index-1?'previous':'other';marker.setIcon(stationIcon(rail.L,route.stations[i],kind,route.lineColor));marker.setZIndexOffset(i===index?500:0)});
-  const active=route.stations[index]?.segment||route;rail.train.setIcon(trainIcon(rail.L,active));animateTrain(rail,previous,next,motion);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;const pair=[rail.stationPoints[index],rail.stationPoints[nextIndex]].filter(Boolean);if(pair.length>1)rail.map.fitBounds(pair,{padding:[100,100],maxZoom:16});else rail.map.setView(next,15);updateDebug()
+  const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;const pair=[rail.stationPoints[index],rail.stationPoints[nextIndex]].filter(Boolean);if(pair.length>1)rail.map.fitBounds(pair,{padding:[100,100],maxZoom:16});else rail.map.setView(next,15);updateDebug()
 }
 async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
-  if(!validCoordinates(route)){if(status)status.textContent='좌표가 없는 노선입니다';return}
+  if(!validCoordinates(route)){if(status)status.textContent=route.countryId==='kr'?'지도 선형 미확보 · 정차 순서 플레이':'좌표가 없는 노선입니다';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
   const requestedNext=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(safe+1,route.stations.length-1);if(rail.routeKey!==(route.renderKey||route.id))createRouteLayers(rail,route,safe,options);else if(rail.index!==safe||rail.nextIndex!==requestedNext)updateRouteProgress(rail,route,safe,options.motion,options);else rail.nextIndex=requestedNext;
   requestAnimationFrame(()=>rail.map.invalidateSize());if(status)status.textContent='OPENSTREETMAP · LIVE';

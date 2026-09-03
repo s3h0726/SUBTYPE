@@ -1,0 +1,1759 @@
+{
+  "schemaVersion": 1,
+  "countryId": "kr",
+  "route": {
+    "id": "kr-capital-line-1-cheongnyangni-incheon",
+    "countryId": "kr",
+    "mode": "commuter_rail",
+    "category": "commuter_rail",
+    "operatorId": "kr-korail",
+    "operatorIds": [
+      "kr-korail",
+      "kr-seoul-metro"
+    ],
+    "physicalLines": [
+      "gyeongwon-line",
+      "seoul-subway-line-1",
+      "gyeongbu-line",
+      "gyeongin-line"
+    ],
+    "routeVariantId": "cheongnyangni-incheon-local",
+    "names": {
+      "ko": "수도권 전철 1호선",
+      "en": "Seoul Metropolitan Subway Line 1"
+    },
+    "code": "1",
+    "color": "#0052A4",
+    "loop": false,
+    "geometryStatus": "missing",
+    "source": {
+      "name": "코레일·서울교통공사 노선 안내",
+      "url": "https://www.letskorail.com/"
+    },
+    "operator": {
+      "ko": "한국철도공사",
+      "en": "KORAIL",
+      "id": "kr-korail"
+    },
+    "operators": [
+      {
+        "ko": "한국철도공사",
+        "en": "KORAIL",
+        "id": "kr-korail"
+      },
+      {
+        "ko": "서울교통공사",
+        "en": "Seoul Metro",
+        "id": "kr-seoul-metro"
+      }
+    ],
+    "line": {
+      "ko": "수도권 전철 1호선",
+      "en": "Seoul Metropolitan Subway Line 1"
+    },
+    "stations": [
+      {
+        "id": "kr-rail-incheon",
+        "type": "rail_station",
+        "names": {
+          "ko": "인천",
+          "en": "Incheon"
+        },
+        "order": 0,
+        "officialCode": "161",
+        "stationCode": "161",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-dongincheon",
+        "type": "rail_station",
+        "names": {
+          "ko": "동인천",
+          "en": "Dongincheon"
+        },
+        "order": 1,
+        "officialCode": "160",
+        "stationCode": "160",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-dowon",
+        "type": "rail_station",
+        "names": {
+          "ko": "도원",
+          "en": "Dowon"
+        },
+        "order": 2,
+        "officialCode": "159",
+        "stationCode": "159",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-jemulpo",
+        "type": "rail_station",
+        "names": {
+          "ko": "제물포",
+          "en": "Jemulpo"
+        },
+        "order": 3,
+        "officialCode": "158",
+        "stationCode": "158",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-dohwa",
+        "type": "rail_station",
+        "names": {
+          "ko": "도화",
+          "en": "Dohwa"
+        },
+        "order": 4,
+        "officialCode": "157",
+        "stationCode": "157",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-juan",
+        "type": "rail_station",
+        "names": {
+          "ko": "주안",
+          "en": "Juan"
+        },
+        "order": 5,
+        "officialCode": "156",
+        "stationCode": "156",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-ganseok",
+        "type": "rail_station",
+        "names": {
+          "ko": "간석",
+          "en": "Ganseok"
+        },
+        "order": 6,
+        "officialCode": "155",
+        "stationCode": "155",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-dongam",
+        "type": "rail_station",
+        "names": {
+          "ko": "동암",
+          "en": "Dongam"
+        },
+        "order": 7,
+        "officialCode": "154",
+        "stationCode": "154",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-baegun",
+        "type": "rail_station",
+        "names": {
+          "ko": "백운",
+          "en": "Baegun"
+        },
+        "order": 8,
+        "officialCode": "153",
+        "stationCode": "153",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-bupyeong",
+        "type": "rail_station",
+        "names": {
+          "ko": "부평",
+          "en": "Bupyeong"
+        },
+        "order": 9,
+        "officialCode": "152",
+        "stationCode": "152",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-bugae",
+        "type": "rail_station",
+        "names": {
+          "ko": "부개",
+          "en": "Bugae"
+        },
+        "order": 10,
+        "officialCode": "151",
+        "stationCode": "151",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-songnae",
+        "type": "rail_station",
+        "names": {
+          "ko": "송내",
+          "en": "Songnae"
+        },
+        "order": 11,
+        "officialCode": "150",
+        "stationCode": "150",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-jungdong",
+        "type": "rail_station",
+        "names": {
+          "ko": "중동",
+          "en": "Jung-dong"
+        },
+        "order": 12,
+        "officialCode": "149",
+        "stationCode": "149",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-bucheon",
+        "type": "rail_station",
+        "names": {
+          "ko": "부천",
+          "en": "Bucheon"
+        },
+        "order": 13,
+        "officialCode": "148",
+        "stationCode": "148",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-sosa",
+        "type": "rail_station",
+        "names": {
+          "ko": "소사",
+          "en": "Sosa"
+        },
+        "order": 14,
+        "officialCode": "147",
+        "stationCode": "147",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-yeokgok",
+        "type": "rail_station",
+        "names": {
+          "ko": "역곡",
+          "en": "Yeokgok"
+        },
+        "order": 15,
+        "officialCode": "146",
+        "stationCode": "146",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-on-su",
+        "type": "rail_station",
+        "names": {
+          "ko": "온수",
+          "en": "Onsu"
+        },
+        "order": 16,
+        "officialCode": "145",
+        "stationCode": "145",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-oryudong",
+        "type": "rail_station",
+        "names": {
+          "ko": "오류동",
+          "en": "Oryu-dong"
+        },
+        "order": 17,
+        "officialCode": "144",
+        "stationCode": "144",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-gaebong",
+        "type": "rail_station",
+        "names": {
+          "ko": "개봉",
+          "en": "Gaebong"
+        },
+        "order": 18,
+        "officialCode": "143",
+        "stationCode": "143",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-guil",
+        "type": "rail_station",
+        "names": {
+          "ko": "구일",
+          "en": "Guil"
+        },
+        "order": 19,
+        "officialCode": "142",
+        "stationCode": "142",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-guro",
+        "type": "rail_station",
+        "names": {
+          "ko": "구로",
+          "en": "Guro"
+        },
+        "order": 20,
+        "officialCode": "141",
+        "stationCode": "141",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-sindorim",
+        "type": "rail_station",
+        "names": {
+          "ko": "신도림",
+          "en": "Sindorim"
+        },
+        "order": 21,
+        "officialCode": "140",
+        "stationCode": "140",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-yeongdeungpo",
+        "type": "rail_station",
+        "names": {
+          "ko": "영등포",
+          "en": "Yeongdeungpo"
+        },
+        "order": 22,
+        "officialCode": "139",
+        "stationCode": "139",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-singil",
+        "type": "rail_station",
+        "names": {
+          "ko": "신길",
+          "en": "Singil"
+        },
+        "order": 23,
+        "officialCode": "138",
+        "stationCode": "138",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-daebang",
+        "type": "rail_station",
+        "names": {
+          "ko": "대방",
+          "en": "Daebang"
+        },
+        "order": 24,
+        "officialCode": "137",
+        "stationCode": "137",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-noryangjin",
+        "type": "rail_station",
+        "names": {
+          "ko": "노량진",
+          "en": "Noryangjin"
+        },
+        "order": 25,
+        "officialCode": "136",
+        "stationCode": "136",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-yongsan",
+        "type": "rail_station",
+        "names": {
+          "ko": "용산",
+          "en": "Yongsan"
+        },
+        "order": 26,
+        "officialCode": "135",
+        "stationCode": "135",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-namyeong",
+        "type": "rail_station",
+        "names": {
+          "ko": "남영",
+          "en": "Namyeong"
+        },
+        "order": 27,
+        "officialCode": "134",
+        "stationCode": "134",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-seoul",
+        "type": "rail_station",
+        "names": {
+          "ko": "서울",
+          "en": "Seoul"
+        },
+        "order": 28,
+        "officialCode": "133",
+        "stationCode": "133",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-cityhall",
+        "type": "rail_station",
+        "names": {
+          "ko": "시청",
+          "en": "City Hall"
+        },
+        "order": 29,
+        "officialCode": "132",
+        "stationCode": "132",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-jonggak",
+        "type": "rail_station",
+        "names": {
+          "ko": "종각",
+          "en": "Jonggak"
+        },
+        "order": 30,
+        "officialCode": "131",
+        "stationCode": "131",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-jongno3ga",
+        "type": "rail_station",
+        "names": {
+          "ko": "종로3가",
+          "en": "Jongno 3-ga"
+        },
+        "order": 31,
+        "officialCode": "130",
+        "stationCode": "130",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-jongno5ga",
+        "type": "rail_station",
+        "names": {
+          "ko": "종로5가",
+          "en": "Jongno 5-ga"
+        },
+        "order": 32,
+        "officialCode": "129",
+        "stationCode": "129",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-dongdaemun",
+        "type": "rail_station",
+        "names": {
+          "ko": "동대문",
+          "en": "Dongdaemun"
+        },
+        "order": 33,
+        "officialCode": "128",
+        "stationCode": "128",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-dongmyo",
+        "type": "rail_station",
+        "names": {
+          "ko": "동묘앞",
+          "en": "Dongmyo"
+        },
+        "order": 34,
+        "officialCode": "127",
+        "stationCode": "127",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-sinseoldong",
+        "type": "rail_station",
+        "names": {
+          "ko": "신설동",
+          "en": "Sinseol-dong"
+        },
+        "order": 35,
+        "officialCode": "126",
+        "stationCode": "126",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-jegidong",
+        "type": "rail_station",
+        "names": {
+          "ko": "제기동",
+          "en": "Jegi-dong"
+        },
+        "order": 36,
+        "officialCode": "125",
+        "stationCode": "125",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-cheongnyangni",
+        "type": "rail_station",
+        "names": {
+          "ko": "청량리",
+          "en": "Cheongnyangni"
+        },
+        "order": 37,
+        "officialCode": "124",
+        "stationCode": "124",
+        "hasOfficialStationCode": true
+      }
+    ],
+    "directions": [
+      {
+        "id": "cheongnyangni",
+        "names": {
+          "ko": "청량리 방면",
+          "en": "For Cheongnyangni"
+        },
+        "directionType": "service_variant",
+        "stopSequence": [
+          {
+            "stopId": "kr-rail-incheon",
+            "stopCode": "161"
+          },
+          {
+            "stopId": "kr-rail-dongincheon",
+            "stopCode": "160"
+          },
+          {
+            "stopId": "kr-rail-dowon",
+            "stopCode": "159"
+          },
+          {
+            "stopId": "kr-rail-jemulpo",
+            "stopCode": "158"
+          },
+          {
+            "stopId": "kr-rail-dohwa",
+            "stopCode": "157"
+          },
+          {
+            "stopId": "kr-rail-juan",
+            "stopCode": "156"
+          },
+          {
+            "stopId": "kr-rail-ganseok",
+            "stopCode": "155"
+          },
+          {
+            "stopId": "kr-rail-dongam",
+            "stopCode": "154"
+          },
+          {
+            "stopId": "kr-rail-baegun",
+            "stopCode": "153"
+          },
+          {
+            "stopId": "kr-rail-bupyeong",
+            "stopCode": "152"
+          },
+          {
+            "stopId": "kr-rail-bugae",
+            "stopCode": "151"
+          },
+          {
+            "stopId": "kr-rail-songnae",
+            "stopCode": "150"
+          },
+          {
+            "stopId": "kr-rail-jungdong",
+            "stopCode": "149"
+          },
+          {
+            "stopId": "kr-rail-bucheon",
+            "stopCode": "148"
+          },
+          {
+            "stopId": "kr-rail-sosa",
+            "stopCode": "147"
+          },
+          {
+            "stopId": "kr-rail-yeokgok",
+            "stopCode": "146"
+          },
+          {
+            "stopId": "kr-rail-on-su",
+            "stopCode": "145"
+          },
+          {
+            "stopId": "kr-rail-oryudong",
+            "stopCode": "144"
+          },
+          {
+            "stopId": "kr-rail-gaebong",
+            "stopCode": "143"
+          },
+          {
+            "stopId": "kr-rail-guil",
+            "stopCode": "142"
+          },
+          {
+            "stopId": "kr-rail-guro",
+            "stopCode": "141"
+          },
+          {
+            "stopId": "kr-rail-sindorim",
+            "stopCode": "140"
+          },
+          {
+            "stopId": "kr-rail-yeongdeungpo",
+            "stopCode": "139"
+          },
+          {
+            "stopId": "kr-rail-singil",
+            "stopCode": "138"
+          },
+          {
+            "stopId": "kr-rail-daebang",
+            "stopCode": "137"
+          },
+          {
+            "stopId": "kr-rail-noryangjin",
+            "stopCode": "136"
+          },
+          {
+            "stopId": "kr-rail-yongsan",
+            "stopCode": "135"
+          },
+          {
+            "stopId": "kr-rail-namyeong",
+            "stopCode": "134"
+          },
+          {
+            "stopId": "kr-rail-seoul",
+            "stopCode": "133"
+          },
+          {
+            "stopId": "kr-rail-cityhall",
+            "stopCode": "132"
+          },
+          {
+            "stopId": "kr-rail-jonggak",
+            "stopCode": "131"
+          },
+          {
+            "stopId": "kr-rail-jongno3ga",
+            "stopCode": "130"
+          },
+          {
+            "stopId": "kr-rail-jongno5ga",
+            "stopCode": "129"
+          },
+          {
+            "stopId": "kr-rail-dongdaemun",
+            "stopCode": "128"
+          },
+          {
+            "stopId": "kr-rail-dongmyo",
+            "stopCode": "127"
+          },
+          {
+            "stopId": "kr-rail-sinseoldong",
+            "stopCode": "126"
+          },
+          {
+            "stopId": "kr-rail-jegidong",
+            "stopCode": "125"
+          },
+          {
+            "stopId": "kr-rail-cheongnyangni",
+            "stopCode": "124"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-rail-incheon",
+            "type": "rail_station",
+            "names": {
+              "ko": "인천",
+              "en": "Incheon"
+            },
+            "order": 0,
+            "officialCode": "161",
+            "stationCode": "161",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongincheon",
+            "type": "rail_station",
+            "names": {
+              "ko": "동인천",
+              "en": "Dongincheon"
+            },
+            "order": 1,
+            "officialCode": "160",
+            "stationCode": "160",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dowon",
+            "type": "rail_station",
+            "names": {
+              "ko": "도원",
+              "en": "Dowon"
+            },
+            "order": 2,
+            "officialCode": "159",
+            "stationCode": "159",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jemulpo",
+            "type": "rail_station",
+            "names": {
+              "ko": "제물포",
+              "en": "Jemulpo"
+            },
+            "order": 3,
+            "officialCode": "158",
+            "stationCode": "158",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dohwa",
+            "type": "rail_station",
+            "names": {
+              "ko": "도화",
+              "en": "Dohwa"
+            },
+            "order": 4,
+            "officialCode": "157",
+            "stationCode": "157",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-juan",
+            "type": "rail_station",
+            "names": {
+              "ko": "주안",
+              "en": "Juan"
+            },
+            "order": 5,
+            "officialCode": "156",
+            "stationCode": "156",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-ganseok",
+            "type": "rail_station",
+            "names": {
+              "ko": "간석",
+              "en": "Ganseok"
+            },
+            "order": 6,
+            "officialCode": "155",
+            "stationCode": "155",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongam",
+            "type": "rail_station",
+            "names": {
+              "ko": "동암",
+              "en": "Dongam"
+            },
+            "order": 7,
+            "officialCode": "154",
+            "stationCode": "154",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-baegun",
+            "type": "rail_station",
+            "names": {
+              "ko": "백운",
+              "en": "Baegun"
+            },
+            "order": 8,
+            "officialCode": "153",
+            "stationCode": "153",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-bupyeong",
+            "type": "rail_station",
+            "names": {
+              "ko": "부평",
+              "en": "Bupyeong"
+            },
+            "order": 9,
+            "officialCode": "152",
+            "stationCode": "152",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-bugae",
+            "type": "rail_station",
+            "names": {
+              "ko": "부개",
+              "en": "Bugae"
+            },
+            "order": 10,
+            "officialCode": "151",
+            "stationCode": "151",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-songnae",
+            "type": "rail_station",
+            "names": {
+              "ko": "송내",
+              "en": "Songnae"
+            },
+            "order": 11,
+            "officialCode": "150",
+            "stationCode": "150",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jungdong",
+            "type": "rail_station",
+            "names": {
+              "ko": "중동",
+              "en": "Jung-dong"
+            },
+            "order": 12,
+            "officialCode": "149",
+            "stationCode": "149",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-bucheon",
+            "type": "rail_station",
+            "names": {
+              "ko": "부천",
+              "en": "Bucheon"
+            },
+            "order": 13,
+            "officialCode": "148",
+            "stationCode": "148",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sosa",
+            "type": "rail_station",
+            "names": {
+              "ko": "소사",
+              "en": "Sosa"
+            },
+            "order": 14,
+            "officialCode": "147",
+            "stationCode": "147",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yeokgok",
+            "type": "rail_station",
+            "names": {
+              "ko": "역곡",
+              "en": "Yeokgok"
+            },
+            "order": 15,
+            "officialCode": "146",
+            "stationCode": "146",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-on-su",
+            "type": "rail_station",
+            "names": {
+              "ko": "온수",
+              "en": "Onsu"
+            },
+            "order": 16,
+            "officialCode": "145",
+            "stationCode": "145",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-oryudong",
+            "type": "rail_station",
+            "names": {
+              "ko": "오류동",
+              "en": "Oryu-dong"
+            },
+            "order": 17,
+            "officialCode": "144",
+            "stationCode": "144",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-gaebong",
+            "type": "rail_station",
+            "names": {
+              "ko": "개봉",
+              "en": "Gaebong"
+            },
+            "order": 18,
+            "officialCode": "143",
+            "stationCode": "143",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-guil",
+            "type": "rail_station",
+            "names": {
+              "ko": "구일",
+              "en": "Guil"
+            },
+            "order": 19,
+            "officialCode": "142",
+            "stationCode": "142",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-guro",
+            "type": "rail_station",
+            "names": {
+              "ko": "구로",
+              "en": "Guro"
+            },
+            "order": 20,
+            "officialCode": "141",
+            "stationCode": "141",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sindorim",
+            "type": "rail_station",
+            "names": {
+              "ko": "신도림",
+              "en": "Sindorim"
+            },
+            "order": 21,
+            "officialCode": "140",
+            "stationCode": "140",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yeongdeungpo",
+            "type": "rail_station",
+            "names": {
+              "ko": "영등포",
+              "en": "Yeongdeungpo"
+            },
+            "order": 22,
+            "officialCode": "139",
+            "stationCode": "139",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-singil",
+            "type": "rail_station",
+            "names": {
+              "ko": "신길",
+              "en": "Singil"
+            },
+            "order": 23,
+            "officialCode": "138",
+            "stationCode": "138",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-daebang",
+            "type": "rail_station",
+            "names": {
+              "ko": "대방",
+              "en": "Daebang"
+            },
+            "order": 24,
+            "officialCode": "137",
+            "stationCode": "137",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-noryangjin",
+            "type": "rail_station",
+            "names": {
+              "ko": "노량진",
+              "en": "Noryangjin"
+            },
+            "order": 25,
+            "officialCode": "136",
+            "stationCode": "136",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yongsan",
+            "type": "rail_station",
+            "names": {
+              "ko": "용산",
+              "en": "Yongsan"
+            },
+            "order": 26,
+            "officialCode": "135",
+            "stationCode": "135",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-namyeong",
+            "type": "rail_station",
+            "names": {
+              "ko": "남영",
+              "en": "Namyeong"
+            },
+            "order": 27,
+            "officialCode": "134",
+            "stationCode": "134",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-seoul",
+            "type": "rail_station",
+            "names": {
+              "ko": "서울",
+              "en": "Seoul"
+            },
+            "order": 28,
+            "officialCode": "133",
+            "stationCode": "133",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-cityhall",
+            "type": "rail_station",
+            "names": {
+              "ko": "시청",
+              "en": "City Hall"
+            },
+            "order": 29,
+            "officialCode": "132",
+            "stationCode": "132",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jonggak",
+            "type": "rail_station",
+            "names": {
+              "ko": "종각",
+              "en": "Jonggak"
+            },
+            "order": 30,
+            "officialCode": "131",
+            "stationCode": "131",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jongno3ga",
+            "type": "rail_station",
+            "names": {
+              "ko": "종로3가",
+              "en": "Jongno 3-ga"
+            },
+            "order": 31,
+            "officialCode": "130",
+            "stationCode": "130",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jongno5ga",
+            "type": "rail_station",
+            "names": {
+              "ko": "종로5가",
+              "en": "Jongno 5-ga"
+            },
+            "order": 32,
+            "officialCode": "129",
+            "stationCode": "129",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongdaemun",
+            "type": "rail_station",
+            "names": {
+              "ko": "동대문",
+              "en": "Dongdaemun"
+            },
+            "order": 33,
+            "officialCode": "128",
+            "stationCode": "128",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongmyo",
+            "type": "rail_station",
+            "names": {
+              "ko": "동묘앞",
+              "en": "Dongmyo"
+            },
+            "order": 34,
+            "officialCode": "127",
+            "stationCode": "127",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sinseoldong",
+            "type": "rail_station",
+            "names": {
+              "ko": "신설동",
+              "en": "Sinseol-dong"
+            },
+            "order": 35,
+            "officialCode": "126",
+            "stationCode": "126",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jegidong",
+            "type": "rail_station",
+            "names": {
+              "ko": "제기동",
+              "en": "Jegi-dong"
+            },
+            "order": 36,
+            "officialCode": "125",
+            "stationCode": "125",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-cheongnyangni",
+            "type": "rail_station",
+            "names": {
+              "ko": "청량리",
+              "en": "Cheongnyangni"
+            },
+            "order": 37,
+            "officialCode": "124",
+            "stationCode": "124",
+            "hasOfficialStationCode": true
+          }
+        ]
+      },
+      {
+        "id": "incheon",
+        "names": {
+          "ko": "인천 방면",
+          "en": "For Incheon"
+        },
+        "directionType": "service_variant",
+        "stopSequence": [
+          {
+            "stopId": "kr-rail-cheongnyangni",
+            "stopCode": "124"
+          },
+          {
+            "stopId": "kr-rail-jegidong",
+            "stopCode": "125"
+          },
+          {
+            "stopId": "kr-rail-sinseoldong",
+            "stopCode": "126"
+          },
+          {
+            "stopId": "kr-rail-dongmyo",
+            "stopCode": "127"
+          },
+          {
+            "stopId": "kr-rail-dongdaemun",
+            "stopCode": "128"
+          },
+          {
+            "stopId": "kr-rail-jongno5ga",
+            "stopCode": "129"
+          },
+          {
+            "stopId": "kr-rail-jongno3ga",
+            "stopCode": "130"
+          },
+          {
+            "stopId": "kr-rail-jonggak",
+            "stopCode": "131"
+          },
+          {
+            "stopId": "kr-rail-cityhall",
+            "stopCode": "132"
+          },
+          {
+            "stopId": "kr-rail-seoul",
+            "stopCode": "133"
+          },
+          {
+            "stopId": "kr-rail-namyeong",
+            "stopCode": "134"
+          },
+          {
+            "stopId": "kr-rail-yongsan",
+            "stopCode": "135"
+          },
+          {
+            "stopId": "kr-rail-noryangjin",
+            "stopCode": "136"
+          },
+          {
+            "stopId": "kr-rail-daebang",
+            "stopCode": "137"
+          },
+          {
+            "stopId": "kr-rail-singil",
+            "stopCode": "138"
+          },
+          {
+            "stopId": "kr-rail-yeongdeungpo",
+            "stopCode": "139"
+          },
+          {
+            "stopId": "kr-rail-sindorim",
+            "stopCode": "140"
+          },
+          {
+            "stopId": "kr-rail-guro",
+            "stopCode": "141"
+          },
+          {
+            "stopId": "kr-rail-guil",
+            "stopCode": "142"
+          },
+          {
+            "stopId": "kr-rail-gaebong",
+            "stopCode": "143"
+          },
+          {
+            "stopId": "kr-rail-oryudong",
+            "stopCode": "144"
+          },
+          {
+            "stopId": "kr-rail-on-su",
+            "stopCode": "145"
+          },
+          {
+            "stopId": "kr-rail-yeokgok",
+            "stopCode": "146"
+          },
+          {
+            "stopId": "kr-rail-sosa",
+            "stopCode": "147"
+          },
+          {
+            "stopId": "kr-rail-bucheon",
+            "stopCode": "148"
+          },
+          {
+            "stopId": "kr-rail-jungdong",
+            "stopCode": "149"
+          },
+          {
+            "stopId": "kr-rail-songnae",
+            "stopCode": "150"
+          },
+          {
+            "stopId": "kr-rail-bugae",
+            "stopCode": "151"
+          },
+          {
+            "stopId": "kr-rail-bupyeong",
+            "stopCode": "152"
+          },
+          {
+            "stopId": "kr-rail-baegun",
+            "stopCode": "153"
+          },
+          {
+            "stopId": "kr-rail-dongam",
+            "stopCode": "154"
+          },
+          {
+            "stopId": "kr-rail-ganseok",
+            "stopCode": "155"
+          },
+          {
+            "stopId": "kr-rail-juan",
+            "stopCode": "156"
+          },
+          {
+            "stopId": "kr-rail-dohwa",
+            "stopCode": "157"
+          },
+          {
+            "stopId": "kr-rail-jemulpo",
+            "stopCode": "158"
+          },
+          {
+            "stopId": "kr-rail-dowon",
+            "stopCode": "159"
+          },
+          {
+            "stopId": "kr-rail-dongincheon",
+            "stopCode": "160"
+          },
+          {
+            "stopId": "kr-rail-incheon",
+            "stopCode": "161"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-rail-cheongnyangni",
+            "type": "rail_station",
+            "names": {
+              "ko": "청량리",
+              "en": "Cheongnyangni"
+            },
+            "order": 0,
+            "officialCode": "124",
+            "stationCode": "124",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jegidong",
+            "type": "rail_station",
+            "names": {
+              "ko": "제기동",
+              "en": "Jegi-dong"
+            },
+            "order": 1,
+            "officialCode": "125",
+            "stationCode": "125",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sinseoldong",
+            "type": "rail_station",
+            "names": {
+              "ko": "신설동",
+              "en": "Sinseol-dong"
+            },
+            "order": 2,
+            "officialCode": "126",
+            "stationCode": "126",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongmyo",
+            "type": "rail_station",
+            "names": {
+              "ko": "동묘앞",
+              "en": "Dongmyo"
+            },
+            "order": 3,
+            "officialCode": "127",
+            "stationCode": "127",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongdaemun",
+            "type": "rail_station",
+            "names": {
+              "ko": "동대문",
+              "en": "Dongdaemun"
+            },
+            "order": 4,
+            "officialCode": "128",
+            "stationCode": "128",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jongno5ga",
+            "type": "rail_station",
+            "names": {
+              "ko": "종로5가",
+              "en": "Jongno 5-ga"
+            },
+            "order": 5,
+            "officialCode": "129",
+            "stationCode": "129",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jongno3ga",
+            "type": "rail_station",
+            "names": {
+              "ko": "종로3가",
+              "en": "Jongno 3-ga"
+            },
+            "order": 6,
+            "officialCode": "130",
+            "stationCode": "130",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jonggak",
+            "type": "rail_station",
+            "names": {
+              "ko": "종각",
+              "en": "Jonggak"
+            },
+            "order": 7,
+            "officialCode": "131",
+            "stationCode": "131",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-cityhall",
+            "type": "rail_station",
+            "names": {
+              "ko": "시청",
+              "en": "City Hall"
+            },
+            "order": 8,
+            "officialCode": "132",
+            "stationCode": "132",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-seoul",
+            "type": "rail_station",
+            "names": {
+              "ko": "서울",
+              "en": "Seoul"
+            },
+            "order": 9,
+            "officialCode": "133",
+            "stationCode": "133",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-namyeong",
+            "type": "rail_station",
+            "names": {
+              "ko": "남영",
+              "en": "Namyeong"
+            },
+            "order": 10,
+            "officialCode": "134",
+            "stationCode": "134",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yongsan",
+            "type": "rail_station",
+            "names": {
+              "ko": "용산",
+              "en": "Yongsan"
+            },
+            "order": 11,
+            "officialCode": "135",
+            "stationCode": "135",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-noryangjin",
+            "type": "rail_station",
+            "names": {
+              "ko": "노량진",
+              "en": "Noryangjin"
+            },
+            "order": 12,
+            "officialCode": "136",
+            "stationCode": "136",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-daebang",
+            "type": "rail_station",
+            "names": {
+              "ko": "대방",
+              "en": "Daebang"
+            },
+            "order": 13,
+            "officialCode": "137",
+            "stationCode": "137",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-singil",
+            "type": "rail_station",
+            "names": {
+              "ko": "신길",
+              "en": "Singil"
+            },
+            "order": 14,
+            "officialCode": "138",
+            "stationCode": "138",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yeongdeungpo",
+            "type": "rail_station",
+            "names": {
+              "ko": "영등포",
+              "en": "Yeongdeungpo"
+            },
+            "order": 15,
+            "officialCode": "139",
+            "stationCode": "139",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sindorim",
+            "type": "rail_station",
+            "names": {
+              "ko": "신도림",
+              "en": "Sindorim"
+            },
+            "order": 16,
+            "officialCode": "140",
+            "stationCode": "140",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-guro",
+            "type": "rail_station",
+            "names": {
+              "ko": "구로",
+              "en": "Guro"
+            },
+            "order": 17,
+            "officialCode": "141",
+            "stationCode": "141",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-guil",
+            "type": "rail_station",
+            "names": {
+              "ko": "구일",
+              "en": "Guil"
+            },
+            "order": 18,
+            "officialCode": "142",
+            "stationCode": "142",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-gaebong",
+            "type": "rail_station",
+            "names": {
+              "ko": "개봉",
+              "en": "Gaebong"
+            },
+            "order": 19,
+            "officialCode": "143",
+            "stationCode": "143",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-oryudong",
+            "type": "rail_station",
+            "names": {
+              "ko": "오류동",
+              "en": "Oryu-dong"
+            },
+            "order": 20,
+            "officialCode": "144",
+            "stationCode": "144",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-on-su",
+            "type": "rail_station",
+            "names": {
+              "ko": "온수",
+              "en": "Onsu"
+            },
+            "order": 21,
+            "officialCode": "145",
+            "stationCode": "145",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yeokgok",
+            "type": "rail_station",
+            "names": {
+              "ko": "역곡",
+              "en": "Yeokgok"
+            },
+            "order": 22,
+            "officialCode": "146",
+            "stationCode": "146",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sosa",
+            "type": "rail_station",
+            "names": {
+              "ko": "소사",
+              "en": "Sosa"
+            },
+            "order": 23,
+            "officialCode": "147",
+            "stationCode": "147",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-bucheon",
+            "type": "rail_station",
+            "names": {
+              "ko": "부천",
+              "en": "Bucheon"
+            },
+            "order": 24,
+            "officialCode": "148",
+            "stationCode": "148",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jungdong",
+            "type": "rail_station",
+            "names": {
+              "ko": "중동",
+              "en": "Jung-dong"
+            },
+            "order": 25,
+            "officialCode": "149",
+            "stationCode": "149",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-songnae",
+            "type": "rail_station",
+            "names": {
+              "ko": "송내",
+              "en": "Songnae"
+            },
+            "order": 26,
+            "officialCode": "150",
+            "stationCode": "150",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-bugae",
+            "type": "rail_station",
+            "names": {
+              "ko": "부개",
+              "en": "Bugae"
+            },
+            "order": 27,
+            "officialCode": "151",
+            "stationCode": "151",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-bupyeong",
+            "type": "rail_station",
+            "names": {
+              "ko": "부평",
+              "en": "Bupyeong"
+            },
+            "order": 28,
+            "officialCode": "152",
+            "stationCode": "152",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-baegun",
+            "type": "rail_station",
+            "names": {
+              "ko": "백운",
+              "en": "Baegun"
+            },
+            "order": 29,
+            "officialCode": "153",
+            "stationCode": "153",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongam",
+            "type": "rail_station",
+            "names": {
+              "ko": "동암",
+              "en": "Dongam"
+            },
+            "order": 30,
+            "officialCode": "154",
+            "stationCode": "154",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-ganseok",
+            "type": "rail_station",
+            "names": {
+              "ko": "간석",
+              "en": "Ganseok"
+            },
+            "order": 31,
+            "officialCode": "155",
+            "stationCode": "155",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-juan",
+            "type": "rail_station",
+            "names": {
+              "ko": "주안",
+              "en": "Juan"
+            },
+            "order": 32,
+            "officialCode": "156",
+            "stationCode": "156",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dohwa",
+            "type": "rail_station",
+            "names": {
+              "ko": "도화",
+              "en": "Dohwa"
+            },
+            "order": 33,
+            "officialCode": "157",
+            "stationCode": "157",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jemulpo",
+            "type": "rail_station",
+            "names": {
+              "ko": "제물포",
+              "en": "Jemulpo"
+            },
+            "order": 34,
+            "officialCode": "158",
+            "stationCode": "158",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dowon",
+            "type": "rail_station",
+            "names": {
+              "ko": "도원",
+              "en": "Dowon"
+            },
+            "order": 35,
+            "officialCode": "159",
+            "stationCode": "159",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongincheon",
+            "type": "rail_station",
+            "names": {
+              "ko": "동인천",
+              "en": "Dongincheon"
+            },
+            "order": 36,
+            "officialCode": "160",
+            "stationCode": "160",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-incheon",
+            "type": "rail_station",
+            "names": {
+              "ko": "인천",
+              "en": "Incheon"
+            },
+            "order": 37,
+            "officialCode": "161",
+            "stationCode": "161",
+            "hasOfficialStationCode": true
+          }
+        ]
+      }
+    ],
+    "geometry": [],
+    "directedSegments": [],
+    "geometryReady": false,
+    "dataKind": "transportRoute"
+  }
+}

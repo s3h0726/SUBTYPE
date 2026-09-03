@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 1,
+  "countryId": "kr",
+  "route": {
+    "id": "kr-gyeonggi-express-m5107",
+    "countryId": "kr",
+    "mode": "express_bus",
+    "category": "express_bus",
+    "regionId": "gyeonggi",
+    "operatorId": "kr-gyeonggi-express",
+    "routeNumber": "M5107",
+    "routeType": "metropolitan_express",
+    "names": {
+      "ko": "M5107번",
+      "en": "M5107"
+    },
+    "color": "#E60012",
+    "loop": false,
+    "geometryStatus": "missing",
+    "source": {
+      "name": "서울특별시 버스 API·경기버스정보",
+      "url": "https://info.koreacharts.com/citybus/seoul/route/234001243/contents.html",
+      "verifiedAt": "2026-08-31"
+    },
+    "operator": {
+      "ko": "경기고속",
+      "en": "Gyeonggi Express",
+      "id": "kr-gyeonggi-express"
+    },
+    "operators": [
+      {
+        "ko": "경기고속",
+        "en": "Gyeonggi Express",
+        "id": "kr-gyeonggi-express"
+      }
+    ],
+    "line": {
+      "ko": "M5107번",
+      "en": "M5107"
+    },
+    "stations": [
+      {
+        "id": "kr-seoul-stop-02136",
+        "type": "bus_stop",
+        "externalIds": {
+          "seoul": "02136"
+        },
+        "names": {
+          "ko": "광교"
+        },
+        "order": 0,
+        "officialCode": "02136",
+        "stationCode": "02136",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-seoul-stop-02001",
+        "type": "bus_stop",
+        "externalIds": {
+          "seoul": "02001"
+        },
+        "names": {
+          "ko": "명동성당.남대문세무서"
+        },
+        "order": 1,
+        "officialCode": "02001",
+        "stationCode": "02001",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-seoul-stop-29107",
+        "type": "bus_stop",
+        "externalIds": {
+          "seoul": "29107"
+        },
+        "names": {
+          "ko": "청현마을.수원신갈IC"
+        },
+        "order": 2,
+        "officialCode": "29107",
+        "stationCode": "29107",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-gyeonggi-stop-203000077",
+        "type": "bus_stop",
+        "externalIds": {
+          "gyeonggi": "203000077"
+        },
+        "names": {
+          "ko": "영통센트럴파크뷰.벽산아파트"
+        },
+        "order": 3,
+        "officialCode": "203000077",
+        "stationCode": "203000077",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-gyeonggi-stop-203000075",
+        "type": "bus_stop",
+        "externalIds": {
+          "gyeonggi": "203000075"
+        },
+        "names": {
+          "ko": "청명역4번출구"
+        },
+        "order": 4,
+        "officialCode": "203000075",
+        "stationCode": "203000075",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-gyeonggi-stop-203000074",
+        "type": "bus_stop",
+        "externalIds": {
+          "gyeonggi": "203000074"
+        },
+        "names": {
+          "ko": "영통역8번출구.수원지방법원등기국"
+        },
+        "order": 5,
+        "officialCode": "203000074",
+        "stationCode": "203000074",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-gyeonggi-stop-203000065",
+        "type": "bus_stop",
+        "externalIds": {
+          "gyeonggi": "203000065"
+        },
+        "names": {
+          "ko": "극동.풍림아파트"
+        },
+        "order": 6,
+        "officialCode": "203000065",
+        "stationCode": "203000065",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-gyeonggi-stop-203000064",
+        "type": "bus_stop",
+        "externalIds": {
+          "gyeonggi": "203000064"
+        },
+        "names": {
+          "ko": "e편한세상아파트"
+        },
+        "order": 7,
+        "officialCode": "203000064",
+        "stationCode": "203000064",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-seoul-stop-29003",
+        "type": "bus_stop",
+        "externalIds": {
+          "seoul": "29003"
+        },
+        "names": {
+          "ko": "서그내"
+        },
+        "order": 8,
+        "officialCode": "29003",
+        "stationCode": "29003",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-seoul-stop-29038",
+        "type": "bus_stop",
+        "externalIds": {
+          "seoul": "29038"
+        },
+        "names": {
+          "ko": "경희대정문"
+        },
+        "order": 9,
+        "officialCode": "29038",
+        "stationCode": "29038",
+        "hasOfficialStationCode": true
+      }
+    ],
+    "directions": [
+      {
+        "id": "gyeonghui",
+        "names": {
+          "ko": "경희대 방면"
+        },
+        "directionType": "explicit",
+        "stopSequence": [
+          {
+            "stopId": "kr-seoul-stop-02136",
+            "stopCode": "02136"
+          },
+          {
+            "stopId": "kr-seoul-stop-02001",
+            "stopCode": "02001"
+          },
+          {
+            "stopId": "kr-seoul-stop-29107",
+            "stopCode": "29107"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000077",
+            "stopCode": "203000077"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000075",
+            "stopCode": "203000075"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000074",
+            "stopCode": "203000074"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000065",
+            "stopCode": "203000065"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000064",
+            "stopCode": "203000064"
+          },
+          {
+            "stopId": "kr-seoul-stop-29003",
+            "stopCode": "29003"
+          },
+          {
+            "stopId": "kr-seoul-stop-29038",
+            "stopCode": "29038"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-seoul-stop-02136",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "02136"
+            },
+            "names": {
+              "ko": "광교"
+            },
+            "order": 0,
+            "officialCode": "02136",
+            "stationCode": "02136",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-02001",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "02001"
+            },
+            "names": {
+              "ko": "명동성당.남대문세무서"
+            },
+            "order": 1,
+            "officialCode": "02001",
+            "stationCode": "02001",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-29107",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "29107"
+            },
+            "names": {
+              "ko": "청현마을.수원신갈IC"
+            },
+            "order": 2,
+            "officialCode": "29107",
+            "stationCode": "29107",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000077",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000077"
+            },
+            "names": {
+              "ko": "영통센트럴파크뷰.벽산아파트"
+            },
+            "order": 3,
+            "officialCode": "203000077",
+            "stationCode": "203000077",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000075",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000075"
+            },
+            "names": {
+              "ko": "청명역4번출구"
+            },
+            "order": 4,
+            "officialCode": "203000075",
+            "stationCode": "203000075",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000074",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000074"
+            },
+            "names": {
+              "ko": "영통역8번출구.수원지방법원등기국"
+            },
+            "order": 5,
+            "officialCode": "203000074",
+            "stationCode": "203000074",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000065",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000065"
+            },
+            "names": {
+              "ko": "극동.풍림아파트"
+            },
+            "order": 6,
+            "officialCode": "203000065",
+            "stationCode": "203000065",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000064",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000064"
+            },
+            "names": {
+              "ko": "e편한세상아파트"
+            },
+            "order": 7,
+            "officialCode": "203000064",
+            "stationCode": "203000064",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-29003",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "29003"
+            },
+            "names": {
+              "ko": "서그내"
+            },
+            "order": 8,
+            "officialCode": "29003",
+            "stationCode": "29003",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-29038",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "29038"
+            },
+            "names": {
+              "ko": "경희대정문"
+            },
+            "order": 9,
+            "officialCode": "29038",
+            "stationCode": "29038",
+            "hasOfficialStationCode": true
+          }
+        ]
+      },
+      {
+        "id": "seoul",
+        "names": {
+          "ko": "서울역 방면"
+        },
+        "directionType": "explicit",
+        "stopSequence": [
+          {
+            "stopId": "kr-gyeonggi-stop-203000125",
+            "stopCode": "203000125"
+          },
+          {
+            "stopId": "kr-seoul-stop-4144",
+            "stopCode": "4144"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000157",
+            "stopCode": "203000157"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000123",
+            "stopCode": "203000123"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000122",
+            "stopCode": "203000122"
+          },
+          {
+            "stopId": "kr-gyeonggi-stop-203000120",
+            "stopCode": "203000120"
+          },
+          {
+            "stopId": "kr-seoul-stop-29104",
+            "stopCode": "29104"
+          },
+          {
+            "stopId": "kr-seoul-stop-02002",
+            "stopCode": "02002"
+          },
+          {
+            "stopId": "kr-seoul-stop-02100",
+            "stopCode": "02100"
+          },
+          {
+            "stopId": "kr-seoul-stop-02233",
+            "stopCode": "02233"
+          },
+          {
+            "stopId": "kr-seoul-stop-02006",
+            "stopCode": "02006"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-gyeonggi-stop-203000125",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000125"
+            },
+            "names": {
+              "ko": "경희대학교"
+            },
+            "order": 0,
+            "officialCode": "203000125",
+            "stationCode": "203000125",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-4144",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "4144"
+            },
+            "names": {
+              "ko": "살구골.서광아파트"
+            },
+            "order": 1,
+            "officialCode": "4144",
+            "stationCode": "4144",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000157",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000157"
+            },
+            "names": {
+              "ko": "살구골동아아파트"
+            },
+            "order": 2,
+            "officialCode": "203000157",
+            "stationCode": "203000157",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000123",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000123"
+            },
+            "names": {
+              "ko": "영통역"
+            },
+            "order": 3,
+            "officialCode": "203000123",
+            "stationCode": "203000123",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000122",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000122"
+            },
+            "names": {
+              "ko": "청명역3번출구"
+            },
+            "order": 4,
+            "officialCode": "203000122",
+            "stationCode": "203000122",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-gyeonggi-stop-203000120",
+            "type": "bus_stop",
+            "externalIds": {
+              "gyeonggi": "203000120"
+            },
+            "names": {
+              "ko": "황골벽산아파트"
+            },
+            "order": 5,
+            "officialCode": "203000120",
+            "stationCode": "203000120",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-29104",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "29104"
+            },
+            "names": {
+              "ko": "청현마을.수원신갈IC"
+            },
+            "order": 6,
+            "officialCode": "29104",
+            "stationCode": "29104",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-02002",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "02002"
+            },
+            "names": {
+              "ko": "국가인권위.안중근활동터"
+            },
+            "order": 7,
+            "officialCode": "02002",
+            "stationCode": "02002",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-02100",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "02100"
+            },
+            "names": {
+              "ko": "서울시청"
+            },
+            "order": 8,
+            "officialCode": "02100",
+            "stationCode": "02100",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-02233",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "02233"
+            },
+            "names": {
+              "ko": "신한은행본점"
+            },
+            "order": 9,
+            "officialCode": "02233",
+            "stationCode": "02233",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-seoul-stop-02006",
+            "type": "bus_stop",
+            "externalIds": {
+              "seoul": "02006"
+            },
+            "names": {
+              "ko": "서울역버스환승센터"
+            },
+            "order": 10,
+            "officialCode": "02006",
+            "stationCode": "02006",
+            "hasOfficialStationCode": true
+          }
+        ]
+      }
+    ],
+    "geometry": [],
+    "directedSegments": [],
+    "geometryReady": false,
+    "dataKind": "transportRoute"
+  }
+}

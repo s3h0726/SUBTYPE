@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#101820">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101820'/%3E%3Cpath d='M16 18h32v9H37v23H27V27H16z' fill='%2345c985'/%3E%3C/svg%3E">
-  <meta name="description" content="일본 전국 철도의 다음 역을 한국어로 입력하며 실제 노선 선형을 달리는 타이핑 게임">
-  <title>SUBTYPE — 일본 철도 타이핑</title>
+  <meta name="description" content="일본과 대한민국의 다음 역·정류장·선착장을 한국어로 입력하는 대중교통 타이핑 게임">
+  <title>SUBTYPE — 대중교통 타이핑</title>
   <style id="critical-screen-visibility">[data-screen]:not(.active){display:none!important}html:not([data-navigation-bound]) [data-screen]:not(#screen-home){display:none!important}</style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css">
@@ -23,7 +23,7 @@
   <header class="topbar">
     <button class="brand" data-nav="home" aria-label="홈으로">
       <span class="brand-mark" aria-hidden="true">T</span>
-      <span><b>SUBTYPE</b><small>일본 철도 타이핑</small></span>
+      <span><b>SUBTYPE</b><small id="brand-subtitle">대중교통 타이핑</small></span>
     </button>
     <nav aria-label="주 메뉴">
       <button data-nav="rail-map">PLAY</button>
@@ -40,14 +40,15 @@
         <i class="node node-a"></i><i class="node node-b"></i><i class="node node-c"></i><i class="node node-d"></i><i class="node node-e"></i><i class="node node-f"></i>
       </div>
       <header class="home-top">
-        <button class="home-brand" data-nav="home" aria-label="SUBTYPE 홈"><span class="home-brand-mark">ST</span><span><b>SUBTYPE</b><strong>JAPAN RAIL</strong><small>일본 철도 타이핑</small></span></button>
-        <div class="home-status"><b id="clock">--:--</b><span>日本全国 · JAPAN</span><div class="auth-state" data-auth-state></div></div>
+        <button class="home-brand" data-nav="home" aria-label="SUBTYPE 홈"><span class="home-brand-mark">ST</span><span><b>SUBTYPE</b><strong id="home-country-mark">JAPAN RAIL</strong><small id="home-country-subtitle">일본 철도 타이핑</small></span></button>
+        <div class="home-status"><b id="clock">--:--</b><span id="home-country-status">日本全国 · JAPAN</span><div class="auth-state" data-auth-state></div></div>
       </header>
       <div class="home-stage">
         <div class="home-menu">
+          <div class="country-switch" role="group" aria-label="국가 선택"><button class="active" data-country="jp">일본</button><button data-country="kr">대한민국</button></div>
           <p class="home-kicker">01 / DEPARTURE MENU</p>
           <h1 id="hero-title">일본 철도를<br><span>타이핑하다.</span></h1>
-          <p class="home-intro">전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.</p>
+          <p id="home-intro" class="home-intro">전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.</p>
           <nav class="launch-menu" aria-label="게임 시작 메뉴">
             <button data-nav="rail-map"><span>01</span><b>PLAY</b><small>일본 전국 철도에서 노선 선택</small><i>→</i></button>
             <button data-nav="custom-list"><span>02</span><b>CUSTOM ROUTE</b><small>나만의 역과 노선 만들기</small><i>→</i></button>
@@ -141,12 +142,12 @@
               <p id="prompt-kana" class="prompt-kana"></p>
               <p id="prompt-sub" class="prompt-romaji"></p>
               <div id="ko-progress" class="ko-progress" aria-label="한국어 입력 진행"></div>
-              <label class="typing-box station-sign-input"><span class="sr-only">한국어 역명 입력</span><input id="typing-input" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" lang="ko" placeholder="한국어 역명을 입력하세요"><span id="input-status">TYPE</span></label>
+              <label class="typing-box station-sign-input"><span class="sr-only" id="typing-stop-label">한국어 역명 입력</span><input id="typing-input" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" lang="ko" placeholder="한국어 역명을 입력하세요"><span id="input-status">TYPE</span></label>
               <button id="next-station-button" class="next-station-button" type="button" hidden>NEXT · 다음 역으로 출발</button>
             </div>
-            <div class="station-neighbor next"><small>그다음 역</small><b id="next-station-name"></b><span id="next-station-romaji"></span><i>→</i></div>
+            <div class="station-neighbor next"><small id="following-stop-label">그다음 역</small><b id="next-station-name"></b><span id="next-station-romaji"></span><i>→</i></div>
           </div>
-          <div class="station-sign-footer"><span>오타 <b id="error-count">0</b></span><span id="station-service-footer"></span><span>목표역 <b id="next-station"></b></span></div>
+          <div class="station-sign-footer"><span>오타 <b id="error-count">0</b></span><span id="station-service-footer"></span><span><span id="target-stop-label">목표역</span> <b id="next-station"></b></span></div>
         </section>
       </div>
     </section>
@@ -189,7 +190,8 @@
   <div id="auth-dialog" class="auth-dialog" hidden><form id="auth-form" class="auth-card"><button type="button" data-auth-close aria-label="닫기">×</button><p class="eyebrow">계정</p><h2>기록 이어하기</h2><div class="auth-tabs" role="tablist" aria-label="계정 작업"><button type="button" class="active" data-auth-mode="login" role="tab" aria-selected="true">로그인</button><button type="button" data-auth-mode="signup" role="tab" aria-selected="false">회원가입</button></div><input type="hidden" name="mode" value="login"><label>이메일<input id="auth-email" name="email" type="email" autocomplete="email" required></label><label>비밀번호<input name="password" type="password" autocomplete="current-password" minlength="6" required></label><label data-signup-field hidden>비밀번호 확인<input name="passwordConfirm" type="password" autocomplete="new-password" minlength="6"></label><label data-signup-field hidden>닉네임<input name="nickname" maxlength="24" value="철도러"></label><p id="auth-config-status">계정 연결 상태를 확인하고 있습니다.</p><p id="auth-error" class="auth-error" role="alert" hidden></p><button class="btn primary" type="submit">로그인</button></form></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script defer src="./js/bootstrap.js?v=p0-sync-1"></script>
-  <script defer src="./js/line-workspace-data.js?v=70c90f41f7c2"></script>
+  <script defer src="./js/line-workspace-data.js?v=d5a1185a3f14"></script>
+  <script defer src="./js/korea-index-data.js?v=b1f923ffbdc9"></script>
   <script defer src="./js/rail-data.js"></script>
   <script defer src="./js/nationwide-data.js?v=offline-all-1"></script>
   <script defer src="./js/service-data.js"></script>
@@ -197,6 +199,6 @@
   <script defer src="./js/line-badge-data.js"></script>
   <script defer src="./js/rail-system-data.js"></script>
   <script defer src="./js/auth-config.js"></script>
-  <script defer src="./js/app.bundle.js?v=88e1d78b1869"></script>
+  <script defer src="./js/app.bundle.js?v=f816f5bb7747"></script>
 </body>
 </html>

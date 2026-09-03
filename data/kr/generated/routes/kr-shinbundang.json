@@ -1,0 +1,773 @@
+{
+  "schemaVersion": 1,
+  "countryId": "kr",
+  "route": {
+    "id": "kr-shinbundang",
+    "countryId": "kr",
+    "mode": "commuter_rail",
+    "category": "commuter_rail",
+    "operatorId": "kr-shinbundang",
+    "names": {
+      "ko": "신분당선",
+      "en": "Shinbundang Line"
+    },
+    "code": "D",
+    "color": "#D4003B",
+    "loop": false,
+    "geometryStatus": "missing",
+    "source": {
+      "name": "신분당선 공식 노선도",
+      "url": "https://www.shinbundang.co.kr/"
+    },
+    "operator": {
+      "ko": "신분당선",
+      "en": "Shinbundang Railroad",
+      "id": "kr-shinbundang"
+    },
+    "operators": [
+      {
+        "ko": "신분당선",
+        "en": "Shinbundang Railroad",
+        "id": "kr-shinbundang"
+      }
+    ],
+    "line": {
+      "ko": "신분당선",
+      "en": "Shinbundang Line"
+    },
+    "stations": [
+      {
+        "id": "kr-rail-gwanggyo",
+        "type": "rail_station",
+        "names": {
+          "ko": "광교",
+          "en": "Gwanggyo"
+        },
+        "order": 0,
+        "officialCode": "D19",
+        "stationCode": "D19",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-gwanggyojungang",
+        "type": "rail_station",
+        "names": {
+          "ko": "광교중앙",
+          "en": "Gwanggyo Jungang"
+        },
+        "order": 1,
+        "officialCode": "D18",
+        "stationCode": "D18",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-sanghyeon",
+        "type": "rail_station",
+        "names": {
+          "ko": "상현",
+          "en": "Sanghyeon"
+        },
+        "order": 2,
+        "officialCode": "D17",
+        "stationCode": "D17",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-seongbok",
+        "type": "rail_station",
+        "names": {
+          "ko": "성복",
+          "en": "Seongbok"
+        },
+        "order": 3,
+        "officialCode": "D16",
+        "stationCode": "D16",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-suji-gu-office",
+        "type": "rail_station",
+        "names": {
+          "ko": "수지구청",
+          "en": "Suji-gu Office"
+        },
+        "order": 4,
+        "officialCode": "D15",
+        "stationCode": "D15",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-dongcheon",
+        "type": "rail_station",
+        "names": {
+          "ko": "동천",
+          "en": "Dongcheon"
+        },
+        "order": 5,
+        "officialCode": "D14",
+        "stationCode": "D14",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-migeum",
+        "type": "rail_station",
+        "names": {
+          "ko": "미금",
+          "en": "Migeum"
+        },
+        "order": 6,
+        "officialCode": "D13",
+        "stationCode": "D13",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-jeongja",
+        "type": "rail_station",
+        "names": {
+          "ko": "정자",
+          "en": "Jeongja"
+        },
+        "order": 7,
+        "officialCode": "D12",
+        "stationCode": "D12",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-pangyo",
+        "type": "rail_station",
+        "names": {
+          "ko": "판교",
+          "en": "Pangyo"
+        },
+        "order": 8,
+        "officialCode": "D11",
+        "stationCode": "D11",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-cheonggyesan",
+        "type": "rail_station",
+        "names": {
+          "ko": "청계산입구",
+          "en": "Cheonggyesan"
+        },
+        "order": 9,
+        "officialCode": "D10",
+        "stationCode": "D10",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-yangjaecitizensforest",
+        "type": "rail_station",
+        "names": {
+          "ko": "양재시민의숲",
+          "en": "Yangjae Citizen's Forest"
+        },
+        "order": 10,
+        "officialCode": "D09",
+        "stationCode": "D09",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-yangjae",
+        "type": "rail_station",
+        "names": {
+          "ko": "양재",
+          "en": "Yangjae"
+        },
+        "order": 11,
+        "officialCode": "D08",
+        "stationCode": "D08",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-gangnam",
+        "type": "rail_station",
+        "names": {
+          "ko": "강남",
+          "en": "Gangnam"
+        },
+        "order": 12,
+        "officialCode": "D07",
+        "stationCode": "D07",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-sinnonhyeon",
+        "type": "rail_station",
+        "names": {
+          "ko": "신논현",
+          "en": "Sinnonhyeon"
+        },
+        "order": 13,
+        "officialCode": "D06",
+        "stationCode": "D06",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-nonhyeon",
+        "type": "rail_station",
+        "names": {
+          "ko": "논현",
+          "en": "Nonhyeon"
+        },
+        "order": 14,
+        "officialCode": "D05",
+        "stationCode": "D05",
+        "hasOfficialStationCode": true
+      },
+      {
+        "id": "kr-rail-sinsa",
+        "type": "rail_station",
+        "names": {
+          "ko": "신사",
+          "en": "Sinsa"
+        },
+        "order": 15,
+        "officialCode": "D04",
+        "stationCode": "D04",
+        "hasOfficialStationCode": true
+      }
+    ],
+    "directions": [
+      {
+        "id": "northbound",
+        "names": {
+          "ko": "신사 방면",
+          "en": "For Sinsa"
+        },
+        "stopSequence": [
+          {
+            "stopId": "kr-rail-gwanggyo",
+            "stopCode": "D19"
+          },
+          {
+            "stopId": "kr-rail-gwanggyojungang",
+            "stopCode": "D18"
+          },
+          {
+            "stopId": "kr-rail-sanghyeon",
+            "stopCode": "D17"
+          },
+          {
+            "stopId": "kr-rail-seongbok",
+            "stopCode": "D16"
+          },
+          {
+            "stopId": "kr-rail-suji-gu-office",
+            "stopCode": "D15"
+          },
+          {
+            "stopId": "kr-rail-dongcheon",
+            "stopCode": "D14"
+          },
+          {
+            "stopId": "kr-rail-migeum",
+            "stopCode": "D13"
+          },
+          {
+            "stopId": "kr-rail-jeongja",
+            "stopCode": "D12"
+          },
+          {
+            "stopId": "kr-rail-pangyo",
+            "stopCode": "D11"
+          },
+          {
+            "stopId": "kr-rail-cheonggyesan",
+            "stopCode": "D10"
+          },
+          {
+            "stopId": "kr-rail-yangjaecitizensforest",
+            "stopCode": "D09"
+          },
+          {
+            "stopId": "kr-rail-yangjae",
+            "stopCode": "D08"
+          },
+          {
+            "stopId": "kr-rail-gangnam",
+            "stopCode": "D07"
+          },
+          {
+            "stopId": "kr-rail-sinnonhyeon",
+            "stopCode": "D06"
+          },
+          {
+            "stopId": "kr-rail-nonhyeon",
+            "stopCode": "D05"
+          },
+          {
+            "stopId": "kr-rail-sinsa",
+            "stopCode": "D04"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-rail-gwanggyo",
+            "type": "rail_station",
+            "names": {
+              "ko": "광교",
+              "en": "Gwanggyo"
+            },
+            "order": 0,
+            "officialCode": "D19",
+            "stationCode": "D19",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-gwanggyojungang",
+            "type": "rail_station",
+            "names": {
+              "ko": "광교중앙",
+              "en": "Gwanggyo Jungang"
+            },
+            "order": 1,
+            "officialCode": "D18",
+            "stationCode": "D18",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sanghyeon",
+            "type": "rail_station",
+            "names": {
+              "ko": "상현",
+              "en": "Sanghyeon"
+            },
+            "order": 2,
+            "officialCode": "D17",
+            "stationCode": "D17",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-seongbok",
+            "type": "rail_station",
+            "names": {
+              "ko": "성복",
+              "en": "Seongbok"
+            },
+            "order": 3,
+            "officialCode": "D16",
+            "stationCode": "D16",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-suji-gu-office",
+            "type": "rail_station",
+            "names": {
+              "ko": "수지구청",
+              "en": "Suji-gu Office"
+            },
+            "order": 4,
+            "officialCode": "D15",
+            "stationCode": "D15",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongcheon",
+            "type": "rail_station",
+            "names": {
+              "ko": "동천",
+              "en": "Dongcheon"
+            },
+            "order": 5,
+            "officialCode": "D14",
+            "stationCode": "D14",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-migeum",
+            "type": "rail_station",
+            "names": {
+              "ko": "미금",
+              "en": "Migeum"
+            },
+            "order": 6,
+            "officialCode": "D13",
+            "stationCode": "D13",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jeongja",
+            "type": "rail_station",
+            "names": {
+              "ko": "정자",
+              "en": "Jeongja"
+            },
+            "order": 7,
+            "officialCode": "D12",
+            "stationCode": "D12",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-pangyo",
+            "type": "rail_station",
+            "names": {
+              "ko": "판교",
+              "en": "Pangyo"
+            },
+            "order": 8,
+            "officialCode": "D11",
+            "stationCode": "D11",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-cheonggyesan",
+            "type": "rail_station",
+            "names": {
+              "ko": "청계산입구",
+              "en": "Cheonggyesan"
+            },
+            "order": 9,
+            "officialCode": "D10",
+            "stationCode": "D10",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yangjaecitizensforest",
+            "type": "rail_station",
+            "names": {
+              "ko": "양재시민의숲",
+              "en": "Yangjae Citizen's Forest"
+            },
+            "order": 10,
+            "officialCode": "D09",
+            "stationCode": "D09",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yangjae",
+            "type": "rail_station",
+            "names": {
+              "ko": "양재",
+              "en": "Yangjae"
+            },
+            "order": 11,
+            "officialCode": "D08",
+            "stationCode": "D08",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-gangnam",
+            "type": "rail_station",
+            "names": {
+              "ko": "강남",
+              "en": "Gangnam"
+            },
+            "order": 12,
+            "officialCode": "D07",
+            "stationCode": "D07",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sinnonhyeon",
+            "type": "rail_station",
+            "names": {
+              "ko": "신논현",
+              "en": "Sinnonhyeon"
+            },
+            "order": 13,
+            "officialCode": "D06",
+            "stationCode": "D06",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-nonhyeon",
+            "type": "rail_station",
+            "names": {
+              "ko": "논현",
+              "en": "Nonhyeon"
+            },
+            "order": 14,
+            "officialCode": "D05",
+            "stationCode": "D05",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sinsa",
+            "type": "rail_station",
+            "names": {
+              "ko": "신사",
+              "en": "Sinsa"
+            },
+            "order": 15,
+            "officialCode": "D04",
+            "stationCode": "D04",
+            "hasOfficialStationCode": true
+          }
+        ]
+      },
+      {
+        "id": "southbound",
+        "names": {
+          "ko": "광교 방면",
+          "en": "For Gwanggyo"
+        },
+        "stopSequence": [
+          {
+            "stopId": "kr-rail-sinsa",
+            "stopCode": "D04"
+          },
+          {
+            "stopId": "kr-rail-nonhyeon",
+            "stopCode": "D05"
+          },
+          {
+            "stopId": "kr-rail-sinnonhyeon",
+            "stopCode": "D06"
+          },
+          {
+            "stopId": "kr-rail-gangnam",
+            "stopCode": "D07"
+          },
+          {
+            "stopId": "kr-rail-yangjae",
+            "stopCode": "D08"
+          },
+          {
+            "stopId": "kr-rail-yangjaecitizensforest",
+            "stopCode": "D09"
+          },
+          {
+            "stopId": "kr-rail-cheonggyesan",
+            "stopCode": "D10"
+          },
+          {
+            "stopId": "kr-rail-pangyo",
+            "stopCode": "D11"
+          },
+          {
+            "stopId": "kr-rail-jeongja",
+            "stopCode": "D12"
+          },
+          {
+            "stopId": "kr-rail-migeum",
+            "stopCode": "D13"
+          },
+          {
+            "stopId": "kr-rail-dongcheon",
+            "stopCode": "D14"
+          },
+          {
+            "stopId": "kr-rail-suji-gu-office",
+            "stopCode": "D15"
+          },
+          {
+            "stopId": "kr-rail-seongbok",
+            "stopCode": "D16"
+          },
+          {
+            "stopId": "kr-rail-sanghyeon",
+            "stopCode": "D17"
+          },
+          {
+            "stopId": "kr-rail-gwanggyojungang",
+            "stopCode": "D18"
+          },
+          {
+            "stopId": "kr-rail-gwanggyo",
+            "stopCode": "D19"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-rail-sinsa",
+            "type": "rail_station",
+            "names": {
+              "ko": "신사",
+              "en": "Sinsa"
+            },
+            "order": 0,
+            "officialCode": "D04",
+            "stationCode": "D04",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-nonhyeon",
+            "type": "rail_station",
+            "names": {
+              "ko": "논현",
+              "en": "Nonhyeon"
+            },
+            "order": 1,
+            "officialCode": "D05",
+            "stationCode": "D05",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sinnonhyeon",
+            "type": "rail_station",
+            "names": {
+              "ko": "신논현",
+              "en": "Sinnonhyeon"
+            },
+            "order": 2,
+            "officialCode": "D06",
+            "stationCode": "D06",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-gangnam",
+            "type": "rail_station",
+            "names": {
+              "ko": "강남",
+              "en": "Gangnam"
+            },
+            "order": 3,
+            "officialCode": "D07",
+            "stationCode": "D07",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yangjae",
+            "type": "rail_station",
+            "names": {
+              "ko": "양재",
+              "en": "Yangjae"
+            },
+            "order": 4,
+            "officialCode": "D08",
+            "stationCode": "D08",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-yangjaecitizensforest",
+            "type": "rail_station",
+            "names": {
+              "ko": "양재시민의숲",
+              "en": "Yangjae Citizen's Forest"
+            },
+            "order": 5,
+            "officialCode": "D09",
+            "stationCode": "D09",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-cheonggyesan",
+            "type": "rail_station",
+            "names": {
+              "ko": "청계산입구",
+              "en": "Cheonggyesan"
+            },
+            "order": 6,
+            "officialCode": "D10",
+            "stationCode": "D10",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-pangyo",
+            "type": "rail_station",
+            "names": {
+              "ko": "판교",
+              "en": "Pangyo"
+            },
+            "order": 7,
+            "officialCode": "D11",
+            "stationCode": "D11",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-jeongja",
+            "type": "rail_station",
+            "names": {
+              "ko": "정자",
+              "en": "Jeongja"
+            },
+            "order": 8,
+            "officialCode": "D12",
+            "stationCode": "D12",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-migeum",
+            "type": "rail_station",
+            "names": {
+              "ko": "미금",
+              "en": "Migeum"
+            },
+            "order": 9,
+            "officialCode": "D13",
+            "stationCode": "D13",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-dongcheon",
+            "type": "rail_station",
+            "names": {
+              "ko": "동천",
+              "en": "Dongcheon"
+            },
+            "order": 10,
+            "officialCode": "D14",
+            "stationCode": "D14",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-suji-gu-office",
+            "type": "rail_station",
+            "names": {
+              "ko": "수지구청",
+              "en": "Suji-gu Office"
+            },
+            "order": 11,
+            "officialCode": "D15",
+            "stationCode": "D15",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-seongbok",
+            "type": "rail_station",
+            "names": {
+              "ko": "성복",
+              "en": "Seongbok"
+            },
+            "order": 12,
+            "officialCode": "D16",
+            "stationCode": "D16",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-sanghyeon",
+            "type": "rail_station",
+            "names": {
+              "ko": "상현",
+              "en": "Sanghyeon"
+            },
+            "order": 13,
+            "officialCode": "D17",
+            "stationCode": "D17",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-gwanggyojungang",
+            "type": "rail_station",
+            "names": {
+              "ko": "광교중앙",
+              "en": "Gwanggyo Jungang"
+            },
+            "order": 14,
+            "officialCode": "D18",
+            "stationCode": "D18",
+            "hasOfficialStationCode": true
+          },
+          {
+            "id": "kr-rail-gwanggyo",
+            "type": "rail_station",
+            "names": {
+              "ko": "광교",
+              "en": "Gwanggyo"
+            },
+            "order": 15,
+            "officialCode": "D19",
+            "stationCode": "D19",
+            "hasOfficialStationCode": true
+          }
+        ]
+      }
+    ],
+    "geometry": [],
+    "directedSegments": [],
+    "geometryReady": false,
+    "dataKind": "transportRoute"
+  }
+}

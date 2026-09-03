@@ -18,7 +18,7 @@ class Repository{
   registerStation(station){
     const id=clean(station?.stationMasterId||station?.sourceStationId||station?.internalId||station?.id);if(!id)return null;
     const existing=this.stations.get(id),names=station.names||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji||station.en};
-    const record=existing||{id,names:{ja:clean(names.ja),kana:clean(names.kana),ko:clean(names.ko),en:clean(names.en)},coordinates:{lat:Number(station.latitude??station.coordinates?.lat),lng:Number(station.longitude??station.coordinates?.lng)}};
+    const rawLat=station.latitude??station.coordinates?.lat,rawLng=station.longitude??station.coordinates?.lng,record=existing||{id,type:station.type||'rail_station',names:{ja:clean(names.ja),kana:clean(names.kana),ko:clean(names.ko),en:clean(names.en)},coordinates:{lat:rawLat===null||rawLat===undefined?null:Number(rawLat),lng:rawLng===null||rawLng===undefined?null:Number(rawLng)}};
     if(!existing)this.stations.set(id,record);return record
   }
   registerRoute(route){

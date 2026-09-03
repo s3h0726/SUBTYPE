@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "countryId": "kr",
+  "route": {
+    "id": "kr-ktx-seoul-busan",
+    "countryId": "kr",
+    "mode": "high_speed_rail",
+    "category": "high_speed_rail",
+    "operatorId": "kr-korail",
+    "operatorIds": [
+      "kr-korail"
+    ],
+    "physicalLines": [
+      "gyeongbu-line",
+      "gyeongbu-high-speed-line"
+    ],
+    "service": {
+      "id": "ktx-representative-seoul-busan",
+      "stopPattern": "directions/*/direction.json"
+    },
+    "names": {
+      "ko": "KTX 서울~부산",
+      "en": "KTX Seoul–Busan"
+    },
+    "code": "KTX",
+    "color": "#1F4E9D",
+    "loop": false,
+    "geometryStatus": "missing",
+    "dataKind": "trainService",
+    "source": {
+      "name": "레츠코레일",
+      "url": "https://www.letskorail.com/"
+    },
+    "operator": {
+      "ko": "한국철도공사",
+      "en": "KORAIL",
+      "id": "kr-korail"
+    },
+    "operators": [
+      {
+        "ko": "한국철도공사",
+        "en": "KORAIL",
+        "id": "kr-korail"
+      }
+    ],
+    "line": {
+      "ko": "KTX 서울~부산",
+      "en": "KTX Seoul–Busan"
+    },
+    "stations": [
+      {
+        "id": "kr-rail-busan",
+        "type": "rail_station",
+        "names": {
+          "ko": "부산",
+          "en": "Busan"
+        },
+        "order": 0,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-rail-ulsan",
+        "type": "rail_station",
+        "names": {
+          "ko": "울산",
+          "en": "Ulsan"
+        },
+        "order": 1,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-rail-gyeongju",
+        "type": "rail_station",
+        "names": {
+          "ko": "경주",
+          "en": "Gyeongju"
+        },
+        "order": 2,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-rail-dongdaegu",
+        "type": "rail_station",
+        "names": {
+          "ko": "동대구",
+          "en": "Dongdaegu"
+        },
+        "order": 3,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-rail-daejeon",
+        "type": "rail_station",
+        "names": {
+          "ko": "대전",
+          "en": "Daejeon"
+        },
+        "order": 4,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-rail-osong",
+        "type": "rail_station",
+        "names": {
+          "ko": "오송",
+          "en": "Osong"
+        },
+        "order": 5,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-rail-cheonan-asam",
+        "type": "rail_station",
+        "names": {
+          "ko": "천안아산",
+          "en": "Cheonan-Asan"
+        },
+        "order": 6,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-rail-gwangmyeong",
+        "type": "rail_station",
+        "names": {
+          "ko": "광명",
+          "en": "Gwangmyeong"
+        },
+        "order": 7,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-rail-seoul",
+        "type": "rail_station",
+        "names": {
+          "ko": "서울",
+          "en": "Seoul"
+        },
+        "order": 8,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      }
+    ],
+    "directions": [
+      {
+        "id": "northbound",
+        "names": {
+          "ko": "서울 방면",
+          "en": "For Seoul"
+        },
+        "stopSequence": [
+          {
+            "stopId": "kr-rail-busan"
+          },
+          {
+            "stopId": "kr-rail-ulsan"
+          },
+          {
+            "stopId": "kr-rail-gyeongju"
+          },
+          {
+            "stopId": "kr-rail-dongdaegu"
+          },
+          {
+            "stopId": "kr-rail-daejeon"
+          },
+          {
+            "stopId": "kr-rail-osong"
+          },
+          {
+            "stopId": "kr-rail-cheonan-asam"
+          },
+          {
+            "stopId": "kr-rail-gwangmyeong"
+          },
+          {
+            "stopId": "kr-rail-seoul"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-rail-busan",
+            "type": "rail_station",
+            "names": {
+              "ko": "부산",
+              "en": "Busan"
+            },
+            "order": 0,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-ulsan",
+            "type": "rail_station",
+            "names": {
+              "ko": "울산",
+              "en": "Ulsan"
+            },
+            "order": 1,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-gyeongju",
+            "type": "rail_station",
+            "names": {
+              "ko": "경주",
+              "en": "Gyeongju"
+            },
+            "order": 2,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-dongdaegu",
+            "type": "rail_station",
+            "names": {
+              "ko": "동대구",
+              "en": "Dongdaegu"
+            },
+            "order": 3,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-daejeon",
+            "type": "rail_station",
+            "names": {
+              "ko": "대전",
+              "en": "Daejeon"
+            },
+            "order": 4,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-osong",
+            "type": "rail_station",
+            "names": {
+              "ko": "오송",
+              "en": "Osong"
+            },
+            "order": 5,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-cheonan-asam",
+            "type": "rail_station",
+            "names": {
+              "ko": "천안아산",
+              "en": "Cheonan-Asan"
+            },
+            "order": 6,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-gwangmyeong",
+            "type": "rail_station",
+            "names": {
+              "ko": "광명",
+              "en": "Gwangmyeong"
+            },
+            "order": 7,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-seoul",
+            "type": "rail_station",
+            "names": {
+              "ko": "서울",
+              "en": "Seoul"
+            },
+            "order": 8,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          }
+        ]
+      },
+      {
+        "id": "southbound",
+        "names": {
+          "ko": "부산 방면",
+          "en": "For Busan"
+        },
+        "stopSequence": [
+          {
+            "stopId": "kr-rail-seoul"
+          },
+          {
+            "stopId": "kr-rail-gwangmyeong"
+          },
+          {
+            "stopId": "kr-rail-cheonan-asam"
+          },
+          {
+            "stopId": "kr-rail-osong"
+          },
+          {
+            "stopId": "kr-rail-daejeon"
+          },
+          {
+            "stopId": "kr-rail-dongdaegu"
+          },
+          {
+            "stopId": "kr-rail-gyeongju"
+          },
+          {
+            "stopId": "kr-rail-ulsan"
+          },
+          {
+            "stopId": "kr-rail-busan"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-rail-seoul",
+            "type": "rail_station",
+            "names": {
+              "ko": "서울",
+              "en": "Seoul"
+            },
+            "order": 0,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-gwangmyeong",
+            "type": "rail_station",
+            "names": {
+              "ko": "광명",
+              "en": "Gwangmyeong"
+            },
+            "order": 1,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-cheonan-asam",
+            "type": "rail_station",
+            "names": {
+              "ko": "천안아산",
+              "en": "Cheonan-Asan"
+            },
+            "order": 2,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-osong",
+            "type": "rail_station",
+            "names": {
+              "ko": "오송",
+              "en": "Osong"
+            },
+            "order": 3,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-daejeon",
+            "type": "rail_station",
+            "names": {
+              "ko": "대전",
+              "en": "Daejeon"
+            },
+            "order": 4,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-dongdaegu",
+            "type": "rail_station",
+            "names": {
+              "ko": "동대구",
+              "en": "Dongdaegu"
+            },
+            "order": 5,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-gyeongju",
+            "type": "rail_station",
+            "names": {
+              "ko": "경주",
+              "en": "Gyeongju"
+            },
+            "order": 6,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-ulsan",
+            "type": "rail_station",
+            "names": {
+              "ko": "울산",
+              "en": "Ulsan"
+            },
+            "order": 7,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-rail-busan",
+            "type": "rail_station",
+            "names": {
+              "ko": "부산",
+              "en": "Busan"
+            },
+            "order": 8,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          }
+        ]
+      }
+    ],
+    "geometry": [],
+    "directedSegments": [],
+    "geometryReady": false
+  }
+}

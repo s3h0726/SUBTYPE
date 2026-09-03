@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "countryId": "kr",
+  "route": {
+    "id": "kr-hangang-east",
+    "countryId": "kr",
+    "mode": "river_bus",
+    "category": "river_bus",
+    "operatorId": "kr-hangang-bus",
+    "names": {
+      "ko": "한강버스 동부노선",
+      "en": "Hangang Bus East Route"
+    },
+    "code": "HB-E",
+    "color": "#00A6B2",
+    "loop": false,
+    "geometryStatus": "missing",
+    "serviceNote": "옥수·압구정 선착장은 운항편별 교대 정차",
+    "source": {
+      "name": "서울특별시 한강버스 운항 안내",
+      "url": "https://news.seoul.go.kr/env/archives/567516"
+    },
+    "operator": {
+      "ko": "한강버스",
+      "en": "Hangang Bus",
+      "id": "kr-hangang-bus"
+    },
+    "operators": [
+      {
+        "ko": "한강버스",
+        "en": "Hangang Bus",
+        "id": "kr-hangang-bus"
+      }
+    ],
+    "line": {
+      "ko": "한강버스 동부노선",
+      "en": "Hangang Bus East Route"
+    },
+    "stations": [
+      {
+        "id": "kr-hangang-yeouido",
+        "type": "ferry_terminal",
+        "names": {
+          "ko": "여의도",
+          "en": "Yeouido"
+        },
+        "order": 0,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-hangang-oksu",
+        "type": "ferry_terminal",
+        "names": {
+          "ko": "옥수",
+          "en": "Oksu"
+        },
+        "order": 1,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-hangang-ttukseom",
+        "type": "ferry_terminal",
+        "names": {
+          "ko": "뚝섬",
+          "en": "Ttukseom"
+        },
+        "order": 2,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-hangang-jamsil",
+        "type": "ferry_terminal",
+        "names": {
+          "ko": "잠실",
+          "en": "Jamsil"
+        },
+        "order": 3,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      }
+    ],
+    "directions": [
+      {
+        "id": "jamsil",
+        "names": {
+          "ko": "잠실 방면",
+          "en": "For Jamsil"
+        },
+        "stopSequence": [
+          {
+            "stopId": "kr-hangang-yeouido"
+          },
+          {
+            "stopId": "kr-hangang-oksu"
+          },
+          {
+            "stopId": "kr-hangang-ttukseom"
+          },
+          {
+            "stopId": "kr-hangang-jamsil"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-hangang-yeouido",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "여의도",
+              "en": "Yeouido"
+            },
+            "order": 0,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-oksu",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "옥수",
+              "en": "Oksu"
+            },
+            "order": 1,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-ttukseom",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "뚝섬",
+              "en": "Ttukseom"
+            },
+            "order": 2,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-jamsil",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "잠실",
+              "en": "Jamsil"
+            },
+            "order": 3,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          }
+        ]
+      },
+      {
+        "id": "yeouido",
+        "names": {
+          "ko": "여의도 방면",
+          "en": "For Yeouido"
+        },
+        "stopSequence": [
+          {
+            "stopId": "kr-hangang-jamsil"
+          },
+          {
+            "stopId": "kr-hangang-ttukseom"
+          },
+          {
+            "stopId": "kr-hangang-apgujeong"
+          },
+          {
+            "stopId": "kr-hangang-yeouido"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-hangang-jamsil",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "잠실",
+              "en": "Jamsil"
+            },
+            "order": 0,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-ttukseom",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "뚝섬",
+              "en": "Ttukseom"
+            },
+            "order": 1,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-apgujeong",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "압구정",
+              "en": "Apgujeong"
+            },
+            "order": 2,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-yeouido",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "여의도",
+              "en": "Yeouido"
+            },
+            "order": 3,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          }
+        ]
+      }
+    ],
+    "geometry": [],
+    "directedSegments": [],
+    "geometryReady": false,
+    "dataKind": "transportRoute"
+  }
+}

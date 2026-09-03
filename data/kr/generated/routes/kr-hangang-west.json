@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "countryId": "kr",
+  "route": {
+    "id": "kr-hangang-west",
+    "countryId": "kr",
+    "mode": "river_bus",
+    "category": "river_bus",
+    "operatorId": "kr-hangang-bus",
+    "names": {
+      "ko": "한강버스 서부노선",
+      "en": "Hangang Bus West Route"
+    },
+    "code": "HB-W",
+    "color": "#006DB7",
+    "loop": false,
+    "geometryStatus": "missing",
+    "source": {
+      "name": "서울특별시 한강버스 운항 안내",
+      "url": "https://news.seoul.go.kr/env/archives/567516"
+    },
+    "operator": {
+      "ko": "한강버스",
+      "en": "Hangang Bus",
+      "id": "kr-hangang-bus"
+    },
+    "operators": [
+      {
+        "ko": "한강버스",
+        "en": "Hangang Bus",
+        "id": "kr-hangang-bus"
+      }
+    ],
+    "line": {
+      "ko": "한강버스 서부노선",
+      "en": "Hangang Bus West Route"
+    },
+    "stations": [
+      {
+        "id": "kr-hangang-yeouido",
+        "type": "ferry_terminal",
+        "names": {
+          "ko": "여의도",
+          "en": "Yeouido"
+        },
+        "order": 0,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-hangang-mangwon",
+        "type": "ferry_terminal",
+        "names": {
+          "ko": "망원",
+          "en": "Mangwon"
+        },
+        "order": 1,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      },
+      {
+        "id": "kr-hangang-magok",
+        "type": "ferry_terminal",
+        "names": {
+          "ko": "마곡",
+          "en": "Magok"
+        },
+        "order": 2,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false
+      }
+    ],
+    "directions": [
+      {
+        "id": "magok",
+        "names": {
+          "ko": "마곡 방면",
+          "en": "For Magok"
+        },
+        "stopSequence": [
+          {
+            "stopId": "kr-hangang-yeouido"
+          },
+          {
+            "stopId": "kr-hangang-mangwon"
+          },
+          {
+            "stopId": "kr-hangang-magok"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-hangang-yeouido",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "여의도",
+              "en": "Yeouido"
+            },
+            "order": 0,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-mangwon",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "망원",
+              "en": "Mangwon"
+            },
+            "order": 1,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-magok",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "마곡",
+              "en": "Magok"
+            },
+            "order": 2,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          }
+        ]
+      },
+      {
+        "id": "yeouido",
+        "names": {
+          "ko": "여의도 방면",
+          "en": "For Yeouido"
+        },
+        "stopSequence": [
+          {
+            "stopId": "kr-hangang-magok"
+          },
+          {
+            "stopId": "kr-hangang-mangwon"
+          },
+          {
+            "stopId": "kr-hangang-yeouido"
+          }
+        ],
+        "stops": [
+          {
+            "id": "kr-hangang-magok",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "마곡",
+              "en": "Magok"
+            },
+            "order": 0,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-mangwon",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "망원",
+              "en": "Mangwon"
+            },
+            "order": 1,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          },
+          {
+            "id": "kr-hangang-yeouido",
+            "type": "ferry_terminal",
+            "names": {
+              "ko": "여의도",
+              "en": "Yeouido"
+            },
+            "order": 2,
+            "officialCode": "",
+            "stationCode": "",
+            "hasOfficialStationCode": false
+          }
+        ]
+      }
+    ],
+    "geometry": [],
+    "directedSegments": [],
+    "geometryReady": false,
+    "dataKind": "transportRoute"
+  }
+}
