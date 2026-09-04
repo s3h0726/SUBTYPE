@@ -12,7 +12,6 @@
       "kr-seoul-metro"
     ],
     "physicalLines": [
-      "gyeongwon-line",
       "seoul-subway-line-1",
       "gyeongbu-line",
       "gyeongin-line"
@@ -26,10 +25,32 @@
     "color": "#0052A4",
     "loop": false,
     "geometryStatus": "missing",
-    "source": {
-      "name": "코레일·서울교통공사 노선 안내",
-      "url": "https://www.letskorail.com/"
-    },
+    "segmentOperators": [
+      {
+        "fromStopId": "kr-rail-cheongnyangni",
+        "toStopId": "kr-rail-seoul",
+        "operatorId": "kr-seoul-metro"
+      },
+      {
+        "fromStopId": "kr-rail-seoul",
+        "toStopId": "kr-rail-incheon",
+        "operatorId": "kr-korail"
+      }
+    ],
+    "sources": [
+      {
+        "name": "한국철도공사 광역전철노선도",
+        "type": "official",
+        "url": "https://dev2.letskorail.com/images/subway_map.pdf",
+        "verifiedAt": "2026-09-04"
+      },
+      {
+        "name": "서울교통공사 노선 안내",
+        "type": "official",
+        "url": "https://www.seoulmetro.co.kr/",
+        "verifiedAt": "2026-09-04"
+      }
+    ],
     "operator": {
       "ko": "한국철도공사",
       "en": "KORAIL",

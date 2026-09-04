@@ -7,9 +7,9 @@
       "en": "South Korea"
     }
   },
-  "generated": "2026-09-03T14:32:07.119Z",
+  "generated": "2026-09-04T14:32:25.298Z",
   "counts": {
-    "operators": 6,
+    "operators": 9,
     "routes": 9,
     "stops": 270
   },
@@ -27,6 +27,28 @@
       },
       "modes": [
         "express_bus"
+      ]
+    },
+    {
+      "id": "kr-gyeonggi-railroad",
+      "countryId": "kr",
+      "names": {
+        "ko": "경기철도주식회사",
+        "en": "Gyeonggi Railroad Co., Ltd."
+      },
+      "roles": [
+        "concessionaire",
+        "segment-operator"
+      ],
+      "modes": [
+        "commuter_rail"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.shinbundang.co.kr/intro/intro2_6.jsp",
+          "verifiedAt": "2026-09-04"
+        }
       ]
     },
     {
@@ -51,6 +73,49 @@
         "commuter_rail",
         "high_speed_rail",
         "rail"
+      ]
+    },
+    {
+      "id": "kr-neotrans",
+      "countryId": "kr",
+      "names": {
+        "ko": "네오트랜스주식회사",
+        "en": "NeoTrans Co., Ltd."
+      },
+      "roles": [
+        "management-operator"
+      ],
+      "modes": [
+        "commuter_rail"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.shinbundang.co.kr/intro/intro2_6.jsp",
+          "verifiedAt": "2026-09-04"
+        }
+      ]
+    },
+    {
+      "id": "kr-new-seoul-railroad",
+      "countryId": "kr",
+      "names": {
+        "ko": "새서울철도주식회사",
+        "en": "New Seoul Railroad Co., Ltd."
+      },
+      "roles": [
+        "concessionaire",
+        "segment-operator"
+      ],
+      "modes": [
+        "commuter_rail"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.shinbundang.co.kr/intro/intro2_6.jsp",
+          "verifiedAt": "2026-09-04"
+        }
       ]
     },
     {
@@ -80,11 +145,26 @@
       "id": "kr-shinbundang",
       "countryId": "kr",
       "names": {
-        "ko": "신분당선",
-        "en": "Shinbundang Railroad"
+        "ko": "신분당선주식회사",
+        "en": "Shinbundang Railroad Co., Ltd."
       },
+      "brandNames": {
+        "ko": "신분당선",
+        "en": "Shinbundang Line"
+      },
+      "roles": [
+        "concessionaire",
+        "segment-operator"
+      ],
       "modes": [
         "commuter_rail"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.shinbundang.co.kr/intro/intro2_6.jsp",
+          "verifiedAt": "2026-09-04"
+        }
       ]
     }
   ],
@@ -100,7 +180,6 @@
         "kr-seoul-metro"
       ],
       "physicalLines": [
-        "gyeongwon-line",
         "seoul-subway-line-1",
         "gyeongbu-line",
         "gyeongin-line"
@@ -114,10 +193,32 @@
       "color": "#0052A4",
       "loop": false,
       "geometryStatus": "missing",
-      "source": {
-        "name": "코레일·서울교통공사 노선 안내",
-        "url": "https://www.letskorail.com/"
-      },
+      "segmentOperators": [
+        {
+          "fromStopId": "kr-rail-cheongnyangni",
+          "toStopId": "kr-rail-seoul",
+          "operatorId": "kr-seoul-metro"
+        },
+        {
+          "fromStopId": "kr-rail-seoul",
+          "toStopId": "kr-rail-incheon",
+          "operatorId": "kr-korail"
+        }
+      ],
+      "sources": [
+        {
+          "name": "한국철도공사 광역전철노선도",
+          "type": "official",
+          "url": "https://dev2.letskorail.com/images/subway_map.pdf",
+          "verifiedAt": "2026-09-04"
+        },
+        {
+          "name": "서울교통공사 노선 안내",
+          "type": "official",
+          "url": "https://www.seoulmetro.co.kr/",
+          "verifiedAt": "2026-09-04"
+        }
+      ],
       "operator": {
         "ko": "한국철도공사",
         "en": "KORAIL",
@@ -543,6 +644,13 @@
       "mode": "subway",
       "category": "subway",
       "operatorId": "kr-seoul-metro",
+      "operatorIds": [
+        "kr-seoul-metro"
+      ],
+      "physicalLines": [
+        "seoul-subway-line-2"
+      ],
+      "routeVariantId": "circle-mainline",
       "names": {
         "ko": "서울 지하철 2호선",
         "en": "Seoul Subway Line 2"
@@ -551,10 +659,14 @@
       "color": "#00A84D",
       "loop": true,
       "geometryStatus": "missing",
-      "source": {
-        "name": "서울교통공사",
-        "url": "https://www.seoulmetro.co.kr/"
-      },
+      "sources": [
+        {
+          "name": "서울교통공사 노선 안내",
+          "type": "official",
+          "url": "https://www.seoulmetro.co.kr/",
+          "verifiedAt": "2026-09-04"
+        }
+      ],
       "operator": {
         "ko": "서울교통공사",
         "en": "Seoul Metro",
@@ -689,7 +801,16 @@
       "countryId": "kr",
       "mode": "commuter_rail",
       "category": "commuter_rail",
-      "operatorId": "kr-shinbundang",
+      "operatorId": "kr-neotrans",
+      "operatorIds": [
+        "kr-neotrans",
+        "kr-new-seoul-railroad",
+        "kr-shinbundang",
+        "kr-gyeonggi-railroad"
+      ],
+      "physicalLines": [
+        "shinbundang-line"
+      ],
       "names": {
         "ko": "신분당선",
         "en": "Shinbundang Line"
@@ -698,20 +819,65 @@
       "color": "#D4003B",
       "loop": false,
       "geometryStatus": "missing",
-      "source": {
-        "name": "신분당선 공식 노선도",
-        "url": "https://www.shinbundang.co.kr/"
-      },
+      "segmentOperators": [
+        {
+          "fromStopId": "kr-rail-sinsa",
+          "toStopId": "kr-rail-gangnam",
+          "operatorId": "kr-new-seoul-railroad",
+          "managementOperatorId": "kr-neotrans"
+        },
+        {
+          "fromStopId": "kr-rail-gangnam",
+          "toStopId": "kr-rail-jeongja",
+          "operatorId": "kr-shinbundang",
+          "managementOperatorId": "kr-neotrans"
+        },
+        {
+          "fromStopId": "kr-rail-jeongja",
+          "toStopId": "kr-rail-gwanggyo",
+          "operatorId": "kr-gyeonggi-railroad",
+          "managementOperatorId": "kr-neotrans"
+        }
+      ],
+      "sources": [
+        {
+          "name": "신분당선 사업개요",
+          "type": "official",
+          "url": "https://www.shinbundang.co.kr/intro/intro2_6.jsp",
+          "verifiedAt": "2026-09-04"
+        },
+        {
+          "name": "신분당선 여객운송약관",
+          "type": "official",
+          "url": "https://www.shinbundang.co.kr/policy/policy1.jsp",
+          "verifiedAt": "2026-09-04"
+        }
+      ],
       "operator": {
-        "ko": "신분당선",
-        "en": "Shinbundang Railroad",
-        "id": "kr-shinbundang"
+        "ko": "네오트랜스주식회사",
+        "en": "NeoTrans Co., Ltd.",
+        "id": "kr-neotrans"
       },
       "operators": [
         {
-          "ko": "신분당선",
-          "en": "Shinbundang Railroad",
+          "ko": "네오트랜스주식회사",
+          "en": "NeoTrans Co., Ltd.",
+          "id": "kr-neotrans"
+        },
+        {
+          "ko": "새서울철도주식회사",
+          "en": "New Seoul Railroad Co., Ltd.",
+          "id": "kr-new-seoul-railroad"
+        },
+        {
+          "ko": "신분당선주식회사",
+          "en": "Shinbundang Railroad Co., Ltd.",
           "id": "kr-shinbundang"
+        },
+        {
+          "ko": "경기철도주식회사",
+          "en": "Gyeonggi Railroad Co., Ltd.",
+          "id": "kr-gyeonggi-railroad"
         }
       ],
       "line": {

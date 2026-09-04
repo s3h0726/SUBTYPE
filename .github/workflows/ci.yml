@@ -1,0 +1,32 @@
+name: SUBTYPE validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - integration
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate data and build
+        run: npm test
+
+      - name: Validate Korea Phase 1
+        run: npm run test:korea
+
+      - name: Validate core contracts
+        run: node tools/test-core-architecture.js

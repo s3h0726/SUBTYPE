@@ -7,6 +7,13 @@
     "mode": "subway",
     "category": "subway",
     "operatorId": "kr-seoul-metro",
+    "operatorIds": [
+      "kr-seoul-metro"
+    ],
+    "physicalLines": [
+      "seoul-subway-line-2"
+    ],
+    "routeVariantId": "circle-mainline",
     "names": {
       "ko": "서울 지하철 2호선",
       "en": "Seoul Subway Line 2"
@@ -15,10 +22,14 @@
     "color": "#00A84D",
     "loop": true,
     "geometryStatus": "missing",
-    "source": {
-      "name": "서울교통공사",
-      "url": "https://www.seoulmetro.co.kr/"
-    },
+    "sources": [
+      {
+        "name": "서울교통공사 노선 안내",
+        "type": "official",
+        "url": "https://www.seoulmetro.co.kr/",
+        "verifiedAt": "2026-09-04"
+      }
+    ],
     "operator": {
       "ko": "서울교통공사",
       "en": "Seoul Metro",
