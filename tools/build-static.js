@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs=require('fs'),path=require('path'),crypto=require('crypto');
 require('./build-line-workspaces');
-require('./build-korea-data');
+require('./build-korea-data').buildKoreaData();
 const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const write=(relative,value)=>{const target=path.join(root,relative),temporary=`${target}.tmp`;fs.writeFileSync(temporary,value);fs.renameSync(temporary,target)};
 const categories=['jr','subway','private','other','shinkansen'];
