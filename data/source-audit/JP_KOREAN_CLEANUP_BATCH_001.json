@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "batch": "JP_KOREAN_CLEANUP_BATCH_001",
+  "date": "2026-09-04",
+  "scope": "canonical Japanese Korean display names only",
+  "verification": {
+    "method": "project-policy-manual-correction",
+    "namuwikiStatus": "unresolved",
+    "note": "The supplied project policy explicitly identifies these machine-transliteration forms as errors. Existing Namuwiki verification flags remain unresolved and were not promoted."
+  },
+  "summary": {
+    "stationsModified": 7,
+    "linesModified": 12,
+    "stableIdsChanged": 0,
+    "relationsChanged": 0,
+    "geometryChanged": 0
+  },
+  "stationCorrections": [
+    { "id": "station-mlit-006133", "ja": "三河安城", "beforeKo": "미카와안조우", "afterKo": "미카와안조" },
+    { "id": "station-1150222", "ja": "三河安城", "beforeKo": "미카와안조우", "afterKo": "미카와안조" },
+    { "id": "station-3100101", "ja": "大阪難波", "beforeKo": "오오사카난바", "afterKo": "오사카난바" },
+    { "id": "station-9970918", "ja": "大原", "beforeKo": "오오하라", "afterKo": "오하라" },
+    { "id": "station-1132418", "ja": "大原", "beforeKo": "오오하라", "afterKo": "오하라" },
+    { "id": "station-9964409", "ja": "大原", "beforeKo": "오오하라", "afterKo": "오하라" },
+    { "id": "station-9930802", "ja": "西大原", "beforeKo": "니시오오하라", "afterKo": "니시오하라" }
+  ],
+  "lineCorrections": [
+    { "id": "line-99105", "ja": "函館市電２系統", "beforeKo": "하코다테시덴２케이토우", "afterKo": "하코다테시덴２계통" },
+    { "id": "line-99106", "ja": "函館市電５系統", "beforeKo": "하코다테시덴５케이토우", "afterKo": "하코다테시덴５계통" },
+    { "id": "line-99925", "ja": "鹿児島市電１系統", "beforeKo": "카고시마시덴１케이토우", "afterKo": "카고시마시덴１계통" },
+    { "id": "line-99926", "ja": "鹿児島市電２系統", "beforeKo": "카고시마시덴２케이토우", "afterKo": "카고시마시덴２계통" },
+    { "id": "line-99922", "ja": "熊本市電Ａ系統", "beforeKo": "쿠마모토시덴ａ케이토우", "afterKo": "쿠마모토시덴ａ계통" },
+    { "id": "line-99923", "ja": "熊本市電Ｂ系統", "beforeKo": "쿠마모토시덴ｂ케이토우", "afterKo": "쿠마모토시덴ｂ계통" },
+    { "id": "line-99913", "ja": "長崎電軌１系統", "beforeKo": "나가사키덴１케이토우", "afterKo": "나가사키덴１계통" },
+    { "id": "line-99914", "ja": "長崎電軌３系統", "beforeKo": "나가사키덴３케이토우", "afterKo": "나가사키덴３계통" },
+    { "id": "line-99915", "ja": "長崎電軌４系統", "beforeKo": "나가사키덴４케이토우", "afterKo": "나가사키덴４계통" },
+    { "id": "line-99916", "ja": "長崎電軌５系統", "beforeKo": "나가사키덴５케이토우", "afterKo": "나가사키덴５계통" },
+    { "id": "line-99413", "ja": "富山地鉄市内線【１・２系統】", "beforeKo": "토야마치테츠시나이선【１·２케이토우】", "afterKo": "토야마치테츠시나이선【１·２계통】" },
+    { "id": "line-99422", "ja": "富山地鉄富山都心線【３系統(環状線)】", "beforeKo": "토야마치테츠토야마토신선【３케이토우칸조우선】", "afterKo": "토야마치테츠토야마토신선【３계통칸조우선】" }
+  ]
+}
