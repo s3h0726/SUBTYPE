@@ -1,0 +1,89 @@
+{
+  "scope": "SUBTYPE KOREA PHASE 1 수도권 대표 철도",
+  "verifiedAt": "2026-09-04",
+  "summary": {
+    "routes": 3,
+    "directions": 6,
+    "canonicalRailStops": 102,
+    "duplicateStopIds": 0,
+    "missingStopReferences": 0,
+    "duplicateStopsWithinDirection": 0,
+    "duplicateStationCodesWithinDirection": 0,
+    "geometryReadyRoutes": 0,
+    "geometryMissingRoutes": 3
+  },
+  "routes": [
+    {
+      "routeId": "kr-seoul-line-2",
+      "status": "sequence-verified-geometry-missing",
+      "operatorIds": ["kr-seoul-metro"],
+      "physicalLines": ["seoul-subway-line-2"],
+      "directions": [
+        {"id": "inner", "stopCount": 43, "firstStopId": "kr-rail-cityhall", "lastStopId": "kr-rail-chungjeongno"},
+        {"id": "outer", "stopCount": 43, "firstStopId": "kr-rail-cityhall", "lastStopId": "kr-rail-euljiro1ga"}
+      ],
+      "checks": {
+        "loopDirectionsExplicit": true,
+        "allStopReferencesResolve": true,
+        "stationCodesUniquePerDirection": true,
+        "straightLineFallback": false
+      },
+      "sources": [
+        {"type": "official", "name": "서울교통공사 노선 안내", "url": "https://www.seoulmetro.co.kr/"}
+      ]
+    },
+    {
+      "routeId": "kr-capital-line-1-cheongnyangni-incheon",
+      "status": "sequence-verified-geometry-missing",
+      "operatorIds": ["kr-korail", "kr-seoul-metro"],
+      "physicalLines": ["seoul-subway-line-1", "gyeongbu-line", "gyeongin-line"],
+      "routeVariantId": "cheongnyangni-incheon-local",
+      "directions": [
+        {"id": "incheon", "stopCount": 38, "firstStopId": "kr-rail-cheongnyangni", "lastStopId": "kr-rail-incheon"},
+        {"id": "cheongnyangni", "stopCount": 38, "firstStopId": "kr-rail-incheon", "lastStopId": "kr-rail-cheongnyangni"}
+      ],
+      "checks": {
+        "representativeVariantOnly": true,
+        "allStopReferencesResolve": true,
+        "stationCodesUniquePerDirection": true,
+        "gyeongwonLineExcludedBecauseVariantStartsAtCheongnyangni": true,
+        "straightLineFallback": false
+      },
+      "sources": [
+        {"type": "official", "name": "한국철도공사 광역전철노선도", "url": "https://dev2.letskorail.com/images/subway_map.pdf"},
+        {"type": "official", "name": "서울교통공사 노선 안내", "url": "https://www.seoulmetro.co.kr/"}
+      ]
+    },
+    {
+      "routeId": "kr-shinbundang",
+      "status": "sequence-and-operator-structure-verified-geometry-missing",
+      "operatorIds": ["kr-neotrans", "kr-new-seoul-railroad", "kr-shinbundang", "kr-gyeonggi-railroad"],
+      "physicalLines": ["shinbundang-line"],
+      "directions": [
+        {"id": "northbound", "stopCount": 16, "firstStopId": "kr-rail-gwanggyo", "lastStopId": "kr-rail-sinsa"},
+        {"id": "southbound", "stopCount": 16, "firstStopId": "kr-rail-sinsa", "lastStopId": "kr-rail-gwanggyo"}
+      ],
+      "segmentOperators": [
+        {"fromStopId": "kr-rail-sinsa", "toStopId": "kr-rail-gangnam", "operatorId": "kr-new-seoul-railroad", "managementOperatorId": "kr-neotrans"},
+        {"fromStopId": "kr-rail-gangnam", "toStopId": "kr-rail-jeongja", "operatorId": "kr-shinbundang", "managementOperatorId": "kr-neotrans"},
+        {"fromStopId": "kr-rail-jeongja", "toStopId": "kr-rail-gwanggyo", "operatorId": "kr-gyeonggi-railroad", "managementOperatorId": "kr-neotrans"}
+      ],
+      "checks": {
+        "brandSeparatedFromLegalEntities": true,
+        "managementOperatorSeparated": true,
+        "allStopReferencesResolve": true,
+        "stationCodesUniquePerDirection": true,
+        "straightLineFallback": false
+      },
+      "sources": [
+        {"type": "official", "name": "신분당선 사업개요", "url": "https://www.shinbundang.co.kr/intro/intro2_6.jsp"},
+        {"type": "official", "name": "신분당선 여객운송약관", "url": "https://www.shinbundang.co.kr/policy/policy1.jsp"}
+      ]
+    }
+  ],
+  "knownIssues": [
+    "세 대표 노선 모두 실제 railway geometry가 아직 없으며 sequence-only로 동작한다.",
+    "직선 geometry fallback은 생성하지 않았다.",
+    "수도권 1호선은 Phase 1 대표 청량리~인천 완행 variant만 포함한다."
+  ]
+}
