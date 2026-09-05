@@ -10,6 +10,8 @@
 		"plan:blocked-geometry": "node tools/plan-blocked-geometry.js",
 		"recover:osm-geometry": "node tools/recover-osm-geometry.js",
 		"audit:visual-assets": "node tools/audit-visual-assets.js",
+		"audit:japanese-korean-names": "node tools/audit-japanese-korean-names.js",
+		"fix:japanese-korean-names": "node tools/apply-japanese-korean-fixes.js && node tools/audit-japanese-korean-names.js",
 		"editor:apply": "node tools/apply-editor-export.js",
 		"validate:data": "node tools/build-line-workspaces.js && node tools/audit-line-workspaces.js",
 		"validate:line": "node tools/validate-line.js",

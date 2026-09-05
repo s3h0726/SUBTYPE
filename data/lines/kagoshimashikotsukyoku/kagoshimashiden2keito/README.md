@@ -1,8 +1,8 @@
-# 카고시마시덴２케이토우
+# 가고시마시덴 2계통
 
 - Operator: 카고시마시코우츠우쿄쿠
 - Japanese: 鹿児島市電２系統
-- Korean: 카고시마시덴２케이토우
+- Korean: 가고시마시덴 2계통
 - Stations: 20
 - Symbol: 공식 로컬 asset 없음
 - Geometry: MLIT-N02-2025

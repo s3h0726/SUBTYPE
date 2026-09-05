@@ -1,8 +1,8 @@
-# 쿠마모토시덴ｂ케이토우
+# 구마모토시덴 B계통
 
 - Operator: 쿠마모토시코우츠우쿄쿠
 - Japanese: 熊本市電Ｂ系統
-- Korean: 쿠마모토시덴ｂ케이토우
+- Korean: 구마모토시덴 B계통
 - Stations: 28
 - Symbol: 공식 로컬 asset 없음
 - Geometry: MLIT-N02-2025

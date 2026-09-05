@@ -1,8 +1,8 @@
-# 도카이도 신칸선
+# 도카이도 신칸센
 
 - Operator: JR 도카이
 - Japanese: 東海道新幹線
-- Korean: 도카이도 신칸선
+- Korean: 도카이도 신칸센
 - Stations: 17
 - Symbol: 공식 로컬 asset 없음
 - Geometry: MLIT-N02-2025

@@ -1,8 +1,8 @@
-# 니시큐슈 신칸선
+# 니시큐슈 신칸센
 
 - Operator: JR 규슈
 - Japanese: 西九州新幹線
-- Korean: 니시큐슈 신칸선
+- Korean: 니시큐슈 신칸센
 - Stations: 5
 - Symbol: 공식 로컬 asset 없음
 - Geometry: MLIT-N02-2025

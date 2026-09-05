@@ -1,8 +1,8 @@
-# 도호쿠 신칸선
+# 도호쿠 신칸센
 
 - Operator: JR 동일본
 - Japanese: 東北新幹線
-- Korean: 도호쿠 신칸선
+- Korean: 도호쿠 신칸센
 - Stations: 23
 - Symbol: 공식 로컬 asset 없음
 - Geometry: MLIT-N02-2025

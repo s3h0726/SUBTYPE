@@ -1,8 +1,8 @@
-# 산요 신칸선
+# 산요 신칸센
 
 - Operator: JR 서일본
 - Japanese: 山陽新幹線
-- Korean: 산요 신칸선
+- Korean: 산요 신칸센
 - Stations: 19
 - Symbol: 공식 로컬 asset 없음
 - Geometry: MLIT-N02-2025

@@ -32,8 +32,8 @@ class Repository{
   getStation(id){return this.stations.get(id)||null}
   getRoute(id){return this.routes.get(id)||null}
   getLineStations(id){return this.routes.get(id)?.stations||[]}
-  getOperatorLogoAsset(id){const entry=this.assets.operators?.[id];if(!entry?.asset)return null;const operator=this.getOperator(id);return{asset:resolveProjectAsset(entry.asset),label:operator?.names?.en||operator?.names?.ja||id,canonicalFile:entry.file,version:entry.version}}
-  getLineSymbolAsset(id){const entry=this.assets.lines?.[id];if(!entry?.asset)return null;return{asset:resolveProjectAsset(entry.asset),canonicalFile:entry.file,version:entry.version}}
+  getOperatorLogoAsset(id){const entry=this.assets.operators?.[id];if(!entry?.asset)return null;const operator=this.getOperator(id),url=resolveProjectAsset(entry.asset);return{url,asset:url,exists:entry.exists!==false,verified:entry.verified===true,source:entry.source||'',officialExists:entry.officialExists===true,label:operator?.names?.en||operator?.names?.ja||id,canonicalFile:entry.file,version:entry.version}}
+  getLineSymbolAsset(id){const entry=this.assets.lines?.[id];if(!entry?.asset)return null;const url=resolveProjectAsset(entry.asset);return{url,asset:url,exists:entry.exists!==false,verified:entry.verified===true,source:entry.source||'',officialExists:entry.officialExists===true,canonicalFile:entry.file,version:entry.version}}
   resolveRoute(route){
     if(!route)return route;this.registerRoute(route);const operator=this.getOperator(route.operatorId),line=this.getLine(route.id),operatorAsset=this.getOperatorLogoAsset(route.operatorId),symbolAsset=this.getLineSymbolAsset(route.id);
     const stations=(route.stations||[]).map(station=>{const canonical=this.registerStation(station);return canonical?{...station,ja:canonical.names.ja,kana:canonical.names.kana,ko:canonical.names.ko,romaji:canonical.names.en}:station});

@@ -1,8 +1,8 @@
-# 하코다테시덴５케이토우
+# 하코다테시덴 5계통
 
 - Operator: 하코다테시코우츠우쿄쿠
 - Japanese: 函館市電５系統
-- Korean: 하코다테시덴５케이토우
+- Korean: 하코다테시덴 5계통
 - Stations: 23
 - Symbol: 공식 로컬 asset 없음
 - Geometry: MLIT-N02-2025

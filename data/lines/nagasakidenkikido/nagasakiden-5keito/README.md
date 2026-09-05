@@ -1,8 +1,8 @@
-# 나가사키덴５케이토우
+# 나가사키 전기궤도 5호계통
 
 - Operator: 나가사키덴키키도우
 - Japanese: 長崎電軌５系統
-- Korean: 나가사키덴５케이토우
+- Korean: 나가사키 전기궤도 5호계통
 - Stations: 13
 - Symbol: 공식 로컬 asset 없음
 - Geometry: MLIT-N02-2025

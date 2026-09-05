@@ -10,7 +10,7 @@ const nationwideIndex=JSON.parse(read('data/nationwide/index.json')),nationwideR
 const baseline=JSON.parse(read('data/RECOVERY_BASELINE.json')),sourceCounts={operators:embedded.operators.operators?.length||0,lines:categories.reduce((sum,category)=>sum+(embedded.lines[category].routes?.length||0),0),relations:categories.reduce((sum,category)=>sum+(embedded.lines[category].routes||[]).reduce((count,route)=>count+(route.stations?.length||0),0),0),nationwideLines:nationwideIndex.routes?.length||0,nationwideRouteFiles:Object.keys(nationwideRoutes).length};
 const unsafe=[['operators',sourceCounts.operators,baseline.curated.operators],['lines',sourceCounts.lines,baseline.curated.lines],['relations',sourceCounts.relations,baseline.curated.lineStationRelations],['nationwideLines',sourceCounts.nationwideLines,baseline.nationwide.lines],['nationwideRouteFiles',sourceCounts.nationwideRouteFiles,baseline.nationwide.lines]].filter(([,current,previous])=>current<previous*(1-baseline.maximumUnapprovedLossRatio));
 if(!sourceCounts.operators||!sourceCounts.lines||!sourceCounts.relations||unsafe.length)throw new Error(`Destructive build blocked: ${unsafe.map(([key,current,previous])=>`${key} ${previous} -> ${current}`).join(', ')||'empty source data'}`);
-write('js/rail-data.js',`window.TRT_EMBEDDED_RAIL_DATA=${JSON.stringify(embedded)};\n`);
+fs.rmSync(path.join(root,'js','rail-data.js'),{force:true});
 write('js/nationwide-data.js',`window.TRT_EMBEDDED_NATIONWIDE=${JSON.stringify({index:nationwideIndex,routes:nationwideRoutes})};\n`);
 const services=JSON.parse(read('data/services.json')),korean=JSON.parse(read('data/korean-overrides.json'));
 write('js/service-data.js',`window.TRT_SERVICE_CATALOG=${JSON.stringify(services.routes)};\nwindow.TRT_KOREAN_OVERRIDES=${JSON.stringify(korean.stations)};\n`);
@@ -20,7 +20,7 @@ const lineBadges=JSON.parse(read('data/line-badges.json'));
 write('js/line-badge-data.js',`window.TRT_LINE_BADGES=${JSON.stringify(lineBadges)};\n`);
 const railSystem=JSON.parse(read('data/rail-system.json'));
 write('js/rail-system-data.js',`window.TRT_RAIL_SYSTEM=${JSON.stringify(railSystem)};\n`);
-const order=['utils.js','rail-data-repository.js','storage.js','typing.js','statistics-engine.js','line-badge.js','station-sign-templates.js','transport-stop-templates.js','route-integrity.js','route-renderer.js','game.js','statistics.js','network-map.js','data-loader.js','route-editor.js','auth.js','app.js'];
+const order=['utils.js','rail-data-repository.js','asset-renderer.js','storage.js','typing.js','statistics-engine.js','line-badge.js','station-sign-templates.js','transport-stop-templates.js','route-integrity.js','route-renderer.js','game.js','statistics.js','network-map.js','data-loader.js','route-editor.js','auth.js','app.js'];
 const source=order.map(file=>read(`js/${file}`)
   .replace(/\bimport(?=\s|\{)[^;]+;/g,'')
   .replace(/\bexport\s+/g,'')
