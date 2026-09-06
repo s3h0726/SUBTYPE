@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "services": [
+    {
+      "id": "fukutoshin-tokyu-minatomirai",
+      "nameJa": "副都心線・東横線・みなとみらい線直通",
+      "nameKo": "후쿠토신선·도요코선·미나토미라이선 직결",
+      "nameEn": "Fukutoshin–Toyoko–Minatomirai Through Service",
+      "routeIds": ["line-28010", "line-26001", "line-99310"],
+      "junctionStations": ["渋谷", "横浜"],
+      "allowedDestinations": ["元町・中華街"],
+      "sourceUrl": "https://www.tokyometro.jp/lang_en/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-06"
+    },
+    {
+      "id": "denentoshi-hanzomon-tobu",
+      "nameJa": "田園都市線・半蔵門線・東武伊勢崎線直通",
+      "nameKo": "덴엔토시선·한조몬선·도부 이세사키선 직결",
+      "nameEn": "Den-en-toshi–Hanzomon–Tobu Through Service",
+      "routeSegments": [
+        {"routeId": "line-26003", "direction": "reverse", "startStationJa": "中央林間", "endStationJa": "渋谷"},
+        {"routeId": "line-28008", "direction": "forward", "startStationJa": "渋谷", "endStationJa": "押上〈スカイツリー前〉"},
+        {"routeId": "line-21002", "direction": "forward", "startStationJa": "押上〈スカイツリー前〉", "endStationJa": "久喜"}
+      ],
+      "junctionStations": ["渋谷", "押上〈スカイツリー前〉"],
+      "allowedDestinations": ["久喜"],
+      "sourceUrl": "https://ssl.tokyometro.jp/support/faq_answer?faqno=OpenFAQ-001727&lang=en",
+      "verifiedDate": "2026-09-06"
+    }
+  ]
+}

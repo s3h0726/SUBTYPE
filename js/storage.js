@@ -1,3 +1,4 @@
+import{isCountryEnabled}from'./feature-flags.js';
 const PREFIX='trt:';
 const CUSTOM_ROUTES_KEY='tokyoRailTyping.customRoutes.v1';
 const memoryStore=new Map();
@@ -16,10 +17,10 @@ export const storage={
   saveSettings:value=>write('settings',value),
   favorites:()=>read('favorites',[]),
   toggleFavorite(id){const set=new Set(this.favorites());set.has(id)?set.delete(id):set.add(id);write('favorites',[...set]);return set.has(id)},
-  routes:()=>loadCustomRoutes(),
-  saveRoute(route){const list=this.routes();const i=list.findIndex(r=>r.id===route.id);i<0?list.push(route):list.splice(i,1,route);return saveCustomRoutes(list)},
-  deleteRoute(id){return saveCustomRoutes(this.routes().filter(r=>r.id!==id))},
-  records:()=>read('records',{}),
-  saveResult(result){const records=this.records(),prior=records[result.routeId]||{plays:0,bestTime:null,bestAccuracy:0,bestCpm:0,maxCombo:0,totalStations:0},{name:discardedName,...old}=prior,isRecord=!old.bestTime||result.elapsed<old.bestTime,countryId=result.route?.countryId||old.countryId||'jp',directionId=result.route?.selectedDirectionId||result.options?.directionId||result.options?.direction||old.directionId||'forward';records[result.routeId]={...old,lineId:result.route?.id||result.routeId,operatorId:result.route?.operatorId||old.operatorId||'',countryId,directionId,color:result.color,plays:old.plays+1,bestTime:isRecord?result.elapsed:old.bestTime,bestAccuracy:Math.max(old.bestAccuracy,result.accuracy),bestCpm:Math.max(old.bestCpm,result.cpm),maxCombo:Math.max(old.maxCombo,result.maxCombo),totalStations:old.totalStations+result.completed};write('records',records);const recent=read('recent',[]).filter(x=>x.routeId!==result.routeId);recent.unshift({routeId:result.routeId,lineId:result.route?.id||result.routeId,operatorId:result.route?.operatorId||'',countryId,directionId,color:result.color,elapsed:result.elapsed,accuracy:result.accuracy,date:Date.now()});write('recent',recent.slice(0,5));return isRecord},
-  recent:()=>read('recent',[])
+  routes:()=>loadCustomRoutes().filter(route=>isCountryEnabled(route.countryId||'jp')),
+  saveRoute(route){const list=loadCustomRoutes();const i=list.findIndex(r=>r.id===route.id);i<0?list.push(route):list.splice(i,1,route);return saveCustomRoutes(list)},
+  deleteRoute(id){return saveCustomRoutes(loadCustomRoutes().filter(r=>r.id!==id))},
+  records:()=>Object.fromEntries(Object.entries(read('records',{})).filter(([,record])=>isCountryEnabled(record.countryId||'jp'))),
+  saveResult(result){const records=read('records',{}),prior=records[result.routeId]||{plays:0,bestTime:null,bestAccuracy:0,bestCpm:0,maxCombo:0,totalStations:0},{name:discardedName,...old}=prior,isRecord=!old.bestTime||result.elapsed<old.bestTime,countryId=result.route?.countryId||old.countryId||'jp',directionId=result.route?.selectedDirectionId||result.options?.directionId||result.options?.direction||old.directionId||'forward';records[result.routeId]={...old,lineId:result.route?.id||result.routeId,operatorId:result.route?.operatorId||old.operatorId||'',countryId,directionId,color:result.color,plays:old.plays+1,bestTime:isRecord?result.elapsed:old.bestTime,bestAccuracy:Math.max(old.bestAccuracy,result.accuracy),bestCpm:Math.max(old.bestCpm,result.cpm),maxCombo:Math.max(old.maxCombo,result.maxCombo),totalStations:old.totalStations+result.completed};write('records',records);const recent=read('recent',[]).filter(x=>x.routeId!==result.routeId);recent.unshift({routeId:result.routeId,lineId:result.route?.id||result.routeId,operatorId:result.route?.operatorId||'',countryId,directionId,color:result.color,elapsed:result.elapsed,accuracy:result.accuracy,date:Date.now()});write('recent',recent.slice(0,5));return isRecord},
+  recent:()=>read('recent',[]).filter(record=>isCountryEnabled(record.countryId||'jp'))
 };
