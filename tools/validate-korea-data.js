@@ -14,6 +14,7 @@ for(const route of data.routes||[]){
     if(direction.stops.length<2)errors.push(`${route.id}/${direction.id}: fewer than two stops`);
     if(direction.geometryStatus==='ready'){
       if(direction.geometrySource?.type!=='openstreetmap'&&!direction.geometrySource?.verified)errors.push(`${route.id}/${direction.id}: ready geometry lacks verified source`);
+      if(direction.geometryValidation?.identityVerified!==true)errors.push(`${route.id}/${direction.id}: OSM station identity was not verified`);
       if(direction.directedSegments.length!==direction.stops.length-1)errors.push(`${route.id}/${direction.id}: geometry segment count mismatch`);
       direction.directedSegments.forEach((segment,index)=>{const from=direction.stops[index],to=direction.stops[index+1],points=segment.geometry||[];if(segment.fromStationId!==from.id||segment.toStationId!==to.id)errors.push(`${route.id}/${direction.id}/${index}: segment identity mismatch`);if(points.length<2)errors.push(`${route.id}/${direction.id}/${index}: empty geometry`);else{if(distance(points[0],[from.latitude,from.longitude])>.35)errors.push(`${route.id}/${direction.id}/${index}: from endpoint mismatch`);if(distance(points.at(-1),[to.latitude,to.longitude])>.35)errors.push(`${route.id}/${direction.id}/${index}: to endpoint mismatch`)}})
     }
@@ -24,4 +25,5 @@ for(const id of ['kr-seoul-bus-143','kr-seoul-village-bus-mapo13','kr-gyeonggi-e
 const line1=details.get('kr-capital-line-1-cheongnyangni-incheon');if(line1&&(line1.operatorIds?.length<2||line1.physicalLines?.length<2))errors.push('Capital Line 1 must retain multi-operator physical-line composition');
 const ktx=details.get('kr-ktx-seoul-busan');if(ktx&&ktx.dataKind!=='trainService')errors.push('KTX must be modeled as a service stop pattern');
 const line2=details.get('kr-seoul-line-2');if(line2&&(!line2.geometryReady||line2.directions.some(direction=>direction.geometryStatus!=='ready')))errors.push('Seoul Line 2 must use ready OSM geometry in both directions');
+for(const id of ['kr-capital-line-1-cheongnyangni-incheon','kr-shinbundang']){const route=details.get(id);if(route&&(!route.geometryReady||route.directions.some(direction=>direction.geometryStatus!=='ready')))errors.push(`${id}: both directions must use ready OSM geometry`)}
 if(errors.length){console.error(JSON.stringify({status:'FAIL',errors},null,2));process.exitCode=1}else console.log(JSON.stringify({status:'PASS',operators:data.counts.operators,routes:data.counts.routes,uniqueStops:data.counts.stops,representativeRoutes:required.length,lazyRoutes:data.routes.length,explicitDirectionRoutes:data.routes.length,geometryReadyRoutes:data.routes.filter(route=>route.geometryReady).length,fakeStraightGeometry:0},null,2));

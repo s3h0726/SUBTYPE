@@ -7,7 +7,7 @@
       "en": "South Korea"
     }
   },
-  "generated": "2026-09-06T01:50:25.773Z",
+  "generated": "2026-09-06T02:50:08.472Z",
   "counts": {
     "operators": 6,
     "routes": 9,
@@ -113,12 +113,24 @@
       "code": "1",
       "color": "#0052A4",
       "loop": false,
-      "geometryStatus": "missing",
+      "geometryStatus": "ready",
       "source": {
         "name": "코레일·서울교통공사 노선 안내",
         "url": "https://www.letskorail.com/"
       },
-      "geometryReady": false,
+      "geometrySource": {
+        "type": "openstreetmap",
+        "license": "ODbL",
+        "attribution": "© OpenStreetMap contributors",
+        "routeMasterRelationId": "8691899",
+        "directionRelationIds": {
+          "incheon": "8691809",
+          "cheongnyangni": "8691898"
+        },
+        "extraction": "청량리↔인천 canonical 정차 순서와 일치하는 소요산↔인천 관계의 연속 부분구간",
+        "verifiedAt": "2026-09-06"
+      },
+      "geometryReady": true,
       "operator": {
         "ko": "한국철도공사",
         "en": "KORAIL",
@@ -711,12 +723,23 @@
       "code": "D",
       "color": "#D4003B",
       "loop": false,
-      "geometryStatus": "missing",
+      "geometryStatus": "ready",
       "source": {
         "name": "신분당선 공식 노선도",
         "url": "https://www.shinbundang.co.kr/"
       },
-      "geometryReady": false,
+      "geometrySource": {
+        "type": "openstreetmap",
+        "license": "ODbL",
+        "attribution": "© OpenStreetMap contributors",
+        "routeMasterRelationId": "7728256",
+        "directionRelationIds": {
+          "southbound": "6060963",
+          "northbound": "12814871"
+        },
+        "verifiedAt": "2026-09-06"
+      },
+      "geometryReady": true,
       "operator": {
         "ko": "신분당선",
         "en": "Shinbundang Railroad",

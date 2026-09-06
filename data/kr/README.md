@@ -13,7 +13,7 @@
 
 ## OpenStreetMap geometry import
 
-OSM geometry는 플레이 중 내려받지 않고 개발 시 relation을 정규화해 각 방향 폴더의 `geometry.json`으로 저장합니다. importer는 relation member way 순서와 topology를 사용하고, 반대 방향 way는 복사본만 뒤집습니다. ordered stop node와 canonical stop sequence의 수·순서 및 선로 endpoint 거리를 검증하며, 불연속 way가 하나라도 있으면 저장하지 않습니다.
+OSM geometry는 플레이 중 내려받지 않고 개발 시 relation을 정규화해 각 방향 폴더의 `geometry.json`으로 저장합니다. importer는 relation member way 순서와 topology를 사용하고, 반대 방향 way는 복사본만 뒤집습니다. ordered stop node의 한국어명과 canonical stop sequence를 전부 대조하고 선로 endpoint 거리를 검증하며, 불연속 way가 하나라도 있으면 저장하지 않습니다. 더 긴 OSM 운행계통의 연속 부분구간을 사용할 때도 canonical 첫 역부터 마지막 역까지만 잘라냅니다.
 
 ```bash
 npm run import:osm-route -- \
@@ -26,6 +26,8 @@ npm run import:osm-route -- \
 ```
 
 서울 2호선 본선은 OSM route master `7625892` 아래 내선순환 relation `4729409`, 외선순환 relation `2404374`를 사용합니다. 성수지선과 신정지선 relation은 본선 geometry에 억지로 합치지 않습니다.
+
+신분당선은 route master `7728256` 아래 신사→광교 `6060963`, 광교→신사 `12814871`을 사용합니다. 수도권 전철 1호선 대표 계통은 route master `8691899`의 소요산↔인천 관계 `8691809`/`8691898`에서 canonical 청량리↔인천 연속 부분구간만 추출합니다. route master의 현재 하위 운행계통은 `npm run inspect:osm-master -- --master <relation-id>`로 조회할 수 있습니다.
 
 ## Phase 1 representative routes
 
