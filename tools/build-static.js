@@ -20,7 +20,7 @@ const lineBadges=JSON.parse(read('data/line-badges.json'));
 write('js/line-badge-data.js',`window.TRT_LINE_BADGES=${JSON.stringify(lineBadges)};\n`);
 const railSystem=JSON.parse(read('data/rail-system.json'));
 write('js/rail-system-data.js',`window.TRT_RAIL_SYSTEM=${JSON.stringify(railSystem)};\n`);
-const order=['utils.js','rail-data-repository.js','asset-renderer.js','storage.js','typing.js','statistics-engine.js','line-badge.js','station-sign-templates.js','transport-stop-templates.js','route-integrity.js','route-renderer.js','game.js','statistics.js','network-map.js','data-loader.js','route-editor.js','auth.js','app.js'];
+const order=['utils.js','rail-data-repository.js','asset-renderer.js','storage.js','typing.js','typing-model.js','statistics-engine.js','line-badge.js','station-sign-templates.js','transport-stop-templates.js','route-integrity.js','route-renderer.js','game.js','statistics.js','network-map.js','data-loader.js','route-editor.js','auth.js','app.js'];
 const source=order.map(file=>read(`js/${file}`)
   .replace(/\bimport(?=\s|\{)[^;]+;/g,'')
   .replace(/\bexport\s+/g,'')

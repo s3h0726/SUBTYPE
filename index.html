@@ -90,7 +90,9 @@
         <section class="line-list-panel" aria-labelledby="line-list-heading">
           <header><div><span>LINE LIST</span><h3 id="line-list-heading">플레이할 노선</h3></div><strong id="route-count">불러오는 중</strong></header>
           <label class="line-search"><span>⌕</span><input id="route-search" type="search" placeholder="노선 검색 · 한국어 / 日本語 / English" autocomplete="off"></label>
-          <div id="category-tabs" class="line-category-tabs" role="tablist" aria-label="노선 운영사 필터">
+          <div id="transport-mode-tabs" class="line-category-tabs transport-mode-tabs" role="tablist" aria-label="교통수단 분류" hidden></div>
+          <div id="region-tabs" class="line-category-tabs region-tabs" role="tablist" aria-label="버스 지역" hidden></div>
+          <div id="category-tabs" class="line-category-tabs" role="tablist" aria-label="노선 세부 분류">
             <button class="active" data-category="all">전체</button><button data-category="jr">JR</button><button data-category="subway">지하철</button><button data-category="private">사철</button><button data-category="third-sector">제3섹터</button><button data-category="tram">노면전차</button><button data-category="other">기타</button><button data-category="shinkansen">신칸센</button><button data-category="limited-express">특급</button><button data-category="custom">커스텀</button>
           </div>
           <div id="operator-filters" class="operator-logo-filters" role="tablist" aria-label="철도 운영사 로고 필터"></div>
@@ -191,14 +193,14 @@
   <div id="auth-dialog" class="auth-dialog" hidden><form id="auth-form" class="auth-card"><button type="button" data-auth-close aria-label="닫기">×</button><p class="eyebrow">계정</p><h2>기록 이어하기</h2><div class="auth-tabs" role="tablist" aria-label="계정 작업"><button type="button" class="active" data-auth-mode="login" role="tab" aria-selected="true">로그인</button><button type="button" data-auth-mode="signup" role="tab" aria-selected="false">회원가입</button></div><input type="hidden" name="mode" value="login"><label>이메일<input id="auth-email" name="email" type="email" autocomplete="email" required></label><label>비밀번호<input name="password" type="password" autocomplete="current-password" minlength="6" required></label><label data-signup-field hidden>비밀번호 확인<input name="passwordConfirm" type="password" autocomplete="new-password" minlength="6"></label><label data-signup-field hidden>닉네임<input name="nickname" maxlength="24" value="철도러"></label><p id="auth-config-status">계정 연결 상태를 확인하고 있습니다.</p><p id="auth-error" class="auth-error" role="alert" hidden></p><button class="btn primary" type="submit">로그인</button></form></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script defer src="./js/bootstrap.js?v=p0-sync-1"></script>
-  <script defer src="./js/line-workspace-data.js?v=b7a677c42e56"></script>
-  <script defer src="./js/korea-index-data.js?v=f0475828eee7"></script>
+  <script defer src="./js/line-workspace-data.js?v=aeca3c6e04a7"></script>
+  <script defer src="./js/korea-index-data.js?v=f8d934ec72f4"></script>
   <script defer src="./js/nationwide-data.js?v=offline-all-1"></script>
   <script defer src="./js/service-data.js"></script>
   <script defer src="./js/line-theme-data.js"></script>
   <script defer src="./js/line-badge-data.js"></script>
   <script defer src="./js/rail-system-data.js"></script>
   <script defer src="./js/auth-config.js"></script>
-  <script defer src="./js/app.bundle.js?v=e34d71871ac3"></script>
+  <script defer src="./js/app.bundle.js?v=8971bc477278"></script>
 </body>
 </html>

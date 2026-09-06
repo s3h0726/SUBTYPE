@@ -46,6 +46,7 @@ function updateRouteProgress(rail,route,index,motion,options={}){
 }
 async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
+  if(route.geometryReady===false){if(gameRail?.map)clearRouteLayers(gameRail);if(status)status.textContent='실제 선형 미확보 · 정차 순서 플레이';return}
   if(!validCoordinates(route)){if(status)status.textContent=route.countryId==='kr'?'지도 선형 미확보 · 정차 순서 플레이':'좌표가 없는 노선입니다';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
   const requestedNext=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(safe+1,route.stations.length-1);if(rail.routeKey!==(route.renderKey||route.id))createRouteLayers(rail,route,safe,options);else if(rail.index!==safe||rail.nextIndex!==requestedNext)updateRouteProgress(rail,route,safe,options.motion,options);else rail.nextIndex=requestedNext;

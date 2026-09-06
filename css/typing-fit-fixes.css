@@ -45,12 +45,15 @@
   font:800 9px 'IBM Plex Mono',monospace;
 }
 .ko-progress .input-cell{
+  position:relative;
   flex:0 1 var(--cell-size,28px);
   width:var(--cell-size,28px);
   min-width:0;
   padding-inline:0!important;
   font-size:clamp(13px,var(--cell-size,22px),22px)!important;
 }
+.ko-progress .input-cell.fixed{border-bottom-color:transparent!important;opacity:.78}
+.ko-progress .input-cell.fixed::after{content:'';position:absolute;left:18%;right:18%;bottom:-2px;height:2px;background:var(--route-color,currentColor);opacity:.45}
 @media(max-height:680px) and (min-width:821px){
   #screen-game.active{grid-template-rows:46px 32px minmax(0,1fr) 36px 200px}
 }

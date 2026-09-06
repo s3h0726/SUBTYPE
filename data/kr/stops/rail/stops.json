@@ -1,104 +1,992 @@
-{"stops":[
-{"id":"kr-rail-cityhall","type":"rail_station","names":{"ko":"시청","en":"City Hall"}},
-{"id":"kr-rail-euljiro1ga","type":"rail_station","names":{"ko":"을지로입구","en":"Euljiro 1-ga"}},
-{"id":"kr-rail-euljiro3ga","type":"rail_station","names":{"ko":"을지로3가","en":"Euljiro 3-ga"}},
-{"id":"kr-rail-euljiro4ga","type":"rail_station","names":{"ko":"을지로4가","en":"Euljiro 4-ga"}},
-{"id":"kr-rail-ddp","type":"rail_station","names":{"ko":"동대문역사문화공원","en":"Dongdaemun History & Culture Park"}},
-{"id":"kr-rail-sindang","type":"rail_station","names":{"ko":"신당","en":"Sindang"}},
-{"id":"kr-rail-sangwangsimni","type":"rail_station","names":{"ko":"상왕십리","en":"Sangwangsimni"}},
-{"id":"kr-rail-wangsimni","type":"rail_station","names":{"ko":"왕십리","en":"Wangsimni"}},
-{"id":"kr-rail-hanyang","type":"rail_station","names":{"ko":"한양대","en":"Hanyang Univ."}},
-{"id":"kr-rail-ttukseom","type":"rail_station","names":{"ko":"뚝섬","en":"Ttukseom"}},
-{"id":"kr-rail-seongsu","type":"rail_station","names":{"ko":"성수","en":"Seongsu"}},
-{"id":"kr-rail-konkuk","type":"rail_station","names":{"ko":"건대입구","en":"Konkuk Univ."}},
-{"id":"kr-rail-guui","type":"rail_station","names":{"ko":"구의","en":"Guui"}},
-{"id":"kr-rail-gangbyeon","type":"rail_station","names":{"ko":"강변","en":"Gangbyeon"}},
-{"id":"kr-rail-jamsillaru","type":"rail_station","names":{"ko":"잠실나루","en":"Jamsillaru"}},
-{"id":"kr-rail-jamsil","type":"rail_station","names":{"ko":"잠실","en":"Jamsil"}},
-{"id":"kr-rail-jamsilsaenae","type":"rail_station","names":{"ko":"잠실새내","en":"Jamsilsaenae"}},
-{"id":"kr-rail-sportscomplex","type":"rail_station","names":{"ko":"종합운동장","en":"Sports Complex"}},
-{"id":"kr-rail-samseong","type":"rail_station","names":{"ko":"삼성","en":"Samseong"}},
-{"id":"kr-rail-seolleung","type":"rail_station","names":{"ko":"선릉","en":"Seolleung"}},
-{"id":"kr-rail-yeoksam","type":"rail_station","names":{"ko":"역삼","en":"Yeoksam"}},
-{"id":"kr-rail-gangnam","type":"rail_station","names":{"ko":"강남","en":"Gangnam"}},
-{"id":"kr-rail-gyodae","type":"rail_station","names":{"ko":"교대","en":"Seoul Nat'l Univ. of Education"}},
-{"id":"kr-rail-seocho","type":"rail_station","names":{"ko":"서초","en":"Seocho"}},
-{"id":"kr-rail-bangbae","type":"rail_station","names":{"ko":"방배","en":"Bangbae"}},
-{"id":"kr-rail-sadang","type":"rail_station","names":{"ko":"사당","en":"Sadang"}},
-{"id":"kr-rail-nakseongdae","type":"rail_station","names":{"ko":"낙성대","en":"Nakseongdae"}},
-{"id":"kr-rail-snu","type":"rail_station","names":{"ko":"서울대입구","en":"Seoul Nat'l Univ."}},
-{"id":"kr-rail-bongcheon","type":"rail_station","names":{"ko":"봉천","en":"Bongcheon"}},
-{"id":"kr-rail-sillim","type":"rail_station","names":{"ko":"신림","en":"Sillim"}},
-{"id":"kr-rail-sindaebang","type":"rail_station","names":{"ko":"신대방","en":"Sindaebang"}},
-{"id":"kr-rail-gurodigital","type":"rail_station","names":{"ko":"구로디지털단지","en":"Guro Digital Complex"}},
-{"id":"kr-rail-daerim","type":"rail_station","names":{"ko":"대림","en":"Daerim"}},
-{"id":"kr-rail-sindorim","type":"rail_station","names":{"ko":"신도림","en":"Sindorim"}},
-{"id":"kr-rail-mullae","type":"rail_station","names":{"ko":"문래","en":"Mullae"}},
-{"id":"kr-rail-yeongdeungpogu","type":"rail_station","names":{"ko":"영등포구청","en":"Yeongdeungpo-gu Office"}},
-{"id":"kr-rail-dangsan","type":"rail_station","names":{"ko":"당산","en":"Dangsan"}},
-{"id":"kr-rail-hapjeong","type":"rail_station","names":{"ko":"합정","en":"Hapjeong"}},
-{"id":"kr-rail-hongik","type":"rail_station","names":{"ko":"홍대입구","en":"Hongik Univ."}},
-{"id":"kr-rail-sinchon","type":"rail_station","names":{"ko":"신촌","en":"Sinchon"}},
-{"id":"kr-rail-ewha","type":"rail_station","names":{"ko":"이대","en":"Ewha Womans Univ."}},
-{"id":"kr-rail-ahyeon","type":"rail_station","names":{"ko":"아현","en":"Ahyeon"}},
-{"id":"kr-rail-chungjeongno","type":"rail_station","names":{"ko":"충정로","en":"Chungjeongno"}},
-{"id":"kr-rail-sinsa","type":"rail_station","names":{"ko":"신사","en":"Sinsa"}},
-{"id":"kr-rail-nonhyeon","type":"rail_station","names":{"ko":"논현","en":"Nonhyeon"}},
-{"id":"kr-rail-sinnonhyeon","type":"rail_station","names":{"ko":"신논현","en":"Sinnonhyeon"}},
-{"id":"kr-rail-yangjae","type":"rail_station","names":{"ko":"양재","en":"Yangjae"}},
-{"id":"kr-rail-yangjaecitizensforest","type":"rail_station","names":{"ko":"양재시민의숲","en":"Yangjae Citizen's Forest"}},
-{"id":"kr-rail-cheonggyesan","type":"rail_station","names":{"ko":"청계산입구","en":"Cheonggyesan"}},
-{"id":"kr-rail-pangyo","type":"rail_station","names":{"ko":"판교","en":"Pangyo"}},
-{"id":"kr-rail-jeongja","type":"rail_station","names":{"ko":"정자","en":"Jeongja"}},
-{"id":"kr-rail-migeum","type":"rail_station","names":{"ko":"미금","en":"Migeum"}},
-{"id":"kr-rail-dongcheon","type":"rail_station","names":{"ko":"동천","en":"Dongcheon"}},
-{"id":"kr-rail-suji-gu-office","type":"rail_station","names":{"ko":"수지구청","en":"Suji-gu Office"}},
-{"id":"kr-rail-seongbok","type":"rail_station","names":{"ko":"성복","en":"Seongbok"}},
-{"id":"kr-rail-sanghyeon","type":"rail_station","names":{"ko":"상현","en":"Sanghyeon"}},
-{"id":"kr-rail-gwanggyojungang","type":"rail_station","names":{"ko":"광교중앙","en":"Gwanggyo Jungang"}},
-{"id":"kr-rail-gwanggyo","type":"rail_station","names":{"ko":"광교","en":"Gwanggyo"}},
-{"id":"kr-rail-seoul","type":"rail_station","names":{"ko":"서울","en":"Seoul"}},
-{"id":"kr-rail-gwangmyeong","type":"rail_station","names":{"ko":"광명","en":"Gwangmyeong"}},
-{"id":"kr-rail-cheonan-asam","type":"rail_station","names":{"ko":"천안아산","en":"Cheonan-Asan"}},
-{"id":"kr-rail-osong","type":"rail_station","names":{"ko":"오송","en":"Osong"}},
-{"id":"kr-rail-daejeon","type":"rail_station","names":{"ko":"대전","en":"Daejeon"}},
-{"id":"kr-rail-dongdaegu","type":"rail_station","names":{"ko":"동대구","en":"Dongdaegu"}},
-{"id":"kr-rail-gyeongju","type":"rail_station","names":{"ko":"경주","en":"Gyeongju"}},
-{"id":"kr-rail-ulsan","type":"rail_station","names":{"ko":"울산","en":"Ulsan"}},
-{"id":"kr-rail-busan","type":"rail_station","names":{"ko":"부산","en":"Busan"}},
-{"id":"kr-rail-cheongnyangni","type":"rail_station","names":{"ko":"청량리","en":"Cheongnyangni"}},
-{"id":"kr-rail-jegidong","type":"rail_station","names":{"ko":"제기동","en":"Jegi-dong"}},
-{"id":"kr-rail-sinseoldong","type":"rail_station","names":{"ko":"신설동","en":"Sinseol-dong"}},
-{"id":"kr-rail-dongmyo","type":"rail_station","names":{"ko":"동묘앞","en":"Dongmyo"}},
-{"id":"kr-rail-dongdaemun","type":"rail_station","names":{"ko":"동대문","en":"Dongdaemun"}},
-{"id":"kr-rail-jongno5ga","type":"rail_station","names":{"ko":"종로5가","en":"Jongno 5-ga"}},
-{"id":"kr-rail-jongno3ga","type":"rail_station","names":{"ko":"종로3가","en":"Jongno 3-ga"}},
-{"id":"kr-rail-jonggak","type":"rail_station","names":{"ko":"종각","en":"Jonggak"}},
-{"id":"kr-rail-namyeong","type":"rail_station","names":{"ko":"남영","en":"Namyeong"}},
-{"id":"kr-rail-yongsan","type":"rail_station","names":{"ko":"용산","en":"Yongsan"}},
-{"id":"kr-rail-noryangjin","type":"rail_station","names":{"ko":"노량진","en":"Noryangjin"}},
-{"id":"kr-rail-daebang","type":"rail_station","names":{"ko":"대방","en":"Daebang"}},
-{"id":"kr-rail-singil","type":"rail_station","names":{"ko":"신길","en":"Singil"}},
-{"id":"kr-rail-yeongdeungpo","type":"rail_station","names":{"ko":"영등포","en":"Yeongdeungpo"}},
-{"id":"kr-rail-guro","type":"rail_station","names":{"ko":"구로","en":"Guro"}},
-{"id":"kr-rail-guil","type":"rail_station","names":{"ko":"구일","en":"Guil"}},
-{"id":"kr-rail-gaebong","type":"rail_station","names":{"ko":"개봉","en":"Gaebong"}},
-{"id":"kr-rail-oryudong","type":"rail_station","names":{"ko":"오류동","en":"Oryu-dong"}},
-{"id":"kr-rail-on-su","type":"rail_station","names":{"ko":"온수","en":"Onsu"}},
-{"id":"kr-rail-yeokgok","type":"rail_station","names":{"ko":"역곡","en":"Yeokgok"}},
-{"id":"kr-rail-sosa","type":"rail_station","names":{"ko":"소사","en":"Sosa"}},
-{"id":"kr-rail-bucheon","type":"rail_station","names":{"ko":"부천","en":"Bucheon"}},
-{"id":"kr-rail-jungdong","type":"rail_station","names":{"ko":"중동","en":"Jung-dong"}},
-{"id":"kr-rail-songnae","type":"rail_station","names":{"ko":"송내","en":"Songnae"}},
-{"id":"kr-rail-bugae","type":"rail_station","names":{"ko":"부개","en":"Bugae"}},
-{"id":"kr-rail-bupyeong","type":"rail_station","names":{"ko":"부평","en":"Bupyeong"}},
-{"id":"kr-rail-baegun","type":"rail_station","names":{"ko":"백운","en":"Baegun"}},
-{"id":"kr-rail-dongam","type":"rail_station","names":{"ko":"동암","en":"Dongam"}},
-{"id":"kr-rail-ganseok","type":"rail_station","names":{"ko":"간석","en":"Ganseok"}},
-{"id":"kr-rail-juan","type":"rail_station","names":{"ko":"주안","en":"Juan"}},
-{"id":"kr-rail-dohwa","type":"rail_station","names":{"ko":"도화","en":"Dohwa"}},
-{"id":"kr-rail-jemulpo","type":"rail_station","names":{"ko":"제물포","en":"Jemulpo"}},
-{"id":"kr-rail-dowon","type":"rail_station","names":{"ko":"도원","en":"Dowon"}},
-{"id":"kr-rail-dongincheon","type":"rail_station","names":{"ko":"동인천","en":"Dongincheon"}},
-{"id":"kr-rail-incheon","type":"rail_station","names":{"ko":"인천","en":"Incheon"}}
-]}
+{
+  "stops": [
+    {
+      "id": "kr-rail-cityhall",
+      "type": "rail_station",
+      "names": {
+        "ko": "시청",
+        "en": "City Hall"
+      },
+      "coordinates": {
+        "lat": 37.5638828,
+        "lng": 126.9762818
+      }
+    },
+    {
+      "id": "kr-rail-euljiro1ga",
+      "type": "rail_station",
+      "names": {
+        "ko": "을지로입구",
+        "en": "Euljiro 1-ga"
+      },
+      "coordinates": {
+        "lat": 37.5659239,
+        "lng": 126.9826037
+      }
+    },
+    {
+      "id": "kr-rail-euljiro3ga",
+      "type": "rail_station",
+      "names": {
+        "ko": "을지로3가",
+        "en": "Euljiro 3-ga"
+      },
+      "coordinates": {
+        "lat": 37.5662577,
+        "lng": 126.9911975
+      }
+    },
+    {
+      "id": "kr-rail-euljiro4ga",
+      "type": "rail_station",
+      "names": {
+        "ko": "을지로4가",
+        "en": "Euljiro 4-ga"
+      },
+      "coordinates": {
+        "lat": 37.5665958,
+        "lng": 126.9980036
+      }
+    },
+    {
+      "id": "kr-rail-ddp",
+      "type": "rail_station",
+      "names": {
+        "ko": "동대문역사문화공원",
+        "en": "Dongdaemun History & Culture Park"
+      },
+      "coordinates": {
+        "lat": 37.5658484,
+        "lng": 127.0081378
+      }
+    },
+    {
+      "id": "kr-rail-sindang",
+      "type": "rail_station",
+      "names": {
+        "ko": "신당",
+        "en": "Sindang"
+      },
+      "coordinates": {
+        "lat": 37.5656114,
+        "lng": 127.0198113
+      }
+    },
+    {
+      "id": "kr-rail-sangwangsimni",
+      "type": "rail_station",
+      "names": {
+        "ko": "상왕십리",
+        "en": "Sangwangsimni"
+      },
+      "coordinates": {
+        "lat": 37.5643931,
+        "lng": 127.029199
+      }
+    },
+    {
+      "id": "kr-rail-wangsimni",
+      "type": "rail_station",
+      "names": {
+        "ko": "왕십리",
+        "en": "Wangsimni"
+      },
+      "coordinates": {
+        "lat": 37.561196,
+        "lng": 127.0371344
+      }
+    },
+    {
+      "id": "kr-rail-hanyang",
+      "type": "rail_station",
+      "names": {
+        "ko": "한양대",
+        "en": "Hanyang Univ."
+      },
+      "coordinates": {
+        "lat": 37.5557232,
+        "lng": 127.0436441
+      }
+    },
+    {
+      "id": "kr-rail-ttukseom",
+      "type": "rail_station",
+      "names": {
+        "ko": "뚝섬",
+        "en": "Ttukseom"
+      },
+      "coordinates": {
+        "lat": 37.5468842,
+        "lng": 127.0483995
+      }
+    },
+    {
+      "id": "kr-rail-seongsu",
+      "type": "rail_station",
+      "names": {
+        "ko": "성수",
+        "en": "Seongsu"
+      },
+      "coordinates": {
+        "lat": 37.5442407,
+        "lng": 127.0571443
+      }
+    },
+    {
+      "id": "kr-rail-konkuk",
+      "type": "rail_station",
+      "names": {
+        "ko": "건대입구",
+        "en": "Konkuk Univ."
+      },
+      "coordinates": {
+        "lat": 37.5400566,
+        "lng": 127.0702592
+      }
+    },
+    {
+      "id": "kr-rail-guui",
+      "type": "rail_station",
+      "names": {
+        "ko": "구의",
+        "en": "Guui"
+      },
+      "coordinates": {
+        "lat": 37.5374052,
+        "lng": 127.0872498
+      }
+    },
+    {
+      "id": "kr-rail-gangbyeon",
+      "type": "rail_station",
+      "names": {
+        "ko": "강변",
+        "en": "Gangbyeon"
+      },
+      "coordinates": {
+        "lat": 37.5359606,
+        "lng": 127.0941802
+      }
+    },
+    {
+      "id": "kr-rail-jamsillaru",
+      "type": "rail_station",
+      "names": {
+        "ko": "잠실나루",
+        "en": "Jamsillaru"
+      },
+      "coordinates": {
+        "lat": 37.5214578,
+        "lng": 127.1033751
+      }
+    },
+    {
+      "id": "kr-rail-jamsil",
+      "type": "rail_station",
+      "names": {
+        "ko": "잠실",
+        "en": "Jamsil"
+      },
+      "coordinates": {
+        "lat": 37.5129192,
+        "lng": 127.0989099
+      }
+    },
+    {
+      "id": "kr-rail-jamsilsaenae",
+      "type": "rail_station",
+      "names": {
+        "ko": "잠실새내",
+        "en": "Jamsilsaenae"
+      },
+      "coordinates": {
+        "lat": 37.5116445,
+        "lng": 127.0845585
+      }
+    },
+    {
+      "id": "kr-rail-sportscomplex",
+      "type": "rail_station",
+      "names": {
+        "ko": "종합운동장",
+        "en": "Sports Complex"
+      },
+      "coordinates": {
+        "lat": 37.5108878,
+        "lng": 127.0724844
+      }
+    },
+    {
+      "id": "kr-rail-samseong",
+      "type": "rail_station",
+      "names": {
+        "ko": "삼성",
+        "en": "Samseong"
+      },
+      "coordinates": {
+        "lat": 37.5085899,
+        "lng": 127.062061
+      }
+    },
+    {
+      "id": "kr-rail-seolleung",
+      "type": "rail_station",
+      "names": {
+        "ko": "선릉",
+        "en": "Seolleung"
+      },
+      "coordinates": {
+        "lat": 37.5044882,
+        "lng": 127.0489012
+      }
+    },
+    {
+      "id": "kr-rail-yeoksam",
+      "type": "rail_station",
+      "names": {
+        "ko": "역삼",
+        "en": "Yeoksam"
+      },
+      "coordinates": {
+        "lat": 37.5008232,
+        "lng": 127.0368969
+      }
+    },
+    {
+      "id": "kr-rail-gangnam",
+      "type": "rail_station",
+      "names": {
+        "ko": "강남",
+        "en": "Gangnam"
+      },
+      "coordinates": {
+        "lat": 37.4979494,
+        "lng": 127.0275971
+      }
+    },
+    {
+      "id": "kr-rail-gyodae",
+      "type": "rail_station",
+      "names": {
+        "ko": "교대",
+        "en": "Seoul Nat'l Univ. of Education"
+      },
+      "coordinates": {
+        "lat": 37.4939731,
+        "lng": 127.0146051
+      }
+    },
+    {
+      "id": "kr-rail-seocho",
+      "type": "rail_station",
+      "names": {
+        "ko": "서초",
+        "en": "Seocho"
+      },
+      "coordinates": {
+        "lat": 37.4918403,
+        "lng": 127.0076242
+      }
+    },
+    {
+      "id": "kr-rail-bangbae",
+      "type": "rail_station",
+      "names": {
+        "ko": "방배",
+        "en": "Bangbae"
+      },
+      "coordinates": {
+        "lat": 37.4814811,
+        "lng": 126.9976616
+      }
+    },
+    {
+      "id": "kr-rail-sadang",
+      "type": "rail_station",
+      "names": {
+        "ko": "사당",
+        "en": "Sadang"
+      },
+      "coordinates": {
+        "lat": 37.4766647,
+        "lng": 126.9801667
+      }
+    },
+    {
+      "id": "kr-rail-nakseongdae",
+      "type": "rail_station",
+      "names": {
+        "ko": "낙성대",
+        "en": "Nakseongdae"
+      },
+      "coordinates": {
+        "lat": 37.4770655,
+        "lng": 126.96356
+      }
+    },
+    {
+      "id": "kr-rail-snu",
+      "type": "rail_station",
+      "names": {
+        "ko": "서울대입구",
+        "en": "Seoul Nat'l Univ."
+      },
+      "coordinates": {
+        "lat": 37.4812236,
+        "lng": 126.9527534
+      }
+    },
+    {
+      "id": "kr-rail-bongcheon",
+      "type": "rail_station",
+      "names": {
+        "ko": "봉천",
+        "en": "Bongcheon"
+      },
+      "coordinates": {
+        "lat": 37.4823868,
+        "lng": 126.941995
+      }
+    },
+    {
+      "id": "kr-rail-sillim",
+      "type": "rail_station",
+      "names": {
+        "ko": "신림",
+        "en": "Sillim"
+      },
+      "coordinates": {
+        "lat": 37.4842476,
+        "lng": 126.9296955
+      }
+    },
+    {
+      "id": "kr-rail-sindaebang",
+      "type": "rail_station",
+      "names": {
+        "ko": "신대방",
+        "en": "Sindaebang"
+      },
+      "coordinates": {
+        "lat": 37.4876303,
+        "lng": 126.9133921
+      }
+    },
+    {
+      "id": "kr-rail-gurodigital",
+      "type": "rail_station",
+      "names": {
+        "ko": "구로디지털단지",
+        "en": "Guro Digital Complex"
+      },
+      "coordinates": {
+        "lat": 37.4856107,
+        "lng": 126.9007426
+      }
+    },
+    {
+      "id": "kr-rail-daerim",
+      "type": "rail_station",
+      "names": {
+        "ko": "대림",
+        "en": "Daerim"
+      },
+      "coordinates": {
+        "lat": 37.4932926,
+        "lng": 126.8950143
+      }
+    },
+    {
+      "id": "kr-rail-sindorim",
+      "type": "rail_station",
+      "names": {
+        "ko": "신도림",
+        "en": "Sindorim"
+      },
+      "coordinates": {
+        "lat": 37.5089707,
+        "lng": 126.8912335
+      }
+    },
+    {
+      "id": "kr-rail-mullae",
+      "type": "rail_station",
+      "names": {
+        "ko": "문래",
+        "en": "Mullae"
+      },
+      "coordinates": {
+        "lat": 37.5183977,
+        "lng": 126.8949008
+      }
+    },
+    {
+      "id": "kr-rail-yeongdeungpogu",
+      "type": "rail_station",
+      "names": {
+        "ko": "영등포구청",
+        "en": "Yeongdeungpo-gu Office"
+      },
+      "coordinates": {
+        "lat": 37.5253085,
+        "lng": 126.8965943
+      }
+    },
+    {
+      "id": "kr-rail-dangsan",
+      "type": "rail_station",
+      "names": {
+        "ko": "당산",
+        "en": "Dangsan"
+      },
+      "coordinates": {
+        "lat": 37.5356155,
+        "lng": 126.9033013
+      }
+    },
+    {
+      "id": "kr-rail-hapjeong",
+      "type": "rail_station",
+      "names": {
+        "ko": "합정",
+        "en": "Hapjeong"
+      },
+      "coordinates": {
+        "lat": 37.550043,
+        "lng": 126.914682
+      }
+    },
+    {
+      "id": "kr-rail-hongik",
+      "type": "rail_station",
+      "names": {
+        "ko": "홍대입구",
+        "en": "Hongik Univ."
+      },
+      "coordinates": {
+        "lat": 37.5566261,
+        "lng": 126.9235144
+      }
+    },
+    {
+      "id": "kr-rail-sinchon",
+      "type": "rail_station",
+      "names": {
+        "ko": "신촌",
+        "en": "Sinchon"
+      },
+      "coordinates": {
+        "lat": 37.5551312,
+        "lng": 126.9369069
+      }
+    },
+    {
+      "id": "kr-rail-ewha",
+      "type": "rail_station",
+      "names": {
+        "ko": "이대",
+        "en": "Ewha Womans Univ."
+      },
+      "coordinates": {
+        "lat": 37.5567403,
+        "lng": 126.9458406
+      }
+    },
+    {
+      "id": "kr-rail-ahyeon",
+      "type": "rail_station",
+      "names": {
+        "ko": "아현",
+        "en": "Ahyeon"
+      },
+      "coordinates": {
+        "lat": 37.5574022,
+        "lng": 126.9561329
+      }
+    },
+    {
+      "id": "kr-rail-chungjeongno",
+      "type": "rail_station",
+      "names": {
+        "ko": "충정로",
+        "en": "Chungjeongno"
+      },
+      "coordinates": {
+        "lat": 37.5593252,
+        "lng": 126.963698
+      }
+    },
+    {
+      "id": "kr-rail-sinsa",
+      "type": "rail_station",
+      "names": {
+        "ko": "신사",
+        "en": "Sinsa"
+      }
+    },
+    {
+      "id": "kr-rail-nonhyeon",
+      "type": "rail_station",
+      "names": {
+        "ko": "논현",
+        "en": "Nonhyeon"
+      }
+    },
+    {
+      "id": "kr-rail-sinnonhyeon",
+      "type": "rail_station",
+      "names": {
+        "ko": "신논현",
+        "en": "Sinnonhyeon"
+      }
+    },
+    {
+      "id": "kr-rail-yangjae",
+      "type": "rail_station",
+      "names": {
+        "ko": "양재",
+        "en": "Yangjae"
+      }
+    },
+    {
+      "id": "kr-rail-yangjaecitizensforest",
+      "type": "rail_station",
+      "names": {
+        "ko": "양재시민의숲",
+        "en": "Yangjae Citizen's Forest"
+      }
+    },
+    {
+      "id": "kr-rail-cheonggyesan",
+      "type": "rail_station",
+      "names": {
+        "ko": "청계산입구",
+        "en": "Cheonggyesan"
+      }
+    },
+    {
+      "id": "kr-rail-pangyo",
+      "type": "rail_station",
+      "names": {
+        "ko": "판교",
+        "en": "Pangyo"
+      }
+    },
+    {
+      "id": "kr-rail-jeongja",
+      "type": "rail_station",
+      "names": {
+        "ko": "정자",
+        "en": "Jeongja"
+      }
+    },
+    {
+      "id": "kr-rail-migeum",
+      "type": "rail_station",
+      "names": {
+        "ko": "미금",
+        "en": "Migeum"
+      }
+    },
+    {
+      "id": "kr-rail-dongcheon",
+      "type": "rail_station",
+      "names": {
+        "ko": "동천",
+        "en": "Dongcheon"
+      }
+    },
+    {
+      "id": "kr-rail-suji-gu-office",
+      "type": "rail_station",
+      "names": {
+        "ko": "수지구청",
+        "en": "Suji-gu Office"
+      }
+    },
+    {
+      "id": "kr-rail-seongbok",
+      "type": "rail_station",
+      "names": {
+        "ko": "성복",
+        "en": "Seongbok"
+      }
+    },
+    {
+      "id": "kr-rail-sanghyeon",
+      "type": "rail_station",
+      "names": {
+        "ko": "상현",
+        "en": "Sanghyeon"
+      }
+    },
+    {
+      "id": "kr-rail-gwanggyojungang",
+      "type": "rail_station",
+      "names": {
+        "ko": "광교중앙",
+        "en": "Gwanggyo Jungang"
+      }
+    },
+    {
+      "id": "kr-rail-gwanggyo",
+      "type": "rail_station",
+      "names": {
+        "ko": "광교",
+        "en": "Gwanggyo"
+      }
+    },
+    {
+      "id": "kr-rail-seoul",
+      "type": "rail_station",
+      "names": {
+        "ko": "서울",
+        "en": "Seoul"
+      }
+    },
+    {
+      "id": "kr-rail-gwangmyeong",
+      "type": "rail_station",
+      "names": {
+        "ko": "광명",
+        "en": "Gwangmyeong"
+      }
+    },
+    {
+      "id": "kr-rail-cheonan-asam",
+      "type": "rail_station",
+      "names": {
+        "ko": "천안아산",
+        "en": "Cheonan-Asan"
+      }
+    },
+    {
+      "id": "kr-rail-osong",
+      "type": "rail_station",
+      "names": {
+        "ko": "오송",
+        "en": "Osong"
+      }
+    },
+    {
+      "id": "kr-rail-daejeon",
+      "type": "rail_station",
+      "names": {
+        "ko": "대전",
+        "en": "Daejeon"
+      }
+    },
+    {
+      "id": "kr-rail-dongdaegu",
+      "type": "rail_station",
+      "names": {
+        "ko": "동대구",
+        "en": "Dongdaegu"
+      }
+    },
+    {
+      "id": "kr-rail-gyeongju",
+      "type": "rail_station",
+      "names": {
+        "ko": "경주",
+        "en": "Gyeongju"
+      }
+    },
+    {
+      "id": "kr-rail-ulsan",
+      "type": "rail_station",
+      "names": {
+        "ko": "울산",
+        "en": "Ulsan"
+      }
+    },
+    {
+      "id": "kr-rail-busan",
+      "type": "rail_station",
+      "names": {
+        "ko": "부산",
+        "en": "Busan"
+      }
+    },
+    {
+      "id": "kr-rail-cheongnyangni",
+      "type": "rail_station",
+      "names": {
+        "ko": "청량리",
+        "en": "Cheongnyangni"
+      }
+    },
+    {
+      "id": "kr-rail-jegidong",
+      "type": "rail_station",
+      "names": {
+        "ko": "제기동",
+        "en": "Jegi-dong"
+      }
+    },
+    {
+      "id": "kr-rail-sinseoldong",
+      "type": "rail_station",
+      "names": {
+        "ko": "신설동",
+        "en": "Sinseol-dong"
+      }
+    },
+    {
+      "id": "kr-rail-dongmyo",
+      "type": "rail_station",
+      "names": {
+        "ko": "동묘앞",
+        "en": "Dongmyo"
+      }
+    },
+    {
+      "id": "kr-rail-dongdaemun",
+      "type": "rail_station",
+      "names": {
+        "ko": "동대문",
+        "en": "Dongdaemun"
+      }
+    },
+    {
+      "id": "kr-rail-jongno5ga",
+      "type": "rail_station",
+      "names": {
+        "ko": "종로5가",
+        "en": "Jongno 5-ga"
+      }
+    },
+    {
+      "id": "kr-rail-jongno3ga",
+      "type": "rail_station",
+      "names": {
+        "ko": "종로3가",
+        "en": "Jongno 3-ga"
+      }
+    },
+    {
+      "id": "kr-rail-jonggak",
+      "type": "rail_station",
+      "names": {
+        "ko": "종각",
+        "en": "Jonggak"
+      }
+    },
+    {
+      "id": "kr-rail-namyeong",
+      "type": "rail_station",
+      "names": {
+        "ko": "남영",
+        "en": "Namyeong"
+      }
+    },
+    {
+      "id": "kr-rail-yongsan",
+      "type": "rail_station",
+      "names": {
+        "ko": "용산",
+        "en": "Yongsan"
+      }
+    },
+    {
+      "id": "kr-rail-noryangjin",
+      "type": "rail_station",
+      "names": {
+        "ko": "노량진",
+        "en": "Noryangjin"
+      }
+    },
+    {
+      "id": "kr-rail-daebang",
+      "type": "rail_station",
+      "names": {
+        "ko": "대방",
+        "en": "Daebang"
+      }
+    },
+    {
+      "id": "kr-rail-singil",
+      "type": "rail_station",
+      "names": {
+        "ko": "신길",
+        "en": "Singil"
+      }
+    },
+    {
+      "id": "kr-rail-yeongdeungpo",
+      "type": "rail_station",
+      "names": {
+        "ko": "영등포",
+        "en": "Yeongdeungpo"
+      }
+    },
+    {
+      "id": "kr-rail-guro",
+      "type": "rail_station",
+      "names": {
+        "ko": "구로",
+        "en": "Guro"
+      }
+    },
+    {
+      "id": "kr-rail-guil",
+      "type": "rail_station",
+      "names": {
+        "ko": "구일",
+        "en": "Guil"
+      }
+    },
+    {
+      "id": "kr-rail-gaebong",
+      "type": "rail_station",
+      "names": {
+        "ko": "개봉",
+        "en": "Gaebong"
+      }
+    },
+    {
+      "id": "kr-rail-oryudong",
+      "type": "rail_station",
+      "names": {
+        "ko": "오류동",
+        "en": "Oryu-dong"
+      }
+    },
+    {
+      "id": "kr-rail-on-su",
+      "type": "rail_station",
+      "names": {
+        "ko": "온수",
+        "en": "Onsu"
+      }
+    },
+    {
+      "id": "kr-rail-yeokgok",
+      "type": "rail_station",
+      "names": {
+        "ko": "역곡",
+        "en": "Yeokgok"
+      }
+    },
+    {
+      "id": "kr-rail-sosa",
+      "type": "rail_station",
+      "names": {
+        "ko": "소사",
+        "en": "Sosa"
+      }
+    },
+    {
+      "id": "kr-rail-bucheon",
+      "type": "rail_station",
+      "names": {
+        "ko": "부천",
+        "en": "Bucheon"
+      }
+    },
+    {
+      "id": "kr-rail-jungdong",
+      "type": "rail_station",
+      "names": {
+        "ko": "중동",
+        "en": "Jung-dong"
+      }
+    },
+    {
+      "id": "kr-rail-songnae",
+      "type": "rail_station",
+      "names": {
+        "ko": "송내",
+        "en": "Songnae"
+      }
+    },
+    {
+      "id": "kr-rail-bugae",
+      "type": "rail_station",
+      "names": {
+        "ko": "부개",
+        "en": "Bugae"
+      }
+    },
+    {
+      "id": "kr-rail-bupyeong",
+      "type": "rail_station",
+      "names": {
+        "ko": "부평",
+        "en": "Bupyeong"
+      }
+    },
+    {
+      "id": "kr-rail-baegun",
+      "type": "rail_station",
+      "names": {
+        "ko": "백운",
+        "en": "Baegun"
+      }
+    },
+    {
+      "id": "kr-rail-dongam",
+      "type": "rail_station",
+      "names": {
+        "ko": "동암",
+        "en": "Dongam"
+      }
+    },
+    {
+      "id": "kr-rail-ganseok",
+      "type": "rail_station",
+      "names": {
+        "ko": "간석",
+        "en": "Ganseok"
+      }
+    },
+    {
+      "id": "kr-rail-juan",
+      "type": "rail_station",
+      "names": {
+        "ko": "주안",
+        "en": "Juan"
+      }
+    },
+    {
+      "id": "kr-rail-dohwa",
+      "type": "rail_station",
+      "names": {
+        "ko": "도화",
+        "en": "Dohwa"
+      }
+    },
+    {
+      "id": "kr-rail-jemulpo",
+      "type": "rail_station",
+      "names": {
+        "ko": "제물포",
+        "en": "Jemulpo"
+      }
+    },
+    {
+      "id": "kr-rail-dowon",
+      "type": "rail_station",
+      "names": {
+        "ko": "도원",
+        "en": "Dowon"
+      }
+    },
+    {
+      "id": "kr-rail-dongincheon",
+      "type": "rail_station",
+      "names": {
+        "ko": "동인천",
+        "en": "Dongincheon"
+      }
+    },
+    {
+      "id": "kr-rail-incheon",
+      "type": "rail_station",
+      "names": {
+        "ko": "인천",
+        "en": "Incheon"
+      }
+    }
+  ]
+}

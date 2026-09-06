@@ -6,10 +6,26 @@
 - 버스: `routes/bus/<region>/<route-id>/`
 - 수상교통: `routes/river-bus/<route-id>/`
 - 버스 왕편/복편은 각각 별도의 `directions/*/direction.json`입니다. 한 방향을 `reverse()`하여 만들지 않습니다.
-- 실제 선형이 확보되지 않은 노선은 `geometryStatus: "missing"`으로 남기며 역간 직선을 실제 경로로 저장하지 않습니다.
+- 실제 선형이 확보되지 않은 노선은 `geometryStatus: "missing"`으로 남기며 역간 직선을 실제 경로로 저장하거나 렌더링하지 않습니다.
 - `generated`는 빌드 산출물이므로 직접 수정하지 않습니다.
 
-현재 데이터는 전국 확장을 위한 1차 대표 노선입니다. 전국 버스 완성본으로 가장하지 않습니다.
+현재 데이터는 전국 확장을 위한 1차 대표 노선입니다. 전국 버스 완성본으로 가장하지 않습니다. 한국 선택 화면은 `철도 / 버스 / 수상교통 / 기타 교통`을 먼저 나누며, 버스는 `지역 → 지역 공식 분류 → 노선` 순서로 필터링합니다.
+
+## OpenStreetMap geometry import
+
+OSM geometry는 플레이 중 내려받지 않고 개발 시 relation을 정규화해 각 방향 폴더의 `geometry.json`으로 저장합니다. importer는 relation member way 순서와 topology를 사용하고, 반대 방향 way는 복사본만 뒤집습니다. ordered stop node와 canonical stop sequence의 수·순서 및 선로 endpoint 거리를 검증하며, 불연속 way가 하나라도 있으면 저장하지 않습니다.
+
+```bash
+npm run import:osm-route -- \
+  --relation 4729409 \
+  --route kr-seoul-line-2 \
+  --direction inner \
+  --direction-file data/kr/routes/rail/seoul-line-2/directions/inner/direction.json \
+  --stops-file data/kr/stops/rail/stops.json \
+  --output data/kr/routes/rail/seoul-line-2/directions/inner/geometry.json
+```
+
+서울 2호선 본선은 OSM route master `7625892` 아래 내선순환 relation `4729409`, 외선순환 relation `2404374`를 사용합니다. 성수지선과 신정지선 relation은 본선 geometry에 억지로 합치지 않습니다.
 
 ## Phase 1 representative routes
 
