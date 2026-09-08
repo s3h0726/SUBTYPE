@@ -15,6 +15,7 @@
 		"audit:visual-assets": "node tools/audit-visual-assets.js",
 		"audit:japanese-korean-names": "node tools/audit-japanese-korean-names.js",
 		"audit:tokyo": "node tools/audit-tokyo-phase.js",
+    "validate:service-patterns": "node tools/validate-service-patterns.js && node tools/test-service-route-resolver.js",
 		"fix:japanese-korean-names": "node tools/apply-japanese-korean-fixes.js && node tools/audit-japanese-korean-names.js",
 		"editor:apply": "node tools/apply-editor-export.js",
 		"validate:data": "node tools/build-line-workspaces.js && node tools/audit-line-workspaces.js",
@@ -30,9 +31,9 @@
 		"source:namuwiki-name-queue": "node tools/build-namuwiki-name-queue.js",
 		"audit:namuwiki": "node tools/validate-namuwiki.js",
 		"validate:namuwiki": "node tools/validate-namuwiki.js",
-		"build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/build-static.js && node tools/validate-korea-data.js && node tools/test-single-source.js",
+		"build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/build-static.js && node tools/validate-korea-data.js && node tools/test-single-source.js",
 		"test:single-source": "node tools/test-single-source.js",
-		"test": "node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/audit-ui-quality.js && node tools/validate-korea-data.js && node tools/test-single-source.js"
+		"test": "node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/audit-ui-quality.js && node tools/validate-korea-data.js && node tools/test-single-source.js"
 	},
 	"devDependencies": {
 		"csv-parse": "^7.0.2",

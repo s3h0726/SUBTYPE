@@ -30,11 +30,13 @@ const distance=(a,b)=>{const lat=(a[0]+b[0])/2,dy=(a[0]-b[0])*111.32,dx=(a[1]-b[
 const closest=(geometry,point,start)=>{let best={index:-1,distance:Infinity};for(let index=start;index<geometry.length;index++){const current=distance(geometry[index],point);if(current<best.distance)best={index,distance:current}}return best};
 const normalizedStopName=value=>String(value||'').normalize('NFC').replace(/[（(][^）)]*[）)]/g,'').replace(/역$/,'').replace(/[^\p{L}\p{N}]/gu,'').toLowerCase();
 const osmStopName=node=>node?.tags?.['name:ko']||node?.tags?.name||'';
+const stopIdentityNames=stop=>[stop?.names?.ko,stop?.names?.ja,stop?.names?.en].map(normalizedStopName).filter(Boolean);
+const osmIdentityNames=node=>[node?.tags?.['name:ko'],node?.tags?.name,node?.tags?.['name:ja'],node?.tags?.['name:en']].map(normalizedStopName).filter(Boolean);
 function selectOrderedStops(allNodes,stopRelations,stopMap,routeId,directionId){
-  const expected=stopRelations.map(item=>{const stop=stopMap.get(item.stopId);if(!stop)throw new Error(`Unknown canonical stop ${item.stopId}`);return normalizedStopName(stop.names.ko)});
+  const expected=stopRelations.map(item=>{const stop=stopMap.get(item.stopId);if(!stop)throw new Error(`Unknown canonical stop ${item.stopId}`);return stopIdentityNames(stop)});
   for(let start=0;start<=allNodes.length-expected.length;start++){
     const candidate=allNodes.slice(start,start+expected.length);
-    if(candidate.every((node,index)=>normalizedStopName(osmStopName(node))===expected[index]))return{nodes:candidate,start,end:start+expected.length-1};
+    if(candidate.every((node,index)=>osmIdentityNames(node).some(name=>expected[index].includes(name))))return{nodes:candidate,start,end:start+expected.length-1};
   }
   const osmNames=allNodes.map(osmStopName);
   throw new Error(`${routeId}/${directionId}: canonical station sequence was not found in OSM stops (${expected.length}/${allNodes.length}); OSM=${JSON.stringify(osmNames)}`);

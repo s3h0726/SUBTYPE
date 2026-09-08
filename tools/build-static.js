@@ -12,8 +12,9 @@ const unsafe=[['operators',sourceCounts.operators,baseline.curated.operators],['
 if(!sourceCounts.operators||!sourceCounts.lines||!sourceCounts.relations||unsafe.length)throw new Error(`Destructive build blocked: ${unsafe.map(([key,current,previous])=>`${key} ${previous} -> ${current}`).join(', ')||'empty source data'}`);
 fs.rmSync(path.join(root,'js','rail-data.js'),{force:true});
 write('js/nationwide-data.js',`window.TRT_EMBEDDED_NATIONWIDE=${JSON.stringify({index:nationwideIndex,routes:nationwideRoutes})};\n`);
-const services=JSON.parse(read('data/services.json')),korean=JSON.parse(read('data/korean-overrides.json'));
-write('js/service-data.js',`window.TRT_SERVICE_CATALOG=${JSON.stringify(services.routes)};\nwindow.TRT_KOREAN_OVERRIDES=${JSON.stringify(korean.stations)};\n`);
+const services=JSON.parse(read('data/services.json')),korean=JSON.parse(read('data/korean-overrides.json')),tokyoServicePatterns=JSON.parse(read('data/tokyo-service-patterns.json'));
+tokyoServicePatterns.branches=(tokyoServicePatterns.branches||[]).map(branch=>({...branch,geometryData:branch.geometrySource?JSON.parse(read(branch.geometrySource)):null}));
+write('js/service-data.js',`window.TRT_SERVICE_CATALOG=${JSON.stringify(services.routes)};\nwindow.TRT_TOKYO_SERVICE_PATTERNS=${JSON.stringify(tokyoServicePatterns)};\nwindow.TRT_KOREAN_OVERRIDES=${JSON.stringify(korean.stations)};\n`);
 const lineThemes=JSON.parse(read('data/line-themes.json'));
 write('js/line-theme-data.js',`window.TRT_LINE_THEMES=${JSON.stringify(lineThemes.themes)};\n`);
 const lineBadges=JSON.parse(read('data/line-badges.json'));
@@ -22,7 +23,7 @@ const railSystem=JSON.parse(read('data/rail-system.json'));
 railSystem.throughServices=JSON.parse(read('data/through-services.json')).services;
 railSystem.audit={...(railSystem.audit||{}),throughServices:railSystem.throughServices.length};
 write('js/rail-system-data.js',`window.TRT_RAIL_SYSTEM=${JSON.stringify(railSystem)};\n`);
-const order=['utils.js','feature-flags.js','rail-data-repository.js','asset-renderer.js','storage.js','typing.js','typing-model.js','statistics-engine.js','line-badge.js','station-sign-templates.js','transport-stop-templates.js','route-integrity.js','route-renderer.js','game.js','statistics.js','network-map.js','data-loader.js','route-editor.js','auth.js','app.js'];
+const order=['utils.js','feature-flags.js','rail-data-repository.js','asset-renderer.js','storage.js','typing.js','typing-model.js','statistics-engine.js','line-badge.js','station-sign-templates.js','transport-stop-templates.js','route-integrity.js','service-route-resolver.js','route-renderer.js','game.js','statistics.js','network-map.js','data-loader.js','route-editor.js','auth.js','app.js'];
 const source=order.map(file=>read(`js/${file}`)
   .replace(/\bimport(?=\s|\{)[^;]+;/g,'')
   .replace(/\bexport\s+/g,'')
@@ -37,4 +38,4 @@ html=html.replace(/(\.\/js\/korea-index-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${diges
 html=html.replace(/(\.\/js\/app\.bundle\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(bundle)}`);
 write('index.html',html);
 const canonicalAssets=JSON.parse(read('data/generated/asset-registry.json'));
-console.log(JSON.stringify({bundle:'js/app.bundle.js',workspaceSource:'data/lines/**/line.json',workspaceBrowserData:'js/line-workspace-data.js',embeddedLines:categories.reduce((sum,category)=>sum+(embedded.lines[category].routes?.length||0),0),embeddedNationwideLines:nationwideIndex.routes?.length||0,embeddedNationwideRouteFiles:Object.keys(nationwideRoutes).length,services:Object.values(services.routes).reduce((sum,list)=>sum+list.length,0),koreanOverrides:Object.keys(korean.stations).length,lineThemes:Object.keys(lineThemes.themes).length,operatorAssets:Object.keys(canonicalAssets.operators||{}).length,lineBadges:Object.keys(lineBadges.routeCodes).length,realSymbolAssets:Object.keys(canonicalAssets.lines||{}).length,railSystem:railSystem.audit},null,2));
+console.log(JSON.stringify({bundle:'js/app.bundle.js',workspaceSource:'data/lines/**/line.json',workspaceBrowserData:'js/line-workspace-data.js',embeddedLines:categories.reduce((sum,category)=>sum+(embedded.lines[category].routes?.length||0),0),embeddedNationwideLines:nationwideIndex.routes?.length||0,embeddedNationwideRouteFiles:Object.keys(nationwideRoutes).length,services:Object.values(services.routes).reduce((sum,list)=>sum+list.length,0),servicePatterns:tokyoServicePatterns.servicePatterns.length,branches:tokyoServicePatterns.branches.length,koreanOverrides:Object.keys(korean.stations).length,lineThemes:Object.keys(lineThemes.themes).length,operatorAssets:Object.keys(canonicalAssets.operators||{}).length,lineBadges:Object.keys(lineBadges.routeCodes).length,realSymbolAssets:Object.keys(canonicalAssets.lines||{}).length,railSystem:railSystem.audit},null,2));

@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-08",
+  "trainTypes": [
+    {
+      "id": "tokyo-local",
+      "names": { "ja": "各駅停車", "ko": "각역정차", "en": "Local" },
+      "priority": 10
+    },
+    {
+      "id": "tokyo-metro-express",
+      "operatorId": "tokyo-metro",
+      "names": { "ja": "急行", "ko": "급행", "en": "Express" },
+      "priority": 30
+    },
+    {
+      "id": "through-regular",
+      "names": { "ja": "直通", "ko": "직통", "en": "Through" },
+      "priority": 20
+    }
+  ],
+  "branches": [
+    {
+      "id": "tokyo-metro-marunouchi-honancho-branch",
+      "parentLineId": "line-28002",
+      "junctionStationId": "station-mlit-003643",
+      "stationSequence": ["station-mlit-003643", "station-2800226", "station-2800227", "station-2800228"],
+      "stationCodes": {
+        "station-mlit-003643": "M06",
+        "station-2800226": "Mb05",
+        "station-2800227": "Mb04",
+        "station-2800228": "Mb03"
+      },
+      "names": { "ja": "丸ノ内線分岐線", "ko": "마루노우치선 호난초 지선", "en": "Marunouchi Line Honancho Branch" },
+      "geometrySource": "data/branches/tokyo-metro-marunouchi-honancho/geometry.json",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_marunouchi/index.html"
+        },
+        {
+          "type": "openstreetmap",
+          "relationId": "8015930",
+          "url": "https://www.openstreetmap.org/relation/8015930"
+        }
+      ]
+    }
+  ],
+  "servicePatterns": [
+    {
+      "id": "marunouchi-honancho-local",
+      "baseRouteId": "line-28002",
+      "branchId": "tokyo-metro-marunouchi-honancho-branch",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003643",
+      "destinationStationId": "station-2800228",
+      "directionId": "forward",
+      "stopStationIds": ["station-mlit-003643", "station-2800226", "station-2800227", "station-2800228"],
+      "names": { "ja": "方南町分岐線 各駅停車", "ko": "호난초 지선 각역정차", "en": "Honancho Branch Local" },
+      "sources": [
+        { "type": "official", "url": "https://www.tokyometro.jp/station/honancho/timetable/index.html" }
+      ]
+    },
+    {
+      "id": "fukutoshin-local-wakoshi-shibuya",
+      "baseRouteId": "line-28010",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003922",
+      "directionId": "forward",
+      "stopStationIds": ["station-mlit-003123", "station-mlit-003163", "station-mlit-003186", "station-mlit-003228", "station-mlit-003261", "station-mlit-003294", "station-mlit-003324", "station-mlit-003361", "station-mlit-003379", "station-mlit-003471", "station-mlit-003544", "station-mlit-003612", "station-mlit-003689", "station-mlit-003780", "station-1130206", "station-mlit-003922"],
+      "names": { "ja": "各駅停車 渋谷行", "ko": "각역정차 시부야행", "en": "Local for Shibuya" },
+      "sources": [
+        { "type": "official", "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html" }
+      ]
+    },
+    {
+      "id": "fukutoshin-express-wakoshi-shibuya",
+      "baseRouteId": "line-28010",
+      "trainTypeId": "tokyo-metro-express",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003922",
+      "directionId": "forward",
+      "stopStationIds": ["station-mlit-003123", "station-mlit-003294", "station-mlit-003379", "station-mlit-003689", "station-1130206", "station-mlit-003922"],
+      "names": { "ja": "急行 渋谷行", "ko": "급행 시부야행", "en": "Express for Shibuya" },
+      "sources": [
+        { "type": "official", "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html" }
+      ]
+    },
+    {
+      "id": "fukutoshin-minatomirai-through-local",
+      "baseRouteId": "line-28010",
+      "throughServiceId": "fukutoshin-tokyu-minatomirai",
+      "trainTypeId": "through-regular",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-004704",
+      "directionId": "forward",
+      "names": { "ja": "みなとみらい線直通 元町・中華街行", "ko": "미나토미라이선 직통 모토마치·주카가이행", "en": "Through to Motomachi-Chukagai" },
+      "sources": [
+        { "type": "official", "url": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf" }
+      ]
+    },
+    {
+      "id": "hanzomon-denentoshi-tobu-through",
+      "baseRouteId": "line-28008",
+      "throughServiceId": "denentoshi-hanzomon-tobu",
+      "trainTypeId": "through-regular",
+      "originStationId": "station-mlit-004498",
+      "destinationStationId": "station-mlit-002683",
+      "directionId": "forward",
+      "names": { "ja": "田園都市線・東武線直通 久喜行", "ko": "덴엔토시선·도부선 직통 구키행", "en": "Den-en-toshi/Hanzomon/Tobu Through Service" },
+      "sources": [
+        { "type": "official", "url": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf" }
+      ]
+    }
+  ]
+}
