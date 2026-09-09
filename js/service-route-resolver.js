@@ -9,7 +9,7 @@ export function serviceCatalog(){
 export function trainTypeFor(id){return serviceCatalog().trainTypes?.find(item=>item.id===id)||null}
 export function branchFor(id){return serviceCatalog().branches?.find(item=>item.id===id)||null}
 export function servicePatternFor(id){return serviceCatalog().servicePatterns?.find(item=>item.id===id)||null}
-export function servicePatternsForRoute(routeId){return(serviceCatalog().servicePatterns||[]).filter(item=>item.baseRouteId===routeId)}
+export function servicePatternsForRoute(routeId){return(serviceCatalog().servicePatterns||[]).filter(item=>item.baseRouteId===routeId&&(!item.status||item.status==='active'))}
 
 function contextOf(route){return{id:route.id,operatorId:route.operatorId,line:route.line,operator:route.operator,operatorAsset:route.operatorAsset,symbolAsset:route.symbolAsset,code:route.code,lineColor:route.lineColor,lineTheme:route.lineTheme}}
 
@@ -33,8 +33,15 @@ export function buildThroughServiceRoute(spec,getRoute){
   });
   const stations=[],geometry=[],contexts=[];
   for(const part of parts){
+    if(part.stations.length<2||part.geometry.length<2)throw new Error(`${spec.id}: incomplete part ${part.id}`);
+    if(stations.length){
+      if(stationKey(stations.at(-1))!==stationKey(part.stations[0]))throw new Error(`${spec.id}: disconnected station boundary at ${part.id}`);
+      const previous=geometry.at(-1),next=part.geometry[0];
+      // Adjacent sources must already meet; never manufacture a connector.
+      if(Math.hypot(previous[0]-next[0],previous[1]-next[1])>1e-7)throw new Error(`${spec.id}: geometry boundary gap at ${part.id}`);
+    }
     let offset=geometry.length;if(geometry.length&&part.geometry?.length&&Math.hypot(geometry.at(-1)[0]-part.geometry[0][0],geometry.at(-1)[1]-part.geometry[0][1])<.002){offset--;geometry.push(...copyGeometry(part.geometry).slice(1))}else geometry.push(...copyGeometry(part.geometry));
-    const context=contextOf(part),start=stations.length;
+    const context=contextOf(part),start=Math.max(0,stations.length-1);
     for(let index=0;index<part.stations.length;index++){
       const station=part.stations[index],sameBoundary=index===0&&stations.length&&stationKey(stations.at(-1))===stationKey(station);if(sameBoundary)continue;
       stations.push({...station,geometryIndex:(station.geometryIndex??0)+offset,segment:context})
@@ -64,6 +71,7 @@ export function resolveServiceSelection({baseRoute,servicePatternId,directionId=
   const pattern=servicePatternFor(servicePatternId);
   if(!pattern){const service=baseRoute.services?.find(item=>item.id===legacyServiceId)||baseRoute.services?.[0];return{route:baseRoute,service,direction:directionId,pattern:null,trainType:null,destinationStationId:null}}
   if(pattern.baseRouteId!==baseRoute.id)throw new Error(`${pattern.id}: pattern does not belong to ${baseRoute.id}`);
+  if(pattern.status&&pattern.status!=='active')throw new Error(`${pattern.id}: ${pattern.status}`);
   let route=baseRoute;
   if(pattern.branchId)route=buildBranchRoute(branchFor(pattern.branchId),baseRoute);
   if(pattern.throughServiceId){const spec=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).find(item=>item.id===pattern.throughServiceId);route=buildThroughServiceRoute(spec,getRoute)}

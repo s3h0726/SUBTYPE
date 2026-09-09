@@ -7,7 +7,7 @@ const catalog=json('data/tokyo-service-patterns.json');
 catalog.branches=catalog.branches.map(branch=>({...branch,geometryData:json(branch.geometrySource)}));
 context.TRT_TOKYO_SERVICE_PATTERNS=catalog;
 context.TRT_RAIL_SYSTEM={throughServices:json('data/through-services.json').services||[]};
-const resolverSource=read('js/service-route-resolver.js').replace(/^export\s+/gm,'')+'\n;globalThis.__resolver={resolveServiceSelection,servicePatternsForRoute};';
+const resolverSource=read('js/service-route-resolver.js').replace(/^export\s+/gm,'')+'\n;globalThis.__resolver={resolveServiceSelection,servicePatternsForRoute,buildThroughServiceRoute};';
 vm.runInContext(resolverSource,context,{filename:'service-route-resolver.js'});
 const {resolveServiceSelection,servicePatternsForRoute}=context.__resolver,getRoute=id=>routeMap.get(id),errors=[];
 const assert=(condition,message)=>{if(!condition)errors.push(message)};
@@ -33,6 +33,24 @@ assert(through.route.stations.at(-1).stationMasterId==='station-mlit-004704','Fu
 assert(through.destinationStationId==='station-mlit-004704','Resolved destination metadata is wrong');
 assert(servicePatternsForRoute('line-28010').length===3,'Fukutoshin setup must expose local, express, and through patterns');
 
-const immutableProbe=[[1,2],[3,4]],snapshot=JSON.stringify(immutableProbe);void immutableProbe.slice().reverse();assert(JSON.stringify(immutableProbe)===snapshot,'Reverse probe mutated its source geometry');
+const snapshot=JSON.stringify(routes);
+for(const spec of context.TRT_RAIL_SYSTEM.throughServices){
+  if(spec.id==='denentoshi-hanzomon-tobu'){
+    let blocked=false;try{context.__resolver.buildThroughServiceRoute(spec,getRoute)}catch(error){blocked=/geometry boundary gap/.test(error.message)}
+    assert(blocked,'Known Oshiage gap must remain blocked until verified geometry is repaired');
+    assert(!servicePatternsForRoute('line-28008').some(pattern=>pattern.id==='hanzomon-denentoshi-tobu-through'),'Unresolved Oshiage gap must not be offered as playable');
+    continue;
+  }
+  const resolved=context.__resolver.buildThroughServiceRoute(spec,getRoute);
+  assert(resolved.stations.length>1,`${spec.id}: missing resolved stations`);
+  for(const segment of resolved.segments)assert(segment.fromStation>=0&&segment.toStation<resolved.stations.length,`${spec.id}: invalid context range`);
+}
+assert(JSON.stringify(routes)===snapshot,'Through-service resolution mutated canonical routes');
+const invalid={id:'disconnected-test',routeIds:['line-28010','line-99310']};
+let rejected=false;try{context.__resolver.buildThroughServiceRoute(invalid,getRoute)}catch(error){rejected=/disconnected station boundary/.test(error.message)}
+assert(rejected,'Disconnected through-service stations must be rejected');
+const validSpec=context.TRT_RAIL_SYSTEM.throughServices[0];
+rejected=false;try{context.__resolver.buildThroughServiceRoute(validSpec,id=>{const route=getRoute(id);if(id!=='line-26001')return route;const copy=JSON.parse(JSON.stringify(route));copy.geometry[0][0]+=.01;return copy})}catch(error){rejected=/geometry boundary gap/.test(error.message)}
+assert(rejected,'Through-service geometry gaps must not create synthetic connectors');
 const summary={status:errors.length?'FAIL':'PASS',branch:{stations:branch.route.stations.length,geometryPoints:branch.route.geometry.length},express:{physicalStations:express.route.stations.length,typingStops:express.service.stops.length},through:{stations:through.route.stations.length,operators:[...operatorIds]},errors};
 console.log(JSON.stringify(summary,null,2));if(errors.length)process.exitCode=1;
