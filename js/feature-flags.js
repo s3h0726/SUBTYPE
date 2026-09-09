@@ -1,6 +1,6 @@
 export const FEATURE_FLAGS=Object.freeze({
   korea:false,
-  visibleJapanRegion:'tokyo-area'
+  visibleJapanRegion:'all'
 });
 
 export const isCountryEnabled=countryId=>countryId!=='kr'||FEATURE_FLAGS.korea;

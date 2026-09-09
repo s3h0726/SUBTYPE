@@ -12,12 +12,14 @@ vm.runInContext(resolverSource,context,{filename:'service-route-resolver.js'});
 const {resolveServiceSelection,servicePatternsForRoute}=context.__resolver,getRoute=id=>routeMap.get(id),errors=[];
 const assert=(condition,message)=>{if(!condition)errors.push(message)};
 
-const branchBase=getRoute('line-28002'),branch=resolveServiceSelection({baseRoute:branchBase,servicePatternId:'marunouchi-honancho-local',getRoute});
-assert(branch.route.dataKind==='branch','Honancho pattern did not resolve as a branch');
-assert(branch.route.stations.length===4,'Honancho branch station count is not 4');
-assert(branch.route.directedSegments.length===3,'Honancho branch geometry segment count is not 3');
-assert(branch.route.geometry.length===57,'Honancho branch must retain the 57-point OSM alignment');
-assert(branch.route.stations[0].stationCode==='M06'&&branch.route.stations.at(-1).stationCode==='Mb03','Honancho branch station context codes are wrong');
+const marunouchiMain=getRoute('line-28002'),branchRoute=getRoute('line-28002-honancho-branch');
+assert(marunouchiMain.stations.length===25,'Marunouchi main line must end at Ogikubo with 25 stations');
+assert(marunouchiMain.stations.at(-1).stationMasterId==='station-mlit-003575','Marunouchi main terminal is not Ogikubo');
+assert(branchRoute?.dataKind==='branchRoute','Honancho branch is not an independent canonical route');
+assert(branchRoute?.stations.length===4,'Honancho branch station count is not 4');
+assert(branchRoute?.directedSegments.length===3,'Honancho branch geometry segment count is not 3');
+assert(branchRoute?.geometry.length===57,'Honancho branch must retain the 57-point OSM alignment');
+assert(branchRoute?.stations[0].stationCode==='M06'&&branchRoute?.stations.at(-1).stationCode==='Mb03','Honancho branch station context codes are wrong');
 
 const fukutoshin=getRoute('line-28010'),express=resolveServiceSelection({baseRoute:fukutoshin,servicePatternId:'fukutoshin-express-wakoshi-shibuya',getRoute});
 assert(express.route.stations.length===16,'Fukutoshin express lost physical stations');
@@ -52,5 +54,5 @@ assert(rejected,'Disconnected through-service stations must be rejected');
 const validSpec=context.TRT_RAIL_SYSTEM.throughServices[0];
 rejected=false;try{context.__resolver.buildThroughServiceRoute(validSpec,id=>{const route=getRoute(id);if(id!=='line-26001')return route;const copy=JSON.parse(JSON.stringify(route));copy.geometry[0][0]+=.01;return copy})}catch(error){rejected=/geometry boundary gap/.test(error.message)}
 assert(rejected,'Through-service geometry gaps must not create synthetic connectors');
-const summary={status:errors.length?'FAIL':'PASS',branch:{stations:branch.route.stations.length,geometryPoints:branch.route.geometry.length},express:{physicalStations:express.route.stations.length,typingStops:express.service.stops.length},through:{stations:through.route.stations.length,operators:[...operatorIds]},errors};
+const summary={status:errors.length?'FAIL':'PASS',marunouchi:{mainStations:marunouchiMain.stations.length,branchStations:branchRoute?.stations.length,branchGeometryPoints:branchRoute?.geometry.length},express:{physicalStations:express.route.stations.length,typingStops:express.service.stops.length},through:{stations:through.route.stations.length,operators:[...operatorIds]},errors};
 console.log(JSON.stringify(summary,null,2));if(errors.length)process.exitCode=1;
