@@ -31,7 +31,10 @@
   "loop": false,
   "stationSignTemplate": "tokyo-metro",
   "services": [],
-  "throughServiceIds": [],
+  "throughServiceIds": [
+    "chiyoda-joban-odakyu",
+    "chiyoda-odakyu-tama"
+  ],
   "sources": {
     "official": "",
     "korean": "",
@@ -68,5 +71,8 @@
     "status": "VERIFIED",
     "family": "official",
     "method": "direct"
-  }
+  },
+  "throughServiceStatus": "current",
+  "throughServiceVerifiedAt": "2026-09-11",
+  "throughServiceSource": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf"
 }

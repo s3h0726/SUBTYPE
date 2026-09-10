@@ -118,7 +118,137 @@
     "officialSymbolExists": true,
     "loop": false,
     "stationSignTemplate": "tokyo-metro",
-    "services": [],
+    "services": [
+      {
+        "id": "local",
+        "nameJa": "各駅停車",
+        "nameKo": "각역정차",
+        "nameEn": "Local",
+        "stops": "all"
+      },
+      {
+        "id": "commuter-express",
+        "nameJa": "通勤急行",
+        "nameKo": "통근급행",
+        "nameEn": "Commuter Express",
+        "stops": "serviceStops.commuterExpress"
+      },
+      {
+        "id": "express",
+        "nameJa": "急行",
+        "nameKo": "급행",
+        "nameEn": "Express",
+        "stops": "serviceStops.express"
+      },
+      {
+        "id": "s-train",
+        "nameJa": "S-TRAIN",
+        "nameKo": "S-TRAIN",
+        "nameEn": "S-TRAIN",
+        "stops": "serviceStops.sTrain"
+      }
+    ],
+    "throughServiceIds": [
+      "fukutoshin-tokyu-minatomirai",
+      "fukutoshin-tobu-minatomirai",
+      "fukutoshin-seibu-minatomirai",
+      "fukutoshin-tokyu-sotetsu-shonandai"
+    ],
+    "throughOperations": [
+      {
+        "direction": "northbound",
+        "viaLineIds": [
+          "line-21001"
+        ],
+        "operatorIds": [
+          "tobu"
+        ],
+        "serviceNames": [
+          "F라이너",
+          "통근급행",
+          "각역정차"
+        ],
+        "destinationNames": [
+          "신린코엔",
+          "오가와마치"
+        ],
+        "status": "metadata-only"
+      },
+      {
+        "direction": "northbound",
+        "viaLineIds": [
+          "line-22003",
+          "line-22001"
+        ],
+        "operatorIds": [
+          "seibu"
+        ],
+        "serviceNames": [
+          "S-TRAIN",
+          "F라이너",
+          "쾌속",
+          "준급",
+          "각역정차"
+        ],
+        "destinationNames": [
+          "한노",
+          "세이부치치부"
+        ],
+        "status": "metadata-only"
+      },
+      {
+        "direction": "southbound",
+        "viaLineIds": [
+          "line-26001",
+          "line-99310"
+        ],
+        "operatorIds": [
+          "tokyu",
+          "yokohama-minatomirai-railway"
+        ],
+        "serviceNames": [
+          "S-TRAIN",
+          "F라이너",
+          "급행",
+          "통근급행",
+          "각역정차"
+        ],
+        "destinationNames": [
+          "모토마치·주카가이"
+        ],
+        "status": "playable"
+      },
+      {
+        "direction": "southbound",
+        "viaLineIds": [
+          "line-26001",
+          "line-29002"
+        ],
+        "viaPhysicalLineNames": [
+          "도큐 신요코하마선",
+          "소테츠 신요코하마선",
+          "소테츠 이즈미노선"
+        ],
+        "operatorIds": [
+          "tokyu",
+          "sotetsu"
+        ],
+        "serviceNames": [
+          "급행"
+        ],
+        "destinationNames": [
+          "쇼난다이"
+        ],
+        "status": "metadata-only"
+      }
+    ],
+    "routeInfo": {
+      "lengthKm": 20.2,
+      "stationCount": 16,
+      "distanceOriginStationId": "station-mlit-003123",
+      "officialStationGuide": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+      "verifiedAt": "2026-09-10"
+    },
     "stations": [
       {
         "id": "station-mlit-003123",
@@ -132,15 +262,42 @@
         "koAliases": [],
         "latitude": 35.78835,
         "longitude": 139.612865,
-        "officialCode": "F01",
-        "stationCode": "F01",
+        "order": 1,
+        "officialCode": "F-01",
+        "stationCode": "F-01",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 0,
+        "location": {
+          "prefecture": "사이타마현",
+          "municipality": "와코시"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-01",
+            "sharedTrack": true
+          },
+          {
+            "lineId": "line-21001",
+            "stationCode": "TJ11",
+            "throughService": true
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": true,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -159,20 +316,42 @@
         "sourceId": "station-mlit-003163",
         "ja": "地下鉄成増",
         "kana": "ちかてつなります",
-        "ko": "지하철나리마스",
+        "ko": "치카테츠나리마스",
         "romaji": "Chikatetsunarimasu",
         "koAliases": [],
         "latitude": 35.77674,
         "longitude": 139.63117,
-        "officialCode": "F02",
-        "stationCode": "F02",
+        "order": 2,
+        "officialCode": "F-02",
+        "stationCode": "F-02",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 2.2,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "이타바시구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-02",
+            "sharedTrack": true
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -191,20 +370,42 @@
         "sourceId": "station-mlit-003186",
         "ja": "地下鉄赤塚",
         "kana": "ちかてつあかづか",
-        "ko": "지하철아카츠카",
+        "ko": "치카테츠아카츠카",
         "romaji": "Chikatetsuakazuka",
         "koAliases": [],
         "latitude": 35.770217,
         "longitude": 139.643597,
-        "officialCode": "F03",
-        "stationCode": "F03",
+        "order": 3,
+        "officialCode": "F-03",
+        "stationCode": "F-03",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 3.6,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "네리마구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-03",
+            "sharedTrack": true
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -228,15 +429,37 @@
         "koAliases": [],
         "latitude": 35.757555,
         "longitude": 139.6543,
-        "officialCode": "F04",
-        "stationCode": "F04",
+        "order": 4,
+        "officialCode": "F-04",
+        "stationCode": "F-04",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 5.4,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "네리마구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-04",
+            "sharedTrack": true
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -260,15 +483,37 @@
         "koAliases": [],
         "latitude": 35.74962,
         "longitude": 139.66547,
-        "officialCode": "F05",
-        "stationCode": "F05",
+        "order": 5,
+        "officialCode": "F-05",
+        "stationCode": "F-05",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 6.8,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "네리마구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-05",
+            "sharedTrack": true
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -292,15 +537,42 @@
         "koAliases": [],
         "latitude": 35.743395,
         "longitude": 139.67952,
-        "officialCode": "F06",
-        "stationCode": "F06",
+        "order": 6,
+        "officialCode": "F-06",
+        "stationCode": "F-06",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 8.3,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "네리마구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-22003",
+            "stationCode": "SI37",
+            "throughService": true
+          },
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-06",
+            "sharedTrack": true
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": true,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -324,15 +596,36 @@
         "koAliases": [],
         "latitude": 35.738175,
         "longitude": 139.6894,
-        "officialCode": "F07",
-        "stationCode": "F07",
+        "order": 7,
+        "officialCode": "F-07",
+        "stationCode": "F-07",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 9.3,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "도시마구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-07"
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": false,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -356,15 +649,36 @@
         "koAliases": [],
         "latitude": 35.733215,
         "longitude": 139.69848,
-        "officialCode": "F08",
-        "stationCode": "F08",
+        "order": 8,
+        "officialCode": "F-08",
+        "stationCode": "F-08",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 10.4,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "도시마구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-08"
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": false,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -388,15 +702,60 @@
         "koAliases": [],
         "latitude": 35.73148,
         "longitude": 139.70772,
-        "officialCode": "F09",
-        "stationCode": "F09",
+        "order": 9,
+        "officialCode": "F-09",
+        "stationCode": "F-09",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 11.3,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "도시마구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28002",
+            "stationCode": "M-25"
+          },
+          {
+            "lineId": "line-28006",
+            "stationCode": "Y-09"
+          },
+          {
+            "lineId": "line-11302",
+            "stationCode": "JY13"
+          },
+          {
+            "lineId": "line-11321",
+            "stationCode": "JA12"
+          },
+          {
+            "lineId": "line-11333",
+            "stationCode": "JS21"
+          },
+          {
+            "lineId": "line-22001",
+            "stationCode": "SI01"
+          },
+          {
+            "lineId": "line-21001",
+            "stationCode": "TJ01"
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": true,
+          "sTrain": true
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -420,15 +779,37 @@
         "koAliases": [],
         "latitude": 35.7202,
         "longitude": 139.714715,
-        "officialCode": "F10",
-        "stationCode": "F10",
+        "order": 10,
+        "officialCode": "F-10",
+        "stationCode": "F-10",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 13.1,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "도시마구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-99305",
+            "stationCode": "SA27",
+            "connectionStationName": "키시보진마에"
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": false,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -452,15 +833,31 @@
         "koAliases": [],
         "latitude": 35.707993,
         "longitude": 139.70916,
-        "officialCode": "F11",
-        "stationCode": "F11",
+        "order": 11,
+        "officialCode": "F-11",
+        "stationCode": "F-11",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 14.6,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "신주쿠구"
+        },
+        "transfers": [],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": false,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -484,15 +881,36 @@
         "koAliases": [],
         "latitude": 35.700107,
         "longitude": 139.707897,
-        "officialCode": "F12",
-        "stationCode": "F12",
+        "order": 12,
+        "officialCode": "F-12",
+        "stationCode": "F-12",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 15.5,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "신주쿠구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-99301",
+            "stationCode": "E-02"
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": false,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -516,15 +934,40 @@
         "koAliases": [],
         "latitude": 35.69118,
         "longitude": 139.70421,
-        "officialCode": "F13",
-        "stationCode": "F13",
+        "order": 13,
+        "officialCode": "F-13",
+        "stationCode": "F-13",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 16.6,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "신주쿠구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28002",
+            "stationCode": "M-09"
+          },
+          {
+            "lineId": "line-99304",
+            "stationCode": "S-02"
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": true,
+          "sTrain": true
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -548,15 +991,31 @@
         "koAliases": [],
         "latitude": 35.678237,
         "longitude": 139.705643,
-        "officialCode": "F14",
-        "stationCode": "F14",
+        "order": 14,
+        "officialCode": "F-14",
+        "stationCode": "F-14",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 18,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "시부야구"
+        },
+        "transfers": [],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": false,
+          "express": false,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -580,15 +1039,41 @@
         "koAliases": [],
         "latitude": 35.669071,
         "longitude": 139.703995,
-        "officialCode": "F15",
-        "stationCode": "F15",
+        "order": 15,
+        "officialCode": "F-15",
+        "stationCode": "F-15",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 19.2,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "시부야구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-28005",
+            "stationCode": "C-03"
+          },
+          {
+            "lineId": "line-11302",
+            "stationCode": "JY19",
+            "connectionStationName": "하라주쿠"
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": true,
+          "sTrain": false
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",
@@ -612,15 +1097,65 @@
         "koAliases": [],
         "latitude": 35.658082,
         "longitude": 139.701724,
-        "officialCode": "F16",
-        "stationCode": "F16",
+        "order": 16,
+        "officialCode": "F-16",
+        "stationCode": "F-16",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "legacy-unverified",
-          "url": "",
-          "verified": false,
-          "confidence": "LOW",
-          "status": "REVIEW_REQUIRED"
+          "family": "official",
+          "method": "direct",
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "verifiedDate": "2026-09-10",
+          "status": "VERIFIED"
+        },
+        "distanceKm": 20.2,
+        "location": {
+          "prefecture": "도쿄도",
+          "municipality": "시부야구"
+        },
+        "transfers": [
+          {
+            "lineId": "line-26001",
+            "stationCode": "TY01",
+            "throughService": true
+          },
+          {
+            "lineId": "line-26003",
+            "stationCode": "DT01"
+          },
+          {
+            "lineId": "line-28001",
+            "stationCode": "G-01"
+          },
+          {
+            "lineId": "line-28008",
+            "stationCode": "Z-01"
+          },
+          {
+            "lineId": "line-11302",
+            "stationCode": "JY20"
+          },
+          {
+            "lineId": "line-11321",
+            "stationCode": "JA10"
+          },
+          {
+            "lineId": "line-11333",
+            "stationCode": "JS19"
+          },
+          {
+            "lineId": "line-24006",
+            "stationCode": "IN01"
+          }
+        ],
+        "serviceStops": {
+          "local": true,
+          "commuterExpress": true,
+          "express": true,
+          "sTrain": true
         },
         "koSource": "namuwiki-unresolved",
         "koSourceUrl": "",

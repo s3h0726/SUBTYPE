@@ -1,31 +1,1178 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "services": [
     {
-      "id": "fukutoshin-tokyu-minatomirai",
-      "nameJa": "副都心線・東横線・みなとみらい線直通",
-      "nameKo": "후쿠토신선·도요코선·미나토미라이선 직결",
-      "nameEn": "Fukutoshin–Toyoko–Minatomirai Through Service",
-      "routeIds": ["line-28010", "line-26001", "line-99310"],
-      "junctionStations": ["渋谷", "横浜"],
-      "allowedDestinations": ["元町・中華街"],
-      "sourceUrl": "https://www.tokyometro.jp/lang_en/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
-      "verifiedDate": "2026-09-06"
+      "id": "hibiya-tobu",
+      "nameJa": "日比谷線・東武線直通",
+      "nameKo": "히비야선·도부선 직통",
+      "nameEn": "Hibiya–Tobu Through Service",
+      "participatingOperatorIds": [
+        "tokyo-metro",
+        "tobu"
+      ],
+      "participatingLineIds": [
+        "line-28003",
+        "line-21002",
+        "line-21003"
+      ],
+      "boundaryStations": [
+        "北千住",
+        "東武動物公園"
+      ],
+      "allowedDestinations": [
+        "中目黒",
+        "南栗橋"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-28003",
+            "direction": "reverse",
+            "startStationJa": "中目黒",
+            "endStationJa": "北千住"
+          },
+          {
+            "routeId": "line-21002",
+            "direction": "forward",
+            "startStationJa": "北千住",
+            "endStationJa": "東武動物公園"
+          },
+          {
+            "routeId": "line-21003",
+            "direction": "forward",
+            "startStationJa": "東武動物公園",
+            "endStationJa": "南栗橋"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-21003",
+            "direction": "reverse",
+            "startStationJa": "南栗橋",
+            "endStationJa": "東武動物公園"
+          },
+          {
+            "routeId": "line-21002",
+            "direction": "reverse",
+            "startStationJa": "東武動物公園",
+            "endStationJa": "北千住"
+          },
+          {
+            "routeId": "line-28003",
+            "direction": "forward",
+            "startStationJa": "北千住",
+            "endStationJa": "中目黒"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "tozai-chuo-sobu",
+      "nameJa": "中央・総武線・東西線直通",
+      "nameKo": "주오·소부선·도자이선 직통",
+      "nameEn": "Chuo–Tozai–Sobu Through Service",
+      "participatingOperatorIds": [
+        "jr-east",
+        "tokyo-metro"
+      ],
+      "participatingLineIds": [
+        "line-11313",
+        "line-28004"
+      ],
+      "boundaryStations": [
+        "中野",
+        "西船橋"
+      ],
+      "allowedDestinations": [
+        "三鷹",
+        "津田沼"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-11313",
+            "direction": "forward",
+            "startStationJa": "三鷹",
+            "endStationJa": "中野"
+          },
+          {
+            "routeId": "line-28004",
+            "direction": "forward",
+            "startStationJa": "中野",
+            "endStationJa": "西船橋"
+          },
+          {
+            "routeId": "line-11313",
+            "direction": "forward",
+            "startStationJa": "西船橋",
+            "endStationJa": "津田沼"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-11313",
+            "direction": "reverse",
+            "startStationJa": "津田沼",
+            "endStationJa": "西船橋"
+          },
+          {
+            "routeId": "line-28004",
+            "direction": "reverse",
+            "startStationJa": "西船橋",
+            "endStationJa": "中野"
+          },
+          {
+            "routeId": "line-11313",
+            "direction": "reverse",
+            "startStationJa": "中野",
+            "endStationJa": "三鷹"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "tozai-toyo-rapid",
+      "nameJa": "東西線・東葉高速線直通",
+      "nameKo": "도자이선·도요 고속선 직통",
+      "nameEn": "Tozai–Toyo Rapid Through Service",
+      "participatingOperatorIds": [
+        "tokyo-metro",
+        "higashihakosokutetsudo"
+      ],
+      "participatingLineIds": [
+        "line-28004",
+        "line-99338"
+      ],
+      "boundaryStations": [
+        "西船橋"
+      ],
+      "allowedDestinations": [
+        "中野",
+        "東葉勝田台"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-28004",
+            "direction": "forward",
+            "startStationJa": "中野",
+            "endStationJa": "西船橋"
+          },
+          {
+            "routeId": "line-99338",
+            "direction": "forward",
+            "startStationJa": "西船橋",
+            "endStationJa": "東葉勝田台"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-99338",
+            "direction": "reverse",
+            "startStationJa": "東葉勝田台",
+            "endStationJa": "西船橋"
+          },
+          {
+            "routeId": "line-28004",
+            "direction": "reverse",
+            "startStationJa": "西船橋",
+            "endStationJa": "中野"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "chiyoda-joban-odakyu",
+      "nameJa": "常磐線・千代田線・小田急線直通",
+      "nameKo": "조반선·지요다선·오다큐선 직통",
+      "nameEn": "Joban–Chiyoda–Odakyu Through Service",
+      "participatingOperatorIds": [
+        "jr-east",
+        "tokyo-metro",
+        "odakyu"
+      ],
+      "participatingLineIds": [
+        "line-11320",
+        "line-28005",
+        "line-25001"
+      ],
+      "boundaryStations": [
+        "綾瀬",
+        "代々木上原"
+      ],
+      "allowedDestinations": [
+        "我孫子",
+        "本厚木"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-11320",
+            "direction": "reverse",
+            "startStationJa": "我孫子",
+            "endStationJa": "綾瀬"
+          },
+          {
+            "routeId": "line-28005",
+            "direction": "forward",
+            "startStationJa": "綾瀬",
+            "endStationJa": "代々木上原"
+          },
+          {
+            "routeId": "line-25001",
+            "direction": "forward",
+            "startStationJa": "代々木上原",
+            "endStationJa": "本厚木"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-25001",
+            "direction": "reverse",
+            "startStationJa": "本厚木",
+            "endStationJa": "代々木上原"
+          },
+          {
+            "routeId": "line-28005",
+            "direction": "reverse",
+            "startStationJa": "代々木上原",
+            "endStationJa": "綾瀬"
+          },
+          {
+            "routeId": "line-11320",
+            "direction": "forward",
+            "startStationJa": "綾瀬",
+            "endStationJa": "我孫子"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "chiyoda-odakyu-tama",
+      "nameJa": "千代田線・小田急多摩線直通",
+      "nameKo": "지요다선·오다큐 다마선 직통",
+      "nameEn": "Chiyoda–Odakyu Tama Through Service",
+      "participatingOperatorIds": [
+        "tokyo-metro",
+        "odakyu"
+      ],
+      "participatingLineIds": [
+        "line-28005",
+        "line-25001",
+        "line-25003"
+      ],
+      "boundaryStations": [
+        "代々木上原",
+        "新百合ヶ丘"
+      ],
+      "allowedDestinations": [
+        "綾瀬",
+        "唐木田"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-28005",
+            "direction": "forward",
+            "startStationJa": "綾瀬",
+            "endStationJa": "代々木上原"
+          },
+          {
+            "routeId": "line-25001",
+            "direction": "forward",
+            "startStationJa": "代々木上原",
+            "endStationJa": "新百合ヶ丘"
+          },
+          {
+            "routeId": "line-25003",
+            "direction": "forward",
+            "startStationJa": "新百合ヶ丘",
+            "endStationJa": "唐木田"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-25003",
+            "direction": "reverse",
+            "startStationJa": "唐木田",
+            "endStationJa": "新百合ヶ丘"
+          },
+          {
+            "routeId": "line-25001",
+            "direction": "reverse",
+            "startStationJa": "新百合ヶ丘",
+            "endStationJa": "代々木上原"
+          },
+          {
+            "routeId": "line-28005",
+            "direction": "reverse",
+            "startStationJa": "代々木上原",
+            "endStationJa": "綾瀬"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "yurakucho-tobu",
+      "nameJa": "東武東上線・有楽町線直通",
+      "nameKo": "도부 도조선·유라쿠초선 직통",
+      "nameEn": "Tobu Tojo–Yurakucho Through Service",
+      "participatingOperatorIds": [
+        "tobu",
+        "tokyo-metro"
+      ],
+      "participatingLineIds": [
+        "line-21001",
+        "line-28006"
+      ],
+      "boundaryStations": [
+        "和光市"
+      ],
+      "allowedDestinations": [
+        "森林公園",
+        "新木場"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-21001",
+            "direction": "reverse",
+            "startStationJa": "森林公園",
+            "endStationJa": "和光市"
+          },
+          {
+            "routeId": "line-28006",
+            "direction": "forward",
+            "startStationJa": "和光市",
+            "endStationJa": "新木場"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-28006",
+            "direction": "reverse",
+            "startStationJa": "新木場",
+            "endStationJa": "和光市"
+          },
+          {
+            "routeId": "line-21001",
+            "direction": "forward",
+            "startStationJa": "和光市",
+            "endStationJa": "森林公園"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "yurakucho-seibu",
+      "nameJa": "西武線・有楽町線直通",
+      "nameKo": "세이부선·유라쿠초선 직통",
+      "nameEn": "Seibu–Yurakucho Through Service",
+      "participatingOperatorIds": [
+        "seibu",
+        "tokyo-metro"
+      ],
+      "participatingLineIds": [
+        "line-22001",
+        "line-22003",
+        "line-28006"
+      ],
+      "boundaryStations": [
+        "練馬",
+        "小竹向原"
+      ],
+      "allowedDestinations": [
+        "飯能",
+        "新木場"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-22001",
+            "direction": "reverse",
+            "startStationJa": "飯能",
+            "endStationJa": "練馬"
+          },
+          {
+            "routeId": "line-22003",
+            "direction": "reverse",
+            "startStationJa": "練馬",
+            "endStationJa": "小竹向原"
+          },
+          {
+            "routeId": "line-28006",
+            "direction": "forward",
+            "startStationJa": "小竹向原",
+            "endStationJa": "新木場"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-28006",
+            "direction": "reverse",
+            "startStationJa": "新木場",
+            "endStationJa": "小竹向原"
+          },
+          {
+            "routeId": "line-22003",
+            "direction": "forward",
+            "startStationJa": "小竹向原",
+            "endStationJa": "練馬"
+          },
+          {
+            "routeId": "line-22001",
+            "direction": "forward",
+            "startStationJa": "練馬",
+            "endStationJa": "飯能"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
     },
     {
       "id": "denentoshi-hanzomon-tobu",
-      "nameJa": "田園都市線・半蔵門線・東武伊勢崎線直通",
-      "nameKo": "덴엔토시선·한조몬선·도부 이세사키선 직결",
+      "nameJa": "田園都市線・半蔵門線・東武線直通",
+      "nameKo": "덴엔토시선·한조몬선·도부선 직통",
       "nameEn": "Den-en-toshi–Hanzomon–Tobu Through Service",
-      "routeSegments": [
-        {"routeId": "line-26003", "direction": "reverse", "startStationJa": "中央林間", "endStationJa": "渋谷"},
-        {"routeId": "line-28008", "direction": "forward", "startStationJa": "渋谷", "endStationJa": "押上〈スカイツリー前〉"},
-        {"routeId": "line-21002", "direction": "forward", "startStationJa": "押上〈スカイツリー前〉", "endStationJa": "久喜"}
+      "participatingOperatorIds": [
+        "tokyu",
+        "tokyo-metro",
+        "tobu"
       ],
-      "junctionStations": ["渋谷", "押上〈スカイツリー前〉"],
-      "allowedDestinations": ["久喜"],
-      "sourceUrl": "https://ssl.tokyometro.jp/support/faq_answer?faqno=OpenFAQ-001727&lang=en",
-      "verifiedDate": "2026-09-06"
+      "participatingLineIds": [
+        "line-26003",
+        "line-28008",
+        "line-21002"
+      ],
+      "boundaryStations": [
+        "渋谷",
+        "押上〈スカイツリー前〉"
+      ],
+      "allowedDestinations": [
+        "中央林間",
+        "久喜"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-26003",
+            "direction": "reverse",
+            "startStationJa": "中央林間",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-28008",
+            "direction": "forward",
+            "startStationJa": "渋谷",
+            "endStationJa": "押上〈スカイツリー前〉"
+          },
+          {
+            "routeId": "line-21002",
+            "direction": "forward",
+            "startStationJa": "押上〈スカイツリー前〉",
+            "endStationJa": "久喜"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-21002",
+            "direction": "reverse",
+            "startStationJa": "久喜",
+            "endStationJa": "押上〈スカイツリー前〉"
+          },
+          {
+            "routeId": "line-28008",
+            "direction": "reverse",
+            "startStationJa": "押上〈スカイツリー前〉",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-26003",
+            "direction": "forward",
+            "startStationJa": "渋谷",
+            "endStationJa": "中央林間"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "namboku-saitama-tokyu",
+      "nameJa": "埼玉高速線・南北線・東急目黒線直通",
+      "nameKo": "사이타마 고속선·난보쿠선·도큐 메구로선 직통",
+      "nameEn": "Saitama Railway–Namboku–Tokyu Meguro Through Service",
+      "participatingOperatorIds": [
+        "saitama-railway",
+        "tokyo-metro",
+        "tokyu"
+      ],
+      "participatingLineIds": [
+        "line-99307",
+        "line-28009",
+        "line-26002"
+      ],
+      "boundaryStations": [
+        "赤羽岩淵",
+        "目黒"
+      ],
+      "allowedDestinations": [
+        "浦和美園",
+        "日吉"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99307",
+            "direction": "reverse",
+            "startStationJa": "浦和美園",
+            "endStationJa": "赤羽岩淵"
+          },
+          {
+            "routeId": "line-28009",
+            "direction": "forward",
+            "startStationJa": "赤羽岩淵",
+            "endStationJa": "目黒"
+          },
+          {
+            "routeId": "line-26002",
+            "direction": "forward",
+            "startStationJa": "目黒",
+            "endStationJa": "日吉"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-26002",
+            "direction": "reverse",
+            "startStationJa": "日吉",
+            "endStationJa": "目黒"
+          },
+          {
+            "routeId": "line-28009",
+            "direction": "reverse",
+            "startStationJa": "目黒",
+            "endStationJa": "赤羽岩淵"
+          },
+          {
+            "routeId": "line-99307",
+            "direction": "forward",
+            "startStationJa": "赤羽岩淵",
+            "endStationJa": "浦和美園"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "namboku-saitama-tokyu-sotetsu-ebina",
+      "nameJa": "埼玉高速線・南北線・東急線・相鉄線直通（海老名）",
+      "nameKo": "사이타마 고속선·난보쿠선·도큐선·소테츠선 직통(에비나)",
+      "nameEn": "Saitama–Namboku–Tokyu–Sotetsu Through Service to Ebina",
+      "participatingOperatorIds": [
+        "saitama-railway",
+        "tokyo-metro",
+        "tokyu",
+        "sotetsu"
+      ],
+      "participatingLineIds": [
+        "line-99307",
+        "line-28009",
+        "line-26002",
+        "line-26009",
+        "line-29003",
+        "line-29001"
+      ],
+      "boundaryStations": [
+        "赤羽岩淵",
+        "目黒",
+        "日吉",
+        "新横浜",
+        "西谷"
+      ],
+      "allowedDestinations": [
+        "浦和美園",
+        "海老名"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99307",
+            "direction": "reverse",
+            "startStationJa": "浦和美園",
+            "endStationJa": "赤羽岩淵"
+          },
+          {
+            "routeId": "line-28009",
+            "direction": "forward",
+            "startStationJa": "赤羽岩淵",
+            "endStationJa": "目黒"
+          },
+          {
+            "routeId": "line-26002",
+            "direction": "forward",
+            "startStationJa": "目黒",
+            "endStationJa": "日吉"
+          },
+          {
+            "routeId": "line-26009",
+            "direction": "forward",
+            "startStationJa": "日吉",
+            "endStationJa": "新横浜"
+          },
+          {
+            "routeId": "line-29003",
+            "direction": "reverse",
+            "startStationJa": "新横浜",
+            "endStationJa": "西谷"
+          },
+          {
+            "routeId": "line-29001",
+            "direction": "forward",
+            "startStationJa": "西谷",
+            "endStationJa": "海老名"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-29001",
+            "direction": "reverse",
+            "startStationJa": "海老名",
+            "endStationJa": "西谷"
+          },
+          {
+            "routeId": "line-29003",
+            "direction": "forward",
+            "startStationJa": "西谷",
+            "endStationJa": "新横浜"
+          },
+          {
+            "routeId": "line-26009",
+            "direction": "reverse",
+            "startStationJa": "新横浜",
+            "endStationJa": "日吉"
+          },
+          {
+            "routeId": "line-26002",
+            "direction": "reverse",
+            "startStationJa": "日吉",
+            "endStationJa": "目黒"
+          },
+          {
+            "routeId": "line-28009",
+            "direction": "reverse",
+            "startStationJa": "目黒",
+            "endStationJa": "赤羽岩淵"
+          },
+          {
+            "routeId": "line-99307",
+            "direction": "forward",
+            "startStationJa": "赤羽岩淵",
+            "endStationJa": "浦和美園"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "namboku-saitama-tokyu-sotetsu-shonandai",
+      "nameJa": "埼玉高速線・南北線・東急線・相鉄線直通（湘南台）",
+      "nameKo": "사이타마 고속선·난보쿠선·도큐선·소테츠선 직통(쇼난다이)",
+      "nameEn": "Saitama–Namboku–Tokyu–Sotetsu Through Service to Shonandai",
+      "participatingOperatorIds": [
+        "saitama-railway",
+        "tokyo-metro",
+        "tokyu",
+        "sotetsu"
+      ],
+      "participatingLineIds": [
+        "line-99307",
+        "line-28009",
+        "line-26002",
+        "line-26009",
+        "line-29003",
+        "line-29001",
+        "line-29002"
+      ],
+      "boundaryStations": [
+        "赤羽岩淵",
+        "目黒",
+        "日吉",
+        "新横浜",
+        "西谷",
+        "二俣川"
+      ],
+      "allowedDestinations": [
+        "浦和美園",
+        "湘南台"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99307",
+            "direction": "reverse",
+            "startStationJa": "浦和美園",
+            "endStationJa": "赤羽岩淵"
+          },
+          {
+            "routeId": "line-28009",
+            "direction": "forward",
+            "startStationJa": "赤羽岩淵",
+            "endStationJa": "目黒"
+          },
+          {
+            "routeId": "line-26002",
+            "direction": "forward",
+            "startStationJa": "目黒",
+            "endStationJa": "日吉"
+          },
+          {
+            "routeId": "line-26009",
+            "direction": "forward",
+            "startStationJa": "日吉",
+            "endStationJa": "新横浜"
+          },
+          {
+            "routeId": "line-29003",
+            "direction": "reverse",
+            "startStationJa": "新横浜",
+            "endStationJa": "西谷"
+          },
+          {
+            "routeId": "line-29001",
+            "direction": "forward",
+            "startStationJa": "西谷",
+            "endStationJa": "二俣川"
+          },
+          {
+            "routeId": "line-29002",
+            "direction": "forward",
+            "startStationJa": "二俣川",
+            "endStationJa": "湘南台"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-29002",
+            "direction": "reverse",
+            "startStationJa": "湘南台",
+            "endStationJa": "二俣川"
+          },
+          {
+            "routeId": "line-29001",
+            "direction": "reverse",
+            "startStationJa": "二俣川",
+            "endStationJa": "西谷"
+          },
+          {
+            "routeId": "line-29003",
+            "direction": "forward",
+            "startStationJa": "西谷",
+            "endStationJa": "新横浜"
+          },
+          {
+            "routeId": "line-26009",
+            "direction": "reverse",
+            "startStationJa": "新横浜",
+            "endStationJa": "日吉"
+          },
+          {
+            "routeId": "line-26002",
+            "direction": "reverse",
+            "startStationJa": "日吉",
+            "endStationJa": "目黒"
+          },
+          {
+            "routeId": "line-28009",
+            "direction": "reverse",
+            "startStationJa": "目黒",
+            "endStationJa": "赤羽岩淵"
+          },
+          {
+            "routeId": "line-99307",
+            "direction": "forward",
+            "startStationJa": "赤羽岩淵",
+            "endStationJa": "浦和美園"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "fukutoshin-tokyu-minatomirai",
+      "nameJa": "副都心線・東横線・みなとみらい線直通",
+      "nameKo": "후쿠토신선·도요코선·미나토미라이선 직통",
+      "nameEn": "Fukutoshin–Toyoko–Minatomirai Through Service",
+      "participatingOperatorIds": [
+        "tokyo-metro",
+        "tokyu",
+        "yokohama-minatomirai-railway"
+      ],
+      "participatingLineIds": [
+        "line-28010",
+        "line-26001",
+        "line-99310"
+      ],
+      "boundaryStations": [
+        "渋谷",
+        "横浜"
+      ],
+      "allowedDestinations": [
+        "和光市",
+        "元町・中華街"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-28010",
+            "direction": "forward",
+            "startStationJa": "和光市",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-26001",
+            "direction": "forward",
+            "startStationJa": "渋谷",
+            "endStationJa": "横浜"
+          },
+          {
+            "routeId": "line-99310",
+            "direction": "forward",
+            "startStationJa": "横浜",
+            "endStationJa": "元町・中華街"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-99310",
+            "direction": "reverse",
+            "startStationJa": "元町・中華街",
+            "endStationJa": "横浜"
+          },
+          {
+            "routeId": "line-26001",
+            "direction": "reverse",
+            "startStationJa": "横浜",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-28010",
+            "direction": "reverse",
+            "startStationJa": "渋谷",
+            "endStationJa": "和光市"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "fukutoshin-tobu-minatomirai",
+      "nameJa": "東武東上線・副都心線・東横線・みなとみらい線直通",
+      "nameKo": "도부 도조선·후쿠토신선·도요코선·미나토미라이선 직통",
+      "nameEn": "Tobu–Fukutoshin–Toyoko–Minatomirai Through Service",
+      "participatingOperatorIds": [
+        "tobu",
+        "tokyo-metro",
+        "tokyu",
+        "yokohama-minatomirai-railway"
+      ],
+      "participatingLineIds": [
+        "line-21001",
+        "line-28010",
+        "line-26001",
+        "line-99310"
+      ],
+      "boundaryStations": [
+        "和光市",
+        "渋谷",
+        "横浜"
+      ],
+      "allowedDestinations": [
+        "森林公園",
+        "元町・中華街"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-21001",
+            "direction": "reverse",
+            "startStationJa": "森林公園",
+            "endStationJa": "和光市"
+          },
+          {
+            "routeId": "line-28010",
+            "direction": "forward",
+            "startStationJa": "和光市",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-26001",
+            "direction": "forward",
+            "startStationJa": "渋谷",
+            "endStationJa": "横浜"
+          },
+          {
+            "routeId": "line-99310",
+            "direction": "forward",
+            "startStationJa": "横浜",
+            "endStationJa": "元町・中華街"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-99310",
+            "direction": "reverse",
+            "startStationJa": "元町・中華街",
+            "endStationJa": "横浜"
+          },
+          {
+            "routeId": "line-26001",
+            "direction": "reverse",
+            "startStationJa": "横浜",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-28010",
+            "direction": "reverse",
+            "startStationJa": "渋谷",
+            "endStationJa": "和光市"
+          },
+          {
+            "routeId": "line-21001",
+            "direction": "forward",
+            "startStationJa": "和光市",
+            "endStationJa": "森林公園"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "fukutoshin-seibu-minatomirai",
+      "nameJa": "西武線・副都心線・東横線・みなとみらい線直通",
+      "nameKo": "세이부선·후쿠토신선·도요코선·미나토미라이선 직통",
+      "nameEn": "Seibu–Fukutoshin–Toyoko–Minatomirai Through Service",
+      "participatingOperatorIds": [
+        "seibu",
+        "tokyo-metro",
+        "tokyu",
+        "yokohama-minatomirai-railway"
+      ],
+      "participatingLineIds": [
+        "line-22001",
+        "line-22003",
+        "line-28010",
+        "line-26001",
+        "line-99310"
+      ],
+      "boundaryStations": [
+        "練馬",
+        "小竹向原",
+        "渋谷",
+        "横浜"
+      ],
+      "allowedDestinations": [
+        "飯能",
+        "元町・中華街"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-22001",
+            "direction": "reverse",
+            "startStationJa": "飯能",
+            "endStationJa": "練馬"
+          },
+          {
+            "routeId": "line-22003",
+            "direction": "reverse",
+            "startStationJa": "練馬",
+            "endStationJa": "小竹向原"
+          },
+          {
+            "routeId": "line-28010",
+            "direction": "forward",
+            "startStationJa": "小竹向原",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-26001",
+            "direction": "forward",
+            "startStationJa": "渋谷",
+            "endStationJa": "横浜"
+          },
+          {
+            "routeId": "line-99310",
+            "direction": "forward",
+            "startStationJa": "横浜",
+            "endStationJa": "元町・中華街"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-99310",
+            "direction": "reverse",
+            "startStationJa": "元町・中華街",
+            "endStationJa": "横浜"
+          },
+          {
+            "routeId": "line-26001",
+            "direction": "reverse",
+            "startStationJa": "横浜",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-28010",
+            "direction": "reverse",
+            "startStationJa": "渋谷",
+            "endStationJa": "小竹向原"
+          },
+          {
+            "routeId": "line-22003",
+            "direction": "forward",
+            "startStationJa": "小竹向原",
+            "endStationJa": "練馬"
+          },
+          {
+            "routeId": "line-22001",
+            "direction": "forward",
+            "startStationJa": "練馬",
+            "endStationJa": "飯能"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "fukutoshin-tokyu-sotetsu-shonandai",
+      "nameJa": "副都心線・東横線・新横浜線・相鉄線直通",
+      "nameKo": "후쿠토신선·도요코선·신요코하마선·소테츠선 직통",
+      "nameEn": "Fukutoshin–Toyoko–Shin-yokohama–Sotetsu Through Service",
+      "participatingOperatorIds": [
+        "tokyo-metro",
+        "tokyu",
+        "sotetsu"
+      ],
+      "participatingLineIds": [
+        "line-28010",
+        "line-26001",
+        "line-26009",
+        "line-29003",
+        "line-29001",
+        "line-29002"
+      ],
+      "boundaryStations": [
+        "渋谷",
+        "日吉",
+        "新横浜",
+        "西谷",
+        "二俣川"
+      ],
+      "allowedDestinations": [
+        "和光市",
+        "湘南台"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-28010",
+            "direction": "forward",
+            "startStationJa": "和光市",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-26001",
+            "direction": "forward",
+            "startStationJa": "渋谷",
+            "endStationJa": "日吉"
+          },
+          {
+            "routeId": "line-26009",
+            "direction": "forward",
+            "startStationJa": "日吉",
+            "endStationJa": "新横浜"
+          },
+          {
+            "routeId": "line-29003",
+            "direction": "reverse",
+            "startStationJa": "新横浜",
+            "endStationJa": "西谷"
+          },
+          {
+            "routeId": "line-29001",
+            "direction": "forward",
+            "startStationJa": "西谷",
+            "endStationJa": "二俣川"
+          },
+          {
+            "routeId": "line-29002",
+            "direction": "forward",
+            "startStationJa": "二俣川",
+            "endStationJa": "湘南台"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-29002",
+            "direction": "reverse",
+            "startStationJa": "湘南台",
+            "endStationJa": "二俣川"
+          },
+          {
+            "routeId": "line-29001",
+            "direction": "reverse",
+            "startStationJa": "二俣川",
+            "endStationJa": "西谷"
+          },
+          {
+            "routeId": "line-29003",
+            "direction": "forward",
+            "startStationJa": "西谷",
+            "endStationJa": "新横浜"
+          },
+          {
+            "routeId": "line-26009",
+            "direction": "reverse",
+            "startStationJa": "新横浜",
+            "endStationJa": "日吉"
+          },
+          {
+            "routeId": "line-26001",
+            "direction": "reverse",
+            "startStationJa": "日吉",
+            "endStationJa": "渋谷"
+          },
+          {
+            "routeId": "line-28010",
+            "direction": "reverse",
+            "startStationJa": "渋谷",
+            "endStationJa": "和光市"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+      "verifiedDate": "2026-09-11"
     }
-  ]
+  ],
+  "inventoryScope": "Tokyo Metro current reciprocal through services",
+  "verifiedAt": "2026-09-11"
 }

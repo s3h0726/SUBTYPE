@@ -31,7 +31,11 @@
   "loop": false,
   "stationSignTemplate": "tokyo-metro",
   "services": [],
-  "throughServiceIds": [],
+  "throughServiceIds": [
+    "namboku-saitama-tokyu",
+    "namboku-saitama-tokyu-sotetsu-ebina",
+    "namboku-saitama-tokyu-sotetsu-shonandai"
+  ],
   "sources": {
     "official": "",
     "korean": "",
@@ -68,5 +72,8 @@
     "status": "VERIFIED",
     "family": "official",
     "method": "direct"
-  }
+  },
+  "throughServiceStatus": "current",
+  "throughServiceVerifiedAt": "2026-09-11",
+  "throughServiceSource": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf"
 }

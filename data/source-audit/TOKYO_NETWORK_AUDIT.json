@@ -4,11 +4,11 @@
   "expectedInventoryVerified": false,
   "expected": null,
   "missing": null,
-  "implementedRoutes": 133,
+  "implementedRoutes": 134,
   "operators": 37,
-  "stations": 1817,
-  "koreanVerified": 9,
-  "geometryReady": 132,
+  "stations": 1818,
+  "koreanVerified": 10,
+  "geometryReady": 133,
   "entries": [
     {
       "lineId": "line-99331",
@@ -4073,15 +4073,15 @@
       "lineId": "line-29003",
       "operatorId": "sotetsu",
       "names": {
-        "ja": "相鉄・JR直通線",
+        "ja": "相鉄新横浜線",
         "kana": "",
         "ko": "소테츠 신요코하마선",
         "en": "Sotetsu Shin-yokohama Line"
       },
-      "stationCount": 2,
+      "stationCount": 3,
       "koreanNameVerified": false,
       "stationsComplete": null,
-      "stationCodesPresent": 0,
+      "stationCodesPresent": 3,
       "stationCodesComplete": null,
       "operatorLogoStatus": "missing",
       "lineSymbolStatus": "unresolved-or-none",
@@ -4094,9 +4094,9 @@
       "outsideCoreStations": 0,
       "operatingStatus": "REVIEW_REQUIRED",
       "sources": {
-        "official": "",
+        "official": "https://www.sotetsu.co.jp/train/stations/shinyokohama/",
         "korean": "",
-        "geometry": "MLIT-N02-2025",
+        "geometry": "OpenStreetMap relation 8449597",
         "koreanName": {
           "family": "namuwiki",
           "method": "unresolved",
@@ -4748,7 +4748,12 @@
       "branchesReviewed": false,
       "servicePatternsReviewed": false,
       "throughServiceReviewed": false,
-      "servicePatterns": [],
+      "servicePatterns": [
+        "chiyoda-joban-odakyu-forward",
+        "chiyoda-joban-odakyu-reverse",
+        "chiyoda-odakyu-tama-forward",
+        "chiyoda-odakyu-tama-reverse"
+      ],
       "geometryStatus": "ready",
       "missingSegments": 0,
       "outsideCoreStations": 0,
@@ -4795,7 +4800,16 @@
       "servicePatterns": [
         "fukutoshin-local-wakoshi-shibuya",
         "fukutoshin-express-wakoshi-shibuya",
-        "fukutoshin-minatomirai-through-local"
+        "fukutoshin-commuter-express-wakoshi-shibuya",
+        "fukutoshin-s-train-metro-section",
+        "fukutoshin-tokyu-minatomirai-forward",
+        "fukutoshin-tokyu-minatomirai-reverse",
+        "fukutoshin-tobu-minatomirai-forward",
+        "fukutoshin-tobu-minatomirai-reverse",
+        "fukutoshin-seibu-minatomirai-forward",
+        "fukutoshin-seibu-minatomirai-reverse",
+        "fukutoshin-tokyu-sotetsu-shonandai-forward",
+        "fukutoshin-tokyu-sotetsu-shonandai-reverse"
       ],
       "geometryStatus": "ready",
       "missingSegments": 0,
@@ -4885,7 +4899,8 @@
       "servicePatternsReviewed": false,
       "throughServiceReviewed": false,
       "servicePatterns": [
-        "hanzomon-denentoshi-tobu-through"
+        "denentoshi-hanzomon-tobu-forward",
+        "denentoshi-hanzomon-tobu-reverse"
       ],
       "geometryStatus": "ready",
       "missingSegments": 0,
@@ -4930,7 +4945,10 @@
       "branchesReviewed": false,
       "servicePatternsReviewed": false,
       "throughServiceReviewed": false,
-      "servicePatterns": [],
+      "servicePatterns": [
+        "hibiya-tobu-forward",
+        "hibiya-tobu-reverse"
+      ],
       "geometryStatus": "ready",
       "missingSegments": 0,
       "outsideCoreStations": 0,
@@ -5047,7 +5065,14 @@
       "branchesReviewed": false,
       "servicePatternsReviewed": false,
       "throughServiceReviewed": false,
-      "servicePatterns": [],
+      "servicePatterns": [
+        "namboku-saitama-tokyu-forward",
+        "namboku-saitama-tokyu-reverse",
+        "namboku-saitama-tokyu-sotetsu-ebina-forward",
+        "namboku-saitama-tokyu-sotetsu-ebina-reverse",
+        "namboku-saitama-tokyu-sotetsu-shonandai-forward",
+        "namboku-saitama-tokyu-sotetsu-shonandai-reverse"
+      ],
       "geometryStatus": "ready",
       "missingSegments": 0,
       "outsideCoreStations": 0,
@@ -5091,7 +5116,12 @@
       "branchesReviewed": false,
       "servicePatternsReviewed": false,
       "throughServiceReviewed": false,
-      "servicePatterns": [],
+      "servicePatterns": [
+        "tozai-chuo-sobu-forward",
+        "tozai-chuo-sobu-reverse",
+        "tozai-toyo-rapid-forward",
+        "tozai-toyo-rapid-reverse"
+      ],
       "geometryStatus": "ready",
       "missingSegments": 0,
       "outsideCoreStations": 0,
@@ -5135,7 +5165,12 @@
       "branchesReviewed": false,
       "servicePatternsReviewed": false,
       "throughServiceReviewed": false,
-      "servicePatterns": [],
+      "servicePatterns": [
+        "yurakucho-tobu-forward",
+        "yurakucho-tobu-reverse",
+        "yurakucho-seibu-forward",
+        "yurakucho-seibu-reverse"
+      ],
       "geometryStatus": "ready",
       "missingSegments": 0,
       "outsideCoreStations": 0,
@@ -5290,6 +5325,36 @@
           "status": "REVIEW_REQUIRED",
           "canonicalPolicy": "namuwiki"
         }
+      }
+    },
+    {
+      "lineId": "line-26009",
+      "operatorId": "tokyu",
+      "names": {
+        "ja": "東急新横浜線",
+        "kana": "とうきゅうしんよこはません",
+        "ko": "도큐 신요코하마선",
+        "en": "Tokyu Shin-yokohama Line"
+      },
+      "stationCount": 3,
+      "koreanNameVerified": false,
+      "stationsComplete": null,
+      "stationCodesPresent": 3,
+      "stationCodesComplete": null,
+      "operatorLogoStatus": "present",
+      "lineSymbolStatus": "missing",
+      "branchesReviewed": false,
+      "servicePatternsReviewed": false,
+      "throughServiceReviewed": false,
+      "servicePatterns": [],
+      "geometryStatus": "ready",
+      "missingSegments": 0,
+      "outsideCoreStations": 0,
+      "operatingStatus": "REVIEW_REQUIRED",
+      "sources": {
+        "official": "https://www.tokyu.co.jp/railway/data/train_line/sh.html",
+        "geometry": "OpenStreetMap relation 14681766",
+        "stationNumbers": "https://www.tokyu.co.jp/company/information/pdf/k-info20220916-1.pdf"
       }
     },
     {

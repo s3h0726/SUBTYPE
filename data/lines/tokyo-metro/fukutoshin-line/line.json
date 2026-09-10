@@ -30,8 +30,145 @@
   },
   "loop": false,
   "stationSignTemplate": "tokyo-metro",
-  "services": [],
-  "throughServiceIds": [],
+  "services": [
+    {
+      "id": "local",
+      "names": {
+        "ja": "各駅停車",
+        "ko": "각역정차",
+        "en": "Local"
+      },
+      "stopPattern": "all"
+    },
+    {
+      "id": "commuter-express",
+      "names": {
+        "ja": "通勤急行",
+        "ko": "통근급행",
+        "en": "Commuter Express"
+      },
+      "stopPattern": "serviceStops.commuterExpress"
+    },
+    {
+      "id": "express",
+      "names": {
+        "ja": "急行",
+        "ko": "급행",
+        "en": "Express"
+      },
+      "stopPattern": "serviceStops.express"
+    },
+    {
+      "id": "s-train",
+      "names": {
+        "ja": "S-TRAIN",
+        "ko": "S-TRAIN",
+        "en": "S-TRAIN"
+      },
+      "stopPattern": "serviceStops.sTrain"
+    }
+  ],
+  "throughServiceIds": [
+    "fukutoshin-tokyu-minatomirai",
+    "fukutoshin-tobu-minatomirai",
+    "fukutoshin-seibu-minatomirai",
+    "fukutoshin-tokyu-sotetsu-shonandai"
+  ],
+  "routeInfo": {
+    "lengthKm": 20.2,
+    "stationCount": 16,
+    "distanceOriginStationId": "station-mlit-003123",
+    "officialStationGuide": "https://www.tokyometro.jp/station/line_fukutoshin/index.html",
+    "verifiedAt": "2026-09-10"
+  },
+  "throughOperations": [
+    {
+      "direction": "northbound",
+      "viaLineIds": [
+        "line-21001"
+      ],
+      "operatorIds": [
+        "tobu"
+      ],
+      "serviceNames": [
+        "F라이너",
+        "통근급행",
+        "각역정차"
+      ],
+      "destinationNames": [
+        "신린코엔",
+        "오가와마치"
+      ],
+      "status": "metadata-only"
+    },
+    {
+      "direction": "northbound",
+      "viaLineIds": [
+        "line-22003",
+        "line-22001"
+      ],
+      "operatorIds": [
+        "seibu"
+      ],
+      "serviceNames": [
+        "S-TRAIN",
+        "F라이너",
+        "쾌속",
+        "준급",
+        "각역정차"
+      ],
+      "destinationNames": [
+        "한노",
+        "세이부치치부"
+      ],
+      "status": "metadata-only"
+    },
+    {
+      "direction": "southbound",
+      "viaLineIds": [
+        "line-26001",
+        "line-99310"
+      ],
+      "operatorIds": [
+        "tokyu",
+        "yokohama-minatomirai-railway"
+      ],
+      "serviceNames": [
+        "S-TRAIN",
+        "F라이너",
+        "급행",
+        "통근급행",
+        "각역정차"
+      ],
+      "destinationNames": [
+        "모토마치·주카가이"
+      ],
+      "status": "playable"
+    },
+    {
+      "direction": "southbound",
+      "viaLineIds": [
+        "line-26001",
+        "line-29002"
+      ],
+      "viaPhysicalLineNames": [
+        "도큐 신요코하마선",
+        "소테츠 신요코하마선",
+        "소테츠 이즈미노선"
+      ],
+      "operatorIds": [
+        "tokyu",
+        "sotetsu"
+      ],
+      "serviceNames": [
+        "급행"
+      ],
+      "destinationNames": [
+        "쇼난다이"
+      ],
+      "status": "metadata-only"
+    }
+  ],
   "sources": {
     "official": "",
     "korean": "",
@@ -68,5 +205,8 @@
     "status": "VERIFIED",
     "family": "official",
     "method": "direct"
-  }
+  },
+  "throughServiceStatus": "current",
+  "throughServiceVerifiedAt": "2026-09-11",
+  "throughServiceSource": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf"
 }

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "line-26009",
+  "legacyId": "line-26009",
+  "operatorId": "tokyu",
+  "category": "private",
+  "names": {
+    "ja": "東急新横浜線",
+    "kana": "とうきゅうしんよこはません",
+    "ko": "도큐 신요코하마선",
+    "en": "Tokyu Shin-yokohama Line"
+  },
+  "code": "SH",
+  "color": "#7c449b",
+  "symbol": {
+    "asset": null,
+    "officialSymbolExists": true,
+    "source": "",
+    "verified": true,
+    "assetSource": "none",
+    "assetSourceUrl": "",
+    "licenseVerified": false
+  },
+  "loop": false,
+  "stationSignTemplate": "tokyu",
+  "services": [],
+  "throughServiceIds": [
+    "namboku-saitama-tokyu-sotetsu-ebina",
+    "namboku-saitama-tokyu-sotetsu-shonandai",
+    "fukutoshin-tokyu-sotetsu-shonandai"
+  ],
+  "sources": {
+    "official": "https://www.tokyu.co.jp/railway/data/train_line/sh.html",
+    "geometry": "OpenStreetMap relation 14681766",
+    "stationNumbers": "https://www.tokyu.co.jp/company/information/pdf/k-info20220916-1.pdf"
+  },
+  "legacy": {
+    "origin": "tokyo-metro-through-service-completion",
+    "coverage": "full-source-line",
+    "dataKind": "physicalRoute"
+  }
+}

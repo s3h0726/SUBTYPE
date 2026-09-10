@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-09-09T16:38:50.323Z",
+  "generated": "2026-09-10T15:43:17.296Z",
   "counts": {
-    "lines": 602,
+    "lines": 603,
     "operators": 161,
-    "stations": 9145,
-    "relations": 10720,
-    "segments": 9877
+    "stations": 9146,
+    "relations": 10724,
+    "segments": 9880
   },
   "routes": [
     {
@@ -63437,7 +63437,7 @@
         "en": "Sotetsu"
       },
       "line": {
-        "ja": "相鉄・JR直通線",
+        "ja": "相鉄新横浜線",
         "kana": "",
         "ko": "소테츠 신요코하마선",
         "en": "Sotetsu Shin-yokohama Line"
@@ -63446,10 +63446,11 @@
       "code": "SO",
       "lineColor": "#0066b3",
       "loop": false,
-      "stationCount": 2,
+      "stationCount": 3,
       "stationSequence": [
+        "station-mlit-004594",
         "station-mlit-004581",
-        "station-mlit-004594"
+        "station-mlit-004501"
       ],
       "workspace": {
         "folder": "data/lines/sotetsu/sotetsu-shin-yokohama-line",
@@ -63460,14 +63461,18 @@
       "generatedSource": "./data/generated/routes/line-29003.json",
       "geometryReady": true,
       "searchStations": [
+        "西谷",
+        "にしたに",
+        "Nishitani",
+        "니시타니",
         "羽沢横浜国大",
         "はざわよこはまこくだい",
         "Hazawayokohamakokudai",
         "하자와요코하마코쿠다이",
-        "西谷",
-        "にしたに",
-        "Nishitani",
-        "니시타니"
+        "新横浜",
+        "しんよこはま",
+        "Shin'Yokohama",
+        "신요코하마"
       ]
     },
     {
@@ -67119,11 +67124,11 @@
         "地下鉄成増",
         "ちかてつなります",
         "Chikatetsunarimasu",
-        "지하철나리마스",
+        "치카테츠나리마스",
         "地下鉄赤塚",
         "ちかてつあかづか",
         "Chikatetsuakazuka",
-        "지하철아카츠카",
+        "치카테츠아카츠카",
         "平和台",
         "へいわだい",
         "Heiwadai",
@@ -68093,11 +68098,11 @@
         "地下鉄成増",
         "ちかてつなります",
         "Chikatetsunarimasu",
-        "지하철나리마스",
+        "치카테츠나리마스",
         "地下鉄赤塚",
         "ちかてつあかづか",
         "Chikatetsuakazuka",
-        "지하철아카츠카",
+        "치카테츠아카츠카",
         "平和台",
         "へいわだい",
         "Heiwadai",
@@ -68508,6 +68513,53 @@
         "ちゅうおうりんかん",
         "ChūōRinkan",
         "츄오린칸"
+      ]
+    },
+    {
+      "id": "line-26009",
+      "operatorId": "tokyu",
+      "operator": {
+        "ja": "東急電鉄",
+        "ko": "도큐 전철",
+        "en": "Tokyu"
+      },
+      "line": {
+        "ja": "東急新横浜線",
+        "kana": "とうきゅうしんよこはません",
+        "ko": "도큐 신요코하마선",
+        "en": "Tokyu Shin-yokohama Line"
+      },
+      "category": "private",
+      "code": "SH",
+      "lineColor": "#7c449b",
+      "loop": false,
+      "stationCount": 3,
+      "stationSequence": [
+        "station-mlit-004351",
+        "station-tokyu-shin-tsunashima",
+        "station-mlit-004501"
+      ],
+      "workspace": {
+        "folder": "data/lines/tokyu/tokyu-shin-yokohama-line",
+        "linePath": "data/lines/tokyu/tokyu-shin-yokohama-line/line.json",
+        "stationsPath": "data/lines/tokyu/tokyu-shin-yokohama-line/stations.json",
+        "geometryPath": "data/lines/tokyu/tokyu-shin-yokohama-line/geometry.json"
+      },
+      "generatedSource": "./data/generated/routes/line-26009.json",
+      "geometryReady": true,
+      "searchStations": [
+        "日吉",
+        "ひよし",
+        "Hiyoshi",
+        "히요시",
+        "新綱島",
+        "しんつなしま",
+        "Shin-tsunashima",
+        "신츠나시마",
+        "新横浜",
+        "しんよこはま",
+        "Shin'Yokohama",
+        "신요코하마"
       ]
     },
     {

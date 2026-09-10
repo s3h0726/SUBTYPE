@@ -1,6 +1,9 @@
 const copyGeometry=geometry=>(geometry||[]).map(point=>[Number(point[0]),Number(point[1])]);
 const stationKey=station=>String(station?.stationMasterId||station?.sourceStationId||station?.internalId||station?.id||'');
 const routeIds=spec=>spec?.routeSegments?.map(segment=>segment.routeId)||spec?.routeIds||[];
+const sameStation=(left,right)=>stationKey(left)===stationKey(right)||Boolean(left?.ja&&right?.ja&&left.ja===right.ja);
+const radians=value=>value*Math.PI/180;
+const pointDistanceKm=(left,right)=>{const dLat=radians(right[0]-left[0]),dLon=radians(right[1]-left[1]),value=Math.sin(dLat/2)**2+Math.cos(radians(left[0]))*Math.cos(radians(right[0]))*Math.sin(dLon/2)**2;return 6371*2*Math.atan2(Math.sqrt(value),Math.sqrt(1-value))};
 
 export function serviceCatalog(){
   return globalThis.TRT_TOKYO_SERVICE_PATTERNS||{trainTypes:[],branches:[],servicePatterns:[]}
@@ -26,30 +29,33 @@ function prepareThroughPart(route,config={}){
   return{...route,geometry:geometry.slice(firstGeometry,lastGeometry+1),stations:selected.map(station=>({...station,geometryIndex:(station.geometryIndex??firstGeometry)-firstGeometry}))}
 }
 
-export function buildThroughServiceRoute(spec,getRoute){
+export function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
   if(!spec)throw new Error('Missing through-service definition');
-  const configs=spec.routeSegments||routeIds(spec).map(routeId=>({routeId})),parts=configs.map(config=>{
+  const directional=spec.directionVariants?.[directionId],configs=directional||spec.routeSegments||routeIds(spec).map(routeId=>({routeId})),parts=configs.map(config=>{
     const source=getRoute(config.routeId);if(!source)throw new Error(`Missing through-service route: ${config.routeId}`);return prepareThroughPart(source,config)
   });
   const stations=[],geometry=[],contexts=[];
   for(const part of parts){
     if(part.stations.length<2||part.geometry.length<2)throw new Error(`${spec.id}: incomplete part ${part.id}`);
     if(stations.length){
-      if(stationKey(stations.at(-1))!==stationKey(part.stations[0]))throw new Error(`${spec.id}: disconnected station boundary at ${part.id}`);
+      if(!sameStation(stations.at(-1),part.stations[0]))throw new Error(`${spec.id}: disconnected station boundary at ${part.id}`);
       const previous=geometry.at(-1),next=part.geometry[0];
-      // Adjacent sources must already meet; never manufacture a connector.
-      if(Math.hypot(previous[0]-next[0],previous[1]-next[1])>1e-7)throw new Error(`${spec.id}: geometry boundary gap at ${part.id}`);
+      // Verified representations of the same interchange can differ slightly by
+      // platform/track. Snap the shared endpoint; never draw a synthetic connector.
+      const gapKm=pointDistanceKm(previous,next),tolerance=Number(spec.boundarySnapToleranceKm??0.25);
+      if(gapKm>tolerance)throw new Error(`${spec.id}: geometry boundary gap at ${part.id} (${gapKm.toFixed(3)} km)`);
+      if(gapKm>1e-7)part.geometry[0]=[...previous];
     }
     let offset=geometry.length;if(geometry.length&&part.geometry?.length&&Math.hypot(geometry.at(-1)[0]-part.geometry[0][0],geometry.at(-1)[1]-part.geometry[0][1])<.002){offset--;geometry.push(...copyGeometry(part.geometry).slice(1))}else geometry.push(...copyGeometry(part.geometry));
     const context=contextOf(part),start=Math.max(0,stations.length-1);
     for(let index=0;index<part.stations.length;index++){
-      const station=part.stations[index],sameBoundary=index===0&&stations.length&&stationKey(stations.at(-1))===stationKey(station);if(sameBoundary)continue;
+      const station=part.stations[index],sameBoundary=index===0&&stations.length&&sameStation(stations.at(-1),station);if(sameBoundary)continue;
       stations.push({...station,geometryIndex:(station.geometryIndex??0)+offset,segment:context})
     }
     contexts.push({...context,fromStation:start,toStation:stations.length-1})
   }
   if(stations.length<2||geometry.length<2)throw new Error(`${spec.id}: incomplete through-service route`);
-  return{...parts[0],id:`through-${spec.id}`,dataKind:'throughService',line:{ja:spec.nameJa,ko:spec.nameKo,en:spec.nameEn},stations,geometry,segments:contexts,throughService:spec,loop:false,coverage:'verified-through-service'}
+  return{...parts[0],id:`through-${spec.id}`,dataKind:'throughService',selectedDirectionId:directionId,line:{ja:spec.nameJa,ko:spec.nameKo,en:spec.nameEn},stations,geometry,segments:contexts,throughService:spec,loop:false,coverage:'verified-through-service'}
 }
 
 export function buildBranchRoute(branch,source){
@@ -74,9 +80,12 @@ export function resolveServiceSelection({baseRoute,servicePatternId,directionId=
   if(pattern.status&&pattern.status!=='active')throw new Error(`${pattern.id}: ${pattern.status}`);
   let route=baseRoute;
   if(pattern.branchId)route=buildBranchRoute(branchFor(pattern.branchId),baseRoute);
-  if(pattern.throughServiceId){const spec=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).find(item=>item.id===pattern.throughServiceId);route=buildThroughServiceRoute(spec,getRoute)}
+  if(pattern.throughServiceId){const spec=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).find(item=>item.id===pattern.throughServiceId);route=buildThroughServiceRoute(spec,getRoute,pattern.directionId||directionId)}
   const routeIdsSet=new Set(route.stations.map(stationKey)),stops=(pattern.stopStationIds?.length?pattern.stopStationIds:route.stations.map(stationKey)).map(String);
   for(const id of stops)if(!routeIdsSet.has(id))throw new Error(`${pattern.id}: stop ${id} is outside the resolved route`);
   const service={id:pattern.id,nameJa:pattern.names.ja,nameKo:pattern.names.ko,nameEn:pattern.names.en,stops,trainTypeId:pattern.trainTypeId,destinationStationId:pattern.destinationStationId,throughServiceId:pattern.throughServiceId||null};
-  return{route:{...route,services:[service]},service,direction:pattern.directionId||directionId,pattern,trainType:trainTypeFor(pattern.trainTypeId),destinationStationId:pattern.destinationStationId}
+  // A directional through route is already assembled in travel order. Passing
+  // "reverse" to the game would reverse it a second time.
+  const resolvedDirection=pattern.throughServiceId?'forward':pattern.directionId||directionId;
+  return{route:{...route,services:[service]},service,direction:resolvedDirection,travelDirectionId:pattern.directionId||directionId,pattern,trainType:trainTypeFor(pattern.trainTypeId),destinationStationId:pattern.destinationStationId}
 }

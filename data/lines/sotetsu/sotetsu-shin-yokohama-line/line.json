@@ -5,7 +5,7 @@
   "operatorId": "sotetsu",
   "category": "private",
   "names": {
-    "ja": "相鉄・JR直通線",
+    "ja": "相鉄新横浜線",
     "kana": "",
     "ko": "소테츠 신요코하마선",
     "en": "Sotetsu Shin-yokohama Line"
@@ -31,11 +31,15 @@
   "loop": false,
   "stationSignTemplate": "sotetsu",
   "services": [],
-  "throughServiceIds": [],
+  "throughServiceIds": [
+    "namboku-saitama-tokyu-sotetsu-ebina",
+    "namboku-saitama-tokyu-sotetsu-shonandai",
+    "fukutoshin-tokyu-sotetsu-shonandai"
+  ],
   "sources": {
-    "official": "",
+    "official": "https://www.sotetsu.co.jp/train/stations/shinyokohama/",
     "korean": "",
-    "geometry": "MLIT-N02-2025",
+    "geometry": "OpenStreetMap relation 8449597",
     "koreanName": {
       "family": "namuwiki",
       "method": "unresolved",
