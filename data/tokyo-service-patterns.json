@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "verifiedAt": "2026-09-11",
+  "verifiedAt": "2026-09-12",
   "trainTypes": [
     {
       "id": "tokyo-local",
@@ -69,6 +69,85 @@
         "en": "Commuter Rapid"
       },
       "priority": 27
+    },
+    {
+      "id": "toei-airport-express",
+      "operatorId": "toei",
+      "names": {
+        "ja": "エアポート快特",
+        "ko": "에어포트 쾌특",
+        "en": "Airport Limited Express"
+      },
+      "priority": 50
+    },
+    {
+      "id": "keikyu-airport-kaitoku",
+      "operatorId": "keikyu",
+      "names": {
+        "ja": "エアポート快特",
+        "ko": "에어포트 쾌특",
+        "en": "Airport Limited Express"
+      },
+      "priority": 50
+    },
+    {
+      "id": "keisei-access-express",
+      "operatorId": "keisei",
+      "names": {
+        "ja": "アクセス特急",
+        "ko": "액세스 특급",
+        "en": "Access Express"
+      },
+      "priority": 50
+    },
+    {
+      "id": "fukutoshin-f-liner-express",
+      "names": {
+        "ja": "Fライナー急行",
+        "ko": "F라이너 급행",
+        "en": "F Liner Express"
+      },
+      "priority": 45
+    },
+    {
+      "id": "tobu-rapid-express",
+      "operatorId": "tobu",
+      "names": {
+        "ja": "快速急行",
+        "ko": "쾌속급행",
+        "en": "Rapid Express"
+      },
+      "priority": 45
+    },
+    {
+      "id": "tokyu-limited-express",
+      "operatorId": "tokyu",
+      "names": {
+        "ja": "特急",
+        "ko": "특급",
+        "en": "Limited Express"
+      },
+      "priority": 45
+    },
+    {
+      "id": "toei-local",
+      "operatorId": "toei",
+      "names": {
+        "ja": "各駅停車",
+        "ko": "각역정차",
+        "en": "Local"
+      },
+      "priority": 10
+    },
+    {
+      "id": "keio-section-express",
+      "operatorId": "keio",
+      "names": {
+        "ja": "区間急行",
+        "ko": "구간급행",
+        "en": "Semi Express"
+      },
+      "priority": 30
     }
   ],
   "branches": [],
@@ -2985,7 +3064,7 @@
       "id": "fukutoshin-tobu-minatomirai-forward",
       "baseRouteId": "line-28010",
       "throughServiceId": "fukutoshin-tobu-minatomirai",
-      "trainTypeId": "through-regular",
+      "trainTypeId": "fukutoshin-f-liner-express",
       "originStationId": "station-mlit-002708",
       "destinationStationId": "station-mlit-004704",
       "directionId": "forward",
@@ -3054,63 +3133,21 @@
       "stopStationIds": [
         "station-mlit-002708",
         "station-mlit-002717",
-        "station-mlit-002753",
-        "station-mlit-002800",
         "station-mlit-002822",
-        "station-mlit-002837",
-        "station-mlit-002852",
-        "station-mlit-002874",
-        "station-mlit-002893",
         "station-mlit-002909",
-        "station-mlit-002937",
-        "station-mlit-002964",
-        "station-mlit-002987",
-        "station-mlit-003007",
-        "station-mlit-003025",
-        "station-mlit-003038",
-        "station-mlit-003049",
         "station-mlit-003061",
-        "station-mlit-003097",
         "station-mlit-003123",
-        "station-mlit-003163",
-        "station-mlit-003186",
-        "station-mlit-003228",
-        "station-mlit-003261",
         "station-mlit-003294",
-        "station-mlit-003324",
-        "station-mlit-003361",
         "station-mlit-003379",
-        "station-mlit-003471",
-        "station-mlit-003544",
-        "station-mlit-003612",
         "station-mlit-003689",
-        "station-mlit-003780",
         "station-1130206",
         "station-mlit-003922",
-        "station-mlit-003985",
         "station-mlit-004014",
-        "station-mlit-004050",
-        "station-mlit-004094",
-        "station-mlit-004143",
         "station-mlit-004196",
-        "station-mlit-004245",
-        "station-mlit-004261",
-        "station-mlit-004287",
         "station-mlit-004297",
-        "station-mlit-004322",
-        "station-mlit-004351",
-        "station-mlit-004406",
-        "station-mlit-004452",
         "station-mlit-004487",
-        "station-mlit-004528",
-        "station-mlit-004554",
-        "station-mlit-004572",
-        "station-mlit-004608",
         "station-mlit-004633",
-        "station-mlit-004647",
         "station-mlit-004656",
-        "station-mlit-004679",
-        "station-mlit-004686",
         "station-mlit-004704"
       ],
       "names": {
@@ -3124,13 +3161,31 @@
           "url": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
           "verifiedAt": "2026-09-11"
         }
+      ],
+      "segmentTrainTypeContexts": [
+        {
+          "routeId": "line-21001",
+          "trainTypeId": "tobu-rapid-express"
+        },
+        {
+          "routeId": "line-28010",
+          "trainTypeId": "tokyo-metro-express"
+        },
+        {
+          "routeId": "line-26001",
+          "trainTypeId": "tokyu-limited-express"
+        },
+        {
+          "routeId": "line-99310",
+          "trainTypeId": "tokyu-limited-express"
+        }
       ]
     },
     {
       "id": "fukutoshin-tobu-minatomirai-reverse",
       "baseRouteId": "line-28010",
       "throughServiceId": "fukutoshin-tobu-minatomirai",
-      "trainTypeId": "through-regular",
+      "trainTypeId": "fukutoshin-f-liner-express",
       "originStationId": "station-mlit-004704",
       "destinationStationId": "station-mlit-002708",
       "directionId": "reverse",
@@ -3198,63 +3253,21 @@
       ],
       "stopStationIds": [
         "station-mlit-004704",
-        "station-mlit-004686",
-        "station-mlit-004679",
         "station-mlit-004656",
-        "station-mlit-004647",
         "station-mlit-004633",
-        "station-mlit-004608",
-        "station-mlit-004572",
-        "station-mlit-004554",
-        "station-mlit-004528",
         "station-mlit-004487",
-        "station-mlit-004452",
-        "station-mlit-004406",
-        "station-mlit-004351",
-        "station-mlit-004322",
         "station-mlit-004297",
-        "station-mlit-004287",
-        "station-mlit-004261",
-        "station-mlit-004245",
         "station-mlit-004196",
-        "station-mlit-004143",
-        "station-mlit-004094",
-        "station-mlit-004050",
         "station-mlit-004014",
-        "station-mlit-003985",
         "station-mlit-003922",
         "station-1130206",
-        "station-mlit-003780",
         "station-mlit-003689",
-        "station-mlit-003612",
-        "station-mlit-003544",
-        "station-mlit-003471",
         "station-mlit-003379",
-        "station-mlit-003361",
-        "station-mlit-003324",
         "station-mlit-003294",
-        "station-mlit-003261",
-        "station-mlit-003228",
-        "station-mlit-003186",
-        "station-mlit-003163",
         "station-mlit-003123",
-        "station-mlit-003097",
         "station-mlit-003061",
-        "station-mlit-003049",
-        "station-mlit-003038",
-        "station-mlit-003025",
-        "station-mlit-003007",
-        "station-mlit-002987",
-        "station-mlit-002964",
-        "station-mlit-002937",
         "station-mlit-002909",
-        "station-mlit-002893",
-        "station-mlit-002874",
-        "station-mlit-002852",
-        "station-mlit-002837",
         "station-mlit-002822",
-        "station-mlit-002800",
-        "station-mlit-002753",
         "station-mlit-002717",
         "station-mlit-002708"
       ],
@@ -3268,6 +3281,24 @@
           "type": "official",
           "url": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
           "verifiedAt": "2026-09-11"
+        }
+      ],
+      "segmentTrainTypeContexts": [
+        {
+          "routeId": "line-21001",
+          "trainTypeId": "tobu-rapid-express"
+        },
+        {
+          "routeId": "line-28010",
+          "trainTypeId": "tokyo-metro-express"
+        },
+        {
+          "routeId": "line-26001",
+          "trainTypeId": "tokyu-limited-express"
+        },
+        {
+          "routeId": "line-99310",
+          "trainTypeId": "tokyu-limited-express"
         }
       ]
     },
@@ -3766,6 +3797,764 @@
           "verifiedAt": "2026-09-11"
         }
       ]
+    },
+    {
+      "id": "toei-asakusa-keikyu-keisei-airport-forward",
+      "baseRouteId": "line-99302",
+      "throughServiceId": "toei-asakusa-keikyu-keisei-airport",
+      "trainTypeId": "toei-airport-express",
+      "originStationId": "station-mlit-004368",
+      "destinationStationId": "station-1132705",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-004368",
+        "station-mlit-004382",
+        "station-mlit-004373",
+        "station-mlit-004364",
+        "station-mlit-004356",
+        "station-mlit-004349",
+        "station-mlit-004331",
+        "station-mlit-004319",
+        "station-mlit-004307",
+        "station-mlit-004294",
+        "station-mlit-004268",
+        "station-mlit-004244",
+        "station-mlit-004220",
+        "station-mlit-004184",
+        "station-mlit-004153",
+        "station-mlit-004125",
+        "station-mlit-004095",
+        "station-mlit-004042",
+        "station-mlit-003986",
+        "station-mlit-003939",
+        "station-mlit-003872",
+        "station-mlit-003838",
+        "station-mlit-003796",
+        "station-mlit-003756",
+        "station-mlit-003721",
+        "station-mlit-003676",
+        "station-mlit-003636",
+        "station-mlit-003571",
+        "station-mlit-003522",
+        "station-mlit-003538",
+        "station-2100203",
+        "station-mlit-003477",
+        "station-mlit-003422",
+        "station-mlit-003376",
+        "station-mlit-003323",
+        "station-mlit-003280",
+        "station-2300110",
+        "station-mlit-003187",
+        "station-mlit-003146",
+        "station-mlit-003090",
+        "station-mlit-003125",
+        "station-mlit-003093",
+        "station-1132813",
+        "station-1132705"
+      ],
+      "stopStationIds": [
+        "station-mlit-004368",
+        "station-mlit-004382",
+        "station-mlit-004331",
+        "station-mlit-004095",
+        "station-mlit-004042",
+        "station-mlit-003986",
+        "station-mlit-003939",
+        "station-mlit-003872",
+        "station-mlit-003756",
+        "station-mlit-003676",
+        "station-mlit-003636",
+        "station-mlit-003571",
+        "station-mlit-003522",
+        "station-2100203",
+        "station-mlit-003280",
+        "station-2300110",
+        "station-mlit-003187",
+        "station-mlit-003146",
+        "station-mlit-003090",
+        "station-mlit-003125",
+        "station-mlit-003093",
+        "station-1132813",
+        "station-1132705"
+      ],
+      "segmentTrainTypeContexts": [
+        {
+          "routeId": "line-27002",
+          "trainTypeId": "keikyu-airport-kaitoku"
+        },
+        {
+          "routeId": "line-27001",
+          "trainTypeId": "keikyu-airport-kaitoku"
+        },
+        {
+          "routeId": "line-99302",
+          "trainTypeId": "toei-airport-express"
+        },
+        {
+          "routeId": "line-23002",
+          "trainTypeId": "keisei-access-express"
+        },
+        {
+          "routeId": "line-23006",
+          "trainTypeId": "keisei-access-express"
+        }
+      ],
+      "names": {
+        "ja": "京急線・浅草線・京成線空港直通 成田空港（第１旅客ターミナル）行",
+        "ko": "게이큐선·아사쿠사선·게이세이선 공항 직통 나리타공항(제1여객터미널)행",
+        "en": "Keikyu–Asakusa–Keisei Airport Through Service to NaritakūKō(Dai1ryokakutāMinaru)"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/map/asakusa_sogo.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "toei-asakusa-keikyu-keisei-airport-reverse",
+      "baseRouteId": "line-99302",
+      "throughServiceId": "toei-asakusa-keikyu-keisei-airport",
+      "trainTypeId": "toei-airport-express",
+      "originStationId": "station-1132705",
+      "destinationStationId": "station-mlit-004368",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-1132705",
+        "station-1132813",
+        "station-mlit-003093",
+        "station-mlit-003125",
+        "station-mlit-003090",
+        "station-mlit-003146",
+        "station-mlit-003187",
+        "station-mlit-003248",
+        "station-mlit-003280",
+        "station-mlit-003323",
+        "station-mlit-003376",
+        "station-mlit-003422",
+        "station-mlit-003477",
+        "station-2100203",
+        "station-mlit-003538",
+        "station-mlit-003522",
+        "station-mlit-003571",
+        "station-mlit-003636",
+        "station-mlit-003676",
+        "station-mlit-003721",
+        "station-mlit-003756",
+        "station-mlit-003796",
+        "station-mlit-003838",
+        "station-mlit-003872",
+        "station-mlit-003939",
+        "station-mlit-003986",
+        "station-mlit-004042",
+        "station-mlit-004095",
+        "station-mlit-004125",
+        "station-mlit-004153",
+        "station-mlit-004184",
+        "station-mlit-004220",
+        "station-mlit-004244",
+        "station-mlit-004268",
+        "station-mlit-004294",
+        "station-mlit-004307",
+        "station-mlit-004319",
+        "station-mlit-004331",
+        "station-mlit-004349",
+        "station-mlit-004356",
+        "station-mlit-004364",
+        "station-mlit-004373",
+        "station-mlit-004382",
+        "station-mlit-004368"
+      ],
+      "stopStationIds": [
+        "station-1132705",
+        "station-1132813",
+        "station-mlit-003093",
+        "station-mlit-003125",
+        "station-mlit-003090",
+        "station-mlit-003146",
+        "station-mlit-003187",
+        "station-mlit-003248",
+        "station-mlit-003280",
+        "station-2100203",
+        "station-mlit-003522",
+        "station-mlit-003571",
+        "station-mlit-003636",
+        "station-mlit-003676",
+        "station-mlit-003756",
+        "station-mlit-003872",
+        "station-mlit-003939",
+        "station-mlit-003986",
+        "station-mlit-004042",
+        "station-mlit-004095",
+        "station-mlit-004331",
+        "station-mlit-004382",
+        "station-mlit-004368"
+      ],
+      "segmentTrainTypeContexts": [
+        {
+          "routeId": "line-27002",
+          "trainTypeId": "keikyu-airport-kaitoku"
+        },
+        {
+          "routeId": "line-27001",
+          "trainTypeId": "keikyu-airport-kaitoku"
+        },
+        {
+          "routeId": "line-99302",
+          "trainTypeId": "toei-airport-express"
+        },
+        {
+          "routeId": "line-23002",
+          "trainTypeId": "keisei-access-express"
+        },
+        {
+          "routeId": "line-23006",
+          "trainTypeId": "keisei-access-express"
+        }
+      ],
+      "names": {
+        "ja": "京急線・浅草線・京成線空港直通 羽田空港第1・第2ターミナル行",
+        "ko": "게이큐선·아사쿠사선·게이세이선 공항 직통 하네다 공항 제1·제2터미널행",
+        "en": "Keikyu–Asakusa–Keisei Airport Through Service to HanedakūKōDai1･Dai2tāMinaru"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/map/asakusa_sogo.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "toei-mita-tokyu-sotetsu-shonandai-forward",
+      "baseRouteId": "line-99303",
+      "throughServiceId": "toei-mita-tokyu-sotetsu-shonandai",
+      "trainTypeId": "through-regular",
+      "originStationId": "station-mlit-003104",
+      "destinationStationId": "station-mlit-004842",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003104",
+        "station-mlit-003112",
+        "station-mlit-003117",
+        "station-mlit-003128",
+        "station-mlit-003140",
+        "station-mlit-003158",
+        "station-mlit-003165",
+        "station-mlit-003193",
+        "station-mlit-003216",
+        "station-mlit-003245",
+        "station-mlit-003268",
+        "station-mlit-003293",
+        "station-mlit-003354",
+        "station-mlit-003415",
+        "station-mlit-003461",
+        "station-mlit-003529",
+        "station-mlit-003580",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003802",
+        "station-mlit-003842",
+        "station-mlit-003911",
+        "station-mlit-003962",
+        "station-mlit-003986",
+        "station-mlit-004025",
+        "station-mlit-004044",
+        "station-mlit-004072",
+        "station-mlit-004114",
+        "station-mlit-004133",
+        "station-mlit-004157",
+        "station-mlit-004180",
+        "station-mlit-004200",
+        "station-mlit-004223",
+        "station-mlit-004245",
+        "station-mlit-004261",
+        "station-mlit-004287",
+        "station-mlit-004297",
+        "station-mlit-004322",
+        "station-mlit-004351",
+        "station-tokyu-shin-tsunashima",
+        "station-mlit-004501",
+        "station-mlit-004581",
+        "station-mlit-004594",
+        "station-mlit-004604",
+        "station-mlit-004642",
+        "station-mlit-004674",
+        "station-mlit-004714",
+        "station-mlit-004742",
+        "station-mlit-004745",
+        "station-mlit-004773",
+        "station-mlit-004797",
+        "station-mlit-004842"
+      ],
+      "stopStationIds": [
+        "station-mlit-003104",
+        "station-mlit-003112",
+        "station-mlit-003117",
+        "station-mlit-003128",
+        "station-mlit-003140",
+        "station-mlit-003158",
+        "station-mlit-003165",
+        "station-mlit-003193",
+        "station-mlit-003216",
+        "station-mlit-003245",
+        "station-mlit-003268",
+        "station-mlit-003293",
+        "station-mlit-003354",
+        "station-mlit-003415",
+        "station-mlit-003461",
+        "station-mlit-003529",
+        "station-mlit-003580",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003802",
+        "station-mlit-003842",
+        "station-mlit-003911",
+        "station-mlit-003962",
+        "station-mlit-003986",
+        "station-mlit-004025",
+        "station-mlit-004044",
+        "station-mlit-004072",
+        "station-mlit-004114",
+        "station-mlit-004133",
+        "station-mlit-004157",
+        "station-mlit-004180",
+        "station-mlit-004200",
+        "station-mlit-004223",
+        "station-mlit-004245",
+        "station-mlit-004261",
+        "station-mlit-004287",
+        "station-mlit-004297",
+        "station-mlit-004322",
+        "station-mlit-004351",
+        "station-tokyu-shin-tsunashima",
+        "station-mlit-004501",
+        "station-mlit-004581",
+        "station-mlit-004594",
+        "station-mlit-004604",
+        "station-mlit-004642",
+        "station-mlit-004674",
+        "station-mlit-004714",
+        "station-mlit-004742",
+        "station-mlit-004745",
+        "station-mlit-004773",
+        "station-mlit-004797",
+        "station-mlit-004842"
+      ],
+      "segmentTrainTypeContexts": [],
+      "names": {
+        "ja": "三田線・東急線・相鉄線直通 湘南台行",
+        "ko": "미타선·도큐선·소테츠선 직통 쇼난다이행",
+        "en": "Mita–Tokyu–Sotetsu Through Service to ShōNandai"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/pickup_information/news/subway/2026/sub_i_2026012212357_h.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "toei-mita-tokyu-sotetsu-shonandai-reverse",
+      "baseRouteId": "line-99303",
+      "throughServiceId": "toei-mita-tokyu-sotetsu-shonandai",
+      "trainTypeId": "through-regular",
+      "originStationId": "station-mlit-004842",
+      "destinationStationId": "station-mlit-003104",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-004842",
+        "station-mlit-004797",
+        "station-mlit-004773",
+        "station-mlit-004745",
+        "station-mlit-004742",
+        "station-mlit-004714",
+        "station-mlit-004674",
+        "station-mlit-004642",
+        "station-mlit-004604",
+        "station-mlit-004594",
+        "station-mlit-004581",
+        "station-mlit-004501",
+        "station-tokyu-shin-tsunashima",
+        "station-mlit-004351",
+        "station-mlit-004322",
+        "station-mlit-004297",
+        "station-mlit-004287",
+        "station-mlit-004261",
+        "station-mlit-004245",
+        "station-mlit-004223",
+        "station-mlit-004200",
+        "station-mlit-004180",
+        "station-mlit-004157",
+        "station-mlit-004133",
+        "station-mlit-004114",
+        "station-mlit-004072",
+        "station-mlit-004044",
+        "station-mlit-004025",
+        "station-mlit-003986",
+        "station-mlit-003962",
+        "station-mlit-003911",
+        "station-mlit-003842",
+        "station-mlit-003802",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003580",
+        "station-mlit-003529",
+        "station-mlit-003461",
+        "station-mlit-003415",
+        "station-mlit-003354",
+        "station-mlit-003293",
+        "station-mlit-003268",
+        "station-mlit-003245",
+        "station-mlit-003216",
+        "station-mlit-003193",
+        "station-mlit-003165",
+        "station-mlit-003158",
+        "station-mlit-003140",
+        "station-mlit-003128",
+        "station-mlit-003117",
+        "station-mlit-003112",
+        "station-mlit-003104"
+      ],
+      "stopStationIds": [
+        "station-mlit-004842",
+        "station-mlit-004797",
+        "station-mlit-004773",
+        "station-mlit-004745",
+        "station-mlit-004742",
+        "station-mlit-004714",
+        "station-mlit-004674",
+        "station-mlit-004642",
+        "station-mlit-004604",
+        "station-mlit-004594",
+        "station-mlit-004581",
+        "station-mlit-004501",
+        "station-tokyu-shin-tsunashima",
+        "station-mlit-004351",
+        "station-mlit-004322",
+        "station-mlit-004297",
+        "station-mlit-004287",
+        "station-mlit-004261",
+        "station-mlit-004245",
+        "station-mlit-004223",
+        "station-mlit-004200",
+        "station-mlit-004180",
+        "station-mlit-004157",
+        "station-mlit-004133",
+        "station-mlit-004114",
+        "station-mlit-004072",
+        "station-mlit-004044",
+        "station-mlit-004025",
+        "station-mlit-003986",
+        "station-mlit-003962",
+        "station-mlit-003911",
+        "station-mlit-003842",
+        "station-mlit-003802",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003580",
+        "station-mlit-003529",
+        "station-mlit-003461",
+        "station-mlit-003415",
+        "station-mlit-003354",
+        "station-mlit-003293",
+        "station-mlit-003268",
+        "station-mlit-003245",
+        "station-mlit-003216",
+        "station-mlit-003193",
+        "station-mlit-003165",
+        "station-mlit-003158",
+        "station-mlit-003140",
+        "station-mlit-003128",
+        "station-mlit-003117",
+        "station-mlit-003112",
+        "station-mlit-003104"
+      ],
+      "segmentTrainTypeContexts": [],
+      "names": {
+        "ja": "三田線・東急線・相鉄線直通 西高島平行",
+        "ko": "미타선·도큐선·소테츠선 직통 니시타카시마다이라행",
+        "en": "Mita–Tokyu–Sotetsu Through Service to Nishitakashimadaira"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/pickup_information/news/subway/2026/sub_i_2026012212357_h.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "toei-shinjuku-keio-hashimoto-forward",
+      "baseRouteId": "line-99304",
+      "throughServiceId": "toei-shinjuku-keio-hashimoto",
+      "trainTypeId": "keio-section-express",
+      "originStationId": "station-mlit-003449",
+      "destinationStationId": "station-mlit-004253",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003449",
+        "station-mlit-003565",
+        "station-mlit-003667",
+        "station-mlit-003724",
+        "station-mlit-003745",
+        "station-mlit-003695",
+        "station-mlit-003698",
+        "station-mlit-003702",
+        "station-mlit-003704",
+        "station-mlit-003709",
+        "station-mlit-003711",
+        "station-mlit-003706",
+        "station-mlit-003675",
+        "station-mlit-003655",
+        "station-mlit-003659",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003671",
+        "station-mlit-003673",
+        "station-mlit-003689",
+        "station-mlit-003700",
+        "station-mlit-003764",
+        "station-mlit-003791",
+        "station-2400104",
+        "station-mlit-003830",
+        "station-mlit-003846",
+        "station-mlit-003874",
+        "station-mlit-003862",
+        "station-mlit-003849",
+        "station-mlit-003836",
+        "station-mlit-003832",
+        "station-mlit-003861",
+        "station-mlit-003903",
+        "station-mlit-003933",
+        "station-mlit-003959",
+        "station-mlit-003973",
+        "station-mlit-003975",
+        "station-mlit-003966",
+        "station-mlit-004013",
+        "station-mlit-004066",
+        "station-mlit-004070",
+        "station-mlit-004056",
+        "station-mlit-004139",
+        "station-mlit-004086",
+        "station-mlit-004116",
+        "station-mlit-004120",
+        "station-mlit-004163",
+        "station-mlit-004234",
+        "station-mlit-004253"
+      ],
+      "stopStationIds": [
+        "station-mlit-003449",
+        "station-mlit-003565",
+        "station-mlit-003667",
+        "station-mlit-003724",
+        "station-mlit-003745",
+        "station-mlit-003695",
+        "station-mlit-003698",
+        "station-mlit-003702",
+        "station-mlit-003704",
+        "station-mlit-003709",
+        "station-mlit-003711",
+        "station-mlit-003706",
+        "station-mlit-003675",
+        "station-mlit-003655",
+        "station-mlit-003659",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003671",
+        "station-mlit-003673",
+        "station-mlit-003689",
+        "station-mlit-003700",
+        "station-mlit-003764",
+        "station-mlit-003791",
+        "station-2400104",
+        "station-mlit-003846",
+        "station-mlit-003861",
+        "station-mlit-003966",
+        "station-mlit-004013",
+        "station-mlit-004066",
+        "station-mlit-004070",
+        "station-mlit-004056",
+        "station-mlit-004139",
+        "station-mlit-004086",
+        "station-mlit-004116",
+        "station-mlit-004120",
+        "station-mlit-004163",
+        "station-mlit-004234",
+        "station-mlit-004253"
+      ],
+      "segmentTrainTypeContexts": [
+        {
+          "routeId": "line-99304",
+          "trainTypeId": "toei-local"
+        },
+        {
+          "routeId": "line-24007",
+          "trainTypeId": "keio-section-express"
+        },
+        {
+          "routeId": "line-24001",
+          "trainTypeId": "keio-section-express"
+        },
+        {
+          "routeId": "line-24002",
+          "trainTypeId": "keio-section-express"
+        }
+      ],
+      "names": {
+        "ja": "新宿線・京王線・相模原線直通 橋本行",
+        "ko": "신주쿠선·케이오선·사가미하라선 직통 하시모토행",
+        "en": "Shinjuku–Keio–Sagamihara Through Service to Hashimoto"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S02WD.html",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "type": "official",
+          "url": "https://www.keio.co.jp/train/station/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "toei-shinjuku-keio-hashimoto-reverse",
+      "baseRouteId": "line-99304",
+      "throughServiceId": "toei-shinjuku-keio-hashimoto",
+      "trainTypeId": "keio-section-express",
+      "originStationId": "station-mlit-004253",
+      "destinationStationId": "station-mlit-003449",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-004253",
+        "station-mlit-004234",
+        "station-mlit-004163",
+        "station-mlit-004120",
+        "station-mlit-004116",
+        "station-mlit-004086",
+        "station-mlit-004139",
+        "station-mlit-004056",
+        "station-mlit-004070",
+        "station-mlit-004066",
+        "station-mlit-004013",
+        "station-mlit-003966",
+        "station-mlit-003975",
+        "station-mlit-003973",
+        "station-mlit-003959",
+        "station-mlit-003933",
+        "station-mlit-003903",
+        "station-mlit-003861",
+        "station-mlit-003832",
+        "station-mlit-003836",
+        "station-mlit-003849",
+        "station-mlit-003862",
+        "station-mlit-003874",
+        "station-mlit-003846",
+        "station-mlit-003830",
+        "station-2400104",
+        "station-mlit-003791",
+        "station-mlit-003764",
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003673",
+        "station-mlit-003671",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003659",
+        "station-mlit-003655",
+        "station-mlit-003675",
+        "station-mlit-003706",
+        "station-mlit-003711",
+        "station-mlit-003709",
+        "station-mlit-003704",
+        "station-mlit-003702",
+        "station-mlit-003698",
+        "station-mlit-003695",
+        "station-mlit-003745",
+        "station-mlit-003724",
+        "station-mlit-003667",
+        "station-mlit-003565",
+        "station-mlit-003449"
+      ],
+      "stopStationIds": [
+        "station-mlit-004253",
+        "station-mlit-004234",
+        "station-mlit-004163",
+        "station-mlit-004120",
+        "station-mlit-004116",
+        "station-mlit-004086",
+        "station-mlit-004139",
+        "station-mlit-004056",
+        "station-mlit-004070",
+        "station-mlit-004066",
+        "station-mlit-004013",
+        "station-mlit-003966",
+        "station-mlit-003861",
+        "station-mlit-003846",
+        "station-2400104",
+        "station-mlit-003791",
+        "station-mlit-003764",
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003673",
+        "station-mlit-003671",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003659",
+        "station-mlit-003655",
+        "station-mlit-003675",
+        "station-mlit-003706",
+        "station-mlit-003711",
+        "station-mlit-003709",
+        "station-mlit-003704",
+        "station-mlit-003702",
+        "station-mlit-003698",
+        "station-mlit-003695",
+        "station-mlit-003745",
+        "station-mlit-003724",
+        "station-mlit-003667",
+        "station-mlit-003565",
+        "station-mlit-003449"
+      ],
+      "segmentTrainTypeContexts": [
+        {
+          "routeId": "line-99304",
+          "trainTypeId": "toei-local"
+        },
+        {
+          "routeId": "line-24007",
+          "trainTypeId": "keio-section-express"
+        },
+        {
+          "routeId": "line-24001",
+          "trainTypeId": "keio-section-express"
+        },
+        {
+          "routeId": "line-24002",
+          "trainTypeId": "keio-section-express"
+        }
+      ],
+      "names": {
+        "ja": "新宿線・京王線・相模原線直通 本八幡行",
+        "ko": "신주쿠선·케이오선·사가미하라선 직통 모토야와타행",
+        "en": "Shinjuku–Keio–Sagamihara Through Service to Motoyawata"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S02WD.html",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "type": "official",
+          "url": "https://www.keio.co.jp/train/station/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
     }
   ],
   "metroLineInventory": [
@@ -3920,14 +4709,6 @@
   ],
   "destinations": [
     {
-      "stationId": "station-2100304",
-      "names": {
-        "ja": "南栗橋",
-        "ko": "미나미쿠리하시",
-        "en": "Minamikurihashi"
-      }
-    },
-    {
       "stationId": "station-mlit-004014",
       "names": {
         "ja": "中目黒",
@@ -3936,11 +4717,11 @@
       }
     },
     {
-      "stationId": "station-mlit-003681",
+      "stationId": "station-2100304",
       "names": {
-        "ja": "津田沼",
-        "ko": "츠다누마",
-        "en": "Tsudanuma"
+        "ja": "南栗橋",
+        "ko": "미나미쿠리하시",
+        "en": "Minamikurihashi"
       }
     },
     {
@@ -3952,11 +4733,11 @@
       }
     },
     {
-      "stationId": "station-2300131",
+      "stationId": "station-mlit-003681",
       "names": {
-        "ja": "東葉勝田台",
-        "ko": "히가시하카츠타다이",
-        "en": "Higashihakatsutadai"
+        "ja": "津田沼",
+        "ko": "츠다누마",
+        "en": "Tsudanuma"
       }
     },
     {
@@ -3968,11 +4749,11 @@
       }
     },
     {
-      "stationId": "station-mlit-004715",
+      "stationId": "station-2300131",
       "names": {
-        "ja": "本厚木",
-        "ko": "혼아츠기",
-        "en": "Hon'Atsugi"
+        "ja": "東葉勝田台",
+        "ko": "히가시하카츠타다이",
+        "en": "Higashihakatsutadai"
       }
     },
     {
@@ -3984,11 +4765,11 @@
       }
     },
     {
-      "stationId": "station-mlit-004154",
+      "stationId": "station-mlit-004715",
       "names": {
-        "ja": "唐木田",
-        "ko": "카라키다",
-        "en": "Karakida"
+        "ja": "本厚木",
+        "ko": "혼아츠기",
+        "en": "Hon'Atsugi"
       }
     },
     {
@@ -4000,11 +4781,11 @@
       }
     },
     {
-      "stationId": "station-mlit-003997",
+      "stationId": "station-mlit-004154",
       "names": {
-        "ja": "新木場",
-        "ko": "신키바",
-        "en": "Shinkiba"
+        "ja": "唐木田",
+        "ko": "카라키다",
+        "en": "Karakida"
       }
     },
     {
@@ -4016,19 +4797,19 @@
       }
     },
     {
+      "stationId": "station-mlit-003997",
+      "names": {
+        "ja": "新木場",
+        "ko": "신키바",
+        "en": "Shinkiba"
+      }
+    },
+    {
       "stationId": "station-mlit-002999",
       "names": {
         "ja": "飯能",
         "ko": "한노",
         "en": "Hannō"
-      }
-    },
-    {
-      "stationId": "station-mlit-002683",
-      "names": {
-        "ja": "久喜",
-        "ko": "쿠키",
-        "en": "Kuki"
       }
     },
     {
@@ -4040,11 +4821,11 @@
       }
     },
     {
-      "stationId": "station-mlit-004351",
+      "stationId": "station-mlit-002683",
       "names": {
-        "ja": "日吉",
-        "ko": "히요시",
-        "en": "Hiyoshi"
+        "ja": "久喜",
+        "ko": "쿠키",
+        "en": "Kuki"
       }
     },
     {
@@ -4053,6 +4834,14 @@
         "ja": "浦和美園",
         "ko": "우라와미소노",
         "en": "Urawamisono"
+      }
+    },
+    {
+      "stationId": "station-mlit-004351",
+      "names": {
+        "ja": "日吉",
+        "ko": "히요시",
+        "en": "Hiyoshi"
       }
     },
     {
@@ -4072,6 +4861,14 @@
       }
     },
     {
+      "stationId": "station-mlit-003123",
+      "names": {
+        "ja": "和光市",
+        "ko": "와코시",
+        "en": "WakōShi"
+      }
+    },
+    {
       "stationId": "station-mlit-004704",
       "names": {
         "ja": "元町・中華街",
@@ -4080,12 +4877,507 @@
       }
     },
     {
-      "stationId": "station-mlit-003123",
+      "stationId": "station-mlit-004368",
       "names": {
-        "ja": "和光市",
-        "ko": "와코시",
-        "en": "WakōShi"
+        "ja": "羽田空港第1・第2ターミナル",
+        "ko": "하네다 공항 제1·제2터미널",
+        "en": "HanedakūKōDai1･Dai2tāMinaru"
       }
+    },
+    {
+      "stationId": "station-1132705",
+      "names": {
+        "ja": "成田空港（第１旅客ターミナル）",
+        "ko": "나리타공항(제1여객터미널)",
+        "en": "NaritakūKō(Dai1ryokakutāMinaru)"
+      }
+    },
+    {
+      "stationId": "station-mlit-003104",
+      "names": {
+        "ja": "西高島平",
+        "ko": "니시타카시마다이라",
+        "en": "Nishitakashimadaira"
+      }
+    },
+    {
+      "stationId": "station-mlit-003449",
+      "names": {
+        "ja": "本八幡",
+        "ko": "모토야와타",
+        "en": "Motoyawata"
+      }
+    },
+    {
+      "stationId": "station-mlit-004253",
+      "names": {
+        "ja": "橋本",
+        "ko": "하시모토",
+        "en": "Hashimoto"
+      }
+    }
+  ],
+  "serviceJourneys": [
+    {
+      "id": "journey-hibiya-tobu-forward",
+      "baseRouteId": "line-28003",
+      "originStationId": "station-mlit-004014",
+      "destinationStationId": "station-2100304",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "hibiya-tobu",
+      "directionId": "forward",
+      "servicePatternId": "hibiya-tobu-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-hibiya-tobu-reverse",
+      "baseRouteId": "line-28003",
+      "originStationId": "station-2100304",
+      "destinationStationId": "station-mlit-004014",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "hibiya-tobu",
+      "directionId": "reverse",
+      "servicePatternId": "hibiya-tobu-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-tozai-chuo-sobu-forward",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003587",
+      "destinationStationId": "station-mlit-003681",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "tozai-chuo-sobu",
+      "directionId": "forward",
+      "servicePatternId": "tozai-chuo-sobu-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-tozai-chuo-sobu-reverse",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003681",
+      "destinationStationId": "station-mlit-003587",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "tozai-chuo-sobu",
+      "directionId": "reverse",
+      "servicePatternId": "tozai-chuo-sobu-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-tozai-toyo-rapid-forward",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003568",
+      "destinationStationId": "station-2300131",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "tozai-toyo-rapid",
+      "directionId": "forward",
+      "servicePatternId": "tozai-toyo-rapid-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-tozai-toyo-rapid-reverse",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-2300131",
+      "destinationStationId": "station-mlit-003568",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "tozai-toyo-rapid",
+      "directionId": "reverse",
+      "servicePatternId": "tozai-toyo-rapid-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-chiyoda-joban-odakyu-forward",
+      "baseRouteId": "line-28005",
+      "originStationId": "station-mlit-002965",
+      "destinationStationId": "station-mlit-004715",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "chiyoda-joban-odakyu",
+      "directionId": "forward",
+      "servicePatternId": "chiyoda-joban-odakyu-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-chiyoda-joban-odakyu-reverse",
+      "baseRouteId": "line-28005",
+      "originStationId": "station-mlit-004715",
+      "destinationStationId": "station-mlit-002965",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "chiyoda-joban-odakyu",
+      "directionId": "reverse",
+      "servicePatternId": "chiyoda-joban-odakyu-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-chiyoda-odakyu-tama-forward",
+      "baseRouteId": "line-28005",
+      "originStationId": "station-mlit-003214",
+      "destinationStationId": "station-mlit-004154",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "chiyoda-odakyu-tama",
+      "directionId": "forward",
+      "servicePatternId": "chiyoda-odakyu-tama-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-chiyoda-odakyu-tama-reverse",
+      "baseRouteId": "line-28005",
+      "originStationId": "station-mlit-004154",
+      "destinationStationId": "station-mlit-003214",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "chiyoda-odakyu-tama",
+      "directionId": "reverse",
+      "servicePatternId": "chiyoda-odakyu-tama-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-yurakucho-tobu-forward",
+      "baseRouteId": "line-28006",
+      "originStationId": "station-mlit-002708",
+      "destinationStationId": "station-mlit-003997",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "yurakucho-tobu",
+      "directionId": "forward",
+      "servicePatternId": "yurakucho-tobu-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-yurakucho-tobu-reverse",
+      "baseRouteId": "line-28006",
+      "originStationId": "station-mlit-003997",
+      "destinationStationId": "station-mlit-002708",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "yurakucho-tobu",
+      "directionId": "reverse",
+      "servicePatternId": "yurakucho-tobu-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-yurakucho-seibu-forward",
+      "baseRouteId": "line-28006",
+      "originStationId": "station-mlit-002999",
+      "destinationStationId": "station-mlit-003997",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "yurakucho-seibu",
+      "directionId": "forward",
+      "servicePatternId": "yurakucho-seibu-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-yurakucho-seibu-reverse",
+      "baseRouteId": "line-28006",
+      "originStationId": "station-mlit-003997",
+      "destinationStationId": "station-mlit-002999",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "yurakucho-seibu",
+      "directionId": "reverse",
+      "servicePatternId": "yurakucho-seibu-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-denentoshi-hanzomon-tobu-forward",
+      "baseRouteId": "line-28008",
+      "originStationId": "station-mlit-004498",
+      "destinationStationId": "station-mlit-002683",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "denentoshi-hanzomon-tobu",
+      "directionId": "forward",
+      "servicePatternId": "denentoshi-hanzomon-tobu-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-denentoshi-hanzomon-tobu-reverse",
+      "baseRouteId": "line-28008",
+      "originStationId": "station-mlit-002683",
+      "destinationStationId": "station-mlit-004498",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "denentoshi-hanzomon-tobu",
+      "directionId": "reverse",
+      "servicePatternId": "denentoshi-hanzomon-tobu-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-namboku-saitama-tokyu-forward",
+      "baseRouteId": "line-28009",
+      "originStationId": "station-mlit-002933",
+      "destinationStationId": "station-mlit-004351",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "namboku-saitama-tokyu",
+      "directionId": "forward",
+      "servicePatternId": "namboku-saitama-tokyu-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-namboku-saitama-tokyu-reverse",
+      "baseRouteId": "line-28009",
+      "originStationId": "station-mlit-004351",
+      "destinationStationId": "station-mlit-002933",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "namboku-saitama-tokyu",
+      "directionId": "reverse",
+      "servicePatternId": "namboku-saitama-tokyu-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-namboku-saitama-tokyu-sotetsu-ebina-forward",
+      "baseRouteId": "line-28009",
+      "originStationId": "station-mlit-002933",
+      "destinationStationId": "station-mlit-004672",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "namboku-saitama-tokyu-sotetsu-ebina",
+      "directionId": "forward",
+      "servicePatternId": "namboku-saitama-tokyu-sotetsu-ebina-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-namboku-saitama-tokyu-sotetsu-ebina-reverse",
+      "baseRouteId": "line-28009",
+      "originStationId": "station-mlit-004672",
+      "destinationStationId": "station-mlit-002933",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "namboku-saitama-tokyu-sotetsu-ebina",
+      "directionId": "reverse",
+      "servicePatternId": "namboku-saitama-tokyu-sotetsu-ebina-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-namboku-saitama-tokyu-sotetsu-shonandai-forward",
+      "baseRouteId": "line-28009",
+      "originStationId": "station-mlit-002933",
+      "destinationStationId": "station-mlit-004842",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "namboku-saitama-tokyu-sotetsu-shonandai",
+      "directionId": "forward",
+      "servicePatternId": "namboku-saitama-tokyu-sotetsu-shonandai-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-namboku-saitama-tokyu-sotetsu-shonandai-reverse",
+      "baseRouteId": "line-28009",
+      "originStationId": "station-mlit-004842",
+      "destinationStationId": "station-mlit-002933",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "namboku-saitama-tokyu-sotetsu-shonandai",
+      "directionId": "reverse",
+      "servicePatternId": "namboku-saitama-tokyu-sotetsu-shonandai-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-tokyu-minatomirai-forward",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-004704",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "fukutoshin-tokyu-minatomirai",
+      "directionId": "forward",
+      "servicePatternId": "fukutoshin-tokyu-minatomirai-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-tokyu-minatomirai-reverse",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-004704",
+      "destinationStationId": "station-mlit-003123",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "fukutoshin-tokyu-minatomirai",
+      "directionId": "reverse",
+      "servicePatternId": "fukutoshin-tokyu-minatomirai-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-tobu-minatomirai-forward",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-002708",
+      "destinationStationId": "station-mlit-004704",
+      "trainTypeId": "fukutoshin-f-liner-express",
+      "throughServiceId": "fukutoshin-tobu-minatomirai",
+      "directionId": "forward",
+      "servicePatternId": "fukutoshin-tobu-minatomirai-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-tobu-minatomirai-reverse",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-004704",
+      "destinationStationId": "station-mlit-002708",
+      "trainTypeId": "fukutoshin-f-liner-express",
+      "throughServiceId": "fukutoshin-tobu-minatomirai",
+      "directionId": "reverse",
+      "servicePatternId": "fukutoshin-tobu-minatomirai-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-seibu-minatomirai-forward",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-002999",
+      "destinationStationId": "station-mlit-004704",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "fukutoshin-seibu-minatomirai",
+      "directionId": "forward",
+      "servicePatternId": "fukutoshin-seibu-minatomirai-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-seibu-minatomirai-reverse",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-004704",
+      "destinationStationId": "station-mlit-002999",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "fukutoshin-seibu-minatomirai",
+      "directionId": "reverse",
+      "servicePatternId": "fukutoshin-seibu-minatomirai-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-tokyu-sotetsu-shonandai-forward",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-004842",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "fukutoshin-tokyu-sotetsu-shonandai",
+      "directionId": "forward",
+      "servicePatternId": "fukutoshin-tokyu-sotetsu-shonandai-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-tokyu-sotetsu-shonandai-reverse",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-004842",
+      "destinationStationId": "station-mlit-003123",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "fukutoshin-tokyu-sotetsu-shonandai",
+      "directionId": "reverse",
+      "servicePatternId": "fukutoshin-tokyu-sotetsu-shonandai-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-toei-asakusa-keikyu-keisei-airport-forward",
+      "baseRouteId": "line-99302",
+      "originStationId": "station-mlit-004368",
+      "destinationStationId": "station-1132705",
+      "trainTypeId": "toei-airport-express",
+      "throughServiceId": "toei-asakusa-keikyu-keisei-airport",
+      "directionId": "forward",
+      "servicePatternId": "toei-asakusa-keikyu-keisei-airport-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-toei-asakusa-keikyu-keisei-airport-reverse",
+      "baseRouteId": "line-99302",
+      "originStationId": "station-1132705",
+      "destinationStationId": "station-mlit-004368",
+      "trainTypeId": "toei-airport-express",
+      "throughServiceId": "toei-asakusa-keikyu-keisei-airport",
+      "directionId": "reverse",
+      "servicePatternId": "toei-asakusa-keikyu-keisei-airport-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-toei-mita-tokyu-sotetsu-shonandai-forward",
+      "baseRouteId": "line-99303",
+      "originStationId": "station-mlit-003104",
+      "destinationStationId": "station-mlit-004842",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "toei-mita-tokyu-sotetsu-shonandai",
+      "directionId": "forward",
+      "servicePatternId": "toei-mita-tokyu-sotetsu-shonandai-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-toei-mita-tokyu-sotetsu-shonandai-reverse",
+      "baseRouteId": "line-99303",
+      "originStationId": "station-mlit-004842",
+      "destinationStationId": "station-mlit-003104",
+      "trainTypeId": "through-regular",
+      "throughServiceId": "toei-mita-tokyu-sotetsu-shonandai",
+      "directionId": "reverse",
+      "servicePatternId": "toei-mita-tokyu-sotetsu-shonandai-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-toei-shinjuku-keio-hashimoto-forward",
+      "baseRouteId": "line-99304",
+      "originStationId": "station-mlit-003449",
+      "destinationStationId": "station-mlit-004253",
+      "trainTypeId": "keio-section-express",
+      "throughServiceId": "toei-shinjuku-keio-hashimoto",
+      "directionId": "forward",
+      "servicePatternId": "toei-shinjuku-keio-hashimoto-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-toei-shinjuku-keio-hashimoto-reverse",
+      "baseRouteId": "line-99304",
+      "originStationId": "station-mlit-004253",
+      "destinationStationId": "station-mlit-003449",
+      "trainTypeId": "keio-section-express",
+      "throughServiceId": "toei-shinjuku-keio-hashimoto",
+      "directionId": "reverse",
+      "servicePatternId": "toei-shinjuku-keio-hashimoto-reverse",
+      "status": "active"
+    }
+  ],
+  "toeiLineInventory": [
+    {
+      "lineId": "line-99302",
+      "slug": "asakusa",
+      "status": "COMPLETE",
+      "throughServiceIds": [
+        "toei-asakusa-keikyu-keisei-airport"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/map/asakusa_sogo.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "lineId": "line-99303",
+      "slug": "mita",
+      "status": "COMPLETE",
+      "throughServiceIds": [
+        "toei-mita-tokyu-sotetsu-shonandai"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/pickup_information/news/subway/2026/sub_i_2026012212357_h.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "lineId": "line-99304",
+      "slug": "shinjuku",
+      "status": "COMPLETE",
+      "throughServiceIds": [
+        "toei-shinjuku-keio-hashimoto"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S02WD.html",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "type": "official",
+          "url": "https://www.keio.co.jp/train/station/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "lineId": "line-99301",
+      "slug": "oedo",
+      "status": "NONE",
+      "throughServiceIds": [],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/oedo/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
     }
   ]
 }

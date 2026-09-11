@@ -1171,8 +1171,304 @@
       },
       "sourceUrl": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
       "verifiedDate": "2026-09-11"
+    },
+    {
+      "id": "toei-asakusa-keikyu-keisei-airport",
+      "nameJa": "京急線・浅草線・京成線空港直通",
+      "nameKo": "게이큐선·아사쿠사선·게이세이선 공항 직통",
+      "nameEn": "Keikyu–Asakusa–Keisei Airport Through Service",
+      "participatingOperatorIds": [
+        "keikyu",
+        "toei",
+        "keisei"
+      ],
+      "participatingLineIds": [
+        "line-27002",
+        "line-27001",
+        "line-99302",
+        "line-23002",
+        "line-23006"
+      ],
+      "boundaryStations": [
+        "京急蒲田",
+        "泉岳寺",
+        "押上〈スカイツリー前〉",
+        "京成高砂"
+      ],
+      "allowedDestinations": [
+        "羽田空港第1・第2ターミナル",
+        "成田空港（第１旅客ターミナル）"
+      ],
+      "boundarySnapToleranceKm": 0.35,
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-27002",
+            "direction": "reverse",
+            "startStationJa": "羽田空港第1・第2ターミナル",
+            "endStationJa": "京急蒲田"
+          },
+          {
+            "routeId": "line-27001",
+            "direction": "reverse",
+            "startStationJa": "京急蒲田",
+            "endStationJa": "泉岳寺"
+          },
+          {
+            "routeId": "line-99302",
+            "direction": "forward",
+            "startStationJa": "泉岳寺",
+            "endStationJa": "押上〈スカイツリー前〉"
+          },
+          {
+            "routeId": "line-23002",
+            "direction": "forward",
+            "startStationJa": "押上〈スカイツリー前〉",
+            "endStationJa": "京成高砂"
+          },
+          {
+            "routeId": "line-23006",
+            "direction": "forward",
+            "startStationJa": "京成高砂",
+            "endStationJa": "成田空港（第１旅客ターミナル）"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-23006",
+            "direction": "reverse",
+            "startStationJa": "成田空港（第１旅客ターミナル）",
+            "endStationJa": "京成高砂"
+          },
+          {
+            "routeId": "line-23002",
+            "direction": "reverse",
+            "startStationJa": "京成高砂",
+            "endStationJa": "押上〈スカイツリー前〉"
+          },
+          {
+            "routeId": "line-99302",
+            "direction": "reverse",
+            "startStationJa": "押上〈スカイツリー前〉",
+            "endStationJa": "泉岳寺"
+          },
+          {
+            "routeId": "line-27001",
+            "direction": "forward",
+            "startStationJa": "泉岳寺",
+            "endStationJa": "京急蒲田"
+          },
+          {
+            "routeId": "line-27002",
+            "direction": "forward",
+            "startStationJa": "京急蒲田",
+            "endStationJa": "羽田空港第1・第2ターミナル"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.kotsu.metro.tokyo.jp/subway/map/asakusa_sogo.html",
+      "verifiedDate": "2026-09-12"
+    },
+    {
+      "id": "toei-mita-tokyu-sotetsu-shonandai",
+      "nameJa": "三田線・東急線・相鉄線直通",
+      "nameKo": "미타선·도큐선·소테츠선 직통",
+      "nameEn": "Mita–Tokyu–Sotetsu Through Service",
+      "participatingOperatorIds": [
+        "toei",
+        "tokyu",
+        "sotetsu"
+      ],
+      "participatingLineIds": [
+        "line-99303",
+        "line-26002",
+        "line-26009",
+        "line-29003",
+        "line-29001",
+        "line-29002"
+      ],
+      "boundaryStations": [
+        "目黒",
+        "日吉",
+        "新横浜",
+        "西谷",
+        "二俣川"
+      ],
+      "allowedDestinations": [
+        "西高島平",
+        "湘南台"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99303",
+            "direction": "reverse",
+            "startStationJa": "西高島平",
+            "endStationJa": "目黒"
+          },
+          {
+            "routeId": "line-26002",
+            "direction": "forward",
+            "startStationJa": "目黒",
+            "endStationJa": "日吉"
+          },
+          {
+            "routeId": "line-26009",
+            "direction": "forward",
+            "startStationJa": "日吉",
+            "endStationJa": "新横浜"
+          },
+          {
+            "routeId": "line-29003",
+            "direction": "reverse",
+            "startStationJa": "新横浜",
+            "endStationJa": "西谷"
+          },
+          {
+            "routeId": "line-29001",
+            "direction": "forward",
+            "startStationJa": "西谷",
+            "endStationJa": "二俣川"
+          },
+          {
+            "routeId": "line-29002",
+            "direction": "forward",
+            "startStationJa": "二俣川",
+            "endStationJa": "湘南台"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-29002",
+            "direction": "reverse",
+            "startStationJa": "湘南台",
+            "endStationJa": "二俣川"
+          },
+          {
+            "routeId": "line-29001",
+            "direction": "reverse",
+            "startStationJa": "二俣川",
+            "endStationJa": "西谷"
+          },
+          {
+            "routeId": "line-29003",
+            "direction": "forward",
+            "startStationJa": "西谷",
+            "endStationJa": "新横浜"
+          },
+          {
+            "routeId": "line-26009",
+            "direction": "reverse",
+            "startStationJa": "新横浜",
+            "endStationJa": "日吉"
+          },
+          {
+            "routeId": "line-26002",
+            "direction": "reverse",
+            "startStationJa": "日吉",
+            "endStationJa": "目黒"
+          },
+          {
+            "routeId": "line-99303",
+            "direction": "forward",
+            "startStationJa": "目黒",
+            "endStationJa": "西高島平"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.kotsu.metro.tokyo.jp/pickup_information/news/subway/2026/sub_i_2026012212357_h.html",
+      "verifiedDate": "2026-09-12"
+    },
+    {
+      "id": "toei-shinjuku-keio-hashimoto",
+      "nameJa": "新宿線・京王線・相模原線直通",
+      "nameKo": "신주쿠선·케이오선·사가미하라선 직통",
+      "nameEn": "Shinjuku–Keio–Sagamihara Through Service",
+      "participatingOperatorIds": [
+        "toei",
+        "keio"
+      ],
+      "participatingLineIds": [
+        "line-99304",
+        "line-24007",
+        "line-24001",
+        "line-24002"
+      ],
+      "boundaryStations": [
+        "新宿",
+        "笹塚",
+        "調布"
+      ],
+      "boundaryStationAliases": [
+        [
+          "新宿",
+          "新線新宿"
+        ]
+      ],
+      "boundaryCanonicalStationJa": "新宿",
+      "allowedDestinations": [
+        "本八幡",
+        "橋本"
+      ],
+      "boundarySnapToleranceKm": 0.35,
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99304",
+            "direction": "reverse",
+            "startStationJa": "本八幡",
+            "endStationJa": "新宿"
+          },
+          {
+            "routeId": "line-24007",
+            "direction": "forward",
+            "startStationJa": "新線新宿",
+            "endStationJa": "笹塚"
+          },
+          {
+            "routeId": "line-24001",
+            "direction": "forward",
+            "startStationJa": "笹塚",
+            "endStationJa": "調布"
+          },
+          {
+            "routeId": "line-24002",
+            "direction": "forward",
+            "startStationJa": "調布",
+            "endStationJa": "橋本"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-24002",
+            "direction": "reverse",
+            "startStationJa": "橋本",
+            "endStationJa": "調布"
+          },
+          {
+            "routeId": "line-24001",
+            "direction": "reverse",
+            "startStationJa": "調布",
+            "endStationJa": "笹塚"
+          },
+          {
+            "routeId": "line-24007",
+            "direction": "reverse",
+            "startStationJa": "笹塚",
+            "endStationJa": "新線新宿"
+          },
+          {
+            "routeId": "line-99304",
+            "direction": "forward",
+            "startStationJa": "新宿",
+            "endStationJa": "本八幡"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S02WD.html",
+      "verifiedDate": "2026-09-12"
     }
   ],
-  "inventoryScope": "Tokyo Metro current reciprocal through services",
-  "verifiedAt": "2026-09-11"
+  "inventoryScope": "Tokyo Metro and Toei current reciprocal through services",
+  "verifiedAt": "2026-09-12"
 }

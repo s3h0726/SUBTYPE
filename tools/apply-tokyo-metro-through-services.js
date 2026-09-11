@@ -157,6 +157,8 @@ for(const service of services)for(const direction of ['forward','reverse']){
     names:{ja:`${service.nameJa} ${destination.ja}行`,ko:`${service.nameKo} ${destination.ko}행`,en:`${service.nameEn} to ${destination.romaji||destination.en||destination.ja}`},sources:source
   });
 }
+const fLinerStops=new Set(['森林公園','東松山','坂戸','川越','朝霞台','和光市','小竹向原','池袋','新宿三丁目','明治神宮前〈原宿〉','渋谷','中目黒','自由が丘','武蔵小杉','菊名','横浜','みなとみらい','元町・中華街']);
+for(const pattern of throughPatterns.filter(item=>item.throughServiceId==='fukutoshin-tobu-minatomirai')){pattern.trainTypeId='fukutoshin-f-liner-express';pattern.stopStationIds=pattern.stationSequence.filter(id=>{const station=routes.flatMap(route=>route.stations).find(item=>stationId(item)===id);return fLinerStops.has(station?.ja)});pattern.segmentTrainTypeContexts=[{routeId:'line-21001',trainTypeId:'tobu-rapid-express'},{routeId:'line-28010',trainTypeId:'tokyo-metro-express'},{routeId:'line-26001',trainTypeId:'tokyu-limited-express'},{routeId:'line-99310',trainTypeId:'tokyu-limited-express'}]}
 
 const metroLines=[
   ['line-28001','ginza','NONE',[]],['line-28002','marunouchi','NONE',[]],['line-28003','hibiya','COMPLETE',['hibiya-tobu']],
@@ -174,13 +176,18 @@ const catalog=read('data/tokyo-service-patterns.json');
 const trainTypes=[...catalog.trainTypes];
 for(const type of [
   {id:'tokyo-metro-rapid',operatorId:'tokyo-metro',names:{ja:'快速',ko:'쾌속',en:'Rapid'},priority:25},
-  {id:'tokyo-metro-commuter-rapid',operatorId:'tokyo-metro',names:{ja:'通勤快速',ko:'통근쾌속',en:'Commuter Rapid'},priority:27}
+  {id:'tokyo-metro-commuter-rapid',operatorId:'tokyo-metro',names:{ja:'通勤快速',ko:'통근쾌속',en:'Commuter Rapid'},priority:27},
+  {id:'fukutoshin-f-liner-express',names:{ja:'Fライナー急行',ko:'F라이너 급행',en:'F Liner Express'},priority:45},
+  {id:'tobu-rapid-express',operatorId:'tobu',names:{ja:'快速急行',ko:'쾌속급행',en:'Rapid Express'},priority:45},
+  {id:'tokyu-limited-express',operatorId:'tokyu',names:{ja:'特急',ko:'특급',en:'Limited Express'},priority:45}
 ])if(!trainTypes.some(item=>item.id===type.id))trainTypes.push(type);
 const managedThroughIds=new Set(services.map(service=>service.id)),managedPatternIds=new Set(throughPatterns.map(pattern=>pattern.id));
 const preserved=(catalog.servicePatterns||[]).filter(pattern=>!managedPatternIds.has(pattern.id)&&!(pattern.throughServiceId&&managedThroughIds.has(pattern.throughServiceId)));
 catalog.schemaVersion=2;catalog.verifiedAt='2026-09-11';catalog.metroLineInventory=inventory;catalog.trainTypes=trainTypes;catalog.servicePatterns=[...preserved,...throughPatterns];
 const throughFile=read('data/through-services.json'),preservedServices=(throughFile.services||[]).filter(service=>!managedThroughIds.has(service.id));
 throughFile.schemaVersion=2;throughFile.inventoryScope='Tokyo Metro current reciprocal through services';throughFile.verifiedAt='2026-09-11';throughFile.services=[...preservedServices,...services];
-catalog.destinations=[...new Map(throughPatterns.map(pattern=>{const station=routes.flatMap(route=>route.stations).find(item=>stationId(item)===pattern.destinationStationId);return[pattern.destinationStationId,{stationId:pattern.destinationStationId,names:{ja:station?.ja||'',ko:station?.ko||'',en:station?.romaji||''}}]})).values()];
+const endpoints=throughPatterns.flatMap(pattern=>[pattern.originStationId,pattern.destinationStationId]);
+catalog.destinations=[...new Map(endpoints.map(id=>{const station=routes.flatMap(route=>route.stations).find(item=>stationId(item)===id);return[id,{stationId:id,names:{ja:station?.ja||'',ko:station?.ko||'',en:station?.romaji||''}}]})).values()];
+catalog.serviceJourneys=throughPatterns.map(pattern=>({id:`journey-${pattern.id}`,baseRouteId:pattern.baseRouteId,originStationId:pattern.originStationId,destinationStationId:pattern.destinationStationId,trainTypeId:pattern.trainTypeId,throughServiceId:pattern.throughServiceId,directionId:pattern.directionId,servicePatternId:pattern.id,status:'active'}));
 write('data/through-services.json',throughFile);write('data/tokyo-service-patterns.json',catalog);
-console.log(JSON.stringify({metroLines:inventory.length,throughServices:services.length,throughPatterns:throughPatterns.length,destinations:catalog.destinations.length},null,2));
+console.log(JSON.stringify({metroLines:inventory.length,throughServices:services.length,throughPatterns:throughPatterns.length,serviceJourneys:catalog.serviceJourneys.length,destinations:catalog.destinations.length},null,2));
