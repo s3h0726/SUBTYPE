@@ -93,3 +93,19 @@ body[data-current-screen="game"]{height:100dvh;min-height:0;overflow:hidden;over
   #screen-select .operator-logo-filters{height:34px}
   #screen-select .line-card{min-height:92px}
 }
+
+/* Main menu: put category → operator → line selection in the first viewport. */
+#screen-select.line-select-screen{padding-top:clamp(12px,2vw,28px)}
+#screen-select .line-select-heading{margin-bottom:6px}
+#screen-select .data-summary{margin-bottom:8px}
+#screen-select .line-list-panel{gap:7px;padding-top:clamp(16px,2vw,26px)}
+#screen-select .operator-filter-empty{margin:0;align-self:center;color:var(--muted);font-size:12px}
+@media(min-width:821px){
+  #screen-select .line-select-heading{height:50px}
+  #screen-select .line-list-panel>header{height:32px}
+}
+@media(max-width:680px){
+  #screen-select.line-select-screen{padding-top:14px}
+  #screen-select .line-list-panel{padding-top:18px}
+  #screen-select .line-category-tabs,#screen-select .operator-logo-filters{margin-right:-14px;padding-right:14px}
+}
