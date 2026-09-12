@@ -5,7 +5,7 @@ const catalog=json('data/tokyo-service-patterns.json'),through=json('data/throug
 const routes=context.window.TRT_EMBEDDED_LINE_WORKSPACES.routes||[],routeMap=new Map(routes.map(route=>[route.id,route])),trainTypes=new Set((catalog.trainTypes||[]).map(item=>item.id)),branches=new Map((catalog.branches||[]).map(item=>[item.id,item])),throughMap=new Map(through.map(item=>[item.id,item])),errors=[];
 const stationId=station=>String(station.stationMasterId||station.sourceStationId||station.id),routeStations=route=>new Map((route?.stations||[]).map((station,index)=>[stationId(station),index]));
 for(const branch of branches.values()){
-  const parent=routeMap.get(branch.parentLineId),stations=routeStations(parent);if(!parent)errors.push(`${branch.id}: parent route missing`);
+  const parent=routeMap.get(branch.parentLineId),branchRoute=routeMap.get(branch.legacyRouteId||branch.routeId),stations=routeStations(branchRoute);if(!parent)errors.push(`${branch.id}: parent route missing`);if(!branchRoute)errors.push(`${branch.id}: geometry source route missing`);
   if(branch.stationSequence?.[0]!==branch.junctionStationId)errors.push(`${branch.id}: junction must be first station`);
   for(const id of branch.stationSequence||[])if(!stations.has(String(id)))errors.push(`${branch.id}: station missing ${id}`);
   const geometry=json(branch.geometrySource);if(geometry.geometryStatus!=='ready'||geometry.validation?.endpointVerified!==true)errors.push(`${branch.id}: geometry is not endpoint verified`);
@@ -15,7 +15,7 @@ for(const branch of branches.values()){
 for(const pattern of catalog.servicePatterns||[]){
   const base=routeMap.get(pattern.baseRouteId),branch=pattern.branchId?branches.get(pattern.branchId):null,spec=pattern.throughServiceId?throughMap.get(pattern.throughServiceId):null;
   if(!base)errors.push(`${pattern.id}: base route missing`);if(!trainTypes.has(pattern.trainTypeId))errors.push(`${pattern.id}: train type missing`);if(pattern.branchId&&!branch)errors.push(`${pattern.id}: branch missing`);if(pattern.throughServiceId&&!spec)errors.push(`${pattern.id}: through service missing`);
-  const canonicalIds=branch?branch.stationSequence.map(String):[...routeStations(base).keys()],ids=!spec&&pattern.directionId==='reverse'?canonicalIds.slice().reverse():canonicalIds,indices=new Map(ids.map((id,index)=>[id,index])),stops=(pattern.stopStationIds||ids).map(String);
+  const canonicalIds=pattern.stationSequence?.length?pattern.stationSequence.map(String):branch?branch.stationSequence.map(String):[...routeStations(base).keys()],ids=!spec&&pattern.directionId==='reverse'&&!pattern.stationSequence?.length?canonicalIds.slice().reverse():canonicalIds,indices=new Map(ids.map((id,index)=>[id,index])),stops=(pattern.stopStationIds||ids).map(String);
   for(const id of stops)if(!indices.has(id)&&!spec)errors.push(`${pattern.id}: stop outside route ${id}`);
   if(!spec&&stops.some((id,index)=>index&&indices.get(id)<=indices.get(stops[index-1])))errors.push(`${pattern.id}: stop order is not forward`);
   if(!spec&&pattern.originStationId!==stops[0])errors.push(`${pattern.id}: origin is not first stop`);if(!spec&&pattern.destinationStationId!==stops.at(-1))errors.push(`${pattern.id}: destination is not last stop`);

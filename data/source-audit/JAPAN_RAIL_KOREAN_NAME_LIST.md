@@ -308,8 +308,8 @@
 | line-99333 | 류테츠 나가레야마선 | 流鉄流山線 | Nagaretetsunagareyamasen |
 | line-99512 | 리니모 | リニモ | Rinimo |
 | line-99337 | 린카이선 | りんかい線 | Rinkai Line |
-| line-28002 | 마루노치선 | 丸ノ内線 | Marunouchi Line |
-| line-28002-honancho-branch | 마루노치선 호난초 지선 | 丸ノ内線分岐線 | Marunouchi Line Honancho Branch |
+| line-28002 | 마루노우치선 | 丸ノ内線 | Marunouchi Line |
+| line-28002-honancho-branch | 마루노우치선 호난초 지선 | 丸ノ内線分岐線 | Marunouchi Line Honancho Branch |
 | line-11622 | 마이즈루선 | 舞鶴線 | Maizurusen |
 | line-11637 | 만요마호로바선 | 万葉まほろば線 | ManyōMahorobasen |
 | line-99414 | 만요선 | 万葉線 | Man'YōSen |

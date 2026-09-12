@@ -160,7 +160,39 @@
       "priority": 30
     }
   ],
-  "branches": [],
+  "branches": [
+    {
+      "id": "tokyo-metro-marunouchi-honancho-branch",
+      "parentLineId": "line-28002",
+      "legacyRouteId": "line-28002-honancho-branch",
+      "junctionStationId": "station-mlit-003643",
+      "stationSequence": [
+        "station-mlit-003643",
+        "station-2800226",
+        "station-2800227",
+        "station-2800228"
+      ],
+      "stationCodes": {
+        "station-mlit-003643": "M06",
+        "station-2800226": "Mb05",
+        "station-2800227": "Mb04",
+        "station-2800228": "Mb03"
+      },
+      "names": {
+        "ja": "丸ノ内線",
+        "ko": "마루노우치선",
+        "en": "Marunouchi Line"
+      },
+      "geometrySource": "data/branches/tokyo-metro-marunouchi-honancho/geometry.json",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/nakano-sakaue/timetable/index.html",
+          "verifiedAt": "2026-09-13"
+        }
+      ]
+    }
+  ],
   "servicePatterns": [
     {
       "id": "fukutoshin-local-wakoshi-shibuya",
@@ -4839,70 +4871,6 @@
       ]
     },
     {
-      "id": "base-journey-marunouchi-honancho-full-forward",
-      "baseRouteId": "line-28002-honancho-branch",
-      "trainTypeId": "tokyo-local",
-      "originStationId": "station-mlit-003643",
-      "destinationStationId": "station-2800228",
-      "directionId": "forward",
-      "stationSequence": [
-        "station-mlit-003643",
-        "station-2800226",
-        "station-2800227",
-        "station-2800228"
-      ],
-      "stopStationIds": [
-        "station-mlit-003643",
-        "station-2800226",
-        "station-2800227",
-        "station-2800228"
-      ],
-      "names": {
-        "ja": "各駅停車 方南町行",
-        "ko": "각역정차 · 호난초행",
-        "en": "Local to HōNanchō"
-      },
-      "sources": [
-        {
-          "type": "official",
-          "url": "https://www.tokyometro.jp/station/index.html",
-          "verifiedAt": "2026-09-12"
-        }
-      ]
-    },
-    {
-      "id": "base-journey-marunouchi-honancho-full-reverse",
-      "baseRouteId": "line-28002-honancho-branch",
-      "trainTypeId": "tokyo-local",
-      "originStationId": "station-2800228",
-      "destinationStationId": "station-mlit-003643",
-      "directionId": "reverse",
-      "stationSequence": [
-        "station-2800228",
-        "station-2800227",
-        "station-2800226",
-        "station-mlit-003643"
-      ],
-      "stopStationIds": [
-        "station-2800228",
-        "station-2800227",
-        "station-2800226",
-        "station-mlit-003643"
-      ],
-      "names": {
-        "ja": "各駅停車 中野坂上行",
-        "ko": "각역정차 · 나카노사카우에행",
-        "en": "Local to Nakanosakaue"
-      },
-      "sources": [
-        {
-          "type": "official",
-          "url": "https://www.tokyometro.jp/station/index.html",
-          "verifiedAt": "2026-09-12"
-        }
-      ]
-    },
-    {
       "id": "base-journey-hibiya-full-forward",
       "baseRouteId": "line-28003",
       "trainTypeId": "tokyo-local",
@@ -6407,6 +6375,214 @@
       ]
     },
     {
+      "id": "base-journey-marunouchi-ikebukuro-honancho",
+      "baseRouteId": "line-28002",
+      "branchId": "tokyo-metro-marunouchi-honancho-branch",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003390",
+      "destinationStationId": "station-2800228",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003390",
+        "station-mlit-003431",
+        "station-mlit-003484",
+        "station-mlit-003542",
+        "station-mlit-003546",
+        "station-mlit-003615",
+        "station-mlit-003661",
+        "station-mlit-003719",
+        "station-mlit-003766",
+        "station-mlit-003823",
+        "station-2800211",
+        "station-mlit-003799",
+        "station-mlit-003788",
+        "station-mlit-003728",
+        "station-mlit-003713",
+        "station-mlit-003707",
+        "station-mlit-003689",
+        "station-mlit-003700",
+        "station-mlit-003662",
+        "station-mlit-003643",
+        "station-2800226",
+        "station-2800227",
+        "station-2800228"
+      ],
+      "stopStationIds": [
+        "station-mlit-003390",
+        "station-mlit-003431",
+        "station-mlit-003484",
+        "station-mlit-003542",
+        "station-mlit-003546",
+        "station-mlit-003615",
+        "station-mlit-003661",
+        "station-mlit-003719",
+        "station-mlit-003766",
+        "station-mlit-003823",
+        "station-2800211",
+        "station-mlit-003799",
+        "station-mlit-003788",
+        "station-mlit-003728",
+        "station-mlit-003713",
+        "station-mlit-003707",
+        "station-mlit-003689",
+        "station-mlit-003700",
+        "station-mlit-003662",
+        "station-mlit-003643",
+        "station-2800226",
+        "station-2800227",
+        "station-2800228"
+      ],
+      "names": {
+        "ja": "各駅停車 方南町行",
+        "ko": "각역정차 · 호난초행",
+        "en": "Local to HōNanchō"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/nakano-sakaue/timetable/index.html",
+          "verifiedAt": "2026-09-13"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-marunouchi-honancho-ikebukuro",
+      "baseRouteId": "line-28002",
+      "branchId": "tokyo-metro-marunouchi-honancho-branch",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-2800228",
+      "destinationStationId": "station-mlit-003390",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-2800228",
+        "station-2800227",
+        "station-2800226",
+        "station-mlit-003643",
+        "station-mlit-003662",
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003707",
+        "station-mlit-003713",
+        "station-mlit-003728",
+        "station-mlit-003788",
+        "station-mlit-003799",
+        "station-2800211",
+        "station-mlit-003823",
+        "station-mlit-003766",
+        "station-mlit-003719",
+        "station-mlit-003661",
+        "station-mlit-003615",
+        "station-mlit-003546",
+        "station-mlit-003542",
+        "station-mlit-003484",
+        "station-mlit-003431",
+        "station-mlit-003390"
+      ],
+      "stopStationIds": [
+        "station-2800228",
+        "station-2800227",
+        "station-2800226",
+        "station-mlit-003643",
+        "station-mlit-003662",
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003707",
+        "station-mlit-003713",
+        "station-mlit-003728",
+        "station-mlit-003788",
+        "station-mlit-003799",
+        "station-2800211",
+        "station-mlit-003823",
+        "station-mlit-003766",
+        "station-mlit-003719",
+        "station-mlit-003661",
+        "station-mlit-003615",
+        "station-mlit-003546",
+        "station-mlit-003542",
+        "station-mlit-003484",
+        "station-mlit-003431",
+        "station-mlit-003390"
+      ],
+      "names": {
+        "ja": "各駅停車 池袋行",
+        "ko": "각역정차 · 이케부쿠로행",
+        "en": "Local to Ikebukuro"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/nakano-sakaue/timetable/index.html",
+          "verifiedAt": "2026-09-13"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-marunouchi-nakanosakaue-honancho",
+      "baseRouteId": "line-28002",
+      "branchId": "tokyo-metro-marunouchi-honancho-branch",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003643",
+      "destinationStationId": "station-2800228",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003643",
+        "station-2800226",
+        "station-2800227",
+        "station-2800228"
+      ],
+      "stopStationIds": [
+        "station-mlit-003643",
+        "station-2800226",
+        "station-2800227",
+        "station-2800228"
+      ],
+      "names": {
+        "ja": "各駅停車 方南町行",
+        "ko": "각역정차 · 호난초행",
+        "en": "Local to HōNanchō"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/nakano-sakaue/timetable/index.html",
+          "verifiedAt": "2026-09-13"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-marunouchi-honancho-nakanosakaue",
+      "baseRouteId": "line-28002",
+      "branchId": "tokyo-metro-marunouchi-honancho-branch",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-2800228",
+      "destinationStationId": "station-mlit-003643",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-2800228",
+        "station-2800227",
+        "station-2800226",
+        "station-mlit-003643"
+      ],
+      "stopStationIds": [
+        "station-2800228",
+        "station-2800227",
+        "station-2800226",
+        "station-mlit-003643"
+      ],
+      "names": {
+        "ja": "各駅停車 中野坂上行",
+        "ko": "각역정차 · 나카노사카우에행",
+        "en": "Local to Nakanosakaue"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/nakano-sakaue/timetable/index.html",
+          "verifiedAt": "2026-09-13"
+        }
+      ]
+    },
+    {
       "id": "base-journey-ginza-shibuya-ueno",
       "baseRouteId": "line-28001",
       "trainTypeId": "tokyo-local",
@@ -7689,22 +7865,6 @@
       }
     },
     {
-      "stationId": "station-mlit-003643",
-      "names": {
-        "ja": "中野坂上",
-        "ko": "나카노사카우에",
-        "en": "Nakanosakaue"
-      }
-    },
-    {
-      "stationId": "station-2800228",
-      "names": {
-        "ja": "方南町",
-        "ko": "호난초",
-        "en": "HōNanchō"
-      }
-    },
-    {
       "stationId": "station-mlit-003260",
       "names": {
         "ja": "北千住",
@@ -7790,6 +7950,22 @@
         "ja": "光が丘",
         "ko": "히카리가오카",
         "en": "Hikarigaoka"
+      }
+    },
+    {
+      "stationId": "station-2800228",
+      "names": {
+        "ja": "方南町",
+        "ko": "호난초",
+        "en": "HōNanchō"
+      }
+    },
+    {
+      "stationId": "station-mlit-003643",
+      "names": {
+        "ja": "中野坂上",
+        "ko": "나카노사카우에",
+        "en": "Nakanosakaue"
       }
     },
     {
@@ -8316,28 +8492,6 @@
       "status": "active"
     },
     {
-      "id": "journey-base-journey-marunouchi-honancho-full-forward",
-      "baseRouteId": "line-28002-honancho-branch",
-      "originStationId": "station-mlit-003643",
-      "destinationStationId": "station-2800228",
-      "trainTypeId": "tokyo-local",
-      "throughServiceId": null,
-      "directionId": "forward",
-      "servicePatternId": "base-journey-marunouchi-honancho-full-forward",
-      "status": "active"
-    },
-    {
-      "id": "journey-base-journey-marunouchi-honancho-full-reverse",
-      "baseRouteId": "line-28002-honancho-branch",
-      "originStationId": "station-2800228",
-      "destinationStationId": "station-mlit-003643",
-      "trainTypeId": "tokyo-local",
-      "throughServiceId": null,
-      "directionId": "reverse",
-      "servicePatternId": "base-journey-marunouchi-honancho-full-reverse",
-      "status": "active"
-    },
-    {
       "id": "journey-base-journey-hibiya-full-forward",
       "baseRouteId": "line-28003",
       "originStationId": "station-mlit-003260",
@@ -8577,6 +8731,50 @@
       "throughServiceId": null,
       "directionId": "reverse",
       "servicePatternId": "base-journey-oedo-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-marunouchi-ikebukuro-honancho",
+      "baseRouteId": "line-28002",
+      "originStationId": "station-mlit-003390",
+      "destinationStationId": "station-2800228",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-marunouchi-ikebukuro-honancho",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-marunouchi-honancho-ikebukuro",
+      "baseRouteId": "line-28002",
+      "originStationId": "station-2800228",
+      "destinationStationId": "station-mlit-003390",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-marunouchi-honancho-ikebukuro",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-marunouchi-nakanosakaue-honancho",
+      "baseRouteId": "line-28002",
+      "originStationId": "station-mlit-003643",
+      "destinationStationId": "station-2800228",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-marunouchi-nakanosakaue-honancho",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-marunouchi-honancho-nakanosakaue",
+      "baseRouteId": "line-28002",
+      "originStationId": "station-2800228",
+      "destinationStationId": "station-mlit-003643",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-marunouchi-honancho-nakanosakaue",
       "status": "active"
     },
     {
@@ -8832,13 +9030,7 @@
       "lineId": "line-28002",
       "slug": "marunouchi",
       "status": "COMPLETE",
-      "journeys": 2
-    },
-    {
-      "lineId": "line-28002-honancho-branch",
-      "slug": "marunouchi-honancho",
-      "status": "COMPLETE",
-      "journeys": 2
+      "journeys": 6
     },
     {
       "lineId": "line-28003",

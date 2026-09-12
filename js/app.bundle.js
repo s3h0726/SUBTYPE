@@ -16,9 +16,18 @@ const FEATURE_FLAGS=Object.freeze({
   visibleJapanRegion:'all'
 });
 
+// Keep historical play records playable after a physical branch becomes an
+// internal part of its passenger line. IDs remain stable in stored records;
+// only their current display/playback parent changes.
+const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002'});
+const canonicalRouteId=routeId=>LEGACY_ROUTE_ALIASES[String(routeId||'')]||routeId;
+
 const isCountryEnabled=countryId=>countryId!=='kr'||FEATURE_FLAGS.korea;
 
 function isRouteVisible(route){
+  // Physical branch workspaces can be required for geometry and legacy record
+  // resolution without becoming an independent passenger-facing line.
+  if(route.visibility==='internal'||route.playable===false)return false;
   if(!isCountryEnabled(route.countryId||'jp'))return false;
   if(route.countryId==='kr'||FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area')return true;
   const scope=globalThis.TRT_TOKYO_AREA;
@@ -338,19 +347,75 @@ function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
   return{...parts[0],id:`through-${spec.id}`,dataKind:'throughService',selectedDirectionId:directionId,line:{ja:spec.nameJa,ko:spec.nameKo,en:spec.nameEn},stations,geometry,segments:contexts,throughService:spec,loop:false,coverage:'verified-through-service'}
 }
 
-function buildBranchRoute(branch,source){
-  if(!branch||!source)throw new Error('Missing branch or parent route');
+function buildBranchRoute(branch,source,contextRoute=source){
+  if(!branch||!source||!contextRoute)throw new Error('Missing branch or parent route');
   const sourceMap=new Map((source.stations||[]).map(station=>[stationKey(station),station])),stations=branch.stationSequence.map(id=>sourceMap.get(String(id)));
   if(stations.some(station=>!station))throw new Error(`${branch.id}: branch station is missing from ${source.id}`);
   const geometryData=branch.geometryData;if(!geometryData?.geometry?.length||geometryData.geometryStatus!=='ready')throw new Error(`${branch.id}: verified branch geometry is unavailable`);
   const geometry=[],directedSegments=[],resolvedStations=[];
   for(let index=0;index<geometryData.directedSegments.length;index++){
     const part=copyGeometry(geometryData.directedSegments[index].geometry);if(geometry.length&&part.length&&geometry.at(-1)[0]===part[0][0]&&geometry.at(-1)[1]===part[0][1])part.shift();
-    const from=stations[index],to=stations[index+1],fromCode=branch.stationCodes?.[stationKey(from)]||from.officialCode||'';resolvedStations[index]={...from,officialCode:fromCode,stationCode:fromCode,hasOfficialStationCode:!!fromCode,geometryIndex:Math.max(0,geometry.length-1),segment:contextOf(source)};geometry.push(...part);
+    const from=stations[index],to=stations[index+1],fromCode=branch.stationCodes?.[stationKey(from)]||from.officialCode||'';resolvedStations[index]={...from,officialCode:fromCode,stationCode:fromCode,hasOfficialStationCode:!!fromCode,geometryIndex:Math.max(0,geometry.length-1),segment:contextOf(contextRoute)};geometry.push(...part);
     directedSegments.push({fromStationId:stationKey(from),toStationId:stationKey(to),geometry:copyGeometry(geometryData.directedSegments[index].geometry),source:geometryData.directedSegments[index].source,endpointMismatch:false})
   }
-  const terminal=stations.at(-1),terminalCode=branch.stationCodes?.[stationKey(terminal)]||terminal.officialCode||'';resolvedStations[stations.length-1]={...terminal,officialCode:terminalCode,stationCode:terminalCode,hasOfficialStationCode:!!terminalCode,geometryIndex:Math.max(0,geometry.length-1),segment:contextOf(source)};
-  return{...source,id:`branch-${branch.id}`,dataKind:'branch',parentLineId:branch.parentLineId,branch,line:{...source.line,...branch.names},stations:resolvedStations,geometry,directedSegments,geometryReady:true,loop:false,coverage:'verified-osm-branch'}
+  const terminal=stations.at(-1),terminalCode=branch.stationCodes?.[stationKey(terminal)]||terminal.officialCode||'';resolvedStations[stations.length-1]={...terminal,officialCode:terminalCode,stationCode:terminalCode,hasOfficialStationCode:!!terminalCode,geometryIndex:Math.max(0,geometry.length-1),segment:contextOf(contextRoute)};
+  return{...contextRoute,id:contextRoute.id,dataKind:'branch',physicalBranchRouteId:source.id,parentLineId:branch.parentLineId,branch,line:contextRoute.line,stations:resolvedStations,geometry,directedSegments,geometryReady:true,loop:false,coverage:'verified-osm-branch'}
+}
+
+function combineRouteParts(parts,identity){
+  const stations=[],geometry=[],segments=[];
+  for(const part of parts){
+    if(!part?.stations?.length||!part?.geometry?.length)throw new Error(`${identity.id}: incomplete branch part`);
+    if(stations.length&&!sameStation(stations.at(-1),part.stations[0]))throw new Error(`${identity.id}: disconnected branch junction`);
+    if(geometry.length){
+      const gapKm=pointDistanceKm(geometry.at(-1),part.geometry[0]);
+      if(gapKm>.25)throw new Error(`${identity.id}: branch geometry gap (${gapKm.toFixed(3)} km)`);
+    }
+    const sharedBoundary=stations.length>0;
+    let offset=geometry.length;
+    const partGeometry=copyGeometry(part.geometry);
+    if(sharedBoundary&&Math.hypot(geometry.at(-1)[0]-partGeometry[0][0],geometry.at(-1)[1]-partGeometry[0][1])<.002){
+      offset--;partGeometry[0]=[...geometry.at(-1)];geometry.push(...partGeometry.slice(1));
+    }else geometry.push(...partGeometry);
+    const context=contextOf(part),segmentStart=Math.max(0,stations.length-1);
+    for(let index=0;index<part.stations.length;index++){
+      const station=part.stations[index];
+      if(index===0&&sharedBoundary){
+        // The branch's station-number context wins at a shared junction only
+        // when it is the target; the caller orders the parts in travel order.
+        stations[stations.length-1]={...station,geometryIndex:stations.at(-1).geometryIndex,segment:context};
+        continue;
+      }
+      stations.push({...station,geometryIndex:(station.geometryIndex??0)+offset,segment:context});
+    }
+    segments.push({...context,fromStation:segmentStart,toStation:stations.length-1});
+  }
+  return{...parts[0],...identity,stations,geometry,segments,geometryReady:true,loop:false};
+}
+
+function buildBranchServiceRoute(pattern,baseRoute,getRoute){
+  const branch=branchFor(pattern.branchId),branchSource=getRoute(branch?.legacyRouteId||branch?.routeId);
+  if(!branchSource)throw new Error(`${pattern.id}: legacy branch geometry source is unavailable`);
+  const branchRoute=buildBranchRoute(branch,branchSource,baseRoute),direction=pattern.directionId||'forward',junction=branch.junctionStationId;
+  const branchPart=direction==='reverse'
+    ?prepareThroughPart(branchRoute,{direction:'reverse',startStationId:pattern.originStationId,endStationId:junction})
+    :prepareThroughPart(branchRoute,{direction:'forward',startStationId:junction,endStationId:pattern.destinationStationId});
+  const needsMain=direction==='reverse'?pattern.destinationStationId!==junction:pattern.originStationId!==junction;
+  const mainPart=!needsMain?null:direction==='reverse'
+    ?prepareThroughPart(baseRoute,{direction:'reverse',startStationId:junction,endStationId:pattern.destinationStationId})
+    :prepareThroughPart(baseRoute,{direction:'forward',startStationId:pattern.originStationId,endStationId:junction});
+  const route=combineRouteParts(direction==='reverse'?[branchPart,...(mainPart?[mainPart]:[])]:[...(mainPart?[mainPart]:[]),branchPart],{
+    id:`branch-service-${branch.id}`,
+    dataKind:'branchServiceJourney',
+    parentLineId:baseRoute.id,
+    branch,
+    line:baseRoute.line,
+    operator:baseRoute.operator,
+    operatorId:baseRoute.operatorId
+  });
+  const expected=(pattern.stationSequence||[]).map(String),actual=route.stations.map(stationKey);
+  if(expected.length&&JSON.stringify(expected)!==JSON.stringify(actual))throw new Error(`${pattern.id}: resolved branch station sequence does not match the canonical pattern`);
+  return route;
 }
 
 function resolveServiceSelection({baseRoute,servicePatternId,directionId='forward',legacyServiceId='local',getRoute}){
@@ -359,8 +424,8 @@ function resolveServiceSelection({baseRoute,servicePatternId,directionId='forwar
   if(pattern.baseRouteId!==baseRoute.id)throw new Error(`${pattern.id}: pattern does not belong to ${baseRoute.id}`);
   if(pattern.status&&pattern.status!=='active')throw new Error(`${pattern.id}: ${pattern.status}`);
   let route=baseRoute;
-  if(pattern.branchId)route=buildBranchRoute(branchFor(pattern.branchId),baseRoute);
   if(pattern.throughServiceId){const spec=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).find(item=>item.id===pattern.throughServiceId);route=buildThroughServiceRoute(spec,getRoute,pattern.directionId||directionId)}
+  else if(pattern.branchId)route=buildBranchServiceRoute(pattern,baseRoute,getRoute);
   else route=prepareThroughPart(route,{direction:pattern.directionId||directionId,startStationId:pattern.originStationId,endStationId:pattern.destinationStationId});
   const routeIdsSet=new Set(route.stations.map(stationKey)),stops=(pattern.stopStationIds?.length?pattern.stopStationIds:route.stations.map(stationKey)).map(String);
   for(const id of stops)if(!routeIdsSet.has(id))throw new Error(`${pattern.id}: stop ${id} is outside the resolved route`);
@@ -528,7 +593,7 @@ function renderStats(){
   const plays=records.reduce((n,r)=>n+r.plays,0),stations=records.reduce((n,r)=>n+r.totalStations,0),acc=records.length?records.reduce((n,r)=>n+r.bestAccuracy,0)/records.length:0,cpm=Math.max(0,...records.map(r=>r.bestCpm)),combo=Math.max(0,...records.map(r=>r.maxCombo));
   $('#stats-summary').innerHTML=[['총 플레이',`${plays}회`],['입력 지점',`${stations}곳`],['평균 정확도',`${acc.toFixed(1)}%`],['최고 타수',`${cpm}타`],['최고 콤보',`${combo}`]].map(x=>`<div class="stat-card"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('');
   $('#records-table').innerHTML=`<div class="record-row header"><span>노선</span><span>플레이</span><span>최고 시간</span><span>정확도</span><span>타수</span><span>콤보</span></div>`+(records.length?records.sort((a,b)=>b.plays-a.plays).map(r=>{
-    const routeId=r.lineId||r.routeId,line=railDataRepository.getLine(routeId),route=railDataRepository.getRoute(routeId),name=line?.names?.ko||indexedKoreanLineName(routeId)||r.name||routeId,brand=route?`${operatorLogoMarkup(route,'record-operator-logo')}${lineBadgeMarkup(route,'record-line-symbol')}`:'';
+    const routeId=canonicalRouteId(r.lineId||r.routeId),line=railDataRepository.getLine(routeId),route=railDataRepository.getRoute(routeId),name=line?.names?.ko||indexedKoreanLineName(routeId)||r.name||routeId,brand=route?`${operatorLogoMarkup(route,'record-operator-logo')}${lineBadgeMarkup(route,'record-line-symbol')}`:'';
     return`<div class="record-row" data-route-id="${escapeHtml(routeId)}" data-country-id="${escapeHtml(r.countryId||'jp')}" data-direction-id="${escapeHtml(r.directionId||'forward')}"><b class="record-route-brand" style="border-left:4px solid ${r.color};padding-left:10px">${brand}<span>${escapeHtml(name)}</span></b><span>${r.plays}</span><span>${formatTime(r.bestTime)}</span><span>${r.bestAccuracy.toFixed(1)}%</span><span>${r.bestCpm}</span><span>${r.maxCombo}</span></div>`
   }).join(''):'<p class="muted" style="padding:20px">아직 기록이 없습니다.</p>')
 }
@@ -776,7 +841,7 @@ function openSetup(route){
   go('game-setup')
 }
 async function chooseRoute(id){let route=routes.find(r=>r.id===id);if(!route&&dataLoading){pendingRouteId=id;toast('철도 데이터를 불러오는 중입니다. 잠시만 기다려 주세요.');return false}if(!route){console.warn('Line not found:',id);toast('선택한 노선을 찾을 수 없습니다. 데이터를 다시 불러와 주세요.');return false}if(route.lazy){toast(`${route.line.ko} 실제 역·선형을 불러오는 중입니다.`);try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(route)),index=builtin.findIndex(item=>item.id===id);if(index>=0)builtin[index]=hydrated;refreshRoutes();route=routes.find(item=>item.id===id)}catch(error){console.error('Nationwide line load failed:',error);toast('이 노선의 상세 데이터를 불러오지 못했습니다.');return false}}selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
-function renderHome(){const recent=storage.recent().filter(record=>routes.some(route=>route.id===(record.lineId||record.routeId)));document.querySelectorAll('#feature-viewport [data-feature-route]').forEach((button,index)=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),card=button.closest('article'),slot=card?.querySelector('.feature-number');if(!route||!card)return;if(slot){slot.innerHTML=lineBadgeMarkup(route);slot.hidden=!slot.innerHTML}const operator=card.querySelector('[data-feature-operator]'),lineKo=card.querySelector('[data-feature-line-ko]'),lineSecondary=card.querySelector('[data-feature-line-secondary]'),stations=card.querySelector('[data-feature-stations]');if(operator)operator.innerHTML=`${operatorLogoMarkup(route,'feature-operator-logo')}<span>${escapeHtml(route.operator.ko)} · ${route.loop?'순환 운행':'도심 운행'}</span>`;if(lineKo)lineKo.textContent=route.line.ko;if(lineSecondary)lineSecondary.textContent=`${route.line.ja} · ${route.line.en}`;if(stations)stations.textContent=`${route.stations.length}개 역`;const dot=$$('[data-slide-to]')[index];if(dot)dot.setAttribute('aria-label',route.line.ko)});$('#recent-list').innerHTML=recent.length?recent.slice(0,3).map(record=>{const route=routes.find(item=>item.id===(record.lineId||record.routeId)),name=route?.line.ko||record.routeName||record.routeId;return`<button class="recent-chip" data-feature-route="${escapeHtml(record.routeId)}" style="--route-color:${record.color}">${route?operatorLogoMarkup(route,'recent-operator-logo')+lineBadgeMarkup(route):''}<span><b>${escapeHtml(name)}</b><small>${formatTime(record.elapsed)} · ${record.accuracy.toFixed(1)}%</small></span></button>`}).join(''):'<p class="muted">아직 운행 기록이 없습니다.</p>'}
+function renderHome(){const recordRouteId=record=>canonicalRouteId(record.lineId||record.routeId);const recent=storage.recent().filter(record=>routes.some(route=>route.id===recordRouteId(record)));document.querySelectorAll('#feature-viewport [data-feature-route]').forEach((button,index)=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),card=button.closest('article'),slot=card?.querySelector('.feature-number');if(!route||!card)return;if(slot){slot.innerHTML=lineBadgeMarkup(route);slot.hidden=!slot.innerHTML}const operator=card.querySelector('[data-feature-operator]'),lineKo=card.querySelector('[data-feature-line-ko]'),lineSecondary=card.querySelector('[data-feature-line-secondary]'),stations=card.querySelector('[data-feature-stations]');if(operator)operator.innerHTML=`${operatorLogoMarkup(route,'feature-operator-logo')}<span>${escapeHtml(route.operator.ko)} · ${route.loop?'순환 운행':'도심 운행'}</span>`;if(lineKo)lineKo.textContent=route.line.ko;if(lineSecondary)lineSecondary.textContent=`${route.line.ja} · ${route.line.en}`;if(stations)stations.textContent=`${route.stations.length}개 역`;const dot=$$('[data-slide-to]')[index];if(dot)dot.setAttribute('aria-label',route.line.ko)});$('#recent-list').innerHTML=recent.length?recent.slice(0,3).map(record=>{const routeId=recordRouteId(record),route=routes.find(item=>item.id===routeId),name=route?.line.ko||record.routeName||routeId;return`<button class="recent-chip" data-feature-route="${escapeHtml(routeId)}" style="--route-color:${record.color}">${route?operatorLogoMarkup(route,'recent-operator-logo')+lineBadgeMarkup(route):''}<span><b>${escapeHtml(name)}</b><small>${formatTime(record.elapsed)} · ${record.accuracy.toFixed(1)}%</small></span></button>`}).join(''):'<p class="muted">아직 운행 기록이 없습니다.</p>'}
 function renderCustomLibrary(){const list=storage.routes(),target=$('#custom-route-library');target.innerHTML=list.length?list.map(r=>`<article class="library-card" style="--route-color:${r.lineColor}" data-library-route="${r.id}"><span class="library-code">${escapeHtml(r.code||'CT')} · ${r.stations.length} STATIONS</span><h3>${escapeHtml(r.line.ko)}</h3><p>${escapeHtml(r.line.ja)} · ${escapeHtml(r.line.en)}</p><footer><button class="btn primary" data-library-play>PLAY</button><button class="btn ghost" data-library-edit>EDIT</button><button class="btn text" data-library-delete aria-label="${escapeHtml(r.line.ko)} 삭제">×</button></footer></article>`).join(''):`<div class="library-empty"><b>아직 만든 노선이 없습니다.</b><p>첫 노선을 만들고 원하는 역 순서로 달려보세요.</p><button class="btn primary" data-action="custom-new">＋ CREATE NEW ROUTE</button></div>`}
 function showResult(result){const isRecord=storage.saveResult(result);$('#result-operator-logo').innerHTML=operatorLogoMarkup(result.route,'result-operator-logo-asset');$('#result-line-badge').innerHTML=lineBadgeMarkup(result.route);$('#result-route').textContent=`${result.route.line.ja} · ${result.route.line.ko} · ${result.route.operator.ko}`;$('#result-time').textContent=formatTime(result.elapsed);$('#result-accuracy').textContent=`${result.accuracy.toFixed(1)}%`;$('#result-cpm').textContent=`${result.cpm} 타/min`;$('#result-errors').textContent=result.errors;$('#result-combo').textContent=result.maxCombo;$('#result-wpm').textContent=result.wpm;$('#record-notice').hidden=!isRecord;go('result')}
 const game=new Game({onFinish:showResult,onQuit:()=>go('select')});

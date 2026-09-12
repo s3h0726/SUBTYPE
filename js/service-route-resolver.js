@@ -77,19 +77,75 @@ export function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
   return{...parts[0],id:`through-${spec.id}`,dataKind:'throughService',selectedDirectionId:directionId,line:{ja:spec.nameJa,ko:spec.nameKo,en:spec.nameEn},stations,geometry,segments:contexts,throughService:spec,loop:false,coverage:'verified-through-service'}
 }
 
-export function buildBranchRoute(branch,source){
-  if(!branch||!source)throw new Error('Missing branch or parent route');
+export function buildBranchRoute(branch,source,contextRoute=source){
+  if(!branch||!source||!contextRoute)throw new Error('Missing branch or parent route');
   const sourceMap=new Map((source.stations||[]).map(station=>[stationKey(station),station])),stations=branch.stationSequence.map(id=>sourceMap.get(String(id)));
   if(stations.some(station=>!station))throw new Error(`${branch.id}: branch station is missing from ${source.id}`);
   const geometryData=branch.geometryData;if(!geometryData?.geometry?.length||geometryData.geometryStatus!=='ready')throw new Error(`${branch.id}: verified branch geometry is unavailable`);
   const geometry=[],directedSegments=[],resolvedStations=[];
   for(let index=0;index<geometryData.directedSegments.length;index++){
     const part=copyGeometry(geometryData.directedSegments[index].geometry);if(geometry.length&&part.length&&geometry.at(-1)[0]===part[0][0]&&geometry.at(-1)[1]===part[0][1])part.shift();
-    const from=stations[index],to=stations[index+1],fromCode=branch.stationCodes?.[stationKey(from)]||from.officialCode||'';resolvedStations[index]={...from,officialCode:fromCode,stationCode:fromCode,hasOfficialStationCode:!!fromCode,geometryIndex:Math.max(0,geometry.length-1),segment:contextOf(source)};geometry.push(...part);
+    const from=stations[index],to=stations[index+1],fromCode=branch.stationCodes?.[stationKey(from)]||from.officialCode||'';resolvedStations[index]={...from,officialCode:fromCode,stationCode:fromCode,hasOfficialStationCode:!!fromCode,geometryIndex:Math.max(0,geometry.length-1),segment:contextOf(contextRoute)};geometry.push(...part);
     directedSegments.push({fromStationId:stationKey(from),toStationId:stationKey(to),geometry:copyGeometry(geometryData.directedSegments[index].geometry),source:geometryData.directedSegments[index].source,endpointMismatch:false})
   }
-  const terminal=stations.at(-1),terminalCode=branch.stationCodes?.[stationKey(terminal)]||terminal.officialCode||'';resolvedStations[stations.length-1]={...terminal,officialCode:terminalCode,stationCode:terminalCode,hasOfficialStationCode:!!terminalCode,geometryIndex:Math.max(0,geometry.length-1),segment:contextOf(source)};
-  return{...source,id:`branch-${branch.id}`,dataKind:'branch',parentLineId:branch.parentLineId,branch,line:{...source.line,...branch.names},stations:resolvedStations,geometry,directedSegments,geometryReady:true,loop:false,coverage:'verified-osm-branch'}
+  const terminal=stations.at(-1),terminalCode=branch.stationCodes?.[stationKey(terminal)]||terminal.officialCode||'';resolvedStations[stations.length-1]={...terminal,officialCode:terminalCode,stationCode:terminalCode,hasOfficialStationCode:!!terminalCode,geometryIndex:Math.max(0,geometry.length-1),segment:contextOf(contextRoute)};
+  return{...contextRoute,id:contextRoute.id,dataKind:'branch',physicalBranchRouteId:source.id,parentLineId:branch.parentLineId,branch,line:contextRoute.line,stations:resolvedStations,geometry,directedSegments,geometryReady:true,loop:false,coverage:'verified-osm-branch'}
+}
+
+function combineRouteParts(parts,identity){
+  const stations=[],geometry=[],segments=[];
+  for(const part of parts){
+    if(!part?.stations?.length||!part?.geometry?.length)throw new Error(`${identity.id}: incomplete branch part`);
+    if(stations.length&&!sameStation(stations.at(-1),part.stations[0]))throw new Error(`${identity.id}: disconnected branch junction`);
+    if(geometry.length){
+      const gapKm=pointDistanceKm(geometry.at(-1),part.geometry[0]);
+      if(gapKm>.25)throw new Error(`${identity.id}: branch geometry gap (${gapKm.toFixed(3)} km)`);
+    }
+    const sharedBoundary=stations.length>0;
+    let offset=geometry.length;
+    const partGeometry=copyGeometry(part.geometry);
+    if(sharedBoundary&&Math.hypot(geometry.at(-1)[0]-partGeometry[0][0],geometry.at(-1)[1]-partGeometry[0][1])<.002){
+      offset--;partGeometry[0]=[...geometry.at(-1)];geometry.push(...partGeometry.slice(1));
+    }else geometry.push(...partGeometry);
+    const context=contextOf(part),segmentStart=Math.max(0,stations.length-1);
+    for(let index=0;index<part.stations.length;index++){
+      const station=part.stations[index];
+      if(index===0&&sharedBoundary){
+        // The branch's station-number context wins at a shared junction only
+        // when it is the target; the caller orders the parts in travel order.
+        stations[stations.length-1]={...station,geometryIndex:stations.at(-1).geometryIndex,segment:context};
+        continue;
+      }
+      stations.push({...station,geometryIndex:(station.geometryIndex??0)+offset,segment:context});
+    }
+    segments.push({...context,fromStation:segmentStart,toStation:stations.length-1});
+  }
+  return{...parts[0],...identity,stations,geometry,segments,geometryReady:true,loop:false};
+}
+
+function buildBranchServiceRoute(pattern,baseRoute,getRoute){
+  const branch=branchFor(pattern.branchId),branchSource=getRoute(branch?.legacyRouteId||branch?.routeId);
+  if(!branchSource)throw new Error(`${pattern.id}: legacy branch geometry source is unavailable`);
+  const branchRoute=buildBranchRoute(branch,branchSource,baseRoute),direction=pattern.directionId||'forward',junction=branch.junctionStationId;
+  const branchPart=direction==='reverse'
+    ?prepareThroughPart(branchRoute,{direction:'reverse',startStationId:pattern.originStationId,endStationId:junction})
+    :prepareThroughPart(branchRoute,{direction:'forward',startStationId:junction,endStationId:pattern.destinationStationId});
+  const needsMain=direction==='reverse'?pattern.destinationStationId!==junction:pattern.originStationId!==junction;
+  const mainPart=!needsMain?null:direction==='reverse'
+    ?prepareThroughPart(baseRoute,{direction:'reverse',startStationId:junction,endStationId:pattern.destinationStationId})
+    :prepareThroughPart(baseRoute,{direction:'forward',startStationId:pattern.originStationId,endStationId:junction});
+  const route=combineRouteParts(direction==='reverse'?[branchPart,...(mainPart?[mainPart]:[])]:[...(mainPart?[mainPart]:[]),branchPart],{
+    id:`branch-service-${branch.id}`,
+    dataKind:'branchServiceJourney',
+    parentLineId:baseRoute.id,
+    branch,
+    line:baseRoute.line,
+    operator:baseRoute.operator,
+    operatorId:baseRoute.operatorId
+  });
+  const expected=(pattern.stationSequence||[]).map(String),actual=route.stations.map(stationKey);
+  if(expected.length&&JSON.stringify(expected)!==JSON.stringify(actual))throw new Error(`${pattern.id}: resolved branch station sequence does not match the canonical pattern`);
+  return route;
 }
 
 export function resolveServiceSelection({baseRoute,servicePatternId,directionId='forward',legacyServiceId='local',getRoute}){
@@ -98,8 +154,8 @@ export function resolveServiceSelection({baseRoute,servicePatternId,directionId=
   if(pattern.baseRouteId!==baseRoute.id)throw new Error(`${pattern.id}: pattern does not belong to ${baseRoute.id}`);
   if(pattern.status&&pattern.status!=='active')throw new Error(`${pattern.id}: ${pattern.status}`);
   let route=baseRoute;
-  if(pattern.branchId)route=buildBranchRoute(branchFor(pattern.branchId),baseRoute);
   if(pattern.throughServiceId){const spec=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).find(item=>item.id===pattern.throughServiceId);route=buildThroughServiceRoute(spec,getRoute,pattern.directionId||directionId)}
+  else if(pattern.branchId)route=buildBranchServiceRoute(pattern,baseRoute,getRoute);
   else route=prepareThroughPart(route,{direction:pattern.directionId||directionId,startStationId:pattern.originStationId,endStationId:pattern.destinationStationId});
   const routeIdsSet=new Set(route.stations.map(stationKey)),stops=(pattern.stopStationIds?.length?pattern.stopStationIds:route.stations.map(stationKey)).map(String);
   for(const id of stops)if(!routeIdsSet.has(id))throw new Error(`${pattern.id}: stop ${id} is outside the resolved route`);

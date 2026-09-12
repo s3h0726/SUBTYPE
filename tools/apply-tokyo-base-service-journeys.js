@@ -19,7 +19,7 @@ const sources={
   shinjuku:{type:'official',url:'https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S20WH.html',verifiedAt:'2026-09-12'}
 };
 const routeDefinitions=[
-  ['line-28001','ginza','tokyo-local',sources.metro],['line-28002','marunouchi','tokyo-local',sources.metro],['line-28002-honancho-branch','marunouchi-honancho','tokyo-local',sources.metro],
+  ['line-28001','ginza','tokyo-local',sources.metro],['line-28002','marunouchi','tokyo-local',sources.metro],
   ['line-28003','hibiya','tokyo-local',sources.metro],['line-28004','tozai','tokyo-local',sources.metro],['line-28005','chiyoda','tokyo-local',sources.metro],
   ['line-28006','yurakucho','tokyo-local',sources.metro],['line-28008','hanzomon','tokyo-local',sources.metro],['line-28009','namboku','tokyo-local',sources.metro],['line-28010','fukutoshin','tokyo-local',sources.metro],
   ['line-99302','asakusa','toei-local',sources.toei],['line-99303','mita','toei-local',sources.toei],['line-99304','shinjuku','toei-local',sources.toei],['line-99301','oedo','toei-local',sources.toei]
@@ -48,6 +48,47 @@ for(const [routeId,slug,trainTypeId,source] of routeDefinitions){
   addPattern({routeId,slug,originJa:first,destinationJa:last,trainTypeId,source,idSuffix:'full-forward'});
   addPattern({routeId,slug,originJa:last,destinationJa:first,trainTypeId,source,idSuffix:'full-reverse'});
 }
+// The Honancho tracks are a physical branch of the Marunouchi Line, not a
+// second passenger-facing line. Keep its legacy workspace only as the verified
+// geometry source; every playable branch journey belongs to line-28002.
+const marunouchiBranch={
+  id:'tokyo-metro-marunouchi-honancho-branch',
+  parentLineId:'line-28002',
+  legacyRouteId:'line-28002-honancho-branch',
+  junctionStationId:'station-mlit-003643',
+  stationSequence:['station-mlit-003643','station-2800226','station-2800227','station-2800228'],
+  stationCodes:{'station-mlit-003643':'M06','station-2800226':'Mb05','station-2800227':'Mb04','station-2800228':'Mb03'},
+  names:{ja:'丸ノ内線',ko:'마루노우치선',en:'Marunouchi Line'},
+  geometrySource:'data/branches/tokyo-metro-marunouchi-honancho/geometry.json',
+  sources:[{type:'official',url:'https://www.tokyometro.jp/station/nakano-sakaue/timetable/index.html',verifiedAt:'2026-09-13'}]
+};
+catalog.branches=[...(catalog.branches||[]).filter(item=>item.id!==marunouchiBranch.id),marunouchiBranch];
+function addMarunouchiBranchPattern({originJa,destinationJa,idSuffix}){
+  const main=routeMap.get('line-28002'),branch=routeMap.get(marunouchiBranch.legacyRouteId),junction='中野坂上';
+  const originOnMain=main.stations.findIndex(station=>station.ja===originJa),destinationOnMain=main.stations.findIndex(station=>station.ja===destinationJa),originOnBranch=branch.stations.findIndex(station=>station.ja===originJa),destinationOnBranch=branch.stations.findIndex(station=>station.ja===destinationJa);
+  const forward=originOnMain>=0&&destinationOnBranch>=0;
+  const reverse=originOnBranch>=0&&destinationOnMain>=0;
+  if(!forward&&!reverse)throw new Error(`Marunouchi branch: invalid journey ${originJa} -> ${destinationJa}`);
+  const mainJunction=main.stations.findIndex(station=>station.ja===junction),branchJunction=branch.stations.findIndex(station=>station.ja===junction);
+  const sequence=forward
+    ?[...main.stations.slice(originOnMain,mainJunction+1),...branch.stations.slice(branchJunction+1,destinationOnBranch+1)]
+    :[...branch.stations.slice(branchJunction,originOnBranch+1).reverse(),...main.stations.slice(destinationOnMain,mainJunction).reverse()];
+  const origin=sequence[0],destination=sequence.at(-1),type=trainName('tokyo-local');
+  patterns.push({
+    id:`${managedPrefix}marunouchi-${idSuffix}`,
+    baseRouteId:'line-28002',branchId:marunouchiBranch.id,trainTypeId:'tokyo-local',
+    originStationId:sid(origin),destinationStationId:sid(destination),directionId:forward?'forward':'reverse',
+    stationSequence:sequence.map(sid),stopStationIds:sequence.map(sid),
+    names:{ja:`${type.ja} ${destination.ja}行`,ko:`${type.ko} · ${destination.ko}행`,en:`${type.en} to ${destination.romaji||destination.ja}`},
+    sources:[{type:'official',url:'https://www.tokyometro.jp/station/nakano-sakaue/timetable/index.html',verifiedAt:'2026-09-13'}]
+  });
+}
+for(const definition of [
+  {originJa:'池袋',destinationJa:'方南町',idSuffix:'ikebukuro-honancho'},
+  {originJa:'方南町',destinationJa:'池袋',idSuffix:'honancho-ikebukuro'},
+  {originJa:'中野坂上',destinationJa:'方南町',idSuffix:'nakanosakaue-honancho'},
+  {originJa:'方南町',destinationJa:'中野坂上',idSuffix:'honancho-nakanosakaue'}
+])addMarunouchiBranchPattern(definition);
 // Repeated short workings and train types verified in current official
 // timetables. These are deliberately enumerated; no Cartesian product exists.
 for(const definition of [
