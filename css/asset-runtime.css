@@ -7,3 +7,56 @@
 .result-operator-logo-asset,.station-operator-logo-wrap{display:inline-grid;place-items:center}
 .result-operator-logo-asset img{max-width:110px;max-height:28px;object-fit:contain}
 .station-operator-logo-wrap img{max-width:82px;max-height:28px;object-fit:contain}
+
+/* Keep official line symbols inside their own box instead of sharing the text baseline.
+   This is especially important for the Yokohama Municipal Subway B/G SVG symbols. */
+.line-symbol-asset{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:32px!important;
+  height:32px!important;
+  min-width:32px!important;
+  min-height:32px!important;
+  flex:0 0 32px!important;
+  line-height:0!important;
+  vertical-align:middle!important;
+  overflow:visible!important;
+  position:relative!important;
+  top:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+}
+.line-symbol-asset>img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  margin:0!important;
+  padding:0!important;
+  position:static!important;
+  transform:none!important;
+  vertical-align:middle!important;
+}
+
+/* Asset rows must vertically center the symbol and reserve a separate text area. */
+.route-card .line-symbol-asset,
+.selected-line-preview .line-symbol-asset,
+.route-ticket .line-symbol-asset,
+.operator-logo-filters .line-symbol-asset{
+  align-self:center!important;
+}
+
+/* Compact contexts keep the same centering without allowing the SVG to cover text. */
+.record-line-symbol.line-symbol-asset{
+  width:32px!important;
+  height:24px!important;
+  min-width:32px!important;
+  min-height:24px!important;
+  flex-basis:32px!important;
+}
