@@ -40,7 +40,8 @@ assert(through.route.dataKind==='throughService','Fukutoshin/Minatomirai pattern
 assert(operatorIds.size>=3,'Fukutoshin/Minatomirai operator contexts were not preserved');
 assert(through.route.stations.at(-1).stationMasterId==='station-mlit-004704','Fukutoshin/Minatomirai destination is wrong');
 assert(through.destinationStationId==='station-mlit-004704','Resolved destination metadata is wrong');
-assert(servicePatternsForRoute('line-28010').length===11,'Fukutoshin setup must expose three internal and eight directional through patterns');
+assert(servicePatternsForRoute('line-28010').filter(pattern=>pattern.throughServiceId).length===8,'Fukutoshin setup must expose eight directional through patterns');
+for(const patternId of ['fukutoshin-local-wakoshi-shibuya','fukutoshin-express-wakoshi-shibuya','fukutoshin-commuter-express-wakoshi-shibuya'])assert(catalog.servicePatterns.some(pattern=>pattern.id===patternId),`Fukutoshin legacy pattern was lost: ${patternId}`);
 assert(!servicePatternsForRoute('line-28010').some(pattern=>pattern.id==='fukutoshin-s-train-metro-section'),'Metadata-only S-TRAIN pattern must not be offered as a standalone route');
 
 const snapshot=JSON.stringify(routes);
@@ -84,7 +85,19 @@ assert(rejected,'Through-service geometry gaps must not create synthetic connect
 for(const journey of catalog.serviceJourneys||[]){
   try{const resolved=resolveServiceJourney({baseRoute:getRoute(journey.baseRouteId),journeyId:journey.id,getRoute});assert(resolved.route.stations[0].id===journey.originStationId&&resolved.route.stations.at(-1).id===journey.destinationStationId,`${journey.id}: journey endpoints mismatch`);assert(resolved.journeyId===journey.id,`${journey.id}: journey identity lost`);assert(resolved.trainTypeContexts.length>0,`${journey.id}: train type contexts missing`);for(let i=1;i<resolved.route.stations.length;i++)assert(!(resolved.route.stations[i-1].ja===resolved.route.stations[i].ja),`${journey.id}: duplicated boundary station`) }catch(error){assert(false,`${journey.id}: ${error.message}`)}
 }
-assert(serviceJourneysForRoute('line-99302').length===2,'Asakusa must expose both airport directions');assert(serviceJourneysForRoute('line-99303').length===2,'Mita must expose both Sotetsu directions');
+assert(serviceJourneysForRoute('line-99302').filter(item=>item.throughServiceId).length===2,'Asakusa must expose both airport directions');assert(serviceJourneysForRoute('line-99303').filter(item=>item.throughServiceId).length===2,'Mita must expose both Sotetsu directions');
 rejected=false;try{resolveServiceJourney({baseRoute:fukutoshin,originStationId:'station-mlit-002708',destinationStationId:'station-mlit-004704',trainTypeId:'tokyo-local',getRoute})}catch(error){rejected=/실제로 운행/.test(error.message)}assert(rejected,'Impossible journey combinations must be rejected');
+const baseJourneyRoutes=['line-28001','line-28002','line-28002-honancho-branch','line-28003','line-28004','line-28005','line-28006','line-28008','line-28009','line-28010','line-99302','line-99303','line-99304','line-99301'];
+for(const routeId of baseJourneyRoutes){const journeys=serviceJourneysForRoute(routeId).filter(item=>!item.throughServiceId);assert(journeys.some(item=>item.directionId==='forward'),`${routeId}: full forward base journey missing`);assert(journeys.some(item=>item.directionId==='reverse'),`${routeId}: full reverse base journey missing`)}
+const ginzaShort=resolveServiceJourney({baseRoute:getRoute('line-28001'),journeyId:'journey-base-journey-ginza-shibuya-ueno',getRoute});
+assert(ginzaShort.route.stations[0].ja==='渋谷'&&ginzaShort.route.stations.at(-1).ja==='上野','Ginza intermediate destination was not sliced in travel order');
+assert(ginzaShort.route.stations.length===16,'Ginza Shibuya to Ueno journey has the wrong station count');
+assert(ginzaShort.direction==='forward'&&ginzaShort.travelDirectionId==='reverse','A sliced reverse journey would be reversed twice by PLAY');
+const tozaiRapid=resolveServiceJourney({baseRoute:getRoute('line-28004'),journeyId:'journey-base-journey-tozai-rapid-forward',getRoute});
+assert(tozaiRapid.route.stations.length===23,'Tozai rapid must preserve every physical station');assert(tozaiRapid.service.stops.length===16,'Tozai rapid stop pattern is wrong');
+const fukutoshinReverseExpress=resolveServiceJourney({baseRoute:fukutoshin,journeyId:'journey-base-journey-fukutoshin-express-reverse',getRoute});
+assert(fukutoshinReverseExpress.route.stations[0].ja==='渋谷'&&fukutoshinReverseExpress.route.stations.at(-1).ja==='和光市','Fukutoshin reverse express endpoints are wrong');assert(fukutoshinReverseExpress.service.stops.length===6,'Fukutoshin reverse express stop pattern is wrong');
+const shinjukuShort=resolveServiceJourney({baseRoute:getRoute('line-99304'),journeyId:'journey-base-journey-shinjuku-motoyawata-ojima',getRoute});
+assert(shinjukuShort.route.stations[0].ja==='本八幡'&&shinjukuShort.route.stations.at(-1).ja==='大島','Toei Shinjuku intermediate destination was not resolved');
 const summary={status:errors.length?'FAIL':'PASS',marunouchi:{mainStations:marunouchiMain.stations.length,branchStations:branchRoute?.stations.length,branchGeometryPoints:branchRoute?.geometry.length},fukutoshin:{physicalStations:express.route.stations.length,expressTypingStops:express.service.stops.length,commuterExpressTypingStops:commuterExpress.service.stops.length,numbering:[fukutoshin.stations[0].stationCode,fukutoshin.stations.at(-1).stationCode]},tokyoMetro:{lines:catalog.metroLineInventory?.length||0,throughServices:context.TRT_RAIL_SYSTEM.throughServices.length,directionalPatterns:(catalog.servicePatterns||[]).filter(item=>item.throughServiceId&&(!item.status||item.status==='active')).length},toei:{lines:catalog.toeiLineInventory?.length||0,journeys:(catalog.serviceJourneys||[]).filter(item=>['line-99302','line-99303','line-99304','line-99301'].includes(item.baseRouteId)).length},serviceJourneys:catalog.serviceJourneys?.length||0,through:{stations:through.route.stations.length,operators:[...operatorIds]},errors};
 console.log(JSON.stringify(summary,null,2));if(errors.length)process.exitCode=1;

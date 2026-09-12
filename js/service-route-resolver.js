@@ -36,9 +36,9 @@ function prepareThroughPart(route,config={}){
     geometry=geometry.slice().reverse();
     stations=stations.slice().reverse().map(station=>({...station,geometryIndex:Math.max(0,geometry.length-1-(station.geometryIndex??0))}))
   }
-  const start=config.startStationJa?stations.findIndex(station=>station.ja===config.startStationJa):0;
-  const end=config.endStationJa?stations.findIndex(station=>station.ja===config.endStationJa):stations.length-1;
-  if(start<0||end<start)throw new Error(`Invalid through-service range ${route.id}: ${config.startStationJa||'*'} -> ${config.endStationJa||'*'}`);
+  const start=config.startStationId?stations.findIndex(station=>stationKey(station)===String(config.startStationId)):config.startStationJa?stations.findIndex(station=>station.ja===config.startStationJa):0;
+  const end=config.endStationId?stations.findIndex(station=>stationKey(station)===String(config.endStationId)):config.endStationJa?stations.findIndex(station=>station.ja===config.endStationJa):stations.length-1;
+  if(start<0||end<start)throw new Error(`Invalid service range ${route.id}: ${config.startStationId||config.startStationJa||'*'} -> ${config.endStationId||config.endStationJa||'*'}`);
   const selected=stations.slice(start,end+1),firstGeometry=selected[0]?.geometryIndex??0,lastGeometry=selected.at(-1)?.geometryIndex??geometry.length-1;
   return{...route,geometry:geometry.slice(firstGeometry,lastGeometry+1),stations:selected.map(station=>({...station,geometryIndex:(station.geometryIndex??firstGeometry)-firstGeometry}))}
 }
@@ -100,12 +100,13 @@ export function resolveServiceSelection({baseRoute,servicePatternId,directionId=
   let route=baseRoute;
   if(pattern.branchId)route=buildBranchRoute(branchFor(pattern.branchId),baseRoute);
   if(pattern.throughServiceId){const spec=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).find(item=>item.id===pattern.throughServiceId);route=buildThroughServiceRoute(spec,getRoute,pattern.directionId||directionId)}
+  else route=prepareThroughPart(route,{direction:pattern.directionId||directionId,startStationId:pattern.originStationId,endStationId:pattern.destinationStationId});
   const routeIdsSet=new Set(route.stations.map(stationKey)),stops=(pattern.stopStationIds?.length?pattern.stopStationIds:route.stations.map(stationKey)).map(String);
   for(const id of stops)if(!routeIdsSet.has(id))throw new Error(`${pattern.id}: stop ${id} is outside the resolved route`);
   const service={id:pattern.id,nameJa:pattern.names.ja,nameKo:pattern.names.ko,nameEn:pattern.names.en,stops,trainTypeId:pattern.trainTypeId,destinationStationId:pattern.destinationStationId,throughServiceId:pattern.throughServiceId||null};
   // A directional through route is already assembled in travel order. Passing
   // "reverse" to the game would reverse it a second time.
-  const resolvedDirection=pattern.throughServiceId?'forward':pattern.directionId||directionId;
+  const resolvedDirection='forward';
   return{route:{...route,services:[service]},service,direction:resolvedDirection,travelDirectionId:pattern.directionId||directionId,pattern,trainType:trainTypeFor(pattern.trainTypeId),destinationStationId:pattern.destinationStationId}
 }
 

@@ -148,6 +148,16 @@
         "en": "Semi Express"
       },
       "priority": 30
+    },
+    {
+      "id": "toei-express",
+      "operatorId": "toei",
+      "names": {
+        "ja": "急行",
+        "ko": "급행",
+        "en": "Express"
+      },
+      "priority": 30
     }
   ],
   "branches": [],
@@ -4555,6 +4565,2736 @@
           "verifiedAt": "2026-09-12"
         }
       ]
+    },
+    {
+      "id": "base-journey-ginza-full-forward",
+      "baseRouteId": "line-28001",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003522",
+      "destinationStationId": "station-mlit-003922",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003522",
+        "station-mlit-003530",
+        "station-mlit-003519",
+        "station-mlit-003505",
+        "station-mlit-003545",
+        "station-mlit-003586",
+        "station-mlit-003677",
+        "station-mlit-003716",
+        "station-mlit-003756",
+        "station-mlit-003792",
+        "station-mlit-003823",
+        "station-mlit-003872",
+        "station-mlit-003835",
+        "station-mlit-003810",
+        "station-mlit-003788",
+        "station-mlit-003812",
+        "station-mlit-003834",
+        "station-mlit-003883",
+        "station-mlit-003922"
+      ],
+      "stopStationIds": [
+        "station-mlit-003522",
+        "station-mlit-003530",
+        "station-mlit-003519",
+        "station-mlit-003505",
+        "station-mlit-003545",
+        "station-mlit-003586",
+        "station-mlit-003677",
+        "station-mlit-003716",
+        "station-mlit-003756",
+        "station-mlit-003792",
+        "station-mlit-003823",
+        "station-mlit-003872",
+        "station-mlit-003835",
+        "station-mlit-003810",
+        "station-mlit-003788",
+        "station-mlit-003812",
+        "station-mlit-003834",
+        "station-mlit-003883",
+        "station-mlit-003922"
+      ],
+      "names": {
+        "ja": "各駅停車 渋谷行",
+        "ko": "각역정차 · 시부야행",
+        "en": "Local to Shibuya"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-ginza-full-reverse",
+      "baseRouteId": "line-28001",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003522",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003922",
+        "station-mlit-003883",
+        "station-mlit-003834",
+        "station-mlit-003812",
+        "station-mlit-003788",
+        "station-mlit-003810",
+        "station-mlit-003835",
+        "station-mlit-003872",
+        "station-mlit-003823",
+        "station-mlit-003792",
+        "station-mlit-003756",
+        "station-mlit-003716",
+        "station-mlit-003677",
+        "station-mlit-003586",
+        "station-mlit-003545",
+        "station-mlit-003505",
+        "station-mlit-003519",
+        "station-mlit-003530",
+        "station-mlit-003522"
+      ],
+      "stopStationIds": [
+        "station-mlit-003922",
+        "station-mlit-003883",
+        "station-mlit-003834",
+        "station-mlit-003812",
+        "station-mlit-003788",
+        "station-mlit-003810",
+        "station-mlit-003835",
+        "station-mlit-003872",
+        "station-mlit-003823",
+        "station-mlit-003792",
+        "station-mlit-003756",
+        "station-mlit-003716",
+        "station-mlit-003677",
+        "station-mlit-003586",
+        "station-mlit-003545",
+        "station-mlit-003505",
+        "station-mlit-003519",
+        "station-mlit-003530",
+        "station-mlit-003522"
+      ],
+      "names": {
+        "ja": "各駅停車 浅草行",
+        "ko": "각역정차 · 아사쿠사행",
+        "en": "Local to Asakusa"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-marunouchi-full-forward",
+      "baseRouteId": "line-28002",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003390",
+      "destinationStationId": "station-mlit-003575",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003390",
+        "station-mlit-003431",
+        "station-mlit-003484",
+        "station-mlit-003542",
+        "station-mlit-003546",
+        "station-mlit-003615",
+        "station-mlit-003661",
+        "station-mlit-003719",
+        "station-mlit-003766",
+        "station-mlit-003823",
+        "station-2800211",
+        "station-mlit-003799",
+        "station-mlit-003788",
+        "station-mlit-003728",
+        "station-mlit-003713",
+        "station-mlit-003707",
+        "station-mlit-003689",
+        "station-mlit-003700",
+        "station-mlit-003662",
+        "station-mlit-003643",
+        "station-mlit-003638",
+        "station-mlit-003628",
+        "station-mlit-003632",
+        "station-2800224",
+        "station-mlit-003575"
+      ],
+      "stopStationIds": [
+        "station-mlit-003390",
+        "station-mlit-003431",
+        "station-mlit-003484",
+        "station-mlit-003542",
+        "station-mlit-003546",
+        "station-mlit-003615",
+        "station-mlit-003661",
+        "station-mlit-003719",
+        "station-mlit-003766",
+        "station-mlit-003823",
+        "station-2800211",
+        "station-mlit-003799",
+        "station-mlit-003788",
+        "station-mlit-003728",
+        "station-mlit-003713",
+        "station-mlit-003707",
+        "station-mlit-003689",
+        "station-mlit-003700",
+        "station-mlit-003662",
+        "station-mlit-003643",
+        "station-mlit-003638",
+        "station-mlit-003628",
+        "station-mlit-003632",
+        "station-2800224",
+        "station-mlit-003575"
+      ],
+      "names": {
+        "ja": "各駅停車 荻窪行",
+        "ko": "각역정차 · 오기쿠보행",
+        "en": "Local to Ogikubo"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-marunouchi-full-reverse",
+      "baseRouteId": "line-28002",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003575",
+      "destinationStationId": "station-mlit-003390",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003575",
+        "station-2800224",
+        "station-mlit-003632",
+        "station-mlit-003628",
+        "station-mlit-003638",
+        "station-mlit-003643",
+        "station-mlit-003662",
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003707",
+        "station-mlit-003713",
+        "station-mlit-003728",
+        "station-mlit-003788",
+        "station-mlit-003799",
+        "station-2800211",
+        "station-mlit-003823",
+        "station-mlit-003766",
+        "station-mlit-003719",
+        "station-mlit-003661",
+        "station-mlit-003615",
+        "station-mlit-003546",
+        "station-mlit-003542",
+        "station-mlit-003484",
+        "station-mlit-003431",
+        "station-mlit-003390"
+      ],
+      "stopStationIds": [
+        "station-mlit-003575",
+        "station-2800224",
+        "station-mlit-003632",
+        "station-mlit-003628",
+        "station-mlit-003638",
+        "station-mlit-003643",
+        "station-mlit-003662",
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003707",
+        "station-mlit-003713",
+        "station-mlit-003728",
+        "station-mlit-003788",
+        "station-mlit-003799",
+        "station-2800211",
+        "station-mlit-003823",
+        "station-mlit-003766",
+        "station-mlit-003719",
+        "station-mlit-003661",
+        "station-mlit-003615",
+        "station-mlit-003546",
+        "station-mlit-003542",
+        "station-mlit-003484",
+        "station-mlit-003431",
+        "station-mlit-003390"
+      ],
+      "names": {
+        "ja": "各駅停車 池袋行",
+        "ko": "각역정차 · 이케부쿠로행",
+        "en": "Local to Ikebukuro"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-marunouchi-honancho-full-forward",
+      "baseRouteId": "line-28002-honancho-branch",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003643",
+      "destinationStationId": "station-2800228",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003643",
+        "station-2800226",
+        "station-2800227",
+        "station-2800228"
+      ],
+      "stopStationIds": [
+        "station-mlit-003643",
+        "station-2800226",
+        "station-2800227",
+        "station-2800228"
+      ],
+      "names": {
+        "ja": "各駅停車 方南町行",
+        "ko": "각역정차 · 호난초행",
+        "en": "Local to HōNanchō"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-marunouchi-honancho-full-reverse",
+      "baseRouteId": "line-28002-honancho-branch",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-2800228",
+      "destinationStationId": "station-mlit-003643",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-2800228",
+        "station-2800227",
+        "station-2800226",
+        "station-mlit-003643"
+      ],
+      "stopStationIds": [
+        "station-2800228",
+        "station-2800227",
+        "station-2800226",
+        "station-mlit-003643"
+      ],
+      "names": {
+        "ja": "各駅停車 中野坂上行",
+        "ko": "각역정차 · 나카노사카우에행",
+        "en": "Local to Nakanosakaue"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-hibiya-full-forward",
+      "baseRouteId": "line-28003",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003260",
+      "destinationStationId": "station-mlit-004014",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003260",
+        "station-mlit-003363",
+        "station-mlit-003399",
+        "station-mlit-003469",
+        "station-mlit-003505",
+        "station-mlit-003560",
+        "station-mlit-003624",
+        "station-mlit-003692",
+        "station-mlit-003721",
+        "station-mlit-003773",
+        "station-mlit-003797",
+        "station-mlit-003860",
+        "station-mlit-003838",
+        "station-mlit-003823",
+        "station-mlit-003802",
+        "station-2800211",
+        "station-mlit-003866",
+        "station-mlit-003900",
+        "station-mlit-003892",
+        "station-mlit-003969",
+        "station-mlit-003991",
+        "station-mlit-004014"
+      ],
+      "stopStationIds": [
+        "station-mlit-003260",
+        "station-mlit-003363",
+        "station-mlit-003399",
+        "station-mlit-003469",
+        "station-mlit-003505",
+        "station-mlit-003560",
+        "station-mlit-003624",
+        "station-mlit-003692",
+        "station-mlit-003721",
+        "station-mlit-003773",
+        "station-mlit-003797",
+        "station-mlit-003860",
+        "station-mlit-003838",
+        "station-mlit-003823",
+        "station-mlit-003802",
+        "station-2800211",
+        "station-mlit-003866",
+        "station-mlit-003900",
+        "station-mlit-003892",
+        "station-mlit-003969",
+        "station-mlit-003991",
+        "station-mlit-004014"
+      ],
+      "names": {
+        "ja": "各駅停車 中目黒行",
+        "ko": "각역정차 · 나카메구로행",
+        "en": "Local to Naka-meguro"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-hibiya-full-reverse",
+      "baseRouteId": "line-28003",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-004014",
+      "destinationStationId": "station-mlit-003260",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-004014",
+        "station-mlit-003991",
+        "station-mlit-003969",
+        "station-mlit-003892",
+        "station-mlit-003900",
+        "station-mlit-003866",
+        "station-2800211",
+        "station-mlit-003802",
+        "station-mlit-003823",
+        "station-mlit-003838",
+        "station-mlit-003860",
+        "station-mlit-003797",
+        "station-mlit-003773",
+        "station-mlit-003721",
+        "station-mlit-003692",
+        "station-mlit-003624",
+        "station-mlit-003560",
+        "station-mlit-003505",
+        "station-mlit-003469",
+        "station-mlit-003399",
+        "station-mlit-003363",
+        "station-mlit-003260"
+      ],
+      "stopStationIds": [
+        "station-mlit-004014",
+        "station-mlit-003991",
+        "station-mlit-003969",
+        "station-mlit-003892",
+        "station-mlit-003900",
+        "station-mlit-003866",
+        "station-2800211",
+        "station-mlit-003802",
+        "station-mlit-003823",
+        "station-mlit-003838",
+        "station-mlit-003860",
+        "station-mlit-003797",
+        "station-mlit-003773",
+        "station-mlit-003721",
+        "station-mlit-003692",
+        "station-mlit-003624",
+        "station-mlit-003560",
+        "station-mlit-003505",
+        "station-mlit-003469",
+        "station-mlit-003399",
+        "station-mlit-003363",
+        "station-mlit-003260"
+      ],
+      "names": {
+        "ja": "各駅停車 北千住行",
+        "ko": "각역정차 · 키타센주행",
+        "en": "Local to Kitasenju"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-tozai-full-forward",
+      "baseRouteId": "line-28004",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003568",
+      "destinationStationId": "station-mlit-003547",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003568",
+        "station-mlit-003523",
+        "station-mlit-003508",
+        "station-mlit-003570",
+        "station-mlit-003578",
+        "station-mlit-003595",
+        "station-mlit-003657",
+        "station-mlit-003691",
+        "station-mlit-003719",
+        "station-mlit-003756",
+        "station-mlit-003773",
+        "station-mlit-003818",
+        "station-mlit-003840",
+        "station-mlit-003839",
+        "station-mlit-003854",
+        "station-mlit-003890",
+        "station-mlit-003894",
+        "station-mlit-003875",
+        "station-mlit-003819",
+        "station-mlit-003755",
+        "station-mlit-003686",
+        "station-mlit-003582",
+        "station-mlit-003547"
+      ],
+      "stopStationIds": [
+        "station-mlit-003568",
+        "station-mlit-003523",
+        "station-mlit-003508",
+        "station-mlit-003570",
+        "station-mlit-003578",
+        "station-mlit-003595",
+        "station-mlit-003657",
+        "station-mlit-003691",
+        "station-mlit-003719",
+        "station-mlit-003756",
+        "station-mlit-003773",
+        "station-mlit-003818",
+        "station-mlit-003840",
+        "station-mlit-003839",
+        "station-mlit-003854",
+        "station-mlit-003890",
+        "station-mlit-003894",
+        "station-mlit-003875",
+        "station-mlit-003819",
+        "station-mlit-003755",
+        "station-mlit-003686",
+        "station-mlit-003582",
+        "station-mlit-003547"
+      ],
+      "names": {
+        "ja": "各駅停車 西船橋行",
+        "ko": "각역정차 · 니시후나바시행",
+        "en": "Local to Nishifunabashi"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-tozai-full-reverse",
+      "baseRouteId": "line-28004",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003547",
+      "destinationStationId": "station-mlit-003568",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003547",
+        "station-mlit-003582",
+        "station-mlit-003686",
+        "station-mlit-003755",
+        "station-mlit-003819",
+        "station-mlit-003875",
+        "station-mlit-003894",
+        "station-mlit-003890",
+        "station-mlit-003854",
+        "station-mlit-003839",
+        "station-mlit-003840",
+        "station-mlit-003818",
+        "station-mlit-003773",
+        "station-mlit-003756",
+        "station-mlit-003719",
+        "station-mlit-003691",
+        "station-mlit-003657",
+        "station-mlit-003595",
+        "station-mlit-003578",
+        "station-mlit-003570",
+        "station-mlit-003508",
+        "station-mlit-003523",
+        "station-mlit-003568"
+      ],
+      "stopStationIds": [
+        "station-mlit-003547",
+        "station-mlit-003582",
+        "station-mlit-003686",
+        "station-mlit-003755",
+        "station-mlit-003819",
+        "station-mlit-003875",
+        "station-mlit-003894",
+        "station-mlit-003890",
+        "station-mlit-003854",
+        "station-mlit-003839",
+        "station-mlit-003840",
+        "station-mlit-003818",
+        "station-mlit-003773",
+        "station-mlit-003756",
+        "station-mlit-003719",
+        "station-mlit-003691",
+        "station-mlit-003657",
+        "station-mlit-003595",
+        "station-mlit-003578",
+        "station-mlit-003570",
+        "station-mlit-003508",
+        "station-mlit-003523",
+        "station-mlit-003568"
+      ],
+      "names": {
+        "ja": "各駅停車 中野行",
+        "ko": "각역정차 · 나카노행",
+        "en": "Local to Nakano"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-chiyoda-full-forward",
+      "baseRouteId": "line-28005",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003162",
+      "destinationStationId": "station-mlit-003847",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003162",
+        "station-mlit-003214",
+        "station-mlit-003260",
+        "station-mlit-003302",
+        "station-mlit-003368",
+        "station-mlit-003434",
+        "station-mlit-003483",
+        "station-mlit-003558",
+        "station-mlit-003645",
+        "station-mlit-003719",
+        "station-mlit-003772",
+        "station-mlit-003802",
+        "station-2800211",
+        "station-mlit-003799",
+        "station-mlit-003822",
+        "station-mlit-003868",
+        "station-mlit-003883",
+        "station-1130206",
+        "station-mlit-003845",
+        "station-mlit-003847"
+      ],
+      "stopStationIds": [
+        "station-mlit-003162",
+        "station-mlit-003214",
+        "station-mlit-003260",
+        "station-mlit-003302",
+        "station-mlit-003368",
+        "station-mlit-003434",
+        "station-mlit-003483",
+        "station-mlit-003558",
+        "station-mlit-003645",
+        "station-mlit-003719",
+        "station-mlit-003772",
+        "station-mlit-003802",
+        "station-2800211",
+        "station-mlit-003799",
+        "station-mlit-003822",
+        "station-mlit-003868",
+        "station-mlit-003883",
+        "station-1130206",
+        "station-mlit-003845",
+        "station-mlit-003847"
+      ],
+      "names": {
+        "ja": "各駅停車 代々木上原行",
+        "ko": "각역정차 · 요요기우에하라행",
+        "en": "Local to Yoyogi-uehara"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-chiyoda-full-reverse",
+      "baseRouteId": "line-28005",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003847",
+      "destinationStationId": "station-mlit-003162",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003847",
+        "station-mlit-003845",
+        "station-1130206",
+        "station-mlit-003883",
+        "station-mlit-003868",
+        "station-mlit-003822",
+        "station-mlit-003799",
+        "station-2800211",
+        "station-mlit-003802",
+        "station-mlit-003772",
+        "station-mlit-003719",
+        "station-mlit-003645",
+        "station-mlit-003558",
+        "station-mlit-003483",
+        "station-mlit-003434",
+        "station-mlit-003368",
+        "station-mlit-003302",
+        "station-mlit-003260",
+        "station-mlit-003214",
+        "station-mlit-003162"
+      ],
+      "stopStationIds": [
+        "station-mlit-003847",
+        "station-mlit-003845",
+        "station-1130206",
+        "station-mlit-003883",
+        "station-mlit-003868",
+        "station-mlit-003822",
+        "station-mlit-003799",
+        "station-2800211",
+        "station-mlit-003802",
+        "station-mlit-003772",
+        "station-mlit-003719",
+        "station-mlit-003645",
+        "station-mlit-003558",
+        "station-mlit-003483",
+        "station-mlit-003434",
+        "station-mlit-003368",
+        "station-mlit-003302",
+        "station-mlit-003260",
+        "station-mlit-003214",
+        "station-mlit-003162"
+      ],
+      "names": {
+        "ja": "各駅停車 北綾瀬行",
+        "ko": "각역정차 · 키타아야세행",
+        "en": "Local to Kitaayase"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-yurakucho-full-forward",
+      "baseRouteId": "line-28006",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003997",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003123",
+        "station-mlit-003163",
+        "station-mlit-003186",
+        "station-mlit-003228",
+        "station-mlit-003261",
+        "station-mlit-003294",
+        "station-mlit-003324",
+        "station-mlit-003361",
+        "station-mlit-003390",
+        "station-mlit-003432",
+        "station-mlit-003474",
+        "station-mlit-003534",
+        "station-mlit-003595",
+        "station-1131315",
+        "station-mlit-003737",
+        "station-mlit-003782",
+        "station-mlit-003787",
+        "station-mlit-003795",
+        "station-mlit-003801",
+        "station-mlit-003833",
+        "station-mlit-003889",
+        "station-mlit-003951",
+        "station-mlit-003999",
+        "station-mlit-003997"
+      ],
+      "stopStationIds": [
+        "station-mlit-003123",
+        "station-mlit-003163",
+        "station-mlit-003186",
+        "station-mlit-003228",
+        "station-mlit-003261",
+        "station-mlit-003294",
+        "station-mlit-003324",
+        "station-mlit-003361",
+        "station-mlit-003390",
+        "station-mlit-003432",
+        "station-mlit-003474",
+        "station-mlit-003534",
+        "station-mlit-003595",
+        "station-1131315",
+        "station-mlit-003737",
+        "station-mlit-003782",
+        "station-mlit-003787",
+        "station-mlit-003795",
+        "station-mlit-003801",
+        "station-mlit-003833",
+        "station-mlit-003889",
+        "station-mlit-003951",
+        "station-mlit-003999",
+        "station-mlit-003997"
+      ],
+      "names": {
+        "ja": "各駅停車 新木場行",
+        "ko": "각역정차 · 신키바행",
+        "en": "Local to Shinkiba"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-yurakucho-full-reverse",
+      "baseRouteId": "line-28006",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003997",
+      "destinationStationId": "station-mlit-003123",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003997",
+        "station-mlit-003999",
+        "station-mlit-003951",
+        "station-mlit-003889",
+        "station-mlit-003833",
+        "station-mlit-003801",
+        "station-mlit-003795",
+        "station-mlit-003787",
+        "station-mlit-003782",
+        "station-mlit-003737",
+        "station-1131315",
+        "station-mlit-003595",
+        "station-mlit-003534",
+        "station-mlit-003474",
+        "station-mlit-003432",
+        "station-mlit-003390",
+        "station-mlit-003361",
+        "station-mlit-003324",
+        "station-mlit-003294",
+        "station-mlit-003261",
+        "station-mlit-003228",
+        "station-mlit-003186",
+        "station-mlit-003163",
+        "station-mlit-003123"
+      ],
+      "stopStationIds": [
+        "station-mlit-003997",
+        "station-mlit-003999",
+        "station-mlit-003951",
+        "station-mlit-003889",
+        "station-mlit-003833",
+        "station-mlit-003801",
+        "station-mlit-003795",
+        "station-mlit-003787",
+        "station-mlit-003782",
+        "station-mlit-003737",
+        "station-1131315",
+        "station-mlit-003595",
+        "station-mlit-003534",
+        "station-mlit-003474",
+        "station-mlit-003432",
+        "station-mlit-003390",
+        "station-mlit-003361",
+        "station-mlit-003324",
+        "station-mlit-003294",
+        "station-mlit-003261",
+        "station-mlit-003228",
+        "station-mlit-003186",
+        "station-mlit-003163",
+        "station-mlit-003123"
+      ],
+      "names": {
+        "ja": "各駅停車 和光市行",
+        "ko": "각역정차 · 와코시행",
+        "en": "Local to WakōShi"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-hanzomon-full-forward",
+      "baseRouteId": "line-28008",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-2100203",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003922",
+        "station-mlit-003883",
+        "station-mlit-003812",
+        "station-mlit-003782",
+        "station-mlit-003729",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003716",
+        "station-mlit-003753",
+        "station-mlit-003754",
+        "station-mlit-003704",
+        "station-mlit-003639",
+        "station-2100203"
+      ],
+      "stopStationIds": [
+        "station-mlit-003922",
+        "station-mlit-003883",
+        "station-mlit-003812",
+        "station-mlit-003782",
+        "station-mlit-003729",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003716",
+        "station-mlit-003753",
+        "station-mlit-003754",
+        "station-mlit-003704",
+        "station-mlit-003639",
+        "station-2100203"
+      ],
+      "names": {
+        "ja": "各駅停車 押上〈スカイツリー前〉行",
+        "ko": "각역정차 · 오시아게스카이츠리마에행",
+        "en": "Local to Oshiage〈SukaitsurīMae〉"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-hanzomon-full-reverse",
+      "baseRouteId": "line-28008",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-2100203",
+      "destinationStationId": "station-mlit-003922",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-2100203",
+        "station-mlit-003639",
+        "station-mlit-003704",
+        "station-mlit-003754",
+        "station-mlit-003753",
+        "station-mlit-003716",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003729",
+        "station-mlit-003782",
+        "station-mlit-003812",
+        "station-mlit-003883",
+        "station-mlit-003922"
+      ],
+      "stopStationIds": [
+        "station-2100203",
+        "station-mlit-003639",
+        "station-mlit-003704",
+        "station-mlit-003754",
+        "station-mlit-003753",
+        "station-mlit-003716",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003729",
+        "station-mlit-003782",
+        "station-mlit-003812",
+        "station-mlit-003883",
+        "station-mlit-003922"
+      ],
+      "names": {
+        "ja": "各駅停車 渋谷行",
+        "ko": "각역정차 · 시부야행",
+        "en": "Local to Shibuya"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-namboku-full-forward",
+      "baseRouteId": "line-28009",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003141",
+      "destinationStationId": "station-mlit-004072",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003141",
+        "station-mlit-003153",
+        "station-mlit-003207",
+        "station-mlit-003236",
+        "station-2800905",
+        "station-mlit-003343",
+        "station-mlit-003441",
+        "station-mlit-003481",
+        "station-mlit-003542",
+        "station-mlit-003595",
+        "station-1131315",
+        "station-mlit-003728",
+        "station-mlit-003782",
+        "station-mlit-003810",
+        "station-mlit-003884",
+        "station-mlit-003941",
+        "station-mlit-004025",
+        "station-mlit-004044",
+        "station-mlit-004072"
+      ],
+      "stopStationIds": [
+        "station-mlit-003141",
+        "station-mlit-003153",
+        "station-mlit-003207",
+        "station-mlit-003236",
+        "station-2800905",
+        "station-mlit-003343",
+        "station-mlit-003441",
+        "station-mlit-003481",
+        "station-mlit-003542",
+        "station-mlit-003595",
+        "station-1131315",
+        "station-mlit-003728",
+        "station-mlit-003782",
+        "station-mlit-003810",
+        "station-mlit-003884",
+        "station-mlit-003941",
+        "station-mlit-004025",
+        "station-mlit-004044",
+        "station-mlit-004072"
+      ],
+      "names": {
+        "ja": "各駅停車 目黒行",
+        "ko": "각역정차 · 메구로행",
+        "en": "Local to Meguro"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-namboku-full-reverse",
+      "baseRouteId": "line-28009",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-004072",
+      "destinationStationId": "station-mlit-003141",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-004072",
+        "station-mlit-004044",
+        "station-mlit-004025",
+        "station-mlit-003941",
+        "station-mlit-003884",
+        "station-mlit-003810",
+        "station-mlit-003782",
+        "station-mlit-003728",
+        "station-1131315",
+        "station-mlit-003595",
+        "station-mlit-003542",
+        "station-mlit-003481",
+        "station-mlit-003441",
+        "station-mlit-003343",
+        "station-2800905",
+        "station-mlit-003236",
+        "station-mlit-003207",
+        "station-mlit-003153",
+        "station-mlit-003141"
+      ],
+      "stopStationIds": [
+        "station-mlit-004072",
+        "station-mlit-004044",
+        "station-mlit-004025",
+        "station-mlit-003941",
+        "station-mlit-003884",
+        "station-mlit-003810",
+        "station-mlit-003782",
+        "station-mlit-003728",
+        "station-1131315",
+        "station-mlit-003595",
+        "station-mlit-003542",
+        "station-mlit-003481",
+        "station-mlit-003441",
+        "station-mlit-003343",
+        "station-2800905",
+        "station-mlit-003236",
+        "station-mlit-003207",
+        "station-mlit-003153",
+        "station-mlit-003141"
+      ],
+      "names": {
+        "ja": "各駅停車 赤羽岩淵行",
+        "ko": "각역정차 · 아카바네이와부치행",
+        "en": "Local to Akabaneiwabuchi"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-fukutoshin-full-forward",
+      "baseRouteId": "line-28010",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003922",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003123",
+        "station-mlit-003163",
+        "station-mlit-003186",
+        "station-mlit-003228",
+        "station-mlit-003261",
+        "station-mlit-003294",
+        "station-mlit-003324",
+        "station-mlit-003361",
+        "station-mlit-003379",
+        "station-mlit-003471",
+        "station-mlit-003544",
+        "station-mlit-003612",
+        "station-mlit-003689",
+        "station-mlit-003780",
+        "station-1130206",
+        "station-mlit-003922"
+      ],
+      "stopStationIds": [
+        "station-mlit-003123",
+        "station-mlit-003163",
+        "station-mlit-003186",
+        "station-mlit-003228",
+        "station-mlit-003261",
+        "station-mlit-003294",
+        "station-mlit-003324",
+        "station-mlit-003361",
+        "station-mlit-003379",
+        "station-mlit-003471",
+        "station-mlit-003544",
+        "station-mlit-003612",
+        "station-mlit-003689",
+        "station-mlit-003780",
+        "station-1130206",
+        "station-mlit-003922"
+      ],
+      "names": {
+        "ja": "各駅停車 渋谷行",
+        "ko": "각역정차 · 시부야행",
+        "en": "Local to Shibuya"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-fukutoshin-full-reverse",
+      "baseRouteId": "line-28010",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003123",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003922",
+        "station-1130206",
+        "station-mlit-003780",
+        "station-mlit-003689",
+        "station-mlit-003612",
+        "station-mlit-003544",
+        "station-mlit-003471",
+        "station-mlit-003379",
+        "station-mlit-003361",
+        "station-mlit-003324",
+        "station-mlit-003294",
+        "station-mlit-003261",
+        "station-mlit-003228",
+        "station-mlit-003186",
+        "station-mlit-003163",
+        "station-mlit-003123"
+      ],
+      "stopStationIds": [
+        "station-mlit-003922",
+        "station-1130206",
+        "station-mlit-003780",
+        "station-mlit-003689",
+        "station-mlit-003612",
+        "station-mlit-003544",
+        "station-mlit-003471",
+        "station-mlit-003379",
+        "station-mlit-003361",
+        "station-mlit-003324",
+        "station-mlit-003294",
+        "station-mlit-003261",
+        "station-mlit-003228",
+        "station-mlit-003186",
+        "station-mlit-003163",
+        "station-mlit-003123"
+      ],
+      "names": {
+        "ja": "各駅停車 和光市行",
+        "ko": "각역정차 · 와코시행",
+        "en": "Local to WakōShi"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-asakusa-full-forward",
+      "baseRouteId": "line-99302",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-004270",
+      "destinationStationId": "station-2100203",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-004270",
+        "station-mlit-004248",
+        "station-mlit-004215",
+        "station-mlit-004161",
+        "station-mlit-004110",
+        "station-mlit-004079",
+        "station-mlit-004042",
+        "station-mlit-003986",
+        "station-mlit-003939",
+        "station-mlit-003872",
+        "station-mlit-003838",
+        "station-mlit-003796",
+        "station-mlit-003756",
+        "station-mlit-003721",
+        "station-mlit-003676",
+        "station-mlit-003636",
+        "station-mlit-003571",
+        "station-mlit-003522",
+        "station-mlit-003538",
+        "station-2100203"
+      ],
+      "stopStationIds": [
+        "station-mlit-004270",
+        "station-mlit-004248",
+        "station-mlit-004215",
+        "station-mlit-004161",
+        "station-mlit-004110",
+        "station-mlit-004079",
+        "station-mlit-004042",
+        "station-mlit-003986",
+        "station-mlit-003939",
+        "station-mlit-003872",
+        "station-mlit-003838",
+        "station-mlit-003796",
+        "station-mlit-003756",
+        "station-mlit-003721",
+        "station-mlit-003676",
+        "station-mlit-003636",
+        "station-mlit-003571",
+        "station-mlit-003522",
+        "station-mlit-003538",
+        "station-2100203"
+      ],
+      "names": {
+        "ja": "各駅停車 押上〈スカイツリー前〉行",
+        "ko": "각역정차 · 오시아게스카이츠리마에행",
+        "en": "Local to Oshiage〈SukaitsurīMae〉"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-asakusa-full-reverse",
+      "baseRouteId": "line-99302",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-2100203",
+      "destinationStationId": "station-mlit-004270",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-2100203",
+        "station-mlit-003538",
+        "station-mlit-003522",
+        "station-mlit-003571",
+        "station-mlit-003636",
+        "station-mlit-003676",
+        "station-mlit-003721",
+        "station-mlit-003756",
+        "station-mlit-003796",
+        "station-mlit-003838",
+        "station-mlit-003872",
+        "station-mlit-003939",
+        "station-mlit-003986",
+        "station-mlit-004042",
+        "station-mlit-004079",
+        "station-mlit-004110",
+        "station-mlit-004161",
+        "station-mlit-004215",
+        "station-mlit-004248",
+        "station-mlit-004270"
+      ],
+      "stopStationIds": [
+        "station-2100203",
+        "station-mlit-003538",
+        "station-mlit-003522",
+        "station-mlit-003571",
+        "station-mlit-003636",
+        "station-mlit-003676",
+        "station-mlit-003721",
+        "station-mlit-003756",
+        "station-mlit-003796",
+        "station-mlit-003838",
+        "station-mlit-003872",
+        "station-mlit-003939",
+        "station-mlit-003986",
+        "station-mlit-004042",
+        "station-mlit-004079",
+        "station-mlit-004110",
+        "station-mlit-004161",
+        "station-mlit-004215",
+        "station-mlit-004248",
+        "station-mlit-004270"
+      ],
+      "names": {
+        "ja": "各駅停車 西馬込行",
+        "ko": "각역정차 · 니시마고메행",
+        "en": "Local to Nishimagome"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-mita-full-forward",
+      "baseRouteId": "line-99303",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-004072",
+      "destinationStationId": "station-mlit-003104",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-004072",
+        "station-mlit-004044",
+        "station-mlit-004025",
+        "station-mlit-003986",
+        "station-mlit-003962",
+        "station-mlit-003911",
+        "station-mlit-003842",
+        "station-mlit-003802",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003580",
+        "station-mlit-003529",
+        "station-mlit-003461",
+        "station-mlit-003415",
+        "station-mlit-003354",
+        "station-mlit-003293",
+        "station-mlit-003268",
+        "station-mlit-003245",
+        "station-mlit-003216",
+        "station-mlit-003193",
+        "station-mlit-003165",
+        "station-mlit-003158",
+        "station-mlit-003140",
+        "station-mlit-003128",
+        "station-mlit-003117",
+        "station-mlit-003112",
+        "station-mlit-003104"
+      ],
+      "stopStationIds": [
+        "station-mlit-004072",
+        "station-mlit-004044",
+        "station-mlit-004025",
+        "station-mlit-003986",
+        "station-mlit-003962",
+        "station-mlit-003911",
+        "station-mlit-003842",
+        "station-mlit-003802",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003580",
+        "station-mlit-003529",
+        "station-mlit-003461",
+        "station-mlit-003415",
+        "station-mlit-003354",
+        "station-mlit-003293",
+        "station-mlit-003268",
+        "station-mlit-003245",
+        "station-mlit-003216",
+        "station-mlit-003193",
+        "station-mlit-003165",
+        "station-mlit-003158",
+        "station-mlit-003140",
+        "station-mlit-003128",
+        "station-mlit-003117",
+        "station-mlit-003112",
+        "station-mlit-003104"
+      ],
+      "names": {
+        "ja": "各駅停車 西高島平行",
+        "ko": "각역정차 · 니시타카시마다이라행",
+        "en": "Local to Nishitakashimadaira"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-mita-full-reverse",
+      "baseRouteId": "line-99303",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-003104",
+      "destinationStationId": "station-mlit-004072",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003104",
+        "station-mlit-003112",
+        "station-mlit-003117",
+        "station-mlit-003128",
+        "station-mlit-003140",
+        "station-mlit-003158",
+        "station-mlit-003165",
+        "station-mlit-003193",
+        "station-mlit-003216",
+        "station-mlit-003245",
+        "station-mlit-003268",
+        "station-mlit-003293",
+        "station-mlit-003354",
+        "station-mlit-003415",
+        "station-mlit-003461",
+        "station-mlit-003529",
+        "station-mlit-003580",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003802",
+        "station-mlit-003842",
+        "station-mlit-003911",
+        "station-mlit-003962",
+        "station-mlit-003986",
+        "station-mlit-004025",
+        "station-mlit-004044",
+        "station-mlit-004072"
+      ],
+      "stopStationIds": [
+        "station-mlit-003104",
+        "station-mlit-003112",
+        "station-mlit-003117",
+        "station-mlit-003128",
+        "station-mlit-003140",
+        "station-mlit-003158",
+        "station-mlit-003165",
+        "station-mlit-003193",
+        "station-mlit-003216",
+        "station-mlit-003245",
+        "station-mlit-003268",
+        "station-mlit-003293",
+        "station-mlit-003354",
+        "station-mlit-003415",
+        "station-mlit-003461",
+        "station-mlit-003529",
+        "station-mlit-003580",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003802",
+        "station-mlit-003842",
+        "station-mlit-003911",
+        "station-mlit-003962",
+        "station-mlit-003986",
+        "station-mlit-004025",
+        "station-mlit-004044",
+        "station-mlit-004072"
+      ],
+      "names": {
+        "ja": "各駅停車 目黒行",
+        "ko": "각역정차 · 메구로행",
+        "en": "Local to Meguro"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-shinjuku-full-forward",
+      "baseRouteId": "line-99304",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-003700",
+      "destinationStationId": "station-mlit-003449",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003673",
+        "station-mlit-003671",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003659",
+        "station-mlit-003655",
+        "station-mlit-003675",
+        "station-mlit-003706",
+        "station-mlit-003711",
+        "station-mlit-003709",
+        "station-mlit-003704",
+        "station-mlit-003702",
+        "station-mlit-003698",
+        "station-mlit-003695",
+        "station-mlit-003745",
+        "station-mlit-003724",
+        "station-mlit-003667",
+        "station-mlit-003565",
+        "station-mlit-003449"
+      ],
+      "stopStationIds": [
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003673",
+        "station-mlit-003671",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003659",
+        "station-mlit-003655",
+        "station-mlit-003675",
+        "station-mlit-003706",
+        "station-mlit-003711",
+        "station-mlit-003709",
+        "station-mlit-003704",
+        "station-mlit-003702",
+        "station-mlit-003698",
+        "station-mlit-003695",
+        "station-mlit-003745",
+        "station-mlit-003724",
+        "station-mlit-003667",
+        "station-mlit-003565",
+        "station-mlit-003449"
+      ],
+      "names": {
+        "ja": "各駅停車 本八幡行",
+        "ko": "각역정차 · 모토야와타행",
+        "en": "Local to Motoyawata"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-shinjuku-full-reverse",
+      "baseRouteId": "line-99304",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-003449",
+      "destinationStationId": "station-mlit-003700",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003449",
+        "station-mlit-003565",
+        "station-mlit-003667",
+        "station-mlit-003724",
+        "station-mlit-003745",
+        "station-mlit-003695",
+        "station-mlit-003698",
+        "station-mlit-003702",
+        "station-mlit-003704",
+        "station-mlit-003709",
+        "station-mlit-003711",
+        "station-mlit-003706",
+        "station-mlit-003675",
+        "station-mlit-003655",
+        "station-mlit-003659",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003671",
+        "station-mlit-003673",
+        "station-mlit-003689",
+        "station-mlit-003700"
+      ],
+      "stopStationIds": [
+        "station-mlit-003449",
+        "station-mlit-003565",
+        "station-mlit-003667",
+        "station-mlit-003724",
+        "station-mlit-003745",
+        "station-mlit-003695",
+        "station-mlit-003698",
+        "station-mlit-003702",
+        "station-mlit-003704",
+        "station-mlit-003709",
+        "station-mlit-003711",
+        "station-mlit-003706",
+        "station-mlit-003675",
+        "station-mlit-003655",
+        "station-mlit-003659",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003671",
+        "station-mlit-003673",
+        "station-mlit-003689",
+        "station-mlit-003700"
+      ],
+      "names": {
+        "ja": "各駅停車 新宿行",
+        "ko": "각역정차 · 신주쿠행",
+        "en": "Local to Shinjuku"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-oedo-full-forward",
+      "baseRouteId": "line-99301",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-003690",
+      "destinationStationId": "station-mlit-003225",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003690",
+        "station-mlit-003669",
+        "station-mlit-003612",
+        "station-mlit-003623",
+        "station-mlit-003618",
+        "station-mlit-003602",
+        "station-mlit-003595",
+        "station-mlit-003529",
+        "station-mlit-003546",
+        "station-mlit-003543",
+        "station-mlit-003556",
+        "station-mlit-003571",
+        "station-mlit-003646",
+        "station-mlit-003711",
+        "station-mlit-003754",
+        "station-mlit-003818",
+        "station-mlit-003889",
+        "station-mlit-003927",
+        "station-mlit-003886",
+        "station-mlit-003887",
+        "station-mlit-003939",
+        "station-mlit-003954",
+        "station-mlit-003941",
+        "station-mlit-003892",
+        "station-mlit-003812",
+        "station-mlit-003775",
+        "station-mlit-003743",
+        "station-mlit-003700",
+        "station-mlit-003696",
+        "station-mlit-003643",
+        "station-mlit-003549",
+        "station-mlit-003495",
+        "station-mlit-003448",
+        "station-mlit-003367",
+        "station-mlit-003328",
+        "station-mlit-003305",
+        "station-mlit-003243",
+        "station-mlit-003225"
+      ],
+      "stopStationIds": [
+        "station-mlit-003690",
+        "station-mlit-003669",
+        "station-mlit-003612",
+        "station-mlit-003623",
+        "station-mlit-003618",
+        "station-mlit-003602",
+        "station-mlit-003595",
+        "station-mlit-003529",
+        "station-mlit-003546",
+        "station-mlit-003543",
+        "station-mlit-003556",
+        "station-mlit-003571",
+        "station-mlit-003646",
+        "station-mlit-003711",
+        "station-mlit-003754",
+        "station-mlit-003818",
+        "station-mlit-003889",
+        "station-mlit-003927",
+        "station-mlit-003886",
+        "station-mlit-003887",
+        "station-mlit-003939",
+        "station-mlit-003954",
+        "station-mlit-003941",
+        "station-mlit-003892",
+        "station-mlit-003812",
+        "station-mlit-003775",
+        "station-mlit-003743",
+        "station-mlit-003700",
+        "station-mlit-003696",
+        "station-mlit-003643",
+        "station-mlit-003549",
+        "station-mlit-003495",
+        "station-mlit-003448",
+        "station-mlit-003367",
+        "station-mlit-003328",
+        "station-mlit-003305",
+        "station-mlit-003243",
+        "station-mlit-003225"
+      ],
+      "names": {
+        "ja": "各駅停車 光が丘行",
+        "ko": "각역정차 · 히카리가오카행",
+        "en": "Local to Hikarigaoka"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-oedo-full-reverse",
+      "baseRouteId": "line-99301",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-003225",
+      "destinationStationId": "station-mlit-003690",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003225",
+        "station-mlit-003243",
+        "station-mlit-003305",
+        "station-mlit-003328",
+        "station-mlit-003367",
+        "station-mlit-003448",
+        "station-mlit-003495",
+        "station-mlit-003549",
+        "station-mlit-003643",
+        "station-mlit-003696",
+        "station-mlit-003700",
+        "station-mlit-003743",
+        "station-mlit-003775",
+        "station-mlit-003812",
+        "station-mlit-003892",
+        "station-mlit-003941",
+        "station-mlit-003954",
+        "station-mlit-003939",
+        "station-mlit-003887",
+        "station-mlit-003886",
+        "station-mlit-003927",
+        "station-mlit-003889",
+        "station-mlit-003818",
+        "station-mlit-003754",
+        "station-mlit-003711",
+        "station-mlit-003646",
+        "station-mlit-003571",
+        "station-mlit-003556",
+        "station-mlit-003543",
+        "station-mlit-003546",
+        "station-mlit-003529",
+        "station-mlit-003595",
+        "station-mlit-003602",
+        "station-mlit-003618",
+        "station-mlit-003623",
+        "station-mlit-003612",
+        "station-mlit-003669",
+        "station-mlit-003690"
+      ],
+      "stopStationIds": [
+        "station-mlit-003225",
+        "station-mlit-003243",
+        "station-mlit-003305",
+        "station-mlit-003328",
+        "station-mlit-003367",
+        "station-mlit-003448",
+        "station-mlit-003495",
+        "station-mlit-003549",
+        "station-mlit-003643",
+        "station-mlit-003696",
+        "station-mlit-003700",
+        "station-mlit-003743",
+        "station-mlit-003775",
+        "station-mlit-003812",
+        "station-mlit-003892",
+        "station-mlit-003941",
+        "station-mlit-003954",
+        "station-mlit-003939",
+        "station-mlit-003887",
+        "station-mlit-003886",
+        "station-mlit-003927",
+        "station-mlit-003889",
+        "station-mlit-003818",
+        "station-mlit-003754",
+        "station-mlit-003711",
+        "station-mlit-003646",
+        "station-mlit-003571",
+        "station-mlit-003556",
+        "station-mlit-003543",
+        "station-mlit-003546",
+        "station-mlit-003529",
+        "station-mlit-003595",
+        "station-mlit-003602",
+        "station-mlit-003618",
+        "station-mlit-003623",
+        "station-mlit-003612",
+        "station-mlit-003669",
+        "station-mlit-003690"
+      ],
+      "names": {
+        "ja": "各駅停車 都庁前行",
+        "ko": "각역정차 · 토초마에행",
+        "en": "Local to TochōMae"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-ginza-shibuya-ueno",
+      "baseRouteId": "line-28001",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003505",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003922",
+        "station-mlit-003883",
+        "station-mlit-003834",
+        "station-mlit-003812",
+        "station-mlit-003788",
+        "station-mlit-003810",
+        "station-mlit-003835",
+        "station-mlit-003872",
+        "station-mlit-003823",
+        "station-mlit-003792",
+        "station-mlit-003756",
+        "station-mlit-003716",
+        "station-mlit-003677",
+        "station-mlit-003586",
+        "station-mlit-003545",
+        "station-mlit-003505"
+      ],
+      "stopStationIds": [
+        "station-mlit-003922",
+        "station-mlit-003883",
+        "station-mlit-003834",
+        "station-mlit-003812",
+        "station-mlit-003788",
+        "station-mlit-003810",
+        "station-mlit-003835",
+        "station-mlit-003872",
+        "station-mlit-003823",
+        "station-mlit-003792",
+        "station-mlit-003756",
+        "station-mlit-003716",
+        "station-mlit-003677",
+        "station-mlit-003586",
+        "station-mlit-003545",
+        "station-mlit-003505"
+      ],
+      "names": {
+        "ja": "各駅停車 上野行",
+        "ko": "각역정차 · 우에노행",
+        "en": "Local to Ueno"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/timetable/pdf/202503/G01.pdf",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-ginza-ueno-shibuya",
+      "baseRouteId": "line-28001",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003505",
+      "destinationStationId": "station-mlit-003922",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003505",
+        "station-mlit-003545",
+        "station-mlit-003586",
+        "station-mlit-003677",
+        "station-mlit-003716",
+        "station-mlit-003756",
+        "station-mlit-003792",
+        "station-mlit-003823",
+        "station-mlit-003872",
+        "station-mlit-003835",
+        "station-mlit-003810",
+        "station-mlit-003788",
+        "station-mlit-003812",
+        "station-mlit-003834",
+        "station-mlit-003883",
+        "station-mlit-003922"
+      ],
+      "stopStationIds": [
+        "station-mlit-003505",
+        "station-mlit-003545",
+        "station-mlit-003586",
+        "station-mlit-003677",
+        "station-mlit-003716",
+        "station-mlit-003756",
+        "station-mlit-003792",
+        "station-mlit-003823",
+        "station-mlit-003872",
+        "station-mlit-003835",
+        "station-mlit-003810",
+        "station-mlit-003788",
+        "station-mlit-003812",
+        "station-mlit-003834",
+        "station-mlit-003883",
+        "station-mlit-003922"
+      ],
+      "names": {
+        "ja": "各駅停車 渋谷行",
+        "ko": "각역정차 · 시부야행",
+        "en": "Local to Shibuya"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/timetable/pdf/202503/G01.pdf",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-tozai-nakano-toyocho",
+      "baseRouteId": "line-28004",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003568",
+      "destinationStationId": "station-mlit-003839",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003568",
+        "station-mlit-003523",
+        "station-mlit-003508",
+        "station-mlit-003570",
+        "station-mlit-003578",
+        "station-mlit-003595",
+        "station-mlit-003657",
+        "station-mlit-003691",
+        "station-mlit-003719",
+        "station-mlit-003756",
+        "station-mlit-003773",
+        "station-mlit-003818",
+        "station-mlit-003840",
+        "station-mlit-003839"
+      ],
+      "stopStationIds": [
+        "station-mlit-003568",
+        "station-mlit-003523",
+        "station-mlit-003508",
+        "station-mlit-003570",
+        "station-mlit-003578",
+        "station-mlit-003595",
+        "station-mlit-003657",
+        "station-mlit-003691",
+        "station-mlit-003719",
+        "station-mlit-003756",
+        "station-mlit-003773",
+        "station-mlit-003818",
+        "station-mlit-003840",
+        "station-mlit-003839"
+      ],
+      "names": {
+        "ja": "各駅停車 東陽町行",
+        "ko": "각역정차 · 토요쵸행",
+        "en": "Local to TōYōMachi"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/gyotoku/timetable/pdf/202501/gyotoku_timetable.pdf",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-tozai-myoden-nakano",
+      "baseRouteId": "line-28004",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003686",
+      "destinationStationId": "station-mlit-003568",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003686",
+        "station-mlit-003755",
+        "station-mlit-003819",
+        "station-mlit-003875",
+        "station-mlit-003894",
+        "station-mlit-003890",
+        "station-mlit-003854",
+        "station-mlit-003839",
+        "station-mlit-003840",
+        "station-mlit-003818",
+        "station-mlit-003773",
+        "station-mlit-003756",
+        "station-mlit-003719",
+        "station-mlit-003691",
+        "station-mlit-003657",
+        "station-mlit-003595",
+        "station-mlit-003578",
+        "station-mlit-003570",
+        "station-mlit-003508",
+        "station-mlit-003523",
+        "station-mlit-003568"
+      ],
+      "stopStationIds": [
+        "station-mlit-003686",
+        "station-mlit-003755",
+        "station-mlit-003819",
+        "station-mlit-003875",
+        "station-mlit-003894",
+        "station-mlit-003890",
+        "station-mlit-003854",
+        "station-mlit-003839",
+        "station-mlit-003840",
+        "station-mlit-003818",
+        "station-mlit-003773",
+        "station-mlit-003756",
+        "station-mlit-003719",
+        "station-mlit-003691",
+        "station-mlit-003657",
+        "station-mlit-003595",
+        "station-mlit-003578",
+        "station-mlit-003570",
+        "station-mlit-003508",
+        "station-mlit-003523",
+        "station-mlit-003568"
+      ],
+      "names": {
+        "ja": "各駅停車 中野行",
+        "ko": "각역정차 · 나카노행",
+        "en": "Local to Nakano"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/gyotoku/timetable/pdf/202501/gyotoku_timetable.pdf",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-hanzomon-shibuya-kiyosumi",
+      "baseRouteId": "line-28008",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003754",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003922",
+        "station-mlit-003883",
+        "station-mlit-003812",
+        "station-mlit-003782",
+        "station-mlit-003729",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003716",
+        "station-mlit-003753",
+        "station-mlit-003754"
+      ],
+      "stopStationIds": [
+        "station-mlit-003922",
+        "station-mlit-003883",
+        "station-mlit-003812",
+        "station-mlit-003782",
+        "station-mlit-003729",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003716",
+        "station-mlit-003753",
+        "station-mlit-003754"
+      ],
+      "names": {
+        "ja": "各駅停車 清澄白河行",
+        "ko": "각역정차 · 키요스미시라카와행",
+        "en": "Local to Kiyosumishirakawa"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/timetable/pdf/202603/Z13.pdf",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-hanzomon-kiyosumi-shibuya",
+      "baseRouteId": "line-28008",
+      "trainTypeId": "tokyo-local",
+      "originStationId": "station-mlit-003754",
+      "destinationStationId": "station-mlit-003922",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003754",
+        "station-mlit-003753",
+        "station-mlit-003716",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003729",
+        "station-mlit-003782",
+        "station-mlit-003812",
+        "station-mlit-003883",
+        "station-mlit-003922"
+      ],
+      "stopStationIds": [
+        "station-mlit-003754",
+        "station-mlit-003753",
+        "station-mlit-003716",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003729",
+        "station-mlit-003782",
+        "station-mlit-003812",
+        "station-mlit-003883",
+        "station-mlit-003922"
+      ],
+      "names": {
+        "ja": "各駅停車 渋谷行",
+        "ko": "각역정차 · 시부야행",
+        "en": "Local to Shibuya"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/timetable/pdf/202603/Z13.pdf",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-mita-meguro-takashimadaira",
+      "baseRouteId": "line-99303",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-004072",
+      "destinationStationId": "station-mlit-003117",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-004072",
+        "station-mlit-004044",
+        "station-mlit-004025",
+        "station-mlit-003986",
+        "station-mlit-003962",
+        "station-mlit-003911",
+        "station-mlit-003842",
+        "station-mlit-003802",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003580",
+        "station-mlit-003529",
+        "station-mlit-003461",
+        "station-mlit-003415",
+        "station-mlit-003354",
+        "station-mlit-003293",
+        "station-mlit-003268",
+        "station-mlit-003245",
+        "station-mlit-003216",
+        "station-mlit-003193",
+        "station-mlit-003165",
+        "station-mlit-003158",
+        "station-mlit-003140",
+        "station-mlit-003128",
+        "station-mlit-003117"
+      ],
+      "stopStationIds": [
+        "station-mlit-004072",
+        "station-mlit-004044",
+        "station-mlit-004025",
+        "station-mlit-003986",
+        "station-mlit-003962",
+        "station-mlit-003911",
+        "station-mlit-003842",
+        "station-mlit-003802",
+        "station-mlit-003719",
+        "station-mlit-003651",
+        "station-mlit-003580",
+        "station-mlit-003529",
+        "station-mlit-003461",
+        "station-mlit-003415",
+        "station-mlit-003354",
+        "station-mlit-003293",
+        "station-mlit-003268",
+        "station-mlit-003245",
+        "station-mlit-003216",
+        "station-mlit-003193",
+        "station-mlit-003165",
+        "station-mlit-003158",
+        "station-mlit-003140",
+        "station-mlit-003128",
+        "station-mlit-003117"
+      ],
+      "names": {
+        "ja": "各駅停車 高島平行",
+        "ko": "각역정차 · 타카시마다이라행",
+        "en": "Local to Takashimadaira"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/mita/n/I01NH.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-mita-takashimadaira-meguro",
+      "baseRouteId": "line-99303",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-003117",
+      "destinationStationId": "station-mlit-004072",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003117",
+        "station-mlit-003128",
+        "station-mlit-003140",
+        "station-mlit-003158",
+        "station-mlit-003165",
+        "station-mlit-003193",
+        "station-mlit-003216",
+        "station-mlit-003245",
+        "station-mlit-003268",
+        "station-mlit-003293",
+        "station-mlit-003354",
+        "station-mlit-003415",
+        "station-mlit-003461",
+        "station-mlit-003529",
+        "station-mlit-003580",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003802",
+        "station-mlit-003842",
+        "station-mlit-003911",
+        "station-mlit-003962",
+        "station-mlit-003986",
+        "station-mlit-004025",
+        "station-mlit-004044",
+        "station-mlit-004072"
+      ],
+      "stopStationIds": [
+        "station-mlit-003117",
+        "station-mlit-003128",
+        "station-mlit-003140",
+        "station-mlit-003158",
+        "station-mlit-003165",
+        "station-mlit-003193",
+        "station-mlit-003216",
+        "station-mlit-003245",
+        "station-mlit-003268",
+        "station-mlit-003293",
+        "station-mlit-003354",
+        "station-mlit-003415",
+        "station-mlit-003461",
+        "station-mlit-003529",
+        "station-mlit-003580",
+        "station-mlit-003651",
+        "station-mlit-003719",
+        "station-mlit-003802",
+        "station-mlit-003842",
+        "station-mlit-003911",
+        "station-mlit-003962",
+        "station-mlit-003986",
+        "station-mlit-004025",
+        "station-mlit-004044",
+        "station-mlit-004072"
+      ],
+      "names": {
+        "ja": "各駅停車 目黒行",
+        "ko": "각역정차 · 메구로행",
+        "en": "Local to Meguro"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/mita/n/I01NH.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-shinjuku-motoyawata-ojima",
+      "baseRouteId": "line-99304",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-003449",
+      "destinationStationId": "station-mlit-003698",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003449",
+        "station-mlit-003565",
+        "station-mlit-003667",
+        "station-mlit-003724",
+        "station-mlit-003745",
+        "station-mlit-003695",
+        "station-mlit-003698"
+      ],
+      "stopStationIds": [
+        "station-mlit-003449",
+        "station-mlit-003565",
+        "station-mlit-003667",
+        "station-mlit-003724",
+        "station-mlit-003745",
+        "station-mlit-003695",
+        "station-mlit-003698"
+      ],
+      "names": {
+        "ja": "各駅停車 大島行",
+        "ko": "각역정차 · 오시마행",
+        "en": "Local to ōShima"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S20WH.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-shinjuku-ojima-shinjuku",
+      "baseRouteId": "line-99304",
+      "trainTypeId": "toei-local",
+      "originStationId": "station-mlit-003698",
+      "destinationStationId": "station-mlit-003700",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003698",
+        "station-mlit-003702",
+        "station-mlit-003704",
+        "station-mlit-003709",
+        "station-mlit-003711",
+        "station-mlit-003706",
+        "station-mlit-003675",
+        "station-mlit-003655",
+        "station-mlit-003659",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003671",
+        "station-mlit-003673",
+        "station-mlit-003689",
+        "station-mlit-003700"
+      ],
+      "stopStationIds": [
+        "station-mlit-003698",
+        "station-mlit-003702",
+        "station-mlit-003704",
+        "station-mlit-003709",
+        "station-mlit-003711",
+        "station-mlit-003706",
+        "station-mlit-003675",
+        "station-mlit-003655",
+        "station-mlit-003659",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003671",
+        "station-mlit-003673",
+        "station-mlit-003689",
+        "station-mlit-003700"
+      ],
+      "names": {
+        "ja": "各駅停車 新宿行",
+        "ko": "각역정차 · 신주쿠행",
+        "en": "Local to Shinjuku"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S20WH.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-tozai-rapid-forward",
+      "baseRouteId": "line-28004",
+      "trainTypeId": "tokyo-metro-rapid",
+      "originStationId": "station-mlit-003568",
+      "destinationStationId": "station-mlit-003547",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003568",
+        "station-mlit-003523",
+        "station-mlit-003508",
+        "station-mlit-003570",
+        "station-mlit-003578",
+        "station-mlit-003595",
+        "station-mlit-003657",
+        "station-mlit-003691",
+        "station-mlit-003719",
+        "station-mlit-003756",
+        "station-mlit-003773",
+        "station-mlit-003818",
+        "station-mlit-003840",
+        "station-mlit-003839",
+        "station-mlit-003854",
+        "station-mlit-003890",
+        "station-mlit-003894",
+        "station-mlit-003875",
+        "station-mlit-003819",
+        "station-mlit-003755",
+        "station-mlit-003686",
+        "station-mlit-003582",
+        "station-mlit-003547"
+      ],
+      "stopStationIds": [
+        "station-mlit-003568",
+        "station-mlit-003523",
+        "station-mlit-003508",
+        "station-mlit-003570",
+        "station-mlit-003578",
+        "station-mlit-003595",
+        "station-mlit-003657",
+        "station-mlit-003691",
+        "station-mlit-003719",
+        "station-mlit-003756",
+        "station-mlit-003773",
+        "station-mlit-003818",
+        "station-mlit-003840",
+        "station-mlit-003839",
+        "station-mlit-003875",
+        "station-mlit-003547"
+      ],
+      "names": {
+        "ja": "快速 西船橋行",
+        "ko": "쾌속 · 니시후나바시행",
+        "en": "Rapid to Nishifunabashi"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/gyotoku/timetable/pdf/202501/gyotoku_timetable.pdf",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-tozai-rapid-reverse",
+      "baseRouteId": "line-28004",
+      "trainTypeId": "tokyo-metro-rapid",
+      "originStationId": "station-mlit-003547",
+      "destinationStationId": "station-mlit-003568",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003547",
+        "station-mlit-003582",
+        "station-mlit-003686",
+        "station-mlit-003755",
+        "station-mlit-003819",
+        "station-mlit-003875",
+        "station-mlit-003894",
+        "station-mlit-003890",
+        "station-mlit-003854",
+        "station-mlit-003839",
+        "station-mlit-003840",
+        "station-mlit-003818",
+        "station-mlit-003773",
+        "station-mlit-003756",
+        "station-mlit-003719",
+        "station-mlit-003691",
+        "station-mlit-003657",
+        "station-mlit-003595",
+        "station-mlit-003578",
+        "station-mlit-003570",
+        "station-mlit-003508",
+        "station-mlit-003523",
+        "station-mlit-003568"
+      ],
+      "stopStationIds": [
+        "station-mlit-003547",
+        "station-mlit-003875",
+        "station-mlit-003839",
+        "station-mlit-003840",
+        "station-mlit-003818",
+        "station-mlit-003773",
+        "station-mlit-003756",
+        "station-mlit-003719",
+        "station-mlit-003691",
+        "station-mlit-003657",
+        "station-mlit-003595",
+        "station-mlit-003578",
+        "station-mlit-003570",
+        "station-mlit-003508",
+        "station-mlit-003523",
+        "station-mlit-003568"
+      ],
+      "names": {
+        "ja": "快速 中野行",
+        "ko": "쾌속 · 나카노행",
+        "en": "Rapid to Nakano"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/gyotoku/timetable/pdf/202501/gyotoku_timetable.pdf",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-shinjuku-express-forward",
+      "baseRouteId": "line-99304",
+      "trainTypeId": "toei-express",
+      "originStationId": "station-mlit-003700",
+      "destinationStationId": "station-mlit-003449",
+      "directionId": "forward",
+      "stationSequence": [
+        "station-mlit-003700",
+        "station-mlit-003689",
+        "station-mlit-003673",
+        "station-mlit-003671",
+        "station-mlit-003657",
+        "station-mlit-003651",
+        "station-mlit-003659",
+        "station-mlit-003655",
+        "station-mlit-003675",
+        "station-mlit-003706",
+        "station-mlit-003711",
+        "station-mlit-003709",
+        "station-mlit-003704",
+        "station-mlit-003702",
+        "station-mlit-003698",
+        "station-mlit-003695",
+        "station-mlit-003745",
+        "station-mlit-003724",
+        "station-mlit-003667",
+        "station-mlit-003565",
+        "station-mlit-003449"
+      ],
+      "stopStationIds": [
+        "station-mlit-003700",
+        "station-mlit-003671",
+        "station-mlit-003651",
+        "station-mlit-003675",
+        "station-mlit-003711",
+        "station-mlit-003698",
+        "station-mlit-003745",
+        "station-mlit-003449"
+      ],
+      "names": {
+        "ja": "急行 本八幡行",
+        "ko": "급행 · 모토야와타행",
+        "en": "Express to Motoyawata"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S20WH.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-shinjuku-express-reverse",
+      "baseRouteId": "line-99304",
+      "trainTypeId": "toei-express",
+      "originStationId": "station-mlit-003449",
+      "destinationStationId": "station-mlit-003700",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003449",
+        "station-mlit-003565",
+        "station-mlit-003667",
+        "station-mlit-003724",
+        "station-mlit-003745",
+        "station-mlit-003695",
+        "station-mlit-003698",
+        "station-mlit-003702",
+        "station-mlit-003704",
+        "station-mlit-003709",
+        "station-mlit-003711",
+        "station-mlit-003706",
+        "station-mlit-003675",
+        "station-mlit-003655",
+        "station-mlit-003659",
+        "station-mlit-003651",
+        "station-mlit-003657",
+        "station-mlit-003671",
+        "station-mlit-003673",
+        "station-mlit-003689",
+        "station-mlit-003700"
+      ],
+      "stopStationIds": [
+        "station-mlit-003449",
+        "station-mlit-003745",
+        "station-mlit-003698",
+        "station-mlit-003711",
+        "station-mlit-003675",
+        "station-mlit-003651",
+        "station-mlit-003671",
+        "station-mlit-003700"
+      ],
+      "names": {
+        "ja": "急行 新宿行",
+        "ko": "급행 · 신주쿠행",
+        "en": "Express to Shinjuku"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S20WH.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-fukutoshin-express-reverse",
+      "baseRouteId": "line-28010",
+      "trainTypeId": "tokyo-metro-express",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003123",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003922",
+        "station-1130206",
+        "station-mlit-003780",
+        "station-mlit-003689",
+        "station-mlit-003612",
+        "station-mlit-003544",
+        "station-mlit-003471",
+        "station-mlit-003379",
+        "station-mlit-003361",
+        "station-mlit-003324",
+        "station-mlit-003294",
+        "station-mlit-003261",
+        "station-mlit-003228",
+        "station-mlit-003186",
+        "station-mlit-003163",
+        "station-mlit-003123"
+      ],
+      "stopStationIds": [
+        "station-mlit-003922",
+        "station-1130206",
+        "station-mlit-003689",
+        "station-mlit-003379",
+        "station-mlit-003294",
+        "station-mlit-003123"
+      ],
+      "names": {
+        "ja": "急行 和光市行",
+        "ko": "급행 · 와코시행",
+        "en": "Express to WakōShi"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "base-journey-fukutoshin-commuter-express-reverse",
+      "baseRouteId": "line-28010",
+      "trainTypeId": "tokyo-metro-commuter-express",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003123",
+      "directionId": "reverse",
+      "stationSequence": [
+        "station-mlit-003922",
+        "station-1130206",
+        "station-mlit-003780",
+        "station-mlit-003689",
+        "station-mlit-003612",
+        "station-mlit-003544",
+        "station-mlit-003471",
+        "station-mlit-003379",
+        "station-mlit-003361",
+        "station-mlit-003324",
+        "station-mlit-003294",
+        "station-mlit-003261",
+        "station-mlit-003228",
+        "station-mlit-003186",
+        "station-mlit-003163",
+        "station-mlit-003123"
+      ],
+      "stopStationIds": [
+        "station-mlit-003922",
+        "station-1130206",
+        "station-mlit-003689",
+        "station-mlit-003379",
+        "station-mlit-003294",
+        "station-mlit-003261",
+        "station-mlit-003228",
+        "station-mlit-003186",
+        "station-mlit-003163",
+        "station-mlit-003123"
+      ],
+      "names": {
+        "ja": "通勤急行 和光市行",
+        "ko": "통근급행 · 와코시행",
+        "en": "Commuter Express to WakōShi"
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.tokyometro.jp/station/index.html",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
     }
   ],
   "metroLineInventory": [
@@ -4915,9 +7655,226 @@
         "ko": "하시모토",
         "en": "Hashimoto"
       }
+    },
+    {
+      "stationId": "station-mlit-003922",
+      "names": {
+        "ja": "渋谷",
+        "ko": "시부야",
+        "en": "Shibuya"
+      }
+    },
+    {
+      "stationId": "station-mlit-003522",
+      "names": {
+        "ja": "浅草",
+        "ko": "아사쿠사",
+        "en": "Asakusa"
+      }
+    },
+    {
+      "stationId": "station-mlit-003390",
+      "names": {
+        "ja": "池袋",
+        "ko": "이케부쿠로",
+        "en": "Ikebukuro"
+      }
+    },
+    {
+      "stationId": "station-mlit-003575",
+      "names": {
+        "ja": "荻窪",
+        "ko": "오기쿠보",
+        "en": "Ogikubo"
+      }
+    },
+    {
+      "stationId": "station-mlit-003643",
+      "names": {
+        "ja": "中野坂上",
+        "ko": "나카노사카우에",
+        "en": "Nakanosakaue"
+      }
+    },
+    {
+      "stationId": "station-2800228",
+      "names": {
+        "ja": "方南町",
+        "ko": "호난초",
+        "en": "HōNanchō"
+      }
+    },
+    {
+      "stationId": "station-mlit-003260",
+      "names": {
+        "ja": "北千住",
+        "ko": "키타센주",
+        "en": "Kitasenju"
+      }
+    },
+    {
+      "stationId": "station-mlit-003547",
+      "names": {
+        "ja": "西船橋",
+        "ko": "니시후나바시",
+        "en": "Nishifunabashi"
+      }
+    },
+    {
+      "stationId": "station-mlit-003162",
+      "names": {
+        "ja": "北綾瀬",
+        "ko": "키타아야세",
+        "en": "Kitaayase"
+      }
+    },
+    {
+      "stationId": "station-mlit-003847",
+      "names": {
+        "ja": "代々木上原",
+        "ko": "요요기우에하라",
+        "en": "Yoyogi-uehara"
+      }
+    },
+    {
+      "stationId": "station-2100203",
+      "names": {
+        "ja": "押上〈スカイツリー前〉",
+        "ko": "오시아게스카이츠리마에",
+        "en": "Oshiage〈SukaitsurīMae〉"
+      }
+    },
+    {
+      "stationId": "station-mlit-003141",
+      "names": {
+        "ja": "赤羽岩淵",
+        "ko": "아카바네이와부치",
+        "en": "Akabaneiwabuchi"
+      }
+    },
+    {
+      "stationId": "station-mlit-004072",
+      "names": {
+        "ja": "目黒",
+        "ko": "메구로",
+        "en": "Meguro"
+      }
+    },
+    {
+      "stationId": "station-mlit-004270",
+      "names": {
+        "ja": "西馬込",
+        "ko": "니시마고메",
+        "en": "Nishimagome"
+      }
+    },
+    {
+      "stationId": "station-mlit-003700",
+      "names": {
+        "ja": "新宿",
+        "ko": "신주쿠",
+        "en": "Shinjuku"
+      }
+    },
+    {
+      "stationId": "station-mlit-003690",
+      "names": {
+        "ja": "都庁前",
+        "ko": "토초마에",
+        "en": "TochōMae"
+      }
+    },
+    {
+      "stationId": "station-mlit-003225",
+      "names": {
+        "ja": "光が丘",
+        "ko": "히카리가오카",
+        "en": "Hikarigaoka"
+      }
+    },
+    {
+      "stationId": "station-mlit-003505",
+      "names": {
+        "ja": "上野",
+        "ko": "우에노",
+        "en": "Ueno"
+      }
+    },
+    {
+      "stationId": "station-mlit-003839",
+      "names": {
+        "ja": "東陽町",
+        "ko": "토요쵸",
+        "en": "TōYōMachi"
+      }
+    },
+    {
+      "stationId": "station-mlit-003686",
+      "names": {
+        "ja": "妙典",
+        "ko": "묘덴",
+        "en": "MyōDen"
+      }
+    },
+    {
+      "stationId": "station-mlit-003754",
+      "names": {
+        "ja": "清澄白河",
+        "ko": "키요스미시라카와",
+        "en": "Kiyosumishirakawa"
+      }
+    },
+    {
+      "stationId": "station-mlit-003117",
+      "names": {
+        "ja": "高島平",
+        "ko": "타카시마다이라",
+        "en": "Takashimadaira"
+      }
+    },
+    {
+      "stationId": "station-mlit-003698",
+      "names": {
+        "ja": "大島",
+        "ko": "오시마",
+        "en": "ōShima"
+      }
     }
   ],
   "serviceJourneys": [
+    {
+      "id": "journey-fukutoshin-local-wakoshi-shibuya",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003922",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "fukutoshin-local-wakoshi-shibuya",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-express-wakoshi-shibuya",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003922",
+      "trainTypeId": "tokyo-metro-express",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "fukutoshin-express-wakoshi-shibuya",
+      "status": "active"
+    },
+    {
+      "id": "journey-fukutoshin-commuter-express-wakoshi-shibuya",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003922",
+      "trainTypeId": "tokyo-metro-commuter-express",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "fukutoshin-commuter-express-wakoshi-shibuya",
+      "status": "active"
+    },
     {
       "id": "journey-hibiya-tobu-forward",
       "baseRouteId": "line-28003",
@@ -5313,6 +8270,490 @@
       "directionId": "reverse",
       "servicePatternId": "toei-shinjuku-keio-hashimoto-reverse",
       "status": "active"
+    },
+    {
+      "id": "journey-base-journey-ginza-full-forward",
+      "baseRouteId": "line-28001",
+      "originStationId": "station-mlit-003522",
+      "destinationStationId": "station-mlit-003922",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-ginza-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-ginza-full-reverse",
+      "baseRouteId": "line-28001",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003522",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-ginza-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-marunouchi-full-forward",
+      "baseRouteId": "line-28002",
+      "originStationId": "station-mlit-003390",
+      "destinationStationId": "station-mlit-003575",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-marunouchi-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-marunouchi-full-reverse",
+      "baseRouteId": "line-28002",
+      "originStationId": "station-mlit-003575",
+      "destinationStationId": "station-mlit-003390",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-marunouchi-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-marunouchi-honancho-full-forward",
+      "baseRouteId": "line-28002-honancho-branch",
+      "originStationId": "station-mlit-003643",
+      "destinationStationId": "station-2800228",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-marunouchi-honancho-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-marunouchi-honancho-full-reverse",
+      "baseRouteId": "line-28002-honancho-branch",
+      "originStationId": "station-2800228",
+      "destinationStationId": "station-mlit-003643",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-marunouchi-honancho-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-hibiya-full-forward",
+      "baseRouteId": "line-28003",
+      "originStationId": "station-mlit-003260",
+      "destinationStationId": "station-mlit-004014",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-hibiya-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-hibiya-full-reverse",
+      "baseRouteId": "line-28003",
+      "originStationId": "station-mlit-004014",
+      "destinationStationId": "station-mlit-003260",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-hibiya-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-tozai-full-forward",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003568",
+      "destinationStationId": "station-mlit-003547",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-tozai-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-tozai-full-reverse",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003547",
+      "destinationStationId": "station-mlit-003568",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-tozai-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-chiyoda-full-forward",
+      "baseRouteId": "line-28005",
+      "originStationId": "station-mlit-003162",
+      "destinationStationId": "station-mlit-003847",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-chiyoda-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-chiyoda-full-reverse",
+      "baseRouteId": "line-28005",
+      "originStationId": "station-mlit-003847",
+      "destinationStationId": "station-mlit-003162",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-chiyoda-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-yurakucho-full-forward",
+      "baseRouteId": "line-28006",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003997",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-yurakucho-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-yurakucho-full-reverse",
+      "baseRouteId": "line-28006",
+      "originStationId": "station-mlit-003997",
+      "destinationStationId": "station-mlit-003123",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-yurakucho-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-hanzomon-full-forward",
+      "baseRouteId": "line-28008",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-2100203",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-hanzomon-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-hanzomon-full-reverse",
+      "baseRouteId": "line-28008",
+      "originStationId": "station-2100203",
+      "destinationStationId": "station-mlit-003922",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-hanzomon-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-namboku-full-forward",
+      "baseRouteId": "line-28009",
+      "originStationId": "station-mlit-003141",
+      "destinationStationId": "station-mlit-004072",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-namboku-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-namboku-full-reverse",
+      "baseRouteId": "line-28009",
+      "originStationId": "station-mlit-004072",
+      "destinationStationId": "station-mlit-003141",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-namboku-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-fukutoshin-full-forward",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003123",
+      "destinationStationId": "station-mlit-003922",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-fukutoshin-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-fukutoshin-full-reverse",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003123",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-fukutoshin-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-asakusa-full-forward",
+      "baseRouteId": "line-99302",
+      "originStationId": "station-mlit-004270",
+      "destinationStationId": "station-2100203",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-asakusa-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-asakusa-full-reverse",
+      "baseRouteId": "line-99302",
+      "originStationId": "station-2100203",
+      "destinationStationId": "station-mlit-004270",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-asakusa-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-mita-full-forward",
+      "baseRouteId": "line-99303",
+      "originStationId": "station-mlit-004072",
+      "destinationStationId": "station-mlit-003104",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-mita-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-mita-full-reverse",
+      "baseRouteId": "line-99303",
+      "originStationId": "station-mlit-003104",
+      "destinationStationId": "station-mlit-004072",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-mita-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-shinjuku-full-forward",
+      "baseRouteId": "line-99304",
+      "originStationId": "station-mlit-003700",
+      "destinationStationId": "station-mlit-003449",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-shinjuku-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-shinjuku-full-reverse",
+      "baseRouteId": "line-99304",
+      "originStationId": "station-mlit-003449",
+      "destinationStationId": "station-mlit-003700",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-shinjuku-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-oedo-full-forward",
+      "baseRouteId": "line-99301",
+      "originStationId": "station-mlit-003690",
+      "destinationStationId": "station-mlit-003225",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-oedo-full-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-oedo-full-reverse",
+      "baseRouteId": "line-99301",
+      "originStationId": "station-mlit-003225",
+      "destinationStationId": "station-mlit-003690",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-oedo-full-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-ginza-shibuya-ueno",
+      "baseRouteId": "line-28001",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003505",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-ginza-shibuya-ueno",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-ginza-ueno-shibuya",
+      "baseRouteId": "line-28001",
+      "originStationId": "station-mlit-003505",
+      "destinationStationId": "station-mlit-003922",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-ginza-ueno-shibuya",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-tozai-nakano-toyocho",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003568",
+      "destinationStationId": "station-mlit-003839",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-tozai-nakano-toyocho",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-tozai-myoden-nakano",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003686",
+      "destinationStationId": "station-mlit-003568",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-tozai-myoden-nakano",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-hanzomon-shibuya-kiyosumi",
+      "baseRouteId": "line-28008",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003754",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-hanzomon-shibuya-kiyosumi",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-hanzomon-kiyosumi-shibuya",
+      "baseRouteId": "line-28008",
+      "originStationId": "station-mlit-003754",
+      "destinationStationId": "station-mlit-003922",
+      "trainTypeId": "tokyo-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-hanzomon-kiyosumi-shibuya",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-mita-meguro-takashimadaira",
+      "baseRouteId": "line-99303",
+      "originStationId": "station-mlit-004072",
+      "destinationStationId": "station-mlit-003117",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-mita-meguro-takashimadaira",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-mita-takashimadaira-meguro",
+      "baseRouteId": "line-99303",
+      "originStationId": "station-mlit-003117",
+      "destinationStationId": "station-mlit-004072",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-mita-takashimadaira-meguro",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-shinjuku-motoyawata-ojima",
+      "baseRouteId": "line-99304",
+      "originStationId": "station-mlit-003449",
+      "destinationStationId": "station-mlit-003698",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-shinjuku-motoyawata-ojima",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-shinjuku-ojima-shinjuku",
+      "baseRouteId": "line-99304",
+      "originStationId": "station-mlit-003698",
+      "destinationStationId": "station-mlit-003700",
+      "trainTypeId": "toei-local",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-shinjuku-ojima-shinjuku",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-tozai-rapid-forward",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003568",
+      "destinationStationId": "station-mlit-003547",
+      "trainTypeId": "tokyo-metro-rapid",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-tozai-rapid-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-tozai-rapid-reverse",
+      "baseRouteId": "line-28004",
+      "originStationId": "station-mlit-003547",
+      "destinationStationId": "station-mlit-003568",
+      "trainTypeId": "tokyo-metro-rapid",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-tozai-rapid-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-shinjuku-express-forward",
+      "baseRouteId": "line-99304",
+      "originStationId": "station-mlit-003700",
+      "destinationStationId": "station-mlit-003449",
+      "trainTypeId": "toei-express",
+      "throughServiceId": null,
+      "directionId": "forward",
+      "servicePatternId": "base-journey-shinjuku-express-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-shinjuku-express-reverse",
+      "baseRouteId": "line-99304",
+      "originStationId": "station-mlit-003449",
+      "destinationStationId": "station-mlit-003700",
+      "trainTypeId": "toei-express",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-shinjuku-express-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-fukutoshin-express-reverse",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003123",
+      "trainTypeId": "tokyo-metro-express",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-fukutoshin-express-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-base-journey-fukutoshin-commuter-express-reverse",
+      "baseRouteId": "line-28010",
+      "originStationId": "station-mlit-003922",
+      "destinationStationId": "station-mlit-003123",
+      "trainTypeId": "tokyo-metro-commuter-express",
+      "throughServiceId": null,
+      "directionId": "reverse",
+      "servicePatternId": "base-journey-fukutoshin-commuter-express-reverse",
+      "status": "active"
     }
   ],
   "toeiLineInventory": [
@@ -5378,6 +8819,92 @@
           "verifiedAt": "2026-09-12"
         }
       ]
+    }
+  ],
+  "baseJourneyInventory": [
+    {
+      "lineId": "line-28001",
+      "slug": "ginza",
+      "status": "COMPLETE",
+      "journeys": 4
+    },
+    {
+      "lineId": "line-28002",
+      "slug": "marunouchi",
+      "status": "COMPLETE",
+      "journeys": 2
+    },
+    {
+      "lineId": "line-28002-honancho-branch",
+      "slug": "marunouchi-honancho",
+      "status": "COMPLETE",
+      "journeys": 2
+    },
+    {
+      "lineId": "line-28003",
+      "slug": "hibiya",
+      "status": "COMPLETE",
+      "journeys": 2
+    },
+    {
+      "lineId": "line-28004",
+      "slug": "tozai",
+      "status": "COMPLETE",
+      "journeys": 6
+    },
+    {
+      "lineId": "line-28005",
+      "slug": "chiyoda",
+      "status": "COMPLETE",
+      "journeys": 2
+    },
+    {
+      "lineId": "line-28006",
+      "slug": "yurakucho",
+      "status": "COMPLETE",
+      "journeys": 2
+    },
+    {
+      "lineId": "line-28008",
+      "slug": "hanzomon",
+      "status": "COMPLETE",
+      "journeys": 4
+    },
+    {
+      "lineId": "line-28009",
+      "slug": "namboku",
+      "status": "COMPLETE",
+      "journeys": 2
+    },
+    {
+      "lineId": "line-28010",
+      "slug": "fukutoshin",
+      "status": "COMPLETE",
+      "journeys": 7
+    },
+    {
+      "lineId": "line-99302",
+      "slug": "asakusa",
+      "status": "COMPLETE",
+      "journeys": 2
+    },
+    {
+      "lineId": "line-99303",
+      "slug": "mita",
+      "status": "COMPLETE",
+      "journeys": 4
+    },
+    {
+      "lineId": "line-99304",
+      "slug": "shinjuku",
+      "status": "COMPLETE",
+      "journeys": 6
+    },
+    {
+      "lineId": "line-99301",
+      "slug": "oedo",
+      "status": "COMPLETE",
+      "journeys": 2
     }
   ]
 }

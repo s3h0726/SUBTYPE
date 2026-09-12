@@ -15,7 +15,7 @@ for(const branch of branches.values()){
 for(const pattern of catalog.servicePatterns||[]){
   const base=routeMap.get(pattern.baseRouteId),branch=pattern.branchId?branches.get(pattern.branchId):null,spec=pattern.throughServiceId?throughMap.get(pattern.throughServiceId):null;
   if(!base)errors.push(`${pattern.id}: base route missing`);if(!trainTypes.has(pattern.trainTypeId))errors.push(`${pattern.id}: train type missing`);if(pattern.branchId&&!branch)errors.push(`${pattern.id}: branch missing`);if(pattern.throughServiceId&&!spec)errors.push(`${pattern.id}: through service missing`);
-  const ids=branch?branch.stationSequence.map(String):[...routeStations(base).keys()],indices=new Map(ids.map((id,index)=>[id,index])),stops=(pattern.stopStationIds||ids).map(String);
+  const canonicalIds=branch?branch.stationSequence.map(String):[...routeStations(base).keys()],ids=!spec&&pattern.directionId==='reverse'?canonicalIds.slice().reverse():canonicalIds,indices=new Map(ids.map((id,index)=>[id,index])),stops=(pattern.stopStationIds||ids).map(String);
   for(const id of stops)if(!indices.has(id)&&!spec)errors.push(`${pattern.id}: stop outside route ${id}`);
   if(!spec&&stops.some((id,index)=>index&&indices.get(id)<=indices.get(stops[index-1])))errors.push(`${pattern.id}: stop order is not forward`);
   if(!spec&&pattern.originStationId!==stops[0])errors.push(`${pattern.id}: origin is not first stop`);if(!spec&&pattern.destinationStationId!==stops.at(-1))errors.push(`${pattern.id}: destination is not last stop`);

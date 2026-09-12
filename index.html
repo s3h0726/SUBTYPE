@@ -115,7 +115,7 @@
           </div></fieldset>
           <fieldset id="through-service-fieldset" hidden><legend>DIRECT SERVICE · 직결운행</legend><div class="segmented"><label><input type="radio" name="directService" value="off" checked><span>OFF</span></label><label><input type="radio" name="directService" value="on"><span>ON</span></label></div><label class="through-destination">DESTINATION<select id="through-destination"></select></label></fieldset>
           <div class="korean-only-notice"><b>한국어 전용 운행</b><span>일본어와 한국어 역명을 함께 보고, 표시된 한국어 역명을 입력합니다.</span></div>
-          <fieldset id="service-fieldset"><legend>열차 종류</legend><div id="journey-picker" class="journey-picker" hidden><label>출발역<select id="journey-origin" name="journeyOrigin"></select></label><span aria-hidden="true">→</span><label>최종 종착역<select id="journey-destination" name="journeyDestination"></select></label><label>열차종별<select id="journey-train-type" name="journeyTrainType"></select></label><p id="journey-summary" aria-live="polite"></p></div><div id="service-options" class="service-options"></div></fieldset>
+          <fieldset id="service-fieldset"><legend>열차 종류</legend><div id="journey-picker" class="journey-picker" hidden><label>출발역<select id="journey-origin" name="journeyOrigin"></select></label><span aria-hidden="true">→</span><label>행선지<select id="journey-destination" name="journeyDestination"></select></label><label>열차종별<select id="journey-train-type" name="journeyTrainType"></select></label><p id="journey-summary" aria-live="polite"></p></div><div id="service-options" class="service-options"></div></fieldset>
           <div class="form-row"><label>운행 방향<select id="service-direction"><option value="forward">정방향</option><option value="reverse">반대 방향</option></select></label><div class="osm-only-notice"><b>OPENSTREETMAP</b><span>실제 역 좌표 단일 지도</span></div></div><input id="game-map-mode" type="hidden" value="geographic"><button id="map-view-toggle" type="button" hidden aria-hidden="true"></button>
           <fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto" checked><span>AUTO · 자동 이동</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE · 확인 후 이동</span></label></div></fieldset>
           <fieldset><legend>난이도</legend><div class="segmented"><label><input type="radio" name="difficulty" value="easy"><span>EASY</span></label><label><input type="radio" name="difficulty" value="normal" checked><span>NORMAL</span></label><label><input type="radio" name="difficulty" value="hard"><span>HARD</span></label></div></fieldset>
@@ -193,14 +193,14 @@
   <div id="auth-dialog" class="auth-dialog" hidden><form id="auth-form" class="auth-card"><button type="button" data-auth-close aria-label="닫기">×</button><p class="eyebrow">계정</p><h2>기록 이어하기</h2><div class="auth-tabs" role="tablist" aria-label="계정 작업"><button type="button" class="active" data-auth-mode="login" role="tab" aria-selected="true">로그인</button><button type="button" data-auth-mode="signup" role="tab" aria-selected="false">회원가입</button></div><input type="hidden" name="mode" value="login"><label>이메일<input id="auth-email" name="email" type="email" autocomplete="email" required></label><label>비밀번호<input name="password" type="password" autocomplete="current-password" minlength="6" required></label><label data-signup-field hidden>비밀번호 확인<input name="passwordConfirm" type="password" autocomplete="new-password" minlength="6"></label><label data-signup-field hidden>닉네임<input name="nickname" maxlength="24" value="철도러"></label><p id="auth-config-status">계정 연결 상태를 확인하고 있습니다.</p><p id="auth-error" class="auth-error" role="alert" hidden></p><button class="btn primary" type="submit">로그인</button></form></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script defer src="./js/bootstrap.js?v=p0-sync-1"></script>
-  <script defer src="./js/line-workspace-data.js?v=7a6d164f0ba5"></script>
-  <script defer src="./js/korea-index-data.js?v=20674df12046"></script>
+  <script defer src="./js/line-workspace-data.js?v=65daa5595a65"></script>
+  <script defer src="./js/korea-index-data.js?v=09c62ddbd2d7"></script>
   <script defer src="./js/nationwide-data.js?v=offline-all-1"></script>
-  <script defer src="./js/service-data.js?v=c4c41afae943"></script>
+  <script defer src="./js/service-data.js?v=82d6025471c7"></script>
   <script defer src="./js/line-theme-data.js"></script>
   <script defer src="./js/line-badge-data.js"></script>
   <script defer src="./js/rail-system-data.js"></script>
   <script defer src="./js/auth-config.js"></script>
-  <script defer src="./js/app.bundle.js?v=0934e3c64602"></script>
+  <script defer src="./js/app.bundle.js?v=72848d539bfd"></script>
 </body>
 </html>
