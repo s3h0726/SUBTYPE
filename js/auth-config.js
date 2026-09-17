@@ -78,3 +78,39 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     }
   }
 })();
+
+/* Sotetsu runtime asset bridge. All three Sotetsu lines share the SO symbol. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
+  if(!data)return;
+  const commonsAsset=(filename)=>{
+    const encoded=encodeURIComponent(filename);
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+    return {asset:file,file,version:'commons-20260918',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  };
+  const symbol=commonsAsset('Sotetsu line symbol.svg');
+  const operatorAsset=commonsAsset('SOTETSU logo.svg');
+  const ids=['line-29001','line-29002','line-29003'];
+  data.assets=data.assets||{};
+  data.assets.operators=data.assets.operators||{};
+  data.assets.lines=data.assets.lines||{};
+  data.assets.operators.sotetsu=operatorAsset;
+  for(const id of ids) data.assets.lines[id]=symbol;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const id of ids){
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'SO',color:'#0066B3',style:'private',operatorMark:'SOTETSU',colorVerified:true,colorSource:'https://www.sotetsu.co.jp/train/'};
+  }
+  if(window.TRT_LINE_BADGES?.routeCodes){
+    for(const id of ids) window.TRT_LINE_BADGES.routeCodes[id]='SO';
+  }
+  for(const route of data.routes||[]){
+    if(route.operatorId==='sotetsu') route.operatorAsset=operatorAsset;
+    if(ids.includes(route.id)){
+      route.symbolAsset=symbol;
+      route.symbolMeta={...(route.symbolMeta||{}),asset:symbol.asset,officialSymbolExists:true,verified:false,identificationSource:'wikimedia-commons',assetSource:'wikimedia-commons',assetSourceUrl:symbol.source};
+      route.officialSymbolExists=true;
+      route.code='SO';
+    }
+  }
+})();
