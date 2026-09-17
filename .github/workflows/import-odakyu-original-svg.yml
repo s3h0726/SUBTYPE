@@ -1,0 +1,75 @@
+name: Import Odakyu original SVGs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-odakyu-original-svg.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import-svg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download original Wikimedia Commons SVG files
+        run: |
+          set -euo pipefail
+          curl -L --fail --silent --show-error \
+            'https://upload.wikimedia.org/wikipedia/commons/4/4d/Odakyu_odawara.svg' \
+            -o data/lines/odakyu/odawara-line/symbol.svg
+          curl -L --fail --silent --show-error \
+            'https://upload.wikimedia.org/wikipedia/commons/4/4a/Odakyu_enoshima.svg' \
+            -o data/lines/odakyu/odakyuenoshimasen/symbol.svg
+          curl -L --fail --silent --show-error \
+            'https://upload.wikimedia.org/wikipedia/commons/6/69/Odakyu_tama.svg' \
+            -o data/lines/odakyu/odakyutamasen/symbol.svg
+
+      - name: Point line metadata to local original SVGs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          files = {
+              Path('data/lines/odakyu/odawara-line/line.json'): 'https://commons.wikimedia.org/wiki/File:Odakyu_odawara.svg',
+              Path('data/lines/odakyu/odakyuenoshimasen/line.json'): 'https://commons.wikimedia.org/wiki/File:Odakyu_enoshima.svg',
+              Path('data/lines/odakyu/odakyutamasen/line.json'): 'https://commons.wikimedia.org/wiki/File:Odakyu_tama.svg',
+          }
+          for path, source in files.items():
+              data = json.loads(path.read_text(encoding='utf-8'))
+              data['symbol']['asset'] = './symbol.svg'
+              data['symbol']['officialSymbolExists'] = True
+              data['symbol']['source'] = source
+              data['symbol']['verified'] = True
+              data['symbol']['identificationSource'] = 'wikimedia-commons'
+              data['symbol']['identificationUrl'] = source
+              data['symbol']['assetSource'] = 'wikimedia'
+              data['symbol']['assetSourceUrl'] = source
+              data['symbol']['identificationVerified'] = True
+              path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit original SVG assets
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lines/odakyu/odawara-line/symbol.svg \
+                  data/lines/odakyu/odawara-line/line.json \
+                  data/lines/odakyu/odakyuenoshimasen/symbol.svg \
+                  data/lines/odakyu/odakyuenoshimasen/line.json \
+                  data/lines/odakyu/odakyutamasen/symbol.svg \
+                  data/lines/odakyu/odakyutamasen/line.json
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+          else
+            git commit -m 'Import original Wikimedia SVGs for all Odakyu lines'
+            git push origin HEAD:main
+          fi
