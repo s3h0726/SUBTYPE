@@ -189,7 +189,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
 
-  const operatorAsset=commonsAsset('Kintetsu Logo.svg');
+  const operatorAsset=commonsAsset('Kinki Nippon Railway logo.svg');
   const symbol=(code)=>commonsAsset(`KT number-${code}.svg`);
   const lines={
     'line-31001':'A',
