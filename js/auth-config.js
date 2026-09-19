@@ -466,7 +466,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
-  const operatorAsset={asset:'./data/operators/yurikamome/logo.svg?v=20260919',file:'./data/operators/yurikamome/logo.svg',version:'20260919',exists:true,verified:true,source:'https://www.yurikamome.co.jp/',assetSource:'local',assetSourceUrl:'./data/operators/yurikamome/logo.svg',officialExists:true};
+  const operatorAsset=commonsAsset('Yurikamome line symbol.svg');
   const lineAsset=commonsAsset('Yurikamome line symbol.svg');
   const id='line-99311';
   data.assets.operators.yurikamome=operatorAsset;
@@ -515,4 +515,34 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.code='TX';
     route.color='#003399';
   }
+})();
+
+/* Tokyo Monorail: verified company logo and MO route symbol. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Tokyo Monorail Logo.svg');
+  const lineAsset=commonsAsset('Tokyo Monorail Line symbol.svg');
+  const id='line-99336';
+  data.assets.operators['tokyo-monorail']=operatorAsset;data.assets.lines[id]=lineAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'MO',color:'#0099CC',style:'private',operatorMark:'東京モノレール',colorVerified:true,colorSource:'https://www.tokyo-monorail.co.jp/'};
+  if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='MO';
+  for(const route of data.routes||[]){if(route.operatorId==='tokyo-monorail')route.operatorAsset=operatorAsset;if(route.id!==id)continue;route.symbolAsset=lineAsset;route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};route.officialSymbolExists=true;route.code='MO';route.color='#0099CC';}
+})();
+
+/* Tokyo Waterfront Area Rapid Transit / Rinkai Line: verified company and R route marks. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('東京臨海高速鉄道ロゴマーク.svg');
+  const lineAsset=commonsAsset('Rinkai Line symbol.svg');
+  const id='line-99337';
+  data.assets.operators['tokyo-waterfront-area-rapid-transit']=operatorAsset;data.assets.lines[id]=lineAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'R',color:'#00B48D',style:'private',operatorMark:'東京臨海高速鉄道',colorVerified:true,colorSource:'https://www.twr.co.jp/'};
+  if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='R';
+  for(const route of data.routes||[]){if(route.operatorId==='tokyo-waterfront-area-rapid-transit')route.operatorAsset=operatorAsset;if(route.id!==id)continue;route.symbolAsset=lineAsset;route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};route.officialSymbolExists=true;route.code='R';route.color='#00B48D';}
 })();
