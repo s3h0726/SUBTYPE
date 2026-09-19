@@ -484,3 +484,35 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.color='#0067B0';
   }
 })();
+
+/* Metropolitan Intercity Railway / Tsukuba Express: separate company identity and TX line mark. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
+  if(!data)return;
+  data.assets=data.assets||{};
+  data.assets.operators=data.assets.operators||{};
+  data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{
+    const encoded=encodeURIComponent(filename);
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+    return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  };
+  const operatorAsset=commonsAsset('Tsukuba Express logo.svg');
+  const lineAsset=commonsAsset('Tsukuba Express mark.svg');
+  const id='line-99309';
+  data.assets.operators['metropolitan-intercity-railway']=operatorAsset;
+  data.assets.lines[id]=lineAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'TX',color:'#003399',style:'private',operatorMark:'首都圏新都市鉄道',colorVerified:true,colorSource:'https://www.mir.co.jp/company/ci.html'};
+  if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]='TX';
+  for(const route of data.routes||[]){
+    if(route.operatorId==='metropolitan-intercity-railway') route.operatorAsset=operatorAsset;
+    if(route.id!==id) continue;
+    route.symbolAsset=lineAsset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'mir-official-ci',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
+    route.officialSymbolExists=true;
+    route.code='TX';
+    route.color='#003399';
+  }
+})();
