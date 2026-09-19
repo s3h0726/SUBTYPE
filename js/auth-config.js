@@ -172,3 +172,72 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 
   window.TRT_JR_EAST_RUNTIME={coded,fallback,officialCodes:[...officialCodes]};
 })();
+
+
+/* Kintetsu full-network runtime asset bridge. Official Kintetsu route letters follow the current network map. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
+  if(!data)return;
+  data.assets=data.assets||{};
+  data.assets.operators=data.assets.operators||{};
+  data.assets.lines=data.assets.lines||{};
+
+  const commonsAsset=(filename)=>{
+    const encoded=encodeURIComponent(filename);
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+    return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  };
+
+  const operatorAsset=commonsAsset('Kintetsu Logo.svg');
+  const symbol=(code)=>commonsAsset(`KT number-${code}.svg`);
+  const lines={
+    'line-31001':'A',
+    'line-31020':'A',
+    'line-31002':'B',
+    'line-31025':'B',
+    'line-31023':'C',
+    'line-31005':'D',
+    'line-31027':'E',
+    'line-31003':'F',
+    'line-31007':'F',
+    'line-31016':'G',
+    'line-31011':'H',
+    'line-31017':'I',
+    'line-31021':'J',
+    'line-31008':'K',
+    'line-31019':'L',
+    'line-31009':'M',
+    'line-31010':'M',
+    'line-31015':'M',
+    'line-31012':'N',
+    'line-31022':'O',
+    'line-31018':'P',
+    'line-31026':'Y',
+    'line-31024':'Z'
+  };
+  const symbols={};
+  for(const code of new Set(Object.values(lines))) symbols[code]=symbol(code);
+
+  data.assets.operators.kinkinihontetsudo=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+
+  for(const [id,code] of Object.entries(lines)){
+    const asset=symbols[code];
+    data.assets.lines[id]=asset;
+    const theme=window.TRT_LINE_THEMES[id]||{};
+    window.TRT_LINE_THEMES[id]={...theme,code,color:theme.color||'#E60012',style:'private',operatorMark:'KINTETSU',colorVerified:true,colorSource:'https://www.kintetsu.co.jp/station/'};
+    if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]=code;
+  }
+
+  for(const route of data.routes||[]){
+    if(route.operatorId==='kinkinihontetsudo') route.operatorAsset=operatorAsset;
+    const code=lines[route.id];
+    if(!code) continue;
+    const asset=symbols[code];
+    route.symbolAsset=asset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:false,identificationSource:'kintetsu-official-map',assetSource:'wikimedia-commons',assetSourceUrl:asset.source};
+    route.officialSymbolExists=true;
+    route.code=code;
+  }
+})();
