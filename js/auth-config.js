@@ -452,3 +452,35 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.color=entry.color;
   }
 })();
+
+/* Yurikamome: company logo and official U line symbol are separate assets. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
+  if(!data)return;
+  data.assets=data.assets||{};
+  data.assets.operators=data.assets.operators||{};
+  data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{
+    const encoded=encodeURIComponent(filename);
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+    return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  };
+  const operatorAsset=commonsAsset('Yurikamome logo.svg');
+  const lineAsset=commonsAsset('Yurikamome line symbol.svg');
+  const id='line-99311';
+  data.assets.operators.yurikamome=operatorAsset;
+  data.assets.lines[id]=lineAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'U',color:'#0067B0',style:'private',operatorMark:'株式会社ゆりかもめ',colorVerified:true,colorSource:'https://www.yurikamome.co.jp/'};
+  if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]='U';
+  for(const route of data.routes||[]){
+    if(route.operatorId==='yurikamome') route.operatorAsset=operatorAsset;
+    if(route.id!==id) continue;
+    route.symbolAsset=lineAsset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:false,identificationSource:'yurikamome-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
+    route.officialSymbolExists=true;
+    route.code='U';
+    route.color='#0067B0';
+  }
+})();
