@@ -294,8 +294,8 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
-  const symbol=commonsAsset('Hankyu HK.svg');
-  const operatorAsset=commonsAsset('Hankyu logo.svg');
+  const symbol=commonsAsset('Hankyu Railway Logo notext.svg');
+  const operatorAsset=commonsAsset('Hankyu Railway Logo.svg');
   const ids=['line-34001','line-34002','line-34003','line-34004','line-34005','line-34006','line-34007','line-34008','line-34009'];
   data.assets.operators.hankyudentetsu=operatorAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
@@ -340,8 +340,19 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     'line-99652':{code:'I',color:'#EE7B1A'},
     'line-99625':{code:'P',color:'#00A0DE'}
   };
+  const symbolFiles={
+    M:'Osaka Metro Midosuji line symbol.svg',
+    T:'Osaka Metro Tanimachi line symbol.svg',
+    Y:'Osaka Metro Yotsubashi line symbol.svg',
+    C:'Osaka Metro Chuo line symbol.svg',
+    S:'Osaka Metro Sennichimae line symbol.svg',
+    K:'Osaka Metro Sakaisuji line symbol.svg',
+    N:'Osaka Metro Nagahori Tsurumi-ryokuchi line symbol.svg',
+    I:'Osaka Metro Imazatosuji line symbol.svg',
+    P:'Osaka Metro Nanko Port Town line symbol.svg'
+  };
   const symbols={};
-  for(const code of new Set(Object.values(lines).map(x=>x.code))) symbols[code]=commonsAsset(`Osaka Metro ${code}.svg`);
+  for(const [code,filename] of Object.entries(symbolFiles)) symbols[code]=commonsAsset(filename);
   data.assets.operators['osaka-metro']=operatorAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
   for(const [id,entry] of Object.entries(lines)){
