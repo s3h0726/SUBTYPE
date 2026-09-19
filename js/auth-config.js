@@ -499,7 +499,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
   const operatorAsset=commonsAsset('Tsukuba Express logo.svg');
-  const lineAsset=commonsAsset('Tsukuba Express mark.svg');
+  const lineAsset=commonsAsset('Tsukuba Express symbol.svg');
   const id='line-99309';
   data.assets.operators['metropolitan-intercity-railway']=operatorAsset;
   data.assets.lines[id]=lineAsset;
