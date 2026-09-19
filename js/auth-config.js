@@ -362,3 +362,49 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.color=entry.color;
   }
 })();
+
+/* Nankai Electric Railway runtime asset bridge. Current network uses NK station numbering. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
+  if(!data)return;
+  data.assets=data.assets||{};
+  data.assets.operators=data.assets.operators||{};
+  data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{
+    const encoded=encodeURIComponent(filename);
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+    return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  };
+  const operatorAsset=commonsAsset('Nankai logo with its slogan.svg');
+  const mainSymbol=commonsAsset('Nankai mainline symbol.svg');
+  const koyaSymbol=commonsAsset('Nankai koya line symbol.svg');
+  const lines={
+    'line-32001':mainSymbol,
+    'line-32002':mainSymbol,
+    'line-32003':mainSymbol,
+    'line-32004':mainSymbol,
+    'line-32005':mainSymbol,
+    'line-32006':mainSymbol,
+    'line-32007':koyaSymbol,
+    'line-32008':koyaSymbol,
+    'line-32009':koyaSymbol
+  };
+  data.assets.operators.nankaidentetsu=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const [id,asset] of Object.entries(lines)){
+    data.assets.lines[id]=asset;
+    const theme=window.TRT_LINE_THEMES[id]||{};
+    window.TRT_LINE_THEMES[id]={...theme,code:'NK',color:theme.color||'#009A41',style:'private',operatorMark:'난카이 전기철도',colorVerified:true,colorSource:'https://www.nankai.co.jp/railway/'};
+    if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]='NK';
+  }
+  for(const route of data.routes||[]){
+    if(route.operatorId==='nankaidentetsu') route.operatorAsset=operatorAsset;
+    const asset=lines[route.id];
+    if(!asset) continue;
+    route.symbolAsset=asset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:false,identificationSource:'nankai-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:asset.source};
+    route.officialSymbolExists=true;
+    route.code='NK';
+  }
+})();
