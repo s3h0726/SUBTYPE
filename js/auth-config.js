@@ -376,12 +376,12 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
-  const operatorAsset=commonsAsset('Nankai logo with its slogan.svg');
+  const operatorAsset=commonsAsset('Nankai logo.svg');
   const mainSymbol=commonsAsset('Nankai mainline symbol.svg');
   const koyaSymbol=commonsAsset('Nankai koya line symbol.svg');
   const lines={
     'line-32001':mainSymbol,
-    'line-32002':mainSymbol,
+    'line-32002':commonsAsset('Nankai airport line symbol.svg'),
     'line-32003':mainSymbol,
     'line-32004':mainSymbol,
     'line-32005':mainSymbol,
