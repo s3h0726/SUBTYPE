@@ -314,3 +314,51 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.code='HK';
   }
 })();
+
+/* Osaka Metro runtime asset bridge. Official line letters: M/T/Y/C/S/K/N/I and New Tram P. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
+  if(!data)return;
+  data.assets=data.assets||{};
+  data.assets.operators=data.assets.operators||{};
+  data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{
+    const encoded=encodeURIComponent(filename);
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+    return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  };
+  const operatorAsset={asset:'./data/operators/osaka-metro/logo.svg?v=20260919',file:'./data/operators/osaka-metro/logo.svg',version:'20260919',exists:true,verified:true,source:'https://subway.osakametro.co.jp/',officialExists:true};
+  const lines={
+    'line-99618':{code:'M',color:'#E5171F'},
+    'line-99619':{code:'T',color:'#522886'},
+    'line-99620':{code:'Y',color:'#0078BA'},
+    'line-99621':{code:'C',color:'#019A66'},
+    'line-99622':{code:'S',color:'#E44D93'},
+    'line-99623':{code:'K',color:'#814721'},
+    'line-99624':{code:'N',color:'#A9CC51'},
+    'line-99652':{code:'I',color:'#EE7B1A'},
+    'line-99625':{code:'P',color:'#00A0DE'}
+  };
+  const symbols={};
+  for(const code of new Set(Object.values(lines).map(x=>x.code))) symbols[code]=commonsAsset(`Osaka Metro ${code}.svg`);
+  data.assets.operators['osaka-metro']=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const [id,entry] of Object.entries(lines)){
+    const asset=symbols[entry.code];
+    data.assets.lines[id]=asset;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:entry.code,color:entry.color,style:'subway',operatorMark:'Osaka Metro',colorVerified:true,colorSource:'https://subway.osakametro.co.jp/guide/routemap.php'};
+    if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]=entry.code;
+  }
+  for(const route of data.routes||[]){
+    if(route.operatorId==='osaka-metro') route.operatorAsset=operatorAsset;
+    const entry=lines[route.id];
+    if(!entry) continue;
+    const asset=symbols[entry.code];
+    route.symbolAsset=asset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:false,identificationSource:'osaka-metro-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:asset.source};
+    route.officialSymbolExists=true;
+    route.code=entry.code;
+    route.color=entry.color;
+  }
+})();
