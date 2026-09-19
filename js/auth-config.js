@@ -189,7 +189,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
 
-  const operatorAsset=commonsAsset('KintetsuLogo.svg');
+  const operatorAsset=commonsAsset('Kintetsu Logo full.svg');
   const symbol=(code)=>commonsAsset(`KT number-${code}.svg`);
   const lines={
     'line-31001':'A',
@@ -294,7 +294,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
-  const symbol=commonsAsset('Hankyu Railway Logo notext.svg');
+  const symbol=commonsAsset('Hankyu Railway Logo.svg');
   const operatorAsset=commonsAsset('Hankyu Railway Logo.svg');
   const ids=['line-34001','line-34002','line-34003','line-34004','line-34005','line-34006','line-34007','line-34008','line-34009'];
   data.assets.operators.hankyudentetsu=operatorAsset;
@@ -387,7 +387,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
-  const operatorAsset=commonsAsset('Nankai logo.svg');
+  const operatorAsset=commonsAsset('Nankai logo with its slogan.svg');
   const mainSymbol=commonsAsset('Nankai mainline symbol.svg');
   const koyaSymbol=commonsAsset('Nankai koya line symbol.svg');
   const lines={
