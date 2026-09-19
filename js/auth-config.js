@@ -433,8 +433,8 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
   const lines={
-    'line-99342':{code:'NT',color:'#D6C447',asset:commonsAsset('Toei Nippori-Toneri Liner symbol.svg')},
-    'line-99305':{code:'SA',color:'#E85298',asset:commonsAsset('Toei Arakawa Line symbol.svg')}
+    'line-99342':{code:'NT',color:'#D6C447',asset:commonsAsset('Nippori-Toneri Liner symbol.svg')},
+    'line-99305':{code:'SA',color:'#E85298',asset:commonsAsset('Tokyo Sakura Tram symbol.svg')}
   };
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
   for(const [id,entry] of Object.entries(lines)){
@@ -466,7 +466,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
-  const operatorAsset=commonsAsset('Yurikamome logo.svg');
+  const operatorAsset={asset:'./data/operators/yurikamome/logo.svg?v=20260919',file:'./data/operators/yurikamome/logo.svg',version:'20260919',exists:true,verified:true,source:'https://www.yurikamome.co.jp/',assetSource:'local',assetSourceUrl:'./data/operators/yurikamome/logo.svg',officialExists:true};
   const lineAsset=commonsAsset('Yurikamome line symbol.svg');
   const id='line-99311';
   data.assets.operators.yurikamome=operatorAsset;
