@@ -241,3 +241,42 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.code=code;
   }
 })();
+
+/* Hanshin Electric Railway runtime asset bridge. All Hanshin lines use the HS prefix. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
+  if(!data)return;
+  data.assets=data.assets||{};
+  data.assets.operators=data.assets.operators||{};
+  data.assets.lines=data.assets.lines||{};
+
+  const commonsAsset=(filename)=>{
+    const encoded=encodeURIComponent(filename);
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+    return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  };
+
+  const symbol=commonsAsset('Number prefix Hanshin line.svg');
+  const operatorAsset=commonsAsset('Hanshin logo.svg');
+  const ids=['line-35001','line-35002','line-35003'];
+
+  data.assets.operators.hanshindentetsu=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+
+  for(const id of ids){
+    data.assets.lines[id]=symbol;
+    const theme=window.TRT_LINE_THEMES[id]||{};
+    window.TRT_LINE_THEMES[id]={...theme,code:'HS',color:theme.color||'#1B5DAA',style:'private',operatorMark:'한신 전기철도',colorVerified:true,colorSource:'https://www.hanshin.co.jp/station/'};
+    if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]='HS';
+  }
+
+  for(const route of data.routes||[]){
+    if(route.operatorId==='hanshindentetsu') route.operatorAsset=operatorAsset;
+    if(!ids.includes(route.id)) continue;
+    route.symbolAsset=symbol;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:symbol.asset,officialSymbolExists:true,verified:false,identificationSource:'hanshin-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:symbol.source};
+    route.officialSymbolExists=true;
+    route.code='HS';
+  }
+})();
