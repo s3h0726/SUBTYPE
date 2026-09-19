@@ -226,7 +226,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const asset=symbols[code];
     data.assets.lines[id]=asset;
     const theme=window.TRT_LINE_THEMES[id]||{};
-    window.TRT_LINE_THEMES[id]={...theme,code,color:theme.color||'#E60012',style:'private',operatorMark:'KINTETSU',colorVerified:true,colorSource:'https://www.kintetsu.co.jp/station/'};
+    window.TRT_LINE_THEMES[id]={...theme,code,color:theme.color||'#E60012',style:'private',operatorMark:'긴키 일본 철도',colorVerified:true,colorSource:'https://www.kintetsu.co.jp/station/'};
     if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]=code;
   }
 
