@@ -419,3 +419,36 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.code='NK';
   }
 })();
+
+/* Toei non-subway lines: Nippori-Toneri Liner (NT) and Tokyo Sakura Tram (SA). */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
+  if(!data)return;
+  data.assets=data.assets||{};
+  data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{
+    const encoded=encodeURIComponent(filename);
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+    return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  };
+  const lines={
+    'line-99342':{code:'NT',color:'#D6C447',asset:commonsAsset('Toei Nippori-Toneri Liner symbol.svg')},
+    'line-99305':{code:'SA',color:'#E85298',asset:commonsAsset('Toei Arakawa Line symbol.svg')}
+  };
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const [id,entry] of Object.entries(lines)){
+    data.assets.lines[id]=entry.asset;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:entry.code,color:entry.color,style:'public',operatorMark:'東京都交通局',colorVerified:true,colorSource:'https://www.kotsu.metro.tokyo.jp/'};
+    if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]=entry.code;
+  }
+  for(const route of data.routes||[]){
+    const entry=lines[route.id];
+    if(!entry) continue;
+    route.symbolAsset=entry.asset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:entry.asset.asset,officialSymbolExists:true,verified:false,identificationSource:'toei-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:entry.asset.source};
+    route.officialSymbolExists=true;
+    route.code=entry.code;
+    route.color=entry.color;
+  }
+})();
