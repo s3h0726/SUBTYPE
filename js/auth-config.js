@@ -281,7 +281,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   }
 })();
 
-/* Hankyu Railway runtime asset bridge. Hankyu uses HK station numbering across its network. */
+/* Hankyu Railway runtime asset bridge. Use the three real HK route-symbol variants. */
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
   if(!data)return;
@@ -292,24 +292,37 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const encoded=encodeURIComponent(filename);
     const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
-    return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+    return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
-  const symbol=commonsAsset('Hankyu Railway Logo.svg');
   const operatorAsset=commonsAsset('Hankyu Railway Logo.svg');
-  const ids=['line-34001','line-34002','line-34003','line-34004','line-34005','line-34006','line-34007','line-34008','line-34009'];
+  const kobe=commonsAsset('Number prefix Hankyu Kōbe line.svg');
+  const takarazuka=commonsAsset('Number prefix Hankyu Takarazuka line.svg');
+  const kyoto=commonsAsset('Number prefix Hankyu Kyōto line.svg');
+  const lines={
+    'line-34001':kobe,
+    'line-34004':kobe,
+    'line-34005':kobe,
+    'line-34006':kobe,
+    'line-34002':takarazuka,
+    'line-34007':takarazuka,
+    'line-34003':kyoto,
+    'line-34008':kyoto,
+    'line-34009':kyoto
+  };
   data.assets.operators.hankyudentetsu=operatorAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
-  for(const id of ids){
+  for(const [id,symbol] of Object.entries(lines)){
     data.assets.lines[id]=symbol;
     const theme=window.TRT_LINE_THEMES[id]||{};
-    window.TRT_LINE_THEMES[id]={...theme,code:'HK',color:theme.color||'#702029',style:'private',operatorMark:'한큐 전철',colorVerified:true,colorSource:'https://www.hankyu.co.jp/station/'};
+    window.TRT_LINE_THEMES[id]={...theme,code:'HK',color:'#702029',style:'private',operatorMark:'한큐 전철',colorVerified:true,colorSource:'https://www.hankyu.co.jp/station/'};
     if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]='HK';
   }
   for(const route of data.routes||[]){
     if(route.operatorId==='hankyudentetsu') route.operatorAsset=operatorAsset;
-    if(!ids.includes(route.id)) continue;
+    const symbol=lines[route.id];
+    if(!symbol) continue;
     route.symbolAsset=symbol;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:symbol.asset,officialSymbolExists:true,verified:false,identificationSource:'hankyu-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:symbol.source};
+    route.symbolMeta={...(route.symbolMeta||{}),asset:symbol.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons',assetSource:'wikimedia-commons',assetSourceUrl:symbol.source};
     route.officialSymbolExists=true;
     route.code='HK';
   }
