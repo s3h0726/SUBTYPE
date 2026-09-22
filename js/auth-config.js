@@ -479,7 +479,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
-  const operatorAsset=commonsAsset('Yurikamome line symbol.svg');
+  const operatorAsset={asset:null,file:null,version:'official-company-wordmark-unavailable',exists:false,verified:true,source:'https://www.yurikamome.co.jp/business/permission.html',assetSource:'official',assetSourceUrl:'https://www.yurikamome.co.jp/business/permission.html',officialExists:true};
   const lineAsset=commonsAsset('Yurikamome line symbol.svg');
   const id='line-99311';
   data.assets.operators.yurikamome=operatorAsset;
