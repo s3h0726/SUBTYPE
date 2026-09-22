@@ -559,3 +559,31 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='R';
   for(const route of data.routes||[]){if(route.operatorId==='tokyo-waterfront-area-rapid-transit')route.operatorAsset=operatorAsset;if(route.id!==id)continue;route.symbolAsset=lineAsset;route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};route.officialSymbolExists=true;route.code='R';route.color='#00B48D';}
 })();
+
+/* Nishi-Nippon Railroad (Nishitetsu): official station-number prefixes by line. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Nishitetsu logo N.svg');
+  const lines={
+    'line-36001':{code:'T',color:'#106CB5'},
+    'line-36002':{code:'D',color:'#E83828'},
+    'line-36003':{code:'A',color:'#009A44'},
+    'line-36004':{code:'NK',color:'#F39800'}
+  };
+  data.assets.operators.nishinihontetsudo=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const [id,e] of Object.entries(lines)){
+    const symbol={...operatorAsset,routeCode:e.code};
+    data.assets.lines[id]=symbol;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,color:e.color,style:'private',operatorMark:'西日本鉄道',colorVerified:true,colorSource:'https://www.nishitetsu.jp/train/rosen/'};
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+  }
+  for(const route of data.routes||[]){
+    if(route.operatorId==='nishinihontetsudo')route.operatorAsset=operatorAsset;
+    const e=lines[route.id];if(!e)continue;
+    route.code=e.code;route.color=e.color;
+    route.officialSymbolExists=false;
+  }
+})();
