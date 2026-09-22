@@ -565,7 +565,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
-  const operatorAsset=commonsAsset('Nishitetsu logo N.svg');
+  const operatorAsset=commonsAsset('Nishitetsu logo vector.svg');
   const lines={
     'line-36001':{code:'T',color:'#106CB5'},
     'line-36002':{code:'D',color:'#E83828'},
@@ -593,15 +593,16 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
-  const operatorAsset=commonsAsset('Keihan railway logo.svg');
-  const kh=commonsAsset('Keihan railway KH symbol.svg');
-  const ot=commonsAsset('Keihan railway OT symbol.svg');
+  const operatorAsset=commonsAsset('Keihan Symbol.svg');
+  const kh=operatorAsset;
+  const ot=operatorAsset;
   const lines={
     'line-33001':{code:'KH',asset:kh},
     'line-33002':{code:'KH',asset:kh},
     'line-33003':{code:'KH',asset:kh},
     'line-33004':{code:'KH',asset:kh},
     'line-33008':{code:'KH',asset:kh},
+    'line-33005':{code:'KH',asset:kh},
     'line-33006':{code:'OT',asset:ot},
     'line-33007':{code:'OT',asset:ot}
   };
@@ -616,6 +617,6 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     if(route.operatorId==='keihandentetsu')route.operatorAsset=operatorAsset;
     const e=lines[route.id];
     if(e){route.symbolAsset=e.asset;route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'keihan-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};route.officialSymbolExists=true;route.code=e.code;}
-    else if(route.id==='line-33005'){route.symbolAsset=operatorAsset;route.officialSymbolExists=false;}
+
   }
 })();
