@@ -587,3 +587,35 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.officialSymbolExists=false;
   }
 })();
+
+/* Keihan Electric Railway: KH for Keihan lines, OT for Otsu lines; cable uses operator mark fallback. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Keihan railway logo.svg');
+  const kh=commonsAsset('Keihan railway KH symbol.svg');
+  const ot=commonsAsset('Keihan railway OT symbol.svg');
+  const lines={
+    'line-33001':{code:'KH',asset:kh},
+    'line-33002':{code:'KH',asset:kh},
+    'line-33003':{code:'KH',asset:kh},
+    'line-33004':{code:'KH',asset:kh},
+    'line-33008':{code:'KH',asset:kh},
+    'line-33006':{code:'OT',asset:ot},
+    'line-33007':{code:'OT',asset:ot}
+  };
+  data.assets.operators.keihandentetsu=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const [id,e] of Object.entries(lines)){
+    data.assets.lines[id]=e.asset;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,style:'private',operatorMark:'京阪電気鉄道',colorVerified:true,colorSource:'https://www.keihan.co.jp/traffic/station/'};
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+  }
+  for(const route of data.routes||[]){
+    if(route.operatorId==='keihandentetsu')route.operatorAsset=operatorAsset;
+    const e=lines[route.id];
+    if(e){route.symbolAsset=e.asset;route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'keihan-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};route.officialSymbolExists=true;route.code=e.code;}
+    else if(route.id==='line-33005'){route.symbolAsset=operatorAsset;route.officialSymbolExists=false;}
+  }
+})();
