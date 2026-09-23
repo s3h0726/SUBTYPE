@@ -567,14 +567,15 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('NNR logo.svg');
   const lines={
-    'line-36001':{code:'T',color:'#106CB5'},
-    'line-36002':{code:'D',color:'#E83828'},
-    'line-36003':{code:'A',color:'#009A44'},
-    'line-36004':{code:'NK',color:'#F39800'}
+    'line-36001':{code:'T',color:'#106CB5',asset:commonsAsset('西鉄天神大牟田線(ナンバリング).png')},
+    'line-36002':{code:'D',color:'#E83828',asset:commonsAsset('西鉄太宰府線(ナンバリング).png')},
+    'line-36003':{code:'A',color:'#009A44',asset:commonsAsset('西鉄甘木線(ナンバリング).png')},
+    'line-36004':{code:'NK',color:'#F39800',asset:commonsAsset('西鉄貝塚線.png')}
   };
   data.assets.operators.nishinihontetsudo=operatorAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
   for(const [id,e] of Object.entries(lines)){
+    data.assets.lines[id]=e.asset;
     window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,color:e.color,style:'private',operatorMark:'西日本鉄道',colorVerified:true,colorSource:'https://www.nishitetsu.jp/train/rosen/'};
     if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
   }
@@ -582,9 +583,9 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     if(route.operatorId==='nishinihontetsudo')route.operatorAsset=operatorAsset;
     const e=lines[route.id];if(!e)continue;
     route.code=e.code;route.color=e.color;
-    route.symbolAsset=null;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:null,officialSymbolExists:false,verified:true,identificationSource:'nishitetsu-station-numbering',assetSource:'css-route-badge'};
-    route.officialSymbolExists=false;
+    route.symbolAsset=e.asset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-station-numbering',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};
+    route.officialSymbolExists=true;
   }
 })();
 
@@ -594,8 +595,8 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Keihan Symbol.svg');
-  const kh=operatorAsset;
-  const ot=operatorAsset;
+  const kh=commonsAsset('Number prefix Keihan lines.svg');
+  const ot=commonsAsset('Keihan Keishin line symbol.svg');
   const lines={
     'line-33001':{code:'KH',asset:kh},
     'line-33002':{code:'KH',asset:kh},
