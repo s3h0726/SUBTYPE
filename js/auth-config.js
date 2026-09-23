@@ -652,3 +652,30 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.officialSymbolExists=true;
   }
 })();
+
+/* Fukuoka City Transportation Bureau / Fukuoka City Subway. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Fukuoka City Subway Logo.svg');
+  const lines={
+    'line-99905':{code:'K',color:'#EE7E00',asset:commonsAsset('Subway FukuokaKuko.svg')},
+    'line-99906':{code:'H',color:'#0077C0',asset:commonsAsset('Subway FukuokaHakozaki.svg')},
+    'line-99907':{code:'N',color:'#00A650',asset:commonsAsset('Subway FukuokaNanakuma.svg')}
+  };
+  data.assets.operators.fukuokashikotsukyoku=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const [id,e] of Object.entries(lines)){
+    data.assets.lines[id]=e.asset;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,color:e.color,style:'subway',operatorMark:'福岡市交通局',colorVerified:true,colorSource:'https://subway.city.fukuoka.lg.jp/'};
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+  }
+  for(const route of data.routes||[]){
+    if(route.operatorId==='fukuokashikotsukyoku')route.operatorAsset=operatorAsset;
+    const e=lines[route.id];if(!e)continue;
+    route.code=e.code;route.color=e.color;route.symbolAsset=e.asset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons-and-fukuoka-official',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};
+    route.officialSymbolExists=true;
+  }
+})();
