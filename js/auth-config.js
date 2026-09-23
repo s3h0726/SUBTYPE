@@ -567,6 +567,9 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('NNR logo.svg');
   const tenjinAsset=commonsAsset('西鉄天神大牟田線(ナンバリング).png');
+  const dazaifuAsset=commonsAsset('西鉄太宰府線(ナンバリング).png');
+  const amagiAsset=commonsAsset('西鉄甘木線(ナンバリング).png');
+  const kaizukaAsset=commonsAsset('西鉄貝塚線.png');
   const lines={
     'line-36001':{code:'T',color:'#106CB5',asset:commonsAsset('西鉄天神大牟田線(ナンバリング).png')},
     'line-36002':{code:'D',color:'#E83828',asset:commonsAsset('西鉄太宰府線(ナンバリング).png')},
