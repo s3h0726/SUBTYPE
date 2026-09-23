@@ -679,3 +679,33 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.officialSymbolExists=true;
   }
 })();
+
+/* Nagoya City Transportation Bureau / Nagoya Municipal Subway. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Nagoya Municipal Subway Logo.svg');
+  const lines={
+    'line-99513':{code:'H',color:'#FAB123',asset:commonsAsset('Nagoya Subway Logo V2 (Higashiyama Line).svg')},
+    'line-99514':{code:'M',color:'#9C7EB1',asset:commonsAsset('Nagoya Subway Logo V2 (Meijo Line).svg')},
+    'line-99515':{code:'E',color:'#9C7EB1',asset:commonsAsset('Nagoya Subway Logo V2 (Meiko Line).svg')},
+    'line-99516':{code:'T',color:'#009BBF',asset:commonsAsset('Nagoya Subway Logo V2 (Tsurumai Line).svg')},
+    'line-99517':{code:'S',color:'#E9797A',asset:commonsAsset('Nagoya Subway Logo V2 (Sakura-dori Line).svg')},
+    'line-99518':{code:'K',color:'#E89AAB',asset:commonsAsset('Nagoya Subway Logo V2 (Kamiiida Line).svg')}
+  };
+  data.assets.operators.nagoyashikotsukyoku=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const [id,e] of Object.entries(lines)){
+    data.assets.lines[id]=e.asset;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,color:e.color,style:'subway',operatorMark:'名古屋市交通局',colorVerified:true,colorSource:'https://www.kotsu.city.nagoya.jp/'};
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+  }
+  for(const route of data.routes||[]){
+    if(route.operatorId==='nagoyashikotsukyoku')route.operatorAsset=operatorAsset;
+    const e=lines[route.id];if(!e)continue;
+    route.code=e.code;route.color=e.color;route.symbolAsset=e.asset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'nagoya-official-and-commons',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};
+    route.officialSymbolExists=true;
+  }
+})();
