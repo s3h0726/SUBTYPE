@@ -709,3 +709,22 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.officialSymbolExists=true;
   }
 })();
+
+/* Yokohama Minatomirai Railway / Minatomirai Line. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Yokohama Minatomirai Railway logo.svg');
+  const lineAsset=commonsAsset('Minatomirai Line symbol.svg');
+  const id='line-99310';
+  data.assets.operators['yokohama-minatomirai-railway']=operatorAsset;data.assets.lines[id]=lineAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'MM',color:'#0067C0',style:'private',operatorMark:'横浜高速鉄道',colorVerified:true,colorSource:'https://www.mm21railway.co.jp/'};
+  if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='MM';
+  for(const route of data.routes||[]){
+    if(route.operatorId==='yokohama-minatomirai-railway')route.operatorAsset=operatorAsset;
+    if(route.id!==id)continue;route.code='MM';route.color='#0067C0';route.symbolAsset=lineAsset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons-and-mm21-official',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};route.officialSymbolExists=true;
+  }
+})();
