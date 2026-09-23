@@ -566,6 +566,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('NNR logo.svg');
+  const tenjinAsset=commonsAsset('西鉄天神大牟田線(ナンバリング).png');
   const lines={
     'line-36001':{code:'T',color:'#106CB5',asset:commonsAsset('西鉄天神大牟田線(ナンバリング).png')},
     'line-36002':{code:'D',color:'#E83828',asset:commonsAsset('西鉄太宰府線(ナンバリング).png')},
@@ -604,8 +605,8 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     'line-33004':{code:'KH',asset:kh},
     'line-33008':{code:'KH',asset:kh},
     'line-33005':{code:'KH',asset:kh},
-    'line-33006':{code:'OT',asset:ot},
-    'line-33007':{code:'OT',asset:ot}
+    'line-33006':{code:'OT',asset:ishiyama},
+    'line-33007':{code:'OT',asset:keishin}
   };
   data.assets.operators.keihandentetsu=operatorAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
