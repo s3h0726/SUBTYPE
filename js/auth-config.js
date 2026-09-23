@@ -625,3 +625,30 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 
   }
 })();
+
+/* Sendai City Transportation Bureau / Sendai Subway. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Transportation Bureau City of Sendai Logo.svg');
+  const subwayAsset=commonsAsset('Sendai City Subway Logo.svg');
+  const lines={
+    'line-99214':{code:'N',color:'#00A650'},
+    'line-99218':{code:'T',color:'#00A7DB'}
+  };
+  data.assets.operators.sendaishikotsukyoku=operatorAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  for(const [id,e] of Object.entries(lines)){
+    data.assets.lines[id]=subwayAsset;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,color:e.color,style:'subway',operatorMark:'仙台市交通局',colorVerified:true,colorSource:'https://www.kotsu.city.sendai.jp/subway/station/station.html'};
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+  }
+  for(const route of data.routes||[]){
+    if(route.operatorId==='sendaishikotsukyoku')route.operatorAsset=operatorAsset;
+    const e=lines[route.id];if(!e)continue;
+    route.code=e.code;route.color=e.color;route.symbolAsset=subwayAsset;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:subwayAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'sendai-official-and-commons',assetSource:'wikimedia-commons',assetSourceUrl:subwayAsset.source};
+    route.officialSymbolExists=true;
+  }
+})();
