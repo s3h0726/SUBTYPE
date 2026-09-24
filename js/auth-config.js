@@ -724,3 +724,37 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons-and-mm21-official',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};route.officialSymbolExists=true;
   }
 })();
+
+/* Final municipal-subway route-symbol override: keep verified line artwork from being replaced by later fallbacks. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260924-final',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const entries={
+    'line-99513':{code:'H',asset:commonsAsset('Nagoya Subway Logo V2 (Higashiyama Line).svg')},
+    'line-99514':{code:'M',asset:commonsAsset('Nagoya Subway Logo V2 (Meijo Line).svg')},
+    'line-99515':{code:'E',asset:commonsAsset('Nagoya Subway Logo V2 (Meiko Line).svg')},
+    'line-99516':{code:'T',asset:commonsAsset('Nagoya Subway Logo V2 (Tsurumai Line).svg')},
+    'line-99517':{code:'S',asset:commonsAsset('Nagoya Subway Logo V2 (Sakura-dori Line).svg')},
+    'line-99518':{code:'K',asset:commonsAsset('Nagoya Subway Logo V2 (Kamiiida Line).svg')},
+    'line-99905':{code:'K',asset:commonsAsset('Subway FukuokaKuko.svg')},
+    'line-99906':{code:'H',asset:commonsAsset('Subway FukuokaHakozaki.svg')},
+    'line-99907':{code:'N',asset:commonsAsset('Subway FukuokaNanakuma.svg')}
+  };
+  for(const [id,e] of Object.entries(entries)){
+    data.assets.lines[id]=e.asset;
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+    const route=(data.routes||[]).find(r=>r.id===id);if(!route)continue;
+    route.code=e.code;route.symbolAsset=e.asset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons-final',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};
+  }
+  // Sendai has a verified subway emblem, while N/T are station-number prefixes rather than separate reusable Commons line-logo files.
+  const sendai=commonsAsset('Sendai City Subway Logo.svg');
+  for(const [id,code] of [['line-99214','N'],['line-99218','T']]){
+    data.assets.lines[id]=sendai;
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=code;
+    const route=(data.routes||[]).find(r=>r.id===id);if(!route)continue;
+    route.code=code;route.symbolAsset=sendai;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:sendai.asset,officialSymbolExists:true,verified:true,identificationSource:'sendai-subway-emblem',assetSource:'wikimedia-commons',assetSourceUrl:sendai.source};
+  }
+})();
