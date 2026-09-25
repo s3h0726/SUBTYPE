@@ -5,7 +5,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
   if(!data)return;
   const encoded=encodeURIComponent('Number prefix Keikyū.svg');
-  const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+  const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
   const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
   const symbol={asset:file,file,version:'commons-20260918',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   const operatorAsset={asset:'./data/operators/keikyu/logo.svg?v=20260918',file:'./data/operators/keikyu/logo.svg',version:'20260918',exists:true,verified:true,source:'https://commons.wikimedia.org/wiki/File:Keikyu_Logo_full.svg',officialExists:true};
@@ -39,7 +39,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   if(!data)return;
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260918',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -85,7 +85,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   if(!data)return;
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260918',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -130,7 +130,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   const commonsAsset=(code)=>{
     const filename=`JR ${code} line symbol.svg`;
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260918',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -184,7 +184,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -252,7 +252,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -290,7 +290,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -337,7 +337,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -396,7 +396,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -441,7 +441,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -475,7 +475,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -507,7 +507,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{
     const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;
+    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
     const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
     return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
   };
@@ -534,7 +534,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Tokyo Monorail Logo.svg');
   const lineAsset=commonsAsset('Tokyo Monorail Line symbol.svg');
   const id='line-99336';
@@ -549,7 +549,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('東京臨海高速鉄道ロゴマーク.svg');
   const lineAsset=commonsAsset('Rinkai Line symbol.svg');
   const id='line-99337';
@@ -564,7 +564,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('NNR logo.svg');
   const lines={
     'line-36001':{code:'T',color:'#106CB5',asset:commonsAsset('西鉄天神大牟田線(ナンバリング).png')},
@@ -593,7 +593,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260922',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Keihan Symbol.svg');
   const kh=commonsAsset('Number prefix Keihan lines.svg');
   const ot=commonsAsset('Keihan Keishin line symbol.svg');
@@ -626,7 +626,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Transportation Bureau City of Sendai Logo.svg');
   const subwayAsset=commonsAsset('Sendai City Subway Logo.svg');
   const lines={
@@ -653,7 +653,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Fukuoka City Subway Logo.svg');
   const lines={
     'line-99905':{code:'K',color:'#EE7E00',asset:commonsAsset('Subway FukuokaKuko.svg')},
@@ -680,7 +680,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Nagoya Municipal Subway Logo.svg');
   const lines={
     'line-99513':{code:'H',color:'#FAB123',asset:commonsAsset('Nagoya Subway Logo V2 (Higashiyama Line).svg')},
@@ -710,7 +710,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Yokohama Minatomirai Railway logo.svg');
   const lineAsset=commonsAsset('Minatomirai Line symbol.svg');
   const id='line-99310';
@@ -729,7 +729,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file?wpDestFile=${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260924-final',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260924-final',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const entries={
     'line-99513':{code:'H',asset:commonsAsset('Nagoya Subway Logo V2 (Higashiyama Line).svg')},
     'line-99514':{code:'M',asset:commonsAsset('Nagoya Subway Logo V2 (Meijo Line).svg')},
@@ -756,5 +756,30 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const route=(data.routes||[]).find(r=>r.id===id);if(!route)continue;
     route.code=code;route.symbolAsset=sendai;route.officialSymbolExists=true;
     route.symbolMeta={...(route.symbolMeta||{}),asset:sendai.asset,officialSymbolExists:true,verified:true,identificationSource:'sendai-subway-emblem',assetSource:'wikimedia-commons',assetSourceUrl:sendai.source};
+  }
+})();
+
+/* FINAL_VISIBLE_ROUTE_SYMBOLS_20260926 */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  const commons=(name)=>{const encoded=encodeURIComponent(name);const asset=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;return {asset,file:asset,exists:true,verified:true,officialExists:true,assetSource:'wikimedia-commons',assetSourceUrl:`https://commons.wikimedia.org/wiki/File:${encoded}`};};
+  const map={
+    'line-99214':['N','Sendai City Subway Logo.svg'],
+    'line-99218':['T','Sendai City Subway Logo.svg'],
+    'line-99905':['K','Subway FukuokaKuko.svg'],
+    'line-99906':['H','Subway FukuokaHakozaki.svg'],
+    'line-99907':['N','Subway FukuokaNanakuma.svg'],
+    'line-99513':['H','Nagoya Subway Logo V2 (Higashiyama Line).svg'],
+    'line-99514':['M','Nagoya Subway Logo V2 (Meijo Line).svg'],
+    'line-99515':['E','Nagoya Subway Logo V2 (Meiko Line).svg'],
+    'line-99516':['T','Nagoya Subway Logo V2 (Tsurumai Line).svg'],
+    'line-99517':['S','Nagoya Subway Logo V2 (Sakura-dori Line).svg'],
+    'line-99518':['K','Nagoya Subway Logo V2 (Kamiiida Line).svg']
+  };
+  data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
+  for(const [id,[code,name]] of Object.entries(map)){
+    const a=commons(name);data.assets.lines[id]=a;
+    const r=(data.routes||[]).find(x=>x.id===id);if(r){r.code=code;r.symbolAsset=a;r.officialSymbolExists=true;r.symbolMeta={...(r.symbolMeta||{}),asset:a.asset,officialSymbolExists:true,verified:true,assetSource:'wikimedia-commons',assetSourceUrl:a.assetSourceUrl};}
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=code;
   }
 })();
