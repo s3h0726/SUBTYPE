@@ -789,7 +789,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
-  const operatorAsset=commonsAsset('Kitakyu-logo w.svg');
+  const operatorAsset=commonsAsset('Kitakyu-logo.svg');
   const lineAsset=commonsAsset('Osaka Metro Midosuji line symbol.svg');
   const id='line-99614';
   data.assets.operators.kitaosakakyukodentetsu=operatorAsset;
