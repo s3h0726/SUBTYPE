@@ -804,3 +804,33 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-and-through-service-numbering',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
   }
 })();
+
+/* Shinkansen pictograms from Wikimedia Commons */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const jre=commonsAsset('Shinkansen jre.svg');
+  const jrc=commonsAsset('Shinkansen jrc.svg');
+  const jrw=commonsAsset('Shinkansen jrw.svg');
+  const jrh=commonsAsset('Shinkansen jrh.svg');
+  const jrk=commonsAsset('Shinkansen jrk.svg');
+  const lines={
+    'shinkansen-tokaido':jrc,
+    'shinkansen-sanyo':jrw,
+    'shinkansen-hokkaido':jrh,
+    'shinkansen-tohoku':jre,
+    'shinkansen-joetsu':jre,
+    'shinkansen-hokuriku':jre,
+    'shinkansen-akita':jre,
+    'shinkansen-yamagata':jre,
+    'shinkansen-kyushu':jrk,
+    'shinkansen-nishi-kyushu':jrk
+  };
+  for(const [id,asset] of Object.entries(lines)){
+    data.assets.lines[id]=asset;
+    const route=(data.routes||[]).find(r=>r.id===id);if(!route)continue;
+    route.symbolAsset=asset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-shinkansen-pictogram',assetSource:'wikimedia-commons',assetSourceUrl:asset.source};
+  }
+})();
