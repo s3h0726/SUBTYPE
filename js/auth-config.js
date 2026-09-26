@@ -762,24 +762,26 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 /* FINAL_VISIBLE_ROUTE_SYMBOLS_20260926 */
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
-  const commons=(name)=>{const encoded=encodeURIComponent(name);const asset=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;return {asset,file:asset,exists:true,verified:true,officialExists:true,assetSource:'wikimedia-commons',assetSourceUrl:`https://commons.wikimedia.org/wiki/File:${encoded}`};};
-  const map={
-    'line-99214':['N','Sendai City Subway Logo.svg'],
-    'line-99218':['T','Sendai City Subway Logo.svg'],
-    'line-99905':['K','Subway FukuokaKuko.svg'],
-    'line-99906':['H','Subway FukuokaHakozaki.svg'],
-    'line-99907':['N','Subway FukuokaNanakuma.svg'],
-    'line-99513':['H','Nagoya Subway Logo V2 (Higashiyama Line).svg'],
-    'line-99514':['M','Nagoya Subway Logo V2 (Meijo Line).svg'],
-    'line-99515':['E','Nagoya Subway Logo V2 (Meiko Line).svg'],
-    'line-99516':['T','Nagoya Subway Logo V2 (Tsurumai Line).svg'],
-    'line-99517':['S','Nagoya Subway Logo V2 (Sakura-dori Line).svg'],
-    'line-99518':['K','Nagoya Subway Logo V2 (Kamiiida Line).svg']
-  };
   data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
-  for(const [id,[code,name]] of Object.entries(map)){
-    const a=commons(name);data.assets.lines[id]=a;
-    const r=(data.routes||[]).find(x=>x.id===id);if(r){r.code=code;r.symbolAsset=a;r.officialSymbolExists=true;r.symbolMeta={...(r.symbolMeta||{}),asset:a.asset,officialSymbolExists:true,verified:true,assetSource:'wikimedia-commons',assetSourceUrl:a.assetSourceUrl};}
-    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=code;
+  const rawAsset=(asset,source)=>({asset,file:asset,exists:true,verified:true,officialExists:true,version:'wikipedia-commons-verified-20260926',source,assetSource:'wikimedia-commons',assetSourceUrl:source});
+  const entries={
+    'line-99214':{code:'N',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/b/b7/Sendai_City_Subway_Logo.svg','https://commons.wikimedia.org/wiki/File:Sendai_City_Subway_Logo.svg')},
+    'line-99218':{code:'T',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/b/b7/Sendai_City_Subway_Logo.svg','https://commons.wikimedia.org/wiki/File:Sendai_City_Subway_Logo.svg')},
+    'line-99905':{code:'K',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/2/23/Subway_FukuokaKuko.svg','https://commons.wikimedia.org/wiki/File:Subway_FukuokaKuko.svg')},
+    'line-99906':{code:'H',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/a/a7/Subway_FukuokaHakozaki.svg','https://commons.wikimedia.org/wiki/File:Subway_FukuokaHakozaki.svg')},
+    'line-99907':{code:'N',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/2/2e/Subway_FukuokaNanakuma.svg','https://commons.wikimedia.org/wiki/File:Subway_FukuokaNanakuma.svg')},
+    'line-99513':{code:'H',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/5/55/Nagoya_Subway_Logo_V2_(Higashiyama_Line).svg','https://commons.wikimedia.org/wiki/File:Nagoya_Subway_Logo_V2_(Higashiyama_Line).svg')},
+    'line-99514':{code:'M',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/8/8d/Nagoya_Subway_Logo_V2_(Meijo_Line).svg','https://commons.wikimedia.org/wiki/File:Nagoya_Subway_Logo_V2_(Meijo_Line).svg')},
+    'line-99515':{code:'E',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/9/99/Nagoya_Subway_Logo_V2_(Meiko_Line).svg','https://commons.wikimedia.org/wiki/File:Nagoya_Subway_Logo_V2_(Meiko_Line).svg')},
+    'line-99516':{code:'T',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/7/70/Nagoya_Subway_Logo_V2_(Tsurumai_Line).svg','https://commons.wikimedia.org/wiki/File:Nagoya_Subway_Logo_V2_(Tsurumai_Line).svg')},
+    'line-99517':{code:'S',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/3/3d/Nagoya_Subway_Logo_V2_(Sakura-dori_Line).svg','https://commons.wikimedia.org/wiki/File:Nagoya_Subway_Logo_V2_(Sakura-dori_Line).svg')},
+    'line-99518':{code:'K',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Nagoya_Subway_Logo_V2_(Kamiiida_Line).svg','https://commons.wikimedia.org/wiki/File:Nagoya_Subway_Logo_V2_(Kamiiida_Line).svg')}
+  };
+  for(const [id,e] of Object.entries(entries)){
+    data.assets.lines[id]=e.asset;
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+    const route=(data.routes||[]).find(r=>r.id===id);if(!route)continue;
+    route.code=e.code;route.symbolAsset=e.asset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-verified-direct-file',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};
   }
 })();
