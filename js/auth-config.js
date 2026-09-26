@@ -560,14 +560,12 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   for(const route of data.routes||[]){if(route.operatorId==='tokyo-waterfront-area-rapid-transit')route.operatorAsset=operatorAsset;if(route.id!==id)continue;route.symbolAsset=lineAsset;route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};route.officialSymbolExists=true;route.code='R';route.color='#00B48D';}
 })();
 
-/* Nishi-Nippon Railroad (Nishitetsu): official station-number prefixes.
-   Wikipedia/Commons does not provide clean square official line-symbol artwork for T/D/A/NK;
-   use native code badges rather than stretched user-made route images. */
+/* Nishi-Nippon Railroad (Nishitetsu): NamuWiki/Wikipedia-aligned station-number prefixes. */
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
-  const operatorAsset=commonsAsset('Nishitetsu logo vector.svg');
+  const operatorAsset=commonsAsset('NNR logo.svg');
   const lines={
     'line-36001':{code:'T',color:'#106CB5'},
     'line-36002':{code:'D',color:'#E83828'},
@@ -576,16 +574,16 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   };
   data.assets.operators.nishinihontetsudo=operatorAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
-  for(const [id,e] of Object.entries(lines)){
+  for(const [id,x] of Object.entries(lines)){
     delete data.assets.lines[id];
-    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,color:e.color,style:'private',operatorMark:'西日本鉄道',colorVerified:true,colorSource:'https://www.nishitetsu.jp/train/rosen/'};
-    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:x.code,color:x.color,style:'private',operatorMark:'西日本鉄道',colorVerified:true,colorSource:'https://www.nishitetsu.jp/train/rosen/'};
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=x.code;
   }
   for(const route of data.routes||[]){
     if(route.operatorId==='nishinihontetsudo')route.operatorAsset=operatorAsset;
-    const e=lines[route.id];if(!e)continue;
-    route.code=e.code;route.color=e.color;route.symbolAsset=null;route.officialSymbolExists=false;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:null,officialSymbolExists:false,verified:true,identificationSource:'wikipedia-station-number-prefix',assetSource:'native-route-badge'};
+    const x=lines[route.id];if(!x)continue;
+    route.code=x.code;route.color=x.color;route.symbolAsset=null;route.officialSymbolExists=false;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:null,officialSymbolExists:false,verified:true,identificationSource:'namuwiki-wikipedia-station-number-prefix',assetSource:'native-route-badge'};
   }
 })();
 
@@ -783,5 +781,26 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const route=(data.routes||[]).find(r=>r.id===id);if(!route)continue;
     route.code=e.code;route.symbolAsset=e.asset;route.officialSymbolExists=true;
     route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-verified-direct-file',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};
+  }
+})();
+
+/* Kita-Osaka Kyuko Railway */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Kitakyu-logo w.svg');
+  const lineAsset=commonsAsset('Osaka Metro Midosuji line symbol.svg');
+  const id='line-99614';
+  data.assets.operators.kitaosakakyukodentetsu=operatorAsset;
+  data.assets.lines[id]=lineAsset;
+  window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'M',color:'#E5171F',style:'private',operatorMark:'北大阪急行電鉄',colorVerified:true,colorSource:'https://www.kita-kyu.co.jp/'};
+  if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='M';
+  for(const route of data.routes||[]){
+    if(route.operatorId==='kitaosakakyukodentetsu')route.operatorAsset=operatorAsset;
+    if(route.id!==id)continue;
+    route.code='M';route.color='#E5171F';route.symbolAsset=lineAsset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-and-through-service-numbering',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
   }
 })();
