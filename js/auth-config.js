@@ -560,41 +560,32 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   for(const route of data.routes||[]){if(route.operatorId==='tokyo-waterfront-area-rapid-transit')route.operatorAsset=operatorAsset;if(route.id!==id)continue;route.symbolAsset=lineAsset;route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'verified-commons',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};route.officialSymbolExists=true;route.code='R';route.color='#00B48D';}
 })();
 
-/* Nishi-Nippon Railroad (Nishitetsu): Wikipedia/Commons station-numbering artwork, direct files. */
+/* Nishi-Nippon Railroad (Nishitetsu): official station-number prefixes.
+   Wikipedia/Commons does not provide clean square official line-symbol artwork for T/D/A/NK;
+   use native code badges rather than stretched user-made route images. */
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const rawAsset=(asset,source)=>({asset,file:asset,version:'wikipedia-commons-verified-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true});
-  const operatorAsset=rawAsset(
-    'https://upload.wikimedia.org/wikipedia/commons/6/63/NNR_logo.svg',
-    'https://commons.wikimedia.org/wiki/File:NNR_logo.svg'
-  );
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const operatorAsset=commonsAsset('Nishitetsu logo vector.svg');
   const lines={
-    'line-36001':{code:'T',color:'#106CB5',asset:rawAsset(
-      'https://upload.wikimedia.org/wikipedia/commons/d/d6/%E8%A5%BF%E9%89%84%E5%A4%A9%E7%A5%9E%E5%A4%A7%E7%89%9F%E7%94%B0%E7%B7%9A%28%E3%83%8A%E3%83%B3%E3%83%90%E3%83%AA%E3%83%B3%E3%82%B0%29.png',
-      'https://commons.wikimedia.org/wiki/File:%E8%A5%BF%E9%89%84%E5%A4%A9%E7%A5%9E%E5%A4%A7%E7%89%9F%E7%94%B0%E7%B7%9A%28%E3%83%8A%E3%83%B3%E3%83%90%E3%83%AA%E3%83%B3%E3%82%B0%29.png')},
-    'line-36002':{code:'D',color:'#E83828',asset:rawAsset(
-      'https://upload.wikimedia.org/wikipedia/commons/3/34/%E8%A5%BF%E9%89%84%E5%A4%AA%E5%AE%B0%E5%BA%9C%E7%B7%9A%28%E3%83%8A%E3%83%B3%E3%83%90%E3%83%AA%E3%83%B3%E3%82%B0%29.png',
-      'https://commons.wikimedia.org/wiki/File:%E8%A5%BF%E9%89%84%E5%A4%AA%E5%AE%B0%E5%BA%9C%E7%B7%9A%28%E3%83%8A%E3%83%B3%E3%83%90%E3%83%AA%E3%83%B3%E3%82%B0%29.png')},
-    'line-36003':{code:'A',color:'#009A44',asset:rawAsset(
-      'https://upload.wikimedia.org/wikipedia/commons/8/82/%E8%A5%BF%E9%89%84%E7%94%98%E6%9C%A8%E7%B7%9A%28%E3%83%8A%E3%83%B3%E3%83%90%E3%83%AA%E3%83%B3%E3%82%B0%29.png',
-      'https://commons.wikimedia.org/wiki/File:%E8%A5%BF%E9%89%84%E7%94%98%E6%9C%A8%E7%B7%9A%28%E3%83%8A%E3%83%B3%E3%83%90%E3%83%AA%E3%83%B3%E3%82%B0%29.png')},
-    'line-36004':{code:'NK',color:'#F39800',asset:rawAsset(
-      'https://upload.wikimedia.org/wikipedia/commons/6/6b/%E8%A5%BF%E9%89%84%E8%B2%9D%E5%A1%9A%E7%B7%9A.png',
-      'https://commons.wikimedia.org/wiki/File:%E8%A5%BF%E9%89%84%E8%B2%9D%E5%A1%9A%E7%B7%9A.png')}
+    'line-36001':{code:'T',color:'#106CB5'},
+    'line-36002':{code:'D',color:'#E83828'},
+    'line-36003':{code:'A',color:'#009A44'},
+    'line-36004':{code:'NK',color:'#F39800'}
   };
   data.assets.operators.nishinihontetsudo=operatorAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
   for(const [id,e] of Object.entries(lines)){
-    data.assets.lines[id]=e.asset;
+    delete data.assets.lines[id];
     window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,color:e.color,style:'private',operatorMark:'西日本鉄道',colorVerified:true,colorSource:'https://www.nishitetsu.jp/train/rosen/'};
     if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
   }
   for(const route of data.routes||[]){
     if(route.operatorId==='nishinihontetsudo')route.operatorAsset=operatorAsset;
     const e=lines[route.id];if(!e)continue;
-    route.code=e.code;route.color=e.color;route.symbolAsset=e.asset;route.officialSymbolExists=true;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:e.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-direct-file',assetSource:'wikimedia-commons',assetSourceUrl:e.asset.source};
+    route.code=e.code;route.color=e.color;route.symbolAsset=null;route.officialSymbolExists=false;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:null,officialSymbolExists:false,verified:true,identificationSource:'wikipedia-station-number-prefix',assetSource:'native-route-badge'};
   }
 })();
 
