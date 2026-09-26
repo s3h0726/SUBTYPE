@@ -787,24 +787,24 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   }
 })();
 
-/* Kita-Osaka Kyuko Railway */
+/* Kita-Osaka Kyuko Railway: use the M route symbol shown on the railway's passenger signage. */
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
-  const operatorAsset={asset:'https://upload.wikimedia.org/wikipedia/commons/e/ef/Kitakyu-logo.svg',file:'https://upload.wikimedia.org/wikipedia/commons/e/ef/Kitakyu-logo.svg',version:'commons-direct-20260926',exists:true,verified:true,source:'https://commons.wikimedia.org/wiki/File:Kitakyu-logo.svg',assetSource:'wikimedia-commons',assetSourceUrl:'https://commons.wikimedia.org/wiki/File:Kitakyu-logo.svg',officialExists:true};
   const lineAsset=commonsAsset('Osaka Metro Midosuji line symbol.svg');
   const id='line-99614';
-  data.assets.operators.kitaosakakyukodentetsu=operatorAsset;
+  // This UI needs the route mark rather than Kita-Osaka Kyuko's corporate emblem.
+  data.assets.operators.kitaosakakyukodentetsu=lineAsset;
   data.assets.lines[id]=lineAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
-  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'M',color:'#E5171F',style:'private',operatorMark:'北大阪急行電鉄',colorVerified:true,colorSource:'https://www.kita-kyu.co.jp/'};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'M',color:'#E5171F',style:'private',operatorMark:'北大阪急行',colorVerified:true,colorSource:'https://ja.wikipedia.org/wiki/%E5%8C%97%E5%A4%A7%E9%98%AA%E6%80%A5%E8%A1%8C%E9%9B%BB%E9%89%84%E5%8D%97%E5%8C%97%E7%B7%9A'};
   if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='M';
   for(const route of data.routes||[]){
-    if(route.operatorId==='kitaosakakyukodentetsu')route.operatorAsset=operatorAsset;
+    if(route.operatorId==='kitaosakakyukodentetsu')route.operatorAsset=lineAsset;
     if(route.id!==id)continue;
     route.code='M';route.color='#E5171F';route.symbolAsset=lineAsset;route.officialSymbolExists=true;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-and-through-service-numbering',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-kitaosaka-M-signage',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
   }
 })();
 
