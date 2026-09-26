@@ -627,26 +627,25 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260923',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const localAsset=(file,source)=>({asset:file,file,version:'local-20260926',exists:true,verified:true,source,assetSource:'local-svg',assetSourceUrl:source,officialExists:true});
   const operatorAsset=commonsAsset('Transportation Bureau City of Sendai Logo.svg');
-  const subwayAsset=commonsAsset('Sendai City Subway Logo.svg');
   const lines={
-    'line-99214':{code:'N',color:'#00A650'},
-    'line-99218':{code:'T',color:'#00A7DB'}
+    'line-99214':{code:'N',color:'#317C66',asset:localAsset('./assets/route-symbols/sendai-N.svg','https://www.kotsu.city.sendai.jp/')},
+    'line-99218':{code:'T',color:'#00A7DB',asset:localAsset('./assets/route-symbols/sendai-T.svg','https://www.kotsu.city.sendai.jp/')}
   };
   data.assets.operators.sendaishikotsukyoku=operatorAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
-  for(const [id,e] of Object.entries(lines)){
-    data.assets.lines[id]=subwayAsset;
-    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:e.code,color:e.color,style:'subway',operatorMark:'仙台市交通局',colorVerified:true,colorSource:'https://www.kotsu.city.sendai.jp/subway/station/station.html'};
-    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=e.code;
+  for(const [id,x] of Object.entries(lines)){
+    data.assets.lines[id]=x.asset;
+    window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:x.code,color:x.color,style:'subway',operatorMark:'仙台市交通局',colorVerified:true,colorSource:'https://www.kotsu.city.sendai.jp/'};
+    if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]=x.code;
   }
   for(const route of data.routes||[]){
     if(route.operatorId==='sendaishikotsukyoku')route.operatorAsset=operatorAsset;
-    const e=lines[route.id];if(!e)continue;
-    route.code=e.code;route.color=e.color;route.symbolAsset=subwayAsset;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:subwayAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'sendai-official-and-commons',assetSource:'wikimedia-commons',assetSourceUrl:subwayAsset.source};
-    route.officialSymbolExists=true;
+    const x=lines[route.id];if(!x)continue;
+    route.code=x.code;route.color=x.color;route.symbolAsset=x.asset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:x.asset.asset,officialSymbolExists:true,verified:true,identificationSource:'sendai-official-line-code',assetSource:'local-svg',assetSourceUrl:x.asset.source};
   }
 })();
 
@@ -766,8 +765,8 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
   const rawAsset=(asset,source)=>({asset,file:asset,exists:true,verified:true,officialExists:true,version:'wikipedia-commons-verified-20260926',source,assetSource:'wikimedia-commons',assetSourceUrl:source});
   const entries={
-    'line-99214':{code:'N',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/b/b7/Sendai_City_Subway_Logo.svg','https://commons.wikimedia.org/wiki/File:Sendai_City_Subway_Logo.svg')},
-    'line-99218':{code:'T',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/b/b7/Sendai_City_Subway_Logo.svg','https://commons.wikimedia.org/wiki/File:Sendai_City_Subway_Logo.svg')},
+    'line-99214':{code:'N',asset:rawAsset('./assets/route-symbols/sendai-N.svg','https://www.kotsu.city.sendai.jp/')},
+    'line-99218':{code:'T',asset:rawAsset('./assets/route-symbols/sendai-T.svg','https://www.kotsu.city.sendai.jp/')},
     'line-99905':{code:'K',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/2/23/Subway_FukuokaKuko.svg','https://commons.wikimedia.org/wiki/File:Subway_FukuokaKuko.svg')},
     'line-99906':{code:'H',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/a/a7/Subway_FukuokaHakozaki.svg','https://commons.wikimedia.org/wiki/File:Subway_FukuokaHakozaki.svg')},
     'line-99907':{code:'N',asset:rawAsset('https://upload.wikimedia.org/wikipedia/commons/2/2e/Subway_FukuokaNanakuma.svg','https://commons.wikimedia.org/wiki/File:Subway_FukuokaNanakuma.svg')},
@@ -787,24 +786,25 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   }
 })();
 
-/* Kita-Osaka Kyuko Railway: use the M route symbol shown on the railway's passenger signage. */
+/* Kita-Osaka Kyuko Railway */
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
-  const lineAsset=commonsAsset('Osaka Metro Midosuji line symbol.svg');
+  const localAsset=(file,source)=>({asset:file,file,version:'local-20260926',exists:true,verified:true,source,assetSource:'local-svg',assetSourceUrl:source,officialExists:true});
+  const operatorAsset=commonsAsset('Kitakyu-logo.svg');
+  const lineAsset=localAsset('./assets/route-symbols/kitaosaka-M.svg','https://commons.wikimedia.org/wiki/File:Osaka_Metro_Midosuji_line_symbol.svg');
   const id='line-99614';
-  // This UI needs the route mark rather than Kita-Osaka Kyuko's corporate emblem.
-  data.assets.operators.kitaosakakyukodentetsu=lineAsset;
+  data.assets.operators.kitaosakakyukodentetsu=operatorAsset;
   data.assets.lines[id]=lineAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
-  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'M',color:'#E5171F',style:'private',operatorMark:'北大阪急行',colorVerified:true,colorSource:'https://ja.wikipedia.org/wiki/%E5%8C%97%E5%A4%A7%E9%98%AA%E6%80%A5%E8%A1%8C%E9%9B%BB%E9%89%84%E5%8D%97%E5%8C%97%E7%B7%9A'};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'M',color:'#E5171F',style:'private',operatorMark:'北大阪急行電鉄',colorVerified:true,colorSource:'https://www.kita-kyu.co.jp/'};
   if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='M';
   for(const route of data.routes||[]){
-    if(route.operatorId==='kitaosakakyukodentetsu')route.operatorAsset=lineAsset;
+    if(route.operatorId==='kitaosakakyukodentetsu')route.operatorAsset=operatorAsset;
     if(route.id!==id)continue;
     route.code='M';route.color='#E5171F';route.symbolAsset=lineAsset;route.officialSymbolExists=true;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-kitaosaka-M-signage',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'kitaosaka-M-route-symbol',assetSource:'local-svg',assetSourceUrl:lineAsset.source};
   }
 })();
 
@@ -818,7 +818,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   const jrc=direct('https://upload.wikimedia.org/wikipedia/commons/2/25/Shinkansen_jrc.svg','https://commons.wikimedia.org/wiki/File:Shinkansen_jrc.svg');
   const jrw=direct('https://upload.wikimedia.org/wikipedia/commons/a/a0/Shinkansen_jrw.svg','https://commons.wikimedia.org/wiki/File:Shinkansen_jrw.svg');
   const jrh=direct('https://upload.wikimedia.org/wikipedia/commons/b/b7/Shinkansen_jrh.svg','https://commons.wikimedia.org/wiki/File:Shinkansen_jrh.svg');
-  const jrk=direct('https://upload.wikimedia.org/wikipedia/commons/e/e8/Shinkansen_jrk.svg','https://commons.wikimedia.org/wiki/File:Shinkansen_jrk.svg');
+  const jrk=commonsAsset('Shinkansen jrk.svg');
   const lines={
     'shinkansen-tokaido':jrc,
     'shinkansen-sanyo':jrw,
