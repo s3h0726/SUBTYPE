@@ -466,67 +466,46 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   }
 })();
 
-/* Yurikamome: company logo and official U line symbol are separate assets. */
+/* Yurikamome: separate company identity and U route symbol. */
 (()=>{
-  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
-  if(!data)return;
-  data.assets=data.assets||{};
-  data.assets.operators=data.assets.operators||{};
-  data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{
-    const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
-    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
-    return {asset:file,file,version:'commons-20260919',exists:true,verified:false,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
-  };
-  const operatorAsset={asset:null,file:null,version:'official-company-wordmark-unavailable',exists:false,verified:true,source:'https://www.yurikamome.co.jp/business/permission.html',assetSource:'official',assetSourceUrl:'https://www.yurikamome.co.jp/business/permission.html',officialExists:true};
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const lineAsset=commonsAsset('Yurikamome line symbol.svg');
+  // No reusable Commons company-wordmark file was found; keep operator identity separate from the U route mark.
+  const operatorAsset={asset:null,file:null,version:'official-wordmark-requires-permission',exists:false,verified:true,source:'https://www.yurikamome.co.jp/business/permission.html',assetSource:'official',assetSourceUrl:'https://www.yurikamome.co.jp/business/permission.html',officialExists:true};
   const id='line-99311';
   data.assets.operators.yurikamome=operatorAsset;
   data.assets.lines[id]=lineAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
   window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'U',color:'#0067B0',style:'private',operatorMark:'株式会社ゆりかもめ',colorVerified:true,colorSource:'https://www.yurikamome.co.jp/'};
-  if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]='U';
+  if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='U';
   for(const route of data.routes||[]){
-    if(route.operatorId==='yurikamome') route.operatorAsset=operatorAsset;
-    if(route.id!==id) continue;
-    route.symbolAsset=lineAsset;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:false,identificationSource:'yurikamome-official-numbering',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
-    route.officialSymbolExists=true;
-    route.code='U';
-    route.color='#0067B0';
+    if(route.operatorId==='yurikamome')route.operatorAsset=operatorAsset;
+    if(route.id!==id)continue;
+    route.code='U';route.color='#0067B0';route.symbolAsset=lineAsset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-yurikamome-U',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
   }
 })();
 
-/* Metropolitan Intercity Railway / Tsukuba Express: separate company identity and TX line mark. */
+/* Metropolitan Intercity Railway / Tsukuba Express: company logo + square TX route symbol. */
 (()=>{
-  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;
-  if(!data)return;
-  data.assets=data.assets||{};
-  data.assets.operators=data.assets.operators||{};
-  data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{
-    const encoded=encodeURIComponent(filename);
-    const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
-    const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
-    return {asset:file,file,version:'commons-20260919',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
-  };
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Tsukuba Express logo.svg');
   const lineAsset=commonsAsset('Tsukuba Express symbol.svg');
   const id='line-99309';
   data.assets.operators['metropolitan-intercity-railway']=operatorAsset;
   data.assets.lines[id]=lineAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
-  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'TX',color:'#003399',style:'private',operatorMark:'首都圏新都市鉄道',colorVerified:true,colorSource:'https://www.mir.co.jp/company/ci.html'};
-  if(window.TRT_LINE_BADGES?.routeCodes) window.TRT_LINE_BADGES.routeCodes[id]='TX';
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'TX',color:'#003399',style:'private',operatorMark:'首都圏新都市鉄道',colorVerified:true,colorSource:'https://www.mir.co.jp/'};
+  if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='TX';
   for(const route of data.routes||[]){
-    if(route.operatorId==='metropolitan-intercity-railway') route.operatorAsset=operatorAsset;
-    if(route.id!==id) continue;
-    route.symbolAsset=lineAsset;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'mir-official-ci',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
-    route.officialSymbolExists=true;
-    route.code='TX';
-    route.color='#003399';
+    if(route.operatorId==='metropolitan-intercity-railway')route.operatorAsset=operatorAsset;
+    if(route.id!==id)continue;
+    route.code='TX';route.color='#003399';route.symbolAsset=lineAsset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-tsukuba-TX',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
   }
 })();
 
@@ -836,5 +815,23 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     const route=(data.routes||[]).find(r=>r.id===id);if(!route)continue;
     route.symbolAsset=asset;route.officialSymbolExists=true;
     route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-shinkansen-pictogram',assetSource:'wikimedia-commons',assetSourceUrl:asset.source};
+  }
+})();
+
+/* Narita Express / N'EX brand mark. */
+(()=>{
+  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
+  data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
+  const encoded=encodeURIComponent('Logo of NEX.png');
+  const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;
+  const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;
+  const asset={asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};
+  const id='line-11328';
+  data.assets.lines[id]=asset;
+  if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]="N'EX";
+  const route=(data.routes||[]).find(r=>r.id===id);
+  if(route){
+    route.code="N'EX";route.symbolAsset=asset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-narita-express-brand',assetSource:'wikimedia-commons',assetSourceUrl:source};
   }
 })();
