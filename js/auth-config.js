@@ -486,7 +486,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   }
 })();
 
-/* Metropolitan Intercity Railway / Tsukuba Express: same official TX logo for operator and line. */
+/* Metropolitan Intercity Railway / Tsukuba Express: same official logo for operator and line. */
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
@@ -502,7 +502,7 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     if(route.operatorId==='metropolitan-intercity-railway')route.operatorAsset=txAsset;
     if(route.id!==id)continue;
     route.code='TX';route.color='#003399';route.symbolAsset=txAsset;route.officialSymbolExists=true;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:txAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-tsukuba-logo-same-as-line',assetSource:'wikimedia-commons',assetSourceUrl:txAsset.source};
+    route.symbolMeta={...(route.symbolMeta||{}),asset:txAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'commons-tsukuba-official-logo-same-for-line',assetSource:'wikimedia-commons',assetSourceUrl:txAsset.source};
   }
 })();
 
@@ -768,18 +768,18 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
   data.assets=data.assets||{};data.assets.operators=data.assets.operators||{};data.assets.lines=data.assets.lines||{};
   const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260927',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const operatorAsset=commonsAsset('Kitakyu-logo.svg');
-  const lineAsset=commonsAsset('Osaka Metro Midosuji line symbol.svg');
+  const lineAsset=commonsAsset('Kitakyu-logo.png');
   const id='line-99614';
   data.assets.operators.kitaosakakyukodentetsu=operatorAsset;
   data.assets.lines[id]=lineAsset;
   window.TRT_LINE_THEMES=window.TRT_LINE_THEMES||{};
-  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'M',color:'#E5171F',style:'private',operatorMark:'北大阪急行電鉄',colorVerified:true,colorSource:'https://www.kita-kyu.co.jp/train/traffic/'};
+  window.TRT_LINE_THEMES[id]={...(window.TRT_LINE_THEMES[id]||{}),code:'M',style:'private',operatorMark:'北大阪急行電鉄',colorVerified:true,colorSource:'https://www.kita-kyu.co.jp/'};
   if(window.TRT_LINE_BADGES?.routeCodes)window.TRT_LINE_BADGES.routeCodes[id]='M';
   for(const route of data.routes||[]){
     if(route.operatorId==='kitaosakakyukodentetsu')route.operatorAsset=operatorAsset;
     if(route.id!==id)continue;
-    route.code='M';route.color='#E5171F';route.symbolAsset=lineAsset;route.officialSymbolExists=true;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'kitaosaka-official-M-signage',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
+    route.code='M';route.symbolAsset=lineAsset;route.officialSymbolExists=true;
+    route.symbolMeta={...(route.symbolMeta||{}),asset:lineAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'commons-kitakyu-official-square-logo',assetSource:'wikimedia-commons',assetSourceUrl:lineAsset.source};
   }
 })();
 
@@ -787,13 +787,14 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
 (()=>{
   const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
   data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
-  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
+  const commonsAsset=(filename)=>{const encoded=encodeURIComponent(filename);const file=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`;const source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return {asset:file,file,version:'commons-20260927',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true};};
   const direct=(asset,source)=>({asset,file:asset,version:'commons-direct-20260926',exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source,officialExists:true});
   const jre=direct('https://upload.wikimedia.org/wikipedia/commons/c/cd/Shinkansen_jre.svg','https://commons.wikimedia.org/wiki/File:Shinkansen_jre.svg');
   const jrc=direct('https://upload.wikimedia.org/wikipedia/commons/2/25/Shinkansen_jrc.svg','https://commons.wikimedia.org/wiki/File:Shinkansen_jrc.svg');
   const jrw=direct('https://upload.wikimedia.org/wikipedia/commons/a/a0/Shinkansen_jrw.svg','https://commons.wikimedia.org/wiki/File:Shinkansen_jrw.svg');
   const jrh=direct('https://upload.wikimedia.org/wikipedia/commons/b/b7/Shinkansen_jrh.svg','https://commons.wikimedia.org/wiki/File:Shinkansen_jrh.svg');
-  const jrk=commonsAsset('Shinkansen jrk.svg');
+  const kyushu=commonsAsset('Shinkansen jrk.svg');
+  const nishiKyushu=commonsAsset('西九州新幹線(ナンバリング).png');
   const lines={
     'shinkansen-tokaido':jrc,
     'shinkansen-sanyo':jrw,
@@ -803,14 +804,14 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     'shinkansen-hokuriku':jre,
     'shinkansen-akita':jre,
     'shinkansen-yamagata':jre,
-    'shinkansen-kyushu':jrk,
-    'shinkansen-nishi-kyushu':jrk
+    'shinkansen-kyushu':kyushu,
+    'shinkansen-nishi-kyushu':nishiKyushu
   };
   for(const [id,asset] of Object.entries(lines)){
     data.assets.lines[id]=asset;
     const route=(data.routes||[]).find(r=>r.id===id);if(!route)continue;
     route.symbolAsset=asset;route.officialSymbolExists=true;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-shinkansen-pictogram',assetSource:'wikimedia-commons',assetSourceUrl:asset.source};
+    route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:true,identificationSource:id==='shinkansen-nishi-kyushu'?'commons-nishi-kyushu-numbering':'wikipedia-commons-shinkansen-pictogram',assetSource:'wikimedia-commons',assetSourceUrl:asset.source};
   }
 })();
 
