@@ -60,3 +60,26 @@
   min-height:24px!important;
   flex-basis:32px!important;
 }
+
+
+/* Tsukuba Express wide logo sizing */
+.line-symbol-asset:has(> img[alt="TX 노선 심볼"]){
+  width:56px!important;
+  min-width:56px!important;
+  flex-basis:56px!important;
+}
+.line-symbol-asset>img[alt="TX 노선 심볼"]{
+  width:54px!important;
+  height:auto!important;
+  max-width:none!important;
+  max-height:30px!important;
+}
+.record-line-symbol.line-symbol-asset:has(> img[alt="TX 노선 심볼"]){
+  width:48px!important;
+  min-width:48px!important;
+  flex-basis:48px!important;
+}
+.record-line-symbol.line-symbol-asset>img[alt="TX 노선 심볼"]{
+  width:46px!important;
+  max-height:22px!important;
+}
