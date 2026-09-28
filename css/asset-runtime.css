@@ -83,3 +83,53 @@
   width:46px!important;
   max-height:22px!important;
 }
+
+/* Unified canonical line-symbol presentation. Reuses the same route asset on every
+   surface instead of generating a second logo/symbol representation. */
+.route-card .line-symbol-asset,
+.selected-line-card .line-symbol-asset,
+.feature-number .line-symbol-asset,
+.recent-chip .line-symbol-asset,
+.result-line-badge .line-symbol-asset,
+.setup-route-marks .line-symbol-asset,
+.departure-line-symbol.line-symbol-asset{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 auto!important;
+  line-height:0!important;
+  overflow:visible!important;
+}
+.route-card .line-symbol-asset,
+.selected-line-card .line-symbol-asset,
+.feature-number .line-symbol-asset,
+.recent-chip .line-symbol-asset,
+.result-line-badge .line-symbol-asset{
+  width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;
+}
+.setup-route-marks .line-symbol-asset{
+  width:68px!important;height:68px!important;min-width:68px!important;min-height:68px!important;
+}
+.departure-line-symbol.line-symbol-asset{
+  width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;
+}
+.route-card .line-symbol-asset>img,
+.selected-line-card .line-symbol-asset>img,
+.feature-number .line-symbol-asset>img,
+.recent-chip .line-symbol-asset>img,
+.result-line-badge .line-symbol-asset>img,
+.setup-route-marks .line-symbol-asset>img,
+.departure-line-symbol.line-symbol-asset>img{
+  width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;
+}
+@media(max-width:620px){
+  .route-card .line-symbol-asset,
+  .selected-line-card .line-symbol-asset,
+  .feature-number .line-symbol-asset,
+  .recent-chip .line-symbol-asset,
+  .result-line-badge .line-symbol-asset{
+    width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;
+  }
+  .setup-route-marks .line-symbol-asset{width:56px!important;height:56px!important;min-width:56px!important;min-height:56px!important}
+  .departure-line-symbol.line-symbol-asset{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}
+}
