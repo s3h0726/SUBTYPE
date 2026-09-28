@@ -153,8 +153,8 @@ window.TRT_LINE_BADGES={"verifiedDate":"2026-09-27","operatorStyles":{"op-2":{"s
 
   const requestedLines={
     'line-99614':userAsset('./assets/route-symbols/kitakyu-m.svg'),
-    'shinkansen-kyushu':userAsset('./assets/route-symbols/kyushu-shinkansen.png'),
-    'shinkansen-nishi-kyushu':userAsset('./assets/route-symbols/nishi-kyushu-shinkansen.png'),
+    'shinkansen-kyushu':commonsAsset('Shinkansen jrk.svg'),
+    'shinkansen-nishi-kyushu':commonsAsset('Shinkansen Kamome graphic logo 2022.jpg'),
     'line-99309':userAsset('./assets/route-symbols/tsukuba-express.png')
   };
   Object.assign(data.assets.lines,requestedLines);
