@@ -153,9 +153,9 @@ window.TRT_LINE_BADGES={"verifiedDate":"2026-09-27","operatorStyles":{"op-2":{"s
 
   const requestedLines={
     'line-99614':userAsset('./assets/route-symbols/kitakyu-namboku.svg','20260929'),
-    'shinkansen-kyushu':userAsset('./assets/route-symbols/kyushu-shinkansen.svg','20260929'),
-    'shinkansen-nishi-kyushu':userAsset('./assets/route-symbols/nishi-kyushu-shinkansen.svg','20260929'),
-    'line-99309':userAsset('./assets/route-symbols/tsukuba-express.svg','20260929')
+    'shinkansen-kyushu':userAsset('./assets/route-symbols/kyushu-shinkansen.png','20260930'),
+    'shinkansen-nishi-kyushu':userAsset('./assets/route-symbols/nishi-kyushu-shinkansen.png','20260930'),
+    'line-99309':userAsset('./assets/route-symbols/tsukuba-express.png','20260930')
   };
   Object.assign(data.assets.lines,requestedLines);
 
