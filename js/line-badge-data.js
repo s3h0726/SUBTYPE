@@ -152,7 +152,7 @@ window.TRT_LINE_BADGES={"verifiedDate":"2026-09-27","operatorStyles":{"op-2":{"s
   Object.assign(data.assets.lines,odakyuLines);
 
   const requestedLines={
-    'line-99614':commonsAsset('Kitakyu-logo.svg'),
+    'line-99614':userAsset('./assets/route-symbols/kitakyu-m.svg'),
     'shinkansen-kyushu':userAsset('./assets/route-symbols/kyushu-shinkansen.png'),
     'shinkansen-nishi-kyushu':userAsset('./assets/route-symbols/nishi-kyushu-shinkansen.png'),
     'line-99309':userAsset('./assets/route-symbols/tsukuba-express.png')
