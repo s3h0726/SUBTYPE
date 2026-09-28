@@ -152,10 +152,10 @@ window.TRT_LINE_BADGES={"verifiedDate":"2026-09-27","operatorStyles":{"op-2":{"s
   Object.assign(data.assets.lines,odakyuLines);
 
   const requestedLines={
-    'line-99614':userAsset('./assets/route-symbols/kitakyu-namboku.svg','20260928'),
-    'shinkansen-kyushu':userAsset('./assets/route-symbols/kyushu-shinkansen.png','20260928'),
-    'shinkansen-nishi-kyushu':userAsset('./assets/route-symbols/nishi-kyushu-shinkansen.png','20260928'),
-    'line-99309':userAsset('./assets/route-symbols/tsukuba-express.png','20260928')
+    'line-99614':userAsset('./assets/route-symbols/kitakyu-namboku.svg','20260929'),
+    'shinkansen-kyushu':userAsset('./assets/route-symbols/kyushu-shinkansen.png','20260929'),
+    'shinkansen-nishi-kyushu':userAsset('./assets/route-symbols/nishi-kyushu-shinkansen.png','20260929'),
+    'line-99309':userAsset('./assets/route-symbols/tsukuba-express.png','20260929')
   };
   Object.assign(data.assets.lines,requestedLines);
 
