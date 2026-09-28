@@ -153,13 +153,25 @@ window.TRT_LINE_BADGES={"verifiedDate":"2026-09-27","operatorStyles":{"op-2":{"s
 
   const requestedLines={
     'line-99614':userAsset('./assets/route-symbols/kitakyu-namboku.svg','20260928'),
-    'shinkansen-kyushu':commonsAsset('Shinkansen jrk.svg'),
-    'shinkansen-nishi-kyushu':commonsAsset('Shinkansen Kamome graphic logo 2022.jpg'),
-    'line-99309':userAsset('./assets/route-symbols/tsukuba-express.png')
+    'shinkansen-kyushu':userAsset('./assets/route-symbols/kyushu-shinkansen.png','20260928'),
+    'shinkansen-nishi-kyushu':userAsset('./assets/route-symbols/nishi-kyushu-shinkansen.png','20260928'),
+    'line-99309':userAsset('./assets/route-symbols/tsukuba-express.png','20260928')
   };
   Object.assign(data.assets.lines,requestedLines);
 
   for(const route of data.routes||[]){
+    const routeText=JSON.stringify(route);
+    const directAsset=(path)=>userAsset(path,'20260928');
+    const nameAsset=
+      /つくばエクスプレス|츠쿠바 ?익스프레스|Tsukuba Express/i.test(routeText) ? directAsset('./assets/route-symbols/tsukuba-express.png') :
+      /仙台.*南北線|센다이.*(난보쿠|남보쿠)|Sendai.*Namboku|Namboku Line/i.test(routeText) ? directAsset('./assets/route-symbols/sendai-namboku.svg') :
+      /仙台.*東西線|센다이.*(토자이|토자이선)|Sendai.*Tozai|Tozai Line/i.test(routeText) ? directAsset('./assets/route-symbols/sendai-tozai.svg') :
+      null;
+    if(nameAsset){
+      route.symbolAsset=nameAsset;
+      route.symbolMeta={...(route.symbolMeta||{}),asset:nameAsset.asset,officialSymbolExists:true,verified:true,identificationSource:'user-provided',assetSource:'user-provided'};
+      route.officialSymbolExists=true;
+    }
     if(route.operatorId==='yokohama-municipal-subway') route.operatorAsset=yokohamaOperator;
     if(yokohamaLines[route.id]){
       route.symbolAsset=yokohamaLines[route.id];
