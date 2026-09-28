@@ -162,10 +162,11 @@ window.TRT_LINE_BADGES={"verifiedDate":"2026-09-27","operatorStyles":{"op-2":{"s
   for(const route of data.routes||[]){
     const routeText=JSON.stringify(route);
     const directAsset=(path)=>userAsset(path,'20260928');
+    const isSendaiSubway=/仙台市交通局|仙台市地下鉄|Sendai City Subway|센다이 ?시 ?교통국|센다이 ?시영 ?지하철/i.test(routeText);
     const nameAsset=
       /つくばエクスプレス|츠쿠바 ?익스프레스|Tsukuba Express/i.test(routeText) ? directAsset('./assets/route-symbols/tsukuba-express.png') :
-      /仙台.*南北線|센다이.*(난보쿠|남보쿠)|Sendai.*Namboku|Namboku Line/i.test(routeText) ? directAsset('./assets/route-symbols/sendai-namboku.svg') :
-      /仙台.*東西線|센다이.*(토자이|토자이선)|Sendai.*Tozai|Tozai Line/i.test(routeText) ? directAsset('./assets/route-symbols/sendai-tozai.svg') :
+      (isSendaiSubway && /南北線|난보쿠|남보쿠|Namboku Line/i.test(routeText)) ? directAsset('./assets/route-symbols/sendai-namboku.svg') :
+      (isSendaiSubway && /東西線|토자이|Tozai Line/i.test(routeText)) ? directAsset('./assets/route-symbols/sendai-tozai.svg') :
       null;
     if(nameAsset){
       route.symbolAsset=nameAsset;
