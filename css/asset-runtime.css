@@ -143,8 +143,3 @@
 .game-line-symbol>img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
 #game-line-name{display:flex;align-items:center;gap:0;min-width:0}
 @media(max-width:620px){.game-line-symbol{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;margin-right:6px!important}}
-
-/* Stable SVG fallbacks for route logos whose legacy PNG files may render incorrectly. */
-.line-symbol-asset>img[src*="tsukuba-express.png"]{content:url("../assets/route-symbols/tsukuba-express.svg")!important}
-.line-symbol-asset>img[src*="kyushu-shinkansen.png"]{content:url("../assets/route-symbols/kyushu-shinkansen.svg")!important}
-.line-symbol-asset>img[src*="nishi-kyushu-shinkansen.png"]{content:url("../assets/route-symbols/nishi-kyushu-shinkansen.svg")!important}
