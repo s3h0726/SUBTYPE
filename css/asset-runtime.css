@@ -133,3 +133,13 @@
   .setup-route-marks .line-symbol-asset{width:56px!important;height:56px!important;min-width:56px!important;min-height:56px!important}
   .departure-line-symbol.line-symbol-asset{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}
 }
+
+/* Persistent line symbol in the in-game header. */
+.game-line-symbol{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;
+  margin-right:8px!important;vertical-align:middle!important;line-height:0!important;
+}
+.game-line-symbol>img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+#game-line-name{display:flex;align-items:center;gap:0;min-width:0}
+@media(max-width:620px){.game-line-symbol{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;margin-right:6px!important}}
