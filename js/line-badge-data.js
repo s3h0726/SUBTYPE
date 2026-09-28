@@ -152,7 +152,7 @@ window.TRT_LINE_BADGES={"verifiedDate":"2026-09-27","operatorStyles":{"op-2":{"s
   Object.assign(data.assets.lines,odakyuLines);
 
   const requestedLines={
-    'line-99614':{asset:'https://i.namu.wiki/i/Bu4F7goFgG6zI4XDgLjab-Zykw54p3C-tXPKztKXRORoQDCNYOqDfMiDFaJ2I_jPTQU9fAypnZqmx3gfkZyznypotcEkia25DeHhbDcBeZvz7454ts9wYVQi7ImkKqQVA_fbzJ4asBdrhuRtF4_cPQ.svg',file:'https://i.namu.wiki/i/Bu4F7goFgG6zI4XDgLjab-Zykw54p3C-tXPKztKXRORoQDCNYOqDfMiDFaJ2I_jPTQU9fAypnZqmx3gfkZyznypotcEkia25DeHhbDcBeZvz7454ts9wYVQi7ImkKqQVA_fbzJ4asBdrhuRtF4_cPQ.svg',version:'user-20260928',exists:true,verified:true,source:'user-provided',assetSource:'user-provided',assetSourceUrl:'',officialExists:true},
+    'line-99614':userAsset('./assets/route-symbols/kitakyu-namboku.svg','20260928'),
     'shinkansen-kyushu':commonsAsset('Shinkansen jrk.svg'),
     'shinkansen-nishi-kyushu':commonsAsset('Shinkansen Kamome graphic logo 2022.jpg'),
     'line-99309':userAsset('./assets/route-symbols/tsukuba-express.png')
