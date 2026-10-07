@@ -681,7 +681,7 @@ class Game{
 }
 
 
-// recommit-trigger: 2026-10-07-2
+// recommit-trigger: free-drive-move-fix-20261007
 
 
 const finite=n=>Number.isFinite(Number(n));
