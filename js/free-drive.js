@@ -1,3 +1,4 @@
+// recommit-trigger: 2026-10-07-2
 import{$,escapeHtml}from'./utils.js';
 
 const finite=n=>Number.isFinite(Number(n));
