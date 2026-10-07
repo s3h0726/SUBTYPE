@@ -61,3 +61,5 @@
 .free-drive-station-buttons button:hover,.free-drive-station-buttons button:focus-visible{background:color-mix(in srgb,var(--route-color) 12%,var(--surface))}
 .free-drive-station-buttons button b{font-size:15px}.free-drive-station-buttons button span{font-size:11px;color:var(--muted)}.free-drive-station-buttons button i{font-style:normal;color:var(--route-color)}
 .game-free-drive-options>section{display:none!important}
+
+.game-free-drive-tabs.has-transfer:before{content:"TAB · TRANSFER";flex:0 0 auto;display:flex;align-items:center;padding:0 10px;color:var(--muted);font:800 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;border-right:1px solid var(--line)}
