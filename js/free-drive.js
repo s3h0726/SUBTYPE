@@ -65,7 +65,7 @@ export function drawNetworkCanvas(canvas,routes,{bounds=null,alpha=.28,transferN
 export class FreeDrive{
   constructor({onExit,onChange}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.onChange=onChange;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
   bind(){
-    const handleEdge=e=>{const b=e.target.closest('[data-free-edge]');if(b)this.move(decodeURIComponent(b.dataset.freeEdge))};$('#free-drive-options')?.addEventListener('click',handleEdge);$('#game-free-drive-options')?.addEventListener('click',handleEdge);
+    const handleEdge=e=>{const b=e.target.closest('[data-free-edge]');if(b)this.move(decodeURIComponent(b.dataset.freeEdge))};$('#free-drive-options')?.addEventListener('click',handleEdge);
     $('#free-drive-start-station')?.addEventListener('change',e=>this.restartAt(+e.target.value));
     $('#free-drive-reset')?.addEventListener('click',()=>this.restartAt(+($('#free-drive-start-station')?.value||0)));$('#free-drive-map-toggle')?.addEventListener('click',()=>{this.viewMode=this.viewMode==='local'?'all':'local';this.renderMap();this.updateMapToggle()});
     $('#free-drive-exit')?.addEventListener('click',()=>this.onExit?.());
