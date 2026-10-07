@@ -622,25 +622,11 @@ class Game{
     const box=$('#typing-input').closest('.typing-box');box.hidden=false;$('#ko-progress').hidden=false;$('#next-station-button').hidden=true;$('#pause-button').hidden=true;
     this.renderFreeDriveState(state);this.timer=setInterval(()=>this.tick(),100);this.typing.focus();return true
   }
-  renderFreeDriveTypingPrompt(station,context='다음역 입력 · 자유주행'){
-    if(!station)return;
-    this.applyActiveBrand(station);
-    $('#prompt-main').textContent=station.ja||'';
-    $('#prompt-ko').textContent=station.ko||'';
-    $('#prompt-ko').classList.remove('memory-hidden');
-    $('#prompt-kana').textContent=station.kana||'';
-    $('#prompt-sub').textContent=station.romaji||'';
-    $('#station-context').textContent=context;
-    const badge=$('#station-badge'),officialCode=station.hasOfficialStationCode?station.officialCode:'';
-    badge.textContent=officialCode;badge.hidden=!officialCode;
-    $('#next-station').textContent=station.ko||'';
-    this.fitPrompt();
-  }
   setFreeDriveStartTarget(station){
     if(!this.freeDriveMode||!station)return;
     this.freeDriveTarget={kind:'start',station};this.phase='TYPING';this.comboPrefixUnits=0;
     const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
-    this.renderFreeDriveTypingPrompt(station,'출발역 입력 · 자유주행');$('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
+    $('#station-context').textContent='출발역 입력 · 자유주행';$('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
     this.typing.setTarget(this.answerValues(station));this.renderKoreanProgress();if(!this.paused)this.typing.focus()
   }
   setFreeDriveTypingTarget(edge,station){
@@ -648,7 +634,7 @@ class Game{
     this.freeDriveTarget={to:edge.to,routeId:edge.routeId,station};
     this.phase='TYPING';this.comboPrefixUnits=0;
     const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
-    this.renderFreeDriveTypingPrompt(station,'다음역 입력 · 자유주행');$('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
+    $('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
     this.typing.setTarget(this.answerValues(station));this.renderKoreanProgress();if(!this.paused)this.typing.focus()
   }
   renderFreeDriveState(state){
