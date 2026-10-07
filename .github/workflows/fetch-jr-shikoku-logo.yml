@@ -1,0 +1,43 @@
+name: Fetch JR Shikoku logo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/operators/jr-shikoku/operator.json'
+      - '.github/workflows/fetch-jr-shikoku-logo.yml'
+      - 'js/line-badge.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch JR Shikoku logo
+        run: |
+          set -euo pipefail
+          mkdir -p data/operators/jr-shikoku
+          curl -L --fail --retry 3             'https://upload.wikimedia.org/wikipedia/commons/8/82/JR_logo_%28shikoku%29.svg'             -o data/operators/jr-shikoku/logo.svg
+      - name: Rebuild static data
+        run: node tools/build-static.js
+      - name: Commit JR logo and bundle
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/operators/jr-shikoku/logo.svg data/generated/asset-registry.json js/ index.html
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'assets: add JR Shikoku logo and JR fallback badges'
+            git push origin HEAD:main
+          fi
