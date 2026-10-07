@@ -1,3 +1,4 @@
+// trigger-version: 2 — force NamuWiki symbol fetch after workflow creation
 #!/usr/bin/env node
 const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..');
