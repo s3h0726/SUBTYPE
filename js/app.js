@@ -92,7 +92,14 @@ function freeDriveNetworkRoutes(){
     try{return railDataRepository.resolveRoute(normalizeLine(embedded.route||embedded,{category:route.category}))}catch{return route}
   }).filter(route=>Array.isArray(route.stations)&&route.stations.length>=2)
 }
-function refreshRoutes(){routes=allRoutes();const network=freeDriveNetworkRoutes();editor?.setRailNetwork?.(network);freeDrive?.setNetwork(network);renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();renderHomeNetwork()}
+function refreshRoutes(){
+  routes=allRoutes();
+  const network=freeDriveNetworkRoutes();
+  try{editor?.setRailNetwork?.(network)}catch(error){console.error('Custom route network initialization failed:',error)}
+  try{freeDrive?.setNetwork?.(network)}catch(error){console.error('Free drive network initialization failed:',error)}
+  renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();
+  try{renderHomeNetwork()}catch(error){console.error('Home network rendering failed:',error)}
+}
 function refreshFeatureCounts(){document.querySelectorAll('#feature-viewport [data-feature-route]').forEach(button=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),target=button.closest('article')?.querySelector('[data-feature-stations]');if(route&&target)target.textContent=`${route.stationCount||route.stations.length}개 ${stopWord(route)}`})}
 function searchable(r){return normalize([r.operator.ja,r.operator.en,r.operator.ko,r.line.ja,r.line.en,r.line.ko,...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[s.ja,s.kana,s.romaji,s.ko,...(s.koAliases||[])])].join(' '))}
 function searchVariants(value){const base=normalize(value),variants=new Set([base]);for(const [from,to]of [['구마가와','쿠마가와'],['쿠마가와 철도','쿠마가와테츠도우']])if(base.includes(from))variants.add(base.replaceAll(from,to));return[...variants]}
