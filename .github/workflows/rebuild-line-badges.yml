@@ -1,0 +1,43 @@
+name: Rebuild line badges
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/line-badge.js'
+      - '.github/workflows/rebuild-line-badges.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: |
+          cp js/line-badge.js /tmp/line-badge.mjs
+          node --check /tmp/line-badge.mjs
+      - name: Rebuild
+        run: node tools/build-static.js
+      - name: Validate
+        run: node tools/validate-data.js
+      - name: Commit rebuilt bundle
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/ index.html
+          if git diff --cached --quiet; then
+            echo 'No generated changes.'
+          else
+            git commit -m 'build: remove JR company-logo line fallback'
+            git push origin HEAD:main
+          fi
