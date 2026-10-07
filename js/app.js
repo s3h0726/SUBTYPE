@@ -319,6 +319,12 @@ $('#route-search').addEventListener('input',()=>{routeRenderLimit=96;renderRoute
 $('#route-grid').addEventListener('click',e=>{if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes();if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
 $('#selected-line-preview').addEventListener('click',e=>{const branch=e.target.closest('[data-route]');if(branch){selectedGroup=null;chooseRoute(branch.dataset.route);return}if(e.target.closest('[data-selected-play]')&&selected){openSetup(selected);return}if(e.target.closest('[data-selected-free-drive]')&&selected){startFreeDrive(selected);return}});
 $('#clear-route-selection').addEventListener('click',()=>{selected=null;selectedGroup=null;renderSelected();renderRoutes()});
+$('#game-free-drive-tabs')?.addEventListener('click',event=>{
+  const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode)return;
+  const state=freeDrive?.snapshot();if(!state)return;
+  const tabs=freeDriveRouteTabs(state),index=tabs.findIndex(item=>item.id===button.dataset.freeDriveTab);if(index<0)return;
+  freeDriveTabIndex=index;renderGameFreeDriveOptions(state);
+});
 document.addEventListener('keydown',event=>{
   if(event.key!=='Tab'||currentScreen!=='game'||!game?.freeDriveMode)return;
   const state=freeDrive?.snapshot();if(!state)return;
