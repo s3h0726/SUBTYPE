@@ -50,7 +50,22 @@ function throughSpec(route){return(globalThis.TRT_RAIL_SYSTEM?.throughServices||
 function buildThroughRoute(spec,directionId='forward'){
   try{return buildThroughServiceRoute(spec,id=>builtin.find(route=>route.id===id),directionId)}catch(error){console.error(error);return null}
 }
-const journeyLabel=value=>value?.ko||value?.names?.ko||value?.ja||value?.names?.ja||value?.en||value?.names?.en||'';
+const hasHangul=value=>/[가-힣]/.test(String(value||''));
+function stationKoreanByJapaneseName(ja){
+  if(!ja)return'';
+  for(const route of builtin||[])for(const station of route?.stations||[]){
+    const stationJa=station?.ja||station?.names?.ja||'',stationKo=station?.ko||station?.names?.ko||'';
+    if(stationJa===ja&&hasHangul(stationKo))return stationKo
+  }
+  return''
+}
+const journeyLabel=value=>{
+  const ko=value?.ko||value?.names?.ko||'',ja=value?.ja||value?.names?.ja||'',en=value?.en||value?.names?.en||'';
+  if(hasHangul(ko))return ko;
+  const recovered=stationKoreanByJapaneseName(ja||ko);if(recovered)return recovered;
+  return ko||ja||en||''
+};
+const journeyStationKey=(names,id='')=>normalize(names?.ja||names?.names?.ja||journeyLabel(names)||id);
 function nationwideCatalogLine(route){
   const catalog=globalThis.TRT_NATIONWIDE_SERVICE_CATALOG?.lines||{},ids=[route?.id,route?.legacyId].filter(Boolean);
   for(const id of ids){const match=String(id).match(/^line-(\d+)$/);if(match&&catalog[match[1]])return{code:match[1],data:catalog[match[1]]}}
@@ -129,21 +144,22 @@ function configureJourneyPicker(){
   const picker=$('#journey-picker'),origin=$('#journey-origin'),destination=$('#journey-destination'),summary=$('#journey-summary'),direction=$('#service-direction'),choices=actualOperatingChoices(selected);
   if(!picker||!origin||!destination||!choices.length)return;
   picker.hidden=false;
-  const uniqueOrigins=[...new Map(choices.map(choice=>[choice.originId,choice])).values()];
-  origin.innerHTML=uniqueOrigins.map(choice=>`<option value="${escapeHtml(choice.originId)}">${escapeHtml(journeyLabel(choice.originNames))}</option>`).join('');
+  const originGroups=[...new Map(choices.map(choice=>[journeyStationKey(choice.originNames,choice.originId),choice])).entries()];
+  origin.innerHTML=originGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(journeyLabel(choice.originNames))}</option>`).join('');
   const renderDestinations=()=>{
-    const available=choices.filter(choice=>choice.originId===origin.value);
-    destination.innerHTML=available.map(choice=>{
+    const available=choices.filter(choice=>journeyStationKey(choice.originNames,choice.originId)===origin.value);
+    const uniqueAvailable=[...new Map(available.map(choice=>{const typeLabel=journeyLabel(choice.trainType),patternLabel=journeyLabel(choice.patternName),through=choice.throughServiceId?'through':'';return[[journeyStationKey(choice.destinationNames,choice.destinationId),normalize(typeLabel||patternLabel),through].join('::'),choice]})).values()];
+    destination.innerHTML=uniqueAvailable.map(choice=>{
       const typeLabel=journeyLabel(choice.trainType),patternLabel=journeyLabel(choice.patternName),through=choice.throughServiceId?' · 직통':'';
       return `<option value="${escapeHtml(choice.id)}" data-destination-id="${escapeHtml(choice.destinationId)}">${escapeHtml(journeyLabel(choice.destinationNames))}${typeLabel?` · ${escapeHtml(typeLabel)}`:patternLabel?` · ${escapeHtml(patternLabel)}`:''}${through}</option>`
     }).join('');
-    const choice=available.find(item=>item.id===destination.value)||available[0];if(!choice)return;
+    const choice=uniqueAvailable.find(item=>item.id===destination.value)||uniqueAvailable[0];if(!choice)return;
     destination.value=choice.id;destination.dataset.stationId=choice.destinationId;direction.value=choice.direction||'forward';
     summary.textContent=`${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''} · 실제 운행계통`;
     const endpoints=$('#setup-route .route-endpoints');if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`
   };
-  origin.onchange=renderDestinations;destination.onchange=()=>{const available=choices.filter(choice=>choice.originId===origin.value),choice=available.find(item=>item.id===destination.value);if(!choice)return;destination.dataset.stationId=choice.destinationId;direction.value=choice.direction||'forward';summary.textContent=`${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''} · 실제 운행계통`;const endpoints=$('#setup-route .route-endpoints');if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`};
-  origin.value=uniqueOrigins[0].originId;renderDestinations()
+  origin.onchange=renderDestinations;destination.onchange=()=>{const available=choices.filter(choice=>journeyStationKey(choice.originNames,choice.originId)===origin.value),choice=available.find(item=>item.id===destination.value);if(!choice)return;destination.dataset.stationId=choice.destinationId;direction.value=choice.direction||'forward';summary.textContent=`${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''} · 실제 운행계통`;const endpoints=$('#setup-route .route-endpoints');if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`};
+  origin.value=originGroups[0][0];renderDestinations()
 }
 function openSetup(route){
   selected=route;if(!selected||!Array.isArray(selected.stations)||selected.stations.length<2){toast('플레이 가능한 역이 부족한 노선입니다.');return}
