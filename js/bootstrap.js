@@ -18,7 +18,7 @@
   updateErrorCount();
 
   const aliases = { play: 'rail-map', select: 'rail-map', setup: 'game-setup', custom: 'custom-list', stats: 'records' };
-  const titles = { home: 'SUBTYPE — 일본 철도 타이핑', 'rail-map': '노선 선택 — SUBTYPE', 'game-setup': '운행 설정 — SUBTYPE', game: '운행 중 — SUBTYPE', 'custom-list': '나만의 노선 — SUBTYPE', 'custom-editor': '노선 만들기 — SUBTYPE', records: '운행 기록 — SUBTYPE', settings: '설정 — SUBTYPE', credits: '데이터 출처 — SUBTYPE', result: '운행 결과 — SUBTYPE' };
+  const titles = { home: 'SUBTYPE — 일본 철도 타이핑', 'rail-map': '노선 선택 — SUBTYPE', 'game-setup': '운행 설정 — SUBTYPE', game: '운행 중 — SUBTYPE', 'free-drive': '자유주행 — SUBTYPE', 'custom-list': '나만의 노선 — SUBTYPE', 'custom-editor': '노선 만들기 — SUBTYPE', records: '운행 기록 — SUBTYPE', settings: '설정 — SUBTYPE', credits: '데이터 출처 — SUBTYPE', result: '운행 결과 — SUBTYPE' };
   const screens = () => Array.from(document.querySelectorAll('[data-screen]'));
   const normalize = name => aliases[name] || name || 'home';
   const exists = name => screens().some(screen => screen.dataset.screen === name);
