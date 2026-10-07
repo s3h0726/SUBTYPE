@@ -145,25 +145,49 @@ function buildTypingModel(value=''){
 
 
 const typingUnits=value=>Array.from(String(value??'').normalize('NFD')).length;
+
 class TypingStatistics{
   constructor(started=performance.now()){this.reset(started)}
-  reset(started=performance.now()){this.started=started;this.typedUnits=0;this.correctUnits=0;this.mistakeUnits=0;this.lastValue='';this.wrongLatched=false;this.lastUpdateMs=0}
-  observe({value='',state='empty',isComposing=false}){const started=performance.now(),currentUnits=typingUnits(value),previousUnits=typingUnits(this.lastValue),addedUnits=Math.max(0,currentUnits-previousUnits),backspaced=currentUnits<previousUnits;this.typedUnits+=addedUnits;if(backspaced)this.wrongLatched=false;let mistakeAdded=0;if(!isComposing&&state==='wrong'&&!this.wrongLatched){this.mistakeUnits++;mistakeAdded=1;this.wrongLatched=true}if(!isComposing&&state!=='wrong')this.wrongLatched=false;this.lastValue=value;this.lastUpdateMs=performance.now()-started;return{addedUnits,mistakeAdded,typingUpdateMs:this.lastUpdateMs}}
-  complete(){this.lastValue='';this.wrongLatched=false}
-  metrics(elapsedMs){const minutes=Math.max(1,elapsedMs)/60000,correctUnits=Math.max(0,this.typedUnits-this.mistakeUnits),accuracy=this.typedUnits?Math.max(0,Math.min(100,correctUnits/this.typedUnits*100)):100;return{accuracy,cpm:Math.round(this.typedUnits/minutes),wpm:Math.round(this.typedUnits/5/minutes),correctUnits,typedUnits:this.typedUnits,mistakeUnits:this.mistakeUnits,typingUpdateMs:this.lastUpdateMs}}
+  reset(started=performance.now()){
+    this.started=started;
+    this.typedUnits=0;
+    this.correctUnits=0;
+    this.mistakeUnits=0;
+    this.lastValue='';
+    this.wrongLatched=false;
+    this.lastUpdateMs=0
+  }
+  observe({value='',state='empty',isComposing=false}){
+    const started=performance.now();
+    const currentUnits=typingUnits(value),previousUnits=typingUnits(this.lastValue);
+    const addedUnits=Math.max(0,currentUnits-previousUnits);
+    const backspaced=currentUnits<previousUnits;
+    this.typedUnits+=addedUnits;
+    if(backspaced)this.wrongLatched=false;
+    let mistakeAdded=0;
+    if(!isComposing&&state==='wrong'&&!this.wrongLatched){this.mistakeUnits++;mistakeAdded=1;this.wrongLatched=true}
+    if(!isComposing&&state!=='wrong')this.wrongLatched=false;
+    this.lastValue=value;
+    this.lastUpdateMs=performance.now()-started;
+    return{addedUnits,mistakeAdded,typingUpdateMs:this.lastUpdateMs}
+  }
+  complete(){
+    this.lastValue='';
+    this.wrongLatched=false
+  }
+  metrics(elapsedMs){
+    const minutes=Math.max(1,elapsedMs)/60000;
+    const correctUnits=Math.max(0,this.typedUnits-this.mistakeUnits);
+    const accuracy=this.typedUnits?Math.max(0,Math.min(100,correctUnits/this.typedUnits*100)):100;
+    return{accuracy,cpm:Math.round(this.typedUnits/minutes),wpm:Math.round(this.typedUnits/5/minutes),correctUnits,typedUnits:this.typedUnits,mistakeUnits:this.mistakeUnits,typingUpdateMs:this.lastUpdateMs}
+  }
 }
 
 
 
 
 const cfg=()=>globalThis.TRT_LINE_BADGES||{operatorStyles:{},routeCodes:{}};
-function lineBadgeMeta(route){const source=cfg(),operator=source.operatorStyles?.[route?.operatorId]||{},theme=globalThis.TRT_LINE_THEMES?.[route?.id]||{},code=source.routeCodes?.[route?.id]||theme.code||route?.code||'';let asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null;const lineName=[route?.line?.ko,route?.line?.ja,route?.line?.en,route?.line?.names?.ko,route?.line?.names?.ja,route?.line?.names?.en].filter(Boolean).join(' '),operatorName=[route?.operator?.ko,route?.operator?.ja,route?.operator?.en,route?.operator?.names?.ko,route?.operator?.names?.ja,route?.operator?.names?.en].filter(Boolean).join(' ');const routeText=`${lineName} ${operatorName} ${route?.id||''}`;
-if(/기타오사카|北大阪急行|Kita[- ]?Osaka/i.test(routeText)){asset={url:new URL('./assets/route-symbols/kitakyu-namboku.svg',document.baseURI).href,asset:'./assets/route-symbols/kitakyu-namboku.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}
-else if(/九州新幹線|큐슈.*신칸센|Kyushu Shinkansen/i.test(routeText)){asset={url:new URL('./assets/route-symbols/kyushu-shinkansen.png',document.baseURI).href,asset:'./assets/route-symbols/kyushu-shinkansen.png',officialExists:true,exists:true,verified:true,source:'user-provided'}}
-else if(/西九州新幹線|니시.*큐슈.*신칸센|Nishi[- ]?Kyushu Shinkansen/i.test(routeText)){asset={url:new URL('./assets/route-symbols/nishi-kyushu-shinkansen.png',document.baseURI).href,asset:'./assets/route-symbols/nishi-kyushu-shinkansen.png',officialExists:true,exists:true,verified:true,source:'user-provided'}}
-else if(/つくばエクスプレス|츠쿠바.*익스프레스|Tsukuba Express/i.test(routeText)){asset={url:new URL('./assets/route-symbols/tsukuba-express.png',document.baseURI).href,asset:'./assets/route-symbols/tsukuba-express.png',officialExists:true,exists:true,verified:true,source:'user-provided'}}
-else if(/仙台市交通局|仙台市地下鉄|Sendai City Subway|센다이 ?시 ?교통국|센다이 ?시영 ?지하철/i.test(routeText)&&/南北線|난보쿠|남보쿠|Namboku Line/i.test(routeText)){asset={url:new URL('./assets/route-symbols/sendai-namboku.svg',document.baseURI).href,asset:'./assets/route-symbols/sendai-namboku.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}
-else if(/仙台市交通局|仙台市地下鉄|Sendai City Subway|센다이 ?시 ?교통국|센다이 ?시영 ?지하철/i.test(routeText)&&/東西線|토자이|Tozai Line/i.test(routeText)){asset={url:new URL('./assets/route-symbols/sendai-tozai.svg',document.baseURI).href,asset:'./assets/route-symbols/sendai-tozai.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}const officialSymbolExists=route?.officialSymbolExists===true||route?.symbolMeta?.officialSymbolExists===true||asset?.officialExists===true,officialCodeExists=/^[A-Z]{1,4}$/.test(code)&&Boolean(source.routeCodes?.[route?.id]||theme.code);return{code,asset,officialSymbolExists,officialCodeExists,style:operator.style||theme.style||route?.lineTheme?.style||route?.category||'other',source:asset?.source||operator.source||theme.colorSource||route?.lineTheme?.colorSource||'',color:route?.lineColor||theme.color||'#60736a'}}
+function lineBadgeMeta(route){const source=cfg(),operator=source.operatorStyles?.[route?.operatorId]||{},theme=globalThis.TRT_LINE_THEMES?.[route?.id]||{},code=source.routeCodes?.[route?.id]||theme.code||route?.code||'';let asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null;const lineName=[route?.line?.ko,route?.line?.ja,route?.line?.en,route?.line?.names?.ko,route?.line?.names?.ja,route?.line?.names?.en].filter(Boolean).join(' '),operatorName=[route?.operator?.ko,route?.operator?.ja,route?.operator?.en,route?.operator?.names?.ko,route?.operator?.names?.ja,route?.operator?.names?.en].filter(Boolean).join(' ');if(/기타오사카|北大阪急行|Kita[- ]?Osaka/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/kitakyu-namboku.svg',document.baseURI).href,asset:'./assets/route-symbols/kitakyu-namboku.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}else if(/九州新幹線|큐슈.*신칸센|Kyushu Shinkansen/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/kyushu-shinkansen.png',document.baseURI).href,asset:'./assets/route-symbols/kyushu-shinkansen.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}else if(/西九州新幹線|니시.*큐슈.*신칸센|Nishi[- ]?Kyushu Shinkansen/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/nishi-kyushu-shinkansen.png',document.baseURI).href,asset:'./assets/route-symbols/nishi-kyushu-shinkansen.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}else if(/つくばエクスプレス|츠쿠바.*익스프레스|Tsukuba Express/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/tsukuba-express.png',document.baseURI).href,asset:'./assets/route-symbols/tsukuba-express.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}const officialSymbolExists=route?.officialSymbolExists===true||route?.symbolMeta?.officialSymbolExists===true||asset?.officialExists===true,officialCodeExists=/^[A-Z]{1,4}$/.test(code)&&Boolean(source.routeCodes?.[route?.id]||theme.code);return{code,asset,officialSymbolExists,officialCodeExists,style:operator.style||theme.style||route?.lineTheme?.style||route?.category||'other',source:asset?.source||operator.source||theme.colorSource||route?.lineTheme?.colorSource||'',color:route?.lineColor||theme.color||'#60736a'}}
 function lineBadgeMarkup(route,className='line-badge'){const badge=lineBadgeMeta(route),url=badge.asset?.url||badge.asset?.asset;if(badge.officialSymbolExists&&url)return`<span class="${className} line-symbol-asset" data-line-symbol="true" aria-label="${escapeHtml(badge.code)} 공식 노선 심볼"><img loading="lazy" decoding="async" src="${escapeHtml(url)}" alt="${escapeHtml(badge.code)} 노선 심볼"></span>`;if(badge.officialCodeExists)return`<span class="${className} line-code-label badge-${escapeHtml(badge.style)}" style="--badge-color:${escapeHtml(badge.color)}" aria-label="${escapeHtml(badge.code)} 공식 노선 기호">${escapeHtml(badge.code)}</span>`;return''}
 
 

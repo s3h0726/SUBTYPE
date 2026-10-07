@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "line-hanshin-kobe-kosoku",
+  "legacyId": "line-hanshin-kobe-kosoku",
+  "operatorId": "hanshindentetsu",
+  "category": "private",
+  "names": {
+    "ja": "神戸高速線",
+    "kana": "こうべこうそくせん",
+    "ko": "고베 고속선",
+    "en": "Kobe Kosoku Line"
+  },
+  "code": "HS",
+  "color": "#009944",
+  "symbol": {
+    "asset": null,
+    "officialSymbolExists": false,
+    "source": "",
+    "verified": false
+  },
+  "loop": false,
+  "stationSignTemplate": "hanshindentetsu",
+  "services": [],
+  "throughServiceIds": [],
+  "routeInfo": {
+    "operationalSection": "元町～西代",
+    "operatorRole": "Hanshin second-class railway operation",
+    "physicalInfrastructureLineId": "line-99630"
+  },
+  "sources": {
+    "official": "https://www.hanshin.co.jp/station/",
+    "korean": "https://www.hanshin.co.jp/global/korea/pdf/map.pdf",
+    "geometry": "reused from Kobe Kosoku Tozai physical line / MLIT-N02 where available"
+  },
+  "legacy": {
+    "origin": "current-2026-addition",
+    "coverage": "Hanshin-operational-section",
+    "dataKind": "operationalLine"
+  }
+}
