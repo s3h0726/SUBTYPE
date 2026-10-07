@@ -57,3 +57,27 @@
 @media(max-height:680px) and (min-width:821px){
   #screen-game.active{grid-template-rows:46px 32px minmax(0,1fr) 36px 200px}
 }
+
+/* Mobile gameplay: put the station sign above the map and keep typed text visible. */
+@media(max-width:760px){
+  #screen-game.active{
+    grid-template-rows:52px 38px 42px auto minmax(170px,1fr);
+    min-height:calc(100dvh - 64px);
+    overflow:auto;
+  }
+  #screen-game.active .station-sign-hud{grid-row:4;}
+  #screen-game.active .game-map-shell{grid-row:5;}
+  #screen-game.active .station-sign-hud{padding:10px 9px 16px;}
+  #screen-game.active .station-sign{width:100%;}
+  #screen-game.active .station-current .station-sign-input input{
+    color:#111817!important;
+    -webkit-text-fill-color:#111817!important;
+  }
+}
+@media(max-width:520px){
+  #screen-game.active{grid-template-rows:50px 38px 42px auto minmax(150px,1fr);}
+  #screen-game.active .station-sign-hud{padding:8px 7px 12px;}
+  #screen-game.active .station-sign-main{min-height:0;}
+  #screen-game.active .station-current{padding:10px 7px;}
+  #screen-game.active .station-current .station-sign-input{height:36px!important;}
+}
