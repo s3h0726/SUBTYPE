@@ -870,14 +870,16 @@ function routeForCatalogLine(code){
   const catalog=globalThis.TRT_NATIONWIDE_SERVICE_CATALOG?.lines||{},meta=catalog[String(code)],direct=builtin.find(route=>route.id===`line-${code}`||route.legacyId===`line-${code}`);
   if(direct)return direct;return builtin.find(route=>(route.line?.ja||route.line?.names?.ja||'')===meta?.ja)||null
 }
-function catalogPatternChoice(route,pattern){
-  const segments=(pattern.segments||[]).filter(segment=>segment.stations?.length>=2);if(!segments.length||segments.some(segment=>!routeForCatalogLine(segment.lineCode)))return null;
+function catalogPatternChoice(route,pattern,reverse=false){
+  const base=(pattern.segments||[]).filter(segment=>segment.stations?.length>=2);if(!base.length||base.some(segment=>!routeForCatalogLine(segment.lineCode)))return null;
+  const segments=reverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;
   const first=segments[0].stations[0]?.[0],last=segments.at(-1).stations.at(-1)?.[0];if(!first||!last||first===last)return null;
+  const firstRoute=routeForCatalogLine(segments[0].lineCode),lastRoute=routeForCatalogLine(segments.at(-1).lineCode),origin=firstRoute?.stations?.find(station=>station.ja===first)||{ja:first,ko:first},destination=lastRoute?.stations?.find(station=>station.ja===last)||{ja:last,ko:last};
   const type={id:`catalog-type-${pattern.id}`,names:{ja:pattern.type?.ja||'',ko:pattern.type?.ko||'',en:pattern.type?.en||''},priority:Number(pattern.type?.priority||0),kind:Number(pattern.type?.kind||0)};
-  return{kind:'catalog',id:`catalog:${pattern.id}`,originId:`catalog:${pattern.id}:origin`,destinationId:`catalog:${pattern.id}:destination`,originNames:{ja:first,ko:first},destinationNames:{ja:last,ko:last},trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:'forward',catalogPattern:pattern}
+  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse}
 }
 function buildCatalogResolved(choice){
-  const pattern=choice?.catalogPattern,segments=(pattern?.segments||[]).filter(segment=>segment.stations?.length>=2);if(!segments.length)throw new Error('전국 운행계통 데이터가 비어 있습니다.');
+  const pattern=choice?.catalogPattern,base=(pattern?.segments||[]).filter(segment=>segment.stations?.length>=2),segments=choice?.catalogReverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;if(!segments.length)throw new Error('전국 운행계통 데이터가 비어 있습니다.');
   const stopNames=[];for(const segment of segments)for(const [name,pass] of segment.stations)if(Number(pass)!==1&&!stopNames.includes(name))stopNames.push(name);
   if(segments.length===1){
     const segment=segments[0],route=routeForCatalogLine(segment.lineCode);if(!route)throw new Error(`노선 데이터를 찾지 못했습니다: ${segment.lineCode}`);
@@ -887,7 +889,7 @@ function buildCatalogResolved(choice){
     return{route:{...route,services:[service]},service,direction,pattern:null,trainType:choice.trainType,destinationStationId:route.stations[b]?.id||null,trainTypeContexts:[]}
   }
   const routeSegments=segments.map(segment=>{const route=routeForCatalogLine(segment.lineCode),first=segment.stations[0][0],last=segment.stations.at(-1)[0],a=route.stations.findIndex(station=>station.ja===first),b=route.stations.findIndex(station=>station.ja===last);if(a<0||b<0)throw new Error(`${route.line?.ja||segment.lineCode}: ${first} → ${last} 구간 매칭 실패`);return{routeId:route.id,direction:b>=a?'forward':'reverse',startStationJa:first,endStationJa:last}});
-  const spec={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',routeSegments,boundarySnapToleranceKm:.5},through=buildThroughServiceRoute(spec,id=>builtin.find(route=>route.id===id));
+  const spec={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',routeSegments,boundarySnapToleranceKm:1.2},through=buildThroughServiceRoute(spec,id=>builtin.find(route=>route.id===id));
   const allowed=new Set(stopNames),stops=through.stations.filter(station=>allowed.has(station.ja)).map(station=>station.id),service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',stops};
   return{route:{...through,services:[service]},service,direction:'forward',pattern:null,trainType:choice.trainType,destinationStationId:through.stations.at(-1)?.id||null,trainTypeContexts:[]}
 }
@@ -923,7 +925,7 @@ function actualOperatingChoices(route){
       add({kind:'trainService',id:`train-service:${service.id}:${branch.id}`,originId:`train-service:${service.id}:${branch.id}:origin`,destinationId:`train-service:${service.id}:${branch.id}:destination`,originNames:{ja:firstName,ko:firstName},destinationNames:{ja:lastName,ko:branch.destinationKo||lastName},trainType:null,journeyId:null,patternId:null,patternName:{ja:service.nameJa,ko:service.nameKo,en:service.nameEn},throughServiceId:null,trainServiceId:service.id,trainServiceBranchId:branch.id,branchStops:branch.stops||[],direction:'forward'})
     }
   }
-  const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const choice=catalogPatternChoice(route,pattern);if(!choice)continue;const typeKo=journeyLabel(choice.trainType),destJa=choice.destinationNames?.ja||'',originJa=choice.originNames?.ja||'',duplicate=choices.some(existing=>(existing.destinationNames?.ja||'')===destJa&&(existing.originNames?.ja||'')===originJa&&journeyLabel(existing.trainType)===typeKo);if(!duplicate)add(choice)}
+  const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;const typeKo=journeyLabel(choice.trainType),destJa=choice.destinationNames?.ja||'',originJa=choice.originNames?.ja||'',duplicate=choices.some(existing=>(existing.destinationNames?.ja||'')===destJa&&(existing.originNames?.ja||'')===originJa&&journeyLabel(existing.trainType)===typeKo);if(!duplicate)add(choice)}}
   if(choices.length)return choices.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   const stations=route?.stations||[];if(stations.length<2)return[];
   const first=stations[0],last=stations.at(-1);
