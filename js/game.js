@@ -26,10 +26,17 @@ class Game{
   }
   startFreeDrive(state){
     this.stop(false);if(!state?.route||!state?.station)return false;
-    this.freeDriveMode=true;this.finished=false;this.paused=false;this.phase='TYPING';this.started=performance.now();this.pausedTotal=0;this.pausedAt=0;this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.typedStationIds=[];this.visitedStationIds=[];this.stats.reset(this.started);
+    this.freeDriveMode=true;this.freeDriveAwaitingStart=true;this.finished=false;this.paused=false;this.phase='TYPING';this.started=performance.now();this.pausedTotal=0;this.pausedAt=0;this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.typedStationIds=[];this.visitedStationIds=[];this.stats.reset(this.started);
     document.body.dataset.freeDrive='true';$('#screen-game')?.classList.add('free-drive-active');
     const box=$('#typing-input').closest('.typing-box');box.hidden=false;$('#ko-progress').hidden=false;$('#next-station-button').hidden=true;$('#pause-button').hidden=true;
     this.renderFreeDriveState(state);this.timer=setInterval(()=>this.tick(),100);this.typing.focus();return true
+  }
+  setFreeDriveStartTarget(station){
+    if(!this.freeDriveMode||!station)return;
+    this.freeDriveTarget={kind:'start',station};this.phase='TYPING';this.comboPrefixUnits=0;
+    const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
+    $('#station-context').textContent='출발역 입력 · 자유주행';$('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
+    this.typing.setTarget(this.answerValues(station));this.renderKoreanProgress();if(!this.paused)this.typing.focus()
   }
   setFreeDriveTypingTarget(edge,station){
     if(!this.freeDriveMode||!edge||!station)return;
@@ -42,7 +49,7 @@ class Game{
   renderFreeDriveState(state){
     if(!state?.route||!state?.station)return;
     const route=railDataRepository.resolveRoute(state.route),station=state.station,index=Math.max(0,state.stationIndex||0);
-    this.route=route;this.options={mode:'free-drive',mapMode:'geographic',mapLabels:'normal',motion:true,reducedMotion:false};this.service={id:'free-drive',nameJa:'自由走行',nameKo:'자유주행',nameEn:'Free Drive',stops:route.stations.map(item=>item.id)};
+    this.route=route;this.freeDriveState=state;this.options={mode:'free-drive',mapMode:'geographic',mapLabels:'normal',motion:true,reducedMotion:false};this.service={id:'free-drive',nameJa:'自由走行',nameKo:'자유주행',nameEn:'Free Drive',stops:route.stations.map(item=>item.id)};
     try{this.resolvedRoute=resolvePlayableRoute(route,{direction:'forward',service:this.service})}catch{this.resolvedRoute={stations:route.stations,geometry:route.geometry||[],segments:route.directedSegments||[]}}
     this.serviceStations=this.resolvedRoute.stations||route.stations;this.serviceStops=new Set(this.serviceStations.map(item=>item.id));this.mapRoute={...route,stations:this.serviceStations,geometry:this.resolvedRoute.geometry||route.geometry||[],directedSegments:this.resolvedRoute.segments||route.directedSegments||[],renderKey:`${route.id}::free-drive-${Date.now()}`};this.sequence=this.serviceStations;this.index=Math.max(0,Math.min(index,this.sequence.length-1));this.boarding=false;
     const sameRoute=(state.edges||[]).filter(edge=>edge.routeId===route.id),prevEdge=sameRoute.find(edge=>edge.direction<0),nextEdge=sameRoute.find(edge=>edge.direction>0),prev=prevEdge?this.sequence[prevEdge.index]:this.sequence[this.index-1],next=nextEdge?this.sequence[nextEdge.index]:this.sequence[this.index+1];
@@ -54,8 +61,9 @@ class Game{
     $('#next-station').textContent='이동할 역 선택';$('#station-service-footer').textContent='자유주행';
     $('#game-service-name').textContent='FREE DRIVE · 自由走行';$('#service-origin-ja').textContent=station.ja||'';$('#service-origin-ko').textContent=station.ko||'';$('#service-destination-ja').textContent='自由';$('#service-destination-ko').textContent='자유주행';$('#service-stop-count').textContent=`${state.historyLength||1}개 역 이동`;$('#service-route-summary').textContent=`${route.line?.ko||route.line?.ja||''} · 자유주행`;$('#service-direction-summary').textContent='앞·뒤 역을 선택해 자유롭게 이동';
     $('#hud-progress').textContent=`${state.historyLength||1} VISITED`;$('#hud-cpm').textContent='—';$('#hud-accuracy').textContent='—';$('#hud-combo').textContent=`환승 ${state.transferCount||0}`;
-    const defaultEdge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state.edges?.[0],defaultStation=defaultEdge?state.node?.key===defaultEdge.to?null:null:null;
-    if(defaultEdge){const targetStation=(state.edges||[]).find(edge=>edge===defaultEdge)?.route?.stations?.[defaultEdge.index];if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation)}
+    const defaultEdge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state.edges?.[0];
+    if(this.freeDriveAwaitingStart)this.setFreeDriveStartTarget(station);
+    else if(defaultEdge){const targetStation=defaultEdge.route?.stations?.[defaultEdge.index]||null;if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation)}
     renderGameMap(this.mapRoute,this.index,{mapMode:'geographic',stationLabel:'ja-ko',mapLabels:'normal',motion:true,serviceStops:[...this.serviceStops],previousRouteIndex:Math.max(0,this.index-1),nextRouteIndex:Math.min(this.mapRoute.stations.length-1,this.index+1)});
   }
   serviceLabel(){const train=this.trainType?.names?.ko,destination=this.sequence?.find(station=>station.id===this.destinationStationId)?.ko||this.sequence?.at(-1)?.ko;return this.servicePattern?`${train||this.service.nameKo}${destination?` · ${destination}행`:''}`:(this.service.nameKo||'각역정차')}
@@ -83,6 +91,12 @@ class Game{
     if(this.freeDriveMode){
       if(this.paused||this.finished||this.phase!=='TYPING'||!this.freeDriveTarget)return;
       const target=this.freeDriveTarget;this.stats.complete();this.typedStationIds.push(target.station?.id||target.to);this.playTone();this.typing.clear?.();
+      if(target.kind==='start'){
+        this.freeDriveAwaitingStart=false;
+        const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),edge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state?.edges?.[0];
+        if(edge){const station=edge.route?.stations?.[edge.index]||null;if(station){$('#station-context').textContent='다음역 입력 · 자유주행';this.setFreeDriveTypingTarget(edge,station);return}}
+        toast('이 역에서 이어지는 다음 역이 없습니다.');return
+      }
       const moved=this.onFreeDriveMove?.(target.to,target.routeId);if(!moved){toast('다음 역으로 이동하지 못했습니다.');this.setFreeDriveTypingTarget(target,target.station)}return
     }
     if(this.paused||this.finished||this.phase!=='TYPING')return;const station=this.targetStation();if(!station)return;this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(station.id);const manual=this.options.stationAdvance==='space';setTrainTypingProgress(this.boarding?0:1,this.options.motion&&!this.options.reducedMotion);$('#typing-input').readOnly=true;$('#typing-input').closest('.typing-box').classList.add('waiting');$('#input-status').textContent=manual?'SPACE NEXT':this.boarding?'DEPARTING':'ARRIVING';$('#next-station-button').hidden=!manual;this.phase=manual?'CORRECT_WAITING':'ARRIVING';this.playTone();this.updateHud();this.syncDebug();if(!manual)queueMicrotask(()=>this.advance())
@@ -101,5 +115,5 @@ class Game{
   updateHud(){const metrics=this.metrics(),completed=this.typedStationIds.length;$('#hud-time').textContent=formatTime(metrics.elapsed);$('#hud-progress').textContent=`${Math.min(completed,this.sequence.length)} / ${this.options.mode==='random'?'∞':this.sequence.length}`;$('#hud-cpm').textContent=Number.isFinite(metrics.cpm)?metrics.cpm:0;$('#hud-accuracy').textContent=`${metrics.accuracy.toFixed(1)}%`;$('#hud-combo').textContent=`×${this.combo}`}
   togglePause(force){if(this.finished)return;const next=force??!this.paused;if(next===this.paused)return;this.paused=next;$('#pause-overlay').hidden=!next;$('#typing-input').disabled=next;if(next)this.pausedAt=performance.now();else{this.pausedTotal+=performance.now()-this.pausedAt;if(this.phase==='ARRIVING')this.moveTimer=setTimeout(()=>this.advance(),100);if(this.phase==='TYPING')this.typing.focus()}}
   finish(){if(this.finished)return;this.finished=true;this.phase='FINISHED';clearInterval(this.timer);clearTimeout(this.moveTimer);this.timer=null;const expectedArrivals=this.options.mode==='complete'?this.sequence.slice(1).map(station=>station.id):[],expectedTyped=this.options.mode==='complete'?this.sequence.map(station=>station.id):[],routeIntegrity=this.options.mode!=='complete'||JSON.stringify(expectedArrivals)===JSON.stringify(this.visitedStationIds)&&JSON.stringify(expectedTyped)===JSON.stringify(this.typedStationIds);if(!routeIntegrity)console.error('ROUTE INTEGRITY ERROR',{expectedArrivals,visited:this.visitedStationIds,expectedTyped,typed:this.typedStationIds});this.syncDebug();const metrics=this.metrics();this.onFinish({...metrics,errors:this.errors,maxCombo:this.maxCombo,completed:this.typedStationIds.length,routeId:this.route.id,routeName:this.route.line.ko,color:this.route.lineColor,route:this.route,options:this.options,serviceJourneyId:this.serviceJourney?.id||null,originStationId:this.serviceJourney?.originStationId||this.sequence[0]?.id||null,servicePatternId:this.servicePattern?.id||null,trainTypeId:this.trainType?.id||null,destinationStationId:this.destinationStationId||null,throughServiceId:this.servicePattern?.throughServiceId||this.route?.throughService?.id||null,directionId:this.serviceJourney?.directionId||this.options.direction,routeIntegrity,typedStationIds:[...this.typedStationIds],visitedStationIds:[...this.visitedStationIds]})}
-  stop(notify=false){clearInterval(this.timer);clearTimeout(this.moveTimer);clearTimeout(this.departureTimer);this.timer=null;this.finished=true;this.phase='IDLE';this.paused=false;this.freeDriveMode=false;document.body.dataset.freeDrive='false';$('#screen-game')?.classList.remove('free-drive-active');$('#pause-overlay').hidden=true;$('#departure-overlay').hidden=true;$('#typing-input').disabled=false;$('#typing-input').readOnly=false;$('#typing-input').closest('.typing-box').hidden=false;$('#ko-progress').hidden=false;$('#pause-button').hidden=false;if(notify)this.onQuit?.()}
+  stop(notify=false){clearInterval(this.timer);clearTimeout(this.moveTimer);clearTimeout(this.departureTimer);this.timer=null;this.finished=true;this.phase='IDLE';this.paused=false;this.freeDriveMode=false;this.freeDriveAwaitingStart=false;this.freeDriveState=null;this.freeDriveTarget=null;document.body.dataset.freeDrive='false';$('#screen-game')?.classList.remove('free-drive-active');$('#pause-overlay').hidden=true;$('#departure-overlay').hidden=true;$('#typing-input').disabled=false;$('#typing-input').readOnly=false;$('#typing-input').closest('.typing-box').hidden=false;$('#ko-progress').hidden=false;$('#pause-button').hidden=false;if(notify)this.onQuit?.()}
 }
