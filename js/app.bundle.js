@@ -840,6 +840,8 @@ const JAPANESE_KOREAN_EXACT_FIXES={"智頭急行":"치즈 급행","富士急行"
 function cleanJapaneseKoreanName(value,ja=''){
   const exact=JAPANESE_KOREAN_EXACT_FIXES[ja];if(exact)return exact;
   let text=String(value||'');
+  const phrases=[['토우쿄우','도쿄'],['쿄우토','교토'],['코우베','고베'],['오오사카','오사카'],['토우호쿠','도호쿠'],['토우카이도우','도카이도'],['조우에츠','조에쓰'],['큐우슈우','큐슈'],['키타큐우슈우','기타큐슈'],['료우모우','료모'],['조우반','조반']];
+  for(const[from,to]of phrases)text=text.replaceAll(from,to);
   const rules=[['오오','오'],['큐우','큐'],['쿄우','쿄'],['료우','료'],['쇼우','쇼'],['쵸우','초'],['토우','토'],['코우','코'],['조우','조'],['유우','유'],['우우','우'],['닜','닛'],['샀','삿']];
   for(const[from,to]of rules)text=text.replaceAll(from,to);
   return text
