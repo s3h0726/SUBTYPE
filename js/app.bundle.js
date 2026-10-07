@@ -249,23 +249,37 @@ function combineServiceSegment(segmentMap,fullRoute,fromIndex,toIndex){
 function combineAlignedSegments(fullRoute,fullSegments,fromIndex,toIndex){const fromStation=fullRoute[fromIndex],toStation=fullRoute[toIndex],parts=fullSegments.slice(fromIndex,toIndex);if(!parts.length)throw new Error(`Missing railway segment: ${stationId(fromStation)} -> ${stationId(toStation)}`);const geometry=[];for(const part of parts){const points=cloneGeometry(part.geometry);if(geometry.length&&points.length&&geometry.at(-1)[0]===points[0][0]&&geometry.at(-1)[1]===points[0][1])points.shift();geometry.push(...points)}return{fromStationId:stationId(fromStation),toStationId:stationId(toStation),geometry,parts,serviceCombined:parts.length>1,endpointMismatch:parts.some(part=>part.endpointMismatch)}}
 
 function resolvePlayableRoute(route,{direction='forward',service=null}={}){
-  if(route?.countryId==='kr'&&route.geometryStatus==='missing'){
-    const canonical=(route.stations||[]).map((station,index)=>{if(!stationId(station))throw new Error(`${route.id}: missing stop id at order ${index+1}`);return{...station}}),resolved=direction==='reverse'?canonical.slice().reverse():canonical.slice(),requested=new Set(Array.isArray(service?.stops)?service.stops.map(String):[]),stations=service&&service.id!=='local'&&requested.size>=2?resolved.filter(station=>requested.has(stationId(station))):resolved;
-    if(stations.length<2)throw new Error(`${route.id}: resolved route has fewer than 2 stops`);
-    const segments=stations.slice(0,-1).map((station,index)=>({fromStationId:stationId(station),toStationId:stationId(stations[index+1]),geometry:[],sequenceOnly:true}));
-    return{canonicalStations:canonical,stations,segments,geometry:[],canonicalSegments:segments,direction,serviceApplied:false,sequenceOnly:true,renderKey:`${route.id}::${direction}::sequence-only::${stations.map(stationId).join('>')}`}
-  }
-  const canonical=canonicalStations(route),{segments:canonicalSegments}=buildCanonicalSegmentMap(route),resolvedFull=direction==='reverse'?canonical.slice().reverse():canonical.slice(),resolvedFullSegments=direction==='reverse'?canonicalSegments.slice().reverse().map(segment=>reverseSegment(segment)):canonicalSegments.map(segment=>({...segment,geometry:cloneGeometry(segment.geometry),reversed:false}));
-  const fullIds=new Set(canonical.map(stationId)),requestedStops=Array.isArray(service?.stops)?service.stops.map(String):[];
+  const canonical=canonicalStations(route),resolvedFull=direction==='reverse'?canonical.slice().reverse():canonical.slice(),fullIds=new Set(canonical.map(stationId)),requestedStops=Array.isArray(service?.stops)?service.stops.map(String):[];
   for(const stopId of requestedStops)if(!fullIds.has(stopId))throw new Error(`${route.id}/${service.id}: service stop not found ${stopId}`);
-  const applyStopPattern=!!service&&service.id!=='local'&&requestedStops.length>=2&&requestedStops.length<canonical.length;
-  const stopIds=new Set(requestedStops),entries=resolvedFull.map((station,index)=>({station,index})),selectedEntries=applyStopPattern?entries.filter(entry=>stopIds.has(stationId(entry.station))):entries,stations=selectedEntries.map(entry=>entry.station);
-  if(stations.length<2)throw new Error(`${route.id}: resolved route has fewer than 2 stations`);
-  const segments=[];for(let index=0;index<stations.length-1;index++)segments.push(applyStopPattern?combineAlignedSegments(resolvedFull,resolvedFullSegments,selectedEntries[index].index,selectedEntries[index+1].index):resolvedFullSegments[index]);
-  const geometry=[],resolvedStations=stations.map(station=>({...station}));segments.forEach((segment,index)=>{const points=cloneGeometry(segment.geometry);resolvedStations[index].geometryIndex=Math.max(0,geometry.length-1);if(geometry.length&&points.length&&geometry.at(-1)[0]===points[0][0]&&geometry.at(-1)[1]===points[0][1])points.shift();geometry.push(...points)});resolvedStations.at(-1).geometryIndex=Math.max(0,geometry.length-1);
-  return{canonicalStations:canonical.slice(),stations:resolvedStations,segments,geometry,canonicalSegments,direction,serviceApplied:applyStopPattern,renderKey:`${route.id}::${direction}::${service?.id||'all'}::${resolvedStations.map(stationId).join('>')}`};
-}
+  const applyStopPattern=!!service&&service.id!=='local'&&requestedStops.length>=2&&requestedStops.length<canonical.length,stopIds=new Set(requestedStops),entries=resolvedFull.map((station,index)=>({station,index})),selectedEntries=applyStopPattern?entries.filter(entry=>stopIds.has(stationId(entry.station))):entries,selectedStations=selectedEntries.map(entry=>entry.station);
+  if(selectedStations.length<2)throw new Error(`${route.id}: resolved route has fewer than 2 stations`);
 
+  const straightLineFallback=reason=>{
+    const stations=selectedStations.map(station=>({...station})),segments=[],geometry=[];
+    for(let index=0;index<stations.length-1;index++){
+      const from=stations[index],to=stations[index+1],points=[pointOf(from),pointOf(to)];
+      stations[index].geometryIndex=Math.max(0,geometry.length-1);
+      if(!geometry.length)geometry.push(points[0]);
+      const last=geometry.at(-1),next=points[1];if(!last||last[0]!==next[0]||last[1]!==next[1])geometry.push(next);
+      segments.push({fromStationId:stationId(from),toStationId:stationId(to),geometry:points,sequenceOnly:true,fallbackGeometry:true,endpointMismatch:false});
+    }
+    stations.at(-1).geometryIndex=Math.max(0,geometry.length-1);
+    return{canonicalStations:canonical.slice(),stations,segments,geometry,canonicalSegments:segments.slice(),direction,serviceApplied:applyStopPattern,sequenceOnly:true,fallbackGeometry:true,fallbackReason:reason,renderKey:`${route.id}::${direction}::${service?.id||'all'}::fallback::${stations.map(stationId).join('>')}`};
+  };
+
+  if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2)return straightLineFallback('missing railway geometry');
+
+  try{
+    const{segments:canonicalSegments}=buildCanonicalSegmentMap(route),resolvedFullSegments=direction==='reverse'?canonicalSegments.slice().reverse().map(segment=>reverseSegment(segment)):canonicalSegments.map(segment=>({...segment,geometry:cloneGeometry(segment.geometry),reversed:false}));
+    const stations=selectedStations;
+    const segments=[];for(let index=0;index<stations.length-1;index++)segments.push(applyStopPattern?combineAlignedSegments(resolvedFull,resolvedFullSegments,selectedEntries[index].index,selectedEntries[index+1].index):resolvedFullSegments[index]);
+    const geometry=[],resolvedStations=stations.map(station=>({...station}));segments.forEach((segment,index)=>{const points=cloneGeometry(segment.geometry);resolvedStations[index].geometryIndex=Math.max(0,geometry.length-1);if(geometry.length&&points.length&&geometry.at(-1)[0]===points[0][0]&&geometry.at(-1)[1]===points[0][1])points.shift();geometry.push(...points)});resolvedStations.at(-1).geometryIndex=Math.max(0,geometry.length-1);
+    return{canonicalStations:canonical.slice(),stations:resolvedStations,segments,geometry,canonicalSegments,direction,serviceApplied:applyStopPattern,renderKey:`${route.id}::${direction}::${service?.id||'all'}::${resolvedStations.map(stationId).join('>')}`};
+  }catch(error){
+    if(/missing railway (geometry|segment)|Missing railway segment/.test(error?.message||String(error)))return straightLineFallback(error?.message||String(error));
+    throw error;
+  }
+}
 function auditRouteIntegrity(route){
   const errors=[],warnings=[];let forward=null,reverse=null;try{forward=resolvePlayableRoute(route,{direction:'forward'});reverse=resolvePlayableRoute(route,{direction:'reverse'})}catch(error){errors.push(error.message)}
   const expected=route.stations?.map(stationId)||[],actualReverse=reverse?.stations.map(stationId)||[],reverseExpected=expected.slice().reverse();
