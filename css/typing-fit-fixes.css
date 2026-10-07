@@ -79,3 +79,153 @@
   #screen-game.active .station-current{padding:10px 7px;}
   #screen-game.active .station-current .station-sign-input{height:36px!important;}
 }
+
+
+/* v0.8.1 final mobile station-sign layout: keep every station name row visible and separated. */
+@media(max-width:760px){
+  #screen-game.active .station-sign-main{
+    grid-template-columns:minmax(0,1fr)!important;
+    min-height:0!important;
+  }
+  #screen-game.active .station-current{
+    grid-column:1!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:auto auto auto auto auto auto auto auto!important;
+    row-gap:4px!important;
+    align-content:start!important;
+    min-width:0!important;
+    min-height:0!important;
+    padding:14px 12px 18px!important;
+    background:#f8faf8!important;
+    color:#111817!important;
+    overflow:visible!important;
+  }
+  #screen-game.active .station-current #station-context{
+    grid-column:1!important;
+    grid-row:1!important;
+    margin:0 0 2px!important;
+    color:#66716b!important;
+  }
+  #screen-game.active .station-current .station-badge{
+    position:absolute!important;
+    top:10px!important;
+    left:10px!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    width:38px!important;
+    height:38px!important;
+    margin:0!important;
+    border-width:4px!important;
+    z-index:2;
+  }
+  #screen-game.active .station-current h1{
+    display:block!important;
+    grid-column:1!important;
+    grid-row:2!important;
+    width:100%!important;
+    min-height:34px!important;
+    margin:0!important;
+    color:#111817!important;
+    font-size:clamp(27px,8vw,42px)!important;
+    line-height:1.1!important;
+    text-align:center!important;
+    visibility:visible!important;
+    opacity:1!important;
+    transform:none!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+  }
+  #screen-game.active .station-current .prompt-ko{
+    display:block!important;
+    grid-column:1!important;
+    grid-row:3!important;
+    width:100%!important;
+    min-height:24px!important;
+    margin:0!important;
+    color:var(--route-color)!important;
+    font-size:clamp(18px,5.5vw,27px)!important;
+    line-height:1.2!important;
+    text-align:center!important;
+    visibility:visible!important;
+    opacity:1!important;
+    transform:none!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+  }
+  #screen-game.active .station-current .prompt-kana{
+    display:block!important;
+    grid-column:1!important;
+    grid-row:4!important;
+    width:100%!important;
+    margin:0!important;
+    color:#111817!important;
+    font-size:11px!important;
+    line-height:1.2!important;
+    text-align:center!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+  #screen-game.active .station-current .prompt-romaji{
+    display:block!important;
+    grid-column:1!important;
+    grid-row:5!important;
+    width:100%!important;
+    margin:0!important;
+    color:#525d58!important;
+    font-size:9px!important;
+    line-height:1.2!important;
+    text-align:center!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+  #screen-game.active .station-current .ko-progress{
+    grid-column:1!important;
+    grid-row:6!important;
+    width:100%!important;
+    min-height:26px!important;
+    margin:3px 0 0!important;
+    overflow:hidden!important;
+  }
+  #screen-game.active .station-current .station-sign-input{
+    grid-column:1!important;
+    grid-row:7!important;
+    position:relative!important;
+    width:100%!important;
+    height:40px!important;
+    margin:4px 0 0!important;
+    transform:none!important;
+    overflow:visible!important;
+    z-index:5!important;
+  }
+  #screen-game.active .station-current .station-sign-input input{
+    color:#111817!important;
+    -webkit-text-fill-color:#111817!important;
+  }
+  #screen-game.active .station-current .next-station-button{
+    grid-column:1!important;
+    grid-row:8!important;
+    margin:5px auto 0!important;
+  }
+  #screen-game.active .station-neighbor{
+    display:none!important;
+  }
+}
+@media(max-width:520px){
+  #screen-game.active .station-current{
+    padding:10px 9px 14px!important;
+    row-gap:3px!important;
+  }
+  #screen-game.active .station-current h1{
+    min-height:32px!important;
+    font-size:29px!important;
+  }
+  #screen-game.active .station-current .prompt-ko{
+    min-height:23px!important;
+    font-size:21px!important;
+  }
+  #screen-game.active .station-current .station-sign-input{
+    height:38px!important;
+    margin-top:3px!important;
+  }
+}
