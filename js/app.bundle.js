@@ -629,6 +629,17 @@ class Game{
     $('#station-context').textContent='출발역 입력 · 자유주행';$('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
     this.typing.setTarget(this.answerValues(station));this.renderKoreanProgress();if(!this.paused)this.typing.focus()
   }
+  setFreeDriveTransferTarget(routeId,station){
+    if(!this.freeDriveMode||!routeId||!station)return;
+    this.freeDriveAwaitingStart=false;
+    this.freeDriveTarget={kind:'transfer',routeId,station};
+    this.phase='TYPING';this.comboPrefixUnits=0;
+    const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
+    this.applyActiveBrand(station);
+    $('#prompt-main').textContent=station.ja||'';$('#prompt-ko').textContent=station.ko||'';$('#prompt-ko').classList.remove('memory-hidden');$('#prompt-kana').textContent=station.kana||'';$('#prompt-sub').textContent=station.romaji||'';
+    $('#station-context').textContent='환승역 입력 · 자유주행';$('#next-station').textContent=station.ko||'';$('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
+    this.typing.setTarget(this.answerValues(station));this.renderKoreanProgress();this.fitPrompt();if(!this.paused)this.typing.focus()
+  }
   setFreeDriveTypingTarget(edge,station){
     if(!this.freeDriveMode||!edge||!station)return;
     this.freeDriveTarget={to:edge.to,routeId:edge.routeId,station};
@@ -664,12 +675,13 @@ class Game{
   routeIndex(station){return Math.max(0,this.mapRoute.stations.findIndex(item=>item.id===station?.id))}
   currentStation(){return this.sequence?.[this.index]||null}
   targetStation(){return this.boarding?this.sequence?.[0]||null:this.sequence?.[this.index+1]||null}
+  freeDriveTypingStation(){return this.freeDriveTarget?.station||this.freeDriveState?.station||null}
   activeSegment(){return this.boarding?null:this.resolvedRoute?.segments?.[this.index]||null}
   mapOptions(){const current=this.currentStation(),previous=this.sequence[this.index-1],target=this.targetStation();return{mapMode:this.options.mapMode,stationLabel:'ja-ko',mapLabels:this.options.mapLabels,motion:this.options.motion&&!this.options.reducedMotion,serviceStops:[...this.serviceStops],previousRouteIndex:this.routeIndex(previous||current),nextRouteIndex:this.routeIndex(target||current)}}
   syncDebug(){const current=this.currentStation(),target=this.targetStation(),segment=this.activeSegment(),active=this.activeRoute(target||current);globalThis.__TRT_GAME_DEBUG__={phase:this.phase,boarding:this.boarding,currentIndex:this.index,currentStationId:current?.id||null,currentStationKo:current?.ko||null,targetStationId:target?.id||null,targetStationKo:target?.ko||null,currentOperatorId:active?.operatorId||null,currentLineId:active?.id||null,currentPhysicalLineId:active?.id||null,currentServiceJourneyId:this.serviceJourney?.id||null,currentServicePatternId:this.servicePattern?.id||null,currentTrainTypeId:this.trainType?.id||null,destinationStationId:this.destinationStationId||null,currentThroughServiceId:this.servicePattern?.throughServiceId||this.route?.throughService?.id||null,activeSegmentFrom:segment?.fromStationId||null,activeSegmentTo:segment?.toStationId||null,activeSegmentParts:segment?.parts?.length||1,answer:this.typing.targets?.[0]||null,typedStationIds:[...this.typedStationIds],visitedStationIds:[...this.visitedStationIds]};document.body.dataset.gamePhase=this.phase;document.body.dataset.gameBoarding=String(this.boarding);document.body.dataset.currentStationId=current?.id||'';document.body.dataset.targetStationId=target?.id||'';document.body.dataset.currentOperatorId=active?.operatorId||'';document.body.dataset.currentLineId=active?.id||''}
   activeRoute(station){return station?.segment||this.route}
   applyActiveBrand(station){const active=this.activeRoute(station),operator=railDataRepository.getOperator(active.operatorId),line=railDataRepository.getLine(active.id),sign=$('#station-sign'),operatorNames=operator?.names||active.operator,lineNames=line?.names||active.line,operatorKo=operatorNames.ko||'MISSING_KOREAN_NAME',lineKo=lineNames.ko||'MISSING_KOREAN_NAME',template=resolveTransportStopTemplate(active);sign.dataset.signStyle=template.style;sign.dataset.templateFamily=template.family;sign.dataset.templateSource=template.referenceSource;sign.dataset.operatorId=active.operatorId||'';sign.dataset.operatorVariant=String(operatorVariantIndex(active.operatorId));sign.style.setProperty('--route-color',active.lineColor);$('#station-operator-mark').innerHTML=operatorLogoMarkup(active,'station-operator-logo-wrap')||`<span>${escapeHtml(operatorKo)}</span>`;$('#station-line-label').innerHTML=`${lineBadgeMarkup(active,'station-line-symbol')}<b>${escapeHtml(lineKo)}</b>${lineNames.ja?`<small>${escapeHtml(lineNames.ja)}</small>`:''}`;$('#game-operator').textContent=operatorKo;$('#game-line-name').innerHTML=`${lineBadgeMarkup(active,'game-line-symbol')}<span>${escapeHtml(lineKo)}</span>`;$('#station-badge').style.setProperty('--route-color',active.lineColor)}
-  renderKoreanProgress(value='',state='empty'){const target=$('#ko-progress'),model=buildTypingModel(this.targetStation()?.ko||''),typed=Array.from(String(value).normalize('NFC')),letters=Array.from(model.inputText),mismatch=letters.findIndex((letter,index)=>typed[index]!==undefined&&typed[index]!==letter),done=mismatch<0?Math.min(typed.length,letters.length):mismatch;if(target.children.length!==model.cells.length){target.replaceChildren(...model.cells.map(item=>{const cell=document.createElement('span');cell.className=`input-cell ${item.type}`;cell.textContent=item.type==='fixed'?item.character:'';return cell}));this.fitProgressCells(model.cells.length)}let inputIndex=0;[...target.children].forEach((cell,index)=>{const item=model.cells[index];if(item.type==='fixed'){if(cell.textContent!==item.character)cell.textContent=item.character;cell.classList.add('done','fixed');cell.classList.remove('wrong');return}const text=typed[inputIndex]||'';if(cell.textContent!==text)cell.textContent=text;cell.classList.toggle('done',inputIndex<done);cell.classList.toggle('wrong',mismatch===inputIndex&&state==='wrong');inputIndex++})}
+  renderKoreanProgress(value='',state='empty'){const target=$('#ko-progress'),model=buildTypingModel((this.freeDriveMode?this.freeDriveTypingStation():this.targetStation())?.ko||''),typed=Array.from(String(value).normalize('NFC')),letters=Array.from(model.inputText),mismatch=letters.findIndex((letter,index)=>typed[index]!==undefined&&typed[index]!==letter),done=mismatch<0?Math.min(typed.length,letters.length):mismatch;if(target.children.length!==model.cells.length){target.replaceChildren(...model.cells.map(item=>{const cell=document.createElement('span');cell.className=`input-cell ${item.type}`;cell.textContent=item.type==='fixed'?item.character:'';return cell}));this.fitProgressCells(model.cells.length)}let inputIndex=0;[...target.children].forEach((cell,index)=>{const item=model.cells[index];if(item.type==='fixed'){if(cell.textContent!==item.character)cell.textContent=item.character;cell.classList.add('done','fixed');cell.classList.remove('wrong');return}const text=typed[inputIndex]||'';if(cell.textContent!==text)cell.textContent=text;cell.classList.toggle('done',inputIndex<done);cell.classList.toggle('wrong',mismatch===inputIndex&&state==='wrong');inputIndex++})}
   fitProgressCells(count){const target=$('#ko-progress');cancelAnimationFrame(this.cellFitFrame);this.cellFitFrame=requestAnimationFrame(()=>{const width=Math.max(1,target.clientWidth),gap=count>=15?1:count>=10?3:count>=6?5:7,size=Math.max(11,Math.min(32,(width-gap*Math.max(0,count-1))/Math.max(1,count)));target.style.setProperty('--char-count',Math.max(1,count));target.style.setProperty('--cell-gap',`${gap}px`);target.style.setProperty('--cell-size',`${size}px`);target.dataset.lengthClass=count>=15?'compact':count>=10?'small':count>=6?'medium':'large'})}
   fitPrompt(){for(const el of [$('#prompt-main'),$('#prompt-ko')]){el.style.fontSize='';let size=parseFloat(getComputedStyle(el).fontSize);while(el.scrollWidth>el.clientWidth&&size>14){size-=2;el.style.fontSize=`${size}px`}}}
   renderStation(){
@@ -677,7 +689,7 @@ class Game{
     this.applyActiveBrand(station);$('#prompt-main').textContent=station.ja;const memory=this.options.inputMode==='memory';$('#prompt-ko').textContent=memory?'정답 비공개':station.ko;$('#prompt-ko').classList.toggle('memory-hidden',memory);$('#prompt-kana').textContent=hard?'••••••':station.kana;$('#prompt-sub').textContent=hard?`한국어 ${transportStopNoun(this.route)} 이름을 입력하세요`:station.romaji;const badge=$('#station-badge'),officialCode=station.hasOfficialStationCode?station.officialCode:'';badge.textContent=officialCode;badge.hidden=!officialCode;$('#station-context').textContent=this.boarding?`출발 ${transportStopNoun(this.route)} 입력`:`다음 ${transportStopNoun(this.route)} 입력`;$('#previous-station-name').textContent=previous?.ko||'출발지';$('#previous-station-romaji').textContent=previous?`${previous.ja} · ${previous.romaji}`:'ORIGIN';$('#next-station-name').textContent=following?.ko||'종착지';$('#next-station-romaji').textContent=following?`${following.ja} · ${following.romaji}`:'TERMINAL';$('#next-station').textContent=station.ko;$('#error-count').textContent=this.errors;this.fitPrompt();this.renderKoreanProgress();
     this.comboPrefixUnits=0;const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').classList.remove('waiting');$('#next-station-button').hidden=true;$('#input-status').textContent='TYPE';$('#input-status').style.color='';this.typing.setTarget(this.answerValues(station));renderGameMap(this.mapRoute,this.routeIndex(current),this.mapOptions());this.syncDebug();if(!this.paused)this.typing.focus()
   }
-  onInput({state,value,isComposing=false}){if(this.paused||this.phase!=='TYPING')return;const started=performance.now();this.renderKoreanProgress(value,state);const answer=this.answerValues(this.targetStation())[0]||'',target=Array.from(answer),typed=Array.from(value||'');let prefix=0;while(prefix<target.length&&typed[prefix]===target[prefix])prefix++;setTrainTypingProgress(this.boarding?0:target.length?prefix/target.length:0,this.options.motion&&!this.options.reducedMotion);const observed=this.stats.observe({value,state,isComposing});this.errors=this.stats.mistakeUnits;const targetJamo=Array.from(answer.normalize('NFD')),typedJamo=Array.from(String(value||'').normalize('NFD'));let jamoPrefix=0;while(jamoPrefix<targetJamo.length&&typedJamo[jamoPrefix]===targetJamo[jamoPrefix])jamoPrefix++;if(observed.mistakeAdded){this.combo=0;this.comboPrefixUnits=jamoPrefix;$('#error-count').textContent=this.errors}else if(state!=='wrong'&&jamoPrefix>this.comboPrefixUnits){this.combo+=jamoPrefix-this.comboPrefixUnits;this.comboPrefixUnits=jamoPrefix;this.maxCombo=Math.max(this.maxCombo,this.combo)}$('#input-status').textContent=state==='wrong'?'CHECK':(state==='typing'||state==='composing')?`TYPING ${Math.round(prefix/Math.max(1,target.length)*100)}%`:'TYPE';$('#input-status').style.color=state==='wrong'?'#d93f3f':'';document.body.dataset.typingUpdateMs=(performance.now()-started).toFixed(2);this.updateHud()}
+  onInput({state,value,isComposing=false}){if(this.paused||this.phase!=='TYPING')return;const started=performance.now();this.renderKoreanProgress(value,state);const answer=this.answerValues(this.freeDriveMode?this.freeDriveTypingStation():this.targetStation())[0]||'',target=Array.from(answer),typed=Array.from(value||'');let prefix=0;while(prefix<target.length&&typed[prefix]===target[prefix])prefix++;setTrainTypingProgress(this.boarding?0:target.length?prefix/target.length:0,this.options.motion&&!this.options.reducedMotion);const observed=this.stats.observe({value,state,isComposing});this.errors=this.stats.mistakeUnits;const targetJamo=Array.from(answer.normalize('NFD')),typedJamo=Array.from(String(value||'').normalize('NFD'));let jamoPrefix=0;while(jamoPrefix<targetJamo.length&&typedJamo[jamoPrefix]===targetJamo[jamoPrefix])jamoPrefix++;if(observed.mistakeAdded){this.combo=0;this.comboPrefixUnits=jamoPrefix;$('#error-count').textContent=this.errors}else if(state!=='wrong'&&jamoPrefix>this.comboPrefixUnits){this.combo+=jamoPrefix-this.comboPrefixUnits;this.comboPrefixUnits=jamoPrefix;this.maxCombo=Math.max(this.maxCombo,this.combo)}$('#input-status').textContent=state==='wrong'?'CHECK':(state==='typing'||state==='composing')?`TYPING ${Math.round(prefix/Math.max(1,target.length)*100)}%`:'TYPE';$('#input-status').style.color=state==='wrong'?'#d93f3f':'';document.body.dataset.typingUpdateMs=(performance.now()-started).toFixed(2);this.updateHud()}
   correct(){
     if(this.freeDriveMode){
       if(this.paused||this.finished||this.phase!=='TYPING'||!this.freeDriveTarget)return;
@@ -687,6 +699,16 @@ class Game{
         const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),edge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state?.edges?.[0];
         if(edge){const station=edge.route?.stations?.[edge.index]||null;if(station){$('#station-context').textContent='다음역 입력 · 자유주행';this.setFreeDriveTypingTarget(edge,station);return}}
         toast('이 역에서 이어지는 다음 역이 없습니다.');return
+      }
+      if(target.kind==='transfer'){
+        const state=freeDrive?.snapshot?.()||this.freeDriveState;
+        const edges=(state?.edges||[]).filter(edge=>edge.routeId===target.routeId);
+        const edge=edges.find(edge=>edge.direction>0)||edges.find(edge=>edge.direction<0)||edges[0];
+        if(edge){
+          const station=edge.route?.stations?.[edge.index]||freeDrive?.graph?.get(edge.to)?.station||null;
+          if(station){this.setFreeDriveTypingTarget(edge,station);return}
+        }
+        toast('환승한 노선에서 이어지는 다음 역이 없습니다.');return
       }
       const moved=this.onFreeDriveMove?.(target.to,target.routeId);if(!moved){toast('다음 역으로 이동하지 못했습니다.');this.setFreeDriveTypingTarget(target,target.station)}return
     }
@@ -824,6 +846,15 @@ class FreeDrive{
   move(encoded){
     let token;try{token=JSON.parse(encoded)}catch{return false}
     return this.moveTo(token?.[0],token?.[1])
+  }
+  selectRoute(routeId,{emit=false}={}){
+    if(!routeId)return false;
+    const node=this.current();
+    if(!node?.routeIds?.has(routeId))return false;
+    this.currentRouteId=routeId;
+    this.renderMap();
+    if(emit)this.emit();
+    return true
   }
   moveTo(to,routeId){
     if(!to||!routeId)return false;
@@ -1372,7 +1403,20 @@ function renderGameFreeDriveOptions(state){
   tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${index===0?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
   const edges=(state.edges||[]).filter(edge=>edge.routeId===activeId);
   const typingEdge=edges.find(edge=>edge.direction>0)||edges.find(edge=>edge.direction<0)||edges[0];
-  if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=freeDrive?.graph?.get(typingEdge.to)?.station;if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
+  if(!game?.freeDriveAwaitingStart){
+    if(activeId!==state.routeId){
+      freeDrive?.selectRoute?.(activeId);
+      const activeRoute=active.route||state.route,currentKey=freeDrive?.currentKey;
+      const stationIndex=Math.max(0,activeRoute?.stations?.findIndex(station=>freeDriveStationKey(station)===currentKey)??0);
+      const currentStation=activeRoute?.stations?.[stationIndex]||state.station;
+      const switchedState={...state,route:activeRoute,routeId:activeId,station:currentStation,stationIndex};
+      game?.renderFreeDriveState?.(switchedState);
+      game?.setFreeDriveTransferTarget?.(activeId,currentStation);
+    }else if(typingEdge){
+      const typingStation=typingEdge.route?.stations?.[typingEdge.index]||freeDrive?.graph?.get(typingEdge.to)?.station;
+      if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)
+    }
+  }
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
   target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=freeDrive?.graph?.get(edge.to)?.station;return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
 }
@@ -1391,7 +1435,7 @@ function renderCustomLibrary(){const list=storage.routes(),target=$('#custom-rou
 function showResult(result){const isRecord=storage.saveResult(result);$('#result-operator-logo').innerHTML=operatorLogoMarkup(result.route,'result-operator-logo-asset');$('#result-line-badge').innerHTML=lineBadgeMarkup(result.route);$('#result-route').textContent=`${result.route.line.ja} · ${result.route.line.ko} · ${result.route.operator.ko}`;$('#result-time').textContent=formatTime(result.elapsed);$('#result-accuracy').textContent=`${result.accuracy.toFixed(1)}%`;$('#result-cpm').textContent=`${result.cpm} 타/min`;$('#result-errors').textContent=result.errors;$('#result-combo').textContent=result.maxCombo;$('#result-wpm').textContent=result.wpm;$('#record-notice').hidden=!isRecord;go('result')}
 const game=new Game({onFinish:showResult,onQuit:()=>go('select'),onFreeDriveMove:(to,routeId)=>freeDrive?.moveTo(to,routeId)});
 const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomLibrary()},onPlay:openSetup,onSaved:()=>go('custom-list')});
-freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
+freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){game.renderFreeDriveState(state);const tabs=freeDriveRouteTabs(state),activeIndex=tabs.findIndex(item=>item.id===state.routeId);freeDriveTabIndex=activeIndex>=0?activeIndex:0;renderGameFreeDriveOptions(state)}}});
 $('#free-drive-custom')?.addEventListener('click',()=>{const route=editor.route;if(!route?.stations||route.stations.length<2)return toast('자유주행에는 역이 2개 이상 필요합니다.');startFreeDrive(route)});
 let currentScreen=document.body.dataset.currentScreen||'home';
 window.addEventListener('trt:screenchange',e=>{const name=e.detail.name;if(currentScreen==='game'&&name!=='game'){game?.stop(false);const controls=$('#game-free-drive-options'),tabs=$('#game-free-drive-tabs');if(controls)controls.hidden=true;if(tabs)tabs.hidden=true}currentScreen=name;if(name==='rail-map')renderRoutes();if(name==='records')renderStats();if(name==='home'){renderHome();renderHomeNetwork()}if(name==='free-drive')freeDrive?.render?.();if(name==='custom-list')renderCustomLibrary();if(name==='custom-editor')editor.activate()});
