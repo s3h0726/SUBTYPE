@@ -132,8 +132,6 @@ export class FreeDrive{
   }
   renderMap(){
     if(!this.canvas||!this.routes.length)return;
-    const focus=this.startRoute&&boundsOfRoutes([this.startRoute]);
-    const margin=focus?{minLat:focus.minLat-.12,maxLat:focus.maxLat+.12,minLon:focus.minLon-.16,maxLon:focus.maxLon+.16}:null;
-    drawNetworkCanvas(this.canvas,this.routes,{bounds:margin,alpha:.13,transferNodes:this.graph,currentKey:this.currentKey,currentRouteId:this.currentRouteId});
+    drawNetworkCanvas(this.canvas,this.routes,{bounds:boundsOfRoutes(this.routes),alpha:.13,transferNodes:this.graph,currentKey:this.currentKey,currentRouteId:this.currentRouteId});
   }
 }
