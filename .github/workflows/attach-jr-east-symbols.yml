@@ -1,0 +1,39 @@
+name: Attach JR East line symbols
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/attach-jr-east-symbols.js'
+      - '.github/workflows/attach-jr-east-symbols.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  attach:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Attach JR East symbols
+        run: node tools/attach-jr-east-symbols.js
+      - name: Rebuild
+        run: node tools/build-static.js
+      - name: Commit generated assets
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lines/jr-east/ data/generated/asset-registry.json js/ index.html
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'assets: wire JR East JT JH JU JJ symbols'
+            git push origin HEAD:main
+          fi
