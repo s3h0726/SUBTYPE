@@ -97,3 +97,46 @@
     margin-bottom:-8px!important;
   }
 }
+
+
+/* Mobile: keep the typing field at the very top of the station panel so the on-screen keyboard cannot cover it. */
+@media(max-width:760px){
+  #screen-game.active .station-sign-hud{
+    align-self:start;
+    padding-top:4px!important;
+    padding-bottom:8px!important;
+  }
+  #screen-game.active .station-current{
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-start!important;
+    min-height:0!important;
+    padding:6px 7px!important;
+  }
+  #screen-game.active .station-current .station-sign-input{
+    order:-10!important;
+    position:relative!important;
+    top:auto!important;
+    transform:none!important;
+    width:min(96%,700px)!important;
+    height:40px!important;
+    margin:0 auto 8px!important;
+  }
+  #screen-game.active .station-current #station-context{order:0;}
+  #screen-game.active .station-current #station-badge{order:1;}
+  #screen-game.active .station-current #prompt-main{order:2;}
+  #screen-game.active .station-current #prompt-ko{order:3;}
+  #screen-game.active .station-current #prompt-kana{order:4;}
+  #screen-game.active .station-current #prompt-sub{order:5;}
+  #screen-game.active .station-current #ko-progress{order:6;}
+  #screen-game.active .station-current .next-station-button{order:7;}
+}
+@media(max-width:520px){
+  #screen-game.active .station-sign-hud{padding-top:2px!important;padding-bottom:6px!important;}
+  #screen-game.active .station-current{padding:4px 6px!important;}
+  #screen-game.active .station-current .station-sign-input{
+    width:100%!important;
+    height:40px!important;
+    margin-bottom:6px!important;
+  }
+}
