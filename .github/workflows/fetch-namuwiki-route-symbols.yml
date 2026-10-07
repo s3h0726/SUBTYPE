@@ -48,11 +48,9 @@ jobs:
           curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Toei%20Shinjuku%20line%20symbol.svg' -o data/lines/toei/shinjuku-line/symbol.svg
           curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Toei%20Oedo%20line%20symbol.svg' -o data/lines/toei/oedo-line/symbol.svg
 
-          # Sendai: never regenerate guessed/reconstructed symbols.
-          # NamuWiki uses SM-N.svg / SM-T.svg. Until the exact original files are available,
-          # remove guessed local SVGs so the UI shows only the verified N/T code badge.
-          rm -f data/lines/sendaishikotsukyoku/sendaishieichikatetsunambokusen/symbol.svg
-          rm -f data/lines/sendaishikotsukyoku/sendaishieichikatetsutozaisen/symbol.svg
+          # Sendai: keep the verified SM-N / SM-T identity assets already stored in the repository.
+          test -s data/lines/sendaishikotsukyoku/sendaishieichikatetsunambokusen/symbol.svg
+          test -s data/lines/sendaishikotsukyoku/sendaishieichikatetsutozaisen/symbol.svg
 
           for f in \
             data/lines/tokyo-metro/ginza/symbol.svg \
@@ -68,7 +66,9 @@ jobs:
             data/lines/toei/asakusa-line/symbol.svg \
             data/lines/toei/mita-line/symbol.svg \
             data/lines/toei/shinjuku-line/symbol.svg \
-            data/lines/toei/oedo-line/symbol.svg; do
+            data/lines/toei/oedo-line/symbol.svg \
+            data/lines/sendaishikotsukyoku/sendaishieichikatetsunambokusen/symbol.svg \
+            data/lines/sendaishikotsukyoku/sendaishieichikatetsutozaisen/symbol.svg; do
             test -s "$f"
             grep -q '<svg' "$f"
           done
