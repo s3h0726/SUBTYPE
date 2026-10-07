@@ -6,6 +6,7 @@ on:
     paths:
       - 'js/free-drive.js'
       - 'js/app.js'
+      - 'js/route-editor.js'
       - 'js/bootstrap.js'
       - 'css/free-drive.css'
       - 'index.html'
@@ -30,8 +31,10 @@ jobs:
         run: |
           cp js/free-drive.js /tmp/free-drive.mjs
           cp js/app.js /tmp/app.mjs
+          cp js/route-editor.js /tmp/route-editor.mjs
           node --check /tmp/free-drive.mjs
           node --check /tmp/app.mjs
+          node --check /tmp/route-editor.mjs
           node --check js/bootstrap.js
       - name: Rebuild static bundle
         run: node tools/build-static.js
