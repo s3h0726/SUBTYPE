@@ -48,22 +48,27 @@ jobs:
           curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Toei%20Shinjuku%20line%20symbol.svg' -o data/lines/toei/shinjuku-line/symbol.svg
           curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Toei%20Oedo%20line%20symbol.svg' -o data/lines/toei/oedo-line/symbol.svg
 
-          # Sendai: reproduce NamuWiki SM-N.svg / SM-T.svg route marks with NamuWiki colors.
-          cat > data/lines/sendaishikotsukyoku/sendaishieichikatetsunambokusen/symbol.svg <<'SVG'
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Sendai Subway Namboku Line N">
-            <circle cx="50" cy="50" r="44" fill="#fff" stroke="#317c66" stroke-width="10"/>
-            <text x="50" y="66" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="700" fill="#317c66">N</text>
-          </svg>
-          SVG
+          # Sendai: never regenerate guessed/reconstructed symbols.
+          # NamuWiki uses SM-N.svg / SM-T.svg. Until the exact original files are available,
+          # remove guessed local SVGs so the UI shows only the verified N/T code badge.
+          rm -f data/lines/sendaishikotsukyoku/sendaishieichikatetsunambokusen/symbol.svg
+          rm -f data/lines/sendaishikotsukyoku/sendaishieichikatetsutozaisen/symbol.svg
 
-          cat > data/lines/sendaishikotsukyoku/sendaishieichikatetsutozaisen/symbol.svg <<'SVG'
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Sendai Subway Tozai Line T">
-            <circle cx="50" cy="50" r="44" fill="#fff" stroke="#00b1dd" stroke-width="10"/>
-            <text x="50" y="66" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="700" fill="#00b1dd">T</text>
-          </svg>
-          SVG
-
-          for f in             data/lines/toei/asakusa-line/symbol.svg             data/lines/toei/mita-line/symbol.svg             data/lines/toei/shinjuku-line/symbol.svg             data/lines/toei/oedo-line/symbol.svg             data/lines/sendaishikotsukyoku/sendaishieichikatetsunambokusen/symbol.svg             data/lines/sendaishikotsukyoku/sendaishieichikatetsutozaisen/symbol.svg; do
+          for f in \
+            data/lines/tokyo-metro/ginza/symbol.svg \
+            data/lines/tokyo-metro/marunouchi-line/symbol.svg \
+            data/lines/tokyo-metro/marunouchi-honancho-branch/symbol.svg \
+            data/lines/tokyo-metro/hibiya-line/symbol.svg \
+            data/lines/tokyo-metro/tozai-line/symbol.svg \
+            data/lines/tokyo-metro/chiyoda-line/symbol.svg \
+            data/lines/tokyo-metro/yurakucho-line/symbol.svg \
+            data/lines/tokyo-metro/hanzomon-line/symbol.svg \
+            data/lines/tokyo-metro/namboku-line/symbol.svg \
+            data/lines/tokyo-metro/fukutoshin-line/symbol.svg \
+            data/lines/toei/asakusa-line/symbol.svg \
+            data/lines/toei/mita-line/symbol.svg \
+            data/lines/toei/shinjuku-line/symbol.svg \
+            data/lines/toei/oedo-line/symbol.svg; do
             test -s "$f"
             grep -q '<svg' "$f"
           done
