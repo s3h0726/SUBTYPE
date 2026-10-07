@@ -1,0 +1,77 @@
+name: Fetch NamuWiki route symbols
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/apply-namuwiki-route-symbols.js'
+      - '.github/workflows/fetch-namuwiki-route-symbols.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Apply NamuWiki symbol metadata
+        run: node tools/apply-namuwiki-route-symbols.js
+
+      - name: Fetch NamuWiki-mirror symbols
+        shell: bash
+        run: |
+          set -euo pipefail
+          fetch_namu() {
+            local url="$1"
+            local out="$2"
+            mkdir -p "$(dirname "$out")"
+            curl -L --fail --retry 5 --retry-delay 2 --connect-timeout 15 "$url" -o "$out"
+          }
+
+          # Tokyo Metro — exact files used by NamuWiki
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc66aef589213b371d58b7e450ee78acf466f84a0cb79f2afbd63c42ddca5ae0c51' data/lines/tokyo-metro/ginza/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc647e292604b92e368599b5de39deb5932aabe0ee6b339703b797e66998cf310c30c76380f4683c26bcbf5ba901cd0c84f' data/lines/tokyo-metro/marunouchi-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc630a8fdb7357b7718704ce7d73cee4cdb53a210829732fa12db915e12e6c61ec5' data/lines/tokyo-metro/hibiya-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc6fd4c147c613bbee2759d5f8a1556ab59ab3aee120426abfb3f1b82c16fb8c665' data/lines/tokyo-metro/tozai-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc6e9b21d376fdb883a0d986aa1105e4879407037331c5ccd77f7d603287c15a58f' data/lines/tokyo-metro/chiyoda-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc63dc127a4f86b24708b10fdc538f8a952556f3d3e29a5ec0b0f814be9ec902b4aedc7cffd467e92cf454528a7f88b5a70' data/lines/tokyo-metro/yurakucho-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc6d94a2ddbc3dce500e34c9fcc573051b7235a202c45b30d1df06560c1a46098f1' data/lines/tokyo-metro/hanzomon-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc60b472885fa8c0285fa0ff976582b14e29e90a7992a182fce25e6cc84d98217a4' data/lines/tokyo-metro/namboku-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/858150a473cd6983d6f65df94832fdc6acc7521fc19c3ec2048c0fe774dc07ba5d51b5f09182127999f8a831f57484486989151b2189da2cd64452fb3136ff55' data/lines/tokyo-metro/fukutoshin-line/symbol.svg
+
+          # Toei — exact files used by NamuWiki
+          fetch_namu 'https://file.namu.moe/file/3d9e64f7135fec6a47764396b552fae63d7d32d9062d02d8e0f0723cbca149f4400275c1f94f8347c5bdfc9b6a48dbcf' data/lines/toei/asakusa-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/3d9e64f7135fec6a47764396b552fae603b6282cdb8660fc2f65c63e928fa5e4d7b2198cda7524486858c538a8488fda' data/lines/toei/mita-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/3d9e64f7135fec6a47764396b552fae65f3c2338c3dfd651096556a48a77c7c28c9dfc75ba504e354ffebd8e9a2ad18d' data/lines/toei/shinjuku-line/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/3d9e64f7135fec6a47764396b552fae6b6c540a85f1d9caf5545441edbfe9548232675764257113c69a85192f662ebf0' data/lines/toei/oedo-line/symbol.svg
+
+          # Sendai Subway — exact NamuWiki files SM-N / SM-T
+          fetch_namu 'https://file.namu.moe/file/8c81f83872fe27c5970eb03f6b5fa49b' data/lines/sendaishikotsukyoku/sendaishieichikatetsunambokusen/symbol.svg
+          fetch_namu 'https://file.namu.moe/file/c11887e17d6fea3da406ba49cb01bb74' data/lines/sendaishikotsukyoku/sendaishieichikatetsutozaisen/symbol.svg
+
+      - name: Rebuild
+        run: node tools/build-static.js
+
+      - name: Validate
+        run: node tools/validate-data.js
+
+      - name: Commit NamuWiki symbols
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lines/tokyo-metro/ data/lines/toei/ data/lines/sendaishikotsukyoku/ data/generated/asset-registry.json js/ index.html
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'assets: use NamuWiki route symbols for metro lines'
+            git push origin HEAD:main
+          fi
