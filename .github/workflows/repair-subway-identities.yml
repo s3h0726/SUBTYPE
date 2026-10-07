@@ -1,0 +1,50 @@
+name: Repair subway identities
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/line-badges.json'
+      - 'data/lines/sendaishikotsukyoku/**'
+      - 'js/line-badge.js'
+      - 'js/app.js'
+      - 'css/asset-runtime.css'
+      - 'index.html'
+      - '.github/workflows/repair-subway-identities.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: |
+          cp js/app.js /tmp/app.mjs
+          cp js/line-badge.js /tmp/line-badge.mjs
+          node --check /tmp/app.mjs
+          node --check /tmp/line-badge.mjs
+      - name: Rebuild static data
+        run: node tools/build-static.js
+      - name: Validate data
+        run: node tools/validate-data.js
+      - name: Commit rebuilt files
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/ index.html
+          if git diff --cached --quiet; then
+            echo 'No generated changes.'
+          else
+            git commit -m 'build: repair subway operator and line identities'
+            git push origin HEAD:main
+          fi
