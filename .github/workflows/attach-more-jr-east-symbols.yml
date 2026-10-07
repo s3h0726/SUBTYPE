@@ -1,0 +1,55 @@
+name: Attach more JR East line symbols
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/attach-more-jr-east-symbols.js'
+      - '.github/workflows/attach-more-jr-east-symbols.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  attach:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch JR East symbols
+        run: |
+          set -euo pipefail
+          fetch_symbol() {
+            local code="$1"
+            local out="$2"
+            curl -L --fail --retry 3               "https://commons.wikimedia.org/wiki/Special:Redirect/file/JR%20${code}%20line%20symbol.svg"               -o "$out"
+          }
+          fetch_symbol JN data/lines/jr-east/nambusen/symbol.svg
+          fetch_symbol JM data/lines/jr-east/musashinosen/symbol.svg
+          fetch_symbol JO data/lines/jr-east/yokosuka-line/symbol.svg
+          cp data/lines/jr-east/yokosuka-line/symbol.svg data/lines/jr-east/sobuhonsen/symbol.svg
+          fetch_symbol JA data/lines/jr-east/saikyo-line/symbol.svg
+          fetch_symbol JS data/lines/jr-east/shonan-shinjuku-line/symbol.svg
+      - name: Update line metadata
+        run: node tools/attach-more-jr-east-symbols.js
+      - name: Rebuild static data
+        run: node tools/build-static.js
+      - name: Validate data
+        run: node tools/validate-data.js
+      - name: Commit generated assets
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lines/jr-east/ data/generated/asset-registry.json js/ index.html
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'assets: add JR East JN JM JO JA JS symbols'
+            git push origin HEAD:main
+          fi
