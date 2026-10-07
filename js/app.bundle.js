@@ -639,7 +639,7 @@ class Game{
   }
   renderFreeDriveState(state){
     if(!state?.route||!state?.station)return;
-    const route=railDataRepository.resolveRoute(state.route),isInitial=this.freeDriveAwaitingStart&&Number(state.historyLength||1)===1,station=isInitial?(route.stations?.[0]||state.station):state.station,index=isInitial?0:Math.max(0,state.stationIndex||0);
+    const route=railDataRepository.resolveRoute(state.route),station=state.station,index=Math.max(0,state.stationIndex||0);
     this.route=route;this.freeDriveState=state;this.options={mode:'free-drive',mapMode:'geographic',mapLabels:'normal',motion:true,reducedMotion:false};this.service={id:'free-drive',nameJa:'自由走行',nameKo:'자유주행',nameEn:'Free Drive',stops:route.stations.map(item=>item.id)};
     try{this.resolvedRoute=resolvePlayableRoute(route,{direction:'forward',service:this.service})}catch{this.resolvedRoute={stations:route.stations,geometry:route.geometry||[],segments:route.directedSegments||[]}}
     this.serviceStations=this.resolvedRoute.stations||route.stations;this.serviceStops=new Set(this.serviceStations.map(item=>item.id));this.mapRoute={...route,stations:this.serviceStations,geometry:this.resolvedRoute.geometry||route.geometry||[],directedSegments:this.resolvedRoute.segments||route.directedSegments||[],renderKey:`${route.id}::free-drive-${Date.now()}`};this.sequence=this.serviceStations;this.index=Math.max(0,Math.min(index,this.sequence.length-1));this.boarding=false;
@@ -663,7 +663,7 @@ class Game{
   answerValues(station){return[station.ko,...(station.koAliases||[])].map(value=>buildTypingModel(value).inputText)}
   routeIndex(station){return Math.max(0,this.mapRoute.stations.findIndex(item=>item.id===station?.id))}
   currentStation(){return this.sequence?.[this.index]||null}
-  targetStation(){if(this.freeDriveMode)return this.freeDriveTarget?.station||this.freeDriveState?.station||null;return this.boarding?this.sequence?.[0]||null:this.sequence?.[this.index+1]||null}
+  targetStation(){return this.boarding?this.sequence?.[0]||null:this.sequence?.[this.index+1]||null}
   activeSegment(){return this.boarding?null:this.resolvedRoute?.segments?.[this.index]||null}
   mapOptions(){const current=this.currentStation(),previous=this.sequence[this.index-1],target=this.targetStation();return{mapMode:this.options.mapMode,stationLabel:'ja-ko',mapLabels:this.options.mapLabels,motion:this.options.motion&&!this.options.reducedMotion,serviceStops:[...this.serviceStops],previousRouteIndex:this.routeIndex(previous||current),nextRouteIndex:this.routeIndex(target||current)}}
   syncDebug(){const current=this.currentStation(),target=this.targetStation(),segment=this.activeSegment(),active=this.activeRoute(target||current);globalThis.__TRT_GAME_DEBUG__={phase:this.phase,boarding:this.boarding,currentIndex:this.index,currentStationId:current?.id||null,currentStationKo:current?.ko||null,targetStationId:target?.id||null,targetStationKo:target?.ko||null,currentOperatorId:active?.operatorId||null,currentLineId:active?.id||null,currentPhysicalLineId:active?.id||null,currentServiceJourneyId:this.serviceJourney?.id||null,currentServicePatternId:this.servicePattern?.id||null,currentTrainTypeId:this.trainType?.id||null,destinationStationId:this.destinationStationId||null,currentThroughServiceId:this.servicePattern?.throughServiceId||this.route?.throughService?.id||null,activeSegmentFrom:segment?.fromStationId||null,activeSegmentTo:segment?.toStationId||null,activeSegmentParts:segment?.parts?.length||1,answer:this.typing.targets?.[0]||null,typedStationIds:[...this.typedStationIds],visitedStationIds:[...this.visitedStationIds]};document.body.dataset.gamePhase=this.phase;document.body.dataset.gameBoarding=String(this.boarding);document.body.dataset.currentStationId=current?.id||'';document.body.dataset.targetStationId=target?.id||'';document.body.dataset.currentOperatorId=active?.operatorId||'';document.body.dataset.currentLineId=active?.id||''}
@@ -806,10 +806,10 @@ class FreeDrive{
     }
     this.renderMap();
   }
-  start(route){
+  start(route,index=0){
     if(!route?.stations?.length)return false;
     this.startRoute=route;this.currentRouteId=route.id;this.history=[];this.populateStartStations(route);
-    this.restartAt(0);return true;
+    this.restartAt(Math.max(0,Math.min(index,route.stations.length-1)));return true;
   }
   populateStartStations(route){
     const select=$('#free-drive-start-station');if(!select)return;
@@ -836,9 +836,8 @@ class FreeDrive{
   snapshot(){
     const node=this.current(),route=this.routes.find(r=>r.id===this.currentRouteId)||this.startRoute;
     if(!node||!route)return null;
-    const foundIndex=route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey),stationIndex=foundIndex>=0?foundIndex:0;
-    const station=route.stations[stationIndex]||node.station;
-    return{node,station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
+    const stationIndex=Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
+    return{node,station:node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
   }
   emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
   edges(){
@@ -1384,7 +1383,7 @@ async function startFreeDrive(route){
   if(!target?.stations?.length)return toast('자유주행에 사용할 역 데이터가 없는 노선입니다.');
   freeDrive?.setNetwork(freeDriveNetworkRoutes());
   if(!freeDrive?.start(target))return toast('자유주행을 시작하지 못했습니다.');
-  let state=freeDrive.snapshot();if(state){state={...state,route:target,routeId:target.id,station:target.stations[0],stationIndex:0,historyLength:1}}if(!state||!game.startFreeDrive(state))return toast('자유주행 화면을 준비하지 못했습니다.');
+  const state=freeDrive.snapshot();if(!state||!game.startFreeDrive(state))return toast('자유주행 화면을 준비하지 못했습니다.');
   freeDriveTabIndex=0;renderGameFreeDriveOptions(state);go('game');
 }
 function renderHome(){const recordRouteId=record=>canonicalRouteId(record.lineId||record.routeId);const recent=storage.recent().filter(record=>routes.some(route=>route.id===recordRouteId(record)));document.querySelectorAll('#feature-viewport [data-feature-route]').forEach((button,index)=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),card=button.closest('article'),slot=card?.querySelector('.feature-number');if(!route||!card)return;if(slot){slot.innerHTML=lineBadgeMarkup(route);slot.hidden=!slot.innerHTML}const operator=card.querySelector('[data-feature-operator]'),lineKo=card.querySelector('[data-feature-line-ko]'),lineSecondary=card.querySelector('[data-feature-line-secondary]'),stations=card.querySelector('[data-feature-stations]');if(operator)operator.innerHTML=`${lineSurfaceOperatorLogo(route,'feature-operator-logo')}<span>${escapeHtml(route.operator.ko)} · ${route.loop?'순환 운행':'도심 운행'}</span>`;if(lineKo)lineKo.textContent=route.line.ko;if(lineSecondary)lineSecondary.textContent=`${route.line.ja} · ${route.line.en}`;if(stations)stations.textContent=`${route.stations.length}개 역`;const dot=$$('[data-slide-to]')[index];if(dot)dot.setAttribute('aria-label',route.line.ko)});$('#recent-list').innerHTML=recent.length?recent.slice(0,3).map(record=>{const routeId=recordRouteId(record),route=routes.find(item=>item.id===routeId),name=route?.line.ko||record.routeName||routeId;return`<button class="recent-chip" data-feature-route="${escapeHtml(routeId)}" style="--route-color:${record.color}">${route?lineSurfaceOperatorLogo(route,'recent-operator-logo')+lineBadgeMarkup(route):''}<span><b>${escapeHtml(name)}</b><small>${formatTime(record.elapsed)} · ${record.accuracy.toFixed(1)}%</small></span></button>`}).join(''):'<p class="muted">아직 운행 기록이 없습니다.</p>'}
