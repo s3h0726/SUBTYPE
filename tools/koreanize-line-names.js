@@ -22,7 +22,7 @@ const fixes={
 'data/lines/jr-central/idasen-tenryukyo-tatsuno/line.json':'이다선(텐류쿄~다쓰노)',
 'data/lines/jr-central/idasen-toyohashi-tenryukyo/line.json':'이다선(도요하시~텐류쿄)',
 'data/lines/jr-central/meishosen/line.json':'메이쇼선',
-'data/lines/jr-east/chuohonsen-tokyo-shiojiri-2/line.json':'주오 본선(도쿄~시오지리)',
+'data/lines/jr-east/chuohonsen-tokyo-shiojiri-2/line.json':'츄오 본선(도쿄~시오지리)',
 'data/lines/jr-east/doragonreruofunatosen/line.json':'드래곤 레일 오후나토선',
 'data/lines/jr-east/hachikosen-hachioji-komagawa-2/line.json':'하치코선(하치오지~고마가와)',
 'data/lines/jr-east/hachikosen-komagawa-takasaki/line.json':'하치코선(고마가와~다카사키)',
@@ -111,7 +111,7 @@ const fixes={
 };
 
 const jrSegmentFixes={
-'data/lines/jr-central/chuohonsen-nagoya-shiojiri/line.json':'주오 본선(나고야~시오지리)',
+'data/lines/jr-central/chuohonsen-nagoya-shiojiri/line.json':'츄오 본선(나고야~시오지리)',
 'data/lines/jr-central/idasen-tenryukyo-tatsuno/line.json':'이다선(텐류쿄~다쓰노)',
 'data/lines/jr-central/idasen-toyohashi-tenryukyo/line.json':'이다선(도요하시~텐류쿄)',
 'data/lines/jr-central/kansaihonsen-nagoya-kameyama/line.json':'간사이 본선(나고야~가메야마)',
@@ -120,8 +120,8 @@ const jrSegmentFixes={
 'data/lines/jr-central/tokaidohonsen-hamamatsu-gifu/line.json':'도카이도 본선(하마마쓰~기후)',
 
 'data/lines/jr-east/ban-etsusaisen-koriyama-aizuwakamatsu/line.json':'반에쓰사이선(고리야마~아이즈와카마쓰)',
-'data/lines/jr-east/chuohonsen-tokyo-shiojiri/line.json':'주오 본선(도쿄~시오지리)',
-'data/lines/jr-east/chuohonsen-tokyo-shiojiri-2/line.json':'주오 본선(도쿄~시오지리)',
+'data/lines/jr-east/chuohonsen-tokyo-shiojiri/line.json':'츄오 본선(도쿄~시오지리)',
+'data/lines/jr-east/chuohonsen-tokyo-shiojiri-2/line.json':'츄오 본선(도쿄~시오지리)',
 'data/lines/jr-east/hachikosen-hachioji-komagawa/line.json':'하치코선(하치오지~고마가와)',
 'data/lines/jr-east/hachikosen-hachioji-komagawa-2/line.json':'하치코선(하치오지~고마가와)',
 'data/lines/jr-east/hachikosen-komagawa-takasaki/line.json':'하치코선(고마가와~다카사키)',
@@ -264,8 +264,16 @@ const jrFormalNameFixes={
 'data/lines/jr-west/yamaguchisen/line.json':'야마구치선'
 };
 
+const jrChuoFixes={
+'data/lines/jr-east/chuo-line-rapid/line.json':'츄오선(쾌속)',
+'data/lines/jr-east/chuo-sobu/line.json':'츄오·소부선',
+'data/lines/jr-east/chuohonsen-tokyo-shiojiri/line.json':'츄오 본선(도쿄~시오지리)',
+'data/lines/jr-east/chuohonsen-tokyo-shiojiri-2/line.json':'츄오 본선(도쿄~시오지리)',
+'data/lines/jr-central/chuohonsen-nagoya-shiojiri/line.json':'츄오 본선(나고야~시오지리)'
+};
+
 let changed=0,missing=[];
-for(const [rel,ko] of Object.entries({...fixes,...jrSegmentFixes,...jrFormalNameFixes})){
+for(const [rel,ko] of Object.entries({...fixes,...jrSegmentFixes,...jrFormalNameFixes,...jrChuoFixes})){
   const file=path.join(root,rel);
   if(!fs.existsSync(file)){missing.push(rel);continue}
   const data=JSON.parse(fs.readFileSync(file,'utf8'));
@@ -283,5 +291,5 @@ for(const [rel,ko] of Object.entries({...fixes,...jrSegmentFixes,...jrFormalName
   };
   fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
 }
-console.log(JSON.stringify({targets:Object.keys({...fixes,...jrSegmentFixes,...jrFormalNameFixes}).length,changed,missing},null,2));
+console.log(JSON.stringify({targets:Object.keys({...fixes,...jrSegmentFixes,...jrFormalNameFixes,...jrChuoFixes}).length,changed,missing},null,2));
 if(missing.length)process.exitCode=2;
