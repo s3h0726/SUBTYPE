@@ -793,9 +793,15 @@ class FreeDrive{
     const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();this.emit();
   }
   move(encoded){
-    let token;try{token=JSON.parse(encoded)}catch{return}
-    const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===token[0]&&e.routeId===token[1]);if(!edge)return;
-    this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);this.render();this.emit();
+    let token;try{token=JSON.parse(encoded)}catch{return false}
+    return this.moveTo(token?.[0],token?.[1])
+  }
+  moveTo(to,routeId){
+    if(!to||!routeId)return false;
+    const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===to&&e.routeId===routeId);
+    if(!edge)return false;
+    this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
+    this.render();this.emit();return true
   }
   current(){return this.graph.get(this.currentKey)||null}
   snapshot(){
@@ -1337,7 +1343,7 @@ function renderGameFreeDriveOptions(state){
   tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${index===0?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
   const edges=(state.edges||[]).filter(edge=>edge.routeId===activeId);
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
-  target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=freeDrive?.graph?.get(edge.to)?.station;return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
+  target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=freeDrive?.graph?.get(edge.to)?.station;return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
 }
 async function startFreeDrive(route){
   if(!route)return toast('자유주행을 시작할 노선을 선택해 주세요.');
@@ -1381,8 +1387,13 @@ document.addEventListener('keydown',event=>{
   const active=tabs[freeDriveTabIndex];toast(`TAB · ${active.route?.line?.ko||active.route?.line?.ja||active.id}`);
 });
 document.addEventListener('click',e=>{
-  const freeEdge=e.target.closest('[data-free-edge]');
-  if(freeEdge&&game?.freeDriveMode){e.preventDefault();freeDrive?.move(decodeURIComponent(freeEdge.dataset.freeEdge));return}
+  const freeMove=e.target.closest('[data-free-to][data-free-route]');
+  if(freeMove&&game?.freeDriveMode){
+    e.preventDefault();
+    const moved=freeDrive?.moveTo(freeMove.dataset.freeTo,freeMove.dataset.freeRoute);
+    if(!moved)toast('다음 역으로 이동하지 못했습니다.');
+    return
+  }
   const create=e.target.closest('[data-action="custom-new"]');if(create){editor.createNew();go('custom-editor');return}const featured=e.target.closest('[data-feature-route]');if(featured){chooseRoute(featured.dataset.featureRoute);return}const card=e.target.closest('[data-library-route]');if(!card)return;const route=storage.routes().find(r=>r.id===card.dataset.libraryRoute);if(!route)return;if(e.target.closest('[data-library-play]'))openSetup(route);else if(e.target.closest('[data-library-free-drive]'))startFreeDrive(route);else if(e.target.closest('[data-library-edit]')){editor.loadRoute(route);go('custom-editor')}else if(e.target.closest('[data-library-delete]')&&confirm('이 노선을 삭제할까요?')){storage.deleteRoute(route.id);refreshRoutes();renderCustomLibrary();toast('노선을 삭제했습니다.')}});
 $('#setup-form').addEventListener('submit',e=>{e.preventDefault();const data=new FormData(e.target),settings=storage.settings(),stationLabel=['ja','ja-romaji'].includes(settings.stationLabel)?settings.stationLabel:'ja',choiceId=String(data.get('journeyDestination')||''),choice=actualOperatingChoices(selected).find(item=>item.id===choiceId);if(!choice)return toast('실제 운행계통을 선택해 주세요.');let resolved=null,lastService=null;try{resolved=resolveOperatingChoice(choice,selected);lastService=resolved.service||null}catch(error){console.error('Service journey resolution failed:',error);return toast(`운행계통 오류: ${error.message}`)}lastRunRoute=resolved.route;if(!lastRunRoute)return toast('운행계통 데이터를 준비하지 못했습니다.');lastOptions={mode:data.get('mode'),inputMode:data.get('inputMode')||'shadowing',difficulty:'normal',service:resolved.service?.id||choice.legacyServiceId||'local',direction:resolved.direction||choice.direction||'forward',display:'ja',input:'ko',stationAdvance:data.get('stationAdvance')||settings.stationAdvance,mapMode:$('#game-map-mode').value,stationLabel,mapLabels:settings.mapLabels,motion:settings.motion,reducedMotion:settings.reducedMotion,sound:settings.sound,serviceJourney:resolved.journey||null,serviceJourneyId:resolved.journeyId||choice.journeyId||null,servicePattern:resolved.pattern||null,trainType:resolved.trainType||choice.trainType||null,destinationStationId:resolved.destinationStationId||choice.destinationId,throughServiceId:choice.throughServiceId||resolved.pattern?.throughServiceId||lastRunRoute.throughService?.id||null,trainTypeContexts:resolved.trainTypeContexts||[]};$('#map-view-toggle').textContent=lastOptions.mapMode==='geographic'?'SCHEMATIC':'GEOGRAPHIC';if(game.start(lastRunRoute,lastOptions)){go('game');game.focusInput()}});
 $('#retry-game').addEventListener('click',()=>{if(game.start(lastRunRoute||selected,lastOptions)){go('game');game.focusInput()}});
