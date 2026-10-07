@@ -101,45 +101,13 @@
 
 
 
-/* Mobile typing input: float it above the station sign so the IME/keyboard never covers it. */
+
+/* Mobile: reserve a real slot for the input instead of laying it over the station text. */
 @media(max-width:760px){
-  #screen-game.active .station-current{
-    display:grid!important;
-    grid-template-columns:1fr!important;
-    grid-template-rows:auto auto auto auto auto!important;
-    align-content:start!important;
-    min-height:0!important;
-    padding:13px 7px 12px!important;
-  }
-  #screen-game.active .station-current .station-sign-input{
-    position:fixed!important;
-    top:56px!important;
-    left:50%!important;
-    transform:translateX(-50%)!important;
-    width:calc(100vw - 24px)!important;
-    max-width:700px!important;
-    height:42px!important;
-    margin:0!important;
-    z-index:9999!important;
-    box-sizing:border-box!important;
-    background:#f8faf8!important;
-    border:2px solid var(--route-color)!important;
-    border-bottom-width:4px!important;
-    box-shadow:0 5px 18px rgba(0,0,0,.35)!important;
-  }
-  #screen-game.active .station-current .station-sign-input input{
-    color:#111817!important;
-    -webkit-text-fill-color:#111817!important;
-    background:transparent!important;
-  }
+  #screen-game.active .station-current{position:relative!important;padding:58px 7px 12px!important;overflow:visible!important;}
+  #screen-game.active .station-current .station-sign-input{position:absolute!important;top:6px!important;left:50%!important;transform:translateX(-50%)!important;width:calc(100% - 14px)!important;height:42px!important;margin:0!important;z-index:20!important;}
 }
 @media(max-width:520px){
-  #screen-game.active .station-current{
-    padding:13px 6px 10px!important;
-  }
-  #screen-game.active .station-current .station-sign-input{
-    top:54px!important;
-    width:calc(100vw - 18px)!important;
-    height:42px!important;
-  }
+  #screen-game.active .station-current{padding:58px 6px 10px!important;}
+  #screen-game.active .station-current .station-sign-input{top:5px!important;width:calc(100% - 12px)!important;height:40px!important;}
 }
