@@ -4,10 +4,10 @@ const{projectRoot,loadAll,writeAtomic}=require('./lib/line-workspaces');
 const planFile=path.join(projectRoot,'data','source-audit','BLOCKED_GEOMETRY_PLAN.json');
 const progressFile=path.join(projectRoot,'data','source-audit','GEOMETRY_244_RECOVERY.json');
 const args=process.argv.slice(2),lineArg=args.includes('--line')?args[args.indexOf('--line')+1]:null,apply=args.includes('--apply');
-const railwayTypes='rail|light_rail|subway|tram|funicular|monorail|narrow_gauge|miniature';
+const railwayTypes='rail|light_rail|subway|tram|funicular|monorail|narrow_gauge|miniature|disused|abandoned|razed';
 const rad=value=>value*Math.PI/180;
 const distance=(a,b)=>{const dLat=rad(b[0]-a[0]),dLon=rad(b[1]-a[1]),v=Math.sin(dLat/2)**2+Math.cos(rad(a[0]))*Math.cos(rad(b[0]))*Math.sin(dLon/2)**2;return 6371*2*Math.atan2(Math.sqrt(v),Math.sqrt(1-v))};
-const overpassHosts=['overpass-api.de','overpass.kumi.systems','overpass.private.coffee'];
+const overpassHosts=['overpass.kumi.systems','overpass-api.de','overpass.private.coffee'];
 const requestOnce=(hostname,query)=>new Promise((resolve,reject)=>{const body=`data=${encodeURIComponent(query)}`,options={hostname,path:'/api/interpreter',method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded','Content-Length':Buffer.byteLength(body),'User-Agent':'SUBTYPE-geometry-recovery/1.0'}};const req=https.request(options,res=>{let data='';res.on('data',chunk=>data+=chunk);res.on('end',()=>{if(res.statusCode!==200)return reject(new Error(`${hostname} HTTP ${res.statusCode}`));try{resolve(JSON.parse(data))}catch(error){reject(new Error(`${hostname} JSON: ${error.message}`))}})});req.setTimeout(90000,()=>req.destroy(new Error(`${hostname} timeout`)));req.on('error',reject);req.end(body)});
 async function request(query){let lastError;for(const host of overpassHosts)try{return await requestOnce(host,query)}catch(error){lastError=error}throw lastError}
 function graphFrom(payload){const nodes=new Map,adj=new Map;for(const element of payload.elements||[])if(element.type==='node')nodes.set(element.id,[element.lat,element.lon]);for(const element of payload.elements||[])if(element.type==='way'&&Array.isArray(element.nodes)){for(let i=0;i<element.nodes.length-1;i++){const a=element.nodes[i],b=element.nodes[i+1],pa=nodes.get(a),pb=nodes.get(b);if(!pa||!pb)continue;const cost=distance(pa,pb);if(!adj.has(a))adj.set(a,[]);if(!adj.has(b))adj.set(b,[]);adj.get(a).push([b,cost]);adj.get(b).push([a,cost])}}return{nodes,adj}}
