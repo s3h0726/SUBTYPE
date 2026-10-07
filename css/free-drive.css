@@ -41,3 +41,7 @@
 .free-drive-active #station-context{letter-spacing:.04em}
 .free-drive-active .hud-strip>div:nth-child(3) strong,.free-drive-active .hud-strip>div:nth-child(4) strong{opacity:.65}
 @media(max-width:620px){.game-free-drive-options{grid-template-columns:1fr;margin-top:10px}.game-free-drive-options button{min-height:48px}}
+
+.free-drive-tab-hint,.free-drive-empty{grid-column:1/-1;margin:0;padding:9px 11px;border:1px dashed var(--line);color:var(--muted);font-size:11px;text-align:center}
+.free-drive-tab-hint kbd{display:inline-block;min-width:34px;margin-right:6px;padding:3px 7px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;background:var(--surface-soft);color:var(--ink);font:800 10px 'IBM Plex Mono',monospace}
+.game-free-drive-options[data-transfer-open="true"]{outline:2px solid color-mix(in srgb,var(--route-color,#45c985) 50%,transparent);outline-offset:3px}
