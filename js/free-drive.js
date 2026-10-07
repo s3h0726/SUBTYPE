@@ -110,9 +110,15 @@ export class FreeDrive{
     const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();this.emit();
   }
   move(encoded){
-    let token;try{token=JSON.parse(encoded)}catch{return}
-    const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===token[0]&&e.routeId===token[1]);if(!edge)return;
-    this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);this.render();this.emit();
+    let token;try{token=JSON.parse(encoded)}catch{return false}
+    return this.moveTo(token?.[0],token?.[1])
+  }
+  moveTo(to,routeId){
+    if(!to||!routeId)return false;
+    const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===to&&e.routeId===routeId);
+    if(!edge)return false;
+    this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
+    this.render();this.emit();return true
   }
   current(){return this.graph.get(this.currentKey)||null}
   snapshot(){
