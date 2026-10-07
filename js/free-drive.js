@@ -3,7 +3,7 @@ import{$,escapeHtml,normalize}from'./utils.js';
 
 const finite=n=>Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
-const stationKey=s=>{
+const freeDriveStationKey=s=>{
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
   // Transfer stations are often represented by different operator-specific IDs.
   // Prefer a name + ~200m coordinate cell so the same physical station merges across companies.
@@ -75,20 +75,20 @@ export class FreeDrive{
     this.routes=(routes||[]).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2);
     this.graph=new Map;
     const ensure=(station,route,index)=>{
-      const key=stationKey(station);if(!key)return null;let node=this.graph.get(key);
+      const key=freeDriveStationKey(station);if(!key)return null;let node=this.graph.get(key);
       if(!node){node={key,station,coord:coords(station),edges:[],routeIds:new Set};this.graph.set(key,node)}
       node.routeIds.add(route.id);node.routeNames=node.routeNames||new Map;node.routeNames.set(route.id,routeName(route));return node;
     };
     for(const route of this.routes){
       route.stations.forEach((s,i)=>ensure(s,route,i));
       for(let i=0;i<route.stations.length-1;i++){
-        const a=route.stations[i],b=route.stations[i+1],ak=stationKey(a),bk=stationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
+        const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1});
         bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1});
       }
       if(route.loop&&route.stations.length>2){
-        const a=route.stations.at(-1),b=route.stations[0],ak=stationKey(a),bk=stationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
+        const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
         if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1});bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1})}
       }
     }
@@ -106,7 +106,7 @@ export class FreeDrive{
   updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
     if(!this.startRoute)return;
-    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=stationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];
+    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=freeDriveStationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];
     const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();
   }
   move(encoded){
