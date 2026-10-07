@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// trigger-version: 3 — fixed shebang position and force rerun
+// trigger-version: 4 — fixed shebang position and force rerun
 const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..');
 
