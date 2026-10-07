@@ -39,3 +39,12 @@ body.reduce-motion .track,body.reduce-motion .feature-card{animation:none;transi
 .country-switch{display:inline-flex;gap:4px;margin:0 0 18px;padding:4px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(4,15,22,.6)}
 .country-switch button{min-width:92px;padding:8px 14px;border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.68);font:700 13px/1 inherit;cursor:pointer}
 .country-switch button.active{background:#45c985;color:#06120e;box-shadow:0 4px 18px rgba(69,201,133,.3)}
+
+
+/* mobile motion cleanup 2026-10-07 */
+@media(max-width:680px){
+  .track{animation:none!important}
+  .feature-card{transform:none!important;transition:none!important}
+  .launch-menu button{transition:none!important}
+  .launch-menu button:hover,.launch-menu button:focus-visible{transform:none!important}
+}
