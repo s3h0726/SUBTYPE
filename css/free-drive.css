@@ -46,7 +46,7 @@
 .free-drive-tab-hint kbd{display:inline-block;min-width:34px;margin-right:6px;padding:3px 7px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;background:var(--surface-soft);color:var(--ink);font:800 10px 'IBM Plex Mono',monospace}
 .game-free-drive-options[data-transfer-open="true"]{outline:2px solid color-mix(in srgb,var(--route-color,#45c985) 50%,transparent);outline-offset:3px}
 
-.game-free-drive-tabs{display:flex;gap:8px;align-items:stretch;padding:8px 14px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--surface) 94%,transparent);overflow-x:auto;scrollbar-width:thin}
+.game-free-drive-tabs{position:sticky;top:0;z-index:30;display:flex;gap:8px;align-items:stretch;padding:8px 14px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--surface) 98%,transparent);backdrop-filter:blur(10px);overflow-x:auto;scrollbar-width:thin;box-shadow:0 3px 14px #0002}
 .game-free-drive-tabs[hidden]{display:none!important}
 .game-free-drive-tabs button{position:relative;min-width:150px;border:1px solid var(--line);border-top:3px solid var(--route-color);background:var(--surface);color:var(--ink);padding:7px 10px;text-align:left;display:grid;grid-template-columns:1fr auto;grid-template-areas:"small small" "name ja";gap:1px 8px}
 .game-free-drive-tabs button small{grid-area:small;color:var(--muted);font:800 8px 'IBM Plex Mono',monospace;letter-spacing:.08em}
