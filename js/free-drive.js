@@ -1,4 +1,4 @@
-// recommit-trigger: 2026-10-07-2
+// recommit-trigger: free-drive-move-fix-20261007
 import{$,escapeHtml,normalize}from'./utils.js';
 
 const finite=n=>Number.isFinite(Number(n));
