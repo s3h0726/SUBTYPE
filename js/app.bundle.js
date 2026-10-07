@@ -481,7 +481,7 @@ async function ensureGameMap(target){
   if(!resizeBound){resizeBound=true;addEventListener('resize',()=>{if(!gameRail?.map)return;clearTimeout(gameRail.resizeTimer);gameRail.resizeTimer=setTimeout(()=>gameRail.map.invalidateSize(),120)})}
   updateDebug();return gameRail
 }
-function stopAnimation(rail){if(rail.animation){cancelAnimationFrame(rail.animation);rail.animation=null}}
+function stopAnimation(rail){if(rail.animation){cancelAnimationFrame(rail.animation);rail.animation=null}if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null}
 function animateTrain(rail,from,to,motion){
   stopAnimation(rail);const duration=motion===false?0:90,start=performance.now();
   const frame=now=>{const p=duration?Math.min(1,(now-start)/duration):1,eased=1-Math.pow(1-p,3),point=[from[0]+(to[0]-from[0])*eased,from[1]+(to[1]-from[1])*eased];rail.train.setLatLng(point);if(p<1)rail.animation=requestAnimationFrame(frame);else rail.animation=null};frame(start)
@@ -512,8 +512,38 @@ async function renderOsm(route,index,options){
   const station=route.stations[safe],info=$('#map-station-info');if(info){info.hidden=false;info.innerHTML=`<b>${escapeHtml(station.ja)}</b><span>${escapeHtml(station.ko)} · ${escapeHtml(station.romaji)}</span>`}
 }
 function renderGameMap(route,index,options={}){renderQueue=renderQueue.then(()=>renderOsm(route,index,options)).catch(error=>{console.error('OSM game map:',error);const status=$('#basemap-status');if(status)status.textContent='OPENSTREETMAP · LOAD ERROR'});return renderQueue}
-function animateTypingTrain(rail,target,motion=true){if(!rail?.train)return;rail.typingTarget=target;if(motion===false){rail.train.setLatLng(target);rail.animation=null;return}if(rail.animation)return;const frame=()=>{const current=rail.train.getLatLng(),goal=rail.typingTarget;if(!goal){rail.animation=null;return}const d=Math.hypot(goal[0]-current.lat,goal[1]-current.lng);if(d<0.0000015){rail.train.setLatLng(goal);rail.animation=null;return}const step=Math.min(0.30,Math.max(0.10,0.00045/Math.max(d,0.000001)));rail.train.setLatLng([current.lat+(goal[0]-current.lat)*step,current.lng+(goal[1]-current.lng)*step]);rail.animation=requestAnimationFrame(frame)};rail.animation=requestAnimationFrame(frame)}
-function setTrainTypingProgress(progress,motion=true){const rail=gameRail;if(!rail?.train||!rail.points.length)return;const cached=typingSegment(rail,rail.index,rail.nextIndex),{segment,lengths,total}=cached;if(segment.length<2)return;const safe=Math.max(rail.typingProgress||0,Math.min(1,Number(progress)||0)),targetDistance=total*safe;let i=1;while(i<lengths.length&&lengths[i]<targetDistance)i++;const a=segment[Math.max(0,i-1)],b=segment[Math.min(i,segment.length-1)],span=Math.max(.0000001,lengths[i]-lengths[i-1]),part=(targetDistance-lengths[i-1])/span,target=[a[0]+(b[0]-a[0])*part,a[1]+(b[1]-a[1])*part];animateTypingTrain(rail,target,motion);rail.typingProgress=safe;updateDebug()}
+function stopTypingAnimation(rail){if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null}
+function animateTypingTrain(rail,target,motion=true){
+  if(!rail?.train)return;
+  if(motion===false){stopTypingAnimation(rail);rail.train.setLatLng(target);return}
+  rail.typingTarget=target;
+  if(rail.typingAnimation)return;
+  let last=performance.now();
+  const frame=now=>{
+    const goal=rail.typingTarget;
+    if(!goal){rail.typingAnimation=null;return}
+    const current=rail.train.getLatLng();
+    const dt=Math.min(40,Math.max(1,now-last));last=now;
+    const alpha=1-Math.exp(-dt/75);
+    const next=[current.lat+(goal[0]-current.lat)*alpha,current.lng+(goal[1]-current.lng)*alpha];
+    const d=Math.hypot(goal[0]-next[0],goal[1]-next[1]);
+    rail.train.setLatLng(d<0.0000015?goal:next);
+    if(d<0.0000015){rail.typingAnimation=null;return}
+    rail.typingAnimation=requestAnimationFrame(frame);
+  };
+  rail.typingAnimation=requestAnimationFrame(frame);
+}
+function setTrainTypingProgress(progress,motion=true){
+  const rail=gameRail;if(!rail?.train||!rail.points.length)return;
+  const cached=typingSegment(rail,rail.index,rail.nextIndex),{segment,lengths,total}=cached;
+  if(segment.length<2)return;
+  const safe=Math.max(rail.typingProgress||0,Math.min(1,Number(progress)||0)),targetDistance=total*safe;
+  let i=1;while(i<lengths.length&&lengths[i]<targetDistance)i++;
+  const a=segment[Math.max(0,i-1)],b=segment[Math.min(i,segment.length-1)];
+  const span=Math.max(.0000001,lengths[i]-lengths[i-1]),part=(targetDistance-lengths[i-1])/span;
+  const target=[a[0]+(b[0]-a[0])*part,a[1]+(b[1]-a[1])*part];
+  animateTypingTrain(rail,target,motion);rail.typingProgress=safe;updateDebug()
+}
 function gameMapDebug(){updateDebug();return globalThis.__TRT_MAP_DEBUG__}
 
 function renderSvg(container,route,{editable=false,onMove}={}){const stations=route.stations||[],w=Math.max(620,stations.length*110),h=340;const points=stations.map((s,i)=>{const auto={x:60+i*(w-120)/Math.max(1,stations.length-1),y:h/2};return editable&&s.map?{x:s.map.x,y:s.map.y}:auto});const path=points.map((p,i)=>`${i?'L':'M'} ${p.x} ${p.y}`).join(' ')+(route.loop&&points.length>2?' Z':'');container.innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${escapeHtml(route.line?.ko||'커스텀 노선')} 노선도"><path d="${path}" fill="none" stroke="${route.lineColor}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>${points.map((p,i)=>`<g class="svg-station" data-index="${i}" transform="translate(${p.x} ${p.y})" tabindex="${editable?0:-1}"><circle r="13" fill="#fff" stroke="${route.lineColor}" stroke-width="6"/><text y="32" text-anchor="middle" font-size="13" font-weight="700">${escapeHtml(stations[i].ja||stations[i].ko||`역 ${i+1}`)}</text></g>`).join('')}</svg>`;if(!editable)return;const svg=container.querySelector('svg');let active=null;svg.addEventListener('pointerdown',e=>{const g=e.target.closest('.svg-station');if(!g)return;active=+g.dataset.index;g.setPointerCapture(e.pointerId)});svg.addEventListener('pointermove',e=>{if(active===null)return;const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());onMove(active,{x:Math.round(p.x),y:Math.round(p.y)})});svg.addEventListener('pointerup',()=>active=null);svg.addEventListener('pointercancel',()=>active=null)}
