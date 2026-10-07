@@ -1,0 +1,54 @@
+name: Complete JR East line symbols
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/attach-jr-east-symbols-complete.js'
+      - '.github/workflows/attach-jr-east-symbols-complete.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  attach:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch JR East official line symbols
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/route-symbols
+          for code in JY JC JB JK JE JH JT JU JJ JN JM JO JA JS JI JL; do
+            curl -L --fail --retry 4               "https://commons.wikimedia.org/wiki/Special:Redirect/file/JR%20${code}%20line%20symbol.svg"               -o "assets/route-symbols/jr-east-$(echo "${code}" | tr '[:upper:]' '[:lower:]').svg"
+          done
+
+      - name: Attach symbols to every matching route
+        run: node tools/attach-jr-east-symbols-complete.js
+
+      - name: Rebuild
+        run: node tools/build-static.js
+
+      - name: Validate
+        run: node tools/validate-data.js
+
+      - name: Commit JR East symbols
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/route-symbols/ data/lines/jr-east/ data/generated/asset-registry.json js/ index.html
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'assets: complete JR East official line symbols'
+            git push origin HEAD:main
+          fi
