@@ -30,16 +30,17 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Tokyo Metro: existing SVGs are already correct NamuWiki-equivalent symbols.
-          test -s data/lines/tokyo-metro/ginza/symbol.svg
-          test -s data/lines/tokyo-metro/marunouchi-line/symbol.svg
-          test -s data/lines/tokyo-metro/hibiya-line/symbol.svg
-          test -s data/lines/tokyo-metro/tozai-line/symbol.svg
-          test -s data/lines/tokyo-metro/chiyoda-line/symbol.svg
-          test -s data/lines/tokyo-metro/yurakucho-line/symbol.svg
-          test -s data/lines/tokyo-metro/hanzomon-line/symbol.svg
-          test -s data/lines/tokyo-metro/namboku-line/symbol.svg
-          test -s data/lines/tokyo-metro/fukutoshin-line/symbol.svg
+          # Tokyo Metro — official SVG originals matching NamuWiki line symbols.
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Ginza%20Line.svg' -o data/lines/tokyo-metro/ginza/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Marunouchi%20Line.svg' -o data/lines/tokyo-metro/marunouchi-line/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Marunouchi%20branch%20Line.svg' -o data/lines/tokyo-metro/marunouchi-honancho-branch/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Hibiya%20Line.svg' -o data/lines/tokyo-metro/hibiya-line/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20T%C5%8Dzai%20Line.svg' -o data/lines/tokyo-metro/tozai-line/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Chiyoda%20Line.svg' -o data/lines/tokyo-metro/chiyoda-line/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Y%C5%ABrakuch%C5%8D%20Line.svg' -o data/lines/tokyo-metro/yurakucho-line/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Hanz%C5%8Dmon%20Line.svg' -o data/lines/tokyo-metro/hanzomon-line/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Namboku%20Line.svg' -o data/lines/tokyo-metro/namboku-line/symbol.svg
+          curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo%20of%20Tokyo%20Metro%20Fukutoshin%20Line.svg' -o data/lines/tokyo-metro/fukutoshin-line/symbol.svg
 
           # Toei: same official line symbols NamuWiki uses, downloaded from stable Wikimedia originals.
           curl -L --fail --retry 4 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Toei%20Asakusa%20line%20symbol.svg' -o data/lines/toei/asakusa-line/symbol.svg
