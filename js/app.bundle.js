@@ -722,9 +722,9 @@ function drawNetworkCanvas(canvas,routes,{bounds=null,alpha=.28,transferNodes=nu
 }
 
 class FreeDrive{
-  constructor({onExit}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
+  constructor({onExit,onChange}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.onChange=onChange;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
   bind(){
-    $('#free-drive-options')?.addEventListener('click',e=>{const b=e.target.closest('[data-free-edge]');if(b)this.move(decodeURIComponent(b.dataset.freeEdge))});
+    const handleEdge=e=>{const b=e.target.closest('[data-free-edge]');if(b)this.move(decodeURIComponent(b.dataset.freeEdge))};$('#free-drive-options')?.addEventListener('click',handleEdge);$('#game-free-drive-options')?.addEventListener('click',handleEdge);
     $('#free-drive-start-station')?.addEventListener('change',e=>this.restartAt(+e.target.value));
     $('#free-drive-reset')?.addEventListener('click',()=>this.restartAt(+($('#free-drive-start-station')?.value||0)));$('#free-drive-map-toggle')?.addEventListener('click',()=>{this.viewMode=this.viewMode==='local'?'all':'local';this.renderMap();this.updateMapToggle()});
     $('#free-drive-exit')?.addEventListener('click',()=>this.onExit?.());
@@ -766,14 +766,21 @@ class FreeDrive{
   restartAt(index=0){
     if(!this.startRoute)return;
     const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=freeDriveStationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];
-    const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();
+    const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();this.emit();
   }
   move(encoded){
     let token;try{token=JSON.parse(encoded)}catch{return}
     const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===token[0]&&e.routeId===token[1]);if(!edge)return;
-    this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);this.render();
+    this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);this.render();this.emit();
   }
   current(){return this.graph.get(this.currentKey)||null}
+  snapshot(){
+    const node=this.current(),route=this.routes.find(r=>r.id===this.currentRouteId)||this.startRoute;
+    if(!node||!route)return null;
+    const stationIndex=Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
+    return{node,station:node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
+  }
+  emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
   edges(){
     const node=this.current();if(!node)return[];
     const seen=new Set;
