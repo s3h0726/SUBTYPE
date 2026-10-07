@@ -45,3 +45,13 @@
 .free-drive-tab-hint,.free-drive-empty{grid-column:1/-1;margin:0;padding:9px 11px;border:1px dashed var(--line);color:var(--muted);font-size:11px;text-align:center}
 .free-drive-tab-hint kbd{display:inline-block;min-width:34px;margin-right:6px;padding:3px 7px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;background:var(--surface-soft);color:var(--ink);font:800 10px 'IBM Plex Mono',monospace}
 .game-free-drive-options[data-transfer-open="true"]{outline:2px solid color-mix(in srgb,var(--route-color,#45c985) 50%,transparent);outline-offset:3px}
+
+.game-free-drive-tabs{display:flex;gap:8px;align-items:stretch;padding:8px 14px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--surface) 94%,transparent);overflow-x:auto;scrollbar-width:thin}
+.game-free-drive-tabs[hidden]{display:none!important}
+.game-free-drive-tabs button{position:relative;min-width:150px;border:1px solid var(--line);border-top:3px solid var(--route-color);background:var(--surface);color:var(--ink);padding:7px 10px;text-align:left;display:grid;grid-template-columns:1fr auto;grid-template-areas:"small small" "name ja";gap:1px 8px}
+.game-free-drive-tabs button small{grid-area:small;color:var(--muted);font:800 8px 'IBM Plex Mono',monospace;letter-spacing:.08em}
+.game-free-drive-tabs button b{grid-area:name;font-size:13px;white-space:nowrap}
+.game-free-drive-tabs button span{grid-area:ja;color:var(--muted);font-size:10px;white-space:nowrap}
+.game-free-drive-tabs button.active{outline:2px solid color-mix(in srgb,var(--route-color) 72%,transparent);outline-offset:-2px;background:color-mix(in srgb,var(--route-color) 10%,var(--surface))}
+.game-free-drive-tabs button.active:after{content:"TAB";position:absolute;right:6px;top:5px;color:var(--route-color);font:800 8px 'IBM Plex Mono',monospace}
+@media(max-width:620px){.game-free-drive-tabs{padding:6px 8px;gap:6px}.game-free-drive-tabs button{min-width:128px;padding:6px 8px}.game-free-drive-tabs button b{font-size:12px}}
