@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="./css/osm-single-screen.css?v=p0-sync-1">
   <link rel="stylesheet" href="./css/typing-fit-fixes.css?v=v0-8-1-station-layout">
   <link rel="stylesheet" href="./css/asset-runtime.css?v=20261007-subway-identity-fix">
+  <link rel="stylesheet" href="./css/free-drive.css?v=20261007-free-drive-1">
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -194,7 +195,7 @@
 
     <section id="screen-custom" data-screen="custom-editor" class="screen" aria-labelledby="custom-title">
       <div class="section-head"><div><p class="eyebrow">CUSTOM ROUTE STUDIO</p><h2 id="custom-title">나만의 노선 만들기</h2></div><button class="btn text" data-nav="custom-list">← MY ROUTES</button></div>
-      <div class="custom-toolbar"><button id="new-route" class="btn ghost">＋ 새 여정</button><button id="save-route" class="btn primary">COMPLETE · 완료/저장</button><button id="play-custom" class="btn ghost">▶ 바로 플레이</button><button id="export-route" class="btn ghost">JSON 내보내기</button><label class="btn ghost file-button">JSON 가져오기<input id="import-route" type="file" accept="application/json,.json"></label></div>
+      <div class="custom-toolbar"><button id="new-route" class="btn ghost">＋ 새 여정</button><button id="save-route" class="btn primary">COMPLETE · 완료/저장</button><button id="play-custom" class="btn ghost">▶ 바로 플레이</button><button id="free-drive-custom" class="btn ghost" type="button">↗ 자유주행</button><button id="export-route" class="btn ghost">JSON 내보내기</button><label class="btn ghost file-button">JSON 가져오기<input id="import-route" type="file" accept="application/json,.json"></label></div>
       <div class="editor-layout">
         <form id="route-form" class="editor-form">
           <section class="station-master-search" aria-labelledby="station-search-title"><p class="eyebrow">START STATION / RAIL NETWORK</p><h3 id="station-search-title">출발역 검색</h3><p>첫 역을 선택한 뒤 실제 철도망의 인접역과 환승 노선으로 경로를 이어갑니다.</p><label class="station-search-box">역 검색<input id="station-master-search" type="search" autocomplete="off" placeholder="예: 신주쿠 / 新宿 / Shinjuku"></label><div id="station-search-results" class="station-search-results" aria-live="polite"><p>출발역 이름을 입력하세요.</p></div></section>
