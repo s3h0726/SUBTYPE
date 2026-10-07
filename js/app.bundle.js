@@ -631,29 +631,11 @@ class Game{
   }
   setFreeDriveTypingTarget(edge,station){
     if(!this.freeDriveMode||!edge||!station)return;
-    this.freeDriveTarget={to:edge.to,routeId:edge.routeId,station,index:edge.index,direction:edge.direction};
+    this.freeDriveTarget={to:edge.to,routeId:edge.routeId,station};
     this.phase='TYPING';this.comboPrefixUnits=0;
     const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
-    this.applyActiveBrand(station);
-    const sign=$('#station-sign');sign.classList.remove('sign-enter');void sign.offsetWidth;sign.classList.add('sign-enter');
-    $('#prompt-main').textContent=station.ja||'';
-    $('#prompt-ko').textContent=station.ko||'';
-    $('#prompt-ko').classList.remove('memory-hidden');
-    $('#prompt-kana').textContent=station.kana||'';
-    $('#prompt-sub').textContent=station.romaji||'';
-    $('#station-context').textContent='다음역 입력 · 자유주행';
-    const badge=$('#station-badge'),officialCode=station.hasOfficialStationCode?station.officialCode:'';
-    badge.textContent=officialCode;badge.hidden=!officialCode;
-    const current=this.freeDriveState?.station||null;
-    $('#previous-station-name').textContent=current?.ko||'—';
-    $('#previous-station-romaji').textContent=current?((current.ja||'')+' · '+(current.romaji||'')):'';
-    let following=null;
-    if(edge.route?.stations?.length){const fi=edge.index+(edge.direction||1);if(fi>=0&&fi<edge.route.stations.length)following=edge.route.stations[fi]}
-    $('#next-station-name').textContent=following?.ko||'—';
-    $('#next-station-romaji').textContent=following?((following.ja||'')+' · '+(following.romaji||'')):'';
-    $('#next-station').textContent=station.ko||'';
     $('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
-    this.typing.setTarget(this.answerValues(station));this.renderKoreanProgress();this.fitPrompt();if(!this.paused)this.typing.focus()
+    this.typing.setTarget(this.answerValues(station));this.renderKoreanProgress();if(!this.paused)this.typing.focus()
   }
   renderFreeDriveState(state){
     if(!state?.route||!state?.station)return;
