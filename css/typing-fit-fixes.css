@@ -100,48 +100,46 @@
 
 
 
-/* Mobile: restore the station-sign grid and pin the typing field safely at its top. */
+
+/* Mobile typing input: float it above the station sign so the IME/keyboard never covers it. */
 @media(max-width:760px){
-  #screen-game.active .station-sign-hud{
-    align-self:start;
-    padding-top:4px!important;
-    padding-bottom:8px!important;
-  }
   #screen-game.active .station-current{
     display:grid!important;
     grid-template-columns:1fr!important;
     grid-template-rows:auto auto auto auto auto!important;
     align-content:start!important;
     min-height:0!important;
-    padding:54px 7px 12px!important;
+    padding:13px 7px 12px!important;
   }
   #screen-game.active .station-current .station-sign-input{
-    position:absolute!important;
-    top:5px!important;
+    position:fixed!important;
+    top:56px!important;
     left:50%!important;
     transform:translateX(-50%)!important;
-    width:min(96%,700px)!important;
-    height:40px!important;
+    width:calc(100vw - 24px)!important;
+    max-width:700px!important;
+    height:42px!important;
     margin:0!important;
-    z-index:20!important;
+    z-index:9999!important;
+    box-sizing:border-box!important;
+    background:#f8faf8!important;
+    border:2px solid var(--route-color)!important;
+    border-bottom-width:4px!important;
+    box-shadow:0 5px 18px rgba(0,0,0,.35)!important;
   }
   #screen-game.active .station-current .station-sign-input input{
     color:#111817!important;
     -webkit-text-fill-color:#111817!important;
+    background:transparent!important;
   }
 }
 @media(max-width:520px){
-  #screen-game.active .station-sign-hud{
-    padding-top:2px!important;
-    padding-bottom:6px!important;
-  }
   #screen-game.active .station-current{
-    grid-template-columns:1fr!important;
-    padding:52px 6px 10px!important;
+    padding:13px 6px 10px!important;
   }
   #screen-game.active .station-current .station-sign-input{
-    top:4px!important;
-    width:calc(100% - 12px)!important;
-    height:40px!important;
+    top:54px!important;
+    width:calc(100vw - 18px)!important;
+    height:42px!important;
   }
 }
