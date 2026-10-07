@@ -57,8 +57,6 @@
 @media(max-height:680px) and (min-width:821px){
   #screen-game.active{grid-template-rows:46px 32px minmax(0,1fr) 36px 200px}
 }
-
-/* Mobile gameplay: put the station sign above the map and keep typed text visible. */
 @media(max-width:760px){
   #screen-game.active{
     grid-template-rows:52px 38px 42px auto minmax(170px,1fr);
@@ -80,34 +78,4 @@
   #screen-game.active .station-sign-main{min-height:0;}
   #screen-game.active .station-current{padding:10px 7px;}
   #screen-game.active .station-current .station-sign-input{height:36px!important;}
-}
-
-/* Mobile: raise the typing input area inside the station sign. */
-@media(max-width:760px){
-  #screen-game.active .station-current .station-sign-input{
-    transform:translateY(-12px);
-    margin-top:2px!important;
-    margin-bottom:-10px!important;
-  }
-}
-@media(max-width:520px){
-  #screen-game.active .station-current .station-sign-input{
-    transform:translateY(-10px);
-    margin-top:0!important;
-    margin-bottom:-8px!important;
-  }
-}
-
-
-
-
-
-/* Mobile: reserve a real slot for the input instead of laying it over the station text. */
-@media(max-width:760px){
-  #screen-game.active .station-current{position:relative!important;padding:58px 7px 12px!important;overflow:visible!important;}
-  #screen-game.active .station-current .station-sign-input{position:absolute!important;top:6px!important;left:50%!important;transform:translateX(-50%)!important;width:calc(100% - 14px)!important;height:42px!important;margin:0!important;z-index:20!important;}
-}
-@media(max-width:520px){
-  #screen-game.active .station-current{padding:58px 6px 10px!important;}
-  #screen-game.active .station-current .station-sign-input{top:5px!important;width:calc(100% - 12px)!important;height:40px!important;}
 }
