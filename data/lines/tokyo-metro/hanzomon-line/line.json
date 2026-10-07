@@ -4,18 +4,74 @@
   "legacyId": "line-28008",
   "operatorId": "tokyo-metro",
   "category": "subway",
-  "names": {"ja":"半蔵門線","kana":"","ko":"한조몬선","en":"Hanzomon Line"},
+  "names": {
+    "ja": "半蔵門線",
+    "kana": "",
+    "ko": "한조몬선",
+    "en": "Hanzomon Line"
+  },
   "code": "Z",
   "color": "#8f76d6",
-  "symbol": {"asset":"./symbol.svg","officialSymbolExists":true,"source":"https://www.tokyometro.jp/lang_en/station/index.html","verified":true,"identificationSource":"tokyo-metro-official","identificationUrl":"https://www.tokyometro.jp/lang_en/station/index.html","identificationSearch":"","sourceAccess":"accessible","assetSource":"local-vector","assetSourceUrl":"","licenseVerified":false,"identificationFamily":"official","identificationMethod":"direct","identificationVerified":true},
+  "symbol": {
+    "asset": "./symbol.svg",
+    "officialSymbolExists": true,
+    "source": "https://www.tokyometro.jp/lang_en/station/index.html",
+    "verified": true,
+    "identificationSource": "namuwiki",
+    "identificationUrl": "https://d.namu.moe/w/도쿄메트로",
+    "identificationSearch": "site:namu.wiki \"도쿄메트로 한조몬선 로고.svg\"",
+    "sourceAccess": "namuwiki-mirror",
+    "assetSource": "local-vector",
+    "assetSourceUrl": "",
+    "licenseVerified": false,
+    "identificationFamily": "namuwiki",
+    "identificationMethod": "file-name-crosscheck",
+    "identificationVerified": true,
+    "identificationFile": "도쿄메트로 한조몬선 로고.svg"
+  },
   "loop": false,
   "stationSignTemplate": "tokyo-metro",
   "services": [],
-  "throughServiceIds": ["denentoshi-hanzomon-tobu"],
-  "sources": {"official":"","korean":"","geometry":"MLIT-N02-2025","koreanName":{"family":"namuwiki","method":"unresolved","type":"namuwiki-unresolved","url":"","searchReference":"","sourceAccess":"accessible","namuwikiStatus":"access-blocked","verified":false,"confidence":"LOW","verifiedDate":null,"status":"REVIEW_REQUIRED","canonicalPolicy":"namuwiki"}},
-  "legacy": {"origin":"curated","coverage":"full-source-line","dataKind":"physicalRoute"},
+  "throughServiceIds": [
+    "denentoshi-hanzomon-tobu"
+  ],
+  "sources": {
+    "official": "",
+    "korean": "",
+    "geometry": "MLIT-N02-2025",
+    "koreanName": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "",
+      "sourceAccess": "accessible",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    }
+  },
+  "legacy": {
+    "origin": "curated",
+    "coverage": "full-source-line",
+    "dataKind": "physicalRoute"
+  },
   "officialKo": "한조몬선",
-  "officialKoSource": {"type":"official-ko","url":"https://www.tokyometro.jp/lang_kr/station/index.html","sourceAccess":"accessible","namuwikiStatus":"access-blocked","verified":true,"confidence":"HIGH","verifiedDate":"2026-08-27","status":"VERIFIED","family":"official","method":"direct"},
+  "officialKoSource": {
+    "type": "official-ko",
+    "url": "https://www.tokyometro.jp/lang_kr/station/index.html",
+    "sourceAccess": "accessible",
+    "namuwikiStatus": "access-blocked",
+    "verified": true,
+    "confidence": "HIGH",
+    "verifiedDate": "2026-08-27",
+    "status": "VERIFIED",
+    "family": "official",
+    "method": "direct"
+  },
   "throughServiceStatus": "current",
   "throughServiceVerifiedAt": "2026-09-11",
   "throughServiceSource": "https://www.tokyometro.jp/corporate/ir/library/factbook/pdf/factbook_2025.pdf"
