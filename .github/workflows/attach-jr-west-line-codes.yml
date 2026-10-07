@@ -1,0 +1,41 @@
+name: Attach JR West line codes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/attach-jr-west-line-codes.js'
+      - '.github/workflows/attach-jr-west-line-codes.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  attach:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply JR West official line codes
+        run: node tools/attach-jr-west-line-codes.js
+      - name: Rebuild static data
+        run: node tools/build-static.js
+      - name: Validate data
+        run: node tools/validate-data.js
+      - name: Commit generated changes
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lines/jr-west/ data/line-badges.json js/ index.html
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'data: add JR West official line codes'
+            git push origin HEAD:main
+          fi
