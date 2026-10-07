@@ -36,9 +36,8 @@
 
   <main id="main">
     <section id="screen-home" data-screen="home" class="screen active night-home" aria-labelledby="hero-title">
-      <div class="rail-atmosphere" aria-hidden="true">
-        <i class="track track-a"></i><i class="track track-b"></i><i class="track track-c"></i><i class="track track-d"></i><i class="track track-e"></i>
-        <i class="node node-a"></i><i class="node node-b"></i><i class="node node-c"></i><i class="node node-d"></i><i class="node node-e"></i><i class="node node-f"></i>
+      <div class="rail-atmosphere free-drive-home-network" aria-hidden="true">
+        <canvas id="home-network-canvas"></canvas>
       </div>
       <header class="home-top">
         <button class="home-brand" data-nav="home" aria-label="SUBTYPE 홈"><span class="home-brand-mark">ST</span><span><b>SUBTYPE</b><strong id="home-country-mark">JAPAN RAIL</strong><small id="home-country-subtitle">일본 철도 타이핑</small></span></button>
@@ -52,9 +51,10 @@
           <p id="home-intro" class="home-intro">전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.</p>
           <nav class="launch-menu" aria-label="게임 시작 메뉴">
             <button data-nav="rail-map"><span>01</span><b>PLAY</b><small>일본 전국 철도에서 노선 선택</small><i>→</i></button>
-            <button data-nav="custom-list"><span>02</span><b>CUSTOM ROUTE</b><small>나만의 역과 노선 만들기</small><i>→</i></button>
-            <button data-nav="records"><span>03</span><b>RECORDS</b><small>운행 기록과 최고 점수</small><i>→</i></button>
-            <button data-nav="settings"><span>04</span><b>SETTINGS</b><small>언어와 플레이 환경</small><i>→</i></button>
+            <button data-nav="rail-map" data-free-drive-launch><span>02</span><b>FREE DRIVE</b><small>노선을 골라 전국 철도망을 자유주행</small><i>→</i></button>
+            <button data-nav="custom-list"><span>03</span><b>CUSTOM ROUTE</b><small>나만의 역과 노선 만들기</small><i>→</i></button>
+            <button data-nav="records"><span>04</span><b>RECORDS</b><small>운행 기록과 최고 점수</small><i>→</i></button>
+            <button data-nav="settings"><span>05</span><b>SETTINGS</b><small>언어와 플레이 환경</small><i>→</i></button>
           </nav>
         </div>
         <aside class="route-feature" aria-labelledby="today-route-title">
@@ -150,6 +150,33 @@
           </div>
           <div class="station-sign-footer"><span>오타 <b id="error-count">0</b></span><span id="station-service-footer"></span><span><span id="target-stop-label">목표역</span> <b id="next-station"></b></span></div>
         </section>
+      </div>
+    </section>
+
+    <section id="screen-free-drive" data-screen="free-drive" class="screen free-drive-screen" aria-labelledby="free-drive-title">
+      <header class="free-drive-top">
+        <button id="free-drive-exit" class="btn text">← 노선 선택</button>
+        <div><p>FREE DRIVE · 自由走行</p><h2 id="free-drive-title">전국 철도 자유주행</h2><small>모든 노선을 보면서 인접역과 환승역을 따라 자유롭게 이동합니다.</small></div>
+        <div class="free-drive-stats"><span>VISITED <b id="free-drive-visited-count">1</b></span><span>TRANSFER <b id="free-drive-transfer-count">0</b></span></div>
+      </header>
+      <div class="free-drive-layout">
+        <section class="free-drive-map-shell" aria-label="전국 철도 자유주행 지도">
+          <canvas id="free-drive-canvas"></canvas>
+          <div class="free-drive-current">
+            <small id="free-drive-current-line">노선</small>
+            <b id="free-drive-station-ko">현재역</b>
+            <span id="free-drive-station-ja"></span>
+          </div>
+          <div class="free-drive-legend"><span><i class="transfer-dot"></i> 환승역</span><span><i class="current-dot"></i> 현재역</span></div>
+        </section>
+        <aside class="free-drive-panel">
+          <div class="free-drive-start">
+            <label>출발역<select id="free-drive-start-station"></select></label>
+            <button id="free-drive-reset" type="button" class="btn ghost">출발역에서 다시 시작</button>
+          </div>
+          <header><p class="eyebrow">NEXT TRACK / TRANSFER</p><h3>다음 이동 선택</h3><span>같은 노선의 앞·뒤 역과 이 역에서 갈아탈 수 있는 모든 노선을 표시합니다.</span></header>
+          <div id="free-drive-options" class="free-drive-options" aria-live="polite"></div>
+        </aside>
       </div>
     </section>
 
