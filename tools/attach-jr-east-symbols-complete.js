@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// trigger-version: 1
 const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..');
 
