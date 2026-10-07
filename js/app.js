@@ -289,7 +289,7 @@ function renderGameFreeDriveOptions(state){
   tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${index===0?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
   const edges=(state.edges||[]).filter(edge=>edge.routeId===activeId);
   const typingEdge=edges.find(edge=>edge.direction>0)||edges.find(edge=>edge.direction<0)||edges[0];
-  if(typingEdge){const typingStation=freeDrive?.graph?.get(typingEdge.to)?.station;if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
+  if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=freeDrive?.graph?.get(typingEdge.to)?.station;if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
   target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=freeDrive?.graph?.get(edge.to)?.station;return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
 }
