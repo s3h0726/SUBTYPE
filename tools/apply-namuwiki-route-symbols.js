@@ -6,6 +6,7 @@ const root=path.resolve(__dirname,'..');
 const rows=[
   ['data/lines/tokyo-metro/ginza','G','도쿄메트로 긴자선 로고.svg','https://d.namu.moe/w/도쿄메트로'],
   ['data/lines/tokyo-metro/marunouchi-line','M','도쿄메트로 마루노우치선 로고.svg','https://d.namu.moe/w/도쿄메트로'],
+  ['data/lines/tokyo-metro/marunouchi-honancho-branch','Mb','도쿄메트로 마루노우치선 분기선 로고.svg','https://d.namu.moe/w/도쿄메트로'],
   ['data/lines/tokyo-metro/hibiya-line','H','도쿄메트로 히비야선 로고.svg','https://d.namu.moe/w/도쿄메트로'],
   ['data/lines/tokyo-metro/tozai-line','T','도쿄메트로 도자이선 로고.svg','https://d.namu.moe/w/도쿄메트로'],
   ['data/lines/tokyo-metro/chiyoda-line','C','도쿄메트로 치요다선 로고.svg','https://d.namu.moe/w/도쿄메트로'],
@@ -17,10 +18,7 @@ const rows=[
   ['data/lines/toei/asakusa-line','A','도에이 아사쿠사선 로고.svg','https://m.namu.moe/w/도에이 아사쿠사선'],
   ['data/lines/toei/mita-line','I','도에이 미타선 로고.svg','https://m.namu.moe/w/도에이 미타선'],
   ['data/lines/toei/shinjuku-line','S','도에이 신주쿠선 로고.svg','https://m.namu.moe/w/도에이 신주쿠선'],
-  ['data/lines/toei/oedo-line','E','도에이 오에도선 로고.svg','https://m.namu.moe/w/도에이 오에도선'],
-
-  ['data/lines/sendaishikotsukyoku/sendaishieichikatetsunambokusen','N','SM-N.svg','https://www.namu.moe/w/센다이시 지하철 난보쿠선'],
-  ['data/lines/sendaishikotsukyoku/sendaishieichikatetsutozaisen','T','SM-T.svg','https://www.namu.moe/w/센다이시 지하철 토자이선']
+  ['data/lines/toei/oedo-line','E','도에이 오에도선 로고.svg','https://m.namu.moe/w/도에이 오에도선']
 ];
 
 for(const [folder,code,fileName,page] of rows){
