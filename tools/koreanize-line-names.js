@@ -178,8 +178,94 @@ const jrSegmentFixes={
 'data/lines/jr-west/san-yohonsen-hyogo-wadamisaki/line.json':'산요 본선(효고~와다미사키)'
 };
 
+const jrFormalNameFixes={
+'data/lines/jr-east/kitaarupususen/line.json':'오이토선',
+'data/lines/jr-east/gingadorimurainkamaishisen/line.json':'가마이시선',
+'data/lines/jr-east/furutsurainaterazawasen/line.json':'아테라자와선',
+'data/lines/jr-east/okunohosomichiyukemurirain/line.json':'리쿠우토선',
+'data/lines/jr-east/okunohosomichimogamigawarain/line.json':'리쿠우사이선',
+'data/lines/jr-east/moritomizutoromannotetsudo/line.json':'반에쓰사이선(니쓰~아이즈와카마쓰)',
+'data/lines/jr-east/towadayawatadairashikiirodorirain/line.json':'하나와선',
+'data/lines/jr-east/yatsugatakekogensen/line.json':'고우미선',
+'data/lines/jr-east/yuyuabukumarain/line.json':'반에쓰토선',
+'data/lines/jr-east/doragonreruofunatosen/line.json':'오후나토선',
+'data/lines/jr-east/hamanasubeirainominatosen/line.json':'오미나토선',
+
+'data/lines/jr-east/beizakasen/line.json':'요네사카선',
+'data/lines/jr-east/iyamasen/line.json':'이야마선',
+'data/lines/jr-east/hokujosen/line.json':'기타카미선',
+'data/lines/jr-east/joetsusen/line.json':'조에쓰선',
+'data/lines/jr-east/ryomosen/line.json':'료모선',
+'data/lines/jr-east/toganesen/line.json':'도가네선',
+'data/lines/jr-east/omesen/line.json':'오메선',
+'data/lines/jr-east/uetsuhonsen/line.json':'우에쓰 본선',
+'data/lines/jr-east/shinonoisen/line.json':'시노노이선',
+'data/lines/jr-east/senzansen/line.json':'센잔선',
+'data/lines/jr-east/sensekisen/line.json':'센세키선',
+'data/lines/jr-east/echigosen/line.json':'에치고선',
+'data/lines/jr-east/hakushinsen/line.json':'하쿠신선',
+'data/lines/jr-east/sobuhonsen/line.json':'소부 본선',
+'data/lines/jr-east/sotobosen/line.json':'소토보선',
+'data/lines/jr-east/uchibosen/line.json':'우치보선',
+'data/lines/jr-east/suigunsen/line.json':'스이군선',
+'data/lines/jr-east/tadamisen/line.json':'다다미선',
+'data/lines/jr-east/tazawakosen/line.json':'다자와코선',
+'data/lines/jr-east/gonosen/line.json':'고노선',
+
+'data/lines/jr-hokkaido/semmohonsen/line.json':'센모 본선',
+'data/lines/jr-hokkaido/soyahonsen/line.json':'소야 본선',
+'data/lines/jr-hokkaido/sekihokuhonsen/line.json':'세키호쿠 본선',
+'data/lines/jr-hokkaido/chitosesen/line.json':'지토세선',
+'data/lines/jr-hokkaido/furanosen/line.json':'후라노선',
+'data/lines/jr-hokkaido/hidakahonsen/line.json':'히다카 본선',
+'data/lines/jr-hokkaido/rumoehonsen/line.json':'루모이 본선',
+
+'data/lines/jr-central/gotembasen/line.json':'고텐바선',
+'data/lines/jr-central/kiseihonsen/line.json':'기세이 본선',
+'data/lines/jr-central/minobusen/line.json':'미노부선',
+'data/lines/jr-central/sangusen/line.json':'산구선',
+'data/lines/jr-central/taitasen/line.json':'다이타선',
+'data/lines/jr-central/taketoyosen/line.json':'다케토요선',
+'data/lines/jr-central/takayamahonsen/line.json':'다카야마 본선',
+
+'data/lines/jr-west/gakkentoshisen/line.json':'갓켄토시선',
+'data/lines/jr-west/manyomahorobasen/line.json':'만요 마호로바선',
+'data/lines/jr-west/yamatorosen/line.json':'야마토지선',
+'data/lines/jr-west/kinokunisen/line.json':'기노쿠니선',
+'data/lines/jr-west/biwakosen/line.json':'비와코선',
+'data/lines/jr-west/takarazukasen/line.json':'다카라즈카선',
+'data/lines/jr-west/saganosen/line.json':'사가노선',
+'data/lines/jr-west/yumesakisen/line.json':'유메사키선',
+'data/lines/jr-west/kuzuryusen/line.json':'구즈류선',
+'data/lines/jr-west/akosen/line.json':'아코선',
+'data/lines/jr-west/bantansen/line.json':'반탄선',
+'data/lines/jr-west/fukuensen/line.json':'후쿠엔선',
+'data/lines/jr-west/gantokusen/line.json':'간토쿠선',
+'data/lines/jr-west/geibisen/line.json':'게이비선',
+'data/lines/jr-west/hakubisen/line.json':'하쿠비선',
+'data/lines/jr-west/himisen/line.json':'히미선',
+'data/lines/jr-west/imbisen/line.json':'인비선',
+'data/lines/jr-west/johanasen/line.json':'조하나선',
+'data/lines/jr-west/kakogawasen/line.json':'가코가와선',
+'data/lines/jr-west/kibisen/line.json':'기비선',
+'data/lines/jr-west/kuresen/line.json':'구레선',
+'data/lines/jr-west/kusatsusen/line.json':'구사쓰선',
+'data/lines/jr-west/maizurusen/line.json':'마이즈루선',
+'data/lines/jr-west/minesen/line.json':'미네선',
+'data/lines/jr-west/nanaosen/line.json':'나나오선',
+'data/lines/jr-west/narasen/line.json':'나라선',
+'data/lines/jr-west/obamasen/line.json':'오바마선',
+'data/lines/jr-west/onodasen/line.json':'오노다선',
+'data/lines/jr-west/sakaisen/line.json':'사카이선',
+'data/lines/jr-west/tsuyamasen/line.json':'쓰야마선',
+'data/lines/jr-west/ubesen/line.json':'우베선',
+'data/lines/jr-west/unosen/line.json':'우노선',
+'data/lines/jr-west/wakayamasen/line.json':'와카야마선',
+'data/lines/jr-west/yamaguchisen/line.json':'야마구치선'
+};
+
 let changed=0,missing=[];
-for(const [rel,ko] of Object.entries({...fixes,...jrSegmentFixes})){
+for(const [rel,ko] of Object.entries({...fixes,...jrSegmentFixes,...jrFormalNameFixes})){
   const file=path.join(root,rel);
   if(!fs.existsSync(file)){missing.push(rel);continue}
   const data=JSON.parse(fs.readFileSync(file,'utf8'));
@@ -197,5 +283,5 @@ for(const [rel,ko] of Object.entries({...fixes,...jrSegmentFixes})){
   };
   fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
 }
-console.log(JSON.stringify({targets:Object.keys({...fixes,...jrSegmentFixes}).length,changed,missing},null,2));
+console.log(JSON.stringify({targets:Object.keys({...fixes,...jrSegmentFixes,...jrFormalNameFixes}).length,changed,missing},null,2));
 if(missing.length)process.exitCode=2;
