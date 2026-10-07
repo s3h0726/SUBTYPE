@@ -911,7 +911,24 @@ const blank=(i=1,geo={})=>({id:`CT${String(i).padStart(2,'0')}`,ja:'',kana:'',ro
 class RouteEditor{
  constructor({onRoutesChanged,onPlay,onSaved}){this.onRoutesChanged=onRoutesChanged;this.onPlay=onPlay;this.onSaved=onSaved;this.form=$('#route-form');this.list=$('#station-editor');this.master=[];this.railRoutes=[];this.stationGraph=new Map();this.route=this.fresh();this.geo=null;this.render();this.bind()}
  fresh(){return{id:uid('custom'),category:'custom',dataKind:'customJourney',operatorId:'custom',operator:{ja:'Custom Journey',en:'Custom Journey',ko:'커스텀 여정'},line:{ja:'カスタム旅程',en:'Custom Journey',ko:'커스텀 여정'},code:'CT',lineColor:'#e84747',loop:false,coverage:'rail-network',stations:[],geometry:[],segments:[]}}
- setRailNetwork(routes){this.railRoutes=Array.isArray(routes)?routes:[];this.stationGraph=new Map();const add=(key,station,route,index)=>{if(!key)return null;let node=this.stationGraph.get(key);if(!node){node={key,station,edges:[]};this.stationGraph.set(key,node)}node.routes=node.routes||new Set();node.routes.add(route.id);return node};for(const route of this.railRoutes){route.stations.forEach((station,index)=>add(station.stationMasterId||station.sourceStationId||station.id,station,route,index));for(let i=0;i<route.stations.length-1;i++){const a=route.stations[i],b=route.stations[i+1],ak=a.stationMasterId||a.sourceStationId||a.id,bk=b.stationMasterId||b.sourceStationId||b.id,an=add(ak,a,route,i),bn=add(bk,b,route,i+1);an.edges.push({to:bk,route,fromIndex:i,toIndex:i+1});bn.edges.push({to:ak,route,fromIndex:i+1,toIndex:i})}}this.renderJourneyOptions()}
+ setRailNetwork(routes){
+  this.railRoutes=(Array.isArray(routes)?routes:[]).filter(route=>Array.isArray(route?.stations)&&route.stations.length>=2);
+  this.stationGraph=new Map();
+  const keyOf=station=>station?.stationMasterId||station?.sourceStationId||station?.id||'';
+  const add=(key,station,route)=>{if(!key)return null;let node=this.stationGraph.get(key);if(!node){node={key,station,edges:[]};this.stationGraph.set(key,node)}node.routes=node.routes||new Set();node.routes.add(route.id);return node};
+  for(const route of this.railRoutes){
+   route.stations.forEach(station=>add(keyOf(station),station,route));
+   for(let i=0;i<route.stations.length-1;i++){
+    const a=route.stations[i],b=route.stations[i+1],ak=keyOf(a),bk=keyOf(b);
+    if(!ak||!bk||ak===bk)continue;
+    const an=add(ak,a,route),bn=add(bk,b,route);
+    if(!an||!bn)continue;
+    an.edges.push({to:bk,route,fromIndex:i,toIndex:i+1});
+    bn.edges.push({to:ak,route,fromIndex:i+1,toIndex:i});
+   }
+  }
+  this.renderJourneyOptions()
+ }
  setStationMaster(stations){this.master=Array.isArray(stations)?stations:[];this.renderSearch($('#station-master-search')?.value||'');this.renderJourneyOptions()}
  createNew(){this.route=this.fresh();this.render();$('#station-master-search')?.focus()}
  loadRoute(route){if(!route)return;this.route=structuredClone(route);this.route.geometry ||= [];this.route.segments ||= [];this.render()}
@@ -1092,7 +1109,14 @@ function freeDriveNetworkRoutes(){
     try{return railDataRepository.resolveRoute(normalizeLine(embedded.route||embedded,{category:route.category}))}catch{return route}
   }).filter(route=>Array.isArray(route.stations)&&route.stations.length>=2)
 }
-function refreshRoutes(){routes=allRoutes();const network=freeDriveNetworkRoutes();editor?.setRailNetwork?.(network);freeDrive?.setNetwork(network);renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();renderHomeNetwork()}
+function refreshRoutes(){
+  routes=allRoutes();
+  const network=freeDriveNetworkRoutes();
+  try{editor?.setRailNetwork?.(network)}catch(error){console.error('Custom route network initialization failed:',error)}
+  try{freeDrive?.setNetwork?.(network)}catch(error){console.error('Free drive network initialization failed:',error)}
+  renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();
+  try{renderHomeNetwork()}catch(error){console.error('Home network rendering failed:',error)}
+}
 function refreshFeatureCounts(){document.querySelectorAll('#feature-viewport [data-feature-route]').forEach(button=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),target=button.closest('article')?.querySelector('[data-feature-stations]');if(route&&target)target.textContent=`${route.stationCount||route.stations.length}개 ${stopWord(route)}`})}
 function searchable(r){return normalize([r.operator.ja,r.operator.en,r.operator.ko,r.line.ja,r.line.en,r.line.ko,...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[s.ja,s.kana,s.romaji,s.ko,...(s.koAliases||[])])].join(' '))}
 function searchVariants(value){const base=normalize(value),variants=new Set([base]);for(const [from,to]of [['구마가와','쿠마가와'],['쿠마가와 철도','쿠마가와테츠도우']])if(base.includes(from))variants.add(base.replaceAll(from,to));return[...variants]}
