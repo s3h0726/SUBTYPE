@@ -143,3 +143,39 @@
 .game-line-symbol>img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
 #game-line-name{display:flex;align-items:center;gap:0;min-width:0}
 @media(max-width:620px){.game-line-symbol{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;margin-right:6px!important}}
+
+
+/* Official subway line-code badges used when an operator has no bundled SVG.
+   Keep line identity separate from the operator/company logo. */
+.line-code-label{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  min-width:34px;
+  min-height:34px;
+  flex:0 0 34px;
+  border:3px solid var(--badge-color,#60736a);
+  border-radius:999px;
+  background:#fff;
+  color:var(--badge-color,#60736a);
+  font-weight:900;
+  font-size:15px;
+  line-height:1;
+  letter-spacing:-.02em;
+  box-sizing:border-box;
+}
+.setup-route-marks .line-code-label{
+  width:64px;
+  height:64px;
+  min-width:64px;
+  min-height:64px;
+  flex-basis:64px;
+  border-width:5px;
+  font-size:24px;
+}
+@media(max-width:620px){
+  .line-code-label{width:30px;height:30px;min-width:30px;min-height:30px;flex-basis:30px;font-size:13px}
+  .setup-route-marks .line-code-label{width:52px;height:52px;min-width:52px;min-height:52px;flex-basis:52px;font-size:20px}
+}
