@@ -927,15 +927,15 @@ class RouteEditor{
  currentEdges(){
   const current=this.route.stations.at(-1);
   if(!current)return[];
-  const direct=this.stationGraph.get(current.sourceStationId)?.edges;
-  if(direct?.length)return direct;
+  const direct=this.stationGraph.get(current.sourceStationId)?.edges||[];
   const nearby=[];
   for(const node of this.stationGraph.values()){
    if(node.station.ja!==current.ja)continue;
    const lat=Number(node.station.latitude)-Number(current.latitude),lon=Number(node.station.longitude)-Number(current.longitude);
    if(Number.isFinite(lat)&&Number.isFinite(lon)&&Math.hypot(lat,lon)<=0.008)nearby.push(...node.edges);
   }
-  return nearby;
+  const merged=[...direct,...nearby],seen=new Set;
+  return merged.filter(edge=>{const key=`${edge.route.id}:${edge.fromIndex}:${edge.toIndex}`;if(seen.has(key))return false;seen.add(key);return true});
  }
  edgeToken(edge){return encodeURIComponent(JSON.stringify([edge.route.id,edge.fromIndex,edge.toIndex]))}
  addGraphEdge(token){let values;try{values=JSON.parse(decodeURIComponent(token))}catch{return}const[routeId,fromIndex,toIndex]=values,route=this.railRoutes.find(item=>item.id===routeId),edge=route&&{route,fromIndex,toIndex,to:route.stations[toIndex].stationMasterId||route.stations[toIndex].id};if(!edge)return;const source=this.master.find(station=>station.id===edge.to);if(!source)return toast('역 마스터에서 다음 역을 찾지 못했습니다.');this.appendStation(source,edge)}
@@ -959,7 +959,7 @@ class RouteEditor{
   this.route.stations.push({id:'',ja:source.ja,kana:source.kana,romaji:source.romaji,ko:source.ko,koAliases:[...(source.koAliases||[])],latitude:source.latitude,longitude:source.longitude,sourceStationId:source.id,operators:[...(source.operators||[])],lines:structuredClone(source.lines||[]),prefectureCode:source.prefectureCode,inTokyo:source.inTokyo,geometryIndex:Math.max(0,this.route.geometry.length-1),segment});
   this.renumber();this.render();toast(`${source.ko||'MISSING_KOREAN_NAME'} (${source.ja}) 역을 추가했습니다.`)
  }
- renderJourneyOptions(){const target=$('#journey-options');if(!target)return;const current=this.route.stations.at(-1),edges=this.currentEdges();if(!current){target.innerHTML='<p>출발역을 선택하면 이용 가능한 모든 노선과 인접역이 표시됩니다.</p>';return}const grouped=[...new Map(edges.map(edge=>[edge.route.id,edge.route])).values()];target.innerHTML=`<header><span>CURRENT · 現在</span><b>${escapeHtml(current.ja)} / ${escapeHtml(current.ko)}</b><small>${grouped.length>1?'TAB · 환승 노선 선택 가능':'현재 노선의 인접역 선택'}</small></header><div class="journey-lines">${grouped.map(route=>`<section><h4>${escapeHtml(route.code||'—')} · ${escapeHtml(route.line.ja)} <small>${escapeHtml(route.line.ko)}</small></h4>${edges.filter(edge=>edge.route.id===route.id).map(edge=>{const station=route.stations[edge.toIndex];return`<button type="button" data-journey-edge="${this.edgeToken(edge)}"><b>${escapeHtml(station.ja)}</b><span>${escapeHtml(station.ko)}</span><small>${edge.toIndex>edge.fromIndex?'→':'←'} NEXT</small></button>`}).join('')}</section>`).join('')}</div>`}
+ renderJourneyOptions(){const target=$('#journey-options');if(!target)return;const current=this.route.stations.at(-1),edges=this.currentEdges();if(!current){target.innerHTML='<p>출발역을 선택하면 전국 철도망의 인접역과 환승 노선이 표시됩니다.</p>';return}const currentSegment=this.route.segments.at(-1)?.lineId||this.route.segments.at(-1)?.id||null,grouped=[...new Map(edges.map(edge=>[edge.route.id,edge.route])).values()];target.innerHTML=`<header><span>CURRENT · 現在</span><b>${escapeHtml(current.ja)} / ${escapeHtml(current.ko)}</b><small>${grouped.length>1?'환승 가능 · 다른 노선도 바로 이어서 선택':'현재역에서 이어지는 인접역'}</small></header><div class="journey-lines">${grouped.map(route=>{const transfer=currentSegment&&route.id!==currentSegment;return`<section class="${transfer?'transfer':''}" style="--route-color:${route.lineColor||'#777'}"><h4><span>${transfer?'TRANSFER':'LINE'}</span> ${escapeHtml(route.code||'—')} · ${escapeHtml(route.line.ja)} <small>${escapeHtml(route.line.ko)}</small></h4>${edges.filter(edge=>edge.route.id===route.id).map(edge=>{const station=route.stations[edge.toIndex];return`<button type="button" data-journey-edge="${this.edgeToken(edge)}"><b>${escapeHtml(station.ja)}</b><span>${escapeHtml(station.ko)}</span><small>${edge.toIndex>edge.fromIndex?'→':'←'} NEXT</small></button>`}).join('')}</section>`}).join('')}</div>`}
  addStation(geo={}){if(this.route.stations.length>=MAX)return toast('최대 300역까지 만들 수 있습니다.');this.sync();this.route.stations.push(blank(this.route.stations.length+1,geo));this.render();toast('고급 가상역을 추가했습니다. 실제 역 검색 사용을 권장합니다.')}
  renumber(){this.route.stations.forEach((station,i)=>station.id=`${this.route.code||'CT'}${String(i+1).padStart(2,'0')}`)}
  sync(){const f=new FormData(this.form);this.route.operator={ja:f.get('operator')||'Custom Railway',en:f.get('operator')||'Custom Railway',ko:f.get('operator')||'커스텀 철도'};this.route.code=String(f.get('code')||'CT').toUpperCase();this.route.line={ja:f.get('lineJa')||'',ko:f.get('lineKo')||'',en:f.get('lineEn')||''};this.route.lineColor=f.get('color')||'#e84747';this.route.loop=f.get('loop')==='on';$$('.station-row',this.list).forEach((row,i)=>{if(!this.route.stations[i]?.customStation)return;this.route.stations[i]={...this.route.stations[i],...Object.fromEntries($$('input[data-field]',row).map(el=>[el.dataset.field,el.value.normalize('NFC')]))}});this.renumber()}
