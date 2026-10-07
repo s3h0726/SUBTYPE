@@ -635,7 +635,7 @@ class Game{
     $('#previous-station-name').textContent=prev?.ko||'—';$('#previous-station-romaji').textContent=prev?`${prev.ja||''} · ${prev.romaji||''}`:'';
     $('#next-station-name').textContent=next?.ko||'—';$('#next-station-romaji').textContent=next?`${next.ja||''} · ${next.romaji||''}`:'';
     $('#next-station').textContent=state.transferCount>0?'TAB · 환승 가능':'이동할 역 선택';$('#station-service-footer').textContent=state.transferCount>0?`자유주행 · TAB 환승 ${state.transferCount}개`:'자유주행';
-    $('#game-service-name').textContent='FREE DRIVE · 自由走行';$('#service-origin-ja').textContent=station.ja||'';$('#service-origin-ko').textContent=station.ko||'';$('#service-destination-ja').textContent='自由';$('#service-destination-ko').textContent='자유주행';$('#service-stop-count').textContent=`${state.historyLength||1}개 역 이동`;$('#service-route-summary').textContent=`${route.line?.ko||route.line?.ja||''} · 자유주행`;$('#service-direction-summary').textContent=state.transferCount>0?'앞·뒤 역 선택 · TAB 키로 환승':'앞·뒤 역을 선택해 자유롭게 이동';
+    $('#game-service-name').textContent='FREE DRIVE · 自由走行';$('#service-origin-ja').textContent=station.ja||'';$('#service-origin-ko').textContent=station.ko||'';$('#service-destination-ja').textContent='自由';$('#service-destination-ko').textContent='자유주행';$('#service-stop-count').textContent=`${state.historyLength||1}개 역 이동`;$('#service-route-summary').textContent=`${route.line?.ko||route.line?.ja||''} · 자유주행`;$('#service-direction-summary').textContent=state.transferCount>0?'앞·뒤 역 선택 · TAB으로 환승 노선 순환':'앞·뒤 역을 선택해 자유롭게 이동';
     $('#hud-progress').textContent=`${state.historyLength||1} VISITED`;$('#hud-cpm').textContent='—';$('#hud-accuracy').textContent='—';$('#hud-combo').textContent=`환승 ${state.transferCount||0}`;
     renderGameMap(this.mapRoute,this.index,{mapMode:'geographic',stationLabel:'ja-ko',mapLabels:'normal',motion:true,serviceStops:[...this.serviceStops],previousRouteIndex:Math.max(0,this.index-1),nextRouteIndex:Math.min(this.mapRoute.stations.length-1,this.index+1)});
   }
@@ -1367,6 +1367,12 @@ $('#route-search').addEventListener('input',()=>{routeRenderLimit=96;renderRoute
 $('#route-grid').addEventListener('click',e=>{if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes();if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
 $('#selected-line-preview').addEventListener('click',e=>{const branch=e.target.closest('[data-route]');if(branch){selectedGroup=null;chooseRoute(branch.dataset.route);return}if(e.target.closest('[data-selected-play]')&&selected){openSetup(selected);return}if(e.target.closest('[data-selected-free-drive]')&&selected){startFreeDrive(selected);return}});
 $('#clear-route-selection').addEventListener('click',()=>{selected=null;selectedGroup=null;renderSelected();renderRoutes()});
+$('#game-free-drive-tabs')?.addEventListener('click',event=>{
+  const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode)return;
+  const state=freeDrive?.snapshot();if(!state)return;
+  const tabs=freeDriveRouteTabs(state),index=tabs.findIndex(item=>item.id===button.dataset.freeDriveTab);if(index<0)return;
+  freeDriveTabIndex=index;renderGameFreeDriveOptions(state);
+});
 document.addEventListener('keydown',event=>{
   if(event.key!=='Tab'||currentScreen!=='game'||!game?.freeDriveMode)return;
   const state=freeDrive?.snapshot();if(!state)return;
