@@ -110,8 +110,76 @@ const fixes={
 'data/lines/uekedenkitetsudo/uekedenkitetsudojomosen/line.json':'조모 전기철도 조모선'
 };
 
+const jrSegmentFixes={
+'data/lines/jr-central/chuohonsen-nagoya-shiojiri/line.json':'주오 본선(나고야~시오지리)',
+'data/lines/jr-central/idasen-tenryukyo-tatsuno/line.json':'이다선(텐류쿄~다쓰노)',
+'data/lines/jr-central/idasen-toyohashi-tenryukyo/line.json':'이다선(도요하시~텐류쿄)',
+'data/lines/jr-central/kansaihonsen-nagoya-kameyama/line.json':'간사이 본선(나고야~가메야마)',
+'data/lines/jr-central/tokaidohonsen-atami-hamamatsu/line.json':'도카이도 본선(아타미~하마마쓰)',
+'data/lines/jr-central/tokaidohonsen-gifu-minoakasaka-maibara/line.json':'도카이도 본선(기후~미노아카사카·마이바라)',
+'data/lines/jr-central/tokaidohonsen-hamamatsu-gifu/line.json':'도카이도 본선(하마마쓰~기후)',
+
+'data/lines/jr-east/ban-etsusaisen-koriyama-aizuwakamatsu/line.json':'반에쓰사이선(고리야마~아이즈와카마쓰)',
+'data/lines/jr-east/chuohonsen-tokyo-shiojiri/line.json':'주오 본선(도쿄~시오지리)',
+'data/lines/jr-east/chuohonsen-tokyo-shiojiri-2/line.json':'주오 본선(도쿄~시오지리)',
+'data/lines/jr-east/hachikosen-hachioji-komagawa/line.json':'하치코선(하치오지~고마가와)',
+'data/lines/jr-east/hachikosen-hachioji-komagawa-2/line.json':'하치코선(하치오지~고마가와)',
+'data/lines/jr-east/hachikosen-komagawa-takasaki/line.json':'하치코선(고마가와~다카사키)',
+'data/lines/jr-east/jobansen-ueno-totte/line.json':'조반선(우에노~도리데)',
+'data/lines/jr-east/jobansen-ueno-totte-2/line.json':'조반선(우에노~도리데)',
+'data/lines/jr-east/jobansen-totte-iwaki/line.json':'조반선(도리데~이와키)',
+'data/lines/jr-east/jobansen-totte-iwaki-2/line.json':'조반선(도리데~이와키)',
+'data/lines/jr-east/jobansen-iwaki-sendai/line.json':'조반선(이와키~센다이)',
+'data/lines/jr-east/ouhonsen-shinjo-aomori/line.json':'오우 본선(신조~아오모리)',
+'data/lines/jr-east/shin-etsuhonsen-naoetsu-nigata/line.json':'신에쓰 본선(나오에쓰~니가타)',
+'data/lines/jr-east/shin-etsuhonsen-shinonoi-nagano/line.json':'신에쓰 본선(시노노이~나가노)',
+'data/lines/jr-east/tohokuhonsen-kuroiso-rifu-morioka/line.json':'도호쿠 본선(구로이소~리후·모리오카)',
+'data/lines/jr-east/tokaidohonsen-tokyo-atami/line.json':'도카이도 본선(도쿄~아타미)',
+'data/lines/jr-east/tokaidohonsen-tokyo-atami-2/line.json':'도카이도 본선(도쿄~아타미)',
+
+'data/lines/jr-hokkaido/hakodatehonsen-hakodate-chomanbu/line.json':'하코다테 본선(하코다테~오샤만베)',
+'data/lines/jr-hokkaido/hakodatehonsen-chomanbu-otaru/line.json':'하코다테 본선(오샤만베~오타루)',
+'data/lines/jr-hokkaido/hakodatehonsen-otaru-asahikawa/line.json':'하코다테 본선(오타루~아사히카와)',
+'data/lines/jr-hokkaido/muroranhonsen-chomanbu-muroran-tomakomai/line.json':'무로란 본선(오샤만베·무로란~도마코마이)',
+'data/lines/jr-hokkaido/muroranhonsen-tomakomai-iwamizawa/line.json':'무로란 본선(도마코마이~이와미자와)',
+'data/lines/jr-hokkaido/nemurohonsen-shintoku-kushiro/line.json':'네무로 본선(신토쿠~구시로)',
+'data/lines/jr-hokkaido/nemurohonsen-takikawa-shintoku/line.json':'네무로 본선(다키카와~신토쿠)',
+
+'data/lines/jr-kyushu/ebinokogensen-hachidai-yoshimatsu/line.json':'에비노 고원선(야쓰시로~요시마쓰)',
+'data/lines/jr-kyushu/fukukitayutakasen-orio-katsuragawa/line.json':'후쿠호쿠유타카선(오리오~가쓰라가와)',
+'data/lines/jr-kyushu/hisatsusen-yoshimatsu-hayato/line.json':'히사쓰선(요시마쓰~하야토)',
+'data/lines/jr-kyushu/kagoshimahonsen-hakata-hachidai/line.json':'가고시마 본선(하카타~야쓰시로)',
+'data/lines/jr-kyushu/kagoshimahonsen-sendai-kagoshima/line.json':'가고시마 본선(센다이~가고시마)',
+'data/lines/jr-kyushu/kagoshimahonsen-shimonoseki-mojiko-hakata/line.json':'가고시마 본선(시모노세키·모지코~하카타)',
+'data/lines/jr-kyushu/kashiisen-kashii-umi/line.json':'가시선(가시이~우미)',
+'data/lines/jr-kyushu/koesen-meinohama-nishikaratsu/line.json':'지쿠히선(메이노하마~니시카라쓰)',
+'data/lines/jr-kyushu/koesen-nishikaratsu-imari/line.json':'지쿠히선(니시카라쓰~이마리)',
+'data/lines/jr-kyushu/nagasakihonsen-tosu-nagasaki/line.json':'나가사키 본선(도스~나가사키)',
+'data/lines/jr-kyushu/nippohonsen-mojiko-saeki/line.json':'닛포 본선(모지코~사에키)',
+'data/lines/jr-kyushu/nippohonsen-saeki-kagoshimachuo/line.json':'닛포 본선(사에키~가고시마추오)',
+
+'data/lines/jr-west/fukuchiyamasen-sasayamaguchi-fukuchiyama/line.json':'후쿠치야마선(사사야마구치~후쿠치야마)',
+'data/lines/jr-west/hanwasen-tennoji-wakayama/line.json':'한와선(덴노지~와카야마)',
+'data/lines/jr-west/hokurikuhonsen-maibara-kanazawa/line.json':'호쿠리쿠 본선(마이바라~가나자와)',
+'data/lines/jr-west/kansaihonsen-kameyama-kamo/line.json':'간사이 본선(가메야마~가모)',
+'data/lines/jr-west/kiseihonsen-wakayama-wakayamashi/line.json':'기세이 본선(와카야마~와카야마시)',
+'data/lines/jr-west/kishinsen-himeji-sayo/line.json':'기신선(히메지~사요)',
+'data/lines/jr-west/kishinsen-sayo-nimi/line.json':'기신선(사요~니미)',
+'data/lines/jr-west/kobesen-kobe-himeji/line.json':'고베선(고베~히메지)',
+'data/lines/jr-west/kobesen-osaka-kobe/line.json':'고베선(오사카~고베)',
+'data/lines/jr-west/san-inhonsen-sonobe-toyooka/line.json':'산인 본선(소노베~도요오카)',
+'data/lines/jr-west/san-inhonsen-toyooka-yonago/line.json':'산인 본선(도요오카~요나고)',
+'data/lines/jr-west/san-inhonsen-yonago-masuda/line.json':'산인 본선(요나고~마스다)',
+'data/lines/jr-west/san-inhonsen-masuda-shimonoseki/line.json':'산인 본선(마스다~시모노세키)',
+'data/lines/jr-west/san-yohonsen-himeji-okayama/line.json':'산요 본선(히메지~오카야마)',
+'data/lines/jr-west/san-yohonsen-okayama-mihara/line.json':'산요 본선(오카야마~미하라)',
+'data/lines/jr-west/san-yohonsen-mihara-iwakuni/line.json':'산요 본선(미하라~이와쿠니)',
+'data/lines/jr-west/san-yohonsen-iwakuni-moji/line.json':'산요 본선(이와쿠니~모지)',
+'data/lines/jr-west/san-yohonsen-hyogo-wadamisaki/line.json':'산요 본선(효고~와다미사키)'
+};
+
 let changed=0,missing=[];
-for(const [rel,ko] of Object.entries(fixes)){
+for(const [rel,ko] of Object.entries({...fixes,...jrSegmentFixes})){
   const file=path.join(root,rel);
   if(!fs.existsSync(file)){missing.push(rel);continue}
   const data=JSON.parse(fs.readFileSync(file,'utf8'));
@@ -129,5 +197,5 @@ for(const [rel,ko] of Object.entries(fixes)){
   };
   fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
 }
-console.log(JSON.stringify({targets:Object.keys(fixes).length,changed,missing},null,2));
+console.log(JSON.stringify({targets:Object.keys({...fixes,...jrSegmentFixes}).length,changed,missing},null,2));
 if(missing.length)process.exitCode=2;
