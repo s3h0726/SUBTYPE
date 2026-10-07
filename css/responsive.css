@@ -3,3 +3,67 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}body.reduce-motion *,body.reduce-motion *:before,body.reduce-motion *:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
 @media(max-width:900px){.map-select-layout{grid-template-columns:1fr}.rail-map{height:540px}.map-side-panel{max-height:520px}.map-route-list{display:grid;grid-template-columns:repeat(2,1fr)}.editor-form .station-row{grid-template-columns:30px 65px repeat(2,1fr) 105px 85px}.editor-form .station-row input[data-field="kana"],.editor-form .station-row input[data-field="romaji"]{display:none}}
 @media(max-width:620px){.rail-map{height:430px}.map-side-panel{max-height:480px}.map-route-list{grid-template-columns:1fr}.station-info{left:8px;bottom:8px;width:calc(100% - 16px);max-height:62%;padding:15px}.editor-form .station-row{grid-template-columns:28px 54px 1fr 70px}.editor-form .station-row input[data-field="kana"],.editor-form .station-row input[data-field="romaji"],.editor-form .station-row input[data-field="ko"],.editor-form .station-coord{display:none}.custom-geo-map{height:280px}}
+
+
+/* 2026-10-07 mobile stability: prevent Korean/Japanese text clipping and touch hover jitter. */
+@media(max-width:680px){
+  html,body{max-width:100%;overflow-x:hidden}
+  body{word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .screen,.line-select-screen,.line-select-layout,.line-list-panel,.selected-line-panel,
+  .selected-line-card,.line-card,.route-ticket,.setup-form,.game-top,.station-sign,
+  .station-sign-brand,.station-sign-main,.station-current,.station-sign-footer{
+    min-width:0;max-width:100%;
+  }
+  h1,h2,h3,p,span,b,strong,small,button,label{
+    min-width:0;
+  }
+  .line-select-heading h2,.selected-line-card h3,.route-ticket h3,
+  .feature-card h2,.feature-card h3,.game-top h2,
+  .station-current #prompt-main,.station-current .prompt-ko,
+  .station-current .prompt-romaji,.station-sign-brand span{
+    word-break:keep-all!important;
+    overflow-wrap:anywhere!important;
+  }
+  .selected-line-card h3,.route-ticket h3,.feature-card h2{
+    font-size:clamp(28px,10vw,42px)!important;
+    line-height:1.08!important;
+    letter-spacing:-.045em!important;
+  }
+  .game-top{grid-template-columns:auto minmax(0,1fr) auto!important}
+  .game-top>div:nth-child(2){min-width:0;overflow:hidden}
+  .game-top h2,.game-top small{
+    max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .station-sign-brand{gap:8px!important}
+  .station-sign-brand #station-line-label{min-width:0;max-width:100%;overflow:hidden}
+  .station-sign-brand #station-line-label>span,
+  .station-sign-brand #station-line-label>b{
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .station-current #prompt-main{
+    max-width:100%!important;
+    font-size:clamp(25px,8vw,34px)!important;
+    letter-spacing:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+  .station-current .prompt-ko{
+    max-width:100%!important;
+    font-size:clamp(18px,6vw,24px)!important;
+    letter-spacing:-.025em!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+  .ko-progress{max-width:100%;overflow:hidden!important}
+  .line-card footer{white-space:normal!important;flex-wrap:wrap}
+  .line-card .operator{white-space:nowrap}
+  .btn:hover,.btn:active,.route-card:hover,.line-card:hover,
+  .launch-menu button:hover,.launch-menu button:focus-visible{
+    transform:none!important;
+  }
+  .btn,.route-card,.line-card,.launch-menu button,.feature-card,.game-train{
+    transition:none!important;
+  }
+}
