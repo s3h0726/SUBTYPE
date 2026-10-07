@@ -663,8 +663,13 @@ class Game{
 const finite=n=>Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
 const stationKey=s=>{
-  const c=coords(s),ja=String(s?.ja||s?.names?.ja||s?.ko||s?.id||'').trim();
-  if(c&&ja)return `geo:${ja}:${c[0].toFixed(3)}:${c[1].toFixed(3)}`;
+  const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
+  // Transfer stations are often represented by different operator-specific IDs.
+  // Prefer a name + ~200m coordinate cell so the same physical station merges across companies.
+  if(c&&ja){
+    const lat=Math.round(c[0]*500)/500,lon=Math.round(c[1]*500)/500;
+    return `place:${ja}:${lat.toFixed(3)}:${lon.toFixed(3)}`;
+  }
   return String(s?.stationMasterId||s?.sourceStationId||s?.id||ja);
 };
 const routeName=r=>r?.line?.ko||r?.line?.ja||r?.line?.en||r?.id||'노선';
@@ -717,11 +722,11 @@ function drawNetworkCanvas(canvas,routes,{bounds=null,alpha=.28,transferNodes=nu
 }
 
 class FreeDrive{
-  constructor({onExit}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.canvas=$('#free-drive-canvas');this.bind()}
+  constructor({onExit}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
   bind(){
     $('#free-drive-options')?.addEventListener('click',e=>{const b=e.target.closest('[data-free-edge]');if(b)this.move(decodeURIComponent(b.dataset.freeEdge))});
     $('#free-drive-start-station')?.addEventListener('change',e=>this.restartAt(+e.target.value));
-    $('#free-drive-reset')?.addEventListener('click',()=>this.restartAt(+($('#free-drive-start-station')?.value||0)));
+    $('#free-drive-reset')?.addEventListener('click',()=>this.restartAt(+($('#free-drive-start-station')?.value||0)));$('#free-drive-map-toggle')?.addEventListener('click',()=>{this.viewMode=this.viewMode==='local'?'all':'local';this.renderMap();this.updateMapToggle()});
     $('#free-drive-exit')?.addEventListener('click',()=>this.onExit?.());
     addEventListener('resize',()=>this.renderMap());
   }
@@ -757,10 +762,11 @@ class FreeDrive{
     const select=$('#free-drive-start-station');if(!select)return;
     select.innerHTML=route.stations.map((s,i)=>`<option value="${i}">${escapeHtml(s.ko||s.ja)} · ${escapeHtml(s.ja||'')}</option>`).join('');
   }
+  updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
     if(!this.startRoute)return;
     const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=stationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];
-    const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.render();
+    const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();
   }
   move(encoded){
     let token;try{token=JSON.parse(encoded)}catch{return}
@@ -792,7 +798,12 @@ class FreeDrive{
   }
   renderMap(){
     if(!this.canvas||!this.routes.length)return;
-    drawNetworkCanvas(this.canvas,this.routes,{bounds:boundsOfRoutes(this.routes),alpha:.13,transferNodes:this.graph,currentKey:this.currentKey,currentRouteId:this.currentRouteId});
+    let bounds=boundsOfRoutes(this.routes);
+    if(this.viewMode==='local'){
+      const node=this.current(),c=node?.coord;
+      if(c)bounds={minLat:c[0]-.18,maxLat:c[0]+.18,minLon:c[1]-.24,maxLon:c[1]+.24};
+    }
+    drawNetworkCanvas(this.canvas,this.routes,{bounds,alpha:this.viewMode==='local'?.18:.10,transferNodes:this.graph,currentKey:this.currentKey,currentRouteId:this.currentRouteId});
   }
 }
 
@@ -1081,7 +1092,7 @@ function freeDriveNetworkRoutes(){
     try{return railDataRepository.resolveRoute(normalizeLine(embedded.route||embedded,{category:route.category}))}catch{return route}
   }).filter(route=>Array.isArray(route.stations)&&route.stations.length>=2)
 }
-function refreshRoutes(){routes=allRoutes();editor?.setRailNetwork?.(builtin.filter(isRouteVisible));freeDrive?.setNetwork(freeDriveNetworkRoutes());renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();renderHomeNetwork()}
+function refreshRoutes(){routes=allRoutes();const network=freeDriveNetworkRoutes();editor?.setRailNetwork?.(network);freeDrive?.setNetwork(network);renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();renderHomeNetwork()}
 function refreshFeatureCounts(){document.querySelectorAll('#feature-viewport [data-feature-route]').forEach(button=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),target=button.closest('article')?.querySelector('[data-feature-stations]');if(route&&target)target.textContent=`${route.stationCount||route.stations.length}개 ${stopWord(route)}`})}
 function searchable(r){return normalize([r.operator.ja,r.operator.en,r.operator.ko,r.line.ja,r.line.en,r.line.ko,...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[s.ja,s.kana,s.romaji,s.ko,...(s.koAliases||[])])].join(' '))}
 function searchVariants(value){const base=normalize(value),variants=new Set([base]);for(const [from,to]of [['구마가와','쿠마가와'],['쿠마가와 철도','쿠마가와테츠도우']])if(base.includes(from))variants.add(base.replaceAll(from,to));return[...variants]}
