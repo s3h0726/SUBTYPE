@@ -861,15 +861,22 @@ function buildThroughRoute(spec){
 }
 const journeyLabel=value=>value?.ko||value?.names?.ko||value?.ja||value?.names?.ja||value?.en||value?.names?.en||'';
 function actualOperatingChoices(route){
-  const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station]));
-  if(journeys.length)return journeys.map(item=>({id:`journey:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:item.originNames,destinationNames:item.destinationNames,trainType:trainTypeFor(item.trainTypeId),journeyId:item.id,patternId:item.servicePatternId||null}));
-  const patternChoices=patterns.filter(item=>item.originStationId&&item.destinationStationId).map(item=>({id:`pattern:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:stationMap.get(String(item.originStationId))||{ko:item.originStationId},destinationNames:stationMap.get(String(item.destinationStationId))||{ko:item.destinationStationId},trainType:trainTypeFor(item.trainTypeId),journeyId:null,patternId:item.id}));
-  if(patternChoices.length)return patternChoices;
+  const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
+  const add=choice=>{const key=[choice.patternId||'',choice.journeyId||'',choice.originId,choice.destinationId,choice.trainType?.id||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
+  for(const item of journeys)add({id:`journey:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:item.originNames,destinationNames:item.destinationNames,trainType:trainTypeFor(item.trainTypeId),journeyId:item.id,patternId:item.servicePatternId||null,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'});
+  for(const item of patterns){
+    if(!item.originStationId||!item.destinationStationId)continue;
+    const duplicate=choices.some(choice=>choice.patternId===item.id&&choice.originId===String(item.originStationId)&&choice.destinationId===String(item.destinationStationId)&&choice.trainType?.id===item.trainTypeId);
+    if(duplicate)continue;
+    const type=trainTypeFor(item.trainTypeId),origin=stationMap.get(String(item.originStationId))||{ko:item.originStationId},destination=stationMap.get(String(item.destinationStationId))||{ko:(item.names?.ko||'').match(/([^\s]+)행$/)?.[1]||item.destinationStationId};
+    add({id:`pattern:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:origin,destinationNames:destination,trainType:type,journeyId:null,patternId:item.id,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'})
+  }
+  if(choices.length)return choices.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   const stations=route?.stations||[];if(stations.length<2)return[];
   const first=stations[0],last=stations.at(-1);
   return[
-    {id:'fallback:forward',originId:String(first.id),destinationId:String(last.id),originNames:first,destinationNames:last,trainType:null,journeyId:null,patternId:null,direction:'forward'},
-    {id:'fallback:reverse',originId:String(last.id),destinationId:String(first.id),originNames:last,destinationNames:first,trainType:null,journeyId:null,patternId:null,direction:'reverse'}
+    {id:'fallback:forward',originId:String(first.id),destinationId:String(last.id),originNames:first,destinationNames:last,trainType:null,journeyId:null,patternId:null,patternName:{ko:'각역정차'},throughServiceId:null,direction:'forward'},
+    {id:'fallback:reverse',originId:String(last.id),destinationId:String(first.id),originNames:last,destinationNames:first,trainType:null,journeyId:null,patternId:null,patternName:{ko:'각역정차'},throughServiceId:null,direction:'reverse'}
   ]
 }
 function configureJourneyPicker(){
@@ -881,15 +888,15 @@ function configureJourneyPicker(){
   const renderDestinations=()=>{
     const available=choices.filter(choice=>choice.originId===origin.value);
     destination.innerHTML=available.map(choice=>{
-      const typeLabel=journeyLabel(choice.trainType);
-      return `<option value="${escapeHtml(choice.id)}" data-destination-id="${escapeHtml(choice.destinationId)}">${escapeHtml(journeyLabel(choice.destinationNames))}${typeLabel?` · ${escapeHtml(typeLabel)}`:''}</option>`
+      const typeLabel=journeyLabel(choice.trainType),patternLabel=journeyLabel(choice.patternName),through=choice.throughServiceId?' · 직통':'';
+      return `<option value="${escapeHtml(choice.id)}" data-destination-id="${escapeHtml(choice.destinationId)}">${escapeHtml(journeyLabel(choice.destinationNames))}${typeLabel?` · ${escapeHtml(typeLabel)}`:patternLabel?` · ${escapeHtml(patternLabel)}`:''}${through}</option>`
     }).join('');
     const choice=available.find(item=>item.id===destination.value)||available[0];if(!choice)return;
     destination.value=choice.id;destination.dataset.stationId=choice.destinationId;direction.value=choice.direction||'forward';
-    summary.textContent=`${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''} · 실제 운행계통`;
+    summary.textContent=`${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''} · 실제 운행계통`;
     const endpoints=$('#setup-route .route-endpoints');if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`
   };
-  origin.onchange=renderDestinations;destination.onchange=()=>{const available=choices.filter(choice=>choice.originId===origin.value),choice=available.find(item=>item.id===destination.value);if(!choice)return;destination.dataset.stationId=choice.destinationId;direction.value=choice.direction||'forward';summary.textContent=`${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''} · 실제 운행계통`;const endpoints=$('#setup-route .route-endpoints');if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`};
+  origin.onchange=renderDestinations;destination.onchange=()=>{const available=choices.filter(choice=>choice.originId===origin.value),choice=available.find(item=>item.id===destination.value);if(!choice)return;destination.dataset.stationId=choice.destinationId;direction.value=choice.direction||'forward';summary.textContent=`${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''} · 실제 운행계통`;const endpoints=$('#setup-route .route-endpoints');if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`};
   origin.value=uniqueOrigins[0].originId;renderDestinations()
 }
 function openSetup(route){
