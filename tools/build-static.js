@@ -37,8 +37,8 @@ for(const key of ['SENDAI_LINE_ORIGINALS','SM-N.svg','SM-T.svg','line-99214','li
 }
 // Prevent rebuilt bundles from silently discarding previous verified logo repairs.
 const preservedLogoMarkers={
-  'js/asset-renderer.js':['Sendai_City_Subway_Logo.svg','data/operators/toei/logo.svg','Sanyo_electric_railway_logo.svg','Kobe_Municipal_Subway_Logo.svg'],
-  'js/line-badge.js':['SENDAI_LINE_ORIGINALS','Number_prefix_SkyAccess.svg','Number_prefix_Hanshin_line.svg','Number_prefix_San-yo_Railway_line.svg','Subway_KobeSeishin.svg','Subway_KobeKaigan.svg','if(!asset)asset=railDataRepository.getLineSymbolAsset'],
+  'js/asset-renderer.js':['Sendai_City_Subway_Logo.svg','data/operators/toei/logo.svg','Sanyo_electric_railway_logo.svg','Kobe_Municipal_Subway_Logo.svg','Nishitetsu_logo_N.svg'],
+  'js/line-badge.js':['SENDAI_LINE_ORIGINALS','Number_prefix_SkyAccess.svg','Number_prefix_Hanshin_line.svg','Number_prefix_San-yo_Railway_line.svg','Subway_KobeSeishin.svg','Subway_KobeKaigan.svg','if(!asset)asset=railDataRepository.getLineSymbolAsset','Tobu_Tojo_Line_(TJ)_symbol.svg','SeibuIkebukuro.svg','SeibuShinjuku.svg','SeibuKokubunji.svg','SeibuTamako.svg','SeibuTamagawa.svg'],
 };
 for(const [file,markers] of Object.entries(preservedLogoMarkers))for(const marker of markers){
   if(!read(file).includes(marker)||!source.includes(marker))throw new Error('Verified logo regression blocked: '+file+' / '+marker);
