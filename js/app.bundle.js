@@ -187,90 +187,9 @@ class TypingStatistics{
 
 
 const cfg=()=>globalThis.TRT_LINE_BADGES||{operatorStyles:{},routeCodes:{}};
-const JR_OPERATOR_IDS=new Set(['jr-east','jr-central','jr-west','jr-hokkaido','jr-shikoku','jr-kyushu']);
-const commonsFileAsset=filename=>{const encoded=encodeURIComponent(filename),url=`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encoded}`,source=`https://commons.wikimedia.org/wiki/File:${encoded}`;return{url,asset:url,file:url,officialExists:true,exists:true,verified:true,source,assetSource:'wikimedia-commons',assetSourceUrl:source}};
-function actualWikipediaLineAsset(route,code,lineName,operatorName){
-  const op=String(route?.operatorId||''),c=String(code||'').trim(),name=String(lineName||''),operator=String(operatorName||''),all=`${name} ${operator}`;
+function lineBadgeMeta(route){const source=cfg(),operator=source.operatorStyles?.[route?.operatorId]||{},theme=globalThis.TRT_LINE_THEMES?.[route?.id]||{},code=source.routeCodes?.[route?.id]||theme.code||route?.code||'';let asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null;const lineName=[route?.line?.ko,route?.line?.ja,route?.line?.en,route?.line?.names?.ko,route?.line?.names?.ja,route?.line?.names?.en].filter(Boolean).join(' '),operatorName=[route?.operator?.ko,route?.operator?.ja,route?.operator?.en,route?.operator?.names?.ko,route?.operator?.names?.ja,route?.operator?.names?.en].filter(Boolean).join(' ');if(/기타오사카|北大阪急行|Kita[- ]?Osaka/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/kitakyu-namboku.svg',document.baseURI).href,asset:'./assets/route-symbols/kitakyu-namboku.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}else if(/九州新幹線|큐슈.*신칸센|Kyushu Shinkansen/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/kyushu-shinkansen.png',document.baseURI).href,asset:'./assets/route-symbols/kyushu-shinkansen.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}else if(/西九州新幹線|니시.*큐슈.*신칸센|Nishi[- ]?Kyushu Shinkansen/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/nishi-kyushu-shinkansen.png',document.baseURI).href,asset:'./assets/route-symbols/nishi-kyushu-shinkansen.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}else if(/つくばエクスプレス|츠쿠바.*익스프레스|Tsukuba Express/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/tsukuba-express.png',document.baseURI).href,asset:'./assets/route-symbols/tsukuba-express.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}const officialSymbolExists=route?.officialSymbolExists===true||route?.symbolMeta?.officialSymbolExists===true||asset?.officialExists===true,officialCodeExists=/^[A-Za-z]{1,4}$/.test(code)&&Boolean(source.routeCodes?.[route?.id]||theme.code);return{code,asset,officialSymbolExists,officialCodeExists,style:operator.style||theme.style||route?.lineTheme?.style||route?.category||'other',source:asset?.source||operator.source||theme.colorSource||route?.lineTheme?.colorSource||'',color:route?.lineColor||theme.color||'#60736a'}}
+function lineBadgeMarkup(route,className='line-badge'){const badge=lineBadgeMeta(route),url=badge.asset?.url||badge.asset?.asset;if(badge.officialSymbolExists&&url)return`<span class="${className} line-symbol-asset" data-line-symbol="true" aria-label="${escapeHtml(badge.code||route?.line?.ko||'노선')} 공식 노선 심볼"><img loading="lazy" decoding="async" src="${escapeHtml(url)}" alt="${escapeHtml(badge.code||route?.line?.ko||'노선')} 노선 심볼"></span>`;if(badge.officialCodeExists)return`<span class="${className} line-code-label badge-${escapeHtml(badge.style)}" style="--badge-color:${escapeHtml(badge.color)}" aria-label="${escapeHtml(badge.code)} 공식 노선 기호">${escapeHtml(badge.code)}</span>`;return''}
 
-  if(op==='keisei'||/京成|게이세이|Keisei/i.test(operator))return commonsFileAsset('Number prefix Keisei.svg');
-
-  if(/神戸高速|고베\s*고속|Kobe\s*(?:Kosoku|Rapid Transit)/i.test(all)){
-    if(c==='HK'||/阪急|한큐|Hankyu/i.test(all))return commonsFileAsset('Number prefix Hankyu Kōbe line.svg');
-    if(c==='HS'||/阪神|한신|Hanshin/i.test(all))return commonsFileAsset('Number prefix Hanshin line.svg');
-    if(c==='KB'||/神戸電鉄|고베\s*전철|Shintetsu|Kobe Electric/i.test(all))return commonsFileAsset('Number prefix Kobe Railway.svg');
-    return null;
-  }
-
-  if(!JR_OPERATOR_IDS.has(op))return null;
-
-  if(/新幹線|신칸센|Shinkansen/i.test(name)){
-    const shinkansen={
-      'jr-east':'Shinkansen jre.svg',
-      'jr-central':'Shinkansen jrc.svg',
-      'jr-west':'Shinkansen jrw.svg',
-      'jr-hokkaido':'Shinkansen jrh.svg',
-      'jr-kyushu':'Shinkansen jrk.svg'
-    }[op];
-    return shinkansen?commonsFileAsset(shinkansen):null;
-  }
-
-  if(op==='jr-east'&&(/^(?:J[A-Z]|CO)$/.test(c)))return commonsFileAsset(`JR ${c} line symbol.svg`);
-
-  if(op==='jr-west'&&/^[A-W]$/.test(c))return commonsFileAsset(`JRW kinki-${c}.svg`);
-
-  if(op==='jr-kyushu'&&/^J[A-Z]$/.test(c))return commonsFileAsset(`JRK number ${c}.svg`);
-
-  if(op==='jr-central'){
-    const entries=[
-      [/東海道|도카이도|Tokaido/i,'JR Central Tokaido Line.svg'],
-      [/中央|주오|Chuo/i,'JR Central Chuo Line.svg'],
-      [/御殿場|고텐바|Gotemba/i,'JR Central Gotemba Line.svg'],
-      [/身延|미노부|Minobu/i,'JR Central Minobu Line.svg'],
-      [/飯田|이다|Iida/i,'JR Central Iida Line.svg'],
-      [/武豊|다케토요|Taketoyo/i,'JR Central Taketoyo Line.svg'],
-      [/高山|다카야마|Takayama/i,'JR Central Takayama Line.svg'],
-      [/太多|다이타|Taita/i,'JR Central Taita Line.svg'],
-      [/関西|간사이|Kansai/i,'JR Central Kansai Line.svg']
-    ];
-    const hit=entries.find(([re])=>re.test(name));
-    return hit?commonsFileAsset(hit[1]):null;
-  }
-
-  if(op==='jr-shikoku'){
-    const entries=[
-      [/予讃|요산|Yosan/i,'JR shikoku yosan line.svg'],
-      [/土讃|도산|Dosan/i,'JR shikoku dosan line.svg'],
-      [/高徳|고토쿠|Kotoku/i,'JR shikoku kotoku line.svg'],
-      [/徳島|도쿠시마|Tokushima/i,'JR shikoku tokushima line.svg'],
-      [/内子|우치코|Uchiko/i,'JR shikoku uchiko line.svg'],
-      [/牟岐|무기|Mugi/i,'JR shikoku mugi line.svg'],
-      [/鳴門|나루토|Naruto/i,'JR shikoku naruto line.svg'],
-      [/予土|요도|Yodo/i,'JR shikoku yodo line.svg']
-    ];
-    const hit=entries.find(([re])=>re.test(name));
-    return hit?commonsFileAsset(hit[1]):null;
-  }
-
-  return null
-}
-function lineBadgeMeta(route){
-  const source=cfg(),operator=source.operatorStyles?.[route?.operatorId]||{},theme=globalThis.TRT_LINE_THEMES?.[route?.id]||{},code=source.routeCodes?.[route?.id]||theme.code||route?.code||'';
-  const lineName=[route?.line?.ko,route?.line?.ja,route?.line?.en,route?.line?.names?.ko,route?.line?.names?.ja,route?.line?.names?.en].filter(Boolean).join(' '),operatorName=[route?.operator?.ko,route?.operator?.ja,route?.operator?.en,route?.operator?.names?.ko,route?.operator?.names?.ja,route?.operator?.names?.en].filter(Boolean).join(' ');
-  const verifiedWikipedia=actualWikipediaLineAsset(route,code,lineName,operatorName);
-  let asset=verifiedWikipedia||(JR_OPERATOR_IDS.has(String(route?.operatorId||''))||route?.operatorId==='keisei'||/神戸高速|고베\s*고속|Kobe\s*(?:Kosoku|Rapid Transit)/i.test(`${lineName} ${operatorName}`)?null:(railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null));
-
-  if(/기타오사카|北大阪急行|Kita[- ]?Osaka/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/kitakyu-namboku.svg',document.baseURI).href,asset:'./assets/route-symbols/kitakyu-namboku.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}
-  else if(/つくばエクスプレス|츠쿠바.*익스프레스|Tsukuba Express/i.test(`${lineName} ${operatorName}`)){asset={url:new URL('./assets/route-symbols/tsukuba-express.png',document.baseURI).href,asset:'./assets/route-symbols/tsukuba-express.svg',officialExists:true,exists:true,verified:true,source:'user-provided'}}
-
-  const officialSymbolExists=Boolean(asset?.officialExists||asset?.exists),officialCodeExists=/^[A-Za-z]{1,4}$/.test(code)&&Boolean(source.routeCodes?.[route?.id]||theme.code);
-  return{code,asset,officialSymbolExists,officialCodeExists,style:operator.style||theme.style||route?.lineTheme?.style||route?.category||'other',source:asset?.source||operator.source||theme.colorSource||route?.lineTheme?.colorSource||'',color:route?.lineColor||theme.color||'#60736a'}
-}
-function lineBadgeMarkup(route,className='line-badge'){
-  const badge=lineBadgeMeta(route),url=badge.asset?.url||badge.asset?.asset;
-  if(badge.officialSymbolExists&&url)return`<span class="${className} line-symbol-asset" data-line-symbol="true" aria-label="${escapeHtml(badge.code||route?.line?.ko||'노선')} 실제 노선 심볼"><img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${escapeHtml(url)}" alt="${escapeHtml(badge.code||route?.line?.ko||'노선')} 노선 심볼" onerror="this.closest('.line-symbol-asset')?.remove()"></span>`;
-  if(badge.officialCodeExists&&!JR_OPERATOR_IDS.has(String(route?.operatorId||''))&&route?.operatorId!=='keisei')return`<span class="${className} line-code-label badge-${escapeHtml(badge.style)}" style="--badge-color:${escapeHtml(badge.color)}" aria-label="${escapeHtml(badge.code)} 공식 노선 기호">${escapeHtml(badge.code)}</span>`;
-  return''
-}
 
 const templates={jrEast:{style:'jr-east',family:'jr',referenceSource:'https://www.jreast.co.jp/e/routemaps/'},jrCentral:{style:'jr-central',family:'jr',referenceSource:'https://global.jr-central.co.jp/en/info/station/'},jrWest:{style:'jr-west',family:'jr',referenceSource:'https://www.westjr.co.jp/global/en/timetable/'},jrHokkaido:{style:'jr-hokkaido',family:'jr',referenceSource:'https://www.jrhokkaido.co.jp/network/'},jrShikoku:{style:'jr-shikoku',family:'jr',referenceSource:'https://www.jr-shikoku.co.jp/'},jrKyushu:{style:'jr-kyushu',family:'jr',referenceSource:'https://www.jrkyushu.co.jp/english/'},tokyoMetro:{style:'metro',family:'metro-rounded',referenceSource:'https://www.tokyometro.jp/station/'},toei:{style:'toei',family:'subway-flat',referenceSource:'https://www.kotsu.metro.tokyo.jp/subway/'},osakaMetro:{style:'osaka-metro',family:'metro-flat',referenceSource:'https://subway.osakametro.co.jp/guide/routemap.php'},tokyu:{style:'tokyu',family:'private-horizontal',referenceSource:'https://www.tokyu.co.jp/railway/'},odakyu:{style:'odakyu',family:'private-horizontal',referenceSource:'https://www.odakyu.jp/rail/'},keio:{style:'keio',family:'private-horizontal',referenceSource:'https://www.keio.co.jp/train/'},seibu:{style:'seibu',family:'private-horizontal',referenceSource:'https://www.seiburailway.jp/railway/'},tobu:{style:'tobu',family:'private-horizontal',referenceSource:'https://www.tobu.co.jp/railway/'},keikyu:{style:'keikyu',family:'private-horizontal',referenceSource:'https://www.keikyu.co.jp/ride/'},keisei:{style:'keisei',family:'private-horizontal',referenceSource:'https://www.keisei.co.jp/keisei/tetudou/'},sotetsu:{style:'sotetsu',family:'private-horizontal',referenceSource:'https://www.sotetsu.co.jp/train/'},hankyu:{style:'hankyu',family:'private-horizontal',referenceSource:'https://www.hankyu.co.jp/station/'},hanshin:{style:'hanshin',family:'private-horizontal',referenceSource:'https://www.hanshin.co.jp/railfan/'},kintetsu:{style:'kintetsu',family:'private-horizontal',referenceSource:'https://www.kintetsu.co.jp/railway/'},keihan:{style:'keihan',family:'private-horizontal',referenceSource:'https://www.keihan.co.jp/traffic/'},nankai:{style:'nankai',family:'private-horizontal',referenceSource:'https://www.nankai.co.jp/traffic/'},meitetsu:{style:'meitetsu',family:'private-horizontal',referenceSource:'https://www.meitetsu.co.jp/train/'},yurikamome:{style:'yurikamome',family:'new-transit',referenceSource:'https://www.yurikamome.co.jp/'},kumagawa:{style:'local',family:'local-simple',referenceSource:'https://kumagawa-rail.com/station-info/'},tram:{style:'tram',family:'tram',referenceSource:'operator-route-guide'},monorail:{style:'monorail',family:'monorail',referenceSource:'operator-route-guide'},local:{style:'local',family:'local-simple',referenceSource:'operator-route-guide'}};
 const rules=[[/JR東日本/,'jrEast'],[/JR東海/,'jrCentral'],[/JR西日本/,'jrWest'],[/JR北海道/,'jrHokkaido'],[/JR四国/,'jrShikoku'],[/JR九州/,'jrKyushu'],[/東京メトロ/,'tokyoMetro'],[/東京都交通局/,'toei'],[/(Osaka Metro|大阪市高速電気軌道)/,'osakaMetro'],[/東急/,'tokyu'],[/小田急/,'odakyu'],[/京王/,'keio'],[/西武/,'seibu'],[/東武/,'tobu'],[/(京急|京浜急行)/,'keikyu'],[/京成/,'keisei'],[/相鉄/,'sotetsu'],[/阪急/,'hankyu'],[/阪神/,'hanshin'],[/(近畿日本鉄道|近鉄)/,'kintetsu'],[/京阪/,'keihan'],[/南海/,'nankai'],[/名古屋鉄道|名鉄/,'meitetsu'],[/ゆりかもめ/,'yurikamome'],[/くま川鉄道/,'kumagawa']];
