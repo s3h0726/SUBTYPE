@@ -10,7 +10,7 @@ export function operatorLogoAsset(routeOrOperatorId){
   if(operatorId==='kobeshikotsukyoku')return{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Kobe_Municipal_Subway_Logo.svg',asset:'https://commons.wikimedia.org/wiki/Special:FilePath/Kobe_Municipal_Subway_Logo.svg',label:'고베 시영 지하철',verified:true,source:'https://commons.wikimedia.org/wiki/File:Kobe_Municipal_Subway_Logo.svg'};
   if(operatorId==='nishinihontetsudo')return{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Nishitetsu_logo_N.svg',asset:'https://commons.wikimedia.org/wiki/Special:FilePath/Nishitetsu_logo_N.svg',label:'니시테츠',verified:true,source:'https://commons.wikimedia.org/wiki/File:Nishitetsu_logo_N.svg'};
   if(operatorId==='kantotetsudo')return{url:'https://upload.wikimedia.org/wikipedia/commons/7/75/Kantetsu_Logo.svg',asset:'https://upload.wikimedia.org/wikipedia/commons/7/75/Kantetsu_Logo.svg',label:'간토 철도',verified:true,source:'https://commons.wikimedia.org/wiki/File:Kantetsu_Logo.svg'};
-  if(operatorId==='kagoshimashikotsukyoku')return{url:'https://g-reiki.city.kagoshima.lg.jp/kagoshima2/reiki_honbun/word/q702IG00000327.jpg',asset:'https://g-reiki.city.kagoshima.lg.jp/kagoshima2/reiki_honbun/word/q702IG00000327.jpg',label:'가고시마시 교통국',verified:true,source:'https://g-reiki.city.kagoshima.lg.jp/kagoshima2/reiki_honbun/q702RG00000746.html'};
+  if(operatorId==='kagoshimashikotsukyoku'){const url=new URL('./data/operators/kagoshimashikotsukyoku/logo.png',document.baseURI).href;return{url,asset:url,label:'가고시마시 교통국',verified:true,source:'user-provided PNG'};}
   return railDataRepository.getOperatorLogoAsset(operatorId)||routeOrOperatorId?.operatorAsset||null
 }
 
