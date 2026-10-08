@@ -37,6 +37,13 @@ const requiredLineSymbolMarkers=[
   'JRW_kinki-A.svg', 'JR_Central_Tokaido_Line.svg',
   'JR_shikoku_yosan_line.svg', 'JRK_number_JK.svg'
 ];
+// Keep operator marks visible on Toei surface lines and Sendai Subway after every build.
+const appSource=read('js/app.js'),operatorLogoSource=read('js/asset-renderer.js');
+if(appSource.includes("LINE_IDENTITY_ONLY_OPERATORS=new Set(['tokyo-metro','toei','sendaishikotsukyoku'])")||
+   !appSource.includes("LINE_IDENTITY_ONLY_OPERATORS=new Set(['tokyo-metro'])")||
+   !operatorLogoSource.includes("Special:FilePath/Sendai_City_Subway_Logo.svg")||
+   !operatorLogoSource.includes("data/operators/toei/logo.svg"))
+  throw new Error('Required Toei/Sendai operator logos lost in source');
 const lineBadgeSource=read('js/line-badge.js');
 const missingLineSymbols=requiredLineSymbolMarkers.filter(marker=>!lineBadgeSource.includes(marker)||!source.includes(marker));
 if(missingLineSymbols.length)throw new Error('Wikimedia route-symbol mapping regression: '+missingLineSymbols.join(', '));

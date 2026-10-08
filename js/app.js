@@ -79,7 +79,7 @@ function fixRouteKoreanNames(route){
 }
 function allRoutes(){return[...builtin,...storage.routes().filter(route=>isCountryEnabled(route.countryId||'jp')).map(r=>railDataRepository.resolveRoute(normalizeLine(r,{category:'custom'})))].map(fixRouteKoreanNames).filter(isRouteVisible).filter(r=>r.lazy||(Array.isArray(r.stations)&&r.stations.length>=2))}
 const operatorLogo=operatorLogoMarkup;
-const LINE_IDENTITY_ONLY_OPERATORS=new Set(['tokyo-metro','toei','sendaishikotsukyoku']);
+const LINE_IDENTITY_ONLY_OPERATORS=new Set(['tokyo-metro']);
 const lineSurfaceOperatorLogo=(route,className)=>LINE_IDENTITY_ONLY_OPERATORS.has(String(route?.operatorId||''))?'':operatorLogoMarkup(route,className);
 function operatorKey(route){return route?.operatorId||route?.operator?.en}
 function operatorScopeRoutes(){return routes.filter(route=>(countryId==='jp'||transportGroup==='all'||routeTransportGroup(route)===transportGroup)&&(countryId!=='kr'||transportGroup!=='bus'||regionFilter==='all'||route.regionId===regionFilter)&&routeCategoryMatches(route))}
