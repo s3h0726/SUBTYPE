@@ -39,5 +39,7 @@ jobs:
             echo 'No generated changes.'
           else
             git commit -m 'build: remove JR company-logo line fallback'
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
