@@ -39,5 +39,7 @@ jobs:
             echo 'No changes.'
           else
             git commit -m 'assets: add JR Shikoku logo and JR fallback badges'
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
