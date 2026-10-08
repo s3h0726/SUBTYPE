@@ -212,9 +212,9 @@ export function lineBadgeMarkup(route,className='line-badge'){
   // identifiable name labels instead of misrepresenting the company logo.
   const kantoRouteLabel={'line-99318':'常総','line-99319':'竜ヶ崎'}[route?.id];
   if(kantoRouteLabel)return`<span class="${escapeHtml(className)} line-code-label" style="display:inline-flex;align-items:center;justify-content:center;width:48px;min-width:48px;height:36px;border-radius:6px;border:2px solid #174d7d;background:#fff;color:#174d7d;font-size:12px;font-weight:700" aria-label="간토 철도 ${escapeHtml(route?.line?.ko||kantoRouteLabel)} 노선 구분 표시">${kantoRouteLabel}</span>`;
-  // Kagoshima tram's officially distinguished service numbers (not invented SVG logos).
-  const kagoshimaNumber={'line-99925':['1','#4243be'],'line-99926':['2','#ef1731']}[route?.id];
-  if(kagoshimaNumber)return`<span class="${escapeHtml(className)} line-code-label" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:${kagoshimaNumber[1]};color:#fff;font-weight:700" aria-label="가고시마 시영 전차 ${kagoshimaNumber[0]}계통">${kagoshimaNumber[0]}</span>`;
+  // Uploaded original route emblems (I / N), kept as local PNG files.
+  const kagoshimaSymbol={'line-99925':'kagoshimashiden1keito','line-99926':'kagoshimashiden2keito'}[route?.id];
+  if(kagoshimaSymbol){const url=new URL('./data/lines/kagoshimashikotsukyoku/'+kagoshimaSymbol+'/symbol.png',document.baseURI).href;return`<span class="${escapeHtml(className)} line-symbol-asset" data-line-symbol="true"><img loading="lazy" decoding="async" src="${escapeHtml(url)}" alt="${escapeHtml(route?.line?.ko||'가고시마 시영 전차')} 노선 로고"></span>`;}
   const badge=lineBadgeMeta(route),url=badge.asset?.url||badge.asset?.asset;
   if(badge.officialSymbolExists&&url)return`<span class="${className} line-symbol-asset" data-line-symbol="true"><img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${escapeHtml(url)}" alt="${escapeHtml(badge.code||route?.line?.ko||'노선')} 노선 심볼" onerror="this.closest('.line-symbol-asset')?.remove()"></span>`;
   if(!badge.targetOps&&badge.officialCodeExists)return`<span class="${className} line-code-label badge-${escapeHtml(badge.style)}" style="--badge-color:${escapeHtml(badge.color)}">${escapeHtml(badge.code)}</span>`;
