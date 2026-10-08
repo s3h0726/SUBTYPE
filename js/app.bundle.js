@@ -189,6 +189,13 @@ class TypingStatistics{
 
 
 const cfg=()=>globalThis.TRT_LINE_BADGES||{operatorStyles:{},routeCodes:{}};
+
+// Source: original SM-N.svg / SM-T.svg referenced by Sendai subway line pages.
+// Do not replace these with hand-drawn local SVGs or an operator logo.
+const SENDAI_LINE_ORIGINALS={
+  'line-99214':{url:'https://file.namu.moe/file/8c81f83872fe27c5970eb03f6b5fa49b',source:'https://m.namu.moe/w/센다이시%20지하철%20난보쿠선',file:'SM-N.svg'},
+  'line-99218':{url:'https://file.namu.moe/file/c11887e17d6fea3da406ba49cb01bb74',source:'https://namu.moe/w/센다이시%20지하철%20토자이선',file:'SM-T.svg'}
+};
 const JR_OPERATOR_IDS=new Set(['jr-east','jr-central','jr-west','jr-hokkaido','jr-shikoku','jr-kyushu']);
 const WM={
   keisei:'https://upload.wikimedia.org/wikipedia/commons/b/bc/Number_prefix_Keisei.svg',
@@ -311,6 +318,8 @@ function lineBadgeMeta(route){
   const lineName=[route?.line?.ko,route?.line?.ja,route?.line?.en,route?.line?.names?.ko,route?.line?.names?.ja,route?.line?.names?.en].filter(Boolean).join(' ');
   const targetOps=JR_OPERATOR_IDS.has(String(route?.operatorId||''))||route?.operatorId==='keisei'||route?.operatorId==='kobekosokutetsudo'||route?.id==='line-hanshin-kobe-kosoku';
   let asset=wikimediaLineAsset(route,code,lineName);
+  const sendaiOriginal=SENDAI_LINE_ORIGINALS[route?.id];
+  if(sendaiOriginal)asset={url:sendaiOriginal.url,asset:sendaiOriginal.url,source:sendaiOriginal.source,officialExists:true,exists:true,verified:false,originalFile:sendaiOriginal.file};
   if(!targetOps&&!asset)asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null;
   const officialSymbolExists=Boolean(asset?.officialExists||asset?.exists);
   const officialCodeExists=/^[A-Za-z]{1,4}$/.test(code)&&Boolean(source.routeCodes?.[route?.id]||theme.code);

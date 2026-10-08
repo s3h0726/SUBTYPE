@@ -31,6 +31,10 @@ const source=order.map(file=>read(`js/${file}`)
   .replace(/new URL\('\.\.\/data\/([^']+)',import\.meta\.url\)/g,"new URL('./data/$1',document.baseURI)"))
   .join('\n\n');
 // Guard persistent Wikimedia route-symbol mappings against source/bundle regressions.
+const sendaiSource=read('js/line-badge.js');
+for(const key of ['SENDAI_LINE_ORIGINALS','SM-N.svg','SM-T.svg','line-99214','line-99218']){
+  if(!sendaiSource.includes(key))throw new Error('Sendai subway original line-symbol mapping missing: '+key);
+}
 const requiredLineSymbolMarkers=[
   'const WM=', 'Number_prefix_Keisei.svg', 'Number_prefix_SkyAccess.svg',
   'Number_prefix_Hanshin_line.svg', 'JR_JY_line_symbol.svg',
