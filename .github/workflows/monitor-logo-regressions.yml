@@ -1,0 +1,25 @@
+name: Monitor logo regressions
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '19 3 * * *'
+permissions:
+  contents: read
+jobs:
+  logo-identity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check pinned logos and route IDs
+        run: node tools/check-logo-regressions.js
+      - name: Verify source JavaScript syntax
+        run: |
+          cp js/line-badge.js /tmp/subtype-line-badge.mjs
+          cp js/asset-renderer.js /tmp/subtype-asset-renderer.mjs
+          node --check /tmp/subtype-line-badge.mjs
+          node --check /tmp/subtype-asset-renderer.mjs
