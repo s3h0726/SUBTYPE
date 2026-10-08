@@ -57,10 +57,10 @@
       }
     },
     "line": {
-      "ja": "成田スカイアクセス",
-      "kana": "",
-      "ko": "나리타스카이아쿠세스",
-      "en": "Naritasukaiakusesu"
+      "ja": "成田空港線",
+      "kana": "なりたくうこうせん",
+      "ko": "나리타 공항선",
+      "en": "Narita Airport Line"
     },
     "koreanNameSource": {
       "family": "namuwiki",
@@ -76,29 +76,53 @@
       "status": "REVIEW_REQUIRED",
       "canonicalPolicy": "namuwiki"
     },
-    "code": "",
+    "code": "KS",
     "lineColor": "hsl(221 62% 46%)",
-    "symbolAsset": null,
+    "symbolAsset": {
+      "asset": "https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg",
+      "file": "https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg",
+      "officialExists": true,
+      "exists": true,
+      "verified": true,
+      "source": "https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg",
+      "assetSource": "wikimedia-commons",
+      "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg"
+    },
     "symbolMeta": {
-      "asset": null,
-      "officialSymbolExists": false,
-      "source": "",
-      "verified": false,
-      "identificationSource": "namuwiki-unresolved",
-      "identificationUrl": "",
+      "asset": "https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg",
+      "officialSymbolExists": true,
+      "source": "https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg",
+      "verified": true,
+      "identificationSource": "wikipedia-wikimedia-commons",
+      "identificationUrl": "https://en.wikipedia.org/wiki/Keisei_Narita_Airport_Line",
       "identificationSearch": "site:namu.wiki 成田スカイアクセス 나리타스카이아쿠세스 노선 심볼",
       "sourceAccess": "blocked",
-      "assetSource": "none",
-      "assetSourceUrl": "",
-      "licenseVerified": false,
+      "assetSource": "wikimedia",
+      "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg",
+      "licenseVerified": true,
       "identificationFamily": "namuwiki",
       "identificationMethod": "unresolved",
-      "identificationVerified": false
+      "identificationVerified": false,
+      "identificationFile": "Number_prefix_SkyAccess.svg"
     },
-    "officialSymbolExists": false,
+    "officialSymbolExists": true,
     "loop": false,
     "stationSignTemplate": "keisei",
-    "services": [],
+    "services": [
+      {
+        "id": "skyliner",
+        "nameJa": "スカイライナー",
+        "nameKo": "스카이라이너",
+        "nameEn": "Skyliner",
+        "stops": [
+          "station-mlit-003521",
+          "station-mlit-003417",
+          "station-1132813",
+          "station-1132705"
+        ]
+      }
+    ],
     "throughServiceIds": [],
     "throughOperations": [],
     "routeInfo": null,

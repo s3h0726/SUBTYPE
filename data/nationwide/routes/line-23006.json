@@ -11,17 +11,20 @@
       "ko": "게이세이 전철"
     },
     "line": {
-      "ja": "成田スカイアクセス",
-      "kana": "なりたすかいあくせす",
-      "en": "Naritasukaiakusesu",
-      "ko": "나리타스카이아쿠세스",
+      "ja": "成田空港線",
+      "kana": "なりたくうこうせん",
+      "en": "Narita Airport Line",
+      "ko": "나리타 공항선",
       "aliases": [
+        "成田空港線",
         "成田スカイアクセス",
-        "ナリタスカイアクセス",
-        "京成成田空港線"
+        "成田スカイアクセス線",
+        "京成成田空港線",
+        "Narita Sky Access",
+        "Narita Airport Line"
       ]
     },
-    "code": "",
+    "code": "KS",
     "lineColor": "hsl(221 62% 46%)",
     "loop": false,
     "coverage": "nationwide-source-line",
@@ -1660,6 +1663,43 @@
         140.38551
       ]
     ],
-    "geometrySource": "MLIT-N02-2025"
+    "geometrySource": "MLIT-N02-2025",
+    "symbolAsset": {
+      "asset": "https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg",
+      "file": "https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg",
+      "officialExists": true,
+      "exists": true,
+      "verified": true,
+      "source": "https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg",
+      "assetSource": "wikimedia-commons",
+      "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg"
+    },
+    "symbolMeta": {
+      "asset": "https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg",
+      "officialSymbolExists": true,
+      "source": "https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg",
+      "verified": true,
+      "assetSource": "wikimedia",
+      "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg",
+      "licenseVerified": true,
+      "identificationSource": "wikipedia-wikimedia-commons",
+      "identificationFile": "Number_prefix_SkyAccess.svg"
+    },
+    "officialSymbolExists": true,
+    "services": [
+      {
+        "id": "skyliner",
+        "nameJa": "スカイライナー",
+        "nameKo": "스카이라이너",
+        "nameEn": "Skyliner",
+        "stops": [
+          "station-mlit-003521",
+          "station-mlit-003417",
+          "station-1132813",
+          "station-1132705"
+        ]
+      }
+    ]
   }
 }
