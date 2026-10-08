@@ -329,7 +329,8 @@ function lineBadgeMeta(route){
   const targetOps=JR_OPERATOR_IDS.has(String(route?.operatorId||''))||route?.operatorId==='keisei'||route?.operatorId==='kobekosokutetsudo'||route?.id==='line-hanshin-kobe-kosoku';
   let asset=wikimediaLineAsset(route,code,lineName);
   const sendaiOriginal=SENDAI_LINE_ORIGINALS[route?.id];
-  if(sendaiOriginal)asset={url:sendaiOriginal.url,asset:sendaiOriginal.url,source:sendaiOriginal.source,officialExists:true,exists:true,verified:false,originalFile:sendaiOriginal.file};
+  // Prefer versioned canonical Sendai SVGs; the former Namu CDN link may expire.
+  if(sendaiOriginal&&!asset)asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||{url:sendaiOriginal.url,asset:sendaiOriginal.url,source:sendaiOriginal.source,officialExists:true,exists:true,verified:false,originalFile:sendaiOriginal.file};
   // Canonical symbols are the fallback for every operator, including JR, Keisei and Kobe.
   // Previously targetOps blocked these real assets when the external URL mapping was absent.
   if(!asset)asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null;
