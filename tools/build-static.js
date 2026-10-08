@@ -35,6 +35,14 @@ const sendaiSource=read('js/line-badge.js');
 for(const key of ['SENDAI_LINE_ORIGINALS','SM-N.svg','SM-T.svg','line-99214','line-99218']){
   if(!sendaiSource.includes(key))throw new Error('Sendai subway original line-symbol mapping missing: '+key);
 }
+// Prevent rebuilt bundles from silently discarding previous verified logo repairs.
+const preservedLogoMarkers={
+  'js/asset-renderer.js':['Sendai_City_Subway_Logo.svg','data/operators/toei/logo.svg','Sanyo_electric_railway_logo.svg','Kobe_Municipal_Subway_Logo.svg'],
+  'js/line-badge.js':['SENDAI_LINE_ORIGINALS','Number_prefix_SkyAccess.svg','Number_prefix_Hanshin_line.svg','Number_prefix_San-yo_Railway_line.svg','Subway_KobeSeishin.svg','Subway_KobeKaigan.svg','if(!asset)asset=railDataRepository.getLineSymbolAsset'],
+};
+for(const [file,markers] of Object.entries(preservedLogoMarkers))for(const marker of markers){
+  if(!read(file).includes(marker)||!source.includes(marker))throw new Error('Verified logo regression blocked: '+file+' / '+marker);
+}
 const requiredLineSymbolMarkers=[
   'const WM=', 'Number_prefix_Keisei.svg', 'Number_prefix_SkyAccess.svg',
   'Number_prefix_Hanshin_line.svg', 'JR_JY_line_symbol.svg',
