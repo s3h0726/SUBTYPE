@@ -4,6 +4,9 @@ const fs=require('fs'),assert=require('assert');
 const read=p=>fs.readFileSync(p,'utf8');
 const badges=read('js/line-badge.js'),operators=read('js/asset-renderer.js'),build=read('tools/build-static.js');
 const must=[
+ ['Tobu Isesaki',badges,"'line-21002':'Tobu_Isesaki_Line_(TI)_symbol.svg'"],
+ ['Tobu Nikko',badges,"'line-21003':'Tobu_Nikko_Line_(TN)_symbol.svg'"],
+ ['Tobu Noda',badges,"'line-21004':'Tobu_Noda_Line_(TD)_symbol.svg'"],
  ['Tobu Tojo',badges,"'line-21001':'Tobu_Tojo_Line_(TJ)_symbol.svg'"],
  ['Seibu Ikebukuro',badges,"'line-22001':'SeibuIkebukuro.svg'"],
  ['Seibu Shinjuku',badges,"'line-22007':'SeibuShinjuku.svg'"],
