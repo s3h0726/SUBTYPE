@@ -133,6 +133,22 @@ function wikimediaLineAsset(route,code,lineName){
     const source='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(file.replaceAll(' ','_'));
     return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(file.replaceAll(' ','_')),source);
   }
+  // Wikimedia Commons original Nagoya and Sapporo subway line symbols.
+  const regionalSubwayOriginals={
+    "line-99513": "Nagoya Subway Logo (Higashiyama Line).svg",
+    "line-99518": "Nagoya Subway Logo (Kamiiida Line).svg",
+    "line-99514": "Nagoya Subway Logo (Meijo & Meiko Line).svg",
+    "line-99515": "Nagoya Subway Logo (Meijo & Meiko Line).svg",
+    "line-99517": "Nagoya Subway Logo (Sakura-dori Line).svg",
+    "line-99516": "Nagoya Subway Logo (Tsurumai Line).svg",
+    "line-99102": "Subway SapporoNamboku.svg",
+    "line-99103": "Subway SapporoToho.svg",
+    "line-99101": "Subway SapporoTozai.svg"
+};
+  if(regionalSubwayOriginals[id]){
+    const file=regionalSubwayOriginals[id].replaceAll(' ','_');
+    return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(file),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(file));
+  }
   if(id==='line-23006')return verifiedAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg');
   if(op==='keisei')return verifiedAsset(WM.keisei,'https://commons.wikimedia.org/wiki/File:Number_prefix_Keisei.svg');
 
