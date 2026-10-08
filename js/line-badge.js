@@ -149,6 +149,9 @@ function wikimediaLineAsset(route,code,lineName){
     const file=regionalSubwayOriginals[id].replaceAll(' ','_');
     return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(file),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(file));
   }
+  // Fukuoka Municipal Subway originals, individually verified at Wikimedia Commons.
+  const fukuokaOriginals={'line-99905':'Subway_FukuokaKuko.svg','line-99906':'Subway_FukuokaHakozaki.svg','line-99907':'Subway_FukuokaNanakuma.svg'};
+  if(fukuokaOriginals[id])return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+fukuokaOriginals[id],'https://commons.wikimedia.org/wiki/File:'+fukuokaOriginals[id]);
   if(id==='line-23006')return verifiedAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg');
   if(op==='keisei')return verifiedAsset(WM.keisei,'https://commons.wikimedia.org/wiki/File:Number_prefix_Keisei.svg');
 
