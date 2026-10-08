@@ -5,35 +5,27 @@
   "operatorId": "kobeshikotsukyoku",
   "category": "subway",
   "names": {
-    "ja": "神戸市営地下鉄西神線",
-    "kana": "こうべしえいちかてつせいしんせん",
-    "ko": "고베 시영 지하철 세이신선",
-    "en": "KōBeshieichikatetsuseishinsen"
+    "ja": "西神・山手線",
+    "kana": "せいしん・やまてせん",
+    "ko": "세이신·야마테선",
+    "en": "Seishin-Yamate Line"
   },
-  "code": "",
-  "color": "01AF98",
+  "code": "S",
+  "color": "#00AE8F",
   "symbol": {
     "asset": null,
-    "officialSymbolExists": false,
-    "source": "",
-    "verified": false,
-    "identificationSource": "namuwiki-unresolved",
-    "identificationUrl": "",
-    "identificationSearch": "site:namu.wiki 神戸市営地下鉄西神線 코우베시에이치카테츠세이신선 노선 심볼",
-    "sourceAccess": "blocked",
-    "assetSource": "none",
-    "assetSourceUrl": "",
-    "licenseVerified": false,
-    "identificationFamily": "namuwiki",
-    "identificationMethod": "unresolved",
-    "identificationVerified": false
+    "officialSymbolExists": true,
+    "source": "https://commons.wikimedia.org/wiki/File:Subway_KobeSeishin.svg",
+    "verified": true,
+    "assetSource": "wikimedia",
+    "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:Subway_KobeSeishin.svg"
   },
   "loop": false,
   "stationSignTemplate": "kobeshikotsukyoku",
   "services": [],
   "throughServiceIds": [],
   "sources": {
-    "official": "",
+    "official": "https://www.city.kobe.lg.jp/a80062/kurashi/access/kotsukyoku/subway/index.html",
     "korean": "",
     "geometry": "MLIT-N02-2025",
     "koreanName": {
@@ -55,7 +47,11 @@
   "legacy": {
     "origin": "nationwide",
     "coverage": "nationwide-source-line",
-    "dataKind": "physicalRoute"
+    "dataKind": "continuousPhysicalRoute",
+    "mergedFrom": [
+      "line-99645",
+      "line-99646"
+    ]
   },
   "officialKoSource": null
 }
