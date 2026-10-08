@@ -116,6 +116,23 @@ function wikimediaLineAsset(route,code,lineName){
     'line-22012':'SeibuTamagawa.svg'
   };
   if(otherOriginals[id])return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(otherOriginals[id]),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(otherOriginals[id]));
+  // Verified Wikimedia route marks for Osaka Metro and Seibu Yamaguchi (Leo Liner).
+  const regionalOriginals={
+    'line-99618':'Osaka Metro Midosuji line symbol.svg',
+    'line-99619':'Osaka Metro Tanimachi line symbol.svg',
+    'line-99620':'Osaka Metro Yotsubashi line symbol.svg',
+    'line-99621':'Osaka Metro Chuo line symbol.svg',
+    'line-99622':'Osaka Metro Sennichimae line symbol.svg',
+    'line-99623':'Osaka Metro Sakaisuji line symbol.svg',
+    'line-99624':'Osaka Metro Nagahori Tsurumi-ryokuchi line symbol.svg',
+    'line-99652':'Osaka Metro Imazatosuji line symbol.svg',
+    'line-22006':'SeibuYamaguchi.svg'
+  };
+  if(regionalOriginals[id]){
+    const file=regionalOriginals[id];
+    const source='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(file.replaceAll(' ','_'));
+    return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(file.replaceAll(' ','_')),source);
+  }
   if(id==='line-23006')return verifiedAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg');
   if(op==='keisei')return verifiedAsset(WM.keisei,'https://commons.wikimedia.org/wiki/File:Number_prefix_Keisei.svg');
 
