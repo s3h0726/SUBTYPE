@@ -216,3 +216,22 @@
   .line-card .line-card-company-mark .line-card-operator-logo,
   .line-card .line-card-line-mark .line-symbol-asset{width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important}
 }
+
+/* Vertical route-card identity: company logo / line logo / line name. */
+.line-card .line-card-identity{
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  min-height:0;
+  flex-wrap:nowrap!important;
+}
+.line-card .line-card-company-mark,
+.line-card .line-card-line-mark{flex:0 0 auto!important;align-self:center!important}
+.line-card .line-card-line-name{
+  flex:0 1 auto!important;width:100%;text-align:center!important;
+  margin:3px 0 0!important;
+}
+@media(max-width:480px){
+  .line-card .line-card-identity{gap:7px!important}
+}
