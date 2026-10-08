@@ -40,6 +40,6 @@ jobs:
           else
             git commit -m 'build: remove JR company-logo line fallback'
             git fetch origin main
-            git rebase origin/main
+            git -c rebase.autoStash=true rebase origin/main
             git push origin HEAD:main
           fi
