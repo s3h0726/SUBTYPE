@@ -179,3 +179,40 @@
   .line-code-label{width:30px;height:30px;min-width:30px;min-height:30px;flex-basis:30px;font-size:13px}
   .setup-route-marks .line-code-label{width:52px;height:52px;min-width:52px;min-height:52px;flex-basis:52px;font-size:20px}
 }
+
+
+/* Route card identity is always company mark -> line symbol -> line name.
+   This applies to all operators and stays independent from generated bundles. */
+.line-card .line-card-identity{
+  display:flex!important;align-items:center!important;gap:10px!important;
+  width:100%;min-width:0;min-height:44px;flex-wrap:nowrap;
+}
+.line-card .line-card-company-mark,
+.line-card .line-card-line-mark{
+  display:inline-flex;align-items:center;justify-content:center;
+  flex:0 0 40px;width:40px;height:40px;min-width:40px;overflow:hidden;
+}
+.line-card .line-card-company-mark .operator-logo,
+.line-card .line-card-company-mark .line-card-operator-logo,
+.line-card .line-card-line-mark .line-symbol-asset{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  position:static!important;float:none!important;margin:0!important;
+  width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;
+  max-width:40px!important;max-height:40px!important;
+}
+.line-card .line-card-company-mark img,
+.line-card .line-card-line-mark img{
+  display:block!important;width:100%!important;height:100%!important;
+  max-width:100%!important;max-height:100%!important;object-fit:contain!important;
+}
+.line-card .line-card-line-name{
+  flex:1 1 auto;min-width:0;margin:0!important;
+  overflow-wrap:anywhere;text-align:left;
+}
+@media(max-width:480px){
+  .line-card .line-card-identity{gap:7px!important}
+  .line-card .line-card-company-mark,
+  .line-card .line-card-line-mark{flex-basis:32px;width:32px;height:32px;min-width:32px}
+  .line-card .line-card-company-mark .line-card-operator-logo,
+  .line-card .line-card-line-mark .line-symbol-asset{width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important}
+}
