@@ -235,3 +235,34 @@
 @media(max-width:480px){
   .line-card .line-card-identity{gap:7px!important}
 }
+
+/* Keep line logo and title fully inside route-selection card bounds. */
+#route-grid .line-card:not(.random):not(.route-more){
+  height:auto!important;
+  min-height:190px!important;
+  padding-top:18px!important;
+  padding-bottom:13px!important;
+  overflow:hidden!important;
+}
+#route-grid .line-card .line-card-identity{
+  position:relative!important;
+  top:auto!important;
+  transform:none!important;
+  margin:0 auto 8px!important;
+  padding:0!important;
+  gap:8px!important;
+}
+#route-grid .line-card .line-card-line-mark,
+#route-grid .line-card .line-card-line-mark .line-symbol-asset,
+#route-grid .line-card .line-card-line-mark .line-code-label{
+  position:static!important;
+  top:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  margin:0!important;
+}
+#route-grid .line-card .line-card-line-name{
+  position:static!important;
+  margin:0!important;
+  line-height:1.25!important;
+}
