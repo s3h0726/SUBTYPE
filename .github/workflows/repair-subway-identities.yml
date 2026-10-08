@@ -46,5 +46,7 @@ jobs:
             echo 'No generated changes.'
           else
             git commit -m 'build: repair subway operator and line identities'
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
