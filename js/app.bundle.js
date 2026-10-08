@@ -1062,21 +1062,133 @@ class RouteEditor{
 
 const SESSION_KEY='trt:supabase.session.v1';
 class AuthClient{
-  constructor(storage){this.storage=storage;this.config=globalThis.TRT_SUPABASE_CONFIG||{};this.session=this.readSession();this.mode='login';this.bind();this.setMode('login');this.render()}
+  constructor(storage){
+    this.storage=storage;
+    this.config=globalThis.TRT_SUPABASE_CONFIG||{};
+    this.session=this.readSession();
+    this.mode='login';
+    this.bind();
+    this.setMode('login');
+    this.render()
+  }
   get configured(){return /^https:\/\/.+\.supabase\.co$/i.test(this.config.url||'')&&String(this.config.anonKey||'').length>20}
+  get localMode(){return !this.configured}
+  get accountKey(){return'trt:local.accounts.v1'}
   readSession(){try{return JSON.parse(localStorage.getItem(SESSION_KEY)||'null')}catch{return null}}
   saveSession(session){this.session=session||null;try{session?localStorage.setItem(SESSION_KEY,JSON.stringify(session)):localStorage.removeItem(SESSION_KEY)}catch{}this.render()}
+  readAccounts(){try{return JSON.parse(localStorage.getItem(this.accountKey)||'{}')}catch{return{}}}
+  saveAccounts(accounts){localStorage.setItem(this.accountKey,JSON.stringify(accounts))}
+  normalizeEmail(value){return String(value||'').trim().toLowerCase()}
+  randomId(){return globalThis.crypto?.randomUUID?.()||('local-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2))}
+  randomSalt(){
+    const bytes=new Uint8Array(16);
+    if(globalThis.crypto?.getRandomValues)globalThis.crypto.getRandomValues(bytes);
+    else for(let i=0;i<bytes.length;i++)bytes[i]=Math.floor(Math.random()*256);
+    return Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('')
+  }
+  async hashPassword(password,salt){
+    const raw=new TextEncoder().encode(String(salt)+':'+String(password));
+    if(globalThis.crypto?.subtle){
+      const digest=await globalThis.crypto.subtle.digest('SHA-256',raw);
+      return Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('')
+    }
+    let hash=2166136261;
+    for(const byte of raw){hash^=byte;hash=Math.imul(hash,16777619)}
+    return(hash>>>0).toString(16).padStart(8,'0')
+  }
   headers(token){return{'Content-Type':'application/json',apikey:this.config.anonKey,Authorization:`Bearer ${token||this.config.anonKey}`}}
-  async request(path,body){if(!this.configured)throw new Error('Supabase 공개 설정이 필요합니다.');const response=await fetch(`${this.config.url}${path}`,{method:'POST',headers:this.headers(),body:JSON.stringify(body)}),data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.msg||data.error_description||data.message||'인증 요청에 실패했습니다.');return data}
-  bind(){document.addEventListener('click',event=>{if(event.target.closest('[data-auth-open]')){$('#auth-dialog').hidden=false;this.renderConfigStatus();$('#auth-email').focus()}const modeButton=event.target.closest('[data-auth-mode]');if(modeButton)this.setMode(modeButton.dataset.authMode);if(event.target.closest('[data-auth-close]'))$('#auth-dialog').hidden=true;if(event.target.closest('[data-auth-logout]'))this.logout()});$('#auth-form')?.addEventListener('submit',event=>this.submit(event))}
-  setMode(mode){this.mode=mode==='signup'?'signup':'login';const form=$('#auth-form');if(!form)return;form.elements.mode.value=this.mode;$$('[data-auth-mode]',form).forEach(button=>{const active=button.dataset.authMode===this.mode;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active))});$$('[data-signup-field]',form).forEach(field=>{field.hidden=this.mode!=='signup';const input=field.querySelector('input');if(input)input.required=this.mode==='signup'});form.elements.password.autocomplete=this.mode==='signup'?'new-password':'current-password';form.querySelector('[type="submit"]').textContent=this.mode==='signup'?'회원가입':'로그인';this.clearError()}
+  async request(path,body){
+    if(!this.configured)throw new Error('Supabase 공개 설정이 필요합니다.');
+    const response=await fetch(`${this.config.url}${path}`,{method:'POST',headers:this.headers(),body:JSON.stringify(body)}),data=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(data.msg||data.error_description||data.message||'인증 요청에 실패했습니다.');
+    return data
+  }
+  bind(){
+    document.addEventListener('click',event=>{
+      if(event.target.closest('[data-auth-open]')){$('#auth-dialog').hidden=false;this.renderConfigStatus();$('#auth-email').focus()}
+      const modeButton=event.target.closest('[data-auth-mode]');if(modeButton)this.setMode(modeButton.dataset.authMode);
+      if(event.target.closest('[data-auth-close]'))$('#auth-dialog').hidden=true;
+      if(event.target.closest('[data-auth-logout]'))this.logout()
+    });
+    $('#auth-form')?.addEventListener('submit',event=>this.submit(event));
+    $('#auth-dialog')?.addEventListener('click',event=>{if(event.target.id==='auth-dialog')event.currentTarget.hidden=true});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('#auth-dialog')?.hidden)$('#auth-dialog').hidden=true})
+  }
+  setMode(mode){
+    this.mode=mode==='signup'?'signup':'login';
+    const form=$('#auth-form');if(!form)return;
+    form.elements.mode.value=this.mode;
+    $$('[data-auth-mode]',form).forEach(button=>{const active=button.dataset.authMode===this.mode;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active))});
+    $$('[data-signup-field]',form).forEach(field=>{field.hidden=this.mode!=='signup';const input=field.querySelector('input');if(input)input.required=this.mode==='signup'});
+    form.elements.password.autocomplete=this.mode==='signup'?'new-password':'current-password';
+    form.querySelector('[type="submit"]').textContent=this.mode==='signup'?'회원가입':'로그인';
+    this.clearError()
+  }
   clearError(){const target=$('#auth-error');if(target){target.hidden=true;target.textContent=''}}
   showError(message){const target=$('#auth-error');if(target){target.textContent=message;target.hidden=false}toast(message)}
-  renderConfigStatus(){const target=$('#auth-config-status'),submit=$('#auth-form')?.querySelector('[type="submit"]');if(target)target.textContent=this.configured?'안전한 계정 연결이 준비되었습니다.':'계정 연결 설정이 없어 현재는 게스트 플레이만 사용할 수 있습니다.';if(submit){submit.disabled=!this.configured;submit.title=this.configured?'':'배포 설정에 Supabase 공개 URL과 anon key가 필요합니다.'}}
-  async submit(event){event.preventDefault();this.clearError();const form=new FormData(event.target),mode=form.get('mode'),email=String(form.get('email')||'').trim(),password=String(form.get('password')||''),passwordConfirm=String(form.get('passwordConfirm')||''),nickname=String(form.get('nickname')||'철도러').trim();if(!this.configured)return this.showError('계정 연결이 아직 설정되지 않았습니다. 게스트 플레이를 이용해 주세요.');if(mode==='signup'&&password!==passwordConfirm)return this.showError('비밀번호 확인이 일치하지 않습니다.');const submit=event.target.querySelector('[type="submit"]');submit.disabled=true;try{const path=mode==='signup'?'/auth/v1/signup':'/auth/v1/token?grant_type=password',body=mode==='signup'?{email,password,data:{nickname}}:{email,password},data=await this.request(path,body);if(data.access_token){this.saveSession(data);$('#auth-dialog').hidden=true;toast(mode==='signup'?'회원가입과 로그인이 완료되었습니다.':'로그인했습니다.');await this.migrateLocal()}else toast('확인 이메일을 전송했습니다.')}catch(error){this.showError(error.message)}finally{submit.disabled=false}}
-  async logout(){try{if(this.configured&&this.session?.access_token)await fetch(`${this.config.url}/auth/v1/logout`,{method:'POST',headers:this.headers(this.session.access_token)})}catch(error){console.warn('Remote logout deferred:',error)}finally{this.saveSession(null);toast('로그아웃했습니다.')}}
-  async migrateLocal(){if(!this.session?.access_token)return;const userId=this.session.user?.id;if(!userId)return;const payload={user_id:userId,records:this.storage.records(),custom_routes:this.storage.routes(),updated_at:new Date().toISOString()};try{await fetch(`${this.config.url}/rest/v1/player_profiles?on_conflict=user_id`,{method:'POST',headers:{...this.headers(this.session.access_token),Prefer:'resolution=merge-duplicates'},body:JSON.stringify(payload)})}catch(error){console.warn('Cloud migration deferred:',error)}}
-  render(){const user=this.session?.user,nickname=user?.user_metadata?.nickname||user?.email?.split('@')[0]||'게스트';$$('[data-auth-state]').forEach(node=>{node.innerHTML=user?`<span class="auth-avatar">${nickname.slice(0,1).toUpperCase()}</span><b>${nickname}</b><button data-auth-logout>로그아웃</button>`:`<button data-auth-open>로그인 · 회원가입</button><small>게스트</small>`});this.renderConfigStatus()}
+  renderConfigStatus(){
+    const target=$('#auth-config-status'),submit=$('#auth-form')?.querySelector('[type="submit"]');
+    if(target)target.textContent=this.configured?'클라우드 계정으로 로그인합니다.':'이 기기에 저장되는 로컬 계정으로 로그인합니다.';
+    if(submit){submit.disabled=false;submit.title=''}
+  }
+  async submitLocal({mode,email,password,passwordConfirm,nickname}){
+    const accounts=this.readAccounts(),key=this.normalizeEmail(email);
+    if(!key||!key.includes('@'))throw new Error('올바른 이메일 주소를 입력해 주세요.');
+    if(String(password).length<6)throw new Error('비밀번호는 6자 이상이어야 합니다.');
+    if(mode==='signup'){
+      if(password!==passwordConfirm)throw new Error('비밀번호 확인이 일치하지 않습니다.');
+      if(accounts[key])throw new Error('이미 가입된 이메일입니다.');
+      const salt=this.randomSalt(),passwordHash=await this.hashPassword(password,salt),user={id:this.randomId(),email:key,user_metadata:{nickname:nickname||'철도러'},created_at:new Date().toISOString()};
+      accounts[key]={user,salt,passwordHash};this.saveAccounts(accounts);
+      const session={provider:'local',access_token:'local',user};
+      this.saveSession(session);return{session,created:true}
+    }
+    const account=accounts[key];if(!account)throw new Error('가입되지 않은 이메일입니다.');
+    const passwordHash=await this.hashPassword(password,account.salt);
+    if(passwordHash!==account.passwordHash)throw new Error('비밀번호가 올바르지 않습니다.');
+    const session={provider:'local',access_token:'local',user:account.user};
+    this.saveSession(session);return{session,created:false}
+  }
+  async submit(event){
+    event.preventDefault();this.clearError();
+    const form=new FormData(event.target),mode=String(form.get('mode')||'login'),email=this.normalizeEmail(form.get('email')),password=String(form.get('password')||''),passwordConfirm=String(form.get('passwordConfirm')||''),nickname=String(form.get('nickname')||'철도러').trim();
+    const submit=event.target.querySelector('[type="submit"]');submit.disabled=true;
+    try{
+      if(this.localMode){
+        const result=await this.submitLocal({mode,email,password,passwordConfirm,nickname});
+        $('#auth-dialog').hidden=true;
+        toast(result.created?'회원가입이 완료되었습니다.':'로그인했습니다.');
+        return
+      }
+      if(mode==='signup'&&password!==passwordConfirm)throw new Error('비밀번호 확인이 일치하지 않습니다.');
+      const path=mode==='signup'?'/auth/v1/signup':'/auth/v1/token?grant_type=password',body=mode==='signup'?{email,password,data:{nickname}}:{email,password},data=await this.request(path,body);
+      if(data.access_token){this.saveSession(data);$('#auth-dialog').hidden=true;toast(mode==='signup'?'회원가입과 로그인이 완료되었습니다.':'로그인했습니다.');await this.migrateLocal()}
+      else toast('확인 이메일을 전송했습니다.')
+    }catch(error){this.showError(error.message)}
+    finally{submit.disabled=false}
+  }
+  async logout(){
+    try{
+      if(this.configured&&this.session?.access_token&&this.session?.provider!=='local')await fetch(`${this.config.url}/auth/v1/logout`,{method:'POST',headers:this.headers(this.session.access_token)})
+    }catch(error){console.warn('Remote logout deferred:',error)}
+    finally{this.saveSession(null);toast('로그아웃했습니다.')}
+  }
+  async migrateLocal(){
+    if(!this.configured||!this.session?.access_token||this.session?.provider==='local')return;
+    const userId=this.session.user?.id;if(!userId)return;
+    const payload={user_id:userId,records:this.storage.records(),custom_routes:this.storage.routes(),updated_at:new Date().toISOString()};
+    try{await fetch(`${this.config.url}/rest/v1/player_profiles?on_conflict=user_id`,{method:'POST',headers:{...this.headers(this.session.access_token),Prefer:'resolution=merge-duplicates'},body:JSON.stringify(payload)})}
+    catch(error){console.warn('Cloud migration deferred:',error)}
+  }
+  render(){
+    const user=this.session?.user,nickname=user?.user_metadata?.nickname||user?.email?.split('@')[0]||'게스트';
+    $$('[data-auth-state]').forEach(node=>{
+      node.innerHTML=user
+        ?`<span class="auth-avatar">${escapeHtml(nickname.slice(0,1).toUpperCase())}</span><b>${escapeHtml(nickname)}</b><button type="button" data-auth-logout>로그아웃</button>`
+        :'<button type="button" data-auth-open>로그인 · 회원가입</button><small>게스트</small>'
+    });
+    this.renderConfigStatus()
+  }
 }
 function initAuth(storage){return new AuthClient(storage)}
 
