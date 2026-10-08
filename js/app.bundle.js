@@ -284,6 +284,16 @@ function wikimediaLineAsset(route,code,lineName){
     if(id==='line-99647')return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/Subway_KobeKaigan.svg','https://commons.wikimedia.org/wiki/File:Subway_KobeKaigan.svg');
     if(['line-99645','line-99646','line-99636'].includes(id))return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/Subway_KobeSeishin.svg','https://commons.wikimedia.org/wiki/File:Subway_KobeSeishin.svg');
   }
+  // Pinned identity mapping: never substitute generic corporate badges for these lines.
+  const fixedOriginals={
+    'line-21001':'Tobu_Tojo_Line_(TJ)_symbol.svg',
+    'line-22001':'SeibuIkebukuro.svg',
+    'line-22007':'SeibuShinjuku.svg',
+    'line-22010':'SeibuKokubunji.svg',
+    'line-22011':'SeibuTamako.svg',
+    'line-22012':'SeibuTamagawa.svg'
+  };
+  if(fixedOriginals[id])return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(fixedOriginals[id]),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(fixedOriginals[id]));
   if(id==='line-23006')return verifiedAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg');
   if(op==='keisei')return verifiedAsset(WM.keisei,'https://commons.wikimedia.org/wiki/File:Number_prefix_Keisei.svg');
 
@@ -330,7 +340,8 @@ function lineBadgeMeta(route){
   let asset=wikimediaLineAsset(route,code,lineName);
   const sendaiOriginal=SENDAI_LINE_ORIGINALS[route?.id];
   // Prefer versioned canonical Sendai SVGs; the former Namu CDN link may expire.
-  if(sendaiOriginal&&!asset)asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||{url:sendaiOriginal.url,asset:sendaiOriginal.url,source:sendaiOriginal.source,officialExists:true,exists:true,verified:false,originalFile:sendaiOriginal.file};
+  // Original SM-N/SM-T assets outrank locally reconstructed lookalikes.
+  if(sendaiOriginal&&!asset)asset={url:sendaiOriginal.url,asset:sendaiOriginal.url,source:sendaiOriginal.source,officialExists:true,exists:true,verified:false,originalFile:sendaiOriginal.file};
   // Canonical symbols are the fallback for every operator, including JR, Keisei and Kobe.
   // Previously targetOps blocked these real assets when the external URL mapping was absent.
   if(!asset)asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null;
