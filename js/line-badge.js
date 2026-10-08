@@ -106,9 +106,9 @@ function wikimediaLineAsset(route,code,lineName){
   // Wikimedia originals for other confirmed railway prefix families.
   // Each line uses its OWN designation rather than a company-wide replacement.
   const otherOriginals={
-    'line-21002':'Tobu_Skytree_Line_(TS)_symbol.svg',
+    'line-21002':'Tobu_Isesaki_Line_(TI)_symbol.svg',
     'line-21003':'Tobu_Nikko_Line_(TN)_symbol.svg',
-    'line-21005':'Tobu_Noda_Line_(TD)_symbol.svg',
+    'line-21004':'Tobu_Noda_Line_(TD)_symbol.svg',
     'line-22001':'SeibuIkebukuro.svg',
     'line-22007':'SeibuShinjuku.svg',
     'line-22010':'SeibuKokubunji.svg',
