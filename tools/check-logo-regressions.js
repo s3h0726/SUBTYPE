@@ -4,6 +4,15 @@ const fs=require('fs'),assert=require('assert');
 const read=p=>fs.readFileSync(p,'utf8');
 const badges=read('js/line-badge.js'),operators=read('js/asset-renderer.js'),build=read('tools/build-static.js');
 const must=[
+ ['Osaka Metro Midosuji',badges,"'line-99618':'Osaka Metro Midosuji line symbol.svg'"],
+ ['Osaka Metro Tanimachi',badges,"'line-99619':'Osaka Metro Tanimachi line symbol.svg'"],
+ ['Osaka Metro Yotsubashi',badges,"'line-99620':'Osaka Metro Yotsubashi line symbol.svg'"],
+ ['Osaka Metro Chuo',badges,"'line-99621':'Osaka Metro Chuo line symbol.svg'"],
+ ['Osaka Metro Sennichimae',badges,"'line-99622':'Osaka Metro Sennichimae line symbol.svg'"],
+ ['Osaka Metro Sakaisuji',badges,"'line-99623':'Osaka Metro Sakaisuji line symbol.svg'"],
+ ['Osaka Metro Nagahori',badges,"'line-99624':'Osaka Metro Nagahori Tsurumi-ryokuchi line symbol.svg'"],
+ ['Osaka Metro Imazatosuji',badges,"'line-99652':'Osaka Metro Imazatosuji line symbol.svg'"],
+ ['Seibu Yamaguchi',badges,"'line-22006':'SeibuYamaguchi.svg'"],
  ['Tobu Isesaki',badges,"'line-21002':'Tobu_Isesaki_Line_(TI)_symbol.svg'"],
  ['Tobu Nikko',badges,"'line-21003':'Tobu_Nikko_Line_(TN)_symbol.svg'"],
  ['Tobu Noda',badges,"'line-21004':'Tobu_Noda_Line_(TD)_symbol.svg'"],
