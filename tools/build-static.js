@@ -51,8 +51,7 @@ const requiredLineSymbolMarkers=[
 ];
 // Keep operator marks visible on Toei surface lines and Sendai Subway after every build.
 const appSource=read('js/app.js'),operatorLogoSource=read('js/asset-renderer.js');
-if(appSource.includes("LINE_IDENTITY_ONLY_OPERATORS=new Set(['tokyo-metro','toei','sendaishikotsukyoku'])")||
-   !appSource.includes("LINE_IDENTITY_ONLY_OPERATORS=new Set(['tokyo-metro'])")||
+if(!appSource.includes('const lineSurfaceOperatorLogo=(route,className)=>operatorLogoMarkup(route,className)')||
    !operatorLogoSource.includes("Special:FilePath/Sendai_City_Subway_Logo.svg")||
    !operatorLogoSource.includes("data/operators/toei/logo.svg"))
   throw new Error('Required Toei/Sendai operator logos lost in source');
