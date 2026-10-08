@@ -29,17 +29,6 @@ jobs:
           curl -L --fail --retry 3             'https://upload.wikimedia.org/wikipedia/commons/8/82/JR_logo_%28shikoku%29.svg'             -o data/operators/jr-shikoku/logo.svg
       - name: Rebuild static data
         run: node tools/build-static.js
-      - name: Commit JR logo and bundle
+      - name: Verify generated sources without concurrent push
         run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/operators/jr-shikoku/logo.svg data/generated/asset-registry.json js/ index.html
-          if git diff --cached --quiet; then
-            echo 'No changes.'
-          else
-            git commit -m 'assets: add JR Shikoku logo and JR fallback badges'
-            git fetch origin main
-            git -c rebase.autoStash=true rebase origin/main
-            git push origin HEAD:main
-          fi
+          echo 'Build and validation completed; generated artifacts are committed by the canonical build pipeline.'
