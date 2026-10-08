@@ -832,19 +832,3 @@ window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
     route.symbolMeta={...(route.symbolMeta||{}),asset:asset.asset,officialSymbolExists:true,verified:true,identificationSource:'wikipedia-commons-nex-horizontal-logo',assetSource:'wikimedia-commons',assetSourceUrl:source};
   }
 })();
-/* JR line-symbol cleanup: company logos are operator marks, never line logos. */
-(()=>{
-  const data=window.TRT_EMBEDDED_LINE_WORKSPACES;if(!data)return;
-  const jrIds=new Set(['jr-east','jr-central','jr-west','jr-hokkaido','jr-shikoku','jr-kyushu']);
-  data.assets=data.assets||{};data.assets.lines=data.assets.lines||{};
-  const companyLogo=x=>{const value=String(x?.asset||x?.url||x?.file||''),source=String(x?.source||'');return /(?:^|\\/)data\\/operators\\/jr-(?:east|central|west|hokkaido|shikoku|kyushu)\\/logo\\./i.test(value)||/jr-(?:east|central|west|hokkaido|shikoku|kyushu)-operator-logo/i.test(source)};
-  for(const route of data.routes||[]){
-    if(!jrIds.has(String(route.operatorId||'')))continue;
-    const lineAsset=data.assets.lines[route.id]||route.symbolAsset||null;
-    const fallback=route.symbolMeta?.fallbackToOperator===true||/operator-logo/i.test(String(route.symbolMeta?.identificationSource||''))||companyLogo(lineAsset);
-    if(!fallback)continue;
-    delete data.assets.lines[route.id];
-    route.symbolAsset=null;route.officialSymbolExists=false;
-    route.symbolMeta={...(route.symbolMeta||{}),asset:null,officialSymbolExists:false,fallbackToOperator:false,companyLogoRemoved:true,identificationSource:'jr-line-only-cleanup'};
-  }
-})();
