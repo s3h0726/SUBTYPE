@@ -4,6 +4,9 @@ const fs=require('fs'),assert=require('assert');
 const read=p=>fs.readFileSync(p,'utf8');
 const badges=read('js/line-badge.js'),operators=read('js/asset-renderer.js'),build=read('tools/build-static.js');
 const must=[
+ ['Fukuoka Airport',badges,"'line-99905':'Subway_FukuokaKuko.svg'"],
+ ['Fukuoka Hakozaki',badges,"'line-99906':'Subway_FukuokaHakozaki.svg'"],
+ ['Fukuoka Nanakuma',badges,"'line-99907':'Subway_FukuokaNanakuma.svg'"],
  ['Nagoya Higashiyama',badges,'"line-99513": "Nagoya Subway Logo (Higashiyama Line).svg"'],
  ['Nagoya Meijo',badges,'"line-99514": "Nagoya Subway Logo (Meijo & Meiko Line).svg"'],
  ['Nagoya Meiko',badges,'"line-99515": "Nagoya Subway Logo (Meijo & Meiko Line).svg"'],
