@@ -103,6 +103,19 @@ function wikimediaLineAsset(route,code,lineName){
     'line-22012':'SeibuTamagawa.svg'
   };
   if(fixedOriginals[id])return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(fixedOriginals[id]),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(fixedOriginals[id]));
+  // Wikimedia originals for other confirmed railway prefix families.
+  // Each line uses its OWN designation rather than a company-wide replacement.
+  const otherOriginals={
+    'line-21002':'Tobu_Skytree_Line_(TS)_symbol.svg',
+    'line-21003':'Tobu_Nikko_Line_(TN)_symbol.svg',
+    'line-21005':'Tobu_Noda_Line_(TD)_symbol.svg',
+    'line-22001':'SeibuIkebukuro.svg',
+    'line-22007':'SeibuShinjuku.svg',
+    'line-22010':'SeibuKokubunji.svg',
+    'line-22011':'SeibuTamako.svg',
+    'line-22012':'SeibuTamagawa.svg'
+  };
+  if(otherOriginals[id])return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(otherOriginals[id]),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(otherOriginals[id]));
   if(id==='line-23006')return verifiedAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg');
   if(op==='keisei')return verifiedAsset(WM.keisei,'https://commons.wikimedia.org/wiki/File:Number_prefix_Keisei.svg');
 
