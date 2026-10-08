@@ -208,6 +208,9 @@ export function lineBadgeMeta(route){
   return{code,asset,officialSymbolExists,officialCodeExists,targetOps,style:operator.style||theme.style||route?.lineTheme?.style||route?.category||'other',source:asset?.source||operator.source||theme.colorSource||route?.lineTheme?.colorSource||'',color:route?.lineColor||theme.color||'#60736a'}
 }
 export function lineBadgeMarkup(route,className='line-badge'){
+  // Kagoshima tram's officially distinguished service numbers (not invented SVG logos).
+  const kagoshimaNumber={'line-99925':['1','#4243be'],'line-99926':['2','#ef1731']}[route?.id];
+  if(kagoshimaNumber)return`<span class="${escapeHtml(className)} line-code-label" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:${kagoshimaNumber[1]};color:#fff;font-weight:700" aria-label="가고시마 시영 전차 ${kagoshimaNumber[0]}계통">${kagoshimaNumber[0]}</span>`;
   const badge=lineBadgeMeta(route),url=badge.asset?.url||badge.asset?.asset;
   if(badge.officialSymbolExists&&url)return`<span class="${className} line-symbol-asset" data-line-symbol="true"><img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${escapeHtml(url)}" alt="${escapeHtml(badge.code||route?.line?.ko||'노선')} 노선 심볼" onerror="this.closest('.line-symbol-asset')?.remove()"></span>`;
   if(!badge.targetOps&&badge.officialCodeExists)return`<span class="${className} line-code-label badge-${escapeHtml(badge.style)}" style="--badge-color:${escapeHtml(badge.color)}">${escapeHtml(badge.code)}</span>`;
