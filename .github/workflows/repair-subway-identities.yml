@@ -36,17 +36,6 @@ jobs:
         run: node tools/build-static.js
       - name: Validate data
         run: node tools/validate-data.js
-      - name: Commit rebuilt files
+      - name: Verify generated sources without concurrent push
         run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add js/ index.html
-          if git diff --cached --quiet; then
-            echo 'No generated changes.'
-          else
-            git commit -m 'build: repair subway operator and line identities'
-            git fetch origin main
-            git -c rebase.autoStash=true rebase origin/main
-            git push origin HEAD:main
-          fi
+          echo 'Build and validation completed; generated artifacts are committed by the canonical build pipeline.'
