@@ -17,6 +17,8 @@ jobs:
           node-version: '22'
       - name: Check pinned logos and route IDs
         run: node tools/check-logo-regressions.js
+      - name: Inventory every operator and route logo
+        run: node tools/audit-all-logos.js
       - name: Verify source JavaScript syntax
         run: |
           cp js/line-badge.js /tmp/subtype-line-badge.mjs
