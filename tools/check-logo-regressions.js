@@ -48,4 +48,11 @@ const routeChecks=[
  ['sendaishikotsukyoku/sendaishieichikatetsutozaisen','line-99218']
 ];
 for(const [dir,id] of routeChecks){let p='data/lines/'+dir+'/line.json';try{if(JSON.parse(read(p)).id!==id)failures.push(id+' identity changed')}catch{failures.push(p+' missing')}}
+
+// Keep Skyliner stop IDs aligned with the playable curated route, not shared-station IDs.
+const services=JSON.parse(read('data/services.json')).routes;
+const curated=JSON.parse(read('data/lines/private.json')).routes.find(route=>route.id==='line-23006');
+const playable=new Set((curated?.stations||[]).map(station=>station.id));
+const skyliner=(services['line-23006']||[]).find(service=>service.id==='skyliner');
+if(!skyliner||skyliner.stops.some(id=>!playable.has(id)))failures.push('Skyliner invalid playable station IDs');
 const result={status:failures.length?'FAIL':'PASS',checked:must.length+routeChecks.length,failures};console.log(JSON.stringify(result,null,2));if(failures.length)process.exitCode=1;
