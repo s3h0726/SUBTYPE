@@ -58,4 +58,15 @@ const curated=JSON.parse(read('data/lines/private.json')).routes.find(route=>rou
 const playable=new Set((curated?.stations||[]).map(station=>station.id));
 const skyliner=(services['line-23006']||[]).find(service=>service.id==='skyliner');
 if(!skyliner||skyliner.stops.some(id=>!playable.has(id)))failures.push('Skyliner invalid playable station IDs');
+
+// Every route selection card must retain the three-part identity in this order.
+const app=read('js/app.js');
+const cardSection=app.slice(app.indexOf('function routeCard('),app.indexOf('function renderRoutes('));
+const companyAt=cardSection.indexOf("lineSurfaceOperatorLogo(r,'line-card-operator-logo')");
+const symbolAt=cardSection.indexOf('lineBadgeMarkup(r)');
+const nameAt=cardSection.indexOf('class="line-card-line-name"');
+if(!(companyAt>=0&&companyAt<symbolAt&&symbolAt<nameAt))failures.push('route card company -> symbol -> name identity order');
+if(app.includes("LINE_IDENTITY_ONLY_OPERATORS=new Set(['tokyo-metro'])"))failures.push('Tokyo Metro operator badge hidden');
+const css=read('css/asset-runtime.css');
+if(!css.includes('.line-card .line-card-identity'))failures.push('route card identity styling missing');
 const result={status:failures.length?'FAIL':'PASS',checked:must.length+routeChecks.length,failures};console.log(JSON.stringify(result,null,2));if(failures.length)process.exitCode=1;
