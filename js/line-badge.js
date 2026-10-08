@@ -86,6 +86,8 @@ const verifiedAsset=(url,source)=>url?{url,asset:url,file:url,officialExists:tru
 function wikimediaLineAsset(route,code,lineName){
   const op=String(route?.operatorId||''),id=String(route?.id||''),c=String(code||''),name=String(lineName||'');
 
+  // Both Sanyo Main and Aboshi lines use the official shared SY number prefix.
+  if(['sanyodenkitetsudo','sanyo-electric-railway','sanyo'].includes(op))return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/Number_prefix_San-yo_Railway_line.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_San-yo_Railway_line.svg');
   if(id==='line-23006')return verifiedAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg');
   if(op==='keisei')return verifiedAsset(WM.keisei,'https://commons.wikimedia.org/wiki/File:Number_prefix_Keisei.svg');
 
