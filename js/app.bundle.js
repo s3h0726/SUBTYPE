@@ -330,7 +330,9 @@ function lineBadgeMeta(route){
   let asset=wikimediaLineAsset(route,code,lineName);
   const sendaiOriginal=SENDAI_LINE_ORIGINALS[route?.id];
   if(sendaiOriginal)asset={url:sendaiOriginal.url,asset:sendaiOriginal.url,source:sendaiOriginal.source,officialExists:true,exists:true,verified:false,originalFile:sendaiOriginal.file};
-  if(!targetOps&&!asset)asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null;
+  // Canonical symbols are the fallback for every operator, including JR, Keisei and Kobe.
+  // Previously targetOps blocked these real assets when the external URL mapping was absent.
+  if(!asset)asset=railDataRepository.getLineSymbolAsset(route?.id)||route?.symbolAsset||null;
   const officialSymbolExists=Boolean(asset?.officialExists||asset?.exists);
   const officialCodeExists=/^[A-Za-z]{1,4}$/.test(code)&&Boolean(source.routeCodes?.[route?.id]||theme.code);
   return{code,asset,officialSymbolExists,officialCodeExists,targetOps,style:operator.style||theme.style||route?.lineTheme?.style||route?.category||'other',source:asset?.source||operator.source||theme.colorSource||route?.lineTheme?.colorSource||'',color:route?.lineColor||theme.color||'#60736a'}
