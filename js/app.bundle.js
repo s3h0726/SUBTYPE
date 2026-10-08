@@ -93,6 +93,7 @@ function operatorLogoAsset(routeOrOperatorId){
   // Sanyo Electric Railway: original company symbol from Wikimedia Commons (not a generated approximation).
   if(['sanyodenkitetsudo','sanyo-electric-railway','sanyo','op-sanyo'].includes(operatorId)||/山陽電気鉄道|산요 전기철도/i.test(String(routeOrOperatorId?.operator?.ja||routeOrOperatorId?.operator?.ko||'')))return{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Sanyo_electric_railway_logo.svg',asset:'https://commons.wikimedia.org/wiki/Special:FilePath/Sanyo_electric_railway_logo.svg',label:'산요 전기철도',verified:true,source:'https://commons.wikimedia.org/wiki/File:Sanyo_electric_railway_logo.svg'};
   if(operatorId==='kobeshikotsukyoku')return{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Kobe_Municipal_Subway_Logo.svg',asset:'https://commons.wikimedia.org/wiki/Special:FilePath/Kobe_Municipal_Subway_Logo.svg',label:'고베 시영 지하철',verified:true,source:'https://commons.wikimedia.org/wiki/File:Kobe_Municipal_Subway_Logo.svg'};
+  if(operatorId==='nishinihontetsudo')return{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Nishitetsu_logo_N.svg',asset:'https://commons.wikimedia.org/wiki/Special:FilePath/Nishitetsu_logo_N.svg',label:'니시테츠',verified:true,source:'https://commons.wikimedia.org/wiki/File:Nishitetsu_logo_N.svg'};
   return railDataRepository.getOperatorLogoAsset(operatorId)||routeOrOperatorId?.operatorAsset||null
 }
 
@@ -294,6 +295,52 @@ function wikimediaLineAsset(route,code,lineName){
     'line-22012':'SeibuTamagawa.svg'
   };
   if(fixedOriginals[id])return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(fixedOriginals[id]),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(fixedOriginals[id]));
+  // Wikimedia originals for other confirmed railway prefix families.
+  // Each line uses its OWN designation rather than a company-wide replacement.
+  const otherOriginals={
+    'line-21002':'Tobu_Isesaki_Line_(TI)_symbol.svg',
+    'line-21003':'Tobu_Nikko_Line_(TN)_symbol.svg',
+    'line-21004':'Tobu_Noda_Line_(TD)_symbol.svg',
+    'line-22001':'SeibuIkebukuro.svg',
+    'line-22007':'SeibuShinjuku.svg',
+    'line-22010':'SeibuKokubunji.svg',
+    'line-22011':'SeibuTamako.svg',
+    'line-22012':'SeibuTamagawa.svg'
+  };
+  if(otherOriginals[id])return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(otherOriginals[id]),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(otherOriginals[id]));
+  // Verified Wikimedia route marks for Osaka Metro and Seibu Yamaguchi (Leo Liner).
+  const regionalOriginals={
+    'line-99618':'Osaka Metro Midosuji line symbol.svg',
+    'line-99619':'Osaka Metro Tanimachi line symbol.svg',
+    'line-99620':'Osaka Metro Yotsubashi line symbol.svg',
+    'line-99621':'Osaka Metro Chuo line symbol.svg',
+    'line-99622':'Osaka Metro Sennichimae line symbol.svg',
+    'line-99623':'Osaka Metro Sakaisuji line symbol.svg',
+    'line-99624':'Osaka Metro Nagahori Tsurumi-ryokuchi line symbol.svg',
+    'line-99652':'Osaka Metro Imazatosuji line symbol.svg',
+    'line-22006':'SeibuYamaguchi.svg'
+  };
+  if(regionalOriginals[id]){
+    const file=regionalOriginals[id];
+    const source='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(file.replaceAll(' ','_'));
+    return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(file.replaceAll(' ','_')),source);
+  }
+  // Wikimedia Commons original Nagoya and Sapporo subway line symbols.
+  const regionalSubwayOriginals={
+    "line-99513": "Nagoya Subway Logo (Higashiyama Line).svg",
+    "line-99518": "Nagoya Subway Logo (Kamiiida Line).svg",
+    "line-99514": "Nagoya Subway Logo (Meijo & Meiko Line).svg",
+    "line-99515": "Nagoya Subway Logo (Meijo & Meiko Line).svg",
+    "line-99517": "Nagoya Subway Logo (Sakura-dori Line).svg",
+    "line-99516": "Nagoya Subway Logo (Tsurumai Line).svg",
+    "line-99102": "Subway SapporoNamboku.svg",
+    "line-99103": "Subway SapporoToho.svg",
+    "line-99101": "Subway SapporoTozai.svg"
+};
+  if(regionalSubwayOriginals[id]){
+    const file=regionalSubwayOriginals[id].replaceAll(' ','_');
+    return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(file),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(file));
+  }
   if(id==='line-23006')return verifiedAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg');
   if(op==='keisei')return verifiedAsset(WM.keisei,'https://commons.wikimedia.org/wiki/File:Number_prefix_Keisei.svg');
 
