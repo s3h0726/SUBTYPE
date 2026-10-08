@@ -4,6 +4,15 @@ const fs=require('fs'),assert=require('assert');
 const read=p=>fs.readFileSync(p,'utf8');
 const badges=read('js/line-badge.js'),operators=read('js/asset-renderer.js'),build=read('tools/build-static.js');
 const must=[
+ ['Nagoya Higashiyama',badges,'"line-99513": "Nagoya Subway Logo (Higashiyama Line).svg"'],
+ ['Nagoya Meijo',badges,'"line-99514": "Nagoya Subway Logo (Meijo & Meiko Line).svg"'],
+ ['Nagoya Meiko',badges,'"line-99515": "Nagoya Subway Logo (Meijo & Meiko Line).svg"'],
+ ['Nagoya Tsurumai',badges,'"line-99516": "Nagoya Subway Logo (Tsurumai Line).svg"'],
+ ['Nagoya Sakuradori',badges,'"line-99517": "Nagoya Subway Logo (Sakura-dori Line).svg"'],
+ ['Nagoya Kamiiida',badges,'"line-99518": "Nagoya Subway Logo (Kamiiida Line).svg"'],
+ ['Sapporo Namboku',badges,'"line-99102": "Subway SapporoNamboku.svg"'],
+ ['Sapporo Toho',badges,'"line-99103": "Subway SapporoToho.svg"'],
+ ['Sapporo Tozai',badges,'"line-99101": "Subway SapporoTozai.svg"'],
  ['Osaka Metro Midosuji',badges,"'line-99618':'Osaka Metro Midosuji line symbol.svg'"],
  ['Osaka Metro Tanimachi',badges,"'line-99619':'Osaka Metro Tanimachi line symbol.svg'"],
  ['Osaka Metro Yotsubashi',badges,"'line-99620':'Osaka Metro Yotsubashi line symbol.svg'"],
