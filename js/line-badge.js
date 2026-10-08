@@ -97,10 +97,10 @@ function wikimediaLineAsset(route,code,lineName){
   const fixedOriginals={
     'line-21001':'Tobu_Tojo_Line_(TJ)_symbol.svg',
     'line-22001':'SeibuIkebukuro.svg',
-    'line-22003':'SeibuShinjuku.svg',
-    'line-22006':'SeibuKokubunji.svg',
-    'line-22009':'SeibuTamako.svg',
-    'line-22010':'SeibuTamagawa.svg'
+    'line-22007':'SeibuShinjuku.svg',
+    'line-22010':'SeibuKokubunji.svg',
+    'line-22011':'SeibuTamako.svg',
+    'line-22012':'SeibuTamagawa.svg'
   };
   if(fixedOriginals[id])return verifiedAsset('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(fixedOriginals[id]),'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(fixedOriginals[id]));
   if(id==='line-23006')return verifiedAsset('https://upload.wikimedia.org/wikipedia/commons/4/40/Number_prefix_SkyAccess.svg','https://commons.wikimedia.org/wiki/File:Number_prefix_SkyAccess.svg');
