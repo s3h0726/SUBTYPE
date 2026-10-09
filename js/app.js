@@ -291,12 +291,20 @@ function openSetup(route){
   $('#setup-route').style.setProperty('--ticket-color',selected.lineColor);$('#setup-route').innerHTML=`<h3>${escapeHtml(selected.line.ja)}</h3><p>${escapeHtml(selected.operator.en)} · ${escapeHtml(selected.line.en)}<br>${escapeHtml(selected.line.ko)} · ${selected.stations.length} STATIONS</p>${selected.section?`<p class="setup-section">${escapeHtml(selected.section.ja)} · ${escapeHtml(selected.section.ko)}</p>`:''}<ol class="setup-stations">${selected.stations.map(station=>`<li><b>${escapeHtml(station.ja)}</b><span>${escapeHtml(station.romaji)} · ${escapeHtml(station.ko)}</span></li>`).join('')}</ol><div class="route-endpoints"><span>${escapeHtml(selected.stations[0].ja)}<small> 출발</small></span><span>${escapeHtml(selected.stations.at(-1).ja)}<small> 도착</small></span></div>`;
   configureJourneyPicker();
   if(route.countryId==='kr'&&krLineFamily(route)){
-    const family=krLineFamily(route),members=routes.filter(r=>krLineFamily(r)===family);
+    const members=routes.filter(r=>krLineFamily(r)===krLineFamily(route));
     if(members.length>1){
-      const holder=document.createElement('div');holder.className='kr-setup-branch';
-      holder.innerHTML='<label for="kr-setup-destination"><b>행선지·운행구간</b></label><select id="kr-setup-destination" aria-label="운행구간 선택">'+members.map(r=>'<option value="'+escapeHtml(r.id)+'"'+(r.id===route.id?' selected':'')+'>'+escapeHtml(r.line?.ko||r.id)+'</option>').join('')+'</select>';
-      $('#setup-route').prepend(holder);
-      holder.querySelector('select').addEventListener('change',async e=>{const id=e.target.value;const ok=await chooseRoute(id);if(ok)openSetup(selected)});
+      const picker=$('#journey-picker'),destination=$('#journey-destination');
+      const appendDestinations=()=>{
+        if(!destination)return;
+        for(const member of members){if(member.id===route.id)continue;const option=document.createElement('option');option.value='kr-route:'+member.id;option.textContent=(member.line?.ko||member.id)+' · 다른 운행구간';destination.append(option)}
+      };
+      if(picker){picker.hidden=false;appendDestinations();}
+      destination?.addEventListener('change',async event=>{
+        const id=String(event.target.value||'').replace(/^kr-route:/,'');
+        if(!String(event.target.value).startsWith('kr-route:'))return;
+        const ok=await chooseRoute(id);if(ok)openSetup(selected);
+      });
+      const origin=$('#journey-origin');origin?.addEventListener('change',()=>queueMicrotask(appendDestinations));
     }
   }
   go('game-setup')
