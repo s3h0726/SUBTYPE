@@ -103,7 +103,13 @@ function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.sl
  document.querySelector('#pageinfo').textContent=visible.length?(page*size+1).toLocaleString()+'–'+e.toLocaleString()+' / '+visible.length.toLocaleString():'0건';
  document.querySelector('#prev').disabled=page===0;document.querySelector('#next').disabled=e>=visible.length;
 }
-table.addEventListener('input',e=>{if(!e.target.matches('td input[data-r]'))return;const el=e.target,r=+el.dataset.r,c=+el.dataset.c;rows[r][c]=el.value;el.closest('td').classList.toggle('edited',isChanged(r));persist();const n=rows.reduce((acc,row,i)=>acc+(isChanged(i)?1:0),0);status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+n+'건'});
+table.addEventListener('input',e=>{if(!e.target.matches('td input[data-r]'))return;const el=e.target,r=+el.dataset.r,c=+el.dataset.c;rows[r][c]=el.value;
+if(file==='lines'&&c===heads.indexOf('RGB 색상')){
+ const v=cssToHex(el.value),cell=el.closest('td');
+ if(el.type==='color'){rows[r][c]=v;cell.querySelectorAll('input').forEach(other=>{if(other!==el)other.value=v})}
+ else if(colorRE.test(el.value)){rows[r][c]=v;cell.querySelector('input[type=color]').value=v}
+}
+el.closest('td').classList.toggle('edited',isChanged(r));persist();const n=rows.reduce((acc,row,i)=>acc+(isChanged(i)?1:0),0);status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+n+'건'});
 q.addEventListener('input',()=>{page=0;refresh()});changesOnly.addEventListener('change',()=>{page=0;refresh()});
 document.querySelector('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-file]');if(b)load(b.dataset.file)});
 document.querySelector('#prev').onclick=()=>{page--;render()};document.querySelector('#next').onclick=()=>{page++;render()};
