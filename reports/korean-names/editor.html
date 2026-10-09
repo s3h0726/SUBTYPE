@@ -128,8 +128,8 @@ async function saveToGame(){
  const res=await fetch(url,{headers,cache:'no-store'});if(!res.ok)throw Error('GitHub 읽기 실패: '+res.status+' (토큰 권한 확인)');
  const current=await res.json();
  if(typeof current.content!=='string'||!current.sha)throw Error('GitHub 응답에 파일 내용이 없습니다. 접근 권한을 확인하세요.');
- const rawBytes=Uint8Array.from(atob(current.content.replace(/\\s/g,'')),c=>c.charCodeAt(0));
- const rawText=new TextDecoder('utf-8',{fatal:true}).decode(rawBytes).replace(/^\\uFEFF/,'');
+ const rawBytes=Uint8Array.from(atob(current.content.replace(/\s/g,'')),c=>c.charCodeAt(0));
+ const rawText=new TextDecoder('utf-8',{fatal:true}).decode(rawBytes).replace(/^\uFEFF/,'');
  let json;try{json=JSON.parse(rawText)}catch(e){
    throw Error('원격 설정 파일 JSON 오류: '+e.message+'. 현재 수정 내용은 그대로 보존됩니다. 관리자에게 알려주세요.');
  }
