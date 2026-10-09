@@ -938,7 +938,7 @@ class Game{
 // recommit-trigger: free-drive-move-fix-20261007
 
 
-const finite=n=>Number.isFinite(Number(n));
+const finite=n=>n!==null&&n!==undefined&&n!==''&&Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
 const freeDriveStationKey=s=>{
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
