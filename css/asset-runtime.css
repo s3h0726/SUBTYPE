@@ -266,3 +266,26 @@
   margin:0!important;
   line-height:1.25!important;
 }
+
+/* Global text-only identity policy: hide operator logos and route logos on
+   selection, filters, home, game, results, records and station signs.
+   Source image files and railway metadata remain intact. */
+[data-operator-logo],
+[data-line-symbol],
+.line-symbol-asset,
+.line-code-label,
+.feature-operator-logo,
+.recent-operator-logo,
+.record-operator-logo,
+.record-line-symbol,
+.result-operator-logo-asset,
+.station-operator-logo-wrap,
+.line-card-operator-logo,
+.filter-logo,
+.setup-route-marks .line-badge,
+.feature-number .line-badge,
+.result-line-badge,
+.departure-line-symbol,
+[class*="operator-logo-asset"]{
+  display:none!important;
+}
