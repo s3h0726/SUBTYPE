@@ -62,10 +62,10 @@ if(!skyliner||skyliner.stops.some(id=>!playable.has(id)))failures.push('Skyliner
 // Route cards show line symbol and line name only; operator filter keeps company logos.
 const app=read('js/app.js');
 const cardSection=app.slice(app.indexOf('function routeCard('),app.indexOf('function renderRoutes('));
-const symbolAt=cardSection.indexOf('lineBadgeMarkup(r)');
+const operatorAt=cardSection.indexOf('class="operator"');
 const nameAt=cardSection.indexOf('class="line-card-line-name"');
-if(!(symbolAt>=0&&symbolAt<nameAt)&&!cardSection.includes('line-card-line-name'))failures.push('route card symbol -> name identity order');
-if(cardSection.includes("lineSurfaceOperatorLogo(r,'line-card-operator-logo')"))failures.push('company logo remains in route card');
+if(!(operatorAt>=0&&operatorAt<nameAt))failures.push('route card company name -> line name order');
+if(cardSection.includes('lineBadgeMarkup(r)')||cardSection.includes("lineSurfaceOperatorLogo(r,'line-card-operator-logo')"))failures.push('route card must not include logos');
 if(!app.includes("${operatorLogo(route,'filter-logo')}"))failures.push('company logo missing from operator filter');
 if(app.includes("LINE_IDENTITY_ONLY_OPERATORS=new Set(['tokyo-metro'])"))failures.push('Tokyo Metro operator badge hidden');
 const css=read('css/asset-runtime.css');
