@@ -9,7 +9,15 @@ const csv=(rows)=>'\uFEFF'+rows.map(row=>row.map(value=>'"'+String(value??'').re
 const output=path.join(root,'reports/korean-names');fs.mkdirSync(output,{recursive:true});
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}));
+// Retired or duplicate identifiers are folded into active operators.
+const canonicalId=id=>({'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[id]||id);
 const opMap=new Map(operators.map(x=>[x.meta.id,x.meta]));
+for(const x of lines){
+ const oldId=x.meta.operatorId;
+ x.meta.operatorId=canonicalId(oldId);
+ if(x.meta.id==='line-99616')x.meta.names={...x.meta.names,ja:'泉北線',ko:'센보쿠선',en:'Semboku Line'};
+}
+for(let i=operators.length-1;i>=0;i--)if(canonicalId(operators[i].meta.id)!==operators[i].meta.id)operators.splice(i,1);
 operators.sort((a,b)=>(a.meta.names?.ko||'').localeCompare(b.meta.names?.ko||'','ko'));
 lines.sort((a,b)=>(a.meta.operatorId||'').localeCompare(b.meta.operatorId||'')||(a.meta.names?.ko||'').localeCompare(b.meta.names?.ko||'','ko'));
 fs.writeFileSync(path.join(output,'operators.csv'),csv([['운영사ID','한국어명','일본어명','영어명','데이터경로'],...operators.map(x=>[x.meta.id,x.meta.names?.ko,x.meta.names?.ja,x.meta.names?.en,toRel(x.file)])]));
