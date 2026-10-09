@@ -15,7 +15,7 @@ if(routeFiles.length===0){
  if(!fs.existsSync(snapshot))throw new Error('Korean canonical routes and imported snapshot both missing');
  const imported=read(snapshot);
  if(!Array.isArray(imported.routes)||imported.routes.length===0)throw new Error('Korean imported snapshot has no routes');
- fs.writeFileSync(path.join(root,'js','korea-index-data.js'),`/* PROVISIONAL KOREAN METRO INDEX — not yet verified for release. */\\nwindow.TRT_KOREA_INDEX=${JSON.stringify(imported)};\\n`.replaceAll('\\\\n','\\n'));
+ fs.writeFileSync(path.join(root,'js','korea-index-data.js'), '/* PROVISIONAL KOREAN METRO INDEX — verification required. */\n'.replace('*/\n','*/\\n')+'window.TRT_KOREA_INDEX='+JSON.stringify(imported)+';\\n');
  console.log(JSON.stringify({status:'PROVISIONAL',routes:imported.routes.length,note:'Kept imported metro routes; canonical rebuild and verification pending'},null,2));
  process.exit(0);
 }
