@@ -1,3 +1,4 @@
+const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 import{$,$$,escapeHtml,formatTime,normalize,toast}from'./utils.js';
 import{loadTransportData,normalizeLine,hydrateRailLine}from'./data-loader.js';
 import{storage}from'./storage.js';
@@ -312,6 +313,15 @@ async function startFreeDrive(route){
   let target=route;
   if(target.lazy){const ok=await chooseRoute(target.id);if(!ok)return;target=selected}
   if(!target?.stations?.length)return toast('자유주행에 사용할 역 데이터가 없는 노선입니다.');
+  if(target.countryId==='kr'){
+    const counterpartIds=KR_CONFIRMED_TRANSFERS.flatMap(t=>t.routeIds.includes(target.id)?t.routeIds:[]).filter(id=>id!==target.id);
+    for(const id of new Set(counterpartIds)){
+      const other=builtin.find(line=>line.id===id);
+      if(!other?.lazy)continue;
+      try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(other)),pos=builtin.findIndex(line=>line.id===id);if(pos>=0)builtin[pos]=hydrated;}catch(error){console.warn('Korean transfer counterpart unavailable:',id,error)}
+    }
+    refreshRoutes();
+  }
   freeDrive?.setNetwork(freeDriveNetworkRoutes());
   const chosenStart=Number($('#free-drive-start-station')?.value);
   const startIndex=Number.isInteger(chosenStart)&&chosenStart>=0&&chosenStart<target.stations.length?chosenStart:0;
