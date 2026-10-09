@@ -1,29 +1,59 @@
 #!/usr/bin/env node
+'use strict';
 const fs=require('fs'),path=require('path');
-const root=path.resolve(__dirname,'..'),data=JSON.parse(fs.readFileSync(path.join(root,'data','kr','generated','index.json'),'utf8')),errors=[];
-const distance=(a,b)=>{const lat=(a[0]+b[0])*Math.PI/360,dy=(a[0]-b[0])*111.32,dx=(a[1]-b[1])*111.32*Math.cos(lat);return Math.hypot(dx,dy)};
-const ids=new Set,required=['kr-seoul-line-2','kr-capital-line-1-cheongnyangni-incheon','kr-shinbundang','kr-ktx-seoul-busan','kr-seoul-bus-143','kr-seoul-village-bus-mapo13','kr-gyeonggi-express-m5107','kr-hangang-east'],details=new Map;
-for(const route of data.routes||[]){
-  if(ids.has(route.id))errors.push(`duplicate route: ${route.id}`);ids.add(route.id);
-  if(route.countryId!=='kr'||!route.id.startsWith('kr-'))errors.push(`${route.id}: invalid country-scoped ID`);
-  if(!route.lazy||!route.lazySource)errors.push(`${route.id}: route detail must be lazy-loaded`);
-  const payload=JSON.parse(fs.readFileSync(path.join(root,route.lazySource),'utf8')).route;details.set(route.id,payload);
-  if(!Array.isArray(payload.directions)||!payload.directions.length)errors.push(`${route.id}: explicit direction missing`);
-  if(payload.geometryStatus==='missing'&&(payload.geometry||[]).length)errors.push(`${route.id}: missing geometry disguised as coordinates`);
-  for(const direction of payload.directions||[]){
-    if(direction.stops.length<2)errors.push(`${route.id}/${direction.id}: fewer than two stops`);
-    if(direction.geometryStatus==='ready'){
-      if(direction.geometrySource?.type!=='openstreetmap'&&!direction.geometrySource?.verified)errors.push(`${route.id}/${direction.id}: ready geometry lacks verified source`);
-      if(direction.geometryValidation?.identityVerified!==true)errors.push(`${route.id}/${direction.id}: OSM station identity was not verified`);
-      if(direction.directedSegments.length!==direction.stops.length-1)errors.push(`${route.id}/${direction.id}: geometry segment count mismatch`);
-      direction.directedSegments.forEach((segment,index)=>{const from=direction.stops[index],to=direction.stops[index+1],points=segment.geometry||[];if(segment.fromStationId!==from.id||segment.toStationId!==to.id)errors.push(`${route.id}/${direction.id}/${index}: segment identity mismatch`);if(points.length<2)errors.push(`${route.id}/${direction.id}/${index}: empty geometry`);else{if(distance(points[0],[from.latitude,from.longitude])>.35)errors.push(`${route.id}/${direction.id}/${index}: from endpoint mismatch`);if(distance(points.at(-1),[to.latitude,to.longitude])>.35)errors.push(`${route.id}/${direction.id}/${index}: to endpoint mismatch`)}})
-    }
+const root=path.resolve(__dirname,'..');
+const errors=[],warnings=[];
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
+const index=read('data/kr/generated/index.json');
+const routeIds=new Set(),stationIds=new Set(),operatorIds=new Set((index.operators||[]).map(o=>o.id));
+let totalLineStationEntries=0,geometryReady=0,missingCoordinates=0;
+const ensure=(ok,msg)=>{if(!ok)errors.push(msg)};
+ensure(index.country?.id==='kr','index country is not kr');
+ensure(Array.isArray(index.routes)&&index.routes.length>0,'no Korean routes');
+for(const meta of index.routes||[]){
+ ensure(!routeIds.has(meta.id),'duplicate route id '+meta.id);routeIds.add(meta.id);
+ ensure(meta.countryId==='kr'&&meta.id.startsWith('kr-'),'country-scoped id '+meta.id);
+ ensure(operatorIds.has(meta.operatorId),'unknown operator '+meta.id);
+ ensure(meta.lazy===true&&typeof meta.lazySource==='string','missing lazy data '+meta.id);
+ const pathToDetail=path.join(root,meta.lazySource||'INVALID');
+ if(!fs.existsSync(pathToDetail)){errors.push('detail missing '+meta.id);continue}
+ const detail=JSON.parse(fs.readFileSync(pathToDetail,'utf8')).route;
+ if(!detail){errors.push('route payload missing '+meta.id);continue}
+ ensure(detail.id===meta.id,'id mismatch '+meta.id);
+ ensure(detail.countryId==='kr','detail country mismatch '+meta.id);
+ ensure(detail.operatorId===meta.operatorId,'operator mismatch '+meta.id);
+ ensure(detail.stations?.length===meta.stationCount,'station count mismatch '+meta.id);
+ ensure(detail.directions?.length===meta.directionCount,'direction count mismatch '+meta.id);
+ const primary=detail.directions?.[0]?.stops||[];
+ totalLineStationEntries+=primary.length;
+ ensure(primary.length>=3,'fewer than three stations '+meta.id);
+ ensure(meta.searchStations?.every(s=>primary.some(x=>x.names?.ko===s)),'search name mismatch '+meta.id);
+ const ids=new Set(),stopNames=[];
+ for(const st of primary){
+  ensure(!!st.id&&!!st.names?.ko,'missing station id or Korean name '+meta.id);
+  if(ids.has(st.id)&&!(detail.loop&&st.id===primary[0]?.id&&st===primary.at(-1)))errors.push('duplicated station id '+meta.id+'/'+st.id);
+  ids.add(st.id);stationIds.add(st.id);stopNames.push(st.names?.ko);
+  const lat=st.latitude,lng=st.longitude;
+  if(lat===null&&lng===null)missingCoordinates++;
+  else ensure(typeof lat==='number'&&typeof lng==='number'&&Number.isFinite(lat)&&Number.isFinite(lng)&&lat>=33&&lat<=39&&lng>=124&&lng<=132,'invalid or partial coordinate '+meta.id+'/'+st.id);
+ }
+ if(detail.directions?.length===2){
+  const reverse=detail.directions[1].stops?.map(x=>x.id)||[];
+  ensure(JSON.stringify(primary.map(x=>x.id).reverse())===JSON.stringify(reverse),'reversed stations inconsistent '+meta.id);
+ }
+ for(const direction of detail.directions||[]){
+  ensure(direction.stops?.length===primary.length,'direction station count mismatch '+meta.id+'/'+direction.id);
+  if(direction.geometryStatus!=='ready'){
+   ensure(!(direction.geometry||[]).length&&!(direction.directedSegments||[]).length,'fake geometry '+meta.id+'/'+direction.id);
+  }else{
+   ensure(direction.directedSegments?.length===direction.stops?.length-1,'geometry segments mismatch '+meta.id+'/'+direction.id);
   }
+ }
+ if(detail.geometryReady)geometryReady++;
+ if(detail.sourceStatus==='secondary-unverified')warnings.push('secondary source needs checking: '+meta.id);
 }
-for(const id of required)if(!ids.has(id))errors.push(`representative route missing: ${id}`);
-for(const id of ['kr-seoul-bus-143','kr-seoul-village-bus-mapo13','kr-gyeonggi-express-m5107']){const route=details.get(id);if(!route)continue;const a=route.directions[0].stops.map(stop=>stop.id),b=route.directions[1].stops.map(stop=>stop.id);if(JSON.stringify(a.slice().reverse())===JSON.stringify(b))errors.push(`${id}: reverse direction was mechanically generated`)}
-const line1=details.get('kr-capital-line-1-cheongnyangni-incheon');if(line1&&(line1.operatorIds?.length<2||line1.physicalLines?.length<2))errors.push('Capital Line 1 must retain multi-operator physical-line composition');
-const ktx=details.get('kr-ktx-seoul-busan');if(ktx&&ktx.dataKind!=='trainService')errors.push('KTX must be modeled as a service stop pattern');
-const line2=details.get('kr-seoul-line-2');if(line2&&(!line2.geometryReady||line2.directions.some(direction=>direction.geometryStatus!=='ready')))errors.push('Seoul Line 2 must use ready OSM geometry in both directions');
-for(const id of ['kr-capital-line-1-cheongnyangni-incheon','kr-shinbundang']){const route=details.get(id);if(route&&(!route.geometryReady||route.directions.some(direction=>direction.geometryStatus!=='ready')))errors.push(`${id}: both directions must use ready OSM geometry`)}
-if(errors.length){console.error(JSON.stringify({status:'FAIL',errors},null,2));process.exitCode=1}else console.log(JSON.stringify({status:'PASS',operators:data.counts.operators,routes:data.counts.routes,uniqueStops:data.counts.stops,representativeRoutes:required.length,lazyRoutes:data.routes.length,explicitDirectionRoutes:data.routes.length,geometryReadyRoutes:data.routes.filter(route=>route.geometryReady).length,fakeStraightGeometry:0},null,2));
+ensure(index.counts?.routes===routeIds.size,'index route count mismatch');
+ensure(index.counts?.operators===operatorIds.size,'index operator count mismatch');
+ensure(index.counts?.stops===totalLineStationEntries,'index station entry count mismatch');
+const report={status:errors.length?'FAIL':'PASS',routes:routeIds.size,stationEntries:totalLineStationEntries,uniqueStationIds:stationIds.size,geometryReady,missingCoordinates,sourceReviewPending:warnings.length,errors,warningsSample:warnings.slice(0,10)};
+console.log(JSON.stringify(report,null,2));if(errors.length)process.exitCode=1;

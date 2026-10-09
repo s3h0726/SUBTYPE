@@ -8,6 +8,17 @@ const asset=(folder,base)=>{for(const extension of ['svg','png','webp']){const f
 const country=read(path.join(krRoot,'country.json')),operatorFiles=walk(path.join(krRoot,'operators'),'operator.json'),operators=operatorFiles.map(read),operatorMap=new Map(operators.map(operator=>[operator.id,operator])),stops=walk(path.join(krRoot,'stops'),'stops.json').flatMap(file=>read(file).stops||[]),stopMap=new Map(stops.map(stop=>[stop.id,stop]));
 if(stopMap.size!==stops.length)throw new Error('Duplicate Korean transport stop ID');
 const routeFiles=walk(krRoot,'route.json'),routeIds=new Set,index=[],assets={operators:{},lines:{}};
+// The independent metro import is provisional. Until canonical route.json sources
+// replace it, do not overwrite its index with an empty catalog during a build.
+if(routeFiles.length===0){
+ const snapshot=path.join(outRoot,'index.json');
+ if(!fs.existsSync(snapshot))throw new Error('Korean canonical routes and imported snapshot both missing');
+ const imported=read(snapshot);
+ if(!Array.isArray(imported.routes)||imported.routes.length===0)throw new Error('Korean imported snapshot has no routes');
+ fs.writeFileSync(path.join(root,'js','korea-index-data.js'), '/* PROVISIONAL KOREAN METRO INDEX — verification required. */\nwindow.TRT_KOREA_INDEX='+JSON.stringify(imported)+';\n');
+ console.log(JSON.stringify({status:'PROVISIONAL',routes:imported.routes.length,note:'Kept imported metro routes; canonical rebuild and verification pending'},null,2));
+ process.exit(0);
+}
 operatorFiles.forEach((file,index)=>{const found=asset(path.dirname(file),'logo');if(found)assets.operators[operators[index].id]=found});
 for(const routeFile of routeFiles){
   const route=read(routeFile),folder=path.dirname(routeFile),operatorIds=route.operatorIds||[route.operatorId],operator=operatorMap.get(route.operatorId);

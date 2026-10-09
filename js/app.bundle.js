@@ -12,7 +12,7 @@ const debounce=(fn,wait=120)=>{let t;return(...args)=>{clearTimeout(t);t=setTime
 
 
 const FEATURE_FLAGS=Object.freeze({
-  korea:false,
+  korea:true,
   visibleJapanRegion:'all'
 });
 
@@ -938,9 +938,12 @@ class Game{
 // recommit-trigger: free-drive-move-fix-20261007
 
 
-const finite=n=>Number.isFinite(Number(n));
+const finite=n=>n!==null&&n!==undefined&&n!==''&&Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
+const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 const freeDriveStationKey=s=>{
+  if(s?.krTransferKey)return s.krTransferKey;
+  if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
   // Transfer stations are often represented by different operator-specific IDs.
   // Prefer a name + ~200m coordinate cell so the same physical station merges across companies.
@@ -1009,6 +1012,14 @@ class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    for(const route of routes||[])for(const stop of route.stations||[]){
+      if(route.countryId!=='kr')continue;
+      delete stop.krTransferKey;
+      stop.krNoAutoTransfer=true;
+      const region=route.regionId||'capital';
+      const transfer=KR_CONFIRMED_TRANSFERS.find(t=>t.region===region&&t.name===stop.ko&&t.routeIds.includes(route.id));
+      if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
+    }
     this.routes=(routes||[]).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2);
     this.graph=new Map;
     const ensure=(station,route,index)=>{
@@ -1187,7 +1198,7 @@ async function loadTransportData(countryId='jp'){
   const lines=(data.routes||[]).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators,lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
 }
-async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);const normalized=normalizeLine(payload.route||payload,{category:route.category});normalized.directions=(payload.route||payload).directions||[];return normalized}
+async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);const normalized=normalizeLine(payload.route||payload,{category:route.category});normalized.directions=(payload.route||payload).directions||[];if(route.countryId==='kr'){normalized.playable=route.playable;normalized.visibility=route.visibility;normalized.dataKind=route.dataKind;normalized.serviceNote=route.serviceNote;normalized.operatorId=route.operatorId;normalized.operator={...normalized.operator,...route.operator};normalized.operators=route.operators||normalized.operators;normalized.operatorIds=route.operatorIds||normalized.operatorIds;normalized.countryId='kr';normalized.regionId=route.regionId;normalized.geometryReady=route.geometryReady===true;}return normalized}
 async function loadRoutes(){const data=await loadRailData();return{routes:data.lines,errors:data.errors,counts:data.counts,fallbackUsed:data.fallbackUsed}}
 async function loadStationMaster(){const workspaceData=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;if(!Array.isArray(workspaceData?.routes))return[];const map=new Map;for(const route of workspaceData.routes)for(const station of route.stations||[])if(!map.has(station.id))map.set(station.id,normalizeStation(station,map.size,route.code));return[...map.values()]}
 
@@ -1377,6 +1388,7 @@ function applyYurikamomeLoopGeometry(route){
 }
 function fixRouteKoreanNames(route){
   if(!route)return route;
+  if(route.countryId==='kr')return route;
   // Canonical operator identities. Preserve route IDs and station ordering.
   const canonicalOperatorId={'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[route.operatorId]||route.operatorId;
   if(canonicalOperatorId!==route.operatorId)route={...route,operatorId:canonicalOperatorId};
@@ -1618,6 +1630,15 @@ async function startFreeDrive(route){
   let target=route;
   if(target.lazy){const ok=await chooseRoute(target.id);if(!ok)return;target=selected}
   if(!target?.stations?.length)return toast('자유주행에 사용할 역 데이터가 없는 노선입니다.');
+  if(target.countryId==='kr'){
+    const counterpartIds=KR_CONFIRMED_TRANSFERS.flatMap(t=>t.routeIds.includes(target.id)?t.routeIds:[]).filter(id=>id!==target.id);
+    for(const id of new Set(counterpartIds)){
+      const other=builtin.find(line=>line.id===id);
+      if(!other?.lazy)continue;
+      try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(other)),pos=builtin.findIndex(line=>line.id===id);if(pos>=0)builtin[pos]=hydrated;}catch(error){console.warn('Korean transfer counterpart unavailable:',id,error)}
+    }
+    refreshRoutes();
+  }
   freeDrive?.setNetwork(freeDriveNetworkRoutes());
   const chosenStart=Number($('#free-drive-start-station')?.value);
   const startIndex=Number.isInteger(chosenStart)&&chosenStart>=0&&chosenStart<target.stations.length?chosenStart:0;

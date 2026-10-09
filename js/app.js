@@ -1,3 +1,4 @@
+const KR_APP_TRANSFER_PAIRS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 import{$,$$,escapeHtml,formatTime,normalize,toast}from'./utils.js';
 import{loadTransportData,normalizeLine,hydrateRailLine}from'./data-loader.js';
 import{storage}from'./storage.js';
@@ -69,6 +70,8 @@ function applyYurikamomeLoopGeometry(route){
 }
 function fixRouteKoreanNames(route){
   if(!route)return route;
+  // Korean station labels are canonical Hangul, not Japanese transliteration targets.
+  if(route.countryId==='kr')return route;
   // Canonical operator identities. Preserve route IDs and station ordering.
   const canonicalOperatorId={'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[route.operatorId]||route.operatorId;
   if(canonicalOperatorId!==route.operatorId)route={...route,operatorId:canonicalOperatorId};
@@ -310,6 +313,15 @@ async function startFreeDrive(route){
   let target=route;
   if(target.lazy){const ok=await chooseRoute(target.id);if(!ok)return;target=selected}
   if(!target?.stations?.length)return toast('자유주행에 사용할 역 데이터가 없는 노선입니다.');
+  if(target.countryId==='kr'){
+    const counterpartIds=KR_APP_TRANSFER_PAIRS.flatMap(t=>t.routeIds.includes(target.id)?t.routeIds:[]).filter(id=>id!==target.id);
+    for(const id of new Set(counterpartIds)){
+      const other=builtin.find(line=>line.id===id);
+      if(!other?.lazy)continue;
+      try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(other)),pos=builtin.findIndex(line=>line.id===id);if(pos>=0)builtin[pos]=hydrated;}catch(error){console.warn('Korean transfer counterpart unavailable:',id,error)}
+    }
+    refreshRoutes();
+  }
   freeDrive?.setNetwork(freeDriveNetworkRoutes());
   const chosenStart=Number($('#free-drive-start-station')?.value);
   const startIndex=Number.isInteger(chosenStart)&&chosenStart>=0&&chosenStart<target.stations.length?chosenStart:0;
@@ -371,7 +383,7 @@ $('#feature-viewport').addEventListener('mouseenter',()=>clearInterval(featureTi
 $('#library-import').addEventListener('change',async e=>{await editor.import(e.target.files[0]);e.target.value='';renderCustomLibrary();go('custom-editor')});
 initAuth(storage);applyCountryUi();refreshCountryCopy();renderHome();renderCustomLibrary();refreshRoutes();freeDrive?.setNetwork(freeDriveNetworkRoutes());renderHomeNetwork();if(currentScreen==='records')renderStats();if(['game','game-setup','result'].includes(currentScreen)){window.TRTNavigation?.showScreen('rail-map',{history:'replace'});toast('노선을 먼저 선택해 주세요.')}
 async function reloadRailData(){const summary=$('#data-summary');dataLoading=true;summary.classList.remove('error');summary.textContent=`${countryId==='kr'?'대한민국 대중교통':'일본 전국 철도'} 카탈로그를 불러오는 중...`;try{let edits={};try{const response=await fetch('./data/editor-overrides.json?ts='+Date.now(),{cache:'no-store'});if(response.ok)edits=await response.json()}catch(error){console.warn('Name editor overrides unavailable:',error)}globalThis.TRT_EDITOR_OVERRIDES=edits;
-    const loaded=await loadTransportData(countryId);railDataRepository.configure({operators:loaded.operators,lines:loaded.lines,stations:loaded.stations,assets:loaded.assets});builtin=loaded.lines.map(route=>railDataRepository.resolveRoute(route));stations=[...railDataRepository.stations.values()].map(station=>({id:station.id,stationMasterId:station.id,sourceStationId:station.id,ja:station.names.ja,kana:station.names.kana,ko:station.names.ko,romaji:station.names.en,latitude:station.coordinates.lat,longitude:station.coordinates.lng}));stations=stations.filter(station=>FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area'||!globalThis.TRT_TOKYO_AREA||countryId==='kr'||globalThis.TRT_TOKYO_AREA.stationIds.includes(station.id));editor.setStationMaster(stations);refreshRoutes();renderHome();summary.innerHTML=countryId==='kr'?`대한민국 1차 데이터 · ${builtin.length}개 대표 노선 · 상세 데이터는 노선 선택 시 로드 · 선형 미확보 노선도 정차 순서 타이핑 가능`:`일본 전국 ${routes.length}개 · JR ${routes.filter(r=>r.category==='jr').length} · 지하철 ${routes.filter(r=>r.category==='subway').length} · 사철 ${routes.filter(r=>r.category==='private').length} · 제3섹터 ${routes.filter(r=>r.category==='third-sector').length} · 트램 ${routes.filter(r=>r.category==='tram').length} · 신칸센 ${routes.filter(r=>r.category==='shinkansen').length}`;dataLoading=false;if(pendingRouteId){const id=pendingRouteId;pendingRouteId=null;chooseRoute(id)}return loaded}catch(error){console.error('App transport data initialization failed:',error);builtin=[];editor.setStationMaster([]);refreshRoutes();renderHome();dataLoading=false;summary.classList.add('error');summary.innerHTML='교통 데이터를 불러오지 못했습니다. <button data-retry-data>다시 시도</button>';return null}}
+    const loaded=await loadTransportData(countryId);railDataRepository.configure({operators:loaded.operators,lines:loaded.lines,stations:loaded.stations,assets:loaded.assets});builtin=loaded.lines.map(route=>railDataRepository.resolveRoute(route));stations=[...railDataRepository.stations.values()].map(station=>({id:station.id,stationMasterId:station.id,sourceStationId:station.id,ja:station.names.ja,kana:station.names.kana,ko:station.names.ko,romaji:station.names.en,latitude:station.coordinates.lat,longitude:station.coordinates.lng}));stations=stations.filter(station=>FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area'||!globalThis.TRT_TOKYO_AREA||countryId==='kr'||globalThis.TRT_TOKYO_AREA.stationIds.includes(station.id));editor.setStationMaster(stations);refreshRoutes();renderHome();summary.innerHTML=countryId==='kr'?`대한민국 도시·광역철도 · ${builtin.length}개 노선·구간 · 역 순서 데이터 구축 중 · 상세 데이터는 노선 선택 시 로드 · 선형 미확보 노선은 순서 타이핑`:`일본 전국 ${routes.length}개 · JR ${routes.filter(r=>r.category==='jr').length} · 지하철 ${routes.filter(r=>r.category==='subway').length} · 사철 ${routes.filter(r=>r.category==='private').length} · 제3섹터 ${routes.filter(r=>r.category==='third-sector').length} · 트램 ${routes.filter(r=>r.category==='tram').length} · 신칸센 ${routes.filter(r=>r.category==='shinkansen').length}`;dataLoading=false;if(pendingRouteId){const id=pendingRouteId;pendingRouteId=null;chooseRoute(id)}return loaded}catch(error){console.error('App transport data initialization failed:',error);builtin=[];editor.setStationMaster([]);refreshRoutes();renderHome();dataLoading=false;summary.classList.add('error');summary.innerHTML='교통 데이터를 불러오지 못했습니다. <button data-retry-data>다시 시도</button>';return null}}
 document.addEventListener('click',e=>{if(e.target.closest('[data-retry-data]'))reloadRailData()});
 function runSanityChecks(){console.assert(routes.length>0,'Transport data must contain routes');if(countryId==='jp'){console.assert(routes.some(line=>line.id==='line-11302'),'Yamanote line is required');console.assert(routes.some(line=>line.id==='line-28001'),'Ginza line is required')}else console.assert(routes.some(line=>line.id==='kr-seoul-line-2'),'Seoul Line 2 is required');console.assert(routes.every(line=>line.lazy||(Array.isArray(line.stations)&&line.stations.length>=2)),'Every visible route must be playable or lazy-loadable')}
 await reloadRailData();refreshFeatureCounts();if(['localhost','127.0.0.1'].includes(location.hostname))runSanityChecks();
