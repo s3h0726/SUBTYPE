@@ -18,6 +18,8 @@ jobs:
         run: node tools/validate-korea-data.js
       - name: Check provisional KTX and ITX route gating
         run: node tools/test-kr-service-gating.js
+      - name: Check Korean free-drive coordinate safety
+        run: node tools/test-kr-free-drive-coordinates.js
       - name: Check JavaScript parsing
         run: |
           node --check tools/build-korea-data.js
