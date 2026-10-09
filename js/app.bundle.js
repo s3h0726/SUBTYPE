@@ -1377,6 +1377,11 @@ function applyYurikamomeLoopGeometry(route){
 }
 function fixRouteKoreanNames(route){
   if(!route)return route;
+  const canonicalOperatorId={'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[route.operatorId]||route.operatorId;
+  if(canonicalOperatorId!==route.operatorId)route={...route,operatorId:canonicalOperatorId};
+  if(route.id==='line-99616')route={...route,operator:{...(route.operator||{}),ja:'南海電鉄',ko:'난카이 전기철도',en:'Nankai Electric Railway'},line:{...(route.line||{}),ja:'泉北線',ko:'센보쿠선',en:'Semboku Line'}};
+  if(route.operatorId==='uekedenkitetsudo')route={...route,operator:{...(route.operator||{}),ko:'조모 전기철도',ja:'上毛電気鉄道'}};
+
   const operatorJa=route.operator?.ja||route.operator?.names?.ja||'',lineJa=route.line?.ja||route.line?.names?.ja||'';
   const operatorKo=JAPANESE_KOREAN_ID_FIXES[route.operatorId]||cleanJapaneseKoreanName(route.operator?.ko||route.operator?.names?.ko||'',operatorJa),lineKo=JAPANESE_KOREAN_ID_FIXES[route.id]||cleanJapaneseKoreanName(route.line?.ko||route.line?.names?.ko||'',lineJa);
   const operator={...(route.operator||{}),ko:operatorKo,names:{...(route.operator?.names||{}),ko:operatorKo}};
