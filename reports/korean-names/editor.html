@@ -24,7 +24,7 @@ td.edited{background:#fff2d2}.note{font-size:13px;color:#587184;padding:12px 2px
 small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4px;background:#fff}
 @media(max-width:700px){header{padding:20px}header h1{font-size:20px}main{padding:12px}#table-wrap{height:70vh}td,th{padding:6px}input[type=search]{max-width:none}}
 </style></head>
-<body><header><h1>메트로타이핑 · 한글명 편집표</h1><p>현재 데이터 확인 → 초록색 한글명 셀 수정 → 변경 내역 CSV 저장</p></header>
+<body><header><h1>메트로타이핑 · 한글명 편집표</h1><p>한글명·노선 RGB 편집 → GitHub에 저장 → 게임에 자동 반영</p></header>
 <main>
 <div class="toolbar" id="tabs">
 <button class="tab active" data-file="operators">운영사 162</button>
@@ -35,13 +35,14 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div class="toolbar">
 <input id="q" type="search" placeholder="회사명·노선명·역명·일본어명 검색" aria-label="검색">
 <label><input type="checkbox" id="changesOnly"> 수정된 항목만</label>
-<button id="export" class="primary">현재 표 전체 CSV 저장</button>
+<button id="saveGame" class="primary">게임에 적용 (GitHub 저장)</button><button id="export">현재 표 전체 CSV 저장</button>
 <button id="exportChanges">변경 항목만 CSV 저장</button>
 <button id="reset">현재 표 변경 취소</button>
 </div>
+<div class="toolbar"><label for="githubToken">GitHub fine-grained 토큰 (Contents: Read and write)</label><input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_..." style="flex:1;min-width:200px;padding:9px;border:1px solid #bdccd8;border-radius:8px"><small>토큰은 서버·브라우저 저장소에 저장하지 않습니다.</small></div>
 <div class="panel"><div id="status" role="status">자료 읽는 중…</div><div id="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div></div>
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
-<p class="note">초록색 칸만 편집할 수 있습니다. 수정 내용은 현재 브라우저에 임시 보관됩니다. 반드시 <strong>CSV 저장</strong>을 눌러 보관하세요. 편집표를 수정하는 것만으로 게임 데이터가 변경되지는 않습니다. 수정한 CSV를 전달하면 원본 데이터 반영에 사용할 수 있습니다. 한 번에 100행씩 표시합니다.</p>
+<p class="note">초록색 한글명과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
 </main>
 <script>
 'use strict';
@@ -51,6 +52,22 @@ const size=100,table=document.querySelector('#table'),status=document.querySelec
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
 const editNameCol={'operators':'한국어명','lines':'노선 한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
 const isChanged=i=>rows[i]?.some((v,j)=>v!==original[i]?.[j]);
+let remoteOverrides={operators:{},lines:{},stations:{}};
+const colorRE=/^#[0-9a-f]{6}$/i;
+function cssToHex(value){value=String(value||'').trim();if(colorRE.test(value))return value.toUpperCase();if(/^#[0-9a-f]{3}$/i.test(value))return '#'+[...value.slice(1)].map(c=>c+c).join('').toUpperCase();
+ const m=value.match(/^hsl\(\s*(\d+(?:\.\d+)?)\s+([\d.]+)%\s+([\d.]+)%\s*\)$/i);if(!m)return '#60736A';
+ const h=Number(m[1]),sat=Number(m[2])/100,l=Number(m[3])/100;const a=sat*Math.min(l,1-l);
+ const f=n=>{const k=(n+h/30)%12;return Math.round(255*(l-a*Math.max(-1,Math.min(k-3,9-k,1)))).toString(16).padStart(2,'0')};
+ return ('#'+f(0)+f(8)+f(4)).toUpperCase();
+}
+async function fetchOverrides(){const r=await fetch('../../data/editor-overrides.json?ts='+Date.now(),{cache:'no-store'});if(r.ok){const x=await r.json();remoteOverrides={operators:x.operators||{},lines:x.lines||{},stations:x.stations||{}}}}
+function applyRemote(){
+ for(let i=0;i<rows.length;i++){const row=rows[i],id=file==='operators'?row[0]:file==='lines'?row[2]:null;
+ if(file==='operators'&&remoteOverrides.operators[id])row[1]=remoteOverrides.operators[id];
+ if(file==='lines'){const v=remoteOverrides.lines[id];if(v?.ko)row[3]=v.ko;if(v?.color)row[6]=v.color;else row[6]=cssToHex(row[6]);}
+ if(file==='stations-by-line'){const v=remoteOverrides.stations[row[2]]?.[row[4]]||remoteOverrides.stations[row[2]]?.[row[5]];if(v)row[6]=v;}
+ }
+}
 function parseCSV(text){
  text=text.replace(/^\uFEFF/,'');let result=[],row=[],value='',quoted=false;
  for(let i=0;i<text.length;i++){const c=text[i];
@@ -69,17 +86,17 @@ function applyDraft(){try{let draft=JSON.parse(localStorage.getItem('metrot-kore
 async function load(name){file=name;page=0;q.value='';changesOnly.checked=false;status.textContent='자료 읽는 중…';
  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.file===name));
  try{const res=await fetch('./'+name+'.csv?cache=20261009');if(!res.ok)throw Error('CSV '+res.status);
- const arr=parseCSV(await res.text());heads=arr.shift();rows=arr;original=rows.map(r=>r.slice());applyDraft();refresh();
+ const arr=parseCSV(await res.text());heads=arr.shift();rows=arr;try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
  }catch(e){status.textContent='파일을 열 수 없습니다: '+e.message}}
 function refresh(){
  const key=q.value.trim().toLocaleLowerCase('ko');visible=[];
  rows.forEach((r,i)=>{if(changesOnly.checked&&!isChanged(i))return;if(key&&!r.some(v=>String(v).toLocaleLowerCase('ko').includes(key)))return;visible.push(i)});
  page=Math.min(page,Math.max(0,Math.ceil(visible.length/size)-1));render()
 }
-function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.slice(page*size,e),edit=heads.indexOf(editNameCol[file]);
+function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.slice(page*size,e),edit=heads.indexOf(editNameCol[file]),rgb=file==='lines'?heads.indexOf('RGB 색상'):-1;
  table.querySelector('thead').innerHTML='<tr><th>#</th>'+heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr>';
- table.querySelector('tbody').innerHTML=part.map(i=>'<tr><td>'+(i+1)+'</td>'+rows[i].map((v,j)=>j===edit
-  ?'<td class="editable '+(v!==original[i][j]?'edited':'')+'"><input data-r="'+i+'" data-c="'+j+'" value="'+escape(v)+'" aria-label="'+escape(heads[j])+'"></td>'
+ table.querySelector('tbody').innerHTML=part.map(i=>'<tr><td>'+(i+1)+'</td>'+rows[i].map((v,j)=>(j===edit||j===rgb)
+  ?'<td class="editable '+(v!==original[i][j]?'edited':'')+'">'+(j===rgb?'<input type="color" data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:46px;min-width:46px;vertical-align:middle"><input data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:90px;min-width:90px" aria-label="RGB 색상">':'<input data-r="'+i+'" data-c="'+j+'" value="'+escape(v)+'" aria-label="'+escape(heads[j])+'">')+'</td>'
   :'<td>'+escape(v)+'</td>').join('')+'</tr>').join('');
  const changes=rows.reduce((n,r,i)=>n+(isChanged(i)?1:0),0);
  status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+changes.toLocaleString()+'건';
@@ -93,5 +110,36 @@ document.querySelector('#prev').onclick=()=>{page--;render()};document.querySele
 document.querySelector('#export').onclick=()=>saveCSV([heads,...rows],file+'-edited.csv');
 document.querySelector('#exportChanges').onclick=()=>{const a=rows.filter((r,i)=>isChanged(i));saveCSV([heads,...a],file+'-changes-only.csv')};
 document.querySelector('#reset').onclick=()=>{if(!confirm('현재 표의 임시 수정 내용을 모두 취소할까요?'))return;rows=original.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+file);refresh()};
+
+function mergeChange(obj,k,v){if(v) obj[k]=v}
+async function saveToGame(){
+ const token=document.querySelector('#githubToken').value.trim();
+ if(!token){alert('GitHub Contents 읽기·쓰기 권한 토큰을 입력하세요.');return}
+ const btn=document.querySelector('#saveGame');btn.disabled=true;status.textContent='GitHub에 변경 저장 중…';
+ try{
+ const url='https://api.github.com/repos/s3h0726/SUBTYPE/contents/data/editor-overrides.json';
+ const headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+ const res=await fetch(url,{headers,cache:'no-store'});if(!res.ok)throw Error('GitHub 읽기 실패: '+res.status+' (토큰 권한 확인)');
+ const current=await res.json();const json=JSON.parse(decodeURIComponent(escape(atob(current.content.replace(/\s/g,'')))));
+ const updates=rows.map((r,i)=>isChanged(i)?r:null).filter(Boolean);
+ if(!updates.length){status.textContent='변경된 항목이 없습니다.';return}
+ json.operators||={};json.lines||={};json.stations||={};
+ if(file==='operators')for(const row of updates)mergeChange(json.operators,row[0],row[1].trim());
+ if(file==='lines')for(const row of updates){
+ const id=row[2],color=cssToHex(row[6]);if(!colorRE.test(color))throw Error('색상은 #RRGGBB 형식이어야 합니다');
+ json.lines[id]={...(json.lines[id]||{}),ko:row[3].trim(),color};
+ }
+ if(file==='stations-by-line')for(const row of updates){json.stations[row[2]]||={};mergeChange(json.stations[row[2]],row[4],row[6].trim())}
+ if(file==='stations-unique'){throw Error('고유 역명 표는 노선별 적용 범위가 불분명합니다. 노선별 역명 탭에서 변경하세요.')}
+ const content=btoa(unescape(encodeURIComponent(JSON.stringify(json,null,2)+'\n')));
+ const put=await fetch(url,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'data: apply Korean names and RGB edits from web editor',content,sha:current.sha,branch:'main'})});
+ if(!put.ok){const data=await put.text();throw Error('GitHub 저장 실패: '+put.status+' '+data.slice(0,220))}
+ remoteOverrides=json;original=rows.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+file);refresh();
+ status.textContent='GitHub 저장 완료! Pages 배포 완료 후 게임에서 자동 적용됩니다.';
+ alert('저장 완료! GitHub Pages 배포가 완료된 뒤 게임을 새로고침하면 적용됩니다.');
+ }catch(e){status.textContent=e.message;alert(e.message)}finally{btn.disabled=false}
+}
+document.querySelector('#saveGame').addEventListener('click',saveToGame);
+
 load(file);
 </script></body></html>
