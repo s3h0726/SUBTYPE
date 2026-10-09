@@ -1,0 +1,23 @@
+name: Korea transport catalog QA
+on:
+  push:
+    branches:
+      - korea-network-rebuild-20261009
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check national metro and Hangang Bus metadata
+        run: node tools/audit-kr-national-catalog.js
+      - name: Validate Korean stations and directions
+        run: node tools/validate-korea-data.js
+      - name: Check JavaScript parsing
+        run: |
+          node --check tools/build-korea-data.js
+          node --check tools/audit-kr-national-catalog.js
+          node --check tools/validate-korea-data.js
