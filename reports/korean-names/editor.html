@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>메트로타이핑 · 한글명 편집표</title>
+<style>
+:root{font:15px system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#12202c;background:#f2f5fa}
+*{box-sizing:border-box}body{margin:0}header{background:#12273b;color:#fff;padding:25px max(20px,calc((100vw - 1400px)/2))}
+header h1{font-size:24px;margin:0 0 8px}header p{margin:0;color:#bed0e2}
+main{max-width:1420px;padding:20px;margin:auto}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+button,input,select{font:inherit}button{cursor:pointer;border:1px solid #c9d4df;background:#fff;border-radius:8px;padding:9px 14px;color:#18374e}
+button:hover{background:#e6f2fa}button.primary{background:#11659a;color:white;border-color:#11659a}
+button.primary:hover{background:#094f7c}input[type=search]{padding:10px 12px;border:1px solid #bdccd8;border-radius:8px;flex:1;min-width:230px;max-width:520px}
+.tab{background:#e0e9f1}.tab.active{background:#163e5f;color:#fff}
+.panel{background:#fff;border-radius:12px;border:1px solid #dbe4eb;box-shadow:0 4px 12px #1d36400a;overflow:hidden}
+#status{padding:12px 16px;border-bottom:1px solid #e8edf1;color:#456378;font-size:13px}
+#table-wrap{height:min(68vh,800px);overflow:auto}table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px}
+th{position:sticky;top:0;background:#e9f0f5;z-index:2;font-size:12px;white-space:nowrap;color:#385367}
+td,th{padding:7px 10px;text-align:left;border-bottom:1px solid #edf1f5;border-right:1px solid #edf1f5}
+tbody tr:hover{background:#f5fafe}td{max-width:340px;overflow-wrap:anywhere}
+td.editable{background:#effaf0;padding:3px 5px;min-width:175px}
+td input{background:transparent;border:1px solid transparent;border-radius:5px;padding:7px 6px;width:100%;min-width:120px;outline-offset:0}
+td input:focus{background:white;border-color:#268a42;outline:2px solid #b2e4c1}
+td.edited{background:#fff2d2}.note{font-size:13px;color:#587184;padding:12px 2px;line-height:1.6}
+#pager{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0}
+small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4px;background:#fff}
+@media(max-width:700px){header{padding:20px}header h1{font-size:20px}main{padding:12px}#table-wrap{height:70vh}td,th{padding:6px}input[type=search]{max-width:none}}
+</style></head>
+<body><header><h1>메트로타이핑 · 한글명 편집표</h1><p>현재 데이터 확인 → 초록색 한글명 셀 수정 → 변경 내역 CSV 저장</p></header>
+<main>
+<div class="toolbar" id="tabs">
+<button class="tab active" data-file="operators">운영사 162</button>
+<button class="tab" data-file="lines">노선 603</button>
+<button class="tab" data-file="stations-by-line">역명 10,723</button>
+<button class="tab" data-file="stations-unique">고유 역명 9,142</button>
+</div>
+<div class="toolbar">
+<input id="q" type="search" placeholder="회사명·노선명·역명·일본어명 검색" aria-label="검색">
+<label><input type="checkbox" id="changesOnly"> 수정된 항목만</label>
+<button id="export" class="primary">현재 표 전체 CSV 저장</button>
+<button id="exportChanges">변경 항목만 CSV 저장</button>
+<button id="reset">현재 표 변경 취소</button>
+</div>
+<div class="panel"><div id="status" role="status">자료 읽는 중…</div><div id="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div></div>
+<div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
+<p class="note">초록색 칸만 편집할 수 있습니다. 수정 내용은 현재 브라우저에 임시 보관됩니다. 반드시 <strong>CSV 저장</strong>을 눌러 보관하세요. 편집표를 수정하는 것만으로 게임 데이터가 변경되지는 않습니다. 수정한 CSV를 전달하면 원본 데이터 반영에 사용할 수 있습니다. 한 번에 100행씩 표시합니다.</p>
+</main>
+<script>
+'use strict';
+const FILES=['operators','lines','stations-by-line','stations-unique'];
+let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0;
+const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
+const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
+const editNameCol={'operators':'한국어명','lines':'노선 한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
+const isChanged=i=>rows[i]?.some((v,j)=>v!==original[i]?.[j]);
+function parseCSV(text){
+ text=text.replace(/^\uFEFF/,'');let result=[],row=[],value='',quoted=false;
+ for(let i=0;i<text.length;i++){const c=text[i];
+  if(quoted){if(c==='"'&&text[i+1]==='"'){value+='"';i++}else if(c==='"'){quoted=false}else value+=c}
+  else if(c==='"'){quoted=true}else if(c===','){row.push(value);value=''}
+  else if(c==='\n'){row.push(value);result.push(row);row=[];value=''}
+  else if(c!=='\r')value+=c;
+ }
+ if(value||row.length){row.push(value);result.push(row)}return result;
+}
+function makeCSV(data){return '\uFEFF'+data.map(row=>row.map(value=>'"'+String(value??'').replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n'}
+function saveCSV(data,name){const blob=new Blob([makeCSV(data)],{type:'text/csv;charset=utf-8'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500)}
+function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[i]=r});localStorage.setItem('metrot-korean-edit-'+file,JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
+function applyDraft(){try{let draft=JSON.parse(localStorage.getItem('metrot-korean-edit-'+file)||'{}');for(const [i,r] of Object.entries(draft))if(rows[+i]&&r.length===heads.length)rows[+i]=r}catch{}}
+async function load(name){file=name;page=0;q.value='';changesOnly.checked=false;status.textContent='자료 읽는 중…';
+ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.file===name));
+ try{const res=await fetch('./'+name+'.csv?cache=20261009');if(!res.ok)throw Error('CSV '+res.status);
+ const arr=parseCSV(await res.text());heads=arr.shift();rows=arr;original=rows.map(r=>r.slice());applyDraft();refresh();
+ }catch(e){status.textContent='파일을 열 수 없습니다: '+e.message}}
+function refresh(){
+ const key=q.value.trim().toLocaleLowerCase('ko');visible=[];
+ rows.forEach((r,i)=>{if(changesOnly.checked&&!isChanged(i))return;if(key&&!r.some(v=>String(v).toLocaleLowerCase('ko').includes(key)))return;visible.push(i)});
+ page=Math.min(page,Math.max(0,Math.ceil(visible.length/size)-1));render()
+}
+function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.slice(page*size,e),edit=heads.indexOf(editNameCol[file]);
+ table.querySelector('thead').innerHTML='<tr><th>#</th>'+heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr>';
+ table.querySelector('tbody').innerHTML=part.map(i=>'<tr><td>'+(i+1)+'</td>'+rows[i].map((v,j)=>j===edit
+  ?'<td class="editable '+(v!==original[i][j]?'edited':'')+'"><input data-r="'+i+'" data-c="'+j+'" value="'+escape(v)+'" aria-label="'+escape(heads[j])+'"></td>'
+  :'<td>'+escape(v)+'</td>').join('')+'</tr>').join('');
+ const changes=rows.reduce((n,r,i)=>n+(isChanged(i)?1:0),0);
+ status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+changes.toLocaleString()+'건';
+ document.querySelector('#pageinfo').textContent=visible.length?(page*size+1).toLocaleString()+'–'+e.toLocaleString()+' / '+visible.length.toLocaleString():'0건';
+ document.querySelector('#prev').disabled=page===0;document.querySelector('#next').disabled=e>=visible.length;
+}
+table.addEventListener('input',e=>{if(!e.target.matches('td input[data-r]'))return;const el=e.target,r=+el.dataset.r,c=+el.dataset.c;rows[r][c]=el.value;el.closest('td').classList.toggle('edited',isChanged(r));persist();const n=rows.reduce((acc,row,i)=>acc+(isChanged(i)?1:0),0);status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+n+'건'});
+q.addEventListener('input',()=>{page=0;refresh()});changesOnly.addEventListener('change',()=>{page=0;refresh()});
+document.querySelector('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-file]');if(b)load(b.dataset.file)});
+document.querySelector('#prev').onclick=()=>{page--;render()};document.querySelector('#next').onclick=()=>{page++;render()};
+document.querySelector('#export').onclick=()=>saveCSV([heads,...rows],file+'-edited.csv');
+document.querySelector('#exportChanges').onclick=()=>{const a=rows.filter((r,i)=>isChanged(i));saveCSV([heads,...a],file+'-changes-only.csv')};
+document.querySelector('#reset').onclick=()=>{if(!confirm('현재 표의 임시 수정 내용을 모두 취소할까요?'))return;rows=original.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+file);refresh()};
+load(file);
+</script></body></html>
