@@ -943,6 +943,7 @@ const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Nu
 const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 const freeDriveStationKey=s=>{
   if(s?.krTransferKey)return s.krTransferKey;
+  if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
   // Transfer stations are often represented by different operator-specific IDs.
   // Prefer a name + ~200m coordinate cell so the same physical station merges across companies.
@@ -1014,6 +1015,7 @@ class FreeDrive{
     for(const route of routes||[])for(const stop of route.stations||[]){
       if(route.countryId!=='kr')continue;
       delete stop.krTransferKey;
+      stop.krNoAutoTransfer=true;
       const region=route.regionId||'capital';
       const transfer=KR_CONFIRMED_TRANSFERS.find(t=>t.region===region&&t.name===stop.ko&&t.routeIds.includes(route.id));
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
