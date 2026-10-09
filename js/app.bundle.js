@@ -1377,6 +1377,7 @@ function applyYurikamomeLoopGeometry(route){
 }
 function fixRouteKoreanNames(route){
   if(!route)return route;
+  // Canonical operator identities. Preserve route IDs and station ordering.
   const canonicalOperatorId={'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[route.operatorId]||route.operatorId;
   if(canonicalOperatorId!==route.operatorId)route={...route,operatorId:canonicalOperatorId};
   if(route.id==='line-99616')route={...route,operator:{...(route.operator||{}),ja:'南海電鉄',ko:'난카이 전기철도',en:'Nankai Electric Railway'},line:{...(route.line||{}),ja:'泉北線',ko:'센보쿠선',en:'Semboku Line'}};
