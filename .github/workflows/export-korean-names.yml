@@ -1,0 +1,39 @@
+name: Export Korean name tables
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/export-korean-names.js'
+      - '.github/workflows/export-korean-names.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Export all registered Korean names
+        run: node tools/export-korean-names.js
+      - name: Commit CSV reports
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/korean-names/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "docs: update Korean operator, line and station name tables"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep 3
+          done
+          exit 1
