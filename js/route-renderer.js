@@ -48,7 +48,7 @@ function updateRouteProgress(rail,route,index,motion,options={}){
 }
 async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
-  if(route.geometryReady===false){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선형 확인 중 · 열차 위치(개략)';return}
+  if(route.geometryReady===false&&!validCoordinates(route)){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='역 좌표 미확보 · 위치 표시 제한';return}
   if(!validCoordinates(route)){showKoreanTrainFallback(route,index,target);if(status)status.textContent=route.countryId==='kr'?'좌표 미확보 · 열차 위치(개략)':'좌표가 없는 노선입니다';return}
   hideKoreanTrainFallback(target);
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
