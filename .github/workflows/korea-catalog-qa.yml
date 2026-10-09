@@ -16,8 +16,11 @@ jobs:
         run: node tools/audit-kr-national-catalog.js
       - name: Validate Korean stations and directions
         run: node tools/validate-korea-data.js
+      - name: Check provisional KTX and ITX route gating
+        run: node tools/test-kr-service-gating.js
       - name: Check JavaScript parsing
         run: |
           node --check tools/build-korea-data.js
           node --check tools/audit-kr-national-catalog.js
           node --check tools/validate-korea-data.js
+          node --check tools/test-kr-service-gating.js
