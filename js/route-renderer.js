@@ -1,3 +1,5 @@
+function hideKoreanTrainFallback(target){const marker=target?.parentElement?.querySelector('.kr-train-fallback');if(marker)marker.hidden=true}
+function showKoreanTrainFallback(route,index,target){if(!target)return;let marker=target.parentElement.querySelector('.kr-train-fallback');if(!marker){marker=document.createElement('div');marker.className='kr-train-fallback';marker.style.cssText='position:absolute;z-index:1200;top:42%;left:50%;transform:translate(-50%,-50%);padding:15px 24px;border-radius:45px;background:#102a28;color:#fff;border:3px solid #6ae4bd;box-shadow:0 8px 25px #0008;pointer-events:none;font-weight:800;text-align:center';target.parentElement.append(marker)}marker.hidden=false;const name=route.stations?.[index]?.ko||route.stations?.[index]?.ja||'';marker.textContent=(route.mode==='river_bus'?'⛴ ':'🚆 ')+(route.line?.ko||'열차')+' · '+name}
 import{$,escapeHtml}from'./utils.js';
 import{ensureLeaflet}from'./network-map.js';
 import{lineBadgeMeta}from'./line-badge.js';
@@ -46,8 +48,9 @@ function updateRouteProgress(rail,route,index,motion,options={}){
 }
 async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
-  if(route.geometryReady===false){if(gameRail?.map)clearRouteLayers(gameRail);if(status)status.textContent='실제 선형 미확보 · 정차 순서 플레이';return}
-  if(!validCoordinates(route)){if(status)status.textContent=route.countryId==='kr'?'지도 선형 미확보 · 정차 순서 플레이':'좌표가 없는 노선입니다';return}
+  if(route.geometryReady===false){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선형 확인 중 · 열차 위치(개략)';return}
+  if(!validCoordinates(route)){showKoreanTrainFallback(route,index,target);if(status)status.textContent=route.countryId==='kr'?'좌표 미확보 · 열차 위치(개략)':'좌표가 없는 노선입니다';return}
+  hideKoreanTrainFallback(target);
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
   const requestedNext=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(safe+1,route.stations.length-1);if(rail.routeKey!==(route.renderKey||route.id))createRouteLayers(rail,route,safe,options);else if(rail.index!==safe||rail.nextIndex!==requestedNext)updateRouteProgress(rail,route,safe,options.motion,options);else rail.nextIndex=requestedNext;
   requestAnimationFrame(()=>rail.map.invalidateSize());if(status)status.textContent='OPENSTREETMAP · LIVE';
