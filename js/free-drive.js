@@ -6,6 +6,7 @@ const finite=n=>n!==null&&n!==undefined&&n!==''&&Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
 const freeDriveStationKey=s=>{
   if(s?.krTransferKey)return s.krTransferKey;
+  if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
   // Transfer stations are often represented by different operator-specific IDs.
   // Prefer a name + ~200m coordinate cell so the same physical station merges across companies.
@@ -77,6 +78,7 @@ export class FreeDrive{
     for(const route of routes||[])for(const stop of route.stations||[]){
       if(route.countryId!=='kr')continue;
       delete stop.krTransferKey;
+      stop.krNoAutoTransfer=true;
       const region=route.regionId||'capital';
       const transfer=KR_CONFIRMED_TRANSFERS.find(t=>t.region===region&&t.name===stop.ko&&t.routeIds.includes(route.id));
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
