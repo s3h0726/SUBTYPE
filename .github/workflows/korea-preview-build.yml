@@ -26,6 +26,8 @@ jobs:
           node tools/audit-kr-national-catalog.js
           node tools/test-kr-service-gating.js
           node tools/validate-korea-data.js
+      - name: Produce official verification report
+        run: node tools/audit-kr-official-completeness.js
       - name: Build app and all required static data
         run: node tools/build-static.js
       - name: Verify new Korea feature flag was compiled into bundle
