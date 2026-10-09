@@ -225,3 +225,142 @@
 .station-sign[data-operator-variant="3"][data-sign-style^="operator-"] .station-current:after{height:12px;background:linear-gradient(90deg,transparent,var(--route-color),transparent)}
 .station-sign[data-operator-variant="4"][data-sign-style^="operator-"] .station-neighbor{border-top:4px solid var(--route-color)}
 .station-sign[data-operator-variant="5"][data-sign-style^="operator-"] .station-sign-footer{border-top:5px solid var(--route-color)}
+
+
+/* v0.8.6: Seoul Metro photo-inspired horizontal station nameplate */
+.station-sign[data-sign-style="kr-seoul-metro"]{
+  position:relative;
+  overflow:visible;
+  border:0!important;
+  border-radius:0 0 0 0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-sign-strip{
+  position:absolute;
+  z-index:0;
+  top:34%;
+  left:0;
+  right:0;
+  height:42%;
+  min-height:54px;
+  background:#008542!important;
+  border:0;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-sign-brand{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:0;
+  width:min(100%,560px);
+  margin:0 auto;
+  padding:14px 22px 12px;
+  border:7px solid #008542!important;
+  border-radius:58px!important;
+  background:#fff!important;
+  color:#111!important;
+  box-shadow:none!important;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-sign-brand #station-operator-mark{
+  display:none;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-sign-brand #station-line-label{
+  display:none;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-sign-main{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(220px,1.5fr) minmax(0,1fr);
+  align-items:center;
+  gap:0;
+  margin-top:-78px;
+  min-height:120px;
+  padding:0 12px;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-current{
+  grid-column:2;
+  grid-row:1;
+  min-width:0;
+  padding:12px 10px;
+  border:7px solid #008542;
+  border-radius:48px;
+  background:#fff;
+  text-align:center;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-current #station-context{
+  margin:0 0 2px;
+  font-size:11px;
+  color:#555;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-current .station-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:48px;
+  height:48px;
+  margin:0 0 4px;
+  border:0!important;
+  border-radius:50%!important;
+  background:#008542;
+  color:#fff;
+  font-size:24px;
+  font-weight:700;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-current #prompt-main{
+  margin:0;
+  color:#080808;
+  font-size:clamp(26px,4vw,42px);
+  line-height:1.08;
+  font-weight:800;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-current .prompt-ko,
+.station-sign[data-sign-style="kr-seoul-metro"] .station-current .prompt-kana,
+.station-sign[data-sign-style="kr-seoul-metro"] .station-current .prompt-romaji{
+  margin:2px 0 0;
+  color:#222;
+  font-size:clamp(10px,1.3vw,15px);
+  line-height:1.2;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:4px 8px;
+  min-width:0;
+  padding:8px 10px;
+  background:transparent!important;
+  color:#fff!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor small,
+.station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor b,
+.station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor span{
+  color:#fff!important;
+  text-align:left;
+  overflow-wrap:anywhere;
+}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor b{font-size:clamp(13px,1.8vw,20px)}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor i{display:none}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor.previous{grid-column:1;grid-row:1}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor.next{grid-column:3;grid-row:1}
+.station-sign[data-sign-style="kr-seoul-metro"] .station-sign-footer{
+  position:relative;
+  z-index:2;
+  margin-top:10px;
+}
+@media(max-width:620px){
+ .station-sign[data-sign-style="kr-seoul-metro"] .station-sign-main{grid-template-columns:minmax(0,1fr) minmax(150px,1.35fr) minmax(0,1fr);margin-top:-65px;padding:0 4px}
+ .station-sign[data-sign-style="kr-seoul-metro"] .station-current{padding:8px 5px;border-width:5px}
+ .station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor{padding:5px 3px;display:block}
+ .station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor small{display:block;font-size:9px}
+ .station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor b{display:block;font-size:12px}
+ .station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor span{display:block;font-size:9px}
+}
+
