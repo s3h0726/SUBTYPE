@@ -1,5 +1,5 @@
 export const FEATURE_FLAGS=Object.freeze({
-  korea:false,
+  korea:true,
   visibleJapanRegion:'all'
 });
 
