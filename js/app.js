@@ -304,7 +304,9 @@ async function startFreeDrive(route){
   if(target.lazy){const ok=await chooseRoute(target.id);if(!ok)return;target=selected}
   if(!target?.stations?.length)return toast('자유주행에 사용할 역 데이터가 없는 노선입니다.');
   freeDrive?.setNetwork(freeDriveNetworkRoutes());
-  if(!freeDrive?.start(target))return toast('자유주행을 시작하지 못했습니다.');
+  const chosenStart=Number($('#free-drive-start-station')?.value);
+  const startIndex=Number.isInteger(chosenStart)&&chosenStart>=0&&chosenStart<target.stations.length?chosenStart:0;
+  if(!freeDrive?.start(target,startIndex))return toast('자유주행을 시작하지 못했습니다.');
   const state=freeDrive.snapshot();if(!state||!game.startFreeDrive(state))return toast('자유주행 화면을 준비하지 못했습니다.');
   freeDriveTabIndex=0;renderGameFreeDriveOptions(state);go('game');
 }
