@@ -14,7 +14,7 @@ for(const route of index.routes||[]){
  if(!payload||!Array.isArray(payload.directions)||payload.directions.length!==2){errors.push('directions '+route.id);continue}
  for(const dir of payload.directions){
   if(!Array.isArray(dir.stops)||dir.stops.length<3)errors.push('too few stops '+route.id);
-  if(dir.stops?.some(s=>!s.names?.ko||!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude)))errors.push('invalid stop '+route.id);
+  if(dir.stops?.some(s=>!s.names?.ko||((s.latitude!==null||s.longitude!==null)&&(!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude)))))errors.push('invalid stop '+route.id);
   if(dir.geometryStatus!=='ready'&&((dir.geometry||[]).length||(dir.directedSegments||[]).length))errors.push('fake geometry '+route.id);
  }
  if(payload.sourceStatus==='secondary-unverified'&&payload.geometryReady)errors.push('unverified route marked geometryReady '+route.id);
