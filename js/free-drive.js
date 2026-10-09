@@ -1,3 +1,4 @@
+const krTrackSource=route=>{const id=route?.id||'';const m=/^kr-metro-(\d+)/.exec(id);const lookup={1:'line_1',2:'line_2',3:'line_3',4:'line_4',5:'line_5',6:'line_6',7:'line_7',8:'line_8',9:'line_9',10:'incheon_line_1',11:'incheon_line_2',12:'gyeonggang_line',13:'gyeongui_jungang_line',14:'gyeongchun_line',15:'airport_line',16:'seohae_line',17:'suin_bundang_line',18:'shinbundang_line',19:'sillim_line',20:'ui_sinseol_light_rail_line',21:'gimpo_line',22:'everline',23:'uijeongbu_light_rail_line'};return route?.countryId==='kr'&&m?globalThis.TRT_KOREA_TRACK_GEOMETRY?.[lookup[Number(m[1])]]:null};
 const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 // recommit-trigger: free-drive-move-fix-20261007
 import{$,escapeHtml,normalize}from'./utils.js';
@@ -42,9 +43,9 @@ export function drawNetworkCanvas(canvas,routes,{bounds=null,alpha=.28,transferN
   const b=bounds||boundsOfRoutes(routes);if(!b)return;
   ctx.lineCap='round';ctx.lineJoin='round';
   for(const route of routes||[]){
-    const pts=(route.stations||[]).map(coords).filter(Boolean);if(pts.length<2)continue;
+    const tracks=krTrackSource(route),segments=tracks?.length?tracks.map(line=>line.map(p=>[p[1],p[0]])):[(route.stations||[]).map(coords).filter(Boolean)];if(!segments.some(pts=>pts.length>=2))continue;
     ctx.beginPath();
-    pts.forEach((c,i)=>{const p=project(c,b,w,h,20);i?ctx.lineTo(...p):ctx.moveTo(...p)});
+    for(const pts of segments){if(pts.length<2)continue;pts.forEach((c,i)=>{const p=project(c,b,w,h,20);i?ctx.lineTo(...p):ctx.moveTo(...p)})}
     ctx.strokeStyle=routeColor(route);
     ctx.globalAlpha=route.id===currentRouteId?Math.min(1,alpha*3.3):alpha;
     ctx.lineWidth=route.id===currentRouteId?3.5:1.15;
