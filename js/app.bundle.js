@@ -742,6 +742,8 @@ function koreaTrackGeometry(route){
   const track=paths.filter(p=>Array.isArray(p)&&p.length>1).map(p=>p.map(x=>[Number(x[1]),Number(x[0])]));
   const choices=track.map((line,k)=>{const snaps=coords.map(pt=>{let best={k,i:-1,dist:Infinity};line.forEach((v,i)=>{const d=distance(pt,v);if(d<best.dist)best={k,i,dist:d}});return best});return{snaps,mean:snaps.reduce((sum,s)=>sum+s.dist,0)/snaps.length,max:Math.max(...snaps.map(s=>s.dist))}});
   const best=choices.sort((a,b)=>a.mean-b.mean)[0];if(!best||best.mean>200||best.max>850)return null;
+  globalThis.__TRT_KR_TRACK_AUDIT__=globalThis.__TRT_KR_TRACK_AUDIT__||{};
+  globalThis.__TRT_KR_TRACK_AUDIT__[route.id]={source:'OSM',maxStationOffsetMeters:Math.round(best.max),averageStationOffsetMeters:Math.round(best.mean),status:'checking-adjacent-segments'};
   const snaps=best.snaps;
   
   const segments=[];
@@ -757,6 +759,8 @@ function koreaTrackGeometry(route){
   const points=[],offsets=[];
   segments.forEach((seg,i)=>{offsets[i]=points.length;points.push(...(i?seg.slice(1):seg))});
   offsets.push(points.length-1);
+  globalThis.__TRT_KR_TRACK_AUDIT__[route.id].status='accepted';
+  globalThis.__TRT_KR_TRACK_AUDIT__[route.id].trackVertices=points.length;
   return{points,offsets};
 }
 function travelGeometry(route){const korea=koreaTrackGeometry(route);if(korea)return korea;const stations=route.stations,points=[],offsets=[],directed=route.directedSegments;if(Array.isArray(directed)&&directed.length===stations.length-1){for(let i=0;i<directed.length;i++){offsets[i]=Math.max(0,points.length-1);let part=directed[i].geometry.map(point=>[Number(point[0]),Number(point[1])]);if(points.length&&part.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}const source=geometryPoints(route);for(let i=0;i<stations.length;i++){offsets[i]=Math.max(0,points.length-1);if(i===stations.length-1)break;const a=Number.isInteger(stations[i].geometryIndex)?stations[i].geometryIndex:source.findIndex(p=>p[0]===stations[i].latitude&&p[1]===stations[i].longitude),b=Number.isInteger(stations[i+1].geometryIndex)?stations[i+1].geometryIndex:source.findIndex(p=>p[0]===stations[i+1].latitude&&p[1]===stations[i+1].longitude);let part=a<=b?source.slice(Math.max(0,a),b+1):source.slice(Math.max(0,b),a+1).reverse();if(!part.length)part=[[stations[i].latitude,stations[i].longitude],[stations[i+1].latitude,stations[i+1].longitude]];if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}
