@@ -7,23 +7,62 @@
     "ko": "서울 지하철 6호선",
     "en": "Seoul Subway Line 6"
   },
-  "operatorIds": ["kr-seoul-metro"],
-  "color": {"hex": "#9E652E", "verificationStatus": "official-source-pending"},
+  "operatorIds": [
+    "kr-seoul-metro"
+  ],
+  "color": {
+    "hex": "#9E652E",
+    "verificationStatus": "official-source-pending"
+  },
   "openedServiceAsOf": "2026-10-10",
   "sourceRefs": [
-    {"kind": "official-station-order-and-distance", "url": "https://data.seoul.go.kr/dataList/OA-12034/S/1/datasetView.do", "license": "KOGL-Type-1", "snapshot": "data/kr/source/seoul-open-data/line-6-interstation-2024-03-25.json", "coverage": "응암순환-봉화산"},
-    {"kind": "official-extension-opening", "url": "https://mediahub.seoul.go.kr/archives/1261413", "verificationStatus": "official-city-source", "coverage": "봉화산-신내 1.3km; opened 2019-12-21"},
-    {"kind": "osm-route-master", "relationId": 7919154, "url": "https://www.openstreetmap.org/relation/7919154", "license": "ODbL-1.0", "verificationStatus": "topology-candidate"}
+    {
+      "kind": "official-station-order-and-distance",
+      "url": "https://data.seoul.go.kr/dataList/OA-12034/S/1/datasetView.do",
+      "license": "KOGL-Type-1",
+      "snapshot": "data/kr/source/seoul-open-data/line-6-interstation-2024-03-25.json",
+      "coverage": "응암순환-봉화산"
+    },
+    {
+      "kind": "official-extension-opening",
+      "url": "https://mediahub.seoul.go.kr/archives/1261413",
+      "verificationStatus": "official-city-source",
+      "coverage": "봉화산-신내 1.3km; opened 2019-12-21"
+    },
+    {
+      "kind": "osm-route-master",
+      "relationId": 7919154,
+      "url": "https://www.openstreetmap.org/relation/7919154",
+      "license": "ODbL-1.0",
+      "verificationStatus": "topology-candidate"
+    }
   ],
-  "physicalArtifacts": ["kr-metro-6", "kr-metro-6-section-2"],
+  "physicalArtifacts": [
+    "kr-metro-6",
+    "kr-metro-6-section-2"
+  ],
   "operatingPatterns": [
-    {"id": "kr-seoul-line-6-sinnae-eungam-loop", "name": "신내·봉화산 ↔ 응암순환", "artifactPath": ["kr-metro-6", "kr-metro-6-section-2"], "directionRule": "응암순환 구간 일방향", "serviceValidationStatus": "runtime-pending", "geometryValidationStatus": "candidate"}
+    {
+      "id": "kr-seoul-line-6-sinnae-eungam-loop",
+      "name": "신내·봉화산 ↔ 응암순환",
+      "artifactPath": [
+        "kr-metro-6",
+        "kr-metro-6-section-2"
+      ],
+      "directionRule": "응암순환 구간 일방향",
+      "serviceValidationStatus": "runtime-pending",
+      "geometryValidationStatus": "ready",
+      "gameValidationStatus": "browser-pending"
+    }
   ],
   "topologyGraph": "data/kr/rebuild/topology/kr-seoul-line-6.graph.json",
-  "geometryReady": false,
-  "gameValidationStatus": "not-run",
-  "releaseStatus": "topology-candidate-review",
-  "blockers": ["응암순환을 포함한 실제 전 구간 운행계통 합성 미검증", "브라우저 주행 미검증"],
-  "geometryValidationStatus": "topology-and-official-order-validated-runtime-pending",
+  "geometryReady": true,
+  "gameValidationStatus": "browser-pending",
+  "releaseStatus": "geometry-validated-game-pending",
+  "blockers": [
+    "응암순환을 포함한 실제 전 구간 운행계통 합성 미검증",
+    "브라우저 주행 미검증"
+  ],
+  "geometryValidationStatus": "topology-official-order-and-runtime-validated",
   "stationOrderValidationStatus": "official-dataset-plus-city-extension-validated"
 }
