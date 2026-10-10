@@ -7,7 +7,32 @@ import{lineBadgeMeta}from'./line-badge.js';
 let gameRail=null,renderQueue=Promise.resolve(),resizeBound=false;
 const latLngs=route=>route.stations.map(station=>[station.latitude,station.longitude]);
 const geometryPoints=route=>Array.isArray(route.geometry)&&route.geometry.length>1?route.geometry:latLngs(route);
-function travelGeometry(route){const stations=route.stations,points=[],offsets=[],directed=route.directedSegments;if(Array.isArray(directed)&&directed.length===stations.length-1){for(let i=0;i<directed.length;i++){offsets[i]=Math.max(0,points.length-1);let part=directed[i].geometry.map(point=>[Number(point[0]),Number(point[1])]);if(points.length&&part.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}const source=geometryPoints(route);for(let i=0;i<stations.length;i++){offsets[i]=Math.max(0,points.length-1);if(i===stations.length-1)break;const a=Number.isInteger(stations[i].geometryIndex)?stations[i].geometryIndex:source.findIndex(p=>p[0]===stations[i].latitude&&p[1]===stations[i].longitude),b=Number.isInteger(stations[i+1].geometryIndex)?stations[i+1].geometryIndex:source.findIndex(p=>p[0]===stations[i+1].latitude&&p[1]===stations[i+1].longitude);let part=a<=b?source.slice(Math.max(0,a),b+1):source.slice(Math.max(0,b),a+1).reverse();if(!part.length)part=[[stations[i].latitude,stations[i].longitude],[stations[i+1].latitude,stations[i+1].longitude]];if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}
+function koreaTrackGeometry(route){
+  const match=/^kr-metro-(\d+)/.exec(route?.id||'');
+  const codes={1:'line_1',2:'line_2',3:'line_3',4:'line_4',5:'line_5',6:'line_6',7:'line_7',8:'line_8',9:'line_9',10:'incheon_line_1',11:'incheon_line_2',12:'gyeonggang_line',13:'gyeongui_jungang_line',14:'gyeongchun_line',15:'airport_line',16:'seohae_line',17:'suin_bundang_line',18:'shinbundang_line',19:'sillim_line',20:'ui_sinseol_light_rail_line',21:'gimpo_line',22:'everline',23:'uijeongbu_light_rail_line'};
+  const paths=route?.countryId==='kr'&&match?globalThis.TRT_KOREA_TRACK_GEOMETRY?.[codes[Number(match[1])]]:null;
+  if(!Array.isArray(paths)||route.stations?.length<2)return null;
+  const distance=(a,b)=>Math.hypot((a[0]-b[0])*111000,(a[1]-b[1])*88000);
+  const coords=route.stations.map(s=>[Number(s.latitude),Number(s.longitude)]);
+  if(coords.some(p=>!p.every(Number.isFinite)||p[0]===0||p[1]===0))return null;
+  const track=paths.filter(p=>Array.isArray(p)&&p.length>1).map(p=>p.map(x=>[Number(x[1]),Number(x[0])]));
+  const snaps=coords.map(pt=>{let best={dist:Infinity};track.forEach((line,k)=>line.forEach((v,i)=>{const d=distance(pt,v);if(d<best.dist)best={k,i,dist:d}}));return best});
+  if(snaps.some(s=>s.dist>350))return null;
+  const segments=[];
+  for(let n=0;n<snaps.length-1;n++){
+    const a=snaps[n],b=snaps[n+1];if(a.k!==b.k)return null;
+    const line=track[a.k],points=a.i<=b.i?line.slice(a.i,b.i+1):line.slice(b.i,a.i+1).reverse();
+    if(points.length<2||points.some((p,i)=>i>0&&distance(p,points[i-1])>1800))return null;
+    const length=points.slice(1).reduce((sum,p,i)=>sum+distance(p,points[i]),0);
+    if(length>Math.max(12000,distance(coords[n],coords[n+1])*4))return null;
+    segments.push([coords[n],...points,coords[n+1]]);
+  }
+  const points=[],offsets=[];
+  segments.forEach((seg,i)=>{offsets[i]=points.length;points.push(...(i?seg.slice(1):seg))});
+  offsets.push(points.length-1);
+  return{points,offsets};
+}
+function travelGeometry(route){const korea=koreaTrackGeometry(route);if(korea)return korea;const stations=route.stations,points=[],offsets=[],directed=route.directedSegments;if(Array.isArray(directed)&&directed.length===stations.length-1){for(let i=0;i<directed.length;i++){offsets[i]=Math.max(0,points.length-1);let part=directed[i].geometry.map(point=>[Number(point[0]),Number(point[1])]);if(points.length&&part.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}const source=geometryPoints(route);for(let i=0;i<stations.length;i++){offsets[i]=Math.max(0,points.length-1);if(i===stations.length-1)break;const a=Number.isInteger(stations[i].geometryIndex)?stations[i].geometryIndex:source.findIndex(p=>p[0]===stations[i].latitude&&p[1]===stations[i].longitude),b=Number.isInteger(stations[i+1].geometryIndex)?stations[i+1].geometryIndex:source.findIndex(p=>p[0]===stations[i+1].latitude&&p[1]===stations[i+1].longitude);let part=a<=b?source.slice(Math.max(0,a),b+1):source.slice(Math.max(0,b),a+1).reverse();if(!part.length)part=[[stations[i].latitude,stations[i].longitude],[stations[i+1].latitude,stations[i+1].longitude]];if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}
 const validCoordinates=route=>route.stations.every(station=>Number.isFinite(station.latitude)&&Number.isFinite(station.longitude));
 function stationIcon(L,station,kind='other',color='#49c888'){
   const current=kind==='current',visible=kind!=='other',size=current?18:11;
