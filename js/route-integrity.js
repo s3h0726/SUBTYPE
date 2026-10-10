@@ -18,6 +18,7 @@ function geometryIndex(source,station){
 export function buildCanonicalSegmentMap(route,{endpointToleranceKm=1.2}={}){
   const stations=canonicalStations(route),source=Array.isArray(route.geometry)?cloneGeometry(route.geometry):[];
   if(source.length<2)throw new Error(`${route.id}: missing railway geometry`);
+  if(route.countryId==='kr'&&stations.some(station=>!Number.isInteger(station.geometryIndex)))throw new Error(`${route.id}: verified Korean geometry requires explicit station geometry indices`);
   const map=new Map,segments=[];
   for(let index=0;index<stations.length-1;index++){
     const from=stations[index],to=stations[index+1],fromId=stationId(from),toId=stationId(to),a=geometryIndex(source,from),b=geometryIndex(source,to);
@@ -25,7 +26,7 @@ export function buildCanonicalSegmentMap(route,{endpointToleranceKm=1.2}={}){
     let geometry=a<b?source.slice(a,b+1):source.slice(b,a+1).reverse();
     const normal=distanceKm(geometry[0],pointOf(from))+distanceKm(geometry.at(-1),pointOf(to)),reversed=distanceKm(geometry.at(-1),pointOf(from))+distanceKm(geometry[0],pointOf(to));
     if(reversed<normal)geometry=geometry.slice().reverse();
-    const fromErrorKm=distanceKm(geometry[0],pointOf(from)),toErrorKm=distanceKm(geometry.at(-1),pointOf(to)),segment={fromStationId:fromId,toStationId:toId,fromOrder:index+1,toOrder:index+2,geometry,fromErrorKm,toErrorKm,endpointMismatch:fromErrorKm>endpointToleranceKm||toErrorKm>endpointToleranceKm};
+    const fromErrorKm=distanceKm(geometry[0],pointOf(from)),toErrorKm=distanceKm(geometry.at(-1),pointOf(to)),segment={fromStationId:fromId,toStationId:toId,fromOrder:index+1,toOrder:index+2,geometry,fromErrorKm,toErrorKm,endpointMismatch:fromErrorKm>endpointToleranceKm||toErrorKm>endpointToleranceKm,...(route.countryId==='kr'&&route.geometryReady===true?{geometryStatus:'ready'}:{})};
     const key=`${fromId}::${toId}`,existing=map.get(key);if(existing)map.set(key,Array.isArray(existing)?[...existing,segment]:[existing,segment]);else map.set(key,segment);segments.push(segment);
   }
   return{map,segments};
@@ -70,7 +71,7 @@ export function resolvePlayableRoute(route,{direction='forward',service=null}={}
     return{canonicalStations:canonical.slice(),stations,segments,geometry,canonicalSegments:segments.slice(),direction,serviceApplied:applyStopPattern,sequenceOnly:true,fallbackGeometry:true,fallbackReason:reason,renderKey:`${route.id}::${direction}::${service?.id||'all'}::fallback::${stations.map(stationId).join('>')}`};
   };
 
-  if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2)return straightLineFallback('missing railway geometry');
+  if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2){if(route?.countryId==='kr')throw new Error(`${route.id}: verified railway geometry is required`);return straightLineFallback('missing railway geometry')}
 
   try{
     const{segments:canonicalSegments}=buildCanonicalSegmentMap(route),resolvedFullSegments=direction==='reverse'?canonicalSegments.slice().reverse().map(segment=>reverseSegment(segment)):canonicalSegments.map(segment=>({...segment,geometry:cloneGeometry(segment.geometry),reversed:false}));
@@ -79,7 +80,7 @@ export function resolvePlayableRoute(route,{direction='forward',service=null}={}
     const geometry=[],resolvedStations=stations.map(station=>({...station}));segments.forEach((segment,index)=>{const points=cloneGeometry(segment.geometry);resolvedStations[index].geometryIndex=Math.max(0,geometry.length-1);if(geometry.length&&points.length&&geometry.at(-1)[0]===points[0][0]&&geometry.at(-1)[1]===points[0][1])points.shift();geometry.push(...points)});resolvedStations.at(-1).geometryIndex=Math.max(0,geometry.length-1);
     return{canonicalStations:canonical.slice(),stations:resolvedStations,segments,geometry,canonicalSegments,direction,serviceApplied:applyStopPattern,renderKey:`${route.id}::${direction}::${service?.id||'all'}::${resolvedStations.map(stationId).join('>')}`};
   }catch(error){
-    if(/missing railway (geometry|segment)|Missing railway segment/.test(error?.message||String(error)))return straightLineFallback(error?.message||String(error));
+    if(route?.countryId!=='kr'&&/missing railway (geometry|segment)|Missing railway segment/.test(error?.message||String(error)))return straightLineFallback(error?.message||String(error));
     throw error;
   }
 }

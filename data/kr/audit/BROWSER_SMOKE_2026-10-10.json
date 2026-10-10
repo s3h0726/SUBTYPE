@@ -7,7 +7,7 @@
     "viewportClass": "desktop"
   },
   "build": {
-    "appBundleSha256Prefix": "d1019517c662",
+    "appBundleSha256Prefix": "b0a12e3e6ab5",
     "branch": "codex/korea-network-rebuild-20261010"
   },
   "checks": [
@@ -38,8 +38,9 @@
     },
     {
       "id": "kr-seoul-line-2-geometry-runtime",
-      "status": "not-run",
-      "reason": "candidate geometry remains geometryReady=false pending official station-order validation and runtime integration"
+      "status": "partial-pass",
+      "observed": "desktop main-loop outer direction started with OPENSTREETMAP LIVE; Seongsu-to-Sinseoldong branch started with 5 stations, and typing Seongsu advanced progress to 1/5 and target to Yongdap on the traced route",
+      "remaining": "inner loop, reverse branch, Sinjeong branch, full-run completion, and mobile remain untested"
     },
     {
       "id": "kr-mobile-layout",

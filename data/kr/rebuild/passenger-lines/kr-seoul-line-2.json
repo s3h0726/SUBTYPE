@@ -57,7 +57,8 @@
         "외선순환"
       ],
       "serviceValidationStatus": "official-timetable-pending",
-      "geometryValidationStatus": "topology-and-official-order-validated-runtime-pending"
+      "geometryValidationStatus": "ready",
+      "gameValidationStatus": "browser-pending"
     },
     {
       "id": "kr-seoul-line-2-seongsu-branch",
@@ -68,7 +69,8 @@
         "신설동 방면"
       ],
       "serviceValidationStatus": "official-timetable-pending",
-      "geometryValidationStatus": "topology-and-official-order-validated-runtime-pending"
+      "geometryValidationStatus": "ready",
+      "gameValidationStatus": "browser-pending"
     },
     {
       "id": "kr-seoul-line-2-sinjeong-branch",
@@ -79,11 +81,13 @@
         "까치산 방면"
       ],
       "serviceValidationStatus": "official-timetable-pending",
-      "geometryValidationStatus": "topology-and-official-order-validated-runtime-pending"
+      "geometryValidationStatus": "ready",
+      "gameValidationStatus": "browser-pending"
     }
   ],
-  "geometryReady": false,
-  "gameValidationStatus": "not-run",
-  "releaseStatus": "rebuild-in-progress",
-  "stationOrderValidationStatus": "official-api-validated"
+  "geometryReady": true,
+  "gameValidationStatus": "browser-pending",
+  "releaseStatus": "geometry-validated-game-pending",
+  "stationOrderValidationStatus": "official-api-validated",
+  "geometryValidationStatus": "topology-and-official-order-validated"
 }

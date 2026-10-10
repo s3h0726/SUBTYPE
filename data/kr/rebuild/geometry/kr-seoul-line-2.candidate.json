@@ -9,8 +9,8 @@
     "retrieved": "2026-10-10",
     "sha256": "7f1f9887e9902e05a3aed1a2fa33ccd0be05c39ddbeb20adbc65cec8315ec327"
   },
-  "geometryStatus": "topology-and-official-order-validated-runtime-pending",
-  "geometryReady": false,
+  "geometryStatus": "ready",
+  "geometryReady": true,
   "directions": [
     {
       "artifact": "kr-metro-2",
@@ -5299,8 +5299,10 @@
         "wayMemberOrderContinuous": true,
         "stationNodesOnWaysExact": true,
         "nearestTrackMatchingUsed": false,
-        "officialOrderStatus": "pending"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-2",
@@ -10576,8 +10578,10 @@
         "wayMemberOrderContinuous": true,
         "stationNodesOnWaysExact": true,
         "nearestTrackMatchingUsed": false,
-        "officialOrderStatus": "pending"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-2-section-2",
@@ -11641,8 +11645,10 @@
         "wayMemberOrderContinuous": true,
         "stationNodesOnWaysExact": true,
         "nearestTrackMatchingUsed": false,
-        "officialOrderStatus": "pending"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-2-section-2",
@@ -12515,8 +12521,10 @@
         "wayMemberOrderContinuous": true,
         "stationNodesOnWaysExact": true,
         "nearestTrackMatchingUsed": false,
-        "officialOrderStatus": "pending"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-2-section-3",
@@ -13474,8 +13482,10 @@
         "wayMemberOrderContinuous": true,
         "stationNodesOnWaysExact": true,
         "nearestTrackMatchingUsed": false,
-        "officialOrderStatus": "pending"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-2-section-3",
@@ -14491,8 +14501,10 @@
         "wayMemberOrderContinuous": true,
         "stationNodesOnWaysExact": true,
         "nearestTrackMatchingUsed": false,
-        "officialOrderStatus": "pending"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     }
   ],
   "officialOrderValidation": {
@@ -14500,5 +14512,6 @@
     "report": "data/kr/audit/SEOUL_LINE_2_OFFICIAL_ORDER.json",
     "source": "data/kr/source/seoul-open-data/line-2-interstation-2024-03-25.json",
     "datasetAsOf": "2024-03-25"
-  }
+  },
+  "gameValidationStatus": "browser-pending"
 }

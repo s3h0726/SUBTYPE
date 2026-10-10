@@ -33,11 +33,10 @@ for(const [key,order] of expected){
   checks.push({artifact,direction,stationCount:order.length,artifactExact,candidateExact,segmentsExact});
   if(!artifactExact||!candidateExact||!segmentsExact)errors.push(`${key}: official order or segment boundary mismatch`)
 }
-const report={schemaVersion:1,validatedAt:new Date().toISOString(),passengerLineId:'kr-seoul-line-2',source:{file:sourcePath,datasetName:source.datasetName,datasetAsOf:source.datasetAsOf,provider:source.provider,license:source.license,sha256:source.sha256},checks,result:errors.length?'FAIL':'PASS',geometryReady:false,remainingGate:'runtime integration, train movement, station-sign, desktop/mobile, and Japan regression validation',errors};
+const report={schemaVersion:1,validatedAt:new Date().toISOString(),passengerLineId:'kr-seoul-line-2',source:{file:sourcePath,datasetName:source.datasetName,datasetAsOf:source.datasetAsOf,provider:source.provider,license:source.license,sha256:source.sha256},checks,result:errors.length?'FAIL':'PASS',geometryReady:geometry.geometryReady===true,remainingGate:'train movement, station-sign, desktop/mobile, and Japan regression validation',errors};
 write(reportPath,report);
 if(!errors.length&&process.argv.includes('--apply')){
-  geometry.geometryStatus='topology-and-official-order-validated-runtime-pending';
-  geometry.geometryReady=false;
+  if(geometry.geometryReady!==true){geometry.geometryStatus='topology-and-official-order-validated-runtime-pending';geometry.geometryReady=false}
   geometry.officialOrderValidation={status:'passed',report:reportPath,source:sourcePath,datasetAsOf:source.datasetAsOf};
   write(geometryPath,geometry);
   line.stationOrderValidationStatus='official-api-validated';
@@ -45,5 +44,5 @@ if(!errors.length&&process.argv.includes('--apply')){
   line.operatingPatterns=line.operatingPatterns.map(pattern=>({...pattern,geometryValidationStatus:'topology-and-official-order-validated-runtime-pending'}));
   write(linePath,line)
 }
-console.log(JSON.stringify({status:report.result,checks:checks.length,officialStations:rows.length,geometryReady:false,errors},null,2));
+console.log(JSON.stringify({status:report.result,checks:checks.length,officialStations:rows.length,geometryReady:report.geometryReady,errors},null,2));
 if(errors.length)process.exit(1)
