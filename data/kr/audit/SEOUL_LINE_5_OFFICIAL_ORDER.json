@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "validatedAt": "2026-10-10T11:36:14.997Z",
+  "passengerLineId": "kr-seoul-line-5",
+  "source": {
+    "file": "data/kr/source/seoul-open-data/line-5-interstation-2024-03-25.json",
+    "datasetName": "서울교통공사_역간거리",
+    "datasetAsOf": "2024-03-25",
+    "provider": "서울교통공사",
+    "license": {
+      "id": "KOGL-Type-1",
+      "name": "공공누리 제1유형",
+      "attributionRequired": true,
+      "commercialUse": true,
+      "modificationAllowed": true
+    },
+    "sha256": "a94fd5393465388681f1dc22dfb74cc8e807fd0e0b380af8a6bb8f977772d461"
+  },
+  "geometrySource": {
+    "file": "data/kr/source/osm/seoul-line-5-relation-7879871.json",
+    "routeMasterRelationId": 7879871,
+    "license": "ODbL-1.0"
+  },
+  "routeId": "kr-seoul-line-5",
+  "stationCount": 56,
+  "segmentCount": 110,
+  "geometryStatus": "topology-and-official-order-validated-runtime-pending",
+  "validatedSegmentCount": 110,
+  "failedSegmentCount": 0,
+  "browserTestStatus": "not-run",
+  "checks": [
+    {
+      "artifact": "kr-metro-5",
+      "direction": "forward",
+      "stationCount": 44,
+      "artifactExact": true,
+      "candidateExact": true,
+      "segmentsExact": true
+    },
+    {
+      "artifact": "kr-metro-5",
+      "direction": "reverse",
+      "stationCount": 44,
+      "artifactExact": true,
+      "candidateExact": true,
+      "segmentsExact": true
+    },
+    {
+      "artifact": "kr-metro-5-section-2",
+      "direction": "forward",
+      "stationCount": 8,
+      "artifactExact": true,
+      "candidateExact": true,
+      "segmentsExact": true
+    },
+    {
+      "artifact": "kr-metro-5-section-2",
+      "direction": "reverse",
+      "stationCount": 8,
+      "artifactExact": true,
+      "candidateExact": true,
+      "segmentsExact": true
+    },
+    {
+      "artifact": "kr-metro-5-section-3",
+      "direction": "forward",
+      "stationCount": 6,
+      "artifactExact": true,
+      "candidateExact": true,
+      "segmentsExact": true
+    },
+    {
+      "artifact": "kr-metro-5-section-3",
+      "direction": "reverse",
+      "stationCount": 6,
+      "artifactExact": true,
+      "candidateExact": true,
+      "segmentsExact": true
+    },
+    {
+      "id": "gangdong-physical-junction",
+      "osmNodeId": 6039313080,
+      "degree": 3,
+      "routeRelationIds": [
+        4744340,
+        4744338
+      ],
+      "pass": true
+    }
+  ],
+  "result": "PASS",
+  "geometryReady": false,
+  "remainingGate": "compose through journeys, runtime integration, train movement, station-sign, desktop/mobile, and Japan regression validation",
+  "errors": []
+}
