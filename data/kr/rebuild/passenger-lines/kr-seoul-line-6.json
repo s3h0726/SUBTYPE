@@ -44,7 +44,7 @@
   "operatingPatterns": [
     {
       "id": "kr-seoul-line-6-sinnae-eungam-loop",
-      "name": "신내·봉화산 ↔ 응암순환",
+      "name": "신내 → 응암순환 → 신내",
       "artifactPath": [
         "kr-metro-6",
         "kr-metro-6-section-2"
@@ -52,7 +52,8 @@
       "directionRule": "응암순환 구간 일방향",
       "serviceValidationStatus": "runtime-pending",
       "geometryValidationStatus": "ready",
-      "gameValidationStatus": "browser-pending"
+      "gameValidationStatus": "browser-pending",
+      "runtimeRouteId": "kr-metro-6"
     }
   ],
   "topologyGraph": "data/kr/rebuild/topology/kr-seoul-line-6.graph.json",
@@ -60,7 +61,6 @@
   "gameValidationStatus": "browser-pending",
   "releaseStatus": "geometry-validated-game-pending",
   "blockers": [
-    "응암순환을 포함한 실제 전 구간 운행계통 합성 미검증",
     "브라우저 주행 미검증"
   ],
   "geometryValidationStatus": "topology-official-order-and-runtime-validated",
