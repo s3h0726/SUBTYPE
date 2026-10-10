@@ -1,1 +1,1636 @@
-{"schemaVersion":1,"countryId":"kr","route":{"id":"kr-metro-6-section-2","countryId":"kr","mode":"subway","category":"subway","operatorId":"kr-seoul-metro","operator":{"id":"kr-seoul-metro","ko":"서울교통공사","en":"Seoul Metro"},"operators":[{"id":"kr-seoul-metro","ko":"서울교통공사","en":"Seoul Metro"}],"names":{"ko":"서울 지하철 6호선 (응암~응암)","en":"서울 지하철 6호선"},"line":{"ko":"서울 지하철 6호선 (응암~응암)","en":"서울 지하철 6호선"},"code":"6호선","color":"#CD7C2F","loop":true,"stations":[{"id":"kr-6-2611","ja":"응암","kana":"응암","ko":"응암","romaji":"Eungam","names":{"ko":"응암","en":"Eungam"},"latitude":37.598605,"longitude":126.915577,"officialCode":"610"},{"id":"kr-6-2612","ja":"역촌","kana":"역촌","ko":"역촌","romaji":"Yeokchon","names":{"ko":"역촌","en":"Yeokchon"},"latitude":37.606021,"longitude":126.922744,"officialCode":"611"},{"id":"kr-6-2613","ja":"불광","kana":"불광","ko":"불광","romaji":"Bulgwang","names":{"ko":"불광","en":"Bulgwang"},"latitude":37.610873,"longitude":126.92939,"officialCode":"612"},{"id":"kr-6-2614","ja":"독바위","kana":"독바위","ko":"독바위","romaji":"Dokbawi","names":{"ko":"독바위","en":"Dokbawi"},"latitude":37.618456,"longitude":126.933031,"officialCode":"613"},{"id":"kr-6-2615","ja":"연신내","kana":"연신내","ko":"연신내","romaji":"Yeonsinnae","names":{"ko":"연신내","en":"Yeonsinnae"},"latitude":37.618636,"longitude":126.920625,"officialCode":"614"},{"id":"kr-6-2616","ja":"구산","kana":"구산","ko":"구산","romaji":"Gusan","names":{"ko":"구산","en":"Gusan"},"latitude":37.611377,"longitude":126.91727,"officialCode":"615"},{"id":"kr-6-2611","ja":"응암","kana":"응암","ko":"응암","romaji":"Eungam","names":{"ko":"응암","en":"Eungam"},"latitude":37.598605,"longitude":126.915577,"officialCode":"610"}],"directions":[{"id":"forward","stops":[{"id":"kr-6-2611","ja":"응암","kana":"응암","ko":"응암","romaji":"Eungam","names":{"ko":"응암","en":"Eungam"},"latitude":37.598605,"longitude":126.915577,"officialCode":"610"},{"id":"kr-6-2612","ja":"역촌","kana":"역촌","ko":"역촌","romaji":"Yeokchon","names":{"ko":"역촌","en":"Yeokchon"},"latitude":37.606021,"longitude":126.922744,"officialCode":"611"},{"id":"kr-6-2613","ja":"불광","kana":"불광","ko":"불광","romaji":"Bulgwang","names":{"ko":"불광","en":"Bulgwang"},"latitude":37.610873,"longitude":126.92939,"officialCode":"612"},{"id":"kr-6-2614","ja":"독바위","kana":"독바위","ko":"독바위","romaji":"Dokbawi","names":{"ko":"독바위","en":"Dokbawi"},"latitude":37.618456,"longitude":126.933031,"officialCode":"613"},{"id":"kr-6-2615","ja":"연신내","kana":"연신내","ko":"연신내","romaji":"Yeonsinnae","names":{"ko":"연신내","en":"Yeonsinnae"},"latitude":37.618636,"longitude":126.920625,"officialCode":"614"},{"id":"kr-6-2616","ja":"구산","kana":"구산","ko":"구산","romaji":"Gusan","names":{"ko":"구산","en":"Gusan"},"latitude":37.611377,"longitude":126.91727,"officialCode":"615"},{"id":"kr-6-2611","ja":"응암","kana":"응암","ko":"응암","romaji":"Eungam","names":{"ko":"응암","en":"Eungam"},"latitude":37.598605,"longitude":126.915577,"officialCode":"610"}],"geometryStatus":"missing","geometry":[],"directedSegments":[]},{"id":"reverse","stops":[{"id":"kr-6-2611","ja":"응암","kana":"응암","ko":"응암","romaji":"Eungam","names":{"ko":"응암","en":"Eungam"},"latitude":37.598605,"longitude":126.915577,"officialCode":"610"},{"id":"kr-6-2616","ja":"구산","kana":"구산","ko":"구산","romaji":"Gusan","names":{"ko":"구산","en":"Gusan"},"latitude":37.611377,"longitude":126.91727,"officialCode":"615"},{"id":"kr-6-2615","ja":"연신내","kana":"연신내","ko":"연신내","romaji":"Yeonsinnae","names":{"ko":"연신내","en":"Yeonsinnae"},"latitude":37.618636,"longitude":126.920625,"officialCode":"614"},{"id":"kr-6-2614","ja":"독바위","kana":"독바위","ko":"독바위","romaji":"Dokbawi","names":{"ko":"독바위","en":"Dokbawi"},"latitude":37.618456,"longitude":126.933031,"officialCode":"613"},{"id":"kr-6-2613","ja":"불광","kana":"불광","ko":"불광","romaji":"Bulgwang","names":{"ko":"불광","en":"Bulgwang"},"latitude":37.610873,"longitude":126.92939,"officialCode":"612"},{"id":"kr-6-2612","ja":"역촌","kana":"역촌","ko":"역촌","romaji":"Yeokchon","names":{"ko":"역촌","en":"Yeokchon"},"latitude":37.606021,"longitude":126.922744,"officialCode":"611"},{"id":"kr-6-2611","ja":"응암","kana":"응암","ko":"응암","romaji":"Eungam","names":{"ko":"응암","en":"Eungam"},"latitude":37.598605,"longitude":126.915577,"officialCode":"610"}],"geometryStatus":"missing","geometry":[],"directedSegments":[]}],"geometryStatus":"missing","geometryReady":false,"sourceStatus":"secondary-unverified","source":{"name":"Community-derived public data snapshot (2025-10-27)","url":"https://github.com/JoeYunHa/korea_seoul_subway_static_data"},"operatorIds":["kr-seoul-metro"],"releaseStatus":"data-review","gameValidationStatus":"not-run","sourceLicenseStatus":"unverified","passengerLineId":"kr-passenger-metro-6","passengerLineName":"서울 지하철 6호선","operatingPatternId":"kr-metro-6-section-2","serviceValidationStatus":"unverified"}}
+{
+  "schemaVersion": 1,
+  "countryId": "kr",
+  "route": {
+    "id": "kr-metro-6-section-2",
+    "countryId": "kr",
+    "mode": "subway",
+    "category": "subway",
+    "operatorId": "kr-seoul-metro",
+    "operator": {
+      "id": "kr-seoul-metro",
+      "ko": "서울교통공사",
+      "en": "Seoul Metro"
+    },
+    "operators": [
+      {
+        "id": "kr-seoul-metro",
+        "ko": "서울교통공사",
+        "en": "Seoul Metro"
+      }
+    ],
+    "names": {
+      "ko": "서울 지하철 6호선",
+      "en": "Seoul Subway Line 6"
+    },
+    "line": {
+      "ko": "서울 지하철 6호선",
+      "en": "Seoul Subway Line 6"
+    },
+    "code": "6호선",
+    "color": "#CD7C2F",
+    "loop": true,
+    "stations": [
+      {
+        "id": "kr-6-2611",
+        "ja": "응암",
+        "kana": "응암",
+        "ko": "응암",
+        "romaji": "Eungam",
+        "names": {
+          "ko": "응암",
+          "en": "Eungam"
+        },
+        "latitude": 37.598605,
+        "longitude": 126.915577,
+        "officialCode": "610",
+        "geometryIndex": 0
+      },
+      {
+        "id": "kr-6-2612",
+        "ja": "역촌",
+        "kana": "역촌",
+        "ko": "역촌",
+        "romaji": "Yeokchon",
+        "names": {
+          "ko": "역촌",
+          "en": "Yeokchon"
+        },
+        "latitude": 37.606021,
+        "longitude": 126.922744,
+        "officialCode": "611",
+        "geometryIndex": 9
+      },
+      {
+        "id": "kr-6-2613",
+        "ja": "불광",
+        "kana": "불광",
+        "ko": "불광",
+        "romaji": "Bulgwang",
+        "names": {
+          "ko": "불광",
+          "en": "Bulgwang"
+        },
+        "latitude": 37.610873,
+        "longitude": 126.92939,
+        "officialCode": "612",
+        "geometryIndex": 20
+      },
+      {
+        "id": "kr-6-2614",
+        "ja": "독바위",
+        "kana": "독바위",
+        "ko": "독바위",
+        "romaji": "Dokbawi",
+        "names": {
+          "ko": "독바위",
+          "en": "Dokbawi"
+        },
+        "latitude": 37.618456,
+        "longitude": 126.933031,
+        "officialCode": "613",
+        "geometryIndex": 31
+      },
+      {
+        "id": "kr-6-2615",
+        "ja": "연신내",
+        "kana": "연신내",
+        "ko": "연신내",
+        "romaji": "Yeonsinnae",
+        "names": {
+          "ko": "연신내",
+          "en": "Yeonsinnae"
+        },
+        "latitude": 37.618636,
+        "longitude": 126.920625,
+        "officialCode": "614",
+        "geometryIndex": 45
+      },
+      {
+        "id": "kr-6-2616",
+        "ja": "구산",
+        "kana": "구산",
+        "ko": "구산",
+        "romaji": "Gusan",
+        "names": {
+          "ko": "구산",
+          "en": "Gusan"
+        },
+        "latitude": 37.611377,
+        "longitude": 126.91727,
+        "officialCode": "615",
+        "geometryIndex": 50
+      },
+      {
+        "id": "kr-6-2611",
+        "ja": "응암",
+        "kana": "응암",
+        "ko": "응암",
+        "romaji": "Eungam",
+        "names": {
+          "ko": "응암",
+          "en": "Eungam"
+        },
+        "latitude": 37.598605,
+        "longitude": 126.915577,
+        "officialCode": "610",
+        "geometryIndex": 58
+      }
+    ],
+    "directions": [
+      {
+        "id": "forward",
+        "stops": [
+          {
+            "id": "kr-6-2611",
+            "ja": "응암",
+            "kana": "응암",
+            "ko": "응암",
+            "romaji": "Eungam",
+            "names": {
+              "ko": "응암",
+              "en": "Eungam"
+            },
+            "latitude": 37.598605,
+            "longitude": 126.915577,
+            "officialCode": "610",
+            "geometryIndex": 0
+          },
+          {
+            "id": "kr-6-2612",
+            "ja": "역촌",
+            "kana": "역촌",
+            "ko": "역촌",
+            "romaji": "Yeokchon",
+            "names": {
+              "ko": "역촌",
+              "en": "Yeokchon"
+            },
+            "latitude": 37.606021,
+            "longitude": 126.922744,
+            "officialCode": "611",
+            "geometryIndex": 9
+          },
+          {
+            "id": "kr-6-2613",
+            "ja": "불광",
+            "kana": "불광",
+            "ko": "불광",
+            "romaji": "Bulgwang",
+            "names": {
+              "ko": "불광",
+              "en": "Bulgwang"
+            },
+            "latitude": 37.610873,
+            "longitude": 126.92939,
+            "officialCode": "612",
+            "geometryIndex": 20
+          },
+          {
+            "id": "kr-6-2614",
+            "ja": "독바위",
+            "kana": "독바위",
+            "ko": "독바위",
+            "romaji": "Dokbawi",
+            "names": {
+              "ko": "독바위",
+              "en": "Dokbawi"
+            },
+            "latitude": 37.618456,
+            "longitude": 126.933031,
+            "officialCode": "613",
+            "geometryIndex": 31
+          },
+          {
+            "id": "kr-6-2615",
+            "ja": "연신내",
+            "kana": "연신내",
+            "ko": "연신내",
+            "romaji": "Yeonsinnae",
+            "names": {
+              "ko": "연신내",
+              "en": "Yeonsinnae"
+            },
+            "latitude": 37.618636,
+            "longitude": 126.920625,
+            "officialCode": "614",
+            "geometryIndex": 45
+          },
+          {
+            "id": "kr-6-2616",
+            "ja": "구산",
+            "kana": "구산",
+            "ko": "구산",
+            "romaji": "Gusan",
+            "names": {
+              "ko": "구산",
+              "en": "Gusan"
+            },
+            "latitude": 37.611377,
+            "longitude": 126.91727,
+            "officialCode": "615",
+            "geometryIndex": 50
+          },
+          {
+            "id": "kr-6-2611",
+            "ja": "응암",
+            "kana": "응암",
+            "ko": "응암",
+            "romaji": "Eungam",
+            "names": {
+              "ko": "응암",
+              "en": "Eungam"
+            },
+            "latitude": 37.598605,
+            "longitude": 126.915577,
+            "officialCode": "610",
+            "geometryIndex": 58
+          }
+        ],
+        "geometryStatus": "ready",
+        "geometry": [
+          [
+            37.598774,
+            126.9157018
+          ],
+          [
+            37.5990148,
+            126.9158056
+          ],
+          [
+            37.599189,
+            126.9159756
+          ],
+          [
+            37.5994075,
+            126.9162792
+          ],
+          [
+            37.5995899,
+            126.9167092
+          ],
+          [
+            37.5998499,
+            126.9174257
+          ],
+          [
+            37.6002561,
+            126.9189334
+          ],
+          [
+            37.6007449,
+            126.919907
+          ],
+          [
+            37.6010697,
+            126.9202301
+          ],
+          [
+            37.6060541,
+            126.9228008
+          ],
+          [
+            37.6070879,
+            126.9233917
+          ],
+          [
+            37.6073259,
+            126.9236863
+          ],
+          [
+            37.6074651,
+            126.9239454
+          ],
+          [
+            37.6078249,
+            126.9247675
+          ],
+          [
+            37.6082777,
+            126.9257042
+          ],
+          [
+            37.6085197,
+            126.926053
+          ],
+          [
+            37.6093895,
+            126.9274106
+          ],
+          [
+            37.6098376,
+            126.9282077
+          ],
+          [
+            37.6103922,
+            126.9287662
+          ],
+          [
+            37.6105987,
+            126.9289738
+          ],
+          [
+            37.610738,
+            126.9292223
+          ],
+          [
+            37.6109493,
+            126.9295992
+          ],
+          [
+            37.6118585,
+            126.931186
+          ],
+          [
+            37.6119325,
+            126.9312823
+          ],
+          [
+            37.6120234,
+            126.931351
+          ],
+          [
+            37.6149321,
+            126.9326945
+          ],
+          [
+            37.6152578,
+            126.9328403
+          ],
+          [
+            37.6154563,
+            126.9329112
+          ],
+          [
+            37.6173928,
+            126.9331638
+          ],
+          [
+            37.6178512,
+            126.9331903
+          ],
+          [
+            37.6181395,
+            126.9331525
+          ],
+          [
+            37.6184519,
+            126.9330576
+          ],
+          [
+            37.6186236,
+            126.9329624
+          ],
+          [
+            37.6187785,
+            126.9328641
+          ],
+          [
+            37.6191939,
+            126.932583
+          ],
+          [
+            37.6196435,
+            126.932249
+          ],
+          [
+            37.6198747,
+            126.9320656
+          ],
+          [
+            37.6206616,
+            126.9314414
+          ],
+          [
+            37.6212879,
+            126.9303948
+          ],
+          [
+            37.6215295,
+            126.929012
+          ],
+          [
+            37.6213457,
+            126.926925
+          ],
+          [
+            37.6208621,
+            126.925229
+          ],
+          [
+            37.6203858,
+            126.924283
+          ],
+          [
+            37.6191624,
+            126.9223128
+          ],
+          [
+            37.6189063,
+            126.9213554
+          ],
+          [
+            37.6186289,
+            126.9205315
+          ],
+          [
+            37.6184497,
+            126.9202061
+          ],
+          [
+            37.6181079,
+            126.9199568
+          ],
+          [
+            37.6150698,
+            126.9179675
+          ],
+          [
+            37.6113621,
+            126.9171939
+          ],
+          [
+            37.6110401,
+            126.9170995
+          ],
+          [
+            37.6104155,
+            126.9168973
+          ],
+          [
+            37.6093288,
+            126.9161921
+          ],
+          [
+            37.6086042,
+            126.9157245
+          ],
+          [
+            37.6077781,
+            126.9153958
+          ],
+          [
+            37.6070877,
+            126.9153339
+          ],
+          [
+            37.6043698,
+            126.9156829
+          ],
+          [
+            37.6007488,
+            126.9161504
+          ],
+          [
+            37.5984384,
+            126.9154726
+          ]
+        ],
+        "directedSegments": [
+          {
+            "fromStationId": "kr-6-2611",
+            "toStationId": "kr-6-2612",
+            "geometry": [
+              [
+                37.598774,
+                126.9157018
+              ],
+              [
+                37.5990148,
+                126.9158056
+              ],
+              [
+                37.599189,
+                126.9159756
+              ],
+              [
+                37.5994075,
+                126.9162792
+              ],
+              [
+                37.5995899,
+                126.9167092
+              ],
+              [
+                37.5998499,
+                126.9174257
+              ],
+              [
+                37.6002561,
+                126.9189334
+              ],
+              [
+                37.6007449,
+                126.919907
+              ],
+              [
+                37.6010697,
+                126.9202301
+              ],
+              [
+                37.6060541,
+                126.9228008
+              ]
+            ],
+            "geometryStatus": "ready",
+            "source": {
+              "osmRelationId": 4727111,
+              "osmWayIds": [
+                321173439
+              ],
+              "osmNodeIds": [
+                5916874386,
+                5916874390,
+                8247104272,
+                9847960529,
+                3279011069,
+                3279011071,
+                6041674938,
+                6041674937,
+                3279011074,
+                355173383
+              ],
+              "license": "ODbL-1.0",
+              "attribution": "© OpenStreetMap contributors"
+            },
+            "endpointMismatch": false
+          },
+          {
+            "fromStationId": "kr-6-2612",
+            "toStationId": "kr-6-2613",
+            "geometry": [
+              [
+                37.6060541,
+                126.9228008
+              ],
+              [
+                37.6070879,
+                126.9233917
+              ],
+              [
+                37.6073259,
+                126.9236863
+              ],
+              [
+                37.6074651,
+                126.9239454
+              ],
+              [
+                37.6078249,
+                126.9247675
+              ],
+              [
+                37.6082777,
+                126.9257042
+              ],
+              [
+                37.6085197,
+                126.926053
+              ],
+              [
+                37.6093895,
+                126.9274106
+              ],
+              [
+                37.6098376,
+                126.9282077
+              ],
+              [
+                37.6103922,
+                126.9287662
+              ],
+              [
+                37.6105987,
+                126.9289738
+              ],
+              [
+                37.610738,
+                126.9292223
+              ]
+            ],
+            "geometryStatus": "ready",
+            "source": {
+              "osmRelationId": 4727111,
+              "osmWayIds": [
+                321173439
+              ],
+              "osmNodeIds": [
+                355173383,
+                3811139957,
+                6041674936,
+                3811139985,
+                3811140024,
+                3811140053,
+                3811140068,
+                3811140107,
+                5281048351,
+                5930698994,
+                5930698995,
+                5930698993
+              ],
+              "license": "ODbL-1.0",
+              "attribution": "© OpenStreetMap contributors"
+            },
+            "endpointMismatch": false
+          },
+          {
+            "fromStationId": "kr-6-2613",
+            "toStationId": "kr-6-2614",
+            "geometry": [
+              [
+                37.610738,
+                126.9292223
+              ],
+              [
+                37.6109493,
+                126.9295992
+              ],
+              [
+                37.6118585,
+                126.931186
+              ],
+              [
+                37.6119325,
+                126.9312823
+              ],
+              [
+                37.6120234,
+                126.931351
+              ],
+              [
+                37.6149321,
+                126.9326945
+              ],
+              [
+                37.6152578,
+                126.9328403
+              ],
+              [
+                37.6154563,
+                126.9329112
+              ],
+              [
+                37.6173928,
+                126.9331638
+              ],
+              [
+                37.6178512,
+                126.9331903
+              ],
+              [
+                37.6181395,
+                126.9331525
+              ],
+              [
+                37.6184519,
+                126.9330576
+              ]
+            ],
+            "geometryStatus": "ready",
+            "source": {
+              "osmRelationId": 4727111,
+              "osmWayIds": [
+                321173439
+              ],
+              "osmNodeIds": [
+                5930698993,
+                5273692790,
+                6041674935,
+                6041674933,
+                6041674934,
+                6041674931,
+                6041674932,
+                6041674930,
+                9847908612,
+                6041674929,
+                9847966217,
+                6041674928
+              ],
+              "license": "ODbL-1.0",
+              "attribution": "© OpenStreetMap contributors"
+            },
+            "endpointMismatch": false
+          },
+          {
+            "fromStationId": "kr-6-2614",
+            "toStationId": "kr-6-2615",
+            "geometry": [
+              [
+                37.6184519,
+                126.9330576
+              ],
+              [
+                37.6186236,
+                126.9329624
+              ],
+              [
+                37.6187785,
+                126.9328641
+              ],
+              [
+                37.6191939,
+                126.932583
+              ],
+              [
+                37.6196435,
+                126.932249
+              ],
+              [
+                37.6198747,
+                126.9320656
+              ],
+              [
+                37.6206616,
+                126.9314414
+              ],
+              [
+                37.6212879,
+                126.9303948
+              ],
+              [
+                37.6215295,
+                126.929012
+              ],
+              [
+                37.6213457,
+                126.926925
+              ],
+              [
+                37.6208621,
+                126.925229
+              ],
+              [
+                37.6203858,
+                126.924283
+              ],
+              [
+                37.6191624,
+                126.9223128
+              ],
+              [
+                37.6189063,
+                126.9213554
+              ],
+              [
+                37.6186289,
+                126.9205315
+              ]
+            ],
+            "geometryStatus": "ready",
+            "source": {
+              "osmRelationId": 4727111,
+              "osmWayIds": [
+                321173439
+              ],
+              "osmNodeIds": [
+                6041674928,
+                9847908613,
+                6041674925,
+                9847908607,
+                6041674926,
+                9847908606,
+                5281039886,
+                5281039887,
+                3279011107,
+                3279011108,
+                3279011106,
+                6041674924,
+                6041674923,
+                6041674921,
+                6041674922
+              ],
+              "license": "ODbL-1.0",
+              "attribution": "© OpenStreetMap contributors"
+            },
+            "endpointMismatch": false
+          },
+          {
+            "fromStationId": "kr-6-2615",
+            "toStationId": "kr-6-2616",
+            "geometry": [
+              [
+                37.6186289,
+                126.9205315
+              ],
+              [
+                37.6184497,
+                126.9202061
+              ],
+              [
+                37.6181079,
+                126.9199568
+              ],
+              [
+                37.6150698,
+                126.9179675
+              ],
+              [
+                37.6113621,
+                126.9171939
+              ],
+              [
+                37.6110401,
+                126.9170995
+              ]
+            ],
+            "geometryStatus": "ready",
+            "source": {
+              "osmRelationId": 4727111,
+              "osmWayIds": [
+                321173439
+              ],
+              "osmNodeIds": [
+                6041674922,
+                6041674919,
+                6041674918,
+                3279011089,
+                11229115807,
+                355173384
+              ],
+              "license": "ODbL-1.0",
+              "attribution": "© OpenStreetMap contributors"
+            },
+            "endpointMismatch": false
+          },
+          {
+            "fromStationId": "kr-6-2616",
+            "toStationId": "kr-6-2611",
+            "geometry": [
+              [
+                37.6110401,
+                126.9170995
+              ],
+              [
+                37.6104155,
+                126.9168973
+              ],
+              [
+                37.6093288,
+                126.9161921
+              ],
+              [
+                37.6086042,
+                126.9157245
+              ],
+              [
+                37.6077781,
+                126.9153958
+              ],
+              [
+                37.6070877,
+                126.9153339
+              ],
+              [
+                37.6043698,
+                126.9156829
+              ],
+              [
+                37.6007488,
+                126.9161504
+              ],
+              [
+                37.5984384,
+                126.9154726
+              ]
+            ],
+            "geometryStatus": "ready",
+            "source": {
+              "osmRelationId": 4727111,
+              "osmWayIds": [
+                321173439,
+                1259307339
+              ],
+              "osmNodeIds": [
+                355173384,
+                5413731018,
+                5413731019,
+                5413731020,
+                5413731721,
+                5413731722,
+                5413731723,
+                5413731724,
+                5916874385
+              ],
+              "license": "ODbL-1.0",
+              "attribution": "© OpenStreetMap contributors"
+            },
+            "endpointMismatch": false
+          }
+        ],
+        "names": {
+          "ko": "응암순환"
+        },
+        "geometrySource": {
+          "file": "data/kr/source/osm/seoul-line-6-relation-7919154.json",
+          "osmRouteMasterRelationId": 7919154,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "retrieved": "2026-10-10",
+          "sha256": "e1879d2b1af015d2fa1b5066eb5d255c0f26a1bb638b674895d664dd216e0b56",
+          "osmRelationId": 4727111
+        },
+        "geometryValidation": {
+          "orderedStopsExact": true,
+          "wayMemberOrderContinuous": true,
+          "stationNodesOnWaysExact": true,
+          "nearestTrackMatchingUsed": false,
+          "osmStopSlice": [
+            0,
+            6
+          ],
+          "officialOrderStatus": "partial-sinnae-missing",
+          "officialExtensionSource": "https://mediahub.seoul.go.kr/archives/1261413"
+        }
+      }
+    ],
+    "geometryStatus": "ready",
+    "geometryReady": true,
+    "sourceStatus": "osm-topology-and-official-order-validated",
+    "source": {
+      "name": "OpenStreetMap route relations",
+      "url": "https://www.openstreetmap.org/relation/7919154",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "snapshot": "data/kr/source/osm/seoul-line-6-relation-7919154.json"
+    },
+    "operatorIds": [
+      "kr-seoul-metro"
+    ],
+    "releaseStatus": "geometry-validated-game-pending",
+    "gameValidationStatus": "browser-pending",
+    "sourceLicenseStatus": "verified",
+    "passengerLineId": "kr-seoul-line-6",
+    "passengerLineName": "서울 지하철 6호선",
+    "operatingPatternId": "kr-metro-6-section-2",
+    "serviceValidationStatus": "official-order-validated",
+    "geometry": [
+      [
+        37.598774,
+        126.9157018
+      ],
+      [
+        37.5990148,
+        126.9158056
+      ],
+      [
+        37.599189,
+        126.9159756
+      ],
+      [
+        37.5994075,
+        126.9162792
+      ],
+      [
+        37.5995899,
+        126.9167092
+      ],
+      [
+        37.5998499,
+        126.9174257
+      ],
+      [
+        37.6002561,
+        126.9189334
+      ],
+      [
+        37.6007449,
+        126.919907
+      ],
+      [
+        37.6010697,
+        126.9202301
+      ],
+      [
+        37.6060541,
+        126.9228008
+      ],
+      [
+        37.6070879,
+        126.9233917
+      ],
+      [
+        37.6073259,
+        126.9236863
+      ],
+      [
+        37.6074651,
+        126.9239454
+      ],
+      [
+        37.6078249,
+        126.9247675
+      ],
+      [
+        37.6082777,
+        126.9257042
+      ],
+      [
+        37.6085197,
+        126.926053
+      ],
+      [
+        37.6093895,
+        126.9274106
+      ],
+      [
+        37.6098376,
+        126.9282077
+      ],
+      [
+        37.6103922,
+        126.9287662
+      ],
+      [
+        37.6105987,
+        126.9289738
+      ],
+      [
+        37.610738,
+        126.9292223
+      ],
+      [
+        37.6109493,
+        126.9295992
+      ],
+      [
+        37.6118585,
+        126.931186
+      ],
+      [
+        37.6119325,
+        126.9312823
+      ],
+      [
+        37.6120234,
+        126.931351
+      ],
+      [
+        37.6149321,
+        126.9326945
+      ],
+      [
+        37.6152578,
+        126.9328403
+      ],
+      [
+        37.6154563,
+        126.9329112
+      ],
+      [
+        37.6173928,
+        126.9331638
+      ],
+      [
+        37.6178512,
+        126.9331903
+      ],
+      [
+        37.6181395,
+        126.9331525
+      ],
+      [
+        37.6184519,
+        126.9330576
+      ],
+      [
+        37.6186236,
+        126.9329624
+      ],
+      [
+        37.6187785,
+        126.9328641
+      ],
+      [
+        37.6191939,
+        126.932583
+      ],
+      [
+        37.6196435,
+        126.932249
+      ],
+      [
+        37.6198747,
+        126.9320656
+      ],
+      [
+        37.6206616,
+        126.9314414
+      ],
+      [
+        37.6212879,
+        126.9303948
+      ],
+      [
+        37.6215295,
+        126.929012
+      ],
+      [
+        37.6213457,
+        126.926925
+      ],
+      [
+        37.6208621,
+        126.925229
+      ],
+      [
+        37.6203858,
+        126.924283
+      ],
+      [
+        37.6191624,
+        126.9223128
+      ],
+      [
+        37.6189063,
+        126.9213554
+      ],
+      [
+        37.6186289,
+        126.9205315
+      ],
+      [
+        37.6184497,
+        126.9202061
+      ],
+      [
+        37.6181079,
+        126.9199568
+      ],
+      [
+        37.6150698,
+        126.9179675
+      ],
+      [
+        37.6113621,
+        126.9171939
+      ],
+      [
+        37.6110401,
+        126.9170995
+      ],
+      [
+        37.6104155,
+        126.9168973
+      ],
+      [
+        37.6093288,
+        126.9161921
+      ],
+      [
+        37.6086042,
+        126.9157245
+      ],
+      [
+        37.6077781,
+        126.9153958
+      ],
+      [
+        37.6070877,
+        126.9153339
+      ],
+      [
+        37.6043698,
+        126.9156829
+      ],
+      [
+        37.6007488,
+        126.9161504
+      ],
+      [
+        37.5984384,
+        126.9154726
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "kr-6-2611",
+        "toStationId": "kr-6-2612",
+        "geometry": [
+          [
+            37.598774,
+            126.9157018
+          ],
+          [
+            37.5990148,
+            126.9158056
+          ],
+          [
+            37.599189,
+            126.9159756
+          ],
+          [
+            37.5994075,
+            126.9162792
+          ],
+          [
+            37.5995899,
+            126.9167092
+          ],
+          [
+            37.5998499,
+            126.9174257
+          ],
+          [
+            37.6002561,
+            126.9189334
+          ],
+          [
+            37.6007449,
+            126.919907
+          ],
+          [
+            37.6010697,
+            126.9202301
+          ],
+          [
+            37.6060541,
+            126.9228008
+          ]
+        ],
+        "geometryStatus": "ready",
+        "source": {
+          "osmRelationId": 4727111,
+          "osmWayIds": [
+            321173439
+          ],
+          "osmNodeIds": [
+            5916874386,
+            5916874390,
+            8247104272,
+            9847960529,
+            3279011069,
+            3279011071,
+            6041674938,
+            6041674937,
+            3279011074,
+            355173383
+          ],
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "endpointMismatch": false
+      },
+      {
+        "fromStationId": "kr-6-2612",
+        "toStationId": "kr-6-2613",
+        "geometry": [
+          [
+            37.6060541,
+            126.9228008
+          ],
+          [
+            37.6070879,
+            126.9233917
+          ],
+          [
+            37.6073259,
+            126.9236863
+          ],
+          [
+            37.6074651,
+            126.9239454
+          ],
+          [
+            37.6078249,
+            126.9247675
+          ],
+          [
+            37.6082777,
+            126.9257042
+          ],
+          [
+            37.6085197,
+            126.926053
+          ],
+          [
+            37.6093895,
+            126.9274106
+          ],
+          [
+            37.6098376,
+            126.9282077
+          ],
+          [
+            37.6103922,
+            126.9287662
+          ],
+          [
+            37.6105987,
+            126.9289738
+          ],
+          [
+            37.610738,
+            126.9292223
+          ]
+        ],
+        "geometryStatus": "ready",
+        "source": {
+          "osmRelationId": 4727111,
+          "osmWayIds": [
+            321173439
+          ],
+          "osmNodeIds": [
+            355173383,
+            3811139957,
+            6041674936,
+            3811139985,
+            3811140024,
+            3811140053,
+            3811140068,
+            3811140107,
+            5281048351,
+            5930698994,
+            5930698995,
+            5930698993
+          ],
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "endpointMismatch": false
+      },
+      {
+        "fromStationId": "kr-6-2613",
+        "toStationId": "kr-6-2614",
+        "geometry": [
+          [
+            37.610738,
+            126.9292223
+          ],
+          [
+            37.6109493,
+            126.9295992
+          ],
+          [
+            37.6118585,
+            126.931186
+          ],
+          [
+            37.6119325,
+            126.9312823
+          ],
+          [
+            37.6120234,
+            126.931351
+          ],
+          [
+            37.6149321,
+            126.9326945
+          ],
+          [
+            37.6152578,
+            126.9328403
+          ],
+          [
+            37.6154563,
+            126.9329112
+          ],
+          [
+            37.6173928,
+            126.9331638
+          ],
+          [
+            37.6178512,
+            126.9331903
+          ],
+          [
+            37.6181395,
+            126.9331525
+          ],
+          [
+            37.6184519,
+            126.9330576
+          ]
+        ],
+        "geometryStatus": "ready",
+        "source": {
+          "osmRelationId": 4727111,
+          "osmWayIds": [
+            321173439
+          ],
+          "osmNodeIds": [
+            5930698993,
+            5273692790,
+            6041674935,
+            6041674933,
+            6041674934,
+            6041674931,
+            6041674932,
+            6041674930,
+            9847908612,
+            6041674929,
+            9847966217,
+            6041674928
+          ],
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "endpointMismatch": false
+      },
+      {
+        "fromStationId": "kr-6-2614",
+        "toStationId": "kr-6-2615",
+        "geometry": [
+          [
+            37.6184519,
+            126.9330576
+          ],
+          [
+            37.6186236,
+            126.9329624
+          ],
+          [
+            37.6187785,
+            126.9328641
+          ],
+          [
+            37.6191939,
+            126.932583
+          ],
+          [
+            37.6196435,
+            126.932249
+          ],
+          [
+            37.6198747,
+            126.9320656
+          ],
+          [
+            37.6206616,
+            126.9314414
+          ],
+          [
+            37.6212879,
+            126.9303948
+          ],
+          [
+            37.6215295,
+            126.929012
+          ],
+          [
+            37.6213457,
+            126.926925
+          ],
+          [
+            37.6208621,
+            126.925229
+          ],
+          [
+            37.6203858,
+            126.924283
+          ],
+          [
+            37.6191624,
+            126.9223128
+          ],
+          [
+            37.6189063,
+            126.9213554
+          ],
+          [
+            37.6186289,
+            126.9205315
+          ]
+        ],
+        "geometryStatus": "ready",
+        "source": {
+          "osmRelationId": 4727111,
+          "osmWayIds": [
+            321173439
+          ],
+          "osmNodeIds": [
+            6041674928,
+            9847908613,
+            6041674925,
+            9847908607,
+            6041674926,
+            9847908606,
+            5281039886,
+            5281039887,
+            3279011107,
+            3279011108,
+            3279011106,
+            6041674924,
+            6041674923,
+            6041674921,
+            6041674922
+          ],
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "endpointMismatch": false
+      },
+      {
+        "fromStationId": "kr-6-2615",
+        "toStationId": "kr-6-2616",
+        "geometry": [
+          [
+            37.6186289,
+            126.9205315
+          ],
+          [
+            37.6184497,
+            126.9202061
+          ],
+          [
+            37.6181079,
+            126.9199568
+          ],
+          [
+            37.6150698,
+            126.9179675
+          ],
+          [
+            37.6113621,
+            126.9171939
+          ],
+          [
+            37.6110401,
+            126.9170995
+          ]
+        ],
+        "geometryStatus": "ready",
+        "source": {
+          "osmRelationId": 4727111,
+          "osmWayIds": [
+            321173439
+          ],
+          "osmNodeIds": [
+            6041674922,
+            6041674919,
+            6041674918,
+            3279011089,
+            11229115807,
+            355173384
+          ],
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "endpointMismatch": false
+      },
+      {
+        "fromStationId": "kr-6-2616",
+        "toStationId": "kr-6-2611",
+        "geometry": [
+          [
+            37.6110401,
+            126.9170995
+          ],
+          [
+            37.6104155,
+            126.9168973
+          ],
+          [
+            37.6093288,
+            126.9161921
+          ],
+          [
+            37.6086042,
+            126.9157245
+          ],
+          [
+            37.6077781,
+            126.9153958
+          ],
+          [
+            37.6070877,
+            126.9153339
+          ],
+          [
+            37.6043698,
+            126.9156829
+          ],
+          [
+            37.6007488,
+            126.9161504
+          ],
+          [
+            37.5984384,
+            126.9154726
+          ]
+        ],
+        "geometryStatus": "ready",
+        "source": {
+          "osmRelationId": 4727111,
+          "osmWayIds": [
+            321173439,
+            1259307339
+          ],
+          "osmNodeIds": [
+            355173384,
+            5413731018,
+            5413731019,
+            5413731020,
+            5413731721,
+            5413731722,
+            5413731723,
+            5413731724,
+            5916874385
+          ],
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "endpointMismatch": false
+      }
+    ]
+  }
+}
