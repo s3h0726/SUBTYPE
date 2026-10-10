@@ -16,7 +16,11 @@
     "kr-seoul-metro"
   ],
   "color": {
-    "rgb": [0, 168, 77],
+    "rgb": [
+      0,
+      168,
+      77
+    ],
     "hex": "#00A84D",
     "verificationStatus": "official-source-pending"
   },
@@ -26,7 +30,8 @@
       "kind": "official-station-order-and-distance",
       "url": "https://data.seoul.go.kr/dataList/OA-12034/S/1/datasetView.do",
       "license": "KOGL-Type-1",
-      "verificationStatus": "metadata-reviewed-file-pending"
+      "verificationStatus": "api-snapshot-validated",
+      "snapshot": "data/kr/source/seoul-open-data/line-2-interstation-2024-03-25.json"
     },
     {
       "kind": "official-operating-patterns",
@@ -39,7 +44,7 @@
       "relationId": 7625892,
       "url": "https://www.openstreetmap.org/relation/7625892",
       "license": "ODbL-1.0",
-      "verificationStatus": "raw-import-pending"
+      "verificationStatus": "topology-and-official-order-validated-runtime-pending"
     }
   ],
   "operatingPatterns": [
@@ -52,7 +57,7 @@
         "외선순환"
       ],
       "serviceValidationStatus": "official-timetable-pending",
-      "geometryValidationStatus": "osm-topology-pending"
+      "geometryValidationStatus": "topology-and-official-order-validated-runtime-pending"
     },
     {
       "id": "kr-seoul-line-2-seongsu-branch",
@@ -63,7 +68,7 @@
         "신설동 방면"
       ],
       "serviceValidationStatus": "official-timetable-pending",
-      "geometryValidationStatus": "osm-topology-pending"
+      "geometryValidationStatus": "topology-and-official-order-validated-runtime-pending"
     },
     {
       "id": "kr-seoul-line-2-sinjeong-branch",
@@ -74,10 +79,11 @@
         "까치산 방면"
       ],
       "serviceValidationStatus": "official-timetable-pending",
-      "geometryValidationStatus": "osm-topology-pending"
+      "geometryValidationStatus": "topology-and-official-order-validated-runtime-pending"
     }
   ],
   "geometryReady": false,
   "gameValidationStatus": "not-run",
-  "releaseStatus": "rebuild-in-progress"
+  "releaseStatus": "rebuild-in-progress",
+  "stationOrderValidationStatus": "official-api-validated"
 }
