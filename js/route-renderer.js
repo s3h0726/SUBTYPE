@@ -17,11 +17,12 @@ function koreaTrackGeometry(route){
   if(coords.some(p=>!p.every(Number.isFinite)||p[0]===0||p[1]===0))return null;
   const track=paths.filter(p=>Array.isArray(p)&&p.length>1).map(p=>p.map(x=>[Number(x[1]),Number(x[0])]));
   const snaps=coords.map(pt=>{let best={dist:Infinity};track.forEach((line,k)=>line.forEach((v,i)=>{const d=distance(pt,v);if(d<best.dist)best={k,i,dist:d}}));return best});
-  if(snaps.some(s=>s.dist>350))return null;
+  
   const segments=[];
   for(let n=0;n<snaps.length-1;n++){
     const a=snaps[n],b=snaps[n+1];if(a.k!==b.k)return null;
-    const line=track[a.k],points=a.i<=b.i?line.slice(a.i,b.i+1):line.slice(b.i,a.i+1).reverse();
+    const line=track[a.k];let points=a.i<=b.i?line.slice(a.i,b.i+1):line.slice(b.i,a.i+1).reverse();
+    if(route.loop&&Math.abs(a.i-b.i)>line.length/2){const other=a.i<b.i?[...line.slice(0,a.i+1).reverse(),...line.slice(b.i).reverse()]:[...line.slice(a.i),...line.slice(0,b.i+1)];if(other.length>=2)points=other}
     if(points.length<2||points.some((p,i)=>i>0&&distance(p,points[i-1])>1800))return null;
     const length=points.slice(1).reduce((sum,p,i)=>sum+distance(p,points[i]),0);
     if(length>Math.max(12000,distance(coords[n],coords[n+1])*4))return null;
