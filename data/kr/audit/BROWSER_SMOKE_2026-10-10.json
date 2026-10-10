@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "testedAt": "2026-10-10T13:36:00+09:00",
+  "environment": {
+    "url": "http://127.0.0.1:8765/",
+    "browser": "Codex in-app browser",
+    "viewportClass": "desktop"
+  },
+  "build": {
+    "appBundleSha256Prefix": "d1019517c662",
+    "branch": "codex/korea-network-rebuild-20261010"
+  },
+  "checks": [
+    {
+      "id": "kr-route-list-country-isolation",
+      "status": "pass",
+      "observed": "52 Korean passenger-line cards; Japan-authored local custom routes were absent"
+    },
+    {
+      "id": "kr-seoul-line-2-single-card",
+      "status": "pass",
+      "observed": "one 서울 지하철 2호선 card with three operating patterns"
+    },
+    {
+      "id": "kr-seoul-line-2-pattern-picker",
+      "status": "pass",
+      "observed": "본선 순환, 성수지선, 신정지선 were selectable without returning to the route list"
+    },
+    {
+      "id": "kr-seoul-line-2-direction-picker",
+      "status": "pass",
+      "observed": "외선순환 and 내선순환 were exposed as independent direction choices"
+    },
+    {
+      "id": "kr-unverified-geometry-label",
+      "status": "pass",
+      "observed": "unverified routes displayed 선형 검증 대기; loading copy no longer claimed that real geometry was being loaded"
+    },
+    {
+      "id": "kr-seoul-line-2-geometry-runtime",
+      "status": "not-run",
+      "reason": "candidate geometry remains geometryReady=false pending official station-order validation and runtime integration"
+    },
+    {
+      "id": "kr-mobile-layout",
+      "status": "not-run",
+      "reason": "no mobile viewport was exercised in this smoke test"
+    },
+    {
+      "id": "jp-browser-regression",
+      "status": "not-run",
+      "reason": "Japanese generated assets were restored unchanged; a full browser regression suite is still required"
+    }
+  ],
+  "overall": "partial-pass-not-release-ready"
+}
