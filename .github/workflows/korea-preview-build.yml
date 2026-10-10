@@ -1,18 +1,22 @@
-name: Build Korea preview bundle
+name: Build and verify Korea production bundle
+
 on:
   push:
-    branches: [korea-network-rebuild-20261009]
+    branches: [main]
     paths:
       - 'js/**'
       - 'data/kr/**'
       - 'tools/**'
       - 'package.json'
+      - 'index.html'
       - '.github/workflows/korea-preview-build.yml'
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
-  build-preview:
+  build-production:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,17 +32,17 @@ jobs:
           node tools/validate-korea-data.js
       - name: Produce official verification report
         run: node tools/audit-kr-official-completeness.js
-      - name: Build app and all required static data
+      - name: Build app and static data
         run: node tools/build-static.js
-      - name: Verify new Korea feature flag was compiled into bundle
+      - name: Verify Korean country feature in the bundle
         run: |
-          node -e "const fs=require('fs');const b=fs.readFileSync('js/app.bundle.js','utf8');if(!b.includes('korea:true'))process.exit(1)"
-      - name: Commit preview bundle on branch
+          node -e "const fs=require('fs');const b=fs.readFileSync('js/app.bundle.js','utf8');if(!b.includes('korea:true'))throw new Error('Korea feature flag is absent from app.bundle.js')"
+      - name: Commit generated production assets
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add js/app.bundle.js js/korea-index-data.js js/line-workspace-data.js js/nationwide-data.js js/service-data.js js/line-theme-data.js js/line-badge-data.js js/rail-system-data.js index.html
           if ! git diff --cached --quiet; then
-            git commit -m "build(kr): synchronize Korean preview bundle [skip ci]"
+            git commit -m "build(kr): synchronize production bundle [skip ci]"
             git push
           fi
