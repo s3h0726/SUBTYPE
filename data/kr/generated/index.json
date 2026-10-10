@@ -1375,22 +1375,25 @@
         }
       ],
       "names": {
-        "ko": "서울 지하철 6호선 (응암~신내)",
-        "en": "서울 지하철 6호선"
+        "ko": "서울 지하철 6호선",
+        "en": "Seoul Subway Line 6"
       },
       "line": {
-        "ko": "서울 지하철 6호선 (응암~신내)",
-        "en": "서울 지하철 6호선"
+        "ko": "서울 지하철 6호선",
+        "en": "Seoul Subway Line 6"
       },
       "code": "6호선",
       "color": "#CD7C2F",
       "loop": false,
-      "geometryStatus": "missing",
-      "geometryReady": false,
-      "sourceStatus": "secondary-unverified",
+      "geometryStatus": "ready",
+      "geometryReady": true,
+      "sourceStatus": "osm-topology-and-official-order-validated",
       "source": {
-        "name": "Community-derived public data snapshot (2025-10-27)",
-        "url": "https://github.com/JoeYunHa/korea_seoul_subway_static_data"
+        "name": "OpenStreetMap route relations",
+        "url": "https://www.openstreetmap.org/relation/7919154",
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors",
+        "snapshot": "data/kr/source/osm/seoul-line-6-relation-7919154.json"
       },
       "lazy": true,
       "lazySource": "data/kr/generated/routes/kr-metro-6.json",
@@ -1435,13 +1438,13 @@
       "operatorIds": [
         "kr-seoul-metro"
       ],
-      "releaseStatus": "data-review",
-      "gameValidationStatus": "not-run",
-      "sourceLicenseStatus": "unverified",
-      "passengerLineId": "kr-passenger-metro-6",
+      "releaseStatus": "geometry-validated-game-pending",
+      "gameValidationStatus": "browser-pending",
+      "sourceLicenseStatus": "verified",
+      "passengerLineId": "kr-seoul-line-6",
       "passengerLineName": "서울 지하철 6호선",
       "operatingPatternId": "kr-metro-6",
-      "serviceValidationStatus": "unverified"
+      "serviceValidationStatus": "official-order-validated"
     },
     {
       "id": "kr-metro-6-section-2",
@@ -1462,22 +1465,25 @@
         }
       ],
       "names": {
-        "ko": "서울 지하철 6호선 (응암~응암)",
-        "en": "서울 지하철 6호선"
+        "ko": "서울 지하철 6호선",
+        "en": "Seoul Subway Line 6"
       },
       "line": {
-        "ko": "서울 지하철 6호선 (응암~응암)",
-        "en": "서울 지하철 6호선"
+        "ko": "서울 지하철 6호선",
+        "en": "Seoul Subway Line 6"
       },
       "code": "6호선",
       "color": "#CD7C2F",
       "loop": true,
-      "geometryStatus": "missing",
-      "geometryReady": false,
-      "sourceStatus": "secondary-unverified",
+      "geometryStatus": "ready",
+      "geometryReady": true,
+      "sourceStatus": "osm-topology-and-official-order-validated",
       "source": {
-        "name": "Community-derived public data snapshot (2025-10-27)",
-        "url": "https://github.com/JoeYunHa/korea_seoul_subway_static_data"
+        "name": "OpenStreetMap route relations",
+        "url": "https://www.openstreetmap.org/relation/7919154",
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors",
+        "snapshot": "data/kr/source/osm/seoul-line-6-relation-7919154.json"
       },
       "lazy": true,
       "lazySource": "data/kr/generated/routes/kr-metro-6-section-2.json",
@@ -1494,13 +1500,13 @@
       "operatorIds": [
         "kr-seoul-metro"
       ],
-      "releaseStatus": "data-review",
-      "gameValidationStatus": "not-run",
-      "sourceLicenseStatus": "unverified",
-      "passengerLineId": "kr-passenger-metro-6",
+      "releaseStatus": "geometry-validated-game-pending",
+      "gameValidationStatus": "browser-pending",
+      "sourceLicenseStatus": "verified",
+      "passengerLineId": "kr-seoul-line-6",
       "passengerLineName": "서울 지하철 6호선",
       "operatingPatternId": "kr-metro-6-section-2",
-      "serviceValidationStatus": "unverified"
+      "serviceValidationStatus": "official-order-validated"
     },
     {
       "id": "kr-metro-7",
