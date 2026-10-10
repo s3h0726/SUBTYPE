@@ -1,24 +1,108 @@
 {
-  "rebuild": "2026-10-10",
-  "rule": "Real OSM railway track geometry only; never generate straight joins or invented curves.",
-  "firstRoute": "kr-metro-2",
-  "source": "https://www.openstreetmap.org/relation/7625892",
-  "license": "ODbL-1.0",
-  "directions": [
+  "updated": "2026-10-10",
+  "rule": "No straight interpolation or fabricated curves; only contiguous OSM mapped rail segments",
+  "previous": "kr-metro-2",
+  "added": [
     {
-      "direction": "forward",
-      "stops": 44,
-      "segments": 43,
-      "coordinatePoints": 553,
-      "topologyContinuous": true
+      "id": "kr-metro-2-section-2",
+      "source": "https://www.openstreetmap.org/relation/7625892",
+      "directions": [
+        {
+          "id": "forward",
+          "stops": 5,
+          "segments": 4,
+          "points": 121,
+          "continuous": true
+        },
+        {
+          "id": "reverse",
+          "stops": 5,
+          "segments": 4,
+          "points": 97,
+          "continuous": true
+        }
+      ]
     },
     {
-      "direction": "reverse",
-      "stops": 44,
-      "segments": 43,
-      "coordinatePoints": 552,
-      "topologyContinuous": true
+      "id": "kr-metro-2-section-3",
+      "source": "https://www.openstreetmap.org/relation/7625892",
+      "directions": [
+        {
+          "id": "forward",
+          "stops": 5,
+          "segments": 4,
+          "points": 108,
+          "continuous": true
+        },
+        {
+          "id": "reverse",
+          "stops": 5,
+          "segments": 4,
+          "points": 115,
+          "continuous": true
+        }
+      ]
+    },
+    {
+      "id": "kr-metro-5",
+      "source": "https://www.openstreetmap.org/relation/7879871",
+      "directions": [
+        {
+          "id": "forward",
+          "stops": 44,
+          "segments": 43,
+          "points": 391,
+          "continuous": true
+        },
+        {
+          "id": "reverse",
+          "stops": 44,
+          "segments": 43,
+          "points": 403,
+          "continuous": true
+        }
+      ]
+    },
+    {
+      "id": "kr-metro-5-section-2",
+      "source": "https://www.openstreetmap.org/relation/7879871",
+      "directions": [
+        {
+          "id": "forward",
+          "stops": 8,
+          "segments": 7,
+          "points": 48,
+          "continuous": true
+        },
+        {
+          "id": "reverse",
+          "stops": 8,
+          "segments": 7,
+          "points": 52,
+          "continuous": true
+        }
+      ]
+    },
+    {
+      "id": "kr-metro-5-section-3",
+      "source": "https://www.openstreetmap.org/relation/7879871",
+      "directions": [
+        {
+          "id": "forward",
+          "stops": 6,
+          "segments": 5,
+          "points": 91,
+          "continuous": true
+        },
+        {
+          "id": "reverse",
+          "stops": 6,
+          "segments": 5,
+          "points": 97,
+          "continuous": true
+        }
+      ]
     }
   ],
-  "limits": "Only Seoul Line 2 main loop has been restored in this phase; branch lines and browser motion QA pending."
+  "pending": "Runtime visual QA and service pattern grouping"
 }
