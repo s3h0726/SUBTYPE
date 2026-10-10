@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "validatedAt": "2026-10-10T11:53:54.116Z",
+  "passengerLineId": "kr-seoul-line-6",
+  "result": "PASS",
+  "checks": [
+    {
+      "id": "official-order",
+      "status": "pass",
+      "detail": "39 official rows"
+    },
+    {
+      "id": "official-license",
+      "status": "pass",
+      "detail": "서울 열린데이터광장 공공누리 제1유형"
+    },
+    {
+      "id": "sinnae-explicit-coverage",
+      "status": "pass",
+      "detail": "공식 역간거리 누락과 서울시 개통 근거를 분리 기록"
+    },
+    {
+      "id": "osm-provenance",
+      "status": "pass",
+      "detail": "OSM route master 7919154 / ODbL"
+    },
+    {
+      "id": "directions",
+      "status": "pass",
+      "detail": "main two directions plus one-way Eungam loop"
+    },
+    {
+      "id": "one-way-loop",
+      "status": "pass",
+      "detail": "reverse loop geometry is intentionally prohibited"
+    },
+    {
+      "id": "graph",
+      "status": "pass",
+      "detail": "538 nodes / 538 tracks / one loop junction"
+    },
+    {
+      "id": "release-gate",
+      "status": "pass",
+      "detail": "candidate remains blocked from runtime"
+    }
+  ],
+  "stationCount": 39,
+  "directionCount": 3,
+  "segmentCount": 72,
+  "geometrySource": "OpenStreetMap route master 7919154",
+  "geometryStatus": "topology-validated-official-order-partial",
+  "validatedSegmentCount": 72,
+  "failedSegmentCount": 0,
+  "browserTestStatus": "not-run",
+  "geometryReady": false,
+  "errors": []
+}
