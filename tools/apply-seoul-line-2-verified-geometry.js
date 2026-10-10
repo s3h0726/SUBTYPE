@@ -58,7 +58,7 @@ for(const artifact of requiredArtifacts){
   const relative=`data/kr/generated/routes/${artifact}.json`,payload=read(relative),route=payload.route;
   const directions=candidate.directions.filter(item=>item.artifact===artifact).map(item=>hydrateDirection(route,item));
   const primary=directions.find(item=>item.id==='forward')||directions[0];
-  const canonicalPattern=line.operatingPatterns.find(pattern=>pattern.artifactRouteId===artifact);
+  const canonicalPattern=line.operatingPatterns.find(pattern=>(pattern.artifactRouteId||pattern.legacyArtifactId)===artifact);
   payload.route={...route,passengerLineId:line.id,passengerLineName:line.passengerLineName.ko,operatingPatternId:canonicalPattern?.id||route.operatingPatternId,operatingPatternName:canonicalPattern?.name,sourceStatus:'osm-topology-and-official-order-validated',sourceLicenseStatus:'verified',source:{name:'OpenStreetMap route relations',url:`https://www.openstreetmap.org/relation/${candidate.source.osmRouteMasterRelationId}`,license:candidate.source.license,attribution:candidate.source.attribution,snapshot:candidate.source.file},geometryStatus:'ready',geometryReady:true,gameValidationStatus:'browser-pending',releaseStatus:'geometry-validated-game-pending',serviceValidationStatus:'official-order-validated',stations:primary.stops,directions,geometry:primary.geometry,directedSegments:primary.directedSegments};
   write(relative,payload);
   const meta=index.routes.find(item=>item.id===artifact);
@@ -74,6 +74,7 @@ line.geometryReady=true;
 line.geometryValidationStatus='topology-and-official-order-validated';
 line.gameValidationStatus='browser-pending';
 line.releaseStatus='geometry-validated-game-pending';
+line.sourceRefs=line.sourceRefs.map(ref=>ref.kind==='osm-route-master'?{...ref,verificationStatus:'topology-and-official-order-validated'}:ref);
 line.operatingPatterns=line.operatingPatterns.map(pattern=>({...pattern,geometryValidationStatus:'ready',gameValidationStatus:'browser-pending'}));
 write(candidatePath,candidate);
 write(linePath,line);

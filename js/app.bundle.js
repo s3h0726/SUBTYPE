@@ -1471,6 +1471,7 @@ function stationKoreanByJapaneseName(ja){
   return''
 }
 const journeyLabel=value=>{
+  if(typeof value==='string')return value;
   const ko=value?.ko||value?.names?.ko||'',ja=value?.ja||value?.names?.ja||'',en=value?.en||value?.names?.en||'';
   if(hasHangul(ko))return ko;
   const recovered=stationKoreanByJapaneseName(ja||ko);if(recovered)return recovered;
