@@ -16,7 +16,9 @@ function koreaTrackGeometry(route){
   const coords=route.stations.map(s=>[Number(s.latitude),Number(s.longitude)]);
   if(coords.some(p=>!p.every(Number.isFinite)||p[0]===0||p[1]===0))return null;
   const track=paths.filter(p=>Array.isArray(p)&&p.length>1).map(p=>p.map(x=>[Number(x[1]),Number(x[0])]));
-  const snaps=coords.map(pt=>{let best={dist:Infinity};track.forEach((line,k)=>line.forEach((v,i)=>{const d=distance(pt,v);if(d<best.dist)best={k,i,dist:d}}));return best});
+  const choices=track.map((line,k)=>{const snaps=coords.map(pt=>{let best={k,i:-1,dist:Infinity};line.forEach((v,i)=>{const d=distance(pt,v);if(d<best.dist)best={k,i,dist:d}});return best});return{snaps,mean:snaps.reduce((sum,s)=>sum+s.dist,0)/snaps.length,max:Math.max(...snaps.map(s=>s.dist))}});
+  const best=choices.sort((a,b)=>a.mean-b.mean)[0];if(!best||best.mean>200||best.max>850)return null;
+  const snaps=best.snaps;
   
   const segments=[];
   for(let n=0;n<snaps.length-1;n++){
