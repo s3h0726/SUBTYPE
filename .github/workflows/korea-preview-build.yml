@@ -29,7 +29,9 @@ jobs:
         run: |
           node tools/audit-kr-national-catalog.js
           node tools/test-kr-service-gating.js
+          node tools/test-kr-geometry-gating.js
           node tools/validate-korea-data.js
+          node tools/audit-korea-rebuild-baseline.js
       - name: Produce official verification report
         run: node tools/audit-kr-official-completeness.js
       - name: Build app and static data

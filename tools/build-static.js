@@ -1,7 +1,10 @@
 #!/usr/bin/env node
-const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSync}=require('child_process');
 require('./build-line-workspaces');
-require('./build-korea-data');
+// build-korea-data is also a standalone CLI and may terminate early while the
+// imported snapshot remains provisional. Run it in a child process so that it
+// cannot abort the remainder of this production bundle build.
+execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js')],{stdio:'inherit'});
 const tokyoArea=require('./build-tokyo-network');
 const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const write=(relative,value)=>{const target=path.join(root,relative),temporary=`${target}.tmp`;fs.writeFileSync(temporary,value);fs.renameSync(temporary,target)};

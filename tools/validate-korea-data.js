@@ -43,13 +43,17 @@ for(const meta of index.routes||[]){
  }
  for(const direction of detail.directions||[]){
   ensure(direction.stops?.length===primary.length,'direction station count mismatch '+meta.id+'/'+direction.id);
-  if(direction.geometryStatus!=='ready'){
-   ensure(!(direction.geometry||[]).length&&!(direction.directedSegments||[]).length,'fake geometry '+meta.id+'/'+direction.id);
-  }else{
+  if(direction.geometryStatus==='ready'){
    ensure(direction.directedSegments?.length===direction.stops?.length-1,'geometry segments mismatch '+meta.id+'/'+direction.id);
+   ensure(direction.directedSegments?.every(segment=>segment.geometryStatus==='ready'),'unverified segment in ready direction '+meta.id+'/'+direction.id);
+  }else if(direction.geometryStatus==='quarantined'){
+   ensure(detail.geometryReady===false&&meta.geometryReady===false,'quarantined geometry marked ready '+meta.id+'/'+direction.id);
+  }else{
+   ensure(!(direction.geometry||[]).length&&!(direction.directedSegments||[]).length,'unclassified geometry '+meta.id+'/'+direction.id);
   }
  }
- if(detail.geometryReady)geometryReady++;
+ ensure(detail.geometryReady===meta.geometryReady,'geometry readiness mismatch '+meta.id);
+ if(detail.geometryReady){geometryReady++;ensure(detail.geometryStatus==='ready'&&meta.geometryStatus==='ready','ready route status mismatch '+meta.id);ensure(detail.sourceLicenseStatus==='verified','ready route source license unverified '+meta.id)}
  if(detail.sourceStatus==='secondary-unverified')warnings.push('secondary source needs checking: '+meta.id);
 }
 ensure(index.counts?.routes===routeIds.size,'index route count mismatch');
