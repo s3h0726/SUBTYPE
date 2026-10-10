@@ -1710,7 +1710,22 @@ const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomL
 freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
 $('#free-drive-custom')?.addEventListener('click',()=>{const route=editor.route;if(!route?.stations||route.stations.length<2)return toast('자유주행에는 역이 2개 이상 필요합니다.');startFreeDrive(route)});
 let currentScreen=document.body.dataset.currentScreen||'home';
-window.addEventListener('trt:screenchange',e=>{const name=e.detail.name;if(currentScreen==='game'&&name!=='game'){game?.stop(false);const controls=$('#game-free-drive-options'),tabs=$('#game-free-drive-tabs');if(controls)controls.hidden=true;if(tabs)tabs.hidden=true}currentScreen=name;if(name==='rail-map')renderRoutes();if(name==='records')renderStats();if(name==='home'){renderHome();renderHomeNetwork()}if(name==='free-drive')freeDrive?.render?.();if(name==='custom-list')renderCustomLibrary();if(name==='custom-editor')editor.activate()});
+let koreaEditorLoading=false;
+async function loadKoreanEditorNetwork(){
+ if(koreaEditorLoading)return;koreaEditorLoading=true;
+ const pending=builtin.filter(r=>r.countryId==='kr'&&r.lazy&&r.playable!==false&&r.visibility!=='internal'&&r.mode!=='river_bus');
+ try{
+   for(let offset=0;offset<pending.length;offset+=6){
+     const batch=pending.slice(offset,offset+6);
+     await Promise.all(batch.map(async route=>{
+       try{const detail=railDataRepository.resolveRoute(await hydrateRailLine(route));const index=builtin.findIndex(r=>r.id===route.id);if(index>=0)builtin[index]=detail}
+       catch(error){console.warn('Korean editor route load failed:',route.id,error)}
+     }));
+   }
+   if(countryId==='kr'){refreshRoutes();const korean=builtin.filter(r=>r.countryId==='kr'&&Array.isArray(r.stations)&&r.stations.length>=2&&r.playable!==false&&r.visibility!=='internal');editor.setRailNetwork(korean);editor.setStationMaster(korean.flatMap(r=>r.stations))}
+ }finally{koreaEditorLoading=false}
+}
+window.addEventListener('trt:screenchange',e=>{const name=e.detail.name;if(currentScreen==='game'&&name!=='game'){game?.stop(false);const controls=$('#game-free-drive-options'),tabs=$('#game-free-drive-tabs');if(controls)controls.hidden=true;if(tabs)tabs.hidden=true}currentScreen=name;if(name==='rail-map')renderRoutes();if(name==='records')renderStats();if(name==='home'){renderHome();renderHomeNetwork()}if(name==='free-drive')freeDrive?.render?.();if(name==='custom-list')renderCustomLibrary();if(name==='custom-editor'){editor.activate();if(countryId==='kr')loadKoreanEditorNetwork()}});
 document.querySelector('.country-switch').addEventListener('click',async event=>{const button=event.target.closest('[data-country]');if(!button||!isCountryEnabled(button.dataset.country)||button.dataset.country===countryId)return;countryId=button.dataset.country;localStorage.setItem('trt-country',countryId);transportGroup='all';category='all';regionFilter='all';operatorFilter='all';selected=null;selectedGroup=null;applyCountryUi();refreshCountryCopy();await reloadRailData();renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();renderSelected();toast(countryId==='kr'?'대한민국 교통 데이터로 전환했습니다.':'일본 철도 데이터로 전환했습니다.')});
 $('#transport-mode-tabs').addEventListener('click',event=>{const button=event.target.closest('[data-transport-group]');if(!button)return;transportGroup=button.dataset.transportGroup;category='all';regionFilter='all';operatorFilter='all';selected=null;selectedGroup=null;routeRenderLimit=96;renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected()});
 $('#region-tabs').addEventListener('click',event=>{const button=event.target.closest('[data-region]');if(!button)return;regionFilter=button.dataset.region;category='all';operatorFilter='all';selected=null;selectedGroup=null;routeRenderLimit=96;renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected()});
