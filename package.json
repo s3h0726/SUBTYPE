@@ -6,7 +6,7 @@
     "import:osm-route": "node tools/import-osm-route-geometry.js",
     "inspect:osm-master": "node tools/inspect-osm-route-master.js",
     "validate:korea": "node tools/build-korea-data.js && node tools/validate-korea-data.js",
-    "test:korea": "node tools/build-korea-data.js && node tools/validate-korea-data.js && node tools/audit-kr-national-catalog.js && node tools/test-kr-service-gating.js && node tools/test-kr-geometry-gating.js && node tools/test-typing-model.js",
+    "test:korea": "node tools/build-korea-data.js && node tools/validate-korea-data.js && node tools/audit-kr-national-catalog.js && node tools/test-kr-service-gating.js && node tools/test-kr-geometry-gating.js && node tools/test-seoul-line-2-rebuild.js && node tools/test-typing-model.js",
     "test:typing": "node tools/test-typing-model.js && node tools/test-ime-controller.js",
     "audit:tokyo-network": "node tools/build-tokyo-network.js",
     "audit:routes": "node tools/audit-route-integrity.js",
@@ -36,7 +36,7 @@
     "build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/build-static.js && node tools/validate-korea-data.js && node tools/test-single-source.js",
     "test:single-source": "node tools/test-single-source.js",
     "test": "node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/audit-ui-quality.js && node tools/validate-korea-data.js && node tools/test-single-source.js",
-    "audit:korea": "node tools/validate-korea-data.js && node tools/audit-kr-national-catalog.js && node tools/test-kr-service-gating.js && node tools/test-kr-geometry-gating.js",
+    "audit:korea": "node tools/validate-korea-data.js && node tools/audit-kr-national-catalog.js && node tools/test-kr-service-gating.js && node tools/test-kr-geometry-gating.js && node tools/test-seoul-line-2-rebuild.js",
     "audit:korea-rebuild": "node tools/audit-korea-rebuild-baseline.js"
   },
   "devDependencies": {
