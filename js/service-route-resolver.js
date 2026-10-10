@@ -77,6 +77,58 @@ export function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
   return{...parts[0],id:`through-${spec.id}`,dataKind:'throughService',selectedDirectionId:directionId,line:{ja:spec.nameJa,ko:spec.nameKo,en:spec.nameEn},stations,geometry,segments:contexts,throughService:spec,loop:false,coverage:'verified-through-service'}
 }
 
+const koreanFamilyServices={
+  'kr-passenger-metro-5':[
+    {
+      id:'kr-seoul-line-5-hanam-service',
+      names:{ko:'방화 ↔ 하남검단산',ja:'傍花 ↔ 河南黔丹山',en:'Banghwa ↔ Hanam Geomdansan'},
+      directions:{
+        forward:[{routeId:'kr-metro-5',directionId:'forward'},{routeId:'kr-metro-5-section-3',directionId:'forward'}],
+        reverse:[{routeId:'kr-metro-5-section-3',directionId:'reverse'},{routeId:'kr-metro-5',directionId:'reverse'}]
+      }
+    },
+    {
+      id:'kr-seoul-line-5-macheon-service',
+      names:{ko:'방화 ↔ 마천',ja:'傍花 ↔ 馬川',en:'Banghwa ↔ Macheon'},
+      directions:{
+        forward:[{routeId:'kr-metro-5',directionId:'forward',endStationJa:'강동'},{routeId:'kr-metro-5-section-2',directionId:'forward'}],
+        reverse:[{routeId:'kr-metro-5-section-2',directionId:'reverse'},{routeId:'kr-metro-5',directionId:'reverse',startStationJa:'강동',endStationJa:'방화'}]
+      }
+    }
+  ]
+};
+
+function directionalKoreanRoute(route,directionId){
+  const direction=(route?.directions||[]).find(item=>item.id===directionId);
+  if(!direction)throw new Error(`${route?.id||'route'}: missing ${directionId} direction`);
+  if(direction.geometryStatus!=='ready'||direction.geometry?.length<2||direction.stops?.length<2)throw new Error(`${route.id}/${directionId}: verified directional geometry is unavailable`);
+  return{...route,id:`${route.id}@${directionId}`,stations:direction.stops.map(station=>({...station})),geometry:copyGeometry(direction.geometry),directedSegments:(direction.directedSegments||[]).map(segment=>({...segment,geometry:copyGeometry(segment.geometry)})),geometryReady:true,geometryStatus:'ready',selectedDirectionId:directionId};
+}
+
+export function koreanFamilyServiceChoices(passengerLineId){
+  const definitions=koreanFamilyServices[String(passengerLineId)]||[],choices=[];
+  for(const definition of definitions)for(const direction of ['forward','reverse']){
+    const parts=definition.directions[direction];if(!parts?.length)continue;
+    choices.push({kind:'koreanFamilyService',id:`korean-family:${definition.id}:${direction}`,patternId:definition.id,patternName:definition.names,direction,originId:`${definition.id}:${direction}:origin`,destinationId:`${definition.id}:${direction}:destination`,originNames:{ko:direction==='forward'?definition.names.ko.split(' ↔ ')[0]:definition.names.ko.split(' ↔ ')[1]},destinationNames:{ko:direction==='forward'?definition.names.ko.split(' ↔ ')[1]:definition.names.ko.split(' ↔ ')[0]}})
+  }
+  return choices;
+}
+
+export function resolveKoreanFamilyService(choice,getRoute){
+  const definition=Object.values(koreanFamilyServices).flat().find(item=>item.id===choice?.patternId);
+  const configs=definition?.directions?.[choice?.direction||'forward'];
+  if(!definition||!configs?.length)throw new Error('대한민국 운행계통 정의를 찾을 수 없습니다.');
+  const directionalRoutes=new Map,routeSegments=configs.map(config=>{
+    const source=getRoute(config.routeId);if(!source)throw new Error(`${config.routeId}: 물리 노선 데이터를 찾을 수 없습니다.`);
+    const directional=directionalKoreanRoute(source,config.directionId),routeId=directional.id;directionalRoutes.set(routeId,directional);
+    return{routeId,startStationJa:config.startStationJa,endStationJa:config.endStationJa};
+  });
+  const spec={id:`${definition.id}-${choice.direction||'forward'}`,nameJa:definition.names.ja,nameKo:definition.names.ko,nameEn:definition.names.en,routeSegments,boundarySnapToleranceKm:.25};
+  const route=buildThroughServiceRoute(spec,id=>directionalRoutes.get(id));
+  const service={id:definition.id,nameJa:definition.names.ja,nameKo:definition.names.ko,nameEn:definition.names.en,stops:route.stations.map(station=>station.id)};
+  return{route:{...route,id:`korean-family-${definition.id}-${choice.direction||'forward'}`,countryId:'kr',line:{...(route.line||{}),ko:'수도권 전철 5호선',ja:'首都圏電鉄5号線',en:'Seoul Metropolitan Subway Line 5'},passengerLineName:'수도권 전철 5호선',geometryReady:true,geometryStatus:'ready',services:[service]},service,direction:'forward',travelDirectionId:choice.direction||'forward',pattern:{id:definition.id,names:definition.names},trainType:null,destinationStationId:route.stations.at(-1)?.id||null,trainTypeContexts:[]};
+}
+
 export function buildBranchRoute(branch,source,contextRoute=source){
   if(!branch||!source||!contextRoute)throw new Error('Missing branch or parent route');
   const sourceMap=new Map((source.stations||[]).map(station=>[stationKey(station),station])),stations=branch.stationSequence.map(id=>sourceMap.get(String(id)));

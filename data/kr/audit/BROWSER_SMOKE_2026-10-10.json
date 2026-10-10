@@ -4,10 +4,10 @@
   "environment": {
     "url": "http://127.0.0.1:8765/",
     "browser": "Codex in-app browser",
-    "viewportClass": "desktop"
+    "viewportClass": "desktop and 390x844 mobile"
   },
   "build": {
-    "appBundleSha256Prefix": "369010eaef33",
+    "appBundleSha256Prefix": "5484b65e5cea",
     "branch": "codex/korea-network-rebuild-20261010"
   },
   "checks": [
@@ -43,9 +43,21 @@
       "remaining": "inner loop, reverse branch, Sinjeong branch, full-run completion, and mobile remain untested"
     },
     {
+      "id": "kr-seoul-line-5-single-card-and-patterns",
+      "status": "pass",
+      "observed": "one 수도권 전철 5호선 card displayed two operating patterns: 방화 ↔ 하남검단산 and 방화 ↔ 마천"
+    },
+    {
+      "id": "kr-seoul-line-5-geometry-runtime",
+      "status": "partial-pass",
+      "observed": "방화-to-하남검단산 and 마천-to-방화 journeys started with OPENSTREETMAP LIVE; typing 방화 advanced to 개화산 and typing 마천 advanced to 거여 on the traced route",
+      "remaining": "the other two directions and full-run completion remain untested in a browser; all four directions passed automated no-fallback runtime validation"
+    },
+    {
       "id": "kr-mobile-layout",
-      "status": "not-run",
-      "reason": "no mobile viewport was exercised in this smoke test"
+      "status": "partial-pass",
+      "observed": "at 390x844 the Line 5 station sign and typing input stayed within the viewport and the Leaflet map filled the mobile viewport",
+      "remaining": "full journey completion and broader device matrix remain untested"
     },
     {
       "id": "jp-browser-regression",

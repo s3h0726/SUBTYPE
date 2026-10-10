@@ -619,6 +619,58 @@ function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
   return{...parts[0],id:`through-${spec.id}`,dataKind:'throughService',selectedDirectionId:directionId,line:{ja:spec.nameJa,ko:spec.nameKo,en:spec.nameEn},stations,geometry,segments:contexts,throughService:spec,loop:false,coverage:'verified-through-service'}
 }
 
+const koreanFamilyServices={
+  'kr-passenger-metro-5':[
+    {
+      id:'kr-seoul-line-5-hanam-service',
+      names:{ko:'방화 ↔ 하남검단산',ja:'傍花 ↔ 河南黔丹山',en:'Banghwa ↔ Hanam Geomdansan'},
+      directions:{
+        forward:[{routeId:'kr-metro-5',directionId:'forward'},{routeId:'kr-metro-5-section-3',directionId:'forward'}],
+        reverse:[{routeId:'kr-metro-5-section-3',directionId:'reverse'},{routeId:'kr-metro-5',directionId:'reverse'}]
+      }
+    },
+    {
+      id:'kr-seoul-line-5-macheon-service',
+      names:{ko:'방화 ↔ 마천',ja:'傍花 ↔ 馬川',en:'Banghwa ↔ Macheon'},
+      directions:{
+        forward:[{routeId:'kr-metro-5',directionId:'forward',endStationJa:'강동'},{routeId:'kr-metro-5-section-2',directionId:'forward'}],
+        reverse:[{routeId:'kr-metro-5-section-2',directionId:'reverse'},{routeId:'kr-metro-5',directionId:'reverse',startStationJa:'강동',endStationJa:'방화'}]
+      }
+    }
+  ]
+};
+
+function directionalKoreanRoute(route,directionId){
+  const direction=(route?.directions||[]).find(item=>item.id===directionId);
+  if(!direction)throw new Error(`${route?.id||'route'}: missing ${directionId} direction`);
+  if(direction.geometryStatus!=='ready'||direction.geometry?.length<2||direction.stops?.length<2)throw new Error(`${route.id}/${directionId}: verified directional geometry is unavailable`);
+  return{...route,id:`${route.id}@${directionId}`,stations:direction.stops.map(station=>({...station})),geometry:copyGeometry(direction.geometry),directedSegments:(direction.directedSegments||[]).map(segment=>({...segment,geometry:copyGeometry(segment.geometry)})),geometryReady:true,geometryStatus:'ready',selectedDirectionId:directionId};
+}
+
+function koreanFamilyServiceChoices(passengerLineId){
+  const definitions=koreanFamilyServices[String(passengerLineId)]||[],choices=[];
+  for(const definition of definitions)for(const direction of ['forward','reverse']){
+    const parts=definition.directions[direction];if(!parts?.length)continue;
+    choices.push({kind:'koreanFamilyService',id:`korean-family:${definition.id}:${direction}`,patternId:definition.id,patternName:definition.names,direction,originId:`${definition.id}:${direction}:origin`,destinationId:`${definition.id}:${direction}:destination`,originNames:{ko:direction==='forward'?definition.names.ko.split(' ↔ ')[0]:definition.names.ko.split(' ↔ ')[1]},destinationNames:{ko:direction==='forward'?definition.names.ko.split(' ↔ ')[1]:definition.names.ko.split(' ↔ ')[0]}})
+  }
+  return choices;
+}
+
+function resolveKoreanFamilyService(choice,getRoute){
+  const definition=Object.values(koreanFamilyServices).flat().find(item=>item.id===choice?.patternId);
+  const configs=definition?.directions?.[choice?.direction||'forward'];
+  if(!definition||!configs?.length)throw new Error('대한민국 운행계통 정의를 찾을 수 없습니다.');
+  const directionalRoutes=new Map,routeSegments=configs.map(config=>{
+    const source=getRoute(config.routeId);if(!source)throw new Error(`${config.routeId}: 물리 노선 데이터를 찾을 수 없습니다.`);
+    const directional=directionalKoreanRoute(source,config.directionId),routeId=directional.id;directionalRoutes.set(routeId,directional);
+    return{routeId,startStationJa:config.startStationJa,endStationJa:config.endStationJa};
+  });
+  const spec={id:`${definition.id}-${choice.direction||'forward'}`,nameJa:definition.names.ja,nameKo:definition.names.ko,nameEn:definition.names.en,routeSegments,boundarySnapToleranceKm:.25};
+  const route=buildThroughServiceRoute(spec,id=>directionalRoutes.get(id));
+  const service={id:definition.id,nameJa:definition.names.ja,nameKo:definition.names.ko,nameEn:definition.names.en,stops:route.stations.map(station=>station.id)};
+  return{route:{...route,id:`korean-family-${definition.id}-${choice.direction||'forward'}`,countryId:'kr',line:{...(route.line||{}),ko:'수도권 전철 5호선',ja:'首都圏電鉄5号線',en:'Seoul Metropolitan Subway Line 5'},passengerLineName:'수도권 전철 5호선',geometryReady:true,geometryStatus:'ready',services:[service]},service,direction:'forward',travelDirectionId:choice.direction||'forward',pattern:{id:definition.id,names:definition.names},trainType:null,destinationStationId:route.stations.at(-1)?.id||null,trainTypeContexts:[]};
+}
+
 function buildBranchRoute(branch,source,contextRoute=source){
   if(!branch||!source||!contextRoute)throw new Error('Missing branch or parent route');
   const sourceMap=new Map((source.stations||[]).map(station=>[stationKey(station),station])),stations=branch.stationSequence.map(id=>sourceMap.get(String(id)));
@@ -1452,7 +1504,7 @@ function filteredRoutes(){const queries=searchVariants($('#route-search').value)
 function stopWord(route){return['bus','village_bus','express_bus','brt'].includes(route.mode)?'정류장':['river_bus','ferry'].includes(route.mode)?'선착장':'역'}
 function krLineFamily(r){return r.countryId==='kr'?(r.passengerLineId||r.id):null}
 function krRouteLabel(r){return String(r.passengerLineName||r.line?.ko||r.id).trim()}
-function krRouteCards(filtered){const groups=new Map();for(const r of filtered){const key=krLineFamily(r)||r.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}return [...groups.values()].map(members=>{const r=members[0];if(members.length<2)return routeCard(r);return '<button type="button" class="line-card" style="--route-color:'+escapeHtml(r.lineColor||'#888')+'" data-kr-family="'+escapeHtml(krLineFamily(r))+'"><div class="line-card-identity"><span class="operator">'+escapeHtml(r.operator?.ko||'')+'</span><h3 class="line-card-line-name">'+escapeHtml(krRouteLabel(r))+'</h3></div><p>행선지와 운행구간은 다음 화면에서 선택</p><footer><span>'+members.length+'개 운행구간</span><span>행선지 설정 →</span></footer></button>'}).join('')}
+function krRouteCards(filtered){const groups=new Map();for(const r of filtered){const key=krLineFamily(r)||r.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}return [...groups.values()].map(members=>{const r=members[0];if(members.length<2)return routeCard(r);const services=koreanFamilyServiceChoices(krLineFamily(r)),count=services.length?services.length/2:members.length,label=services.length?'운행계통':'운행구간';return '<button type="button" class="line-card" style="--route-color:'+escapeHtml(r.lineColor||'#888')+'" data-kr-family="'+escapeHtml(krLineFamily(r))+'"><div class="line-card-identity"><span class="operator">'+escapeHtml(r.operator?.ko||'')+'</span><h3 class="line-card-line-name">'+escapeHtml(krRouteLabel(r))+'</h3></div><p>행선지와 운행구간은 다음 화면에서 선택</p><footer><span>'+count+'개 '+label+'</span><span>행선지 설정 →</span></footer></button>'}).join('')}
 function routeCard(r){const ready=r.geometryReady===true,word=stopWord(r),action=r.countryId==='kr'&&!ready?'선형 검증 대기':r.lazy?'상세 불러오기':ready?'선택':'순서 플레이';return`<button class="line-card ${selected?.id===r.id?'selected':''} ${r.category==='shinkansen'?'shinkansen-card':''}" style="--route-color:${r.lineColor}" data-route="${r.id}"><div class="line-card-identity"><span class="operator">${escapeHtml(r.operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ko)}</h3></div><p>${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ja||r.line.en)}</p><footer><span>${r.stationCount||r.stations.length}개 ${word}</span><span>${action} →</span></footer></button>`}
 function renderRoutes(){const filtered=filteredRoutes(),query=$('#route-search').value,keio=countryId==='jp'?filtered.filter(r=>NETWORK_GROUPS.keio.routeIds.includes(r.id)):[],grouped=!query&&keio.length>1,allVisible=grouped?filtered.filter(r=>!NETWORK_GROUPS.keio.routeIds.includes(r.id)):filtered,visible=allVisible.slice(0,routeRenderLimit);$('#route-count').textContent=`${filtered.length}개 노선 · ${Math.min(visible.length,allVisible.length)}개 표시`;const random=category==='all'&&transportGroup==='all'&&operatorFilter==='all'&&!query?`<button class="line-card random" style="--route-color:#45c985" data-random-route><span class="operator">${countryId==='kr'?'KOREA TRANSIT NETWORK':'JAPAN RAIL NETWORK'}</span><h3>RANDOM</h3><p>${countryId==='kr'?'대한민국':'일본 전국'} 랜덤 노선</p><footer><span>PLAYABLE ROUTES</span><span>SELECT →</span></footer></button>`:'';const group=grouped?`<button class="line-card network-group" style="--route-color:#d4146d" data-route-group="keio"><div class="line-card-identity"><span class="operator">${escapeHtml(keio[0].operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(keio[0].line.ko)} 계통</h3></div><p>${escapeHtml(keio[0].line.ko)} 계통</p><footer><span>${keio.length} LINES</span><span>BRANCHES →</span></footer></button>`:'';const more=allVisible.length>visible.length?`<button class="line-card route-more" data-route-more><span class="operator">WINDOWED GRID</span><h3>＋ ${Math.min(96,allVisible.length-visible.length)}개 더 보기</h3><p>${allVisible.length-visible.length}개 노선 남음</p></button>`:'';$('#route-grid').innerHTML=random+group+(visible.length?(countryId==='kr'?krRouteCards(visible):visible.map(routeCard).join(''))+more:'<p class="muted">검색 결과가 없습니다.</p>')}
 function renderSelected(){const panel=$('#selected-line-preview');if(selectedGroup){const spec=NETWORK_GROUPS[selectedGroup],members=spec.routeIds.map(id=>routes.find(route=>route.id===id)).filter(Boolean),main=members[0];panel.innerHTML=`<div class="selected-line-card network-detail"><p class="eyebrow">MAIN / BRANCHES</p><h3 id="selected-line-heading">${escapeHtml(main?.line.ja||'')}系統<span>${escapeHtml(main?.line.ko||'')} 계통</span></h3><div class="network-branches">${members.map(route=>`<button data-route="${route.id}"><span><b>${escapeHtml(route.line.ja)}</b><small>${escapeHtml(route.line.ko)} · ${route.stations.length} STATIONS</small></span></button>`).join('')}</div></div>`;return}if(!selected){panel.innerHTML='<div class="selected-line-empty"><h3 id="selected-line-heading">노선을 선택하세요.</h3><p>오른쪽 목록에서 플레이할 노선을 선택합니다.</p></div>';return}panel.closest('.selected-line-panel').style.setProperty('--route-color',selected.lineColor);panel.innerHTML=`<div class="selected-line-card" style="--route-color:${selected.lineColor}"><div class="selected-line-operator"><span>${escapeHtml(selected.operator.ko)}</span></div><h3 id="selected-line-heading">${escapeHtml(selected.line.ja)}<span>${escapeHtml(selected.line.ko)} · ${escapeHtml(selected.line.en)}</span></h3>${selected.section?`<p class="selected-section">${escapeHtml(selected.section.ja)} · ${escapeHtml(selected.section.ko)}</p>`:''}<div class="selected-line-meta"><span>${selected.stations.length} STATIONS</span><span>${selected.dataKind==='trainService'?'LIMITED EXPRESS':selected.loop?'LOOP LINE':'FULL ROUTE'}</span></div><div class="selected-line-actions"><button class="selected-play" type="button" data-selected-play>PLAY THIS LINE <span>→</span></button><button class="selected-free-drive" type="button" data-selected-free-drive>FREE DRIVE <span>↗</span></button></div></div>`}
@@ -1513,6 +1565,7 @@ function buildCatalogResolved(choice){
 }
 function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
+  if(choice.kind==='koreanFamilyService')return resolveKoreanFamilyService(choice,id=>builtin.find(item=>item.id===id));
   if(choice.kind==='catalog')return buildCatalogResolved(choice);
   if(choice.kind==='trainService'){
     const stopNames=new Set((choice.branchStops||[]).map(String));
@@ -1593,6 +1646,7 @@ function actualOperatingChoices(route){
 }
 function operatingPatternKey(choice){return String(choice.sourceRouteId||choice.patternId||choice.legacyServiceId||journeyLabel(choice.patternName)||'default')}
 function operatingPatternLabel(choice){
+  if(choice.kind==='koreanFamilyService')return journeyLabel(choice.patternName);
   const route=choice.sourceRouteId?(builtin.find(item=>item.id===choice.sourceRouteId)||routes.find(item=>item.id===choice.sourceRouteId)):selected;
   const seoulLine2={"kr-metro-2":'본선 순환',"kr-metro-2-section-2":'성수지선',"kr-metro-2-section-3":'신정지선'};
   if(route?.passengerLineId==='kr-passenger-metro-2'&&seoulLine2[route.id])return seoulLine2[route.id];
@@ -1660,8 +1714,10 @@ async function prepareKoreanFamilyChoices(route){
    }catch(error){console.warn('Korean family section unavailable:',r.id,error);return null}
  }));
  if(selected?.id!==route.id||currentScreen!=='game-setup')return;
- const combined=[];
- for(const member of prepared.filter(Boolean)){
+ const familyServices=koreanFamilyServiceChoices(family),combined=[];
+ if(familyServices.length){
+   for(const choice of familyServices)if(operatingChoicePlayable(choice,route))combined.push(choice);
+ }else for(const member of prepared.filter(Boolean)){
    for(const choice of actualOperatingChoices(member))combined.push({...choice,id:member.id+'::'+choice.id,sourceRouteId:member.id,sourceChoice:choice});
  }
  koreaFamilyChoices=combined;

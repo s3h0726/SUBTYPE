@@ -9,8 +9,8 @@
     "retrieved": "2026-10-10",
     "sha256": "3e3bfe11edbea244645b861b3c5d7e8012bc32fc896e97c8c66a661c326e5941"
   },
-  "geometryStatus": "topology-and-official-order-validated-runtime-pending",
-  "geometryReady": false,
+  "geometryStatus": "ready",
+  "geometryReady": true,
   "directions": [
     {
       "artifact": "kr-metro-5",
@@ -4511,8 +4511,10 @@
           0,
           43
         ],
-        "officialOrderStatus": "passed"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-5",
@@ -9119,8 +9121,10 @@
           0,
           43
         ],
-        "officialOrderStatus": "passed"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-5-section-2",
@@ -9727,8 +9731,10 @@
           0,
           7
         ],
-        "officialOrderStatus": "passed"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-5-section-2",
@@ -10370,8 +10376,10 @@
           0,
           7
         ],
-        "officialOrderStatus": "passed"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-5-section-3",
@@ -11325,8 +11333,10 @@
           43,
           48
         ],
-        "officialOrderStatus": "passed"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     },
     {
       "artifact": "kr-metro-5-section-3",
@@ -12334,8 +12344,10 @@
           0,
           5
         ],
-        "officialOrderStatus": "passed"
-      }
+        "officialOrderStatus": "passed",
+        "runtimeArtifactIntegrated": true
+      },
+      "geometryStatus": "ready"
     }
   ],
   "officialOrderValidation": {
@@ -12343,5 +12355,6 @@
     "report": "data/kr/audit/SEOUL_LINE_5_OFFICIAL_ORDER.json",
     "source": "data/kr/source/seoul-open-data/line-5-interstation-2024-03-25.json",
     "datasetAsOf": "2024-03-25"
-  }
+  },
+  "gameValidationStatus": "browser-pending"
 }

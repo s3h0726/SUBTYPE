@@ -33,6 +33,8 @@ jobs:
           node tools/validate-seoul-line-2-official-order.js
           node tools/test-seoul-line-2-rebuild.js
           node tools/validate-seoul-line-5-official-order.js
+          node tools/apply-seoul-line-5-verified-geometry.js
+          node tools/test-seoul-line-5-runtime.mjs
           node tools/validate-korea-data.js
           node tools/audit-korea-rebuild-baseline.js
       - name: Produce official verification report

@@ -32,7 +32,7 @@
       "relationId": 7879871,
       "url": "https://www.openstreetmap.org/relation/7879871",
       "license": "ODbL-1.0",
-      "verificationStatus": "topology-and-official-order-validated-runtime-pending"
+      "verificationStatus": "topology-official-order-and-runtime-validated"
     }
   ],
   "physicalArtifacts": [
@@ -49,8 +49,9 @@
         "kr-metro-5-section-3"
       ],
       "junctionStation": "상일동",
-      "serviceValidationStatus": "official-order-validated-journey-pending",
-      "geometryValidationStatus": "candidate"
+      "serviceValidationStatus": "official-order-and-runtime-validated",
+      "geometryValidationStatus": "ready",
+      "gameValidationStatus": "browser-pending"
     },
     {
       "id": "kr-seoul-line-5-macheon-service",
@@ -61,14 +62,15 @@
       ],
       "junctionStation": "강동",
       "junctionOsmNodeId": 6039313080,
-      "serviceValidationStatus": "official-order-validated-journey-pending",
-      "geometryValidationStatus": "candidate"
+      "serviceValidationStatus": "official-order-and-runtime-validated",
+      "geometryValidationStatus": "ready",
+      "gameValidationStatus": "browser-pending"
     }
   ],
   "topologyGraph": "data/kr/rebuild/topology/kr-seoul-line-5.graph.json",
-  "geometryReady": false,
-  "gameValidationStatus": "not-run",
-  "releaseStatus": "topology-candidate-review",
-  "geometryValidationStatus": "topology-and-official-order-validated-runtime-pending",
+  "geometryReady": true,
+  "gameValidationStatus": "browser-pending",
+  "releaseStatus": "geometry-validated-game-pending",
+  "geometryValidationStatus": "topology-official-order-and-runtime-validated",
   "stationOrderValidationStatus": "official-api-validated"
 }
