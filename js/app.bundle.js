@@ -820,7 +820,7 @@ function createRouteLayers(rail,route,index,options={}){
 function updateRouteProgress(rail,route,index,motion,options={}){
   const nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1),currentPosition=rail.train?.getLatLng(),previous=currentPosition?[currentPosition.lat,currentPosition.lng]:rail.stationPoints[rail.index],next=rail.stationPoints[index];rail.remaining.setLatLngs(rail.points.slice(rail.stationOffsets[index]));rail.completed.setLatLngs(rail.points.slice(0,rail.stationOffsets[index]+1));
   rail.markers.forEach((marker,i)=>{const kind=i===index?'current':i===nextIndex?'next':i===index-1?'previous':'other';marker.setIcon(stationIcon(rail.L,route.stations[i],kind,route.lineColor));marker.setZIndexOffset(i===index?500:0)});
-  const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;updateDebug()
+  const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;/* Keep camera stable on station advance; avoid repeated fitBounds pan/zoom jitter. */updateDebug()
 }
 async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
