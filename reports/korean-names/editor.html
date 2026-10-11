@@ -29,6 +29,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div class="toolbar" id="tabs">
 <button class="tab active" data-file="operators">운영사 <span id="count-operators">…</span></button>
 <button class="tab" data-file="lines">노선 <span id="count-lines">…</span></button>
+<button class="tab" data-file="services">직통·운행계통 <span id="count-services">…</span></button>
 <button class="tab" data-file="stations-by-line">역명 <span id="count-stations-by-line">…</span></button>
 <button class="tab" data-file="stations-unique">고유 역명 <span id="count-stations-unique">…</span></button>
 </div>
@@ -42,18 +43,19 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div class="toolbar"><label for="githubToken">GitHub fine-grained 토큰 (Contents: Read and write)</label><input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_..." style="flex:1;min-width:200px;padding:9px;border:1px solid #bdccd8;border-radius:8px"><small>토큰은 서버·브라우저 저장소에 저장하지 않습니다.</small></div>
 <div class="panel"><div id="status" role="status">자료 읽는 중…</div><div id="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div></div>
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
-<p class="note">초록색 한글명과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
+<p class="note">초록색 한글명(직통·운행계통 포함)과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
 </main>
+<script src="../../js/service-data.js?v=services-editor-20261011"></script>
 <script>
 'use strict';
-const FILES=['operators','lines','stations-by-line','stations-unique'];
+const FILES=['operators','lines','services','stations-by-line','stations-unique'];
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0;
 const DATA_VERSION='20261011-current';
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
-const editNameCol={'operators':'한국어명','lines':'노선 한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
+const editNameCol={'operators':'한국어명','lines':'노선 한글명','services':'한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
 const isChanged=i=>rows[i]?.some((v,j)=>v!==original[i]?.[j]);
-let remoteOverrides={operators:{},lines:{},stations:{}};
+let remoteOverrides={operators:{},lines:{},stations:{},services:{}};
 const colorRE=/^#[0-9a-f]{6}$/i;
 function cssToHex(value){value=String(value||'').trim();if(colorRE.test(value))return value.toUpperCase();if(/^#[0-9a-f]{3}$/i.test(value))return '#'+[...value.slice(1)].map(c=>c+c).join('').toUpperCase();
  const m=value.match(/^hsl\(\s*(\d+(?:\.\d+)?)\s+([\d.]+)%\s+([\d.]+)%\s*\)$/i);if(!m)return '#60736A';
@@ -61,11 +63,12 @@ function cssToHex(value){value=String(value||'').trim();if(colorRE.test(value))r
  const f=n=>{const k=(n+h/30)%12;return Math.round(255*(l-a*Math.max(-1,Math.min(k-3,9-k,1)))).toString(16).padStart(2,'0')};
  return ('#'+f(0)+f(8)+f(4)).toUpperCase();
 }
-async function fetchOverrides(){const r=await fetch('../../data/editor-overrides.json?ts='+Date.now(),{cache:'no-store'});if(r.ok){const x=await r.json();remoteOverrides={operators:x.operators||{},lines:x.lines||{},stations:x.stations||{}}}}
+async function fetchOverrides(){const r=await fetch('../../data/editor-overrides.json?ts='+Date.now(),{cache:'no-store'});if(r.ok){const x=await r.json();remoteOverrides={operators:x.operators||{},lines:x.lines||{},stations:x.stations||{},services:x.services||{}}}}
 function applyRemote(){
  for(let i=0;i<rows.length;i++){const row=rows[i],id=file==='operators'?row[0]:file==='lines'?row[2]:null;
  if(file==='operators'&&remoteOverrides.operators[id])row[1]=remoteOverrides.operators[id];
  if(file==='lines'){const v=remoteOverrides.lines[id];if(v?.ko)row[3]=v.ko;if(v?.color)row[6]=v.color;else row[6]=cssToHex(row[6]);}
+ if(file==='services'){const v=remoteOverrides.services[row[0]];if(v)row[4]=v}
  if(file==='stations-by-line'){const v=remoteOverrides.stations[row[2]]?.[row[4]]||remoteOverrides.stations[row[2]]?.[row[5]];if(v)row[6]=v;}
  }
 }
@@ -84,10 +87,17 @@ function saveCSV(data,name){const blob=new Blob([makeCSV(data)],{type:'text/csv;
 function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[i]=r});localStorage.setItem('metrot-korean-edit-'+DATA_VERSION+'-'+file,JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
 function applyDraft(){try{let draft=JSON.parse(localStorage.getItem('metrot-korean-edit-'+DATA_VERSION+'-'+file)||'{}');for(const [i,r] of Object.entries(draft))if(rows[+i]&&r.length===heads.length)rows[+i]=r}catch{}}
+function serviceRows(){
+ const result=[],catalog=window.TRT_SERVICE_CATALOG||{},tokyo=window.TRT_TOKYO_SERVICE_PATTERNS||{};
+ for(const [lineId,items] of Object.entries(catalog))for(const item of items||[])result.push(['legacy:'+lineId+':'+item.id,'일반 운행계통',lineId,item.nameJa||'',item.nameKo||'',item.nameEn||'']);
+ for(const [kind,title] of [['trainTypes','열차종별'],['servicePatterns','직통·운행 패턴'],['branches','분기·운행계통']]){
+  for(const item of tokyo[kind]||[])result.push([kind+':'+item.id,title,item.baseRouteId||item.parentLineId||item.operatorId||'',item.names?.ja||'',item.names?.ko||'',item.names?.en||''])
+ }
+ return result;
+}
 async function load(name){file=name;page=0;q.value='';changesOnly.checked=false;status.textContent='자료 읽는 중…';
  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.file===name));
- try{const res=await fetch('./'+name+'.csv?v='+DATA_VERSION,{cache:'no-store'});if(!res.ok)throw Error('CSV '+res.status);
- const arr=parseCSV(await res.text());heads=arr.shift();rows=arr;const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
+ try{let arr;if(name==='services')arr=[['고유 ID','종류','노선 ID','일본어명','한글명','영어명'],...serviceRows()];else{const res=await fetch('./'+name+'.csv?v='+DATA_VERSION,{cache:'no-store'});if(!res.ok)throw Error('CSV '+res.status);arr=parseCSV(await res.text())}heads=arr.shift();rows=arr;const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
  }catch(e){status.textContent='파일을 열 수 없습니다: '+e.message}}
 function refresh(){
  const key=q.value.trim().toLocaleLowerCase('ko');visible=[];
@@ -137,7 +147,8 @@ async function saveToGame(){
  if(!json||typeof json!=='object'||Array.isArray(json))throw Error('원격 설정 파일 형식이 올바르지 않습니다.');
  const updates=rows.map((r,i)=>isChanged(i)?r:null).filter(Boolean);
  if(!updates.length){status.textContent='변경된 항목이 없습니다.';return}
- json.operators||={};json.lines||={};json.stations||={};
+ json.operators||={};json.lines||={};json.stations||={};json.services||={};
+ if(file==='services')for(const row of updates){if(!row[4].trim())throw Error('운행계통 한글명을 비울 수 없습니다.');json.services[row[0]]=row[4].trim()}
  if(file==='operators')for(const row of updates)mergeChange(json.operators,row[0],row[1].trim());
  if(file==='lines')for(const row of updates){
  const id=row[2],color=cssToHex(row[6]);if(!colorRE.test(color))throw Error('색상은 #RRGGBB 형식이어야 합니다');
