@@ -20,61 +20,59 @@ function segmentPath(route,from,to){
  const first=coordinate(from),last=coordinate(to);
  return first&&last&&Math.abs(a[0][0]-first[0])+Math.abs(a[0][1]-first[1])>Math.abs(a.at(-1)[0]-first[0])+Math.abs(a.at(-1)[1]-first[1])?a.reverse():a;
 }
-let trainAnimation=null;
-function stopTrain(){if(trainAnimation!==null)cancelAnimationFrame(trainAnimation);trainAnimation=null}
-function showCompletedJourneyOnMap(result){
+let journeyMap=null,journeyTrain=null,trainAnimation=null,journeyLayer=null;
+function stopTrain(){if(trainAnimation!==null)cancelAnimationFrame(trainAnimation);trainAnimation=null;if(journeyMap){journeyMap.remove();journeyMap=null}journeyTrain=null}
+async function showCompletedJourneyOnMap(result){
  stopTrain();
  const box=document.getElementById('result-journey-map'),note=document.getElementById('result-journey-note'),heading=document.getElementById('result-journey-heading');
  if(!box||!note||!heading)return;
  const route=result.route||{},stations=route.stations||[],byId=new Map(stations.map(s=>[s.id,s]));
  const passed=(result.typedStationIds||[]).map(id=>byId.get(id)).filter(Boolean);
  heading.textContent=(passed[0]?.ko||passed[0]?.ja||'출발')+' → '+(passed.at(-1)?.ko||passed.at(-1)?.ja||'도착');
- let track=[],missing=0;
+ let parts=[],missing=0;
  for(let i=1;i<passed.length;i++){
-  const detailed=segmentPath(route,passed[i-1],passed[i]),a=coordinate(passed[i-1]),b=coordinate(passed[i]);
-  const part=detailed||a&&b&&[a,b];
-  if(!detailed)missing++;
-  if(part)track.push(...(track.length?part.slice(1):part));
+  const detailed=segmentPath(route,passed[i-1],passed[i]),from=coordinate(passed[i-1]),to=coordinate(passed[i]);
+  if(detailed)parts.push({points:detailed,verified:true});
+  else if(from&&to){parts.push({points:[from,to],verified:false});missing++}
  }
- if(track.length<2)track=passed.map(coordinate).filter(Boolean);
- if(!track.length){box.textContent='표시할 역 좌표가 없습니다.';note.textContent='거리 및 경로 정보가 부족합니다.';return}
- // Retain shape, but remove excessive map detail; preserve endpoints.
- const stride=Math.max(1,Math.ceil(track.length/180));
- const simplified=track.filter((_,i)=>i%stride===0);
- if(!same(simplified.at(-1),track.at(-1)))simplified.push(track.at(-1));
- const width=800,height=350,pad=42;
- const lats=simplified.map(p=>p[0]),lngs=simplified.map(p=>p[1]);
- const minLat=Math.min(...lats),maxLat=Math.max(...lats),minLng=Math.min(...lngs),maxLng=Math.max(...lngs);
- const k=Math.min((width-pad*2)/Math.max(.00001,(maxLng-minLng)*Math.cos(radians((minLat+maxLat)/2))),(height-pad*2)/Math.max(.00001,maxLat-minLat));
- const project=p=>[width/2+((p[1]-(minLng+maxLng)/2)*Math.cos(radians((minLat+maxLat)/2)))*k,height/2-(p[0]-(minLat+maxLat)/2)*k];
- const pts=simplified.map(project),d=pts.map((p,i)=>(i?'L':'M')+p.map(n=>n.toFixed(2)).join(' ')).join(' ');
- const col=/^#[0-9a-f]{3,8}$/i.test(route.lineColor||'')?route.lineColor:'#199e83';
- box.replaceChildren();
- const ns='http://www.w3.org/2000/svg';
- const el=(tag,attrs,parent)=>{const node=document.createElementNS(ns,tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,String(value));(parent||svg).append(node);return node};
- const svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 800 350');svg.setAttribute('role','img');svg.setAttribute('aria-label','단순화된 운행 구간 노선도');svg.style.cssText='width:100%;height:100%;display:block;background:var(--surface,#f4f8f7);border-radius:14px';box.append(svg);
- el('path',{d,fill:'none',stroke:'#a7b5b0','stroke-width':12,'stroke-linecap':'round','stroke-linejoin':'round'});
- const line=el('path',{d,fill:'none',stroke:col,'stroke-width':7,'stroke-linecap':'round','stroke-linejoin':'round'});
- // Fixed endpoints and a moving train. Only this button starts the animation.
- for(const [p,label,fill] of [[pts[0],'START','#16a34a'],[pts.at(-1),'END','#dc2626']]){
-  el('circle',{cx:p[0],cy:p[1],r:9,fill,stroke:'#fff','stroke-width':3});
-  const t=el('text',{x:p[0],y:p[1]-16,'text-anchor':'middle',fill:'currentColor','font-size':15,'font-weight':700});t.textContent=label;
+ if(!parts.length){note.textContent='경로 좌표를 확인할 수 없습니다.';box.replaceChildren();return}
+ box.replaceChildren();box.style.display='block';
+ const {ensureLeaflet}=await import('./network-map.js');
+ const L=await ensureLeaflet();
+ if(document.getElementById('result-journey')?.hidden)return;
+ journeyMap=L.map(box,{zoomControl:true,scrollWheelZoom:false,minZoom:5,maxZoom:18,attributionControl:true});
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,keepBuffer:8,updateWhenIdle:true,attribution:'&copy; OpenStreetMap contributors'}).addTo(journeyMap);
+ const color=/^#[0-9a-f]{3,8}$/i.test(route.lineColor||'')?route.lineColor:'#18a77c';
+ const linePoints=[];
+ for(const part of parts){
+  L.polyline(part.points,{color:part.verified?color:'#9aa6a2',weight:part.verified?7:4,opacity:0.95,dashArray:part.verified?null:'6 8',lineCap:'round'}).addTo(journeyMap);
+  linePoints.push(...(!linePoints.length?part.points:part.points.slice(1)));
  }
- const train=el('g',{'aria-label':'움직이는 열차'});
- el('rect',{x:-12,y:-9,width:24,height:18,rx:6,fill:'#172e39',stroke:'#fff','stroke-width':2},train);
- el('rect',{x:-7,y:-5,width:14,height:6,rx:2,fill:'#a8e2ff'},train);
+ for(let i=0;i<passed.length;i++){
+  const position=coordinate(passed[i]);if(!position)continue;
+  L.circleMarker(position,{radius:i===0||i===passed.length-1?7:3,weight:2,color:'#ffffff',fillColor:i===0?'#16a34a':i===passed.length-1?'#dc2626':color,fillOpacity:1}).bindTooltip(passed[i].ko||passed[i].ja||'',{direction:'top'}).addTo(journeyMap);
+ }
+ const bounds=L.latLngBounds(linePoints);
+ if(bounds.isValid())journeyMap.fitBounds(bounds.pad(0.16),{maxZoom:14});
+ journeyTrain=L.marker(linePoints[0],{interactive:false,zIndexOffset:1000,icon:L.divIcon({className:'journey-train-marker',html:'<span style="display:grid;place-items:center;background:#132e37;color:#fff;border:2px solid white;border-radius:12px;width:30px;height:30px;box-shadow:0 2px 10px #0005;font-size:18px">🚆</span>',iconSize:[34,34],iconAnchor:[17,17]})}).addTo(journeyMap);
+ note.textContent=missing?'메인 주행과 같은 지도입니다. 점선은 실제 선형이 확인되지 않은 '+missing+'개 구간입니다.':'메인 주행과 같은 실제 지도와 노선 선형입니다.';
+ const lengths=[0];for(let i=1;i<linePoints.length;i++)lengths.push(lengths.at(-1)+distanceMeters(linePoints[i-1],linePoints[i]));
+ const total=lengths.at(-1);if(!(total>0))return;
  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
- if(reduced){train.setAttribute('transform',`translate(${pts[0][0]} ${pts[0][1]})`)}
- else{
-  const length=line.getTotalLength(),duration=Math.max(7500,Math.min(30000,pts.length*180)),started=performance.now();
-  function frame(now){if(document.hidden||document.getElementById('result-journey')?.hidden){trainAnimation=null;return}
-   const point=line.getPointAtLength(length*((now-started)%duration)/duration);
-   train.setAttribute('transform',`translate(${point.x} ${point.y})`);
-   trainAnimation=requestAnimationFrame(frame)
-  }
+ if(reduced)return;
+ const duration=Math.min(50000,Math.max(12000,total/25)),started=performance.now();let lastCamera=0;
+ const frame=now=>{
+  if(document.getElementById('result-journey')?.hidden||!journeyMap){trainAnimation=null;return}
+  const distance=(now-started)%duration/duration*total;
+  let k=1;while(k<lengths.length-1&&lengths[k]<distance)k++;
+  const weight=(distance-lengths[k-1])/Math.max(.001,lengths[k]-lengths[k-1]);
+  const from=linePoints[k-1],to=linePoints[k],point=[from[0]+(to[0]-from[0])*weight,from[1]+(to[1]-from[1])*weight];
+  journeyTrain.setLatLng(point);
+  if(now-lastCamera>450){lastCamera=now;const middle=journeyMap.getSize().divideBy(2);if(journeyMap.latLngToContainerPoint(point).distanceTo(middle)>85)journeyMap.panTo(point,{animate:true,duration:.3})}
   trainAnimation=requestAnimationFrame(frame);
- }
- note.textContent=missing?'단순화된 노선도입니다. 실제 선형이 없는 구간은 역 좌표 기준으로 연결했습니다.':'실제 선형을 단순화한 노선도입니다. 열차가 이동 경로를 반복 주행합니다.';
+ };
+ trainAnimation=requestAnimationFrame(frame);
+ requestAnimationFrame(()=>journeyMap?.invalidateSize());
 }
 const radians=d=>d*Math.PI/180;
 const distanceMeters=(a,b)=>{const x=radians(b[0]-a[0]),y=radians(b[1]-a[1]);const h=Math.sin(x/2)**2+Math.cos(radians(a[0]))*Math.cos(radians(b[0]))*Math.sin(y/2)**2;return 12742000*Math.asin(Math.min(1,Math.sqrt(h)))};
