@@ -286,5 +286,27 @@
       "geometryReady": false,
       "validationRequired": "Check OSM way membership, actual track continuity and station-to-station shape before publishing."
     }
-  ]
+  ],
+  "candidateStructureValidation": {
+    "checked": "2026-10-11",
+    "reports": [
+      {
+        "routeId": "kr-metro-3",
+        "stops": 44,
+        "candidatePairs": 31,
+        "missingPairs": 12,
+        "structuralCoverage": 72.1,
+        "ready": false
+      },
+      {
+        "routeId": "kr-metro-7",
+        "stops": 53,
+        "candidatePairs": 34,
+        "missingPairs": 18,
+        "structuralCoverage": 65.4,
+        "ready": false
+      }
+    ],
+    "script": "node tools/validate-kr-osm-candidates.mjs"
+  }
 }
