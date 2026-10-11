@@ -1,0 +1,30 @@
+name: Sync Hokuriku Shinkansen color data
+on:
+  push:
+    paths:
+      - 'data/lines/jr-east/hokuriku-shinkansen/line.json'
+      - '.github/workflows/sync-hokuriku-color.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/build-line-workspaces.js
+      - name: Confirm Hokuriku route metadata
+        run: |
+          node -e "const d=require('./data/generated/routes/shinkansen-hokuriku.json').route;if(d.lineColor!=='#006600')throw Error('wrong primary');"
+      - name: Commit generated route data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/generated js/line-workspace-data.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(jp): publish Hokuriku Shinkansen color metadata'
+            git push
+          fi
