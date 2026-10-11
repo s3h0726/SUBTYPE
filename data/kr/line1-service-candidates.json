@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "passengerLineId": "kr-passenger-metro-1",
+  "name": "수도권 전철 1호선",
+  "status": "source-verification-required",
+  "note": "운행계통 후보 목록. 실제 선로 geometry, 정차역, 운행일 검증 전에는 게임에 노출하거나 geometryReady=true로 지정하지 않는다.",
+  "references": [
+    "https://www.ktdb.go.kr/DATA/pblcte/20260512020132299.pdf",
+    "https://namu.moe/w/수도권%20전철%201호선"
+  ],
+  "services": [
+    {
+      "id": "line1-gyeongin-gyeongwon-local",
+      "type": "local",
+      "corridor": "경원선-서울 지하철 1호선-경인선",
+      "terminals": [
+        "연천",
+        "소요산",
+        "동두천",
+        "양주",
+        "의정부",
+        "인천"
+      ],
+      "note": "출발역별 실제 운행 여부 검증 필요"
+    },
+    {
+      "id": "line1-gyeongbu-janghang-local",
+      "type": "local",
+      "corridor": "경원선-서울 지하철 1호선-경부선-장항선",
+      "terminals": [
+        "광운대",
+        "청량리",
+        "천안",
+        "신창"
+      ]
+    },
+    {
+      "id": "line1-seodongtan-local",
+      "type": "local",
+      "corridor": "경부선-병점기지선",
+      "terminals": [
+        "광운대",
+        "서동탄"
+      ]
+    },
+    {
+      "id": "line1-gwangmyeong-shuttle",
+      "type": "local",
+      "corridor": "경부선-경부고속선 광명역 연결",
+      "terminals": [
+        "영등포",
+        "광명"
+      ]
+    },
+    {
+      "id": "line1-gyeongin-express",
+      "type": "express",
+      "corridor": "경인선",
+      "terminals": [
+        "용산",
+        "동인천"
+      ]
+    },
+    {
+      "id": "line1-gyeongbu-a-express",
+      "type": "express",
+      "corridor": "경부선-장항선",
+      "terminals": [
+        "청량리",
+        "천안",
+        "신창"
+      ]
+    },
+    {
+      "id": "line1-gyeongbu-b-express",
+      "type": "express",
+      "corridor": "경부선",
+      "terminals": [
+        "서울역",
+        "천안",
+        "신창"
+      ]
+    },
+    {
+      "id": "line1-gyeongwon-express",
+      "type": "express",
+      "corridor": "경원선-서울 지하철 1호선-경인선",
+      "terminals": [
+        "동두천",
+        "인천"
+      ],
+      "note": "광운대 이남 일반 정차 여부 확인 필요"
+    }
+  ]
+}
