@@ -25,5 +25,6 @@ jobs:
           git add data/generated js/line-workspace-data.js
           if ! git diff --cached --quiet; then
             git commit -m 'build(jp): publish dual JR operator name for Hokuriku Shinkansen'
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
