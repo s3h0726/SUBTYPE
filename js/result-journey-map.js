@@ -55,4 +55,36 @@ async function showCompletedJourneyOnMap(result){
   requestAnimationFrame(()=>completedMap?.invalidateSize());
  }catch(error){console.warn('Completion map unavailable',error);mapEl.style.display='none';note.textContent='지도를 불러오지 못했습니다. 운행 결과와 기록은 정상 저장되었습니다.'}
 }
-document.addEventListener('trt:journey-finished',event=>{showCompletedJourneyOnMap(event.detail)});
+const radians=d=>d*Math.PI/180;
+const distanceMeters=(a,b)=>{const x=radians(b[0]-a[0]),y=radians(b[1]-a[1]);const h=Math.sin(x/2)**2+Math.cos(radians(a[0]))*Math.cos(radians(b[0]))*Math.sin(y/2)**2;return 12742000*Math.asin(Math.min(1,Math.sqrt(h)))};
+function journeyDistance(result){
+ const route=result?.route||{},stations=route.stations||[],byId=new Map(stations.map(s=>[s.id,s]));
+ const passed=(result?.typedStationIds||[]).map(id=>byId.get(id)).filter(Boolean);
+ let meters=0,approximate=false,segments=0;
+ for(let i=1;i<passed.length;i++){
+  const detailed=segmentPath(route,passed[i-1],passed[i]);
+  if(detailed){for(let j=1;j<detailed.length;j++)meters+=distanceMeters(detailed[j-1],detailed[j]);segments++;continue}
+  const a=coordinate(passed[i-1]),b=coordinate(passed[i]);if(a&&b){meters+=distanceMeters(a,b);approximate=true;segments++}
+ }
+ return{meters,approximate,segments};
+}
+let lastJourney=null;
+document.addEventListener('trt:journey-finished',event=>{
+ lastJourney=event.detail;
+ const button=document.getElementById('result-open-journey'),panel=document.getElementById('result-journey');
+ if(button){button.disabled=false;button.textContent='내 운행 경로 보기 · 지도 ↗'}
+ if(panel)panel.hidden=true;
+ const destination=document.getElementById('result-distance'),description=document.getElementById('result-distance-note');
+ const d=journeyDistance(lastJourney);
+ if(destination)destination.textContent=d.segments?(d.meters/1000).toFixed(2)+' km':'측정 불가';
+ if(description)description.textContent=d.approximate?'일부 구간은 역간 직선거리 추정치입니다.':d.segments?'실제 선형 기반 이동 거리':'거리 계산을 위한 위치 정보가 없습니다.';
+});
+document.getElementById('result-open-journey')?.addEventListener('click',async event=>{
+ if(!lastJourney)return;
+ const button=event.currentTarget,panel=document.getElementById('result-journey');
+ if(!panel)return;
+ if(!panel.hidden){panel.hidden=true;button.textContent='내 운행 경로 보기 · 지도 ↗';return}
+ panel.hidden=false;button.textContent='지도 닫기';
+ // The map is deliberately never constructed during game completion.
+ try{await showCompletedJourneyOnMap(lastJourney)}catch(error){console.error('Journey map failed independently',error);const note=document.getElementById('result-journey-note');if(note)note.textContent='지도를 불러오지 못했습니다. 운행 결과는 정상적으로 보존됩니다.'}
+});
