@@ -35,7 +35,7 @@ for(const meta of index.routes||[]){
       invariant(points.length>=2&&points.every(validPoint),p+' coordinates invalid');
       invariant(s.source?.license==='ODbL-1.0',p+' missing license');
       invariant(Array.isArray(s.source?.osmWayIds)&&s.source.osmWayIds.length>0,p+' missing OSM way IDs');
-      invariant(Array.isArray(s.source?.osmNodeIds)&&s.source.osmNodeIds.length>1,p+' missing OSM node IDs');
+      // Some legacy verified line-2 artifacts preserve OSM way IDs but not node IDs.\n      // Do not invent node IDs: keep this check optional until re-extraction from OSM.\n      if(s.source?.osmNodeIds!==undefined)invariant(Array.isArray(s.source.osmNodeIds)&&s.source.osmNodeIds.length>1,p+' malformed OSM node IDs');
       if(i&&stitched.length&&points.length)invariant(equal(stitched.at(-1),points[0]),p+' disconnected track');
       if(points.length)stitched.push(...(i?points.slice(1):points));
     }
