@@ -1,0 +1,27 @@
+name: Audit Japanese initial consonant spellings
+on:
+  push:
+    paths:
+      - 'tools/audit-japanese-initial-consonants.mjs'
+      - '.github/workflows/audit-japanese-initial-consonants.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/audit-japanese-initial-consonants.mjs
+      - name: Commit review queue
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/source-audit/STATION_INITIAL_CONSONANT_NAMUWIKI_REVIEW.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'audit(jp): record ambiguous station consonant spellings for Namuwiki review'
+            git push
+          fi
