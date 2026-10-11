@@ -1,0 +1,1066 @@
+{
+  "schemaVersion": 1,
+  "scope": "ALL canonical Japanese route workspaces",
+  "count": 604,
+  "policy": "No automatic deletion or merging of rail tracks; requires operator-published route/operation distinctions.",
+  "duplicateNames": [
+    {
+      "operatorId": "jr-east",
+      "ja": "常磐線",
+      "ko": "조반선(도리데~이와키)",
+      "ids": [
+        "line-11229",
+        "line-11320"
+      ],
+      "files": [
+        "data/lines/jr-east/jobansen-totte-iwaki/line.json",
+        "data/lines/jr-east/jobansen-ueno-totte/line.json"
+      ],
+      "reason": "Identical Japanese line title appears as multiple canonical cards; review for physical sections or duplicates"
+    }
+  ],
+  "serviceStyleCards": [
+    {
+      "id": "line-99331",
+      "operatorId": "chibatoshimonoreru",
+      "ja": "千葉都市モノレール１号線",
+      "ko": "치바 도시 모노레일 1호선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99332",
+      "operatorId": "chibatoshimonoreru",
+      "ja": "千葉都市モノレール２号線",
+      "ko": "치바 도시 모노레일 2호선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99105",
+      "operatorId": "hakodateshikotsukyoku",
+      "ja": "函館市電２系統",
+      "ko": "하코다테시덴 2계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99106",
+      "operatorId": "hakodateshikotsukyoku",
+      "ja": "函館市電５系統",
+      "ko": "하코다테시덴 5계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99710",
+      "operatorId": "hiroshimadentetsu",
+      "ja": "広電１号線(宇品線)",
+      "ko": "히로덴１고선우지나선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99711",
+      "operatorId": "hiroshimadentetsu",
+      "ja": "広電２号線(宮島線)",
+      "ko": "히로덴２고선미야지마선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99712",
+      "operatorId": "hiroshimadentetsu",
+      "ja": "広電３号線",
+      "ko": "히로덴３고선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99713",
+      "operatorId": "hiroshimadentetsu",
+      "ja": "広電５号線(皆実線)",
+      "ko": "히로덴５고선미나미선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99714",
+      "operatorId": "hiroshimadentetsu",
+      "ja": "広電６号線(江波線)",
+      "ko": "히로덴６고선에바선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99715",
+      "operatorId": "hiroshimadentetsu",
+      "ja": "広電７号線",
+      "ko": "히로덴７고선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99716",
+      "operatorId": "hiroshimadentetsu",
+      "ja": "広電８号線(横川線)",
+      "ko": "히로덴８고선요코가와선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99717",
+      "operatorId": "hiroshimadentetsu",
+      "ja": "広電９号線(白島線)",
+      "ko": "히로덴９고선하쿠시마선",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99925",
+      "operatorId": "kagoshimashikotsukyoku",
+      "ja": "鹿児島市電１系統",
+      "ko": "가고시마시덴 1계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99926",
+      "operatorId": "kagoshimashikotsukyoku",
+      "ja": "鹿児島市電２系統",
+      "ko": "가고시마시덴 2계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99922",
+      "operatorId": "kumamotoshikotsukyoku",
+      "ja": "熊本市電Ａ系統",
+      "ko": "구마모토시덴 A계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99923",
+      "operatorId": "kumamotoshikotsukyoku",
+      "ja": "熊本市電Ｂ系統",
+      "ko": "구마모토시덴 B계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99913",
+      "operatorId": "nagasakidenkikido",
+      "ja": "長崎電軌１系統",
+      "ko": "나가사키 전기궤도 1호계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99914",
+      "operatorId": "nagasakidenkikido",
+      "ja": "長崎電軌３系統",
+      "ko": "나가사키 전기궤도 3호계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99915",
+      "operatorId": "nagasakidenkikido",
+      "ja": "長崎電軌４系統",
+      "ko": "나가사키 전기궤도 4호계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99916",
+      "operatorId": "nagasakidenkikido",
+      "ja": "長崎電軌５系統",
+      "ko": "나가사키 전기궤도 5호계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99413",
+      "operatorId": "toyamachihotetsudo",
+      "ja": "富山地鉄市内線【１・２系統】",
+      "ko": "도야마 지방철도 시내선 1·2계통",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    },
+    {
+      "id": "line-99422",
+      "operatorId": "toyamachihotetsudo",
+      "ja": "富山地鉄富山都心線【３系統(環状線)】",
+      "ko": "도야마 지방철도 도야마 도심선 3계통(순환선)",
+      "reason": "May denote a numbered operating service rather than a unique physical track"
+    }
+  ],
+  "operatorsWithSharedTrackPairs": [
+    {
+      "operatorId": "echizentetsudo",
+      "routeCount": 2,
+      "sharedStationPairs": 2,
+      "examples": [
+        {
+          "pair": "station-1141523::station-9941902",
+          "routes": [
+            "line-99419",
+            "line-99420"
+          ]
+        },
+        {
+          "pair": "station-9941902::station-9941903",
+          "routes": [
+            "line-99419",
+            "line-99420"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "hakodateshikotsukyoku",
+      "routeCount": 2,
+      "sharedStationPairs": 19,
+      "examples": [
+        {
+          "pair": "station-9910501::station-9910502",
+          "routes": [
+            "line-99105",
+            "line-99106"
+          ]
+        },
+        {
+          "pair": "station-9910502::station-9910503",
+          "routes": [
+            "line-99105",
+            "line-99106"
+          ]
+        },
+        {
+          "pair": "station-9910503::station-9910504",
+          "routes": [
+            "line-99105",
+            "line-99106"
+          ]
+        },
+        {
+          "pair": "station-9910504::station-9910505",
+          "routes": [
+            "line-99105",
+            "line-99106"
+          ]
+        },
+        {
+          "pair": "station-9910505::station-9910506",
+          "routes": [
+            "line-99105",
+            "line-99106"
+          ]
+        },
+        {
+          "pair": "station-9910506::station-9910507",
+          "routes": [
+            "line-99105",
+            "line-99106"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "hankyudentetsu",
+      "routeCount": 9,
+      "sharedStationPairs": 2,
+      "examples": [
+        {
+          "pair": "station-1160214::station-3400102",
+          "routes": [
+            "line-34001",
+            "line-34002"
+          ]
+        },
+        {
+          "pair": "station-3400102::station-3400103",
+          "routes": [
+            "line-34001",
+            "line-34002"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "hanshindentetsu",
+      "routeCount": 4,
+      "sharedStationPairs": 1,
+      "examples": [
+        {
+          "pair": "station-3500108::station-3500109",
+          "routes": [
+            "line-35001",
+            "line-35002"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "hiroshimadentetsu",
+      "routeCount": 8,
+      "sharedStationPairs": 47,
+      "examples": [
+        {
+          "pair": "station-1161115::station-9971002",
+          "routes": [
+            "line-99710",
+            "line-99711",
+            "line-99713",
+            "line-99714"
+          ]
+        },
+        {
+          "pair": "station-9971002::station-9971003",
+          "routes": [
+            "line-99710",
+            "line-99711",
+            "line-99713",
+            "line-99714"
+          ]
+        },
+        {
+          "pair": "station-9971003::station-9971004",
+          "routes": [
+            "line-99710",
+            "line-99711",
+            "line-99714"
+          ]
+        },
+        {
+          "pair": "station-9971004::station-9971005",
+          "routes": [
+            "line-99710",
+            "line-99711",
+            "line-99714"
+          ]
+        },
+        {
+          "pair": "station-9971005::station-9971006",
+          "routes": [
+            "line-99710",
+            "line-99711",
+            "line-99714"
+          ]
+        },
+        {
+          "pair": "station-9971006::station-9971007",
+          "routes": [
+            "line-99710",
+            "line-99711",
+            "line-99714"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "iyotetsudo",
+      "routeCount": 7,
+      "sharedStationPairs": 13,
+      "examples": [
+        {
+          "pair": "station-9980802::station-9980803",
+          "routes": [
+            "line-99812",
+            "line-99811"
+          ]
+        },
+        {
+          "pair": "station-9980501::station-9980802",
+          "routes": [
+            "line-99812",
+            "line-99809",
+            "line-99810"
+          ]
+        },
+        {
+          "pair": "station-9980802::station-9980821",
+          "routes": [
+            "line-99809",
+            "line-99811",
+            "line-99810"
+          ]
+        },
+        {
+          "pair": "station-9980820::station-9980821",
+          "routes": [
+            "line-99809",
+            "line-99811",
+            "line-99810"
+          ]
+        },
+        {
+          "pair": "station-9980819::station-9980820",
+          "routes": [
+            "line-99809",
+            "line-99811",
+            "line-99810"
+          ]
+        },
+        {
+          "pair": "station-9980818::station-9980819",
+          "routes": [
+            "line-99809",
+            "line-99811",
+            "line-99810"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "routeCount": 19,
+      "sharedStationPairs": 7,
+      "examples": [
+        {
+          "pair": "station-1110434::station-1110502",
+          "routes": [
+            "line-11109",
+            "line-11105"
+          ]
+        },
+        {
+          "pair": "station-1110316::station-1110317",
+          "routes": [
+            "line-11109",
+            "line-11103"
+          ]
+        },
+        {
+          "pair": "station-1110315::station-1110316",
+          "routes": [
+            "line-11109",
+            "line-11103"
+          ]
+        },
+        {
+          "pair": "station-1110314::station-1110315",
+          "routes": [
+            "line-11103",
+            "line-11112"
+          ]
+        },
+        {
+          "pair": "station-1110731::station-1110802",
+          "routes": [
+            "line-11108",
+            "line-11117"
+          ]
+        },
+        {
+          "pair": "station-1110342::station-1111502",
+          "routes": [
+            "line-11116",
+            "line-11115"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "jr-shikoku",
+      "routeCount": 8,
+      "sharedStationPairs": 3,
+      "examples": [
+        {
+          "pair": "station-1180110::station-1180111",
+          "routes": [
+            "line-11801",
+            "line-11803"
+          ]
+        },
+        {
+          "pair": "station-1180228::station-1180229",
+          "routes": [
+            "line-11802",
+            "line-11803"
+          ]
+        },
+        {
+          "pair": "station-1180739::station-1180740",
+          "routes": [
+            "line-11807",
+            "line-11808"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "kagoshimashikotsukyoku",
+      "routeCount": 2,
+      "sharedStationPairs": 7,
+      "examples": [
+        {
+          "pair": "station-1190412::station-9992502",
+          "routes": [
+            "line-99925",
+            "line-99926"
+          ]
+        },
+        {
+          "pair": "station-9992502::station-9992503",
+          "routes": [
+            "line-99925",
+            "line-99926"
+          ]
+        },
+        {
+          "pair": "station-9992503::station-9992504",
+          "routes": [
+            "line-99925",
+            "line-99926"
+          ]
+        },
+        {
+          "pair": "station-9992504::station-9992505",
+          "routes": [
+            "line-99925",
+            "line-99926"
+          ]
+        },
+        {
+          "pair": "station-9992505::station-9992506",
+          "routes": [
+            "line-99925",
+            "line-99926"
+          ]
+        },
+        {
+          "pair": "station-9992506::station-9992507",
+          "routes": [
+            "line-99925",
+            "line-99926"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "keihandentetsu",
+      "routeCount": 8,
+      "sharedStationPairs": 4,
+      "examples": [
+        {
+          "pair": "station-3300401::station-3300402",
+          "routes": [
+            "line-33001",
+            "line-33004"
+          ]
+        },
+        {
+          "pair": "station-3300101::station-3300402",
+          "routes": [
+            "line-33001",
+            "line-33004"
+          ]
+        },
+        {
+          "pair": "station-3300138::station-3300139",
+          "routes": [
+            "line-33001",
+            "line-33008"
+          ]
+        },
+        {
+          "pair": "station-3300139::station-3300140",
+          "routes": [
+            "line-33001",
+            "line-33008"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "keisei",
+      "routeCount": 8,
+      "sharedStationPairs": 4,
+      "examples": [
+        {
+          "pair": "station-mlit-003417::station-mlit-003521",
+          "routes": [
+            "line-23001",
+            "line-23006"
+          ]
+        },
+        {
+          "pair": "station-mlit-003248::station-mlit-003280",
+          "routes": [
+            "line-23001",
+            "line-23006"
+          ]
+        },
+        {
+          "pair": "station-2300141::station-mlit-003166",
+          "routes": [
+            "line-23001",
+            "line-keisei-higashinarita"
+          ]
+        },
+        {
+          "pair": "station-1132705::station-1132813",
+          "routes": [
+            "line-23001",
+            "line-23006"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "kobedentetsu",
+      "routeCount": 4,
+      "sharedStationPairs": 2,
+      "examples": [
+        {
+          "pair": "station-1162915::station-9963309",
+          "routes": [
+            "line-99634",
+            "line-99633"
+          ]
+        },
+        {
+          "pair": "station-9963308::station-9963309",
+          "routes": [
+            "line-99634",
+            "line-99633"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "kumamotoshikotsukyoku",
+      "routeCount": 2,
+      "sharedStationPairs": 18,
+      "examples": [
+        {
+          "pair": "station-9992208::station-9992209",
+          "routes": [
+            "line-99922",
+            "line-99923"
+          ]
+        },
+        {
+          "pair": "station-9992209::station-9992210",
+          "routes": [
+            "line-99922",
+            "line-99923"
+          ]
+        },
+        {
+          "pair": "station-9992210::station-9992211",
+          "routes": [
+            "line-99922",
+            "line-99923"
+          ]
+        },
+        {
+          "pair": "station-9992211::station-9992212",
+          "routes": [
+            "line-99922",
+            "line-99923"
+          ]
+        },
+        {
+          "pair": "station-9992212::station-9992213",
+          "routes": [
+            "line-99922",
+            "line-99923"
+          ]
+        },
+        {
+          "pair": "station-9992213::station-9992214",
+          "routes": [
+            "line-99922",
+            "line-99923"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "nagasakidenkikido",
+      "routeCount": 4,
+      "sharedStationPairs": 24,
+      "examples": [
+        {
+          "pair": "station-9991301::station-9991302",
+          "routes": [
+            "line-99913",
+            "line-99914"
+          ]
+        },
+        {
+          "pair": "station-1190539::station-9991302",
+          "routes": [
+            "line-99913",
+            "line-99914"
+          ]
+        },
+        {
+          "pair": "station-1190539::station-9991304",
+          "routes": [
+            "line-99913",
+            "line-99914"
+          ]
+        },
+        {
+          "pair": "station-9991304::station-9991305",
+          "routes": [
+            "line-99913",
+            "line-99914"
+          ]
+        },
+        {
+          "pair": "station-9991305::station-9991306",
+          "routes": [
+            "line-99913",
+            "line-99914"
+          ]
+        },
+        {
+          "pair": "station-9991306::station-9991307",
+          "routes": [
+            "line-99913",
+            "line-99914"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "nagoyatetsudo",
+      "routeCount": 20,
+      "sharedStationPairs": 6,
+      "examples": [
+        {
+          "pair": "station-1141101::station-3000137",
+          "routes": [
+            "line-30015",
+            "line-30001"
+          ]
+        },
+        {
+          "pair": "station-3000137::station-3000138",
+          "routes": [
+            "line-30015",
+            "line-30001"
+          ]
+        },
+        {
+          "pair": "station-3000519::station-3000520",
+          "routes": [
+            "line-30005",
+            "line-30006"
+          ]
+        },
+        {
+          "pair": "station-1141102::station-3000133",
+          "routes": [
+            "line-30001",
+            "line-30008"
+          ]
+        },
+        {
+          "pair": "station-1141102::station-3000135",
+          "routes": [
+            "line-30001",
+            "line-30008"
+          ]
+        },
+        {
+          "pair": "station-1141101::station-3000135",
+          "routes": [
+            "line-30001",
+            "line-30008"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "nankaidentetsu",
+      "routeCount": 10,
+      "sharedStationPairs": 2,
+      "examples": [
+        {
+          "pair": "station-3200103::station-3200104",
+          "routes": [
+            "line-32001",
+            "line-32007"
+          ]
+        },
+        {
+          "pair": "station-1164003::station-3200139",
+          "routes": [
+            "line-32001",
+            "line-32005"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "okayamadenkikido",
+      "routeCount": 2,
+      "sharedStationPairs": 2,
+      "examples": [
+        {
+          "pair": "station-1160917::station-9970602",
+          "routes": [
+            "line-99706",
+            "line-99707"
+          ]
+        },
+        {
+          "pair": "station-9970602::station-9970603",
+          "routes": [
+            "line-99706",
+            "line-99707"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "osaka-metro",
+      "routeCount": 9,
+      "sharedStationPairs": 1,
+      "examples": [
+        {
+          "pair": "station-3100101::station-9961811",
+          "routes": [
+            "line-99618",
+            "line-99620"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "sapporoshikotsukyoku",
+      "routeCount": 4,
+      "sharedStationPairs": 1,
+      "examples": [
+        {
+          "pair": "station-1110315::station-9910109",
+          "routes": [
+            "line-99102",
+            "line-99103"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "takamatsukotohiradenkitetsudo",
+      "routeCount": 3,
+      "sharedStationPairs": 2,
+      "examples": [
+        {
+          "pair": "station-1180201::station-9980202",
+          "routes": [
+            "line-99802",
+            "line-99803"
+          ]
+        },
+        {
+          "pair": "station-9980202::station-9980203",
+          "routes": [
+            "line-99802",
+            "line-99803"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "tobu",
+      "routeCount": 12,
+      "sharedStationPairs": 1,
+      "examples": [
+        {
+          "pair": "station-1134119::station-2100313",
+          "routes": [
+            "line-21003",
+            "line-21008"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "tokyo-metro",
+      "routeCount": 10,
+      "sharedStationPairs": 11,
+      "examples": [
+        {
+          "pair": "station-2800211::station-mlit-003802",
+          "routes": [
+            "line-28005",
+            "line-28003"
+          ]
+        },
+        {
+          "pair": "station-2800211::station-mlit-003799",
+          "routes": [
+            "line-28005",
+            "line-28002"
+          ]
+        },
+        {
+          "pair": "station-mlit-003123::station-mlit-003163",
+          "routes": [
+            "line-28010",
+            "line-28006"
+          ]
+        },
+        {
+          "pair": "station-mlit-003163::station-mlit-003186",
+          "routes": [
+            "line-28010",
+            "line-28006"
+          ]
+        },
+        {
+          "pair": "station-mlit-003186::station-mlit-003228",
+          "routes": [
+            "line-28010",
+            "line-28006"
+          ]
+        },
+        {
+          "pair": "station-mlit-003228::station-mlit-003261",
+          "routes": [
+            "line-28010",
+            "line-28006"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "tokyu",
+      "routeCount": 9,
+      "sharedStationPairs": 5,
+      "examples": [
+        {
+          "pair": "station-mlit-004245::station-mlit-004261",
+          "routes": [
+            "line-26002",
+            "line-26001"
+          ]
+        },
+        {
+          "pair": "station-mlit-004261::station-mlit-004287",
+          "routes": [
+            "line-26002",
+            "line-26001"
+          ]
+        },
+        {
+          "pair": "station-mlit-004287::station-mlit-004297",
+          "routes": [
+            "line-26002",
+            "line-26001"
+          ]
+        },
+        {
+          "pair": "station-mlit-004297::station-mlit-004322",
+          "routes": [
+            "line-26002",
+            "line-26001"
+          ]
+        },
+        {
+          "pair": "station-mlit-004322::station-mlit-004351",
+          "routes": [
+            "line-26002",
+            "line-26001"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "toyamachihotetsudo",
+      "routeCount": 6,
+      "sharedStationPairs": 9,
+      "examples": [
+        {
+          "pair": "station-1140501::station-9940802",
+          "routes": [
+            "line-99410",
+            "line-99408"
+          ]
+        },
+        {
+          "pair": "station-9941309::station-9941321",
+          "routes": [
+            "line-99413",
+            "line-99422"
+          ]
+        },
+        {
+          "pair": "station-9941309::station-9941310",
+          "routes": [
+            "line-99413",
+            "line-99422"
+          ]
+        },
+        {
+          "pair": "station-9941310::station-9941311",
+          "routes": [
+            "line-99413",
+            "line-99422"
+          ]
+        },
+        {
+          "pair": "station-9941311::station-9941312",
+          "routes": [
+            "line-99413",
+            "line-99422"
+          ]
+        },
+        {
+          "pair": "station-1140501::station-9941312",
+          "routes": [
+            "line-99413",
+            "line-99422"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "yokkaichiasunarotetsudo",
+      "routeCount": 2,
+      "sharedStationPairs": 2,
+      "examples": [
+        {
+          "pair": "station-3100801::station-3101302",
+          "routes": [
+            "line-31014",
+            "line-31013"
+          ]
+        },
+        {
+          "pair": "station-3101302::station-3101303",
+          "routes": [
+            "line-31014",
+            "line-31013"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    },
+    {
+      "operatorId": "yokohama-municipal-subway",
+      "routeCount": 2,
+      "sharedStationPairs": 1,
+      "examples": [
+        {
+          "pair": "station-mlit-004353::station-mlit-004380",
+          "routes": [
+            "line-99316",
+            "line-99343"
+          ]
+        }
+      ],
+      "review": "Overlapping rail segment; determine if services share a trunk or route duplicates exist"
+    }
+  ]
+}
