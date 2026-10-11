@@ -1816,7 +1816,8 @@ function showResult(result){
  setText('#result-wpm',result.wpm);
  const notice=$('#record-notice');if(notice)notice.hidden=!isRecord;
  go('result');
- // Journey map temporarily disabled until game completion is independently verified.
+ // The distance listener is independent of the result transition; map loads on button click only.
+ try{document.dispatchEvent(new CustomEvent('trt:journey-finished',{detail:result}))}catch(error){console.warn('Journey summary unavailable',error)}
 }
 const game=new Game({onFinish:showResult,onQuit:()=>go('select'),onFreeDriveMove:(to,routeId)=>freeDrive?.moveTo(to,routeId)});
 const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomLibrary()},onPlay:openSetup,onSaved:()=>go('custom-list')});
