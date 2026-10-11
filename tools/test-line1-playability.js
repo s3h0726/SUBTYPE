@@ -18,11 +18,15 @@ for(const [id,route] of routes){
 const ctx={console,globalThis:null,window:{},TRT_TOKYO_SERVICE_PATTERNS:{}};
 ctx.globalThis=ctx;vm.createContext(ctx);
 vm.runInContext(get('js/service-route-resolver.js').replace(/^export\s+/gm,'')+'\n;globalThis.TEST={koreanFamilyServiceChoices,resolveKoreanFamilyService};',ctx);
+const integritySource=get('js/route-integrity.js').replace(/^export\s+/gm,'')+'\n;globalThis.__integrity={resolvePlayableRoute};';
+vm.runInContext(integritySource,ctx,{filename:'route-integrity.js'});
 const choices=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1');
 if(choices.length!==10)throw Error('expected 5 through patterns in both directions, received '+choices.length);
 for(const choice of choices){
  const result=ctx.TEST.resolveKoreanFamilyService(choice,id=>routes.get(id));
  const route=result.route;
+ const playable=ctx.__integrity.resolvePlayableRoute(route);
+ if(playable.stations.length!==route.stations.length||playable.segments.length!==route.stations.length-1)throw Error(choice.id+': route-integrity rejected physical segments');
  if(route.stations.length<2||route.geometry.length<2)throw Error(choice.id+' unplayable');
  const first=route.stations[0],last=route.stations.at(-1);
  if(first.geometryIndex!==0||last.geometryIndex!==route.geometry.length-1)throw Error(choice.id+' incorrect endpoints');
