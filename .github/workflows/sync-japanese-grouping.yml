@@ -1,0 +1,29 @@
+name: Sync Japanese rail grouping UI
+on:
+  push:
+    paths:
+      - 'js/app.js'
+      - 'tools/sync-japanese-grouping-bundle.js'
+      - '.github/workflows/sync-japanese-grouping.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/sync-japanese-grouping-bundle.js
+      - name: Publish browser bundle
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/app.bundle.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(jp): publish grouped Japanese tram selector'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
