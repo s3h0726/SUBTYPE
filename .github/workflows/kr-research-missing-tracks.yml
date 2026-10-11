@@ -1,0 +1,59 @@
+name: Research Korean missing OSM rail tracks
+on:
+  workflow_dispatch:
+    inputs:
+      line:
+        description: '3, 7 or both'
+        type: choice
+        options: ['both', '3', '7']
+        default: 'both'
+      max_pairs:
+        description: 'Maximum pairs per line (0 = all)'
+        type: number
+        default: 0
+  push:
+    paths:
+      - 'tools/research-kr-missing-tracks.mjs'
+      - '.github/workflows/kr-research-missing-tracks.yml'
+permissions:
+  contents: read
+jobs:
+  research:
+    strategy:
+      fail-fast: false
+      matrix:
+        line: [3, 7]
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Query actual OSM railway nodes and ways
+        shell: bash
+        run: |
+          set +e
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            requested="${{ inputs.line }}"
+            [ "$requested" = "both" ] || [ "$requested" = "${{ matrix.line }}" ] || exit 0
+            max_pairs="${{ inputs.max_pairs }}"
+          else
+            max_pairs=2
+          fi
+          extra=()
+          if [ "$max_pairs" -gt 0 ]; then extra=(--limit "$max_pairs"); fi
+          node tools/research-kr-missing-tracks.mjs --line ${{ matrix.line }} --all --delay-ms 2500 "${extra[@]}" > "research-${{ matrix.line }}.log" 2>&1
+          code=$?
+          cat "research-${{ matrix.line }}.log"
+          echo "Research command exit status: $code"
+          exit 0
+      - name: Preserve audit-only OSM track evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: kr-metro-${{ matrix.line }}-osm-candidates
+          path: |
+            data/kr/osm-candidates/research/*.json
+            research-${{ matrix.line }}.log
+          if-no-files-found: warn
+          retention-days: 30

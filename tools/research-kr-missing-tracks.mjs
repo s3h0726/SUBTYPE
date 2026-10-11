@@ -20,6 +20,7 @@ const line=Number(args.line);
 if(![3,7].includes(line))throw Error('Supply --line 3 or --line 7');
 const targets=JSON.parse(fs.readFileSync(path.join(root,'data/kr/osm-candidates/kr-metro-'+line+'.missing-targets.json'),'utf8')).missingPairs;
 const picked=args.all===true?targets:targets.filter(p=>p.index===Number(args.pair));
+if (args.all===true && args.limit) picked.splice(Math.max(1,Number(args.limit)||1));
 if(!picked.length)throw Error('Use --pair <missing pair index> or --all');
 const maxSnap=120; // Station entrance/center is not exact track position; flag wide snaps for review.
 const round=x=>Math.round(x*1e6)/1e6;
@@ -53,14 +54,17 @@ async function download(pair){
   const mid=[(pair.start.lat+pair.end.lat)/2,(pair.start.lon+pair.end.lon)/2];
   const direct=meters([pair.start.lat,pair.start.lon],[pair.end.lat,pair.end.lon]);
   const radius=Math.min(3500,Math.max(900,Math.ceil(direct/2+450)));
-  const query='[out:json][timeout:120];way(around:'+radius+','+mid[0]+','+mid[1]+')['+"'railway'~'^(rail|subway|light_rail)$'"+'];(._;>;);out body qt;';
+  const query=`[out:json][timeout:120];way(around:${radius},${mid[0]},${mid[1]})["railway"~"^(rail|subway|light_rail)$"];(._;>;);out body qt;`;
   const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter'];
-  let data,lastErr;for(const endpoint of endpoints){try{const res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded','User-Agent':'SUBTYPE-missing-track-review/1.0'},body:new URLSearchParams({data:query})});if(!res.ok)throw Error('HTTP '+res.status);data=await res.json();break}catch(err){lastErr=err}}
+  let data,lastErr;for(const endpoint of endpoints){try{const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),150000);let res;try{res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded','User-Agent':'SUBTYPE-missing-track-review/1.0'},body:new URLSearchParams({data:query}),signal:controller.signal})}finally{clearTimeout(timeout)};if(!res.ok)throw Error('HTTP '+res.status);data=await res.json();break}catch(err){lastErr=err}}
   if(!data)throw Error('Overpass unavailable: '+lastErr?.message);
   const graph=graphFromOsm(data.elements),starts=snap(graph,pair.start),ends=snap(graph,pair.end),options=[];
   for(const a of starts)for(const b of ends){const r=shortest(graph,a.id,b.id);if(r)options.push({...r,fromSnapMeters:round(a.meters),toSnapMeters:round(b.meters)})}
   options.sort((a,b)=>a.distanceMeters-b.distanceMeters);
-  const first=options[0]||null,second=options.find(o=>o.nodeIds.join(',')!==first?.nodeIds.join(','))||null;
+  // Rank by physical rail distance including distance from station centroids to the track.
+  options.sort((a,b)=>(a.distanceMeters+a.fromSnapMeters+a.toSnapMeters)-(b.distanceMeters+b.fromSnapMeters+b.toSnapMeters));
+  const first=options.find(o=>o.nodeIds.length>1&&o.distanceMeters>=Math.max(50,direct*.35))||null;
+  const second=options.find(o=>o.nodeIds.length>1&&o.nodeIds.join(',')!==first?.nodeIds.join(',')&&o.distanceMeters>=Math.max(50,direct*.35))||null;
   // Structural-only verdict: no automatic gameplay release, even when geometry looks plausible.
   const plausible=!!first&&first.distanceMeters<=direct*2.8+400&&first.fromSnapMeters<=maxSnap&&first.toSnapMeters<=maxSnap;
   return{routeId:'kr-metro-'+line,stationPairIndex:pair.index,from:pair.from,to:pair.to,queriedAt:new Date().toISOString(),source:{name:'OpenStreetMap via Overpass',license:'ODbL-1.0',attribution:'© OpenStreetMap contributors',query,sha256:crypto.createHash('sha256').update(JSON.stringify(data)).digest('hex')},stationCoordinatesAreNotTrackGeometry:true,straightLineUsed:false,topologyFromSharedOsmNodeIds:true,requestedDirectDistanceMeters:round(direct),osmWayCount:graph.ways.size,graphNodeCount:graph.nodes.size,firstCandidate:first,alternativeCandidate:second,structurallyPlausible:plausible,geometryReady:false,reviewStatus:plausible?'manual-osm-route-membership-review-required':'missing-or-ambiguous',warning:'Do not publish this report as verified geometry. Verify named route relation, track direction, switches and stop positions.'};
