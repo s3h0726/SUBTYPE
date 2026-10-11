@@ -39,7 +39,7 @@ jobs:
             [ "$requested" = "both" ] || [ "$requested" = "${{ matrix.line }}" ] || exit 0
             max_pairs="${{ inputs.max_pairs }}"
           else
-            max_pairs=2
+            max_pairs=3
           fi
           extra=()
           if [ "$max_pairs" -gt 0 ]; then extra=(--limit "$max_pairs"); fi

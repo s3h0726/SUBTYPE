@@ -54,8 +54,8 @@ async function download(pair){
   const mid=[(pair.start.lat+pair.end.lat)/2,(pair.start.lon+pair.end.lon)/2];
   const direct=meters([pair.start.lat,pair.start.lon],[pair.end.lat,pair.end.lon]);
   const radius=Math.min(3500,Math.max(900,Math.ceil(direct/2+450)));
-  const query=`[out:json][timeout:120];way(around:${radius},${mid[0]},${mid[1]})["railway"~"^(rail|subway|light_rail)$"];(._;>;);out body qt;`;
-  const endpoints=['https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter','https://overpass.nchc.org.tw/api/interpreter','https://overpass-api.de/api/interpreter'];
+  const query=`[out:json][timeout:60];way(around:${radius},${mid[0]},${mid[1]})["railway"~"^(rail|subway|light_rail)$"];(._;>;);out body qt;`;;
+  const endpoints=['https://overpass.private.coffee/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.nchc.org.tw/api/interpreter','https://overpass-api.de/api/interpreter'];
   let data,lastErr;for(const endpoint of endpoints){try{const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),150000);let res;try{res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded','User-Agent':'SUBTYPE-missing-track-review/1.0'},body:new URLSearchParams({data:query}),signal:controller.signal})}finally{clearTimeout(timeout)};if(!res.ok)throw Error('HTTP '+res.status+' from '+endpoint);const responseData=await res.json();if(!Array.isArray(responseData.elements))throw Error('Malformed Overpass response from '+endpoint);data=responseData;break}catch(err){lastErr=err}}
   if(!data)throw Error('Overpass unavailable: '+lastErr?.message);
   const graph=graphFromOsm(data.elements),starts=snap(graph,pair.start),ends=snap(graph,pair.end),options=[];
