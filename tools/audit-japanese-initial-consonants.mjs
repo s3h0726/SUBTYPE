@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Produce review candidates; no unverified global ㄱ→ㅋ / ㄷ→ㅌ rewriting.
-const fs=require('node:fs'),path=require('node:path');
-const root=path.resolve(__dirname,'..'),src=path.join(root,'data/shared-stations');
+import fs from 'node:fs';import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),src=path.join(root,'data/shared-stations');
 const records=[],guarded=[];
 const rules=[
  {key:'京成-keisei',ja:/京成/,ko:/게이세이/,suggest:s=>s.replaceAll('게이세이','케이세이')},
