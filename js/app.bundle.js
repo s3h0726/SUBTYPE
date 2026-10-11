@@ -630,6 +630,24 @@ function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
 }
 
 const koreanFamilyServices={
+ 'kr-passenger-metro-1':[
+  {id:'kr-line1-dongducheon-incheon-local',names:{ko:'동두천 ↔ 인천',ja:'東豆川 ↔ 仁川',en:'Dongducheon - Incheon'},directions:{
+   forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'동두천'},{routeId:'kr-metro-1-gyeongin',directionId:'forward'}],
+   reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'동두천'}]}},
+  {id:'kr-line1-gwangundae-sinchang-local',names:{ko:'광운대 ↔ 신창',ja:'光云大 ↔ 新昌',en:'Gwangundae - Sinchang'},directions:{
+   forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'광운대'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward'}],
+   reverse:[{routeId:'kr-metro-1-gyeongbu',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'광운대'}]}},
+  {id:'kr-line1-gwangundae-seodongtan-local',names:{ko:'광운대 ↔ 서동탄',ja:'光云大 ↔ 西東灘',en:'Gwangundae - Seodongtan'},directions:{
+   forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'광운대'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward',endStationJa:'병점'},{routeId:'kr-metro-1-seodongtan',directionId:'forward'}],
+   reverse:[{routeId:'kr-metro-1-seodongtan',directionId:'reverse'},{routeId:'kr-metro-1-gyeongbu',directionId:'reverse',startStationJa:'병점'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'광운대'}]}},
+  {id:'kr-line1-yeongdeungpo-gwangmyeong-shuttle',names:{ko:'영등포 ↔ 광명',ja:'永登浦 ↔ 光明',en:'Yeongdeungpo - Gwangmyeong'},directions:{
+   forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'영등포'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward',endStationJa:'금천구청'},{routeId:'kr-metro-1-gwangmyeong',directionId:'forward'}],
+   reverse:[{routeId:'kr-metro-1-gwangmyeong',directionId:'reverse'},{routeId:'kr-metro-1-gyeongbu',directionId:'reverse',startStationJa:'금천구청'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'영등포'}]}},
+  {id:'kr-line1-yongsan-dongincheon-express',names:{ko:'용산 ↔ 동인천 (급행)',ja:'龍山 ↔ 東仁川 (急行)',en:'Yongsan - Dongincheon Express'},stopStationNames:['용산','노량진','대방','신길','영등포','신도림','구로','개봉','역곡','부천','송내','부평','동암','주안','제물포','동인천'],directions:{
+   forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'용산'},{routeId:'kr-metro-1-gyeongin',directionId:'forward',endStationJa:'동인천'}],
+   reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse',startStationJa:'동인천'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'용산'}]}}
+ ],
+
   'kr-passenger-metro-5':[
     {
       id:'kr-seoul-line-5-hanam-service',
@@ -677,8 +695,15 @@ function resolveKoreanFamilyService(choice,getRoute){
   });
   const spec={id:`${definition.id}-${choice.direction||'forward'}`,nameJa:definition.names.ja,nameKo:definition.names.ko,nameEn:definition.names.en,routeSegments,boundarySnapToleranceKm:.25};
   const route=buildThroughServiceRoute(spec,id=>directionalRoutes.get(id));
+  if(definition.stopStationNames?.length){
+   const wanted=new Set(definition.stopStationNames);
+   route.stations=route.stations.filter(station=>wanted.has(station.ko));
+   if(route.stations.length<2)throw new Error('급행 정차역 데이터가 부족합니다.');
+   // Retain the full real physical rail geometry between express stops.
+   route.directedSegments=[];
+  }
   const service={id:definition.id,nameJa:definition.names.ja,nameKo:definition.names.ko,nameEn:definition.names.en,stops:route.stations.map(station=>station.id)};
-  return{route:{...route,id:`korean-family-${definition.id}-${choice.direction||'forward'}`,countryId:'kr',line:{...(route.line||{}),ko:'수도권 전철 5호선',ja:'首都圏電鉄5号線',en:'Seoul Metropolitan Subway Line 5'},passengerLineName:'수도권 전철 5호선',geometryReady:true,geometryStatus:'ready',services:[service]},service,direction:'forward',travelDirectionId:choice.direction||'forward',pattern:{id:definition.id,names:definition.names},trainType:null,destinationStationId:route.stations.at(-1)?.id||null,trainTypeContexts:[]};
+  return{route:{...route,id:`korean-family-${definition.id}-${choice.direction||'forward'}`,countryId:'kr',line:{...(route.line||{}),ko:choice.patternId?.startsWith('kr-line1-')?'수도권 전철 1호선':'수도권 전철 5호선',ja:choice.patternId?.startsWith('kr-line1-')?'首都圏電鉄1号線':'首都圏電鉄5号線',en:choice.patternId?.startsWith('kr-line1-')?'Seoul Metropolitan Subway Line 1':'Seoul Metropolitan Subway Line 5'},passengerLineName:choice.patternId?.startsWith('kr-line1-')?'수도권 전철 1호선':'수도권 전철 5호선',geometryReady:true,geometryStatus:'ready',services:[service]},service,direction:'forward',travelDirectionId:choice.direction||'forward',pattern:{id:definition.id,names:definition.names},trainType:null,destinationStationId:route.stations.at(-1)?.id||null,trainTypeContexts:[]};
 }
 
 function buildBranchRoute(branch,source,contextRoute=source){
