@@ -39,7 +39,7 @@ const graphFromOsm=items=>{
   }
   return{nodes,edges,ways};
 };
-function snap(graph,coord){const nodes=[...graph.nodes].map(([id,p])=>({id,meters:meters([coord.lat,coord.lon],p)})).sort((a,b)=>a.meters-b.meters);return nodes.slice(0,8).filter(x=>x.meters<=maxSnap)}
+function snap(graph,coord){const nodes=[...graph.edges.keys()].map(id=>({id,meters:meters([coord.lat,coord.lon],graph.nodes.get(id))})).sort((a,b)=>a.meters-b.meters);return nodes.filter(x=>x.meters<=maxSnap).slice(0,8)}
 function shortest(graph,start,end){
   const dist=new Map([[start,0]]),prev=new Map,closed=new Set,frontier=[[0,start]];
   while(frontier.length){frontier.sort((a,b)=>b[0]-a[0]);const [cost,u]=frontier.pop();if(closed.has(u))continue;closed.add(u);if(u===end)break;
