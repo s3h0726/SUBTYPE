@@ -801,10 +801,20 @@ async function ensureGameMap(target){
   if(!resizeBound){resizeBound=true;addEventListener('resize',()=>{if(!gameRail?.map)return;clearTimeout(gameRail.resizeTimer);gameRail.resizeTimer=setTimeout(()=>gameRail.map.invalidateSize(),120)})}
   updateDebug();return gameRail
 }
+function followTrainCamera(rail,point,force=false){
+ const map=rail?.map;if(!map||!point||!map.getSize().x||!map.getSize().y)return;
+ const now=performance.now();
+ if(!force&&now-(rail.lastCameraFrame||0)<65)return;
+ rail.lastCameraFrame=now;
+ // Pan without zoom changes: track smoothly without repeated fitBounds jumps.
+ const center=map.getCenter(),at=map.latLngToContainerPoint(point),middle=map.getSize().divideBy(2);
+ if(!force&&at.distanceTo(middle)<Math.max(22,Math.min(map.getSize().x,map.getSize().y)*.085))return;
+ map.panTo(point,{animate:false,noMoveStart:true});
+}
 function stopAnimation(rail){if(rail.animation){cancelAnimationFrame(rail.animation);rail.animation=null}if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null}
 function animateTrain(rail,from,to,motion){
   stopAnimation(rail);const duration=motion===false?0:420,start=performance.now();
-  const frame=now=>{const p=duration?Math.min(1,(now-start)/duration):1,eased=1-Math.pow(1-p,3),point=[from[0]+(to[0]-from[0])*eased,from[1]+(to[1]-from[1])*eased];rail.train.setLatLng(point);if(p<1)rail.animation=requestAnimationFrame(frame);else rail.animation=null};frame(start)
+  const frame=now=>{const p=duration?Math.min(1,(now-start)/duration):1,eased=1-Math.pow(1-p,3),point=[from[0]+(to[0]-from[0])*eased,from[1]+(to[1]-from[1])*eased];rail.train.setLatLng(point);followTrainCamera(rail,point);if(p<1)rail.animation=requestAnimationFrame(frame);else rail.animation=null};frame(start)
 }
 function typingSegment(rail,from,to){const key=`${from}:${to}`;if(rail.segmentCache.has(key))return rail.segmentCache.get(key);const a=rail.stationOffsets[from],b=rail.stationOffsets[to],segment=a<=b?rail.points.slice(a,b+1):rail.points.slice(b,a+1).reverse(),lengths=new Float64Array(segment.length);for(let i=1;i<segment.length;i++){const p=segment[i-1],q=segment[i],dx=(q[1]-p[1])*Math.cos((p[0]+q[0])*Math.PI/360),dy=q[0]-p[0];lengths[i]=lengths[i-1]+Math.hypot(dx,dy)}const cached={segment,lengths,total:lengths.at(-1)||0};rail.segmentCache.set(key,cached);return cached}
 function clearRouteLayers(rail){stopAnimation(rail);rail.railLayer.clearLayers();rail.stationLayer.clearLayers();rail.trainLayer.clearLayers();rail.markers=[];rail.train=null;rail.routeId=null;rail.routeKey=null;rail.points=[];updateDebug()}
@@ -837,7 +847,7 @@ function renderGameMap(route,index,options={}){renderQueue=renderQueue.then(()=>
 function stopTypingAnimation(rail){if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null}
 function animateTypingTrain(rail,target,motion=true){
   if(!rail?.train)return;
-  if(motion===false){stopTypingAnimation(rail);rail.train.setLatLng(target);return}
+  if(motion===false){stopTypingAnimation(rail);rail.train.setLatLng(target);followTrainCamera(rail,target);return}
   rail.typingTarget=target;
   if(rail.typingAnimation)return;
   let last=performance.now();
@@ -849,7 +859,7 @@ function animateTypingTrain(rail,target,motion=true){
     const alpha=1-Math.exp(-dt/75);
     const next=[current.lat+(goal[0]-current.lat)*alpha,current.lng+(goal[1]-current.lng)*alpha];
     const d=Math.hypot(goal[0]-next[0],goal[1]-next[1]);
-    rail.train.setLatLng(d<0.0000015?goal:next);
+    rail.train.setLatLng(d<0.0000015?goal:next);followTrainCamera(rail,d<0.0000015?goal:next);
     if(d<0.0000015){rail.typingAnimation=null;return}
     rail.typingAnimation=requestAnimationFrame(frame);
   };
