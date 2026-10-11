@@ -143,7 +143,7 @@ class TypingController{
   this.imeCompletionTimer=setTimeout(()=>{
    if(this.submitted||this.input.disabled||this.input.readOnly)return;
    if(normalizeTypingValue(this.input.value)!==value||!this.targets.includes(value))return;
-   this.submitted=true;this.committedValue=value;this.composing=false;
+   this.input.blur();if(this.submitted)return;this.submitted=true;this.committedValue=value;this.composing=false;
    this.input.closest('.typing-box')?.classList.add('correct');this.onSubmit?.(value);
   },160);
  }
