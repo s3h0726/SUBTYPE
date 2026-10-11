@@ -794,7 +794,7 @@ function updateDebug(){globalThis.__TRT_MAP_DEBUG__={mapObjects:gameRail?.map?1:
 async function ensureGameMap(target){
   if(gameRail?.map)return gameRail;
   const L=await ensureLeaflet(),map=L.map(target,{zoomControl:true,attributionControl:true,keyboard:true,dragging:true,scrollWheelZoom:true,doubleClickZoom:true,boxZoom:true,touchZoom:true,minZoom:8,maxZoom:18});
-  const tile=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>'}).addTo(map);
+  const tile=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,keepBuffer:8,updateWhenIdle:true,updateWhenZooming:false,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>'}).addTo(map);
   const railLayer=L.layerGroup().addTo(map),stationLayer=L.layerGroup().addTo(map),trainLayer=L.layerGroup().addTo(map);
   gameRail={L,map,tile,railLayer,stationLayer,trainLayer,routeId:null,routeKey:null,markers:[],train:null,index:0,typingProgress:0,animation:null,points:[]};
   tile.on('tileerror',()=>{const status=$('#basemap-status');if(status)status.textContent='OPENSTREETMAP · TILE RETRY'});
@@ -804,12 +804,12 @@ async function ensureGameMap(target){
 function followTrainCamera(rail,point,force=false){
  const map=rail?.map;if(!map||!point||!map.getSize().x||!map.getSize().y)return;
  const now=performance.now();
- if(!force&&now-(rail.lastCameraFrame||0)<65)return;
+ if(!force&&now-(rail.lastCameraFrame||0)<450)return;
  rail.lastCameraFrame=now;
  // Pan without zoom changes: track smoothly without repeated fitBounds jumps.
  const center=map.getCenter(),at=map.latLngToContainerPoint(point),middle=map.getSize().divideBy(2);
  if(!force&&at.distanceTo(middle)<Math.max(22,Math.min(map.getSize().x,map.getSize().y)*.085))return;
- map.panTo(point,{animate:false,noMoveStart:true});
+ // Avoid reloading tiles on every keystroke. Pan at most twice a second.\n map.panTo(point,{animate:true,duration:0.32,easeLinearity:0.7,noMoveStart:true});
 }
 function stopAnimation(rail){if(rail.animation){cancelAnimationFrame(rail.animation);rail.animation=null}if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null}
 function animateTrain(rail,from,to,motion){
