@@ -35,25 +35,21 @@
 #result-line-badge {display:none!important}
 </style>
 <style id="hokuriku-shinkansen-gradient">
-/* Exact 50/50 JR East / JR West color split; keep a solid rail color for canvas/Leaflet. */
+/* Match the existing Shinkansen card in light AND dark themes.
+   Only the 5px top rail stripe differs: equal JR East/West colors. */
 .line-card.shinkansen-card[data-route="shinkansen-hokuriku"]{
   position:relative;
-  overflow:hidden;
-  background:linear-gradient(110deg,#edf6ed 0%,#f4f7f2 48%,#f0f1fa 52%,#ebedf7 100%)!important;
-  border-top:0!important;
-  padding-top:calc(1em + 6px);
+  background:linear-gradient(145deg,
+    color-mix(in srgb,var(--surface) 94%,#fff),
+    color-mix(in srgb,var(--surface) 88%,var(--route-color) 12%))!important;
+  border-top:5px solid transparent!important;
 }
 .line-card.shinkansen-card[data-route="shinkansen-hokuriku"]::before{
   content:"";
   position:absolute;
-  top:0;left:0;right:0;height:6px;
+  top:-5px;left:0;right:0;height:5px;
   background:linear-gradient(90deg,#006600 0%,#006600 50%,#1E2877 50%,#1E2877 100%);
   pointer-events:none;
-}
-.line-card.shinkansen-card[data-route="shinkansen-hokuriku"] .line-card-identity,
-.line-card.shinkansen-card[data-route="shinkansen-hokuriku"] p,
-.line-card.shinkansen-card[data-route="shinkansen-hokuriku"] footer{
-  color:#243448;
 }
 .selected-line-card[data-route="shinkansen-hokuriku"]::before,
 .station-sign[data-route-id="shinkansen-hokuriku"] .station-sign-strip,
