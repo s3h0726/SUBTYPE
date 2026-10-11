@@ -145,7 +145,7 @@ class TypingController{
    if(normalizeTypingValue(this.input.value)!==value||!this.targets.includes(value))return;
    this.input.blur();if(this.submitted)return;this.submitted=true;this.committedValue=value;this.composing=false;
    this.input.closest('.typing-box')?.classList.add('correct');this.onSubmit?.(value);
-  },160);
+  },50);
  }
  if(isComposing||this.submitted)return;if(exact){this.submitted=true;this.input.closest('.typing-box')?.classList.add('correct');this.onSubmit?.(value)}else if(force||value&&!prefix)this.input.closest('.typing-box')?.classList.add('wrong');else this.input.closest('.typing-box')?.classList.remove('wrong')}
   focus(){if(this.input.disabled)return;this.input.focus({preventScroll:true});requestAnimationFrame(()=>{if(document.activeElement!==this.input&&!this.input.disabled)this.input.focus({preventScroll:true})})}
