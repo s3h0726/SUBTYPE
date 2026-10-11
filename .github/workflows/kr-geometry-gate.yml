@@ -1,0 +1,25 @@
+name: Korean OSM geometry safety gate
+on:
+  push:
+    paths:
+      - 'data/kr/**'
+      - 'tools/validate-kr-**'
+      - 'tools/test-kr-geometry-gates.mjs'
+      - 'package.json'
+  pull_request:
+    paths:
+      - 'data/kr/**'
+      - 'tools/validate-kr-**'
+      - 'tools/test-kr-geometry-gates.mjs'
+      - 'package.json'
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run validate:korea
+      - run: npm run test:korea
