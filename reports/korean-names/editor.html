@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>메트로타이핑 · 한글명 편집표</title>
+<title>메트로타이핑 · 최신 한글명 편집표</title>
 <style>
 :root{font:15px system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#12202c;background:#f2f5fa}
 *{box-sizing:border-box}body{margin:0}header{background:#12273b;color:#fff;padding:25px max(20px,calc((100vw - 1400px)/2))}
@@ -24,13 +24,13 @@ td.edited{background:#fff2d2}.note{font-size:13px;color:#587184;padding:12px 2px
 small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4px;background:#fff}
 @media(max-width:700px){header{padding:20px}header h1{font-size:20px}main{padding:12px}#table-wrap{height:70vh}td,th{padding:6px}input[type=search]{max-width:none}}
 </style></head>
-<body><header><h1>메트로타이핑 · 한글명 편집표</h1><p>한글명·노선 RGB 편집 → GitHub에 저장 → 게임에 자동 반영</p></header>
+<body><header><h1>메트로타이핑 · 한글명 편집표</h1><p>최신 원본 데이터 · 한글명·노선 RGB 편집 → GitHub에 저장 → 게임에 자동 반영</p></header>
 <main>
 <div class="toolbar" id="tabs">
-<button class="tab active" data-file="operators">운영사 162</button>
-<button class="tab" data-file="lines">노선 603</button>
-<button class="tab" data-file="stations-by-line">역명 10,723</button>
-<button class="tab" data-file="stations-unique">고유 역명 9,142</button>
+<button class="tab active" data-file="operators">운영사 <span id="count-operators">…</span></button>
+<button class="tab" data-file="lines">노선 <span id="count-lines">…</span></button>
+<button class="tab" data-file="stations-by-line">역명 <span id="count-stations-by-line">…</span></button>
+<button class="tab" data-file="stations-unique">고유 역명 <span id="count-stations-unique">…</span></button>
 </div>
 <div class="toolbar">
 <input id="q" type="search" placeholder="회사명·노선명·역명·일본어명 검색" aria-label="검색">
@@ -48,6 +48,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 'use strict';
 const FILES=['operators','lines','stations-by-line','stations-unique'];
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0;
+const DATA_VERSION='20261011-current';
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
 const editNameCol={'operators':'한국어명','lines':'노선 한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
@@ -81,12 +82,12 @@ function parseCSV(text){
 function makeCSV(data){return '\uFEFF'+data.map(row=>row.map(value=>'"'+String(value??'').replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n'}
 function saveCSV(data,name){const blob=new Blob([makeCSV(data)],{type:'text/csv;charset=utf-8'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500)}
 function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[i]=r});localStorage.setItem('metrot-korean-edit-'+file,JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
-function applyDraft(){try{let draft=JSON.parse(localStorage.getItem('metrot-korean-edit-'+file)||'{}');for(const [i,r] of Object.entries(draft))if(rows[+i]&&r.length===heads.length)rows[+i]=r}catch{}}
+function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[i]=r});localStorage.setItem('metrot-korean-edit-'+DATA_VERSION+'-'+file,JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
+function applyDraft(){try{let draft=JSON.parse(localStorage.getItem('metrot-korean-edit-'+DATA_VERSION+'-'+file)||'{}');for(const [i,r] of Object.entries(draft))if(rows[+i]&&r.length===heads.length)rows[+i]=r}catch{}}
 async function load(name){file=name;page=0;q.value='';changesOnly.checked=false;status.textContent='자료 읽는 중…';
  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.file===name));
- try{const res=await fetch('./'+name+'.csv?cache=20261009');if(!res.ok)throw Error('CSV '+res.status);
- const arr=parseCSV(await res.text());heads=arr.shift();rows=arr;try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
+ try{const res=await fetch('./'+name+'.csv?v='+DATA_VERSION,{cache:'no-store'});if(!res.ok)throw Error('CSV '+res.status);
+ const arr=parseCSV(await res.text());heads=arr.shift();rows=arr;const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
  }catch(e){status.textContent='파일을 열 수 없습니다: '+e.message}}
 function refresh(){
  const key=q.value.trim().toLocaleLowerCase('ko');visible=[];
@@ -115,7 +116,7 @@ document.querySelector('#tabs').addEventListener('click',e=>{const b=e.target.cl
 document.querySelector('#prev').onclick=()=>{page--;render()};document.querySelector('#next').onclick=()=>{page++;render()};
 document.querySelector('#export').onclick=()=>saveCSV([heads,...rows],file+'-edited.csv');
 document.querySelector('#exportChanges').onclick=()=>{const a=rows.filter((r,i)=>isChanged(i));saveCSV([heads,...a],file+'-changes-only.csv')};
-document.querySelector('#reset').onclick=()=>{if(!confirm('현재 표의 임시 수정 내용을 모두 취소할까요?'))return;rows=original.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+file);refresh()};
+document.querySelector('#reset').onclick=()=>{if(!confirm('현재 표의 임시 수정 내용을 모두 취소할까요?'))return;rows=original.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+DATA_VERSION+'-'+file);refresh()};
 
 function mergeChange(obj,k,v){if(v) obj[k]=v}
 async function saveToGame(){
@@ -147,7 +148,7 @@ async function saveToGame(){
  const content=btoa(unescape(encodeURIComponent(JSON.stringify(json,null,2)+'\n')));
  const put=await fetch(url,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'data: apply Korean names and RGB edits from web editor',content,sha:current.sha,branch:'main'})});
  if(!put.ok){const data=await put.text();throw Error('GitHub 저장 실패: '+put.status+' '+data.slice(0,220))}
- remoteOverrides=json;original=rows.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+file);refresh();
+ remoteOverrides=json;original=rows.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+DATA_VERSION+'-'+file);refresh();
  status.textContent='GitHub 저장 완료! Pages 배포 완료 후 게임에서 자동 적용됩니다.';
  alert('저장 완료! GitHub Pages 배포가 완료된 뒤 게임을 새로고침하면 적용됩니다.');
  }catch(e){status.textContent=e.message;alert(e.message)}finally{btn.disabled=false}
