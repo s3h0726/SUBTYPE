@@ -11,7 +11,7 @@
     "en": "Hokuriku Shinkansen"
   },
   "code": "W",
-  "color": "#0072BC",
+  "color": "#006600",
   "symbol": {
     "asset": null,
     "officialSymbolExists": false,
@@ -56,5 +56,32 @@
     "coverage": "full-current-line",
     "dataKind": "shinkansenRoute"
   },
-  "officialKoSource": null
+  "officialKoSource": null,
+  "colorGradient": {
+    "type": "linear",
+    "angle": 90,
+    "stops": [
+      {
+        "color": "#006600",
+        "position": 0
+      },
+      {
+        "color": "#006600",
+        "position": 50
+      },
+      {
+        "color": "#1E2877",
+        "position": 50
+      },
+      {
+        "color": "#1E2877",
+        "position": 100
+      }
+    ],
+    "css": "linear-gradient(90deg,#006600 0%,#006600 50%,#1E2877 50%,#1E2877 100%)"
+  },
+  "operatingOperators": [
+    "jr-east",
+    "jr-west"
+  ]
 }

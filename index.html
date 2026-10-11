@@ -34,6 +34,19 @@
 #result-operator-logo,
 #result-line-badge {display:none!important}
 </style>
+<style id="hokuriku-shinkansen-gradient">
+/* Exact 50/50 JR East / JR West color split; keep a solid rail color for canvas/Leaflet. */
+.line-card[data-route="shinkansen-hokuriku"]{
+  background-image:linear-gradient(90deg,#006600 0%,#006600 50%,#1E2877 50%,#1E2877 100%);
+  background-size:100% 6px;background-position:center top;background-repeat:no-repeat;
+  border-top:0;padding-top:calc(1em + 6px);
+}
+.selected-line-card[data-route="shinkansen-hokuriku"]::before,
+.station-sign[data-route-id="shinkansen-hokuriku"] .station-sign-strip,
+.station-sign[data-route-id="shinkansen-hokuriku"] .station-neighbor{
+  background:linear-gradient(90deg,#006600 0%,#006600 50%,#1E2877 50%,#1E2877 100%)!important;
+}
+</style>
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>

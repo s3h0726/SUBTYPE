@@ -19,7 +19,7 @@
       "ko": "호쿠리쿠 신칸선"
     },
     "code": "W",
-    "lineColor": "#0072bc",
+    "lineColor": "#006600",
     "loop": false,
     "coverage": "full-current-line",
     "sourceUrl": "https://www.japanrailpass-reservation.net/about_jrp/route.html",
@@ -10060,6 +10060,33 @@
         136.0764
       ]
     ],
-    "geometrySource": "MLIT-N02-2025"
+    "geometrySource": "MLIT-N02-2025",
+    "colorGradient": {
+      "type": "linear",
+      "angle": 90,
+      "stops": [
+        {
+          "color": "#006600",
+          "position": 0
+        },
+        {
+          "color": "#006600",
+          "position": 50
+        },
+        {
+          "color": "#1E2877",
+          "position": 50
+        },
+        {
+          "color": "#1E2877",
+          "position": 100
+        }
+      ],
+      "css": "linear-gradient(90deg,#006600 0%,#006600 50%,#1E2877 50%,#1E2877 100%)"
+    },
+    "operatingOperators": [
+      "op-2",
+      "op-3"
+    ]
   }
 }
