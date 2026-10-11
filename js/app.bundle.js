@@ -679,7 +679,7 @@ function koreanFamilyServiceChoices(passengerLineId){
   const definitions=koreanFamilyServices[String(passengerLineId)]||[],choices=[];
   for(const definition of definitions)for(const direction of ['forward','reverse']){
     const parts=definition.directions[direction];if(!parts?.length)continue;
-    choices.push({kind:'koreanFamilyService',id:`korean-family:${definition.id}:${direction}`,patternId:definition.id,patternName:definition.names,direction,originId:`${definition.id}:${direction}:origin`,destinationId:`${definition.id}:${direction}:destination`,originNames:{ko:direction==='forward'?definition.names.ko.split(' ↔ ')[0]:definition.names.ko.split(' ↔ ')[1].replace(/\\s+\\([^)]*\\)$/,'')},destinationNames:{ko:direction==='forward'?definition.names.ko.split(' ↔ ')[1].replace(/\\s+\\([^)]*\\)$/,''):definition.names.ko.split(' ↔ ')[0]}})
+    choices.push({kind:'koreanFamilyService',id:`korean-family:${definition.id}:${direction}`,patternId:definition.id,patternName:definition.names,direction,originId:`${definition.id}:${direction}:origin`,destinationId:`${definition.id}:${direction}:destination`,originNames:{ko:direction==='forward'?definition.names.ko.split(' ↔ ')[0]:definition.names.ko.split(' ↔ ')[1].replace(/\s+\([^)]*\)$/,'')},destinationNames:{ko:direction==='forward'?definition.names.ko.split(' ↔ ')[1].replace(/\s+\([^)]*\)$/,''):definition.names.ko.split(' ↔ ')[0]}})
   }
   return choices;
 }
