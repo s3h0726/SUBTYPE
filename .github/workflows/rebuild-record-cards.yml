@@ -1,0 +1,33 @@
+name: Rebuild record cards without logos
+on:
+  push:
+    paths:
+      - 'js/statistics.js'
+      - 'js/app.js'
+      - '.github/workflows/rebuild-record-cards.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild application bundle
+        run: node tools/build-static.js
+      - name: Assert logos absent from record cards
+        run: |
+          node -e "const fs=require('fs');const s=fs.readFileSync('js/app.bundle.js','utf8');for(const marker of ['record-operator-logo','record-line-symbol','recent-operator-logo','result-operator-logo-asset'])if(s.includes(marker))throw Error(marker+' still referenced');"
+      - name: Publish built bundle
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/app.bundle.js js/line-workspace-data.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'build: update logo-free record cards bundle'
+            git push
+          fi
