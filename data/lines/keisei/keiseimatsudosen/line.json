@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "id": "line-99329",
   "legacyId": "line-99329",
-  "operatorId": "shinkeiseidentetsu",
+  "operatorId": "keisei",
   "category": "private",
   "names": {
-    "ja": "新京成線",
-    "kana": "しんけいせいせん",
-    "ko": "신게이세이선",
-    "en": "Shinkeiseisen"
+    "ja": "京成松戸線",
+    "kana": "けいせいまつどせん",
+    "ko": "게이세이 마츠도선",
+    "en": "Keisei Matsudo Line"
   },
   "code": "",
   "color": "hsl(242 62% 46%)",
@@ -29,11 +29,11 @@
     "identificationVerified": false
   },
   "loop": false,
-  "stationSignTemplate": "shinkeiseidentetsu",
+  "stationSignTemplate": "keisei",
   "services": [],
   "throughServiceIds": [],
   "sources": {
-    "official": "",
+    "official": "https://www.keisei.co.jp/keisei/tetudou/railmap/",
     "korean": "",
     "geometry": "MLIT-N02-2025",
     "koreanName": {
@@ -54,7 +54,9 @@
   "legacy": {
     "origin": "nationwide",
     "coverage": "nationwide-source-line",
-    "dataKind": "physicalRoute"
+    "dataKind": "physicalRoute",
+    "formerOperator": "新京成電鉄",
+    "formerName": "新京成線"
   },
   "officialKoSource": null
 }
