@@ -3,32 +3,64 @@
     "id": "line-99329",
     "legacyId": "line-99329",
     "category": "private",
-    "operatorId": "shinkeiseidentetsu",
+    "operatorId": "keisei",
     "operator": {
-      "ja": "新京成電鉄",
-      "ko": "신케이세이전철",
-      "en": "Shinkeiseidentetsu"
+      "ja": "京成電鉄",
+      "ko": "케이세이 전철",
+      "en": "Keisei"
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 新京成電鉄 신케이세이덴테츠 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%84%B8%EC%9D%B4%20%EC%A0%84%EC%B2%A0",
+      "searchReference": "site:namu.wiki \"京成電鉄\"",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"京成電鉄\"",
+        "resultTitle": "케이세이 전철",
+        "resultUrl": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%84%B8%EC%9D%B4%20%EC%A0%84%EC%B2%A0"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "京成電鉄",
+        "legalNameJa": "京成電鉄株式会社",
+        "url": "https://www.keisei.co.jp/keisei/corporate/profile/corporatedata/"
+      }
     },
-    "operatorAsset": null,
+    "operatorAsset": {
+      "asset": "./data/operators/keisei/logo.svg",
+      "label": "Keisei",
+      "source": "https://commons.wikimedia.org/wiki/Category:Keisei_Group_logos",
+      "logoVerified": true,
+      "metadata": {
+        "asset": "./logo.svg",
+        "source": "https://commons.wikimedia.org/wiki/Category:Keisei_Group_logos",
+        "verified": true,
+        "identificationSource": "namuwiki-unresolved",
+        "identificationUrl": "",
+        "identificationSearch": "site:namu.wiki 京成電鉄 게이세이 전철 로고",
+        "sourceAccess": "blocked",
+        "assetSource": "wikimedia",
+        "assetSourceUrl": "https://commons.wikimedia.org/wiki/Category:Keisei_Group_logos",
+        "licenseVerified": false,
+        "identificationFamily": "namuwiki",
+        "identificationMethod": "unresolved",
+        "identificationVerified": false
+      }
+    },
     "line": {
-      "ja": "新京成線",
-      "kana": "しんけいせいせん",
-      "ko": "신게이세이선",
-      "en": "Shinkeiseisen"
+      "ja": "京成松戸線",
+      "kana": "けいせいまつどせん",
+      "ko": "마츠도선",
+      "en": "Keisei Matsudo Line"
     },
     "koreanNameSource": {
       "family": "namuwiki",
@@ -45,7 +77,7 @@
       "canonicalPolicy": "namuwiki"
     },
     "code": "",
-    "lineColor": "hsl(242 62% 46%)",
+    "lineColor": "#0A3788",
     "symbolAsset": null,
     "symbolMeta": {
       "asset": null,
@@ -65,7 +97,7 @@
     },
     "officialSymbolExists": false,
     "loop": false,
-    "stationSignTemplate": "shinkeiseidentetsu",
+    "stationSignTemplate": "keisei",
     "services": [],
     "throughServiceIds": [],
     "throughOperations": [],
@@ -2944,13 +2976,13 @@
     "missingSegments": [],
     "reusedSegments": [],
     "workspace": {
-      "folder": "data/lines/shinkeiseidentetsu/shinkeiseisen",
-      "linePath": "data/lines/shinkeiseidentetsu/shinkeiseisen/line.json",
-      "stationsPath": "data/lines/shinkeiseidentetsu/shinkeiseisen/stations.json",
-      "geometryPath": "data/lines/shinkeiseidentetsu/shinkeiseisen/geometry.json"
+      "folder": "data/lines/keisei/keiseimatsudosen",
+      "linePath": "data/lines/keisei/keiseimatsudosen/line.json",
+      "stationsPath": "data/lines/keisei/keiseimatsudosen/stations.json",
+      "geometryPath": "data/lines/keisei/keiseimatsudosen/geometry.json"
     },
     "sources": {
-      "official": "",
+      "official": "https://www.keisei.co.jp/keisei/tetudou/railmap/",
       "korean": "",
       "geometry": "MLIT-N02-2025",
       "koreanName": {
