@@ -1,3 +1,4 @@
+import {travelGeometry,vehicleIcon} from './route-renderer.js';
 /* Shared completion map for every playable transport line. */
 let completedMap;
 const number=v=>Number.isFinite(Number(v))?Number(v):NaN;
@@ -26,14 +27,20 @@ async function showCompletedJourneyOnMap(result){
  stopTrain();
  const box=document.getElementById('result-journey-map'),note=document.getElementById('result-journey-note'),heading=document.getElementById('result-journey-heading');
  if(!box||!note||!heading)return;
- const route=result.route||{},stations=route.stations||[],byId=new Map(stations.map(s=>[s.id,s]));
+ const route=result.mapRoute||result.route||{},stations=route.stations||[],byId=new Map(stations.map(s=>[s.id,s]));
  const passed=(result.typedStationIds||[]).map(id=>byId.get(id)).filter(Boolean);
  heading.textContent=(passed[0]?.ko||passed[0]?.ja||'출발')+' → '+(passed.at(-1)?.ko||passed.at(-1)?.ja||'도착');
- let parts=[],missing=0;
+ // Replay the exact same geometry and station offsets used by the live game renderer.
+ const travel=travelGeometry(route),parts=[];let missing=0;
  for(let i=1;i<passed.length;i++){
-  const detailed=segmentPath(route,passed[i-1],passed[i]),from=coordinate(passed[i-1]),to=coordinate(passed[i]);
-  if(detailed)parts.push({points:detailed,verified:true});
-  else if(from&&to){parts.push({points:[from,to],verified:false});missing++}
+  const fromIndex=stations.findIndex(st=>st.id===passed[i-1].id),toIndex=stations.findIndex(st=>st.id===passed[i].id);
+  let path=null;
+  if(travel&&fromIndex>=0&&toIndex>=0&&fromIndex!==toIndex){
+   const x=travel.offsets[fromIndex],y=travel.offsets[toIndex];
+   if(Number.isInteger(x)&&Number.isInteger(y)&&x!==y)path=x<y?travel.points.slice(x,y+1):travel.points.slice(y,x+1).reverse();
+  }
+  if(path?.length>1)parts.push({points:path,verified:route.countryId!=='kr'||route.geometryReady===true});
+  else {const from=coordinate(passed[i-1]),to=coordinate(passed[i]);if(from&&to){parts.push({points:[from,to],verified:false});missing++}}
  }
  if(!parts.length){note.textContent='경로 좌표를 확인할 수 없습니다.';box.replaceChildren();return}
  box.replaceChildren();box.style.display='block';
@@ -54,8 +61,8 @@ async function showCompletedJourneyOnMap(result){
  }
  const bounds=L.latLngBounds(linePoints);
  if(bounds.isValid())journeyMap.fitBounds(bounds.pad(0.16),{maxZoom:14});
- journeyTrain=L.marker(linePoints[0],{interactive:false,zIndexOffset:1000,icon:L.divIcon({className:'journey-train-marker',html:'<span style="display:grid;place-items:center;background:#132e37;color:#fff;border:2px solid white;border-radius:12px;width:30px;height:30px;box-shadow:0 2px 10px #0005;font-size:18px">🚆</span>',iconSize:[34,34],iconAnchor:[17,17]})}).addTo(journeyMap);
- note.textContent=missing?'메인 주행과 같은 지도입니다. 점선은 실제 선형이 확인되지 않은 '+missing+'개 구간입니다.':'메인 주행과 같은 실제 지도와 노선 선형입니다.';
+ journeyTrain=L.marker(linePoints[0],{interactive:false,zIndexOffset:1000,icon:vehicleIcon(L,route)}).addTo(journeyMap);
+ note.textContent=missing?'메인 주행 지도의 선형 데이터를 그대로 재생합니다. 점선은 실제 선형이 확인되지 않은 '+missing+'개 구간입니다.':'메인 주행에서 사용한 실제 선형과 열차 아이콘으로 재생합니다.';
  const lengths=[0];for(let i=1;i<linePoints.length;i++)lengths.push(lengths.at(-1)+distanceMeters(linePoints[i-1],linePoints[i]));
  const total=lengths.at(-1);if(!(total>0))return;
  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
