@@ -220,10 +220,10 @@
 
     <section id="screen-result" data-screen="result" class="screen result-screen" aria-labelledby="result-title">
       <div class="result-card"><p class="eyebrow success">ROUTE COMPLETE</p><h2 id="result-title">운행 완료!</h2><div id="result-route" class="result-route"></div>
-      <div class="result-distance-summary" style="margin:18px 0 20px;padding:18px;border:1px solid var(--border,#8a9a9444);border-radius:14px"><span class="eyebrow">DISTANCE · 운행 거리</span><div id="result-distance" style="font-size:2rem;font-weight:800">계산 중</div><small id="result-distance-note">운행 구간을 계산합니다.</small></div>
+      <div class="result-distance-summary" style="margin:18px 0 20px;padding:18px;border:1px solid var(--border,#8a9a9444);border-radius:14px"><span class="eyebrow">DISTANCE · 운행 거리</span><div id="result-distance" style="font-size:2rem;font-weight:800">계산 중</div><small id="result-distance-note">운행 구간을 계산합니다.</small><p id="result-distance-analogy" style="margin:8px 0 0;font-weight:650"></p></div>
       <div class="result-grid"><div><span>TIME</span><strong id="result-time">00:00.00</strong></div><div><span>ACCURACY</span><strong id="result-accuracy">100%</strong></div><div><span>TYPING</span><strong id="result-cpm">0 타/min</strong></div><div><span>ERRORS</span><strong id="result-errors">0</strong></div><div><span>MAX COMBO</span><strong id="result-combo">0</strong></div><div><span>WPM</span><strong id="result-wpm">0</strong></div></div>
-      <button type="button" id="result-open-journey" class="btn ghost" style="margin:20px 0 10px">내 운행 경로 보기 · 지도 ↗</button>
-      <section id="result-journey" class="result-journey" hidden aria-labelledby="result-journey-title"><p class="eyebrow">YOUR JOURNEY / 운행 경로</p><h3 id="result-journey-title">지도에서 확인한 운행 구간</h3><p id="result-journey-heading"></p><div id="result-journey-map" role="img" aria-label="운행 완료 구간 지도" style="width:100%;height:340px;border-radius:14px;background:#dde6e2"></div><p id="result-journey-note" role="status"></p></section>
+      <button type="button" id="result-open-journey" class="btn ghost" style="margin:20px 0 10px">내 운행 경로 보기 · 노선도 ↗</button>
+      <section id="result-journey" class="result-journey" hidden aria-labelledby="result-journey-title"><p class="eyebrow">YOUR JOURNEY / 운행 경로</p><h3 id="result-journey-title">단순화된 노선도에서 확인한 운행 구간</h3><p id="result-journey-heading"></p><div id="result-journey-map" role="img" aria-label="운행 완료 구간 노선도" style="width:100%;height:340px;border-radius:14px;background:#dde6e2"></div><p id="result-journey-note" role="status"></p></section>
       <p id="record-notice" class="record-notice" hidden>NEW RECORD!</p><div class="result-actions"><button id="retry-game" class="btn primary">RETRY · 다시 플레이</button><button class="btn ghost" data-nav="rail-map">CHANGE LINE · 다른 노선</button><button class="btn text" data-nav="home">HOME · 메인 메뉴</button></div></div>
     </section>
 
@@ -271,7 +271,7 @@
   <script defer src="./js/keisei-matsudo-migration.js?v=20261011"></script>
   <script defer src="./js/keisei-higashinarita-data.js?v=20261011"></script>
   <script defer src="./js/lines-csv-overrides.js?v=20261011"></script>
-  <script type="module" src="./js/result-journey-map.js?v=distance-button-20261011"></script>
+  <script type="module" src="./js/result-journey-map.js?v=schematic-20261011"></script>
   <script defer src="./js/app.bundle.js?v=distance-button-20261011"></script>
 </body>
 </html>
