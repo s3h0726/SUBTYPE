@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Conservative corrections to Korean station names; never infer a Namuwiki title verification.
-const fs=require('node:fs'),path=require('node:path');
-const root=path.resolve(__dirname,'..'),folder=path.join(root,'data/shared-stations'),changed=[],review=[];
+import fs from 'node:fs';import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),folder=path.join(root,'data/shared-stations'),changed=[],review=[];
 const files=fs.readdirSync(folder).filter(f=>/^stations-\d+\.json$/.test(f)).sort();
 const add=(station,file,before,after,rule)=>{
  station.names.ko=after;
