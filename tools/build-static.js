@@ -8,6 +8,7 @@ execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js')],{stdi
 execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-2-verified-geometry.js')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(__dirname,'validate-seoul-line-5-official-order.js')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-5-verified-geometry.js')],{stdio:'inherit'});
+execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-1-verified-geometry.js')],{stdio:'inherit'});
 const tokyoArea=require('./build-tokyo-network');
 const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const write=(relative,value)=>{const target=path.join(root,relative),temporary=`${target}.tmp`;fs.writeFileSync(temporary,value);fs.renameSync(temporary,target)};
