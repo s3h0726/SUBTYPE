@@ -1,0 +1,30 @@
+name: Line 1 OSM source audit
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fetch-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download OSM route relations and validate references
+        run: python tools/fetch-line1-osm.py
+      - name: Parse each child route into raw track segments
+        run: |
+          mkdir -p /tmp/line1-audits
+          for f in data/kr/source/osm/line-1/*-full.osm; do
+            python tools/prepare-line1-osm.py "$f" > "/tmp/line1-audits/$(basename "$f" .osm).json"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: line1-osm-source-audit
+          path: |
+            data/kr/source/osm/line-1/
+            /tmp/line1-audits/
+          retention-days: 14
