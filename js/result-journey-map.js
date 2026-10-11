@@ -60,7 +60,16 @@ async function showCompletedJourneyOnMap(result){
   L.circleMarker(position,{radius:i===0||i===passed.length-1?7:3,weight:2,color:'#ffffff',fillColor:i===0?'#16a34a':i===passed.length-1?'#dc2626':color,fillOpacity:1}).bindTooltip(passed[i].ko||passed[i].ja||'',{direction:'top'}).addTo(journeyMap);
  }
  const bounds=L.latLngBounds(linePoints);
- if(bounds.isValid())journeyMap.fitBounds(bounds.pad(0.16),{maxZoom:14});
+ // Follow-camera zoom reflects the distance covered, not an arbitrary fixed zoom.
+ const travelledKm=linePoints.reduce((sum,p,i)=>i?sum+distanceMeters(linePoints[i-1],p)/1000:0,0);
+ const maxFollowZoom=travelledKm<3?16:travelledKm<10?15:travelledKm<30?14:travelledKm<80?13:travelledKm<200?12:travelledKm<400?11:10;
+ if(bounds.isValid()){
+  journeyMap.fitBounds(bounds.pad(0.16),{maxZoom:maxFollowZoom});
+  // For long routes keep enough surroundings visible while tracking, without zooming in too far.
+  const initialZoom=journeyMap.getZoom();
+  const followZoom=Math.min(maxFollowZoom,Math.max(initialZoom,travelledKm>=80?11:travelledKm>=30?12:13));
+  journeyMap.setView(linePoints[0],followZoom,{animate:false});
+ }
  journeyTrain=L.marker(linePoints[0],{interactive:false,zIndexOffset:1000,icon:vehicleIcon(L,route)}).addTo(journeyMap);
  note.textContent=missing?'메인 주행 지도의 선형 데이터를 그대로 재생합니다. 점선은 실제 선형이 확인되지 않은 '+missing+'개 구간입니다.':'메인 주행에서 사용한 실제 선형과 열차 아이콘으로 재생합니다.';
  const lengths=[0];for(let i=1;i<linePoints.length;i++)lengths.push(lengths.at(-1)+distanceMeters(linePoints[i-1],linePoints[i]));
