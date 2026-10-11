@@ -47,8 +47,9 @@ jobs:
           code=$?
           cat "research-${{ matrix.line }}.log"
           echo "Research command exit status: $code"
-          exit 0
+          exit "$code"
       - name: Preserve audit-only OSM track evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: kr-metro-${{ matrix.line }}-osm-candidates
