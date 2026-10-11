@@ -42,6 +42,19 @@ function animateTrain(rail,from,to,motion){
 }
 function typingSegment(rail,from,to){const key=`${from}:${to}`;if(rail.segmentCache.has(key))return rail.segmentCache.get(key);const a=rail.stationOffsets[from],b=rail.stationOffsets[to],segment=a<=b?rail.points.slice(a,b+1):rail.points.slice(b,a+1).reverse(),lengths=new Float64Array(segment.length);for(let i=1;i<segment.length;i++){const p=segment[i-1],q=segment[i],dx=(q[1]-p[1])*Math.cos((p[0]+q[0])*Math.PI/360),dy=q[0]-p[0];lengths[i]=lengths[i-1]+Math.hypot(dx,dy)}const cached={segment,lengths,total:lengths.at(-1)||0};rail.segmentCache.set(key,cached);return cached}
 function clearRouteLayers(rail){stopAnimation(rail);rail.railLayer.clearLayers();rail.stationLayer.clearLayers();rail.trainLayer.clearLayers();rail.markers=[];rail.train=null;rail.routeId=null;rail.routeKey=null;rail.points=[];updateDebug()}
+function stationGapZoom(rail,index,nextIndex){
+ const a=rail.stationPoints?.[index],b=rail.stationPoints?.[nextIndex];
+ if(!a||!b)return 14;
+ const lat=(a[0]+b[0])/2*Math.PI/180;
+ const km=111.2*Math.hypot(a[0]-b[0],(a[1]-b[1])*Math.cos(lat));
+ return km<1?15:km<3?14:km<7?13:km<15?12:km<35?11:km<75?10:km<150?9:8;
+}
+function centerArrivalCamera(rail,index,nextIndex,initial=false){
+ const at=rail.stationPoints[index];if(!at)return;
+ const zoom=stationGapZoom(rail,index,nextIndex);
+ if(initial)rail.map.setView(at,zoom,{animate:false});
+ else {rail.map.stop();rail.map.setView(at,zoom,{animate:true,duration:.45})}
+}
 function createRouteLayers(rail,route,index,options={}){
   clearRouteLayers(rail);const {L,map}=rail,stationPoints=latLngs(route),travel=travelGeometry(route);if(!travel)return false;const points=travel.points;rail.routeId=route.id;rail.routeKey=route.renderKey||route.id;rail.points=points;rail.stationPoints=stationPoints;rail.stationOffsets=travel.offsets;rail.segmentCache=new Map();rail.index=index;rail.nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1);
   rail.base=L.polyline(points,{color:'#182923',weight:11,opacity:.55,lineCap:'round'}).addTo(rail.railLayer);if(Array.isArray(route.segments))for(const segment of route.segments){const from=travel.offsets[segment.fromStation],to=travel.offsets[segment.toStation];L.polyline(points.slice(Math.min(from,to),Math.max(from,to)+1),{color:segment.lineColor,weight:7,opacity:.72,lineCap:'round'}).addTo(rail.railLayer)}
@@ -49,12 +62,12 @@ function createRouteLayers(rail,route,index,options={}){
   rail.completed=L.polyline(points.slice(0,travel.offsets[index]+1),{color:route.lineColor,weight:8,opacity:1,lineCap:'round'}).addTo(rail.railLayer);
   rail.markers=route.stations.map((station,i)=>L.marker(stationPoints[i],{interactive:false,keyboard:false,zIndexOffset:i===index?500:0,icon:stationIcon(L,station,i===index?'current':i===rail.nextIndex?'next':i===index-1?'previous':'other',route.lineColor)}).addTo(rail.stationLayer));
   rail.train=L.marker(stationPoints[index],{interactive:false,keyboard:false,zIndexOffset:1000,icon:vehicleIcon(L,route)}).addTo(rail.trainLayer);
-  requestAnimationFrame(()=>{map.invalidateSize();const pair=[stationPoints[index],stationPoints[rail.nextIndex]].filter(Boolean);if(pair.length>1)map.fitBounds(pair,{padding:[100,100],maxZoom:16});else map.setView(stationPoints[index],15)});updateDebug()
+  requestAnimationFrame(()=>{map.invalidateSize();centerArrivalCamera(rail,index,rail.nextIndex,true)});updateDebug()
 }
 function updateRouteProgress(rail,route,index,motion,options={}){
   const nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1),currentPosition=rail.train?.getLatLng(),previous=currentPosition?[currentPosition.lat,currentPosition.lng]:rail.stationPoints[rail.index],next=rail.stationPoints[index];rail.remaining.setLatLngs(rail.points.slice(rail.stationOffsets[index]));rail.completed.setLatLngs(rail.points.slice(0,rail.stationOffsets[index]+1));
   rail.markers.forEach((marker,i)=>{const kind=i===index?'current':i===nextIndex?'next':i===index-1?'previous':'other';marker.setIcon(stationIcon(rail.L,route.stations[i],kind,route.lineColor));marker.setZIndexOffset(i===index?500:0)});
-  const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;/* Follow the arrived station only; never pan on each keystroke. */rail.map.stop();rail.map.panTo(next,{animate:true,duration:0.45,easeLinearity:0.6});updateDebug()
+  const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;/* Follow the arrived station only; never pan on each keystroke. */centerArrivalCamera(rail,index,nextIndex);updateDebug()
 }
 async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
