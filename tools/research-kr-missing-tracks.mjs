@@ -19,8 +19,8 @@ const args=Object.fromEntries(process.argv.slice(2).flatMap((v,i,a)=>v.startsWit
 const line=Number(args.line);
 if(![3,7].includes(line))throw Error('Supply --line 3 or --line 7');
 const targets=JSON.parse(fs.readFileSync(path.join(root,'data/kr/osm-candidates/kr-metro-'+line+'.missing-targets.json'),'utf8')).missingPairs;
-const picked=args.all===true?targets:targets.filter(p=>p.index===Number(args.pair));
-if (args.all===true && args.limit) picked.splice(Math.max(1,Number(args.limit)||1));
+const picked=args.all===true?targets.filter(p=>p.index>=Number(args['start-pair']||0)):targets.filter(p=>p.index===Number(args.pair));
+if(args.all===true&&args.limit)picked.splice(Math.max(1,Number(args.limit)||1));
 if(!picked.length)throw Error('Use --pair <missing pair index> or --all');
 const maxSnap=120; // Station entrance/center is not exact track position; flag wide snaps for review.
 const round=x=>Math.round(x*1e6)/1e6;

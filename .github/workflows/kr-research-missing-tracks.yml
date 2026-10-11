@@ -7,6 +7,10 @@ on:
         type: choice
         options: ['both', '3', '7']
         default: 'both'
+      start_pair:
+        description: 'Start from station-pair index (default: 0)'
+        type: number
+        default: 0
       max_pairs:
         description: 'Maximum pairs per line (0 = all)'
         type: number
@@ -43,6 +47,7 @@ jobs:
           fi
           extra=()
           if [ "$max_pairs" -gt 0 ]; then extra=(--limit "$max_pairs"); fi
+          if [ "\${{ github.event_name }}" = "workflow_dispatch" ]; then extra+=(--start-pair "\${{ inputs.start_pair }}"); fi
           node tools/research-kr-missing-tracks.mjs --line ${{ matrix.line }} --all --delay-ms 2500 "${extra[@]}" > "research-${{ matrix.line }}.log" 2>&1
           code=$?
           cat "research-${{ matrix.line }}.log"
