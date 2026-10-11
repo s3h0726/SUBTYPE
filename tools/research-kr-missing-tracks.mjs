@@ -29,7 +29,7 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const graphFromOsm=items=>{
   const nodes=new Map,edges=new Map,ways=new Map;
   for(const e of items||[])if(e.type==='node'&&Number.isFinite(e.lat)&&Number.isFinite(e.lon))nodes.set(e.id,[e.lat,e.lon]);
-  for(const w of items||[])if(w.type==='way'&&['rail','subway','light_rail'].includes(w.tags?.railway)&&Array.isArray(w.nodes)){
+  for(const w of items||[])if(w.type==='way'&&['rail','subway','light_rail'].includes(w.tags?.railway)&&!['siding','yard','spur','crossover'].includes(w.tags?.service)&&!['private','no'].includes(w.tags?.access)&&Array.isArray(w.nodes)){
     ways.set(w.id,{id:w.id,nodes:w.nodes,tags:w.tags});
     for(let i=1;i<w.nodes.length;i++){
       const u=w.nodes[i-1],v=w.nodes[i],a=nodes.get(u),b=nodes.get(v);if(!a||!b)continue;
@@ -54,19 +54,20 @@ async function download(pair){
   const mid=[(pair.start.lat+pair.end.lat)/2,(pair.start.lon+pair.end.lon)/2];
   const direct=meters([pair.start.lat,pair.start.lon],[pair.end.lat,pair.end.lon]);
   const radius=Math.min(3500,Math.max(900,Math.ceil(direct/2+450)));
-  const query=`[out:json][timeout:60];way(around:${radius},${mid[0]},${mid[1]})["railway"~"^(rail|subway|light_rail)$"];(._;>;);out body qt;`;;
+  const query=`[out:json][timeout:60];way(around:${radius},${mid[0]},${mid[1]})["railway"~"^(rail|subway|light_rail)$"];(._;>;);out body qt;`;
   const endpoints=['https://overpass.private.coffee/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.nchc.org.tw/api/interpreter','https://overpass-api.de/api/interpreter'];
   let data,lastErr;for(const endpoint of endpoints){try{const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),150000);let res;try{res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded','User-Agent':'SUBTYPE-missing-track-review/1.0'},body:new URLSearchParams({data:query}),signal:controller.signal})}finally{clearTimeout(timeout)};if(!res.ok)throw Error('HTTP '+res.status+' from '+endpoint);const responseData=await res.json();if(!Array.isArray(responseData.elements))throw Error('Malformed Overpass response from '+endpoint);data=responseData;break}catch(err){lastErr=err}}
   if(!data)throw Error('Overpass unavailable: '+lastErr?.message);
   const graph=graphFromOsm(data.elements),starts=snap(graph,pair.start),ends=snap(graph,pair.end),options=[];
   for(const a of starts)for(const b of ends){const r=shortest(graph,a.id,b.id);if(r)options.push({...r,fromSnapMeters:round(a.meters),toSnapMeters:round(b.meters)})}
-  options.sort((a,b)=>a.distanceMeters-b.distanceMeters);
   // Rank by physical rail distance including distance from station centroids to the track.
   options.sort((a,b)=>(a.distanceMeters+a.fromSnapMeters+a.toSnapMeters)-(b.distanceMeters+b.fromSnapMeters+b.toSnapMeters));
   const first=options.find(o=>o.nodeIds.length>1&&o.distanceMeters>=Math.max(50,direct*.35))||null;
   const second=options.find(o=>o.nodeIds.length>1&&o.nodeIds.join(',')!==first?.nodeIds.join(',')&&o.distanceMeters>=Math.max(50,direct*.35))||null;
+  const evidenceFor = route => route ? ({ways:route.wayIds.map(id=>({id,tags:graph.ways.get(id)?.tags||{}})),hasNamedService:route.wayIds.some(id=>!!graph.ways.get(id)?.tags?.name||!!graph.ways.get(id)?.tags?.ref),osmNodeChainVerified:route.nodeIds.every((id,i)=>i===0||(graph.edges.get(route.nodeIds[i-1])||[]).some(e=>e.to===id)),crossesAmbiguousSwitches:route.nodeIds.some(id=>(graph.edges.get(id)||[]).length>4)}) : null;
+  const routeEvidence=evidenceFor(first);
   // Structural-only verdict: no automatic gameplay release, even when geometry looks plausible.
   const plausible=!!first&&first.distanceMeters<=direct*2.8+400&&first.fromSnapMeters<=maxSnap&&first.toSnapMeters<=maxSnap;
-  return{routeId:'kr-metro-'+line,stationPairIndex:pair.index,from:pair.from,to:pair.to,queriedAt:new Date().toISOString(),source:{name:'OpenStreetMap via Overpass',license:'ODbL-1.0',attribution:'© OpenStreetMap contributors',query,sha256:crypto.createHash('sha256').update(JSON.stringify(data)).digest('hex')},stationCoordinatesAreNotTrackGeometry:true,straightLineUsed:false,topologyFromSharedOsmNodeIds:true,requestedDirectDistanceMeters:round(direct),osmWayCount:graph.ways.size,graphNodeCount:graph.nodes.size,firstCandidate:first,alternativeCandidate:second,structurallyPlausible:plausible,geometryReady:false,reviewStatus:plausible?'manual-osm-route-membership-review-required':'missing-or-ambiguous',warning:'Do not publish this report as verified geometry. Verify named route relation, track direction, switches and stop positions.'};
+  return{routeId:'kr-metro-'+line,stationPairIndex:pair.index,from:pair.from,to:pair.to,queriedAt:new Date().toISOString(),source:{name:'OpenStreetMap via Overpass',license:'ODbL-1.0',attribution:'© OpenStreetMap contributors',query,sha256:crypto.createHash('sha256').update(JSON.stringify(data)).digest('hex')},stationCoordinatesAreNotTrackGeometry:true,straightLineUsed:false,topologyFromSharedOsmNodeIds:true,requestedDirectDistanceMeters:round(direct),osmWayCount:graph.ways.size,graphNodeCount:graph.nodes.size,firstCandidate:first,alternativeCandidate:second,firstCandidateWayEvidence:routeEvidence,routeRelationMembershipVerified:false,serviceDirectionVerified:false,structurallyPlausible:plausible,geometryReady:false,reviewStatus:plausible?'manual-osm-route-membership-review-required':'missing-or-ambiguous',warning:'Do not publish this report as verified geometry. Verify named route relation, track direction, switches and stop positions.'};
 }
 for(let i=0;i<picked.length;i++){const pair=picked[i];try{const result=await download(pair);const rel='data/kr/osm-candidates/research/kr-metro-'+line+'-pair-'+pair.index+'.json',file=path.join(root,rel);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(result,null,2)+'\n');console.log(pair.from+' → '+pair.to+': '+result.reviewStatus+' / '+rel)}catch(error){console.error(pair.from+' → '+pair.to+': '+error.message);process.exitCode=1}if(i<picked.length-1)await sleep(Math.max(1000,Number(args['delay-ms'])||2000))}
