@@ -45,13 +45,13 @@ async function showCompletedJourneyOnMap(result){
   for(let i=0;i<passed.length-1;i++){
    const path=segmentPath(route,passed[i],passed[i+1]);
    if(path){L.polyline(path,{color,weight:6,opacity:.92}).addTo(completedMap);drawn.push(...path)}
-   else missing++;
+   else {missing++;const a=coordinate(passed[i]),b=coordinate(passed[i+1]);if(a&&b){L.polyline([a,b],{color,weight:3,opacity:.55,dashArray:'3 9'}).addTo(completedMap);drawn.push(a,b)}}
   }
   if(!drawn.length&&passed.length===1)drawn.push(coordinate(passed[0]));
   passed.forEach((s,i)=>{const p=coordinate(s);if(!p)return;L.circleMarker(p,{radius:i===0||i===passed.length-1?7:3,color:'#ffffff',weight:2,fillColor:i===0?'#16a34a':i===passed.length-1?'#dc2626':color,fillOpacity:1}).addTo(completedMap).bindPopup((i===0?'출발: ':i===passed.length-1?'도착: ':'경유: ')+(s.ko||s.ja||s.id))});
   const bounds=L.latLngBounds(drawn.length?drawn:points);
   if(bounds.isValid())completedMap.fitBounds(bounds.pad(.16),{maxZoom:14});
-  note.textContent=missing?'실제 선형 확인 구간만 강조했습니다. 선형 데이터가 없는 '+missing+'개 역간 구간은 임의의 직선으로 연결하지 않았습니다.':'운행한 '+passed.length+'개 역과 실제 선형 구간을 표시했습니다.';
+  note.textContent=missing?'실제 선형 확인 구간만 강조했습니다. 선형 데이터가 없는 '+missing+'개 역간 구간은 실제 선로가 아닌 점선(역간 직선 참고 표시)으로 구분했습니다.':'운행한 '+passed.length+'개 역과 실제 선형 구간을 표시했습니다.';
   requestAnimationFrame(()=>completedMap?.invalidateSize());
  }catch(error){console.warn('Completion map unavailable',error);mapEl.style.display='none';note.textContent='지도를 불러오지 못했습니다. 운행 결과와 기록은 정상 저장되었습니다.'}
 }
