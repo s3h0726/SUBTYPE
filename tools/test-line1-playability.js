@@ -36,14 +36,17 @@ const proto=gameContext.GameToTest.prototype;
 for(const choice of choices){
  const result=ctx.TEST.resolveKoreanFamilyService(choice,id=>routes.get(id));
  const seq=result.route.stations,arrived=seq.at(-1);
- let completed=0,afterTerminal=false;
- const simulation={finished:false,paused:false,phase:'ARRIVING',index:seq.length-2,sequence:seq,boarding:false,
-  options:{mode:'complete'},targetStation(){return this.sequence[this.index+1]},
-  currentStation(){return this.sequence[this.index]},advanceToNextStation:proto.advanceToNextStation,
-  visitedStationIds:[],elapsed(){return 0},finish(){completed++},renderStation(){afterTerminal=true},
+ let completed=0,rendered=0;
+ const simulation={finished:false,paused:false,phase:'ARRIVING',index:0,sequence:seq,boarding:true,mapRoute:result.route,
+  options:{mode:'complete'},targetStation:proto.targetStation,currentStation:proto.currentStation,
+  routeIndex(){return this.index},mapOptions(){return{}},
+  advanceToNextStation:proto.advanceToNextStation,visitedStationIds:[],
+  elapsed(){return 0},finish(){completed++;this.finished=true},renderStation(){rendered++},
   updateHud(){},syncDebug(){}};
  proto.advance.call(simulation);
- if(completed!==1||afterTerminal||simulation.index!==seq.length-1||simulation.visitedStationIds.at(-1)!==arrived.id)
-  throw Error(choice.id+': terminal arrival does not finish exactly once');
+ for(let index=1;index<seq.length;index++){simulation.phase='ARRIVING';proto.advance.call(simulation)}
+ if(completed!==1||rendered!==seq.length-1||simulation.index!==seq.length-1||
+    simulation.visitedStationIds.length!==seq.length-1||simulation.visitedStationIds.at(-1)!==arrived.id)
+  throw Error(choice.id+': complete station-by-station journey failed to finish exactly once');
 }
 console.log('Line 1 geometry, pattern resolution, and terminal completion checks passed.');
