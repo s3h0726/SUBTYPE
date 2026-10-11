@@ -133,9 +133,28 @@ const JP_TRAM_NETWORKS={
  kumamotoshikotsukyoku:{label:'구마모토 시영 전차',kind:'services'}
 };
 function refreshTramNetworkGroups(eligible){
+ // Group by an actual operator ID, never by a similar-looking Korean display name.
+ // Grouping affects only the selector: underlying routes, station order and geometry stay unchanged.
+ for(const key of Object.keys(NETWORK_GROUPS))if(key.startsWith('operator-')||key.startsWith('tram-'))delete NETWORK_GROUPS[key];
  for(const [id,info] of Object.entries(JP_TRAM_NETWORKS)){
   const members=eligible.filter(r=>r.operatorId===id);
-  NETWORK_GROUPS['tram-'+id]={...info,routeIds:members.map(r=>r.id)};
+  if(members.length>1)NETWORK_GROUPS['tram-'+id]={...info,routeIds:members.map(r=>r.id)};
+ }
+ const byOperator=new Map();
+ for(const route of eligible){
+  const id=route.operatorId;
+  if(!id||JP_TRAM_NETWORKS[id]||/^jr(?:-|$)/i.test(id)||id==='keio'||route.category==='shinkansen'||route.dataKind==='trainService')continue;
+  if(!byOperator.has(id))byOperator.set(id,[]);
+  byOperator.get(id).push(route);
+ }
+ for(const [id,members] of byOperator){
+  // Large metropolitan networks must retain their distinct line cards.
+  // Smaller operators with multiple lines receive a single operator selector.
+  if(members.length<2||members.length>12)continue;
+  const operator=members[0].operator?.ko||id;
+  const modes=new Set(members.map(r=>r.category));
+  const kind=modes.size===1&&modes.has('tram')?'physical':'branches';
+  NETWORK_GROUPS['operator-'+id]={label:operator,kind,routeIds:members.map(r=>r.id)};
  }
 }
 
