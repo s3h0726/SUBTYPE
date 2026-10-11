@@ -1,0 +1,31 @@
+name: Apply latest edited 73 railway lines
+on:
+  push:
+    paths:
+      - 'data/edited/lines-changes-only.csv'
+      - 'tools/apply-lines-changes-only.mjs'
+      - '.github/workflows/apply-lines-changes-only.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/apply-lines-changes-only.mjs
+      - run: node tools/build-line-workspaces.js
+      - name: Commit generated data and original edits
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lines data/operators data/generated js/line-workspace-data.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'data(jp): apply latest 73 changed lines and refresh editor workspace'
+            git push
+          fi
