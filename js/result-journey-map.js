@@ -6,6 +6,13 @@ const same=(a,b)=>a&&b&&Math.abs(a[0]-b[0])<.0000001&&Math.abs(a[1]-b[1])<.00000
 function segmentPath(route,from,to){
  const stations=route.stations||[],i=stations.findIndex(s=>s.id===from.id),j=stations.findIndex(s=>s.id===to.id);
  if(Math.abs(i-j)!==1)return null;
+ if(route.countryId!=='kr'&&!Array.isArray(route.directedSegments)&&Array.isArray(route.geometry)&&route.geometry.length>1){
+  const source=route.geometry,first=stations[i],last=stations[j];
+  const index=s=>Number.isInteger(s.geometryIndex)?s.geometryIndex:source.findIndex(p=>same(p,coordinate(s)));
+  const x=index(first),y=index(last);
+  if(x>=0&&y>=0&&x!==y){const raw=x<y?source.slice(x,y+1):source.slice(y,x+1).reverse();const path=raw.map(p=>[number(p[0]),number(p[1])]);if(path.length>=2&&path.every(p=>p.every(Number.isFinite)))return path}
+ }
+ 
  const segment=route.directedSegments?.[Math.min(i,j)];
  if(!Array.isArray(segment?.geometry)||segment.geometry.length<2||route.countryId==='kr'&&segment.geometryStatus!=='ready')return null;
  const a=segment.geometry.map(p=>[number(p[0]),number(p[1])]).filter(p=>p.every(Number.isFinite));
