@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// Re-runnable source generator: regenerate all six separate Toyama city-tram service patterns and downstream indexes.
 const fs = require('fs'), path = require('path');
 const root = path.resolve(__dirname, '..');
 const { loadStations, writeAtomic } = require('./lib/line-workspaces');
