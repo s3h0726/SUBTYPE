@@ -1,0 +1,902 @@
+{
+  "route": {
+    "id": "line-toyama-city-3",
+    "legacyId": "line-toyama-city-3",
+    "category": "tram",
+    "operatorId": "toyamachihotetsudo",
+    "operator": {
+      "ja": "富山地方鉄道",
+      "ko": "토야마치호철도",
+      "en": "ToyamachihōTetsudō"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 富山地方鉄道 토야마치호우테츠도우 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "富山地鉄市内電車 3系統(環状線)",
+      "kana": "とやまちてつしないでんしゃ3けいとう(かんじょうせん)",
+      "ko": "도야마 지방철도 시내전차 3계통(순환선)",
+      "en": "Toyama City Tram Route 3 (Loop)"
+    },
+    "koreanNameSource": null,
+    "code": "3",
+    "lineColor": "#36BE2D",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "https://www.chitetsu.co.jp/english/jp/trams/",
+      "verified": true
+    },
+    "officialSymbolExists": false,
+    "loop": true,
+    "stationSignTemplate": "toyamachihotetsudo",
+    "services": [],
+    "throughServiceIds": [],
+    "throughOperations": [],
+    "routeInfo": null,
+    "stations": [
+      {
+        "id": "station-9941316",
+        "internalId": "station-9941316",
+        "stationMasterId": "station-9941316",
+        "sourceId": "station-9941316",
+        "ja": "丸の内",
+        "kana": "まるのうち",
+        "ko": "마루노치",
+        "romaji": "Marunouchi",
+        "koAliases": [],
+        "latitude": 36.692563,
+        "longitude": 137.208896,
+        "order": 1,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 丸の内駅 마루노우치 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-9942202",
+        "internalId": "station-9942202",
+        "stationMasterId": "station-9942202",
+        "sourceId": "station-9942202",
+        "ja": "国際会議場前",
+        "kana": "こくさいかいぎじょうまえ",
+        "ko": "코쿠사이카이기조마에",
+        "romaji": "KokusaikaigijōMae",
+        "koAliases": [],
+        "latitude": 36.691654,
+        "longitude": 137.21139,
+        "order": 2,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 国際会議場前駅 코쿠사이카이기조우마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 4
+      },
+      {
+        "id": "station-9942203",
+        "internalId": "station-9942203",
+        "stationMasterId": "station-9942203",
+        "sourceId": "station-9942203",
+        "ja": "大手モール",
+        "kana": "おおてもーる",
+        "ko": "오테모루",
+        "romaji": "ōTemōRu",
+        "koAliases": [],
+        "latitude": 36.689388,
+        "longitude": 137.211334,
+        "order": 3,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 大手モール駅 오오테모루 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 7
+      },
+      {
+        "id": "station-9942204",
+        "internalId": "station-9942204",
+        "stationMasterId": "station-9942204",
+        "sourceId": "station-9942204",
+        "ja": "グランドプラザ前",
+        "kana": "ぐらんどぷらざまえ",
+        "ko": "구란도푸라자마에",
+        "romaji": "Gurandopurazamae",
+        "koAliases": [],
+        "latitude": 36.688923,
+        "longitude": 137.213386,
+        "order": 4,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki グランドプラザ前駅 구란도푸라자마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 9
+      },
+      {
+        "id": "station-9941321",
+        "internalId": "station-9941321",
+        "stationMasterId": "station-9941321",
+        "sourceId": "station-9941321",
+        "ja": "中町（西町北）",
+        "kana": "なかまち（にしまちきた）",
+        "ko": "나카마치니시마치키타",
+        "romaji": "Nakamachi(Nishimachikita)",
+        "koAliases": [],
+        "latitude": 36.690306,
+        "longitude": 137.215722,
+        "order": 5,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 中町（西町北）駅 나카마치니시마치키타 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 12
+      },
+      {
+        "id": "station-9941309",
+        "internalId": "station-9941309",
+        "stationMasterId": "station-9941309",
+        "sourceId": "station-9941309",
+        "ja": "荒町",
+        "kana": "あらまち",
+        "ko": "아라마치",
+        "romaji": "Aramachi",
+        "koAliases": [],
+        "latitude": 36.691513,
+        "longitude": 137.215805,
+        "order": 6,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 荒町駅 아라마치 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 14
+      },
+      {
+        "id": "station-9941310",
+        "internalId": "station-9941310",
+        "stationMasterId": "station-9941310",
+        "sourceId": "station-9941310",
+        "ja": "桜橋",
+        "kana": "さくらきょう",
+        "ko": "사쿠라쿄",
+        "romaji": "Sakurakyō",
+        "koAliases": [],
+        "latitude": 36.69461,
+        "longitude": 137.215934,
+        "order": 7,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 桜橋駅 사쿠라쿄우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 16
+      },
+      {
+        "id": "station-9941311",
+        "internalId": "station-9941311",
+        "stationMasterId": "station-9941311",
+        "sourceId": "station-9941311",
+        "ja": "電気ビル前",
+        "kana": "でんきびるまえ",
+        "ko": "덴키비루마에",
+        "romaji": "Denkibirumae",
+        "koAliases": [],
+        "latitude": 36.697432,
+        "longitude": 137.216105,
+        "order": 8,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 電気ビル前駅 덴키비루마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 18
+      },
+      {
+        "id": "station-9941312",
+        "internalId": "station-9941312",
+        "stationMasterId": "station-9941312",
+        "sourceId": "station-9941312",
+        "ja": "地鉄ビル前",
+        "kana": "ちてつびるまえ",
+        "ko": "치테츠빌딩앞",
+        "romaji": "Chitetsubirumae",
+        "koAliases": [],
+        "latitude": 36.698584,
+        "longitude": 137.216105,
+        "order": 9,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 地鉄ビル前駅 치테츠비루마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 19
+      },
+      {
+        "id": "station-1140501",
+        "internalId": "station-1140501",
+        "stationMasterId": "station-1140501",
+        "sourceId": "station-1140501",
+        "ja": "富山",
+        "kana": "とやま",
+        "ko": "토야마",
+        "romaji": "Toyama",
+        "koAliases": [],
+        "latitude": 36.701384,
+        "longitude": 137.213091,
+        "order": 10,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 富山駅 토야마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 23
+      },
+      {
+        "id": "station-9941314",
+        "internalId": "station-9941314",
+        "stationMasterId": "station-9941314",
+        "sourceId": "station-9941314",
+        "ja": "新富町",
+        "kana": "しんとみまち",
+        "ko": "신토미마치",
+        "romaji": "Shintomimachi",
+        "koAliases": [],
+        "latitude": 36.69886,
+        "longitude": 137.211256,
+        "order": 11,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 新富町駅 신토미마치 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 29
+      },
+      {
+        "id": "station-9941315",
+        "internalId": "station-9941315",
+        "stationMasterId": "station-9941315",
+        "sourceId": "station-9941315",
+        "ja": "県庁前",
+        "kana": "けんちょうまえ",
+        "ko": "켄초마에",
+        "romaji": "KenchōMae",
+        "koAliases": [],
+        "latitude": 36.695728,
+        "longitude": 137.20984,
+        "order": 12,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 県庁前駅 켄초우마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 32
+      }
+    ],
+    "geometry": [
+      [
+        36.69271,
+        137.20895
+      ],
+      [
+        36.692242,
+        137.208949
+      ],
+      [
+        36.6921,
+        137.20945
+      ],
+      [
+        36.691963,
+        137.211166
+      ],
+      [
+        36.69185,
+        137.211324
+      ],
+      [
+        36.691381,
+        137.211411
+      ],
+      [
+        36.69054,
+        137.211473
+      ],
+      [
+        36.689277,
+        137.211317
+      ],
+      [
+        36.689033,
+        137.211554
+      ],
+      [
+        36.688919,
+        137.213572
+      ],
+      [
+        36.68888,
+        137.213927
+      ],
+      [
+        36.688788,
+        137.215407
+      ],
+      [
+        36.6894,
+        137.21567
+      ],
+      [
+        36.689937,
+        137.215685
+      ],
+      [
+        36.69171,
+        137.21579
+      ],
+      [
+        36.69436,
+        137.21592
+      ],
+      [
+        36.69479,
+        137.21595
+      ],
+      [
+        36.69581,
+        137.21599
+      ],
+      [
+        36.69725,
+        137.21606
+      ],
+      [
+        36.69838,
+        137.21611
+      ],
+      [
+        36.69893,
+        137.2161
+      ],
+      [
+        36.69915,
+        137.2159
+      ],
+      [
+        36.6998,
+        137.21431
+      ],
+      [
+        36.70001,
+        137.21382
+      ],
+      [
+        36.701473,
+        137.212825
+      ],
+      [
+        36.700927,
+        137.212472
+      ],
+      [
+        36.700653,
+        137.212401
+      ],
+      [
+        36.700314,
+        137.212274
+      ],
+      [
+        36.69905,
+        137.21156
+      ],
+      [
+        36.69867,
+        137.21131
+      ],
+      [
+        36.69813,
+        137.21097
+      ],
+      [
+        36.69709,
+        137.21037
+      ],
+      [
+        36.69578,
+        137.20981
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-9941316",
+        "toStationId": "station-9942202",
+        "geometry": [
+          [
+            36.69271,
+            137.20895
+          ],
+          [
+            36.692242,
+            137.208949
+          ],
+          [
+            36.6921,
+            137.20945
+          ],
+          [
+            36.691963,
+            137.211166
+          ],
+          [
+            36.69185,
+            137.211324
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9942202",
+        "toStationId": "station-9942203",
+        "geometry": [
+          [
+            36.69185,
+            137.211324
+          ],
+          [
+            36.691381,
+            137.211411
+          ],
+          [
+            36.69054,
+            137.211473
+          ],
+          [
+            36.689277,
+            137.211317
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9942203",
+        "toStationId": "station-9942204",
+        "geometry": [
+          [
+            36.689277,
+            137.211317
+          ],
+          [
+            36.689033,
+            137.211554
+          ],
+          [
+            36.688919,
+            137.213572
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9942204",
+        "toStationId": "station-9941321",
+        "geometry": [
+          [
+            36.688919,
+            137.213572
+          ],
+          [
+            36.68888,
+            137.213927
+          ],
+          [
+            36.688788,
+            137.215407
+          ],
+          [
+            36.6894,
+            137.21567
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941321",
+        "toStationId": "station-9941309",
+        "geometry": [
+          [
+            36.689937,
+            137.215685
+          ],
+          [
+            36.69171,
+            137.21579
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941309",
+        "toStationId": "station-9941310",
+        "geometry": [
+          [
+            36.69171,
+            137.21579
+          ],
+          [
+            36.69436,
+            137.21592
+          ],
+          [
+            36.69479,
+            137.21595
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941310",
+        "toStationId": "station-9941311",
+        "geometry": [
+          [
+            36.69479,
+            137.21595
+          ],
+          [
+            36.69581,
+            137.21599
+          ],
+          [
+            36.69725,
+            137.21606
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941311",
+        "toStationId": "station-9941312",
+        "geometry": [
+          [
+            36.69725,
+            137.21606
+          ],
+          [
+            36.69838,
+            137.21611
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941312",
+        "toStationId": "station-1140501",
+        "geometry": [
+          [
+            36.69838,
+            137.21611
+          ],
+          [
+            36.69893,
+            137.2161
+          ],
+          [
+            36.69915,
+            137.2159
+          ],
+          [
+            36.6998,
+            137.21431
+          ],
+          [
+            36.70001,
+            137.21382
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1140501",
+        "toStationId": "station-9941314",
+        "geometry": [
+          [
+            36.701473,
+            137.212825
+          ],
+          [
+            36.700927,
+            137.212472
+          ],
+          [
+            36.700653,
+            137.212401
+          ],
+          [
+            36.700314,
+            137.212274
+          ],
+          [
+            36.69905,
+            137.21156
+          ],
+          [
+            36.69867,
+            137.21131
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941314",
+        "toStationId": "station-9941315",
+        "geometry": [
+          [
+            36.69867,
+            137.21131
+          ],
+          [
+            36.69813,
+            137.21097
+          ],
+          [
+            36.69709,
+            137.21037
+          ],
+          [
+            36.69578,
+            137.20981
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [],
+    "workspace": {
+      "folder": "data/lines/toyamachihotetsudo/toyama-city-route-3",
+      "linePath": "data/lines/toyamachihotetsudo/toyama-city-route-3/line.json",
+      "stationsPath": "data/lines/toyamachihotetsudo/toyama-city-route-3/stations.json",
+      "geometryPath": "data/lines/toyamachihotetsudo/toyama-city-route-3/geometry.json"
+    },
+    "sources": {
+      "official": "https://www.chitetsu.co.jp/english/jp/trams/",
+      "korean": "",
+      "geometry": "reused from existing Toyama city-tram and Toyama Port Line geometry",
+      "routePattern": "officially listed service pattern"
+    },
+    "dataKind": "operatingRoute",
+    "coverage": "operating-route"
+  }
+}
