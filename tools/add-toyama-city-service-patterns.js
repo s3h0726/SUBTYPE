@@ -30,7 +30,7 @@ const routeSpecs = [
   { n: 3, ja: '富山地鉄市内電車 3系統(環状線)', kana: 'とやまちてつしないでんしゃ3けいとう(かんじょうせん)', ko: '도야마 지방철도 시내전차 3계통(순환선)', en: 'Toyama City Tram Route 3 (Loop)', ids: loopOnly, loop: true },
   { n: 4, ja: '富山地鉄市内電車 4系統', kana: 'とやまちてつしないでんしゃ4けいとう', ko: '도야마 지방철도 시내전차 4계통', en: 'Toyama City Tram Route 4', ids: [...portIds].reverse().concat(southToToyama.slice(0, -1).reverse()), loop: false },
   { n: 5, ja: '富山地鉄市内電車 5系統', kana: 'とやまちてつしないでんしゃ5けいとう', ko: '도야마 지방철도 시내전차 5계통', en: 'Toyama City Tram Route 5', ids: [...portIds].reverse().concat(toyamaToUniversity.slice(1)), loop: false },
-  { n: 6, ja: '富山地鉄市内電車 6系統(環状線直通)', kana: 'とやまちてつしないでんしゃ6けいとう(かんじょうせんちょくつう)', ko: '도야마 지방철도 시내전차 6계통(순환선 직통)', en: 'Toyama City Tram Route 6 (Loop through-service)', ids: [...portIds].reverse().concat(loopOnly.slice(1), ['station-1140501'], portIds.slice(1)), loop: false }
+  { n: 6, ja: '富山地鉄市内電車 6系統(環状線直通)', kana: 'とやまちてつしないでんしゃ6けいとう(かんじょうせんちょくつう)', ko: '도야마 지방철도 시내전차 6계통(순환선 직통)', en: 'Toyama City Tram Route 6 (Loop through-service)', ids: [...portIds].reverse().concat(['station-9941314', 'station-9941315', 'station-9941316'], loopOnly.slice(1), ['station-1140501'], portIds.slice(1)), loop: false }
 ];
 function stationRows(ids) {
   return ids.map((stationId, i) => {
