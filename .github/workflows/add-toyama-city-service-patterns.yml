@@ -1,0 +1,43 @@
+name: Add Toyama city tram service patterns
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/add-toyama-city-service-patterns.js'
+      - '.github/workflows/add-toyama-city-service-patterns.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-service-patterns:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate Toyama city tram routes 1-6
+        run: node tools/add-toyama-city-service-patterns.js
+      - name: Audit playability
+        run: node tools/audit-playability.js
+      - name: Rebuild line workspace data
+        run: node tools/build-line-workspaces.js
+      - name: Commit generated route data
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+users.noreply.github.com'
+          git add data/
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+          else
+            git commit -m 'v0.8.6: split Toyama tram service patterns 1-6'
+            git push origin HEAD:main
+          fi
