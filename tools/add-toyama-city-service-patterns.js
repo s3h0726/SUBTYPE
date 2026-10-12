@@ -6,22 +6,27 @@ const { loadStations, writeAtomic } = require('./lib/line-workspaces');
 const base = path.join(root, 'data', 'lines', 'toyamachihotetsudo');
 const readJson = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const stationMap = loadStations().map;
-const southFile = path.join(base, 'toyamachitetsushinaisen-1-2keito');
+const route1File = path.join(base, 'toyama-city-route-1');
+const route2File = path.join(base, 'toyama-city-route-2');
 const loopFile = path.join(base, 'toyamachitetsutoyamatoshinsen-3keito-kanjosen');
 const portFile = path.join(base, 'toyamakosen');
-const southRows = readJson(path.join(southFile, 'stations.json'));
+const southRows = readJson(path.join(route1File, 'stations.json'));
+const route2Rows = readJson(path.join(route2File, 'stations.json'));
 const loopRows = readJson(path.join(loopFile, 'stations.json'));
 const portRows = readJson(path.join(portFile, 'stations.json'));
 const southIds = southRows.map(x => x.stationId).filter((id, i, a) => !(id === 'station-9941321'));
 const toyamaIndex = southIds.indexOf('station-1140501');
 if (toyamaIndex < 0) throw new Error('Toyama Station missing from city-line source');
 const southToToyama = southIds.slice(0, toyamaIndex + 1);
-const toyamaToUniversity = southIds.slice(toyamaIndex);
+const route2Ids = route2Rows.map(x => x.stationId);
+const route2ToyamaIndex = route2Ids.indexOf('station-1140501');
+if (route2ToyamaIndex < 0) throw new Error('Toyama Station missing from existing route 2');
+const toyamaToUniversity = route2Ids.slice(route2ToyamaIndex);
 const loopIds = loopRows.map(x => x.stationId);
 const portIds = portRows.map(x => x.stationId);
 const loopOnly = loopIds.filter((id, i) => i === 0 || id !== loopIds[i - 1]);
 const edgeMap = new Map();
-for (const dir of [southFile, loopFile, portFile]) {
+for (const dir of [route1File, route2File, loopFile, portFile]) {
   const file = path.join(dir, 'geometry.json');
   for (const [key, value] of Object.entries(readJson(file))) if (!edgeMap.has(key) || (!edgeMap.get(key).geometry?.length && value.geometry?.length)) edgeMap.set(key, value);
 }
@@ -69,8 +74,7 @@ for (const spec of routeSpecs) {
   writeAtomic(path.join(folder, 'geometry.json'), routeGeometry(spec.ids));
   fs.writeFileSync(path.join(folder, 'README.md'), '# ' + spec.ja + '\n\n- Korean: ' + spec.ko + '\n- Official reference: https://www.chitetsu.co.jp/english/jp/trams/\n- This is an operating service pattern, not a separate physical track line.\n');
 }
-// Remove the old combined 1・2 route so it is no longer presented as one route.
-fs.rmSync(southFile, { recursive: true, force: true });
+// Read routes 1 and 2 before regenerating them as separate service patterns.
 
 // Fail the build if any of the six separate service-pattern datasets is missing or empty.
 for (const spec of routeSpecs) {
@@ -87,5 +91,4 @@ for (const spec of routeSpecs) {
     throw new Error('Invalid Toyama city tram route ' + spec.n);
   }
 }
-if (fs.existsSync(southFile)) throw new Error('Combined Toyama 1・2 route was not removed');
 console.log(JSON.stringify({ routes: routeSpecs.map(x => ({ id: 'line-toyama-city-' + x.n, stations: x.ids.length })), removedCombinedRoute: true, validated: true }, null, 2));
