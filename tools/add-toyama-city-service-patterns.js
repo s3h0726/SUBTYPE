@@ -70,4 +70,21 @@ for (const spec of routeSpecs) {
 }
 // Remove the old combined 1・2 route so it is no longer presented as one route.
 fs.rmSync(southFile, { recursive: true, force: true });
-console.log(JSON.stringify({ routes: routeSpecs.map(x => ({ id: 'line-toyama-city-' + x.n, stations: x.ids.length })), removedCombinedRoute: true }, null, 2));
+
+// Fail the build if any of the six separate service-pattern datasets is missing or empty.
+for (const spec of routeSpecs) {
+  const folder = path.join(base, 'toyama-city-route-' + spec.n);
+  const lineFile = path.join(folder, 'line.json');
+  const stationsFile = path.join(folder, 'stations.json');
+  const geometryFile = path.join(folder, 'geometry.json');
+  if (![lineFile, stationsFile, geometryFile].every(file => fs.existsSync(file))) {
+    throw new Error('Incomplete Toyama city tram route ' + spec.n);
+  }
+  const writtenLine = readJson(lineFile);
+  const writtenStations = readJson(stationsFile);
+  if (writtenLine.id !== 'line-toyama-city-' + spec.n || writtenStations.length < 2) {
+    throw new Error('Invalid Toyama city tram route ' + spec.n);
+  }
+}
+if (fs.existsSync(southFile)) throw new Error('Combined Toyama 1・2 route was not removed');
+console.log(JSON.stringify({ routes: routeSpecs.map(x => ({ id: 'line-toyama-city-' + x.n, stations: x.ids.length })), removedCombinedRoute: true, validated: true }, null, 2));
