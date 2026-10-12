@@ -27,8 +27,8 @@ jobs:
         run: node tools/add-hiroden-l-line.js
       - name: Audit playability
         run: node tools/audit-playability.js
-      - name: Rebuild static data
-        run: node tools/build-static.js
+      - name: Rebuild line workspace data
+        run: node tools/build-line-workspaces.js
       - name: Commit generated route data
         run: |
           set -euo pipefail
