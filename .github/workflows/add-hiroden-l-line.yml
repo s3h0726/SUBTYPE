@@ -1,0 +1,43 @@
+name: Add Hiroden L loop route
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/add-hiroden-l-line.js'
+      - '.github/workflows/add-hiroden-l-line.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-line:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate Hiroden L loop route
+        run: node tools/add-hiroden-l-line.js
+      - name: Audit playability
+        run: node tools/audit-playability.js
+      - name: Rebuild static data
+        run: node tools/build-static.js
+      - name: Commit generated route data
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+users.noreply.github.com'
+          git add data/ js/
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+          else
+            git commit -m 'v0.8.6: add Hiroden L loop route'
+            git push origin HEAD:main
+          fi
