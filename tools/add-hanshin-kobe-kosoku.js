@@ -7,7 +7,7 @@ const sourceFolder=path.join(root,'data','lines','kobekosokutetsudo','kobekosoku
 const targetFolder=path.join(root,'data','lines','hanshindentetsu','hanshinkobekosokusen');
 fs.mkdirSync(targetFolder,{recursive:true});
 
-const sourceStations=JSON.parse(fs.readFileSync(path.join(sourceFolder,'stations.json'),'utf8')).slice(0,7);
+const sourceStations=JSON.parse(fs.readFileSync(path.join(sourceFolder,'stations.json'),'utf8')).slice(2);
 const codes=['HS33','HS34','HS35','HS36','HS37','HS38','HS39'];
 const stations=sourceStations.map((row,index)=>({
   ...row,
