@@ -39,5 +39,6 @@ jobs:
             echo 'No changes to commit.'
           else
             git commit -m 'v0.8.6: split Toyama tram service patterns 1-6'
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
