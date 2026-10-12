@@ -144,7 +144,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 1
       },
       {
         "id": "station-1160314",
@@ -181,7 +181,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 1
       },
       {
         "id": "station-9963004",
@@ -218,7 +218,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 1
       },
       {
         "id": "station-9963005",
@@ -255,7 +255,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 1
+        "geometryIndex": 3
       },
       {
         "id": "station-9963006",
@@ -292,7 +292,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 1
+        "geometryIndex": 5
       },
       {
         "id": "station-9963007",
@@ -329,7 +329,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 1
+        "geometryIndex": 5
       },
       {
         "id": "station-9963008",
@@ -366,7 +366,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 3
+        "geometryIndex": 8
       },
       {
         "id": "station-9963009",
@@ -403,13 +403,33 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 3
+        "geometryIndex": 8
       }
     ],
     "geometry": [
       [
+        34.694766,
+        135.195058
+      ],
+      [
+        34.686117,
+        135.181524
+      ],
+      [
         34.6769,
         135.16871
+      ],
+      [
+        34.67634,
+        135.16923
+      ],
+      [
+        34.679362,
+        135.174441
+      ],
+      [
+        34.675981,
+        135.169291
       ],
       [
         34.67634,
@@ -426,6 +446,22 @@
     ],
     "directedSegments": [
       {
+        "fromStationId": "station-1160313",
+        "toStationId": "station-9963002",
+        "geometry": [
+          [
+            34.694766,
+            135.195058
+          ],
+          [
+            34.686117,
+            135.181524
+          ]
+        ],
+        "source": "station-coordinate straight-line fallback; precise track geometry pending [line-hankyu-kobe-kosoku]",
+        "verified": false
+      },
+      {
         "fromStationId": "station-9963004",
         "toStationId": "station-9963005",
         "geometry": [
@@ -440,6 +476,22 @@
         ],
         "source": "MLIT-N02-2025",
         "verified": true
+      },
+      {
+        "fromStationId": "station-9963005",
+        "toStationId": "station-9963006",
+        "geometry": [
+          [
+            34.679362,
+            135.174441
+          ],
+          [
+            34.675981,
+            135.169291
+          ]
+        ],
+        "source": "station-coordinate straight-line fallback; precise track geometry pending [line-hankyu-kobe-kosoku]",
+        "verified": false
       },
       {
         "fromStationId": "station-9963007",
@@ -464,14 +516,21 @@
     ],
     "geometryReady": false,
     "missingSegments": [
-      "station-1160313::station-9963002",
       "station-9963002::station-1160314",
       "station-1160314::station-9963004",
-      "station-9963005::station-9963006",
       "station-9963006::station-9963007",
       "station-9963008::station-9963009"
     ],
-    "reusedSegments": [],
+    "reusedSegments": [
+      {
+        "key": "station-1160313::station-9963002",
+        "workspaceId": "line-hankyu-kobe-kosoku"
+      },
+      {
+        "key": "station-9963005::station-9963006",
+        "workspaceId": "line-hankyu-kobe-kosoku"
+      }
+    ],
     "workspace": {
       "folder": "data/lines/kobekosokutetsudo/kobekosokutozaisen",
       "linePath": "data/lines/kobekosokutetsudo/kobekosokutozaisen/line.json",

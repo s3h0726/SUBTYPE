@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-11T12:43:32.137Z",
+  "generated": "2026-10-12T12:15:19.503Z",
   "counts": {
-    "lines": 604,
+    "lines": 606,
     "operators": 161,
     "stations": 9146,
-    "relations": 10732,
-    "segments": 9882
+    "relations": 10756,
+    "segments": 9908
   },
   "routes": [
     {
@@ -4465,6 +4465,58 @@
       ]
     },
     {
+      "id": "line-hankyu-kobe-kosoku",
+      "operatorId": "hankyudentetsu",
+      "operator": {
+        "ja": "阪急電鉄",
+        "ko": "한큐 전철",
+        "en": "HankyūDentetsu"
+      },
+      "line": {
+        "ja": "阪急神戸高速線",
+        "kana": "はんきゅうこうべこうそくせん",
+        "ko": "한큐 고베 고속선",
+        "en": "Hankyū Kobe Kosoku Line"
+      },
+      "category": "private",
+      "code": "HK",
+      "lineColor": "#402DBE",
+      "loop": false,
+      "stationCount": 4,
+      "stationSequence": [
+        "station-1160313",
+        "station-9963002",
+        "station-9963005",
+        "station-9963006"
+      ],
+      "workspace": {
+        "folder": "data/lines/hankyudentetsu/hankyukobekosokusen",
+        "linePath": "data/lines/hankyudentetsu/hankyukobekosokusen/line.json",
+        "stationsPath": "data/lines/hankyudentetsu/hankyukobekosokusen/stations.json",
+        "geometryPath": "data/lines/hankyudentetsu/hankyukobekosokusen/geometry.json"
+      },
+      "generatedSource": "./data/generated/routes/line-hankyu-kobe-kosoku.json",
+      "geometryReady": true,
+      "searchStations": [
+        "三ノ宮",
+        "さんのみや",
+        "Sannomiya",
+        "산노미야",
+        "花隈",
+        "はなくま",
+        "Hanakuma",
+        "하나쿠마",
+        "高速神戸",
+        "こうそくこうべ",
+        "KōSokukōBe",
+        "코소쿠코베",
+        "新開地",
+        "しんかいち",
+        "Shinkaichi",
+        "신카이치"
+      ]
+    },
+    {
       "id": "line-34005",
       "operatorId": "hankyudentetsu",
       "operator": {
@@ -5166,13 +5218,13 @@
       "loop": false,
       "stationCount": 7,
       "stationSequence": [
-        "station-1160313",
-        "station-9963002",
         "station-1160314",
         "station-9963004",
         "station-9963005",
         "station-9963006",
-        "station-9963007"
+        "station-9963007",
+        "station-9963008",
+        "station-9963009"
       ],
       "workspace": {
         "folder": "data/lines/hanshindentetsu/hanshinkobekosokusen",
@@ -5183,14 +5235,6 @@
       "generatedSource": "./data/generated/routes/line-hanshin-kobe-kosoku.json",
       "geometryReady": false,
       "searchStations": [
-        "三ノ宮",
-        "さんのみや",
-        "Sannomiya",
-        "산노미야",
-        "花隈",
-        "はなくま",
-        "Hanakuma",
-        "하나쿠마",
         "元町",
         "もとまち",
         "Motomachi",
@@ -5210,7 +5254,15 @@
         "大開",
         "おおひらき",
         "ōHiraki",
-        "오히라키"
+        "오히라키",
+        "高速長田",
+        "こうそくながた",
+        "KōSokunagata",
+        "코소쿠나가타",
+        "西代",
+        "にしだい",
+        "Nishidai",
+        "니시다이"
       ]
     },
     {
@@ -5964,6 +6016,148 @@
         "ちゅうおうひろさき",
         "ChūōHirosaki",
         "츄오히로사키"
+      ]
+    },
+    {
+      "id": "line-99719",
+      "operatorId": "hiroshimadentetsu",
+      "operator": {
+        "ja": "広島電鉄",
+        "ko": "히로시마전철",
+        "en": "Hiroshimadentetsu"
+      },
+      "line": {
+        "ja": "広電循環線(L)",
+        "kana": "ひろでんじゅんかんせん(L)",
+        "ko": "히로덴 순환선(L계통)",
+        "en": "Hiroden Loop Line (L)"
+      },
+      "category": "tram",
+      "code": "L",
+      "lineColor": "#009944",
+      "loop": true,
+      "stationCount": 22,
+      "stationSequence": [
+        "station-9971016",
+        "station-9971015",
+        "station-9971014",
+        "station-9971013",
+        "station-9971012",
+        "station-9971011",
+        "station-9970901",
+        "station-9971009",
+        "station-9971008",
+        "station-9971007",
+        "station-9971006",
+        "station-9971005",
+        "station-9971004",
+        "station-9971003",
+        "station-9971304",
+        "station-9971305",
+        "station-9971306",
+        "station-9971307",
+        "station-9971308",
+        "station-9971018",
+        "station-9971017",
+        "station-9971016"
+      ],
+      "workspace": {
+        "folder": "data/lines/hiroshimadentetsu/hiroden-l-junkansen",
+        "linePath": "data/lines/hiroshimadentetsu/hiroden-l-junkansen/line.json",
+        "stationsPath": "data/lines/hiroshimadentetsu/hiroden-l-junkansen/stations.json",
+        "geometryPath": "data/lines/hiroshimadentetsu/hiroden-l-junkansen/geometry.json"
+      },
+      "generatedSource": "./data/generated/routes/line-99719.json",
+      "geometryReady": true,
+      "searchStations": [
+        "広電本社前",
+        "ひろでんほんしゃまえ",
+        "Hirodenhonshamae",
+        "히로덴혼샤마에",
+        "日赤病院前",
+        "にっせきびょういんまえ",
+        "NissekibyōInmae",
+        "닛세키뵤인마에",
+        "鷹野橋",
+        "たかのばし",
+        "Takanobashi",
+        "타카노바시",
+        "市役所前",
+        "しやくしょまえ",
+        "Shiyakushomae",
+        "시야쿠쇼마에",
+        "中電前",
+        "ちゅうでんまえ",
+        "ChūDenmae",
+        "츄덴마에",
+        "袋町",
+        "ふくろまち",
+        "Fukuromachi",
+        "후쿠로마치",
+        "本通",
+        "ほんどおり",
+        "HondōRi",
+        "혼도리",
+        "紙屋町東",
+        "かみやまちひがし",
+        "Kamiyamachihigashi",
+        "카미야마치히가시",
+        "立町",
+        "たてまち",
+        "Tatemachi",
+        "타테마치",
+        "八丁堀",
+        "はっちょうぼり",
+        "HatchōBori",
+        "핫초보리",
+        "胡町",
+        "えびすまち",
+        "Ebisumachi",
+        "에비스마치",
+        "銀山町",
+        "かなやままち",
+        "Kanayamamachi",
+        "카나야마마치",
+        "稲荷町",
+        "いなりまち",
+        "Inarimachi",
+        "이나리마치",
+        "的場町",
+        "まとばまち",
+        "Matobamachi",
+        "마토바마치",
+        "段原一丁目",
+        "だんばらいちちょうめ",
+        "DambaraichichōMe",
+        "단바라이치초메",
+        "比治山下",
+        "ひじやました",
+        "Hijiyamashita",
+        "히지야마시타",
+        "比治山橋",
+        "ひじやまばし",
+        "Hijiyamabashi",
+        "히지야마바시",
+        "南区役所前",
+        "みなみくやくしょまえ",
+        "Minamikuyakushomae",
+        "미나미쿠야쿠쇼마에",
+        "皆実町二丁目",
+        "みなみまちにちょうめ",
+        "MinamimachinichōMe",
+        "미나미마치니초메",
+        "皆実町六丁目",
+        "みなみまちろくちょうめ",
+        "MinamimachirokuchōMe",
+        "미나미마치로쿠초메",
+        "御幸橋",
+        "みゆきばし",
+        "Miyukibashi",
+        "미유키바시",
+        "広電本社前",
+        "ひろでんほんしゃまえ",
+        "Hirodenhonshamae",
+        "히로덴혼샤마에"
       ]
     },
     {
@@ -29387,9 +29581,9 @@
       },
       "line": {
         "ja": "鹿児島本線(博多～八代)",
-        "kana": "かごしまほんせん(はかた～はちだい)",
+        "kana": "かごしまほんせん(はかた～やつしろ)",
         "ko": "가고시마 본선(하카타~야쓰시로)",
-        "en": "Kagoshimahonsen(Hakata~Hachidai)"
+        "en": "Kagoshima Main Line (Hakata–Yatsushiro)"
       },
       "category": "jr",
       "code": "",
@@ -29775,18 +29969,17 @@
         "en": "JR Kyushu"
       },
       "line": {
-        "ja": "鹿児島本線(下関・門司港～博多)",
-        "kana": "かごしまほんせん(しものせき・もじこう～はかた)",
-        "ko": "가고시마 본선(시모노세키·모지코~하카타)",
-        "en": "Kagoshimahonsen(Shimonoseki･Mojikō~Hakata)"
+        "ja": "鹿児島本線(門司港～博多)",
+        "kana": "かごしまほんせん(もじこう～はかた)",
+        "ko": "가고시마 본선(모지코~하카타)",
+        "en": "Kagoshima Main Line (Mojiko–Hakata)"
       },
       "category": "jr",
       "code": "",
       "lineColor": "#952DBE",
       "loop": false,
-      "stationCount": 33,
+      "stationCount": 32,
       "stationSequence": [
-        "station-1161236",
         "station-1190202",
         "station-1190203",
         "station-1161237",
@@ -29829,10 +30022,6 @@
       "generatedSource": "./data/generated/routes/line-11902.json",
       "geometryReady": true,
       "searchStations": [
-        "下関",
-        "しものせき",
-        "Shimonoseki",
-        "시모노세키",
         "門司港",
         "もじこう",
         "Mojikō",
@@ -40572,16 +40761,16 @@
         "en": "JR West"
       },
       "line": {
-        "ja": "山陽本線(岩国～門司)",
-        "kana": "さんようほんせん(いわくに～もじ)",
-        "ko": "산요 본선(이와쿠니~모지)",
-        "en": "San'YōHonsen(Iwakuni~Moji)"
+        "ja": "山陽本線(岩国～下関)",
+        "kana": "さんようほんせん(いわくに～しものせき)",
+        "ko": "산요 본선(이와쿠니~시모노세키)",
+        "en": "San'Yō Honsen (Iwakuni–Shimonoseki)"
       },
       "category": "jr",
       "code": "",
       "lineColor": "#BE2DA3",
       "loop": false,
-      "stationCount": 37,
+      "stationCount": 36,
       "stationSequence": [
         "station-1161128",
         "station-1161202",
@@ -40618,8 +40807,7 @@
         "station-1161233",
         "station-1161234",
         "station-1161235",
-        "station-1161236",
-        "station-1161237"
+        "station-1161236"
       ],
       "workspace": {
         "folder": "data/lines/jr-west/san-yohonsen-iwakuni-moji",
@@ -40773,11 +40961,7 @@
         "下関",
         "しものせき",
         "Shimonoseki",
-        "시모노세키",
-        "門司",
-        "もじ",
-        "Moji",
-        "모지"
+        "시모노세키"
       ]
     },
     {

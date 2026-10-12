@@ -1,12 +1,12 @@
 {
-  "generated": "2026-10-07T08:45:25.113Z",
+  "generated": "2026-10-12T12:15:18.752Z",
   "status": "PASS",
   "totals": {
-    "lines": 604,
-    "playable": 604,
+    "lines": 606,
+    "playable": 606,
     "blocked": 0,
-    "geometryReady": 586,
-    "reusedGeometrySegments": 63,
+    "geometryReady": 588,
+    "reusedGeometrySegments": 66,
     "skippedStations": 0,
     "reverseErrors": 0
   },
@@ -298,6 +298,13 @@
       "reusedSegments": []
     },
     {
+      "id": "line-hankyu-kobe-kosoku",
+      "stations": 4,
+      "forwardSegments": 3,
+      "reverseSegments": 3,
+      "reusedSegments": []
+    },
+    {
       "id": "line-34005",
       "stations": 3,
       "forwardSegments": 2,
@@ -344,7 +351,12 @@
       "stations": 7,
       "forwardSegments": 6,
       "reverseSegments": 6,
-      "reusedSegments": []
+      "reusedSegments": [
+        {
+          "key": "station-9963005::station-9963006",
+          "workspaceId": "line-hankyu-kobe-kosoku"
+        }
+      ]
     },
     {
       "id": "line-35003",
@@ -407,6 +419,13 @@
       "stations": 14,
       "forwardSegments": 13,
       "reverseSegments": 13,
+      "reusedSegments": []
+    },
+    {
+      "id": "line-99719",
+      "stations": 22,
+      "forwardSegments": 21,
+      "reverseSegments": 21,
       "reusedSegments": []
     },
     {
@@ -1769,9 +1788,9 @@
     },
     {
       "id": "line-11902",
-      "stations": 33,
-      "forwardSegments": 32,
-      "reverseSegments": 32,
+      "stations": 32,
+      "forwardSegments": 31,
+      "reverseSegments": 31,
       "reusedSegments": []
     },
     {
@@ -2316,9 +2335,9 @@
     },
     {
       "id": "line-11612",
-      "stations": 37,
-      "forwardSegments": 36,
-      "reverseSegments": 36,
+      "stations": 36,
+      "forwardSegments": 35,
+      "reverseSegments": 35,
       "reusedSegments": []
     },
     {
@@ -2626,10 +2645,24 @@
       "reusedSegments": []
     },
     {
+      "id": "line-keisei-higashinarita",
+      "stations": 2,
+      "forwardSegments": 1,
+      "reverseSegments": 1,
+      "reusedSegments": []
+    },
+    {
       "id": "line-23003",
       "stations": 3,
       "forwardSegments": 2,
       "reverseSegments": 2,
+      "reusedSegments": []
+    },
+    {
+      "id": "line-99329",
+      "stations": 24,
+      "forwardSegments": 23,
+      "reverseSegments": 23,
       "reusedSegments": []
     },
     {
@@ -2880,7 +2913,16 @@
       "stations": 9,
       "forwardSegments": 8,
       "reverseSegments": 8,
-      "reusedSegments": []
+      "reusedSegments": [
+        {
+          "key": "station-1160313::station-9963002",
+          "workspaceId": "line-hankyu-kobe-kosoku"
+        },
+        {
+          "key": "station-9963005::station-9963006",
+          "workspaceId": "line-hankyu-kobe-kosoku"
+        }
+      ]
     },
     {
       "id": "line-99636",
@@ -2891,16 +2933,9 @@
     },
     {
       "id": "line-99645",
-      "stations": 9,
-      "forwardSegments": 8,
-      "reverseSegments": 8,
-      "reusedSegments": []
-    },
-    {
-      "id": "line-99646",
-      "stations": 8,
-      "forwardSegments": 7,
-      "reverseSegments": 7,
+      "stations": 16,
+      "forwardSegments": 15,
+      "reverseSegments": 15,
       "reusedSegments": []
     },
     {
@@ -3877,13 +3912,6 @@
           "workspaceId": "line-11403"
         }
       ]
-    },
-    {
-      "id": "line-99329",
-      "stations": 24,
-      "forwardSegments": 23,
-      "reverseSegments": 23,
-      "reusedSegments": []
     },
     {
       "id": "line-99504",

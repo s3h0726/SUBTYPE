@@ -7,9 +7,34 @@
     "operator": {
       "ja": "阪急電鉄",
       "ko": "한큐 전철",
-      "en": "Hankyu Railway"
+      "en": "HankyūDentetsu"
     },
-    "operatorSource": null,
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/%ED%95%9C%ED%81%90%20%EC%A0%84%EC%B2%A0",
+      "searchReference": "site:namu.wiki \"阪急電鉄\"",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "site:namu.wiki \"阪急電鉄\"",
+        "resultTitle": "한큐 전철",
+        "resultUrl": "https://namu.wiki/w/%ED%95%9C%ED%81%90%20%EC%A0%84%EC%B2%A0"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "阪急電鉄",
+        "legalNameJa": "阪急電鉄株式会社",
+        "url": "https://www.hankyu.co.jp/company/index.html"
+      }
+    },
     "operatorAsset": null,
     "line": {
       "ja": "阪急神戸高速線",
@@ -111,7 +136,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 0
+        "geometryIndex": 1
       },
       {
         "id": "station-9963005",
@@ -148,7 +173,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 1
+        "geometryIndex": 3
       },
       {
         "id": "station-9963006",
@@ -185,11 +210,37 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 1
+        "geometryIndex": 5
       }
     ],
-    "geometry": {
-      "station-1160313::station-9963002": {
+    "geometry": [
+      [
+        34.694766,
+        135.195058
+      ],
+      [
+        34.686117,
+        135.181524
+      ],
+      [
+        34.6769,
+        135.16871
+      ],
+      [
+        34.67634,
+        135.16923
+      ],
+      [
+        34.679362,
+        135.174441
+      ],
+      [
+        34.675981,
+        135.169291
+      ]
+    ],
+    "directedSegments": [
+      {
         "fromStationId": "station-1160313",
         "toStationId": "station-9963002",
         "geometry": [
@@ -205,7 +256,7 @@
         "source": "station-coordinate straight-line fallback; precise track geometry pending",
         "verified": false
       },
-      "station-9963002::station-9963005": {
+      {
         "fromStationId": "station-9963002",
         "toStationId": "station-9963005",
         "geometry": [
@@ -221,7 +272,7 @@
         "source": "reused from line-99630 Kobe Kosoku Tozai geometry",
         "verified": true
       },
-      "station-9963005::station-9963006": {
+      {
         "fromStationId": "station-9963005",
         "toStationId": "station-9963006",
         "geometry": [
@@ -236,85 +287,23 @@
         ],
         "source": "station-coordinate straight-line fallback; precise track geometry pending",
         "verified": false
-      },
-      "missingSegments": [],
-      "geometryReady": true
-    },
-    "directedSegments": [
-      {
-        "fromStationId": "station-9963004",
-        "toStationId": "station-9963005",
-        "geometry": [
-          [
-            34.6769,
-            135.16871
-          ],
-          [
-            34.67634,
-            135.16923
-          ]
-        ],
-        "source": "MLIT-N02-2025",
-        "verified": true
-      },
-      {
-        "fromStationId": "station-9963007",
-        "toStationId": "station-9963008",
-        "geometry": [
-          [
-            34.67634,
-            135.16923
-          ],
-          [
-            34.6769,
-            135.16871
-          ],
-          [
-            34.67897,
-            135.16644
-          ]
-        ],
-        "source": "MLIT-N02-2025",
-        "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
-      "station-1160313::station-9963002",
-      "station-9963002::station-1160314",
-      "station-1160314::station-9963004",
-      "station-9963005::station-9963006",
-      "station-9963006::station-9963007",
-      "station-9963008::station-9963009"
-    ],
+    "geometryReady": true,
+    "missingSegments": [],
     "reusedSegments": [],
     "workspace": {
-      "folder": "data/lines/kobekosokutetsudo/kobekosokutozaisen",
-      "linePath": "data/lines/kobekosokutetsudo/kobekosokutozaisen/line.json",
-      "stationsPath": "data/lines/kobekosokutetsudo/kobekosokutozaisen/stations.json",
-      "geometryPath": "data/lines/kobekosokutetsudo/kobekosokutozaisen/geometry.json"
+      "folder": "data/lines/hankyudentetsu/hankyukobekosokusen",
+      "linePath": "data/lines/hankyudentetsu/hankyukobekosokusen/line.json",
+      "stationsPath": "data/lines/hankyudentetsu/hankyukobekosokusen/stations.json",
+      "geometryPath": "data/lines/hankyudentetsu/hankyukobekosokusen/geometry.json"
     },
     "sources": {
-      "official": "",
+      "official": "https://www.hankyu.co.jp/station/",
       "korean": "",
-      "geometry": "MLIT-N02-2025",
-      "koreanName": {
-        "family": "namuwiki",
-        "method": "unresolved",
-        "type": "namuwiki-unresolved",
-        "url": "",
-        "searchReference": "site:namu.wiki 神戸高速東西線 코우베코우소쿠토우자이선 노선",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
-        "verified": false,
-        "confidence": "MEDIUM",
-        "verifiedDate": null,
-        "status": "REVIEW_REQUIRED",
-        "canonicalPolicy": "namuwiki",
-        "normalizationBatch": "2026-10-07-line-koreanization"
-      }
+      "geometry": "reused from line-99630 Kobe Kosoku Tozai geometry"
     },
-    "dataKind": "physicalRoute",
-    "coverage": "nationwide-source-line"
+    "dataKind": "operationalLine",
+    "coverage": "Hankyu-operational-section"
   }
 }
