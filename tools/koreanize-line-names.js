@@ -174,7 +174,7 @@ const jrSegmentFixes={
 'data/lines/jr-west/san-yohonsen-himeji-okayama/line.json':'산요 본선(히메지~오카야마)',
 'data/lines/jr-west/san-yohonsen-okayama-mihara/line.json':'산요 본선(오카야마~미하라)',
 'data/lines/jr-west/san-yohonsen-mihara-iwakuni/line.json':'산요 본선(미하라~이와쿠니)',
-'data/lines/jr-west/san-yohonsen-iwakuni-moji/line.json':'산요 본선(이와쿠니~모지)',
+'data/lines/jr-west/san-yohonsen-iwakuni-moji/line.json':'산요 본선(이와쿠니~시모노세키)',
 'data/lines/jr-west/san-yohonsen-hyogo-wadamisaki/line.json':'산요 본선(효고~와다미사키)'
 };
 
