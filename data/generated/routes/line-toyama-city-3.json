@@ -268,7 +268,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 14
+        "geometryIndex": 12
       },
       {
         "id": "station-9941310",
@@ -305,7 +305,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 16
+        "geometryIndex": 15
       },
       {
         "id": "station-9941311",
@@ -342,7 +342,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 18
+        "geometryIndex": 17
       },
       {
         "id": "station-9941312",
@@ -379,7 +379,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 19
+        "geometryIndex": 18
       },
       {
         "id": "station-1140501",
@@ -416,7 +416,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 23
+        "geometryIndex": 22
       },
       {
         "id": "station-9941314",
@@ -453,7 +453,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 29
+        "geometryIndex": 28
       },
       {
         "id": "station-9941315",
@@ -490,7 +490,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 32
+        "geometryIndex": 31
       }
     ],
     "geometry": [
@@ -545,10 +545,6 @@
       [
         36.6894,
         137.21567
-      ],
-      [
-        36.689937,
-        137.215685
       ],
       [
         36.69171,
@@ -725,22 +721,6 @@
         "verified": true
       },
       {
-        "fromStationId": "station-9941321",
-        "toStationId": "station-9941309",
-        "geometry": [
-          [
-            36.689937,
-            137.215685
-          ],
-          [
-            36.69171,
-            137.21579
-          ]
-        ],
-        "source": "MLIT-N02-2025",
-        "verified": true
-      },
-      {
         "fromStationId": "station-9941309",
         "toStationId": "station-9941310",
         "geometry": [
@@ -881,8 +861,10 @@
         "verified": true
       }
     ],
-    "geometryReady": true,
-    "missingSegments": [],
+    "geometryReady": false,
+    "missingSegments": [
+      "station-9941321::station-9941309"
+    ],
     "reusedSegments": [],
     "workspace": {
       "folder": "data/lines/toyamachihotetsudo/toyama-city-route-3",

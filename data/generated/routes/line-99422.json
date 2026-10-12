@@ -292,7 +292,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 14
+        "geometryIndex": 12
       },
       {
         "id": "station-9941310",
@@ -329,7 +329,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 23
+        "geometryIndex": 20
       },
       {
         "id": "station-9941311",
@@ -366,7 +366,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 24
+        "geometryIndex": 21
       },
       {
         "id": "station-9941312",
@@ -403,7 +403,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 26
+        "geometryIndex": 23
       },
       {
         "id": "station-1140501",
@@ -440,7 +440,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 30
+        "geometryIndex": 27
       },
       {
         "id": "station-1140501",
@@ -477,7 +477,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 36
+        "geometryIndex": 33
       },
       {
         "id": "station-9941314",
@@ -514,7 +514,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 41
+        "geometryIndex": 38
       },
       {
         "id": "station-9941315",
@@ -551,7 +551,7 @@
         "koVerified": false,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 44
+        "geometryIndex": 41
       }
     ],
     "geometry": [
@@ -602,18 +602,6 @@
       [
         36.688788,
         137.215407
-      ],
-      [
-        36.6894,
-        137.21567
-      ],
-      [
-        36.689937,
-        137.215685
-      ],
-      [
-        36.69171,
-        137.21579
       ],
       [
         36.6894,
@@ -834,22 +822,6 @@
         "verified": true
       },
       {
-        "fromStationId": "station-9941321",
-        "toStationId": "station-9941309",
-        "geometry": [
-          [
-            36.689937,
-            137.215685
-          ],
-          [
-            36.69171,
-            137.21579
-          ]
-        ],
-        "source": "MLIT-N02-2025 [line-toyama-city-3]",
-        "verified": true
-      },
-      {
         "fromStationId": "station-9941309",
         "toStationId": "station-9941310",
         "geometry": [
@@ -1038,13 +1010,11 @@
         "verified": true
       }
     ],
-    "geometryReady": true,
-    "missingSegments": [],
+    "geometryReady": false,
+    "missingSegments": [
+      "station-9941321::station-9941309"
+    ],
     "reusedSegments": [
-      {
-        "key": "station-9941321::station-9941309",
-        "workspaceId": "line-toyama-city-3"
-      },
       {
         "key": "station-9941311::station-9941312",
         "workspaceId": "line-toyama-city-1"
