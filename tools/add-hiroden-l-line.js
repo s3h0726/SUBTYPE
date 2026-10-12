@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// Re-runnable source generator: rebuild the L service-pattern data and downstream indexes on each workflow run.
 const fs = require('fs');
 const path = require('path');
 const root = path.resolve(__dirname, '..');
