@@ -6,6 +6,8 @@ on:
       - .github/workflows/recover-hankyu-kobe-kosoku.yml
       - tools/recover-hankyu-kobe-kosoku-osm.py
   workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * *'
 permissions:
   contents: write
 concurrency:
@@ -23,6 +25,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Download original OSM underground rail ways and reconstruct all three segments
+        if: ${{ !cancelled() }}
         run: python tools/recover-hankyu-kobe-kosoku-osm.py
       - name: Verify all three segments are actual sourced railway ways
         run: |
@@ -40,6 +43,7 @@ jobs:
         run: |
           node tools/build-line-workspaces.js
           node tools/audit-recent-tram-and-kobe-geometry.js
+          node tools/test-single-source.js
       - name: Commit geometry and provenance to main
         run: |
           git config user.name 'github-actions[bot]'
