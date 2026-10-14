@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSync}=require('child_process');
 require('./build-line-workspaces');
+execFileSync(process.execPath,[path.join(__dirname,'audit-recent-tram-and-kobe-geometry.js')],{stdio:'inherit'});
 // build-korea-data is also a standalone CLI and may terminate early while the
 // imported snapshot remains provisional. Run it in a child process so that it
 // cannot abort the remainder of this production bundle build.
