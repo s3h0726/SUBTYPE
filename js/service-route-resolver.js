@@ -150,20 +150,21 @@ export function resolveKoreanFamilyService(choice,getRoute){
   const spec={id:`${definition.id}-${choice.direction||'forward'}`,nameJa:definition.names.ko,nameKo:definition.names.ko,nameEn:definition.names.en,routeSegments,boundarySnapToleranceKm:.25};
   const route=buildThroughServiceRoute(spec,id=>directionalRoutes.get(id));
   if(definition.stopStationNames?.length){
-   const wanted=new Set(definition.stopStationNames);
-   route.stations=route.stations.filter(station=>wanted.has(station.ko));
-   if(route.stations.length<2)throw new Error('급행 정차역 데이터가 부족합니다.');
-   // Build every express-stop segment from the contiguous original OSM-aligned geometry.
-   // No straight-line links are inserted when intermediate local stops are skipped.
-   const expressSegments=[];
-   for(let i=0;i<route.stations.length-1;i++){
-     const from=route.stations[i],to=route.stations[i+1];
-     const a=from.geometryIndex,b=to.geometryIndex;
-     if(!Number.isInteger(a)||!Number.isInteger(b)||b<=a||b>=route.geometry.length)throw new Error('급행 정차역 선형 인덱스가 올바르지 않습니다.');
-     expressSegments.push({fromStationId:from.id,toStationId:to.id,geometry:copyGeometry(route.geometry.slice(a,b+1)),source:'existing verified OSM track geometry, intermediate stations skipped',geometryStatus:'ready',verified:true});
-   }
-   route.directedSegments=expressSegments;
+    const wanted=new Set(definition.stopStationNames);
+    route.stations=route.stations.filter(station=>wanted.has(station.ko));
+    if(route.stations.length<2)throw new Error('급행 정차역 데이터가 부족합니다.');
   }
+  // Make playable segment geometry for ALL Korean through-service choices, not
+  // just expresses. A service crossing two physical lines must not retain the
+  // first physical line's directedSegments or fall back to a straight line.
+  route.directedSegments=route.stations.slice(0,-1).map((from,i)=>{
+    const to=route.stations[i+1],a=from.geometryIndex,b=to.geometryIndex;
+    if(!Number.isInteger(a)||!Number.isInteger(b)||b<=a||b>=route.geometry.length)
+      throw new Error('1호선 운행계통 선형 누락: '+from.ko+' → '+to.ko);
+    const points=copyGeometry(route.geometry.slice(a,b+1));
+    if(points.length<2)throw new Error('1호선 역간 실제 선로가 없습니다: '+from.ko+' → '+to.ko);
+    return {fromStationId:from.id,toStationId:to.id,geometry:points,source:'verified physical rail geometry (OSM segments)',geometryStatus:'ready',verified:true};
+  });
   const service={id:definition.id,nameJa:definition.names.ko,nameKo:definition.names.ko,nameEn:definition.names.en,stops:route.stations.map(station=>station.id)};
   return{route:{...route,id:`korean-family-${definition.id}-${choice.direction||'forward'}`,countryId:'kr',line:{...(route.line||{}),ko:choice.patternId?.startsWith('kr-line1-')?'수도권 전철 1호선':'수도권 전철 5호선',ja:choice.patternId?.startsWith('kr-line1-')?'수도권 전철 1호선':'수도권 전철 5호선',en:choice.patternId?.startsWith('kr-line1-')?'Seoul Metropolitan Subway Line 1':'Seoul Metropolitan Subway Line 5'},passengerLineName:choice.patternId?.startsWith('kr-line1-')?'수도권 전철 1호선':'수도권 전철 5호선',geometryReady:true,geometryStatus:'ready',services:[service]},service,direction:'forward',travelDirectionId:choice.direction||'forward',pattern:{id:definition.id,names:definition.names},trainType:null,destinationStationId:route.stations.at(-1)?.id||null,trainTypeContexts:[]};
 }
