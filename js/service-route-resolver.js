@@ -95,8 +95,7 @@ const koreanFamilyServices={
     reverse:[{routeId:'kr-metro-1-gwangmyeong',directionId:'reverse'},{routeId:'kr-metro-1-gyeongbu',directionId:'reverse',startStationJa:'금천구청'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'영등포'}]}},
   {id:'kr-line1-yongsan-dongincheon-express',names:{ko:'용산 ↔ 동인천 (급행)',ja:'용산 ↔ 동인천 (급행)',en:'Yongsan - Dongincheon Express'},stopStationNames:['용산','노량진','대방','신길','영등포','신도림','구로','개봉','역곡','부천','송내','부평','동암','주안','제물포','동인천'],directions:{
     forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'용산'},{routeId:'kr-metro-1-gyeongin',directionId:'forward',endStationJa:'동인천'}],
-    reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse',startStationJa:'동인천'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'용산'}]}}
- ],
+    reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse',startStationJa:'동인천'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'용산'}]}},
   {id:'kr-line1-cheongnyangni-sinchang-express',names:{ko:'청량리 ↔ 신창 (급행)',ja:'청량리 ↔ 신창 (급행)',en:'Cheongnyangni - Sinchang Express'},stopStationNames:['청량리','제기동','신설동','동묘앞','동대문','종로5가','종로3가','종각','시청','서울역','남영','용산','노량진','대방','신길','영등포','신도림','구로','가산디지털단지','안양','금정','성균관대','수원','병점','오산','서정리','평택','성환','두정','천안','봉명','쌍용','아산','배방','온양온천','신창'],directions:{
     forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'청량리'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward'}],
     reverse:[{routeId:'kr-metro-1-gyeongbu',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'청량리'}]}}
