@@ -1,0 +1,59 @@
+name: Korean card interaction and temporary JR signage
+on:
+  push:
+    branches: [main]
+    paths:
+      - js/app.js
+      - js/transport-stop-templates.js
+      - .github/workflows/kr-card-and-jr-sign.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check Korean card navigation and Japanese JR rail signage
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),vm=require('vm');
+          const app=fs.readFileSync('js/app.js','utf8');
+          const sign=fs.readFileSync('js/transport-stop-templates.js','utf8');
+          if(app.includes('if(ok)openSetup(selected)'))throw Error('Korean card still jumps directly to setup');
+          if(!app.includes('if(r){selectedGroup=null;void chooseRoute(r.id)}return'))throw Error('Korean card does not select preview');
+          const context={};vm.createContext(context);
+          vm.runInContext(fs.readFileSync('js/station-sign-templates.js','utf8').replace(/export /g,'')+';globalThis.resolveStationSignTemplate=resolveStationSignTemplate',context);
+          vm.runInContext(sign.replace(/import[^;]+;/g,'').replace(/export /g,'')+';globalThis.resolveTransportStopTemplate=resolveTransportStopTemplate',context);
+          for(const id of ['kr-seoul-metro','kr-korail','kr-shinbundang']) {
+            const t=context.resolveTransportStopTemplate({countryId:'kr',mode:'commuter_rail',operatorId:id,category:'commuter_rail'});
+            if(t.style!=='jr-east')throw Error('Temporary JR sign missing for '+id);
+          }
+          const bus=context.resolveTransportStopTemplate({countryId:'kr',mode:'bus',operatorId:'kr-seoul-metro'});
+          if(bus.style!=='kr-bus-stop')throw Error('Bus sign should not change');
+          console.log('PASS: Korean cards select preview; Korean rail uses JR East signs; bus stays Korean');
+          JS
+          node tools/test-line1-playability.js
+      - name: Regenerate deployed app bundle
+        run: node tools/build-app-bundle.js
+      - name: Commit deployed JS bundle and versioned HTML
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/app.bundle.js index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Deploy Korean preview cards and temporary JR station sign layout"
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+              git rebase --abort || true
+              sleep 3
+            done
+            exit 1
+          fi
