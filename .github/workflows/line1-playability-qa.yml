@@ -6,13 +6,14 @@ on:
       - 'tools/test-line1-playability.js'
       - 'js/game.js'
       - 'js/service-route-resolver.js'
+      - 'tools/apply-seoul-line-1-verified-geometry.js'
       - 'js/route-integrity.js'
       - 'data/kr/generated/routes/kr-metro-1-*.json'
       - 'data/kr/generated/index.json'
       - '.github/workflows/line1-playability-qa.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   line1-game:
     runs-on: ubuntu-latest
@@ -22,5 +23,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Regenerate published Korean route index
+        run: node tools/apply-seoul-line-1-verified-geometry.js
       - name: Verify OSM track station connectivity and all Line 1 service termini
         run: node tools/test-line1-playability.js
+      - name: Publish updated bundled service patterns and Korean-only route labels
+        run: node tools/build-app-bundle.js
+      - name: Commit browser game assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/app.bundle.js js/korea-index-data.js data/kr/generated/index.json index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Deploy corrected Korean Line 1 names and real service patterns'
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+              git rebase --abort || true
+              sleep 3
+            done
+            exit 1
+          fi
