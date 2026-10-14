@@ -42,7 +42,7 @@ const integritySource=get('js/route-integrity.js').replace(/^export\s+/gm,'')+'\
 vm.runInContext(integritySource,ctx,{filename:'route-integrity.js'});
 const documented=JSON.parse(get('data/kr/line1-service-candidates.json'));
 const serviceIds=new Set(documented.services.map(item=>item.id));
-if(serviceIds.size!==9)throw Error('KTDB 2025 Line 1 must list nine distinct operating patterns');
+if(serviceIds.size!==10)throw Error('2026 Line 1 manifest must list ten distinct source-backed and pending operating patterns');
 for(const manifestEntry of documented.services){
   const pair=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1').filter(choice=>choice.patternId===manifestEntry.id);
   if(manifestEntry.status!=='active'){if(pair.length)throw Error('Unverified Line 1 service exposed to players: '+manifestEntry.id);continue;}
@@ -53,11 +53,17 @@ for(const manifestEntry of documented.services){
     if(from!==expected[0]||to!==expected[1])throw Error('Incorrect real Line 1 terminal definition: '+manifestEntry.id);
   }
 }
+const sinchang=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1').find(x=>x.patternId==='kr-line1-cheongnyangni-sinchang-express'&&x.direction==='forward');
+const shin=ctx.TEST.resolveKoreanFamilyService(sinchang,id=>routes.get(id)).route;
+if(!shin.stations.some(st=>st.ko==='탕정'))throw Error('2026 Sinchang A-express fails to stop at Tangjeong');
+const cheonan=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1').find(x=>x.patternId==='kr-line1-cheongnyangni-cheonan-express'&&x.direction==='forward');
+const cheon=ctx.TEST.resolveKoreanFamilyService(cheonan,id=>routes.get(id)).route;
+if(cheon.stations.at(-1)?.ko!=='천안')throw Error('2026 Cheonan A-express not terminating at Cheonan');
 const choices=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1');
 for(const choice of choices){if(/[一-鿿]/.test(choice.patternName?.ja||''))throw Error('Line 1 service has Chinese/Japanese characters: '+choice.id)}
 for(const route of routes.values()){if(route.line.ja!==route.line.ko||route.names.ja!==route.names.ko)throw Error(route.id+': displayed as Chinese instead of Korean');}
 
-if(choices.length!==12)throw Error('expected six verified KTDB Line 1 patterns, two directions each, received '+choices.length);
+if(choices.length!==14)throw Error('expected seven playable 2026 Line 1 patterns, two directions each, received '+choices.length);
 for(const choice of choices){
  const result=ctx.TEST.resolveKoreanFamilyService(choice,id=>routes.get(id));
  const route=result.route;
