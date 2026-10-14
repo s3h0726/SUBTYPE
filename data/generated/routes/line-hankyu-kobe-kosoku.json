@@ -254,7 +254,8 @@
           ]
         ],
         "source": "station-coordinate straight-line fallback; precise track geometry pending",
-        "verified": false
+        "verified": false,
+        "pendingActualTrackGeometry": true
       },
       {
         "fromStationId": "station-9963002",
@@ -286,11 +287,15 @@
           ]
         ],
         "source": "station-coordinate straight-line fallback; precise track geometry pending",
-        "verified": false
+        "verified": false,
+        "pendingActualTrackGeometry": true
       }
     ],
-    "geometryReady": true,
-    "missingSegments": [],
+    "geometryReady": false,
+    "missingSegments": [
+      "station-1160313::station-9963002",
+      "station-9963005::station-9963006"
+    ],
     "reusedSegments": [],
     "workspace": {
       "folder": "data/lines/hankyudentetsu/hankyukobekosokusen",
@@ -301,9 +306,10 @@
     "sources": {
       "official": "https://www.hankyu.co.jp/station/",
       "korean": "",
-      "geometry": "reused from line-99630 Kobe Kosoku Tozai geometry"
+      "geometry": "Existing line-99630 does not provide verified geometry for both endpoint pairs; no straight-line fallback is accepted as real track."
     },
     "dataKind": "operationalLine",
-    "coverage": "Hankyu-operational-section"
+    "coverage": "unverified-track-geometry-pending",
+    "geometryStatus": "incomplete"
   }
 }
