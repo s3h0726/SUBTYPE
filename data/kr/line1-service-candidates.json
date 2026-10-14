@@ -1,14 +1,25 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "passengerLineId": "kr-passenger-metro-1",
   "name": "수도권 전철 1호선",
-  "status": "KTDB-2025-03-grounded-with-playability-gates",
-  "sourceNotes": "KTDB 2025년 3월 기준 표 3-28 서울1호선 18방향(9개 왕복) 계통. 현재 시각표와 차이가 있을 수 있음. 서울역 지상 급행은 지하 서울역 1호선 선형으로 대체하지 않으며, 급행 정차역 근거가 부족한 계통은 표시하지 않음.",
+  "status": "2026-timetable-refresh; independently verified 2026 dated sources with KTDB 2025 topology baseline",
+  "sourceNotes": "2026년 자료로 신창/천안 급행을 분리, 탕정 정차 반영, 2026-05-26 폐지된 동인천 특급은 추가하지 않음. 출발지와 종착지의 시간표상 변형은 기준일/평일휴일에 따라 달라지며, 서울역 지상급행과 정차역 미검증 계통은 노출하지 않음.",
   "references": [
     {
+      "url": "https://dataful.kr/m/43",
+      "published": "2026-08-17",
+      "title": "2026년 1호선 평일 경부장항선 급행 시각표: 청량리-천안/신창, 천안-신창 전 역 정차"
+    },
+    {
+      "url": "https://epson3.tistory.com/entry/1호선-급행열차-정차역·노선도",
+      "verifiedDate": "2026-07-31",
+      "title": "2026-05-26 용산-동인천 특급의 급행 전환"
+    },
+    {
       "url": "https://www.ktdb.go.kr/DATA/pblcte/20260512020132299.pdf",
-      "pages": "114 (PDF page index 141)",
-      "title": "2025년 국가교통조사 및 분석 표 3-28"
+      "published": "2026-05",
+      "dataReferenceDate": "2025-03",
+      "title": "국가교통조사 2025년 3월 실제 운행계통 참고 자료"
     }
   ],
   "services": [
@@ -25,7 +36,9 @@
       "sourceRouteIds": [
         "kr-metro-1-main",
         "kr-metro-1-gyeongin"
-      ]
+      ],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
     },
     {
       "id": "kr-line1-yeongdeungpo-gwangmyeong-shuttle",
@@ -41,7 +54,9 @@
         "kr-metro-1-main",
         "kr-metro-1-gyeongbu",
         "kr-metro-1-gwangmyeong"
-      ]
+      ],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
     },
     {
       "id": "kr-line1-soyosan-incheon-express",
@@ -56,7 +71,9 @@
       "sourceRouteIds": [
         "kr-metro-1-main",
         "kr-metro-1-gyeongin"
-      ]
+      ],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
     },
     {
       "id": "kr-line1-cheongnyangni-sinchang-express",
@@ -71,7 +88,9 @@
       "sourceRouteIds": [
         "kr-metro-1-main",
         "kr-metro-1-gyeongbu"
-      ]
+      ],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
     },
     {
       "id": "kr-line1-seoulstation-sinchang-surface-express",
@@ -83,7 +102,9 @@
         "forward",
         "reverse"
       ],
-      "sourceRouteIds": []
+      "sourceRouteIds": [],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
     },
     {
       "id": "kr-line1-yongsan-dongincheon-express",
@@ -98,7 +119,9 @@
       "sourceRouteIds": [
         "kr-metro-1-main",
         "kr-metro-1-gyeongin"
-      ]
+      ],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
     },
     {
       "id": "kr-line1-gwangundae-sinchang-local",
@@ -113,7 +136,9 @@
       "sourceRouteIds": [
         "kr-metro-1-main",
         "kr-metro-1-gyeongbu"
-      ]
+      ],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
     },
     {
       "id": "kr-line1-seoulstation-cheonan-surface-express",
@@ -125,7 +150,9 @@
         "forward",
         "reverse"
       ],
-      "sourceRouteIds": []
+      "sourceRouteIds": [],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
     },
     {
       "id": "kr-line1-gwangundae-seodongtan-local",
@@ -141,7 +168,27 @@
         "kr-metro-1-main",
         "kr-metro-1-gyeongbu",
         "kr-metro-1-seodongtan"
-      ]
+      ],
+      "sourceDate": "2025-03",
+      "lastReview": "2026-10-15"
+    },
+    {
+      "id": "kr-line1-cheongnyangni-cheonan-express",
+      "origin": "청량리",
+      "destination": "천안",
+      "type": "급행",
+      "status": "active",
+      "directions": [
+        "forward",
+        "reverse"
+      ],
+      "sourceRouteIds": [
+        "kr-metro-1-main",
+        "kr-metro-1-gyeongbu"
+      ],
+      "sourceDate": "2026-08-17",
+      "stopPattern": "2026 A-express baseline; some trains have additional stops",
+      "lastReview": "2026-10-15"
     }
   ]
 }
