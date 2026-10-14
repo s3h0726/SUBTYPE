@@ -213,32 +213,7 @@
         "geometryIndex": 5
       }
     ],
-    "geometry": [
-      [
-        34.694766,
-        135.195058
-      ],
-      [
-        34.686117,
-        135.181524
-      ],
-      [
-        34.6769,
-        135.16871
-      ],
-      [
-        34.67634,
-        135.16923
-      ],
-      [
-        34.679362,
-        135.174441
-      ],
-      [
-        34.675981,
-        135.169291
-      ]
-    ],
+    "geometry": [],
     "directedSegments": [
       {
         "fromStationId": "station-1160313",
@@ -260,18 +235,9 @@
       {
         "fromStationId": "station-9963002",
         "toStationId": "station-9963005",
-        "geometry": [
-          [
-            34.6769,
-            135.16871
-          ],
-          [
-            34.67634,
-            135.16923
-          ]
-        ],
-        "source": "reused from line-99630 Kobe Kosoku Tozai geometry",
-        "verified": true
+        "geometry": [],
+        "source": "REJECTED: coordinates belong to a different Kobe Kosoku track section, not Hanakuma–Kosoku Kobe",
+        "verified": false
       },
       {
         "fromStationId": "station-9963005",
@@ -294,6 +260,7 @@
     "geometryReady": false,
     "missingSegments": [
       "station-1160313::station-9963002",
+      "station-9963002::station-9963005",
       "station-9963005::station-9963006"
     ],
     "reusedSegments": [],
@@ -306,7 +273,7 @@
     "sources": {
       "official": "https://www.hankyu.co.jp/station/",
       "korean": "",
-      "geometry": "Existing line-99630 does not provide verified geometry for both endpoint pairs; no straight-line fallback is accepted as real track."
+      "geometry": "All 3 segment geometries require correctly matched primary-source track coordinates; misassigned MLIT line-99630 points removed."
     },
     "dataKind": "operationalLine",
     "coverage": "unverified-track-geometry-pending",
