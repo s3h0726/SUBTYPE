@@ -83,7 +83,7 @@ const koreanFamilyServices={
   // Seoul Station SURFACE terminal express and Soyosan–Incheon express remain held for source/track validation.
   {id:'kr-line1-soyosan-incheon-local',names:{ko:'소요산 ↔ 인천 (일반)',ja:'소요산 ↔ 인천 (일반)',en:'Soyosan - Incheon Local'},directions:{
     forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'소요산'},{routeId:'kr-metro-1-gyeongin',directionId:'forward'}],
-    reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse'}]}},
+    reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'소요산'}]}},
   {id:'kr-line1-gwangundae-sinchang-local',names:{ko:'광운대 ↔ 신창 (일반)',ja:'광운대 ↔ 신창 (일반)',en:'Gwangundae - Sinchang Local'},directions:{
     forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'광운대'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward'}],
     reverse:[{routeId:'kr-metro-1-gyeongbu',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'광운대'}]}},
