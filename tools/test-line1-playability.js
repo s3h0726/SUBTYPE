@@ -13,7 +13,27 @@ for(const [id,route] of routes){
    last=station.geometryIndex;
   }
   if(direction.directedSegments.length!==direction.stops.length-1)throw Error(id+' segment count mismatch');
+  for(let i=0;i<direction.directedSegments.length;i++){
+   const seg=direction.directedSegments[i],from=direction.stops[i],to=direction.stops[i+1];
+   if(seg.fromStationId!==from.id||seg.toStationId!==to.id)throw Error(id+'/'+direction.id+': segment station ID mismatch at '+i);
+   if(seg.geometryStatus&&seg.geometryStatus!=='ready')throw Error(id+'/'+direction.id+': segment is not geometry ready at '+i);
+   if(!Array.isArray(seg.geometry)||seg.geometry.length<2)throw Error(id+'/'+direction.id+': missing track geometry at '+i);
+   if(/straight.line fallback|geometry pending|synthetic/i.test(seg.source||''))throw Error(id+'/'+direction.id+': synthetic track at '+i);
+   for(const pt of seg.geometry)if(!Array.isArray(pt)||pt.length!==2||!Number.isFinite(pt[0])||!Number.isFinite(pt[1])||pt[0]<33||pt[0]>40||pt[1]<124||pt[1]>132)
+     throw Error(id+'/'+direction.id+': invalid Korean railway coordinate at '+i);
+  }
  }
+}
+const expectedTermini={
+ 'kr-metro-1-main':['연천','구로'],
+ 'kr-metro-1-gyeongin':['구로','인천'],
+ 'kr-metro-1-gyeongbu':['구로','신창'],
+ 'kr-metro-1-gwangmyeong':['금천구청','광명'],
+ 'kr-metro-1-seodongtan':['병점','서동탄']
+};
+for(const [id,route] of routes){
+ const actual=[route.stations[0]?.ko,route.stations.at(-1)?.ko];
+ if(actual.join('|')!==expectedTermini[id].join('|'))throw Error(id+': terminal mismatch '+actual.join(' → '));
 }
 const ctx={console,globalThis:null,window:{},TRT_TOKYO_SERVICE_PATTERNS:{}};
 ctx.globalThis=ctx;vm.createContext(ctx);
