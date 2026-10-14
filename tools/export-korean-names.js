@@ -8,7 +8,7 @@ const toRel=p=>path.relative(root,p).replaceAll(path.sep,'/');
 const csv=(rows)=>'\uFEFF'+rows.map(row=>row.map(value=>'"'+String(value??'').replaceAll('"','""')+'"').join(',')).join('\n')+'\n';
 const output=path.join(root,'reports/korean-names');fs.mkdirSync(output,{recursive:true});
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
-const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}));
+const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)})).filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden');
 // Retired or duplicate identifiers are folded into active operators.
 const canonicalId=id=>({'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[id]||id);
 const opMap=new Map(operators.map(x=>[x.meta.id,x.meta]));
