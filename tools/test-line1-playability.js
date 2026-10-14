@@ -42,9 +42,10 @@ const integritySource=get('js/route-integrity.js').replace(/^export\s+/gm,'')+'\
 vm.runInContext(integritySource,ctx,{filename:'route-integrity.js'});
 const documented=JSON.parse(get('data/kr/line1-service-candidates.json'));
 const serviceIds=new Set(documented.services.map(item=>item.id));
-if(serviceIds.size!==10)throw Error('Line 1 manifest must list ten distinct operating patterns');
+if(serviceIds.size!==9)throw Error('KTDB 2025 Line 1 must list nine distinct operating patterns');
 for(const manifestEntry of documented.services){
   const pair=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1').filter(choice=>choice.patternId===manifestEntry.id);
+  if(manifestEntry.status!=='active'){if(pair.length)throw Error('Unverified Line 1 service exposed to players: '+manifestEntry.id);continue;}
   if(pair.length!==2)throw Error('Line 1 source manifest drift: '+manifestEntry.id);
   for(const direction of pair){
     const from=direction.originNames.ko,to=direction.destinationNames.ko;
@@ -56,11 +57,13 @@ const choices=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1');
 for(const choice of choices){if(/[一-鿿]/.test(choice.patternName?.ja||''))throw Error('Line 1 service has Chinese/Japanese characters: '+choice.id)}
 for(const route of routes.values()){if(route.line.ja!==route.line.ko||route.names.ja!==route.names.ko)throw Error(route.id+': displayed as Chinese instead of Korean');}
 
-if(choices.length!==20)throw Error('expected 10 documented Line 1 patterns in both directions, received '+choices.length);
+if(choices.length!==12)throw Error('expected six verified KTDB Line 1 patterns, two directions each, received '+choices.length);
 for(const choice of choices){
  const result=ctx.TEST.resolveKoreanFamilyService(choice,id=>routes.get(id));
  const route=result.route;
  const playable=ctx.__integrity.resolvePlayableRoute(route);
+ if(route.directedSegments?.length!==route.stations.length-1)throw Error(choice.id+': station-to-station OSM geometry not fully composed');
+ if(playable.segments.some(seg=>seg.endpointMismatch))throw Error(choice.id+': geometry has mismatched station endpoints');
  if(playable.stations.length!==route.stations.length||playable.segments.length!==route.stations.length-1)throw Error(choice.id+': route-integrity rejected physical segments');
  if(route.stations.length<2||route.geometry.length<2)throw Error(choice.id+' unplayable');
  const first=route.stations[0],last=route.stations.at(-1);
