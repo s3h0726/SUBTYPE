@@ -547,6 +547,10 @@
         137.21567
       ],
       [
+        36.689937,
+        137.215685
+      ],
+      [
         36.69171,
         137.21579
       ],
@@ -585,10 +589,6 @@
       [
         36.70001,
         137.21382
-      ],
-      [
-        36.701473,
-        137.212825
       ],
       [
         36.700927,
@@ -718,6 +718,26 @@
           ]
         ],
         "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941321",
+        "toStationId": "station-9941309",
+        "geometry": [
+          [
+            36.6894,
+            137.21567
+          ],
+          [
+            36.689937,
+            137.215685
+          ],
+          [
+            36.69171,
+            137.21579
+          ]
+        ],
+        "source": "MLIT-N02-2025: reused from existing verified original route geometry",
         "verified": true
       },
       {
@@ -861,11 +881,11 @@
         "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
       "station-9941321::station-9941309"
     ],
-    "reusedSegments": [],
     "workspace": {
       "folder": "data/lines/toyamachihotetsudo/toyama-city-route-3",
       "linePath": "data/lines/toyamachihotetsudo/toyama-city-route-3/line.json",
