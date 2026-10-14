@@ -1,0 +1,26 @@
+name: Line 1 actual-track and terminal playability QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/test-line1-playability.js'
+      - 'js/game.js'
+      - 'js/service-route-resolver.js'
+      - 'js/route-integrity.js'
+      - 'data/kr/generated/routes/kr-metro-1-*.json'
+      - 'data/kr/generated/index.json'
+      - '.github/workflows/line1-playability-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  line1-game:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify OSM track station connectivity and all Line 1 service termini
+        run: node tools/test-line1-playability.js
