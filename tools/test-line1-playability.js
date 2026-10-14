@@ -44,7 +44,7 @@ const choices=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1');
 for(const choice of choices){if(/[一-鿿]/.test(choice.patternName?.ja||''))throw Error('Line 1 service has Chinese/Japanese characters: '+choice.id)}
 for(const route of routes.values()){if(route.line.ja!==route.line.ko||route.names.ja!==route.names.ko)throw Error(route.id+': displayed as Chinese instead of Korean');}
 
-if(choices.length!==18)throw Error('expected 9 documented Line 1 patterns in both directions, received '+choices.length);
+if(choices.length!==20)throw Error('expected 10 documented Line 1 patterns in both directions, received '+choices.length);
 for(const choice of choices){
  const result=ctx.TEST.resolveKoreanFamilyService(choice,id=>routes.get(id));
  const route=result.route;
