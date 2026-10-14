@@ -2027,6 +2027,10 @@
         137.21567
       ],
       [
+        36.689937,
+        137.215685
+      ],
+      [
         36.69171,
         137.21579
       ],
@@ -2067,10 +2071,6 @@
         137.21382
       ],
       [
-        36.701473,
-        137.212825
-      ],
-      [
         36.700927,
         137.212472
       ],
@@ -2101,6 +2101,38 @@
       [
         36.69578,
         137.20981
+      ],
+      [
+        36.69709,
+        137.21037
+      ],
+      [
+        36.69813,
+        137.21097
+      ],
+      [
+        36.69867,
+        137.21131
+      ],
+      [
+        36.69867,
+        137.21131
+      ],
+      [
+        36.69905,
+        137.21156
+      ],
+      [
+        36.700314,
+        137.212274
+      ],
+      [
+        36.700653,
+        137.212401
+      ],
+      [
+        36.700927,
+        137.212472
       ],
       [
         36.701473,
@@ -2949,6 +2981,26 @@
         "verified": true
       },
       {
+        "fromStationId": "station-9941321",
+        "toStationId": "station-9941309",
+        "geometry": [
+          [
+            36.6894,
+            137.21567
+          ],
+          [
+            36.689937,
+            137.215685
+          ],
+          [
+            36.69171,
+            137.21579
+          ]
+        ],
+        "source": "MLIT-N02-2025: reused from existing verified original route geometry",
+        "verified": true
+      },
+      {
         "fromStationId": "station-9941309",
         "toStationId": "station-9941310",
         "geometry": [
@@ -3086,6 +3138,54 @@
           ]
         ],
         "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9941315",
+        "toStationId": "station-1140501",
+        "geometry": [
+          [
+            36.69578,
+            137.20981
+          ],
+          [
+            36.69709,
+            137.21037
+          ],
+          [
+            36.69813,
+            137.21097
+          ],
+          [
+            36.69867,
+            137.21131
+          ],
+          [
+            36.69867,
+            137.21131
+          ],
+          [
+            36.69905,
+            137.21156
+          ],
+          [
+            36.700314,
+            137.212274
+          ],
+          [
+            36.700653,
+            137.212401
+          ],
+          [
+            36.700927,
+            137.212472
+          ],
+          [
+            36.701473,
+            137.212825
+          ]
+        ],
+        "source": "MLIT-N02-2025: composed reverse of verified tram segments through 丸の内",
         "verified": true
       },
       {
@@ -3501,12 +3601,12 @@
         "verified": true
       }
     ],
-    "geometryReady": false,
-    "missingSegments": [
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [
       "station-9941321::station-9941309",
       "station-9941315::station-1140501"
     ],
-    "reusedSegments": [],
     "workspace": {
       "folder": "data/lines/toyamachihotetsudo/toyama-city-route-6",
       "linePath": "data/lines/toyamachihotetsudo/toyama-city-route-6/line.json",
