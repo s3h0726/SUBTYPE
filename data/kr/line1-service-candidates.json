@@ -1,29 +1,23 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "passengerLineId": "kr-passenger-metro-1",
   "name": "수도권 전철 1호선",
-  "status": "runtime-service-catalog",
-  "sourceNotes": "실제 운행하는 기점·종점 계통만 명시. 모든 분기 조합을 임의 생성하지 않음. 운행횟수·시각은 시간표에 따라 변동하며 이 파일에는 포함하지 않음.",
+  "status": "KTDB-2025-03-grounded-with-playability-gates",
+  "sourceNotes": "KTDB 2025년 3월 기준 표 3-28 서울1호선 18방향(9개 왕복) 계통. 현재 시각표와 차이가 있을 수 있음. 서울역 지상 급행은 지하 서울역 1호선 선형으로 대체하지 않으며, 급행 정차역 근거가 부족한 계통은 표시하지 않음.",
   "references": [
     {
       "url": "https://www.ktdb.go.kr/DATA/pblcte/20260512020132299.pdf",
-      "type": "2025년도 국가교통조사 운행 노선망"
-    },
-    {
-      "url": "https://www.namu.moe/w/수도권%20전철%201호선/급행",
-      "type": "급행·정차역 참고; 시간표 확인 필요"
-    },
-    {
-      "url": "https://namu.moe/w/수도권%20전철%201호선/운행%20계통",
-      "type": "기점·종점별 운행계통"
+      "pages": "114 (PDF page index 141)",
+      "title": "2025년 국가교통조사 및 분석 표 3-28"
     }
   ],
   "services": [
     {
-      "id": "kr-line1-yeoncheon-incheon-local",
-      "origin": "연천",
+      "id": "kr-line1-soyosan-incheon-local",
+      "origin": "소요산",
       "destination": "인천",
       "type": "일반",
+      "status": "active",
       "directions": [
         "forward",
         "reverse"
@@ -34,10 +28,27 @@
       ]
     },
     {
-      "id": "kr-line1-dongducheon-incheon-local",
-      "origin": "동두천",
+      "id": "kr-line1-yeongdeungpo-gwangmyeong-shuttle",
+      "origin": "영등포",
+      "destination": "광명",
+      "type": "셔틀",
+      "status": "active",
+      "directions": [
+        "forward",
+        "reverse"
+      ],
+      "sourceRouteIds": [
+        "kr-metro-1-main",
+        "kr-metro-1-gyeongbu",
+        "kr-metro-1-gwangmyeong"
+      ]
+    },
+    {
+      "id": "kr-line1-soyosan-incheon-express",
+      "origin": "소요산",
       "destination": "인천",
-      "type": "일반",
+      "type": "급행",
+      "status": "pending-stop-validation",
       "directions": [
         "forward",
         "reverse"
@@ -48,10 +59,38 @@
       ]
     },
     {
-      "id": "kr-line1-gwangundae-incheon-local",
-      "origin": "광운대",
-      "destination": "인천",
-      "type": "일반",
+      "id": "kr-line1-cheongnyangni-sinchang-express",
+      "origin": "청량리",
+      "destination": "신창",
+      "type": "급행",
+      "status": "active",
+      "directions": [
+        "forward",
+        "reverse"
+      ],
+      "sourceRouteIds": [
+        "kr-metro-1-main",
+        "kr-metro-1-gyeongbu"
+      ]
+    },
+    {
+      "id": "kr-line1-seoulstation-sinchang-surface-express",
+      "origin": "서울역(지상)",
+      "destination": "신창",
+      "type": "급행",
+      "status": "pending-surface-track",
+      "directions": [
+        "forward",
+        "reverse"
+      ],
+      "sourceRouteIds": []
+    },
+    {
+      "id": "kr-line1-yongsan-dongincheon-express",
+      "origin": "용산",
+      "destination": "동인천",
+      "type": "급행",
+      "status": "active",
       "directions": [
         "forward",
         "reverse"
@@ -66,6 +105,7 @@
       "origin": "광운대",
       "destination": "신창",
       "type": "일반",
+      "status": "active",
       "directions": [
         "forward",
         "reverse"
@@ -76,52 +116,23 @@
       ]
     },
     {
-      "id": "kr-line1-gwangundae-cheonan-local",
-      "origin": "광운대",
-      "destination": "천안",
-      "type": "일반",
-      "directions": [
-        "forward",
-        "reverse"
-      ],
-      "sourceRouteIds": [
-        "kr-metro-1-main",
-        "kr-metro-1-gyeongbu"
-      ]
-    },
-    {
-      "id": "kr-line1-cheongnyangni-cheonan-express",
-      "origin": "청량리",
+      "id": "kr-line1-seoulstation-cheonan-surface-express",
+      "origin": "서울역(지상)",
       "destination": "천안",
       "type": "급행",
+      "status": "pending-surface-track",
       "directions": [
         "forward",
         "reverse"
       ],
-      "sourceRouteIds": [
-        "kr-metro-1-main",
-        "kr-metro-1-gyeongbu"
-      ]
-    },
-    {
-      "id": "kr-line1-cheongnyangni-sinchang-express",
-      "origin": "청량리",
-      "destination": "신창",
-      "type": "급행",
-      "directions": [
-        "forward",
-        "reverse"
-      ],
-      "sourceRouteIds": [
-        "kr-metro-1-main",
-        "kr-metro-1-gyeongbu"
-      ]
+      "sourceRouteIds": []
     },
     {
       "id": "kr-line1-gwangundae-seodongtan-local",
       "origin": "광운대",
       "destination": "서동탄",
       "type": "일반",
+      "status": "active",
       "directions": [
         "forward",
         "reverse"
@@ -130,35 +141,6 @@
         "kr-metro-1-main",
         "kr-metro-1-gyeongbu",
         "kr-metro-1-seodongtan"
-      ]
-    },
-    {
-      "id": "kr-line1-yeongdeungpo-gwangmyeong-shuttle",
-      "origin": "영등포",
-      "destination": "광명",
-      "type": "셔틀",
-      "directions": [
-        "forward",
-        "reverse"
-      ],
-      "sourceRouteIds": [
-        "kr-metro-1-main",
-        "kr-metro-1-gyeongbu",
-        "kr-metro-1-gwangmyeong"
-      ]
-    },
-    {
-      "id": "kr-line1-yongsan-dongincheon-express",
-      "origin": "용산",
-      "destination": "동인천",
-      "type": "급행",
-      "directions": [
-        "forward",
-        "reverse"
-      ],
-      "sourceRouteIds": [
-        "kr-metro-1-main",
-        "kr-metro-1-gyeongin"
       ]
     }
   ]
