@@ -40,6 +40,18 @@ ctx.globalThis=ctx;vm.createContext(ctx);
 vm.runInContext(get('js/service-route-resolver.js').replace(/^export\s+/gm,'')+'\n;globalThis.TEST={koreanFamilyServiceChoices,resolveKoreanFamilyService};',ctx);
 const integritySource=get('js/route-integrity.js').replace(/^export\s+/gm,'')+'\n;globalThis.__integrity={resolvePlayableRoute};';
 vm.runInContext(integritySource,ctx,{filename:'route-integrity.js'});
+const documented=JSON.parse(get('data/kr/line1-service-candidates.json'));
+const serviceIds=new Set(documented.services.map(item=>item.id));
+if(serviceIds.size!==10)throw Error('Line 1 manifest must list ten distinct operating patterns');
+for(const manifestEntry of documented.services){
+  const pair=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1').filter(choice=>choice.patternId===manifestEntry.id);
+  if(pair.length!==2)throw Error('Line 1 source manifest drift: '+manifestEntry.id);
+  for(const direction of pair){
+    const from=direction.originNames.ko,to=direction.destinationNames.ko;
+    const expected=direction.direction==='forward'?[manifestEntry.origin,manifestEntry.destination]:[manifestEntry.destination,manifestEntry.origin];
+    if(from!==expected[0]||to!==expected[1])throw Error('Incorrect real Line 1 terminal definition: '+manifestEntry.id);
+  }
+}
 const choices=ctx.TEST.koreanFamilyServiceChoices('kr-passenger-metro-1');
 for(const choice of choices){if(/[一-鿿]/.test(choice.patternName?.ja||''))throw Error('Line 1 service has Chinese/Japanese characters: '+choice.id)}
 for(const route of routes.values()){if(route.line.ja!==route.line.ko||route.names.ja!==route.names.ko)throw Error(route.id+': displayed as Chinese instead of Korean');}
