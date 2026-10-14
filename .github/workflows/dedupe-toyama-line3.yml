@@ -1,0 +1,46 @@
+name: Rebuild Toyama 3-service unique route
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/lines/toyamachihotetsudo/toyamachitetsutoyamatoshinsen-3keito-kanjosen/line.json
+      - tools/lib/line-workspaces.js
+      - .github/workflows/dedupe-toyama-line3.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rebuild-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild canonical Japanese line data
+        run: node tools/build-line-workspaces.js
+      - name: Validate only one Toyama third service, preserving loop geometry
+        run: |
+          node - <<'JS'
+          const fs=require('fs');
+          const file='data/generated/line-index.json';
+          const index=JSON.parse(fs.readFileSync(file,'utf8'));
+          const kept=index.routes.filter(r=>r.id==='line-toyama-city-3');
+          const legacy=index.routes.filter(r=>r.id==='line-99422');
+          if(kept.length!==1||legacy.length!==0||kept[0].geometryReady!==true) throw new Error('Toyama 3-service deduplication failed');
+          const embedded=fs.readFileSync('js/line-workspace-data.js','utf8');
+          if(!embedded.includes('"id":"line-toyama-city-3"')||embedded.includes('"id":"line-99422"'))throw new Error('Browser bundle still contains duplicate');
+          console.log('PASS: exactly one Toyama 3-service; playable geometry retained');
+          JS
+      - name: Commit rebuilt browser index and geometry data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/line-workspace-data.js data/generated/line-index.json data/generated/build-baseline.json data/generated/asset-registry.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Rebuild game registry with single Toyama tram Route 3"
+            git push origin HEAD:main
+          fi
