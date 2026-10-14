@@ -36,11 +36,15 @@ jobs:
           print('PASS',len(r['geometry']),'geometry points')
           PY
           node tools/audit-recent-tram-and-kobe-geometry.js
+      - name: Rebuild the embedded browser routes from canonical workspaces
+        run: |
+          node tools/build-line-workspaces.js
+          node tools/audit-recent-tram-and-kobe-geometry.js
       - name: Commit geometry and provenance to main
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/lines/hankyudentetsu/hankyukobekosokusen/geometry.json data/generated/routes/line-hankyu-kobe-kosoku.json data/source-audit/HANKYU_KOBE_KOSOKU_OSM.json
+          git add data/lines/hankyudentetsu/hankyukobekosokusen/geometry.json data/generated/routes/line-hankyu-kobe-kosoku.json data/source-audit/HANKYU_KOBE_KOSOKU_OSM.json js/line-workspace-data.js data/generated/line-index.json data/generated/asset-registry.json data/generated/build-baseline.json
           if ! git diff --cached --quiet; then
             git commit -m "Apply real underground OSM track geometry to Hankyu Kobe Kosoku"
             git push origin HEAD:main
