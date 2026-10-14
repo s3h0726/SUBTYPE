@@ -29,6 +29,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div class="toolbar" id="tabs">
 <button class="tab active" data-file="operators">운영사 <span id="count-operators">…</span></button>
 <button class="tab" data-file="lines">노선 <span id="count-lines">…</span></button>
+<button class="tab" data-file="korea-lines">한국 노선 <span id="count-korea-lines">…</span></button>
 <button class="tab" data-file="services">직통·운행계통 <span id="count-services">…</span></button>
 <button class="tab" data-file="stations-by-line">역명 <span id="count-stations-by-line">…</span></button>
 <button class="tab" data-file="stations-unique">고유 역명 <span id="count-stations-unique">…</span></button>
@@ -48,12 +49,12 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <script src="../../js/service-data.js?v=services-editor-20261011"></script>
 <script>
 'use strict';
-const FILES=['operators','lines','services','stations-by-line','stations-unique'];
+const FILES=['operators','lines','korea-lines','services','stations-by-line','stations-unique'];
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0;
 const DATA_VERSION='20261011-current';
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
-const editNameCol={'operators':'한국어명','lines':'노선 한글명','services':'한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
+const editNameCol={'operators':'한국어명','lines':'노선 한글명','korea-lines':'노선 한글명','services':'한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
 const isChanged=i=>rows[i]?.some((v,j)=>v!==original[i]?.[j]);
 let remoteOverrides={operators:{},lines:{},stations:{},services:{}};
 const colorRE=/^#[0-9a-f]{6}$/i;
@@ -65,9 +66,9 @@ function cssToHex(value){value=String(value||'').trim();if(colorRE.test(value))r
 }
 async function fetchOverrides(){const r=await fetch('../../data/editor-overrides.json?ts='+Date.now(),{cache:'no-store'});if(r.ok){const x=await r.json();remoteOverrides={operators:x.operators||{},lines:x.lines||{},stations:x.stations||{},services:x.services||{}}}}
 function applyRemote(){
- for(let i=0;i<rows.length;i++){const row=rows[i],id=file==='operators'?row[0]:file==='lines'?row[2]:null;
+ for(let i=0;i<rows.length;i++){const row=rows[i],id=file==='operators'?row[0]:(file==='lines'||file==='korea-lines')?row[2]:null;
  if(file==='operators'&&remoteOverrides.operators[id])row[1]=remoteOverrides.operators[id];
- if(file==='lines'){const v=remoteOverrides.lines[id];if(v?.ko)row[3]=v.ko;if(v?.color)row[6]=v.color;else row[6]=cssToHex(row[6]);}
+ if(file==='lines'||file==='korea-lines'){const v=remoteOverrides.lines[id];if(v?.ko)row[3]=v.ko;if(v?.color)row[6]=v.color;else row[6]=cssToHex(row[6]);}
  if(file==='services'){const v=remoteOverrides.services[row[0]];if(v)row[4]=v}
  if(file==='stations-by-line'){const v=remoteOverrides.stations[row[2]]?.[row[4]]||remoteOverrides.stations[row[2]]?.[row[5]];if(v)row[6]=v;}
  }
@@ -102,16 +103,23 @@ async function serviceRows(){
  }
  return result;
 }
+async function koreaLineRows(){
+ const response=await fetch('../../data/kr/generated/index.json?ts='+Date.now(),{cache:'no-store'});
+ if(!response.ok)throw Error('한국 노선 목록을 불러올 수 없습니다: '+response.status);
+ const data=await response.json();
+ const operators=new Map((data.operators||[]).map(o=>[o.id,o.names?.ko||o.id]));
+ return (data.routes||[]).map(r=>[r.operatorId||'',operators.get(r.operatorId)||r.operator?.ko||'',r.id,r.names?.ko||r.line?.ko||'',r.names?.ja||r.line?.ja||'',r.names?.en||r.line?.en||'',r.lineColor||r.color||'#0052A4',r.lazySource||'']);
+}
 async function load(name){file=name;page=0;q.value='';changesOnly.checked=false;status.textContent='자료 읽는 중…';
  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.file===name));
- try{let arr;if(name==='services')arr=[['고유 ID','종류','노선 ID','일본어명','한글명','영어명','운영사 한글명','소속 노선 한글명'],...await serviceRows()];else{const res=await fetch('./'+name+'.csv?v='+DATA_VERSION,{cache:'no-store'});if(!res.ok)throw Error('CSV '+res.status);arr=parseCSV(await res.text())}heads=arr.shift();rows=arr;const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
+ try{let arr;if(name==='korea-lines')arr=[['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...await koreaLineRows()];else if(name==='services')arr=[['고유 ID','종류','노선 ID','일본어명','한글명','영어명','운영사 한글명','소속 노선 한글명'],...await serviceRows()];else{const res=await fetch('./'+name+'.csv?v='+DATA_VERSION,{cache:'no-store'});if(!res.ok)throw Error('CSV '+res.status);arr=parseCSV(await res.text())}heads=arr.shift();rows=arr;const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
  }catch(e){status.textContent='파일을 열 수 없습니다: '+e.message}}
 function refresh(){
  const key=q.value.trim().toLocaleLowerCase('ko');visible=[];
  rows.forEach((r,i)=>{if(changesOnly.checked&&!isChanged(i))return;if(key&&!r.some(v=>String(v).toLocaleLowerCase('ko').includes(key)))return;visible.push(i)});
  page=Math.min(page,Math.max(0,Math.ceil(visible.length/size)-1));render()
 }
-function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.slice(page*size,e),edit=heads.indexOf(editNameCol[file]),rgb=file==='lines'?heads.indexOf('RGB 색상'):-1;
+function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.slice(page*size,e),edit=heads.indexOf(editNameCol[file]),rgb=(file==='lines'||file==='korea-lines')?heads.indexOf('RGB 색상'):-1;
  table.querySelector('thead').innerHTML='<tr><th>#</th>'+heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr>';
  table.querySelector('tbody').innerHTML=part.map(i=>'<tr><td>'+(i+1)+'</td>'+rows[i].map((v,j)=>(j===edit||j===rgb)
   ?'<td class="editable '+(v!==original[i][j]?'edited':'')+'">'+(j===rgb?'<input type="color" data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:46px;min-width:46px;vertical-align:middle"><input data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:90px;min-width:90px" aria-label="RGB 색상">':'<input data-r="'+i+'" data-c="'+j+'" value="'+escape(v)+'" aria-label="'+escape(heads[j])+'">')+'</td>'
@@ -122,7 +130,7 @@ function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.sl
  document.querySelector('#prev').disabled=page===0;document.querySelector('#next').disabled=e>=visible.length;
 }
 table.addEventListener('input',e=>{if(!e.target.matches('td input[data-r]'))return;const el=e.target,r=+el.dataset.r,c=+el.dataset.c;rows[r][c]=el.value;
-if(file==='lines'&&c===heads.indexOf('RGB 색상')){
+if((file==='lines'||file==='korea-lines')&&c===heads.indexOf('RGB 색상')){
  const v=cssToHex(el.value),cell=el.closest('td');
  if(el.type==='color'){rows[r][c]=v;cell.querySelectorAll('input').forEach(other=>{if(other!==el)other.value=v})}
  else if(colorRE.test(el.value)){rows[r][c]=v;cell.querySelector('input[type=color]').value=v}
@@ -157,7 +165,7 @@ async function saveToGame(){
  json.operators||={};json.lines||={};json.stations||={};json.services||={};
  if(file==='services')for(const row of updates){if(!row[4].trim())throw Error('운행계통 한글명을 비울 수 없습니다.');json.services[row[0]]=row[4].trim()}
  if(file==='operators')for(const row of updates)mergeChange(json.operators,row[0],row[1].trim());
- if(file==='lines')for(const row of updates){
+ if(file==='lines'||file==='korea-lines')for(const row of updates){
  const id=row[2],color=cssToHex(row[6]);if(!colorRE.test(color))throw Error('색상은 #RRGGBB 형식이어야 합니다');
  json.lines[id]={...(json.lines[id]||{}),ko:row[3].trim(),color};
  }
