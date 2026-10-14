@@ -79,29 +79,14 @@ export function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
 
 const koreanFamilyServices={
  'kr-passenger-metro-1':[
-  // Grounded in the 2025 Korea Transport Database operating-line inventory and
-  // Korail metropolitan train-service patterns. These are actual terminal patterns,
-  // not combinations of all branches.
-  {id:'kr-line1-yeoncheon-incheon-local',names:{ko:'연천 ↔ 인천 (일반)',ja:'연천 ↔ 인천 (일반)',en:'Yeoncheon - Incheon Local'},directions:{
-    forward:[{routeId:'kr-metro-1-main',directionId:'forward'},{routeId:'kr-metro-1-gyeongin',directionId:'forward'}],
+  // KTDB 2025 table 3-28: only directions that can be represented on the currently verified underground/branch geometry.
+  // Seoul Station SURFACE terminal express and Soyosan–Incheon express remain held for source/track validation.
+  {id:'kr-line1-soyosan-incheon-local',names:{ko:'소요산 ↔ 인천 (일반)',ja:'소요산 ↔ 인천 (일반)',en:'Soyosan - Incheon Local'},directions:{
+    forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'소요산'},{routeId:'kr-metro-1-gyeongin',directionId:'forward'}],
     reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse'}]}},
-  {id:'kr-line1-dongducheon-incheon-local',names:{ko:'동두천 ↔ 인천 (일반)',ja:'동두천 ↔ 인천 (일반)',en:'Dongducheon - Incheon Local'},directions:{
-    forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'동두천'},{routeId:'kr-metro-1-gyeongin',directionId:'forward'}],
-    reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'동두천'}]}},
-  {id:'kr-line1-gwangundae-incheon-local',names:{ko:'광운대 ↔ 인천 (일반)',ja:'광운대 ↔ 인천 (일반)',en:'Gwangundae - Incheon Local'},directions:{
-    forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'광운대'},{routeId:'kr-metro-1-gyeongin',directionId:'forward'}],
-    reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'광운대'}]}},
   {id:'kr-line1-gwangundae-sinchang-local',names:{ko:'광운대 ↔ 신창 (일반)',ja:'광운대 ↔ 신창 (일반)',en:'Gwangundae - Sinchang Local'},directions:{
     forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'광운대'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward'}],
     reverse:[{routeId:'kr-metro-1-gyeongbu',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'광운대'}]}},
-  {id:'kr-line1-gwangundae-cheonan-local',names:{ko:'광운대 ↔ 천안 (일반)',ja:'광운대 ↔ 천안 (일반)',en:'Gwangundae - Cheonan Local'},directions:{
-    forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'광운대'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward',endStationJa:'천안'}],
-    reverse:[{routeId:'kr-metro-1-gyeongbu',directionId:'reverse',startStationJa:'천안'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'광운대'}]}},
-  {id:'kr-line1-cheongnyangni-sinchang-express',names:{ko:'청량리 ↔ 신창 (급행)',ja:'청량리 ↔ 신창 (급행)',en:'Cheongnyangni - Sinchang Express'},stopStationNames:['청량리','제기동','신설동','동묘앞','동대문','종로5가','종로3가','종각','시청','서울역','남영','용산','노량진','대방','신길','영등포','신도림','구로','가산디지털단지','안양','금정','성균관대','수원','병점','오산','서정리','평택','성환','두정','천안','봉명','쌍용','아산','배방','온양온천','신창'],directions:{
-    forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'청량리'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward'}],
-    reverse:[{routeId:'kr-metro-1-gyeongbu',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'청량리'}]}},  {id:'kr-line1-cheongnyangni-cheonan-express',names:{ko:'청량리 ↔ 천안 (급행)',ja:'청량리 ↔ 천안 (급행)',en:'Cheongnyangni - Cheonan Express'},stopStationNames:['청량리','제기동','신설동','동묘앞','동대문','종로5가','종로3가','종각','시청','서울역','남영','용산','노량진','대방','신길','영등포','신도림','구로','가산디지털단지','안양','금정','성균관대','수원','병점','오산','서정리','평택','성환','두정','천안','봉명','쌍용','아산','배방','온양온천','신창'],directions:{
-    forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'청량리'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward',endStationJa:'천안'}],
-    reverse:[{routeId:'kr-metro-1-gyeongbu',directionId:'reverse',startStationJa:'천안'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'청량리'}]}},
   {id:'kr-line1-gwangundae-seodongtan-local',names:{ko:'광운대 ↔ 서동탄 (일반)',ja:'광운대 ↔ 서동탄 (일반)',en:'Gwangundae - Seodongtan Local'},directions:{
     forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'광운대'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward',endStationJa:'병점'},{routeId:'kr-metro-1-seodongtan',directionId:'forward'}],
     reverse:[{routeId:'kr-metro-1-seodongtan',directionId:'reverse'},{routeId:'kr-metro-1-gyeongbu',directionId:'reverse',startStationJa:'병점'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'광운대'}]}},
@@ -111,6 +96,10 @@ const koreanFamilyServices={
   {id:'kr-line1-yongsan-dongincheon-express',names:{ko:'용산 ↔ 동인천 (급행)',ja:'용산 ↔ 동인천 (급행)',en:'Yongsan - Dongincheon Express'},stopStationNames:['용산','노량진','대방','신길','영등포','신도림','구로','개봉','역곡','부천','송내','부평','동암','주안','제물포','동인천'],directions:{
     forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'용산'},{routeId:'kr-metro-1-gyeongin',directionId:'forward',endStationJa:'동인천'}],
     reverse:[{routeId:'kr-metro-1-gyeongin',directionId:'reverse',startStationJa:'동인천'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'용산'}]}}
+ ],
+  {id:'kr-line1-cheongnyangni-sinchang-express',names:{ko:'청량리 ↔ 신창 (급행)',ja:'청량리 ↔ 신창 (급행)',en:'Cheongnyangni - Sinchang Express'},stopStationNames:['청량리','제기동','신설동','동묘앞','동대문','종로5가','종로3가','종각','시청','서울역','남영','용산','노량진','대방','신길','영등포','신도림','구로','가산디지털단지','안양','금정','성균관대','수원','병점','오산','서정리','평택','성환','두정','천안','봉명','쌍용','아산','배방','온양온천','신창'],directions:{
+    forward:[{routeId:'kr-metro-1-main',directionId:'forward',startStationJa:'청량리'},{routeId:'kr-metro-1-gyeongbu',directionId:'forward'}],
+    reverse:[{routeId:'kr-metro-1-gyeongbu',directionId:'reverse'},{routeId:'kr-metro-1-main',directionId:'reverse',endStationJa:'청량리'}]}}
  ],
 
   'kr-passenger-metro-5':[
@@ -164,8 +153,16 @@ export function resolveKoreanFamilyService(choice,getRoute){
    const wanted=new Set(definition.stopStationNames);
    route.stations=route.stations.filter(station=>wanted.has(station.ko));
    if(route.stations.length<2)throw new Error('급행 정차역 데이터가 부족합니다.');
-   // Retain the full real physical rail geometry between express stops.
-   route.directedSegments=[];
+   // Build every express-stop segment from the contiguous original OSM-aligned geometry.
+   // No straight-line links are inserted when intermediate local stops are skipped.
+   const expressSegments=[];
+   for(let i=0;i<route.stations.length-1;i++){
+     const from=route.stations[i],to=route.stations[i+1];
+     const a=from.geometryIndex,b=to.geometryIndex;
+     if(!Number.isInteger(a)||!Number.isInteger(b)||b<=a||b>=route.geometry.length)throw new Error('급행 정차역 선형 인덱스가 올바르지 않습니다.');
+     expressSegments.push({fromStationId:from.id,toStationId:to.id,geometry:copyGeometry(route.geometry.slice(a,b+1)),source:'existing verified OSM track geometry, intermediate stations skipped',geometryStatus:'ready',verified:true});
+   }
+   route.directedSegments=expressSegments;
   }
   const service={id:definition.id,nameJa:definition.names.ko,nameKo:definition.names.ko,nameEn:definition.names.en,stops:route.stations.map(station=>station.id)};
   return{route:{...route,id:`korean-family-${definition.id}-${choice.direction||'forward'}`,countryId:'kr',line:{...(route.line||{}),ko:choice.patternId?.startsWith('kr-line1-')?'수도권 전철 1호선':'수도권 전철 5호선',ja:choice.patternId?.startsWith('kr-line1-')?'수도권 전철 1호선':'수도권 전철 5호선',en:choice.patternId?.startsWith('kr-line1-')?'Seoul Metropolitan Subway Line 1':'Seoul Metropolitan Subway Line 5'},passengerLineName:choice.patternId?.startsWith('kr-line1-')?'수도권 전철 1호선':'수도권 전철 5호선',geometryReady:true,geometryStatus:'ready',services:[service]},service,direction:'forward',travelDirectionId:choice.direction||'forward',pattern:{id:definition.id,names:definition.names},trainType:null,destinationStationId:route.stations.at(-1)?.id||null,trainTypeContexts:[]};
