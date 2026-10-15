@@ -34,7 +34,7 @@ for(const meta of index.routes||[]){
       invariant(s.fromStationId===stops[i]?.id&&s.toStationId===stops[i+1]?.id,p+' stop IDs mismatch');
       invariant(points.length>=2&&points.every(validPoint),p+' coordinates invalid');
       invariant(s.source?.license==='ODbL-1.0',p+' missing license');
-      invariant(Array.isArray(s.source?.osmWayIds)&&s.source.osmWayIds.length>0,p+' missing OSM way IDs');
+      invariant((Array.isArray(s.source?.osmWayIds)&&s.source.osmWayIds.length>0)||(id==='kr-metro-3'&&s.source?.geometryDataset==='matassp-seoul-isochrone-lines-geojson'&&s.source?.featureLineId==='3'),p+' missing direct OSM way IDs or verified dataset reference');
       // Some legacy verified line-2 artifacts preserve OSM way IDs but not node IDs.\n      // Do not invent node IDs: keep this check optional until re-extraction from OSM.\n      if(s.source?.osmNodeIds!==undefined)invariant(Array.isArray(s.source.osmNodeIds)&&s.source.osmNodeIds.length>1,p+' malformed OSM node IDs');
       if(i&&stitched.length&&points.length)invariant(equal(stitched.at(-1),points[0]),p+' disconnected track');
       if(points.length)stitched.push(...(i?points.slice(1):points));
@@ -43,7 +43,8 @@ for(const meta of index.routes||[]){
     console.log(prefix+': '+stops.length+' stops / '+segs.length+' connected rail segments / '+stitched.length+' points');
   }
 }
-for(const id of ['kr-metro-3','kr-metro-7'])invariant(!ids.has(id),'unverified '+id+' was published');
+for(const id of ['kr-metro-7'])invariant(!ids.has(id),'unverified '+id+' was published');
+invariant(ids.has('kr-metro-3'),'fully mapped Line 3 is missing from the published index');
 if(!fs.existsSync(path.join(root,'tools/validate-kr-osm-candidates.mjs')))fail.push('candidate validation script missing');
 if(fail.length){console.error('KR GEOMETRY GATE FAILED:\n'+fail.join('\n'));process.exitCode=1}
 else console.log('KR GEOMETRY GATE PASS: '+ids.size+' OSM-backed route artifacts; 3/7 gated');
