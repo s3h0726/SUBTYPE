@@ -37,4 +37,21 @@ for(const svc of route.services||[]){
  if(end<=start||route.geometry.slice(start,end+1).length<2)fail('missing service tracks: '+svc.id);
  console.log('SERVICE '+svc.nameKo+' '+selected.length+' stops, '+(end-start+1)+' map points');
 }
+const gameContext={console,clearInterval,clearTimeout,queueMicrotask,renderGameMap(){},$(){return{hidden:false}},globalThis:null};
+gameContext.globalThis=gameContext;vm.createContext(gameContext);
+vm.runInContext(read('js/game.js').replace(/^import[^\\n]*\\n/gm,'').replace(/^export\\s+/gm,'')+'\\n;globalThis.GameToTest=Game;',gameContext);
+const proto=gameContext.GameToTest.prototype;
+for(const dir of route.directions){
+ const seq=dir.stops;let completed=0,rendered=0;
+ const simulation={finished:false,paused:false,phase:'ARRIVING',index:0,sequence:seq,boarding:true,mapRoute:route,
+ options:{mode:'complete'},targetStation:proto.targetStation,currentStation:proto.currentStation,
+ routeIndex(){return this.index},mapOptions(){return{}},advanceToNextStation:proto.advanceToNextStation,visitedStationIds:[],
+ elapsed(){return 0},finish(){completed++;this.finished=true},renderStation(){rendered++},updateHud(){},syncDebug(){}};
+ proto.advance.call(simulation);
+ for(let i=1;i<seq.length;i++){simulation.phase='ARRIVING';proto.advance.call(simulation)}
+ if(completed!==1||rendered!==seq.length-1||simulation.index!==seq.length-1||
+ simulation.visitedStationIds.length!==seq.length-1||simulation.visitedStationIds.at(-1)!==seq.at(-1).id)
+ fail(dir.id+': typed station-by-station journey did not finish exactly once');
+}
+
 console.log('Line 3 simulated full-route forward/reverse topology and partial services PASS.');
