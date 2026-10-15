@@ -1,0 +1,47 @@
+name: Seoul Line 4 full track candidate review
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build-kr-line4-connected-preview.cjs'
+      - 'data/kr/research/kr-metro-4-plan.json'
+      - 'data/kr/osm-candidates/kr-metro-4-unverified.geojson'
+      - '.github/workflows/seoul-line4-connected-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Derive contiguous bidirectional graph previews
+        run: node tools/build-kr-line4-connected-preview.cjs
+      - name: Validate 50 connected segments in each direction
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const o=JSON.parse(fs.readFileSync('data/kr/osm-candidates/kr-metro-4-connected-preview.json','utf8'));
+          const yes=(b,m)=>{if(!b)throw Error(m)};
+          yes(o.publishable===false&&o.geometryReady===false,'unverified release flag');
+          for(const d of o.directions){
+            yes(d.stops.length===51&&d.directedSegments.length===50,'missing station segments');
+            for(let i=0;i<50;i++){
+              const s=d.directedSegments[i],a=d.stops[i],b=d.stops[i+1];
+              const eq=(u,v)=>u.length===v.length&&u.every((n,i)=>Math.abs(n-v[i])<1e-7);
+              yes(s.fromStationId===a.id&&s.toStationId===b.id,'wrong station order');
+              yes(eq(d.geometry[a.geometryIndex],s.geometry[0])&&eq(d.geometry[b.geometryIndex],s.geometry.at(-1)),'segment/geometry mismatch');
+              yes(s.geometry.length>=2&&s.lengthMeters>0,'empty segment');
+            }
+          }
+          console.log('Bidirectional 51-station, 50-segment contiguous PREVIEW validated, not approved for live publishing');
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kr-metro-4-connected-unverified-preview
+          path: data/kr/osm-candidates/kr-metro-4-connected-preview.json
+          if-no-files-found: error
