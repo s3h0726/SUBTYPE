@@ -1,0 +1,26 @@
+name: Line 4 OSM geometry candidate inspection
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/fetch-kr-line4-osm-candidate.cjs'
+      - '.github/workflows/seoul-line4-geometry-candidate.yml'
+permissions:
+  contents: read
+jobs:
+  extract-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch OSM-derived geometry candidate (not playable)
+        run: node tools/fetch-kr-line4-osm-candidate.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kr-metro-4-unverified-track-candidate
+          path: data/kr/osm-candidates/kr-metro-4-unverified.geojson
+          if-no-files-found: error
