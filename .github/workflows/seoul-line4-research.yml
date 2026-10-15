@@ -1,0 +1,27 @@
+name: Seoul Line 4 research integrity
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/kr/research/kr-metro-4-plan.json'
+      - 'tools/validate-kr-line4-research.cjs'
+      - '.github/workflows/seoul-line4-research.yml'
+  pull_request:
+    paths:
+      - 'data/kr/research/kr-metro-4-plan.json'
+      - 'tools/validate-kr-line4-research.cjs'
+      - '.github/workflows/seoul-line4-research.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify Line 4 metadata and prevent premature release
+        run: node tools/validate-kr-line4-research.cjs
