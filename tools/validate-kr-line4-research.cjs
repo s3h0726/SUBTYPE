@@ -17,8 +17,13 @@ for(let i=0;i<51;i++){
  const record=plan.stationRecords[i];
  assert(record.nameKo===stations[i]&&record.order===i+1,'station record order mismatch at '+i);
  assert(record.code===String(expectedCodes[i]),'station code mismatch: '+record.nameKo);
- assert(record.latitude===null&&record.longitude===null&&record.coordinateStatus==='unverified','unverified coordinates must not be fabricated');
+ if(record.coordinateStatus==='secondary-public-dataset'){
+ assert(Number.isFinite(record.latitude)&&Number.isFinite(record.longitude),'sourced coordinates required');
+ assert(record.latitude>37.2&&record.latitude<37.8&&record.longitude>126.6&&record.longitude<127.4,'invalid metro coordinate envelope');
+ assert(typeof record.coordinateSource==='string'&&record.coordinateSource.startsWith('https://'),'missing coordinate source');
+}else assert(record.latitude===null&&record.longitude===null&&record.coordinateStatus==='unverified','unsourced coordinates must remain null');
 }
+assert(plan.coordinatesCoverage?.found===48&&plan.coordinatesCoverage?.missing?.length===3,'coordinate coverage record mismatch');
 assert(!stations.includes('풍양'),'unopened future station must not enter playable station list');
 assert(stations[0]==='진접'&&stations.at(-1)==='오이도','wrong termini');
 for(const [first,last] of [['진접','불암산'],['불암산','남태령'],['남태령','금정'],['금정','오이도']]){
