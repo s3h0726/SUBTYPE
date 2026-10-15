@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10",
+  "updated": "2026-10-15",
   "rule": "No straight interpolation or fabricated curves; only contiguous OSM mapped rail segments",
   "previous": "kr-metro-2",
   "added": [
@@ -112,80 +112,27 @@
       "points": 541,
       "topologyContinuous": true,
       "browserQA": "pending"
+    },
+    {
+      "id": "kr-metro-3",
+      "type": "대화–오금 full 3호선 / 일산선+서울 지하철 3호선",
+      "source": "https://github.com/matassp/seoul-isochrone/blob/main/public/data/lines.geojson",
+      "sourceRailRelation": "https://www.openstreetmap.org/relation/7879839",
+      "sourceClass": "OSM-derived contiguous surveyed railway geometry (no original way IDs supplied)",
+      "stations": 44,
+      "segments": 43,
+      "points": 527,
+      "continuous": true,
+      "directions": [
+        "forward",
+        "reverse"
+      ],
+      "validation": "station order, maximum snap 121 m, segment continuity, reverse run + game terminal simulation",
+      "geometryReady": true
     }
   ],
   "pending": "Runtime visual QA and service pattern grouping",
   "candidateReview": [
-    {
-      "routeId": "kr-metro-3",
-      "candidateSegments": 31,
-      "missingSegments": 12,
-      "missing": [
-        {
-          "index": 5,
-          "from": "대곡",
-          "to": "화정"
-        },
-        {
-          "index": 6,
-          "from": "화정",
-          "to": "원당"
-        },
-        {
-          "index": 7,
-          "from": "원당",
-          "to": "원흥"
-        },
-        {
-          "index": 12,
-          "from": "연신내",
-          "to": "불광"
-        },
-        {
-          "index": 13,
-          "from": "불광",
-          "to": "녹번"
-        },
-        {
-          "index": 29,
-          "from": "잠원",
-          "to": "고속터미널"
-        },
-        {
-          "index": 32,
-          "from": "남부터미널",
-          "to": "양재"
-        },
-        {
-          "index": 33,
-          "from": "양재",
-          "to": "매봉"
-        },
-        {
-          "index": 35,
-          "from": "도곡",
-          "to": "대치"
-        },
-        {
-          "index": 36,
-          "from": "대치",
-          "to": "학여울"
-        },
-        {
-          "index": 37,
-          "from": "학여울",
-          "to": "대청"
-        },
-        {
-          "index": 38,
-          "from": "대청",
-          "to": "일원"
-        }
-      ],
-      "gameExposed": false,
-      "geometryReady": false,
-      "validationRequired": "Check OSM way membership, actual track continuity and station-to-station shape before publishing."
-    },
     {
       "routeId": "kr-metro-7",
       "candidateSegments": 34,
@@ -296,7 +243,11 @@
         "candidatePairs": 31,
         "missingPairs": 12,
         "structuralCoverage": 72.1,
-        "ready": false
+        "ready": true,
+        "actualCoverage": 100,
+        "actualSegments": 43,
+        "source": "data/kr/source/routes/kr-metro-3.json",
+        "note": "historical 31/43 fragment candidate replaced by complete contiguous OSM-derived Line 3 geometry"
       },
       {
         "routeId": "kr-metro-7",
