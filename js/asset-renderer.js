@@ -3,6 +3,8 @@ import{railDataRepository}from'./rail-data-repository.js';
 
 export function operatorLogoAsset(routeOrOperatorId){
   const operatorId=typeof routeOrOperatorId==='string'?routeOrOperatorId:routeOrOperatorId?.operatorId;
+  if(operatorId==='kr-seoul-metro')return{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Seoul_Metro.svg',label:'서울교통공사',verified:true,source:'https://commons.wikimedia.org/wiki/File:Seoul_Metro.svg'};
+  if(operatorId==='kr-korail')return{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Korail_logo.svg',label:'한국철도공사',verified:true,source:'https://commons.wikimedia.org/wiki/File:Korail_logo.svg'};
   if(operatorId==='sendaishikotsukyoku'||operatorId==='op-115')return{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Sendai_City_Subway_Logo.svg',asset:'https://commons.wikimedia.org/wiki/Special:FilePath/Sendai_City_Subway_Logo.svg',label:'센다이시 지하철',verified:true,source:'https://commons.wikimedia.org/wiki/File:Sendai_City_Subway_Logo.svg'};
   if(operatorId==='toei'||operatorId==='op-119'||routeOrOperatorId?.id==='line-99342'||routeOrOperatorId?.id==='line-99305')return{url:new URL('./data/operators/toei/logo.svg',document.baseURI).href,asset:new URL('./data/operators/toei/logo.svg',document.baseURI).href,label:'도쿄도 교통국',verified:true,source:'https://commons.wikimedia.org/wiki/File:Toei_Transportation_combined_logo.svg'};
   // Sanyo Electric Railway: original company symbol from Wikimedia Commons (not a generated approximation).
