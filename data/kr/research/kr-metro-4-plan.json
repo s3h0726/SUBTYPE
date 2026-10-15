@@ -12,7 +12,7 @@
       "진접",
       "오이도"
     ],
-    "expectedStationCount": 50
+    "expectedStationCount": 51
   },
   "operatorsToVerify": [
     "남양주도시공사",
@@ -68,12 +68,70 @@
     "자동 빌드 및 main 커밋",
     "배포 사이트 정상 작동 확인"
   ],
-  "completedChecks": [],
+  "completedChecks": [
+    "운영사·노선 정보 확인"
+  ],
   "implementationNotes": [
     "Do not convert research manifest into playable route until every segment is sourced, continuous and verified.",
     "Never join station coordinates with straight lines or fabricated curves.",
     "Modify data/kr/source first, regenerate generated routes/index and bundles, then run game tests.",
     "Do not auto-publish an incomplete route or claim 9/9 completion from this research commit.",
-    "Match actual train services against current operator schedules before adding them."
-  ]
+    "Match actual train services against current operator schedules before adding them.",
+    "51 stops confirmed; previous 50 stop estimate was incorrect."
+  ],
+  "stationOrder": [
+    "진접",
+    "오남",
+    "별내별가람",
+    "불암산",
+    "상계",
+    "노원",
+    "창동",
+    "쌍문",
+    "수유",
+    "미아",
+    "미아사거리",
+    "길음",
+    "성신여대입구",
+    "한성대입구",
+    "혜화",
+    "동대문",
+    "동대문역사문화공원",
+    "충무로",
+    "명동",
+    "회현",
+    "서울역",
+    "숙대입구",
+    "삼각지",
+    "신용산",
+    "이촌",
+    "동작",
+    "총신대입구",
+    "사당",
+    "남태령",
+    "선바위",
+    "경마공원",
+    "대공원",
+    "과천",
+    "정부과천청사",
+    "인덕원",
+    "평촌",
+    "범계",
+    "금정",
+    "산본",
+    "수리산",
+    "대야미",
+    "반월",
+    "상록수",
+    "한대앞",
+    "중앙",
+    "고잔",
+    "초지",
+    "안산",
+    "신길온천",
+    "정왕",
+    "오이도"
+  ],
+  "stationOrderSource": "https://www.namu.moe/w/수도권%20전철%204호선/역%20목록",
+  "stationOrderReview": "verified for ordering; coordinates and codes pending"
 }
