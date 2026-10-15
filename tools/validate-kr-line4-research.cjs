@@ -11,6 +11,15 @@ const stations=plan.stationOrder;
 assert(plan.routeId==='kr-metro-4','wrong id');
 assert(Array.isArray(stations)&&stations.length===51,'51 station order required');
 assert(new Set(stations).size===51,'duplicate station name');
+assert(Array.isArray(plan.stationRecords)&&plan.stationRecords.length===51,'missing station metadata');
+const expectedCodes=[405,406,...Array.from({length:49},(_,i)=>i+408)];
+for(let i=0;i<51;i++){
+ const record=plan.stationRecords[i];
+ assert(record.nameKo===stations[i]&&record.order===i+1,'station record order mismatch at '+i);
+ assert(record.code===String(expectedCodes[i]),'station code mismatch: '+record.nameKo);
+ assert(record.latitude===null&&record.longitude===null&&record.coordinateStatus==='unverified','unverified coordinates must not be fabricated');
+}
+assert(!stations.includes('풍양'),'unopened future station must not enter playable station list');
 assert(stations[0]==='진접'&&stations.at(-1)==='오이도','wrong termini');
 for(const [first,last] of [['진접','불암산'],['불암산','남태령'],['남태령','금정'],['금정','오이도']]){
  assert(stations.indexOf(first)>=0&&stations.indexOf(first)<stations.indexOf(last),'incorrect section '+first+'→'+last);
