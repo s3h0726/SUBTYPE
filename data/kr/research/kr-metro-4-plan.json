@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "routeId": "kr-metro-4",
+  "status": "research-in-progress",
+  "publishable": false,
+  "geometryReady": false,
+  "display": {
+    "ko": "수도권 전철 4호선",
+    "en": "Seoul Metropolitan Subway Line 4",
+    "color": "#00A5DE",
+    "endpoints": [
+      "진접",
+      "오이도"
+    ],
+    "expectedStationCount": 50
+  },
+  "operatorsToVerify": [
+    "남양주도시공사",
+    "서울교통공사",
+    "한국철도공사"
+  ],
+  "infrastructureSections": [
+    "진접선",
+    "서울 지하철 4호선",
+    "과천선",
+    "안산선"
+  ],
+  "primarySources": [
+    {
+      "name": "2025년 국가교통조사 및 분석 (2026 발간)",
+      "url": "https://www.ktdb.go.kr/DATA/pblcte/20260512020132299.pdf",
+      "use": "2025년 3월 기준 운행계통 후보 확인, 현재 시간표와 교차검증 필요"
+    },
+    {
+      "name": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/",
+      "use": "실제 선로 OSM rail way/relation geometry 수집 및 연결성 검증"
+    },
+    {
+      "name": "서울교통공사",
+      "url": "https://www.seoulmetro.co.kr/",
+      "use": "역명·운행계통·역명판 검증"
+    },
+    {
+      "name": "한국철도공사",
+      "url": "https://www.letskorail.com/",
+      "use": "과천선·안산선·급행 정차 및 시간표 검증"
+    }
+  ],
+  "candidatesFromKtdb2025": [
+    "남태령→진접",
+    "진접→남태령",
+    "안산→오이도",
+    "오이도→안산",
+    "진접→사당",
+    "사당→진접",
+    "당고개→오이도 (급행; 2025 historical reference, verify renamed terminal)",
+    "오이도→당고개 (급행; 2025 historical reference, verify renamed terminal)"
+  ],
+  "requiredChecks": [
+    "운영사·노선 정보 확인",
+    "한글 역명 및 역 순서 검증",
+    "전 구간 실제 선형 연결",
+    "운행계통·급행·직통 검증",
+    "로고·역명판·노선 카드 적용",
+    "양방향 및 전체 운행계통 완주 테스트",
+    "종착역 종료 화면 확인",
+    "자동 빌드 및 main 커밋",
+    "배포 사이트 정상 작동 확인"
+  ],
+  "completedChecks": [],
+  "implementationNotes": [
+    "Do not convert research manifest into playable route until every segment is sourced, continuous and verified.",
+    "Never join station coordinates with straight lines or fabricated curves.",
+    "Modify data/kr/source first, regenerate generated routes/index and bundles, then run game tests.",
+    "Do not auto-publish an incomplete route or claim 9/9 completion from this research commit.",
+    "Match actual train services against current operator schedules before adding them."
+  ]
+}
