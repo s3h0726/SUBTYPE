@@ -1,0 +1,47 @@
+name: Seoul Line 3 real track release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/kr/source/routes/kr-metro-3.json'
+      - 'tools/apply-seoul-line-3-verified-geometry.js'
+      - 'tools/test-line3-playability.js'
+      - 'tools/validate-kr-published-geometry.mjs'
+      - '.github/workflows/seoul-line3-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  validate-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate 3호선 from durable original track source
+        run: node tools/apply-seoul-line-3-verified-geometry.js
+      - name: End-to-end route and OSM geometry tests
+        run: |
+          node tools/test-line3-playability.js
+          node tools/validate-kr-published-geometry.mjs
+      - name: Build versioned browser bundle
+        run: node tools/build-app-bundle.js
+      - name: Publish generated track, index and browser bundle
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/kr/generated/routes/kr-metro-3.json data/kr/generated/index.json js/korea-index-data.js js/app.bundle.js index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Deploy complete Seoul Line 3 OSM rail alignment and stations"
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+              git rebase --abort || true
+              sleep 3
+            done
+            exit 1
+          fi
