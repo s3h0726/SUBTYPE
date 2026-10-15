@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'tools/build-kr-line4-connected-preview.cjs'
+      - 'tools/validate-kr-line4-connected-preview.cjs'
       - 'data/kr/research/kr-metro-4-plan.json'
       - 'data/kr/osm-candidates/kr-metro-4-unverified.geojson'
       - '.github/workflows/seoul-line4-connected-preview.yml'
@@ -40,6 +41,8 @@ jobs:
           }
           console.log('Bidirectional 51-station, 50-segment contiguous PREVIEW validated, not approved for live publishing');
           NODE
+      - name: Verify every output rail edge exists in OSM source
+        run: node tools/validate-kr-line4-connected-preview.cjs
       - uses: actions/upload-artifact@v4
         with:
           name: kr-metro-4-connected-unverified-preview
