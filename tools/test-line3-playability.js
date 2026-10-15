@@ -39,7 +39,7 @@ for(const svc of route.services||[]){
 }
 const gameContext={console,clearInterval,clearTimeout,queueMicrotask,renderGameMap(){},$(){return{hidden:false}},globalThis:null};
 gameContext.globalThis=gameContext;vm.createContext(gameContext);
-vm.runInContext(read('js/game.js').replace(/^import[^\\n]*\\n/gm,'').replace(/^export\\s+/gm,'')+'\\n;globalThis.GameToTest=Game;',gameContext);
+vm.runInContext(read('js/game.js').replace(/^import[^\n]*\n/gm,'').replace(/^export\s+/gm,'')+'\n;globalThis.GameToTest=Game;',gameContext);
 const proto=gameContext.GameToTest.prototype;
 for(const dir of route.directions){
  const seq=dir.stops;let completed=0,rendered=0;
