@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'tools/fetch-kr-line4-osm-candidate.cjs'
+      - 'tools/validate-kr-line4-candidate.cjs'
+      - 'data/kr/osm-candidates/kr-metro-4-unverified.geojson'
       - '.github/workflows/seoul-line4-geometry-candidate.yml'
 permissions:
   contents: read
@@ -19,6 +21,8 @@ jobs:
           node-version: '22'
       - name: Fetch OSM-derived geometry candidate (not playable)
         run: node tools/fetch-kr-line4-osm-candidate.cjs
+      - name: Validate stored candidate shape and coordinate envelope
+        run: node tools/validate-kr-line4-candidate.cjs
       - uses: actions/upload-artifact@v4
         with:
           name: kr-metro-4-unverified-track-candidate
