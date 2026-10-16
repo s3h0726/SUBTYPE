@@ -1,6 +1,7 @@
 name: Rebuild record cards without logos
 on:
   push:
+    branches: [main]
     paths:
       - 'js/statistics.js'
       - 'js/app.js'
@@ -10,6 +11,7 @@ permissions:
   contents: write
 jobs:
   rebuild:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

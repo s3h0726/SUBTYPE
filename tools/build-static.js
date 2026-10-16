@@ -8,7 +8,7 @@ execFileSync(process.execPath,[path.join(__dirname,'audit-recent-tram-and-kobe-g
 // the legacy patchers after this step: they overwrite source-derived results.
 execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js'),'--publish'],{stdio:'inherit'});
 const tokyoArea=require('./build-tokyo-network');
-const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
+const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8').replace(/\r\n/g,'\n');
 const write=(relative,value)=>{const target=path.join(root,relative),temporary=`${target}.tmp`;fs.writeFileSync(temporary,value);fs.renameSync(temporary,target)};
 const categories=['jr','subway','private','other','shinkansen'];
 const embedded={operators:JSON.parse(read('data/operators/operators.json')),stations:JSON.parse(read('data/stations/tokyo-stations.json')),lines:Object.fromEntries(categories.map(category=>[category,JSON.parse(read(`data/lines/${category}.json`))]))};

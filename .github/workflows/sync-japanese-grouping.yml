@@ -1,6 +1,7 @@
 name: Sync Japanese rail grouping UI
 on:
   push:
+    branches: [main]
     paths:
       - 'js/app.js'
       - 'tools/sync-japanese-grouping-bundle.js'
@@ -10,6 +11,7 @@ permissions:
   contents: write
 jobs:
   sync:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
