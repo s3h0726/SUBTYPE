@@ -2,6 +2,7 @@
 'use strict';
 // OSM supplies track topology and research candidates, NOT operating authority.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {orientOrderedWays}=require('./lib/kr-osm-order');
 const root=path.resolve(__dirname,'..'),base=path.join(root,'data/kr/v2');
 const read=n=>JSON.parse(fs.readFileSync(path.join(base,'source',n+'.json'),'utf8'));
 const overrideFile=path.join(base,'official-overrides.json');
@@ -42,6 +43,8 @@ for(const r of railRoutes){
  const lineId='kr-osm-line-'+master.id,operatorId=opId(master.tags.operator||r.tags.operator);
  if(!lines.has(lineId))lines.set(lineId,{id:lineId,names:names(master.tags),operatorIds:operatorId?[operatorId]:[],color:master.tags.colour||r.tags.colour||null,regionId:null,mode:r.tags.route,status:'candidate',sourceRefs:[ref('relation',master.id)]});
  const orderedWays=r.members.filter(m=>m.type==='w'&&!/platform|stop/.test(m.role));
+ const sourceStopMembers=r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
+ const orientation=orientOrderedWays(orderedWays,ways,sourceStopMembers.map(m=>m.ref));
  const issues=[],paths=[],nodeIds=[];
  for(let i=0;i<orderedWays.length;i++){
   const member=orderedWays[i],way=ways.get(member.ref);
@@ -53,11 +56,13 @@ for(const r of railRoutes){
    const next=ways.get(orderedWays[i+1].ref);
    if(next){const endpoints=[next.nodeIds[0],next.nodeIds.at(-1)];if(!endpoints.includes(way.nodeIds.at(-1))&&endpoints.includes(way.nodeIds[0]))reverse=true}
   }
+  if(orientation.status==='UNIQUE_SOURCE_ORDER')reverse=orientation.parts[i].reverse;
   const refs=reverse?way.nodeIds.slice().reverse():way.nodeIds;
   if(nodeIds.length&&nodeIds.at(-1)!==refs[0])issues.push({code:'DISCONNECTED_MEMBERS',wayId:way.id,from:nodeIds.at(-1),to:refs[0]});
   paths.push({geometryId:'kr-geometry-'+way.id,reverse});
   nodeIds.push(...(nodeIds.length&&nodeIds.at(-1)===refs[0]?refs.slice(1):refs));
  }
+ if(orientation.status!=='UNIQUE_SOURCE_ORDER')issues.push({code:orientation.status,wayId:orientation.wayId});
  const members=r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
  const serviceStops=[];let previous=-1;
  for(const m of members){const stop=stopByNode.get(m.ref),index=nodeIds.indexOf(m.ref,previous+1);
