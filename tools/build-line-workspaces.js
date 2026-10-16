@@ -2,6 +2,31 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),{loadAll,projectRoot,writeAtomic}=require('./lib/line-workspaces');
 const outputRoot=path.join(projectRoot,'data','generated'),baselineFile=path.join(outputRoot,'build-baseline.json'),data=loadAll(),counts={lines:data.routes.length,operators:data.operators.size,stations:data.stations.size,relations:data.routes.reduce((sum,route)=>sum+route.stations.length,0),segments:data.routes.reduce((sum,route)=>sum+route.directedSegments.length,0)};
 const previous=fs.existsSync(baselineFile)?JSON.parse(fs.readFileSync(baselineFile,'utf8')):{lines:601,operators:161,stations:9145,relations:counts.relations,segments:counts.segments},unsafe=Object.keys(counts).filter(key=>counts[key]<Number(previous[key]||0)*.9);if(!counts.lines||!counts.relations||unsafe.length)throw new Error(`Workspace data-loss guard blocked build: ${unsafe.map(key=>`${key} ${previous[key]} -> ${counts[key]}`).join(', ')}`);
+// Editor overrides are authoritative for the Japanese display/catalog build.
+// Apply at the final route-composition boundary, never mutate unrelated KR sources.
+const editorOverridesPath=path.join(projectRoot,'data','editor-overrides.json');
+const editorOverrides=fs.existsSync(editorOverridesPath)?JSON.parse(fs.readFileSync(editorOverridesPath,'utf8')):{};
+const editorOps=editorOverrides.operators||{},editorLines=editorOverrides.lines||{},editorStations=editorOverrides.stations||{};
+const stationsOverridden=[];
+for(const route of data.routes){
+  const opName=editorOps[route.operatorId];
+  if(typeof opName==='string'&&opName.trim())route.operator.ko=opName.trim();
+  const change=editorLines[route.id];
+  if(change&&typeof change==='object'){
+    if(typeof change.ko==='string'&&change.ko.trim())route.line.ko=change.ko.trim();
+    if(typeof change.color==='string'&&/^#[0-9a-fA-F]{6}$/.test(change.color))route.lineColor=change.color;
+  }
+  const stationChanges=editorStations[route.id]||{};
+  for(const station of route.stations){
+    const target=stationChanges[station.id]??stationChanges[station.ja];
+    if(typeof target==='string'&&target.trim()){
+      station.ko=target.trim();
+      stationsOverridden.push([route.id,station.id]);
+    }
+  }
+}
+// All routes for one operator must receive the same override, including legacy ids
+// whose physical workspace operator identifiers differ from the editor's old ID.
 const routeRoot=path.join(outputRoot,'routes');fs.mkdirSync(routeRoot,{recursive:true});const index=[];for(const route of data.routes){const file=`routes/${route.id.replace(/[^a-zA-Z0-9._-]/g,'-')}.json`;writeAtomic(path.join(outputRoot,file),{route});index.push({id:route.id,operatorId:route.operatorId,operator:route.operator,line:route.line,category:route.category,code:route.code,lineColor:route.lineColor,loop:route.loop,stationCount:route.stations.length,stationSequence:route.stations.map(station=>station.id),workspace:route.workspace,generatedSource:`./data/generated/${file}`,geometryReady:route.geometryReady,searchStations:route.stations.flatMap(station=>[station.ja,station.kana,station.romaji,station.ko]).filter(Boolean)})}
 const versionedAsset=(folder,stem,metadata={})=>{const name=['svg','png','webp'].map(extension=>`${stem}.${extension}`).find(candidate=>fs.existsSync(path.join(folder,candidate)));if(!name)return null;const file=path.join(folder,name),relative=path.relative(projectRoot,file).split(path.sep).join('/'),version=crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0,12);return{asset:`./${relative}?v=${version}`,file:`./${relative}`,version,exists:true,verified:metadata.verified===true,source:metadata.source||'',officialExists:metadata.officialLogoExists===true||metadata.officialSymbolExists===true}};
 const operators=Array.from(data.operators.values()).map(operator=>({id:operator.id,names:operator.names,logo:operator.logo,stationSignTemplate:operator.stationSignTemplate}));
