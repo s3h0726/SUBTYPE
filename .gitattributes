@@ -1,0 +1,5 @@
+# Source evidence is hashed byte-for-byte; checkout must never rewrite it.
+data/kr/v2/source/** -text
+# Bundle hashes must remain stable across Windows and the Linux build runner.
+js/app.bundle.js text eol=lf
+js/korean-service-resolver.js text eol=lf

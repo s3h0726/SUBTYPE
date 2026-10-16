@@ -833,6 +833,22 @@ function resolveServiceJourney({baseRoute,journeyId,originStationId,destinationS
 }
 
 
+// A v2 journey is already directional and contains only timetable stopping calls.
+// Geometry between calls includes every non-stopping station and track curve.
+function koreanVerifiedChoices(route){
+ if(route?.countryId!=='kr'||route.schemaVersion!==2)return[];
+ return(route.verifiedJourneys||[]).map(journey=>({kind:'koreanVerified',id:journey.id,patternId:journey.patternId,patternName:journey.patternName,direction:journey.directionId,originId:journey.stations[0].id,destinationId:journey.stations.at(-1).id,originNames:journey.stations[0],destinationNames:journey.stations.at(-1),trainType:null}));
+}
+function resolveKoreanVerifiedChoice(choice,route){
+ if(route?.countryId!=='kr'||route.schemaVersion!==2||route.releaseStatus!=='verified'||!route.geometryReady)throw Error('검증되지 않은 한국 철도 데이터입니다.');
+ const journey=route.verifiedJourneys?.find(j=>j.id===choice?.id);
+ if(!journey||!journey.tripIds?.length||journey.stations?.length<2||journey.geometry?.length<2)throw Error('확인된 실제 운행계통이 아닙니다.');
+ if(choice.originId!==journey.stations[0].id||choice.destinationId!==journey.stations.at(-1).id)throw Error('실제 운행하지 않는 기점·종점 조합입니다.');
+ const resolved={...route,stations:journey.stations,geometry:journey.geometry,directedSegments:journey.directedSegments,services:[journey.service],selectedDirectionId:journey.directionId};
+ return{route:resolved,service:journey.service,direction:'forward',travelDirectionId:journey.directionId,pattern:{id:journey.patternId,names:journey.patternName},trainType:null,destinationStationId:journey.stations.at(-1).id,trainTypeContexts:[]};
+}
+
+
 function hideKoreanTrainFallback(target){const marker=target?.parentElement?.querySelector('.kr-train-fallback');if(marker)marker.hidden=true}
 function showKoreanTrainFallback(route,index,target){if(!target)return;let marker=target.parentElement.querySelector('.kr-train-fallback');if(!marker){marker=document.createElement('div');marker.className='kr-train-fallback';marker.style.cssText='position:absolute;z-index:1200;top:42%;left:50%;transform:translate(-50%,-50%);padding:15px 24px;border-radius:45px;background:#102a28;color:#fff;border:3px solid #6ae4bd;box-shadow:0 8px 25px #0008;pointer-events:none;font-weight:800;text-align:center';target.parentElement.append(marker)}marker.hidden=false;const name=route.stations?.[index]?.ko||route.stations?.[index]?.ja||'';marker.textContent=(route.mode==='river_bus'?'⛴ ':'🚆 ')+(route.line?.ko||'열차')+' · '+name}
 
@@ -1317,7 +1333,7 @@ function normalizeLine(raw={},defaults={}){
   const serviceSource=Array.isArray(raw.services)?raw.services:globalThis.TRT_SERVICE_CATALOG?.[id];
   const allStationIds=stations.map(station=>station.id),services=[];
   if(Array.isArray(serviceSource))for(let index=0;index<serviceSource.length;index++){const service=serviceSource[index],stops=[];let invalid=false;if(Array.isArray(service.stops))for(const stop of service.stops){const station=stations.find(item=>item.id===stop||item.sourceId===stop);if(!station){console.error(`${id}/${service.id||index}: service stop not found`,stop);invalid=true;break}stops.push(station.id)}if(!invalid&&stops.length>=2)services.push({id:text(service.id)||`service-${index+1}`,nameJa:text(service.nameJa,service.ja)||'各駅停車',nameKo:text(service.nameKo,service.ko)||'각역정차',nameEn:text(service.nameEn,service.en)||'Local',stops})}
-  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else services.unshift({id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:allStationIds});
+  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if(!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:allStationIds});
   const lineTheme=verifiedTheme||{code:resolvedCode,color:text(raw.lineColor,raw.color)||'#777777',style:category==='jr'?'jr':category==='subway'?'metro':'private',operatorMark:text(operatorRaw.en,operatorRaw.ja)||'RAILWAY',colorVerified:false,colorSource:raw.colorSource||'Imported source data'};
   const normalizedOperatorId=text(raw.operatorId,operatorRaw.id)||category,assetOperatorId=({'jr-east':'op-2','jr-central':'op-3','tokyo-metro':'op-18','toei':'op-119'})[normalizedOperatorId]||normalizedOperatorId;
   raw.operatorAsset=raw.operatorAsset?.asset?raw.operatorAsset:null;
@@ -1457,6 +1473,7 @@ function initAuth(storage){return new AuthClient(storage)}
 
 
 const KR_APP_TRANSFER_PAIRS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
+
 
 
 
@@ -1681,6 +1698,7 @@ function buildCatalogResolved(choice){
 }
 function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
+  if(route.countryId==='kr'&&route.schemaVersion===2)return resolveKoreanVerifiedChoice(choice,route);
   if(choice.kind==='koreanFamilyService')return resolveKoreanFamilyService(choice,id=>builtin.find(item=>item.id===id));
   if(choice.kind==='catalog')return buildCatalogResolved(choice);
   if(choice.kind==='trainService'){
@@ -1720,6 +1738,7 @@ function operatingChoicePlayable(choice,route){
   }
 }
 function actualOperatingChoices(route){
+  if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
   const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
   const add=choice=>{const key=[choice.kind||'',choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
   for(const item of journeys)add({kind:'journey',id:`journey:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:item.originNames,destinationNames:item.destinationNames,trainType:trainTypeFor(item.trainTypeId),journeyId:item.id,patternId:item.servicePatternId||null,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'});

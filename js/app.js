@@ -1,6 +1,7 @@
 const KR_APP_TRANSFER_PAIRS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 import{$,$$,escapeHtml,formatTime,normalize,toast}from'./utils.js';
 import{loadTransportData,normalizeLine,hydrateRailLine}from'./data-loader.js';
+import{koreanVerifiedChoices,resolveKoreanVerifiedChoice}from'./korean-service-resolver.js';
 import{storage}from'./storage.js';
 import{Game}from'./game.js';
 import{FreeDrive,drawNetworkCanvas}from'./free-drive.js';
@@ -223,6 +224,7 @@ function buildCatalogResolved(choice){
 }
 function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
+  if(route.countryId==='kr'&&route.schemaVersion===2)return resolveKoreanVerifiedChoice(choice,route);
   if(choice.kind==='koreanFamilyService')return resolveKoreanFamilyService(choice,id=>builtin.find(item=>item.id===id));
   if(choice.kind==='catalog')return buildCatalogResolved(choice);
   if(choice.kind==='trainService'){
@@ -262,6 +264,7 @@ function operatingChoicePlayable(choice,route){
   }
 }
 function actualOperatingChoices(route){
+  if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
   const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
   const add=choice=>{const key=[choice.kind||'',choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
   for(const item of journeys)add({kind:'journey',id:`journey:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:item.originNames,destinationNames:item.destinationNames,trainType:trainTypeFor(item.trainTypeId),journeyId:item.id,patternId:item.servicePatternId||null,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'});
