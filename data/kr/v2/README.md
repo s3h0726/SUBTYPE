@@ -54,3 +54,22 @@ they were repaired by adding provenance labels.
 
 Synthetic tests exercise the actual resolver and Game finish behavior in both
 explicit fixture directions. They are not nationwide completion tests.
+
+## Official urban reference tables
+
+`tools/import-kric-reference.py INPUT_DIRECTORY data/kr/v2` imports KRIC's
+all-agency line (dataset 18), station (32), and operation (900) XLSX tables.
+The downloaded filenames identify a 2026-06-30 collection; individual rows have
+different reference dates, including older years. Those dates must not be
+substituted for timetable validity or current operational status.
+
+The import retains 47 line rows, 1,099 station rows and 223,425 operation rows
+grouped into 29,727 train candidates. These are source rows and candidates,
+not a national completeness claim. The urban inventory excludes the required
+national high-speed/intercity/tourism audit. `official-station-reference.json`
+retains official Korean/English names, codes, coordinates, operator labels and
+source row numbers; it excludes Hanja from runtime names.
+
+`node tools/match-kr-stations.js` produces a review queue using exact names and
+positions within 500 metres. It does not approve or merge stations. Multiple
+matches remain ambiguous, and a station centroid never replaces track geometry.

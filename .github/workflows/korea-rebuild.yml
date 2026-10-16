@@ -23,6 +23,7 @@ jobs:
       - run: node tools/validate-data.js
       - run: npm run build:korea
       - run: npm run match:korea
+      - run: node tools/match-kr-stations.js
       - uses: actions/upload-artifact@v4
         with:
           name: korea-rebuild-audit
