@@ -70,7 +70,7 @@ class Game{
   makeSequence(){const base=[...this.serviceStations];if(this.options.mode==='random')return Array.from({length:100},()=>base[Math.floor(Math.random()*base.length)]);if(this.options.mode==='endless')return Array.from({length:500},(_,i)=>base[i%base.length]);return base}
   focusInput(){if(!this.paused&&this.phase==='TYPING')this.typing.focus()}
   answerValues(station){return[station.ko,...(station.koAliases||[])].map(value=>buildTypingModel(value).inputText)}
-  routeIndex(station){return Math.max(0,this.mapRoute.stations.findIndex(item=>item.id===station?.id))}
+  routeIndex(station){const visit=this.mapRoute.stations.indexOf(station);return visit>=0?visit:Math.max(0,this.mapRoute.stations.findIndex(item=>item.id===station?.id))}
   currentStation(){return this.sequence?.[this.index]||null}
   targetStation(){return this.boarding?this.sequence?.[0]||null:this.sequence?.[this.index+1]||null}
   activeSegment(){return this.boarding?null:this.resolvedRoute?.segments?.[this.index]||null}

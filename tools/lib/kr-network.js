@@ -71,6 +71,7 @@ function releaseReasons(service,data,maps,journey){
  for(const id of service.operatorIds||[])if(!(data.assets||[]).some(a=>a.kind==='operator'&&a.operatorId===id&&a.verified===true&&a.sourceUrl&&a.license&&a.license!=='unverified'&&a.asset))reasons.push('OPERATOR_LOGO_NOT_VERIFIED');
  const trackByGeometry=new Map((data.infrastructure||[]).map(i=>[i.geometryId,i]));
  if(service.paths.some(p=>['yard','siding','spur'].includes(trackByGeometry.get(p.geometryId)?.service)))reasons.push('NON_PUBLIC_TRACK_REQUIRES_EXCLUSION');
+ if(service.paths.some(p=>{const track=trackByGeometry.get(p.geometryId);return (track?.oneway==='yes'&&p.reverse)||(track?.oneway==='-1'&&!p.reverse)}))reasons.push('ONEWAY_DIRECTION_CONFLICT');
  return [...new Set(reasons)];
 }
 function compile(data,options={}){

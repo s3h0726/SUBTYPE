@@ -2,6 +2,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const {load,validate,assemble}=require('./lib/kr-network');
+const {decodeKricTrip}=require('./lib/kric-calls');
 // Exact names and complete stop sequences only. No suffix removal, fuzzy
 // station merging, inferred reverse trips, or automatic review approval.
 function match(data,timetable){
@@ -13,8 +14,9 @@ function match(data,timetable){
   tracks.push({serviceId:service.id,names});
   const key=JSON.stringify(names);if(!sequences.has(key))sequences.set(key,[]);sequences.get(key).push(service.id);
  }
- const patterns=new Map();
+ const patterns=new Map(),unparsedTrips=[];
  for(const trip of timetable.tripCandidates){
+  if(trip.decodeIssues?.length||trip.calls.length<2){unparsedTrips.push({tripId:trip.id,sourceId:trip.sourceId,sourceRows:trip.unparsedRows||trip.calls.map(c=>c.sourceRow),reasons:trip.decodeIssues?.length?trip.decodeIssues:['TOO_FEW_SOURCE_CALLS']});continue}
   const names=trip.calls.map(c=>c.operationalStationName);
   const key=JSON.stringify([trip.sourceId,trip.sheet,trip.officialLineCode||null,trip.calendarLabel||null,trip.serviceType||null,trip.originOperationalName,trip.destinationOperationalName,names]);
   if(!patterns.has(key)){
@@ -28,7 +30,7 @@ function match(data,timetable){
   if(names[0]!==trip.originOperationalName||names.at(-1)!==trip.destinationOperationalName)pattern.endpointMismatch=true;
  }
  const rows=[...patterns.values()];for(const p of rows)p.reviewRequired=p.endpointMismatch?'TIMETABLE_ENDPOINT_MISMATCH':p.serviceCandidateIds.length===1?'OFFICIAL_IDENTITY_CALENDAR_AND_TRACK_REVIEW':p.serviceCandidateIds.length?'AMBIGUOUS_TRACK':'NO_EXACT_COMPLETE_TRACK_SEQUENCE';
- return {status:'INCOMPLETE',releasedTrips:0,counts:{tripCandidates:timetable.tripCandidates.length,patterns:rows.length,exactUnambiguousPatterns:rows.filter(p=>!p.endpointMismatch&&p.serviceCandidateIds.length===1).length,ambiguousPatterns:rows.filter(p=>p.serviceCandidateIds.length>1).length,unmatchedPatterns:rows.filter(p=>!p.serviceCandidateIds.length).length,partialTrackPatterns:rows.filter(p=>p.partialTrackCandidates.length).length,rejectedTopology:rejectedTopology.length},patterns:rows,rejectedTopology};
+ return {status:'INCOMPLETE',releasedTrips:0,counts:{tripCandidates:timetable.tripCandidates.length,patterns:rows.length,exactUnambiguousPatterns:rows.filter(p=>!p.endpointMismatch&&p.serviceCandidateIds.length===1).length,ambiguousPatterns:rows.filter(p=>p.serviceCandidateIds.length>1).length,unmatchedPatterns:rows.filter(p=>!p.serviceCandidateIds.length).length,partialTrackPatterns:rows.filter(p=>p.partialTrackCandidates.length).length,rejectedTopology:rejectedTopology.length,unparsedTrips:unparsedTrips.length,decodedPackedRows:timetable.tripCandidates.reduce((n,t)=>n+(t.packedRows||0),0)},patterns:rows,rejectedTopology,unparsedTrips};
 }
-if(require.main===module){const base=path.resolve(__dirname,'../data/kr/v2'),read=name=>JSON.parse(fs.readFileSync(path.join(base,name+'.json'),'utf8')),timetable=read('timetable-candidates');timetable.tripCandidates.push(...read('kric-trip-candidates'));const result=match(load(base),timetable);fs.writeFileSync(path.join(base,'timetable-matches.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result.counts,null,2))}
+if(require.main===module){const base=path.resolve(__dirname,'../data/kr/v2'),read=name=>JSON.parse(fs.readFileSync(path.join(base,name+'.json'),'utf8')),timetable=read('timetable-candidates');timetable.tripCandidates.push(...read('kric-trip-candidates').map(decodeKricTrip));const result=match(load(base),timetable);fs.writeFileSync(path.join(base,'timetable-matches.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result.counts,null,2))}
 module.exports={match};

@@ -39,6 +39,10 @@ test('actual Game advancement and finish run exactly once in both explicit direc
 test('normalization never manufactures an all-stops service for v2',()=>{const c=context();vm.runInContext(read('js/data-loader.js').replace(/export /g,'')+';globalThis.normalizeTest=normalizeLine',c);const r=compile(fixture()).routes[0];const n=c.normalizeTest(r);assert.equal(n.services.length,2);assert(!n.services.some(s=>s.id==='local'))});
 test('omitted source stops cannot make a partial route releasable',()=>{const d=fixture();d.services[0].issues=[{code:'STOP_NOT_ON_ORDERED_TRACK',nodeId:'unknown'}];assert(compile(d).blocked[0].reasons.includes('UNRESOLVED_IMPORT_TOPOLOGY'))});
 test('candidate trains and unverified platform metadata cannot release',()=>{const d=fixture();d.trips[0].status='candidate';d.stops[3].verification='candidate';assert.equal(compile(d).routes.length,0)});
+
+test('a review flag cannot authorize running against source one-way track',()=>{
+ for(const oneway of ['yes','-1']){const d=fixture();d.infrastructure=[{id:'track',geometryId:'g',oneway}];const r=compile(d);assert.equal(r.counts.releasedServices,1);assert(r.blocked[0].reasons.includes('ONEWAY_DIRECTION_CONFLICT'))}
+});
 test('expired national inventory does not certify coverage',()=>{const d=fixture();d.sources.find(s=>s.id==='inventory').validUntil='2026-10-14';assert.equal(compile(d).status,'INCOMPLETE')});
 test('timetable matching preserves identity ambiguity and never approves a train',()=>{const {match}=require('./match-kr-timetables');const d=fixture(),t={tripCandidates:[{id:'t',sourceId:'timetable',sheet:'fixture',originOperationalName:'가역',destinationOperationalName:'라역',calls:[{operationalStationName:'가역'},{operationalStationName:'라역'}]}]};let r=match(d,t);assert.equal(r.counts.exactUnambiguousPatterns,1);assert.equal(r.releasedTrips,0);d.services.push({...d.services[0],id:'duplicate-path'});r=match(d,t);assert.equal(r.counts.ambiguousPatterns,1);t.tripCandidates[0].calls[0].operationalStationName='가';assert.equal(match(d,t).counts.unmatchedPatterns,1)});
 test('real game route resolver preserves express geometry and repeated loop station visits',()=>{
@@ -48,3 +52,27 @@ test('real game route resolver preserves express geometry and repeated loop stat
  const j=assemble(d.services[0],validate(d).maps),r=c.resolveTest({id:'loop',countryId:'kr',geometryReady:true,...j});assert.deepEqual(Array.from(r.stations,s=>s.id),['s0','s3','s0']);assert.equal(r.segments.length,2);assert.equal(r.geometry.length,5);
 });
 test('official station matching does not merge same-name places or assign approvals',()=>{const {matchStations}=require('./match-kr-stations'),ref=[{id:'official',names:{ko:'시험역'},coordinates:{lat:37,lon:127}}],stations=[{id:'near',names:{ko:'시험역'},coordinates:{lat:37.001,lon:127}},{id:'far',names:{ko:'시험역'},coordinates:{lat:38,lon:127}}];let r=matchStations(ref,stations);assert.equal(r.approved,0);assert.deepEqual(r.matches[0].candidates.map(c=>c.stationId),['near']);stations.push({...stations[0],id:'other-platform'});assert.equal(matchStations(ref,stations).counts.ambiguousRows,1);ref[0].coordinates.lat=null;assert.equal(matchStations(ref,stations).matches[0].reviewRequired,'INVALID_OFFICIAL_COORDINATE')});
+
+test('returning to a loop station uses the later map visit and adjacent segment',()=>{
+ const c=context();vm.runInContext(read('js/game.js').replace(/^import[^\n]*\n/gm,'').replace(/^export\s+/gm,'')+';globalThis.GameTest=Game',c);
+ const p=c.GameTest.prototype,visits=[{id:'a'},{id:'b'},{id:'a'},{id:'c'}];
+ const game={mapRoute:{stations:visits},sequence:visits,index:2,boarding:false,options:{},serviceStops:new Set(['a','b','c']),routeIndex:p.routeIndex,currentStation:p.currentStation,targetStation:p.targetStation};
+ assert.equal(p.routeIndex.call(game,visits[2]),2);assert.equal(p.mapOptions.call(game).previousRouteIndex,1);assert.equal(p.mapOptions.call(game).nextRouteIndex,3);
+ assert.equal(p.routeIndex.call(game,visits[0]),0);
+});
+
+test('Korean journey identity and directions survive records and display endpoints',()=>{
+ const c=context();c.isCountryEnabled=()=>true;c.canonicalRouteId=id=>id;c.escapeHtml=s=>String(s).replace(/</g,'&lt;');c.formatTime=()=>'';
+ vm.runInContext(read('js/korean-service-resolver.js').replace(/export /g,'')+';globalThis.api={koreanVerifiedChoices,resolveKoreanVerifiedChoice}',c);
+ vm.runInContext(read('js/storage.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.store=storage',c);
+ const route=compile(fixture()).routes[0];
+ for(const choice of c.api.koreanVerifiedChoices(route)){
+  const r=c.api.resolveKoreanVerifiedChoice(choice,route);
+  assert.equal(r.journeyId,choice.id);assert.equal(r.journey.directionId,choice.direction);
+  c.store.saveResult({route:r.route,routeId:r.route.id,serviceJourneyId:r.journeyId,options:{serviceJourney:r.journey},directionId:r.journey.directionId,destinationStationId:r.destinationStationId,originStationId:r.journey.originStationId,elapsed:1000,accuracy:100,cpm:100,maxCombo:1,completed:2,color:'#123456'});
+ }
+ const records=c.store.records();assert.equal(Object.keys(records).length,2);assert.equal(records.out.directionId,'out');assert.equal(records.in.directionId,'in');assert.equal(records.out.destinationName,'라역');assert.equal(records.in.destinationName,'가역');
+ const elements=new Map();c.$=id=>{if(!elements.has(id))elements.set(id,{});return elements.get(id)};c.railDataRepository={getLine(){return{names:{ko:'시험선'}}},getRoute(){return route}};
+ vm.runInContext(read('js/statistics.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.renderStatsTest=renderStats',c);c.renderStatsTest();
+ assert(elements.get('#records-table').innerHTML.includes('가역 → 라역'));assert(elements.get('#records-table').innerHTML.includes('라역 → 가역'));
+});

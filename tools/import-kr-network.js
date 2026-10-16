@@ -3,6 +3,7 @@
 // OSM supplies track topology and research candidates, NOT operating authority.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {orientOrderedWays}=require('./lib/kr-osm-order');
+const {applyTopologyCorrection}=require('./lib/kr-topology-corrections');
 const root=path.resolve(__dirname,'..'),base=path.join(root,'data/kr/v2');
 const read=n=>JSON.parse(fs.readFileSync(path.join(base,'source',n+'.json'),'utf8'));
 const overrideFile=path.join(base,'official-overrides.json');
@@ -13,6 +14,9 @@ const rawNodes=read('osm-nodes'),rawWays=read('osm-ways'),relations=read('osm-re
 const names=t=>({ko:t['name:ko']||t.name||'',en:t['name:en']||''});
 const sourceId=manifest.id,ref=(kind,id)=>({sourceId,kind,id:String(id)});
 const ways=new Map(rawWays.map(w=>[w.id,w]));
+const corrections=JSON.parse(fs.readFileSync(path.join(base,'topology-corrections.json'),'utf8'));
+for(const c of corrections)if(!relations.some(r=>r.id===c.relationId))throw Error('MISSING_CORRECTED_RELATION:'+c.relationId);
+if(new Set(corrections.map(c=>c.relationId)).size!==corrections.length)throw Error('DUPLICATE_TOPOLOGY_CORRECTION');
 const railRoutes=relations.filter(r=>r.tags.type==='route'&&['train','subway','light_rail','tram','monorail','funicular'].includes(r.tags.route));
 const railMembers=new Set(railRoutes.flatMap(r=>r.members.filter(m=>m.type==='n').map(m=>m.ref)));
 const nodes=new Map(rawNodes.filter(n=>['station','halt','tram_stop'].includes(n.tags.railway)||railMembers.has(n.id)).map(n=>[n.id,n]));
@@ -42,7 +46,7 @@ for(const r of railRoutes){
  const masters=masterByRoute.get(r.id)||[],master=masters.length===1?masters[0]:r;
  const lineId='kr-osm-line-'+master.id,operatorId=opId(master.tags.operator||r.tags.operator);
  if(!lines.has(lineId))lines.set(lineId,{id:lineId,names:names(master.tags),operatorIds:operatorId?[operatorId]:[],color:master.tags.colour||r.tags.colour||null,regionId:null,mode:r.tags.route,status:'candidate',sourceRefs:[ref('relation',master.id)]});
- const orderedWays=r.members.filter(m=>m.type==='w'&&!/platform|stop/.test(m.role));
+ const {members:orderedWays,evidence:topologyCorrection}=applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id));
  const sourceStopMembers=r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
  const orientation=orientOrderedWays(orderedWays,ways,sourceStopMembers.map(m=>m.ref));
  const issues=[],paths=[],nodeIds=[];
@@ -73,7 +77,7 @@ for(const r of railRoutes){
  if(members.length<2)issues.push({code:'MISSING_ORDERED_STOPS'});
  if(!paths.length)issues.push({code:'MISSING_TRACK'});
  issues.push({code:'OFFICIAL_TIMETABLE_REQUIRED'});
- services.push({id:'kr-osm-service-'+r.id,passengerLineId:lineId,names:names(r.tags),operatorIds:operatorId?[operatorId]:[],kind:r.tags.service||r.tags.route,directionId:'osm-relation-'+r.id,paths,stops:serviceStops,osmFrom:r.tags.from||null,osmTo:r.tags.to||null,status:'candidate',sourceRefs:[ref('relation',r.id)],issues});
+ services.push({id:'kr-osm-service-'+r.id,passengerLineId:lineId,names:names(r.tags),operatorIds:operatorId?[operatorId]:[],kind:r.tags.service||r.tags.route,directionId:'osm-relation-'+r.id,paths,stops:serviceStops,osmFrom:r.tags.from||null,osmTo:r.tags.to||null,status:'candidate',sourceRefs:[ref('relation',r.id)],...(topologyCorrection?{topologyCorrection}:{}),issues});
 }
 // Stop-area groups are transfer relationships, never automatic physical merges.
 for(const group of relations.filter(r=>r.tags.public_transport==='stop_area_group')){

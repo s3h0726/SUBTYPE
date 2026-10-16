@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: '22'
       - run: npm run check:dependencies
+      - run: npm run import:korea
+      - name: Ensure source corrections and generated data are reproducible
+        run: git diff --exit-code -- data/kr/v2
       - run: npm run validate:korea
       - run: npm run test:korea
       - run: npm run test:typing
