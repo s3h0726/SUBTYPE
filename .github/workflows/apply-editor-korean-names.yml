@@ -1,0 +1,64 @@
+name: Apply Korean name editor to game data
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/editor-overrides.json'
+      - 'tools/build-line-workspaces.js'
+      - '.github/workflows/apply-editor-korean-names.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: korean-editor-publish-main
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build complete application from canonical files with editor overrides
+        run: node tools/build-static.js
+      - name: Validate editor names are present in built route catalog
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const editor=JSON.parse(fs.readFileSync('data/editor-overrides.json','utf8'));
+          const index=JSON.parse(fs.readFileSync('data/generated/line-index.json','utf8'));
+          const map=new Map(index.routes.map(route=>[route.id,route]));
+          let names=0, stations=0;
+          for(const [id,change] of Object.entries(editor.lines||{})){
+            if(!map.has(id))continue;
+            const route=map.get(id);
+            if(change.ko&&route.line.ko!==change.ko)throw Error('line name mismatch: '+id);
+            if(change.color&&/^#[0-9a-f]{6}$/i.test(change.color)&&route.lineColor.toLowerCase()!==change.color.toLowerCase())throw Error('line color mismatch: '+id);
+            names++;
+          }
+          for(const [id,changes] of Object.entries(editor.stations||{})){
+            if(!map.has(id))continue;
+            const route=JSON.parse(fs.readFileSync('data/generated/routes/'+id+'.json','utf8')).route;
+            for(const [stationId,ko] of Object.entries(changes)){
+              const matches=route.stations.filter(st=>st.id===stationId||st.ja===stationId);
+              if(!matches.length)throw Error('missing editor station '+id+':'+stationId);
+              if(matches.some(st=>st.ko!==ko))throw Error('station name mismatch '+id+':'+stationId);
+              stations++;
+            }
+          }
+          console.log(JSON.stringify({verifiedRoutes:names,verifiedStations:stations}));
+          NODE
+      - name: Publish game-generated data only if validation passed
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/generated/ js/line-workspace-data.js js/app.bundle.js js/nationwide-data.js index.html
+          if git diff --cached --quiet; then echo 'No regenerated game data changes'; exit 0; fi
+          git commit -m 'build(jp): synchronize Korean editor names with playable game'
+          git push origin HEAD:main
