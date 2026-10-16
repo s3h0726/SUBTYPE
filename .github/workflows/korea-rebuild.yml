@@ -33,7 +33,7 @@ jobs:
           path: data/kr/v2/generated/audit.json
   national-release:
     runs-on: ubuntu-latest
-    needs: implementation
+    needs: [implementation, browser-candidates]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -42,3 +42,23 @@ jobs:
       # This job must fail while national evidence is incomplete. Unit-test
       # success is never presented as permission to replace the live site.
       - run: npm run audit:korea
+  browser-candidates:
+    runs-on: ubuntu-latest
+    needs: implementation
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --package-lock=false playwright@1.62.1
+      - run: npx playwright install --with-deps chromium
+      - name: Candidate desktop and mobile traversal (not release approval)
+        env:
+          KR_BROWSER_REPORT: data/kr/v2/generated/browser-diagnostics.json
+        run: node tools/test-kr-browser.cjs --all-assemblable
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: korea-candidate-browser-diagnostics
+          path: data/kr/v2/generated/browser-diagnostics.json
