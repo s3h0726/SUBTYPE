@@ -20,10 +20,12 @@ for(const file of files){
   let next=ko;const rules=[];
   // Keisei's Japanese name is 京成: write 케이세이 consistently.
   if(ja.includes('京成')&&next.includes('게이세이')){next=next.replaceAll('게이세이','케이세이');rules.push('京成: 케이세이')}
+  // Initial consonants are per-title decisions. Preserve ド→도 in 東武/富山,
+  // rather than applying an indiscriminate ㄷ→ㅌ conversion.
   // 温泉 is onsen; never apply to unrelated names lacking those characters.
   if(ja.includes('温泉')&&next.includes('온선')){next=next.replaceAll('온선','온센');rules.push('温泉: 온센')}
   // 東上 is Tōjō: fix line-associated station strings only.
-  if(ja.includes('東上')&&next.includes('도죠')){next=next.replaceAll('도죠','토죠');rules.push('東上: 토죠')}
+  if(ja.includes('東上')&&/도조|도죠/.test(next)){next=next.replaceAll('도조','토죠').replaceAll('도죠','토죠');rules.push('東上: 토죠')}
   // 小倉 has two distinct readings: only Kokura in Kitakyushu/Fukuoka region.
   const lat=Number(s.coordinates?.lat),lon=Number(s.coordinates?.lng);
   if(ja.includes('小倉')&&next.includes('오구라')&&lat>=33.3&&lat<=34.3&&lon>=129.5&&lon<=131.2){next=next.replaceAll('오구라','고쿠라');rules.push('北九州 小倉: 고쿠라')}
