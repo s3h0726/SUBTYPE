@@ -1,0 +1,42 @@
+name: Validate famous Japanese limited express journeys
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/famous-limited-express.js'
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'tools/build-static.js'
+      - 'tools/test-famous-limited-express.cjs'
+      - '.github/workflows/validate-famous-limited-express.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-famous-express:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check already deployed express choices and full-track playback
+        run: node tools/test-famous-limited-express.cjs
+      - name: Rebuild complete application from canonical sources
+        run: node tools/build-static.js
+      - name: Ensure fresh bundle still supports distinct express cards
+        run: |
+          node tools/test-famous-limited-express.cjs
+          node - <<'NODE'
+          const fs=require('fs');
+          const bundle=fs.readFileSync('js/app.bundle.js','utf8');
+          for(const marker of ['buildFamousLimitedExpressRoutes','famousLimitedExpressChoices',
+            'resolveFamousLimitedExpressChoice','skyliner','rapit-alpha',
+            'laview-chichibu','romancecar-homeway-1','redarrow-koedo']){
+            if(!bundle.includes(marker))throw Error('Missing famous express in game bundle: '+marker);
+          }
+          if(!bundle.includes("if(countryId==='jp')builtin.push(...buildFamousLimitedExpressRoutes(builtin))"))
+            throw Error('Famous express cards not loaded by game');
+          new Function(bundle);
+          NODE
