@@ -1,0 +1,54 @@
+name: Validate typing annotations and distance comparisons
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/typing-model.js'
+      - 'js/typing.js'
+      - 'js/distance-analogies.js'
+      - 'js/result-journey-map.js'
+      - 'js/app.bundle.js'
+      - 'tools/test-typing-model.js'
+      - 'tools/test-ime-controller.js'
+      - 'tools/test-distance-analogies.js'
+      - 'tools/build-static.js'
+      - 'package.json'
+      - '.github/workflows/validate-typing-distance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify punctuation, parenthetical names and IME
+        run: npm run test:typing
+      - name: Verify Korea and Japan distance comparisons
+        run: npm run test:distance-analogies
+      - name: Confirm shipped game bundle matches typing source
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),vm=require('vm');
+          const bundle=fs.readFileSync('js/app.bundle.js','utf8');
+          new vm.Script(bundle);
+          if(!bundle.includes('const OPEN=new Set(')||!bundle.includes('annotationIndices'))
+            throw Error('Typing parentheses/annotations fix absent from deployed bundle');
+          const journey=fs.readFileSync('js/result-journey-map.js','utf8');
+          if(!journey.includes('formatJourneyDistanceAnalogy')||!journey.includes('distance-analogies.js'))
+            throw Error('New distance comparisons absent from result screen');
+          NODE
+      - name: Verify production rebuild retains typing changes
+        run: |
+          node tools/build-static.js
+          npm run test:typing
+          npm run test:distance-analogies
+          node - <<'NODE'
+          const fs=require('fs');
+          const bundle=fs.readFileSync('js/app.bundle.js','utf8');
+          if(!bundle.includes('annotationIndices'))throw Error('Rebuild dropped parenthetical typing change');
+          NODE
