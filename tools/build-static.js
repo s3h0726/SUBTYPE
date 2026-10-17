@@ -6,13 +6,21 @@ execFileSync(process.execPath,[path.join(__dirname,'build-japan-lazy-catalog.cjs
 // Keep N'EX branch candidates aligned with the current physical-track source on every build.
 execFileSync(process.execPath,[path.join(__dirname,'build-nex-verified-geometry.js')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(__dirname,'audit-recent-tram-and-kobe-geometry.js')],{stdio:'inherit'});
-// build-korea-data is also a standalone CLI and may terminate early while the
-// imported snapshot remains provisional. Run it in a child process so that it
-// cannot abort the remainder of this production bundle build.
-execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-2-verified-geometry.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'validate-seoul-line-5-official-order.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-5-verified-geometry.js')],{stdio:'inherit'});
+// The Korea v2 rebuild is research-only until its nationwide release gate
+// passes. Older deployments refer to scripts that exist only in work branches.
+// Never fail production packaging just because an unpublished input script is
+// absent; equally never substitute unverified geometry or mark it playable.
+const optionalKoreaBuilders=[
+  'build-korea-data.js',
+  'apply-seoul-line-2-verified-geometry.js',
+  'validate-seoul-line-5-official-order.js',
+  'apply-seoul-line-5-verified-geometry.js'
+];
+for(const filename of optionalKoreaBuilders){
+  const script=path.join(__dirname,filename);
+  if(fs.existsSync(script))execFileSync(process.execPath,[script],{stdio:'inherit'});
+  else console.warn('[build] Optional unreleased Korea builder absent; keeping currently published, gated route catalog:',filename);
+}
 execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-1-verified-geometry.js')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-3-verified-geometry.js')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(__dirname,'test-line3-playability.js')],{stdio:'inherit'});
