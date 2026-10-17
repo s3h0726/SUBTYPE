@@ -23,6 +23,7 @@ module.exports=async function interactive(page){
   if(!g.boarding||g.index!==0||q.mapState().trainLayer.getLayers().length!==1)throw Error('STALE_ANIMATION_AFTER_RESTART');
   g.stop(false);return{serviceId:route.id,frames:frames.length,retainedVertices:path.length,status:'PASS'};
  });
+ if(process.env.KR_BROWSER_SCREENSHOTS)await page.waitForFunction(()=>!document.querySelector('#toast')?.classList.contains('show'));
  if(process.env.KR_BROWSER_SCREENSHOTS)await page.screenshot({path:require('node:path').join(process.env.KR_BROWSER_SCREENSHOTS,(page.viewportSize().width<600?'mobile':'desktop')+'-curved-game.png'),fullPage:true});
  const transfer=await page.evaluate(async()=>{
   const q=globalThis.__KR_BROWSER_QA__,f=q.freeDrive;
