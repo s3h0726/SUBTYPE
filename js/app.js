@@ -94,7 +94,21 @@ if(route.operatorId==='uekedenkitetsudo')route={...route,operator:{...(route.ope
   const finalColor=/^#[0-9a-f]{6}$/i.test(lineEdit.color||'')?lineEdit.color:route.lineColor;
   return applyYurikamomeLoopGeometry({...route,operator:finalOperator,line:finalLine,lineColor:finalColor,stations:stations.map(fixStation),directions:directions.map(dir=>({...dir,stops:(dir.stops||[]).map(fixStation)}))})
 }
-function allRoutes(){return[...builtin,...storage.routes().filter(route=>(route.countryId||'jp')===countryId).map(r=>railDataRepository.resolveRoute(normalizeLine(r,{category:'custom'})))].map(fixRouteKoreanNames).filter(isRouteVisible).filter(r=>r.lazy||(Array.isArray(r.stations)&&r.stations.length>=2))}
+const JAPAN_STREETCAR_LINE_IDS=new Set(['line-99706','line-99707','line-99305','line-99521','line-99809','line-99810','line-99811','line-99812']);
+const JAPAN_CLOSED_LINE_IDS=new Set(['line-11113','line-99708']);
+function currentJapanServiceRoute(route){
+ if(!route||route.countryId==='kr')return route;
+ if(JAPAN_CLOSED_LINE_IDS.has(route.id))return{...route,visibility:'internal',playable:false,historical:true};
+ if(JAPAN_STREETCAR_LINE_IDS.has(route.id))return{...route,category:'tram'};
+ if(route.id==='line-11111'){
+   const current=(route.stations||[]).filter(station=>['苫小牧','勇払','浜厚真','鵡川'].includes(station.ja));
+   if(current.length===4)return{...route,stations:current,stationCount:4,
+     stationSequence:current.map(station=>station.id),coverage:'operational-Tomakomai-to-Mukawa-only',
+     ...(route.stations.length!==4?{geometry:[],geometryReady:false,directedSegments:[],missingSegments:[]}: {})};
+ }
+ return route;
+}
+function allRoutes(){return[...builtin,...storage.routes().filter(route=>(route.countryId||'jp')===countryId).map(r=>railDataRepository.resolveRoute(normalizeLine(r,{category:'custom'})))].map(fixRouteKoreanNames).map(currentJapanServiceRoute).filter(isRouteVisible).filter(r=>r.lazy||(Array.isArray(r.stations)&&r.stations.length>=2))}
 const operatorLogo=operatorLogoMarkup;
 // Company marks belong on every route card, including Tokyo Metro.
 const lineSurfaceOperatorLogo=(route,className)=>operatorLogoMarkup(route,className);
