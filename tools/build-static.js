@@ -2,6 +2,7 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSync}=require('child_process');
 require('./audit-canonical-jp-station-names.js');
 require('./build-line-workspaces');
+execFileSync(process.execPath,[path.join(__dirname,'build-japan-lazy-catalog.cjs')],{stdio:'inherit'});
 // Keep N'EX branch candidates aligned with the current physical-track source on every build.
 execFileSync(process.execPath,[path.join(__dirname,'build-nex-verified-geometry.js')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(__dirname,'audit-recent-tram-and-kobe-geometry.js')],{stdio:'inherit'});
@@ -80,6 +81,7 @@ const digest=value=>crypto.createHash('sha256').update(value).digest('hex').slic
 let html=read('index.html');
 html=html.replace(/(\.\/js\/service-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(read('js/service-data.js'))}`);
 html=html.replace(/(\.\/js\/line-workspace-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(workspaceBrowser)}`);
+html=html.replace(/(\.\/js\/japan-lite-index\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(read('js/japan-lite-index.js'))}`);
 html=html.replace(/(\.\/js\/korea-index-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(koreaBrowser)}`);
 html=html.replace(/(\.\/js\/app\.bundle\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(bundle)}`);
 write('index.html',html);
