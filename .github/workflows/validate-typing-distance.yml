@@ -28,7 +28,7 @@ jobs:
           node-version: '22'
       - name: Verify punctuation, parenthetical names and IME
         run: npm run test:typing
-      - name: Verify Korea and Japan distance comparisons
+      - name: Verify Korean-only distance comparisons
         run: npm run test:distance-analogies
       - name: Confirm shipped game bundle matches typing source
         run: |
@@ -36,7 +36,7 @@ jobs:
           const fs=require('fs'),vm=require('vm');
           const bundle=fs.readFileSync('js/app.bundle.js','utf8');
           new vm.Script(bundle);
-          if(!bundle.includes('const OPEN_TO_CLOSE=new Map(')||!bundle.includes('annotationIndices'))
+          if(!bundle.includes('function buildTypingModel(')||!bundle.includes('type:isAutoFilledSymbol(character)'))
             throw Error('Typing parentheses/annotations fix absent from deployed bundle');
           const journey=fs.readFileSync('js/result-journey-map.js','utf8');
           if(!journey.includes('formatJourneyDistanceAnalogy')||!journey.includes('distance-analogies.js'))
@@ -50,5 +50,5 @@ jobs:
           node - <<'NODE'
           const fs=require('fs');
           const bundle=fs.readFileSync('js/app.bundle.js','utf8');
-          if(!bundle.includes('annotationIndices'))throw Error('Rebuild dropped parenthetical typing change');
+          if(!bundle.includes('type:isAutoFilledSymbol(character)'))throw Error('Rebuild dropped bracket-only typing rule');
           NODE
