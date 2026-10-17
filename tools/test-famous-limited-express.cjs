@@ -25,10 +25,11 @@ for(const {route,choice} of choices){
  assert.equal(r.stations.at(-1).geometryIndex,r.geometry.length-1);
  assert.equal(JSON.stringify(r.stations.filter(st=>service.stops.includes(st.id)).map(st=>st.id)),JSON.stringify(service.stops),'Stop sequence mismatches real train');
  const played=context.resolvePlayableRoute(r,{direction:result.direction,service});
- assert.equal(played.straightLineFallback,true,'Never allow straight line geometry fallback');
+ assert.notEqual(played.fallbackGeometry,true,'Never allow straight line geometry fallback');
+ assert.notEqual(played.sequenceOnly,true,'Actual track required for train playback');
  for(const segment of played.segments||[]){
    assert(segment.geometry.length>1,'No point geometry');
-   assert(segment.serviceCombined===undefined||segment.parts?.length>=1);
+   assert.notEqual(segment.fallbackGeometry,true,'No geometry fallback segment');
  }
  assert(!String(played.renderKey||'').includes('fallback'),'Unexpected fallback');
  report.push({brand:route.id,choice:choice.id,stops:service.stops.length,trackPoints:r.geometry.length});
