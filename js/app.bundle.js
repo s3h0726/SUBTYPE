@@ -135,7 +135,8 @@ const storage={
 };
 
 
-const normalizeTypingValue=value=>String(value??'').normalize('NFC').replace(/\s+/gu,'');
+// Punctuation is auto-filled in station labels; only letters and digits are typed.
+const normalizeTypingValue=value=>String(value??'').normalize('NFC').replace(/[^\p{L}\p{N}]/gu,'');
 class TypingController{
   constructor(input,{onChange,onSubmit}){this.input=input;this.onChange=onChange;this.onSubmit=onSubmit;this.composing=false;this.imeCompletionTimer=null;this.visualValue='';this.committedValue='';this.submitted=false;this.handlers={compositionstart:()=>{this.composing=true},compositionend:()=>{this.composing=false;this.evaluate()},beforeinput:event=>{if(event.inputType==='insertText'&&/^\s+$/u.test(event.data||''))event.preventDefault()},input:event=>{this.evaluate(this.input.value,false,this.composing||event.isComposing===true)},keydown:event=>{if(event.code==='Space'||event.key===' '){event.preventDefault();return}if(event.key==='Enter'&&!this.composing&&!event.isComposing)this.evaluate(this.input.value,true)}};Object.entries(this.handlers).forEach(([event,handler])=>input.addEventListener(event,handler))}
   setTarget(values){clearTimeout(this.imeCompletionTimer);this.imeCompletionTimer=null;this.targets=[...new Set(values.filter(Boolean).map(normalizeTypingValue))];this.input.value='';this.visualValue='';this.committedValue='';this.submitted=false;this.input.closest('.typing-box')?.classList.remove('wrong','correct')}
