@@ -25,6 +25,30 @@ const NEX_EXAMPLES=[
     direction:'reverse',trainNumber:'2014M',trainName:'成田エクスプレス14号',nameKo:'특급 나리타 익스프레스 14호 · 오후나행',
     source:'https://timetables.jreast.co.jp/2610/train/045/047971.html',
     stops:[NEX_AIRPORT,NEX_T2,'station-mlit-004173',NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+  },
+  {
+    id:'nex-2-shinjuku',variantId:'nex-shinjuku-physical-candidate',
+    direction:'reverse',trainNumber:'2202M',trainName:'成田エクスプレス2号',nameKo:'특급 나리타 익스프레스 2호 · 신주쿠행',
+    source:'https://timetables.jreast.co.jp/en/2610/train/025/029042.html',
+    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173',NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+  },
+  {
+    id:'nex-2-ofuna',variantId:'nex-ofuna-physical-candidate',
+    direction:'reverse',trainNumber:'2002M',trainName:'成田エクスプレス2号',nameKo:'특급 나리타 익스프레스 2호 · 오후나행',
+    source:'https://timetables.jreast.co.jp/en/2610/train/025/029042.html',
+    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173',NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+  },
+  {
+    id:'nex-54-shinjuku',variantId:'nex-shinjuku-physical-candidate',
+    direction:'reverse',trainNumber:'2254M',trainName:'成田エクスプレス54号',nameKo:'특급 나리타 익스프레스 54호 · 신주쿠행',
+    source:'https://timetables.jreast.co.jp/en/2610/train/030/031291.html',
+    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+  },
+  {
+    id:'nex-54-ofuna',variantId:'nex-ofuna-physical-candidate',
+    direction:'reverse',trainNumber:'2054M',trainName:'成田エクスプレス54号',nameKo:'특급 나리타 익스프레스 54호 · 오후나행',
+    source:'https://timetables.jreast.co.jp/en/2610/train/030/031291.html',
+    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
   }
 ];
 const pointDistance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
