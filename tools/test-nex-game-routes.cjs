@@ -37,4 +37,23 @@ for(const choice of choices){
  for(const segment of route.directedSegments){assert(segment.geometry.length>=2);assert.equal(segment.verified,false);}
  summary.push({choice:choice.id,stations:route.stations.length,stops:stops.length,points:route.geometry.length,first:route.stations[0].ja,last:route.stations.at(-1).ja});
 }
+// Release regression: the playable browser bundle MUST contain actual resolver
+// definitions; a call site alone caused the previous N'EX runtime failure.
+const bundle=read('js/app.bundle.js'),clientData=read('js/service-data.js');
+for(const marker of ['const NEX_EXAMPLES=','function nexOperatingChoices(','function resolveNexOperatingChoice(',...choices.map(c=>c.id)]){
+  assert(bundle.includes(marker),'Published game bundle missing NEX resolver or journey '+marker);
+}
+new vm.Script(bundle,{filename:'js/app.bundle.js'});
+new vm.Script(clientData,{filename:'js/service-data.js'});
+const payload=clientData.match(/^window\.TRT_NEX_BRANCH_CANDIDATES=(.+);$/m);
+assert(payload,'Published game client data missing NEX branch geometry');
+const browserData=JSON.parse(payload[1]);
+assert.equal(browserData.releaseApproved,false);
+assert.equal(browserData.variants.length,2);
+for(const candidate of candidates.variants){
+  const browserRoute=browserData.variants.find(v=>v.id===candidate.id);
+  assert(browserRoute,'Published browser data missing '+candidate.id);
+  assert.equal(browserRoute.geometry.length,candidate.geometry.length);
+  assert.equal(JSON.stringify(browserRoute.stationGeometryIndices),JSON.stringify(candidate.stationGeometryIndices));
+}
 console.log(JSON.stringify({status:'PASS',count:summary.length,journeys:summary},null,2));
