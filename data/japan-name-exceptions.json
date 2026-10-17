@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "rule": "Only exact Japanese station names; do not auto-aspirate initial consonants or remove vowels globally",
+  "stations": {
+    "新倉敷": {
+      "ko": "신쿠라시키",
+      "reason": "Shin-Kurashiki, not nii-kurashiki",
+      "reference": "https://librewiki.net/wiki/신쿠라시키역"
+    },
+    "鹿児島中央": {
+      "ko": "가고시마추오",
+      "reason": "Established Korean name; avoid 카/츄 variants",
+      "reference": "https://librewiki.net/wiki/가고시마추오역"
+    },
+    "鹿児島": {
+      "ko": "가고시마",
+      "reason": "Kagoshima not Kagoshima with aspirated initial",
+      "reference": "https://librewiki.net/wiki/가고시마추오역"
+    }
+  },
+  "exceptions": [
+    "東武=도부",
+    "富山=도야마"
+  ],
+  "verifiedBy": "Korean source comparison; Namuwiki original may be inaccessible"
+}
