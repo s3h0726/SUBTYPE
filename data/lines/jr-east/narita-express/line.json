@@ -34,25 +34,28 @@
     {
       "id": "nex-shinjuku",
       "names": {
-        "ja": "新宿方面",
-        "ko": "신주쿠 방면",
-        "en": "N'EX Shinjuku"
+        "ja": "新宿・成田空港方面",
+        "ko": "신주쿠·나리타공항 방면",
+        "en": "N'EX Shinjuku–Narita Airport"
       },
       "stopPattern": [
         "station-mlit-003700",
         "station-mlit-003922",
-        "station-mlit-004095",
         "station-mlit-003766",
         "station-1132813",
         "station-1132705"
-      ]
+      ],
+      "serviceKind": "limited-express",
+      "pairingAt": "station-mlit-003766",
+      "stoppingPolicy": "some-trains-also-stop-at-Chiba-Yotsukaido-Sakura-Narita",
+      "source": "https://www.jreast.co.jp/en/multi/nex/"
     },
     {
       "id": "nex-ofuna",
       "names": {
-        "ja": "大船方面",
-        "ko": "오후나 방면",
-        "en": "N'EX Ofuna"
+        "ja": "大船・成田空港方面",
+        "ko": "오후나·나리타공항 방면",
+        "en": "N'EX Ofuna–Narita Airport"
       },
       "stopPattern": [
         "station-mlit-004961",
@@ -63,12 +66,16 @@
         "station-mlit-003766",
         "station-1132813",
         "station-1132705"
-      ]
+      ],
+      "serviceKind": "limited-express",
+      "pairingAt": "station-mlit-003766",
+      "stoppingPolicy": "some-trains-also-stop-at-Chiba-Yotsukaido-Sakura-Narita",
+      "source": "https://www.jreast.co.jp/en/multi/nex/"
     }
   ],
   "throughServiceIds": [],
   "sources": {
-    "official": "",
+    "official": "https://www.jreast.co.jp/en/multi/nex/",
     "korean": "",
     "geometry": "MLIT-N02-2025",
     "koreanName": {
@@ -84,12 +91,15 @@
       "verifiedDate": null,
       "status": "REVIEW_REQUIRED",
       "canonicalPolicy": "namuwiki"
-    }
+    },
+    "timetable": "https://timetables.jreast.co.jp/en/2610/train/030/031191.html"
   },
   "legacy": {
     "origin": "curated",
     "coverage": "full-source-line",
-    "dataKind": "trainService"
+    "dataKind": "trainService",
+    "geometryNote": "Single legacy station chain mixes the Ofuna and Shinjuku branches. Must not treat route-level geometry as a valid through-service until branch-specific tracks are reconstructed.",
+    "playabilityStatus": "BRANCHED_ROUTE_GEOMETRY_REQUIRES_RECONSTRUCTION"
   },
   "officialKoSource": null
 }
