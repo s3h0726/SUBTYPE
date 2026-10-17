@@ -32,8 +32,32 @@ function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,statio
 function validLine(line){return Array.isArray(line.stations)&&line.stations.length>=2&&line.stations.every(station=>station.ja||station.kana||station.romaji||station.ko)}
 async function fetchJson(url){const response=await fetch(url);if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
 export async function loadRailData(){
-  const workspaceData=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;if(!Array.isArray(workspaceData?.routes)||!workspaceData.routes.length)throw new Error('Canonical line workspace bundle is missing. Run npm run build:data.');
-  const lines=workspaceData.routes.map(route=>normalizeLine(route,{category:route.category})),operators=Array.isArray(workspaceData.index?.operators)?workspaceData.index.operators:[],stationMap=new Map;for(const line of lines)for(const station of line.stations)if(!stationMap.has(station.id))stationMap.set(station.id,station);const stations=[...stationMap.values()],counts=[...new Set(lines.map(line=>line.category))].reduce((result,category)=>({...result,[category]:lines.filter(line=>line.category===category).length}),{});return{operators,lines,stations,assets:workspaceData.assets||{},errors:[],counts,fallbackUsed:false,source:'canonical-line-workspaces'}
+  const canonical=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;
+  const nationwide=globalThis.TRT_EMBEDDED_NATIONWIDE;
+  let input=Array.isArray(canonical?.routes)?canonical.routes:[];
+  let fallbackUsed=!input.length;
+  const backupRoutes=()=>Object.values(nationwide?.routes||{}).map(record=>record?.route||record).filter(route=>route?.id&&Array.isArray(route.stations)&&route.stations.length>=2);
+  if(!input.length)input=backupRoutes();
+  if(!input.length)throw new Error('일본 철도 데이터 파일을 불러오지 못했습니다. line-workspace-data.js / nationwide-data.js를 확인하세요.');
+  const errors=[];
+  const convert=items=>items.flatMap(route=>{
+    try{
+      const line=normalizeLine(route,{category:route.category});
+      if(!Array.isArray(line.stations)||line.stations.length<2){errors.push(String(route?.id||'unknown')+': fewer than 2 stations');return[]}
+      return[line];
+    }catch(error){errors.push(String(route?.id||'unknown')+': '+(error?.message||error));return[]}
+  });
+  let lines=convert(input);
+  if(!lines.length&&!fallbackUsed){lines=convert(backupRoutes());fallbackUsed=true}
+  if(!lines.length)throw new Error('일본 철도 노선 복원 실패: '+(errors[0]||'노선 데이터 없음'));
+  const operators=Array.isArray(canonical?.index?.operators)&&!fallbackUsed?canonical.index.operators:Array.isArray(nationwide?.index?.operators)?nationwide.index.operators:[];
+  const stationMap=new Map;
+  for(const line of lines)for(const station of line.stations)if(!stationMap.has(station.id))stationMap.set(station.id,station);
+  const stations=[...stationMap.values()];
+  const counts=[...new Set(lines.map(line=>line.category))].reduce((result,category)=>({...result,[category]:lines.filter(line=>line.category===category).length}),{});
+  if(fallbackUsed)console.warn('Japan catalog: loaded emergency nationwide backup',lines.length,'routes');
+  if(errors.length)console.warn('Japan catalog skipped invalid routes:',errors.length,errors.slice(0,5));
+  return{operators,lines,stations,assets:canonical?.assets||{},errors,counts,fallbackUsed,source:fallbackUsed?'nationwide-emergency-backup':'canonical-line-workspaces'}
 }
 export async function loadTransportData(countryId='jp'){
   if(countryId==='jp')return loadRailData();
