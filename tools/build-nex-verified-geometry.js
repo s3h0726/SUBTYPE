@@ -10,7 +10,7 @@ const route=read('data/generated/routes/line-11328.json').route;
 const stations=new Map(route.stations.map(s=>[s.id,s]));
 const id={ofuna:'station-mlit-004961',totsuka:'station-mlit-004818',yokohama:'station-mlit-004633',musashi:'station-mlit-004301',nishioi:'station-mlit-004235',shinagawa:'station-mlit-004095',shinjuku:'station-mlit-003700',shibuya:'station-mlit-003922',tokyo:'station-mlit-003766',chiba:'station-mlit-004173',yotsukaido:'station-mlit-003898',sakura:'station-mlit-003531',narita:'station-mlit-003161',t2:'station-1132813',t1:'station-1132705'};
 const chain=(parts)=>{
- const coords=[],sources=[];
+ const coords=[],sources=[],stationGeometryIndices={};
  for(const [dataset,from,to] of parts){
   const source=dataset==='nex'?nex:yok;
   const direct=source[from+'::'+to],reverse=source[to+'::'+from];
@@ -23,10 +23,12 @@ const chain=(parts)=>{
    assert(Math.abs(a[0]-b[0])<0.002&&Math.abs(a[1]-b[1])<0.002,'Disjoint track geometry '+from+'::'+to);
    if(a[0]===b[0]&&a[1]===b[1])points.shift();
   }
+  if(stationGeometryIndices[from]===undefined)stationGeometryIndices[from]=coords.length?coords.length-1:0;
   coords.push(...points);
+  stationGeometryIndices[to]=coords.length-1;
   sources.push({dataset,from,to,originalSource:segment.source,verified:segment.verified});
  }
- return {geometry:coords,sources};
+ return {geometry:coords,sources,stationGeometryIndices};
 };
 const airport=[
  ['nex',id.tokyo,id.chiba],['nex',id.chiba,id.yotsukaido],
@@ -39,7 +41,7 @@ const variants=[
 const results=[];
 for(const v of variants){
  const assembled=chain(v.parts);
- results.push({id:v.id,nameKo:v.nameKo,status:'GEOMETRY_CANDIDATE_NOT_RELEASE_APPROVED',geometry:assembled.geometry,segments:assembled.sources,stopIds:v.stopIds,stations:v.stopIds.map(st=>{assert(stations.has(st),'Unknown stop '+st);return {id:st,ja:stations.get(st).ja,ko:stations.get(st).ko}}),notes:'Intermediate physical pass-through positions need separate station index; service stopping patterns vary by train.'});
+ results.push({id:v.id,nameKo:v.nameKo,status:'GEOMETRY_CANDIDATE_NOT_RELEASE_APPROVED',geometry:assembled.geometry,stationGeometryIndices:assembled.stationGeometryIndices,segments:assembled.sources,stopIds:v.stopIds,stations:v.stopIds.map(st=>{assert(stations.has(st),'Unknown stop '+st);return {id:st,ja:stations.get(st).ja,ko:stations.get(st).ko}}),notes:'Intermediate physical pass-through positions need separate station index; service stopping patterns vary by train.'});
 }
 const output='data/generated/nex-branch-geometry-candidates.json';
 fs.writeFileSync(path.join(root,output),JSON.stringify({version:1,source:'Existing MLIT-N02-2025 source geometry: Narita Express and Yokosuka Line',releaseApproved:false,variants:results},null,2)+'\n');
