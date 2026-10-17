@@ -75,7 +75,8 @@ export function resolveNexOperatingChoice(baseRoute,choice){
   }
   const service={id:item.id,nameJa:item.trainName,nameKo:item.nameKo,nameEn:'Narita Express',
     stops:item.stops,trainTypeId:'nex-limited-express',destinationStationId:item.stops.at(-1)};
-  const route={...baseRoute,stations,geometry,services:[service],selectedDirectionId:item.direction,
+  const directedSegments=stations.slice(0,-1).map((st,i)=>({fromStationId:st.id,toStationId:stations[i+1].id,geometry:geometry.slice(st.geometryIndex,stations[i+1].geometryIndex+1).map(p=>p.slice()),source:'MLIT-N02-2025 combined railway centerline',verified:false}));
+  const route={...baseRoute,stations,geometry,directedSegments,missingSegments:[],reusedSegments:[],services:[service],selectedDirectionId:item.direction,
     dataKind:'trainService',geometryReady:true,nexRepresentativeTimetable:true,
     nexTimetableUrl:item.source,nexBranchGeometryStatus:'MLIT_TRACK_CANDIDATE_NOT_RELEASE_APPROVED',
     line:{...baseRoute.line},coverage:'2026 JR East train-level examples; branch geometry sourced from MLIT-N02-2025'};
