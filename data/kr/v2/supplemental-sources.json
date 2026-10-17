@@ -1,0 +1,68 @@
+[
+  {
+    "id": "osm-62-geofabrik-20261017",
+    "kind": "osm",
+    "snapshotTimestamp": "2026-10-16T20:21:21Z",
+    "retrievedOn": "2026-10-17",
+    "publisher": "OpenStreetMap / Geofabrik",
+    "url": "https://download.geofabrik.de/asia/south-korea.html",
+    "downloadUrl": "https://download.geofabrik.de/asia/south-korea-latest.osm.pbf",
+    "sha256": "5844138cdd171124886805c0c943bdab9bc009b8102478e9b6e720bafa82f87f",
+    "bytes": 289438576,
+    "license": "ODbL-1.0",
+    "licenseStatus": "verified",
+    "attribution": "© OpenStreetMap contributors",
+    "scope": "Latest country extract after live API HTTP 429; extract timestamp is not a claim of a live full-relation response",
+    "counts": {
+      "requestedRelations": 62,
+      "relations": 62,
+      "ways": 5157,
+      "nodes": 405
+    },
+    "missingRelationIds": [],
+    "missingWayIds": [],
+    "filePaths": [
+      "source/osm-62-20261017/manifest.json",
+      "source/osm-62-20261017/osm-relations.json",
+      "source/osm-62-20261017/osm-ways.json",
+      "source/osm-62-20261017/osm-nodes.json"
+    ]
+  },
+  {
+    "id": "humetro-official-map-20261017",
+    "kind": "official-stations",
+    "publisher": "부산교통공사",
+    "url": "https://work.humetro.busan.kr/homepage/cyberstation/map.do",
+    "retrievedOn": "2026-10-17",
+    "license": "Reuse permission not established",
+    "licenseStatus": "unverified",
+    "scope": "Official station code and ordered name evidence only, not timetable or release authority",
+    "filePaths": [
+      "source/humetro/cyberstation-20261017.html"
+    ]
+  },
+  {
+    "id": "airport-shuttle-access-20261017",
+    "kind": "official-access",
+    "publisher": "인천국제공항공사",
+    "url": "https://www.airport.kr/ap_ko/886/subview.do",
+    "retrievedOn": "2026-10-17",
+    "license": "Reuse permission not established",
+    "licenseStatus": "unverified",
+    "filePaths": [
+      "source/inventory/airport-shuttle-20261017.html"
+    ]
+  },
+  {
+    "id": "daejeon-tram-status-20261017",
+    "kind": "official-operating-status",
+    "publisher": "대전광역시",
+    "url": "https://www.daejeon.go.kr/djTram/contentView.do?menuSeq=7701",
+    "retrievedOn": "2026-10-17",
+    "license": "Reuse permission not established",
+    "licenseStatus": "unverified",
+    "filePaths": [
+      "source/inventory/daejeon-tram-20261017.html"
+    ]
+  }
+]
