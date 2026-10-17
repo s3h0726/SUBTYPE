@@ -12,6 +12,30 @@ const debounce=(fn,wait=120)=>{let t;return(...args)=>{clearTimeout(t);t=setTime
 
 
 
+/* Generated from data/kr/v2/relation-access-policy.json. */
+const KR_BLOCKED_SOURCE_RELATIONS=[{"relationId":"3399104","lineIds":["kr-osm-line-3399104"],"reason":"도로 way가 포함된 철도 오분류 자료","classification":"REJECTED_ROAD"},{"relationId":"8032733","lineIds":["kr-osm-line-9283742"],"reason":"미개통 광주 도시철도 2호선","classification":"EXCLUDED_UNOPEN"},{"relationId":"8420974","lineIds":["kr-osm-line-8420974"],"reason":"노선·운영기관·영업 구간 식별 미완료","classification":"QUARANTINED_UNKNOWN"},{"relationId":"8448307","lineIds":["kr-osm-line-8448307"],"reason":"노선·운영기관·영업 구간 식별 미완료","classification":"QUARANTINED_UNKNOWN"},{"relationId":"9283743","lineIds":["kr-osm-line-9283742"],"reason":"미개통 광주 도시철도 2호선","classification":"EXCLUDED_UNOPEN"},{"relationId":"12115931","lineIds":["kr-osm-line-12115931"],"reason":"상시 공개 여객 운행이 확인되지 않은 비행장 전용선; 최신 OSM 명칭/운영주체 확인, 현행 일반 여객 운행의 공식 근거 미확보","classification":"EXCLUDED_NONPASSENGER"},{"relationId":"12428880","lineIds":["kr-osm-line-12428880"],"reason":"노선·운영기관·영업 구간 식별 미완료","classification":"QUARANTINED_UNKNOWN"},{"relationId":"17549372","lineIds":["kr-osm-line-17549372"],"reason":"공개 여객 운행 근거가 없는 제철소 전용선; 최신 OSM 명칭/운영주체 확인, 현행 일반 여객 운행의 공식 근거 미확보","classification":"EXCLUDED_NONPASSENGER"},{"relationId":"17585166","lineIds":["kr-osm-line-17585171"],"reason":"공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단","classification":"SPECIAL_AIRPORT_REVIEW"},{"relationId":"17585167","lineIds":["kr-osm-line-17585171"],"reason":"공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단","classification":"SPECIAL_AIRPORT_REVIEW"},{"relationId":"20042681","lineIds":["kr-osm-line-20042681"],"reason":"미개통 대전 도시철도 2호선","classification":"EXCLUDED_UNOPEN"}];
+
+
+const blockedRelations=new Map(KR_BLOCKED_SOURCE_RELATIONS.map(r=>[r.relationId,r]));
+const blockedLines=new Map(KR_BLOCKED_SOURCE_RELATIONS.flatMap(r=>(r.lineIds||[]).map(id=>[id,r])));
+function koreanRouteBlockReason(route){
+ if(typeof route==='string')route={id:route};
+ const visited=new Set();
+ const inspect=value=>{
+  if(!value||typeof value!=='object'||visited.has(value))return null;visited.add(value);
+  if(value.access?.passengerCandidate===false)return value.access.reason||'RESTRICTED_SOURCE';
+  const line=blockedLines.get(value.id)||blockedLines.get(value.passengerLineId);if(line)return line.reason;
+  const ids=[value.sourceRelationId,value.osmRelationId,value.source?.osmRelationId];
+  for(const key of ['id','routeId','lineId','sourceRouteId','sourceLineId']){const match=String(value[key]||'').match(/^kr-osm-(?:service|line)-(\d+)$/);if(match)ids.push(match[1]);const line=blockedLines.get(value[key]);if(line)return line.reason}
+  for(const ref of value.sourceRefs||[])if(ref.kind==='relation')ids.push(ref.id);
+  for(const id of ids){const r=blockedRelations.get(String(id));if(r)return r.reason}
+  for(const child of [...(value.segments||[]),...(value.directedSegments||[]),...(value.parts||[])]){const reason=inspect(child)||inspect(child.route)||inspect(child.source);if(reason)return reason}
+  const nested=inspect(value.route)||inspect(value.source);if(nested)return nested;
+  return null;
+ };
+ return inspect(route);
+}
+
 const FEATURE_FLAGS=Object.freeze({
   korea:true,
   visibleJapanRegion:'all'
@@ -1540,6 +1564,249 @@ class AuthClient{
 function initAuth(storage){return new AuthClient(storage)}
 
 
+// Narita Express: branch-specific, train-level journeys.  Never traverse the legacy
+// Ofuna -> Shinjuku single-chain railway as a real train path.
+const NEX_AIRPORT='station-1132705',NEX_T2='station-1132813',NEX_TOKYO='station-mlit-003766';
+const NEX_EXAMPLES=[
+  {
+    id:'nex-5-shinjuku',variantId:'nex-shinjuku-physical-candidate',
+    direction:'forward',trainNumber:'2205M',trainName:'成田エクスプレス5号',nameKo:'특급 나리타 익스프레스 5호 · 신주쿠발',
+    source:'https://timetables.jreast.co.jp/2610/train/030/031141.html',
+    stops:['station-mlit-003700','station-mlit-003922',NEX_TOKYO,'station-mlit-004173',NEX_T2,NEX_AIRPORT]
+  },
+  {
+    id:'nex-5-ofuna',variantId:'nex-ofuna-physical-candidate',
+    direction:'forward',trainNumber:'2005M',trainName:'成田エクスプレス5号',nameKo:'특급 나리타 익스프레스 5호 · 오후나발',
+    source:'https://timetables.jreast.co.jp/2610/train/030/031141.html',
+    stops:['station-mlit-004961','station-mlit-004818','station-mlit-004633','station-mlit-004301','station-mlit-004095',NEX_TOKYO,'station-mlit-004173',NEX_T2,NEX_AIRPORT]
+  },
+  {
+    id:'nex-14-shinjuku',variantId:'nex-shinjuku-physical-candidate',
+    direction:'reverse',trainNumber:'2214M',trainName:'成田エクスプレス14号',nameKo:'특급 나리타 익스프레스 14호 · 신주쿠행',
+    source:'https://timetables.jreast.co.jp/2610/train/045/047971.html',
+    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-004173',NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+  },
+  {
+    id:'nex-14-ofuna',variantId:'nex-ofuna-physical-candidate',
+    direction:'reverse',trainNumber:'2014M',trainName:'成田エクスプレス14号',nameKo:'특급 나리타 익스프레스 14호 · 오후나행',
+    source:'https://timetables.jreast.co.jp/2610/train/045/047971.html',
+    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-004173',NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+  },
+  {
+    id:'nex-2-shinjuku',variantId:'nex-shinjuku-physical-candidate',
+    direction:'reverse',trainNumber:'2202M',trainName:'成田エクスプレス2号',nameKo:'특급 나리타 익스프레스 2호 · 신주쿠행',
+    source:'https://timetables.jreast.co.jp/en/2610/train/025/029042.html',
+    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173',NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+  },
+  {
+    id:'nex-2-ofuna',variantId:'nex-ofuna-physical-candidate',
+    direction:'reverse',trainNumber:'2002M',trainName:'成田エクスプレス2号',nameKo:'특급 나리타 익스프레스 2호 · 오후나행',
+    source:'https://timetables.jreast.co.jp/en/2610/train/025/029042.html',
+    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173',NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+  },
+  {
+    id:'nex-54-shinjuku',variantId:'nex-shinjuku-physical-candidate',
+    direction:'reverse',trainNumber:'2254M',trainName:'成田エクスプレス54号',nameKo:'특급 나리타 익스프레스 54호 · 신주쿠행',
+    source:'https://timetables.jreast.co.jp/en/2610/train/030/031291.html',
+    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+  },
+  {
+    id:'nex-54-ofuna',variantId:'nex-ofuna-physical-candidate',
+    direction:'reverse',trainNumber:'2054M',trainName:'成田エクスプレス54号',nameKo:'특급 나리타 익스프레스 54호 · 오후나행',
+    source:'https://timetables.jreast.co.jp/en/2610/train/030/031291.html',
+    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+  }
+];
+const pointDistance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+function nexOperatingChoices(baseRoute){
+  if(baseRoute?.id!=='line-11328')return [];
+  const data=globalThis.TRT_NEX_BRANCH_CANDIDATES;
+  if(!data?.variants?.length)return [];
+  const stations=new Map((baseRoute.stations||[]).map(st=>[String(st.id),st]));
+  return NEX_EXAMPLES.filter(item=>
+    data.variants.some(v=>v.id===item.variantId&&v.geometry?.length>=2&&item.stops.every(id=>v.stopIds.includes(id)))
+  ).map(item=>({
+    kind:'nex',id:item.id,nexVariantId:item.variantId,nexExampleId:item.id,
+    originId:item.stops[0],destinationId:item.stops.at(-1),
+    originNames:stations.get(item.stops[0])||{ko:item.stops[0]},
+    destinationNames:stations.get(item.stops.at(-1))||{ko:item.stops.at(-1)},
+    patternName:{ko:item.nameKo,ja:item.trainName,en:"Narita Express"},
+    trainType:{id:'nex-limited-express',priority:90,names:{ko:'특급',ja:'特急',en:'Limited Express'}},
+    direction:item.direction,sourceRouteId:baseRoute.id
+  }));
+}
+function resolveNexOperatingChoice(baseRoute,choice){
+  if(baseRoute?.id!=='line-11328'||choice?.kind!=='nex')throw new Error('Invalid Narita Express operating choice');
+  const item=NEX_EXAMPLES.find(x=>x.id===choice.nexExampleId&&x.variantId===choice.nexVariantId);
+  if(!item)throw new Error('Unknown NEX train example');
+  const data=globalThis.TRT_NEX_BRANCH_CANDIDATES;
+  const variant=data?.variants?.find(v=>v.id===item.variantId);
+  if(!variant?.geometry?.length||!variant.stationGeometryIndices||data.releaseApproved!==false)
+    throw new Error('NEX real-track branch data is unavailable or malformed');
+  const master=new Map((baseRoute.stations||[]).map(st=>[String(st.id),st]));
+  const stationIds=item.direction==='reverse'?variant.stopIds.slice().reverse():variant.stopIds.slice();
+  const geometry=item.direction==='reverse'?variant.geometry.slice().reverse().map(p=>p.slice()):variant.geometry.map(p=>p.slice());
+  const stations=stationIds.map(id=>{
+    const source=master.get(String(id)),index=variant.stationGeometryIndices[id];
+    if(!source||!Number.isInteger(index)||index<0||index>=variant.geometry.length)
+      throw new Error('NEX geometry station binding invalid: '+id);
+    const geometryIndex=item.direction==='reverse'?geometry.length-1-index:index;
+    return{...source,geometryIndex};
+  });
+  if(stations.length<2||stations.some((st,i)=>i>0&&st.geometryIndex<=stations[i-1].geometryIndex))
+    throw new Error('NEX station indices must follow physical track order');
+  if(stations[0].geometryIndex!==0||stations.at(-1).geometryIndex!==geometry.length-1)
+    throw new Error('NEX route starts/ends outside its own track');
+  for(const id of item.stops)if(!stationIds.includes(id))throw new Error('NEX timetable stop is absent: '+id);
+  for(const s of stations){
+    const point=geometry[s.geometryIndex];
+    if(!point||!Number.isFinite(point[0])||!Number.isFinite(point[1]))
+      throw new Error('Missing NEX station track point: '+s.id);
+  }
+  const service={id:item.id,nameJa:item.trainName,nameKo:item.nameKo,nameEn:'Narita Express',
+    stops:item.stops,trainTypeId:'nex-limited-express',destinationStationId:item.stops.at(-1)};
+  const directedSegments=stations.slice(0,-1).map((st,i)=>({fromStationId:st.id,toStationId:stations[i+1].id,geometry:geometry.slice(st.geometryIndex,stations[i+1].geometryIndex+1).map(p=>p.slice()),source:'MLIT-N02-2025 combined railway centerline',verified:false}));
+  const route={...baseRoute,stations,geometry,directedSegments,missingSegments:[],reusedSegments:[],services:[service],selectedDirectionId:item.direction,
+    dataKind:'trainService',geometryReady:true,nexRepresentativeTimetable:true,
+    nexTimetableUrl:item.source,nexBranchGeometryStatus:'MLIT_TRACK_CANDIDATE_NOT_RELEASE_APPROVED',
+    line:{...baseRoute.line},coverage:'2026 JR East train-level examples; branch geometry sourced from MLIT-N02-2025'};
+  return{route,service,direction:'forward',travelDirectionId:item.direction,pattern:null,
+    trainType:choice.trainType||null,destinationStationId:item.stops.at(-1)};
+}
+
+// Famous Japanese limited express trains are independently selectable game routes.
+// Every path uses the canonical physical-track polylines: never invent straight connectors.
+// These are documented representative service patterns; timetables can vary by train/date.
+const FAMOUS_EXPRESS_SPECS=[
+ {id:'skyliner',name:{ko:'스카이라이너',ja:'スカイライナー',en:'Skyliner'},
+  parts:[{id:'line-23006',from:'京成上野',to:'成田空港（第１旅客ターミナル）'}],color:'#f87818',
+  official:'https://www.keisei.co.jp/keisei/tetudou/skyliner/jp/skyliner/index.php',
+  patterns:[{id:'skyliner',ja:'スカイライナー',ko:'스카이라이너',stops:['京成上野','日暮里','空港第２ビル（第２旅客ターミナル）','成田空港（第１旅客ターミナル）']}]},
+ {id:'rapit',name:{ko:'특급 라피트',ja:'特急ラピート',en:'Limited Express Rapi:t'},
+  parts:[{id:'line-32001',from:'難波',to:'泉佐野'},{id:'line-32002',from:'泉佐野',to:'関西空港'}],color:'#174a9f',
+  official:'https://www.adnankai.co.jp/media/2026/NANKAI_MEDIA_GUIDE.pdf',
+  patterns:[
+   {id:'rapit-alpha',ja:'ラピートα',ko:'라피트 α',stops:['難波','新今宮','天下茶屋','泉佐野','りんくうタウン','関西空港']},
+   {id:'rapit-beta',ja:'ラピートβ',ko:'라피트 β',stops:['難波','新今宮','天下茶屋','堺','岸和田','泉佐野','りんくうタウン','関西空港']}
+  ]},
+ {id:'laview',name:{ko:'특급 라뷰',ja:'特急ラビュー',en:'Limited Express Laview'},
+  parts:[{id:'line-22001',from:'池袋',to:'飯能'},{id:'line-22002',from:'飯能',to:'西武秩父'}],color:'#eb9200',
+  official:'https://www.seiburailway.jp/railway/reservedtrain/laview/',
+  patterns:[
+   {id:'laview-chichibu',ja:'ちちぶ',ko:'치치부호',stops:['池袋','所沢','入間市','飯能','横瀬','西武秩父']},
+   {id:'laview-musashi',ja:'むさし',ko:'무사시호',stops:['池袋','所沢','入間市','飯能']}
+  ]},
+ {id:'redarrow',name:{ko:'특급 레드애로',ja:'特急レッドアロー',en:'Limited Express Red Arrow'},
+  parts:[{id:'line-22007',from:'西武新宿',to:'本川越'}],color:'#d12337',
+  official:'https://www.seiburailway.jp/railway/reservedtrain/redarrow/',
+  patterns:[{id:'redarrow-koedo',ja:'小江戸',ko:'코에도호',stops:['西武新宿','高田馬場','東村山','所沢','狭山市','本川越']}]},
+ {id:'romancecar',name:{ko:'오다큐 로망스카',ja:'小田急ロマンスカー',en:'Odakyu Romancecar'},
+  parts:[{id:'line-25001',from:'新宿',to:'小田原'}],color:'#d72a36',
+  official:'https://www.odakyu.jp/romancecar/homeway/',
+  patterns:[{id:'romancecar-homeway-1',ja:'ホームウェイ1号',ko:'홈웨이 1호',directions:['forward'],stops:['新宿','町田','海老名','本厚木','秦野','小田原']}]}
+];
+const cloneRailPoint=p=>[Number(p[0]),Number(p[1])];
+function sourceSegment(route,fromJa,toJa){
+ const st=route?.stations||[],start=st.findIndex(s=>s.ja===fromJa),end=st.findIndex(s=>s.ja===toJa);
+ if(start<0||end<=start||!route?.geometryReady||route.geometry?.length<2)throw Error('Missing certified track segment: '+route?.id+' '+fromJa+'→'+toJa);
+ const indices=st.slice(start,end+1).map(s=>s.geometryIndex);
+ if(indices.some((v,i)=>!Number.isInteger(v)||(i>0&&v<=indices[i-1])))throw Error('Track station indices are not monotonic: '+route.id);
+ const begin=indices[0],finish=indices.at(-1),polyline=route.geometry.slice(begin,finish+1).map(cloneRailPoint);
+ if(polyline.length<2||polyline.some(p=>!p.every(Number.isFinite)))throw Error('Missing track points '+route.id);
+ return {stations:st.slice(start,end+1).map(s=>({...s,geometryIndex:s.geometryIndex-begin})),geometry:polyline,sourceId:route.id};
+}
+function composePhysicalService(spec,baseRoutes){
+ const sections=spec.parts.map(part=>{
+  const route=baseRoutes.get(part.id);
+  return sourceSegment(route,part.from,part.to)
+ }),stations=[],geometry=[],sources=[];
+ for(const section of sections){
+  let points=section.geometry;
+  if(geometry.length){
+   const last=geometry.at(-1),first=points[0],distance=Math.hypot(last[0]-first[0],last[1]-first[1]);
+   // Reject an unverified gap; only the same coordinate is a valid transfer.
+   if(distance>0.00002)throw Error('Track boundary discontinuity '+spec.id+': '+distance);
+   if(distance<1e-10)points=points.slice(1);
+  }
+  const offset=geometry.length-(section.geometry.length-points.length),hasBoundary=stations.length>0;
+  for(let i=0;i<section.stations.length;i++){
+   const station=section.stations[i];
+   if(hasBoundary&&i===0){
+    if(stations.at(-1).ja!==station.ja)throw Error('Different junction stations '+spec.id);
+    continue
+   }
+   const position=offset+station.geometryIndex;
+   if(!Number.isInteger(position)||position<0)throw Error('Invalid combined geometry index');
+   stations.push({...station,geometryIndex:position});
+  }
+  geometry.push(...points);
+  sources.push(section.sourceId)
+ }
+ if(stations.length<2||stations.some((s,i)=>i>0&&s.geometryIndex<=stations[i-1].geometryIndex))throw Error('Invalid station sequence '+spec.id);
+ if(stations[0].geometryIndex!==0||stations.at(-1).geometryIndex!==geometry.length-1)throw Error('Track endpoints do not match '+spec.id);
+ const byJa=new Map(stations.map(s=>[s.ja,s]));
+ const variants=spec.patterns.map(pattern=>{
+  const stops=pattern.stops.map(ja=>{const match=byJa.get(ja);if(!match)throw Error('Express stop unavailable '+spec.id+':'+ja);return match.id});
+  const position=stops.map(id=>stations.find(s=>s.id===id).geometryIndex);
+  if(position.some((v,i)=>i>0&&v<=position[i-1]))throw Error('Unordered express stops '+spec.id+'/'+pattern.id);
+  return{id:pattern.id,nameJa:pattern.ja,nameKo:pattern.ko,directions:pattern.directions||['forward','reverse'],stopIds:stops,sourceUrl:spec.official}
+ });
+ const first=baseRoutes.get(spec.parts[0].id),id='famous-express-'+spec.id;
+ return {...first,id,legacyId:id,category:first.category,operatorId:first.operatorId,
+   line:{...first.line,...spec.name},lineColor:spec.color,stationCount:stations.length,
+   dataKind:'trainService',famousExpress:true,geometryReady:true,
+   trackSourceRouteIds:sources,officialTimetableUrl:spec.official,
+   services:variants.map(p=>({id:p.id,nameJa:p.nameJa,nameKo:p.nameKo,nameEn:p.nameKo,stops:p.stopIds})),
+   famousVariants:variants,stations,geometry,loop:false,
+   directedSegments:stations.slice(0,-1).map((st,i)=>({fromStationId:st.id,toStationId:stations[i+1].id,geometry:geometry.slice(st.geometryIndex,stations[i+1].geometryIndex+1),verified:false,source:'Existing physical rail line geometry'})),
+   missingSegments:[],reusedSegments:[],nexRepresentativeTimetable:false,
+   coverage:'Documented representative express stopping patterns, built from existing railway tracks'}
+}
+function famousLimitedExpressSourceIds(){return [...new Set(FAMOUS_EXPRESS_SPECS.flatMap(spec=>spec.parts.map(part=>part.id)))]}
+function buildFamousLimitedExpressRoutes(routes){
+ const map=new Map(routes.map(r=>[r.id,r])),result=[];
+ for(const spec of FAMOUS_EXPRESS_SPECS){
+  try{result.push(composePhysicalService(spec,map))}
+  catch(e){console.warn('Famous express candidate omitted:',spec.id,e?.message||e)}
+ }
+ return result
+}
+function famousLimitedExpressChoices(route){
+ if(!route?.famousExpress)return [];
+ const stationMap=new Map(route.stations.map(st=>[String(st.id),st]));
+ return route.famousVariants.flatMap(p=>p.directions.map(direction=>{
+  const first=direction==='reverse'?p.stopIds.at(-1):p.stopIds[0],last=direction==='reverse'?p.stopIds[0]:p.stopIds.at(-1);
+  return{kind:'famousExpress',id:p.id+':'+direction,originId:first,destinationId:last,
+   originNames:stationMap.get(String(first)),destinationNames:stationMap.get(String(last)),
+   legacyServiceId:p.id,direction,patternName:{ko:p.nameKo,ja:p.nameJa},
+   trainType:{id:'famous-limited-express',priority:85,names:{ko:'특급',ja:'特急',en:'Limited Express'}}}
+ }))
+}
+function resolveFamousLimitedExpressChoice(route,choice){
+ if(!route?.famousExpress||choice.kind!=='famousExpress')throw Error('Unknown famous express route');
+ const p=route.famousVariants.find(v=>v.id===choice.legacyServiceId);
+ if(!p)throw Error('Unavailable train pattern');
+ const reverse=choice.direction==='reverse';
+ const all=reverse?route.stations.slice().reverse():route.stations.slice();
+ const points=reverse?route.geometry.slice().reverse().map(cloneRailPoint):route.geometry.map(cloneRailPoint);
+ const adjust=st=>({...st,geometryIndex:reverse?points.length-1-st.geometryIndex:st.geometryIndex});
+ const stations=all.map(adjust);
+ const required=reverse?p.stopIds.slice().reverse():p.stopIds.slice();
+ const first=stations.findIndex(st=>st.id===required[0]),last=stations.findIndex(st=>st.id===required.at(-1));
+ if(first<0||last<=first)throw Error('Invalid limited express section');
+ const begin=stations[first].geometryIndex,finish=stations[last].geometryIndex;
+ const selected=stations.slice(first,last+1).map(st=>({...st,geometryIndex:st.geometryIndex-begin}));
+ const geometry=points.slice(begin,finish+1);
+ if(selected.at(-1).geometryIndex!==geometry.length-1)throw Error('Incorrect train geometry boundary');
+ const service={id:p.id,nameJa:p.nameJa,nameKo:p.nameKo,nameEn:p.nameKo,stops:required,
+   destinationStationId:required.at(-1),trainTypeId:'famous-limited-express'};
+ const result={...route,stations:selected,geometry,services:[service],selectedDirectionId:choice.direction,
+   directedSegments:selected.slice(0,-1).map((s,i)=>({fromStationId:s.id,toStationId:selected[i+1].id,
+     geometry:geometry.slice(s.geometryIndex,selected[i+1].geometryIndex+1),verified:false,source:'Physical source lines'}))};
+ return{route:result,service,direction:'forward',travelDirectionId:choice.direction,
+   destinationStationId:required.at(-1),pattern:null,trainType:choice.trainType}
+}
+
 const KR_APP_TRANSFER_PAIRS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 
 
@@ -1659,7 +1926,7 @@ function operatorKey(route){return route?.operatorId||route?.operator?.en}
 function operatorScopeRoutes(){return routes.filter(route=>(countryId==='jp'||transportGroup==='all'||routeTransportGroup(route)===transportGroup)&&(countryId!=='kr'||transportGroup!=='bus'||regionFilter==='all'||route.regionId===regionFilter)&&routeCategoryMatches(route))}
 function renderOperatorFilters(){const context=operatorScopeRoutes(),unique=[...new Map(context.map(route=>[operatorKey(route),route])).values()].sort((a,b)=>(a.operator.ko||'').localeCompare(b.operator.ko||'','ko')),target=$('#operator-filters');if(operatorFilter!=='all'&&!unique.some(route=>operatorKey(route)===operatorFilter))operatorFilter='all';target.innerHTML=unique.length?`<button class="${operatorFilter==='all'?'active':''}" data-operator="all">전체 운영사</button>`+unique.map(route=>`<button class="${operatorFilter===operatorKey(route)?'active':''}" data-operator="${escapeHtml(operatorKey(route))}">${operatorLogo(route,'filter-logo')}<span>${escapeHtml(route.operator.ko||'MISSING_KOREAN_NAME')}</span></button>`).join(''):'<p class="operator-filter-empty" role="status">해당 카테고리의 운영사가 없습니다.</p>'}
 function freeDriveNetworkRoutes(){
-  return routes.filter(route=>!route.famousExpress).map(route=>{
+  return routes.filter(route=>!route.famousExpress&&!koreanRouteUnavailableReason(route)).map(route=>{
     if(!route?.lazy)return route;
     const key=String(route.lazySource||'').replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];
     if(!embedded)return route;
@@ -1757,8 +2024,23 @@ function filteredRoutes(){const queries=searchVariants($('#route-search').value)
 function stopWord(route){return['bus','village_bus','express_bus','brt'].includes(route.mode)?'정류장':['river_bus','ferry'].includes(route.mode)?'선착장':'역'}
 function krLineFamily(r){return r.countryId==='kr'?(r.passengerLineId||r.id):null}
 function krRouteLabel(r){return String(r.passengerLineName||r.line?.ko||r.id).trim()}
-function krRouteCards(filtered){const groups=new Map();for(const r of filtered){const key=krLineFamily(r)||r.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}return [...groups.values()].map(members=>{const r=members[0];if(members.length<2)return routeCard(r);const services=koreanFamilyServiceChoices(krLineFamily(r)),count=services.length?services.length/2:members.length,label=services.length?'운행계통':'운행구간';return '<button type="button" class="line-card" style="--route-color:'+escapeHtml(r.lineColor||'#888')+'" data-kr-family="'+escapeHtml(krLineFamily(r))+'"><div class="line-card-identity"><span class="operator">'+escapeHtml(r.operator?.ko||'')+'</span><h3 class="line-card-line-name">'+escapeHtml(krRouteLabel(r))+'</h3></div><p>노선을 선택한 뒤 플레이 버튼에서 행선지를 설정하세요</p><footer><span>'+count+'개 '+label+'</span><span>노선 선택 →</span></footer></button>'}).join('')}
-function routeCard(r){const ready=r.geometryReady===true,word=stopWord(r),action=r.countryId==='kr'&&!ready?'선형 검증 대기':r.lazy?'상세 불러오기':ready?'선택':'순서 플레이';return`<button class="line-card ${selected?.id===r.id?'selected':''} ${r.category==='shinkansen'?'shinkansen-card':''}" style="--route-color:${r.lineColor}" data-route="${r.id}"><div class="line-card-identity"><span class="operator">${escapeHtml(r.operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ko)}</h3></div><p>${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ja||r.line.en)}</p><footer><span>${r.stationCount||r.stations.length}개 ${word}</span><span>${action} →</span></footer></button>`}
+// Unreleased research and structurally incomplete Korean routes are not playable.
+function koreanRouteUnavailableReason(route){
+  if(route?.countryId!=='kr')return '';
+  const blocked=koreanRouteBlockReason(route);
+  if(blocked)return blocked;
+  if(route.playable===false||route.visibility==='internal')return '공개 운행 검증 대기';
+  if(route.geometryReady!==true||route.geometryStatus==='missing')return '실제 선로 선형 검증 대기';
+  if(!route.lazy){
+    if(!Array.isArray(route.stations)||route.stations.length<2)return '정차역 데이터 부족';
+    if(!Array.isArray(route.geometry)||route.geometry.length<2)return '실제 선로 좌표 부족';
+    if((route.missingSegments||[]).length)return '연결되지 않은 선로 구간 존재';
+    if((route.directedSegments||[]).some(part=>!Array.isArray(part.geometry)||part.geometry.length<2))return '역간 실제 선로 좌표 부족';
+  }
+  return '';
+}
+function krRouteCards(filtered){const groups=new Map();for(const r of filtered){const key=krLineFamily(r)||r.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}return [...groups.values()].map(members=>{const r=members[0];if(members.length<2||members.every(m=>koreanRouteUnavailableReason(m)))return routeCard(r);const services=koreanFamilyServiceChoices(krLineFamily(r)),count=services.length?services.length/2:members.length,label=services.length?'운행계통':'운행구간';return '<button type="button" class="line-card" style="--route-color:'+escapeHtml(r.lineColor||'#888')+'" data-kr-family="'+escapeHtml(krLineFamily(r))+'"><div class="line-card-identity"><span class="operator">'+escapeHtml(r.operator?.ko||'')+'</span><h3 class="line-card-line-name">'+escapeHtml(krRouteLabel(r))+'</h3></div><p>노선을 선택한 뒤 플레이 버튼에서 행선지를 설정하세요</p><footer><span>'+count+'개 '+label+'</span><span>노선 선택 →</span></footer></button>'}).join('')}
+function routeCard(r){const reason=koreanRouteUnavailableReason(r),ready=r.geometryReady===true,word=stopWord(r),action=reason?'검증 대기':r.lazy?'상세 불러오기':ready?'선택':'순서 플레이';return`<button ${reason?'disabled aria-disabled="true" title="'+escapeHtml(reason)+'"':''} class="line-card ${reason?'unplayable':''} ${selected?.id===r.id?'selected':''} ${r.category==='shinkansen'?'shinkansen-card':''}" style="--route-color:${r.lineColor}" data-route="${r.id}"><div class="line-card-identity"><span class="operator">${escapeHtml(r.operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ko)}</h3></div><p>${escapeHtml(reason||(r.countryId==='kr'?krRouteLabel(r):r.line.ja||r.line.en))}</p><footer><span>${r.stationCount||r.stations.length}개 ${word}</span><span>${action} ${reason?'':'→'}</span></footer></button>`}
 function renderRoutes(){const filtered=filteredRoutes(),query=$('#route-search').value;const allVisible=filtered,visible=allVisible.slice(0,routeRenderLimit);$('#route-count').textContent=`${filtered.length}개 노선 · ${visible.length}개 표시`;const random=category==='all'&&transportGroup==='all'&&operatorFilter==='all'&&!query&&(countryId!=='kr'||filtered.some(r=>!koreanRouteUnavailableReason(r)))?`<button class="line-card random" style="--route-color:#45c985" data-random-route><span class="operator">${countryId==='kr'?'KOREA TRANSIT NETWORK':'JAPAN RAIL NETWORK'}</span><h3>RANDOM</h3><p>${countryId==='kr'?'대한민국':'일본 전국'} 랜덤 노선</p><footer><span>PLAYABLE ROUTES</span><span>SELECT →</span></footer></button>`:'';const more=allVisible.length>visible.length?`<button class="line-card route-more" data-route-more><span class="operator">WINDOWED GRID</span><h3>＋ ${Math.min(96,allVisible.length-visible.length)}개 더 보기</h3><p>${allVisible.length-visible.length}개 노선 남음</p></button>`:'';$('#route-grid').innerHTML=random+(visible.length?(countryId==='kr'?krRouteCards(visible):visible.map(routeCard).join(''))+more:(countryId==='jp'&&category==='limited-express'&&famousExpressLoading?'<p class="muted" role="status">특급열차의 실제 선로와 정차역을 불러오는 중...</p>':'<p class="muted">검색 결과가 없습니다.</p>'))}
 function renderSelected(){const panel=$('#selected-line-preview');if(selectedGroup){const spec=NETWORK_GROUPS[selectedGroup],members=spec.routeIds.map(id=>routes.find(route=>route.id===id)).filter(Boolean),main=members[0];panel.innerHTML=`<div class="selected-line-card network-detail"><p class="eyebrow">${spec.kind==='services'?'운행계통':spec.kind==='physical'?'실제 노선':'분기·계통'} 선택</p><h3 id="selected-line-heading">${escapeHtml(spec.label||main?.operator.ko||'노선 그룹')}<span>${spec.kind==='services'?'운행하는 계통을 선택하세요':'노선을 선택하세요'}</span></h3><div class="network-branches">${members.map(route=>`<button data-route="${route.id}"><span><b>${escapeHtml(route.line.ja)}</b><small>${escapeHtml(route.line.ko)} · ${route.stations.length} STATIONS</small></span></button>`).join('')}</div></div>`;return}if(!selected){panel.innerHTML='<div class="selected-line-empty"><h3 id="selected-line-heading">노선을 선택하세요.</h3><p>오른쪽 목록에서 플레이할 노선을 선택합니다.</p></div>';return}panel.closest('.selected-line-panel').style.setProperty('--route-color',selected.lineColor);panel.innerHTML=`<div class="selected-line-card" style="--route-color:${selected.lineColor}"><div class="selected-line-operator"><span>${escapeHtml(selected.operator.ko)}</span></div><h3 id="selected-line-heading">${escapeHtml(selected.line.ja)}<span>${escapeHtml(selected.line.ko)} · ${escapeHtml(selected.line.en)}</span></h3>${selected.section?`<p class="selected-section">${escapeHtml(selected.section.ja)} · ${escapeHtml(selected.section.ko)}</p>`:''}<div class="selected-line-meta"><span>${selected.stations.length} STATIONS</span><span>${selected.dataKind==='trainService'?'LIMITED EXPRESS':selected.loop?'LOOP LINE':'FULL ROUTE'}</span></div><div class="selected-line-actions"><button class="selected-play" type="button" data-selected-play>PLAY THIS LINE <span>→</span></button><button class="selected-free-drive" type="button" data-selected-free-drive>FREE DRIVE <span>↗</span></button></div></div>`}
 function throughRouteIds(spec){return spec.routeSegments?.map(segment=>segment.routeId)||spec.routeIds||[]}
@@ -1952,6 +2234,7 @@ function configureJourneyPicker(){
   pattern.value=patternGroups[0]?.[0]||'';renderDirections()
 }
 function openSetup(route){
+  const blocked=koreanRouteUnavailableReason(route);if(blocked){toast('플레이 불가: '+blocked);return}
   selected=route;if(!selected||!Array.isArray(selected.stations)||selected.stations.length<2){toast('플레이 가능한 역이 부족한 노선입니다.');return}
   const settings=storage.settings();$('#game-map-mode').value=settings.mapMode;document.querySelector(`#setup-form [name="stationAdvance"][value="${settings.stationAdvance}"]`).checked=true;
   $('#setup-route').style.setProperty('--ticket-color',selected.lineColor);$('#setup-route').innerHTML=`<h3>${escapeHtml(selected.countryId==='kr'?krRouteLabel(selected):selected.line.ja)}</h3><p>${escapeHtml(selected.operator.en)} · ${escapeHtml(selected.line.en)}<br>${escapeHtml(selected.countryId==='kr'?krRouteLabel(selected):selected.line.ko)} · ${selected.stations.length} STATIONS</p>${selected.section?`<p class="setup-section">${escapeHtml(selected.section.ja)} · ${escapeHtml(selected.section.ko)}</p>`:''}<ol class="setup-stations">${selected.stations.map(station=>`<li><b>${escapeHtml(station.ja)}</b><span>${escapeHtml(station.romaji)} · ${escapeHtml(station.ko)}</span></li>`).join('')}</ol><div class="route-endpoints"><span>${escapeHtml(selected.stations[0].ja)}<small> 출발</small></span><span>${escapeHtml(selected.stations.at(-1).ja)}<small> 도착</small></span></div>`;
@@ -1993,7 +2276,7 @@ async function prepareKoreanFamilyChoices(route){
  else {$('#journey-picker').hidden=false;$('#journey-summary').textContent='현재 검증된 운행계통을 연결할 수 없습니다. 잠시 후 노선을 다시 선택해 주세요.'}
 
 }
-async function chooseRoute(id){let route=routes.find(r=>r.id===id);if(!route&&dataLoading){pendingRouteId=id;toast('철도 데이터를 불러오는 중입니다. 잠시만 기다려 주세요.');return false}if(!route){console.warn('Line not found:',id);toast('선택한 노선을 찾을 수 없습니다. 데이터를 다시 불러와 주세요.');return false}if(route.lazy){toast(`${route.line.ko} 노선 상세 데이터를 불러오는 중입니다.`);try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(route)),index=builtin.findIndex(item=>item.id===id);if(index>=0)builtin[index]=hydrated;if(countryId==='jp'&&id==='line-11328'){category='limited-express';operatorFilter='all'}refreshRoutes();route=routes.find(item=>item.id===id)}catch(error){console.error('Nationwide line load failed:',error);toast('이 노선의 상세 데이터를 불러오지 못했습니다.');return false}}selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
+async function chooseRoute(id){let route=routes.find(r=>r.id===id);if(route&&koreanRouteUnavailableReason(route)){toast('플레이 불가: '+koreanRouteUnavailableReason(route));return false}if(!route&&dataLoading){pendingRouteId=id;toast('철도 데이터를 불러오는 중입니다. 잠시만 기다려 주세요.');return false}if(!route){console.warn('Line not found:',id);toast('선택한 노선을 찾을 수 없습니다. 데이터를 다시 불러와 주세요.');return false}if(route.lazy){toast(`${route.line.ko} 노선 상세 데이터를 불러오는 중입니다.`);try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(route)),index=builtin.findIndex(item=>item.id===id);if(index>=0)builtin[index]=hydrated;if(countryId==='jp'&&id==='line-11328'){category='limited-express';operatorFilter='all'}refreshRoutes();route=routes.find(item=>item.id===id);if(koreanRouteUnavailableReason(route)){toast('플레이 불가: '+koreanRouteUnavailableReason(route));return false}}catch(error){console.error('Nationwide line load failed:',error);toast('이 노선의 상세 데이터를 불러오지 못했습니다.');return false}}selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
 function renderHomeNetwork(){const canvas=$('#home-network-canvas'),network=freeDriveNetworkRoutes();if(!canvas||!network.length)return;const tokyoBounds={minLat:35.50,maxLat:35.86,minLon:139.45,maxLon:139.96};drawNetworkCanvas(canvas,network,{bounds:tokyoBounds,alpha:.24,transferNodes:freeDrive?.graph||null})}
 function freeDriveRouteTabs(state){
   const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[state.routeId,...linked.filter(id=>id!==state.routeId)];
@@ -2014,8 +2297,10 @@ function renderGameFreeDriveOptions(state){
 }
 async function startFreeDrive(route){
   if(!route)return toast('자유주행을 시작할 노선을 선택해 주세요.');
+  if(koreanRouteUnavailableReason(route))return toast('자유주행 불가: '+koreanRouteUnavailableReason(route));
   let target=route;
   if(target.lazy){const ok=await chooseRoute(target.id);if(!ok)return;target=selected}
+  if(koreanRouteUnavailableReason(target))return toast('자유주행 불가: '+koreanRouteUnavailableReason(target));
   if(!target?.stations?.length)return toast('자유주행에 사용할 역 데이터가 없는 노선입니다.');
   if(target.countryId==='kr'){
     const counterpartIds=KR_APP_TRANSFER_PAIRS.flatMap(t=>t.routeIds.includes(target.id)?t.routeIds:[]).filter(id=>id!==target.id);
@@ -2080,7 +2365,7 @@ $('#region-tabs').addEventListener('click',event=>{const button=event.target.clo
 $('#category-tabs').addEventListener('click',e=>{const button=e.target.closest('[data-category]');if(!button)return;category=button.dataset.category;operatorFilter='all';selected=null;selectedGroup=null;routeRenderLimit=96;renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();if(countryId==='jp'&&category==='limited-express')void ensureFamousExpressRoutes()});
 $('#operator-filters').addEventListener('click',e=>{const button=e.target.closest('[data-operator]');if(!button)return;operatorFilter=button.dataset.operator;selected=null;selectedGroup=null;routeRenderLimit=96;renderOperatorFilters();renderRoutes();renderSelected()});
 $('#route-search').addEventListener('input',()=>{routeRenderLimit=96;renderRoutes()});
-$('#route-grid').addEventListener('click',e=>{const krFamily=e.target.closest('[data-kr-family]');if(krFamily){const r=filteredRoutes().find(r=>krLineFamily(r)===krFamily.dataset.krFamily);if(r){selectedGroup=null;void chooseRoute(r.id)}return}if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes();if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
+$('#route-grid').addEventListener('click',e=>{const krFamily=e.target.closest('[data-kr-family]');if(krFamily){const r=filteredRoutes().find(r=>krLineFamily(r)===krFamily.dataset.krFamily);if(r){selectedGroup=null;void chooseRoute(r.id)}return}if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes().filter(r=>!koreanRouteUnavailableReason(r));if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
 $('#selected-line-preview').addEventListener('click',e=>{const branch=e.target.closest('[data-route]');if(branch){selectedGroup=null;chooseRoute(branch.dataset.route);return}if(e.target.closest('[data-selected-play]')&&selected){openSetup(selected);return}if(e.target.closest('[data-selected-free-drive]')&&selected){startFreeDrive(selected);return}});
 $('#clear-route-selection').addEventListener('click',()=>{selected=null;selectedGroup=null;renderSelected();renderRoutes()});
 $('#game-free-drive-tabs')?.addEventListener('click',event=>{
