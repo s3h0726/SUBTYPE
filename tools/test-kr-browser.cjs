@@ -8,13 +8,15 @@ const {load,validate,assemble}=require('./lib/kr-network');
 const root=path.resolve(__dirname,'..'),base=path.join(root,'data/kr/v2'),data=load(base),{maps,errors}=validate(data,{base});
 assert.deepEqual(errors,[]);
 const all=process.argv.includes('--all-assemblable'),excludedTopology=[];
-const ids=all?data.services.flatMap(s=>{try{assemble(s,maps);return[s.id.replace('kr-osm-service-','')]}catch(e){excludedTopology.push({serviceId:s.id,reason:e.message});return[]}}):['15833659','15870296','15870297','15870344'];
+const ids=all?data.services.flatMap(s=>{if(s.access?.passengerCandidate===false){excludedTopology.push({serviceId:s.id,reason:s.access.classification});return[]}try{assemble(s,maps);return[s.id.replace('kr-osm-service-','')]}catch(e){excludedTopology.push({serviceId:s.id,reason:e.message});return[]}}):['15833659','15870296','15870297','15870344'];
 const candidates=ids.map(id=>{
  const s=maps.services.get('kr-osm-service-'+id),line=maps['passenger-lines'].get(s.passengerLineId),op=maps.operators.get(s.operatorIds[0]);
  return {id:s.id,countryId:'kr',schemaVersion:2,releaseStatus:'candidate',operatorId:op?.id||'unverified',operator:{...op?.names,ja:op?.names.ko||''},line:{...line.names,ja:line.names.ko},lineColor:line.color||'#126499',geometryReady:true,geometryStatus:'ready',...assemble(s,maps),services:[{id:s.id,nameKo:s.names.ko,stops:s.stops.map(c=>maps.stops.get(c.stopId).stationId)}]};
 });
+const inputs=['js/app.bundle.js','data/kr/v2/services.json','data/kr/v2/geometry.json'].map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')}));
+const qaBundle=fs.readFileSync(path.join(root,'js/app.bundle.js'),'utf8');
 const hook=`
-globalThis.__KR_BROWSER_QA__={game,go,storage,renderStats,renderGameMap,buildTypingModel,railDataRepository,freeDrive,FreeDrive,startFreeDrive,renderGameFreeDriveOptions,mapState:()=>gameRail};
+globalThis.__KR_BROWSER_QA__={game,go,storage,renderStats,renderGameMap,buildTypingModel,railDataRepository,freeDrive,FreeDrive,RouteEditor,startFreeDrive,renderGameFreeDriveOptions,mapState:()=>gameRail};
 `;
 const server=http.createServer((req,res)=>{
  const relative=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\//,'')||'index.html',file=path.resolve(root,relative);
@@ -22,7 +24,7 @@ const server=http.createServer((req,res)=>{
  if(relative==='__qa-candidates.json'){res.setHeader('Content-Type','application/json');res.end(JSON.stringify(candidates));return}
  try{
   let body=fs.readFileSync(file);
-  if(relative==='js/app.bundle.js')body=body.toString().replace('\n})().catch',hook+'\n})().catch');
+  if(relative==='js/app.bundle.js')body=qaBundle.replace('\n})().catch',hook+'\n})().catch');
   res.setHeader('Content-Type',({'.js':'text/javascript','.json':'application/json','.html':'text/html','.css':'text/css','.svg':'image/svg+xml','.png':'image/png'})[path.extname(file)]||'application/octet-stream');res.end(body);
  }catch{res.writeHead(404).end()}
 });
@@ -75,7 +77,7 @@ const server=http.createServer((req,res)=>{
    results.push({device,viewport,batchStart:start,runs,pageErrors});console.log(JSON.stringify({device,batchStart:start,pass:runs.filter(r=>r.status==='PASS').length,fail:runs.filter(r=>r.status==='FAIL').length}));await context.close();
   }
  }finally{await browser.close();server.close()}
- const inputs=['js/app.bundle.js','data/kr/v2/services.json','data/kr/v2/geometry.json'].map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')}));
+ for(const input of inputs)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,input.file))).digest('hex'),input.sha256,'INPUT_CHANGED_DURING_BROWSER_QA:'+input.file);
  const report={status:results.every(r=>!r.pageErrors.length&&r.runs.every(t=>t.status==='PASS'))?'PASS':'FAIL',scope:'Unapproved source candidate diagnostics; not national completion, verified timetable, transfer or release approval',limitations:['Synthetic composition events, not physical device IME','Motion disabled for batch traversal; animation timing not certified','TAB transfers and official timetable applicability not certified'],testedAt:new Date().toISOString(),inputs,excludedTopology,results};
  console.log(JSON.stringify(report,null,2));if(process.env.KR_BROWSER_REPORT)fs.writeFileSync(process.env.KR_BROWSER_REPORT,JSON.stringify(report,null,2)+'\n');if(report.status!=='PASS')process.exitCode=1;
 })().catch(e=>{console.error(e);server.close();process.exitCode=1});

@@ -5,6 +5,6 @@ test('joint line operators resolve from canonical source metadata and propagate 
  assert.equal(workspaceOperatorNames(w).ko,'동쪽 / 서쪽');b.names.ko='변경';assert.equal(workspaceOperatorNames(w).ko,'동쪽 / 변경');w.line.operatorIds=['west'];assert.throws(()=>workspaceOperatorNames(w));w.line.operatorIds=['east','absent'];assert.throws(()=>workspaceOperatorNames(w));
 });
 test('retired Toyama duplicate keeps legacy records on the surviving canonical route',()=>{
- const c={};vm.createContext(c);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../js/feature-flags.js'),'utf8').replace(/export /g,'')+';globalThis.canonicalTest=canonicalRouteId',c);
+ const c={};vm.createContext(c);require('./lib/test-kr-access-context.cjs')(c);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../js/feature-flags.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.canonicalTest=canonicalRouteId',c);
  assert.equal(c.canonicalTest('line-99422'),'line-toyama-city-3');assert.equal(c.canonicalTest('line-28002-honancho-branch'),'line-28002');assert.equal(c.canonicalTest('line-11302'),'line-11302');
 });

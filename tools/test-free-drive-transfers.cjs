@@ -1,5 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const c={normalize:v=>String(v),$:()=>null};vm.createContext(c);
+require('./lib/test-kr-access-context.cjs')(c);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'../js/free-drive.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.FreeDriveTest=FreeDrive',c);
 function engine(routes){const f=Object.create(c.FreeDriveTest.prototype);f.renderMap=()=>{};f.render=()=>{};f.emit=()=>{};f.setNetwork(routes);return f}
 function route(id,countryId='kr',schemaVersion=1){return{id,countryId,schemaVersion,geometryReady:true,stations:[{id:id+'-city',ko:'시청',ja:'시청',latitude:37.56,longitude:126.97},{id:id+'-next',ko:'다음',ja:id,latitude:37.57,longitude:126.98}]}}

@@ -1,5 +1,6 @@
 # Source evidence is hashed byte-for-byte; checkout must never rewrite it.
 data/kr/v2/source/** -text
+data/kr/v2/generated/*.csv text eol=lf
 # Content-addressed SVG assets and generated bundles must retain blob bytes
 # on Windows as well as Linux; their cache versions are SHA-256 of these bytes.
 *.svg text eol=lf

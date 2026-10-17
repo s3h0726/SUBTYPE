@@ -26,8 +26,14 @@ test('duplicate IDs and missing references fail validation',()=>{const d=fixture
 test('track gaps are not bridged or snapped',()=>{const d=fixture();d.geometry.push({...d.geometry[0],id:'gap',nodeIds:['99','100'],coordinates:[[37.0030001,127.001],[37.004,127]]});d.services[0].paths.push({geometryId:'gap',reverse:false});assert(compile(d).blocked[0].reasons.includes('DISCONNECTED_TRACK'))});
 test('station offsets must match source nodes and visit order',()=>{for(const [mutation,remaining] of [[d=>d.services[0].stops[1].geometryIndex=0,1],[d=>d.stops[0].osmNodeId='wrong',0]]){const d=fixture();mutation(d);assert.equal(compile(d).counts.releasedServices,remaining)}});
 test('national totals cannot be declared complete without an official inventory',()=>{const d=fixture();d.coverage.sourceIds=[];assert.equal(compile(d).status,'INCOMPLETE')});
+test('excluded research cannot publish or satisfy the official national service inventory',()=>{
+ const d=fixture();d.services.push({...d.services[0],id:'research',access:{passengerCandidate:false,classification:'REJECTED_ROAD',reason:'road'}});
+ let r=compile(d);assert.equal(r.status,'COMPLETE');assert.equal(r.counts.excludedServices,1);assert.equal(r.counts.releasedServices,2);assert.equal(r.excluded[0].serviceId,'research');
+ d.coverage.officialServiceIds.push('research');assert.equal(compile(d).status,'INCOMPLETE');
+});
+test('rail and road co-tagging remains blocked despite otherwise complete release evidence',()=>{const d=fixture();d.infrastructure=[{id:'road-conflict',geometryId:'g',highway:'track'}];const r=compile(d);assert.equal(r.routes.length,0);assert(r.blocked.every(b=>b.reasons.includes('ROAD_OR_AMBIGUOUS_RAIL_ROAD_WAY')))});
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
-function context(){const c={console,clearInterval,clearTimeout,queueMicrotask,renderGameMap(){},$(){return{hidden:false}},globalThis:null};c.globalThis=c;vm.createContext(c);return c}
+function context(){const c={console,clearInterval,clearTimeout,queueMicrotask,renderGameMap(){},$(){return{hidden:false}},globalThis:null};c.globalThis=c;vm.createContext(c);require('./lib/test-kr-access-context.cjs')(c);return c}
 test('runtime keeps exact directions, rejects invented destinations, preserves express track',()=>{const c=context();vm.runInContext(read('js/korean-service-resolver.js').replace(/export /g,'')+';globalThis.api={koreanVerifiedChoices,resolveKoreanVerifiedChoice}',c);const route=compile(fixture()).routes[0],choices=c.api.koreanVerifiedChoices(route);assert.equal(choices.length,2);for(const choice of choices){const r=c.api.resolveKoreanVerifiedChoice(choice,route);assert.equal(r.direction,'forward');assert.equal(r.route.geometry.length,4);assert.equal(r.service.stops.length,2);assert.throws(()=>c.api.resolveKoreanVerifiedChoice({...choice,destinationId:'s1'},route))}});
 test('actual Game advancement and finish run exactly once in both explicit directions',()=>{
  const c=context();vm.runInContext(read('js/game.js').replace(/^import[^\n]*\n/gm,'').replace(/^export\s+/gm,'')+';globalThis.GameTest=Game',c);const p=c.GameTest.prototype;
@@ -36,7 +42,7 @@ test('actual Game advancement and finish run exactly once in both explicit direc
   p.finish.call(sim);p.advance.call(sim);assert.equal(finishes,1);assert.equal(result.routeIntegrity,true);assert.equal(sim.index,j.stations.length-1);
  }
 });
-test('normalization never manufactures an all-stops service for v2',()=>{const c=context();vm.runInContext(read('js/data-loader.js').replace(/export /g,'')+';globalThis.normalizeTest=normalizeLine',c);const r=compile(fixture()).routes[0];const n=c.normalizeTest(r);assert.equal(n.services.length,2);assert(!n.services.some(s=>s.id==='local'))});
+test('normalization never manufactures an all-stops service for v2',()=>{const c=context();vm.runInContext(read('js/data-loader.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.normalizeTest=normalizeLine',c);const r=compile(fixture()).routes[0];const n=c.normalizeTest(r);assert.equal(n.services.length,2);assert(!n.services.some(s=>s.id==='local'))});
 test('omitted source stops cannot make a partial route releasable',()=>{const d=fixture();d.services[0].issues=[{code:'STOP_NOT_ON_ORDERED_TRACK',nodeId:'unknown'}];assert(compile(d).blocked[0].reasons.includes('UNRESOLVED_IMPORT_TOPOLOGY'))});
 test('candidate trains and unverified platform metadata cannot release',()=>{const d=fixture();d.trips[0].status='candidate';d.stops[3].verification='candidate';assert.equal(compile(d).routes.length,0)});
 

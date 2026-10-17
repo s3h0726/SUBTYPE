@@ -19,6 +19,7 @@ jobs:
       - run: npm run import:korea
       - run: npm run import:seoulmetro
       - run: npm run build:korea
+      - run: npm run audit:korea-relations62
       - name: Ensure source corrections and generated data are reproducible
         run: git diff --exit-code -- data/kr/v2
       - run: npm run validate:korea
@@ -33,7 +34,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: korea-rebuild-audit
-          path: data/kr/v2/generated/audit.json
+          path: |
+            data/kr/v2/generated/audit.json
+            data/kr/v2/generated/relations62-audit.*
   national-release:
     runs-on: ubuntu-latest
     needs: [implementation, browser-candidates]

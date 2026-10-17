@@ -49,5 +49,13 @@ module.exports=async function interactive(page){
  await page.keyboard.press('Tab');
  const unchanged=await page.evaluate(()=>{const f=globalThis.__KR_BROWSER_QA__.freeDrive;return{id:f.currentRouteId,key:f.currentKey}});
  if(JSON.stringify(unchanged)!==JSON.stringify(noTransfer))throw Error('TAB_WITHOUT_TRANSFER_MOVED');
- return{motion,transfer:{station:transfer.station,routeIds:transfer.ids,status:'PASS'},nonTransfer:'PASS',scope:'Candidate true-curve motion and actual Japanese multi-line TAB UI; Korean transfer metadata still requires individual review'};
+ const restrictedIds=require('../data/kr/v2/relation-access-policy.json').relations.filter(r=>!r.passengerCandidate).map(r=>'kr-osm-service-'+r.osmRelationId);
+ const access=await page.evaluate(ids=>{
+  const q=globalThis.__KR_BROWSER_QA__,f=Object.create(q.FreeDrive.prototype),e=Object.create(q.RouteEditor.prototype),routes=ids.map(id=>({id,countryId:'kr',geometryReady:true,stations:[{id:'a'},{id:'b'}]}));
+  for(const r of routes){if(q.game.start(r)!==false||q.game.start({id:'custom',segments:[{lineId:r.id}]})!==false||q.game.startFreeDrive({route:r,station:r.stations[0]})!==false)throw Error('RESTRICTED_GAME_START:'+r.id)}
+  f.renderMap=()=>{};f.render=()=>{};f.emit=()=>{};f.setNetwork(routes);if(f.graph.size)throw Error('RESTRICTED_FREE_DRIVE_GRAPH');
+  e.renderJourneyOptions=()=>{};e.setRailNetwork(routes);if(e.stationGraph.size)throw Error('RESTRICTED_CUSTOM_GRAPH');
+  return{restrictedRelations:ids.length,game:'PASS',freeDrive:'PASS',customGraph:'PASS'};
+ },restrictedIds);
+ return{motion,transfer:{station:transfer.station,routeIds:transfer.ids,status:'PASS'},nonTransfer:'PASS',access,scope:'Candidate true-curve motion, restricted-source entry guards and actual Japanese multi-line TAB UI; Korean transfer metadata still requires individual review'};
 };

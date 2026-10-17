@@ -108,17 +108,65 @@ Optional `KR_BROWSER_REPORT` and `KR_BROWSER_SCREENSHOTS` select output paths.
 Browser traversal success is distinct from official geometry, timetable,
 physical transfer and national release approval.
 
-The local 2026-10-17 run completed 248 candidate traversals on desktop and 248
-on mobile, with zero traversal failures and 69 candidates excluded for unresolved
-topology. Motion was disabled for batch traversal; these are synthetic IME
-composition events, not physical-device IME or animation-timing certification.
-The Korean test suite has 33 passing tests. The separate Japanese resolver
-regression covers 85 journeys. The common single-source check still has the
-same 58 failures reproduced with the starting commit's application files in
-this Windows checkout; none were deleted or suppressed. The production build
-remains blocked by the nationwide gate. CI now runs the candidate browser job
-before the national release job, and retains its report as an artifact.
+Browser reports record the input hashes and reject input changes during a run.
+Motion is disabled for batch traversal; the interactive scenarios separately
+exercise real curves, delayed map readiness, pause/resume and multi-line TAB.
+Synthetic IME events do not certify physical device input. The Japanese resolver
+regression covers 85 journeys. The common validation and single-source checks
+pass; the earlier 58 failures are historical, not current ignored failures.
+The production build remains blocked by the nationwide gate. CI runs the
+candidate browser job before the national release job and retains its report.
 
 `node tools/match-kr-stations.js` produces a review queue using exact names and
 positions within 500 metres. It does not approve or merge stations. Multiple
 matches remain ambiguous, and a station centroid never replaces track geometry.
+
+## 62-relation repair, 2026-10-17
+
+`relation62-baseline.json` freezes the 62 outstanding source failures at commit
+7b15c9ee. `relation-access-policy.json` retains every requested ID and number.
+Run `npm run audit:korea-relations62` for per-relation JSON, CSV and Markdown
+under `generated/`; a completed source metadata audit does not imply PASS.
+
+`source/osm-62-20261017/` preserves all 62 relations, their 5,157 directly
+referenced ways and 405 directly referenced nodes, including roads, buildings,
+platforms and construction. Its replication timestamp is 2026-10-16T20:21:21Z.
+The live OSM API returned HTTP 429, so these are country-extract snapshots,
+not live API full-relation responses or recursive relation closure. Recreate
+with `tools/extract-kr-62-snapshot.py PBF IDS_JSON OUTPUT_DIR` (pyosmium).
+The original nationwide geometry and relation snapshots remain unchanged.
+The newer version of relation 12239797 is research evidence, not silently
+substituted into the older importer snapshot.
+
+Six road/unopened/nonpassenger records are excluded. Three unidentified records
+and two restricted airport shuttles remain quarantined for research. All eleven
+are blocked in route loading, PLAY, saved CUSTOM segments, the CUSTOM graph and
+free drive. The airport operator confirms that returning to the terminal after
+boarding the departure shuttle is restricted; unrestricted reverse service is
+not generated. Rail/road co-tagged ways retain their original tags and block
+release pending review. Source research geometry is never renamed as public rail.
+
+Five of those 62 source candidates now assemble: Busan 1 (8255697), Bulamsan to
+Geumjeong (16665960), Nowon to Sadang (16665969), Seoul to Kwangwoon University
+(16712693), and Seoul to Dongmyo (16712696). Busan preserves all source ways and
+binds six station facilities to explicit existing stop-position nodes, checked
+against the operator's forty-station code/name order. Its yard way lies before
+the boarding interval and is not travelled; the stricter release review remains.
+The four capital-area reconstructions retain every original source way/stop and
+use complete actual official train calls on existing directional donor tracks.
+No new geometry, coordinate snapping or inferred reverse edge is introduced.
+
+Eight additional explicit line 1 display-name/code crosswalks link pinned KRIC
+identity records to current timetable station codes. Coordinates check these
+already specified identities; they never select a track or merge station places.
+The original sixteen line 4 name reviews remain. The thirty-eight timetable
+bindings preserve complete clocks and all DAY/SAT/END groups for 2,271 uniquely
+calendar-qualified train records. Only Seoul to Kwangwoon of the five recovered
+candidates has all three day groups. Others retain incomplete calendar review.
+Holiday exceptions, station/platform metadata, operating direction and release
+approval remain separate requirements. There are zero release-approved services.
+
+Source assembly totals are 260 of 317, with 57 still failing (including the eleven
+excluded/quarantined records). Against the older 69-failure baseline, twelve have
+recovered. The sixty Korean tests and separate Japanese regression are required;
+none of these counts certify nationwide completeness. Keep main and Pages gated.

@@ -19,6 +19,8 @@ for(const c of corrections)if(!relations.some(r=>r.id===c.relationId))throw Erro
 if(new Set(corrections.map(c=>c.relationId)).size!==corrections.length)throw Error('DUPLICATE_TOPOLOGY_CORRECTION');
 const railRoutes=relations.filter(r=>r.tags.type==='route'&&['train','subway','light_rail','tram','monorail','funicular'].includes(r.tags.route));
 const railMembers=new Set(railRoutes.flatMap(r=>r.members.filter(m=>m.type==='n').map(m=>m.ref)));
+const stopBindingConfigs=JSON.parse(fs.readFileSync(path.join(base,'stop-position-bindings.json'),'utf8'));
+for(const config of stopBindingConfigs)for(const b of config.bindings)railMembers.add(b.boundNodeId);
 const nodes=new Map(rawNodes.filter(n=>['station','halt','tram_stop'].includes(n.tags.railway)||railMembers.has(n.id)).map(n=>[n.id,n]));
 const areas=relations.filter(r=>r.tags.public_transport==='stop_area'&&r.members.some(m=>m.type==='n'&&nodes.has(m.ref)));
 const areaByNode=new Map();
@@ -26,18 +28,20 @@ for(const area of areas)for(const member of area.members.filter(m=>m.type==='n')
  const ids=areaByNode.get(member.ref)||[];ids.push(area.id);areaByNode.set(member.ref,ids);
 }
 const stations=new Map(),stops=[],operators=new Map();
+const stationIdentityByBoundNode=new Map(stopBindingConfigs.flatMap(c=>c.bindings.map(b=>[b.boundNodeId,b.originalNodeId])));
 const opId=name=>{if(!name)return null;const id='kr-op-'+crypto.createHash('sha256').update(name.normalize('NFC').trim()).digest('hex').slice(0,12);if(!operators.has(id))operators.set(id,{id,names:{ko:name,en:''},verification:'candidate',sourceRefs:[ref('operator-tag',name)]});return id};
 for(const node of nodes.values()){
- const memberships=areaByNode.get(node.id)||[],area=memberships.length===1?areas.find(a=>a.id===memberships[0]):null;
- const id=area?'kr-osm-area-'+area.id:'kr-osm-station-'+node.id;
- const tags=area?{...node.tags,...area.tags}:node.tags;
+ const identityNode=nodes.get(stationIdentityByBoundNode.get(node.id))||node;
+ const memberships=areaByNode.get(identityNode.id)||[],area=memberships.length===1?areas.find(a=>a.id===memberships[0]):null;
+ const id=area?'kr-osm-area-'+area.id:'kr-osm-station-'+identityNode.id;
+ const tags=area?{...identityNode.tags,...area.tags}:identityNode.tags;
  if(!stations.has(id))stations.set(id,{id,names:names(tags),coordinates:{lat:node.lat,lon:node.lon},operatorIds:[],status:'candidate',nameHistory:[],transferStationIds:[],sourceRefs:[ref(area?'relation':'node',area?.id||node.id)]});
  const station=stations.get(id),operatorId=opId(tags.operator);
  if(operatorId&&!station.operatorIds.includes(operatorId))station.operatorIds.push(operatorId);
  stops.push({id:'kr-osm-stop-'+node.id,stationId:id,osmNodeId:node.id,coordinates:{lat:node.lat,lon:node.lon},number:node.tags.ref||null,platformCode:node.tags.local_ref||null,sourceRefs:[ref('node',node.id)],verification:'candidate'});
 }
 const stopByNode=new Map(stops.map(s=>[s.osmNodeId,s]));
-const infrastructure=rawWays.map(w=>({id:'kr-track-'+w.id,geometryId:'kr-geometry-'+w.id,mode:w.tags.railway,operatorId:opId(w.tags.operator),service:w.tags.service||null,tunnel:w.tags.tunnel||null,bridge:w.tags.bridge||null,layer:w.tags.layer||null,oneway:w.tags.oneway||null,usage:w.tags.usage||null,sourceRefs:[ref('way',w.id)],verification:'source-extracted'}));
+const infrastructure=rawWays.map(w=>({id:'kr-track-'+w.id,geometryId:'kr-geometry-'+w.id,mode:w.tags.railway,operatorId:opId(w.tags.operator),service:w.tags.service||null,tunnel:w.tags.tunnel||null,bridge:w.tags.bridge||null,layer:w.tags.layer||null,oneway:w.tags.oneway||null,...(w.tags.highway?{highway:w.tags.highway}:{}),usage:w.tags.usage||null,sourceRefs:[ref('way',w.id)],verification:'source-extracted'}));
 const geometry=rawWays.map(w=>({id:'kr-geometry-'+w.id,nodeIds:w.nodeIds,coordinates:w.coordinates,sourceRef:ref('way',w.id),sourceVersion:w.version}));
 const masterByRoute=new Map();
 for(const r of relations.filter(r=>r.tags.type==='route_master'))for(const m of r.members.filter(m=>m.type==='r')){const list=masterByRoute.get(m.ref)||[];list.push(r);masterByRoute.set(m.ref,list)}
@@ -47,7 +51,8 @@ for(const r of railRoutes){
  const lineId='kr-osm-line-'+master.id,operatorId=opId(master.tags.operator||r.tags.operator);
  if(!lines.has(lineId))lines.set(lineId,{id:lineId,names:names(master.tags),operatorIds:operatorId?[operatorId]:[],color:master.tags.colour||r.tags.colour||null,regionId:null,mode:r.tags.route,status:'candidate',sourceRefs:[ref('relation',master.id)]});
  const {members:orderedWays,evidence:topologyCorrection}=applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id));
- const sourceStopMembers=r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
+ const stopBinding=stopBindingConfigs.find(c=>c.relationId===r.id);
+ const sourceStopMembers=stopBinding?require('./lib/kr-stop-bindings').bindSourceStops(r,new Map(rawNodes.map(n=>[n.id,n])),stopBinding,fs.readFileSync(path.join(base,stopBinding.officialFile))):r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
  const orientation=orientOrderedWays(orderedWays,ways,sourceStopMembers.map(m=>m.ref));
  const issues=[],paths=[],nodeIds=[];
  for(let i=0;i<orderedWays.length;i++){
@@ -67,7 +72,7 @@ for(const r of railRoutes){
   nodeIds.push(...(nodeIds.length&&nodeIds.at(-1)===refs[0]?refs.slice(1):refs));
  }
  if(orientation.status!=='UNIQUE_SOURCE_ORDER')issues.push({code:orientation.status,wayId:orientation.wayId});
- const members=r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
+ const members=sourceStopMembers;
  const serviceStops=[];let previous=-1;
  for(const m of members){const stop=stopByNode.get(m.ref),index=nodeIds.indexOf(m.ref,previous+1);
   if(!stop){issues.push({code:'UNKNOWN_STOP',nodeId:m.ref});continue}
@@ -77,7 +82,7 @@ for(const r of railRoutes){
  if(members.length<2)issues.push({code:'MISSING_ORDERED_STOPS'});
  if(!paths.length)issues.push({code:'MISSING_TRACK'});
  issues.push({code:'OFFICIAL_TIMETABLE_REQUIRED'});
- services.push({id:'kr-osm-service-'+r.id,passengerLineId:lineId,names:names(r.tags),operatorIds:operatorId?[operatorId]:[],kind:r.tags.service||r.tags.route,directionId:'osm-relation-'+r.id,paths,stops:serviceStops,osmFrom:r.tags.from||null,osmTo:r.tags.to||null,status:'candidate',sourceRefs:[ref('relation',r.id)],...(topologyCorrection?{topologyCorrection}:{}),issues});
+ services.push({id:'kr-osm-service-'+r.id,passengerLineId:lineId,names:names(r.tags),operatorIds:operatorId?[operatorId]:[],kind:r.tags.service||r.tags.route,directionId:'osm-relation-'+r.id,paths,stops:serviceStops,osmFrom:r.tags.from||null,osmTo:r.tags.to||null,status:'candidate',sourceRefs:[ref('relation',r.id)],...(topologyCorrection?{topologyCorrection}:{}),...(stopBinding?{stopPositionBinding:{sourceId:stopBinding.sourceId,relationId:r.id,bindings:stopBinding.bindings,reviewedOn:stopBinding.reviewedOn}}:{}),issues});
 }
 // Stop-area groups are transfer relationships, never automatic physical merges.
 for(const group of relations.filter(r=>r.tags.public_transport==='stop_area_group')){
@@ -86,7 +91,7 @@ for(const group of relations.filter(r=>r.tags.public_transport==='stop_area_grou
 }
 // Exact reviewed station-code bindings, never suffix stripping or fuzzy names.
 const stationNamesFile=path.join(base,'station-name-corrections.json');
-if(fs.existsSync(stationNamesFile))require('./lib/kr-station-names').applyOfficialStationNames(stations,stops,JSON.parse(fs.readFileSync(stationNamesFile,'utf8')),JSON.parse(fs.readFileSync(path.join(base,'seoulmetro-trip-candidates.json'),'utf8')));
+if(fs.existsSync(stationNamesFile))require('./lib/kr-station-names').applyOfficialStationNames(stations,stops,JSON.parse(fs.readFileSync(stationNamesFile,'utf8')),JSON.parse(fs.readFileSync(path.join(base,'seoulmetro-trip-candidates.json'),'utf8')),JSON.parse(fs.readFileSync(path.join(base,'official-station-reference.json'),'utf8')));
 // Fail-closed, separately reviewed source supplements for incomplete relations.
 const reconstructionFile=path.join(base,'service-reconstructions.json');
 if(fs.existsSync(reconstructionFile)){
@@ -95,12 +100,17 @@ if(fs.existsSync(reconstructionFile)){
  const snapshotHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'source/seoulmetro/timetable-20260901.csv'))).digest('hex');
  for(const config of configs){if(snapshotHash!==config.timetableSnapshotSha256)throw Error('STALE_OFFICIAL_RECONSTRUCTION_SNAPSHOT');const index=services.findIndex(s=>s.id===config.serviceId);if(index<0)throw Error('MISSING_RECONSTRUCTION_TARGET');services[index]=reconstructService(services[index],maps.services.get(config.donorServiceId),maps,config,relations.find(r=>'kr-osm-service-'+r.id===config.serviceId),trips)}
 }
+const accessPolicy=JSON.parse(fs.readFileSync(path.join(base,'relation-access-policy.json'),'utf8'));
+require('./lib/kr-access-policy').applyAccessPolicy(services,accessPolicy);
+require('./lib/kr-access-policy').writeBrowserAccessPolicy(base,accessPolicy);
 write('operators',[...operators.values()]);write('infrastructure',infrastructure);write('stations',[...stations.values()]);write('stops',stops);write('passenger-lines',[...lines.values()]);write('services',services);write('geometry',geometry);
 // Human-reviewed official evidence and trips must survive repeat OSM imports.
 for(const [name,value] of Object.entries({trips:[],reviews:[],assets:[], 'station-signs':[{id:'kr-temporary-jr',style:'jr-east',official:false}],coverage:{status:'INCOMPLETE',asOf:'2026-10-15',officialPassengerLineIds:null,officialStationCount:null,sourceIds:[]}}))if(!fs.existsSync(path.join(base,name+'.json')))write(name,value);
 const sourceFiles=['osm-nodes','osm-ways','osm-relations','osm-manifest'].map(n=>({path:'source/'+n+'.json',sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'source',n+'.json'))).digest('hex')}));
 const priorSources=fs.existsSync(path.join(base,'sources.json'))?JSON.parse(fs.readFileSync(path.join(base,'sources.json'),'utf8')):[];
-write('sources',[{...manifest,files:sourceFiles},...priorSources.filter(s=>s.kind!=='osm')]);
+const supplemental=JSON.parse(fs.readFileSync(path.join(base,'supplemental-sources.json'),'utf8')).map(s=>({...s,files:s.filePaths.map(p=>({path:p,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(base,p))).digest('hex')}))}));
+const replacements=new Map([{...manifest,files:sourceFiles},...supplemental].map(s=>[s.id,s])),priorIds=new Set(priorSources.map(s=>s.id));
+write('sources',[...priorSources.map(s=>replacements.get(s.id)||s),...[...replacements.values()].filter(s=>!priorIds.has(s.id))]);
 if(!fs.existsSync(overrideFile))fs.writeFileSync(overrideFile,'{}\n');
 const issues=services.flatMap(s=>s.issues).reduce((a,x)=>(a[x.code]=(a[x.code]||0)+1,a),{});
 write('import-report',{status:'INCOMPLETE',sourceId,counts:{operators:operators.size,infrastructure:infrastructure.length,stations:stations.size,stops:stops.length,passengerLines:lines.size,serviceCandidates:services.length,verifiedServices:0},issues});

@@ -2,8 +2,8 @@
   "status": "INCOMPLETE",
   "baselineCommit": "f69b39d3adde9d56c49a1f975052942ce3a3ce5b",
   "baselineBlocked": 69,
-  "recovered": 7,
-  "remaining": 62,
+  "recovered": 12,
+  "remaining": 57,
   "scope": "Source candidate restoration, never release approval",
   "rows": [
     {
@@ -5082,17 +5082,17 @@
         ]
       },
       "after": {
-        "assemblable": false,
-        "error": "UNRESOLVED_IMPORT_TOPOLOGY",
-        "stopCount": 0,
+        "assemblable": true,
+        "error": null,
+        "stopCount": 40,
         "failureCodes": [
           "NON_PUBLIC_TRACK_REVIEW",
-          "ORDERED_STOPS_NOT_ON_TRACK",
-          "STOP_NOT_ON_ORDERED_TRACK",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ]
       },
-      "classifications": [],
+      "classifications": [
+        "REVIEWED_COMPLETE_MEMBER_ORDER_REPAIR"
+      ],
       "oneWayConflicts": [],
       "issues": [
         {
@@ -5102,164 +5102,6 @@
           "toCoordinates": null,
           "stopCoordinates": null,
           "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "ORDERED_STOPS_NOT_ON_TRACK",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "STOP_NOT_ON_ORDERED_TRACK",
-          "nodeId": "355173825",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": [
-            35.1062348,
-            128.9667606
-          ],
-          "sourceStopInterval": [
-            {
-              "nodeId": "5584681129",
-              "name": "신평"
-            },
-            {
-              "nodeId": "355173825",
-              "name": "하단"
-            },
-            {
-              "nodeId": "12258680145",
-              "name": "당리"
-            }
-          ],
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "STOP_NOT_ON_ORDERED_TRACK",
-          "nodeId": "355173829",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": [
-            35.09984,
-            128.983094
-          ],
-          "sourceStopInterval": [
-            {
-              "nodeId": "12258680145",
-              "name": "당리"
-            },
-            {
-              "nodeId": "355173829",
-              "name": "사하"
-            },
-            {
-              "nodeId": "355173831",
-              "name": "괴정"
-            }
-          ],
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "STOP_NOT_ON_ORDERED_TRACK",
-          "nodeId": "355173831",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": [
-            35.0999307,
-            128.992862
-          ],
-          "sourceStopInterval": [
-            {
-              "nodeId": "355173829",
-              "name": "사하"
-            },
-            {
-              "nodeId": "355173831",
-              "name": "괴정"
-            },
-            {
-              "nodeId": "355173833",
-              "name": "대티"
-            }
-          ],
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "STOP_NOT_ON_ORDERED_TRACK",
-          "nodeId": "355173833",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": [
-            35.1031541,
-            128.9999412
-          ],
-          "sourceStopInterval": [
-            {
-              "nodeId": "355173831",
-              "name": "괴정"
-            },
-            {
-              "nodeId": "355173833",
-              "name": "대티"
-            },
-            {
-              "nodeId": "355173834",
-              "name": "서대신"
-            }
-          ],
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "STOP_NOT_ON_ORDERED_TRACK",
-          "nodeId": "355173834",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": [
-            35.1108608,
-            129.0120406
-          ],
-          "sourceStopInterval": [
-            {
-              "nodeId": "355173833",
-              "name": "대티"
-            },
-            {
-              "nodeId": "355173834",
-              "name": "서대신"
-            },
-            {
-              "nodeId": "1768527535",
-              "name": "동대신"
-            }
-          ],
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "STOP_NOT_ON_ORDERED_TRACK",
-          "nodeId": "355173841",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": [
-            35.0979243,
-            129.0349473
-          ],
-          "sourceStopInterval": [
-            {
-              "nodeId": "12258737398",
-              "name": "자갈치"
-            },
-            {
-              "nodeId": "355173841",
-              "name": "남포"
-            },
-            {
-              "nodeId": "12258737399",
-              "name": "중앙"
-            }
-          ],
           "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
         },
         {
@@ -25296,7 +25138,15 @@
       ],
       "officialStopOrder": null,
       "officialSourceUrl": null,
-      "reconstructionEvidence": null,
+      "reconstructionEvidence": {
+        "donorServiceId": "kr-osm-service-2718884",
+        "sourceId": "seoulmetro-official-20260901",
+        "officialTripIds": [
+          "seoulmetro-official-20260901-train-6805"
+        ],
+        "reviewedOn": "2026-10-17",
+        "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+      },
       "before": {
         "assemblable": false,
         "failureCodes": [
@@ -25306,36 +25156,19 @@
         ]
       },
       "after": {
-        "assemblable": false,
-        "error": "UNRESOLVED_IMPORT_TOPOLOGY",
-        "stopCount": 0,
+        "assemblable": true,
+        "error": null,
+        "stopCount": 35,
         "failureCodes": [
-          "AMBIGUOUS_ORIENTATION",
-          "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ]
       },
       "classifications": [
-        "INCOMPLETE_SOURCE_STOP_SEQUENCE"
+        "INCOMPLETE_SOURCE_STOP_SEQUENCE",
+        "OFFICIAL_TRAIN_AND_EXISTING_DIRECTIONAL_TRACK_SUPPLEMENT"
       ],
       "oneWayConflicts": [],
       "issues": [
-        {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
@@ -25929,7 +25762,16 @@
       ],
       "officialStopOrder": null,
       "officialSourceUrl": null,
-      "reconstructionEvidence": null,
+      "reconstructionEvidence": {
+        "donorServiceId": "kr-osm-service-2718884",
+        "sourceId": "seoulmetro-official-20260901",
+        "officialTripIds": [
+          "seoulmetro-official-20260901-train-7348",
+          "seoulmetro-official-20260901-train-7350"
+        ],
+        "reviewedOn": "2026-10-17",
+        "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+      },
       "before": {
         "assemblable": false,
         "failureCodes": [
@@ -25939,36 +25781,19 @@
         ]
       },
       "after": {
-        "assemblable": false,
-        "error": "UNRESOLVED_IMPORT_TOPOLOGY",
-        "stopCount": 0,
+        "assemblable": true,
+        "error": null,
+        "stopCount": 23,
         "failureCodes": [
-          "AMBIGUOUS_ORIENTATION",
-          "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ]
       },
       "classifications": [
-        "INCOMPLETE_SOURCE_STOP_SEQUENCE"
+        "INCOMPLETE_SOURCE_STOP_SEQUENCE",
+        "OFFICIAL_TRAIN_AND_EXISTING_DIRECTIONAL_TRACK_SUPPLEMENT"
       ],
       "oneWayConflicts": [],
       "issues": [
-        {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
@@ -26238,9 +26063,35 @@
           "name": "서울역"
         }
       ],
-      "officialStopOrder": null,
-      "officialSourceUrl": null,
-      "reconstructionEvidence": null,
+      "officialStopOrder": [
+        "서울역",
+        "시청",
+        "종각",
+        "종로3가",
+        "종로5가",
+        "동대문",
+        "동묘앞",
+        "신설동",
+        "제기동",
+        "청량리",
+        "회기",
+        "외대앞",
+        "신이문",
+        "석계",
+        "광운대"
+      ],
+      "officialSourceUrl": "https://www.data.go.kr/data/15098251/fileData.do",
+      "reconstructionEvidence": {
+        "donorServiceId": "kr-osm-service-8691898",
+        "sourceId": "seoulmetro-official-20260901",
+        "officialTripIds": [
+          "seoulmetro-official-20260901-train-7",
+          "seoulmetro-official-20260901-train-492",
+          "seoulmetro-official-20260901-train-956"
+        ],
+        "reviewedOn": "2026-10-17",
+        "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+      },
       "before": {
         "assemblable": false,
         "failureCodes": [
@@ -26250,36 +26101,19 @@
         ]
       },
       "after": {
-        "assemblable": false,
-        "error": "UNRESOLVED_IMPORT_TOPOLOGY",
-        "stopCount": 0,
+        "assemblable": true,
+        "error": null,
+        "stopCount": 15,
         "failureCodes": [
-          "AMBIGUOUS_ORIENTATION",
-          "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ]
       },
       "classifications": [
-        "INCOMPLETE_SOURCE_STOP_SEQUENCE"
+        "INCOMPLETE_SOURCE_STOP_SEQUENCE",
+        "OFFICIAL_TRAIN_AND_EXISTING_DIRECTIONAL_TRACK_SUPPLEMENT"
       ],
       "oneWayConflicts": [],
       "issues": [
-        {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
@@ -26435,7 +26269,15 @@
       ],
       "officialStopOrder": null,
       "officialSourceUrl": null,
-      "reconstructionEvidence": null,
+      "reconstructionEvidence": {
+        "donorServiceId": "kr-osm-service-8691898",
+        "sourceId": "seoulmetro-official-20260901",
+        "officialTripIds": [
+          "seoulmetro-official-20260901-train-245"
+        ],
+        "reviewedOn": "2026-10-17",
+        "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+      },
       "before": {
         "assemblable": false,
         "failureCodes": [
@@ -26445,36 +26287,19 @@
         ]
       },
       "after": {
-        "assemblable": false,
-        "error": "UNRESOLVED_IMPORT_TOPOLOGY",
-        "stopCount": 0,
+        "assemblable": true,
+        "error": null,
+        "stopCount": 7,
         "failureCodes": [
-          "AMBIGUOUS_ORIENTATION",
-          "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ]
       },
       "classifications": [
-        "INCOMPLETE_SOURCE_STOP_SEQUENCE"
+        "INCOMPLETE_SOURCE_STOP_SEQUENCE",
+        "OFFICIAL_TRAIN_AND_EXISTING_DIRECTIONAL_TRACK_SUPPLEMENT"
       ],
       "oneWayConflicts": [],
       "issues": [
-        {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,

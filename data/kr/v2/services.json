@@ -1200,7 +1200,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 1,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-2204611",
@@ -1947,7 +1953,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 2,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-2718884",
@@ -4285,7 +4297,7 @@
     "stops": [],
     "osmFrom": null,
     "osmTo": null,
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -4323,7 +4335,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 3,
+      "classification": "REJECTED_ROAD",
+      "passengerCandidate": false,
+      "reason": "도로 way가 포함된 철도 오분류 자료"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-3573517",
@@ -6033,7 +6052,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 4,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-4730525",
@@ -6183,7 +6208,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 5,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-4744311",
@@ -14921,7 +14952,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 6,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-6462562",
@@ -19717,7 +19754,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 7,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-7796215",
@@ -21303,7 +21346,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 8,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-7798599",
@@ -23264,7 +23313,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 9,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-7845964",
@@ -25602,7 +25657,7 @@
     "stops": [],
     "osmFrom": "시청",
     "osmTo": "유덕",
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -25789,7 +25844,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 10,
+      "classification": "EXCLUDED_UNOPEN",
+      "passengerCandidate": false,
+      "reason": "미개통 광주 도시철도 2호선"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-8226481",
@@ -27701,7 +27763,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 11,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-8247016",
@@ -27983,8 +28051,38 @@
         "alighting": true
       },
       {
+        "stopId": "kr-osm-stop-12258680144",
+        "geometryIndex": 99,
+        "boarding": true,
+        "alighting": true
+      },
+      {
         "stopId": "kr-osm-stop-12258680145",
         "geometryIndex": 108,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-12258680146",
+        "geometryIndex": 117,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-12258680175",
+        "geometryIndex": 128,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-12258680181",
+        "geometryIndex": 135,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-12258737394",
+        "geometryIndex": 148,
         "boarding": true,
         "alighting": true
       },
@@ -28003,6 +28101,12 @@
       {
         "stopId": "kr-osm-stop-12258737398",
         "geometryIndex": 193,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5784515809",
+        "geometryIndex": 203,
         "boarding": true,
         "alighting": true
       },
@@ -28155,42 +28259,64 @@
         "id": "8255697"
       }
     ],
+    "stopPositionBinding": {
+      "sourceId": "humetro-official-map-20261017",
+      "relationId": "8255697",
+      "bindings": [
+        {
+          "originalNodeId": "355173825",
+          "boundNodeId": "12258680144",
+          "originalNodeHash": "a552fa7e7e32dfd1602b1841722a9cb47df3111113621570747d343df5d37385",
+          "boundNodeHash": "96cc547f2d549669655418730ddbdb678a29cd129bd3936fc470b3280d6a5f66"
+        },
+        {
+          "originalNodeId": "355173829",
+          "boundNodeId": "12258680146",
+          "originalNodeHash": "e709b996f0dbd2a4be9cd513be7566df7ccaad99f7a0c907d46a2f06a8cbc021",
+          "boundNodeHash": "95400039f6445e3ed980e5766c4659fedf899bf1190664746be820144082e7a3"
+        },
+        {
+          "originalNodeId": "355173831",
+          "boundNodeId": "12258680175",
+          "originalNodeHash": "fa7ce4b94dfa0aecf880c24a0198cbbbd4517af1b0f486b3ae7d994a3a632211",
+          "boundNodeHash": "e4305d20f6e2d335f75b5553a713479ae4cc9115620a1a308ba9a19018ded009"
+        },
+        {
+          "originalNodeId": "355173833",
+          "boundNodeId": "12258680181",
+          "originalNodeHash": "fbf49bf9149242b2502d3081dd609b7ea5d40664e7a717d006df3643ae94536d",
+          "boundNodeHash": "fcbec67903e548e2c84de828f367874b28ca7e5e5fb696988795f1d255d2eb00"
+        },
+        {
+          "originalNodeId": "355173834",
+          "boundNodeId": "12258737394",
+          "originalNodeHash": "bcacf0a14be8acc9b7c87c49c5ef085fa6b87905e107f76166ead5ccde722a7f",
+          "boundNodeHash": "b3c41f7c133c0107077cc0f8b27b9c3cc7b16edc39b77bf5c7e899ac327faa38"
+        },
+        {
+          "originalNodeId": "355173841",
+          "boundNodeId": "5784515809",
+          "originalNodeHash": "4b13c313b6610e988211d3ffc39192f1741baf9155fe4fd190cc47cb614f0447",
+          "boundNodeHash": "8b2db6da06e94f5931f7630140695b881ee5ebcba7a34d0a61810d325d63481a"
+        }
+      ],
+      "reviewedOn": "2026-10-17"
+    },
     "issues": [
       {
         "code": "NON_PUBLIC_TRACK_REVIEW",
         "wayId": "1324738166"
       },
       {
-        "code": "ORDERED_STOPS_NOT_ON_TRACK"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "355173825"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "355173829"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "355173831"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "355173833"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "355173834"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "355173841"
-      },
-      {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 12,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-8258657",
@@ -31134,7 +31260,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 13,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-8272971",
@@ -32663,7 +32795,7 @@
     "stops": [],
     "osmFrom": null,
     "osmTo": null,
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -32948,7 +33080,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 14,
+      "classification": "QUARANTINED_UNKNOWN",
+      "passengerCandidate": false,
+      "reason": "노선·운영기관·영업 구간 식별 미완료"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-8448307",
@@ -32964,7 +33103,7 @@
     "stops": [],
     "osmFrom": null,
     "osmTo": null,
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -32985,7 +33124,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 15,
+      "classification": "QUARANTINED_UNKNOWN",
+      "passengerCandidate": false,
+      "reason": "노선·운영기관·영업 구간 식별 미완료"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-8656357",
@@ -45711,7 +45857,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 16,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-8820537",
@@ -46509,7 +46661,7 @@
     "stops": [],
     "osmFrom": null,
     "osmTo": null,
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -46692,7 +46844,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 17,
+      "classification": "EXCLUDED_UNOPEN",
+      "passengerCandidate": false,
+      "reason": "미개통 광주 도시철도 2호선"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-9849062",
@@ -64370,7 +64529,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 18,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-10791319",
@@ -64902,7 +65067,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 19,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-10791320",
@@ -65232,7 +65403,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 20,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-10791329",
@@ -65610,7 +65787,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 21,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-10799694",
@@ -70265,7 +70448,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 22,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-10922025",
@@ -74643,7 +74832,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 23,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11208904",
@@ -77089,7 +77284,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 24,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11214334",
@@ -79691,7 +79892,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 25,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11214335",
@@ -82849,7 +83056,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 26,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11214689",
@@ -83827,7 +84040,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 27,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11214690",
@@ -84805,7 +85024,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 28,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11272645",
@@ -91747,7 +91972,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 29,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11314591",
@@ -93543,7 +93774,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 30,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11314592",
@@ -95913,7 +96150,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 31,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11314593",
@@ -97481,7 +97724,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 32,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11314594",
@@ -100467,7 +100716,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 33,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11509732",
@@ -102747,7 +103002,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 34,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11634611",
@@ -104717,7 +104978,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 35,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-11634613",
@@ -108078,7 +108345,7 @@
     "stops": [],
     "osmFrom": null,
     "osmTo": null,
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -108100,7 +108367,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 36,
+      "classification": "EXCLUDED_NONPASSENGER",
+      "passengerCandidate": false,
+      "reason": "상시 공개 여객 운행이 확인되지 않은 비행장 전용선; 최신 OSM 명칭/운영주체 확인, 현행 일반 여객 운행의 공식 근거 미확보"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-12144933",
@@ -109331,7 +109605,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 37,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-12428880",
@@ -109458,7 +109738,7 @@
     "stops": [],
     "osmFrom": null,
     "osmTo": null,
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -109543,7 +109823,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 38,
+      "classification": "QUARANTINED_UNKNOWN",
+      "passengerCandidate": false,
+      "reason": "노선·운영기관·영업 구간 식별 미완료"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-12497485",
@@ -118502,7 +118789,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 39,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-13781771",
@@ -135045,7 +135338,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 40,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-15833199",
@@ -137347,7 +137646,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 41,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-15833656",
@@ -148045,12 +148350,332 @@
       {
         "geometryId": "kr-geometry-321132038",
         "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-468599630",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1221943827",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712234722",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1221943826",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712234723",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994121",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1168223034",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994122",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-785130604",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-379994120",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-379994123",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-781983105",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1221943825",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-178441449",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1014279318",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1014279320",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-65370644",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1014279316",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794365",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794359",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-775906331",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-474730783",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-377290518",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-377290520",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1041617770",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-156815579",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-626510489",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-943477896",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-943477895",
+        "reverse": false
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-355173346",
         "geometryIndex": 0,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173339",
+        "geometryIndex": 21,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5914759508",
+        "geometryIndex": 45,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5812233466",
+        "geometryIndex": 61,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173148",
+        "geometryIndex": 75,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173138",
+        "geometryIndex": 83,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7106108484",
+        "geometryIndex": 95,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3835922764",
+        "geometryIndex": 98,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-353186868",
+        "geometryIndex": 113,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-287321417",
+        "geometryIndex": 124,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5914829686",
+        "geometryIndex": 136,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173201",
+        "geometryIndex": 154,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833429765",
+        "geometryIndex": 174,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173208",
+        "geometryIndex": 193,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833429779",
+        "geometryIndex": 222,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173195",
+        "geometryIndex": 231,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3832931179",
+        "geometryIndex": 242,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7366159452",
+        "geometryIndex": 268,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3818491433",
+        "geometryIndex": 274,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-2385324651",
+        "geometryIndex": 283,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173105",
+        "geometryIndex": 290,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-2533971240",
+        "geometryIndex": 316,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-798558661",
+        "geometryIndex": 346,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160364",
+        "geometryIndex": 376,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9357694433",
+        "geometryIndex": 388,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9357694474",
+        "geometryIndex": 418,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6035746724",
+        "geometryIndex": 450,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6035746726",
+        "geometryIndex": 456,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6035746710",
+        "geometryIndex": 465,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6035746736",
+        "geometryIndex": 482,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6035746709",
+        "geometryIndex": 493,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6035746755",
+        "geometryIndex": 508,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6035746765",
+        "geometryIndex": 521,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6035746706",
+        "geometryIndex": 524,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-10795263940",
+        "geometryIndex": 556,
         "boarding": true,
         "alighting": true
       }
@@ -148067,6 +148692,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -148075,7 +148705,22 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-2718884",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-6805"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    },
+    "access": {
+      "number": 42,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16665961",
@@ -148123,7 +148768,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 43,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16665962",
@@ -148175,7 +148826,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 44,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16665963",
@@ -148325,7 +148982,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 45,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16665965",
@@ -148886,7 +149549,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 46,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16665968",
@@ -148935,7 +149604,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 47,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16665969",
@@ -148953,12 +149628,220 @@
       {
         "geometryId": "kr-geometry-1221943827",
         "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712234722",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1221943826",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712234723",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994121",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1168223034",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994122",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-785130604",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-379994120",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-379994123",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-781983105",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1221943825",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-178441449",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1014279318",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1014279320",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-65370644",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1014279316",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794365",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794359",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-775906331",
+        "reverse": true
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-5914759508",
         "geometryIndex": 0,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5812233466",
+        "geometryIndex": 16,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173148",
+        "geometryIndex": 30,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173138",
+        "geometryIndex": 38,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7106108484",
+        "geometryIndex": 50,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3835922764",
+        "geometryIndex": 53,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-353186868",
+        "geometryIndex": 68,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-287321417",
+        "geometryIndex": 79,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5914829686",
+        "geometryIndex": 91,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173201",
+        "geometryIndex": 109,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833429765",
+        "geometryIndex": 129,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173208",
+        "geometryIndex": 148,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833429779",
+        "geometryIndex": 177,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173195",
+        "geometryIndex": 186,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3832931179",
+        "geometryIndex": 197,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7366159452",
+        "geometryIndex": 223,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3818491433",
+        "geometryIndex": 229,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-2385324651",
+        "geometryIndex": 238,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173105",
+        "geometryIndex": 245,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-2533971240",
+        "geometryIndex": 271,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-798558661",
+        "geometryIndex": 301,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160364",
+        "geometryIndex": 331,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9357694433",
+        "geometryIndex": 343,
         "boarding": true,
         "alighting": true
       }
@@ -148975,6 +149858,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -148983,7 +149871,23 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-2718884",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-7348",
+        "seoulmetro-official-20260901-train-7350"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    },
+    "access": {
+      "number": 48,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16665970",
@@ -149040,7 +149944,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 49,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16712689",
@@ -149591,7 +150501,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 50,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16712692",
@@ -150035,12 +150951,184 @@
       {
         "geometryId": "kr-geometry-379994110",
         "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-637016272",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994106",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-637016278",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994109",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-782891445",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-405054041",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-405054042",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-772050083",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-405047383",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-405047385",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1382527573",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1382527572",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712248059",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712248058",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1005092815",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1005092811",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-425371605",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-425371598",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-425371610",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-625354991",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-625376943",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712246812",
+        "reverse": false
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-8675959918",
         "geometryIndex": 0,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430101",
+        "geometryIndex": 23,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833429822",
+        "geometryIndex": 65,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430103",
+        "geometryIndex": 72,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430104",
+        "geometryIndex": 80,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430063",
+        "geometryIndex": 90,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5902127686",
+        "geometryIndex": 96,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5899527464",
+        "geometryIndex": 107,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7611776411",
+        "geometryIndex": 134,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7308844560",
+        "geometryIndex": 159,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5899527478",
+        "geometryIndex": 200,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5899527480",
+        "geometryIndex": 220,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-4246459981",
+        "geometryIndex": 238,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5899214139",
+        "geometryIndex": 269,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-4247043884",
+        "geometryIndex": 292,
         "boarding": true,
         "alighting": true
       }
@@ -150057,6 +151145,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -150065,7 +151158,24 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-8691898",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-7",
+        "seoulmetro-official-20260901-train-492",
+        "seoulmetro-official-20260901-train-956"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    },
+    "access": {
+      "number": 51,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16712694",
@@ -150113,7 +151223,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 52,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16712695",
@@ -150267,12 +151383,64 @@
       {
         "geometryId": "kr-geometry-379994110",
         "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-637016272",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994106",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-637016278",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994109",
+        "reverse": false
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-8675959918",
         "geometryIndex": 0,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430101",
+        "geometryIndex": 23,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833429822",
+        "geometryIndex": 65,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430103",
+        "geometryIndex": 72,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430104",
+        "geometryIndex": 80,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430063",
+        "geometryIndex": 90,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5902127686",
+        "geometryIndex": 96,
         "boarding": true,
         "alighting": true
       }
@@ -150289,6 +151457,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -150297,7 +151470,22 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-8691898",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-245"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    },
+    "access": {
+      "number": 53,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16712697",
@@ -150350,7 +151538,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 54,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-16850861",
@@ -158265,7 +159459,7 @@
     "stops": [],
     "osmFrom": null,
     "osmTo": null,
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -158296,7 +159490,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 55,
+      "classification": "EXCLUDED_NONPASSENGER",
+      "passengerCandidate": false,
+      "reason": "공개 여객 운행 근거가 없는 제철소 전용선; 최신 OSM 명칭/운영주체 확인, 현행 일반 여객 운행의 공식 근거 미확보"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-17585166",
@@ -158328,7 +159529,7 @@
     ],
     "osmFrom": "제1터미널",
     "osmTo": "제2터미널",
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -158351,7 +159552,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 56,
+      "classification": "SPECIAL_AIRPORT_REVIEW",
+      "passengerCandidate": false,
+      "reason": "공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-17585167",
@@ -158383,7 +159591,7 @@
     ],
     "osmFrom": "제2터미널",
     "osmTo": "제1터미널",
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -158406,7 +159614,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 57,
+      "classification": "SPECIAL_AIRPORT_REVIEW",
+      "passengerCandidate": false,
+      "reason": "공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-17585170",
@@ -159023,7 +160238,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 58,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-18418132",
@@ -159733,7 +160954,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 59,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-18505697",
@@ -160393,7 +161620,13 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 60,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   },
   {
     "id": "kr-osm-service-18581442",
@@ -162459,7 +163692,7 @@
     "stops": [],
     "osmFrom": null,
     "osmTo": null,
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -162573,7 +163806,14 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 61,
+      "classification": "EXCLUDED_UNOPEN",
+      "passengerCandidate": false,
+      "reason": "미개통 대전 도시철도 2호선"
+    },
+    "playable": false
   },
   {
     "id": "kr-osm-service-20500831",
@@ -163003,6 +164243,12 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "access": {
+      "number": 62,
+      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "passengerCandidate": true,
+      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+    }
   }
 ]

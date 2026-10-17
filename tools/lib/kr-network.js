@@ -70,14 +70,15 @@ function releaseReasons(service,data,maps,journey){
  if(!service.operatorIds?.length||service.operatorIds.some(id=>maps.operators.get(id)?.verification!=='verified'))reasons.push('OPERATOR_NOT_VERIFIED');
  for(const id of service.operatorIds||[])if(!(data.assets||[]).some(a=>a.kind==='operator'&&a.operatorId===id&&a.verified===true&&a.sourceUrl&&a.license&&a.license!=='unverified'&&a.asset))reasons.push('OPERATOR_LOGO_NOT_VERIFIED');
  const trackByGeometry=new Map((data.infrastructure||[]).map(i=>[i.geometryId,i]));
+ if(service.paths.some(p=>trackByGeometry.get(p.geometryId)?.highway))reasons.push('ROAD_OR_AMBIGUOUS_RAIL_ROAD_WAY');
  if(service.paths.some(p=>['yard','siding','spur'].includes(trackByGeometry.get(p.geometryId)?.service)))reasons.push('NON_PUBLIC_TRACK_REQUIRES_EXCLUSION');
  if(service.paths.some(p=>{const track=trackByGeometry.get(p.geometryId);return (track?.oneway==='yes'&&p.reverse)||(track?.oneway==='-1'&&!p.reverse)}))reasons.push('ONEWAY_DIRECTION_CONFLICT');
  return [...new Set(reasons)];
 }
 function compile(data,options={}){
  const {errors,maps}=validate(data,options);if(errors.length)return {status:'INVALID',errors,routes:[],blocked:[]};
- const routesByLine=new Map(),blocked=[];let officialTimetableVerifiedServices=0;
- for(const s of data.services){let journey,assemblyError;try{journey=assemble(s,maps)}catch(e){assemblyError=e.message}
+ const routesByLine=new Map(),blocked=[],excluded=[];let officialTimetableVerifiedServices=0;
+ for(const s of data.services){if(s.access?.passengerCandidate===false){excluded.push({serviceId:s.id,classification:s.access.classification,reason:s.access.reason});continue}let journey,assemblyError;try{journey=assemble(s,maps)}catch(e){assemblyError=e.message}
   const reasons=releaseReasons(s,data,maps,journey);if(!reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'))officialTimetableVerifiedServices++;if(assemblyError)reasons.push(assemblyError);
   if(reasons.length){blocked.push({serviceId:s.id,passengerLineId:s.passengerLineId,reasons});continue}
   const line=maps['passenger-lines'].get(s.passengerLineId),operator=maps.operators.get(s.operatorIds[0]);
@@ -90,8 +91,9 @@ function compile(data,options={}){
  }
  const routes=[...routesByLine.values()],coverage=data.coverage;
  const expected=coverage.officialPassengerLineIds,expectedServices=coverage.officialServiceIds;
+ const releasedServiceIds=new Set(routes.flatMap(r=>r.verifiedJourneys.map(j=>j.id)));
  const coverageVerified=coverage.sourceIds?.some(id=>{const s=maps.sources.get(id);return s?.kind==='official-national-inventory'&&s.licenseStatus==='verified'&&s.publisher&&s.files?.length&&s.files.every(f=>/^[a-f0-9]{64}$/.test(f.sha256))&&s.validFrom<=coverage.asOf&&(!s.validUntil||coverage.asOf<=s.validUntil)});
- const complete=coverage.status==='verified'&&coverageVerified&&Array.isArray(expected)&&expected.length>0&&Array.isArray(expectedServices)&&expectedServices.length>0&&blocked.length===0&&expected.length===routes.length&&expected.every(id=>routesByLine.has(id))&&expectedServices.length===data.services.length&&expectedServices.every(id=>maps.services.has(id));
- return {status:complete?'COMPLETE':'INCOMPLETE',errors,routes,blocked,counts:{sourceStations:data.stations.length,sourcePassengerLines:data['passenger-lines'].length,sourceServices:data.services.length,officialTimetableVerifiedServices,releasedLines:routes.length,releasedServices:routes.reduce((n,r)=>n+r.verifiedJourneys.length,0),officialPassengerLines:expected?.length??null,officialServices:expectedServices?.length??null}};
+ const complete=coverage.status==='verified'&&coverageVerified&&Array.isArray(expected)&&expected.length>0&&Array.isArray(expectedServices)&&expectedServices.length>0&&blocked.length===0&&expected.length===routes.length&&expected.every(id=>routesByLine.has(id))&&expectedServices.length===releasedServiceIds.size&&new Set(expectedServices).size===expectedServices.length&&expectedServices.every(id=>releasedServiceIds.has(id));
+ return {status:complete?'COMPLETE':'INCOMPLETE',errors,routes,blocked,excluded,counts:{sourceStations:data.stations.length,sourcePassengerLines:data['passenger-lines'].length,sourceServices:data.services.length,activeServiceCandidates:data.services.length-excluded.length,excludedServices:excluded.length,officialTimetableVerifiedServices,releasedLines:routes.length,releasedServices:routes.reduce((n,r)=>n+r.verifiedJourneys.length,0),officialPassengerLines:expected?.length??null,officialServices:expectedServices?.length??null}};
 }
 module.exports={load,validate,assemble,compile,releaseReasons};
