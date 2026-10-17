@@ -1,5 +1,5 @@
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('node:assert/strict');
-const context={};vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../js/typing.js'),'utf8').replace('export class TypingController','globalThis.TypingController=class TypingController'),context);
+const context={setTimeout,clearTimeout};vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../js/typing.js'),'utf8').replace('export class TypingController','globalThis.TypingController=class TypingController'),context);
 const handlers={},classes=new Set(),input={value:'',addEventListener:(name,fn)=>handlers[name]=fn,removeEventListener:()=>{},closest:()=>({classList:{add:x=>classes.add(x),remove:(...xs)=>xs.forEach(x=>classes.delete(x))}})};
 let updates=[],completions=0;const controller=new context.TypingController(input,{onChange:event=>updates.push(event),onSubmit:()=>completions++});
 const emit=(type,value,isComposing=false,extra={})=>{input.value=value;const event={target:input,isComposing,defaultPrevented:false,preventDefault(){this.defaultPrevented=true},...extra};handlers[type](event);return event};
