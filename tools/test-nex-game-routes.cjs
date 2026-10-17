@@ -20,7 +20,7 @@ for(const choice of choices){
  assert(route.geometry.length>300,'Track is unexpectedly short');
  assert(route.stations.length>=9,'NEX must retain actual physical waypoints');
  assert.equal(route.directedSegments.length,route.stations.length-1);
- assert.deepEqual(route.stations.filter(s=>stops.includes(s.id)).map(s=>s.id),stops,'Timetable stop sequence');
+ assert.equal(JSON.stringify(route.stations.filter(s=>stops.includes(s.id)).map(s=>s.id)),JSON.stringify(stops),'Timetable stop sequence');
  assert(route.stations.every((s,i)=>i===0||s.geometryIndex>route.stations[i-1].geometryIndex));
  assert.equal(route.stations[0].geometryIndex,0);
  assert.equal(route.stations.at(-1).geometryIndex,route.geometry.length-1);
