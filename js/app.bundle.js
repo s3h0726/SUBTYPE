@@ -19,7 +19,7 @@ const FEATURE_FLAGS=Object.freeze({
 // Keep historical play records playable after a physical branch becomes an
 // internal part of its passenger line. IDs remain stable in stored records;
 // only their current display/playback parent changes.
-const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002'});
+const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3'});
 const canonicalRouteId=routeId=>LEGACY_ROUTE_ALIASES[String(routeId||'')]||routeId;
 
 const isCountryEnabled=countryId=>countryId!=='kr'||FEATURE_FLAGS.korea;

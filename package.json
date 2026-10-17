@@ -32,7 +32,7 @@
     "validate:namuwiki": "node tools/validate-namuwiki.js",
     "build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/build-static.js && node tools/validate-korea-data.js && node tools/test-single-source.js",
     "build:app": "node tools/build-app-bundle.js",
-    "test:single-source": "node tools/test-single-source.js",
+    "test:single-source": "node --test tools/test-workspace-contracts.cjs && node tools/test-single-source.js",
     "test": "node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/audit-ui-quality.js && node tools/validate-korea-data.js && node tools/test-single-source.js",
     "audit:korea": "node tools/validate-korea-data.js --require-complete",
     "audit:korea-rebuild": "node tools/build-korea-data.js",

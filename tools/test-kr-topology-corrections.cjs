@@ -1,6 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {relationHash,applyTopologyCorrection}=require('./lib/kr-topology-corrections');
 const {orientOrderedWays}=require('./lib/kr-osm-order');
+const {orientMemberChain}=require('./lib/kr-member-chain');
 const {load,validate,assemble,compile}=require('./lib/kr-network');
 function fixture(){
  const relation={id:'route',members:[{type:'n',ref:'1',role:'stop'},{type:'n',ref:'5',role:'stop'},{type:'w',ref:'a',role:'forward'},{type:'w',ref:'b',role:'forward'}]};
@@ -14,6 +15,17 @@ test('role correction retains source member and stop order without mutating sour
  assert.equal(result.evidence.operationalDirectionVerified,false);
  assert.equal(JSON.stringify(relation),before);
  assert.deepEqual(orientOrderedWays(result.members,ways,['1','5']).nodeIds,['1','2','3','4','5']);
+});
+test('misordered members are recoverable only as a complete unbranched source chain',()=>{
+ const {relation,ways}=fixture(),m=relation.members.filter(m=>m.type==='w').reverse(),r=orientMemberChain(m,ways,['1','5']);
+ assert.equal(r.status,'UNIQUE_SOURCE_ORDER');assert.deepEqual(r.memberOrder,[1,0]);assert.deepEqual(r.nodeIds,['1','2','3','4','5']);
+ assert.equal(orientMemberChain(m,ways,['1']).status,'MISSING_ORDERED_STOPS');
+ ways.set('spur',{nodeIds:['3','9'],tags:{}});assert.equal(orientMemberChain([...m,{ref:'spur'}],ways,['1','5']).status,'NOT_A_SIMPLE_MEMBER_CHAIN');
+});
+test('member reordering cannot omit a disconnected component or repeat a source member',()=>{
+ const {relation,ways}=fixture(),m=relation.members.filter(m=>m.type==='w');
+ ways.set('gap',{nodeIds:['8','9'],tags:{}});assert.notEqual(orientMemberChain([...m,{ref:'gap'}],ways,['1','5']).status,'UNIQUE_SOURCE_ORDER');
+ assert.notEqual(orientMemberChain([...m,m[0]],ways,['1','5']).status,'UNIQUE_SOURCE_ORDER');
 });
 test('stale source relation or way cannot silently reuse a correction',()=>{
  for(const mutate of [f=>f.relation.members.reverse(),f=>f.ways.get('b').version++,f=>f.correction.roles[0].sourceRole='backward',f=>f.correction.roles[0].memberIndex=20]){
