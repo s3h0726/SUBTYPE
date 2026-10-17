@@ -101,13 +101,12 @@
     "services": [
       {
         "id": "nex-shinjuku",
-        "nameJa": "新宿方面",
-        "nameKo": "신주쿠 방면",
-        "nameEn": "N'EX Shinjuku",
+        "nameJa": "新宿・成田空港方面",
+        "nameKo": "신주쿠·나리타공항 방면",
+        "nameEn": "N'EX Shinjuku–Narita Airport",
         "stops": [
           "station-mlit-003700",
           "station-mlit-003922",
-          "station-mlit-004095",
           "station-mlit-003766",
           "station-1132813",
           "station-1132705"
@@ -115,9 +114,9 @@
       },
       {
         "id": "nex-ofuna",
-        "nameJa": "大船方面",
-        "nameKo": "오후나 방면",
-        "nameEn": "N'EX Ofuna",
+        "nameJa": "大船・成田空港方面",
+        "nameKo": "오후나·나리타공항 방면",
+        "nameEn": "N'EX Ofuna–Narita Airport",
         "stops": [
           "station-mlit-004961",
           "station-mlit-004818",
@@ -10155,7 +10154,7 @@
       "geometryPath": "data/lines/jr-east/narita-express/geometry.json"
     },
     "sources": {
-      "official": "",
+      "official": "https://www.jreast.co.jp/en/multi/nex/",
       "korean": "",
       "geometry": "MLIT-N02-2025",
       "koreanName": {
@@ -10171,7 +10170,8 @@
         "verifiedDate": null,
         "status": "REVIEW_REQUIRED",
         "canonicalPolicy": "namuwiki"
-      }
+      },
+      "timetable": "https://timetables.jreast.co.jp/en/2610/train/030/031191.html"
     },
     "dataKind": "trainService",
     "coverage": "full-source-line"
