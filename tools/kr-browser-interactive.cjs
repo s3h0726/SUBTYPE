@@ -12,7 +12,7 @@ module.exports=async function interactive(page){
   const rail=q.mapState(),path=rail.points.slice(rail.stationOffsets[0],rail.stationOffsets[1]+1),frames=[];
   const original=rail.train.setLatLng;rail.train.setLatLng=function(p){frames.push([p[0]??p.lat,p[1]??p.lng]);return original.call(this,p)};
   let releaseMap;g.mapReady=new Promise(resolve=>{releaseMap=resolve});
-  type();await new Promise(r=>setTimeout(r,700));if(g.index!==0)throw Error('ADVANCED_BEFORE_MAP_READY');releaseMap();
+  type();g.togglePause(true);g.togglePause(false);await new Promise(r=>setTimeout(r,700));if(g.index!==0)throw Error('ADVANCED_BEFORE_MAP_READY');releaseMap();
   if(g.index!==0||g.phase!=='ARRIVING')throw Error('ADVANCED_BEFORE_ARRIVAL');
   const deadline=performance.now()+6000;while(g.index===0&&performance.now()<deadline)await new Promise(r=>setTimeout(r,16));
   rail.train.setLatLng=original;if(g.index!==1)throw Error('ARRIVAL_TIMEOUT');
