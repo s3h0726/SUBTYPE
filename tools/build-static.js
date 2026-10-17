@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSync}=require('child_process');
+require('./audit-canonical-jp-station-names.js');
 require('./build-line-workspaces');
 // Keep N'EX branch candidates aligned with the current physical-track source on every build.
 execFileSync(process.execPath,[path.join(__dirname,'build-nex-verified-geometry.js')],{stdio:'inherit'});
