@@ -43,13 +43,19 @@ for(const prefix of ['data/nationwide/routes/','data/generated/routes/']){
 }
 const knownNames=[
  {ja:'新倉敷',ko:'신쿠라시키',paths:['data/shared-stations/stations-16.json','data/shared-stations/stations-52.json','data/generated/routes/shinkansen-sanyo.json','data/nationwide/routes/shinkansen-sanyo.json']},
- {ja:'鹿児島中央',ko:'가고시마추오',paths:['data/shared-stations/stations-11.json','data/shared-stations/stations-53.json','data/generated/routes/shinkansen-kyushu.json','data/nationwide/routes/shinkansen-kyushu.json']}
+ {ja:'鹿児島中央',ko:'가고시마츄오',paths:['data/shared-stations/stations-11.json','data/shared-stations/stations-53.json','data/generated/routes/shinkansen-kyushu.json','data/nationwide/routes/shinkansen-kyushu.json']},
+ {ja:'新潟',ko:'니가타',paths:['data/shared-stations/stations-22.json','data/shared-stations/stations-46.json','data/generated/routes/shinkansen-joetsu.json','data/nationwide/routes/shinkansen-joetsu.json']},
+ {ja:'東新潟',ko:'히가시니가타',paths:['data/shared-stations/stations-29.json','data/generated/routes/line-11406.json','data/nationwide/routes/line-11406.json']}
 ];
 for(const {ja,ko,paths} of knownNames)for(const file of paths){
  const d=json(file),stations=Array.isArray(d)?d:(d.route?.stations||[]);
  const matches=stations.filter(st=>(st.names?.ja||st.ja)===ja);
  assert(matches.length,file+' missing '+ja);
  for(const st of matches)assert.equal(st.names?.ko||st.ko,ko,file+' stale spelling '+ja);
+}
+for(const path of ['data/shared-stations/stations-16.json','data/shared-stations/stations-52.json','data/nationwide/routes/shinkansen-sanyo.json','data/generated/routes/shinkansen-sanyo.json']){
+ const data=json(path);const st=(Array.isArray(data)?data:data.route.stations).find(st=>(st.names?.ja||st.ja)==='新倉敷');
+ assert.equal(st.names?.kana||st.kana,'しんくらしき',path+' has incorrect Kana reading');
 }
 const compile=p=>{
  const sandbox={};vm.createContext(sandbox);
@@ -74,5 +80,5 @@ for(const expected of ['JAPAN_CLOSED_LINE_IDS','JAPAN_STREETCAR_LINE_IDS','famou
  assert(bundle.includes(expected),'Missing runtime correction '+expected);
 }
 assert(bundle.includes('letters and digits INSIDE brackets'),'Compiled typing model lost');
-assert(bundle.includes('鹿児島中央":"가고시마추오'),'Old Kagoshima-chuo overwrite reappeared');
-console.log(JSON.stringify({status:'PASS',streetcarLines:Object.keys(linePaths).length,archivedLines:2,hidakaStations:hidakaStations.length,curatedNamePaths:8},null,2));
+assert(!bundle.includes('鹿児島中央":"카고시마츄오'),'Kagoshima name regressed');
+console.log(JSON.stringify({status:'PASS',streetcarLines:Object.keys(linePaths).length,archivedLines:2,hidakaStations:hidakaStations.length,curatedNamePaths:17},null,2));
