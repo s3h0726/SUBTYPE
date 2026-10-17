@@ -36,7 +36,7 @@ jobs:
           const fs=require('fs'),vm=require('vm');
           const bundle=fs.readFileSync('js/app.bundle.js','utf8');
           new vm.Script(bundle);
-          if(!bundle.includes('const OPEN=new Set(')||!bundle.includes('annotationIndices'))
+          if(!bundle.includes('const OPEN_TO_CLOSE=new Map(')||!bundle.includes('annotationIndices'))
             throw Error('Typing parentheses/annotations fix absent from deployed bundle');
           const journey=fs.readFileSync('js/result-journey-map.js','utf8');
           if(!journey.includes('formatJourneyDistanceAnalogy')||!journey.includes('distance-analogies.js'))
