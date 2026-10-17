@@ -102,8 +102,8 @@ function animateTypingTrain(rail,path,target,motion=true){
   };
   rail.typingAnimation=requestAnimationFrame(frame);
 }
-export function setTrainTypingProgress(progress,motion=true){
-  const rail=gameRail;if(!rail?.train||!rail.points.length)return;
+export function setTrainTypingProgress(progress,motion=true,expectedRouteKey=null){
+  const rail=gameRail;if(!rail?.train||!rail.points.length||(expectedRouteKey&&rail.routeKey!==expectedRouteKey))return;
   const cached=typingSegment(rail,rail.index,rail.nextIndex),{segment,lengths,total}=cached;
   if(segment.length<2)return;
   const key=`${rail.index}:${rail.nextIndex}`;if(rail.typingSegmentKey!==key){stopTypingAnimation(rail);rail.typingSegmentKey=key;rail.typingDistance=0;rail.typingProgress=0}
