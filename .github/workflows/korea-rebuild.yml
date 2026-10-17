@@ -20,6 +20,7 @@ jobs:
       - run: npm run import:seoulmetro
       - run: npm run build:korea
       - run: npm run audit:korea-relations62
+      - run: npm run audit:korea-inventory
       - name: Ensure source corrections and generated data are reproducible
         run: git diff --exit-code -- data/kr/v2
       - run: npm run validate:korea
