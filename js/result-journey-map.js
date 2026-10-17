@@ -1,4 +1,5 @@
 import {travelGeometry,vehicleIcon} from './route-renderer.js';
+import {formatJourneyDistanceAnalogy} from './distance-analogies.js';
 /* Shared completion map for every playable transport line. */
 let completedMap;
 const number=v=>Number.isFinite(Number(v))?Number(v):NaN;
@@ -103,16 +104,7 @@ function journeyDistance(result){
  }
  return{meters,approximate,segments};
 }
-function journeyAnalogy(km){
- if(!(km>0))return '비교할 거리를 계산할 수 없습니다.';
- const laps=Math.round(km/.4),marathons=(km/42.195).toFixed(1);
- if(km<15)return '400m 운동장 트랙 약 '+laps+'바퀴';
- if(km<100)return '풀마라톤 약 '+marathons+'회 거리 · 운동장 약 '+laps+'바퀴';
- // Approximate intercity distances only; these are not exact rail travel distances.
- const comparisons=[['서울~대전',150],['서울~강릉',220],['서울~대구',290],['서울~부산',400],['서울~광주',270],['서울~목포',350],['서울~여수',360]];
- const nearest=[...comparisons].sort((a,b)=>Math.abs(km-a[1])-Math.abs(km-b[1]))[0];
- return '풀마라톤 약 '+marathons+'회 · '+nearest[0]+' 약 '+(km/nearest[1]).toFixed(1)+'배 거리 (도시 간 거리 비교는 대략적 비유)';
-}
+
 let lastJourney=null;
 document.addEventListener('trt:journey-finished',event=>{
  lastJourney=event.detail;
@@ -123,7 +115,7 @@ document.addEventListener('trt:journey-finished',event=>{
  const d=journeyDistance(lastJourney);
  if(destination)destination.textContent=d.segments?(d.meters/1000).toFixed(2)+' km':'측정 불가';
  if(description)description.textContent=d.approximate?'일부 구간은 역간 직선거리 추정치입니다.':d.segments?'실제 선형 기반 이동 거리':'거리 계산을 위한 위치 정보가 없습니다.';
- const analogy=document.getElementById('result-distance-analogy');if(analogy)analogy.textContent=d.segments?journeyAnalogy(d.meters/1000):'';
+ const analogy=document.getElementById('result-distance-analogy');if(analogy)analogy.textContent=d.segments?formatJourneyDistanceAnalogy(d.meters/1000,lastJourney?.route?.countryId||lastJourney?.countryId||'jp'):'';
 });
 document.getElementById('result-open-journey')?.addEventListener('click',async event=>{
  if(!lastJourney)return;
