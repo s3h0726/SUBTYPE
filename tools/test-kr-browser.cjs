@@ -14,7 +14,7 @@ const candidates=ids.map(id=>{
  return {id:s.id,countryId:'kr',schemaVersion:2,releaseStatus:'candidate',operatorId:op?.id||'unverified',operator:{...op?.names,ja:op?.names.ko||''},line:{...line.names,ja:line.names.ko},lineColor:line.color||'#126499',geometryReady:true,geometryStatus:'ready',...assemble(s,maps),services:[{id:s.id,nameKo:s.names.ko,stops:s.stops.map(c=>maps.stops.get(c.stopId).stationId)}]};
 });
 const hook=`
-globalThis.__KR_BROWSER_QA__={game,go,storage,renderStats,renderGameMap,buildTypingModel,railDataRepository};
+globalThis.__KR_BROWSER_QA__={game,go,storage,renderStats,renderGameMap,buildTypingModel,railDataRepository,freeDrive,FreeDrive,startFreeDrive,renderGameFreeDriveOptions,mapState:()=>gameRail};
 `;
 const server=http.createServer((req,res)=>{
  const relative=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\//,'')||'index.html',file=path.resolve(root,relative);
@@ -65,6 +65,7 @@ const server=http.createServer((req,res)=>{
     }
     return results;
    },{start,end});
+   if(process.argv.includes('--interactive')&&start===0){const interactive=await require('./kr-browser-interactive.cjs')(page);results.push({device,interactive,runs:[],pageErrors:[]});console.log(JSON.stringify({device,interactive}))}
    await page.evaluate(()=>{
     const qa=globalThis.__KR_BROWSER_QA__;qa.renderStats();const header=document.querySelector('.record-row.header'),original=document.documentElement.dataset.theme;
     const luminance=color=>{const c=color.match(/[\d.]+/g).slice(0,3).map(x=>{const n=Number(x)/255;return n<=.04045?n/12.92:((n+.055)/1.055)**2.4});return c[0]*.2126+c[1]*.7152+c[2]*.0722};

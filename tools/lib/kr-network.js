@@ -76,9 +76,9 @@ function releaseReasons(service,data,maps,journey){
 }
 function compile(data,options={}){
  const {errors,maps}=validate(data,options);if(errors.length)return {status:'INVALID',errors,routes:[],blocked:[]};
- const routesByLine=new Map(),blocked=[];
+ const routesByLine=new Map(),blocked=[];let officialTimetableVerifiedServices=0;
  for(const s of data.services){let journey,assemblyError;try{journey=assemble(s,maps)}catch(e){assemblyError=e.message}
-  const reasons=releaseReasons(s,data,maps,journey);if(assemblyError)reasons.push(assemblyError);
+  const reasons=releaseReasons(s,data,maps,journey);if(!reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'))officialTimetableVerifiedServices++;if(assemblyError)reasons.push(assemblyError);
   if(reasons.length){blocked.push({serviceId:s.id,passengerLineId:s.passengerLineId,reasons});continue}
   const line=maps['passenger-lines'].get(s.passengerLineId),operator=maps.operators.get(s.operatorIds[0]);
   const service={id:s.id,nameKo:s.names.ko,nameJa:s.names.ko,nameEn:s.names.en,stops:journey.stations.map(st=>st.id)};
@@ -92,6 +92,6 @@ function compile(data,options={}){
  const expected=coverage.officialPassengerLineIds,expectedServices=coverage.officialServiceIds;
  const coverageVerified=coverage.sourceIds?.some(id=>{const s=maps.sources.get(id);return s?.kind==='official-national-inventory'&&s.licenseStatus==='verified'&&s.publisher&&s.files?.length&&s.files.every(f=>/^[a-f0-9]{64}$/.test(f.sha256))&&s.validFrom<=coverage.asOf&&(!s.validUntil||coverage.asOf<=s.validUntil)});
  const complete=coverage.status==='verified'&&coverageVerified&&Array.isArray(expected)&&expected.length>0&&Array.isArray(expectedServices)&&expectedServices.length>0&&blocked.length===0&&expected.length===routes.length&&expected.every(id=>routesByLine.has(id))&&expectedServices.length===data.services.length&&expectedServices.every(id=>maps.services.has(id));
- return {status:complete?'COMPLETE':'INCOMPLETE',errors,routes,blocked,counts:{sourceStations:data.stations.length,sourcePassengerLines:data['passenger-lines'].length,sourceServices:data.services.length,releasedLines:routes.length,releasedServices:routes.reduce((n,r)=>n+r.verifiedJourneys.length,0),officialPassengerLines:expected?.length??null,officialServices:expectedServices?.length??null}};
+ return {status:complete?'COMPLETE':'INCOMPLETE',errors,routes,blocked,counts:{sourceStations:data.stations.length,sourcePassengerLines:data['passenger-lines'].length,sourceServices:data.services.length,officialTimetableVerifiedServices,releasedLines:routes.length,releasedServices:routes.reduce((n,r)=>n+r.verifiedJourneys.length,0),officialPassengerLines:expected?.length??null,officialServices:expectedServices?.length??null}};
 }
 module.exports={load,validate,assemble,compile,releaseReasons};

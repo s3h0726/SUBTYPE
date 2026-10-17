@@ -850,8 +850,22 @@ function resolveKoreanVerifiedChoice(choice,route){
 }
 
 
+// Sample retained source polyline edges by travelled distance. Smoothing a
+// marker's latitude/longitude instead would cut across bends and switches.
+function pointAtTrackDistance(path,distance){
+ const {segment,lengths,total}=path;if(!segment?.length)return null;
+ if(segment.length===1||total<=0)return segment[0].slice();
+ const d=Math.max(0,Math.min(total,distance));let low=1,high=lengths.length-1;
+ while(low<high){const middle=(low+high)>>1;if(lengths[middle]<d)low=middle+1;else high=middle}
+ const i=low,a=segment[i-1],b=segment[i],span=lengths[i]-lengths[i-1],t=span>0?(d-lengths[i-1])/span:0;
+ return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+}
+function advanceTrackDistance(current,target,dt){return Math.max(current,Math.min(target,current+(target-current)*(1-Math.exp(-Math.min(40,Math.max(1,dt))/75))))}
+
+
 function hideKoreanTrainFallback(target){const marker=target?.parentElement?.querySelector('.kr-train-fallback');if(marker)marker.hidden=true}
 function showKoreanTrainFallback(route,index,target){if(!target)return;let marker=target.parentElement.querySelector('.kr-train-fallback');if(!marker){marker=document.createElement('div');marker.className='kr-train-fallback';marker.style.cssText='position:absolute;z-index:1200;top:42%;left:50%;transform:translate(-50%,-50%);padding:15px 24px;border-radius:45px;background:#102a28;color:#fff;border:3px solid #6ae4bd;box-shadow:0 8px 25px #0008;pointer-events:none;font-weight:800;text-align:center';target.parentElement.append(marker)}marker.hidden=false;const name=route.stations?.[index]?.ko||route.stations?.[index]?.ja||'';marker.textContent=(route.mode==='river_bus'?'⛴ ':'🚆 ')+(route.line?.ko||'열차')+' · '+name}
+
 
 
 
@@ -859,7 +873,7 @@ function showKoreanTrainFallback(route,index,target){if(!target)return;let marke
 let gameRail=null,renderQueue=Promise.resolve(),resizeBound=false;
 const latLngs=route=>route.stations.map(station=>[station.latitude,station.longitude]);
 const geometryPoints=route=>Array.isArray(route.geometry)&&route.geometry.length>1?route.geometry:latLngs(route);
-function travelGeometry(route){if(route?.countryId==='kr'){if(route.geometryReady!==true)return null;if(!Array.isArray(route.directedSegments)||route.directedSegments.length!==route.stations.length-1||!route.directedSegments.every(s=>s.geometryStatus==='ready'&&Array.isArray(s.geometry)&&s.geometry.length>=2))return null;const points=[],offsets=[];route.directedSegments.forEach((segment,i)=>{offsets[i]=points.length;points.push(...(i?segment.geometry.slice(1):segment.geometry))});offsets.push(points.length-1);return{points,offsets}}const stations=route.stations,points=[],offsets=[],directed=route.directedSegments;if(Array.isArray(directed)&&directed.length===stations.length-1){for(let i=0;i<directed.length;i++){offsets[i]=Math.max(0,points.length-1);let part=directed[i].geometry.map(point=>[Number(point[0]),Number(point[1])]);if(points.length&&part.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}const source=geometryPoints(route);for(let i=0;i<stations.length;i++){offsets[i]=Math.max(0,points.length-1);if(i===stations.length-1)break;const a=Number.isInteger(stations[i].geometryIndex)?stations[i].geometryIndex:source.findIndex(p=>p[0]===stations[i].latitude&&p[1]===stations[i].longitude),b=Number.isInteger(stations[i+1].geometryIndex)?stations[i+1].geometryIndex:source.findIndex(p=>p[0]===stations[i+1].latitude&&p[1]===stations[i+1].longitude);let part=a<=b?source.slice(Math.max(0,a),b+1):source.slice(Math.max(0,b),a+1).reverse();if(!part.length)part=[[stations[i].latitude,stations[i].longitude],[stations[i+1].latitude,stations[i+1].longitude]];if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}
+function travelGeometry(route){if(route?.countryId==='kr'){if(route.geometryReady!==true)return null;if(!Array.isArray(route.directedSegments)||route.directedSegments.length!==route.stations.length-1||!route.directedSegments.every(s=>s.geometryStatus==='ready'&&Array.isArray(s.geometry)&&s.geometry.length>=2))return null;const points=[],offsets=[];route.directedSegments.forEach((segment,i)=>{offsets[i]=Math.max(0,points.length-1);points.push(...(i?segment.geometry.slice(1):segment.geometry))});offsets.push(points.length-1);return{points,offsets}}const stations=route.stations,points=[],offsets=[],directed=route.directedSegments;if(Array.isArray(directed)&&directed.length===stations.length-1){for(let i=0;i<directed.length;i++){offsets[i]=Math.max(0,points.length-1);let part=directed[i].geometry.map(point=>[Number(point[0]),Number(point[1])]);if(points.length&&part.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}const source=geometryPoints(route);for(let i=0;i<stations.length;i++){offsets[i]=Math.max(0,points.length-1);if(i===stations.length-1)break;const a=Number.isInteger(stations[i].geometryIndex)?stations[i].geometryIndex:source.findIndex(p=>p[0]===stations[i].latitude&&p[1]===stations[i].longitude),b=Number.isInteger(stations[i+1].geometryIndex)?stations[i+1].geometryIndex:source.findIndex(p=>p[0]===stations[i+1].latitude&&p[1]===stations[i+1].longitude);let part=a<=b?source.slice(Math.max(0,a),b+1):source.slice(Math.max(0,b),a+1).reverse();if(!part.length)part=[[stations[i].latitude,stations[i].longitude],[stations[i+1].latitude,stations[i+1].longitude]];if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}
 const validCoordinates=route=>route.stations.every(station=>Number.isFinite(station.latitude)&&Number.isFinite(station.longitude));
 function stationIcon(L,station,kind='other',color='#49c888'){
   const current=kind==='current',visible=kind!=='other',size=current?18:11;
@@ -887,10 +901,12 @@ function followTrainCamera(rail,point,force=false){
  if(!force&&at.distanceTo(middle)<Math.max(22,Math.min(map.getSize().x,map.getSize().y)*.085))return;
  // Avoid reloading tiles on every keystroke. Pan at most twice a second.\n map.panTo(point,{animate:true,duration:0.32,easeLinearity:0.7,noMoveStart:true});
 }
-function stopAnimation(rail){if(rail.animation){cancelAnimationFrame(rail.animation);rail.animation=null}if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null}
-function animateTrain(rail,from,to,motion){
+function stopAnimation(rail){if(rail.animation){cancelAnimationFrame(rail.animation);rail.animation=null}stopTypingAnimation(rail);rail.typingDistance=0;rail.typingSegmentKey=null}
+function animateTrain(rail,from,to,motion,index){
+  const path=typingSegment(rail,rail.index,index),startDistance=rail.nextIndex===index?Math.min(path.total,rail.typingDistance||0):0;
   stopAnimation(rail);const duration=motion===false?0:420,start=performance.now();
-  const frame=now=>{const p=duration?Math.min(1,(now-start)/duration):1,eased=1-Math.pow(1-p,3),point=[from[0]+(to[0]-from[0])*eased,from[1]+(to[1]-from[1])*eased];rail.train.setLatLng(point);if(p<1)rail.animation=requestAnimationFrame(frame);else rail.animation=null};frame(start)
+  if(Math.hypot(from[0]-to[0],from[1]-to[1])<1e-9){rail.train.setLatLng(to);return}
+  const frame=now=>{const p=duration?Math.min(1,(now-start)/duration):1,eased=1-Math.pow(1-p,3),point=pointAtTrackDistance(path,startDistance+(path.total-startDistance)*eased)||to;rail.train.setLatLng(point);if(p<1)rail.animation=requestAnimationFrame(frame);else rail.animation=null};frame(start)
 }
 function typingSegment(rail,from,to){const key=`${from}:${to}`;if(rail.segmentCache.has(key))return rail.segmentCache.get(key);const a=rail.stationOffsets[from],b=rail.stationOffsets[to],segment=a<=b?rail.points.slice(a,b+1):rail.points.slice(b,a+1).reverse(),lengths=new Float64Array(segment.length);for(let i=1;i<segment.length;i++){const p=segment[i-1],q=segment[i],dx=(q[1]-p[1])*Math.cos((p[0]+q[0])*Math.PI/360),dy=q[0]-p[0];lengths[i]=lengths[i-1]+Math.hypot(dx,dy)}const cached={segment,lengths,total:lengths.at(-1)||0};rail.segmentCache.set(key,cached);return cached}
 function clearRouteLayers(rail){stopAnimation(rail);rail.railLayer.clearLayers();rail.stationLayer.clearLayers();rail.trainLayer.clearLayers();rail.markers=[];rail.train=null;rail.routeId=null;rail.routeKey=null;rail.points=[];updateDebug()}
@@ -919,7 +935,7 @@ function createRouteLayers(rail,route,index,options={}){
 function updateRouteProgress(rail,route,index,motion,options={}){
   const nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1),currentPosition=rail.train?.getLatLng(),previous=currentPosition?[currentPosition.lat,currentPosition.lng]:rail.stationPoints[rail.index],next=rail.stationPoints[index];rail.remaining.setLatLngs(rail.points.slice(rail.stationOffsets[index]));rail.completed.setLatLngs(rail.points.slice(0,rail.stationOffsets[index]+1));
   rail.markers.forEach((marker,i)=>{const kind=i===index?'current':i===nextIndex?'next':i===index-1?'previous':'other';marker.setIcon(stationIcon(rail.L,route.stations[i],kind,route.lineColor));marker.setZIndexOffset(i===index?500:0)});
-  const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;/* Follow the arrived station only; never pan on each keystroke. */centerArrivalCamera(rail,index,nextIndex);updateDebug()
+  const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion,index);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;/* Follow the arrived station only; never pan on each keystroke. */centerArrivalCamera(rail,index,nextIndex);updateDebug()
 }
 async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
@@ -933,23 +949,20 @@ async function renderOsm(route,index,options){
   const station=route.stations[safe],info=$('#map-station-info');if(info){info.hidden=false;info.innerHTML=`<b>${escapeHtml(route.countryId==='kr'?(station.ko||station.ja||''):(station.ja||station.ko||''))}</b><span>${escapeHtml(station.ko)} · ${escapeHtml(station.romaji)}</span>`}
 }
 function renderGameMap(route,index,options={}){renderQueue=renderQueue.then(()=>renderOsm(route,index,options)).catch(error=>{console.error('OSM game map:',error);const status=$('#basemap-status');if(status)status.textContent='OPENSTREETMAP · LOAD ERROR'});return renderQueue}
-function stopTypingAnimation(rail){if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null}
-function animateTypingTrain(rail,target,motion=true){
+function stopTypingAnimation(rail){if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null;for(const resolve of rail.arrivalWaiters||[])resolve(false);rail.arrivalWaiters=[]}
+function animateTypingTrain(rail,path,target,motion=true){
   if(!rail?.train)return;
-  if(motion===false){stopTypingAnimation(rail);rail.train.setLatLng(target);return}
+  if(motion===false){stopTypingAnimation(rail);rail.typingDistance=target;rail.train.setLatLng(pointAtTrackDistance(path,target));return}
   rail.typingTarget=target;
   if(rail.typingAnimation)return;
   let last=performance.now();
   const frame=now=>{
     const goal=rail.typingTarget;
-    if(!goal){rail.typingAnimation=null;return}
-    const current=rail.train.getLatLng();
+    if(goal===null||goal===undefined){rail.typingAnimation=null;return}
     const dt=Math.min(40,Math.max(1,now-last));last=now;
-    const alpha=1-Math.exp(-dt/75);
-    const next=[current.lat+(goal[0]-current.lat)*alpha,current.lng+(goal[1]-current.lng)*alpha];
-    const d=Math.hypot(goal[0]-next[0],goal[1]-next[1]);
-    rail.train.setLatLng(d<0.0000015?goal:next);
-    if(d<0.0000015){rail.typingAnimation=null;return}
+    const next=advanceTrackDistance(rail.typingDistance||0,goal,dt),done=Math.abs(goal-next)<0.0000015;
+    rail.typingDistance=done?goal:next;rail.train.setLatLng(pointAtTrackDistance(path,rail.typingDistance));
+    if(done){rail.typingAnimation=null;for(const resolve of rail.arrivalWaiters||[])resolve(true);rail.arrivalWaiters=[];return}
     rail.typingAnimation=requestAnimationFrame(frame);
   };
   rail.typingAnimation=requestAnimationFrame(frame);
@@ -958,12 +971,10 @@ function setTrainTypingProgress(progress,motion=true){
   const rail=gameRail;if(!rail?.train||!rail.points.length)return;
   const cached=typingSegment(rail,rail.index,rail.nextIndex),{segment,lengths,total}=cached;
   if(segment.length<2)return;
+  const key=`${rail.index}:${rail.nextIndex}`;if(rail.typingSegmentKey!==key){stopTypingAnimation(rail);rail.typingSegmentKey=key;rail.typingDistance=0;rail.typingProgress=0}
   const safe=Math.max(rail.typingProgress||0,Math.min(1,Number(progress)||0)),targetDistance=total*safe;
-  let i=1;while(i<lengths.length&&lengths[i]<targetDistance)i++;
-  const a=segment[Math.max(0,i-1)],b=segment[Math.min(i,segment.length-1)];
-  const span=Math.max(.0000001,lengths[i]-lengths[i-1]),part=(targetDistance-lengths[i-1])/span;
-  const target=[a[0]+(b[0]-a[0])*part,a[1]+(b[1]-a[1])*part];
-  animateTypingTrain(rail,target,motion);rail.typingProgress=safe;updateDebug()
+  animateTypingTrain(rail,cached,targetDistance,motion);rail.typingProgress=safe;updateDebug();
+  if(safe===1&&motion!==false)return new Promise(resolve=>{(rail.arrivalWaiters||=[]).push(resolve)});
 }
 function gameMapDebug(){updateDebug();return globalThis.__TRT_MAP_DEBUG__}
 
@@ -998,7 +1009,7 @@ class Game{
   }
   startFreeDrive(state){
     this.stop(false);if(!state?.route||!state?.station)return false;
-    this.freeDriveMode=true;this.freeDriveAwaitingStart=true;this.finished=false;this.paused=false;this.phase='TYPING';this.started=performance.now();this.pausedTotal=0;this.pausedAt=0;this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.typedStationIds=[];this.visitedStationIds=[];this.stats.reset(this.started);
+    this.sessionId=(this.sessionId||0)+1;this.freeDriveMode=true;this.freeDriveAwaitingStart=true;this.finished=false;this.paused=false;this.phase='TYPING';this.started=performance.now();this.pausedTotal=0;this.pausedAt=0;this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.typedStationIds=[];this.visitedStationIds=[];this.stats.reset(this.started);
     document.body.dataset.freeDrive='true';$('#screen-game')?.classList.add('free-drive-active');
     const box=$('#typing-input').closest('.typing-box');box.hidden=false;$('#ko-progress').hidden=false;$('#next-station-button').hidden=true;$('#pause-button').hidden=true;
     this.renderFreeDriveState(state);this.timer=setInterval(()=>this.tick(),100);this.typing.focus();return true
@@ -1012,7 +1023,12 @@ class Game{
   }
   setFreeDriveTypingTarget(edge,station){
     if(!this.freeDriveMode||!edge||!station)return;
-    this.freeDriveTarget={to:edge.to,routeId:edge.routeId,station};
+    this.freeDriveTarget={to:edge.to,routeId:edge.routeId,index:edge.index,station};
+    const destination=edge.direction<0?edge.route.stations[0]:edge.route.stations.at(-1);
+    $('#next-station-name').textContent=station.ko||station.ja||'—';$('#next-station').textContent=station.ko||'';
+    $('#service-destination-ja').textContent=destination.ja||'';$('#service-destination-ko').textContent=destination.ko||'';
+    $('#service-direction-summary').textContent=`${this.currentStation()?.ko||''} → ${destination.ko||''}`;
+    if(this.mapRoute)renderGameMap(this.mapRoute,this.index,{motion:true,nextRouteIndex:edge.index});
     this.phase='TYPING';this.comboPrefixUnits=0;
     const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
     $('#input-status').textContent='TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
@@ -1023,7 +1039,7 @@ class Game{
     const route=railDataRepository.resolveRoute(state.route),station=state.station,index=Math.max(0,state.stationIndex||0);
     this.route=route;this.freeDriveState=state;this.options={mode:'free-drive',mapMode:'geographic',mapLabels:'normal',motion:true,reducedMotion:false};this.service={id:'free-drive',nameJa:'自由走行',nameKo:'자유주행',nameEn:'Free Drive',stops:route.stations.map(item=>item.id)};
     try{this.resolvedRoute=resolvePlayableRoute(route,{direction:'forward',service:this.service})}catch{this.resolvedRoute={stations:route.stations,geometry:route.geometry||[],segments:route.directedSegments||[]}}
-    this.serviceStations=this.resolvedRoute.stations||route.stations;this.serviceStops=new Set(this.serviceStations.map(item=>item.id));this.mapRoute={...route,stations:this.serviceStations,geometry:this.resolvedRoute.geometry||route.geometry||[],directedSegments:this.resolvedRoute.segments||route.directedSegments||[],renderKey:`${route.id}::free-drive-${Date.now()}`};this.sequence=this.serviceStations;this.index=Math.max(0,Math.min(index,this.sequence.length-1));this.boarding=false;
+    this.serviceStations=this.resolvedRoute.stations||route.stations;this.serviceStops=new Set(this.serviceStations.map(item=>item.id));this.mapRoute={...route,stations:this.serviceStations,geometry:this.resolvedRoute.geometry||route.geometry||[],directedSegments:this.resolvedRoute.segments||route.directedSegments||[],renderKey:`${route.id}::free-drive`};this.sequence=this.serviceStations;this.index=Math.max(0,Math.min(index,this.sequence.length-1));this.boarding=false;
     const sameRoute=(state.edges||[]).filter(edge=>edge.routeId===route.id),prevEdge=sameRoute.find(edge=>edge.direction<0),nextEdge=sameRoute.find(edge=>edge.direction>0),prev=prevEdge?this.sequence[prevEdge.index]:this.sequence[this.index-1],next=nextEdge?this.sequence[nextEdge.index]:this.sequence[this.index+1];
     this.applyActiveBrand(station);const sign=$('#station-sign');sign.classList.remove('sign-enter');void sign.offsetWidth;sign.classList.add('sign-enter');
     $('#prompt-main').textContent=route?.countryId==='kr'?(station.ko||station.ja||''):(station.ja||'');$('#prompt-ko').textContent=station.ko||'';$('#prompt-ko').classList.remove('memory-hidden');$('#prompt-kana').textContent=station.kana||'';$('#prompt-sub').textContent=station.romaji||'';$('#station-context').textContent='현재역 · 자유주행';
@@ -1036,7 +1052,7 @@ class Game{
     const defaultEdge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state.edges?.[0];
     if(this.freeDriveAwaitingStart)this.setFreeDriveStartTarget(station);
     else if(defaultEdge){const targetStation=defaultEdge.route?.stations?.[defaultEdge.index]||null;if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation)}
-    renderGameMap(this.mapRoute,this.index,{mapMode:'geographic',stationLabel:'ja-ko',mapLabels:'normal',motion:true,serviceStops:[...this.serviceStops],previousRouteIndex:Math.max(0,this.index-1),nextRouteIndex:Math.min(this.mapRoute.stations.length-1,this.index+1)});
+    renderGameMap(this.mapRoute,this.index,{mapMode:'geographic',stationLabel:'ja-ko',mapLabels:'normal',motion:true,serviceStops:[...this.serviceStops],previousRouteIndex:Math.max(0,this.index-1),nextRouteIndex:this.freeDriveTarget?.index??Math.min(this.mapRoute.stations.length-1,this.index+1)});
   }
   serviceLabel(){const train=this.trainType?.names?.ko,destination=this.sequence?.find(station=>station.id===this.destinationStationId)?.ko||this.sequence?.at(-1)?.ko;return this.servicePattern?`${train||this.service.nameKo}${destination?` · ${destination}행`:''}`:(this.service.nameKo||'각역정차')}
   makeSequence(){const base=[...this.serviceStations];if(this.options.mode==='random')return Array.from({length:100},()=>base[Math.floor(Math.random()*base.length)]);if(this.options.mode==='endless')return Array.from({length:500},(_,i)=>base[i%base.length]);return base}
@@ -1044,7 +1060,7 @@ class Game{
   answerValues(station){return[station.ko,...(station.koAliases||[])].map(value=>buildTypingModel(value).inputText)}
   routeIndex(station){const visit=this.mapRoute.stations.indexOf(station);return visit>=0?visit:Math.max(0,this.mapRoute.stations.findIndex(item=>item.id===station?.id))}
   currentStation(){return this.sequence?.[this.index]||null}
-  targetStation(){return this.boarding?this.sequence?.[0]||null:this.sequence?.[this.index+1]||null}
+  targetStation(){if(this.freeDriveMode)return this.freeDriveTarget?.station||null;return this.boarding?this.sequence?.[0]||null:this.sequence?.[this.index+1]||null}
   activeSegment(){return this.boarding?null:this.resolvedRoute?.segments?.[this.index]||null}
   mapOptions(){const current=this.currentStation(),previous=this.sequence[this.index-1],target=this.targetStation();return{mapMode:this.options.mapMode,stationLabel:'ja-ko',mapLabels:this.options.mapLabels,motion:this.options.motion&&!this.options.reducedMotion,serviceStops:[...this.serviceStops],previousRouteIndex:this.routeIndex(previous||current),nextRouteIndex:this.routeIndex(target||current)}}
   syncDebug(){const current=this.currentStation(),target=this.targetStation(),segment=this.activeSegment(),active=this.activeRoute(target||current);globalThis.__TRT_GAME_DEBUG__={phase:this.phase,boarding:this.boarding,currentIndex:this.index,currentStationId:current?.id||null,currentStationKo:current?.ko||null,targetStationId:target?.id||null,targetStationKo:target?.ko||null,currentOperatorId:active?.operatorId||null,currentLineId:active?.id||null,currentPhysicalLineId:active?.id||null,currentServiceJourneyId:this.serviceJourney?.id||null,currentServicePatternId:this.servicePattern?.id||null,currentTrainTypeId:this.trainType?.id||null,destinationStationId:this.destinationStationId||null,currentThroughServiceId:this.servicePattern?.throughServiceId||this.route?.throughService?.id||null,activeSegmentFrom:segment?.fromStationId||null,activeSegmentTo:segment?.toStationId||null,activeSegmentParts:segment?.parts?.length||1,answer:this.typing.targets?.[0]||null,typedStationIds:[...this.typedStationIds],visitedStationIds:[...this.visitedStationIds]};document.body.dataset.gamePhase=this.phase;document.body.dataset.gameBoarding=String(this.boarding);document.body.dataset.currentStationId=current?.id||'';document.body.dataset.targetStationId=target?.id||'';document.body.dataset.currentOperatorId=active?.operatorId||'';document.body.dataset.currentLineId=active?.id||''}
@@ -1058,20 +1074,20 @@ class Game{
     this.applyActiveBrand(station);$('#prompt-main').textContent=this.route?.countryId==='kr'?(station.ko||station.ja||''):station.ja;const memory=this.options.inputMode==='memory';$('#prompt-ko').textContent=memory?'정답 비공개':station.ko;$('#prompt-ko').classList.toggle('memory-hidden',memory);$('#prompt-kana').textContent=hard?'••••••':station.kana;$('#prompt-sub').textContent=hard?`한국어 ${transportStopNoun(this.route)} 이름을 입력하세요`:station.romaji;const badge=$('#station-badge'),officialCode=station.hasOfficialStationCode?station.officialCode:'';badge.textContent=officialCode;badge.hidden=!officialCode;$('#station-context').textContent=this.boarding?`출발 ${transportStopNoun(this.route)} 입력`:`다음 ${transportStopNoun(this.route)} 입력`;$('#previous-station-name').textContent=previous?.ko||'출발지';$('#previous-station-romaji').textContent=previous?`${previous.ja} · ${previous.romaji}`:'ORIGIN';$('#next-station-name').textContent=following?.ko||'종착지';$('#next-station-romaji').textContent=following?`${following.ja} · ${following.romaji}`:'TERMINAL';$('#next-station').textContent=station.ko;$('#error-count').textContent=this.errors;this.fitPrompt();this.renderKoreanProgress();
     this.comboPrefixUnits=0;const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').classList.remove('waiting');$('#next-station-button').hidden=true;$('#input-status').textContent='TYPE';$('#input-status').style.color='';this.typing.setTarget(this.answerValues(station));renderGameMap(this.mapRoute,this.routeIndex(current),this.mapOptions());this.syncDebug();if(!this.paused)this.typing.focus()
   }
-  onInput({state,value,isComposing=false}){if(this.paused||this.phase!=='TYPING')return;const started=performance.now();this.renderKoreanProgress(value,state);const answer=this.answerValues(this.targetStation())[0]||'',target=Array.from(answer),typed=Array.from(value||'');let prefix=0;while(prefix<target.length&&typed[prefix]===target[prefix])prefix++;setTrainTypingProgress(this.boarding?0:target.length?prefix/target.length:0,this.options.motion&&!this.options.reducedMotion);const observed=this.stats.observe({value,state,isComposing});this.errors=this.stats.mistakeUnits;const targetJamo=Array.from(answer.normalize('NFD')),typedJamo=Array.from(String(value||'').normalize('NFD'));let jamoPrefix=0;while(jamoPrefix<targetJamo.length&&typedJamo[jamoPrefix]===targetJamo[jamoPrefix])jamoPrefix++;if(observed.mistakeAdded){this.combo=0;this.comboPrefixUnits=jamoPrefix;$('#error-count').textContent=this.errors}else if(state!=='wrong'&&jamoPrefix>this.comboPrefixUnits){this.combo+=jamoPrefix-this.comboPrefixUnits;this.comboPrefixUnits=jamoPrefix;this.maxCombo=Math.max(this.maxCombo,this.combo)}$('#input-status').textContent=state==='wrong'?'CHECK':(state==='typing'||state==='composing')?`TYPING ${Math.round(prefix/Math.max(1,target.length)*100)}%`:'TYPE';$('#input-status').style.color=state==='wrong'?'#d93f3f':'';document.body.dataset.typingUpdateMs=(performance.now()-started).toFixed(2);this.updateHud()}
+  onInput({state,value,isComposing=false}){if(this.paused||this.phase!=='TYPING')return;const started=performance.now();this.renderKoreanProgress(value,state);const answer=this.answerValues(this.targetStation())[0]||'',target=Array.from(answer),typed=Array.from(value||'');let prefix=0;while(prefix<target.length&&typed[prefix]===target[prefix])prefix++;setTrainTypingProgress((this.freeDriveMode?this.freeDriveAwaitingStart:this.boarding)?0:target.length?prefix/target.length:0,this.options.motion&&!this.options.reducedMotion);const observed=this.stats.observe({value,state,isComposing});this.errors=this.stats.mistakeUnits;const targetJamo=Array.from(answer.normalize('NFD')),typedJamo=Array.from(String(value||'').normalize('NFD'));let jamoPrefix=0;while(jamoPrefix<targetJamo.length&&typedJamo[jamoPrefix]===targetJamo[jamoPrefix])jamoPrefix++;if(observed.mistakeAdded){this.combo=0;this.comboPrefixUnits=jamoPrefix;$('#error-count').textContent=this.errors}else if(state!=='wrong'&&jamoPrefix>this.comboPrefixUnits){this.combo+=jamoPrefix-this.comboPrefixUnits;this.comboPrefixUnits=jamoPrefix;this.maxCombo=Math.max(this.maxCombo,this.combo)}$('#input-status').textContent=state==='wrong'?'CHECK':(state==='typing'||state==='composing')?`TYPING ${Math.round(prefix/Math.max(1,target.length)*100)}%`:'TYPE';$('#input-status').style.color=state==='wrong'?'#d93f3f':'';document.body.dataset.typingUpdateMs=(performance.now()-started).toFixed(2);this.updateHud()}
   correct(){
     if(this.freeDriveMode){
       if(this.paused||this.finished||this.phase!=='TYPING'||!this.freeDriveTarget)return;
-      const target=this.freeDriveTarget;this.stats.complete();this.typedStationIds.push(target.station?.id||target.to);this.playTone();this.typing.clear?.();
+      const target=this.freeDriveTarget;this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(target.station?.id||target.to);this.playTone();this.typing.clear?.();
       if(target.kind==='start'){
         this.freeDriveAwaitingStart=false;
         const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),edge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state?.edges?.[0];
         if(edge){const station=edge.route?.stations?.[edge.index]||null;if(station){$('#station-context').textContent='다음역 입력 · 자유주행';this.setFreeDriveTypingTarget(edge,station);return}}
         toast('이 역에서 이어지는 다음 역이 없습니다.');return
       }
-      const moved=this.onFreeDriveMove?.(target.to,target.routeId);if(!moved){toast('다음 역으로 이동하지 못했습니다.');this.setFreeDriveTypingTarget(target,target.station)}return
+      const session=this.sessionId,arrival=setTrainTypingProgress(1,this.options.motion&&!this.options.reducedMotion);const move=()=>{if(this.sessionId!==session||!this.freeDriveMode||this.freeDriveTarget!==target)return;const moved=this.onFreeDriveMove?.(target.to,target.routeId);if(!moved){toast('다음 역으로 이동하지 못했습니다.');this.setFreeDriveTypingTarget(target,target.station)}};if(arrival?.then)arrival.then(reached=>{if(reached!==false)move()});else move();return
     }
-    if(this.paused||this.finished||this.phase!=='TYPING')return;const station=this.targetStation();if(!station)return;this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(station.id);const manual=this.options.stationAdvance==='space';setTrainTypingProgress(this.boarding?0:1,this.options.motion&&!this.options.reducedMotion);$('#typing-input').readOnly=true;$('#typing-input').closest('.typing-box').classList.add('waiting');$('#input-status').textContent=manual?'SPACE NEXT':this.boarding?'DEPARTING':'ARRIVING';$('#next-station-button').hidden=!manual;this.phase=manual?'CORRECT_WAITING':'ARRIVING';this.playTone();this.updateHud();this.syncDebug();if(!manual){const session=this.sessionId;queueMicrotask(()=>{if(this.sessionId===session&&!this.finished&&this.options.stationAdvance!=='space')this.advance()})}
+    if(this.paused||this.finished||this.phase!=='TYPING')return;const station=this.targetStation();if(!station)return;this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(station.id);const manual=this.options.stationAdvance==='space';const arrival=setTrainTypingProgress(this.boarding?0:1,this.options.motion&&!this.options.reducedMotion);$('#typing-input').readOnly=true;$('#typing-input').closest('.typing-box').classList.add('waiting');$('#input-status').textContent=manual?'SPACE NEXT':this.boarding?'DEPARTING':'ARRIVING';$('#next-station-button').hidden=!manual;this.phase=manual?'CORRECT_WAITING':'ARRIVING';this.playTone();this.updateHud();this.syncDebug();if(!manual){const session=this.sessionId;queueMicrotask(()=>{const advance=()=>{if(this.sessionId===session&&!this.finished&&this.options.stationAdvance!=='space')this.advance()};if(arrival?.then)arrival.then(reached=>{if(reached!==false)advance()});else advance()})}
   }
   advance(){
     if(this.finished||this.paused||!['CORRECT_WAITING','ARRIVING'].includes(this.phase))return;this.phase='MOVING';$('#next-station-button').hidden=true;const arrived=this.targetStation();if(!arrived)return this.finish();if(this.boarding){this.boarding=false;const current=this.currentStation();renderGameMap(this.mapRoute,this.routeIndex(current),this.mapOptions());this.updateHud();this.syncDebug();this.renderStation();return}this.advanceToNextStation(arrived);if((this.options.mode==='random'&&this.elapsed()>=60000)||this.index>=this.sequence.length-1||!this.targetStation())return this.finish();const current=this.currentStation();this.updateHud();this.syncDebug();this.renderStation()
@@ -1190,11 +1206,11 @@ class FreeDrive{
         const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1});
-        bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1});
+        if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1});
       }
       if(route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
-        if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1});bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1})}
+        if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1});if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1})}
       }
     }
     this.renderMap();
@@ -1224,6 +1240,11 @@ class FreeDrive{
     if(!edge)return false;
     this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
     this.render();this.emit();return true
+  }
+  switchRouteAtCurrentStation(routeId){
+    const node=this.current(),route=this.routes.find(r=>r.id===routeId);
+    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
+    this.currentRouteId=routeId;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
   snapshot(){
@@ -1881,21 +1902,21 @@ async function prepareKoreanFamilyChoices(route){
 async function chooseRoute(id){let route=routes.find(r=>r.id===id);if(!route&&dataLoading){pendingRouteId=id;toast('철도 데이터를 불러오는 중입니다. 잠시만 기다려 주세요.');return false}if(!route){console.warn('Line not found:',id);toast('선택한 노선을 찾을 수 없습니다. 데이터를 다시 불러와 주세요.');return false}if(route.lazy){toast(`${route.line.ko} 노선 상세 데이터를 불러오는 중입니다.`);try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(route)),index=builtin.findIndex(item=>item.id===id);if(index>=0)builtin[index]=hydrated;refreshRoutes();route=routes.find(item=>item.id===id)}catch(error){console.error('Nationwide line load failed:',error);toast('이 노선의 상세 데이터를 불러오지 못했습니다.');return false}}selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
 function renderHomeNetwork(){const canvas=$('#home-network-canvas'),network=freeDriveNetworkRoutes();if(!canvas||!network.length)return;const tokyoBounds={minLat:35.50,maxLat:35.86,minLon:139.45,maxLon:139.96};drawNetworkCanvas(canvas,network,{bounds:tokyoBounds,alpha:.24,transferNodes:freeDrive?.graph||null})}
 function freeDriveRouteTabs(state){
-  const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[state.routeId,...linked.filter(id=>id!==state.routeId)];
+  const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[...linked,state.routeId];
   return [...new Set(ids)].map(id=>({id,route:(state.edges||[]).find(edge=>edge.routeId===id)?.route||freeDrive?.routes?.find(route=>route.id===id)||state.route}))
 }
 function renderGameFreeDriveOptions(state){
   const target=$('#game-free-drive-options'),tabs=$('#game-free-drive-tabs');if(!target||!tabs||!state)return;
   const routeTabs=freeDriveRouteTabs(state);if(!routeTabs.length)return;
-  freeDriveTabIndex=Math.max(0,Math.min(freeDriveTabIndex,routeTabs.length-1));
+  freeDriveTabIndex=Math.max(0,routeTabs.findIndex(item=>item.id===state.routeId));
   const active=routeTabs[freeDriveTabIndex],activeId=active.id;
   tabs.hidden=routeTabs.length<2;tabs.classList.toggle('has-transfer',routeTabs.length>1);
-  tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${index===0?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
+  tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${item.id===state.routeId?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
   const edges=(state.edges||[]).filter(edge=>edge.routeId===activeId);
   const typingEdge=edges.find(edge=>edge.direction>0)||edges.find(edge=>edge.direction<0)||edges[0];
-  if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=freeDrive?.graph?.get(typingEdge.to)?.station;if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
+  if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=typingEdge.route?.stations?.[typingEdge.index];if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
-  target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=freeDrive?.graph?.get(edge.to)?.station;return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
+  target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=edge.route?.stations?.[edge.index];return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
 }
 async function startFreeDrive(route){
   if(!route)return toast('자유주행을 시작할 노선을 선택해 주세요.');
@@ -1972,14 +1993,14 @@ $('#game-free-drive-tabs')?.addEventListener('click',event=>{
   const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode)return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state),index=tabs.findIndex(item=>item.id===button.dataset.freeDriveTab);if(index<0)return;
-  freeDriveTabIndex=index;renderGameFreeDriveOptions(state);
+  freeDrive.switchRouteAtCurrentStation(tabs[index].id);
 });
 document.addEventListener('keydown',event=>{
   if(event.key!=='Tab'||currentScreen!=='game'||!game?.freeDriveMode)return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state);event.preventDefault();if(tabs.length<2)return;
-  freeDriveTabIndex=(freeDriveTabIndex+(event.shiftKey?-1:1)+tabs.length)%tabs.length;renderGameFreeDriveOptions(state);
-  const active=tabs[freeDriveTabIndex];toast(`TAB · ${active.route?.line?.ko||active.route?.line?.ja||active.id}`);
+  const index=tabs.findIndex(item=>item.id===state.routeId),active=tabs[(index+(event.shiftKey?-1:1)+tabs.length)%tabs.length];
+  freeDrive.switchRouteAtCurrentStation(active.id);toast(`TAB · ${active.route?.line?.ko||active.route?.line?.ja||active.id}`);
 });
 document.addEventListener('click',e=>{
   const freeMove=e.target.closest('[data-free-to][data-free-route]');

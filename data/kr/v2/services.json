@@ -148192,15 +148192,53 @@
     "paths": [
       {
         "geometryId": "kr-geometry-640794376",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-712243721",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-850710256",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-850710259",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1075277898",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-850710255",
         "reverse": false
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-6036160373",
-        "geometryIndex": 9,
+        "geometryIndex": 0,
         "boarding": true,
-        "alighting": false
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9589229143",
+        "geometryIndex": 65,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9589229145",
+        "geometryIndex": 99,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9589229146",
+        "geometryIndex": 119,
+        "boarding": true,
+        "alighting": true
       }
     ],
     "osmFrom": "불암산",
@@ -148215,6 +148253,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -148223,7 +148266,18 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-13675921",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-6103",
+        "seoulmetro-official-20260901-train-6253",
+        "seoulmetro-official-20260901-train-6372"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    }
   },
   {
     "id": "kr-osm-service-16665964",
@@ -148289,12 +148343,208 @@
       {
         "geometryId": "kr-geometry-850710258",
         "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1075277897",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-850710257",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-591213746",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712243720",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-239580582",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-321132038",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-468599630",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1221943827",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712234722",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1221943826",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712234723",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994121",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1168223034",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994122",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-785130604",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-379994120",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-379994123",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-781983105",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1221943825",
+        "reverse": true
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-9589229147",
         "geometryIndex": 0,
+        "boarding": true,
+        "alighting": false
+      },
+      {
+        "stopId": "kr-osm-stop-9589229144",
+        "geometryIndex": 25,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9589229142",
+        "geometryIndex": 54,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173346",
+        "geometryIndex": 114,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173339",
+        "geometryIndex": 135,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5914759508",
+        "geometryIndex": 159,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5812233466",
+        "geometryIndex": 175,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173148",
+        "geometryIndex": 189,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173138",
+        "geometryIndex": 197,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7106108484",
+        "geometryIndex": 209,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3835922764",
+        "geometryIndex": 212,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-353186868",
+        "geometryIndex": 227,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-287321417",
+        "geometryIndex": 238,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5914829686",
+        "geometryIndex": 250,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173201",
+        "geometryIndex": 268,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833429765",
+        "geometryIndex": 288,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173208",
+        "geometryIndex": 307,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833429779",
+        "geometryIndex": 336,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173195",
+        "geometryIndex": 345,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3832931179",
+        "geometryIndex": 356,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7366159452",
+        "geometryIndex": 382,
         "boarding": true,
         "alighting": true
       }
@@ -148311,6 +148561,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -148319,7 +148574,18 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-13938877",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-6251",
+        "seoulmetro-official-20260901-train-6370",
+        "seoulmetro-official-20260901-train-6489"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    }
   },
   {
     "id": "kr-osm-service-16665966",
@@ -148336,13 +148602,201 @@
     "paths": [
       {
         "geometryId": "kr-geometry-1221943824",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794429",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794419",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794409",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794402",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1168223033",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794440",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-712234720",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-712234721",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794394",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-1221943828",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794387",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-640794376",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-712243721",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-850710256",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-850710259",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1075277898",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-850710255",
         "reverse": false
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-6036161326",
-        "geometryIndex": 38,
+        "geometryIndex": 0,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036161314",
+        "geometryIndex": 26,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160340",
+        "geometryIndex": 37,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160335",
+        "geometryIndex": 50,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160332",
+        "geometryIndex": 70,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160329",
+        "geometryIndex": 90,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160873",
+        "geometryIndex": 111,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-7366159431",
+        "geometryIndex": 130,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160858",
+        "geometryIndex": 141,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160849",
+        "geometryIndex": 156,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160839",
+        "geometryIndex": 168,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160836",
+        "geometryIndex": 173,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160831",
+        "geometryIndex": 184,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160827",
+        "geometryIndex": 190,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160816",
+        "geometryIndex": 206,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160804",
+        "geometryIndex": 221,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160786",
+        "geometryIndex": 246,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6036160373",
+        "geometryIndex": 269,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9589229143",
+        "geometryIndex": 334,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9589229145",
+        "geometryIndex": 368,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9589229146",
+        "geometryIndex": 388,
         "boarding": true,
         "alighting": true
       }
@@ -148359,6 +148813,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -148367,7 +148826,18 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-13675921",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-6104",
+        "seoulmetro-official-20260901-train-6254",
+        "seoulmetro-official-20260901-train-6373"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    }
   },
   {
     "id": "kr-osm-service-16665967",
@@ -149139,6 +149609,218 @@
       {
         "geometryId": "kr-geometry-1168235688",
         "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-308993738",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-942140073",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1121991526",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-308993741",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-380059541",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-308993740",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1025048381",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-315423455",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-428890005",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-311747058",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-380136002",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-380136000",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-315423459",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1419920375",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1418621448",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1221238112",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1221238110",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-772081514",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-772081513",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-936301804",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-773670500",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-625354986",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-311725666",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-625513373",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-773670504",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-625513369",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-311747050",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-589960563",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-589960564",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-601710543",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-601710542",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-476901952",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-481143128",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-481143129",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-479463959",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-770793175",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-589957695",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-589957696",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-505464834",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-505464833",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-505464844",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-505464845",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-769818393",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-769818394",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-505464850",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-505464861",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-625373248",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1060074992",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-505464866",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-625380184",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-625380188",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-838518597",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-838518596",
+        "reverse": false
       }
     ],
     "stops": [
@@ -149146,6 +149828,156 @@
         "stopId": "kr-osm-stop-8414031491",
         "geometryIndex": 0,
         "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5835544503",
+        "geometryIndex": 36,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5899527452",
+        "geometryIndex": 65,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3214011598",
+        "geometryIndex": 87,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3214007453",
+        "geometryIndex": 99,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5900362264",
+        "geometryIndex": 115,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5900362228",
+        "geometryIndex": 129,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3212614728",
+        "geometryIndex": 143,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896638404",
+        "geometryIndex": 159,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896638406",
+        "geometryIndex": 190,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896638407",
+        "geometryIndex": 195,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-4988033142",
+        "geometryIndex": 205,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896638408",
+        "geometryIndex": 226,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896638413",
+        "geometryIndex": 244,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896638421",
+        "geometryIndex": 261,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3426723675",
+        "geometryIndex": 276,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3405090091",
+        "geometryIndex": 290,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3426723656",
+        "geometryIndex": 305,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3426723663",
+        "geometryIndex": 312,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3426724594",
+        "geometryIndex": 325,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3426723681",
+        "geometryIndex": 346,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896399353",
+        "geometryIndex": 371,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896399354",
+        "geometryIndex": 387,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5896399383",
+        "geometryIndex": 411,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-4954074038",
+        "geometryIndex": 437,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5904958057",
+        "geometryIndex": 478,
+        "boarding": false,
         "alighting": true
       }
     ],
@@ -149161,6 +149993,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -149169,7 +150006,18 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-15833653",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-246",
+        "seoulmetro-official-20260901-train-721",
+        "seoulmetro-official-20260901-train-1185"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    }
   },
   {
     "id": "kr-osm-service-16712693",
@@ -149283,12 +150131,86 @@
       {
         "geometryId": "kr-geometry-768714278",
         "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-936298320",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-637016283",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994103",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-637016267",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-379994111",
+        "reverse": false
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-7308844561",
         "geometryIndex": 0,
+        "boarding": true,
+        "alighting": false
+      },
+      {
+        "stopId": "kr-osm-stop-7611776393",
+        "geometryIndex": 28,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5902127698",
+        "geometryIndex": 39,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-5902125882",
+        "geometryIndex": 50,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3833430060",
+        "geometryIndex": 58,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355172742",
+        "geometryIndex": 66,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3426724597",
+        "geometryIndex": 73,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-660871450",
+        "geometryIndex": 82,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-8414031473",
+        "geometryIndex": 120,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-8414031491",
+        "geometryIndex": 146,
         "boarding": true,
         "alighting": true
       }
@@ -149305,6 +150227,11 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -149313,7 +150240,16 @@
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
-    ]
+    ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-15833653",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-487"
+      ],
+      "reviewedOn": "2026-10-17",
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    }
   },
   {
     "id": "kr-osm-service-16712696",

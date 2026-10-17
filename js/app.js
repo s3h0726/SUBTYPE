@@ -406,21 +406,21 @@ async function prepareKoreanFamilyChoices(route){
 async function chooseRoute(id){let route=routes.find(r=>r.id===id);if(!route&&dataLoading){pendingRouteId=id;toast('철도 데이터를 불러오는 중입니다. 잠시만 기다려 주세요.');return false}if(!route){console.warn('Line not found:',id);toast('선택한 노선을 찾을 수 없습니다. 데이터를 다시 불러와 주세요.');return false}if(route.lazy){toast(`${route.line.ko} 노선 상세 데이터를 불러오는 중입니다.`);try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(route)),index=builtin.findIndex(item=>item.id===id);if(index>=0)builtin[index]=hydrated;refreshRoutes();route=routes.find(item=>item.id===id)}catch(error){console.error('Nationwide line load failed:',error);toast('이 노선의 상세 데이터를 불러오지 못했습니다.');return false}}selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
 function renderHomeNetwork(){const canvas=$('#home-network-canvas'),network=freeDriveNetworkRoutes();if(!canvas||!network.length)return;const tokyoBounds={minLat:35.50,maxLat:35.86,minLon:139.45,maxLon:139.96};drawNetworkCanvas(canvas,network,{bounds:tokyoBounds,alpha:.24,transferNodes:freeDrive?.graph||null})}
 function freeDriveRouteTabs(state){
-  const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[state.routeId,...linked.filter(id=>id!==state.routeId)];
+  const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[...linked,state.routeId];
   return [...new Set(ids)].map(id=>({id,route:(state.edges||[]).find(edge=>edge.routeId===id)?.route||freeDrive?.routes?.find(route=>route.id===id)||state.route}))
 }
 function renderGameFreeDriveOptions(state){
   const target=$('#game-free-drive-options'),tabs=$('#game-free-drive-tabs');if(!target||!tabs||!state)return;
   const routeTabs=freeDriveRouteTabs(state);if(!routeTabs.length)return;
-  freeDriveTabIndex=Math.max(0,Math.min(freeDriveTabIndex,routeTabs.length-1));
+  freeDriveTabIndex=Math.max(0,routeTabs.findIndex(item=>item.id===state.routeId));
   const active=routeTabs[freeDriveTabIndex],activeId=active.id;
   tabs.hidden=routeTabs.length<2;tabs.classList.toggle('has-transfer',routeTabs.length>1);
-  tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${index===0?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
+  tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${item.id===state.routeId?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
   const edges=(state.edges||[]).filter(edge=>edge.routeId===activeId);
   const typingEdge=edges.find(edge=>edge.direction>0)||edges.find(edge=>edge.direction<0)||edges[0];
-  if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=freeDrive?.graph?.get(typingEdge.to)?.station;if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
+  if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=typingEdge.route?.stations?.[typingEdge.index];if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
-  target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=freeDrive?.graph?.get(edge.to)?.station;return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
+  target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=edge.route?.stations?.[edge.index];return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
 }
 async function startFreeDrive(route){
   if(!route)return toast('자유주행을 시작할 노선을 선택해 주세요.');
@@ -497,14 +497,14 @@ $('#game-free-drive-tabs')?.addEventListener('click',event=>{
   const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode)return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state),index=tabs.findIndex(item=>item.id===button.dataset.freeDriveTab);if(index<0)return;
-  freeDriveTabIndex=index;renderGameFreeDriveOptions(state);
+  freeDrive.switchRouteAtCurrentStation(tabs[index].id);
 });
 document.addEventListener('keydown',event=>{
   if(event.key!=='Tab'||currentScreen!=='game'||!game?.freeDriveMode)return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state);event.preventDefault();if(tabs.length<2)return;
-  freeDriveTabIndex=(freeDriveTabIndex+(event.shiftKey?-1:1)+tabs.length)%tabs.length;renderGameFreeDriveOptions(state);
-  const active=tabs[freeDriveTabIndex];toast(`TAB · ${active.route?.line?.ko||active.route?.line?.ja||active.id}`);
+  const index=tabs.findIndex(item=>item.id===state.routeId),active=tabs[(index+(event.shiftKey?-1:1)+tabs.length)%tabs.length];
+  freeDrive.switchRouteAtCurrentStation(active.id);toast(`TAB · ${active.route?.line?.ko||active.route?.line?.ja||active.id}`);
 });
 document.addEventListener('click',e=>{
   const freeMove=e.target.closest('[data-free-to][data-free-route]');

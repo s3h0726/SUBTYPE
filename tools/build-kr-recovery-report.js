@@ -1,0 +1,22 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{load,validate,assemble}=require('./lib/kr-network'),{orientMemberChain}=require('./lib/kr-member-chain');
+const base=path.resolve(__dirname,'../data/kr/v2'),read=n=>JSON.parse(fs.readFileSync(path.join(base,n+'.json'),'utf8')),data=load(base),{maps}=validate(data),baseline=read('recovery-baseline'),relations=new Map(read('source/osm-relations').map(r=>[r.id,r])),ways=new Map(read('source/osm-ways').map(w=>[w.id,w])),nodes=new Map(read('source/osm-nodes').map(n=>[n.id,n])),coords=new Map();
+for(const w of ways.values())w.nodeIds.forEach((id,i)=>coords.set(id,w.coordinates[i]));
+const verifications=new Map(read('timetable-verifications').map(v=>[v.serviceId,v]));
+const rows=baseline.services.map(before=>{
+ const after=maps.services.get(before.id),relation=relations.get(before.id.split('-').at(-1)),stopMembers=relation.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));let journey,error;try{journey=assemble(after,maps)}catch(e){error=e.message}
+ const chain=orientMemberChain(relation.members.filter(m=>m.type==='w'),ways,stopMembers.map(m=>m.ref));
+ const oneWayConflicts=(chain.parts||[]).filter(p=>{const t=ways.get(p.wayId)?.tags;return(t?.oneway==='yes'&&p.reverse)||(t?.oneway==='-1'&&!p.reverse)}).map(p=>p.wayId);
+ const classifications=[];
+ if(relation.tags.construction||relation.tags['construction:railway']||relation.tags.state==='in_progress')classifications.push('SOURCE_MARKED_UNOPENED_RESEARCH_ONLY');
+ if(before.id==='kr-osm-service-3399104')classifications.push('NON_RAIL_ROAD_MEMBER_37408318_OFFICIAL_OSM_API');
+ if(oneWayConflicts.length)classifications.push('SOURCE_ORIENTATION_CONFLICTS_WITH_ONEWAY_NOT_AUTOFIXED');
+ if(before.issues.some(i=>i.code==='MISSING_ORDERED_STOPS'))classifications.push('INCOMPLETE_SOURCE_STOP_SEQUENCE');
+ if(before.issues.some(i=>i.code==='MISSING_MEMBER_WAY'))classifications.push('MISSING_OR_FILTERED_SOURCE_WAY_REQUIRES_TAG_REVIEW');
+ if(chain.status==='NOT_A_SIMPLE_MEMBER_CHAIN')classifications.push('BRANCH_CYCLE_OR_MULTIPLE_SOURCE_COMPONENTS_NO_AUTOMATIC_ORDER');
+ if(journey)classifications.push(after.reconstruction?'OFFICIAL_TRAIN_AND_EXISTING_DIRECTIONAL_TRACK_SUPPLEMENT':'REVIEWED_COMPLETE_MEMBER_ORDER_REPAIR');
+ const issues=after.issues.map(issue=>{const n=nodes.get(issue.nodeId),i=stopMembers.findIndex(m=>m.ref===issue.nodeId);return{...issue,fromCoordinates:coords.get(issue.from)||null,toCoordinates:coords.get(issue.to)||null,stopCoordinates:n?[n.lat,n.lon]:null,sourceStopInterval:i>=0?stopMembers.slice(Math.max(0,i-1),i+2).map(m=>({nodeId:m.ref,name:nodes.get(m.ref)?.tags?.['name:ko']||nodes.get(m.ref)?.tags?.name||null})):null,intervalBasis:'OSM member order only; official interval is unknown unless separate timetable evidence is listed'}});
+ const v=verifications.get(after.id);return{serviceId:after.id,passengerLineId:after.passengerLineId,origin:after.osmFrom,destination:after.osmTo,sourceWayIds:relation.members.filter(m=>m.type==='w').map(m=>m.ref),relationId:relation.id,relationUrl:'https://www.openstreetmap.org/relation/'+relation.id,sourceStopOrder:stopMembers.map(m=>({nodeId:m.ref,name:nodes.get(m.ref)?.tags?.['name:ko']||nodes.get(m.ref)?.tags?.name||null})),officialStopOrder:v?.calls.map(c=>c.officialStationName)||null,officialSourceUrl:v?'https://www.data.go.kr/data/15098251/fileData.do':null,reconstructionEvidence:after.reconstruction||null,before:{assemblable:false,failureCodes:[...new Set(before.issues.map(i=>i.code))]},after:{assemblable:!!journey,error:error||null,stopCount:journey?.stations.length||0,failureCodes:[...new Set(after.issues.map(i=>i.code))]},classifications,oneWayConflicts,issues};
+});
+const report={status:'INCOMPLETE',baselineCommit:baseline.commit,baselineBlocked:rows.length,recovered:rows.filter(r=>r.after.assemblable).length,remaining:rows.filter(r=>!r.after.assemblable).length,scope:'Source candidate restoration, never release approval',rows};
+fs.writeFileSync(path.join(base,'generated/recovery-report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({baseline:report.baselineBlocked,recovered:report.recovered,remaining:report.remaining}));

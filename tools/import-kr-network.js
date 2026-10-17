@@ -84,6 +84,17 @@ for(const group of relations.filter(r=>r.tags.public_transport==='stop_area_grou
  const ids=group.members.filter(m=>m.type==='r').map(m=>'kr-osm-area-'+m.ref).filter(id=>stations.has(id));
  for(const id of ids)stations.get(id).transferStationIds.push(...ids.filter(other=>other!==id));
 }
+// Exact reviewed station-code bindings, never suffix stripping or fuzzy names.
+const stationNamesFile=path.join(base,'station-name-corrections.json');
+if(fs.existsSync(stationNamesFile))require('./lib/kr-station-names').applyOfficialStationNames(stations,stops,JSON.parse(fs.readFileSync(stationNamesFile,'utf8')),JSON.parse(fs.readFileSync(path.join(base,'seoulmetro-trip-candidates.json'),'utf8')));
+// Fail-closed, separately reviewed source supplements for incomplete relations.
+const reconstructionFile=path.join(base,'service-reconstructions.json');
+if(fs.existsSync(reconstructionFile)){
+ const {reconstructService}=require('./lib/kr-service-reconstruction'),configs=JSON.parse(fs.readFileSync(reconstructionFile,'utf8')),trips=JSON.parse(fs.readFileSync(path.join(base,'seoulmetro-trip-candidates.json'),'utf8'));
+ const maps={services:new Map(services.map(s=>[s.id,s])),stations,stops:new Map(stops.map(s=>[s.id,s])),geometry:new Map(geometry.map(g=>[g.id,g])),infrastructure:new Map(infrastructure.map(i=>[i.id,i]))};
+ const snapshotHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'source/seoulmetro/timetable-20260901.csv'))).digest('hex');
+ for(const config of configs){if(snapshotHash!==config.timetableSnapshotSha256)throw Error('STALE_OFFICIAL_RECONSTRUCTION_SNAPSHOT');const index=services.findIndex(s=>s.id===config.serviceId);if(index<0)throw Error('MISSING_RECONSTRUCTION_TARGET');services[index]=reconstructService(services[index],maps.services.get(config.donorServiceId),maps,config,relations.find(r=>'kr-osm-service-'+r.id===config.serviceId),trips)}
+}
 write('operators',[...operators.values()]);write('infrastructure',infrastructure);write('stations',[...stations.values()]);write('stops',stops);write('passenger-lines',[...lines.values()]);write('services',services);write('geometry',geometry);
 // Human-reviewed official evidence and trips must survive repeat OSM imports.
 for(const [name,value] of Object.entries({trips:[],reviews:[],assets:[], 'station-signs':[{id:'kr-temporary-jr',style:'jr-east',official:false}],coverage:{status:'INCOMPLETE',asOf:'2026-10-15',officialPassengerLineIds:null,officialStationCount:null,sourceIds:[]}}))if(!fs.existsSync(path.join(base,name+'.json')))write(name,value);

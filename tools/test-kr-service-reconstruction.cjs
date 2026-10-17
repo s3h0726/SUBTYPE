@@ -1,0 +1,11 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {load,validate,assemble}=require('./lib/kr-network'),{reconstructService}=require('./lib/kr-service-reconstruction');
+const base=path.join(__dirname,'../data/kr/v2'),read=n=>JSON.parse(fs.readFileSync(path.join(base,n+'.json'),'utf8')),data=load(base),{maps}=validate(data),configs=read('service-reconstructions'),relations=read('source/osm-relations'),trips=read('seoulmetro-trip-candidates');
+test('five incomplete source relations recover every official call on retained directional source geometry',()=>{for(const config of configs){const target=maps.services.get(config.serviceId),donor=maps.services.get(config.donorServiceId),relation=relations.find(r=>'kr-osm-service-'+r.id===target.id),result=reconstructService(target,donor,maps,config,relation,trips),journey=assemble(result,maps);assert.deepEqual(journey.stations.map(s=>s.ko),config.calls.map(c=>c.officialStationName));assert.equal(result.status,'candidate');assert.equal(result.issues[0].code,'OFFICIAL_TIMETABLE_REQUIRED');assert(result.paths.every(p=>donor.paths.some(q=>q.geometryId===p.geometryId&&q.reverse===p.reverse)));assert(target.sourceIssues.some(i=>i.code==='MISSING_ORDERED_STOPS'))}});
+test('stale donor, changed official calls, omitted original ways and non-public or opposite track fail closed',()=>{const config=configs[0],target=maps.services.get(config.serviceId),donor=maps.services.get(config.donorServiceId),relation=relations.find(r=>'kr-osm-service-'+r.id===target.id),run=(t=target,d=donor,m=maps,c=config,ts=trips)=>reconstructService(t,d,m,c,relation,ts);
+ assert.throws(()=>run(target,{...donor,names:{ko:'changed'}}),/STALE_RECONSTRUCTION_SOURCE/);
+ const c=structuredClone(config);c.calls[1].officialStationName='wrong';assert.throws(()=>run(target,donor,maps,c),/OFFICIAL_CALL_PATTERN_MISMATCH/);
+ assert.throws(()=>run({...target,paths:[{geometryId:'absent'}]}),/ORIGINAL_WAY_OMITTED/);
+ assert.throws(()=>run(target,donor,maps,config,[]),/MISSING_OFFICIAL_TRAINS/);
+ const m={...maps,infrastructure:new Map([...maps.infrastructure].map(([k,v])=>[k,{...v,service:'yard'}]))};assert.throws(()=>run(target,donor,m),/NON_PUBLIC_TRACK/);
+});

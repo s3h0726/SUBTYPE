@@ -17,6 +17,8 @@ jobs:
           node-version: '22'
       - run: npm run check:dependencies
       - run: npm run import:korea
+      - run: npm run import:seoulmetro
+      - run: npm run build:korea
       - name: Ensure source corrections and generated data are reproducible
         run: git diff --exit-code -- data/kr/v2
       - run: npm run validate:korea
@@ -24,6 +26,7 @@ jobs:
       - run: npm run test:typing
       - run: node tools/test-service-route-resolver.js
       - run: node tools/validate-data.js
+      - run: npm run test:single-source
       - run: npm run build:korea
       - run: npm run match:korea
       - run: node tools/match-kr-stations.js
@@ -56,7 +59,7 @@ jobs:
       - name: Candidate desktop and mobile traversal (not release approval)
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/browser-diagnostics.json
-        run: node tools/test-kr-browser.cjs --all-assemblable
+        run: node tools/test-kr-browser.cjs --all-assemblable --interactive
       - uses: actions/upload-artifact@v4
         if: always()
         with:

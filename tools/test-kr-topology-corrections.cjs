@@ -49,7 +49,11 @@ test('all reviewed national corrections preserve exact source geometry and remai
   assert.equal(oriented.status,'UNIQUE_SOURCE_ORDER');assert.equal(journey.stations.length,stops.length);
   assert.deepEqual(service.paths,oriented.parts.map(p=>({geometryId:'kr-geometry-'+p.wayId,reverse:p.reverse})));
   assert.deepEqual(service.stops.map(s=>maps.stops.get(s.stopId).osmNodeId),stops);
-  assert(compiled.blocked.find(s=>s.serviceId===service.id).reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'));
+  const blocked=compiled.blocked.find(s=>s.serviceId===service.id);assert(blocked);
+  const timetableEvidence=read('timetable-verifications').find(v=>v.serviceId===service.id);
+  if(timetableEvidence){assert.equal(timetableEvidence.status,'verified');assert.equal(timetableEvidence.groups.length,3);assert(timetableEvidence.groups.every(g=>g.trainCount>0));assert(!blocked.reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'))}
+  else assert(blocked.reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'));
+  assert(blocked.reasons.includes('OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED'));assert(blocked.reasons.includes('VERIFIED_TRIP_REQUIRED'));assert.equal(compiled.counts.releasedServices,0);
   for(const [i,p] of service.paths.entries()){
    const source=ways.get(oriented.parts[i].wayId),geometry=maps.geometry.get(p.geometryId);
    assert.deepEqual(geometry.nodeIds,source.nodeIds);assert.deepEqual(geometry.coordinates,source.coordinates);

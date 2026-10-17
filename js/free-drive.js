@@ -97,11 +97,11 @@ export class FreeDrive{
         const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1});
-        bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1});
+        if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1});
       }
       if(route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
-        if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1});bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1})}
+        if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1});if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1})}
       }
     }
     this.renderMap();
@@ -131,6 +131,11 @@ export class FreeDrive{
     if(!edge)return false;
     this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
     this.render();this.emit();return true
+  }
+  switchRouteAtCurrentStation(routeId){
+    const node=this.current(),route=this.routes.find(r=>r.id===routeId);
+    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
+    this.currentRouteId=routeId;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
   snapshot(){
