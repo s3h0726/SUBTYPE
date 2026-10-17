@@ -109,3 +109,55 @@ body[data-current-screen="game"]{height:100dvh;min-height:0;overflow:hidden;over
   #screen-select .line-list-panel{padding-top:18px}
   #screen-select .line-category-tabs,#screen-select .operator-logo-filters{margin-right:-14px;padding-right:14px}
 }
+
+
+/* Route-count summary: separate metrics, wrap without collisions in Korean or English. */
+#screen-select .data-summary{
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  line-height:1.5;
+}
+#screen-select .data-summary.has-count-chips{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px 9px;
+  min-height:0;
+  font-family:'Noto Sans KR','Noto Sans JP','Malgun Gothic',system-ui,sans-serif;
+  font-size:11px;
+  letter-spacing:normal;
+}
+#screen-select .data-summary-title,
+#screen-select .data-summary-notice{
+  display:inline-flex;
+  align-items:center;
+  flex:0 0 auto;
+  white-space:nowrap;
+  line-height:1.5;
+}
+#screen-select .data-summary-title{font-weight:800;color:var(--ink);margin-right:3px}
+#screen-select .data-summary-notice{color:var(--muted);font-weight:700}
+#screen-select .data-summary-chip{
+  display:inline-flex;
+  flex:0 0 auto;
+  gap:5px;
+  align-items:baseline;
+  max-width:100%;
+  padding:5px 9px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--surface);
+  white-space:nowrap;
+  line-height:1.3;
+}
+#screen-select .data-summary-chip-label{color:var(--muted);font-weight:600}
+#screen-select .data-summary-chip-value{color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
+@media(min-width:1051px){
+  #screen-select.line-select-screen.active{display:flex;flex-direction:column}
+  #screen-select .line-select-layout{flex:1 1 auto;min-height:0;height:auto!important}
+}
+@media(max-width:680px){
+  #screen-select .data-summary.has-count-chips{gap:6px;font-size:10px}
+  #screen-select .data-summary-chip{padding:4px 7px}
+}
