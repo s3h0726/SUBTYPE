@@ -153,10 +153,54 @@ body[data-current-screen="game"]{height:100dvh;min-height:0;overflow:hidden;over
 }
 #screen-select .data-summary-chip-label{color:var(--muted);font-weight:600}
 #screen-select .data-summary-chip-value{color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
+/* Prevent summary chips from being collapsed behind the selection panel. */
 @media(min-width:1051px){
-  #screen-select.line-select-screen.active{display:flex;flex-direction:column}
-  #screen-select .line-select-layout{flex:1 1 auto;min-height:0;height:auto!important}
+  body[data-current-screen="rail-map"] #screen-select.active{
+    display:grid!important;
+    grid-template-rows:max-content max-content minmax(0,1fr);
+    row-gap:8px;
+  }
+  #screen-select .line-select-heading{height:auto!important;min-height:50px;margin:0}
+  #screen-select .data-summary{margin:0!important;min-height:30px;flex-shrink:0}
+  #screen-select .line-select-layout{height:auto!important;min-height:0;max-height:100%;overflow:hidden}
 }
+@media(min-width:821px) and (max-width:1050px){
+  body[data-current-screen="rail-map"],body[data-current-screen="rail-map"] main{height:auto!important;min-height:100dvh;overflow-y:auto!important}
+  body[data-current-screen="rail-map"] #screen-select.active{display:block!important;height:auto!important;min-height:0;overflow:visible!important}
+  #screen-select .line-select-layout{display:flex!important;flex-direction:column;height:auto!important;min-height:0;overflow:visible!important}
+  #screen-select .line-list-panel{order:1;height:min(76vh,760px);min-height:420px}
+  #screen-select .selected-line-panel{order:2;height:auto;min-height:220px}
+}
+/* All route-selector labels follow the active light/dark foreground tokens. */
+#screen-select .line-select-heading h2,
+#screen-select .line-list-panel header h3,
+#screen-select .selected-line-empty h3,
+#screen-select .selected-line-card h3,
+#screen-select .line-card h3{color:var(--ink)}
+#screen-select .line-select-heading p,
+#screen-select .line-select-heading span,
+#screen-select .line-list-panel header strong,
+#screen-select .selected-line-operator,
+#screen-select .data-summary-notice{color:var(--muted)}
+#screen-select .line-category-tabs button,
+#screen-select .operator-logo-filters button{background:var(--surface);color:var(--ink);border-color:var(--line)}
+#screen-select .line-category-tabs button.active,
+#screen-select .operator-logo-filters button.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#screen-select .line-search,
+#screen-select .line-card,
+#screen-select .selected-line-panel{color:var(--ink)}
+#screen-select .line-search input{color:var(--ink);background:transparent}
+#screen-select .line-search input::placeholder{color:var(--muted);opacity:1}
+#screen-select .data-summary.has-count-chips,
+#screen-select .data-summary-chip,
+#screen-select .data-summary-title,
+#screen-select .data-summary-chip-value{color:var(--ink)}
+#screen-select .data-summary-chip-label{color:var(--muted)}
+#screen-game.active{background:var(--paper);color:var(--ink)}
+#screen-game .game-top,#screen-game .game-top h2{color:var(--ink)}
+#screen-game .game-top small,#screen-game .game-top p{color:var(--muted)}
+#screen-game .game-free-drive-tabs button{color:var(--ink)}
+
 @media(max-width:680px){
   #screen-select .data-summary.has-count-chips{gap:6px;font-size:10px}
   #screen-select .data-summary-chip{padding:4px 7px}
