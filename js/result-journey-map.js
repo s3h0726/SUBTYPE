@@ -1,5 +1,5 @@
 import {travelGeometry,vehicleIcon} from './route-renderer.js';
-import {formatJourneyDistanceAnalogy} from './distance-analogies.js';
+import {formatJourneyDistanceAnalogy} from './distance-analogies.js?v=korean-only-20261017';
 /* Shared completion map for every playable transport line. */
 let completedMap;
 const number=v=>Number.isFinite(Number(v))?Number(v):NaN;
