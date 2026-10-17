@@ -280,6 +280,8 @@ function actualOperatingChoices(route){
     add({kind:'pattern',id:`pattern:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:origin,destinationNames:destination,trainType:type,journeyId:null,patternId:item.id,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'})
   }
   for(const service of route?.services||[]){
+    // Famous trains have dedicated cards: do not duplicate Skyliner inside the ordinary airport line.
+    if(route?.id==='line-23006'&&service?.id==='skyliner')continue;
     if(!service?.id)continue;
     const stopIds=(service.stops||service.stopStationIds||[]).map(String),serviceStations=stopIds.map(id=>stationMap.get(id)).filter(Boolean);
     const first=serviceStations[0]||route.stations?.[0],last=serviceStations.at(-1)||route.stations?.at(-1);if(!first||!last||String(first.id)===String(last.id))continue;
