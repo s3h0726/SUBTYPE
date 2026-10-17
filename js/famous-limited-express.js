@@ -20,6 +20,10 @@ const FAMOUS_EXPRESS_SPECS=[
    {id:'laview-chichibu',ja:'ちちぶ',ko:'치치부호',stops:['池袋','所沢','入間市','飯能','横瀬','西武秩父']},
    {id:'laview-musashi',ja:'むさし',ko:'무사시호',stops:['池袋','所沢','入間市','飯能']}
   ]},
+ {id:'redarrow',name:{ko:'특급 레드애로',ja:'特急レッドアロー',en:'Limited Express Red Arrow'},
+  parts:[{id:'line-22007',from:'西武新宿',to:'本川越'}],color:'#d12337',
+  official:'https://www.seiburailway.jp/railway/reservedtrain/redarrow/',
+  patterns:[{id:'redarrow-koedo',ja:'小江戸',ko:'코에도호',stops:['西武新宿','高田馬場','東村山','所沢','狭山市','本川越']}]},
  {id:'romancecar',name:{ko:'오다큐 로망스카',ja:'小田急ロマンスカー',en:'Odakyu Romancecar'},
   parts:[{id:'line-25001',from:'新宿',to:'小田原'}],color:'#d72a36',
   official:'https://www.odakyu.jp/romancecar/homeway/',
