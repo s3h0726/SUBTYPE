@@ -1,3 +1,4 @@
+import{koreanRouteBlockReason}from'./korean-access-policy.js';
 export const FEATURE_FLAGS=Object.freeze({
   korea:true,
   visibleJapanRegion:'all'
@@ -12,6 +13,7 @@ export const canonicalRouteId=routeId=>LEGACY_ROUTE_ALIASES[String(routeId||'')]
 export const isCountryEnabled=countryId=>countryId!=='kr'||FEATURE_FLAGS.korea;
 
 export function isRouteVisible(route){
+  if(koreanRouteBlockReason(route))return false;
   // Physical branch workspaces can be required for geometry and legacy record
   // resolution without becoming an independent passenger-facing line.
   if(route.visibility==='internal'||route.playable===false)return false;
