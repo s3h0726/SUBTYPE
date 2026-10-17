@@ -25,6 +25,21 @@ for(const route of data.routes){
     }
   }
 }
+// Exact Japanese-name exceptions, reviewed individually. Applied after editor changes,
+// so a stale CSV/override cannot reintroduce invalid long vowels or aspirated consonants.
+const nameExceptionFile=path.join(projectRoot,'data','japan-name-exceptions.json');
+const nameExceptions=JSON.parse(fs.readFileSync(nameExceptionFile,'utf8')).stations||{};
+let nameExceptionsApplied=0;
+for(const route of data.routes){
+  if(route.countryId==='kr')continue;
+  for(const station of route.stations){
+    const override=nameExceptions[station.ja];
+    if(override&&station.ko!==override.ko){
+      station.ko=override.ko;
+      nameExceptionsApplied++;
+    }
+  }
+}
 // All routes for one operator must receive the same override, including legacy ids
 // whose physical workspace operator identifiers differ from the editor's old ID.
 const routeRoot=path.join(outputRoot,'routes');fs.mkdirSync(routeRoot,{recursive:true});const index=[];for(const route of data.routes){const file=`routes/${route.id.replace(/[^a-zA-Z0-9._-]/g,'-')}.json`;writeAtomic(path.join(outputRoot,file),{route});index.push({id:route.id,operatorId:route.operatorId,operator:route.operator,line:route.line,category:route.category,code:route.code,lineColor:route.lineColor,loop:route.loop,stationCount:route.stations.length,stationSequence:route.stations.map(station=>station.id),workspace:route.workspace,generatedSource:`./data/generated/${file}`,geometryReady:route.geometryReady,searchStations:route.stations.flatMap(station=>[station.ja,station.kana,station.romaji,station.ko]).filter(Boolean)})}
