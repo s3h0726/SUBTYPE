@@ -158,8 +158,8 @@ class TypingController{
 
 // Display full official station names, but do not make parenthetical annotations
 // part of the typing answer. This applies to ASCII and full-width parentheses.
-const OPEN=new Set(['(', '（']);
-const CLOSE=new Set([')', '）']);
+const OPEN_TO_CLOSE=new Map([['(',')'],['（','）'],['[',']'],['［','］'],['【','】'],['〈','〉'],['《','》']]);
+const CLOSE=new Set(OPEN_TO_CLOSE.values());
 function isAutoFilledSymbol(character){return !/[\p{L}\p{N}]/u.test(character)}
 function buildTypingModel(value=''){
   const displayText=String(value).normalize('NFC'),characters=Array.from(displayText),cells=[];
@@ -168,10 +168,10 @@ function buildTypingModel(value=''){
   const pairs=[],stack=[];
   for(let i=0;i<characters.length;i++){
     const ch=characters[i];
-    if(OPEN.has(ch))stack.push({index:i,open:ch});
+    if(OPEN_TO_CLOSE.has(ch))stack.push({index:i,open:ch});
     else if(CLOSE.has(ch)&&stack.length){
       const top=stack.at(-1);
-      if((top.open==='('&&ch===')')||(top.open==='（'&&ch==='）')){
+      if(OPEN_TO_CLOSE.get(top.open)===ch){
         stack.pop();pairs.push([top.index,i]);
       }
     }
