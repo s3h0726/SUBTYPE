@@ -40,7 +40,8 @@
     "audit:korea": "node tools/validate-korea-data.js && node tools/audit-kr-national-catalog.js && node tools/test-kr-service-gating.js && node tools/test-kr-geometry-gating.js && node tools/validate-seoul-line-2-official-order.js && node tools/test-seoul-line-2-rebuild.js && node tools/test-seoul-line-2-runtime.mjs && node tools/validate-seoul-line-5-official-order.js && node tools/test-seoul-line-5-runtime.mjs && node tools/validate-seoul-line-6-official-order.js",
     "audit:korea-rebuild": "node tools/audit-korea-rebuild-baseline.js",
     "research:korea:3": "node tools/research-kr-missing-tracks.mjs --line 3 --all",
-    "research:korea:7": "node tools/research-kr-missing-tracks.mjs --line 7 --all"
+    "research:korea:7": "node tools/research-kr-missing-tracks.mjs --line 7 --all",
+    "test:distance-analogies": "node tools/test-distance-analogies.js"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",
