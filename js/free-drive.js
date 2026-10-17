@@ -19,7 +19,15 @@ const freeDriveStationKey=s=>{
 const routeName=r=>r?.line?.ko||r?.line?.ja||r?.line?.en||r?.id||'노선';
 const stationName=s=>s?.ko||s?.ja||s?.romaji||s?.id||'역';
 const routeColor=r=>r?.lineColor||r?.color||'#73837b';
-const routeSegments=route=>{if(route?.countryId==='kr'){if(route.geometryReady!==true)return[];return(route.directedSegments||[]).filter(segment=>segment.geometryStatus==='ready').map(segment=>segment.geometry)}return[(route.stations||[]).map(coords).filter(Boolean)]};
+const routeSegments=route=>{
+  if(route?.countryId==='kr'){
+    if(route.geometryReady!==true)return[];
+    return(route.directedSegments||[]).filter(segment=>segment.geometryStatus==='ready').map(segment=>segment.geometry)
+  }
+  // A line's surveyed polyline belongs to that line, not to a single merged interchange point.
+  if(route?.geometryReady===true&&Array.isArray(route.geometry)&&route.geometry.length>1)return[route.geometry];
+  return[(route.stations||[]).map(coords).filter(Boolean)]
+};
 
 function boundsOfRoutes(routes){
   let minLat=90,maxLat=-90,minLon=180,maxLon=-180,count=0;
@@ -53,14 +61,18 @@ export function drawNetworkCanvas(canvas,routes,{bounds=null,alpha=.28,transferN
   }
   if(transferNodes){
     for(const node of transferNodes.values()){
-      if((node.routeIds?.size||0)<2||!node.coord)continue;
-      const p=project(node.coord,b,w,h,20);
-      ctx.globalAlpha=.72;ctx.fillStyle='#f7fbf8';ctx.beginPath();ctx.arc(p[0],p[1],3.2,0,Math.PI*2);ctx.fill();
-      ctx.strokeStyle='#17342b';ctx.lineWidth=1.2;ctx.stroke();
+      if((node.routeIds?.size||0)<2)continue;
+      // Interchanges group navigation only; plot each line's own station coordinate.
+      for(const c of node.coordsByRoute?.values()||[]){
+        if(!c)continue;
+        const p=project(c,b,w,h,20);
+        ctx.globalAlpha=.72;ctx.fillStyle='#f7fbf8';ctx.beginPath();ctx.arc(p[0],p[1],3.2,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='#17342b';ctx.lineWidth=1.2;ctx.stroke();
+      }
     }
   }
   if(currentKey&&transferNodes?.has(currentKey)){
-    const node=transferNodes.get(currentKey),p=node.coord&&project(node.coord,b,w,h,20);
+    const node=transferNodes.get(currentKey),c=node.coordsByRoute?.get(currentRouteId),p=c&&project(c,b,w,h,20);
     if(p){ctx.globalAlpha=1;ctx.fillStyle='#69efb7';ctx.beginPath();ctx.arc(p[0],p[1],7,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#07120e';ctx.lineWidth=3;ctx.stroke()}
   }
   ctx.globalAlpha=1;
@@ -88,20 +100,25 @@ export class FreeDrive{
     this.graph=new Map;
     const ensure=(station,route,index)=>{
       const key=freeDriveStationKey(station);if(!key)return null;let node=this.graph.get(key);
-      if(!node){node={key,station,coord:coords(station),edges:[],routeIds:new Set};this.graph.set(key,node)}
-      node.routeIds.add(route.id);node.routeNames=node.routeNames||new Map;node.routeNames.set(route.id,routeName(route));return node;
+      if(!node){node={key,station,coord:coords(station),edges:[],routeIds:new Set,stationsByRoute:new Map,coordsByRoute:new Map};this.graph.set(key,node)}
+      node.routeIds.add(route.id);
+      if(!node.stationsByRoute.has(route.id)){
+        node.stationsByRoute.set(route.id,{station,index});
+        node.coordsByRoute.set(route.id,coords(station));
+      }
+      node.routeNames=node.routeNames||new Map;node.routeNames.set(route.id,routeName(route));return node;
     };
     for(const route of this.routes){
       route.stations.forEach((s,i)=>ensure(s,route,i));
       for(let i=0;i<route.stations.length-1;i++){
         const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
-        an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1});
-        bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1});
+        an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
+        bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
       if(route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
-        if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1});bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1})}
+        if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
       }
     }
     this.renderMap();
@@ -125,6 +142,16 @@ export class FreeDrive{
     let token;try{token=JSON.parse(encoded)}catch{return false}
     return this.moveTo(token?.[0],token?.[1])
   }
+  stationForRoute(key,routeId){return this.graph.get(key)?.stationsByRoute?.get(routeId)?.station||null}
+  coordsForRoute(key,routeId){return this.graph.get(key)?.coordsByRoute?.get(routeId)||null}
+  selectRoute(routeId){
+    const node=this.current();
+    if(!node?.stationsByRoute?.has(routeId)||!this.routes.some(route=>route.id===routeId))return false;
+    if(this.currentRouteId===routeId)return true;
+    this.currentRouteId=routeId;
+    this.render();this.emit();
+    return true
+  }
   moveTo(to,routeId){
     if(!to||!routeId)return false;
     const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===to&&e.routeId===routeId);
@@ -136,8 +163,9 @@ export class FreeDrive{
   snapshot(){
     const node=this.current(),route=this.routes.find(r=>r.id===this.currentRouteId)||this.startRoute;
     if(!node||!route)return null;
-    const stationIndex=Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
-    return{node,station:route.stations[stationIndex]||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
+    const indexedStop=node.stationsByRoute?.get(this.currentRouteId);
+    const stationIndex=indexedStop?.index??Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
+    return{node,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
   }
   emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
   edges(){
@@ -149,8 +177,9 @@ export class FreeDrive{
   render(){
     const node=this.current();if(!node)return;
     const route=this.routes.find(r=>r.id===this.currentRouteId);
-    $('#free-drive-station-ko').textContent=stationName(node.station);
-    $('#free-drive-station-ja').textContent=node.station.ja||'';
+    const actual=this.stationForRoute(this.currentKey,this.currentRouteId)||node.station;
+    $('#free-drive-station-ko').textContent=stationName(actual);
+    $('#free-drive-station-ja').textContent=actual.ja||'';
     $('#free-drive-current-line').textContent=routeName(route);
     $('#free-drive-transfer-count').textContent=String(Math.max(0,(node.routeIds?.size||1)-1));
     $('#free-drive-visited-count').textContent=String(this.history.length);
@@ -158,7 +187,7 @@ export class FreeDrive{
     const groups=new Map;for(const edge of edges){if(!groups.has(edge.routeId))groups.set(edge.routeId,[]);groups.get(edge.routeId).push(edge)}
     target.innerHTML=[...groups.entries()].map(([routeId,list])=>{
       const r=list[0].route,transfer=routeId!==this.currentRouteId;
-      return `<section class="free-drive-line ${transfer?'transfer':''}" style="--route-color:${routeColor(r)}"><header><span>${transfer?'TRANSFER · 환승':'CURRENT LINE'}</span><b>${escapeHtml(routeName(r))}</b><small>${escapeHtml(r.operator?.ko||r.operator?.ja||'')}</small></header><div>${list.map(edge=>{const dest=this.graph.get(edge.to)?.station;return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(dest?.ko||dest?.ja||'다음 역')}</b><span>${escapeHtml(dest?.ja||'')}</span><i>→</i></button>`}).join('')}</div></section>`
+      return `<section class="free-drive-line ${transfer?'transfer':''}" style="--route-color:${routeColor(r)}"><header><span>${transfer?'TRANSFER · 환승':'CURRENT LINE'}</span><b>${escapeHtml(routeName(r))}</b><small>${escapeHtml(r.operator?.ko||r.operator?.ja||'')}</small></header><div>${list.map(edge=>{const dest=edge.station||this.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(dest?.ko||dest?.ja||'다음 역')}</b><span>${escapeHtml(dest?.ja||'')}</span><i>→</i></button>`}).join('')}</div></section>`
     }).join('')||'<p class="muted">이 역에서 이어지는 선로를 찾지 못했습니다.</p>';
     this.renderMap();
   }
@@ -166,7 +195,7 @@ export class FreeDrive{
     if(!this.canvas||!this.routes.length)return;
     let bounds=boundsOfRoutes(this.routes);
     if(this.viewMode==='local'){
-      const node=this.current(),c=node?.coord;
+      const c=this.coordsForRoute(this.currentKey,this.currentRouteId);
       if(c)bounds={minLat:c[0]-.18,maxLat:c[0]+.18,minLon:c[1]-.24,maxLon:c[1]+.24};
     }
     drawNetworkCanvas(this.canvas,this.routes,{bounds,alpha:this.viewMode==='local'?.18:.10,transferNodes:this.graph,currentKey:this.currentKey,currentRouteId:this.currentRouteId});
