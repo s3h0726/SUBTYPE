@@ -1,0 +1,45 @@
+name: Repair canonical Japanese station names
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/japan-name-exceptions.json'
+      - 'tools/audit-canonical-jp-station-names.js'
+      - '.github/workflows/repair-japan-station-names.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Synchronize curated spellings into canonical source shards
+        run: node tools/audit-canonical-jp-station-names.js
+      - name: Verify exact Japanese names after repair
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const exceptions=require('./data/japan-name-exceptions.json').stations;
+          for(const file of fs.readdirSync('data/shared-stations').filter(v=>/^stations-[0-9]+\.json$/.test(v))){
+            for(const station of require('./data/shared-stations/'+file)){
+              const expected=exceptions[station.names?.ja]?.ko;
+              if(expected&&station.names.ko!==expected)throw Error('Bad spelling in '+file+' '+station.names.ja);
+            }
+          }
+          NODE
+      - name: Publish repaired canonical shards
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/shared-stations
+          if ! git diff --cached --quiet; then
+            git commit -m 'data(jp): apply canonical Korean name exceptions to master shards'
+            git push origin HEAD:main
+          fi
