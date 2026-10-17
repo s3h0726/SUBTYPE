@@ -1,0 +1,22 @@
+name: Validate NEX branches and timetable evidence
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lines/jr-east/narita-express/**'
+      - 'data/generated/routes/line-11328.json'
+      - 'tools/test-narita-express-services.js'
+      - '.github/workflows/validate-narita-express.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate service-branch stop sequences
+        run: node tools/test-narita-express-services.js
