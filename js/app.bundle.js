@@ -1339,7 +1339,23 @@ async function loadRailData(){
   let fallbackUsed=!input.length;
   const backupRoutes=()=>Object.values(nationwide?.routes||{}).map(record=>record?.route||record).filter(route=>route?.id&&Array.isArray(route.stations)&&route.stations.length>=2);
   if(!input.length)input=backupRoutes();
-  if(!input.length)throw new Error('일본 철도 데이터 파일을 불러오지 못했습니다. line-workspace-data.js / nationwide-data.js를 확인하세요.');
+  if(!input.length){
+    // The full Japanese workspace can exceed 20MB. If its script was blocked,
+    // keep the game functional using the small nationwide catalog and fetch
+    // the selected line's complete stations/geometry only when it is chosen.
+    let index;
+    try{
+      index=await fetchJson(new URL('data/nationwide/index.json',document.baseURI));
+    }catch(error){
+      throw new Error('일본 철도 경량 목록도 불러오지 못했습니다: '+(error?.message||error));
+    }
+    if(!Array.isArray(index?.routes)||!index.routes.length)throw new Error('일본 철도 노선 목록이 비어 있습니다.');
+    const lines=index.routes.filter(route=>route?.id&&route.lazySource).map(normalizeLazyLine);
+    if(!lines.length)throw new Error('일본 철도 개별 노선 경로를 확인할 수 없습니다.');
+    const counts=lines.reduce((map,line)=>({...map,[line.category]:(map[line.category]||0)+1}),{});
+    console.warn('Japan catalog: full workspace unavailable; using on-demand nationwide index',lines.length);
+    return{operators:index.operators||[],lines,stations:[],assets:canonical?.assets||{},errors:[],counts,fallbackUsed:true,source:'nationwide-lazy-index'};
+  }
   const errors=[];
   const convert=items=>items.flatMap(route=>{
     try{
