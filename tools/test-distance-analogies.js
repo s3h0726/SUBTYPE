@@ -1,17 +1,6 @@
 #!/usr/bin/env node
 const assert=require('node:assert/strict'),path=require('node:path'),{pathToFileURL}=require('node:url');
-(async()=>{
- const {formatJourneyDistanceAnalogy:analogy,distanceAnalogyExampleCounts:counts}=await import(pathToFileURL(path.resolve(__dirname,'..','js/distance-analogies.js')));
- assert(counts.jp>=20&&counts.kr>=15,'Not enough comparison examples');
- for(const country of ['jp','kr'])for(const km of [0.25,1,2,5,10,15,30,40,80,100,150,220,300,420,515,860,1100]){
-  const text=analogy(km,country);
-  assert(text&&typeof text==='string');
-  assert(!text.includes('NaN')&&!text.includes('Infinity'));
-  if(km>=15)assert(text.includes('대략적 비유'),'Approximation not disclosed '+km);
-  if(country==='jp'&&km===515)assert(text.includes('도쿄~오사카'));
-  if(country==='kr'&&km===420)assert(text.includes('서울~부산'));
- }
- assert(analogy(0)==='비교할 거리를 계산할 수 없습니다.');
- assert(analogy(Infinity)==='비교할 거리를 계산할 수 없습니다.');
- console.log(JSON.stringify({status:'PASS',examples:counts,cases:34},null,2));
-})().catch(error=>{console.error(error);process.exitCode=1});
+(async()=>{const{formatJourneyDistanceAnalogy:fn,distanceAnalogyExampleCounts:counts}=await import(pathToFileURL(path.resolve(__dirname,'..','js/distance-analogies.js')));
+assert(counts.kr>=18);for(const country of ['kr','jp'])for(const km of [0.25,1.5,10,40,80,100,160,220,290,420,860,1100]){const s=fn(km,country);assert(s.includes('한국 ')&&s.includes('대략적인 거리 비교'));assert(!/마라톤|운동장|도쿄|오사카|NaN|Infinity/.test(s));if(km===420)assert(s.includes('서울~부산'))}
+assert(fn(0)==='비교할 거리를 계산할 수 없습니다.');assert(fn(Infinity)==='비교할 거리를 계산할 수 없습니다.');
+console.log(JSON.stringify({status:'PASS',cases:24,comparisons:counts.kr},null,2))})().catch(e=>{console.error(e);process.exitCode=1});
