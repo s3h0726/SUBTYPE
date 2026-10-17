@@ -1,24 +1,18 @@
 #!/usr/bin/env node
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSync}=require('child_process');
+// Fail before any Japanese generated files are touched by an incomplete release.
+execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js'),'--require-complete'],{stdio:'inherit'});
 require('./audit-canonical-jp-station-names.js');
 require('./build-line-workspaces');
 execFileSync(process.execPath,[path.join(__dirname,'build-japan-lazy-catalog.cjs')],{stdio:'inherit'});
 // Keep N'EX branch candidates aligned with the current physical-track source on every build.
 execFileSync(process.execPath,[path.join(__dirname,'build-nex-verified-geometry.js')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(__dirname,'audit-recent-tram-and-kobe-geometry.js')],{stdio:'inherit'});
-// build-korea-data is also a standalone CLI and may terminate early while the
-// imported snapshot remains provisional. Run it in a child process so that it
-// cannot abort the remainder of this production bundle build.
-execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-2-verified-geometry.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'validate-seoul-line-5-official-order.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-5-verified-geometry.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-1-verified-geometry.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'apply-seoul-line-3-verified-geometry.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'test-line3-playability.js')],{stdio:'inherit'});
-execFileSync(process.execPath,[path.join(__dirname,'test-line1-playability.js')],{stdio:'inherit'});
+// One country compiler replaces the deleted per-line patch scripts. Never run
+// the legacy patchers after this step: they overwrite source-derived results.
+execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js'),'--publish'],{stdio:'inherit'});
 const tokyoArea=require('./build-tokyo-network');
-const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
+const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8').replace(/\r\n/g,'\n');
 const write=(relative,value)=>{const target=path.join(root,relative),temporary=`${target}.tmp`;fs.writeFileSync(temporary,value);fs.renameSync(temporary,target)};
 const categories=['jr','subway','private','other','shinkansen'];
 const embedded={operators:JSON.parse(read('data/operators/operators.json')),stations:JSON.parse(read('data/stations/tokyo-stations.json')),lines:Object.fromEntries(categories.map(category=>[category,JSON.parse(read(`data/lines/${category}.json`))]))};
@@ -41,7 +35,7 @@ const railSystem=JSON.parse(read('data/rail-system.json'));
 railSystem.throughServices=JSON.parse(read('data/through-services.json')).services;
 railSystem.audit={...(railSystem.audit||{}),throughServices:railSystem.throughServices.length};
 write('js/rail-system-data.js',`window.TRT_RAIL_SYSTEM=${JSON.stringify(railSystem)};\n`);
-const order=['utils.js','feature-flags.js','rail-data-repository.js','asset-renderer.js','storage.js','typing.js','typing-model.js','statistics-engine.js','line-badge.js','station-sign-templates.js','transport-stop-templates.js','route-integrity.js','service-route-resolver.js','nex-route-resolver.js','famous-limited-express.js','route-renderer.js','game.js','free-drive.js','statistics.js','network-map.js','data-loader.js','route-editor.js','auth.js','app.js'];
+const order=["utils.js","korean-access-data.js","korean-access-policy.js","feature-flags.js","rail-data-repository.js","asset-renderer.js","storage.js","typing.js","typing-model.js","statistics-engine.js","line-badge.js","station-sign-templates.js","transport-stop-templates.js","route-integrity.js","service-route-resolver.js","nex-route-resolver.js","famous-limited-express.js","korean-service-resolver.js","track-motion.js","route-renderer.js","game.js","free-drive.js","statistics.js","network-map.js","data-loader.js","route-editor.js","auth.js","app.js"];
 const source=order.map(file=>read(`js/${file}`)
   .replace(/\bimport(?=\s|\{)[^;]+;/g,'')
   .replace(/\bexport\s+/g,'')
@@ -94,3 +88,6 @@ html=html.replace(/(\.\/js\/app\.bundle\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(bun
 write('index.html',html);
 const canonicalAssets=JSON.parse(read('data/generated/asset-registry.json'));
 console.log(JSON.stringify({bundle:'js/app.bundle.js',workspaceSource:'data/lines/**/line.json',workspaceBrowserData:'js/line-workspace-data.js',embeddedLines:categories.reduce((sum,category)=>sum+(embedded.lines[category].routes?.length||0),0),embeddedNationwideLines:nationwideIndex.routes?.length||0,embeddedNationwideRouteFiles:Object.keys(nationwideRoutes).length,services:Object.values(services.routes).reduce((sum,list)=>sum+list.length,0),servicePatterns:tokyoServicePatterns.servicePatterns.length,branches:tokyoServicePatterns.branches.length,koreanOverrides:Object.keys(korean.stations).length,lineThemes:Object.keys(lineThemes.themes).length,operatorAssets:Object.keys(canonicalAssets.operators||{}).length,lineBadges:Object.keys(lineBadges.routeCodes).length,realSymbolAssets:Object.keys(canonicalAssets.lines||{}).length,railSystem:railSystem.audit},null,2));
+
+// Share module ordering and content-addressed runtime-index cache versions.
+require('./build-app-bundle.js');

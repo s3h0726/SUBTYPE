@@ -1,684 +1,20 @@
 {
-  "generated": "2026-09-12T15:39:52.691Z",
-  "status": "BLOCKED_WITH_EXPLICIT_DATA_GAPS",
+  "generated": "2026-10-17T23:31:36.480Z",
+  "status": "PASS",
   "totals": {
     "routes": 596,
-    "passed": 557,
-    "blocked": 39,
-    "stations": 10581,
-    "forwardSegments": 9353,
-    "reverseSegments": 9353,
+    "passed": 596,
+    "blocked": 0,
+    "stations": 10556,
+    "forwardSegments": 9960,
+    "reverseSegments": 9960,
     "missingStations": 0,
-    "missingSegments": 39,
+    "missingSegments": 0,
     "endpointMismatch": 30,
     "reverseOrderMismatch": 0,
     "defaultServiceSkips": 0
   },
-  "blockedRoutes": [
-    {
-      "routeId": "line-11106",
-      "lineJa": "根室本線(滝川～新得)",
-      "lineKo": "네무로혼선타키카와～신토쿠",
-      "stations": 17,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11106: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11111",
-      "lineJa": "日高本線",
-      "lineKo": "히다카혼선",
-      "stations": 29,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11111: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11113",
-      "lineJa": "留萌本線",
-      "lineKo": "루모에혼선",
-      "stations": 12,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11113: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11116",
-      "lineJa": "石北本線",
-      "lineKo": "세키호쿠혼선",
-      "stations": 34,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11116: missing railway segment 1111601 -> 1111602"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11117",
-      "lineJa": "釧網本線",
-      "lineKo": "선모우혼선",
-      "stations": 25,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11117: missing railway segment 1111727 -> 1111728"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11409",
-      "lineJa": "北アルプス線",
-      "lineKo": "키타아루푸스선",
-      "stations": 41,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11409: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11415",
-      "lineJa": "北陸本線(米原～金沢)",
-      "lineKo": "호쿠리쿠혼선마이바라～카나자와",
-      "stations": 43,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11415: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11416",
-      "lineJa": "高山本線",
-      "lineKo": "타카야마혼선",
-      "stations": 45,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11416: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11710",
-      "lineJa": "瀬戸大橋線",
-      "lineKo": "세토오오하시선",
-      "stations": 6,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11710: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11717",
-      "lineJa": "可部線",
-      "lineKo": "카베선",
-      "stations": 16,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11717: missing railway segment 1171701 -> 1171716"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11722",
-      "lineJa": "美祢線",
-      "lineKo": "미네선",
-      "stations": 13,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11722: missing railway segment 1172212 -> 1172213"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11808",
-      "lineJa": "しまんとグリーンライン",
-      "lineKo": "시만토구린라인",
-      "stations": 22,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11808: missing railway segment 1180801 -> 1180802"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-11908",
-      "lineJa": "福北ゆたか線",
-      "lineKo": "후쿠키타유타카선",
-      "stations": 12,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-11908: missing railway segment 1190811 -> 1190812"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-23002",
-      "lineJa": "京成押上線",
-      "lineKo": "게이세이 오시아게선",
-      "stations": 7,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-23002: missing railway segment KS09 -> 2300207"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-26004",
-      "lineJa": "東急大井町線",
-      "lineKo": "도큐 오이마치선",
-      "stations": 18,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-26004: missing railway segment 2600416 -> 2600417"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-30006",
-      "lineJa": "名鉄豊田線",
-      "lineKo": "메이테츠토요다선",
-      "stations": 9,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-30006: missing railway segment 3000601 -> 3000602"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-31014",
-      "lineJa": "八王子線",
-      "lineKo": "하치오우지선",
-      "stations": 4,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-31014: missing railway segment 3101401 -> 3101402"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-32005",
-      "lineJa": "南海加太線",
-      "lineKo": "난카이카다선",
-      "stations": 9,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-32005: missing railway segment 3200501 -> 3200502"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-32008",
-      "lineJa": "南海高野山ケーブル",
-      "lineKo": "난카이코우야산케부루",
-      "stations": 2,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-32008: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-33001",
-      "lineJa": "京阪本線",
-      "lineKo": "케이한혼선",
-      "stations": 42,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-33001: missing railway segment 3300142 -> 3300141"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99104",
-      "lineJa": "札幌市電山鼻線",
-      "lineKo": "샀포로시덴야마하나선",
-      "stations": 24,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99104: missing railway segment 9910403 -> 9910404"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99108",
-      "lineJa": "道南いさりび鉄道線",
-      "lineKo": "미치미나미이사리비테츠도우선",
-      "stations": 13,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99108: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99323",
-      "lineJa": "鹿島臨海鉄道大洗鹿島線",
-      "lineKo": "카시마린카이테츠도우오오아라이카시마선",
-      "stations": 16,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99323: missing railway segment 9932315 -> 9932316"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99403",
-      "lineJa": "しなの鉄道線",
-      "lineKo": "시나노테츠도우선",
-      "stations": 23,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99403: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99422",
-      "lineJa": "富山地鉄富山都心線【３系統(環状線)】",
-      "lineKo": "토야마치테츠토야마토신선【３케이토우칸조우선】",
-      "stations": 13,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99422: missing railway segment 9942206 -> 9942207"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99420",
-      "lineJa": "えちぜん鉄道三国芦原線",
-      "lineKo": "에치젠테츠도우미쿠니아와라선",
-      "stations": 24,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99420: missing railway segment 9942001 -> 9942002"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99616",
-      "lineJa": "泉北高速鉄道線",
-      "lineKo": "선포쿠코우소쿠테츠도우선",
-      "stations": 6,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99616: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99630",
-      "lineJa": "神戸高速東西線",
-      "lineKo": "코우베코우소쿠토우자이선",
-      "stations": 9,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99630: missing railway segment 9963001 -> 9963002"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99634",
-      "lineJa": "公園都市線",
-      "lineKo": "코우엔토시선",
-      "stations": 6,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99634: missing railway segment 9963401 -> 9963402"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99707",
-      "lineJa": "清輝橋線",
-      "lineKo": "세이키바시선",
-      "stations": 9,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99707: missing railway segment 9970701 -> 9970702"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99708",
-      "lineJa": "スカイレールみどり坂線",
-      "lineKo": "스카이레루미도리자카선",
-      "stations": 3,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99708: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99710",
-      "lineJa": "広電１号線(宇品線)",
-      "lineKo": "히로덴１고우선우지나선",
-      "stations": 27,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99710: missing railway segment 9971001 -> 9971002"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99713",
-      "lineJa": "広電５号線(皆実線)",
-      "lineKo": "히로덴５고우선미나미선",
-      "stations": 18,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99713: missing railway segment 9971301 -> 9971302"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99714",
-      "lineJa": "広電６号線(江波線)",
-      "lineKo": "히로덴６고우선에바선",
-      "stations": 20,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99714: missing railway segment 9971401 -> 9971402"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99716",
-      "lineJa": "広電８号線(横川線)",
-      "lineKo": "히로덴８고우선요코가와선",
-      "stations": 12,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99716: missing railway segment 9971606 -> 9971607"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99803",
-      "lineJa": "琴電長尾線",
-      "lineKo": "킨덴나가오선",
-      "stations": 18,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99803: missing railway segment 9980301 -> 9980302"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99812",
-      "lineJa": "伊予鉄道本町線",
-      "lineKo": "이요테츠도우혼초우선",
-      "stations": 7,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99812: missing railway segment 9981205 -> 9981206"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99819",
-      "lineJa": "桟橋線",
-      "lineKo": "산바시선",
-      "stations": 11,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99819: missing railway segment 9981901 -> 9981902"
-      ],
-      "warnings": [],
-      "pass": false
-    },
-    {
-      "routeId": "line-99918",
-      "lineJa": "熊本電鉄上熊本線",
-      "lineKo": "쿠마모토덴테츠카미쿠마모토선",
-      "stations": 6,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
-      "endpointMismatch": 0,
-      "reverseOrderMismatch": false,
-      "defaultServiceSkips": false,
-      "errors": [
-        "line-99918: missing railway geometry"
-      ],
-      "warnings": [],
-      "pass": false
-    }
-  ],
+  "blockedRoutes": [],
   "routes": [
     {
       "routeId": "line-11101",
@@ -760,17 +96,15 @@
       "lineJa": "根室本線(滝川～新得)",
       "lineKo": "네무로혼선타키카와～신토쿠",
       "stations": 17,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 16,
+      "reverseSegments": 16,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11106: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11107",
@@ -836,18 +170,16 @@
       "routeId": "line-11111",
       "lineJa": "日高本線",
       "lineKo": "히다카혼선",
-      "stations": 29,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "stations": 4,
+      "forwardSegments": 3,
+      "reverseSegments": 3,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11111: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11112",
@@ -871,17 +203,15 @@
       "lineJa": "留萌本線",
       "lineKo": "루모에혼선",
       "stations": 12,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 11,
+      "reverseSegments": 11,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11113: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11114",
@@ -918,34 +248,30 @@
       "lineJa": "石北本線",
       "lineKo": "세키호쿠혼선",
       "stations": 34,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 33,
+      "reverseSegments": 33,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11116: missing railway segment 1111601 -> 1111602"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11117",
       "lineJa": "釧網本線",
       "lineKo": "선모우혼선",
       "stations": 25,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 24,
+      "reverseSegments": 24,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11117: missing railway segment 1111727 -> 1111728"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11118",
@@ -2126,17 +1452,15 @@
       "lineJa": "北アルプス線",
       "lineKo": "키타아루푸스선",
       "stations": 41,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 40,
+      "reverseSegments": 40,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11409: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11410",
@@ -2218,34 +1542,30 @@
       "lineJa": "北陸本線(米原～金沢)",
       "lineKo": "호쿠리쿠혼선마이바라～카나자와",
       "stations": 43,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 42,
+      "reverseSegments": 42,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11415: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11416",
       "lineJa": "高山本線",
       "lineKo": "타카야마혼선",
       "stations": 45,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 44,
+      "reverseSegments": 44,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11416: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11417",
@@ -3171,17 +2491,15 @@
       "lineJa": "瀬戸大橋線",
       "lineKo": "세토오오하시선",
       "stations": 6,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 5,
+      "reverseSegments": 5,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11710: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11713",
@@ -3248,17 +2566,15 @@
       "lineJa": "可部線",
       "lineKo": "카베선",
       "stations": 16,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 15,
+      "reverseSegments": 15,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11717: missing railway segment 1171701 -> 1171716"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11720",
@@ -3295,17 +2611,15 @@
       "lineJa": "美祢線",
       "lineKo": "미네선",
       "stations": 13,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 12,
+      "reverseSegments": 12,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11722: missing railway segment 1172212 -> 1172213"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11723",
@@ -3449,17 +2763,15 @@
       "lineJa": "しまんとグリーンライン",
       "lineKo": "시만토구린라인",
       "stations": 22,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 21,
+      "reverseSegments": 21,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11808: missing railway segment 1180801 -> 1180802"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11901",
@@ -3556,7 +2868,7 @@
     {
       "routeId": "line-11907",
       "lineJa": "日豊本線(佐伯～鹿児島中央)",
-      "lineKo": "닜포우혼선사에키～카고시마츄오",
+      "lineKo": "닜포우혼선사에키～가고시마추오",
       "stations": 56,
       "forwardSegments": 55,
       "reverseSegments": 55,
@@ -3573,17 +2885,15 @@
       "lineJa": "福北ゆたか線",
       "lineKo": "후쿠키타유타카선",
       "stations": 12,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 11,
+      "reverseSegments": 11,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-11908: missing railway segment 1190811 -> 1190812"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-11909",
@@ -4284,17 +3594,15 @@
       "lineJa": "京成押上線",
       "lineKo": "게이세이 오시아게선",
       "stations": 7,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 6,
+      "reverseSegments": 6,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-23002: missing railway segment KS09 -> 2300207"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-23003",
@@ -4314,7 +3622,7 @@
     {
       "routeId": "line-23004",
       "lineJa": "京成千葉線",
-      "lineKo": "게이세이치바선",
+      "lineKo": "케이세이치바선",
       "stations": 10,
       "forwardSegments": 9,
       "reverseSegments": 9,
@@ -4329,7 +3637,7 @@
     {
       "routeId": "line-23005",
       "lineJa": "京成千原線",
-      "lineKo": "게이세이선바루선",
+      "lineKo": "케이세이선바루선",
       "stations": 6,
       "forwardSegments": 5,
       "reverseSegments": 5,
@@ -4556,17 +3864,15 @@
       "lineJa": "東急大井町線",
       "lineKo": "도큐 오이마치선",
       "stations": 18,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 17,
+      "reverseSegments": 17,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-26004: missing railway segment 2600416 -> 2600417"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-26005",
@@ -4965,17 +4271,15 @@
       "lineJa": "名鉄豊田線",
       "lineKo": "메이테츠토요다선",
       "stations": 9,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 8,
+      "reverseSegments": 8,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-30006: missing railway segment 3000601 -> 3000602"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-30007",
@@ -5357,17 +4661,15 @@
       "lineJa": "八王子線",
       "lineKo": "하치오우지선",
       "stations": 4,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 3,
+      "reverseSegments": 3,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-31014: missing railway segment 3101401 -> 3101402"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-31015",
@@ -5629,17 +4931,15 @@
       "lineJa": "南海加太線",
       "lineKo": "난카이카다선",
       "stations": 9,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 8,
+      "reverseSegments": 8,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-32005: missing railway segment 3200501 -> 3200502"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-32006",
@@ -5678,17 +4978,15 @@
       "lineJa": "南海高野山ケーブル",
       "lineKo": "난카이코우야산케부루",
       "stations": 2,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 1,
+      "reverseSegments": 1,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-32008: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-32009",
@@ -5710,17 +5008,15 @@
       "lineJa": "京阪本線",
       "lineKo": "케이한혼선",
       "stations": 42,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 41,
+      "reverseSegments": 41,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-33001: missing railway segment 3300142 -> 3300141"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-33002",
@@ -6119,17 +5415,15 @@
       "lineJa": "札幌市電山鼻線",
       "lineKo": "샀포로시덴야마하나선",
       "stations": 24,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 23,
+      "reverseSegments": 23,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99104: missing railway segment 9910403 -> 9910404"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99105",
@@ -6166,17 +5460,15 @@
       "lineJa": "道南いさりび鉄道線",
       "lineKo": "미치미나미이사리비테츠도우선",
       "stations": 13,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 12,
+      "reverseSegments": 12,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99108: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99201",
@@ -6753,17 +6045,15 @@
       "lineJa": "鹿島臨海鉄道大洗鹿島線",
       "lineKo": "카시마린카이테츠도우오오아라이카시마선",
       "stations": 16,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 15,
+      "reverseSegments": 15,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99323: missing railway segment 9932315 -> 9932316"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99324",
@@ -6842,8 +6132,8 @@
     },
     {
       "routeId": "line-99329",
-      "lineJa": "新京成線",
-      "lineKo": "신게이세이선",
+      "lineJa": "京成松戸線",
+      "lineKo": "마츠도선",
       "stations": 24,
       "forwardSegments": 23,
       "reverseSegments": 23,
@@ -7085,17 +6375,15 @@
       "lineJa": "しなの鉄道線",
       "lineKo": "시나노테츠도우선",
       "stations": 23,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 22,
+      "reverseSegments": 22,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99403: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99427",
@@ -7239,17 +6527,15 @@
       "lineJa": "富山地鉄富山都心線【３系統(環状線)】",
       "lineKo": "토야마치테츠토야마토신선【３케이토우칸조우선】",
       "stations": 13,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 12,
+      "reverseSegments": 12,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99422: missing railway segment 9942206 -> 9942207"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99414",
@@ -7406,17 +6692,15 @@
       "lineJa": "えちぜん鉄道三国芦原線",
       "lineKo": "에치젠테츠도우미쿠니아와라선",
       "stations": 24,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 23,
+      "reverseSegments": 23,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99420: missing railway segment 9942001 -> 9942002"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99421",
@@ -8098,17 +7382,15 @@
       "lineJa": "泉北高速鉄道線",
       "lineKo": "선포쿠코우소쿠테츠도우선",
       "stations": 6,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 5,
+      "reverseSegments": 5,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99616: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99617",
@@ -8325,17 +7607,15 @@
       "lineJa": "神戸高速東西線",
       "lineKo": "코우베코우소쿠토우자이선",
       "stations": 9,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 8,
+      "reverseSegments": 8,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99630: missing railway segment 9963001 -> 9963002"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99631",
@@ -8387,17 +7667,15 @@
       "lineJa": "公園都市線",
       "lineKo": "코우엔토시선",
       "stations": 6,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 5,
+      "reverseSegments": 5,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99634: missing railway segment 9963401 -> 9963402"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99635",
@@ -8719,34 +7997,30 @@
       "lineJa": "清輝橋線",
       "lineKo": "세이키바시선",
       "stations": 9,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 8,
+      "reverseSegments": 8,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99707: missing railway segment 9970701 -> 9970702"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99708",
       "lineJa": "スカイレールみどり坂線",
       "lineKo": "스카이레루미도리자카선",
       "stations": 3,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 2,
+      "reverseSegments": 2,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99708: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99709",
@@ -8768,17 +8042,15 @@
       "lineJa": "広電１号線(宇品線)",
       "lineKo": "히로덴１고우선우지나선",
       "stations": 27,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 26,
+      "reverseSegments": 26,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99710: missing railway segment 9971001 -> 9971002"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99711",
@@ -8815,34 +8087,30 @@
       "lineJa": "広電５号線(皆実線)",
       "lineKo": "히로덴５고우선미나미선",
       "stations": 18,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 17,
+      "reverseSegments": 17,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99713: missing railway segment 9971301 -> 9971302"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99714",
       "lineJa": "広電６号線(江波線)",
       "lineKo": "히로덴６고우선에바선",
       "stations": 20,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 19,
+      "reverseSegments": 19,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99714: missing railway segment 9971401 -> 9971402"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99715",
@@ -8864,17 +8132,15 @@
       "lineJa": "広電８号線(横川線)",
       "lineKo": "히로덴８고우선요코가와선",
       "stations": 12,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 11,
+      "reverseSegments": 11,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99716: missing railway segment 9971606 -> 9971607"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99717",
@@ -8941,17 +8207,15 @@
       "lineJa": "琴電長尾線",
       "lineKo": "킨덴나가오선",
       "stations": 18,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 17,
+      "reverseSegments": 17,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99803: missing railway segment 9980301 -> 9980302"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99804",
@@ -9063,17 +8327,15 @@
       "lineJa": "伊予鉄道本町線",
       "lineKo": "이요테츠도우혼초우선",
       "stations": 7,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 6,
+      "reverseSegments": 6,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99812: missing railway segment 9981205 -> 9981206"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99814",
@@ -9155,17 +8417,15 @@
       "lineJa": "桟橋線",
       "lineKo": "산바시선",
       "stations": 11,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 10,
+      "reverseSegments": 10,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99819: missing railway segment 9981901 -> 9981902"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99901",
@@ -9442,17 +8702,15 @@
       "lineJa": "熊本電鉄上熊本線",
       "lineKo": "쿠마모토덴테츠카미쿠마모토선",
       "stations": 6,
-      "forwardSegments": 0,
-      "reverseSegments": 0,
-      "missingSegments": 1,
+      "forwardSegments": 5,
+      "reverseSegments": 5,
+      "missingSegments": 0,
       "endpointMismatch": 0,
       "reverseOrderMismatch": false,
       "defaultServiceSkips": false,
-      "errors": [
-        "line-99918: missing railway geometry"
-      ],
+      "errors": [],
       "warnings": [],
-      "pass": false
+      "pass": true
     },
     {
       "routeId": "line-99919",

@@ -1,0 +1,7 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const {orientOrderedWays}=require('./lib/kr-osm-order');
+const ways=new Map([['a',{nodeIds:['1','2','3']}],['b',{nodeIds:['5','4','3']}],['gap',{nodeIds:['6','7']}]]);
+test('global ordered orientation retains source nodes and explicit stop order',()=>{const r=orientOrderedWays([{ref:'a',role:''},{ref:'b',role:''}],ways,['1','5']);assert.equal(r.status,'UNIQUE_SOURCE_ORDER');assert.deepEqual(r.nodeIds,['1','2','3','4','5']);assert.deepEqual(r.parts.map(p=>p.reverse),[false,true])});
+test('single source way uses stop order without assuming train direction',()=>{const r=orientOrderedWays([{ref:'a',role:''}],ways,['3','1']);assert.equal(r.status,'UNIQUE_SOURCE_ORDER');assert.deepEqual(r.nodeIds,['3','2','1'])});
+test('gaps, missing members and conflicting explicit roles are not repaired',()=>{assert.equal(orientOrderedWays([{ref:'a',role:''},{ref:'gap',role:''}],ways).status,'DISCONNECTED_ORDERED_WAYS');assert.equal(orientOrderedWays([{ref:'absent',role:''}],ways).status,'MISSING_MEMBER_WAY');assert.equal(orientOrderedWays([{ref:'a',role:'forward'}],ways,['3','1']).status,'ORDERED_STOPS_NOT_ON_TRACK')});
+test('unresolved directions and closed way alternatives fail closed',()=>{assert.equal(orientOrderedWays([{ref:'a',role:''}],ways).status,'AMBIGUOUS_ORIENTATION');const loop=new Map([['c',{nodeIds:['1','2','3','1']}]]);assert.equal(orientOrderedWays([{ref:'c',role:''}],loop,['1','1']).status,'AMBIGUOUS_ORIENTATION')});

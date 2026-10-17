@@ -1,3 +1,4 @@
+import{koreanRouteBlockReason}from'./korean-access-policy.js';
 import{$,$$,uid,escapeHtml,normalize,toast,debounce}from'./utils.js';
 import{storage}from'./storage.js';
 import{renderSvg}from'./route-renderer.js';
@@ -9,7 +10,7 @@ export class RouteEditor{
  constructor({onRoutesChanged,onPlay,onSaved}){this.onRoutesChanged=onRoutesChanged;this.onPlay=onPlay;this.onSaved=onSaved;this.form=$('#route-form');this.list=$('#station-editor');this.master=[];this.railRoutes=[];this.stationGraph=new Map();this.route=this.fresh();this.geo=null;this.render();this.bind()}
  fresh(){return{id:uid('custom'),category:'custom',dataKind:'customJourney',operatorId:'custom',operator:{ja:'Custom Journey',en:'Custom Journey',ko:'커스텀 여정'},line:{ja:'カスタム旅程',en:'Custom Journey',ko:'커스텀 여정'},code:'CT',lineColor:'#e84747',loop:false,coverage:'rail-network',stations:[],geometry:[],segments:[]}}
  setRailNetwork(routes){
-  this.railRoutes=(Array.isArray(routes)?routes:[]).filter(route=>Array.isArray(route?.stations)&&route.stations.length>=2);
+  this.railRoutes=(Array.isArray(routes)?routes:[]).filter(route=>!koreanRouteBlockReason(route)).filter(route=>Array.isArray(route?.stations)&&route.stations.length>=2);
   this.stationGraph=new Map();
   const keyOf=station=>station?.stationMasterId||station?.sourceStationId||station?.id||'';
   const add=(key,station,route)=>{if(!key)return null;let node=this.stationGraph.get(key);if(!node){node={key,station,edges:[]};this.stationGraph.set(key,node)}node.routes=node.routes||new Set();node.routes.add(route.id);return node};
@@ -21,14 +22,14 @@ export class RouteEditor{
     const an=add(ak,a,route),bn=add(bk,b,route);
     if(!an||!bn)continue;
     an.edges.push({to:bk,route,fromIndex:i,toIndex:i+1});
-    bn.edges.push({to:ak,route,fromIndex:i+1,toIndex:i});
+    if(route.countryId!=='kr'||route.schemaVersion!==2)bn.edges.push({to:ak,route,fromIndex:i+1,toIndex:i});
    }
   }
   this.renderJourneyOptions()
  }
  setStationMaster(stations){this.master=Array.isArray(stations)?stations:[];this.renderSearch($('#station-master-search')?.value||'');this.renderJourneyOptions()}
  createNew(){this.route=this.fresh();this.render();$('#station-master-search')?.focus()}
- loadRoute(route){if(!route)return;this.route=structuredClone(route);this.route.geometry ||= [];this.route.segments ||= [];this.render()}
+ loadRoute(route){if(!route||koreanRouteBlockReason(route))return;this.route=structuredClone(route);this.route.geometry ||= [];this.route.segments ||= [];this.render()}
  bind(){
   $('#new-route').addEventListener('click',()=>this.createNew());$('#add-station').addEventListener('click',()=>this.addStation());$('#save-route').addEventListener('click',()=>this.save());$('#play-custom').addEventListener('click',()=>{if(this.validate())this.onPlay(this.route)});$('#export-route').addEventListener('click',()=>this.export());$('#import-route').addEventListener('change',e=>this.import(e.target.files[0]));
   $('#station-master-search').addEventListener('input',debounce(e=>this.renderSearch(e.target.value),70));$('#station-search-results').addEventListener('click',e=>{const button=e.target.closest('[data-add-master]');if(button)this.addMasterStation(button.dataset.addMaster)});$('#journey-options').addEventListener('click',e=>{const button=e.target.closest('[data-journey-edge]');if(button)this.addGraphEdge(button.dataset.journeyEdge)});document.addEventListener('keydown',e=>{if(e.key==='Tab'&&document.body.dataset.currentScreen==='custom-editor'&&this.route.stations.length){const options=this.currentEdges();if(new Set(options.map(edge=>edge.route.id)).size>1){e.preventDefault();$('#journey-options').classList.toggle('transfer-open');$('#journey-options').focus?.()}}});

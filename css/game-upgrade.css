@@ -1,6 +1,7 @@
 :root{color-scheme:light;--surface:#fff;--surface-soft:#ecebe5;--map-land:#e9eee9;--map-water:#cbdfe0;--map-minor:#b8c4bc;--map-muted:#65716b;--game-chrome:#101820}
 :root[data-theme="dark"]{color-scheme:dark;--ink:#f1f5f2;--paper:#07110e;--white:#111a17;--muted:#94a39c;--line:#293a34;--surface:#111a17;--surface-soft:#101a16;--map-land:#101b17;--map-water:#0b2529;--map-minor:#2b3934;--map-muted:#72817a;--game-chrome:#050b09}
 :root[data-theme="light"]{color-scheme:light}
+.record-row.header{color:var(--paper)}
 body,.topbar,.screen,.settings-form,.editor-form,.map-editor,.route-card,.typing-box,.choice-grid span,.segmented span,.form-row select,.form-grid input,.settings-form select{transition:background-color .22s,color .22s,border-color .22s}
 :root[data-theme="dark"] .topbar,:root[data-theme="dark"] .settings-form,:root[data-theme="dark"] .editor-form,:root[data-theme="dark"] .map-editor,:root[data-theme="dark"] .route-card,:root[data-theme="dark"] .choice-grid span,:root[data-theme="dark"] .segmented span,:root[data-theme="dark"] .form-row select,:root[data-theme="dark"] .form-grid input,:root[data-theme="dark"] .settings-form select,:root[data-theme="dark"] .typing-box{background:var(--surface);color:var(--ink)}
 :root[data-theme="dark"] .route-ticket,:root[data-theme="dark"] .hud-strip{background:var(--game-chrome)}

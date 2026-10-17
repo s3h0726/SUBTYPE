@@ -1,0 +1,16 @@
+const test=require('node:test'),assert=require('node:assert/strict'),{applyOfficialStationNames}=require('./lib/kr-station-names');
+function fixture(){return{stations:new Map([['station',{id:'station',names:{ko:'지하 서울역 4호선',en:'Seoul Station'},coordinates:{lat:37.55,lon:126.97},status:'candidate'}]]),stops:[{id:'stop',stationId:'station',number:'426',verification:'candidate'}],reviews:[{stationId:'station',expectedSourceName:'지하 서울역 4호선',officialName:'서울역',officialStationCode:'0426',officialLineCode:'4',sourceId:'official',stopBindings:[{stopId:'stop',expectedSourceNumber:'426'}]}],trips:[{sourceId:'official',officialLineCode:'4',calls:[{officialStationCode:'0426',operationalStationName:'서울역'}]}]}}
+const run=f=>applyOfficialStationNames(f.stations,f.stops,f.reviews,f.trips);
+test('explicit official code changes only Korean display name and cannot approve track or platform',()=>{const f=fixture(),before=structuredClone(f);run(f);const station=f.stations.get('station');assert.equal(station.names.ko,'서울역');assert.equal(station.names.en,before.stations.get('station').names.en);assert.deepEqual(station.coordinates,before.stations.get('station').coordinates);assert.equal(station.status,'candidate');assert.equal(f.stops[0].verification,'candidate')});
+test('station identity drift or inconsistent official code names cannot silently rewrite a name',()=>{for(const mutation of [f=>f.stations.get('station').names.ko='other',f=>f.stops[0].number='133',f=>f.trips[0].calls.push({officialStationCode:'0426',operationalStationName:'other'}),f=>f.trips[0].officialLineCode='1']){const f=fixture();mutation(f);assert.throws(()=>run(f))}});
+test('eight reviewed line 1 public/operational code crosswalks preserve physical station identity',()=>{
+ const fs=require('node:fs'),path=require('node:path'),base=path.join(__dirname,'../data/kr/v2'),read=n=>JSON.parse(fs.readFileSync(path.join(base,n+'.json'))),rows=read('stations'),stops=read('stops'),reviews=read('station-name-corrections'),trips=read('seoulmetro-trip-candidates'),references=read('official-station-reference');
+ assert.equal(reviews.filter(r=>r.identityReference).length,8);const stations=new Map(rows.map(s=>[s.id,s]));for(const r of reviews)stations.get(r.stationId).names.ko=r.expectedSourceName;
+ const before=structuredClone(stations);applyOfficialStationNames(stations,stops,reviews,trips,references);
+ for(const r of reviews){const s=stations.get(r.stationId);assert.equal(s.names.ko,r.officialName);assert.deepEqual(s.coordinates,before.get(s.id).coordinates);assert.equal(s.status,'candidate')}
+});
+test('a changed or absent KRIC identity record cannot authorize a code crosswalk',()=>{
+ const f=fixture();f.reviews[0].identityReference={id:'reference',sha256:'0'.repeat(64),expectedSourceCoordinates:f.stations.get('station').coordinates};
+ assert.throws(()=>applyOfficialStationNames(f.stations,f.stops,f.reviews,f.trips,[]),/IDENTITY_REFERENCE_DRIFT/);
+ assert.throws(()=>applyOfficialStationNames(f.stations,f.stops,f.reviews,f.trips,[{id:'reference',number:'other'}]),/IDENTITY_REFERENCE_DRIFT/);
+});

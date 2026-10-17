@@ -1,0 +1,79 @@
+name: Korean network rebuild
+on:
+  push:
+    branches: [rebuild/korea-2026-10-15]
+  pull_request:
+    paths: ['data/kr/**', 'tools/**', 'js/**', 'package.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  implementation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check:dependencies
+      - run: npm run import:korea
+      - run: npm run import:seoulmetro
+      - run: npm run build:korea
+      - run: npm run audit:korea-relations62
+      - run: npm run audit:korea-inventory
+      - name: Ensure source corrections and generated data are reproducible
+        run: git diff --exit-code -- data/kr/v2
+      - run: npm run validate:korea
+      - run: npm run test:korea
+      - run: npm run test:typing
+      - run: node tools/test-service-route-resolver.js
+      - run: node tools/validate-data.js
+      - run: npm run test:single-source
+      - run: npm run build:korea
+      - run: npm run match:korea
+      - run: node tools/match-kr-stations.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-rebuild-audit
+          path: |
+            data/kr/v2/generated/audit.json
+            data/kr/v2/generated/relations62-audit.*
+  national-release:
+    runs-on: ubuntu-latest
+    needs: [implementation, browser-candidates]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # This job must fail while national evidence is incomplete. Unit-test
+      # success is never presented as permission to replace the live site.
+      - run: npm run audit:korea
+  browser-candidates:
+    runs-on: ubuntu-latest
+    needs: implementation
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --package-lock=false playwright@1.62.1
+      - run: npx playwright install --with-deps chromium
+      - name: Candidate desktop and mobile traversal (not release approval)
+        env:
+          KR_BROWSER_REPORT: data/kr/v2/generated/browser-diagnostics.json
+        run: node tools/test-kr-browser.cjs --all-assemblable --interactive
+      - name: Recovered services true-track motion on desktop and mobile
+        env:
+          KR_BROWSER_REPORT: data/kr/v2/generated/recovered-motion.json
+          KR_BROWSER_SCREENSHOTS: data/kr/v2/generated/recovered-motion-screens
+        run: node tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696 --interactive-all
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: korea-candidate-browser-diagnostics
+          path: |
+            data/kr/v2/generated/browser-diagnostics.json
+            data/kr/v2/generated/recovered-motion.json
+            data/kr/v2/generated/recovered-motion-screens/
