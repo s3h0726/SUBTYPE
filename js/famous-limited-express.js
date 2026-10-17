@@ -86,6 +86,7 @@ function composePhysicalService(spec,baseRoutes){
    missingSegments:[],reusedSegments:[],nexRepresentativeTimetable:false,
    coverage:'Documented representative express stopping patterns, built from existing railway tracks'}
 }
+export function famousLimitedExpressSourceIds(){return [...new Set(FAMOUS_EXPRESS_SPECS.flatMap(spec=>spec.parts.map(part=>part.id)))]}
 export function buildFamousLimitedExpressRoutes(routes){
  const map=new Map(routes.map(r=>[r.id,r])),result=[];
  for(const spec of FAMOUS_EXPRESS_SPECS){
