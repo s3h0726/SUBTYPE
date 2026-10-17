@@ -170,3 +170,9 @@ Source assembly totals are 260 of 317, with 57 still failing (including the elev
 excluded/quarantined records). Against the older 69-failure baseline, twelve have
 recovered. The sixty Korean tests and separate Japanese regression are required;
 none of these counts certify nationwide completeness. Keep main and Pages gated.
+
+CI also runs `tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696 --interactive-all`.
+This separately samples actual first-segment motion for each recovered service
+on desktop and mobile, retains screenshots and tests stale-animation cancellation.
+It complements full stop traversal; it is not an official operating-direction,
+platform or complete per-segment animation certification.

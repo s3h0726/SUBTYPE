@@ -8,7 +8,9 @@ const {load,validate,assemble}=require('./lib/kr-network');
 const root=path.resolve(__dirname,'..'),base=path.join(root,'data/kr/v2'),data=load(base),{maps,errors}=validate(data,{base});
 assert.deepEqual(errors,[]);
 const all=process.argv.includes('--all-assemblable'),excludedTopology=[];
-const ids=all?data.services.flatMap(s=>{if(s.access?.passengerCandidate===false){excludedTopology.push({serviceId:s.id,reason:s.access.classification});return[]}try{assemble(s,maps);return[s.id.replace('kr-osm-service-','')]}catch(e){excludedTopology.push({serviceId:s.id,reason:e.message});return[]}}):['15833659','15870296','15870297','15870344'];
+const selected=process.argv.find(a=>a.startsWith('--services='))?.slice(11).split(',');
+const ids=selected||(all?data.services.flatMap(s=>{if(s.access?.passengerCandidate===false){excludedTopology.push({serviceId:s.id,reason:s.access.classification});return[]}try{assemble(s,maps);return[s.id.replace('kr-osm-service-','')]}catch(e){excludedTopology.push({serviceId:s.id,reason:e.message});return[]}}):['15833659','15870296','15870297','15870344']);
+if(process.argv.includes('--interactive-all')&&(!selected||selected.length>10))throw Error('INTERACTIVE_ALL_REQUIRES_EXPLICIT_SMALL_SERVICE_LIST');
 const candidates=ids.map(id=>{
  const s=maps.services.get('kr-osm-service-'+id),line=maps['passenger-lines'].get(s.passengerLineId),op=maps.operators.get(s.operatorIds[0]);
  return {id:s.id,countryId:'kr',schemaVersion:2,releaseStatus:'candidate',operatorId:op?.id||'unverified',operator:{...op?.names,ja:op?.names.ko||''},line:{...line.names,ja:line.names.ko},lineColor:line.color||'#126499',geometryReady:true,geometryStatus:'ready',...assemble(s,maps),services:[{id:s.id,nameKo:s.names.ko,stops:s.stops.map(c=>maps.stops.get(c.stopId).stationId)}]};
@@ -67,7 +69,11 @@ const server=http.createServer((req,res)=>{
     }
     return results;
    },{start,end});
-   if(process.argv.includes('--interactive')&&start===0){const interactive=await require('./kr-browser-interactive.cjs')(page);results.push({device,interactive,runs:[],pageErrors:[]});console.log(JSON.stringify({device,interactive}))}
+   if((process.argv.includes('--interactive')||process.argv.includes('--interactive-all'))&&start===0){
+    for(const motionServiceId of process.argv.includes('--interactive-all')?candidates.map(r=>r.id):[undefined]){
+     const interactive=await require('./kr-browser-interactive.cjs')(page,{motionServiceId});results.push({device,interactive,runs:[],pageErrors:[]});console.log(JSON.stringify({device,interactive}));
+    }
+   }
    await page.evaluate(()=>{
     const qa=globalThis.__KR_BROWSER_QA__;qa.renderStats();const header=document.querySelector('.record-row.header'),original=document.documentElement.dataset.theme;
     const luminance=color=>{const c=color.match(/[\d.]+/g).slice(0,3).map(x=>{const n=Number(x)/255;return n<=.04045?n/12.92:((n+.055)/1.055)**2.4});return c[0]*.2126+c[1]*.7152+c[2]*.0722};

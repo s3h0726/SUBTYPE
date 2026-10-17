@@ -1,9 +1,10 @@
 'use strict';
 // Runs against the real Game, FreeDrive and Leaflet objects in the local QA
 // server. Does not grant approval to the candidate route used for motion QA.
-module.exports=async function interactive(page){
- const motion=await page.evaluate(async()=>{
-  const q=globalThis.__KR_BROWSER_QA__,g=q.game,route=(await(await fetch('/__qa-candidates.json')).json())[0];
+module.exports=async function interactive(page,{motionServiceId}={}){
+ const motion=await page.evaluate(async serviceId=>{
+  const q=globalThis.__KR_BROWSER_QA__,g=q.game,routes=await(await fetch('/__qa-candidates.json')).json(),route=serviceId?routes.find(r=>r.id===serviceId):routes[0];
+  if(!route)throw Error('MISSING_MOTION_SERVICE:'+serviceId);
   q.go('game');if(!g.start(route,{motion:true,sound:false}))throw Error('MOTION_START');
   const settle=()=>q.renderGameMap(g.mapRoute,g.index,g.mapOptions());await settle();
   const type=()=>{const input=document.querySelector('#typing-input');input.value=q.buildTypingModel(g.targetStation().ko).inputText;input.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText'}))};
@@ -23,10 +24,13 @@ module.exports=async function interactive(page){
   const input=document.querySelector('#typing-input');input.value=q.buildTypingModel(g.targetStation().ko).inputText.slice(0,1);input.dispatchEvent(new InputEvent('input',{bubbles:true}));
   g.start(route,{motion:true,sound:false});await settle();await new Promise(r=>setTimeout(r,150));
   if(!g.boarding||g.index!==0||q.mapState().trainLayer.getLayers().length!==1)throw Error('STALE_ANIMATION_AFTER_RESTART');
+  const visible=()=>{const r=q.mapState().train?.getElement()?.getBoundingClientRect();return r&&r.width>0&&r.right>0&&r.left<innerWidth&&r.bottom>0&&r.top<innerHeight};
+  const viewDeadline=performance.now()+3000;while(!visible()&&performance.now()<viewDeadline)await new Promise(r=>setTimeout(r,16));
+  if(!visible())throw Error('TRAIN_OUTSIDE_VIEW_AFTER_RESTART:'+JSON.stringify({center:q.mapState().map.getCenter(),train:q.mapState().train.getLatLng(),rect:q.mapState().train.getElement()?.getBoundingClientRect().toJSON()}));
   g.stop(false);return{serviceId:route.id,frames:frames.length,retainedVertices:path.length,status:'PASS'};
- });
+ },motionServiceId);
  if(process.env.KR_BROWSER_SCREENSHOTS)await page.waitForFunction(()=>!document.querySelector('#toast')?.classList.contains('show'));
- if(process.env.KR_BROWSER_SCREENSHOTS)await page.screenshot({path:require('node:path').join(process.env.KR_BROWSER_SCREENSHOTS,(page.viewportSize().width<600?'mobile':'desktop')+'-curved-game.png'),fullPage:true});
+ if(process.env.KR_BROWSER_SCREENSHOTS)await page.screenshot({path:require('node:path').join(process.env.KR_BROWSER_SCREENSHOTS,(page.viewportSize().width<600?'mobile':'desktop')+(motionServiceId?'-'+motionServiceId:'')+'-curved-game.png'),fullPage:true});
  const transfer=await page.evaluate(async()=>{
   const q=globalThis.__KR_BROWSER_QA__,f=q.freeDrive;
   // The app already loads the actual Japanese network here. Select a genuine
