@@ -55,11 +55,32 @@
   },
   "legacy": {
     "origin": "nationwide",
-    "coverage": "nationwide-source-line",
+    "coverage": "operational-Tomakomai-to-Mukawa-only",
     "dataKind": "physicalRoute",
     "closureNotice": "Mukawa-Samani 2021-04-01; Hama-Taura station 2023-03-18"
   },
   "officialKoSource": null,
   "activeSection": "苫小牧–鵡川",
-  "operationalStatus": "ACTIVE_PARTIAL_CLOSURE"
+  "operationalStatus": "ACTIVE_PARTIAL_CLOSURE",
+  "operationStatus": {
+    "status": "OPERATING_PARTIAL",
+    "activeSection": {
+      "start": "苫小牧",
+      "end": "鵡川",
+      "stationCount": 4
+    },
+    "discontinuedSection": {
+      "start": "鵡川",
+      "end": "様似",
+      "closedDate": "2021-04-01"
+    },
+    "closedStation": {
+      "name": "浜田浦",
+      "closedDate": "2023-03-18"
+    },
+    "sources": [
+      "https://www.jrhokkaido.co.jp/corporate/region/current.html",
+      "https://www.jrhokkaido.co.jp/CM/Info/press/pdf/221216_KO_2023kaisei.pdf"
+    ]
+  }
 }
