@@ -27,7 +27,7 @@ jobs:
         run: node tools/test-narita-express-services.js
       - name: Assemble physical railway branch geometries
         run: node tools/build-nex-verified-geometry.js
-      - name: Verify 4 real NEX game journeys and correct branch geometry
+      - name: Verify 8 real NEX game journeys and correct branch geometry
         run: node tools/test-nex-game-routes.cjs
       - name: Rebuild playable site with NEX branch choices
         run: node tools/build-static.js
@@ -36,7 +36,7 @@ jobs:
           node tools/test-nex-game-routes.cjs
           node - <<'NODE'
           const fs=require('fs');const bundle=fs.readFileSync('js/app.bundle.js','utf8');const data=fs.readFileSync('js/service-data.js','utf8');
-          for(const marker of ['nexOperatingChoices','resolveNexOperatingChoice','nex-5-shinjuku','nex-14-ofuna'])if(!bundle.includes(marker))throw Error('NEX game bundle missing '+marker);
+          for(const marker of ['nexOperatingChoices','resolveNexOperatingChoice','nex-5-shinjuku','nex-14-ofuna','nex-2-shinjuku','nex-54-ofuna'])if(!bundle.includes(marker))throw Error('NEX game bundle missing '+marker);
           if(!data.includes('TRT_NEX_BRANCH_CANDIDATES')||!data.includes('stationGeometryIndices'))throw Error('NEX branch geometry absent from client data');
           NODE
       - name: Validate generated branch candidates
