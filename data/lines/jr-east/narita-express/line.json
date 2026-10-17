@@ -48,7 +48,41 @@
       "serviceKind": "limited-express",
       "pairingAt": "station-mlit-003766",
       "stoppingPolicy": "some-trains-also-stop-at-Chiba-Yotsukaido-Sakura-Narita",
-      "source": "https://www.jreast.co.jp/en/multi/nex/"
+      "source": "https://www.jreast.co.jp/en/multi/nex/",
+      "geometryStatus": "PENDING_BRANCH_SPECIFIC_PHYSICAL_TRACK_VERIFICATION",
+      "actualTrainExamples": [
+        {
+          "train": "Narita Express 2",
+          "number": "2202M",
+          "stopsJa": [
+            "成田空港",
+            "空港第２ビル",
+            "成田",
+            "佐倉",
+            "四街道",
+            "千葉",
+            "東京",
+            "渋谷",
+            "新宿"
+          ],
+          "direction": "airport-to-city",
+          "reference": "https://timetables.jreast.co.jp/en/2610/train/025/029042.html"
+        },
+        {
+          "train": "Narita Express 7",
+          "number": "2207M",
+          "stopsJa": [
+            "新宿",
+            "渋谷",
+            "東京",
+            "千葉",
+            "空港第２ビル",
+            "成田空港"
+          ],
+          "direction": "city-to-airport",
+          "reference": "https://timetables.jreast.co.jp/en/2610/train/030/031151.html"
+        }
+      ]
     },
     {
       "id": "nex-ofuna",
@@ -70,7 +104,47 @@
       "serviceKind": "limited-express",
       "pairingAt": "station-mlit-003766",
       "stoppingPolicy": "some-trains-also-stop-at-Chiba-Yotsukaido-Sakura-Narita",
-      "source": "https://www.jreast.co.jp/en/multi/nex/"
+      "source": "https://www.jreast.co.jp/en/multi/nex/",
+      "geometryStatus": "PENDING_BRANCH_SPECIFIC_PHYSICAL_TRACK_VERIFICATION",
+      "actualTrainExamples": [
+        {
+          "train": "Narita Express 2",
+          "number": "2002M",
+          "stopsJa": [
+            "成田空港",
+            "空港第２ビル",
+            "成田",
+            "佐倉",
+            "四街道",
+            "千葉",
+            "東京",
+            "品川",
+            "武蔵小杉",
+            "横浜",
+            "戸塚",
+            "大船"
+          ],
+          "direction": "airport-to-city",
+          "reference": "https://timetables.jreast.co.jp/en/2610/train/025/029042.html"
+        },
+        {
+          "train": "Narita Express 7",
+          "number": "2007M",
+          "stopsJa": [
+            "大船",
+            "戸塚",
+            "横浜",
+            "武蔵小杉",
+            "品川",
+            "東京",
+            "千葉",
+            "空港第２ビル",
+            "成田空港"
+          ],
+          "direction": "city-to-airport",
+          "reference": "https://timetables.jreast.co.jp/en/2610/train/030/031151.html"
+        }
+      ]
     }
   ],
   "throughServiceIds": [],
@@ -92,13 +166,14 @@
       "status": "REVIEW_REQUIRED",
       "canonicalPolicy": "namuwiki"
     },
-    "timetable": "https://timetables.jreast.co.jp/en/2610/train/030/031191.html"
+    "timetable": "https://timetables.jreast.co.jp/en/2610/train/025/029042.html",
+    "temporaryWorksNotice": "https://www.jreast.co.jp/en/yokosuka-tunnel-koji/"
   },
   "legacy": {
     "origin": "curated",
     "coverage": "full-source-line",
     "dataKind": "trainService",
-    "geometryNote": "Single legacy station chain mixes the Ofuna and Shinjuku branches. Must not treat route-level geometry as a valid through-service until branch-specific tracks are reconstructed.",
+    "geometryNote": "DO NOT LINEARIZE: at Tokyo Station Shinjuku branch goes via Shibuya while Ofuna branch goes via Shinagawa. Existing canonical station order falsely joins Musashi-Kosugi -> Shinjuku and Shibuya -> Shinagawa; maintain separately until verified source railway-geometry paths assembled.",
     "playabilityStatus": "BRANCHED_ROUTE_GEOMETRY_REQUIRES_RECONSTRUCTION"
   },
   "officialKoSource": null
