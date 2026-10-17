@@ -1556,7 +1556,7 @@ if(route.operatorId==='uekedenkitetsudo')route={...route,operator:{...(route.ope
   const finalColor=/^#[0-9a-f]{6}$/i.test(lineEdit.color||'')?lineEdit.color:route.lineColor;
   return applyYurikamomeLoopGeometry({...route,operator:finalOperator,line:finalLine,lineColor:finalColor,stations:stations.map(fixStation),directions:directions.map(dir=>({...dir,stops:(dir.stops||[]).map(fixStation)}))})
 }
-const JAPAN_STREETCAR_LINE_IDS=new Set(['line-99706','line-99707','line-99305','line-99521','line-99809','line-99810','line-99811','line-99812']);
+const JAPAN_STREETCAR_LINE_IDS=new Set(['line-99706','line-99707','line-99305','line-99521','line-99809','line-99810','line-99811','line-99812','line-99628','line-99629']);
 const JAPAN_CLOSED_LINE_IDS=new Set(['line-11113','line-99708']);
 function currentJapanServiceRoute(route){
  if(!route||route.countryId==='kr')return route;
