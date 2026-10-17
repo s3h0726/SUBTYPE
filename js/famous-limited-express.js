@@ -23,7 +23,7 @@ const FAMOUS_EXPRESS_SPECS=[
  {id:'romancecar',name:{ko:'오다큐 로망스카',ja:'小田急ロマンスカー',en:'Odakyu Romancecar'},
   parts:[{id:'line-25001',from:'新宿',to:'小田原'}],color:'#d72a36',
   official:'https://www.odakyu.jp/romancecar/homeway/',
-  patterns:[{id:'romancecar-homeway-1',ja:'ホームウェイ1号',ko:'홈웨이 1호',stops:['新宿','町田','海老名','本厚木','秦野','小田原']}]}
+  patterns:[{id:'romancecar-homeway-1',ja:'ホームウェイ1号',ko:'홈웨이 1호',directions:['forward'],stops:['新宿','町田','海老名','本厚木','秦野','小田原']}]}
 ];
 const cloneRailPoint=p=>[Number(p[0]),Number(p[1])];
 function sourceSegment(route,fromJa,toJa){
@@ -69,7 +69,7 @@ function composePhysicalService(spec,baseRoutes){
   const stops=pattern.stops.map(ja=>{const match=byJa.get(ja);if(!match)throw Error('Express stop unavailable '+spec.id+':'+ja);return match.id});
   const position=stops.map(id=>stations.find(s=>s.id===id).geometryIndex);
   if(position.some((v,i)=>i>0&&v<=position[i-1]))throw Error('Unordered express stops '+spec.id+'/'+pattern.id);
-  return{id:pattern.id,nameJa:pattern.ja,nameKo:pattern.ko,stopIds:stops,sourceUrl:spec.official}
+  return{id:pattern.id,nameJa:pattern.ja,nameKo:pattern.ko,directions:pattern.directions||['forward','reverse'],stopIds:stops,sourceUrl:spec.official}
  });
  const first=baseRoutes.get(spec.parts[0].id),id='famous-express-'+spec.id;
  return {...first,id,legacyId:id,category:first.category,operatorId:first.operatorId,
@@ -93,7 +93,7 @@ export function buildFamousLimitedExpressRoutes(routes){
 export function famousLimitedExpressChoices(route){
  if(!route?.famousExpress)return [];
  const stationMap=new Map(route.stations.map(st=>[String(st.id),st]));
- return route.famousVariants.flatMap(p=>['forward','reverse'].map(direction=>{
+ return route.famousVariants.flatMap(p=>p.directions.map(direction=>{
   const first=direction==='reverse'?p.stopIds.at(-1):p.stopIds[0],last=direction==='reverse'?p.stopIds[0]:p.stopIds.at(-1);
   return{kind:'famousExpress',id:p.id+':'+direction,originId:first,destinationId:last,
    originNames:stationMap.get(String(first)),destinationNames:stationMap.get(String(last)),
