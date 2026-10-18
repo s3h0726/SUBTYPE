@@ -18,6 +18,10 @@ const corrections=JSON.parse(fs.readFileSync(path.join(base,'topology-correction
 for(const c of corrections)if(!relations.some(r=>r.id===c.relationId))throw Error('MISSING_CORRECTED_RELATION:'+c.relationId);
 if(new Set(corrections.map(c=>c.relationId)).size!==corrections.length)throw Error('DUPLICATE_TOPOLOGY_CORRECTION');
 const facilityWays=new Map(JSON.parse(fs.readFileSync(path.join(base,'source/osm-62-20261017/osm-ways.json'),'utf8')).map(w=>[w.id,w]));
+const memberRepairs=JSON.parse(fs.readFileSync(path.join(base,'source-member-repairs.json'),'utf8'));
+const trackSupplements=JSON.parse(fs.readFileSync(path.join(base,'service-track-supplements.json'),'utf8'));
+if(new Set(trackSupplements.map(c=>c.relationId)).size!==trackSupplements.length||trackSupplements.some(c=>!relations.some(r=>r.id===c.relationId)))throw Error('INVALID_TRACK_SUPPLEMENT_TARGET');
+if(new Set(memberRepairs.map(c=>c.relationId)).size!==memberRepairs.length||memberRepairs.some(c=>!relations.some(r=>r.id===c.relationId)))throw Error('INVALID_SOURCE_MEMBER_REPAIR_TARGET');
 const railRoutes=relations.filter(r=>r.tags.type==='route'&&['train','subway','light_rail','tram','monorail','funicular'].includes(r.tags.route));
 const railMembers=new Set(railRoutes.flatMap(r=>r.members.filter(m=>m.type==='n').map(m=>m.ref)));
 const stopBindingConfigs=JSON.parse(fs.readFileSync(path.join(base,'stop-position-bindings.json'),'utf8'));
@@ -51,9 +55,15 @@ for(const r of railRoutes){
  const masters=masterByRoute.get(r.id)||[],master=masters.length===1?masters[0]:r;
  const lineId='kr-osm-line-'+master.id,operatorId=opId(master.tags.operator||r.tags.operator);
  if(!lines.has(lineId))lines.set(lineId,{id:lineId,names:names(master.tags),operatorIds:operatorId?[operatorId]:[],color:master.tags.colour||r.tags.colour||null,regionId:null,mode:r.tags.route,status:'candidate',sourceRefs:[ref('relation',master.id)]});
- const {members:orderedWays,evidence:topologyCorrection}=applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id),facilityWays);
+ const memberRepair=memberRepairs.find(c=>c.relationId===r.id);
+ const supplement=trackSupplements.find(c=>c.relationId===r.id);
+ if(supplement&&(memberRepair||corrections.some(c=>c.relationId===r.id)))throw Error('OVERLAPPING_TRACK_SUPPLEMENTS');
+ const supplemented=supplement?require('./lib/kr-track-supplements').supplementSourceTrack(r,ways,new Map(rawNodes.map(n=>[n.id,n])),supplement,{wayFiles:new Map(supplement.insertions.map(p=>[p.sourceFile,fs.readFileSync(path.join(base,p.sourceFile))])),sources:JSON.parse(fs.readFileSync(path.join(base,'supplemental-sources.json'),'utf8')),workbook:fs.readFileSync(path.join(base,supplement.officialPattern.workbookFile)),researchBytes:fs.readFileSync(path.join(base,'korail-ktx-research.json'))}):null;
+ if(memberRepair&&corrections.some(c=>c.relationId===r.id))throw Error('OVERLAPPING_SOURCE_CORRECTIONS');
+ const repaired=memberRepair?require('./lib/kr-source-member-repairs').repairSourceMembers(r,ways,new Map(rawNodes.map(n=>[n.id,n])),memberRepair,{sources:JSON.parse(fs.readFileSync(path.join(base,'supplemental-sources.json'),'utf8')),workbook:fs.readFileSync(path.join(base,memberRepair.officialStopOrder.workbookFile)),researchBytes:fs.readFileSync(path.join(base,'korail-commuter-research.json'))}):null;
+ const {members:orderedWays,evidence:topologyCorrection}=supplemented?{members:supplemented.members}:repaired?{members:repaired.members}:applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id),facilityWays);
  const stopBinding=stopBindingConfigs.find(c=>c.relationId===r.id);
- const sourceStopMembers=stopBinding?require('./lib/kr-stop-bindings').bindSourceStops(r,new Map(rawNodes.map(n=>[n.id,n])),stopBinding,fs.readFileSync(path.join(base,stopBinding.officialFile))):r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
+ const sourceStopMembers=stopBinding?require('./lib/kr-stop-bindings').bindSourceStops(r,new Map(rawNodes.map(n=>[n.id,n])),stopBinding,fs.readFileSync(path.join(base,stopBinding.officialFile))):repaired?.stops||r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
  const orientation=orientOrderedWays(orderedWays,ways,sourceStopMembers.map(m=>m.ref));
  const issues=[],paths=[],nodeIds=[];
  for(let i=0;i<orderedWays.length;i++){
@@ -83,7 +93,7 @@ for(const r of railRoutes){
  if(members.length<2)issues.push({code:'MISSING_ORDERED_STOPS'});
  if(!paths.length)issues.push({code:'MISSING_TRACK'});
  issues.push({code:'OFFICIAL_TIMETABLE_REQUIRED'});
- services.push({id:'kr-osm-service-'+r.id,passengerLineId:lineId,names:names(r.tags),operatorIds:operatorId?[operatorId]:[],kind:r.tags.service||r.tags.route,directionId:'osm-relation-'+r.id,paths,stops:serviceStops,osmFrom:r.tags.from||null,osmTo:r.tags.to||null,status:'candidate',sourceRefs:[ref('relation',r.id)],...(topologyCorrection?{topologyCorrection}:{}),...(stopBinding?{stopPositionBinding:{sourceId:stopBinding.sourceId,relationId:r.id,bindings:stopBinding.bindings,reviewedOn:stopBinding.reviewedOn}}:{}),issues});
+ services.push({id:'kr-osm-service-'+r.id,passengerLineId:lineId,names:names(r.tags),operatorIds:operatorId?[operatorId]:[],kind:r.tags.service||r.tags.route,directionId:'osm-relation-'+r.id,paths,stops:serviceStops,osmFrom:r.tags.from||null,osmTo:r.tags.to||null,status:'candidate',sourceRefs:[ref('relation',r.id)],...(topologyCorrection?{topologyCorrection}:{}),...(repaired?{sourceMemberRepair:repaired.evidence}:{}),...(supplemented?{trackSupplement:supplemented.evidence}:{}),...(stopBinding?{stopPositionBinding:{sourceId:stopBinding.sourceId,relationId:r.id,bindings:stopBinding.bindings,reviewedOn:stopBinding.reviewedOn}}:{}),issues});
 }
 // Stop-area groups are transfer relationships, never automatic physical merges.
 for(const group of relations.filter(r=>r.tags.public_transport==='stop_area_group')){
@@ -93,6 +103,8 @@ for(const group of relations.filter(r=>r.tags.public_transport==='stop_area_grou
 // Exact reviewed station-code bindings, never suffix stripping or fuzzy names.
 const stationNamesFile=path.join(base,'station-name-corrections.json');
 if(fs.existsSync(stationNamesFile))require('./lib/kr-station-names').applyOfficialStationNames(stations,stops,JSON.parse(fs.readFileSync(stationNamesFile,'utf8')),JSON.parse(fs.readFileSync(path.join(base,'seoulmetro-trip-candidates.json'),'utf8')),JSON.parse(fs.readFileSync(path.join(base,'official-station-reference.json'),'utf8')));
+const trainNames=JSON.parse(fs.readFileSync(path.join(base,'train-station-name-corrections.json'),'utf8'));
+require('./lib/kr-track-supplements').applyTrainStationNames(stations,stops,new Map(rawNodes.map(n=>[n.id,n])),trainNames,{sources:JSON.parse(fs.readFileSync(path.join(base,'supplemental-sources.json'),'utf8')),workbook:fs.readFileSync(path.join(base,'source/korail/ktx-timetable-20260515.xlsx')),researchBytes:fs.readFileSync(path.join(base,'korail-ktx-research.json'))});
 // Fail-closed, separately reviewed source supplements for incomplete relations.
 const reconstructionFile=path.join(base,'service-reconstructions.json');
 if(fs.existsSync(reconstructionFile)){
@@ -102,6 +114,9 @@ if(fs.existsSync(reconstructionFile)){
  const snapshotHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'source/seoulmetro/timetable-20260901.csv'))).digest('hex');
  for(const config of configs){if(snapshotHash!==config.timetableSnapshotSha256)throw Error('STALE_OFFICIAL_RECONSTRUCTION_SNAPSHOT');const index=services.findIndex(s=>s.id===config.serviceId);if(index<0)throw Error('MISSING_RECONSTRUCTION_TARGET');services[index]=reconstructService(services[index],maps.services.get(config.donorServiceId),maps,config,relations.find(r=>'kr-osm-service-'+r.id===config.serviceId),trips,endpointEvidence)}
 }
+const endpointCorrections=JSON.parse(fs.readFileSync(path.join(base,'service-endpoint-corrections.json'),'utf8'));
+if(new Set(endpointCorrections.map(c=>c.serviceId)).size!==endpointCorrections.length)throw Error('DUPLICATE_ENDPOINT_CORRECTION');
+for(const c of endpointCorrections){const i=services.findIndex(s=>s.id===c.serviceId);if(i<0)throw Error('MISSING_ENDPOINT_TARGET');services[i]=require('./lib/kr-service-endpoints').correctSourceEndpoints(services[i],relations.find(r=>'kr-osm-service-'+r.id===c.serviceId),new Map(rawNodes.map(n=>[n.id,n])),c,{sources:JSON.parse(fs.readFileSync(path.join(base,'supplemental-sources.json'),'utf8')),workbook:fs.readFileSync(path.join(base,c.workbookFile)),researchBytes:fs.readFileSync(path.join(base,'korail-commuter-research.json'))})}
 const accessPolicy=JSON.parse(fs.readFileSync(path.join(base,'relation-access-policy.json'),'utf8'));
 require('./lib/kr-access-policy').applyAccessPolicy(services,accessPolicy);
 require('./lib/kr-access-policy').writeBrowserAccessPolicy(base,accessPolicy);

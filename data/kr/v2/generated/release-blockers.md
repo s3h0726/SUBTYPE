@@ -1,0 +1,24 @@
+# 한국 전국 배포 승인 차단 근거
+
+판정 **INCOMPLETE** · 활성 후보 305 · 승인 0
+
+기존 프로덕션 승인 함수가 반환한 실패 사유를 그대로 집계한다. 복구된 선형이나 추출된 공식 시간표 열을 정식 승인으로 취급하지 않는다.
+
+| 실패 사유 | 후보 수 |
+|---|---:|
+| DISTANCE_NOT_VERIFIED | 305 |
+| LINE_METADATA_NOT_VERIFIED | 305 |
+| NON_PUBLIC_TRACK_REQUIRES_EXCLUSION | 139 |
+| OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED | 305 |
+| OFFICIAL_TIMETABLE_REQUIRED | 252 |
+| ONEWAY_DIRECTION_CONFLICT | 23 |
+| OPERATOR_LOGO_NOT_VERIFIED | 301 |
+| OPERATOR_NOT_VERIFIED | 305 |
+| REVIEW_NOT_VALID_ON_DATE | 252 |
+| ROAD_OR_AMBIGUOUS_RAIL_ROAD_WAY | 4 |
+| STATION_METADATA_NOT_VERIFIED | 295 |
+| STOP_METADATA_NOT_VERIFIED | 295 |
+| UNRESOLVED_IMPORT_TOPOLOGY | 43 |
+| VERIFIED_TRIP_REQUIRED | 305 |
+
+개별 305개 후보의 사유와 새 복구 근거는 release-blockers.json에 기록한다. 전국 공식 노선·운행계통 목록도 아직 완성되지 않았다.

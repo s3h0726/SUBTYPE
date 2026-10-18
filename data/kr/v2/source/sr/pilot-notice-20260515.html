@@ -1,0 +1,1179 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="telephone=no, address=no, email=no" />
+	<meta name="viewport" content="width=device-width, user-scalable=yes" />
+	<meta name="description" content="수서고속철도, SRT, 수서~부산(경부선), ~목포(호남선), 승차권 예매, 운행정보 안내" />
+	<meta name="naver-site-verification" content="0a893b6cf32c1efffb45bae4d7f442b5b74f7f84" />
+	<title>공지사항 &lt; 고객안내 &lt; 승차권 예약/발매 - SR</title>
+	<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" />
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="/css/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="/css/swiper-bundle.min.css" />
+
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/css/skin/etk_kr/ie7.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="/css/skin/etk_kr/ie8.css" /><![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="/css/skin/etk_kr/ie9.css" /><![endif]-->
+	<script type="text/javascript">
+	//<![CDATA[
+	    // 2026-09-01 기업홍보홈페이지 사용안함
+	    if(window.location.href.indexOf("https://etk.") > -1 || window.location.href.indexOf("https://devetk.") > -1){
+	    }else{
+	    	if(window.location.href != "https://www.srail.co.kr/cms/archive.do?pageId=KR9903000000" && window.location.href != "https://www.srail.co.kr/cms/article/list.do?pageId=KR0701300007"
+	    			&& window.location.href != "https://devwww.srail.co.kr/cms/archive.do?pageId=KR9903000000" && window.location.href != "https://devwww.srail.co.kr/cms/article/list.do?pageId=KR0701300007"){
+	    		window.location.href = "https://info.korail.com/";
+	    	}
+	    }
+		var MAIN_CONTEXT_PATH = '';
+		var WWW_DOMAIN = 'https://www.srail.or.kr';
+		var cfg = {
+				contextPath : '/cms',
+				isLogin : false
+		};
+		switch (location.hostname) {
+			case 'testetkp.srail.co.kr' :
+				document.domain = 'srail.co.kr';
+				break;
+			case 'devetk.srail.co.kr' :
+				document.domain = 'srail.co.kr';
+				break;
+			case 'devetk.srail.kr' :
+				document.domain = 'srail.kr';
+				break;
+			case 'etk.srail.co.kr' :
+				document.domain = 'srail.co.kr';
+				break;
+			case 'etk.srail.kr' :
+				document.domain = 'srail.kr';
+				break;
+			default :
+				document.domain = 'srail.kr';
+		} 
+		//document.domain = 'srail.kr';
+		
+		var JBCMS = {
+			showLoading : function (msg) {
+				return Navi.showLoading(msg);
+			},
+			
+			hideLoading : function (msg) {
+				Navi.hideLoading(msg);
+			},
+			
+			isLoading : function () {
+				return Navi.isLoading();
+			},
+			
+			share : function (type, subj) {
+				Navi.share(type, subj);
+			},
+			
+			print : function (o) {
+				Navi.print(o);
+			},
+			
+			downloadAttach : function (pageId, atchNo) {
+				if (atchNo == 0) {
+					window.alert('다운로드할 파일이 존재하지 않습니다.');
+					return;
+				}
+				
+				location.href = 'https://www.srail.or.kr/cms/attach/download.do?pageId=' + pageId + '&atchNo=' + atchNo;
+			},
+			
+			previewAttach : function (pageId, atchNo) {
+				if (atchNo == 0) {
+					window.alert('미리보기할 파일이 존재하지 않습니다.');
+					return;
+				}
+				
+				Common.openWin('https://www.srail.or.kr/cms/attach/preview.do?pageId=' + pageId + '&atchNo=' + atchNo, 'preview', 820, 600, 'yes');
+			}
+		};
+	//]]>
+	</script>
+	<script type="text/javascript" src="/js/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="/js/jquery/plugin/jquery-ui/1.12.1/jquery-ui.js"></script>	
+	<script type="text/javascript" src="/js/jquery.bxslider.js"></script>
+	<script type="text/javascript">var $J = $.noConflict();</script>
+	<script type="text/javascript" src="/js/js.js?201812100809"></script>
+	<script type="text/javascript" src="/js/prototype/prototype.1.7.2.js"></script>
+	<script type="text/javascript" src="/js/scriptaculous/1.9.0/scriptaculous.js?load=builder,effects"></script>
+	<script type="text/javascript" src="/js/Common.js"></script>
+	<script type="text/javascript" src="/js/Navi.js"></script>
+	<script type="text/javascript" src="/js/sweetalert2.js"></script>
+	<script type="text/javascript" src="/js/swiper-bundle.min.js"></script>
+
+	<script type="text/javascript" src="/js/Board.js"></script>
+
+</head>
+
+<div id="wrap">
+
+		<script>
+		var ptkNm = encodeURIComponent("");
+		var regUserId = "";
+		function goToHpg(obj,link){
+			if(!cfg.isLogin){
+				if (confirm('로그인 후 이용이 가능합니다.\n\n로그인 페이지로 이동하시겠습니까?')) {
+					if(obj == '1'){
+						location.href = 'http://etk.srail.kr/cmc/01/selectLoginForm.do?pageId=TK0701000000&goUrl=' + encodeURIComponentEx(link);
+					}else{
+						location.href = 'http://etk.srail.kr/cmc/01/selectLoginForm.do?pageId=TK0701000000';
+					}
+					
+				}
+			}else{
+				if(obj == '1'){
+					location.href = link+'?ptkNm='+ptkNm+'&regUserId='+regUserId;
+				}else{
+					location.href = link;
+				}
+			}   
+		}
+		
+		function chgLang(arg){
+			$J('.topmovebtn').attr('href',arg.value);
+		}
+		</script>
+
+	<div class="skip_nav">
+		<a href="#gnb">대메뉴 바로가기</a>
+		<a href="#container">본문 바로가기</a>
+	</div>
+	<div class="header header-e">
+		<div class="global clear">
+			
+			<div class="login_wrap val_m fl_r">
+				<a href="/main.do" class="gohome" title="홈으로"><img src="/images/ico_loc_home_top.png" alt="홈"></a>
+			
+				
+					<a href="/cmc/01/selectLoginForm.do?pageId=TK0701000000">로그인</a>
+					
+					
+					<a href="https://www.srail.or.kr/main.do" class="bg"><strong>회사소개</strong></a>
+				
+				
+			
+				<label for="chgLang" class="blind">언어를 선택하세요.</label>
+				<select style="padding: 1px;width: 90px;background: #572b4c;color: white;height: 25px;" onchange="chgLang(this);" id="chgLang">				
+					<option value="javascript:void(0);" data-class="lang" style="padding-left:0;">Language</option>
+					<option value="/main.do" data-class="flag_kr">한국어</option>
+					<option value="https://www.korail.com/global/eng/main" data-class="flag_en">English</option>
+					<option value="https://www.korail.com/global/chn/main" data-class="flag_cn">中文(简)</option>
+					<option value="https://www.korail.com/global/tw/main" data-class="flag_tw">中文(繁)</option>
+					<option value="https://www.korail.com/global/jpn/main" data-class="flag_ja">日本語</option>
+				</select>
+				<a href="#" class="topmovebtn">Move</a>
+				<div class="zoom clear pc">
+					<button type="button" class="zoomIn" title="최대 150%"><img src="/images/zoom_e_1.png" alt="화면 10%씩 확대" /></button>
+					<button type="button" class="zoomOrg" title="100%"><img src="/images/zoom_e_2.png" alt="화면 비율 100% 복원" /></button>
+					<button type="button" class="zoomOut" title="최소 70%"><img src="/images/zoom_e_3.png" alt="화면 10%씩 축소" /></button>
+				</div>
+			</div><!-- //login_wrap -->
+			
+		</div><!-- //global -->
+		<div class="gnb_wrap">
+			<h1><a href="/main.do" style="display: block;height: 31px;"></a></h1>
+			<div class="gnb">
+				<!-- <a href="" class="blind" id="gnb">대메뉴 시작지점</a> -->
+				<ul class="clear">
+					
+						
+							<li><a href="javascript:void(0);"  id="gnb" title="대메뉴 시작지점">승차권</a>
+							
+								<ul>
+									
+										
+											<li><a href="/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000">승차권예약</a></li>
+											
+												
+													
+														<li class="depth3"><a href="/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000">일반승차권 조회</a></li>
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+											
+										
+									
+										
+											<li><a href="/hpg/hra/02/selectReservationList.do?pageId=TK0102010000">발권ㆍ취소ㆍ변경</a></li>
+											
+												
+													
+														<li class="depth3"><a href="/hpg/hra/02/selectReservationList.do?pageId=TK0102010000">발권/취소</a></li>
+													
+												
+													
+														<li class="depth3"><a href="/hpg/hta/03/selectBreakdownList.do?pageId=TK0102030100">이용내역/영수증</a></li>
+													
+												
+													
+														<li class="depth3"><a href="/hpg/hta/03/selectBreakdownList2File.do?pageId=TK0102050000">이용내역 내려받기</a></li>
+													
+												
+											
+										
+									
+								</ul>
+							
+							</li>
+						
+					
+						
+							<li><a href="javascript:void(0);" >고객안내</a>
+							
+								<ul>
+									
+										
+											<li><a href="/cms/article/list.do?pageId=TK0502000000">공지사항</a></li>
+											
+										
+									
+										
+											<li><a href="/sss/scb/01/auth.do?pageId=TK0405030000">고객의 소리</a></li>
+											
+												
+													
+												
+											
+										
+									
+										
+											<li><a href="/cms/archive.do?pageId=TK0406010000">고객센터</a></li>
+											
+												
+													
+												
+											
+										
+									
+										
+											<li><a href="/cms/archive.do?pageId=TK0404010000">유실물안내</a></li>
+											
+												
+													
+												
+											
+										
+									
+										
+											<li><a href="/cms/archive.do?pageId=TK0501020000">여객운송약관</a></li>
+											
+										
+									
+								</ul>
+							
+							</li>
+						
+					
+						
+							<li><a href="javascript:void(0);" >이용안내</a>
+							
+								<ul>
+									
+										
+											<li><a href="/cms/archive.do?pageId=TK0402140000">승차권 이용안내</a></li>
+											
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+													
+												
+											
+										
+									
+										
+											<li><a href="/cms/archive.do?pageId=TK0403010100">정차역 이용안내</a></li>
+											
+												
+													
+												
+													
+												
+													
+												
+													
+												
+											
+										
+									
+										
+											<li><a href="https://info.korail.com/info/contents.do?key=857&amp;pageId=TK0403020001" target="_blank" title="새창 열기">운행구간</a></li>
+											
+										
+									
+										
+											<li><a href="/cms/archive.do?pageId=TK0407010800">부대사업안내</a></li>
+											
+												
+													
+												
+											
+										
+									
+										
+									
+										
+									
+								</ul>
+							
+							</li>
+						
+					
+						
+							<li><a href="javascript:void(0);" >회원서비스</a>
+							
+								<ul>
+									
+										
+											<li><a href="/hpg/hma/04/selectAuthUserForm.do?pageId=TK0104040000">미등록고객 예매</a></li>
+											
+												
+													
+														<li class="depth3"><a href="/hpg/hma/04/selectAuthUserForm.do?pageId=TK0104040000">미등록고객 이용내역</a></li>
+													
+												
+													
+														<li class="depth3"><a href="/hpg/hma/04/selectReceiptForm.do?pageId=TK0104050000">비회원 승차권 영수증</a></li>
+													
+												
+													
+												
+													
+												
+													
+												
+											
+										
+									
+										
+											<li><a href="/cms/archive.do?pageId=TK0503030000">자가발권이용실적</a></li>
+											
+										
+									
+										
+											<li><a href="/cmc/03/selectWithdrawInfo.do?pageId=TK0503050000">회원탈퇴안내</a></li>
+											
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+								</ul>
+							
+							</li>
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+				</ul>
+			</div>
+		</div><!-- //gnb_wrap -->
+		<div class="gnb_bg"></div>
+	</div><!-- //header -->
+	<!--
+		<div class="center">
+			<div id="container" class="container" tabindex="-1">
+				<div class="location">
+					<h2><img src="/images/title/TK0502000000.png" alt="공지사항" /></h2>
+					<dl>
+						<dt>현재위치</dt>
+						<dd><a href="/main.do" class="home">홈</a> &gt; <a href="/cms/article/list.do?pageId=TK0502000000">고객안내</a> &gt; <a href="/cms/article/list.do?pageId=TK0502000000" class="last">공지사항</a></dd>
+					</dl>
+				</div>
+	-->
+
+
+<div class="container container-w">
+	<!-- <a href="" class="blind" id="container">본문 시작지점</a> -->	
+	<div class="sub_wrap">
+		<!-- 네비 -->
+		
+
+
+
+
+	<div class="sub_tit_area">
+		<h2>공지사항</h2>
+		<div class="sub_loc_area">
+			<a href="/main.do" class="home" id="container" title="본문 시작지점">홈</a>
+			
+				<a href="/cms/article/list.do?pageId=TK0502000000">고객안내</a>
+			
+				<a href="/cms/article/list.do?pageId=TK0502000000">공지사항</a>
+			
+		</div>
+	</div><!-- //sub_tit_area -->
+
+		<!-- 탭 -->
+		
+
+
+
+
+
+
+
+	<div class="gap20"></div>
+
+		<!-- 탑 HTML -->
+		
+		<div class="sub_con_area">
+			<div class="clear">
+				<div class="sns_wrap">
+					<!-- 20251218_웹 접근성 조치_alt 상세 표기 : INDEX_KHD -->
+					<a href="#none" onclick="JBCMS.share('3', 'SRT - KTX 시범 중련 운행 등 알림'); return false;" title="새창열림"><img src="/images/ico_sns_fb.png" alt="해당게시물 페이스북으로 복사하기"></a>
+					<a href="#none" onclick="JBCMS.share('1', 'SRT - KTX 시범 중련 운행 등 알림'); return false;" title="새창열림"><img src="/images/ico_sns_band.png" alt="해당게시물 밴드로 복사하기"></a>
+					<a href="#none" onclick="JBCMS.share('2', 'SRT - KTX 시범 중련 운행 등 알림'); return false;" title="새창열림"><img src="/images/ico_sns_tw.png" alt="해당게시물 X로 복사하기"></a>
+					<a href="#none" onclick="JBCMS.print(); return false;" title="새창열림"><img src="/images/ico_sns_print.png" alt="프린트"></a>
+				</div>
+			</div>
+
+			<div class="view_wrap vtb1">					
+				<table>
+					<caption>공지사항 게시글 - [여객제도] SRT - KTX 시범 중련 운행 등 알림의 등록일, 내용 제공표</caption>
+					<colgroup>
+						<col />
+						<col />
+					</colgroup>
+					<thead>
+					<tr>
+						<th colspan="2" class="vtb_tit"><strong>[여객제도]</strong> SRT - KTX 시범 중련 운행 등 알림</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th>등록일</th>
+						<td>2026-04-14</td>
+					</tr>
+					
+					
+					
+					
+					
+					<tr>
+						<td colspan="2" class="vtb_con">
+						
+							
+							
+								
+								<div>
+									<div>
+<p class="notice-top" style="margin: 0; height: 69px"></p>
+
+<h1 data-brl-use="PT" style="background: #4b2d47; width: 100%; padding: 30px; color: #fff">SRT - KTX 시범 중련<br >
+운행 등 알림</h1>
+
+<p class="tal_c fs18 pd20 mgt0i" data-brl-use="PH" style="background: #e5e5e5">SRT와 KTX를 하나로 연결하여 운행하는 시범 중련‧복합운행 예정에 따라 열차운행계획을<br >
+다음과 같이 조정하니, 열차 이용에 참고하시기 바랍니다.</p>
+
+<div>
+<p class="fs18" data-brl-use="PH/H1"><span style="font-size: 18px; color: #a43f8b">1.</span> 조정일자 : 2026. 5. 15.(금)부터 <!-- <span
+                              class="dpb"
+                              style="color: #666; font-size: 15px"
+                              >* 대상열차 정기·회수승차권은 2. 24.(화)까지 이용
+                              가능</span
+                            > --></p>
+
+<p class="fs18" data-brl-use="PH/H1"><span style="font-size: 18px; color: #a43f8b">2.</span> 조정내용</p>
+
+<ul>
+	<li style="list-style-type: none; background: none; font-size: 17px">① 복합열차 운행변경(금, 토, 일) <span style="color: #666; font-size: 15px">* 월 ~ 목은 SRT 328, 341 단편성 운행</span>
+
+	<div class="tbl_wrap mgb30 mgt10">
+	<table>
+		<caption>복합열차 운행변경(금, 토, 일) 정보 대한 표</caption>
+		<colgroup>
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+			<col style="width: 7.69%" >
+		</colgroup>
+		<thead>
+			<tr>
+				<th class="fs18" colspan="6">기존</th>
+				<th rowspan="2" style="background: #fff"></th>
+				<th class="fs18" colspan="6" style="background: #572b4c; color: #fff">변경</th>
+			</tr>
+			<tr>
+				<th colspan="2">열차번호</th>
+				<th colspan="2">출발</th>
+				<th colspan="2">도착</th>
+				<th colspan="2">열차번호</th>
+				<th colspan="2">출발</th>
+				<th colspan="2">도착</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2">복합열차</td>
+				<td><span style="font-weight: 900; color: #0068b9">KTX</span> 162</td>
+				<td>부산<br >
+				(구포경유)</td>
+				<td>09:59</td>
+				<td rowspan="2">서울</td>
+				<td rowspan="2">13:11</td>
+				<td rowspan="6"></td>
+				<td rowspan="2">복합열차</td>
+				<td style="background: #a43f8b; color: #fff; font-weight: 900">SRT 162</td>
+				<td>부산<br >
+				(구포경유)</td>
+				<td>09:59</td>
+				<td rowspan="2">서울</td>
+				<td rowspan="2">13:11</td>
+			</tr>
+			<tr>
+				<td><span style="font-weight: 900; color: #0068b9">KTX</span> 298</td>
+				<td>포항</td>
+				<td>10:39</td>
+				<td><span style="font-weight: 900; color: #0068b9">KTX</span> 298</td>
+				<td>포항</td>
+				<td style="border-right: 1px solid #d4d3d3">10:39</td>
+			</tr>
+			<tr>
+				<td colspan="2"><span style="font-weight: 900; color: #8f3576">SRT</span> 328</td>
+				<td>부산</td>
+				<td>10:47</td>
+				<td>수서</td>
+				<td>13:25</td>
+				<td colspan="2"><span style="font-weight: 900; color: #0068b9">KTX</span> 4128</td>
+				<td>부산</td>
+				<td>10:47</td>
+				<td>수서</td>
+				<td>13:25</td>
+			</tr>
+			<tr>
+				<td rowspan="2">복합열차</td>
+				<td><span style="font-weight: 900; color: #0068b9">KTX</span> 39</td>
+				<td rowspan="2">서울</td>
+				<td rowspan="2">14:28</td>
+				<td>부산</td>
+				<td>17:12</td>
+				<td rowspan="2">복합열차</td>
+				<td style="background: #a43f8b; color: #fff; font-weight: 900">SRT 139</td>
+				<td rowspan="2">서울</td>
+				<td rowspan="2">14:28</td>
+				<td>부산</td>
+				<td>17:12</td>
+			</tr>
+			<tr>
+				<td><span style="font-weight: 900; color: #0068b9">KTX</span> 287</td>
+				<td>마산</td>
+				<td>17:35</td>
+				<td><span style="font-weight: 900; color: #0068b9">KTX</span> 287</td>
+				<td>마산</td>
+				<td>17:35</td>
+			</tr>
+			<tr>
+				<td colspan="2"><span style="font-weight: 900; color: #8f3576">SRT</span> 341</td>
+				<td>수서</td>
+				<td>14:30</td>
+				<td>부산</td>
+				<td>16:59</td>
+				<td colspan="2"><span style="font-weight: 900; color: #0068b9">KTX</span> 4141</td>
+				<td>수서</td>
+				<td>14:30</td>
+				<td>부산</td>
+				<td>16:59</td>
+			</tr>
+		</tbody>
+	</table>
+	<span class="dpb" style="color: #666; font-size: 15px; margin-top: 10px">* 금, 토, 일 SRT 열차번호는 139, KTX는 4128, 4141로 변경, 운행시각 및 정차역은 기존과 동일 </span></div>
+	</li>
+	<li style="list-style-type: none; background: none; font-size: 17px">② <span style="font-size: 17px; font-weight: 900; color: #8f3576">SRT</span> + <span style="font-size: 17px; font-weight: 900; color: #0068b9">KTX</span> 혼합 중련운행(토, 일) <span style="color: #666; font-size: 15px">* 월 &sim; 금은 SRT 단독 운행</span>
+	<div class="tbl_wrap mgb30 mgt10">
+	<table>
+		<caption>복합열차 운행변경(금, 토, 일) 정보 대한 표</caption>
+		<colgroup>
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+			<col style="width: 9.09%" >
+		</colgroup>
+		<thead>
+			<tr>
+				<th class="fs18" colspan="5">기존</th>
+				<th rowspan="2" style="background: #fff"></th>
+				<th class="fs18" colspan="5" style="background: #572b4c; color: #fff">변경</th>
+			</tr>
+			<tr>
+				<th>열차번호</th>
+				<th colspan="2">출발</th>
+				<th colspan="2">도착</th>
+				<th>열차번호</th>
+				<th colspan="2">출발</th>
+				<th colspan="2">도착</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2"><span style="font-weight: 900; color: #8f3576">SRT</span> 602</td>
+				<td rowspan="2">광주송정</td>
+				<td rowspan="2">05:12</td>
+				<td rowspan="2">수서</td>
+				<td rowspan="2">07:10</td>
+				<td rowspan="2">▶</td>
+				<td><span style="font-weight: 900; color: #8f3576">SRT</span> 602</td>
+				<td rowspan="2">광주송정</td>
+				<td rowspan="2">05:12</td>
+				<td rowspan="2">수서</td>
+				<td rowspan="2">07:10</td>
+			</tr>
+			<tr>
+				<td style="border-right: 1px solid #d4d3d3"><span style="font-weight: 900; color: #0068b9">KTX</span> 4862</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><span style="font-weight: 900; color: #8f3576">SRT</span> 603</td>
+				<td rowspan="2">수서</td>
+				<td rowspan="2">07:40</td>
+				<td rowspan="2">광주송정</td>
+				<td rowspan="2">09:16</td>
+				<td rowspan="2">▶</td>
+				<td><span style="font-weight: 900; color: #8f3576">SRT</span> 603</td>
+				<td rowspan="2">수서</td>
+				<td rowspan="2">07:40</td>
+				<td rowspan="2">광주송정</td>
+				<td rowspan="2">09:16</td>
+			</tr>
+			<tr>
+				<td style="border-right: 1px solid #d4d3d3"><span style="font-weight: 900; color: #0068b9">KTX</span> 4863</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	</li>
+</ul>
+
+<p class="fs18" data-brl-use="PH/H1"><span style="font-size: 18px; color: #a43f8b">3.</span> 대상열차 예발매일 : 2026. 4. 15.(수) 오전 7시 발매</p>
+
+<p class="fs18" data-brl-use="PH/H1"><span style="font-size: 18px; color: #a43f8b">4.</span> SRT 신규운행/운행중지 안내</p>
+
+<ul>
+	<li style="list-style-type: none; background: none; font-size: 17px">① 금, 토, 일 신규운행 열차 <span style="color: #666; font-size: 15px">* SRT로 운행, 월 ~ 목은 KTX 산천으로 운행</span>
+
+	<div class="tbl_wrap mgb30 mgt10">
+	<table>
+		<caption>금, 토, 일 신규운행 열차 정보 대한 표</caption>
+		<colgroup>
+			<col style="width: 16.6%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+		</colgroup>
+		<thead>
+			<tr>
+				<th>열차번호</th>
+				<th colspan="10">정차역</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2"><span style="font-weight: 900; color: #8f3576">SRT</span> 162</td>
+				<td style="background: #e5e5e5">부산</td>
+				<td style="background: #e5e5e5">구포</td>
+				<td style="background: #e5e5e5">물금</td>
+				<td style="background: #e5e5e5">밀양</td>
+				<td style="background: #e5e5e5">동대구</td>
+				<td style="background: #e5e5e5">김천구미</td>
+				<td style="background: #e5e5e5">대전</td>
+				<td style="background: #e5e5e5">광명</td>
+				<td style="background: #e5e5e5">서울</td>
+			</tr>
+			<tr>
+				<td>09:59</td>
+				<td>10:13</td>
+				<td>10:23</td>
+				<td>10:43</td>
+				<td>11:21</td>
+				<td>11:44</td>
+				<td>12:09</td>
+				<td>12:53</td>
+				<td>13:11</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><span style="font-weight: 900; color: #8f3576">SRT</span> 139</td>
+				<td style="background: #e5e5e5">서울</td>
+				<td style="background: #e5e5e5">광명</td>
+				<td style="background: #e5e5e5">천안아산</td>
+				<td style="background: #e5e5e5">대전</td>
+				<td style="background: #e5e5e5">동대구</td>
+				<td style="background: #e5e5e5">경주</td>
+				<td style="background: #e5e5e5">울산</td>
+				<td style="background: #e5e5e5">부산</td>
+				<td style="background: #e5e5e5"></td>
+			</tr>
+			<tr>
+				<td>14:28</td>
+				<td>14:47</td>
+				<td>15:09</td>
+				<td>15:34</td>
+				<td>16:19</td>
+				<td>16:38</td>
+				<td>16:51</td>
+				<td>17:12</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	</li>
+	<li style="list-style-type: none; background: none; font-size: 17px">② 금, 토, 일 운행중지 열차 <span style="color: #666; font-size: 15px">* KTX 산천으로 운행, 월 ~ 목은 SRT로 운행</span>
+	<div class="tbl_wrap mgb30 mgt10">
+	<table>
+		<caption>금, 토, 일 운행중지 열차 정보 대한 표</caption>
+		<colgroup>
+			<col style="width: 16.6%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+			<col style="width: 8.3%" >
+		</colgroup>
+		<thead>
+			<tr>
+				<th>열차번호</th>
+				<th colspan="8">정차역</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2"><span style="font-weight: 900; color: #8f3576">SRT</span> 328</td>
+				<td style="background: #e5e5e5">부산</td>
+				<td style="background: #e5e5e5">울산</td>
+				<td style="background: #e5e5e5">동대구</td>
+				<td style="background: #e5e5e5">대전</td>
+				<td style="background: #e5e5e5">오송</td>
+				<td style="background: #e5e5e5">천안아산</td>
+				<td style="background: #e5e5e5">동탄</td>
+				<td style="background: #e5e5e5">수서</td>
+			</tr>
+			<tr>
+				<td>10:47</td>
+				<td>11:10</td>
+				<td>11:35</td>
+				<td>12:19</td>
+				<td>12:36</td>
+				<td>12:49</td>
+				<td>13:08</td>
+				<td>13:25</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><span style="font-weight: 900; color: #8f3576">SRT</span> 341</td>
+				<td style="background: #e5e5e5">수서</td>
+				<td style="background: #e5e5e5">평택지제</td>
+				<td style="background: #e5e5e5">천안아산</td>
+				<td style="background: #e5e5e5">대전</td>
+				<td style="background: #e5e5e5">동대구</td>
+				<td style="background: #e5e5e5">울산</td>
+				<td style="background: #e5e5e5">부산</td>
+				<td style="background: #e5e5e5"></td>
+			</tr>
+			<tr>
+				<td>14:30</td>
+				<td>14:52</td>
+				<td>15:04</td>
+				<td>15:29</td>
+				<td>16:13</td>
+				<td>16:38</td>
+				<td>16:59</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	</li>
+</ul>
+</div>
+
+<p class="fs18" data-brl-use="PH/H1"><span style="font-size: 18px; color: #a43f8b">5.</span> SRT 운임 안내</p>
+
+<div class="tbl_wrap mgb30 mgt10">
+<table>
+	<caption>SRT 운임 안내 정보 대한 표</caption>
+	<colgroup>
+		<col style="width: 16.6%" >
+		<col style="width: 16.6%" >
+		<col style="width: 16.6%" >
+		<col style="width: 16.6%" >
+		<col style="width: 16.6%" >
+		<col style="width: 16.6%" >
+	</colgroup>
+	<thead>
+		<tr>
+			<th colspan="3"><span style="font-weight: 900; color: #8f3576">SRT</span> 139</th>
+			<th colspan="3"><span style="font-weight: 900; color: #8f3576">SRT</span> 162 (구포 경유)</th>
+		</tr>
+		<tr>
+			<th>출발역</th>
+			<th>도착역</th>
+			<th>운임</th>
+			<th>출발역</th>
+			<th>도착역</th>
+			<th>운임</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td rowspan="8">서울</td>
+			<td>광명</td>
+			<td>7,500원</td>
+			<td rowspan="8">부산</td>
+			<td>구포</td>
+			<td>7,500원</td>
+		</tr>
+		<tr>
+			<td>천안아산</td>
+			<td>12,800원</td>
+			<td>물금</td>
+			<td>7,500원</td>
+		</tr>
+		<tr>
+			<td>대전</td>
+			<td>21,500원</td>
+			<td>밀양</td>
+			<td>7,500원</td>
+		</tr>
+		<tr>
+			<td>동대구</td>
+			<td>38,800원</td>
+			<td>동대구</td>
+			<td>11,300원</td>
+		</tr>
+		<tr>
+			<td>경주</td>
+			<td>44,100원</td>
+			<td>김천구미</td>
+			<td>17,700원</td>
+		</tr>
+		<tr>
+			<td>울산</td>
+			<td>47,900원</td>
+			<td>대전</td>
+			<td>27,700원</td>
+		</tr>
+		<tr>
+			<td>부산</td>
+			<td>53,700원</td>
+			<td>광명</td>
+			<td>46,600원</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>서울</td>
+			<td>48,600원</td>
+		</tr>
+	</tbody>
+</table>
+<span class="dpb" style="color: #666; font-size: 15px; margin-top: 10px">* 위 금액은 매체할인 등에 따라 변동 가능</span></div>
+
+<p class="fs18 tal_c" data-brl-use="PH/H1" style="background: #f5f5f5; padding: 20px">SRT는 더욱 편리하고 안정적인 서비스를 제공할 수 있도록 최선을 다하겠습니다.</p>
+
+<p class="fs16 tal_c_i" data-brl-use="PH/H1"><span style="font-size: 18px; color: #a43f8b">※</span> 기타 자세한 내용은 SR고객센터(☏1800-1472)에 문의하여 주시기 바랍니다.</p>
+
+<p class="ceo" data-brl-use="PH">2026. 4. 14.</p>
+
+<p class="notice-bottom_1"></p>
+</div>
+								</div>
+							
+						
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<!-- 설문조사 -->
+				
+
+
+
+
+<!-- 설문조사 -->
+
+				<div class="view_goback">
+					<a href="list.do?1=1&amp;pageId=TK0502000000&amp;pageIndex=55" class="btn_midium btn_gray_dark val_m"><span>목 록</span></a>
+				</div>
+				<div class="gap_for_mobile10"></div>
+				
+				<!-- 코멘트 -->
+				
+
+
+
+
+<!-- 코맨트 -->
+
+				
+				
+				
+				
+					<div class="gap_for_mobile10"></div>
+	
+					<div class="view_ctrl">
+						
+							<div class="ctrl view_ctrl_top">
+								<div class="btn before_btn"><a href="view.do?postNo=867&amp;pageId=TK0502000000&amp;pageIndex=55">다음글</a></div>
+								<div class="tit before_tit">
+									<a href="view.do?postNo=867&amp;pageId=TK0502000000&amp;pageIndex=55">4월 네이버페이 프로모션</a>
+								</div>
+							</div>
+						
+						
+							<div class="ctrl view_ctrl_bot">
+								<div class="btn after_btn"><a href="view.do?postNo=865&amp;pageId=TK0502000000&amp;pageIndex=55">이전글</a></div>
+								<div class="tit after_tit">
+									<a href="view.do?postNo=865&amp;pageId=TK0502000000&amp;pageIndex=55">2026년 1분기 SR 회원 등급조회 및 혜택 안내</a>
+								</div>
+							</div>
+						
+					</div>
+				
+			</div>	
+		</div><!-- //sub_con_area -->
+	</div>
+	
+</div><!-- //container-w -->
+
+<script type="text/javascript">
+//<![CDATA[
+	Event.observe(window, 'load', function (event) {
+		document.title = document.title.replace(document.title.split("<")[0],document.title.split("<")[0]+"상세화면")
+		Comment.enabled = false;
+	}.bind(this));
+//]]>
+</script>
+<!-- footer -->
+
+
+
+
+
+
+	<!-- 담당자 -->
+	
+
+
+
+<!-- 담당자정보 -->
+
+
+	<!-- 메뉴 만족도 -->
+	
+
+
+
+
+<!-- 만족도 -->
+
+<script type="text/javascript">
+
+	function fn_voteMenuSats() {
+		var o = $("sats-form");
+		var e = Common.checkForm(o);
+		
+		if (e != '') {
+			window.alert(e);
+			return;
+		} else if (!confirm('저장하시겠습니까?')) {
+			return;
+		}
+		
+		new Ajax.Request('/cms/menuSatsVote.do', {
+			asynchronous : false,
+			parameters : o.serialize(true),
+			onSuccess : function (transport) {
+				if (!transport.responseText.isJSON()) {
+					window.alert('데이터를 동기화하는데 실패하였습니다.');
+					return;
+				}
+				
+				var response = transport.responseText.evalJSON();
+				if (response.error) {
+					window.alert(response.error);
+					return;
+				}
+				window.alert('만족도 투표를 완료하였습니다.');
+				o.reset();
+				
+			}
+		});
+	}
+</script>
+
+	<div class="footer footer-e">
+		<!-- 퀵메뉴 -->
+		
+		<div class="f_li_wrap">
+			<div class="f_li val_m clear">
+				<ul class="dpib">
+					<li class="nobg"><a href="https://www.srail.co.kr/cms/archive.do?pageId=KR9903000000">개인정보처리방침</a></li>
+					
+					<li><a href="/cms/archive.do?pageId=TK0501020000">여객운송약관/부속약관</a></li>
+				</ul>
+				<div class="relate_url val_m fl_r">
+					<!-- footer 스크린리더 수정 20200205  -->
+					<label for="moveLink" class="blind">유관기관 바로가기 선택</label>
+					<select id="moveLink" title="유관기관 바로가기" onchange="listenerTest(this)" class="screenReaderSelectbox">
+						<option value="">유관기관 바로가기</option>
+						<option value="http://www.molit.go.kr/">국토교통부</option>
+					</select>
+					
+					<a id="moveButton" title="새창열림" href="" target="_blank" class="moveBtn">이동</a>
+					
+					<script type="text/javascript">
+					/* footer 유관기관 드롭박스 이동버튼 20200205 */
+					function listenerTest(obj){
+						var linkPage = document.getElementById("moveLink");
+						var pageValue = linkPage.options[linkPage.selectedIndex].value;
+						document.getElementById("moveButton").setAttribute("href", pageValue);
+					}
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="f_content_wrap">
+			<div class="f_content clear">
+				<h2 style="background-image:none;">SR</h2>
+				<div class="addr">
+					<p><span>상호: 한국철도공사  ㅣ 사업자등록: 314-82-10024  </span><span>ㅣ 통신판매업신고: 대전동구-0233호</span><br>
+					<span> (우: 06367) 서울특별시 강남구 광평로 56길 12 희림빌딩 | </span>  <span>TEL 1588-7788 l FAX) 6484-4093</span><br>
+					</p>
+				</div>
+				<div class="f_logoes pc">
+					<ul>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=76&amp;pageId=TK0502000000"><img src="/images/ic_f_brand.png" alt="Brand" /></a></li>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=91&amp;pageId=TK0502000000"><img src="/images/ic_f_highest.png" alt="Highest Brand" /></a></li>
+						<li><img src="/images/ic_f_wa.png" alt="WA(웹접근성인증)" /></li>
+						<li><a href="http://partners.srail.or.kr/login.do" target="_blank" title="새창열기"><img src="/images/ic_sys_purvey.png" alt="전자조달" /></a></li>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=536&pageId=TK0502000000"><img src="/images/ismsp_footer.png" alt="ISMS-P" /></a></li>
+						<br>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=359&pageId=TK0502000000"><img src="/images/eprivacy.png" alt="e-privacy인증" /></a></li>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=358&pageId=TK0502000000"><img src="/images/iso27001.png" alt="iso27001" /></a></li>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=365&pageId=TK0502000000"><img src="/images/ic_ISO-27701.png" alt="iso27701" /></a></li>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=393&pageId=TK0502000000"><img src="/images/ic_AAA.png" alt="IC_AAA" /></a></li>
+					</ul>
+				</div>
+				<div class="f_logoes" style="display:none;">
+					<ul>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=76&amp;pageId=TK0502000000" target="_blank" title="새창열림"><img src="/images/ic_f_brand.png" alt="Brand" /></a></li>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=91&amp;pageId=TK0502000000" target="_blank" title="새창열림"><img src="/images/ic_f_highest.png" alt="Highest Brand" /></a></li>
+						<li><a href="/cms/article/view.do?postNo=28&amp;pageId=KR0502000000" target="_blank" title="새창열림"><img src="/images/ic_f_icsi.png" alt="ICSI" /></a></li>
+						<li><img src="/images/ic_f_wa.png" alt="WA(웹접근성인증)" /></li>
+						<li><a href="http://partners.srail.co.kr/login.do" target="_blank" title="새창열림"><img src="/images/ic_sys_purvey.png" alt="전자조달" /></a></li>
+						<li><a href="https://etk.srail.kr/cms/article/view.do?postNo=536&pageId=TK0502000000" target="_blank" title="새창열림"><img src="/images/ismsp_footer.png" alt="ISMS-P" /></a></li>
+						<br>
+						<li><img src="/images/eprivacy.png" alt="e-privacy인증" /></li>
+						<li><img src="/images/iso27001.png" alt="iso27001" /></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div><!-- //footer -->
+
+</div>
+<script type="text/javascript" src="/js/makePCookie.js"></script>
+</body>
+</html>
+
+
+
+

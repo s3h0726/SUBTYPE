@@ -1,0 +1,125 @@
+{
+  "sourceId": "sr-pilot-notice-20260515",
+  "url": "https://eticket.srail.kr/cms/article/view.do?pageId=TK0502000000&pageIndex=55&postNo=866",
+  "sourceFile": "source/sr/pilot-notice-20260515.html",
+  "sha256": "0af4ad09b41d9566bb96cdfed9863b5c18b0e1bb48eac3b59d86fad83334c06e",
+  "publishedOn": "2026-04-14",
+  "validFrom": "2026-05-15",
+  "reviewedOn": "2026-10-18",
+  "scope": "Official train-brand and published day distinctions only. Do not infer a brand from terminal names or equate a route relation with a complete operating train.",
+  "patterns": [
+    {
+      "trainNumber": "4141",
+      "trainBrand": "KTX",
+      "origin": "수서",
+      "destination": "부산",
+      "operatingWeekdays": [
+        "FRI",
+        "SAT",
+        "SUN"
+      ],
+      "sameStopsAndClocksAs": "SRT 341",
+      "calls": [
+        [
+          "수서",
+          "14:30"
+        ],
+        [
+          "평택지제",
+          "14:52"
+        ],
+        [
+          "천안아산",
+          "15:04"
+        ],
+        [
+          "대전",
+          "15:29"
+        ],
+        [
+          "동대구",
+          "16:13"
+        ],
+        [
+          "울산",
+          "16:38"
+        ],
+        [
+          "부산",
+          "16:59"
+        ]
+      ]
+    },
+    {
+      "trainNumber": "341",
+      "trainBrand": "SRT",
+      "origin": "수서",
+      "destination": "부산",
+      "operatingWeekdays": [
+        "MON",
+        "TUE",
+        "WED",
+        "THU"
+      ],
+      "calls": [
+        [
+          "수서",
+          "14:30"
+        ],
+        [
+          "평택지제",
+          "14:52"
+        ],
+        [
+          "천안아산",
+          "15:04"
+        ],
+        [
+          "대전",
+          "15:29"
+        ],
+        [
+          "동대구",
+          "16:13"
+        ],
+        [
+          "울산",
+          "16:38"
+        ],
+        [
+          "부산",
+          "16:59"
+        ]
+      ]
+    }
+  ],
+  "otherPublishedBrandEvidence": [
+    {
+      "trainNumber": "4863",
+      "trainBrand": "KTX",
+      "origin": "수서",
+      "destination": "광주송정",
+      "operatingWeekdays": [
+        "SAT",
+        "SUN"
+      ],
+      "mixedFormationWith": "SRT 603",
+      "departure": "07:40",
+      "arrival": "09:16",
+      "completeStopPatternVerified": false
+    }
+  ],
+  "relationReviews": [
+    {
+      "relationId": "11214688",
+      "decision": "RETAIN_RAW_KTX_LABEL_PENDING_FULL_TRAIN_BINDING",
+      "reason": "Official KTX 4141 and SRT 341 share terminals with different operating days. The relation also includes Dongtan, which neither reviewed train calls at; no exact calling-pattern match is claimed."
+    },
+    {
+      "relationId": "11214689",
+      "decision": "RETAIN_RAW_KTX_LABEL_PENDING_FULL_TRAIN_BINDING",
+      "reason": "Official notice includes KTX 4863 coupled with SRT 603. A Suseo origin alone is not evidence that the raw KTX brand is wrong. Full call order is not supplied here."
+    }
+  ],
+  "releaseApproved": false
+}

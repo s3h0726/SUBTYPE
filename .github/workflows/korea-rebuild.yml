@@ -1,7 +1,7 @@
 name: Korean network rebuild
 on:
   push:
-    branches: [rebuild/korea-2026-10-15]
+    branches: [main, rebuild/korea-2026-10-15]
   pull_request:
     paths: ['data/kr/**', 'tools/**', 'js/**', 'package.json']
   workflow_dispatch:
@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: '22'
       - run: npm run check:dependencies
+      - run: npm run import:korea-commuter
+      - run: npm run import:korea-ktx
       - run: npm run import:korea
       - run: npm run import:seoulmetro
       - run: npm run import:korea-platforms
