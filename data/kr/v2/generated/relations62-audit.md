@@ -1,6 +1,6 @@
 # SUBTYPE — KOREA RELATION 62 AUDIT / REPAIR
 
-기준: 7b15c9ee1299754710946becac635821b5bd3d7f · 2026-10-17 · **INCOMPLETE**
+기준: 7b15c9ee1299754710946becac635821b5bd3d7f · 2026-10-18 · **INCOMPLETE**
 
 {"inputRelations":62,"sourceMetadataAudited":62,"officialPassengerVerified":0,"officialTimetablePatternsIn62":1,"sourceGeometryRestored":5,"excluded":6,"partial":5,"needsResearch":51}
 

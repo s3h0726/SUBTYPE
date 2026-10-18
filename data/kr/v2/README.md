@@ -156,7 +156,7 @@ The four capital-area reconstructions retain every original source way/stop and
 use complete actual official train calls on existing directional donor tracks.
 No new geometry, coordinate snapping or inferred reverse edge is introduced.
 
-Eight additional explicit line 1 display-name/code crosswalks link pinned KRIC
+Twelve explicit line 1 and five southern line 4 display-name/code crosswalks link pinned KRIC
 identity records to current timetable station codes. Coordinates check these
 already specified identities; they never select a track or merge station places.
 The original sixteen line 4 name reviews remain. The thirty-eight timetable
@@ -169,10 +169,28 @@ approval remain separate requirements. There are zero release-approved services.
 Source assembly totals are 260 of 317, with 57 still failing (including the eleven
 excluded/quarantined records). Against the older 69-failure baseline, twelve have
 recovered. The sixty Korean tests and separate Japanese regression are required;
-none of these counts certify nationwide completeness. Keep main and Pages gated.
+none of these counts certify nationwide completeness. Main integration was explicitly
+requested by the user; national publication remains gated.
 
 CI also runs `tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696 --interactive-all`.
 This separately samples actual first-segment motion for each recovered service
 on desktop and mobile, retains screenshots and tests stale-animation cancellation.
 It complements full stop traversal; it is not an official operating-direction,
 platform or complete per-segment animation certification.
+
+## Follow-up evidence, 2026-10-18
+
+`npm run import:korea-platforms` imports the authority's 96 published line 4
+platform records, preserving the raw CP949 CSV and hash. These are reference
+facts; they do not bind track coordinates or certify terminal turnback operation.
+The Oido DOWN candidate uses source platform 1, labelled UP by the authority.
+No track tags, platform assignments or release rules are changed to hide this.
+`npm run audit:korea-failures` lists every remaining source failure with IDs,
+way IDs, coordinates, access categories and the evidence still needed.
+
+Main retained package commands referencing helpers removed in the earlier Korea
+reset. They now call their supported v2 import/recovery planning counterparts;
+legacy published-route checks call the existing provenance and geometry gates.
+No test file is removed. `audit:korea` retains the strict nationwide completeness
+requirement. OSM recovery imports only pinned local sources; it is not an
+unreviewed live-network repair.

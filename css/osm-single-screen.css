@@ -223,3 +223,8 @@ body[data-current-screen="game"]{height:100dvh;min-height:0;overflow:hidden;over
   #screen-select .data-summary.has-count-chips{gap:6px;font-size:10px}
   #screen-select .data-summary-chip{padding:4px 7px}
 }
+
+/* Korean research routes without playable geometry remain visible for review only. */
+#screen-select .line-card.unplayable:disabled{opacity:.78;border-style:dashed;cursor:not-allowed;transform:none;box-shadow:none}
+#screen-select .line-card.unplayable h3{color:var(--ink)}
+#screen-select .line-card.unplayable p,#screen-select .line-card.unplayable footer{color:var(--muted)}

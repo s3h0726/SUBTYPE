@@ -22,7 +22,7 @@ function verifyBinding(binding,maps,trips){
   if(!accepted.length)throw Error('NO_COMPLETE_'+label+'_TRAINS');
   groups.push({calendarLabel:label,trainCount:accepted.length,trains:accepted});
  }
- return {serviceId:service.id,sourceId:source.id,status:'verified',verificationScope:'Official complete calling pattern, source clocks and DAY/SAT/END groups only; not track/platform, holiday exceptions or release approval',verifiedOn:binding.reviewedOn,dataReferenceDate:source.dataReferenceDate,origin:binding.origin,destination:binding.destination,express:binding.express,calls:binding.calls,groups,rejected};
+ return {serviceId:service.id,sourceId:source.id,status:'verified',verificationScope:'Official complete calling pattern, source clocks and DAY/SAT/END groups only; not track/platform, holiday exceptions or release approval',verifiedOn:binding.reviewedOn,dataReferenceDate:source.dataReferenceDate,officialLineCode:binding.officialLineCode,officialDirectionId:binding.officialDirectionId,origin:binding.origin,destination:binding.destination,express:binding.express,calls:binding.calls,groups,rejected};
 }
 if(require.main===module){
  const base=path.resolve(__dirname,'../data/kr/v2'),read=n=>JSON.parse(fs.readFileSync(path.join(base,n+'.json'),'utf8')),data=load(base),{maps,errors}=validate(data,{base});if(errors.length)throw Error(JSON.stringify(errors));

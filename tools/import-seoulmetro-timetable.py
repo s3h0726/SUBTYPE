@@ -39,11 +39,13 @@ for trip in trains.values():
 
 def save(name,value):
     text=json.dumps(value,ensure_ascii=False,indent=2) if name=='sources' else json.dumps(value,ensure_ascii=False,separators=(',',':'))
-    (base/(name+'.json')).write_text(text+'\n',encoding='utf-8')
+    (base/(name+'.json')).write_text(text+'\n',encoding='utf-8',newline='\n')
 save('seoulmetro-trip-candidates',list(trains.values()))
 registry=json.loads((base/'sources.json').read_text(encoding='utf-8'))
 metadata={'id':source_id,'kind':'official-timetable','publisher':'서울교통공사 / 공공데이터포털','title':'서울교통공사_서울 도시철도 열차운행시각표_20260901','url':'https://www.data.go.kr/data/15098251/fileData.do','downloadUrl':'https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007671122&fileDetailSn=1&insertDataPrcus=N','license':'data.go.kr-unrestricted','licenseStatus':'verified','licenseEvidenceUrl':'https://www.data.go.kr/data/15098251/fileData.do','dataReferenceDate':'2026-09-01','validFrom':'2026-09-01','validityBasis':'Latest official published timetable snapshot; portal last modified 2026-09-14. Reference date is preserved separately. Subsequent operator notices remain applicable.','retrievedOn':'2026-10-17','files':[{'path':'source/seoulmetro/timetable-20260901.csv','sha256':hashlib.file_digest(source.open('rb'),'sha256').hexdigest()}]}
-save('sources',[s for s in registry if s['id']!=source_id]+[metadata])
+# Re-importing a source must not reorder unrelated registered evidence.
+save('sources', [metadata if s['id']==source_id else s for s in registry]
+     + ([] if any(s['id']==source_id for s in registry) else [metadata]))
 summary={'sourceId':source_id,'tripCandidates':len(trains),'callRows':sum(len(t['calls']) for t in trains.values()),'completeSourceTrips':sum('PROVIDER_SECTION_DOES_NOT_COVER_FULL_TRIP' not in t['reviewRequired'] for t in trains.values()),'releaseApproved':0}
 save('seoulmetro-import-report',summary)
 print(json.dumps(summary))

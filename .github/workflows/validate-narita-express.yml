@@ -13,6 +13,10 @@ on:
       - 'tools/build-static.js'
       - '.github/workflows/validate-narita-express.yml'
   workflow_dispatch:
+concurrency:
+  group: subtype-generated-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 jobs:
@@ -44,11 +48,26 @@ jobs:
           node -e "const x=require('./data/generated/nex-branch-geometry-candidates.json');if(x.releaseApproved!==false||x.variants.length!==2||x.variants.some(v=>v.geometry.length<100))process.exit(1);"
       - name: Commit verified-source geometry candidates without releasing them
         run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/generated/nex-branch-geometry-candidates.json js/service-data.js js/app.bundle.js js/line-workspace-data.js index.html
-          if ! git diff --cached --quiet; then
+          # Always rebuild from latest main, never push a stale checkout.
+          # CI's working tree may include other generated files not committed by this job.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            node tools/build-static.js
+            git add js/app.bundle.js js/line-workspace-data.js js/nationwide-data.js js/service-data.js js/line-theme-data.js js/line-badge-data.js js/rail-system-data.js data/generated/nex-branch-geometry-candidates.json index.html
+            if git diff --cached --quiet; then
+              echo 'Generated files already match main.'
+              exit 0
+            fi
             git commit -m 'build(nex): publish train-specific Shinjuku/Ofuna railway routes'
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+            if git push origin HEAD:main; then
+              echo 'Generated files committed against current main.'
+              exit 0
+            fi
+            echo "Push race detected on attempt ${attempt}; rebuilding on latest main."
+          done
+          echo 'Could not publish generated files after three attempts.' >&2
+          exit 1
