@@ -19,6 +19,7 @@ jobs:
       - run: npm run import:korea
       - run: npm run import:seoulmetro
       - run: npm run import:korea-platforms
+      - run: npm run import:korea-intercity
       - run: npm run build:korea
       - run: npm run audit:korea-relations62
       - run: npm run audit:korea-inventory
@@ -70,7 +71,7 @@ jobs:
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/recovered-motion.json
           KR_BROWSER_SCREENSHOTS: data/kr/v2/generated/recovered-motion-screens
-        run: node tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696 --interactive-all
+        run: node tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696,16665964 --interactive-all
       - uses: actions/upload-artifact@v4
         if: always()
         with:

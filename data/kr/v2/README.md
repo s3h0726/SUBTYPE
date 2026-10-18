@@ -139,20 +139,20 @@ The newer version of relation 12239797 is research evidence, not silently
 substituted into the older importer snapshot.
 
 Six road/unopened/nonpassenger records are excluded. Three unidentified records
-and two restricted airport shuttles remain quarantined for research. All eleven
+and two restricted airport shuttles remain quarantined for research. All twelve
 are blocked in route loading, PLAY, saved CUSTOM segments, the CUSTOM graph and
 free drive. The airport operator confirms that returning to the terminal after
 boarding the departure shuttle is restricted; unrestricted reverse service is
 not generated. Rail/road co-tagged ways retain their original tags and block
 release pending review. Source research geometry is never renamed as public rail.
 
-Five of those 62 source candidates now assemble: Busan 1 (8255697), Bulamsan to
+Six of those 62 source candidates remain eligible for diagnostic traversal after repair: Busan 1 (8255697), Bulamsan to
 Geumjeong (16665960), Nowon to Sadang (16665969), Seoul to Kwangwoon University
-(16712693), and Seoul to Dongmyo (16712696). Busan preserves all source ways and
+(16712693), Seoul to Dongmyo (16712696), and Jinjeop to Bulamsan (16665964). Busan preserves all source ways and
 binds six station facilities to explicit existing stop-position nodes, checked
 against the operator's forty-station code/name order. Its yard way lies before
 the boarding interval and is not travelled; the stricter release review remains.
-The four capital-area reconstructions retain every original source way/stop and
+The five capital-area reconstructions retain every original source way/stop and
 use complete actual official train calls on existing directional donor tracks.
 No new geometry, coordinate snapping or inferred reverse edge is introduced.
 
@@ -161,18 +161,20 @@ identity records to current timetable station codes. Coordinates check these
 already specified identities; they never select a track or merge station places.
 The original sixteen line 4 name reviews remain. The thirty-eight timetable
 bindings preserve complete clocks and all DAY/SAT/END groups for 2,271 uniquely
-calendar-qualified train records. Only Seoul to Kwangwoon of the five recovered
-candidates has all three day groups. Others retain incomplete calendar review.
+calendar-qualified train records. Seoul to Kwangwoon and Jinjeop to Bulamsan among the six recovered
+candidates have all three day groups. Others retain incomplete calendar review.
 Holiday exceptions, station/platform metadata, operating direction and release
 approval remain separate requirements. There are zero release-approved services.
 
-Source assembly totals are 260 of 317, with 57 still failing (including the eleven
-excluded/quarantined records). Against the older 69-failure baseline, twelve have
-recovered. The sixty Korean tests and separate Japanese regression are required;
+Source geometry assembles for 262 of 317; 55 still fail assembly. One assembled
+Pyeongtaek leg is quarantined, leaving 261 eligible source candidates and 56
+non-playable records overall (12 excluded/quarantined). Against the 69-failure
+baseline, 14 source geometries and 13 eligible candidates have recovered.
+The sixty-four Korean tests and separate Japanese regression are required;
 none of these counts certify nationwide completeness. Main integration was explicitly
 requested by the user; national publication remains gated.
 
-CI also runs `tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696 --interactive-all`.
+CI also runs `tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696,16665964 --interactive-all`.
 This separately samples actual first-segment motion for each recovered service
 on desktop and mobile, retains screenshots and tests stale-animation cancellation.
 It complements full stop traversal; it is not an official operating-direction,
@@ -194,3 +196,28 @@ legacy published-route checks call the existing provenance and geometry gates.
 No test file is removed. `audit:korea` retains the strict nationwide completeness
 requirement. OSM recovery imports only pinned local sources; it is not an
 unreviewed live-network repair.
+
+Jinjeop to Bulamsan preserves the raw `osmTo=당고개` and adds explicit
+operating endpoints. Its renamed station is pinned to KRIC record 434, the
+authority's current code 0409, and Nowon's explicit former-name statement.
+All four calls and three calendar-qualified official trains match. The original
+source way and boarding stop are retained within the existing directional donor
+track (115 vertices); no coordinate or reverse edge is invented.
+
+Normal session reset clears free-drive direction buttons and route tabs, so
+previous Japanese choices cannot remain over a new Korean typing session.
+Both unit and browser mode-transition checks cover the reset.
+
+The Pyeongtaek relation had included closed bridge outline 1491252314. Two
+existing single-track railway ways, 503137626 and 503137627, join its gap with
+exact shared nodes; all original rail ways and stop nodes remain. Pin checks
+reject a changed facility, changed rail geometry, siding, road or disconnected
+replacement. This repairs source geometry only. The current Korail workbook
+shows the Pyeongtaek–Anjung calls inside Hongseong–Hongseong trains 1242, 1244
+and 1246. The two-stop candidate is therefore quarantined as an incomplete
+operating service. No standalone departure or terminus is invented.
+
+`npm run import:korea-intercity` preserves full train columns, repeated Hongseong
+calls and exact cell provenance from the 2026-09-01 workbook. The future
+2026-11-01 workbook is not applied on 2026-10-18. Summary/call clock conflicts
+remain visible, and unspecified calendars or reuse permission are not approved.

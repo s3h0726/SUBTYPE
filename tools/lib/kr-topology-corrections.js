@@ -3,11 +3,22 @@ const crypto=require('node:crypto');
 const {orientOrderedWays}=require('./kr-osm-order');
 const {orientMemberChain}=require('./kr-member-chain');
 const relationHash=relation=>crypto.createHash('sha256').update(JSON.stringify(relation)).digest('hex');
-function applyTopologyCorrection(relation,ways,correction){
+function applyTopologyCorrection(relation,ways,correction,facilityWays=new Map()){
  const members=relation.members.filter(m=>m.type==='w'&&!/platform|stop/.test(m.role));
  if(!correction)return {members};
  if(correction.relationId!==relation.id||correction.relationSha256!==relationHash(relation))throw Error('STALE_TOPOLOGY_CORRECTION:'+relation.id);
  const stops=relation.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role)).map(m=>m.ref);
+ if(correction.reason==='NON_RAIL_FACILITY_MEMBER'){
+  const replacement=correction.replacedMember,member=members[replacement?.memberIndex],facility=facilityWays.get(replacement?.wayId);
+  if(!replacement||member?.ref!==replacement.wayId||member.role!==replacement.sourceRole||ways.has(member.ref)||!facility||relationHash(facility)!==replacement.facilitySha256||facility.version!==replacement.sourceVersion||facility.tags.railway||facility.tags.man_made!=='bridge'||facility.nodeIds.length<4||facility.nodeIds[0]!==facility.nodeIds.at(-1))throw Error('UNPROVEN_NON_RAIL_FACILITY:'+relation.id);
+  const inserts=correction.replacementWays;
+  if(!Array.isArray(inserts)||inserts.length<1||new Set(inserts.map(p=>p.wayId)).size!==inserts.length)throw Error('INVALID_REPLACEMENT_TRACKS');
+  for(const p of inserts){const w=ways.get(p.wayId);if(!w||members.some(m=>m.ref===p.wayId)||w.version!==p.sourceVersion||relationHash(w)!==p.sha256||w.tags.railway!=='rail'||['yard','siding','spur'].includes(w.tags.service)||w.tags.highway||Object.entries(correction.expectedTrackTags||{}).some(([k,v])=>w.tags[k]!==v))throw Error('UNPROVEN_REPLACEMENT_TRACK:'+p.wayId)}
+  const corrected=members.flatMap((m,i)=>i===replacement.memberIndex?inserts.map(p=>({type:'w',ref:p.wayId,role:''})):[m]),result=orientOrderedWays(corrected,ways,stops);
+  if(stops.length<2||result.status!=='UNIQUE_SOURCE_ORDER')throw Error('UNPROVEN_REPLACEMENT_CONTINUITY');
+  for(const p of result.parts){const t=ways.get(p.wayId).tags;if(t.oneway==='yes'&&p.reverse||t.oneway==='-1'&&!p.reverse)throw Error('ONEWAY_CONFLICT:'+p.wayId)}
+  return {members:corrected,evidence:{reason:correction.reason,relationSha256:correction.relationSha256,replacedMember:replacement,replacementWays:inserts,method:'pinned-non-rail-closed-bridge-outline-replaced-by-existing-exact-node-contiguous-rail-ways',operationalDirectionVerified:false}};
+ }
  if(correction.reason==='MISORDERED_MEMBERS'){
   if(orientOrderedWays(members,ways,stops).status==='UNIQUE_SOURCE_ORDER')throw Error('ALREADY_ORDERED_RELATION:'+relation.id);
   const unique=orientMemberChain(members,ways,stops),order=correction.orderedMembers;

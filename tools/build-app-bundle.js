@@ -4,6 +4,8 @@ const fs=require('fs');
 const path=require('path');
 const crypto=require('crypto');
 const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8').replace(/\r\n/g,'\n'),write=(relative,value)=>fs.writeFileSync(path.join(root,relative),value);
+// Match committed LF bytes for the lazy index before assigning its cache key.
+write('js/japan-lite-index.js',read('js/japan-lite-index.js'));
 const order=["utils.js","korean-access-data.js","korean-access-policy.js","feature-flags.js","rail-data-repository.js","asset-renderer.js","storage.js","typing.js","typing-model.js","statistics-engine.js","line-badge.js","station-sign-templates.js","transport-stop-templates.js","route-integrity.js","service-route-resolver.js","nex-route-resolver.js","famous-limited-express.js","korean-service-resolver.js","track-motion.js","route-renderer.js","game.js","free-drive.js","statistics.js","network-map.js","data-loader.js","route-editor.js","auth.js","app.js"];
 const source=order.map(file=>read(`js/${file}`).replace(/\bimport(?=\s|\{)[^;]+;/g,'').replace(/\bexport\s+/g,'').replace(/new URL\('\.\.\/data\/([^']+)',import\.meta\.url\)/g,"new URL('./data/$1',document.baseURI)")).join('\n\n');
 for(const marker of ['KR_BLOCKED_SOURCE_RELATIONS','function koreanRouteBlockReason(','function koreanRouteUnavailableReason(','function nexOperatingChoices(','function buildFamousLimitedExpressRoutes('])if(!source.includes(marker))throw new Error('Legacy bundle script omitted required module: '+marker);

@@ -4801,5 +4801,47 @@
         "role": "forward"
       }
     ]
+  },
+  {
+    "relationId": "20500839",
+    "relationSha256": "13eee96e04de1bc3b58f9c24428609120912b0188082a579cc0eef1e7fa39cc9",
+    "reason": "NON_RAIL_FACILITY_MEMBER",
+    "reviewedOn": "2026-10-18",
+    "replacedMember": {
+      "memberIndex": 19,
+      "wayId": "1491252314",
+      "sourceRole": "",
+      "sourceVersion": 1,
+      "facilitySourceId": "osm-62-geofabrik-20261017",
+      "facilitySha256": "85b785d41282f8087913286bdb24d2dffd82bb0de7446e3cd200d1fe418fbf05"
+    },
+    "replacementWays": [
+      {
+        "wayId": "503137626",
+        "sourceVersion": 15,
+        "sha256": "dd8dec0465f7f9fe22569b331aa8f89a85d269338265f82d80458f2df793f534"
+      },
+      {
+        "wayId": "503137627",
+        "sourceVersion": 16,
+        "sha256": "a0df6f975bd0b5c39803e1945f840f5bd8e7b1d2d398ef1c538bd6f61c3417ad"
+      }
+    ],
+    "expectedTrackTags": {
+      "railway": "rail",
+      "bridge": "yes",
+      "tracks": "1",
+      "name": "평택선",
+      "ref": "30216",
+      "gauge": "1435",
+      "operator": "한국철도공사"
+    },
+    "sourceURLs": [
+      "https://www.openstreetmap.org/relation/20500839",
+      "https://www.openstreetmap.org/way/1491252314",
+      "https://www.openstreetmap.org/way/503137626",
+      "https://www.openstreetmap.org/way/503137627"
+    ],
+    "scope": "Source topology only: retain every original rail way and both original stop nodes; replace a proven non-rail bridge outline with two existing single-track rail ways sharing the exact gap endpoints. Official calls, timetable, operational direction and release remain unverified."
   }
 ]

@@ -1,14 +1,16 @@
 {
   "asOf": "2026-10-18",
   "status": "INCOMPLETE",
-  "scope": "Unassemblable source candidates; not a count of actual passenger lines or release-approved services",
+  "scope": "Non-playable source candidates: unassemblable geometry or access quarantine; not a count of actual passenger lines or release-approved services",
   "counts": {
     "registeredServices": 317,
-    "sourceAssemblable": 260,
-    "remaining": 57,
-    "passengerResearch": 46,
-    "excludedOrQuarantined": 11,
-    "officialTimetablePatterns": 52,
+    "sourceAssemblable": 262,
+    "playableSourceCandidates": 261,
+    "unassemblableSourceServices": 55,
+    "remaining": 56,
+    "passengerResearch": 44,
+    "excludedOrQuarantined": 12,
+    "officialTimetablePatterns": 53,
     "releaseApproved": 0
   },
   "platformDisagreements": [
@@ -32,6 +34,7 @@
       "destination": "다대포해수욕장역",
       "passengerLineId": "kr-osm-line-8255698",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 1,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -325,6 +328,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-2474720",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 2,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -374,6 +378,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-3399104",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 3,
         "classification": "REJECTED_ROAD",
@@ -521,6 +526,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-4730524",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 4,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -591,6 +597,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-4730525",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 5,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -661,6 +668,7 @@
       "destination": "부산역",
       "passengerLineId": "kr-osm-line-8266159",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 6,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -1373,6 +1381,7 @@
       "destination": "백산역",
       "passengerLineId": "kr-osm-line-7796022",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 7,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -1637,6 +1646,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-7796215",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 8,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -2393,6 +2403,7 @@
       "destination": "광주송정역",
       "passengerLineId": "kr-osm-line-8226482",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 9,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -3058,6 +3069,7 @@
       "destination": "유덕",
       "passengerLineId": "kr-osm-line-9283742",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 10,
         "classification": "EXCLUDED_UNOPEN",
@@ -3894,6 +3906,7 @@
       "destination": "삼랑진역",
       "passengerLineId": "kr-osm-line-8226482",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 11,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -4490,6 +4503,7 @@
       "destination": "서울역",
       "passengerLineId": "kr-osm-line-8266159",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 13,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -5188,6 +5202,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-8420974",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 14,
         "classification": "QUARANTINED_UNKNOWN",
@@ -6148,6 +6163,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-8448307",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 15,
         "classification": "QUARANTINED_UNKNOWN",
@@ -6205,6 +6221,7 @@
       "destination": "영주역",
       "passengerLineId": "kr-osm-line-8787856",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 16,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -6628,6 +6645,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-9283742",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 17,
         "classification": "EXCLUDED_UNOPEN",
@@ -7455,6 +7473,7 @@
       "destination": "고색",
       "passengerLineId": "kr-osm-line-11619514",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 18,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -7609,6 +7628,7 @@
       "destination": "청량리",
       "passengerLineId": "kr-osm-line-11619514",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 19,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -7782,6 +7802,7 @@
       "destination": "청량리",
       "passengerLineId": "kr-osm-line-11619514",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 20,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -8585,6 +8606,7 @@
       "destination": "죽전",
       "passengerLineId": "kr-osm-line-11619514",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 21,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -8732,6 +8754,7 @@
       "destination": "부산",
       "passengerLineId": "kr-osm-line-10882384",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 22,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -9786,6 +9809,7 @@
       "destination": "동대구",
       "passengerLineId": "kr-osm-line-11208903",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 23,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -10599,6 +10623,7 @@
       "destination": "부산",
       "passengerLineId": "kr-osm-line-11208904",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 24,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -11652,6 +11677,7 @@
       "destination": "부산",
       "passengerLineId": "kr-osm-line-11214334",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 25,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -12721,6 +12747,7 @@
       "destination": "부산",
       "passengerLineId": "kr-osm-line-11214688",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 26,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -13055,6 +13082,7 @@
       "destination": "광주송정역",
       "passengerLineId": "kr-osm-line-11214689",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 27,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -13470,6 +13498,7 @@
       "destination": "목포",
       "passengerLineId": "kr-osm-line-11214690",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 28,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -13885,6 +13914,7 @@
       "destination": "여수엑스포",
       "passengerLineId": "kr-osm-line-11272647",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 29,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -14716,6 +14746,7 @@
       "destination": "장성",
       "passengerLineId": "kr-osm-line-11314591",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 30,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -15309,6 +15340,7 @@
       "destination": "목포",
       "passengerLineId": "kr-osm-line-11314592",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 31,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -16037,6 +16069,7 @@
       "destination": "전주",
       "passengerLineId": "kr-osm-line-11314593",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 32,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -16525,6 +16558,7 @@
       "destination": "여수엑스포",
       "passengerLineId": "kr-osm-line-11314594",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 33,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -17404,6 +17438,7 @@
       "destination": "인천",
       "passengerLineId": "kr-osm-line-11619514",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 34,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -17648,6 +17683,7 @@
       "destination": "청량리",
       "passengerLineId": "kr-osm-line-11619514",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 35,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -17906,6 +17942,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-12115931",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 36,
         "classification": "EXCLUDED_NONPASSENGER",
@@ -17964,6 +18001,7 @@
       "destination": "강릉",
       "passengerLineId": "kr-osm-line-12239797",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 37,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -18235,6 +18273,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-12428880",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 38,
         "classification": "QUARANTINED_UNKNOWN",
@@ -18489,6 +18528,7 @@
       "destination": "부산",
       "passengerLineId": "kr-osm-line-13781617",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 39,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -19172,6 +19212,7 @@
       "destination": "양주",
       "passengerLineId": "kr-osm-line-8691899",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 40,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -21006,6 +21047,7 @@
       "destination": "청량리",
       "passengerLineId": "kr-osm-line-8691899",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 41,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -21679,6 +21721,7 @@
       "destination": "오이도",
       "passengerLineId": "kr-osm-line-7625893",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 43,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -21728,6 +21771,7 @@
       "destination": "금정",
       "passengerLineId": "kr-osm-line-7625893",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 44,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -21778,55 +21822,6 @@
       "nextAction": "공식 전체 정차 순서와 같은 방향의 실제 선로·승강장을 대조. 원본 way·정차 지점을 임의 삭제하거나 직선 연결하지 않음."
     },
     {
-      "serviceId": "kr-osm-service-16665964",
-      "relationId": "16665964",
-      "sourceName": "수도권 전철 4호선: 진접 → 당고개",
-      "origin": "진접",
-      "destination": "당고개",
-      "passengerLineId": "kr-osm-line-7625893",
-      "category": "PASSENGER_RESEARCH",
-      "access": {
-        "number": 45,
-        "classification": "PASSENGER_SERVICE_RESEARCH",
-        "passengerCandidate": true,
-        "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
-      },
-      "causes": [
-        "SOURCE_STOP_SEQUENCE_INCOMPLETE"
-      ],
-      "relationUrl": "https://www.openstreetmap.org/relation/16665964",
-      "sourceWayIds": [
-        "850710258"
-      ],
-      "officialStopOrder": null,
-      "officialTimetableStatus": "NOT_VERIFIED",
-      "issues": [
-        {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "OFFICIAL_TIMETABLE_REQUIRED",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        }
-      ],
-      "facilityMembers": [],
-      "nextAction": "공식 전체 정차 순서와 같은 방향의 실제 선로·승강장을 대조. 원본 way·정차 지점을 임의 삭제하거나 직선 연결하지 않음."
-    },
-    {
       "serviceId": "kr-osm-service-16665967",
       "relationId": "16665967",
       "sourceName": "수도권 전철 4호선: 창동 → 사당",
@@ -21834,6 +21829,7 @@
       "destination": "사당",
       "passengerLineId": "kr-osm-line-7625893",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 46,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -21877,6 +21873,7 @@
       "destination": "오이도",
       "passengerLineId": "kr-osm-line-7625893",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 47,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -21920,6 +21917,7 @@
       "destination": "노원",
       "passengerLineId": "kr-osm-line-7625893",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 49,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -21972,6 +21970,7 @@
       "destination": "병점",
       "passengerLineId": "kr-osm-line-8691899",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 50,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -22036,6 +22035,7 @@
       "destination": "의정부",
       "passengerLineId": "kr-osm-line-16712694",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 52,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -22085,6 +22085,7 @@
       "destination": "서울역",
       "passengerLineId": "kr-osm-line-8691899",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 54,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -22129,6 +22130,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-17549372",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 55,
         "classification": "EXCLUDED_NONPASSENGER",
@@ -22215,6 +22217,7 @@
       "destination": "제2터미널",
       "passengerLineId": "kr-osm-line-17585171",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 56,
         "classification": "SPECIAL_AIRPORT_REVIEW",
@@ -22297,6 +22300,7 @@
       "destination": "제1터미널",
       "passengerLineId": "kr-osm-line-17585171",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 57,
         "classification": "SPECIAL_AIRPORT_REVIEW",
@@ -22379,6 +22383,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-18243453",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 58,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -22433,6 +22438,7 @@
       "destination": "경산",
       "passengerLineId": "kr-osm-line-18418133",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 59,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -22865,6 +22871,7 @@
       "destination": "구미",
       "passengerLineId": "kr-osm-line-18418133",
       "category": "PASSENGER_RESEARCH",
+      "sourceAssemblable": false,
       "access": {
         "number": 60,
         "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -23192,6 +23199,7 @@
       "destination": null,
       "passengerLineId": "kr-osm-line-20042681",
       "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": false,
       "access": {
         "number": 61,
         "classification": "EXCLUDED_UNOPEN",
@@ -23466,15 +23474,16 @@
       "origin": "평택역",
       "destination": "안중역",
       "passengerLineId": "kr-osm-line-20500839",
-      "category": "PASSENGER_RESEARCH",
+      "category": "EXCLUDED_OR_QUARANTINED",
+      "sourceAssemblable": true,
       "access": {
         "number": 62,
-        "classification": "PASSENGER_SERVICE_RESEARCH",
-        "passengerCandidate": true,
-        "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+        "classification": "RESEARCH_PARTIAL_OPERATING_SERVICE",
+        "passengerCandidate": false,
+        "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리."
       },
       "causes": [
-        "SOURCE_MEMBER_CONTINUITY_UNRESOLVED",
+        "RESEARCH_PARTIAL_OPERATING_SERVICE",
         "NON_RAIL_FACILITY_MEMBER_REQUIRES_REAL_TRACK_SOURCE"
       ],
       "relationUrl": "https://www.openstreetmap.org/relation/20500839",
@@ -23525,38 +23534,6 @@
       "officialTimetableStatus": "NOT_VERIFIED",
       "issues": [
         {
-          "code": "MISSING_MEMBER_WAY",
-          "wayId": "1491252314",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "1083915376",
-          "from": "4934729303",
-          "to": "8254184434",
-          "fromCoordinates": [
-            36.9961347,
-            126.9936395
-          ],
-          "toCoordinates": [
-            37.0015546,
-            126.9704802
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "MISSING_MEMBER_WAY",
-          "wayId": "1491252314",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
           "toCoordinates": null,
@@ -23576,7 +23553,7 @@
           "url": "https://www.openstreetmap.org/way/1491252314"
         }
       ],
-      "nextAction": "공식 전체 정차 순서와 같은 방향의 실제 선로·승강장을 대조. 원본 way·정차 지점을 임의 삭제하거나 직선 연결하지 않음."
+      "nextAction": "공개 플레이 제외 사유 유지. 미개통·비여객·접근 제한·유형 미확인 상태를 복구 성공으로 집계하지 않음."
     }
   ]
 }

@@ -819,5 +819,64 @@
     ],
     "reviewedOn": "2026-10-17",
     "timetableSnapshotSha256": "fd7e7b6edc18a5ac4f40f53b594d460d5cbd96d90919aaeb54b957890080d606"
+  },
+  {
+    "serviceId": "kr-osm-service-16665964",
+    "targetRelationHash": "35b1a11bb255fca2456435756e7355358a25842f2e3831991cefb6f67199dc55",
+    "donorServiceId": "kr-osm-service-13938877",
+    "donorServiceHash": "929a815ddd2a055b8573e5fbe3cc6fd0af73304bc8846738c339db0ab620aedc",
+    "sourceId": "seoulmetro-official-20260901",
+    "officialLineCode": "4",
+    "officialDirectionId": "DOWN",
+    "origin": "진접",
+    "destination": "불암산",
+    "officialDisplayName": "수도권 전철 4호선: 진접 → 불암산",
+    "officialTripIds": [
+      "seoulmetro-official-20260901-train-6252",
+      "seoulmetro-official-20260901-train-6371",
+      "seoulmetro-official-20260901-train-6490"
+    ],
+    "calls": [
+      {
+        "officialStationCode": "0405",
+        "officialStationName": "진접"
+      },
+      {
+        "officialStationCode": "0406",
+        "officialStationName": "오남"
+      },
+      {
+        "officialStationCode": "0408",
+        "officialStationName": "별내별가람"
+      },
+      {
+        "officialStationCode": "0409",
+        "officialStationName": "불암산"
+      }
+    ],
+    "reviewedOn": "2026-10-18",
+    "timetableSnapshotSha256": "fd7e7b6edc18a5ac4f40f53b594d460d5cbd96d90919aaeb54b957890080d606",
+    "endpointNameCorrections": [
+      {
+        "endpoint": "destination",
+        "expectedSourceName": "당고개",
+        "officialName": "불암산",
+        "officialStationCode": "0409",
+        "stationId": "kr-osm-area-8713359",
+        "expectedStationCoordinates": {
+          "lat": 37.6695753,
+          "lon": 127.0784401
+        },
+        "referenceId": "kric-standard-32-row-434",
+        "referenceSha256": "c5f092f0840c7e04a7661f3f63f6d185123e185d18460711816dea3891455a33",
+        "referenceLineCode": "I1104",
+        "sourceId": "nowon-bulamsan-name-20261018",
+        "officialFile": "source/station-renames/nowon-bulamsan-20261018.html",
+        "officialSha256": "bbc7bedda599caffbcd9932de6faa6178de833c5567a7623e6954dba1c156a47",
+        "officialURL": "https://nowon.kr/surakhyu/web/main/main",
+        "expectedOfficialText": "4호선 불암산역(구 당고개역)",
+        "scope": "Explicit renamed station identity only. No track, platform or operational direction approval."
+      }
+    ]
   }
 ]

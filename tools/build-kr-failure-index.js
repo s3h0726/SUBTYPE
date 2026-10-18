@@ -9,9 +9,10 @@ const coords=new Map();for(const w of read('source/osm-ways'))w.nodeIds.forEach(
 const nodes=new Map(read('source/osm-nodes').map(n=>[n.id,n]));
 const official=new Map(read('timetable-verifications').map(v=>[v.serviceId,v]));
 const platformRows=read('official-platform-reference');
-const rows=[];let assemblable=0;
+const rows=[];let assemblable=0,playableSourceCandidates=0;
 for(const s of data.services){
- try{assemble(s,maps);assemblable++;continue}catch{}
+ let journey;try{journey=assemble(s,maps);assemblable++}catch{}
+ if(journey&&s.access?.passengerCandidate!==false){playableSourceCandidates++;continue}
  const id=s.id.split('-').at(-1),relation=sourceRelations.get(id),causes=[];
  const policy=s.access?.passengerCandidate===false;
  if(policy)causes.push(s.access.classification);
@@ -22,7 +23,7 @@ for(const s of data.services){
  if(facilityMembers.length)causes.push('NON_RAIL_FACILITY_MEMBER_REQUIRES_REAL_TRACK_SOURCE');
  const v=official.get(s.id);
  rows.push({serviceId:s.id,relationId:id,sourceName:s.names.ko,origin:s.osmFrom,destination:s.osmTo,passengerLineId:s.passengerLineId,
-  category:policy?'EXCLUDED_OR_QUARANTINED':'PASSENGER_RESEARCH',access:s.access||null,causes,
+  category:policy?'EXCLUDED_OR_QUARANTINED':'PASSENGER_RESEARCH',sourceAssemblable:!!journey,access:s.access||null,causes,
   relationUrl:'https://www.openstreetmap.org/relation/'+id,sourceWayIds:relation.members.filter(m=>m.type==='w').map(m=>m.ref),
   officialStopOrder:v?.calls.map(c=>c.officialStationName)||null,officialTimetableStatus:v?.status||'NOT_VERIFIED',
   issues:s.issues.map(i=>{const n=nodes.get(i.nodeId);return {...i,fromCoordinates:coords.get(i.from)||null,toCoordinates:coords.get(i.to)||null,stopCoordinates:n?[n.lat,n.lon]:null,stopTags:n?.tags||null}}),facilityMembers,
@@ -38,8 +39,8 @@ for(const serviceId of ['kr-osm-service-2718884','kr-osm-service-4744311']){
   if(facts.length===1&&facts[0].directionId!==v.officialDirectionId)platformDisagreements.push({serviceId,stopId:stop.id,osmPlatformCode:stop.platformCode,timetableDirection:v.officialDirectionId,officialPlatformDirection:facts[0].directionId,officialReferenceId:facts[0].id,sourceUrl:'https://www.data.go.kr/data/15041194/fileData.do',status:'REQUIRES_TERMINAL_PLATFORM_AND_TURNBACK_REVIEW'});
  }
 }
-const result={asOf:'2026-10-18',status:'INCOMPLETE',scope:'Unassemblable source candidates; not a count of actual passenger lines or release-approved services',
- counts:{registeredServices:data.services.length,sourceAssemblable:assemblable,remaining:rows.length,passengerResearch:rows.filter(r=>r.category==='PASSENGER_RESEARCH').length,excludedOrQuarantined:rows.filter(r=>r.category!=='PASSENGER_RESEARCH').length,officialTimetablePatterns:official.size,releaseApproved:data.services.filter(s=>s.releaseApproved===true).length},platformDisagreements,rows};
+const result={asOf:'2026-10-18',status:'INCOMPLETE',scope:'Non-playable source candidates: unassemblable geometry or access quarantine; not a count of actual passenger lines or release-approved services',
+ counts:{registeredServices:data.services.length,sourceAssemblable:assemblable,playableSourceCandidates,unassemblableSourceServices:data.services.length-assemblable,remaining:rows.length,passengerResearch:rows.filter(r=>r.category==='PASSENGER_RESEARCH').length,excludedOrQuarantined:rows.filter(r=>r.category!=='PASSENGER_RESEARCH').length,officialTimetablePatterns:official.size,releaseApproved:data.services.filter(s=>s.releaseApproved===true).length},platformDisagreements,rows};
 const out=path.join(base,'generated');fs.writeFileSync(path.join(out,'remaining-failures.json'),JSON.stringify(result,null,2)+'\n');
 const esc=x=>String(x??'미상').replace(/\|/g,'\\|').replace(/\r?\n/g,' ');
 fs.writeFileSync(path.join(out,'remaining-failures.md'),['# 한국 철도 잔여 후보 목록','',`기준 ${result.asOf} · **INCOMPLETE**`,'',JSON.stringify(result.counts),'','실제 노선 수와 OSM relation 후보 수는 다르다. 아래 제외·보류 항목은 복구 성공으로 세지 않는다. 공식 시간표 패턴 일치는 선로·승강장·운행일 예외·배포 승인을 의미하지 않는다.','', '| 후보 ID | 원본 이름 | 출발 → 종착 | 구분 | 오류·원인 | 원본 |','|---|---|---|---|---|---|',...rows.map(r=>`| ${r.serviceId} | ${esc(r.sourceName)} | ${esc(r.origin)} → ${esc(r.destination)} | ${r.category} | ${[...new Set(r.issues.map(i=>i.code))].join(', ')}; ${r.causes.join(', ')} | [OSM](${r.relationUrl}) |`),'','## 오이도 승강장 방향 대조','',...platformDisagreements.map(r=>`- ${r.serviceId}: OSM 승강장 ${r.osmPlatformCode}, 시간표 ${r.timetableDirection}, 공식 승강장 방향 ${r.officialPlatformDirection}. 종착 회차 동선 확인 전 승인 보류. [공식 자료](${r.sourceUrl})`),''].join('\n'));

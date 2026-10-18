@@ -23401,8 +23401,10 @@
       ],
       "exampleTripId": "seoulmetro-official-20260901-train-6252",
       "trainCount": 3,
-      "candidateIds": [],
-      "status": "MISSING_CANDIDATE_OR_UNRESOLVED_OFFICIAL_STATION_IDENTITY"
+      "candidateIds": [
+        "kr-osm-service-16665964"
+      ],
+      "status": "CANDIDATE_PATTERN_PRESENT_RELEASE_UNVERIFIED"
     },
     {
       "sourceId": "seoulmetro-official-20260901",
@@ -42964,6 +42966,6 @@
     "officialReferenceRows": 47,
     "confirmedMissingSystems": 2,
     "officialCompleteCallPatterns": 314,
-    "unrepresentedOrIdentityUnresolvedPatterns": 252
+    "unrepresentedOrIdentityUnresolvedPatterns": 251
   }
 }

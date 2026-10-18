@@ -2,8 +2,8 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const {load,validate}=require('./lib/kr-network'),{verifyBinding}=require('./verify-kr-timetable-bindings');
 const base=path.join(__dirname,'../data/kr/v2'),read=n=>JSON.parse(fs.readFileSync(path.join(base,n+'.json'),'utf8'));
 const {maps}=validate(load(base)),bindings=read('timetable-service-bindings'),trips=read('seoulmetro-trip-candidates');
-test('fifty-two complete patterns preserve prior verified trains and all published day groups',()=>{
- const r=bindings.map(b=>verifyBinding(b,maps,trips));assert.equal(r.length,52);const count=rs=>rs.reduce((n,v)=>n+v.groups.reduce((s,g)=>s+g.trainCount,0),0);assert.equal(count(r.slice(0,23)),1999);assert.equal(count(r.slice(23,38)),272);assert.equal(count(r.slice(38,45)),655);assert.equal(count(r.slice(45)),162);assert.equal(count(r),3088);
+test('fifty-three complete patterns preserve prior verified trains and all published day groups',()=>{
+ const r=bindings.map(b=>verifyBinding(b,maps,trips));assert.equal(r.length,53);const count=rs=>rs.reduce((n,v)=>n+v.groups.reduce((s,g)=>s+g.trainCount,0),0);assert.equal(count(r.slice(0,23)),1999);assert.equal(count(r.slice(23,38)),272);assert.equal(count(r.slice(38,45)),655);assert.equal(count(r.slice(45,52)),162);assert.equal(count(r.slice(52)),3);assert.equal(count(r),3091);
  for(const v of r){assert.deepEqual(v.groups.map(g=>g.calendarLabel),['DAY','SAT','END']);assert(v.groups.every(g=>g.trains.every(t=>t.calls.length===v.calls.length)));assert(v.verificationScope.includes('not track/platform'))}
 });
 test('missing calendar, incomplete stops and nonmonotonic official clocks cannot certify a pattern',()=>{

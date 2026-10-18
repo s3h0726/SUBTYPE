@@ -891,15 +891,18 @@
       "number": 62,
       "osmRelationId": "20500839",
       "originalName": "평택선 ITX 마음",
-      "classification": "PASSENGER_SERVICE_RESEARCH",
-      "passengerCandidate": true,
+      "classification": "RESEARCH_PARTIAL_OPERATING_SERVICE",
+      "passengerCandidate": false,
       "lineIds": [],
-      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보",
+      "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리.",
       "sourceURLs": [
-        "https://www.openstreetmap.org/relation/20500839"
+        "https://www.openstreetmap.org/relation/20500839",
+        "https://www.korail.com/com/userBoard.do?mode=list&schBcid=ticketTable",
+        "https://www.korail.com/file/cubedata/COMMON/jfile/202608/25/202608251a036890aa0430.xlsx"
       ],
-      "reviewedOn": "2026-10-17",
-      "sourceSnapshotId": "osm-62-geofabrik-20261017"
+      "reviewedOn": "2026-10-18",
+      "sourceSnapshotId": "osm-62-geofabrik-20261017",
+      "officialEvidenceFile": "korail-seohae-pattern-research.json"
     }
   ]
 }

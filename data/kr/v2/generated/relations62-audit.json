@@ -31,11 +31,11 @@
     "inputRelations": 62,
     "sourceMetadataAudited": 62,
     "officialPassengerVerified": 0,
-    "officialTimetablePatternsIn62": 1,
-    "sourceGeometryRestored": 5,
+    "officialTimetablePatternsIn62": 2,
+    "sourceGeometryRestored": 7,
     "excluded": 6,
-    "partial": 5,
-    "needsResearch": 51
+    "partial": 7,
+    "needsResearch": 49
   },
   "rows": [
     {
@@ -955,6 +955,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -1123,6 +1124,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -1180,7 +1182,9 @@
           "MISSING_TRACK",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:REJECTED_ROAD"
+        ],
         "access": {
           "number": 3,
           "classification": "REJECTED_ROAD",
@@ -1348,6 +1352,7 @@
       ],
       "status": "EXCLUDED",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "도로 way가 포함된 철도 오분류 자료",
       "tests": [
@@ -2598,6 +2603,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -3849,6 +3855,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -31758,6 +31765,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -40496,6 +40504,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -55008,6 +55017,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -74437,6 +74447,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -74505,7 +74516,9 @@
           "MISSING_TRACK",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:EXCLUDED_UNOPEN"
+        ],
         "access": {
           "number": 10,
           "classification": "EXCLUDED_UNOPEN",
@@ -75875,6 +75888,7 @@
       ],
       "status": "EXCLUDED",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "미개통 광주 도시철도 2호선",
       "tests": [
@@ -95099,6 +95113,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -96226,6 +96241,7 @@
       ],
       "status": "PARTIAL",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "기존 실선형의 정차 시설 중심점 6개를 공식 역번호/순서가 일치하는 source stop_position으로 대체. 비영업 표기·시간표·운행방향·승강장 검증 미완료.",
       "tests": [
@@ -123704,6 +123720,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -123765,7 +123782,9 @@
           "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:QUARANTINED_UNKNOWN"
+        ],
         "access": {
           "number": 14,
           "classification": "QUARANTINED_UNKNOWN",
@@ -133084,6 +133103,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "노선·운영기관·영업 구간 식별 미완료; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -133138,7 +133158,9 @@
           "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:QUARANTINED_UNKNOWN"
+        ],
         "access": {
           "number": 15,
           "classification": "QUARANTINED_UNKNOWN",
@@ -133218,6 +133240,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "노선·운영기관·영업 구간 식별 미완료; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -138310,6 +138333,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -138375,7 +138399,9 @@
           "MISSING_TRACK",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:EXCLUDED_UNOPEN"
+        ],
         "access": {
           "number": 17,
           "classification": "EXCLUDED_UNOPEN",
@@ -139705,6 +139731,7 @@
       ],
       "status": "EXCLUDED",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "미개통 광주 도시철도 2호선",
       "tests": [
@@ -142135,6 +142162,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -144717,6 +144745,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -147034,6 +147063,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -148829,6 +148859,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -174183,6 +174214,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -191073,6 +191105,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -215194,6 +215227,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -240739,6 +240773,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -247200,6 +247235,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -257005,6 +257041,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -266810,6 +266847,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -297235,6 +297273,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -315093,6 +315132,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -339240,6 +339280,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -355045,6 +355086,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -386130,6 +386172,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -392708,6 +392751,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -399271,6 +399315,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -399330,7 +399375,9 @@
           "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:EXCLUDED_NONPASSENGER"
+        ],
         "access": {
           "number": 36,
           "classification": "EXCLUDED_NONPASSENGER",
@@ -399420,6 +399467,7 @@
       ],
       "status": "EXCLUDED",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "상시 공개 여객 운행이 확인되지 않은 비행장 전용선; 최신 OSM 명칭/운영주체 확인, 현행 일반 여객 운행의 공식 근거 미확보",
       "tests": [
@@ -405873,6 +405921,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -405937,7 +405986,9 @@
           "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:QUARANTINED_UNKNOWN"
+        ],
         "access": {
           "number": 38,
           "classification": "QUARANTINED_UNKNOWN",
@@ -407278,6 +407329,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "노선·운영기관·영업 구간 식별 미완료; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -411336,6 +411388,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -417136,6 +417189,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -419309,6 +419363,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -419618,10 +419673,12 @@
         "reviewedOn": "2026-10-17",
         "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
       },
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 실제 열차의 전체 정차 패턴과 기존 동일 방향 선로로 복구. 운행일 일부만 존재하므로 전 요일 시간표·승강장·방향·배포 승인은 미완료.",
       "tests": [
-        "Source validation only; no complete service evidence"
+        "tools/test-kr-service-reconstruction.cjs",
+        "tools/test-kr-timetable-bindings.cjs"
       ],
       "snapshotMemberCount": 2
     },
@@ -419796,6 +419853,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -419969,6 +420027,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -420029,28 +420088,23 @@
         ]
       },
       "after": {
-        "sourceAssemblable": false,
-        "sourceStopCount": 1,
-        "assemblyError": "UNRESOLVED_IMPORT_TOPOLOGY",
+        "sourceAssemblable": true,
+        "sourceStopCount": 4,
+        "assemblyError": null,
         "publicPlayable": false,
         "releaseApproved": false,
         "failureCodes": [
-          "AMBIGUOUS_ORIENTATION",
-          "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
         "releaseBlockers": [
-          "OFFICIAL_TIMETABLE_REQUIRED",
           "OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED",
-          "REVIEW_NOT_VALID_ON_DATE",
           "DISTANCE_NOT_VERIFIED",
           "VERIFIED_TRIP_REQUIRED",
           "STOP_METADATA_NOT_VERIFIED",
           "LINE_METADATA_NOT_VERIFIED",
           "STATION_METADATA_NOT_VERIFIED",
           "OPERATOR_NOT_VERIFIED",
-          "OPERATOR_LOGO_NOT_VERIFIED",
-          "UNRESOLVED_IMPORT_TOPOLOGY"
+          "OPERATOR_LOGO_NOT_VERIFIED"
         ],
         "access": {
           "number": 45,
@@ -420066,7 +420120,24 @@
           "name": "진접"
         }
       ],
-      "officialStopOrder": null,
+      "officialStopOrder": [
+        {
+          "officialStationCode": "0405",
+          "officialStationName": "진접"
+        },
+        {
+          "officialStationCode": "0406",
+          "officialStationName": "오남"
+        },
+        {
+          "officialStationCode": "0408",
+          "officialStationName": "별내별가람"
+        },
+        {
+          "officialStationCode": "0409",
+          "officialStationName": "불암산"
+        }
+      ],
       "memberWayReviews": [
         {
           "wayId": "850710258",
@@ -420119,22 +420190,6 @@
       ],
       "issues": [
         {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
           "toCoordinates": null,
@@ -420144,19 +420199,76 @@
         }
       ],
       "sourceURLs": [
-        "https://www.openstreetmap.org/relation/16665964"
+        "https://www.openstreetmap.org/relation/16665964",
+        "https://www.data.go.kr/data/15098251/fileData.do",
+        "https://nowon.kr/surakhyu/web/main/main"
       ],
       "changedPaths": [
         "data/kr/v2/relation-access-policy.json",
         "data/kr/v2/source/osm-62-20261017",
-        "data/kr/v2/services.json"
+        "data/kr/v2/services.json",
+        "data/kr/v2/service-reconstructions.json",
+        "tools/lib/kr-service-reconstruction.js",
+        "tools/import-kr-network.js"
       ],
-      "status": "NEEDS_RESEARCH",
-      "reconstructionEvidence": null,
-      "officialTimetableVerification": null,
-      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
+      "status": "PARTIAL",
+      "reconstructionEvidence": {
+        "donorServiceId": "kr-osm-service-13938877",
+        "sourceId": "seoulmetro-official-20260901",
+        "officialTripIds": [
+          "seoulmetro-official-20260901-train-6252",
+          "seoulmetro-official-20260901-train-6371",
+          "seoulmetro-official-20260901-train-6490"
+        ],
+        "reviewedOn": "2026-10-18",
+        "endpointNameCorrections": [
+          {
+            "endpoint": "destination",
+            "expectedSourceName": "당고개",
+            "officialName": "불암산",
+            "officialStationCode": "0409",
+            "stationId": "kr-osm-area-8713359",
+            "expectedStationCoordinates": {
+              "lat": 37.6695753,
+              "lon": 127.0784401
+            },
+            "referenceId": "kric-standard-32-row-434",
+            "referenceSha256": "c5f092f0840c7e04a7661f3f63f6d185123e185d18460711816dea3891455a33",
+            "referenceLineCode": "I1104",
+            "sourceId": "nowon-bulamsan-name-20261018",
+            "officialFile": "source/station-renames/nowon-bulamsan-20261018.html",
+            "officialSha256": "bbc7bedda599caffbcd9932de6faa6178de833c5567a7623e6954dba1c156a47",
+            "officialURL": "https://nowon.kr/surakhyu/web/main/main",
+            "expectedOfficialText": "4호선 불암산역(구 당고개역)",
+            "scope": "Explicit renamed station identity only. No track, platform or operational direction approval."
+          }
+        ],
+        "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+      },
+      "topologyCorrectionEvidence": null,
+      "officialTimetableVerification": {
+        "sourceId": "seoulmetro-official-20260901",
+        "status": "verified",
+        "scope": "Official complete calling pattern, source clocks and DAY/SAT/END groups only; not track/platform, holiday exceptions or release approval",
+        "calendarGroups": [
+          {
+            "label": "DAY",
+            "trains": 1
+          },
+          {
+            "label": "SAT",
+            "trains": 1
+          },
+          {
+            "label": "END",
+            "trains": 1
+          }
+        ]
+      },
+      "reason": "공식 실제 열차의 전체 정차 패턴·평일/토요일/휴일 대조 및 기존 동일 방향 선로로 복구. 예외 달력·승강장·방향·배포 승인은 미완료.",
       "tests": [
-        "Source validation only; no complete service evidence"
+        "tools/test-kr-service-reconstruction.cjs",
+        "tools/test-kr-timetable-bindings.cjs"
       ],
       "snapshotMemberCount": 2
     },
@@ -420355,6 +420467,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -420555,6 +420668,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -420816,10 +420930,12 @@
         "reviewedOn": "2026-10-17",
         "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
       },
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 실제 열차의 전체 정차 패턴과 기존 동일 방향 선로로 복구. 운행일 일부만 존재하므로 전 요일 시간표·승강장·방향·배포 승인은 미완료.",
       "tests": [
-        "Source validation only; no complete service evidence"
+        "tools/test-kr-service-reconstruction.cjs",
+        "tools/test-kr-timetable-bindings.cjs"
       ],
       "snapshotMemberCount": 2
     },
@@ -421057,6 +421173,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -421439,6 +421556,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -421673,6 +421791,7 @@
         "reviewedOn": "2026-10-17",
         "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
       },
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": {
         "sourceId": "seoulmetro-official-20260901",
         "status": "verified",
@@ -421694,7 +421813,8 @@
       },
       "reason": "공식 실제 열차의 전체 정차 패턴·평일/토요일/휴일 대조 및 기존 동일 방향 선로로 복구. 예외 달력·승강장·방향·배포 승인은 미완료.",
       "tests": [
-        "Source validation only; no complete service evidence"
+        "tools/test-kr-service-reconstruction.cjs",
+        "tools/test-kr-timetable-bindings.cjs"
       ],
       "snapshotMemberCount": 2
     },
@@ -421867,6 +421987,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -422067,10 +422188,12 @@
         "reviewedOn": "2026-10-17",
         "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
       },
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 실제 열차의 전체 정차 패턴과 기존 동일 방향 선로로 복구. 운행일 일부만 존재하므로 전 요일 시간표·승강장·방향·배포 승인은 미완료.",
       "tests": [
-        "Source validation only; no complete service evidence"
+        "tools/test-kr-service-reconstruction.cjs",
+        "tools/test-kr-timetable-bindings.cjs"
       ],
       "snapshotMemberCount": 2
     },
@@ -422292,6 +422415,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -422352,7 +422476,9 @@
           "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:EXCLUDED_NONPASSENGER"
+        ],
         "access": {
           "number": 55,
           "classification": "EXCLUDED_NONPASSENGER",
@@ -422506,6 +422632,7 @@
       ],
       "status": "EXCLUDED",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공개 여객 운행 근거가 없는 제철소 전용선; 최신 OSM 명칭/운영주체 확인, 현행 일반 여객 운행의 공식 근거 미확보",
       "tests": [
@@ -422567,7 +422694,9 @@
           "STOP_NOT_ON_ORDERED_TRACK",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:SPECIAL_AIRPORT_REVIEW"
+        ],
         "access": {
           "number": 56,
           "classification": "SPECIAL_AIRPORT_REVIEW",
@@ -422803,6 +422932,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -422864,7 +422994,9 @@
           "STOP_NOT_ON_ORDERED_TRACK",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:SPECIAL_AIRPORT_REVIEW"
+        ],
         "access": {
           "number": 57,
           "classification": "SPECIAL_AIRPORT_REVIEW",
@@ -423103,6 +423235,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -423224,6 +423357,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -429044,6 +429178,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -434848,6 +434983,7 @@
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
@@ -434915,7 +435051,9 @@
           "MISSING_TRACK",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
-        "releaseBlockers": [],
+        "releaseBlockers": [
+          "SOURCE_ACCESS_EXCLUDED:EXCLUDED_UNOPEN"
+        ],
         "access": {
           "number": 61,
           "classification": "EXCLUDED_UNOPEN",
@@ -435607,6 +435745,7 @@
       ],
       "status": "EXCLUDED",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": null,
       "officialTimetableVerification": null,
       "reason": "미개통 대전 도시철도 2호선",
       "tests": [
@@ -435656,7 +435795,7 @@
         }
       },
       "verifiedCurrentService": false,
-      "classification": "PASSENGER_SERVICE_RESEARCH",
+      "classification": "RESEARCH_PARTIAL_OPERATING_SERVICE",
       "before": {
         "assemblable": false,
         "error": "UNRESOLVED_IMPORT_TOPOLOGY",
@@ -435668,34 +435807,22 @@
         ]
       },
       "after": {
-        "sourceAssemblable": false,
+        "sourceAssemblable": true,
         "sourceStopCount": 2,
-        "assemblyError": "UNRESOLVED_IMPORT_TOPOLOGY",
+        "assemblyError": null,
         "publicPlayable": false,
         "releaseApproved": false,
         "failureCodes": [
-          "MISSING_MEMBER_WAY",
-          "DISCONNECTED_MEMBERS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
         "releaseBlockers": [
-          "OFFICIAL_TIMETABLE_REQUIRED",
-          "OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED",
-          "REVIEW_NOT_VALID_ON_DATE",
-          "DISTANCE_NOT_VERIFIED",
-          "VERIFIED_TRIP_REQUIRED",
-          "STOP_METADATA_NOT_VERIFIED",
-          "LINE_METADATA_NOT_VERIFIED",
-          "STATION_METADATA_NOT_VERIFIED",
-          "OPERATOR_NOT_VERIFIED",
-          "OPERATOR_LOGO_NOT_VERIFIED",
-          "UNRESOLVED_IMPORT_TOPOLOGY"
+          "SOURCE_ACCESS_EXCLUDED:RESEARCH_PARTIAL_OPERATING_SERVICE"
         ],
         "access": {
           "number": 62,
-          "classification": "PASSENGER_SERVICE_RESEARCH",
-          "passengerCandidate": true,
-          "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+          "classification": "RESEARCH_PARTIAL_OPERATING_SERVICE",
+          "passengerCandidate": false,
+          "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리."
         }
       },
       "sourceStopOrder": [
@@ -437365,41 +437492,6 @@
       ],
       "issues": [
         {
-          "code": "MISSING_MEMBER_WAY",
-          "wayId": "1491252314",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "1083915376",
-          "from": "4934729303",
-          "to": "8254184434",
-          "fromCoordinates": [
-            36.9961347,
-            126.9936395
-          ],
-          "toCoordinates": [
-            37.0015546,
-            126.9704802
-          ],
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
-          "code": "MISSING_MEMBER_WAY",
-          "wayId": "1491252314",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
           "toCoordinates": null,
@@ -437409,19 +437501,58 @@
         }
       ],
       "sourceURLs": [
-        "https://www.openstreetmap.org/relation/20500839"
+        "https://www.openstreetmap.org/relation/20500839",
+        "https://www.korail.com/com/userBoard.do?mode=list&schBcid=ticketTable",
+        "https://www.korail.com/file/cubedata/COMMON/jfile/202608/25/202608251a036890aa0430.xlsx"
       ],
       "changedPaths": [
         "data/kr/v2/relation-access-policy.json",
         "data/kr/v2/source/osm-62-20261017",
-        "data/kr/v2/services.json"
+        "data/kr/v2/services.json",
+        "js/korean-access-policy.js",
+        "js/korean-access-data.js",
+        "js/feature-flags.js",
+        "js/free-drive.js",
+        "js/route-editor.js",
+        "js/game.js",
+        "js/data-loader.js",
+        "data/kr/v2/topology-corrections.json",
+        "tools/lib/kr-topology-corrections.js",
+        "tools/test-kr-topology-corrections.cjs"
       ],
-      "status": "NEEDS_RESEARCH",
+      "status": "PARTIAL",
       "reconstructionEvidence": null,
+      "topologyCorrectionEvidence": {
+        "reason": "NON_RAIL_FACILITY_MEMBER",
+        "relationSha256": "13eee96e04de1bc3b58f9c24428609120912b0188082a579cc0eef1e7fa39cc9",
+        "replacedMember": {
+          "memberIndex": 19,
+          "wayId": "1491252314",
+          "sourceRole": "",
+          "sourceVersion": 1,
+          "facilitySourceId": "osm-62-geofabrik-20261017",
+          "facilitySha256": "85b785d41282f8087913286bdb24d2dffd82bb0de7446e3cd200d1fe418fbf05"
+        },
+        "replacementWays": [
+          {
+            "wayId": "503137626",
+            "sourceVersion": 15,
+            "sha256": "dd8dec0465f7f9fe22569b331aa8f89a85d269338265f82d80458f2df793f534"
+          },
+          {
+            "wayId": "503137627",
+            "sourceVersion": 16,
+            "sha256": "a0df6f975bd0b5c39803e1945f840f5bd8e7b1d2d398ef1c538bd6f61c3417ad"
+          }
+        ],
+        "method": "pinned-non-rail-closed-bridge-outline-replaced-by-existing-exact-node-contiguous-rail-ways",
+        "operationalDirectionVerified": false
+      },
       "officialTimetableVerification": null,
-      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
+      "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리.; source geometry만 조립 가능; 공식 운행표·방향·승강장 검증 미완료",
       "tests": [
-        "Source validation only; no complete service evidence"
+        "tools/test-kr-topology-corrections.cjs",
+        "tools/test-kr-access-policy.cjs"
       ],
       "snapshotMemberCount": 43
     }

@@ -53,7 +53,8 @@
     "audit:korea-legacy": "node tools/audit-kr-legacy-provenance.js && node tools/validate-kr-published-geometry.mjs && node --test tools/test-kr-geometry-gates.mjs",
     "audit:korea-legacy-rebuild": "node tools/build-korea-data.js",
     "import:korea-platforms": "python tools/import-kr-platforms.py",
-    "audit:korea-failures": "node tools/build-kr-failure-index.js"
+    "audit:korea-failures": "node tools/build-kr-failure-index.js",
+    "import:korea-intercity": "python tools/import-korail-conventional.py"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

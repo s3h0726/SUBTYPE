@@ -2,7 +2,7 @@
 
 기준 2026-10-18 · **INCOMPLETE**
 
-{"registeredServices":317,"sourceAssemblable":260,"remaining":57,"passengerResearch":46,"excludedOrQuarantined":11,"officialTimetablePatterns":52,"releaseApproved":0}
+{"registeredServices":317,"sourceAssemblable":262,"playableSourceCandidates":261,"unassemblableSourceServices":55,"remaining":56,"passengerResearch":44,"excludedOrQuarantined":12,"officialTimetablePatterns":53,"releaseApproved":0}
 
 실제 노선 수와 OSM relation 후보 수는 다르다. 아래 제외·보류 항목은 복구 성공으로 세지 않는다. 공식 시간표 패턴 일치는 선로·승강장·운행일 예외·배포 승인을 의미하지 않는다.
 
@@ -50,7 +50,6 @@
 | kr-osm-service-15833655 | 수도권 전철 1호선: 구로 → 청량리 | 구로 → 청량리 | PASSENGER_RESEARCH | DISCONNECTED_MEMBERS, DISCONNECTED_ORDERED_WAYS, STOP_NOT_ON_ORDERED_TRACK, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_MEMBER_CONTINUITY_UNRESOLVED, SOURCE_STOP_TRACK_OR_PLATFORM_MISMATCH | [OSM](https://www.openstreetmap.org/relation/15833655) |
 | kr-osm-service-16665961 | 수도권 전철 4호선: 금정 → 오이도 | 금정 → 오이도 | PASSENGER_RESEARCH | AMBIGUOUS_ORIENTATION, MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665961) |
 | kr-osm-service-16665962 | 수도권 전철 4호선: 오이도 → 금정 | 오이도 → 금정 | PASSENGER_RESEARCH | NON_PUBLIC_TRACK_REVIEW, AMBIGUOUS_ORIENTATION, MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665962) |
-| kr-osm-service-16665964 | 수도권 전철 4호선: 진접 → 당고개 | 진접 → 당고개 | PASSENGER_RESEARCH | AMBIGUOUS_ORIENTATION, MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665964) |
 | kr-osm-service-16665967 | 수도권 전철 4호선: 창동 → 사당 | 창동 → 사당 | PASSENGER_RESEARCH | MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665967) |
 | kr-osm-service-16665968 | 수도권 전철 4호선: 창동 → 오이도 | 창동 → 오이도 | PASSENGER_RESEARCH | MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665968) |
 | kr-osm-service-16665970 | 수도권 전철 4호선: 오이도 → 노원 | 오이도 → 노원 | PASSENGER_RESEARCH | NON_PUBLIC_TRACK_REVIEW, MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665970) |
@@ -64,7 +63,7 @@
 | kr-osm-service-18418132 | 대경선: 구미 → 경산 | 구미 → 경산 | PASSENGER_RESEARCH | NON_PUBLIC_TRACK_REVIEW, DISCONNECTED_MEMBERS, DISCONNECTED_ORDERED_WAYS, STOP_NOT_ON_ORDERED_TRACK, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_MEMBER_CONTINUITY_UNRESOLVED, SOURCE_STOP_TRACK_OR_PLATFORM_MISMATCH | [OSM](https://www.openstreetmap.org/relation/18418132) |
 | kr-osm-service-18505697 | 대경선: 경산 → 구미 | 경산 → 구미 | PASSENGER_RESEARCH | NON_PUBLIC_TRACK_REVIEW, DISCONNECTED_MEMBERS, DISCONNECTED_ORDERED_WAYS, STOP_NOT_ON_ORDERED_TRACK, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_MEMBER_CONTINUITY_UNRESOLVED, SOURCE_STOP_TRACK_OR_PLATFORM_MISMATCH | [OSM](https://www.openstreetmap.org/relation/18505697) |
 | kr-osm-service-20042681 | 대전 도시철도 2호선 | 미상 → 미상 | EXCLUDED_OR_QUARANTINED | MISSING_MEMBER_WAY, MISSING_ORDERED_STOPS, MISSING_TRACK, OFFICIAL_TIMETABLE_REQUIRED; EXCLUDED_UNOPEN, SOURCE_STOP_SEQUENCE_INCOMPLETE, NON_RAIL_FACILITY_MEMBER_REQUIRES_REAL_TRACK_SOURCE | [OSM](https://www.openstreetmap.org/relation/20042681) |
-| kr-osm-service-20500839 | 평택선 ITX 마음 | 평택역 → 안중역 | PASSENGER_RESEARCH | MISSING_MEMBER_WAY, DISCONNECTED_MEMBERS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_MEMBER_CONTINUITY_UNRESOLVED, NON_RAIL_FACILITY_MEMBER_REQUIRES_REAL_TRACK_SOURCE | [OSM](https://www.openstreetmap.org/relation/20500839) |
+| kr-osm-service-20500839 | 평택선 ITX 마음 | 평택역 → 안중역 | EXCLUDED_OR_QUARANTINED | OFFICIAL_TIMETABLE_REQUIRED; RESEARCH_PARTIAL_OPERATING_SERVICE, NON_RAIL_FACILITY_MEMBER_REQUIRES_REAL_TRACK_SOURCE | [OSM](https://www.openstreetmap.org/relation/20500839) |
 
 ## 오이도 승강장 방향 대조
 

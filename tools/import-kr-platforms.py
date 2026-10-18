@@ -42,7 +42,8 @@ def main():
              'license': '이용허락범위 제한 없음', 'licenseStatus': 'verified',
              'sha256': sha, 'bytes': len(raw), 'encoding': 'cp949', 'rows': len(rows),
              'filePaths': [RELATIVE], 'scope': 'Platform number and published direction; terminal turnback movements and track geometries are not provided'}
-    sources = [s for s in sources if s['id'] != SOURCE_ID] + [entry]
+    sources = [entry if s['id'] == SOURCE_ID else s for s in sources] + (
+        [] if any(s['id'] == SOURCE_ID for s in sources) else [entry])
     write('supplemental-sources', sources)
     print(json.dumps({'platformRows': len(references), 'sha256': sha, 'releaseApproved': 0}))
 

@@ -17,6 +17,7 @@ const ways=new Map(rawWays.map(w=>[w.id,w]));
 const corrections=JSON.parse(fs.readFileSync(path.join(base,'topology-corrections.json'),'utf8'));
 for(const c of corrections)if(!relations.some(r=>r.id===c.relationId))throw Error('MISSING_CORRECTED_RELATION:'+c.relationId);
 if(new Set(corrections.map(c=>c.relationId)).size!==corrections.length)throw Error('DUPLICATE_TOPOLOGY_CORRECTION');
+const facilityWays=new Map(JSON.parse(fs.readFileSync(path.join(base,'source/osm-62-20261017/osm-ways.json'),'utf8')).map(w=>[w.id,w]));
 const railRoutes=relations.filter(r=>r.tags.type==='route'&&['train','subway','light_rail','tram','monorail','funicular'].includes(r.tags.route));
 const railMembers=new Set(railRoutes.flatMap(r=>r.members.filter(m=>m.type==='n').map(m=>m.ref)));
 const stopBindingConfigs=JSON.parse(fs.readFileSync(path.join(base,'stop-position-bindings.json'),'utf8'));
@@ -50,7 +51,7 @@ for(const r of railRoutes){
  const masters=masterByRoute.get(r.id)||[],master=masters.length===1?masters[0]:r;
  const lineId='kr-osm-line-'+master.id,operatorId=opId(master.tags.operator||r.tags.operator);
  if(!lines.has(lineId))lines.set(lineId,{id:lineId,names:names(master.tags),operatorIds:operatorId?[operatorId]:[],color:master.tags.colour||r.tags.colour||null,regionId:null,mode:r.tags.route,status:'candidate',sourceRefs:[ref('relation',master.id)]});
- const {members:orderedWays,evidence:topologyCorrection}=applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id));
+ const {members:orderedWays,evidence:topologyCorrection}=applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id),facilityWays);
  const stopBinding=stopBindingConfigs.find(c=>c.relationId===r.id);
  const sourceStopMembers=stopBinding?require('./lib/kr-stop-bindings').bindSourceStops(r,new Map(rawNodes.map(n=>[n.id,n])),stopBinding,fs.readFileSync(path.join(base,stopBinding.officialFile))):r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
  const orientation=orientOrderedWays(orderedWays,ways,sourceStopMembers.map(m=>m.ref));
@@ -97,8 +98,9 @@ const reconstructionFile=path.join(base,'service-reconstructions.json');
 if(fs.existsSync(reconstructionFile)){
  const {reconstructService}=require('./lib/kr-service-reconstruction'),configs=JSON.parse(fs.readFileSync(reconstructionFile,'utf8')),trips=JSON.parse(fs.readFileSync(path.join(base,'seoulmetro-trip-candidates.json'),'utf8'));
  const maps={services:new Map(services.map(s=>[s.id,s])),stations,stops:new Map(stops.map(s=>[s.id,s])),geometry:new Map(geometry.map(g=>[g.id,g])),infrastructure:new Map(infrastructure.map(i=>[i.id,i]))};
+ const endpointEvidence={references:JSON.parse(fs.readFileSync(path.join(base,'official-station-reference.json'),'utf8')),files:new Map(configs.flatMap(c=>(c.endpointNameCorrections||[]).map(r=>[r.officialFile,fs.readFileSync(path.join(base,r.officialFile))])))};
  const snapshotHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'source/seoulmetro/timetable-20260901.csv'))).digest('hex');
- for(const config of configs){if(snapshotHash!==config.timetableSnapshotSha256)throw Error('STALE_OFFICIAL_RECONSTRUCTION_SNAPSHOT');const index=services.findIndex(s=>s.id===config.serviceId);if(index<0)throw Error('MISSING_RECONSTRUCTION_TARGET');services[index]=reconstructService(services[index],maps.services.get(config.donorServiceId),maps,config,relations.find(r=>'kr-osm-service-'+r.id===config.serviceId),trips)}
+ for(const config of configs){if(snapshotHash!==config.timetableSnapshotSha256)throw Error('STALE_OFFICIAL_RECONSTRUCTION_SNAPSHOT');const index=services.findIndex(s=>s.id===config.serviceId);if(index<0)throw Error('MISSING_RECONSTRUCTION_TARGET');services[index]=reconstructService(services[index],maps.services.get(config.donorServiceId),maps,config,relations.find(r=>'kr-osm-service-'+r.id===config.serviceId),trips,endpointEvidence)}
 }
 const accessPolicy=JSON.parse(fs.readFileSync(path.join(base,'relation-access-policy.json'),'utf8'));
 require('./lib/kr-access-policy').applyAccessPolicy(services,accessPolicy);
