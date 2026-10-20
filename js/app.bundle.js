@@ -2520,6 +2520,7 @@ $('#game-free-drive-tabs')?.addEventListener('click',event=>{
   const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode)return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state),index=tabs.findIndex(item=>item.id===button.dataset.freeDriveTab);if(index<0)return;
+  if(game.paused||game.phase!=='TYPING'){toast('도착이 끝난 뒤 환승할 수 있습니다.');return}
   if(!freeDrive?.selectRoute(tabs[index].id))toast('환승 노선의 역 좌표를 확인할 수 없습니다.');
 });
 document.addEventListener('keydown',event=>{
@@ -2527,6 +2528,7 @@ document.addEventListener('keydown',event=>{
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state);if(tabs.length<2)return;
   event.preventDefault();
+  if(game.paused||game.phase!=='TYPING'){toast('도착이 끝난 뒤 환승할 수 있습니다.');return}
   const active=tabs[(freeDriveTabIndex+(event.shiftKey?-1:1)+tabs.length)%tabs.length];
   if(freeDrive?.selectRoute(active.id))toast(`TAB · ${active.route?.line?.ko||active.route?.line?.ja||active.id}`);
   else toast('환승 노선의 역 좌표를 확인할 수 없습니다.');
