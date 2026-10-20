@@ -86,3 +86,14 @@
   #screen-game .game-free-drive-tabs button{flex-basis:140px;padding:6px}
   #screen-game .free-drive-station-buttons button{padding:9px}
 }
+
+/* Selecting a free-drive neighbor only arms the typing target, never skips typing. */
+#screen-game .free-drive-station-buttons button.is-target{
+  border-color:var(--route-color);
+  background:color-mix(in srgb,var(--route-color) 17%,var(--surface));
+  box-shadow:inset 0 0 0 1px var(--route-color);
+}
+#screen-game .free-drive-station-buttons button.is-target::after{
+  content:'입력할 역';grid-column:1/-1;color:var(--ink);
+  font-size:10px;font-weight:800;letter-spacing:.03em;
+}
