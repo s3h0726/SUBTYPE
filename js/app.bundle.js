@@ -2143,7 +2143,7 @@ function renderRoutes(){const filtered=filteredRoutes(),query=$('#route-search')
 // Surface missing verified express brands even if another express train loads.
 function renderExpressRecoveryAction(){
   if(countryId!=='jp'||category!=='limited-express'||famousExpressLoading)return;
-  if($('#route-search')?.value||operatorFilter!=='all')return;
+  if($('#route-search')?.value||operatorFilter!=='all'||!filteredRoutes().length)return;
   const missing=famousLimitedExpressBrandIds().filter(id=>!builtin.some(route=>route.id===id));
   if(!missing.length)return;
   $('#route-grid')?.insertAdjacentHTML('beforeend',`<div class="express-load-empty" role="status"><p>${missing.length}개 유명 특급은 검증된 실제 선형이 부족하거나 불러오기에 실패했습니다.</p><button type="button" data-retry-famous-express>누락된 특급 다시 확인 ↻</button></div>`);
