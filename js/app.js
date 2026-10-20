@@ -499,6 +499,33 @@ function freeDriveRouteTabs(state){
   const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[...linked,state.routeId];
   return [...new Set(ids)].map(id=>({id,route:(state.edges||[]).find(edge=>edge.routeId===id)?.route||freeDrive?.routes?.find(route=>route.id===id)||state.route}))
 }
+// Selecting a destination is not a movement command. The typing controller
+// alone may advance the train after the target station is fully entered.
+function paintFreeDriveTarget(){
+  const active=game?.freeDriveTarget;
+  document.querySelectorAll('#game-free-drive-options [data-free-to][data-free-route]').forEach(button=>{
+    const selected=!!active&&active.to===button.dataset.freeTo&&active.routeId===button.dataset.freeRoute;
+    button.classList.toggle('is-target',selected);
+    button.setAttribute('aria-pressed',String(selected));
+  });
+}
+function selectFreeDriveTarget(to,routeId){
+  if(!game?.freeDriveMode||!freeDrive)return false;
+  if(game.freeDriveAwaitingStart){toast('출발역을 먼저 입력해 주세요.');return false}
+  if(game.paused||game.phase!=='TYPING'){toast('역 도착이 끝난 뒤 다음 역을 선택하세요.');return false}
+  const previous=freeDrive.snapshot();
+  const desired=previous?.edges?.find(edge=>edge.to===to&&edge.routeId===routeId);
+  if(!desired){toast('현재 역에서 해당 노선으로 이동할 수 없습니다.');return false}
+  if(previous.routeId!==routeId&&!freeDrive.selectRoute(routeId)){
+    toast('환승 노선의 역 좌표를 확인할 수 없습니다.');return false;
+  }
+  const edge=freeDrive.snapshot()?.edges?.find(item=>item.to===to&&item.routeId===routeId);
+  const station=edge?.station||freeDrive.stationForRoute(to,routeId);
+  if(!edge||!station){toast('다음 역의 좌표와 역명 정보를 찾지 못했습니다.');return false}
+  game.setFreeDriveTypingTarget(edge,station);
+  paintFreeDriveTarget();
+  return true;
+}
 function renderGameFreeDriveOptions(state){
   const target=$('#game-free-drive-options'),tabs=$('#game-free-drive-tabs');if(!target||!tabs||!state)return;
   const routeTabs=freeDriveRouteTabs(state);if(!routeTabs.length)return;
@@ -511,6 +538,7 @@ function renderGameFreeDriveOptions(state){
   if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=typingEdge.station||freeDrive?.stationForRoute(typingEdge.to,typingEdge.routeId);if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
   target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=edge.station||freeDrive?.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(station?.ko||station?.ja||'다음 역')}</b><span>${escapeHtml(station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
+  paintFreeDriveTarget();
 }
 async function startFreeDrive(route){
   if(!route)return toast('자유주행을 시작할 노선을 선택해 주세요.');
@@ -604,8 +632,7 @@ document.addEventListener('click',e=>{
   const freeMove=e.target.closest('[data-free-to][data-free-route]');
   if(freeMove&&game?.freeDriveMode){
     e.preventDefault();
-    const moved=freeDrive?.moveTo(freeMove.dataset.freeTo,freeMove.dataset.freeRoute);
-    if(!moved)toast('다음 역으로 이동하지 못했습니다.');
+    selectFreeDriveTarget(freeMove.dataset.freeTo,freeMove.dataset.freeRoute);
     return
   }
   const create=e.target.closest('[data-action="custom-new"]');if(create){editor.createNew();go('custom-editor');return}const featured=e.target.closest('[data-feature-route]');if(featured){chooseRoute(featured.dataset.featureRoute);return}const card=e.target.closest('[data-library-route]');if(!card)return;const route=storage.routes().find(r=>r.id===card.dataset.libraryRoute);if(!route)return;if(e.target.closest('[data-library-play]'))openSetup(route);else if(e.target.closest('[data-library-free-drive]'))startFreeDrive(route);else if(e.target.closest('[data-library-edit]')){editor.loadRoute(route);go('custom-editor')}else if(e.target.closest('[data-library-delete]')&&confirm('이 노선을 삭제할까요?')){storage.deleteRoute(route.id);refreshRoutes();renderCustomLibrary();toast('노선을 삭제했습니다.')}});
