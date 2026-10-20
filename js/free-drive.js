@@ -80,7 +80,7 @@ export function drawNetworkCanvas(canvas,routes,{bounds=null,alpha=.28,transferN
 }
 
 export class FreeDrive{
-  constructor({onExit,onChange}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.onChange=onChange;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
+  constructor({onExit,onChange}={}){this.routes=[];this.graph=new Map;this.stationKeys=new WeakMap;this.jpStationClusters=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.onChange=onChange;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
   bind(){
     const handleEdge=e=>{const b=e.target.closest('[data-free-edge]');if(b)this.move(decodeURIComponent(b.dataset.freeEdge))};$('#free-drive-options')?.addEventListener('click',handleEdge);
     $('#free-drive-start-station')?.addEventListener('change',e=>this.restartAt(+e.target.value));
@@ -98,9 +98,27 @@ export class FreeDrive{
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
     }
     this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
-    this.graph=new Map;
+    this.graph=new Map;this.stationKeys=new WeakMap;this.jpStationClusters=new Map;
+    const nearbyKey=(station,route)=>{
+      const previous=this.stationKeys.get(station);if(previous)return previous;
+      let key=freeDriveStationKey(station);
+      const c=coords(station),name=normalize(station?.ja||station?.names?.ja||'');
+      if(route.countryId==='jp'&&c&&name){
+        const candidates=this.jpStationClusters.get(name)||[];
+        // Two operator platforms can straddle a grid boundary. Compare the
+        // surveyed station coordinates instead; never merge distant namesakes.
+        const existing=candidates.find(item=>{
+          const dx=(c[0]-item.coord[0])*111.2;
+          const dy=(c[1]-item.coord[1])*111.2*Math.cos(c[0]*Math.PI/180);
+          return Math.hypot(dx,dy)<=0.32;
+        });
+        if(existing)key=existing.key;
+        else{candidates.push({coord:c,key});this.jpStationClusters.set(name,candidates);}
+      }
+      this.stationKeys.set(station,key);return key;
+    };
     const ensure=(station,route,index)=>{
-      const key=freeDriveStationKey(station);if(!key)return null;let node=this.graph.get(key);
+      const key=nearbyKey(station,route);if(!key)return null;let node=this.graph.get(key);
       if(!node){node={key,station,coord:coords(station),edges:[],routeIds:new Set,stationsByRoute:new Map,coordsByRoute:new Map};this.graph.set(key,node)}
       node.routeIds.add(route.id);
       if(!node.stationsByRoute.has(route.id)){
@@ -112,18 +130,19 @@ export class FreeDrive{
     for(const route of this.routes){
       route.stations.forEach((s,i)=>ensure(s,route,i));
       for(let i=0;i<route.stations.length-1;i++){
-        const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
+        const a=route.stations[i],b=route.stations[i+1],an=ensure(a,route,i),bn=ensure(b,route,i+1),ak=this.stationKey(a),bk=this.stationKey(b);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
         if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
       if(route.loop&&route.stations.length>2){
-        const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
+        const a=route.stations.at(-1),b=route.stations[0],an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0),ak=this.stationKey(a),bk=this.stationKey(b);
         if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
       }
     }
     this.renderMap();
   }
+  stationKey(station){return this.stationKeys.get(station)||freeDriveStationKey(station)}
   start(route,index=0){
     if(!route?.stations?.length)return false;
     this.startRoute=route;this.currentRouteId=route.id;this.history=[];this.populateStartStations(route);
@@ -136,7 +155,7 @@ export class FreeDrive{
   updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
     if(!this.startRoute)return;
-    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=freeDriveStationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];
+    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=this.stationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];
     const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();this.emit();
   }
   move(encoded){
@@ -162,7 +181,7 @@ export class FreeDrive{
   }
   switchRouteAtCurrentStation(routeId){
     const node=this.current(),route=this.routes.find(r=>r.id===routeId);
-    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
+    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>this.stationKey(s)===this.currentKey))return false;
     this.currentRouteId=routeId;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
@@ -170,7 +189,7 @@ export class FreeDrive{
     const node=this.current(),route=this.routes.find(r=>r.id===this.currentRouteId)||this.startRoute;
     if(!node||!route)return null;
     const indexedStop=node.stationsByRoute?.get(this.currentRouteId);
-    const stationIndex=indexedStop?.index??Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
+    const stationIndex=indexedStop?.index??Math.max(0,route.stations.findIndex(station=>this.stationKey(station)===this.currentKey));
     return{node,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
   }
   emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
