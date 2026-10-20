@@ -54,7 +54,12 @@
     "audit:korea-legacy-rebuild": "node tools/build-korea-data.js",
     "import:korea-platforms": "python tools/import-kr-platforms.py",
     "audit:korea-failures": "node tools/build-kr-failure-index.js",
-    "import:korea-intercity": "python tools/import-korail-conventional.py"
+    "import:korea-intercity": "python tools/import-korail-conventional.py",
+    "build:hk": "node tools/build-hk-data.cjs",
+    "test:hk": "node --test tools/test-hk-network.cjs",
+    "audit:hk": "node tools/audit-hk-data.cjs",
+    "audit:hk:complete": "node tools/audit-hk-data.cjs --require-complete",
+    "preview:hk": "node tools/serve-preview.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

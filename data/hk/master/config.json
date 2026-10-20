@@ -1,0 +1,41 @@
+{
+  "country": {"id":"hk","isoCode":"HK","nameZhHant":"香港","nameEn":"Hong Kong","nameKo":"홍콩"},
+  "checkedAt":"2026-10-18",
+  "operators":[
+    {"id":"hk-mtr","names":{"ja":"港鐵","en":"MTR","ko":"홍콩 MTR"},"sourceUrl":"https://www.mtr.com.hk/en/customer/services/system_map.html","sourceType":"official","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"high"},
+    {"id":"hk-tramways","names":{"ja":"香港電車","en":"Hong Kong Tramways","ko":"홍콩 트램"},"sourceUrl":"https://www.hktramways.com/en/schedules-fares/","sourceType":"official","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"high"},
+    {"id":"hk-peak-tram","names":{"ja":"山頂纜車","en":"Peak Tram","ko":"피크트램"},"sourceUrl":"https://www.thepeak.com.hk/en/faq","sourceType":"official","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"unverified"}
+  ],
+  "mtrLines":{
+    "ISL":{"id":"hk-island","nameZhHant":"港島綫","nameEn":"Island Line","nameKo":"홍콩섬선","category":"subway"},
+    "TWL":{"id":"hk-tsuen-wan","nameZhHant":"荃灣綫","nameEn":"Tsuen Wan Line","nameKo":"췬완선","category":"subway"},
+    "KTL":{"id":"hk-kwun-tong","nameZhHant":"觀塘綫","nameEn":"Kwun Tong Line","nameKo":"쿤통선","category":"subway"},
+    "TKL":{"id":"hk-tseung-kwan-o","nameZhHant":"將軍澳綫","nameEn":"Tseung Kwan O Line","nameKo":"정관오선","category":"subway"},
+    "TCL":{"id":"hk-tung-chung","nameZhHant":"東涌綫","nameEn":"Tung Chung Line","nameKo":"퉁충선","category":"subway"},
+    "DRL":{"id":"hk-disneyland","nameZhHant":"迪士尼綫","nameEn":"Disneyland Resort Line","nameKo":"디즈니랜드 리조트 라인","category":"subway"},
+    "EAL":{"id":"hk-east-rail","nameZhHant":"東鐵綫","nameEn":"East Rail Line","nameKo":"동철선","category":"subway"},
+    "TML":{"id":"hk-tuen-ma","nameZhHant":"屯馬綫","nameEn":"Tuen Ma Line","nameKo":"튄마선","category":"subway"},
+    "SIL":{"id":"hk-south-island","nameZhHant":"南港島綫","nameEn":"South Island Line","nameKo":"남홍콩섬선","category":"subway"},
+    "AEL":{"id":"hk-airport-express","nameZhHant":"機場快綫","nameEn":"Airport Express","nameKo":"공항철도","category":"airport_rail"}
+  },
+  "lightRailTargetRefs":["505","507","610","614","614P","615","615P","705","706","751","751P","761P"],
+  "tramServices":[
+    {"id":"western-market-shau-kei-wan","from":"Western Market","to":"Shau Kei Wan"},
+    {"id":"happy-valley-shau-kei-wan","from":"Happy Valley","to":"Shau Kei Wan"},
+    {"id":"shek-tong-tsui-north-point","from":"Shek Tong Tsui","to":"North Point"},
+    {"id":"shek-tong-tsui-causeway-bay","from":"Shek Tong Tsui","to":"Causeway Bay"},
+    {"id":"kennedy-town-happy-valley","from":"Kennedy Town","to":"Happy Valley"},
+    {"id":"kennedy-town-shau-kei-wan","from":"Kennedy Town","to":"Shau Kei Wan"}
+  ],
+  "koreanNames":{
+    "SUN":{"nameKo":"써니베이","aliasesKo":[],"nameStatus":"verified","sourceUrl":"https://www.hongkongdisneyland.com/ko/guest-services/travel-information/","sourceType":"official-korean","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"high"},
+    "DIS":{"nameKo":"디즈니랜드 리조트","aliasesKo":[],"nameStatus":"verified","sourceUrl":"https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf","sourceType":"official-tourism-korean","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"medium","note":"Historical source used only for Korean spelling; current operation is separately checked against MTR CSV."}
+  },
+  "transfers":[],
+  "transferReviewQueue":[
+    {"from":"hk-mtr-HOK","to":"hk-mtr-CEN","type":"walkTransfer","status":"unverified","reason":"Separate stations; verify passage and fare restrictions before enabling TAB."},
+    {"from":"hk-mtr-TST","to":"hk-mtr-ETS","type":"outOfStationTransfer","status":"unverified","reason":"Verify exit/re-entry and fare rules."}
+  ],
+  "assets":[],
+  "releasePolicy":{"requireOfficialStops":true,"requireReviewedKoreanNames":true,"requireRealGeometry":true,"requireExplicitTransfers":true,"straightLineFallback":false,"logos":"Original assets only after source and redistribution review; otherwise text operator name."}
+}

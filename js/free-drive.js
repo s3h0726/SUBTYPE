@@ -1,3 +1,4 @@
+import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
 const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 // recommit-trigger: free-drive-move-fix-20261007
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
@@ -6,6 +7,7 @@ import{$,escapeHtml,normalize}from'./utils.js';
 const finite=n=>n!==null&&n!==undefined&&n!==''&&Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
 const freeDriveStationKey=s=>{
+  if(s?.countryId==='hk')return String(s.stationMasterId||s.sourceStationId||s.id);
   if(s?.krTransferKey)return s.krTransferKey;
   if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
@@ -21,7 +23,7 @@ const routeName=r=>r?.line?.ko||r?.line?.ja||r?.line?.en||r?.id||'노선';
 const stationName=s=>s?.ko||s?.ja||s?.romaji||s?.id||'역';
 const routeColor=r=>r?.lineColor||r?.color||'#73837b';
 const routeSegments=route=>{
-  if(route?.countryId==='kr'){
+  if(route?.countryId==='kr'||route?.countryId==='hk'){
     if(route.geometryReady!==true)return[];
     return(route.directedSegments||[]).filter(segment=>segment.geometryStatus==='ready').map(segment=>segment.geometry)
   }
@@ -97,7 +99,7 @@ export class FreeDrive{
       const transfer=KR_CONFIRMED_TRANSFERS.find(t=>t.region===region&&t.name===stop.ko&&t.routeIds.includes(route.id));
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
     }
-    this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
+    this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)&&!hongKongRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
     this.graph=new Map;
     const ensure=(station,route,index)=>{
       const key=freeDriveStationKey(station);if(!key)return null;let node=this.graph.get(key);
@@ -115,9 +117,9 @@ export class FreeDrive{
         const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
-        if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
+        if(route.countryId!=='hk'&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
-      if(route.loop&&route.stations.length>2){
+      if(route.countryId!=='hk'&&route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
         if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
       }

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSync}=require('child_process');
+execFileSync(process.execPath,[path.join(__dirname,'build-hk-data.cjs')],{stdio:'inherit'});
 // Fail before any Japanese generated files are touched by an incomplete release.
 execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js'),'--require-complete'],{stdio:'inherit'});
 require('./audit-canonical-jp-station-names.js');
@@ -35,7 +36,7 @@ const railSystem=JSON.parse(read('data/rail-system.json'));
 railSystem.throughServices=JSON.parse(read('data/through-services.json')).services;
 railSystem.audit={...(railSystem.audit||{}),throughServices:railSystem.throughServices.length};
 write('js/rail-system-data.js',`window.TRT_RAIL_SYSTEM=${JSON.stringify(railSystem)};\n`);
-const order=["utils.js","korean-access-data.js","korean-access-policy.js","feature-flags.js","rail-data-repository.js","asset-renderer.js","storage.js","typing.js","typing-model.js","statistics-engine.js","line-badge.js","station-sign-templates.js","transport-stop-templates.js","route-integrity.js","service-route-resolver.js","nex-route-resolver.js","famous-limited-express.js","korean-service-resolver.js","track-motion.js","route-renderer.js","game.js","free-drive.js","statistics.js","network-map.js","data-loader.js","route-editor.js","auth.js","app.js"];
+const order=["utils.js","hong-kong-policy.js","korean-access-data.js","korean-access-policy.js","feature-flags.js","rail-data-repository.js","asset-renderer.js","storage.js","typing.js","typing-model.js","statistics-engine.js","line-badge.js","station-sign-templates.js","transport-stop-templates.js","route-integrity.js","service-route-resolver.js","nex-route-resolver.js","famous-limited-express.js","korean-service-resolver.js","track-motion.js","route-renderer.js","game.js","free-drive.js","statistics.js","network-map.js","data-loader.js","route-editor.js","auth.js","app.js"];
 const source=order.map(file=>read(`js/${file}`)
   .replace(/\bimport(?=\s|\{)[^;]+;/g,'')
   .replace(/\bexport\s+/g,'')

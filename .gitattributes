@@ -10,3 +10,7 @@ js/app.bundle.js text eol=lf
 js/korean-service-resolver.js text eol=lf
 js/line-workspace-data.js text eol=lf
 js/japan-lite-index.js text eol=lf
+# Hong Kong source hashes and deterministic generated assets must survive checkout.
+data/hk/** text eol=lf
+data/hk/sources/** -text
+js/hong-kong-index-data.js text eol=lf
