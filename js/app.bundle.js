@@ -2235,7 +2235,7 @@ function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(choice.kind==='fallback'&&String(choice.id||'').startsWith('practice:')&&route.countryId==='jp'){
     const stops=(route.stations||[]).map(station=>station.id);
     if(stops.length<2||!Array.isArray(route.geometry)||route.geometry.length<2)throw new Error('노선 연습에 필요한 실제 선로가 없습니다.');
-    const service={id:'local',nameJa:'路線練習',nameKo:'노선 따라 타이핑 (시간표 미검증)',nameEn:'Route typing practice',stops};
+    const service={id:'local',nameJa:'路線練習',nameKo:'일반 주행 (시간표 미검증)',nameEn:'Route typing practice',stops};
     return{route:{...route,services:[service]},service,direction:choice.direction||'forward',pattern:null,trainType:null,destinationStationId:choice.destinationId,trainTypeContexts:[]};
   }
   if(route.countryId==='kr'&&route.schemaVersion===2)return resolveKoreanVerifiedChoice(choice,route);
@@ -2326,7 +2326,7 @@ function actualOperatingChoices(route){
     return ['forward','reverse'].map(direction=>({kind:'fallback',id:'practice:'+direction,
       originId:String(direction==='forward'?first.id:last.id),destinationId:String(direction==='forward'?last.id:first.id),
       originNames:direction==='forward'?first:last,destinationNames:direction==='forward'?last:first,
-      trainType:null,journeyId:null,patternId:null,patternName:{ko:'노선 따라 타이핑 (운행계통 미검증)'},
+      trainType:null,journeyId:null,patternId:null,patternName:{ko:'일반 주행 (운행계통 미검증)'},
       throughServiceId:null,direction}));
   }
   // No synthetic train service is offered without a physical route to type.
