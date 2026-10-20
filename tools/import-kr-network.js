@@ -14,6 +14,9 @@ const rawNodes=read('osm-nodes'),rawWays=read('osm-ways'),relations=read('osm-re
 const names=t=>({ko:t['name:ko']||t.name||'',en:t['name:en']||''});
 const sourceId=manifest.id,ref=(kind,id)=>({sourceId,kind,id:String(id)});
 const ways=new Map(rawWays.map(w=>[w.id,w]));
+const corridorConfig=JSON.parse(fs.readFileSync(path.join(base,'corridor-repairs.json'),'utf8'));
+if(corridorConfig.relations.some(c=>!relations.some(r=>r.id===c.relationId)))throw Error('MISSING_CORRIDOR_RELATION');
+const reviewCorridor=require('./lib/kr-corridor-repairs').createCorridorReviewer(ways,corridorConfig,new Map(corridorConfig.segments.map(s=>[s.sourceFile,fs.readFileSync(path.join(base,s.sourceFile))])));
 const corrections=JSON.parse(fs.readFileSync(path.join(base,'topology-corrections.json'),'utf8'));
 for(const c of corrections)if(!relations.some(r=>r.id===c.relationId))throw Error('MISSING_CORRECTED_RELATION:'+c.relationId);
 if(new Set(corrections.map(c=>c.relationId)).size!==corrections.length)throw Error('DUPLICATE_TOPOLOGY_CORRECTION');
@@ -56,12 +59,14 @@ for(const r of railRoutes){
  const lineId='kr-osm-line-'+master.id,operatorId=opId(master.tags.operator||r.tags.operator);
  if(!lines.has(lineId))lines.set(lineId,{id:lineId,names:names(master.tags),operatorIds:operatorId?[operatorId]:[],color:master.tags.colour||r.tags.colour||null,regionId:null,mode:r.tags.route,status:'candidate',sourceRefs:[ref('relation',master.id)]});
  const memberRepair=memberRepairs.find(c=>c.relationId===r.id);
+ const corridor=reviewCorridor(r);
  const supplement=trackSupplements.find(c=>c.relationId===r.id);
+ if(corridor&&(supplement||memberRepair||corrections.some(c=>c.relationId===r.id)))throw Error('OVERLAPPING_CORRIDOR_REPAIR');
  if(supplement&&(memberRepair||corrections.some(c=>c.relationId===r.id)))throw Error('OVERLAPPING_TRACK_SUPPLEMENTS');
  const supplemented=supplement?require('./lib/kr-track-supplements').supplementSourceTrack(r,ways,new Map(rawNodes.map(n=>[n.id,n])),supplement,{wayFiles:new Map(supplement.insertions.map(p=>[p.sourceFile,fs.readFileSync(path.join(base,p.sourceFile))])),sources:JSON.parse(fs.readFileSync(path.join(base,'supplemental-sources.json'),'utf8')),workbook:fs.readFileSync(path.join(base,supplement.officialPattern.workbookFile)),researchBytes:fs.readFileSync(path.join(base,'korail-ktx-research.json'))}):null;
  if(memberRepair&&corrections.some(c=>c.relationId===r.id))throw Error('OVERLAPPING_SOURCE_CORRECTIONS');
  const repaired=memberRepair?require('./lib/kr-source-member-repairs').repairSourceMembers(r,ways,new Map(rawNodes.map(n=>[n.id,n])),memberRepair,{sources:JSON.parse(fs.readFileSync(path.join(base,'supplemental-sources.json'),'utf8')),workbook:fs.readFileSync(path.join(base,memberRepair.officialStopOrder.workbookFile)),researchBytes:fs.readFileSync(path.join(base,'korail-commuter-research.json'))}):null;
- const {members:orderedWays,evidence:topologyCorrection}=supplemented?{members:supplemented.members}:repaired?{members:repaired.members}:applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id),facilityWays);
+ const {members:orderedWays,evidence:topologyCorrection}=corridor?{members:corridor.members}:supplemented?{members:supplemented.members}:repaired?{members:repaired.members}:applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id),facilityWays);
  const stopBinding=stopBindingConfigs.find(c=>c.relationId===r.id);
  const sourceStopMembers=stopBinding?require('./lib/kr-stop-bindings').bindSourceStops(r,new Map(rawNodes.map(n=>[n.id,n])),stopBinding,fs.readFileSync(path.join(base,stopBinding.officialFile))):repaired?.stops||r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
  const orientation=orientOrderedWays(orderedWays,ways,sourceStopMembers.map(m=>m.ref));
@@ -93,7 +98,8 @@ for(const r of railRoutes){
  if(members.length<2)issues.push({code:'MISSING_ORDERED_STOPS'});
  if(!paths.length)issues.push({code:'MISSING_TRACK'});
  issues.push({code:'OFFICIAL_TIMETABLE_REQUIRED'});
- services.push({id:'kr-osm-service-'+r.id,passengerLineId:lineId,names:names(r.tags),operatorIds:operatorId?[operatorId]:[],kind:r.tags.service||r.tags.route,directionId:'osm-relation-'+r.id,paths,stops:serviceStops,osmFrom:r.tags.from||null,osmTo:r.tags.to||null,status:'candidate',sourceRefs:[ref('relation',r.id)],...(topologyCorrection?{topologyCorrection}:{}),...(repaired?{sourceMemberRepair:repaired.evidence}:{}),...(supplemented?{trackSupplement:supplemented.evidence}:{}),...(stopBinding?{stopPositionBinding:{sourceId:stopBinding.sourceId,relationId:r.id,bindings:stopBinding.bindings,reviewedOn:stopBinding.reviewedOn}}:{}),issues});
+ if(corridor)issues.push({code:corridor.evidence.requiredIssue,sourceId:corridor.evidence.sourceId});
+ services.push({id:'kr-osm-service-'+r.id,passengerLineId:lineId,names:names(r.tags),operatorIds:operatorId?[operatorId]:[],kind:r.tags.service||r.tags.route,directionId:'osm-relation-'+r.id,paths,stops:serviceStops,osmFrom:r.tags.from||null,osmTo:r.tags.to||null,status:'candidate',sourceRefs:[ref('relation',r.id)],...(topologyCorrection?{topologyCorrection}:{}),...(repaired?{sourceMemberRepair:repaired.evidence}:{}),...(supplemented?{trackSupplement:supplemented.evidence}:{}),...(corridor?{corridorRepair:corridor.evidence}:{}),...(stopBinding?{stopPositionBinding:{sourceId:stopBinding.sourceId,relationId:r.id,bindings:stopBinding.bindings,reviewedOn:stopBinding.reviewedOn}}:{}),issues});
 }
 // Stop-area groups are transfer relationships, never automatic physical merges.
 for(const group of relations.filter(r=>r.tags.public_transport==='stop_area_group')){

@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-18",
+  "asOf": "2026-10-20",
   "status": "INCOMPLETE",
   "scope": "Non-playable source candidates: unassemblable geometry or access quarantine; not a count of actual passenger lines or release-approved services",
   "counts": {
@@ -64,6 +64,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -353,6 +354,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -413,6 +415,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -589,6 +592,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -665,6 +669,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -1327,6 +1332,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -1653,6 +1659,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -2055,6 +2062,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -2454,6 +2462,7 @@
         "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
       },
       "causes": [
+        "PHYSICAL_CORRIDOR_REPAIR_REQUIRES_COMPLETE_CALL_PATTERN",
         "SOURCE_STOP_SEQUENCE_INCOMPLETE",
         "SOURCE_MEMBER_CONTINUITY_UNRESOLVED",
         "NON_RAIL_FACILITY_MEMBER_REQUIRES_REAL_TRACK_SOURCE"
@@ -2937,24 +2946,58 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": {
+        "sourceId": "osm-reviewed-corridors-20261020",
+        "reviewedOn": "2026-10-20",
+        "relationSha256": "42b884ff871c813be66d752a9bc0b5bc3a66fcbc7dad7dea9e96eeb456b552ae",
+        "insertions": [
+          {
+            "sourceIndex": 87,
+            "beforeWayId": "347898819",
+            "beforeWaySha256": "130f718eb565dfe17854f6b3ac266b72a140b4463443223aa4f84d3130af93ff",
+            "afterWayId": "842102732",
+            "afterWaySha256": "f91b79eb7809ad14a5e27022aa34d239e0e2e1298506371d3112ebd792448f1b",
+            "segmentId": "kr-reviewed-mainline-589620789",
+            "wayId": "589620789",
+            "sourceFile": "source/osm-way-reviews-20261020/way-589620789.json",
+            "fileSha256": "975e787f4adf52c8f0ad08b671ef4702167a5812fdfbe7d5f3e48468fdb42679",
+            "url": "https://api.openstreetmap.org/api/0.6/way/589620789/full.json",
+            "reverse": true,
+            "joinNodeIds": [
+              "5630336435",
+              "5630336430"
+            ],
+            "joinCoordinates": [
+              [
+                35.2493511,
+                128.429511
+              ],
+              [
+                35.2492673,
+                128.4218044
+              ]
+            ],
+            "turnDegrees": [
+              0.05806759113063938,
+              1.334609349639293
+            ]
+          }
+        ],
+        "sourceTrackContiguous": false,
+        "originalStopMembers": [
+          {
+            "type": "n",
+            "ref": "2389073410",
+            "role": "stop"
+          }
+        ],
+        "operatingPatternVerified": false,
+        "releaseApproved": false,
+        "requiredIssue": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+        "scope": "Partial exact-node source mainline continuity only. Original rail members and stop members are preserved; passenger calling order, platforms, operating days and release remain unverified."
+      },
       "trainBrandReview": null,
       "issues": [
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "842102732",
-          "from": "5630336435",
-          "to": "5630336430",
-          "fromCoordinates": [
-            35.2493511,
-            128.429511
-          ],
-          "toCoordinates": [
-            35.2492673,
-            128.4218044
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
         {
           "code": "DISCONNECTED_MEMBERS",
           "wayId": "585624965",
@@ -3037,7 +3080,7 @@
         },
         {
           "code": "DISCONNECTED_ORDERED_WAYS",
-          "wayId": "842102732",
+          "wayId": "585624965",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -3052,6 +3095,14 @@
         },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
+          "fromCoordinates": null,
+          "toCoordinates": null,
+          "stopCoordinates": null,
+          "stopTags": null
+        },
+        {
+          "code": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+          "sourceId": "osm-reviewed-corridors-20261020",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -3140,6 +3191,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -4448,6 +4500,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -5186,6 +5239,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -5481,6 +5535,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -6249,6 +6304,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -6449,6 +6505,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -6745,6 +6802,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -7628,6 +7686,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -7817,6 +7876,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -7977,6 +8037,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -8787,6 +8848,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -8891,6 +8953,7 @@
         "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
       },
       "causes": [
+        "PHYSICAL_CORRIDOR_REPAIR_REQUIRES_COMPLETE_CALL_PATTERN",
         "SOURCE_MEMBER_CONTINUITY_UNRESOLVED"
       ],
       "relationUrl": "https://www.openstreetmap.org/relation/10882384",
@@ -9479,40 +9542,171 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": {
+        "sourceId": "osm-reviewed-corridors-20261020",
+        "reviewedOn": "2026-10-20",
+        "relationSha256": "ce6161656c7217a06cb23a1d672f157e5b735d29ac707ff40efd9e4555c24651",
+        "insertions": [
+          {
+            "sourceIndex": 94,
+            "beforeWayId": "575162605",
+            "beforeWaySha256": "5e094fbab557f7e6a603b4ffec2b13a76f266b05c3ff26ef7718da27656d7ede",
+            "afterWayId": "575162610",
+            "afterWaySha256": "b6ffffafaaa839a0fce88d55b8f905d19f1a1545ef5632d67674ca1be5b73f6e",
+            "segmentId": "kr-reviewed-mainline-549101462",
+            "wayId": "549101462",
+            "sourceFile": "source/osm-way-reviews-20261020/way-549101462.json",
+            "fileSha256": "3bfbec919d2ac064dc776eba9441bf288316be55a4095fd4a650ffff665299c1",
+            "url": "https://api.openstreetmap.org/api/0.6/way/549101462/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "5305798657",
+              "5305798660"
+            ],
+            "joinCoordinates": [
+              [
+                36.9278045,
+                127.1260177
+              ],
+              [
+                36.9271771,
+                127.1260668
+              ]
+            ],
+            "turnDegrees": [
+              0.082985680191192,
+              0.048437443483879704
+            ]
+          },
+          {
+            "sourceIndex": 108,
+            "beforeWayId": "624334358",
+            "beforeWaySha256": "2a51bd4f1e992c3e0a2134a2fc4e673c725a61da4974fc8f111f51fdbba2971f",
+            "afterWayId": "571156258",
+            "afterWaySha256": "d009937ba98e179024af10ebc9c321ff510f8bd34d6c35bc48252983905804ae",
+            "segmentId": "kr-reviewed-mainline-1205424181",
+            "wayId": "1205424181",
+            "sourceFile": "source/osm-way-reviews-20261020/way-1205424181.json",
+            "fileSha256": "6852f93481fe70688ee8264bb2817e575abc9e420a55195fd1613d4a962de1d0",
+            "url": "https://api.openstreetmap.org/api/0.6/way/1205424181/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "4706656245",
+              "5490015837"
+            ],
+            "joinCoordinates": [
+              [
+                36.8292527,
+                127.1493435
+              ],
+              [
+                36.8234006,
+                127.1495641
+              ]
+            ],
+            "turnDegrees": [
+              1.539704913376519,
+              1.006597695001666
+            ]
+          },
+          {
+            "sourceIndex": 264,
+            "beforeWayId": "490932450",
+            "beforeWaySha256": "8205b954ee3b60783882a9e67a31958f52057800a401691f6a7e43e30cb36836",
+            "afterWayId": "32608550",
+            "afterWaySha256": "d0095f80cb3a232dda19f42b771ac974a0e3a85f9cb1d6e8ac9c30d4e801cc3f",
+            "segmentId": "kr-reviewed-mainline-490932445",
+            "wayId": "490932445",
+            "sourceFile": "source/osm-way-reviews-20261020/way-490932445.json",
+            "fileSha256": "45aa0e58f258a3c702c7936560d853ec955111de1ae59724144248f82b0632ae",
+            "url": "https://api.openstreetmap.org/api/0.6/way/490932445/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "4831003023",
+              "366687563"
+            ],
+            "joinCoordinates": [
+              [
+                36.1443479,
+                127.914006
+              ],
+              [
+                36.1443514,
+                127.9141055
+              ]
+            ],
+            "turnDegrees": [
+              6.38222186808051,
+              6.014656734346411
+            ]
+          },
+          {
+            "sourceIndex": 274,
+            "beforeWayId": "587016555",
+            "beforeWaySha256": "bdbbff8aacd56535ab329dd3480951c85493dd18151857a29c388804cabef3ee",
+            "afterWayId": "38560785",
+            "afterWaySha256": "ba2eba5d68f210af14b9d967d0c263237d3d7d93be7f35d3e9567609af1fe324",
+            "segmentId": "kr-reviewed-mainline-587016558",
+            "wayId": "587016558",
+            "sourceFile": "source/osm-way-reviews-20261020/way-587016558.json",
+            "fileSha256": "bf5f54ad560abd57d76f90e173940cf48b64eb03e22fcd3d4e5106b736fef366",
+            "url": "https://api.openstreetmap.org/api/0.6/way/587016558/full.json",
+            "reverse": true,
+            "joinNodeIds": [
+              "5607814857",
+              "5607814858"
+            ],
+            "joinCoordinates": [
+              [
+                36.1367214,
+                128.0646327
+              ],
+              [
+                36.1366365,
+                128.065564
+              ]
+            ],
+            "turnDegrees": [
+              4.170642993264256,
+              4.170719991168114
+            ]
+          }
+        ],
+        "sourceTrackContiguous": false,
+        "originalStopMembers": [
+          {
+            "type": "n",
+            "ref": "3834065866",
+            "role": "stop_entry_only"
+          },
+          {
+            "type": "n",
+            "ref": "5900362231",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7625848017",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7643376061",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "1768965940",
+            "role": "stop_exit_only"
+          }
+        ],
+        "operatingPatternVerified": false,
+        "releaseApproved": false,
+        "requiredIssue": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+        "scope": "Partial exact-node source mainline continuity only. Original rail members and stop members are preserved; passenger calling order, platforms, operating days and release remain unverified."
+      },
       "trainBrandReview": null,
       "issues": [
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "575162610",
-          "from": "5305798657",
-          "to": "5305798660",
-          "fromCoordinates": [
-            36.9278045,
-            127.1260177
-          ],
-          "toCoordinates": [
-            36.9271771,
-            127.1260668
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "571156258",
-          "from": "4706656245",
-          "to": "5490015837",
-          "fromCoordinates": [
-            36.8292527,
-            127.1493435
-          ],
-          "toCoordinates": [
-            36.8234006,
-            127.1495641
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
         {
           "code": "NON_PUBLIC_TRACK_REVIEW",
           "wayId": "406977115",
@@ -9562,360 +9756,8 @@
           "stopTags": null
         },
         {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608550",
-          "from": "4831003023",
-          "to": "366686232",
-          "fromCoordinates": [
-            36.1443479,
-            127.914006
-          ],
-          "toCoordinates": [
-            36.1389326,
-            128.0246972
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811867",
-          "from": "366687563",
-          "to": "661011761",
-          "fromCoordinates": [
-            36.1443514,
-            127.9141055
-          ],
-          "toCoordinates": [
-            36.1388091,
-            128.0273647
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811866",
-          "from": "366686232",
-          "to": "366686230",
-          "fromCoordinates": [
-            36.1389326,
-            128.0246972
-          ],
-          "toCoordinates": [
-            36.1386545,
-            128.0360138
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811865",
-          "from": "661011761",
-          "to": "661011797",
-          "fromCoordinates": [
-            36.1388091,
-            128.0273647
-          ],
-          "toCoordinates": [
-            36.1386307,
-            128.0371712
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "587016546",
-          "from": "366686230",
-          "to": "5607814846",
-          "fromCoordinates": [
-            36.1386545,
-            128.0360138
-          ],
-          "toCoordinates": [
-            36.1383876,
-            128.0481512
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837762",
-          "from": "661011797",
-          "to": "7682624201",
-          "fromCoordinates": [
-            36.1386307,
-            128.0371712
-          ],
-          "toCoordinates": [
-            36.1380274,
-            128.0538837
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837763",
-          "from": "5607814846",
-          "to": "7682624202",
-          "fromCoordinates": [
-            36.1383876,
-            128.0481512
-          ],
-          "toCoordinates": [
-            36.1380183,
-            128.0540059
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837766",
-          "from": "7682624201",
-          "to": "7682624205",
-          "fromCoordinates": [
-            36.1380274,
-            128.0538837
-          ],
-          "toCoordinates": [
-            36.1376076,
-            128.0582595
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837767",
-          "from": "7682624202",
-          "to": "7682624206",
-          "fromCoordinates": [
-            36.1380183,
-            128.0540059
-          ],
-          "toCoordinates": [
-            36.1375926,
-            128.0583835
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "587016555",
-          "from": "7682624205",
-          "to": "5607814857",
-          "fromCoordinates": [
-            36.1376076,
-            128.0582595
-          ],
-          "toCoordinates": [
-            36.1367214,
-            128.0646327
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "38560785",
-          "from": "7682624206",
-          "to": "456681432",
-          "fromCoordinates": [
-            36.1375926,
-            128.0583835
-          ],
-          "toCoordinates": [
-            36.134379,
-            128.0804988
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811883",
-          "from": "5607814858",
-          "to": "661012019",
-          "fromCoordinates": [
-            36.1366365,
-            128.065564
-          ],
-          "toCoordinates": [
-            36.1286946,
-            128.1177416
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811891",
-          "from": "456681432",
-          "to": "661012020",
-          "fromCoordinates": [
-            36.134379,
-            128.0804988
-          ],
-          "toCoordinates": [
-            36.1285605,
-            128.1186237
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "38560784",
-          "from": "661012019",
-          "to": "366686216",
-          "fromCoordinates": [
-            36.1286946,
-            128.1177416
-          ],
-          "toCoordinates": [
-            36.1283524,
-            128.1199928
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51810364",
-          "from": "661012020",
-          "to": "366686214",
-          "fromCoordinates": [
-            36.1285605,
-            128.1186237
-          ],
-          "toCoordinates": [
-            36.1280484,
-            128.1220436
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811889",
-          "from": "366686216",
-          "to": "366686205",
-          "fromCoordinates": [
-            36.1283524,
-            128.1199928
-          ],
-          "toCoordinates": [
-            36.1237039,
-            128.1449575
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872148",
-          "from": "366686214",
-          "to": "729534917",
-          "fromCoordinates": [
-            36.1280484,
-            128.1220436
-          ],
-          "toCoordinates": [
-            36.1202516,
-            128.1567295
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872146",
-          "from": "366686205",
-          "to": "729534930",
-          "fromCoordinates": [
-            36.1237039,
-            128.1449575
-          ],
-          "toCoordinates": [
-            36.1184298,
-            128.1628612
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608427",
-          "from": "729534917",
-          "to": "366686203",
-          "fromCoordinates": [
-            36.1202516,
-            128.1567295
-          ],
-          "toCoordinates": [
-            36.1175927,
-            128.1655538
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608428",
-          "from": "729534930",
-          "to": "366686202",
-          "fromCoordinates": [
-            36.1184298,
-            128.1628612
-          ],
-          "toCoordinates": [
-            36.1162021,
-            128.1701903
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872117",
-          "from": "366686203",
-          "to": "729534939",
-          "fromCoordinates": [
-            36.1175927,
-            128.1655538
-          ],
-          "toCoordinates": [
-            36.1155523,
-            128.1723366
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872124",
-          "from": "366686202",
-          "to": "729534939",
-          "fromCoordinates": [
-            36.1162021,
-            128.1701903
-          ],
-          "toCoordinates": [
-            36.1155523,
-            128.1723366
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
           "code": "DISCONNECTED_ORDERED_WAYS",
-          "wayId": "575162610",
+          "wayId": "406977096",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -9923,6 +9765,14 @@
         },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
+          "fromCoordinates": null,
+          "toCoordinates": null,
+          "stopCoordinates": null,
+          "stopTags": null
+        },
+        {
+          "code": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+          "sourceId": "osm-reviewed-corridors-20261020",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -9951,7 +9801,7 @@
         "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
       },
       "causes": [
-        "SOURCE_MEMBER_CONTINUITY_UNRESOLVED"
+        "PHYSICAL_CORRIDOR_REPAIR_REQUIRES_COMPLETE_CALL_PATTERN"
       ],
       "relationUrl": "https://www.openstreetmap.org/relation/11208903",
       "sourceWayIds": [
@@ -10346,376 +10196,68 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": {
+        "sourceId": "osm-reviewed-corridors-20261020",
+        "reviewedOn": "2026-10-20",
+        "relationSha256": "c9866cafc52ce24979bfa1b2f04bb10170960811fd912dcc2b64d00bfbe58d31",
+        "insertions": [
+          {
+            "sourceIndex": 279,
+            "beforeWayId": "490932450",
+            "beforeWaySha256": "8205b954ee3b60783882a9e67a31958f52057800a401691f6a7e43e30cb36836",
+            "afterWayId": "32608550",
+            "afterWaySha256": "d0095f80cb3a232dda19f42b771ac974a0e3a85f9cb1d6e8ac9c30d4e801cc3f",
+            "segmentId": "kr-reviewed-mainline-490932445",
+            "wayId": "490932445",
+            "sourceFile": "source/osm-way-reviews-20261020/way-490932445.json",
+            "fileSha256": "45aa0e58f258a3c702c7936560d853ec955111de1ae59724144248f82b0632ae",
+            "url": "https://api.openstreetmap.org/api/0.6/way/490932445/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "4831003023",
+              "366687563"
+            ],
+            "joinCoordinates": [
+              [
+                36.1443479,
+                127.914006
+              ],
+              [
+                36.1443514,
+                127.9141055
+              ]
+            ],
+            "turnDegrees": [
+              6.38222186808051,
+              6.014656734346411
+            ]
+          }
+        ],
+        "sourceTrackContiguous": true,
+        "originalStopMembers": [
+          {
+            "type": "n",
+            "ref": "3834065866",
+            "role": "stop_entry_only"
+          },
+          {
+            "type": "n",
+            "ref": "7643376062",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7682586051",
+            "role": "stop_exit_only"
+          }
+        ],
+        "operatingPatternVerified": false,
+        "releaseApproved": false,
+        "requiredIssue": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+        "scope": "Partial exact-node source mainline continuity only. Original rail members and stop members are preserved; passenger calling order, platforms, operating days and release remain unverified."
+      },
       "trainBrandReview": null,
       "issues": [
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608550",
-          "from": "4831003023",
-          "to": "366686232",
-          "fromCoordinates": [
-            36.1443479,
-            127.914006
-          ],
-          "toCoordinates": [
-            36.1389326,
-            128.0246972
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811867",
-          "from": "366687563",
-          "to": "661011761",
-          "fromCoordinates": [
-            36.1443514,
-            127.9141055
-          ],
-          "toCoordinates": [
-            36.1388091,
-            128.0273647
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811866",
-          "from": "366686232",
-          "to": "366686230",
-          "fromCoordinates": [
-            36.1389326,
-            128.0246972
-          ],
-          "toCoordinates": [
-            36.1386545,
-            128.0360138
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811865",
-          "from": "661011761",
-          "to": "661011797",
-          "fromCoordinates": [
-            36.1388091,
-            128.0273647
-          ],
-          "toCoordinates": [
-            36.1386307,
-            128.0371712
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "587016546",
-          "from": "366686230",
-          "to": "5607814846",
-          "fromCoordinates": [
-            36.1386545,
-            128.0360138
-          ],
-          "toCoordinates": [
-            36.1383876,
-            128.0481512
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837762",
-          "from": "661011797",
-          "to": "7682624201",
-          "fromCoordinates": [
-            36.1386307,
-            128.0371712
-          ],
-          "toCoordinates": [
-            36.1380274,
-            128.0538837
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837763",
-          "from": "5607814846",
-          "to": "7682624202",
-          "fromCoordinates": [
-            36.1383876,
-            128.0481512
-          ],
-          "toCoordinates": [
-            36.1380183,
-            128.0540059
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837766",
-          "from": "7682624201",
-          "to": "7682624205",
-          "fromCoordinates": [
-            36.1380274,
-            128.0538837
-          ],
-          "toCoordinates": [
-            36.1376076,
-            128.0582595
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837767",
-          "from": "7682624202",
-          "to": "7682624206",
-          "fromCoordinates": [
-            36.1380183,
-            128.0540059
-          ],
-          "toCoordinates": [
-            36.1375926,
-            128.0583835
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "587016555",
-          "from": "7682624205",
-          "to": "5607814857",
-          "fromCoordinates": [
-            36.1376076,
-            128.0582595
-          ],
-          "toCoordinates": [
-            36.1367214,
-            128.0646327
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "587016558",
-          "from": "7682624206",
-          "to": "5607814858",
-          "fromCoordinates": [
-            36.1375926,
-            128.0583835
-          ],
-          "toCoordinates": [
-            36.1366365,
-            128.065564
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "38560785",
-          "from": "5607814857",
-          "to": "456681432",
-          "fromCoordinates": [
-            36.1367214,
-            128.0646327
-          ],
-          "toCoordinates": [
-            36.134379,
-            128.0804988
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811883",
-          "from": "5607814858",
-          "to": "661012019",
-          "fromCoordinates": [
-            36.1366365,
-            128.065564
-          ],
-          "toCoordinates": [
-            36.1286946,
-            128.1177416
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811891",
-          "from": "456681432",
-          "to": "661012020",
-          "fromCoordinates": [
-            36.134379,
-            128.0804988
-          ],
-          "toCoordinates": [
-            36.1285605,
-            128.1186237
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "38560784",
-          "from": "661012019",
-          "to": "366686216",
-          "fromCoordinates": [
-            36.1286946,
-            128.1177416
-          ],
-          "toCoordinates": [
-            36.1283524,
-            128.1199928
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51810364",
-          "from": "661012020",
-          "to": "366686214",
-          "fromCoordinates": [
-            36.1285605,
-            128.1186237
-          ],
-          "toCoordinates": [
-            36.1280484,
-            128.1220436
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811889",
-          "from": "366686216",
-          "to": "366686205",
-          "fromCoordinates": [
-            36.1283524,
-            128.1199928
-          ],
-          "toCoordinates": [
-            36.1237039,
-            128.1449575
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872148",
-          "from": "366686214",
-          "to": "729534917",
-          "fromCoordinates": [
-            36.1280484,
-            128.1220436
-          ],
-          "toCoordinates": [
-            36.1202516,
-            128.1567295
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872146",
-          "from": "366686205",
-          "to": "729534930",
-          "fromCoordinates": [
-            36.1237039,
-            128.1449575
-          ],
-          "toCoordinates": [
-            36.1184298,
-            128.1628612
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608427",
-          "from": "729534917",
-          "to": "366686203",
-          "fromCoordinates": [
-            36.1202516,
-            128.1567295
-          ],
-          "toCoordinates": [
-            36.1175927,
-            128.1655538
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608428",
-          "from": "729534930",
-          "to": "366686202",
-          "fromCoordinates": [
-            36.1184298,
-            128.1628612
-          ],
-          "toCoordinates": [
-            36.1162021,
-            128.1701903
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872117",
-          "from": "366686203",
-          "to": "729534939",
-          "fromCoordinates": [
-            36.1175927,
-            128.1655538
-          ],
-          "toCoordinates": [
-            36.1155523,
-            128.1723366
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872124",
-          "from": "366686202",
-          "to": "729534939",
-          "fromCoordinates": [
-            36.1162021,
-            128.1701903
-          ],
-          "toCoordinates": [
-            36.1155523,
-            128.1723366
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
         {
           "code": "NON_PUBLIC_TRACK_REVIEW",
           "wayId": "553541473",
@@ -10733,15 +10275,15 @@
           "stopTags": null
         },
         {
-          "code": "DISCONNECTED_ORDERED_WAYS",
-          "wayId": "32608550",
+          "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
           "stopTags": null
         },
         {
-          "code": "OFFICIAL_TIMETABLE_REQUIRED",
+          "code": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+          "sourceId": "osm-reviewed-corridors-20261020",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -10770,6 +10312,7 @@
         "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
       },
       "causes": [
+        "PHYSICAL_CORRIDOR_REPAIR_REQUIRES_COMPLETE_CALL_PATTERN",
         "SOURCE_MEMBER_CONTINUITY_UNRESOLVED"
       ],
       "relationUrl": "https://www.openstreetmap.org/relation/11208904",
@@ -11325,6 +10868,148 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": {
+        "sourceId": "osm-reviewed-corridors-20261020",
+        "reviewedOn": "2026-10-20",
+        "relationSha256": "e51e16a6e241833e5b6382bbf7ea5db946ff8a05fe7f8bde41404007873b2a24",
+        "insertions": [
+          {
+            "sourceIndex": 278,
+            "beforeWayId": "490932450",
+            "beforeWaySha256": "8205b954ee3b60783882a9e67a31958f52057800a401691f6a7e43e30cb36836",
+            "afterWayId": "32608550",
+            "afterWaySha256": "d0095f80cb3a232dda19f42b771ac974a0e3a85f9cb1d6e8ac9c30d4e801cc3f",
+            "segmentId": "kr-reviewed-mainline-490932445",
+            "wayId": "490932445",
+            "sourceFile": "source/osm-way-reviews-20261020/way-490932445.json",
+            "fileSha256": "45aa0e58f258a3c702c7936560d853ec955111de1ae59724144248f82b0632ae",
+            "url": "https://api.openstreetmap.org/api/0.6/way/490932445/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "4831003023",
+              "366687563"
+            ],
+            "joinCoordinates": [
+              [
+                36.1443479,
+                127.914006
+              ],
+              [
+                36.1443514,
+                127.9141055
+              ]
+            ],
+            "turnDegrees": [
+              6.38222186808051,
+              6.014656734346411
+            ]
+          },
+          {
+            "sourceIndex": 288,
+            "beforeWayId": "587016555",
+            "beforeWaySha256": "bdbbff8aacd56535ab329dd3480951c85493dd18151857a29c388804cabef3ee",
+            "afterWayId": "38560785",
+            "afterWaySha256": "ba2eba5d68f210af14b9d967d0c263237d3d7d93be7f35d3e9567609af1fe324",
+            "segmentId": "kr-reviewed-mainline-587016558",
+            "wayId": "587016558",
+            "sourceFile": "source/osm-way-reviews-20261020/way-587016558.json",
+            "fileSha256": "bf5f54ad560abd57d76f90e173940cf48b64eb03e22fcd3d4e5106b736fef366",
+            "url": "https://api.openstreetmap.org/api/0.6/way/587016558/full.json",
+            "reverse": true,
+            "joinNodeIds": [
+              "5607814857",
+              "5607814858"
+            ],
+            "joinCoordinates": [
+              [
+                36.1367214,
+                128.0646327
+              ],
+              [
+                36.1366365,
+                128.065564
+              ]
+            ],
+            "turnDegrees": [
+              4.170642993264256,
+              4.170719991168114
+            ]
+          },
+          {
+            "sourceIndex": 450,
+            "beforeWayId": "604526957",
+            "beforeWaySha256": "41c6e82fecef7a3a888e279335ad32988b035fa6c4aab9451a4073dc0378450e",
+            "afterWayId": "465890503",
+            "afterWaySha256": "b9f763fb53293c69dce152cc193d28553d0f06dcfd12ac5c852aa665f9199313",
+            "segmentId": "kr-reviewed-mainline-465890504",
+            "wayId": "465890504",
+            "sourceFile": "source/osm-way-reviews-20261020/way-465890504.json",
+            "fileSha256": "8a1e511e66ee6d1d8ee59d630043ce4b724535afba25d15f30bbcae7de14d625",
+            "url": "https://api.openstreetmap.org/api/0.6/way/465890504/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "369874630",
+              "4607939133"
+            ],
+            "joinCoordinates": [
+              [
+                35.6126897,
+                128.7645781
+              ],
+              [
+                35.6120391,
+                128.7652432
+              ]
+            ],
+            "turnDegrees": [
+              0.12216444446158574,
+              2.102943017990291
+            ]
+          }
+        ],
+        "sourceTrackContiguous": false,
+        "originalStopMembers": [
+          {
+            "type": "n",
+            "ref": "3834065866",
+            "role": "stop_entry_only"
+          },
+          {
+            "type": "n",
+            "ref": "5773411573",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7643376062",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7682703896",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "4497184213",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "1763792832",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "1768990739",
+            "role": "stop_exit_only"
+          }
+        ],
+        "operatingPatternVerified": false,
+        "releaseApproved": false,
+        "requiredIssue": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+        "scope": "Partial exact-node source mainline continuity only. Original rail members and stop members are preserved; passenger calling order, platforms, operating days and release remain unverified."
+      },
       "trainBrandReview": null,
       "issues": [
         {
@@ -11364,358 +11049,6 @@
           "wayId": "664258650",
           "fromCoordinates": null,
           "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608550",
-          "from": "4831003023",
-          "to": "366686232",
-          "fromCoordinates": [
-            36.1443479,
-            127.914006
-          ],
-          "toCoordinates": [
-            36.1389326,
-            128.0246972
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811867",
-          "from": "366687563",
-          "to": "661011761",
-          "fromCoordinates": [
-            36.1443514,
-            127.9141055
-          ],
-          "toCoordinates": [
-            36.1388091,
-            128.0273647
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811866",
-          "from": "366686232",
-          "to": "366686230",
-          "fromCoordinates": [
-            36.1389326,
-            128.0246972
-          ],
-          "toCoordinates": [
-            36.1386545,
-            128.0360138
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811865",
-          "from": "661011761",
-          "to": "661011797",
-          "fromCoordinates": [
-            36.1388091,
-            128.0273647
-          ],
-          "toCoordinates": [
-            36.1386307,
-            128.0371712
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "587016546",
-          "from": "366686230",
-          "to": "5607814846",
-          "fromCoordinates": [
-            36.1386545,
-            128.0360138
-          ],
-          "toCoordinates": [
-            36.1383876,
-            128.0481512
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837762",
-          "from": "661011797",
-          "to": "7682624201",
-          "fromCoordinates": [
-            36.1386307,
-            128.0371712
-          ],
-          "toCoordinates": [
-            36.1380274,
-            128.0538837
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837763",
-          "from": "5607814846",
-          "to": "7682624202",
-          "fromCoordinates": [
-            36.1383876,
-            128.0481512
-          ],
-          "toCoordinates": [
-            36.1380183,
-            128.0540059
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837766",
-          "from": "7682624201",
-          "to": "7682624205",
-          "fromCoordinates": [
-            36.1380274,
-            128.0538837
-          ],
-          "toCoordinates": [
-            36.1376076,
-            128.0582595
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "822837767",
-          "from": "7682624202",
-          "to": "7682624206",
-          "fromCoordinates": [
-            36.1380183,
-            128.0540059
-          ],
-          "toCoordinates": [
-            36.1375926,
-            128.0583835
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "587016555",
-          "from": "7682624205",
-          "to": "5607814857",
-          "fromCoordinates": [
-            36.1376076,
-            128.0582595
-          ],
-          "toCoordinates": [
-            36.1367214,
-            128.0646327
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "38560785",
-          "from": "7682624206",
-          "to": "456681432",
-          "fromCoordinates": [
-            36.1375926,
-            128.0583835
-          ],
-          "toCoordinates": [
-            36.134379,
-            128.0804988
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811883",
-          "from": "5607814858",
-          "to": "661012019",
-          "fromCoordinates": [
-            36.1366365,
-            128.065564
-          ],
-          "toCoordinates": [
-            36.1286946,
-            128.1177416
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811891",
-          "from": "456681432",
-          "to": "661012020",
-          "fromCoordinates": [
-            36.134379,
-            128.0804988
-          ],
-          "toCoordinates": [
-            36.1285605,
-            128.1186237
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "38560784",
-          "from": "661012019",
-          "to": "366686216",
-          "fromCoordinates": [
-            36.1286946,
-            128.1177416
-          ],
-          "toCoordinates": [
-            36.1283524,
-            128.1199928
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51810364",
-          "from": "661012020",
-          "to": "366686214",
-          "fromCoordinates": [
-            36.1285605,
-            128.1186237
-          ],
-          "toCoordinates": [
-            36.1280484,
-            128.1220436
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "51811889",
-          "from": "366686216",
-          "to": "366686205",
-          "fromCoordinates": [
-            36.1283524,
-            128.1199928
-          ],
-          "toCoordinates": [
-            36.1237039,
-            128.1449575
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872148",
-          "from": "366686214",
-          "to": "729534917",
-          "fromCoordinates": [
-            36.1280484,
-            128.1220436
-          ],
-          "toCoordinates": [
-            36.1202516,
-            128.1567295
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872146",
-          "from": "366686205",
-          "to": "729534930",
-          "fromCoordinates": [
-            36.1237039,
-            128.1449575
-          ],
-          "toCoordinates": [
-            36.1184298,
-            128.1628612
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608427",
-          "from": "729534917",
-          "to": "366686203",
-          "fromCoordinates": [
-            36.1202516,
-            128.1567295
-          ],
-          "toCoordinates": [
-            36.1175927,
-            128.1655538
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "32608428",
-          "from": "729534930",
-          "to": "366686202",
-          "fromCoordinates": [
-            36.1184298,
-            128.1628612
-          ],
-          "toCoordinates": [
-            36.1162021,
-            128.1701903
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872117",
-          "from": "366686203",
-          "to": "729534939",
-          "fromCoordinates": [
-            36.1175927,
-            128.1655538
-          ],
-          "toCoordinates": [
-            36.1155523,
-            128.1723366
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "58872124",
-          "from": "366686202",
-          "to": "729534939",
-          "fromCoordinates": [
-            36.1162021,
-            128.1701903
-          ],
-          "toCoordinates": [
-            36.1155523,
-            128.1723366
-          ],
           "stopCoordinates": null,
           "stopTags": null
         },
@@ -11761,22 +11094,6 @@
         },
         {
           "code": "DISCONNECTED_MEMBERS",
-          "wayId": "465890503",
-          "from": "369874630",
-          "to": "4607939133",
-          "fromCoordinates": [
-            35.6126897,
-            128.7645781
-          ],
-          "toCoordinates": [
-            35.6120391,
-            128.7652432
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
           "wayId": "1481662390",
           "from": "1768990739",
           "to": "13588858807",
@@ -11793,7 +11110,7 @@
         },
         {
           "code": "DISCONNECTED_ORDERED_WAYS",
-          "wayId": "32608550",
+          "wayId": "1481662389",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -11801,6 +11118,14 @@
         },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
+          "fromCoordinates": null,
+          "toCoordinates": null,
+          "stopCoordinates": null,
+          "stopTags": null
+        },
+        {
+          "code": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+          "sourceId": "osm-reviewed-corridors-20261020",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -11829,6 +11154,7 @@
         "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
       },
       "causes": [
+        "PHYSICAL_CORRIDOR_REPAIR_REQUIRES_COMPLETE_CALL_PATTERN",
         "SOURCE_MEMBER_CONTINUITY_UNRESOLVED"
       ],
       "relationUrl": "https://www.openstreetmap.org/relation/11214688",
@@ -11985,6 +11311,102 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": {
+        "sourceId": "osm-reviewed-corridors-20261020",
+        "reviewedOn": "2026-10-20",
+        "relationSha256": "57f8a1ce39c909211045e7ce873d1b67ab2b41da81bf2a6025872339bfbd802e",
+        "insertions": [
+          {
+            "sourceIndex": 121,
+            "beforeWayId": "66053351",
+            "beforeWaySha256": "bbab2a6daeff3425d5b847ae775db4bf2f97ca3a5dcde291334a91b70bf0c978",
+            "afterWayId": "28364485",
+            "afterWaySha256": "86f016be30bd52aca3fdf407b8d3d021e3febdabea025bfe02a2a56962f60fd7",
+            "segmentId": "kr-reviewed-mainline-28364486",
+            "wayId": "28364486",
+            "sourceFile": "source/osm-way-reviews-20261020/way-28364486.json",
+            "fileSha256": "a6240eb51a22b760432a03e038a940395cde0c5785235bfd4d4463c14c4f5fae",
+            "url": "https://api.openstreetmap.org/api/0.6/way/28364486/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "311535173",
+              "311535183"
+            ],
+            "joinCoordinates": [
+              [
+                36.4057474,
+                127.4150493
+              ],
+              [
+                36.4037976,
+                127.4147808
+              ]
+            ],
+            "turnDegrees": [
+              5.041736787245132,
+              3.2663388854511197
+            ]
+          },
+          {
+            "sourceIndex": 127,
+            "beforeWayId": "104381564",
+            "beforeWaySha256": "7557f6448962f19e803d2e44c1677b4de4c3bb1b359b4b08998ada083ed9e2fa",
+            "afterWayId": "104381594",
+            "afterWaySha256": "b63d787ef36ce292821ecb940f0892f19a9fa1b9f16534805920d49d345f7c3b",
+            "segmentId": "kr-reviewed-mainline-104381572",
+            "wayId": "104381572",
+            "sourceFile": "source/osm-way-reviews-20261020/way-104381572.json",
+            "fileSha256": "bce153f28b8ea3c04d1e844c716f734adf26eb0100702fe2734bbcdd1ea87660",
+            "url": "https://api.openstreetmap.org/api/0.6/way/104381572/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "1204267422",
+              "277885665"
+            ],
+            "joinCoordinates": [
+              [
+                36.3842191,
+                127.4147417
+              ],
+              [
+                36.3837936,
+                127.4150625
+              ]
+            ],
+            "turnDegrees": [
+              8.17999878777821,
+              11.002890176709256
+            ]
+          }
+        ],
+        "sourceTrackContiguous": false,
+        "originalStopMembers": [
+          {
+            "type": "n",
+            "ref": "3370211065",
+            "role": "stop_entry_only"
+          },
+          {
+            "type": "n",
+            "ref": "7632207716",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7632207767",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7660654482",
+            "role": "stop"
+          }
+        ],
+        "operatingPatternVerified": false,
+        "releaseApproved": false,
+        "requiredIssue": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+        "scope": "Partial exact-node source mainline continuity only. Original rail members and stop members are preserved; passenger calling order, platforms, operating days and release remain unverified."
+      },
       "trainBrandReview": {
         "relationId": "11214688",
         "decision": "RETAIN_RAW_KTX_LABEL_PENDING_FULL_TRAIN_BINDING",
@@ -12104,38 +11526,6 @@
           "stopTags": null
         },
         {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "28364485",
-          "from": "311535173",
-          "to": "311535183",
-          "fromCoordinates": [
-            36.4057474,
-            127.4150493
-          ],
-          "toCoordinates": [
-            36.4037976,
-            127.4147808
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "104381594",
-          "from": "1204267422",
-          "to": "277885665",
-          "fromCoordinates": [
-            36.3842191,
-            127.4147417
-          ],
-          "toCoordinates": [
-            36.3837936,
-            127.4150625
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
           "code": "DISCONNECTED_ORDERED_WAYS",
           "wayId": "496314889",
           "fromCoordinates": null,
@@ -12145,6 +11535,14 @@
         },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
+          "fromCoordinates": null,
+          "toCoordinates": null,
+          "stopCoordinates": null,
+          "stopTags": null
+        },
+        {
+          "code": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+          "sourceId": "osm-reviewed-corridors-20261020",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -12173,6 +11571,7 @@
         "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
       },
       "causes": [
+        "PHYSICAL_CORRIDOR_REPAIR_REQUIRES_COMPLETE_CALL_PATTERN",
         "SOURCE_MEMBER_CONTINUITY_UNRESOLVED",
         "SOURCE_STOP_TRACK_OR_PLATFORM_MISMATCH"
       ],
@@ -12398,6 +11797,71 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": {
+        "sourceId": "osm-reviewed-corridors-20261020",
+        "reviewedOn": "2026-10-20",
+        "relationSha256": "be9d491198696401def31460aa1baed552d957ada15f37c39d38ad0924dc8e82",
+        "insertions": [
+          {
+            "sourceIndex": 145,
+            "beforeWayId": "554445198",
+            "beforeWaySha256": "572c5791bb28055733b1b0551cf0205ac2661dee4dcc6260345687b471d3f986",
+            "afterWayId": "554445202",
+            "afterWaySha256": "4030d88c164d6e1af4c8f2545e6b2d2e91ebbc126963184aa63fa551e36c0231",
+            "segmentId": "kr-reviewed-mainline-554445199",
+            "wayId": "554445199",
+            "sourceFile": "source/osm-way-reviews-20261020/way-554445199.json",
+            "fileSha256": "e4c43c18e90402b05a49af7bd3a32879cee8e1f39bd7244c87c406f04b5ec456",
+            "url": "https://api.openstreetmap.org/api/0.6/way/554445199/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "5350635013",
+              "5350635015"
+            ],
+            "joinCoordinates": [
+              [
+                36.339365,
+                127.0996876
+              ],
+              [
+                36.3390483,
+                127.0995499
+              ]
+            ],
+            "turnDegrees": [
+              0.957851180567254,
+              0.5243713636603398
+            ]
+          }
+        ],
+        "sourceTrackContiguous": false,
+        "originalStopMembers": [
+          {
+            "type": "n",
+            "ref": "7632207716",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7632207767",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "3370211065",
+            "role": "stop_entry_only"
+          },
+          {
+            "type": "n",
+            "ref": "7660654482",
+            "role": "stop"
+          }
+        ],
+        "operatingPatternVerified": false,
+        "releaseApproved": false,
+        "requiredIssue": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+        "scope": "Partial exact-node source mainline continuity only. Original rail members and stop members are preserved; passenger calling order, platforms, operating days and release remain unverified."
+      },
       "trainBrandReview": {
         "relationId": "11214689",
         "decision": "RETAIN_RAW_KTX_LABEL_PENDING_FULL_TRAIN_BINDING",
@@ -12517,22 +11981,6 @@
           "stopTags": null
         },
         {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "554445202",
-          "from": "5350635013",
-          "to": "5350635015",
-          "fromCoordinates": [
-            36.339365,
-            127.0996876
-          ],
-          "toCoordinates": [
-            36.3390483,
-            127.0995499
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
           "code": "DISCONNECTED_ORDERED_WAYS",
           "wayId": "496314889",
           "fromCoordinates": null,
@@ -12574,6 +12022,14 @@
           "toCoordinates": null,
           "stopCoordinates": null,
           "stopTags": null
+        },
+        {
+          "code": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+          "sourceId": "osm-reviewed-corridors-20261020",
+          "fromCoordinates": null,
+          "toCoordinates": null,
+          "stopCoordinates": null,
+          "stopTags": null
         }
       ],
       "facilityMembers": [],
@@ -12598,6 +12054,7 @@
         "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
       },
       "causes": [
+        "PHYSICAL_CORRIDOR_REPAIR_REQUIRES_COMPLETE_CALL_PATTERN",
         "SOURCE_MEMBER_CONTINUITY_UNRESOLVED",
         "SOURCE_STOP_TRACK_OR_PLATFORM_MISMATCH"
       ],
@@ -12823,6 +12280,71 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": {
+        "sourceId": "osm-reviewed-corridors-20261020",
+        "reviewedOn": "2026-10-20",
+        "relationSha256": "98878f99b327549b970c624bae6042097c5bd5735c35044b092947a3ed8dc9fa",
+        "insertions": [
+          {
+            "sourceIndex": 145,
+            "beforeWayId": "554445198",
+            "beforeWaySha256": "572c5791bb28055733b1b0551cf0205ac2661dee4dcc6260345687b471d3f986",
+            "afterWayId": "554445202",
+            "afterWaySha256": "4030d88c164d6e1af4c8f2545e6b2d2e91ebbc126963184aa63fa551e36c0231",
+            "segmentId": "kr-reviewed-mainline-554445199",
+            "wayId": "554445199",
+            "sourceFile": "source/osm-way-reviews-20261020/way-554445199.json",
+            "fileSha256": "e4c43c18e90402b05a49af7bd3a32879cee8e1f39bd7244c87c406f04b5ec456",
+            "url": "https://api.openstreetmap.org/api/0.6/way/554445199/full.json",
+            "reverse": false,
+            "joinNodeIds": [
+              "5350635013",
+              "5350635015"
+            ],
+            "joinCoordinates": [
+              [
+                36.339365,
+                127.0996876
+              ],
+              [
+                36.3390483,
+                127.0995499
+              ]
+            ],
+            "turnDegrees": [
+              0.957851180567254,
+              0.5243713636603398
+            ]
+          }
+        ],
+        "sourceTrackContiguous": false,
+        "originalStopMembers": [
+          {
+            "type": "n",
+            "ref": "7632207716",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "7632207767",
+            "role": "stop"
+          },
+          {
+            "type": "n",
+            "ref": "3370211065",
+            "role": "stop_entry_only"
+          },
+          {
+            "type": "n",
+            "ref": "7660654482",
+            "role": "stop"
+          }
+        ],
+        "operatingPatternVerified": false,
+        "releaseApproved": false,
+        "requiredIssue": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+        "scope": "Partial exact-node source mainline continuity only. Original rail members and stop members are preserved; passenger calling order, platforms, operating days and release remain unverified."
+      },
       "trainBrandReview": null,
       "issues": [
         {
@@ -12938,22 +12460,6 @@
           "stopTags": null
         },
         {
-          "code": "DISCONNECTED_MEMBERS",
-          "wayId": "554445202",
-          "from": "5350635013",
-          "to": "5350635015",
-          "fromCoordinates": [
-            36.339365,
-            127.0996876
-          ],
-          "toCoordinates": [
-            36.3390483,
-            127.0995499
-          ],
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
           "code": "DISCONNECTED_ORDERED_WAYS",
           "wayId": "496314889",
           "fromCoordinates": null,
@@ -12991,6 +12497,14 @@
         },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
+          "fromCoordinates": null,
+          "toCoordinates": null,
+          "stopCoordinates": null,
+          "stopTags": null
+        },
+        {
+          "code": "SOURCE_STOP_PATTERN_REVIEW_REQUIRED",
+          "sourceId": "osm-reviewed-corridors-20261020",
           "fromCoordinates": null,
           "toCoordinates": null,
           "stopCoordinates": null,
@@ -13720,6 +13234,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -14279,6 +13794,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -15021,6 +14537,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -15563,6 +15080,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -16408,6 +15926,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -16730,6 +16249,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -16978,6 +16498,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -17092,6 +16613,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -17312,6 +16834,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -17460,6 +16983,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -17766,6 +17290,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -18479,6 +18004,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -20253,6 +19779,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -20900,6 +20427,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -20955,6 +20483,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21019,6 +20548,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21068,6 +20598,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21118,6 +20649,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21180,6 +20712,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21244,6 +20777,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21301,6 +20835,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21353,6 +20888,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21447,6 +20983,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21535,6 +21072,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21615,6 +21153,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -21885,6 +21424,7 @@
         "operationalDirectionVerified": false,
         "releaseApproved": false
       },
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -22350,6 +21890,7 @@
         "operationalDirectionVerified": false,
         "releaseApproved": false
       },
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -22562,6 +22103,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {
@@ -22860,6 +22402,7 @@
       "officialStopOrder": null,
       "officialTimetableStatus": "NOT_VERIFIED",
       "sourceMemberRepair": null,
+      "corridorRepair": null,
       "trainBrandReview": null,
       "issues": [
         {

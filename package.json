@@ -6,7 +6,7 @@
     "import:osm-route": "node tools/import-osm-route-geometry.js",
     "inspect:osm-master": "node tools/inspect-osm-route-master.js",
     "validate:korea": "node tools/validate-korea-data.js",
-    "test:korea": "node --test tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs tools/test-kr-source-member-repairs.cjs tools/test-kr-track-supplements.cjs",
+    "test:korea": "node --test tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs tools/test-kr-source-member-repairs.cjs tools/test-kr-track-supplements.cjs tools/test-kr-corridor-repairs.cjs tools/test-kr-distances.cjs",
     "test:typing": "node tools/test-typing-model.js && node tools/test-ime-controller.js",
     "audit:tokyo-network": "node tools/build-tokyo-network.js",
     "audit:routes": "node tools/audit-route-integrity.js",
@@ -56,7 +56,8 @@
     "import:korea-commuter": "python tools/import-korail-commuter.py && python tools/test-korail-commuter.py",
     "import:korea-platforms": "python tools/import-kr-platforms.py",
     "audit:korea-failures": "node tools/build-kr-failure-index.js",
-    "import:korea-intercity": "python tools/import-korail-conventional.py"
+    "import:korea-intercity": "python tools/import-korail-conventional.py",
+    "import:korea-distances": "python tools/import-korail-distances.py && python tools/test-korail-distances.py && node tools/verify-kr-distances.js"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",
