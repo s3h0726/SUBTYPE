@@ -8,10 +8,15 @@ const context={console:{warn(){}}};context.globalThis=context;vm.createContext(c
 vm.runInContext(read('js/famous-limited-express.js').replace(/\bexport\s+/g,''),context,{filename:'js/famous-limited-express.js'});
 vm.runInContext(read('js/route-integrity.js').replace(/\bexport\s+/g,''),context,{filename:'js/route-integrity.js'});
 const branded=context.buildFamousLimitedExpressRoutes(routes);
+assert.equal(context.famousLimitedExpressBrandIds().length,5,'The canonical list must include all five express brands');
+for(const id of context.famousLimitedExpressBrandIds())assert(branded.some(route=>route.id===id),'Every expected express brand must be generated: '+id);
 assert.equal(branded.length,5,'Expected 5 separately playable famous train brands');
 const names=new Set(branded.map(x=>x.id));
 for(const id of ['skyliner','rapit','laview','romancecar','redarrow'])assert(names.has('famous-express-'+id),id+' not in brand cards');
 const choices=branded.flatMap(route=>context.famousLimitedExpressChoices(route).map(choice=>({route,choice})));
+const app=read('js/app.js');
+assert(app.includes('missingBefore=famousLimitedExpressBrandIds()'),'Partial load may not suppress retries');
+assert(app.includes('ensureFamousExpressRoutes({retry:true})'),'Express recovery button must really retry');
 assert.equal(choices.length,13,'2 Skyliner + 4 Rapi:t + 4 Laview + 1 Homeway + 2 Red Arrow');
 const report=[];
 for(const {route,choice} of choices){
