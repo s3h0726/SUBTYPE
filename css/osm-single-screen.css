@@ -280,3 +280,6 @@ body[data-current-screen="game"]{height:100dvh;min-height:0;overflow:hidden;over
 #screen-select .selected-service-evidence b{font-weight:800;white-space:nowrap}
 #screen-select .selected-service-evidence span{flex:1 1 150px;min-width:0;color:var(--muted);overflow-wrap:anywhere}
 #screen-select .selected-service-evidence a{color:var(--ink);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+
+#screen-select .selected-play:disabled{opacity:.55;filter:grayscale(.45);cursor:not-allowed;box-shadow:none}
+#screen-select .selected-play:disabled:hover{transform:none}
