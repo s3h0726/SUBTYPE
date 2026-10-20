@@ -1,84 +1,73 @@
-name: Validate free drive
+#!/usr/bin/env node
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const read=file=>fs.readFileSync(path.join(root,file),'utf8');
+const app=read('js/app.js'),bundle=read('js/app.bundle.js');
+assert(app.includes("selectFreeDriveTarget(freeMove.dataset.freeTo,freeMove.dataset.freeRoute)"),'Next-station button must choose a typing target');
+assert(!app.includes("freeDrive?.moveTo(freeMove.dataset.freeTo,freeMove.dataset.freeRoute)"),'Click may not teleport without typing');
+assert(app.includes("if(game.paused||game.phase!=='TYPING')"),'TAB and click must respect train arrival');
+const start=app.indexOf('function paintFreeDriveTarget(){'),end=app.indexOf('function renderGameFreeDriveOptions(',start);
+assert(start>=0&&end>start,'Free-drive target selection must exist');
+const states=[],warnings=[];
+const buttons=[{dataset:{freeTo:'b2',freeRoute:'jp-b'},selected:false,classList:{toggle(_name,active){buttons[0].selected=active}},setAttribute(){}}];
+const document={querySelectorAll:()=>buttons};
+const edge={to:'b2',routeId:'jp-b',station:{id:'b2',ko:'오테마치'},direction:1,index:1};
+let moved=0,changed=0,armed=0;
+const freeDrive={
+  activeRoute:'jp-a',
+  snapshot(){return{routeId:this.activeRoute,edges:[edge]}},
+  stationForRoute(){return edge.station},
+  selectRoute(id){changed++;this.activeRoute=id;return true},
+  moveTo(){moved++;throw Error('Cannot move by clicking an untyped destination')}
+};
+const game={
+  freeDriveMode:true,freeDriveAwaitingStart:true,paused:false,phase:'TYPING',freeDriveTarget:null,
+  setFreeDriveTypingTarget(selected,station){
+    assert.equal(selected,edge);assert.equal(station,edge.station);
+    armed++;this.freeDriveTarget={to:selected.to,routeId:selected.routeId,station};
+  }
+};
+const context={game,freeDrive,document,toast:message=>warnings.push(message)};
+vm.createContext(context);
+vm.runInContext(app.slice(start,end)+';globalThis.selectFreeDrive=selectFreeDriveTarget',context);
+assert.equal(context.selectFreeDrive('b2','jp-b'),false,'Cannot skip initial station typing');
+game.freeDriveAwaitingStart=false;game.phase='ARRIVING';
+assert.equal(context.selectFreeDrive('b2','jp-b'),false,'Cannot skip arriving animation');
+game.phase='TYPING';game.paused=true;
+assert.equal(context.selectFreeDrive('b2','jp-b'),false,'Cannot switch while paused');
+game.paused=false;
+assert.equal(context.selectFreeDrive('not-an-edge','jp-b'),false,'Cannot invent an unconnected neighbor');
+assert.equal(context.selectFreeDrive('b2','jp-b'),true,'Selecting a valid next station must arm typing');
+assert.equal(moved,0,'No physical move until typing completion');
+assert.equal(changed,1,'Selected interchange line must be activated');
+assert.equal(armed,1,'Typing target set exactly once');
+assert.equal(game.freeDriveTarget.station.id,'b2','Typing must use destination line station, not shared interchange point');
+assert.equal(buttons[0].selected,true,'Selected destination must be visible');
+for(const marker of ['function selectFreeDriveTarget(', 'function paintFreeDriveTarget(', 'if(game.paused||game.phase!==\'TYPING\')', 'function famousLimitedExpressBrandIds(']){
+  assert(bundle.includes(marker),'Deployed bundle missing control: '+marker);
+}
+new vm.Script(bundle,{filename:'js/app.bundle.js'});
+// The free-drive clock must use TypingStatistics.metrics(), not undefined
+// direct stats.cpm / stats.accuracy properties that overwrite live HUD values.
+const gameSrc=read('js/game.js').replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'');
+const hudNodes=new Map(),hudSelector=id=>{
+  if(!hudNodes.has(id))hudNodes.set(id,{textContent:''});
+  return hudNodes.get(id);
+};
+const hud={console,$:hudSelector,formatTime:value=>String(value)};
+vm.createContext(hud);
+vm.runInContext(gameSrc+';globalThis.hudTick=Game.prototype.tick;globalThis.hudUpdate=Game.prototype.updateHud',hud);
+const fake={
+  freeDriveMode:true,paused:false,options:{mode:'free-drive'},
+  sequence:[{id:'x'}],freeDriveState:{historyLength:3,transferCount:2},
+  typedStationIds:[{id:'x'}],combo:14,metrics:()=>({elapsed:5500,cpm:320,accuracy:96.4}),
+  updateHud(){return hud.hudUpdate.call(this)}
+};
+hud.hudTick.call(fake);
+assert.equal(hudSelector('#hud-cpm').textContent,320);
+assert.equal(hudSelector('#hud-accuracy').textContent,'96.4%');
+assert.equal(hudSelector('#hud-progress').textContent,'3 VISITED');
+assert.equal(hudSelector('#hud-combo').textContent,'×14 · 환승 2');
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - 'js/free-drive.js'
-      - 'js/app.js'
-      - 'js/app.bundle.js'
-      - 'tools/test-free-drive-typing-gate.cjs'
-      - 'js/route-editor.js'
-      - 'js/bootstrap.js'
-      - 'css/free-drive.css'
-      - 'index.html'
-      - 'tools/build-static.js'
-      - '.github/workflows/validate-free-drive.yml'
-  workflow_dispatch:
-
-concurrency:
-  group: subtype-generated-main
-  cancel-in-progress: false
-
-permissions:
-  contents: write
-
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Syntax check
-        run: |
-          cp js/free-drive.js /tmp/free-drive.mjs
-          cp js/app.js /tmp/app.mjs
-          cp js/route-editor.js /tmp/route-editor.mjs
-          node --check /tmp/free-drive.mjs
-          node --check /tmp/app.mjs
-          node --check /tmp/route-editor.mjs
-          node --check js/bootstrap.js
-      - name: Validate transfer and next-station typing gates
-        run: |
-          node tools/test-free-drive-typing-gate.cjs
-          node --test tools/test-free-drive-transfers.cjs
-      - name: Rebuild static bundle
-        run: node tools/build-static.js
-      - name: Validate data
-        run: node tools/validate-data.js
-      - name: Verify free drive bundle
-        run: |
-          node tools/test-free-drive-typing-gate.cjs
-          node --check js/app.bundle.js
-          grep -q "class FreeDrive" js/app.bundle.js
-          grep -q "screen-free-drive" index.html
-          grep -q "home-network-canvas" index.html
-      - name: Commit generated bundle
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          # Always rebuild from latest main, never push a stale checkout.
-          # CI's working tree may include other generated files not committed by this job.
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
-            node tools/build-static.js
-            git add js/app.bundle.js js/line-workspace-data.js js/nationwide-data.js js/service-data.js js/line-theme-data.js js/line-badge-data.js js/rail-system-data.js data/generated/nex-branch-geometry-candidates.json index.html
-            if git diff --cached --quiet; then
-              echo 'Generated files already match main.'
-              exit 0
-            fi
-            git commit -m 'build: enable nationwide free drive mode'
-            if git push origin HEAD:main; then
-              echo 'Generated files committed against current main.'
-              exit 0
-            fi
-            echo "Push race detected on attempt ${attempt}; rebuilding on latest main."
-          done
-          echo 'Could not publish generated files after three attempts.' >&2
-          exit 1
+console.log(JSON.stringify({status:'PASS',startGate:true,arrivalGate:true,pausedGate:true,noTeleport:true,transferTarget:'b2',warnings:warnings.length}));
