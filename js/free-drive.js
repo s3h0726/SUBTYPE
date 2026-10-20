@@ -144,9 +144,17 @@ export class FreeDrive{
   }
   stationKey(station){return this.stationKeys.get(station)||freeDriveStationKey(station)}
   start(route,index=0){
-    if(!route?.stations?.length)return false;
-    this.startRoute=route;this.currentRouteId=route.id;this.history=[];this.populateStartStations(route);
-    this.restartAt(Math.max(0,Math.min(index,route.stations.length-1)));return true;
+    // A route may appear in a lazy catalog while not being part of the
+    // validated navigation graph. Never report success for an empty journey.
+    const available=this.routes.find(item=>item.id===route?.id);
+    if(!available?.stations?.length)return false;
+    const requested=Math.max(0,Math.min(Number.isFinite(Number(index))?Math.trunc(Number(index)):0,available.stations.length-1));
+    const startingStation=available.stations[requested];
+    const key=this.stationKey(startingStation);
+    if(!this.graph.get(key)?.stationsByRoute?.has(available.id))return false;
+    this.startRoute=available;this.currentRouteId=available.id;this.history=[];
+    this.populateStartStations(available);
+    this.restartAt(requested);return true;
   }
   populateStartStations(route){
     const select=$('#free-drive-start-station');if(!select)return;
