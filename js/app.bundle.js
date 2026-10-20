@@ -1500,7 +1500,8 @@ class FreeDrive{
       const c=coords(station),name=normalize(station?.ja||station?.names?.ja||'');
       if(route.countryId==='jp'&&c&&name){
         const candidates=this.jpStationClusters.get(name)||[];
-        // Join operator platforms by position instead of an unstable grid cell.
+        // Two operator platforms can straddle a grid boundary. Compare the
+        // surveyed station coordinates instead; never merge distant namesakes.
         const existing=candidates.find(item=>{
           const dx=(c[0]-item.coord[0])*111.2;
           const dy=(c[1]-item.coord[1])*111.2*Math.cos(c[0]*Math.PI/180);
