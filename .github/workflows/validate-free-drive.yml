@@ -6,6 +6,8 @@ on:
     paths:
       - 'js/free-drive.js'
       - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'tools/test-free-drive-typing-gate.cjs'
       - 'js/route-editor.js'
       - 'js/bootstrap.js'
       - 'css/free-drive.css'
@@ -40,12 +42,17 @@ jobs:
           node --check /tmp/app.mjs
           node --check /tmp/route-editor.mjs
           node --check js/bootstrap.js
+      - name: Validate transfer and next-station typing gates
+        run: |
+          node tools/test-free-drive-typing-gate.cjs
+          node --test tools/test-free-drive-transfers.cjs
       - name: Rebuild static bundle
         run: node tools/build-static.js
       - name: Validate data
         run: node tools/validate-data.js
       - name: Verify free drive bundle
         run: |
+          node tools/test-free-drive-typing-gate.cjs
           node --check js/app.bundle.js
           grep -q "class FreeDrive" js/app.bundle.js
           grep -q "screen-free-drive" index.html
