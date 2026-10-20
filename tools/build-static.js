@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSync}=require('child_process');
 // Fail before any Japanese generated files are touched by an incomplete release.
-execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js'),'--require-complete'],{stdio:'inherit'});
+// Compile isolated Korea v2 research for its audit. National release is an
+// explicit separate action: never make a Japanese/site rebuild publish or
+// require COMPLETE Korean coverage. The candidate compiler still rejects
+// actual input errors and never overwrites the published route catalog.
+execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js')],{stdio:'inherit'});
 require('./audit-canonical-jp-station-names.js');
 require('./build-line-workspaces');
 execFileSync(process.execPath,[path.join(__dirname,'build-japan-lazy-catalog.cjs')],{stdio:'inherit'});
@@ -10,7 +14,8 @@ execFileSync(process.execPath,[path.join(__dirname,'build-nex-verified-geometry.
 execFileSync(process.execPath,[path.join(__dirname,'audit-recent-tram-and-kobe-geometry.js')],{stdio:'inherit'});
 // One country compiler replaces the deleted per-line patch scripts. Never run
 // the legacy patchers after this step: they overwrite source-derived results.
-execFileSync(process.execPath,[path.join(__dirname,'build-korea-data.js'),'--publish'],{stdio:'inherit'});
+// Korea research stays inside data/kr/v2/generated/ until
+// 'npm run release:korea' passes the independent nationwide approval gate.
 const tokyoArea=require('./build-tokyo-network');
 const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8').replace(/\r\n/g,'\n');
 const write=(relative,value)=>{const target=path.join(root,relative),temporary=`${target}.tmp`;fs.writeFileSync(temporary,value);fs.renameSync(temporary,target)};
