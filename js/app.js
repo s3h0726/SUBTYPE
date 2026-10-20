@@ -15,7 +15,7 @@ import{railDataRepository}from'./rail-data-repository.js';
 import{FEATURE_FLAGS,canonicalRouteId,isCountryEnabled,isRouteVisible}from'./feature-flags.js';
 import{buildThroughServiceRoute,koreanFamilyServiceChoices,resolveKoreanFamilyService,resolveServiceJourney,resolveServiceSelection,serviceJourneysForRoute,servicePatternsForRoute,trainTypeFor}from'./service-route-resolver.js';
 import{nexOperatingChoices,resolveNexOperatingChoice}from'./nex-route-resolver.js';
-import{buildFamousLimitedExpressRoutes,famousLimitedExpressSourceIds,famousLimitedExpressChoices,resolveFamousLimitedExpressChoice}from'./famous-limited-express.js';
+import{buildFamousLimitedExpressRoutes,famousLimitedExpressSourceIds,famousLimitedExpressBrandIds,famousLimitedExpressChoices,resolveFamousLimitedExpressChoice}from'./famous-limited-express.js';
 
 let famousExpressLoadPromise=null,famousExpressLoading=false;
 const savedCountryId=localStorage.getItem('trt-country')||'jp';
@@ -138,13 +138,16 @@ function freeDriveNetworkRoutes(){
 }
 // The Japanese catalog is lazy-loaded; the named express trains need seven
 // verified physical-line chunks before they can be composed into playable routes.
-function ensureFamousExpressRoutes(){
+function ensureFamousExpressRoutes({retry=false}={}){
   if(countryId!=='jp'||dataLoading)return Promise.resolve();
   if(famousExpressLoadPromise)return famousExpressLoadPromise;
   const catalog=builtin;
   const sourceIds=famousLimitedExpressSourceIds();
   const pending=sourceIds.map(id=>catalog.find(route=>route.id===id)).filter(route=>route?.lazy);
-  if(!pending.length&&catalog.some(route=>route.famousExpress))return Promise.resolve();
+  const missingBefore=famousLimitedExpressBrandIds().filter(id=>!catalog.some(route=>route.id===id));
+  // A partial load must not become permanently cached merely because at
+  // least one famous train was generated successfully.
+  if(!pending.length&&!missingBefore.length&&!retry)return Promise.resolve();
   famousExpressLoading=true;
   renderRoutes();
   famousExpressLoadPromise=(async()=>{
@@ -162,7 +165,8 @@ function ensureFamousExpressRoutes(){
     for(const route of generated){
       if(!catalog.some(existing=>existing.id===route.id))catalog.push(railDataRepository.resolveRoute(route));
     }
-    if(!generated.length)toast('특급열차 선로 데이터를 불러오지 못했습니다. 다시 시도해 주세요.');
+    const missingAfter=famousLimitedExpressBrandIds().filter(id=>!catalog.some(route=>route.id===id));
+    if(missingAfter.length)toast(`특급 ${missingAfter.length}개 계통은 선로 검증이 끝나지 않아 표시하지 않습니다. 다시 불러올 수 있습니다.`);
     refreshRoutes();
   })().catch(error=>{console.error('Limited express catalog load failed:',error);toast('특급열차 목록을 불러오지 못했습니다.');})
     .finally(()=>{
@@ -244,7 +248,15 @@ function koreanRouteUnavailableReason(route){
 }
 function krRouteCards(filtered){const groups=new Map();for(const r of filtered){const key=krLineFamily(r)||r.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}return [...groups.values()].map(members=>{const r=members[0];if(members.length<2||members.every(m=>koreanRouteUnavailableReason(m)))return routeCard(r);const services=koreanFamilyServiceChoices(krLineFamily(r)),count=services.length?services.length/2:members.length,label=services.length?'운행계통':'운행구간';return '<button type="button" class="line-card" style="--route-color:'+escapeHtml(r.lineColor||'#888')+'" data-kr-family="'+escapeHtml(krLineFamily(r))+'"><div class="line-card-identity"><span class="operator">'+escapeHtml(r.operator?.ko||'')+'</span><h3 class="line-card-line-name">'+escapeHtml(krRouteLabel(r))+'</h3></div><p>노선을 선택한 뒤 플레이 버튼에서 행선지를 설정하세요</p><footer><span>'+count+'개 '+label+'</span><span>노선 선택 →</span></footer></button>'}).join('')}
 function routeCard(r){const reason=koreanRouteUnavailableReason(r),ready=r.geometryReady===true,word=stopWord(r),action=reason?'검증 대기':r.lazy?'상세 불러오기':ready?'선택':'순서 플레이';return`<button ${reason?'disabled aria-disabled="true" title="'+escapeHtml(reason)+'"':''} class="line-card ${reason?'unplayable':''} ${selected?.id===r.id?'selected':''} ${r.category==='shinkansen'?'shinkansen-card':''}" style="--route-color:${r.lineColor}" data-route="${r.id}"><div class="line-card-identity"><span class="operator">${escapeHtml(r.operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ko)}</h3></div><p>${escapeHtml(reason||(r.countryId==='kr'?krRouteLabel(r):r.line.ja||r.line.en))}</p><footer><span>${r.stationCount||r.stations.length}개 ${word}</span><span>${action} ${reason?'':'→'}</span></footer></button>`}
-function renderRoutes(){const filtered=filteredRoutes(),query=$('#route-search').value;const allVisible=filtered,visible=allVisible.slice(0,routeRenderLimit);$('#route-count').textContent=`${filtered.length}개 노선 · ${visible.length}개 표시`;const random=category==='all'&&transportGroup==='all'&&operatorFilter==='all'&&!query&&(countryId!=='kr'||filtered.some(r=>!koreanRouteUnavailableReason(r)))?`<button class="line-card random" style="--route-color:#45c985" data-random-route><span class="operator">${countryId==='kr'?'KOREA TRANSIT NETWORK':'JAPAN RAIL NETWORK'}</span><h3>RANDOM</h3><p>${countryId==='kr'?'대한민국':'일본 전국'} 랜덤 노선</p><footer><span>PLAYABLE ROUTES</span><span>SELECT →</span></footer></button>`:'';const more=allVisible.length>visible.length?`<button class="line-card route-more" data-route-more><span class="operator">WINDOWED GRID</span><h3>＋ ${Math.min(96,allVisible.length-visible.length)}개 더 보기</h3><p>${allVisible.length-visible.length}개 노선 남음</p></button>`:'';$('#route-grid').innerHTML=random+(visible.length?(countryId==='kr'?krRouteCards(visible):visible.map(routeCard).join(''))+more:(countryId==='jp'&&category==='limited-express'&&famousExpressLoading?'<p class="muted" role="status">특급열차의 실제 선로와 정차역을 불러오는 중...</p>':countryId==='jp'&&category==='limited-express'?'<div class="express-load-empty" role="status"><p class="muted">특급열차 데이터를 찾지 못했습니다. 실제 선로를 다시 불러올 수 있습니다.</p><button type="button" data-retry-famous-express>다시 불러오기 ↻</button></div>':'<p class="muted">검색 결과가 없습니다.</p>'))}
+function renderRoutes(){const filtered=filteredRoutes(),query=$('#route-search').value;const allVisible=filtered,visible=allVisible.slice(0,routeRenderLimit);$('#route-count').textContent=`${filtered.length}개 노선 · ${visible.length}개 표시`;const random=category==='all'&&transportGroup==='all'&&operatorFilter==='all'&&!query&&(countryId!=='kr'||filtered.some(r=>!koreanRouteUnavailableReason(r)))?`<button class="line-card random" style="--route-color:#45c985" data-random-route><span class="operator">${countryId==='kr'?'KOREA TRANSIT NETWORK':'JAPAN RAIL NETWORK'}</span><h3>RANDOM</h3><p>${countryId==='kr'?'대한민국':'일본 전국'} 랜덤 노선</p><footer><span>PLAYABLE ROUTES</span><span>SELECT →</span></footer></button>`:'';const more=allVisible.length>visible.length?`<button class="line-card route-more" data-route-more><span class="operator">WINDOWED GRID</span><h3>＋ ${Math.min(96,allVisible.length-visible.length)}개 더 보기</h3><p>${allVisible.length-visible.length}개 노선 남음</p></button>`:'';$('#route-grid').innerHTML=random+(visible.length?(countryId==='kr'?krRouteCards(visible):visible.map(routeCard).join(''))+more:(countryId==='jp'&&category==='limited-express'&&famousExpressLoading?'<p class="muted" role="status">특급열차의 실제 선로와 정차역을 불러오는 중...</p>':countryId==='jp'&&category==='limited-express'?'<div class="express-load-empty" role="status"><p class="muted">특급열차 데이터를 찾지 못했습니다. 실제 선로를 다시 불러올 수 있습니다.</p><button type="button" data-retry-famous-express>다시 불러오기 ↻</button></div>':'<p class="muted">검색 결과가 없습니다.</p>'));renderExpressRecoveryAction()}
+// Surface missing verified express brands even if another express train loads.
+function renderExpressRecoveryAction(){
+  if(countryId!=='jp'||category!=='limited-express'||famousExpressLoading)return;
+  if($('#route-search')?.value||operatorFilter!=='all')return;
+  const missing=famousLimitedExpressBrandIds().filter(id=>!builtin.some(route=>route.id===id));
+  if(!missing.length)return;
+  $('#route-grid')?.insertAdjacentHTML('beforeend',`<div class="express-load-empty" role="status"><p>${missing.length}개 유명 특급은 검증된 실제 선형이 부족하거나 불러오기에 실패했습니다.</p><button type="button" data-retry-famous-express>누락된 특급 다시 확인 ↻</button></div>`);
+}
 function selectedServiceEvidence(route){
   if(route?.countryId!=='jp')return '';
   const total=actualOperatingChoices(route).length;
@@ -610,7 +622,7 @@ $('#region-tabs').addEventListener('click',event=>{const button=event.target.clo
 $('#category-tabs').addEventListener('click',e=>{const button=e.target.closest('[data-category]');if(!button)return;category=button.dataset.category;operatorFilter='all';selected=null;selectedGroup=null;routeRenderLimit=96;renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();if(countryId==='jp'&&category==='limited-express')void ensureFamousExpressRoutes()});
 $('#operator-filters').addEventListener('click',e=>{const button=e.target.closest('[data-operator]');if(!button)return;operatorFilter=button.dataset.operator;selected=null;selectedGroup=null;routeRenderLimit=96;renderOperatorFilters();renderRoutes();renderSelected()});
 $('#route-search').addEventListener('input',()=>{routeRenderLimit=96;renderRoutes()});
-$('#route-grid').addEventListener('click',e=>{if(e.target.closest('[data-retry-famous-express]')){void ensureFamousExpressRoutes();return}const krFamily=e.target.closest('[data-kr-family]');if(krFamily){const r=filteredRoutes().find(r=>krLineFamily(r)===krFamily.dataset.krFamily);if(r){selectedGroup=null;void chooseRoute(r.id)}return}if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes().filter(r=>!koreanRouteUnavailableReason(r));if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
+$('#route-grid').addEventListener('click',e=>{if(e.target.closest('[data-retry-famous-express]')){void ensureFamousExpressRoutes({retry:true});return}const krFamily=e.target.closest('[data-kr-family]');if(krFamily){const r=filteredRoutes().find(r=>krLineFamily(r)===krFamily.dataset.krFamily);if(r){selectedGroup=null;void chooseRoute(r.id)}return}if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes().filter(r=>!koreanRouteUnavailableReason(r));if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
 $('#selected-line-preview').addEventListener('click',e=>{const branch=e.target.closest('[data-route]');if(branch){selectedGroup=null;chooseRoute(branch.dataset.route);return}if(e.target.closest('[data-selected-play]')&&selected){openSetup(selected);return}if(e.target.closest('[data-selected-free-drive]')&&selected){startFreeDrive(selected);return}});
 $('#clear-route-selection').addEventListener('click',()=>{selected=null;selectedGroup=null;renderSelected();renderRoutes()});
 $('#game-free-drive-tabs')?.addEventListener('click',event=>{
