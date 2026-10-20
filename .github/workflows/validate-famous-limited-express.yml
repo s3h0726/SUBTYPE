@@ -9,6 +9,9 @@ on:
       - 'tools/test-japan-tram-classifications.cjs'
       - 'tools/test-japan-service-closures.cjs'
       - 'js/app.js'
+      - 'js/data-loader.js'
+      - 'js/free-drive.js'
+      - 'tools/test-japan-runtime-integrity.cjs'
       - 'js/app.bundle.js'
       - 'tools/build-static.js'
       - 'tools/test-famous-limited-express.cjs'
@@ -25,6 +28,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prevent invented train choices and incorrect interchange geometry
+        run: node tools/test-japan-runtime-integrity.cjs
       - name: Check already deployed express choices and full-track playback
         run: node tools/test-famous-limited-express.cjs
       - name: Verify closed lines and 10 active streetcar categories
