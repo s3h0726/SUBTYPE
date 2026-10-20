@@ -326,6 +326,12 @@ function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
   if(choice.kind==='nex')return resolveNexOperatingChoice(route,choice);
   if(choice.kind==='famousExpress')return resolveFamousLimitedExpressChoice(route,choice);
+  if(choice.kind==='fallback'&&String(choice.id||'').startsWith('practice:')&&route.countryId==='jp'){
+    const stops=(route.stations||[]).map(station=>station.id);
+    if(stops.length<2||!Array.isArray(route.geometry)||route.geometry.length<2)throw new Error('노선 연습에 필요한 실제 선로가 없습니다.');
+    const service={id:'local',nameJa:'路線練習',nameKo:'노선 따라 타이핑 (시간표 미검증)',nameEn:'Route typing practice',stops};
+    return{route:{...route,services:[service]},service,direction:choice.direction||'forward',pattern:null,trainType:null,destinationStationId:choice.destinationId,trainTypeContexts:[]};
+  }
   if(route.countryId==='kr'&&route.schemaVersion===2)return resolveKoreanVerifiedChoice(choice,route);
   if(choice.kind==='koreanFamilyService')return resolveKoreanFamilyService(choice,id=>builtin.find(item=>item.id===id));
   if(choice.kind==='catalog')return buildCatalogResolved(choice);
