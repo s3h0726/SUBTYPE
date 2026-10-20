@@ -405,8 +405,19 @@ function actualOperatingChoices(route){
   }
   const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;const typeKo=journeyLabel(choice.trainType),destJa=choice.destinationNames?.ja||'',originJa=choice.originNames?.ja||'',duplicate=choices.some(existing=>(existing.destinationNames?.ja||'')===destJa&&(existing.originNames?.ja||'')===originJa&&journeyLabel(existing.trainType)===typeKo);if(!duplicate)add(choice)}}
   if(choices.length){const playable=choices.filter(choice=>operatingChoicePlayable(choice,route));if(playable.length)return playable.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));}
-  // Japan routes must never offer invented end-to-end local journeys. Only
-  // catalog, timetable, service or through-running evidence is selectable.
+  // Restore the former route-typing mode when documented operating patterns
+  // are unavailable. This is a geometry-based practice, NOT an actual timetable.
+  // Keep unhydrated/insufficient routes blocked; named limited expresses above
+  // continue to require their own validated service paths.
+  if(route?.countryId==='jp'&&route?.stations?.length>=2&&Array.isArray(route.geometry)&&route.geometry.length>=2){
+    const first=route.stations[0],last=route.stations.at(-1);
+    return ['forward','reverse'].map(direction=>({kind:'fallback',id:'practice:'+direction,
+      originId:String(direction==='forward'?first.id:last.id),destinationId:String(direction==='forward'?last.id:first.id),
+      originNames:direction==='forward'?first:last,destinationNames:direction==='forward'?last:first,
+      trainType:null,journeyId:null,patternId:null,patternName:{ko:'노선 따라 타이핑 (운행계통 미검증)'},
+      throughServiceId:null,direction}));
+  }
+  // No synthetic train service is offered without a physical route to type.
   if(route?.countryId==='jp')return[];
   const stations=route?.stations||[];if(stations.length<2)return[];
   const first=stations[0],last=stations.at(-1);
