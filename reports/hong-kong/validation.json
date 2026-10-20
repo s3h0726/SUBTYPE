@@ -1,0 +1,62 @@
+[
+  {
+    "command": "node --check js/app.bundle.js",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "command": "node --test tools/test-hk-network.cjs tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "command": "node tools/test-typing-model.js",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "command": "node tools/test-ime-controller.js",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "command": "node tools/validate-data.js",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "command": "node tools/validate-service-patterns.js",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "command": "node tools/test-service-route-resolver.js",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "command": "node tools/audit-ui-quality.js",
+    "status": "FAIL",
+    "exitCode": 1,
+    "signal": null
+  },
+  {
+    "command": "node tools/validate-korea-data.js",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "command": "node tools/test-single-source.js",
+    "status": "PASS",
+    "exitCode": 0,
+    "signal": null
+  }
+]

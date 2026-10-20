@@ -1,0 +1,445 @@
+Hong Kong branch validation — 2026-10-20T10:28:02.106Z
+
+$ node --check js/app.bundle.js
+
+EXIT_CODE 0
+
+$ node --test tools/test-hk-network.cjs tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs
+✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (3.1591ms)
+✔ directional Korean service never manufactures a reverse edge at its terminus (0.3099ms)
+✔ three or more connected Japanese lines remain individually selectable (0.8363ms)
+✔ stopping free drive removes Japanese choices before a Korean typing session starts (3.682ms)
+✔ Hong Kong has ten separately identified MTR lines and stable region IDs (1.8257ms)
+✔ official branches do not invent an all-stations journey through both termini (0.4636ms)
+✔ Airport Express does not acquire Tung Chung Line stops (1.2424ms)
+✔ unverified Hong Kong cannot bypass gating through custom/imported routes or a lazy flag (2.3384ms)
+✔ Disneyland both directions use distinct retained source tracks, not reverse guesses (3.1083ms)
+✔ every playable service passes the same runtime gate as its lazy index (83.4435ms)
+✔ verified physical edges retain source IDs and connected finite source vertices (14.7463ms)
+✔ unverified transfers and additional Light Rail services stay explicitly pending (0.659ms)
+✔ compiler regeneration is byte stable and leaves Japanese/Korean data unchanged (2045.8115ms)
+✔ source snapshots have valid recorded hashes; absent sources are not silently verified (15.221ms)
+✔ Hong Kong CUSTOM retains actual edges and rejects reordered, disconnected or imaginary loops (2.0846ms)
+✔ lazy Hong Kong metadata never validates full stop references against an empty station list (7.8877ms)
+✔ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (6.7039ms)
+✔ Hong Kong CUSTOM normalization keeps replay IDs and memory does not gain kana answers (4.3162ms)
+✔ road, rail-road ambiguity, construction, platform and station buildings cannot qualify as operating track (1.7928ms)
+✔ all twelve restricted relations are blocked through direct and saved CUSTOM identities (10.6163ms)
+✔ existing thirteen public Korean routes remain visible and source policy never approves candidates (43.0439ms)
+✔ free-drive and CUSTOM graph exclude restricted source routes (9.4801ms)
+✔ Game start refuses both saved restricted IDs and restricted repository resolutions (6.324ms)
+✔ the Pyeongtaek to Anjung leg cannot be promoted to a standalone service (2.5841ms)
+✔ directional services compile without creating reverse or local services (9.7526ms)
+✔ unreviewed OSM topology cannot publish (0.8665ms)
+✔ future and expired timetable evidence cannot publish (1.1213ms)
+✔ different train stops cannot be inferred from a timetable (0.5746ms)
+✔ duplicate IDs and missing references fail validation (0.7156ms)
+✔ track gaps are not bridged or snapped (0.602ms)
+✔ station offsets must match source nodes and visit order (0.7703ms)
+✔ national totals cannot be declared complete without an official inventory (0.4921ms)
+✔ excluded research cannot publish or satisfy the official national service inventory (0.7707ms)
+✔ rail and road co-tagging remains blocked despite otherwise complete release evidence (0.7112ms)
+✔ runtime keeps exact directions, rejects invented destinations, preserves express track (13.0033ms)
+✔ actual Game advancement and finish run exactly once in both explicit directions (6.2844ms)
+✔ normalization never manufactures an all-stops service for v2 (6.3536ms)
+✔ omitted source stops cannot make a partial route releasable (1.332ms)
+✔ candidate trains and unverified platform metadata cannot release (0.4028ms)
+✔ a review flag cannot authorize running against source one-way track (0.6341ms)
+✔ expired national inventory does not certify coverage (0.3519ms)
+✔ timetable matching preserves identity ambiguity and never approves a train (8.0148ms)
+✔ real game route resolver preserves express geometry and repeated loop station visits (9.2552ms)
+✔ official station matching does not merge same-name places or assign approvals (4.4572ms)
+✔ returning to a loop station uses the later map visit and adjacent segment (4.3257ms)
+✔ Korean journey identity and directions survive records and display endpoints (9.6234ms)
+✔ global ordered orientation retains source nodes and explicit stop order (2.9623ms)
+✔ single source way uses stop order without assuming train direction (0.6436ms)
+✔ gaps, missing members and conflicting explicit roles are not repaired (1.9526ms)
+✔ unresolved directions and closed way alternatives fail closed (0.43ms)
+✔ ten incomplete source relations recover every official call on retained directional source geometry (106.4897ms)
+✔ stale donor, changed official calls, omitted original ways and non-public or opposite track fail closed (50.5454ms)
+✔ renamed endpoint requires pinned official history and station identity, preserving the raw source name (6.9678ms)
+✔ explicit official code changes only Korean display name and cannot approve track or platform (3.2082ms)
+✔ station identity drift or inconsistent official code names cannot silently rewrite a name (2.9147ms)
+✔ reviewed line 1 and southern line 4 code crosswalks preserve physical station identity (797.974ms)
+✔ a changed or absent KRIC identity record cannot authorize a code crosswalk (1.3392ms)
+✔ Busan 1 source stop positions restore all forty official calls without changing track (2238.3029ms)
+✔ source drift, changed official order and mismatched station identity fail closed (71.9889ms)
+✔ fifty-three complete patterns preserve prior verified trains and all published day groups (177.6718ms)
+✔ missing calendar, incomplete stops and nonmonotonic official clocks cannot certify a pattern (51.7562ms)
+✔ role correction retains source member and stop order without mutating source (5.4116ms)
+✔ misordered members are recoverable only as a complete unbranched source chain (0.9519ms)
+✔ member reordering cannot omit a disconnected component or repeat a source member (0.5812ms)
+✔ stale source relation or way cannot silently reuse a correction (2.5511ms)
+✔ correction cannot bridge gaps, ignore a stop or run against one-way track (0.7906ms)
+✔ all reviewed national corrections preserve exact source geometry and remain blocked for release (12498.8328ms)
+✔ a closed bridge facility can be replaced only with pinned real rail ways and exact source stop continuity (842.5215ms)
+✔ parallel KRIC cells join by source code while preserving station order (4.8358ms)
+✔ descending alphanumeric keys, slash times and airport alternating fields decode exactly (1.1761ms)
+✔ zero-time placeholders, operational names, repeated visits and raw single calls remain literal (0.5873ms)
+✔ malformed columns retain review failures and cannot become partial matched trains (2.0619ms)
+✔ decoding does not mutate the archived source cells (0.5677ms)
+✔ smoothing follows each retained curved edge instead of cutting its corner (6.93ms)
+✔ rapid partial input and stale lower progress never reverse train distance (0.6745ms)
+✔ arrival waits for the current map render and stale sessions cannot move its successor (5.7849ms)
+✔ resuming during an arrival cannot bypass its map and animation barrier (4.0857ms)
+✔ Korean station boundaries share the retained source vertex between adjacent segments (3.9064ms)
+ℹ tests 78
+ℹ suites 0
+ℹ pass 78
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13981.002
+
+EXIT_CODE 0
+
+$ node tools/test-typing-model.js
+{
+  "status": "PASS",
+  "cases": 18,
+  "bracketsOnlyAutoFilled": true,
+  "errors": []
+}
+(node:8144) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/OneDrive/%EB%AC%B8%EC%84%9C/ChatGPT/SUBTYPE/repository/js/typing-model.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+EXIT_CODE 0
+
+$ node tools/test-ime-controller.js
+{
+  "status": "PASS",
+  "fixtures": 10,
+  "visualUpdate": "synchronous during composition",
+  "completion": "compositionend or unchanged exact composition timer",
+  "duplicateCompletions": 0,
+  "leadingWhitespaceRemoved": true,
+  "spaceInsertionPrevented": true,
+  "timerCancellation": true
+}
+
+EXIT_CODE 0
+
+$ node tools/validate-data.js
+{
+  "valid": true,
+  "operators": 164,
+  "lines": 601,
+  "curatedValidatedLines": 103,
+  "nationwideSourceLines": 596,
+  "uniqueStations": 8824,
+  "curatedStationRegistry": 2760,
+  "completeness": {
+    "coordinates": 2760,
+    "japanese": 2760,
+    "kana": 2760,
+    "romaji": 2760,
+    "korean": 2760
+  },
+  "railSystem": {
+    "physicalLines": 97,
+    "passengerRoutes": 2,
+    "trainServices": 1,
+    "throughServices": 1,
+    "shinkansen": 10,
+    "geometryMatched": 103,
+    "geometryMissing": []
+  },
+  "geometry": {
+    "curatedMatched": 103,
+    "curatedTotal": 103,
+    "nationwideMatched": 583,
+    "nationwideTotal": 596
+  },
+  "operatorAssets": {
+    "verified": 22,
+    "total": 22
+  },
+  "symbolAudit": {
+    "totalPlayableLines": 103,
+    "verified": 17,
+    "missing": [
+      "line-11229",
+      "line-11303",
+      "line-11304",
+      "line-11305",
+      "line-11308",
+      "line-11309",
+      "line-11314",
+      "line-11317",
+      "line-11321",
+      "line-11322",
+      "line-11328",
+      "line-11333",
+      "line-28002",
+      "line-28003",
+      "line-28004",
+      "line-28005",
+      "line-28006",
+      "line-28008",
+      "line-28009",
+      "line-28010",
+      "line-99301",
+      "line-99302",
+      "line-99303",
+      "line-99304",
+      "line-99316",
+      "line-99343",
+      "line-21001",
+      "line-21002",
+      "line-21005",
+      "line-21006",
+      "line-22001",
+      "line-22003",
+      "line-22004",
+      "line-22006",
+      "line-22007",
+      "line-22008",
+      "line-22009",
+      "line-22010",
+      "line-22011",
+      "line-22012",
+      "line-23001",
+      "line-23002",
+      "line-23003",
+      "line-23006",
+      "line-24001",
+      "line-24002",
+      "line-24003",
+      "line-24004",
+      "line-24005",
+      "line-24006",
+      "line-24007",
+      "line-25001",
+      "line-25002",
+      "line-25003",
+      "line-26002",
+      "line-26003",
+      "line-26004",
+      "line-26005",
+      "line-26006",
+      "line-26007",
+      "line-27001",
+      "line-27002",
+      "line-29001",
+      "line-29002",
+      "line-29003",
+      "line-99310",
+      "line-99317",
+      "line-99305",
+      "line-99342",
+      "line-99307",
+      "line-99309",
+      "line-99311",
+      "line-99334",
+      "line-99336",
+      "line-99337",
+      "line-99340",
+      "shinkansen-tokaido",
+      "shinkansen-sanyo",
+      "shinkansen-tohoku",
+      "shinkansen-hokkaido",
+      "shinkansen-joetsu",
+      "shinkansen-hokuriku",
+      "shinkansen-kyushu",
+      "shinkansen-nishi-kyushu",
+      "shinkansen-yamagata",
+      "shinkansen-akita"
+    ],
+    "noOfficialSymbol": []
+  },
+  "lineMetadata": {
+    "verifiedThemes": 26,
+    "routesWithoutVerifiedTheme": 77,
+    "routesWithoutImportedCode": 50
+  },
+  "serviceRoutes": 2,
+  "servicePatterns": 5,
+  "koreanOverrides": 27,
+  "errors": [],
+  "warnings": []
+}
+
+EXIT_CODE 0
+
+$ node tools/validate-service-patterns.js
+{
+  "status": "PASS",
+  "physicalLines": 610,
+  "branches": 1,
+  "servicePatterns": 86,
+  "trainTypes": 16,
+  "destinations": 48,
+  "throughServices": 18,
+  "errors": []
+}
+
+EXIT_CODE 0
+
+$ node tools/test-service-route-resolver.js
+{
+  "status": "PASS",
+  "marunouchi": {
+    "mainStations": 25,
+    "branchStations": 4,
+    "branchGeometryPoints": 57,
+    "passengerJourneys": 6
+  },
+  "fukutoshin": {
+    "physicalStations": 16,
+    "expressTypingStops": 6,
+    "commuterExpressTypingStops": 10,
+    "numbering": [
+      "F-01",
+      "F-16"
+    ]
+  },
+  "tokyoMetro": {
+    "lines": 9,
+    "throughServices": 18,
+    "directionalPatterns": 36
+  },
+  "toei": {
+    "lines": 4,
+    "journeys": 20
+  },
+  "serviceJourneys": 85,
+  "through": {
+    "stations": 41,
+    "operators": [
+      "tokyo-metro",
+      "tokyu",
+      "yokohama-minatomirai-railway"
+    ]
+  },
+  "errors": []
+}
+
+EXIT_CODE 0
+
+$ node tools/audit-ui-quality.js
+{
+  "generated": "2026-10-20T10:28:20.228Z",
+  "status": "PARTIAL_WITH_AUDITED_GAPS",
+  "checks": {
+    "inputValueIsNfcSoleSource": false,
+    "stationBadgeUsesOfficialCodeOnly": true,
+    "koreanProgressUsesAnswerLength": false,
+    "autoAdvance150ms": false,
+    "routeGridWindowed": true,
+    "osakaMetroCanonical": true,
+    "hitoyoshiCanonical": true,
+    "hitoyoshiInternalIdNotPromoted": true,
+    "firstAnswerIsStartStation": false,
+    "typedArrivalInvariant": true,
+    "duplicateCompleteGuard": true,
+    "noJapaneseInKoreanFields": true
+  },
+  "typingEngine": {
+    "criticalChecksPassed": 8,
+    "criticalChecksTotal": 12,
+    "browserRegression": "PASSED",
+    "browserResults": {
+      "catalog": "601개 노선, 첫 카드가 1280x720 한 화면에 표시",
+      "directGameAccess": "#game 접근 시 #rail-map으로 복귀하고 노선 선택 안내",
+      "firstStationPolicy": "모든 노선은 route[0]을 첫 정답으로 표시하고 출발역 입력 중 trainProgress 0 유지",
+      "yurikamomeInitial": "현재역·정답 신바시(U1) / START STATION / mapIndex 0 / progress 0 of 16",
+      "yurikamomeDeparture": "신바시 입력 후 현재역 U1 / 다음 정답 U2 / mapIndex 0 / trainProgress 0 / input clear",
+      "yurikamomeFirstArrival": "시오도메 입력 후 현재역 U2 / 다음 정답 U3 / mapIndex 1 / progress 2 of 16",
+      "autoWithoutSpace": true,
+      "koreanImeOrder": "PASS",
+      "lastCharacterRegistered": true,
+      "singleViewportGame": "1280x720 overflow X/Y 0",
+      "productionCatalogBaseline": "601 LINES",
+      "productionConsoleErrors": 0,
+      "localConsoleErrors": 0,
+      "brokenImages": 0
+    }
+  },
+  "officialStationCodes": {
+    "stationEntries": 133,
+    "displayPolicy": "Only explicit or verified officialCode values may be rendered. Internal station IDs stay data-only."
+  },
+  "logos": {
+    "nationwideOperators": 164,
+    "operatorsWithVerifiedLocalAssets": 22,
+    "verifiedAssetRecords": 22,
+    "knownGaps": 142,
+    "status": "INCOMPLETE"
+  },
+  "lineSymbols": {
+    "verifiedAssetRecords": 11,
+    "status": "INCOMPLETE"
+  },
+  "stationSigns": {
+    "dedicatedOperators": 17,
+    "families": 9,
+    "status": "PARTIAL_WITH_AUDITED_GAPS"
+  },
+  "railwayEmoji": {
+    "generated": "2026-08-30T02:38:24.117Z",
+    "status": "PASS",
+    "counts": {
+      "productionUi": 0,
+      "lineSymbol": 0,
+      "operatorLogo": 0,
+      "trainMarker": 0,
+      "stationIcon": 0,
+      "buttonIcon": 0
+    },
+    "matches": []
+  },
+  "authentication": {
+    "status": "BLOCKED_CONFIGURATION",
+    "provider": "Supabase Auth",
+    "publicConfigPresent": false,
+    "guestMode": "PASS",
+    "fakeLocalPasswordStorage": false
+  },
+  "strictPass": false,
+  "blockers": [
+    "Nationwide operator-logo coverage is not exhaustive.",
+    "Nationwide official line-symbol coverage is not exhaustive.",
+    "Station-sign templates remain family approximations for operators without a dedicated audited template.",
+    "Supabase public URL and anon key are not configured, so account E2E cannot pass."
+  ]
+}
+
+EXIT_CODE 1
+
+$ node tools/validate-korea-data.js
+{
+  "status": "INCOMPLETE",
+  "counts": {
+    "sourceStations": 1528,
+    "sourcePassengerLines": 85,
+    "sourceServices": 317,
+    "activeServiceCandidates": 305,
+    "excludedServices": 12,
+    "officialTimetableVerifiedServices": 53,
+    "releasedLines": 0,
+    "releasedServices": 0,
+    "officialPassengerLines": null,
+    "officialServices": null
+  },
+  "errors": [],
+  "blockedServices": 305
+}
+
+EXIT_CODE 0
+
+$ node tools/test-single-source.js
+{
+  "status": "PASS",
+  "operators": 161,
+  "lines": 610,
+  "stations": 9146,
+  "operatorAssets": 25,
+  "lineSymbols": 39,
+  "canonicalPropagation": true,
+  "errors": []
+}
+
+EXIT_CODE 0
