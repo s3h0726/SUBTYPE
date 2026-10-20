@@ -2245,6 +2245,9 @@ function actualOperatingChoices(route){
   }
   const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;const typeKo=journeyLabel(choice.trainType),destJa=choice.destinationNames?.ja||'',originJa=choice.originNames?.ja||'',duplicate=choices.some(existing=>(existing.destinationNames?.ja||'')===destJa&&(existing.originNames?.ja||'')===originJa&&journeyLabel(existing.trainType)===typeKo);if(!duplicate)add(choice)}}
   if(choices.length){const playable=choices.filter(choice=>operatingChoicePlayable(choice,route));if(playable.length)return playable.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));}
+  // Japan routes must never offer invented end-to-end local journeys. Only
+  // catalog, timetable, service or through-running evidence is selectable.
+  if(route?.countryId==='jp')return[];
   const stations=route?.stations||[];if(stations.length<2)return[];
   const first=stations[0],last=stations.at(-1);
   return[
@@ -2270,7 +2273,7 @@ function operatingDirectionLabel(choice){
 }
 function configureJourneyPicker(){
   const picker=$('#journey-picker'),pattern=$('#journey-pattern'),directionPicker=$('#journey-direction'),origin=$('#journey-origin'),destination=$('#journey-destination'),summary=$('#journey-summary'),direction=$('#service-direction'),choices=koreaFamilyChoices||actualOperatingChoices(selected);
-  if(!picker||!pattern||!directionPicker||!origin||!destination)return;if(!choices.length){picker.hidden=false;summary.textContent='선택 가능한 실제 운행계통이 없습니다. 해당 노선을 다시 불러와 주세요.';destination.replaceChildren();return;}
+  if(!picker||!pattern||!directionPicker||!origin||!destination)return;if(!choices.length){picker.hidden=false;summary.textContent=selected?.countryId==='jp'?'공식·실제 운행계통을 확인하지 못했습니다. 임의 왕복 운행은 만들지 않습니다.':'선택 가능한 실제 운행계통이 없습니다. 해당 노선을 다시 불러와 주세요.';destination.replaceChildren();return;}
   picker.hidden=false;
   const patternGroups=[...new Map(choices.map(choice=>[operatingPatternKey(choice),choice])).entries()];
   pattern.innerHTML=patternGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(operatingPatternLabel(choice))}</option>`).join('');
@@ -2311,7 +2314,7 @@ function openSetup(route){
   $('#journey-picker').hidden=familyPending;
   $('#journey-summary').textContent=familyPending?'1호선의 실제 운행계통과 분기 선형을 검증하고 있습니다.':'';
   if(!familyPending)configureJourneyPicker();
-  if(countryId==='jp'&&routeGroup(route)==='limited-express'&&!actualOperatingChoices(route).length){if(submit){submit.disabled=true;submit.textContent='운행계통을 불러올 수 없음'}}
+  if(!actualOperatingChoices(route).length){if(submit){submit.disabled=true;submit.textContent='검증된 운행계통 없음'}}
   go('game-setup');
   if(familyPending)void prepareKoreanFamilyChoices(route);
 }
@@ -2431,7 +2434,7 @@ $('#region-tabs').addEventListener('click',event=>{const button=event.target.clo
 $('#category-tabs').addEventListener('click',e=>{const button=e.target.closest('[data-category]');if(!button)return;category=button.dataset.category;operatorFilter='all';selected=null;selectedGroup=null;routeRenderLimit=96;renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();if(countryId==='jp'&&category==='limited-express')void ensureFamousExpressRoutes()});
 $('#operator-filters').addEventListener('click',e=>{const button=e.target.closest('[data-operator]');if(!button)return;operatorFilter=button.dataset.operator;selected=null;selectedGroup=null;routeRenderLimit=96;renderOperatorFilters();renderRoutes();renderSelected()});
 $('#route-search').addEventListener('input',()=>{routeRenderLimit=96;renderRoutes()});
-$('#route-grid').addEventListener('click',e=>{const krFamily=e.target.closest('[data-kr-family]');if(krFamily){const r=filteredRoutes().find(r=>krLineFamily(r)===krFamily.dataset.krFamily);if(r){selectedGroup=null;void chooseRoute(r.id)}return}if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes().filter(r=>!koreanRouteUnavailableReason(r));if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
+$('#route-grid').addEventListener('click',e=>{if(e.target.closest('[data-retry-famous-express]')){void ensureFamousExpressRoutes();return}const krFamily=e.target.closest('[data-kr-family]');if(krFamily){const r=filteredRoutes().find(r=>krLineFamily(r)===krFamily.dataset.krFamily);if(r){selectedGroup=null;void chooseRoute(r.id)}return}if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes().filter(r=>!koreanRouteUnavailableReason(r));if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
 $('#selected-line-preview').addEventListener('click',e=>{const branch=e.target.closest('[data-route]');if(branch){selectedGroup=null;chooseRoute(branch.dataset.route);return}if(e.target.closest('[data-selected-play]')&&selected){openSetup(selected);return}if(e.target.closest('[data-selected-free-drive]')&&selected){startFreeDrive(selected);return}});
 $('#clear-route-selection').addEventListener('click',()=>{selected=null;selectedGroup=null;renderSelected();renderRoutes()});
 $('#game-free-drive-tabs')?.addEventListener('click',event=>{
