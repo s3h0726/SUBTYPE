@@ -1475,7 +1475,7 @@ function drawNetworkCanvas(canvas,routes,{bounds=null,alpha=.28,transferNodes=nu
 }
 
 class FreeDrive{
-  constructor({onExit,onChange}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.onChange=onChange;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
+  constructor({onExit,onChange}={}){this.routes=[];this.graph=new Map;this.stationKeys=new WeakMap;this.jpStationClusters=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.onChange=onChange;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
   bind(){
     const handleEdge=e=>{const b=e.target.closest('[data-free-edge]');if(b)this.move(decodeURIComponent(b.dataset.freeEdge))};$('#free-drive-options')?.addEventListener('click',handleEdge);
     $('#free-drive-start-station')?.addEventListener('change',e=>this.restartAt(+e.target.value));
@@ -1493,9 +1493,26 @@ class FreeDrive{
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
     }
     this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
-    this.graph=new Map;
+    this.graph=new Map;this.stationKeys=new WeakMap;this.jpStationClusters=new Map;
+    const nearbyKey=(station,route)=>{
+      const previous=this.stationKeys.get(station);if(previous)return previous;
+      let key=freeDriveStationKey(station);
+      const c=coords(station),name=normalize(station?.ja||station?.names?.ja||'');
+      if(route.countryId==='jp'&&c&&name){
+        const candidates=this.jpStationClusters.get(name)||[];
+        // Join operator platforms by position instead of an unstable grid cell.
+        const existing=candidates.find(item=>{
+          const dx=(c[0]-item.coord[0])*111.2;
+          const dy=(c[1]-item.coord[1])*111.2*Math.cos(c[0]*Math.PI/180);
+          return Math.hypot(dx,dy)<=0.32;
+        });
+        if(existing)key=existing.key;
+        else{candidates.push({coord:c,key});this.jpStationClusters.set(name,candidates);}
+      }
+      this.stationKeys.set(station,key);return key;
+    };
     const ensure=(station,route,index)=>{
-      const key=freeDriveStationKey(station);if(!key)return null;let node=this.graph.get(key);
+      const key=nearbyKey(station,route);if(!key)return null;let node=this.graph.get(key);
       if(!node){node={key,station,coord:coords(station),edges:[],routeIds:new Set,stationsByRoute:new Map,coordsByRoute:new Map};this.graph.set(key,node)}
       node.routeIds.add(route.id);
       if(!node.stationsByRoute.has(route.id)){
@@ -1507,18 +1524,19 @@ class FreeDrive{
     for(const route of this.routes){
       route.stations.forEach((s,i)=>ensure(s,route,i));
       for(let i=0;i<route.stations.length-1;i++){
-        const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
+        const a=route.stations[i],b=route.stations[i+1],an=ensure(a,route,i),bn=ensure(b,route,i+1),ak=this.stationKey(a),bk=this.stationKey(b);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
         if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
       if(route.loop&&route.stations.length>2){
-        const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
+        const a=route.stations.at(-1),b=route.stations[0],an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0),ak=this.stationKey(a),bk=this.stationKey(b);
         if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
       }
     }
     this.renderMap();
   }
+  stationKey(station){return this.stationKeys.get(station)||freeDriveStationKey(station)}
   start(route,index=0){
     if(!route?.stations?.length)return false;
     this.startRoute=route;this.currentRouteId=route.id;this.history=[];this.populateStartStations(route);
@@ -1531,7 +1549,7 @@ class FreeDrive{
   updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
     if(!this.startRoute)return;
-    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=freeDriveStationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];
+    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=this.stationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];
     const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();this.emit();
   }
   move(encoded){
@@ -1557,7 +1575,7 @@ class FreeDrive{
   }
   switchRouteAtCurrentStation(routeId){
     const node=this.current(),route=this.routes.find(r=>r.id===routeId);
-    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
+    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>this.stationKey(s)===this.currentKey))return false;
     this.currentRouteId=routeId;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
@@ -1565,7 +1583,7 @@ class FreeDrive{
     const node=this.current(),route=this.routes.find(r=>r.id===this.currentRouteId)||this.startRoute;
     if(!node||!route)return null;
     const indexedStop=node.stationsByRoute?.get(this.currentRouteId);
-    const stationIndex=indexedStop?.index??Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
+    const stationIndex=indexedStop?.index??Math.max(0,route.stations.findIndex(station=>this.stationKey(station)===this.currentKey));
     return{node,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
   }
   emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
@@ -1609,16 +1627,25 @@ class FreeDrive{
 
 
 
+let recordSortKey='plays';
 const indexedKoreanLineName=id=>globalThis.TRT_KOREA_INDEX?.routes?.find(route=>route.id===id)?.line?.ko||globalThis.TRT_KOREA_INDEX?.routes?.find(route=>route.id===id)?.names?.ko||'';
 
 function renderStats(){
   const records=Object.entries(storage.records()).map(([routeId,record])=>({...record,routeId})).filter(record=>isCountryEnabled(record.countryId||'jp'));
   const plays=records.reduce((n,r)=>n+r.plays,0),stations=records.reduce((n,r)=>n+r.totalStations,0),acc=records.length?records.reduce((n,r)=>n+r.bestAccuracy,0)/records.length:0,cpm=Math.max(0,...records.map(r=>r.bestCpm)),combo=Math.max(0,...records.map(r=>r.maxCombo));
   $('#stats-summary').innerHTML=[['총 플레이',`${plays}회`],['입력 지점',`${stations}곳`],['평균 정확도',`${acc.toFixed(1)}%`],['최고 타수',`${cpm}타`],['최고 콤보',`${combo}`]].map(x=>`<div class="stat-card"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('');
-  $('#records-table').innerHTML=`<div class="record-row header"><span>노선</span><span>플레이</span><span>최고 시간</span><span>정확도</span><span>타수</span><span>콤보</span></div>`+(records.length?records.sort((a,b)=>b.plays-a.plays).map(r=>{
+  const sorters=[['plays','플레이 횟수'],['bestCpm','최고 타수'],['bestAccuracy','정확도'],['bestTime','최단 시간']];
+  const sorter=`<div class="record-sort-tools"><label for="record-sort">나의 기록 정렬</label><select id="record-sort" aria-label="기록 정렬">${sorters.map(([key,label])=>`<option value="${key}" ${recordSortKey===key?'selected':''}>${label}</option>`).join('')}</select></div>`;
+  const ranked=records.sort((a,b)=>recordSortKey==='bestTime'
+    ?(Number(a.bestTime)||Infinity)-(Number(b.bestTime)||Infinity)
+    :(Number(b[recordSortKey])||0)-(Number(a[recordSortKey])||0));
+  $('#records-table').innerHTML=sorter+`<div class="record-row header"><span>노선</span><span>플레이</span><span>최고 시간</span><span>정확도</span><span>타수</span><span>콤보</span></div>`+(ranked.length?ranked.map(r=>{
     const routeId=canonicalRouteId(r.lineId||r.routeId),line=railDataRepository.getLine(routeId),route=railDataRepository.getRoute(routeId),name=line?.names?.ko||indexedKoreanLineName(routeId)||r.name||routeId;
     return`<div class="record-row" data-route-id="${escapeHtml(routeId)}" data-country-id="${escapeHtml(r.countryId||'jp')}" data-direction-id="${escapeHtml(r.directionId||'forward')}"><b class="record-route-brand" style="border-left:4px solid ${r.color};padding-left:10px"><span>${escapeHtml(name)}${r.countryId==='kr'&&r.serviceJourneyId&&r.destinationName?`<small style="display:block">${escapeHtml(r.originName||'')} → ${escapeHtml(r.destinationName)}</small>`:''}</span></b><span>${r.plays}</span><span>${formatTime(r.bestTime)}</span><span>${r.bestAccuracy.toFixed(1)}%</span><span>${r.bestCpm}</span><span>${r.maxCombo}</span></div>`
-  }).join(''):'<p class="muted" style="padding:20px">아직 기록이 없습니다.</p>')
+  }).join(''):'<p class="muted" style="padding:20px">아직 기록이 없습니다.</p>');
+  $('#record-sort')?.addEventListener('change',event=>{
+    if(sorters.some(([key])=>key===event.target.value)){recordSortKey=event.target.value;renderStats()}
+  })
 }
 
 
@@ -1672,7 +1699,8 @@ function normalizeLine(raw={},defaults={}){
   const serviceSource=Array.isArray(raw.services)?raw.services:globalThis.TRT_SERVICE_CATALOG?.[id];
   const allStationIds=stations.map(station=>station.id),services=[];
   if(Array.isArray(serviceSource))for(let index=0;index<serviceSource.length;index++){const service=serviceSource[index],stops=[];let invalid=false;if(Array.isArray(service.stops))for(const stop of service.stops){const station=stations.find(item=>item.id===stop||item.sourceId===stop);if(!station){console.error(`${id}/${service.id||index}: service stop not found`,stop);invalid=true;break}stops.push(station.id)}if(!invalid&&stops.length>=2)services.push({id:text(service.id)||`service-${index+1}`,nameJa:text(service.nameJa,service.ja)||'各駅停車',nameKo:text(service.nameKo,service.ko)||'각역정차',nameEn:text(service.nameEn,service.en)||'Local',stops})}
-  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if(!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:allStationIds});
+  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}// Source services or official catalog only for Japan; do not invent trains.
+  else if(raw.countryId==='kr'&&raw.schemaVersion!==2)services.unshift({id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:allStationIds});
   const lineTheme=verifiedTheme||{code:resolvedCode,color:text(raw.lineColor,raw.color)||'#777777',style:category==='jr'?'jr':category==='subway'?'metro':'private',operatorMark:text(operatorRaw.en,operatorRaw.ja)||'RAILWAY',colorVerified:false,colorSource:raw.colorSource||'Imported source data'};
   const normalizedOperatorId=text(raw.operatorId,operatorRaw.id)||category,assetOperatorId=({'jr-east':'op-2','jr-central':'op-3','tokyo-metro':'op-18','toei':'op-119'})[normalizedOperatorId]||normalizedOperatorId;
   raw.operatorAsset=raw.operatorAsset?.asset?raw.operatorAsset:null;
