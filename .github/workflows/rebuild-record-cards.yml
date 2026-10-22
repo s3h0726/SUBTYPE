@@ -8,7 +8,7 @@ on:
       - '.github/workflows/rebuild-record-cards.yml'
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 jobs:
   rebuild:
     if: github.ref == 'refs/heads/main'
@@ -24,12 +24,13 @@ jobs:
       - name: Assert logos absent from record cards
         run: |
           node -e "const fs=require('fs');const s=fs.readFileSync('js/app.bundle.js','utf8');for(const marker of ['record-operator-logo','record-line-symbol','recent-operator-logo','result-operator-logo-asset'])if(s.includes(marker))throw Error(marker+' still referenced');"
-      - name: Publish built bundle
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add js/app.bundle.js js/line-workspace-data.js
-          if ! git diff --cached --quiet; then
-            git commit -m 'build: update logo-free record cards bundle'
-            git push
-          fi
+      # Generated runtime changes are committed with their source. A push from
+      # an older workflow event races other main writers and can publish stale data.
+      - name: Verify committed application bundle matches source
+        run: git diff --exit-code -- js/app.bundle.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: record-card-build
+          path: |
+            js/app.bundle.js
+            js/line-workspace-data.js
