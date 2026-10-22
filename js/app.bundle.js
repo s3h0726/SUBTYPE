@@ -2140,12 +2140,14 @@ function routeForCatalogLine(code){
   if(direct)return direct;return builtin.find(route=>(route.line?.ja||route.line?.names?.ja||'')===meta?.ja)||null
 }
 function catalogPatternChoice(route,pattern,reverse=false){
-  const base=(pattern.segments||[]).filter(segment=>segment.stations?.length>=2);if(!base.length||base.some(segment=>!routeForCatalogLine(segment.lineCode)))return null;
+  // Listing a documented service must not depend on its railway geometry being
+  // loaded or playable. Keep incomplete catalog patterns visible for diagnosis.
+  const allSegments=pattern.segments||[],base=allSegments.filter(segment=>segment.stations?.length>=2);
   const segments=reverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;
-  const first=segments[0].stations[0]?.[0],last=segments.at(-1).stations.at(-1)?.[0];if(!first||!last||first===last)return null;
-  const firstRoute=routeForCatalogLine(segments[0].lineCode),lastRoute=routeForCatalogLine(segments.at(-1).lineCode),origin=firstRoute?.stations?.find(station=>station.ja===first)||{ja:first,ko:first},destination=lastRoute?.stations?.find(station=>station.ja===last)||{ja:last,ko:last};
+  const first=segments[0]?.stations?.[0]?.[0]||route.stations?.[0]?.ja||'',last=segments.at(-1)?.stations?.at(-1)?.[0]||route.stations?.at(-1)?.ja||'';
+  const firstRoute=routeForCatalogLine(segments[0]?.lineCode),lastRoute=routeForCatalogLine(segments.at(-1)?.lineCode),origin=firstRoute?.stations?.find(station=>station.ja===first)||{ja:first,ko:first},destination=lastRoute?.stations?.find(station=>station.ja===last)||{ja:last,ko:last};
   const type={id:`catalog-type-${pattern.id}`,names:{ja:pattern.type?.ja||'',ko:pattern.type?.ko||'',en:pattern.type?.en||''},priority:Number(pattern.type?.priority||0),kind:Number(pattern.type?.kind||0)};
-  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse}
+  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse,catalogUnavailableReason:!base.length?'원본 정차 구간 데이터가 없습니다.':base.length!==allSegments.length?'일부 구간의 정차역 자료가 누락되었습니다.':base.some(segment=>!routeForCatalogLine(segment.lineCode))?'일부 연결 노선이 등록되어 있지 않습니다.':null}
 }
 // A limited express may skip the interchange at which the underlying rail
 // infrastructure changes (e.g. Hayabusa skips Shin-Aomori in one catalog
@@ -2221,28 +2223,33 @@ function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(choice.patternId)return resolveServiceSelection({baseRoute:route,servicePatternId:choice.patternId,directionId:choice.direction||'forward',getRoute:id=>builtin.find(item=>item.id===id)});
   return resolveServiceSelection({baseRoute:route,legacyServiceId:choice.legacyServiceId||'local',directionId:choice.direction||'forward',getRoute:id=>builtin.find(item=>item.id===id)});
 }
-function operatingChoicePlayable(choice,route){
+function operatingChoiceStatus(choice,route){
+  // Display and availability are independent. Never silently remove a listed
+  // Japanese operating pattern merely because assembling its tracks failed.
+  if(choice.catalogUnavailableReason)return{playable:false,reason:choice.catalogUnavailableReason};
   try{
     const resolved=resolveOperatingChoice(choice,route,{preview:true}),resolvedRoute=resolved?.route;
-    if(!resolvedRoute||!Array.isArray(resolvedRoute.stations)||resolvedRoute.stations.length<2)return false;
+    if(!resolvedRoute||!Array.isArray(resolvedRoute.stations)||resolvedRoute.stations.length<2)
+      return{playable:false,reason:'운행 경로의 역 정보가 부족합니다.'};
     const service=resolved?.service;
     if(service?.stops?.length){
       const ids=new Set(resolvedRoute.stations.map(station=>String(station.id)));
-      if(service.stops.some(id=>!ids.has(String(id))))return false;
+      if(service.stops.some(id=>!ids.has(String(id))))
+        return{playable:false,reason:'정차역과 실제 선로의 연결이 일치하지 않습니다.'};
     }
-    return true;
+    return{playable:true,reason:''};
   }catch(error){
-    console.warn('Skipping unplayable operating choice',route?.id,choice?.id,error?.message||error);
-    return false;
+    return{playable:false,reason:String(error?.message||'노선 선형 검증 실패')};
   }
 }
+function operatingChoicePlayable(choice,route){return operatingChoiceStatus(choice,route).playable}
 function actualOperatingChoices(route){
   // N'EX requires separate Ofuna/Shinjuku paths: never offer legacy chained local/fallback choices.
-  if(route?.id==='line-11328')return nexOperatingChoices(route).filter(choice=>operatingChoicePlayable(choice,route));
-  if(route?.famousExpress)return famousLimitedExpressChoices(route).filter(choice=>operatingChoicePlayable(choice,route));
+  if(route?.id==='line-11328')return nexOperatingChoices(route);
+  if(route?.famousExpress)return famousLimitedExpressChoices(route);
   if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
   const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
-  const add=choice=>{const key=[choice.kind||'',choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
+  const add=choice=>{const key=[choice.kind==='catalog'?choice.id:(choice.kind||''),choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
   for(const item of journeys)add({kind:'journey',id:`journey:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:item.originNames,destinationNames:item.destinationNames,trainType:trainTypeFor(item.trainTypeId),journeyId:item.id,patternId:item.servicePatternId||null,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'});
   for(const item of patterns){
     if(!item.originStationId||!item.destinationStationId)continue;
@@ -2274,8 +2281,8 @@ function actualOperatingChoices(route){
       add({kind:'trainService',id:`train-service:${service.id}:${branch.id}`,originId:`train-service:${service.id}:${branch.id}:origin`,destinationId:`train-service:${service.id}:${branch.id}:destination`,originNames:{ja:firstName,ko:firstName},destinationNames:{ja:lastName,ko:branch.destinationKo||lastName},trainType:null,journeyId:null,patternId:null,patternName:{ja:service.nameJa,ko:service.nameKo,en:service.nameEn},throughServiceId:null,trainServiceId:service.id,trainServiceBranchId:branch.id,branchStops:branch.stops||[],direction:'forward'})
     }
   }
-  const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;const typeKo=journeyLabel(choice.trainType),destJa=choice.destinationNames?.ja||'',originJa=choice.originNames?.ja||'',duplicate=choices.some(existing=>(existing.destinationNames?.ja||'')===destJa&&(existing.originNames?.ja||'')===originJa&&journeyLabel(existing.trainType)===typeKo);if(!duplicate)add(choice)}}
-  if(choices.length){const playable=choices.filter(choice=>operatingChoicePlayable(choice,route));if(playable.length)return playable.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));}
+  const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;add(choice)}}
+  if(choices.length)return choices.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   const stations=route?.stations||[];if(stations.length<2)return[];
   const first=stations[0],last=stations.at(-1);
   return[
@@ -2300,35 +2307,67 @@ function operatingDirectionLabel(choice){
   return choice.direction==='reverse'?'역방향':'정방향'
 }
 function configureJourneyPicker(){
-  const picker=$('#journey-picker'),pattern=$('#journey-pattern'),directionPicker=$('#journey-direction'),origin=$('#journey-origin'),destination=$('#journey-destination'),summary=$('#journey-summary'),direction=$('#service-direction'),choices=koreaFamilyChoices||actualOperatingChoices(selected);
-  if(!picker||!pattern||!directionPicker||!origin||!destination)return;if(!choices.length){picker.hidden=false;summary.textContent='선택 가능한 실제 운행계통이 없습니다. 해당 노선을 다시 불러와 주세요.';destination.replaceChildren();return;}
+  const picker=$('#journey-picker'),pattern=$('#journey-pattern'),directionPicker=$('#journey-direction'),origin=$('#journey-origin'),destination=$('#journey-destination'),summary=$('#journey-summary'),direction=$('#service-direction'),submit=$('#setup-form button[type="submit"]'),choices=koreaFamilyChoices||actualOperatingChoices(selected);
+  if(!picker||!pattern||!directionPicker||!origin||!destination)return;
+  const japan=selected?.countryId==='jp';
+  const statusById=new Map(japan?choices.map(choice=>[choice.id,operatingChoiceStatus(choice,selected)]):[]);
+  const statusOf=choice=>statusById.get(choice?.id)||{playable:true,reason:''};
+  if(!choices.length){
+    picker.hidden=false;summary.textContent='등록된 운행계통이 없습니다. 해당 노선 데이터를 확인해 주세요.';
+    destination.replaceChildren();if(submit)submit.disabled=true;return;
+  }
   picker.hidden=false;
   const patternGroups=[...new Map(choices.map(choice=>[operatingPatternKey(choice),choice])).entries()];
   pattern.innerHTML=patternGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(operatingPatternLabel(choice))}</option>`).join('');
   const patternChoices=()=>choices.filter(choice=>operatingPatternKey(choice)===pattern.value);
   const directionKey=choice=>String(choice.direction||'forward');
+  const preferred=items=>items.find(choice=>statusOf(choice).playable)||items[0];
   const renderOrigins=()=>{
     const available=patternChoices().filter(choice=>directionKey(choice)===directionPicker.value);
     const originGroups=[...new Map(available.map(choice=>[journeyStationKey(choice.originNames,choice.originId),choice])).entries()];
     origin.innerHTML=originGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(journeyLabel(choice.originNames))}</option>`).join('');
-    origin.value=originGroups[0]?.[0]||'';
+    const suggested=preferred(available);
+    origin.value=suggested?journeyStationKey(suggested.originNames,suggested.originId):(originGroups[0]?.[0]||'');
     renderDestinations()
   };
   const renderDirections=()=>{
     const directionGroups=[...new Map(patternChoices().map(choice=>[directionKey(choice),choice])).entries()].sort(([a],[b])=>(a==='forward'?-1:a==='reverse'?1:0)-(b==='forward'?-1:b==='reverse'?1:0));
     directionPicker.innerHTML=directionGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(operatingDirectionLabel(choice))}</option>`).join('');
-    directionPicker.value=directionGroups[0]?.[0]||'forward';
+    directionPicker.value=directionKey(preferred(patternChoices())||directionGroups[0]?.[1]||{});
     renderOrigins()
   };
-  const selectChoice=choice=>{if(!choice)return;destination.value=choice.id;destination.dataset.stationId=choice.destinationId;direction.value=choice.direction||'forward';summary.textContent=`${operatingPatternLabel(choice)} · ${operatingDirectionLabel(choice)} · ${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''}`;const endpoints=$('#setup-route .route-endpoints');if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`};
+  const selectChoice=choice=>{
+    if(!choice){if(submit)submit.disabled=true;return;}
+    destination.value=choice.id;destination.dataset.stationId=choice.destinationId||'';
+    direction.value=choice.direction||'forward';
+    const state=statusOf(choice),total=choices.length,ready=statusById.size?[...statusById.values()].filter(item=>item.playable).length:total;
+    const availability=japan?(state.playable?' · 플레이 가능':` · 실행 불가: ${state.reason||'연결된 선로 검증 필요'}`):'';
+    summary.textContent=`${operatingPatternLabel(choice)} · ${operatingDirectionLabel(choice)} · ${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''}${availability}${japan?` (등록 ${total}개 / 실행 가능 ${ready}개)`:''}`;
+    if(submit){submit.disabled=japan&&!state.playable;submit.textContent=japan&&!state.playable?'선로 미검증 · 실행 불가':'운행 시작 →'}
+    const endpoints=$('#setup-route .route-endpoints');
+    if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`
+  };
   function renderDestinations(){
     const available=patternChoices().filter(choice=>directionKey(choice)===directionPicker.value&&journeyStationKey(choice.originNames,choice.originId)===origin.value);
-    const uniqueAvailable=[...new Map(available.map(choice=>{const typeLabel=journeyLabel(choice.trainType),through=choice.throughServiceId?'through':'';return[[journeyStationKey(choice.destinationNames,choice.destinationId),normalize(typeLabel),through,choice.direction].join('::'),choice]})).values()];
-    destination.innerHTML=uniqueAvailable.map(choice=>{const typeLabel=journeyLabel(choice.trainType),through=choice.throughServiceId?' · 직통':'';return `<option value="${escapeHtml(choice.id)}" data-destination-id="${escapeHtml(choice.destinationId)}">${escapeHtml(journeyLabel(choice.destinationNames))}${typeLabel?` · ${escapeHtml(typeLabel)}`:''}${through}</option>`}).join('');
-    selectChoice(uniqueAvailable.find(item=>item.id===destination.value)||uniqueAvailable[0])
+    // Keep different patterns even when they share train type and endpoints.
+    // The old Map deduplication hid distinct stopping patterns.
+    const labels=available.map(choice=>[journeyStationKey(choice.destinationNames,choice.destinationId),normalize(journeyLabel(choice.trainType)),choice.throughServiceId?'through':''].join('::'));
+    const frequencies=new Map(labels.map(label=>[label,labels.filter(value=>value===label).length]));
+    destination.innerHTML=available.map((choice,i)=>{
+      const typeLabel=journeyLabel(choice.trainType),through=choice.throughServiceId?' · 직통':'';
+      const duplicate=frequencies.get(labels[i])>1?` · 계통 ${choice.catalogPattern?.id||choice.patternId||choice.id}`:'';
+      const unavailable=japan&&!statusOf(choice).playable?' · 실행 불가':'';
+      return`<option value="${escapeHtml(choice.id)}" data-destination-id="${escapeHtml(choice.destinationId||'')}">${escapeHtml(journeyLabel(choice.destinationNames))}${typeLabel?` · ${escapeHtml(typeLabel)}`:''}${through}${escapeHtml(duplicate)}${unavailable}</option>`
+    }).join('');
+    selectChoice(preferred(available))
   }
-  pattern.onchange=renderDirections;directionPicker.onchange=renderOrigins;origin.onchange=renderDestinations;destination.onchange=()=>selectChoice(choices.find(item=>item.id===destination.value));
-  pattern.value=patternGroups[0]?.[0]||'';renderDirections()
+  pattern.onchange=renderDirections;
+  directionPicker.onchange=renderOrigins;
+  origin.onchange=renderDestinations;
+  destination.onchange=()=>selectChoice(choices.find(item=>item.id===destination.value));
+  const initial=preferred(choices);
+  pattern.value=initial?operatingPatternKey(initial):(patternGroups[0]?.[0]||'');
+  renderDirections()
 }
 function openSetup(route){
   const blocked=koreanRouteUnavailableReason(route);if(blocked){toast('플레이 불가: '+blocked);return}
@@ -2530,7 +2569,7 @@ document.addEventListener('click',e=>{
     return
   }
   const create=e.target.closest('[data-action="custom-new"]');if(create){editor.createNew();go('custom-editor');return}const featured=e.target.closest('[data-feature-route]');if(featured){chooseRoute(featured.dataset.featureRoute);return}const card=e.target.closest('[data-library-route]');if(!card)return;const route=storage.routes().find(r=>r.id===card.dataset.libraryRoute);if(!route)return;if(e.target.closest('[data-library-play]'))openSetup(route);else if(e.target.closest('[data-library-free-drive]'))startFreeDrive(route);else if(e.target.closest('[data-library-edit]')){editor.loadRoute(route);go('custom-editor')}else if(e.target.closest('[data-library-delete]')&&confirm('이 노선을 삭제할까요?')){storage.deleteRoute(route.id);refreshRoutes();renderCustomLibrary();toast('노선을 삭제했습니다.')}});
-$('#setup-form').addEventListener('submit',e=>{e.preventDefault();if(e.target.querySelector('button[type="submit"]')?.disabled)return;const data=new FormData(e.target),settings=storage.settings(),stationLabel=['ja','ja-romaji'].includes(settings.stationLabel)?settings.stationLabel:'ja',choiceId=String(data.get('journeyDestination')||''),choice=(koreaFamilyChoices||actualOperatingChoices(selected)).find(item=>item.id===choiceId);if(!choice)return toast('실제 운행계통을 선택해 주세요.');let resolved=null,lastService=null;try{resolved=resolveOperatingChoice(choice.sourceChoice||choice,choice.sourceRouteId?(builtin.find(r=>r.id===choice.sourceRouteId)||routes.find(r=>r.id===choice.sourceRouteId)):selected);lastService=resolved.service||null}catch(error){console.error('Service journey resolution failed:',error);return toast(`운행계통 오류: ${error.message}`)}lastRunRoute=resolved.route;if(!lastRunRoute)return toast('운행계통 데이터를 준비하지 못했습니다.');lastOptions={mode:data.get('mode'),inputMode:data.get('inputMode')||'shadowing',difficulty:'normal',service:resolved.service?.id||choice.legacyServiceId||'local',direction:resolved.direction||choice.direction||'forward',display:'ja',input:'ko',stationAdvance:data.get('stationAdvance')||settings.stationAdvance,mapMode:$('#game-map-mode').value,stationLabel,mapLabels:settings.mapLabels,motion:settings.motion,reducedMotion:settings.reducedMotion,sound:settings.sound,serviceJourney:resolved.journey||null,serviceJourneyId:resolved.journeyId||choice.journeyId||null,servicePattern:resolved.pattern||null,trainType:resolved.trainType||choice.trainType||null,destinationStationId:resolved.destinationStationId||choice.destinationId,throughServiceId:choice.throughServiceId||resolved.pattern?.throughServiceId||lastRunRoute.throughService?.id||null,trainTypeContexts:resolved.trainTypeContexts||[]};$('#map-view-toggle').textContent=lastOptions.mapMode==='geographic'?'SCHEMATIC':'GEOGRAPHIC';try{if(lastRunRoute.dataKind==='trainService'&&!(lastRunRoute.geometryReady===true&&Array.isArray(lastRunRoute.geometry)&&lastRunRoute.geometry.length>2))return toast('특급열차 실제 선형이 준비되지 않았습니다.');if(game.start(lastRunRoute,lastOptions)){go('game');game.focusInput()}else toast('특급열차 운행 시작에 실패했습니다. 노선 정보를 다시 확인해 주세요.')}catch(error){console.error('Game launch failed:',error);toast('운행 시작 오류: '+(error?.message||'알 수 없는 오류'))}});
+$('#setup-form').addEventListener('submit',e=>{e.preventDefault();if(e.target.querySelector('button[type="submit"]')?.disabled)return;const data=new FormData(e.target),settings=storage.settings(),stationLabel=['ja','ja-romaji'].includes(settings.stationLabel)?settings.stationLabel:'ja',choiceId=String(data.get('journeyDestination')||''),choice=(koreaFamilyChoices||actualOperatingChoices(selected)).find(item=>item.id===choiceId);if(!choice)return toast('실제 운행계통을 선택해 주세요.');if(selected?.countryId==='jp'){const state=operatingChoiceStatus(choice.sourceChoice||choice,choice.sourceRouteId?(builtin.find(r=>r.id===choice.sourceRouteId)||routes.find(r=>r.id===choice.sourceRouteId)):selected);if(!state.playable)return toast('운행 불가: '+state.reason)}let resolved=null,lastService=null;try{resolved=resolveOperatingChoice(choice.sourceChoice||choice,choice.sourceRouteId?(builtin.find(r=>r.id===choice.sourceRouteId)||routes.find(r=>r.id===choice.sourceRouteId)):selected);lastService=resolved.service||null}catch(error){console.error('Service journey resolution failed:',error);return toast(`운행계통 오류: ${error.message}`)}lastRunRoute=resolved.route;if(!lastRunRoute)return toast('운행계통 데이터를 준비하지 못했습니다.');lastOptions={mode:data.get('mode'),inputMode:data.get('inputMode')||'shadowing',difficulty:'normal',service:resolved.service?.id||choice.legacyServiceId||'local',direction:resolved.direction||choice.direction||'forward',display:'ja',input:'ko',stationAdvance:data.get('stationAdvance')||settings.stationAdvance,mapMode:$('#game-map-mode').value,stationLabel,mapLabels:settings.mapLabels,motion:settings.motion,reducedMotion:settings.reducedMotion,sound:settings.sound,serviceJourney:resolved.journey||null,serviceJourneyId:resolved.journeyId||choice.journeyId||null,servicePattern:resolved.pattern||null,trainType:resolved.trainType||choice.trainType||null,destinationStationId:resolved.destinationStationId||choice.destinationId,throughServiceId:choice.throughServiceId||resolved.pattern?.throughServiceId||lastRunRoute.throughService?.id||null,trainTypeContexts:resolved.trainTypeContexts||[]};$('#map-view-toggle').textContent=lastOptions.mapMode==='geographic'?'SCHEMATIC':'GEOGRAPHIC';try{if(lastRunRoute.dataKind==='trainService'&&!(lastRunRoute.geometryReady===true&&Array.isArray(lastRunRoute.geometry)&&lastRunRoute.geometry.length>2))return toast('특급열차 실제 선형이 준비되지 않았습니다.');if(game.start(lastRunRoute,lastOptions)){go('game');game.focusInput()}else toast('특급열차 운행 시작에 실패했습니다. 노선 정보를 다시 확인해 주세요.')}catch(error){console.error('Game launch failed:',error);toast('운행 시작 오류: '+(error?.message||'알 수 없는 오류'))}});
 $('#retry-game').addEventListener('click',()=>{if(game.start(lastRunRoute||selected,lastOptions)){go('game');game.focusInput()}});
 $('#map-view-toggle').addEventListener('click',()=>game.toggleMapMode());
 $('#settings-form').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),settings={...storage.settings(),theme:f.get('theme'),stationAdvance:f.get('stationAdvance'),display:'ja',input:'ko',mapMode:f.get('mapMode'),stationLabel:f.get('stationLabel'),mapLabels:f.get('mapLabels'),sound:f.get('sound')==='on',motion:f.get('motion')==='on',reducedMotion:f.get('reducedMotion')==='on'};storage.saveSettings(settings);applyTheme(settings.theme);document.body.classList.toggle('reduce-motion',settings.reducedMotion);toast('설정을 저장했습니다.')});
