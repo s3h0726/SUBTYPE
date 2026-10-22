@@ -1,0 +1,32 @@
+name: Validate Disney Resort Line
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/disney-resort-line-data.js'
+      - 'js/data-loader.js'
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'tools/test-japan-disney-resort-line.cjs'
+      - '.github/workflows/validate-japan-disney-resort-line.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  resort-monorail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify syntax
+        run: |
+          cp js/data-loader.js /tmp/subtype-data-loader-disney.mjs
+          cp js/app.js /tmp/subtype-app-disney.mjs
+          node --check /tmp/subtype-data-loader-disney.mjs
+          node --check /tmp/subtype-app-disney.mjs
+          node --check js/disney-resort-line-data.js
+          node --check js/app.bundle.js
+      - name: Verify complete one-way loop and accurate railway geometry
+        run: node --test tools/test-japan-disney-resort-line.cjs
