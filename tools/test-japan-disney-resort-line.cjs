@@ -90,3 +90,18 @@ test('Maihama walking transfer uses two names but retains distinct per-route coo
   assert(disneyEdges.length>=4);
   assert(disneyEdges.every(edge=>edge.direction===1),'one-way loop must not allow counterflow');
 });
+
+test('Japan monorail tab includes Disney Resort and established Japanese monorails',()=>{
+ const app=read('js/app.js'),bundle=read('js/app.bundle.js');
+ for(const content of [app,bundle]){
+  assert(content.includes("['monorail','모노레일']"),'dedicated Japan monorail tab missing');
+  const start=content.indexOf('function routeGroup(route){');
+  const end=content.indexOf('function routeTransportGroup(route){',start);
+  assert(start>=0&&end>start,'route category mapping unavailable');
+  const vmContext={countryId:'jp'};vm.createContext(vmContext);
+  vm.runInContext(content.slice(start,end)+';globalThis.mapLine=routeGroup;',vmContext);
+  assert.equal(vmContext.mapLine(route),'monorail','Disney must appear in monorail tab');
+  assert.equal(vmContext.mapLine({id:'line-99336',category:'other',mode:'rail',line:{ja:'東京モノレール'}}),'monorail');
+  assert.equal(vmContext.mapLine({id:'other-ordinary',category:'other',mode:'rail',line:{ja:'普通鉄道'}}),'other');
+ }
+});
