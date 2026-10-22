@@ -2380,12 +2380,23 @@ async function prepareKoreanFamilyChoices(route){
 async function hydrateJapaneseOperatingConnections(route){
   if(route?.countryId!=='jp')return;
   const catalog=nationwideCatalogLine(route);
-  if(!catalog?.data?.patterns?.length)return;
-  const codes=new Set((catalog.data.patterns||[]).flatMap(pattern=>(pattern.segments||[]).map(part=>String(part.lineCode||''))).filter(Boolean));
+  const codes=new Set((catalog?.data?.patterns||[]).flatMap(pattern=>(pattern.segments||[]).map(part=>String(part.lineCode||''))).filter(Boolean));
   const pending=new Map();
-  for(const code of codes){
-    const physical=routeForCatalogLine(code);
+  const queue=physical=>{
     if(physical?.lazy&&physical.id!==route.id)pending.set(physical.id,physical);
+  };
+  for(const code of codes)queue(routeForCatalogLine(code));
+  // The curated Tokyo Metro/Toei through-journey catalog is separate from
+  // the nationwide TrainLCD catalog. Hydrate its participating lines too.
+  const journeySpecs=new Set(servicePatternsForRoute(route.id).map(p=>p.throughServiceId).filter(Boolean));
+  for(const spec of globalThis.TRT_RAIL_SYSTEM?.throughServices||[]){
+    const ids=spec.participatingLineIds||throughRouteIds(spec);
+    if(!journeySpecs.has(spec.id)&&!ids.includes(route.id))continue;
+    const pieces=[...(spec.routeSegments||[]),...Object.values(spec.directionVariants||{}).flat()];
+    for(const part of pieces){
+      const physical=builtin.find(item=>item.id===part.routeId);
+      queue(physical);
+    }
   }
   if(!pending.size)return;
   const results=await Promise.allSettled([...pending.values()].map(async physical=>{
