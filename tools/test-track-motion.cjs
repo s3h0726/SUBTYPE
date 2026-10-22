@@ -37,11 +37,11 @@ test('completed station typing catches the marker up in 50ms and never advances 
  const path={segment:[[0,0],[0,1],[1,1]],lengths:[0,1,2],total:2};
  let lastPoint=null;
  const rail={train:{setLatLng:p=>{lastPoint=p}},typingDistance:.5,typingProgress:.5,arrivalWaiters:[result=>{assert.equal(result,true);arrivals++}]};
- ctx.globalThis.animate(rail,path,1,true);
+ ctx.animate(rail,path,1,true);
  const tick=when=>{now=when;const frame=queue.shift();assert(frame,'missing animation frame');frame(now)};
  tick(1016);assert(rail.typingDistance<1);
  rail.typingProgress=1;
- ctx.globalThis.animate(rail,path,2,true);
+ ctx.animate(rail,path,2,true);
  tick(1032);assert.equal(arrivals,0);assert(rail.typingDistance<2);
  tick(1048);assert.equal(arrivals,0);
  tick(1064);assert.equal(arrivals,0);
