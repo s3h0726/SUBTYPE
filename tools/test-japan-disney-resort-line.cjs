@@ -66,3 +66,27 @@ test('country catalog registration is additive and one-way selector has no rever
  assert(html.indexOf('./js/disney-resort-line-data.js')>0);
  assert(html.indexOf('./js/disney-resort-line-data.js')<html.indexOf('./js/app.bundle.js'));
 });
+
+test('Maihama walking transfer uses two names but retains distinct per-route coordinates',()=>{
+  const source=read('js/free-drive.js').replace(/^import[^\n]*\n/gm,'').replace(/\bexport\s+/g,'');
+  const context={console,normalize:name=>String(name||'').normalize('NFC').toLowerCase().trim(),$:()=>null};
+  vm.createContext(context);
+  vm.runInContext(source+';globalThis.FreeDriveTest=FreeDrive;globalThis.disneyKey=freeDriveStationKey',context);
+  const drive=Object.create(context.FreeDriveTest.prototype);
+  drive.renderMap=()=>{};
+  const jr={id:'line-11326',countryId:'jp',line:{ko:'게이요선'},lineColor:'#cf2834',
+    stations:[{id:'maihama',ja:'舞浜',latitude:35.6361,longitude:139.8840},
+              {id:'shinu',ja:'新浦安',latitude:35.649,longitude:139.912}]};
+  const physical=JSON.parse(JSON.stringify(route));
+  drive.setNetwork([jr,physical]);
+  const start=drive.routes.find(item=>item.id===route.id),jrLine=drive.routes.find(item=>item.id===jr.id);
+  const gateway=context.disneyKey(start.stations[0]),maihama=context.disneyKey(jrLine.stations[0]);
+  assert.equal(gateway,maihama,'official differently named transfer must share a graph key');
+  assert.equal(drive.graph.get(gateway).routeIds.size,2);
+  const coords=drive.graph.get(gateway).coordsByRoute;
+  assert.notDeepEqual(Array.from(coords.get(route.id)),Array.from(coords.get(jr.id)),
+    'station coordinates are route-specific, not overwritten by transfer node');
+  const disneyEdges=[...drive.graph.values()].flatMap(node=>node.edges).filter(edge=>edge.routeId===route.id);
+  assert(disneyEdges.length>=4);
+  assert(disneyEdges.every(edge=>edge.direction===1),'one-way loop must not allow counterflow');
+});
