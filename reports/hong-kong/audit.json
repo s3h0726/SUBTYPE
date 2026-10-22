@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-10-20T10:29:20.459Z",
-  "sourceCheckedAt": "2026-10-18",
+  "checkedAt": "2026-10-22T07:37:13.272Z",
+  "sourceCheckedAt": "2026-10-20",
   "remoteMainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
   "remoteMainAdvanced": true,
   "remoteMainChangesNotIntegrated": true,
   "status": "INCOMPLETE",
   "branch": "feature/hong-kong-railway",
   "mainBaseSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
-  "branchCommitSha": "3aebc9a17c7219018118dcb72531b4b6171648c5",
+  "branchCommitSha": "a0877152bd0b6b691f642427a6764c704f906297",
   "mainSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
   "mainUnchanged": "PASS",
   "japanKoreaDataUnchanged": "PASS",
@@ -15,12 +15,12 @@
     "lineRecords": 25,
     "stationOrDirectionalStopRecords": 277,
     "verifiedPhysicalStationTotal": "NOT_VERIFIED",
-    "servicePatterns": 55,
-    "playableServicePatterns": 2,
-    "trackSegments": 486,
+    "servicePatterns": 57,
+    "playableServicePatterns": 6,
+    "trackSegments": 501,
     "mtrCoreLinesRegistered": 9,
-    "mtrCoreLinesPlayable": 1,
-    "airportExpressPlayable": 0,
+    "mtrCoreLinesPlayable": 2,
+    "airportExpressPlayable": 2,
     "lightRailTargetRefs": 12,
     "additionalOfficialLightRailRefs": [
       "506P",
@@ -28,15 +28,26 @@
       "720",
       "610P"
     ],
-    "verifiedGeometries": 50,
-    "unverifiedGeometry": 5,
-    "missingKoNames": 270,
-    "unreviewedKoNames": 275,
+    "verifiedGeometries": 53,
+    "unverifiedGeometry": 4,
+    "verifiedKoNames": 26,
+    "verifiedStopPatterns": 43,
+    "remainingGeometryRelationIds": [
+      3263757,
+      3264047,
+      4088518,
+      5317704,
+      6582965,
+      6582966
+    ],
+    "officialMtrLineColors": 10,
+    "missingKoNames": 246,
+    "unreviewedKoNames": 251,
     "brokenCoordinates": 0,
     "duplicateStationIds": 0,
     "duplicatePhysicalStations": "NOT_AUDITED",
     "nonexistentServices": "NOT_VERIFIED",
-    "unverifiedStopPatterns": 30,
+    "unverifiedStopPatterns": 14,
     "logosVerified": 0,
     "logosRequired": 3,
     "brokenLogoAssets": "NOT_AUDITED",
@@ -45,15 +56,15 @@
     "consoleErrors": 0
   },
   "requirements": {
-    "PASS": 36,
-    "INCOMPLETE": 143,
+    "PASS": 45,
+    "INCOMPLETE": 134,
     "NOT_REQUESTED": 1
   },
   "ui": {
-    "checkedAt": "2026-10-20T10:27:00.158Z",
+    "checkedAt": "2026-10-22",
     "status": "PASS_WITH_LIMITED_SCOPE",
     "consoleErrors": 0,
-    "consoleScope": "Fresh local preview session, HK DRL DT normal and memory play; not every pending service or cloud flow.",
+    "consoleScope": "Local preview tab 5; observed phase2 play, custom, country navigation. Not every pending service or cloud flow.",
     "darkMobile": "PASS",
     "viewports": [
       {
@@ -62,85 +73,129 @@
         "horizontalOverflow": false,
         "light": "PASS",
         "dark": "PASS",
-        "memoryAnswerHidden": true,
-        "footerBottom": 825.34
+        "memoryAnswerHidden": true
       },
       {
         "width": 1280,
         "height": 900,
-        "checkedAt": "2026-10-18",
-        "horizontalOverflow": false,
         "light": "PASS",
         "dark": "PASS"
       }
     ],
-    "scenarios": [
+    "runs": [
       {
-        "name": "DRL DT normal AUTO completion",
+        "service": "hk-south-island-ut",
+        "mode": "normal",
+        "advance": "AUTO",
+        "reducedMotion": false,
+        "distanceKm": 6.95,
         "status": "PASS",
-        "checkedAt": "2026-10-18"
+        "completion": "all stops",
+        "accuracy": 100,
+        "errors": 0
       },
       {
-        "name": "DRL UT memory SPACE completion",
+        "service": "hk-south-island-dt",
+        "mode": "memory",
+        "advance": "SPACE",
+        "reducedMotion": true,
+        "distanceKm": 6.93,
         "status": "PASS",
-        "checkedAt": "2026-10-18"
+        "completion": "all stops",
+        "accuracy": 100,
+        "errors": 0
       },
       {
-        "name": "HK CUSTOM create/save/reload/play",
+        "service": "hk-airport-express-dt",
+        "mode": "normal",
+        "advance": "SPACE",
+        "reducedMotion": true,
+        "distanceKm": 34.94,
         "status": "PASS",
-        "checkedAt": "2026-10-18"
+        "completion": "all stops",
+        "accuracy": 100,
+        "errors": 0
       },
       {
-        "name": "HK to JP and KR catalog navigation",
+        "service": "hk-airport-express-ut",
+        "mode": "memory",
+        "advance": "AUTO",
+        "reducedMotion": true,
+        "distanceKm": 34.95,
         "status": "PASS",
-        "checkedAt": "2026-10-18"
+        "completion": "all stops",
+        "accuracy": 100,
+        "errors": 0
       },
       {
-        "name": "DRL DT mobile memory AUTO completion",
+        "service": "hk-disneyland-dt",
+        "mode": "normal",
+        "advance": "AUTO",
+        "reducedMotion": true,
+        "distanceKm": 3.09,
         "status": "PASS",
-        "checkedAt": "2026-10-20"
+        "completion": "all stops",
+        "accuracy": 100,
+        "errors": 0
+      },
+      {
+        "service": "hk-disneyland-ut",
+        "mode": "normal",
+        "advance": "AUTO",
+        "reducedMotion": true,
+        "distanceKm": 3.09,
+        "status": "PASS",
+        "completion": "all stops",
+        "accuracy": 100,
+        "errors": 0
+      },
+      {
+        "service": "custom-adm-ocp-wch",
+        "mode": "normal",
+        "advance": "AUTO",
+        "reducedMotion": true,
+        "distanceKm": 4.64,
+        "status": "PASS",
+        "completion": "all stops",
+        "accuracy": 100,
+        "errors": 0
       }
     ],
-    "cloudAuthentication": "NOT_TESTED: Supabase public configuration absent",
-    "pendingServicePlaythrough": "NOT_TESTED: blocked intentionally",
+    "custom": {
+      "status": "PASS",
+      "route": "ADM → OCP → WCH",
+      "saved": true,
+      "reloaded": true,
+      "replayed": true,
+      "reverseServiceOfferRemoved": true,
+      "directHashEditorHydration": "PASS"
+    },
+    "japanKorea": {
+      "automated": "PASS",
+      "homeCountrySwitch": "PASS",
+      "fullBrowserReplay": "NOT_REPEATED_IN_PHASE2",
+      "dataUnchanged": "PASS"
+    },
+    "ime": {
+      "automated": "PASS",
+      "nativeOperatingSystemIme": "NOT_TESTED"
+    },
+    "legacyUiFailures": {
+      "count": 4,
+      "unchanged": true,
+      "evidence": "reports/hong-kong/legacy-ui-baseline.json"
+    },
+    "supabase": "NOT_TESTED",
     "screenshots": [
-      "output/hk/final-mobile-light.jpg",
-      "output/hk/final-mobile-dark.jpg",
-      "output/hk/final-mobile-result.jpg"
+      "output/hk/phase2-sil-mobile-light.jpg",
+      "output/hk/phase2-sil-mobile-dark.jpg",
+      "output/hk/phase2-ael-ut-result.jpg",
+      "output/hk/phase2-custom-result.jpg"
     ],
-    "screenshotsTracked": false
+    "settingsRestored": true,
+    "scopeNote": "SIL UT tested with train motion. Remaining recorded runs used reduced motion; source geometry was checked independently. Korean label input uses browser fill and does not simulate native IME."
   },
   "missingNames": [
-    {
-      "id": "hk-mtr-AWE",
-      "nameZhHant": "博覽館",
-      "nameEn": "AsiaWorld-Expo"
-    },
-    {
-      "id": "hk-mtr-AIR",
-      "nameZhHant": "機場",
-      "nameEn": "Airport"
-    },
-    {
-      "id": "hk-mtr-TSY",
-      "nameZhHant": "青衣",
-      "nameEn": "Tsing Yi"
-    },
-    {
-      "id": "hk-mtr-KOW",
-      "nameZhHant": "九龍",
-      "nameEn": "Kowloon"
-    },
-    {
-      "id": "hk-mtr-HOK",
-      "nameZhHant": "香港",
-      "nameEn": "Hong Kong"
-    },
-    {
-      "id": "hk-mtr-LOW",
-      "nameZhHant": "羅湖",
-      "nameEn": "Lo Wu"
-    },
     {
       "id": "hk-mtr-SHS",
       "nameZhHant": "上水",
@@ -202,29 +257,9 @@
       "nameEn": "Exhibition Centre"
     },
     {
-      "id": "hk-mtr-ADM",
-      "nameZhHant": "金鐘",
-      "nameEn": "Admiralty"
-    },
-    {
-      "id": "hk-mtr-LMC",
-      "nameZhHant": "落馬洲",
-      "nameEn": "Lok Ma Chau"
-    },
-    {
-      "id": "hk-mtr-CHW",
-      "nameZhHant": "柴灣",
-      "nameEn": "Chai Wan"
-    },
-    {
       "id": "hk-mtr-HFC",
       "nameZhHant": "杏花邨",
       "nameEn": "Heng Fa Chuen"
-    },
-    {
-      "id": "hk-mtr-SKW",
-      "nameZhHant": "筲箕灣",
-      "nameEn": "Shau Kei Wan"
     },
     {
       "id": "hk-mtr-SWH",
@@ -232,39 +267,9 @@
       "nameEn": "Sai Wan Ho"
     },
     {
-      "id": "hk-mtr-TAK",
-      "nameZhHant": "太古",
-      "nameEn": "Tai Koo"
-    },
-    {
-      "id": "hk-mtr-QUB",
-      "nameZhHant": "鰂魚涌",
-      "nameEn": "Quarry Bay"
-    },
-    {
-      "id": "hk-mtr-NOP",
-      "nameZhHant": "北角",
-      "nameEn": "North Point"
-    },
-    {
-      "id": "hk-mtr-FOH",
-      "nameZhHant": "炮台山",
-      "nameEn": "Fortress Hill"
-    },
-    {
       "id": "hk-mtr-TIH",
       "nameZhHant": "天后",
       "nameEn": "Tin Hau"
-    },
-    {
-      "id": "hk-mtr-CAB",
-      "nameZhHant": "銅鑼灣",
-      "nameEn": "Causeway Bay"
-    },
-    {
-      "id": "hk-mtr-WAC",
-      "nameZhHant": "灣仔",
-      "nameEn": "Wan Chai"
     },
     {
       "id": "hk-mtr-CEN",
@@ -272,24 +277,9 @@
       "nameEn": "Central"
     },
     {
-      "id": "hk-mtr-SHW",
-      "nameZhHant": "上環",
-      "nameEn": "Sheung Wan"
-    },
-    {
-      "id": "hk-mtr-SYP",
-      "nameZhHant": "西營盤",
-      "nameEn": "Sai Ying Pun"
-    },
-    {
       "id": "hk-mtr-HKU",
       "nameZhHant": "香港大學",
       "nameEn": "HKU"
-    },
-    {
-      "id": "hk-mtr-KET",
-      "nameZhHant": "堅尼地城",
-      "nameEn": "Kennedy Town"
     },
     {
       "id": "hk-mtr-TIK",
@@ -472,11 +462,6 @@
       "nameEn": "Lai King"
     },
     {
-      "id": "hk-mtr-OLY",
-      "nameZhHant": "奧運",
-      "nameEn": "Olympic"
-    },
-    {
       "id": "hk-mtr-POA",
       "nameZhHant": "寶琳",
       "nameEn": "Po Lam"
@@ -540,26 +525,6 @@
       "id": "hk-mtr-TST",
       "nameZhHant": "尖沙咀",
       "nameEn": "Tsim Sha Tsui"
-    },
-    {
-      "id": "hk-mtr-OCP",
-      "nameZhHant": "海洋公園",
-      "nameEn": "Ocean Park"
-    },
-    {
-      "id": "hk-mtr-WCH",
-      "nameZhHant": "黃竹坑",
-      "nameEn": "Wong Chuk Hang"
-    },
-    {
-      "id": "hk-mtr-LET",
-      "nameZhHant": "利東",
-      "nameEn": "Lei Tung"
-    },
-    {
-      "id": "hk-mtr-SOH",
-      "nameZhHant": "海怡半島",
-      "nameEn": "South Horizons"
     },
     {
       "id": "hk-lr-100",
@@ -1700,58 +1665,6 @@
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
     },
     {
-      "id": "hk-south-island-ut",
-      "line": {
-        "ja": "南港島綫",
-        "en": "South Island Line",
-        "ko": "남홍콩섬선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-south-island-dt",
-      "line": {
-        "ja": "南港島綫",
-        "en": "South Island Line",
-        "ko": "남홍콩섬선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-airport-express-dt",
-      "line": {
-        "ja": "機場快綫",
-        "en": "Airport Express",
-        "ko": "공항철도"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-airport-express-ut",
-      "line": {
-        "ja": "機場快綫",
-        "en": "Airport Express",
-        "ko": "공항철도"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
       "id": "hk-light-rail-505-osm-3515354",
       "line": {
         "ja": "輕鐵 505",
@@ -1759,7 +1672,6 @@
         "ko": "경전철 505"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1773,7 +1685,6 @@
         "ko": "경전철 505"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1787,7 +1698,6 @@
         "ko": "경전철 507"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1801,7 +1711,6 @@
         "ko": "경전철 507"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1815,7 +1724,6 @@
         "ko": "경전철 610"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1829,7 +1737,6 @@
         "ko": "경전철 610"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1843,7 +1750,6 @@
         "ko": "경전철 614"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1857,7 +1763,6 @@
         "ko": "경전철 614"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1871,6 +1776,7 @@
         "ko": "경전철 614P"
       },
       "reason": [
+        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1884,7 +1790,6 @@
         "ko": "경전철 614P"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1898,7 +1803,6 @@
         "ko": "경전철 615"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1912,7 +1816,6 @@
         "ko": "경전철 615"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1926,7 +1829,6 @@
         "ko": "경전철 615P"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1940,7 +1842,6 @@
         "ko": "경전철 615P"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1954,23 +1855,20 @@
         "ko": "경전철 705"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
     },
     {
-      "id": "hk-light-rail-706-pending",
+      "id": "hk-light-rail-706-osm-2941790",
       "line": {
         "ja": "輕鐵 706",
         "en": "Light Rail 706",
         "ko": "경전철 706"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
-        "실제 선로 검증 필요",
-        "정차역 자료 필요"
+        "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
@@ -1983,7 +1881,19 @@
         "ko": "경전철 751"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
+      "id": "hk-light-rail-751-osm-6485218",
+      "line": {
+        "ja": "輕鐵 751",
+        "en": "Light Rail 751",
+        "ko": "경전철 751"
+      },
+      "reason": [
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -1991,6 +1901,20 @@
     },
     {
       "id": "hk-light-rail-751p-osm-2929802",
+      "line": {
+        "ja": "輕鐵 751P",
+        "en": "Light Rail 751P",
+        "ko": "경전철 751P"
+      },
+      "reason": [
+        "현재 정차순서 검수 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
+      "id": "hk-light-rail-751p-osm-6485219",
       "line": {
         "ja": "輕鐵 751P",
         "en": "Light Rail 751P",
@@ -2025,7 +1949,6 @@
         "ko": "경전철 761P"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -2039,7 +1962,6 @@
         "ko": "경전철 761P"
       },
       "reason": [
-        "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -2192,12 +2114,6 @@
   "geometryIssues": [
     {
       "type": "geometry",
-      "sourceRelationId": 2941790,
-      "reason": "stop not on railway within 80m: 1783169566",
-      "status": "INCOMPLETE"
-    },
-    {
-      "type": "geometry",
       "sourceRelationId": 3263757,
       "reason": "stop not on railway within 80m: 5470724238",
       "status": "INCOMPLETE"
@@ -2218,18 +2134,6 @@
       "type": "geometry",
       "sourceRelationId": 5317704,
       "reason": "disconnected railway way 1558652637",
-      "status": "INCOMPLETE"
-    },
-    {
-      "type": "geometry",
-      "sourceRelationId": 6485218,
-      "reason": "disconnected railway way 221446352",
-      "status": "INCOMPLETE"
-    },
-    {
-      "type": "geometry",
-      "sourceRelationId": 6485219,
-      "reason": "disconnected railway way 221446352",
       "status": "INCOMPLETE"
     },
     {

@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-10-20T10:27:00.158Z",
+  "checkedAt": "2026-10-22",
   "status": "PASS_WITH_LIMITED_SCOPE",
   "consoleErrors": 0,
-  "consoleScope": "Fresh local preview session, HK DRL DT normal and memory play; not every pending service or cloud flow.",
+  "consoleScope": "Local preview tab 5; observed phase2 play, custom, country navigation. Not every pending service or cloud flow.",
   "darkMobile": "PASS",
   "viewports": [
     {
@@ -11,51 +11,125 @@
       "horizontalOverflow": false,
       "light": "PASS",
       "dark": "PASS",
-      "memoryAnswerHidden": true,
-      "footerBottom": 825.34
+      "memoryAnswerHidden": true
     },
     {
       "width": 1280,
       "height": 900,
-      "checkedAt": "2026-10-18",
-      "horizontalOverflow": false,
       "light": "PASS",
       "dark": "PASS"
     }
   ],
-  "scenarios": [
+  "runs": [
     {
-      "name": "DRL DT normal AUTO completion",
+      "service": "hk-south-island-ut",
+      "mode": "normal",
+      "advance": "AUTO",
+      "reducedMotion": false,
+      "distanceKm": 6.95,
       "status": "PASS",
-      "checkedAt": "2026-10-18"
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
     },
     {
-      "name": "DRL UT memory SPACE completion",
+      "service": "hk-south-island-dt",
+      "mode": "memory",
+      "advance": "SPACE",
+      "reducedMotion": true,
+      "distanceKm": 6.93,
       "status": "PASS",
-      "checkedAt": "2026-10-18"
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
     },
     {
-      "name": "HK CUSTOM create/save/reload/play",
+      "service": "hk-airport-express-dt",
+      "mode": "normal",
+      "advance": "SPACE",
+      "reducedMotion": true,
+      "distanceKm": 34.94,
       "status": "PASS",
-      "checkedAt": "2026-10-18"
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
     },
     {
-      "name": "HK to JP and KR catalog navigation",
+      "service": "hk-airport-express-ut",
+      "mode": "memory",
+      "advance": "AUTO",
+      "reducedMotion": true,
+      "distanceKm": 34.95,
       "status": "PASS",
-      "checkedAt": "2026-10-18"
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
     },
     {
-      "name": "DRL DT mobile memory AUTO completion",
+      "service": "hk-disneyland-dt",
+      "mode": "normal",
+      "advance": "AUTO",
+      "reducedMotion": true,
+      "distanceKm": 3.09,
       "status": "PASS",
-      "checkedAt": "2026-10-20"
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    },
+    {
+      "service": "hk-disneyland-ut",
+      "mode": "normal",
+      "advance": "AUTO",
+      "reducedMotion": true,
+      "distanceKm": 3.09,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    },
+    {
+      "service": "custom-adm-ocp-wch",
+      "mode": "normal",
+      "advance": "AUTO",
+      "reducedMotion": true,
+      "distanceKm": 4.64,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
     }
   ],
-  "cloudAuthentication": "NOT_TESTED: Supabase public configuration absent",
-  "pendingServicePlaythrough": "NOT_TESTED: blocked intentionally",
+  "custom": {
+    "status": "PASS",
+    "route": "ADM → OCP → WCH",
+    "saved": true,
+    "reloaded": true,
+    "replayed": true,
+    "reverseServiceOfferRemoved": true,
+    "directHashEditorHydration": "PASS"
+  },
+  "japanKorea": {
+    "automated": "PASS",
+    "homeCountrySwitch": "PASS",
+    "fullBrowserReplay": "NOT_REPEATED_IN_PHASE2",
+    "dataUnchanged": "PASS"
+  },
+  "ime": {
+    "automated": "PASS",
+    "nativeOperatingSystemIme": "NOT_TESTED"
+  },
+  "legacyUiFailures": {
+    "count": 4,
+    "unchanged": true,
+    "evidence": "reports/hong-kong/legacy-ui-baseline.json"
+  },
+  "supabase": "NOT_TESTED",
   "screenshots": [
-    "output/hk/final-mobile-light.jpg",
-    "output/hk/final-mobile-dark.jpg",
-    "output/hk/final-mobile-result.jpg"
+    "output/hk/phase2-sil-mobile-light.jpg",
+    "output/hk/phase2-sil-mobile-dark.jpg",
+    "output/hk/phase2-ael-ut-result.jpg",
+    "output/hk/phase2-custom-result.jpg"
   ],
-  "screenshotsTracked": false
+  "settingsRestored": true,
+  "scopeNote": "SIL UT tested with train motion. Remaining recorded runs used reduced motion; source geometry was checked independently. Korean label input uses browser fill and does not simulate native IME."
 }
