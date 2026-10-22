@@ -1734,7 +1734,18 @@ async function loadRailData(){
   return{operators,lines,stations,assets:canonical?.assets||{},errors,counts,fallbackUsed,source:fallbackUsed?'nationwide-emergency-backup':'canonical-line-workspaces'}
 }
 async function loadTransportData(countryId='jp'){
-  if(countryId==='jp')return loadRailData();
+  if(countryId==='jp'){
+    const data=await loadRailData();
+    // Small, independently sourced monorail not present in MLIT's 610-line
+    // canonical runtime index. Never mutate or replace existing catalog lines.
+    const extra=globalThis.TRT_DISNEY_RESORT_ROUTE;
+    if(extra&&!data.lines.some(line=>line.id===extra.id)){
+      const line=normalizeLine(extra,{category:'other'});
+      data.lines.push(line);
+      data.counts.other=(data.counts.other||0)+1;
+    }
+    return data;
+  }
   const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
   const lines=(data.routes||[]).filter(route=>!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators,lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
@@ -2266,7 +2277,7 @@ function actualOperatingChoices(route){
     const first=serviceStations[0]||route.stations?.[0],last=serviceStations.at(-1)||route.stations?.at(-1);if(!first||!last||String(first.id)===String(last.id))continue;
     const serviceName={ko:service.nameKo||service.names?.ko||'각역정차',ja:service.nameJa||service.names?.ja||'',en:service.nameEn||service.names?.en||''};
     add({kind:'legacy',id:`service:${service.id}:forward`,originId:String(first.id),destinationId:String(last.id),originNames:first,destinationNames:last,trainType:null,journeyId:null,patternId:null,patternName:serviceName,throughServiceId:service.throughServiceId||null,legacyServiceId:service.id,direction:'forward'});
-    add({kind:'legacy',id:`service:${service.id}:reverse`,originId:String(last.id),destinationId:String(first.id),originNames:last,destinationNames:first,trainType:null,journeyId:null,patternId:null,patternName:serviceName,throughServiceId:service.throughServiceId||null,legacyServiceId:service.id,direction:'reverse'})
+    if(!route.oneWay)add({kind:'legacy',id:`service:${service.id}:reverse`,originId:String(last.id),destinationId:String(first.id),originNames:last,destinationNames:first,trainType:null,journeyId:null,patternId:null,patternName:serviceName,throughServiceId:service.throughServiceId||null,legacyServiceId:service.id,direction:'reverse'})
   }
   const throughSpecs=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).filter(spec=>(spec.participatingLineIds||throughRouteIds(spec)).includes(route?.id));
   for(const spec of throughSpecs)for(const direction of ['forward','reverse']){
