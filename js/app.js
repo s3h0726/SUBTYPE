@@ -481,7 +481,37 @@ async function prepareKoreanFamilyChoices(route){
  else {$('#journey-picker').hidden=false;$('#journey-summary').textContent='현재 검증된 운행계통을 연결할 수 없습니다. 잠시 후 노선을 다시 선택해 주세요.'}
 
 }
-async function chooseRoute(id){let route=routes.find(r=>r.id===id);if(route&&koreanRouteUnavailableReason(route)){toast('플레이 불가: '+koreanRouteUnavailableReason(route));return false}if(!route&&dataLoading){pendingRouteId=id;toast('철도 데이터를 불러오는 중입니다. 잠시만 기다려 주세요.');return false}if(!route){console.warn('Line not found:',id);toast('선택한 노선을 찾을 수 없습니다. 데이터를 다시 불러와 주세요.');return false}if(route.lazy){toast(`${route.line.ko} 노선 상세 데이터를 불러오는 중입니다.`);try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(route)),index=builtin.findIndex(item=>item.id===id);if(index>=0)builtin[index]=hydrated;if(countryId==='jp'&&id==='line-11328'){category='limited-express';operatorFilter='all'}refreshRoutes();route=routes.find(item=>item.id===id);if(koreanRouteUnavailableReason(route)){toast('플레이 불가: '+koreanRouteUnavailableReason(route));return false}}catch(error){console.error('Nationwide line load failed:',error);toast('이 노선의 상세 데이터를 불러오지 못했습니다.');return false}}selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
+// Railway operating patterns can cross physical lines (e.g. Nozomi runs on
+// Tokaido and Sanyo Shinkansen). The Japan catalog is lazy-loaded by physical
+// line, so all referenced segments must be hydrated BEFORE filtering candidates
+// with operatingChoicePlayable. Otherwise correct patterns silently disappear.
+async function hydrateJapaneseOperatingConnections(route){
+  if(route?.countryId!=='jp')return;
+  const catalog=nationwideCatalogLine(route);
+  if(!catalog?.data?.patterns?.length)return;
+  const codes=new Set((catalog.data.patterns||[]).flatMap(pattern=>(pattern.segments||[]).map(part=>String(part.lineCode||''))).filter(Boolean));
+  const pending=new Map();
+  for(const code of codes){
+    const physical=routeForCatalogLine(code);
+    if(physical?.lazy&&physical.id!==route.id)pending.set(physical.id,physical);
+  }
+  if(!pending.size)return;
+  const results=await Promise.allSettled([...pending.values()].map(async physical=>{
+    const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(physical));
+    const index=builtin.findIndex(item=>item.id===physical.id);
+    if(index>=0)builtin[index]=hydrated;
+    return physical.id;
+  }));
+  for(let index=0;index<results.length;index++)
+    if(results[index].status==='rejected')
+      console.warn('Japanese operating-service segment unavailable:',
+        [...pending.keys()][index],results[index].reason);
+}
+async function chooseRoute(id){let route=routes.find(r=>r.id===id);if(route&&koreanRouteUnavailableReason(route)){toast('플레이 불가: '+koreanRouteUnavailableReason(route));return false}if(!route&&dataLoading){pendingRouteId=id;toast('철도 데이터를 불러오는 중입니다. 잠시만 기다려 주세요.');return false}if(!route){console.warn('Line not found:',id);toast('선택한 노선을 찾을 수 없습니다. 데이터를 다시 불러와 주세요.');return false}if(route.lazy){toast(`${route.line.ko} 노선 상세 데이터를 불러오는 중입니다.`);try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(route)),index=builtin.findIndex(item=>item.id===id);if(index>=0)builtin[index]=hydrated;if(countryId==='jp'&&id==='line-11328'){category='limited-express';operatorFilter='all'}refreshRoutes();route=routes.find(item=>item.id===id);if(koreanRouteUnavailableReason(route)){toast('플레이 불가: '+koreanRouteUnavailableReason(route));return false}}catch(error){console.error('Nationwide line load failed:',error);toast('이 노선의 상세 데이터를 불러오지 못했습니다.');return false}}if(route?.countryId==='jp'){
+  await hydrateJapaneseOperatingConnections(route);
+  refreshRoutes();route=routes.find(item=>item.id===id)||route;
+}
+selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
 function renderHomeNetwork(){const canvas=$('#home-network-canvas'),network=freeDriveNetworkRoutes();if(!canvas||!network.length)return;const tokyoBounds={minLat:35.50,maxLat:35.86,minLon:139.45,maxLon:139.96};drawNetworkCanvas(canvas,network,{bounds:tokyoBounds,alpha:.24,transferNodes:freeDrive?.graph||null})}
 function freeDriveRouteTabs(state){
   const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[...linked,state.routeId];
