@@ -18,6 +18,22 @@ const jpDisneyTransferKey=(station,route)=>{
     Math.abs(lat-35.63524)<0.006&&Math.abs(lon-139.88510)<0.006?
     JP_MAIHAMA_RESORT_TRANSFER:null;
 };
+const JP_NAMED_INTERCHANGES=[
+  {id:'hamamatsucho-daimon',names:['浜松町','大門'],lat:35.656,lon:139.757,radiusKm:.65},
+  {id:'yurakucho-hibiya',names:['有楽町','日比谷'],lat:35.675,lon:139.761,radiusKm:.75},
+  {id:'akihabara-iwamotocho',names:['秋葉原','岩本町'],lat:35.697,lon:139.775,radiusKm:.75},
+  {id:'osaka-umeda',names:['大阪','梅田','大阪梅田','東梅田','西梅田'],lat:34.702,lon:135.497,radiusKm:1.0}
+];
+const jpNamedTransferKey=station=>{
+ const c=coords(station);if(!c)return null;
+ const name=station.ja||'';
+ for(const spec of JP_NAMED_INTERCHANGES){
+   if(!spec.names.includes(name))continue;
+   const km=111.2*Math.hypot(c[0]-spec.lat,(c[1]-spec.lon)*Math.cos(spec.lat*Math.PI/180));
+   if(km<=spec.radiusKm)return 'jp-transfer:'+spec.id;
+ }
+ return null;
+};
 const freeDriveStationKey=s=>{
   if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.krTransferKey)return s.krTransferKey;
@@ -105,7 +121,8 @@ export class FreeDrive{
   setNetwork(routes){
     for(const route of routes||[])for(const stop of route.stations||[]){
       if(route.countryId==='jp'){
-        const key=jpDisneyTransferKey(stop,route);
+        delete stop.jpTransferKey;
+        const key=jpDisneyTransferKey(stop,route)||jpNamedTransferKey(stop);
         if(key)stop.jpTransferKey=key;
         continue;
       }

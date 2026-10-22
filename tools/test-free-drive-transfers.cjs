@@ -12,3 +12,14 @@ test('only explicitly confirmed Korean station pairs transfer; selection preserv
 });
 test('directional Korean service never manufactures a reverse edge at its terminus',()=>{const r=route('directional','kr',2),f=engine([r]);f.currentKey=r.stations[1].id;f.currentRouteId=r.id;assert.equal(f.edges().length,0);f.currentKey=r.stations[0].id;assert.equal(f.edges().length,1);assert.equal(f.edges()[0].direction,1)});
 test('three or more connected Japanese lines remain individually selectable',()=>{const rs=['a','b','c','d'].map(id=>route(id,'jp')),f=engine(rs);f.currentKey=[...f.graph.keys()].find(k=>f.graph.get(k).routeIds.size===4);f.currentRouteId='a';f.history=[f.currentKey];for(const id of ['b','c','d','a'])assert.equal(f.switchRouteAtCurrentStation(id),true);assert.equal(f.history.length,1);assert.equal(f.switchRouteAtCurrentStation('absent'),false)});
+
+test('Japanese differently named railway interchange retains individual station positions',()=>{
+ const r=(id,name,lat,lon)=>({id,countryId:'jp',geometryReady:true,stations:[{id:id+'-a',ja:name,ko:name,latitude:lat,longitude:lon},{id:id+'-b',ja:'別',ko:'다음',latitude:lat+.003,longitude:lon+.003}]});
+ const h=r('hamamatsucho','浜松町',35.6552,139.757),d=r('daimon','大門',35.6569,139.7577),unrelated=r('far-daimon','大門',36.1,139.757);
+ const f=engine([h,d,unrelated]);
+ const key='jp-transfer:hamamatsucho-daimon';assert.equal(f.graph.get(key).routeIds.size,2);
+ f.currentKey=key;f.currentRouteId=h.id;f.history=[key];
+ assert.equal(f.switchRouteAtCurrentStation(d.id),true);
+ assert.equal(f.snapshot().station.ja,'大門');assert.equal(f.snapshot().station.latitude,35.6569);
+ assert.equal(f.history.length,1);assert.equal(f.switchRouteAtCurrentStation(unrelated.id),false);
+});
