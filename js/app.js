@@ -279,12 +279,14 @@ function routeForCatalogLine(code){
   if(direct)return direct;return builtin.find(route=>(route.line?.ja||route.line?.names?.ja||'')===meta?.ja)||null
 }
 function catalogPatternChoice(route,pattern,reverse=false){
-  const base=(pattern.segments||[]).filter(segment=>segment.stations?.length>=2);if(!base.length||base.some(segment=>!routeForCatalogLine(segment.lineCode)))return null;
+  // Listing a documented service must not depend on its railway geometry being
+  // loaded or playable. Keep incomplete catalog patterns visible for diagnosis.
+  const allSegments=pattern.segments||[],base=allSegments.filter(segment=>segment.stations?.length>=2);
   const segments=reverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;
-  const first=segments[0].stations[0]?.[0],last=segments.at(-1).stations.at(-1)?.[0];if(!first||!last||first===last)return null;
-  const firstRoute=routeForCatalogLine(segments[0].lineCode),lastRoute=routeForCatalogLine(segments.at(-1).lineCode),origin=firstRoute?.stations?.find(station=>station.ja===first)||{ja:first,ko:first},destination=lastRoute?.stations?.find(station=>station.ja===last)||{ja:last,ko:last};
+  const first=segments[0]?.stations?.[0]?.[0]||route.stations?.[0]?.ja||'',last=segments.at(-1)?.stations?.at(-1)?.[0]||route.stations?.at(-1)?.ja||'';
+  const firstRoute=routeForCatalogLine(segments[0]?.lineCode),lastRoute=routeForCatalogLine(segments.at(-1)?.lineCode),origin=firstRoute?.stations?.find(station=>station.ja===first)||{ja:first,ko:first},destination=lastRoute?.stations?.find(station=>station.ja===last)||{ja:last,ko:last};
   const type={id:`catalog-type-${pattern.id}`,names:{ja:pattern.type?.ja||'',ko:pattern.type?.ko||'',en:pattern.type?.en||''},priority:Number(pattern.type?.priority||0),kind:Number(pattern.type?.kind||0)};
-  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse}
+  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse,catalogUnavailableReason:!base.length?'원본 정차 구간 데이터가 없습니다.':base.length!==allSegments.length?'일부 구간의 정차역 자료가 누락되었습니다.':base.some(segment=>!routeForCatalogLine(segment.lineCode))?'일부 연결 노선이 등록되어 있지 않습니다.':null}
 }
 // A limited express may skip the interchange at which the underlying rail
 // infrastructure changes (e.g. Hayabusa skips Shin-Aomori in one catalog
@@ -360,28 +362,33 @@ function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(choice.patternId)return resolveServiceSelection({baseRoute:route,servicePatternId:choice.patternId,directionId:choice.direction||'forward',getRoute:id=>builtin.find(item=>item.id===id)});
   return resolveServiceSelection({baseRoute:route,legacyServiceId:choice.legacyServiceId||'local',directionId:choice.direction||'forward',getRoute:id=>builtin.find(item=>item.id===id)});
 }
-function operatingChoicePlayable(choice,route){
+function operatingChoiceStatus(choice,route){
+  // Display and availability are independent. Never silently remove a listed
+  // Japanese operating pattern merely because assembling its tracks failed.
+  if(choice.catalogUnavailableReason)return{playable:false,reason:choice.catalogUnavailableReason};
   try{
     const resolved=resolveOperatingChoice(choice,route,{preview:true}),resolvedRoute=resolved?.route;
-    if(!resolvedRoute||!Array.isArray(resolvedRoute.stations)||resolvedRoute.stations.length<2)return false;
+    if(!resolvedRoute||!Array.isArray(resolvedRoute.stations)||resolvedRoute.stations.length<2)
+      return{playable:false,reason:'운행 경로의 역 정보가 부족합니다.'};
     const service=resolved?.service;
     if(service?.stops?.length){
       const ids=new Set(resolvedRoute.stations.map(station=>String(station.id)));
-      if(service.stops.some(id=>!ids.has(String(id))))return false;
+      if(service.stops.some(id=>!ids.has(String(id))))
+        return{playable:false,reason:'정차역과 실제 선로의 연결이 일치하지 않습니다.'};
     }
-    return true;
+    return{playable:true,reason:''};
   }catch(error){
-    console.warn('Skipping unplayable operating choice',route?.id,choice?.id,error?.message||error);
-    return false;
+    return{playable:false,reason:String(error?.message||'노선 선형 검증 실패')};
   }
 }
+function operatingChoicePlayable(choice,route){return operatingChoiceStatus(choice,route).playable}
 function actualOperatingChoices(route){
   // N'EX requires separate Ofuna/Shinjuku paths: never offer legacy chained local/fallback choices.
-  if(route?.id==='line-11328')return nexOperatingChoices(route).filter(choice=>operatingChoicePlayable(choice,route));
-  if(route?.famousExpress)return famousLimitedExpressChoices(route).filter(choice=>operatingChoicePlayable(choice,route));
+  if(route?.id==='line-11328')return nexOperatingChoices(route);
+  if(route?.famousExpress)return famousLimitedExpressChoices(route);
   if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
   const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
-  const add=choice=>{const key=[choice.kind||'',choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
+  const add=choice=>{const key=[choice.kind==='catalog'?choice.id:(choice.kind||''),choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
   for(const item of journeys)add({kind:'journey',id:`journey:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:item.originNames,destinationNames:item.destinationNames,trainType:trainTypeFor(item.trainTypeId),journeyId:item.id,patternId:item.servicePatternId||null,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'});
   for(const item of patterns){
     if(!item.originStationId||!item.destinationStationId)continue;
@@ -413,8 +420,8 @@ function actualOperatingChoices(route){
       add({kind:'trainService',id:`train-service:${service.id}:${branch.id}`,originId:`train-service:${service.id}:${branch.id}:origin`,destinationId:`train-service:${service.id}:${branch.id}:destination`,originNames:{ja:firstName,ko:firstName},destinationNames:{ja:lastName,ko:branch.destinationKo||lastName},trainType:null,journeyId:null,patternId:null,patternName:{ja:service.nameJa,ko:service.nameKo,en:service.nameEn},throughServiceId:null,trainServiceId:service.id,trainServiceBranchId:branch.id,branchStops:branch.stops||[],direction:'forward'})
     }
   }
-  const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;const typeKo=journeyLabel(choice.trainType),destJa=choice.destinationNames?.ja||'',originJa=choice.originNames?.ja||'',duplicate=choices.some(existing=>(existing.destinationNames?.ja||'')===destJa&&(existing.originNames?.ja||'')===originJa&&journeyLabel(existing.trainType)===typeKo);if(!duplicate)add(choice)}}
-  if(choices.length){const playable=choices.filter(choice=>operatingChoicePlayable(choice,route));if(playable.length)return playable.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));}
+  const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;add(choice)}}
+  if(choices.length)return choices.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   const stations=route?.stations||[];if(stations.length<2)return[];
   const first=stations[0],last=stations.at(-1);
   return[
