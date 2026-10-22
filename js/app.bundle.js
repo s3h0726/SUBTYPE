@@ -14,7 +14,7 @@ const debounce=(fn,wait=120)=>{let t;return(...args)=>{clearTimeout(t);t=setTime
 // Hong Kong data must fail closed. Never reinterpret another country's records.
 function hongKongRouteBlockReason(route){
   if(route?.countryId!=='hk')return'';
-  if(route.releaseStatus!=='ready'||route.playable!==true)return(route.blockedReasons||[]).join(' · ')||'홍콩 서비스 검증 대기';
+  if((route.releaseStatus!=='ready'&&!(route.releaseStatus==='validation-preview'&&route.validationPreview===true&&typeof location!=='undefined'&&['localhost','127.0.0.1'].includes(location.hostname)))||route.playable!==true)return(route.blockedReasons||[]).join(' · ')||'홍콩 서비스 검증 대기';
   if(route.geometryReady!==true||route.geometryStatus!=='verified')return'실제 선로 검증 필요';
   if(route.lazy)return'';
   if(!Array.isArray(route.stations)||route.stations.length<2)return'정차역 자료 필요';
@@ -22,6 +22,7 @@ function hongKongRouteBlockReason(route){
   if(!Array.isArray(route.directedSegments)||route.directedSegments.length!==route.stations.length-1)return'정차역 간 실제 선로 누락';
   if(route.directedSegments.some((s,i)=>!['ready','verified'].includes(s.geometryStatus)||s.fromStationId!==route.stations[i].id||s.toStationId!==route.stations[i+1].id||!s.sourceWayIds?.length||!Array.isArray(s.geometry)||s.geometry.length<2))return'실제 선로 출처·연결 검증 필요';
   if(route.stations.some(s=>!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude)||s.latitude<22.1||s.latitude>22.58||s.longitude<113.8||s.longitude>114.45))return'홍콩 역 좌표 검증 필요';
+  if(route.stations.some(s=>Number.isInteger(s.geometryIndex)&&route.geometry?.[s.geometryIndex]&&(s.latitude!==route.geometry[s.geometryIndex][0]||s.longitude!==route.geometry[s.geometryIndex][1])))return'노선별 정차 위치와 실제 선로 불일치';
   return'';
 }
 
@@ -46,6 +47,7 @@ function buildHongKongCustomRoute(route){
     a.geometryIndex=Math.max(0,geometry.length-1);geometry.push(...(geometry.length?source.geometry.slice(1):source.geometry));b.geometryIndex=geometry.length-1;
     directedSegments.push({...source,fromStationId:a.id,toStationId:b.id});
   }
+  for(const station of stations){const point=geometry[station.geometryIndex];station.latitude=point[0];station.longitude=point[1];station.coordinates={lat:point[0],lng:point[1]};station.stopId=route.id+'-stop-'+station.geometryIndex;}
   const result={...route,stations,geometry,directedSegments,countryId:'hk',category:'custom',servicePatternId:route.id,releaseStatus:'ready',geometryStatus:'verified',geometryReady:true,playable:true,services:[{id:route.id,nameKo:route.line.ko,nameEn:route.line.en,nameJa:route.line.ja,stops:stations.map(s=>s.id)}]};
   const reason=hongKongRouteBlockReason(result);if(reason)throw new Error(reason);return result;
 }
@@ -178,6 +180,7 @@ function operatorLogoMarkup(routeOrOperatorId,className='operator-logo'){
 
 
 
+
 const PREFIX='trt:';
 const CUSTOM_ROUTES_KEY='tokyoRailTyping.customRoutes.v1';
 const memoryStore=new Map();
@@ -196,7 +199,7 @@ const storage={
   saveSettings:value=>write('settings',value),
   favorites:()=>read('favorites',[]),
   toggleFavorite(id){const set=new Set(this.favorites());set.has(id)?set.delete(id):set.add(id);write('favorites',[...set]);return set.has(id)},
-  routes:()=>loadCustomRoutes().filter(route=>isCountryEnabled(route.countryId||'jp')),
+  routes:()=>loadCustomRoutes().filter(route=>isCountryEnabled(route.countryId||'jp')).map(route=>{if(route.countryId==='hk'&&route.coverage==='rail-network'&&route.geometryStatus==='verified'&&route.stations?.slice(1).every(s=>s.hkIncomingEdge)){try{return buildHongKongCustomRoute(route)}catch{return route}}return route}),
   saveRoute(route){const list=loadCustomRoutes();const i=list.findIndex(r=>r.id===route.id);i<0?list.push(route):list.splice(i,1,route);return saveCustomRoutes(list)},
   deleteRoute(id){return saveCustomRoutes(loadCustomRoutes().filter(r=>r.id!==id))},
   records:()=>Object.fromEntries(Object.entries(read('records',{})).filter(([,record])=>isCountryEnabled(record.countryId||'jp'))),
@@ -1893,7 +1896,7 @@ class RouteEditor{
   this.route.stations.push({id:'',ja:source.ja,kana:source.kana,romaji:source.romaji,ko:source.ko,koAliases:[...(source.koAliases||[])],latitude:source.latitude,longitude:source.longitude,sourceStationId:source.id,operators:[...(source.operators||[])],lines:structuredClone(source.lines||[]),prefectureCode:source.prefectureCode,inTokyo:source.inTokyo,geometryIndex:Math.max(0,this.route.geometry.length-1),segment});
   this.renumber();this.render();toast(`${source.ko||'MISSING_KOREAN_NAME'} (${source.ja}) 역을 추가했습니다.`)
  }
- renderJourneyOptions(){const target=$('#journey-options');if(!target)return;const current=this.route.stations.at(-1),edges=this.currentEdges();if(!current){target.innerHTML='<p>출발역을 선택하면 전국 철도망의 인접역과 환승 노선이 표시됩니다.</p>';return}const currentSegment=this.route.segments.at(-1)?.lineId||this.route.segments.at(-1)?.id||null,grouped=[...new Map(edges.map(edge=>[edge.route.id,edge.route])).values()];target.innerHTML=`<header><span>CURRENT · 現在</span><b>${escapeHtml(current.ja)} / ${escapeHtml(current.ko)}</b><small>${grouped.length>1?'환승 가능 · 다른 노선도 바로 이어서 선택':'현재역에서 이어지는 인접역'}</small></header><div class="journey-lines">${grouped.map(route=>{const transfer=currentSegment&&route.id!==currentSegment;return`<section class="${transfer?'transfer':''}" style="--route-color:${route.lineColor||'#777'}"><h4><span>${transfer?'TRANSFER':'LINE'}</span> ${escapeHtml(route.code||'—')} · ${escapeHtml(route.line.ja)} <small>${escapeHtml(route.line.ko)}</small></h4>${edges.filter(edge=>edge.route.id===route.id).map(edge=>{const station=route.stations[edge.toIndex];return`<button type="button" data-journey-edge="${this.edgeToken(edge)}"><b>${escapeHtml(station.ja)}</b><span>${escapeHtml(station.ko)}</span><small>${edge.toIndex>edge.fromIndex?'→':'←'} NEXT</small></button>`}).join('')}</section>`}).join('')}</div>`}
+ renderJourneyOptions(){const target=$('#journey-options');if(!target)return;const current=this.route.stations.at(-1),edges=this.currentEdges();if(!current){target.innerHTML='<p>출발역을 선택하면 전국 철도망의 인접역과 환승 노선이 표시됩니다.</p>';return}const currentSegment=this.route.segments.at(-1)?.lineId||this.route.segments.at(-1)?.id||null,grouped=[...new Map(edges.map(edge=>[edge.route.id,edge.route])).values()];target.innerHTML=`<header><span>CURRENT · 現在</span><b>${escapeHtml(current.ja)} / ${escapeHtml(current.ko)}</b><small>${this.route.countryId==='hk'?(this.route.stations.length===1?'출발 노선과 운행 방향을 선택하세요.':'선택한 운행 방향의 실제 인접역'):(grouped.length>1?'환승 가능 · 다른 노선도 바로 이어서 선택':'현재역에서 이어지는 인접역')}</small></header><div class="journey-lines">${grouped.map(route=>{const transfer=currentSegment&&route.id!==currentSegment;return`<section class="${transfer?'transfer':''}" style="--route-color:${route.lineColor||'#777'}"><h4><span>${transfer?'TRANSFER':'LINE'}</span> ${escapeHtml(route.code||'—')} · ${escapeHtml(route.line.ja)} <small>${escapeHtml(route.line.ko)}</small></h4>${edges.filter(edge=>edge.route.id===route.id).map(edge=>{const station=route.stations[edge.toIndex];return`<button type="button" data-journey-edge="${this.edgeToken(edge)}"><b>${escapeHtml(station.ja)}</b><span>${escapeHtml(station.ko)}</span><small>${edge.toIndex>edge.fromIndex?'→':'←'} NEXT</small></button>`}).join('')}</section>`}).join('')}</div>`}
  addStation(geo={}){if(this.route.countryId==='hk')return toast('홍콩은 검증된 실제 역 검색을 사용하세요.');if(this.route.stations.length>=MAX)return toast('최대 300역까지 만들 수 있습니다.');this.sync();this.route.stations.push(blank(this.route.stations.length+1,geo));this.render();toast('고급 가상역을 추가했습니다. 실제 역 검색 사용을 권장합니다.')}
  renumber(){this.route.stations.forEach((station,i)=>{station.id=`${this.route.code||'CT'}${String(i+1).padStart(2,'0')}`;if(this.route.countryId==='hk')station.internalId=station.id})}
  sync(){const f=new FormData(this.form);this.route.operator={ja:f.get('operator')||'Custom Railway',en:f.get('operator')||'Custom Railway',ko:f.get('operator')||'커스텀 철도'};this.route.code=String(f.get('code')||'CT').toUpperCase();this.route.line={ja:f.get('lineJa')||'',ko:f.get('lineKo')||'',en:f.get('lineEn')||''};this.route.lineColor=f.get('color')||'#e84747';this.route.loop=f.get('loop')==='on';$$('.station-row',this.list).forEach((row,i)=>{if(!this.route.stations[i]?.customStation)return;this.route.stations[i]={...this.route.stations[i],...Object.fromEntries($$('input[data-field]',row).map(el=>[el.dataset.field,el.value.normalize('NFC')]))}});this.renumber()}

@@ -7,7 +7,7 @@
     "nameEn": "Hong Kong",
     "nameKo": "홍콩"
   },
-  "checkedAt": "2026-10-20",
+  "checkedAt": "2026-10-22",
   "operators": [
     {
       "id": "hk-mtr",
@@ -82,13 +82,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "DT",
       "validWhen": {
         "type": "regular",
@@ -123,6 +121,7 @@
           ]
         }
       ],
+      "validationFingerprint": "57f4bbed33132b26ace33186e9c2eeedeadd4fd0190e29c120e8480f5abb98ed",
       "lazySource": "data/hk/generated/routes/hk-island-dt.json",
       "stationCount": 17,
       "stationSequence": [
@@ -150,11 +149,13 @@
         "차이완",
         "杏花邨",
         "Heng Fa Chuen",
+        "항파췬",
         "筲箕灣",
         "Shau Kei Wan",
         "샤우 케이 완",
         "西灣河",
         "Sai Wan Ho",
+        "사이완호",
         "太古",
         "Tai Koo",
         "타이쿠",
@@ -169,6 +170,7 @@
         "포트리스 힐",
         "天后",
         "Tin Hau",
+        "틴하우",
         "銅鑼灣",
         "Causeway Bay",
         "코즈웨이베이",
@@ -180,6 +182,7 @@
         "애드미럴티",
         "中環",
         "Central",
+        "센트럴",
         "上環",
         "Sheung Wan",
         "상환",
@@ -188,6 +191,7 @@
         "새이잉펀",
         "香港大學",
         "HKU",
+        "홍콩대학",
         "堅尼地城",
         "Kennedy Town",
         "케네디 타운"
@@ -225,13 +229,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "UT",
       "validWhen": {
         "type": "regular",
@@ -266,6 +268,7 @@
           ]
         }
       ],
+      "validationFingerprint": "f61aac36511bf4804eed01a218921953573ba02a91e36384f921792dcf0fafd7",
       "lazySource": "data/hk/generated/routes/hk-island-ut.json",
       "stationCount": 17,
       "stationSequence": [
@@ -293,6 +296,7 @@
         "케네디 타운",
         "香港大學",
         "HKU",
+        "홍콩대학",
         "西營盤",
         "Sai Ying Pun",
         "새이잉펀",
@@ -301,6 +305,7 @@
         "상환",
         "中環",
         "Central",
+        "센트럴",
         "金鐘",
         "Admiralty",
         "애드미럴티",
@@ -312,6 +317,7 @@
         "코즈웨이베이",
         "天后",
         "Tin Hau",
+        "틴하우",
         "炮台山",
         "Fortress Hill",
         "포트리스 힐",
@@ -326,11 +332,13 @@
         "타이쿠",
         "西灣河",
         "Sai Wan Ho",
+        "사이완호",
         "筲箕灣",
         "Shau Kei Wan",
         "샤우 케이 완",
         "杏花邨",
         "Heng Fa Chuen",
+        "항파췬",
         "柴灣",
         "Chai Wan",
         "차이완"
@@ -368,13 +376,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "DT",
       "validWhen": {
         "type": "regular",
@@ -408,6 +414,7 @@
           ]
         }
       ],
+      "validationFingerprint": "752c3489fcc6bcacdc71f07025facfa0d2e332bf729e0b9cfd361f93e3f7e153",
       "lazySource": "data/hk/generated/routes/hk-tsuen-wan-dt.json",
       "stationCount": 16,
       "stationSequence": [
@@ -431,22 +438,31 @@
       "searchStations": [
         "荃灣",
         "Tsuen Wan",
+        "췬완",
         "大窩口",
         "Tai Wo Hau",
+        "타이워하우",
         "葵興",
         "Kwai Hing",
+        "콰이힝",
         "葵芳",
         "Kwai Fong",
+        "콰이퐁",
         "茘景",
         "Lai King",
+        "라이킹",
         "美孚",
         "Mei Foo",
+        "메이푸",
         "茘枝角",
         "Lai Chi Kok",
+        "라이치콕",
         "長沙灣",
         "Cheung Sha Wan",
+        "청샤완",
         "深水埗",
         "Sham Shui Po",
+        "삼수이포",
         "太子",
         "Prince Edward",
         "프린스에드워드",
@@ -458,13 +474,16 @@
         "야우마테이",
         "佐敦",
         "Jordan",
+        "조던",
         "尖沙咀",
         "Tsim Sha Tsui",
+        "침사추이",
         "金鐘",
         "Admiralty",
         "애드미럴티",
         "中環",
-        "Central"
+        "Central",
+        "센트럴"
       ]
     },
     {
@@ -499,13 +518,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "UT",
       "validWhen": {
         "type": "regular",
@@ -539,6 +556,7 @@
           ]
         }
       ],
+      "validationFingerprint": "09196871c6be20afb9c83dd1ff3e37ac67c56d1d0754c4f690b052c9ed6e307d",
       "lazySource": "data/hk/generated/routes/hk-tsuen-wan-ut.json",
       "stationCount": 16,
       "stationSequence": [
@@ -562,13 +580,16 @@
       "searchStations": [
         "中環",
         "Central",
+        "센트럴",
         "金鐘",
         "Admiralty",
         "애드미럴티",
         "尖沙咀",
         "Tsim Sha Tsui",
+        "침사추이",
         "佐敦",
         "Jordan",
+        "조던",
         "油麻地",
         "Yau Ma Tei",
         "야우마테이",
@@ -580,22 +601,31 @@
         "프린스에드워드",
         "深水埗",
         "Sham Shui Po",
+        "삼수이포",
         "長沙灣",
         "Cheung Sha Wan",
+        "청샤완",
         "茘枝角",
         "Lai Chi Kok",
+        "라이치콕",
         "美孚",
         "Mei Foo",
+        "메이푸",
         "茘景",
         "Lai King",
+        "라이킹",
         "葵芳",
         "Kwai Fong",
+        "콰이퐁",
         "葵興",
         "Kwai Hing",
+        "콰이힝",
         "大窩口",
         "Tai Wo Hau",
+        "타이워하우",
         "荃灣",
-        "Tsuen Wan"
+        "Tsuen Wan",
+        "췬완"
       ]
     },
     {
@@ -630,13 +660,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "DT",
       "validWhen": {
         "type": "regular",
@@ -671,6 +699,7 @@
           ]
         }
       ],
+      "validationFingerprint": "bbbbf0bbb6092505d4e3b86d8463f446f804aec89670db0d2be8c1cce10f5d70",
       "lazySource": "data/hk/generated/routes/hk-kwun-tong-dt.json",
       "stationCount": 17,
       "stationSequence": [
@@ -695,28 +724,40 @@
       "searchStations": [
         "調景嶺",
         "Tiu Keng Leng",
+        "티우켕렝",
         "油塘",
         "Yau Tong",
+        "야우통",
         "藍田",
         "Lam Tin",
+        "람틴",
         "觀塘",
         "Kwun Tong",
+        "쿤통",
         "牛頭角",
         "Ngau Tau Kok",
+        "응아우타우콕",
         "九龍灣",
         "Kowloon Bay",
+        "까우룽베이",
         "彩虹",
         "Choi Hung",
+        "초이훙",
         "鑽石山",
         "Diamond Hill",
+        "다이아몬드힐",
         "黃大仙",
         "Wong Tai Sin",
+        "웡타이신",
         "樂富",
         "Lok Fu",
+        "록푸",
         "九龍塘",
         "Kowloon Tong",
+        "까우룽통",
         "石硤尾",
         "Shek Kip Mei",
+        "섹깁메이",
         "太子",
         "Prince Edward",
         "프린스에드워드",
@@ -766,13 +807,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "UT",
       "validWhen": {
         "type": "regular",
@@ -807,6 +846,7 @@
           ]
         }
       ],
+      "validationFingerprint": "3e61c0319c2f9d4048dfbf0cd195c53cf16ed4847a3548c2d7e7ea0ff0b078b5",
       "lazySource": "data/hk/generated/routes/hk-kwun-tong-ut.json",
       "stationCount": 17,
       "stationSequence": [
@@ -846,28 +886,40 @@
         "프린스에드워드",
         "石硤尾",
         "Shek Kip Mei",
+        "섹깁메이",
         "九龍塘",
         "Kowloon Tong",
+        "까우룽통",
         "樂富",
         "Lok Fu",
+        "록푸",
         "黃大仙",
         "Wong Tai Sin",
+        "웡타이신",
         "鑽石山",
         "Diamond Hill",
+        "다이아몬드힐",
         "彩虹",
         "Choi Hung",
+        "초이훙",
         "九龍灣",
         "Kowloon Bay",
+        "까우룽베이",
         "牛頭角",
         "Ngau Tau Kok",
+        "응아우타우콕",
         "觀塘",
         "Kwun Tong",
+        "쿤통",
         "藍田",
         "Lam Tin",
+        "람틴",
         "油塘",
         "Yau Tong",
+        "야우통",
         "調景嶺",
-        "Tiu Keng Leng"
+        "Tiu Keng Leng",
+        "티우켕렝"
       ]
     },
     {
@@ -902,13 +954,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "DT",
       "validWhen": {
         "type": "regular",
@@ -933,6 +983,7 @@
           ]
         }
       ],
+      "validationFingerprint": "8e2a824cfdbb41ca105de4fe1b0d74205d4acba97306633dea0fe1fe6739e087",
       "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-dt.json",
       "stationCount": 7,
       "stationSequence": [
@@ -947,14 +998,19 @@
       "searchStations": [
         "寶琳",
         "Po Lam",
+        "포람",
         "坑口",
         "Hang Hau",
+        "항하우",
         "將軍澳",
         "Tseung Kwan O",
+        "정관오",
         "調景嶺",
         "Tiu Keng Leng",
+        "티우켕렝",
         "油塘",
         "Yau Tong",
+        "야우통",
         "鰂魚涌",
         "Quarry Bay",
         "쿼리 베이",
@@ -1000,7 +1056,7 @@
       "geometryReady": true,
       "geometryStatus": "verified",
       "blockedReasons": [
-        "한국어 역명 검수 필요"
+        "조건부 운행 시간대 검증 필요"
       ],
       "direction": "TKS-DT",
       "validWhen": {
@@ -1022,6 +1078,7 @@
           ]
         }
       ],
+      "validationFingerprint": "b3ffa2f735f8245b5684ccfa5da74e68910aa8adb988fadc0130ac165aca3b6d",
       "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-tks-dt.json",
       "stationCount": 3,
       "stationSequence": [
@@ -1032,10 +1089,13 @@
       "searchStations": [
         "康城",
         "LOHAS Park",
+        "로하스파크",
         "將軍澳",
         "Tseung Kwan O",
+        "정관오",
         "調景嶺",
-        "Tiu Keng Leng"
+        "Tiu Keng Leng",
+        "티우켕렝"
       ]
     },
     {
@@ -1075,7 +1135,7 @@
       "geometryReady": true,
       "geometryStatus": "verified",
       "blockedReasons": [
-        "한국어 역명 검수 필요"
+        "조건부 운행 시간대 검증 필요"
       ],
       "direction": "TKS-UT",
       "validWhen": {
@@ -1097,6 +1157,7 @@
           ]
         }
       ],
+      "validationFingerprint": "fcb457a1b2fb0e60c026a7b011ee3ade000a8cb772a3a74978d120b616f7c9f2",
       "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-tks-ut.json",
       "stationCount": 3,
       "stationSequence": [
@@ -1107,10 +1168,13 @@
       "searchStations": [
         "調景嶺",
         "Tiu Keng Leng",
+        "티우켕렝",
         "將軍澳",
         "Tseung Kwan O",
+        "정관오",
         "康城",
-        "LOHAS Park"
+        "LOHAS Park",
+        "로하스파크"
       ]
     },
     {
@@ -1145,13 +1209,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "UT",
       "validWhen": {
         "type": "regular",
@@ -1176,6 +1238,7 @@
           ]
         }
       ],
+      "validationFingerprint": "356f398a84266c14e4b065c4595a1b59c76ac1bf032e824bcda29a88150f3b04",
       "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-ut.json",
       "stationCount": 7,
       "stationSequence": [
@@ -1196,14 +1259,19 @@
         "쿼리 베이",
         "油塘",
         "Yau Tong",
+        "야우통",
         "調景嶺",
         "Tiu Keng Leng",
+        "티우켕렝",
         "將軍澳",
         "Tseung Kwan O",
+        "정관오",
         "坑口",
         "Hang Hau",
+        "항하우",
         "寶琳",
-        "Po Lam"
+        "Po Lam",
+        "포람"
       ]
     },
     {
@@ -1238,14 +1306,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
-      "geometryReady": false,
-      "geometryStatus": "unverified",
-      "blockedReasons": [
-        "실제 선로 검증 필요",
-        "한국어 역명 검수 필요"
-      ],
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
       "direction": "DT",
       "validWhen": {
         "type": "regular",
@@ -1271,6 +1336,7 @@
           ]
         }
       ],
+      "validationFingerprint": "9643c2cde9e1afab9d5fb2f9b4dffc031cfd2cc50e0aff9999e3ed979ec02152",
       "lazySource": "data/hk/generated/routes/hk-tung-chung-dt.json",
       "stationCount": 8,
       "stationSequence": [
@@ -1286,6 +1352,7 @@
       "searchStations": [
         "東涌",
         "Tung Chung",
+        "뚱충",
         "欣澳",
         "Sunny Bay",
         "써니베이",
@@ -1294,8 +1361,10 @@
         "칭이",
         "茘景",
         "Lai King",
+        "라이킹",
         "南昌",
         "Nam Cheong",
+        "남청",
         "奧運",
         "Olympic",
         "올림픽",
@@ -1339,13 +1408,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "UT",
       "validWhen": {
         "type": "regular",
@@ -1371,6 +1438,7 @@
           ]
         }
       ],
+      "validationFingerprint": "581033d41b1dba9c672fa74cc95d88c9ff3ad4be95a2f182357925fd8b9b0798",
       "lazySource": "data/hk/generated/routes/hk-tung-chung-ut.json",
       "stationCount": 8,
       "stationSequence": [
@@ -1395,8 +1463,10 @@
         "올림픽",
         "南昌",
         "Nam Cheong",
+        "남청",
         "茘景",
         "Lai King",
+        "라이킹",
         "青衣",
         "Tsing Yi",
         "칭이",
@@ -1404,7 +1474,8 @@
         "Sunny Bay",
         "써니베이",
         "東涌",
-        "Tung Chung"
+        "Tung Chung",
+        "뚱충"
       ]
     },
     {
@@ -1463,6 +1534,7 @@
           ]
         }
       ],
+      "validationFingerprint": "b0fa6af97889240d1417f2e06c59513525d463cc7840cb73c706083e7bccda93",
       "lazySource": "data/hk/generated/routes/hk-disneyland-dt.json",
       "stationCount": 2,
       "stationSequence": [
@@ -1534,6 +1606,7 @@
           ]
         }
       ],
+      "validationFingerprint": "88c118b8340b3538995805cbbe376842faaeed45feffd1511f9c936c909da405",
       "lazySource": "data/hk/generated/routes/hk-disneyland-ut.json",
       "stationCount": 2,
       "stationSequence": [
@@ -1581,13 +1654,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "DT",
       "validWhen": {
         "type": "regular",
@@ -1619,6 +1690,7 @@
           ]
         }
       ],
+      "validationFingerprint": "ea7a00788d8758c90debd88af9bf3836b9192cf7c7e3030c2566b31c132282fb",
       "lazySource": "data/hk/generated/routes/hk-east-rail-dt.json",
       "stationCount": 14,
       "stationSequence": [
@@ -1643,28 +1715,40 @@
         "로위",
         "上水",
         "Sheung Shui",
+        "셩슈이",
         "粉嶺",
         "Fanling",
+        "판링",
         "太和",
         "Tai Wo",
+        "타이워",
         "大埔墟",
         "Tai Po Market",
+        "타이포마켓",
         "大學",
         "University",
+        "유니버시티",
         "火炭",
         "Fo Tan",
+        "포탄",
         "沙田",
         "Sha Tin",
+        "샤틴",
         "大圍",
         "Tai Wai",
+        "타이와이",
         "九龍塘",
         "Kowloon Tong",
+        "까우룽통",
         "旺角東",
         "Mong Kok East",
+        "몽콕 이스트",
         "紅磡",
         "Hung Hom",
+        "홍함",
         "會展",
         "Exhibition Centre",
+        "전시장",
         "金鐘",
         "Admiralty",
         "애드미럴티"
@@ -1702,13 +1786,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "LMC-DT",
       "validWhen": {
         "type": "regular",
@@ -1740,6 +1822,7 @@
           ]
         }
       ],
+      "validationFingerprint": "ee157f85138ac23ef521dde14a18403176a948b5e1b9086dab766e971fbb4d97",
       "lazySource": "data/hk/generated/routes/hk-east-rail-lmc-dt.json",
       "stationCount": 14,
       "stationSequence": [
@@ -1764,28 +1847,40 @@
         "목마차우",
         "上水",
         "Sheung Shui",
+        "셩슈이",
         "粉嶺",
         "Fanling",
+        "판링",
         "太和",
         "Tai Wo",
+        "타이워",
         "大埔墟",
         "Tai Po Market",
+        "타이포마켓",
         "大學",
         "University",
+        "유니버시티",
         "火炭",
         "Fo Tan",
+        "포탄",
         "沙田",
         "Sha Tin",
+        "샤틴",
         "大圍",
         "Tai Wai",
+        "타이와이",
         "九龍塘",
         "Kowloon Tong",
+        "까우룽통",
         "旺角東",
         "Mong Kok East",
+        "몽콕 이스트",
         "紅磡",
         "Hung Hom",
+        "홍함",
         "會展",
         "Exhibition Centre",
+        "전시장",
         "金鐘",
         "Admiralty",
         "애드미럴티"
@@ -1823,13 +1918,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "LMC-UT",
       "validWhen": {
         "type": "regular",
@@ -1861,6 +1954,7 @@
           ]
         }
       ],
+      "validationFingerprint": "2f5abed9f750e768d71a4023d6e4b065821007b1ca7732afe5b67818003405e8",
       "lazySource": "data/hk/generated/routes/hk-east-rail-lmc-ut.json",
       "stationCount": 14,
       "stationSequence": [
@@ -1885,28 +1979,40 @@
         "애드미럴티",
         "會展",
         "Exhibition Centre",
+        "전시장",
         "紅磡",
         "Hung Hom",
+        "홍함",
         "旺角東",
         "Mong Kok East",
+        "몽콕 이스트",
         "九龍塘",
         "Kowloon Tong",
+        "까우룽통",
         "大圍",
         "Tai Wai",
+        "타이와이",
         "沙田",
         "Sha Tin",
+        "샤틴",
         "火炭",
         "Fo Tan",
+        "포탄",
         "大學",
         "University",
+        "유니버시티",
         "大埔墟",
         "Tai Po Market",
+        "타이포마켓",
         "太和",
         "Tai Wo",
+        "타이워",
         "粉嶺",
         "Fanling",
+        "판링",
         "上水",
         "Sheung Shui",
+        "셩슈이",
         "落馬洲",
         "Lok Ma Chau",
         "목마차우"
@@ -1944,13 +2050,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "UT",
       "validWhen": {
         "type": "regular",
@@ -1982,6 +2086,7 @@
           ]
         }
       ],
+      "validationFingerprint": "0bbc4975ff0aac3f4b1cb54cc80957fc3381e99c20c3dae19ffc3f83c3363aca",
       "lazySource": "data/hk/generated/routes/hk-east-rail-ut.json",
       "stationCount": 14,
       "stationSequence": [
@@ -2006,28 +2111,40 @@
         "애드미럴티",
         "會展",
         "Exhibition Centre",
+        "전시장",
         "紅磡",
         "Hung Hom",
+        "홍함",
         "旺角東",
         "Mong Kok East",
+        "몽콕 이스트",
         "九龍塘",
         "Kowloon Tong",
+        "까우룽통",
         "大圍",
         "Tai Wai",
+        "타이와이",
         "沙田",
         "Sha Tin",
+        "샤틴",
         "火炭",
         "Fo Tan",
+        "포탄",
         "大學",
         "University",
+        "유니버시티",
         "大埔墟",
         "Tai Po Market",
+        "타이포마켓",
         "太和",
         "Tai Wo",
+        "타이워",
         "粉嶺",
         "Fanling",
+        "판링",
         "上水",
         "Sheung Shui",
+        "셩슈이",
         "羅湖",
         "Lo Wu",
         "로위"
@@ -2065,13 +2182,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "UT",
       "validWhen": {
         "type": "regular",
@@ -2116,6 +2231,7 @@
           ]
         }
       ],
+      "validationFingerprint": "e46015eaba6ad1dcafbb67f1cb0803cc8b69d92bbcace13224f59d1ccfb069e3",
       "lazySource": "data/hk/generated/routes/hk-tuen-ma-ut.json",
       "stationCount": 27,
       "stationSequence": [
@@ -2150,59 +2266,85 @@
       "searchStations": [
         "烏溪沙",
         "Wu Kai Sha",
+        "우카이샤",
         "馬鞍山",
         "Ma On Shan",
+        "마온산",
         "恆安",
         "Heng On",
+        "항온",
         "大水坑",
         "Tai Shui Hang",
+        "타이수이항",
         "石門",
         "Shek Mun",
+        "섹문",
         "第一城",
         "City One",
+        "시티원",
         "沙田圍",
         "Sha Tin Wai",
+        "샤틴와이",
         "車公廟",
         "Che Kung Temple",
+        "체공묘",
         "大圍",
         "Tai Wai",
+        "타이와이",
         "顯徑",
         "Hin Keng",
+        "힌켕",
         "鑽石山",
         "Diamond Hill",
+        "다이아몬드힐",
         "啟德",
         "Kai Tak",
+        "카이탁",
         "宋皇臺",
         "Sung Wong Toi",
+        "송웡토이",
         "土瓜灣",
         "To Kwa Wan",
+        "토콰완",
         "何文田",
         "Ho Man Tin",
         "호만틴",
         "紅磡",
         "Hung Hom",
+        "홍함",
         "尖東",
         "East Tsim Sha Tsui",
+        "이스트 침사추이",
         "柯士甸",
         "Austin",
+        "어스틴",
         "南昌",
         "Nam Cheong",
+        "남청",
         "美孚",
         "Mei Foo",
+        "메이푸",
         "荃灣西",
         "Tsuen Wan West",
+        "추엔완웨스트",
         "錦上路",
         "Kam Sheung Road",
+        "캄셩로드",
         "元朗",
         "Yuen Long",
+        "윈롱",
         "朗屏",
         "Long Ping",
+        "롱핑",
         "天水圍",
         "Tin Shui Wai",
+        "틴슈이와이",
         "兆康",
         "Siu Hong",
+        "시유홍",
         "屯門",
-        "Tuen Mun"
+        "Tuen Mun",
+        "툰문"
       ]
     },
     {
@@ -2237,13 +2379,11 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "DT",
       "validWhen": {
         "type": "regular",
@@ -2288,6 +2428,7 @@
           ]
         }
       ],
+      "validationFingerprint": "4f9acf674a58dbff298a9b51e39d1b32eade6cbf66061c5b0869760fa33f0b6b",
       "lazySource": "data/hk/generated/routes/hk-tuen-ma-dt.json",
       "stationCount": 27,
       "stationSequence": [
@@ -2322,59 +2463,85 @@
       "searchStations": [
         "屯門",
         "Tuen Mun",
+        "툰문",
         "兆康",
         "Siu Hong",
+        "시유홍",
         "天水圍",
         "Tin Shui Wai",
+        "틴슈이와이",
         "朗屏",
         "Long Ping",
+        "롱핑",
         "元朗",
         "Yuen Long",
+        "윈롱",
         "錦上路",
         "Kam Sheung Road",
+        "캄셩로드",
         "荃灣西",
         "Tsuen Wan West",
+        "추엔완웨스트",
         "美孚",
         "Mei Foo",
+        "메이푸",
         "南昌",
         "Nam Cheong",
+        "남청",
         "柯士甸",
         "Austin",
+        "어스틴",
         "尖東",
         "East Tsim Sha Tsui",
+        "이스트 침사추이",
         "紅磡",
         "Hung Hom",
+        "홍함",
         "何文田",
         "Ho Man Tin",
         "호만틴",
         "土瓜灣",
         "To Kwa Wan",
+        "토콰완",
         "宋皇臺",
         "Sung Wong Toi",
+        "송웡토이",
         "啟德",
         "Kai Tak",
+        "카이탁",
         "鑽石山",
         "Diamond Hill",
+        "다이아몬드힐",
         "顯徑",
         "Hin Keng",
+        "힌켕",
         "大圍",
         "Tai Wai",
+        "타이와이",
         "車公廟",
         "Che Kung Temple",
+        "체공묘",
         "沙田圍",
         "Sha Tin Wai",
+        "샤틴와이",
         "第一城",
         "City One",
+        "시티원",
         "石門",
         "Shek Mun",
+        "섹문",
         "大水坑",
         "Tai Shui Hang",
+        "타이수이항",
         "恆安",
         "Heng On",
+        "항온",
         "馬鞍山",
         "Ma On Shan",
+        "마온산",
         "烏溪沙",
-        "Wu Kai Sha"
+        "Wu Kai Sha",
+        "우카이샤"
       ]
     },
     {
@@ -2436,6 +2603,7 @@
           ]
         }
       ],
+      "validationFingerprint": "9cee6e725c35573bb2e95ecb4aa25239f6acd86977cb02398746c7279fef242e",
       "lazySource": "data/hk/generated/routes/hk-south-island-ut.json",
       "stationCount": 5,
       "stationSequence": [
@@ -2522,6 +2690,7 @@
           ]
         }
       ],
+      "validationFingerprint": "76f231de6cd95910b661fbeaba044d613353a0afd7e761467efc856f7fc30e2d",
       "lazySource": "data/hk/generated/routes/hk-south-island-dt.json",
       "stationCount": 5,
       "stationSequence": [
@@ -2608,6 +2777,7 @@
           ]
         }
       ],
+      "validationFingerprint": "c697da72b36122d4181e329edd01860f8db3d1f5a4acf9eb9e0fb90aeb614daa",
       "lazySource": "data/hk/generated/routes/hk-airport-express-dt.json",
       "stationCount": 5,
       "stationSequence": [
@@ -2694,6 +2864,7 @@
           ]
         }
       ],
+      "validationFingerprint": "92775dbbb90716735b256aa9e684375af7c7c3171410064f93c343470e49da72",
       "lazySource": "data/hk/generated/routes/hk-airport-express-ut.json",
       "stationCount": 5,
       "stationSequence": [
@@ -2791,6 +2962,7 @@
           ]
         }
       ],
+      "validationFingerprint": "1cd7329abc74334cd39cacb181330370dbbd55bc723034c3130fe6be787a4670",
       "lazySource": "data/hk/generated/routes/hk-light-rail-505-osm-3515354.json",
       "stationCount": 14,
       "stationSequence": [
@@ -2912,6 +3084,7 @@
           ]
         }
       ],
+      "validationFingerprint": "b9483d2f7100b5ce5002985d9d7e5bd97288041e3b72fc80efd97ab40e47c49f",
       "lazySource": "data/hk/generated/routes/hk-light-rail-505-osm-6481282.json",
       "stationCount": 16,
       "stationSequence": [
@@ -3039,6 +3212,7 @@
           ]
         }
       ],
+      "validationFingerprint": "538a2393ba6c52494458620aa7e451a0b72b7f65ca96b65859369ef999598989",
       "lazySource": "data/hk/generated/routes/hk-light-rail-507-osm-3679916.json",
       "stationCount": 16,
       "stationSequence": [
@@ -3166,6 +3340,7 @@
           ]
         }
       ],
+      "validationFingerprint": "91805c2cd048a6437ae3c88f9b08f38a89c65240ac47ba28a279afb3eaf206f8",
       "lazySource": "data/hk/generated/routes/hk-light-rail-507-osm-6481316.json",
       "stationCount": 16,
       "stationSequence": [
@@ -3303,6 +3478,7 @@
           ]
         }
       ],
+      "validationFingerprint": "ed66b1d3cc4df905d499df3b0c5547c58021e1155b7f49562f313ccdd589d659",
       "lazySource": "data/hk/generated/routes/hk-light-rail-610-osm-3680161.json",
       "stationCount": 26,
       "stationSequence": [
@@ -3470,6 +3646,7 @@
           ]
         }
       ],
+      "validationFingerprint": "fcb29215daf4a05ef8eddf61e2fcde992114a53c8955dd7de513514141942ee9",
       "lazySource": "data/hk/generated/routes/hk-light-rail-610-osm-6481420.json",
       "stationCount": 26,
       "stationSequence": [
@@ -3635,6 +3812,7 @@
           ]
         }
       ],
+      "validationFingerprint": "19c80716cac53c7953623739a05afc7e4779e1e41f25adab9b99a11e05c2c847",
       "lazySource": "data/hk/generated/routes/hk-light-rail-614-osm-3680323.json",
       "stationCount": 24,
       "stationSequence": [
@@ -3794,6 +3972,7 @@
           ]
         }
       ],
+      "validationFingerprint": "9b7b59653aa393046a847a47a616de52b1f958f09ee0185dfcee9ebd066e9630",
       "lazySource": "data/hk/generated/routes/hk-light-rail-614-osm-6485194.json",
       "stationCount": 24,
       "stationSequence": [
@@ -3942,6 +4121,7 @@
           ]
         }
       ],
+      "validationFingerprint": "d6a368dd47922ee0b9ad0415bd3cc6aee72a8eda81f3639795d02090d1165941",
       "lazySource": "data/hk/generated/routes/hk-light-rail-614p-osm-5955256.json",
       "stationCount": 12,
       "stationSequence": [
@@ -4054,6 +4234,7 @@
           ]
         }
       ],
+      "validationFingerprint": "5763796ccbe8925af91772e3c9244d949a75aaa31bc35ebb9c5962988befb9c0",
       "lazySource": "data/hk/generated/routes/hk-light-rail-614p-osm-5955257.json",
       "stationCount": 13,
       "stationSequence": [
@@ -4182,6 +4363,7 @@
           ]
         }
       ],
+      "validationFingerprint": "56082a73ec0cfc03b125334bb0aa66686dc9ae72efc478ee186ab222be1e252b",
       "lazySource": "data/hk/generated/routes/hk-light-rail-615-osm-3680520.json",
       "stationCount": 26,
       "stationSequence": [
@@ -4349,6 +4531,7 @@
           ]
         }
       ],
+      "validationFingerprint": "c10d92091efa553548ab6cd966f279e8cdee86a1c5194b01701c8cdcde626f09",
       "lazySource": "data/hk/generated/routes/hk-light-rail-615-osm-6481434.json",
       "stationCount": 26,
       "stationSequence": [
@@ -4506,6 +4689,7 @@
           ]
         }
       ],
+      "validationFingerprint": "1d01dff75567de7fbaeeeb648b4f7cf4d35b18f214bed3bc4f276da5999edd8f",
       "lazySource": "data/hk/generated/routes/hk-light-rail-615p-osm-5955258.json",
       "stationCount": 16,
       "stationSequence": [
@@ -4633,6 +4817,7 @@
           ]
         }
       ],
+      "validationFingerprint": "9ac8eaddfaec7cb9da2ae2bbde941be2c77333281d221546a0bf25b35de4a4b8",
       "lazySource": "data/hk/generated/routes/hk-light-rail-615p-osm-5955259.json",
       "stationCount": 16,
       "stationSequence": [
@@ -4760,6 +4945,7 @@
           ]
         }
       ],
+      "validationFingerprint": "4e8d4aea57802727287e98bc1dbe5cbfc90777b2ffe176f9ff31e3373e9d2178",
       "lazySource": "data/hk/generated/routes/hk-light-rail-705-osm-2941692.json",
       "stationCount": 16,
       "stationSequence": [
@@ -4887,6 +5073,7 @@
           ]
         }
       ],
+      "validationFingerprint": "eee027b613cd9c11a699f2978e06162f5847509bc82344f94963b026d411e84b",
       "lazySource": "data/hk/generated/routes/hk-light-rail-706-osm-2941790.json",
       "stationCount": 16,
       "stationSequence": [
@@ -5020,6 +5207,7 @@
           ]
         }
       ],
+      "validationFingerprint": "0e109e85ed46c7d34813de8ebfd69ff1a0db9e5cf6f78fa2cfe316b69ba99350",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751-osm-2926506.json",
       "stationCount": 22,
       "stationSequence": [
@@ -5172,6 +5360,7 @@
           ]
         }
       ],
+      "validationFingerprint": "e96ab15b4091964e9aa7464751571f6c0ac637d5b8bd468b075307c091f16c1d",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751-osm-6485218.json",
       "stationCount": 23,
       "stationSequence": [
@@ -5285,6 +5474,7 @@
       "geometryReady": true,
       "geometryStatus": "verified",
       "blockedReasons": [
+        "조건부 운행 시간대 검증 필요",
         "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
@@ -5314,6 +5504,7 @@
           ]
         }
       ],
+      "validationFingerprint": "7ec7ecc5ceae99c7ebdfb81b0c37e1ac74e24195fb9be76fcaf49e536b88af63",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751p-osm-2929802.json",
       "stationCount": 9,
       "stationSequence": [
@@ -5385,6 +5576,7 @@
       "geometryReady": true,
       "geometryStatus": "verified",
       "blockedReasons": [
+        "조건부 운행 시간대 검증 필요",
         "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
@@ -5414,6 +5606,7 @@
           ]
         }
       ],
+      "validationFingerprint": "dd749f47ff4d9ec97b341983ec70ecc8888d8396632429371e942d1bf2d44f91",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751p-osm-6485219.json",
       "stationCount": 9,
       "stationSequence": [
@@ -5485,6 +5678,7 @@
       "geometryReady": true,
       "geometryStatus": "verified",
       "blockedReasons": [
+        "조건부 운행 시간대 검증 필요",
         "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
@@ -5520,6 +5714,7 @@
           ]
         }
       ],
+      "validationFingerprint": "cf1e71c0a576ecc8841223ee8c9685a419b0bc5c99f09a6d186fa3834f509a06",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751p-osm-12619403.json",
       "stationCount": 15,
       "stationSequence": [
@@ -5642,6 +5837,7 @@
           ]
         }
       ],
+      "validationFingerprint": "551c713364910551ce813e75372a0e313e326138a7514aa580a839a2ff42f49f",
       "lazySource": "data/hk/generated/routes/hk-light-rail-761p-osm-2942633.json",
       "stationCount": 14,
       "stationSequence": [
@@ -5761,6 +5957,7 @@
           ]
         }
       ],
+      "validationFingerprint": "cd8913e8152a6ade107ffee4eb7e172ba4deec9b830e7666d884ab27b4df408a",
       "lazySource": "data/hk/generated/routes/hk-light-rail-761p-osm-6485221.json",
       "stationCount": 14,
       "stationSequence": [
@@ -5866,6 +6063,7 @@
           "stops": []
         }
       ],
+      "validationFingerprint": "c8e07033f1953e4236dcb9b5c408b956f4d9d210610f58fdfbdb726828cd3ead",
       "lazySource": "data/hk/generated/routes/hk-tram-western-market-shau-kei-wan.json",
       "stationCount": 0,
       "stationSequence": [],
@@ -5958,6 +6156,7 @@
           ]
         }
       ],
+      "validationFingerprint": "44953fd88ef697b7c509050c920c500c75f05d7b7a9a5e8ad8303a5756777317",
       "lazySource": "data/hk/generated/routes/hk-tram-happy-valley-shau-kei-wan-4088517.json",
       "stationCount": 31,
       "stationSequence": [
@@ -6147,6 +6346,7 @@
           ]
         }
       ],
+      "validationFingerprint": "af935372fcab1496db19ddbdf8fec9405c1ed544440df75e6381b76ed141d3bc",
       "lazySource": "data/hk/generated/routes/hk-tram-shek-tong-tsui-north-point-4088457.json",
       "stationCount": 33,
       "stationSequence": [
@@ -6335,6 +6535,7 @@
           ]
         }
       ],
+      "validationFingerprint": "d787bb3ba2c62779d14da8113f708ab1a959a26cc50b0036452f50bd1b60a90d",
       "lazySource": "data/hk/generated/routes/hk-tram-shek-tong-tsui-causeway-bay-4088086.json",
       "stationCount": 26,
       "stationSequence": [
@@ -6501,6 +6702,7 @@
           ]
         }
       ],
+      "validationFingerprint": "72b470bd73ccfd9f97b3e397b1a5a02d50145c6473e0358db02ab76097445165",
       "lazySource": "data/hk/generated/routes/hk-tram-shek-tong-tsui-causeway-bay-4088087.json",
       "stationCount": 25,
       "stationSequence": [
@@ -6670,6 +6872,7 @@
           ]
         }
       ],
+      "validationFingerprint": "6ce07ccab1b709e99c62066ee60122613f096551d32ddb0eb2470ac4b6138d92",
       "lazySource": "data/hk/generated/routes/hk-tram-kennedy-town-happy-valley-4088000.json",
       "stationCount": 33,
       "stationSequence": [
@@ -6883,6 +7086,7 @@
           ]
         }
       ],
+      "validationFingerprint": "3af136db364d319fd6a728af55ca727ff574aa06df3c0efaa12607ffe694df9d",
       "lazySource": "data/hk/generated/routes/hk-tram-kennedy-town-shau-kei-wan-4088262.json",
       "stationCount": 51,
       "stationSequence": [
@@ -7151,6 +7355,7 @@
           ]
         }
       ],
+      "validationFingerprint": "974db8e2bd317a31d65849ba7ece5c9b5f63b8fb9eeb0c334941b81b6b68eb25",
       "lazySource": "data/hk/generated/routes/hk-tram-kennedy-town-shau-kei-wan-4088263.json",
       "stationCount": 54,
       "stationSequence": [
@@ -7376,6 +7581,7 @@
           "stops": []
         }
       ],
+      "validationFingerprint": "f6404bf3596e0e668a501755087b84729c3001d7ad100a8a314b948067d2c263",
       "lazySource": "data/hk/generated/routes/hk-peak-tram-pending.json",
       "stationCount": 0,
       "stationSequence": [],
@@ -7437,6 +7643,7 @@
           "stops": []
         }
       ],
+      "validationFingerprint": "4f50b60df00c58342a17fc5224bc0c2cdb5c0d4b1f20c232d9af55eeb5d223db",
       "lazySource": "data/hk/generated/routes/hk-high-speed-pending.json",
       "stationCount": 0,
       "stationSequence": [],
@@ -7450,8 +7657,8 @@
   "audit": {
     "status": "INCOMPLETE",
     "totalServices": 57,
-    "playableServices": 6,
-    "missingKoreanNames": 251,
-    "geometryIssues": 6
+    "playableServices": 22,
+    "missingKoreanNames": 180,
+    "geometryIssues": 5
   }
 }

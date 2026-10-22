@@ -1,13 +1,13 @@
 const norm=value=>String(value||'').normalize('NFC').replace(/[^\p{L}\p{N}]/gu,'').toLowerCase();
 const meters=(a,b)=>{const rad=Math.PI/180,dlat=(b[0]-a[0])*rad,dlon=(b[1]-a[1])*rad,s=Math.sin(dlat/2)**2+Math.cos(a[0]*rad)*Math.cos(b[0]*rad)*Math.sin(dlon/2)**2;return 6371000*2*Math.atan2(Math.sqrt(s),Math.sqrt(1-s))};
 const validPoint=p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite)&&p[0]>22.1&&p[0]<22.58&&p[1]>113.8&&p[1]<114.45;
-function extractRelation(relation,elements){
+function extractRelation(relation,elements,{operationalWayIds=[]}={}){
  const byKey=new Map(elements.map(e=>[e.type+':'+e.id,e]));
  const stopNodes=relation.members.filter(m=>m.type==='node'&&/^stop/.test(m.role)).map(m=>byKey.get('node:'+m.ref));
  if(stopNodes.length<2||stopNodes.some(n=>!n))throw Error('missing ordered stop nodes');
  const members=relation.members.filter(m=>{if(m.type!=='way'||/platform|stop/.test(m.role))return false;const tags=byKey.get('way:'+m.ref)?.tags;return tags?.public_transport!=='platform'&&tags?.railway!=='platform'&&tags?.area!=='yes'});
  const ways=members.map(m=>byKey.get('way:'+m.ref));if(!ways.length||ways.some(w=>!w))throw Error('missing source railway ways');
- for(const way of ways)if(!['rail','subway','light_rail','tram','funicular'].includes(way.tags?.railway))throw Error('non-railway way '+way.id);
+ for(const way of ways){if(!['rail','subway','light_rail','tram','funicular'].includes(way.tags?.railway))throw Error('non-railway way '+way.id);if(way.tags?.construction&&!['no','finished'].includes(way.tags.construction)&&!operationalWayIds.includes(way.id))throw Error('construction railway way requires commissioning review '+way.id)}
  const ordered=[];
  for(let i=0;i<ways.length;i++){
   let ids=[...ways[i].nodes];if(members[i].role==='backward')ids.reverse();

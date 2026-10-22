@@ -30,13 +30,11 @@
   },
   "loop": false,
   "lazy": false,
-  "playable": false,
-  "releaseStatus": "INCOMPLETE",
+  "playable": true,
+  "releaseStatus": "ready",
   "geometryReady": true,
   "geometryStatus": "verified",
-  "blockedReasons": [
-    "한국어 역명 검수 필요"
-  ],
+  "blockedReasons": [],
   "direction": "UT",
   "validWhen": {
     "type": "regular",
@@ -844,7 +842,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/269672",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -994,7 +992,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/269672",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1192,7 +1190,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/269672",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1265,7 +1263,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/269672",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1379,7 +1377,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/269672",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1489,7 +1487,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/269672",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     }
@@ -1505,8 +1503,8 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.2911844,
-        "lng": 114.2003863
+        "lat": 22.2906116,
+        "lng": 114.2005391
       },
       "nameStatus": "verified",
       "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
@@ -1517,12 +1515,24 @@
       "koreanNameEvidence": "data/hk/master/korean-name-review.json#NOP",
       "note": "Access points 4 through 7 identify North Point MTR exit A1.",
       "canonicalStationId": "hk-mtr-NOP",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/984409361",
+        "sourceUrl": "https://www.openstreetmap.org/node/253288836",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-ut-stop-0",
+      "physicalStationId": "hk-mtr-NOP",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 984409361,
+      "stopPosition": {
+        "lat": 22.2906116,
+        "lng": 114.2005391,
+        "sourceNodeId": 984409361,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/984409361"
       },
       "geometryIndex": 0,
       "stationMasterId": "hk-mtr-NOP",
@@ -1531,8 +1541,8 @@
       "romaji": "North Point",
       "ko": "노스 포인트",
       "koAliases": [],
-      "latitude": 22.2911844,
-      "longitude": 114.2003863,
+      "latitude": 22.2906116,
+      "longitude": 114.2005391,
       "officialCode": "NOP",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html"
@@ -1547,8 +1557,8 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.2889092,
-        "lng": 114.2081242
+        "lat": 22.2883589,
+        "lng": 114.2093923
       },
       "nameStatus": "verified",
       "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
@@ -1559,12 +1569,24 @@
       "koreanNameEvidence": "data/hk/master/korean-name-review.json#QUB",
       "note": "Access points 9 and 10 identify Quarry Bay MTR exit C.",
       "canonicalStationId": "hk-mtr-QUB",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/2600841716",
+        "sourceUrl": "https://www.openstreetmap.org/node/984741558",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-ut-stop-1",
+      "physicalStationId": "hk-mtr-QUB",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 2600841716,
+      "stopPosition": {
+        "lat": 22.2883589,
+        "lng": 114.2093923,
+        "sourceNodeId": 2600841716,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/2600841716"
       },
       "geometryIndex": 32,
       "stationMasterId": "hk-mtr-QUB",
@@ -1573,8 +1595,8 @@
       "romaji": "Quarry Bay",
       "ko": "쿼리 베이",
       "koAliases": [],
-      "latitude": 22.2889092,
-      "longitude": 114.2081242,
+      "latitude": 22.2883589,
+      "longitude": 114.2093923,
       "officialCode": "QUB",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html"
@@ -1585,36 +1607,54 @@
       "code": "YAT",
       "nameZhHant": "油塘",
       "nameEn": "Yau Tong",
-      "nameKo": null,
+      "nameKo": "야우통",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.2978558,
-        "lng": 114.2372388
+        "lat": 22.2977986,
+        "lng": 114.2370945
       },
-      "nameStatus": "unverified",
+      "nameStatus": "verified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "canonicalStationId": "hk-mtr-YAT",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/991295084",
+        "sourceUrl": "https://www.openstreetmap.org/node/2674392736",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-ut-stop-2",
+      "physicalStationId": "hk-mtr-YAT",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 991295084,
+      "stopPosition": {
+        "lat": 22.2977986,
+        "lng": 114.2370945,
+        "sourceNodeId": 991295084,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/991295084"
       },
       "geometryIndex": 63,
       "stationMasterId": "hk-mtr-YAT",
       "ja": "油塘",
       "kana": "",
       "romaji": "Yau Tong",
-      "ko": "",
+      "ko": "야우통",
       "koAliases": [],
-      "latitude": 22.2978558,
-      "longitude": 114.2372388,
+      "latitude": 22.2977986,
+      "longitude": 114.2370945,
       "officialCode": "YAT",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
@@ -1625,36 +1665,58 @@
       "code": "TIK",
       "nameZhHant": "調景嶺",
       "nameEn": "Tiu Keng Leng",
-      "nameKo": null,
-      "aliasesKo": [],
+      "nameKo": "티우켕렝",
+      "aliasesKo": [
+        "티유켕렝"
+      ],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.3041111,
-        "lng": 114.2523323
+        "lat": 22.3041145,
+        "lng": 114.2523284
       },
-      "nameStatus": "unverified",
+      "nameStatus": "verified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "canonicalStationId": "hk-mtr-TIK",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/307394050",
+        "sourceUrl": "https://www.openstreetmap.org/node/984741544",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-ut-stop-3",
+      "physicalStationId": "hk-mtr-TIK",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 307394050,
+      "stopPosition": {
+        "lat": 22.3041145,
+        "lng": 114.2523284,
+        "sourceNodeId": 307394050,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/307394050"
       },
       "geometryIndex": 106,
       "stationMasterId": "hk-mtr-TIK",
       "ja": "調景嶺",
       "kana": "",
       "romaji": "Tiu Keng Leng",
-      "ko": "",
-      "koAliases": [],
-      "latitude": 22.3041111,
-      "longitude": 114.2523323,
+      "ko": "티우켕렝",
+      "koAliases": [
+        "티유켕렝"
+      ],
+      "latitude": 22.3041145,
+      "longitude": 114.2523284,
       "officialCode": "TIK",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
@@ -1665,36 +1727,58 @@
       "code": "TKO",
       "nameZhHant": "將軍澳",
       "nameEn": "Tseung Kwan O",
-      "nameKo": null,
-      "aliasesKo": [],
+      "nameKo": "정관오",
+      "aliasesKo": [
+        "청콴오"
+      ],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.3073157,
-        "lng": 114.2599962
+        "lat": 22.3074422,
+        "lng": 114.2599465
       },
-      "nameStatus": "unverified",
+      "nameStatus": "verified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "canonicalStationId": "hk-mtr-TKO",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/307391103",
+        "sourceUrl": "https://www.openstreetmap.org/node/4784243684",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-ut-stop-4",
+      "physicalStationId": "hk-mtr-TKO",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 307391103,
+      "stopPosition": {
+        "lat": 22.3074422,
+        "lng": 114.2599465,
+        "sourceNodeId": 307391103,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/307391103"
       },
       "geometryIndex": 118,
       "stationMasterId": "hk-mtr-TKO",
       "ja": "將軍澳",
       "kana": "",
       "romaji": "Tseung Kwan O",
-      "ko": "",
-      "koAliases": [],
-      "latitude": 22.3073157,
-      "longitude": 114.2599962,
+      "ko": "정관오",
+      "koAliases": [
+        "청콴오"
+      ],
+      "latitude": 22.3074422,
+      "longitude": 114.2599465,
       "officialCode": "TKO",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
@@ -1705,36 +1789,54 @@
       "code": "HAH",
       "nameZhHant": "坑口",
       "nameEn": "Hang Hau",
-      "nameKo": null,
+      "nameKo": "항하우",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.3155474,
-        "lng": 114.2644008
+        "lat": 22.3155139,
+        "lng": 114.2643406
       },
-      "nameStatus": "unverified",
+      "nameStatus": "verified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "canonicalStationId": "hk-mtr-HAH",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/2562413325",
+        "sourceUrl": "https://www.openstreetmap.org/node/2562413275",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-ut-stop-5",
+      "physicalStationId": "hk-mtr-HAH",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 2562413325,
+      "stopPosition": {
+        "lat": 22.3155139,
+        "lng": 114.2643406,
+        "sourceNodeId": 2562413325,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/2562413325"
       },
       "geometryIndex": 140,
       "stationMasterId": "hk-mtr-HAH",
       "ja": "坑口",
       "kana": "",
       "romaji": "Hang Hau",
-      "ko": "",
+      "ko": "항하우",
       "koAliases": [],
-      "latitude": 22.3155474,
-      "longitude": 114.2644008,
+      "latitude": 22.3155139,
+      "longitude": 114.2643406,
       "officialCode": "HAH",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
@@ -1745,33 +1847,51 @@
       "code": "POA",
       "nameZhHant": "寶琳",
       "nameEn": "Po Lam",
-      "nameKo": null,
+      "nameKo": "포람",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.3225369,
         "lng": 114.2579671
       },
-      "nameStatus": "unverified",
+      "nameStatus": "verified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "canonicalStationId": "hk-mtr-POA",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/262761250",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-ut-stop-6",
+      "physicalStationId": "hk-mtr-POA",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 262761250,
+      "stopPosition": {
+        "lat": 22.3225369,
+        "lng": 114.2579671,
+        "sourceNodeId": 262761250,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/262761250"
       },
       "geometryIndex": 161,
       "stationMasterId": "hk-mtr-POA",
       "ja": "寶琳",
       "kana": "",
       "romaji": "Po Lam",
-      "ko": "",
+      "ko": "포람",
       "koAliases": [],
       "latitude": 22.3225369,
       "longitude": 114.2579671,
@@ -1796,5 +1916,6 @@
         "hk-mtr-POA"
       ]
     }
-  ]
+  ],
+  "validationFingerprint": "356f398a84266c14e4b065c4595a1b59c76ac1bf032e824bcda29a88150f3b04"
 }

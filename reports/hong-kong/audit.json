@@ -1,13 +1,14 @@
 {
-  "checkedAt": "2026-10-22T07:37:13.272Z",
-  "sourceCheckedAt": "2026-10-20",
-  "remoteMainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
+  "checkedAt": "2026-10-22T13:12:29.495Z",
+  "sourceCheckedAt": "2026-10-22",
+  "remoteMainSha": "fa2b73c67e17614bf576920e900941f3e967fed9",
+  "cachedRemoteMainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
   "remoteMainAdvanced": true,
   "remoteMainChangesNotIntegrated": true,
   "status": "INCOMPLETE",
   "branch": "feature/hong-kong-railway",
   "mainBaseSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
-  "branchCommitSha": "a0877152bd0b6b691f642427a6764c704f906297",
+  "branchCommitSha": "80507af1cd12a2c56e81fc108dca1635044d6204",
   "mainSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
   "mainUnchanged": "PASS",
   "japanKoreaDataUnchanged": "PASS",
@@ -16,10 +17,10 @@
     "stationOrDirectionalStopRecords": 277,
     "verifiedPhysicalStationTotal": "NOT_VERIFIED",
     "servicePatterns": 57,
-    "playableServicePatterns": 6,
-    "trackSegments": 501,
+    "playableServicePatterns": 22,
+    "trackSegments": 508,
     "mtrCoreLinesRegistered": 9,
-    "mtrCoreLinesPlayable": 2,
+    "mtrCoreLinesPlayable": 9,
     "airportExpressPlayable": 2,
     "lightRailTargetRefs": 12,
     "additionalOfficialLightRailRefs": [
@@ -28,21 +29,20 @@
       "720",
       "610P"
     ],
-    "verifiedGeometries": 53,
-    "unverifiedGeometry": 4,
-    "verifiedKoNames": 26,
+    "verifiedGeometries": 54,
+    "unverifiedGeometry": 3,
+    "verifiedKoNames": 97,
     "verifiedStopPatterns": 43,
     "remainingGeometryRelationIds": [
       3263757,
       3264047,
       4088518,
-      5317704,
       6582965,
       6582966
     ],
     "officialMtrLineColors": 10,
-    "missingKoNames": 246,
-    "unreviewedKoNames": 251,
+    "missingKoNames": 180,
+    "unreviewedKoNames": 180,
     "brokenCoordinates": 0,
     "duplicateStationIds": 0,
     "duplicatePhysicalStations": "NOT_AUDITED",
@@ -56,476 +56,85 @@
     "consoleErrors": 0
   },
   "requirements": {
-    "PASS": 45,
-    "INCOMPLETE": 134,
+    "PASS": 64,
+    "INCOMPLETE": 115,
     "NOT_REQUESTED": 1
   },
   "ui": {
     "checkedAt": "2026-10-22",
     "status": "PASS_WITH_LIMITED_SCOPE",
     "consoleErrors": 0,
-    "consoleScope": "Local preview tab 5; observed phase2 play, custom, country navigation. Not every pending service or cloud flow.",
+    "consoleScope": "Local preview tab 5. Hong Kong 22 completed directional services and custom, Japanese samples and Korean sample/free drive. Browser-tool selector errors are not app console exceptions.",
     "darkMobile": "PASS",
     "viewports": [
       {
         "width": 390,
         "height": 844,
-        "horizontalOverflow": false,
         "light": "PASS",
         "dark": "PASS",
-        "memoryAnswerHidden": true
+        "horizontalOverflow": false,
+        "stationSignBottom": 826,
+        "officialStationCodeVisible": "PRE",
+        "longKoreanName": "프린스에드워드"
       },
       {
         "width": 1280,
         "height": 900,
-        "light": "PASS",
-        "dark": "PASS"
+        "scope": "Phase 2 retained; Phase 3 desktop default viewport also used"
       }
     ],
-    "runs": [
-      {
-        "service": "hk-south-island-ut",
-        "mode": "normal",
-        "advance": "AUTO",
-        "reducedMotion": false,
-        "distanceKm": 6.95,
-        "status": "PASS",
-        "completion": "all stops",
-        "accuracy": 100,
-        "errors": 0
-      },
-      {
-        "service": "hk-south-island-dt",
-        "mode": "memory",
-        "advance": "SPACE",
-        "reducedMotion": true,
-        "distanceKm": 6.93,
-        "status": "PASS",
-        "completion": "all stops",
-        "accuracy": 100,
-        "errors": 0
-      },
-      {
-        "service": "hk-airport-express-dt",
-        "mode": "normal",
-        "advance": "SPACE",
-        "reducedMotion": true,
-        "distanceKm": 34.94,
-        "status": "PASS",
-        "completion": "all stops",
-        "accuracy": 100,
-        "errors": 0
-      },
-      {
-        "service": "hk-airport-express-ut",
-        "mode": "memory",
-        "advance": "AUTO",
-        "reducedMotion": true,
-        "distanceKm": 34.95,
-        "status": "PASS",
-        "completion": "all stops",
-        "accuracy": 100,
-        "errors": 0
-      },
-      {
-        "service": "hk-disneyland-dt",
-        "mode": "normal",
-        "advance": "AUTO",
-        "reducedMotion": true,
-        "distanceKm": 3.09,
-        "status": "PASS",
-        "completion": "all stops",
-        "accuracy": 100,
-        "errors": 0
-      },
-      {
-        "service": "hk-disneyland-ut",
-        "mode": "normal",
-        "advance": "AUTO",
-        "reducedMotion": true,
-        "distanceKm": 3.09,
-        "status": "PASS",
-        "completion": "all stops",
-        "accuracy": 100,
-        "errors": 0
-      },
-      {
-        "service": "custom-adm-ocp-wch",
-        "mode": "normal",
-        "advance": "AUTO",
-        "reducedMotion": true,
-        "distanceKm": 4.64,
-        "status": "PASS",
-        "completion": "all stops",
-        "accuracy": 100,
-        "errors": 0
-      }
+    "browserEvidence": "reports/hong-kong/phase3/browser-runs.json",
+    "hongKongCompleted": 22,
+    "advanceModes": [
+      "AUTO",
+      "SPACE"
     ],
+    "inputModes": [
+      "normal",
+      "memory"
+    ],
+    "reducedMotion": true,
+    "fullAnimationPhase3": "NOT_TESTED",
+    "nativeOsIme": "NOT_TESTED",
+    "automatedIme": {
+      "fixtures": 10,
+      "status": "PASS"
+    },
     "custom": {
       "status": "PASS",
-      "route": "ADM → OCP → WCH",
-      "saved": true,
-      "reloaded": true,
-      "replayed": true,
-      "reverseServiceOfferRemoved": true,
-      "directHashEditorHydration": "PASS"
+      "newRoute": "PRE → SSP → CSW",
+      "save": true,
+      "reload": true,
+      "replay": true,
+      "completion": true,
+      "phase1SavedRouteReplay": "PASS",
+      "phase2SavedRouteReplay": "PASS",
+      "coordinateRebase": "PASS"
     },
     "japanKorea": {
+      "dataUnchanged": "PASS",
       "automated": "PASS",
-      "homeCountrySwitch": "PASS",
-      "fullBrowserReplay": "NOT_REPEATED_IN_PHASE2",
-      "dataUnchanged": "PASS"
-    },
-    "ime": {
-      "automated": "PASS",
-      "nativeOperatingSystemIme": "NOT_TESTED"
-    },
-    "legacyUiFailures": {
-      "count": 4,
-      "unchanged": true,
-      "evidence": "reports/hong-kong/legacy-ui-baseline.json"
+      "korea": "Seongsu → Sinseol-dong 5 stops complete; free drive City Hall → Euljiro 1-ga → Euljiro 3-ga",
+      "japan": "Nishi Kyushu Shinkansen 5 stops complete; Narita Express 5 Shinjuku → Narita Airport 6 stops complete",
+      "actualTransferExecution": "NOT_TESTED",
+      "qualification": "Existing Japanese NEX setup showed a grouped service caption differing from the selected journey and its result reports some distance estimates. These Japanese data/selection/distance implementations were not modified in Phase 3; do not claim a full Japanese geometry/UX audit."
     },
     "supabase": "NOT_TESTED",
+    "legacyUiFailureCount": 4,
+    "legacyUiEvidence": "reports/hong-kong/phase3/legacy-ui-investigation.json",
     "screenshots": [
-      "output/hk/phase2-sil-mobile-light.jpg",
-      "output/hk/phase2-sil-mobile-dark.jpg",
-      "output/hk/phase2-ael-ut-result.jpg",
-      "output/hk/phase2-custom-result.jpg"
+      "output/hk/phase3-mobile-light-code.jpg",
+      "output/hk/phase3-mobile-dark-code.jpg",
+      "output/hk/phase3-custom-result.jpg",
+      "output/hk/phase3-jp-shinkansen-result.jpg",
+      "output/hk/phase3-jp-express-result.jpg",
+      "output/hk/phase3-kr-branch-result.jpg",
+      "output/hk/phase3-kr-free-drive.jpg"
     ],
     "settingsRestored": true,
-    "scopeNote": "SIL UT tested with train motion. Remaining recorded runs used reduced motion; source geometry was checked independently. Korean label input uses browser fill and does not simulate native IME."
+    "notes": "Browser fill is automated input and not human typing speed. Results verify completion, not typing performance. Native IME and real transfer execution remain separate NOT_TESTED items."
   },
   "missingNames": [
-    {
-      "id": "hk-mtr-SHS",
-      "nameZhHant": "上水",
-      "nameEn": "Sheung Shui"
-    },
-    {
-      "id": "hk-mtr-FAN",
-      "nameZhHant": "粉嶺",
-      "nameEn": "Fanling"
-    },
-    {
-      "id": "hk-mtr-TWO",
-      "nameZhHant": "太和",
-      "nameEn": "Tai Wo"
-    },
-    {
-      "id": "hk-mtr-TAP",
-      "nameZhHant": "大埔墟",
-      "nameEn": "Tai Po Market"
-    },
-    {
-      "id": "hk-mtr-UNI",
-      "nameZhHant": "大學",
-      "nameEn": "University"
-    },
-    {
-      "id": "hk-mtr-FOT",
-      "nameZhHant": "火炭",
-      "nameEn": "Fo Tan"
-    },
-    {
-      "id": "hk-mtr-SHT",
-      "nameZhHant": "沙田",
-      "nameEn": "Sha Tin"
-    },
-    {
-      "id": "hk-mtr-TAW",
-      "nameZhHant": "大圍",
-      "nameEn": "Tai Wai"
-    },
-    {
-      "id": "hk-mtr-KOT",
-      "nameZhHant": "九龍塘",
-      "nameEn": "Kowloon Tong"
-    },
-    {
-      "id": "hk-mtr-MKK",
-      "nameZhHant": "旺角東",
-      "nameEn": "Mong Kok East"
-    },
-    {
-      "id": "hk-mtr-HUH",
-      "nameZhHant": "紅磡",
-      "nameEn": "Hung Hom"
-    },
-    {
-      "id": "hk-mtr-EXC",
-      "nameZhHant": "會展",
-      "nameEn": "Exhibition Centre"
-    },
-    {
-      "id": "hk-mtr-HFC",
-      "nameZhHant": "杏花邨",
-      "nameEn": "Heng Fa Chuen"
-    },
-    {
-      "id": "hk-mtr-SWH",
-      "nameZhHant": "西灣河",
-      "nameEn": "Sai Wan Ho"
-    },
-    {
-      "id": "hk-mtr-TIH",
-      "nameZhHant": "天后",
-      "nameEn": "Tin Hau"
-    },
-    {
-      "id": "hk-mtr-CEN",
-      "nameZhHant": "中環",
-      "nameEn": "Central"
-    },
-    {
-      "id": "hk-mtr-HKU",
-      "nameZhHant": "香港大學",
-      "nameEn": "HKU"
-    },
-    {
-      "id": "hk-mtr-TIK",
-      "nameZhHant": "調景嶺",
-      "nameEn": "Tiu Keng Leng"
-    },
-    {
-      "id": "hk-mtr-YAT",
-      "nameZhHant": "油塘",
-      "nameEn": "Yau Tong"
-    },
-    {
-      "id": "hk-mtr-LAT",
-      "nameZhHant": "藍田",
-      "nameEn": "Lam Tin"
-    },
-    {
-      "id": "hk-mtr-KWT",
-      "nameZhHant": "觀塘",
-      "nameEn": "Kwun Tong"
-    },
-    {
-      "id": "hk-mtr-NTK",
-      "nameZhHant": "牛頭角",
-      "nameEn": "Ngau Tau Kok"
-    },
-    {
-      "id": "hk-mtr-KOB",
-      "nameZhHant": "九龍灣",
-      "nameEn": "Kowloon Bay"
-    },
-    {
-      "id": "hk-mtr-CHH",
-      "nameZhHant": "彩虹",
-      "nameEn": "Choi Hung"
-    },
-    {
-      "id": "hk-mtr-DIH",
-      "nameZhHant": "鑽石山",
-      "nameEn": "Diamond Hill"
-    },
-    {
-      "id": "hk-mtr-WTS",
-      "nameZhHant": "黃大仙",
-      "nameEn": "Wong Tai Sin"
-    },
-    {
-      "id": "hk-mtr-LOF",
-      "nameZhHant": "樂富",
-      "nameEn": "Lok Fu"
-    },
-    {
-      "id": "hk-mtr-SKM",
-      "nameZhHant": "石硤尾",
-      "nameEn": "Shek Kip Mei"
-    },
-    {
-      "id": "hk-mtr-WKS",
-      "nameZhHant": "烏溪沙",
-      "nameEn": "Wu Kai Sha"
-    },
-    {
-      "id": "hk-mtr-MOS",
-      "nameZhHant": "馬鞍山",
-      "nameEn": "Ma On Shan"
-    },
-    {
-      "id": "hk-mtr-HEO",
-      "nameZhHant": "恆安",
-      "nameEn": "Heng On"
-    },
-    {
-      "id": "hk-mtr-TSH",
-      "nameZhHant": "大水坑",
-      "nameEn": "Tai Shui Hang"
-    },
-    {
-      "id": "hk-mtr-SHM",
-      "nameZhHant": "石門",
-      "nameEn": "Shek Mun"
-    },
-    {
-      "id": "hk-mtr-CIO",
-      "nameZhHant": "第一城",
-      "nameEn": "City One"
-    },
-    {
-      "id": "hk-mtr-STW",
-      "nameZhHant": "沙田圍",
-      "nameEn": "Sha Tin Wai"
-    },
-    {
-      "id": "hk-mtr-CKT",
-      "nameZhHant": "車公廟",
-      "nameEn": "Che Kung Temple"
-    },
-    {
-      "id": "hk-mtr-HIK",
-      "nameZhHant": "顯徑",
-      "nameEn": "Hin Keng"
-    },
-    {
-      "id": "hk-mtr-KAT",
-      "nameZhHant": "啟德",
-      "nameEn": "Kai Tak"
-    },
-    {
-      "id": "hk-mtr-SUW",
-      "nameZhHant": "宋皇臺",
-      "nameEn": "Sung Wong Toi"
-    },
-    {
-      "id": "hk-mtr-TKW",
-      "nameZhHant": "土瓜灣",
-      "nameEn": "To Kwa Wan"
-    },
-    {
-      "id": "hk-mtr-ETS",
-      "nameZhHant": "尖東",
-      "nameEn": "East Tsim Sha Tsui"
-    },
-    {
-      "id": "hk-mtr-AUS",
-      "nameZhHant": "柯士甸",
-      "nameEn": "Austin"
-    },
-    {
-      "id": "hk-mtr-NAC",
-      "nameZhHant": "南昌",
-      "nameEn": "Nam Cheong"
-    },
-    {
-      "id": "hk-mtr-MEF",
-      "nameZhHant": "美孚",
-      "nameEn": "Mei Foo"
-    },
-    {
-      "id": "hk-mtr-TWW",
-      "nameZhHant": "荃灣西",
-      "nameEn": "Tsuen Wan West"
-    },
-    {
-      "id": "hk-mtr-KSR",
-      "nameZhHant": "錦上路",
-      "nameEn": "Kam Sheung Road"
-    },
-    {
-      "id": "hk-mtr-YUL",
-      "nameZhHant": "元朗",
-      "nameEn": "Yuen Long"
-    },
-    {
-      "id": "hk-mtr-LOP",
-      "nameZhHant": "朗屏",
-      "nameEn": "Long Ping"
-    },
-    {
-      "id": "hk-mtr-TIS",
-      "nameZhHant": "天水圍",
-      "nameEn": "Tin Shui Wai"
-    },
-    {
-      "id": "hk-mtr-SIH",
-      "nameZhHant": "兆康",
-      "nameEn": "Siu Hong"
-    },
-    {
-      "id": "hk-mtr-TUM",
-      "nameZhHant": "屯門",
-      "nameEn": "Tuen Mun"
-    },
-    {
-      "id": "hk-mtr-TUC",
-      "nameZhHant": "東涌",
-      "nameEn": "Tung Chung"
-    },
-    {
-      "id": "hk-mtr-LAK",
-      "nameZhHant": "茘景",
-      "nameEn": "Lai King"
-    },
-    {
-      "id": "hk-mtr-POA",
-      "nameZhHant": "寶琳",
-      "nameEn": "Po Lam"
-    },
-    {
-      "id": "hk-mtr-HAH",
-      "nameZhHant": "坑口",
-      "nameEn": "Hang Hau"
-    },
-    {
-      "id": "hk-mtr-TKO",
-      "nameZhHant": "將軍澳",
-      "nameEn": "Tseung Kwan O"
-    },
-    {
-      "id": "hk-mtr-LHP",
-      "nameZhHant": "康城",
-      "nameEn": "LOHAS Park"
-    },
-    {
-      "id": "hk-mtr-TSW",
-      "nameZhHant": "荃灣",
-      "nameEn": "Tsuen Wan"
-    },
-    {
-      "id": "hk-mtr-TWH",
-      "nameZhHant": "大窩口",
-      "nameEn": "Tai Wo Hau"
-    },
-    {
-      "id": "hk-mtr-KWH",
-      "nameZhHant": "葵興",
-      "nameEn": "Kwai Hing"
-    },
-    {
-      "id": "hk-mtr-KWF",
-      "nameZhHant": "葵芳",
-      "nameEn": "Kwai Fong"
-    },
-    {
-      "id": "hk-mtr-LCK",
-      "nameZhHant": "茘枝角",
-      "nameEn": "Lai Chi Kok"
-    },
-    {
-      "id": "hk-mtr-CSW",
-      "nameZhHant": "長沙灣",
-      "nameEn": "Cheung Sha Wan"
-    },
-    {
-      "id": "hk-mtr-SSP",
-      "nameZhHant": "深水埗",
-      "nameEn": "Sham Shui Po"
-    },
-    {
-      "id": "hk-mtr-JOR",
-      "nameZhHant": "佐敦",
-      "nameEn": "Jordan"
-    },
-    {
-      "id": "hk-mtr-TST",
-      "nameZhHant": "尖沙咀",
-      "nameEn": "Tsim Sha Tsui"
-    },
     {
       "id": "hk-lr-100",
       "nameZhHant": "兆康",
@@ -1430,97 +1039,6 @@
   "missingCoordinates": [],
   "pendingServices": [
     {
-      "id": "hk-island-dt",
-      "line": {
-        "ja": "港島綫",
-        "en": "Island Line",
-        "ko": "홍콩섬선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-island-ut",
-      "line": {
-        "ja": "港島綫",
-        "en": "Island Line",
-        "ko": "홍콩섬선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-tsuen-wan-dt",
-      "line": {
-        "ja": "荃灣綫",
-        "en": "Tsuen Wan Line",
-        "ko": "췬완선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-tsuen-wan-ut",
-      "line": {
-        "ja": "荃灣綫",
-        "en": "Tsuen Wan Line",
-        "ko": "췬완선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-kwun-tong-dt",
-      "line": {
-        "ja": "觀塘綫",
-        "en": "Kwun Tong Line",
-        "ko": "쿤통선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-kwun-tong-ut",
-      "line": {
-        "ja": "觀塘綫",
-        "en": "Kwun Tong Line",
-        "ko": "쿤통선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-tseung-kwan-o-dt",
-      "line": {
-        "ja": "將軍澳綫",
-        "en": "Tseung Kwan O Line",
-        "ko": "정관오선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
       "id": "hk-tseung-kwan-o-tks-dt",
       "line": {
         "ja": "將軍澳綫",
@@ -1528,7 +1046,7 @@
         "ko": "정관오선"
       },
       "reason": [
-        "한국어 역명 검수 필요"
+        "조건부 운행 시간대 검증 필요"
       ],
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
@@ -1541,125 +1059,7 @@
         "ko": "정관오선"
       },
       "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-tseung-kwan-o-ut",
-      "line": {
-        "ja": "將軍澳綫",
-        "en": "Tseung Kwan O Line",
-        "ko": "정관오선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-tung-chung-dt",
-      "line": {
-        "ja": "東涌綫",
-        "en": "Tung Chung Line",
-        "ko": "퉁충선"
-      },
-      "reason": [
-        "실제 선로 검증 필요",
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-tung-chung-ut",
-      "line": {
-        "ja": "東涌綫",
-        "en": "Tung Chung Line",
-        "ko": "퉁충선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-east-rail-dt",
-      "line": {
-        "ja": "東鐵綫",
-        "en": "East Rail Line",
-        "ko": "동철선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-east-rail-lmc-dt",
-      "line": {
-        "ja": "東鐵綫",
-        "en": "East Rail Line",
-        "ko": "동철선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-east-rail-lmc-ut",
-      "line": {
-        "ja": "東鐵綫",
-        "en": "East Rail Line",
-        "ko": "동철선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-east-rail-ut",
-      "line": {
-        "ja": "東鐵綫",
-        "en": "East Rail Line",
-        "ko": "동철선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-tuen-ma-ut",
-      "line": {
-        "ja": "屯馬綫",
-        "en": "Tuen Ma Line",
-        "ko": "튄마선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-tuen-ma-dt",
-      "line": {
-        "ja": "屯馬綫",
-        "en": "Tuen Ma Line",
-        "ko": "튄마선"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
+        "조건부 운행 시간대 검증 필요"
       ],
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
@@ -1907,6 +1307,7 @@
         "ko": "경전철 751P"
       },
       "reason": [
+        "조건부 운행 시간대 검증 필요",
         "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
@@ -1921,6 +1322,7 @@
         "ko": "경전철 751P"
       },
       "reason": [
+        "조건부 운행 시간대 검증 필요",
         "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
@@ -1935,6 +1337,7 @@
         "ko": "경전철 751P"
       },
       "reason": [
+        "조건부 운행 시간대 검증 필요",
         "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
@@ -2128,12 +1531,6 @@
       "type": "geometry",
       "sourceRelationId": 4088518,
       "reason": "stop not on railway within 80m: 5470724238",
-      "status": "INCOMPLETE"
-    },
-    {
-      "type": "geometry",
-      "sourceRelationId": 5317704,
-      "reason": "disconnected railway way 1558652637",
       "status": "INCOMPLETE"
     },
     {

@@ -2,134 +2,73 @@
   "checkedAt": "2026-10-22",
   "status": "PASS_WITH_LIMITED_SCOPE",
   "consoleErrors": 0,
-  "consoleScope": "Local preview tab 5; observed phase2 play, custom, country navigation. Not every pending service or cloud flow.",
+  "consoleScope": "Local preview tab 5. Hong Kong 22 completed directional services and custom, Japanese samples and Korean sample/free drive. Browser-tool selector errors are not app console exceptions.",
   "darkMobile": "PASS",
   "viewports": [
     {
       "width": 390,
       "height": 844,
-      "horizontalOverflow": false,
       "light": "PASS",
       "dark": "PASS",
-      "memoryAnswerHidden": true
+      "horizontalOverflow": false,
+      "stationSignBottom": 826,
+      "officialStationCodeVisible": "PRE",
+      "longKoreanName": "프린스에드워드"
     },
     {
       "width": 1280,
       "height": 900,
-      "light": "PASS",
-      "dark": "PASS"
+      "scope": "Phase 2 retained; Phase 3 desktop default viewport also used"
     }
   ],
-  "runs": [
-    {
-      "service": "hk-south-island-ut",
-      "mode": "normal",
-      "advance": "AUTO",
-      "reducedMotion": false,
-      "distanceKm": 6.95,
-      "status": "PASS",
-      "completion": "all stops",
-      "accuracy": 100,
-      "errors": 0
-    },
-    {
-      "service": "hk-south-island-dt",
-      "mode": "memory",
-      "advance": "SPACE",
-      "reducedMotion": true,
-      "distanceKm": 6.93,
-      "status": "PASS",
-      "completion": "all stops",
-      "accuracy": 100,
-      "errors": 0
-    },
-    {
-      "service": "hk-airport-express-dt",
-      "mode": "normal",
-      "advance": "SPACE",
-      "reducedMotion": true,
-      "distanceKm": 34.94,
-      "status": "PASS",
-      "completion": "all stops",
-      "accuracy": 100,
-      "errors": 0
-    },
-    {
-      "service": "hk-airport-express-ut",
-      "mode": "memory",
-      "advance": "AUTO",
-      "reducedMotion": true,
-      "distanceKm": 34.95,
-      "status": "PASS",
-      "completion": "all stops",
-      "accuracy": 100,
-      "errors": 0
-    },
-    {
-      "service": "hk-disneyland-dt",
-      "mode": "normal",
-      "advance": "AUTO",
-      "reducedMotion": true,
-      "distanceKm": 3.09,
-      "status": "PASS",
-      "completion": "all stops",
-      "accuracy": 100,
-      "errors": 0
-    },
-    {
-      "service": "hk-disneyland-ut",
-      "mode": "normal",
-      "advance": "AUTO",
-      "reducedMotion": true,
-      "distanceKm": 3.09,
-      "status": "PASS",
-      "completion": "all stops",
-      "accuracy": 100,
-      "errors": 0
-    },
-    {
-      "service": "custom-adm-ocp-wch",
-      "mode": "normal",
-      "advance": "AUTO",
-      "reducedMotion": true,
-      "distanceKm": 4.64,
-      "status": "PASS",
-      "completion": "all stops",
-      "accuracy": 100,
-      "errors": 0
-    }
+  "browserEvidence": "reports/hong-kong/phase3/browser-runs.json",
+  "hongKongCompleted": 22,
+  "advanceModes": [
+    "AUTO",
+    "SPACE"
   ],
+  "inputModes": [
+    "normal",
+    "memory"
+  ],
+  "reducedMotion": true,
+  "fullAnimationPhase3": "NOT_TESTED",
+  "nativeOsIme": "NOT_TESTED",
+  "automatedIme": {
+    "fixtures": 10,
+    "status": "PASS"
+  },
   "custom": {
     "status": "PASS",
-    "route": "ADM → OCP → WCH",
-    "saved": true,
-    "reloaded": true,
-    "replayed": true,
-    "reverseServiceOfferRemoved": true,
-    "directHashEditorHydration": "PASS"
+    "newRoute": "PRE → SSP → CSW",
+    "save": true,
+    "reload": true,
+    "replay": true,
+    "completion": true,
+    "phase1SavedRouteReplay": "PASS",
+    "phase2SavedRouteReplay": "PASS",
+    "coordinateRebase": "PASS"
   },
   "japanKorea": {
+    "dataUnchanged": "PASS",
     "automated": "PASS",
-    "homeCountrySwitch": "PASS",
-    "fullBrowserReplay": "NOT_REPEATED_IN_PHASE2",
-    "dataUnchanged": "PASS"
-  },
-  "ime": {
-    "automated": "PASS",
-    "nativeOperatingSystemIme": "NOT_TESTED"
-  },
-  "legacyUiFailures": {
-    "count": 4,
-    "unchanged": true,
-    "evidence": "reports/hong-kong/legacy-ui-baseline.json"
+    "korea": "Seongsu → Sinseol-dong 5 stops complete; free drive City Hall → Euljiro 1-ga → Euljiro 3-ga",
+    "japan": "Nishi Kyushu Shinkansen 5 stops complete; Narita Express 5 Shinjuku → Narita Airport 6 stops complete",
+    "actualTransferExecution": "NOT_TESTED",
+    "qualification": "Existing Japanese NEX setup showed a grouped service caption differing from the selected journey and its result reports some distance estimates. These Japanese data/selection/distance implementations were not modified in Phase 3; do not claim a full Japanese geometry/UX audit."
   },
   "supabase": "NOT_TESTED",
+  "legacyUiFailureCount": 4,
+  "legacyUiEvidence": "reports/hong-kong/phase3/legacy-ui-investigation.json",
   "screenshots": [
-    "output/hk/phase2-sil-mobile-light.jpg",
-    "output/hk/phase2-sil-mobile-dark.jpg",
-    "output/hk/phase2-ael-ut-result.jpg",
-    "output/hk/phase2-custom-result.jpg"
+    "output/hk/phase3-mobile-light-code.jpg",
+    "output/hk/phase3-mobile-dark-code.jpg",
+    "output/hk/phase3-custom-result.jpg",
+    "output/hk/phase3-jp-shinkansen-result.jpg",
+    "output/hk/phase3-jp-express-result.jpg",
+    "output/hk/phase3-kr-branch-result.jpg",
+    "output/hk/phase3-kr-free-drive.jpg"
   ],
   "settingsRestored": true,
-  "scopeNote": "SIL UT tested with train motion. Remaining recorded runs used reduced motion; source geometry was checked independently. Korean label input uses browser fill and does not simulate native IME."
+  "notes": "Browser fill is automated input and not human typing speed. Results verify completion, not typing performance. Native IME and real transfer execution remain separate NOT_TESTED items."
 }

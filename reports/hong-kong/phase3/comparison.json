@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-10-22",
+  "metrics": [
+    {
+      "metric": "전체 서비스 패턴",
+      "phase2": 57,
+      "phase3": 57
+    },
+    {
+      "metric": "플레이 가능 (방향별)",
+      "phase2": 6,
+      "phase3": 22
+    },
+    {
+      "metric": "한국어 역명 검수",
+      "phase2": 26,
+      "phase3": 97
+    },
+    {
+      "metric": "정차 순서 검증",
+      "phase2": 43,
+      "phase3": 43
+    },
+    {
+      "metric": "실제 geometry 검증",
+      "phase2": 53,
+      "phase3": 54
+    },
+    {
+      "metric": "track segment",
+      "phase2": 501,
+      "phase3": 508
+    },
+    {
+      "metric": "PASS",
+      "phase2": 45,
+      "phase3": 64
+    },
+    {
+      "metric": "INCOMPLETE",
+      "phase2": 134,
+      "phase3": 115
+    },
+    {
+      "metric": "OUT_OF_SCOPE",
+      "phase2": 1,
+      "phase3": 1
+    },
+    {
+      "metric": "요구사항 FAIL",
+      "phase2": 0,
+      "phase3": 0
+    },
+    {
+      "metric": "기존 UI 검사 FAIL",
+      "phase2": 4,
+      "phase3": 4
+    },
+    {
+      "metric": "로고 재배포 승인",
+      "phase2": "0/3",
+      "phase3": "0/3"
+    },
+    {
+      "metric": "공식 MTR 노선색",
+      "phase2": 10,
+      "phase3": 10
+    }
+  ],
+  "requirements": {
+    "PASS": 64,
+    "INCOMPLETE": 115,
+    "OUT_OF_SCOPE": 1
+  },
+  "legacyUiFailures": 4,
+  "notTested": [
+    "Supabase/cloud account persistence",
+    "native OS IME",
+    "actual transfer execution",
+    "Phase 3 full animation timing"
+  ],
+  "overall": "INCOMPLETE"
+}

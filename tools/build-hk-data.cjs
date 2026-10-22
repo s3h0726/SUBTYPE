@@ -1,10 +1,11 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {gameplayFingerprint,reviewedGameplay}=require('./lib/hk-release.cjs');
 const {readCsv,lightRailStopSequences}=require('./lib/hk-source.cjs'),{norm,extractRelation,selectOfficialCandidate}=require('./lib/hk-geometry.cjs');
 const root=path.resolve(__dirname,'..'),read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
 const writeText=(file,text)=>{const target=path.join(root,file);fs.mkdirSync(path.dirname(target),{recursive:true});if(!fs.existsSync(target)||fs.readFileSync(target,'utf8')!==text)fs.writeFileSync(target,text)};
 const write=(file,value)=>writeText(file,JSON.stringify(value,null,2)+'\n');
 const config=read('data/hk/master/config.json'),manifest=read('data/hk/sources/manifest.json');
-const nameReview=read('data/hk/master/korean-name-review.json');
+const nameReview=read('data/hk/master/korean-name-review.json'),gameplayReview=read('data/hk/master/gameplay-review.json'),validationPreview=process.argv.includes('--validation-preview');
 for(const [code,name] of Object.entries(config.koreanNames))if(name.nameStatus==='verified'){
  const reviewed=nameReview.stations.find(s=>s.code===code);
  if(!reviewed||reviewed.status!=='verified'||reviewed.nameKo!==name.nameKo||reviewed.sourceIsMachineTranslationOnly===true)throw Error('Unreviewed Korean station label: '+code);
@@ -16,34 +17,46 @@ if(fs.existsSync(path.join(root,'data/hk/sources/osm-network.json')))elements=re
 else{const directory=path.join(root,'data/hk/sources/relations'),map=new Map;if(fs.existsSync(directory))for(const file of fs.readdirSync(directory).filter(f=>f.endsWith('.json')))for(const e of read('data/hk/sources/relations/'+file).elements)map.set(e.type+':'+e.id,e);elements=[...map.values()]}
 // Overlay individually re-fetched evidence by OSM object version. An older
 // relation download must not silently overwrite a newer shared railway way.
-const overlayDir=path.join(root,'data/hk/sources/phase2');
+for(const phase of ['phase2','phase3']){
+const overlayDir=path.join(root,'data/hk/sources/'+phase);
 if(fs.existsSync(overlayDir)){
  const objects=new Map(elements.map(e=>[e.type+':'+e.id,e]));
- for(const file of fs.readdirSync(overlayDir).filter(f=>/^relation-\d+\.json$/.test(f)).sort())for(const e of read('data/hk/sources/phase2/'+file).elements){
+ for(const file of fs.readdirSync(overlayDir).filter(f=>/^relation-\d+\.json$/.test(f)).sort())for(const e of read('data/hk/sources/'+phase+'/'+file).elements){
   const key=e.type+':'+e.id,old=objects.get(key);
   if(!old||(e.version||0)>(old.version||0))objects.set(key,e);
  }
  elements=[...objects.values()];
 }
+}
+// Apply only explicit reviewed source-member ordering corrections; retain raw snapshots.
+const geometryReviews=read('data/hk/master/geometry-reviews.json').relations;
+for(const review of geometryReviews){
+ const r=elements.find(e=>e.type==='relation'&&e.id===review.relationId);if(!r)throw Error('Missing reviewed relation');
+ const moved=review.moveWayIds.map(id=>{const hits=r.members.filter(m=>m.type==='way'&&m.ref===id);if(hits.length!==1)throw Error('Reviewed member mismatch '+id);return hits[0]});
+ const members=r.members.filter(m=>!(m.type==='way'&&review.moveWayIds.includes(m.ref))),at=members.findIndex(m=>m.type==='way'&&m.ref===review.insertAfterWayId);if(at<0)throw Error('Missing insertion anchor');r.members=[...members.slice(0,at+1),...moved,...members.slice(at+1)];
+}
 const relations=elements.filter(e=>e.type==='relation'&&e.tags?.type==='route'),candidates=new Map;
-for(const relation of relations){try{candidates.set(relation.id,extractRelation(relation,elements))}catch(error){issues.push({type:'geometry',sourceRelationId:relation.id,reason:error.message,status:'INCOMPLETE'})}}
-const mtrSource=manifest['phase2/mtr-stations.csv']?.status==='retrieved'?'phase2/mtr-stations.csv':'mtr-stations.csv';
+for(const relation of relations){try{const candidate=extractRelation(relation,elements,{operationalWayIds:geometryReviews.filter(r=>r.relationId===relation.id&&r.status==='verified').flatMap(r=>r.moveWayIds)});candidate.sourceSnapshotDate=fs.existsSync(path.join(root,'data/hk/sources/phase3/relation-'+relation.id+'.json'))?'2026-10-22':fs.existsSync(path.join(root,'data/hk/sources/phase2/relation-'+relation.id+'.json'))?'2026-10-20':manifest['osm-network.json'].checkedAt;candidates.set(relation.id,candidate)}catch(error){issues.push({type:'geometry',sourceRelationId:relation.id,reason:error.message,status:'INCOMPLETE'})}}
+const mtrSource=manifest['phase3/mtr-stations.csv']?.status==='retrieved'?'phase3/mtr-stations.csv':manifest['phase2/mtr-stations.csv']?.status==='retrieved'?'phase2/mtr-stations.csv':'mtr-stations.csv';
 const lrSource=manifest['phase2/light-rail.html']?.status==='retrieved'?'phase2/light-rail.html':'light-rail.html';
 const csv=readCsv(path.join(root,'data/hk/sources/'+mtrSource)).filter(r=>config.mtrLines[r['Line Code']]);
 for(const row of csv){const code=row['Station Code'],id='hk-mtr-'+code;if(!stations.has(id))stations.set(id,{id,countryId:'hk',code,nameZhHant:row['Chinese Name'],nameEn:row['English Name'],nameKo:null,aliasesKo:[],aliasesEn:[],coordinates:null,nameStatus:'unverified',...provenance(mtrSource),...(config.koreanNames[code]||{}),canonicalStationId:id})}
 function registerGeometry(candidate,stationIds){
  const edges=[];
- candidate.bindings.forEach((b,i)=>{const station=stations.get(stationIds[i]);if(!station.coordinates)station.coordinates={lat:b.node.lat,lng:b.node.lon};station.coordinateSource={sourceUrl:'https://www.openstreetmap.org/node/'+b.node.id,sourceType:'osm',checkedAt:config.checkedAt,license:'ODbL-1.0',confidence:b.snapMeters?'medium':'high'};if(!station.nameKo&&b.node.tags?.['name:ko']){station.nameKo=b.node.tags['name:ko'];station.nameStatus='review-required';station.koreanNameSource={...station.coordinateSource,confidence:'unverified'}}});
- candidate.segments.forEach((s,i)=>{const fingerprint=crypto.createHash('sha256').update(JSON.stringify([stationIds[i],stationIds[i+1],s.geometry])).digest('hex').slice(0,18),id='hk-track-'+fingerprint;const edge={id,fromStationId:stationIds[i],toStationId:stationIds[i+1],...s,geometryStatus:'verified',direction:'forward',sourceUrl:'https://www.openstreetmap.org/relation/'+candidate.sourceRelationId,sourceType:'osm',sourceDate:manifest['osm-network.json'].checkedAt,checkedAt:config.checkedAt,license:'ODbL-1.0',confidence:'high'};trackSegments.set(id,edge);edges.push(id)});return edges;
+ candidate.bindings.forEach((b,i)=>{const station=stations.get(stationIds[i]);if(!station.coordinates)station.coordinates={lat:b.node.lat,lng:b.node.lon};station.representativeCoordinateOnly=true;station.coordinateSource ||= {sourceUrl:'https://www.openstreetmap.org/node/'+b.node.id,sourceType:'osm',checkedAt:config.checkedAt,license:'ODbL-1.0',confidence:b.snapMeters?'medium':'high'};if(!station.nameKo&&b.node.tags?.['name:ko']){station.nameKo=b.node.tags['name:ko'];station.nameStatus='review-required';station.koreanNameSource={...station.coordinateSource,confidence:'unverified'}}});
+ candidate.segments.forEach((s,i)=>{const fingerprint=crypto.createHash('sha256').update(JSON.stringify([stationIds[i],stationIds[i+1],s.geometry])).digest('hex').slice(0,18),id='hk-track-'+fingerprint;const edge={id,fromStationId:stationIds[i],toStationId:stationIds[i+1],...s,geometryStatus:'verified',direction:'forward',sourceUrl:'https://www.openstreetmap.org/relation/'+candidate.sourceRelationId,sourceType:'osm',sourceDate:candidate.sourceSnapshotDate||manifest['osm-network.json'].checkedAt,checkedAt:config.checkedAt,license:'ODbL-1.0',confidence:'high'};trackSegments.set(id,edge);edges.push(id)});return edges;
 }
 function finishService(service,candidate){
  service.trackEdgeIds=candidate?registerGeometry(candidate,service.stopStationIds):[];
  service.geometryStatus=candidate?'verified':'unverified';service.sourceRelationId=candidate?.sourceRelationId||null;
- const blocked=[];if(service.stopStatus!=='verified')blocked.push('현재 정차순서 검수 필요');if(service.geometryStatus!=='verified')blocked.push('실제 선로 검증 필요');if(service.stopStationIds.some(id=>stations.get(id)?.nameStatus!=='verified'))blocked.push('한국어 역명 검수 필요');if(service.stopStationIds.length<2)blocked.push('정차역 자료 필요');
+ const blocked=[];if(service.validWhen.type!=='regular'&&service.validWhen.type!=='unverified')blocked.push('조건부 운행 시간대 검증 필요');if(service.stopStatus!=='verified')blocked.push('현재 정차순서 검수 필요');if(service.geometryStatus!=='verified')blocked.push('실제 선로 검증 필요');if(service.stopStationIds.some(id=>stations.get(id)?.nameStatus!=='verified'))blocked.push('한국어 역명 검수 필요');if(service.stopStationIds.length<2)blocked.push('정차역 자료 필요');
  service.releaseStatus=blocked.length?'INCOMPLETE':'ready';service.blockedReasons=blocked;service.playable=!blocked.length;services.push(service);
  const line=lines.find(l=>l.id===service.canonicalLineId),operator=config.operators.find(o=>o.id===line.operatorId),ss=service.stopStationIds.map(id=>stations.get(id));
+ if(candidate)for(let i=0;i<ss.length;i++){const b=candidate.bindings[i],point=i<candidate.segments.length?candidate.segments[i].geometry[0]:candidate.segments.at(-1).geometry.at(-1);ss[i]={...ss[i],stopId:service.id+'-stop-'+i,physicalStationId:ss[i].id,lineId:line.id,coordinates:{lat:point[0],lng:point[1]},sourceStopNodeId:b.node.id,stopPosition:{lat:point[0],lng:point[1],sourceNodeId:b.node.id,snapMeters:b.snapMeters,sourceUrl:'https://www.openstreetmap.org/node/'+b.node.id}}}
  const geometry=[],directedSegments=[];for(const id of service.trackEdgeIds){const edge=trackSegments.get(id);const offset=Math.max(0,geometry.length-1);if(!geometry.length)geometry.push(...edge.geometry);else geometry.push(...edge.geometry.slice(1));directedSegments.push({...edge,geometryStatus:'ready'});const i=directedSegments.length-1;ss[i]={...ss[i],geometryIndex:offset};ss[i+1]={...ss[i+1],geometryIndex:geometry.length-1}}
  const route={id:service.id,countryId:'hk',schemaVersion:1,canonicalLineId:line.id,servicePatternId:service.id,serviceLabel:ss.length?ss[0].nameEn+' → '+ss.at(-1).nameEn:'정차역 검증 대기',operatorId:operator.id,operator:{ja:operator.names.ja,en:operator.names.en,ko:operator.names.ko},line:{ja:line.nameZhHant,en:line.nameEn,ko:line.nameKo},category:line.category,mode:line.category,code:line.code||'',officialSymbolExists:false,lineColor:line.lineColor||'#71857d',lineTheme:{code:line.code||'',color:line.lineColor||'#71857d',style:'hk',colorVerified:!!line.colorReview,colorSource:line.colorReview?.sourceUrl||'OSM candidate; official colour audit pending'},loop:!!service.loop,lazy:false,playable:service.playable,releaseStatus:service.releaseStatus,geometryReady:!!candidate,geometryStatus:service.geometryStatus,blockedReasons:service.blockedReasons,direction:service.direction,validWhen:service.validWhen,sourceUrl:service.sourceUrl,stopStatus:service.stopStatus,geometry,directedSegments,stations:ss.map(s=>({...s,stationMasterId:s.id,ja:s.nameZhHant,kana:'',romaji:s.nameEn,ko:s.nameKo||'',koAliases:s.aliasesKo,latitude:s.coordinates?.lat??null,longitude:s.coordinates?.lng??null,officialCode:s.code||'',hasOfficialStationCode:!!s.code,stationCodeSource:s.sourceUrl})),services:[{id:service.id,nameJa:line.nameZhHant,nameEn:line.nameEn,nameKo:line.nameKo,stops:service.stopStationIds}]};
+ route.validationFingerprint=gameplayFingerprint(route);
+ const proof=gameplayReview.services[service.id];if(!blocked.length&&!reviewedGameplay(route,gameplayReview)){if(validationPreview){route.validationPreview=true;route.releaseStatus='validation-preview';service.releaseStatus='validation-preview'}else{blocked.push('동일 데이터의 실제 양방향 플레이 검증 필요');service.playable=false;service.releaseStatus='INCOMPLETE';route.playable=false;route.releaseStatus='INCOMPLETE'}}
  const file='data/hk/generated/routes/'+service.id+'.json';routeFiles.push(file);write(file,route);return route;
 }
 const catalog=[];

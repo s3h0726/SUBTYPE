@@ -1,8 +1,8 @@
-# 원문 180개 항목별 실행 상태
+# 홍콩 철도 180개 요구사항
 
-기준일 2026-10-20. PASS는 각 항목의 기재 범위에 한정하며 전체 홍콩망 상태는 INCOMPLETE입니다. 2차 개발에서 39, 40, 56, 62, 63, 64, 66, 67, 68번을 근거와 함께 갱신했습니다.
+기준일: 2026-10-22. 원래 ID와 요구 문구를 유지합니다. PASS는 각 항목의 기록된 검증 범위이며 조건부 계통·미승인 운송수단을 포함한 홍콩 전체 완료를 뜻하지 않습니다.
 
-| 번호 | 상태 | 원문 요구사항 | 근거 또는 남은 작업 |
+| ID | 상태 | 요구사항 | 근거 / 다음 작업 |
 |---|---|---|---|
 | 1 | PASS | 현재 저장소 `s3h0726/SUBTYPE`의 `feature/hong-kong-railway` 브랜치를 직접 수정한다. 새 데모 앱·별도 사이트·독립 게임을 만들지 않는다. | 기존 원본 저장소 코드에 지정 feature 브랜치에서 구현 |
 | 2 | INCOMPLETE | 일본 및 대한민국 데이터, 기존 기능, 기존 사용자 기록을 보존한 상태에서 `hk` 지역을 독립 추가한다. | 기존 전체 화면·계정·저장 데이터의 회귀 검증을 완료한다. |
@@ -17,11 +17,11 @@
 | 11 | PASS | 국가·지역 선택 메뉴에 `홍콩 Hong Kong / 香港`을 넣고 내부 키는 `hk`, ISO 지역 표기는 `HK`로 통일한다. | hk/HK 지역 모델과 홍콩 선택 UI |
 | 12 | PASS | 이 작업의 기본 범위는 홍콩특별행정구의 여객 철도·궤도교통이다. 중국 본토, 마카오는 자동으로 홍콩 관할 노선으로 분류하지 않는다. | 홍콩 좌표 범위 검사와 국경 미검증 HSR 차단 |
 | 13 | PASS | `MTR METRO`, `AIRPORT EXPRESS`, `LIGHT RAIL`, `TRAM`, `FUNICULAR`, `HIGH SPEED RAIL`, `CUSTOM` 등 분류를 제공한다. | 홍콩 전용 7개 분류 및 전체 탭 |
-| 14 | INCOMPLETE | MTR의 일반 철도 9개와 공항철도 1개를 정확하게 별도 구분하되, 물리 선로와 브랜드·운행 서비스 수를 혼동하지 않는다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
+| 14 | PASS | MTR의 일반 철도 9개와 공항철도 1개를 정확하게 별도 구분하되, 물리 선로와 브랜드·운행 서비스 수를 혼동하지 않는다. | MTR 일반 9개와 Airport Express를 별도 canonicalLineId로 보존; 22개 실제 방향 서비스 완주. 물리 노선 10개와 서비스 수를 구분. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 15 | PASS | 현재 영업 중인 노선만 기본 플레이 목록에 노출한다. 계획·공사·역사적 노선은 `planned`, `construction`, `closed` 등 별도 상태로 둔다. | 검증 완료 서비스만 기본 PLAY 노출, 미검증 목록 별도 표시 |
 | 16 | INCOMPLETE | 홍콩섬·카오룽·신계·란터우 등 지리 구분은 검색 필터가 될 수 있으나, 운영사/노선/서비스 계층을 대신하는 도시 탭을 무분별하게 생성하지 않는다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 17 | INCOMPLETE | 동일한 레일을 사용하는 서로 다른 운행계통은 하나의 물리 그래프를 공유하게 하고, 선택 화면에서는 서비스 정체성을 보이게 한다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
-| 18 | INCOMPLETE | 동일 역의 다중 노선 정차는 역 마스터를 공유하되 플랫폼·서비스 정차·환승 특성은 별도 개체로 기록한다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
+| 18 | PASS | 동일 역의 다중 노선 정차는 역 마스터를 공유하되 플랫폼·서비스 정차·환승 특성은 별도 개체로 기록한다. | 물리 stationMasterId/physicalStationId와 노선·방향별 stopId/lineId/sourceStopNodeId/stopPosition을 분리. 모든 검증 geometry의 경로 좌표와 stop 위치 일치 검사. 보행 환승은 미승인 큐로 별도 보존. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 19 | INCOMPLETE | 장래 확장 노선의 역 좌표와 geometry를 현재 영업 중인 역에 합쳐 노출하거나 플레이시키지 않는다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 20 | INCOMPLETE | 홍콩 전체를 구현했다는 선언은 운영기관별·노선별·서비스별 공개 근거와 감사 수치가 일치할 때만 한다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 21 | INCOMPLETE | 주 자료는 MTR 공식 영문/번체중문 노선도, 서비스 시간표, 역 목록, 경전철 노선도·서비스 정보를 사용한다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
@@ -34,26 +34,26 @@
 | 28 | INCOMPLETE | 모든 노선·역·운행계통·선형·로고에는 `sourceUrl`, `sourceType`, `checkedAt`, `license`, `confidence` 정보를 남긴다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 29 | INCOMPLETE | 공식 노선도와 OSM이 다른 위치를 보이면 운영 여부·노선 변경 여부를 확인하고 수정 기록에 근거와 날짜를 남긴다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 30 | PASS | 제작 당시의 기준일을 명시한다. 최신 공식 자료가 바뀌면 기존 검증 결과는 재검사 대상으로 표시한다. | config·manifest·감사 보고서 기준일 명시 |
-| 31 | INCOMPLETE | 港島綫 Island Line: Kennedy Town–Chai Wan의 공식 역 순서, 노선색, 코드, 지상·지하 전환 구간을 검증한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 32 | INCOMPLETE | 荃灣綫 Tsuen Wan Line: Central–Tsuen Wan의 실제 정차순서와 주요 환승역, 실제 선로 곡선을 구축한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 33 | INCOMPLETE | 觀塘綫 Kwun Tong Line: Whampoa–Tiu Keng Leng의 실제 계통과 역·플랫폼 구성, 종점 회차 특성을 반영한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
+| 31 | PASS | 港島綫 Island Line: Kennedy Town–Chai Wan의 공식 역 순서, 노선색, 코드, 지상·지하 전환 구간을 검증한다. | 공식 CSV의 홍콩섬선 17역·코드와 공식 PDF 노선색을 유지. 원본 OSM relation 4432665/4432666의 방향별 선로와 정차 위치; 실제 두 방향 전구간 완주. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
+| 32 | PASS | 荃灣綫 Tsuen Wan Line: Central–Tsuen Wan의 실제 정차순서와 주요 환승역, 실제 선로 곡선을 구축한다. | 췬완선 16역·TWL 코드·공식 노선색과 OSM 269669/9736530의 각각 실제 방향·환승역별 정차 위치를 검증하고 양방향 완주. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
+| 33 | PASS | 觀塘綫 Kwun Tong Line: Whampoa–Tiu Keng Leng의 실제 계통과 역·플랫폼 구성, 종점 회차 특성을 반영한다. | 군통선 17역, WHA/TIK 종점과 노선·방향별 정차 위치를 독립 보존. OSM 272125/6452935로 양방향 실제 완주, 마지막 정답 입력 후 정상 종료. 영업 이후 회송은 생성하지 않음. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 34 | INCOMPLETE | 將軍澳綫 Tseung Kwan O Line: North Point에서 Po Lam·LOHAS Park로 갈라지는 운행 서비스를 분리하여 구축한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 35 | INCOMPLETE | 東涌綫 Tung Chung Line: Hong Kong–Tung Chung의 실제 영업역과 Sunny Bay 환승 및 공항철도와의 선로 구분을 검증한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
+| 35 | PASS | 東涌綫 Tung Chung Line: Hong Kong–Tung Chung의 실제 영업역과 Sunny Bay 환승 및 공항철도와의 선로 구분을 검증한다. | 뚱충선 현재 8역 양방향 완주. OSM 5317704는 공식 PR055/26(2026-09-13 선로전환)과 원본 way 3개의 실제 연결 순서를 검증해 복구. 5317706과 별도 방향 geometry 유지. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 36 | INCOMPLETE | 迪士尼綫 Disneyland Resort Line: Sunny Bay–Disneyland Resort를 독립 서비스로 구현하고 운영사의 공식 브랜드를 적용한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 37 | INCOMPLETE | 東鐵綫 East Rail Line: Admiralty–Lo Wu/Lok Ma Chau 및 Racecourse 특별 정차 계통을 공식 시점에 맞게 구축한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 38 | INCOMPLETE | 屯馬綫 Tuen Ma Line: Tuen Mun–Wu Kai Sha를 하나의 현재 운행계통으로 등록하고 과거 West Rail/Ma On Shan 데이터를 중복 정규 노선으로 노출하지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
+| 38 | PASS | 屯馬綫 Tuen Ma Line: Tuen Mun–Wu Kai Sha를 하나의 현재 운행계통으로 등록하고 과거 West Rail/Ma On Shan 데이터를 중복 정규 노선으로 노출하지 않는다. | 현재 통합 튄마선 27역 양방향(6102298/6102299) 완주. 과거 Tuen Mun–Hung Hom relation은 감사에 남기고 서비스에 사용하지 않음. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 39 | PASS | 南港島綫 South Island Line: Admiralty–South Horizons의 실제 정차역과 철교·터널 geometry를 구현한다. | SIL DT/UT: official MTR stop order, independent OSM relations 6827212/6827211, 5 reviewed station labels, real 6.93/6.95 km routes and browser full-route QA. See phase2 acceptance report. |
 | 40 | PASS | 機場快綫 Airport Express: Hong Kong–AsiaWorld-Expo 구간의 Hong Kong, Kowloon, Tsing Yi, Airport, AsiaWorld-Expo 정차정보를 검증해 별도 서비스로 구현한다. | AEL DT/UT: five official distinct stops, independent source relations 5317238/5317239, reviewed Korean labels with disclosed historical-publication mirror provenance, browser 34.94/34.95 km full-route QA. |
-| 41 | INCOMPLETE | East Rail의 Sheung Shui 이후 Lo Wu와 Lok Ma Chau 방면은 분기 edge와 별도 destination pattern을 둔다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
+| 41 | PASS | East Rail의 Sheung Shui 이후 Lo Wu와 Lok Ma Chau 방면은 분기 edge와 별도 destination pattern을 둔다. | EAL Lo Wu/Lok Ma Chau 각각 14역, 4개 방향 패턴을 공식 CSV와 방향별 OSM으로 검증해 모두 완주. Racecourse 특별 계통은 별도 미완료. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 42 | INCOMPLETE | East Rail의 Fo Tan/Racecourse 갈림 구간은 실제 철도 분기 선형을 포함하고, 경마장역 정차는 행사·운행 조건을 가진 비상시 계통으로 처리한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 43 | INCOMPLETE | Tseung Kwan O에서 Po Lam 방향과 LOHAS Park 방향을 구분하고, 실제 시기별 각 지선의 종착·회차 서비스만 노출한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 44 | INCOMPLETE | Tuen Ma Line은 현재 일체화된 통과 운행과 개별 선로 구간의 관계를 명확하게 하여 중간 Hung Hom을 가짜 종착역으로 만들지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 45 | INCOMPLETE | Tung Chung Line과 Airport Express가 병행하는 란터우 구간은 시각적으로 근접해도 철도 track edge를 임의로 합치지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
+| 44 | PASS | Tuen Ma Line은 현재 일체화된 통과 운행과 개별 선로 구간의 관계를 명확하게 하여 중간 Hung Hom을 가짜 종착역으로 만들지 않는다. | 튄마선은 27역을 연속 통과하고 Hung Hom에서 가짜 종료하지 않음. 양방향 실제 종착 정상 종료. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
+| 45 | PASS | Tung Chung Line과 Airport Express가 병행하는 란터우 구간은 시각적으로 근접해도 철도 track edge를 임의로 합치지 않는다. | TCL/AEL의 정차 패턴 및 실제 방향별 sourceWayIds/geometry를 별도로 유지. TCL 8역과 AEL 5역 각각 양방향 완주. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 46 | INCOMPLETE | Sunny Bay에서는 Tung Chung/Disneyland Resort 승강장 환승이 가능하지만 두 노선을 직결열차로 만들지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 47 | INCOMPLETE | East Rail의 Lo Wu·Lok Ma Chau 출입국·국경 제약은 이동 안내 메타데이터로 관리하고 일반적인 무제한 도보환승으로 처리하지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 48 | INCOMPLETE | 모든 구간 열차는 `origin`, `destination`, `stops`, `direction`, `validity`, `serviceType`을 가지고, 실제 운행하지 않는 임의 A–B 서비스를 추가하지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 49 | INCOMPLETE | 일부 역을 통과하는 운영계통이 공식적으로 있으면 통과역을 실제 여정에서 제외하며, 물리 선로 경로는 그대로 유지한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 50 | INCOMPLETE | 한 서비스의 마지막 역 입력 시 종료하며 미존재 역으로 계속 진행하거나 인덱스를 넘어서 루프하지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
+| 50 | PASS | 한 서비스의 마지막 역 입력 시 종료하며 미존재 역으로 계속 진행하거나 인덱스를 넘어서 루프하지 않는다. | 현재 승인된 22개 모든 서비스에서 출발·중간역·종착 입력 및 정상 완료 화면을 확인. 차단 서비스는 완료로 세지 않음. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 51 | PASS | Hong Kong ↔ Central처럼 지하 보행통로로 연결되는 역은 보행환승 edge로 표시하고 같은 역 ID로 강제 합치지 않는다. | Hong Kong/Central 별개 station ID와 환승 검수 큐 |
 | 52 | INCOMPLETE | Tsim Sha Tsui ↔ East Tsim Sha Tsui는 공식 조건에 맞게 역외/유료구역 외 연결 여부와 요금 규칙을 구분한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 53 | INCOMPLETE | Mong Kok ↔ Mong Kok East 등 인근이지만 역내 직결이 아닌 경우는 거리만으로 TAB 환승을 자동 추가하지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
@@ -107,10 +107,10 @@
 | 101 | INCOMPLETE | 홍콩 역명 마스터는 `nameZhHant`, `nameEn`, `nameKo`, `aliasesKo`, `aliasesEn`, `jyutping`(선택), `source`를 지원한다. | 공식 또는 검증 가능한 한국어 자료로 각 역명을 검수하고 근거를 입력한다. |
 | 102 | PASS | 홍콩 공식 표기는 번체중문과 공식 영문명을 우선 저장한다. 간체자로 일괄 변환하거나 일본어 한자 발음 규칙을 적용하지 않는다. | 공식 번체중문/영문 보존, 홍콩을 일본 역명 보정에서 제외 |
 | 103 | PASS | 사용자가 입력할 정답은 한국어 `nameKo`이고, 공식 한국어 표기가 없는 경우 검증된 한국어 통용 표기 또는 별도 검수 대기 상태로 관리한다. | 미검수 한국어 이름은 플레이 차단 |
-| 104 | INCOMPLETE | Central/中環, Admiralty/金鐘, Tsim Sha Tsui/尖沙咀, Mong Kok/旺角, Hong Kong/香港 등 대표역의 한국어명을 우선 검증한다. | 공식 또는 검증 가능한 한국어 자료로 각 역명을 검수하고 근거를 입력한다. |
+| 104 | PASS | Central/中環, Admiralty/金鐘, Tsim Sha Tsui/尖沙咀, Mong Kok/旺角, Hong Kong/香港 등 대표역의 한국어명을 우선 검증한다. | CEN/ADM/TST/MOK/HOK와 등록 MTR 97개 물리 역 코드의 한국어 검수 기록 유지. 기존 공식 표기 우선, 비공식 통용 표기는 현지 한국어 작성자 자료와 보조 대조를 명시. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 105 | PASS | 발음 검증에는 광둥어 원어 발음 및 영문 공식 역명을 사용하며 중국 보통화 병음만으로 한글 역명을 자동 생성하지 않는다. | 보통화/일본어 자동 음역 생성 경로 없음 |
 | 106 | PASS | 로우(Lo Wu), 록마차우(Lok Ma Chau), 포람(Po Lam), 로하스파크(LOHAS Park) 등의 철자·표기 변형은 근거가 있을 때에만 alias로 인정한다. | 근거 없는 한국어 alias 자동 생성 없음 |
-| 107 | INCOMPLETE | 공식 번체중문·영문 이름은 게임 플레이 시 같이 표시하되 두 언어를 섞은 한국어 이름을 기본 정답으로 만들지 않는다. | 공식 또는 검증 가능한 한국어 자료로 각 역명을 검수하고 근거를 입력한다. |
+| 107 | PASS | 공식 번체중문·영문 이름은 게임 플레이 시 같이 표시하되 두 언어를 섞은 한국어 이름을 기본 정답으로 만들지 않는다. | 승인 22개 MTR 서비스에서 한국어 정답과 공식 번체중문·영문을 각각 표시하고 실제 전구간 입력 확인. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 108 | PASS | 동일 역명의 관광지·지명·열차 행선지와 역 자체 이름을 혼동하지 않도록 `canonicalStationId`를 유지한다. | 역 canonical ID와 방향별 service ID 분리 |
 | 109 | INCOMPLETE | 한국어 검수표는 원어명, 영문명, 확정 한국어명, 별칭, 자료 링크, 검수상태, 수정 전후 기록을 표시한다. | 공식 또는 검증 가능한 한국어 자료로 각 역명을 검수하고 근거를 입력한다. |
 | 110 | PASS | `missing nameKo`, 이상 번역, 동음이의, 동일 역의 분기별 다른 한글명, 코드/역명 불일치를 전수 감사하고 근거 없는 100% 완료 수치를 금지한다. | missing/unreviewed Korean name 전수 목록과 수치 산출 |
@@ -138,11 +138,11 @@
 | 132 | PASS | `compositionstart`, `compositionend`, `input` 중복 이벤트를 고려하여 같은 타이핑이 이중 제출·이중 콤보되지 않게 한다. | 기존 IME 컨트롤러 10개 fixture 및 중복완료 0 검사 |
 | 133 | PASS | 완성형 한글 단어와 자모 진행률을 구분하고 정확도·콤보는 기존 프로젝트와 동일한 정의로 일관되게 계산한다. | 기존 자모 통계 및 콤보 로직 유지; 실제 한국어 완주 확인 |
 | 134 | PASS | 중문·영문 역명을 동시에 보여도 사용자가 한국어 정답만 타이핑하는 기본 설정을 유지한다. | 번체중문/영문 동시 표시와 한국어 답안 실제 플레이 확인 |
-| 135 | INCOMPLETE | 기본 모드에서 한국어 정답을 보이고 암기 모드에서는 한국어 정답을 숨기되 번체중문/영문 안내는 유지한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
+| 135 | PASS | 기본 모드에서 한국어 정답을 보이고 암기 모드에서는 한국어 정답을 숨기되 번체중문/영문 안내는 유지한다. | 22개 서비스에서 정방향 일반/AUTO, 역방향 암기/SPACE를 번갈아 실제 완주. 암기에서는 한국어 정답과 지도 한국어 힌트 숨김 유지; 모바일 기존 검사 및 신규 정상 입력 확인. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 136 | INCOMPLETE | 역 이름의 괄호·공백·중점·하이픈은 현행 typing model의 자동 표시 규칙을 적용하고 괄호 속 문자·숫자는 누락 없이 입력시킨다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 137 | INCOMPLETE | 타이핑 진행률과 실제 선로 이동거리를 연결하며 경로의 누적거리로 보간한다. 경로 끝을 넘어 열차를 그리지 않는다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 138 | INCOMPLETE | AUTO에서는 정답 최종 확정 후 Enter/Space 추가 입력 없이 약 150~300ms 목표 범위에서 다음 정차역 문제로 전환한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
-| 139 | INCOMPLETE | SPACE에서는 사용자가 명시적으로 다음 역으로 진행하며 Space 키가 타이핑 중 공백 처리를 방해하지 않게 한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
+| 139 | PASS | SPACE에서는 사용자가 명시적으로 다음 역으로 진행하며 Space 키가 타이핑 중 공백 처리를 방해하지 않게 한다. | SPACE 11개 방향 실제 완주. 입력 완료 후 명시적 Space로만 다음 역 진행; 기존 IME 10 fixture와 타이핑 18 case 통과. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 140 | INCOMPLETE | 입력 이벤트마다 전체 지도나 역 목록을 재생성하지 말고 문자·진행률·열차 좌표·필요한 상태만 갱신한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 141 | INCOMPLETE | HOME의 TODAY’S ROUTE 및 추천/최근 노선에 홍콩 데이터를 정상 노출하고 일본·한국 기존 카드 레이아웃과 호환되게 한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
 | 142 | INCOMPLETE | PLAY 상단에서 홍콩을 선택하면 홍콩의 카테고리·운영사·노선 목록만 필터링하고 기존 국가 선택값을 몰래 바꾸지 않는다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
@@ -154,10 +154,10 @@
 | 148 | INCOMPLETE | 서비스별 정·역방향과 선택 가능한 출발역·종착역을 실제 운행 조건에 맞게 보여주고, 순환선은 실제 한 바퀴 뒤 종료한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
 | 149 | INCOMPLETE | RECORDS에는 홍콩 지역·실제 서비스·이동거리·정확도·콤보를 기록하며 같은 노선이라도 국가가 다른 기록과 충돌하지 않게 한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
 | 150 | INCOMPLETE | Guest localStorage와 로그인 사용자 클라우드 저장의 홍콩 CUSTOM·기록을 동일 규칙으로 처리하고 일본·한국 데이터의 마이그레이션을 검증한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
-| 151 | INCOMPLETE | CUSTOM 실행 시 실제 홍콩 선로가 그려진 OSM 지도 위에서 출발역을 검색해 선택할 수 있게 한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
+| 151 | PASS | CUSTOM 실행 시 실제 홍콩 선로가 그려진 OSM 지도 위에서 출발역을 검색해 선택할 수 있게 한다. | 검증된 22개 홍콩 서비스만 CUSTOM 실제 OSM 선로망에 반영. PRE 출발 검색·췬완선 선택·3역 저장/새로고침/재실행/완주. 미검증 운송수단은 숨김. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 152 | INCOMPLETE | 시작역에서는 그 역에서 실제로 승차 가능한 MTR·Light Rail·Tram·Peak Tram·HSR만 표시하고 연결되지 않은 노선을 숨긴다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
 | 153 | INCOMPLETE | CUSTOM 그래프는 Station Node, Rail Edge, Transfer Edge, Service Pattern, Optional Walk Edge를 분리한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
-| 154 | INCOMPLETE | `NEXT STATION`은 현재 서비스의 실제 다음 정차역으로 진행하고, 완료된 경로는 실제 geometry로 누적 표시한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
+| 154 | PASS | `NEXT STATION`은 현재 서비스의 실제 다음 정차역으로 진행하고, 완료된 경로는 실제 geometry로 누적 표시한다. | NEXT가 선택 서비스의 실제 인접 정차역/연결 geometry만 제시. 반대 방향·다른 서비스 혼입 차단, 시작 환승역 좌표를 선택한 선로로 재결합. 기존 Phase 1/2 CUSTOM 완주 유지. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 155 | INCOMPLETE | East Rail 분기역에서는 Lo Wu·Lok Ma Chau·Racecourse 등 운행 조건과 서비스 방향을 고려해 가능한 목적지 선택지를 제한한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
 | 156 | INCOMPLETE | Tseung Kwan O의 Po Lam·LOHAS Park 분기에서도 현재 선택한 서비스가 가지 않는 지선을 자동으로 달리게 하지 않는다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
 | 157 | INCOMPLETE | Light Rail에서는 복수 번호가 공유하는 선로 edge와 실제 승환승 가능한 정류장을 따로 관리한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
@@ -174,9 +174,9 @@
 | 168 | INCOMPLETE | 기존 `js/app.js`, `js/app.bundle.js`, `js/game.js`, `js/route-renderer.js` 등은 의존성을 확인한 뒤 수정하며 실제 파일 구성이 다르면 저장소의 구조를 우선한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
 | 169 | PASS | 생성된 bundle에만 로고·역명 수정하는 오류를 금지하고, canonical source 재빌드 후 결과가 유지되는지 hash/diff 테스트한다. | 원본 재빌드의 byte/hash 동일성과 JP/KR 파일 보호 테스트 |
 | 170 | INCOMPLETE | **홍콩 브랜치에서만** 원본 수정 → 데이터 생성 → JS bundle 갱신 → 테스트 → (필요 시) `index.html` 캐시 버전 갱신 → 브랜치 커밋·푸시 → 별도 브랜치 미리보기 검증 순서로 개발한다. `main` 커밋·운영 GitHub Pages 배포는 사용자 병합 승인 전까지 수행하지 않는다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
-| 171 | INCOMPLETE | 모든 현재 영업 중인 MTR 일반 9개 노선과 Airport Express 1개를 실제 전 구간 정·역방향으로 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
+| 171 | PASS | 모든 현재 영업 중인 MTR 일반 9개 노선과 Airport Express 1개를 실제 전 구간 정·역방향으로 테스트한다. | 현재 등록 MTR 9개 일반 노선과 Airport Express의 정규 본선 양방향 22개 서비스를 실제 완주. 조건부 LOHAS 셔틀·Racecourse는 이 PASS 범위에 포함하지 않고 172/37/42에 미완료 유지. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 172 | INCOMPLETE | East Rail의 Lo Wu/Lok Ma Chau 분기, Racecourse 특별 정차, Tseung Kwan O의 Po Lam/LOHAS Park 분기를 정·역방향 시나리오로 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
-| 173 | INCOMPLETE | Tuen Ma Line의 Tuen Mun–Wu Kai Sha 일체형 운행과 Sunny Bay–Disneyland Resort 지선 선택을 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
+| 173 | PASS | Tuen Ma Line의 Tuen Mun–Wu Kai Sha 일체형 운행과 Sunny Bay–Disneyland Resort 지선 선택을 테스트한다. | 튄마선 27역 두 방향과 Disneyland 2역 두 방향 모두 브라우저 완주. 기존 6계통 회귀 완료. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 174 | INCOMPLETE | Light Rail 총 12개 대상 계통의 현재성, 순환 방향, 구간 종점, 751P 시간제 조건을 각각 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
 | 175 | INCOMPLETE | Hong Kong Tramways 공식 6개 계통과 Happy Valley 루프의 선로 연결·정방향·역방향·정류장 순서를 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
 | 176 | INCOMPLETE | Peak Tram 급경사/교행 geometry, 중간 정류장 운행 상태와 고속철도의 홍콩 국경 전후 서비스 유효성을 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |

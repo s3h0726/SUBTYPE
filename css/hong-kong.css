@@ -50,3 +50,7 @@
 @media(max-width:600px){
  [data-country="hk"] #screen-game .station-sign-hud {height:auto!important}
 }
+/* Retain the verified official code in the compact Hong Kong station sign. */
+@media(max-width:600px){
+ [data-country="hk"] #screen-game.active .station-current #station-badge:not([hidden]) {display:inline-flex!important;position:absolute!important;top:8px!important;left:8px!important;transform:none!important;align-items:center;justify-content:center;width:42px!important;height:28px!important;padding:2px!important;margin:0!important;border-width:2px!important;border-radius:6px!important;font-size:11px!important;line-height:1!important}
+}

@@ -822,7 +822,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/4709540",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     }
@@ -838,8 +838,8 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.3318198,
-        "lng": 114.0288936
+        "lat": 22.3317036,
+        "lng": 114.0290377
       },
       "nameStatus": "verified",
       "sourceUrl": "https://www.hongkongdisneyland.com/ko/guest-services/travel-information/",
@@ -848,12 +848,24 @@
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
       "canonicalStationId": "hk-mtr-SUN",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/1295654897",
+        "sourceUrl": "https://www.openstreetmap.org/node/1295654804",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-disneyland-dt-stop-0",
+      "physicalStationId": "hk-mtr-SUN",
+      "lineId": "hk-disneyland",
+      "sourceStopNodeId": 1295654897,
+      "stopPosition": {
+        "lat": 22.3317036,
+        "lng": 114.0290377,
+        "sourceNodeId": 1295654897,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/1295654897"
       },
       "geometryIndex": 0,
       "stationMasterId": "hk-mtr-SUN",
@@ -862,8 +874,8 @@
       "romaji": "Sunny Bay",
       "ko": "써니베이",
       "koAliases": [],
-      "latitude": 22.3318198,
-      "longitude": 114.0288936,
+      "latitude": 22.3317036,
+      "longitude": 114.0290377,
       "officialCode": "SUN",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.hongkongdisneyland.com/ko/guest-services/travel-information/"
@@ -889,12 +901,24 @@
       "confidence": "medium",
       "note": "Historical source used only for Korean spelling; current operation is separately checked against MTR CSV.",
       "canonicalStationId": "hk-mtr-DIS",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/357138078",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-disneyland-dt-stop-1",
+      "physicalStationId": "hk-mtr-DIS",
+      "lineId": "hk-disneyland",
+      "sourceStopNodeId": 357138078,
+      "stopPosition": {
+        "lat": 22.3155384,
+        "lng": 114.0451419,
+        "sourceNodeId": 357138078,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/357138078"
       },
       "geometryIndex": 93,
       "stationMasterId": "hk-mtr-DIS",
@@ -921,5 +945,6 @@
         "hk-mtr-DIS"
       ]
     }
-  ]
+  ],
+  "validationFingerprint": "b0fa6af97889240d1417f2e06c59513525d463cc7840cb73c706083e7bccda93"
 }

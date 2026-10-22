@@ -35,7 +35,7 @@
   "geometryReady": true,
   "geometryStatus": "verified",
   "blockedReasons": [
-    "한국어 역명 검수 필요"
+    "조건부 운행 시간대 검증 필요"
   ],
   "direction": "TKS-DT",
   "validWhen": {
@@ -575,7 +575,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/13352938",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -647,7 +647,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/13352938",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     }
@@ -659,33 +659,51 @@
       "code": "LHP",
       "nameZhHant": "康城",
       "nameEn": "LOHAS Park",
-      "nameKo": null,
+      "nameKo": "로하스파크",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.2956053,
         "lng": 114.2687081
       },
-      "nameStatus": "unverified",
+      "nameStatus": "verified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "canonicalStationId": "hk-mtr-LHP",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/4784241743",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-tks-dt-stop-0",
+      "physicalStationId": "hk-mtr-LHP",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 4784241743,
+      "stopPosition": {
+        "lat": 22.2956053,
+        "lng": 114.2687081,
+        "sourceNodeId": 4784241743,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4784241743"
       },
       "geometryIndex": 0,
       "stationMasterId": "hk-mtr-LHP",
       "ja": "康城",
       "kana": "",
       "romaji": "LOHAS Park",
-      "ko": "",
+      "ko": "로하스파크",
       "koAliases": [],
       "latitude": 22.2956053,
       "longitude": 114.2687081,
@@ -699,34 +717,56 @@
       "code": "TKO",
       "nameZhHant": "將軍澳",
       "nameEn": "Tseung Kwan O",
-      "nameKo": null,
-      "aliasesKo": [],
+      "nameKo": "정관오",
+      "aliasesKo": [
+        "청콴오"
+      ],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.3073157,
         "lng": 114.2599962
       },
-      "nameStatus": "unverified",
+      "nameStatus": "verified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "canonicalStationId": "hk-mtr-TKO",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/4784243684",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-tks-dt-stop-1",
+      "physicalStationId": "hk-mtr-TKO",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 4784243684,
+      "stopPosition": {
+        "lat": 22.3073157,
+        "lng": 114.2599962,
+        "sourceNodeId": 4784243684,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4784243684"
       },
       "geometryIndex": 56,
       "stationMasterId": "hk-mtr-TKO",
       "ja": "將軍澳",
       "kana": "",
       "romaji": "Tseung Kwan O",
-      "ko": "",
-      "koAliases": [],
+      "ko": "정관오",
+      "koAliases": [
+        "청콴오"
+      ],
       "latitude": 22.3073157,
       "longitude": 114.2599962,
       "officialCode": "TKO",
@@ -739,36 +779,58 @@
       "code": "TIK",
       "nameZhHant": "調景嶺",
       "nameEn": "Tiu Keng Leng",
-      "nameKo": null,
-      "aliasesKo": [],
+      "nameKo": "티우켕렝",
+      "aliasesKo": [
+        "티유켕렝"
+      ],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.3041111,
-        "lng": 114.2523323
+        "lat": 22.3040201,
+        "lng": 114.2524315
       },
-      "nameStatus": "unverified",
+      "nameStatus": "verified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "canonicalStationId": "hk-mtr-TIK",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/307394049",
+        "sourceUrl": "https://www.openstreetmap.org/node/984741544",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-tks-dt-stop-2",
+      "physicalStationId": "hk-mtr-TIK",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 307394049,
+      "stopPosition": {
+        "lat": 22.3040201,
+        "lng": 114.2524315,
+        "sourceNodeId": 307394049,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/307394049"
       },
       "geometryIndex": 68,
       "stationMasterId": "hk-mtr-TIK",
       "ja": "調景嶺",
       "kana": "",
       "romaji": "Tiu Keng Leng",
-      "ko": "",
-      "koAliases": [],
-      "latitude": 22.3041111,
-      "longitude": 114.2523323,
+      "ko": "티우켕렝",
+      "koAliases": [
+        "티유켕렝"
+      ],
+      "latitude": 22.3040201,
+      "longitude": 114.2524315,
       "officialCode": "TIK",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
@@ -786,5 +848,6 @@
         "hk-mtr-TIK"
       ]
     }
-  ]
+  ],
+  "validationFingerprint": "b3ffa2f735f8245b5684ccfa5da74e68910aa8adb988fadc0130ac165aca3b6d"
 }

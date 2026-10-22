@@ -1,7 +1,7 @@
 // Hong Kong data must fail closed. Never reinterpret another country's records.
 export function hongKongRouteBlockReason(route){
   if(route?.countryId!=='hk')return'';
-  if(route.releaseStatus!=='ready'||route.playable!==true)return(route.blockedReasons||[]).join(' · ')||'홍콩 서비스 검증 대기';
+  if((route.releaseStatus!=='ready'&&!(route.releaseStatus==='validation-preview'&&route.validationPreview===true&&typeof location!=='undefined'&&['localhost','127.0.0.1'].includes(location.hostname)))||route.playable!==true)return(route.blockedReasons||[]).join(' · ')||'홍콩 서비스 검증 대기';
   if(route.geometryReady!==true||route.geometryStatus!=='verified')return'실제 선로 검증 필요';
   if(route.lazy)return'';
   if(!Array.isArray(route.stations)||route.stations.length<2)return'정차역 자료 필요';
@@ -9,6 +9,7 @@ export function hongKongRouteBlockReason(route){
   if(!Array.isArray(route.directedSegments)||route.directedSegments.length!==route.stations.length-1)return'정차역 간 실제 선로 누락';
   if(route.directedSegments.some((s,i)=>!['ready','verified'].includes(s.geometryStatus)||s.fromStationId!==route.stations[i].id||s.toStationId!==route.stations[i+1].id||!s.sourceWayIds?.length||!Array.isArray(s.geometry)||s.geometry.length<2))return'실제 선로 출처·연결 검증 필요';
   if(route.stations.some(s=>!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude)||s.latitude<22.1||s.latitude>22.58||s.longitude<113.8||s.longitude>114.45))return'홍콩 역 좌표 검증 필요';
+  if(route.stations.some(s=>Number.isInteger(s.geometryIndex)&&route.geometry?.[s.geometryIndex]&&(s.latitude!==route.geometry[s.geometryIndex][0]||s.longitude!==route.geometry[s.geometryIndex][1])))return'노선별 정차 위치와 실제 선로 불일치';
   return'';
 }
 
@@ -33,6 +34,7 @@ export function buildHongKongCustomRoute(route){
     a.geometryIndex=Math.max(0,geometry.length-1);geometry.push(...(geometry.length?source.geometry.slice(1):source.geometry));b.geometryIndex=geometry.length-1;
     directedSegments.push({...source,fromStationId:a.id,toStationId:b.id});
   }
+  for(const station of stations){const point=geometry[station.geometryIndex];station.latitude=point[0];station.longitude=point[1];station.coordinates={lat:point[0],lng:point[1]};station.stopId=route.id+'-stop-'+station.geometryIndex;}
   const result={...route,stations,geometry,directedSegments,countryId:'hk',category:'custom',servicePatternId:route.id,releaseStatus:'ready',geometryStatus:'verified',geometryReady:true,playable:true,services:[{id:route.id,nameKo:route.line.ko,nameEn:route.line.en,nameJa:route.line.ja,stops:stations.map(s=>s.id)}]};
   const reason=hongKongRouteBlockReason(result);if(reason)throw new Error(reason);return result;
 }

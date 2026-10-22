@@ -35,6 +35,7 @@
   "geometryReady": true,
   "geometryStatus": "verified",
   "blockedReasons": [
+    "조건부 운행 시간대 검증 필요",
     "현재 정차순서 검수 필요",
     "한국어 역명 검수 필요"
   ],
@@ -950,7 +951,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1022,7 +1023,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1249,7 +1250,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1378,7 +1379,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1446,7 +1447,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1553,7 +1554,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1628,7 +1629,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1742,7 +1743,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
     }
@@ -1760,20 +1761,32 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.4670133,
-        "lng": 113.9988215
+        "lat": 22.4667478,
+        "lng": 113.9993185
       },
       "sourceUrl": "https://www.openstreetmap.org/node/1777130767",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/2304841359",
+        "sourceUrl": "https://www.openstreetmap.org/node/1777130767",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-0",
+      "physicalStationId": "hk-lr-550",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 2304841359,
+      "stopPosition": {
+        "lat": 22.4667478,
+        "lng": 113.9993185,
+        "sourceNodeId": 2304841359,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/2304841359"
       },
       "geometryIndex": 0,
       "stationMasterId": "hk-lr-550",
@@ -1782,8 +1795,8 @@
       "romaji": "Tin Yat",
       "ko": "",
       "koAliases": [],
-      "latitude": 22.4670133,
-      "longitude": 113.9988215,
+      "latitude": 22.4667478,
+      "longitude": 113.9993185,
       "officialCode": "550",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.openstreetmap.org/node/1777130767"
@@ -1805,15 +1818,27 @@
       },
       "sourceUrl": "https://www.openstreetmap.org/node/1777130732",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1777130732",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-1",
+      "physicalStationId": "hk-lr-480",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 1777130732,
+      "stopPosition": {
+        "lat": 22.4645568,
+        "lng": 113.9976819,
+        "sourceNodeId": 1777130732,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/1777130732"
       },
       "geometryIndex": 32,
       "stationMasterId": "hk-lr-480",
@@ -1845,15 +1870,27 @@
       },
       "sourceUrl": "https://www.openstreetmap.org/node/1783169565",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1783169565",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-2",
+      "physicalStationId": "hk-lr-468",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 1783169565,
+      "stopPosition": {
+        "lat": 22.4619992,
+        "lng": 113.9970051,
+        "sourceNodeId": 1783169565,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/1783169565"
       },
       "geometryIndex": 44,
       "stationMasterId": "hk-lr-468",
@@ -1885,15 +1922,27 @@
       },
       "sourceUrl": "https://www.openstreetmap.org/node/1783169564",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1783169564",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-3",
+      "physicalStationId": "hk-lr-490",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 1783169564,
+      "stopPosition": {
+        "lat": 22.4597012,
+        "lng": 113.9995715,
+        "sourceNodeId": 1783169564,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/1783169564"
       },
       "geometryIndex": 94,
       "stationMasterId": "hk-lr-490",
@@ -1920,20 +1969,32 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.4597405,
-        "lng": 114.0023817
+        "lat": 22.4595274,
+        "lng": 114.0028292
       },
       "sourceUrl": "https://www.openstreetmap.org/node/4788509628",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/1783169572",
+        "sourceUrl": "https://www.openstreetmap.org/node/4788509628",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-4",
+      "physicalStationId": "hk-lr-500",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 1783169572,
+      "stopPosition": {
+        "lat": 22.4595274,
+        "lng": 114.0028292,
+        "sourceNodeId": 1783169572,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/1783169572"
       },
       "geometryIndex": 120,
       "stationMasterId": "hk-lr-500",
@@ -1942,8 +2003,8 @@
       "romaji": "Tin Wing",
       "ko": "",
       "koAliases": [],
-      "latitude": 22.4597405,
-      "longitude": 114.0023817,
+      "latitude": 22.4595274,
+      "longitude": 114.0028292,
       "officialCode": "500",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.openstreetmap.org/node/4788509628"
@@ -1960,20 +2021,32 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.4575383,
-        "lng": 114.0049475
+        "lat": 22.4575666,
+        "lng": 114.0049707
       },
       "sourceUrl": "https://www.openstreetmap.org/node/1783169567",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/279447664",
+        "sourceUrl": "https://www.openstreetmap.org/node/1783169567",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-5",
+      "physicalStationId": "hk-lr-455",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 279447664,
+      "stopPosition": {
+        "lat": 22.4575666,
+        "lng": 114.0049707,
+        "sourceNodeId": 279447664,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/279447664"
       },
       "geometryIndex": 131,
       "stationMasterId": "hk-lr-455",
@@ -1982,8 +2055,8 @@
       "romaji": "Ginza",
       "ko": "",
       "koAliases": [],
-      "latitude": 22.4575383,
-      "longitude": 114.0049475,
+      "latitude": 22.4575666,
+      "longitude": 114.0049707,
       "officialCode": "455",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.openstreetmap.org/node/1783169567"
@@ -2000,20 +2073,32 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.4549411,
-        "lng": 114.0056769
+        "lat": 22.454932,
+        "lng": 114.0057105
       },
       "sourceUrl": "https://www.openstreetmap.org/node/1783169577",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/279447972",
+        "sourceUrl": "https://www.openstreetmap.org/node/1783169577",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-6",
+      "physicalStationId": "hk-lr-450",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 279447972,
+      "stopPosition": {
+        "lat": 22.454932,
+        "lng": 114.0057105,
+        "sourceNodeId": 279447972,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/279447972"
       },
       "geometryIndex": 152,
       "stationMasterId": "hk-lr-450",
@@ -2022,8 +2107,8 @@
       "romaji": "Tin Wu",
       "ko": "",
       "koAliases": [],
-      "latitude": 22.4549411,
-      "longitude": 114.0056769,
+      "latitude": 22.454932,
+      "longitude": 114.0057105,
       "officialCode": "450",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.openstreetmap.org/node/1783169577"
@@ -2040,20 +2125,32 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.4527465,
-        "lng": 114.006036
+        "lat": 22.4527625,
+        "lng": 114.0060687
       },
       "sourceUrl": "https://www.openstreetmap.org/node/1783169571",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/279448176",
+        "sourceUrl": "https://www.openstreetmap.org/node/1783169571",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-7",
+      "physicalStationId": "hk-lr-435",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 279448176,
+      "stopPosition": {
+        "lat": 22.4527625,
+        "lng": 114.0060687,
+        "sourceNodeId": 279448176,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/279448176"
       },
       "geometryIndex": 165,
       "stationMasterId": "hk-lr-435",
@@ -2062,8 +2159,8 @@
       "romaji": "Tin Tsz",
       "ko": "",
       "koAliases": [],
-      "latitude": 22.4527465,
-      "longitude": 114.006036,
+      "latitude": 22.4527625,
+      "longitude": 114.0060687,
       "officialCode": "435",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.openstreetmap.org/node/1783169571"
@@ -2080,20 +2177,32 @@
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
-        "lat": 22.4494881,
-        "lng": 114.00591
+        "lat": 22.4493741,
+        "lng": 114.0060439
       },
       "sourceUrl": "https://www.openstreetmap.org/node/1784785708",
       "sourceType": "osm",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "representativeCoordinateOnly": true,
       "coordinateSource": {
-        "sourceUrl": "https://www.openstreetmap.org/node/279448431",
+        "sourceUrl": "https://www.openstreetmap.org/node/1784785708",
         "sourceType": "osm",
-        "checkedAt": "2026-10-20",
+        "checkedAt": "2026-10-22",
         "license": "ODbL-1.0",
         "confidence": "high"
+      },
+      "stopId": "hk-light-rail-751p-osm-2929802-stop-8",
+      "physicalStationId": "hk-lr-430",
+      "lineId": "hk-light-rail-751p",
+      "sourceStopNodeId": 279448431,
+      "stopPosition": {
+        "lat": 22.4493741,
+        "lng": 114.0060439,
+        "sourceNodeId": 279448431,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/279448431"
       },
       "geometryIndex": 187,
       "stationMasterId": "hk-lr-430",
@@ -2102,8 +2211,8 @@
       "romaji": "Tin Shui Wai",
       "ko": "",
       "koAliases": [],
-      "latitude": 22.4494881,
-      "longitude": 114.00591,
+      "latitude": 22.4493741,
+      "longitude": 114.0060439,
       "officialCode": "430",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.openstreetmap.org/node/1784785708"
@@ -2127,5 +2236,6 @@
         "hk-lr-430"
       ]
     }
-  ]
+  ],
+  "validationFingerprint": "7ec7ecc5ceae99c7ebdfb81b0c37e1ac74e24195fb9be76fcaf49e536b88af63"
 }
