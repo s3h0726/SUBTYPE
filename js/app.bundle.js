@@ -1760,7 +1760,7 @@ function completeJapanCircularSource(route){
   const closure=JP_CIRCULAR_COMPLETION[id],ss=route.stations;
   if(!closure||!Array.isArray(ss)||ss.length<3||!Array.isArray(route.directedSegments)||route.directedSegments.length!==ss.length-1)return route;
   const first=ss[0],last=ss.at(-1),firstId=String(first.id||first.internalId),lastId=String(last.id||last.internalId);
-  if(firstId===lastId)return route;
+  if(firstId===lastId)return {...route,loopGeometryReviewStatus:closure.verified?'verified':'REVIEW_REQUIRED'};
   const source=Array.isArray(route.geometry)?route.geometry:[],track=closure.track;
   if(source.length<2||track.length<2)return route;
   const a=source.at(-1),b=track[0];
