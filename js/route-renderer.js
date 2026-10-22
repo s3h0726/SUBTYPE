@@ -39,7 +39,7 @@ function followTrainCamera(rail,point,force=false){
 function stopAnimation(rail){if(rail.animation){cancelAnimationFrame(rail.animation);rail.animation=null}stopTypingAnimation(rail);rail.typingDistance=0;rail.typingSegmentKey=null}
 function animateTrain(rail,from,to,motion,index){
   const path=typingSegment(rail,rail.index,index),startDistance=rail.nextIndex===index?Math.min(path.total,rail.typingDistance||0):0;
-  stopAnimation(rail);const duration=motion===false?0:420,start=performance.now();
+  stopAnimation(rail);const duration=motion===false?0:120,start=performance.now();
   if(Math.hypot(from[0]-to[0],from[1]-to[1])<1e-9){rail.train.setLatLng(to);return}
   const frame=now=>{const p=duration?Math.min(1,(now-start)/duration):1,eased=1-Math.pow(1-p,3),point=pointAtTrackDistance(path,startDistance+(path.total-startDistance)*eased)||to;rail.train.setLatLng(point);if(p<1)rail.animation=requestAnimationFrame(frame);else rail.animation=null};frame(start)
 }
@@ -56,7 +56,7 @@ function centerArrivalCamera(rail,index,nextIndex,initial=false){
  const at=rail.stationPoints[index];if(!at)return;
  const zoom=stationGapZoom(rail,index,nextIndex);
  if(initial)rail.map.setView(at,zoom,{animate:false});
- else {rail.map.stop();rail.map.setView(at,zoom,{animate:true,duration:.45})}
+ else {rail.map.stop();rail.map.setView(at,zoom,{animate:true,duration:.12})}
 }
 function createRouteLayers(rail,route,index,options={}){
   clearRouteLayers(rail);const {L,map}=rail,stationPoints=latLngs(route),travel=travelGeometry(route);if(!travel)return false;const points=travel.points;rail.routeId=route.id;rail.routeKey=route.renderKey||route.id;rail.points=points;rail.stationPoints=stationPoints;rail.stationOffsets=travel.offsets;rail.segmentCache=new Map();rail.index=index;rail.nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1);
@@ -84,20 +84,27 @@ async function renderOsm(route,index,options){
   const station=route.stations[safe],info=$('#map-station-info');if(info){info.hidden=false;info.innerHTML=`<b>${escapeHtml(route.countryId==='kr'?(station.ko||station.ja||''):(station.ja||station.ko||''))}</b><span>${escapeHtml(station.ko)} · ${escapeHtml(station.romaji)}</span>`}
 }
 export function renderGameMap(route,index,options={}){renderQueue=renderQueue.then(()=>renderOsm(route,index,options)).catch(error=>{console.error('OSM game map:',error);const status=$('#basemap-status');if(status)status.textContent='OPENSTREETMAP · LOAD ERROR'});return renderQueue}
-function stopTypingAnimation(rail){if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null;for(const resolve of rail.arrivalWaiters||[])resolve(false);rail.arrivalWaiters=[]}
+function stopTypingAnimation(rail){if(rail.typingAnimation){cancelAnimationFrame(rail.typingAnimation);rail.typingAnimation=null}rail.typingTarget=null;rail.typingFinish=null;for(const resolve of rail.arrivalWaiters||[])resolve(false);rail.arrivalWaiters=[]}
 function animateTypingTrain(rail,path,target,motion=true){
   if(!rail?.train)return;
   if(motion===false){stopTypingAnimation(rail);rail.typingDistance=target;rail.train.setLatLng(pointAtTrackDistance(path,target));return}
   rail.typingTarget=target;
+  if(rail.typingProgress>=1&&!rail.typingFinish)rail.typingFinish={started:performance.now(),from:rail.typingDistance||0,target};
   if(rail.typingAnimation)return;
   let last=performance.now();
   const frame=now=>{
     const goal=rail.typingTarget;
     if(goal===null||goal===undefined){rail.typingAnimation=null;return}
+    const finish=rail.typingFinish;
     const dt=Math.min(40,Math.max(1,now-last));last=now;
-    const next=advanceTrackDistance(rail.typingDistance||0,goal,dt),done=Math.abs(goal-next)<0.0000015;
+    // On correct completion move the remaining distance along the ACTUAL track
+    // in 50 ms, instead of exponentially easing for hundreds of milliseconds.
+    // Partial typing still follows the original smoothing profile.
+    const progress=finish?Math.min(1,Math.max(0,(now-finish.started)/50)):0;
+    const next=finish?finish.from+(finish.target-finish.from)*progress:advanceTrackDistance(rail.typingDistance||0,goal,dt);
+    const done=finish?progress>=1:Math.abs(goal-next)<0.0000015;
     rail.typingDistance=done?goal:next;rail.train.setLatLng(pointAtTrackDistance(path,rail.typingDistance));
-    if(done){rail.typingAnimation=null;for(const resolve of rail.arrivalWaiters||[])resolve(true);rail.arrivalWaiters=[];return}
+    if(done){rail.typingAnimation=null;rail.typingFinish=null;for(const resolve of rail.arrivalWaiters||[])resolve(true);rail.arrivalWaiters=[];return}
     rail.typingAnimation=requestAnimationFrame(frame);
   };
   rail.typingAnimation=requestAnimationFrame(frame);
@@ -108,7 +115,7 @@ export function setTrainTypingProgress(progress,motion=true,expectedRouteKey=nul
   if(segment.length<2)return;
   const key=`${rail.index}:${rail.nextIndex}`;if(rail.typingSegmentKey!==key){stopTypingAnimation(rail);rail.typingSegmentKey=key;rail.typingDistance=0;rail.typingProgress=0}
   const safe=Math.max(rail.typingProgress||0,Math.min(1,Number(progress)||0)),targetDistance=total*safe;
-  animateTypingTrain(rail,cached,targetDistance,motion);rail.typingProgress=safe;updateDebug();
+  rail.typingProgress=safe;animateTypingTrain(rail,cached,targetDistance,motion);updateDebug();
   if(safe===1&&motion!==false)return new Promise(resolve=>{(rail.arrivalWaiters||=[]).push(resolve)});
 }
 export function gameMapDebug(){updateDebug();return globalThis.__TRT_MAP_DEBUG__}
