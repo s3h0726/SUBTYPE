@@ -68,3 +68,42 @@ for(const name of ['のぞみ','ひかり','こだま']){
   throw error;
  }
 }
+
+
+// Inventory every Shinkansen pattern's playable physical sequence, including
+// partial stopping patterns and inter-company boundary connections.
+const resolvedByCode=new Map();
+for(const [code,line] of Object.entries(catalog.lines)){
+ const meta=lite.routes.find(r=>r.id==='line-'+code||r.line?.ja===line.ja);
+ if(!meta)continue;
+ const filepath=path.join(root,'data/generated/routes/'+meta.id+'.json');
+ if(!fs.existsSync(filepath))continue;
+ resolvedByCode.set(code,JSON.parse(fs.readFileSync(filepath,'utf8')).route);
+}
+const diagnostics=[];
+for(const [code,line] of shinkansen){
+ for(const pattern of line.patterns){
+  const segments=(pattern.segments||[]).filter(segment=>segment.stations?.length>=2);
+  if(!segments.length)continue;
+  const failures=[];
+  const pieces=[];
+  for(const segment of segments){
+   const physical=resolvedByCode.get(String(segment.lineCode));
+   if(!physical){failures.push('missing physical:'+segment.lineCode);continue;}
+   const first=segment.stations[0][0],last=segment.stations.at(-1)[0];
+   const a=physical.stations.findIndex(st=>st.ja===first),b=physical.stations.findIndex(st=>st.ja===last);
+   if(a<0||b<0){failures.push('missing end:'+first+'→'+last);continue;}
+   pieces.push({routeId:physical.id,direction:b>=a?'forward':'reverse',startStationJa:first,endStationJa:last});
+  }
+  if(!failures.length&&pieces.length>1){
+   try{
+    const spec={id:'audit-'+code+'-'+pattern.id,nameJa:pattern.type?.ja,nameKo:pattern.type?.ko,nameEn:pattern.type?.en,routeSegments:pieces,boundarySnapToleranceKm:1.2};
+    const assembled=context.globalThis.assemble(spec,id=>[...resolvedByCode.values()].find(r=>r.id===id));
+    if(assembled.stations.length<2)throw Error('short segment');
+   }catch(error){failures.push(error.message)}
+  }
+  diagnostics.push({line:line.ja,type:pattern.type?.ko,ok:failures.length===0,issues:failures});
+ }
+}
+const good=diagnostics.filter(item=>item.ok).length,bad=diagnostics.filter(item=>!item.ok);
+console.log(JSON.stringify({inventory:'Shinkansen service geometry',total:diagnostics.length,playable:good,unsupported:bad.length,examples:bad.slice(0,25)},null,2));
