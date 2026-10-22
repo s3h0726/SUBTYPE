@@ -286,6 +286,37 @@ function catalogPatternChoice(route,pattern,reverse=false){
   const type={id:`catalog-type-${pattern.id}`,names:{ja:pattern.type?.ja||'',ko:pattern.type?.ko||'',en:pattern.type?.en||''},priority:Number(pattern.type?.priority||0),kind:Number(pattern.type?.kind||0)};
   return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse}
 }
+// A limited express may skip the interchange at which the underlying rail
+// infrastructure changes (e.g. Hayabusa skips Shin-Aomori in one catalog
+// segment). Keep the skipped stop out of the service's stops, but extend the
+// physical segment to the shared junction before assembling the track.
+function catalogConnectedSegments(segments){
+  const parts=segments.map(segment=>{
+    const route=routeForCatalogLine(segment.lineCode);
+    if(!route?.stations?.length)throw new Error('연결 노선 데이터를 불러오지 못했습니다: '+segment.lineCode);
+    const first=segment.stations[0][0],last=segment.stations.at(-1)[0];
+    const a=route.stations.findIndex(st=>st.ja===first);
+    const b=route.stations.findIndex(st=>st.ja===last);
+    if(a<0||b<0)throw new Error((route.line?.ja||segment.lineCode)+': '+first+' → '+last+' 구간 매칭 실패');
+    return{route,a,b,step:b>=a?1:-1};
+  });
+  for(let i=1;i<parts.length;i++){
+    const previous=parts[i-1],next=parts[i];
+    if(previous.route.stations[previous.b]?.ja===next.route.stations[next.a]?.ja)continue;
+    let best=null;
+    for(let p=0;p<=3;p++)for(let q=0;q<=3;q++){
+      const pIdx=previous.b+p*previous.step,nIdx=next.a-q*next.step;
+      const pStation=previous.route.stations[pIdx],nStation=next.route.stations[nIdx];
+      if(!pStation||!nStation||pStation.ja!==nStation.ja)continue;
+      if(!best||p+q<best.score)best={pIdx,nIdx,score:p+q};
+    }
+    if(best){previous.b=best.pIdx;next.a=best.nIdx;}
+  }
+  return parts.map(({route,a,b})=>({
+    routeId:route.id,direction:b>=a?'forward':'reverse',
+    startStationJa:route.stations[a].ja,endStationJa:route.stations[b].ja
+  }));
+}
 function buildCatalogResolved(choice){
   const pattern=choice?.catalogPattern,base=(pattern?.segments||[]).filter(segment=>segment.stations?.length>=2),segments=choice?.catalogReverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;if(!segments.length)throw new Error('전국 운행계통 데이터가 비어 있습니다.');
   const stopNames=[];for(const segment of segments)for(const [name,pass] of segment.stations)if(Number(pass)!==1&&!stopNames.includes(name))stopNames.push(name);
@@ -296,7 +327,7 @@ function buildCatalogResolved(choice){
     const service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'運行系統',nameKo:pattern.type?.ko||'운행계통',nameEn:pattern.type?.en||'Service',stops};
     return{route:{...route,services:[service]},service,direction,pattern:null,trainType:choice.trainType,destinationStationId:route.stations[b]?.id||null,trainTypeContexts:[]}
   }
-  const routeSegments=segments.map(segment=>{const route=routeForCatalogLine(segment.lineCode),first=segment.stations[0][0],last=segment.stations.at(-1)[0],a=route.stations.findIndex(station=>station.ja===first),b=route.stations.findIndex(station=>station.ja===last);if(a<0||b<0)throw new Error(`${route.line?.ja||segment.lineCode}: ${first} → ${last} 구간 매칭 실패`);return{routeId:route.id,direction:b>=a?'forward':'reverse',startStationJa:first,endStationJa:last}});
+  const routeSegments=catalogConnectedSegments(segments);
   const spec={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',routeSegments,boundarySnapToleranceKm:1.2},through=buildThroughServiceRoute(spec,id=>builtin.find(route=>route.id===id));
   const allowed=new Set(stopNames),stops=through.stations.filter(station=>allowed.has(station.ja)).map(station=>station.id),service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',stops};
   return{route:{...through,services:[service]},service,direction:'forward',pattern:null,trainType:choice.trainType,destinationStationId:through.stations.at(-1)?.id||null,trainTypeContexts:[]}
