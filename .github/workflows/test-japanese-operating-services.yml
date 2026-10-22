@@ -1,0 +1,27 @@
+name: Restore Japanese operating services regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'tools/test-japan-shinkansen-services.cjs'
+      - '.github/workflows/test-japanese-operating-services.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  shinkansen-operating-service:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify syntax
+        run: |
+          cp js/app.js /tmp/subtype-app-services.mjs
+          node --check /tmp/subtype-app-services.mjs
+          node --check js/app.bundle.js
+      - name: Verify Shinkansen Nozomi Hikari Kodama and multi-line geometry
+        run: node tools/test-japan-shinkansen-services.cjs
