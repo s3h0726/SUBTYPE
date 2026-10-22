@@ -80,6 +80,13 @@ for(const [code,line] of Object.entries(catalog.lines)){
  if(!fs.existsSync(filepath))continue;
  resolvedByCode.set(code,JSON.parse(fs.readFileSync(filepath,'utf8')).route);
 }
+// Run the same shared-junction repair used by the browser, against real route data.
+const appSource=read('js/app.js');
+const helperStart=appSource.indexOf('function catalogConnectedSegments(segments){');
+const helperEnd=appSource.indexOf('function buildCatalogResolved(choice){',helperStart);
+assert(helperStart>=0&&helperEnd>helperStart,'Shared-boundary route repair missing');
+context.routeForCatalogLine=code=>resolvedByCode.get(String(code));
+vm.runInContext(appSource.slice(helperStart,helperEnd)+';globalThis.connectCatalogSegments=catalogConnectedSegments',context);
 const diagnostics=[];
 for(const [code,line] of shinkansen){
  for(const pattern of line.patterns){
@@ -97,7 +104,7 @@ for(const [code,line] of shinkansen){
   }
   if(!failures.length&&pieces.length>1){
    try{
-    const spec={id:'audit-'+code+'-'+pattern.id,nameJa:pattern.type?.ja,nameKo:pattern.type?.ko,nameEn:pattern.type?.en,routeSegments:pieces,boundarySnapToleranceKm:1.2};
+    const spec={id:'audit-'+code+'-'+pattern.id,nameJa:pattern.type?.ja,nameKo:pattern.type?.ko,nameEn:pattern.type?.en,routeSegments:context.globalThis.connectCatalogSegments(segments),boundarySnapToleranceKm:1.2};
     const assembled=context.globalThis.assemble(spec,id=>[...resolvedByCode.values()].find(r=>r.id===id));
     if(assembled.stations.length<2)throw Error('short segment');
    }catch(error){failures.push(error.message)}
@@ -106,4 +113,5 @@ for(const [code,line] of shinkansen){
  }
 }
 const good=diagnostics.filter(item=>item.ok).length,bad=diagnostics.filter(item=>!item.ok);
+assert(good>=29,'Skipped-station geometry repair did not restore Hokkaido/Tohoku limited expresses');
 console.log(JSON.stringify({inventory:'Shinkansen service geometry',total:diagnostics.length,playable:good,unsupported:bad.length,examples:bad.slice(0,25)},null,2));
