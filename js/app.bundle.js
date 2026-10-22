@@ -1400,7 +1400,21 @@ const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["k
 
 const finite=n=>n!==null&&n!==undefined&&n!==''&&Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
+// JR Keiyo Line Maihama ⇄ Resort Gateway is an officially signposted
+// walking transfer despite the stations having different Japanese names.
+// Preserve each railway's independent coordinates via coordsByRoute.
+const JP_MAIHAMA_RESORT_TRANSFER='jp-transfer:maihama-resort-gateway';
+const jpDisneyTransferKey=(station,route)=>{
+  const allowed=route?.id==='line-11326'&&station?.ja==='舞浜'||
+                route?.id==='jp-disney-resort-line'&&station?.ja==='リゾートゲートウェイ・ステーション';
+  if(!allowed)return null;
+  const lat=Number(station.latitude),lon=Number(station.longitude);
+  return Number.isFinite(lat)&&Number.isFinite(lon)&&
+    Math.abs(lat-35.63524)<0.006&&Math.abs(lon-139.88510)<0.006?
+    JP_MAIHAMA_RESORT_TRANSFER:null;
+};
 const freeDriveStationKey=s=>{
+  if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.krTransferKey)return s.krTransferKey;
   if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
@@ -1485,6 +1499,11 @@ class FreeDrive{
   }
   setNetwork(routes){
     for(const route of routes||[])for(const stop of route.stations||[]){
+      if(route.countryId==='jp'){
+        const key=jpDisneyTransferKey(stop,route);
+        if(key)stop.jpTransferKey=key;
+        continue;
+      }
       if(route.countryId!=='kr')continue;
       delete stop.krTransferKey;
       stop.krNoAutoTransfer=true;
@@ -1510,11 +1529,11 @@ class FreeDrive{
         const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
-        if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
+        if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
       if(route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
-        if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
+        if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
       }
     }
     this.renderMap();
