@@ -15,7 +15,14 @@ function extractRelation(relation,elements){
   if(i){const end=ordered.at(-1).ids.at(-1);if(ids.at(-1)===end)ids.reverse();if(ids[0]!==end)throw Error('disconnected railway way '+ways[i].id)}
   ordered.push({id:ways[i].id,ids});
  }
- const vertexIds=ordered.flatMap((w,i)=>i?w.ids.slice(1):w.ids),points=vertexIds.map(id=>{const n=byKey.get('node:'+id);return[n?.lat,n?.lon]});
+ let vertexIds=ordered.flatMap((w,i)=>i?w.ids.slice(1):w.ids);
+ // A closed railway has no privileged first way. Rotate only a truly closed
+ // source chain, at the exact first stop node; never bridge an open gap.
+ if(vertexIds[0]===vertexIds.at(-1)&&relation.tags?.roundtrip==='yes'){
+  const start=vertexIds.indexOf(stopNodes[0].id);
+  if(start>0){const ring=vertexIds.slice(0,-1);vertexIds=[...ring.slice(start),...ring.slice(0,start),ring[start]]}
+ }
+ const points=vertexIds.map(id=>{const n=byKey.get('node:'+id);return[n?.lat,n?.lon]});
  if(points.some(p=>!validPoint(p)))throw Error('invalid/outside-HK source coordinate');
  let cursor=0;const bindings=[];
  for(const stop of stopNodes){let index=vertexIds.indexOf(stop.id,cursor),snap=0;if(index<0){let best=Infinity;for(let i=cursor;i<points.length;i++){const d=meters([stop.lat,stop.lon],points[i]);if(d<best){best=d;index=i}}snap=best;if(best>80)throw Error('stop not on railway within 80m: '+stop.id)}

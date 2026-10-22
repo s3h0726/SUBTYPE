@@ -3,7 +3,7 @@
 const fs=require('fs');
 const path=require('path');
 const crypto=require('crypto');
-const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8').replace(/\r\n/g,'\n'),write=(relative,value)=>fs.writeFileSync(path.join(root,relative),value);
+const root=path.resolve(__dirname,'..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8').replace(/\r\n/g,'\n'),write=(relative,value)=>{const file=path.join(root,relative);if(!fs.existsSync(file)||fs.readFileSync(file,'utf8')!==value)fs.writeFileSync(file,value)};
 // Match committed LF bytes for the lazy index before assigning its cache key.
 write('js/japan-lite-index.js',read('js/japan-lite-index.js'));
 const order=["utils.js","hong-kong-policy.js","korean-access-data.js","korean-access-policy.js","feature-flags.js","rail-data-repository.js","asset-renderer.js","storage.js","typing.js","typing-model.js","statistics-engine.js","line-badge.js","station-sign-templates.js","transport-stop-templates.js","route-integrity.js","service-route-resolver.js","nex-route-resolver.js","famous-limited-express.js","korean-service-resolver.js","track-motion.js","route-renderer.js","game.js","free-drive.js","statistics.js","network-map.js","data-loader.js","route-editor.js","auth.js","app.js"];

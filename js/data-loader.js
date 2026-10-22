@@ -90,7 +90,7 @@ export async function loadTransportData(countryId='jp'){
     const data=globalThis.TRT_HONG_KONG_INDEX||await fetchJson(new URL('data/hk/generated/index.json',document.baseURI));
     if(data.country?.id!=='hk')throw new Error('홍콩 데이터 지역 식별자가 올바르지 않습니다.');
     const lines=(data.routes||[]).map(normalizeLazyLine);
-    return{country:data.country,operators:data.operators||[],lines,stations:[],assets:data.assets||{},errors:[],counts:lines.reduce((c,r)=>({...c,[r.category]:(c[r.category]||0)+1}),{}),audit:data.audit,fallbackUsed:false,source:'hong-kong-lazy-index'};
+    return{country:data.country,operators:data.operators||[],lines,stations:[],assets:data.assets||{},errors:[],counts:lines.reduce((c,r)=>({...c,[r.category]:(c[r.category]||0)+1}),{}),audit:data.audit,checkedAt:data.checkedAt,fallbackUsed:false,source:'hong-kong-lazy-index'};
   }
   if(countryId!=='kr')throw new Error('지원하지 않는 지역: '+countryId);
   const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));

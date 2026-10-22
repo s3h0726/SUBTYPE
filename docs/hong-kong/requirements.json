@@ -268,16 +268,18 @@
   {
     "id": 39,
     "requirement": "南港島綫 South Island Line: Admiralty–South Horizons의 실제 정차역과 철교·터널 geometry를 구현한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다."
+    "status": "PASS",
+    "evidence": "SIL DT/UT: official MTR stop order, independent OSM relations 6827212/6827211, 5 reviewed station labels, real 6.93/6.95 km routes and browser full-route QA. See phase2 acceptance report.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 40,
     "requirement": "機場快綫 Airport Express: Hong Kong–AsiaWorld-Expo 구간의 Hong Kong, Kowloon, Tsing Yi, Airport, AsiaWorld-Expo 정차정보를 검증해 별도 서비스로 구현한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다."
+    "status": "PASS",
+    "evidence": "AEL DT/UT: five official distinct stops, independent source relations 5317238/5317239, reviewed Korean labels with disclosed historical-publication mirror provenance, browser 34.94/34.95 km full-route QA.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 41,
@@ -387,9 +389,10 @@
   {
     "id": 56,
     "requirement": "Airport Express의 Airport와 AsiaWorld-Expo는 별개 정차역이며 실제 왕복종점·운행 상태는 공식 자료로 확인한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다."
+    "status": "PASS",
+    "evidence": "Refetched official MTR CSV confirms separate Airport / AsiaWorld-Expo calls. Both complete directional services exercised in the browser.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 57,
@@ -429,23 +432,26 @@
   {
     "id": 62,
     "requirement": "공식 자료에 나오는 505 계통의 정차역·행선지·방향을 개별 검증한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "505 official directional schedules now retain arrival termini while respecting one-way interior calls. Both ordered patterns match source railway geometry.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 63,
     "requirement": "507 계통을 실제 선형·정류장으로 생성하고 근접한 다른 서비스의 경로를 그대로 복제하지 않는다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "507 both directions match official calls; platform 2/3 terminal rows are alternatives at one physical stop, not extra stations. Actual independent source geometry retained.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 64,
     "requirement": "610 계통의 Tuen Mun Ferry Pier–Yuen Long 장거리 운행과 모든 중간 정차·곡선 선로를 검증한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "610 both directions match full official Tuen Mun Ferry Pier–Yuen Long calls and retained OSM curves.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 65,
@@ -457,23 +463,26 @@
   {
     "id": 66,
     "requirement": "615와 615P 역시 동명 접두어로 일괄 합치지 않고 구간·시간대·행선지를 별도 저장한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "615 and 615P remain separate full official calling patterns with independent origin/destination and retained physical tracks.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 67,
     "requirement": "705와 706은 Tin Shui Wai 순환선의 진행 방향·역 순서·폐회로 geometry를 각각 구현한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "705 and 706 have distinct official stop sequences and closed physical source chains. 706 starts at an exact rotated source vertex, with no invented closing chord.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 68,
     "requirement": "751은 Tin Yat–Yau Oi 방면 서비스와 반대 방향의 공식 정차순서를 정확히 구축한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "751 Tin Yat–Yau Oi and reverse calls match official directional table including direction-specific On Ting. Refetched relation 6485218 restores source connectivity.",
+    "nextAction": null,
+    "checkedAt": "2026-10-20"
   },
   {
     "id": 69,

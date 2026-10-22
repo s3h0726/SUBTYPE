@@ -6,4 +6,17 @@ function parseCsv(text){
  return rows;
 }
 const readCsv=file=>{const [header,...rows]=parseCsv(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));return rows.map(row=>Object.fromEntries(header.map((key,i)=>[key,row[i]||''])))};
-module.exports={parseCsv,readCsv};
+function lightRailStopSequences(rows,{loop=false}={}){
+ const clean=value=>String(value).replace(/\s*\(Platform\s+\d+\)\s*$/i,'').trim();
+ const collapse=list=>list.filter((name,i)=>i===0||name!==list[i-1]);
+ if(!rows.length)return[];
+ if(loop){const list=collapse(rows.map(r=>clean(r[0])));return[[...list,list[0]]]}
+ const first=clean(rows[0][0]),last=clean(rows.at(-1)[0]);
+ // Terminal dashes mean no departure, not an omitted arriving stop.
+ // Interior dashes still distinguish direction-specific calling patterns.
+ return[1,2].map(column=>{
+  const list=collapse(rows.filter(r=>clean(r[0])===first||clean(r[0])===last||r[column]&&r[column]!=='-').map(r=>clean(r[0])));
+  return column===2?list.reverse():list;
+ });
+}
+module.exports={parseCsv,readCsv,lightRailStopSequences};

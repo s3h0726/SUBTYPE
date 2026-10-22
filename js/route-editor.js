@@ -1,4 +1,4 @@
-import{hongKongRouteBlockReason,buildHongKongCustomRoute}from'./hong-kong-policy.js';
+import{hongKongRouteBlockReason,buildHongKongCustomRoute,hongKongContinuationAllowed}from'./hong-kong-policy.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
 import{$,$$,uid,escapeHtml,normalize,toast,debounce}from'./utils.js';
 import{storage}from'./storage.js';
@@ -44,7 +44,7 @@ export class RouteEditor{
   const current=this.route.stations.at(-1);
   if(!current)return[];
   const direct=this.stationGraph.get(current.sourceStationId)?.edges||[];
-  if(this.route.countryId==='hk')return direct;
+  if(this.route.countryId==='hk')return direct.filter(edge=>hongKongContinuationAllowed(current,edge.route.directedSegments?.[edge.fromIndex],edge.route.servicePatternId||edge.route.id));
   const nearby=[];
   for(const node of this.stationGraph.values()){
    if(node.station.ja!==current.ja)continue;
@@ -60,8 +60,9 @@ export class RouteEditor{
   if(this.route.stations.length>=MAX)return toast('최대 300역까지 만들 수 있습니다.');
   this.sync();
   if(this.route.countryId==='hk'){
-   const sourceId=source.stationMasterId||source.id,incoming=edge?.route?.directedSegments?.[edge.fromIndex];
+   const sourceId=source.stationMasterId||source.id,rawIncoming=edge?.route?.directedSegments?.[edge.fromIndex],incoming=rawIncoming?{...rawIncoming,sourceServicePatternId:edge.route.servicePatternId||edge.route.id,sourceRouteId:edge.route.id}:null;
    if(edge&&(!incoming||edge.toIndex!==edge.fromIndex+1))return toast('검증된 방향의 실제 선로만 선택할 수 있습니다.');
+   if(edge&&!hongKongContinuationAllowed(this.route.stations.at(-1),incoming,edge.route.servicePatternId||edge.route.id))return toast('미검증 서비스 변경·반대편 승강장 연결은 선택할 수 없습니다.');
    this.route.stations.push({...structuredClone(source),id:'',sourceStationId:sourceId,hkIncomingEdge:incoming?structuredClone(incoming):null});
    this.renumber();if(this.route.stations.length>1){try{this.route=buildHongKongCustomRoute(this.route)}catch(error){this.route.releaseStatus='INCOMPLETE';this.route.playable=false;toast(error.message)}}this.render();return;
   }

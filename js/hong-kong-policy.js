@@ -14,6 +14,12 @@ export function hongKongRouteBlockReason(route){
 
 export const HONG_KONG_CATEGORIES=[['all','전체'],['subway','MTR METRO'],['airport_rail','AIRPORT EXPRESS'],['light_rail','LIGHT RAIL'],['tram','TRAM'],['funicular','FUNICULAR'],['high_speed_rail','HIGH SPEED RAIL'],['custom','CUSTOM']];
 
+export function hongKongContinuationAllowed(current,source,servicePatternId){
+  const previous=current?.hkIncomingEdge;if(!previous)return true;
+  if(previous.sourceServicePatternId&&previous.sourceServicePatternId!==servicePatternId)return false;
+  return !!source?.geometry?.length&&JSON.stringify(previous.geometry?.at(-1))===JSON.stringify(source.geometry[0]);
+}
+
 export function buildHongKongCustomRoute(route){
   if(route?.countryId!=='hk')return route;
   if(!route.stations||route.stations.length<2)throw new Error('실제 홍콩 역을 2개 이상 선택하세요.');
@@ -22,6 +28,7 @@ export function buildHongKongCustomRoute(route){
   for(let i=0;i<stations.length-1;i++){
     const a=stations[i],b=stations[i+1],source=b.hkIncomingEdge;
     if(!source||source.fromStationId!==a.sourceStationId||source.toStationId!==b.sourceStationId||!source.sourceWayIds?.length||source.geometryStatus!=='ready')throw new Error('역 순서를 변경한 구간의 실제 선로를 다시 선택하세요.');
+    if(i&& !hongKongContinuationAllowed(a,source,source.sourceServicePatternId))throw new Error('미검증 서비스 변경·반대편 승강장 연결은 저장할 수 없습니다.');
     if(geometry.length&&JSON.stringify(geometry.at(-1))!==JSON.stringify(source.geometry[0]))throw new Error('연결되지 않은 선로·미검증 환승은 저장할 수 없습니다.');
     a.geometryIndex=Math.max(0,geometry.length-1);geometry.push(...(geometry.length?source.geometry.slice(1):source.geometry));b.geometryIndex=geometry.length-1;
     directedSegments.push({...source,fromStationId:a.id,toStationId:b.id});

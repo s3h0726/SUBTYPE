@@ -20,13 +20,13 @@
   "mode": "subway",
   "code": "TCL",
   "officialSymbolExists": false,
-  "lineColor": "#f7943e",
+  "lineColor": "#f3982d",
   "lineTheme": {
     "code": "TCL",
-    "color": "#f7943e",
+    "color": "#f3982d",
     "style": "hk",
-    "colorVerified": false,
-    "colorSource": "OSM candidate; official colour audit pending"
+    "colorVerified": true,
+    "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
   },
   "loop": false,
   "lazy": false,
@@ -1927,7 +1927,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/5317706",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -2050,7 +2050,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/5317706",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -2154,7 +2154,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/5317706",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -2359,7 +2359,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/5317706",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -2504,7 +2504,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/5317706",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -2860,7 +2860,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/5317706",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -3602,7 +3602,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/5317706",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     }
@@ -3614,24 +3614,26 @@
       "code": "HOK",
       "nameZhHant": "香港",
       "nameEn": "Hong Kong",
-      "nameKo": null,
+      "nameKo": "홍콩",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.2849181,
         "lng": 114.1583038
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#HOK",
+      "note": "Airport Express transfer information explicitly pairs Hong Kong station.",
       "canonicalStationId": "hk-mtr-HOK",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/2557051035",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -3640,13 +3642,13 @@
       "ja": "香港",
       "kana": "",
       "romaji": "Hong Kong",
-      "ko": "",
+      "ko": "홍콩",
       "koAliases": [],
       "latitude": 22.2849181,
       "longitude": 114.1583038,
       "officialCode": "HOK",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf"
     },
     {
       "id": "hk-mtr-KOW",
@@ -3654,24 +3656,26 @@
       "code": "KOW",
       "nameZhHant": "九龍",
       "nameEn": "Kowloon",
-      "nameKo": null,
+      "nameKo": "구룡",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.3049657,
         "lng": 114.1615073
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#KOW",
+      "note": "Airport Express transfer information explicitly pairs Kowloon station. Do not use the separate Disney paragraph which incorrectly pairs Hong Kong and Kowloon.",
       "canonicalStationId": "hk-mtr-KOW",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/2292548102",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -3680,13 +3684,13 @@
       "ja": "九龍",
       "kana": "",
       "romaji": "Kowloon",
-      "ko": "",
+      "ko": "구룡",
       "koAliases": [],
       "latitude": 22.3049657,
       "longitude": 114.1615073,
       "officialCode": "KOW",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf"
     },
     {
       "id": "hk-mtr-OLY",
@@ -3694,24 +3698,26 @@
       "code": "OLY",
       "nameZhHant": "奧運",
       "nameEn": "Olympic",
-      "nameKo": null,
+      "nameKo": "올림픽",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.3176404,
         "lng": 114.1601536
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://abcdocz.com/doc/712220/e---discover-hong-kong",
+      "sourceType": "official-tourism-publication-mirror",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
-      "confidence": "high",
+      "confidence": "medium",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#OLY",
+      "note": "2014 publication hotel map explicitly pairs Olympic Station. Original publisher imprint checked on mirrored text.",
       "canonicalStationId": "hk-mtr-OLY",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/2292179609",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -3720,13 +3726,13 @@
       "ja": "奧運",
       "kana": "",
       "romaji": "Olympic",
-      "ko": "",
+      "ko": "올림픽",
       "koAliases": [],
       "latitude": 22.3176404,
       "longitude": 114.1601536,
       "officialCode": "OLY",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://abcdocz.com/doc/712220/e---discover-hong-kong"
     },
     {
       "id": "hk-mtr-NAC",
@@ -3744,14 +3750,14 @@
       "nameStatus": "unverified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
       "canonicalStationId": "hk-mtr-NAC",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/506479328",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -3784,14 +3790,14 @@
       "nameStatus": "unverified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
       "canonicalStationId": "hk-mtr-LAK",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1295654768",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -3814,24 +3820,26 @@
       "code": "TSY",
       "nameZhHant": "青衣",
       "nameEn": "Tsing Yi",
-      "nameKo": null,
+      "nameKo": "칭이",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.3583861,
         "lng": 114.1074312
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://abcdocz.com/doc/712220/e---discover-hong-kong",
+      "sourceType": "official-tourism-publication-mirror",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
-      "confidence": "high",
+      "confidence": "medium",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#TSY",
+      "note": "2014 Hong Kong Magic Lamp, publisher Hong Kong Tourism Board Korea office, overview map explicitly pairs Tsing Yi. Mirror of the publication; original PDF unavailable.",
       "canonicalStationId": "hk-mtr-TSY",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/288376916",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -3840,13 +3848,13 @@
       "ja": "青衣",
       "kana": "",
       "romaji": "Tsing Yi",
-      "ko": "",
+      "ko": "칭이",
       "koAliases": [],
       "latitude": 22.3583861,
       "longitude": 114.1074312,
       "officialCode": "TSY",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://abcdocz.com/doc/712220/e---discover-hong-kong"
     },
     {
       "id": "hk-mtr-SUN",
@@ -3871,7 +3879,7 @@
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/2291195552",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -3904,14 +3912,14 @@
       "nameStatus": "unverified",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
       "canonicalStationId": "hk-mtr-TUC",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/288376094",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },

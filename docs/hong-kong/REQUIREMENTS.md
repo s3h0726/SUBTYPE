@@ -1,6 +1,6 @@
 # 원문 180개 항목별 실행 상태
 
-기준일 2026-10-18. PASS는 기재한 구현/검사 범위에 한정합니다. 전체 홍콩망 상태는 INCOMPLETE입니다.
+기준일 2026-10-20. PASS는 각 항목의 기재 범위에 한정하며 전체 홍콩망 상태는 INCOMPLETE입니다. 2차 개발에서 39, 40, 56, 62, 63, 64, 66, 67, 68번을 근거와 함께 갱신했습니다.
 
 | 번호 | 상태 | 원문 요구사항 | 근거 또는 남은 작업 |
 |---|---|---|---|
@@ -42,8 +42,8 @@
 | 36 | INCOMPLETE | 迪士尼綫 Disneyland Resort Line: Sunny Bay–Disneyland Resort를 독립 서비스로 구현하고 운영사의 공식 브랜드를 적용한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 37 | INCOMPLETE | 東鐵綫 East Rail Line: Admiralty–Lo Wu/Lok Ma Chau 및 Racecourse 특별 정차 계통을 공식 시점에 맞게 구축한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 38 | INCOMPLETE | 屯馬綫 Tuen Ma Line: Tuen Mun–Wu Kai Sha를 하나의 현재 운행계통으로 등록하고 과거 West Rail/Ma On Shan 데이터를 중복 정규 노선으로 노출하지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 39 | INCOMPLETE | 南港島綫 South Island Line: Admiralty–South Horizons의 실제 정차역과 철교·터널 geometry를 구현한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
-| 40 | INCOMPLETE | 機場快綫 Airport Express: Hong Kong–AsiaWorld-Expo 구간의 Hong Kong, Kowloon, Tsing Yi, Airport, AsiaWorld-Expo 정차정보를 검증해 별도 서비스로 구현한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
+| 39 | PASS | 南港島綫 South Island Line: Admiralty–South Horizons의 실제 정차역과 철교·터널 geometry를 구현한다. | SIL DT/UT: official MTR stop order, independent OSM relations 6827212/6827211, 5 reviewed station labels, real 6.93/6.95 km routes and browser full-route QA. See phase2 acceptance report. |
+| 40 | PASS | 機場快綫 Airport Express: Hong Kong–AsiaWorld-Expo 구간의 Hong Kong, Kowloon, Tsing Yi, Airport, AsiaWorld-Expo 정차정보를 검증해 별도 서비스로 구현한다. | AEL DT/UT: five official distinct stops, independent source relations 5317238/5317239, reviewed Korean labels with disclosed historical-publication mirror provenance, browser 34.94/34.95 km full-route QA. |
 | 41 | INCOMPLETE | East Rail의 Sheung Shui 이후 Lo Wu와 Lok Ma Chau 방면은 분기 edge와 별도 destination pattern을 둔다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 42 | INCOMPLETE | East Rail의 Fo Tan/Racecourse 갈림 구간은 실제 철도 분기 선형을 포함하고, 경마장역 정차는 행사·운행 조건을 가진 비상시 계통으로 처리한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 43 | INCOMPLETE | Tseung Kwan O에서 Po Lam 방향과 LOHAS Park 방향을 구분하고, 실제 시기별 각 지선의 종착·회차 서비스만 노출한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
@@ -59,19 +59,19 @@
 | 53 | INCOMPLETE | Mong Kok ↔ Mong Kok East 등 인근이지만 역내 직결이 아닌 경우는 거리만으로 TAB 환승을 자동 추가하지 않는다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 54 | INCOMPLETE | Admiralty, Hung Hom, Kowloon Tong, Nam Cheong, Lai King 등 주요 환승역에서 실제 연결 노선과 승강장 방향을 검증한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 55 | PASS | 공항철도와 Tung Chung Line의 정차역 차이를 유지한다. Olympic·Nam Cheong 등을 Airport Express가 정차한다고 가정하지 않는다. | Airport Express의 공식 5개 역만 유지하는 회귀 테스트 |
-| 56 | INCOMPLETE | Airport Express의 Airport와 AsiaWorld-Expo는 별개 정차역이며 실제 왕복종점·운행 상태는 공식 자료로 확인한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
+| 56 | PASS | Airport Express의 Airport와 AsiaWorld-Expo는 별개 정차역이며 실제 왕복종점·운행 상태는 공식 자료로 확인한다. | Refetched official MTR CSV confirms separate Airport / AsiaWorld-Expo calls. Both complete directional services exercised in the browser. |
 | 57 | PASS | Disneyland Resort Line에는 실제 왕복하는 Sunny Bay–Disneyland Resort만 허용하며 본선과의 가상 직결 서비스는 생성하지 않는다. | Sunny Bay–Disneyland Resort 양방향 독립 서비스와 실제 선로 검증 |
 | 58 | INCOMPLETE | 환승과 열차가 동일 선로를 이어 운행하는 `throughService`를 구분하여 이벤트·게임 UI·기록에 저장한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 59 | INCOMPLETE | TAB은 실제 환승 가능한 시점에만 활성화하며, 입력 IME 조합 중에는 역 이름 타이핑을 방해하지 않게 한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 60 | INCOMPLETE | 역사적 연결·미래 계획·장거리 도보 안내는 기본 환승 목록에서 제외하거나 명시적인 `walkTransfer` 옵션으로 분리한다. | 해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다. |
 | 61 | INCOMPLETE | 홍콩 MTR Light Rail의 실제 물리 선로·분기·교차·정류장을 도시철도와 별도 그래프로 구축한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
-| 62 | INCOMPLETE | 공식 자료에 나오는 505 계통의 정차역·행선지·방향을 개별 검증한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
-| 63 | INCOMPLETE | 507 계통을 실제 선형·정류장으로 생성하고 근접한 다른 서비스의 경로를 그대로 복제하지 않는다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
-| 64 | INCOMPLETE | 610 계통의 Tuen Mun Ferry Pier–Yuen Long 장거리 운행과 모든 중간 정차·곡선 선로를 검증한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
+| 62 | PASS | 공식 자료에 나오는 505 계통의 정차역·행선지·방향을 개별 검증한다. | 505 official directional schedules now retain arrival termini while respecting one-way interior calls. Both ordered patterns match source railway geometry. |
+| 63 | PASS | 507 계통을 실제 선형·정류장으로 생성하고 근접한 다른 서비스의 경로를 그대로 복제하지 않는다. | 507 both directions match official calls; platform 2/3 terminal rows are alternatives at one physical stop, not extra stations. Actual independent source geometry retained. |
+| 64 | PASS | 610 계통의 Tuen Mun Ferry Pier–Yuen Long 장거리 운행과 모든 중간 정차·곡선 선로를 검증한다. | 610 both directions match full official Tuen Mun Ferry Pier–Yuen Long calls and retained OSM curves. |
 | 65 | INCOMPLETE | 614와 614P는 이름이 비슷해도 정차범위와 실제 운행구간이 다른 별개 서비스로 등록한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
-| 66 | INCOMPLETE | 615와 615P 역시 동명 접두어로 일괄 합치지 않고 구간·시간대·행선지를 별도 저장한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
-| 67 | INCOMPLETE | 705와 706은 Tin Shui Wai 순환선의 진행 방향·역 순서·폐회로 geometry를 각각 구현한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
-| 68 | INCOMPLETE | 751은 Tin Yat–Yau Oi 방면 서비스와 반대 방향의 공식 정차순서를 정확히 구축한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
+| 66 | PASS | 615와 615P 역시 동명 접두어로 일괄 합치지 않고 구간·시간대·행선지를 별도 저장한다. | 615 and 615P remain separate full official calling patterns with independent origin/destination and retained physical tracks. |
+| 67 | PASS | 705와 706은 Tin Shui Wai 순환선의 진행 방향·역 순서·폐회로 geometry를 각각 구현한다. | 705 and 706 have distinct official stop sequences and closed physical source chains. 706 starts at an exact rotated source vertex, with no invented closing chord. |
+| 68 | PASS | 751은 Tin Yat–Yau Oi 방면 서비스와 반대 방향의 공식 정차순서를 정확히 구축한다. | 751 Tin Yat–Yau Oi and reverse calls match official directional table including direction-specific On Ting. Refetched relation 6485218 restores source connectivity. |
 | 69 | INCOMPLETE | 751P는 상시 노선으로 고정하지 않고 공식 안내의 평일 혼잡시간대 보강 운행 조건을 기록한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
 | 70 | INCOMPLETE | 761P까지 포함한 505,507,610,614,614P,615,615P,705,706,751,751P,761P 총 12개 계통을 현재성 재검증 후 등록하고 불확실한 계통은 출시 차단 대상으로 보고한다. | 경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다. |
 | 71 | INCOMPLETE | Hong Kong Tramways를 MTR 운영사와 구별되는 독립 운영사로 등록하고 실제 상표·색상 자산을 적용한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |

@@ -1,41 +1,671 @@
 {
-  "country": {"id":"hk","isoCode":"HK","nameZhHant":"香港","nameEn":"Hong Kong","nameKo":"홍콩"},
-  "checkedAt":"2026-10-18",
-  "operators":[
-    {"id":"hk-mtr","names":{"ja":"港鐵","en":"MTR","ko":"홍콩 MTR"},"sourceUrl":"https://www.mtr.com.hk/en/customer/services/system_map.html","sourceType":"official","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"high"},
-    {"id":"hk-tramways","names":{"ja":"香港電車","en":"Hong Kong Tramways","ko":"홍콩 트램"},"sourceUrl":"https://www.hktramways.com/en/schedules-fares/","sourceType":"official","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"high"},
-    {"id":"hk-peak-tram","names":{"ja":"山頂纜車","en":"Peak Tram","ko":"피크트램"},"sourceUrl":"https://www.thepeak.com.hk/en/faq","sourceType":"official","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"unverified"}
-  ],
-  "mtrLines":{
-    "ISL":{"id":"hk-island","nameZhHant":"港島綫","nameEn":"Island Line","nameKo":"홍콩섬선","category":"subway"},
-    "TWL":{"id":"hk-tsuen-wan","nameZhHant":"荃灣綫","nameEn":"Tsuen Wan Line","nameKo":"췬완선","category":"subway"},
-    "KTL":{"id":"hk-kwun-tong","nameZhHant":"觀塘綫","nameEn":"Kwun Tong Line","nameKo":"쿤통선","category":"subway"},
-    "TKL":{"id":"hk-tseung-kwan-o","nameZhHant":"將軍澳綫","nameEn":"Tseung Kwan O Line","nameKo":"정관오선","category":"subway"},
-    "TCL":{"id":"hk-tung-chung","nameZhHant":"東涌綫","nameEn":"Tung Chung Line","nameKo":"퉁충선","category":"subway"},
-    "DRL":{"id":"hk-disneyland","nameZhHant":"迪士尼綫","nameEn":"Disneyland Resort Line","nameKo":"디즈니랜드 리조트 라인","category":"subway"},
-    "EAL":{"id":"hk-east-rail","nameZhHant":"東鐵綫","nameEn":"East Rail Line","nameKo":"동철선","category":"subway"},
-    "TML":{"id":"hk-tuen-ma","nameZhHant":"屯馬綫","nameEn":"Tuen Ma Line","nameKo":"튄마선","category":"subway"},
-    "SIL":{"id":"hk-south-island","nameZhHant":"南港島綫","nameEn":"South Island Line","nameKo":"남홍콩섬선","category":"subway"},
-    "AEL":{"id":"hk-airport-express","nameZhHant":"機場快綫","nameEn":"Airport Express","nameKo":"공항철도","category":"airport_rail"}
+  "country": {
+    "id": "hk",
+    "isoCode": "HK",
+    "nameZhHant": "香港",
+    "nameEn": "Hong Kong",
+    "nameKo": "홍콩"
   },
-  "lightRailTargetRefs":["505","507","610","614","614P","615","615P","705","706","751","751P","761P"],
-  "tramServices":[
-    {"id":"western-market-shau-kei-wan","from":"Western Market","to":"Shau Kei Wan"},
-    {"id":"happy-valley-shau-kei-wan","from":"Happy Valley","to":"Shau Kei Wan"},
-    {"id":"shek-tong-tsui-north-point","from":"Shek Tong Tsui","to":"North Point"},
-    {"id":"shek-tong-tsui-causeway-bay","from":"Shek Tong Tsui","to":"Causeway Bay"},
-    {"id":"kennedy-town-happy-valley","from":"Kennedy Town","to":"Happy Valley"},
-    {"id":"kennedy-town-shau-kei-wan","from":"Kennedy Town","to":"Shau Kei Wan"}
+  "checkedAt": "2026-10-20",
+  "operators": [
+    {
+      "id": "hk-mtr",
+      "names": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/system_map.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-18",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-tramways",
+      "names": {
+        "ja": "香港電車",
+        "en": "Hong Kong Tramways",
+        "ko": "홍콩 트램"
+      },
+      "sourceUrl": "https://www.hktramways.com/en/schedules-fares/",
+      "sourceType": "official",
+      "checkedAt": "2026-10-18",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-peak-tram",
+      "names": {
+        "ja": "山頂纜車",
+        "en": "Peak Tram",
+        "ko": "피크트램"
+      },
+      "sourceUrl": "https://www.thepeak.com.hk/en/faq",
+      "sourceType": "official",
+      "checkedAt": "2026-10-18",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "unverified"
+    }
   ],
-  "koreanNames":{
-    "SUN":{"nameKo":"써니베이","aliasesKo":[],"nameStatus":"verified","sourceUrl":"https://www.hongkongdisneyland.com/ko/guest-services/travel-information/","sourceType":"official-korean","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"high"},
-    "DIS":{"nameKo":"디즈니랜드 리조트","aliasesKo":[],"nameStatus":"verified","sourceUrl":"https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf","sourceType":"official-tourism-korean","checkedAt":"2026-10-18","license":"REVIEW_REQUIRED","confidence":"medium","note":"Historical source used only for Korean spelling; current operation is separately checked against MTR CSV."}
+  "mtrLines": {
+    "ISL": {
+      "id": "hk-island",
+      "nameZhHant": "港島綫",
+      "nameEn": "Island Line",
+      "nameKo": "홍콩섬선",
+      "category": "subway",
+      "lineColor": "#0075c2",
+      "colorReview": {
+        "spotName": "PANTONE 285 C",
+        "alternateRgb": [
+          0,
+          0.458204,
+          0.75925
+        ],
+        "hex": "#0075c2",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "TWL": {
+      "id": "hk-tsuen-wan",
+      "nameZhHant": "荃灣綫",
+      "nameEn": "Tsuen Wan Line",
+      "nameKo": "췬완선",
+      "category": "subway",
+      "lineColor": "#e60012",
+      "colorReview": {
+        "spotName": "PANTONE 485 C",
+        "alternateRgb": [
+          0.900891,
+          0,
+          0.0696715
+        ],
+        "hex": "#e60012",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "KTL": {
+      "id": "hk-kwun-tong",
+      "nameZhHant": "觀塘綫",
+      "nameEn": "Kwun Tong Line",
+      "nameKo": "쿤통선",
+      "category": "subway",
+      "lineColor": "#00a040",
+      "colorReview": {
+        "spotName": "PANTONE 354 C",
+        "alternateRgb": [
+          0,
+          0.625857,
+          0.252701
+        ],
+        "hex": "#00a040",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "TKL": {
+      "id": "hk-tseung-kwan-o",
+      "nameZhHant": "將軍澳綫",
+      "nameEn": "Tseung Kwan O Line",
+      "nameKo": "정관오선",
+      "category": "subway",
+      "lineColor": "#7e3c93",
+      "colorReview": {
+        "spotName": "PANTONE 2583 C",
+        "alternateRgb": [
+          0.492943,
+          0.235556,
+          0.575385
+        ],
+        "hex": "#7e3c93",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "TCL": {
+      "id": "hk-tung-chung",
+      "nameZhHant": "東涌綫",
+      "nameEn": "Tung Chung Line",
+      "nameKo": "퉁충선",
+      "category": "subway",
+      "lineColor": "#f3982d",
+      "colorReview": {
+        "spotName": "PANTONE 144 C",
+        "alternateRgb": [
+          0.952966,
+          0.597707,
+          0.174637
+        ],
+        "hex": "#f3982d",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "DRL": {
+      "id": "hk-disneyland",
+      "nameZhHant": "迪士尼綫",
+      "nameEn": "Disneyland Resort Line",
+      "nameKo": "디즈니랜드 리조트 라인",
+      "category": "subway",
+      "lineColor": "#eb6ea5",
+      "colorReview": {
+        "spotName": "PANTONE 2375 C",
+        "alternateRgb": [
+          0.921579,
+          0.429767,
+          0.647883
+        ],
+        "hex": "#eb6ea5",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "EAL": {
+      "id": "hk-east-rail",
+      "nameZhHant": "東鐵綫",
+      "nameEn": "East Rail Line",
+      "nameKo": "동철선",
+      "category": "subway",
+      "lineColor": "#5eb7e8",
+      "colorReview": {
+        "spotName": "PANTONE 2915 C",
+        "alternateRgb": [
+          0.366916,
+          0.717575,
+          0.909035
+        ],
+        "hex": "#5eb7e8",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "TML": {
+      "id": "hk-tuen-ma",
+      "nameZhHant": "屯馬綫",
+      "nameEn": "Tuen Ma Line",
+      "nameKo": "튄마선",
+      "category": "subway",
+      "lineColor": "#9c2e00",
+      "colorReview": {
+        "spotName": "PANTONE 174 C",
+        "alternateRgb": [
+          0.61107,
+          0.180544,
+          0
+        ],
+        "hex": "#9c2e00",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "SIL": {
+      "id": "hk-south-island",
+      "nameZhHant": "南港島綫",
+      "nameEn": "South Island Line",
+      "nameKo": "남홍콩섬선",
+      "category": "subway",
+      "lineColor": "#cbd300",
+      "colorReview": {
+        "spotName": "PANTONE 390 C",
+        "alternateRgb": [
+          0.797306,
+          0.828445,
+          0
+        ],
+        "hex": "#cbd300",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    },
+    "AEL": {
+      "id": "hk-airport-express",
+      "nameZhHant": "機場快綫",
+      "nameEn": "Airport Express",
+      "nameKo": "공항철도",
+      "category": "airport_rail",
+      "lineColor": "#00888e",
+      "colorReview": {
+        "spotName": "PANTONE 322 C",
+        "alternateRgb": [
+          0,
+          0.532313,
+          0.558773
+        ],
+        "hex": "#00888e",
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-20",
+        "note": "Line-to-colour association checked against the rendered official map and legend. Hex values are the PDF spot colour DeviceRGB alternate at full tint, not a claim about an independent web brand standard."
+      }
+    }
   },
-  "transfers":[],
-  "transferReviewQueue":[
-    {"from":"hk-mtr-HOK","to":"hk-mtr-CEN","type":"walkTransfer","status":"unverified","reason":"Separate stations; verify passage and fare restrictions before enabling TAB."},
-    {"from":"hk-mtr-TST","to":"hk-mtr-ETS","type":"outOfStationTransfer","status":"unverified","reason":"Verify exit/re-entry and fare rules."}
+  "lightRailTargetRefs": [
+    "505",
+    "507",
+    "610",
+    "614",
+    "614P",
+    "615",
+    "615P",
+    "705",
+    "706",
+    "751",
+    "751P",
+    "761P"
   ],
-  "assets":[],
-  "releasePolicy":{"requireOfficialStops":true,"requireReviewedKoreanNames":true,"requireRealGeometry":true,"requireExplicitTransfers":true,"straightLineFallback":false,"logos":"Original assets only after source and redistribution review; otherwise text operator name."}
+  "tramServices": [
+    {
+      "id": "western-market-shau-kei-wan",
+      "from": "Western Market",
+      "to": "Shau Kei Wan"
+    },
+    {
+      "id": "happy-valley-shau-kei-wan",
+      "from": "Happy Valley",
+      "to": "Shau Kei Wan"
+    },
+    {
+      "id": "shek-tong-tsui-north-point",
+      "from": "Shek Tong Tsui",
+      "to": "North Point"
+    },
+    {
+      "id": "shek-tong-tsui-causeway-bay",
+      "from": "Shek Tong Tsui",
+      "to": "Causeway Bay"
+    },
+    {
+      "id": "kennedy-town-happy-valley",
+      "from": "Kennedy Town",
+      "to": "Happy Valley"
+    },
+    {
+      "id": "kennedy-town-shau-kei-wan",
+      "from": "Kennedy Town",
+      "to": "Shau Kei Wan"
+    }
+  ],
+  "koreanNames": {
+    "SUN": {
+      "nameKo": "써니베이",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.hongkongdisneyland.com/ko/guest-services/travel-information/",
+      "sourceType": "official-korean",
+      "checkedAt": "2026-10-18",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high"
+    },
+    "DIS": {
+      "nameKo": "디즈니랜드 리조트",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-18",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "medium",
+      "note": "Historical source used only for Korean spelling; current operation is separately checked against MTR CSV."
+    },
+    "ADM": {
+      "nameKo": "애드미럴티",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/2023-hk-mini-guide-e-book-kr.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#ADM",
+      "note": "Ocean Park travel tip explicitly pairs Admiralty with this Korean spelling."
+    },
+    "OCP": {
+      "nameKo": "오션파크",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/2023-hk-mini-guide-e-book-kr.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#OCP",
+      "note": "Same travel tip explicitly names Ocean Park station."
+    },
+    "WCH": {
+      "nameKo": "황축항",
+      "aliasesKo": [
+        "원창항"
+      ],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-aberdeen-harbour.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#WCH",
+      "note": "Current Korean travel directions name this MTR station; historical guide uses 원창항."
+    },
+    "LET": {
+      "nameKo": "레이퉁",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-aberdeen-harbour.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#LET",
+      "note": "Travel directions identify MTR Lei Tung via its Ap Lei Chau A1 exit. Cross-checked with MTR English station master. No automatic-translation notice in the opened page."
+    },
+    "SOH": {
+      "nameKo": "사우스 호라이즌",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#SOH",
+      "note": "Horizon Plaza and Space Outlet directions pair this spelling with South Horizon station. Historical spelling evidence only."
+    },
+    "HOK": {
+      "nameKo": "홍콩",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#HOK",
+      "note": "Airport Express transfer information explicitly pairs Hong Kong station."
+    },
+    "KOW": {
+      "nameKo": "구룡",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#KOW",
+      "note": "Airport Express transfer information explicitly pairs Kowloon station. Do not use the separate Disney paragraph which incorrectly pairs Hong Kong and Kowloon."
+    },
+    "TSY": {
+      "nameKo": "칭이",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://abcdocz.com/doc/712220/e---discover-hong-kong",
+      "sourceType": "official-tourism-publication-mirror",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "medium",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#TSY",
+      "note": "2014 Hong Kong Magic Lamp, publisher Hong Kong Tourism Board Korea office, overview map explicitly pairs Tsing Yi. Mirror of the publication; original PDF unavailable."
+    },
+    "AIR": {
+      "nameKo": "에어포트",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://abcdocz.com/doc/712220/e---discover-hong-kong",
+      "sourceType": "official-tourism-publication-mirror",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "medium",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#AIR",
+      "note": "Same publisher/imprint and overview map explicitly pair Airport station; this is the historical Korean station label, not an invented translation."
+    },
+    "AWE": {
+      "nameKo": "아시아 월드 엑스포",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://abcdocz.com/doc/712220/e---discover-hong-kong",
+      "sourceType": "official-tourism-publication-mirror",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "medium",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#AWE",
+      "note": "Same overview map explicitly pairs AsiaWorld-Expo station. Historical spelling only, current stops are checked independently."
+    },
+    "TAK": {
+      "nameKo": "타이쿠",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#TAK",
+      "note": "Tai Koo shopping directions explicitly pair Tai Koo station."
+    },
+    "CAB": {
+      "nameKo": "코즈웨이베이",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#CAB",
+      "note": "Fashion Walk directions explicitly pair Causeway Bay station."
+    },
+    "LOW": {
+      "nameKo": "로위",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#LOW",
+      "note": "City transport section explicitly pairs Lo Wu station; historical spelling only."
+    },
+    "LMC": {
+      "nameKo": "목마차우",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#LMC",
+      "note": "City transport section explicitly pairs Lok Ma Chau station; historical spelling only."
+    },
+    "CHW": {
+      "nameKo": "차이완",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-siu-sai-wan.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#CHW",
+      "note": "Travel directions explicitly name MTR Chai Wan station."
+    },
+    "SKW": {
+      "nameKo": "샤우 케이 완",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-siu-sai-wan.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#SKW",
+      "note": "Return travel directions explicitly name MTR Shau Kei Wan station."
+    },
+    "KET": {
+      "nameKo": "케네디 타운",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#KET",
+      "note": "Getting to Belcher Bay specifies Kennedy Town MTR exit C."
+    },
+    "FOH": {
+      "nameKo": "포트리스 힐",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#FOH",
+      "note": "Access points 1 and 2 identify Fortress Hill MTR exit A."
+    },
+    "NOP": {
+      "nameKo": "노스 포인트",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#NOP",
+      "note": "Access points 4 through 7 identify North Point MTR exit A1."
+    },
+    "QUB": {
+      "nameKo": "쿼리 베이",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#QUB",
+      "note": "Access points 9 and 10 identify Quarry Bay MTR exit C."
+    },
+    "SYP": {
+      "nameKo": "새이잉펀",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#SYP",
+      "note": "Sun Yat Sen park access names Sai Ying Pun and Sheung Wan stations."
+    },
+    "SHW": {
+      "nameKo": "상환",
+      "aliasesKo": [
+        "성완"
+      ],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#SHW",
+      "note": "Current park access names Sheung Wan; old publication spelling 성완 retained as an alias."
+    },
+    "WAC": {
+      "nameKo": "완차이",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-lee-tung-avenue.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#WAC",
+      "note": "Lee Tung Avenue access explicitly names Wan Chai MTR station."
+    },
+    "OLY": {
+      "nameKo": "올림픽",
+      "aliasesKo": [],
+      "nameStatus": "verified",
+      "sourceUrl": "https://abcdocz.com/doc/712220/e---discover-hong-kong",
+      "sourceType": "official-tourism-publication-mirror",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "medium",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#OLY",
+      "note": "2014 publication hotel map explicitly pairs Olympic Station. Original publisher imprint checked on mirrored text."
+    }
+  },
+  "transfers": [],
+  "transferReviewQueue": [
+    {
+      "from": "hk-mtr-HOK",
+      "to": "hk-mtr-CEN",
+      "type": "walkTransfer",
+      "status": "unverified",
+      "reason": "Separate stations; verify passage and fare restrictions before enabling TAB."
+    },
+    {
+      "from": "hk-mtr-TST",
+      "to": "hk-mtr-ETS",
+      "type": "outOfStationTransfer",
+      "status": "unverified",
+      "reason": "Verify exit/re-entry and fare rules."
+    }
+  ],
+  "assets": [],
+  "releasePolicy": {
+    "requireOfficialStops": true,
+    "requireReviewedKoreanNames": true,
+    "requireRealGeometry": true,
+    "requireExplicitTransfers": true,
+    "straightLineFallback": false,
+    "logos": "Original assets only after source and redistribution review; otherwise text operator name."
+  },
+  "sourceSnapshotNote": "Base OSM snapshot 2026-10-18 with version-aware updates for nine relations on 2026-10-20. Current MTR CSV and Light Rail table were re-fetched on 2026-10-20 and byte-identical to the base snapshots."
 }

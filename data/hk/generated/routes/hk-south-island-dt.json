@@ -20,23 +20,21 @@
   "mode": "subway",
   "code": "SIL",
   "officialSymbolExists": false,
-  "lineColor": "#B6BD00",
+  "lineColor": "#cbd300",
   "lineTheme": {
     "code": "SIL",
-    "color": "#B6BD00",
+    "color": "#cbd300",
     "style": "hk",
-    "colorVerified": false,
-    "colorSource": "OSM candidate; official colour audit pending"
+    "colorVerified": true,
+    "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
   },
   "loop": false,
   "lazy": false,
-  "playable": false,
-  "releaseStatus": "INCOMPLETE",
+  "playable": true,
+  "releaseStatus": "ready",
   "geometryReady": true,
   "geometryStatus": "verified",
-  "blockedReasons": [
-    "한국어 역명 검수 필요"
-  ],
+  "blockedReasons": [],
   "direction": "DT",
   "validWhen": {
     "type": "regular",
@@ -717,7 +715,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/6827212",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -910,7 +908,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/6827212",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1028,7 +1026,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/6827212",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     },
@@ -1255,7 +1253,7 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/6827212",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "license": "ODbL-1.0",
       "confidence": "high"
     }
@@ -1267,24 +1265,26 @@
       "code": "SOH",
       "nameZhHant": "海怡半島",
       "nameEn": "South Horizons",
-      "nameKo": null,
+      "nameKo": "사우스 호라이즌",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.2423467,
         "lng": 114.149089
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#SOH",
+      "note": "Horizon Plaza and Space Outlet directions pair this spelling with South Horizon station. Historical spelling evidence only.",
       "canonicalStationId": "hk-mtr-SOH",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/3943626061",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -1293,13 +1293,13 @@
       "ja": "海怡半島",
       "kana": "",
       "romaji": "South Horizons",
-      "ko": "",
+      "ko": "사우스 호라이즌",
       "koAliases": [],
       "latitude": 22.2423467,
       "longitude": 114.149089,
       "officialCode": "SOH",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/Magic_Lamp_Plus_KR.pdf"
     },
     {
       "id": "hk-mtr-LET",
@@ -1307,24 +1307,26 @@
       "code": "LET",
       "nameZhHant": "利東",
       "nameEn": "Lei Tung",
-      "nameKo": null,
+      "nameKo": "레이퉁",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.2418706,
         "lng": 114.1561054
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-aberdeen-harbour.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#LET",
+      "note": "Travel directions identify MTR Lei Tung via its Ap Lei Chau A1 exit. Cross-checked with MTR English station master. No automatic-translation notice in the opened page.",
       "canonicalStationId": "hk-mtr-LET",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/3943626058",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -1333,13 +1335,13 @@
       "ja": "利東",
       "kana": "",
       "romaji": "Lei Tung",
-      "ko": "",
+      "ko": "레이퉁",
       "koAliases": [],
       "latitude": 22.2418706,
       "longitude": 114.1561054,
       "officialCode": "LET",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-aberdeen-harbour.html"
     },
     {
       "id": "hk-mtr-WCH",
@@ -1347,24 +1349,28 @@
       "code": "WCH",
       "nameZhHant": "黃竹坑",
       "nameEn": "Wong Chuk Hang",
-      "nameKo": null,
-      "aliasesKo": [],
+      "nameKo": "황축항",
+      "aliasesKo": [
+        "원창항"
+      ],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.2478225,
         "lng": 114.1675268
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-aberdeen-harbour.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#WCH",
+      "note": "Current Korean travel directions name this MTR station; historical guide uses 원창항.",
       "canonicalStationId": "hk-mtr-WCH",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/3778450149",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -1373,13 +1379,15 @@
       "ja": "黃竹坑",
       "kana": "",
       "romaji": "Wong Chuk Hang",
-      "ko": "",
-      "koAliases": [],
+      "ko": "황축항",
+      "koAliases": [
+        "원창항"
+      ],
       "latitude": 22.2478225,
       "longitude": 114.1675268,
       "officialCode": "WCH",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://www.discoverhongkong.com/kr/place-to-go/travel.guide-aberdeen-harbour.html"
     },
     {
       "id": "hk-mtr-OCP",
@@ -1387,24 +1395,26 @@
       "code": "OCP",
       "nameZhHant": "海洋公園",
       "nameEn": "Ocean Park",
-      "nameKo": null,
+      "nameKo": "오션파크",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.2486575,
         "lng": 114.174374
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/2023-hk-mini-guide-e-book-kr.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#OCP",
+      "note": "Same travel tip explicitly names Ocean Park station.",
       "canonicalStationId": "hk-mtr-OCP",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/3943626059",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -1413,13 +1423,13 @@
       "ja": "海洋公園",
       "kana": "",
       "romaji": "Ocean Park",
-      "ko": "",
+      "ko": "오션파크",
       "koAliases": [],
       "latitude": 22.2486575,
       "longitude": 114.174374,
       "officialCode": "OCP",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/2023-hk-mini-guide-e-book-kr.pdf"
     },
     {
       "id": "hk-mtr-ADM",
@@ -1427,24 +1437,26 @@
       "code": "ADM",
       "nameZhHant": "金鐘",
       "nameEn": "Admiralty",
-      "nameKo": null,
+      "nameKo": "애드미럴티",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
         "lat": 22.2790894,
         "lng": 114.1653076
       },
-      "nameStatus": "unverified",
-      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
-      "sourceType": "official",
-      "checkedAt": "2026-10-18",
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/2023-hk-mini-guide-e-book-kr.pdf",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#ADM",
+      "note": "Ocean Park travel tip explicitly pairs Admiralty with this Korean spelling.",
       "canonicalStationId": "hk-mtr-ADM",
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/3943626057",
         "sourceType": "osm",
-        "checkedAt": "2026-10-18",
+        "checkedAt": "2026-10-20",
         "license": "ODbL-1.0",
         "confidence": "high"
       },
@@ -1453,13 +1465,13 @@
       "ja": "金鐘",
       "kana": "",
       "romaji": "Admiralty",
-      "ko": "",
+      "ko": "애드미럴티",
       "koAliases": [],
       "latitude": 22.2790894,
       "longitude": 114.1653076,
       "officialCode": "ADM",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/2023-hk-mini-guide-e-book-kr.pdf"
     }
   ],
   "services": [
