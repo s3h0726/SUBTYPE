@@ -18,6 +18,30 @@ const jpDisneyTransferKey=(station,route)=>{
     Math.abs(lat-35.63524)<0.006&&Math.abs(lon-139.88510)<0.006?
     JP_MAIHAMA_RESORT_TRANSFER:null;
 };
+const JP_VERIFIED_NAMED_TRANSFER_GROUPS=[{"id":"tokyo-ueno-okachimachi","names":["上野広小路","仲御徒町","上野御徒町"],"bbox":[35.69,139.75,35.72,139.79],"maxMeters":750,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-hibiya-yurakucho","names":["日比谷","有楽町"],"bbox":[35.665,139.748,35.685,139.774],"maxMeters":700,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-awajicho-shinochanomizu-ogawamachi","names":["淡路町","新御茶ノ水","小川町"],"bbox":[35.68,139.755,35.71,139.79],"maxMeters":900,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-ningyocho-suitengumae","names":["人形町","水天宮前"],"bbox":[35.674,139.771,35.69,139.795],"maxMeters":800,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-tsukiji-shintomicho","names":["築地","新富町"],"bbox":[35.659,139.768,35.678,139.79],"maxMeters":650,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-ginza-itchome","names":["銀座","銀座一丁目"],"bbox":[35.664,139.757,35.683,139.78],"maxMeters":1000,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-toranomon-hills","names":["虎ノ門","虎ノ門ヒルズ"],"bbox":[35.652,139.736,35.675,139.76],"maxMeters":900,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-korakuen-kasuga","names":["後楽園","春日"],"bbox":[35.692,139.738,35.718,139.763],"maxMeters":700,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-shinjuku-west","names":["新宿","新宿西口"],"bbox":[35.683,139.688,35.71,139.72],"maxMeters":850,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-akihabara-iwamotocho","names":["秋葉原","岩本町"],"bbox":[35.687,139.764,35.711,139.787],"maxMeters":900,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"osaka-umeda","names":["梅田","東梅田","西梅田"],"bbox":[34.693,135.486,34.713,135.511],"maxMeters":1100,"sourceUrl":"https://subway.osakametro.co.jp/en/guide/fare/various_fares/transit_umeda/noritugi_3.php"}];
+const jpTransferDistanceMeters=(a,b)=>{const rad=Math.PI/180,lat=(a[0]+b[0])*rad/2;return 111200*Math.hypot((a[0]-b[0]),(a[1]-b[1])*Math.cos(lat))};
+const jpNamedTransferKeys=routes=>{
+  const observed=new Map(JP_VERIFIED_NAMED_TRANSFER_GROUPS.map(group=>[group.id,new Map]));
+  for(const route of routes||[]){
+    if(route.countryId!=='jp')continue;
+    for(const station of route.stations||[]){
+      const p=coords(station);if(!p)continue;
+      for(const group of JP_VERIFIED_NAMED_TRANSFER_GROUPS){
+        const name=station.ja||'',b=group.bbox;
+        if(!group.names.includes(name)||p[0]<b[0]||p[0]>b[2]||p[1]<b[1]||p[1]>b[3])continue;
+        if(!observed.get(group.id).has(name))observed.get(group.id).set(name,[]);
+        observed.get(group.id).get(name).push(p);
+      }
+    }
+  }
+  const eligible=new Set;
+  for(const group of JP_VERIFIED_NAMED_TRANSFER_GROUPS){
+    const names=[...observed.get(group.id).entries()];
+    if(names.some(([name,a],i)=>names.slice(i+1).some(([other,b])=>a.some(p=>b.some(q=>jpTransferDistanceMeters(p,q)<=group.maxMeters)))))eligible.add(group.id);
+  }
+  return eligible;
+};
+
 const freeDriveStationKey=s=>{
   if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.krTransferKey)return s.krTransferKey;
@@ -103,10 +127,13 @@ export class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    const jpNamedTransferEligible=jpNamedTransferKeys(routes);
     for(const route of routes||[])for(const stop of route.stations||[]){
       if(route.countryId==='jp'){
-        const key=jpDisneyTransferKey(stop,route);
-        if(key)stop.jpTransferKey=key;
+        delete stop.jpTransferKey;
+        const disney=jpDisneyTransferKey(stop,route);
+        const c=coords(stop),group=!disney&&c&&JP_VERIFIED_NAMED_TRANSFER_GROUPS.find(group=>jpNamedTransferEligible.has(group.id)&&group.names.includes(stop.ja)&&c[0]>=group.bbox[0]&&c[0]<=group.bbox[2]&&c[1]>=group.bbox[1]&&c[1]<=group.bbox[3]);
+        if(disney||group)stop.jpTransferKey=disney||'jp-transfer:'+group.id;
         continue;
       }
       if(route.countryId!=='kr')continue;
@@ -136,6 +163,8 @@ export class FreeDrive{
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
         if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
+      // Never manufacture a missing closing railway edge from a boolean loop flag.
+      if(route.loop&&route.countryId==='jp'&&route.stations.length>2&&route.stations[0].id!==route.stations.at(-1).id)continue;
       if(route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
         if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}

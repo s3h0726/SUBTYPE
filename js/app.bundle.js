@@ -1447,6 +1447,30 @@ const jpDisneyTransferKey=(station,route)=>{
     Math.abs(lat-35.63524)<0.006&&Math.abs(lon-139.88510)<0.006?
     JP_MAIHAMA_RESORT_TRANSFER:null;
 };
+const JP_VERIFIED_NAMED_TRANSFER_GROUPS=[{"id":"tokyo-ueno-okachimachi","names":["上野広小路","仲御徒町","上野御徒町"],"bbox":[35.69,139.75,35.72,139.79],"maxMeters":750,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-hibiya-yurakucho","names":["日比谷","有楽町"],"bbox":[35.665,139.748,35.685,139.774],"maxMeters":700,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-awajicho-shinochanomizu-ogawamachi","names":["淡路町","新御茶ノ水","小川町"],"bbox":[35.68,139.755,35.71,139.79],"maxMeters":900,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-ningyocho-suitengumae","names":["人形町","水天宮前"],"bbox":[35.674,139.771,35.69,139.795],"maxMeters":800,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-tsukiji-shintomicho","names":["築地","新富町"],"bbox":[35.659,139.768,35.678,139.79],"maxMeters":650,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-ginza-itchome","names":["銀座","銀座一丁目"],"bbox":[35.664,139.757,35.683,139.78],"maxMeters":1000,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-toranomon-hills","names":["虎ノ門","虎ノ門ヒルズ"],"bbox":[35.652,139.736,35.675,139.76],"maxMeters":900,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-korakuen-kasuga","names":["後楽園","春日"],"bbox":[35.692,139.738,35.718,139.763],"maxMeters":700,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-shinjuku-west","names":["新宿","新宿西口"],"bbox":[35.683,139.688,35.71,139.72],"maxMeters":850,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"tokyo-akihabara-iwamotocho","names":["秋葉原","岩本町"],"bbox":[35.687,139.764,35.711,139.787],"maxMeters":900,"sourceUrl":"https://www.tokyometro.jp/lang_en/ticket/guide/transfertime/index.html"},{"id":"osaka-umeda","names":["梅田","東梅田","西梅田"],"bbox":[34.693,135.486,34.713,135.511],"maxMeters":1100,"sourceUrl":"https://subway.osakametro.co.jp/en/guide/fare/various_fares/transit_umeda/noritugi_3.php"}];
+const jpTransferDistanceMeters=(a,b)=>{const rad=Math.PI/180,lat=(a[0]+b[0])*rad/2;return 111200*Math.hypot((a[0]-b[0]),(a[1]-b[1])*Math.cos(lat))};
+const jpNamedTransferKeys=routes=>{
+  const observed=new Map(JP_VERIFIED_NAMED_TRANSFER_GROUPS.map(group=>[group.id,new Map]));
+  for(const route of routes||[]){
+    if(route.countryId!=='jp')continue;
+    for(const station of route.stations||[]){
+      const p=coords(station);if(!p)continue;
+      for(const group of JP_VERIFIED_NAMED_TRANSFER_GROUPS){
+        const name=station.ja||'',b=group.bbox;
+        if(!group.names.includes(name)||p[0]<b[0]||p[0]>b[2]||p[1]<b[1]||p[1]>b[3])continue;
+        if(!observed.get(group.id).has(name))observed.get(group.id).set(name,[]);
+        observed.get(group.id).get(name).push(p);
+      }
+    }
+  }
+  const eligible=new Set;
+  for(const group of JP_VERIFIED_NAMED_TRANSFER_GROUPS){
+    const names=[...observed.get(group.id).entries()];
+    if(names.some(([name,a],i)=>names.slice(i+1).some(([other,b])=>a.some(p=>b.some(q=>jpTransferDistanceMeters(p,q)<=group.maxMeters)))))eligible.add(group.id);
+  }
+  return eligible;
+};
+
 const freeDriveStationKey=s=>{
   if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.krTransferKey)return s.krTransferKey;
@@ -1532,10 +1556,13 @@ class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    const jpNamedTransferEligible=jpNamedTransferKeys(routes);
     for(const route of routes||[])for(const stop of route.stations||[]){
       if(route.countryId==='jp'){
-        const key=jpDisneyTransferKey(stop,route);
-        if(key)stop.jpTransferKey=key;
+        delete stop.jpTransferKey;
+        const disney=jpDisneyTransferKey(stop,route);
+        const c=coords(stop),group=!disney&&c&&JP_VERIFIED_NAMED_TRANSFER_GROUPS.find(group=>jpNamedTransferEligible.has(group.id)&&group.names.includes(stop.ja)&&c[0]>=group.bbox[0]&&c[0]<=group.bbox[2]&&c[1]>=group.bbox[1]&&c[1]<=group.bbox[3]);
+        if(disney||group)stop.jpTransferKey=disney||'jp-transfer:'+group.id;
         continue;
       }
       if(route.countryId!=='kr')continue;
@@ -1565,6 +1592,8 @@ class FreeDrive{
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
         if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
+      // Never manufacture a missing closing railway edge from a boolean loop flag.
+      if(route.loop&&route.countryId==='jp'&&route.stations.length>2&&route.stations[0].id!==route.stations.at(-1).id)continue;
       if(route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
         if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
@@ -1722,7 +1751,27 @@ function normalizeStation(raw={},index=0,lineCode='ST'){
   const ko=text(sourceNames.ko,source.nameKo,source.ko)||'MISSING_KOREAN_NAME';
   return{...source,id:internalId,internalId,officialCode,stationCode:officialCode,hasOfficialStationCode:source.hasOfficialStationCode??!!officialCode,stationCodeSource:source.stationCodeSource||text(source.codeSource)||(officialCode?(explicitCode?'source-explicit':'bundled-verified-array'):'none'),ja,kana:text(sourceNames.kana,source.kana,source.hiragana,ko),romaji:text(sourceNames.en,source.romaji,source.en,ko),ko,koMissing:ko==='MISSING_KOREAN_NAME',koAliases:[...new Set(aliases)],koVerified:!!source.koVerified,koSource:source.koSource||'',latitude:Number.isFinite(latitude)&&rawLatitude!==null?latitude:null,longitude:Number.isFinite(longitude)&&rawLongitude!==null?longitude:null}
 }
+// Japan-only compatibility for old embedded catalog snapshots. Canonical source lives in data/lines/**.
+const JP_CIRCULAR_COMPLETION={"line-11302":{"track":[[35.67516,139.7625],[35.67588,139.76273],[35.6756,139.76398],[35.67626,139.76471],[35.67662,139.76499],[35.6779,139.76586],[35.67955,139.76663],[35.68112,139.7678]],"source":"MLIT-N02-2025: shared Tokyo–Yurakucho railway corridor alignment (Keihin-Tohoku survey); separate Yamanote track centerline requires independent review","verified":false},"line-toyama-city-3":{"track":[[36.69578,137.20981],[36.69538,137.20968],[36.69415,137.20924],[36.69362,137.20906],[36.69329,137.209],[36.69271,137.20895]],"source":"MLIT-N02-2025: Toyama city-tram shared line 2 physical segment","verified":true}};
+function completeJapanCircularSource(route){
+  if(!route||(!route.id&&!route.lineId))return route;
+  const id=String(route.id||route.lineId);
+  if(id==='line-99301')return {...route,loop:false}; // Toei Oedo has two different termini.
+  const closure=JP_CIRCULAR_COMPLETION[id],ss=route.stations;
+  if(!closure||!Array.isArray(ss)||ss.length<3||!Array.isArray(route.directedSegments)||route.directedSegments.length!==ss.length-1)return route;
+  const first=ss[0],last=ss.at(-1),firstId=String(first.id||first.internalId),lastId=String(last.id||last.internalId);
+  if(firstId===lastId)return route;
+  const source=Array.isArray(route.geometry)?route.geometry:[],track=closure.track;
+  if(source.length<2||track.length<2)return route;
+  const a=source.at(-1),b=track[0];
+  if(!a||Math.abs(a[0]-b[0])>0.001||Math.abs(a[1]-b[1])>0.001)return route;
+  const copy=track.slice(a[0]===b[0]&&a[1]===b[1]?1:0).map(p=>[...p]);
+  const geometry=[...source,...copy],stations=[...ss,{...first,order:ss.length+1,geometryIndex:geometry.length-1,closureArrival:true}],directedSegments=[...route.directedSegments,{fromStationId:lastId,toStationId:firstId,geometry:track.map(p=>[...p]),source:closure.source,verified:closure.verified,geometryReviewStatus:closure.verified?'VERIFIED_SHARED_TRACK':'REVIEW_REQUIRED_ADJACENT_TRACK'}];
+  return {...route,loop:true,stations,geometry,directedSegments,geometryReady:route.geometryReady!==false,loopGeometryReviewStatus:closure.verified?'verified':'REVIEW_REQUIRED'};
+}
+
 function normalizeLine(raw={},defaults={}){
+  raw=completeJapanCircularSource(raw);
   const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
   const verifiedTheme=globalThis.TRT_LINE_THEMES?.[id],resolvedCode=verifiedTheme?.code||code||'—';
@@ -1737,7 +1786,7 @@ function normalizeLine(raw={},defaults={}){
   const lineJa=cleanDisplayLineName(text(lineRaw.ja,raw.nameJa,raw.japanese,raw.name,lineRaw.en,'新路線')),operatorJa=text(operatorRaw.ja,raw.operatorNameJa,raw.operatorName,operatorRaw.en,'Railway'),operatorKo=text(operatorRaw.ko),lineKo=text(lineRaw.ko);
   return{...raw,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:operatorKo||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:lineKo||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:lineTheme.color,loop:!!raw.loop,lineTheme,services,stations}
 }
-function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[]},{category:raw.category});return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:Number(raw.stationCount)||0,searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?raw.stationSequence:[]}}
+function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[]},{category:raw.category}),needsClose=!!JP_CIRCULAR_COMPLETION[raw.id]&&Array.isArray(raw.stationSequence)&&raw.stationSequence.length>2&&raw.stationSequence[0]!==raw.stationSequence.at(-1);return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:(Number(raw.stationCount)||0)+(needsClose?1:0),searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?(needsClose?[...raw.stationSequence,raw.stationSequence[0]]:raw.stationSequence):[]}}
 function validLine(line){return Array.isArray(line.stations)&&line.stations.length>=2&&line.stations.every(station=>station.ja||station.kana||station.romaji||station.ko)}
 async function fetchJson(url){const response=await fetch(url);if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
 async function loadRailData(){

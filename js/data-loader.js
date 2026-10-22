@@ -15,7 +15,27 @@ export function normalizeStation(raw={},index=0,lineCode='ST'){
   const ko=text(sourceNames.ko,source.nameKo,source.ko)||'MISSING_KOREAN_NAME';
   return{...source,id:internalId,internalId,officialCode,stationCode:officialCode,hasOfficialStationCode:source.hasOfficialStationCode??!!officialCode,stationCodeSource:source.stationCodeSource||text(source.codeSource)||(officialCode?(explicitCode?'source-explicit':'bundled-verified-array'):'none'),ja,kana:text(sourceNames.kana,source.kana,source.hiragana,ko),romaji:text(sourceNames.en,source.romaji,source.en,ko),ko,koMissing:ko==='MISSING_KOREAN_NAME',koAliases:[...new Set(aliases)],koVerified:!!source.koVerified,koSource:source.koSource||'',latitude:Number.isFinite(latitude)&&rawLatitude!==null?latitude:null,longitude:Number.isFinite(longitude)&&rawLongitude!==null?longitude:null}
 }
+// Japan-only compatibility for old embedded catalog snapshots. Canonical source lives in data/lines/**.
+const JP_CIRCULAR_COMPLETION={"line-11302":{"track":[[35.67516,139.7625],[35.67588,139.76273],[35.6756,139.76398],[35.67626,139.76471],[35.67662,139.76499],[35.6779,139.76586],[35.67955,139.76663],[35.68112,139.7678]],"source":"MLIT-N02-2025: shared Tokyo–Yurakucho railway corridor alignment (Keihin-Tohoku survey); separate Yamanote track centerline requires independent review","verified":false},"line-toyama-city-3":{"track":[[36.69578,137.20981],[36.69538,137.20968],[36.69415,137.20924],[36.69362,137.20906],[36.69329,137.209],[36.69271,137.20895]],"source":"MLIT-N02-2025: Toyama city-tram shared line 2 physical segment","verified":true}};
+function completeJapanCircularSource(route){
+  if(!route||(!route.id&&!route.lineId))return route;
+  const id=String(route.id||route.lineId);
+  if(id==='line-99301')return {...route,loop:false}; // Toei Oedo has two different termini.
+  const closure=JP_CIRCULAR_COMPLETION[id],ss=route.stations;
+  if(!closure||!Array.isArray(ss)||ss.length<3||!Array.isArray(route.directedSegments)||route.directedSegments.length!==ss.length-1)return route;
+  const first=ss[0],last=ss.at(-1),firstId=String(first.id||first.internalId),lastId=String(last.id||last.internalId);
+  if(firstId===lastId)return route;
+  const source=Array.isArray(route.geometry)?route.geometry:[],track=closure.track;
+  if(source.length<2||track.length<2)return route;
+  const a=source.at(-1),b=track[0];
+  if(!a||Math.abs(a[0]-b[0])>0.001||Math.abs(a[1]-b[1])>0.001)return route;
+  const copy=track.slice(a[0]===b[0]&&a[1]===b[1]?1:0).map(p=>[...p]);
+  const geometry=[...source,...copy],stations=[...ss,{...first,order:ss.length+1,geometryIndex:geometry.length-1,closureArrival:true}],directedSegments=[...route.directedSegments,{fromStationId:lastId,toStationId:firstId,geometry:track.map(p=>[...p]),source:closure.source,verified:closure.verified,geometryReviewStatus:closure.verified?'VERIFIED_SHARED_TRACK':'REVIEW_REQUIRED_ADJACENT_TRACK'}];
+  return {...route,loop:true,stations,geometry,directedSegments,geometryReady:route.geometryReady!==false,loopGeometryReviewStatus:closure.verified?'verified':'REVIEW_REQUIRED'};
+}
+
 export function normalizeLine(raw={},defaults={}){
+  raw=completeJapanCircularSource(raw);
   const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
   const verifiedTheme=globalThis.TRT_LINE_THEMES?.[id],resolvedCode=verifiedTheme?.code||code||'—';
@@ -30,7 +50,7 @@ export function normalizeLine(raw={},defaults={}){
   const lineJa=cleanDisplayLineName(text(lineRaw.ja,raw.nameJa,raw.japanese,raw.name,lineRaw.en,'新路線')),operatorJa=text(operatorRaw.ja,raw.operatorNameJa,raw.operatorName,operatorRaw.en,'Railway'),operatorKo=text(operatorRaw.ko),lineKo=text(lineRaw.ko);
   return{...raw,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:operatorKo||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:lineKo||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:lineTheme.color,loop:!!raw.loop,lineTheme,services,stations}
 }
-function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[]},{category:raw.category});return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:Number(raw.stationCount)||0,searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?raw.stationSequence:[]}}
+function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[]},{category:raw.category}),needsClose=!!JP_CIRCULAR_COMPLETION[raw.id]&&Array.isArray(raw.stationSequence)&&raw.stationSequence.length>2&&raw.stationSequence[0]!==raw.stationSequence.at(-1);return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:(Number(raw.stationCount)||0)+(needsClose?1:0),searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?(needsClose?[...raw.stationSequence,raw.stationSequence[0]]:raw.stationSequence):[]}}
 function validLine(line){return Array.isArray(line.stations)&&line.stations.length>=2&&line.stations.every(station=>station.ja||station.kana||station.romaji||station.ko)}
 async function fetchJson(url){const response=await fetch(url);if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
 export async function loadRailData(){

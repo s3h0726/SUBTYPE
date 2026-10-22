@@ -491,6 +491,44 @@
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
         "geometryIndex": 32
+      },
+      {
+        "id": "station-9941316",
+        "internalId": "station-9941316",
+        "stationMasterId": "station-9941316",
+        "sourceId": "station-9941316",
+        "ja": "丸の内",
+        "kana": "まるのうち",
+        "ko": "마루노치",
+        "romaji": "Marunouchi",
+        "koAliases": [],
+        "latitude": 36.692563,
+        "longitude": 137.208896,
+        "order": 13,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 丸の内駅 마루노우치 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 37,
+        "closureArrival": true
       }
     ],
     "geometry": [
@@ -625,6 +663,26 @@
       [
         36.69578,
         137.20981
+      ],
+      [
+        36.69538,
+        137.20968
+      ],
+      [
+        36.69415,
+        137.20924
+      ],
+      [
+        36.69362,
+        137.20906
+      ],
+      [
+        36.69329,
+        137.209
+      ],
+      [
+        36.69271,
+        137.20895
       ]
     ],
     "directedSegments": [
@@ -883,6 +941,40 @@
         ],
         "source": "MLIT-N02-2025",
         "verified": true
+      },
+      {
+        "fromStationId": "station-9941315",
+        "toStationId": "station-9941316",
+        "geometry": [
+          [
+            36.69578,
+            137.20981
+          ],
+          [
+            36.69538,
+            137.20968
+          ],
+          [
+            36.69415,
+            137.20924
+          ],
+          [
+            36.69362,
+            137.20906
+          ],
+          [
+            36.69329,
+            137.209
+          ],
+          [
+            36.69271,
+            137.20895
+          ]
+        ],
+        "source": "MLIT-N02-2025: Toyama city-tram shared line 2 physical segment",
+        "verified": true,
+        "reviewStatus": "verified-source",
+        "sourceWorkspace": "data/lines/toyamachihotetsudo/toyama-city-route-2/geometry.json"
       }
     ],
     "geometryReady": true,
@@ -901,6 +993,21 @@
       "routePattern": "officially listed service pattern"
     },
     "dataKind": "operatingRoute",
-    "coverage": "operating-route"
+    "coverage": "operating-route",
+    "stationSequence": [
+      "station-9941316",
+      "station-9942202",
+      "station-9942203",
+      "station-9942204",
+      "station-9941321",
+      "station-9941309",
+      "station-9941310",
+      "station-9941311",
+      "station-9941312",
+      "station-1140501",
+      "station-9941314",
+      "station-9941315",
+      "station-9941316"
+    ]
   }
 }
