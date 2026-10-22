@@ -1,0 +1,30 @@
+name: Japan operating-choice visibility regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'tools/test-japan-operating-choice-visibility.cjs'
+      - '.github/workflows/test-japan-operating-choice-visibility.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  operating-choices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source and deployment JavaScript syntax
+        run: |
+          cp js/app.js /tmp/subtype-app-visibility.mjs
+          node --check /tmp/subtype-app-visibility.mjs
+          node --check js/app.bundle.js
+          node --check tools/test-japan-operating-choice-visibility.cjs
+      - name: Verify all operating choices stay visible with safe launch guards
+        run: node --test tools/test-japan-operating-choice-visibility.cjs
+      - name: Verify Shinkansen existing operating-service playability
+        run: node tools/test-japan-shinkansen-services.cjs
