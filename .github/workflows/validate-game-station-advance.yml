@@ -1,0 +1,35 @@
+name: Validate fast station advance
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/route-renderer.js'
+      - 'js/game.js'
+      - 'js/track-motion.js'
+      - 'js/app.bundle.js'
+      - 'tools/test-track-motion.cjs'
+      - '.github/workflows/validate-game-station-advance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fast-arrival:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source and deployed bundle syntax
+        run: |
+          cp js/route-renderer.js /tmp/subtype-route-renderer.mjs
+          cp js/game.js /tmp/subtype-game.mjs
+          node --check /tmp/subtype-route-renderer.mjs
+          node --check /tmp/subtype-game.mjs
+          node --check js/app.bundle.js
+      - name: Test fast completion and station order integrity
+        run: node --test tools/test-track-motion.cjs
+      - name: Confirm production includes fast finish
+        run: |
+          grep -Fq 'rail.typingFinish={started:performance.now()' js/app.bundle.js
+          grep -Fq 'const duration=motion===false?0:120' js/app.bundle.js
