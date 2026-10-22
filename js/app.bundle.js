@@ -2323,7 +2323,7 @@ function actualOperatingChoices(route){
   // N'EX requires separate Ofuna/Shinjuku paths: never offer legacy chained local/fallback choices.
   if(route?.id==='line-11328')return nexOperatingChoices(route);
   if(route?.famousExpress)return famousLimitedExpressChoices(route);
-  if(isKoreanResearch(route))return koreanResearchChoices(route);
+  if(route?.countryId==='kr'&&isKoreanResearch(route))return koreanResearchChoices(route);
   if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
   const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
   const add=choice=>{const key=[choice.kind==='catalog'?choice.id:(choice.kind||''),choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
@@ -2343,7 +2343,7 @@ function actualOperatingChoices(route){
     const first=serviceStations[0]||route.stations?.[0],last=serviceStations.at(-1)||route.stations?.at(-1);if(!first||!last||String(first.id)===String(last.id))continue;
     const serviceName={ko:service.nameKo||service.names?.ko||'각역정차',ja:service.nameJa||service.names?.ja||'',en:service.nameEn||service.names?.en||''};
     add({kind:'legacy',id:`service:${service.id}:forward`,originId:String(first.id),destinationId:String(last.id),originNames:first,destinationNames:last,trainType:null,journeyId:null,patternId:null,patternName:serviceName,throughServiceId:service.throughServiceId||null,legacyServiceId:service.id,direction:'forward'});
-    if(!route.oneWay&&(route.countryId!=='kr'||route.directions?.some(d=>d.id==='reverse')))add({kind:'legacy',id:`service:${service.id}:reverse`,originId:String(last.id),destinationId:String(first.id),originNames:last,destinationNames:first,trainType:null,journeyId:null,patternId:null,patternName:serviceName,throughServiceId:service.throughServiceId||null,legacyServiceId:service.id,direction:'reverse'})
+    if(route.countryId!=='kr'||route.directions?.some(d=>d.id==='reverse'))if(!route.oneWay)add({kind:'legacy',id:`service:${service.id}:reverse`,originId:String(last.id),destinationId:String(first.id),originNames:last,destinationNames:first,trainType:null,journeyId:null,patternId:null,patternName:serviceName,throughServiceId:service.throughServiceId||null,legacyServiceId:service.id,direction:'reverse'})
   }
   const throughSpecs=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).filter(spec=>(spec.participatingLineIds||throughRouteIds(spec)).includes(route?.id));
   for(const spec of throughSpecs)for(const direction of ['forward','reverse']){
