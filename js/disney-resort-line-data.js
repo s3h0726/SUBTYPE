@@ -58,6 +58,6 @@
     geometryStatus:'reviewed-n02-precision-reduced',geometryReady:true,
     serviceNote:'리조트 게이트웨이 출발, 4역 단방향 순환, 1바퀴 약 13분',
     stations,geometry,
-    services:[{id:'disney-loop',nameJa:'環状運転',nameKo:'순환운행',nameEn:'Clockwise? no: counter-clockwise loop',stops:stations.map(s=>s.id)}]
+    services:[{id:'disney-loop',nameJa:'環状運転',nameKo:'순환운행',nameEn:'Counterclockwise Loop',stops:stations.map(s=>s.id)}]
   };
 })();
