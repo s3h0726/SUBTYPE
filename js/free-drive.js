@@ -7,7 +7,7 @@ import{$,escapeHtml,normalize}from'./utils.js';
 const finite=n=>n!==null&&n!==undefined&&n!==''&&Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
 const freeDriveStationKey=s=>{
-  if(s?.countryId==='hk')return String(s.stationMasterId||s.sourceStationId||s.id);
+  if(s?.countryId==='hk')return String(s.hkTransferKey||s.stationMasterId||s.sourceStationId||s.id);
   if(s?.krTransferKey)return s.krTransferKey;
   if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
@@ -91,7 +91,22 @@ export class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    // Verified differently named interchanges are explicit, never proximity guesses.
+    const hkPairs=new Map;
+    for(const pair of globalThis.TRT_HONG_KONG_INDEX?.transfers||[]){
+      if(pair.status!=='verified'||pair.enabled!==true||!pair.from||!pair.to)continue;
+      for(const id of [pair.from,pair.to]){
+        if(hkPairs.has(id))throw new Error('Conflicting Hong Kong interchange '+id);
+        hkPairs.set(id,pair);
+      }
+    }
     for(const route of routes||[])for(const stop of route.stations||[]){
+      if(route.countryId==='hk'){
+        delete stop.hkTransferKey;delete stop.hkTransferRequiresExit;
+        const pair=hkPairs.get(String(stop.stationMasterId||stop.sourceStationId||stop.id));
+        if(pair){stop.hkTransferKey='hk-transfer:'+pair.id;stop.hkTransferRequiresExit=pair.requiresExit===true}
+        continue;
+      }
       if(route.countryId!=='kr')continue;
       delete stop.krTransferKey;
       stop.krNoAutoTransfer=true;
@@ -104,7 +119,7 @@ export class FreeDrive{
     const ensure=(station,route,index)=>{
       const key=freeDriveStationKey(station);if(!key)return null;let node=this.graph.get(key);
       if(!node){node={key,station,coord:coords(station),edges:[],routeIds:new Set,stationsByRoute:new Map,coordsByRoute:new Map};this.graph.set(key,node)}
-      node.routeIds.add(route.id);
+      node.routeIds.add(route.id);if(station.hkTransferKey)node.transferRequiresExit=station.hkTransferRequiresExit===true;
       if(!node.stationsByRoute.has(route.id)){
         node.stationsByRoute.set(route.id,{station,index});
         node.coordsByRoute.set(route.id,coords(station));
@@ -195,7 +210,7 @@ export class FreeDrive{
     const groups=new Map;for(const edge of edges){if(!groups.has(edge.routeId))groups.set(edge.routeId,[]);groups.get(edge.routeId).push(edge)}
     target.innerHTML=[...groups.entries()].map(([routeId,list])=>{
       const r=list[0].route,transfer=routeId!==this.currentRouteId;
-      return `<section class="free-drive-line ${transfer?'transfer':''}" style="--route-color:${routeColor(r)}"><header><span>${transfer?'TRANSFER · 환승':'CURRENT LINE'}</span><b>${escapeHtml(routeName(r))}</b><small>${escapeHtml(r.operator?.ko||r.operator?.ja||'')}</small></header><div>${list.map(edge=>{const dest=edge.station||this.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(dest?.ko||dest?.ja||'다음 역')}</b><span>${escapeHtml(dest?.ja||'')}</span><i>→</i></button>`}).join('')}</div></section>`
+      return `<section class="free-drive-line ${transfer?'transfer':''}" style="--route-color:${routeColor(r)}"><header><span>${transfer?(node.transferRequiresExit?'WALK TRANSFER · 개찰구 밖 환승':'TRANSFER · 환승'):'CURRENT LINE'}</span><b>${escapeHtml(routeName(r))}</b><small>${escapeHtml(r.operator?.ko||r.operator?.ja||'')}</small></header><div>${list.map(edge=>{const dest=edge.station||this.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(dest?.ko||dest?.ja||'다음 역')}</b><span>${escapeHtml(dest?.ja||'')}</span><i>→</i></button>`}).join('')}</div></section>`
     }).join('')||'<p class="muted">이 역에서 이어지는 선로를 찾지 못했습니다.</p>';
     this.renderMap();
   }

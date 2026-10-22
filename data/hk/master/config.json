@@ -1469,21 +1469,70 @@
       }
     }
   },
-  "transfers": [],
-  "transferReviewQueue": [
+  "transfers": [
     {
-      "from": "hk-mtr-HOK",
-      "to": "hk-mtr-CEN",
-      "type": "walkTransfer",
-      "status": "unverified",
-      "reason": "Separate stations; verify passage and fare restrictions before enabling TAB."
+      "id": "central-hong-kong",
+      "from": "hk-mtr-CEN",
+      "to": "hk-mtr-HOK",
+      "type": "paidAreaWalkTransfer",
+      "status": "verified",
+      "enabled": true,
+      "requiresExit": false,
+      "fromNameEn": "Central",
+      "toNameEn": "Hong Kong",
+      "sourceUrl": "https://www.mtr.com.hk/archive/en/services/layouts/cen.pdf",
+      "note": "Official Central station layout explicitly marks pedestrian access to Hong Kong station. Preserve both station names, stop positions, and line geometry."
     },
     {
+      "id": "tsim-sha-tsui-east-tsim-sha-tsui",
       "from": "hk-mtr-TST",
       "to": "hk-mtr-ETS",
       "type": "outOfStationTransfer",
+      "status": "verified",
+      "enabled": true,
+      "requiresExit": true,
+      "fromNameEn": "Tsim Sha Tsui",
+      "toNameEn": "East Tsim Sha Tsui",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/complom_connections.html",
+      "note": "Separate gatelines. Octopus interchange within 30 minutes can be treated as one journey; bank card/QR journeys are separate fares."
+    },
+    {
+      "id": "kowloon-austin",
+      "from": "hk-mtr-KOW",
+      "to": "hk-mtr-AUS",
+      "type": "outOfStationWalkConnection",
+      "status": "verified",
+      "enabled": true,
+      "requiresExit": true,
+      "fromNameEn": "Kowloon",
+      "toNameEn": "Austin",
+      "sourceUrl": "https://www.highspeed.mtr.com.hk/en/guide/wek.html",
+      "note": "Footbridges/subways via Hong Kong West Kowloon; separate MTR stations and paid areas. No seamless fare entitlement asserted."
+    }
+  ],
+  "transferReviewQueue": [
+    {
+      "from": "hk-mtr-AUS",
+      "to": "hk-high-speed-west-kowloon",
+      "type": "walkingHsrInterchange",
       "status": "unverified",
-      "reason": "Verify exit/re-entry and fare rules."
+      "reason": "Officially connected by covered passage; high-speed-rail station not yet validated in station master, do not enable TAB.",
+      "sourceUrl": "https://www.highspeed.mtr.com.hk/en/guide/wek.html"
+    },
+    {
+      "from": "hk-mtr-KOW",
+      "to": "hk-high-speed-west-kowloon",
+      "type": "walkingHsrInterchange",
+      "status": "unverified",
+      "reason": "Official footbridge link; HSR gameplay unverified and separate fare/immigration controls.",
+      "sourceUrl": "https://www.highspeed.mtr.com.hk/en/guide/wek.html"
+    },
+    {
+      "from": "hk-mtr-TSW",
+      "to": "hk-mtr-TWW",
+      "type": "independentWalkingConnection",
+      "status": "unverified",
+      "reason": "Distinct Tsuen Wan and Tsuen Wan West; no proven designated in-station transfer. No automatic TAB."
     }
   ],
   "assets": [],
