@@ -148940,7 +148940,7 @@
     "id": "kr-osm-service-16665964",
     "passengerLineId": "kr-osm-line-7625893",
     "names": {
-      "ko": "수도권 전철 4호선: 진접 → 당고개",
+      "ko": "수도권 전철 4호선: 진접 → 불암산",
       "en": "Seoul Metropolitan Subway Line 4: Danggogae → Jinjeop"
     },
     "operatorIds": [
@@ -148952,12 +148952,50 @@
       {
         "geometryId": "kr-geometry-850710258",
         "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-1075277897",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-850710257",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-591213746",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-712243720",
+        "reverse": true
+      },
+      {
+        "geometryId": "kr-geometry-239580582",
+        "reverse": false
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-9589229147",
         "geometryIndex": 0,
+        "boarding": true,
+        "alighting": false
+      },
+      {
+        "stopId": "kr-osm-stop-9589229144",
+        "geometryIndex": 25,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-9589229142",
+        "geometryIndex": 54,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-355173346",
+        "geometryIndex": 114,
         "boarding": true,
         "alighting": true
       }
@@ -148974,6 +149012,19 @@
     ],
     "issues": [
       {
+        "code": "OFFICIAL_TIMETABLE_REQUIRED"
+      }
+    ],
+    "operatingEndpoints": {
+      "origin": "진접",
+      "destination": "불암산"
+    },
+    "sourceNames": {
+      "ko": "수도권 전철 4호선: 진접 → 당고개",
+      "en": "Seoul Metropolitan Subway Line 4: Danggogae → Jinjeop"
+    },
+    "sourceIssues": [
+      {
         "code": "AMBIGUOUS_ORIENTATION"
       },
       {
@@ -148983,6 +149034,39 @@
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
     ],
+    "reconstruction": {
+      "donorServiceId": "kr-osm-service-13938877",
+      "sourceId": "seoulmetro-official-20260901",
+      "officialTripIds": [
+        "seoulmetro-official-20260901-train-6252",
+        "seoulmetro-official-20260901-train-6371",
+        "seoulmetro-official-20260901-train-6490"
+      ],
+      "reviewedOn": "2026-10-18",
+      "endpointNameCorrections": [
+        {
+          "endpoint": "destination",
+          "expectedSourceName": "당고개",
+          "officialName": "불암산",
+          "officialStationCode": "0409",
+          "stationId": "kr-osm-area-8713359",
+          "expectedStationCoordinates": {
+            "lat": 37.6695753,
+            "lon": 127.0784401
+          },
+          "referenceId": "kric-standard-32-row-434",
+          "referenceSha256": "c5f092f0840c7e04a7661f3f63f6d185123e185d18460711816dea3891455a33",
+          "referenceLineCode": "I1104",
+          "sourceId": "nowon-bulamsan-name-20261018",
+          "officialFile": "source/station-renames/nowon-bulamsan-20261018.html",
+          "officialSha256": "bbc7bedda599caffbcd9932de6faa6178de833c5567a7623e6954dba1c156a47",
+          "officialURL": "https://nowon.kr/surakhyu/web/main/main",
+          "expectedOfficialText": "4호선 불암산역(구 당고개역)",
+          "scope": "Explicit renamed station identity only. No track, platform or operational direction approval."
+        }
+      ],
+      "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+    },
     "access": {
       "number": 45,
       "classification": "PASSENGER_SERVICE_RESEARCH",
@@ -164117,6 +164201,14 @@
         "reverse": false
       },
       {
+        "geometryId": "kr-geometry-503137626",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-503137627",
+        "reverse": false
+      },
+      {
         "geometryId": "kr-geometry-1083915376",
         "reverse": false
       },
@@ -164210,14 +164302,14 @@
       },
       {
         "stopId": "kr-osm-stop-13739828932",
-        "geometryIndex": 185,
+        "geometryIndex": 189,
         "boarding": true,
         "alighting": true
       }
     ],
     "osmFrom": "평택역",
     "osmTo": "안중역",
-    "status": "candidate",
+    "status": "excluded",
     "sourceRefs": [
       {
         "sourceId": "osm-geofabrik-kr-2026-10-15",
@@ -164225,30 +164317,43 @@
         "id": "20500839"
       }
     ],
+    "topologyCorrection": {
+      "reason": "NON_RAIL_FACILITY_MEMBER",
+      "relationSha256": "13eee96e04de1bc3b58f9c24428609120912b0188082a579cc0eef1e7fa39cc9",
+      "replacedMember": {
+        "memberIndex": 19,
+        "wayId": "1491252314",
+        "sourceRole": "",
+        "sourceVersion": 1,
+        "facilitySourceId": "osm-62-geofabrik-20261017",
+        "facilitySha256": "85b785d41282f8087913286bdb24d2dffd82bb0de7446e3cd200d1fe418fbf05"
+      },
+      "replacementWays": [
+        {
+          "wayId": "503137626",
+          "sourceVersion": 15,
+          "sha256": "dd8dec0465f7f9fe22569b331aa8f89a85d269338265f82d80458f2df793f534"
+        },
+        {
+          "wayId": "503137627",
+          "sourceVersion": 16,
+          "sha256": "a0df6f975bd0b5c39803e1945f840f5bd8e7b1d2d398ef1c538bd6f61c3417ad"
+        }
+      ],
+      "method": "pinned-non-rail-closed-bridge-outline-replaced-by-existing-exact-node-contiguous-rail-ways",
+      "operationalDirectionVerified": false
+    },
     "issues": [
-      {
-        "code": "MISSING_MEMBER_WAY",
-        "wayId": "1491252314"
-      },
-      {
-        "code": "DISCONNECTED_MEMBERS",
-        "wayId": "1083915376",
-        "from": "4934729303",
-        "to": "8254184434"
-      },
-      {
-        "code": "MISSING_MEMBER_WAY",
-        "wayId": "1491252314"
-      },
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
     ],
     "access": {
       "number": 62,
-      "classification": "PASSENGER_SERVICE_RESEARCH",
-      "passengerCandidate": true,
-      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
-    }
+      "classification": "RESEARCH_PARTIAL_OPERATING_SERVICE",
+      "passengerCandidate": false,
+      "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리."
+    },
+    "playable": false
   }
 ]
