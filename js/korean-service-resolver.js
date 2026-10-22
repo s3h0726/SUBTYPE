@@ -1,7 +1,7 @@
 // A v2 journey is already directional and contains only timetable stopping calls.
 // Geometry between calls includes every non-stopping station and track curve.
 export function koreanVerifiedChoices(route){
- if(route?.countryId!=='kr'||route.schemaVersion!==2)return[];
+ if(route?.countryId!=='kr'||route.schemaVersion!==2||route.releaseStatus!=='verified')return[];
  return(route.verifiedJourneys||[]).map(journey=>({kind:'koreanVerified',id:journey.id,patternId:journey.patternId,patternName:journey.patternName,direction:journey.directionId,originId:journey.stations[0].id,destinationId:journey.stations.at(-1).id,originNames:journey.stations[0],destinationNames:journey.stations.at(-1),trainType:null}));
 }
 export function resolveKoreanVerifiedChoice(choice,route){

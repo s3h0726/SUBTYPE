@@ -1,13 +1,23 @@
 name: Korean network rebuild
 on:
   push:
-    branches: [rebuild/korea-2026-10-15]
+    branches: [main, rebuild/korea-2026-10-15]
   pull_request:
     paths: ['data/kr/**', 'tools/**', 'js/**', 'package.json']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
+  app-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run build
+      - run: npm run test:typing
+      - run: node tools/test-service-route-resolver.js
   implementation:
     runs-on: ubuntu-latest
     steps:
@@ -16,17 +26,21 @@ jobs:
         with:
           node-version: '22'
       - run: npm run check:dependencies
+      - run: npm run import:korea-intercity
       - run: npm run import:korea
       - run: npm run import:seoulmetro
       - run: npm run import:korea-platforms
       - run: npm run build:korea
+      - run: npm run build:korea-preview
+      - run: npm run release:korea-services
       - run: npm run audit:korea-relations62
       - run: npm run audit:korea-inventory
       - run: npm run audit:korea-failures
       - name: Ensure source corrections and generated data are reproducible
-        run: git diff --exit-code -- data/kr/v2
+        run: git diff --exit-code -- data/kr/v2 data/kr/preview js/korean-access-data.js js/korean-preview-access-data.js
       - run: npm run validate:korea
       - run: npm run test:korea
+      - run: npm run test:korea-preview
       - run: npm run test:typing
       - run: node tools/test-service-route-resolver.js
       - run: node tools/validate-data.js
@@ -40,17 +54,6 @@ jobs:
           path: |
             data/kr/v2/generated/audit.json
             data/kr/v2/generated/relations62-audit.*
-  national-release:
-    runs-on: ubuntu-latest
-    needs: [implementation, browser-candidates]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      # This job must fail while national evidence is incomplete. Unit-test
-      # success is never presented as permission to replace the live site.
-      - run: npm run audit:korea
   browser-candidates:
     runs-on: ubuntu-latest
     needs: implementation
@@ -66,16 +69,27 @@ jobs:
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/browser-diagnostics.json
         run: node tools/test-kr-browser.cjs --all-assemblable --interactive
+      - name: Production selector and preview contract browser checks
+        env:
+          KR_PREVIEW_REPORT: data/kr/v2/generated/preview-browser.json
+        run: node tools/test-kr-preview-browser.cjs
+      - name: Unmodified production UI playthrough with animation
+        env:
+          SUBTYPE_SITE_REPORT: data/kr/v2/generated/production-ui-browser.json
+        run: npm run test:korea-site
       - name: Recovered services true-track motion on desktop and mobile
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/recovered-motion.json
           KR_BROWSER_SCREENSHOTS: data/kr/v2/generated/recovered-motion-screens
-        run: node tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696 --interactive-all
+        run: node tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696,16665964 --interactive-all
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: korea-candidate-browser-diagnostics
           path: |
+            data/kr/v2/generated/preview-browser.json
+            data/kr/v2/generated/production-ui-browser.json
+            data/kr/v2/generated/production-ui-browser-screens/
             data/kr/v2/generated/browser-diagnostics.json
             data/kr/v2/generated/recovered-motion.json
             data/kr/v2/generated/recovered-motion-screens/

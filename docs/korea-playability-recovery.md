@@ -1,0 +1,13 @@
+# Korean playability and publication
+
+The operating Korean index remains separate from `data/kr/preview/index.json`. Existing 13 routes retain their current operating data. Preview routes use the same game engine, require the `kr-research-v1` contract and explicit research selection, and write separate records excluded from formal rankings. Source relation directions are retained; reverse services are not fabricated.
+
+`node tools/build-korea-preview.js` checks all 317 source candidates. Current output contains 95 playable research routes, 210 blocked candidates and 12 excluded/quarantined candidates. There are 261 eligible source-assemblable candidates; assemblability alone is insufficient for preview publication. The preview audit records each rejected relation and reason. Restricted airport shuttle families and partial Seohae train patterns stay blocked. Source geometry is not interpolated.
+
+`node tools/build-korea-data.js --publish-released` retains the existing official compile gates and additionally requires source-pinned desktop/mobile completion evidence for each service. Its empty reviewed playthrough registry currently publishes zero new official services. It preserves the legacy operating index when there is nothing eligible to publish. `--publish` and `--require-complete` retain the strict national gate.
+
+The common application build, research implementation/browser workflow and national release workflow are independent. The national workflow must continue to report INCOMPLETE until official coverage is complete. Legacy route playability does not establish complete geometry provenance or formal v2 approval; the existing legacy provenance audit remains unresolved.
+
+Verification commands are documented in package.json. `test:korea-preview` checks classification, contracts, negative cases, record isolation and per-service publication evidence. `tools/test-kr-preview-browser.cjs` exercises the actual lazy loader and production route contracts for every preview candidate and all permitted legacy directions on desktop and mobile. `test:korea-site` operates the unmodified site UI, with real animation and synthetic Hangul composition, and can target the published website through SUBTYPE_TEST_URL. Mobile tests use browser emulation rather than physical devices. Browser diagnostics are not formal release approval records.
+
+The UI-driven test covers a Japanese service, Korean legacy line 3, reviewed forward/reverse research relations, AUTO, SPACE, separate records, light/dark themes and refresh. SPACE requests now wait for physical arrival, preventing rapid input from skipping an arrival or duplicating the finish event. CUSTOM and a physical-device IME session require separate manual verification.

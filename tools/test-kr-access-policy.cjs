@@ -6,7 +6,7 @@ test('road, rail-road ambiguity, construction, platform and station buildings ca
  for(const tags of [{highway:'secondary'},{highway:'track',railway:'rail'},{railway:'construction'},{railway:'platform'},{building:'train_station'}])assert(railwayWayRejection(tags));
  for(const railway of ['rail','subway','light_rail','tram','monorail'])assert.equal(railwayWayRejection({railway}),null);
 });
-test('all eleven restricted relations are blocked through direct and saved CUSTOM identities',()=>{
+test('all twelve restricted relations are blocked through direct and saved CUSTOM identities',()=>{
  const c=context();vm.runInContext(read('js/feature-flags.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),c);
  for(const r of policy.relations.filter(r=>!r.passengerCandidate)){
   const id='kr-osm-service-'+r.osmRelationId;
@@ -18,7 +18,7 @@ test('all eleven restricted relations are blocked through direct and saved CUSTO
 test('existing thirteen public Korean routes remain visible and source policy never approves candidates',()=>{
  const c=context();vm.runInContext(read('js/feature-flags.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),c);
  const index=JSON.parse(read('data/kr/generated/index.json'));assert.equal(index.routes.length,13);for(const r of index.routes)assert.equal(c.isRouteVisible(r),true,r.id);
- const services=JSON.parse(read('data/kr/v2/services.json'));applyAccessPolicy(services,policy);assert.equal(services.filter(s=>s.access?.passengerCandidate===false).length,11);assert(services.every(s=>s.status!=='verified'));
+ const services=JSON.parse(read('data/kr/v2/services.json'));applyAccessPolicy(services,policy);assert.equal(services.filter(s=>s.access?.passengerCandidate===false).length,12);assert.equal(services.find(s=>s.id==='kr-osm-service-20500839').access.passengerCandidate,false);assert(services.every(s=>s.status!=='verified'));
 });
 test('free-drive and CUSTOM graph exclude restricted source routes',()=>{
  const c=context();for(const name of ['free-drive','route-editor'])vm.runInContext(read('js/'+name+'.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+`;globalThis.${name==='free-drive'?'FreeDriveTest=FreeDrive':'RouteEditorTest=RouteEditor'};`,c);
@@ -28,8 +28,8 @@ test('free-drive and CUSTOM graph exclude restricted source routes',()=>{
  e.renderJourneyOptions=()=>{};const forward={id:'kr-direction-fixture',countryId:'kr',schemaVersion:2,stations:[{id:'a'},{id:'b'}]};e.setRailNetwork([forward]);assert.equal(e.stationGraph.get('a').edges.length,1);assert.equal(e.stationGraph.get('b').edges.length,0);
  e.setRailNetwork([{...forward,id:'jp-fixture',countryId:'jp'}]);assert.equal(e.stationGraph.get('b').edges.length,1);
 });
-test('Game start refuses both saved restricted IDs and restricted repository resolutions',()=>{
- const c=context();c.toast=()=>{};vm.runInContext(read('js/game.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.GameTest=Game',c);
+test('Game start refuses both saved restricted IDs and restricted repository resolutions',async()=>{
+ const c=context();Object.assign(c,await import(require('node:url').pathToFileURL(path.join(root,'js/korean-research-resolver.js'))));c.toast=()=>{};vm.runInContext(read('js/game.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.GameTest=Game',c);
  const g=Object.create(c.GameTest.prototype);g.stop=()=>{};let resolves=0;c.railDataRepository={resolveRoute(){resolves++;return{id:'kr-osm-service-20042681'}}};
  assert.equal(g.start('kr-osm-service-3399104'),false);assert.equal(resolves,0);assert.equal(g.start({id:'old-alias'}),false);assert.equal(resolves,1);
  assert.equal(g.startFreeDrive({route:{id:'kr-osm-service-17585166'},station:{id:'terminal'}}),false);

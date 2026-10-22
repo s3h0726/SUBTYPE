@@ -1,0 +1,20 @@
+name: Korean national release approval
+on:
+  push:
+    branches: [main, rebuild/korea-2026-10-15]
+    paths: ['data/kr/**', 'tools/**', 'package.json', '.github/workflows/korea-national-release.yml']
+  pull_request:
+    paths: ['data/kr/**', 'tools/**', 'package.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  national-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Intentionally fails on INCOMPLETE; independent from app/preview builds.
+      - run: npm run audit:korea

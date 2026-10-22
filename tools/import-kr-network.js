@@ -97,8 +97,9 @@ const reconstructionFile=path.join(base,'service-reconstructions.json');
 if(fs.existsSync(reconstructionFile)){
  const {reconstructService}=require('./lib/kr-service-reconstruction'),configs=JSON.parse(fs.readFileSync(reconstructionFile,'utf8')),trips=JSON.parse(fs.readFileSync(path.join(base,'seoulmetro-trip-candidates.json'),'utf8'));
  const maps={services:new Map(services.map(s=>[s.id,s])),stations,stops:new Map(stops.map(s=>[s.id,s])),geometry:new Map(geometry.map(g=>[g.id,g])),infrastructure:new Map(infrastructure.map(i=>[i.id,i]))};
+ const endpointEvidence={references:JSON.parse(fs.readFileSync(path.join(base,'official-station-reference.json'),'utf8')),files:new Map(configs.flatMap(c=>(c.endpointNameCorrections||[]).map(r=>[r.officialFile,fs.readFileSync(path.join(base,r.officialFile))])))};
  const snapshotHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'source/seoulmetro/timetable-20260901.csv'))).digest('hex');
- for(const config of configs){if(snapshotHash!==config.timetableSnapshotSha256)throw Error('STALE_OFFICIAL_RECONSTRUCTION_SNAPSHOT');const index=services.findIndex(s=>s.id===config.serviceId);if(index<0)throw Error('MISSING_RECONSTRUCTION_TARGET');services[index]=reconstructService(services[index],maps.services.get(config.donorServiceId),maps,config,relations.find(r=>'kr-osm-service-'+r.id===config.serviceId),trips)}
+ for(const config of configs){if(snapshotHash!==config.timetableSnapshotSha256)throw Error('STALE_OFFICIAL_RECONSTRUCTION_SNAPSHOT');const index=services.findIndex(s=>s.id===config.serviceId);if(index<0)throw Error('MISSING_RECONSTRUCTION_TARGET');services[index]=reconstructService(services[index],maps.services.get(config.donorServiceId),maps,config,relations.find(r=>'kr-osm-service-'+r.id===config.serviceId),trips,endpointEvidence)}
 }
 const accessPolicy=JSON.parse(fs.readFileSync(path.join(base,'relation-access-policy.json'),'utf8'));
 require('./lib/kr-access-policy').applyAccessPolicy(services,accessPolicy);

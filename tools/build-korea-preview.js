@@ -1,0 +1,35 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {load,validate,assemble,compile}=require('./lib/kr-network');
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const endpoint=s=>String(s||'').normalize('NFC').replace(/\([^)]*\)/g,'').replace(/역$/,'').replace(/\s/g,'');
+function compilePreview(data,ways,{base}={}){
+ const {maps,errors}=validate(data,{base});if(errors.length)throw Error(JSON.stringify(errors));
+ const accessPolicy=base?JSON.parse(fs.readFileSync(path.join(base,'relation-access-policy.json'))):{relations:[]},deniedLines=new Set(accessPolicy.relations.filter(r=>r.passengerCandidate===false).flatMap(r=>r.lineIds||[]));
+ const extras=base?JSON.parse(fs.readFileSync(path.resolve(base,'../preview-policy.json'))).blockedServices:[];for(const r of extras){if(!data.services.some(s=>s.id===r.serviceId)||!r.reason)throw Error('STALE_PREVIEW_RESTRICTION');const file=path.resolve(base,r.evidenceFile);if(!file.startsWith(path.resolve(base)+path.sep)||hash(fs.readFileSync(file))!==r.evidenceSha256)throw Error('STALE_PREVIEW_RESTRICTION_EVIDENCE')}
+ const approved=new Set(compile(data,{base}).routes.flatMap(r=>r.verifiedJourneys.map(j=>j.id))),routes=[],blocked=[],excluded=[];let sourceAssemblable=0;
+ for(const s of data.services){
+  if(s.access?.passengerCandidate===false){excluded.push({serviceId:s.id,relationId:s.id.split('-').at(-1),reason:s.access.classification});continue}
+  let journey;try{journey=assemble(s,maps);sourceAssemblable++}catch(e){blocked.push({serviceId:s.id,relationId:s.id.split('-').at(-1),reasons:[e.message]});continue}
+  if(approved.has(s.id))continue;
+  const reasons=[],track=[];if(deniedLines.has(s.passengerLineId))reasons.push('RESTRICTED_PASSENGER_LINE_FAMILY');const restriction=extras.find(r=>r.serviceId===s.id);if(restriction)reasons.push(restriction.reason);let offset=0;const start=s.stops[0].geometryIndex,end=s.stops.at(-1).geometryIndex;
+  for(const p of s.paths){const g=maps.geometry.get(p.geometryId),w=ways.get(String(g.sourceRef.id)),length=g.coordinates.length,last=offset+length-1;
+   if(last>start&&offset<end){
+    if(!w||!['rail','subway','light_rail','tram','monorail','funicular'].includes(w.tags.railway)||w.tags.highway)reasons.push('NOT_EXCLUSIVELY_RAILWAY');
+    if(w&&(['yard','siding','spur'].includes(w.tags.service)||['no','private'].includes(w.tags.access)))reasons.push('RESTRICTED_OR_NON_PUBLIC_TRACK');
+    if(w&&((w.tags.oneway==='yes'&&p.reverse)||(w.tags.oneway==='-1'&&!p.reverse)))reasons.push('ONEWAY_DIRECTION_CONFLICT');
+    if(w)track.push({wayId:w.id,version:w.version,railway:w.tags.railway,service:w.tags.service||null,access:w.tags.access||null,highway:w.tags.highway||null,oneway:w.tags.oneway||null,reverse:p.reverse,sourceUrl:'https://www.openstreetmap.org/way/'+w.id});
+   }offset=last;
+  }
+  if(journey.stations.some(st=>!/[가-힣]/.test(st.ko)||st.ko==='MISSING_KOREAN_NAME'))reasons.push('MISSING_KOREAN_STATION_NAME');
+  const origin=s.operatingEndpoints?.origin||s.osmFrom,destination=s.operatingEndpoints?.destination||s.osmTo;
+  if(endpoint(origin)!==endpoint(journey.stations[0].ko)||endpoint(destination)!==endpoint(journey.stations.at(-1).ko))reasons.push('CANDIDATE_ENDPOINT_MISMATCH');
+  if(reasons.length){blocked.push({serviceId:s.id,relationId:s.id.split('-').at(-1),sourceAssemblable:true,reasons:[...new Set(reasons)],candidateEndpoints:[origin,destination],assembledEndpoints:[journey.stations[0].ko,journey.stations.at(-1).ko]});continue}
+  const line=maps['passenger-lines'].get(s.passengerLineId),op=maps.operators.get(s.operatorIds[0]);
+  const service={id:s.id,nameKo:'연구용 경로',nameJa:'연구용 경로',stops:journey.stations.map(st=>st.id)};
+  routes.push({id:'kr-preview-'+s.id.split('-').at(-1),schemaVersion:2,countryId:'kr',category:'commuter_rail',mode:line.mode,operatorId:op?.id||'unverified',operator:{...op?.names,ja:op?.names.ko||'운영사 미검증',ko:op?.names.ko||'운영사 미검증'},line:{...s.names,ja:s.names.ko},lineColor:line.color||'#126499',passengerLineName:s.names.ko,geometryReady:true,geometryStatus:'ready',playable:true,releaseStatus:'research',playStatus:'RESEARCH_PLAYABLE',previewContract:'kr-research-v1',sourceServiceId:s.id,passengerLineId:s.passengerLineId,sourceRelationId:s.id.split('-').at(-1),directionId:s.directionId,...journey,services:[service],researchEvidence:{origin:journey.stations[0].ko,destination:journey.stations.at(-1).ko,candidateOrigin:origin,candidateDestination:destination,track,sourceUrl:'https://www.openstreetmap.org/relation/'+s.id.split('-').at(-1),attribution:'© OpenStreetMap contributors / ODbL-1.0',unverified:['공식 전체 운행계통·시간표·운행일 최종 승인','승강장·운영기관·예외 운행일','정식 배포 승인'],geometrySha256:hash(JSON.stringify(journey.geometry))}});
+ }
+ return {routes,blocked,excluded,counts:{registered:data.services.length,sourceAssemblable,researchPlayable:routes.length,researchBlocked:blocked.length,excluded:excluded.length,officialReleased:approved.size}};
+}
+if(require.main===module){const base=path.resolve(__dirname,'../data/kr/v2'),root=path.resolve(base,'..'),out=path.join(root,'preview');const result=compilePreview(load(base),new Map(JSON.parse(fs.readFileSync(path.join(base,'source/osm-ways.json'))).map(w=>[w.id,w])),{base});fs.writeFileSync(path.resolve(base,'../../../js/korean-preview-access-data.js'),'/* Generated from data/kr/preview-policy.json. */\nexport const KR_PREVIEW_RESTRICTIONS='+JSON.stringify(JSON.parse(fs.readFileSync(path.resolve(base,'../preview-policy.json'))).blockedServices.map(r=>({serviceId:r.serviceId,reason:r.reason})))+';\n');fs.mkdirSync(path.join(out,'routes'),{recursive:true});const write=(f,v)=>fs.writeFileSync(path.join(out,f),JSON.stringify(v)+'\n');const wanted=new Set(result.routes.map(r=>r.id+'.json'));for(const name of fs.readdirSync(path.join(out,'routes')))if(/^kr-preview-\d+\.json$/.test(name)&&!wanted.has(name))fs.unlinkSync(path.join(out,'routes',name));for(const route of result.routes)write('routes/'+route.id+'.json',{route});const index={schemaVersion:1,previewContract:'kr-research-v1',playStatus:'RESEARCH_PLAYABLE',country:{id:'kr',name:'대한민국'},operators:load(base).operators,routes:result.routes.map(r=>({...r,stations:[],geometry:[],directedSegments:[],researchEvidence:{origin:r.researchEvidence.origin,destination:r.researchEvidence.destination,sourceUrl:r.researchEvidence.sourceUrl,unverified:r.researchEvidence.unverified},services:[],lazy:true,stationCount:r.stations.length,lazySource:'data/kr/preview/routes/'+r.id+'.json?v='+hash(JSON.stringify({route:r})+'\n').slice(0,12)}))};write('index.json',index);write('audit.json',{...result,routes:result.routes.map(r=>r.id),status:'RESEARCH_ONLY',nationalRelease:'INCOMPLETE'});console.log(JSON.stringify(result.counts));}
+module.exports={compilePreview};

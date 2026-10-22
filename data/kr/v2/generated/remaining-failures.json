@@ -4,11 +4,11 @@
   "scope": "Unassemblable source candidates; not a count of actual passenger lines or release-approved services",
   "counts": {
     "registeredServices": 317,
-    "sourceAssemblable": 260,
-    "remaining": 57,
-    "passengerResearch": 46,
-    "excludedOrQuarantined": 11,
-    "officialTimetablePatterns": 52,
+    "sourceAssemblable": 261,
+    "remaining": 56,
+    "passengerResearch": 44,
+    "excludedOrQuarantined": 12,
+    "officialTimetablePatterns": 53,
     "releaseApproved": 0
   },
   "platformDisagreements": [
@@ -21778,55 +21778,6 @@
       "nextAction": "공식 전체 정차 순서와 같은 방향의 실제 선로·승강장을 대조. 원본 way·정차 지점을 임의 삭제하거나 직선 연결하지 않음."
     },
     {
-      "serviceId": "kr-osm-service-16665964",
-      "relationId": "16665964",
-      "sourceName": "수도권 전철 4호선: 진접 → 당고개",
-      "origin": "진접",
-      "destination": "당고개",
-      "passengerLineId": "kr-osm-line-7625893",
-      "category": "PASSENGER_RESEARCH",
-      "access": {
-        "number": 45,
-        "classification": "PASSENGER_SERVICE_RESEARCH",
-        "passengerCandidate": true,
-        "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
-      },
-      "causes": [
-        "SOURCE_STOP_SEQUENCE_INCOMPLETE"
-      ],
-      "relationUrl": "https://www.openstreetmap.org/relation/16665964",
-      "sourceWayIds": [
-        "850710258"
-      ],
-      "officialStopOrder": null,
-      "officialTimetableStatus": "NOT_VERIFIED",
-      "issues": [
-        {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        },
-        {
-          "code": "OFFICIAL_TIMETABLE_REQUIRED",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "stopTags": null
-        }
-      ],
-      "facilityMembers": [],
-      "nextAction": "공식 전체 정차 순서와 같은 방향의 실제 선로·승강장을 대조. 원본 way·정차 지점을 임의 삭제하거나 직선 연결하지 않음."
-    },
-    {
       "serviceId": "kr-osm-service-16665967",
       "relationId": "16665967",
       "sourceName": "수도권 전철 4호선: 창동 → 사당",
@@ -23466,14 +23417,15 @@
       "origin": "평택역",
       "destination": "안중역",
       "passengerLineId": "kr-osm-line-20500839",
-      "category": "PASSENGER_RESEARCH",
+      "category": "EXCLUDED_OR_QUARANTINED",
       "access": {
         "number": 62,
-        "classification": "PASSENGER_SERVICE_RESEARCH",
-        "passengerCandidate": true,
-        "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보"
+        "classification": "RESEARCH_PARTIAL_OPERATING_SERVICE",
+        "passengerCandidate": false,
+        "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리."
       },
       "causes": [
+        "RESEARCH_PARTIAL_OPERATING_SERVICE",
         "SOURCE_MEMBER_CONTINUITY_UNRESOLVED",
         "NON_RAIL_FACILITY_MEMBER_REQUIRES_REAL_TRACK_SOURCE"
       ],
@@ -23576,7 +23528,7 @@
           "url": "https://www.openstreetmap.org/way/1491252314"
         }
       ],
-      "nextAction": "공식 전체 정차 순서와 같은 방향의 실제 선로·승강장을 대조. 원본 way·정차 지점을 임의 삭제하거나 직선 연결하지 않음."
+      "nextAction": "공개 플레이 제외 사유 유지. 미개통·비여객·접근 제한·유형 미확인 상태를 복구 성공으로 집계하지 않음."
     }
   ]
 }

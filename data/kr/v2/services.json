@@ -164201,14 +164201,6 @@
         "reverse": false
       },
       {
-        "geometryId": "kr-geometry-503137626",
-        "reverse": false
-      },
-      {
-        "geometryId": "kr-geometry-503137627",
-        "reverse": false
-      },
-      {
         "geometryId": "kr-geometry-1083915376",
         "reverse": false
       },
@@ -164302,7 +164294,7 @@
       },
       {
         "stopId": "kr-osm-stop-13739828932",
-        "geometryIndex": 189,
+        "geometryIndex": 185,
         "boarding": true,
         "alighting": true
       }
@@ -164317,33 +164309,21 @@
         "id": "20500839"
       }
     ],
-    "topologyCorrection": {
-      "reason": "NON_RAIL_FACILITY_MEMBER",
-      "relationSha256": "13eee96e04de1bc3b58f9c24428609120912b0188082a579cc0eef1e7fa39cc9",
-      "replacedMember": {
-        "memberIndex": 19,
-        "wayId": "1491252314",
-        "sourceRole": "",
-        "sourceVersion": 1,
-        "facilitySourceId": "osm-62-geofabrik-20261017",
-        "facilitySha256": "85b785d41282f8087913286bdb24d2dffd82bb0de7446e3cd200d1fe418fbf05"
-      },
-      "replacementWays": [
-        {
-          "wayId": "503137626",
-          "sourceVersion": 15,
-          "sha256": "dd8dec0465f7f9fe22569b331aa8f89a85d269338265f82d80458f2df793f534"
-        },
-        {
-          "wayId": "503137627",
-          "sourceVersion": 16,
-          "sha256": "a0df6f975bd0b5c39803e1945f840f5bd8e7b1d2d398ef1c538bd6f61c3417ad"
-        }
-      ],
-      "method": "pinned-non-rail-closed-bridge-outline-replaced-by-existing-exact-node-contiguous-rail-ways",
-      "operationalDirectionVerified": false
-    },
     "issues": [
+      {
+        "code": "MISSING_MEMBER_WAY",
+        "wayId": "1491252314"
+      },
+      {
+        "code": "DISCONNECTED_MEMBERS",
+        "wayId": "1083915376",
+        "from": "4934729303",
+        "to": "8254184434"
+      },
+      {
+        "code": "MISSING_MEMBER_WAY",
+        "wayId": "1491252314"
+      },
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }

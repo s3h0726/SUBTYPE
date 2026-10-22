@@ -2,8 +2,8 @@
   "status": "INCOMPLETE",
   "baselineCommit": "f69b39d3adde9d56c49a1f975052942ce3a3ce5b",
   "baselineBlocked": 69,
-  "recovered": 12,
-  "remaining": 57,
+  "recovered": 13,
+  "remaining": 56,
   "scope": "Source candidate restoration, never release approval",
   "rows": [
     {
@@ -25408,9 +25408,46 @@
           "name": "진접"
         }
       ],
-      "officialStopOrder": null,
-      "officialSourceUrl": null,
-      "reconstructionEvidence": null,
+      "officialStopOrder": [
+        "진접",
+        "오남",
+        "별내별가람",
+        "불암산"
+      ],
+      "officialSourceUrl": "https://www.data.go.kr/data/15098251/fileData.do",
+      "reconstructionEvidence": {
+        "donorServiceId": "kr-osm-service-13938877",
+        "sourceId": "seoulmetro-official-20260901",
+        "officialTripIds": [
+          "seoulmetro-official-20260901-train-6252",
+          "seoulmetro-official-20260901-train-6371",
+          "seoulmetro-official-20260901-train-6490"
+        ],
+        "reviewedOn": "2026-10-18",
+        "endpointNameCorrections": [
+          {
+            "endpoint": "destination",
+            "expectedSourceName": "당고개",
+            "officialName": "불암산",
+            "officialStationCode": "0409",
+            "stationId": "kr-osm-area-8713359",
+            "expectedStationCoordinates": {
+              "lat": 37.6695753,
+              "lon": 127.0784401
+            },
+            "referenceId": "kric-standard-32-row-434",
+            "referenceSha256": "c5f092f0840c7e04a7661f3f63f6d185123e185d18460711816dea3891455a33",
+            "referenceLineCode": "I1104",
+            "sourceId": "nowon-bulamsan-name-20261018",
+            "officialFile": "source/station-renames/nowon-bulamsan-20261018.html",
+            "officialSha256": "bbc7bedda599caffbcd9932de6faa6178de833c5567a7623e6954dba1c156a47",
+            "officialURL": "https://nowon.kr/surakhyu/web/main/main",
+            "expectedOfficialText": "4호선 불암산역(구 당고개역)",
+            "scope": "Explicit renamed station identity only. No track, platform or operational direction approval."
+          }
+        ],
+        "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+      },
       "before": {
         "assemblable": false,
         "failureCodes": [
@@ -25420,36 +25457,19 @@
         ]
       },
       "after": {
-        "assemblable": false,
-        "error": "UNRESOLVED_IMPORT_TOPOLOGY",
-        "stopCount": 0,
+        "assemblable": true,
+        "error": null,
+        "stopCount": 4,
         "failureCodes": [
-          "AMBIGUOUS_ORIENTATION",
-          "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ]
       },
       "classifications": [
-        "INCOMPLETE_SOURCE_STOP_SEQUENCE"
+        "INCOMPLETE_SOURCE_STOP_SEQUENCE",
+        "OFFICIAL_TRAIN_AND_EXISTING_DIRECTIONAL_TRACK_SUPPLEMENT"
       ],
       "oneWayConflicts": [],
       "issues": [
-        {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "intervalBasis": "OSM member order only; official interval is unknown unless separate timetable evidence is listed"
-        },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,

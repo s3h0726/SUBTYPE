@@ -50,3 +50,5 @@ test('completed station typing catches the marker up in 50ms and never advances 
  assert.deepEqual(Array.from(lastPoint),[1,1]);
  assert.equal(rail.typingAnimation,null);
 });
+
+test('SPACE waits for real arrival and repeated presses cannot finish a journey twice',async()=>{const c={$:()=>({hidden:false})};vm.createContext(c);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../js/game.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'')+';globalThis.advance=Game.prototype.advance',c);let ready,moves=0,finishes=0;const g={finished:false,paused:false,phase:'CORRECT_WAITING',options:{stationAdvance:'space',mode:'complete'},arrivalPromise:new Promise(r=>ready=r),sessionId:1,sequence:[{id:'a'},{id:'b'}],index:0,boarding:false,targetStation:()=>({id:'b'}),advanceToNextStation(){moves++;this.index++},finish(){finishes++;this.finished=true}};g.advance=()=>c.advance.call(g);g.advance();g.advance();assert.equal(moves,0);assert.equal(finishes,0);ready(true);await Promise.resolve();await Promise.resolve();assert.equal(moves,1);assert.equal(finishes,1);g.advance();assert.equal(finishes,1)});

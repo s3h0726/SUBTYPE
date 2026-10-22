@@ -582618,5 +582618,186 @@
       }
     ],
     "rejected": []
+  },
+  {
+    "serviceId": "kr-osm-service-16665964",
+    "sourceId": "seoulmetro-official-20260901",
+    "status": "verified",
+    "verificationScope": "Official complete calling pattern, source clocks and DAY/SAT/END groups only; not track/platform, holiday exceptions or release approval",
+    "verifiedOn": "2026-10-18",
+    "dataReferenceDate": "2026-09-01",
+    "officialLineCode": "4",
+    "officialDirectionId": "DOWN",
+    "origin": "진접",
+    "destination": "불암산",
+    "express": false,
+    "calls": [
+      {
+        "stopId": "kr-osm-stop-9589229147",
+        "stationId": "kr-osm-area-13938852",
+        "expectedSourceName": "진접",
+        "officialStationCode": "0405",
+        "officialStationName": "진접"
+      },
+      {
+        "stopId": "kr-osm-stop-9589229144",
+        "stationId": "kr-osm-area-13938851",
+        "expectedSourceName": "오남",
+        "officialStationCode": "0406",
+        "officialStationName": "오남"
+      },
+      {
+        "stopId": "kr-osm-stop-9589229142",
+        "stationId": "kr-osm-area-13938850",
+        "expectedSourceName": "별내별가람",
+        "officialStationCode": "0408",
+        "officialStationName": "별내별가람"
+      },
+      {
+        "stopId": "kr-osm-stop-355173346",
+        "stationId": "kr-osm-area-8713359",
+        "expectedSourceName": "불암산",
+        "officialStationCode": "0409",
+        "officialStationName": "불암산"
+      }
+    ],
+    "groups": [
+      {
+        "calendarLabel": "DAY",
+        "trainCount": 1,
+        "trains": [
+          {
+            "tripId": "seoulmetro-official-20260901-train-6252",
+            "trainNumber": "4223",
+            "directionId": "DOWN",
+            "calls": [
+              {
+                "operationalStationName": "진접",
+                "officialStationCode": "0405",
+                "arrival": null,
+                "departure": "24:45:00",
+                "sourceRow": 193338,
+                "sourceRecordId": "193337"
+              },
+              {
+                "operationalStationName": "오남",
+                "officialStationCode": "0406",
+                "arrival": "24:47:30",
+                "departure": "24:48:00",
+                "sourceRow": 193726,
+                "sourceRecordId": "193725"
+              },
+              {
+                "operationalStationName": "별내별가람",
+                "officialStationCode": "0408",
+                "arrival": "24:54:30",
+                "departure": "24:55:00",
+                "sourceRow": 194114,
+                "sourceRecordId": "194113"
+              },
+              {
+                "operationalStationName": "불암산",
+                "officialStationCode": "0409",
+                "arrival": "25:00:00",
+                "departure": null,
+                "sourceRow": 194819,
+                "sourceRecordId": "194818"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "calendarLabel": "SAT",
+        "trainCount": 1,
+        "trains": [
+          {
+            "tripId": "seoulmetro-official-20260901-train-6490",
+            "trainNumber": "4179",
+            "directionId": "DOWN",
+            "calls": [
+              {
+                "operationalStationName": "진접",
+                "officialStationCode": "0405",
+                "arrival": null,
+                "departure": "23:34:30",
+                "sourceRow": 193576,
+                "sourceRecordId": "193575"
+              },
+              {
+                "operationalStationName": "오남",
+                "officialStationCode": "0406",
+                "arrival": "23:37:00",
+                "departure": "23:37:30",
+                "sourceRow": 193964,
+                "sourceRecordId": "193963"
+              },
+              {
+                "operationalStationName": "별내별가람",
+                "officialStationCode": "0408",
+                "arrival": "23:44:00",
+                "departure": "23:44:30",
+                "sourceRow": 194352,
+                "sourceRecordId": "194351"
+              },
+              {
+                "operationalStationName": "불암산",
+                "officialStationCode": "0409",
+                "arrival": "23:49:30",
+                "departure": null,
+                "sourceRow": 195595,
+                "sourceRecordId": "195594"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "calendarLabel": "END",
+        "trainCount": 1,
+        "trains": [
+          {
+            "tripId": "seoulmetro-official-20260901-train-6371",
+            "trainNumber": "4179",
+            "directionId": "DOWN",
+            "calls": [
+              {
+                "operationalStationName": "진접",
+                "officialStationCode": "0405",
+                "arrival": null,
+                "departure": "23:34:30",
+                "sourceRow": 193457,
+                "sourceRecordId": "193456"
+              },
+              {
+                "operationalStationName": "오남",
+                "officialStationCode": "0406",
+                "arrival": "23:37:00",
+                "departure": "23:37:30",
+                "sourceRow": 193845,
+                "sourceRecordId": "193844"
+              },
+              {
+                "operationalStationName": "별내별가람",
+                "officialStationCode": "0408",
+                "arrival": "23:44:00",
+                "departure": "23:44:30",
+                "sourceRow": 194233,
+                "sourceRecordId": "194232"
+              },
+              {
+                "operationalStationName": "불암산",
+                "officialStationCode": "0409",
+                "arrival": "23:49:30",
+                "departure": null,
+                "sourceRow": 195207,
+                "sourceRecordId": "195206"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "rejected": []
   }
 ]

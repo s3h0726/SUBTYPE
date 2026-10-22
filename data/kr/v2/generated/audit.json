@@ -4292,17 +4292,14 @@
       "serviceId": "kr-osm-service-16665964",
       "passengerLineId": "kr-osm-line-7625893",
       "reasons": [
-        "OFFICIAL_TIMETABLE_REQUIRED",
         "OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED",
-        "REVIEW_NOT_VALID_ON_DATE",
         "DISTANCE_NOT_VERIFIED",
         "VERIFIED_TRIP_REQUIRED",
         "STOP_METADATA_NOT_VERIFIED",
         "LINE_METADATA_NOT_VERIFIED",
         "STATION_METADATA_NOT_VERIFIED",
         "OPERATOR_NOT_VERIFIED",
-        "OPERATOR_LOGO_NOT_VERIFIED",
-        "UNRESOLVED_IMPORT_TOPOLOGY"
+        "OPERATOR_LOGO_NOT_VERIFIED"
       ]
     },
     {
@@ -4965,23 +4962,6 @@
         "OPERATOR_NOT_VERIFIED",
         "OPERATOR_LOGO_NOT_VERIFIED"
       ]
-    },
-    {
-      "serviceId": "kr-osm-service-20500839",
-      "passengerLineId": "kr-osm-line-20500839",
-      "reasons": [
-        "OFFICIAL_TIMETABLE_REQUIRED",
-        "OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED",
-        "REVIEW_NOT_VALID_ON_DATE",
-        "DISTANCE_NOT_VERIFIED",
-        "VERIFIED_TRIP_REQUIRED",
-        "STOP_METADATA_NOT_VERIFIED",
-        "LINE_METADATA_NOT_VERIFIED",
-        "STATION_METADATA_NOT_VERIFIED",
-        "OPERATOR_NOT_VERIFIED",
-        "OPERATOR_LOGO_NOT_VERIFIED",
-        "UNRESOLVED_IMPORT_TOPOLOGY"
-      ]
     }
   ],
   "excluded": [
@@ -5039,15 +5019,20 @@
       "serviceId": "kr-osm-service-20042681",
       "classification": "EXCLUDED_UNOPEN",
       "reason": "미개통 대전 도시철도 2호선"
+    },
+    {
+      "serviceId": "kr-osm-service-20500839",
+      "classification": "RESEARCH_PARTIAL_OPERATING_SERVICE",
+      "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리."
     }
   ],
   "counts": {
     "sourceStations": 1528,
     "sourcePassengerLines": 85,
     "sourceServices": 317,
-    "activeServiceCandidates": 306,
-    "excludedServices": 11,
-    "officialTimetableVerifiedServices": 52,
+    "activeServiceCandidates": 305,
+    "excludedServices": 12,
+    "officialTimetableVerifiedServices": 53,
     "releasedLines": 0,
     "releasedServices": 0,
     "officialPassengerLines": null,

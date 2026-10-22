@@ -31,7 +31,7 @@ async function render(){
  try{const list=await readGlobal();mount.innerHTML=table(list,true);status.textContent='전체 랭킹 · 최고 타수순 (상위 100건)'}catch(error){status.textContent=error.message;mount.innerHTML=''}
 }
 document.addEventListener('trt:journey-finished',event=>{
- const result=event.detail;if(!result||result.route?.id?.startsWith('custom'))return;
+ const result=event.detail;if(!result||result.route?.playStatus==='RESEARCH_PLAYABLE'||result.options?.researchPreview===true||result.route?.id?.startsWith('custom'))return;
  const run=entry(result),list=runs();list.unshift(run);
  try{localStorage.setItem(localKey,JSON.stringify(list.slice(0,300)))}catch{}
  upload(run).catch(error=>console.warn(error.message));

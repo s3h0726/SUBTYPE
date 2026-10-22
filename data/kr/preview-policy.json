@@ -1,0 +1,16 @@
+{
+  "scope": "Additional conservative preview restrictions; never grants official or research approval",
+  "blockedServices": [
+    {
+      "serviceId": "kr-osm-service-20500831",
+      "reason": "KNOWN_PARTIAL_OPERATING_SERVICE_REQUIRES_REVIEW",
+      "explanation": "안중→평택은 격리된 평택→안중 후보의 반대 구간이다. 공식 홍성 순환 열차의 일부를 독립 여객 운행으로 표시하지 않는다.",
+      "sourceUrls": [
+        "https://www.korail.com/com/userBoard.do?mode=list&schBcid=ticketTable",
+        "https://www.openstreetmap.org/relation/20500831"
+      ],
+      "evidenceFile": "korail-seohae-pattern-research.json",
+      "evidenceSha256": "48f8d7fc2028a9558b7454880e2b6d707b5a9554f424b52c6712d8ff429c0e30"
+    }
+  ]
+}
