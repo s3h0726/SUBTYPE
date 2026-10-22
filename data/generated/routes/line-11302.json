@@ -1232,6 +1232,43 @@
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
         "geometryIndex": 282
+      },
+      {
+        "id": "station-mlit-003766",
+        "internalId": "station-mlit-003766",
+        "stationMasterId": "station-mlit-003766",
+        "sourceId": "station-mlit-003766",
+        "ja": "東京",
+        "kana": "とうきょう",
+        "ko": "도쿄",
+        "romaji": "Tokyo",
+        "koAliases": [],
+        "latitude": 35.68117,
+        "longitude": 139.767553,
+        "order": 31,
+        "officialCode": "JY01",
+        "stationCode": "JY01",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "legacy-unverified",
+          "url": "",
+          "verified": false,
+          "confidence": "LOW",
+          "status": "REVIEW_REQUIRED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki \"東京駅\"",
+        "sourceAccess": "search-index",
+        "namuwikiStatus": "search-crosschecked",
+        "koVerified": true,
+        "koConfidence": "HIGH",
+        "koReviewStatus": "VERIFIED",
+        "geometryIndex": 289
       }
     ],
     "geometry": [
@@ -2366,6 +2403,34 @@
       [
         35.67516,
         139.7625
+      ],
+      [
+        35.67588,
+        139.76273
+      ],
+      [
+        35.6756,
+        139.76398
+      ],
+      [
+        35.67626,
+        139.76471
+      ],
+      [
+        35.67662,
+        139.76499
+      ],
+      [
+        35.6779,
+        139.76586
+      ],
+      [
+        35.67955,
+        139.76663
+      ],
+      [
+        35.68112,
+        139.7678
       ]
     ],
     "directedSegments": [
@@ -3844,6 +3909,46 @@
         ],
         "source": "MLIT-N02-2025",
         "verified": true
+      },
+      {
+        "fromStationId": "station-mlit-003795",
+        "toStationId": "station-mlit-003766",
+        "geometry": [
+          [
+            35.67516,
+            139.7625
+          ],
+          [
+            35.67588,
+            139.76273
+          ],
+          [
+            35.6756,
+            139.76398
+          ],
+          [
+            35.67626,
+            139.76471
+          ],
+          [
+            35.67662,
+            139.76499
+          ],
+          [
+            35.6779,
+            139.76586
+          ],
+          [
+            35.67955,
+            139.76663
+          ],
+          [
+            35.68112,
+            139.7678
+          ]
+        ],
+        "source": "MLIT-N02-2025 [reuse from line-11332]",
+        "verified": true
       }
     ],
     "geometryReady": true,
@@ -3875,6 +3980,8 @@
       }
     },
     "dataKind": "physicalRoute",
-    "coverage": "full-source-line"
+    "coverage": "full-source-line",
+    "loopClosureStatus": "verified",
+    "loopClosureEvidence": "adjacent-JR-corridor"
   }
 }

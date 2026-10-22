@@ -408,7 +408,7 @@ function actualOperatingChoices(route){
     if(route?.id==='line-23006'&&service?.id==='skyliner')continue;
     if(!service?.id)continue;
     const stopIds=(service.stops||service.stopStationIds||[]).map(String),serviceStations=stopIds.map(id=>stationMap.get(id)).filter(Boolean);
-    const first=serviceStations[0]||route.stations?.[0],last=serviceStations.at(-1)||route.stations?.at(-1);if(!first||!last||String(first.id)===String(last.id))continue;
+    const first=serviceStations[0]||route.stations?.[0],last=serviceStations.at(-1)||route.stations?.at(-1);if(!first||!last||(String(first.id)===String(last.id)&&!(route.countryId==='jp'&&route.loopClosureStatus==='verified')))continue;
     const serviceName={ko:service.nameKo||service.names?.ko||'각역정차',ja:service.nameJa||service.names?.ja||'',en:service.nameEn||service.names?.en||''};
     add({kind:'legacy',id:`service:${service.id}:forward`,originId:String(first.id),destinationId:String(last.id),originNames:first,destinationNames:last,trainType:null,journeyId:null,patternId:null,patternName:serviceName,throughServiceId:service.throughServiceId||null,legacyServiceId:service.id,direction:'forward'});
     if(route.countryId!=='kr'||route.directions?.some(d=>d.id==='reverse'))if(!route.oneWay)add({kind:'legacy',id:`service:${service.id}:reverse`,originId:String(last.id),destinationId:String(first.id),originNames:last,destinationNames:first,trainType:null,journeyId:null,patternId:null,patternName:serviceName,throughServiceId:service.throughServiceId||null,legacyServiceId:service.id,direction:'reverse'})
