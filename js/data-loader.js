@@ -84,7 +84,18 @@ export async function loadRailData(){
   return{operators,lines,stations,assets:canonical?.assets||{},errors,counts,fallbackUsed,source:fallbackUsed?'nationwide-emergency-backup':'canonical-line-workspaces'}
 }
 export async function loadTransportData(countryId='jp'){
-  if(countryId==='jp')return loadRailData();
+  if(countryId==='jp'){
+    const data=await loadRailData();
+    // Small, independently sourced monorail not present in MLIT's 610-line
+    // canonical runtime index. Never mutate or replace existing catalog lines.
+    const extra=globalThis.TRT_DISNEY_RESORT_ROUTE;
+    if(extra&&!data.lines.some(line=>line.id===extra.id)){
+      const line=normalizeLine(extra,{category:'other'});
+      data.lines.push(line);
+      data.counts.other=(data.counts.other||0)+1;
+    }
+    return data;
+  }
   const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
   const lines=(data.routes||[]).filter(route=>!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators,lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
