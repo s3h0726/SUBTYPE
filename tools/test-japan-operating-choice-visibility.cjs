@@ -16,7 +16,7 @@ const listCode=extract('function actualOperatingChoices(route){','function opera
 const pickerCode=extract('function configureJourneyPicker(){','function openSetup(route){');
 test('full catalog is unchanged and display no longer filters unplayable services',()=>{
   const text=read('js/nationwide-service-catalog.js');
-  const catalog=JSON.parse(text.split('window.TRT_NATIONWIDE_SERVICE_CATALOG=')[1].trim().replace(/;\\s*$/,''));
+  const catalog=JSON.parse(text.split('window.TRT_NATIONWIDE_SERVICE_CATALOG=')[1].trim().replace(/;\s*$/,''));
   assert(Object.keys(catalog.lines).length>=600);
   assert(Object.values(catalog.lines).reduce((n,line)=>n+(line.patterns||[]).length,0)>=2571);
   assert(!listCode.includes('choices.filter(choice=>operatingChoicePlayable'));
@@ -70,8 +70,7 @@ test('picker shows unavailable journeys with reason and disables launch only for
     escapeHtml:v=>String(v).replaceAll('&','&amp;').replaceAll('"','&quot;')
   };
   vm.createContext(ctx);
-  vm.runInContext(pickerCode+';globalThis.displayServices=configureJourneyPicker',ctx);
-  ctx.globalThis.displayServices();
+  vm.runInContext(pickerCode+';configureJourneyPicker()',ctx);
   const dest=nodes.get('#journey-destination'),submit=nodes.get('#setup-form button[type="submit"]'),summary=nodes.get('#journey-summary');
   assert.equal(dest.options.length,3,'same-type same-destination patterns must remain separately selectable');
   assert.equal(submit.disabled,false,'playable entry should be preselected');
