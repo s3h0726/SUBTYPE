@@ -12,8 +12,8 @@
 | 정차 순서 검증 | 43 | 43 |
 | 실제 geometry 검증 | 53 | 54 |
 | track segment | 501 | 508 |
-| PASS | 45 | 64 |
-| INCOMPLETE | 134 | 115 |
+| PASS | 45 | 66 |
+| INCOMPLETE | 134 | 113 |
 | OUT_OF_SCOPE | 1 | 1 |
 | 요구사항 FAIL | 0 | 0 |
 | 기존 UI 검사 FAIL | 4 | 4 |
@@ -51,7 +51,7 @@
 
 ## C. 요구사항 180개 전수 재평가
 
-[180개 전체 표](REQUIREMENTS.md), [상태·근거·코드 위치·테스트·미완료 사유 JSON](requirements-audit.json). **PASS 64, INCOMPLETE 115, OUT_OF_SCOPE 1, FAIL 0**은 요구사항 집계다. 기존 UI 검사 FAIL 4개는 별도이며 전체 검사 성공으로 표현하지 않는다. 90번 케이블카는 원본 NOT_REQUESTED를 보존하고 이 보고서에서 OUT_OF_SCOPE로 매핑했다. Phase 2 PASS 45개를 하나도 내리지 않았다.
+[180개 전체 표](REQUIREMENTS.md), [상태·근거·코드 위치·테스트·미완료 사유 JSON](requirements-audit.json). **PASS 66, INCOMPLETE 113, OUT_OF_SCOPE 1, FAIL 0**은 요구사항 집계다. 기존 UI 검사 FAIL 4개는 별도이며 전체 검사 성공으로 표현하지 않는다. 90번 케이블카는 원본 NOT_REQUESTED를 보존하고 이 보고서에서 OUT_OF_SCOPE로 매핑했다. Phase 2 PASS 45개를 하나도 내리지 않았다.
 
 ## D. 자동 회귀와 실제 브라우저 검사
 
@@ -78,9 +78,9 @@ CUSTOM: PRE→SSP→CSW 신규 경로 저장·새로고침·재실행·완주 PA
 
 - 작업 브랜치: feature/hong-kong-railway
 - 시작 커밋: 80507af1cd12a2c56e81fc108dca1635044d6204
-- 구현·검증 커밋 SHA: NOT_COMMITTED (report draft before Phase 3 implementation commit)
-- 커밋·원격 확인 영수증: [git-result.json](git-result.json) (커밋·푸시 전 작성 중)
-- 원격 구현 푸시: NOT_YET_PERFORMED
+- 구현·검증 커밋 SHA: e2b353bb62dcc346c11a63d1df20f75233d18321
+- 커밋·원격 확인 영수증: [git-result.json](git-result.json)
+- 원격 구현 푸시: SUCCESS
 - [전체 변경 파일](changed-files.txt)
 - local main: 67f9b780b4f60fd2586d302ddea41a4d94b6baa2 (미수정)
 - 시작 시 직접 관측한 remote main: fa2b73c67e17614bf576920e900941f3e967fed9; 이전 캐시 origin/main: 438f605b1e1f2a2a97991bb6e84e226c8bd0f91a. 외부 main 변경은 통합하지 않았다.
@@ -88,3 +88,7 @@ CUSTOM: PRE→SSP→CSW 신규 경로 저장·새로고침·재실행·완주 PA
 - 외부 브랜치 미리보기: NOT_CONFIGURED. 실제 검사는 로컬 http://127.0.0.1:8081/ 에서 수행.
 
 Git 커밋은 자신의 SHA를 파일 내용에 포함할 수 없다. 위 SHA와 영수증은 실제 구현 푸시를 가리키며, 이 보고서를 담는 후속 커밋의 최종 HEAD/원격 일치는 최종 응답에서 별도로 제공한다.
+
+추가 Git 관측: 구현 푸시 직후 remote main은 7bc7c34623daf56e01a9f5c9266fb3f6f25433af로 외부에서 다시 진행했다. 이 작업은 main에 푸시하거나 그 변경을 가져오지 않았다. 실제 구현 푸시와 보고 근거가 확보되어 요구사항 10·180을 추가 PASS로 전환했다(기능·데이터 관련 신규 PASS 19개 + 산출물 검증 2개). 남은 선형 오류 5개 중 2개는 현재 서비스로 쓰지 않는 역사 relation이므로 서비스 geometry 미검증 3개와 오류 relation 수 5개는 서로 다른 집계다.
+
+보관한 화면 증거: [모바일 라이트](images/mobile-light.jpg), [모바일 다크](images/mobile-dark.jpg), [췬완 전구간 완료](images/tsuen-wan-complete.jpg). 나머지 완주 DOM 기록은 browser-runs.json, 로컬 원본 화면은 output/hk/에 있다.

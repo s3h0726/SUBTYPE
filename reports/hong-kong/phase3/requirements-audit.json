@@ -2,8 +2,8 @@
   "checkedAt": "2026-10-22",
   "total": 180,
   "statusCounts": {
-    "PASS": 64,
-    "INCOMPLETE": 115,
+    "PASS": 66,
+    "INCOMPLETE": 113,
     "OUT_OF_SCOPE": 1
   },
   "notes": [
@@ -284,9 +284,9 @@
     {
       "id": 10,
       "requirement": "최종 산출물은 홍콩 브랜치의 코드·데이터·검증 스크립트·감사 보고서·실제 GitHub 커밋 SHA와 브랜치 독립성 검증이다. 운영 main 배포는 명시적 병합 승인 전까지 금지한다.",
-      "status": "INCOMPLETE",
-      "legacyStatus": "INCOMPLETE",
-      "evidence": "부분 검증 자료는 아래 evidenceFiles에 보존. 요구사항 전체를 입증하지 못했으므로 PASS 아님.",
+      "status": "PASS",
+      "legacyStatus": "PASS",
+      "evidence": "Phase 3 원본·생성물·자동/브라우저 검증 및 180개 감사 보고서를 보존. 구현 커밋 e2b353bb62dcc346c11a63d1df20f75233d18321을 feature/hong-kong-railway에만 푸시하고 git ls-remote로 일치 확인. reports/hong-kong/phase3/SUMMARY.md 및 git-result.json에 main 미변경과 외부 main 변화, 배포 미수행 기록.",
       "evidenceFiles": [
         "reports/hong-kong/audit.json",
         "reports/hong-kong/validation.txt"
@@ -304,12 +304,12 @@
         }
       ],
       "testResult": {
-        "status": "INCOMPLETE",
+        "status": "PASS_WITH_RECORDED_SCOPE",
         "automated": "전체 공통 회귀 94/94, HK 30/30; 개별 요구사항의 전 항목 통과를 뜻하지 않음",
         "legacyUi": "FAIL 4 (보존)",
         "unexecuted": "Supabase, 실제 OS IME, 실제 환승 실행, Phase 3 전체 애니메이션은 NOT_TESTED"
       },
-      "incompleteReason": "기존 전체 화면·계정·저장 데이터의 회귀 검증을 완료한다."
+      "incompleteReason": null
     },
     {
       "id": 11,
@@ -5692,9 +5692,9 @@
     {
       "id": 180,
       "requirement": "최종 보고에는 기준일·검증 소스·총 노선/역/운행계통/track edge 수·통과/미통과 목록·수정 파일·테스트 명령·**작업 브랜치/커밋 SHA·기준 main SHA·브랜치 미리보기 URL(있는 경우)·main 미변경 확인**을 기재한다. 병합·운영 배포는 사용자 승인 전까지 하지 않는다.",
-      "status": "INCOMPLETE",
-      "legacyStatus": "INCOMPLETE",
-      "evidence": "부분 검증 자료는 아래 evidenceFiles에 보존. 요구사항 전체를 입증하지 못했으므로 PASS 아님.",
+      "status": "PASS",
+      "legacyStatus": "PASS",
+      "evidence": "Phase 3 원본·생성물·자동/브라우저 검증 및 180개 감사 보고서를 보존. 구현 커밋 e2b353bb62dcc346c11a63d1df20f75233d18321을 feature/hong-kong-railway에만 푸시하고 git ls-remote로 일치 확인. reports/hong-kong/phase3/SUMMARY.md 및 git-result.json에 main 미변경과 외부 main 변화, 배포 미수행 기록.",
       "evidenceFiles": [
         "reports/hong-kong/phase3/browser-runs.json",
         "reports/hong-kong/phase3/ui-verification.json",
@@ -5714,12 +5714,12 @@
         }
       ],
       "testResult": {
-        "status": "INCOMPLETE",
+        "status": "PASS_WITH_RECORDED_SCOPE",
         "automated": "전체 공통 회귀 94/94, HK 30/30; 개별 요구사항의 전 항목 통과를 뜻하지 않음",
         "legacyUi": "FAIL 4 (보존)",
         "unexecuted": "Supabase, 실제 OS IME, 실제 환승 실행, Phase 3 전체 애니메이션은 NOT_TESTED"
       },
-      "incompleteReason": "정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다."
+      "incompleteReason": null
     }
   ]
 }

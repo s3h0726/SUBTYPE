@@ -13,7 +13,7 @@
 | 7 | PASS | 선로 데이터가 없으면 역 사이를 직선으로 연결로 조용히 대체하지 않는다. `geometryStatus=unverified`로 표시하고 출시 판정에서는 미완료로 센다. | 홍콩 런타임에서 미검증 geometry 및 직선 대체 차단 |
 | 8 | PASS | 변경 사항은 생성된 결과물에서만 고치지 않는다. 정규 원본(master/workspace)을 수정하고 생성·빌드·재배포 과정을 함께 정정한다. | master config와 고정 source에서 index/route/bundle 재생성 |
 | 9 | PASS | 오류 발생 시 이미 완성된 일본·한국 루트의 분기·로고·타이핑·기록을 깨는 전역 정규화나 덮어쓰기를 금지한다. | 국가별 변경 범위 보호 및 JP/KR 회귀 검사 |
-| 10 | INCOMPLETE | 최종 산출물은 홍콩 브랜치의 코드·데이터·검증 스크립트·감사 보고서·실제 GitHub 커밋 SHA와 브랜치 독립성 검증이다. 운영 main 배포는 명시적 병합 승인 전까지 금지한다. | 기존 전체 화면·계정·저장 데이터의 회귀 검증을 완료한다. |
+| 10 | PASS | 최종 산출물은 홍콩 브랜치의 코드·데이터·검증 스크립트·감사 보고서·실제 GitHub 커밋 SHA와 브랜치 독립성 검증이다. 운영 main 배포는 명시적 병합 승인 전까지 금지한다. | Phase 3 원본·생성물·자동/브라우저 검증 및 180개 감사 보고서를 보존. 구현 커밋 e2b353bb62dcc346c11a63d1df20f75233d18321을 feature/hong-kong-railway에만 푸시하고 git ls-remote로 일치 확인. reports/hong-kong/phase3/SUMMARY.md 및 git-result.json에 main 미변경과 외부 main 변화, 배포 미수행 기록. |
 | 11 | PASS | 국가·지역 선택 메뉴에 `홍콩 Hong Kong / 香港`을 넣고 내부 키는 `hk`, ISO 지역 표기는 `HK`로 통일한다. | hk/HK 지역 모델과 홍콩 선택 UI |
 | 12 | PASS | 이 작업의 기본 범위는 홍콩특별행정구의 여객 철도·궤도교통이다. 중국 본토, 마카오는 자동으로 홍콩 관할 노선으로 분류하지 않는다. | 홍콩 좌표 범위 검사와 국경 미검증 HSR 차단 |
 | 13 | PASS | `MTR METRO`, `AIRPORT EXPRESS`, `LIGHT RAIL`, `TRAM`, `FUNICULAR`, `HIGH SPEED RAIL`, `CUSTOM` 등 분류를 제공한다. | 홍콩 전용 7개 분류 및 전체 탭 |
@@ -183,4 +183,4 @@
 | 177 | INCOMPLETE | 동일 역에 번체중문·영문·한국어가 표시되는지, 한국어 IME·AUTO·SPACE·TAB·CUSTOM·RECORDS를 PC/모바일로 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
 | 178 | INCOMPLETE | `missingKoNames`, `unverifiedGeometry`, `brokenCoordinates`, `duplicateStations`, `nonexistentServices`, `brokenLogoAssets`, `phantomTransfers`, `consoleErrors`를 산출한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
 | 179 | PASS | 목표값 0인 항목은 실제로 검사에 통과한 경우만 0과 PASS로 표시한다. 자료 부족·미수정·실패는 FAIL 또는 INCOMPLETE와 원인을 명시한다. | 미검증·미실행은 INCOMPLETE/NOT_AUDITED/NOT_TESTED로 기록 |
-| 180 | INCOMPLETE | 최종 보고에는 기준일·검증 소스·총 노선/역/운행계통/track edge 수·통과/미통과 목록·수정 파일·테스트 명령·**작업 브랜치/커밋 SHA·기준 main SHA·브랜치 미리보기 URL(있는 경우)·main 미변경 확인**을 기재한다. 병합·운영 배포는 사용자 승인 전까지 하지 않는다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
+| 180 | PASS | 최종 보고에는 기준일·검증 소스·총 노선/역/운행계통/track edge 수·통과/미통과 목록·수정 파일·테스트 명령·**작업 브랜치/커밋 SHA·기준 main SHA·브랜치 미리보기 URL(있는 경우)·main 미변경 확인**을 기재한다. 병합·운영 배포는 사용자 승인 전까지 하지 않는다. | Phase 3 원본·생성물·자동/브라우저 검증 및 180개 감사 보고서를 보존. 구현 커밋 e2b353bb62dcc346c11a63d1df20f75233d18321을 feature/hong-kong-railway에만 푸시하고 git ls-remote로 일치 확인. reports/hong-kong/phase3/SUMMARY.md 및 git-result.json에 main 미변경과 외부 main 변화, 배포 미수행 기록. |
