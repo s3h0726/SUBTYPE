@@ -19,3 +19,34 @@ test('resuming during an arrival cannot bypass its map and animation barrier',as
 });
 
 test('Korean station boundaries share the retained source vertex between adjacent segments',()=>{const r={};vm.createContext(r);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../js/route-renderer.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.travel=travelGeometry',r);const a=[37,127],b=[37.1,127.2],c=[37.2,127.3],d=[37.3,127.4],route={countryId:'kr',geometryReady:true,stations:[{},{},{}],directedSegments:[{geometryStatus:'ready',geometry:[a,b,c]},{geometryStatus:'ready',geometry:[c,d]}]};const v=r.travel(route);assert.deepEqual(Array.from(v.offsets),[0,2,3]);assert.deepEqual(Array.from(v.points[v.offsets[1]]),c)});
+
+
+test('completed station typing catches the marker up in 50ms and never advances early',()=>{
+ const src=fs.readFileSync(require('node:path').join(__dirname,'../js/route-renderer.js'),'utf8');
+ const a=src.indexOf('function animateTypingTrain('),b=src.indexOf('export function setTrainTypingProgress(',a);
+ assert(a>=0&&b>a);
+ let now=1000,queue=[],arrivals=0;
+ const ctx={
+   performance:{now:()=>now},
+   requestAnimationFrame:fn=>{queue.push(fn);return queue.length},
+   advanceTrackDistance:(d,target,dt)=>c.api.advanceTrackDistance(d,target,dt),
+   pointAtTrackDistance:(path,d)=>c.api.pointAtTrackDistance(path,d)
+ };
+ vm.createContext(ctx);
+ vm.runInContext(src.slice(a,b)+';globalThis.animate=animateTypingTrain',ctx);
+ const path={segment:[[0,0],[0,1],[1,1]],lengths:[0,1,2],total:2};
+ let lastPoint=null;
+ const rail={train:{setLatLng:p=>{lastPoint=p}},typingDistance:.5,typingProgress:.5,arrivalWaiters:[result=>{assert.equal(result,true);arrivals++}]};
+ ctx.globalThis.animate(rail,path,1,true);
+ const tick=when=>{now=when;const frame=queue.shift();assert(frame,'missing animation frame');frame(now)};
+ tick(1016);assert(rail.typingDistance<1);
+ rail.typingProgress=1;
+ ctx.globalThis.animate(rail,path,2,true);
+ tick(1032);assert.equal(arrivals,0);assert(rail.typingDistance<2);
+ tick(1048);assert.equal(arrivals,0);
+ tick(1064);assert.equal(arrivals,0);
+ tick(1080);assert.equal(arrivals,1);
+ assert.equal(rail.typingDistance,2);
+ assert.deepEqual(Array.from(lastPoint),[1,1]);
+ assert.equal(rail.typingAnimation,null);
+});
