@@ -1,7 +1,7 @@
 import{isKoreanResearch,assertKoreanResearchRoute,koreanResearchChoices,resolveKoreanResearchChoice}from'./korean-research-resolver.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
 const KR_APP_TRANSFER_PAIRS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
-import{$,$$,escapeHtml,formatTime,normalize,toast}from'./utils.js';
+import{$,$$,escapeHtml,formatTime,normalize,toast,koreanStationDisplayName}from'./utils.js';
 import{loadTransportData,normalizeLine,hydrateRailLine}from'./data-loader.js';
 import{koreanVerifiedChoices,resolveKoreanVerifiedChoice}from'./korean-service-resolver.js';
 import{storage}from'./storage.js';
@@ -247,7 +247,7 @@ function koreanRouteUnavailableReason(route){
   return '';
 }
 function krRouteCards(filtered){const groups=new Map();for(const r of filtered){const key=krLineFamily(r)||r.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}return [...groups.values()].map(members=>{const r=members[0];if(members.length<2||members.every(m=>koreanRouteUnavailableReason(m)))return routeCard(r);const services=koreanFamilyServiceChoices(krLineFamily(r)),count=services.length?services.length/2:members.length,label=services.length?'운행계통':'운행구간';return '<button type="button" class="line-card" style="--route-color:'+escapeHtml(r.lineColor||'#888')+'" data-kr-family="'+escapeHtml(krLineFamily(r))+'"><div class="line-card-identity"><span class="operator">'+escapeHtml(r.operator?.ko||'')+'</span><h3 class="line-card-line-name">'+escapeHtml(krRouteLabel(r))+'</h3></div><p>노선을 선택한 뒤 플레이 버튼에서 행선지를 설정하세요</p><footer><span>'+count+'개 '+label+'</span><span>노선 선택 →</span></footer></button>'}).join('')}
-function routeCard(r){const reason=koreanRouteUnavailableReason(r),ready=r.geometryReady===true,word=stopWord(r),action=reason?'검증 대기':r.lazy?'상세 불러오기':ready?'선택':'순서 플레이';return`<button ${reason?'disabled aria-disabled="true" title="'+escapeHtml(reason)+'"':''} class="line-card ${reason?'unplayable':''} ${selected?.id===r.id?'selected':''} ${r.category==='shinkansen'?'shinkansen-card':''}" style="--route-color:${r.lineColor}" data-route="${r.id}"><div class="line-card-identity"><span class="operator">${escapeHtml(r.operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ko)}</h3></div><p>${escapeHtml(reason||(r.countryId==='kr'?krRouteLabel(r):r.line.ja||r.line.en))}</p>${isKoreanResearch(r)?`<p class="research-card-status">${escapeHtml(r.researchEvidence.origin)} → ${escapeHtml(r.researchEvidence.destination)}<br>실제 선로 연결 확인 · 공식 운행 미승인 · 연구용 플레이 가능</p>`:''}<footer><span>${r.stationCount||r.stations.length}개 ${word}</span><span>${action} ${reason?'':'→'}</span></footer></button>`}
+function routeCard(r){const reason=koreanRouteUnavailableReason(r),ready=r.geometryReady===true,word=stopWord(r),action=reason?'검증 대기':r.lazy?'상세 불러오기':ready?'선택':'순서 플레이';return`<button ${reason?'disabled aria-disabled="true" title="'+escapeHtml(reason)+'"':''} class="line-card ${reason?'unplayable':''} ${selected?.id===r.id?'selected':''} ${r.category==='shinkansen'?'shinkansen-card':''}" style="--route-color:${r.lineColor}" data-route="${r.id}"><div class="line-card-identity"><span class="operator">${escapeHtml(r.operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ko)}</h3></div><p>${escapeHtml(reason||(r.countryId==='kr'?krRouteLabel(r):r.line.ja||r.line.en))}</p>${isKoreanResearch(r)?`<p class="research-card-status">${escapeHtml(koreanStationDisplayName(r.researchEvidence.origin,r.countryId))} → ${escapeHtml(koreanStationDisplayName(r.researchEvidence.destination,r.countryId))}<br>실제 선로 연결 확인 · 공식 운행 미승인 · 연구용 플레이 가능</p>`:''}<footer><span>${r.stationCount||r.stations.length}개 ${word}</span><span>${action} ${reason?'':'→'}</span></footer></button>`}
 function renderRoutes(){const filtered=filteredRoutes(),query=$('#route-search').value;const allVisible=filtered,visible=allVisible.slice(0,routeRenderLimit);$('#route-count').textContent=`${filtered.length}개 노선 · ${visible.length}개 표시`;const random=category==='all'&&transportGroup==='all'&&operatorFilter==='all'&&!query&&(countryId!=='kr'||filtered.some(r=>!koreanRouteUnavailableReason(r)))?`<button class="line-card random" style="--route-color:#45c985" data-random-route><span class="operator">${countryId==='kr'?'KOREA TRANSIT NETWORK':'JAPAN RAIL NETWORK'}</span><h3>RANDOM</h3><p>${countryId==='kr'?'대한민국':'일본 전국'} 랜덤 노선</p><footer><span>PLAYABLE ROUTES</span><span>SELECT →</span></footer></button>`:'';const more=allVisible.length>visible.length?`<button class="line-card route-more" data-route-more><span class="operator">WINDOWED GRID</span><h3>＋ ${Math.min(96,allVisible.length-visible.length)}개 더 보기</h3><p>${allVisible.length-visible.length}개 노선 남음</p></button>`:'';$('#route-grid').innerHTML=random+(visible.length?(countryId==='kr'?krRouteCards(visible):visible.map(routeCard).join(''))+more:(countryId==='jp'&&category==='limited-express'&&famousExpressLoading?'<p class="muted" role="status">특급열차의 실제 선로와 정차역을 불러오는 중...</p>':'<p class="muted">검색 결과가 없습니다.</p>'))}
 function renderSelected(){const panel=$('#selected-line-preview');if(selectedGroup){const spec=NETWORK_GROUPS[selectedGroup],members=spec.routeIds.map(id=>routes.find(route=>route.id===id)).filter(Boolean),main=members[0];panel.innerHTML=`<div class="selected-line-card network-detail"><p class="eyebrow">${spec.kind==='services'?'운행계통':spec.kind==='physical'?'실제 노선':'분기·계통'} 선택</p><h3 id="selected-line-heading">${escapeHtml(spec.label||main?.operator.ko||'노선 그룹')}<span>${spec.kind==='services'?'운행하는 계통을 선택하세요':'노선을 선택하세요'}</span></h3><div class="network-branches">${members.map(route=>`<button data-route="${route.id}"><span><b>${escapeHtml(route.line.ja)}</b><small>${escapeHtml(route.line.ko)} · ${route.stations.length} STATIONS</small></span></button>`).join('')}</div></div>`;return}if(!selected){panel.innerHTML='<div class="selected-line-empty"><h3 id="selected-line-heading">노선을 선택하세요.</h3><p>오른쪽 목록에서 플레이할 노선을 선택합니다.</p></div>';return}panel.closest('.selected-line-panel').style.setProperty('--route-color',selected.lineColor);panel.innerHTML=`<div class="selected-line-card" style="--route-color:${selected.lineColor}"><div class="selected-line-operator"><span>${escapeHtml(selected.operator.ko)}</span></div><h3 id="selected-line-heading">${escapeHtml(selected.line.ja)}<span>${escapeHtml(selected.line.ko)} · ${escapeHtml(selected.line.en)}</span></h3>${selected.section?`<p class="selected-section">${escapeHtml(selected.section.ja)} · ${escapeHtml(selected.section.ko)}</p>`:''}<div class="selected-line-meta"><span>${selected.stations.length} STATIONS</span><span>${selected.dataKind==='trainService'?'LIMITED EXPRESS':selected.loop?'LOOP LINE':'FULL ROUTE'}</span></div><div class="selected-line-actions"><button class="selected-play" type="button" data-selected-play="${selected.id}">PLAY THIS LINE <span>→</span></button><button class="selected-free-drive" type="button" data-selected-free-drive>FREE DRIVE <span>↗</span></button></div></div>`}
 function throughRouteIds(spec){return spec.routeSegments?.map(segment=>segment.routeId)||spec.routeIds||[]}
@@ -271,6 +271,7 @@ const journeyLabel=value=>{
   const recovered=stationKoreanByJapaneseName(ja||ko);if(recovered)return recovered;
   return ko||ja||en||''
 };
+const journeyStationDisplayName=value=>koreanStationDisplayName(journeyLabel(value),selected?.countryId);
 const journeyStationKey=(names,id='')=>normalize(names?.ja||names?.names?.ja||journeyLabel(names)||id);
 function nationwideCatalogLine(route){
   const catalog=globalThis.TRT_NATIONWIDE_SERVICE_CATALOG?.lines||{},ids=[route?.id,route?.legacyId].filter(Boolean);
@@ -448,7 +449,7 @@ function operatingPatternLabel(choice){
 }
 function operatingDirectionLabel(choice){
   if(choice.sourceRouteId==='kr-metro-2')return choice.direction==='reverse'?'내선순환':'외선순환';
-  const origin=journeyLabel(choice.originNames),destination=journeyLabel(choice.destinationNames);
+  const origin=journeyStationDisplayName(choice.originNames),destination=journeyStationDisplayName(choice.destinationNames);
   if(origin&&destination&&origin!==destination)return`${origin} → ${destination}`;
   return choice.direction==='reverse'?'역방향':'정방향'
 }
@@ -471,7 +472,7 @@ function configureJourneyPicker(){
   const renderOrigins=()=>{
     const available=patternChoices().filter(choice=>directionKey(choice)===directionPicker.value);
     const originGroups=[...new Map(available.map(choice=>[journeyStationKey(choice.originNames,choice.originId),choice])).entries()];
-    origin.innerHTML=originGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(journeyLabel(choice.originNames))}</option>`).join('');
+    origin.innerHTML=originGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(journeyStationDisplayName(choice.originNames))}</option>`).join('');
     const suggested=preferred(available);
     origin.value=suggested?journeyStationKey(suggested.originNames,suggested.originId):(originGroups[0]?.[0]||'');
     renderDestinations()
@@ -488,10 +489,10 @@ function configureJourneyPicker(){
     direction.value=choice.direction||'forward';
     const state=statusOf(choice),total=choices.length,ready=statusById.size?[...statusById.values()].filter(item=>item.playable).length:total;
     const availability=japan?(state.playable?' · 플레이 가능':` · 실행 불가: ${state.reason||'연결된 선로 검증 필요'}`):'';
-    summary.textContent=`${operatingPatternLabel(choice)} · ${operatingDirectionLabel(choice)} · ${journeyLabel(choice.originNames)} → ${journeyLabel(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''}${availability}${japan?` (등록 ${total}개 / 실행 가능 ${ready}개)`:''}`;
+    summary.textContent=`${operatingPatternLabel(choice)} · ${operatingDirectionLabel(choice)} · ${journeyStationDisplayName(choice.originNames)} → ${journeyStationDisplayName(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''}${availability}${japan?` (등록 ${total}개 / 실행 가능 ${ready}개)`:''}`;
     if(submit){submit.disabled=japan&&!state.playable;submit.textContent=japan&&!state.playable?'선로 미검증 · 실행 불가':'운행 시작 →'}
     const endpoints=$('#setup-route .route-endpoints');
-    if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyLabel(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyLabel(choice.destinationNames))}<small> 행선지</small></span>`
+    if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyStationDisplayName(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyStationDisplayName(choice.destinationNames))}<small> 행선지</small></span>`
   };
   function renderDestinations(){
     const available=patternChoices().filter(choice=>directionKey(choice)===directionPicker.value&&journeyStationKey(choice.originNames,choice.originId)===origin.value);
@@ -503,7 +504,7 @@ function configureJourneyPicker(){
       const typeLabel=journeyLabel(choice.trainType),through=choice.throughServiceId?' · 직통':'';
       const duplicate=frequencies.get(labels[i])>1?` · 계통 ${choice.catalogPattern?.id||choice.patternId||choice.id}`:'';
       const unavailable=japan&&!statusOf(choice).playable?' · 실행 불가':'';
-      return`<option value="${escapeHtml(choice.id)}" data-destination-id="${escapeHtml(choice.destinationId||'')}">${escapeHtml(journeyLabel(choice.destinationNames))}${typeLabel?` · ${escapeHtml(typeLabel)}`:''}${through}${escapeHtml(duplicate)}${unavailable}</option>`
+      return`<option value="${escapeHtml(choice.id)}" data-destination-id="${escapeHtml(choice.destinationId||'')}">${escapeHtml(journeyStationDisplayName(choice.destinationNames))}${typeLabel?` · ${escapeHtml(typeLabel)}`:''}${through}${escapeHtml(duplicate)}${unavailable}</option>`
     }).join('');
     selectChoice(preferred(available))
   }

@@ -1,5 +1,7 @@
 export const $=(s,p=document)=>p.querySelector(s);
 export const $$=(s,p=document)=>[...p.querySelectorAll(s)];
+// Korean display-only suffix rule: do not modify official names, IDs or evidence.
+export const koreanStationDisplayName=(value,countryId)=>{const name=String(value??'').normalize('NFC');return countryId==='kr'&&name.length>1&&name.endsWith('역')?name.slice(0,-1):name};
 export const normalize=(v='')=>String(v).normalize('NFC').trim().replace(/\s+/g,' ').toLocaleLowerCase();
 export const uid=(prefix='id')=>`${prefix}-${globalThis.crypto?.randomUUID?.()||`${Date.now().toString(36)}-${Math.random().toString(36).slice(2,10)}`}`;
 export const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
