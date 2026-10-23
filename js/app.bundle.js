@@ -1162,8 +1162,11 @@ function koreanLine1ServiceDetails(route){
  const nameOnly=v=>v.trim()==='서울역'?'서울역':v.replace(/역$/,'').trim(),origin=nameOnly(rawOrigin),destination=nameOnly(rawDestination);
  const express=/급행/.test(name),branch=origin==='서동탄'||destination==='서동탄';
  const group=express?'경인선 급행':branch?'서동탄 지선 일반':origin==='천안'||destination==='천안'?'경부선 일반':'1호선 일반';
+ // Ordering is solely a UI direction hint, not proof of an operator timetable.
+ const rank={광운대:0,청량리:10,동묘앞:15,서울역:20,용산:25,구로:40,부천:55,병점:70,서동탄:75,동인천:80,천안:110};
+ const travelDirection=rank[origin]!=null&&rank[destination]!=null?(rank[destination]<rank[origin]?'up':'down'):null;
  const confirmed=(id==='8820537'&&origin==='동인천'&&destination==='용산')||(id==='8820538'&&origin==='용산'&&destination==='동인천');
- return{group,groupId:express?'gyeongin-express':branch?'seodongtan-local':origin==='천안'||destination==='천안'?'gyeongbu-local':'local',
+ return{group,travelDirection,groupId:express?'gyeongin-express':branch?'seodongtan-local':origin==='천안'||destination==='천안'?'gyeongbu-local':'local',
   name:group+' · '+origin+' → '+destination,origin,destination,
   evidenceStatus:confirmed?'operator-service-confirmed':'timetable-unverified',
   evidenceNote:confirmed?'한국철도공사 2026-05-20: 5월 26일부터 용산~동인천 특급을 일반 급행으로 전환':'개별 계통·운행일·정차역 공식 시간표 대조 미완료'};
@@ -1182,7 +1185,7 @@ function assertKoreanResearchRoute(route){
  if(route.services?.length!==1||JSON.stringify(route.services[0].stops)!==JSON.stringify(st.map(s=>s.id)))throw Error('RESEARCH_CALL_PATTERN_MISMATCH');
  return route;
 }
-function koreanResearchChoices(route){if(!isKoreanResearch(route)||route.lazy)return[];assertKoreanResearchRoute(route);return[{kind:'koreanResearch',id:'research:'+route.sourceServiceId,patternId:route.sourceServiceId,patternName:{ko:route.integratedLine1===true?(route.line1Service?.name||koreanLine1ServiceDetails(route)?.name||'1호선 일반'):'연구용 경로 · 공식 운행 미승인'},line1PatternKey:route.integratedLine1===true?(route.line1Service?.groupId||koreanLine1ServiceDetails(route)?.groupId):null,direction:route.directionId,originId:route.stations[0].id,destinationId:route.stations.at(-1).id,originNames:route.stations[0],destinationNames:route.stations.at(-1),trainType:null}]}
+function koreanResearchChoices(route){if(!isKoreanResearch(route)||route.lazy)return[];assertKoreanResearchRoute(route);return[{kind:'koreanResearch',id:'research:'+route.sourceServiceId,patternId:route.sourceServiceId,patternName:{ko:route.integratedLine1===true?(route.line1Service?.name||koreanLine1ServiceDetails(route)?.name||'1호선 일반'):'연구용 경로 · 공식 운행 미승인'},line1PatternKey:route.integratedLine1===true?(route.line1Service?.groupId||koreanLine1ServiceDetails(route)?.groupId):null,line1UiDirection:route.integratedLine1===true?(route.line1Service?.travelDirection||koreanLine1ServiceDetails(route)?.travelDirection):null,direction:route.directionId,originId:route.stations[0].id,destinationId:route.stations.at(-1).id,originNames:route.stations[0],destinationNames:route.stations.at(-1),trainType:null}]}
 function resolveKoreanResearchChoice(choice,route){assertKoreanResearchRoute(route);const expected=koreanResearchChoices(route)[0];if(choice?.kind!=='koreanResearch'||choice.id!==expected.id||choice.originId!==expected.originId||choice.destinationId!==expected.destinationId)throw Error('INVALID_RESEARCH_DIRECTION');const detail=route.integratedLine1===true?(route.line1Service||koreanLine1ServiceDetails(route)):null;return{route:{...route,line:{...route.line,ko:detail?'수도권 전철 1호선':'연구용 · '+route.line.ko}},service:detail?{...route.services[0],nameKo:detail.name,nameJa:detail.name,nameEn:detail.name}:route.services[0],journey:{id:expected.id,baseRouteId:route.id,originStationId:expected.originId,destinationStationId:expected.destinationId,originNames:expected.originNames,destinationNames:expected.destinationNames,directionId:route.directionId},journeyId:expected.id,direction:'forward',travelDirectionId:route.directionId,pattern:{id:route.sourceServiceId,names:expected.patternName},destinationStationId:expected.destinationId,researchPreview:true};}
 
 
@@ -2436,6 +2439,7 @@ function operatingPatternLabel(choice){
   return koreanRouteDisplayText(section?`${section.replace('~',' ↔ ')} 운행`:journeyLabel(choice.patternName)||journeyLabel(choice.trainType)||'기본 운행계통',route)
 }
 function operatingDirectionLabel(choice){
+  if(choice.line1UiDirection)return choice.line1UiDirection==='up'?'상행':'하행';
   if(choice.sourceRouteId==='kr-metro-2')return choice.direction==='reverse'?'내선순환':'외선순환';
   const origin=journeyStationDisplayName(choice.originNames),destination=journeyStationDisplayName(choice.destinationNames);
   if(choice.line1PatternKey&&origin&&destination&&origin!==destination){const source=choice.sourceRouteId?(builtin.find(r=>r.id===choice.sourceRouteId)||routes.find(r=>r.id===choice.sourceRouteId)):selected;return `${origin} → ${destination}${source?.line1Service?.evidenceStatus==='operator-service-confirmed'?' · 운행 확인':' · 시간표 확인 필요'}`}
@@ -2458,7 +2462,7 @@ function configureJourneyPicker(){
   const patternGroups=[...new Map(choices.map(choice=>[operatingPatternKey(choice),choice])).entries()];
   pattern.innerHTML=patternGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(operatingPatternLabel(choice))}</option>`).join('');
   const patternChoices=()=>choices.filter(choice=>operatingPatternKey(choice)===pattern.value);
-  const directionKey=choice=>String(choice.direction||'forward');
+  const directionKey=choice=>String(choice.line1UiDirection||choice.direction||'forward');
   const preferred=items=>items.find(choice=>statusOf(choice).playable)||items[0];
   const renderOrigins=()=>{
     const available=patternChoices().filter(choice=>directionKey(choice)===directionPicker.value);

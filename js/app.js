@@ -449,6 +449,7 @@ function operatingPatternLabel(choice){
   return koreanRouteDisplayText(section?`${section.replace('~',' ↔ ')} 운행`:journeyLabel(choice.patternName)||journeyLabel(choice.trainType)||'기본 운행계통',route)
 }
 function operatingDirectionLabel(choice){
+  if(choice.line1UiDirection)return choice.line1UiDirection==='up'?'상행':'하행';
   if(choice.sourceRouteId==='kr-metro-2')return choice.direction==='reverse'?'내선순환':'외선순환';
   const origin=journeyStationDisplayName(choice.originNames),destination=journeyStationDisplayName(choice.destinationNames);
   if(choice.line1PatternKey&&origin&&destination&&origin!==destination){const source=choice.sourceRouteId?(builtin.find(r=>r.id===choice.sourceRouteId)||routes.find(r=>r.id===choice.sourceRouteId)):selected;return `${origin} → ${destination}${source?.line1Service?.evidenceStatus==='operator-service-confirmed'?' · 운행 확인':' · 시간표 확인 필요'}`}
@@ -471,7 +472,7 @@ function configureJourneyPicker(){
   const patternGroups=[...new Map(choices.map(choice=>[operatingPatternKey(choice),choice])).entries()];
   pattern.innerHTML=patternGroups.map(([key,choice])=>`<option value="${escapeHtml(key)}">${escapeHtml(operatingPatternLabel(choice))}</option>`).join('');
   const patternChoices=()=>choices.filter(choice=>operatingPatternKey(choice)===pattern.value);
-  const directionKey=choice=>String(choice.direction||'forward');
+  const directionKey=choice=>String(choice.line1UiDirection||choice.direction||'forward');
   const preferred=items=>items.find(choice=>statusOf(choice).playable)||items[0];
   const renderOrigins=()=>{
     const available=patternChoices().filter(choice=>directionKey(choice)===directionPicker.value);

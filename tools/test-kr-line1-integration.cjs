@@ -31,6 +31,8 @@ test('actual Line 1 service classes are grouped without inventing release approv
  assert(services.some(r=>r.line1Service.group==='서동탄 지선 일반'));
  assert(services.some(r=>r.line1Service.group==='경부선 일반'));
  assert(services.some(r=>r.line1Service.group==='1호선 일반'));
+ assert(services.every(r=>['up','down'].includes(r.line1Service.travelDirection)));
+ assert.equal(services.filter(r=>r.line1Service.group==='경인선 급행').length,6);
  const east=services.find(r=>r.sourceRelationId==='8820537');
  assert.equal(east.line1Service.name,'경인선 급행 · 동인천 → 용산');
  assert.equal(merged.integratedLine1.officialReleased,0);
@@ -45,6 +47,7 @@ test('published Line 1 picker uses real service names, retains OSM stops and res
  const choices=koreanResearchChoices(route);
  assert.equal(choices.length,1);
  assert.equal(choices[0].line1PatternKey,'gyeongin-express');
+ assert.equal(choices[0].line1UiDirection,'up');
  assert.equal(choices[0].patternName.ko,'경인선 급행 · 동인천 → 용산');
  const resolved=resolveKoreanResearchChoice(choices[0],route);
  assert.equal(resolved.service.nameKo,'경인선 급행 · 동인천 → 용산');
