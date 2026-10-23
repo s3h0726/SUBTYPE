@@ -443,7 +443,7 @@ function operatingPatternLabel(choice){
   const route=choice.sourceRouteId?(builtin.find(item=>item.id===choice.sourceRouteId)||routes.find(item=>item.id===choice.sourceRouteId)):selected;
   const seoulLine2={"kr-metro-2":'본선 순환',"kr-metro-2-section-2":'성수지선',"kr-metro-2-section-3":'신정지선'};
   if(route?.passengerLineId==='kr-passenger-metro-2'&&seoulLine2[route.id])return seoulLine2[route.id];
-  if(route?.integratedLine1===true)return route.line1Service?.group||'1호선 일반';
+  if(route?.integratedLine1===true)return route.line1Service?.patternName||'1호선 일반';
   if(route?.operatingPatternName)return koreanRouteDisplayText(journeyLabel(route.operatingPatternName),route);
   const section=String(route?.line?.ko||'').match(/\(([^)]+)\)/)?.[1];
   return koreanRouteDisplayText(section?`${section.replace('~',' ↔ ')} 운행`:journeyLabel(choice.patternName)||journeyLabel(choice.trainType)||'기본 운행계통',route)

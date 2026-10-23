@@ -35,6 +35,9 @@ test('actual Line 1 service classes are grouped without inventing release approv
  assert.equal(services.filter(r=>r.line1Service.group==='경인선 급행').length,6);
  const east=services.find(r=>r.sourceRelationId==='8820537');
  assert.equal(east.line1Service.name,'경인선 급행 · 동인천 → 용산');
+ assert.equal(east.line1Service.patternName,'경인선 급행 · 동인천 ↔ 용산');
+ assert.equal(new Set(services.map(r=>r.line1Service.patternKey)).size,17);
+ assert(services.every(r=>r.line1Service.patternName.includes('↔')));
  assert.equal(merged.integratedLine1.officialReleased,0);
 });
 test('published Line 1 picker uses real service names, retains OSM stops and research-record gate',async()=>{
@@ -46,7 +49,7 @@ test('published Line 1 picker uses real service names, retains OSM stops and res
  const raw=payload.route||payload,route={...raw,integratedLine1:true,line1Service:index.line1Service};
  const choices=koreanResearchChoices(route);
  assert.equal(choices.length,1);
- assert.equal(choices[0].line1PatternKey,'gyeongin-express');
+ assert.equal(choices[0].line1PatternKey,'gyeongin-express::동인천::용산');
  assert.equal(choices[0].line1UiDirection,'up');
  assert.equal(choices[0].patternName.ko,'경인선 급행 · 동인천 → 용산');
  const resolved=resolveKoreanResearchChoice(choices[0],route);
