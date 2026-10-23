@@ -127,5 +127,18 @@
     "theme": "dark",
     "viewport": "reset",
     "reducedMotion": false
+  },
+  "postRemoteIntegration": {
+    "commitPreserved": "60df997c057079cf1bf225134d3f5a1d739a8870",
+    "requiredTransferScenariosRerun": 5,
+    "noTransferTab": "PASS",
+    "namedStationTransfer": {
+      "pair": "central-hong-kong",
+      "status": "PASS",
+      "tabSwitches": 3,
+      "followedBy": "Airport Express full5stops to terminal",
+      "evidence": "reports/hong-kong/phase4/browser-named-transfer.json"
+    },
+    "otherTwoNamedPairsBrowser": "NOT_TESTED (preserved source and automated graph coverage)"
   }
 }

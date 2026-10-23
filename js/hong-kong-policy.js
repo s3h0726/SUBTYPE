@@ -3,6 +3,9 @@ export function hongKongTransferAllowed(fromRoute,toRoute,stationId){
  if(fromRoute?.countryId!=='hk'&&toRoute?.countryId!=='hk')return true;
  if(fromRoute?.countryId!=='hk'||toRoute?.countryId!=='hk')return false;
  if(fromRoute.id===toRoute.id)return true;
+ // Preserve explicit, reviewed differently named walking interchanges from the remote branch.
+ const pair=(globalThis.TRT_HONG_KONG_INDEX?.transfers||[]).find(p=>p.status==='verified'&&p.enabled===true&&stationId==='hk-transfer:'+p.id);
+ if(pair){const at=route=>route.stations.find(s=>s.hkTransferKey===stationId&&[pair.from,pair.to].includes(s.stationMasterId||s.sourceStationId||s.id));return !!at(fromRoute)&&!!at(toRoute)}
  const a=fromRoute.stations.find(s=>(s.physicalStationId||s.stationMasterId||s.id)===stationId),b=toRoute.stations.find(s=>(s.physicalStationId||s.stationMasterId||s.id)===stationId);
  return !!a&&!!b&&[a,b].every(s=>s.transferReview?.status==='verified'&&s.transferReview.stationId===stationId&&[fromRoute.canonicalLineId,toRoute.canonicalLineId].every(id=>s.transferReview.lineIds.includes(id)));
 }

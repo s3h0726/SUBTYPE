@@ -19,3 +19,16 @@ test('stopping free drive removes Japanese choices before a Korean typing sessio
  const game={freeDriveMode:true,freeDriveState:{routeId:'old'},freeDriveTarget:{station:{id:'old'}},pendingFreeDriveMove(){assert.fail('stale move')}};ctx.GameTest.prototype.stop.call(game,false);
  for(const id of ['#game-free-drive-options','#game-free-drive-tabs']){assert.equal(elements.get(id).hidden,true);assert.equal(elements.get(id).innerHTML,'');assert.equal(elements.get(id).dataset.transferOpen,'false')}assert.equal(game.freeDriveMode,false);assert.equal(game.freeDriveState,null);assert.equal(game.freeDriveTarget,null);assert.equal(game.pendingFreeDriveMove,null);
 });
+
+test('named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled',()=>{
+ c.TRT_HONG_KONG_INDEX=require('../data/hk/generated/index.json');
+ const before=c.hongKongRouteBlockReason;c.hongKongRouteBlockReason=()=>''; 
+ try{
+ const hkRoute=(id,stationId,ko,lat)=>({id,countryId:'hk',geometryReady:true,releaseStatus:'ready',geometryStatus:'verified',playable:true,stations:[{id:stationId,stationMasterId:stationId,ko,ja:ko,latitude:lat,longitude:114.16},{id:id+'-next',stationMasterId:id+'-next',ko:'다음',ja:'다음',latitude:lat+0.01,longitude:114.17}]});
+ const a=hkRoute('hk-island-fixture','hk-mtr-CEN','센트럴',22.28),b=hkRoute('hk-airport-fixture','hk-mtr-HOK','홍콩',22.29),c1=hkRoute('hk-austin-fixture','hk-mtr-AUS','어스틴',22.30),c2=hkRoute('hk-kowloon-fixture','hk-mtr-KOW','구룡',22.31),unlinked=hkRoute('hk-unlinked-fixture','hk-mtr-TWW','추엔완웨스트',22.32);
+ const f=engine([a,b,c1,c2,unlinked]);f.currentKey='hk-transfer:central-hong-kong';f.currentRouteId=a.id;f.history=[f.currentKey];
+ assert.equal(f.graph.get(f.currentKey).routeIds.size,2);assert.equal(f.switchRouteAtCurrentStation(b.id),true);assert.equal(f.snapshot().station.ko,'홍콩');assert.equal(f.snapshot().station.latitude,22.29);assert.equal(f.history.length,1);
+ f.currentKey='hk-transfer:kowloon-austin';f.currentRouteId=c1.id;assert.equal(f.switchRouteAtCurrentStation(c2.id),true);assert.equal(f.snapshot().station.ko,'구룡');
+ f.currentKey=unlinked.stations[0].id;f.currentRouteId=unlinked.id;assert.equal(f.switchRouteAtCurrentStation(a.id),false);
+ }finally{c.hongKongRouteBlockReason=before}
+});

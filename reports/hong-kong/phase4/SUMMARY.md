@@ -70,9 +70,9 @@ MTR색10개 유지, 공식 [LR 지도PDF](https://www.mtr.com.hk/archive/en/serv
 
 ## 5. 실제 TAB 환승·UI 수정
 
-공식 물리 환승역8곳을 별도 [review](../../../data/hk/master/transfer-review.json)로 관리한다. 플랫폼별 route-stop 좌표를 그대로 사용하며 보행 통로를 train edge로 만들지 않는다. network.transfers=0은 보행 선형 미생성 뜻이며, 검토된 탑승 전환8개 역과 별도 집계다. 미검토·이름/근접성만 일치하는 연결은 차단한다. 도착 전용 방향은 출발 가능한 방향으로 잘못 노출하지 않는다.
+공식 물리 환승역8곳을 별도 [review](../../../data/hk/master/transfer-review.json)로 관리한다. 플랫폼별 route-stop 좌표를 그대로 사용하며 보행 통로를 train edge로 만들지 않는다. network.transfers=3은 원격 홍콩 커밋에서 보존한 Central–Hong Kong, Tsim Sha Tsui–East Tsim Sha Tsui, Kowloon–Austin의 명시적 보행 연결 레코드이며 train geometry가 아니다. 같은 물리역8곳의 노선별 탑승 전환과 별도 집계다. 출구/개찰구 조건도 원격 원본을 보존했다. 미검토·이름/근접성만 일치하는 연결은 차단한다. 도착 전용 방향은 출발 가능한 방향으로 잘못 노출하지 않는다.
 
-[실제 브라우저5시나리오](browser-transfers.json): 홍콩섬↔남홍콩섬(ADM), 췬완↔홍콩섬(ADM), 췬완↔군통(YMT), 동철↔튄마(HUH), LR507↔505(Tin King). 각 TAB A→B→A→B 총15회 후 새 노선의 환승역을 첫 정답으로 입력하고 종착까지 진행했다. 실제 양방향 탭 전환과 최종 선택 방향의 이후 완주를 검증했으며 모든 다른 환승역 전수를 주장하지 않는다. 환승 없는 Ocean Park에서는 TAB 전후 게임 상태 불변 PASS. numeric train 좌표는 자동 route-stop 검사가 담당하고 브라우저는 실제 표시·지도현재역·이후 이동을 확인했다.
+[실제 브라우저5시나리오](browser-transfers.json): 홍콩섬↔남홍콩섬(ADM), 췬완↔홍콩섬(ADM), 췬완↔군통(YMT), 동철↔튄마(HUH), LR507↔505(Tin King). 각 TAB A→B→A→B 총15회 후 새 노선의 환승역을 첫 정답으로 입력하고 종착까지 진행했다. 외부 홍콩 커밋 통합 후 위5시나리오와 비환승TAB을 모두 다시 검사했다. 추가로 [Central–Hong Kong별도명 환승](browser-named-transfer.json)을 TAB왕복3회 후 공항철도5역 종착까지 검증했다. 나머지 별도명2쌍은 브라우저NOT_TESTED(원격원본·자동검사보존)다. 실제 양방향 탭 전환과 최종 선택 방향의 이후 완주를 검증했으며 모든 다른 환승역 전수를 주장하지 않는다. 환승 없는 Ocean Park에서는 TAB 전후 게임 상태 불변 PASS. numeric train 좌표는 자동 route-stop 검사가 담당하고 브라우저는 실제 표시·지도현재역·이후 이동을 확인했다.
 
 자유주행 다음 입력역 표시와 실제 정답 불일치, 종착 후 이전 target잔류, 순환선 닫힘 방문 index오인, 환승 탭 방향 식별을 수정했다. 마지막 QA에서 결과 거리·경로재생도 반복 물리역ID를 첫 방문으로 찾는 오류를 확인하여 홍콩 방문순서별 정차객체로 수정했다. 705/706의15개 구간을 원본 곡선으로 계산하고 재생하는 추가 회귀 및 실제 브라우저 재완주·결과지도 검사를 포함한다. 모바일390×844에서 환승 탭/헤더/운행HUD겹침을 실제 재현해 홍콩 CSS배치만 수정했다. 수정 후 탭y4–97, 헤더107–161, HUD166–220, 역명판464–826으로 분리됐고 page가로overflow없음. [라이트](images/mobile-light-transfer.jpg)·[다크](images/mobile-dark-transfer.jpg) 및 실제 모바일TAB확인.
 
@@ -84,8 +84,8 @@ AUTO는150ms최소 응답과 실제 선로 애니메이션 완료를 모두 기�
 
 | 범위 | 기존 | 신규 | 최종 결과 |
 |---|---|---|---|
-| 통합 Node 회귀 | 94 | 13 | 107 PASS / 0 FAIL / 0 SKIP |
-| 그중 홍콩 | 30 | 13 | 43 PASS (위107에 포함) |
+| 통합 Node 회귀 | 94 | 13 + 원격2 | 109 PASS / 0 FAIL / 0 SKIP |
+| 그중 홍콩 | 30 | 13 + 원격1 | 44 PASS (위109에 포함) |
 | 타이핑 모델 | 18 | 0 | 18 PASS, 별도 |
 | IME 컨트롤러 fixture | 10 | 0 | 10 PASS, 별도 |
 | 검사 명령 | — | — | 9 PASS / 1 FAIL(UI감사) |
@@ -118,5 +118,7 @@ MTR [고속철도목적지](https://www.highspeed.mtr.com.hk/en/ticket/destinati
 - 시작 원격 main: 510d3d9734914d13499de08785ea355e684e9381; 캐시origin/main: 438f605b1e1f2a2a97991bb6e84e226c8bd0f91a. 외부main변경 미통합
 - 한국·일본 원본데이터 및 workflow 변경0, main병합·리베이스·직접수정/푸시·강제푸시·새브랜치·Pages배포 모두미수행
 - 로컬검증 http://127.0.0.1:8081/ ; 외부preview NOT_CONFIGURED
+
+작업 중 원격 홍콩 브랜치가60df997c057079cf1bf225134d3f5a1d739a8870로 진행했음을 푸시 전에 발견했다. 로컬 작업을bda35bf456fe47c566b6b55e6fb48bfbfbe618d9에 보존한 뒤 같은 홍콩 브랜치에서 해당 커밋만 merge했다. 원격의 별도명 환승3쌍·순환선 폐합가드·테스트2개를 보존하고 생성물을 정상 재빌드했다. main병합/리베이스와 다르며 main의 외부 변경은 가져오지 않았다. 상세는git-integration.json.
 
 Git커밋은 자기SHA를 자기본문에 넣을 수 없으므로 구현푸시SHA를 이 보고서후속커밋에 기록한다. 최종보고커밋의 원격HEAD일치는 최종응답에서 제공한다.

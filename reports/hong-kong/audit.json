@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-23T15:29:02.152Z",
+  "checkedAt": "2026-10-23T15:41:43.237Z",
   "sourceCheckedAt": "2026-10-22",
   "remoteMainSha": "510d3d9734914d13499de08785ea355e684e9381",
   "cachedRemoteMainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
@@ -8,7 +8,7 @@
   "status": "INCOMPLETE",
   "branch": "feature/hong-kong-railway",
   "mainBaseSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
-  "branchCommitSha": "71f7493ac2aba14d117343cbee17c1ba54486e68",
+  "branchCommitSha": "bda35bf456fe47c566b6b55e6fb48bfbfbe618d9",
   "mainSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
   "mainUnchanged": "PASS",
   "japanKoreaDataUnchanged": "PASS",
@@ -52,7 +52,7 @@
     "logosRequired": 3,
     "brokenLogoAssets": "NOT_AUDITED",
     "phantomTransfers": "NOT_AUDITED",
-    "enabledTransferEdges": 0,
+    "enabledTransferEdges": 3,
     "consoleErrors": 0
   },
   "requirements": {
@@ -189,6 +189,19 @@
       "theme": "dark",
       "viewport": "reset",
       "reducedMotion": false
+    },
+    "postRemoteIntegration": {
+      "commitPreserved": "60df997c057079cf1bf225134d3f5a1d739a8870",
+      "requiredTransferScenariosRerun": 5,
+      "noTransferTab": "PASS",
+      "namedStationTransfer": {
+        "pair": "central-hong-kong",
+        "status": "PASS",
+        "tabSwitches": 3,
+        "followedBy": "Airport Express full5stops to terminal",
+        "evidence": "reports/hong-kong/phase4/browser-named-transfer.json"
+      },
+      "otherTwoNamedPairsBrowser": "NOT_TESTED (preserved source and automated graph coverage)"
     }
   },
   "missingNames": [

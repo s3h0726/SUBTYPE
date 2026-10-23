@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-23T15:40:11.648Z",
+  "from": "hk-island-ut",
+  "to": "hk-airport-express-ut",
+  "fromStation": "hk-mtr-CEN",
+  "toStation": "hk-mtr-HOK",
+  "pair": "central-hong-kong",
+  "approach": [
+    "hk-mtr-KET",
+    "hk-mtr-HKU",
+    "hk-mtr-SYP",
+    "hk-mtr-SHW",
+    "hk-mtr-CEN"
+  ],
+  "switches": [
+    {
+      "routeId": "hk-airport-express-ut",
+      "prompt": "香港",
+      "map": "香港"
+    },
+    {
+      "routeId": "hk-island-ut",
+      "prompt": "中環",
+      "map": "中環"
+    },
+    {
+      "routeId": "hk-airport-express-ut",
+      "prompt": "香港",
+      "map": "香港"
+    }
+  ],
+  "completion": [
+    "hk-mtr-HOK",
+    "hk-mtr-KOW",
+    "hk-mtr-TSY",
+    "hk-mtr-AIR",
+    "hk-mtr-AWE"
+  ],
+  "terminal": "종착역 도착 · 자유주행",
+  "status": "PASS",
+  "snapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"공항철도\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"공항철도\" [level=2]:\n      - generic: 공항철도\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:22.91\n    - generic: 진행\n    - strong: 9 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 機場\n      - generic: 에어포트\n      - generic: 博覽館\n      - generic: 아시아 월드 엑스포\n      - generic \"열차 위치\":\n        - generic: AEL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"博覽館\":\n      - generic: 홍콩 MTR\n      - generic: 공항철도\n      - generic: 機場快綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"博覽館\" [level=1]\n      - paragraph: 아시아 월드 엑스포\n      - paragraph\n      - paragraph: AsiaWorld-Expo\n      - generic \"한국어 입력 진행\":\n        - generic: 아\n        - generic: 시\n        - generic: 아\n        - generic: 월\n        - generic: 드\n        - generic: 엑\n        - generic: 스\n        - generic: 포\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 아시아월드엑스포\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 공항철도"
+}
