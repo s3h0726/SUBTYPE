@@ -4,12 +4,13 @@ const $=(s,p=document)=>p.querySelector(s);
 const $$=(s,p=document)=>[...p.querySelectorAll(s)];
 // Presentation only: retain canonical names and evidence unchanged.
 // Strip railway line labels from KR station display/typing only. Preserve canonical station data.
+const koreanStationDisplayName=(value,countryId,route=null)=>{
+ const raw=String(value??'');if(countryId!=='kr')return raw;
 const KR_STATION_LINE_QUALIFIER="(?:(?:(?:수도권\\s*(?:전철\\s*)?|인천\\s*)?\\d{1,2}호선)|(?:[가-힣A-Za-z0-9·-]+(?:선|철도))|GTX(?:-[A-Z])?|KTX|도시철도|지하철|기차역|신분당|서해)";
 const KR_STATION_PREFIX=new RegExp('^'+KR_STATION_LINE_QUALIFIER+'\\s+(?=\\S)','u');
 const KR_STATION_SUFFIX=new RegExp('\\s+'+KR_STATION_LINE_QUALIFIER+'$','u');
 const KR_STATION_PAREN=new RegExp('\\s*\\(\\s*'+KR_STATION_LINE_QUALIFIER+'(?:\\s*\\/\\s*'+KR_STATION_LINE_QUALIFIER+')*\\s*\\)$','u');
-const koreanStationDisplayName=(value,countryId,route=null)=>{
- const raw=String(value??'');if(countryId!=='kr')return raw;
+
  let name=raw.normalize('NFC').trim(),before;
  do{before=name;name=name.replace(KR_STATION_PAREN,'').replace(KR_STATION_SUFFIX,'').replace(KR_STATION_PREFIX,'').replace(/\s+\d+\s*번\s*출구$/u,'').trim()}while(name&&before!==name);
  const mode=route?.mode||route?.kind||route?.category;
