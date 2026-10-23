@@ -13,12 +13,12 @@ const ids=selected||(all?data.services.flatMap(s=>{if(s.access?.passengerCandida
 if(process.argv.includes('--interactive-all')&&(!selected||selected.length>10))throw Error('INTERACTIVE_ALL_REQUIRES_EXPLICIT_SMALL_SERVICE_LIST');
 const candidates=ids.map(id=>{
  const s=maps.services.get('kr-osm-service-'+id),line=maps['passenger-lines'].get(s.passengerLineId),op=maps.operators.get(s.operatorIds[0]);
- return {id:s.id,countryId:'kr',schemaVersion:2,releaseStatus:'candidate',operatorId:op?.id||'unverified',operator:{...op?.names,ja:op?.names.ko||''},line:{...line.names,ja:line.names.ko},lineColor:line.color||'#126499',geometryReady:true,geometryStatus:'ready',...assemble(s,maps),services:[{id:s.id,nameKo:s.names.ko,stops:s.stops.map(c=>maps.stops.get(c.stopId).stationId)}]};
+ return {id:s.id,countryId:'kr',mode:s.kind,schemaVersion:2,releaseStatus:'candidate',operatorId:op?.id||'unverified',operator:{...op?.names,ja:op?.names.ko||''},line:{...line.names,ja:line.names.ko},lineColor:line.color||'#126499',geometryReady:true,geometryStatus:'ready',...assemble(s,maps),services:[{id:s.id,nameKo:s.names.ko,stops:s.stops.map(c=>maps.stops.get(c.stopId).stationId)}]};
 });
 const inputs=['js/app.bundle.js','data/kr/v2/services.json','data/kr/v2/geometry.json'].map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')}));
 const qaBundle=fs.readFileSync(path.join(root,'js/app.bundle.js'),'utf8');
 const hook=`
-globalThis.__KR_BROWSER_QA__={game,go,storage,renderStats,renderGameMap,buildTypingModel,railDataRepository,freeDrive,FreeDrive,RouteEditor,hydrateRailLine,startFreeDrive,renderGameFreeDriveOptions,mapState:()=>gameRail};
+globalThis.__KR_BROWSER_QA__={game,go,storage,renderStats,renderGameMap,buildTypingModel,koreanStationDisplayName,railDataRepository,freeDrive,FreeDrive,RouteEditor,hydrateRailLine,startFreeDrive,renderGameFreeDriveOptions,mapState:()=>gameRail};
 `;
 const server=http.createServer((req,res)=>{
  const relative=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\//,'')||'index.html',file=path.resolve(root,relative);
@@ -50,9 +50,11 @@ const server=http.createServer((req,res)=>{
       if(!qa.game.start(route,{mode:'complete',stationAdvance:'auto',service:route.services[0].id,serviceJourney:journey,destinationStationId:journey.destinationStationId,motion:false,sound:false}))throw Error('START_FAILED');qa.go('game');
       for(let i=0;i<route.stations.length;i++){
        const target=qa.game.targetStation();if(target?.id!==route.stations[i].id)throw Error('WRONG_TARGET:'+i);
-       if(document.querySelector('#prompt-main').textContent!==target.ko)throw Error('WRONG_SIGN:'+i);
+       const label=qa.koreanStationDisplayName(target.ko,route.countryId,route);if(document.querySelector('#prompt-main').textContent!==label||document.querySelector('#prompt-ko').textContent!==label)throw Error('WRONG_SIGN:'+i);if(qa.game.typing.targets[0]!==qa.buildTypingModel(label).inputText)throw Error('WRONG_PRIMARY_ANSWER:'+i);
        const input=document.querySelector('#typing-input'),answer=qa.buildTypingModel(target.ko).inputText;if(!answer)throw Error('EMPTY_TYPING_TARGET');
        input.dispatchEvent(new CompositionEvent('compositionstart',{bubbles:true}));
+       // Keep ORIGINAL suffixed source answers here to exercise compatibility.
+       // The primary answer and both station labels must use the presentation name.
        // Hangul composition is fed in incremental NFD units, then committed.
        let value='';for(const unit of answer.normalize('NFD')){value+=unit;input.value=value.normalize('NFC');input.dispatchEvent(new InputEvent('input',{bubbles:true,isComposing:true,inputType:'insertCompositionText'}))}
        input.dispatchEvent(new CompositionEvent('compositionend',{bubbles:true,data:answer}));await Promise.resolve();await Promise.resolve();
@@ -62,7 +64,7 @@ const server=http.createServer((req,res)=>{
       if(result.serviceJourneyId!==route.id||result.destinationStationId!==route.stations.at(-1).id)throw Error('WRONG_RESULT_CONTEXT');
       await qa.renderGameMap(qa.game.mapRoute,qa.game.index,qa.game.mapOptions());
       if(globalThis.__TRT_MAP_DEBUG__?.routeId!==route.id||globalThis.__TRT_MAP_DEBUG__?.trainMarkers!==1)throw Error('MAP_NOT_RENDERED');
-      qa.renderStats();if(!document.querySelector('#records-table').textContent.includes(route.stations.at(-1).ko))throw Error('RECORD_DESTINATION_MISSING');
+      qa.renderStats();if(!document.querySelector('#records-table').textContent.includes(qa.koreanStationDisplayName(route.stations.at(-1).ko,route.countryId,route)))throw Error('RECORD_DESTINATION_MISSING');
       results.push({serviceId:route.id,status:'PASS',stops:route.stations.length,geometryPoints:route.geometry.length});
      }catch(e){results.push({serviceId:route.id,status:'FAIL',error:e.message})}finally{qa.game.onFinish=original}
      await new Promise(resolve=>setTimeout(resolve,0));
