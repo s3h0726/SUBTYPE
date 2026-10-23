@@ -40,7 +40,7 @@ test('published Line 1 picker uses real service names, retains OSM stops and res
  const {koreanResearchChoices,resolveKoreanResearchChoice}=await import(pathToFileURL(path.join(root,'js/korean-research-resolver.js')));
  const merged=integrateKoreanLine1Index(published,preview),index=merged.routes.find(r=>r.sourceRelationId==='8820537');
  assert(index&&index.line1Service);
- const payload=JSON.parse(fs.readFileSync(path.join(root,index.lazySource),'utf8'));
+ const payload=JSON.parse(fs.readFileSync(path.join(root,index.lazySource.split('?')[0]),'utf8'));
  const raw=payload.route||payload,route={...raw,integratedLine1:true,line1Service:index.line1Service};
  const choices=koreanResearchChoices(route);
  assert.equal(choices.length,1);
