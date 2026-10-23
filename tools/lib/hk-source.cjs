@@ -19,4 +19,12 @@ function lightRailStopSequences(rows,{loop=false}={}){
   return column===2?list.reverse():list;
  });
 }
-module.exports={parseCsv,readCsv,lightRailStopSequences};
+function lightRailCsvSequences(rows,{loop=false}={}){
+ const collapse=list=>list.filter((row,i)=>!i||row['Stop ID']!==list[i-1]['Stop ID']);
+ const directions=[...new Set(rows.map(r=>r.Direction))],ordered=d=>rows.filter(r=>r.Direction===d).sort((a,b)=>Number(a.Sequence)-Number(b.Sequence));
+ // The operator publishes circular routes as two consecutive sections meeting
+ // at Tin Wing. These are not opposite passenger directions.
+ if(loop){const sections=directions.map(ordered);return[{direction:'circular',rows:collapse(sections.flat())}]}
+ return directions.map(direction=>({direction,rows:collapse(ordered(direction))}));
+}
+module.exports={parseCsv,readCsv,lightRailStopSequences,lightRailCsvSequences};

@@ -1,24 +1,24 @@
 {
-  "checkedAt": "2026-10-22T13:24:25.277Z",
+  "checkedAt": "2026-10-23T15:29:02.152Z",
   "sourceCheckedAt": "2026-10-22",
-  "remoteMainSha": "fa2b73c67e17614bf576920e900941f3e967fed9",
+  "remoteMainSha": "510d3d9734914d13499de08785ea355e684e9381",
   "cachedRemoteMainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
   "remoteMainAdvanced": true,
   "remoteMainChangesNotIntegrated": true,
   "status": "INCOMPLETE",
   "branch": "feature/hong-kong-railway",
   "mainBaseSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
-  "branchCommitSha": "e2b353bb62dcc346c11a63d1df20f75233d18321",
+  "branchCommitSha": "71f7493ac2aba14d117343cbee17c1ba54486e68",
   "mainSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
   "mainUnchanged": "PASS",
   "japanKoreaDataUnchanged": "PASS",
   "counts": {
     "lineRecords": 25,
-    "stationOrDirectionalStopRecords": 277,
+    "stationOrDirectionalStopRecords": 283,
     "verifiedPhysicalStationTotal": "NOT_VERIFIED",
-    "servicePatterns": 57,
-    "playableServicePatterns": 22,
-    "trackSegments": 508,
+    "servicePatterns": 61,
+    "playableServicePatterns": 42,
+    "trackSegments": 520,
     "mtrCoreLinesRegistered": 9,
     "mtrCoreLinesPlayable": 9,
     "airportExpressPlayable": 2,
@@ -29,25 +29,25 @@
       "720",
       "610P"
     ],
-    "verifiedGeometries": 54,
-    "unverifiedGeometry": 3,
-    "verifiedKoNames": 97,
-    "verifiedStopPatterns": 43,
+    "verifiedGeometries": 59,
+    "unverifiedGeometry": 2,
+    "verifiedKoNames": 165,
+    "verifiedStopPatterns": 44,
     "remainingGeometryRelationIds": [
-      3263757,
       3264047,
-      4088518,
       6582965,
       6582966
     ],
     "officialMtrLineColors": 10,
-    "missingKoNames": 180,
-    "unreviewedKoNames": 180,
+    "officialLightRailColors": 11,
+    "reviewedTransferStations": 8,
+    "missingKoNames": 118,
+    "unreviewedKoNames": 118,
     "brokenCoordinates": 0,
     "duplicateStationIds": 0,
     "duplicatePhysicalStations": "NOT_AUDITED",
     "nonexistentServices": "NOT_VERIFIED",
-    "unverifiedStopPatterns": 14,
+    "unverifiedStopPatterns": 17,
     "logosVerified": 0,
     "logosRequired": 3,
     "brokenLogoAssets": "NOT_AUDITED",
@@ -56,35 +56,84 @@
     "consoleErrors": 0
   },
   "requirements": {
-    "PASS": 66,
-    "INCOMPLETE": 113,
+    "PASS": 74,
+    "INCOMPLETE": 105,
     "NOT_REQUESTED": 1
   },
   "ui": {
-    "checkedAt": "2026-10-22",
-    "status": "PASS_WITH_LIMITED_SCOPE",
+    "checkedAt": "2026-10-24",
+    "status": "PASS_WITH_AUDITED_GAPS",
     "consoleErrors": 0,
-    "consoleScope": "Local preview tab 5. Hong Kong 22 completed directional services and custom, Japanese samples and Korean sample/free drive. Browser-tool selector errors are not app console exceptions.",
+    "consoleScope": "Local preview tab5; observed error logs empty after all HK runs, transfer/custom/mobile and KR/JP samples. Not a worldwide/server audit.",
     "darkMobile": "PASS",
     "viewports": [
       {
-        "width": 390,
-        "height": 844,
-        "light": "PASS",
-        "dark": "PASS",
-        "horizontalOverflow": false,
-        "stationSignBottom": 826,
-        "officialStationCodeVisible": "PRE",
-        "longKoreanName": "프린스에드워드"
-      },
-      {
-        "width": 1280,
-        "height": 900,
-        "scope": "Phase 2 retained; Phase 3 desktop default viewport also used"
+        "checkedAt": "2026-10-24",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "status": "PASS",
+        "dark": "images/mobile-dark-transfer.jpg",
+        "light": "images/mobile-light-transfer.jpg",
+        "beforeFix": "HUD at y70 overlapped transfer tabs y4–97 and header y107–161; fixed to y166.",
+        "after": {
+          "boxes": [
+            {
+              "bottom": 97.33333587646484,
+              "height": 93.33333587646484,
+              "left": 6,
+              "right": 384,
+              "selector": "#game-free-drive-tabs",
+              "top": 4,
+              "width": 378,
+              "x": 6,
+              "y": 4
+            },
+            {
+              "bottom": 161,
+              "height": 54,
+              "left": 7,
+              "right": 383,
+              "selector": ".game-top",
+              "top": 107,
+              "width": 376,
+              "x": 7,
+              "y": 107
+            },
+            {
+              "bottom": 220,
+              "height": 54,
+              "left": 12,
+              "right": 378,
+              "selector": ".hud-strip",
+              "top": 166,
+              "width": 366,
+              "x": 12,
+              "y": 166
+            },
+            {
+              "bottom": 826,
+              "height": 362.125,
+              "left": 12,
+              "right": 378,
+              "selector": "#station-sign",
+              "top": 463.875,
+              "width": 366,
+              "x": 12,
+              "y": 463.875
+            }
+          ],
+          "scrollWidth": 390,
+          "theme": "light",
+          "width": 390
+        }
       }
     ],
-    "browserEvidence": "reports/hong-kong/phase3/browser-runs.json",
-    "hongKongCompleted": 22,
+    "browserEvidence": "reports/hong-kong/phase4/browser-runs.json",
+    "hongKongCompleted": 42,
+    "newLightRailCompleted": 20,
+    "retainedMtrCompleted": 22,
     "advanceModes": [
       "AUTO",
       "SPACE"
@@ -93,412 +142,325 @@
       "normal",
       "memory"
     ],
-    "reducedMotion": true,
-    "fullAnimationPhase3": "NOT_TESTED",
-    "nativeOsIme": "NOT_TESTED",
-    "automatedIme": {
-      "fixtures": 10,
-      "status": "PASS"
+    "reducedMotion": false,
+    "fullAnimation": "Executed; AUTO target remains FAIL due measured901.3ms outlier",
+    "transfer": {
+      "status": "PASS",
+      "scenarioCount": 5,
+      "tabChanges": 15,
+      "scope": "Five reviewed HK interchange pairs, TAB A→B→A→B then type to terminal; no-transfer TAB invariant also verified",
+      "evidence": "reports/hong-kong/phase4/browser-transfers.json",
+      "otherHkInterchanges": "NOT_TESTED",
+      "krJpBrowserTransfers": "NOT_TESTED (automated graph regression covered)"
     },
     "custom": {
       "status": "PASS",
-      "newRoute": "PRE → SSP → CSW",
-      "save": true,
-      "reload": true,
-      "replay": true,
-      "completion": true,
-      "phase1SavedRouteReplay": "PASS",
-      "phase2SavedRouteReplay": "PASS",
-      "coordinateRebase": "PASS"
+      "scope": "Existing Phase3 actual-stop route re-saved, browser reload, replay and completion; preserved all3 existing saved routes",
+      "evidence": "reports/hong-kong/phase4/browser-custom.json"
     },
-    "japanKorea": {
-      "dataUnchanged": "PASS",
-      "automated": "PASS",
-      "korea": "Seongsu → Sinseol-dong 5 stops complete; free drive City Hall → Euljiro 1-ga → Euljiro 3-ga",
-      "japan": "Nishi Kyushu Shinkansen 5 stops complete; Narita Express 5 Shinjuku → Narita Airport 6 stops complete",
-      "actualTransferExecution": "NOT_TESTED",
-      "qualification": "Existing Japanese NEX setup showed a grouped service caption differing from the selected journey and its result reports some distance estimates. These Japanese data/selection/distance implementations were not modified in Phase 3; do not claim a full Japanese geometry/UX audit."
-    },
-    "supabase": "NOT_TESTED",
-    "legacyUiFailureCount": 4,
-    "legacyUiEvidence": "reports/hong-kong/phase3/legacy-ui-investigation.json",
-    "screenshots": [
-      "output/hk/phase3-mobile-light-code.jpg",
-      "output/hk/phase3-mobile-dark-code.jpg",
-      "output/hk/phase3-custom-result.jpg",
-      "output/hk/phase3-jp-shinkansen-result.jpg",
-      "output/hk/phase3-jp-express-result.jpg",
-      "output/hk/phase3-kr-branch-result.jpg",
-      "output/hk/phase3-kr-free-drive.jpg"
+    "regressions": [
+      {
+        "name": "JP 니시큐슈 신칸센",
+        "status": "PASS"
+      },
+      {
+        "name": "JP 나리타 익스프레스 신주쿠발",
+        "status": "PASS"
+      },
+      {
+        "name": "KR 성수지선",
+        "status": "PASS"
+      }
     ],
-    "settingsRestored": true,
-    "notes": "Browser fill is automated input and not human typing speed. Results verify completion, not typing performance. Native IME and real transfer execution remain separate NOT_TESTED items."
+    "koreaFreeDrive": {
+      "status": "PASS_FOR_MOVEMENT",
+      "evidence": "reports/hong-kong/phase4/browser-kr-free-drive.json",
+      "statistics": "Not asserted; one mismatch remains displayed after restart; no claim of zero-error free-drive statistics."
+    },
+    "nativeWindowsIme": "NOT_TESTED",
+    "mobileNativeKeyboard": "NOT_TESTED",
+    "supabase": "NOT_TESTED",
+    "notTestedReasons": {
+      "nativeWindowsIme": "Only DOM browser input available; native OS computer APIs disabled.",
+      "mobileNativeKeyboard": "390x844 responsive browser viewport is not an actual mobile keyboard.",
+      "supabase": "No configured Supabase URL/anon key or provided test account."
+    },
+    "settingsRestored": {
+      "theme": "dark",
+      "viewport": "reset",
+      "reducedMotion": false
+    }
   },
   "missingNames": [
     {
-      "id": "hk-lr-100",
-      "nameZhHant": "兆康",
-      "nameEn": "Siu Hong"
+      "id": "hk-tram-stop-984409308",
+      "nameZhHant": "筲箕灣總站",
+      "nameEn": "Shau Kei Wan Terminus"
     },
     {
-      "id": "hk-lr-120",
-      "nameZhHant": "青松",
-      "nameEn": "Ching Chung"
+      "id": "hk-tram-stop-3005247187",
+      "nameZhHant": "柴灣道",
+      "nameEn": "Chai Wan Road"
     },
     {
-      "id": "hk-lr-130",
-      "nameZhHant": "建生",
-      "nameEn": "Kin Sang"
+      "id": "hk-tram-stop-3005247196",
+      "nameZhHant": "新成街",
+      "nameEn": "Sun Sing Street"
     },
     {
-      "id": "hk-lr-140",
-      "nameZhHant": "田景",
-      "nameEn": "Tin King"
+      "id": "hk-tram-stop-2978559566",
+      "nameZhHant": "海富街",
+      "nameEn": "Hoi Foo Street"
     },
     {
-      "id": "hk-lr-150",
-      "nameZhHant": "良景",
-      "nameEn": "Leung King"
+      "id": "hk-tram-stop-3005247192",
+      "nameZhHant": "聖十字徑",
+      "nameEn": "Holy Cross Path"
     },
     {
-      "id": "hk-lr-160",
-      "nameZhHant": "新圍",
-      "nameEn": "San Wai"
+      "id": "hk-tram-stop-3005247198",
+      "nameZhHant": "太康街",
+      "nameEn": "Tai Hong Street"
     },
     {
-      "id": "hk-lr-170",
-      "nameZhHant": "石排",
-      "nameEn": "Shek Pai"
+      "id": "hk-tram-stop-3005247200",
+      "nameZhHant": "太古城道",
+      "nameEn": "Tai Koo Shing Road"
     },
     {
-      "id": "hk-lr-200",
-      "nameZhHant": "鳴琴",
-      "nameEn": "Ming Kum"
+      "id": "hk-tram-stop-3005247193",
+      "nameZhHant": "康山",
+      "nameEn": "Kornhill"
     },
     {
-      "id": "hk-lr-060",
-      "nameZhHant": "建安",
-      "nameEn": "Kin On"
+      "id": "hk-tram-stop-3005247195",
+      "nameZhHant": "船塢里",
+      "nameEn": "Shipyard Lane"
     },
     {
-      "id": "hk-lr-295",
-      "nameZhHant": "屯門",
-      "nameEn": "Tuen Mun"
+      "id": "hk-tram-stop-3112415528",
+      "nameZhHant": "柏架山道",
+      "nameEn": "Mount Parker Road"
     },
     {
-      "id": "hk-lr-280",
-      "nameZhHant": "市中心",
-      "nameEn": "Town Centre"
+      "id": "hk-tram-stop-3005247189",
+      "nameZhHant": "芬尼街",
+      "nameEn": "Finnie Street"
     },
     {
-      "id": "hk-lr-270",
-      "nameZhHant": "安定",
-      "nameEn": "On Ting"
+      "id": "hk-tram-stop-2941505389",
+      "nameZhHant": "渣華道",
+      "nameEn": "Java Road"
     },
     {
-      "id": "hk-lr-265",
-      "nameZhHant": "兆麟",
-      "nameEn": "Siu Lun"
+      "id": "hk-tram-stop-3005247190",
+      "nameZhHant": "健康東街",
+      "nameEn": "Healthy Street East"
     },
     {
-      "id": "hk-lr-920",
-      "nameZhHant": "三聖",
-      "nameEn": "Sam Shing"
+      "id": "hk-tram-stop-2941505617",
+      "nameZhHant": "健康西街",
+      "nameEn": "Healthy Street West"
     },
     {
-      "id": "hk-lr-190",
-      "nameZhHant": "山景 (南)",
-      "nameEn": "Shan King (South)"
+      "id": "hk-tram-stop-3112418733",
+      "nameZhHant": "電照街",
+      "nameEn": "Tin Chiu Street"
     },
     {
-      "id": "hk-lr-180",
-      "nameZhHant": "山景 (北)",
-      "nameEn": "Shan King (North)"
+      "id": "hk-tram-stop-3112418731",
+      "nameZhHant": "書局街",
+      "nameEn": "Shu Kuk Street"
     },
     {
-      "id": "hk-lr-110",
-      "nameZhHant": "麒麟",
-      "nameEn": "Kei Lun"
+      "id": "hk-tram-stop-3112418729",
+      "nameZhHant": "北角道",
+      "nameEn": "North Point Road"
     },
     {
-      "id": "hk-lr-001",
-      "nameZhHant": "屯門碼頭",
-      "nameEn": "Tuen Mun Ferry Pier"
+      "id": "hk-tram-stop-2099848101",
+      "nameZhHant": "炮台山",
+      "nameEn": "Fortress Hill"
     },
     {
-      "id": "hk-lr-240",
-      "nameZhHant": "兆禧",
-      "nameEn": "Siu Hei"
+      "id": "hk-tram-stop-2099848104",
+      "nameZhHant": "木星街",
+      "nameEn": "Jupiter Street"
     },
     {
-      "id": "hk-lr-250",
-      "nameZhHant": "海皇路",
-      "nameEn": "Hoi Wong Road"
+      "id": "hk-tram-stop-1898291227",
+      "nameZhHant": "琉璃街",
+      "nameEn": "Lau Li Street"
     },
     {
-      "id": "hk-lr-260",
-      "nameZhHant": "豐景園",
-      "nameEn": "Goodview Garden"
+      "id": "hk-tram-stop-1898507944",
+      "nameZhHant": "留仙街",
+      "nameEn": "Lau Sin Street"
     },
     {
-      "id": "hk-lr-070",
-      "nameZhHant": "河田",
-      "nameEn": "Ho Tin"
+      "id": "hk-tram-stop-1898507959",
+      "nameZhHant": "維多利亞公園",
+      "nameEn": "Victoria Park"
     },
     {
-      "id": "hk-lr-075",
-      "nameZhHant": "蔡意橋",
-      "nameEn": "Choy Yee Bridge"
+      "id": "hk-tram-stop-1898507951",
+      "nameZhHant": "信德街",
+      "nameEn": "Shelter Street"
     },
     {
-      "id": "hk-lr-230",
-      "nameZhHant": "銀圍",
-      "nameEn": "Ngan Wai"
+      "id": "hk-tram-stop-1898508075",
+      "nameZhHant": "邊寧頓街",
+      "nameEn": "Pennington Street"
     },
     {
-      "id": "hk-lr-220",
-      "nameZhHant": "大興 (南)",
-      "nameEn": "Tai Hing (South)"
+      "id": "hk-tram-stop-2300434263",
+      "nameZhHant": "百德新街",
+      "nameEn": "Paterson Street"
     },
     {
-      "id": "hk-lr-212",
-      "nameZhHant": "大興 (北)",
-      "nameEn": "Tai Hing (North)"
+      "id": "hk-tram-stop-2300434366",
+      "nameZhHant": "堅拿道西",
+      "nameEn": "Canal Road West"
     },
     {
-      "id": "hk-lr-010",
-      "nameZhHant": "美樂",
-      "nameEn": "Melody Garden"
+      "id": "hk-tram-stop-3112114536",
+      "nameZhHant": "杜老誌道",
+      "nameEn": "Tonnochy Road"
     },
     {
-      "id": "hk-lr-015",
-      "nameZhHant": "蝴蝶",
-      "nameEn": "Butterfly"
+      "id": "hk-tram-stop-2498627211",
+      "nameZhHant": "巴路士街",
+      "nameEn": "Burrows Street"
     },
     {
-      "id": "hk-lr-020",
-      "nameZhHant": "輕鐵車廠",
-      "nameEn": "Light Rail Depot"
+      "id": "hk-tram-stop-2498627280",
+      "nameZhHant": "柯布連道",
+      "nameEn": "O'Brien Road"
     },
     {
-      "id": "hk-lr-030",
-      "nameZhHant": "龍門",
-      "nameEn": "Lung Mun"
+      "id": "hk-tram-stop-2498627289",
+      "nameZhHant": "汕頭街",
+      "nameEn": "Swatow Street"
     },
     {
-      "id": "hk-lr-040",
-      "nameZhHant": "青山村",
-      "nameEn": "Tsing Shan Tsuen"
+      "id": "hk-tram-stop-2498627254",
+      "nameZhHant": "機利臣街",
+      "nameEn": "Gresson Street"
     },
     {
-      "id": "hk-lr-050",
-      "nameZhHant": "青雲",
-      "nameEn": "Tsing Wun"
+      "id": "hk-tram-stop-2495743723",
+      "nameZhHant": "軍器廠街",
+      "nameEn": "Arsenal Street"
     },
     {
-      "id": "hk-lr-080",
-      "nameZhHant": "澤豐",
-      "nameEn": "Affluence"
+      "id": "hk-tram-stop-601280766",
+      "nameZhHant": "金鐘港鐵站",
+      "nameEn": "Admiralty MTR Station"
     },
     {
-      "id": "hk-lr-090",
-      "nameZhHant": "屯門醫院",
-      "nameEn": "Tuen Mun Hospital"
+      "id": "hk-tram-stop-2496629587",
+      "nameZhHant": "紅棉道",
+      "nameEn": "Cotton Tree Drive"
     },
     {
-      "id": "hk-lr-350",
-      "nameZhHant": "藍地",
-      "nameEn": "Lam Tei"
+      "id": "hk-tram-stop-2496629550",
+      "nameZhHant": "銀行街",
+      "nameEn": "Bank Street"
     },
     {
-      "id": "hk-lr-360",
-      "nameZhHant": "泥圍",
-      "nameEn": "Nai Wai"
+      "id": "hk-tram-stop-3112114533",
+      "nameZhHant": "畢打街",
+      "nameEn": "Pedder Street"
     },
     {
-      "id": "hk-lr-370",
-      "nameZhHant": "鍾屋村",
-      "nameEn": "Chung Uk Tsuen"
+      "id": "hk-tram-stop-3112114535",
+      "nameZhHant": "砵甸乍街",
+      "nameEn": "Pottinger Street"
     },
     {
-      "id": "hk-lr-380",
-      "nameZhHant": "洪水橋",
-      "nameEn": "Hung Shui Kiu"
+      "id": "hk-tram-stop-3112111426",
+      "nameZhHant": "機利文街",
+      "nameEn": "Gilman Street"
     },
     {
-      "id": "hk-lr-390",
-      "nameZhHant": "塘坊村",
-      "nameEn": "Tong Fong Tsuen"
+      "id": "hk-tram-stop-3112114531",
+      "nameZhHant": "文華里",
+      "nameEn": "Man Wa Lane"
     },
     {
-      "id": "hk-lr-400",
-      "nameZhHant": "屏山",
-      "nameEn": "Ping Shan"
+      "id": "hk-tram-stop-24358851",
+      "nameZhHant": "上環 (西港城) 總站",
+      "nameEn": "Western Market Terminus"
     },
     {
-      "id": "hk-lr-560",
-      "nameZhHant": "水邊圍",
-      "nameEn": "Shui Pin Wai"
+      "id": "hk-tram-stop-2559285914",
+      "nameZhHant": "禧利街",
+      "nameEn": "Hillier Street"
     },
     {
-      "id": "hk-lr-570",
-      "nameZhHant": "豐年路",
-      "nameEn": "Fung Nin Road"
+      "id": "hk-tram-stop-3112111427",
+      "nameZhHant": "機利文街",
+      "nameEn": "Gilman Street"
     },
     {
-      "id": "hk-lr-580",
-      "nameZhHant": "康樂路",
-      "nameEn": "Hong Lok Road"
+      "id": "hk-tram-stop-3112114529",
+      "nameZhHant": "租庇利街",
+      "nameEn": "Jubilee Street"
     },
     {
-      "id": "hk-lr-590",
-      "nameZhHant": "大棠路",
-      "nameEn": "Tai Tong Road"
+      "id": "hk-tram-stop-3112114534",
+      "nameZhHant": "畢打街",
+      "nameEn": "Pedder Street"
     },
     {
-      "id": "hk-lr-600",
-      "nameZhHant": "元朗",
-      "nameEn": "Yuen Long"
+      "id": "hk-tram-stop-3112111428",
+      "nameZhHant": "雪廠街",
+      "nameEn": "Ice House Street"
     },
     {
-      "id": "hk-lr-340",
-      "nameZhHant": "鳳地",
-      "nameEn": "Fung Tei"
+      "id": "hk-tram-stop-6233384589",
+      "nameZhHant": "",
+      "nameEn": ""
     },
     {
-      "id": "hk-lr-330",
-      "nameZhHant": "景峰",
-      "nameEn": "Prime View"
+      "id": "hk-tram-stop-2496629601",
+      "nameZhHant": "美利道",
+      "nameEn": "Murray Road"
     },
     {
-      "id": "hk-lr-320",
-      "nameZhHant": "新墟",
-      "nameEn": "San Hui"
+      "id": "hk-tram-stop-2496629534",
+      "nameZhHant": "金鐘港鐵站",
+      "nameEn": "Admiralty MTR Station"
     },
     {
-      "id": "hk-lr-310",
-      "nameZhHant": "何福堂",
-      "nameEn": "Hoh Fuk Tong"
+      "id": "hk-tram-stop-2495743724",
+      "nameZhHant": "軍器廠街",
+      "nameEn": "Arsenal Street"
     },
     {
-      "id": "hk-lr-300",
-      "nameZhHant": "杯渡",
-      "nameEn": "Pui To"
+      "id": "hk-tram-stop-2498627220",
+      "nameZhHant": "分域街",
+      "nameEn": "Fenwick Street"
     },
     {
-      "id": "hk-lr-430",
-      "nameZhHant": "天水圍",
-      "nameEn": "Tin Shui Wai"
+      "id": "hk-tram-stop-2498627259",
+      "nameZhHant": "盧押道",
+      "nameEn": "Luard Road"
     },
     {
-      "id": "hk-lr-435",
-      "nameZhHant": "天慈",
-      "nameEn": "Tin Tsz"
+      "id": "hk-tram-stop-2498627270",
+      "nameZhHant": "柯布連道",
+      "nameEn": "O'Brien Road"
     },
     {
-      "id": "hk-lr-450",
-      "nameZhHant": "天湖",
-      "nameEn": "Tin Wu"
+      "id": "hk-tram-stop-2498627238",
+      "nameZhHant": "菲林明道",
+      "nameEn": "Fleming Road"
     },
     {
-      "id": "hk-lr-455",
-      "nameZhHant": "銀座",
-      "nameEn": "Ginza"
-    },
-    {
-      "id": "hk-lr-500",
-      "nameZhHant": "天榮",
-      "nameEn": "Tin Wing"
-    },
-    {
-      "id": "hk-lr-510",
-      "nameZhHant": "天悅",
-      "nameEn": "Tin Yuet"
-    },
-    {
-      "id": "hk-lr-520",
-      "nameZhHant": "天秀",
-      "nameEn": "Tin Sau"
-    },
-    {
-      "id": "hk-lr-530",
-      "nameZhHant": "濕地公園",
-      "nameEn": "Wetland Park"
-    },
-    {
-      "id": "hk-lr-540",
-      "nameZhHant": "天恒",
-      "nameEn": "Tin Heng"
-    },
-    {
-      "id": "hk-lr-550",
-      "nameZhHant": "天逸",
-      "nameEn": "Tin Yat"
-    },
-    {
-      "id": "hk-lr-480",
-      "nameZhHant": "天富",
-      "nameEn": "Tin Fu"
-    },
-    {
-      "id": "hk-lr-468",
-      "nameZhHant": "頌富",
-      "nameEn": "Chung Fu"
-    },
-    {
-      "id": "hk-lr-460",
-      "nameZhHant": "天瑞",
-      "nameEn": "Tin Shui"
-    },
-    {
-      "id": "hk-lr-448",
-      "nameZhHant": "樂湖",
-      "nameEn": "Locwood"
-    },
-    {
-      "id": "hk-lr-445",
-      "nameZhHant": "天耀",
-      "nameEn": "Tin Yiu"
-    },
-    {
-      "id": "hk-lr-490",
-      "nameZhHant": "翠湖",
-      "nameEn": "Chestwood"
-    },
-    {
-      "id": "hk-lr-425",
-      "nameZhHant": "坑尾村",
-      "nameEn": "Hang Mei Tsuen"
-    },
-    {
-      "id": "hk-lr-275",
-      "nameZhHant": "友愛",
-      "nameEn": "Yau Oi"
-    },
-    {
-      "id": "hk-tram-stop-292205443",
-      "nameZhHant": "跑馬地總站",
-      "nameEn": "Happy Valley Terminus"
-    },
-    {
-      "id": "hk-tram-stop-3112111425",
-      "nameZhHant": "香港墳場",
-      "nameEn": "Hong Kong Cemetery"
-    },
-    {
-      "id": "hk-tram-stop-982743784",
-      "nameZhHant": "皇后大道東",
-      "nameEn": "Queen's Road East"
-    },
-    {
-      "id": "hk-tram-stop-3112114532",
-      "nameZhHant": "摩理臣山道",
-      "nameEn": "Morrison Hill Road"
-    },
-    {
-      "id": "hk-tram-stop-2007744664",
-      "nameZhHant": "天樂里",
-      "nameEn": "Tin Lok Lane"
+      "id": "hk-tram-stop-2300434310",
+      "nameZhHant": "杜老誌道",
+      "nameEn": "Tonnochy Road"
     },
     {
       "id": "hk-tram-stop-2300434361",
@@ -626,129 +588,54 @@
       "nameEn": "Chai Wan Road"
     },
     {
-      "id": "hk-tram-stop-984409308",
-      "nameZhHant": "筲箕灣總站",
-      "nameEn": "Shau Kei Wan Terminus"
+      "id": "hk-tram-stop-292205443",
+      "nameZhHant": "跑馬地總站",
+      "nameEn": "Happy Valley Terminus"
+    },
+    {
+      "id": "hk-tram-stop-3112111425",
+      "nameZhHant": "香港墳場",
+      "nameEn": "Hong Kong Cemetery"
+    },
+    {
+      "id": "hk-tram-stop-982743784",
+      "nameZhHant": "皇后大道東",
+      "nameEn": "Queen's Road East"
+    },
+    {
+      "id": "hk-tram-stop-3112114532",
+      "nameZhHant": "摩利臣山道",
+      "nameEn": "Morrison Hill Road"
+    },
+    {
+      "id": "hk-tram-stop-2007744664",
+      "nameZhHant": "天樂里",
+      "nameEn": "Tin Lok Lane"
+    },
+    {
+      "id": "hk-tram-stop-9710475033",
+      "nameZhHant": "",
+      "nameEn": ""
+    },
+    {
+      "id": "hk-tram-stop-2957737064",
+      "nameZhHant": "禮頓道",
+      "nameEn": "Leighton Road"
+    },
+    {
+      "id": "hk-tram-stop-5470724238",
+      "nameZhHant": "樂活道",
+      "nameEn": "Broadwood Road"
+    },
+    {
+      "id": "hk-tram-stop-3112114538",
+      "nameZhHant": "黃泥涌道",
+      "nameEn": "Wong Nai Chung Road"
     },
     {
       "id": "hk-tram-stop-296293116",
       "nameZhHant": "北角總站",
       "nameEn": "North Point Terminus"
-    },
-    {
-      "id": "hk-tram-stop-3112418729",
-      "nameZhHant": "北角道",
-      "nameEn": "North Point Road"
-    },
-    {
-      "id": "hk-tram-stop-2099848101",
-      "nameZhHant": "炮台山",
-      "nameEn": "Fortress Hill"
-    },
-    {
-      "id": "hk-tram-stop-2099848104",
-      "nameZhHant": "木星街",
-      "nameEn": "Jupiter Street"
-    },
-    {
-      "id": "hk-tram-stop-1898291227",
-      "nameZhHant": "琉璃街",
-      "nameEn": "Lau Li Street"
-    },
-    {
-      "id": "hk-tram-stop-1898507944",
-      "nameZhHant": "留仙街",
-      "nameEn": "Lau Sin Street"
-    },
-    {
-      "id": "hk-tram-stop-1898507959",
-      "nameZhHant": "維多利亞公園",
-      "nameEn": "Victoria Park"
-    },
-    {
-      "id": "hk-tram-stop-1898507951",
-      "nameZhHant": "信德街",
-      "nameEn": "Shelter Street"
-    },
-    {
-      "id": "hk-tram-stop-1898508075",
-      "nameZhHant": "邊寧頓街",
-      "nameEn": "Pennington Street"
-    },
-    {
-      "id": "hk-tram-stop-2300434263",
-      "nameZhHant": "百德新街",
-      "nameEn": "Paterson Street"
-    },
-    {
-      "id": "hk-tram-stop-2300434366",
-      "nameZhHant": "堅拿道西",
-      "nameEn": "Canal Road West"
-    },
-    {
-      "id": "hk-tram-stop-3112114536",
-      "nameZhHant": "杜老誌道",
-      "nameEn": "Tonnochy Road"
-    },
-    {
-      "id": "hk-tram-stop-2498627211",
-      "nameZhHant": "巴路士街",
-      "nameEn": "Burrows Street"
-    },
-    {
-      "id": "hk-tram-stop-2498627280",
-      "nameZhHant": "柯布連道",
-      "nameEn": "O'Brien Road"
-    },
-    {
-      "id": "hk-tram-stop-2498627289",
-      "nameZhHant": "汕頭街",
-      "nameEn": "Swatow Street"
-    },
-    {
-      "id": "hk-tram-stop-2498627254",
-      "nameZhHant": "機利臣街",
-      "nameEn": "Gresson Street"
-    },
-    {
-      "id": "hk-tram-stop-2495743723",
-      "nameZhHant": "軍器廠街",
-      "nameEn": "Arsenal Street"
-    },
-    {
-      "id": "hk-tram-stop-601280766",
-      "nameZhHant": "金鐘港鐵站",
-      "nameEn": "Admiralty MTR Station"
-    },
-    {
-      "id": "hk-tram-stop-2496629587",
-      "nameZhHant": "紅棉道",
-      "nameEn": "Cotton Tree Drive"
-    },
-    {
-      "id": "hk-tram-stop-2496629550",
-      "nameZhHant": "銀行街",
-      "nameEn": "Bank Street"
-    },
-    {
-      "id": "hk-tram-stop-3112114533",
-      "nameZhHant": "畢打街",
-      "nameEn": "Pedder Street"
-    },
-    {
-      "id": "hk-tram-stop-3112114535",
-      "nameZhHant": "砵典乍街",
-      "nameEn": "Pottinger Street"
-    },
-    {
-      "id": "hk-tram-stop-3112111426",
-      "nameZhHant": "機利文街",
-      "nameEn": "Gilman Street"
-    },
-    {
-      "id": "hk-tram-stop-3112114531",
-      "nameZhHant": "文華里",
-      "nameEn": "Man Wa Lane"
     },
     {
       "id": "hk-tram-stop-3112114537",
@@ -792,13 +679,8 @@
     },
     {
       "id": "hk-tram-stop-293661658",
-      "nameZhHant": "石塘咀總站‎",
+      "nameZhHant": "石塘咀總站",
       "nameEn": "Shek Tong Tsui Terminus"
-    },
-    {
-      "id": "hk-tram-stop-293572259",
-      "nameZhHant": "銅鑼灣總站",
-      "nameEn": "Causeway Bay Terminus"
     },
     {
       "id": "hk-tram-stop-2494747896",
@@ -831,109 +713,14 @@
       "nameEn": "Macau Ferry Terminal"
     },
     {
-      "id": "hk-tram-stop-2559285914",
-      "nameZhHant": "禧利街",
-      "nameEn": "Hillier Street"
+      "id": "hk-tram-stop-3112415527",
+      "nameZhHant": "春秧街",
+      "nameEn": "Chun Yeung Street"
     },
     {
-      "id": "hk-tram-stop-3112111427",
-      "nameZhHant": "機利文街",
-      "nameEn": "Gilman Street"
-    },
-    {
-      "id": "hk-tram-stop-3112114529",
-      "nameZhHant": "租庇利街",
-      "nameEn": "Jubilee Street"
-    },
-    {
-      "id": "hk-tram-stop-3112114534",
-      "nameZhHant": "畢打街",
-      "nameEn": "Pedder Street"
-    },
-    {
-      "id": "hk-tram-stop-3112111428",
-      "nameZhHant": "雪廠街",
-      "nameEn": "Ice House Street"
-    },
-    {
-      "id": "hk-tram-stop-6233384589",
-      "nameZhHant": "",
-      "nameEn": ""
-    },
-    {
-      "id": "hk-tram-stop-2496629601",
-      "nameZhHant": "美利道",
-      "nameEn": "Murray Road"
-    },
-    {
-      "id": "hk-tram-stop-2496629534",
-      "nameZhHant": "金鐘港鐵站",
-      "nameEn": "Admiralty MTR Station"
-    },
-    {
-      "id": "hk-tram-stop-2495743724",
-      "nameZhHant": "軍器廠街",
-      "nameEn": "Arsenal Street"
-    },
-    {
-      "id": "hk-tram-stop-2498627220",
-      "nameZhHant": "分域街",
-      "nameEn": "Fenwick Street"
-    },
-    {
-      "id": "hk-tram-stop-2498627259",
-      "nameZhHant": "盧押道",
-      "nameEn": "Luard Road"
-    },
-    {
-      "id": "hk-tram-stop-2498627270",
-      "nameZhHant": "柯布連道",
-      "nameEn": "O'Brien Road"
-    },
-    {
-      "id": "hk-tram-stop-2498627238",
-      "nameZhHant": "菲林明道",
-      "nameEn": "Fleming Road"
-    },
-    {
-      "id": "hk-tram-stop-2300434310",
-      "nameZhHant": "杜老誌道",
-      "nameEn": "Tonnochy Road"
-    },
-    {
-      "id": "hk-tram-stop-2978939692",
-      "nameZhHant": "跑馬地總站",
-      "nameEn": "Happy Valley Terminus"
-    },
-    {
-      "id": "hk-tram-stop-2156469180",
-      "nameZhHant": "山道",
-      "nameEn": "Hill Road"
-    },
-    {
-      "id": "hk-tram-stop-2156469182",
-      "nameZhHant": "皇后大道西‎",
-      "nameEn": "Queen's Road West"
-    },
-    {
-      "id": "hk-tram-stop-1923609360",
-      "nameZhHant": "堅彌地城海旁",
-      "nameEn": "Kennedy Town Praya"
-    },
-    {
-      "id": "hk-tram-stop-1923609329",
-      "nameZhHant": "山市街",
-      "nameEn": "Sands Street"
-    },
-    {
-      "id": "hk-tram-stop-1923609298",
-      "nameZhHant": "士美菲路",
-      "nameEn": "Smithfield"
-    },
-    {
-      "id": "hk-tram-stop-1923609288",
-      "nameZhHant": "爹核士街",
-      "nameEn": "Davis Street"
+      "id": "hk-tram-stop-293572259",
+      "nameZhHant": "銅鑼灣總站",
+      "nameEn": "Causeway Bay Terminus"
     },
     {
       "id": "hk-tram-stop-1923609213",
@@ -952,7 +739,7 @@
     },
     {
       "id": "hk-tram-stop-2156469183",
-      "nameZhHant": "皇后大道西‎",
+      "nameZhHant": "皇后大道西",
       "nameEn": "Queen's Road West"
     },
     {
@@ -961,79 +748,39 @@
       "nameEn": "Hill Road"
     },
     {
-      "id": "hk-tram-stop-3005247187",
-      "nameZhHant": "柴灣道",
-      "nameEn": "Chai Wan Road"
+      "id": "hk-tram-stop-2978939692",
+      "nameZhHant": "跑馬地總站",
+      "nameEn": "Happy Valley Terminus"
     },
     {
-      "id": "hk-tram-stop-3005247196",
-      "nameZhHant": "新成街",
-      "nameEn": "Sun Sing Street"
+      "id": "hk-tram-stop-2156469180",
+      "nameZhHant": "山道",
+      "nameEn": "Hill Road"
     },
     {
-      "id": "hk-tram-stop-2978559566",
-      "nameZhHant": "海富街",
-      "nameEn": "Hoi Foo Street"
+      "id": "hk-tram-stop-2156469182",
+      "nameZhHant": "皇后大道西",
+      "nameEn": "Queen's Road West"
     },
     {
-      "id": "hk-tram-stop-3005247192",
-      "nameZhHant": "聖十字徑",
-      "nameEn": "Holy Cross Path"
+      "id": "hk-tram-stop-1923609360",
+      "nameZhHant": "堅尼地城海傍",
+      "nameEn": "Kennedy Town Praya"
     },
     {
-      "id": "hk-tram-stop-3005247198",
-      "nameZhHant": "太康街",
-      "nameEn": "Tai Hong Street"
+      "id": "hk-tram-stop-1923609329",
+      "nameZhHant": "山市街",
+      "nameEn": "Sands Street"
     },
     {
-      "id": "hk-tram-stop-3005247200",
-      "nameZhHant": "太古城道",
-      "nameEn": "Tai Koo Shing Road"
+      "id": "hk-tram-stop-1923609298",
+      "nameZhHant": "士美菲路",
+      "nameEn": "Smithfield"
     },
     {
-      "id": "hk-tram-stop-3005247193",
-      "nameZhHant": "康山",
-      "nameEn": "Kornhill"
-    },
-    {
-      "id": "hk-tram-stop-3005247195",
-      "nameZhHant": "船塢里",
-      "nameEn": "Shipyard Lane"
-    },
-    {
-      "id": "hk-tram-stop-3112415528",
-      "nameZhHant": "柏架山道",
-      "nameEn": "Mount Parker Road"
-    },
-    {
-      "id": "hk-tram-stop-3005247189",
-      "nameZhHant": "芬尼街",
-      "nameEn": "Finnie Street"
-    },
-    {
-      "id": "hk-tram-stop-2941505389",
-      "nameZhHant": "渣華道",
-      "nameEn": "Java Road"
-    },
-    {
-      "id": "hk-tram-stop-3005247190",
-      "nameZhHant": "健康東街",
-      "nameEn": "Healthy Street East"
-    },
-    {
-      "id": "hk-tram-stop-2941505617",
-      "nameZhHant": "健康西街",
-      "nameEn": "Healthy Street West"
-    },
-    {
-      "id": "hk-tram-stop-3112418733",
-      "nameZhHant": "電照街",
-      "nameEn": "Tin Chiu Street"
-    },
-    {
-      "id": "hk-tram-stop-3112418731",
-      "nameZhHant": "書局街",
-      "nameEn": "Shu Kuk Street"
+      "id": "hk-tram-stop-1923609288",
+      "nameZhHant": "爹核士街",
+      "nameEn": "Davis Street"
     }
   ],
   "missingCoordinates": [],
@@ -1065,241 +812,6 @@
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
     },
     {
-      "id": "hk-light-rail-505-osm-3515354",
-      "line": {
-        "ja": "輕鐵 505",
-        "en": "Light Rail 505",
-        "ko": "경전철 505"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-505-osm-6481282",
-      "line": {
-        "ja": "輕鐵 505",
-        "en": "Light Rail 505",
-        "ko": "경전철 505"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-507-osm-3679916",
-      "line": {
-        "ja": "輕鐵 507",
-        "en": "Light Rail 507",
-        "ko": "경전철 507"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-507-osm-6481316",
-      "line": {
-        "ja": "輕鐵 507",
-        "en": "Light Rail 507",
-        "ko": "경전철 507"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-610-osm-3680161",
-      "line": {
-        "ja": "輕鐵 610",
-        "en": "Light Rail 610",
-        "ko": "경전철 610"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-610-osm-6481420",
-      "line": {
-        "ja": "輕鐵 610",
-        "en": "Light Rail 610",
-        "ko": "경전철 610"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-614-osm-3680323",
-      "line": {
-        "ja": "輕鐵 614",
-        "en": "Light Rail 614",
-        "ko": "경전철 614"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-614-osm-6485194",
-      "line": {
-        "ja": "輕鐵 614",
-        "en": "Light Rail 614",
-        "ko": "경전철 614"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-614p-osm-5955256",
-      "line": {
-        "ja": "輕鐵 614P",
-        "en": "Light Rail 614P",
-        "ko": "경전철 614P"
-      },
-      "reason": [
-        "현재 정차순서 검수 필요",
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-614p-osm-5955257",
-      "line": {
-        "ja": "輕鐵 614P",
-        "en": "Light Rail 614P",
-        "ko": "경전철 614P"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-615-osm-3680520",
-      "line": {
-        "ja": "輕鐵 615",
-        "en": "Light Rail 615",
-        "ko": "경전철 615"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-615-osm-6481434",
-      "line": {
-        "ja": "輕鐵 615",
-        "en": "Light Rail 615",
-        "ko": "경전철 615"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-615p-osm-5955258",
-      "line": {
-        "ja": "輕鐵 615P",
-        "en": "Light Rail 615P",
-        "ko": "경전철 615P"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-615p-osm-5955259",
-      "line": {
-        "ja": "輕鐵 615P",
-        "en": "Light Rail 615P",
-        "ko": "경전철 615P"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-705-osm-2941692",
-      "line": {
-        "ja": "輕鐵 705",
-        "en": "Light Rail 705",
-        "ko": "경전철 705"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-706-osm-2941790",
-      "line": {
-        "ja": "輕鐵 706",
-        "en": "Light Rail 706",
-        "ko": "경전철 706"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-751-osm-2926506",
-      "line": {
-        "ja": "輕鐵 751",
-        "en": "Light Rail 751",
-        "ko": "경전철 751"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-751-osm-6485218",
-      "line": {
-        "ja": "輕鐵 751",
-        "en": "Light Rail 751",
-        "ko": "경전철 751"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
       "id": "hk-light-rail-751p-osm-2929802",
       "line": {
         "ja": "輕鐵 751P",
@@ -1308,8 +820,7 @@
       },
       "reason": [
         "조건부 운행 시간대 검증 필요",
-        "현재 정차순서 검수 필요",
-        "한국어 역명 검수 필요"
+        "현재 정차순서 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
@@ -1323,8 +834,7 @@
       },
       "reason": [
         "조건부 운행 시간대 검증 필요",
-        "현재 정차순서 검수 필요",
-        "한국어 역명 검수 필요"
+        "현재 정차순서 검수 필요"
       ],
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
@@ -1338,36 +848,23 @@
       },
       "reason": [
         "조건부 운행 시간대 검증 필요",
+        "현재 정차순서 검수 필요"
+      ],
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
+      "id": "hk-tram-western-market-shau-kei-wan-4088321",
+      "line": {
+        "ja": "香港電車",
+        "en": "Hong Kong Tramways",
+        "ko": "홍콩 트램"
+      },
+      "reason": [
         "현재 정차순서 검수 필요",
         "한국어 역명 검수 필요"
       ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-761p-osm-2942633",
-      "line": {
-        "ja": "輕鐵 761P",
-        "en": "Light Rail 761P",
-        "ko": "경전철 761P"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
-    },
-    {
-      "id": "hk-light-rail-761p-osm-6485221",
-      "line": {
-        "ja": "輕鐵 761P",
-        "en": "Light Rail 761P",
-        "ko": "경전철 761P"
-      },
-      "reason": [
-        "한국어 역명 검수 필요"
-      ],
-      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "sourceUrl": "https://www.hktramways.com/en/schedules-fares/",
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
     },
     {
@@ -1379,8 +876,7 @@
       },
       "reason": [
         "현재 정차순서 검수 필요",
-        "실제 선로 검증 필요",
-        "정차역 자료 필요"
+        "한국어 역명 검수 필요"
       ],
       "sourceUrl": "https://www.hktramways.com/en/schedules-fares/",
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
@@ -1400,7 +896,35 @@
       "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
     },
     {
+      "id": "hk-tram-happy-valley-shau-kei-wan-4088518",
+      "line": {
+        "ja": "香港電車",
+        "en": "Hong Kong Tramways",
+        "ko": "홍콩 트램"
+      },
+      "reason": [
+        "현재 정차순서 검수 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "sourceUrl": "https://www.hktramways.com/en/schedules-fares/",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
       "id": "hk-tram-shek-tong-tsui-north-point-4088457",
+      "line": {
+        "ja": "香港電車",
+        "en": "Hong Kong Tramways",
+        "ko": "홍콩 트램"
+      },
+      "reason": [
+        "현재 정차순서 검수 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "sourceUrl": "https://www.hktramways.com/en/schedules-fares/",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
+      "id": "hk-tram-shek-tong-tsui-north-point-4088481",
       "line": {
         "ja": "香港電車",
         "en": "Hong Kong Tramways",
@@ -1429,6 +953,20 @@
     },
     {
       "id": "hk-tram-shek-tong-tsui-causeway-bay-4088087",
+      "line": {
+        "ja": "香港電車",
+        "en": "Hong Kong Tramways",
+        "ko": "홍콩 트램"
+      },
+      "reason": [
+        "현재 정차순서 검수 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "sourceUrl": "https://www.hktramways.com/en/schedules-fares/",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
+      "id": "hk-tram-kennedy-town-happy-valley-3263757",
       "line": {
         "ja": "香港電車",
         "en": "Hong Kong Tramways",
@@ -1517,20 +1055,8 @@
   "geometryIssues": [
     {
       "type": "geometry",
-      "sourceRelationId": 3263757,
-      "reason": "stop not on railway within 80m: 5470724238",
-      "status": "INCOMPLETE"
-    },
-    {
-      "type": "geometry",
       "sourceRelationId": 3264047,
       "reason": "stop not on railway within 80m: 988059821",
-      "status": "INCOMPLETE"
-    },
-    {
-      "type": "geometry",
-      "sourceRelationId": 4088518,
-      "reason": "stop not on railway within 80m: 5470724238",
       "status": "INCOMPLETE"
     },
     {

@@ -1,6 +1,6 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),{execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..'),script=fs.readFileSync(path.join(__dirname,'audit-ui-quality.js'),'utf8'),prefix=script.slice(0,script.indexOf('const report='));
-const current=vm.runInNewContext(prefix+';checks',{require,__dirname});
+const current=vm.runInNewContext(prefix+';legacyStaticChecks',{require,__dirname,process});
 const baselineCode=prefix.replace("const source=file=>fs.readFileSync(path.join(root,file),'utf8');","const source=file=>require('node:child_process').execFileSync('git',['show','origin/main:'+file],{cwd:root,encoding:'utf8'});");
-const baseline=vm.runInNewContext(baselineCode+';checks',{require,__dirname}),failures=checks=>Object.entries(checks).filter(([,v])=>!v).map(([k])=>k),same=JSON.stringify(current)===JSON.stringify(baseline);
+const baseline=vm.runInNewContext(baselineCode+';legacyStaticChecks',{require,__dirname,process}),failures=checks=>Object.entries(checks).filter(([,v])=>!v).map(([k])=>k),same=JSON.stringify(current)===JSON.stringify(baseline);
 const report={mainSha:execFileSync('git',['rev-parse','origin/main'],{cwd:root,encoding:'utf8'}).trim(),baselineFailures:failures(baseline),currentFailures:failures(current),unchanged:same,explanation:'The legacy UI audit uses source-code regex checks. Its existing failures remain failures and are not counted as new PASS results.'};fs.writeFileSync(path.join(root,'reports/hong-kong/legacy-ui-baseline.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(!same)process.exitCode=1;

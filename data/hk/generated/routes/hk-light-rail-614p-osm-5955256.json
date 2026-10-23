@@ -4,7 +4,7 @@
   "schemaVersion": 1,
   "canonicalLineId": "hk-light-rail-614p",
   "servicePatternId": "hk-light-rail-614p-osm-5955256",
-  "serviceLabel": "Siu Hong → Siu Hei",
+  "serviceLabel": "Siu Hong → Tuen Mun Ferry Pier",
   "operatorId": "hk-mtr",
   "operator": {
     "ja": "港鐵",
@@ -20,31 +20,28 @@
   "mode": "light_rail",
   "code": "614P",
   "officialSymbolExists": false,
-  "lineColor": "#F4858D",
+  "lineColor": "#f3858d",
   "lineTheme": {
     "code": "614P",
-    "color": "#F4858D",
+    "color": "#f3858d",
     "style": "hk",
-    "colorVerified": false,
-    "colorSource": "OSM candidate; official colour audit pending"
+    "colorVerified": true,
+    "colorSource": "https://www.mtr.com.hk/archive/en/services/LR_routemap.pdf"
   },
   "loop": false,
   "lazy": false,
-  "playable": false,
-  "releaseStatus": "INCOMPLETE",
+  "playable": true,
+  "releaseStatus": "ready",
   "geometryReady": true,
   "geometryStatus": "verified",
-  "blockedReasons": [
-    "현재 정차순서 검수 필요",
-    "한국어 역명 검수 필요"
-  ],
+  "blockedReasons": [],
   "direction": "osm-5955256",
   "validWhen": {
     "type": "regular",
     "note": null
   },
   "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-  "stopStatus": "unverified",
+  "stopStatus": "verified",
   "geometry": [
     [
       22.4118367,
@@ -1165,6 +1162,182 @@
     [
       22.3752432,
       113.9668826
+    ],
+    [
+      22.3750449,
+      113.9669936
+    ],
+    [
+      22.3741293,
+      113.9675104
+    ],
+    [
+      22.3740339,
+      113.9675661
+    ],
+    [
+      22.3739367,
+      113.9676263
+    ],
+    [
+      22.3738331,
+      113.9676933
+    ],
+    [
+      22.3736478,
+      113.9678154
+    ],
+    [
+      22.3735373,
+      113.9678823
+    ],
+    [
+      22.3734587,
+      113.9679265
+    ],
+    [
+      22.373386,
+      113.9679634
+    ],
+    [
+      22.3733251,
+      113.9679914
+    ],
+    [
+      22.3732547,
+      113.9680189
+    ],
+    [
+      22.3731519,
+      113.9680538
+    ],
+    [
+      22.3730706,
+      113.9680782
+    ],
+    [
+      22.3729917,
+      113.9680958
+    ],
+    [
+      22.3729071,
+      113.9681097
+    ],
+    [
+      22.3728145,
+      113.9681211
+    ],
+    [
+      22.3727695,
+      113.9681263
+    ],
+    [
+      22.372699,
+      113.9681351
+    ],
+    [
+      22.3726155,
+      113.9681451
+    ],
+    [
+      22.3725311,
+      113.9681551
+    ],
+    [
+      22.3724653,
+      113.9681574
+    ],
+    [
+      22.3724414,
+      113.9681585
+    ],
+    [
+      22.3723402,
+      113.9681466
+    ],
+    [
+      22.3721976,
+      113.9680959
+    ],
+    [
+      22.3721005,
+      113.9680236
+    ],
+    [
+      22.3720371,
+      113.9679304
+    ],
+    [
+      22.3720022,
+      113.9678408
+    ],
+    [
+      22.3719839,
+      113.9677314
+    ],
+    [
+      22.3719888,
+      113.9676158
+    ],
+    [
+      22.3720107,
+      113.9675222
+    ],
+    [
+      22.3720323,
+      113.9674695
+    ],
+    [
+      22.3720569,
+      113.9674192
+    ],
+    [
+      22.3720817,
+      113.9673796
+    ],
+    [
+      22.3721049,
+      113.9673218
+    ],
+    [
+      22.3721138,
+      113.9672994
+    ],
+    [
+      22.3721569,
+      113.9671295
+    ],
+    [
+      22.3721796,
+      113.9670403
+    ],
+    [
+      22.3722155,
+      113.9669055
+    ],
+    [
+      22.37225,
+      113.9667754
+    ],
+    [
+      22.3722853,
+      113.9666512
+    ],
+    [
+      22.3723094,
+      113.9666005
+    ],
+    [
+      22.3723388,
+      113.9665622
+    ],
+    [
+      22.3723634,
+      113.9665414
+    ],
+    [
+      22.3725946,
+      113.9664154
     ]
   ],
   "directedSegments": [
@@ -2556,6 +2729,211 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "high"
+    },
+    {
+      "id": "hk-track-a9445aa2e8316ef704",
+      "fromStationId": "hk-lr-240",
+      "toStationId": "hk-lr-001",
+      "geometry": [
+        [
+          22.3752432,
+          113.9668826
+        ],
+        [
+          22.3750449,
+          113.9669936
+        ],
+        [
+          22.3741293,
+          113.9675104
+        ],
+        [
+          22.3740339,
+          113.9675661
+        ],
+        [
+          22.3739367,
+          113.9676263
+        ],
+        [
+          22.3738331,
+          113.9676933
+        ],
+        [
+          22.3736478,
+          113.9678154
+        ],
+        [
+          22.3735373,
+          113.9678823
+        ],
+        [
+          22.3734587,
+          113.9679265
+        ],
+        [
+          22.373386,
+          113.9679634
+        ],
+        [
+          22.3733251,
+          113.9679914
+        ],
+        [
+          22.3732547,
+          113.9680189
+        ],
+        [
+          22.3731519,
+          113.9680538
+        ],
+        [
+          22.3730706,
+          113.9680782
+        ],
+        [
+          22.3729917,
+          113.9680958
+        ],
+        [
+          22.3729071,
+          113.9681097
+        ],
+        [
+          22.3728145,
+          113.9681211
+        ],
+        [
+          22.3727695,
+          113.9681263
+        ],
+        [
+          22.372699,
+          113.9681351
+        ],
+        [
+          22.3726155,
+          113.9681451
+        ],
+        [
+          22.3725311,
+          113.9681551
+        ],
+        [
+          22.3724653,
+          113.9681574
+        ],
+        [
+          22.3724414,
+          113.9681585
+        ],
+        [
+          22.3723402,
+          113.9681466
+        ],
+        [
+          22.3721976,
+          113.9680959
+        ],
+        [
+          22.3721005,
+          113.9680236
+        ],
+        [
+          22.3720371,
+          113.9679304
+        ],
+        [
+          22.3720022,
+          113.9678408
+        ],
+        [
+          22.3719839,
+          113.9677314
+        ],
+        [
+          22.3719888,
+          113.9676158
+        ],
+        [
+          22.3720107,
+          113.9675222
+        ],
+        [
+          22.3720323,
+          113.9674695
+        ],
+        [
+          22.3720569,
+          113.9674192
+        ],
+        [
+          22.3720817,
+          113.9673796
+        ],
+        [
+          22.3721049,
+          113.9673218
+        ],
+        [
+          22.3721138,
+          113.9672994
+        ],
+        [
+          22.3721569,
+          113.9671295
+        ],
+        [
+          22.3721796,
+          113.9670403
+        ],
+        [
+          22.3722155,
+          113.9669055
+        ],
+        [
+          22.37225,
+          113.9667754
+        ],
+        [
+          22.3722853,
+          113.9666512
+        ],
+        [
+          22.3723094,
+          113.9666005
+        ],
+        [
+          22.3723388,
+          113.9665622
+        ],
+        [
+          22.3723634,
+          113.9665414
+        ],
+        [
+          22.3725946,
+          113.9664154
+        ]
+      ],
+      "segmentLengthMeters": 576.6882194457858,
+      "sourceWayIds": [
+        160262028,
+        738796815,
+        276687994,
+        61857642,
+        160262031,
+        160262034,
+        276687999
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/5955256",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-22",
+      "license": "ODbL-1.0",
+      "confidence": "high"
     }
   ],
   "stations": [
@@ -2566,8 +2944,8 @@
       "code": "100",
       "nameZhHant": "兆康",
       "nameEn": "Siu Hong",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "시우홍",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2579,6 +2957,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "SHL",
+      "officialStopId": "100",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%8B%9C%EC%9A%B0%ED%99%8D%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/2812747293",
@@ -2603,7 +2990,7 @@
       "ja": "兆康",
       "kana": "",
       "romaji": "Siu Hong",
-      "ko": "",
+      "ko": "시우홍",
       "koAliases": [],
       "latitude": 22.4118367,
       "longitude": 113.9781323,
@@ -2618,8 +3005,8 @@
       "code": "340",
       "nameZhHant": "鳳地",
       "nameEn": "Fung Tei",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "풍테이",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2631,6 +3018,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "FUT",
+      "officialStopId": "340",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%92%8D%ED%85%8C%EC%9D%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1716515030",
@@ -2655,7 +3051,7 @@
       "ja": "鳳地",
       "kana": "",
       "romaji": "Fung Tei",
-      "ko": "",
+      "ko": "풍테이",
       "koAliases": [],
       "latitude": 22.4067586,
       "longitude": 113.978811,
@@ -2670,8 +3066,8 @@
       "code": "330",
       "nameZhHant": "景峰",
       "nameEn": "Prime View",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "프라임뷰",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2683,6 +3079,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "PRV",
+      "officialStopId": "330",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%94%84%EB%9D%BC%EC%9E%84%EB%B7%B0%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1716515064",
@@ -2707,7 +3112,7 @@
       "ja": "景峰",
       "kana": "",
       "romaji": "Prime View",
-      "ko": "",
+      "ko": "프라임뷰",
       "koAliases": [],
       "latitude": 22.4031278,
       "longitude": 113.979469,
@@ -2722,8 +3127,8 @@
       "code": "320",
       "nameZhHant": "新墟",
       "nameEn": "San Hui",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "산후이",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2735,6 +3140,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "SAH",
+      "officialStopId": "320",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%82%B0%ED%9B%84%EC%9D%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1716515072",
@@ -2759,7 +3173,7 @@
       "ja": "新墟",
       "kana": "",
       "romaji": "San Hui",
-      "ko": "",
+      "ko": "산후이",
       "koAliases": [],
       "latitude": 22.4002411,
       "longitude": 113.9780452,
@@ -2774,8 +3188,8 @@
       "code": "310",
       "nameZhHant": "何福堂",
       "nameEn": "Hoh Fuk Tong",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "호푹통",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2787,6 +3201,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "HFT",
+      "officialStopId": "310",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%98%B8%ED%91%B9%ED%86%B5%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1716515034",
@@ -2811,7 +3234,7 @@
       "ja": "何福堂",
       "kana": "",
       "romaji": "Hoh Fuk Tong",
-      "ko": "",
+      "ko": "호푹통",
       "koAliases": [],
       "latitude": 22.3974112,
       "longitude": 113.9774907,
@@ -2826,8 +3249,8 @@
       "code": "300",
       "nameZhHant": "杯渡",
       "nameEn": "Pui To",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "푸이토",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2839,6 +3262,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "PUT",
+      "officialStopId": "300",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%91%B8%EC%9D%B4%ED%86%A0%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1716515067",
@@ -2863,7 +3295,7 @@
       "ja": "杯渡",
       "kana": "",
       "romaji": "Pui To",
-      "ko": "",
+      "ko": "푸이토",
       "koAliases": [],
       "latitude": 22.3946624,
       "longitude": 113.9767912,
@@ -2878,8 +3310,8 @@
       "code": "280",
       "nameZhHant": "市中心",
       "nameEn": "Town Centre",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "타운센터",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2891,6 +3323,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TOC",
+      "officialStopId": "280",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%83%80%EC%9A%B4%EC%84%BC%ED%84%B0%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1719431829",
@@ -2915,7 +3356,7 @@
       "ja": "市中心",
       "kana": "",
       "romaji": "Town Centre",
-      "ko": "",
+      "ko": "타운센터",
       "koAliases": [],
       "latitude": 22.3913686,
       "longitude": 113.9750666,
@@ -2930,8 +3371,8 @@
       "code": "270",
       "nameZhHant": "安定",
       "nameEn": "On Ting",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "온팅",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2943,6 +3384,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "ONT",
+      "officialStopId": "270",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%98%A8%ED%8C%85%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1712155451",
@@ -2967,7 +3417,7 @@
       "ja": "安定",
       "kana": "",
       "romaji": "On Ting",
-      "ko": "",
+      "ko": "온팅",
       "koAliases": [],
       "latitude": 22.3875741,
       "longitude": 113.9751228,
@@ -2982,8 +3432,8 @@
       "code": "265",
       "nameZhHant": "兆麟",
       "nameEn": "Siu Lun",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "시우런",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -2995,6 +3445,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "SIL",
+      "officialStopId": "265",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%8B%9C%EC%9A%B0%EB%9F%B0%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/797776531",
@@ -3019,7 +3478,7 @@
       "ja": "兆麟",
       "kana": "",
       "romaji": "Siu Lun",
-      "ko": "",
+      "ko": "시우런",
       "koAliases": [],
       "latitude": 22.3845814,
       "longitude": 113.9750578,
@@ -3034,8 +3493,8 @@
       "code": "260",
       "nameZhHant": "豐景園",
       "nameEn": "Goodview Garden",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "굿뷰가든",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -3047,6 +3506,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "GOG",
+      "officialStopId": "260",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EA%B5%BF%EB%B7%B0%EA%B0%80%EB%93%A0%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1719431742",
@@ -3071,7 +3539,7 @@
       "ja": "豐景園",
       "kana": "",
       "romaji": "Goodview Garden",
-      "ko": "",
+      "ko": "굿뷰가든",
       "koAliases": [],
       "latitude": 22.3832794,
       "longitude": 113.9730445,
@@ -3086,8 +3554,8 @@
       "code": "250",
       "nameZhHant": "海皇路",
       "nameEn": "Hoi Wong Road",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "호이웡로",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -3099,6 +3567,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TSP",
+      "officialStopId": "250",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%98%B8%EC%9D%B4%EC%9B%A1%EB%A1%9C%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1719431841",
@@ -3123,7 +3600,7 @@
       "ja": "海皇路",
       "kana": "",
       "romaji": "Hoi Wong Road",
-      "ko": "",
+      "ko": "호이웡로",
       "koAliases": [],
       "latitude": 22.3811755,
       "longitude": 113.9703882,
@@ -3138,8 +3615,8 @@
       "code": "240",
       "nameZhHant": "兆禧",
       "nameEn": "Siu Hei",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "시우헤이",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -3151,6 +3628,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "SHE",
+      "officialStopId": "240",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%8B%9C%EC%9A%B0%ED%97%A4%EC%9D%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1719431790",
@@ -3175,13 +3661,74 @@
       "ja": "兆禧",
       "kana": "",
       "romaji": "Siu Hei",
-      "ko": "",
+      "ko": "시우헤이",
       "koAliases": [],
       "latitude": 22.3752432,
       "longitude": 113.9668826,
       "officialCode": "240",
       "hasOfficialStationCode": true,
       "stationCodeSource": "https://www.openstreetmap.org/node/1719431790"
+    },
+    {
+      "id": "hk-lr-001",
+      "canonicalStationId": "hk-lr-001",
+      "countryId": "hk",
+      "code": "001",
+      "nameZhHant": "屯門碼頭",
+      "nameEn": "Tuen Mun Ferry Pier",
+      "nameKo": "튄문페리피어",
+      "nameStatus": "verified",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3725946,
+        "lng": 113.9664154
+      },
+      "sourceUrl": "https://www.openstreetmap.org/node/1723162821",
+      "sourceType": "osm",
+      "checkedAt": "2026-10-22",
+      "license": "ODbL-1.0",
+      "confidence": "medium",
+      "officialStopCode": "FEP",
+      "officialStopId": "1",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8A%84%EB%AC%B8%ED%8E%98%EB%A6%AC%ED%94%BC%EC%96%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/1723162821",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-22",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-light-rail-614p-osm-5955256-stop-12",
+      "physicalStationId": "hk-lr-001",
+      "lineId": "hk-light-rail-614p",
+      "sourceStopNodeId": 1723162796,
+      "stopPosition": {
+        "lat": 22.3725946,
+        "lng": 113.9664154,
+        "sourceNodeId": 1723162796,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/1723162796"
+      },
+      "geometryIndex": 323,
+      "stationMasterId": "hk-lr-001",
+      "ja": "屯門碼頭",
+      "kana": "",
+      "romaji": "Tuen Mun Ferry Pier",
+      "ko": "튄문페리피어",
+      "koAliases": [],
+      "latitude": 22.3725946,
+      "longitude": 113.9664154,
+      "officialCode": "001",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://www.openstreetmap.org/node/1723162821"
     }
   ],
   "services": [
@@ -3202,9 +3749,10 @@
         "hk-lr-265",
         "hk-lr-260",
         "hk-lr-250",
-        "hk-lr-240"
+        "hk-lr-240",
+        "hk-lr-001"
       ]
     }
   ],
-  "validationFingerprint": "d6a368dd47922ee0b9ad0415bd3cc6aee72a8eda81f3639795d02090d1165941"
+  "validationFingerprint": "a64337f525dbb9a5f6058fc2e84ffd32236df05c8f278cbcaffb22214689f673"
 }

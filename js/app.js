@@ -488,7 +488,7 @@ async function prepareKoreanFamilyChoices(route){
 async function chooseRoute(id){let route=routes.find(r=>r.id===id);if(route&&koreanRouteUnavailableReason(route)){toast('플레이 불가: '+koreanRouteUnavailableReason(route));return false}if(!route&&dataLoading){pendingRouteId=id;toast('철도 데이터를 불러오는 중입니다. 잠시만 기다려 주세요.');return false}if(!route){console.warn('Line not found:',id);toast('선택한 노선을 찾을 수 없습니다. 데이터를 다시 불러와 주세요.');return false}if(route.lazy){toast(`${route.line.ko} 노선 상세 데이터를 불러오는 중입니다.`);try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(route)),index=builtin.findIndex(item=>item.id===id);if(index>=0)builtin[index]=hydrated;if(countryId==='jp'&&id==='line-11328'){category='limited-express';operatorFilter='all'}refreshRoutes();route=routes.find(item=>item.id===id);if(koreanRouteUnavailableReason(route)){toast('플레이 불가: '+koreanRouteUnavailableReason(route));return false}}catch(error){console.error('Nationwide line load failed:',error);toast('이 노선의 상세 데이터를 불러오지 못했습니다.');return false}}selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
 function renderHomeNetwork(){const canvas=$('#home-network-canvas'),network=freeDriveNetworkRoutes();if(!canvas)return;if(!network.length){canvas.getContext('2d')?.clearRect(0,0,canvas.width,canvas.height);return;}const tokyoBounds={minLat:35.50,maxLat:35.86,minLon:139.45,maxLon:139.96};drawNetworkCanvas(canvas,network,{bounds:countryId==='jp'?tokyoBounds:null,alpha:.24,transferNodes:freeDrive?.graph||null})}
 function freeDriveRouteTabs(state){
-  const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[...linked,state.routeId];
+  const linked=[...(state.availableRouteIds||state.node?.routeIds||[])].filter(Boolean),ids=[...linked,state.routeId];
   return [...new Set(ids)].map(id=>({id,route:(state.edges||[]).find(edge=>edge.routeId===id)?.route||freeDrive?.routes?.find(route=>route.id===id)||state.route}))
 }
 function renderGameFreeDriveOptions(state){
@@ -497,7 +497,8 @@ function renderGameFreeDriveOptions(state){
   freeDriveTabIndex=Math.max(0,routeTabs.findIndex(item=>item.id===state.routeId));
   const active=routeTabs[freeDriveTabIndex],activeId=active.id;
   tabs.hidden=routeTabs.length<2;tabs.classList.toggle('has-transfer',routeTabs.length>1);
-  tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${item.id===state.routeId?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
+  tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${item.id===state.routeId?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(item.route?.line?.ko||item.route?.line?.ja||item.id)}</b><span>${escapeHtml(item.route?.countryId==='hk'?(item.route.serviceLabel||item.route.line?.ja||''):(item.route?.line?.ja||''))}</span></button>`).join('');
+  if(state.route?.countryId==='hk'){const current=tabs.querySelector('.active');if(current)tabs.scrollLeft=Math.max(0,current.offsetLeft-(tabs.clientWidth-current.clientWidth)/2);}
   const edges=(state.edges||[]).filter(edge=>edge.routeId===activeId);
   const typingEdge=edges.find(edge=>edge.direction>0)||edges.find(edge=>edge.direction<0)||edges[0];
   if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=typingEdge.station||freeDrive?.stationForRoute(typingEdge.to,typingEdge.routeId);if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
@@ -511,6 +512,12 @@ async function startFreeDrive(route){
   if(target.lazy){const ok=await chooseRoute(target.id);if(!ok)return;target=selected}
   if(koreanRouteUnavailableReason(target))return toast('자유주행 불가: '+koreanRouteUnavailableReason(target));
   if(!target?.stations?.length)return toast('자유주행에 사용할 역 데이터가 없는 노선입니다.');
+  if(target.countryId==='hk'){
+    for(const other of builtin.filter(r=>r.countryId==='hk'&&r.lazy&&!hongKongRouteBlockReason(r))){
+      try{const hydrated=railDataRepository.resolveRoute(await hydrateRailLine(other)),i=builtin.findIndex(r=>r.id===other.id);if(i>=0)builtin[i]=hydrated}catch(error){console.warn('Hong Kong transfer counterpart unavailable:',other.id,error)}
+    }
+    refreshRoutes();
+  }
   if(target.countryId==='kr'){
     const counterpartIds=KR_APP_TRANSFER_PAIRS.flatMap(t=>t.routeIds.includes(target.id)?t.routeIds:[]).filter(id=>id!==target.id);
     for(const id of new Set(counterpartIds)){
@@ -549,7 +556,7 @@ function showResult(result){
 }
 const game=new Game({onFinish:showResult,onQuit:()=>go('select'),onFreeDriveMove:(to,routeId)=>freeDrive?.moveTo(to,routeId)});
 const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomLibrary()},onPlay:openSetup,onSaved:()=>go('custom-list')});
-freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
+freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){if(game.route?.id!==state.routeId)game.freeDriveAwaitingStart=true;freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
 $('#free-drive-custom')?.addEventListener('click',()=>{const route=editor.route;if(!route?.stations||route.stations.length<2)return toast('자유주행에는 역이 2개 이상 필요합니다.');startFreeDrive(route)});
 let currentScreen=document.body.dataset.currentScreen||'home';
 let koreaEditorLoading=false;
@@ -583,13 +590,13 @@ $('#route-grid').addEventListener('click',e=>{const krFamily=e.target.closest('[
 $('#selected-line-preview').addEventListener('click',e=>{const branch=e.target.closest('[data-route]');if(branch){selectedGroup=null;chooseRoute(branch.dataset.route);return}if(e.target.closest('[data-selected-play]')&&selected){openSetup(selected);return}if(e.target.closest('[data-selected-free-drive]')&&selected){startFreeDrive(selected);return}});
 $('#clear-route-selection').addEventListener('click',()=>{selected=null;selectedGroup=null;renderSelected();renderRoutes()});
 $('#game-free-drive-tabs')?.addEventListener('click',event=>{
-  const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode)return;
+  const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode||game.phase==='ARRIVING')return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state),index=tabs.findIndex(item=>item.id===button.dataset.freeDriveTab);if(index<0)return;
   if(!freeDrive?.selectRoute(tabs[index].id))toast('환승 노선의 역 좌표를 확인할 수 없습니다.');
 });
 document.addEventListener('keydown',event=>{
-  if(event.key!=='Tab'||event.isComposing||game?.typing?.isComposing?.()||currentScreen!=='game'||!game?.freeDriveMode)return;
+  if(event.key!=='Tab'||event.isComposing||game?.typing?.isComposing?.()||currentScreen!=='game'||!game?.freeDriveMode||game.phase==='ARRIVING')return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state);if(tabs.length<2)return;
   event.preventDefault();

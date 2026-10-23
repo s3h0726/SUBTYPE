@@ -21,7 +21,7 @@ const kumagawa=routeFor(/くま川鉄道.*湯前線/);
 const hitoyoshi=kumagawa?.stations.find(station=>station.ja==='人吉温泉');
 const officialCodeStations=routes.flatMap(route=>route.stations).filter(station=>station.officialCode);
 const operatorsWithAssets=new Set(routes.filter(route=>operatorAssets[route.operatorId]).map(route=>route.operatorId));
-const checks={
+const legacyStaticChecks={
   inputValueIsNfcSoleSource:/String\(rawValue\)\.normalize\('NFC'\)/.test(typing)&&!/\.reverse\(|\.unshift\(/.test(typing),
   stationBadgeUsesOfficialCodeOnly:/station\.hasOfficialStationCode\?station\.officialCode/.test(game)&&!/badge\.textContent\s*=\s*station\.id/.test(game),
   koreanProgressUsesAnswerLength:/Array\.from\(answer\)/.test(game)&&/(answerChars|letters)\.map/.test(game),
@@ -35,9 +35,24 @@ const checks={
   duplicateCompleteGuard:/this\.phase!==['"]TYPING['"]/.test(game)&&/this\.phase=['"]ARRIVING['"]/.test(game),
   noJapaneseInKoreanFields:routes.every(route=>![route.operator.ko,route.line.ko,...route.stations.map(station=>station.ko)].some(value=>/[一-龯々〆ヵヶぁ-ゖァ-ヺ]/.test(value||'')))
 };
+// Retain the former source regex results verbatim, but do not confuse exact
+// spelling matches with runtime behavior. Execute the current controller/Game.
+const behaviorRun=require('node:child_process').spawnSync(process.execPath,['tools/check-typing-behavior.cjs'],{cwd:root,encoding:'utf8'});
+let behavior;try{behavior=JSON.parse(behaviorRun.stdout)}catch{behavior={checks:{},error:behaviorRun.stderr||'Behavior runner produced no JSON'}}
+const browserPath=path.join(root,'reports/hong-kong/phase4/browser-runs.json'),phase4Browser=fs.existsSync(browserPath)?read('reports/hong-kong/phase4/browser-runs.json'):[];
+const autoSamples=phase4Browser.filter(r=>r.status==='PASS'&&r.advance==='AUTO').map(r=>Number(r.timing?.advanceMs)).filter(Number.isFinite);
+const checks={...legacyStaticChecks,
+ inputValueIsNfcSoleSource:behavior.checks.inputValueIsNfcSoleSource?.status==='PASS',
+ koreanProgressUsesAnswerLength:behavior.checks.koreanProgressUsesAnswerLength?.status==='PASS',
+ firstAnswerIsStartStation:behavior.checks.firstAnswerIsStartStation?.status==='PASS',
+ autoAdvance150ms:behavior.checks.autoAdvanceBarrier?.status==='PASS'&&autoSamples.length>0&&autoSamples.every(ms=>ms>=150&&ms<=300)
+};
 const report={
   generated:new Date().toISOString(),status:'PARTIAL_WITH_AUDITED_GAPS',
   checks,
+  legacyStaticChecks,
+  behavior,
+  autoAdvanceMeasurement:{scope:'Final transition samples of actual Phase 4 AUTO runs, full animation. Initial 901ms outlier remains a failure, even when later samples meet 150–300ms.',samples:autoSamples,targetMs:[150,300],status:checks.autoAdvance150ms?'PASS':autoSamples.length?'FAIL':'NOT_TESTED'},
   typingEngine:{criticalChecksPassed:Object.values(checks).filter(Boolean).length,criticalChecksTotal:Object.keys(checks).length,browserRegression:browserAudit?.status||previousAudit?.typingEngine?.browserRegression||'PENDING',...(browserAudit?{browserResults:browserAudit.results}:previousAudit?.typingEngine?.browserResults?{browserResults:previousAudit.typingEngine.browserResults}:{})},
   officialStationCodes:{stationEntries:officialCodeStations.length,displayPolicy:'Only explicit or verified officialCode values may be rendered. Internal station IDs stay data-only.'},
   logos:{nationwideOperators:index.operators.length,operatorsWithVerifiedLocalAssets:operatorsWithAssets.size,verifiedAssetRecords:Object.values(operatorAssets).filter(asset=>asset.logoVerified).length,knownGaps:index.operators.length-operatorsWithAssets.size,status:'INCOMPLETE'},

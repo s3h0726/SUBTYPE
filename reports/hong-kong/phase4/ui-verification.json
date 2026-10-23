@@ -1,0 +1,131 @@
+{
+  "checkedAt": "2026-10-24",
+  "status": "PASS_WITH_AUDITED_GAPS",
+  "consoleErrors": 0,
+  "consoleScope": "Local preview tab5; observed error logs empty after all HK runs, transfer/custom/mobile and KR/JP samples. Not a worldwide/server audit.",
+  "darkMobile": "PASS",
+  "viewports": [
+    {
+      "checkedAt": "2026-10-24",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "dark": "images/mobile-dark-transfer.jpg",
+      "light": "images/mobile-light-transfer.jpg",
+      "beforeFix": "HUD at y70 overlapped transfer tabs y4–97 and header y107–161; fixed to y166.",
+      "after": {
+        "boxes": [
+          {
+            "bottom": 97.33333587646484,
+            "height": 93.33333587646484,
+            "left": 6,
+            "right": 384,
+            "selector": "#game-free-drive-tabs",
+            "top": 4,
+            "width": 378,
+            "x": 6,
+            "y": 4
+          },
+          {
+            "bottom": 161,
+            "height": 54,
+            "left": 7,
+            "right": 383,
+            "selector": ".game-top",
+            "top": 107,
+            "width": 376,
+            "x": 7,
+            "y": 107
+          },
+          {
+            "bottom": 220,
+            "height": 54,
+            "left": 12,
+            "right": 378,
+            "selector": ".hud-strip",
+            "top": 166,
+            "width": 366,
+            "x": 12,
+            "y": 166
+          },
+          {
+            "bottom": 826,
+            "height": 362.125,
+            "left": 12,
+            "right": 378,
+            "selector": "#station-sign",
+            "top": 463.875,
+            "width": 366,
+            "x": 12,
+            "y": 463.875
+          }
+        ],
+        "scrollWidth": 390,
+        "theme": "light",
+        "width": 390
+      }
+    }
+  ],
+  "browserEvidence": "reports/hong-kong/phase4/browser-runs.json",
+  "hongKongCompleted": 42,
+  "newLightRailCompleted": 20,
+  "retainedMtrCompleted": 22,
+  "advanceModes": [
+    "AUTO",
+    "SPACE"
+  ],
+  "inputModes": [
+    "normal",
+    "memory"
+  ],
+  "reducedMotion": false,
+  "fullAnimation": "Executed; AUTO target remains FAIL due measured901.3ms outlier",
+  "transfer": {
+    "status": "PASS",
+    "scenarioCount": 5,
+    "tabChanges": 15,
+    "scope": "Five reviewed HK interchange pairs, TAB A→B→A→B then type to terminal; no-transfer TAB invariant also verified",
+    "evidence": "reports/hong-kong/phase4/browser-transfers.json",
+    "otherHkInterchanges": "NOT_TESTED",
+    "krJpBrowserTransfers": "NOT_TESTED (automated graph regression covered)"
+  },
+  "custom": {
+    "status": "PASS",
+    "scope": "Existing Phase3 actual-stop route re-saved, browser reload, replay and completion; preserved all3 existing saved routes",
+    "evidence": "reports/hong-kong/phase4/browser-custom.json"
+  },
+  "regressions": [
+    {
+      "name": "JP 니시큐슈 신칸센",
+      "status": "PASS"
+    },
+    {
+      "name": "JP 나리타 익스프레스 신주쿠발",
+      "status": "PASS"
+    },
+    {
+      "name": "KR 성수지선",
+      "status": "PASS"
+    }
+  ],
+  "koreaFreeDrive": {
+    "status": "PASS_FOR_MOVEMENT",
+    "evidence": "reports/hong-kong/phase4/browser-kr-free-drive.json",
+    "statistics": "Not asserted; one mismatch remains displayed after restart; no claim of zero-error free-drive statistics."
+  },
+  "nativeWindowsIme": "NOT_TESTED",
+  "mobileNativeKeyboard": "NOT_TESTED",
+  "supabase": "NOT_TESTED",
+  "notTestedReasons": {
+    "nativeWindowsIme": "Only DOM browser input available; native OS computer APIs disabled.",
+    "mobileNativeKeyboard": "390x844 responsive browser viewport is not an actual mobile keyboard.",
+    "supabase": "No configured Supabase URL/anon key or provided test account."
+  },
+  "settingsRestored": {
+    "theme": "dark",
+    "viewport": "reset",
+    "reducedMotion": false
+  }
+}

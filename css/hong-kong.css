@@ -51,6 +51,14 @@
  [data-country="hk"] #screen-game .station-sign-hud {height:auto!important}
 }
 /* Retain the verified official code in the compact Hong Kong station sign. */
+[data-country="hk"] .game-free-drive-tabs{scroll-snap-type:x proximity}
+[data-country="hk"] .game-free-drive-tabs button{flex:0 0 200px;min-width:200px;grid-template-columns:1fr;grid-template-areas:"small" "name" "ja";scroll-snap-align:start}
+[data-country="hk"] .game-free-drive-tabs button span{white-space:normal;line-height:1.3;min-height:26px}
+[data-country="hk"] .game-free-drive-tabs:not([hidden]) + .game-top{margin-top:106px}
+@media(max-width:620px){[data-country="hk"] .game-free-drive-tabs button{flex-basis:164px;min-width:164px}[data-country="hk"] .game-free-drive-tabs:not([hidden]) + .game-top{margin-top:100px}}
 @media(max-width:600px){
  [data-country="hk"] #screen-game.active .station-current #station-badge:not([hidden]) {display:inline-flex!important;position:absolute!important;top:8px!important;left:8px!important;transform:none!important;align-items:center;justify-content:center;width:42px!important;height:28px!important;padding:2px!important;margin:0!important;border-width:2px!important;border-radius:6px!important;font-size:11px!important;line-height:1!important}
 }
+/* Keep the independently positioned HUD below the reviewed transfer tabs and header. */
+[data-country="hk"] #screen-game:has(.game-free-drive-tabs:not([hidden])) .hud-strip{top:180px!important}
+@media(max-width:600px){[data-country="hk"] #screen-game:has(.game-free-drive-tabs:not([hidden])) .hud-strip{top:166px!important}}

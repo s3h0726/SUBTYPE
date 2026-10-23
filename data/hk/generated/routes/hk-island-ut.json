@@ -3795,7 +3795,16 @@
       "longitude": 114.1578631,
       "officialCode": "CEN",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-CEN",
+        "lineIds": [
+          "hk-island",
+          "hk-tsuen-wan"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      }
     },
     {
       "id": "hk-mtr-ADM",
@@ -3849,7 +3858,18 @@
       "longitude": 114.1653075,
       "officialCode": "ADM",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/2023-hk-mini-guide-e-book-kr.pdf"
+      "stationCodeSource": "https://www.discoverhongkong.com/content/dam/dhk/market-site/kr/e-guidebooks/2023-hk-mini-guide-e-book-kr.pdf",
+      "transferReview": {
+        "stationId": "hk-mtr-ADM",
+        "lineIds": [
+          "hk-island",
+          "hk-tsuen-wan",
+          "hk-south-island",
+          "hk-east-rail"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      }
     },
     {
       "id": "hk-mtr-WAC",

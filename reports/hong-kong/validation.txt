@@ -1,112 +1,125 @@
-Hong Kong branch validation — 2026-10-22T13:16:51.886Z
+Hong Kong branch validation — 2026-10-23T15:33:13.837Z
 
 $ node --check js/app.bundle.js
 
 EXIT_CODE 0
 
-$ node --test tools/test-hk-network.cjs tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs
-✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (5.3313ms)
-✔ directional Korean service never manufactures a reverse edge at its terminus (0.5448ms)
-✔ three or more connected Japanese lines remain individually selectable (0.9505ms)
-✔ stopping free drive removes Japanese choices before a Korean typing session starts (5.1096ms)
-✔ Hong Kong has ten separately identified MTR lines and stable region IDs (2.2598ms)
-✔ official branches do not invent an all-stations journey through both termini (0.5534ms)
-✔ Airport Express does not acquire Tung Chung Line stops (1.3424ms)
-✔ unverified Hong Kong cannot bypass gating through custom/imported routes or a lazy flag (2.3229ms)
-✔ Disneyland both directions use distinct retained source tracks, not reverse guesses (3.0104ms)
-✔ every playable service passes the same runtime gate as its lazy index (94.6498ms)
-✔ verified physical edges retain source IDs and connected finite source vertices (14.9202ms)
-✔ unverified transfers and additional Light Rail services stay explicitly pending (0.388ms)
-✔ compiler regeneration is byte stable and leaves Japanese/Korean data unchanged (1833.7856ms)
-✔ source snapshots have valid recorded hashes; absent sources are not silently verified (29.5888ms)
-✔ Hong Kong CUSTOM retains actual edges and rejects reordered, disconnected or imaginary loops (1.5727ms)
-✔ lazy Hong Kong metadata never validates full stop references against an empty station list (10.7332ms)
-✔ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (3.4713ms)
-✔ Hong Kong CUSTOM normalization keeps replay IDs and memory does not gain kana answers (3.265ms)
-✔ Light Rail destination dashes retain termini while interior one-way calls stay directional (0.4416ms)
-✔ Light Rail complete official sequence rejects the formerly approved truncated 614P pattern (0.1766ms)
-✔ 706 rotates only a closed source chain and retains every traversed railway edge (8.5088ms)
-✔ SIL and AEL directions each resolve independent real source tracks and all their reviewed stops (6.0743ms)
-✔ all MTR codes share a single reviewed Korean name record and unconfirmed names remain blocked (4.4454ms)
-✔ MTR colours are the reviewed official PDF alternates and logos are never implicitly licensed (2.9607ms)
-✔ additional Light Rail peaks retain local times, direction, holiday uncertainty and incomplete full stops (0.9494ms)
-✔ CUSTOM continuations cannot imply a transfer between opposite service directions (1.5746ms)
-✔ phase three release requires completed browser evidence for unchanged names, direction and track (36.0463ms)
-✔ each Hong Kong service stop uses its own railway vertex and stable physical station identity (56.8975ms)
-✔ Tung Chung diversion reorders exact existing source ways with official commissioning evidence (4.3583ms)
-✔ off-peak LOHAS shuttle stays blocked until its operating condition is reviewed (0.216ms)
-✔ local validation preview cannot appear as a released public service (1.311ms)
-✔ CUSTOM rebases the first interchange stop onto its selected directed railway without changing physical IDs (1.4497ms)
-✔ new Korean usage reviews retain published station identity pairs and do not claim official Korean designations (40.2858ms)
-✔ construction tags cannot be treated as operational without an explicit commissioning review (5.9305ms)
-✔ road, rail-road ambiguity, construction, platform and station buildings cannot qualify as operating track (1.7085ms)
-✔ all twelve restricted relations are blocked through direct and saved CUSTOM identities (10.022ms)
-✔ existing thirteen public Korean routes remain visible and source policy never approves candidates (45.1378ms)
-✔ free-drive and CUSTOM graph exclude restricted source routes (7.5802ms)
-✔ Game start refuses both saved restricted IDs and restricted repository resolutions (5.494ms)
-✔ the Pyeongtaek to Anjung leg cannot be promoted to a standalone service (3.1101ms)
-✔ directional services compile without creating reverse or local services (8.1546ms)
-✔ unreviewed OSM topology cannot publish (0.9892ms)
-✔ future and expired timetable evidence cannot publish (1.3719ms)
-✔ different train stops cannot be inferred from a timetable (0.8532ms)
-✔ duplicate IDs and missing references fail validation (0.9152ms)
-✔ track gaps are not bridged or snapped (0.7718ms)
-✔ station offsets must match source nodes and visit order (1.0346ms)
-✔ national totals cannot be declared complete without an official inventory (0.5279ms)
-✔ excluded research cannot publish or satisfy the official national service inventory (1.0077ms)
-✔ rail and road co-tagging remains blocked despite otherwise complete release evidence (0.908ms)
-✔ runtime keeps exact directions, rejects invented destinations, preserves express track (10.581ms)
-✔ actual Game advancement and finish run exactly once in both explicit directions (6.5137ms)
-✔ normalization never manufactures an all-stops service for v2 (5.7348ms)
-✔ omitted source stops cannot make a partial route releasable (0.6666ms)
-✔ candidate trains and unverified platform metadata cannot release (1.1583ms)
-✔ a review flag cannot authorize running against source one-way track (0.695ms)
-✔ expired national inventory does not certify coverage (0.3933ms)
-✔ timetable matching preserves identity ambiguity and never approves a train (9.351ms)
-✔ real game route resolver preserves express geometry and repeated loop station visits (8.8961ms)
-✔ official station matching does not merge same-name places or assign approvals (5.7239ms)
-✔ returning to a loop station uses the later map visit and adjacent segment (4.5544ms)
-✔ Korean journey identity and directions survive records and display endpoints (9.3911ms)
-✔ global ordered orientation retains source nodes and explicit stop order (2.1132ms)
-✔ single source way uses stop order without assuming train direction (0.2205ms)
-✔ gaps, missing members and conflicting explicit roles are not repaired (0.2506ms)
-✔ unresolved directions and closed way alternatives fail closed (0.2546ms)
-✔ ten incomplete source relations recover every official call on retained directional source geometry (79.8452ms)
-✔ stale donor, changed official calls, omitted original ways and non-public or opposite track fail closed (68.5695ms)
-✔ renamed endpoint requires pinned official history and station identity, preserving the raw source name (8.0734ms)
-✔ explicit official code changes only Korean display name and cannot approve track or platform (2.6263ms)
-✔ station identity drift or inconsistent official code names cannot silently rewrite a name (0.7528ms)
-✔ reviewed line 1 and southern line 4 code crosswalks preserve physical station identity (719.2371ms)
-✔ a changed or absent KRIC identity record cannot authorize a code crosswalk (1.0912ms)
-✔ Busan 1 source stop positions restore all forty official calls without changing track (1931.8444ms)
-✔ source drift, changed official order and mismatched station identity fail closed (20.4498ms)
-✔ fifty-three complete patterns preserve prior verified trains and all published day groups (167.1172ms)
-✔ missing calendar, incomplete stops and nonmonotonic official clocks cannot certify a pattern (56.9527ms)
-✔ role correction retains source member and stop order without mutating source (3.1318ms)
-✔ misordered members are recoverable only as a complete unbranched source chain (0.8718ms)
-✔ member reordering cannot omit a disconnected component or repeat a source member (0.67ms)
-✔ stale source relation or way cannot silently reuse a correction (1.8629ms)
-✔ correction cannot bridge gaps, ignore a stop or run against one-way track (0.6497ms)
-✔ all reviewed national corrections preserve exact source geometry and remain blocked for release (11560.7719ms)
-✔ a closed bridge facility can be replaced only with pinned real rail ways and exact source stop continuity (675.6395ms)
-✔ parallel KRIC cells join by source code while preserving station order (2.7313ms)
-✔ descending alphanumeric keys, slash times and airport alternating fields decode exactly (1.1869ms)
-✔ zero-time placeholders, operational names, repeated visits and raw single calls remain literal (0.6129ms)
-✔ malformed columns retain review failures and cannot become partial matched trains (2.1171ms)
-✔ decoding does not mutate the archived source cells (0.3824ms)
-✔ smoothing follows each retained curved edge instead of cutting its corner (2.9647ms)
-✔ rapid partial input and stale lower progress never reverse train distance (0.3825ms)
-✔ arrival waits for the current map render and stale sessions cannot move its successor (5.1351ms)
-✔ resuming during an arrival cannot bypass its map and animation barrier (3.4622ms)
-✔ Korean station boundaries share the retained source vertex between adjacent segments (4.0584ms)
-ℹ tests 94
+$ node --test tools/test-hk-network.cjs tools/test-hk-phase4.cjs tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs
+✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (6.285ms)
+✔ directional Korean service never manufactures a reverse edge at its terminus (0.9042ms)
+✔ three or more connected Japanese lines remain individually selectable (2.0737ms)
+✔ stopping free drive removes Japanese choices before a Korean typing session starts (7.397ms)
+✔ Hong Kong has ten separately identified MTR lines and stable region IDs (2.7445ms)
+✔ official branches do not invent an all-stations journey through both termini (0.524ms)
+✔ Airport Express does not acquire Tung Chung Line stops (1.6082ms)
+✔ unverified Hong Kong cannot bypass gating through custom/imported routes or a lazy flag (3.223ms)
+✔ Disneyland both directions use distinct retained source tracks, not reverse guesses (3.6049ms)
+✔ every playable service passes the same runtime gate as its lazy index (149.2157ms)
+✔ verified physical edges retain source IDs and connected finite source vertices (31.1267ms)
+✔ unverified transfers and additional Light Rail services stay explicitly pending (1.6046ms)
+✔ compiler regeneration is byte stable and leaves Japanese/Korean data unchanged (2210.446ms)
+✔ source snapshots have valid recorded hashes; absent sources are not silently verified (53.8123ms)
+✔ Hong Kong CUSTOM retains actual edges and rejects reordered, disconnected or imaginary loops (2.7472ms)
+✔ lazy Hong Kong metadata never validates full stop references against an empty station list (5.6136ms)
+✔ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (4.2283ms)
+✔ Hong Kong CUSTOM normalization keeps replay IDs and memory does not gain kana answers (3.6239ms)
+✔ Light Rail destination dashes retain termini while interior one-way calls stay directional (0.5558ms)
+✔ Light Rail complete official sequence rejects the formerly approved truncated 614P pattern (4.9736ms)
+✔ 706 rotates only a closed source chain and retains every traversed railway edge (12.4023ms)
+✔ SIL and AEL directions each resolve independent real source tracks and all their reviewed stops (7.0514ms)
+✔ all MTR codes share a single reviewed Korean name record and unconfirmed names remain blocked (6.4312ms)
+✔ MTR colours are the reviewed official PDF alternates and logos are never implicitly licensed (4.1452ms)
+✔ additional Light Rail peaks retain local times, direction, holiday uncertainty and incomplete full stops (1.4159ms)
+✔ CUSTOM continuations cannot imply a transfer between opposite service directions (2.6773ms)
+✔ phase three release requires completed browser evidence for unchanged names, direction and track (106.9392ms)
+✔ each Hong Kong service stop uses its own railway vertex and stable physical station identity (88.4452ms)
+✔ Tung Chung diversion reorders exact existing source ways with official commissioning evidence (5.7916ms)
+✔ off-peak LOHAS shuttle stays blocked until its operating condition is reviewed (0.2883ms)
+✔ local validation preview cannot appear as a released public service (1.6325ms)
+✔ CUSTOM rebases the first interchange stop onto its selected directed railway without changing physical IDs (1.985ms)
+✔ new Korean usage reviews retain published station identity pairs and do not claim official Korean designations (56.9176ms)
+✔ construction tags cannot be treated as operational without an explicit commissioning review (6.3435ms)
+✔ all original Hong Kong services and 22 reviewed MTR directions survive Phase 4 (282.7826ms)
+✔ Light Rail CSV keeps platform identities and joins only the explicitly circular route sections (12.6286ms)
+✔ 68 surface Korean reviews retain official bilingual identity and published usage provenance (65.7062ms)
+✔ 20 regular Light Rail directions are released only with matching complete browser records (37.1821ms)
+✔ both circular directions keep the later closing visit and every actual rail segment (3.4533ms)
+✔ restored 614P terminal is an original exact railway endpoint, never a straight extension (99.6252ms)
+✔ Happy Valley stop-order corrections retain every raw railway way and exact stop node (35.2312ms)
+✔ Hong Kong transfers preserve exact line stops and history while refusing non-reviewed links and arrival-only directions (113.1099ms)
+✔ official Light Rail colours come from the labelled operator PDF and do not approve logos (43.1014ms)
+✔ finite arrival animation traverses the source curve and resolves exactly once after its full duration (5.53ms)
+✔ actual typing/controller and first-target behavior replaces exact-source-spelling guesses (546.5805ms)
+✔ all six current tram route pairs retain twelve real railway directions without bypassing name or calling-order review (27.8969ms)
+✔ circular Hong Kong completion distance and replay retain separate first and closing station visits (17.0452ms)
+✔ road, rail-road ambiguity, construction, platform and station buildings cannot qualify as operating track (1.8698ms)
+✔ all twelve restricted relations are blocked through direct and saved CUSTOM identities (12.2549ms)
+✔ existing thirteen public Korean routes remain visible and source policy never approves candidates (48.5105ms)
+✔ free-drive and CUSTOM graph exclude restricted source routes (8.6979ms)
+✔ Game start refuses both saved restricted IDs and restricted repository resolutions (9.2472ms)
+✔ the Pyeongtaek to Anjung leg cannot be promoted to a standalone service (3.0551ms)
+✔ directional services compile without creating reverse or local services (13.1807ms)
+✔ unreviewed OSM topology cannot publish (0.8907ms)
+✔ future and expired timetable evidence cannot publish (1.3554ms)
+✔ different train stops cannot be inferred from a timetable (0.6357ms)
+✔ duplicate IDs and missing references fail validation (0.8585ms)
+✔ track gaps are not bridged or snapped (0.8071ms)
+✔ station offsets must match source nodes and visit order (1.0101ms)
+✔ national totals cannot be declared complete without an official inventory (0.5064ms)
+✔ excluded research cannot publish or satisfy the official national service inventory (1.1473ms)
+✔ rail and road co-tagging remains blocked despite otherwise complete release evidence (2.8976ms)
+✔ runtime keeps exact directions, rejects invented destinations, preserves express track (12.2668ms)
+✔ actual Game advancement and finish run exactly once in both explicit directions (8.3179ms)
+✔ normalization never manufactures an all-stops service for v2 (7.3445ms)
+✔ omitted source stops cannot make a partial route releasable (7.2062ms)
+✔ candidate trains and unverified platform metadata cannot release (2.072ms)
+✔ a review flag cannot authorize running against source one-way track (1.7344ms)
+✔ expired national inventory does not certify coverage (0.8602ms)
+✔ timetable matching preserves identity ambiguity and never approves a train (12.3787ms)
+✔ real game route resolver preserves express geometry and repeated loop station visits (8.8811ms)
+✔ official station matching does not merge same-name places or assign approvals (5.5679ms)
+✔ returning to a loop station uses the later map visit and adjacent segment (8.6619ms)
+✔ Korean journey identity and directions survive records and display endpoints (16.8331ms)
+✔ global ordered orientation retains source nodes and explicit stop order (5.7861ms)
+✔ single source way uses stop order without assuming train direction (0.6001ms)
+✔ gaps, missing members and conflicting explicit roles are not repaired (0.663ms)
+✔ unresolved directions and closed way alternatives fail closed (0.5396ms)
+✔ ten incomplete source relations recover every official call on retained directional source geometry (70.1652ms)
+✔ stale donor, changed official calls, omitted original ways and non-public or opposite track fail closed (35.6338ms)
+✔ renamed endpoint requires pinned official history and station identity, preserving the raw source name (5.9659ms)
+✔ explicit official code changes only Korean display name and cannot approve track or platform (4.8085ms)
+✔ station identity drift or inconsistent official code names cannot silently rewrite a name (2.2071ms)
+✔ reviewed line 1 and southern line 4 code crosswalks preserve physical station identity (757.7341ms)
+✔ a changed or absent KRIC identity record cannot authorize a code crosswalk (0.8733ms)
+✔ Busan 1 source stop positions restore all forty official calls without changing track (2659.1183ms)
+✔ source drift, changed official order and mismatched station identity fail closed (142.7636ms)
+✔ fifty-three complete patterns preserve prior verified trains and all published day groups (193.8614ms)
+✔ missing calendar, incomplete stops and nonmonotonic official clocks cannot certify a pattern (58.9035ms)
+✔ role correction retains source member and stop order without mutating source (8.2331ms)
+✔ misordered members are recoverable only as a complete unbranched source chain (0.7756ms)
+✔ member reordering cannot omit a disconnected component or repeat a source member (0.4571ms)
+✔ stale source relation or way cannot silently reuse a correction (2.1513ms)
+✔ correction cannot bridge gaps, ignore a stop or run against one-way track (0.775ms)
+✔ all reviewed national corrections preserve exact source geometry and remain blocked for release (15602.5386ms)
+✔ a closed bridge facility can be replaced only with pinned real rail ways and exact source stop continuity (828.6152ms)
+✔ parallel KRIC cells join by source code while preserving station order (6.216ms)
+✔ descending alphanumeric keys, slash times and airport alternating fields decode exactly (1.1705ms)
+✔ zero-time placeholders, operational names, repeated visits and raw single calls remain literal (0.659ms)
+✔ malformed columns retain review failures and cannot become partial matched trains (2.9698ms)
+✔ decoding does not mutate the archived source cells (0.7023ms)
+✔ smoothing follows each retained curved edge instead of cutting its corner (7.3509ms)
+✔ rapid partial input and stale lower progress never reverse train distance (0.6652ms)
+✔ arrival waits for the current map render and stale sessions cannot move its successor (7.3126ms)
+✔ resuming during an arrival cannot bypass its map and animation barrier (3.9083ms)
+✔ Korean station boundaries share the retained source vertex between adjacent segments (4.0592ms)
+ℹ tests 107
 ℹ suites 0
-ℹ pass 94
+ℹ pass 107
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 12938.1258
+ℹ duration_ms 17221.2238
 
 EXIT_CODE 0
 
@@ -117,7 +130,7 @@ $ node tools/test-typing-model.js
   "bracketsOnlyAutoFilled": true,
   "errors": []
 }
-(node:4712) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/OneDrive/%EB%AC%B8%EC%84%9C/ChatGPT/SUBTYPE/repository/js/typing-model.js is not specified and it doesn't parse as CommonJS.
+(node:32800) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/OneDrive/%EB%AC%B8%EC%84%9C/ChatGPT/SUBTYPE/repository/js/typing-model.js is not specified and it doesn't parse as CommonJS.
 Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
 To eliminate this warning, add "type": "module" to \\?\C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository\package.json.
 (Use `node --trace-warnings ...` to show where the warning was created)
@@ -337,9 +350,23 @@ EXIT_CODE 0
 
 $ node tools/audit-ui-quality.js
 {
-  "generated": "2026-10-22T13:17:09.300Z",
+  "generated": "2026-10-23T15:33:36.388Z",
   "status": "PARTIAL_WITH_AUDITED_GAPS",
   "checks": {
+    "inputValueIsNfcSoleSource": true,
+    "stationBadgeUsesOfficialCodeOnly": true,
+    "koreanProgressUsesAnswerLength": true,
+    "autoAdvance150ms": false,
+    "routeGridWindowed": true,
+    "osakaMetroCanonical": true,
+    "hitoyoshiCanonical": true,
+    "hitoyoshiInternalIdNotPromoted": true,
+    "firstAnswerIsStartStation": true,
+    "typedArrivalInvariant": true,
+    "duplicateCompleteGuard": true,
+    "noJapaneseInKoreanFields": true
+  },
+  "legacyStaticChecks": {
     "inputValueIsNfcSoleSource": false,
     "stationBadgeUsesOfficialCodeOnly": true,
     "koreanProgressUsesAnswerLength": false,
@@ -353,8 +380,75 @@ $ node tools/audit-ui-quality.js
     "duplicateCompleteGuard": true,
     "noJapaneseInKoreanFields": true
   },
+  "behavior": {
+    "checkedAt": "2026-10-23T15:33:36.340Z",
+    "source": "Actual TypingController and Game prototype execution in a small DOM fixture; no browser or OS IME claim",
+    "checks": {
+      "inputValueIsNfcSoleSource": {
+        "status": "PASS"
+      },
+      "koreanProgressUsesAnswerLength": {
+        "status": "PASS"
+      },
+      "autoAdvanceBarrier": {
+        "status": "PASS"
+      },
+      "firstAnswerIsStartStation": {
+        "status": "PASS"
+      }
+    }
+  },
+  "autoAdvanceMeasurement": {
+    "scope": "Final transition samples of actual Phase 4 AUTO runs, full animation. Initial 901ms outlier remains a failure, even when later samples meet 150–300ms.",
+    "samples": [
+      901.3,
+      254.2,
+      253,
+      252,
+      284.9,
+      246.9,
+      256.2,
+      272,
+      251.1,
+      253.2,
+      256.6,
+      242.3,
+      261.7,
+      254.8,
+      261.8,
+      259.3,
+      261.9,
+      250,
+      255.6,
+      244.8,
+      253.6,
+      253.5,
+      247.2,
+      252,
+      255.3,
+      251.1,
+      249.7,
+      249.4,
+      252.8,
+      249.9,
+      252.2,
+      243.5,
+      264,
+      240.4,
+      254.5,
+      247.9,
+      254.3,
+      248.1,
+      254.9
+    ],
+    "targetMs": [
+      150,
+      300
+    ],
+    "status": "FAIL"
+  },
   "typingEngine": {
-    "criticalChecksPassed": 8,
+    "criticalChecksPassed": 11,
     "criticalChecksTotal": 12,
     "browserRegression": "PASSED",
     "browserResults": {

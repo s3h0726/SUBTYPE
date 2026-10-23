@@ -425,9 +425,9 @@
   {
     "id": 61,
     "requirement": "홍콩 MTR Light Rail의 실제 물리 선로·분기·교차·정류장을 도시철도와 별도 그래프로 구축한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "경전철을 별도 canonicalLineId/railway graph로 유지. 11 정규 계통 20방향 공식 CSV·운행표와 실제 OSM 곡선·분기·정차 vertex 검증 및 전체 브라우저 완주. 751P 조건부 후보는 차단 유지. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json.",
+    "nextAction": null
   },
   {
     "id": 62,
@@ -456,9 +456,9 @@
   {
     "id": 65,
     "requirement": "614와 614P는 이름이 비슷해도 정차범위와 실제 운행구간이 다른 별개 서비스로 등록한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "614 24정차와 614P 13정차를 양방향 별도 서비스로 검증·완주. 5955256의 누락 종착 stop member만 기존 원본 railway way 끝 node1723162796으로 복구. 직선/좌표 생성 없음. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json.",
+    "nextAction": null
   },
   {
     "id": 66,
@@ -487,16 +487,16 @@
   {
     "id": 69,
     "requirement": "751P는 상시 노선으로 고정하지 않고 공식 안내의 평일 혼잡시간대 보강 운행 조건을 기록한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "751P 3개 후보 모두 weekday-peak-conditional 및 아침/저녁·학기 제한 검토 사유를 기록. 정확한 전체 정차/시간 창 미확정으로 playable=false 유지. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json.",
+    "nextAction": null
   },
   {
     "id": 70,
     "requirement": "761P까지 포함한 505,507,610,614,614P,615,615P,705,706,751,751P,761P 총 12개 계통을 현재성 재검증 후 등록하고 불확실한 계통은 출시 차단 대상으로 보고한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "경전철 방향별 정류장, 순환선, 특별 운행·학기 조건과 선로 검수를 완료한다."
+    "status": "PASS",
+    "evidence": "12개 경전철 ref 모두 보존·현재성 재검토. 11개 정규 ref 20방향 검증 후 출시, 751P 조건부 3후보는 INCOMPLETE/출시 차단 명시. 공식 light_rail_routes_and_stops.csv 및 현행 MTR 운행 안내 교차 확인. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json.",
+    "nextAction": null
   },
   {
     "id": 71,
@@ -823,9 +823,9 @@
   {
     "id": 117,
     "requirement": "Light Rail 역·정류장에는 일반 MTR 역명판과 다른 경전철형 안내를 적용하며 서비스 번호를 정확히 보여준다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "운영사 원본 자산·표기 규칙·재배포 근거와 전 화면 시각 검증을 완료한다."
+    "status": "PASS",
+    "evidence": "hk-light-rail 별도 역명판 border와 검증된 공식 서비스 번호·색 적용. 20개 방향 전체 실제 게임 화면에서 한국어·중문·영문 및 서비스 식별 확인. 공식 로고 재배포 승인은 0 유지. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json.",
+    "nextAction": null
   },
   {
     "id": 118,
@@ -914,9 +914,9 @@
   {
     "id": 130,
     "requirement": "경로 데이터의 `sourceWayIds`, `sourceDate`, `segmentLengthMeters`, `geometryStatus`, `direction`을 기록하고 미검증 구간은 감사표에 모두 남긴다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다."
+    "status": "PASS",
+    "evidence": "원본 sourceWayIds/sourceDate/segmentLengthMeters/geometryStatus/direction 추적을 보존하고 전체61후보·3개 미해결 relation 감사 기록. Happy Valley 정차 순서 수정도 기존 way 집합과 노드 좌표 불변 검사. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json.",
+    "nextAction": null
   },
   {
     "id": 131,
@@ -963,9 +963,9 @@
   {
     "id": 137,
     "requirement": "타이핑 진행률과 실제 선로 이동거리를 연결하며 경로의 누적거리로 보간한다. 경로 끝을 넘어 열차를 그리지 않는다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다."
+    "status": "PASS",
+    "evidence": "타이핑 입력 진행을 누적 원본 선로 거리로 보간. 완료 애니메이션 240ms 동안 곡선을 모두 통과하고 정확히 끝점에서 resolve하는 회귀 검사 및 전체42방향 실제 완주. 901ms AUTO 성능 outlier는 별도 요구138 INCOMPLETE. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json.",
+    "nextAction": null
   },
   {
     "id": 138,
@@ -1040,9 +1040,9 @@
   {
     "id": 148,
     "requirement": "서비스별 정·역방향과 선택 가능한 출발역·종착역을 실제 운행 조건에 맞게 보여주고, 순환선은 실제 한 바퀴 뒤 종료한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다."
+    "status": "PASS",
+    "evidence": "검증된 정규 서비스만 방향/행선지 선택 노출. 705/706 공식 CSV의 연속 원형 구간을 연결하고 시작역의 후속 방문 occurrence를 분리하여 16회 정차 후 정상 종료를 실제 AUTO 및 암기/SPACE로 검증. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json.",
+    "nextAction": null
   },
   {
     "id": 149,

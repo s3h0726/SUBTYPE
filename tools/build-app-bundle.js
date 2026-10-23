@@ -16,3 +16,4 @@ const hkIndexHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(r
 console.log(JSON.stringify({bundle:'js/app.bundle.js',hash},null,2));
 
 const hkCssHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'css/hong-kong.css'))).digest('hex').slice(0,12);write('index.html',read('index.html').replace(/(\.\/css\/hong-kong\.css)(?:\?v=[^"']*)?/g,`$1?v=${hkCssHash}`));
+const journeyHash=crypto.createHash('sha256').update(read('js/result-journey-map.js')).digest('hex').slice(0,12);write('index.html',read('index.html').replace(/(\.\/js\/result-journey-map\.js)(?:\?v=[^"']*)?/g,`$1?v=${journeyHash}`));

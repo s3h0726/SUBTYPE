@@ -1,28 +1,77 @@
 {
-  "checkedAt": "2026-10-22",
-  "status": "PASS_WITH_LIMITED_SCOPE",
+  "checkedAt": "2026-10-24",
+  "status": "PASS_WITH_AUDITED_GAPS",
   "consoleErrors": 0,
-  "consoleScope": "Local preview tab 5. Hong Kong 22 completed directional services and custom, Japanese samples and Korean sample/free drive. Browser-tool selector errors are not app console exceptions.",
+  "consoleScope": "Local preview tab5; observed error logs empty after all HK runs, transfer/custom/mobile and KR/JP samples. Not a worldwide/server audit.",
   "darkMobile": "PASS",
   "viewports": [
     {
-      "width": 390,
-      "height": 844,
-      "light": "PASS",
-      "dark": "PASS",
-      "horizontalOverflow": false,
-      "stationSignBottom": 826,
-      "officialStationCodeVisible": "PRE",
-      "longKoreanName": "프린스에드워드"
-    },
-    {
-      "width": 1280,
-      "height": 900,
-      "scope": "Phase 2 retained; Phase 3 desktop default viewport also used"
+      "checkedAt": "2026-10-24",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "dark": "images/mobile-dark-transfer.jpg",
+      "light": "images/mobile-light-transfer.jpg",
+      "beforeFix": "HUD at y70 overlapped transfer tabs y4–97 and header y107–161; fixed to y166.",
+      "after": {
+        "boxes": [
+          {
+            "bottom": 97.33333587646484,
+            "height": 93.33333587646484,
+            "left": 6,
+            "right": 384,
+            "selector": "#game-free-drive-tabs",
+            "top": 4,
+            "width": 378,
+            "x": 6,
+            "y": 4
+          },
+          {
+            "bottom": 161,
+            "height": 54,
+            "left": 7,
+            "right": 383,
+            "selector": ".game-top",
+            "top": 107,
+            "width": 376,
+            "x": 7,
+            "y": 107
+          },
+          {
+            "bottom": 220,
+            "height": 54,
+            "left": 12,
+            "right": 378,
+            "selector": ".hud-strip",
+            "top": 166,
+            "width": 366,
+            "x": 12,
+            "y": 166
+          },
+          {
+            "bottom": 826,
+            "height": 362.125,
+            "left": 12,
+            "right": 378,
+            "selector": "#station-sign",
+            "top": 463.875,
+            "width": 366,
+            "x": 12,
+            "y": 463.875
+          }
+        ],
+        "scrollWidth": 390,
+        "theme": "light",
+        "width": 390
+      }
     }
   ],
-  "browserEvidence": "reports/hong-kong/phase3/browser-runs.json",
-  "hongKongCompleted": 22,
+  "browserEvidence": "reports/hong-kong/phase4/browser-runs.json",
+  "hongKongCompleted": 42,
+  "newLightRailCompleted": 20,
+  "retainedMtrCompleted": 22,
   "advanceModes": [
     "AUTO",
     "SPACE"
@@ -31,44 +80,52 @@
     "normal",
     "memory"
   ],
-  "reducedMotion": true,
-  "fullAnimationPhase3": "NOT_TESTED",
-  "nativeOsIme": "NOT_TESTED",
-  "automatedIme": {
-    "fixtures": 10,
-    "status": "PASS"
+  "reducedMotion": false,
+  "fullAnimation": "Executed; AUTO target remains FAIL due measured901.3ms outlier",
+  "transfer": {
+    "status": "PASS",
+    "scenarioCount": 5,
+    "tabChanges": 15,
+    "scope": "Five reviewed HK interchange pairs, TAB A→B→A→B then type to terminal; no-transfer TAB invariant also verified",
+    "evidence": "reports/hong-kong/phase4/browser-transfers.json",
+    "otherHkInterchanges": "NOT_TESTED",
+    "krJpBrowserTransfers": "NOT_TESTED (automated graph regression covered)"
   },
   "custom": {
     "status": "PASS",
-    "newRoute": "PRE → SSP → CSW",
-    "save": true,
-    "reload": true,
-    "replay": true,
-    "completion": true,
-    "phase1SavedRouteReplay": "PASS",
-    "phase2SavedRouteReplay": "PASS",
-    "coordinateRebase": "PASS"
+    "scope": "Existing Phase3 actual-stop route re-saved, browser reload, replay and completion; preserved all3 existing saved routes",
+    "evidence": "reports/hong-kong/phase4/browser-custom.json"
   },
-  "japanKorea": {
-    "dataUnchanged": "PASS",
-    "automated": "PASS",
-    "korea": "Seongsu → Sinseol-dong 5 stops complete; free drive City Hall → Euljiro 1-ga → Euljiro 3-ga",
-    "japan": "Nishi Kyushu Shinkansen 5 stops complete; Narita Express 5 Shinjuku → Narita Airport 6 stops complete",
-    "actualTransferExecution": "NOT_TESTED",
-    "qualification": "Existing Japanese NEX setup showed a grouped service caption differing from the selected journey and its result reports some distance estimates. These Japanese data/selection/distance implementations were not modified in Phase 3; do not claim a full Japanese geometry/UX audit."
-  },
-  "supabase": "NOT_TESTED",
-  "legacyUiFailureCount": 4,
-  "legacyUiEvidence": "reports/hong-kong/phase3/legacy-ui-investigation.json",
-  "screenshots": [
-    "output/hk/phase3-mobile-light-code.jpg",
-    "output/hk/phase3-mobile-dark-code.jpg",
-    "output/hk/phase3-custom-result.jpg",
-    "output/hk/phase3-jp-shinkansen-result.jpg",
-    "output/hk/phase3-jp-express-result.jpg",
-    "output/hk/phase3-kr-branch-result.jpg",
-    "output/hk/phase3-kr-free-drive.jpg"
+  "regressions": [
+    {
+      "name": "JP 니시큐슈 신칸센",
+      "status": "PASS"
+    },
+    {
+      "name": "JP 나리타 익스프레스 신주쿠발",
+      "status": "PASS"
+    },
+    {
+      "name": "KR 성수지선",
+      "status": "PASS"
+    }
   ],
-  "settingsRestored": true,
-  "notes": "Browser fill is automated input and not human typing speed. Results verify completion, not typing performance. Native IME and real transfer execution remain separate NOT_TESTED items."
+  "koreaFreeDrive": {
+    "status": "PASS_FOR_MOVEMENT",
+    "evidence": "reports/hong-kong/phase4/browser-kr-free-drive.json",
+    "statistics": "Not asserted; one mismatch remains displayed after restart; no claim of zero-error free-drive statistics."
+  },
+  "nativeWindowsIme": "NOT_TESTED",
+  "mobileNativeKeyboard": "NOT_TESTED",
+  "supabase": "NOT_TESTED",
+  "notTestedReasons": {
+    "nativeWindowsIme": "Only DOM browser input available; native OS computer APIs disabled.",
+    "mobileNativeKeyboard": "390x844 responsive browser viewport is not an actual mobile keyboard.",
+    "supabase": "No configured Supabase URL/anon key or provided test account."
+  },
+  "settingsRestored": {
+    "theme": "dark",
+    "viewport": "reset",
+    "reducedMotion": false
+  }
 }

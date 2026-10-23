@@ -1,4 +1,4 @@
-import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
+import{hongKongRouteBlockReason,hongKongTransferAllowed}from'./hong-kong-policy.js';
 const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 // recommit-trigger: free-drive-move-fix-20261007
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
@@ -149,7 +149,7 @@ export class FreeDrive{
   coordsForRoute(key,routeId){return this.graph.get(key)?.coordsByRoute?.get(routeId)||null}
   selectRoute(routeId){
     const node=this.current();
-    if(!node?.stationsByRoute?.has(routeId)||!this.routes.some(route=>route.id===routeId))return false;
+    if(!node?.stationsByRoute?.has(routeId)||!this.availableRouteIds().includes(routeId))return false;
     if(this.currentRouteId===routeId)return true;
     this.currentRouteId=routeId;
     this.render();this.emit();
@@ -158,28 +158,29 @@ export class FreeDrive{
   moveTo(to,routeId){
     if(!to||!routeId)return false;
     const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===to&&e.routeId===routeId);
-    if(!edge)return false;
+    if(!edge||!this.availableRouteIds().includes(routeId))return false;
     this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
     this.render();this.emit();return true
   }
   switchRouteAtCurrentStation(routeId){
     const node=this.current(),route=this.routes.find(r=>r.id===routeId);
-    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
+    if(!node||!route||routeId===this.currentRouteId||!this.availableRouteIds().includes(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
     this.currentRouteId=routeId;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
+  availableRouteIds(){const node=this.current(),from=this.routes.find(r=>r.id===this.currentRouteId);return[...(node?.routeIds||[])].filter(id=>(from?.countryId!=='hk'||id===this.currentRouteId||node.edges.some(e=>e.routeId===id))&&hongKongTransferAllowed(from,this.routes.find(r=>r.id===id),this.currentKey))}
   snapshot(){
     const node=this.current(),route=this.routes.find(r=>r.id===this.currentRouteId)||this.startRoute;
     if(!node||!route)return null;
     const indexedStop=node.stationsByRoute?.get(this.currentRouteId);
     const stationIndex=indexedStop?.index??Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
-    return{node,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
+    const availableRouteIds=this.availableRouteIds(),transferCount=route.countryId==='hk'?new Set(availableRouteIds.map(id=>this.routes.find(r=>r.id===id)?.canonicalLineId).filter(id=>id&&id!==route.canonicalLineId)).size:Math.max(0,availableRouteIds.length-1);return{node,availableRouteIds,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount}
   }
   emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
   edges(){
     const node=this.current();if(!node)return[];
     const seen=new Set;
-    return node.edges.filter(e=>{const k=`${e.to}|${e.routeId}`;if(seen.has(k))return false;seen.add(k);return true})
+    const available=this.availableRouteIds();return node.edges.filter(e=>{if(!available.includes(e.routeId))return false;const k=`${e.to}|${e.routeId}`;if(seen.has(k))return false;seen.add(k);return true})
       .sort((a,b)=>(a.routeId===this.currentRouteId?-1:0)-(b.routeId===this.currentRouteId?-1:0)||routeName(a.route).localeCompare(routeName(b.route),'ko'));
   }
   render(){

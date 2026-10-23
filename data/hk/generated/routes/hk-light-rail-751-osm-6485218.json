@@ -20,23 +20,21 @@
   "mode": "light_rail",
   "code": "751",
   "officialSymbolExists": false,
-  "lineColor": "#F58C14",
+  "lineColor": "#f58220",
   "lineTheme": {
     "code": "751",
-    "color": "#F58C14",
+    "color": "#f58220",
     "style": "hk",
-    "colorVerified": false,
-    "colorSource": "OSM candidate; official colour audit pending"
+    "colorVerified": true,
+    "colorSource": "https://www.mtr.com.hk/archive/en/services/LR_routemap.pdf"
   },
   "loop": false,
   "lazy": false,
-  "playable": false,
-  "releaseStatus": "INCOMPLETE",
+  "playable": true,
+  "releaseStatus": "ready",
   "geometryReady": true,
   "geometryStatus": "verified",
-  "blockedReasons": [
-    "한국어 역명 검수 필요"
-  ],
+  "blockedReasons": [],
   "direction": "osm-6485218",
   "validWhen": {
     "type": "regular",
@@ -4707,8 +4705,8 @@
       "code": "275",
       "nameZhHant": "友愛",
       "nameEn": "Yau Oi",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "야우오이",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -4720,6 +4718,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "YAO",
+      "officialStopId": "275",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%95%BC%EC%9A%B0%EC%98%A4%EC%9D%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/2303992318",
@@ -4744,7 +4751,7 @@
       "ja": "友愛",
       "kana": "",
       "romaji": "Yau Oi",
-      "ko": "",
+      "ko": "야우오이",
       "koAliases": [],
       "latitude": 22.3867019,
       "longitude": 113.9735852,
@@ -4759,8 +4766,8 @@
       "code": "270",
       "nameZhHant": "安定",
       "nameEn": "On Ting",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "온팅",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -4772,6 +4779,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "ONT",
+      "officialStopId": "270",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%98%A8%ED%8C%85%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1712155451",
@@ -4796,7 +4812,7 @@
       "ja": "安定",
       "kana": "",
       "romaji": "On Ting",
-      "ko": "",
+      "ko": "온팅",
       "koAliases": [],
       "latitude": 22.3875746,
       "longitude": 113.9750826,
@@ -4811,8 +4827,8 @@
       "code": "280",
       "nameZhHant": "市中心",
       "nameEn": "Town Centre",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "타운센터",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -4824,6 +4840,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TOC",
+      "officialStopId": "280",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%83%80%EC%9A%B4%EC%84%BC%ED%84%B0%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1719431829",
@@ -4848,7 +4873,7 @@
       "ja": "市中心",
       "kana": "",
       "romaji": "Town Centre",
-      "ko": "",
+      "ko": "타운센터",
       "koAliases": [],
       "latitude": 22.3913037,
       "longitude": 113.9748608,
@@ -4863,8 +4888,8 @@
       "code": "295",
       "nameZhHant": "屯門",
       "nameEn": "Tuen Mun",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "튄문",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -4876,6 +4901,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TML",
+      "officialStopId": "295",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8A%84%EB%AC%B8%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/299402688",
@@ -4900,7 +4934,7 @@
       "ja": "屯門",
       "kana": "",
       "romaji": "Tuen Mun",
-      "ko": "",
+      "ko": "튄문",
       "koAliases": [],
       "latitude": 22.3938077,
       "longitude": 113.9730692,
@@ -4915,8 +4949,8 @@
       "code": "070",
       "nameZhHant": "河田",
       "nameEn": "Ho Tin",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "호틴",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -4928,6 +4962,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "HOT",
+      "officialStopId": "70",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%98%B8%ED%8B%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/696727744",
@@ -4952,7 +4995,7 @@
       "ja": "河田",
       "kana": "",
       "romaji": "Ho Tin",
-      "ko": "",
+      "ko": "호틴",
       "koAliases": [],
       "latitude": 22.3967567,
       "longitude": 113.9728873,
@@ -4967,8 +5010,8 @@
       "code": "075",
       "nameZhHant": "蔡意橋",
       "nameEn": "Choy Yee Bridge",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "초이이브릿지",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -4980,6 +5023,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "CYB",
+      "officialStopId": "75",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%B4%88%EC%9D%B4%EC%9D%B4%EB%B8%8C%EB%A6%BF%EC%A7%80%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1711045136",
@@ -5004,7 +5056,7 @@
       "ja": "蔡意橋",
       "kana": "",
       "romaji": "Choy Yee Bridge",
-      "ko": "",
+      "ko": "초이이브릿지",
       "koAliases": [],
       "latitude": 22.3998135,
       "longitude": 113.9741138,
@@ -5019,8 +5071,8 @@
       "code": "080",
       "nameZhHant": "澤豐",
       "nameEn": "Affluence",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "어플루언스",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5032,6 +5084,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "AFF",
+      "officialStopId": "80",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%96%B4%ED%94%8C%EB%A3%A8%EC%96%B8%EC%8A%A4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/797780347",
@@ -5056,7 +5117,7 @@
       "ja": "澤豐",
       "kana": "",
       "romaji": "Affluence",
-      "ko": "",
+      "ko": "어플루언스",
       "koAliases": [],
       "latitude": 22.4035202,
       "longitude": 113.975831,
@@ -5071,8 +5132,8 @@
       "code": "090",
       "nameZhHant": "屯門醫院",
       "nameEn": "Tuen Mun Hospital",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "튄문병원",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5084,6 +5145,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TMH",
+      "officialStopId": "90",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8A%84%EB%AC%B8%EB%B3%91%EC%9B%90%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/797780349",
@@ -5108,7 +5178,7 @@
       "ja": "屯門醫院",
       "kana": "",
       "romaji": "Tuen Mun Hospital",
-      "ko": "",
+      "ko": "튄문병원",
       "koAliases": [],
       "latitude": 22.4078144,
       "longitude": 113.9770954,
@@ -5123,8 +5193,8 @@
       "code": "100",
       "nameZhHant": "兆康",
       "nameEn": "Siu Hong",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "시우홍",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5136,6 +5206,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "SHL",
+      "officialStopId": "100",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%8B%9C%EC%9A%B0%ED%99%8D%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/2812747293",
@@ -5160,7 +5239,7 @@
       "ja": "兆康",
       "kana": "",
       "romaji": "Siu Hong",
-      "ko": "",
+      "ko": "시우홍",
       "koAliases": [],
       "latitude": 22.4119738,
       "longitude": 113.9784003,
@@ -5175,8 +5254,8 @@
       "code": "350",
       "nameZhHant": "藍地",
       "nameEn": "Lam Tei",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "람테이",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5188,6 +5267,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "LTE",
+      "officialStopId": "350",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EB%9E%8C%ED%85%8C%EC%9D%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1735275632",
@@ -5212,7 +5300,7 @@
       "ja": "藍地",
       "kana": "",
       "romaji": "Lam Tei",
-      "ko": "",
+      "ko": "람테이",
       "koAliases": [],
       "latitude": 22.4184953,
       "longitude": 113.9817121,
@@ -5227,8 +5315,8 @@
       "code": "360",
       "nameZhHant": "泥圍",
       "nameEn": "Nai Wai",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "나이와이",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5240,6 +5328,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "NAW",
+      "officialStopId": "360",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EB%82%98%EC%9D%B4%EC%99%80%EC%9D%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1735275648",
@@ -5264,7 +5361,7 @@
       "ja": "泥圍",
       "kana": "",
       "romaji": "Nai Wai",
-      "ko": "",
+      "ko": "나이와이",
       "koAliases": [],
       "latitude": 22.4236166,
       "longitude": 113.9863554,
@@ -5279,8 +5376,8 @@
       "code": "370",
       "nameZhHant": "鍾屋村",
       "nameEn": "Chung Uk Tsuen",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "충욱췬",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5292,6 +5389,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "CUT",
+      "officialStopId": "370",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%B6%A9%EC%9A%B1%EC%B7%AC%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1735275618",
@@ -5316,7 +5422,7 @@
       "ja": "鍾屋村",
       "kana": "",
       "romaji": "Chung Uk Tsuen",
-      "ko": "",
+      "ko": "충욱췬",
       "koAliases": [],
       "latitude": 22.4296983,
       "longitude": 113.9922035,
@@ -5331,8 +5437,8 @@
       "code": "380",
       "nameZhHant": "洪水橋",
       "nameEn": "Hung Shui Kiu",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "훙수이키우",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5344,6 +5450,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "HSK",
+      "officialStopId": "380",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%9B%99%EC%88%98%EC%9D%B4%ED%82%A4%EC%9A%B0%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1735275631",
@@ -5368,7 +5483,7 @@
       "ja": "洪水橋",
       "kana": "",
       "romaji": "Hung Shui Kiu",
-      "ko": "",
+      "ko": "훙수이키우",
       "koAliases": [],
       "latitude": 22.4336572,
       "longitude": 113.9974391,
@@ -5383,8 +5498,8 @@
       "code": "425",
       "nameZhHant": "坑尾村",
       "nameEn": "Hang Mei Tsuen",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "항메이췬",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5396,6 +5511,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "HMT",
+      "officialStopId": "425",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%95%AD%EB%A9%94%EC%9D%B4%EC%B7%AC%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1777130723",
@@ -5420,7 +5544,7 @@
       "ja": "坑尾村",
       "kana": "",
       "romaji": "Hang Mei Tsuen",
-      "ko": "",
+      "ko": "항메이췬",
       "koAliases": [],
       "latitude": 22.4451033,
       "longitude": 114.0055761,
@@ -5435,8 +5559,8 @@
       "code": "430",
       "nameZhHant": "天水圍",
       "nameEn": "Tin Shui Wai",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "틴수이와이",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5448,6 +5572,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TSL",
+      "officialStopId": "430",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8B%B4%EC%88%98%EC%9D%B4%EC%99%80%EC%9D%B4%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1784785708",
@@ -5472,7 +5605,7 @@
       "ja": "天水圍",
       "kana": "",
       "romaji": "Tin Shui Wai",
-      "ko": "",
+      "ko": "틴수이와이",
       "koAliases": [],
       "latitude": 22.4494045,
       "longitude": 114.006001,
@@ -5487,8 +5620,8 @@
       "code": "435",
       "nameZhHant": "天慈",
       "nameEn": "Tin Tsz",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "틴치",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5500,6 +5633,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TIT",
+      "officialStopId": "435",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8B%B4%EC%B9%98%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1783169571",
@@ -5524,7 +5666,7 @@
       "ja": "天慈",
       "kana": "",
       "romaji": "Tin Tsz",
-      "ko": "",
+      "ko": "틴치",
       "koAliases": [],
       "latitude": 22.4527465,
       "longitude": 114.006036,
@@ -5539,8 +5681,8 @@
       "code": "450",
       "nameZhHant": "天湖",
       "nameEn": "Tin Wu",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "틴우",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5552,6 +5694,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TWU",
+      "officialStopId": "450",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8B%B4%EC%9A%B0%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1783169577",
@@ -5576,7 +5727,7 @@
       "ja": "天湖",
       "kana": "",
       "romaji": "Tin Wu",
-      "ko": "",
+      "ko": "틴우",
       "koAliases": [],
       "latitude": 22.4549411,
       "longitude": 114.0056769,
@@ -5591,8 +5742,8 @@
       "code": "455",
       "nameZhHant": "銀座",
       "nameEn": "Ginza",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "긴자",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5604,6 +5755,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "GIN",
+      "officialStopId": "455",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EA%B8%B4%EC%9E%90%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1783169567",
@@ -5628,7 +5788,7 @@
       "ja": "銀座",
       "kana": "",
       "romaji": "Ginza",
-      "ko": "",
+      "ko": "긴자",
       "koAliases": [],
       "latitude": 22.4575383,
       "longitude": 114.0049475,
@@ -5643,8 +5803,8 @@
       "code": "500",
       "nameZhHant": "天榮",
       "nameEn": "Tin Wing",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "틴윙",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5656,6 +5816,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TWI",
+      "officialStopId": "500",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8B%B4%EC%9C%99%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/4788509628",
@@ -5680,7 +5849,7 @@
       "ja": "天榮",
       "kana": "",
       "romaji": "Tin Wing",
-      "ko": "",
+      "ko": "틴윙",
       "koAliases": [],
       "latitude": 22.4597405,
       "longitude": 114.0023817,
@@ -5695,8 +5864,8 @@
       "code": "490",
       "nameZhHant": "翠湖",
       "nameEn": "Chestwood",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "체스트우드",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5708,6 +5877,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "CHE",
+      "officialStopId": "490",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%B2%B4%EC%8A%A4%ED%8A%B8%EC%9A%B0%EB%93%9C%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1783169564",
@@ -5732,7 +5910,7 @@
       "ja": "翠湖",
       "kana": "",
       "romaji": "Chestwood",
-      "ko": "",
+      "ko": "체스트우드",
       "koAliases": [],
       "latitude": 22.4596684,
       "longitude": 113.9995899,
@@ -5747,8 +5925,8 @@
       "code": "468",
       "nameZhHant": "頌富",
       "nameEn": "Chung Fu",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "충푸",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5760,6 +5938,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "CHF",
+      "officialStopId": "468",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%EC%B6%A9%ED%91%B8%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1783169565",
@@ -5784,7 +5971,7 @@
       "ja": "頌富",
       "kana": "",
       "romaji": "Chung Fu",
-      "ko": "",
+      "ko": "충푸",
       "koAliases": [],
       "latitude": 22.4620153,
       "longitude": 113.9969703,
@@ -5799,8 +5986,8 @@
       "code": "480",
       "nameZhHant": "天富",
       "nameEn": "Tin Fu",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "틴푸",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5812,6 +5999,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TFU",
+      "officialStopId": "480",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8B%B4%ED%91%B8%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1777130732",
@@ -5836,7 +6032,7 @@
       "ja": "天富",
       "kana": "",
       "romaji": "Tin Fu",
-      "ko": "",
+      "ko": "틴푸",
       "koAliases": [],
       "latitude": 22.4645667,
       "longitude": 113.9976446,
@@ -5851,8 +6047,8 @@
       "code": "550",
       "nameZhHant": "天逸",
       "nameEn": "Tin Yat",
-      "nameKo": null,
-      "nameStatus": "review-required",
+      "nameKo": "틴얏",
+      "nameStatus": "verified",
       "aliasesKo": [],
       "aliasesEn": [],
       "coordinates": {
@@ -5864,6 +6060,15 @@
       "checkedAt": "2026-10-22",
       "license": "ODbL-1.0",
       "confidence": "medium",
+      "officialStopCode": "TYA",
+      "officialStopId": "550",
+      "officialIdentitySource": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "koreanNameSource": {
+        "sourceUrl": "https://namu.moe/w/%ED%8B%B4%EC%96%8F%20%EC%A0%95%EB%A5%98%EC%9E%A5",
+        "sourceType": "reviewed-korean-community-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1777130767",
@@ -5888,7 +6093,7 @@
       "ja": "天逸",
       "kana": "",
       "romaji": "Tin Yat",
-      "ko": "",
+      "ko": "틴얏",
       "koAliases": [],
       "latitude": 22.4670313,
       "longitude": 113.9987878,
@@ -5930,5 +6135,5 @@
       ]
     }
   ],
-  "validationFingerprint": "e96ab15b4091964e9aa7464751571f6c0ac637d5b8bd468b075307c091f16c1d"
+  "validationFingerprint": "b8bd3df1e9f5e5644616b9c0112b323d0d1055b0a4a3889e1c0415810305f9ec"
 }

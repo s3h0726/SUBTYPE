@@ -1,4 +1,11 @@
 // Hong Kong data must fail closed. Never reinterpret another country's records.
+export function hongKongTransferAllowed(fromRoute,toRoute,stationId){
+ if(fromRoute?.countryId!=='hk'&&toRoute?.countryId!=='hk')return true;
+ if(fromRoute?.countryId!=='hk'||toRoute?.countryId!=='hk')return false;
+ if(fromRoute.id===toRoute.id)return true;
+ const a=fromRoute.stations.find(s=>(s.physicalStationId||s.stationMasterId||s.id)===stationId),b=toRoute.stations.find(s=>(s.physicalStationId||s.stationMasterId||s.id)===stationId);
+ return !!a&&!!b&&[a,b].every(s=>s.transferReview?.status==='verified'&&s.transferReview.stationId===stationId&&[fromRoute.canonicalLineId,toRoute.canonicalLineId].every(id=>s.transferReview.lineIds.includes(id)));
+}
 export function hongKongRouteBlockReason(route){
   if(route?.countryId!=='hk')return'';
   if((route.releaseStatus!=='ready'&&!(route.releaseStatus==='validation-preview'&&route.validationPreview===true&&typeof location!=='undefined'&&['localhost','127.0.0.1'].includes(location.hostname)))||route.playable!==true)return(route.blockedReasons||[]).join(' · ')||'홍콩 서비스 검증 대기';
