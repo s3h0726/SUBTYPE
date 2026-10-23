@@ -454,6 +454,8 @@ function operatingDirectionLabel(choice){
   return choice.direction==='reverse'?'역방향':'정방향'
 }
 function configureJourneyPicker(){
+  // Keep this browser picker self-contained for isolated JP operating-choice tests.
+  const journeyStationDisplayName=value=>{const name=journeyLabel(value);return typeof koreanStationDisplayName==='function'&&typeof selected!=='undefined'&&selected?.countryId==='kr'?koreanStationDisplayName(name,'kr'):name};
   const picker=$('#journey-picker'),pattern=$('#journey-pattern'),directionPicker=$('#journey-direction'),origin=$('#journey-origin'),destination=$('#journey-destination'),summary=$('#journey-summary'),direction=$('#service-direction'),submit=$('#setup-form button[type="submit"]'),choices=koreaFamilyChoices||actualOperatingChoices(selected);
   if(!picker||!pattern||!directionPicker||!origin||!destination)return;
   const japan=selected?.countryId==='jp';
