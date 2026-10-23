@@ -71,6 +71,7 @@ test('Maihama walking transfer uses two names but retains distinct per-route coo
   const source=read('js/free-drive.js').replace(/^import[^\n]*\n/gm,'').replace(/\bexport\s+/g,'');
   const context={console,normalize:name=>String(name||'').normalize('NFC').toLowerCase().trim(),$:()=>null,koreanRouteBlockReason:()=>null};
   vm.createContext(context);
+  require('./lib/test-kr-display-context.cjs')(context);
   vm.runInContext(source+';globalThis.FreeDriveTest=FreeDrive;globalThis.disneyKey=freeDriveStationKey',context);
   const drive=Object.create(context.FreeDriveTest.prototype);
   drive.renderMap=()=>{};

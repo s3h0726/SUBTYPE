@@ -1,7 +1,7 @@
-const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
+const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-main","kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 // recommit-trigger: free-drive-move-fix-20261007
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
-import{$,escapeHtml,normalize}from'./utils.js';
+import{$,escapeHtml,normalize,koreanStationDisplayName,koreanRouteDisplayText}from'./utils.js';
 
 const finite=n=>n!==null&&n!==undefined&&n!==''&&Number.isFinite(Number(n));
 const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Number(s.longitude)]:null;
@@ -31,8 +31,8 @@ const freeDriveStationKey=s=>{
   }
   return String(s?.stationMasterId||s?.sourceStationId||s?.id||ja);
 };
-const routeName=r=>r?.line?.ko||r?.line?.ja||r?.line?.en||r?.id||'노선';
-const stationName=s=>s?.ko||s?.ja||s?.romaji||s?.id||'역';
+const routeName=r=>koreanRouteDisplayText(r?.line?.ko||r?.line?.ja||r?.line?.en||r?.id||'노선',r);
+const stationName=(s,r)=>koreanStationDisplayName(s?.ko||s?.ja||s?.romaji||s?.id||'역',r?.countryId,r);
 const routeColor=r=>r?.lineColor||r?.color||'#73837b';
 const routeSegments=route=>{
   if(route?.countryId==='kr'){
@@ -150,7 +150,7 @@ export class FreeDrive{
   }
   populateStartStations(route){
     const select=$('#free-drive-start-station');if(!select)return;
-    select.innerHTML=route.stations.map((s,i)=>`<option value="${i}">${escapeHtml(s.ko||s.ja)} · ${escapeHtml(s.ja||'')}</option>`).join('');
+    select.innerHTML=route.stations.map((s,i)=>`<option value="${i}">${escapeHtml(stationName(s,route))} · ${escapeHtml(route.countryId==='kr'?stationName(s,route):s.ja||'')}</option>`).join('');
   }
   updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
@@ -203,8 +203,8 @@ export class FreeDrive{
     const node=this.current();if(!node)return;
     const route=this.routes.find(r=>r.id===this.currentRouteId);
     const actual=this.stationForRoute(this.currentKey,this.currentRouteId)||node.station;
-    $('#free-drive-station-ko').textContent=stationName(actual);
-    $('#free-drive-station-ja').textContent=actual.ja||'';
+    $('#free-drive-station-ko').textContent=stationName(actual,route);
+    $('#free-drive-station-ja').textContent=route?.countryId==='kr'?stationName(actual,route):actual.ja||'';
     $('#free-drive-current-line').textContent=routeName(route);
     $('#free-drive-transfer-count').textContent=String(Math.max(0,(node.routeIds?.size||1)-1));
     $('#free-drive-visited-count').textContent=String(this.history.length);
@@ -212,7 +212,7 @@ export class FreeDrive{
     const groups=new Map;for(const edge of edges){if(!groups.has(edge.routeId))groups.set(edge.routeId,[]);groups.get(edge.routeId).push(edge)}
     target.innerHTML=[...groups.entries()].map(([routeId,list])=>{
       const r=list[0].route,transfer=routeId!==this.currentRouteId;
-      return `<section class="free-drive-line ${transfer?'transfer':''}" style="--route-color:${routeColor(r)}"><header><span>${transfer?'TRANSFER · 환승':'CURRENT LINE'}</span><b>${escapeHtml(routeName(r))}</b><small>${escapeHtml(r.operator?.ko||r.operator?.ja||'')}</small></header><div>${list.map(edge=>{const dest=edge.station||this.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(dest?.ko||dest?.ja||'다음 역')}</b><span>${escapeHtml(dest?.ja||'')}</span><i>→</i></button>`}).join('')}</div></section>`
+      return `<section class="free-drive-line ${transfer?'transfer':''}" style="--route-color:${routeColor(r)}"><header><span>${transfer?'TRANSFER · 환승':'CURRENT LINE'}</span><b>${escapeHtml(routeName(r))}</b><small>${escapeHtml(r.operator?.ko||r.operator?.ja||'')}</small></header><div>${list.map(edge=>{const dest=edge.station||this.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(stationName(dest,r))}</b><span>${escapeHtml(r.countryId==='kr'?stationName(dest,r):dest?.ja||'')}</span><i>→</i></button>`}).join('')}</div></section>`
     }).join('')||'<p class="muted">이 역에서 이어지는 선로를 찾지 못했습니다.</p>';
     this.renderMap();
   }

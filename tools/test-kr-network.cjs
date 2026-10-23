@@ -79,6 +79,7 @@ test('Korean journey identity and directions survive records and display endpoin
  }
  const records=c.store.records();assert.equal(Object.keys(records).length,2);assert.equal(records.out.directionId,'out');assert.equal(records.in.directionId,'in');assert.equal(records.out.destinationName,'라역');assert.equal(records.in.destinationName,'가역');
  const elements=new Map();c.$=id=>{if(!elements.has(id))elements.set(id,{});return elements.get(id)};c.railDataRepository={getLine(){return{names:{ko:'시험선'}}},getRoute(){return route}};
+ vm.runInContext(read('js/utils.js').slice(read('js/utils.js').indexOf('export const koreanStationDisplayName'),read('js/utils.js').indexOf('export const normalize')).replace(/export /g,''),c);
  vm.runInContext(read('js/statistics.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,'')+';globalThis.renderStatsTest=renderStats',c);c.renderStatsTest();
- assert(elements.get('#records-table').innerHTML.includes('가역 → 라역'));assert(elements.get('#records-table').innerHTML.includes('라역 → 가역'));
+ assert(elements.get('#records-table').innerHTML.includes('가 → 라'));assert(elements.get('#records-table').innerHTML.includes('라 → 가'));
 });
