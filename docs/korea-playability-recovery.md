@@ -13,3 +13,5 @@ Verification commands are documented in package.json. `test:korea-preview` check
 The UI-driven test covers a Japanese service, Korean legacy line 3, reviewed forward/reverse research relations, AUTO, SPACE, separate records, light/dark themes and refresh. SPACE requests now wait for physical arrival, preventing rapid input from skipping an arrival or duplicating the finish event. CUSTOM and a physical-device IME session require separate manual verification.
 
 Lazy route selection clears the previous PLAY action while loading. A selection revision invalidates late responses after a different route, country, category or preview mode is chosen. The UI-driven test waits for the exact selected route identity and captures SPACE timeout state for diagnosis.
+
+Validation workflows for records, destinations, free drive and NEX retain their build and regression checks but do not independently push partial generated artifacts to main. Each additionally verifies that the committed application bundle matches the rebuilt source. Source, runtime indexes and HTML cache tags are committed and reviewed together to prevent concurrent or incomplete publication.

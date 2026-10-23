@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate:
@@ -30,15 +30,14 @@ jobs:
         run: node tools/build-static.js
       - name: Validate data
         run: node tools/validate-data.js
-      - name: Commit rebuilt bundle
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add js/app.bundle.js index.html
-          if git diff --cached --quiet; then
-            echo 'No generated changes.'
-          else
-            git commit -m 'build: apply destination playability fix'
-            git push origin HEAD:main
-          fi
+      # Validate the source event without racing other workflows to rewrite main.
+      # Runtime artifacts and their cache tags are committed together with source.
+      - name: Verify committed application bundle matches source
+        run: git diff --exit-code -- js/app.bundle.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validate-destination-playability-build
+          path: |
+            js/app.bundle.js
+            index.html
+            data/generated/nex-branch-geometry-candidates.json
