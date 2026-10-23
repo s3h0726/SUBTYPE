@@ -20,6 +20,38 @@ test('metro Line 1 replaces five legacy cards with reviewed research directions 
  assert.equal(published.routes.length,13);
  for(const route of integrated){const file=route.lazySource.split('?')[0];assert(fs.existsSync(path.join(root,file)),route.id+' missing source file')}
 });
+test('actual Line 1 service classes are grouped without inventing release approval',async()=>{
+ const {integrateKoreanLine1Index}=await runtime;
+ const merged=integrateKoreanLine1Index(published,preview),services=merged.routes.filter(r=>r.integratedLine1);
+ const confirmed=services.filter(r=>r.line1Service?.evidenceStatus==='operator-service-confirmed');
+ assert.deepEqual(confirmed.map(r=>String(r.sourceRelationId)).sort(),['8820537','8820538']);
+ assert(services.every(r=>r.line1Service?.name&&!r.line1Service.name.includes('연구용')));
+ assert(services.every(r=>r.releaseStatus==='research'&&r.playStatus==='RESEARCH_PLAYABLE'));
+ assert(services.some(r=>r.line1Service.group==='경인선 급행'));
+ assert(services.some(r=>r.line1Service.group==='서동탄 지선 일반'));
+ assert(services.some(r=>r.line1Service.group==='경부선 일반'));
+ assert(services.some(r=>r.line1Service.group==='1호선 일반'));
+ const east=services.find(r=>r.sourceRelationId==='8820537');
+ assert.equal(east.line1Service.name,'경인선 급행 · 동인천 → 용산');
+ assert.equal(merged.integratedLine1.officialReleased,0);
+});
+test('published Line 1 picker uses real service names, retains OSM stops and research-record gate',async()=>{
+ const {integrateKoreanLine1Index}=await runtime;
+ const {koreanResearchChoices,resolveKoreanResearchChoice}=await import(pathToFileURL(path.join(root,'js/korean-research-resolver.js')));
+ const merged=integrateKoreanLine1Index(published,preview),index=merged.routes.find(r=>r.sourceRelationId==='8820537');
+ assert(index&&index.line1Service);
+ const payload=JSON.parse(fs.readFileSync(path.join(root,index.lazySource),'utf8'));
+ const raw=payload.route||payload,route={...raw,integratedLine1:true,line1Service:index.line1Service};
+ const choices=koreanResearchChoices(route);
+ assert.equal(choices.length,1);
+ assert.equal(choices[0].line1PatternKey,'gyeongin-express');
+ assert.equal(choices[0].patternName.ko,'경인선 급행 · 동인천 → 용산');
+ const resolved=resolveKoreanResearchChoice(choices[0],route);
+ assert.equal(resolved.service.nameKo,'경인선 급행 · 동인천 → 용산');
+ assert.equal(resolved.route.line.ko,'수도권 전철 1호선');
+ assert.equal(resolved.researchPreview,true);
+ assert.deepEqual(resolved.service.stops,raw.services[0].stops);
+});
 test('invalid previews fail closed instead of becoming official services',async()=>{
  const {integrateKoreanLine1Index}=await runtime;
  assert.throws(()=>integrateKoreanLine1Index(published,{...preview,previewContract:'invalid'}),/INVALID_LINE1_PREVIEW_INDEX/);
