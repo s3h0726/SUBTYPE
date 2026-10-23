@@ -111,8 +111,8 @@ MTR [고속철도목적지](https://www.highspeed.mtr.com.hk/en/ticket/destinati
 
 - 브랜치: feature/hong-kong-railway
 - 시작: 71f7493ac2aba14d117343cbee17c1ba54486e68
-- 실제 구현 커밋: NOT_COMMITTED (report draft)
-- 원격 푸시: NOT_YET_PERFORMED; [Git영수증](git-result.json)
+- 실제 구현 커밋: 2a11536f89d5b2a3085ac90035280e97effb345c
+- 원격 푸시: SUCCESS; [Git영수증](git-result.json)
 - [변경파일목록](changed-files.txt)
 - local main: 67f9b780b4f60fd2586d302ddea41a4d94b6baa2, 미수정
 - 시작 원격 main: 510d3d9734914d13499de08785ea355e684e9381; 캐시origin/main: 438f605b1e1f2a2a97991bb6e84e226c8bd0f91a. 외부main변경 미통합

@@ -322,7 +322,7 @@
       "id": 10,
       "requirement": "최종 산출물은 홍콩 브랜치의 코드·데이터·검증 스크립트·감사 보고서·실제 GitHub 커밋 SHA와 브랜치 독립성 검증이다. 운영 main 배포는 명시적 병합 승인 전까지 금지한다.",
       "status": "PASS",
-      "evidence": "Phase 3 원본·생성물·자동/브라우저 검증 및 180개 감사 보고서를 보존. 구현 커밋 e2b353bb62dcc346c11a63d1df20f75233d18321을 feature/hong-kong-railway에만 푸시하고 git ls-remote로 일치 확인. reports/hong-kong/phase3/SUMMARY.md 및 git-result.json에 main 미변경과 외부 main 변화, 배포 미수행 기록.",
+      "evidence": "Phase4 원본·생성물·전체180감사와 실제42방향완주, TAB·CUSTOM·한국/일본표본 회귀 증거 보존. 구현/원격홍콩통합 커밋2a11536f89d5b2a3085ac90035280e97effb345c를 feature/hong-kong-railway에만 푸시하고 ls-remote 일치 확인. reports/hong-kong/phase4/SUMMARY.md 및 git-result.json. main 미수정·리베이스/배포 미수행.",
       "evidenceFiles": [
         "reports/hong-kong/audit.json",
         "reports/hong-kong/phase4/services.json",
@@ -6677,7 +6677,7 @@
       "id": 180,
       "requirement": "최종 보고에는 기준일·검증 소스·총 노선/역/운행계통/track edge 수·통과/미통과 목록·수정 파일·테스트 명령·**작업 브랜치/커밋 SHA·기준 main SHA·브랜치 미리보기 URL(있는 경우)·main 미변경 확인**을 기재한다. 병합·운영 배포는 사용자 승인 전까지 하지 않는다.",
       "status": "PASS",
-      "evidence": "Phase 3 원본·생성물·자동/브라우저 검증 및 180개 감사 보고서를 보존. 구현 커밋 e2b353bb62dcc346c11a63d1df20f75233d18321을 feature/hong-kong-railway에만 푸시하고 git ls-remote로 일치 확인. reports/hong-kong/phase3/SUMMARY.md 및 git-result.json에 main 미변경과 외부 main 변화, 배포 미수행 기록.",
+      "evidence": "Phase4 원본·생성물·전체180감사와 실제42방향완주, TAB·CUSTOM·한국/일본표본 회귀 증거 보존. 구현/원격홍콩통합 커밋2a11536f89d5b2a3085ac90035280e97effb345c를 feature/hong-kong-railway에만 푸시하고 ls-remote 일치 확인. reports/hong-kong/phase4/SUMMARY.md 및 git-result.json. main 미수정·리베이스/배포 미수행.",
       "evidenceFiles": [
         "reports/hong-kong/audit.json",
         "reports/hong-kong/phase4/services.json",
