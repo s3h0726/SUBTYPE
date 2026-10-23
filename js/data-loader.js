@@ -84,6 +84,21 @@ export async function loadRailData(){
   if(errors.length)console.warn('Japan catalog skipped invalid routes:',errors.length,errors.slice(0,5));
   return{operators,lines,stations,assets:canonical?.assets||{},errors,counts,fallbackUsed,source:fallbackUsed?'nationwide-emergency-backup':'canonical-line-workspaces'}
 }
+// A research preview is never promoted into an officially released service.
+// Replace only the public Line 1 selector; preserve the five legacy source files
+// and keep each OSM journey's own validated stopping calls and track geometry.
+export function integrateKoreanLine1Index(published,preview){
+  if(preview?.previewContract!=='kr-research-v1'||!Array.isArray(preview.routes)||preview.routes.some(route=>!isKoreanResearch(route)))throw Error('INVALID_LINE1_PREVIEW_INDEX');
+  const obsolete=new Set(['13695367','13695368']); // discontinued Dongincheon limited express
+  const merged=preview.routes.filter(route=>route.passengerLineId==='kr-osm-line-8691899'&&!obsolete.has(String(route.sourceRelationId))&&route.lazy&&route.lazySource&&route.geometryReady===true&&route.playable===true).map(route=>({...route,integratedLine1:true}));
+  if(!merged.length)throw Error('NO_VERIFIED_LINE1_RESEARCH_PREVIEWS');
+  const ids=new Set(merged.map(route=>route.id));if(ids.size!==merged.length)throw Error('DUPLICATE_LINE1_RESEARCH_ROUTE');
+  const legacy=(published.routes||[]),isOldLine1=route=>/^kr-metro-1-(?:main|gyeongin|gyeongbu|gwangmyeong|seodongtan)$/.test(String(route.id));
+  const first=legacy.findIndex(isOldLine1);if(first<0)throw Error('MISSING_LEGACY_LINE1_BASELINE');
+  const routes=[...legacy.slice(0,first),...merged,...legacy.slice(first)].filter(route=>!isOldLine1(route));
+  const operators=[...new Map([...(published.operators||[]),...(preview.operators||[])].map(operator=>[operator.id,operator])).values()];
+  return{...published,routes,operators,integratedLine1:{researchServices:merged.length,replacedLegacySections:legacy.filter(isOldLine1).length,releaseStatus:'research',officialReleased:0}};
+}
 export async function loadTransportData(countryId='jp',koreaMode='released'){
   if(countryId==='jp'){
     const data=await loadRailData();
@@ -98,12 +113,16 @@ export async function loadTransportData(countryId='jp',koreaMode='released'){
     return data;
   }
   const previewUrl=new URL('data/kr/preview/index.json',document.baseURI);previewUrl.searchParams.set('v',new URL(document.querySelector('script[src*="app.bundle.js"]')?.src||document.baseURI).searchParams.get('v')||'1');
-  const data=koreaMode==='research'?await fetchJson(previewUrl):globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
+  let data=koreaMode==='research'?await fetchJson(previewUrl):globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
+  if(koreaMode==='released'){
+    try{data=integrateKoreanLine1Index(data,await fetchJson(previewUrl))}
+    catch(error){console.warn('Line 1 research integration unavailable; legacy sections preserved:',error)}
+  }
   if(koreaMode==='research')globalThis.TRT_KOREA_RESEARCH_INDEX=data;
   if(koreaMode==='research'&&(data.previewContract!=='kr-research-v1'||data.routes.some(r=>!isKoreanResearch(r))))throw Error('INVALID_RESEARCH_INDEX');
   const lines=(data.routes||[]).filter(route=>!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators,lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
 }
-export async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);const sourceRoute=Array.isArray(payload.routes)?payload.routes.find(item=>item?.id===route.id):(payload.route||payload);if(!sourceRoute)throw new Error('일본 노선 분할 파일에 해당 노선이 없습니다: '+route.id);if(isKoreanResearch(route)){if(!isKoreanResearch(sourceRoute)||sourceRoute.id!==route.id||sourceRoute.sourceServiceId!==route.sourceServiceId)throw Error('RESEARCH_LAZY_IDENTITY_MISMATCH');assertKoreanResearchRoute(sourceRoute)}const normalized=normalizeLine(sourceRoute,{category:route.category});normalized.directions=sourceRoute.directions||[];if(route.countryId==='kr'){normalized.playable=route.playable;normalized.visibility=route.visibility;normalized.dataKind=route.dataKind;normalized.serviceNote=route.serviceNote;normalized.operatorId=route.operatorId;normalized.operator={...normalized.operator,...route.operator};normalized.operators=route.operators||normalized.operators;normalized.operatorIds=route.operatorIds||normalized.operatorIds;normalized.countryId='kr';normalized.regionId=route.regionId;normalized.passengerLineId=route.passengerLineId;normalized.passengerLineName=route.passengerLineName;normalized.operatingPatternId=route.operatingPatternId;normalized.serviceValidationStatus=route.serviceValidationStatus;normalized.geometryReady=route.geometryReady===true;normalized.geometryStatus=route.geometryStatus||normalized.geometryStatus;normalized.releaseStatus=route.releaseStatus||normalized.releaseStatus;normalized.gameValidationStatus=route.gameValidationStatus||normalized.gameValidationStatus;}return normalized}
+export async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);const sourceRoute=Array.isArray(payload.routes)?payload.routes.find(item=>item?.id===route.id):(payload.route||payload);if(!sourceRoute)throw new Error('일본 노선 분할 파일에 해당 노선이 없습니다: '+route.id);if(isKoreanResearch(route)){if(!isKoreanResearch(sourceRoute)||sourceRoute.id!==route.id||sourceRoute.sourceServiceId!==route.sourceServiceId)throw Error('RESEARCH_LAZY_IDENTITY_MISMATCH');assertKoreanResearchRoute(sourceRoute)}const normalized=normalizeLine(sourceRoute,{category:route.category});normalized.directions=sourceRoute.directions||[];if(route.countryId==='kr'){normalized.playable=route.playable;normalized.visibility=route.visibility;normalized.dataKind=route.dataKind;normalized.serviceNote=route.serviceNote;normalized.operatorId=route.operatorId;normalized.operator={...normalized.operator,...route.operator};normalized.operators=route.operators||normalized.operators;normalized.operatorIds=route.operatorIds||normalized.operatorIds;normalized.countryId='kr';normalized.regionId=route.regionId;normalized.passengerLineId=route.passengerLineId;normalized.passengerLineName=route.passengerLineName;normalized.operatingPatternId=route.operatingPatternId;normalized.serviceValidationStatus=route.serviceValidationStatus;normalized.geometryReady=route.geometryReady===true;normalized.geometryStatus=route.geometryStatus||normalized.geometryStatus;normalized.releaseStatus=route.releaseStatus||normalized.releaseStatus;normalized.integratedLine1=route.integratedLine1===true;normalized.gameValidationStatus=route.gameValidationStatus||normalized.gameValidationStatus;}return normalized}
 export async function loadRoutes(){const data=await loadRailData();return{routes:data.lines,errors:data.errors,counts:data.counts,fallbackUsed:data.fallbackUsed}}
 export async function loadStationMaster(){const workspaceData=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;if(!Array.isArray(workspaceData?.routes))return[];const map=new Map;for(const route of workspaceData.routes)for(const station of route.stations||[])if(!map.has(station.id))map.set(station.id,normalizeStation(station,map.size,route.code));return[...map.values()]}

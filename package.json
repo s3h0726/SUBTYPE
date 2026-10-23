@@ -56,7 +56,7 @@
     "audit:korea-failures": "node tools/build-kr-failure-index.js",
     "build:korea-preview": "node tools/build-korea-preview.js",
     "release:korea-services": "node tools/build-korea-data.js --publish-released",
-    "test:korea-preview": "node --test tools/test-kr-preview.cjs",
+    "test:korea-preview": "node --test tools/test-kr-preview.cjs && node --test tools/test-kr-line1-integration.cjs",
     "import:korea-intercity": "python tools/import-korail-conventional.py",
     "test:korea-site": "node tools/test-kr-site.cjs",
     "test:route-selection": "node --test tools/test-route-selection.cjs",
