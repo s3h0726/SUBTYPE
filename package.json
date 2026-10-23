@@ -59,7 +59,9 @@
     "test:korea-preview": "node --test tools/test-kr-preview.cjs",
     "import:korea-intercity": "python tools/import-korail-conventional.py",
     "test:korea-site": "node tools/test-kr-site.cjs",
-    "test:route-selection": "node --test tools/test-route-selection.cjs"
+    "test:route-selection": "node --test tools/test-route-selection.cjs",
+    "review:japan-services": "node tools/apply-japan-national-service-reviews.cjs --check",
+    "test:japan-services": "node --test tools/test-japan-national-service-reviews.cjs tools/test-japan-operating-choice-visibility.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

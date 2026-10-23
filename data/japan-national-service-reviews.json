@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-24",
+  "countryId": "jp",
+  "sources": {
+    "kamome": "https://www.jrkyushu.co.jp/english/train/shinkansen_kamome.html",
+    "kamomePatterns": "https://www.jrkyushu.co.jp/railway/dia2022/pdf/press_nagasaki22_cps.pdf",
+    "relay": "https://www.jrkyushu.co.jp/english/train/relay_kamome.html",
+    "relayStops": "https://www.nta.co.jp/jr/shinkansen/nishikyushu/",
+    "keiyoRetired": "https://railf.jp/news/2024/03/16/052700.html",
+    "expoRetired": "https://travel.watch.impress.co.jp/docs/news/2047967.html",
+    "westRapid": "https://timetable.jr-odekake.net/station-timetable/2836018001?date=20260831"
+  },
+  "reviewedChanges": [
+    {
+      "kind": "replace",
+      "patternId": "366",
+      "status": "superseded",
+      "reason": "Original pattern combined Relay KAMOME and Shinkansen KAMOME into a single no-transfer service",
+      "sourceKey": "kamome"
+    },
+    {
+      "kind": "discontinue",
+      "patternIds": [
+        "244",
+        "582",
+        "584"
+      ],
+      "onlyWhenTypeJa": "通勤快速",
+      "endedAt": "2024-03-15",
+      "sourceKey": "keiyoRetired"
+    },
+    {
+      "kind": "discontinue",
+      "patternIds": [
+        "1094"
+      ],
+      "onlyWhenTypeJa": "エキスポライナー",
+      "endedAt": "2025-10-13",
+      "sourceKey": "expoRetired"
+    }
+  ],
+  "koreanNameFixes": [
+    {
+      "ja": "紀州路快速",
+      "from": "기슈로 쾌속",
+      "to": "기슈지 쾌속"
+    },
+    {
+      "ja": "区間快速(加茂方面)",
+      "from": "구간쾌속",
+      "to": "구간쾌속(가모 방면)"
+    },
+    {
+      "ja": "区間快速(和歌山方面)",
+      "from": "구간쾌속",
+      "to": "구간쾌속(와카야마 방면)"
+    },
+    {
+      "ja": "直通快速(和歌山方面)",
+      "from": "직통쾌속",
+      "to": "직통쾌속(와카야마 방면)"
+    },
+    {
+      "ja": "直通快速(関西空港方面)",
+      "from": "직통쾌속",
+      "to": "직통쾌속(간사이공항 방면)"
+    },
+    {
+      "ja": "エキスポライナー",
+      "from": "박람회 라이너",
+      "to": "엑스포 라이너"
+    }
+  ],
+  "shinkansen": {
+    "catalogCode": "1012",
+    "physicalRouteId": "shinkansen-nishi-kyushu",
+    "sourceKey": "kamomePatterns",
+    "origin": "武雄温泉",
+    "destination": "長崎",
+    "stations": [
+      "武雄温泉",
+      "嬉野温泉",
+      "新大村",
+      "諫早",
+      "長崎"
+    ],
+    "variants": [
+      {
+        "id": "jp-nishi-kyushu-kamome-all",
+        "labelJa": "かもめ（各駅停車型）",
+        "labelKo": "카모메(전역정차형)",
+        "labelEn": "KAMOME (all stops)",
+        "stopNames": [
+          "武雄温泉",
+          "嬉野温泉",
+          "新大村",
+          "諫早",
+          "長崎"
+        ]
+      },
+      {
+        "id": "jp-nishi-kyushu-kamome-rapid-1",
+        "labelJa": "かもめ（速達型①）",
+        "labelKo": "카모메(속달형 1)",
+        "labelEn": "KAMOME (limited stops 1)",
+        "stopNames": [
+          "武雄温泉",
+          "諫早",
+          "長崎"
+        ]
+      },
+      {
+        "id": "jp-nishi-kyushu-kamome-rapid-2",
+        "labelJa": "かもめ（速達型②）",
+        "labelKo": "카모메(속달형 2)",
+        "labelEn": "KAMOME (limited stops 2)",
+        "stopNames": [
+          "武雄温泉",
+          "新大村",
+          "諫早",
+          "長崎"
+        ]
+      }
+    ]
+  },
+  "relay": {
+    "patternId": "jp-relay-kamome-2026",
+    "lineCodes": [
+      "11903",
+      "11905",
+      "11918"
+    ],
+    "sourceKey": "relay",
+    "japanese": "リレーかもめ",
+    "korean": "릴레이 카모메",
+    "english": "Relay KAMOME",
+    "segments": [
+      {
+        "lineCode": "11903",
+        "from": "博多",
+        "to": "鳥栖",
+        "calls": [
+          "博多",
+          "鳥栖"
+        ]
+      },
+      {
+        "lineCode": "11905",
+        "from": "鳥栖",
+        "to": "肥前山口",
+        "calls": [
+          "鳥栖",
+          "新鳥栖",
+          "佐賀"
+        ]
+      },
+      {
+        "lineCode": "11918",
+        "from": "肥前山口",
+        "to": "武雄温泉",
+        "calls": [
+          "武雄温泉"
+        ]
+      }
+    ],
+    "note": "江北駅은 과거 肥前山口駅과 동일역. 원본 역명 교체 전까지 통과역으로 취급하고 실제 경유 선로만 참조한다."
+  }
+}

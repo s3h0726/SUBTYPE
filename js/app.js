@@ -426,7 +426,7 @@ function actualOperatingChoices(route){
       add({kind:'trainService',id:`train-service:${service.id}:${branch.id}`,originId:`train-service:${service.id}:${branch.id}:origin`,destinationId:`train-service:${service.id}:${branch.id}:destination`,originNames:{ja:firstName,ko:firstName},destinationNames:{ja:lastName,ko:branch.destinationKo||lastName},trainType:null,journeyId:null,patternId:null,patternName:{ja:service.nameJa,ko:service.nameKo,en:service.nameEn},throughServiceId:null,trainServiceId:service.id,trainServiceBranchId:branch.id,branchStops:branch.stops||[],direction:'forward'})
     }
   }
-  const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;add(choice)}}
+  const catalogLine=nationwideCatalogLine(route);if(catalogLine)for(const pattern of catalogLine.data.patterns||[]){if(pattern.status==='discontinued'||pattern.status==='superseded')continue;const variants=Number(pattern.type?.direction||0)===0?[false,true]:[false];for(const reverse of variants){const choice=catalogPatternChoice(route,pattern,reverse);if(!choice)continue;add(choice)}}
   if(route.countryId==='kr')choices.splice(0,choices.length,...choices.filter(choice=>(route.category==='custom'||route.directions?.some(d=>d.id===choice.direction))&&operatingChoicePlayable(choice,route)));
   if(choices.length)return choices.sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   const stations=route?.stations||[];if(stations.length<2)return[];
