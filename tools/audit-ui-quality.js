@@ -40,7 +40,8 @@ const legacyStaticChecks={
 const behaviorRun=require('node:child_process').spawnSync(process.execPath,['tools/check-typing-behavior.cjs'],{cwd:root,encoding:'utf8'});
 let behavior;try{behavior=JSON.parse(behaviorRun.stdout)}catch{behavior={checks:{},error:behaviorRun.stderr||'Behavior runner produced no JSON'}}
 const browserPath=path.join(root,'reports/hong-kong/phase4/browser-runs.json'),phase4Browser=fs.existsSync(browserPath)?read('reports/hong-kong/phase4/browser-runs.json'):[];
-const autoSamples=phase4Browser.filter(r=>r.status==='PASS'&&r.advance==='AUTO').map(r=>Number(r.timing?.advanceMs)).filter(Number.isFinite);
+const phase5Path=path.join(root,'reports/hong-kong/phase5/performance-report.json'),phase5Performance=fs.existsSync(phase5Path)?read('reports/hong-kong/phase5/performance-report.json'):null;
+const autoSamples=phase5Performance?phase5Performance.samples.map(s=>s.targetReadyMs):phase4Browser.filter(r=>r.status==='PASS'&&r.advance==='AUTO').map(r=>Number(r.timing?.advanceMs)).filter(Number.isFinite);
 const checks={...legacyStaticChecks,
  inputValueIsNfcSoleSource:behavior.checks.inputValueIsNfcSoleSource?.status==='PASS',
  koreanProgressUsesAnswerLength:behavior.checks.koreanProgressUsesAnswerLength?.status==='PASS',
@@ -52,7 +53,7 @@ const report={
   checks,
   legacyStaticChecks,
   behavior,
-  autoAdvanceMeasurement:{scope:'Final transition samples of actual Phase 4 AUTO runs, full animation. Initial 901ms outlier remains a failure, even when later samples meet 150–300ms.',samples:autoSamples,targetMs:[150,300],status:checks.autoAdvance150ms?'PASS':autoSamples.length?'FAIL':'NOT_TESTED'},
+  autoAdvanceMeasurement:{scope:phase5Performance?'All retained Phase5 confirmation-to-next-target/result transitions, full animation; historical Phase4 901.3ms FAIL retained separately.':'Final transition samples of actual Phase4 AUTO runs, full animation. 901.3ms outlier retained.',historicalPhase4:phase5Performance?.historicalPhase4||null,samples:autoSamples,targetMs:[150,300],status:checks.autoAdvance150ms?'PASS':autoSamples.length?'FAIL':'NOT_TESTED'},
   typingEngine:{criticalChecksPassed:Object.values(checks).filter(Boolean).length,criticalChecksTotal:Object.keys(checks).length,browserRegression:browserAudit?.status||previousAudit?.typingEngine?.browserRegression||'PENDING',...(browserAudit?{browserResults:browserAudit.results}:previousAudit?.typingEngine?.browserResults?{browserResults:previousAudit.typingEngine.browserResults}:{})},
   officialStationCodes:{stationEntries:officialCodeStations.length,displayPolicy:'Only explicit or verified officialCode values may be rendered. Internal station IDs stay data-only.'},
   logos:{nationwideOperators:index.operators.length,operatorsWithVerifiedLocalAssets:operatorsWithAssets.size,verifiedAssetRecords:Object.values(operatorAssets).filter(asset=>asset.logoVerified).length,knownGaps:index.operators.length-operatorsWithAssets.size,status:'INCOMPLETE'},

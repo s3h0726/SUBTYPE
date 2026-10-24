@@ -1,6 +1,6 @@
-# 홍콩 철도 180개 요구사항
+# 홍콩 철도 180개 요구사항 — Phase 5
 
-기준일: 2026-10-24. 기존 ID/문구 및 Phase3 PASS66개 보존. PASS는 기록된 범위이며 홍콩 전체 완성을 뜻하지 않는다. OS IME·Supabase는 NOT_TESTED. 상세근거: reports/hong-kong/phase4/requirements-audit.json.
+기존74 PASS 보존. PASS85 / INCOMPLETE93 / FAIL1(AUTO138) / OUT_OF_SCOPE1. OS IME·Supabase NOT_TESTED. 근거·코드·검사 범위는 reports/hong-kong/phase5/requirements-audit.json.
 
 | ID | 상태 | 요구사항 | 근거 / 다음 작업 |
 |---|---|---|---|
@@ -25,7 +25,7 @@
 | 19 | INCOMPLETE | 장래 확장 노선의 역 좌표와 geometry를 현재 영업 중인 역에 합쳐 노출하거나 플레이시키지 않는다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 20 | INCOMPLETE | 홍콩 전체를 구현했다는 선언은 운영기관별·노선별·서비스별 공개 근거와 감사 수치가 일치할 때만 한다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 21 | INCOMPLETE | 주 자료는 MTR 공식 영문/번체중문 노선도, 서비스 시간표, 역 목록, 경전철 노선도·서비스 정보를 사용한다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
-| 22 | INCOMPLETE | 홍콩 트램은 Hong Kong Tramways 공식 6개 주요 계통 및 정류장·지도·시각표를 기준으로 한다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
+| 22 | PASS | 홍콩 트램은 Hong Kong Tramways 공식 6개 주요 계통 및 정류장·지도·시각표를 기준으로 한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
 | 23 | INCOMPLETE | 피크트램은 The Peak / Peak Tram 공식 노선·운행정보를 우선하며 역사 자료를 현재 정차 정보로 오인하지 않는다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 24 | INCOMPLETE | 고속철도는 MTR High Speed Rail 공식 목적지 및 운행 자료와 중국 본토 해당 운영기관 자료를 교차 확인한다. | 공식 현재 운영 인벤토리와 출처/권리/유효기간을 확정한다. |
 | 25 | PASS | 실제 선형은 OpenStreetMap의 railway `way/relation`과 공개 철도 공간자료로 추출하고, 노선도 PDF의 도식선은 실제 선형으로 사용하지 않는다. | OSM 공식 API node/way/relation과 원본 좌표 사용 |
@@ -75,14 +75,14 @@
 | 69 | PASS | 751P는 상시 노선으로 고정하지 않고 공식 안내의 평일 혼잡시간대 보강 운행 조건을 기록한다. | 751P 3개 후보 모두 weekday-peak-conditional 및 아침/저녁·학기 제한 검토 사유를 기록. 정확한 전체 정차/시간 창 미확정으로 playable=false 유지. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json. |
 | 70 | PASS | 761P까지 포함한 505,507,610,614,614P,615,615P,705,706,751,751P,761P 총 12개 계통을 현재성 재검증 후 등록하고 불확실한 계통은 출시 차단 대상으로 보고한다. | 12개 경전철 ref 모두 보존·현재성 재검토. 11개 정규 ref 20방향 검증 후 출시, 751P 조건부 3후보는 INCOMPLETE/출시 차단 명시. 공식 light_rail_routes_and_stops.csv 및 현행 MTR 운행 안내 교차 확인. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json. |
 | 71 | INCOMPLETE | Hong Kong Tramways를 MTR 운영사와 구별되는 독립 운영사로 등록하고 실제 상표·색상 자산을 적용한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
-| 72 | INCOMPLETE | 공식 6개 주요 운행계통을 서비스 단위로 구축하되 노면전차 선로 원본은 공유한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
-| 73 | INCOMPLETE | Kennedy Town–Shau Kei Wan의 홍콩섬 동서간 본선과 각 종점 회차·도로 곡선을 실제 OSM tram track에서 추출한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
-| 74 | INCOMPLETE | Western Market–Shau Kei Wan 운행계통을 현재 공식 정차/행선지 자료에 맞추어 구성한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
-| 75 | INCOMPLETE | Happy Valley–Shau Kei Wan 계통과 Happy Valley 진입·출구 루프를 실제 선형으로 구현한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
-| 76 | INCOMPLETE | Shek Tong Tsui–North Point 계통을 실제 정류장과 지정된 분기 선로에 맞춰 구현한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
-| 77 | INCOMPLETE | Shek Tong Tsui–Causeway Bay 계통을 다른 계통과 구분하고 정차 순서를 검증한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
-| 78 | INCOMPLETE | Kennedy Town–Happy Valley 계통은 Happy Valley 순환과 연결 구간의 진행 방향이 정확해야 한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
-| 79 | INCOMPLETE | 같은 도로·정류장에 여러 트램이 겹치는 경우 지도 표시를 중복으로 겹쳐 두껍게 만드는 대신 공통 `trackSegment`를 참조한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
+| 72 | PASS | 공식 6개 주요 운행계통을 서비스 단위로 구축하되 노면전차 선로 원본은 공유한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
+| 73 | PASS | Kennedy Town–Shau Kei Wan의 홍콩섬 동서간 본선과 각 종점 회차·도로 곡선을 실제 OSM tram track에서 추출한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
+| 74 | PASS | Western Market–Shau Kei Wan 운행계통을 현재 공식 정차/행선지 자료에 맞추어 구성한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
+| 75 | PASS | Happy Valley–Shau Kei Wan 계통과 Happy Valley 진입·출구 루프를 실제 선형으로 구현한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
+| 76 | PASS | Shek Tong Tsui–North Point 계통을 실제 정류장과 지정된 분기 선로에 맞춰 구현한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
+| 77 | PASS | Shek Tong Tsui–Causeway Bay 계통을 다른 계통과 구분하고 정차 순서를 검증한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
+| 78 | PASS | Kennedy Town–Happy Valley 계통은 Happy Valley 순환과 연결 구간의 진행 방향이 정확해야 한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
+| 79 | PASS | 같은 도로·정류장에 여러 트램이 겹치는 경우 지도 표시를 중복으로 겹쳐 두껍게 만드는 대신 공통 `trackSegment`를 참조한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
 | 80 | INCOMPLETE | 트램은 MTR 지하철 역명판을 복제하지 않는다. 실제 정류장 표지·행선판·두 층 차량 특성을 반영한 전용 디자인을 사용한다. | 트램 공식 정류장 순서와 도로 방향별 실제 선로를 대조한다. |
 | 81 | INCOMPLETE | Peak Tram을 TRAM이 아닌 `FUNICULAR` 유형으로 추가한다. 상행·하행 두 차량의 선로/교행 특성을 반영한다. | 피크트램 현행 중간 정차와 고속철도 편명/시각표/관할 경계/전체 실제 선로를 확보한다. |
 | 82 | INCOMPLETE | Garden Road Lower Terminus와 Peak Upper Terminus의 공식 명칭·좌표·운행 상태를 확인한다. | 피크트램 현행 중간 정차와 고속철도 편명/시각표/관할 경계/전체 실제 선로를 확보한다. |
@@ -130,7 +130,7 @@
 | 124 | INCOMPLETE | East Rail의 Lo Wu/Lok Ma Chau 분기점과 Racecourse 선로는 분기점 좌표 및 정확한 edge 순서를 보존한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 125 | INCOMPLETE | Tseung Kwan O의 Po Lam/LOHAS Park 분기와 터널 선로는 경로별 물리적인 갈림을 구분한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 126 | INCOMPLETE | Light Rail의 도로 병행 구간, 궤도 교차부, 순환선 연결점, 전환기를 OSM tram/light_rail 데이터를 사용해 구축한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
-| 127 | INCOMPLETE | 홍콩 트램의 Happy Valley 루프와 종착 회차선, 도심 커브는 단순 타원형 가짜 루프가 아닌 실제 경로로 저장한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
+| 127 | PASS | 홍콩 트램의 Happy Valley 루프와 종착 회차선, 도심 커브는 단순 타원형 가짜 루프가 아닌 실제 경로로 저장한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
 | 128 | INCOMPLETE | Peak Tram은 고도 데이터를 확보하면 3D/gradient 표시로 확장하되 기본 2D geometry 정확성을 먼저 충족한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 129 | INCOMPLETE | segment는 각 역의 플랫폼 인접 선로에 정확히 스냅시키며, 끊어진 선로·점프·왕복시 뒤집힘·해외 좌표 이동을 검사한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 130 | PASS | 경로 데이터의 `sourceWayIds`, `sourceDate`, `segmentLengthMeters`, `geometryStatus`, `direction`을 기록하고 미검증 구간은 감사표에 모두 남긴다. | 원본 sourceWayIds/sourceDate/segmentLengthMeters/geometryStatus/direction 추적을 보존하고 전체61후보·3개 미해결 relation 감사 기록. Happy Valley 정차 순서 수정도 기존 way 집합과 노드 좌표 불변 검사. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json. |
@@ -141,7 +141,7 @@
 | 135 | PASS | 기본 모드에서 한국어 정답을 보이고 암기 모드에서는 한국어 정답을 숨기되 번체중문/영문 안내는 유지한다. | 22개 서비스에서 정방향 일반/AUTO, 역방향 암기/SPACE를 번갈아 실제 완주. 암기에서는 한국어 정답과 지도 한국어 힌트 숨김 유지; 모바일 기존 검사 및 신규 정상 입력 확인. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 136 | INCOMPLETE | 역 이름의 괄호·공백·중점·하이픈은 현행 typing model의 자동 표시 규칙을 적용하고 괄호 속 문자·숫자는 누락 없이 입력시킨다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 137 | PASS | 타이핑 진행률과 실제 선로 이동거리를 연결하며 경로의 누적거리로 보간한다. 경로 끝을 넘어 열차를 그리지 않는다. | 타이핑 입력 진행을 누적 원본 선로 거리로 보간. 완료 애니메이션 240ms 동안 곡선을 모두 통과하고 정확히 끝점에서 resolve하는 회귀 검사 및 전체42방향 실제 완주. 901ms AUTO 성능 outlier는 별도 요구138 INCOMPLETE. 근거: reports/hong-kong/phase4/browser-runs.json, services.json, tools/test-hk-phase4.cjs, data/hk/master/*-review.json. |
-| 138 | INCOMPLETE | AUTO에서는 정답 최종 확정 후 Enter/Space 추가 입력 없이 약 150~300ms 목표 범위에서 다음 정차역 문제로 전환한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
+| 138 | FAIL | AUTO에서는 정답 최종 확정 후 Enter/Space 추가 입력 없이 약 150~300ms 목표 범위에서 다음 정차역 문제로 전환한다. | Resolve browser animation frame scheduling and post-barrier layout outliers, then repeat PC/mobile burst and sequential input measurements. |
 | 139 | PASS | SPACE에서는 사용자가 명시적으로 다음 역으로 진행하며 Space 키가 타이핑 중 공백 처리를 방해하지 않게 한다. | SPACE 11개 방향 실제 완주. 입력 완료 후 명시적 Space로만 다음 역 진행; 기존 IME 10 fixture와 타이핑 18 case 통과. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 140 | INCOMPLETE | 입력 이벤트마다 전체 지도나 역 목록을 재생성하지 말고 문자·진행률·열차 좌표·필요한 상태만 갱신한다. | 미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다. |
 | 141 | INCOMPLETE | HOME의 TODAY’S ROUTE 및 추천/최근 노선에 홍콩 데이터를 정상 노출하고 일본·한국 기존 카드 레이아웃과 호환되게 한다. | 데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다. |
@@ -178,7 +178,7 @@
 | 172 | INCOMPLETE | East Rail의 Lo Wu/Lok Ma Chau 분기, Racecourse 특별 정차, Tseung Kwan O의 Po Lam/LOHAS Park 분기를 정·역방향 시나리오로 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
 | 173 | PASS | Tuen Ma Line의 Tuen Mun–Wu Kai Sha 일체형 운행과 Sunny Bay–Disneyland Resort 지선 선택을 테스트한다. | 튄마선 27역 두 방향과 Disneyland 2역 두 방향 모두 브라우저 완주. 기존 6계통 회귀 완료. 근거: reports/hong-kong/phase3/browser-runs.json, stop-position-audit.json, data/hk/master/korean-name-review.json, tools/test-hk-network.cjs. |
 | 174 | INCOMPLETE | Light Rail 총 12개 대상 계통의 현재성, 순환 방향, 구간 종점, 751P 시간제 조건을 각각 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
-| 175 | INCOMPLETE | Hong Kong Tramways 공식 6개 계통과 Happy Valley 루프의 선로 연결·정방향·역방향·정류장 순서를 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
+| 175 | PASS | Hong Kong Tramways 공식 6개 계통과 Happy Valley 루프의 선로 연결·정방향·역방향·정류장 순서를 테스트한다. | Phase5 official operator six route pairs,128 directional facts and135 map markers reviewed against12 exact OSM calling chains; all12 completed in browser with matching content fingerprints. See data/hk/master/tram-stop-review.json and reports/hong-kong/phase5/browser-runs.json; only current six regular route pairs, no full-HK claim. |
 | 176 | INCOMPLETE | Peak Tram 급경사/교행 geometry, 중간 정류장 운행 상태와 고속철도의 홍콩 국경 전후 서비스 유효성을 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
 | 177 | INCOMPLETE | 동일 역에 번체중문·영문·한국어가 표시되는지, 한국어 IME·AUTO·SPACE·TAB·CUSTOM·RECORDS를 PC/모바일로 테스트한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |
 | 178 | INCOMPLETE | `missingKoNames`, `unverifiedGeometry`, `brokenCoordinates`, `duplicateStations`, `nonexistentServices`, `brokenLogoAssets`, `phantomTransfers`, `consoleErrors`를 산출한다. | 정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다. |

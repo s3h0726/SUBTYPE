@@ -92,17 +92,17 @@ function animateTypingTrain(rail,path,target,motion=true){
   // Final arrival has a finite duration; every frame still follows cumulative
   // distance on the original railway, including curves. Partial input keeps its
   // existing monotonic smoothing. Repeated completion calls keep one clock.
-  if(target===path.total&&!rail.arrivalMotion)rail.arrivalMotion={started:performance.now(),from:rail.typingDistance||0,target,duration:240};
+  if(target===path.total&&!rail.arrivalMotion)rail.arrivalMotion={started:performance.now(),from:rail.typingDistance||0,target,duration:240,frames:0,maxFrameGapMs:0,lastFrameAt:performance.now()};
   if(rail.typingAnimation)return;
   let last=performance.now();
   const frame=now=>{
     const goal=rail.typingTarget;
     if(goal===null||goal===undefined){rail.typingAnimation=null;return}
     const dt=Math.min(40,Math.max(1,now-last));last=now;
-    const arrival=rail.arrivalMotion,p=arrival?Math.min(1,Math.max(0,(now-arrival.started)/arrival.duration)):0;
+    const arrival=rail.arrivalMotion;if(arrival){arrival.frames++;arrival.maxFrameGapMs=Math.max(arrival.maxFrameGapMs,now-arrival.lastFrameAt);arrival.lastFrameAt=now}const p=arrival?Math.min(1,Math.max(0,(now-arrival.started)/arrival.duration)):0;
     const next=arrival?Math.max(rail.typingDistance||0,arrival.from+(goal-arrival.from)*(1-Math.pow(1-p,3))):advanceTrackDistance(rail.typingDistance||0,goal,dt),done=arrival?p===1:Math.abs(goal-next)<0.0000015;
     rail.typingDistance=done?goal:next;rail.train.setLatLng(pointAtTrackDistance(path,rail.typingDistance));
-    if(done){rail.typingAnimation=null;rail.arrivalMotion=null;for(const resolve of rail.arrivalWaiters||[])resolve(true);rail.arrivalWaiters=[];return}
+    if(done){if(arrival&&typeof document!=='undefined')document.body.dataset.arrivalFrames=JSON.stringify({frames:arrival.frames,maxFrameGapMs:arrival.maxFrameGapMs,elapsedMs:now-arrival.started,plannedDurationMs:arrival.duration});rail.typingAnimation=null;rail.arrivalMotion=null;for(const resolve of rail.arrivalWaiters||[])resolve(true);rail.arrivalWaiters=[];return}
     rail.typingAnimation=requestAnimationFrame(frame);
   };
   rail.typingAnimation=requestAnimationFrame(frame);

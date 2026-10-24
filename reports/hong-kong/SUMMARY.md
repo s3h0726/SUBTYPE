@@ -1,3 +1,3 @@
 # 홍콩 철도 개발 현황
 
-최신 [Phase4 보고](phase4/SUMMARY.md): PLAYABLE22→42, 한국어검수97→165, geometry54→59. 경전철11정규계통20방향추가 및 기존22재완주. 요구사항PASS74/INCOMPLETE105/범위밖1. 전체INCOMPLETE, AUTO목표1FAIL·기존정규식4FAIL보존. feature/hong-kong-railway전용, main병합·리베이스·배포미수행.
+최신 [Phase5](phase5/SUMMARY.md): PLAYABLE42→54(트램12추가), 한국어검수165→283레코드, 정차순서44→56, geometry59유지. 기존42재완주. 요구85PASS/93INCOMPLETE/1FAIL(AUTO)/1OUT_OF_SCOPE. 전체INCOMPLETE. main병합·리베이스·배포미수행.

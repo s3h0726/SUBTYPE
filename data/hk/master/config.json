@@ -6,7 +6,7 @@
     "nameEn": "Hong Kong",
     "nameKo": "홍콩"
   },
-  "checkedAt": "2026-10-22",
+  "checkedAt": "2026-10-24",
   "operators": [
     {
       "id": "hk-mtr",
@@ -1544,5 +1544,17 @@
     "straightLineFallback": false,
     "logos": "Original assets only after source and redistribution review; otherwise text operator name."
   },
-  "sourceSnapshotNote": "MTR CSV re-fetched Oct 22; OSM base Oct 18 plus version-aware Oct 20/22 overlays. Missing source responses remain disclosed."
+  "sourceSnapshotNote": "MTR CSV re-fetched Oct 22; OSM base Oct 18 plus version-aware Oct 20/22 overlays. Missing source responses remain disclosed.",
+  "lightRailConditionalReview": {
+    "checkedAt": "2026-10-24",
+    "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+    "sourceFile": "data/hk/sources/phase5/light-rail.html",
+    "sourceSha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
+    "ref": "751P",
+    "status": "PARTIAL_VERIFICATION",
+    "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
+    "routeColorStatus": "INCOMPLETE",
+    "colorNote": "The shared #D53359 special-service heading is not evidence of a distinct751P route colour.",
+    "fullCallingOrderStatus": "INCOMPLETE"
+  }
 }
