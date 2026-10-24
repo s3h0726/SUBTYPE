@@ -4,6 +4,8 @@ const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSy
 execFileSync(process.execPath,[path.join(__dirname,'build-korea-preview.js')],{stdio:'inherit'});
 require('./audit-canonical-jp-station-names.js');
 require('./build-line-workspaces');
+// Rebuild Japanese Shonan–Shinjuku corridors from canonical railway segments.
+execFileSync(process.execPath,[path.join(__dirname,'build-shonan-shinjuku-services.cjs')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(__dirname,'build-japan-lazy-catalog.cjs')],{stdio:'inherit'});
 // Keep N'EX branch candidates aligned with the current physical-track source on every build.
 execFileSync(process.execPath,[path.join(__dirname,'build-nex-verified-geometry.js')],{stdio:'inherit'});
@@ -73,6 +75,9 @@ if(missingLineSymbols.length)throw new Error('Wikimedia route-symbol mapping reg
 for(const symbol of ['function buildFamousLimitedExpressRoutes(', 'function famousLimitedExpressChoices(', 'function resolveFamousLimitedExpressChoice(']){
   if(!source.includes(symbol))throw new Error('Missing famous express implementations: '+symbol);
 }
+for(const symbol of ['function shonanShinjukuChoices(', 'function resolveShonanShinjukuChoice(']){
+  if(!source.includes(symbol))throw new Error('Shonan–Shinjuku service resolver missing: '+symbol);
+}
 for(const symbol of ['const NEX_EXAMPLES=', 'function nexOperatingChoices(', 'function resolveNexOperatingChoice(']){
   if(!source.includes(symbol))throw new Error('NEX implementation missing from production bundle: '+symbol);
 }
@@ -86,6 +91,7 @@ let html=read('index.html');
 html=html.replace(/(\.\/js\/service-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(read('js/service-data.js'))}`);
 html=html.replace(/(\.\/js\/line-workspace-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(workspaceBrowser)}`);
 html=html.replace(/(\.\/js\/japan-lite-index\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(read('js/japan-lite-index.js'))}`);
+html=html.replace(/(\.\/js\/shonan-shinjuku-service-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(read('js/shonan-shinjuku-service-data.js'))}`);
 html=html.replace(/(\.\/js\/korea-index-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(koreaBrowser)}`);
 html=html.replace(/(\.\/js\/app\.bundle\.js)(?:\?v=[^"']*)?/g,`$1?v=${digest(bundle)}`);
 write('index.html',html);

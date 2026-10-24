@@ -2307,7 +2307,38 @@ function buildCatalogResolved(choice){
   const allowed=new Set(stopNames),stops=through.stations.filter(station=>allowed.has(station.ja)).map(station=>station.id),service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',stops};
   return{route:{...through,services:[service]},service,direction:'forward',pattern:null,trainType:choice.trainType,destinationStationId:through.stations.at(-1)?.id||null,trainTypeContexts:[]}
 }
+
+function shonanShinjukuChoices(route){
+ if(route?.id!=='line-11333'||route.countryId==='kr')return null;
+ const d=globalThis.TRT_SHONAN_SHINJUKU_SERVICES;
+ if(!d?.patterns?.length)throw Error('SHONAN_SERVICE_CATALOG_MISSING');
+ return d.patterns.flatMap(p=>{
+   const st=d.corridors?.[p.corridor]?.stations||[],first=st.find(s=>s.id===p.originStationId),last=st.find(s=>s.id===p.destinationStationId);
+   if(!first||!last)throw Error('SHONAN_ENDPOINT_MISSING:'+p.id);
+   const trainType={id:'shonan-'+p.type,names:{ja:p.ja,ko:p.ko,en:p.type==='specialRapid'?'Special Rapid':p.type==='local'?'Local':'Rapid'},priority:p.type==='specialRapid'?40:p.type==='local'?10:25};
+   return ['forward','reverse'].map(direction=>({kind:'shonanShinjuku',id:'shonan:'+p.id+':'+direction,shonanPatternId:p.id,
+     originId:direction==='forward'?first.id:last.id,destinationId:direction==='forward'?last.id:first.id,
+     originNames:direction==='forward'?first:last,destinationNames:direction==='forward'?last:first,
+     patternName:{ja:p.ja+' · '+p.north+'～'+p.south,ko:p.ko+' · '+p.north+'~'+p.south,en:trainType.names.en},
+     trainType,direction}));
+ });
+}
+function resolveShonanShinjukuChoice(choice,base){
+ if(base?.id!=='line-11333')throw Error('SHONAN_ROUTE_MISMATCH');
+ const d=globalThis.TRT_SHONAN_SHINJUKU_SERVICES,p=d?.patterns?.find(x=>x.id===choice.shonanPatternId);
+ if(!p)throw Error('SHONAN_PATTERN_NOT_FOUND');
+ const all=d.corridors?.[p.corridor]?.stations||[],src=d.corridors?.[p.corridor],first=all.findIndex(s=>s.id===p.originStationId),last=all.findIndex(s=>s.id===p.destinationStationId);
+ if(first<0||last<=first||src?.directedSegments?.length!==all.length-1)throw Error('SHONAN_SEGMENTS_INVALID');
+ const lo=all[first].geometryIndex,hi=all[last].geometryIndex,geometry=src.geometry.slice(lo,hi+1),stations=all.slice(first,last+1).map((s,i)=>({...s,order:i+1,geometryIndex:s.geometryIndex-lo}));
+ const stops=new Set(stations.map(s=>s.id));
+ if(p.stopStationIds.some(id=>!stops.has(id))||p.stopStationIds[0]!==stations[0].id||p.stopStationIds.at(-1)!==stations.at(-1).id)throw Error('SHONAN_STOPS_INVALID');
+ const directedSegments=src.directedSegments.slice(first,last);
+ if(directedSegments.length!==stations.length-1||geometry.length<stations.length)throw Error('SHONAN_MISSING_TRACK');
+ const service={id:'shonan-'+p.id,nameJa:p.ja,nameKo:p.ko,nameEn:choice.trainType?.names?.en||'',stops:p.stopStationIds};
+ return{route:{...base,stations,geometry,directedSegments,geometryReady:true,services:[service],loop:false,dataKind:'operatingRoute',coverage:'reviewed-2026-service',serviceSourceIds:src.sourcePhysicalIds},service,direction:choice.direction,pattern:{id:p.id,names:choice.patternName,source:'JR East 2026 timetable'},trainType:choice.trainType,destinationStationId:choice.destinationId,trainTypeContexts:[]};
+}
 function resolveOperatingChoice(choice,route,{preview=false}={}){
+  if(choice?.kind==='shonanShinjuku')return resolveShonanShinjukuChoice(choice,route);
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
   if(choice.kind==='nex')return resolveNexOperatingChoice(route,choice);
   if(choice.kind==='famousExpress')return resolveFamousLimitedExpressChoice(route,choice);
@@ -2359,6 +2390,7 @@ function operatingChoicePlayable(choice,route){return operatingChoiceStatus(choi
 function actualOperatingChoices(route){
   // N'EX requires separate Ofuna/Shinjuku paths: never offer legacy chained local/fallback choices.
   if(route?.id==='line-11328')return nexOperatingChoices(route);
+  if(route?.id==='line-11333'&&route.countryId!=='kr')return shonanShinjukuChoices(route);
   if(route?.famousExpress)return famousLimitedExpressChoices(route);
   if(route?.countryId==='kr'&&isKoreanResearch(route))return koreanResearchChoices(route);
   if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
