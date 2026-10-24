@@ -61,7 +61,7 @@ assert(!servicePatternsForRoute('line-28010').some(pattern=>pattern.id==='fukuto
 
 const snapshot=JSON.stringify(routes);
 for(const spec of context.TRT_RAIL_SYSTEM.throughServices){
-  for(const direction of spec.directionVariants?['forward','reverse']:['forward']){
+  for(const direction of spec.directionVariants?Object.keys(spec.directionVariants):['forward']){
     try{
       const resolved=context.__resolver.buildThroughServiceRoute(spec,getRoute,direction);
       assert(resolved.stations.length>1,`${spec.id}/${direction}: missing resolved stations`);
