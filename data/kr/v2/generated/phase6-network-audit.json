@@ -15,8 +15,8 @@
     "registeredServiceCandidates": 317,
     "registered": 317,
     "sourceAssemblable": 261,
-    "researchPlayable": 127,
-    "researchBlocked": 178,
+    "researchPlayable": 128,
+    "researchBlocked": 177,
     "excluded": 12,
     "officialReleased": 0,
     "unassembled": 56,
@@ -26,7 +26,7 @@
     "highspeedResearchPatterns": 551,
     "highspeedPatternsWithExactCandidateNames": 0,
     "originalPreviewPayloadsPreserved": 123,
-    "newResearchPaths": 4
+    "newResearchPaths": 5
   },
   "sourceCurrentness": {
     "highspeedWorkbookSha256": "cf69ea35e0b6ad9fb82c0e0b44f60833e34eadab55ea610eaf6784622351e9d0",
@@ -1596,7 +1596,7 @@
     "registered": 1528,
     "verified": 0,
     "missingEnglish": 78,
-    "stopPositions": 3679,
+    "stopPositions": 3680,
     "verifiedStopPositions": 0,
     "platformCoordinatesChanged": 0,
     "officialNationalTransferReview": "INCOMPLETE"
@@ -2247,12 +2247,12 @@
     {
       "path": "data/kr/v2/stops.json",
       "sha256": "34e6aca1391743022f4422306a38d90f1cfcf7e49be8a40da1c40881122cb676",
-      "currentSha256": "34e6aca1391743022f4422306a38d90f1cfcf7e49be8a40da1c40881122cb676"
+      "currentSha256": "41db154bb7f60e251c8ca678e6ede82412f611618d3a665f17b5997f67a5707d"
     },
     {
       "path": "data/kr/v2/services.json",
       "sha256": "54212bd576ab95bf89aa0cf5d2c1025bf6e896cf1710995563397fc47af8cf93",
-      "currentSha256": "54212bd576ab95bf89aa0cf5d2c1025bf6e896cf1710995563397fc47af8cf93"
+      "currentSha256": "a56e742425476ea80286fc1e8e72991040244d0ecf6bf204a0d3f6e7ac77f9b2"
     },
     {
       "path": "data/kr/generated/index.json",
@@ -2262,12 +2262,12 @@
     {
       "path": "data/kr/preview/index.json",
       "sha256": "f191b4bff785eb5e8eb4c9c27fff39df08613f604691074f65ad84db6507fed5",
-      "currentSha256": "d290e6d82aa31babc2a38a0f1dd033a1ac77304a504aed7c424c2a9a8c452390"
+      "currentSha256": "751d27ce84eecbb65f80f10fb8389d9f2de42812a95800eb4965aad3de651227"
     },
     {
       "path": "js/app.bundle.js",
       "sha256": "def88533fae7efadafadebfdfa18b034eff4ab79cf143a58f9d51d8b5b042087",
-      "currentSha256": "3ff6391e721786b8bede118477487c9a6cdd4be5b7c66a77f5f6252964801c4c"
+      "currentSha256": "b344ff3b58d9ff7f87e8cfe477c0728df6263441c5cad40ba41c3f178b07523b"
     }
   ],
   "geometry": [
@@ -2539,7 +2539,7 @@
       "lengthKm": 33.227888834762055,
       "maximumSourceSampleGapKm": 1.791869237302048,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-6064093",
@@ -4650,10 +4650,6 @@
         {
           "code": "STOP_NOT_ON_ORDERED_TRACK",
           "nodeId": "355173829"
-        },
-        {
-          "code": "STOP_NOT_ON_ORDERED_TRACK",
-          "nodeId": "355173825"
         },
         {
           "code": "OFFICIAL_TIMETABLE_REQUIRED"
@@ -9179,7 +9175,7 @@
   "sourceIssueCounts": {
     "OFFICIAL_TIMETABLE_REQUIRED": 317,
     "ORDERED_STOPS_NOT_ON_TRACK": 3,
-    "STOP_NOT_ON_ORDERED_TRACK": 119,
+    "STOP_NOT_ON_ORDERED_TRACK": 118,
     "AMBIGUOUS_ORIENTATION": 5,
     "MISSING_ORDERED_STOPS": 27,
     "NON_PUBLIC_TRACK_REVIEW": 556,

@@ -54,5 +54,32 @@
         "nodeHash": "3623f35227101cf80a32db9f5f7395e50c281c2878b40d11d4602215d076ccc3"
       }
     ]
+  },
+  {
+    "relationId": "2201600",
+    "relationHash": "a0d699bc0fe6209960841f744f88c7ac8bf7cb68b1288347f1e4eacfa3c88d28",
+    "sourceId": "humetro-official-map-20261017",
+    "officialFile": "source/humetro/cyberstation-20261017.html",
+    "officialSha256": "448ce91307b22d5b52d4ae6d2844a27a61de73b57c56c3b5f2e3bcd061189290",
+    "officialURL": "https://work.humetro.busan.kr/homepage/cyberstation/map.do",
+    "reviewedOn": "2026-10-25",
+    "scope": "Partial source repair only: match the complete reversed official 40-stop order; bind Hadan to the same-direction OSM stop_position. Five station centers remain unresolved and playback stays blocked.",
+    "bindings": [
+      {
+        "originalNodeId": "355173825",
+        "boundNodeId": "14081390782",
+        "originalNodeHash": "a552fa7e7e32dfd1602b1841722a9cb47df3111113621570747d343df5d37385",
+        "boundNodeHash": "097f1050b1f6d0d430b9632ac784791605965a48bb4d44f68dba92d75a2a3b42"
+      }
+    ],
+    "nameBindings": [
+      {
+        "nodeId": "12769738286",
+        "sourceName": "부산",
+        "officialName": "부산역",
+        "nodeHash": "600b8411d834534825ae615b735dcd9d8d56ab0db1c1fe6b51a73f1ac8aa97f6"
+      }
+    ],
+    "reverseOfficialOrder": true
   }
 ]

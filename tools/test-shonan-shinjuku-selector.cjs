@@ -34,6 +34,8 @@ for(const x of choices){
 }
 assert.equal(context.routeGroup({id:'line-11328',category:'jr'}),'limited-express');
 assert.equal(context.actualOperatingChoices({id:'line-11328',countryId:'jp'})[0].id,'nex-original');
-assert(src.includes("route?.id==='line-11333'?null:nationwideCatalogLine(route)"));
+const ueno=context.actualOperatingChoices({id:'line-11343',countryId:'jp',category:'jr',stations:[],services:[{id:'false-fallback'}]});
+assert.equal(ueno.length,7);assert(ueno.every(x=>x.kind==='journey'&&x.patternId.startsWith('jr-ueno-')));
+assert(!ueno.some(x=>x.id==='nex-original'||x.service?.id==='false-fallback'));
 assert(read('js/app.bundle.js').includes("choice.patternId?.startsWith('jr-shonan-')&&choice.throughServiceId?.startsWith('jr-shonan-')"));
 console.log('PASS: 12 exclusive Shonan directions, six Korean service groups, separate NEX');

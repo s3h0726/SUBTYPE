@@ -1117,6 +1117,12 @@
         "alighting": true
       },
       {
+        "stopId": "kr-osm-stop-14081390782",
+        "geometryIndex": 312,
+        "boarding": true,
+        "alighting": true
+      },
+      {
         "stopId": "kr-osm-stop-5584681130",
         "geometryIndex": 332,
         "boarding": true,
@@ -1169,6 +1175,19 @@
         "id": "2201600"
       }
     ],
+    "stopPositionBinding": {
+      "sourceId": "humetro-official-map-20261017",
+      "relationId": "2201600",
+      "bindings": [
+        {
+          "originalNodeId": "355173825",
+          "boundNodeId": "14081390782",
+          "originalNodeHash": "a552fa7e7e32dfd1602b1841722a9cb47df3111113621570747d343df5d37385",
+          "boundNodeHash": "097f1050b1f6d0d430b9632ac784791605965a48bb4d44f68dba92d75a2a3b42"
+        }
+      ],
+      "reviewedOn": "2026-10-25"
+    },
     "issues": [
       {
         "code": "ORDERED_STOPS_NOT_ON_TRACK"
@@ -1192,10 +1211,6 @@
       {
         "code": "STOP_NOT_ON_ORDERED_TRACK",
         "nodeId": "355173829"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "355173825"
       },
       {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"

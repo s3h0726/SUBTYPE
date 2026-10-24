@@ -6,7 +6,7 @@
     "import:osm-route": "node tools/import-osm-route-geometry.js",
     "inspect:osm-master": "node tools/inspect-osm-route-master.js",
     "validate:korea": "node tools/validate-korea-data.js",
-    "test:korea": "node --test tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs tools/test-route-selection.cjs tools/test-kr-station-display.cjs tools/test-kr-phase5.cjs tools/test-kr-phase6.cjs",
+    "test:korea": "node --test tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs tools/test-route-selection.cjs tools/test-kr-station-display.cjs tools/test-kr-phase5.cjs tools/test-kr-phase6.cjs tools/test-kr-phase7.cjs",
     "test:typing": "node tools/test-typing-model.js && node tools/test-ime-controller.js",
     "audit:tokyo-network": "node tools/build-tokyo-network.js",
     "audit:routes": "node tools/audit-route-integrity.js",
@@ -69,7 +69,11 @@
     "import:korea-highspeed": "python tools/import-korail-highspeed.py",
     "test:korea-phase6": "node --test tools/test-kr-phase6.cjs",
     "audit:korea-phase6": "node tools/build-kr-phase6-audit.js",
-    "report:korea-phase6": "node tools/build-kr-phase6-report.js"
+    "report:korea-phase6": "node tools/build-kr-phase6-report.js",
+    "test:official-service-sources": "node --test tools/test-official-service-source.cjs",
+    "test:korea-phase7": "node --test tools/test-kr-phase7.cjs",
+    "audit:korea-phase7-evidence": "node tools/build-kr-phase7-evidence.cjs",
+    "test:korea-platforms": "python tools/test-kr-platforms.py"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

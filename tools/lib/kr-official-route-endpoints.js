@@ -3,6 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypt
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),digest=o=>hash(JSON.stringify(o));
 function officialRouteEndpoints(service,journey,{base}={}){
  if(!base)return null;
+ const shinbundang=require('./kr-shinbundang-endpoints').shinbundangEndpoints(service,journey,{base});if(shinbundang)return shinbundang;
  const bindings=JSON.parse(fs.readFileSync(path.join(base,'official-route-endpoint-bindings.json'),'utf8')),b=bindings.find(b=>b.serviceId===service.id);if(!b)return null;
  const relation=JSON.parse(fs.readFileSync(path.join(base,'source/osm-relations.json'),'utf8')).find(r=>'kr-osm-service-'+r.id===service.id);
  if(b.scope!=='OFFICIAL_LINE_FULL_CALL_ORDER_RESEARCH_ENDPOINTS'||b.officialReleaseApproved!==false||b.sourceUrl!=='https://work.humetro.busan.kr/homepage/cyberstation/map.do'||!['3','4'].includes(b.lineCode)||digest(service.paths)!==b.pathsSha256||digest(service.stops)!==b.stopsSha256||digest(relation)!==b.relationSha256)throw Error('STALE_OFFICIAL_ENDPOINT_BINDING');

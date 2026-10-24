@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs=require('fs'),path=require('path'),vm=require('vm');
+const {isOfficialServiceSource}=require('./lib/official-service-source.cjs');
 const root=path.resolve(__dirname,'..'),read=file=>fs.readFileSync(path.join(root,file),'utf8'),json=file=>JSON.parse(read(file));
 const catalog=json('data/tokyo-service-patterns.json'),through=json('data/through-services.json').services||[],context={window:{}};vm.createContext(context);vm.runInContext(read('js/line-workspace-data.js'),context);
 const routes=context.window.TRT_EMBEDDED_LINE_WORKSPACES.routes||[],routeMap=new Map(routes.map(route=>[route.id,route])),trainTypes=new Set((catalog.trainTypes||[]).map(item=>item.id)),branches=new Map((catalog.branches||[]).map(item=>[item.id,item])),throughMap=new Map(through.map(item=>[item.id,item])),errors=[];
@@ -19,7 +20,7 @@ for(const pattern of catalog.servicePatterns||[]){
   for(const id of stops)if(!indices.has(id)&&!spec)errors.push(`${pattern.id}: stop outside route ${id}`);
   if(!spec&&stops.some((id,index)=>index&&indices.get(id)<=indices.get(stops[index-1])))errors.push(`${pattern.id}: stop order is not forward`);
   if(!spec&&pattern.originStationId!==stops[0])errors.push(`${pattern.id}: origin is not first stop`);if(!spec&&pattern.destinationStationId!==stops.at(-1))errors.push(`${pattern.id}: destination is not last stop`);
-  if(!pattern.sources?.some(source=>source.type==='official'&&/^https:\/\//.test(source.url||'')))errors.push(`${pattern.id}: official source missing`)
+  if(!pattern.sources?.some(isOfficialServiceSource))errors.push(`${pattern.id}: official source missing`)
 }
 const resolverSource=read('js/service-route-resolver.js'),gameSource=read('js/game.js');if(/\.geometry\.reverse\s*\(/.test(resolverSource+gameSource))errors.push('mutable geometry.reverse() found');
 const summary={status:errors.length?'FAIL':'PASS',physicalLines:new Set(routes.map(route=>route.id)).size,branches:branches.size,servicePatterns:catalog.servicePatterns?.length||0,trainTypes:trainTypes.size,destinations:new Set((catalog.servicePatterns||[]).map(item=>item.destinationStationId)).size,throughServices:new Set((catalog.servicePatterns||[]).map(item=>item.throughServiceId).filter(Boolean)).size,errors};console.log(JSON.stringify(summary,null,2));if(errors.length)process.exitCode=1;

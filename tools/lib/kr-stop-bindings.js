@@ -12,6 +12,7 @@ function officialHumetroStations(html){
 function bindSourceStops(relation,nodes,config,officialBytes){
  if(digest(relation)!==config.relationHash||bytesHash(officialBytes)!==config.officialSha256)throw Error('STALE_STOP_BINDING_SOURCE');
  const official=officialHumetroStations(officialBytes.toString('utf8'));
+ if(config.reverseOfficialOrder===true)official.reverse();
  const members=relation.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
  if(relation.tags.operator!=='부산교통공사')throw Error('OPERATOR_IDENTITY_MISMATCH');
  if(members.length!==official.length)throw Error('INCOMPLETE_OFFICIAL_STOP_ORDER');

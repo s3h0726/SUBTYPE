@@ -101,7 +101,7 @@
       },
       "after": {
         "sourceAssemblable": false,
-        "sourceStopCount": 34,
+        "sourceStopCount": 35,
         "assemblyError": "UNRESOLVED_IMPORT_TOPOLOGY",
         "publicPlayable": false,
         "releaseApproved": false,
@@ -332,7 +332,168 @@
           "name": "다대포해수욕장"
         }
       ],
-      "officialStopOrder": null,
+      "officialStopOrder": [
+        {
+          "code": "95",
+          "name": "다대포해수욕장"
+        },
+        {
+          "code": "96",
+          "name": "다대포항"
+        },
+        {
+          "code": "97",
+          "name": "낫개"
+        },
+        {
+          "code": "98",
+          "name": "신장림"
+        },
+        {
+          "code": "99",
+          "name": "장림"
+        },
+        {
+          "code": "100",
+          "name": "동매"
+        },
+        {
+          "code": "101",
+          "name": "신평"
+        },
+        {
+          "code": "102",
+          "name": "하단"
+        },
+        {
+          "code": "103",
+          "name": "당리"
+        },
+        {
+          "code": "104",
+          "name": "사하"
+        },
+        {
+          "code": "105",
+          "name": "괴정"
+        },
+        {
+          "code": "106",
+          "name": "대티"
+        },
+        {
+          "code": "107",
+          "name": "서대신"
+        },
+        {
+          "code": "108",
+          "name": "동대신"
+        },
+        {
+          "code": "109",
+          "name": "토성"
+        },
+        {
+          "code": "110",
+          "name": "자갈치"
+        },
+        {
+          "code": "111",
+          "name": "남포"
+        },
+        {
+          "code": "112",
+          "name": "중앙"
+        },
+        {
+          "code": "113",
+          "name": "부산역"
+        },
+        {
+          "code": "114",
+          "name": "초량"
+        },
+        {
+          "code": "115",
+          "name": "부산진"
+        },
+        {
+          "code": "116",
+          "name": "좌천"
+        },
+        {
+          "code": "117",
+          "name": "범일"
+        },
+        {
+          "code": "118",
+          "name": "범내골"
+        },
+        {
+          "code": "119",
+          "name": "서면"
+        },
+        {
+          "code": "120",
+          "name": "부전"
+        },
+        {
+          "code": "121",
+          "name": "양정"
+        },
+        {
+          "code": "122",
+          "name": "시청"
+        },
+        {
+          "code": "123",
+          "name": "연산"
+        },
+        {
+          "code": "124",
+          "name": "교대"
+        },
+        {
+          "code": "125",
+          "name": "동래"
+        },
+        {
+          "code": "126",
+          "name": "명륜"
+        },
+        {
+          "code": "127",
+          "name": "온천장"
+        },
+        {
+          "code": "128",
+          "name": "부산대"
+        },
+        {
+          "code": "129",
+          "name": "장전"
+        },
+        {
+          "code": "130",
+          "name": "구서"
+        },
+        {
+          "code": "131",
+          "name": "두실"
+        },
+        {
+          "code": "132",
+          "name": "남산"
+        },
+        {
+          "code": "133",
+          "name": "범어사"
+        },
+        {
+          "code": "134",
+          "name": "노포"
+        }
+      ],
       "memberWayReviews": [
         {
           "wayId": "973233227",
@@ -911,31 +1072,6 @@
           "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
         },
         {
-          "code": "STOP_NOT_ON_ORDERED_TRACK",
-          "nodeId": "355173825",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": [
-            35.1062348,
-            128.9667606
-          ],
-          "sourceStopInterval": [
-            {
-              "id": "13067887400",
-              "name": "당리"
-            },
-            {
-              "id": "355173825",
-              "name": "하단"
-            },
-            {
-              "id": "5584681130",
-              "name": "신평"
-            }
-          ],
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
           "toCoordinates": null,
@@ -951,14 +1087,18 @@
       "changedPaths": [
         "data/kr/v2/relation-access-policy.json",
         "data/kr/v2/source/osm-62-20261017",
-        "data/kr/v2/services.json"
+        "data/kr/v2/services.json",
+        "data/kr/v2/stop-position-bindings.json",
+        "tools/lib/kr-stop-bindings.js",
+        "tools/import-kr-network.js",
+        "data/kr/v2/stops.json"
       ],
       "status": "NEEDS_RESEARCH",
       "reconstructionEvidence": null,
       "officialTimetableVerification": null,
-      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
+      "reason": "기존 실선형의 정차 시설 중심점 6개를 공식 역번호/순서가 일치하는 source stop_position으로 대체. 비영업 표기·시간표·운행방향·승강장 검증 미완료.",
       "tests": [
-        "Source validation only; no complete service evidence"
+        "tools/test-kr-stop-bindings.cjs"
       ],
       "snapshotMemberCount": 51
     },

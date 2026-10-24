@@ -17,6 +17,7 @@ jobs:
           node-version: '22'
       - run: npm run build
       - run: npm run test:typing
+      - run: npm run test:official-service-sources
       - run: node tools/test-service-route-resolver.js
   implementation:
     runs-on: ubuntu-latest
@@ -31,6 +32,7 @@ jobs:
       - run: npm run import:korea
       - run: npm run import:seoulmetro
       - run: npm run import:korea-platforms
+      - run: npm run test:korea-platforms
       - run: npm run build:korea
       - run: npm run build:korea-preview
       - run: npm run release:korea-services
@@ -38,6 +40,7 @@ jobs:
       - run: npm run audit:korea-inventory
       - run: npm run audit:korea-failures
       - run: npm run audit:korea-phase6
+      - run: npm run audit:korea-phase7-evidence
       - name: Ensure source corrections and generated data are reproducible
         run: git diff --exit-code -- data/kr/v2 data/kr/preview js/korean-access-data.js js/korean-preview-access-data.js
       - run: npm run validate:korea
@@ -63,18 +66,18 @@ jobs:
         with:
           node-version: '22'
       # Keep failures visible without blocking independent Korean browser QA.
-      - run: node tools/run-kr-phase6-validation.cjs japan shinkansen limitedExpress test:shonan test:ueno
+      - run: node tools/run-kr-phase7-validation.cjs japan shinkansen limitedExpress test:shonan test:ueno
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: japan-regression-during-korea-phase6
+          name: japan-regression-during-korea-phase7
           path: |
-            reports/korea/phase6/REGRESSION_RESULTS.json
-            reports/korea/phase6/japan.log
-            reports/korea/phase6/shinkansen.log
-            reports/korea/phase6/limitedExpress.log
-            reports/korea/phase6/test-shonan.log
-            reports/korea/phase6/test-ueno.log
+            reports/korea/phase7/FINAL_VALIDATION.json
+            reports/korea/phase7/final-japan.log
+            reports/korea/phase7/final-shinkansen.log
+            reports/korea/phase7/final-limitedExpress.log
+            reports/korea/phase7/final-test-shonan.log
+            reports/korea/phase7/final-test-ueno.log
   browser-candidates:
     runs-on: ubuntu-latest
     needs: implementation
@@ -111,6 +114,10 @@ jobs:
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/phase6-busan-motion.json
         run: node tools/test-kr-browser.cjs --services=2195014,8247016,2205952,8258701 --interactive-all
+      - name: Phase 7 Shinbundang source geometry motion
+        env:
+          KR_BROWSER_REPORT: data/kr/v2/generated/phase7-shinbundang-motion.json
+        run: node tools/test-kr-browser.cjs --services=6060963 --interactive-all
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -124,3 +131,4 @@ jobs:
             data/kr/v2/generated/recovered-motion-screens/
             data/kr/v2/generated/phase5-motion/
             data/kr/v2/generated/phase6-busan-motion.json
+            data/kr/v2/generated/phase7-shinbundang-motion.json

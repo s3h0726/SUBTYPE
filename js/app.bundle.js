@@ -657,6 +657,7 @@ function prepareThroughPart(route,config={}){
 
 function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
   if(!spec)throw new Error('Missing through-service definition');
+  if(spec.directionVariants&&!Object.hasOwn(spec.directionVariants,directionId))throw new Error('UNSUPPORTED_THROUGH_DIRECTION:'+spec.id+':'+directionId);
   const directional=spec.directionVariants?.[directionId],configs=directional||spec.routeSegments||routeIds(spec).map(routeId=>({routeId})),parts=configs.map(config=>{
     const source=getRoute(config.routeId);if(!source)throw new Error(`Missing through-service route: ${config.routeId}`);return prepareThroughPart(source,config)
   });
