@@ -411,6 +411,13 @@ function actualOperatingChoices(route){
       choice.patternId?.startsWith('jr-shonan-')&&choice.throughServiceId?.startsWith('jr-shonan-'))
       .sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||
         journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
+  // Curated Ueno–Tokyo journeys must never inherit the unrelated nationwide
+  // TrainLCD catalog (including Hitachi, Tokiwa and Narita Express).
+  if(route?.countryId==='jp'&&route.id==='line-11343')
+    return choices.filter(choice=>choice.kind==='journey'&&
+      choice.patternId?.startsWith('jr-ueno-')&&choice.throughServiceId?.startsWith('jr-ueno-'))
+      .sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||
+        journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   for(const service of route?.services||[]){
     // Famous trains have dedicated cards: do not duplicate Skyliner inside the ordinary airport line.
     if(route?.id==='line-23006'&&service?.id==='skyliner')continue;
@@ -423,6 +430,7 @@ function actualOperatingChoices(route){
   }
   const throughSpecs=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).filter(spec=>(spec.participatingLineIds||throughRouteIds(spec)).includes(route?.id));
   for(const spec of throughSpecs)for(const direction of ['forward','reverse']){
+    if(spec.id?.startsWith('jr-ueno-')&&route?.id!=='line-11343')continue;
     // Verified Shonan-Shinjuku service journeys supersede untyped generic through-service choices.
     if(route?.id==='line-11333'&&patterns.some(item=>item.throughServiceId===spec.id))continue;
     const configs=spec.directionVariants?.[direction];if(!configs?.length)continue;
@@ -447,11 +455,24 @@ function actualOperatingChoices(route){
   ].filter(choice=>route.countryId!=='kr'||route.category==='custom'||route.directions?.some(d=>d.id===choice.direction))
 }
 function operatingPatternKey(choice){
+  if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-ueno-'))
+    return 'ueno:'+choice.throughServiceId;
+
   // Display opposite directions as one service family.
   if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-shonan-'))
     return 'shonan:'+choice.throughServiceId+':'+(choice.trainType?.id||'');
 return String(choice.line1PatternKey||choice.sourceRouteId||choice.patternId||choice.legacyServiceId||journeyLabel(choice.patternName)||'default')}
 function operatingPatternLabel(choice){
+  if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-ueno-')){
+    const uenoNames={
+      'jr-ueno-utsunomiya-odawara':'우츠노미야선 ↔ 도카이도선 · 우츠노미야~오다와라',
+      'jr-ueno-koganei-atami':'우츠노미야선 ↔ 도카이도선 · 코가네이~아타미',
+      'jr-ueno-takasaki-atami':'타카사키선 ↔ 도카이도선 · 타카사키~아타미',
+      'jr-ueno-kagohara-odawara':'타카사키선 ↔ 도카이도선 · 카고하라~오다와라'
+    };
+    return uenoNames[choice.throughServiceId]||'우에노도쿄라인 · 보통';
+  }
+
   if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-shonan-')){
     const shonanNames={
       'jr-shonan-utsunomiya-yokosuka':'우츠노미야선 ↔ 요코스카선',
@@ -598,7 +619,7 @@ async function prepareKoreanFamilyChoices(route){
 // with operatingChoicePlayable. Otherwise correct patterns silently disappear.
 async function hydrateJapaneseOperatingConnections(route){
   if(route?.countryId!=='jp')return;
-  const catalog=route?.id==='line-11333'?null:nationwideCatalogLine(route);
+  const catalog=['line-11333','line-11343'].includes(route?.id)?null:nationwideCatalogLine(route);
   const codes=new Set((catalog?.data?.patterns||[]).flatMap(pattern=>(pattern.segments||[]).map(part=>String(part.lineCode||''))).filter(Boolean));
   const pending=new Map();
   const queue=physical=>{
