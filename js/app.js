@@ -469,9 +469,9 @@ function operatingPatternLabel(choice){
       'jr-ueno-koganei-atami':'우츠노미야선 ↔ 도카이도선 · 코가네이~아타미',
       'jr-ueno-takasaki-atami':'타카사키선 ↔ 도카이도선 · 타카사키~아타미',
       'jr-ueno-kagohara-odawara':'타카사키선 ↔ 도카이도선 · 카고하라~오다와라',
-      'jr-ueno-joban-tsuchiura-local':'조반선 ↔ 시나가와 · 쓰치우라~시나가와 보통',
+      'jr-ueno-joban-tsuchiura-local':'조반선 ↔ 시나가와 · 츠치우라~시나가와 보통',
       'jr-ueno-joban-toride-rapid':'조반선 ↔ 시나가와 · 도리데~시나가와 쾌속',
-      'jr-ueno-joban-tsuchiura-special-rapid':'조반선 ↔ 시나가와 · 시나가와→쓰치우라 특별쾌속'
+      'jr-ueno-joban-tsuchiura-special-rapid':'조반선 ↔ 시나가와 · 시나가와→츠치우라 특별쾌속'
     };
     return uenoNames[choice.throughServiceId]||'우에노도쿄라인 · 보통';
   }

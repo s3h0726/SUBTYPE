@@ -36,3 +36,5 @@ JR 동일본 2026년 11월 시간표 기준으로 다음 5개 패턴을 등록�
 OSM 개별 레일 way 또는 공식 선로 GIS를 통한 정밀 대체가 후속 작업이며, 이 임시 선형을 정확한 조반선 선로라고 주장해서는 안 된다.
 
 회귀 검사: node tools/test-ueno-tokyo-line.cjs && node tools/test-ueno-tokyo-joban.cjs
+
+역명 표기: 土浦는 '츠치우라'로 통일(나무위키 표제어 및 기존 역 데이터 기준).
