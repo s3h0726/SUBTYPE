@@ -1467,6 +1467,140 @@
       },
       "sourceUrl": "https://www.kotsu.metro.tokyo.jp/subway/timetable/shinjuku/S02WD.html",
       "verifiedDate": "2026-09-12"
+    },
+    {
+      "id": "jr-shonan-utsunomiya-yokosuka",
+      "nameJa": "湘南新宿ライン・宇都宮線〜横須賀線",
+      "nameKo": "쇼난신주쿠라인 · 우쓰노미야선~요코스카선",
+      "nameEn": "Shonan-Shinjuku (Utsunomiya–Yokosuka)",
+      "participatingOperatorIds": [
+        "jr-east"
+      ],
+      "participatingLineIds": [
+        "line-11319",
+        "line-11333",
+        "line-11308"
+      ],
+      "boundaryStations": [
+        "大宮",
+        "大船"
+      ],
+      "boundarySnapToleranceKm": 0.25,
+      "allowedDestinations": [
+        "宇都宮",
+        "逗子"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-11319",
+            "direction": "reverse",
+            "startStationJa": "宇都宮",
+            "endStationJa": "大宮"
+          },
+          {
+            "routeId": "line-11333",
+            "direction": "forward",
+            "startStationJa": "大宮",
+            "endStationJa": "大船"
+          },
+          {
+            "routeId": "line-11308",
+            "direction": "forward",
+            "startStationJa": "大船",
+            "endStationJa": "逗子"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-11308",
+            "direction": "reverse",
+            "startStationJa": "逗子",
+            "endStationJa": "大船"
+          },
+          {
+            "routeId": "line-11333",
+            "direction": "reverse",
+            "startStationJa": "大船",
+            "endStationJa": "大宮"
+          },
+          {
+            "routeId": "line-11319",
+            "direction": "forward",
+            "startStationJa": "大宮",
+            "endStationJa": "宇都宮"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.jreast.co.jp/map/",
+      "verifiedDate": "2026-10-24"
+    },
+    {
+      "id": "jr-shonan-takasaki-tokaido",
+      "nameJa": "湘南新宿ライン・高崎線〜東海道線",
+      "nameKo": "쇼난신주쿠라인 · 다카사키선~도카이도선",
+      "nameEn": "Shonan-Shinjuku (Takasaki–Tokaido)",
+      "participatingOperatorIds": [
+        "jr-east"
+      ],
+      "participatingLineIds": [
+        "line-11323",
+        "line-11333",
+        "line-11301"
+      ],
+      "boundaryStations": [
+        "大宮",
+        "大船"
+      ],
+      "boundarySnapToleranceKm": 0.25,
+      "allowedDestinations": [
+        "高崎",
+        "小田原"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-11323",
+            "direction": "reverse",
+            "startStationJa": "高崎",
+            "endStationJa": "大宮"
+          },
+          {
+            "routeId": "line-11333",
+            "direction": "forward",
+            "startStationJa": "大宮",
+            "endStationJa": "大船"
+          },
+          {
+            "routeId": "line-11301",
+            "direction": "forward",
+            "startStationJa": "大船",
+            "endStationJa": "小田原"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-11301",
+            "direction": "reverse",
+            "startStationJa": "小田原",
+            "endStationJa": "大船"
+          },
+          {
+            "routeId": "line-11333",
+            "direction": "reverse",
+            "startStationJa": "大船",
+            "endStationJa": "大宮"
+          },
+          {
+            "routeId": "line-11323",
+            "direction": "forward",
+            "startStationJa": "大宮",
+            "endStationJa": "高崎"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.jreast.co.jp/map/",
+      "verifiedDate": "2026-10-24"
     }
   ],
   "inventoryScope": "Tokyo Metro and Toei current reciprocal through services",
