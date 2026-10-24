@@ -56,6 +56,26 @@ jobs:
           path: |
             data/kr/v2/generated/audit.json
             data/kr/v2/generated/relations62-audit.*
+  japan-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Keep failures visible without blocking independent Korean browser QA.
+      - run: node tools/run-kr-phase6-validation.cjs japan shinkansen limitedExpress test:shonan test:ueno
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: japan-regression-during-korea-phase6
+          path: |
+            reports/korea/phase6/REGRESSION_RESULTS.json
+            reports/korea/phase6/japan.log
+            reports/korea/phase6/shinkansen.log
+            reports/korea/phase6/limitedExpress.log
+            reports/korea/phase6/test-shonan.log
+            reports/korea/phase6/test-ueno.log
   browser-candidates:
     runs-on: ubuntu-latest
     needs: implementation

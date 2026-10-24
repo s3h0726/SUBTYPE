@@ -1,0 +1,134 @@
+{
+  "generated": "2026-10-24T15:57:42.429Z",
+  "lastKnownGoodCommit": "4dff800",
+  "legacy": {
+    "operators": 164,
+    "lines": 596,
+    "stations": 8824,
+    "lineStationRelations": 10590
+  },
+  "recovered": {
+    "operators": 164,
+    "lines": 596,
+    "stations": 8799,
+    "lineStationRelations": 10564
+  },
+  "curated": {
+    "operators": 25,
+    "lines": 103,
+    "stations": 2760,
+    "lineStationRelations": 1835
+  },
+  "missingLines": 0,
+  "missingRelations": 26,
+  "unexplainedDataLoss": [],
+  "operatorAssets": 22,
+  "lineSymbols": 11,
+  "representatives": {
+    "yamanote": true,
+    "chuoSobu": true,
+    "tokaidoShinkansen": true,
+    "yurikamome": true,
+    "tokyoMetro": true,
+    "midosuji": true,
+    "localPrivate": true
+  },
+  "buildSafe": true
+}
+{"registered":317,"sourceAssemblable":261,"researchPlayable":127,"researchBlocked":178,"excluded":12,"officialReleased":0}
+{"checked":5,"corrected":0}
+{
+  "status": "PASS",
+  "source": "data/lines/**/line.json",
+  "lines": 610,
+  "operators": 161,
+  "stations": 9146,
+  "relations": 10836,
+  "segments": 10009,
+  "geometryReady": 592,
+  "operatorAssets": 25,
+  "lineAssets": 39,
+  "generatedIndex": "data/generated/line-index.json",
+  "generatedAssetRegistry": "data/generated/asset-registry.json",
+  "generatedBrowserData": "js/line-workspace-data.js"
+}
+{"status":"PASS","routes":610,"chunks":17,"indexBytes":475615}
+{
+  "status": "BUILT_NOT_PUBLISHED",
+  "routes": [
+    {
+      "id": "nex-shinjuku-physical-candidate",
+      "trackPoints": 753,
+      "stops": 9
+    },
+    {
+      "id": "nex-ofuna-physical-candidate",
+      "trackPoints": 1000,
+      "stops": 12
+    }
+  ],
+  "output": "data/generated/nex-branch-geometry-candidates.json"
+}
+{"id":"line-99719","stations":22,"segments":21,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-1","stations":13,"segments":12,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-2","stations":21,"segments":20,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-3","stations":12,"segments":11,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-4","stations":27,"segments":26,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-5","stations":23,"segments":22,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-6","stations":44,"segments":43,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+Kobe track verified; manual geometry provenance review still required
+{"id":"line-hankyu-kobe-kosoku","stations":4,"segments":3,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{
+  "status": "INCOMPLETE",
+  "sourceStations": 1528,
+  "sourcePassengerLines": 85,
+  "sourceServices": 317,
+  "activeServiceCandidates": 305,
+  "excludedServices": 12,
+  "officialTimetableVerifiedServices": 65,
+  "releasedLines": 0,
+  "releasedServices": 0,
+  "officialPassengerLines": null,
+  "officialServices": null,
+  "blockedServices": 305
+}
+{"status":"INCOMPLETE","operators":36,"routes":135,"stations":1818,"geometryReady":134,"expectedInventoryVerified":false}
+{
+  "bundle": "js/app.bundle.js",
+  "workspaceSource": "data/lines/**/line.json",
+  "workspaceBrowserData": "js/line-workspace-data.js",
+  "embeddedLines": 103,
+  "embeddedNationwideLines": 596,
+  "embeddedNationwideRouteFiles": 596,
+  "services": 5,
+  "servicePatterns": 105,
+  "branches": 1,
+  "koreanOverrides": 27,
+  "lineThemes": 26,
+  "operatorAssets": 25,
+  "lineBadges": 119,
+  "realSymbolAssets": 39,
+  "railSystem": {
+    "physicalLines": 97,
+    "passengerRoutes": 2,
+    "trainServices": 1,
+    "throughServices": 26,
+    "shinkansen": 10,
+    "geometryMatched": 103,
+    "geometryMissing": []
+  }
+}
+{
+  "bundle": "js/app.bundle.js",
+  "hash": "3ff6391e7217"
+}
+{
+  "status": "PASS",
+  "operators": 161,
+  "lines": 610,
+  "stations": 9146,
+  "operatorAssets": 25,
+  "lineSymbols": 39,
+  "canonicalPropagation": true,
+  "errors": []
+}

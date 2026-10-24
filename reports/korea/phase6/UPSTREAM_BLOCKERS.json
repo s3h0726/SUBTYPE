@@ -1,0 +1,62 @@
+{
+  "upstreamMain": "346c6da1346cecfe439a1d47a6c95aa20b00b8bd",
+  "sourceFilesUnchanged": [
+    {
+      "file": "data/through-services.json",
+      "currentBlob": "b91bdc5dd9fda94737545e3c4a2e32dec8df5776",
+      "upstreamBlob": "b91bdc5dd9fda94737545e3c4a2e32dec8df5776"
+    },
+    {
+      "file": "data/tokyo-service-patterns.json",
+      "currentBlob": "9850b4f134188a54706ace761dde4fe5c58c1ad6",
+      "upstreamBlob": "9850b4f134188a54706ace761dde4fe5c58c1ad6"
+    },
+    {
+      "file": "js/service-route-resolver.js",
+      "currentBlob": "9b32f7804f7a781df65731212f5e4447650ddf8f",
+      "upstreamBlob": "9b32f7804f7a781df65731212f5e4447650ddf8f"
+    },
+    {
+      "file": "js/app.js",
+      "currentBlob": "52c4f67ec9b9dd12601126872131aa177044eb3d",
+      "upstreamBlob": "52c4f67ec9b9dd12601126872131aa177044eb3d"
+    },
+    {
+      "file": "tools/validate-service-patterns.js",
+      "currentBlob": "02cbc199f3752980ac489f74f50b28c41caa085b",
+      "upstreamBlob": "02cbc199f3752980ac489f74f50b28c41caa085b"
+    },
+    {
+      "file": "tools/test-service-route-resolver.js",
+      "currentBlob": "0bb925da53c6c0db913d66bce3a61568495847b7",
+      "upstreamBlob": "0bb925da53c6c0db913d66bce3a61568495847b7"
+    },
+    {
+      "file": "tools/test-shonan-shinjuku-selector.cjs",
+      "currentBlob": "bda786dc5f22ef8a1708f1307401bf7dfb066b08",
+      "upstreamBlob": "bda786dc5f22ef8a1708f1307401bf7dfb066b08"
+    }
+  ],
+  "fullBuild": {
+    "status": "FAIL",
+    "count": 7,
+    "reason": "Strict validator requires source.type === official; seven upstream Ueno patterns use official-timetable. Rule unchanged."
+  },
+  "japanResolver": {
+    "status": "FAIL",
+    "errors": [
+      "jr-ueno-takasaki-atami/reverse: incomplete through-service route"
+    ]
+  },
+  "shonanSelector": {
+    "status": "FAIL",
+    "reason": "Static test expects previous line-11333-only source expression; upstream implementation now handles line-11343 as well."
+  },
+  "scope": "Preserve upstream Japanese sources; no validator relaxation, test deletion or fabricated PASS",
+  "upstreamCi": {
+    "runUrl": "https://github.com/s3h0726/SUBTYPE/actions/runs/40107035003",
+    "appBuild": "failure",
+    "implementation": "failure at Japanese service-route-resolver",
+    "browser": "skipped due upstream implementation dependency"
+  }
+}

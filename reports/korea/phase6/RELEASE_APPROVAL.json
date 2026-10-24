@@ -1,0 +1,40 @@
+{
+  "status": "INCOMPLETE",
+  "sourceEligibleServices": 0,
+  "publishedServices": 0,
+  "activeBlockedServices": 305,
+  "decision": "INCOMPLETE",
+  "manualApprovalFabricated": false,
+  "policyRelaxed": false,
+  "blockerCounts": {
+    "OFFICIAL_TIMETABLE_REQUIRED": 240,
+    "OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED": 305,
+    "REVIEW_NOT_VALID_ON_DATE": 240,
+    "DISTANCE_NOT_VERIFIED": 305,
+    "VERIFIED_TRIP_REQUIRED": 305,
+    "STOP_METADATA_NOT_VERIFIED": 295,
+    "LINE_METADATA_NOT_VERIFIED": 305,
+    "STATION_METADATA_NOT_VERIFIED": 295,
+    "OPERATOR_NOT_VERIFIED": 305,
+    "OPERATOR_LOGO_NOT_VERIFIED": 301,
+    "UNRESOLVED_IMPORT_TOPOLOGY": 44,
+    "NON_PUBLIC_TRACK_REQUIRES_EXCLUSION": 139,
+    "ONEWAY_DIRECTION_CONFLICT": 23,
+    "ROAD_OR_AMBIGUOUS_RAIL_ROAD_WAY": 4
+  },
+  "highspeedSourceReview": {
+    "highspeedWorkbookSha256": "cf69ea35e0b6ad9fb82c0e0b44f60833e34eadab55ea610eaf6784622351e9d0",
+    "effectiveDate": "2026-09-01",
+    "currentBoardEntryListed": false,
+    "decision": "SOURCE_RESEARCH_ONLY_CURRENTNESS_AND_EXCEPTIONS_NOT_APPROVED; future 2026-11-01 tables not adopted"
+  },
+  "approvedNewServiceIds": [],
+  "existingCallDayPatterns": 65,
+  "existingVerifiedSourceTrains": 3308,
+  "highspeedResearchTrains": 621,
+  "highspeedResearchPatterns": 551,
+  "manualReview": "No human/operator approval was recorded or fabricated",
+  "assets": "Official operator logos and reuse permissions remain required under unchanged policy",
+  "desktopMobilePublication": "Requires exact engine and journey evidence under existing release contract",
+  "deployment": "NOT_DEPLOYED_BRANCH_ONLY"
+}
