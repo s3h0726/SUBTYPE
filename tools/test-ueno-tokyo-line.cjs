@@ -27,6 +27,7 @@ assert.equal(new Set(choices.map(x=>sb.operatingPatternKey(x))).size,4);
 assert(choices.every(x=>!/(나리타|히타치|토키와)/.test(sb.operatingPatternLabel(x))));
 assert(app.includes("['line-11333','line-11343'].includes(route?.id)?null:nationwideCatalogLine(route)"));
 assert(read('js/app.bundle.js').includes("choice.patternId?.startsWith('jr-ueno-')&&choice.throughServiceId?.startsWith('jr-ueno-')"));
+assert(T.services.filter(s=>s.id.startsWith('jr-ueno-')).every(s=>!/[\u3040-\u30ff\u4e00-\u9fff]/.test(s.nameKo)),'Japanese station names leaked into Korean through-service labels');
 const routes=new Map(['line-11343','line-11319','line-11323','line-11301'].map(id=>[id,json('data/generated/routes/'+id+'.json').route]));
 const rt=read('js/service-route-resolver.js').replace(/\bexport\s+/g,'');
 const context={console};context.globalThis=context;context.TRT_TOKYO_SERVICE_PATTERNS=C;context.TRT_RAIL_SYSTEM={throughServices:T.services};
