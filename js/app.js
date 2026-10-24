@@ -416,6 +416,8 @@ function actualOperatingChoices(route){
   }
   const throughSpecs=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).filter(spec=>(spec.participatingLineIds||throughRouteIds(spec)).includes(route?.id));
   for(const spec of throughSpecs)for(const direction of ['forward','reverse']){
+    // Verified Shonan-Shinjuku service journeys supersede untyped generic through-service choices.
+    if(route?.id==='line-11333'&&patterns.some(item=>item.throughServiceId===spec.id))continue;
     const configs=spec.directionVariants?.[direction];if(!configs?.length)continue;
     const first=configs[0],last=configs.at(-1),originName=first.startStationJa||first.startStationId||'',destinationName=last.endStationJa||last.endStationId||'';
     add({kind:'through',id:`through:${spec.id}:${direction}`,originId:`through:${spec.id}:${direction}:origin`,destinationId:`through:${spec.id}:${direction}:destination`,originNames:{ja:originName,ko:originName},destinationNames:{ja:destinationName,ko:destinationName},trainType:trainTypeFor('through-regular'),journeyId:null,patternId:null,patternName:{ja:spec.nameJa,ko:spec.nameKo,en:spec.nameEn},throughServiceId:spec.id,throughSpecId:spec.id,direction})
