@@ -1783,7 +1783,7 @@ function normalizeLine(raw={},defaults={}){
 }
 function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[]},{category:raw.category});return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:Number(raw.stationCount)||0,searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?raw.stationSequence:[]}}
 function validLine(line){return Array.isArray(line.stations)&&line.stations.length>=2&&line.stations.every(station=>station.ja||station.kana||station.romaji||station.ko)}
-async function fetchJson(url){const response=await fetch(url);if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
+async function fetchJson(url,options){const response=await fetch(url,options);if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
 async function loadRailData(){
   const canonical=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;
   const nationwide=globalThis.TRT_EMBEDDED_NATIONWIDE;
@@ -1865,9 +1865,9 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
     return data;
   }
   const previewUrl=new URL('data/kr/preview/index.json',document.baseURI);previewUrl.searchParams.set('v',new URL(document.querySelector('script[src*="app.bundle.js"]')?.src||document.baseURI).searchParams.get('v')||'1');
-  let data=koreaMode==='research'?await fetchJson(previewUrl):globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
+  let data=koreaMode==='research'?await fetchJson(previewUrl,{cache:'no-cache'}):globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
   if(koreaMode==='released'){
-    try{data=integrateKoreanLine1Index(data,await fetchJson(previewUrl))}
+    try{data=integrateKoreanLine1Index(data,await fetchJson(previewUrl,{cache:'no-cache'}))}
     catch(error){console.warn('Line 1 research integration unavailable; legacy sections preserved:',error)}
   }
   if(koreaMode==='research')globalThis.TRT_KOREA_RESEARCH_INDEX=data;

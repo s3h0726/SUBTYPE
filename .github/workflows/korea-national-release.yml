@@ -1,7 +1,7 @@
 name: Korean national release approval
 on:
   push:
-    branches: [main, rebuild/korea-2026-10-15]
+    branches: [main, rebuild/korea-2026-10-15, rebuild/korea-phase6-2026-10-24]
     paths: ['data/kr/**', 'tools/**', 'package.json', '.github/workflows/korea-national-release.yml']
   pull_request:
     paths: ['data/kr/**', 'tools/**', 'package.json']

@@ -1,7 +1,7 @@
 name: Korean network rebuild
 on:
   push:
-    branches: [main, rebuild/korea-2026-10-15]
+    branches: [main, rebuild/korea-2026-10-15, rebuild/korea-phase6-2026-10-24]
   pull_request:
     paths: ['data/kr/**', 'tools/**', 'js/**', 'package.json']
   workflow_dispatch:
@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: '22'
       - run: npm run check:dependencies
+      - run: npm run import:korea-highspeed
       - run: npm run import:korea-intercity
       - run: npm run import:korea
       - run: npm run import:seoulmetro
@@ -36,6 +37,7 @@ jobs:
       - run: npm run audit:korea-relations62
       - run: npm run audit:korea-inventory
       - run: npm run audit:korea-failures
+      - run: npm run audit:korea-phase6
       - name: Ensure source corrections and generated data are reproducible
         run: git diff --exit-code -- data/kr/v2 data/kr/preview js/korean-access-data.js js/korean-preview-access-data.js
       - run: npm run validate:korea
@@ -86,6 +88,10 @@ jobs:
         env:
           KR_PHASE5_MOTION_REPORT: data/kr/v2/generated/phase5-motion/results.json
         run: npm run test:korea-phase5-motion
+      - name: Phase 6 restored Busan directions actual curve motion
+        env:
+          KR_BROWSER_REPORT: data/kr/v2/generated/phase6-busan-motion.json
+        run: node tools/test-kr-browser.cjs --services=2195014,8247016,2205952,8258701 --interactive-all
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -98,3 +104,4 @@ jobs:
             data/kr/v2/generated/recovered-motion.json
             data/kr/v2/generated/recovered-motion-screens/
             data/kr/v2/generated/phase5-motion/
+            data/kr/v2/generated/phase6-busan-motion.json
