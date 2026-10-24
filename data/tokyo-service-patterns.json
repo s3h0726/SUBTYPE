@@ -158,6 +158,33 @@
         "en": "Express"
       },
       "priority": 30
+    },
+    {
+      "id": "jr-shonan-local",
+      "names": {
+        "ja": "普通",
+        "ko": "보통",
+        "en": "Local"
+      },
+      "priority": 12
+    },
+    {
+      "id": "jr-shonan-rapid",
+      "names": {
+        "ja": "快速",
+        "ko": "쾌속",
+        "en": "Rapid"
+      },
+      "priority": 27
+    },
+    {
+      "id": "jr-shonan-special-rapid",
+      "names": {
+        "ja": "特別快速",
+        "ko": "특별쾌속",
+        "en": "Special Rapid"
+      },
+      "priority": 38
     }
   ],
   "branches": [
@@ -7471,6 +7498,502 @@
           "verifiedAt": "2026-09-12"
         }
       ]
+    },
+    {
+      "id": "jr-shonan-utsunomiya-yokosuka-local-forward",
+      "baseRouteId": "line-11333",
+      "throughServiceId": "jr-shonan-utsunomiya-yokosuka",
+      "trainTypeId": "jr-shonan-local",
+      "originStationId": "station-mlit-002113",
+      "destinationStationId": "station-mlit-005121",
+      "directionId": "forward",
+      "stopStationIds": [
+        "station-mlit-002113",
+        "station-mlit-002183",
+        "station-mlit-002225",
+        "station-mlit-002277",
+        "station-mlit-002309",
+        "station-mlit-002407",
+        "station-mlit-002476",
+        "station-mlit-002509",
+        "station-mlit-002547",
+        "station-mlit-002592",
+        "station-mlit-002643",
+        "station-mlit-002683",
+        "station-mlit-002716",
+        "station-mlit-002737",
+        "station-mlit-002781",
+        "station-mlit-002838",
+        "station-mlit-002859",
+        "station-mlit-002914",
+        "station-mlit-002989",
+        "station-mlit-003155",
+        "station-mlit-003390",
+        "station-mlit-003700",
+        "station-mlit-003922",
+        "station-mlit-003991",
+        "station-mlit-004135",
+        "station-mlit-004235",
+        "station-mlit-004301",
+        "station-mlit-004358",
+        "station-mlit-004633",
+        "station-1130807",
+        "station-mlit-004741",
+        "station-mlit-004818",
+        "station-mlit-004961",
+        "station-mlit-004998",
+        "station-mlit-005055",
+        "station-mlit-005121"
+      ],
+      "names": {
+        "ja": "普通 逗子行",
+        "ko": "보통 즈시행",
+        "en": "Local for Zushi"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.jreast.co.jp/map/",
+          "verifiedAt": "2026-10-24"
+        },
+        {
+          "type": "operating-info",
+          "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=1&lineid=shonan-shinjukuline",
+          "verifiedAt": "2026-10-24"
+        }
+      ]
+    },
+    {
+      "id": "jr-shonan-utsunomiya-yokosuka-local-reverse",
+      "baseRouteId": "line-11333",
+      "throughServiceId": "jr-shonan-utsunomiya-yokosuka",
+      "trainTypeId": "jr-shonan-local",
+      "originStationId": "station-mlit-005121",
+      "destinationStationId": "station-mlit-002113",
+      "directionId": "reverse",
+      "stopStationIds": [
+        "station-mlit-005121",
+        "station-mlit-005055",
+        "station-mlit-004998",
+        "station-mlit-004961",
+        "station-mlit-004818",
+        "station-mlit-004741",
+        "station-1130807",
+        "station-mlit-004633",
+        "station-mlit-004358",
+        "station-mlit-004301",
+        "station-mlit-004235",
+        "station-mlit-004135",
+        "station-mlit-003991",
+        "station-mlit-003922",
+        "station-mlit-003700",
+        "station-mlit-003390",
+        "station-mlit-003155",
+        "station-mlit-002989",
+        "station-mlit-002914",
+        "station-mlit-002859",
+        "station-mlit-002838",
+        "station-mlit-002781",
+        "station-mlit-002737",
+        "station-mlit-002716",
+        "station-mlit-002683",
+        "station-mlit-002643",
+        "station-mlit-002592",
+        "station-mlit-002547",
+        "station-mlit-002509",
+        "station-mlit-002476",
+        "station-mlit-002407",
+        "station-mlit-002309",
+        "station-mlit-002277",
+        "station-mlit-002225",
+        "station-mlit-002183",
+        "station-mlit-002113"
+      ],
+      "names": {
+        "ja": "普通 宇都宮行",
+        "ko": "보통 우쓰노미야행",
+        "en": "Local for Utsunomiya"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.jreast.co.jp/map/",
+          "verifiedAt": "2026-10-24"
+        },
+        {
+          "type": "operating-info",
+          "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=1&lineid=shonan-shinjukuline",
+          "verifiedAt": "2026-10-24"
+        }
+      ]
+    },
+    {
+      "id": "jr-shonan-utsunomiya-yokosuka-rapid-forward",
+      "baseRouteId": "line-11333",
+      "throughServiceId": "jr-shonan-utsunomiya-yokosuka",
+      "trainTypeId": "jr-shonan-rapid",
+      "originStationId": "station-mlit-002113",
+      "destinationStationId": "station-mlit-005121",
+      "directionId": "forward",
+      "stopStationIds": [
+        "station-mlit-002113",
+        "station-mlit-002183",
+        "station-mlit-002225",
+        "station-mlit-002277",
+        "station-mlit-002309",
+        "station-mlit-002407",
+        "station-mlit-002547",
+        "station-mlit-002683",
+        "station-mlit-002781",
+        "station-mlit-002838",
+        "station-mlit-002914",
+        "station-mlit-002989",
+        "station-mlit-003155",
+        "station-mlit-003390",
+        "station-mlit-003700",
+        "station-mlit-003922",
+        "station-mlit-003991",
+        "station-mlit-004135",
+        "station-mlit-004235",
+        "station-mlit-004301",
+        "station-mlit-004358",
+        "station-mlit-004633",
+        "station-1130807",
+        "station-mlit-004741",
+        "station-mlit-004818",
+        "station-mlit-004961",
+        "station-mlit-004998",
+        "station-mlit-005055",
+        "station-mlit-005121"
+      ],
+      "names": {
+        "ja": "快速 逗子行",
+        "ko": "쾌속 즈시행",
+        "en": "Rapid for Zushi"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.jreast.co.jp/map/",
+          "verifiedAt": "2026-10-24"
+        },
+        {
+          "type": "operating-info",
+          "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=1&lineid=shonan-shinjukuline",
+          "verifiedAt": "2026-10-24"
+        }
+      ]
+    },
+    {
+      "id": "jr-shonan-utsunomiya-yokosuka-rapid-reverse",
+      "baseRouteId": "line-11333",
+      "throughServiceId": "jr-shonan-utsunomiya-yokosuka",
+      "trainTypeId": "jr-shonan-rapid",
+      "originStationId": "station-mlit-005121",
+      "destinationStationId": "station-mlit-002113",
+      "directionId": "reverse",
+      "stopStationIds": [
+        "station-mlit-005121",
+        "station-mlit-005055",
+        "station-mlit-004998",
+        "station-mlit-004961",
+        "station-mlit-004818",
+        "station-mlit-004741",
+        "station-1130807",
+        "station-mlit-004633",
+        "station-mlit-004358",
+        "station-mlit-004301",
+        "station-mlit-004235",
+        "station-mlit-004135",
+        "station-mlit-003991",
+        "station-mlit-003922",
+        "station-mlit-003700",
+        "station-mlit-003390",
+        "station-mlit-003155",
+        "station-mlit-002989",
+        "station-mlit-002914",
+        "station-mlit-002838",
+        "station-mlit-002781",
+        "station-mlit-002683",
+        "station-mlit-002547",
+        "station-mlit-002407",
+        "station-mlit-002309",
+        "station-mlit-002277",
+        "station-mlit-002225",
+        "station-mlit-002183",
+        "station-mlit-002113"
+      ],
+      "names": {
+        "ja": "快速 宇都宮行",
+        "ko": "쾌속 우쓰노미야행",
+        "en": "Rapid for Utsunomiya"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.jreast.co.jp/map/",
+          "verifiedAt": "2026-10-24"
+        },
+        {
+          "type": "operating-info",
+          "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=1&lineid=shonan-shinjukuline",
+          "verifiedAt": "2026-10-24"
+        }
+      ]
+    },
+    {
+      "id": "jr-shonan-takasaki-tokaido-rapid-forward",
+      "baseRouteId": "line-11333",
+      "throughServiceId": "jr-shonan-takasaki-tokaido",
+      "trainTypeId": "jr-shonan-rapid",
+      "originStationId": "station-mlit-002389",
+      "destinationStationId": "station-mlit-005215",
+      "directionId": "forward",
+      "stopStationIds": [
+        "station-mlit-002389",
+        "station-mlit-002426",
+        "station-mlit-002458",
+        "station-mlit-002484",
+        "station-mlit-002503",
+        "station-mlit-002541",
+        "station-mlit-002553",
+        "station-mlit-002561",
+        "station-mlit-002589",
+        "station-mlit-002619",
+        "station-mlit-002627",
+        "station-mlit-002652",
+        "station-mlit-002691",
+        "station-mlit-002720",
+        "station-mlit-002761",
+        "station-mlit-002775",
+        "station-mlit-002796",
+        "station-mlit-002847",
+        "station-mlit-002914",
+        "station-mlit-002989",
+        "station-mlit-003155",
+        "station-mlit-003390",
+        "station-mlit-003700",
+        "station-mlit-003922",
+        "station-mlit-003991",
+        "station-mlit-004135",
+        "station-mlit-004301",
+        "station-mlit-004633",
+        "station-mlit-004818",
+        "station-mlit-004961",
+        "station-mlit-004997",
+        "station-mlit-005004",
+        "station-1130110",
+        "station-mlit-005034",
+        "station-mlit-005085",
+        "station-mlit-005120",
+        "station-mlit-005157",
+        "station-mlit-005170",
+        "station-mlit-005215"
+      ],
+      "names": {
+        "ja": "快速 小田原行",
+        "ko": "쾌속 오다와라행",
+        "en": "Rapid for Odawara"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.jreast.co.jp/map/",
+          "verifiedAt": "2026-10-24"
+        },
+        {
+          "type": "operating-info",
+          "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=1&lineid=shonan-shinjukuline",
+          "verifiedAt": "2026-10-24"
+        }
+      ]
+    },
+    {
+      "id": "jr-shonan-takasaki-tokaido-rapid-reverse",
+      "baseRouteId": "line-11333",
+      "throughServiceId": "jr-shonan-takasaki-tokaido",
+      "trainTypeId": "jr-shonan-rapid",
+      "originStationId": "station-mlit-005215",
+      "destinationStationId": "station-mlit-002389",
+      "directionId": "reverse",
+      "stopStationIds": [
+        "station-mlit-005215",
+        "station-mlit-005170",
+        "station-mlit-005157",
+        "station-mlit-005120",
+        "station-mlit-005085",
+        "station-mlit-005034",
+        "station-1130110",
+        "station-mlit-005004",
+        "station-mlit-004997",
+        "station-mlit-004961",
+        "station-mlit-004818",
+        "station-mlit-004633",
+        "station-mlit-004301",
+        "station-mlit-004135",
+        "station-mlit-003991",
+        "station-mlit-003922",
+        "station-mlit-003700",
+        "station-mlit-003390",
+        "station-mlit-003155",
+        "station-mlit-002989",
+        "station-mlit-002914",
+        "station-mlit-002847",
+        "station-mlit-002796",
+        "station-mlit-002775",
+        "station-mlit-002761",
+        "station-mlit-002720",
+        "station-mlit-002691",
+        "station-mlit-002652",
+        "station-mlit-002627",
+        "station-mlit-002619",
+        "station-mlit-002589",
+        "station-mlit-002561",
+        "station-mlit-002553",
+        "station-mlit-002541",
+        "station-mlit-002503",
+        "station-mlit-002484",
+        "station-mlit-002458",
+        "station-mlit-002426",
+        "station-mlit-002389"
+      ],
+      "names": {
+        "ja": "快速 高崎行",
+        "ko": "쾌속 다카사키행",
+        "en": "Rapid for Takasaki"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.jreast.co.jp/map/",
+          "verifiedAt": "2026-10-24"
+        },
+        {
+          "type": "operating-info",
+          "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=1&lineid=shonan-shinjukuline",
+          "verifiedAt": "2026-10-24"
+        }
+      ]
+    },
+    {
+      "id": "jr-shonan-takasaki-tokaido-special-rapid-forward",
+      "baseRouteId": "line-11333",
+      "throughServiceId": "jr-shonan-takasaki-tokaido",
+      "trainTypeId": "jr-shonan-special-rapid",
+      "originStationId": "station-mlit-002389",
+      "destinationStationId": "station-mlit-005215",
+      "directionId": "forward",
+      "stopStationIds": [
+        "station-mlit-002389",
+        "station-mlit-002426",
+        "station-mlit-002458",
+        "station-mlit-002484",
+        "station-mlit-002503",
+        "station-mlit-002541",
+        "station-mlit-002553",
+        "station-mlit-002561",
+        "station-mlit-002589",
+        "station-mlit-002720",
+        "station-mlit-002761",
+        "station-mlit-002796",
+        "station-mlit-002914",
+        "station-mlit-002989",
+        "station-mlit-003155",
+        "station-mlit-003390",
+        "station-mlit-003700",
+        "station-mlit-003922",
+        "station-mlit-004135",
+        "station-mlit-004301",
+        "station-mlit-004633",
+        "station-mlit-004818",
+        "station-mlit-004961",
+        "station-mlit-004997",
+        "station-1130110",
+        "station-mlit-005034",
+        "station-mlit-005157",
+        "station-mlit-005215"
+      ],
+      "names": {
+        "ja": "特別快速 小田原行",
+        "ko": "특별쾌속 오다와라행",
+        "en": "Special Rapid for Odawara"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.jreast.co.jp/map/",
+          "verifiedAt": "2026-10-24"
+        },
+        {
+          "type": "operating-info",
+          "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=1&lineid=shonan-shinjukuline",
+          "verifiedAt": "2026-10-24"
+        }
+      ]
+    },
+    {
+      "id": "jr-shonan-takasaki-tokaido-special-rapid-reverse",
+      "baseRouteId": "line-11333",
+      "throughServiceId": "jr-shonan-takasaki-tokaido",
+      "trainTypeId": "jr-shonan-special-rapid",
+      "originStationId": "station-mlit-005215",
+      "destinationStationId": "station-mlit-002389",
+      "directionId": "reverse",
+      "stopStationIds": [
+        "station-mlit-005215",
+        "station-mlit-005157",
+        "station-mlit-005034",
+        "station-1130110",
+        "station-mlit-004997",
+        "station-mlit-004961",
+        "station-mlit-004818",
+        "station-mlit-004633",
+        "station-mlit-004301",
+        "station-mlit-004135",
+        "station-mlit-003922",
+        "station-mlit-003700",
+        "station-mlit-003390",
+        "station-mlit-003155",
+        "station-mlit-002989",
+        "station-mlit-002914",
+        "station-mlit-002796",
+        "station-mlit-002761",
+        "station-mlit-002720",
+        "station-mlit-002589",
+        "station-mlit-002561",
+        "station-mlit-002553",
+        "station-mlit-002541",
+        "station-mlit-002503",
+        "station-mlit-002484",
+        "station-mlit-002458",
+        "station-mlit-002426",
+        "station-mlit-002389"
+      ],
+      "names": {
+        "ja": "特別快速 高崎行",
+        "ko": "특별쾌속 다카사키행",
+        "en": "Special Rapid for Takasaki"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.jreast.co.jp/map/",
+          "verifiedAt": "2026-10-24"
+        },
+        {
+          "type": "operating-info",
+          "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=1&lineid=shonan-shinjukuline",
+          "verifiedAt": "2026-10-24"
+        }
+      ]
     }
   ],
   "metroLineInventory": [
@@ -8014,6 +8537,38 @@
         "ja": "大島",
         "ko": "오시마",
         "en": "ōShima"
+      }
+    },
+    {
+      "stationId": "station-mlit-002113",
+      "names": {
+        "ja": "宇都宮",
+        "ko": "우쓰노미야",
+        "en": "Utsunomiya"
+      }
+    },
+    {
+      "stationId": "station-mlit-005121",
+      "names": {
+        "ja": "逗子",
+        "ko": "즈시",
+        "en": "Zushi"
+      }
+    },
+    {
+      "stationId": "station-mlit-002389",
+      "names": {
+        "ja": "高崎",
+        "ko": "다카사키",
+        "en": "Takasaki"
+      }
+    },
+    {
+      "stationId": "station-mlit-005215",
+      "names": {
+        "ja": "小田原",
+        "ko": "오다와라",
+        "en": "Odawara"
       }
     }
   ],
@@ -8951,6 +9506,94 @@
       "throughServiceId": null,
       "directionId": "reverse",
       "servicePatternId": "base-journey-fukutoshin-commuter-express-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-shonan-utsunomiya-yokosuka-local-forward",
+      "baseRouteId": "line-11333",
+      "originStationId": "station-mlit-002113",
+      "destinationStationId": "station-mlit-005121",
+      "trainTypeId": "jr-shonan-local",
+      "throughServiceId": "jr-shonan-utsunomiya-yokosuka",
+      "directionId": "forward",
+      "servicePatternId": "jr-shonan-utsunomiya-yokosuka-local-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-shonan-utsunomiya-yokosuka-local-reverse",
+      "baseRouteId": "line-11333",
+      "originStationId": "station-mlit-005121",
+      "destinationStationId": "station-mlit-002113",
+      "trainTypeId": "jr-shonan-local",
+      "throughServiceId": "jr-shonan-utsunomiya-yokosuka",
+      "directionId": "reverse",
+      "servicePatternId": "jr-shonan-utsunomiya-yokosuka-local-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-shonan-utsunomiya-yokosuka-rapid-forward",
+      "baseRouteId": "line-11333",
+      "originStationId": "station-mlit-002113",
+      "destinationStationId": "station-mlit-005121",
+      "trainTypeId": "jr-shonan-rapid",
+      "throughServiceId": "jr-shonan-utsunomiya-yokosuka",
+      "directionId": "forward",
+      "servicePatternId": "jr-shonan-utsunomiya-yokosuka-rapid-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-shonan-utsunomiya-yokosuka-rapid-reverse",
+      "baseRouteId": "line-11333",
+      "originStationId": "station-mlit-005121",
+      "destinationStationId": "station-mlit-002113",
+      "trainTypeId": "jr-shonan-rapid",
+      "throughServiceId": "jr-shonan-utsunomiya-yokosuka",
+      "directionId": "reverse",
+      "servicePatternId": "jr-shonan-utsunomiya-yokosuka-rapid-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-shonan-takasaki-tokaido-rapid-forward",
+      "baseRouteId": "line-11333",
+      "originStationId": "station-mlit-002389",
+      "destinationStationId": "station-mlit-005215",
+      "trainTypeId": "jr-shonan-rapid",
+      "throughServiceId": "jr-shonan-takasaki-tokaido",
+      "directionId": "forward",
+      "servicePatternId": "jr-shonan-takasaki-tokaido-rapid-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-shonan-takasaki-tokaido-rapid-reverse",
+      "baseRouteId": "line-11333",
+      "originStationId": "station-mlit-005215",
+      "destinationStationId": "station-mlit-002389",
+      "trainTypeId": "jr-shonan-rapid",
+      "throughServiceId": "jr-shonan-takasaki-tokaido",
+      "directionId": "reverse",
+      "servicePatternId": "jr-shonan-takasaki-tokaido-rapid-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-shonan-takasaki-tokaido-special-rapid-forward",
+      "baseRouteId": "line-11333",
+      "originStationId": "station-mlit-002389",
+      "destinationStationId": "station-mlit-005215",
+      "trainTypeId": "jr-shonan-special-rapid",
+      "throughServiceId": "jr-shonan-takasaki-tokaido",
+      "directionId": "forward",
+      "servicePatternId": "jr-shonan-takasaki-tokaido-special-rapid-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-shonan-takasaki-tokaido-special-rapid-reverse",
+      "baseRouteId": "line-11333",
+      "originStationId": "station-mlit-005215",
+      "destinationStationId": "station-mlit-002389",
+      "trainTypeId": "jr-shonan-special-rapid",
+      "throughServiceId": "jr-shonan-takasaki-tokaido",
+      "directionId": "reverse",
+      "servicePatternId": "jr-shonan-takasaki-tokaido-special-rapid-reverse",
       "status": "active"
     }
   ],
