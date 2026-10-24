@@ -13,3 +13,6 @@ const hash=crypto.createHash('sha256').update(bundle).digest('hex').slice(0,12),
 const kr=read('js/korea-index-data.js');write('index.html',read('index.html').replace(/(\.\/js\/korea-index-data\.js)(?:\?v=[^"']*)?/g,'$1?v='+crypto.createHash('sha256').update(kr).digest('hex').slice(0,12)));
 write('index.html',read('index.html').replace(/(\.\/js\/result-journey-map\.js)(?:\?v=[^"']*)?/g,'$1?v='+crypto.createHash('sha256').update(read('js/result-journey-map.js')).digest('hex').slice(0,12)));
 console.log(JSON.stringify({bundle:'js/app.bundle.js',hash},null,2));
+
+// Korean preview styles can change without changing the game engine.
+write('index.html',read('index.html').replace(/(\.\/css\/korea-preview\.css)(?:\?v=[^"']*)?/g,'$1?v='+crypto.createHash('sha256').update(read('css/korea-preview.css')).digest('hex').slice(0,12)));

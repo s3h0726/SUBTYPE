@@ -5,3 +5,9 @@
 .research-notice{padding:1rem;border-left:4px solid #b67900;background:#fff2c9;color:#352600;line-height:1.6}
 .research-card-status{font-size:.8rem;line-height:1.5}
 #records-mode{font:inherit;padding:.6rem;margin-bottom:1rem;color:var(--text);background:var(--panel)}
+
+/* Keep Korean light-mode running stats legible over every map tile. */
+:root[data-country="kr"][data-theme="light"] #screen-game .hud-strip{background:#f7f9fa;color:#17212a;border-color:#bac4cc}
+:root[data-country="kr"][data-theme="light"] #screen-game .hud-strip strong{color:#17212a}
+:root[data-country="kr"][data-theme="light"] #screen-game .hud-strip span{color:#40525e}
+:root[data-country="kr"][data-theme="light"] #screen-game .hud-strip div{border-left-color:#bac4cc}

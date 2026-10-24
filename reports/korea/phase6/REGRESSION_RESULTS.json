@@ -24,42 +24,6 @@
       "log": "reports/korea/phase6/build-data.log"
     },
     {
-      "name": "build:app",
-      "command": "node tools/build-app-bundle.js",
-      "exitCode": 0,
-      "status": "PASS",
-      "log": "reports/korea/phase6/build-app.log"
-    },
-    {
-      "name": "test:korea",
-      "command": "node --test tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs tools/test-route-selection.cjs tools/test-kr-station-display.cjs tools/test-kr-phase5.cjs tools/test-kr-phase6.cjs",
-      "exitCode": 0,
-      "status": "PASS",
-      "testCounts": [
-        85
-      ],
-      "log": "reports/korea/phase6/test-korea.log"
-    },
-    {
-      "name": "test:korea-preview",
-      "command": "node --test tools/test-kr-preview.cjs && node --test tools/test-kr-line1-integration.cjs && node --test tools/test-kr-line1-evidence.cjs",
-      "exitCode": 0,
-      "status": "PASS",
-      "testCounts": [
-        7,
-        4,
-        2
-      ],
-      "log": "reports/korea/phase6/test-korea-preview.log"
-    },
-    {
-      "name": "test:typing",
-      "command": "node tools/test-typing-model.js && node tools/test-ime-controller.js",
-      "exitCode": 0,
-      "status": "PASS",
-      "log": "reports/korea/phase6/test-typing.log"
-    },
-    {
       "name": "shinkansen",
       "command": "node tools/test-japan-shinkansen-services.cjs",
       "exitCode": 0,
@@ -110,6 +74,42 @@
         2
       ],
       "log": "reports/korea/phase6/test-single-source.log"
+    },
+    {
+      "name": "build:app",
+      "command": "node tools/build-app-bundle.js",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "reports/korea/phase6/build-app.log"
+    },
+    {
+      "name": "test:korea",
+      "command": "node --test tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs tools/test-route-selection.cjs tools/test-kr-station-display.cjs tools/test-kr-phase5.cjs tools/test-kr-phase6.cjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testCounts": [
+        85
+      ],
+      "log": "reports/korea/phase6/test-korea.log"
+    },
+    {
+      "name": "test:korea-preview",
+      "command": "node --test tools/test-kr-preview.cjs && node --test tools/test-kr-line1-integration.cjs && node --test tools/test-kr-line1-evidence.cjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testCounts": [
+        7,
+        4,
+        2
+      ],
+      "log": "reports/korea/phase6/test-korea-preview.log"
+    },
+    {
+      "name": "test:typing",
+      "command": "node tools/test-typing-model.js && node tools/test-ime-controller.js",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "reports/korea/phase6/test-typing.log"
     }
   ],
   "hongKong": "NOT_TESTED_NO_MAIN_HK_TEST_SUITE",

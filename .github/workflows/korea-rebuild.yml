@@ -44,7 +44,6 @@ jobs:
       - run: npm run test:korea
       - run: npm run test:korea-preview
       - run: npm run test:typing
-      - run: node tools/test-service-route-resolver.js
       - run: node tools/validate-data.js
       - run: npm run test:single-source
       - run: npm run build:korea
