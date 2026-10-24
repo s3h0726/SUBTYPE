@@ -20,6 +20,7 @@ const sb={console,selected:base,
 sb.globalThis=sb;
 sb.TRT_RAIL_SYSTEM={throughServices:T.services,trainServices:[{id:'unrelated-nex',routeId:base.id,branches:[{id:'bad',stops:['上野','東京']}]}]};
 vm.createContext(sb);vm.runInContext(app.slice(a,b),sb);
+assert(C.servicePatterns.filter(p=>p.baseRouteId==='line-11343').every(p=>p.sources?.some(s=>s.type==='official'&&s.url.startsWith('https://'))),'Missing JR official timetable attribution');
 const choices=sb.actualOperatingChoices({...base,countryId:'jp'});
 assert.equal(choices.length,12,'Expose only twelve timetable-supported directions');
 assert(choices.every(x=>x.kind==='journey'&&x.patternId.startsWith('jr-ueno-')));
