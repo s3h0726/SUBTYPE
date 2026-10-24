@@ -87,8 +87,8 @@ CUSTOM기존3개 보존, 기존3역여정 저장→실제새로고침→재실�
 
 - 브랜치: feature/hong-kong-railway
 - 시작 및 시작원격: cd9d69fb00f82ad99949c7ca61261580d21cfc21
-- 구현 커밋: NOT_COMMITTED
-- 원격푸시: NOT_PERFORMED ([영수증](git-result.json))
+- 구현 커밋: 6e2a62bfa9f422dbe86c49c9c7cbbfb5dcf52516
+- 원격푸시: SUCCESS ([영수증](git-result.json))
 - [수정파일](changed-files.txt)
 - local main 67f9b780b4f60fd2586d302ddea41a4d94b6baa2 보존. 시작remote main 607a124aeb453a0360a303ef44a941b205c4ff34, 작업중 외부remote main75b92c873d721aebb202c2297f438bab3940d24d관찰, 미통합.
 - main수정/병합/리베이스/푸시·강제푸시·새브랜치·Pages배포 **미수행**. 한국·일본원본 및 workflow 변경0.
