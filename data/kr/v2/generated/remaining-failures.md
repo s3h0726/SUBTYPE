@@ -1,8 +1,8 @@
 # 한국 철도 잔여 후보 목록
 
-기준 2026-10-18 · **INCOMPLETE**
+기준 2026-10-24 · **INCOMPLETE**
 
-{"registeredServices":317,"sourceAssemblable":261,"remaining":56,"passengerResearch":44,"excludedOrQuarantined":12,"officialTimetablePatterns":53,"releaseApproved":0}
+{"registeredServices":317,"sourceAssemblable":261,"remaining":56,"passengerResearch":44,"excludedOrQuarantined":12,"officialTimetablePatterns":65,"releaseApproved":0}
 
 실제 노선 수와 OSM relation 후보 수는 다르다. 아래 제외·보류 항목은 복구 성공으로 세지 않는다. 공식 시간표 패턴 일치는 선로·승강장·운행일 예외·배포 승인을 의미하지 않는다.
 

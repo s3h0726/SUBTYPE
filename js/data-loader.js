@@ -1,3 +1,4 @@
+import{KR_LINE1_INTEGRATION_RELATIONS}from'./korean-preview-access-data.js';
 import{isKoreanResearch,assertKoreanResearchRoute,koreanLine1ServiceDetails}from'./korean-research-resolver.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
 const text=(...values)=>String(values.find(value=>typeof value==='string'&&value.trim())||'').normalize('NFC').trim();
@@ -90,7 +91,8 @@ export async function loadRailData(){
 export function integrateKoreanLine1Index(published,preview){
   if(preview?.previewContract!=='kr-research-v1'||!Array.isArray(preview.routes)||preview.routes.some(route=>!isKoreanResearch(route)))throw Error('INVALID_LINE1_PREVIEW_INDEX');
   const obsolete=new Set(['13695367','13695368']); // discontinued Dongincheon limited express
-  const merged=preview.routes.filter(route=>route.passengerLineId==='kr-osm-line-8691899'&&!obsolete.has(String(route.sourceRelationId))&&route.lazy&&route.lazySource&&route.geometryReady===true&&route.playable===true).map(route=>({...route,integratedLine1:true,line1Service:koreanLine1ServiceDetails(route)}));
+  const integration={relationIds:KR_LINE1_INTEGRATION_RELATIONS};
+  const merged=preview.routes.filter(route=>integration.relationIds.includes(String(route.sourceRelationId))&&route.passengerLineId==='kr-osm-line-8691899'&&!obsolete.has(String(route.sourceRelationId))&&route.lazy&&route.lazySource&&route.geometryReady===true&&route.playable===true).map(route=>({...route,integratedLine1:true,line1Service:koreanLine1ServiceDetails(route)}));
   if(!merged.length)throw Error('NO_VERIFIED_LINE1_RESEARCH_PREVIEWS');
   const ids=new Set(merged.map(route=>route.id));if(ids.size!==merged.length)throw Error('DUPLICATE_LINE1_RESEARCH_ROUTE');
   const legacy=(published.routes||[]),isOldLine1=route=>/^kr-metro-1-(?:main|gyeongin|gyeongbu|gwangmyeong|seodongtan)$/.test(String(route.id));

@@ -1,0 +1,23 @@
+[
+  {
+    "check": "newly-restored actual curve motion",
+    "failure": "TRAIN_OUTSIDE_VIEW_AFTER_RESTART",
+    "cause": "Leaflet CSS zoom from the previous camera transition could commit an old center after session restart.",
+    "fix": "Cancel old pan, guard delayed route centering by render key/index, and make camera zoom atomic while preserving train-path animation.",
+    "finalStatus": "PASS",
+    "evidence": "MOTION_RESULTS.json"
+  },
+  {
+    "check": "full preview mobile record count",
+    "failure": "RESEARCH_RECORD_COUNT observed once",
+    "cause": "Not isolated; strict diagnostics were expanded without relaxing the assertion.",
+    "finalStatus": "PASS on final stable-input full rerun; independent CI repeat required",
+    "evidence": "PLAYTHROUGH_RESULTS.json"
+  },
+  {
+    "check": "first local reproduction invocation",
+    "failure": "Python WindowsApps alias returned 9009",
+    "fix": "Used the installed bundled Python runtime; no project validation skipped.",
+    "finalStatus": "See REPRODUCIBILITY.json"
+  }
+]

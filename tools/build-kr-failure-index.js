@@ -38,7 +38,7 @@ for(const serviceId of ['kr-osm-service-2718884','kr-osm-service-4744311']){
   if(facts.length===1&&facts[0].directionId!==v.officialDirectionId)platformDisagreements.push({serviceId,stopId:stop.id,osmPlatformCode:stop.platformCode,timetableDirection:v.officialDirectionId,officialPlatformDirection:facts[0].directionId,officialReferenceId:facts[0].id,sourceUrl:'https://www.data.go.kr/data/15041194/fileData.do',status:'REQUIRES_TERMINAL_PLATFORM_AND_TURNBACK_REVIEW'});
  }
 }
-const result={asOf:'2026-10-18',status:'INCOMPLETE',scope:'Unassemblable source candidates; not a count of actual passenger lines or release-approved services',
+const result={asOf:data.coverage.asOf,status:'INCOMPLETE',scope:'Unassemblable source candidates; not a count of actual passenger lines or release-approved services',
  counts:{registeredServices:data.services.length,sourceAssemblable:assemblable,remaining:rows.length,passengerResearch:rows.filter(r=>r.category==='PASSENGER_RESEARCH').length,excludedOrQuarantined:rows.filter(r=>r.category!=='PASSENGER_RESEARCH').length,officialTimetablePatterns:official.size,releaseApproved:data.services.filter(s=>s.releaseApproved===true).length},platformDisagreements,rows};
 const out=path.join(base,'generated');fs.writeFileSync(path.join(out,'remaining-failures.json'),JSON.stringify(result,null,2)+'\n');
 const esc=x=>String(x??'미상').replace(/\|/g,'\\|').replace(/\r?\n/g,' ');

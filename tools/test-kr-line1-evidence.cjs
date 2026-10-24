@@ -4,7 +4,8 @@ const root=path.resolve(__dirname,'..');
 const preview=JSON.parse(fs.readFileSync(path.join(root,'data/kr/preview/index.json'),'utf8'));
 const generated=JSON.parse(fs.readFileSync(path.join(root,'data/kr/generated/index.json'),'utf8'));
 const getRoute=route=>{const file=path.join(root,route.lazySource.split('?')[0]);assert(fs.existsSync(file),'missing source '+route.id);const data=JSON.parse(fs.readFileSync(file,'utf8'));return data.route||data};
-const target=preview.routes.filter(r=>r.passengerLineId==='kr-osm-line-8691899');
+const integratedIds=JSON.parse(fs.readFileSync(path.join(root,'data/kr/line1-integration-policy.json'),'utf8')).relationIds;
+const target=preview.routes.filter(r=>r.passengerLineId==='kr-osm-line-8691899'&&(integratedIds.includes(String(r.sourceRelationId))||['13695367','13695368'].includes(String(r.sourceRelationId))));
 const current=target.filter(r=>!['13695367','13695368'].includes(String(r.sourceRelationId)));
 test('all 23 displayed Line 1 direction services preserve OSM actual geometry and research evidence',async()=>{
  const {integrateKoreanLine1Index}=await import(pathToFileURL(path.join(root,'js/data-loader.js')));

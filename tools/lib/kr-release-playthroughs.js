@@ -8,4 +8,5 @@ function gateReleasedRoutes(routes,reviews,bundleSha256){
   if(journeys.length)published.push({...route,...journeys[0],id:route.id,verifiedJourneys:journeys,services:journeys.map(j=>j.service),playStatus:'RELEASED'});
  }return {routes:published,blocked};
 }
-module.exports={gateReleasedRoutes,digest};
+function publishedServiceIds(routes,reviews,bundleSha256){return new Set(gateReleasedRoutes(routes,reviews,bundleSha256).routes.flatMap(r=>r.verifiedJourneys.map(j=>j.id)))}
+module.exports={gateReleasedRoutes,publishedServiceIds,digest};
