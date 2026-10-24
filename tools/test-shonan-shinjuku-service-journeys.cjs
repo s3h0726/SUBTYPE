@@ -27,6 +27,8 @@ const expected = {
   'jr-shonan-utsunomiya-yokosuka-rapid': 29,
   'jr-shonan-takasaki-tokaido-rapid': 39,
   'jr-shonan-takasaki-tokaido-special-rapid': 28,
+  'jr-shonan-koganei-zushi': 32,
+  'jr-shonan-kagohara-hiratsuka': 27,
 };
 let checked = 0;
 for (const [id, count] of Object.entries(expected)) {
@@ -63,5 +65,5 @@ for (const [id, count] of Object.entries(expected)) {
     checked++;
   }
 }
-assert.equal(checked, 8);
+assert.equal(checked, 12);
 console.log('PASS: ' + checked + ' Shonan-Shinjuku through-service journey directions');
