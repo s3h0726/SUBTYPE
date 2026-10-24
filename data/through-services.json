@@ -1601,6 +1601,140 @@
       },
       "sourceUrl": "https://www.jreast.co.jp/map/",
       "verifiedDate": "2026-10-24"
+    },
+    {
+      "id": "jr-shonan-koganei-zushi",
+      "nameJa": "湘南新宿ライン・小金井〜逗子",
+      "nameKo": "쇼난신주쿠라인 · 고가네이~즈시 보통",
+      "nameEn": "Shonan-Shinjuku Koganei–Zushi Local",
+      "participatingOperatorIds": [
+        "jr-east"
+      ],
+      "participatingLineIds": [
+        "line-11319",
+        "line-11333",
+        "line-11308"
+      ],
+      "boundaryStations": [
+        "大宮",
+        "大船"
+      ],
+      "boundarySnapToleranceKm": 0.25,
+      "allowedDestinations": [
+        "小金井",
+        "逗子"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-11319",
+            "direction": "reverse",
+            "startStationJa": "小金井",
+            "endStationJa": "大宮"
+          },
+          {
+            "routeId": "line-11333",
+            "direction": "forward",
+            "startStationJa": "大宮",
+            "endStationJa": "大船"
+          },
+          {
+            "routeId": "line-11308",
+            "direction": "forward",
+            "startStationJa": "大船",
+            "endStationJa": "逗子"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-11308",
+            "direction": "reverse",
+            "startStationJa": "逗子",
+            "endStationJa": "大船"
+          },
+          {
+            "routeId": "line-11333",
+            "direction": "reverse",
+            "startStationJa": "大船",
+            "endStationJa": "大宮"
+          },
+          {
+            "routeId": "line-11319",
+            "direction": "forward",
+            "startStationJa": "大宮",
+            "endStationJa": "小金井"
+          }
+        ]
+      },
+      "sourceUrl": "https://timetables.jreast.co.jp/2610/train/035/036381.html",
+      "verifiedDate": "2026-10-24"
+    },
+    {
+      "id": "jr-shonan-kagohara-hiratsuka",
+      "nameJa": "湘南新宿ライン・籠原〜平塚",
+      "nameKo": "쇼난신주쿠라인 · 카고하라~히라쓰카 쾌속",
+      "nameEn": "Shonan-Shinjuku Kagohara–Hiratsuka Rapid",
+      "participatingOperatorIds": [
+        "jr-east"
+      ],
+      "participatingLineIds": [
+        "line-11323",
+        "line-11333",
+        "line-11301"
+      ],
+      "boundaryStations": [
+        "大宮",
+        "大船"
+      ],
+      "boundarySnapToleranceKm": 0.25,
+      "allowedDestinations": [
+        "籠原",
+        "平塚"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-11323",
+            "direction": "reverse",
+            "startStationJa": "籠原",
+            "endStationJa": "大宮"
+          },
+          {
+            "routeId": "line-11333",
+            "direction": "forward",
+            "startStationJa": "大宮",
+            "endStationJa": "大船"
+          },
+          {
+            "routeId": "line-11301",
+            "direction": "forward",
+            "startStationJa": "大船",
+            "endStationJa": "平塚"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-11301",
+            "direction": "reverse",
+            "startStationJa": "平塚",
+            "endStationJa": "大船"
+          },
+          {
+            "routeId": "line-11333",
+            "direction": "reverse",
+            "startStationJa": "大船",
+            "endStationJa": "大宮"
+          },
+          {
+            "routeId": "line-11323",
+            "direction": "forward",
+            "startStationJa": "大宮",
+            "endStationJa": "籠原"
+          }
+        ]
+      },
+      "sourceUrl": "https://timetables.jreast.co.jp/2610/train/035/035841.html",
+      "verifiedDate": "2026-10-24"
     }
   ],
   "inventoryScope": "Tokyo Metro and Toei current reciprocal through services",
