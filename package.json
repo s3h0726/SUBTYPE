@@ -62,7 +62,8 @@
     "test:route-selection": "node --test tools/test-route-selection.cjs",
     "test:korea-station-display": "node --test tools/test-kr-station-display.cjs",
     "test:korea-phase5-motion": "node tools/test-kr-phase5-motion.cjs",
-    "report:korea-phase5": "node tools/build-kr-phase5-report.js"
+    "report:korea-phase5": "node tools/build-kr-phase5-report.js",
+    "audit:korea-selectable": "node tools/count-kr-selectable.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

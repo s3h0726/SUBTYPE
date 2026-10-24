@@ -82,6 +82,10 @@ jobs:
           KR_BROWSER_REPORT: data/kr/v2/generated/recovered-motion.json
           KR_BROWSER_SCREENSHOTS: data/kr/v2/generated/recovered-motion-screens
         run: node tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696,16665964 --interactive-all
+      - name: All Phase 5 restored services actual curve motion
+        env:
+          KR_PHASE5_MOTION_REPORT: data/kr/v2/generated/phase5-motion/results.json
+        run: npm run test:korea-phase5-motion
       - uses: actions/upload-artifact@v4
         if: always()
         with:
