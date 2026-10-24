@@ -674,6 +674,14 @@ function buildThroughServiceRoute(spec,getRoute,directionId='forward'){
     }
     let offset=geometry.length;if(geometry.length&&part.geometry?.length&&Math.hypot(geometry.at(-1)[0]-part.geometry[0][0],geometry.at(-1)[1]-part.geometry[0][1])<.002){offset--;geometry.push(...copyGeometry(part.geometry).slice(1))}else geometry.push(...copyGeometry(part.geometry));
     const context=contextOf(part),start=Math.max(0,stations.length-1);
+    // This segment uses real parallel railway curvature. Render its Joban
+    // service identity without claiming exact track identity.
+    const segmentIdentity=spec.segmentIdentityOverrides?.[part.id];
+    if(segmentIdentity){
+      context.line={...context.line,...(segmentIdentity.line||{})};
+      if(segmentIdentity.code)context.code=segmentIdentity.code;
+      if(segmentIdentity.lineColor)context.lineColor=segmentIdentity.lineColor;
+    }
     for(let index=0;index<part.stations.length;index++){
       const station=part.stations[index],sameBoundary=index===0&&stations.length&&sameBoundaryStation(spec,stations.at(-1),station);if(sameBoundary){
         if(spec.boundaryCanonicalStationJa&&station.ja===spec.boundaryCanonicalStationJa){
@@ -2466,7 +2474,10 @@ function operatingPatternLabel(choice){
       'jr-ueno-utsunomiya-odawara':'우츠노미야선 ↔ 도카이도선 · 우츠노미야~오다와라',
       'jr-ueno-koganei-atami':'우츠노미야선 ↔ 도카이도선 · 코가네이~아타미',
       'jr-ueno-takasaki-atami':'타카사키선 ↔ 도카이도선 · 타카사키~아타미',
-      'jr-ueno-kagohara-odawara':'타카사키선 ↔ 도카이도선 · 카고하라~오다와라'
+      'jr-ueno-kagohara-odawara':'타카사키선 ↔ 도카이도선 · 카고하라~오다와라',
+      'jr-ueno-joban-tsuchiura-local':'조반선 ↔ 시나가와 · 쓰치우라~시나가와 보통',
+      'jr-ueno-joban-toride-rapid':'조반선 ↔ 시나가와 · 도리데~시나가와 쾌속',
+      'jr-ueno-joban-tsuchiura-special-rapid':'조반선 ↔ 시나가와 · 시나가와→쓰치우라 특별쾌속'
     };
     return uenoNames[choice.throughServiceId]||'우에노도쿄라인 · 보통';
   }

@@ -1983,6 +1983,299 @@
       },
       "sourceUrl": "https://timetables.jreast.co.jp/2610/train/040/040291.html",
       "verifiedDate": "2026-10-25"
+    },
+    {
+      "id": "jr-ueno-joban-tsuchiura-local",
+      "nameJa": "上野東京ライン・常磐線普通（土浦〜品川）",
+      "nameKo": "우에노도쿄라인 · 조반선 · 쓰치우라 ↔ 시나가와 · 보통",
+      "nameEn": "Ueno–Tokyo Line · Joban Local Tsuchiura–Shinagawa",
+      "participatingOperatorIds": [
+        "jr-east"
+      ],
+      "participatingLineIds": [
+        "line-11229--jobansen-totte-iwaki",
+        "line-11320",
+        "line-11332",
+        "line-11343",
+        "line-11301"
+      ],
+      "boundaryStations": [
+        "取手",
+        "日暮里",
+        "上野",
+        "東京"
+      ],
+      "boundarySnapToleranceKm": 0.02,
+      "allowedDestinations": [
+        "土浦",
+        "品川"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-11229--jobansen-totte-iwaki",
+            "direction": "reverse",
+            "startStationJa": "土浦",
+            "endStationJa": "取手"
+          },
+          {
+            "routeId": "line-11320",
+            "direction": "reverse",
+            "startStationJa": "取手",
+            "endStationJa": "日暮里"
+          },
+          {
+            "routeId": "line-11332",
+            "direction": "forward",
+            "startStationJa": "日暮里",
+            "endStationJa": "上野"
+          },
+          {
+            "routeId": "line-11343",
+            "direction": "reverse",
+            "startStationJa": "上野",
+            "endStationJa": "東京"
+          },
+          {
+            "routeId": "line-11301",
+            "direction": "forward",
+            "startStationJa": "東京",
+            "endStationJa": "品川"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-11301",
+            "direction": "reverse",
+            "startStationJa": "品川",
+            "endStationJa": "東京"
+          },
+          {
+            "routeId": "line-11343",
+            "direction": "forward",
+            "startStationJa": "東京",
+            "endStationJa": "上野"
+          },
+          {
+            "routeId": "line-11332",
+            "direction": "reverse",
+            "startStationJa": "上野",
+            "endStationJa": "日暮里"
+          },
+          {
+            "routeId": "line-11320",
+            "direction": "forward",
+            "startStationJa": "日暮里",
+            "endStationJa": "取手"
+          },
+          {
+            "routeId": "line-11229--jobansen-totte-iwaki",
+            "direction": "forward",
+            "startStationJa": "取手",
+            "endStationJa": "土浦"
+          }
+        ]
+      },
+      "segmentIdentityOverrides": {
+        "line-11332": {
+          "line": {
+            "ja": "常磐線（上野接続区間）",
+            "ko": "조반선(우에노 접속구간)",
+            "en": "Joban Ueno approach"
+          },
+          "code": "JJ",
+          "lineColor": "#009C36"
+        }
+      },
+      "geometryProvenance": {
+        "sourceRouteId": "line-11332",
+        "section": "日暮里〜上野",
+        "status": "parallel-jr-track-proxy",
+        "exactJobanAlignmentVerified": false,
+        "note": "MLIT N02-2025 Keihin-Tohoku physical railway corridor; exact track for Joban through trains unverified"
+      },
+      "sourceUrl": "https://timetables.jreast.co.jp/2611/train/075/077951.html",
+      "verifiedDate": "2026-10-25"
+    },
+    {
+      "id": "jr-ueno-joban-toride-rapid",
+      "nameJa": "上野東京ライン・常磐線快速（取手〜品川）",
+      "nameKo": "우에노도쿄라인 · 조반선 · 도리데 ↔ 시나가와 · 쾌속",
+      "nameEn": "Ueno–Tokyo Line · Joban Rapid Toride–Shinagawa",
+      "participatingOperatorIds": [
+        "jr-east"
+      ],
+      "participatingLineIds": [
+        "line-11320",
+        "line-11332",
+        "line-11343",
+        "line-11301"
+      ],
+      "boundaryStations": [
+        "日暮里",
+        "上野",
+        "東京"
+      ],
+      "boundarySnapToleranceKm": 0.02,
+      "allowedDestinations": [
+        "取手",
+        "品川"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-11320",
+            "direction": "reverse",
+            "startStationJa": "取手",
+            "endStationJa": "日暮里"
+          },
+          {
+            "routeId": "line-11332",
+            "direction": "forward",
+            "startStationJa": "日暮里",
+            "endStationJa": "上野"
+          },
+          {
+            "routeId": "line-11343",
+            "direction": "reverse",
+            "startStationJa": "上野",
+            "endStationJa": "東京"
+          },
+          {
+            "routeId": "line-11301",
+            "direction": "forward",
+            "startStationJa": "東京",
+            "endStationJa": "品川"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-11301",
+            "direction": "reverse",
+            "startStationJa": "品川",
+            "endStationJa": "東京"
+          },
+          {
+            "routeId": "line-11343",
+            "direction": "forward",
+            "startStationJa": "東京",
+            "endStationJa": "上野"
+          },
+          {
+            "routeId": "line-11332",
+            "direction": "reverse",
+            "startStationJa": "上野",
+            "endStationJa": "日暮里"
+          },
+          {
+            "routeId": "line-11320",
+            "direction": "forward",
+            "startStationJa": "日暮里",
+            "endStationJa": "取手"
+          }
+        ]
+      },
+      "segmentIdentityOverrides": {
+        "line-11332": {
+          "line": {
+            "ja": "常磐線（上野接続区間）",
+            "ko": "조반선(우에노 접속구간)",
+            "en": "Joban Ueno approach"
+          },
+          "code": "JJ",
+          "lineColor": "#009C36"
+        }
+      },
+      "geometryProvenance": {
+        "sourceRouteId": "line-11332",
+        "section": "日暮里〜上野",
+        "status": "parallel-jr-track-proxy",
+        "exactJobanAlignmentVerified": false,
+        "note": "MLIT N02-2025 Keihin-Tohoku physical railway corridor; exact track for Joban through trains unverified"
+      },
+      "sourceUrl": "https://timetables.jreast.co.jp/2611/train/085/086801.html",
+      "verifiedDate": "2026-10-25"
+    },
+    {
+      "id": "jr-ueno-joban-tsuchiura-special-rapid",
+      "nameJa": "上野東京ライン・常磐線特別快速（品川〜土浦）",
+      "nameKo": "우에노도쿄라인 · 조반선 · 시나가와 → 쓰치우라 · 특별쾌속",
+      "nameEn": "Ueno–Tokyo Line · Joban Special Rapid Shinagawa–Tsuchiura",
+      "participatingOperatorIds": [
+        "jr-east"
+      ],
+      "participatingLineIds": [
+        "line-11229--jobansen-totte-iwaki",
+        "line-11320",
+        "line-11332",
+        "line-11343",
+        "line-11301"
+      ],
+      "boundaryStations": [
+        "取手",
+        "日暮里",
+        "上野",
+        "東京"
+      ],
+      "boundarySnapToleranceKm": 0.02,
+      "allowedDestinations": [
+        "土浦",
+        "品川"
+      ],
+      "directionVariants": {
+        "reverse": [
+          {
+            "routeId": "line-11301",
+            "direction": "reverse",
+            "startStationJa": "品川",
+            "endStationJa": "東京"
+          },
+          {
+            "routeId": "line-11343",
+            "direction": "forward",
+            "startStationJa": "東京",
+            "endStationJa": "上野"
+          },
+          {
+            "routeId": "line-11332",
+            "direction": "reverse",
+            "startStationJa": "上野",
+            "endStationJa": "日暮里"
+          },
+          {
+            "routeId": "line-11320",
+            "direction": "forward",
+            "startStationJa": "日暮里",
+            "endStationJa": "取手"
+          },
+          {
+            "routeId": "line-11229--jobansen-totte-iwaki",
+            "direction": "forward",
+            "startStationJa": "取手",
+            "endStationJa": "土浦"
+          }
+        ]
+      },
+      "segmentIdentityOverrides": {
+        "line-11332": {
+          "line": {
+            "ja": "常磐線（上野接続区間）",
+            "ko": "조반선(우에노 접속구간)",
+            "en": "Joban Ueno approach"
+          },
+          "code": "JJ",
+          "lineColor": "#009C36"
+        }
+      },
+      "geometryProvenance": {
+        "sourceRouteId": "line-11332",
+        "section": "日暮里〜上野",
+        "status": "parallel-jr-track-proxy",
+        "exactJobanAlignmentVerified": false,
+        "note": "MLIT N02-2025 Keihin-Tohoku physical railway corridor; exact track for Joban through trains unverified"
+      },
+      "sourceUrl": "https://timetables.jreast.co.jp/2611/train/075/077491.html",
+      "verifiedDate": "2026-10-25"
     }
   ],
   "inventoryScope": "Tokyo Metro and Toei current reciprocal through services",

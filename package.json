@@ -65,7 +65,7 @@
     "report:korea-phase5": "node tools/build-kr-phase5-report.js",
     "audit:korea-selectable": "node tools/count-kr-selectable.cjs",
     "test:shonan": "node tools/test-shonan-shinjuku-service-journeys.cjs && node tools/test-shonan-shinjuku-selector.cjs",
-    "test:ueno": "node tools/test-ueno-tokyo-line.cjs"
+    "test:ueno": "node tools/test-ueno-tokyo-line.cjs && node tools/test-ueno-tokyo-joban.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

@@ -195,6 +195,26 @@
         "en": "Local"
       },
       "priority": 12
+    },
+    {
+      "id": "jr-ueno-joban-rapid",
+      "operatorId": "jr-east",
+      "names": {
+        "ja": "快速",
+        "ko": "쾌속",
+        "en": "Rapid"
+      },
+      "priority": 25
+    },
+    {
+      "id": "jr-ueno-joban-special-rapid",
+      "operatorId": "jr-east",
+      "names": {
+        "ja": "特別快速",
+        "ko": "특별쾌속",
+        "en": "Special Rapid"
+      },
+      "priority": 35
     }
   ],
   "branches": [
@@ -8655,6 +8675,205 @@
           "verifiedAt": "2026-10-25"
         }
       ]
+    },
+    {
+      "id": "jr-ueno-joban-tsuchiura-local-forward",
+      "baseRouteId": "line-11343",
+      "throughServiceId": "jr-ueno-joban-tsuchiura-local",
+      "trainTypeId": "jr-ueno-tokyo-local",
+      "originStationId": "station-1122907",
+      "destinationStationId": "station-mlit-004095",
+      "directionId": "forward",
+      "stopStationIds": [
+        "station-1122907",
+        "station-1122906",
+        "station-1122905",
+        "station-1122904",
+        "station-1122903",
+        "station-1122902",
+        "station-1122901",
+        "station-mlit-002967",
+        "station-mlit-002965",
+        "station-mlit-002984",
+        "station-mlit-003136",
+        "station-mlit-003260",
+        "station-mlit-003363",
+        "station-mlit-003359",
+        "station-mlit-003417",
+        "station-mlit-003505",
+        "station-mlit-003766",
+        "station-mlit-003872",
+        "station-mlit-004095"
+      ],
+      "names": {
+        "ja": "普通 品川行",
+        "ko": "보통 시나가와행",
+        "en": "Local for Shinagawa"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official-timetable",
+          "url": "https://timetables.jreast.co.jp/2611/train/075/077951.html",
+          "verifiedAt": "2026-10-25"
+        }
+      ]
+    },
+    {
+      "id": "jr-ueno-joban-tsuchiura-local-reverse",
+      "baseRouteId": "line-11343",
+      "throughServiceId": "jr-ueno-joban-tsuchiura-local",
+      "trainTypeId": "jr-ueno-tokyo-local",
+      "originStationId": "station-mlit-004095",
+      "destinationStationId": "station-1122907",
+      "directionId": "reverse",
+      "stopStationIds": [
+        "station-mlit-004095",
+        "station-mlit-003872",
+        "station-mlit-003766",
+        "station-mlit-003505",
+        "station-mlit-003417",
+        "station-mlit-003359",
+        "station-mlit-003363",
+        "station-mlit-003260",
+        "station-mlit-003136",
+        "station-mlit-002984",
+        "station-mlit-002965",
+        "station-mlit-002967",
+        "station-mlit-002925",
+        "station-1122902",
+        "station-1122903",
+        "station-1122904",
+        "station-1122905",
+        "station-1122906",
+        "station-1122907"
+      ],
+      "names": {
+        "ja": "普通 土浦行",
+        "ko": "보통 츠치우라행",
+        "en": "Local for Tsuchiura"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official-timetable",
+          "url": "https://timetables.jreast.co.jp/2611/train/075/077331.html",
+          "verifiedAt": "2026-10-25"
+        }
+      ]
+    },
+    {
+      "id": "jr-ueno-joban-toride-rapid-forward",
+      "baseRouteId": "line-11343",
+      "throughServiceId": "jr-ueno-joban-toride-rapid",
+      "trainTypeId": "jr-ueno-joban-rapid",
+      "originStationId": "station-mlit-002925",
+      "destinationStationId": "station-mlit-004095",
+      "directionId": "forward",
+      "stopStationIds": [
+        "station-mlit-002925",
+        "station-mlit-002967",
+        "station-mlit-002965",
+        "station-mlit-002984",
+        "station-mlit-003136",
+        "station-mlit-003260",
+        "station-mlit-003363",
+        "station-mlit-003359",
+        "station-mlit-003417",
+        "station-mlit-003505",
+        "station-mlit-003766",
+        "station-mlit-003872",
+        "station-mlit-004095"
+      ],
+      "names": {
+        "ja": "快速 品川行",
+        "ko": "쾌속 시나가와행",
+        "en": "Rapid for Shinagawa"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official-timetable",
+          "url": "https://timetables.jreast.co.jp/2611/train/085/086801.html",
+          "verifiedAt": "2026-10-25"
+        }
+      ]
+    },
+    {
+      "id": "jr-ueno-joban-toride-rapid-reverse",
+      "baseRouteId": "line-11343",
+      "throughServiceId": "jr-ueno-joban-toride-rapid",
+      "trainTypeId": "jr-ueno-joban-rapid",
+      "originStationId": "station-mlit-004095",
+      "destinationStationId": "station-mlit-002925",
+      "directionId": "reverse",
+      "stopStationIds": [
+        "station-mlit-004095",
+        "station-mlit-003872",
+        "station-mlit-003766",
+        "station-mlit-003505",
+        "station-mlit-003417",
+        "station-mlit-003359",
+        "station-mlit-003363",
+        "station-mlit-003260",
+        "station-mlit-003136",
+        "station-mlit-002984",
+        "station-mlit-002965",
+        "station-mlit-002967",
+        "station-mlit-002925"
+      ],
+      "names": {
+        "ja": "快速 取手行",
+        "ko": "쾌속 도리데행",
+        "en": "Rapid for Toride"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official-timetable",
+          "url": "https://timetables.jreast.co.jp/2611/train/105/106641.html",
+          "verifiedAt": "2026-10-25"
+        }
+      ]
+    },
+    {
+      "id": "jr-ueno-joban-tsuchiura-special-rapid-reverse",
+      "baseRouteId": "line-11343",
+      "throughServiceId": "jr-ueno-joban-tsuchiura-special-rapid",
+      "trainTypeId": "jr-ueno-joban-special-rapid",
+      "originStationId": "station-mlit-004095",
+      "destinationStationId": "station-1122907",
+      "directionId": "reverse",
+      "stopStationIds": [
+        "station-mlit-004095",
+        "station-mlit-003872",
+        "station-mlit-003766",
+        "station-mlit-003505",
+        "station-mlit-003417",
+        "station-mlit-003260",
+        "station-mlit-003136",
+        "station-mlit-002984",
+        "station-mlit-002925",
+        "station-1122902",
+        "station-1122903",
+        "station-1122904",
+        "station-1122905",
+        "station-1122906",
+        "station-1122907"
+      ],
+      "names": {
+        "ja": "特別快速 土浦行",
+        "ko": "특별쾌속 츠치우라행",
+        "en": "Special Rapid for Tsuchiura"
+      },
+      "status": "active",
+      "sources": [
+        {
+          "type": "official-timetable",
+          "url": "https://timetables.jreast.co.jp/2611/train/075/077491.html",
+          "verifiedAt": "2026-10-25"
+        }
+      ]
     }
   ],
   "metroLineInventory": [
@@ -9262,6 +9481,30 @@
         "ja": "熱海",
         "ko": "아타미",
         "en": "Atami"
+      }
+    },
+    {
+      "stationId": "station-1122907",
+      "names": {
+        "ja": "土浦",
+        "ko": "츠치우라",
+        "en": "Tsuchiura"
+      }
+    },
+    {
+      "stationId": "station-mlit-004095",
+      "names": {
+        "ja": "品川",
+        "ko": "시나가와",
+        "en": "Shinagawa"
+      }
+    },
+    {
+      "stationId": "station-mlit-002925",
+      "names": {
+        "ja": "取手",
+        "ko": "도리데",
+        "en": "Toride"
       }
     }
   ],
@@ -10408,6 +10651,61 @@
       "throughServiceId": "jr-ueno-kagohara-odawara",
       "directionId": "reverse",
       "servicePatternId": "jr-ueno-kagohara-odawara-local-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-ueno-joban-tsuchiura-local-forward",
+      "baseRouteId": "line-11343",
+      "originStationId": "station-1122907",
+      "destinationStationId": "station-mlit-004095",
+      "trainTypeId": "jr-ueno-tokyo-local",
+      "throughServiceId": "jr-ueno-joban-tsuchiura-local",
+      "directionId": "forward",
+      "servicePatternId": "jr-ueno-joban-tsuchiura-local-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-ueno-joban-tsuchiura-local-reverse",
+      "baseRouteId": "line-11343",
+      "originStationId": "station-mlit-004095",
+      "destinationStationId": "station-1122907",
+      "trainTypeId": "jr-ueno-tokyo-local",
+      "throughServiceId": "jr-ueno-joban-tsuchiura-local",
+      "directionId": "reverse",
+      "servicePatternId": "jr-ueno-joban-tsuchiura-local-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-ueno-joban-toride-rapid-forward",
+      "baseRouteId": "line-11343",
+      "originStationId": "station-mlit-002925",
+      "destinationStationId": "station-mlit-004095",
+      "trainTypeId": "jr-ueno-joban-rapid",
+      "throughServiceId": "jr-ueno-joban-toride-rapid",
+      "directionId": "forward",
+      "servicePatternId": "jr-ueno-joban-toride-rapid-forward",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-ueno-joban-toride-rapid-reverse",
+      "baseRouteId": "line-11343",
+      "originStationId": "station-mlit-004095",
+      "destinationStationId": "station-mlit-002925",
+      "trainTypeId": "jr-ueno-joban-rapid",
+      "throughServiceId": "jr-ueno-joban-toride-rapid",
+      "directionId": "reverse",
+      "servicePatternId": "jr-ueno-joban-toride-rapid-reverse",
+      "status": "active"
+    },
+    {
+      "id": "journey-jr-ueno-joban-tsuchiura-special-rapid-reverse",
+      "baseRouteId": "line-11343",
+      "originStationId": "station-mlit-004095",
+      "destinationStationId": "station-1122907",
+      "trainTypeId": "jr-ueno-joban-special-rapid",
+      "throughServiceId": "jr-ueno-joban-tsuchiura-special-rapid",
+      "directionId": "reverse",
+      "servicePatternId": "jr-ueno-joban-tsuchiura-special-rapid-reverse",
       "status": "active"
     }
   ],
