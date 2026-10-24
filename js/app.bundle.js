@@ -2402,6 +2402,13 @@ function actualOperatingChoices(route){
     const type=trainTypeFor(item.trainTypeId),origin=stationMap.get(String(item.originStationId))||{ko:item.originStationId},destination=stationMap.get(String(item.destinationStationId))||{ko:(item.names?.ko||'').match(/([^\s]+)행$/)?.[1]||item.destinationStationId};
     add({kind:'pattern',id:`pattern:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:origin,destinationNames:destination,trainType:type,journeyId:null,patternId:item.id,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'})
   }
+  // Do not merge the TrainLCD nationwide physical-track catalog into a
+  // curated Shonan-Shinjuku selector. N'EX is a different limited express.
+  if(route?.countryId==='jp'&&route.id==='line-11333')
+    return choices.filter(choice=>choice.kind==='journey'&&
+      choice.patternId?.startsWith('jr-shonan-')&&choice.throughServiceId?.startsWith('jr-shonan-'))
+      .sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||
+        journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   for(const service of route?.services||[]){
     // Famous trains have dedicated cards: do not duplicate Skyliner inside the ordinary airport line.
     if(route?.id==='line-23006'&&service?.id==='skyliner')continue;
@@ -2437,8 +2444,22 @@ function actualOperatingChoices(route){
     {kind:'fallback',id:'fallback:reverse',originId:String(last.id),destinationId:String(first.id),originNames:last,destinationNames:first,trainType:null,journeyId:null,patternId:null,patternName:{ko:'각역정차'},throughServiceId:null,direction:'reverse'}
   ].filter(choice=>route.countryId!=='kr'||route.category==='custom'||route.directions?.some(d=>d.id===choice.direction))
 }
-function operatingPatternKey(choice){return String(choice.line1PatternKey||choice.sourceRouteId||choice.patternId||choice.legacyServiceId||journeyLabel(choice.patternName)||'default')}
+function operatingPatternKey(choice){
+  // Display opposite directions as one service family.
+  if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-shonan-'))
+    return 'shonan:'+choice.throughServiceId+':'+(choice.trainType?.id||'');
+return String(choice.line1PatternKey||choice.sourceRouteId||choice.patternId||choice.legacyServiceId||journeyLabel(choice.patternName)||'default')}
 function operatingPatternLabel(choice){
+  if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-shonan-')){
+    const shonanNames={
+      'jr-shonan-utsunomiya-yokosuka':'우츠노미야선 ↔ 요코스카선',
+      'jr-shonan-takasaki-tokaido':'타카사키선 ↔ 도카이도선',
+      'jr-shonan-koganei-zushi':'코가네이 ↔ 즈시',
+      'jr-shonan-kagohara-hiratsuka':'카고하라 ↔ 히라쓰카'
+    };
+    return (shonanNames[choice.throughServiceId]||'쇼난신주쿠라인')+' · '+journeyLabel(choice.trainType);
+  }
+
   if(choice.kind==='koreanFamilyService')return koreanRouteDisplayText(journeyLabel(choice.patternName),selected);
   const route=choice.sourceRouteId?(builtin.find(item=>item.id===choice.sourceRouteId)||routes.find(item=>item.id===choice.sourceRouteId)):selected;
   const seoulLine2={"kr-metro-2":'본선 순환',"kr-metro-2-section-2":'성수지선',"kr-metro-2-section-3":'신정지선'};
@@ -2575,7 +2596,7 @@ async function prepareKoreanFamilyChoices(route){
 // with operatingChoicePlayable. Otherwise correct patterns silently disappear.
 async function hydrateJapaneseOperatingConnections(route){
   if(route?.countryId!=='jp')return;
-  const catalog=nationwideCatalogLine(route);
+  const catalog=route?.id==='line-11333'?null:nationwideCatalogLine(route);
   const codes=new Set((catalog?.data?.patterns||[]).flatMap(pattern=>(pattern.segments||[]).map(part=>String(part.lineCode||''))).filter(Boolean));
   const pending=new Map();
   const queue=physical=>{
