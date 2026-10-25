@@ -46,7 +46,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
 <p class="note">초록색 한글명(직통·운행계통 포함)과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
 </main>
-<script src="../../js/service-data.js?v=services-editor-20261025"></script>
+<script src="../../js/service-data.js?v=services-editor-20261026"></script>
 <script>
 'use strict';
 const FILES=['operators','lines','korea-lines','services','stations-by-line','stations-unique'];
@@ -87,8 +87,10 @@ function parseCSV(text){
 function makeCSV(data){return '\uFEFF'+data.map(row=>row.map(value=>'"'+String(value??'').replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n'}
 function saveCSV(data,name){const blob=new Blob([makeCSV(data)],{type:'text/csv;charset=utf-8'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500)}
 function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[i]=r});localStorage.setItem('metrot-korean-edit-'+DATA_VERSION+'-'+file,JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
-function applyDraft(){try{let draft=JSON.parse(localStorage.getItem('metrot-korean-edit-'+DATA_VERSION+'-'+file)||'{}');for(const [i,r] of Object.entries(draft))if(rows[+i]&&r.length===heads.length)rows[+i]=r}catch{}}
+// Preserve draft edits by stable route/station identity, not by row number.
+function rowKey(r){if(file==='operators')return r[0];if(file==='lines'||file==='korea-lines')return r[2];if(file==='services')return r[0];if(file==='stations-by-line')return r[2]+'::'+r[4];if(file==='stations-unique')return r[0]||r[2]+'::'+r[3];return JSON.stringify(r)}
+function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[rowKey(r)]=r});localStorage.setItem('metrot-korean-edit-'+DATA_VERSION+'-'+file,JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
+function applyDraft(){try{const draft=JSON.parse(localStorage.getItem('metrot-korean-edit-'+DATA_VERSION+'-'+file)||'{}');const current=new Map(rows.map((r,i)=>[rowKey(r),i]));for(const saved of Object.values(draft)){if(!Array.isArray(saved)||saved.length!==heads.length)continue;const index=current.get(rowKey(saved));if(index!==undefined)rows[index]=saved}}catch{}}
 async function serviceRows(){
  const response=await fetch('./lines.csv?'+FRESH_DATA_QUERY,{cache:'no-store'});
  if(!response.ok)throw Error('노선명 목록을 불러올 수 없습니다: '+response.status);
