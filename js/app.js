@@ -820,6 +820,11 @@ async function reloadRailData(){const summary=$('#data-summary');dataLoading=tru
     for(const kind of ['trainTypes','servicePatterns','branches'])for(const item of patterns[kind]||[]){
       const name=serviceNames[kind+':'+item.id];if(typeof name==='string'&&name.trim())item.names={...(item.names||{}),ko:name.trim()};
     }
+    // Korean labels for nationwide through services are edited by their stable spec ID.
+    for(const spec of globalThis.TRT_RAIL_SYSTEM?.throughServices||[]){
+      const name=serviceNames['through:'+spec.id];
+      if(typeof name==='string'&&name.trim())spec.nameKo=name.trim();
+    }
     const loaded=await loadTransportData(countryId,koreaPlayMode);railDataRepository.configure({operators:loaded.operators,lines:loaded.lines,stations:loaded.stations,assets:loaded.assets});builtin=loaded.lines.map(route=>railDataRepository.resolveRoute(route)).filter(route=>route.id!=='line-11301--tokaidohonsen-tokyo-atami'); // Canonical JR East Tokyo–Atami is line-11301; exclude stale bundled duplicate.
     if(countryId==='jp')builtin.push(...buildFamousLimitedExpressRoutes(builtin));stations=[...railDataRepository.stations.values()].map(station=>({id:station.id,stationMasterId:station.id,sourceStationId:station.id,ja:station.names.ja,kana:station.names.kana,ko:station.names.ko,romaji:station.names.en,latitude:station.coordinates.lat,longitude:station.coordinates.lng}));stations=stations.filter(station=>FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area'||!globalThis.TRT_TOKYO_AREA||countryId==='kr'||globalThis.TRT_TOKYO_AREA.stationIds.includes(station.id));editor.setStationMaster(stations);refreshRoutes();renderHome();if(countryId==='kr'){
   summary.textContent=`${koreaPlayMode==='research'?'연구용 미리보기 · 공식 운행 미승인 · 기록 별도 저장':'기존 운영 노선 및 개별 정식 승인 서비스'} · 대한민국 도시·광역철도 · ${builtin.length}개 노선·구간 · 역 순서 데이터 구축 중 · 상세 데이터는 노선 선택 시 로드 · 검증된 실제 선형 노선만 주행 가능`;
