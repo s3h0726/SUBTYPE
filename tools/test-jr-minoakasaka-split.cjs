@@ -7,7 +7,7 @@ const unpack=(file,marker)=>JSON.parse(read(file).split(marker)[1].trim().replac
 const branch=json('data/generated/routes/line-jr-central-minoakasaka.json').route;
 const trunk=json('data/generated/routes/line-11503.json').route;
 const lite=unpack('js/japan-lite-index.js','window.TRT_JAPAN_LITE_INDEX=');
-const chunkFor=id=>{const meta=lite.routes.find(r=>r.id===id);assert(meta?.lazySource);const source=meta.lazySource.replace(/^\\.\\//,'').split('?')[0];assert(/^data\\/jp-canonical\\/chunk-\\d+\\.json$/.test(source));return json(source).routes;};
+const chunkFor=id=>{const meta=lite.routes.find(r=>r.id===id);assert(meta?.lazySource);const unversioned=meta.lazySource.split('?')[0];const source=unversioned.startsWith('./')?unversioned.slice(2):unversioned;assert(source.startsWith('data/jp-canonical/chunk-')&&source.endsWith('.json'));return json(source).routes;};
 assert.deepEqual(branch.stations.map(s=>s.ja),['大垣','荒尾','美濃赤坂']);
 assert.equal(branch.directedSegments.length,2);
 assert.equal(branch.geometryReady,true);
