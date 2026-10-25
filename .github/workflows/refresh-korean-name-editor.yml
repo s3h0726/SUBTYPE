@@ -2,12 +2,14 @@ name: Refresh Korean name editor tables
 on:
   push:
     paths:
-      - 'tools/export-korean-names.js'
       - 'reports/korean-names/editor.html'
       - '.github/workflows/refresh-korean-name-editor.yml'
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: refresh-korean-name-tables-main
+  cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
