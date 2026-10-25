@@ -104,6 +104,17 @@ async function serviceRows(){
  for(const [kind,title] of [['trainTypes','열차종별'],['servicePatterns','직통·운행 패턴'],['branches','분기·운행계통']]){
   for(const item of tokyo[kind]||[])result.push([kind+':'+item.id,title,item.baseRouteId||item.parentLineId||item.operatorId||'',item.names?.ja||'',item.names?.ko||'',item.names?.en||'',describe(item.baseRouteId||item.parentLineId||item.operatorId||'').operator,describe(item.baseRouteId||item.parentLineId||item.operatorId||'').line])
  }
+ // Include national through-service definitions, not only Tokyo patterns.
+ try{
+  const response=await fetch('../../data/through-services.json?'+FRESH_DATA_QUERY,{cache:'no-store'});
+  if(response.ok){
+   const through=(await response.json()).services||[];
+   for(const item of through){
+    const id=item.participatingLineIds?.[0]||item.routeSegments?.[0]?.routeId||'';
+    result.push(['through:'+item.id,'직통 운행계통',id,item.nameJa||'',item.nameKo||'',item.nameEn||'',describe(id).operator,describe(id).line]);
+   }
+  }
+ }catch(error){console.warn('Through services unavailable to name editor',error)}
  return result;
 }
 async function koreaLineRows(){
