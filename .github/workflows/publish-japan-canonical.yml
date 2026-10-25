@@ -77,7 +77,12 @@ jobs:
             return {id,stations:count,start:first,end:last,name:card.line?.ko};
           };
           const a=assertBoundary('line-11501','熱海','豊橋',43);
-          const b=assertBoundary('line-11502','豊橋','岐阜',33);
+          const b=assertBoundary('line-11502','豊橋','米原',42);
+          const extended=json('data/generated/routes/line-11502.json').route;
+          if(extended.geometryReady!==true||extended.missingSegments?.length||extended.directedSegments?.length!==41)
+            throw Error('Toyohashi–Maibara track geometry must contain all 41 verified station links');
+          if(!extended.directedSegments.some(s=>s.fromStationId==='station-1150304'&&s.toStationId==='station-1150307'&&s.geometry?.length>=3&&s.verified===true))
+            throw Error('Missing verified Ogaki–Tarui railway geometry');
           const bundle=fs.readFileSync('js/app.bundle.js','utf8');
           if(!bundle.includes("route.id!=='line-11301--tokaidohonsen-tokyo-atami'"))
             throw Error('Stale deployed app.bundle.js');
