@@ -18,6 +18,7 @@ on:
       - 'data/through-services.json'
       - 'data/tokyo-service-patterns.json'
       - 'tools/audit-jr-operating-services.cjs'
+      - 'tools/test-jr-minoakasaka-split.cjs'
   workflow_dispatch:
 
 permissions:
@@ -44,6 +45,8 @@ jobs:
           node-version: '22'
       - name: Regenerate deployed Japanese catalog and application
         run: node tools/build-static.js
+      - name: Test Mino-Akasaka physical line split against published runtime
+        run: node tools/test-jr-minoakasaka-split.cjs
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
       - name: Assert no duplicate Tokyo Atami and correct Toyohashi boundary
