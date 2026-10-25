@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "id": "line-jr-central-minoakasaka",
+  "legacyId": "line-11503",
+  "operatorId": "jr-central",
+  "category": "jr",
+  "names": {
+    "ja": "美濃赤坂線(大垣～美濃赤坂)",
+    "kana": "みのあかさかせん(おおがき～みのあかさか)",
+    "ko": "미노아카사카선(오가키~미노아카사카)",
+    "en": "Mino-Akasaka Line (Ogaki–Mino-Akasaka)"
+  },
+  "code": "",
+  "color": "#BE8E2D",
+  "symbol": {
+    "asset": null,
+    "officialSymbolExists": false,
+    "source": "",
+    "verified": false,
+    "identificationSource": "namuwiki-unresolved",
+    "identificationUrl": "",
+    "identificationSearch": "site:namu.wiki 東海道本線(岐阜～美濃赤坂・米原) 도카이도혼선기후～미노아카사카·마이바라 노선 심볼",
+    "sourceAccess": "blocked",
+    "assetSource": "none",
+    "assetSourceUrl": "",
+    "licenseVerified": false,
+    "identificationFamily": "namuwiki",
+    "identificationMethod": "unresolved",
+    "identificationVerified": false
+  },
+  "loop": false,
+  "stationSignTemplate": "jr-central",
+  "services": [
+    {
+      "id": "minoakasaka-local",
+      "names": {
+        "ja": "普通",
+        "ko": "보통",
+        "en": "Local"
+      },
+      "stopPattern": [
+        "station-1150304",
+        "station-1150305",
+        "station-1150306"
+      ]
+    }
+  ],
+  "throughServiceIds": [],
+  "sources": {
+    "official": "https://railway.jr-central.co.jp/time-schedule/srch/_pdf/data/202603/tokaido_Mino-akasaka_B_wh_u.pdf",
+    "korean": "",
+    "geometry": "MLIT-N02-2025 existing Ogaki–Arao–Mino-Akasaka adjacent segments",
+    "koreanName": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 東海道本線(岐阜～美濃赤坂・米原) 도카이도혼선기후～미노아카사카·마이바라 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "MEDIUM",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki",
+      "normalizationBatch": "2026-10-07-line-koreanization"
+    }
+  },
+  "legacy": {
+    "origin": "canonical-split-2026-10-25",
+    "coverage": "verified-branch",
+    "dataKind": "physicalRoute"
+  },
+  "officialKoSource": null
+}
