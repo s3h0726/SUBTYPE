@@ -46,12 +46,13 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
 <p class="note">초록색 한글명(직통·운행계통 포함)과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
 </main>
-<script src="../../js/service-data.js?v=services-editor-20261011"></script>
+<script src="../../js/service-data.js?v=services-editor-20261025"></script>
 <script>
 'use strict';
 const FILES=['operators','lines','korea-lines','services','stations-by-line','stations-unique'];
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0;
-const DATA_VERSION='20261011-current';
+const DATA_VERSION='20261011-current'; // Keep existing browser drafts compatible
+const FRESH_DATA_QUERY='ts='+Date.now();
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
 const editNameCol={'operators':'한국어명','lines':'노선 한글명','korea-lines':'노선 한글명','services':'한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
@@ -89,7 +90,7 @@ function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':
 function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[i]=r});localStorage.setItem('metrot-korean-edit-'+DATA_VERSION+'-'+file,JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
 function applyDraft(){try{let draft=JSON.parse(localStorage.getItem('metrot-korean-edit-'+DATA_VERSION+'-'+file)||'{}');for(const [i,r] of Object.entries(draft))if(rows[+i]&&r.length===heads.length)rows[+i]=r}catch{}}
 async function serviceRows(){
- const response=await fetch('./lines.csv?v='+DATA_VERSION,{cache:'no-store'});
+ const response=await fetch('./lines.csv?'+FRESH_DATA_QUERY,{cache:'no-store'});
  if(!response.ok)throw Error('노선명 목록을 불러올 수 없습니다: '+response.status);
  const lineData=parseCSV(await response.text()).slice(1);
  const lineNames=new Map(lineData.map(r=>[r[2],{operator:r[1]||r[0],line:r[3]||r[4]}]));
@@ -112,7 +113,7 @@ async function koreaLineRows(){
 }
 async function load(name){file=name;page=0;q.value='';changesOnly.checked=false;status.textContent='자료 읽는 중…';
  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.file===name));
- try{let arr;if(name==='korea-lines')arr=[['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...await koreaLineRows()];else if(name==='services')arr=[['고유 ID','종류','노선 ID','일본어명','한글명','영어명','운영사 한글명','소속 노선 한글명'],...await serviceRows()];else{const res=await fetch('./'+name+'.csv?v='+DATA_VERSION,{cache:'no-store'});if(!res.ok)throw Error('CSV '+res.status);arr=parseCSV(await res.text())}heads=arr.shift();rows=arr;const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
+ try{let arr;if(name==='korea-lines')arr=[['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...await koreaLineRows()];else if(name==='services')arr=[['고유 ID','종류','노선 ID','일본어명','한글명','영어명','운영사 한글명','소속 노선 한글명'],...await serviceRows()];else{const res=await fetch('./'+name+'.csv?'+FRESH_DATA_QUERY,{cache:'no-store'});if(!res.ok)throw Error('CSV '+res.status);arr=parseCSV(await res.text())}heads=arr.shift();rows=arr;const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
  }catch(e){status.textContent='파일을 열 수 없습니다: '+e.message}}
 function refresh(){
  const key=q.value.trim().toLocaleLowerCase('ko');visible=[];
