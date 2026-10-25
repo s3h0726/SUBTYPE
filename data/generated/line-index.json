@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-25T14:40:41.185Z",
+  "generated": "2026-10-25T15:52:48.385Z",
   "counts": {
     "lines": 607,
     "operators": 161,
     "stations": 9146,
-    "relations": 10753,
-    "segments": 9928
+    "relations": 10762,
+    "segments": 9938
   },
   "routes": [
     {
@@ -12212,12 +12212,12 @@
       "line": {
         "ja": "東海道本線(岐阜～米原)",
         "kana": "とうかいどうほんせん(ぎふ～まいばら)",
-        "ko": "도카이도 본선(기후~마이바라)",
+        "ko": "미노아카사카선",
         "en": "Tokaido Main Line (Gifu–Maibara)"
       },
       "category": "jr",
       "code": "",
-      "lineColor": "#BE8E2D",
+      "lineColor": "#F08440",
       "loop": false,
       "stationCount": 10,
       "stationSequence": [
@@ -12239,7 +12239,7 @@
         "geometryPath": "data/lines/jr-central/tokaidohonsen-gifu-minoakasaka-maibara/geometry.json"
       },
       "generatedSource": "./data/generated/routes/line-11503.json",
-      "geometryReady": false,
+      "geometryReady": true,
       "searchStations": [
         "岐阜",
         "ぎふ",
@@ -12292,16 +12292,16 @@
         "en": "JR Central"
       },
       "line": {
-        "ja": "東海道本線(豊橋～岐阜)",
-        "kana": "とうかいどうほんせん(とよはし～ぎふ)",
-        "ko": "도카이도 본선(토요하시~기후)",
-        "en": "Tokaido Main Line (Toyohashi–Gifu)"
+        "ja": "東海道本線(豊橋～米原)",
+        "kana": "とうかいどうほんせん(とよはし～まいばら)",
+        "ko": "도카이도선 (나고야 지구)",
+        "en": "Tokaido Main Line (Toyohashi–Maibara)"
       },
       "category": "jr",
       "code": "",
-      "lineColor": "#BE8B2D",
+      "lineColor": "#F08440",
       "loop": false,
-      "stationCount": 33,
+      "stationCount": 42,
       "stationSequence": [
         "station-1141301",
         "station-1150211",
@@ -12335,7 +12335,16 @@
         "station-1150236",
         "station-1150237",
         "station-1150238",
-        "station-1141601"
+        "station-1141601",
+        "station-1150302",
+        "station-1150303",
+        "station-1150304",
+        "station-1150307",
+        "station-1150308",
+        "station-1150309",
+        "station-1150310",
+        "station-1150311",
+        "station-1141501"
       ],
       "workspace": {
         "folder": "data/lines/jr-central/tokaidohonsen-hamamatsu-gifu",
@@ -12477,7 +12486,43 @@
         "岐阜",
         "ぎふ",
         "Gifu",
-        "기후"
+        "기후",
+        "西岐阜",
+        "にしぎふ",
+        "Nishigifu",
+        "니시기후",
+        "穂積",
+        "ほづみ",
+        "Hozumi",
+        "호즈미",
+        "大垣",
+        "おおがき",
+        "ōGaki",
+        "오가키",
+        "垂井",
+        "たるい",
+        "Tarui",
+        "타루이",
+        "関ケ原",
+        "せきがはら",
+        "Sekigahara",
+        "세키가하라",
+        "柏原",
+        "かしわばら",
+        "Kashiwabara",
+        "카시와바라",
+        "近江長岡",
+        "おうみながおか",
+        "ōMinagaoka",
+        "오미나가오카",
+        "醒ケ井",
+        "さめがい",
+        "Samegai",
+        "사메가이",
+        "米原",
+        "まいばら",
+        "Maibara",
+        "마이바라"
       ]
     },
     {
