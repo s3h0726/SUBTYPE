@@ -1,0 +1,279 @@
+{
+  "valid": true,
+  "operators": 164,
+  "lines": 601,
+  "curatedValidatedLines": 103,
+  "nationwideSourceLines": 596,
+  "uniqueStations": 8824,
+  "curatedStationRegistry": 2760,
+  "completeness": {
+    "coordinates": 2760,
+    "japanese": 2760,
+    "kana": 2760,
+    "romaji": 2760,
+    "korean": 2760
+  },
+  "railSystem": {
+    "physicalLines": 97,
+    "passengerRoutes": 2,
+    "trainServices": 1,
+    "throughServices": 1,
+    "shinkansen": 10,
+    "geometryMatched": 103,
+    "geometryMissing": []
+  },
+  "geometry": {
+    "curatedMatched": 103,
+    "curatedTotal": 103,
+    "nationwideMatched": 583,
+    "nationwideTotal": 596
+  },
+  "operatorAssets": {
+    "verified": 22,
+    "total": 22
+  },
+  "symbolAudit": {
+    "totalPlayableLines": 103,
+    "verified": 17,
+    "missing": [
+      "line-11229",
+      "line-11303",
+      "line-11304",
+      "line-11305",
+      "line-11308",
+      "line-11309",
+      "line-11314",
+      "line-11317",
+      "line-11321",
+      "line-11322",
+      "line-11328",
+      "line-11333",
+      "line-28002",
+      "line-28003",
+      "line-28004",
+      "line-28005",
+      "line-28006",
+      "line-28008",
+      "line-28009",
+      "line-28010",
+      "line-99301",
+      "line-99302",
+      "line-99303",
+      "line-99304",
+      "line-99316",
+      "line-99343",
+      "line-21001",
+      "line-21002",
+      "line-21005",
+      "line-21006",
+      "line-22001",
+      "line-22003",
+      "line-22004",
+      "line-22006",
+      "line-22007",
+      "line-22008",
+      "line-22009",
+      "line-22010",
+      "line-22011",
+      "line-22012",
+      "line-23001",
+      "line-23002",
+      "line-23003",
+      "line-23006",
+      "line-24001",
+      "line-24002",
+      "line-24003",
+      "line-24004",
+      "line-24005",
+      "line-24006",
+      "line-24007",
+      "line-25001",
+      "line-25002",
+      "line-25003",
+      "line-26002",
+      "line-26003",
+      "line-26004",
+      "line-26005",
+      "line-26006",
+      "line-26007",
+      "line-27001",
+      "line-27002",
+      "line-29001",
+      "line-29002",
+      "line-29003",
+      "line-99310",
+      "line-99317",
+      "line-99305",
+      "line-99342",
+      "line-99307",
+      "line-99309",
+      "line-99311",
+      "line-99334",
+      "line-99336",
+      "line-99337",
+      "line-99340",
+      "shinkansen-tokaido",
+      "shinkansen-sanyo",
+      "shinkansen-tohoku",
+      "shinkansen-hokkaido",
+      "shinkansen-joetsu",
+      "shinkansen-hokuriku",
+      "shinkansen-kyushu",
+      "shinkansen-nishi-kyushu",
+      "shinkansen-yamagata",
+      "shinkansen-akita"
+    ],
+    "noOfficialSymbol": []
+  },
+  "lineMetadata": {
+    "verifiedThemes": 26,
+    "routesWithoutVerifiedTheme": 77,
+    "routesWithoutImportedCode": 50
+  },
+  "serviceRoutes": 2,
+  "servicePatterns": 5,
+  "koreanOverrides": 27,
+  "errors": [],
+  "warnings": []
+}
+{
+  "status": "PASS",
+  "totals": {
+    "routes": 596,
+    "passed": 596,
+    "blocked": 0,
+    "stations": 10556,
+    "forwardSegments": 9960,
+    "reverseSegments": 9960,
+    "missingStations": 0,
+    "missingSegments": 0,
+    "endpointMismatch": 30,
+    "reverseOrderMismatch": 0,
+    "defaultServiceSkips": 0
+  },
+  "blockedRoutes": []
+}
+{
+  "status": "PASS",
+  "physicalLines": 610,
+  "branches": 1,
+  "servicePatterns": 105,
+  "trainTypes": 20,
+  "destinations": 56,
+  "throughServices": 26,
+  "errors": []
+}
+{"registered":317,"sourceAssemblable":261,"researchPlayable":127,"researchBlocked":178,"excluded":12,"officialReleased":0}
+{"checked":5,"corrected":0}
+{
+  "status": "PASS",
+  "source": "data/lines/**/line.json",
+  "lines": 610,
+  "operators": 161,
+  "stations": 9146,
+  "relations": 10836,
+  "segments": 10009,
+  "geometryReady": 592,
+  "operatorAssets": 25,
+  "lineAssets": 39,
+  "generatedIndex": "data/generated/line-index.json",
+  "generatedAssetRegistry": "data/generated/asset-registry.json",
+  "generatedBrowserData": "js/line-workspace-data.js"
+}
+{"status":"PASS","routes":610,"chunks":17,"indexBytes":475615}
+{
+  "status": "BUILT_NOT_PUBLISHED",
+  "routes": [
+    {
+      "id": "nex-shinjuku-physical-candidate",
+      "trackPoints": 753,
+      "stops": 9
+    },
+    {
+      "id": "nex-ofuna-physical-candidate",
+      "trackPoints": 1000,
+      "stops": 12
+    }
+  ],
+  "output": "data/generated/nex-branch-geometry-candidates.json"
+}
+{"id":"line-99719","stations":22,"segments":21,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-1","stations":13,"segments":12,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-2","stations":21,"segments":20,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-3","stations":12,"segments":11,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-4","stations":27,"segments":26,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-5","stations":23,"segments":22,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-6","stations":44,"segments":43,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+Kobe track verified; manual geometry provenance review still required
+{"id":"line-hankyu-kobe-kosoku","stations":4,"segments":3,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{
+  "status": "INCOMPLETE",
+  "sourceStations": 1528,
+  "sourcePassengerLines": 85,
+  "sourceServices": 317,
+  "activeServiceCandidates": 305,
+  "excludedServices": 12,
+  "officialTimetableVerifiedServices": 65,
+  "releasedLines": 0,
+  "releasedServices": 0,
+  "officialPassengerLines": null,
+  "officialServices": null,
+  "blockedServices": 305
+}
+{"status":"INCOMPLETE","operators":36,"routes":135,"stations":1818,"geometryReady":134,"expectedInventoryVerified":false}
+{
+  "bundle": "js/app.bundle.js",
+  "workspaceSource": "data/lines/**/line.json",
+  "workspaceBrowserData": "js/line-workspace-data.js",
+  "embeddedLines": 103,
+  "embeddedNationwideLines": 596,
+  "embeddedNationwideRouteFiles": 596,
+  "services": 5,
+  "servicePatterns": 105,
+  "branches": 1,
+  "koreanOverrides": 27,
+  "lineThemes": 26,
+  "operatorAssets": 25,
+  "lineBadges": 119,
+  "realSymbolAssets": 39,
+  "railSystem": {
+    "physicalLines": 97,
+    "passengerRoutes": 2,
+    "trainServices": 1,
+    "throughServices": 26,
+    "shinkansen": 10,
+    "geometryMatched": 103,
+    "geometryMissing": []
+  }
+}
+{
+  "bundle": "js/app.bundle.js",
+  "hash": "b344ff3b58d9"
+}
+{
+  "status": "INCOMPLETE",
+  "counts": {
+    "sourceStations": 1528,
+    "sourcePassengerLines": 85,
+    "sourceServices": 317,
+    "activeServiceCandidates": 305,
+    "excludedServices": 12,
+    "officialTimetableVerifiedServices": 65,
+    "releasedLines": 0,
+    "releasedServices": 0,
+    "officialPassengerLines": null,
+    "officialServices": null
+  },
+  "errors": [],
+  "blockedServices": 305
+}
+{
+  "status": "PASS",
+  "operators": 161,
+  "lines": 610,
+  "stations": 9146,
+  "operatorAssets": 25,
+  "lineSymbols": 39,
+  "canonicalPropagation": true,
+  "errors": []
+}

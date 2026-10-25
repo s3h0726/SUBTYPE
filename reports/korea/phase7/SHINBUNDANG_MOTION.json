@@ -1,0 +1,123 @@
+{
+  "status": "PASS",
+  "scope": "Unapproved source candidate diagnostics; not national completion, verified timetable, transfer or release approval",
+  "limitations": [
+    "Synthetic composition events, not physical device IME",
+    "Motion disabled for batch traversal; animation timing not certified",
+    "TAB transfers and official timetable applicability not certified"
+  ],
+  "testedAt": "2026-10-25T11:57:24.048Z",
+  "inputs": [
+    {
+      "file": "js/app.bundle.js",
+      "sha256": "b344ff3b58d9ff7f87e8cfe477c0728df6263441c5cad40ba41c3f178b07523b"
+    },
+    {
+      "file": "data/kr/v2/services.json",
+      "sha256": "a56e742425476ea80286fc1e8e72991040244d0ecf6bf204a0d3f6e7ac77f9b2"
+    },
+    {
+      "file": "data/kr/v2/geometry.json",
+      "sha256": "83dbbdcb95cdea8786c639afb5b609c4018a2b47c635f9701ff685459513a2fe"
+    }
+  ],
+  "excludedTopology": [],
+  "results": [
+    {
+      "device": "desktop",
+      "interactive": {
+        "motion": {
+          "serviceId": "kr-osm-service-6060963",
+          "frames": 4,
+          "retainedVertices": 5,
+          "status": "PASS"
+        },
+        "transfer": {
+          "station": "후쿠시마",
+          "routeIds": [
+            "line-99213",
+            "line-99215",
+            "line-11231",
+            "line-11216"
+          ],
+          "status": "PASS"
+        },
+        "nonTransfer": "PASS",
+        "access": {
+          "restrictedRelations": 12,
+          "game": "PASS",
+          "freeDrive": "PASS",
+          "customGraph": "PASS"
+        },
+        "scope": "Candidate true-curve motion, restricted-source entry guards and actual Japanese multi-line TAB UI; Korean transfer metadata still requires individual review"
+      },
+      "runs": [],
+      "pageErrors": []
+    },
+    {
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "batchStart": 0,
+      "runs": [
+        {
+          "serviceId": "kr-osm-service-6060963",
+          "status": "PASS",
+          "stops": 16,
+          "geometryPoints": 277
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "device": "mobile",
+      "interactive": {
+        "motion": {
+          "serviceId": "kr-osm-service-6060963",
+          "frames": 6,
+          "retainedVertices": 5,
+          "status": "PASS"
+        },
+        "transfer": {
+          "station": "후쿠시마",
+          "routeIds": [
+            "line-99213",
+            "line-99215",
+            "line-11231",
+            "line-11216"
+          ],
+          "status": "PASS"
+        },
+        "nonTransfer": "PASS",
+        "access": {
+          "restrictedRelations": 12,
+          "game": "PASS",
+          "freeDrive": "PASS",
+          "customGraph": "PASS"
+        },
+        "scope": "Candidate true-curve motion, restricted-source entry guards and actual Japanese multi-line TAB UI; Korean transfer metadata still requires individual review"
+      },
+      "runs": [],
+      "pageErrors": []
+    },
+    {
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "batchStart": 0,
+      "runs": [
+        {
+          "serviceId": "kr-osm-service-6060963",
+          "status": "PASS",
+          "stops": 16,
+          "geometryPoints": 277
+        }
+      ],
+      "pageErrors": []
+    }
+  ]
+}

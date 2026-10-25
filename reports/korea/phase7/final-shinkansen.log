@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "sourceLines": 11,
+  "reportedRoutes": [
+    {
+      "line": "東海道新幹線",
+      "routeId": "shinkansen-tokaido",
+      "patterns": 3,
+      "types": [
+        "노조미",
+        "히카리",
+        "고다마"
+      ],
+      "missingSegments": []
+    },
+    {
+      "line": "山陽新幹線",
+      "routeId": "shinkansen-sanyo",
+      "patterns": 6,
+      "types": [
+        "노조미",
+        "히카리",
+        "고다마",
+        "미즈호",
+        "사쿠라"
+      ],
+      "missingSegments": []
+    },
+    {
+      "line": "東北新幹線",
+      "routeId": "shinkansen-tohoku",
+      "patterns": 7,
+      "types": [
+        "하야부사",
+        "하야테",
+        "야마비코",
+        "나스노",
+        "고마치",
+        "쓰바사"
+      ],
+      "missingSegments": []
+    },
+    {
+      "line": "上越新幹線",
+      "routeId": "shinkansen-joetsu",
+      "patterns": 3,
+      "types": [
+        "도키",
+        "다니가와"
+      ],
+      "missingSegments": [
+        "1006:上越新幹線(ガーラ湯沢支線)"
+      ]
+    },
+    {
+      "line": "上越新幹線(ガーラ湯沢支線)",
+      "patterns": 1,
+      "problem": "physical route not indexed"
+    },
+    {
+      "line": "山形新幹線",
+      "routeId": "shinkansen-yamagata",
+      "patterns": 1,
+      "types": [
+        "쓰바사"
+      ],
+      "missingSegments": []
+    },
+    {
+      "line": "秋田新幹線",
+      "routeId": "shinkansen-akita",
+      "patterns": 1,
+      "types": [
+        "고마치"
+      ],
+      "missingSegments": []
+    },
+    {
+      "line": "北陸新幹線",
+      "routeId": "shinkansen-hokuriku",
+      "patterns": 4,
+      "types": [
+        "가가야키",
+        "하쿠타카",
+        "아사마",
+        "쓰루기"
+      ],
+      "missingSegments": []
+    },
+    {
+      "line": "九州新幹線",
+      "routeId": "shinkansen-kyushu",
+      "patterns": 3,
+      "types": [
+        "미즈호",
+        "사쿠라",
+        "쓰바메"
+      ],
+      "missingSegments": []
+    },
+    {
+      "line": "北海道新幹線",
+      "routeId": "shinkansen-hokkaido",
+      "patterns": 2,
+      "types": [
+        "하야부사",
+        "하야테"
+      ],
+      "missingSegments": []
+    },
+    {
+      "line": "西九州新幹線",
+      "routeId": "shinkansen-nishi-kyushu",
+      "patterns": 1,
+      "types": [
+        "릴레이 카모메"
+      ],
+      "missingSegments": [
+        "11902:鹿児島本線",
+        "11903:鹿児島本線",
+        "11905:長崎本線"
+      ]
+    }
+  ],
+  "sourcePatterns": 32
+}
+PLAYABLE のぞみ stations=35 geometry=6459
+PLAYABLE ひかり stations=35 geometry=6459
+PLAYABLE こだま stations=35 geometry=6459
+{
+  "inventory": "Shinkansen service geometry",
+  "total": 32,
+  "playable": 29,
+  "unsupported": 3,
+  "examples": [
+    {
+      "line": "上越新幹線",
+      "type": "다니가와",
+      "ok": false,
+      "issues": [
+        "missing physical:1006"
+      ]
+    },
+    {
+      "line": "上越新幹線(ガーラ湯沢支線)",
+      "type": "다니가와",
+      "ok": false,
+      "issues": [
+        "missing physical:1006"
+      ]
+    },
+    {
+      "line": "西九州新幹線",
+      "type": "릴레이 카모메",
+      "ok": false,
+      "issues": [
+        "missing end:鳥栖→江北",
+        "missing end:江北→武雄温泉"
+      ]
+    }
+  ]
+}

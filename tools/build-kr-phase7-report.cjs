@@ -73,5 +73,7 @@ write('STATION_AUDIT.md',`# 역 및 승강장
 기존 4호선 공식 승강장 96행 + 서울 2호선 101행 + 부산 3호선 34행 = 231행. 신규 135행은 2026-06-30 기준 공공데이터포털 원본과 이용허락범위 제한 없음 메타데이터 HTML 해시를 검증한다. 단, 공식 승강장 번호가 OSM stop_position/방향 연결을 자동 증명하지 않는다. 신도림 공개 자료가 신정지선 출발 승강장까지 표현하는지는 미확인. 까치산은 공개 원본에 1번 상행 1행뿐이며 반대 방향 2번 승강장을 만들어내지 않는다.
 
 원본 공식 이름/역 식별자/승강장 좌표/선로는 유지했다. 기존 역명 표기층 및 서울역 예외, 한글 표시/정답 일치 회귀를 13개 레거시+128개 연구 payload에서 확인했다. Hadan 추가 정차점은 별도 ID로 유지하며 역 자체를 새로 만들지 않는다.`);
-write('CHANGED_FILES.txt',cp.execFileSync('git',['diff','--name-only'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()+'\n'+cp.execFileSync('git',['ls-files','--others','--exclude-standard'],{cwd:root,encoding:'utf8'}).split('\n').filter(f=>f&&!f.includes('-screens/')).join('\n'));
+write('CHANGED_FILES.txt',cp.execFileSync('git',['diff','f18cb5a812144d16463cfeb26f7db32a75b0fa51','--name-only'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()+'\n'+cp.execFileSync('git',['ls-files','--others','--exclude-standard'],{cwd:root,encoding:'utf8'}).split('\n').filter(f=>f&&!f.includes('-screens/')).join('\n'));
 console.log(JSON.stringify({status:'INCOMPLETE',research:preview.counts.researchPlayable,selected:counts.after.distinctSelectableChoices,browserPassed:passed,browserScenarios:total,site:site.runs.length,tests:validation.checks.map(c=>[c.name,c.status])}));
+
+if(fs.existsSync(path.join(out,'CI_RESULTS.json'))){const ci=read('reports/korea/phase7/CI_RESULTS.json');fs.appendFileSync(path.join(out,'SUMMARY.md'),'\n## GitHub 구현 검증\n\n구현 커밋: '+ci.implementationCommit+'\n\n'+ci.runs.map(r=>'- ['+r.name+']('+r.url+'): '+r.conclusion).join('\n')+'\n\n원본 증빙의 공백/CRLF는 해시 보존을 위해 수정하지 않았다. 원본 아카이브를 제외한 소스 코드 git diff --check는 통과했다. 운영 배포는 수행하지 않았다.\n');}

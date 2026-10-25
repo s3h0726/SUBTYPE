@@ -1,0 +1,123 @@
+{
+  "checks": [
+    {
+      "name": "build",
+      "command": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/build-static.js && node tools/validate-korea-data.js && node tools/test-single-source.js",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-build.log"
+    },
+    {
+      "name": "build:app",
+      "command": "node tools/build-app-bundle.js",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-build-app.log"
+    },
+    {
+      "name": "check:dependencies",
+      "command": "node tools/check-script-dependencies.js",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-check-dependencies.log"
+    },
+    {
+      "name": "validate:korea",
+      "command": "node tools/validate-korea-data.js",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-validate-korea.log"
+    },
+    {
+      "name": "test:korea",
+      "command": "node --test tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs tools/test-route-selection.cjs tools/test-kr-station-display.cjs tools/test-kr-phase5.cjs tools/test-kr-phase6.cjs tools/test-kr-phase7.cjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-test-korea.log"
+    },
+    {
+      "name": "test:korea-preview",
+      "command": "node --test tools/test-kr-preview.cjs && node --test tools/test-kr-line1-integration.cjs && node --test tools/test-kr-line1-evidence.cjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-test-korea-preview.log"
+    },
+    {
+      "name": "test:typing",
+      "command": "node tools/test-typing-model.js && node tools/test-ime-controller.js",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-test-typing.log"
+    },
+    {
+      "name": "validate:service-patterns",
+      "command": "node tools/validate-service-patterns.js && node tools/test-service-route-resolver.js",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-validate-service-patterns.log"
+    },
+    {
+      "name": "test:shonan",
+      "command": "node tools/test-shonan-shinjuku-service-journeys.cjs && node tools/test-shonan-shinjuku-selector.cjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-test-shonan.log"
+    },
+    {
+      "name": "test:ueno",
+      "command": "node tools/test-ueno-tokyo-line.cjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-test-ueno.log"
+    },
+    {
+      "name": "test:official-service-sources",
+      "command": "node --test tools/test-official-service-source.cjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-test-official-service-sources.log"
+    },
+    {
+      "name": "test:korea-platforms",
+      "command": "python tools/test-kr-platforms.py",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-test-korea-platforms.log"
+    },
+    {
+      "name": "test:single-source",
+      "command": "node --test tools/test-workspace-contracts.cjs && node tools/test-single-source.js",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-test-single-source.log"
+    },
+    {
+      "name": "japan",
+      "command": "node tools/test-service-route-resolver.js",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-japan.log"
+    },
+    {
+      "name": "shinkansen",
+      "command": "node tools/test-japan-shinkansen-services.cjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-shinkansen.log"
+    },
+    {
+      "name": "limitedExpress",
+      "command": "node tools/test-famous-limited-express.cjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "reports/korea/phase7/final-limitedExpress.log"
+    },
+    {
+      "name": "audit:korea",
+      "command": "node tools/validate-korea-data.js --require-complete",
+      "status": "INCOMPLETE",
+      "exitCode": 1,
+      "log": "reports/korea/phase7/final-audit-korea.log"
+    }
+  ]
+}

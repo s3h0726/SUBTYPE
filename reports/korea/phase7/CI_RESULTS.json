@@ -1,0 +1,67 @@
+{
+  "implementationCommit": "19c571f293d52f4d57b4a55bc72edc08646016a8",
+  "runs": [
+    {
+      "id": 40114820732,
+      "name": "Korean national release approval",
+      "head": "19c571f293d52f4d57b4a55bc72edc08646016a8",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/40114820732"
+    },
+    {
+      "id": 40114820729,
+      "name": "Korean OSM geometry safety gate",
+      "head": "19c571f293d52f4d57b4a55bc72edc08646016a8",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/40114820729"
+    },
+    {
+      "id": 40114820778,
+      "name": "Korean network rebuild",
+      "head": "19c571f293d52f4d57b4a55bc72edc08646016a8",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/40114820778"
+    }
+  ],
+  "networkJobs": [
+    {
+      "id": 120933825239,
+      "name": "japan-regression",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120933825399,
+      "name": "implementation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120933825429,
+      "name": "app-build",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120934065881,
+      "name": "browser-candidates",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "nationalJobs": [
+    {
+      "id": 120933825137,
+      "name": "national-release",
+      "conclusion": "failure",
+      "failed": [
+        "Run npm run audit:korea"
+      ]
+    }
+  ],
+  "productionDeployment": "NOT_PERFORMED",
+  "scope": "Actual GitHub API results, not inferred from Pages or commit success"
+}
