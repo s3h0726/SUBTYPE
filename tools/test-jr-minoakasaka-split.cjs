@@ -7,7 +7,7 @@ const unpack=(file,marker)=>JSON.parse(read(file).split(marker)[1].trim().replac
 const branch=json('data/generated/routes/line-jr-central-minoakasaka.json').route;
 const trunk=json('data/generated/routes/line-11503.json').route;
 const lite=unpack('js/japan-lite-index.js','window.TRT_JAPAN_LITE_INDEX=');
-const chunk=json('data/jp-canonical/chunk-02.json').routes;
+const chunkFor=id=>{const meta=lite.routes.find(r=>r.id===id);assert(meta?.lazySource);const source=meta.lazySource.replace(/^\\.\\//,'').split('?')[0];assert(/^data\\/jp-canonical\\/chunk-\\d+\\.json$/.test(source));return json(source).routes;};
 assert.deepEqual(branch.stations.map(s=>s.ja),['大垣','荒尾','美濃赤坂']);
 assert.equal(branch.directedSegments.length,2);
 assert.equal(branch.geometryReady,true);
@@ -18,9 +18,9 @@ assert(trunk.missingSegments.some(s=>s.includes('station-1150304::station-115030
 assert.equal(trunk.playable,false);
 for(const id of [trunk.id,branch.id]){
   assert.equal(lite.routes.filter(r=>r.id===id).length,1,'one visible card per physical route');
-  const stored=chunk.find(r=>r.id===id);assert(stored,'missing in deployed Japanese chunk: '+id);
+  const stored=chunkFor(id).find(r=>r.id===id);assert(stored,'missing in deployed Japanese chunk: '+id);
   assert.deepEqual(stored.stations.map(s=>s.ja),id===branch.id?branch.stations.map(s=>s.ja):trunk.stations.map(s=>s.ja));
 }
-assert(lite.routes.find(r=>r.id===branch.id).lazySource.includes('chunk-02.json'));
+assert(lite.routes.find(r=>r.id===branch.id).lazySource.includes('chunk-'));
 assert(read('js/app.bundle.js').includes("if(code==='11503')queue(builtin.find(item=>item.id==='line-jr-central-minoakasaka'))"));
 console.log('PASS: Mino-Akasaka playable separate branch; Gifu–Maibara misconnection explicitly blocked; runtime card/chunk synchronized');
