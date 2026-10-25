@@ -5,11 +5,19 @@ on:
     branches: [main]
     paths:
       - 'tools/export-korean-names.js'
+      - 'data/editor-overrides.json'
+      - 'data/operators/**'
+      - 'data/lines/**'
+      - 'data/generated/routes/**'
       - '.github/workflows/export-korean-names.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: refresh-korean-name-tables-main
+  cancel-in-progress: false
 
 jobs:
   export:
