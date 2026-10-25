@@ -1,0 +1,93 @@
+name: Publish canonical Japan routes and deduplicated Tokaido cards
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-japan-canonical.yml'
+      - 'tools/build-japan-lazy-catalog.cjs'
+      - 'tools/build-line-workspaces.js'
+      - 'js/app.js'
+      - 'js/data-loader.js'
+      - 'data/lines/jr-east/**'
+      - 'data/lines/jr-central/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-japan-canonical-main
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate deployed Japanese catalog and application
+        run: node tools/build-static.js
+      - name: Assert no duplicate Tokyo Atami and correct Toyohashi boundary
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const json=path=>JSON.parse(fs.readFileSync(path,'utf8'));
+          const fromJs=(path,assignment)=>{
+            const s=fs.readFileSync(path,'utf8');
+            const start=s.indexOf(assignment);
+            if(start<0)throw Error('Missing generated assignment '+path);
+            return JSON.parse(s.slice(start+assignment.length).trim().replace(/;\s*$/,''));
+          };
+          const ws=fromJs('js/line-workspace-data.js','window.TRT_EMBEDDED_LINE_WORKSPACES=');
+          const lite=fromJs('js/japan-lite-index.js','window.TRT_JAPAN_LITE_INDEX=');
+          const index=json('data/generated/line-index.json');
+          const duplicate='line-11301--tokaidohonsen-tokyo-atami';
+          for(const [name,items] of [['workspace',ws.routes],['lite',lite.routes],['generated',index.routes]]){
+            if(items.some(r=>r.id===duplicate))throw Error(name+': Tokyo–Atami duplicate remains');
+            if(items.filter(r=>r.id==='line-11301').length!==1)throw Error(name+': missing/duplicated canonical Tokyo–Atami');
+          }
+          const assertBoundary=(id,first,last,count)=>{
+            const route=json('data/generated/routes/'+id+'.json').route;
+            if(route.stations.length!==count||route.stations[0]?.ja!==first||route.stations.at(-1)?.ja!==last)
+              throw Error(id+': wrong boundary/count '+route.stations.length+' '+route.stations[0]?.ja+' '+route.stations.at(-1)?.ja);
+            const card=lite.routes.find(r=>r.id===id);
+            if(!card)throw Error('Missing lite card '+id);
+            return {id,stations:count,start:first,end:last,name:card.line?.ko};
+          };
+          const a=assertBoundary('line-11501','熱海','豊橋',43);
+          const b=assertBoundary('line-11502','豊橋','岐阜',33);
+          const bundle=fs.readFileSync('js/app.bundle.js','utf8');
+          if(!bundle.includes("route.id!=='line-11301--tokaidohonsen-tokyo-atami'"))
+            throw Error('Stale deployed app.bundle.js');
+          if(lite.routes.length!==ws.routes.length)throw Error('Lite/workspace count mismatch');
+          console.log(JSON.stringify({status:'PASS',totalJapaneseRoutes:ws.routes.length,duplicateRemoved:true,cards:[a,b]},null,2));
+          NODE
+          node --check js/app.bundle.js
+      - name: Commit and publish runtime files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/generated/ data/jp-canonical/ js/line-workspace-data.js js/japan-lite-index.js js/nationwide-data.js js/app.bundle.js index.html
+          if git diff --cached --quiet; then
+            echo 'Runtime already synchronized'; exit 0
+          fi
+          git commit -m 'build(jp): publish deduplicated Tokyo Atami and Toyohashi rail card boundaries'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep 5
+          done
+          exit 1
