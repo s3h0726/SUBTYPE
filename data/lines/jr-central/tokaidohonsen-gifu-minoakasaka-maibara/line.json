@@ -5,10 +5,10 @@
   "operatorId": "jr-central",
   "category": "jr",
   "names": {
-    "ja": "東海道本線(岐阜～美濃赤坂・米原)",
-    "kana": "とうかいどうほんせん(ぎふ～みのあかさか・まいばら)",
-    "ko": "도카이도 본선(기후~미노아카사카·마이바라)",
-    "en": "TōKaidōHonsen(Gifu~Minoakasaka･Maibara)"
+    "ja": "東海道本線(岐阜～米原)",
+    "kana": "とうかいどうほんせん(ぎふ～まいばら)",
+    "ko": "도카이도 본선(기후~마이바라)",
+    "en": "Tokaido Main Line (Gifu–Maibara)"
   },
   "code": "",
   "color": "#BE8E2D",
@@ -35,7 +35,7 @@
   "sources": {
     "official": "",
     "korean": "",
-    "geometry": "MLIT-N02-2025",
+    "geometry": "MLIT-N02-2025; Ogaki–Tarui adjacency requires separate physical track geometry verification",
     "koreanName": {
       "family": "namuwiki",
       "method": "unresolved",
@@ -57,5 +57,13 @@
     "coverage": "nationwide-source-line",
     "dataKind": "physicalRoute"
   },
-  "officialKoSource": null
+  "officialKoSource": null,
+  "geometryReview": {
+    "status": "BLOCKED_MISSING_VERIFIED_SEGMENT",
+    "fromStationId": "station-1150304",
+    "toStationId": "station-1150307",
+    "reason": "Ogaki–Arao–Mino-Akasaka is a spur, not the route to Tarui. Missing Ogaki–Tarui MLIT/OSM rail alignment.",
+    "reviewedOn": "2026-10-25"
+  },
+  "playable": false
 }
