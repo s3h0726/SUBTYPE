@@ -7,6 +7,12 @@ const load=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const toRel=p=>path.relative(root,p).replaceAll(path.sep,'/');
 const csv=(rows)=>'\uFEFF'+rows.map(row=>row.map(value=>'"'+String(value??'').replaceAll('"','""')+'"').join(',')).join('\n')+'\n';
 const output=path.join(root,'reports/korean-names');fs.mkdirSync(output,{recursive:true});
+const editsFile=path.join(root,'data/editor-overrides.json');
+const edits=fs.existsSync(editsFile)?load(editsFile):{};
+const effectiveOperator=id=>edits.operators?.[id]||opMap.get(id)?.names?.ko||'';
+const effectiveLine=(id,meta)=>edits.lines?.[id]?.ko||meta.names?.ko||'';
+const effectiveColor=(id,meta)=>edits.lines?.[id]?.color||meta.color||'';
+const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]||edits.stations?.[lineId]?.[station.ja]||station.ko||'';
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)})).filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden');
 // Retired or duplicate identifiers are folded into active operators.
@@ -20,14 +26,13 @@ for(const x of lines){
 for(let i=operators.length-1;i>=0;i--)if(canonicalId(operators[i].meta.id)!==operators[i].meta.id)operators.splice(i,1);
 operators.sort((a,b)=>(a.meta.names?.ko||'').localeCompare(b.meta.names?.ko||'','ko'));
 lines.sort((a,b)=>(a.meta.operatorId||'').localeCompare(b.meta.operatorId||'')||(a.meta.names?.ko||'').localeCompare(b.meta.names?.ko||'','ko'));
-fs.writeFileSync(path.join(output,'operators.csv'),csv([['운영사ID','한국어명','일본어명','영어명','데이터경로'],...operators.map(x=>[x.meta.id,x.meta.names?.ko,x.meta.names?.ja,x.meta.names?.en,toRel(x.file)])]));
-fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,opMap.get(x.meta.operatorId)?.names?.ko,x.meta.id,x.meta.names?.ko,x.meta.names?.ja,x.meta.names?.en,x.meta.color||'',toRel(x.file)])]));
-const stationFiles=walk(path.join(root,'data/generated/routes'),'__none__'); // no-op for directory access
+fs.writeFileSync(path.join(output,'operators.csv'),csv([['운영사ID','한국어명','일본어명','영어명','데이터경로'],...operators.map(x=>[x.meta.id,effectiveOperator(x.meta.id),x.meta.names?.ja,x.meta.names?.en,toRel(x.file)])]));
+fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),x.meta.names?.ja,x.meta.names?.en,effectiveColor(x.meta.id,x.meta),toRel(x.file)])]));
 const generatedDir=path.join(root,'data/generated/routes');
 const byId=new Map();
 if(fs.existsSync(generatedDir))for(const name of fs.readdirSync(generatedDir).filter(n=>n.endsWith('.json'))){try{const route=load(path.join(generatedDir,name)).route; if(route?.id)byId.set(route.id,route)}catch(e){console.warn('skipped',name,e.message)}}
 const stationRows=[];const missing=[];
-for(const x of lines){const route=byId.get(x.meta.id);if(!route){missing.push(x.meta.id);continue}for(const s of route.stations||[])stationRows.push([x.meta.operatorId,opMap.get(x.meta.operatorId)?.names?.ko,x.meta.id,x.meta.names?.ko,s.id,s.stationMasterId||'',s.ko,s.ja,s.kana||'',s.romaji||'',s.nameKoSource||'', 'data/generated/routes/'+x.meta.id+'.json']);}
+for(const x of lines){const route=byId.get(x.meta.id);if(!route){missing.push(x.meta.id);continue}for(const s of route.stations||[])stationRows.push([x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),s.ja,s.kana||'',s.romaji||'',s.nameKoSource||'', 'data/generated/routes/'+x.meta.id+'.json']);}
 stationRows.sort((a,b)=>String(a[2]).localeCompare(String(b[2]))||String(a[4]).localeCompare(String(b[4])));
 fs.writeFileSync(path.join(output,'stations-by-line.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','역ID','공통역ID','역 한글명','역 일본어명','가나','로마자','한글명 출처','데이터경로'],...stationRows]));
 const unique=new Map();for(const r of stationRows){const k=r[5]||r[7]+'|'+r[6];if(!unique.has(k))unique.set(k,r)}
