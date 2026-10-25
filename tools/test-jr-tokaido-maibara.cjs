@@ -47,4 +47,25 @@ assert.equal(card.stationCount,42);
 assert.equal(card.line.ko,'도카이도 본선(토요하시~마이바라)');
 assert(card.lazySource.includes('chunk-02.json'));
 assert.equal(card.playable,true);
+// The map must consume the surveyed polyline, never a straight station-to-station chord.
+const renderer=read('js/route-renderer.js');
+const mapBegin=renderer.indexOf('const latLngs=route=>'),mapEnd=renderer.indexOf('const validCoordinates=',mapBegin);
+assert(mapBegin>=0&&mapEnd>mapBegin,'missing renderer geometry logic');
+vm.runInContext(renderer.slice(mapBegin,mapEnd).replace(/\\bexport\\s+/g,'')+';globalThis.travelGeometryForTest=travelGeometry;',context);
+for(const source of [route,published]){
+ for(const direction of ['forward','reverse']){
+  const resolved=context.resolvePlayableRouteForTest(source,{direction,service:{id:'local',stops:ids}});
+  const map=context.travelGeometryForTest({...source,stations:resolved.stations,geometry:resolved.geometry,directedSegments:resolved.segments});
+  assert.equal(map.points.length,1155,'real map must retain all curved track vertices');
+  assert.equal(map.offsets.length,42,'every station must be anchored on the full track');
+  assert.equal(resolved.fallbackGeometry,undefined,'never synthesize railway coordinates');
+ }
+}
+const impossible={id:'jp-rail-without-geometry',countryId:'jp',category:'jr',mode:'rail',stations:[
+ {id:'first',latitude:35,longitude:136},{id:'second',latitude:36,longitude:137}],geometry:[]};
+assert.throws(()=>context.resolvePlayableRouteForTest(impossible),/직선 경로 플레이를 차단/);
+assert.equal(context.travelGeometryForTest(impossible),null,'unknown track must not render straight');
+const compiled=read('js/app.bundle.js');
+assert(compiled.includes('permitsApproximateGeometry')&&compiled.includes('permitsApproximateMapGeometry'),'deployed bundle must enforce real track geometry');
+assert(read('index.html').includes('app.bundle.js?v=20261026-real-rail-geometry'),'browser must load the fixed bundle');
 console.log('PASS: Toyohashi–Maibara 42 stations, 41 real railway edges, forward/reverse game route, published chunk and card');
