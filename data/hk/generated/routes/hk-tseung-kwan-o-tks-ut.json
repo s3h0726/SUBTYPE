@@ -30,17 +30,44 @@
   },
   "loop": false,
   "lazy": false,
-  "playable": false,
-  "releaseStatus": "INCOMPLETE",
+  "playable": true,
+  "releaseStatus": "ready",
   "geometryReady": true,
   "geometryStatus": "verified",
-  "blockedReasons": [
-    "조건부 운행 시간대 검증 필요"
-  ],
+  "blockedReasons": [],
   "direction": "TKS-UT",
   "validWhen": {
     "type": "off-peak-shuttle",
-    "note": "CSV confirms shuttle stops; full operating window needs timetable verification."
+    "note": "CSV confirms shuttle stops; full operating window needs timetable verification.",
+    "noteKo": "티우겡렝 ↔ 로하스파크 셔틀 · 평일 비혼잡시간 9~14분, 토요일 8.2~10분, 일요일·공휴일 9~14분 간격. 실제 시간표·당일 운영 안내 확인.",
+    "operatingDays": [
+      "weekdays-non-peak",
+      "saturday",
+      "sunday-public-holiday"
+    ],
+    "frequencyMinutes": {
+      "weekdayNonPeak": [
+        9,
+        14
+      ],
+      "saturday": [
+        8.2,
+        10
+      ],
+      "sundayPublicHoliday": [
+        9,
+        14
+      ]
+    },
+    "exactDepartureTimesVerified": false,
+    "reviewStatus": "verified",
+    "sources": [
+      {
+        "file": "data/hk/sources/phase6/mtr-service-hours.html",
+        "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff",
+        "url": "https://www.mtr.com.hk/en/customer/services/train_service_index.html"
+      }
+    ]
   },
   "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
   "stopStatus": "verified",
@@ -804,7 +831,20 @@
       "longitude": 114.2523284,
       "officialCode": "TIK",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-TIK",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
     },
     {
       "id": "hk-mtr-TKO",
@@ -940,5 +980,6 @@
       ]
     }
   ],
+  "operatingConditionFingerprint": "8d23120b98dd92baeb754512c0e3043c4603222649bc75fc4ecda0c550b14a96",
   "validationFingerprint": "fcb457a1b2fb0e60c026a7b011ee3ade000a8cb772a3a74978d120b616f7c9f2"
 }

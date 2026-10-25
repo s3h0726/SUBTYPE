@@ -2,7 +2,7 @@ const fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:
 const root=path.resolve(__dirname,'..'),dir=path.join(root,'reports/hong-kong');fs.mkdirSync(dir,{recursive:true});
 const commands=[
  ['--check','js/app.bundle.js'],
- ['--test','tools/test-hk-network.cjs','tools/test-hk-phase4.cjs','tools/test-hk-phase5.cjs','tools/test-kr-network.cjs','tools/test-kr-osm-order.cjs','tools/test-kr-topology-corrections.cjs','tools/test-kric-calls.cjs','tools/test-kr-timetable-bindings.cjs','tools/test-track-motion.cjs','tools/test-free-drive-transfers.cjs','tools/test-kr-service-reconstruction.cjs','tools/test-kr-station-names.cjs','tools/test-kr-access-policy.cjs','tools/test-kr-stop-bindings.cjs'],
+ ['--test','tools/test-hk-network.cjs','tools/test-hk-phase4.cjs','tools/test-hk-phase5.cjs','tools/test-hk-phase6.cjs','tools/test-kr-network.cjs','tools/test-kr-osm-order.cjs','tools/test-kr-topology-corrections.cjs','tools/test-kric-calls.cjs','tools/test-kr-timetable-bindings.cjs','tools/test-track-motion.cjs','tools/test-free-drive-transfers.cjs','tools/test-kr-service-reconstruction.cjs','tools/test-kr-station-names.cjs','tools/test-kr-access-policy.cjs','tools/test-kr-stop-bindings.cjs'],
  ['tools/test-typing-model.js'],['tools/test-ime-controller.js'],['tools/validate-data.js'],['tools/validate-service-patterns.js'],['tools/test-service-route-resolver.js'],['tools/audit-ui-quality.js'],['tools/validate-korea-data.js'],['tools/test-single-source.js']
 ];
 const results=[];let log='Hong Kong branch validation — '+new Date().toISOString()+'\n';

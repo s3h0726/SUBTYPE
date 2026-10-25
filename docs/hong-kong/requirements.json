@@ -233,9 +233,9 @@
   {
     "id": 34,
     "requirement": "將軍澳綫 Tseung Kwan O Line: North Point에서 Po Lam·LOHAS Park로 갈라지는 운행 서비스를 분리하여 구축한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다."
+    "status": "PASS",
+    "evidence": "공식 정차 CSV·노선도·현행 운행표와 OSM 원본으로 Po Lam·LOHAS Park 직통·셔틀 6방향을 분리하고 실제 완주.",
+    "nextAction": null
   },
   {
     "id": 35,
@@ -298,9 +298,9 @@
   {
     "id": 43,
     "requirement": "Tseung Kwan O에서 Po Lam 방향과 LOHAS Park 방향을 구분하고, 실제 시기별 각 지선의 종착·회차 서비스만 노출한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다."
+    "status": "PASS",
+    "evidence": "평일 혼잡시간·토요일 오전 직통과 비혼잡시간 셔틀을 구별하고 일요일·공휴일 직통 미운행 조건을 표시·해시 검증.",
+    "nextAction": null
   },
   {
     "id": 44,
@@ -319,9 +319,9 @@
   {
     "id": 46,
     "requirement": "Sunny Bay에서는 Tung Chung/Disneyland Resort 승강장 환승이 가능하지만 두 노선을 직결열차로 만들지 않는다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "해당 MTR 운행계통의 정차순서·시간조건·분기·환승을 공식 자료와 양방향 대조한다."
+    "status": "PASS",
+    "evidence": "공식 노선도의 Sunny Bay 환승을 노선별 실제 좌표로 TAB 전환하고 독립 디즈니랜드선 종착까지 완주. 직결 선로 생성 없음.",
+    "nextAction": null
   },
   {
     "id": 47,
@@ -578,30 +578,30 @@
   {
     "id": 82,
     "requirement": "Garden Road Lower Terminus와 Peak Upper Terminus의 공식 명칭·좌표·운행 상태를 확인한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "피크트램 현행 중간 정차와 고속철도 편명/시각표/관할 경계/전체 실제 선로를 확보한다."
+    "status": "PASS",
+    "evidence": "현행 정부 MDB의 Garden Road/Peak 공식 명칭과 OSM 실제 stop position·선로 좌표를 대조.",
+    "nextAction": null
   },
   {
     "id": 83,
     "requirement": "Kennedy Road, MacDonnell Road, May Road, Barker Road 등의 중간 정류장이 현재 실제 정차 가능한지 최신 자료로 검증한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "피크트램 현행 중간 정차와 고속철도 편명/시각표/관할 경계/전체 실제 선로를 확보한다."
+    "status": "PASS",
+    "evidence": "2026년10월 갱신 정부 자료의 양방향 12행에서 중간4개 정차역을 확인. 운영사 FAQ도 중간역 승차를 명시. 요청정차 세부 출시 조건은 별도 미완료.",
+    "nextAction": null
   },
   {
     "id": 84,
     "requirement": "1888년 개통 당시 역 목록과 현재 운영 중인 정류장 목록을 절대 혼합하지 않는다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "피크트램 현행 중간 정차와 고속철도 편명/시각표/관할 경계/전체 실제 선로를 확보한다."
+    "status": "PASS",
+    "evidence": "현행 정부6역만 사용. 역사 역 목록·오래된 Garden Road 대표점을 현행 stop position으로 오인하지 않음.",
+    "nextAction": null
   },
   {
     "id": 85,
     "requirement": "피크트램 선형은 급경사·곡선·교행부를 포함하는 실제 rail geometry를 사용하고, 지도 고도 시각화는 자료가 있을 때만 활성화한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "피크트램 현행 중간 정차와 고속철도 편명/시각표/관할 경계/전체 실제 선로를 확보한다."
+    "status": "PASS",
+    "evidence": "원본 funicular way·곡선·교행부로 양방향6역 연결. 중복 way와 왕복 재추적을 제거하고 모든 정차 node는 실제 철도 vertex. 고도/3D 생성 없음.",
+    "nextAction": null
   },
   {
     "id": 86,
@@ -767,9 +767,9 @@
   {
     "id": 109,
     "requirement": "한국어 검수표는 원어명, 영문명, 확정 한국어명, 별칭, 자료 링크, 검수상태, 수정 전후 기록을 표시한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "공식 또는 검증 가능한 한국어 자료로 각 역명을 검수하고 근거를 입력한다."
+    "status": "PASS",
+    "evidence": "291개 역/방향 레코드의 원어·영문·한국어·별칭·출처·검수·수정 전후를 전수 표로 보존. 미검수6개를 명시.",
+    "nextAction": null
   },
   {
     "id": 110,
@@ -879,9 +879,9 @@
   {
     "id": 125,
     "requirement": "Tseung Kwan O의 Po Lam/LOHAS Park 분기와 터널 선로는 경로별 물리적인 갈림을 구분한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "미검증 geometry와 조건부 서비스의 실제 조작·IME·이동·시간 검증을 완료한다."
+    "status": "PASS",
+    "evidence": "Po Lam·LOHAS Park 분기와 터널을 독립 OSM 원본의 경로별 way 순서로 유지. 실제6방향 완주 및 분기 혼합 거부 테스트.",
+    "nextAction": null
   },
   {
     "id": 126,
@@ -991,9 +991,9 @@
   {
     "id": 141,
     "requirement": "HOME의 TODAY’S ROUTE 및 추천/최근 노선에 홍콩 데이터를 정상 노출하고 일본·한국 기존 카드 레이아웃과 호환되게 한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "데스크톱/모바일/테마/저장/클라우드/환승/역방향 재생 인수 시나리오를 완료한다."
+    "status": "PASS",
+    "evidence": "HOME 추천을 홍콩 물리 노선별로 중복 제거하고 최근 오션 익스프레스·705·706 운행 표시를 실제 확인. KR/JP 추천 키 규칙 유지.",
+    "nextAction": null
   },
   {
     "id": 142,
@@ -1180,9 +1180,9 @@
   {
     "id": 168,
     "requirement": "기존 `js/app.js`, `js/app.bundle.js`, `js/game.js`, `js/route-renderer.js` 등은 의존성을 확인한 뒤 수정하며 실제 파일 구성이 다르면 저장소의 구조를 우선한다.",
-    "status": "INCOMPLETE",
-    "evidence": null,
-    "nextAction": "정규 데이터·전체 자동 검사·모든 180개 인수 조건을 완료하고 근거를 보고한다."
+    "status": "PASS",
+    "evidence": "기존 앱·데이터 생성기·번들·HK 전용 공통 엔진 조건을 확장. 127개 통합 회귀와 한국·일본 표본 브라우저 완주 확인.",
+    "nextAction": null
   },
   {
     "id": 169,

@@ -1,0 +1,1351 @@
+[
+  {
+    "from": "hk-tsuen-wan-ut",
+    "to": "hk-island-dt",
+    "stationId": "hk-mtr-ADM",
+    "toStationId": "hk-mtr-ADM",
+    "checkedAt": "2026-10-25T12:10:46.747Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-CEN",
+        "ko": "센트럴"
+      },
+      {
+        "id": "hk-mtr-ADM",
+        "ko": "애드미럴티"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-island-dt",
+        "stationId": "hk-mtr-ADM",
+        "shown": "金鐘",
+        "ko": "애드미럴티",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "金鐘"
+      },
+      {
+        "routeId": "hk-tsuen-wan-ut",
+        "stationId": "hk-mtr-ADM",
+        "shown": "金鐘",
+        "ko": "애드미럴티",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "金鐘"
+      },
+      {
+        "routeId": "hk-island-dt",
+        "stationId": "hk-mtr-ADM",
+        "shown": "金鐘",
+        "ko": "애드미럴티",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "金鐘"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-ADM",
+        "ko": "애드미럴티"
+      },
+      {
+        "id": "hk-mtr-CEN",
+        "ko": "센트럴"
+      },
+      {
+        "id": "hk-mtr-SHW",
+        "ko": "상환"
+      },
+      {
+        "id": "hk-mtr-SYP",
+        "ko": "새이잉펀"
+      },
+      {
+        "id": "hk-mtr-HKU",
+        "ko": "홍콩대학"
+      },
+      {
+        "id": "hk-mtr-KET",
+        "ko": "케네디 타운"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"홍콩섬선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"CURRENT 홍콩섬선 Chai Wan → Kennedy Town TAB\":\n        - generic: CURRENT\n        - generic: 홍콩섬선\n        - generic: Chai Wan → Kennedy Town\n        - text: TAB\n      - button \"TRANSFER 홍콩섬선 Kennedy Town → Chai Wan\":\n        - generic: TRANSFER\n        - generic: 홍콩섬선\n        - generic: Kennedy Town → Chai Wan\n      - button \"TRANSFER 췬완선 Tsuen Wan → Central\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Tsuen Wan → Central\n      - button \"TRANSFER 췬완선 Central → Tsuen Wan\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Central → Tsuen Wan\n      - button \"TRANSFER 동철선 Admiralty → Lok Ma Chau\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lok Ma Chau\n      - button \"TRANSFER 동철선 Admiralty → Lo Wu\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lo Wu\n      - button \"TRANSFER 남홍콩섬선 Admiralty → South Horizons\":\n        - generic: TRANSFER\n        - generic: 남홍콩섬선\n        - generic: Admiralty → South Horizons\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"홍콩섬선\" [level=2]:\n      - generic: 홍콩섬선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:03.21\n    - generic: 진행\n    - strong: 2 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 3\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 灣仔\n      - generic: 완차이\n      - generic: 金鐘\n      - generic: 애드미럴티\n      - generic: 中環\n      - generic: 센트럴\n      - generic \"열차 위치\":\n        - generic: ISL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"金鐘\":\n      - generic: 홍콩 MTR\n      - generic: 홍콩섬선\n      - generic: 港島綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"金鐘\" [level=1]\n      - paragraph: 애드미럴티\n      - paragraph\n      - paragraph: Admiralty\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"센트럴 中環 →\":\n        - generic: 센트럴\n        - generic: 中環\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 홍콩섬선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-tsuen-wan-ut-hk-island-dt.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"홍콩섬선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"홍콩섬선\" [level=2]:\n      - generic: 홍콩섬선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:08.51\n    - generic: 진행\n    - strong: 7 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 香港大學\n      - generic: 홍콩대학\n      - generic: 堅尼地城\n      - generic: 케네디 타운\n      - generic \"열차 위치\":\n        - generic: ISL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"堅尼地城\":\n      - generic: 홍콩 MTR\n      - generic: 홍콩섬선\n      - generic: 港島綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"堅尼地城\" [level=1]\n      - paragraph: 케네디 타운\n      - paragraph\n      - paragraph: Kennedy Town\n      - generic \"한국어 입력 진행\":\n        - generic: 케\n        - generic: 네\n        - generic: 디\n        - generic: 타\n        - generic: 운\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 케네디타운\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 홍콩섬선",
+    "terminal": "hk-mtr-KET",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-tsuen-wan-ut-hk-island-dt.jpg"
+  },
+  {
+    "from": "hk-tsuen-wan-ut",
+    "to": "hk-kwun-tong-ut",
+    "stationId": "hk-mtr-YMT",
+    "toStationId": "hk-mtr-YMT",
+    "checkedAt": "2026-10-25T12:16:22.636Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-CEN",
+        "ko": "센트럴"
+      },
+      {
+        "id": "hk-mtr-ADM",
+        "ko": "애드미럴티"
+      },
+      {
+        "id": "hk-mtr-TST",
+        "ko": "침사추이"
+      },
+      {
+        "id": "hk-mtr-JOR",
+        "ko": "조던"
+      },
+      {
+        "id": "hk-mtr-YMT",
+        "ko": "야우마테이"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-kwun-tong-ut",
+        "stationId": "hk-mtr-YMT",
+        "shown": "油麻地",
+        "ko": "야우마테이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "油麻地"
+      },
+      {
+        "routeId": "hk-tsuen-wan-ut",
+        "stationId": "hk-mtr-YMT",
+        "shown": "油麻地",
+        "ko": "야우마테이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "油麻地"
+      },
+      {
+        "routeId": "hk-kwun-tong-ut",
+        "stationId": "hk-mtr-YMT",
+        "shown": "油麻地",
+        "ko": "야우마테이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "油麻地"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-YMT",
+        "ko": "야우마테이"
+      },
+      {
+        "id": "hk-mtr-MOK",
+        "ko": "몽콕"
+      },
+      {
+        "id": "hk-mtr-PRE",
+        "ko": "프린스에드워드"
+      },
+      {
+        "id": "hk-mtr-SKM",
+        "ko": "섹깁메이"
+      },
+      {
+        "id": "hk-mtr-KOT",
+        "ko": "까우룽통"
+      },
+      {
+        "id": "hk-mtr-LOF",
+        "ko": "록푸"
+      },
+      {
+        "id": "hk-mtr-WTS",
+        "ko": "웡타이신"
+      },
+      {
+        "id": "hk-mtr-DIH",
+        "ko": "다이아몬드힐"
+      },
+      {
+        "id": "hk-mtr-CHH",
+        "ko": "초이훙"
+      },
+      {
+        "id": "hk-mtr-KOB",
+        "ko": "까우룽베이"
+      },
+      {
+        "id": "hk-mtr-NTK",
+        "ko": "응아우타우콕"
+      },
+      {
+        "id": "hk-mtr-KWT",
+        "ko": "쿤통"
+      },
+      {
+        "id": "hk-mtr-LAT",
+        "ko": "람틴"
+      },
+      {
+        "id": "hk-mtr-YAT",
+        "ko": "야우통"
+      },
+      {
+        "id": "hk-mtr-TIK",
+        "ko": "티우켕렝"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"쿤통선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 췬완선 Tsuen Wan → Central\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Tsuen Wan → Central\n      - button \"TRANSFER 췬완선 Central → Tsuen Wan\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Central → Tsuen Wan\n      - button \"TRANSFER 쿤통선 Tiu Keng Leng → Whampoa\":\n        - generic: TRANSFER\n        - generic: 쿤통선\n        - generic: Tiu Keng Leng → Whampoa\n      - button \"CURRENT 쿤통선 Whampoa → Tiu Keng Leng TAB\":\n        - generic: CURRENT\n        - generic: 쿤통선\n        - generic: Whampoa → Tiu Keng Leng\n        - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"쿤통선\" [level=2]:\n      - generic: 쿤통선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:04.83\n    - generic: 진행\n    - strong: 5 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 何文田\n      - generic: 호만틴\n      - generic: 油麻地\n      - generic: 야우마테이\n      - generic: 旺角\n      - generic: 몽콕\n      - generic \"열차 위치\":\n        - generic: KTL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"油麻地\":\n      - generic: 홍콩 MTR\n      - generic: 쿤통선\n      - generic: 觀塘綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"油麻地\" [level=1]\n      - paragraph: 야우마테이\n      - paragraph\n      - paragraph: Yau Ma Tei\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"몽콕 旺角 →\":\n        - generic: 몽콕\n        - generic: 旺角\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 쿤통선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-tsuen-wan-ut-hk-kwun-tong-ut.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"쿤통선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 쿤통선 Tiu Keng Leng → Whampoa\":\n        - generic: TRANSFER\n        - generic: 쿤통선\n        - generic: Tiu Keng Leng → Whampoa\n      - button \"CURRENT 쿤통선 Whampoa → Tiu Keng Leng TAB\":\n        - generic: CURRENT\n        - generic: 쿤통선\n        - generic: Whampoa → Tiu Keng Leng\n        - text: TAB\n      - button \"TRANSFER 정관오선 Po Lam → North Point\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: Po Lam → North Point\n      - button \"TRANSFER 정관오선 Tiu Keng Leng → LOHAS Park\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: Tiu Keng Leng → LOHAS Park\n      - button \"TRANSFER 정관오선 North Point → Po Lam\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: North Point → Po Lam\n      - button \"TRANSFER 정관오선 North Point → LOHAS Park\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: North Point → LOHAS Park\n      - button \"TRANSFER 정관오선 LOHAS Park → North Point\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: LOHAS Park → North Point\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"쿤통선\" [level=2]:\n      - generic: 쿤통선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:19.22\n    - generic: 진행\n    - strong: 19 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 油塘\n      - generic: 야우통\n      - generic: 調景嶺\n      - generic: 티우켕렝\n      - generic \"열차 위치\":\n        - generic: KTL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"調景嶺\":\n      - generic: 홍콩 MTR\n      - generic: 쿤통선\n      - generic: 觀塘綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"調景嶺\" [level=1]\n      - paragraph: 티우켕렝\n      - paragraph\n      - paragraph: Tiu Keng Leng\n      - generic \"한국어 입력 진행\":\n        - generic: 티\n        - generic: 우\n        - generic: 켕\n        - generic: 렝\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 티우켕렝\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 쿤통선",
+    "terminal": "hk-mtr-TIK",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-tsuen-wan-ut-hk-kwun-tong-ut.jpg"
+  },
+  {
+    "from": "hk-east-rail-ut",
+    "to": "hk-tuen-ma-dt",
+    "stationId": "hk-mtr-HUH",
+    "toStationId": "hk-mtr-HUH",
+    "checkedAt": "2026-10-25T12:16:44.205Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-ADM",
+        "ko": "애드미럴티"
+      },
+      {
+        "id": "hk-mtr-EXC",
+        "ko": "전시장"
+      },
+      {
+        "id": "hk-mtr-HUH",
+        "ko": "홍함"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-tuen-ma-dt",
+        "stationId": "hk-mtr-HUH",
+        "shown": "紅磡",
+        "ko": "홍함",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "紅磡"
+      },
+      {
+        "routeId": "hk-east-rail-ut",
+        "stationId": "hk-mtr-HUH",
+        "shown": "紅磡",
+        "ko": "홍함",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "紅磡"
+      },
+      {
+        "routeId": "hk-tuen-ma-dt",
+        "stationId": "hk-mtr-HUH",
+        "shown": "紅磡",
+        "ko": "홍함",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "紅磡"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-HUH",
+        "ko": "홍함"
+      },
+      {
+        "id": "hk-mtr-HOM",
+        "ko": "호만틴"
+      },
+      {
+        "id": "hk-mtr-TKW",
+        "ko": "토콰완"
+      },
+      {
+        "id": "hk-mtr-SUW",
+        "ko": "송웡토이"
+      },
+      {
+        "id": "hk-mtr-KAT",
+        "ko": "카이탁"
+      },
+      {
+        "id": "hk-mtr-DIH",
+        "ko": "다이아몬드힐"
+      },
+      {
+        "id": "hk-mtr-HIK",
+        "ko": "힌켕"
+      },
+      {
+        "id": "hk-mtr-TAW",
+        "ko": "타이와이"
+      },
+      {
+        "id": "hk-mtr-CKT",
+        "ko": "체공묘"
+      },
+      {
+        "id": "hk-mtr-STW",
+        "ko": "샤틴와이"
+      },
+      {
+        "id": "hk-mtr-CIO",
+        "ko": "시티원"
+      },
+      {
+        "id": "hk-mtr-SHM",
+        "ko": "섹문"
+      },
+      {
+        "id": "hk-mtr-TSH",
+        "ko": "타이수이항"
+      },
+      {
+        "id": "hk-mtr-HEO",
+        "ko": "항온"
+      },
+      {
+        "id": "hk-mtr-MOS",
+        "ko": "마온산"
+      },
+      {
+        "id": "hk-mtr-WKS",
+        "ko": "우카이샤"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"튄마선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 동철선 Lo Wu → Admiralty\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Lo Wu → Admiralty\n      - button \"TRANSFER 동철선 Lok Ma Chau → Admiralty\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Lok Ma Chau → Admiralty\n      - button \"TRANSFER 동철선 Admiralty → Lok Ma Chau\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lok Ma Chau\n      - button \"TRANSFER 동철선 Admiralty → Lo Wu\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lo Wu\n      - button \"TRANSFER 튄마선 Wu Kai Sha → Tuen Mun\":\n        - generic: TRANSFER\n        - generic: 튄마선\n        - generic: Wu Kai Sha → Tuen Mun\n      - button \"CURRENT 튄마선 Tuen Mun → Wu Kai Sha TAB\":\n        - generic: CURRENT\n        - generic: 튄마선\n        - generic: Tuen Mun → Wu Kai Sha\n        - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"튄마선\" [level=2]:\n      - generic: 튄마선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:03.50\n    - generic: 진행\n    - strong: 3 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 尖東\n      - generic: 이스트 침사추이\n      - generic: 紅磡\n      - generic: 홍함\n      - generic: 何文田\n      - generic: 호만틴\n      - generic \"열차 위치\":\n        - generic: TML\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"紅磡\":\n      - generic: 홍콩 MTR\n      - generic: 튄마선\n      - generic: 屯馬綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"紅磡\" [level=1]\n      - paragraph: 홍함\n      - paragraph\n      - paragraph: Hung Hom\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"호만틴 何文田 →\":\n        - generic: 호만틴\n        - generic: 何文田\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 튄마선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-east-rail-ut-hk-tuen-ma-dt.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"튄마선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"튄마선\" [level=2]:\n      - generic: 튄마선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:18.94\n    - generic: 진행\n    - strong: 18 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 馬鞍山\n      - generic: 마온산\n      - generic: 烏溪沙\n      - generic: 우카이샤\n      - generic \"열차 위치\":\n        - generic: TML\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"烏溪沙\":\n      - generic: 홍콩 MTR\n      - generic: 튄마선\n      - generic: 屯馬綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"烏溪沙\" [level=1]\n      - paragraph: 우카이샤\n      - paragraph\n      - paragraph: Wu Kai Sha\n      - generic \"한국어 입력 진행\":\n        - generic: 우\n        - generic: 카\n        - generic: 이\n        - generic: 샤\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 우카이샤\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 튄마선",
+    "terminal": "hk-mtr-WKS",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-east-rail-ut-hk-tuen-ma-dt.jpg"
+  },
+  {
+    "from": "hk-island-ut",
+    "to": "hk-airport-express-ut",
+    "stationId": "hk-mtr-CEN",
+    "toStationId": "hk-mtr-HOK",
+    "checkedAt": "2026-10-25T12:18:16.320Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-KET",
+        "ko": "케네디 타운"
+      },
+      {
+        "id": "hk-mtr-HKU",
+        "ko": "홍콩대학"
+      },
+      {
+        "id": "hk-mtr-SYP",
+        "ko": "새이잉펀"
+      },
+      {
+        "id": "hk-mtr-SHW",
+        "ko": "상환"
+      },
+      {
+        "id": "hk-mtr-CEN",
+        "ko": "센트럴"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-airport-express-ut",
+        "stationId": "hk-mtr-CEN",
+        "shown": "香港",
+        "ko": "홍콩",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "香港"
+      },
+      {
+        "routeId": "hk-island-ut",
+        "stationId": "hk-mtr-CEN",
+        "shown": "中環",
+        "ko": "센트럴",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "中環"
+      },
+      {
+        "routeId": "hk-airport-express-ut",
+        "stationId": "hk-mtr-CEN",
+        "shown": "香港",
+        "ko": "홍콩",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "香港"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-HOK",
+        "ko": "홍콩"
+      },
+      {
+        "id": "hk-mtr-KOW",
+        "ko": "구룡"
+      },
+      {
+        "id": "hk-mtr-TSY",
+        "ko": "칭이"
+      },
+      {
+        "id": "hk-mtr-AIR",
+        "ko": "에어포트"
+      },
+      {
+        "id": "hk-mtr-AWE",
+        "ko": "아시아 월드 엑스포"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"공항철도\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 홍콩섬선 Chai Wan → Kennedy Town\":\n        - generic: TRANSFER\n        - generic: 홍콩섬선\n        - generic: Chai Wan → Kennedy Town\n      - button \"TRANSFER 홍콩섬선 Kennedy Town → Chai Wan\":\n        - generic: TRANSFER\n        - generic: 홍콩섬선\n        - generic: Kennedy Town → Chai Wan\n      - button \"TRANSFER 췬완선 Central → Tsuen Wan\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Central → Tsuen Wan\n      - button \"TRANSFER 퉁충선 Hong Kong → Tung Chung\":\n        - generic: TRANSFER\n        - generic: 퉁충선\n        - generic: Hong Kong → Tung Chung\n      - button \"CURRENT 공항철도 Hong Kong → AsiaWorld-Expo TAB\":\n        - generic: CURRENT\n        - generic: 공항철도\n        - generic: Hong Kong → AsiaWorld-Expo\n        - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"공항철도\" [level=2]:\n      - generic: 공항철도\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:05.50\n    - generic: 진행\n    - strong: 5 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 3\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 香港\n      - generic: 홍콩\n      - generic: 九龍\n      - generic: 구룡\n      - generic \"열차 위치\":\n        - generic: AEL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"香港\":\n      - generic: 홍콩 MTR\n      - generic: 공항철도\n      - generic: 機場快綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"香港\" [level=1]\n      - paragraph: 홍콩\n      - paragraph\n      - paragraph: Hong Kong\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"구룡 九龍 →\":\n        - generic: 구룡\n        - generic: 九龍\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 공항철도",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-island-ut-hk-airport-express-ut.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"공항철도\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"공항철도\" [level=2]:\n      - generic: 공항철도\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:09.90\n    - generic: 진행\n    - strong: 9 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 機場\n      - generic: 에어포트\n      - generic: 博覽館\n      - generic: 아시아 월드 엑스포\n      - generic \"열차 위치\":\n        - generic: AEL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"博覽館\":\n      - generic: 홍콩 MTR\n      - generic: 공항철도\n      - generic: 機場快綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"博覽館\" [level=1]\n      - paragraph: 아시아 월드 엑스포\n      - paragraph\n      - paragraph: AsiaWorld-Expo\n      - generic \"한국어 입력 진행\":\n        - generic: 아\n        - generic: 시\n        - generic: 아\n        - generic: 월\n        - generic: 드\n        - generic: 엑\n        - generic: 스\n        - generic: 포\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 아시아월드엑스포\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 공항철도",
+    "terminal": "hk-mtr-AWE",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-island-ut-hk-airport-express-ut.jpg"
+  },
+  {
+    "from": "hk-tsuen-wan-ut",
+    "to": "hk-tuen-ma-ut",
+    "stationId": "hk-mtr-TST",
+    "toStationId": "hk-mtr-ETS",
+    "checkedAt": "2026-10-25T12:18:27.027Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-CEN",
+        "ko": "센트럴"
+      },
+      {
+        "id": "hk-mtr-ADM",
+        "ko": "애드미럴티"
+      },
+      {
+        "id": "hk-mtr-TST",
+        "ko": "침사추이"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-tuen-ma-ut",
+        "stationId": "hk-mtr-TST",
+        "shown": "尖東",
+        "ko": "이스트 침사추이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "尖東"
+      },
+      {
+        "routeId": "hk-tsuen-wan-ut",
+        "stationId": "hk-mtr-TST",
+        "shown": "尖沙咀",
+        "ko": "침사추이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "尖沙咀"
+      },
+      {
+        "routeId": "hk-tuen-ma-ut",
+        "stationId": "hk-mtr-TST",
+        "shown": "尖東",
+        "ko": "이스트 침사추이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "尖東"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-ETS",
+        "ko": "이스트 침사추이"
+      },
+      {
+        "id": "hk-mtr-AUS",
+        "ko": "어스틴"
+      },
+      {
+        "id": "hk-mtr-NAC",
+        "ko": "남청"
+      },
+      {
+        "id": "hk-mtr-MEF",
+        "ko": "메이푸"
+      },
+      {
+        "id": "hk-mtr-TWW",
+        "ko": "추엔완웨스트"
+      },
+      {
+        "id": "hk-mtr-KSR",
+        "ko": "캄셩로드"
+      },
+      {
+        "id": "hk-mtr-YUL",
+        "ko": "윈롱"
+      },
+      {
+        "id": "hk-mtr-LOP",
+        "ko": "롱핑"
+      },
+      {
+        "id": "hk-mtr-TIS",
+        "ko": "틴슈이와이"
+      },
+      {
+        "id": "hk-mtr-SIH",
+        "ko": "시유홍"
+      },
+      {
+        "id": "hk-mtr-TUM",
+        "ko": "툰문"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"튄마선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 췬완선 Tsuen Wan → Central\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Tsuen Wan → Central\n      - button \"TRANSFER 췬완선 Central → Tsuen Wan\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Central → Tsuen Wan\n      - button \"CURRENT 튄마선 Wu Kai Sha → Tuen Mun TAB\":\n        - generic: CURRENT\n        - generic: 튄마선\n        - generic: Wu Kai Sha → Tuen Mun\n        - text: TAB\n      - button \"TRANSFER 튄마선 Tuen Mun → Wu Kai Sha\":\n        - generic: TRANSFER\n        - generic: 튄마선\n        - generic: Tuen Mun → Wu Kai Sha\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"튄마선\" [level=2]:\n      - generic: 튄마선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:02.60\n    - generic: 진행\n    - strong: 3 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 紅磡\n      - generic: 홍함\n      - generic: 尖東\n      - generic: 이스트 침사추이\n      - generic: 柯士甸\n      - generic: 어스틴\n      - generic \"열차 위치\":\n        - generic: TML\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"尖東\":\n      - generic: 홍콩 MTR\n      - generic: 튄마선\n      - generic: 屯馬綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"尖東\" [level=1]\n      - paragraph: 이스트 침사추이\n      - paragraph\n      - paragraph: East Tsim Sha Tsui\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"어스틴 柯士甸 →\":\n        - generic: 어스틴\n        - generic: 柯士甸\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 튄마선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-tsuen-wan-ut-hk-tuen-ma-ut.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"튄마선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"튄마선\" [level=2]:\n      - generic: 튄마선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:12.91\n    - generic: 진행\n    - strong: 13 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 兆康\n      - generic: 시유홍\n      - generic: 屯門\n      - generic: 툰문\n      - generic \"열차 위치\":\n        - generic: TML\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"屯門\":\n      - generic: 홍콩 MTR\n      - generic: 튄마선\n      - generic: 屯馬綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"屯門\" [level=1]\n      - paragraph: 툰문\n      - paragraph\n      - paragraph: Tuen Mun\n      - generic \"한국어 입력 진행\":\n        - generic: 툰\n        - generic: 문\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 툰문\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 튄마선",
+    "terminal": "hk-mtr-TUM",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-tsuen-wan-ut-hk-tuen-ma-ut.jpg"
+  },
+  {
+    "from": "hk-airport-express-ut",
+    "to": "hk-tuen-ma-dt",
+    "stationId": "hk-mtr-KOW",
+    "toStationId": "hk-mtr-AUS",
+    "checkedAt": "2026-10-25T12:20:11.299Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-HOK",
+        "ko": "홍콩"
+      },
+      {
+        "id": "hk-mtr-KOW",
+        "ko": "구룡"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-tuen-ma-dt",
+        "stationId": "hk-mtr-KOW",
+        "shown": "柯士甸",
+        "ko": "어스틴",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "柯士甸"
+      },
+      {
+        "routeId": "hk-airport-express-ut",
+        "stationId": "hk-mtr-KOW",
+        "shown": "九龍",
+        "ko": "구룡",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "九龍"
+      },
+      {
+        "routeId": "hk-tuen-ma-dt",
+        "stationId": "hk-mtr-KOW",
+        "shown": "柯士甸",
+        "ko": "어스틴",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "柯士甸"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-AUS",
+        "ko": "어스틴"
+      },
+      {
+        "id": "hk-mtr-ETS",
+        "ko": "이스트 침사추이"
+      },
+      {
+        "id": "hk-mtr-HUH",
+        "ko": "홍함"
+      },
+      {
+        "id": "hk-mtr-HOM",
+        "ko": "호만틴"
+      },
+      {
+        "id": "hk-mtr-TKW",
+        "ko": "토콰완"
+      },
+      {
+        "id": "hk-mtr-SUW",
+        "ko": "송웡토이"
+      },
+      {
+        "id": "hk-mtr-KAT",
+        "ko": "카이탁"
+      },
+      {
+        "id": "hk-mtr-DIH",
+        "ko": "다이아몬드힐"
+      },
+      {
+        "id": "hk-mtr-HIK",
+        "ko": "힌켕"
+      },
+      {
+        "id": "hk-mtr-TAW",
+        "ko": "타이와이"
+      },
+      {
+        "id": "hk-mtr-CKT",
+        "ko": "체공묘"
+      },
+      {
+        "id": "hk-mtr-STW",
+        "ko": "샤틴와이"
+      },
+      {
+        "id": "hk-mtr-CIO",
+        "ko": "시티원"
+      },
+      {
+        "id": "hk-mtr-SHM",
+        "ko": "섹문"
+      },
+      {
+        "id": "hk-mtr-TSH",
+        "ko": "타이수이항"
+      },
+      {
+        "id": "hk-mtr-HEO",
+        "ko": "항온"
+      },
+      {
+        "id": "hk-mtr-MOS",
+        "ko": "마온산"
+      },
+      {
+        "id": "hk-mtr-WKS",
+        "ko": "우카이샤"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"튄마선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 퉁충선 Tung Chung → Hong Kong\":\n        - generic: TRANSFER\n        - generic: 퉁충선\n        - generic: Tung Chung → Hong Kong\n      - button \"TRANSFER 퉁충선 Hong Kong → Tung Chung\":\n        - generic: TRANSFER\n        - generic: 퉁충선\n        - generic: Hong Kong → Tung Chung\n      - button \"TRANSFER 튄마선 Wu Kai Sha → Tuen Mun\":\n        - generic: TRANSFER\n        - generic: 튄마선\n        - generic: Wu Kai Sha → Tuen Mun\n      - button \"CURRENT 튄마선 Tuen Mun → Wu Kai Sha TAB\":\n        - generic: CURRENT\n        - generic: 튄마선\n        - generic: Tuen Mun → Wu Kai Sha\n        - text: TAB\n      - button \"TRANSFER 공항철도 AsiaWorld-Expo → Hong Kong\":\n        - generic: TRANSFER\n        - generic: 공항철도\n        - generic: AsiaWorld-Expo → Hong Kong\n      - button \"TRANSFER 공항철도 Hong Kong → AsiaWorld-Expo\":\n        - generic: TRANSFER\n        - generic: 공항철도\n        - generic: Hong Kong → AsiaWorld-Expo\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"튄마선\" [level=2]:\n      - generic: 튄마선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:02.70\n    - generic: 진행\n    - strong: 2 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 2\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 南昌\n      - generic: 남청\n      - generic: 柯士甸\n      - generic: 어스틴\n      - generic: 尖東\n      - generic: 이스트 침사추이\n      - generic \"열차 위치\":\n        - generic: TML\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"柯士甸\":\n      - generic: 홍콩 MTR\n      - generic: 튄마선\n      - generic: 屯馬綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"柯士甸\" [level=1]\n      - paragraph: 어스틴\n      - paragraph\n      - paragraph: Austin\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"이스트 침사추이 尖東 →\":\n        - generic: 이스트 침사추이\n        - generic: 尖東\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 튄마선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-airport-express-ut-hk-tuen-ma-dt.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"튄마선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"튄마선\" [level=2]:\n      - generic: 튄마선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:20.20\n    - generic: 진행\n    - strong: 19 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 馬鞍山\n      - generic: 마온산\n      - generic: 烏溪沙\n      - generic: 우카이샤\n      - generic \"열차 위치\":\n        - generic: TML\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"烏溪沙\":\n      - generic: 홍콩 MTR\n      - generic: 튄마선\n      - generic: 屯馬綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"烏溪沙\" [level=1]\n      - paragraph: 우카이샤\n      - paragraph\n      - paragraph: Wu Kai Sha\n      - generic \"한국어 입력 진행\":\n        - generic: 우\n        - generic: 카\n        - generic: 이\n        - generic: 샤\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 우카이샤\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 튄마선",
+    "terminal": "hk-mtr-WKS",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-airport-express-ut-hk-tuen-ma-dt.jpg"
+  },
+  {
+    "from": "hk-light-rail-507-osm-6481316",
+    "to": "hk-light-rail-505-osm-3515354",
+    "stationId": "hk-lr-140",
+    "toStationId": "hk-lr-140",
+    "checkedAt": "2026-10-25T12:20:32.188Z",
+    "status": "PASS",
+    "approach": [],
+    "tabChanges": [
+      {
+        "routeId": "hk-light-rail-505-osm-3515354",
+        "stationId": "hk-lr-140",
+        "shown": "田景",
+        "ko": "틴킹",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "田景"
+      },
+      {
+        "routeId": "hk-light-rail-507-osm-6481316",
+        "stationId": "hk-lr-140",
+        "shown": "田景",
+        "ko": "틴킹",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "田景"
+      },
+      {
+        "routeId": "hk-light-rail-505-osm-3515354",
+        "stationId": "hk-lr-140",
+        "shown": "田景",
+        "ko": "틴킹",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "田景"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-lr-140",
+        "ko": "틴킹"
+      },
+      {
+        "id": "hk-lr-150",
+        "ko": "렁킹"
+      },
+      {
+        "id": "hk-lr-160",
+        "ko": "산와이"
+      },
+      {
+        "id": "hk-lr-170",
+        "ko": "섹파이"
+      },
+      {
+        "id": "hk-lr-200",
+        "ko": "밍캄"
+      },
+      {
+        "id": "hk-lr-060",
+        "ko": "킨온"
+      },
+      {
+        "id": "hk-lr-295",
+        "ko": "튄문"
+      },
+      {
+        "id": "hk-lr-280",
+        "ko": "타운센터"
+      },
+      {
+        "id": "hk-lr-270",
+        "ko": "온팅"
+      },
+      {
+        "id": "hk-lr-265",
+        "ko": "시우런"
+      },
+      {
+        "id": "hk-lr-920",
+        "ko": "삼싱"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"경전철 505\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"CURRENT 경전철 505 Siu Hong → Sam Shing TAB\":\n        - generic: CURRENT\n        - generic: 경전철 505\n        - generic: Siu Hong → Sam Shing\n        - text: TAB\n      - button \"TRANSFER 경전철 505 Sam Shing → Siu Hong\":\n        - generic: TRANSFER\n        - generic: 경전철 505\n        - generic: Sam Shing → Siu Hong\n      - button \"TRANSFER 경전철 507 Tin King → Tuen Mun Ferry Pier\":\n        - generic: TRANSFER\n        - generic: 경전철 507\n        - generic: Tin King → Tuen Mun Ferry Pier\n      - button \"TRANSFER 경전철 615 Yuen Long → Tuen Mun Ferry Pier\":\n        - generic: TRANSFER\n        - generic: 경전철 615\n        - generic: Yuen Long → Tuen Mun Ferry Pier\n      - button \"TRANSFER 경전철 615 Tuen Mun Ferry Pier → Yuen Long\":\n        - generic: TRANSFER\n        - generic: 경전철 615\n        - generic: Tuen Mun Ferry Pier → Yuen Long\n      - button \"TRANSFER 경전철 615P Siu Hong → Tuen Mun Ferry Pier\":\n        - generic: TRANSFER\n        - generic: 경전철 615P\n        - generic: Siu Hong → Tuen Mun Ferry Pier\n      - button \"TRANSFER 경전철 615P Tuen Mun Ferry Pier → Siu Hong\":\n        - generic: TRANSFER\n        - generic: 경전철 615P\n        - generic: Tuen Mun Ferry Pier → Siu Hong\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"경전철 505\" [level=2]:\n      - generic: 경전철 505\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:02.41\n    - generic: 진행\n    - strong: 1 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 3\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 建生\n      - generic: 킨상\n      - generic: 田景\n      - generic: 틴킹\n      - generic: 良景\n      - generic: 렁킹\n      - generic \"열차 위치\":\n        - generic: \"505\"\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"田景\":\n      - generic: 홍콩 MTR\n      - generic: 경전철 505\n      - generic: 輕鐵 505\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"田景\" [level=1]\n      - paragraph: 틴킹\n      - paragraph\n      - paragraph: Tin King\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"렁킹 良景 →\":\n        - generic: 렁킹\n        - generic: 良景\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 경전철 505",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-light-rail-507-osm-6481316-hk-light-rail-505-osm-3515354.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"경전철 505\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"경전철 505\" [level=2]:\n      - generic: 경전철 505\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:12.80\n    - generic: 진행\n    - strong: 11 VISITED\n    - generic: 분당 타수\n    - strong: —\n    - generic: 정확도\n    - strong: —\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 兆麟\n      - generic: 시우런\n      - generic: 三聖\n      - generic: 삼싱\n      - generic \"열차 위치\":\n        - generic: \"505\"\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"三聖\":\n      - generic: 홍콩 MTR\n      - generic: 경전철 505\n      - generic: 輕鐵 505\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"三聖\" [level=1]\n      - paragraph: 삼싱\n      - paragraph\n      - paragraph: Sam Shing\n      - generic \"한국어 입력 진행\":\n        - generic: 삼\n        - generic: 싱\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 삼싱\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 경전철 505",
+    "terminal": "hk-lr-920",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-light-rail-507-osm-6481316-hk-light-rail-505-osm-3515354.jpg"
+  },
+  {
+    "from": "hk-tung-chung-dt",
+    "to": "hk-disneyland-dt",
+    "stationId": "hk-mtr-SUN",
+    "toStationId": "hk-mtr-SUN",
+    "checkedAt": "2026-10-25T12:21:43.879Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-TUC",
+        "ko": "뚱충"
+      },
+      {
+        "id": "hk-mtr-SUN",
+        "ko": "써니베이"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-disneyland-dt",
+        "stationId": "hk-mtr-SUN",
+        "shown": "欣澳",
+        "ko": "써니베이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "欣澳"
+      },
+      {
+        "routeId": "hk-tung-chung-dt",
+        "stationId": "hk-mtr-SUN",
+        "shown": "欣澳",
+        "ko": "써니베이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "欣澳"
+      },
+      {
+        "routeId": "hk-disneyland-dt",
+        "stationId": "hk-mtr-SUN",
+        "shown": "欣澳",
+        "ko": "써니베이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "欣澳"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-SUN",
+        "ko": "써니베이"
+      },
+      {
+        "id": "hk-mtr-DIS",
+        "ko": "디즈니랜드 리조트"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"디즈니랜드 리조트 라인\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 퉁충선 Tung Chung → Hong Kong\":\n        - generic: TRANSFER\n        - generic: 퉁충선\n        - generic: Tung Chung → Hong Kong\n      - button \"TRANSFER 퉁충선 Hong Kong → Tung Chung\":\n        - generic: TRANSFER\n        - generic: 퉁충선\n        - generic: Hong Kong → Tung Chung\n      - button \"CURRENT 디즈니랜드 리조트 라인 Sunny Bay → Disneyland Resort TAB\":\n        - generic: CURRENT\n        - generic: 디즈니랜드 리조트 라인\n        - generic: Sunny Bay → Disneyland Resort\n        - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"디즈니랜드 리조트 라인\" [level=2]:\n      - generic: 디즈니랜드 리조트 라인\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:02.00\n    - generic: 진행\n    - strong: 2 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 欣澳\n      - generic: 써니베이\n      - generic: 迪士尼\n      - generic: 디즈니랜드 리조트\n      - generic \"열차 위치\":\n        - generic: DRL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"欣澳\":\n      - generic: 홍콩 MTR\n      - generic: 디즈니랜드 리조트 라인\n      - generic: 迪士尼綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"欣澳\" [level=1]\n      - paragraph: 써니베이\n      - paragraph\n      - paragraph: Sunny Bay\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"디즈니랜드 리조트 迪士尼 →\":\n        - generic: 디즈니랜드 리조트\n        - generic: 迪士尼\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 디즈니랜드 리조트 라인",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-tung-chung-dt-hk-disneyland-dt.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"디즈니랜드 리조트 라인\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"디즈니랜드 리조트 라인\" [level=2]:\n      - generic: 디즈니랜드 리조트 라인\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:03.21\n    - generic: 진행\n    - strong: 3 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 欣澳\n      - generic: 써니베이\n      - generic: 迪士尼\n      - generic: 디즈니랜드 리조트\n      - generic \"열차 위치\":\n        - generic: DRL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"迪士尼\":\n      - generic: 홍콩 MTR\n      - generic: 디즈니랜드 리조트 라인\n      - generic: 迪士尼綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"迪士尼\" [level=1]\n      - paragraph: 디즈니랜드 리조트\n      - paragraph\n      - paragraph: Disneyland Resort\n      - generic \"한국어 입력 진행\":\n        - generic: 디\n        - generic: 즈\n        - generic: 니\n        - generic: 랜\n        - generic: 드\n        - generic: 리\n        - generic: 조\n        - generic: 트\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 디즈니랜드리조트\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 디즈니랜드 리조트 라인",
+    "terminal": "hk-mtr-DIS",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-tung-chung-dt-hk-disneyland-dt.jpg"
+  },
+  {
+    "from": "hk-tsuen-wan-dt",
+    "to": "hk-tung-chung-ut",
+    "stationId": "hk-mtr-LAK",
+    "toStationId": "hk-mtr-LAK",
+    "checkedAt": "2026-10-25T12:21:47.846Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-TSW",
+        "ko": "췬완"
+      },
+      {
+        "id": "hk-mtr-TWH",
+        "ko": "타이워하우"
+      },
+      {
+        "id": "hk-mtr-KWH",
+        "ko": "콰이힝"
+      },
+      {
+        "id": "hk-mtr-KWF",
+        "ko": "콰이퐁"
+      },
+      {
+        "id": "hk-mtr-LAK",
+        "ko": "라이킹"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-tung-chung-ut",
+        "stationId": "hk-mtr-LAK",
+        "shown": "茘景",
+        "ko": "라이킹",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "茘景"
+      },
+      {
+        "routeId": "hk-tsuen-wan-dt",
+        "stationId": "hk-mtr-LAK",
+        "shown": "茘景",
+        "ko": "라이킹",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "茘景"
+      },
+      {
+        "routeId": "hk-tung-chung-ut",
+        "stationId": "hk-mtr-LAK",
+        "shown": "茘景",
+        "ko": "라이킹",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "茘景"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-LAK",
+        "ko": "라이킹"
+      },
+      {
+        "id": "hk-mtr-TSY",
+        "ko": "칭이"
+      },
+      {
+        "id": "hk-mtr-SUN",
+        "ko": "써니베이"
+      },
+      {
+        "id": "hk-mtr-TUC",
+        "ko": "뚱충"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"퉁충선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 췬완선 Tsuen Wan → Central\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Tsuen Wan → Central\n      - button \"TRANSFER 췬완선 Central → Tsuen Wan\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Central → Tsuen Wan\n      - button \"TRANSFER 퉁충선 Tung Chung → Hong Kong\":\n        - generic: TRANSFER\n        - generic: 퉁충선\n        - generic: Tung Chung → Hong Kong\n      - button \"CURRENT 퉁충선 Hong Kong → Tung Chung TAB\":\n        - generic: CURRENT\n        - generic: 퉁충선\n        - generic: Hong Kong → Tung Chung\n        - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"퉁충선\" [level=2]:\n      - generic: 퉁충선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:04.70\n    - generic: 진행\n    - strong: 5 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 南昌\n      - generic: 남청\n      - generic: 茘景\n      - generic: 라이킹\n      - generic: 青衣\n      - generic: 칭이\n      - generic \"열차 위치\":\n        - generic: TCL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"茘景\":\n      - generic: 홍콩 MTR\n      - generic: 퉁충선\n      - generic: 東涌綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"茘景\" [level=1]\n      - paragraph: 라이킹\n      - paragraph\n      - paragraph: Lai King\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"칭이 青衣 →\":\n        - generic: 칭이\n        - generic: 青衣\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 퉁충선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-tsuen-wan-dt-hk-tung-chung-ut.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"퉁충선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"퉁충선\" [level=2]:\n      - generic: 퉁충선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:06.90\n    - generic: 진행\n    - strong: 8 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 欣澳\n      - generic: 써니베이\n      - generic: 東涌\n      - generic: 뚱충\n      - generic \"열차 위치\":\n        - generic: TCL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"東涌\":\n      - generic: 홍콩 MTR\n      - generic: 퉁충선\n      - generic: 東涌綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"東涌\" [level=1]\n      - paragraph: 뚱충\n      - paragraph\n      - paragraph: Tung Chung\n      - generic \"한국어 입력 진행\":\n        - generic: 뚱\n        - generic: 충\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 뚱충\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 퉁충선",
+    "terminal": "hk-mtr-TUC",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-tsuen-wan-dt-hk-tung-chung-ut.jpg"
+  },
+  {
+    "from": "hk-tung-chung-ut",
+    "to": "hk-tuen-ma-dt",
+    "stationId": "hk-mtr-NAC",
+    "toStationId": "hk-mtr-NAC",
+    "checkedAt": "2026-10-25T12:25:56.019Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-HOK",
+        "ko": "홍콩"
+      },
+      {
+        "id": "hk-mtr-KOW",
+        "ko": "구룡"
+      },
+      {
+        "id": "hk-mtr-OLY",
+        "ko": "올림픽"
+      },
+      {
+        "id": "hk-mtr-NAC",
+        "ko": "남청"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-tuen-ma-dt",
+        "stationId": "hk-mtr-NAC",
+        "shown": "南昌",
+        "ko": "남청",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "南昌"
+      },
+      {
+        "routeId": "hk-tung-chung-ut",
+        "stationId": "hk-mtr-NAC",
+        "shown": "南昌",
+        "ko": "남청",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "南昌"
+      },
+      {
+        "routeId": "hk-tuen-ma-dt",
+        "stationId": "hk-mtr-NAC",
+        "shown": "南昌",
+        "ko": "남청",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "南昌"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-NAC",
+        "ko": "남청"
+      },
+      {
+        "id": "hk-mtr-AUS",
+        "ko": "어스틴"
+      },
+      {
+        "id": "hk-mtr-ETS",
+        "ko": "이스트 침사추이"
+      },
+      {
+        "id": "hk-mtr-HUH",
+        "ko": "홍함"
+      },
+      {
+        "id": "hk-mtr-HOM",
+        "ko": "호만틴"
+      },
+      {
+        "id": "hk-mtr-TKW",
+        "ko": "토콰완"
+      },
+      {
+        "id": "hk-mtr-SUW",
+        "ko": "송웡토이"
+      },
+      {
+        "id": "hk-mtr-KAT",
+        "ko": "카이탁"
+      },
+      {
+        "id": "hk-mtr-DIH",
+        "ko": "다이아몬드힐"
+      },
+      {
+        "id": "hk-mtr-HIK",
+        "ko": "힌켕"
+      },
+      {
+        "id": "hk-mtr-TAW",
+        "ko": "타이와이"
+      },
+      {
+        "id": "hk-mtr-CKT",
+        "ko": "체공묘"
+      },
+      {
+        "id": "hk-mtr-STW",
+        "ko": "샤틴와이"
+      },
+      {
+        "id": "hk-mtr-CIO",
+        "ko": "시티원"
+      },
+      {
+        "id": "hk-mtr-SHM",
+        "ko": "섹문"
+      },
+      {
+        "id": "hk-mtr-TSH",
+        "ko": "타이수이항"
+      },
+      {
+        "id": "hk-mtr-HEO",
+        "ko": "항온"
+      },
+      {
+        "id": "hk-mtr-MOS",
+        "ko": "마온산"
+      },
+      {
+        "id": "hk-mtr-WKS",
+        "ko": "우카이샤"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"튄마선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 퉁충선 Tung Chung → Hong Kong\":\n        - generic: TRANSFER\n        - generic: 퉁충선\n        - generic: Tung Chung → Hong Kong\n      - button \"TRANSFER 퉁충선 Hong Kong → Tung Chung\":\n        - generic: TRANSFER\n        - generic: 퉁충선\n        - generic: Hong Kong → Tung Chung\n      - button \"TRANSFER 튄마선 Wu Kai Sha → Tuen Mun\":\n        - generic: TRANSFER\n        - generic: 튄마선\n        - generic: Wu Kai Sha → Tuen Mun\n      - button \"CURRENT 튄마선 Tuen Mun → Wu Kai Sha TAB\":\n        - generic: CURRENT\n        - generic: 튄마선\n        - generic: Tuen Mun → Wu Kai Sha\n        - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"튄마선\" [level=2]:\n      - generic: 튄마선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:02.50\n    - generic: 진행\n    - strong: 4 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 美孚\n      - generic: 메이푸\n      - generic: 南昌\n      - generic: 남청\n      - generic: 柯士甸\n      - generic: 어스틴\n      - generic \"열차 위치\":\n        - generic: TML\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"南昌\":\n      - generic: 홍콩 MTR\n      - generic: 튄마선\n      - generic: 屯馬綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"南昌\" [level=1]\n      - paragraph: 남청\n      - paragraph\n      - paragraph: Nam Cheong\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"어스틴 柯士甸 →\":\n        - generic: 어스틴\n        - generic: 柯士甸\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 튄마선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-tung-chung-ut-hk-tuen-ma-dt.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"튄마선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"튄마선\" [level=2]:\n      - generic: 튄마선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:09.00\n    - generic: 진행\n    - strong: 22 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 馬鞍山\n      - generic: 마온산\n      - generic: 烏溪沙\n      - generic: 우카이샤\n      - generic \"열차 위치\":\n        - generic: TML\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"烏溪沙\":\n      - generic: 홍콩 MTR\n      - generic: 튄마선\n      - generic: 屯馬綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"烏溪沙\" [level=1]\n      - paragraph: 우카이샤\n      - paragraph\n      - paragraph: Wu Kai Sha\n      - generic \"한국어 입력 진행\":\n        - generic: 우\n        - generic: 카\n        - generic: 이\n        - generic: 샤\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 우카이샤\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 튄마선",
+    "terminal": "hk-mtr-WKS",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-tung-chung-ut-hk-tuen-ma-dt.jpg"
+  },
+  {
+    "from": "hk-kwun-tong-ut",
+    "to": "hk-east-rail-dt",
+    "stationId": "hk-mtr-KOT",
+    "toStationId": "hk-mtr-KOT",
+    "checkedAt": "2026-10-25T12:26:05.930Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-WHA",
+        "ko": "왐포아"
+      },
+      {
+        "id": "hk-mtr-HOM",
+        "ko": "호만틴"
+      },
+      {
+        "id": "hk-mtr-YMT",
+        "ko": "야우마테이"
+      },
+      {
+        "id": "hk-mtr-MOK",
+        "ko": "몽콕"
+      },
+      {
+        "id": "hk-mtr-PRE",
+        "ko": "프린스에드워드"
+      },
+      {
+        "id": "hk-mtr-SKM",
+        "ko": "섹깁메이"
+      },
+      {
+        "id": "hk-mtr-KOT",
+        "ko": "까우룽통"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-east-rail-dt",
+        "stationId": "hk-mtr-KOT",
+        "shown": "九龍塘",
+        "ko": "까우룽통",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "九龍塘"
+      },
+      {
+        "routeId": "hk-kwun-tong-ut",
+        "stationId": "hk-mtr-KOT",
+        "shown": "九龍塘",
+        "ko": "까우룽통",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "九龍塘"
+      },
+      {
+        "routeId": "hk-east-rail-dt",
+        "stationId": "hk-mtr-KOT",
+        "shown": "九龍塘",
+        "ko": "까우룽통",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "九龍塘"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-KOT",
+        "ko": "까우룽통"
+      },
+      {
+        "id": "hk-mtr-MKK",
+        "ko": "몽콕 이스트"
+      },
+      {
+        "id": "hk-mtr-HUH",
+        "ko": "홍함"
+      },
+      {
+        "id": "hk-mtr-EXC",
+        "ko": "전시장"
+      },
+      {
+        "id": "hk-mtr-ADM",
+        "ko": "애드미럴티"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"동철선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 쿤통선 Tiu Keng Leng → Whampoa\":\n        - generic: TRANSFER\n        - generic: 쿤통선\n        - generic: Tiu Keng Leng → Whampoa\n      - button \"TRANSFER 쿤통선 Whampoa → Tiu Keng Leng\":\n        - generic: TRANSFER\n        - generic: 쿤통선\n        - generic: Whampoa → Tiu Keng Leng\n      - button \"CURRENT 동철선 Lo Wu → Admiralty TAB\":\n        - generic: CURRENT\n        - generic: 동철선\n        - generic: Lo Wu → Admiralty\n        - text: TAB\n      - button \"TRANSFER 동철선 Lok Ma Chau → Admiralty\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Lok Ma Chau → Admiralty\n      - button \"TRANSFER 동철선 Admiralty → Lok Ma Chau\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lok Ma Chau\n      - button \"TRANSFER 동철선 Admiralty → Lo Wu\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lo Wu\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"동철선\" [level=2]:\n      - generic: 동철선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:07.10\n    - generic: 진행\n    - strong: 7 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 大圍\n      - generic: 타이와이\n      - generic: 九龍塘\n      - generic: 까우룽통\n      - generic: 旺角東\n      - generic: 몽콕 이스트\n      - generic \"열차 위치\":\n        - generic: EAL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"九龍塘\":\n      - generic: 홍콩 MTR\n      - generic: 동철선\n      - generic: 東鐵綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"九龍塘\" [level=1]\n      - paragraph: 까우룽통\n      - paragraph\n      - paragraph: Kowloon Tong\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"몽콕 이스트 旺角東 →\":\n        - generic: 몽콕 이스트\n        - generic: 旺角東\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 동철선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-kwun-tong-ut-hk-east-rail-dt.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"동철선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 홍콩섬선 Chai Wan → Kennedy Town\":\n        - generic: TRANSFER\n        - generic: 홍콩섬선\n        - generic: Chai Wan → Kennedy Town\n      - button \"TRANSFER 홍콩섬선 Kennedy Town → Chai Wan\":\n        - generic: TRANSFER\n        - generic: 홍콩섬선\n        - generic: Kennedy Town → Chai Wan\n      - button \"TRANSFER 췬완선 Tsuen Wan → Central\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Tsuen Wan → Central\n      - button \"TRANSFER 췬완선 Central → Tsuen Wan\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Central → Tsuen Wan\n      - button \"CURRENT 동철선 Lo Wu → Admiralty TAB\":\n        - generic: CURRENT\n        - generic: 동철선\n        - generic: Lo Wu → Admiralty\n        - text: TAB\n      - button \"TRANSFER 동철선 Admiralty → Lok Ma Chau\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lok Ma Chau\n      - button \"TRANSFER 동철선 Admiralty → Lo Wu\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lo Wu\n      - button \"TRANSFER 남홍콩섬선 Admiralty → South Horizons\":\n        - generic: TRANSFER\n        - generic: 남홍콩섬선\n        - generic: Admiralty → South Horizons\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"동철선\" [level=2]:\n      - generic: 동철선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:09.20\n    - generic: 진행\n    - strong: 11 VISITED\n    - generic: 분당 타수\n    - strong: —\n    - generic: 정확도\n    - strong: —\n    - generic: 콤보\n    - strong: 환승 3\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 會展\n      - generic: 전시장\n      - generic: 金鐘\n      - generic: 애드미럴티\n      - generic \"열차 위치\":\n        - generic: EAL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"金鐘\":\n      - generic: 홍콩 MTR\n      - generic: 동철선\n      - generic: 東鐵綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"金鐘\" [level=1]\n      - paragraph: 애드미럴티\n      - paragraph\n      - paragraph: Admiralty\n      - generic \"한국어 입력 진행\":\n        - generic: 애\n        - generic: 드\n        - generic: 미\n        - generic: 럴\n        - generic: 티\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 애드미럴티\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 동철선",
+    "terminal": "hk-mtr-ADM",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-kwun-tong-ut-hk-east-rail-dt.jpg"
+  },
+  {
+    "from": "hk-kwun-tong-dt",
+    "to": "hk-tseung-kwan-o-ut",
+    "stationId": "hk-mtr-TIK",
+    "toStationId": "hk-mtr-TIK",
+    "checkedAt": "2026-10-25T12:26:52.172Z",
+    "status": "PASS",
+    "approach": [],
+    "tabChanges": [
+      {
+        "routeId": "hk-tseung-kwan-o-ut",
+        "stationId": "hk-mtr-TIK",
+        "shown": "調景嶺",
+        "ko": "티우켕렝",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "調景嶺"
+      },
+      {
+        "routeId": "hk-kwun-tong-dt",
+        "stationId": "hk-mtr-TIK",
+        "shown": "調景嶺",
+        "ko": "티우켕렝",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "調景嶺"
+      },
+      {
+        "routeId": "hk-tseung-kwan-o-ut",
+        "stationId": "hk-mtr-TIK",
+        "shown": "調景嶺",
+        "ko": "티우켕렝",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "調景嶺"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-TIK",
+        "ko": "티우켕렝"
+      },
+      {
+        "id": "hk-mtr-TKO",
+        "ko": "정관오"
+      },
+      {
+        "id": "hk-mtr-HAH",
+        "ko": "항하우"
+      },
+      {
+        "id": "hk-mtr-POA",
+        "ko": "포람"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"정관오선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 쿤통선 Tiu Keng Leng → Whampoa\":\n        - generic: TRANSFER\n        - generic: 쿤통선\n        - generic: Tiu Keng Leng → Whampoa\n      - button \"TRANSFER 정관오선 Po Lam → North Point\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: Po Lam → North Point\n      - button \"TRANSFER 정관오선 Tiu Keng Leng → LOHAS Park\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: Tiu Keng Leng → LOHAS Park\n      - button \"CURRENT 정관오선 North Point → Po Lam TAB\":\n        - generic: CURRENT\n        - generic: 정관오선\n        - generic: North Point → Po Lam\n        - text: TAB\n      - button \"TRANSFER 정관오선 North Point → LOHAS Park\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: North Point → LOHAS Park\n      - button \"TRANSFER 정관오선 LOHAS Park → North Point\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: LOHAS Park → North Point\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"정관오선\" [level=2]:\n      - generic: 정관오선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:02.00\n    - generic: 진행\n    - strong: 1 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 油塘\n      - generic: 야우통\n      - generic: 調景嶺\n      - generic: 티우켕렝\n      - generic: 將軍澳\n      - generic: 정관오\n      - generic \"열차 위치\":\n        - generic: TKL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"調景嶺\":\n      - generic: 홍콩 MTR\n      - generic: 정관오선\n      - generic: 將軍澳綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"調景嶺\" [level=1]\n      - paragraph: 티우켕렝\n      - paragraph\n      - paragraph: Tiu Keng Leng\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"정관오 將軍澳 →\":\n        - generic: 정관오\n        - generic: 將軍澳\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 정관오선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-kwun-tong-dt-hk-tseung-kwan-o-ut.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"정관오선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"정관오선\" [level=2]:\n      - generic: 정관오선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:03.20\n    - generic: 진행\n    - strong: 4 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 坑口\n      - generic: 항하우\n      - generic: 寶琳\n      - generic: 포람\n      - generic \"열차 위치\":\n        - generic: TKL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"寶琳\":\n      - generic: 홍콩 MTR\n      - generic: 정관오선\n      - generic: 將軍澳綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"寶琳\" [level=1]\n      - paragraph: 포람\n      - paragraph\n      - paragraph: Po Lam\n      - generic \"한국어 입력 진행\":\n        - generic: 포\n        - generic: 람\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 포람\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 정관오선",
+    "terminal": "hk-mtr-POA",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-kwun-tong-dt-hk-tseung-kwan-o-ut.jpg"
+  },
+  {
+    "from": "hk-island-ut",
+    "to": "hk-tseung-kwan-o-ut",
+    "stationId": "hk-mtr-QUB",
+    "toStationId": "hk-mtr-QUB",
+    "checkedAt": "2026-10-25T12:27:13.145Z",
+    "status": "PASS",
+    "approach": [
+      {
+        "id": "hk-mtr-KET",
+        "ko": "케네디 타운"
+      },
+      {
+        "id": "hk-mtr-HKU",
+        "ko": "홍콩대학"
+      },
+      {
+        "id": "hk-mtr-SYP",
+        "ko": "새이잉펀"
+      },
+      {
+        "id": "hk-mtr-SHW",
+        "ko": "상환"
+      },
+      {
+        "id": "hk-mtr-CEN",
+        "ko": "센트럴"
+      },
+      {
+        "id": "hk-mtr-ADM",
+        "ko": "애드미럴티"
+      },
+      {
+        "id": "hk-mtr-WAC",
+        "ko": "완차이"
+      },
+      {
+        "id": "hk-mtr-CAB",
+        "ko": "코즈웨이베이"
+      },
+      {
+        "id": "hk-mtr-TIH",
+        "ko": "틴하우"
+      },
+      {
+        "id": "hk-mtr-FOH",
+        "ko": "포트리스 힐"
+      },
+      {
+        "id": "hk-mtr-NOP",
+        "ko": "노스 포인트"
+      },
+      {
+        "id": "hk-mtr-QUB",
+        "ko": "쿼리 베이"
+      }
+    ],
+    "tabChanges": [
+      {
+        "routeId": "hk-tseung-kwan-o-ut",
+        "stationId": "hk-mtr-QUB",
+        "shown": "鰂魚涌",
+        "ko": "쿼리 베이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "鰂魚涌"
+      },
+      {
+        "routeId": "hk-island-ut",
+        "stationId": "hk-mtr-QUB",
+        "shown": "鰂魚涌",
+        "ko": "쿼리 베이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "鰂魚涌"
+      },
+      {
+        "routeId": "hk-tseung-kwan-o-ut",
+        "stationId": "hk-mtr-QUB",
+        "shown": "鰂魚涌",
+        "ko": "쿼리 베이",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "鰂魚涌"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-QUB",
+        "ko": "쿼리 베이"
+      },
+      {
+        "id": "hk-mtr-YAT",
+        "ko": "야우통"
+      },
+      {
+        "id": "hk-mtr-TIK",
+        "ko": "티우켕렝"
+      },
+      {
+        "id": "hk-mtr-TKO",
+        "ko": "정관오"
+      },
+      {
+        "id": "hk-mtr-HAH",
+        "ko": "항하우"
+      },
+      {
+        "id": "hk-mtr-POA",
+        "ko": "포람"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"정관오선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 홍콩섬선 Chai Wan → Kennedy Town\":\n        - generic: TRANSFER\n        - generic: 홍콩섬선\n        - generic: Chai Wan → Kennedy Town\n      - button \"TRANSFER 홍콩섬선 Kennedy Town → Chai Wan\":\n        - generic: TRANSFER\n        - generic: 홍콩섬선\n        - generic: Kennedy Town → Chai Wan\n      - button \"TRANSFER 정관오선 Po Lam → North Point\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: Po Lam → North Point\n      - button \"CURRENT 정관오선 North Point → Po Lam TAB\":\n        - generic: CURRENT\n        - generic: 정관오선\n        - generic: North Point → Po Lam\n        - text: TAB\n      - button \"TRANSFER 정관오선 North Point → LOHAS Park\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: North Point → LOHAS Park\n      - button \"TRANSFER 정관오선 LOHAS Park → North Point\":\n        - generic: TRANSFER\n        - generic: 정관오선\n        - generic: LOHAS Park → North Point\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"정관오선\" [level=2]:\n      - generic: 정관오선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:05.10\n    - generic: 진행\n    - strong: 12 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 1\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 北角\n      - generic: 노스 포인트\n      - generic: 鰂魚涌\n      - generic: 쿼리 베이\n      - generic: 油塘\n      - generic: 야우통\n      - generic \"열차 위치\":\n        - generic: TKL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"鰂魚涌\":\n      - generic: 홍콩 MTR\n      - generic: 정관오선\n      - generic: 將軍澳綫\n      - paragraph: 출발역 입력 · 자유주행\n      - heading \"鰂魚涌\" [level=1]\n      - paragraph: 쿼리 베이\n      - paragraph\n      - paragraph: Quarry Bay\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n      - generic: TYPE\n      - button \"야우통 油塘 →\":\n        - generic: 야우통\n        - generic: 油塘\n        - generic: →\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 정관오선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-island-ut-hk-tseung-kwan-o-ut.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"정관오선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"정관오선\" [level=2]:\n      - generic: 정관오선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:06.80\n    - generic: 진행\n    - strong: 17 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic: 정확도\n    - strong: 100.0%\n    - generic: 콤보\n    - strong: 환승 0\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 坑口\n      - generic: 항하우\n      - generic: 寶琳\n      - generic: 포람\n      - generic \"열차 위치\":\n        - generic: TKL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"寶琳\":\n      - generic: 홍콩 MTR\n      - generic: 정관오선\n      - generic: 將軍澳綫\n      - paragraph: 종착역 도착 · 자유주행\n      - heading \"寶琳\" [level=1]\n      - paragraph: 포람\n      - paragraph\n      - paragraph: Po Lam\n      - generic \"한국어 입력 진행\":\n        - generic: 포\n        - generic: 람\n      - generic: 한국어 역명 입력\n      - textbox \"한국어 역명 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역명을 입력하세요\n        - text: 포람\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 자유주행\n      - generic: 목표역 이동할 역 선택\n- button \"DATA & CREDITS\"\n- status: TAB · 정관오선",
+    "terminal": "hk-mtr-POA",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-island-ut-hk-tseung-kwan-o-ut.jpg"
+  },
+  {
+    "from": "hk-south-island-ut",
+    "to": "hk-island-ut",
+    "stationId": "hk-mtr-ADM",
+    "toStationId": "hk-mtr-ADM",
+    "checkedAt": "2026-10-25T12:34:27.711Z",
+    "status": "PASS",
+    "approach": [],
+    "tabChanges": [
+      {
+        "routeId": "hk-island-ut",
+        "stationId": "hk-mtr-ADM",
+        "shown": "金鐘",
+        "ko": "애드미럴티",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "金鐘"
+      },
+      {
+        "routeId": "hk-south-island-ut",
+        "stationId": "hk-mtr-ADM",
+        "shown": "金鐘",
+        "ko": "애드미럴티",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "金鐘"
+      },
+      {
+        "routeId": "hk-island-ut",
+        "stationId": "hk-mtr-ADM",
+        "shown": "金鐘",
+        "ko": "애드미럴티",
+        "firstAnswerIsTransferStation": true,
+        "mapLabel": "金鐘"
+      }
+    ],
+    "completion": [
+      {
+        "id": "hk-mtr-ADM",
+        "ko": "애드미럴티"
+      },
+      {
+        "id": "hk-mtr-WAC",
+        "ko": "완차이"
+      },
+      {
+        "id": "hk-mtr-CAB",
+        "ko": "코즈웨이베이"
+      },
+      {
+        "id": "hk-mtr-TIH",
+        "ko": "틴하우"
+      },
+      {
+        "id": "hk-mtr-FOH",
+        "ko": "포트리스 힐"
+      },
+      {
+        "id": "hk-mtr-NOP",
+        "ko": "노스 포인트"
+      },
+      {
+        "id": "hk-mtr-QUB",
+        "ko": "쿼리 베이"
+      },
+      {
+        "id": "hk-mtr-TAK",
+        "ko": "타이쿠"
+      },
+      {
+        "id": "hk-mtr-SWH",
+        "ko": "사이완호"
+      },
+      {
+        "id": "hk-mtr-SKW",
+        "ko": "샤우 케이 완"
+      },
+      {
+        "id": "hk-mtr-HFC",
+        "ko": "항파췬"
+      },
+      {
+        "id": "hk-mtr-CHW",
+        "ko": "차이완"
+      }
+    ],
+    "coordinateCheck": "Exact route-stop geometry vertices verified separately in automated tests. Browser verifies current map label, new route brand and first typing prompt; numeric train coordinates are not read from hidden application state.",
+    "transferSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"홍콩섬선\":\n    - generic \"자유주행 환승 노선 탭\":\n      - text: TAB · TRANSFER\n      - button \"TRANSFER 홍콩섬선 Chai Wan → Kennedy Town\":\n        - generic: TRANSFER\n        - generic: 홍콩섬선\n        - generic: Chai Wan → Kennedy Town\n      - button \"CURRENT 홍콩섬선 Kennedy Town → Chai Wan TAB\":\n        - generic: CURRENT\n        - generic: 홍콩섬선\n        - generic: Kennedy Town → Chai Wan\n        - text: TAB\n      - button \"TRANSFER 췬완선 Tsuen Wan → Central\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Tsuen Wan → Central\n      - button \"TRANSFER 췬완선 Central → Tsuen Wan\":\n        - generic: TRANSFER\n        - generic: 췬완선\n        - generic: Central → Tsuen Wan\n      - button \"TRANSFER 동철선 Admiralty → Lok Ma Chau\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lok Ma Chau\n      - button \"TRANSFER 동철선 Admiralty → Lo Wu\":\n        - generic: TRANSFER\n        - generic: 동철선\n        - generic: Admiralty → Lo Wu\n      - button \"TRANSFER 남홍콩섬선 Admiralty → South Horizons\":\n        - generic: TRANSFER\n        - generic: 남홍콩섬선\n        - generic: Admiralty → South Horizons\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"홍콩섬선\" [level=2]:\n      - generic: 홍콩섬선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:02.11\n    - generic: 진행\n    - strong: 1 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 中環\n      - generic: 센트럴\n      - generic: 金鐘\n      - generic: 애드미럴티\n      - generic: 灣仔\n      - generic: 완차이\n      - generic \"열차 위치\":\n        - generic: ISL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"金鐘\":\n      - generic: 홍콩 MTR\n      - generic: 홍콩섬선\n      - generic: 港島綫\n      - paragraph: 출발역 입력 · 자유주행\n      - generic: ADM\n      - heading \"金鐘\" [level=1]\n      - paragraph: 애드미럴티\n      - paragraph\n      - paragraph: Admiralty\n      - generic \"한국어 입력 진행\"\n      - generic: 한국어 역 이름 입력\n      - textbox \"한국어 역 이름 입력 TYPE\" [active]:\n        - /placeholder: 한국어 역 이름을 입력하세요\n      - generic: TYPE\n      - button \"완차이 灣仔 →\":\n        - generic: 완차이\n        - generic: 灣仔\n        - generic: →\n      - generic: 오타 0\n      - generic: 목표 역 이동할 역 선택\n- status: TAB · 홍콩섬선",
+    "transferScreenshot": "output/hk/phase6/transfer-hk-south-island-ut-hk-island-ut.jpg",
+    "terminalSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- main:\n  - region \"홍콩섬선\":\n    - text: TAB\n    - button \"× 종료\"\n    - paragraph: 홍콩 MTR\n    - heading \"홍콩섬선\" [level=2]:\n      - generic: 홍콩섬선\n    - generic: FREE DRIVE · 自由走行\n    - button \"테마 전환\": ◐ 테마\n    - generic: 시간\n    - strong: 00:07.70\n    - generic: 진행\n    - strong: 12 VISITED\n    - generic: 분당 타수\n    - strong: \"0\"\n    - generic \"OpenStreetMap 기반 게임 철도 지도\":\n      - generic: 杏花邨\n      - generic: 항파췬\n      - generic: 柴灣\n      - generic: 차이완\n      - generic \"열차 위치\":\n        - generic: ISL\n      - button \"Zoom in\": +\n      - button \"Zoom out\": −\n      - link \"Leaflet\":\n        - /url: https://leafletjs.com\n        - text: Leaflet\n      - text: \"| ©\"\n      - link \"OpenStreetMap contributors\":\n        - /url: https://www.openstreetmap.org/copyright\n    - generic: OPENSTREETMAP · LIVE\n    - region \"柴灣\":\n      - generic: 홍콩 MTR\n      - generic: 홍콩섬선\n      - generic: 港島綫\n      - paragraph: 종착역 도착 · 자유주행\n      - generic: CHW\n      - heading \"柴灣\" [level=1]\n      - paragraph: 차이완\n      - paragraph\n      - paragraph: Chai Wan\n      - generic \"한국어 입력 진행\":\n        - generic: 차\n        - generic: 이\n        - generic: 완\n      - generic: 한국어 역 이름 입력\n      - textbox \"한국어 역 이름 입력 ARRIVED\" [active]:\n        - /placeholder: 한국어 역 이름을 입력하세요\n        - text: 차이완\n      - generic: ARRIVED\n      - paragraph: 이 노선에서 이동 가능한 인접역이 없습니다.\n      - generic: 오타 0\n      - generic: 목표 역 이동할 역 선택\n- status: TAB · 홍콩섬선",
+    "terminal": "hk-mtr-CHW",
+    "terminalScreenshot": "output/hk/phase6/terminal-hk-south-island-ut-hk-island-ut.jpg"
+  }
+]

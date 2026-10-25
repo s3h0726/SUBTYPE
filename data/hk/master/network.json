@@ -47,6 +47,14 @@
       "checkedAt": "2026-10-18",
       "license": "REVIEW_REQUIRED",
       "confidence": "unverified"
+    },
+    {
+      "id": "hk-ocean-park",
+      "names": {
+        "ja": "香港海洋公園",
+        "en": "Ocean Park Corporation",
+        "ko": "홍콩 오션파크"
+      }
     }
   ],
   "lines": [
@@ -660,7 +668,7 @@
       "operatorId": "hk-mtr",
       "countryId": "hk",
       "status": "operational",
-      "lineColor": "#000000",
+      "lineColor": null,
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
       "sourceType": "official",
       "checkedAt": "2026-10-22",
@@ -711,20 +719,36 @@
       "confidence": "high"
     },
     {
+      "id": "hk-ocean-express",
+      "operatorId": "hk-ocean-park",
+      "nameZhHant": "海洋列車",
+      "nameEn": "Ocean Express",
+      "nameKo": "오션 익스프레스",
+      "category": "funicular",
+      "facilityRailway": true,
+      "accessNoticeKo": "오션파크 입장권이 필요한 공원 내부 철도입니다. 운영시간과 휴무는 당일 공식 안내를 확인하세요. MTR 오션파크역과 별도 시설입니다.",
+      "status": "operational",
+      "countryId": "hk",
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high"
+    },
+    {
       "id": "hk-peak-tram",
       "operatorId": "hk-peak-tram",
       "nameZhHant": "山頂纜車",
       "nameEn": "Peak Tram",
       "nameKo": "피크트램",
       "category": "funicular",
-      "source": "peak-faq.html",
       "countryId": "hk",
-      "status": "verification-pending",
-      "sourceUrl": "https://www.thepeak.com.hk/en/faq",
+      "status": "operational",
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
       "sourceType": "official",
-      "checkedAt": null,
+      "checkedAt": "2026-10-25",
       "license": "REVIEW_REQUIRED",
-      "confidence": "unverified"
+      "confidence": "high"
     },
     {
       "id": "hk-high-speed",
@@ -11383,6 +11407,282 @@
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/1923609288",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-ocean-waterfront",
+      "sourceStopNodeId": 1070003266,
+      "nameZhHant": "海濱",
+      "nameEn": "Waterfront",
+      "nameKo": "워터프론트",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+        "sourceType": "official",
+        "checkedAt": "2026-10-25",
+        "confidence": "high"
+      },
+      "canonicalStationId": "hk-ocean-waterfront",
+      "countryId": "hk",
+      "code": "",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2453002,
+        "lng": 114.1758249
+      },
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/1070003266",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-ocean-summit",
+      "sourceStopNodeId": 1070003294,
+      "nameZhHant": "高峰",
+      "nameEn": "Summit",
+      "nameKo": "정상",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions",
+        "sourceType": "official",
+        "checkedAt": "2026-10-25",
+        "confidence": "high"
+      },
+      "canonicalStationId": "hk-ocean-summit",
+      "countryId": "hk",
+      "code": "",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2349925,
+        "lng": 114.1709773
+      },
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/1070003294",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-peak-stop-99801",
+      "code": "",
+      "sourceStopNodeId": 2525250101,
+      "nameZhHant": "花園道纜車總站",
+      "nameEn": "Garden Road Peak Tram Terminal",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": false,
+      "governmentStopId": "99801",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99801",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2771695,
+        "lng": 114.158577
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/2525250101",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-peak-stop-99802",
+      "code": "",
+      "sourceStopNodeId": 526904599,
+      "nameZhHant": "堅尼地道站",
+      "nameEn": "Kennedy Road Station",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": true,
+      "governmentStopId": "99802",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99802",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.276545,
+        "lng": 114.1580862
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/526904599",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-peak-stop-99803",
+      "code": "",
+      "sourceStopNodeId": 988059698,
+      "nameZhHant": "麥當勞道站",
+      "nameEn": "Macdonnell Road Station",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": true,
+      "governmentStopId": "99803",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99803",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2751722,
+        "lng": 114.1571206
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/988059698",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-peak-stop-99804",
+      "code": "",
+      "sourceStopNodeId": 988059498,
+      "nameZhHant": "梅道站",
+      "nameEn": "May Road Station",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": true,
+      "governmentStopId": "99804",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99804",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2733633,
+        "lng": 114.155887
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/988059498",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-peak-stop-99805",
+      "code": "",
+      "sourceStopNodeId": 988059821,
+      "nameZhHant": "白加道站",
+      "nameEn": "Barker Road Station",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": true,
+      "governmentStopId": "99805",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99805",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2709577,
+        "lng": 114.1517471
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/988059821",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-peak-stop-99806",
+      "code": "",
+      "sourceStopNodeId": 26412045,
+      "nameZhHant": "山頂纜車總站",
+      "nameEn": "Peak Tram Terminus",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": false,
+      "governmentStopId": "99806",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99806",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.271123,
+        "lng": 114.1501414
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/26412045",
         "sourceType": "osm",
         "checkedAt": "2026-10-24",
         "license": "ODbL-1.0",
@@ -22226,7 +22526,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/9736611",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352938",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -22371,7 +22671,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/9736611",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352938",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -22525,7 +22825,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/9736611",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352938",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -22854,7 +23154,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/269672",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -23309,7 +23609,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/269672",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -23459,7 +23759,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/269672",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -23657,7 +23957,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/269672",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -90456,6 +90756,632 @@
       "checkedAt": "2026-10-24",
       "license": "ODbL-1.0",
       "confidence": "high"
+    },
+    {
+      "id": "hk-track-01a6bde3ab09c3e560",
+      "fromStationId": "hk-ocean-waterfront",
+      "toStationId": "hk-ocean-summit",
+      "geometry": [
+        [
+          22.2453002,
+          114.1758249
+        ],
+        [
+          22.2418147,
+          114.1741859
+        ],
+        [
+          22.2411835,
+          114.1738891
+        ],
+        [
+          22.2408383,
+          114.1738098
+        ],
+        [
+          22.239872,
+          114.1733614
+        ],
+        [
+          22.2395879,
+          114.1731387
+        ],
+        [
+          22.2349925,
+          114.1709773
+        ]
+      ],
+      "segmentLengthMeters": 1251.7565036079761,
+      "sourceWayIds": [
+        92167201,
+        250700765,
+        250700766
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3366719",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-3c5d362e3979211a7a",
+      "fromStationId": "hk-ocean-summit",
+      "toStationId": "hk-ocean-waterfront",
+      "geometry": [
+        [
+          22.2349925,
+          114.1709773
+        ],
+        [
+          22.2395879,
+          114.1731387
+        ],
+        [
+          22.2399281,
+          114.1732203
+        ],
+        [
+          22.2408874,
+          114.1736654
+        ],
+        [
+          22.2411835,
+          114.1738891
+        ],
+        [
+          22.2418147,
+          114.1741859
+        ],
+        [
+          22.2453002,
+          114.1758249
+        ]
+      ],
+      "segmentLengthMeters": 1251.5606875584683,
+      "sourceWayIds": [
+        250700766,
+        250700764,
+        92167201
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3366719",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-d99f20d2841f59177a",
+      "fromStationId": "hk-peak-stop-99801",
+      "toStationId": "hk-peak-stop-99802",
+      "geometry": [
+        [
+          22.2771695,
+          114.158577
+        ],
+        [
+          22.2769392,
+          114.1583785
+        ],
+        [
+          22.2768893,
+          114.158338
+        ],
+        [
+          22.2768355,
+          114.1582941
+        ],
+        [
+          22.2767649,
+          114.1582439
+        ],
+        [
+          22.276545,
+          114.1580862
+        ]
+      ],
+      "segmentLengthMeters": 85.93472296285222,
+      "sourceWayIds": [
+        85404150,
+        1308940441,
+        1308940440,
+        1046739317,
+        1046739316
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-2215938547adfaeb8b",
+      "fromStationId": "hk-peak-stop-99802",
+      "toStationId": "hk-peak-stop-99803",
+      "geometry": [
+        [
+          22.276545,
+          114.1580862
+        ],
+        [
+          22.2764321,
+          114.158008
+        ],
+        [
+          22.2762955,
+          114.1579122
+        ],
+        [
+          22.2756926,
+          114.1574881
+        ],
+        [
+          22.2751722,
+          114.1571206
+        ]
+      ],
+      "segmentLengthMeters": 182.13588282206302,
+      "sourceWayIds": [
+        1046739316,
+        85404052,
+        265943515
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-7e26bd74711cbccba7",
+      "fromStationId": "hk-peak-stop-99803",
+      "toStationId": "hk-peak-stop-99804",
+      "geometry": [
+        [
+          22.2751722,
+          114.1571206
+        ],
+        [
+          22.2747827,
+          114.1568307
+        ],
+        [
+          22.2742035,
+          114.1564041
+        ],
+        [
+          22.2733633,
+          114.155887
+        ]
+      ],
+      "segmentLengthMeters": 238.04516823147287,
+      "sourceWayIds": [
+        265943515
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-21ff7c2a24a00b1adb",
+      "fromStationId": "hk-peak-stop-99804",
+      "toStationId": "hk-peak-stop-99805",
+      "geometry": [
+        [
+          22.2733633,
+          114.155887
+        ],
+        [
+          22.2730611,
+          114.1556754
+        ],
+        [
+          22.2723574,
+          114.1551776
+        ],
+        [
+          22.272298,
+          114.1551248
+        ],
+        [
+          22.2722192,
+          114.1550396
+        ],
+        [
+          22.2719353,
+          114.1548486
+        ],
+        [
+          22.2715303,
+          114.1545673
+        ],
+        [
+          22.2710864,
+          114.1542534
+        ],
+        [
+          22.2709635,
+          114.1541532
+        ],
+        [
+          22.270904,
+          114.1540965
+        ],
+        [
+          22.2708276,
+          114.1539696
+        ],
+        [
+          22.2707511,
+          114.1537372
+        ],
+        [
+          22.2707279,
+          114.1536027
+        ],
+        [
+          22.2707327,
+          114.153445
+        ],
+        [
+          22.2707523,
+          114.1532799
+        ],
+        [
+          22.2707971,
+          114.1528732
+        ],
+        [
+          22.2708323,
+          114.1525915
+        ],
+        [
+          22.2708793,
+          114.1524047
+        ],
+        [
+          22.2709577,
+          114.1517471
+        ]
+      ],
+      "segmentLengthMeters": 578.1036845111081,
+      "sourceWayIds": [
+        265943515,
+        265943513,
+        1165024097
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-1a645eb4f02d1f59c7",
+      "fromStationId": "hk-peak-stop-99805",
+      "toStationId": "hk-peak-stop-99806",
+      "geometry": [
+        [
+          22.2709577,
+          114.1517471
+        ],
+        [
+          22.270978,
+          114.1515542
+        ],
+        [
+          22.2709886,
+          114.1514534
+        ],
+        [
+          22.2711097,
+          114.1503039
+        ],
+        [
+          22.271123,
+          114.1501414
+        ]
+      ],
+      "segmentLengthMeters": 166.25041110954893,
+      "sourceWayIds": [
+        1165024097,
+        622565242,
+        4338940,
+        1117280223
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-0ce02aff93b703e561",
+      "fromStationId": "hk-peak-stop-99806",
+      "toStationId": "hk-peak-stop-99805",
+      "geometry": [
+        [
+          22.271123,
+          114.1501414
+        ],
+        [
+          22.2711097,
+          114.1503039
+        ],
+        [
+          22.2709886,
+          114.1514534
+        ],
+        [
+          22.270978,
+          114.1515542
+        ],
+        [
+          22.2709577,
+          114.1517471
+        ]
+      ],
+      "segmentLengthMeters": 166.25041110954896,
+      "sourceWayIds": [
+        1117280223,
+        4338940,
+        622565242,
+        1165024097
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-ae5e319a1420325f67",
+      "fromStationId": "hk-peak-stop-99805",
+      "toStationId": "hk-peak-stop-99804",
+      "geometry": [
+        [
+          22.2709577,
+          114.1517471
+        ],
+        [
+          22.2708793,
+          114.1524047
+        ],
+        [
+          22.2707533,
+          114.1534625
+        ],
+        [
+          22.2707494,
+          114.1535337
+        ],
+        [
+          22.2707542,
+          114.1536219
+        ],
+        [
+          22.2707709,
+          114.1537159
+        ],
+        [
+          22.270794,
+          114.1538063
+        ],
+        [
+          22.2708224,
+          114.1538857
+        ],
+        [
+          22.2708634,
+          114.1539661
+        ],
+        [
+          22.2709084,
+          114.1540389
+        ],
+        [
+          22.2709637,
+          114.1541117
+        ],
+        [
+          22.27103,
+          114.1541816
+        ],
+        [
+          22.2710967,
+          114.1542349
+        ],
+        [
+          22.2712816,
+          114.1543629
+        ],
+        [
+          22.2721453,
+          114.1549689
+        ],
+        [
+          22.2728732,
+          114.1554799
+        ],
+        [
+          22.2729253,
+          114.1555332
+        ],
+        [
+          22.2729948,
+          114.1556136
+        ],
+        [
+          22.2730611,
+          114.1556754
+        ],
+        [
+          22.2733633,
+          114.155887
+        ]
+      ],
+      "segmentLengthMeters": 574.8502624241361,
+      "sourceWayIds": [
+        1165024097,
+        265943512,
+        265943515
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-575bdaf6072fa1caa9",
+      "fromStationId": "hk-peak-stop-99804",
+      "toStationId": "hk-peak-stop-99803",
+      "geometry": [
+        [
+          22.2733633,
+          114.155887
+        ],
+        [
+          22.2742035,
+          114.1564041
+        ],
+        [
+          22.2747827,
+          114.1568307
+        ],
+        [
+          22.2751722,
+          114.1571206
+        ]
+      ],
+      "segmentLengthMeters": 238.04516823147287,
+      "sourceWayIds": [
+        265943515
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-05e4ef71af2daa175a",
+      "fromStationId": "hk-peak-stop-99803",
+      "toStationId": "hk-peak-stop-99802",
+      "geometry": [
+        [
+          22.2751722,
+          114.1571206
+        ],
+        [
+          22.2756926,
+          114.1574881
+        ],
+        [
+          22.2762955,
+          114.1579122
+        ],
+        [
+          22.2764321,
+          114.158008
+        ],
+        [
+          22.276545,
+          114.1580862
+        ]
+      ],
+      "segmentLengthMeters": 182.135882822063,
+      "sourceWayIds": [
+        265943515,
+        85404052,
+        1046739316
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-eba4914cf9e0f7354c",
+      "fromStationId": "hk-peak-stop-99802",
+      "toStationId": "hk-peak-stop-99801",
+      "geometry": [
+        [
+          22.276545,
+          114.1580862
+        ],
+        [
+          22.2767649,
+          114.1582439
+        ],
+        [
+          22.2768355,
+          114.1582941
+        ],
+        [
+          22.2768893,
+          114.158338
+        ],
+        [
+          22.2769392,
+          114.1583785
+        ],
+        [
+          22.2771695,
+          114.158577
+        ]
+      ],
+      "segmentLengthMeters": 85.93472296285222,
+      "sourceWayIds": [
+        1046739316,
+        1046739317,
+        1308940440,
+        1308940441,
+        85404150
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
     }
   ],
   "servicePatterns": [
@@ -90877,7 +91803,36 @@
       "stopStatus": "verified",
       "validWhen": {
         "type": "off-peak-shuttle",
-        "note": "CSV confirms shuttle stops; full operating window needs timetable verification."
+        "note": "CSV confirms shuttle stops; full operating window needs timetable verification.",
+        "noteKo": "티우겡렝 ↔ 로하스파크 셔틀 · 평일 비혼잡시간 9~14분, 토요일 8.2~10분, 일요일·공휴일 9~14분 간격. 실제 시간표·당일 운영 안내 확인.",
+        "operatingDays": [
+          "weekdays-non-peak",
+          "saturday",
+          "sunday-public-holiday"
+        ],
+        "frequencyMinutes": {
+          "weekdayNonPeak": [
+            9,
+            14
+          ],
+          "saturday": [
+            8.2,
+            10
+          ],
+          "sundayPublicHoliday": [
+            9,
+            14
+          ]
+        },
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/mtr-service-hours.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff",
+            "url": "https://www.mtr.com.hk/en/customer/services/train_service_index.html"
+          }
+        ]
       },
       "serviceType": "metro",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
@@ -90891,11 +91846,9 @@
       ],
       "geometryStatus": "verified",
       "sourceRelationId": 13352938,
-      "releaseStatus": "INCOMPLETE",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요"
-      ],
-      "playable": false
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
     },
     {
       "id": "hk-tseung-kwan-o-tks-ut",
@@ -90912,7 +91865,36 @@
       "stopStatus": "verified",
       "validWhen": {
         "type": "off-peak-shuttle",
-        "note": "CSV confirms shuttle stops; full operating window needs timetable verification."
+        "note": "CSV confirms shuttle stops; full operating window needs timetable verification.",
+        "noteKo": "티우겡렝 ↔ 로하스파크 셔틀 · 평일 비혼잡시간 9~14분, 토요일 8.2~10분, 일요일·공휴일 9~14분 간격. 실제 시간표·당일 운영 안내 확인.",
+        "operatingDays": [
+          "weekdays-non-peak",
+          "saturday",
+          "sunday-public-holiday"
+        ],
+        "frequencyMinutes": {
+          "weekdayNonPeak": [
+            9,
+            14
+          ],
+          "saturday": [
+            8.2,
+            10
+          ],
+          "sundayPublicHoliday": [
+            9,
+            14
+          ]
+        },
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/mtr-service-hours.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff",
+            "url": "https://www.mtr.com.hk/en/customer/services/train_service_index.html"
+          }
+        ]
       },
       "serviceType": "metro",
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
@@ -90926,11 +91908,9 @@
       ],
       "geometryStatus": "verified",
       "sourceRelationId": 13352937,
-      "releaseStatus": "INCOMPLETE",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요"
-      ],
-      "playable": false
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
     },
     {
       "id": "hk-tseung-kwan-o-ut",
@@ -91647,6 +92627,128 @@
       ],
       "geometryStatus": "verified",
       "sourceRelationId": 5317239,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-tseung-kwan-o-lohas-peak-ut",
+      "canonicalLineId": "hk-tseung-kwan-o",
+      "countryId": "hk",
+      "direction": "lohas-peak-up",
+      "origin": "hk-mtr-NOP",
+      "destination": "hk-mtr-LHP",
+      "stopStationIds": [
+        "hk-mtr-NOP",
+        "hk-mtr-QUB",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK",
+        "hk-mtr-TKO",
+        "hk-mtr-LHP"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "peak-through-service",
+        "noteKo": "노스포인트 ↔ 로하스파크 직통 · 평일 오전·저녁 혼잡시간, 토요일 07:00~10:15에 운행. 일요일·공휴일 미운행. 그 외 시간에는 티우겡렝 셔틀 이용. 정확한 출발시각은 MTR 안내를 확인하세요.",
+        "operatingDays": [
+          "weekday-morning-peak",
+          "weekday-evening-peak",
+          "saturday-07:00-10:15"
+        ],
+        "sundayPublicHoliday": "no-through-service",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/mtr-service-hours.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          }
+        ]
+      },
+      "serviceType": "metro",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-bf707a91dbf4c12492",
+        "hk-track-f0010380c469309cc0",
+        "hk-track-c57312c1d9d35ab85d",
+        "hk-track-02da690b68a64da6ab",
+        "hk-track-8f28b0a89284a336f5"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 13352937,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-tseung-kwan-o-lohas-peak-dt",
+      "canonicalLineId": "hk-tseung-kwan-o",
+      "countryId": "hk",
+      "direction": "lohas-peak-down",
+      "origin": "hk-mtr-LHP",
+      "destination": "hk-mtr-NOP",
+      "stopStationIds": [
+        "hk-mtr-LHP",
+        "hk-mtr-TKO",
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-QUB",
+        "hk-mtr-NOP"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "peak-through-service",
+        "noteKo": "노스포인트 ↔ 로하스파크 직통 · 평일 오전·저녁 혼잡시간, 토요일 07:00~10:15에 운행. 일요일·공휴일 미운행. 그 외 시간에는 티우겡렝 셔틀 이용. 정확한 출발시각은 MTR 안내를 확인하세요.",
+        "operatingDays": [
+          "weekday-morning-peak",
+          "weekday-evening-peak",
+          "saturday-07:00-10:15"
+        ],
+        "sundayPublicHoliday": "no-through-service",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/mtr-service-hours.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          }
+        ]
+      },
+      "serviceType": "metro",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-0afc5921f274854776",
+        "hk-track-6c6f0b9f5598c1b013",
+        "hk-track-07c08209fd55f77b0e",
+        "hk-track-dcb79d545e48cc5fdf",
+        "hk-track-05bc59dd72de024391"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 13352938,
       "releaseStatus": "ready",
       "blockedReasons": [],
       "playable": true
@@ -92889,12 +93991,40 @@
         "hk-lr-435",
         "hk-lr-430"
       ],
-      "stopStatus": "unverified",
+      "stopStatus": "verified",
       "loop": false,
       "validWhen": {
         "type": "weekday-peak-conditional",
-        "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
-        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching."
+        "noteKo": "751P 오후·저녁 혼잡시간 특별편 · 틴수이와이 ↔ 틴얏. 평일 운행, 방학 중 감편. 오전 틴윙 출발편과 구분하며 당일 MTR 안내를 확인하세요. 공식 색상 미검증.",
+        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching.",
+        "operatingDays": [
+          "weekday-evening-peak"
+        ],
+        "schoolHoliday": "reduced-service",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
+            "url": "https://www.mtr.com.hk/en/customer/services/schedule_index.html"
+          },
+          {
+            "file": "data/hk/sources/phase6/lr-partial-751.html",
+            "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb",
+            "url": "https://www.mtr.com.hk/en/customer/services/lt_bus_index.html"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066",
+            "url": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv"
+          },
+          {
+            "file": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+            "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27",
+            "url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf"
+          }
+        ]
       },
       "serviceType": "light-rail",
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -92914,12 +94044,9 @@
       ],
       "geometryStatus": "verified",
       "sourceRelationId": 2929802,
-      "releaseStatus": "INCOMPLETE",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "현재 정차순서 검수 필요"
-      ],
-      "playable": false
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
     },
     {
       "id": "hk-light-rail-751p-osm-6485219",
@@ -92939,12 +94066,40 @@
         "hk-lr-480",
         "hk-lr-550"
       ],
-      "stopStatus": "unverified",
+      "stopStatus": "verified",
       "loop": false,
       "validWhen": {
         "type": "weekday-peak-conditional",
-        "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
-        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching."
+        "noteKo": "751P 오후·저녁 혼잡시간 특별편 · 틴수이와이 ↔ 틴얏. 평일 운행, 방학 중 감편. 오전 틴윙 출발편과 구분하며 당일 MTR 안내를 확인하세요. 공식 색상 미검증.",
+        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching.",
+        "operatingDays": [
+          "weekday-evening-peak"
+        ],
+        "schoolHoliday": "reduced-service",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
+            "url": "https://www.mtr.com.hk/en/customer/services/schedule_index.html"
+          },
+          {
+            "file": "data/hk/sources/phase6/lr-partial-751.html",
+            "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb",
+            "url": "https://www.mtr.com.hk/en/customer/services/lt_bus_index.html"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066",
+            "url": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv"
+          },
+          {
+            "file": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+            "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27",
+            "url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf"
+          }
+        ]
       },
       "serviceType": "light-rail",
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -92964,12 +94119,9 @@
       ],
       "geometryStatus": "verified",
       "sourceRelationId": 6485219,
-      "releaseStatus": "INCOMPLETE",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "현재 정차순서 검수 필요"
-      ],
-      "playable": false
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
     },
     {
       "id": "hk-light-rail-751p-osm-12619403",
@@ -94326,31 +95478,148 @@
       "playable": true
     },
     {
+      "id": "hk-ocean-express-up",
+      "canonicalLineId": "hk-ocean-express",
+      "countryId": "hk",
+      "direction": "up",
+      "origin": "hk-ocean-waterfront",
+      "destination": "hk-ocean-summit",
+      "stopStationIds": [
+        "hk-ocean-waterfront",
+        "hk-ocean-summit"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "regular",
+        "noteKo": "오션파크 입장권이 필요한 공원 내부 철도입니다. 운영시간과 휴무는 당일 공식 안내를 확인하세요. MTR 오션파크역과 별도 시설입니다."
+      },
+      "serviceType": "facility-funicular",
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-01a6bde3ab09c3e560"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 3366719,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-ocean-express-down",
+      "canonicalLineId": "hk-ocean-express",
+      "countryId": "hk",
+      "direction": "down",
+      "origin": "hk-ocean-summit",
+      "destination": "hk-ocean-waterfront",
+      "stopStationIds": [
+        "hk-ocean-summit",
+        "hk-ocean-waterfront"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "regular",
+        "noteKo": "오션파크 입장권이 필요한 공원 내부 철도입니다. 운영시간과 휴무는 당일 공식 안내를 확인하세요. MTR 오션파크역과 별도 시설입니다."
+      },
+      "serviceType": "facility-funicular",
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-3c5d362e3979211a7a"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 3366719,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
       "id": "hk-peak-tram-pending",
       "canonicalLineId": "hk-peak-tram",
       "countryId": "hk",
-      "direction": "unverified",
-      "origin": null,
-      "destination": null,
-      "stopStationIds": [],
-      "stopStatus": "unverified",
+      "direction": "up",
+      "origin": "hk-peak-stop-99801",
+      "destination": "hk-peak-stop-99806",
+      "stopStationIds": [
+        "hk-peak-stop-99801",
+        "hk-peak-stop-99802",
+        "hk-peak-stop-99803",
+        "hk-peak-stop-99804",
+        "hk-peak-stop-99805",
+        "hk-peak-stop-99806"
+      ],
+      "stopStatus": "verified",
       "validWhen": {
-        "type": "unverified"
+        "type": "request-stop",
+        "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
       },
       "serviceType": "funicular",
-      "sourceUrl": "https://www.thepeak.com.hk/en/faq",
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
       "sourceType": "official",
-      "checkedAt": null,
+      "checkedAt": "2026-10-25",
       "license": "REVIEW_REQUIRED",
-      "confidence": "unverified",
-      "trackEdgeIds": [],
-      "geometryStatus": "unverified",
-      "sourceRelationId": null,
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-d99f20d2841f59177a",
+        "hk-track-2215938547adfaeb8b",
+        "hk-track-7e26bd74711cbccba7",
+        "hk-track-21ff7c2a24a00b1adb",
+        "hk-track-1a645eb4f02d1f59c7"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 3264047,
       "releaseStatus": "INCOMPLETE",
       "blockedReasons": [
-        "현재 정차순서 검수 필요",
-        "실제 선로 검증 필요",
-        "정차역 자료 필요"
+        "조건부 운행 시간대 검증 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "playable": false
+    },
+    {
+      "id": "hk-peak-tram-down",
+      "canonicalLineId": "hk-peak-tram",
+      "countryId": "hk",
+      "direction": "down",
+      "origin": "hk-peak-stop-99806",
+      "destination": "hk-peak-stop-99801",
+      "stopStationIds": [
+        "hk-peak-stop-99806",
+        "hk-peak-stop-99805",
+        "hk-peak-stop-99804",
+        "hk-peak-stop-99803",
+        "hk-peak-stop-99802",
+        "hk-peak-stop-99801"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "request-stop",
+        "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
+      },
+      "serviceType": "funicular",
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-0ce02aff93b703e561",
+        "hk-track-ae5e319a1420325f67",
+        "hk-track-575bdaf6072fa1caa9",
+        "hk-track-05e4ef71af2daa175a",
+        "hk-track-eba4914cf9e0f7354c"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 3264047,
+      "releaseStatus": "INCOMPLETE",
+      "blockedReasons": [
+        "조건부 운행 시간대 검증 필요",
+        "한국어 역명 검수 필요"
       ],
       "playable": false
     },
@@ -95349,6 +96618,188 @@
       "checkedAt": "2026-10-24",
       "sha256": "c3e5d76a4b08544f8f9922673f8d03939a378190ac4f2ab31ea403305f30371e",
       "license": "REVIEW_REQUIRED"
+    },
+    "phase6/peak-resource.html": {
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "retrievedAt": "2026-10-24T16:12:13.890Z",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "2e2a31a0c22f482fee51dd7a4fc2c215540fc9c2f4adbf9ee767d9c3cd497d5e"
+    },
+    "phase6/peak-stops.mdb": {
+      "sourceUrl": "https://static.data.gov.hk/td/routes-and-fares/RSTOP_PTRAM.mdb",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "retrievedAt": "2026-10-24T16:12:15.495Z",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "15bf28104fac079addeb0b3274af3b2772e44486baa14a614b0b417810357be7"
+    },
+    "phase6/mtr-pr-26-029.pdf": {
+      "sourceUrl": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "retrievedAt": "2026-10-24T16:12:17.607Z",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27"
+    },
+    "phase6/light-rail.csv": {
+      "sourceUrl": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "retrievedAt": "2026-10-24T16:12:18.709Z",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066"
+    },
+    "phase6/light-rail.html": {
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "retrievedAt": "2026-10-24T16:12:19.923Z",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+    },
+    "phase6/mtr-service-hours.html": {
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "retrievedAt": "2026-10-24T16:12:21.135Z",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+    },
+    "phase6/apm.html": {
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "retrievedAt": "2026-10-24T16:12:23.015Z",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+    },
+    "phase6/ocean-express-ko.html": {
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "retrievedAt": "2026-10-24T16:12:24.584Z",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "950e5ac01329bcbc297195c3d6104928c3042e82012fe6aeadd550b07bba9ebd"
+    },
+    "phase6/lr-partial-751.html": {
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/lt_bus_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb"
+    },
+    "phase6/apm-t2-opening.html": {
+      "sourceUrl": "https://www.hongkongairport.com/en/media-centre/press-release/2026/pr_1868",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "3aef083386cc7c8fb34628207fefad72b703e2ac057a698eb15382e59013efac"
+    },
+    "phase6/disney-railroad.html": {
+      "sourceUrl": "https://www.hongkongdisneyland.com/attractions/hong-kong-disneyland-railroad-main-street-station/",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "376d8614296dfef8f2690fedc46178be93834b2a00760d3ed098873df7d232cd"
+    },
+    "phase6/apm-osm.json": {
+      "sourceUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%3Bway%5Brailway~%22%5E(funicular%7Cmonorail%7Clight_rail%7Crail%7Csubway)%24%22%5D(22.28%2C113.90%2C22.33%2C113.96)%3B(._%3B%3E%3B)%3Bout%20body%3B",
+      "sourceType": "osm",
+      "checkedAt": "2026-10-25",
+      "status": "INCOMPLETE",
+      "reason": "HTTP 406"
+    },
+    "phase6/ocean-osm.json": {
+      "sourceUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%3Bway%5Brailway~%22%5E(funicular%7Cmonorail%7Clight_rail%7Crail%7Csubway)%24%22%5D(22.23%2C114.16%2C22.26%2C114.19)%3B(._%3B%3E%3B)%3Bout%20body%3B",
+      "sourceType": "osm",
+      "checkedAt": "2026-10-25",
+      "status": "INCOMPLETE",
+      "reason": "HTTP 406"
+    },
+    "phase6/ocean-map.json": {
+      "sourceUrl": "https://api.openstreetmap.org/api/0.6/map.json?bbox=114.166,22.233,114.182,22.250",
+      "sourceType": "osm",
+      "status": "retrieved",
+      "checkedAt": "2026-10-25",
+      "license": "ODbL-1.0",
+      "sha256": "ab02fbe5a52d93c4ee7b09851f016ef2a5befbe917b4f6f353163b6c6ac40d1c"
+    },
+    "phase6/ocean-attractions-ko.html": {
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions",
+      "sourceType": "official",
+      "status": "retrieved",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "f3116b9dca96cab51be4536c41970e62cd9bcfcb82890ce15b5bc9d9050fa892"
+    },
+    "phase6/ocean-express-tc.html": {
+      "sourceUrl": "https://www.oceanpark.com.hk/tc/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "sourceType": "official",
+      "status": "retrieved",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "da36a624bce1a3863317f9c4501363966657e10c9c3fe81792d5aa4fc52d8a66"
+    },
+    "phase6/apm-map.json": {
+      "sourceUrl": "https://api.openstreetmap.org/api/0.6/map.json?bbox=113.90,22.286,113.953,22.327",
+      "status": "INCOMPLETE",
+      "reason": "HTTP 429",
+      "checkedAt": "2026-10-25"
+    },
+    "phase6/apm-map-retry.json": {
+      "sourceUrl": "https://api.openstreetmap.org/api/0.6/map.json?bbox=113.925,22.307,113.945,22.320",
+      "status": "INCOMPLETE",
+      "reason": "HTTP 429",
+      "checkedAt": "2026-10-25",
+      "retryPolicy": "One bounded retry after independent implementation and browser work; no further attempts this phase."
+    },
+    "phase6/peak-stops-extracted.json": {
+      "sourceUrl": "https://static.data.gov.hk/td/routes-and-fares/RSTOP_PTRAM.mdb",
+      "sourceType": "official-derived",
+      "checkedAt": "2026-10-25",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "ac47b9768880313d6134f5fead68815b268c7d2e6c6a51b70cfd9e82007c5eff",
+      "derivedFrom": "phase6/peak-stops.mdb",
+      "extractionTool": "tools/extract-hk-peak-stops.ps1",
+      "extraction": "ACE OLEDB 16.0 read-only SELECT RSTOP; preserves all 12 rows and original last-update dates."
+    },
+    "phase6/emsd-railways.html": {
+      "sourceUrl": "https://www.emsd.gov.hk/en/railway_safety/about_railway_safety/index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "fb05c69149757fcbb1b2da51e099ce9a5e8d8e3cbda0f30f5d3ac36dedbceb29"
+    },
+    "phase6/tram-next-data.js": {
+      "sourceUrl": "https://www.hktramways.com/js/nextTramData.js",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "cce77cd0e8682f00a6d7c9e1db7d829782a97a14bb1bf14746fec6cf7a344c00"
+    },
+    "phase6/tram-services.html": {
+      "sourceUrl": "https://www.hktramways.com/en/schedules-fares/",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED",
+      "sha256": "637cd1319bd30b03e19a482da2b3868fe343d1ed24f783a142275de1bff67cc3"
     }
   },
   "audits": {
@@ -95357,7 +96808,10 @@
         "type": "geometry",
         "sourceRelationId": 3264047,
         "reason": "stop not on railway within 80m: 988059821",
-        "status": "INCOMPLETE"
+        "status": "RESOLVED_GEOMETRY_ONLY",
+        "originalStatus": "INCOMPLETE",
+        "resolution": "Both six-stop paths validated against source railway vertices; original failure and raw relation retained. Korean/request-stop release remains INCOMPLETE.",
+        "evidenceFile": "data/hk/master/peak-tram-review.json"
       },
       {
         "type": "geometry",

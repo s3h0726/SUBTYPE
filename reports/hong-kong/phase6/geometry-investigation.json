@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-25",
+  "verifiedServices": 65,
+  "total": 66,
+  "sourceIssues": [
+    {
+      "type": "geometry",
+      "sourceRelationId": 3264047,
+      "reason": "stop not on railway within 80m: 988059821",
+      "status": "RESOLVED_GEOMETRY_ONLY",
+      "originalStatus": "INCOMPLETE",
+      "resolution": "Both six-stop paths validated against source railway vertices; original failure and raw relation retained. Korean/request-stop release remains INCOMPLETE.",
+      "evidenceFile": "data/hk/master/peak-tram-review.json"
+    },
+    {
+      "type": "geometry",
+      "sourceRelationId": 6582965,
+      "reason": "non-railway way 1492453330",
+      "status": "INCOMPLETE"
+    },
+    {
+      "type": "geometry",
+      "sourceRelationId": 6582966,
+      "reason": "non-railway way 1492453329",
+      "status": "INCOMPLETE"
+    }
+  ],
+  "unresolvedRelationIds": [
+    6582965,
+    6582966
+  ],
+  "peakReview": "data/hk/master/peak-tram-review.json",
+  "oceanReview": "data/hk/master/ocean-express.json",
+  "originalFailureEvidence": "reports/hong-kong/phase5/geometry-investigation.json",
+  "inventedVertices": 0,
+  "roadWaysAccepted": 0,
+  "apmStatus": "INCOMPLETE"
+}

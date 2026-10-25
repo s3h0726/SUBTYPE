@@ -1732,7 +1732,20 @@
       "longitude": 114.2524315,
       "officialCode": "TIK",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-TIK",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
     },
     {
       "id": "hk-mtr-YAT",
@@ -1790,7 +1803,20 @@
       "longitude": 114.2370732,
       "officialCode": "YAT",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-YAT",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
     },
     {
       "id": "hk-mtr-QUB",
@@ -1844,7 +1870,20 @@
       "longitude": 114.2077878,
       "officialCode": "QUB",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html"
+      "stationCodeSource": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "transferReview": {
+        "stationId": "hk-mtr-QUB",
+        "lineIds": [
+          "hk-island",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
     },
     {
       "id": "hk-mtr-NOP",

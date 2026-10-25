@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-25",
+  "operator": {
+    "id": "hk-ocean-park",
+    "names": {
+      "ja": "香港海洋公園",
+      "en": "Ocean Park Corporation",
+      "ko": "홍콩 오션파크"
+    }
+  },
+  "line": {
+    "id": "hk-ocean-express",
+    "operatorId": "hk-ocean-park",
+    "nameZhHant": "海洋列車",
+    "nameEn": "Ocean Express",
+    "nameKo": "오션 익스프레스",
+    "category": "funicular",
+    "facilityRailway": true,
+    "accessNoticeKo": "오션파크 입장권이 필요한 공원 내부 철도입니다. 운영시간과 휴무는 당일 공식 안내를 확인하세요. MTR 오션파크역과 별도 시설입니다.",
+    "status": "operational"
+  },
+  "sources": [
+    {
+      "file": "data/hk/sources/phase6/ocean-map.json",
+      "sha256": "ab02fbe5a52d93c4ee7b09851f016ef2a5befbe917b4f6f353163b6c6ac40d1c",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=114.166,22.233,114.182,22.250"
+    },
+    {
+      "file": "data/hk/sources/phase6/ocean-express-ko.html",
+      "sha256": "950e5ac01329bcbc297195c3d6104928c3042e82012fe6aeadd550b07bba9ebd",
+      "url": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront"
+    },
+    {
+      "file": "data/hk/sources/phase6/ocean-attractions-ko.html",
+      "sha256": "f3116b9dca96cab51be4536c41970e62cd9bcfcb82890ce15b5bc9d9050fa892",
+      "url": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions"
+    },
+    {
+      "file": "data/hk/sources/phase6/ocean-express-tc.html",
+      "sha256": "da36a624bce1a3863317f9c4501363966657e10c9c3fe81792d5aa4fc52d8a66",
+      "url": "https://www.oceanpark.com.hk/tc/a-day-at-the-park/attractions/ocean-express-the-waterfront"
+    }
+  ],
+  "sourceFile": "data/hk/sources/phase6/ocean-map.json",
+  "relationId": 3366719,
+  "relationVersion": 5,
+  "stations": [
+    {
+      "id": "hk-ocean-waterfront",
+      "sourceStopNodeId": 1070003266,
+      "nameZhHant": "海濱",
+      "nameEn": "Waterfront",
+      "nameKo": "워터프론트",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+        "sourceType": "official",
+        "checkedAt": "2026-10-25",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-ocean-summit",
+      "sourceStopNodeId": 1070003294,
+      "nameZhHant": "高峰",
+      "nameEn": "Summit",
+      "nameKo": "정상",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions",
+        "sourceType": "official",
+        "checkedAt": "2026-10-25",
+        "confidence": "high"
+      }
+    }
+  ],
+  "directions": [
+    {
+      "id": "hk-ocean-express-up",
+      "direction": "up",
+      "stopIds": [
+        "hk-ocean-waterfront",
+        "hk-ocean-summit"
+      ],
+      "wayIds": [
+        92167201,
+        250700765,
+        250700766
+      ]
+    },
+    {
+      "id": "hk-ocean-express-down",
+      "direction": "down",
+      "stopIds": [
+        "hk-ocean-summit",
+        "hk-ocean-waterfront"
+      ],
+      "wayIds": [
+        250700766,
+        250700764,
+        92167201
+      ]
+    }
+  ],
+  "geometryReview": "Source relation includes both one-way passing-loop arms, which cannot form one sequential trip. Up/down each use the existing arm in its tagged one-way direction; outer bidirectional ways are reversed only for continuity. Every coordinate remains a source railway vertex. Stops bind to existing nearby railway vertices; no station-to-track connector is generated. No elevation or 3D accuracy asserted."
+}

@@ -47,6 +47,14 @@
       "checkedAt": "2026-10-18",
       "license": "REVIEW_REQUIRED",
       "confidence": "unverified"
+    },
+    {
+      "id": "hk-ocean-park",
+      "names": {
+        "ja": "香港海洋公園",
+        "en": "Ocean Park Corporation",
+        "ko": "홍콩 오션파크"
+      }
     }
   ],
   "routes": [
@@ -1051,17 +1059,44 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요"
-      ],
+      "blockedReasons": [],
       "direction": "TKS-DT",
       "validWhen": {
         "type": "off-peak-shuttle",
-        "note": "CSV confirms shuttle stops; full operating window needs timetable verification."
+        "note": "CSV confirms shuttle stops; full operating window needs timetable verification.",
+        "noteKo": "티우겡렝 ↔ 로하스파크 셔틀 · 평일 비혼잡시간 9~14분, 토요일 8.2~10분, 일요일·공휴일 9~14분 간격. 실제 시간표·당일 운영 안내 확인.",
+        "operatingDays": [
+          "weekdays-non-peak",
+          "saturday",
+          "sunday-public-holiday"
+        ],
+        "frequencyMinutes": {
+          "weekdayNonPeak": [
+            9,
+            14
+          ],
+          "saturday": [
+            8.2,
+            10
+          ],
+          "sundayPublicHoliday": [
+            9,
+            14
+          ]
+        },
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/mtr-service-hours.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff",
+            "url": "https://www.mtr.com.hk/en/customer/services/train_service_index.html"
+          }
+        ]
       },
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "stopStatus": "verified",
@@ -1078,6 +1113,7 @@
           ]
         }
       ],
+      "operatingConditionFingerprint": "8d23120b98dd92baeb754512c0e3043c4603222649bc75fc4ecda0c550b14a96",
       "validationFingerprint": "b3ffa2f735f8245b5684ccfa5da74e68910aa8adb988fadc0130ac165aca3b6d",
       "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-tks-dt.json",
       "stationCount": 3,
@@ -1130,17 +1166,44 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요"
-      ],
+      "blockedReasons": [],
       "direction": "TKS-UT",
       "validWhen": {
         "type": "off-peak-shuttle",
-        "note": "CSV confirms shuttle stops; full operating window needs timetable verification."
+        "note": "CSV confirms shuttle stops; full operating window needs timetable verification.",
+        "noteKo": "티우겡렝 ↔ 로하스파크 셔틀 · 평일 비혼잡시간 9~14분, 토요일 8.2~10분, 일요일·공휴일 9~14분 간격. 실제 시간표·당일 운영 안내 확인.",
+        "operatingDays": [
+          "weekdays-non-peak",
+          "saturday",
+          "sunday-public-holiday"
+        ],
+        "frequencyMinutes": {
+          "weekdayNonPeak": [
+            9,
+            14
+          ],
+          "saturday": [
+            8.2,
+            10
+          ],
+          "sundayPublicHoliday": [
+            9,
+            14
+          ]
+        },
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/mtr-service-hours.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff",
+            "url": "https://www.mtr.com.hk/en/customer/services/train_service_index.html"
+          }
+        ]
       },
       "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
       "stopStatus": "verified",
@@ -1157,6 +1220,7 @@
           ]
         }
       ],
+      "operatingConditionFingerprint": "8d23120b98dd92baeb754512c0e3043c4603222649bc75fc4ecda0c550b14a96",
       "validationFingerprint": "fcb457a1b2fb0e60c026a7b011ee3ade000a8cb772a3a74978d120b616f7c9f2",
       "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-tks-ut.json",
       "stationCount": 3,
@@ -2890,6 +2954,236 @@
         "博覽館",
         "AsiaWorld-Expo",
         "아시아 월드 엑스포"
+      ]
+    },
+    {
+      "id": "hk-tseung-kwan-o-lohas-peak-ut",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tseung-kwan-o",
+      "servicePatternId": "hk-tseung-kwan-o-lohas-peak-ut",
+      "serviceLabel": "North Point → LOHAS Park",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "將軍澳綫",
+        "en": "Tseung Kwan O Line",
+        "ko": "정관오선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TKL",
+      "officialSymbolExists": false,
+      "lineColor": "#7e3c93",
+      "lineTheme": {
+        "code": "TKL",
+        "color": "#7e3c93",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "lohas-peak-up",
+      "validWhen": {
+        "type": "peak-through-service",
+        "noteKo": "노스포인트 ↔ 로하스파크 직통 · 평일 오전·저녁 혼잡시간, 토요일 07:00~10:15에 운행. 일요일·공휴일 미운행. 그 외 시간에는 티우겡렝 셔틀 이용. 정확한 출발시각은 MTR 안내를 확인하세요.",
+        "operatingDays": [
+          "weekday-morning-peak",
+          "weekday-evening-peak",
+          "saturday-07:00-10:15"
+        ],
+        "sundayPublicHoliday": "no-through-service",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/mtr-service-hours.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tseung-kwan-o-lohas-peak-ut",
+          "nameJa": "將軍澳綫",
+          "nameEn": "Tseung Kwan O Line",
+          "nameKo": "정관오선",
+          "stops": [
+            "hk-mtr-NOP",
+            "hk-mtr-QUB",
+            "hk-mtr-YAT",
+            "hk-mtr-TIK",
+            "hk-mtr-TKO",
+            "hk-mtr-LHP"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "e563da19ee05e45d2b071b1a9d89cef92339a35349c939a1e1541ba3f9668bad",
+      "validationFingerprint": "a29d3810b9db6f2307e90b91636fcfb02ecdb01e0127417cc1ad3835d299c386",
+      "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-lohas-peak-ut.json",
+      "stationCount": 6,
+      "stationSequence": [
+        "hk-mtr-NOP",
+        "hk-mtr-QUB",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK",
+        "hk-mtr-TKO",
+        "hk-mtr-LHP"
+      ],
+      "searchStations": [
+        "北角",
+        "North Point",
+        "노스 포인트",
+        "鰂魚涌",
+        "Quarry Bay",
+        "쿼리 베이",
+        "油塘",
+        "Yau Tong",
+        "야우통",
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝",
+        "將軍澳",
+        "Tseung Kwan O",
+        "정관오",
+        "康城",
+        "LOHAS Park",
+        "로하스파크"
+      ]
+    },
+    {
+      "id": "hk-tseung-kwan-o-lohas-peak-dt",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tseung-kwan-o",
+      "servicePatternId": "hk-tseung-kwan-o-lohas-peak-dt",
+      "serviceLabel": "LOHAS Park → North Point",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "將軍澳綫",
+        "en": "Tseung Kwan O Line",
+        "ko": "정관오선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TKL",
+      "officialSymbolExists": false,
+      "lineColor": "#7e3c93",
+      "lineTheme": {
+        "code": "TKL",
+        "color": "#7e3c93",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "lohas-peak-down",
+      "validWhen": {
+        "type": "peak-through-service",
+        "noteKo": "노스포인트 ↔ 로하스파크 직통 · 평일 오전·저녁 혼잡시간, 토요일 07:00~10:15에 운행. 일요일·공휴일 미운행. 그 외 시간에는 티우겡렝 셔틀 이용. 정확한 출발시각은 MTR 안내를 확인하세요.",
+        "operatingDays": [
+          "weekday-morning-peak",
+          "weekday-evening-peak",
+          "saturday-07:00-10:15"
+        ],
+        "sundayPublicHoliday": "no-through-service",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/mtr-service-hours.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tseung-kwan-o-lohas-peak-dt",
+          "nameJa": "將軍澳綫",
+          "nameEn": "Tseung Kwan O Line",
+          "nameKo": "정관오선",
+          "stops": [
+            "hk-mtr-LHP",
+            "hk-mtr-TKO",
+            "hk-mtr-TIK",
+            "hk-mtr-YAT",
+            "hk-mtr-QUB",
+            "hk-mtr-NOP"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "e563da19ee05e45d2b071b1a9d89cef92339a35349c939a1e1541ba3f9668bad",
+      "validationFingerprint": "14bd3bd89e693a243f77cd562c96148a00810752829d3fc550befd209d2fd6cc",
+      "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-lohas-peak-dt.json",
+      "stationCount": 6,
+      "stationSequence": [
+        "hk-mtr-LHP",
+        "hk-mtr-TKO",
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-QUB",
+        "hk-mtr-NOP"
+      ],
+      "searchStations": [
+        "康城",
+        "LOHAS Park",
+        "로하스파크",
+        "將軍澳",
+        "Tseung Kwan O",
+        "정관오",
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝",
+        "油塘",
+        "Yau Tong",
+        "야우통",
+        "鰂魚涌",
+        "Quarry Bay",
+        "쿼리 베이",
+        "北角",
+        "North Point",
+        "노스 포인트"
       ]
     },
     {
@@ -5793,32 +6087,57 @@
       "mode": "light_rail",
       "code": "751P",
       "officialSymbolExists": false,
-      "lineColor": "#000000",
+      "lineColor": "#71857d",
       "lineTheme": {
         "code": "751P",
-        "color": "#000000",
+        "color": "#71857d",
         "style": "hk",
         "colorVerified": false,
         "colorSource": "OSM candidate; official colour audit pending"
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "현재 정차순서 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "osm-2929802",
       "validWhen": {
         "type": "weekday-peak-conditional",
-        "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
-        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching."
+        "noteKo": "751P 오후·저녁 혼잡시간 특별편 · 틴수이와이 ↔ 틴얏. 평일 운행, 방학 중 감편. 오전 틴윙 출발편과 구분하며 당일 MTR 안내를 확인하세요. 공식 색상 미검증.",
+        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching.",
+        "operatingDays": [
+          "weekday-evening-peak"
+        ],
+        "schoolHoliday": "reduced-service",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
+            "url": "https://www.mtr.com.hk/en/customer/services/schedule_index.html"
+          },
+          {
+            "file": "data/hk/sources/phase6/lr-partial-751.html",
+            "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb",
+            "url": "https://www.mtr.com.hk/en/customer/services/lt_bus_index.html"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066",
+            "url": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv"
+          },
+          {
+            "file": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+            "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27",
+            "url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf"
+          }
+        ]
       },
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "stopStatus": "unverified",
+      "stopStatus": "verified",
       "services": [
         {
           "id": "hk-light-rail-751p-osm-2929802",
@@ -5838,6 +6157,7 @@
           ]
         }
       ],
+      "operatingConditionFingerprint": "44cec1f843180d7fdebd3bbc6132d96ca3e72067540971d2fbe0a9c864532bd0",
       "validationFingerprint": "7542bef376654a203d4e713d42fc7e641294a46687a607ad399c28afd46e35f9",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751p-osm-2929802.json",
       "stationCount": 9,
@@ -5904,32 +6224,57 @@
       "mode": "light_rail",
       "code": "751P",
       "officialSymbolExists": false,
-      "lineColor": "#000000",
+      "lineColor": "#71857d",
       "lineTheme": {
         "code": "751P",
-        "color": "#000000",
+        "color": "#71857d",
         "style": "hk",
         "colorVerified": false,
         "colorSource": "OSM candidate; official colour audit pending"
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "현재 정차순서 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "osm-6485219",
       "validWhen": {
         "type": "weekday-peak-conditional",
-        "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
-        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching."
+        "noteKo": "751P 오후·저녁 혼잡시간 특별편 · 틴수이와이 ↔ 틴얏. 평일 운행, 방학 중 감편. 오전 틴윙 출발편과 구분하며 당일 MTR 안내를 확인하세요. 공식 색상 미검증.",
+        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching.",
+        "operatingDays": [
+          "weekday-evening-peak"
+        ],
+        "schoolHoliday": "reduced-service",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase6/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
+            "url": "https://www.mtr.com.hk/en/customer/services/schedule_index.html"
+          },
+          {
+            "file": "data/hk/sources/phase6/lr-partial-751.html",
+            "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb",
+            "url": "https://www.mtr.com.hk/en/customer/services/lt_bus_index.html"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066",
+            "url": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv"
+          },
+          {
+            "file": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+            "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27",
+            "url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf"
+          }
+        ]
       },
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "stopStatus": "unverified",
+      "stopStatus": "verified",
       "services": [
         {
           "id": "hk-light-rail-751p-osm-6485219",
@@ -5949,6 +6294,7 @@
           ]
         }
       ],
+      "operatingConditionFingerprint": "44cec1f843180d7fdebd3bbc6132d96ca3e72067540971d2fbe0a9c864532bd0",
       "validationFingerprint": "3fbe25dd8bd7fe2e15291ffc1b4eb0ec2c4e1abc01ba1a12f2924bd159ee5225",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751p-osm-6485219.json",
       "stationCount": 9,
@@ -6015,10 +6361,10 @@
       "mode": "light_rail",
       "code": "751P",
       "officialSymbolExists": false,
-      "lineColor": "#000000",
+      "lineColor": "#71857d",
       "lineTheme": {
         "code": "751P",
-        "color": "#000000",
+        "color": "#71857d",
         "style": "hk",
         "colorVerified": false,
         "colorSource": "OSM candidate; official colour audit pending"
@@ -6066,6 +6412,7 @@
           ]
         }
       ],
+      "operatingConditionFingerprint": "31396e13a0aafe878d40b92daa311f42c9ed951af24e831184e6d1a1e628fef4",
       "validationFingerprint": "9a64728a2bc2becbab1f2192ae6ec137dc5b53ad96a41f28e0e0586a91725a9d",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751p-osm-12619403.json",
       "stationCount": 15,
@@ -9280,12 +9627,158 @@
       ]
     },
     {
+      "id": "hk-ocean-express-up",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-ocean-express",
+      "servicePatternId": "hk-ocean-express-up",
+      "serviceLabel": "Waterfront → Summit",
+      "operatorId": "hk-ocean-park",
+      "operator": {
+        "ja": "香港海洋公園",
+        "en": "Ocean Park Corporation",
+        "ko": "홍콩 오션파크"
+      },
+      "line": {
+        "ja": "海洋列車",
+        "en": "Ocean Express",
+        "ko": "오션 익스프레스"
+      },
+      "category": "funicular",
+      "mode": "funicular",
+      "code": "",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "up",
+      "validWhen": {
+        "type": "regular",
+        "noteKo": "오션파크 입장권이 필요한 공원 내부 철도입니다. 운영시간과 휴무는 당일 공식 안내를 확인하세요. MTR 오션파크역과 별도 시설입니다."
+      },
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-ocean-express-up",
+          "nameJa": "海洋列車",
+          "nameEn": "Ocean Express",
+          "nameKo": "오션 익스프레스",
+          "stops": [
+            "hk-ocean-waterfront",
+            "hk-ocean-summit"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "f2aa52f6600b60e3f9c97284a32d8e2079ceeca65ff57c85fa1ddef0dc5896df",
+      "validationFingerprint": "03e6d2c17944e77c22d44bd650ae9a71162466ec42f10c804f622ed186255be3",
+      "lazySource": "data/hk/generated/routes/hk-ocean-express-up.json",
+      "stationCount": 2,
+      "stationSequence": [
+        "hk-ocean-waterfront",
+        "hk-ocean-summit"
+      ],
+      "searchStations": [
+        "海濱",
+        "Waterfront",
+        "워터프론트",
+        "高峰",
+        "Summit",
+        "정상"
+      ]
+    },
+    {
+      "id": "hk-ocean-express-down",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-ocean-express",
+      "servicePatternId": "hk-ocean-express-down",
+      "serviceLabel": "Summit → Waterfront",
+      "operatorId": "hk-ocean-park",
+      "operator": {
+        "ja": "香港海洋公園",
+        "en": "Ocean Park Corporation",
+        "ko": "홍콩 오션파크"
+      },
+      "line": {
+        "ja": "海洋列車",
+        "en": "Ocean Express",
+        "ko": "오션 익스프레스"
+      },
+      "category": "funicular",
+      "mode": "funicular",
+      "code": "",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "down",
+      "validWhen": {
+        "type": "regular",
+        "noteKo": "오션파크 입장권이 필요한 공원 내부 철도입니다. 운영시간과 휴무는 당일 공식 안내를 확인하세요. MTR 오션파크역과 별도 시설입니다."
+      },
+      "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-ocean-express-down",
+          "nameJa": "海洋列車",
+          "nameEn": "Ocean Express",
+          "nameKo": "오션 익스프레스",
+          "stops": [
+            "hk-ocean-summit",
+            "hk-ocean-waterfront"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "f2aa52f6600b60e3f9c97284a32d8e2079ceeca65ff57c85fa1ddef0dc5896df",
+      "validationFingerprint": "5ccf3ecd0f0eb48864d0d8f24f04195339c7b4b8046fb228ed0c7440e06b8a6d",
+      "lazySource": "data/hk/generated/routes/hk-ocean-express-down.json",
+      "stationCount": 2,
+      "stationSequence": [
+        "hk-ocean-summit",
+        "hk-ocean-waterfront"
+      ],
+      "searchStations": [
+        "高峰",
+        "Summit",
+        "정상",
+        "海濱",
+        "Waterfront",
+        "워터프론트"
+      ]
+    },
+    {
       "id": "hk-peak-tram-pending",
       "countryId": "hk",
       "schemaVersion": 1,
       "canonicalLineId": "hk-peak-tram",
       "servicePatternId": "hk-peak-tram-pending",
-      "serviceLabel": "정차역 검증 대기",
+      "serviceLabel": "Garden Road Peak Tram Terminal → Peak Tram Terminus",
       "operatorId": "hk-peak-tram",
       "operator": {
         "ja": "山頂纜車",
@@ -9313,33 +9806,151 @@
       "lazy": true,
       "playable": false,
       "releaseStatus": "INCOMPLETE",
-      "geometryReady": false,
-      "geometryStatus": "unverified",
+      "geometryReady": true,
+      "geometryStatus": "verified",
       "blockedReasons": [
-        "현재 정차순서 검수 필요",
-        "실제 선로 검증 필요",
-        "정차역 자료 필요"
+        "조건부 운행 시간대 검증 필요",
+        "한국어 역명 검수 필요"
       ],
-      "direction": "unverified",
+      "direction": "up",
       "validWhen": {
-        "type": "unverified"
+        "type": "request-stop",
+        "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
       },
-      "sourceUrl": "https://www.thepeak.com.hk/en/faq",
-      "stopStatus": "unverified",
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "stopStatus": "verified",
       "services": [
         {
           "id": "hk-peak-tram-pending",
           "nameJa": "山頂纜車",
           "nameEn": "Peak Tram",
           "nameKo": "피크트램",
-          "stops": []
+          "stops": [
+            "hk-peak-stop-99801",
+            "hk-peak-stop-99802",
+            "hk-peak-stop-99803",
+            "hk-peak-stop-99804",
+            "hk-peak-stop-99805",
+            "hk-peak-stop-99806"
+          ]
         }
       ],
-      "validationFingerprint": "f6404bf3596e0e668a501755087b84729c3001d7ad100a8a314b948067d2c263",
+      "operatingConditionFingerprint": "a2400aac8fae4e48fcb8a7552d2b16a88cb43c60a10aaea38fbb293e427647eb",
+      "validationFingerprint": "ce1f931a5cd46a90ec42ae826a88e0051e2b58151398847740aa2a8bf183aacb",
       "lazySource": "data/hk/generated/routes/hk-peak-tram-pending.json",
-      "stationCount": 0,
-      "stationSequence": [],
-      "searchStations": []
+      "stationCount": 6,
+      "stationSequence": [
+        "hk-peak-stop-99801",
+        "hk-peak-stop-99802",
+        "hk-peak-stop-99803",
+        "hk-peak-stop-99804",
+        "hk-peak-stop-99805",
+        "hk-peak-stop-99806"
+      ],
+      "searchStations": [
+        "花園道纜車總站",
+        "Garden Road Peak Tram Terminal",
+        "堅尼地道站",
+        "Kennedy Road Station",
+        "麥當勞道站",
+        "Macdonnell Road Station",
+        "梅道站",
+        "May Road Station",
+        "白加道站",
+        "Barker Road Station",
+        "山頂纜車總站",
+        "Peak Tram Terminus"
+      ]
+    },
+    {
+      "id": "hk-peak-tram-down",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-peak-tram",
+      "servicePatternId": "hk-peak-tram-down",
+      "serviceLabel": "Peak Tram Terminus → Garden Road Peak Tram Terminal",
+      "operatorId": "hk-peak-tram",
+      "operator": {
+        "ja": "山頂纜車",
+        "en": "Peak Tram",
+        "ko": "피크트램"
+      },
+      "line": {
+        "ja": "山頂纜車",
+        "en": "Peak Tram",
+        "ko": "피크트램"
+      },
+      "category": "funicular",
+      "mode": "funicular",
+      "code": "",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": false,
+      "releaseStatus": "INCOMPLETE",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [
+        "조건부 운행 시간대 검증 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "direction": "down",
+      "validWhen": {
+        "type": "request-stop",
+        "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-peak-tram-down",
+          "nameJa": "山頂纜車",
+          "nameEn": "Peak Tram",
+          "nameKo": "피크트램",
+          "stops": [
+            "hk-peak-stop-99806",
+            "hk-peak-stop-99805",
+            "hk-peak-stop-99804",
+            "hk-peak-stop-99803",
+            "hk-peak-stop-99802",
+            "hk-peak-stop-99801"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "a2400aac8fae4e48fcb8a7552d2b16a88cb43c60a10aaea38fbb293e427647eb",
+      "validationFingerprint": "b0f36c56b818b0e3208a8216048d9ca9de39fb17488d8c33d420912259588860",
+      "lazySource": "data/hk/generated/routes/hk-peak-tram-down.json",
+      "stationCount": 6,
+      "stationSequence": [
+        "hk-peak-stop-99806",
+        "hk-peak-stop-99805",
+        "hk-peak-stop-99804",
+        "hk-peak-stop-99803",
+        "hk-peak-stop-99802",
+        "hk-peak-stop-99801"
+      ],
+      "searchStations": [
+        "山頂纜車總站",
+        "Peak Tram Terminus",
+        "白加道站",
+        "Barker Road Station",
+        "梅道站",
+        "May Road Station",
+        "麥當勞道站",
+        "Macdonnell Road Station",
+        "堅尼地道站",
+        "Kennedy Road Station",
+        "花園道纜車總站",
+        "Garden Road Peak Tram Terminal"
+      ]
     },
     {
       "id": "hk-high-speed-pending",
@@ -9451,9 +10062,9 @@
   },
   "audit": {
     "status": "INCOMPLETE",
-    "totalServices": 61,
-    "playableServices": 54,
-    "missingKoreanNames": 0,
+    "totalServices": 66,
+    "playableServices": 62,
+    "missingKoreanNames": 6,
     "geometryIssues": 3
   }
 }

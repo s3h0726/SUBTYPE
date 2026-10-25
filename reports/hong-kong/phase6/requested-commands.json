@@ -1,0 +1,35 @@
+[
+  {
+    "requestedCommand": "npm run build:hk",
+    "actualCommand": "node output/hk/phase6/npm-runtime/package/bin/npm-cli.js run build:hk",
+    "status": "PASS",
+    "exitCode": 0,
+    "runner": "Official npm CLI12.2.1, temporary ignored directory; no dependency install"
+  },
+  {
+    "requestedCommand": "npm run test:hk",
+    "actualCommand": "node output/hk/phase6/npm-runtime/package/bin/npm-cli.js run test:hk",
+    "status": "PASS",
+    "exitCode": 0,
+    "runner": "Official npm CLI12.2.1, temporary ignored directory; no dependency install"
+  },
+  {
+    "requestedCommand": "npm run audit:hk",
+    "actualCommand": "node output/hk/phase6/npm-runtime/package/bin/npm-cli.js run audit:hk",
+    "status": "PASS",
+    "exitCode": 0,
+    "runner": "Official npm CLI12.2.1, temporary ignored directory; no dependency install"
+  },
+  {
+    "requestedCommand": "npm run audit:hk:complete",
+    "actualCommand": "node output/hk/phase6/npm-runtime/package/bin/npm-cli.js run audit:hk:complete",
+    "status": "INCOMPLETE",
+    "exitCode": 1,
+    "runner": "Official npm CLI12.2.1, temporary ignored directory; no dependency install"
+  },
+  {
+    "requestedCommand": "node tools/check-hk-ui-baseline.cjs",
+    "status": "PASS",
+    "exitCode": 0
+  }
+]

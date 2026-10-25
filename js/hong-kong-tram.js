@@ -17,3 +17,8 @@ export function resolveHongKongTramChoice(choice,route){
  if(calls[0].id!==choice.originId||calls.at(-1).id!==choice.destinationId)throw Error('트램 출발·종착 정류장이 원본 운행계통과 다릅니다.');
  return{route,service:route.services[0],boardingStationId:calls[0].id,direction:'forward',pattern:null,trainType:null,destinationStationId:calls.at(-1).id,trainTypeContexts:[]};
 }
+
+// Other Hong Kong physical lines share one card; each direction keeps its full,
+// independently validated source service. No reverse geometry is synthesized.
+export function hongKongLineChoices(routes,lineId){return routes.filter(r=>r.countryId==='hk'&&r.canonicalLineId===lineId&&!r.lazy&&!hongKongRouteBlockReason(r)).map(r=>({kind:'hongKongLine',id:r.id,sourceRouteId:r.id,lineGroup:[r.stations[0].id,r.stations.at(-1).id].sort().join(':'),lineGroupLabel:[r.stations[0].ko,r.stations.at(-1).ko].sort().join(' ↔ ')+(r.validWhen?.type==='regular'?'':' · 조건부'),originId:r.stations[0].id,destinationId:r.stations.at(-1).id,originNames:r.stations[0],destinationNames:r.stations.at(-1),directionOriginNames:r.stations[0],patternName:r.line,direction:r.direction,legacyServiceId:r.services[0].id}))}
+export function resolveHongKongLineChoice(choice,route){if(choice?.kind!=='hongKongLine'||choice.sourceRouteId!==route?.id||hongKongRouteBlockReason(route)||route.stations[0].id!==choice.originId||route.stations.at(-1).id!==choice.destinationId)throw Error('검증된 홍콩 운행계통과 출발·종착이 다릅니다.');return{route,service:route.services[0],direction:'forward',pattern:null,trainType:null,destinationStationId:route.stations.at(-1).id,trainTypeContexts:[]}}

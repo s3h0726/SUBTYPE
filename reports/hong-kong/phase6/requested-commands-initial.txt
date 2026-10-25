@@ -1,0 +1,147 @@
+Phase6 requested commands, actual outputs
+
+$ npm run build:hk
+ACTUAL node C:\Users\galax\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\pnpm\bin\pnpm.cjs run build:hk
+[EPERM] EPERM: operation not permitted, symlink 'C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository' -> 'C:\Users\galax\AppData\Local\Packages\sandbox.{217092c2-299d-482b-8fd9-1d1ed7dabb9c}\AC\pnpm\store\v11\projects\6ed358a2ca4fecf4e684bd083c52f1e5'
+
+pnpm: EPERM: operation not permitted, symlink 'C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository' -> 'C:\Users\galax\AppData\Local\Packages\sandbox.{217092c2-299d-482b-8fd9-1d1ed7dabb9c}\AC\pnpm\store\v11\projects\6ed358a2ca4fecf4e684bd083c52f1e5'
+    at async Object.symlink (node:internal/fs/promises:1059:10)
+    at async createSymlinkAsync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:51013:13)
+    at async forceSymlink (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:50933:7)
+    at async registerProject (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:184446:3)
+    at async getContext (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:185166:5)
+    at async mutateModules (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:217116:13)
+    at async install (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:217039:128)
+    at async installDeps (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:225024:118)
+    at async Object.handler5 (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:225946:3)
+    at async file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:328619:19
+[ERROR] Command failed with exit code 4294963248: pnpm install
+
+pnpm: Command failed with exit code 4294963248: pnpm install
+    at getFinalError (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:89986:14)
+    at makeError (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:92293:21)
+    at getSyncResult (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94137:10)
+    at spawnSubprocessSync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94097:14)
+    at execaCoreSync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94027:23)
+    at callBoundExeca (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96555:23)
+    at boundExeca (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96532:49)
+    at sync2 (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96687:14)
+    at runPnpmCli (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:276906:5)
+    at runDepsStatusCheck (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:278122:7)
+
+EXIT 1
+
+$ npm run test:hk
+ACTUAL node C:\Users\galax\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\pnpm\bin\pnpm.cjs run test:hk
+[EPERM] EPERM: operation not permitted, symlink 'C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository' -> 'C:\Users\galax\AppData\Local\Packages\sandbox.{217092c2-299d-482b-8fd9-1d1ed7dabb9c}\AC\pnpm\store\v11\projects\6ed358a2ca4fecf4e684bd083c52f1e5'
+
+pnpm: EPERM: operation not permitted, symlink 'C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository' -> 'C:\Users\galax\AppData\Local\Packages\sandbox.{217092c2-299d-482b-8fd9-1d1ed7dabb9c}\AC\pnpm\store\v11\projects\6ed358a2ca4fecf4e684bd083c52f1e5'
+    at async Object.symlink (node:internal/fs/promises:1059:10)
+    at async createSymlinkAsync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:51013:13)
+    at async forceSymlink (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:50933:7)
+    at async registerProject (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:184446:3)
+    at async getContext (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:185166:5)
+    at async mutateModules (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:217116:13)
+    at async install (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:217039:128)
+    at async installDeps (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:225024:118)
+    at async Object.handler5 (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:225946:3)
+    at async file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:328619:19
+[ERROR] Command failed with exit code 4294963248: pnpm install
+
+pnpm: Command failed with exit code 4294963248: pnpm install
+    at getFinalError (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:89986:14)
+    at makeError (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:92293:21)
+    at getSyncResult (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94137:10)
+    at spawnSubprocessSync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94097:14)
+    at execaCoreSync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94027:23)
+    at callBoundExeca (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96555:23)
+    at boundExeca (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96532:49)
+    at sync2 (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96687:14)
+    at runPnpmCli (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:276906:5)
+    at runDepsStatusCheck (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:278122:7)
+
+EXIT 1
+
+$ npm run audit:hk
+ACTUAL node C:\Users\galax\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\pnpm\bin\pnpm.cjs run audit:hk
+[EPERM] EPERM: operation not permitted, symlink 'C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository' -> 'C:\Users\galax\AppData\Local\Packages\sandbox.{217092c2-299d-482b-8fd9-1d1ed7dabb9c}\AC\pnpm\store\v11\projects\6ed358a2ca4fecf4e684bd083c52f1e5'
+
+pnpm: EPERM: operation not permitted, symlink 'C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository' -> 'C:\Users\galax\AppData\Local\Packages\sandbox.{217092c2-299d-482b-8fd9-1d1ed7dabb9c}\AC\pnpm\store\v11\projects\6ed358a2ca4fecf4e684bd083c52f1e5'
+    at async Object.symlink (node:internal/fs/promises:1059:10)
+    at async createSymlinkAsync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:51013:13)
+    at async forceSymlink (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:50933:7)
+    at async registerProject (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:184446:3)
+    at async getContext (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:185166:5)
+    at async mutateModules (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:217116:13)
+    at async install (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:217039:128)
+    at async installDeps (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:225024:118)
+    at async Object.handler5 (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:225946:3)
+    at async file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:328619:19
+[ERROR] Command failed with exit code 4294963248: pnpm install
+
+pnpm: Command failed with exit code 4294963248: pnpm install
+    at getFinalError (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:89986:14)
+    at makeError (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:92293:21)
+    at getSyncResult (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94137:10)
+    at spawnSubprocessSync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94097:14)
+    at execaCoreSync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94027:23)
+    at callBoundExeca (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96555:23)
+    at boundExeca (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96532:49)
+    at sync2 (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96687:14)
+    at runPnpmCli (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:276906:5)
+    at runDepsStatusCheck (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:278122:7)
+
+EXIT 1
+
+$ npm run audit:hk:complete
+ACTUAL node C:\Users\galax\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\pnpm\bin\pnpm.cjs run audit:hk:complete
+[EPERM] EPERM: operation not permitted, symlink 'C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository' -> 'C:\Users\galax\AppData\Local\Packages\sandbox.{217092c2-299d-482b-8fd9-1d1ed7dabb9c}\AC\pnpm\store\v11\projects\6ed358a2ca4fecf4e684bd083c52f1e5'
+
+pnpm: EPERM: operation not permitted, symlink 'C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository' -> 'C:\Users\galax\AppData\Local\Packages\sandbox.{217092c2-299d-482b-8fd9-1d1ed7dabb9c}\AC\pnpm\store\v11\projects\6ed358a2ca4fecf4e684bd083c52f1e5'
+    at async Object.symlink (node:internal/fs/promises:1059:10)
+    at async createSymlinkAsync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:51013:13)
+    at async forceSymlink (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:50933:7)
+    at async registerProject (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:184446:3)
+    at async getContext (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:185166:5)
+    at async mutateModules (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:217116:13)
+    at async install (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:217039:128)
+    at async installDeps (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:225024:118)
+    at async Object.handler5 (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:225946:3)
+    at async file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:328619:19
+[ERROR] Command failed with exit code 4294963248: pnpm install
+
+pnpm: Command failed with exit code 4294963248: pnpm install
+    at getFinalError (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:89986:14)
+    at makeError (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:92293:21)
+    at getSyncResult (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94137:10)
+    at spawnSubprocessSync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94097:14)
+    at execaCoreSync (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:94027:23)
+    at callBoundExeca (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96555:23)
+    at boundExeca (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96532:49)
+    at sync2 (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:96687:14)
+    at runPnpmCli (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:276906:5)
+    at runDepsStatusCheck (file:///C:/Users/galax/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:278122:7)
+
+EXIT 1
+
+$ node tools/check-hk-ui-baseline.cjs
+ACTUAL node tools/check-hk-ui-baseline.cjs
+{
+  "mainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
+  "baselineFailures": [
+    "inputValueIsNfcSoleSource",
+    "koreanProgressUsesAnswerLength",
+    "autoAdvance150ms",
+    "firstAnswerIsStartStation"
+  ],
+  "currentFailures": [
+    "inputValueIsNfcSoleSource",
+    "koreanProgressUsesAnswerLength",
+    "autoAdvance150ms",
+    "firstAnswerIsStartStation"
+  ],
+  "unchanged": true,
+  "explanation": "The legacy UI audit uses source-code regex checks. Its existing failures remain failures and are not counted as new PASS results."
+}
+
+EXIT 0

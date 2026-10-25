@@ -73,7 +73,7 @@ class Game{
     $('#next-station').textContent='이동할 역 선택';$('#station-service-footer').textContent='자유주행';
     $('#game-service-name').textContent='FREE DRIVE · 自由走行';$('#service-origin-ja').textContent=station.ja||'';$('#service-origin-ko').textContent=station.ko||'';$('#service-destination-ja').textContent='自由';$('#service-destination-ko').textContent='자유주행';$('#service-stop-count').textContent=`${state.historyLength||1}개 역 이동`;$('#service-route-summary').textContent=`${route.line?.ko||route.line?.ja||''} · 자유주행`;$('#service-direction-summary').textContent='앞·뒤 역을 선택해 자유롭게 이동';
     $('#hud-progress').textContent=`${state.historyLength||1} VISITED`;$('#hud-cpm').textContent='—';$('#hud-accuracy').textContent='—';$('#hud-combo').textContent=`환승 ${state.transferCount||0}`;
-    const defaultEdge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state.edges?.[0];
+    const defaultEdge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||(route.countryId==='hk'?null:state.edges?.[0]);
     if(this.freeDriveAwaitingStart)this.setFreeDriveStartTarget(station);
     else if(defaultEdge){const targetStation=defaultEdge.route?.stations?.[defaultEdge.index]||null;if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation,{renderMap:false})}
     else{this.freeDriveTarget=null;this.phase='AT_TERMINAL';$('#typing-input').readOnly=true;$('#station-context').textContent='종착역 도착 · 자유주행';$('#input-status').textContent='ARRIVED';}
@@ -113,8 +113,9 @@ class Game{
       const target=this.freeDriveTarget;beginTransitionTiming(this,'free-drive');this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(target.station?.id||target.to);this.playTone();this.typing.clear?.();
       if(target.kind==='start'){
         this.freeDriveAwaitingStart=false;
-        const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),edge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state?.edges?.[0];
+        const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),edge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||(this.route?.countryId==='hk'?null:state?.edges?.[0]);
         if(edge){const station=edge.route?.stations?.[edge.index]||null;if(station){$('#station-context').textContent='다음역 입력 · 자유주행';this.setFreeDriveTypingTarget(edge,station);return}}
+        if(this.route?.countryId==='hk'){this.renderFreeDriveState(state);return}
         toast('이 역에서 이어지는 다음 역이 없습니다.');return
       }
       const session=this.sessionId,arrival=this.arrivalPromise=this.trainArrival(1);const move=()=>{if(this.paused)return;if(this.sessionId!==session||!this.freeDriveMode||this.freeDriveTarget!==target)return;const moved=this.onFreeDriveMove?.(target.to,target.routeId);if(!moved){toast('다음 역으로 이동하지 못했습니다.');this.setFreeDriveTypingTarget(target,target.station)}};this.pendingFreeDriveMove=move;if(arrival?.then)arrival.then(reached=>{if(reached!==false)move()});else move();return

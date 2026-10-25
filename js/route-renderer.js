@@ -69,7 +69,7 @@ function createRouteLayers(rail,route,index,options={}){
 }
 function updateRouteProgress(rail,route,index,motion,options={}){
   const nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1),currentPosition=rail.train?.getLatLng(),previous=currentPosition?[currentPosition.lat,currentPosition.lng]:rail.stationPoints[rail.index],next=rail.stationPoints[index];rail.remaining.setLatLngs(rail.points.slice(rail.stationOffsets[index]));rail.completed.setLatLngs(rail.points.slice(0,rail.stationOffsets[index]+1));
-  rail.markers.forEach((marker,i)=>{const kind=i===index?'current':i===nextIndex?'next':i===index-1?'previous':'other';marker.setIcon(stationIcon(rail.L,route.stations[i],kind,route.lineColor));marker.setZIndexOffset(i===index?500:0)});
+  const changedMarkers=new Set([rail.index,rail.nextIndex,rail.index-1,index,nextIndex,index-1]);for(const i of changedMarkers){const marker=rail.markers[i];if(!marker)continue;const kind=i===index?'current':i===nextIndex?'next':i===index-1?'previous':'other';marker.setIcon(stationIcon(rail.L,route.stations[i],kind,route.lineColor));marker.setZIndexOffset(i===index?500:0)}
   const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion,index);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;/* Follow the arrived station only; never pan on each keystroke. */centerArrivalCamera(rail,index,nextIndex);updateDebug()
 }
 async function renderOsm(route,index,options){
@@ -80,7 +80,8 @@ async function renderOsm(route,index,options){
   if((route.countryId==='kr'||route.countryId==='hk')&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
   const requestedNext=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(safe+1,route.stations.length-1);if(rail.routeKey!==(route.renderKey||route.id))createRouteLayers(rail,route,safe,options);else if(rail.index!==safe||rail.nextIndex!==requestedNext)updateRouteProgress(rail,route,safe,options.motion,options);else rail.nextIndex=requestedNext;
-  requestAnimationFrame(()=>rail.map.invalidateSize());if(status)status.textContent='OPENSTREETMAP · LIVE';
+  // Initial layer creation and the debounced resize handler own map sizing.
+  if(status)status.textContent='OPENSTREETMAP · LIVE';
   const station=route.stations[safe],info=$('#map-station-info');if(info){info.hidden=false;info.innerHTML=`<b>${escapeHtml(route.countryId==='kr'?(station.ko||station.ja||''):(station.ja||station.ko||''))}</b><span>${escapeHtml(station.ko)} · ${escapeHtml(station.romaji)}</span>`}
 }
 export function renderGameMap(route,index,options={}){renderQueue=renderQueue.then(()=>renderOsm(route,index,options)).catch(error=>{console.error('OSM game map:',error);const status=$('#basemap-status');if(status)status.textContent='OPENSTREETMAP · LOAD ERROR'});return renderQueue}

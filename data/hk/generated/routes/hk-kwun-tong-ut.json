@@ -3810,7 +3810,20 @@
       "longitude": 114.1772614,
       "officialCode": "KOT",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-KOT",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-east-rail"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
     },
     {
       "id": "hk-mtr-LOF",
@@ -4344,7 +4357,20 @@
       "longitude": 114.2372215,
       "officialCode": "YAT",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-YAT",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
     },
     {
       "id": "hk-mtr-TIK",
@@ -4406,7 +4432,20 @@
       "longitude": 114.2524271,
       "officialCode": "TIK",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-TIK",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
     }
   ],
   "services": [

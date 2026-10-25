@@ -898,7 +898,20 @@
       "longitude": 114.0290377,
       "officialCode": "SUN",
       "hasOfficialStationCode": true,
-      "stationCodeSource": "https://www.hongkongdisneyland.com/ko/guest-services/travel-information/"
+      "stationCodeSource": "https://www.hongkongdisneyland.com/ko/guest-services/travel-information/",
+      "transferReview": {
+        "stationId": "hk-mtr-SUN",
+        "lineIds": [
+          "hk-tung-chung",
+          "hk-disneyland"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
     }
   ],
   "services": [
