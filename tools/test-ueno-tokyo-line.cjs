@@ -22,9 +22,9 @@ sb.TRT_RAIL_SYSTEM={throughServices:T.services,trainServices:[{id:'unrelated-nex
 vm.createContext(sb);vm.runInContext(app.slice(a,b),sb);
 assert(C.servicePatterns.filter(p=>p.baseRouteId==='line-11343').every(p=>p.sources?.some(s=>s.type==='official'&&s.url.startsWith('https://'))),'Missing JR official timetable attribution');
 const choices=sb.actualOperatingChoices({...base,countryId:'jp'});
-assert.equal(choices.length,12,'Expose only twelve timetable-supported directions');
+assert.equal(choices.length,18,'Expose only eighteen timetable-supported directions');
 assert(choices.every(x=>x.kind==='journey'&&x.patternId.startsWith('jr-ueno-')));
-assert.equal(new Set(choices.map(x=>sb.operatingPatternKey(x))).size,7);
+assert.equal(new Set(choices.map(x=>sb.operatingPatternKey(x))).size,10);
 assert(choices.every(x=>!/(나리타|히타치|토키와)/.test(sb.operatingPatternLabel(x))));
 assert(app.includes("['line-11333','line-11343'].includes(route?.id)?null:nationwideCatalogLine(route)"));
 assert(read('js/app.bundle.js').includes("choice.patternId?.startsWith('jr-ueno-')&&choice.throughServiceId?.startsWith('jr-ueno-')"));

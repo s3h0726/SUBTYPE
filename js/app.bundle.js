@@ -2477,7 +2477,10 @@ function operatingPatternLabel(choice){
       'jr-ueno-kagohara-odawara':'타카사키선 ↔ 도카이도선 · 카고하라~오다와라',
       'jr-ueno-joban-tsuchiura-local':'조반선 ↔ 시나가와 · 츠치우라~시나가와 보통',
       'jr-ueno-joban-toride-rapid':'조반선 ↔ 시나가와 · 도리데~시나가와 쾌속',
-      'jr-ueno-joban-tsuchiura-special-rapid':'조반선 ↔ 시나가와 · 시나가와→츠치우라 특별쾌속'
+      'jr-ueno-joban-tsuchiura-special-rapid':'조반선 ↔ 시나가와 · 시나가와→츠치우라 특별쾌속',
+      'jr-ueno-joban-mito-local':'조반선 ↔ 시나가와 · 미토~시나가와 보통',
+      'jr-ueno-joban-katsuta-local':'조반선 ↔ 시나가와 · 카츠타~시나가와 보통',
+      'jr-ueno-joban-takahagi-local':'조반선 ↔ 시나가와 · 타카하기~시나가와 보통'
     };
     return uenoNames[choice.throughServiceId]||'우에노도쿄라인 · 보통';
   }
@@ -2547,7 +2550,8 @@ function configureJourneyPicker(){
     direction.value=choice.direction||'forward';
     const state=statusOf(choice),total=choices.length,ready=statusById.size?[...statusById.values()].filter(item=>item.playable).length:total;
     const availability=japan?(state.playable?' · 플레이 가능':` · 실행 불가: ${state.reason||'연결된 선로 검증 필요'}`):'';
-    summary.textContent=`${operatingPatternLabel(choice)} · ${operatingDirectionLabel(choice)} · ${journeyStationDisplayName(choice.originNames)} → ${journeyStationDisplayName(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''}${availability}${japan?` (등록 ${total}개 / 실행 가능 ${ready}개)`:''}`;
+    const trackNote=choice.patternId?.startsWith('jr-ueno-joban-')?' · 닛포리~우에노 잠정 선형':'';
+    summary.textContent=`${operatingPatternLabel(choice)} · ${operatingDirectionLabel(choice)} · ${journeyStationDisplayName(choice.originNames)} → ${journeyStationDisplayName(choice.destinationNames)}${choice.trainType?` · ${journeyLabel(choice.trainType)}`:''}${choice.throughServiceId?' · 직통운행':''}${trackNote}${availability}${japan?` (등록 ${total}개 / 실행 가능 ${ready}개)`:''}`;
     if(submit){submit.disabled=japan&&!state.playable;submit.textContent=japan&&!state.playable?'선로 미검증 · 실행 불가':'운행 시작 →'}
     const endpoints=$('#setup-route .route-endpoints');
     if(endpoints)endpoints.innerHTML=`<span>${escapeHtml(journeyStationDisplayName(choice.originNames))}<small> 출발</small></span><span>${escapeHtml(journeyStationDisplayName(choice.destinationNames))}<small> 행선지</small></span>`

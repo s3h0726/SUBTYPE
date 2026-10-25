@@ -7,13 +7,19 @@ const R=new Map(ids.map(id=>[id,json('data/generated/routes/'+id+'.json').route]
 const ctx={console};ctx.globalThis=ctx;ctx.TRT_TOKYO_SERVICE_PATTERNS=C;ctx.TRT_RAIL_SYSTEM={throughServices:T.services};
 vm.createContext(ctx);vm.runInContext(read('js/service-route-resolver.js').replace(/\bexport\s+/g,''),ctx);
 const patterns=C.servicePatterns.filter(p=>p.baseRouteId==='line-11343'&&p.id.startsWith('jr-ueno-joban-'));
-assert.equal(patterns.length,5,'Five official timetable directions');
+assert.equal(patterns.length,11,'Eleven official timetable directions');
 for(const [pid,num,from,to] of [
 ['jr-ueno-joban-tsuchiura-local-forward',19,'土浦','品川'],
 ['jr-ueno-joban-tsuchiura-local-reverse',19,'品川','土浦'],
 ['jr-ueno-joban-toride-rapid-forward',13,'取手','品川'],
 ['jr-ueno-joban-toride-rapid-reverse',13,'品川','取手'],
-['jr-ueno-joban-tsuchiura-special-rapid-reverse',15,'品川','土浦']
+['jr-ueno-joban-tsuchiura-special-rapid-reverse',15,'品川','土浦'],
+['jr-ueno-joban-mito-local-forward',29,'水戸','品川'],
+['jr-ueno-joban-mito-local-reverse',29,'品川','水戸'],
+['jr-ueno-joban-katsuta-local-forward',30,'勝田','品川'],
+['jr-ueno-joban-katsuta-local-reverse',30,'品川','勝田'],
+['jr-ueno-joban-takahagi-local-forward',38,'高萩','品川'],
+['jr-ueno-joban-takahagi-local-reverse',38,'品川','高萩']
 ]){
  const p=patterns.find(p=>p.id===pid);assert(p,'Missing '+pid);
  assert.equal(p.stopStationIds.length,num);
@@ -36,9 +42,11 @@ assert(km(coord('line-11332','上野'),coord('line-11343','上野'))<1e-5);
 assert(km(coord('line-11332','日暮里'),coord('line-11320','日暮里'))<1e-5);
 assert(km(coord('line-11320','取手'),coord('line-11229--jobansen-totte-iwaki','取手'))<1e-5);
 const specs=T.services.filter(s=>s.id.startsWith('jr-ueno-joban-'));
-assert.equal(specs.length,3);
+assert.equal(specs.length,6);
 assert(specs.every(s=>s.geometryProvenance.status==='parallel-jr-track-proxy'&&s.geometryProvenance.exactJobanAlignmentVerified===false));
 assert(specs.every(s=>s.segmentIdentityOverrides?.['line-11332']?.line?.ko.includes('조반선')));
 assert(read('js/app.js').includes("'jr-ueno-joban-toride-rapid':'조반선"));
+assert(read('js/app.js').includes("'jr-ueno-joban-takahagi-local':'조반선"));
+assert(read('js/app.js').includes("const trackNote=choice.patternId?.startsWith('jr-ueno-joban-')"));
 assert(read('js/app.bundle.js').includes('const segmentIdentity=spec.segmentIdentityOverrides?.[part.id]'));
-console.log('PASS: 5 November 2026 JR Joban journeys, precise stopping patterns and 0m railway joins (approach track provisional)');
+console.log('PASS: 11 November 2026 JR Joban journeys, accurate stop order, no 0m gaps; approach track provisional');
