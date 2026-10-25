@@ -8,7 +8,39 @@ import{pointAtTrackDistance,advanceTrackDistance}from'./track-motion.js';
 let gameRail=null,renderQueue=Promise.resolve(),resizeBound=false;
 const latLngs=route=>route.stations.map(station=>[station.latitude,station.longitude]);
 const geometryPoints=route=>Array.isArray(route.geometry)&&route.geometry.length>1?route.geometry:latLngs(route);
-export function travelGeometry(route){if(route?.countryId==='kr'){if(route.geometryReady!==true)return null;if(!Array.isArray(route.directedSegments)||route.directedSegments.length!==route.stations.length-1||!route.directedSegments.every(s=>s.geometryStatus==='ready'&&Array.isArray(s.geometry)&&s.geometry.length>=2))return null;const points=[],offsets=[];route.directedSegments.forEach((segment,i)=>{offsets[i]=Math.max(0,points.length-1);points.push(...(i?segment.geometry.slice(1):segment.geometry))});offsets.push(points.length-1);return{points,offsets}}const stations=route.stations,points=[],offsets=[],directed=route.directedSegments;if(Array.isArray(directed)&&directed.length===stations.length-1){for(let i=0;i<directed.length;i++){offsets[i]=Math.max(0,points.length-1);let part=directed[i].geometry.map(point=>[Number(point[0]),Number(point[1])]);if(points.length&&part.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}const source=geometryPoints(route);for(let i=0;i<stations.length;i++){offsets[i]=Math.max(0,points.length-1);if(i===stations.length-1)break;const a=Number.isInteger(stations[i].geometryIndex)?stations[i].geometryIndex:source.findIndex(p=>p[0]===stations[i].latitude&&p[1]===stations[i].longitude),b=Number.isInteger(stations[i+1].geometryIndex)?stations[i+1].geometryIndex:source.findIndex(p=>p[0]===stations[i+1].latitude&&p[1]===stations[i+1].longitude);let part=a<=b?source.slice(Math.max(0,a),b+1):source.slice(Math.max(0,b),a+1).reverse();if(!part.length)part=[[stations[i].latitude,stations[i].longitude],[stations[i+1].latitude,stations[i+1].longitude]];if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);points.push(...part)}offsets[stations.length-1]=Math.max(0,points.length-1);return{points,offsets}}
+const permitsApproximateMapGeometry=route=>route?.category==='custom'||['bus','village_bus','express_bus','river_bus','ferry'].includes(route?.mode);
+export function travelGeometry(route){
+  if(!Array.isArray(route?.stations)||route.stations.length<2)return null;
+  const stations=route.stations,directed=route.directedSegments,points=[],offsets=[];
+  if(route.countryId==='kr'&&(route.geometryReady!==true||!Array.isArray(directed)||directed.length!==stations.length-1||!directed.every(segment=>segment.geometryStatus==='ready'&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)))return null;
+  if(Array.isArray(directed)&&directed.length===stations.length-1&&directed.every((segment,i)=>segment.fromStationId===stations[i].id&&segment.toStationId===stations[i+1].id&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)){
+    for(let i=0;i<directed.length;i++){
+      offsets[i]=Math.max(0,points.length-1);
+      let part=directed[i].geometry.map(point=>[Number(point[0]),Number(point[1])]);
+      if(part.some(point=>!point.every(Number.isFinite)))return null;
+      if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);
+      points.push(...part);
+    }
+    offsets[stations.length-1]=Math.max(0,points.length-1);
+    return points.length>1?{points,offsets}:null;
+  }
+  if(!permitsApproximateMapGeometry(route)&&(!Array.isArray(route.geometry)||route.geometry.length<2))return null;
+  const source=geometryPoints(route);
+  for(let i=0;i<stations.length-1;i++){
+    offsets[i]=Math.max(0,points.length-1);
+    const a=Number.isInteger(stations[i].geometryIndex)?stations[i].geometryIndex:source.findIndex(p=>p[0]===stations[i].latitude&&p[1]===stations[i].longitude);
+    const b=Number.isInteger(stations[i+1].geometryIndex)?stations[i+1].geometryIndex:source.findIndex(p=>p[0]===stations[i+1].latitude&&p[1]===stations[i+1].longitude);
+    let part;
+    if(a<0||b<0||a===b||a>=source.length||b>=source.length){
+      if(!permitsApproximateMapGeometry(route))return null;
+      part=[[stations[i].latitude,stations[i].longitude],[stations[i+1].latitude,stations[i+1].longitude]];
+    }else part=a<=b?source.slice(a,b+1):source.slice(b,a+1).reverse();
+    if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);
+    points.push(...part);
+  }
+  offsets[stations.length-1]=Math.max(0,points.length-1);
+  return points.length>1?{points,offsets}:null;
+}
 const validCoordinates=route=>route.stations.every(station=>Number.isFinite(station.latitude)&&Number.isFinite(station.longitude));
 function stationIcon(L,station,kind='other',color='#49c888',countryId='jp',route=null){
   const current=kind==='current',visible=kind!=='other',size=current?18:11;
@@ -81,7 +113,7 @@ async function renderOsm(route,index,options){
   hideKoreanTrainFallback(target);
   if(route.countryId==='kr'&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
-  const requestedNext=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(safe+1,route.stations.length-1);if(rail.routeKey!==(route.renderKey||route.id))createRouteLayers(rail,route,safe,options);else if(rail.index!==safe||rail.nextIndex!==requestedNext)updateRouteProgress(rail,route,safe,options.motion,options);else rail.nextIndex=requestedNext;
+  const requestedNext=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(safe+1,route.stations.length-1);if(rail.routeKey!==(route.renderKey||route.id)){if(createRouteLayers(rail,route,safe,options)===false){if(status)status.textContent='실제 선로 선형 없음 · 직선 대체 차단';return}}else if(rail.index!==safe||rail.nextIndex!==requestedNext)updateRouteProgress(rail,route,safe,options.motion,options);else rail.nextIndex=requestedNext;
   requestAnimationFrame(()=>rail.map.invalidateSize());if(status)status.textContent='OPENSTREETMAP · LIVE';
   const station=route.stations[safe],info=$('#map-station-info');if(info){info.hidden=false;info.innerHTML=`<b>${escapeHtml(route.countryId==='kr'?koreanStationDisplayName((station.ko||station.ja||''),route.countryId,route):(station.ja||station.ko||''))}</b><span>${escapeHtml(koreanStationDisplayName(station.ko,route.countryId,route))} · ${escapeHtml(station.romaji)}</span>`}
 }
