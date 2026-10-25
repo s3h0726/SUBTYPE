@@ -1,0 +1,6700 @@
+{
+  "generatedOn": "2026-10-25",
+  "source": "TrainLCD/StationAPI catalog checked against current SUBTYPE Japanese lite card station-name unions",
+  "limitations": "Name-only coverage scan. Does not check station order, current timetable, physical adjacency, geometry, loaded chunks, or actual playability. Pattern counts may repeat across multiple line cards.",
+  "JRcompanies": {
+    "jr-central": {
+      "cards": 17,
+      "linkedPatterns": 69,
+      "withNameCoverageGaps": 18
+    },
+    "jr-east": {
+      "cards": 89,
+      "linkedPatterns": 377,
+      "withNameCoverageGaps": 108
+    },
+    "jr-hokkaido": {
+      "cards": 19,
+      "linkedPatterns": 67,
+      "withNameCoverageGaps": 48
+    },
+    "jr-kyushu": {
+      "cards": 30,
+      "linkedPatterns": 93,
+      "withNameCoverageGaps": 35
+    },
+    "jr-shikoku": {
+      "cards": 8,
+      "linkedPatterns": 30,
+      "withNameCoverageGaps": 1
+    },
+    "jr-west": {
+      "cards": 64,
+      "linkedPatterns": 271,
+      "withNameCoverageGaps": 103
+    }
+  },
+  "totalJRcards": 227,
+  "totalLinkedPatterns": 907,
+  "nameCoverageGapPatterns": 313,
+  "details": [
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11411",
+      "patternId": "1082",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "99511",
+          "unmatchedStations": [
+            "瀬戸市"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11508",
+      "patternId": "103",
+      "trainType": "쾌속미에",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11512",
+          "unmatchedStations": [
+            "池の浦シーサイド"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11510",
+      "patternId": "103",
+      "trainType": "쾌속미에",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11512",
+          "unmatchedStations": [
+            "池の浦シーサイド"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11510",
+      "patternId": "872",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11512",
+          "unmatchedStations": [
+            "池の浦シーサイド"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11512",
+      "patternId": "103",
+      "trainType": "쾌속미에",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11512",
+          "unmatchedStations": [
+            "池の浦シーサイド"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11512",
+      "patternId": "872",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11512",
+          "unmatchedStations": [
+            "池の浦シーサイド"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11501",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11501",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11501",
+      "patternId": "558",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11503",
+      "patternId": "150",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11503",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11503",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11503",
+      "patternId": "1177",
+      "trainType": "특별쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11502",
+      "patternId": "150",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11502",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11502",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11502",
+      "patternId": "558",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-central",
+      "cardId": "line-11502",
+      "patternId": "1177",
+      "trainType": "특별쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "20",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "21",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "22",
+      "trainType": "중앙특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "23",
+      "trainType": "통근특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "24",
+      "trainType": "오메특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "139",
+      "trainType": "가이지",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "140",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 3,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "250",
+      "trainType": "오쿠타마호",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "256",
+      "trainType": "아키가와호",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "350",
+      "trainType": "후지카이유",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "351",
+      "trainType": "하치오지",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "352",
+      "trainType": "오메",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "590",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "592",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "885",
+      "trainType": "신주쿠와카시오의",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "代々木",
+            "千駄ケ谷",
+            "信濃町",
+            "市ケ谷",
+            "飯田橋",
+            "水道橋"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "887",
+      "trainType": "신주쿠사자나미",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "代々木",
+            "千駄ケ谷",
+            "信濃町",
+            "市ケ谷",
+            "飯田橋",
+            "水道橋"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "904",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 5,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "967",
+      "trainType": "통근특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "1180",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "1181",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11312",
+      "patternId": "1182",
+      "trainType": "중앙특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11313",
+      "patternId": "350",
+      "trainType": "후지카이유",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11313",
+      "patternId": "885",
+      "trainType": "신주쿠와카시오의",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "代々木",
+            "千駄ケ谷",
+            "信濃町",
+            "市ケ谷",
+            "飯田橋",
+            "水道橋"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11313",
+      "patternId": "887",
+      "trainType": "신주쿠사자나미",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "代々木",
+            "千駄ケ谷",
+            "信濃町",
+            "市ケ谷",
+            "飯田橋",
+            "水道橋"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11313",
+      "patternId": "904",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 5,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "20",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "21",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "22",
+      "trainType": "중앙특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "23",
+      "trainType": "통근특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "139",
+      "trainType": "가이지",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "140",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 3,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "290",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "350",
+      "trainType": "후지카이유",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "904",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 5,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "1180",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "1181",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11311",
+      "patternId": "1182",
+      "trainType": "중앙특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11408",
+      "patternId": "900",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11408",
+          "unmatchedStations": [
+            "上所"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11408",
+      "patternId": "902",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11408",
+          "unmatchedStations": [
+            "上所"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11206",
+      "patternId": "912",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11206",
+          "unmatchedStations": [
+            "プレイピア白浜"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11316",
+      "patternId": "256",
+      "trainType": "아키가와호",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11322",
+      "patternId": "204",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11322",
+      "patternId": "205",
+      "trainType": "특급",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11322",
+      "patternId": "1062",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11322",
+      "patternId": "1063",
+      "trainType": "특급",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11322",
+      "patternId": "1064",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11322",
+      "patternId": "1065",
+      "trainType": "특급",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "25",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "26",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "243",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "244",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "261",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "579",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "580",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "581",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "582",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "583",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "584",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "884",
+      "trainType": "와카시오",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11326",
+      "patternId": "886",
+      "trainType": "사자나미",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11409",
+      "patternId": "140",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 3,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11409",
+      "patternId": "290",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11409",
+      "patternId": "904",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 5,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11409",
+      "patternId": "905",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11305",
+      "patternId": "261",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11315",
+      "patternId": "24",
+      "trainType": "오메특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11315",
+      "patternId": "250",
+      "trainType": "오쿠타마호",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11315",
+      "patternId": "256",
+      "trainType": "아키가와호",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11315",
+      "patternId": "352",
+      "trainType": "오메",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11315",
+      "patternId": "590",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11315",
+      "patternId": "592",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11315",
+      "patternId": "967",
+      "trainType": "통근특쾌",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11321",
+      "patternId": "204",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11321",
+      "patternId": "205",
+      "trainType": "특급",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11321",
+      "patternId": "1062",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11321",
+      "patternId": "1063",
+      "trainType": "특급",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11321",
+      "patternId": "1064",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11321",
+      "patternId": "1065",
+      "trainType": "특급",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "29003",
+          "unmatchedStations": [
+            "海老名",
+            "かしわ台",
+            "さがみ野",
+            "相模大塚",
+            "大和",
+            "瀬谷",
+            "三ツ境",
+            "希望ヶ丘",
+            "二俣川",
+            "鶴ヶ峰",
+            "武蔵小杉",
+            "西大井",
+            "大崎",
+            "恵比寿",
+            "渋谷",
+            "新宿"
+          ],
+          "unmatchedTotal": 16
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11217",
+      "patternId": "928",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11217",
+          "unmatchedStations": [
+            "西仙台ハイランド",
+            "八ツ森"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11217",
+      "patternId": "929",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11217",
+          "unmatchedStations": [
+            "西仙台ハイランド",
+            "八ツ森"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11412",
+      "patternId": "140",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 3,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11412",
+      "patternId": "290",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11412",
+      "patternId": "904",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 5,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11333",
+      "patternId": "1010",
+      "trainType": "햇빛",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "21003",
+          "unmatchedStations": [
+            "東武日光"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11314",
+      "patternId": "350",
+      "trainType": "후지카이유",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11314",
+      "patternId": "885",
+      "trainType": "신주쿠와카시오의",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "代々木",
+            "千駄ケ谷",
+            "信濃町",
+            "市ケ谷",
+            "飯田橋",
+            "水道橋"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11314",
+      "patternId": "887",
+      "trainType": "신주쿠사자나미",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "代々木",
+            "千駄ケ谷",
+            "信濃町",
+            "市ケ谷",
+            "飯田橋",
+            "水道橋"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11314",
+      "patternId": "904",
+      "trainType": "아즈사",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "水道橋",
+            "飯田橋",
+            "市ケ谷",
+            "信濃町",
+            "千駄ケ谷",
+            "代々木",
+            "大久保",
+            "東中野"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 5,
+          "lineCode": "11409",
+          "unmatchedStations": [
+            "ヤナバスキー場前"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11324",
+      "patternId": "580",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11324",
+      "patternId": "583",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11324",
+      "patternId": "584",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11324",
+      "patternId": "884",
+      "trainType": "와카시오",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11324",
+      "patternId": "885",
+      "trainType": "신주쿠와카시오의",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "代々木",
+            "千駄ケ谷",
+            "信濃町",
+            "市ケ谷",
+            "飯田橋",
+            "水道橋"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11227",
+      "patternId": "945",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11227",
+          "unmatchedStations": [
+            "田子倉",
+            "柿ノ木"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11211",
+      "patternId": "918",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11211",
+          "unmatchedStations": [
+            "前潟"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11301",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11301",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11205",
+      "patternId": "911",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11205",
+          "unmatchedStations": [
+            "津軽二股"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11325",
+      "patternId": "579",
+      "trainType": "각역정차",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11325",
+      "patternId": "581",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11325",
+      "patternId": "582",
+      "trainType": "통근쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11325",
+      "patternId": "886",
+      "trainType": "사자나미",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11326",
+          "unmatchedStations": [
+            "幕張豊砂"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11325",
+      "patternId": "887",
+      "trainType": "신주쿠사자나미",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11312",
+          "unmatchedStations": [
+            "代々木",
+            "千駄ケ谷",
+            "信濃町",
+            "市ケ谷",
+            "飯田橋",
+            "水道橋"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11319",
+      "patternId": "1010",
+      "trainType": "햇빛",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "21003",
+          "unmatchedStations": [
+            "東武日光"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11410",
+      "patternId": "902",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11408",
+          "unmatchedStations": [
+            "上所"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11213",
+      "patternId": "916",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11213",
+          "unmatchedStations": [
+            "大志田",
+            "浅岸"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11213",
+      "patternId": "917",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11213",
+          "unmatchedStations": [
+            "大志田",
+            "浅岸"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-east",
+      "cardId": "line-11216",
+      "patternId": "927",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11216",
+          "unmatchedStations": [
+            "赤岩"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11109",
+      "patternId": "133",
+      "trainType": "북두",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11101",
+          "unmatchedStations": [
+            "東山",
+            "姫川",
+            "桂川",
+            "鷲ノ巣",
+            "北豊津"
+          ],
+          "unmatchedTotal": 5
+        },
+        {
+          "segment": 2,
+          "lineCode": "11109",
+          "unmatchedStations": [
+            "美々"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11109",
+      "patternId": "134",
+      "trainType": "은방울꽃",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11109",
+          "unmatchedStations": [
+            "美々"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11109",
+      "patternId": "141",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11109",
+          "unmatchedStations": [
+            "美々"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11109",
+      "patternId": "700",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11110",
+          "unmatchedStations": [
+            "東追分",
+            "十三里"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11109",
+      "patternId": "704",
+      "trainType": "큰 하늘",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11110",
+          "unmatchedStations": [
+            "東追分",
+            "十三里"
+          ],
+          "unmatchedTotal": 2
+        },
+        {
+          "segment": 2,
+          "lineCode": "11107",
+          "unmatchedStations": [
+            "羽帯",
+            "稲士別",
+            "上厚内",
+            "直別",
+            "尺別",
+            "古瀬"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11109",
+      "patternId": "705",
+      "trainType": "도카치",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11110",
+          "unmatchedStations": [
+            "東追分",
+            "十三里"
+          ],
+          "unmatchedTotal": 2
+        },
+        {
+          "segment": 2,
+          "lineCode": "11107",
+          "unmatchedStations": [
+            "羽帯"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11102",
+      "patternId": "145",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11102",
+          "unmatchedStations": [
+            "蕨岱"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11102",
+      "patternId": "989",
+      "trainType": "니세코",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11101",
+          "unmatchedStations": [
+            "東山",
+            "姫川",
+            "桂川",
+            "鷲ノ巣",
+            "北豊津"
+          ],
+          "unmatchedTotal": 5
+        },
+        {
+          "segment": 1,
+          "lineCode": "11102",
+          "unmatchedStations": [
+            "蕨岱"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11101",
+      "patternId": "133",
+      "trainType": "북두",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11101",
+          "unmatchedStations": [
+            "東山",
+            "姫川",
+            "桂川",
+            "鷲ノ巣",
+            "北豊津"
+          ],
+          "unmatchedTotal": 5
+        },
+        {
+          "segment": 2,
+          "lineCode": "11109",
+          "unmatchedStations": [
+            "美々"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11101",
+      "patternId": "144",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11101",
+          "unmatchedStations": [
+            "東山",
+            "姫川",
+            "桂川",
+            "鷲ノ巣",
+            "北豊津"
+          ],
+          "unmatchedTotal": 5
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11101",
+      "patternId": "147",
+      "trainType": "보통(사와라 지선)",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11101",
+          "unmatchedStations": [
+            "桂川",
+            "鷲ノ巣",
+            "北豊津"
+          ],
+          "unmatchedTotal": 3
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11101",
+      "patternId": "989",
+      "trainType": "니세코",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11101",
+          "unmatchedStations": [
+            "東山",
+            "姫川",
+            "桂川",
+            "鷲ノ巣",
+            "北豊津"
+          ],
+          "unmatchedTotal": 5
+        },
+        {
+          "segment": 1,
+          "lineCode": "11102",
+          "unmatchedStations": [
+            "蕨岱"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "141",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11109",
+          "unmatchedStations": [
+            "美々"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "146",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "234",
+      "trainType": "라일락",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "270",
+      "trainType": "카무이",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "271",
+      "trainType": "소야",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 1,
+          "lineCode": "11115",
+          "unmatchedStations": [
+            "南比布",
+            "北比布",
+            "東六線",
+            "北剣淵",
+            "下士別",
+            "名寄高校",
+            "北星",
+            "南美深",
+            "紋穂内",
+            "豊清水",
+            "安牛",
+            "上幌延",
+            "徳満"
+          ],
+          "unmatchedTotal": 13
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "272",
+      "trainType": "소야",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 1,
+          "lineCode": "11115",
+          "unmatchedStations": [
+            "南比布",
+            "北比布",
+            "東六線",
+            "北剣淵",
+            "下士別",
+            "名寄高校",
+            "北星",
+            "南美深",
+            "紋穂内",
+            "豊清水",
+            "安牛",
+            "上幌延",
+            "徳満"
+          ],
+          "unmatchedTotal": 13
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "275",
+      "trainType": "오호츠크",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 1,
+          "lineCode": "11116",
+          "unmatchedStations": [
+            "北日ノ出",
+            "将軍山",
+            "東雲",
+            "上白滝",
+            "旧白滝",
+            "下白滝",
+            "生野",
+            "金華"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "711",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "988",
+      "trainType": "푸라노 라벤더 익스프레스",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11106",
+          "unmatchedStations": [
+            "島ノ下"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11103",
+      "patternId": "989",
+      "trainType": "니세코",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11101",
+          "unmatchedStations": [
+            "東山",
+            "姫川",
+            "桂川",
+            "鷲ノ巣",
+            "北豊津"
+          ],
+          "unmatchedTotal": 5
+        },
+        {
+          "segment": 1,
+          "lineCode": "11102",
+          "unmatchedStations": [
+            "蕨岱"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11108",
+      "patternId": "703",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11108",
+          "unmatchedStations": [
+            "初田牛",
+            "花咲"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11108",
+      "patternId": "908",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11108",
+          "unmatchedStations": [
+            "初田牛",
+            "花咲"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11104",
+      "patternId": "133",
+      "trainType": "북두",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11101",
+          "unmatchedStations": [
+            "東山",
+            "姫川",
+            "桂川",
+            "鷲ノ巣",
+            "北豊津"
+          ],
+          "unmatchedTotal": 5
+        },
+        {
+          "segment": 2,
+          "lineCode": "11109",
+          "unmatchedStations": [
+            "美々"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11104",
+      "patternId": "134",
+      "trainType": "은방울꽃",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11109",
+          "unmatchedStations": [
+            "美々"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11107",
+      "patternId": "702",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11107",
+          "unmatchedStations": [
+            "羽帯",
+            "稲士別",
+            "上厚内",
+            "直別",
+            "尺別",
+            "古瀬"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11107",
+      "patternId": "704",
+      "trainType": "큰 하늘",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11110",
+          "unmatchedStations": [
+            "東追分",
+            "十三里"
+          ],
+          "unmatchedTotal": 2
+        },
+        {
+          "segment": 2,
+          "lineCode": "11107",
+          "unmatchedStations": [
+            "羽帯",
+            "稲士別",
+            "上厚内",
+            "直別",
+            "尺別",
+            "古瀬"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11107",
+      "patternId": "705",
+      "trainType": "도카치",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11110",
+          "unmatchedStations": [
+            "東追分",
+            "十三里"
+          ],
+          "unmatchedTotal": 2
+        },
+        {
+          "segment": 2,
+          "lineCode": "11107",
+          "unmatchedStations": [
+            "羽帯"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11106",
+      "patternId": "701",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11106",
+          "unmatchedStations": [
+            "島ノ下"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11106",
+      "patternId": "988",
+      "trainType": "푸라노 라벤더 익스프레스",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11106",
+          "unmatchedStations": [
+            "島ノ下"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11113",
+      "patternId": "711",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11112",
+      "patternId": "713",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11112",
+          "unmatchedStations": [
+            "ロイズタウン",
+            "太美",
+            "当別"
+          ],
+          "unmatchedTotal": 3
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11116",
+      "patternId": "275",
+      "trainType": "오호츠크",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 1,
+          "lineCode": "11116",
+          "unmatchedStations": [
+            "北日ノ出",
+            "将軍山",
+            "東雲",
+            "上白滝",
+            "旧白滝",
+            "下白滝",
+            "生野",
+            "金華"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11116",
+      "patternId": "276",
+      "trainType": "타이세츠",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11116",
+          "unmatchedStations": [
+            "北日ノ出",
+            "将軍山",
+            "東雲",
+            "上白滝",
+            "旧白滝",
+            "下白滝",
+            "生野",
+            "金華"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11116",
+      "patternId": "708",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11116",
+          "unmatchedStations": [
+            "北日ノ出",
+            "将軍山",
+            "東雲",
+            "上白滝",
+            "旧白滝",
+            "下白滝"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11116",
+      "patternId": "709",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11116",
+          "unmatchedStations": [
+            "生野",
+            "金華"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11116",
+      "patternId": "972",
+      "trainType": "쾌속니시기타미",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11116",
+          "unmatchedStations": [
+            "北日ノ出",
+            "将軍山",
+            "東雲",
+            "上白滝",
+            "旧白滝",
+            "下白滝",
+            "生野",
+            "金華"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11116",
+      "patternId": "1092",
+      "trainType": "특별쾌속타이세츠",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11116",
+          "unmatchedStations": [
+            "北日ノ出",
+            "将軍山",
+            "東雲",
+            "上白滝",
+            "旧白滝",
+            "下白滝",
+            "生野",
+            "金華"
+          ],
+          "unmatchedTotal": 8
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11110",
+      "patternId": "700",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11110",
+          "unmatchedStations": [
+            "東追分",
+            "十三里"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11110",
+      "patternId": "704",
+      "trainType": "큰 하늘",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11110",
+          "unmatchedStations": [
+            "東追分",
+            "十三里"
+          ],
+          "unmatchedTotal": 2
+        },
+        {
+          "segment": 2,
+          "lineCode": "11107",
+          "unmatchedStations": [
+            "羽帯",
+            "稲士別",
+            "上厚内",
+            "直別",
+            "尺別",
+            "古瀬"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11110",
+      "patternId": "705",
+      "trainType": "도카치",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11110",
+          "unmatchedStations": [
+            "東追分",
+            "十三里"
+          ],
+          "unmatchedTotal": 2
+        },
+        {
+          "segment": 2,
+          "lineCode": "11107",
+          "unmatchedStations": [
+            "羽帯"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11117",
+      "patternId": "710",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11117",
+          "unmatchedStations": [
+            "南斜里",
+            "南弟子屈",
+            "五十石"
+          ],
+          "unmatchedTotal": 3
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11115",
+      "patternId": "233",
+      "trainType": "살로베츠",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11115",
+          "unmatchedStations": [
+            "南比布",
+            "北比布",
+            "東六線",
+            "北剣淵",
+            "下士別",
+            "名寄高校",
+            "北星",
+            "南美深",
+            "紋穂内",
+            "豊清水",
+            "安牛",
+            "上幌延",
+            "徳満"
+          ],
+          "unmatchedTotal": 13
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11115",
+      "patternId": "271",
+      "trainType": "소야",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 1,
+          "lineCode": "11115",
+          "unmatchedStations": [
+            "南比布",
+            "北比布",
+            "東六線",
+            "北剣淵",
+            "下士別",
+            "名寄高校",
+            "北星",
+            "南美深",
+            "紋穂内",
+            "豊清水",
+            "安牛",
+            "上幌延",
+            "徳満"
+          ],
+          "unmatchedTotal": 13
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11115",
+      "patternId": "272",
+      "trainType": "소야",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11103",
+          "unmatchedStations": [
+            "伊納"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 1,
+          "lineCode": "11115",
+          "unmatchedStations": [
+            "南比布",
+            "北比布",
+            "東六線",
+            "北剣淵",
+            "下士別",
+            "名寄高校",
+            "北星",
+            "南美深",
+            "紋穂内",
+            "豊清水",
+            "安牛",
+            "上幌延",
+            "徳満"
+          ],
+          "unmatchedTotal": 13
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11115",
+      "patternId": "707",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11115",
+          "unmatchedStations": [
+            "南比布",
+            "北比布",
+            "東六線",
+            "北剣淵",
+            "下士別",
+            "名寄高校",
+            "北星",
+            "南美深",
+            "紋穂内",
+            "豊清水",
+            "安牛",
+            "上幌延",
+            "徳満"
+          ],
+          "unmatchedTotal": 13
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-hokkaido",
+      "cardId": "line-11115",
+      "patternId": "909",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11115",
+          "unmatchedStations": [
+            "南比布",
+            "北比布",
+            "東六線",
+            "北剣淵",
+            "下士別",
+            "名寄高校"
+          ],
+          "unmatchedTotal": 6
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11929",
+      "patternId": "848",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11907",
+          "unmatchedStations": [
+            "仙巌園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11926",
+      "patternId": "848",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11907",
+          "unmatchedStations": [
+            "仙巌園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11903",
+      "patternId": "366",
+      "trainType": "릴레이 카모메",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 3,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11903",
+      "patternId": "833",
+      "trainType": "미도리의",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 2,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11903",
+      "patternId": "834",
+      "trainType": "하우스텐보스",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 2,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11903",
+      "patternId": "835",
+      "trainType": "가사기",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11902",
+      "patternId": "366",
+      "trainType": "릴레이 카모메",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 3,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11902",
+      "patternId": "532",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11612",
+          "unmatchedStations": [
+            "門司"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11902",
+      "patternId": "835",
+      "trainType": "가사기",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "136",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "137",
+      "trainType": "보통(나가요 경로)",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "138",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "366",
+      "trainType": "릴레이 카모메",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 3,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "644",
+      "trainType": "바다 사이드 라이너",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "645",
+      "trainType": "바다 사이드 라이너",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "646",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 1,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "833",
+      "trainType": "미도리의",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 2,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "834",
+      "trainType": "하우스텐보스",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 2,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11905",
+      "patternId": "835",
+      "trainType": "가사기",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11907",
+      "patternId": "843",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11907",
+          "unmatchedStations": [
+            "仙巌園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11907",
+      "patternId": "847",
+      "trainType": "기리시마",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11907",
+          "unmatchedStations": [
+            "仙巌園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11907",
+      "patternId": "848",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11907",
+          "unmatchedStations": [
+            "仙巌園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11922",
+      "patternId": "137",
+      "trainType": "보통(나가요 경로)",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11922",
+      "patternId": "138",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11922",
+      "patternId": "644",
+      "trainType": "바다 사이드 라이너",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11922",
+      "patternId": "645",
+      "trainType": "바다 사이드 라이너",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11922",
+      "patternId": "834",
+      "trainType": "하우스텐보스",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 2,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11918",
+      "patternId": "137",
+      "trainType": "보통(나가요 경로)",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11918",
+      "patternId": "138",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11918",
+      "patternId": "366",
+      "trainType": "릴레이 카모메",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 3,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11918",
+      "patternId": "644",
+      "trainType": "바다 사이드 라이너",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11918",
+      "patternId": "645",
+      "trainType": "바다 사이드 라이너",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11922",
+          "unmatchedStations": [
+            "大村車両基地",
+            "新大村"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11918",
+      "patternId": "646",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 1,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11918",
+      "patternId": "833",
+      "trainType": "미도리의",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 2,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-kyushu",
+      "cardId": "line-11918",
+      "patternId": "834",
+      "trainType": "하우스텐보스",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11905",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 2,
+          "lineCode": "11918",
+          "unmatchedStations": [
+            "江北"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-shikoku",
+      "cardId": "line-11806",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11631",
+      "patternId": "44",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11631",
+      "patternId": "45",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11631",
+      "patternId": "461",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11631",
+      "patternId": "672",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11635",
+      "patternId": "994",
+      "trainType": "하마카제",
+      "issues": [
+        {
+          "segment": 4,
+          "lineCode": "11616",
+          "unmatchedStations": [
+            "きりはまビーチ"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11601",
+      "patternId": "44",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11601",
+      "patternId": "45",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11601",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11601",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11630",
+      "patternId": "300",
+      "trainType": "고노토리",
+      "issues": [
+        {
+          "segment": 6,
+          "lineCode": "11629",
+          "unmatchedStations": [
+            "塚本"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11617",
+      "patternId": "455",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11617",
+      "patternId": "456",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11617",
+      "patternId": "457",
+      "trainType": "구간쾌속",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11617",
+      "patternId": "458",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11703",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11626",
+      "patternId": "806",
+      "trainType": "구로시오",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11626",
+      "patternId": "807",
+      "trainType": "하루카",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11415",
+      "patternId": "44",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11415",
+      "patternId": "45",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11415",
+      "patternId": "301",
+      "trainType": "선더버드",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "99426",
+          "unmatchedStations": [
+            "西金沢",
+            "野々市",
+            "松任",
+            "加賀笠間",
+            "美川",
+            "小舞子",
+            "能美根上",
+            "明峰",
+            "小松",
+            "粟津",
+            "動橋",
+            "加賀温泉",
+            "大聖寺"
+          ],
+          "unmatchedTotal": 13
+        },
+        {
+          "segment": 2,
+          "lineCode": "99428",
+          "unmatchedStations": [
+            "牛ノ谷",
+            "細呂木",
+            "芦原温泉",
+            "丸岡",
+            "春江",
+            "森田",
+            "福井",
+            "越前花堂",
+            "大土呂",
+            "北鯖江",
+            "鯖江",
+            "武生",
+            "しきぶ",
+            "王子保",
+            "南条",
+            "湯尾",
+            "今庄",
+            "南今庄"
+          ],
+          "unmatchedTotal": 18
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11415",
+      "patternId": "461",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11704",
+      "patternId": "798",
+      "trainType": "슈퍼 하쿠토",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11628",
+      "patternId": "807",
+      "trainType": "하루카",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11639",
+      "patternId": "806",
+      "trainType": "구로시오",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "44",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "45",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "456",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "461",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "798",
+      "trainType": "슈퍼 하쿠토",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "994",
+      "trainType": "하마카제",
+      "issues": [
+        {
+          "segment": 4,
+          "lineCode": "11616",
+          "unmatchedStations": [
+            "きりはまビーチ"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11608",
+      "patternId": "995",
+      "trainType": "라쿠 라쿠 하리마",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 4,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "44",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "45",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "300",
+      "trainType": "고노토리",
+      "issues": [
+        {
+          "segment": 6,
+          "lineCode": "11629",
+          "unmatchedStations": [
+            "塚本"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "456",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "461",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "798",
+      "trainType": "슈퍼 하쿠토",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "994",
+      "trainType": "하마카제",
+      "issues": [
+        {
+          "segment": 4,
+          "lineCode": "11616",
+          "unmatchedStations": [
+            "きりはまビーチ"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11603",
+      "patternId": "995",
+      "trainType": "라쿠 라쿠 하리마",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 4,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11605",
+      "patternId": "301",
+      "trainType": "선더버드",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "99426",
+          "unmatchedStations": [
+            "西金沢",
+            "野々市",
+            "松任",
+            "加賀笠間",
+            "美川",
+            "小舞子",
+            "能美根上",
+            "明峰",
+            "小松",
+            "粟津",
+            "動橋",
+            "加賀温泉",
+            "大聖寺"
+          ],
+          "unmatchedTotal": 13
+        },
+        {
+          "segment": 2,
+          "lineCode": "99428",
+          "unmatchedStations": [
+            "牛ノ谷",
+            "細呂木",
+            "芦原温泉",
+            "丸岡",
+            "春江",
+            "森田",
+            "福井",
+            "越前花堂",
+            "大土呂",
+            "北鯖江",
+            "鯖江",
+            "武生",
+            "しきぶ",
+            "王子保",
+            "南条",
+            "湯尾",
+            "今庄",
+            "南今庄"
+          ],
+          "unmatchedTotal": 18
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11605",
+      "patternId": "461",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "44",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "45",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "300",
+      "trainType": "고노토리",
+      "issues": [
+        {
+          "segment": 6,
+          "lineCode": "11629",
+          "unmatchedStations": [
+            "塚本"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "301",
+      "trainType": "선더버드",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "99426",
+          "unmatchedStations": [
+            "西金沢",
+            "野々市",
+            "松任",
+            "加賀笠間",
+            "美川",
+            "小舞子",
+            "能美根上",
+            "明峰",
+            "小松",
+            "粟津",
+            "動橋",
+            "加賀温泉",
+            "大聖寺"
+          ],
+          "unmatchedTotal": 13
+        },
+        {
+          "segment": 2,
+          "lineCode": "99428",
+          "unmatchedStations": [
+            "牛ノ谷",
+            "細呂木",
+            "芦原温泉",
+            "丸岡",
+            "春江",
+            "森田",
+            "福井",
+            "越前花堂",
+            "大土呂",
+            "北鯖江",
+            "鯖江",
+            "武生",
+            "しきぶ",
+            "王子保",
+            "南条",
+            "湯尾",
+            "今庄",
+            "南今庄"
+          ],
+          "unmatchedTotal": 18
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "461",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "798",
+      "trainType": "슈퍼 하쿠토",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "806",
+      "trainType": "구로시오",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "807",
+      "trainType": "하루카",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11602",
+      "patternId": "995",
+      "trainType": "라쿠 라쿠 하리마",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 4,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11419",
+      "patternId": "301",
+      "trainType": "선더버드",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "99426",
+          "unmatchedStations": [
+            "西金沢",
+            "野々市",
+            "松任",
+            "加賀笠間",
+            "美川",
+            "小舞子",
+            "能美根上",
+            "明峰",
+            "小松",
+            "粟津",
+            "動橋",
+            "加賀温泉",
+            "大聖寺"
+          ],
+          "unmatchedTotal": 13
+        },
+        {
+          "segment": 2,
+          "lineCode": "99428",
+          "unmatchedStations": [
+            "牛ノ谷",
+            "細呂木",
+            "芦原温泉",
+            "丸岡",
+            "春江",
+            "森田",
+            "福井",
+            "越前花堂",
+            "大土呂",
+            "北鯖江",
+            "鯖江",
+            "武生",
+            "しきぶ",
+            "王子保",
+            "南条",
+            "湯尾",
+            "今庄",
+            "南今庄"
+          ],
+          "unmatchedTotal": 18
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11641",
+      "patternId": "806",
+      "trainType": "구로시오",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11641",
+      "patternId": "807",
+      "trainType": "하루카",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11641",
+      "patternId": "808",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪",
+            "新加美"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11641",
+      "patternId": "809",
+      "trainType": "직통쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪",
+            "新加美"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11641",
+      "patternId": "995",
+      "trainType": "라쿠 라쿠 하리마",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 4,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11641",
+      "patternId": "997",
+      "trainType": "라쿠 라쿠 야마토",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11641",
+      "patternId": "998",
+      "trainType": "마호로바",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪",
+            "新加美"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11641",
+      "patternId": "1094",
+      "trainType": "박람회 라이너",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11623",
+      "patternId": "806",
+      "trainType": "구로시오",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11623",
+      "patternId": "807",
+      "trainType": "하루카",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11623",
+      "patternId": "997",
+      "trainType": "라쿠 라쿠 야마토",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11623",
+      "patternId": "1094",
+      "trainType": "박람회 라이너",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11615",
+      "patternId": "300",
+      "trainType": "고노토리",
+      "issues": [
+        {
+          "segment": 6,
+          "lineCode": "11629",
+          "unmatchedStations": [
+            "塚本"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11615",
+      "patternId": "994",
+      "trainType": "하마카제",
+      "issues": [
+        {
+          "segment": 4,
+          "lineCode": "11616",
+          "unmatchedStations": [
+            "きりはまビーチ"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11616",
+      "patternId": "300",
+      "trainType": "고노토리",
+      "issues": [
+        {
+          "segment": 6,
+          "lineCode": "11629",
+          "unmatchedStations": [
+            "塚本"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11616",
+      "patternId": "677",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11616",
+          "unmatchedStations": [
+            "きりはまビーチ"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11616",
+      "patternId": "798",
+      "trainType": "슈퍼 하쿠토",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11616",
+      "patternId": "994",
+      "trainType": "하마카제",
+      "issues": [
+        {
+          "segment": 4,
+          "lineCode": "11616",
+          "unmatchedStations": [
+            "きりはまビーチ"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11701",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "44",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "45",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "203",
+      "trainType": "선라이즈 이즈모",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "461",
+      "trainType": "새쾌속",
+      "issues": [
+        {
+          "segment": 5,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "511",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "672",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "798",
+      "trainType": "슈퍼 하쿠토",
+      "issues": [
+        {
+          "segment": 3,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11609",
+      "patternId": "995",
+      "trainType": "라쿠 라쿠 하리마",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        },
+        {
+          "segment": 4,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11612",
+      "patternId": "532",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11612",
+          "unmatchedStations": [
+            "門司"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11610",
+      "patternId": "511",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11710",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11629",
+      "patternId": "300",
+      "trainType": "고노토리",
+      "issues": [
+        {
+          "segment": 6,
+          "lineCode": "11629",
+          "unmatchedStations": [
+            "塚本"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11629",
+      "patternId": "455",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11629",
+      "patternId": "457",
+      "trainType": "구간쾌속",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11629",
+      "patternId": "458",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11625",
+      "patternId": "455",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11625",
+      "patternId": "456",
+      "trainType": "보통",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11625",
+      "patternId": "457",
+      "trainType": "구간쾌속",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11625",
+      "patternId": "458",
+      "trainType": "쾌속",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11625",
+          "unmatchedStations": [
+            "北新地",
+            "新福島"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11709",
+      "patternId": "202",
+      "trainType": "선라이즈 세토",
+      "issues": [
+        {
+          "segment": 2,
+          "lineCode": "11502",
+          "unmatchedStations": [
+            "浜松",
+            "高塚",
+            "舞阪",
+            "弁天島",
+            "新居町",
+            "鷲津",
+            "新所原",
+            "二川"
+          ],
+          "unmatchedTotal": 8
+        },
+        {
+          "segment": 8,
+          "lineCode": "11609",
+          "unmatchedStations": [
+            "手柄山平和公園"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11607",
+      "patternId": "806",
+      "trainType": "구로시오",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11607",
+      "patternId": "807",
+      "trainType": "하루카",
+      "issues": [
+        {
+          "segment": 1,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11607",
+      "patternId": "809",
+      "trainType": "직통쾌속",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪",
+            "新加美"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11607",
+      "patternId": "997",
+      "trainType": "라쿠 라쿠 야마토",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11607",
+      "patternId": "998",
+      "trainType": "마호로바",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪",
+            "新加美"
+          ],
+          "unmatchedTotal": 2
+        }
+      ]
+    },
+    {
+      "operatorId": "jr-west",
+      "cardId": "line-11624",
+      "patternId": "1094",
+      "trainType": "박람회 라이너",
+      "issues": [
+        {
+          "segment": 0,
+          "lineCode": "11641",
+          "unmatchedStations": [
+            "大阪"
+          ],
+          "unmatchedTotal": 1
+        }
+      ]
+    }
+  ]
+}
