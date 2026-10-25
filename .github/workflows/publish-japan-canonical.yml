@@ -11,6 +11,13 @@ on:
       - 'js/data-loader.js'
       - 'data/lines/jr-east/**'
       - 'data/lines/jr-central/**'
+      - 'data/lines/jr-hokkaido/**'
+      - 'data/lines/jr-west/**'
+      - 'data/lines/jr-shikoku/**'
+      - 'data/lines/jr-kyushu/**'
+      - 'data/through-services.json'
+      - 'data/tokyo-service-patterns.json'
+      - 'tools/audit-jr-operating-services.cjs'
   workflow_dispatch:
 
 permissions:
@@ -37,6 +44,8 @@ jobs:
           node-version: '22'
       - name: Regenerate deployed Japanese catalog and application
         run: node tools/build-static.js
+      - name: Audit JR services across all six passenger operators
+        run: node tools/audit-jr-operating-services.cjs
       - name: Assert no duplicate Tokyo Atami and correct Toyohashi boundary
         run: |
           node - <<'NODE'
@@ -79,7 +88,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/generated/ data/jp-canonical/ js/line-workspace-data.js js/japan-lite-index.js js/nationwide-data.js js/app.bundle.js index.html
+          git add data/generated/ data/jp-canonical/ reports/jr/ js/line-workspace-data.js js/japan-lite-index.js js/nationwide-data.js js/app.bundle.js index.html
           if git diff --cached --quiet; then
             echo 'Runtime already synchronized'; exit 0
           fi
