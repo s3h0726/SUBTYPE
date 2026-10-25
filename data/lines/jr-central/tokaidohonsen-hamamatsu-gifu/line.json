@@ -35,7 +35,7 @@
   "sources": {
     "official": "",
     "korean": "",
-    "geometry": "MLIT-N02-2025",
+    "geometry": "MLIT-N02-2025; missing Ogaki–Tarui segment recovered from MLIT-N02-2024",
     "koreanName": {
       "family": "namuwiki",
       "method": "unresolved",
@@ -57,5 +57,13 @@
     "coverage": "nationwide-source-line",
     "dataKind": "physicalRoute"
   },
-  "officialKoSource": null
+  "officialKoSource": null,
+  "playable": true,
+  "geometryReview": {
+    "status": "VERIFIED",
+    "source": "MLIT-N02-2024",
+    "segment": "station-1150304::station-1150307",
+    "lengthKm": 8.0587,
+    "reviewedOn": "2026-10-26"
+  }
 }
