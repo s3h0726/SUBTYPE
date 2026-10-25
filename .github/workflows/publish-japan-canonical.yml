@@ -19,6 +19,7 @@ on:
       - 'data/tokyo-service-patterns.json'
       - 'tools/audit-jr-operating-services.cjs'
       - 'tools/test-jr-minoakasaka-split.cjs'
+      - 'tools/test-jr-tokaido-maibara.cjs'
   workflow_dispatch:
 
 permissions:
@@ -47,6 +48,8 @@ jobs:
         run: node tools/build-static.js
       - name: Test Mino-Akasaka physical line split against published runtime
         run: node tools/test-jr-minoakasaka-split.cjs
+      - name: Verify Toyohashi–Maibara geometry and actual route resolution
+        run: node tools/test-jr-tokaido-maibara.cjs
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
       - name: Assert no duplicate Tokyo Atami and correct Toyohashi boundary
