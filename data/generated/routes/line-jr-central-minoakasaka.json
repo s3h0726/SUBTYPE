@@ -1,0 +1,558 @@
+{
+  "route": {
+    "id": "line-jr-central-minoakasaka",
+    "category": "jr",
+    "operatorId": "jr-central",
+    "operator": {
+      "ja": "JR東海",
+      "ko": "JR 도카이",
+      "en": "JR Central"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "namuwiki-search-crosschecked",
+      "type": "namuwiki-search-crosschecked",
+      "url": "https://namu.wiki/w/JR%20%EB%8F%84%EC%B9%B4%EC%9D%B4",
+      "searchReference": "\"JR東海\" site:namu.wiki",
+      "sourceAccess": "search-index",
+      "namuwikiStatus": "search-result-confirmed",
+      "verified": true,
+      "crossVerified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-08-28",
+      "status": "NAMUWIKI_SEARCH_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "namuwikiEvidence": {
+        "query": "\"JR東海\" site:namu.wiki",
+        "resultTitle": "JR 도카이",
+        "resultUrl": "https://namu.wiki/w/JR%20%EB%8F%84%EC%B9%B4%EC%9D%B4"
+      },
+      "identityEvidence": {
+        "source": "official",
+        "nameJa": "JR東海",
+        "legalNameJa": "東海旅客鉄道株式会社",
+        "url": "https://railway.jr-central.co.jp/index.html"
+      }
+    },
+    "operatorAsset": {
+      "asset": "./data/operators/jr-central/logo.svg",
+      "label": "JR Central",
+      "source": "https://commons.wikimedia.org/wiki/File:JR_Central_logomark.svg",
+      "logoVerified": true,
+      "metadata": {
+        "asset": "./logo.svg",
+        "source": "https://commons.wikimedia.org/wiki/File:JR_Central_logomark.svg",
+        "verified": true,
+        "identificationSource": "namuwiki-unresolved",
+        "identificationUrl": "",
+        "identificationSearch": "site:namu.wiki JR東海 JR 도카이 로고",
+        "sourceAccess": "blocked",
+        "assetSource": "wikimedia",
+        "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:JR_Central_logomark.svg",
+        "licenseVerified": false,
+        "identificationFamily": "namuwiki",
+        "identificationMethod": "unresolved",
+        "identificationVerified": false
+      }
+    },
+    "line": {
+      "ja": "美濃赤坂線(大垣～美濃赤坂)",
+      "kana": "みのあかさかせん(おおがき～みのあかさか)",
+      "ko": "미노아카사카선(오가키~미노아카사카)",
+      "en": "Mino-Akasaka Line (Ogaki–Mino-Akasaka)"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 東海道本線(岐阜～美濃赤坂・米原) 도카이도혼선기후～미노아카사카·마이바라 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "MEDIUM",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki",
+      "normalizationBatch": "2026-10-07-line-koreanization"
+    },
+    "code": "",
+    "lineColor": "#BE8E2D",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 東海道本線(岐阜～美濃赤坂・米原) 도카이도혼선기후～미노아카사카·마이바라 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "officialSymbolExists": false,
+    "loop": false,
+    "stationSignTemplate": "jr-central",
+    "services": [
+      {
+        "id": "minoakasaka-local",
+        "nameJa": "普通",
+        "nameKo": "보통",
+        "nameEn": "Local",
+        "stops": [
+          "station-1150304",
+          "station-1150305",
+          "station-1150306"
+        ]
+      }
+    ],
+    "throughServiceIds": [],
+    "throughOperations": [],
+    "routeInfo": null,
+    "stations": [
+      {
+        "id": "station-1150304",
+        "internalId": "station-1150304",
+        "stationMasterId": "station-1150304",
+        "sourceId": "station-1150304",
+        "ja": "大垣",
+        "kana": "おおがき",
+        "ko": "오가키",
+        "romaji": "ōGaki",
+        "koAliases": [],
+        "latitude": 35.367096,
+        "longitude": 136.618288,
+        "order": 1,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 大垣駅 오오가키 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0
+      },
+      {
+        "id": "station-1150305",
+        "internalId": "station-1150305",
+        "stationMasterId": "station-1150305",
+        "sourceId": "station-1150305",
+        "ja": "荒尾",
+        "kana": "あらお",
+        "ko": "아라오",
+        "romaji": "Arao",
+        "koAliases": [],
+        "latitude": 35.373454,
+        "longitude": 136.583276,
+        "order": 2,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 荒尾駅 아라오 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 26
+      },
+      {
+        "id": "station-1150306",
+        "internalId": "station-1150306",
+        "stationMasterId": "station-1150306",
+        "sourceId": "station-1150306",
+        "ja": "美濃赤坂",
+        "kana": "みのあかさか",
+        "ko": "미노아카사카",
+        "romaji": "Minoakasaka",
+        "koAliases": [],
+        "latitude": 35.386677,
+        "longitude": 136.582129,
+        "order": 3,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 美濃赤坂駅 미노아카사카 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 33
+      }
+    ],
+    "geometry": [
+      [
+        35.36712,
+        136.61733
+      ],
+      [
+        35.36718,
+        136.61592
+      ],
+      [
+        35.36726,
+        136.61419
+      ],
+      [
+        35.36748,
+        136.61179
+      ],
+      [
+        35.3675,
+        136.61172
+      ],
+      [
+        35.36771,
+        136.61091
+      ],
+      [
+        35.36791,
+        136.61013
+      ],
+      [
+        35.36825,
+        136.60935
+      ],
+      [
+        35.36908,
+        136.60807
+      ],
+      [
+        35.37032,
+        136.60649
+      ],
+      [
+        35.3711,
+        136.6056
+      ],
+      [
+        35.37212,
+        136.60418
+      ],
+      [
+        35.37243,
+        136.60353
+      ],
+      [
+        35.373,
+        136.60186
+      ],
+      [
+        35.37332,
+        136.60045
+      ],
+      [
+        35.37339,
+        136.60011
+      ],
+      [
+        35.37353,
+        136.5991
+      ],
+      [
+        35.37361,
+        136.59789
+      ],
+      [
+        35.3736,
+        136.59678
+      ],
+      [
+        35.37344,
+        136.59463
+      ],
+      [
+        35.37314,
+        136.59146
+      ],
+      [
+        35.37295,
+        136.58944
+      ],
+      [
+        35.37264,
+        136.586
+      ],
+      [
+        35.37259,
+        136.5855
+      ],
+      [
+        35.3728,
+        136.58449
+      ],
+      [
+        35.37322,
+        136.58368
+      ],
+      [
+        35.37338,
+        136.58344
+      ],
+      [
+        35.37415,
+        136.58278
+      ],
+      [
+        35.3753,
+        136.58244
+      ],
+      [
+        35.37669,
+        136.58238
+      ],
+      [
+        35.38035,
+        136.5823
+      ],
+      [
+        35.38421,
+        136.58224
+      ],
+      [
+        35.38468,
+        136.58223
+      ],
+      [
+        35.38735,
+        136.58218
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-1150304",
+        "toStationId": "station-1150305",
+        "geometry": [
+          [
+            35.36712,
+            136.61733
+          ],
+          [
+            35.36718,
+            136.61592
+          ],
+          [
+            35.36726,
+            136.61419
+          ],
+          [
+            35.36748,
+            136.61179
+          ],
+          [
+            35.3675,
+            136.61172
+          ],
+          [
+            35.36771,
+            136.61091
+          ],
+          [
+            35.36791,
+            136.61013
+          ],
+          [
+            35.36825,
+            136.60935
+          ],
+          [
+            35.36908,
+            136.60807
+          ],
+          [
+            35.37032,
+            136.60649
+          ],
+          [
+            35.3711,
+            136.6056
+          ],
+          [
+            35.37212,
+            136.60418
+          ],
+          [
+            35.37243,
+            136.60353
+          ],
+          [
+            35.373,
+            136.60186
+          ],
+          [
+            35.37332,
+            136.60045
+          ],
+          [
+            35.37339,
+            136.60011
+          ],
+          [
+            35.37353,
+            136.5991
+          ],
+          [
+            35.37361,
+            136.59789
+          ],
+          [
+            35.3736,
+            136.59678
+          ],
+          [
+            35.37344,
+            136.59463
+          ],
+          [
+            35.37314,
+            136.59146
+          ],
+          [
+            35.37295,
+            136.58944
+          ],
+          [
+            35.37264,
+            136.586
+          ],
+          [
+            35.37259,
+            136.5855
+          ],
+          [
+            35.3728,
+            136.58449
+          ],
+          [
+            35.37322,
+            136.58368
+          ],
+          [
+            35.37338,
+            136.58344
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1150305",
+        "toStationId": "station-1150306",
+        "geometry": [
+          [
+            35.37338,
+            136.58344
+          ],
+          [
+            35.37415,
+            136.58278
+          ],
+          [
+            35.3753,
+            136.58244
+          ],
+          [
+            35.37669,
+            136.58238
+          ],
+          [
+            35.38035,
+            136.5823
+          ],
+          [
+            35.38421,
+            136.58224
+          ],
+          [
+            35.38468,
+            136.58223
+          ],
+          [
+            35.38735,
+            136.58218
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [],
+    "workspace": {
+      "folder": "data/lines/jr-central/minoakasaka-line",
+      "linePath": "data/lines/jr-central/minoakasaka-line/line.json",
+      "stationsPath": "data/lines/jr-central/minoakasaka-line/stations.json",
+      "geometryPath": "data/lines/jr-central/minoakasaka-line/geometry.json"
+    },
+    "sources": {
+      "official": "https://railway.jr-central.co.jp/time-schedule/srch/_pdf/data/202603/tokaido_Mino-akasaka_B_wh_u.pdf",
+      "korean": "",
+      "geometry": "MLIT-N02-2025 existing Ogaki–Arao–Mino-Akasaka adjacent segments",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 東海道本線(岐阜～美濃赤坂・米原) 도카이도혼선기후～미노아카사카·마이바라 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "MEDIUM",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki",
+        "normalizationBatch": "2026-10-07-line-koreanization"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "verified-branch"
+  }
+}
