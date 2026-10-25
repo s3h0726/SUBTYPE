@@ -52,6 +52,8 @@ function combineServiceSegment(segmentMap,fullRoute,fromIndex,toIndex){
 }
 function combineAlignedSegments(fullRoute,fullSegments,fromIndex,toIndex){const fromStation=fullRoute[fromIndex],toStation=fullRoute[toIndex],parts=fullSegments.slice(fromIndex,toIndex);if(!parts.length)throw new Error(`Missing railway segment: ${stationId(fromStation)} -> ${stationId(toStation)}`);const geometry=[];for(const part of parts){const points=cloneGeometry(part.geometry);if(geometry.length&&points.length&&geometry.at(-1)[0]===points[0][0]&&geometry.at(-1)[1]===points[0][1])points.shift();geometry.push(...points)}return{fromStationId:stationId(fromStation),toStationId:stationId(toStation),geometry,parts,serviceCombined:parts.length>1,endpointMismatch:parts.some(part=>part.endpointMismatch)}}
 
+const permitsApproximateGeometry=route=>route?.category==='custom'||['bus','village_bus','express_bus','river_bus','ferry'].includes(route?.mode);
+
 export function resolvePlayableRoute(route,{direction='forward',service=null}={}){
   const canonical=canonicalStations(route),resolvedFull=direction==='reverse'?canonical.slice().reverse():canonical.slice(),fullIds=new Set(canonical.map(stationId)),requestedStops=Array.isArray(service?.stops)?service.stops.map(String):[];
   for(const stopId of requestedStops)if(!fullIds.has(stopId))throw new Error(`${route.id}/${service.id}: service stop not found ${stopId}`);
@@ -71,7 +73,7 @@ export function resolvePlayableRoute(route,{direction='forward',service=null}={}
     return{canonicalStations:canonical.slice(),stations,segments,geometry,canonicalSegments:segments.slice(),direction,serviceApplied:applyStopPattern,sequenceOnly:true,fallbackGeometry:true,fallbackReason:reason,renderKey:`${route.id}::${direction}::${service?.id||'all'}::fallback::${stations.map(stationId).join('>')}`};
   };
 
-  if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2){if(route?.countryId==='kr')throw new Error(`${route.id}: verified railway geometry is required`);return straightLineFallback('missing railway geometry')}
+  if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2){if(!permitsApproximateGeometry(route))throw new Error(`${route.id}: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다.`);return straightLineFallback('missing railway geometry')}
 
   try{
     const{segments:canonicalSegments}=buildCanonicalSegmentMap(route),resolvedFullSegments=direction==='reverse'?canonicalSegments.slice().reverse().map(segment=>reverseSegment(segment)):canonicalSegments.map(segment=>({...segment,geometry:cloneGeometry(segment.geometry),reversed:false}));
@@ -80,7 +82,7 @@ export function resolvePlayableRoute(route,{direction='forward',service=null}={}
     const geometry=[],resolvedStations=stations.map(station=>({...station}));segments.forEach((segment,index)=>{const points=cloneGeometry(segment.geometry);resolvedStations[index].geometryIndex=Math.max(0,geometry.length-1);if(geometry.length&&points.length&&geometry.at(-1)[0]===points[0][0]&&geometry.at(-1)[1]===points[0][1])points.shift();geometry.push(...points)});resolvedStations.at(-1).geometryIndex=Math.max(0,geometry.length-1);
     return{canonicalStations:canonical.slice(),stations:resolvedStations,segments,geometry,canonicalSegments,direction,serviceApplied:applyStopPattern,renderKey:`${route.id}::${direction}::${service?.id||'all'}::${resolvedStations.map(stationId).join('>')}`};
   }catch(error){
-    if(route?.countryId!=='kr'&&/missing railway (geometry|segment)|Missing railway segment/.test(error?.message||String(error)))return straightLineFallback(error?.message||String(error));
+    if(permitsApproximateGeometry(route)&&/missing railway (geometry|segment)|Missing railway segment/.test(error?.message||String(error)))return straightLineFallback(error?.message||String(error));
     throw error;
   }
 }
