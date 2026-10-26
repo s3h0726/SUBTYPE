@@ -51,6 +51,20 @@ const auditSegment=segment=>{
     missingTotal:best.missing.length,origin:needed[0],destination:needed.at(-1)};
 };
 const byCompany=Object.fromEntries(companies.map(id=>[id,{cards:0,patterns:0,staticMatch:0,blocked:0,missingStations:0,wrongOrder:0,noRoute:0,trackBlocked:0}]));
+// Check line-card section titles against actual Japanese terminal stations.
+const titleBoundaries={checked:0,mismatches:[]};
+for(const card of jr){
+  const match=card.line?.ja?.match(/[（(]([^）)]+)[）)]/);
+  if(!match||!/[～〜~–—]/.test(match[1]))continue;
+  const range=match[1].split(/[～〜~–—]/);
+  if(range.length!==2)continue;
+  const stations=stationNames(card),from=range[0].split('・').map(x=>x.trim()),to=range[1].split('・').map(x=>x.trim());
+  titleBoundaries.checked++;
+  if(!from.includes(stations[0])||!to.includes(stations.at(-1)))titleBoundaries.mismatches.push({
+    cardId:card.id,name:card.line.ja,expectedFrom:from,expectedTo:to,
+    actualFrom:stations[0],actualTo:stations.at(-1)
+  });
+}
 const patterns=[];
 for(const card of jr){
   const group=byCompany[card.operatorId];group.cards++;
@@ -77,7 +91,7 @@ const total=patterns.length,blocked=patterns.filter(p=>p.status!=='STATIC_MATCH'
 const report={schemaVersion:1,generated:new Date().toISOString(),
   source:{name:'TrainLCD/StationAPI',snapshot:catalog.source?.retrieved,railCards:'js/japan-lite-index.js'},
   notice:'STATIC_MATCH means station coverage/order only. Timetables, closures, actual train operations and browser playthrough remain unverified. Never auto-enable failed patterns.',
-  totalJRcards:jr.length,totalPatterns:total,staticMatch:total-blocked,needsRepair:blocked,byCompany,patterns};
+  totalJRcards:jr.length,totalPatterns:total,staticMatch:total-blocked,needsRepair:blocked,titleBoundaries,byCompany,patterns};
 if(jr.length<220||total<850)throw Error('JR audit inventory unexpectedly incomplete: '+jr.length+'/'+total);
 const folder=path.join(root,'reports/jr');fs.mkdirSync(folder,{recursive:true});
 fs.writeFileSync(path.join(folder,'destination-audit.json'),JSON.stringify(report,null,2)+'\n');
