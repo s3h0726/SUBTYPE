@@ -46,10 +46,24 @@
       if (line.lazySource) line.lazySource = './data/generated/routes/line-28002-honancho-branch.json?v=20261027-marunouchi-internal';
     }
   }
+  // The public Marunouchi card covers 25 main-line stations and three
+  // exclusive Honancho branch stations; keep both branches searchable.
+  function mergeMarunouchiCard(rows) {
+    if (!Array.isArray(rows)) return;
+    const parent = rows.find(line => line?.id === 'line-28002');
+    if (!parent) return;
+    parent.stationCount = 28;
+    if (Array.isArray(parent.searchStations)) {
+      const extra = ['中野新橋','나카노신바시','中野富士見町','나카노후지미초','方南町','호난초'];
+      for (let index=0;index<extra.length;index+=2)
+        if (!parent.searchStations.includes(extra[index])) parent.searchStations.push(extra[index],extra[index+1]);
+    }
+  }
   const lite = globalThis.TRT_JAPAN_LITE_INDEX;
   if (Array.isArray(lite?.routes)) {
     lite.routes = purge(lite.routes);
     internalizeMarunouchiBranch(lite.routes);
+    mergeMarunouchiCard(lite.routes);
     repairChuoLite(lite.routes);
     if (lite.routes.filter(route => route.id === 'line-11301').length !== 1)
       console.error('JR East Tokaido canonical route count:', lite.routes.filter(route => route.id === 'line-11301').length);
@@ -67,6 +81,7 @@
   if (Array.isArray(nationwide?.index?.routes)) {
     nationwide.index.routes = purge(nationwide.index.routes);
     internalizeMarunouchiBranch(nationwide.index.routes);
+    mergeMarunouchiCard(nationwide.index.routes);
     repairChuoLite(nationwide.index.routes);
   }
   if (nationwide?.routes && typeof nationwide.routes === 'object') {
