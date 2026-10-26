@@ -26,7 +26,9 @@ assert.equal(children.length,1,'the branch geometry must remain lazy-loadable');
 assert.equal(children[0].visibility,'internal','branch card must never be public');
 assert.equal(children[0].playable,false);
 assert.equal(children[0].parentLineId,mainId);
-assert.equal(parents[0].stationCount,25);
+assert.equal(parents[0].stationCount,28,'public card includes 25 main and 3 unique branch stations');
+assert.ok(parents[0].searchStations.includes('方南町'));
+assert.ok(parents[0].searchStations.includes('호난초'));
 assert.equal(children[0].stationCount,4);
 assert.ok(children[0].lazySource?.includes('data/generated/routes/line-28002-honancho-branch.json'),'physical branch must hydrate from canonical track payload');
 const visibilitySource=read('js/feature-flags.js')
@@ -75,4 +77,4 @@ for(const name of ['japan-lite-index','japan-route-identity-patch','app.bundle']
  assert.ok(new RegExp('js/'+name+'\\.js\\?v=20261027-marunouchi').test(html)
           ||(name==='app.bundle'&&html.includes('app.bundle.js?v=20261027-marunouchi')),
           'missing updated browser cache key for '+name);
-console.log(JSON.stringify({status:'PASS',visibleCards:1,internalBranch:1,mainStations:25,branchStations:4,operatingJourneys:cases.length,geometry:'physical railway curves'}));
+console.log(JSON.stringify({status:'PASS',visibleCards:1,internalBranch:1,mainStations:25,publicStationCount:28,branchStations:4,operatingJourneys:cases.length,geometry:'physical railway curves'}));
