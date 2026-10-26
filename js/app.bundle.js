@@ -2341,7 +2341,14 @@ function routeForCatalogLine(code,requiredStations=[]){
 // TrainLCD line IDs predate JR Central's physical-route split.
 // Split only at real common stations; preserve every surveyed stop and vertex.
 function resolvedJrCatalogSegments(pattern){
-  return (pattern?.segments||[]).flatMap(segment=>{
+  // Rakuraku Harima uses the Kyoto–Osaka–Kobe main tracks. The legacy
+  // TrainLCD 11641 Shin-Osaka–Osaka insert duplicates this section via a
+  // different physical route and produces a false backtrack at Osaka.
+  const raw=pattern?.segments||[],mainLinePresent=raw.some(segment=>
+    String(segment.lineCode)==='11602'&&segment.stations?.[0]?.[0]==='京都'&&segment.stations?.at(-1)?.[0]==='大阪');
+  const segments=String(pattern?.id)==='995'&&mainLinePresent
+    ?raw.filter(segment=>String(segment.lineCode)!=='11641'):raw;
+  return segments.flatMap(segment=>{
     const stops=segment.stations||[],at=name=>stops.findIndex(stop=>stop[0]===name);
     if(String(segment.lineCode)==='11502'){
       const pivot=at('豊橋');
