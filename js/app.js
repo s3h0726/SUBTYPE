@@ -325,8 +325,18 @@ function catalogPatternChoice(route,pattern,reverse=false){
   const segments=reverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;
   const first=segments[0]?.stations?.[0]?.[0]||route.stations?.[0]?.ja||'',last=segments.at(-1)?.stations?.at(-1)?.[0]||route.stations?.at(-1)?.ja||'';
   const firstRoute=routeForCatalogLine(segments[0]?.lineCode,segments[0]?.stations),lastRoute=routeForCatalogLine(segments.at(-1)?.lineCode,segments.at(-1)?.stations),origin=firstRoute?.stations?.find(station=>station.ja===first)||{ja:first,ko:first},destination=lastRoute?.stations?.find(station=>station.ja===last)||{ja:last,ko:last};
-  const type={id:`catalog-type-${pattern.id}`,names:{ja:pattern.type?.ja||'',ko:pattern.type?.ko||'',en:pattern.type?.en||''},priority:Number(pattern.type?.priority||0),kind:Number(pattern.type?.kind||0)};
-  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse,catalogUnavailableReason:!base.length?'원본 정차 구간 데이터가 없습니다.':base.length!==allSegments.length?'일부 구간의 정차역 자료가 누락되었습니다.':base.some(segment=>!routeForCatalogLine(segment.lineCode,segment.stations))?'일부 연결 노선이 등록되어 있지 않습니다.':null}
+    const missingCatalogTrack=base.map(segment=>{
+    const physical=routeForCatalogLine(segment.lineCode,segment.stations);
+    if(!physical)return null;
+    const available=(physical.stations?.length?physical.stations.map(station=>station.ja):physical.searchStations)||[];
+    const missing=segment.stations?.map(station=>station[0]).filter(name=>!available.includes(name))||[];
+    return missing.length?{segment,missing}:null;
+  }).find(Boolean);
+  const unmatchedCatalogReason=missingCatalogTrack?.segment.lineCode==='11612'&&missingCatalogTrack.missing.includes('門司')
+    ? '시모노세키~모지(JR 큐슈) 실제 선로가 미등록되어 이 직통계통을 플레이할 수 없습니다.'
+    : missingCatalogTrack?'실제 노선에 없는 정차역: '+missingCatalogTrack.missing.slice(0,4).join(', '):null;
+const type={id:`catalog-type-${pattern.id}`,names:{ja:pattern.type?.ja||'',ko:pattern.type?.ko||'',en:pattern.type?.en||''},priority:Number(pattern.type?.priority||0),kind:Number(pattern.type?.kind||0)};
+  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse,catalogUnavailableReason:!base.length?'원본 정차 구간 데이터가 없습니다.':base.length!==allSegments.length?'일부 구간의 정차역 자료가 누락되었습니다.':base.some(segment=>!routeForCatalogLine(segment.lineCode,segment.stations))?'일부 연결 노선이 등록되어 있지 않습니다.':unmatchedCatalogReason}
 }
 // A limited express may skip the interchange at which the underlying rail
 // infrastructure changes (e.g. Hayabusa skips Shin-Aomori in one catalog
