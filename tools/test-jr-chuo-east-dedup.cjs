@@ -31,7 +31,7 @@ if(fs.existsSync(runtime)){
  const s=fs.readFileSync(runtime,'utf8'),tag='window.TRT_EMBEDDED_LINE_WORKSPACES=';
  const idx=s.indexOf(tag);
  if(idx>=0){
-  const ws=JSON.parse(s.slice(idx+tag.length).trim().replace(/;\\s*$/,''));
+  const ws=JSON.parse(s.slice(idx+tag.length).trim().replace(/;\s*$/,''));
   const cards=ws.routes.filter(r=>r.id==='line-11311');
   assert.equal(cards.length,1,'canonical Chuo East card');
   assert.equal(ws.routes.some(r=>r.id==='line-11311--chuohonsen-tokyo-shiojiri'),false,'retired duplicate in runtime');
