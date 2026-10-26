@@ -56,7 +56,7 @@ assert.equal(wadamisaki.line.ko,'와다미사키선(효고~와다미사키)');
 assert.deepEqual(wadamisaki.stations.map(s=>s.ja),['兵庫','和田岬']);
 assert.equal(wadamisaki.geometryReady,true);
 assert(wadamisaki.geometry.length>=20,'Wadamisaki must retain surveyed track');
-const lite=JSON.parse(read('js/japan-lite-index.js').split('window.TRT_JAPAN_LITE_INDEX=')[1].trim().replace(/;\\s*$/,''));
+const lite=JSON.parse(read('js/japan-lite-index.js').split('window.TRT_JAPAN_LITE_INDEX=')[1].trim().replace(/;\s*$/,''));
 assert.equal(lite.routes.find(r=>r.id==='line-11613')?.line.ko,wadamisaki.line.ko);
 const sourcePattern=cat.lines['11610'].patterns.find(p=>p.id==='681');
 assert(sourcePattern?.type?.ko==='산 라이너','Historical Sun Liner must be preserved in raw audit source');
