@@ -62,6 +62,8 @@ for(const [id,start,end,count] of cases){
 const app=read('js/app.js'),bundle=read('js/app.bundle.js');
 for(const [label,source] of [['app',app],['published bundle',bundle]]){
  assert.ok(source.includes('if(branch.parentLineId!==route.id)continue;'),label+' must load child geometry when selecting parent');
+}
+for(const [label,source] of [['resolver',read('js/service-route-resolver.js')],['published bundle',bundle]]){
  assert.ok(source.includes('const physicalReady=source.geometryReady===true'),label+' must resolve physical branch curves');
 }
 const guard=read('js/japan-route-identity-patch.js');
