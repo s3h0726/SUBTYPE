@@ -186,7 +186,21 @@ export function buildBranchRoute(branch,source,contextRoute=source){
   if(!branch||!source||!contextRoute)throw new Error('Missing branch or parent route');
   const sourceMap=new Map((source.stations||[]).map(station=>[stationKey(station),station])),stations=branch.stationSequence.map(id=>sourceMap.get(String(id)));
   if(stations.some(station=>!station))throw new Error(`${branch.id}: branch station is missing from ${source.id}`);
-  const geometryData=branch.geometryData;if(!geometryData?.geometry?.length||geometryData.geometryStatus!=='ready')throw new Error(`${branch.id}: verified branch geometry is unavailable`);
+  // Prefer a verified branch overlay when one is supplied. Otherwise reuse the
+  // canonical physical branch's original track vertices (never draw a straight connector).
+  const physicalReady=source.geometryReady===true
+    && Array.isArray(source.geometry)&&source.geometry.length>=2
+    && Array.isArray(source.directedSegments)
+    && source.directedSegments.length===branch.stationSequence.length-1
+    && source.directedSegments.every((segment,index)=>
+      String(segment.fromStationId)===String(branch.stationSequence[index])
+      && String(segment.toStationId)===String(branch.stationSequence[index+1])
+      && Array.isArray(segment.geometry)&&segment.geometry.length>=2);
+  const geometryData=branch.geometryData?.geometry?.length
+    ? branch.geometryData
+    : physicalReady?{geometry:source.geometry,directedSegments:source.directedSegments,geometryStatus:'ready'}:null;
+  if(!geometryData?.geometry?.length||geometryData.geometryStatus!=='ready')
+    throw new Error(`${branch.id}: verified branch geometry is unavailable`);
   const geometry=[],directedSegments=[],resolvedStations=[];
   for(let index=0;index<geometryData.directedSegments.length;index++){
     const part=copyGeometry(geometryData.directedSegments[index].geometry);if(geometry.length&&part.length&&geometry.at(-1)[0]===part[0][0]&&geometry.at(-1)[1]===part[0][1])part.shift();
