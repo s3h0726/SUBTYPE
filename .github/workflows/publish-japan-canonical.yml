@@ -10,6 +10,10 @@ on:
       - 'js/app.js'
       - 'js/data-loader.js'
       - 'data/lines/jr-east/**'
+      - 'data/lines/tokyo-metro/**'
+      - 'js/service-route-resolver.js'
+      - 'tools/test-metro-marunouchi-merged.cjs'
+      - 'js/japan-route-identity-patch.js'
       - 'data/lines/jr-central/**'
       - 'data/lines/jr-hokkaido/**'
       - 'data/lines/jr-west/**'
@@ -59,6 +63,8 @@ jobs:
         run: node tools/test-jr-tokaido-maibara.cjs
       - name: Verify JR Sanyo actual track and current destinations
         run: node tools/test-jr-sanyo-destinations.cjs
+      - name: Verify merged Marunouchi card and all Honancho branch journeys
+        run: node tools/test-metro-marunouchi-merged.cjs
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
       - name: Verify Chuo East line consolidation and Takao boundary
