@@ -33,19 +33,39 @@
       }
     }
   }
+  // A legacy published chunk may still describe Honancho as a separate
+  // passenger line. It remains available internally for branch geometry only.
+  function internalizeMarunouchiBranch(rows) {
+    if (!Array.isArray(rows)) return;
+    for (const line of rows) {
+      if (line?.id !== 'line-28002-honancho-branch') continue;
+      line.parentLineId = 'line-28002';
+      line.visibility = 'internal';
+      line.playable = false;
+      line.legacyRouteAliasFor = 'line-28002';
+    }
+  }
   const lite = globalThis.TRT_JAPAN_LITE_INDEX;
   if (Array.isArray(lite?.routes)) {
     lite.routes = purge(lite.routes);
+    internalizeMarunouchiBranch(lite.routes);
     repairChuoLite(lite.routes);
     if (lite.routes.filter(route => route.id === 'line-11301').length !== 1)
       console.error('JR East Tokaido canonical route count:', lite.routes.filter(route => route.id === 'line-11301').length);
   }
   const workspace = globalThis.TRT_EMBEDDED_LINE_WORKSPACES;
-  if (Array.isArray(workspace?.routes)) workspace.routes = purge(workspace.routes);
-  if (Array.isArray(workspace?.index?.routes)) workspace.index.routes = purge(workspace.index.routes);
+  if (Array.isArray(workspace?.routes)) {
+    workspace.routes = purge(workspace.routes);
+    internalizeMarunouchiBranch(workspace.routes);
+  }
+  if (Array.isArray(workspace?.index?.routes)) {
+    workspace.index.routes = purge(workspace.index.routes);
+    internalizeMarunouchiBranch(workspace.index.routes);
+  }
   const nationwide = globalThis.TRT_EMBEDDED_NATIONWIDE;
   if (Array.isArray(nationwide?.index?.routes)) {
     nationwide.index.routes = purge(nationwide.index.routes);
+    internalizeMarunouchiBranch(nationwide.index.routes);
     repairChuoLite(nationwide.index.routes);
   }
   if (nationwide?.routes && typeof nationwide.routes === 'object') {
