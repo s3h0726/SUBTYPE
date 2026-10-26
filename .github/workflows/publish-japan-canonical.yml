@@ -24,6 +24,8 @@ on:
       - 'tools/test-jr-tokaido-maibara.cjs'
       - 'tools/test-jr-sanyo-destinations.cjs'
       - 'tools/test-jr-chuo-east-dedup.cjs'
+      - 'tools/test-jr-chuo-published.cjs'
+      - 'js/japan-route-identity-patch.js'
       - 'js/nationwide-service-catalog.js'
   workflow_dispatch:
 
@@ -60,7 +62,9 @@ jobs:
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
       - name: Verify Chuo East line consolidation and Takao boundary
-        run: node tools/test-jr-chuo-east-dedup.cjs
+        run: |
+          node tools/test-jr-chuo-east-dedup.cjs
+          node tools/test-jr-chuo-published.cjs
       - name: Audit all JR destination station sequences and card boundaries
         run: node tools/audit-jr-destinations.cjs
       - name: Test JR Central physical-service split correction
