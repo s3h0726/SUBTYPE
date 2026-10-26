@@ -28,7 +28,7 @@ assert.equal(children[0].playable,false);
 assert.equal(children[0].parentLineId,mainId);
 assert.equal(parents[0].stationCount,25);
 assert.equal(children[0].stationCount,4);
-assert.ok(children[0].lazySource?.includes('/chunk-'),'physical branch still referenced by deployed geometry chunks');
+assert.ok(children[0].lazySource?.includes('data/generated/routes/line-28002-honancho-branch.json'),'physical branch must hydrate from canonical track payload');
 const visibilitySource=read('js/feature-flags.js')
   .replace(/^import[^\n]*\n/gm,'').replace(/\bexport\s+/g,'');
 const visibilityVM={koreanRouteBlockReason:()=>'',TRT_TOKYO_AREA:null};
