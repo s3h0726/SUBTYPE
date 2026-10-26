@@ -693,6 +693,12 @@ async function hydrateJapaneseOperatingConnections(route){
     // Branch candidates must also be hydrated before resolving service endpoints.
     if(code==='11503')queue(builtin.find(item=>item.id==='line-jr-central-minoakasaka'));
   }
+  // Passenger-facing Marunouchi line shares one card with its Honancho branch.
+  // Keep branch tracks internal, but hydrate them before evaluating the parent's journeys.
+  for(const branch of globalThis.TRT_TOKYO_SERVICE_PATTERNS?.branches||[]){
+    if(branch.parentLineId!==route.id)continue;
+    queue(builtin.find(item=>item.id===(branch.legacyRouteId||branch.routeId)));
+  }
   // The curated Tokyo Metro/Toei through-journey catalog is separate from
   // the nationwide TrainLCD catalog. Hydrate its participating lines too.
   const journeySpecs=new Set(servicePatternsForRoute(route.id).map(p=>p.throughServiceId).filter(Boolean));
