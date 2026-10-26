@@ -20,6 +20,9 @@ for(const [name,split] of [['source',testSource(source)],['published bundle',tes
  assert.equal(JSON.stringify(oldStops),JSON.stringify(newStops),name+': station identities must be preserved');
  assert(after.some(s=>s.lineCode==='11501'&&s.stations[0][0]==='浜松'&&s.stations.at(-1)[0]==='豊橋'),'Hamamatsu–Toyohashi on 11501');
  assert(after.some(s=>s.lineCode==='11502'&&s.stations[0][0]==='豊橋'&&s.stations.at(-1)[0]==='岐阜'),'Toyohashi–Gifu on 11502');
+ const local=catalog.lines['11501'].patterns.find(p=>p.id==='558');
+ const restored=split(local);
+ assert(restored.some(s=>s.lineCode==='11501'&&s.stations[0][0]==='浜松'&&s.stations.at(-1)[0]==='豊橋'),'Hamamatsu–Toyohashi-only must not use route 11502');
  const spur=catalog.lines['11503'].patterns.find(p=>p.id==='151');
  assert(spur,'Mino-Akasaka local missing');
  assert(split(spur).some(s=>s.stations[0][0]==='大垣'&&s.stations.at(-1)[0]==='美濃赤坂'));
