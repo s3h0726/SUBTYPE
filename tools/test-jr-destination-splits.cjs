@@ -24,7 +24,7 @@ for(const [name,split] of [['source',testSource(source)],['published bundle',tes
  assert(spur,'Mino-Akasaka local missing');
  assert(split(spur).some(s=>s.stations[0][0]==='大垣'&&s.stations.at(-1)[0]==='美濃赤坂'));
  assert(source.includes('routeForCatalogLine(segment.lineCode,segment.stations)')&&bundle.includes('routeForCatalogLine(segment.lineCode,segment.stations)'),'single segment must choose real branch by station coverage');
- assert(source.includes('resolvedJrCatalogSegments(pattern).map(part=>String(part.lineCode||')),'preload changed routes before selecting destinations');
+ assert(source.includes('resolvedJrCatalogSegments(pattern).map(part=>String(part.lineCode')&&bundle.includes('resolvedJrCatalogSegments(pattern).map(part=>String(part.lineCode'),'preload changed routes before selecting destinations');
 }
 const jrEast=JSON.parse(read('data/generated/routes/line-11226.json')).route;
 assert.equal(jrEast.stations[0].ja,'会津若松');
