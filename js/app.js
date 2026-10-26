@@ -297,10 +297,30 @@ function routeForCatalogLine(code,requiredStations=[]){
   }
   return matches[0]||null
 }
+// TrainLCD line IDs predate JR Central's physical-route split.
+// Split only at real common stations; preserve every surveyed stop and vertex.
+function resolvedJrCatalogSegments(pattern){
+  return (pattern?.segments||[]).flatMap(segment=>{
+    const stops=segment.stations||[],at=name=>stops.findIndex(stop=>stop[0]===name);
+    if(String(segment.lineCode)==='11502'){
+      const pivot=at('豊橋');
+      if(pivot>0&&pivot<stops.length-1)
+        return [{...segment,lineCode:'11501',stations:stops.slice(0,pivot+1)},
+          {...segment,lineCode:'11502',stations:stops.slice(pivot)}];
+    }
+    if(String(segment.lineCode)==='11503'&&at('美濃赤坂')>=0){
+      const pivot=at('大垣');
+      if(pivot>0&&pivot<stops.length-1)
+        return [{...segment,lineCode:'11503',stations:stops.slice(0,pivot+1)},
+          {...segment,lineCode:'11503',stations:stops.slice(pivot)}];
+    }
+    return [segment];
+  });
+}
 function catalogPatternChoice(route,pattern,reverse=false){
   // Listing a documented service must not depend on its railway geometry being
   // loaded or playable. Keep incomplete catalog patterns visible for diagnosis.
-  const allSegments=pattern.segments||[],base=allSegments.filter(segment=>segment.stations?.length>=2);
+  const allSegments=resolvedJrCatalogSegments(pattern),base=allSegments.filter(segment=>segment.stations?.length>=2);
   const segments=reverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;
   const first=segments[0]?.stations?.[0]?.[0]||route.stations?.[0]?.ja||'',last=segments.at(-1)?.stations?.at(-1)?.[0]||route.stations?.at(-1)?.ja||'';
   const firstRoute=routeForCatalogLine(segments[0]?.lineCode,segments[0]?.stations),lastRoute=routeForCatalogLine(segments.at(-1)?.lineCode,segments.at(-1)?.stations),origin=firstRoute?.stations?.find(station=>station.ja===first)||{ja:first,ko:first},destination=lastRoute?.stations?.find(station=>station.ja===last)||{ja:last,ko:last};
@@ -339,10 +359,10 @@ function catalogConnectedSegments(segments){
   }));
 }
 function buildCatalogResolved(choice){
-  const pattern=choice?.catalogPattern,base=(pattern?.segments||[]).filter(segment=>segment.stations?.length>=2),segments=choice?.catalogReverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;if(!segments.length)throw new Error('전국 운행계통 데이터가 비어 있습니다.');
+  const pattern=choice?.catalogPattern,base=resolvedJrCatalogSegments(pattern).filter(segment=>segment.stations?.length>=2),segments=choice?.catalogReverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;if(!segments.length)throw new Error('전국 운행계통 데이터가 비어 있습니다.');
   const stopNames=[];for(const segment of segments)for(const [name,pass] of segment.stations)if(Number(pass)!==1&&!stopNames.includes(name))stopNames.push(name);
   if(segments.length===1){
-    const segment=segments[0],route=routeForCatalogLine(segment.lineCode);if(!route)throw new Error(`노선 데이터를 찾지 못했습니다: ${segment.lineCode}`);
+    const segment=segments[0],route=routeForCatalogLine(segment.lineCode,segment.stations);if(!route)throw new Error(`노선 데이터를 찾지 못했습니다: ${segment.lineCode}`);
     const first=segment.stations[0][0],last=segment.stations.at(-1)[0],a=route.stations.findIndex(station=>station.ja===first),b=route.stations.findIndex(station=>station.ja===last);if(a<0||b<0)throw new Error(`${first} → ${last} 구간을 현재 노선 데이터와 연결하지 못했습니다.`);
     const direction=b>=a?'forward':'reverse',allowed=new Set(stopNames),stops=route.stations.filter(station=>allowed.has(station.ja)).map(station=>station.id);
     const service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'運行系統',nameKo:pattern.type?.ko||'운행계통',nameEn:pattern.type?.en||'Service',stops};
@@ -644,7 +664,7 @@ async function prepareKoreanFamilyChoices(route){
 async function hydrateJapaneseOperatingConnections(route){
   if(route?.countryId!=='jp')return;
   const catalog=['line-11333','line-11343'].includes(route?.id)?null:nationwideCatalogLine(route);
-  const codes=new Set((catalog?.data?.patterns||[]).flatMap(pattern=>(pattern.segments||[]).map(part=>String(part.lineCode||''))).filter(Boolean));
+  const codes=new Set((catalog?.data?.patterns||[]).flatMap(pattern=>resolvedJrCatalogSegments(pattern).map(part=>String(part.lineCode||''))).filter(Boolean));
   const pending=new Map();
   const queue=physical=>{
     if(physical?.lazy&&physical.id!==route.id)pending.set(physical.id,physical);
