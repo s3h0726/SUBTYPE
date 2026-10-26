@@ -50,6 +50,18 @@ for(const file of ['js/app.js','js/app.bundle.js']){
  const s=read(file);
  assert(s.includes('missingCatalogTrack')&&s.includes('시모노세키~모지(JR 큐슈)'),file+' must block phantom Moji track');
 }
+// The Wadamisaki branch is a separate two-stop service, not an extra stop on the Sanyo trunk.
+const wadamisaki=json('data/generated/routes/line-11613.json').route;
+assert.equal(wadamisaki.line.ko,'와다미사키선(효고~와다미사키)');
+assert.deepEqual(wadamisaki.stations.map(s=>s.ja),['兵庫','和田岬']);
+assert.equal(wadamisaki.geometryReady,true);
+assert(wadamisaki.geometry.length>=20,'Wadamisaki must retain surveyed track');
+const lite=JSON.parse(read('js/japan-lite-index.js').split('window.TRT_JAPAN_LITE_INDEX=')[1].trim().replace(/;\\s*$/,''));
+assert.equal(lite.routes.find(r=>r.id==='line-11613')?.line.ko,wadamisaki.line.ko);
+const sourcePattern=cat.lines['11610'].patterns.find(p=>p.id==='681');
+assert(sourcePattern?.type?.ko==='산 라이너','Historical Sun Liner must be preserved in raw audit source');
+for(const p of ['js/app.js','js/app.bundle.js'])
+ assert(read(p).includes("catalogLine.code==='11610'&&String(pattern.id)==='681'"),p+': 2022 discontinued Sun Liner must not appear as an active destination');
 const html=read('index.html');
 assert(html.includes('nationwide-service-catalog.js?v=20261026-sanyo-current'));
 console.log(JSON.stringify({status:'PASS',segments:routes.length,stations:routes.reduce((v,r)=>v+r.stations.length,0)-3,verifiedStationLinks:routes.reduce((v,r)=>v+r.directedSegments.length,0),stoppingPatterns:found,superInaba:'valid westbound track',mojiConnection:'BLOCKED until real JR Kyushu physical alignment'},null,2));
