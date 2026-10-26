@@ -17,6 +17,7 @@ function splitLegacyJrSegments(pattern){
     const stops=segment.stations||[],at=name=>stops.findIndex(stop=>stop[0]===name);
     if(String(segment.lineCode)==='11502'){
       const pivot=at('豊橋');
+      if(pivot===stops.length-1&&pivot>0)return [{...segment,lineCode:'11501'}];
       if(pivot>0&&pivot<stops.length-1)return [
         {...segment,lineCode:'11501',stations:stops.slice(0,pivot+1)},
         {...segment,lineCode:'11502',stations:stops.slice(pivot)}];
