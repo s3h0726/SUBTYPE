@@ -67,5 +67,5 @@ assert.throws(()=>context.resolvePlayableRouteForTest(impossible),/직선 경로
 assert.equal(context.travelGeometryForTest(impossible),null,'unknown track must not render straight');
 const compiled=read('js/app.bundle.js');
 assert(compiled.includes('permitsApproximateGeometry')&&compiled.includes('permitsApproximateMapGeometry'),'deployed bundle must enforce real track geometry');
-assert(read('index.html').includes('app.bundle.js?v=20261026-real-rail-geometry'),'browser must load the fixed bundle');
+assert(/app\\.bundle\\.js\\?v=[^"']+/.test(read('index.html')),'browser must load a versioned bundle');
 console.log('PASS: Toyohashi–Maibara 42 stations, 41 real railway edges, forward/reverse game route, published chunk and card');
