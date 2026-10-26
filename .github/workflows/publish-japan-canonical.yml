@@ -18,6 +18,8 @@ on:
       - 'data/through-services.json'
       - 'data/tokyo-service-patterns.json'
       - 'tools/audit-jr-operating-services.cjs'
+      - 'tools/audit-jr-destinations.cjs'
+      - 'tools/test-jr-destination-splits.cjs'
       - 'tools/test-jr-minoakasaka-split.cjs'
       - 'tools/test-jr-tokaido-maibara.cjs'
   workflow_dispatch:
@@ -52,6 +54,10 @@ jobs:
         run: node tools/test-jr-tokaido-maibara.cjs
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
+      - name: Audit all JR destination station sequences and card boundaries
+        run: node tools/audit-jr-destinations.cjs
+      - name: Test JR Central physical-service split correction
+        run: node tools/test-jr-destination-splits.cjs
       - name: Assert no duplicate Tokyo Atami and correct Toyohashi boundary
         run: |
           node - <<'NODE'
