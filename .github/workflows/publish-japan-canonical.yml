@@ -22,6 +22,8 @@ on:
       - 'tools/test-jr-destination-splits.cjs'
       - 'tools/test-jr-minoakasaka-split.cjs'
       - 'tools/test-jr-tokaido-maibara.cjs'
+      - 'tools/test-jr-sanyo-destinations.cjs'
+      - 'js/nationwide-service-catalog.js'
   workflow_dispatch:
 
 permissions:
@@ -52,6 +54,8 @@ jobs:
         run: node tools/test-jr-minoakasaka-split.cjs
       - name: Verify Toyohashi–Maibara geometry and actual route resolution
         run: node tools/test-jr-tokaido-maibara.cjs
+      - name: Verify JR Sanyo actual track and current destinations
+        run: node tools/test-jr-sanyo-destinations.cjs
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
       - name: Audit all JR destination station sequences and card boundaries
