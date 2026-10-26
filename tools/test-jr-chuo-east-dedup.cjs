@@ -5,12 +5,12 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const east='data/lines/jr-east/chuohonsen-tokyo-shiojiri/';
 const other='data/lines/jr-east/chuohonsen-tokyo-shiojiri-2/';
-const e=read(east+'line.json'),dup=read(other+'line.json');
+const e=read(east+'line.json');
+for(const file of ['line.json','stations.json','geometry.json'])
+ assert.equal(fs.existsSync(other+file),false,'obsolete physical Chuo Main source has reappeared: '+file);
 const es=read(east+'stations.json'),eg=read(east+'geometry.json');
 const rapid=read('data/lines/jr-east/chuo-line-rapid/stations.json');
 assert.equal(e.id,'line-11311');assert.equal(e.names.ko,'츄오토선');
-assert.equal(dup.legacy.retiredDuplicate,true);
-assert.equal(dup.legacyRouteAliasFor,e.id);
 assert.equal(es.length,42);
 assert.equal(es[0].stationId,'station-mlit-004029');
 assert.equal(es.at(-1).stationId,'station-mlit-002616');
@@ -42,4 +42,4 @@ if(fs.existsSync(runtime)){
   assert.equal(cards[0].directedSegments.length,41);
  }
 }
-console.log('PASS JR Chuo East: Takao–Shiojiri, 42 stations, 41 tracks; rapid retained, duplicate retired');
+console.log('PASS JR Chuo East: Takao–Shiojiri, 42 stations, 41 tracks; rapid retained, duplicate removed');
