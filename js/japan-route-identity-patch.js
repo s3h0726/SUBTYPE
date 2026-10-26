@@ -43,6 +43,7 @@
       line.visibility = 'internal';
       line.playable = false;
       line.legacyRouteAliasFor = 'line-28002';
+      if (line.lazySource) line.lazySource = './data/generated/routes/line-28002-honancho-branch.json?v=20261027-marunouchi-internal';
     }
   }
   const lite = globalThis.TRT_JAPAN_LITE_INDEX;
