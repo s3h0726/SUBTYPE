@@ -1823,11 +1823,36 @@ function normalizeStation(raw={},index=0,lineCode='ST'){
   const ko=text(sourceNames.ko,source.nameKo,source.ko)||'MISSING_KOREAN_NAME';
   return{...source,id:internalId,internalId,officialCode,stationCode:officialCode,hasOfficialStationCode:source.hasOfficialStationCode??!!officialCode,stationCodeSource:source.stationCodeSource||text(source.codeSource)||(officialCode?(explicitCode?'source-explicit':'bundled-verified-array'):'none'),ja,kana:text(sourceNames.kana,source.kana,source.hiragana,ko),romaji:text(sourceNames.en,source.romaji,source.en,ko),ko,koMissing:ko==='MISSING_KOREAN_NAME',koAliases:[...new Set(aliases)],koVerified:!!source.koVerified,koSource:source.koSource||'',latitude:Number.isFinite(latitude)&&rawLatitude!==null?latitude:null,longitude:Number.isFinite(longitude)&&rawLongitude!==null?longitude:null}
 }
+// Keep a stop's railway/platform coordinate separate from the shared station
+// identity used by search, names and transfers. Geometry vertices are [lat,lon].
+function applyRouteTrackCoordinates(raw,stations){
+  const segments=raw?.directedSegments;
+  if(raw?.countryId==='kr'||raw?.geometryReady!==true||!Array.isArray(segments)
+    ||segments.length!==stations.length-1||stations.length<2)return stations;
+  const valid=point=>Array.isArray(point)&&point.length>=2
+    &&Number.isFinite(Number(point[0]))&&Number.isFinite(Number(point[1]))
+    &&Math.abs(Number(point[0]))<=90&&Math.abs(Number(point[1]))<=180;
+  const km=(a,b)=>Math.hypot((Number(a[0])-Number(b[0]))*111.195,
+    (Number(a[1])-Number(b[1]))*111.195*Math.cos(Number(b[0])*Math.PI/180));
+  return stations.map((station,i)=>{
+    const segment=i<segments.length?segments[i]:segments.at(-1);
+    const point=i<segments.length?segment?.geometry?.[0]:segment?.geometry?.at(-1);
+    const current=[station.latitude,station.longitude];
+    const expected=i<segments.length?segment?.fromStationId:segment?.toStationId;
+    if(String(expected)!==String(station.id)||!valid(point)||!valid(current))return station;
+    const offset=km(point,current);
+    // A few legacy 'verified' lines start well outside their actual station.
+    // Never relocate the marker kilometres away from its canonical location.
+    return offset<=0.5
+      ?{...station,latitude:Number(point[0]),longitude:Number(point[1]),coordinateSource:'line-track-geometry'}
+      :{...station,coordinateSource:station.coordinateSource||'station-master-fallback',trackEndpointOffsetKm:+offset.toFixed(3)};
+  });
+}
 function normalizeLine(raw={},defaults={}){
   const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
   const verifiedTheme=globalThis.TRT_LINE_THEMES?.[id],resolvedCode=verifiedTheme?.code||code||'—';
-  const stations=Array.isArray(raw.stations)?raw.stations.map((station,index)=>{const normalized=normalizeStation(station,index,resolvedCode),verifiedCode=verifiedTheme?.stationCodes?.[normalized.ja];return verifiedCode?{...normalized,officialCode:verifiedCode,stationCode:verifiedCode,hasOfficialStationCode:true,stationCodeSource:verifiedTheme.colorSource||'verified-line-theme'}:normalized}):[];
+  const stations=applyRouteTrackCoordinates(raw,Array.isArray(raw.stations)?raw.stations.map((station,index)=>{const normalized=normalizeStation(station,index,resolvedCode),verifiedCode=verifiedTheme?.stationCodes?.[normalized.ja];return verifiedCode?{...normalized,officialCode:verifiedCode,stationCode:verifiedCode,hasOfficialStationCode:true,stationCodeSource:verifiedTheme.colorSource||'verified-line-theme'}:normalized}):[]);
   const serviceSource=Array.isArray(raw.services)?raw.services:globalThis.TRT_SERVICE_CATALOG?.[id];
   const allStationIds=stations.map(station=>station.id),services=[];
   if(Array.isArray(serviceSource))for(let index=0;index<serviceSource.length;index++){const service=serviceSource[index],stops=[];let invalid=false;if(Array.isArray(service.stops))for(const stop of service.stops){const station=stations.find(item=>item.id===stop||item.sourceId===stop);if(!station){console.error(`${id}/${service.id||index}: service stop not found`,stop);invalid=true;break}stops.push(station.id)}if(!invalid&&stops.length>=2)services.push({id:text(service.id)||`service-${index+1}`,nameJa:text(service.nameJa,service.ja)||'各駅停車',nameKo:text(service.nameKo,service.ko)||'각역정차',nameEn:text(service.nameEn,service.en)||'Local',stops})}
