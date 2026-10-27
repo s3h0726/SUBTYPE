@@ -121,6 +121,27 @@ assert.equal(context.keyTest(jrCentral),context.keyTest(subwayCentral),
 assert.ok(jrSendai.stations.findIndex(x=>x.id===jrAoba.id)+1===jrSendai.stations.findIndex(x=>x.id===jrCentral.id),
   'Sendai JR segment order unexpectedly changed');
 assert.equal(subwayCentral.transferStationId,jrCentral.id);
+// Nationwide same-name, different-ID platforms join only within 250 m.
+const nearA={id:'jp-near-a',countryId:'jp',stations:[
+ {id:'a1',stationMasterId:'unique-a1',ja:'県庁前',ko:'현청앞',latitude:34.0001,longitude:135.0001},
+ {id:'a2',stationMasterId:'unique-a2',ja:'別駅',latitude:34.02,longitude:135.02}
+]};
+const nearB={id:'jp-near-b',countryId:'jp',stations:[
+ {id:'b1',stationMasterId:'unique-b1',ja:'県庁前',ko:'현청앞',latitude:34.001,longitude:135.0002},
+ {id:'b2',stationMasterId:'unique-b2',ja:'別終',latitude:34.022,longitude:135.022}
+]};
+const nearDrive=new context.FreeDriveTest();
+nearDrive.renderMap=()=>{};nearDrive.render=()=>{};nearDrive.emit=()=>{};nearDrive.populateStartStations=()=>{};
+nearDrive.setNetwork([nearA,nearB]);
+assert.equal(context.keyTest(nearA.stations[0]),context.keyTest(nearB.stations[0]),
+ 'nationwide nearby same-name platforms with different master IDs must join');
+assert.ok(context.keyTest(nearA.stations[0]).startsWith('jp-near-name:'));
+nearDrive.start(nearA,0);
+assert.ok(nearDrive.switchRouteAtCurrentStation(nearB.id));
+nearB.stations[0].latitude=34.03;
+nearDrive.setNetwork([nearA,nearB]);
+assert.notEqual(context.keyTest(nearA.stations[0]),context.keyTest(nearB.stations[0]),
+ 'stations kilometers apart must never auto-merge');
 const app=read('js/app.js'),bundle=read('js/app.bundle.js');
 const begin=app.indexOf('async function hydrateJapaneseNamedTransferConnections(route){'),
   end=app.indexOf('async function startFreeDrive(route){',begin);
@@ -156,7 +177,28 @@ vm.runInContext(helper+';globalThis.prefetch=hydrateJapaneseNamedTransferConnect
    "if(target.countryId==='jp')await hydrateJapaneseNamedTransferConnections(target);",
    'const networkStart=freeDrive?.routes?.find(line=>line.id===target.id)||target;',
    'station.canonicalStationNames||station.names',
-   'const ambiguousByRoute=new Set'
+   'const ambiguousByRoute=new Set',
+   'function assignJapanNearbySameNameTransfers(routes){',
+   'const neighborIds=new Set(globalThis.TRT_JAPAN_LITE_INDEX?.transferNeighbors?.[route.id]||[])'
  ])assert.ok(bundle.includes(part),'published bundle missing '+part);
+ const indexedRows=[
+   {id:'line-28008',countryId:'jp',lazy:true,searchStations:['永田町']},
+   {id:'line-99304',countryId:'jp',lazy:true,searchStations:['小川町']},
+   {id:'line-unrelated',countryId:'jp',lazy:true,searchStations:['遠方']}
+ ];
+ let indexedFetched=0;
+ const indexedContext={
+   builtin:indexedRows,console,isRouteVisible:()=>true,
+   TRT_JAPAN_LITE_INDEX:{transferNeighbors:{'line-28001':['line-99304']}},
+   japaneseNamedTransferNamesForRoute:()=>[],
+   hydrateRailLine:async row=>{indexedFetched++;return{...row,lazy:false,stations:[]}},
+   railDataRepository:{resolveRoute:route=>route},refreshRoutes:()=>{}
+ };
+ vm.createContext(indexedContext);
+ vm.runInContext(helper+';globalThis.prefetch=hydrateJapaneseNamedTransferConnections;',indexedContext);
+ await indexedContext.prefetch(chosen);
+ assert.equal(indexedFetched,1,'national index must hydrate the neighboring route only');
+ assert.equal(indexedRows[1].lazy,false);
+ assert.equal(indexedRows[0].lazy,true);
  console.log(JSON.stringify({status:'PASS',differentNameTransferCases:cases.length,nationwideRegionCount:new Set(national.groups.map(x=>x.region)).size,sourceGroups:context.transferGroupCount,renamedRoutes:Object.keys(names).length,prefetch:'targeted',routeCoordinates:'independent'}));
 })().catch(err=>{console.error(err);process.exitCode=1});
