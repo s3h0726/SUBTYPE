@@ -8,6 +8,237 @@ const coords=s=>finite(s?.latitude)&&finite(s?.longitude)?[Number(s.latitude),Nu
 // JR Keiyo Line Maihama ⇄ Resort Gateway is an officially signposted
 // walking transfer despite the stations having different Japanese names.
 // Preserve each railway's independent coordinates via coordsByRoute.
+// Officially designated transfers may use distinct station names/IDs.
+// Names are never rewritten to form a transfer: only the free-drive graph key
+// is shared. Geography is an additional safeguard, not transfer evidence.
+const JP_NAMED_TRANSFER_GROUPS=[
+  {
+    "id": "akasaka-nagatacho",
+    "names": [
+      "赤坂見附",
+      "永田町"
+    ],
+    "center": [
+      35.6778,
+      139.7389
+    ],
+    "radiusKm": 0.72,
+    "source": "https://www.tokyometro.jp/station/akasaka-mitsuke/index.html"
+  },
+  {
+    "id": "kokkai-tameike",
+    "names": [
+      "国会議事堂前",
+      "溜池山王"
+    ],
+    "center": [
+      35.674,
+      139.743
+    ],
+    "radiusKm": 0.72,
+    "source": "https://www.tokyometro.jp/station/kokkai-gijidomae/index.html"
+  },
+  {
+    "id": "awajicho-ogawamachi",
+    "names": [
+      "淡路町",
+      "新御茶ノ水",
+      "小川町"
+    ],
+    "center": [
+      35.696,
+      139.7664
+    ],
+    "radiusKm": 0.65,
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+  },
+  {
+    "id": "hibiya-yurakucho",
+    "names": [
+      "日比谷",
+      "有楽町"
+    ],
+    "center": [
+      35.6756,
+      139.7613
+    ],
+    "radiusKm": 0.72,
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+  },
+  {
+    "id": "ueno-okachimachi",
+    "names": [
+      "上野広小路",
+      "仲御徒町",
+      "上野御徒町"
+    ],
+    "center": [
+      35.7075,
+      139.7743
+    ],
+    "radiusKm": 0.55,
+    "source": "https://www.tokyometro.jp/station/ueno-hirokoji/index.html"
+  },
+  {
+    "id": "ningyocho-suitengumae",
+    "names": [
+      "人形町",
+      "水天宮前"
+    ],
+    "center": [
+      35.6842,
+      139.784
+    ],
+    "radiusKm": 0.55,
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+  },
+  {
+    "id": "tsukiji-shintomicho",
+    "names": [
+      "築地",
+      "新富町"
+    ],
+    "center": [
+      35.6693,
+      139.7737
+    ],
+    "radiusKm": 0.55,
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+  },
+  {
+    "id": "toranomon-hills",
+    "names": [
+      "虎ノ門",
+      "虎ノ門ヒルズ"
+    ],
+    "center": [
+      35.6691,
+      139.7489
+    ],
+    "radiusKm": 0.55,
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+  },
+  {
+    "id": "ginza-itchome",
+    "names": [
+      "銀座",
+      "銀座一丁目"
+    ],
+    "center": [
+      35.673,
+      139.765
+    ],
+    "radiusKm": 0.75,
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+  },
+  {
+    "id": "korakuen-kasuga",
+    "names": [
+      "後楽園",
+      "春日"
+    ],
+    "center": [
+      35.7085,
+      139.752
+    ],
+    "radiusKm": 0.62,
+    "source": "https://www.tokyometro.jp/station/line_marunouchi/index.html"
+  },
+  {
+    "id": "akihabara-iwamotocho",
+    "names": [
+      "秋葉原",
+      "岩本町"
+    ],
+    "center": [
+      35.697,
+      139.774
+    ],
+    "radiusKm": 0.7,
+    "source": "https://www.tokyometro.jp/support/guide/operation/pdf/information_20250401.pdf"
+  },
+  {
+    "id": "shinjuku-shinsen",
+    "names": [
+      "新宿",
+      "新線新宿"
+    ],
+    "center": [
+      35.6898,
+      139.701
+    ],
+    "radiusKm": 0.75,
+    "source": "https://www.tokyometro.jp/support/guide/operation/pdf/information_20250401.pdf"
+  },
+  {
+    "id": "ueno-keisei-ueno",
+    "names": [
+      "上野",
+      "京成上野"
+    ],
+    "center": [
+      35.7116,
+      139.7742
+    ],
+    "radiusKm": 0.5,
+    "source": "https://www.tokyometro.jp/station/line_ginza/index.html"
+  },
+  {
+    "id": "osaka-umeda",
+    "names": [
+      "大阪",
+      "梅田",
+      "東梅田",
+      "西梅田",
+      "大阪梅田"
+    ],
+    "center": [
+      34.7021,
+      135.4976
+    ],
+    "radiusKm": 0.9,
+    "source": "https://subway.osakametro.co.jp/station_guide/index.php"
+  },
+  {
+    "id": "osaka-namba",
+    "names": [
+      "なんば",
+      "大阪難波",
+      "難波",
+      "JR難波"
+    ],
+    "center": [
+      34.6659,
+      135.4998
+    ],
+    "radiusKm": 0.85,
+    "source": "https://subway.osakametro.co.jp/station_guide/M/m20/"
+  }
+];
+const jpTransferDistanceKm=(a,b)=>Math.hypot((a[0]-b[0])*111.195,
+  (a[1]-b[1])*111.195*Math.cos(b[0]*Math.PI/180));
+function assignJapanNamedTransfers(routes){
+  const present=(routes||[]).filter(route=>route.countryId==='jp');
+  for(const route of present)for(const stop of route.stations||[])delete stop.jpNamedTransferKey;
+  for(const spec of JP_NAMED_TRANSFER_GROUPS){
+    const accepted=[];
+    for(const route of present)for(const stop of route.stations||[]){
+      const point=coords(stop);
+      if(spec.names.includes(stop.ja)&&point&&jpTransferDistanceKm(point,spec.center)<=spec.radiusKm)
+        accepted.push({route,stop});
+    }
+    // A genuine transfer must connect different route IDs and names.
+    if(new Set(accepted.map(x=>x.route.id)).size<2||
+       new Set(accepted.map(x=>x.stop.ja)).size<2)continue;
+    // Reject ambiguous groups containing two separate stops on one route;
+    // never collapse consecutive stations into a single free-drive node.
+    const byRoute=new Map;
+    for(const item of accepted)byRoute.set(item.route.id,(byRoute.get(item.route.id)||0)+1);
+    if([...byRoute.values()].some(n=>n>1))continue;
+    for(const {stop} of accepted)stop.jpNamedTransferKey='jp-named-transfer:'+spec.id;
+  }
+}
+
 const JP_MAIHAMA_RESORT_TRANSFER='jp-transfer:maihama-resort-gateway';
 const jpDisneyTransferKey=(station,route)=>{
   const allowed=route?.id==='line-11326'&&station?.ja==='舞浜'||
@@ -20,6 +251,7 @@ const jpDisneyTransferKey=(station,route)=>{
 };
 const freeDriveStationKey=s=>{
   if(s?.jpTransferKey)return s.jpTransferKey;
+  if(s?.jpNamedTransferKey)return s.jpNamedTransferKey;
   if(s?.jpSharedStationKey)return s.jpSharedStationKey;
   if(s?.krTransferKey)return s.krTransferKey;
   if(s?.krNoAutoTransfer)return String(s.id);
@@ -104,6 +336,7 @@ export class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    assignJapanNamedTransfers(routes);
     // Coordinates are route-specific, but the canonical station identity
     // still joins platforms into a transfer. Do not bucket the same master
     // station into different nodes when its line platforms are >200 m apart.
