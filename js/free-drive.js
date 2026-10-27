@@ -432,6 +432,62 @@ const JP_NAMED_TRANSFER_GROUPS=[
     ],
     "radiusKm": 0.46,
     "source": "https://www.naga-den.com/"
+  },
+  {
+    "id": "kanazawa-hokutetsu",
+    "region": "chubu",
+    "names": [
+      "金沢",
+      "北鉄金沢"
+    ],
+    "center": [
+      36.57845,
+      136.64885
+    ],
+    "radiusKm": 0.5,
+    "source": "https://www.hokutetsu.co.jp/railway/asanogawasen"
+  },
+  {
+    "id": "hakodate-jr-tram",
+    "region": "hokkaido",
+    "names": [
+      "函館",
+      "函館駅前"
+    ],
+    "center": [
+      41.7732,
+      140.7273
+    ],
+    "radiusKm": 0.48,
+    "source": "https://www.city.hakodate.hokkaido.jp/docs/2014012100939/"
+  },
+  {
+    "id": "okayama-jr-tram",
+    "region": "chugoku",
+    "names": [
+      "岡山",
+      "岡山駅前"
+    ],
+    "center": [
+      34.6655,
+      133.9187
+    ],
+    "radiusKm": 0.38,
+    "source": "https://okayama-kido.co.jp/tram/tram-status-info/post-2575/"
+  },
+  {
+    "id": "himeji-jr-sanyo",
+    "region": "kansai",
+    "names": [
+      "姫路",
+      "山陽姫路"
+    ],
+    "center": [
+      34.8279,
+      134.6888
+    ],
+    "radiusKm": 0.52,
+    "source": "https://www.sanyo-railway.co.jp/railway/station/himeji.html"
   }
 ];
 export function japaneseNamedTransferNamesForRoute(route){
