@@ -508,6 +508,54 @@ function assignJapanNearbySameNameTransfers(routes){
   }
 }
 
+// Normalize overlapping evidence. A JR station may share a canonical ID
+// with one subway but be within 250 m of another line with a different ID.
+// A single connected interchange graph avoids splitting those transfers.
+function assignJapanInterchangeComponents(routes){
+  const records=[];
+  for(const route of routes||[])if(route.countryId==='jp')
+    for(const stop of route.stations||[]){
+      delete stop.jpUnifiedTransferKey;
+      records.push({routeId:route.id,stop,point:coords(stop)});
+    }
+  const parent=records.map((_,i)=>i),members=records.map((_,i)=>[i]);
+  const root=i=>{while(parent[i]!==i){parent[i]=parent[parent[i]];i=parent[i]}return i};
+  const union=(a,b)=>{
+    a=root(a);b=root(b);if(a===b)return;
+    const ra=new Set(members[a].map(i=>records[i].routeId));
+    if(members[b].some(i=>ra.has(records[i].routeId)))return;
+    // Stop falsely linked far-away master IDs, even when an old source reused them.
+    const aPoint=records[members[a][0]].point,bPoint=records[members[b][0]].point;
+    if(aPoint&&bPoint&&jpTransferDistanceKm(aPoint,bPoint)>1.35)return;
+    parent[b]=a;members[a].push(...members[b]);members[b]=[];
+  };
+  const evidence=new Map;
+  records.forEach((r,i)=>{
+    for(const key of [r.stop.jpNamedTransferKey,r.stop.jpSharedStationKey,
+      r.stop.jpNearbySameNameKey,r.stop.jpTransferKey]){
+      if(!key)continue;
+      if(!evidence.has(key))evidence.set(key,[]);
+      evidence.get(key).push(i);
+    }
+  });
+  for(const ids of evidence.values()){
+    for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++)
+      if(records[ids[i]].routeId!==records[ids[j]].routeId)
+        union(ids[i],ids[j]);
+  }
+  for(let i=0;i<records.length;i++){
+    if(parent[i]!==i||members[i].length<2)continue;
+    const keys=members[i].flatMap(j=>[records[j].stop.jpNamedTransferKey,
+      records[j].stop.jpSharedStationKey,records[j].stop.jpNearbySameNameKey])
+      .filter(Boolean);
+    const chosen=keys.filter(k=>k.startsWith('jp-named-transfer:')).sort()[0]
+      ||keys.filter(k=>k.startsWith('jp-station:')).sort()[0]
+      ||keys.sort()[0];
+    if(!chosen)continue;
+    for(const j of members[i])records[j].stop.jpUnifiedTransferKey=chosen;
+  }
+}
+
 const JP_MAIHAMA_RESORT_TRANSFER='jp-transfer:maihama-resort-gateway';
 const jpDisneyTransferKey=(station,route)=>{
   const allowed=route?.id==='line-11326'&&station?.ja==='舞浜'||
@@ -519,6 +567,7 @@ const jpDisneyTransferKey=(station,route)=>{
     JP_MAIHAMA_RESORT_TRANSFER:null;
 };
 const freeDriveStationKey=s=>{
+  if(s?.jpUnifiedTransferKey)return s.jpUnifiedTransferKey;
   if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.jpNamedTransferKey)return s.jpNamedTransferKey;
   if(s?.jpSharedStationKey)return s.jpSharedStationKey;
@@ -646,6 +695,7 @@ export class FreeDrive{
       const transfer=KR_CONFIRMED_TRANSFERS.find(t=>t.region===region&&t.name===stop.ko&&t.routeIds.includes(route.id));
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
     }
+    assignJapanInterchangeComponents(routes);
     this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
     this.graph=new Map;
     const ensure=(station,route,index)=>{
