@@ -13,6 +13,10 @@ on:
       - 'js/network-map.js'
       - 'tools/lib/line-workspaces.js'
       - 'tools/test-jp-route-station-coordinates.cjs'
+      - 'tools/test-jp-named-interchange-play.cjs'
+      - 'data/japan-route-station-names.json'
+      - 'js/rail-data-repository.js'
+      - 'js/free-drive.js'
       - 'data/lines/jr-east/**'
       - 'data/lines/tokyo-metro/**'
       - 'js/service-route-resolver.js'
@@ -71,6 +75,8 @@ jobs:
         run: node tools/test-metro-marunouchi-merged.cjs
       - name: Verify per-railway station positions and shared transfer identities
         run: node tools/test-jp-route-station-coordinates.cjs --published
+      - name: Verify different-name Japanese TAB transfers and operator signage
+        run: node tools/test-jp-named-interchange-play.cjs
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
       - name: Verify Chuo East line consolidation and Takao boundary
