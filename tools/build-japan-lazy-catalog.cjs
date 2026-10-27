@@ -20,12 +20,19 @@ chunks.forEach((group,i)=>{const name='chunk-'+String(i).padStart(2,'0')+'.json'
 // Lines with operator-specific station signs must hydrate the canonical per-route
 // payload, not a stale monolithic chunk that can restore the shared master name.
 const stationSignOverrides=JSON.parse(fs.readFileSync(path.join(root,'data/japan-route-station-names.json'),'utf8')).routes||{};
-const signedRouteSource=id=>stationSignOverrides[id]?
-  './data/generated/routes/'+id+'.json?v=20261028-jp-national-transfer-signs':files.get(id);
+// Operator-specific station signs must not silently revert when a user
+// opens a cached route after the Korean/Japanese name editor is rebuilt.
+const generatedRouteSource=id=>{
+  const file=path.join(root,'data/generated/routes',id+'.json');
+  if(!fs.existsSync(file))throw Error('Missing canonical signed route: '+id);
+  const digest=crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0,12);
+  return './data/generated/routes/'+id+'.json?v='+digest;
+};
+const signedRouteSource=id=>stationSignOverrides[id]?generatedRouteSource(id):files.get(id);
 const honanchoBranch=ws.routes.find(r=>r.id==='line-28002-honancho-branch');
 const honanchoExtraStations=(honanchoBranch?.stations||[]).filter(station=>String(station.id)!=='station-mlit-003643');
 const passengerStations=r=>r.id==='line-28002'?[...(r.stations||[]),...honanchoExtraStations]:(r.stations||[]);
-const routes=ws.routes.map(r=>({id:r.id,category:r.category,mode:r.mode||'rail',countryId:r.countryId||'jp',operatorId:r.operatorId,operator:r.operator,line:r.line,code:r.code||'',lineColor:r.lineColor||r.color||'#777777',loop:!!r.loop,...(r.parentLineId?{parentLineId:r.parentLineId}:{}),...(r.visibility?{visibility:r.visibility}:{}),...(r.legacyRouteAliasFor?{legacyRouteAliasFor:r.legacyRouteAliasFor}:{}),stationCount:passengerStations(r).length,lazySource:r.id==='line-28002-honancho-branch'?'./data/generated/routes/line-28002-honancho-branch.json?v=20261027-marunouchi-internal':signedRouteSource(r.id),searchStations:passengerStations(r).flatMap(s=>[s.names?.ja||s.ja,s.names?.ko||s.ko].filter(Boolean)),...(typeof r.geometryReady==='boolean'?{geometryReady:r.geometryReady}:{}),...(r.playable===false?{playable:false}:(r.geometryReady===true?{playable:true}:{}))}));
+const routes=ws.routes.map(r=>({id:r.id,category:r.category,mode:r.mode||'rail',countryId:r.countryId||'jp',operatorId:r.operatorId,operator:r.operator,line:r.line,code:r.code||'',lineColor:r.lineColor||r.color||'#777777',loop:!!r.loop,...(r.parentLineId?{parentLineId:r.parentLineId}:{}),...(r.visibility?{visibility:r.visibility}:{}),...(r.legacyRouteAliasFor?{legacyRouteAliasFor:r.legacyRouteAliasFor}:{}),stationCount:passengerStations(r).length,lazySource:r.id==='line-28002-honancho-branch'?generatedRouteSource(r.id):signedRouteSource(r.id),searchStations:passengerStations(r).flatMap(s=>[s.names?.ja||s.ja,s.names?.ko||s.ko].filter(Boolean)),...(typeof r.geometryReady==='boolean'?{geometryReady:r.geometryReady}:{}),...(r.playable===false?{playable:false}:(r.geometryReady===true?{playable:true}:{}))}));
 // Nationwide interchange graph: shared station identities are authoritative
 // across *all* 590+ passenger lines; identical names are joined only if their
 // independently measured rail positions are within a narrow walking threshold.
