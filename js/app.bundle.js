@@ -1768,6 +1768,18 @@ function assignJapanNamedTransfers(routes){
   }
 }
 
+function japaneseNamedTransferNamesForRoute(route){
+  if(route?.countryId!=='jp')return [];
+  const all=new Set;
+  for(const group of JP_NAMED_TRANSFER_GROUPS){
+    if(!(route.stations||[]).some(stop=>{
+      const point=coords(stop);
+      return group.names.includes(stop.ja)&&point&&jpTransferDistanceKm(point,group.center)<=group.radiusKm;
+    }))continue;
+    for(const name of group.names)all.add(name);
+  }
+  return [...all];
+}
 const JP_MAIHAMA_RESORT_TRANSFER='jp-transfer:maihama-resort-gateway';
 const jpDisneyTransferKey=(station,route)=>{
   const allowed=route?.id==='line-11326'&&station?.ja==='舞浜'||
@@ -3108,6 +3120,32 @@ function renderGameFreeDriveOptions(state){
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
   target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=edge.station||freeDrive?.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(koreanStationDisplayName(station?.ko||station?.ja||'다음 역',active.route?.countryId,active.route))}</b><span>${escapeHtml(active.route?.countryId==='kr'?koreanStationDisplayName(station?.ko,'kr',active.route):station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
 }
+// Keep the rail system lazy, but hydrate the stations of an officially
+// connected differently named interchange before building the free-drive graph.
+async function hydrateJapaneseNamedTransferConnections(route){
+  if(route?.countryId!=='jp')return;
+  const names=new Set(japaneseNamedTransferNamesForRoute(route));
+  if(!names.size)return;
+  const candidates=builtin.filter(line=>
+    line.countryId==='jp'&&line.id!==route.id&&line.lazy
+    &&isRouteVisible(line)
+    &&(line.searchStations||[]).some(name=>names.has(name)));
+  for(let offset=0;offset<candidates.length;offset+=6){
+    const batch=candidates.slice(offset,offset+6);
+    const hydrated=await Promise.allSettled(batch.map(line=>hydrateRailLine(line)));
+    hydrated.forEach((entry,index)=>{
+      const line=batch[index];
+      if(entry.status==='rejected'){
+        console.warn('Named interchange counterpart unavailable:',line.id,entry.reason);
+        return;
+      }
+      const resolved=railDataRepository.resolveRoute(entry.value);
+      const found=builtin.findIndex(item=>item.id===line.id);
+      if(found>=0)builtin[found]=resolved;
+    });
+  }
+  if(candidates.length)refreshRoutes();
+}
 async function startFreeDrive(route){if(isKoreanResearch(route))return toast('연구용 경로는 확인된 정차 순서로만 주행할 수 있습니다.');
   if(!route)return toast('자유주행을 시작할 노선을 선택해 주세요.');
   if(koreanRouteUnavailableReason(route))return toast('자유주행 불가: '+koreanRouteUnavailableReason(route));
@@ -3115,6 +3153,7 @@ async function startFreeDrive(route){if(isKoreanResearch(route))return toast('�
   if(target.lazy){const ok=await chooseRoute(target.id);if(!ok)return;target=selected}
   if(koreanRouteUnavailableReason(target))return toast('자유주행 불가: '+koreanRouteUnavailableReason(target));
   if(!target?.stations?.length)return toast('자유주행에 사용할 역 데이터가 없는 노선입니다.');
+  if(target.countryId==='jp')await hydrateJapaneseNamedTransferConnections(target);
   if(target.countryId==='kr'){
     const counterpartIds=KR_APP_TRANSFER_PAIRS.flatMap(t=>t.routeIds.includes(target.id)?t.routeIds:[]).filter(id=>id!==target.id);
     for(const id of new Set(counterpartIds)){
