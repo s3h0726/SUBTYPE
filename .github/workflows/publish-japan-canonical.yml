@@ -14,6 +14,8 @@ on:
       - 'tools/lib/line-workspaces.js'
       - 'tools/test-jp-route-station-coordinates.cjs'
       - 'tools/test-jp-named-interchange-play.cjs'
+      - 'tools/test-jp-national-transfer-neighbors.cjs'
+      - 'data/japan-named-transfer-groups.json'
       - 'data/japan-route-station-names.json'
       - 'data/japan-named-transfer-groups.json'
       - 'tools/sync-japan-named-transfers.cjs'
@@ -82,6 +84,8 @@ jobs:
         run: node tools/test-jp-route-station-coordinates.cjs --published
       - name: Verify different-name Japanese TAB transfers and operator signage
         run: node tools/test-jp-named-interchange-play.cjs
+      - name: Verify nationwide generated transfer graph and connected operators
+        run: node tools/test-jp-national-transfer-neighbors.cjs
       - name: Audit every Japanese canonical railway for interchange correctness
         run: node tools/audit-japan-named-interchanges.cjs
       - name: Audit JR services across all six passenger operators
