@@ -17,6 +17,7 @@ on:
       - 'data/japan-route-station-names.json'
       - 'data/japan-named-transfer-groups.json'
       - 'tools/sync-japan-named-transfers.cjs'
+      - 'tools/audit-japan-named-interchanges.cjs'
       - 'tools/build-static.js'
       - 'tools/lib/line-workspaces.js'
       - 'js/rail-data-repository.js'
@@ -81,6 +82,8 @@ jobs:
         run: node tools/test-jp-route-station-coordinates.cjs --published
       - name: Verify different-name Japanese TAB transfers and operator signage
         run: node tools/test-jp-named-interchange-play.cjs
+      - name: Audit every Japanese canonical railway for interchange correctness
+        run: node tools/audit-japan-named-interchanges.cjs
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
       - name: Verify Chuo East line consolidation and Takao boundary
