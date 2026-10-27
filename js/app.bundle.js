@@ -1549,6 +1549,7 @@ const jpDisneyTransferKey=(station,route)=>{
 };
 const freeDriveStationKey=s=>{
   if(s?.jpTransferKey)return s.jpTransferKey;
+  if(s?.jpSharedStationKey)return s.jpSharedStationKey;
   if(s?.krTransferKey)return s.krTransferKey;
   if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
@@ -1632,10 +1633,24 @@ class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    // Coordinates are route-specific, but the canonical station identity
+    // still joins platforms into a transfer. Do not bucket the same master
+    // station into different nodes when its line platforms are >200 m apart.
+    const masterRoutes=new Map;
+    for(const route of routes||[])if(route.countryId==='jp')for(const stop of route.stations||[]){
+      const id=String(stop.stationMasterId||stop.sourceStationId||'');
+      if(!id)continue;
+      if(!masterRoutes.has(id))masterRoutes.set(id,new Set);
+      masterRoutes.get(id).add(route.id);
+    }
+    const sharedMasterIds=new Set([...masterRoutes].filter(([,lines])=>lines.size>1).map(([id])=>id));
     for(const route of routes||[])for(const stop of route.stations||[]){
       if(route.countryId==='jp'){
         const key=jpDisneyTransferKey(stop,route);
         if(key)stop.jpTransferKey=key;
+        const masterId=String(stop.stationMasterId||stop.sourceStationId||'');
+        if(masterId&&sharedMasterIds.has(masterId))stop.jpSharedStationKey='jp-station:'+masterId;
+        else delete stop.jpSharedStationKey;
         continue;
       }
       if(route.countryId!=='kr')continue;
