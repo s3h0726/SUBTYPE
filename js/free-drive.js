@@ -524,9 +524,12 @@ function assignJapanInterchangeComponents(routes){
     a=root(a);b=root(b);if(a===b)return;
     const ra=new Set(members[a].map(i=>records[i].routeId));
     if(members[b].some(i=>ra.has(records[i].routeId)))return;
-    // Stop falsely linked far-away master IDs, even when an old source reused them.
-    const aPoint=records[members[a][0]].point,bPoint=records[members[b][0]].point;
-    if(aPoint&&bPoint&&jpTransferDistanceKm(aPoint,bPoint)>1.35)return;
+    // A transitive union must not smuggle a distant third platform into the
+    // interchange. Validate every candidate pair, not only component seeds.
+    for(const ai of members[a])for(const bi of members[b]){
+      const pointA=records[ai].point,pointB=records[bi].point;
+      if(pointA&&pointB&&jpTransferDistanceKm(pointA,pointB)>1.35)return;
+    }
     parent[b]=a;members[a].push(...members[b]);members[b]=[];
   };
   const evidence=new Map;
