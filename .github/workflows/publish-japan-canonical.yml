@@ -9,6 +9,10 @@ on:
       - 'tools/build-line-workspaces.js'
       - 'js/app.js'
       - 'js/data-loader.js'
+      - 'js/free-drive.js'
+      - 'js/network-map.js'
+      - 'tools/lib/line-workspaces.js'
+      - 'tools/test-jp-route-station-coordinates.cjs'
       - 'data/lines/jr-east/**'
       - 'data/lines/tokyo-metro/**'
       - 'js/service-route-resolver.js'
@@ -65,6 +69,8 @@ jobs:
         run: node tools/test-jr-sanyo-destinations.cjs
       - name: Verify merged Marunouchi card and all Honancho branch journeys
         run: node tools/test-metro-marunouchi-merged.cjs
+      - name: Verify per-railway station positions and shared transfer identities
+        run: node tools/test-jp-route-station-coordinates.cjs
       - name: Audit JR services across all six passenger operators
         run: node tools/audit-jr-operating-services.cjs
       - name: Verify Chuo East line consolidation and Takao boundary
