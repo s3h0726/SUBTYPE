@@ -32,7 +32,17 @@ const cases=[
   ['ueno/keisei-ueno',['line-28001','上野'],['line-23001','京成上野']],
   ['osaka/umeda',['line-11602','大阪'],['line-99618','梅田']],
   ['osaka/higashi-umeda',['line-11602','大阪'],['line-99619','東梅田']],
-  ['osaka/nishi-umeda',['line-11602','大阪'],['line-99620','西梅田']]
+  ['osaka/nishi-umeda',['line-11602','大阪'],['line-99620','西梅田']],
+  ['hibiya/yurakucho',['line-28003','日比谷'],['line-28006','有楽町']],
+  ['ueno-hirokoji/naka-okachimachi',['line-28001','上野広小路'],['line-28003','仲御徒町']],
+  ['ningyocho/suitengumae',['line-28003','人形町'],['line-28008','水天宮前']],
+  ['tsukiji/shintomicho',['line-28003','築地'],['line-28006','新富町']],
+  ['toranomon/toranomon-hills',['line-28001','虎ノ門'],['line-28003','虎ノ門ヒルズ']],
+  ['ginza/ginza-itchome',['line-28001','銀座'],['line-28006','銀座一丁目']],
+  ['korakuen/kasuga',['line-28002','後楽園'],['line-99301','春日']],
+  ['akihabara/iwamotocho',['line-28003','秋葉原'],['line-99304','岩本町']],
+  ['shinjuku/shinsen-shinjuku',['line-99304','新宿'],['line-24007','新線新宿']],
+  ['namba/osaka-namba',['line-99618','なんば'],['line-31001','大阪難波']]
 ];
 for(const [label,[idA,nameA],[idB,nameB]] of cases){
   const a=fixture(idA),b=fixture(idB);
@@ -113,6 +123,7 @@ vm.runInContext(helper+';globalThis.prefetch=hydrateJapaneseNamedTransferConnect
    'function assignJapanNamedTransfers(routes){',
    'async function hydrateJapaneseNamedTransferConnections(route){',
    "if(target.countryId==='jp')await hydrateJapaneseNamedTransferConnections(target);",
+   'const networkStart=freeDrive?.routes?.find(line=>line.id===target.id)||target;',
    'station.canonicalStationNames||station.names'
  ])assert.ok(bundle.includes(part),'published bundle missing '+part);
  console.log(JSON.stringify({status:'PASS',differentNameTransferCases:cases.length,sourceGroups:context.transferGroupCount,renamedRoutes:Object.keys(names).length,prefetch:'targeted',routeCoordinates:'independent'}));
