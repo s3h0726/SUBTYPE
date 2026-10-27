@@ -464,12 +464,14 @@ function assignJapanNamedTransfers(routes){
     // A genuine transfer must connect different route IDs and names.
     if(new Set(accepted.map(x=>x.route.id)).size<2||
        new Set(accepted.map(x=>x.stop.ja)).size<2)continue;
-    // Reject ambiguous groups containing two separate stops on one route;
-    // never collapse consecutive stations into a single free-drive node.
+    // Duplicate master IDs can occur at different physical stops on one
+    // service. Exclude that *route* from this group, not the entire interchange.
     const byRoute=new Map;
     for(const item of accepted)byRoute.set(item.route.id,(byRoute.get(item.route.id)||0)+1);
-    if([...byRoute.values()].some(n=>n>1))continue;
-    for(const {stop} of accepted)stop.jpNamedTransferKey='jp-named-transfer:'+spec.id;
+    const unambiguous=accepted.filter(item=>byRoute.get(item.route.id)===1);
+    if(new Set(unambiguous.map(x=>x.route.id)).size<2||
+       new Set(unambiguous.map(x=>x.stop.ja)).size<2)continue;
+    for(const {stop} of unambiguous)stop.jpNamedTransferKey='jp-named-transfer:'+spec.id;
   }
 }
 
@@ -582,12 +584,23 @@ export class FreeDrive{
       masterRoutes.get(id).add(route.id);
     }
     const sharedMasterIds=new Set([...masterRoutes].filter(([,lines])=>lines.size>1).map(([id])=>id));
+    // A reused ID within one route is not proof that its two geographical
+    // stops are the same platform. Never coalesce consecutive distinct stops.
+    const ambiguousByRoute=new Set;
+    for(const route of routes||[])if(route.countryId==='jp'){
+      const counts=new Map;
+      for(const stop of route.stations||[]){
+        const id=String(stop.transferStationId||stop.stationMasterId||stop.sourceStationId||'');
+        if(id)counts.set(id,(counts.get(id)||0)+1);
+      }
+      for(const [id,count] of counts)if(count>1)ambiguousByRoute.add(route.id+'|'+id);
+    }
     for(const route of routes||[])for(const stop of route.stations||[]){
       if(route.countryId==='jp'){
         const key=jpDisneyTransferKey(stop,route);
         if(key)stop.jpTransferKey=key;
         const masterId=String(stop.transferStationId||stop.stationMasterId||stop.sourceStationId||'');
-        if(masterId&&sharedMasterIds.has(masterId))stop.jpSharedStationKey='jp-station:'+masterId;
+        if(masterId&&sharedMasterIds.has(masterId)&&!ambiguousByRoute.has(route.id+'|'+masterId))stop.jpSharedStationKey='jp-station:'+masterId;
         else delete stop.jpSharedStationKey;
         continue;
       }
