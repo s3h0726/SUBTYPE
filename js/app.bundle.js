@@ -1803,7 +1803,41 @@ class NetworkMap{
  constructor(container,status,{onRoute,onPlay}){this.container=container;this.status=status;this.onRoute=onRoute;this.onPlay=onPlay;this.ready=false;this.filter='all'}
  async init(routes,stations){this.routes=routes;this.stations=stations;try{const L=await ensureLeaflet();this.L=L;this.map=L.map(this.container,{zoomControl:true,minZoom:8,preferCanvas:true}).fitBounds(tokyoBounds);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(this.map);this.lineLayer=L.layerGroup().addTo(this.map);this.stationLayer=L.layerGroup().addTo(this.map);this.drawLines();this.map.on('zoomend',()=>this.drawStations());this.drawStations();this.ready=true;this.status.hidden=true;setTimeout(()=>this.map.invalidateSize(),50)}catch{this.status.textContent='지도를 불러올 수 없습니다. 노선 목록으로 계속 플레이할 수 있습니다.';this.status.classList.add('error')}}
  drawLines(){if(!this.L)return;this.lineLayer.clearLayers();for(const route of this.routes){if(this.filter!=='all'&&route.category!==this.filter)continue;const points=routeGeometry(route);if(!points.length||route.countryId!=='kr'&&points.length<2)continue;const line=this.L.polyline(points,{color:route.lineColor,weight:route.id===this.activeRouteId?8:4,opacity:route.id===this.activeRouteId?1:.65,pane:'overlayPane'}).addTo(this.lineLayer);line.bindTooltip(`${route.operator.ja} · ${route.line.ja}`,{sticky:true});line.on('click',()=>this.selectRoute(route))}}
- drawStations(){if(!this.L)return;this.stationLayer.clearLayers();const zoom=this.map.getZoom();if(zoom<10)return;const visibleRouteIds=new Set(this.routes.filter(r=>this.filter==='all'||r.category===this.filter).map(r=>r.id));for(const station of this.stations){if(!station.inTokyo)continue;const refs=station.lines.filter(x=>visibleRouteIds.has(x.routeId));if(!refs.length||zoom<12&&refs.length<3)continue;const marker=this.L.circleMarker([station.latitude,station.longitude],{radius:zoom>=14?6:4,color:'#111921',weight:1,fillColor:'#fff',fillOpacity:.95}).addTo(this.stationLayer);if(zoom>=14)marker.bindTooltip(station.ja,{permanent:true,direction:'right',className:'station-label'});marker.on('click',()=>this.showStation(station))}}
+ drawStations(){
+  if(!this.L)return;
+  this.stationLayer.clearLayers();
+  const zoom=this.map.getZoom();
+  if(zoom<10)return;
+  const visibleRoutes=this.routes.filter(r=>this.filter==='all'||r.category===this.filter),
+    routeLookup=new Map(visibleRoutes.map(route=>[route.id,route])),
+    visibleRouteIds=new Set(routeLookup.keys());
+  for(const station of this.stations){
+    if(!station.inTokyo)continue;
+    const refs=station.lines.filter(ref=>visibleRouteIds.has(ref.routeId));
+    if(!refs.length||zoom<12&&refs.length<3)continue;
+    // Each interchange is one logical stop, but the actual route platforms
+    // have independent track positions. Plot those when a route is hydrated.
+    const routeCoordinates=[];
+    if(zoom>=14)for(const ref of refs){
+      const route=routeLookup.get(ref.routeId);
+      const stop=route?.stations?.find(item=>
+        String(item.stationMasterId||item.sourceStationId||item.id)===String(station.id));
+      if(Number.isFinite(stop?.latitude)&&Number.isFinite(stop?.longitude))
+        routeCoordinates.push([stop.latitude,stop.longitude]);
+    }
+    const positions=routeCoordinates.length?routeCoordinates:[[station.latitude,station.longitude]];
+    const distinct=new Set();
+    for(const position of positions){
+      if(!position.every(Number.isFinite))continue;
+      const key=position.map(n=>Number(n).toFixed(6)).join(':');
+      if(distinct.has(key))continue;
+      distinct.add(key);
+      const marker=this.L.circleMarker(position,{radius:zoom>=14?6:4,color:'#111921',weight:1,fillColor:'#fff',fillOpacity:.95}).addTo(this.stationLayer);
+      if(zoom>=14)marker.bindTooltip(station.ja,{permanent:true,direction:'right',className:'station-label'});
+      marker.on('click',()=>this.showStation(station));
+    }
+  }
+ }
  setFilter(filter){this.filter=filter;this.activeRouteId=null;this.drawLines();this.drawStations()}
  reset(){if(this.map)this.map.fitBounds(tokyoBounds);this.activeRouteId=null;this.drawLines();document.querySelector('#station-info').hidden=true}
  selectRoute(route){this.activeRouteId=route.id;this.drawLines();if(this.map){const pts=route.stations.map(s=>[s.latitude,s.longitude]);this.map.fitBounds(pts,{padding:[35,35]})}const panel=document.querySelector('#station-info');panel.hidden=false;panel.innerHTML=`<button class="station-info-close" aria-label="닫기">×</button><span class="map-kicker">${escapeHtml(route.operator.ja)}</span><h3>${escapeHtml(route.line.ja)}</h3><p>${escapeHtml(route.line.en)} · ${escapeHtml(route.line.ko)}</p><strong>${route.stations.length} STATIONS</strong><button class="btn primary" data-map-play>PLAY →</button>`;panel.querySelector('.station-info-close').onclick=()=>panel.hidden=true;panel.querySelector('[data-map-play]').onclick=()=>this.onPlay(route);this.onRoute?.(route)}
