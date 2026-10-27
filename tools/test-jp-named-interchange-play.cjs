@@ -22,7 +22,10 @@ const context={
 };
 vm.createContext(context);
 vm.runInContext(source+';globalThis.FreeDriveTest=FreeDrive;globalThis.keyTest=freeDriveStationKey;globalThis.namedTransferNames=japaneseNamedTransferNamesForRoute;globalThis.transferGroupCount=JP_NAMED_TRANSFER_GROUPS.length;',context);
-assert.ok(context.transferGroupCount>=15);
+assert.ok(context.transferGroupCount>=29,'nationwide source groups missing');
+const national=JSON.parse(read('data/japan-named-transfer-groups.json'));
+assert.equal(context.transferGroupCount,national.groups.length);
+assert.ok(new Set(national.groups.map(x=>x.region)).size>=8);
 const find=(route,name)=>{const stop=route.stations.find(x=>x.ja===name);assert.ok(stop,route.id+': '+name+' missing');return stop};
 const cases=[
   ['akasaka/nagatacho',['line-28001','赤坂見附'],['line-28008','永田町']],
@@ -42,7 +45,21 @@ const cases=[
   ['korakuen/kasuga',['line-28002','後楽園'],['line-99301','春日']],
   ['akihabara/iwamotocho',['line-28003','秋葉原'],['line-99304','岩本町']],
   ['shinjuku/shinsen-shinjuku',['line-99304','新宿'],['line-24007','新線新宿']],
-  ['namba/osaka-namba',['line-99618','なんば'],['line-31001','大阪難波']]
+  ['namba/osaka-namba',['line-99618','なんば'],['line-31001','大阪難波']],
+  ['sapporo/jr-subway',['line-11103','札幌'],['line-99102','さっぽろ']],
+  ['sapporo/odori-tram',['line-99101','大通'],['line-99104','西４丁目']],
+  ['nagoya/jr-kintetsu',['line-11502','名古屋'],['line-31027','近鉄名古屋']],
+  ['nagoya/jr-meitetsu',['line-11502','名古屋'],['line-30001','名鉄名古屋']],
+  ['kyoto/shijo-karasuma',['line-99610','四条'],['line-34003','烏丸']],
+  ['osaka/minamikata',['line-34003','南方'],['line-99618','西中島南方']],
+  ['kobe/sannomiya',['line-11603','三ノ宮'],['line-34001','神戸三宮']],
+  ['hiroshima/jr-tram',['line-11611','広島'],['line-99710','広島駅']],
+  ['takamatsu/jr-kotoden',['line-11802','高松'],['line-99802','高松築港']],
+  ['toyama/jr-dentetsu',['line-11416','富山'],['line-99408','電鉄富山']],
+  ['fukuoka/tenjin-walk',['line-99905','天神'],['line-99907','天神南']],
+  ['kumamoto/jr-tram',['line-11903','熊本'],['line-99922','熊本駅前']],
+  ['kamikumamoto/jr-tram',['line-11903','上熊本'],['line-99923','上熊本駅前']],
+  ['nagasaki/jr-tram',['line-11905','長崎'],['line-99913','長崎駅前']]
 ];
 for(const [label,[idA,nameA],[idB,nameB]] of cases){
   const a=fixture(idA),b=fixture(idB);
@@ -90,6 +107,20 @@ assert.notEqual(context.keyTest(afar.stations[0]),context.keyTest(find(other,'�
   'two unrelated same/nearby names should not merge');
 assert.ok(context.namedTransferNames(fixture('line-28001')).includes('永田町'),
   'Akasaka transfer neighbor names missing from lazy-load catalog');
+// JR Aoba-dori and JR Sendai are consecutive physical stops, not one.
+const jrSendai=fixture('line-11222'),subwaySendai=fixture('line-99214');
+const jrAoba=find(jrSendai,'あおば通'),jrCentral=find(jrSendai,'仙台');
+const subwayCentral=find(subwaySendai,'仙台');
+const sendaiDrive=new context.FreeDriveTest();
+sendaiDrive.render=()=>{};sendaiDrive.renderMap=()=>{};sendaiDrive.populateStartStations=()=>{};sendaiDrive.emit=()=>{};
+sendaiDrive.setNetwork([jrSendai,subwaySendai]);
+assert.notEqual(context.keyTest(jrAoba),context.keyTest(jrCentral),
+  'Sendai adjacent JR Aoba-dori and Sendai stops were collapsed');
+assert.equal(context.keyTest(jrCentral),context.keyTest(subwayCentral),
+  'Sendai subway should transfer at JR Sendai, not JR Aoba-dori');
+assert.ok(jrSendai.stations.findIndex(x=>x.id===jrAoba.id)+1===jrSendai.stations.findIndex(x=>x.id===jrCentral.id),
+  'Sendai JR segment order unexpectedly changed');
+assert.equal(subwayCentral.transferStationId,jrCentral.id);
 const app=read('js/app.js'),bundle=read('js/app.bundle.js');
 const begin=app.indexOf('async function hydrateJapaneseNamedTransferConnections(route){'),
   end=app.indexOf('async function startFreeDrive(route){',begin);
@@ -124,7 +155,8 @@ vm.runInContext(helper+';globalThis.prefetch=hydrateJapaneseNamedTransferConnect
    'async function hydrateJapaneseNamedTransferConnections(route){',
    "if(target.countryId==='jp')await hydrateJapaneseNamedTransferConnections(target);",
    'const networkStart=freeDrive?.routes?.find(line=>line.id===target.id)||target;',
-   'station.canonicalStationNames||station.names'
+   'station.canonicalStationNames||station.names',
+   'const ambiguousByRoute=new Set'
  ])assert.ok(bundle.includes(part),'published bundle missing '+part);
- console.log(JSON.stringify({status:'PASS',differentNameTransferCases:cases.length,sourceGroups:context.transferGroupCount,renamedRoutes:Object.keys(names).length,prefetch:'targeted',routeCoordinates:'independent'}));
+ console.log(JSON.stringify({status:'PASS',differentNameTransferCases:cases.length,nationwideRegionCount:new Set(national.groups.map(x=>x.region)).size,sourceGroups:context.transferGroupCount,renamedRoutes:Object.keys(names).length,prefetch:'targeted',routeCoordinates:'independent'}));
 })().catch(err=>{console.error(err);process.exitCode=1});
