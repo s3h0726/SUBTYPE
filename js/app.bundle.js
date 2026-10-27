@@ -2101,6 +2101,9 @@ const freeDriveStationKey=s=>{
   if(s?.jpNamedTransferKey)return s.jpNamedTransferKey;
   if(s?.jpSharedStationKey)return s.jpSharedStationKey;
   if(s?.jpNearbySameNameKey)return s.jpNearbySameNameKey;
+  // An unverified stop is unique to its route. Never merge different
+  // operators just because their Japanese names share a 200 m grid cell.
+  if(s?.jpIsolatedStopKey)return s.jpIsolatedStopKey;
   if(s?.krTransferKey)return s.krTransferKey;
   if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
@@ -2184,6 +2187,17 @@ class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    for(const route of routes||[])if(route.countryId==='jp'){
+      const stops=route.stations||[],first=stops[0],last=stops.at(-1);
+      const sharedEnd=route.loop&&stops.length>2&&first&&last
+        &&String(first.stationMasterId||first.id)===String(last.stationMasterId||last.id)
+        &&first.ja===last.ja&&coords(first)&&coords(last)
+        &&jpTransferDistanceKm(coords(first),coords(last))<=0.15;
+      stops.forEach((stop,index)=>{
+        stop.jpIsolatedStopKey='jp-route-stop:'+route.id+':'+
+          (sharedEnd&&index===stops.length-1?0:index);
+      });
+    }
     assignJapanNamedTransfers(routes);
     assignJapanNearbySameNameTransfers(routes);
     // Coordinates are route-specific, but the canonical station identity
