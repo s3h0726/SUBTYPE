@@ -92,5 +92,7 @@ write('index.html',html);
 const canonicalAssets=JSON.parse(read('data/generated/asset-registry.json'));
 console.log(JSON.stringify({bundle:'js/app.bundle.js',workspaceSource:'data/lines/**/line.json',workspaceBrowserData:'js/line-workspace-data.js',embeddedLines:categories.reduce((sum,category)=>sum+(embedded.lines[category].routes?.length||0),0),embeddedNationwideLines:nationwideIndex.routes?.length||0,embeddedNationwideRouteFiles:Object.keys(nationwideRoutes).length,services:Object.values(services.routes).reduce((sum,list)=>sum+list.length,0),servicePatterns:tokyoServicePatterns.servicePatterns.length,branches:tokyoServicePatterns.branches.length,koreanOverrides:Object.keys(korean.stations).length,lineThemes:Object.keys(lineThemes.themes).length,operatorAssets:Object.keys(canonicalAssets.operators||{}).length,lineBadges:Object.keys(lineBadges.routeCodes).length,realSymbolAssets:Object.keys(canonicalAssets.lines||{}).length,railSystem:railSystem.audit},null,2));
 
+// Reconcile nationwide confirmed interchange groups before generating the runtime bundle.
+require('./sync-japan-named-transfers.cjs');
 // Share module ordering and content-addressed runtime-index cache versions.
 require('./build-app-bundle.js');
