@@ -58,4 +58,19 @@ for(const marker of [
 const free=fs.readFileSync(path.join(__dirname,'../js/free-drive.js'),'utf8');
 assert.ok(free.includes("stop.jpSharedStationKey='jp-station:'+masterId"));
 assert.ok(free.includes('node.coordsByRoute.set(route.id,coords(station))'));
+if(process.argv.includes('--published')){
+  const publishedMetro=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/generated/routes/line-28002.json'),'utf8')).route;
+  const publishedYamanote=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/generated/routes/line-11302.json'),'utf8')).route;
+  const m=at(publishedMetro,'東京'),j=at(publishedYamanote,'東京');
+  assert.equal(m.coordinateSource,'line-track-geometry','published metro marker still uses shared master');
+  assert.equal(j.coordinateSource,'line-track-geometry','published Yamanote marker still uses shared master');
+  assert.equal(m.latitude,tokyoMetro.latitude);
+  assert.equal(j.latitude,tokyoJr.latitude);
+  assert.notEqual(m.latitude,j.latitude,'published railway platforms still collapsed');
+  const audit=JSON.parse(fs.readFileSync(path.join(__dirname,'../reports/jr/route-station-coordinate-audit.json'),'utf8'));
+  assert.ok(audit.totals.lineTrack>0,'canonical station-coordinate audit is empty');
+  assert.equal(audit.stationTotal,audit.totals.lineTrack+audit.totals.fallback+audit.totals.unverified);
+  assert.ok(audit.exceptions.some(x=>x.routeId==='line-11312'&&x.offsetKm>1),
+    'wrong Chuo Rapid Tokyo geometry must be audited, not marked as a verified platform');
+}
 console.log(JSON.stringify({status:'PASS',routesTested:6,sharedTokyoIdentity:true,independentMetroAndJrPlatforms:true,rapidInvalidTrackFallback:true,browserSelfHeals:true}));
