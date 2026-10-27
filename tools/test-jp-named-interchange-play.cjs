@@ -22,7 +22,7 @@ const context={
 };
 vm.createContext(context);
 vm.runInContext(source+';globalThis.FreeDriveTest=FreeDrive;globalThis.keyTest=freeDriveStationKey;globalThis.namedTransferNames=japaneseNamedTransferNamesForRoute;globalThis.transferGroupCount=JP_NAMED_TRANSFER_GROUPS.length;',context);
-assert.ok(context.transferGroupCount>=29,'nationwide source groups missing');
+assert.ok(context.transferGroupCount>=33,'nationwide source groups missing');
 const national=JSON.parse(read('data/japan-named-transfer-groups.json'));
 assert.equal(context.transferGroupCount,national.groups.length);
 assert.ok(new Set(national.groups.map(x=>x.region)).size>=8);
@@ -59,7 +59,11 @@ const cases=[
   ['fukuoka/tenjin-walk',['line-99905','天神'],['line-99907','天神南']],
   ['kumamoto/jr-tram',['line-11903','熊本'],['line-99922','熊本駅前']],
   ['kamikumamoto/jr-tram',['line-11903','上熊本'],['line-99923','上熊本駅前']],
-  ['nagasaki/jr-tram',['line-11905','長崎'],['line-99913','長崎駅前']]
+  ['nagasaki/jr-tram',['line-11905','長崎'],['line-99913','長崎駅前']],
+  ['kanazawa/jr-hokutetsu',['line-11415','金沢'],['line-99417','北鉄金沢']],
+  ['hakodate/jr-tram',['line-11101','函館'],['line-99105','函館駅前']],
+  ['okayama/jr-tram',['line-11609','岡山'],['line-99706','岡山駅前']],
+  ['himeji/jr-sanyo',['line-11608','姫路'],['line-99637','山陽姫路']]
 ];
 for(const [label,[idA,nameA],[idB,nameB]] of cases){
   const a=fixture(idA),b=fixture(idB);
