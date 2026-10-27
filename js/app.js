@@ -790,9 +790,13 @@ async function startFreeDrive(route){if(isKoreanResearch(route))return toast('�
     refreshRoutes();
   }
   freeDrive?.setNetwork(freeDriveNetworkRoutes());
+  // allRoutes() clones Japan station objects for localized names. The transfer
+  // graph attaches its route-specific transfer keys to its own station copies;
+  // starting from an older selected copy would miss those keys entirely.
+  const networkStart=freeDrive?.routes?.find(line=>line.id===target.id)||target;
   const chosenStart=Number($('#free-drive-start-station')?.value);
-  const startIndex=Number.isInteger(chosenStart)&&chosenStart>=0&&chosenStart<target.stations.length?chosenStart:0;
-  if(!freeDrive?.start(target,startIndex))return toast('자유주행을 시작하지 못했습니다.');
+  const startIndex=Number.isInteger(chosenStart)&&chosenStart>=0&&chosenStart<networkStart.stations.length?chosenStart:0;
+  if(!freeDrive?.start(networkStart,startIndex))return toast('자유주행을 시작하지 못했습니다.');
   const state=freeDrive.snapshot();if(!state||!game.startFreeDrive(state))return toast('자유주행 화면을 준비하지 못했습니다.');
   freeDriveTabIndex=0;renderGameFreeDriveOptions(state);go('game');
 }
