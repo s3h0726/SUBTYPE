@@ -142,6 +142,22 @@ nearB.stations[0].latitude=34.03;
 nearDrive.setNetwork([nearA,nearB]);
 assert.notEqual(context.keyTest(nearA.stations[0]),context.keyTest(nearB.stations[0]),
  'stations kilometers apart must never auto-merge');
+// A 200 m rounded coordinate cell is NOT sufficient evidence for a transfer.
+// Two same-name stops at opposite cell corners can be >250 m apart.
+const aliasA={id:'jp-separated-a',countryId:'jp',stations:[
+ {id:'ka',stationMasterId:'different-ka',ja:'試験駅',latitude:34.00099,longitude:135.00099},
+ {id:'ka2',stationMasterId:'ka2',ja:'別駅',latitude:34.03,longitude:135.03}
+]};
+const aliasB={id:'jp-separated-b',countryId:'jp',stations:[
+ {id:'kb',stationMasterId:'different-kb',ja:'試験駅',latitude:33.99901,longitude:134.99901},
+ {id:'kb2',stationMasterId:'kb2',ja:'別駅２',latitude:34.04,longitude:135.04}
+]};
+const isolatedDrive=new context.FreeDriveTest();
+isolatedDrive.renderMap=()=>{};isolatedDrive.render=()=>{};isolatedDrive.emit=()=>{};isolatedDrive.populateStartStations=()=>{};
+isolatedDrive.setNetwork([aliasA,aliasB]);
+assert.notEqual(context.keyTest(aliasA.stations[0]),context.keyTest(aliasB.stations[0]),
+ 'unverified matching names in the same coordinate cell must remain separate');
+assert.ok(context.keyTest(aliasA.stations[0]).startsWith('jp-route-stop:'));
 const app=read('js/app.js'),bundle=read('js/app.bundle.js');
 const begin=app.indexOf('async function hydrateJapaneseNamedTransferConnections(route){'),
   end=app.indexOf('async function startFreeDrive(route){',begin);
@@ -179,7 +195,7 @@ vm.runInContext(helper+';globalThis.prefetch=hydrateJapaneseNamedTransferConnect
    'station.canonicalStationNames||station.names',
    'const ambiguousByRoute=new Set',
    'function assignJapanNearbySameNameTransfers(routes){',
-   'const neighborIds=new Set(globalThis.TRT_JAPAN_LITE_INDEX?.transferNeighbors?.[route.id]||[])'
+   'const neighborIds=new Set(nationalNeighbors?.[route.id]||[])'
  ])assert.ok(bundle.includes(part),'published bundle missing '+part);
  const indexedRows=[
    {id:'line-28008',countryId:'jp',lazy:true,searchStations:['永田町']},
@@ -200,5 +216,26 @@ vm.runInContext(helper+';globalThis.prefetch=hydrateJapaneseNamedTransferConnect
  assert.equal(indexedFetched,1,'national index must hydrate the neighboring route only');
  assert.equal(indexedRows[1].lazy,false);
  assert.equal(indexedRows[0].lazy,true);
+ // A deployed pre-regeneration index may have no nationwide neighbor graph.
+ // Discover same-name counterparts even outside the 29 manually curated groups.
+ const noGraphRoutes=[
+   {id:'line-country-mate',countryId:'jp',lazy:true,searchStations:['金沢']},
+   {id:'line-unrelated-region',countryId:'jp',lazy:true,searchStations:['那覇']}
+ ];
+ let fallbackLoaded=0;
+ const noGraphContext={
+   builtin:noGraphRoutes,console,isRouteVisible:()=>true,
+   TRT_JAPAN_LITE_INDEX:{routes:[]},
+   japaneseNamedTransferNamesForRoute:()=>[],
+   hydrateRailLine:async row=>{fallbackLoaded++;return{...row,lazy:false,stations:[]}},
+   railDataRepository:{resolveRoute:r=>r},refreshRoutes:()=>{}
+ };
+ vm.createContext(noGraphContext);
+ vm.runInContext(helper+';globalThis.prefetch=hydrateJapaneseNamedTransferConnections;',noGraphContext);
+ await noGraphContext.prefetch({id:'route-kanazawa',countryId:'jp',
+   stations:[{ja:'金沢',canonicalStationNames:{ja:'金沢'},latitude:36.578,longitude:136.648}]});
+ assert.equal(fallbackLoaded,1,'missing nationwide index should still discover same-name interchanges');
+ assert.equal(noGraphRoutes[0].lazy,false);
+ assert.equal(noGraphRoutes[1].lazy,true);
  console.log(JSON.stringify({status:'PASS',differentNameTransferCases:cases.length,nationwideRegionCount:new Set(national.groups.map(x=>x.region)).size,sourceGroups:context.transferGroupCount,renamedRoutes:Object.keys(names).length,prefetch:'targeted',routeCoordinates:'independent'}));
 })().catch(err=>{console.error(err);process.exitCode=1});
