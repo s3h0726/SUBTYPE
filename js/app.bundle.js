@@ -3359,12 +3359,16 @@ function renderGameFreeDriveOptions(state){
 // connected differently named interchange before building the free-drive graph.
 async function hydrateJapaneseNamedTransferConnections(route){
   if(route?.countryId!=='jp')return;
+  // The generated nationwide graph covers shared master IDs, spatially
+  // aligned independently named IDs and the verified alias groups. The
+  // previous name-only catalog remains a fallback for pre-build browsers.
+  const neighborIds=new Set(globalThis.TRT_JAPAN_LITE_INDEX?.transferNeighbors?.[route.id]||[]);
   const names=new Set(japaneseNamedTransferNamesForRoute(route));
-  if(!names.size)return;
+  if(!neighborIds.size&&!names.size)return;
   const candidates=builtin.filter(line=>
     line.countryId==='jp'&&line.id!==route.id&&line.lazy
     &&isRouteVisible(line)
-    &&(line.searchStations||[]).some(name=>names.has(name)));
+    &&(neighborIds.has(line.id)||(line.searchStations||[]).some(name=>names.has(name))));
   for(let offset=0;offset<candidates.length;offset+=6){
     const batch=candidates.slice(offset,offset+6);
     const hydrated=await Promise.allSettled(batch.map(line=>hydrateRailLine(line)));
