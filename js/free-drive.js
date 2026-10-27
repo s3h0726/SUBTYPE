@@ -475,6 +475,39 @@ function assignJapanNamedTransfers(routes){
   }
 }
 
+// Across Japan, the same Japanese station name may have independent master
+// IDs for each operator. Connect only nearby platforms (<=250 m) and never
+// combine different stations of the same line. Keep every route coordinate.
+function assignJapanNearbySameNameTransfers(routes){
+  const names=new Map;
+  for(const route of routes||[])if(route.countryId==='jp')for(const stop of route.stations||[]){
+    delete stop.jpNearbySameNameKey;
+    const point=coords(stop),name=String(stop.ja||'');
+    if(!point||!name)continue;
+    if(!names.has(name))names.set(name,[]);
+    names.get(name).push({routeId:route.id,stop,point});
+  }
+  for(const [name,stops] of names){
+    if(stops.length<2||stops.length>100)continue;
+    // A complete-linkage cluster prevents a chain of close but separate
+    // nearby stations from accidentally becoming a single interchange.
+    for(const seed of stops){
+      if(seed.stop.jpNearbySameNameKey)continue;
+      const cluster=[seed];
+      for(const item of stops){
+        if(item===seed||item.stop.jpNearbySameNameKey||
+          cluster.some(member=>member.routeId===item.routeId))continue;
+        if(cluster.every(member=>jpTransferDistanceKm(member.point,item.point)<=0.25))
+          cluster.push(item);
+      }
+      if(new Set(cluster.map(item=>item.routeId)).size<2)continue;
+      const anchor=cluster[0].point;
+      const key='jp-near-name:'+name+':'+anchor.map(n=>n.toFixed(4)).join(':');
+      for(const item of cluster)item.stop.jpNearbySameNameKey=key;
+    }
+  }
+}
+
 const JP_MAIHAMA_RESORT_TRANSFER='jp-transfer:maihama-resort-gateway';
 const jpDisneyTransferKey=(station,route)=>{
   const allowed=route?.id==='line-11326'&&station?.ja==='舞浜'||
@@ -489,6 +522,7 @@ const freeDriveStationKey=s=>{
   if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.jpNamedTransferKey)return s.jpNamedTransferKey;
   if(s?.jpSharedStationKey)return s.jpSharedStationKey;
+  if(s?.jpNearbySameNameKey)return s.jpNearbySameNameKey;
   if(s?.krTransferKey)return s.krTransferKey;
   if(s?.krNoAutoTransfer)return String(s.id);
   const c=coords(s),ja=normalize(s?.ja||s?.names?.ja||s?.ko||'');
@@ -573,6 +607,7 @@ export class FreeDrive{
   }
   setNetwork(routes){
     assignJapanNamedTransfers(routes);
+    assignJapanNearbySameNameTransfers(routes);
     // Coordinates are route-specific, but the canonical station identity
     // still joins platforms into a transfer. Do not bucket the same master
     // station into different nodes when its line platforms are >200 m apart.
