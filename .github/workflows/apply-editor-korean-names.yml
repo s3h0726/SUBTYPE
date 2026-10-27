@@ -5,6 +5,8 @@ on:
     paths:
       - 'data/editor-overrides.json'
       - 'tools/build-line-workspaces.js'
+      - 'js/data-loader.js'
+      - 'tools/test-editor-station-runtime.cjs'
       - '.github/workflows/apply-editor-korean-names.yml'
   workflow_dispatch:
 permissions:
@@ -47,12 +49,14 @@ jobs:
             for(const [stationId,ko] of Object.entries(changes)){
               const matches=route.stations.filter(st=>st.id===stationId||st.ja===stationId);
               if(!matches.length)throw Error('missing editor station '+id+':'+stationId);
-              if(matches.some(st=>st.ko!==ko))throw Error('station name mismatch '+id+':'+stationId);
+              if(matches.some(st=>st.ko!==ko||st.routeSpecificStationName!==true||!st.canonicalStationNames))throw Error('runtime station name mismatch '+id+':'+stationId);
               stations++;
             }
           }
           console.log(JSON.stringify({verifiedRoutes:names,verifiedStations:stations}));
           NODE
+      - name: Test resolved gameplay station names
+        run: node tools/test-editor-station-runtime.cjs
       - name: Publish game-generated data only if validation passed
         run: |
           set -euo pipefail

@@ -20,7 +20,12 @@ for(const route of data.routes){
   for(const station of route.stations){
     const target=stationChanges[station.id]??stationChanges[station.ja];
     if(typeof target==='string'&&target.trim()){
+      // Preserve shared station identity and give this line its own name.
+      // The game resolver otherwise overwrites it with the global station name.
+      station.canonicalStationNames||={ja:station.ja||'',kana:station.kana||'',ko:station.ko||'',en:station.romaji||''};
       station.ko=target.trim();
+      station.routeSpecificStationName=true;
+      station.editorStationNameOverride=true;
       stationsOverridden.push([route.id,station.id]);
     }
   }
@@ -34,6 +39,8 @@ for(const route of data.routes){
   if(route.countryId==='kr')continue;
   for(const station of route.stations){
     const override=nameExceptions[station.ja];
+    // Reviewed defaults must not override a later explicit editor change.
+    if(station.editorStationNameOverride===true)continue;
     if(override&&station.ko!==override.ko){
       station.ko=override.ko;
       nameExceptionsApplied++;
