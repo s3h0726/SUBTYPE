@@ -38,8 +38,13 @@ for(const [a,b] of [
  ['line-28001','line-28008'] // Akasaka-mitsuke / Nagatacho
 ])assert.ok(neighbor[a]?.includes(b),a+' missing transfer neighbor '+b);
 const runtime=read('js/app.bundle.js');
-assert.ok(runtime.includes('TRT_JAPAN_LITE_INDEX?.transferNeighbors?.[route.id]'),
+assert.ok(runtime.includes('const nationalNeighbors=globalThis.TRT_JAPAN_LITE_INDEX?.transferNeighbors;')
+ &&runtime.includes('const neighborIds=new Set(nationalNeighbors?.[route.id]||[])'),
  'free-drive start ignores the published national graph');
+assert.ok(runtime.includes('if(!nationalNeighbors||!Object.keys(nationalNeighbors).length)'),
+ 'pre-regeneration nationwide fallback missing');
+assert.ok(runtime.includes('if(s?.jpIsolatedStopKey)return s.jpIsolatedStopKey'),
+ 'unverified same-grid stations are still merged without evidence');
 assert.ok(runtime.includes('function assignJapanNearbySameNameTransfers(routes)'),
  'same-named independently identified platforms cannot transfer');
 console.log(JSON.stringify({status:'PASS',routeCount:index.routes.length,linkedRoutes:Object.keys(neighbor).length,
