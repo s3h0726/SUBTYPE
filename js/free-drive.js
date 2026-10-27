@@ -23,7 +23,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.7389
     ],
     "radiusKm": 0.72,
-    "source": "https://www.tokyometro.jp/station/akasaka-mitsuke/index.html"
+    "source": "https://www.tokyometro.jp/station/akasaka-mitsuke/index.html",
+    "region": "kanto"
   },
   {
     "id": "kokkai-tameike",
@@ -36,7 +37,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.743
     ],
     "radiusKm": 0.72,
-    "source": "https://www.tokyometro.jp/station/kokkai-gijidomae/index.html"
+    "source": "https://www.tokyometro.jp/station/kokkai-gijidomae/index.html",
+    "region": "kanto"
   },
   {
     "id": "awajicho-ogawamachi",
@@ -50,7 +52,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.7664
     ],
     "radiusKm": 0.65,
-    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html",
+    "region": "kanto"
   },
   {
     "id": "hibiya-yurakucho",
@@ -63,7 +66,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.7613
     ],
     "radiusKm": 0.72,
-    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html",
+    "region": "kanto"
   },
   {
     "id": "ueno-okachimachi",
@@ -77,7 +81,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.7743
     ],
     "radiusKm": 0.55,
-    "source": "https://www.tokyometro.jp/station/ueno-hirokoji/index.html"
+    "source": "https://www.tokyometro.jp/station/ueno-hirokoji/index.html",
+    "region": "kanto"
   },
   {
     "id": "ningyocho-suitengumae",
@@ -90,7 +95,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.784
     ],
     "radiusKm": 0.55,
-    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html",
+    "region": "kanto"
   },
   {
     "id": "tsukiji-shintomicho",
@@ -103,7 +109,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.7737
     ],
     "radiusKm": 0.55,
-    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html",
+    "region": "kanto"
   },
   {
     "id": "toranomon-hills",
@@ -116,7 +123,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.7489
     ],
     "radiusKm": 0.55,
-    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html",
+    "region": "kanto"
   },
   {
     "id": "ginza-itchome",
@@ -129,7 +137,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.765
     ],
     "radiusKm": 0.75,
-    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html"
+    "source": "https://www.tokyometro.jp/ticket/guide/transfertime/index.html",
+    "region": "kanto"
   },
   {
     "id": "korakuen-kasuga",
@@ -142,7 +151,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.752
     ],
     "radiusKm": 0.62,
-    "source": "https://www.tokyometro.jp/station/line_marunouchi/index.html"
+    "source": "https://www.tokyometro.jp/station/line_marunouchi/index.html",
+    "region": "kanto"
   },
   {
     "id": "akihabara-iwamotocho",
@@ -155,7 +165,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.774
     ],
     "radiusKm": 0.7,
-    "source": "https://www.tokyometro.jp/support/guide/operation/pdf/information_20250401.pdf"
+    "source": "https://www.tokyometro.jp/support/guide/operation/pdf/information_20250401.pdf",
+    "region": "kanto"
   },
   {
     "id": "shinjuku-shinsen",
@@ -168,7 +179,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.701
     ],
     "radiusKm": 0.75,
-    "source": "https://www.tokyometro.jp/support/guide/operation/pdf/information_20250401.pdf"
+    "source": "https://www.tokyometro.jp/support/guide/operation/pdf/information_20250401.pdf",
+    "region": "kanto"
   },
   {
     "id": "ueno-keisei-ueno",
@@ -181,7 +193,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       139.7742
     ],
     "radiusKm": 0.5,
-    "source": "https://www.tokyometro.jp/station/line_ginza/index.html"
+    "source": "https://www.tokyometro.jp/station/line_ginza/index.html",
+    "region": "kanto"
   },
   {
     "id": "osaka-umeda",
@@ -197,7 +210,8 @@ const JP_NAMED_TRANSFER_GROUPS=[
       135.4976
     ],
     "radiusKm": 0.9,
-    "source": "https://subway.osakametro.co.jp/station_guide/index.php"
+    "source": "https://subway.osakametro.co.jp/station_guide/index.php",
+    "region": "kansai"
   },
   {
     "id": "osaka-namba",
@@ -212,7 +226,212 @@ const JP_NAMED_TRANSFER_GROUPS=[
       135.4998
     ],
     "radiusKm": 0.85,
-    "source": "https://subway.osakametro.co.jp/station_guide/M/m20/"
+    "source": "https://subway.osakametro.co.jp/station_guide/M/m20/",
+    "region": "kansai"
+  },
+  {
+    "id": "sapporo-jr-subway",
+    "region": "hokkaido",
+    "names": [
+      "札幌",
+      "さっぽろ"
+    ],
+    "center": [
+      43.0672,
+      141.3523
+    ],
+    "radiusKm": 0.6,
+    "source": "https://www.city.sapporo.jp/st/passageway.html"
+  },
+  {
+    "id": "sapporo-odori-tram",
+    "region": "hokkaido",
+    "names": [
+      "大通",
+      "西４丁目"
+    ],
+    "center": [
+      43.0594,
+      141.3525
+    ],
+    "radiusKm": 0.45,
+    "source": "https://www.city.sapporo.jp/st/josyaken/ryokin/ryoukin.html"
+  },
+  {
+    "id": "sendai-subway-jr",
+    "region": "tohoku",
+    "names": [
+      "仙台",
+      "あおば通"
+    ],
+    "center": [
+      38.2603,
+      140.881
+    ],
+    "radiusKm": 0.6,
+    "disabledNamedJoin": true,
+    "source": "https://www.city.sendai.jp/kokyo/kurashi/machi/kotsu/annai/noritsugi.html"
+  },
+  {
+    "id": "nagoya-jr-meitetsu-kintetsu",
+    "region": "chubu",
+    "names": [
+      "名古屋",
+      "名鉄名古屋",
+      "近鉄名古屋"
+    ],
+    "center": [
+      35.1698,
+      136.8837
+    ],
+    "radiusKm": 0.65,
+    "source": "https://www.kintetsu.co.jp/foreign/english/about/station/yard/nagoya.html"
+  },
+  {
+    "id": "toyama-jr-dentetsu",
+    "region": "chubu",
+    "names": [
+      "富山",
+      "電鉄富山",
+      "富山駅"
+    ],
+    "center": [
+      36.7007,
+      137.214
+    ],
+    "radiusKm": 0.65,
+    "source": "https://www.chitetsu.co.jp/?page_id=18873"
+  },
+  {
+    "id": "kyoto-shijo-karasuma",
+    "region": "kansai",
+    "names": [
+      "四条",
+      "烏丸"
+    ],
+    "center": [
+      35.003,
+      135.75965
+    ],
+    "radiusKm": 0.45,
+    "source": "https://www.hankyu.co.jp/en/station/transit/kyoto.html"
+  },
+  {
+    "id": "osaka-minamikata",
+    "region": "kansai",
+    "names": [
+      "南方",
+      "西中島南方"
+    ],
+    "center": [
+      34.7265,
+      135.4991
+    ],
+    "radiusKm": 0.42,
+    "source": "https://www.hankyu.co.jp/en/station/transit/index.html"
+  },
+  {
+    "id": "kobe-sannomiya",
+    "region": "kansai",
+    "names": [
+      "三ノ宮",
+      "三宮",
+      "神戸三宮",
+      "三宮・花時計前"
+    ],
+    "center": [
+      34.693,
+      135.194
+    ],
+    "radiusKm": 0.65,
+    "source": "https://www.hankyu.co.jp/en/station/transit/kobe.html"
+  },
+  {
+    "id": "hiroshima-jr-tram",
+    "region": "chugoku",
+    "names": [
+      "広島",
+      "広島駅"
+    ],
+    "center": [
+      34.3967,
+      132.475
+    ],
+    "radiusKm": 0.5,
+    "source": "https://www.hiroden.co.jp/train/route-guide/stop-guide/m01.html"
+  },
+  {
+    "id": "takamatsu-jr-kotoden",
+    "region": "shikoku",
+    "names": [
+      "高松",
+      "高松築港"
+    ],
+    "center": [
+      34.351,
+      134.0478
+    ],
+    "radiusKm": 0.55,
+    "source": "https://www.kotoden.co.jp/publichtm/bus/rosen/aeon/index.html"
+  },
+  {
+    "id": "fukuoka-tenjin-walk",
+    "region": "kyushu",
+    "names": [
+      "天神",
+      "天神南",
+      "西鉄福岡（天神）"
+    ],
+    "center": [
+      33.5898,
+      130.4001
+    ],
+    "radiusKm": 0.7,
+    "kind": "walking",
+    "fareIntegrated": false,
+    "source": "https://subway.city.fukuoka.lg.jp/utility/qa.php"
+  },
+  {
+    "id": "kumamoto-jr-city-tram",
+    "region": "kyushu",
+    "names": [
+      "熊本",
+      "熊本駅前"
+    ],
+    "center": [
+      32.7906,
+      130.6908
+    ],
+    "radiusKm": 0.45,
+    "source": "https://www.kumamotodentetsu.co.jp/train/station/01.html"
+  },
+  {
+    "id": "kamikumamoto-jr-tram",
+    "region": "kyushu",
+    "names": [
+      "上熊本",
+      "上熊本駅前"
+    ],
+    "center": [
+      32.818,
+      130.6994
+    ],
+    "radiusKm": 0.42,
+    "source": "https://www.kumamotodentetsu.co.jp/train/station/01.html"
+  },
+  {
+    "id": "nagasaki-jr-tram",
+    "region": "kyushu",
+    "names": [
+      "長崎",
+      "長崎駅前"
+    ],
+    "center": [
+      32.7524,
+      129.8718
+    ],
+    "radiusKm": 0.46,
+    "source": "https://www.naga-den.com/"
   }
 ];
 export function japaneseNamedTransferNamesForRoute(route){
@@ -233,6 +452,9 @@ function assignJapanNamedTransfers(routes){
   const present=(routes||[]).filter(route=>route.countryId==='jp');
   for(const route of present)for(const stop of route.stations||[])delete stop.jpNamedTransferKey;
   for(const spec of JP_NAMED_TRANSFER_GROUPS){
+    // Some interchanges (JR Sendai ↔ Aoba-dori) also contain successive
+    // stations on the same railway: never merge those into one game stop.
+    if(spec.disabledNamedJoin)continue;
     const accepted=[];
     for(const route of present)for(const stop of route.stations||[]){
       const point=coords(stop);
@@ -354,7 +576,7 @@ export class FreeDrive{
     // station into different nodes when its line platforms are >200 m apart.
     const masterRoutes=new Map;
     for(const route of routes||[])if(route.countryId==='jp')for(const stop of route.stations||[]){
-      const id=String(stop.stationMasterId||stop.sourceStationId||'');
+      const id=String(stop.transferStationId||stop.stationMasterId||stop.sourceStationId||'');
       if(!id)continue;
       if(!masterRoutes.has(id))masterRoutes.set(id,new Set);
       masterRoutes.get(id).add(route.id);
@@ -364,7 +586,7 @@ export class FreeDrive{
       if(route.countryId==='jp'){
         const key=jpDisneyTransferKey(stop,route);
         if(key)stop.jpTransferKey=key;
-        const masterId=String(stop.stationMasterId||stop.sourceStationId||'');
+        const masterId=String(stop.transferStationId||stop.stationMasterId||stop.sourceStationId||'');
         if(masterId&&sharedMasterIds.has(masterId))stop.jpSharedStationKey='jp-station:'+masterId;
         else delete stop.jpSharedStationKey;
         continue;
