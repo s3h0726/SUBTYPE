@@ -54,6 +54,42 @@ for(const route of routes){
  }
  for(const [id,count] of byId)if(count>1)duplicateRouteStationIds.push({routeId:route.id,stationId:id,count});
 }
+// Scan every region for plausible but NOT YET VERIFIED different-name links.
+// Physical proximity is a research lead only; it must never create a live
+// transfer. Grid neighbors keep this audit near linear for Japan's rail network.
+const nearSize=.004;
+const grid=new Map,position=(lat,lon)=>[Math.floor(lat/nearSize),Math.floor(lon/nearSize)];
+for(const route of routes)for(const stop of route.stations){
+ if(!Number.isFinite(stop.latitude)||!Number.isFinite(stop.longitude))continue;
+ const [x,y]=position(stop.latitude,stop.longitude),key=x+':'+y;
+ if(!grid.has(key))grid.set(key,[]);
+ grid.get(key).push({routeId:route.id,operatorId:route.operatorId,
+   stationId:stop.stationMasterId||stop.id,ja:stop.ja,point:[stop.latitude,stop.longitude]});
+}
+const reviewMap=new Map;
+for(const bucket of grid.values())for(const stop of bucket){
+ const [x,y]=position(...stop.point);
+ for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++){
+  for(const other of grid.get((x+dx)+':'+(y+dy))||[]){
+   if(stop.routeId===other.routeId||stop.operatorId===other.operatorId||
+     stop.stationId===other.stationId||stop.ja===other.ja)continue;
+   const distance=km(stop.point,other.point);
+   if(distance>.35||distance<.015)continue;
+   if(groups.some(spec=>spec.names.includes(stop.ja)&&spec.names.includes(other.ja)&&
+       km(stop.point,spec.center)<=spec.radiusKm&&km(other.point,spec.center)<=spec.radiusKm))continue;
+   const places=[stop,other].sort((a,b)=>a.routeId.localeCompare(b.routeId));
+   const key=places[0].stationId+'|'+places[1].stationId;
+   const old=reviewMap.get(key);
+   if(!old||distance<old.distanceKm)reviewMap.set(key,{
+     from:places[0].ja,to:places[1].ja,
+     fromRoute:places[0].routeId,toRoute:places[1].routeId,
+     stationIds:places.map(p=>p.stationId),
+     distanceKm:+distance.toFixed(3),status:'REVIEW_REQUIRED_NO_AUTOCONNECTION'
+   });
+  }
+ }
+}
+const reviewCandidates=[...reviewMap.values()].sort((a,b)=>a.distanceKm-b.distanceKm);
 const report={schemaVersion:1,generated:new Date().toISOString(),
  JapaneseRoutes:routes.length,stationOccurrences:stations,
  auditedRegions:[...new Set(groups.map(group=>group.region))],
@@ -61,6 +97,8 @@ const report={schemaVersion:1,generated:new Date().toISOString(),
  operatorSpecificStationOverrides:validatedOverrides.length,
  stationNameRoutes:Object.keys(overrides).length,
  groupResults,duplicateRouteStationIds,
+ nearbyUnverifiedCandidateCount:reviewCandidates.length,
+ nearbyUnverifiedCandidates:reviewCandidates.slice(0,1000),
  policy:'Only named pairs with cited transfer information and bounded local coordinates join; duplicate stops on one line are not collapsed; shared station identity never overwrites a line station sign.'};
 const dest=path.join(projectRoot,'reports/jr/japan-national-transfer-audit.json');
 fs.mkdirSync(path.dirname(dest),{recursive:true});
@@ -68,4 +106,4 @@ fs.writeFileSync(dest,JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({status:'PASS',JapaneseRoutes:routes.length,stationOccurrences:stations,
   groups:groups.length,active:ready.length,regions:report.auditedRegions.length,
   stationNameRoutes:Object.keys(overrides).length,overrides:validatedOverrides.length,
-  duplicatedStopIdentities:duplicateRouteStationIds.length,report:'reports/jr/japan-national-transfer-audit.json'}));
+  duplicatedStopIdentities:duplicateRouteStationIds.length,nearbyCandidatesReviewRequired:reviewCandidates.length,report:'reports/jr/japan-national-transfer-audit.json'}));
