@@ -753,8 +753,20 @@ async function hydrateJapaneseNamedTransferConnections(route){
   // The generated nationwide graph covers shared master IDs, spatially
   // aligned independently named IDs and the verified alias groups. The
   // previous name-only catalog remains a fallback for pre-build browsers.
-  const neighborIds=new Set(globalThis.TRT_JAPAN_LITE_INDEX?.transferNeighbors?.[route.id]||[]);
+  const nationalNeighbors=globalThis.TRT_JAPAN_LITE_INDEX?.transferNeighbors;
+  const neighborIds=new Set(nationalNeighbors?.[route.id]||[]);
   const names=new Set(japaneseNamedTransferNamesForRoute(route));
+  // GitHub Pages can temporarily serve a pre-regeneration lite index without
+  // nationwide transferNeighbors. Fall back to station-name discovery across
+  // ALL regions, including a line's unmodified master station names. The
+  // free-drive graph then checks shared IDs or locally verified interchange
+  // evidence; a name match by itself never authorizes a transfer.
+  if(!nationalNeighbors||!Object.keys(nationalNeighbors).length){
+    for(const stop of route.stations||[]){
+      if(stop.ja)names.add(stop.ja);
+      if(stop.canonicalStationNames?.ja)names.add(stop.canonicalStationNames.ja);
+    }
+  }
   if(!neighborIds.size&&!names.size)return;
   const candidates=builtin.filter(line=>
     line.countryId==='jp'&&line.id!==route.id&&line.lazy
