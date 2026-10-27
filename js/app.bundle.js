@@ -106,7 +106,7 @@ class Repository{
   }
   registerStation(station){
     const id=clean(station?.stationMasterId||station?.sourceStationId||station?.internalId||station?.id);if(!id)return null;
-    const existing=this.stations.get(id),names=station.names||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji||station.en};
+    const existing=this.stations.get(id),names=station.canonicalStationNames||station.names||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji||station.en};
     const rawLat=station.latitude??station.coordinates?.lat,rawLng=station.longitude??station.coordinates?.lng,record=existing||{id,type:station.type||'rail_station',names:{ja:clean(names.ja),kana:clean(names.kana),ko:clean(names.ko),en:clean(names.en)},coordinates:{lat:rawLat===null||rawLat===undefined?null:Number(rawLat),lng:rawLng===null||rawLng===undefined?null:Number(rawLng)}};
     if(!existing)this.stations.set(id,record);return record
   }
@@ -125,7 +125,7 @@ class Repository{
   getLineSymbolAsset(id){const entry=this.assets.lines?.[id];if(!entry?.asset)return null;const url=resolveProjectAsset(entry.asset);return{url,asset:url,exists:entry.exists!==false,verified:entry.verified===true,source:entry.source||'',officialExists:entry.officialExists===true,canonicalFile:entry.file,version:entry.version}}
   resolveRoute(route){
     if(!route)return route;this.registerRoute(route);const operator=this.getOperator(route.operatorId),line=this.getLine(route.id),operatorAsset=this.getOperatorLogoAsset(route.operatorId),symbolAsset=this.getLineSymbolAsset(route.id);
-    const stations=(route.stations||[]).map(station=>{const canonical=this.registerStation(station);return canonical?{...station,ja:canonical.names.ja,kana:canonical.names.kana,ko:({'新倉敷':'신쿠라시키','鹿児島中央':'가고시마추오','鹿児島中央駅前':'가고시마추오에키마에'})[canonical.names.ja]||canonical.names.ko,romaji:canonical.names.en}:station});
+    const stations=(route.stations||[]).map(station=>{const canonical=this.registerStation(station);if(!canonical)return station;if(station.routeSpecificStationName===true)return{...station,ja:station.ja,ko:station.ko,romaji:station.romaji};return{...station,ja:canonical.names.ja,kana:canonical.names.kana,ko:({'新倉敷':'신쿠라시키','鹿児島中央':'가고시마추오','鹿児島中央駅前':'가고시마추오에키마에'})[canonical.names.ja]||canonical.names.ko,romaji:canonical.names.en}});
     const resolved={...route,operator:operator?.names||route.operator,line:line?.names||route.line,operatorAsset,symbolAsset,stations};this.routes.set(route.id,resolved);return resolved
   }
 }
