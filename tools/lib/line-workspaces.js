@@ -21,6 +21,7 @@ if(stopName){
   station.routeSpecificStationName=true;
   station.canonicalStationNames={ja:canonical.names?.ja||'',kana:canonical.names?.kana||'',ko:canonical.names?.ko||'',en:canonical.names?.en||''};
   station.stationNameSource='operator-official-route';
+  if(stopName.transferStationId)station.transferStationId=stopName.transferStationId;
 }
 stations.push(station);if(index===relations.length-1)continue;const next=relations[index+1],key=`${relation.stationId}::${next.stationId}`,resolved=resolveWorkspaceSegment(workspace,key,sharedSegments),segment=resolved?.segment;if(!segment){missingSegments.push(key);continue}if(resolved.reused)reusedSegments.push({key,workspaceId:resolved.workspaceId||workspace.line.id});let part=clonePoints(segment.geometry);if(points.length&&points.at(-1)[0]===part[0][0]&&points.at(-1)[1]===part[0][1])part=part.slice(1);const start=Math.max(0,points.length-1);points.push(...part);directedSegments.push({fromStationId:relation.stationId,toStationId:next.stationId,geometry:clonePoints(segment.geometry),source:segment.source||line.sources?.geometry||'',verified:segment.verified!==false});stations[index].geometryIndex=start}
   // Canonical station master records identify an interchange, NOT its tracks
