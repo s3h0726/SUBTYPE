@@ -10,6 +10,16 @@ const source=read('js/japan-lite-index.js'),i=source.indexOf(prefix);
 assert.ok(i>=0,'missing published Japan catalog');
 const index=JSON.parse(source.slice(i+prefix.length).trim().replace(/;\s*$/,''));
 const compiled=json('data/generated/japan-transfer-neighbors.json');
+// Every operator-specific station name must hydrate from its newest
+// generated route file. A fixed query string can silently restore old names.
+const crypto=require('node:crypto'),nameOverrides=json('data/japan-route-station-names.json').routes;
+for(const id of [...Object.keys(nameOverrides),'line-28002-honancho-branch']){
+ const item=index.routes.find(r=>r.id===id);
+ assert.ok(item,'missing signed route '+id);
+ const file='data/generated/routes/'+id+'.json';
+ const hash=crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0,12);
+ assert.equal(item.lazySource,'./'+file+'?v='+hash,id+' station signs could be cached after regeneration');
+}
 const neighbor=index.transferNeighbors;
 assert.ok(index.routes.length>=590,'missing nationwide rail routes');
 assert.ok(neighbor&&typeof neighbor==='object','the live lite index has no nationwide transfer graph');
