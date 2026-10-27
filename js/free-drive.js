@@ -215,6 +215,18 @@ const JP_NAMED_TRANSFER_GROUPS=[
     "source": "https://subway.osakametro.co.jp/station_guide/M/m20/"
   }
 ];
+export function japaneseNamedTransferNamesForRoute(route){
+  if(route?.countryId!=='jp')return [];
+  const all=new Set;
+  for(const group of JP_NAMED_TRANSFER_GROUPS){
+    if(!(route.stations||[]).some(stop=>{
+      const point=coords(stop);
+      return group.names.includes(stop.ja)&&point&&jpTransferDistanceKm(point,group.center)<=group.radiusKm;
+    }))continue;
+    for(const name of group.names)all.add(name);
+  }
+  return [...all];
+}
 const jpTransferDistanceKm=(a,b)=>Math.hypot((a[0]-b[0])*111.195,
   (a[1]-b[1])*111.195*Math.cos(b[0]*Math.PI/180));
 function assignJapanNamedTransfers(routes){
