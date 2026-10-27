@@ -65,4 +65,27 @@ jobs:
           git add data/generated/ js/line-workspace-data.js js/app.bundle.js js/nationwide-data.js index.html
           if git diff --cached --quiet; then echo 'No regenerated game data changes'; exit 0; fi
           git commit -m 'build(jp): synchronize Korean editor names with playable game'
-          git push origin HEAD:main
+          # Multiple Japan/Korea publishers update main concurrently. Never
+          # drop a validated name build merely because main advanced mid-job.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            # Generated files can conflict with another publisher's generated
+            # bundle. Rebuild from its newer canonical main instead of forcing
+            # a stale bundle over someone else's work.
+            git reset --hard origin/main
+            node tools/build-static.js
+            node tools/test-editor-station-runtime.cjs
+            git add data/generated/ js/line-workspace-data.js js/app.bundle.js js/nationwide-data.js index.html
+            if git diff --cached --quiet; then
+              echo 'Latest main already contains the generated names'
+              exit 0
+            fi
+            git commit -m 'build(jp): synchronize Korean editor names with playable game'
+            sleep 2
+          done
+          echo 'Could not publish editor names after 5 attempts' >&2
+          exit 1
