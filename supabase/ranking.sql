@@ -51,6 +51,8 @@ create table if not exists public.ranking_runs (
  run_uid uuid unique not null default gen_random_uuid(),
  route_id text not null,
  route_name text not null,
+ service_key text not null default 'legacy',
+ service_name text not null default '기존 기록 · 계통 미분류',
  country_id text not null check (country_id in ('jp','kr')),
  cpm integer not null check (cpm between 1 and 1200),
  accuracy numeric(5,2) not null check (accuracy between 50 and 100),
@@ -60,17 +62,20 @@ create table if not exists public.ranking_runs (
  created_at timestamptz not null default now()
 );
 alter table public.ranking_runs add column if not exists run_uid uuid;
+alter table public.ranking_runs add column if not exists service_key text not null default 'legacy';
+alter table public.ranking_runs add column if not exists service_name text not null default '기존 기록 · 계통 미분류';
 alter table public.ranking_runs add column if not exists completed integer not null default 0;
 alter table public.ranking_runs add column if not exists route_integrity boolean not null default false;
 update public.ranking_runs set run_uid=gen_random_uuid() where run_uid is null;
 create unique index if not exists ranking_runs_run_uid_idx on public.ranking_runs(run_uid);
 create index if not exists ranking_runs_best_idx on public.ranking_runs(cpm desc,accuracy desc,elapsed_ms);
 create index if not exists ranking_runs_route_idx on public.ranking_runs(country_id,route_id,cpm desc);
+create index if not exists ranking_runs_service_idx on public.ranking_runs(country_id,route_id,service_key,cpm desc);
 create index if not exists ranking_runs_user_idx on public.ranking_runs(user_id,created_at desc);
 alter table public.ranking_runs enable row level security;
 revoke all on public.ranking_runs from anon,authenticated;
 grant select on public.ranking_runs to anon,authenticated;
-grant insert (user_id,run_uid,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,route_integrity)
+grant insert (user_id,run_uid,route_id,route_name,service_key,service_name,country_id,cpm,accuracy,elapsed_ms,completed,route_integrity)
  on public.ranking_runs to authenticated;
 drop policy if exists "ranking public read" on public.ranking_runs;
 drop policy if exists "ranking own insert" on public.ranking_runs;
@@ -80,20 +85,20 @@ create policy "ranking own insert" on public.ranking_runs for insert to authenti
  with check (user_id=(select auth.uid()) and route_integrity is true and completed >= 2
     and country_id in ('jp','kr') and cpm between 1 and 1200 and accuracy between 50 and 100
     and elapsed_ms between 3000 and 7200000 and length(route_id) between 1 and 140
-    and length(route_name) between 1 and 150);
+    and length(route_name) between 1 and 150 and length(service_key) between 1 and 480 and length(service_name) between 1 and 250);
 -- Users cannot UPDATE or DELETE ranking rows through the Data API.
 -- This is basic data hygiene, not authoritative gameplay proof.
 
 create or replace view public.ranking_best
  with (security_invoker = true) as
- select coalesce(p.nickname,'철도러') as nickname,r.route_id,r.route_name,r.country_id,
+ select coalesce(p.nickname,'철도러') as nickname,r.route_id,r.route_name,r.country_id,r.service_key,r.service_name,
     r.cpm,r.accuracy,r.elapsed_ms,r.completed,r.created_at
  from (
-   select distinct on (user_id,route_id,country_id) user_id,route_id,route_name,country_id,cpm,
+   select distinct on (user_id,route_id,country_id,service_key) user_id,route_id,route_name,country_id,service_key,service_name,cpm,
       accuracy,elapsed_ms,completed,created_at
    from public.ranking_runs
    where route_integrity is true and completed>=2
-   order by user_id,route_id,country_id,cpm desc,accuracy desc,elapsed_ms asc
+   order by user_id,route_id,country_id,service_key,cpm desc,accuracy desc,elapsed_ms asc
  ) r
  left join public.player_public_profiles p on p.user_id=r.user_id;
 revoke all on public.ranking_best from anon,authenticated;

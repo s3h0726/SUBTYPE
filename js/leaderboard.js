@@ -18,7 +18,22 @@ const valid=result=>{
  const cpm=Number(result.cpm),accuracy=Number(result.accuracy),elapsed=Number(result.elapsed);
  return Number.isFinite(cpm)&&cpm>0&&cpm<=1200&&Number.isFinite(accuracy)&&accuracy>=50&&accuracy<=100&&Number.isFinite(elapsed)&&elapsed>=3000&&elapsed<=7200000;
 };
+const serviceInfo=result=>{
+ const o=result.options||{},stations=result.route?.stations||[];
+ const origin=String(result.originStationId||o.serviceJourney?.originStationId||result.typedStationIds?.[0]||'');
+ const destination=String(result.destinationStationId||o.destinationStationId||result.typedStationIds?.at(-1)||'');
+ const direction=String(result.directionId||o.direction||'forward');
+ const journey=String(result.serviceJourneyId||o.serviceJourneyId||'');
+ const pattern=String(result.servicePatternId||o.servicePattern?.id||'');
+ const trainType=String(result.trainTypeId||o.trainType?.id||'');
+ const service=String(result.serviceId||o.service?.id||'local');
+ const key=[journey?'journey:'+journey:pattern?'pattern:'+pattern:'service:'+service,'type:'+trainType,'origin:'+origin,'dest:'+destination,'direction:'+direction].join('|').slice(0,480);
+ const name=String(result.serviceName||o.service?.nameKo||o.service?.nameJa||'각역정차');
+ const first=stations.find(x=>String(x.id)===origin),last=stations.find(x=>String(x.id)===destination);
+ return {service_key:key,service_name:(name+' · '+(first?.ko||first?.ja||origin)+' → '+(last?.ko||last?.ja||destination)).slice(0,250)};
+};
 const entry=result=>({
+ ...serviceInfo(result),
  run_uid:crypto.randomUUID(),route_id:String(result.route?.id||result.routeId||'').slice(0,140),
  route_name:String(result.route?.line?.ko||result.route?.line?.ja||result.routeName||'').slice(0,150),
  country_id:result.route?.countryId==='kr'?'kr':'jp',
@@ -36,10 +51,10 @@ async function syncPending(){
    const current=read(),pending=current.filter(x=>!x.synced).slice(0,50);
    for(const run of pending){
      if(getAuth()?.userId!==id)break;
-     const {run_uid,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,route_integrity}=run;
+     const {run_uid,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,route_integrity,service_key,service_name}=run;
      try{
        await auth.privateApi('/rest/v1/ranking_runs?on_conflict=run_uid',{method:'POST',prefer:'resolution=ignore-duplicates',
-         body:{run_uid,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,route_integrity,user_id:id}});
+         body:{run_uid,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,route_integrity,service_key:service_key||'legacy',service_name:service_name||'기존 기록 · 계통 미분류',user_id:id}});
        const state=read(),found=state.find(r=>r.run_uid===run_uid);
        if(found){found.synced=true;save(state)}
      }catch(error){console.warn('Ranking sync:',error.message);break}
@@ -48,11 +63,12 @@ async function syncPending(){
  return syncing;
 }
 async function globalRows(){
- const q=new URLSearchParams({select:'nickname,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,created_at',
+ const q=new URLSearchParams({select:'nickname,route_id,route_name,country_id,service_key,service_name,cpm,accuracy,elapsed_ms,completed,created_at',
    order:'cpm.desc,accuracy.desc,elapsed_ms.asc',limit:'100'});
  const country=byId('ranking-country')?.value||'all',route=String(byId('ranking-route')?.value||'').trim();
  if(country==='jp'||country==='kr')q.set('country_id','eq.'+country);
  if(route)q.set('route_id','eq.'+route);
+ const service=byId('ranking-service')?.value||'';if(service)q.set('service_key','eq.'+service);
  const auth=getAuth(),key=config().anonKey||config().publishableKey,token=await auth?.accessToken().catch(()=>null);
  const response=await fetch(String(config().url).replace(/\/$/,'')+'/rest/v1/ranking_best?'+q,{
    headers:{apikey:key,...(token?{Authorization:'Bearer '+token}:{})}
@@ -63,8 +79,8 @@ async function globalRows(){
 }
 function table(list,global=false){
  if(!list.length)return '<p class="ranking-empty">해당 조건의 기록이 없습니다.</p>';
- return '<div class="ranking-scroll"><table class="ranking-table"><thead><tr><th>순위</th><th>플레이어</th><th>노선</th><th>타수</th><th>정확도</th><th>완주 시간</th></tr></thead><tbody>'+
- sorted(list).slice(0,100).map((r,i)=>`<tr><td>${i+1}</td><td>${escapeText(global?(r.nickname||'철도러'):(getAuth()?.profile?.nickname||'나'))}</td><td>${escapeText(r.route_name||r.route_id)}</td><td><strong>${Math.round(Number(r.cpm)||0)}</strong></td><td>${Number(r.accuracy||0).toFixed(1)}%</td><td>${(Number(r.elapsed_ms||0)/1000).toFixed(2)}초</td></tr>`).join('')+'</tbody></table></div>';
+ return '<div class="ranking-scroll"><table class="ranking-table"><thead><tr><th>순위</th><th>플레이어</th><th>노선 · 운행계통</th><th>타수</th><th>정확도</th><th>완주 시간</th></tr></thead><tbody>'+
+ sorted(list).slice(0,100).map((r,i)=>`<tr><td>${i+1}</td><td>${escapeText(global?(r.nickname||'철도러'):(getAuth()?.profile?.nickname||'나'))}</td><td>${escapeText(r.route_name||r.route_id)}<small style="display:block;color:var(--muted)">${escapeText(r.service_name||'기존 기록 · 계통 미분류')}</small></td><td><strong>${Math.round(Number(r.cpm)||0)}</strong></td><td>${Number(r.accuracy||0).toFixed(1)}%</td><td>${(Number(r.elapsed_ms||0)/1000).toFixed(2)}초</td></tr>`).join('')+'</tbody></table></div>';
 }
 function populateRoutes(){
  const select=byId('ranking-route');if(!select||select.dataset.populated==='true')return;
@@ -79,15 +95,35 @@ function populateRoutes(){
  }
  select.value=current;select.dataset.populated='true';
 }
+async function populateServices(){
+ const select=byId('ranking-service');if(!select)return;
+ const route=byId('ranking-route')?.value||'',country=byId('ranking-country')?.value||'all',previous=select.value;
+ const rows=read().filter(r=>(!route||r.route_id===route)&&(country==='all'||r.country_id===country));
+ if(configured()&&byId('ranking-scope')?.value==='global'){
+   try{
+     const query=new URLSearchParams({select:'service_key,service_name,route_id,country_id',limit:'1000'});
+     if(route)query.set('route_id','eq.'+route);
+     if(country!=='all')query.set('country_id','eq.'+country);
+     const key=config().anonKey||config().publishableKey,token=await getAuth()?.accessToken().catch(()=>null);
+     const response=await fetch(String(config().url).replace(/\/$/,'')+'/rest/v1/ranking_best?'+query,{headers:{apikey:key,...(token?{Authorization:'Bearer '+token}:{})}});
+     if(response.ok)rows.push(...await response.json());
+   }catch(error){console.warn('Service filter:',error.message)}
+ }
+ const choices=new Map();for(const row of rows)if(row.service_key&&!choices.has(row.service_key))choices.set(row.service_key,row.service_name||'계통 미분류');
+ select.replaceChildren(new Option('모든 운행계통',''));
+ for(const [key,name] of [...choices].sort((a,b)=>a[1].localeCompare(b[1],'ko')))select.add(new Option(name,key));
+ select.value=choices.has(previous)?previous:'';
+}
 async function render(){
  populateRoutes();
+ await populateServices();
  const board=byId('ranking-board'),status=byId('ranking-status');if(!board||!status)return;
  const request=++renderGeneration,scope=byId('ranking-scope')?.value||'personal',country=byId('ranking-country')?.value||'all',
- route=String(byId('ranking-route')?.value||'').trim();
+ route=String(byId('ranking-route')?.value||'').trim(),service=String(byId('ranking-service')?.value||'').trim();
  const accountLabel=byId('ranking-account-label');
  if(accountLabel)accountLabel.textContent=authenticated()?'로그인된 계정의 기록':'게스트 · 이 브라우저에서만 저장';
  if(scope==='personal'){
-   const list=read().filter(r=>(country==='all'||r.country_id===country)&&(!route||r.route_id===route));
+   const list=read().filter(r=>(country==='all'||r.country_id===country)&&(!route||r.route_id===route)&&(!service||(r.service_key||'legacy')===service));
    board.innerHTML=table(list);
    status.textContent=authenticated()?`내 기록 ${list.length}건 · 서버 반영: ${list.filter(r=>r.synced).length}건`:'게스트 기록은 이 브라우저에서만 보관됩니다.';
    return;
@@ -99,7 +135,7 @@ async function render(){
  try{
    const rows=await globalRows();if(request!==renderGeneration)return;
    board.innerHTML=table(rows,true);
-   status.textContent='전체 사용자 · 노선별 개인 최고 기록 · 타수순 상위 100명 (클라이언트 제출 기록, 서버 검증 전)';
+   status.textContent='전체 사용자 · 운행계통별 개인 최고 기록 · 타수순 상위 100명 (클라이언트 제출 기록, 서버 검증 전)';
  }catch(error){if(request!==renderGeneration)return;status.textContent=error.message;board.textContent=''}
 }
 document.addEventListener('trt:journey-finished',event=>{
@@ -109,7 +145,7 @@ document.addEventListener('trt:journey-finished',event=>{
  if(document.body.dataset.currentScreen==='ranking')void render();
 });
 document.addEventListener('trt:auth-changed',()=>{void syncPending();if(document.body.dataset.currentScreen==='ranking')void render()});
-document.addEventListener('change',event=>{if(['ranking-scope','ranking-country','ranking-route'].includes(event.target?.id))void render()});
+document.addEventListener('change',event=>{if(['ranking-scope','ranking-country','ranking-route','ranking-service'].includes(event.target?.id))void render()});
 document.addEventListener('input',event=>{if(event.target?.id==='ranking-route')void render()});
 document.addEventListener('click',event=>{if(event.target.closest('[data-nav="ranking"]'))setTimeout(()=>{void render()},0);
  if(event.target.closest('[data-ranking-refresh]'))void render()});

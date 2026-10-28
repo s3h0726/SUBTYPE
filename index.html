@@ -252,12 +252,12 @@
     <section id="screen-stats" data-screen="records" class="screen" aria-labelledby="stats-title"><div class="section-head"><div><p class="eyebrow">YOUR JOURNEY</p><h2 id="stats-title">운행 기록</h2></div><button class="btn text" data-nav="home">← HOME</button></div><button class="btn ghost" data-nav="ranking">🏆 랭킹 보기</button><div id="stats-summary" class="stats-summary"></div><h3>노선별 기록</h3><div id="records-table" class="records-table"></div></section>
 
     <section id="screen-ranking" data-screen="ranking" class="screen" aria-labelledby="ranking-title">
-      <div class="section-head"><div><p class="eyebrow">SUBTYPE LEADERBOARD</p><h2 id="ranking-title">철도 타이핑 랭킹</h2><p>노선별 최고 타수 · 정확도 · 완주 시간</p></div><button class="btn text" data-nav="home">← HOME</button></div>
+      <div class="section-head"><div><p class="eyebrow">SUBTYPE LEADERBOARD</p><h2 id="ranking-title">철도 타이핑 랭킹</h2><p>노선·운행계통별 최고 타수 · 정확도 · 완주 시간</p></div><button class="btn text" data-nav="home">← HOME</button></div>
       <div class="ranking-panel">
         <div class="ranking-controls">
           <label>랭킹 범위<select id="ranking-scope"><option value="personal">내 기록</option><option value="global">전체 랭킹</option></select></label>
           <label>국가<select id="ranking-country"><option value="all">전체</option><option value="jp">일본</option><option value="kr">대한민국</option></select></label>
-          <label>노선<select id="ranking-route"><option value="">모든 노선</option></select></label>
+          <label>노선<select id="ranking-route"><option value="">모든 노선</option></select></label><label>운행계통<select id="ranking-service"><option value="">모든 운행계통</option></select></label>
           <button class="btn ghost" type="button" data-ranking-refresh>새로고침</button>
         </div>
         <div class="ranking-meta"><span id="ranking-account-label"></span><button type="button" class="btn ghost" data-auth-open>계정 관리</button></div>
@@ -317,7 +317,7 @@
   <script defer src="./js/keisei-matsudo-migration.js?v=20261011"></script>
   <script defer src="./js/keisei-higashinarita-data.js?v=20261011"></script>
   <script defer src="./js/lines-csv-overrides.js?v=20261011"></script>
-  <script defer src="./js/leaderboard.js?v=supabase-integration-20261028"></script>
+  <script defer src="./js/leaderboard.js?v=service-ranking-20261028"></script>
   <script type="module" src="./js/result-journey-map.js?v=a73d025a3b00"></script>
     <script defer src="./js/disney-resort-line-data.js?v=563283d39bbf"></script>
   <script defer src="./js/app.bundle.js?v=9e8c21488f37"></script>
