@@ -50,7 +50,10 @@ jobs:
             fi
             git commit -m 'build(auth): publish Supabase account and ranking UI'
             git fetch origin main
-            if git rebase origin/main && git push origin HEAD:main; then
+            # The source repository contains generated worktree files. Preserve those
+            # during the rebase instead of falsely treating them as a conflict.
+            git status --short
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then
               exit 0
             fi
             git rebase --abort || true
