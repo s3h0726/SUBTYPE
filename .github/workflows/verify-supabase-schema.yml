@@ -1,0 +1,21 @@
+name: Verify Supabase records database
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tools/check-supabase-schema.cjs'
+      - 'supabase/ranking.sql'
+      - '.github/workflows/verify-supabase-schema.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check deployed Supabase schema without modifying records
+        run: node tools/check-supabase-schema.cjs
