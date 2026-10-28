@@ -1,0 +1,24 @@
+name: Validate Meitetsu Mikawa Yama Umi split
+on:
+  push:
+    paths:
+      - 'data/route-overrides/meitetsu-mikawa-umi.json'
+      - 'data/route-overrides/meitetsu-mikawa-yama.json'
+      - 'js/meitetsu-mikawa-sections-patch.js'
+      - 'tools/build-meitetsu-mikawa-sections.cjs'
+      - 'tools/test-meitetsu-mikawa-sections.cjs'
+      - 'data/editor-overrides.json'
+      - '.github/workflows/test-meitetsu-mikawa-sections.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node tools/build-meitetsu-mikawa-sections.cjs --check
+      - run: node tools/test-meitetsu-mikawa-sections.cjs

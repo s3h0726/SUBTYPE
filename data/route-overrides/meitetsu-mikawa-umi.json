@@ -1,0 +1,1904 @@
+{
+  "route": {
+    "id": "line-30005-umi",
+    "legacyId": "line-30005-umi",
+    "category": "private",
+    "operatorId": "nagoyatetsudo",
+    "operator": {
+      "ja": "名古屋鉄道",
+      "ko": "나고야 철도(메이테츠)",
+      "en": "Nagoyatetsudō"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 名古屋鉄道 나고야테츠도우 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "名鉄三河線（海線）",
+      "kana": "めいてつみかわせん（うみせん）",
+      "ko": "메이테츠 미카와선(해선)",
+      "en": "Meitetsu Mikawa Line (Sea Section)"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 名鉄三河線 메이테츠미카와선 노선",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "code": "",
+    "lineColor": "#654D9D",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 名鉄三河線 메이테츠미카와선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "officialSymbolExists": false,
+    "loop": false,
+    "stationSignTemplate": "nagoyatetsudo",
+    "services": [
+      {
+        "id": "local",
+        "nameJa": "普通",
+        "nameKo": "각역정차",
+        "nameEn": "Local",
+        "stops": [
+          "station-3000119",
+          "station-3000511",
+          "station-1150224",
+          "station-3000509",
+          "station-3000508",
+          "station-3000507",
+          "station-3000506",
+          "station-3000505",
+          "station-3000504",
+          "station-3000503",
+          "station-3000502",
+          "station-3000501"
+        ]
+      }
+    ],
+    "throughServiceIds": [],
+    "throughOperations": [],
+    "routeInfo": null,
+    "stations": [
+      {
+        "id": "station-3000119",
+        "internalId": "station-3000119",
+        "stationMasterId": "station-3000119",
+        "sourceId": "station-3000119",
+        "ja": "知立",
+        "kana": "ちりゅう",
+        "ko": "치류",
+        "romaji": "Chiryū",
+        "koAliases": [],
+        "latitude": 35.00649,
+        "longitude": 137.03924,
+        "order": 12,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 知立駅 치류우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000511",
+        "internalId": "station-3000511",
+        "stationMasterId": "station-3000511",
+        "sourceId": "station-3000511",
+        "ja": "重原",
+        "kana": "しげはら",
+        "ko": "시게하라",
+        "romaji": "Shigehara",
+        "koAliases": [],
+        "latitude": 34.99506,
+        "longitude": 137.02408,
+        "order": 11,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 重原駅 시게하라 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 23,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-1150224",
+        "internalId": "station-1150224",
+        "stationMasterId": "station-1150224",
+        "sourceId": "station-1150224",
+        "ja": "刈谷",
+        "kana": "かりや",
+        "ko": "카리야",
+        "romaji": "Kariya",
+        "koAliases": [],
+        "latitude": 34.99087,
+        "longitude": 137.00837,
+        "order": 10,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 刈谷駅 카리야 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 43,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000509",
+        "internalId": "station-3000509",
+        "stationMasterId": "station-3000509",
+        "sourceId": "station-3000509",
+        "ja": "刈谷市",
+        "kana": "かりやし",
+        "ko": "카리야시",
+        "romaji": "Kariyashi",
+        "koAliases": [],
+        "latitude": 34.98468,
+        "longitude": 136.99391,
+        "order": 9,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 刈谷市駅 카리야시 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 56,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000508",
+        "internalId": "station-3000508",
+        "stationMasterId": "station-3000508",
+        "sourceId": "station-3000508",
+        "ja": "小垣江",
+        "kana": "おがきえ",
+        "ko": "오가키에",
+        "romaji": "Ogakie",
+        "koAliases": [],
+        "latitude": 34.96358,
+        "longitude": 136.99532,
+        "order": 8,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 小垣江駅 오가키에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 75,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000507",
+        "internalId": "station-3000507",
+        "stationMasterId": "station-3000507",
+        "sourceId": "station-3000507",
+        "ja": "吉浜",
+        "kana": "よしはま",
+        "ko": "요시하마",
+        "romaji": "Yoshihama",
+        "koAliases": [],
+        "latitude": 34.94633,
+        "longitude": 136.98912,
+        "order": 7,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 吉浜駅 요시하마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 89,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000506",
+        "internalId": "station-3000506",
+        "stationMasterId": "station-3000506",
+        "sourceId": "station-3000506",
+        "ja": "三河高浜",
+        "kana": "みかわたかはま",
+        "ko": "미카와타카하마",
+        "romaji": "Mikawatakahama",
+        "koAliases": [],
+        "latitude": 34.93116,
+        "longitude": 136.98982,
+        "order": 6,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 三河高浜駅 미카와타카하마 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 101,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000505",
+        "internalId": "station-3000505",
+        "stationMasterId": "station-3000505",
+        "sourceId": "station-3000505",
+        "ja": "高浜港",
+        "kana": "たかはまこう",
+        "ko": "타카하마코",
+        "romaji": "Takahamakō",
+        "koAliases": [],
+        "latitude": 34.92188,
+        "longitude": 136.98944,
+        "order": 5,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 高浜港駅 타카하마코우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 107,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000504",
+        "internalId": "station-3000504",
+        "stationMasterId": "station-3000504",
+        "sourceId": "station-3000504",
+        "ja": "北新川",
+        "kana": "きたしんかわ",
+        "ko": "키타신카와",
+        "romaji": "Kitashinkawa",
+        "koAliases": [],
+        "latitude": 34.9064,
+        "longitude": 136.99238,
+        "order": 4,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 北新川駅 키타신카와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 118,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000503",
+        "internalId": "station-3000503",
+        "stationMasterId": "station-3000503",
+        "sourceId": "station-3000503",
+        "ja": "新川町",
+        "kana": "しんかわまち",
+        "ko": "신카와마치",
+        "romaji": "Shinkawamachi",
+        "koAliases": [],
+        "latitude": 34.89692,
+        "longitude": 136.99042,
+        "order": 3,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 新川町駅 신카와마치 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 128,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000502",
+        "internalId": "station-3000502",
+        "stationMasterId": "station-3000502",
+        "sourceId": "station-3000502",
+        "ja": "碧南中央",
+        "kana": "へきなんちゅうおう",
+        "ko": "헤키난츄오",
+        "romaji": "Hekinanchūō",
+        "koAliases": [],
+        "latitude": 34.88765,
+        "longitude": 136.98945,
+        "order": 2,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 碧南中央駅 헤키난추우오우 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 136,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-3000501",
+        "internalId": "station-3000501",
+        "stationMasterId": "station-3000501",
+        "sourceId": "station-3000501",
+        "ja": "碧南",
+        "kana": "へきなん",
+        "ko": "헤키난",
+        "romaji": "Hekinan",
+        "koAliases": [],
+        "latitude": 34.87448,
+        "longitude": 136.98568,
+        "order": 1,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
+        "stationCodeSource": {
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 碧南駅 헤키난 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 147,
+        "coordinateSource": "line-track-geometry"
+      }
+    ],
+    "geometry": [
+      [
+        35.00649,
+        137.03924
+      ],
+      [
+        35.00507,
+        137.04059
+      ],
+      [
+        35.00479,
+        137.04072
+      ],
+      [
+        35.00396,
+        137.04101
+      ],
+      [
+        35.00367,
+        137.04106
+      ],
+      [
+        35.00353,
+        137.04105
+      ],
+      [
+        35.00309,
+        137.0409
+      ],
+      [
+        35.00284,
+        137.04073
+      ],
+      [
+        35.00262,
+        137.04055
+      ],
+      [
+        35.00244,
+        137.04032
+      ],
+      [
+        35.0023,
+        137.04005
+      ],
+      [
+        35.00208,
+        137.03954
+      ],
+      [
+        35.00161,
+        137.03839
+      ],
+      [
+        35.00099,
+        137.03687
+      ],
+      [
+        35.00036,
+        137.03528
+      ],
+      [
+        34.99933,
+        137.03277
+      ],
+      [
+        34.99882,
+        137.03151
+      ],
+      [
+        34.99795,
+        137.02936
+      ],
+      [
+        34.99724,
+        137.02767
+      ],
+      [
+        34.99701,
+        137.02709
+      ],
+      [
+        34.99673,
+        137.02639
+      ],
+      [
+        34.9965,
+        137.02588
+      ],
+      [
+        34.99586,
+        137.02503
+      ],
+      [
+        34.99506,
+        137.02408
+      ],
+      [
+        34.99395,
+        137.0228
+      ],
+      [
+        34.99366,
+        137.02245
+      ],
+      [
+        34.99282,
+        137.02139
+      ],
+      [
+        34.99206,
+        137.02046
+      ],
+      [
+        34.99175,
+        137.02
+      ],
+      [
+        34.99153,
+        137.01961
+      ],
+      [
+        34.99121,
+        137.01904
+      ],
+      [
+        34.99095,
+        137.01855
+      ],
+      [
+        34.99057,
+        137.01787
+      ],
+      [
+        34.99023,
+        137.01724
+      ],
+      [
+        34.99013,
+        137.01706
+      ],
+      [
+        34.98967,
+        137.01622
+      ],
+      [
+        34.98942,
+        137.01573
+      ],
+      [
+        34.98902,
+        137.01468
+      ],
+      [
+        34.98896,
+        137.01438
+      ],
+      [
+        34.98889,
+        137.01378
+      ],
+      [
+        34.98908,
+        137.01254
+      ],
+      [
+        34.98978,
+        137.01098
+      ],
+      [
+        34.99019,
+        137.01018
+      ],
+      [
+        34.99087,
+        137.00837
+      ],
+      [
+        34.99108,
+        137.00767
+      ],
+      [
+        34.99117,
+        137.00711
+      ],
+      [
+        34.99112,
+        137.00658
+      ],
+      [
+        34.991,
+        137.00569
+      ],
+      [
+        34.99067,
+        137.00424
+      ],
+      [
+        34.99045,
+        137.00371
+      ],
+      [
+        34.98996,
+        137.00271
+      ],
+      [
+        34.98985,
+        137.00246
+      ],
+      [
+        34.98933,
+        137.00136
+      ],
+      [
+        34.98759,
+        136.99768
+      ],
+      [
+        34.98608,
+        136.99517
+      ],
+      [
+        34.98503,
+        136.99415
+      ],
+      [
+        34.98468,
+        136.99391
+      ],
+      [
+        34.98355,
+        136.99358
+      ],
+      [
+        34.98229,
+        136.99396
+      ],
+      [
+        34.98085,
+        136.99464
+      ],
+      [
+        34.97933,
+        136.9954
+      ],
+      [
+        34.97764,
+        136.99621
+      ],
+      [
+        34.97585,
+        136.99704
+      ],
+      [
+        34.97376,
+        136.99805
+      ],
+      [
+        34.97322,
+        136.99832
+      ],
+      [
+        34.97172,
+        136.99908
+      ],
+      [
+        34.97121,
+        136.99926
+      ],
+      [
+        34.97053,
+        136.99934
+      ],
+      [
+        34.96956,
+        136.9992
+      ],
+      [
+        34.96887,
+        136.99887
+      ],
+      [
+        34.96814,
+        136.9984
+      ],
+      [
+        34.96783,
+        136.99818
+      ],
+      [
+        34.96604,
+        136.99699
+      ],
+      [
+        34.96568,
+        136.99675
+      ],
+      [
+        34.96418,
+        136.99572
+      ],
+      [
+        34.96358,
+        136.99532
+      ],
+      [
+        34.96282,
+        136.99479
+      ],
+      [
+        34.96181,
+        136.99429
+      ],
+      [
+        34.96056,
+        136.99414
+      ],
+      [
+        34.9595,
+        136.99404
+      ],
+      [
+        34.95817,
+        136.99393
+      ],
+      [
+        34.95739,
+        136.99375
+      ],
+      [
+        34.95621,
+        136.99339
+      ],
+      [
+        34.95535,
+        136.99312
+      ],
+      [
+        34.95314,
+        136.99245
+      ],
+      [
+        34.95163,
+        136.99199
+      ],
+      [
+        34.94934,
+        136.99128
+      ],
+      [
+        34.94829,
+        136.99072
+      ],
+      [
+        34.94708,
+        136.98976
+      ],
+      [
+        34.94633,
+        136.98912
+      ],
+      [
+        34.94564,
+        136.98854
+      ],
+      [
+        34.94434,
+        136.98745
+      ],
+      [
+        34.94338,
+        136.98664
+      ],
+      [
+        34.94289,
+        136.98623
+      ],
+      [
+        34.94239,
+        136.98589
+      ],
+      [
+        34.94134,
+        136.98564
+      ],
+      [
+        34.94119,
+        136.98562
+      ],
+      [
+        34.94024,
+        136.98581
+      ],
+      [
+        34.93606,
+        136.98765
+      ],
+      [
+        34.93501,
+        136.98812
+      ],
+      [
+        34.93285,
+        136.98907
+      ],
+      [
+        34.93116,
+        136.98982
+      ],
+      [
+        34.93038,
+        136.9901
+      ],
+      [
+        34.92901,
+        136.99043
+      ],
+      [
+        34.92798,
+        136.99053
+      ],
+      [
+        34.9262,
+        136.99032
+      ],
+      [
+        34.92498,
+        136.99007
+      ],
+      [
+        34.92188,
+        136.98944
+      ],
+      [
+        34.92082,
+        136.9893
+      ],
+      [
+        34.91928,
+        136.98952
+      ],
+      [
+        34.91723,
+        136.99007
+      ],
+      [
+        34.9152,
+        136.99056
+      ],
+      [
+        34.91343,
+        136.99081
+      ],
+      [
+        34.91254,
+        136.99094
+      ],
+      [
+        34.91155,
+        136.99105
+      ],
+      [
+        34.91066,
+        136.99118
+      ],
+      [
+        34.90937,
+        136.99151
+      ],
+      [
+        34.90781,
+        136.99198
+      ],
+      [
+        34.9064,
+        136.99238
+      ],
+      [
+        34.90555,
+        136.99259
+      ],
+      [
+        34.90479,
+        136.99277
+      ],
+      [
+        34.90358,
+        136.99283
+      ],
+      [
+        34.9025,
+        136.99277
+      ],
+      [
+        34.90215,
+        136.99276
+      ],
+      [
+        34.90139,
+        136.9926
+      ],
+      [
+        34.89996,
+        136.99191
+      ],
+      [
+        34.89892,
+        136.99139
+      ],
+      [
+        34.89758,
+        136.99073
+      ],
+      [
+        34.89692,
+        136.99042
+      ],
+      [
+        34.89615,
+        136.99013
+      ],
+      [
+        34.89509,
+        136.98992
+      ],
+      [
+        34.89361,
+        136.98974
+      ],
+      [
+        34.89281,
+        136.98966
+      ],
+      [
+        34.89152,
+        136.98954
+      ],
+      [
+        34.88957,
+        136.98947
+      ],
+      [
+        34.88863,
+        136.98946
+      ],
+      [
+        34.88765,
+        136.98945
+      ],
+      [
+        34.88697,
+        136.98943
+      ],
+      [
+        34.88625,
+        136.98943
+      ],
+      [
+        34.88525,
+        136.98937
+      ],
+      [
+        34.88463,
+        136.98923
+      ],
+      [
+        34.88313,
+        136.9887
+      ],
+      [
+        34.88173,
+        136.9882
+      ],
+      [
+        34.87997,
+        136.98758
+      ],
+      [
+        34.8793,
+        136.98734
+      ],
+      [
+        34.87766,
+        136.98676
+      ],
+      [
+        34.87572,
+        136.98607
+      ],
+      [
+        34.87448,
+        136.98568
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-3000119",
+        "toStationId": "station-3000511",
+        "geometry": [
+          [
+            35.00649,
+            137.03924
+          ],
+          [
+            35.00507,
+            137.04059
+          ],
+          [
+            35.00479,
+            137.04072
+          ],
+          [
+            35.00396,
+            137.04101
+          ],
+          [
+            35.00367,
+            137.04106
+          ],
+          [
+            35.00353,
+            137.04105
+          ],
+          [
+            35.00309,
+            137.0409
+          ],
+          [
+            35.00284,
+            137.04073
+          ],
+          [
+            35.00262,
+            137.04055
+          ],
+          [
+            35.00244,
+            137.04032
+          ],
+          [
+            35.0023,
+            137.04005
+          ],
+          [
+            35.00208,
+            137.03954
+          ],
+          [
+            35.00161,
+            137.03839
+          ],
+          [
+            35.00099,
+            137.03687
+          ],
+          [
+            35.00036,
+            137.03528
+          ],
+          [
+            34.99933,
+            137.03277
+          ],
+          [
+            34.99882,
+            137.03151
+          ],
+          [
+            34.99795,
+            137.02936
+          ],
+          [
+            34.99724,
+            137.02767
+          ],
+          [
+            34.99701,
+            137.02709
+          ],
+          [
+            34.99673,
+            137.02639
+          ],
+          [
+            34.9965,
+            137.02588
+          ],
+          [
+            34.99586,
+            137.02503
+          ],
+          [
+            34.99506,
+            137.02408
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000511",
+        "toStationId": "station-1150224",
+        "geometry": [
+          [
+            34.99506,
+            137.02408
+          ],
+          [
+            34.99395,
+            137.0228
+          ],
+          [
+            34.99366,
+            137.02245
+          ],
+          [
+            34.99282,
+            137.02139
+          ],
+          [
+            34.99206,
+            137.02046
+          ],
+          [
+            34.99175,
+            137.02
+          ],
+          [
+            34.99153,
+            137.01961
+          ],
+          [
+            34.99121,
+            137.01904
+          ],
+          [
+            34.99095,
+            137.01855
+          ],
+          [
+            34.99057,
+            137.01787
+          ],
+          [
+            34.99023,
+            137.01724
+          ],
+          [
+            34.99013,
+            137.01706
+          ],
+          [
+            34.98967,
+            137.01622
+          ],
+          [
+            34.98942,
+            137.01573
+          ],
+          [
+            34.98902,
+            137.01468
+          ],
+          [
+            34.98896,
+            137.01438
+          ],
+          [
+            34.98889,
+            137.01378
+          ],
+          [
+            34.98908,
+            137.01254
+          ],
+          [
+            34.98978,
+            137.01098
+          ],
+          [
+            34.99019,
+            137.01018
+          ],
+          [
+            34.99087,
+            137.00837
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1150224",
+        "toStationId": "station-3000509",
+        "geometry": [
+          [
+            34.99087,
+            137.00837
+          ],
+          [
+            34.99108,
+            137.00767
+          ],
+          [
+            34.99117,
+            137.00711
+          ],
+          [
+            34.99112,
+            137.00658
+          ],
+          [
+            34.991,
+            137.00569
+          ],
+          [
+            34.99067,
+            137.00424
+          ],
+          [
+            34.99045,
+            137.00371
+          ],
+          [
+            34.98996,
+            137.00271
+          ],
+          [
+            34.98985,
+            137.00246
+          ],
+          [
+            34.98933,
+            137.00136
+          ],
+          [
+            34.98759,
+            136.99768
+          ],
+          [
+            34.98608,
+            136.99517
+          ],
+          [
+            34.98503,
+            136.99415
+          ],
+          [
+            34.98468,
+            136.99391
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000509",
+        "toStationId": "station-3000508",
+        "geometry": [
+          [
+            34.98468,
+            136.99391
+          ],
+          [
+            34.98355,
+            136.99358
+          ],
+          [
+            34.98229,
+            136.99396
+          ],
+          [
+            34.98085,
+            136.99464
+          ],
+          [
+            34.97933,
+            136.9954
+          ],
+          [
+            34.97764,
+            136.99621
+          ],
+          [
+            34.97585,
+            136.99704
+          ],
+          [
+            34.97376,
+            136.99805
+          ],
+          [
+            34.97322,
+            136.99832
+          ],
+          [
+            34.97172,
+            136.99908
+          ],
+          [
+            34.97121,
+            136.99926
+          ],
+          [
+            34.97053,
+            136.99934
+          ],
+          [
+            34.96956,
+            136.9992
+          ],
+          [
+            34.96887,
+            136.99887
+          ],
+          [
+            34.96814,
+            136.9984
+          ],
+          [
+            34.96783,
+            136.99818
+          ],
+          [
+            34.96604,
+            136.99699
+          ],
+          [
+            34.96568,
+            136.99675
+          ],
+          [
+            34.96418,
+            136.99572
+          ],
+          [
+            34.96358,
+            136.99532
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000508",
+        "toStationId": "station-3000507",
+        "geometry": [
+          [
+            34.96358,
+            136.99532
+          ],
+          [
+            34.96282,
+            136.99479
+          ],
+          [
+            34.96181,
+            136.99429
+          ],
+          [
+            34.96056,
+            136.99414
+          ],
+          [
+            34.9595,
+            136.99404
+          ],
+          [
+            34.95817,
+            136.99393
+          ],
+          [
+            34.95739,
+            136.99375
+          ],
+          [
+            34.95621,
+            136.99339
+          ],
+          [
+            34.95535,
+            136.99312
+          ],
+          [
+            34.95314,
+            136.99245
+          ],
+          [
+            34.95163,
+            136.99199
+          ],
+          [
+            34.94934,
+            136.99128
+          ],
+          [
+            34.94829,
+            136.99072
+          ],
+          [
+            34.94708,
+            136.98976
+          ],
+          [
+            34.94633,
+            136.98912
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000507",
+        "toStationId": "station-3000506",
+        "geometry": [
+          [
+            34.94633,
+            136.98912
+          ],
+          [
+            34.94564,
+            136.98854
+          ],
+          [
+            34.94434,
+            136.98745
+          ],
+          [
+            34.94338,
+            136.98664
+          ],
+          [
+            34.94289,
+            136.98623
+          ],
+          [
+            34.94239,
+            136.98589
+          ],
+          [
+            34.94134,
+            136.98564
+          ],
+          [
+            34.94119,
+            136.98562
+          ],
+          [
+            34.94024,
+            136.98581
+          ],
+          [
+            34.93606,
+            136.98765
+          ],
+          [
+            34.93501,
+            136.98812
+          ],
+          [
+            34.93285,
+            136.98907
+          ],
+          [
+            34.93116,
+            136.98982
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000506",
+        "toStationId": "station-3000505",
+        "geometry": [
+          [
+            34.93116,
+            136.98982
+          ],
+          [
+            34.93038,
+            136.9901
+          ],
+          [
+            34.92901,
+            136.99043
+          ],
+          [
+            34.92798,
+            136.99053
+          ],
+          [
+            34.9262,
+            136.99032
+          ],
+          [
+            34.92498,
+            136.99007
+          ],
+          [
+            34.92188,
+            136.98944
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000505",
+        "toStationId": "station-3000504",
+        "geometry": [
+          [
+            34.92188,
+            136.98944
+          ],
+          [
+            34.92082,
+            136.9893
+          ],
+          [
+            34.91928,
+            136.98952
+          ],
+          [
+            34.91723,
+            136.99007
+          ],
+          [
+            34.9152,
+            136.99056
+          ],
+          [
+            34.91343,
+            136.99081
+          ],
+          [
+            34.91254,
+            136.99094
+          ],
+          [
+            34.91155,
+            136.99105
+          ],
+          [
+            34.91066,
+            136.99118
+          ],
+          [
+            34.90937,
+            136.99151
+          ],
+          [
+            34.90781,
+            136.99198
+          ],
+          [
+            34.9064,
+            136.99238
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000504",
+        "toStationId": "station-3000503",
+        "geometry": [
+          [
+            34.9064,
+            136.99238
+          ],
+          [
+            34.90555,
+            136.99259
+          ],
+          [
+            34.90479,
+            136.99277
+          ],
+          [
+            34.90358,
+            136.99283
+          ],
+          [
+            34.9025,
+            136.99277
+          ],
+          [
+            34.90215,
+            136.99276
+          ],
+          [
+            34.90139,
+            136.9926
+          ],
+          [
+            34.89996,
+            136.99191
+          ],
+          [
+            34.89892,
+            136.99139
+          ],
+          [
+            34.89758,
+            136.99073
+          ],
+          [
+            34.89692,
+            136.99042
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000503",
+        "toStationId": "station-3000502",
+        "geometry": [
+          [
+            34.89692,
+            136.99042
+          ],
+          [
+            34.89615,
+            136.99013
+          ],
+          [
+            34.89509,
+            136.98992
+          ],
+          [
+            34.89361,
+            136.98974
+          ],
+          [
+            34.89281,
+            136.98966
+          ],
+          [
+            34.89152,
+            136.98954
+          ],
+          [
+            34.88957,
+            136.98947
+          ],
+          [
+            34.88863,
+            136.98946
+          ],
+          [
+            34.88765,
+            136.98945
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-3000502",
+        "toStationId": "station-3000501",
+        "geometry": [
+          [
+            34.88765,
+            136.98945
+          ],
+          [
+            34.88697,
+            136.98943
+          ],
+          [
+            34.88625,
+            136.98943
+          ],
+          [
+            34.88525,
+            136.98937
+          ],
+          [
+            34.88463,
+            136.98923
+          ],
+          [
+            34.88313,
+            136.9887
+          ],
+          [
+            34.88173,
+            136.9882
+          ],
+          [
+            34.87997,
+            136.98758
+          ],
+          [
+            34.8793,
+            136.98734
+          ],
+          [
+            34.87766,
+            136.98676
+          ],
+          [
+            34.87572,
+            136.98607
+          ],
+          [
+            34.87448,
+            136.98568
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [],
+    "workspace": {
+      "folder": "data/lines/nagoyatetsudo/meitetsumikawasen",
+      "linePath": "data/lines/nagoyatetsudo/meitetsumikawasen/line.json",
+      "stationsPath": "data/lines/nagoyatetsudo/meitetsumikawasen/stations.json",
+      "geometryPath": "data/lines/nagoyatetsudo/meitetsumikawasen/geometry.json"
+    },
+    "sources": {
+      "official": "",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 名鉄三河線 메이테츠미카와선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      }
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "nationwide-source-line",
+    "sectionType": "umi",
+    "sourcePhysicalRouteId": "line-30005",
+    "sourceSection": "Meitetsu Mikawa Line",
+    "sourceOriginalStationCount": 23,
+    "segmentCount": 11
+  }
+}
