@@ -31,7 +31,13 @@ export function describeRoute(route){
   const written=cleanDescription(route.description||route.line?.description||route.shortDescription);
   if(written)return written;
   if(route.category==='custom')return'직접 구성한 역 순서와 운행 구간을 따라 달리는 사용자 노선입니다.';
-  const kind=ROUTE_KINDS[route.category]||ROUTE_KINDS[route.normalizedCategory]||ROUTE_KINDS[route.mode]||'철도';
+  const lineName=String(route.line?.ko||route.names?.ko||'');
+  const specificKind=/모노레일/.test(lineName)?'모노레일'
+    :/노면전차|시덴|트램/.test(lineName)?'노면전차'
+    :/경전철/.test(lineName)?'경전철'
+    :/신칸센/.test(lineName)?'신칸센'
+    :/공항철도/.test(lineName)?'공항철도':'';
+  const kind=specificKind||ROUTE_KINDS[route.category]||ROUTE_KINDS[route.normalizedCategory]||ROUTE_KINDS[route.mode]||'철도';
   const [a,b]=routeEndpoints(route);
   if(route.loop)return a?`${a}에서 출발해 다시 돌아오는 ${kind} 순환 노선입니다.`:`시작역으로 돌아오는 ${kind} 순환 노선입니다.`;
   if(a&&b&&a!==b)return`${a}부터 ${b}까지 이어지는 ${kind} 노선입니다.`;
