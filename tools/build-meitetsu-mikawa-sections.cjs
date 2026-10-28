@@ -21,6 +21,7 @@ const specs=[
 ];
 for(const spec of specs){
  const route={...source,id:spec.id,legacyId:spec.id,line:{...source.line,ja:spec.ja,kana:spec.kana,ko:spec.ko,en:spec.en},
+   code:spec.tag==='yama'?'MY':'MU',
    stations:spec.stations,geometry:spec.geometry,directedSegments:spec.directedSegments,
    sectionType:spec.tag,sourcePhysicalRouteId:source.id,sourceSection:'Meitetsu Mikawa Line',
    geometryReady:true,services:[{id:'local',nameJa:'普通',nameKo:'각역정차',nameEn:'Local',stops:spec.stations.map(st=>st.id)}],
