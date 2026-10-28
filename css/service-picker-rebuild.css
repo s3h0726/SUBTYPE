@@ -82,3 +82,39 @@
 @media(max-width:1030px){.service-setup-page .setup-layout{grid-template-columns:minmax(0,1fr)}.service-setup-page .route-ticket{position:relative;top:auto;min-height:260px}.service-setup-page .route-ticket .setup-stations{max-height:130px}}
 @media(max-width:600px){.service-setup-page .section-head{align-items:start}.service-picker-topline{flex-wrap:wrap}.service-available-count{white-space:normal}.operating-pattern-cards,.operating-journey-grid{grid-template-columns:1fr;max-height:410px}.journey-legacy-controls{grid-template-columns:1fr}.service-setup-page .service-selector-fieldset{padding:14px}.service-setup-page .route-ticket{box-shadow:6px 6px 0 var(--svc-accent)}.operating-selected-route strong{font-size:18px}}
 @media(prefers-reduced-motion:reduce){.operating-pattern-card,.operating-direction-card,.operating-journey-card{transition:none}}
+
+/* Every published line and service gets a compact, readable blurb. */
+#route-grid .line-card .line-card-description{
+  margin:5px 0 9px!important;color:var(--muted,#64776b)!important;
+  font:500 12px/1.55 system-ui,sans-serif!important;text-align:left;
+  overflow-wrap:anywhere;word-break:keep-all;display:-webkit-box;
+  -webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;
+}
+#route-grid .line-card:not(.random):not(.route-more){min-height:208px!important}
+.selected-line-preview .selected-line-description{
+  margin:12px 0;color:var(--muted,#62776b);font:550 13px/1.6 system-ui,sans-serif;
+  overflow-wrap:anywhere;word-break:keep-all;
+}
+.selected-line-preview .line-branch-description{
+  display:block;margin-top:4px;color:var(--muted,#667b6d);
+  font-size:11px;line-height:1.45;overflow-wrap:anywhere;
+}
+.service-setup-page .setup-line-description{
+  margin:10px 0;padding:10px 12px;border-radius:8px;
+  background:color-mix(in srgb,var(--svc-accent) 7%,var(--surface,#fff));
+  color:var(--ink,#193128);font:600 12px/1.55 system-ui,sans-serif;overflow-wrap:anywhere;
+}
+.service-setup-page .operating-pattern-card{gap:7px;min-height:138px}
+.service-setup-page .operating-pattern-description,
+.service-setup-page .journey-card-description{
+  font:500 11px/1.55 system-ui,sans-serif;color:var(--muted,#627669);
+  overflow-wrap:anywhere;word-break:keep-all;display:block;
+}
+.service-setup-page .operating-journey-card{gap:8px;min-height:126px}
+.service-setup-page .operating-selected .operating-selected-description{
+  color:#c4d9cc;font:500 12px/1.55 system-ui,sans-serif;margin:0;
+}
+@media(max-width:600px){
+  #route-grid .line-card .line-card-description{-webkit-line-clamp:4;line-clamp:4}
+  .service-setup-page .operating-pattern-card{min-height:120px}
+}
