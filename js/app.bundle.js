@@ -68,7 +68,7 @@ const FEATURE_FLAGS=Object.freeze({
 // Keep historical play records playable after a physical branch becomes an
 // internal part of its passenger line. IDs remain stable in stored records;
 // only their current display/playback parent changes.
-const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3'});
+const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3','line-99815':'line-99814'});
 const canonicalRouteId=routeId=>LEGACY_ROUTE_ALIASES[String(routeId||'')]||routeId;
 
 const isCountryEnabled=countryId=>countryId!=='kr'||FEATURE_FLAGS.korea;
@@ -3028,8 +3028,6 @@ function initAuth(storage){
 }
 
 
-
-
 /* SUBTYPE route/service blurbs. Presentation only; do not alter journey topology. */
 const ROUTE_KINDS={
   jr:'JR 일반철도',shinkansen:'신칸센',subway:'지하철',metro:'도시철도',
@@ -3108,6 +3106,9 @@ function describeOperatingJourney(choice,route){
   const note=stops>=2?`${stops}개 정차역`:mode?`${mode} 운행`:'선택한 구간 운행';
   return`${note}${direct?' · 다른 노선과 직통':''} · 출발역부터 행선지까지 진행합니다.`;
 }
+
+
+
 
 
 const KR_APP_TRANSFER_PAIRS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-main","kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
