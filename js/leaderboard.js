@@ -1,42 +1,103 @@
-/* Ranking board: personal results always available; global entries require authenticated Supabase. */
-const localKey='trt:ranking-runs:v1';
+/* SUBTYPE leaderboard: local history works offline; shared rankings require Supabase. */
+(()=>{
+'use strict';
 const byId=id=>document.getElementById(id);
-const escapeText=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','"':'&quot;'}[c]));
-const config=()=>window.TRT_SUPABASE_CONFIG||{};
-function configured(){const c=config();return /^https:\/\/.+\.supabase\.co$/.test(c.url||'')&&String(c.anonKey||'').length>20}
-function session(){try{return JSON.parse(localStorage.getItem('trt:supabase.session.v1')||'null')}catch{return null}}
-function runs(){try{return JSON.parse(localStorage.getItem(localKey)||'[]')}catch{return []}}
-function sorted(list){return [...list].sort((a,b)=>b.cpm-a.cpm||b.accuracy-a.accuracy||a.elapsed_ms-b.elapsed_ms)}
-function entry(result){return{route_id:String(result.route?.id||result.routeId||''),route_name:String(result.route?.line?.ko||result.route?.line?.ja||''),country_id:result.route?.countryId||'jp',cpm:Math.max(0,Number(result.cpm)||0),accuracy:Math.max(0,Math.min(100,Number(result.accuracy)||0)),elapsed_ms:Math.max(1,Math.round(Number(result.elapsed)||1)),created_at:new Date().toISOString()}}
-async function upload(run){
- const s=session(),c=config();if(!configured()||!s?.access_token||!s?.user?.id)return;
- const response=await fetch(c.url+'/rest/v1/ranking_runs',{method:'POST',headers:{'Content-Type':'application/json',apikey:c.anonKey,Authorization:'Bearer '+s.access_token},body:JSON.stringify({...run,user_id:s.user.id})});
- if(!response.ok)throw Error('랭킹 서버 저장 실패: '+response.status);
+const escapeText=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const config=()=>globalThis.TRT_SUPABASE_CONFIG||{};
+const configured=()=>/^https:\/\/[\w.-]+\.supabase\.co\/?$/i.test(config().url||'')&&String(config().anonKey||config().publishableKey||'').length>20;
+const getAuth=()=>globalThis.TRTAuth;
+const owner=()=>getAuth()?.userId||'guest';
+const historyKey=()=>`trt:ranking-runs:v2:${owner()}`;
+const read=()=>{try{const result=JSON.parse(localStorage.getItem(historyKey())||'[]');return Array.isArray(result)?result:[]}catch{return []}};
+const save=runs=>{try{localStorage.setItem(historyKey(),JSON.stringify(runs.slice(0,300)))}catch{}};
+const sorted=list=>[...list].sort((a,b)=>Number(b.cpm)-Number(a.cpm)||Number(b.accuracy)-Number(a.accuracy)||Number(a.elapsed_ms)-Number(b.elapsed_ms));
+const valid=result=>{
+ if(!result||result.options?.mode==='free-drive'||result.options?.researchPreview||result.route?.playStatus==='RESEARCH_PLAYABLE')return false;
+ if(result.routeIntegrity!==true||Number(result.completed)<2)return false;
+ if(result.route?.isCustom||String(result.routeId||'').startsWith('custom')||result.route?.countryId==='custom')return false;
+ const cpm=Number(result.cpm),accuracy=Number(result.accuracy),elapsed=Number(result.elapsed);
+ return Number.isFinite(cpm)&&cpm>0&&cpm<=1200&&Number.isFinite(accuracy)&&accuracy>=50&&accuracy<=100&&Number.isFinite(elapsed)&&elapsed>=3000&&elapsed<=7200000;
+};
+const entry=result=>({
+ run_uid:crypto.randomUUID(),route_id:String(result.route?.id||result.routeId||'').slice(0,140),
+ route_name:String(result.route?.line?.ko||result.route?.line?.ja||result.routeName||'').slice(0,150),
+ country_id:result.route?.countryId==='kr'?'kr':'jp',
+ cpm:Math.round(Number(result.cpm)),accuracy:Math.round(Number(result.accuracy)*100)/100,
+ elapsed_ms:Math.round(Number(result.elapsed)),completed:Math.floor(Number(result.completed)),
+ route_integrity:true,synced:false,created_at:new Date().toISOString()
+});
+const authenticated=()=>Boolean(getAuth()?.userId);
+let syncing=null,renderGeneration=0;
+async function syncPending(){
+ if(syncing)return syncing;
+ const auth=getAuth(),id=auth?.userId;
+ if(!configured()||!id)return;
+ syncing=(async()=>{
+   const current=read(),pending=current.filter(x=>!x.synced).slice(0,50);
+   for(const run of pending){
+     if(getAuth()?.userId!==id)break;
+     const {run_uid,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,route_integrity}=run;
+     try{
+       await auth.privateApi('/rest/v1/ranking_runs?on_conflict=run_uid',{method:'POST',prefer:'resolution=ignore-duplicates',
+         body:{run_uid,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,route_integrity,user_id:id}});
+       const state=read(),found=state.find(r=>r.run_uid===run_uid);
+       if(found){found.synced=true;save(state)}
+     }catch(error){console.warn('Ranking sync:',error.message);break}
+   }
+ })().finally(()=>{syncing=null});
+ return syncing;
 }
-async function readGlobal(){
- const c=config();if(!configured())return null;
- const res=await fetch(c.url+'/rest/v1/ranking_runs?select=route_id,route_name,country_id,cpm,accuracy,elapsed_ms,created_at,user_id&order=cpm.desc&limit=100',{headers:{apikey:c.anonKey,Authorization:'Bearer '+(session()?.access_token||c.anonKey)}});
- if(!res.ok)throw Error('전체 랭킹 조회 실패: '+res.status);return res.json()
+async function globalRows(){
+ const q=new URLSearchParams({select:'nickname,route_id,route_name,country_id,cpm,accuracy,elapsed_ms,completed,created_at',
+   order:'cpm.desc,accuracy.desc,elapsed_ms.asc',limit:'100'});
+ const country=byId('ranking-country')?.value||'all',route=String(byId('ranking-route')?.value||'').trim();
+ if(country==='jp'||country==='kr')q.set('country_id','eq.'+country);
+ if(route)q.set('route_id','eq.'+route);
+ const auth=getAuth(),key=config().anonKey||config().publishableKey,token=await auth?.accessToken().catch(()=>null);
+ const response=await fetch(String(config().url).replace(/\/$/,'')+'/rest/v1/ranking_best?'+q,{
+   headers:{apikey:key,Authorization:'Bearer '+(token||key)}
+ });
+ const body=await response.json().catch(()=>null);
+ if(!response.ok)throw Error(body?.message||body?.error||('랭킹 불러오기 실패: '+response.status));
+ return Array.isArray(body)?body:[];
 }
 function table(list,global=false){
- if(!list.length)return '<p>아직 등록된 기록이 없습니다.</p>';
- return '<div style="overflow:auto"><table style="width:100%;min-width:460px;text-align:left;border-collapse:collapse"><thead><tr><th>순위</th><th>노선</th><th>타수</th><th>정확도</th><th>시간</th></tr></thead><tbody>'+sorted(list).slice(0,100).map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+escapeText(r.route_name)+'</td><td>'+Math.round(r.cpm)+'</td><td>'+Number(r.accuracy).toFixed(1)+'%</td><td>'+(r.elapsed_ms/1000).toFixed(1)+'초</td></tr>').join('')+'</tbody></table></div>';
+ if(!list.length)return '<p class="ranking-empty">해당 조건의 기록이 없습니다.</p>';
+ return '<div class="ranking-scroll"><table class="ranking-table"><thead><tr><th>순위</th><th>플레이어</th><th>노선</th><th>타수</th><th>정확도</th><th>완주 시간</th></tr></thead><tbody>'+
+ sorted(list).slice(0,100).map((r,i)=>`<tr><td>${i+1}</td><td>${escapeText(global?(r.nickname||'철도러'):(getAuth()?.profile?.nickname||'나'))}</td><td>${escapeText(r.route_name||r.route_id)}</td><td><strong>${Math.round(Number(r.cpm)||0)}</strong></td><td>${Number(r.accuracy||0).toFixed(1)}%</td><td>${(Number(r.elapsed_ms||0)/1000).toFixed(2)}초</td></tr>`).join('')+'</tbody></table></div>';
 }
 async function render(){
- const mount=byId('ranking-board'),status=byId('ranking-status');if(!mount)return;
- const scope=byId('ranking-scope')?.value||'personal';
- status.textContent=scope==='personal'?'이 브라우저의 운행 기록입니다.':'전체 랭킹 서버를 확인합니다.';
- if(scope==='personal'){mount.innerHTML=table(runs());return}
- if(!configured()){status.textContent='전체 랭킹은 서버 연결 후 활성화됩니다. 현재는 개인 기록만 사용할 수 있습니다.';mount.innerHTML='';return}
- try{const list=await readGlobal();mount.innerHTML=table(list,true);status.textContent='전체 랭킹 · 최고 타수순 (상위 100건)'}catch(error){status.textContent=error.message;mount.innerHTML=''}
+ const board=byId('ranking-board'),status=byId('ranking-status');if(!board||!status)return;
+ const request=++renderGeneration,scope=byId('ranking-scope')?.value||'personal',country=byId('ranking-country')?.value||'all',
+ route=String(byId('ranking-route')?.value||'').trim();
+ const accountLabel=byId('ranking-account-label');
+ if(accountLabel)accountLabel.textContent=authenticated()?'로그인된 계정의 기록':'게스트 · 이 브라우저에서만 저장';
+ if(scope==='personal'){
+   const list=read().filter(r=>(country==='all'||r.country_id===country)&&(!route||r.route_id===route));
+   board.innerHTML=table(list);
+   status.textContent=authenticated()?`내 기록 ${list.length}건 · 서버 반영: ${list.filter(r=>r.synced).length}건`:'게스트 기록은 이 브라우저에서만 보관됩니다.';
+   return;
+ }
+ if(!configured()){
+   board.innerHTML='';status.textContent='Supabase 공개 설정 및 SQL 적용 후 전체 랭킹이 활성화됩니다.';return;
+ }
+ status.textContent='전체 랭킹을 불러오는 중…';board.textContent='';
+ try{
+   const rows=await globalRows();if(request!==renderGeneration)return;
+   board.innerHTML=table(rows,true);
+   status.textContent='전체 사용자 · 노선별 개인 최고 기록 · 타수순 상위 100명 (클라이언트 제출 기록, 서버 검증 전)';
+ }catch(error){if(request!==renderGeneration)return;status.textContent=error.message;board.textContent=''}
 }
 document.addEventListener('trt:journey-finished',event=>{
- const result=event.detail;if(!result||result.route?.playStatus==='RESEARCH_PLAYABLE'||result.options?.researchPreview===true||result.route?.id?.startsWith('custom'))return;
- const run=entry(result),list=runs();list.unshift(run);
- try{localStorage.setItem(localKey,JSON.stringify(list.slice(0,300)))}catch{}
- upload(run).catch(error=>console.warn(error.message));
- if(byId('ranking-board')?.offsetParent)render();
+ const result=event.detail;if(!valid(result))return;
+ const current=read();current.unshift(entry(result));save(current);
+ if(authenticated())void syncPending();
+ if(document.body.dataset.currentScreen==='ranking')void render();
 });
-document.addEventListener('change',event=>{if(event.target?.id==='ranking-scope')render()});
-document.addEventListener('click',event=>{if(event.target.closest('[data-nav="ranking"]'))setTimeout(render,0)});
-window.TRTLeaderboard={render,uploadPending:async()=>{for(const run of runs().slice(0,30))await upload(run)}};
+document.addEventListener('trt:auth-changed',()=>{void syncPending();if(document.body.dataset.currentScreen==='ranking')void render()});
+document.addEventListener('change',event=>{if(['ranking-scope','ranking-country'].includes(event.target?.id))void render()});
+document.addEventListener('input',event=>{if(event.target?.id==='ranking-route')void render()});
+document.addEventListener('click',event=>{if(event.target.closest('[data-nav="ranking"]'))setTimeout(()=>{void render()},0);
+ if(event.target.closest('[data-ranking-refresh]'))void render()});
+window.TRTLeaderboard={render,uploadPending:syncPending,history:read,validate:valid};
+})();
