@@ -1,0 +1,27 @@
+name: SUBTYPE integration staging gates
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/test-integrations-playwright.cjs'
+      - 'tools/verify-supabase-records.cjs'
+      - 'tools/audit-geometry-turf.mjs'
+      - 'integrations/**'
+      - '.github/workflows/integrations-staging.yml'
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: npm install --no-save playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - run: node tools/test-integrations-playwright.cjs
+  # Cloud tests require dedicated credentials and are deliberately NOT run against production.
+  # Run manually: node tools/verify-supabase-records.cjs
