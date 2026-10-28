@@ -18,11 +18,10 @@ if(!match||!/^https:\/\/[\w.-]+\.supabase\.co\/?$/.test(match[1].trim())||match[
   (async()=>{
     const publicBoard=await get('ranking_best');
     if(publicBoard.status!==200){
-      console.error('FAIL: ranking_best public read is not available. HTTP '+publicBoard.status+
+      console.error('FAIL: ranking_best public read unavailable. HTTP '+publicBoard.status+
         (publicBoard.code?' ('+publicBoard.code+')':''));
-      process.exitCode=1;return;
-    }
-    console.log('PASS: ranking_best anonymous read and public API key');
+      process.exitCode=1;
+    }else console.log('PASS: ranking_best anonymous read and public API key');
     const privateRuns=await get('player_runs');
     if(privateRuns.status===404||privateRuns.code==='PGRST205'||privateRuns.code==='42P01'){
       console.error('FAIL: player_runs table is missing from the Data API. Apply the latest supabase/ranking.sql to Supabase SQL Editor.');
