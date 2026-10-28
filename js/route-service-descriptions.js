@@ -22,7 +22,7 @@ function routeEndpoints(route){
   const origin=route?.researchEvidence?.origin,destination=route?.researchEvidence?.destination;
   return[readableStation(origin),readableStation(destination)];
 }
-function describeRoute(route){
+export function describeRoute(route){
   if(!route)return'노선 정보를 불러오는 중입니다.';
   const written=cleanDescription(route.description||route.line?.description||route.shortDescription);
   if(written)return written;
@@ -44,7 +44,7 @@ function serviceMode(choice){
   if(/완행|보통|일반|각역정차|local/i.test(label))return'보통';
   return'';
 }
-function describeOperatingPattern(choice,route){
+export function describeOperatingPattern(choice,route){
   const written=cleanDescription(choice?.description||choice?.patternDescription||choice?.trainType?.description);
   if(written)return written;
   const a=readableStation(choice?.originNames),b=readableStation(choice?.destinationNames);
@@ -56,7 +56,7 @@ function describeOperatingPattern(choice,route){
   if(route?.loop&&a===b)return`순환 구간을 달리는 ${subject} 운행${extra}.`;
   return`${link}을 운행하는 ${subject} 계통${extra}.`;
 }
-function describeOperatingJourney(choice,route){
+export function describeOperatingJourney(choice,route){
   const written=cleanDescription(choice?.journeyDescription||choice?.description);
   if(written)return written;
   if(choice?.kind==='fallback')return route?.loop?'시작역까지 한 바퀴 도는 기본 운행입니다.':'등록된 역 순서대로 달리는 기본 운행입니다.';
