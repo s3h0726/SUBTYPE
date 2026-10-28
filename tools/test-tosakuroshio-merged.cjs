@@ -14,6 +14,20 @@ assert.equal(route.stations[14].ja,'中村');
 assert.equal(route.stations.at(-1).ja,'宿毛');
 assert.deepEqual(route.services.map(s=>s.stops.length),[22,15,8]);
 for(const seg of route.directedSegments)assert.ok(seg.geometry.length>2);
+
+const integritySource=read('js/route-integrity.js').replace(/^export /gm,'');
+const integrity={};vm.createContext(integrity);
+vm.runInContext(integritySource+';globalThis.resolvePlayableRoute=resolvePlayableRoute;',integrity);
+for(const service of route.services)for(const direction of ['forward','reverse']){
+ const result=integrity.resolvePlayableRoute(route,{direction,service});
+ assert.equal(result.stations.length,service.stops.length,service.id+' '+direction+' station count');
+ assert.equal(result.segments.length,service.stops.length-1,service.id+' '+direction+' segment count');
+ assert.ok(result.geometry.length>service.stops.length*2,service.id+' '+direction+' uses curved railway geometry');
+ assert.notEqual(result.fallbackGeometry,true,'Straight-line fallback prohibited');
+ const expected=direction==='forward'?service.stops:[...service.stops].reverse();
+ assert.deepEqual(Array.from(result.stations,st=>st.id),expected,service.id+' '+direction+' stop order');
+}
+
 const indexSource=read('js/japan-lite-index.js');
 const lite=JSON.parse(indexSource.slice(indexSource.indexOf('=')+1,indexSource.lastIndexOf(';')));
 const sandbox={TRT_JAPAN_LITE_INDEX:lite,console:{error:message=>{throw Error(message)}}};
