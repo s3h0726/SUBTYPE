@@ -1,0 +1,23 @@
+name: Validate Nakamura Sukumo merged route
+on:
+  push:
+    paths:
+      - 'data/route-overrides/tosakuroshio-nakamura-sukumo.json'
+      - 'js/tosakuroshio-nakamura-sukumo-patch.js'
+      - 'tools/build-tosakuroshio-merged.cjs'
+      - 'tools/test-tosakuroshio-merged.cjs'
+      - 'data/editor-overrides.json'
+      - '.github/workflows/test-tosakuroshio-merged.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node tools/build-tosakuroshio-merged.cjs --check
+      - run: node tools/test-tosakuroshio-merged.cjs
