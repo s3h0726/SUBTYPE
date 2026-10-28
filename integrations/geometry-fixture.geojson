@@ -1,0 +1,12 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"testOnly": true, "description": "Synthetic coordinate-order test, not a real rail line"},
+      "geometry": {"type": "LineString", "coordinates": [[139.0,35.0],[139.005,35.003],[139.01,35.006]]}
+    },
+    {"type":"Feature","properties":{"id":"A"},"geometry":{"type":"Point","coordinates":[139.0,35.0]}},
+    {"type":"Feature","properties":{"id":"B"},"geometry":{"type":"Point","coordinates":[139.01,35.006]}}
+  ]
+}
