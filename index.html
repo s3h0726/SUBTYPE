@@ -131,7 +131,7 @@
           <div id="transport-mode-tabs" class="line-category-tabs transport-mode-tabs" role="tablist" aria-label="교통수단 분류" hidden></div>
           <div id="region-tabs" class="line-category-tabs region-tabs" role="tablist" aria-label="버스 지역" hidden></div>
           <div id="category-tabs" class="line-category-tabs" role="tablist" aria-label="노선 세부 분류">
-            <button class="active" data-category="all">전체</button><button data-category="jr">JR</button><button data-category="subway">지하철</button><button data-category="private">사철</button><button data-category="third-sector">제3섹터</button><button data-category="tram">노면전차</button><button data-category="other">기타</button><button data-category="shinkansen">신칸센</button><button data-category="limited-express">특급</button><button data-category="custom">커스텀</button>
+            <button class="active" data-category="all">전체</button><button data-category="jr">JR</button><button data-category="subway">지하철</button><button data-category="private">사철</button><button data-category="third-sector">제3섹터</button><button data-category="automated-guideway">신교통</button><button data-category="tram">노면전차</button><button data-category="other">기타</button><button data-category="shinkansen">신칸센</button><button data-category="limited-express">특급</button><button data-category="custom">커스텀</button>
           </div>
           <div id="operator-filters" class="operator-logo-filters" role="tablist" aria-label="철도 운영사 로고 필터"></div>
           <label class="line-search"><span>⌕</span><input id="route-search" type="search" placeholder="노선 검색 · 한국어 / 日本語 / English" autocomplete="off"></label>
@@ -330,6 +330,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script defer src="./js/bootstrap.js?v=p0-sync-1"></script>
   <script defer src="./js/japan-lite-index.js?v=0f4b2f193629"></script>
+  <script defer src="./js/japan-route-category-patch.js?v=20261029-reclassify"></script>
   <script defer src="./js/japan-route-identity-patch.js?v=20261027-marunouchi-merged-v1"></script>
   <script defer src="./js/jr-hokkaido-hakodate-split.js?v=20261029-sapporo-asahikawa"></script>
   <script defer src="./js/meitetsu-mikawa-sections-patch.js?v=20261029-mikawa-split-v1"></script>
