@@ -144,13 +144,6 @@
       <div class="setup-layout">
         <div id="setup-route" class="route-ticket"></div>
         <form id="setup-form" class="setup-form">
-          <fieldset><legend>GAME MODE · 입력 방식</legend><div class="segmented input-mode-choice"><label><input type="radio" name="inputMode" value="shadowing" checked><span><b>일반 · 따라쓰기</b><small>한국어 정답을 보고 입력</small></span></label><label><input type="radio" name="inputMode" value="memory"><span><b>암기</b><small>일본어·로마자만 보고 입력</small></span></label></div></fieldset>
-          <fieldset><legend>운행 방식</legend><div class="choice-grid">
-            <label><input type="radio" name="mode" value="complete" checked><span><b>노선 완주</b><small>출발역부터 순서대로</small></span></label>
-            <label><input type="radio" name="mode" value="random"><span><b>랜덤 60초</b><small>무작위 역명 타이핑</small></span></label>
-            <label><input type="radio" name="mode" value="order"><span><b>순서 맞히기</b><small>다음 역을 기억해서</small></span></label>
-            <label><input type="radio" name="mode" value="endless"><span><b>무한 모드</b><small>원할 때까지 계속</small></span></label>
-          </div></fieldset>
           <fieldset id="route-range-fieldset" class="service-selector-fieldset">
             <legend><span class="service-step-num">01</span> 운행계통 선택 <small>실제 등록된 운행만 표시</small></legend>
             <div id="journey-picker" class="journey-picker journey-picker-rebuilt">
@@ -174,6 +167,14 @@
               </details>
             </div>
           </fieldset>
+          <fieldset><legend>GAME MODE · 입력 방식</legend><div class="segmented input-mode-choice"><label><input type="radio" name="inputMode" value="shadowing" checked><span><b>일반 · 따라쓰기</b><small>한국어 정답을 보고 입력</small></span></label><label><input type="radio" name="inputMode" value="memory"><span><b>암기</b><small>일본어·로마자만 보고 입력</small></span></label></div></fieldset>
+          <fieldset><legend>운행 방식</legend><div class="choice-grid">
+            <label><input type="radio" name="mode" value="complete" checked><span><b>노선 완주</b><small>출발역부터 순서대로</small></span></label>
+            <label><input type="radio" name="mode" value="random"><span><b>랜덤 60초</b><small>무작위 역명 타이핑</small></span></label>
+            <label><input type="radio" name="mode" value="order"><span><b>순서 맞히기</b><small>다음 역을 기억해서</small></span></label>
+            <label><input type="radio" name="mode" value="endless"><span><b>무한 모드</b><small>원할 때까지 계속</small></span></label>
+          </div></fieldset>
+          
           <div class="korean-only-notice"><b>한국어 전용 운행</b><span>일본어와 한국어 역명을 함께 보고, 표시된 한국어 역명을 입력합니다.</span></div>
           <input id="service-direction" type="hidden" value="forward"><input id="game-map-mode" type="hidden" value="geographic"><button id="map-view-toggle" type="button" hidden aria-hidden="true"></button>
           <fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto" checked><span>AUTO · 자동 이동</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE · 확인 후 이동</span></label></div></fieldset>
