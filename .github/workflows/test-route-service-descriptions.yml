@@ -1,0 +1,31 @@
+name: Validate route and service descriptions
+on:
+  push:
+    paths:
+      - 'js/route-service-descriptions.js'
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'js/japan-lite-index.js'
+      - 'js/korea-index-data.js'
+      - 'css/service-picker-rebuild.css'
+      - 'tools/test-route-service-descriptions.cjs'
+      - '.github/workflows/test-route-service-descriptions.yml'
+  pull_request:
+    paths:
+      - 'js/route-service-descriptions.js'
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'css/service-picker-rebuild.css'
+      - 'tools/test-route-service-descriptions.cjs'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node --check js/app.bundle.js
+      - run: node tools/test-route-service-descriptions.cjs
