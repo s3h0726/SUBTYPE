@@ -18,7 +18,11 @@ function routeEndpoints(route){
   if(Array.isArray(stations)&&stations.length>0)return[readableStation(stations[0]),readableStation(stations.at(-1))];
   // Lightweight Japanese catalog stores alternating Japanese and Korean station names.
   const terms=route?.searchStations;
-  if(Array.isArray(terms)&&terms.length>=4)return[readableStation(terms[1]),readableStation(terms.at(-1))];
+  if(Array.isArray(terms)&&terms.length>=2){
+    if(route?.countryId==='kr')return[readableStation(terms[0]),readableStation(terms.at(-1))];
+    if(terms.length>=4)return[readableStation(terms[1]),readableStation(terms.at(-1))];
+    return[readableStation(terms[0]),readableStation(terms.at(-1))];
+  }
   const origin=route?.researchEvidence?.origin,destination=route?.researchEvidence?.destination;
   return[readableStation(origin),readableStation(destination)];
 }
