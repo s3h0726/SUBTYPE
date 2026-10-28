@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/test-integrations-playwright.cjs'
       - 'tools/verify-supabase-records.cjs'
+      - 'tools/verify-supabase-staging-write.cjs'
       - 'tools/fetch-osm-candidate.mjs'
       - 'tools/review-osm-route.mjs'
       - 'tools/audit-geometry-turf.mjs'
@@ -30,6 +31,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node --check tools/test-integrations-playwright.cjs
       - run: node --check tools/verify-supabase-records.cjs
+      - run: node --check tools/verify-supabase-staging-write.cjs
       - run: node --check tools/fetch-osm-candidate.mjs
       - run: node --check tools/audit-geometry-turf.mjs
       - run: node --check tools/review-osm-route.mjs
