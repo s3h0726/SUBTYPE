@@ -27,3 +27,7 @@
 .ranking-empty,.ranking-disclaimer{color:var(--muted,#667);font-size:12px;line-height:1.6}.ranking-disclaimer{margin:0}
 @media(max-width:800px){.ranking-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.ranking-controls label:nth-child(3){grid-column:1/-1}.ranking-controls>button{grid-column:1/-1}.auth-state-button{max-width:160px}}
 @media(max-width:460px){.ranking-controls{grid-template-columns:1fr 1fr}.auth-card{padding:22px 16px}.ranking-meta{flex-wrap:wrap}}
+
+/* Service dropdown is independent of the line selector. */
+.ranking-controls{grid-template-columns:minmax(120px,.8fr) minmax(105px,.65fr) minmax(190px,1.4fr) minmax(220px,1.6fr) auto}
+@media(max-width:1000px){.ranking-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.ranking-controls>button{grid-column:1/-1}}

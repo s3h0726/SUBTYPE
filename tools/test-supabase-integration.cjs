@@ -43,7 +43,16 @@ assert.equal(boardCtx.TRTLeaderboard.validate(eligible),true);
 assert.equal(boardCtx.TRTLeaderboard.validate({...eligible,routeIntegrity:false}),false);
 assert.equal(boardCtx.TRTLeaderboard.validate({...eligible,options:{researchPreview:true}}),false);
 assert.equal(boardCtx.TRTLeaderboard.validate({...eligible,options:{mode:'free-drive'}}),false);
+const anotherJourney={...eligible,serviceJourneyId:'journey-express',servicePatternId:'pattern-express',serviceName:'급행',directionId:'reverse',
+ originStationId:'station-a',destinationStationId:'station-b'};
+listeners['trt:journey-finished']({detail:anotherJourney});
+const firstRun=boardCtx.TRTLeaderboard.history()[0];
+assert.ok(firstRun.service_key.includes('journey:journey-express'));
+assert.ok(firstRun.service_key.includes('direction:reverse'));
+assert.ok(firstRun.service_name.includes('급행'));
 listeners['trt:journey-finished']({detail:eligible});
-assert.equal(boardCtx.TRTLeaderboard.history().length,1);
+assert.equal(boardCtx.TRTLeaderboard.history().length,2);
 assert.equal(boardCtx.TRTLeaderboard.history()[0].synced,false);
+assert.ok(sql.includes('user_id,route_id,country_id,service_key'),'SQL must rank by service, not just route');
+assert.ok(html.includes('id="ranking-service"'),'Service selector must exist');
 console.log(JSON.stringify({status:'PASS',accountIsolation:true,rankingEligibility:true,sqlPolicies:true,authRedirect:true}));
