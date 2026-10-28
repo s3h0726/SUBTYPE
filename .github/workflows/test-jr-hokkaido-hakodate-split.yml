@@ -1,0 +1,24 @@
+name: Validate JR Hokkaido Hakodate Sapporo Asahikawa
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'data/route-overrides/hakodate-*.json'
+      - 'js/jr-hokkaido-hakodate-split.js'
+      - 'tools/build-jr-hokkaido-hakodate-split.cjs'
+      - 'tools/test-jr-hokkaido-hakodate-split.cjs'
+      - '.github/workflows/test-jr-hokkaido-hakodate-split.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify generated full-scale curved geometry
+        run: node tools/build-jr-hokkaido-hakodate-split.cjs --check
+      - name: Validate service routes in both directions
+        run: node tools/test-jr-hokkaido-hakodate-split.cjs

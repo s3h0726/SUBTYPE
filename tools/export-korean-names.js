@@ -15,17 +15,19 @@ const effectiveColor=(id,meta)=>edits.lines?.[id]?.color||meta.color||'';
 const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]||edits.stations?.[lineId]?.[station.ja]||station.ko||'';
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
-  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005');
-// The public Meitetsu Mikawa passenger cards are now split at Chiryu.
-// Keep the old physical source for legacy records, but never export its
-// 23-station card as a third line. Read the same playable payloads as the game.
-const publishedSectionFiles=['meitetsu-mikawa-yama.json','meitetsu-mikawa-umi.json'];
+  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103');
+// The public Mikawa and Hakodate Main Line cards have been split at actual
+// operational section boundaries (Chiryu / Sapporo). Keep original physical
+// route definitions for historic records but exclude obsolete unified cards.
+const publishedSectionFiles=['meitetsu-mikawa-yama.json','meitetsu-mikawa-umi.json',
+  'hakodate-west.json','hakodate-east.json'];
 const publishedSectionRoutes=new Map();
 for(const name of publishedSectionFiles){
  const file=path.join(root,'data/route-overrides',name);
  const route=load(file).route;
- if(!route||!/^line-30005-(yama|umi)$/.test(route.id)||route.stations?.length!==12)
-   throw new Error('Invalid published Meitetsu section: '+name);
+ if(!route||!(['line-30005-yama','line-30005-umi','line-11103-otaru-sapporo','line-11103-sapporo-asahikawa'].includes(route.id))
+   ||route.stations?.length!==(route.id.startsWith('line-30005-')?12:route.id==='line-11103-otaru-sapporo'?15:27))
+   throw new Error('Invalid published section: '+name);
  if(publishedSectionRoutes.has(route.id))throw new Error('Duplicate Meitetsu section: '+route.id);
  publishedSectionRoutes.set(route.id,{route,file});
  lines.push({file,meta:{
@@ -34,7 +36,7 @@ for(const name of publishedSectionFiles){
    color:route.lineColor,visibility:'public'
  }});
 }
-if(publishedSectionRoutes.size!==2)throw new Error('Missing Meitetsu split sections');
+if(publishedSectionRoutes.size!==4)throw new Error('Missing published split sections (Meitetsu/Hakodate)');
 // Retired or duplicate identifiers are folded into active operators.
 const canonicalId=id=>({'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[id]||id);
 const opMap=new Map(operators.map(x=>[x.meta.id,x.meta]));

@@ -10,8 +10,10 @@ on:
       - 'data/lines/**'
       - 'data/generated/routes/**'
       - 'data/route-overrides/meitetsu-mikawa-*.json'
+      - 'data/route-overrides/hakodate-*.json'
       - '.github/workflows/export-korean-names.yml'
       - 'tools/test-korean-name-meitetsu-split.cjs'
+      - 'tools/test-korean-name-hakodate-split.cjs'
   workflow_dispatch:
 
 permissions:
@@ -35,6 +37,8 @@ jobs:
         run: node tools/export-korean-names.js
       - name: Verify that Mikawa mountain/sea line names and stations are exported
         run: node tools/test-korean-name-meitetsu-split.cjs
+      - name: Verify Hakodate Main Line split in Korean-name editor
+        run: node tools/test-korean-name-hakodate-split.cjs
       - name: Commit CSV reports
         run: |
           git config user.name 'github-actions[bot]'
