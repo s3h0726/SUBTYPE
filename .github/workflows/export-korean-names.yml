@@ -9,7 +9,9 @@ on:
       - 'data/operators/**'
       - 'data/lines/**'
       - 'data/generated/routes/**'
+      - 'data/route-overrides/meitetsu-mikawa-*.json'
       - '.github/workflows/export-korean-names.yml'
+      - 'tools/test-korean-name-meitetsu-split.cjs'
   workflow_dispatch:
 
 permissions:
@@ -31,6 +33,8 @@ jobs:
           node-version: '22'
       - name: Export all registered Korean names
         run: node tools/export-korean-names.js
+      - name: Verify that Mikawa mountain/sea line names and stations are exported
+        run: node tools/test-korean-name-meitetsu-split.cjs
       - name: Commit CSV reports
         run: |
           git config user.name 'github-actions[bot]'

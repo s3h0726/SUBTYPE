@@ -14,7 +14,27 @@ const effectiveLine=(id,meta)=>edits.lines?.[id]?.ko||meta.names?.ko||'';
 const effectiveColor=(id,meta)=>edits.lines?.[id]?.color||meta.color||'';
 const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]||edits.stations?.[lineId]?.[station.ja]||station.ko||'';
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
-const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)})).filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden');
+const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
+  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005');
+// The public Meitetsu Mikawa passenger cards are now split at Chiryu.
+// Keep the old physical source for legacy records, but never export its
+// 23-station card as a third line. Read the same playable payloads as the game.
+const publishedSectionFiles=['meitetsu-mikawa-yama.json','meitetsu-mikawa-umi.json'];
+const publishedSectionRoutes=new Map();
+for(const name of publishedSectionFiles){
+ const file=path.join(root,'data/route-overrides',name);
+ const route=load(file).route;
+ if(!route||!/^line-30005-(yama|umi)$/.test(route.id)||route.stations?.length!==12)
+   throw new Error('Invalid published Meitetsu section: '+name);
+ if(publishedSectionRoutes.has(route.id))throw new Error('Duplicate Meitetsu section: '+route.id);
+ publishedSectionRoutes.set(route.id,{route,file});
+ lines.push({file,meta:{
+   id:route.id,operatorId:route.operatorId,
+   names:{ja:route.line.ja,ko:route.line.ko,en:route.line.en},
+   color:route.lineColor,visibility:'public'
+ }});
+}
+if(publishedSectionRoutes.size!==2)throw new Error('Missing Meitetsu split sections');
 // Retired or duplicate identifiers are folded into active operators.
 const canonicalId=id=>({'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[id]||id);
 const opMap=new Map(operators.map(x=>[x.meta.id,x.meta]));
@@ -31,8 +51,9 @@ fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 �
 const generatedDir=path.join(root,'data/generated/routes');
 const byId=new Map();
 if(fs.existsSync(generatedDir))for(const name of fs.readdirSync(generatedDir).filter(n=>n.endsWith('.json'))){try{const route=load(path.join(generatedDir,name)).route; if(route?.id)byId.set(route.id,route)}catch(e){console.warn('skipped',name,e.message)}}
+for(const [id,{route}] of publishedSectionRoutes)byId.set(id,route);
 const stationRows=[];const missing=[];
-for(const x of lines){const route=byId.get(x.meta.id);if(!route){missing.push(x.meta.id);continue}for(const s of route.stations||[])stationRows.push([x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),s.ja,s.kana||'',s.romaji||'',s.nameKoSource||'', 'data/generated/routes/'+x.meta.id+'.json']);}
+for(const x of lines){const route=byId.get(x.meta.id);if(!route){missing.push(x.meta.id);continue}for(const s of route.stations||[])stationRows.push([x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),s.ja,s.kana||'',s.romaji||'',s.nameKoSource||'', publishedSectionRoutes.has(x.meta.id)?toRel(publishedSectionRoutes.get(x.meta.id).file):'data/generated/routes/'+x.meta.id+'.json']);}
 stationRows.sort((a,b)=>String(a[2]).localeCompare(String(b[2]))||String(a[4]).localeCompare(String(b[4])));
 fs.writeFileSync(path.join(output,'stations-by-line.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','역ID','공통역ID','역 한글명','역 일본어명','가나','로마자','한글명 출처','데이터경로'],...stationRows]));
 const unique=new Map();for(const r of stationRows){const k=r[5]||r[7]+'|'+r[6];if(!unique.has(k))unique.set(k,r)}
