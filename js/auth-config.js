@@ -1,4 +1,5 @@
-window.TRT_SUPABASE_CONFIG={url:'',anonKey:''};
+window.TRT_SUPABASE_CONFIG={url:'https://xeefhvtrebcfqgfmyibb.supabase.co
+',anonKey:'sb_publishable_ftNbW1OK570EXyF9ylc1zQ_nqF8lkm0'};
 
 /* Keikyu runtime asset bridge. This file loads after line/workspace data and before app.bundle.js. */
 (()=>{
