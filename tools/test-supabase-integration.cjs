@@ -6,9 +6,9 @@ const auth=read('js/auth.js'),board=read('js/leaderboard.js'),storageCode=read('
 new vm.Script(auth.replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,''),{filename:'auth.js'});
 new vm.Script(board,{filename:'leaderboard.js'});
 const sql=read('supabase/ranking.sql'),html=read('index.html'),bootstrap=read('js/bootstrap.js');
-for(const marker of ['enable row level security','create policy "ranking own insert"','create policy "own cloud read"','security_invoker = true','create table if not exists public.player_public_profiles','ranking_best','on conflict (user_id) do nothing'])
+for(const marker of ['enable row level security','create policy "ranking own insert"','create policy "own cloud read"','security_invoker = true','create table if not exists public.player_public_profiles','create table if not exists public.player_runs','ranking_best','on conflict (user_id) do nothing'])
   assert.ok(sql.includes(marker),'Missing Supabase SQL requirement: '+marker);
-for(const id of ['auth-dialog','auth-profile-form','auth-email','auth-nickname-edit','ranking-board','ranking-line-name','ranking-line-operator','ranking-scope','ranking-service'])
+for(const id of ['auth-dialog','auth-profile-form','auth-email','auth-nickname-edit','result-cloud-status','result-cloud-retry','ranking-board','ranking-line-name','ranking-line-operator','ranking-scope','ranking-service'])
   assert.equal((html.match(new RegExp('id="'+id+'"','g'))||[]).length,1,'Missing or duplicated UI ID '+id);
 assert.ok(bootstrap.includes('authRedirect'),'Email-link token will be stripped by navigation');
 assert.ok(auth.includes('grant_type=refresh_token'),'Expired sessions must refresh');

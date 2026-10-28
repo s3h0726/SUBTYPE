@@ -44,6 +44,38 @@ create policy "own cloud insert" on public.player_profiles for insert to authent
 create policy "own cloud update" on public.player_profiles for update to authenticated
  using (user_id=(select auth.uid())) with check (user_id=(select auth.uid()));
 
+
+-- All completed plays, private to the authenticated owner (including non-ranking modes).
+create table if not exists public.player_runs (
+  run_uid uuid primary key,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  route_id text not null check (char_length(route_id) between 1 and 140),
+  route_name text not null check (char_length(route_name) between 1 and 150),
+  country_id text not null check (char_length(country_id) between 1 and 32),
+  service_key text not null default 'legacy' check (char_length(service_key) between 1 and 480),
+  service_name text not null default '운행계통 미분류' check (char_length(service_name) between 1 and 250),
+  game_mode text not null default 'complete' check (char_length(game_mode) between 1 and 48),
+  cpm integer not null default 0 check (cpm between 0 and 9999),
+  accuracy numeric(5,2) not null default 0 check (accuracy between 0 and 100),
+  elapsed_ms bigint not null default 0 check (elapsed_ms between 0 and 72000000),
+  completed integer not null default 0 check (completed between 0 and 100000),
+  created_at timestamptz not null default now()
+);
+create index if not exists player_runs_user_created_idx on public.player_runs(user_id,created_at desc);
+create index if not exists player_runs_user_route_idx on public.player_runs(user_id,route_id,created_at desc);
+alter table public.player_runs enable row level security;
+revoke all on public.player_runs from anon,authenticated;
+grant select on public.player_runs to authenticated;
+grant insert (run_uid,user_id,route_id,route_name,country_id,service_key,service_name,game_mode,cpm,accuracy,elapsed_ms,completed,created_at)
+  on public.player_runs to authenticated;
+drop policy if exists "player runs owner read" on public.player_runs;
+drop policy if exists "player runs owner insert" on public.player_runs;
+create policy "player runs owner read" on public.player_runs
+  for select to authenticated using (user_id=(select auth.uid()));
+create policy "player runs owner insert" on public.player_runs
+  for insert to authenticated with check (user_id=(select auth.uid()));
+-- Intentionally no UPDATE or DELETE policies.
+
 -- Existing ranking_runs installations retain their numeric primary key.
 create table if not exists public.ranking_runs (
  id bigint generated always as identity primary key,
