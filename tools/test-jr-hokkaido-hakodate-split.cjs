@@ -26,6 +26,7 @@ for(const route of [routeA,routeB])for(const service of route.services)for(const
  assert.deepEqual(Array.from(resolved.stations,s=>s.id),expected,'operating order');
 }
 const code=read('js/japan-lite-index.js'),lite=JSON.parse(code.slice(code.indexOf('=')+1,code.lastIndexOf(';')));
+lite.transferNeighbors={'line-11103':['line-11104'],'line-11104':['line-11103']};
 const ctx={TRT_JAPAN_LITE_INDEX:lite,console:{error:msg=>{throw Error(msg)}}};vm.createContext(ctx);
 vm.runInContext(read('js/jr-hokkaido-hakodate-split.js'),ctx);
 assert.equal(lite.routes.find(r=>r.id==='line-11103').visibility,'internal');
