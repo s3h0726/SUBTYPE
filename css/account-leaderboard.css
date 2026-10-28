@@ -31,3 +31,18 @@
 /* Service dropdown is independent of the line selector. */
 .ranking-controls{grid-template-columns:minmax(120px,.8fr) minmax(105px,.65fr) minmax(190px,1.4fr) minmax(220px,1.6fr) auto}
 @media(max-width:1000px){.ranking-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.ranking-controls>button{grid-column:1/-1}}
+
+/* Ranking belongs to a selected railway line, never the country-wide board. */
+.selected-line-actions .selected-ranking{width:100%;min-height:44px;border:1px solid var(--line,#86968e);border-radius:10px;background:var(--surface,#17231e);color:var(--ink,#f2f6f4);font-weight:800;cursor:pointer;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.selected-line-actions .selected-ranking:hover,.selected-line-actions .selected-ranking:focus-visible{border-color:var(--route-color,#48af83);outline-offset:2px}
+.ranking-entry-note{font-size:13px;color:var(--muted,#667);margin:10px 0 18px}
+.ranking-line-context{display:flex;flex-direction:column;gap:5px;align-self:stretch;padding:12px 18px;border-left:4px solid var(--accent,#50a47d);background:var(--paper,#fff);border-radius:10px}
+.ranking-line-context strong{font-size:clamp(17px,2vw,23px);color:var(--ink,#14221b)}
+.ranking-line-context span{color:var(--muted,#667);font-size:12px}
+.ranking-controls{grid-template-columns:minmax(220px,2fr) minmax(145px,1fr) minmax(210px,1.2fr) auto}
+.ranking-service-list{display:grid;gap:20px}
+.ranking-service-group{min-width:0}
+.ranking-service-group h3{font-size:16px;margin:0 0 4px;overflow-wrap:anywhere}
+.ranking-group-count{margin:0 0 8px;color:var(--muted,#667);font-size:12px}
+@media(max-width:800px){.ranking-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.ranking-line-context{grid-column:1/-1}.ranking-controls>button{grid-column:1/-1}}
+@media(max-width:480px){.ranking-controls{grid-template-columns:minmax(0,1fr)}.ranking-line-context,.ranking-controls>button{grid-column:1/-1}}

@@ -8,7 +8,7 @@ new vm.Script(board,{filename:'leaderboard.js'});
 const sql=read('supabase/ranking.sql'),html=read('index.html'),bootstrap=read('js/bootstrap.js');
 for(const marker of ['enable row level security','create policy "ranking own insert"','create policy "own cloud read"','security_invoker = true','create table if not exists public.player_public_profiles','ranking_best','on conflict (user_id) do nothing'])
   assert.ok(sql.includes(marker),'Missing Supabase SQL requirement: '+marker);
-for(const id of ['auth-dialog','auth-profile-form','auth-email','auth-nickname-edit','ranking-board','ranking-country','ranking-route','ranking-scope'])
+for(const id of ['auth-dialog','auth-profile-form','auth-email','auth-nickname-edit','ranking-board','ranking-line-name','ranking-line-operator','ranking-scope','ranking-service'])
   assert.equal((html.match(new RegExp('id="'+id+'"','g'))||[]).length,1,'Missing or duplicated UI ID '+id);
 assert.ok(bootstrap.includes('authRedirect'),'Email-link token will be stripped by navigation');
 assert.ok(auth.includes('grant_type=refresh_token'),'Expired sessions must refresh');
@@ -46,6 +46,9 @@ assert.equal(boardCtx.TRTLeaderboard.validate({...eligible,options:{mode:'free-d
 const anotherJourney={...eligible,serviceJourneyId:'journey-express',servicePatternId:'pattern-express',serviceName:'급행',directionId:'reverse',
  originStationId:'station-a',destinationStationId:'station-b'};
 listeners['trt:journey-finished']({detail:anotherJourney});
+assert.equal(boardCtx.TRTLeaderboard.openRoute({id:'line-test',countryId:'jp',line:{ko:'테스트 노선'},operator:{ko:'운영사'}}),true);
+assert.equal(boardCtx.TRTLeaderboard.currentLine().id,'line-test');
+assert.equal(boardCtx.TRTLeaderboard.openRoute({}),false);
 const firstRun=boardCtx.TRTLeaderboard.history()[0];
 assert.ok(firstRun.service_key.includes('journey:journey-express'));
 assert.ok(firstRun.service_key.includes('direction:reverse'));
@@ -55,4 +58,9 @@ assert.equal(boardCtx.TRTLeaderboard.history().length,2);
 assert.equal(boardCtx.TRTLeaderboard.history()[0].synced,false);
 assert.ok(sql.includes('user_id,route_id,country_id,service_key'),'SQL must rank by service, not just route');
 assert.ok(html.includes('id="ranking-service"'),'Service selector must exist');
+assert.ok(html.includes('id="result-open-ranking"'),'Results must open the same line ranking');
+assert.ok(!html.includes('data-nav="ranking"'),'Country-wide ranking shortcut must be removed');
+assert.ok(read('js/app.js').includes('data-selected-ranking'),'Every selected line must provide a ranking action');
+assert.ok(board.includes("q.set('route_id','eq.'+activeLine.id)"),'Remote leaderboard request must be restricted to one route');
+assert.ok(board.includes("rows.filter(lineMatches)"),'Fetched records must be re-filtered by line');
 console.log(JSON.stringify({status:'PASS',accountIsolation:true,rankingEligibility:true,sqlPolicies:true,authRedirect:true}));
