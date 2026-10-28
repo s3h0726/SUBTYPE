@@ -42,6 +42,19 @@ node tools/verify-supabase-records.cjs
 
 Avoid logging or committing JWT values, refresh tokens, or service-role keys.
 A read-only PASS with zero rows confirms API access and ownership for this user **but not that a run was saved successfully**.
+
+To test an actual INSERT/read-back and optionally another user's RLS denial, use **a different staging project** and dedicated test JWTs. `tools/verify-supabase-staging-write.cjs` explicitly blocks the connected production project; it leaves one `integration_test` row in staging and never submits to rankings.
+
+```bash
+SUBTYPE_SUPABASE_URL=https://STAGING_REF.supabase.co \
+SUBTYPE_STAGING_PROJECT_REF=STAGING_REF \
+SUBTYPE_SUPABASE_PUBLISHABLE_KEY=PUBLIC_KEY \
+SUBTYPE_TEST_ACCESS_TOKEN=TEST_USER_JWT \
+SUBTYPE_OTHER_TEST_ACCESS_TOKEN=OTHER_TEST_USER_JWT \
+SUBTYPE_STAGING_WRITE_ACK=YES_STAGING_ONLY \
+node tools/verify-supabase-staging-write.cjs
+```
+
 To validate actual persistence: create two staging test users, complete a route, confirm a `player_runs` row after login, reload, and inspect restored records and RLS cross-user isolation; do not pollute production.
 
 ## 3. OSM acquisition → review → human acceptance
