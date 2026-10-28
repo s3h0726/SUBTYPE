@@ -21,6 +21,9 @@ for(const route of [...japan.routes,...korea.routes]){
   assert.ok(!/undefined|null|NaN/.test(label),route.id+': invalid description');
   total++;
 }
+const koreanMain=korea.routes.find(r=>r.id==='kr-metro-1-main');
+assert.ok(koreanMain,'Korean Line 1 missing from selector');
+assert.match(describeRoute(koreanMain),/연천부터 구로까지/);
 const loop=describeRoute({category:'subway',loop:true,stations:[{ko:'시청'},{ko:'시청'}]});
 assert.match(loop,/순환/);
 const express={originNames:{ko:'용산'},destinationNames:{ko:'동인천'},trainType:{ko:'급행'},throughServiceId:'sample'};
