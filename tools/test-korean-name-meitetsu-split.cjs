@@ -15,6 +15,7 @@ function csvRows(text){
  return rows;
 }
 const lines=csvRows(read('reports/korean-names/lines.csv')),stations=csvRows(read('reports/korean-names/stations-by-line.csv'));
+const editorOverrides=JSON.parse(read('data/editor-overrides.json'));
 const expected=[
  {id:'line-30005-yama',ko:'메이테츠 미카와선(산선)',ja:'名鉄三河線（山線）',end:'猿投',file:'meitetsu-mikawa-yama.json'},
  {id:'line-30005-umi',ko:'메이테츠 미카와선(해선)',ja:'名鉄三河線（海線）',end:'碧南',file:'meitetsu-mikawa-umi.json'}
@@ -24,14 +25,14 @@ assert.equal(stations.filter(r=>r[2]==='line-30005').length,0,'Old unified Mikaw
 for(const e of expected){
  const line=lines.filter(r=>r[2]===e.id);
  assert.equal(line.length,1,e.id+' line table row count');
- assert.equal(line[0][3],e.ko);
+ assert.equal(line[0][3],editorOverrides.lines?.[e.id]?.ko||e.ko);
  assert.equal(line[0][4],e.ja);
  assert.ok(line[0][7].endsWith(e.file));
  const routeStations=stations.filter(r=>r[2]===e.id);
  assert.equal(routeStations.length,12,e.id+' station table row count');
  assert.equal(routeStations.filter(r=>r[7]==='知立').length,1,e.id+' must include Chiryu exactly once');
  assert.ok(routeStations.some(r=>r[7]===e.end),e.id+' must include '+e.end);
- assert.ok(routeStations.every(r=>r[3]===e.ko&&r[11].endsWith(e.file)));
+ assert.ok(routeStations.every(r=>r[3]===(editorOverrides.lines?.[e.id]?.ko||e.ko)&&r[11].endsWith(e.file)));
 }
 const sources=expected.map(e=>JSON.parse(read('data/route-overrides/'+e.file)).route);
 assert.equal(sources[0].stations[0].id,sources[1].stations[0].id,'Chiryu must be the same station');
