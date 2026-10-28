@@ -39,27 +39,26 @@ jobs:
         run: node tools/test-korean-name-meitetsu-split.cjs
       - name: Verify Hakodate Main Line split in Korean-name editor
         run: node tools/test-korean-name-hakodate-split.cjs
-      - name: Commit CSV reports
+      - name: Publish refreshed CSV reports without merging unrelated files
+        shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/korean-names/
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "docs: update Korean operator, line and station name tables"
-          # The repository contains an SVG with CRLF normalization differences.
-          # Clean incidental worktree changes only AFTER committing the CSVs,
-          # otherwise git rebase fails with an unrelated dirty SVG file.
-          git -c core.autocrlf=false reset --hard HEAD
+          # Rebuild the reports on top of the latest remote main, rather than
+          # rebasing a commit in a worktree polluted by unrelated SVG CRLF edits.
           for attempt in 1 2 3 4 5; do
-            # Fast path: avoid unnecessary rebase when the branch is current.
-            if git push origin HEAD:main; then exit 0; fi
-            git -c core.autocrlf=false reset --hard HEAD
             git fetch origin main
-            if git -c core.autocrlf=false rebase origin/main; then
-              git -c core.autocrlf=false reset --hard HEAD
-            else
-              git rebase --abort || true
+            git -c core.autocrlf=false reset --hard origin/main
+            node tools/export-korean-names.js
+            node tools/test-korean-name-meitetsu-split.cjs
+            node tools/test-korean-name-hakodate-split.cjs
+            git add reports/korean-names/
+            if git diff --cached --quiet; then
+              echo "Korean name editor already up to date."
+              exit 0
             fi
+            git commit -m "docs: update Korean operator, line and station name tables"
+            if git push origin HEAD:main; then exit 0; fi
             sleep 3
           done
           exit 1
