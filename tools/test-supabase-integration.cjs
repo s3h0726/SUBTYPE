@@ -58,6 +58,13 @@ assert.equal(boardCtx.TRTLeaderboard.history().length,2);
 assert.equal(boardCtx.TRTLeaderboard.history()[0].synced,false);
 assert.ok(sql.includes('user_id,route_id,country_id,service_key'),'SQL must rank by service, not just route');
 assert.ok(html.includes('id="ranking-service"'),'Service selector must exist');
+for(const id of ['operating-pattern-cards','operating-direction-cards','operating-journey-grid','operating-service-search','operating-selected','operating-more'])
+  assert.equal((html.match(new RegExp('id="'+id+'"','g'))||[]).length,1,'Missing service UI control '+id);
+const appSrc=read('js/app.js');
+for(const marker of ["data-operating-pattern","data-operating-direction","data-operating-journey","operatingChoiceStatus(choice,selected)","destination.value=choice.id","direction.value=choice.direction||'forward'"])
+  assert.ok(appSrc.includes(marker),'Operating service data or form contract lost: '+marker);
+assert.ok(html.includes('service-picker-rebuild.css'),'Operating UI stylesheet missing');
+
 assert.ok(html.includes('id="result-open-ranking"'),'Results must open the same line ranking');
 assert.ok(!html.includes('data-nav="ranking"'),'Country-wide ranking shortcut must be removed');
 assert.ok(read('js/app.js').includes('data-selected-ranking'),'Every selected line must provide a ranking action');

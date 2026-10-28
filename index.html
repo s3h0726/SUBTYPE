@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="./css/korea-preview.css?v=preview-v1">
   <link rel="stylesheet" href="./css/free-drive.css?v=transfer-coordinate-20261017-01">
   <link rel="stylesheet" href="./css/account-leaderboard.css?v=per-line-ranking-20261028">
+  <link rel="stylesheet" href="./css/service-picker-rebuild.css?v=20261028-service-ui-1">
 
 <style id="hide-record-card-logos">
 /* History and completion cards are text-first: no company or line marks. */
@@ -138,8 +139,8 @@
       </div>
     </section>
 
-    <section id="screen-setup" data-screen="game-setup" class="screen" aria-labelledby="setup-title">
-      <div class="section-head"><div><p class="eyebrow">SERVICE SETUP</p><h2 id="setup-title">운행 설정</h2></div><button class="btn text" data-nav="rail-map">← 노선 선택</button></div>
+    <section id="screen-setup" data-screen="game-setup" class="screen service-setup-page" aria-labelledby="setup-title">
+      <div class="section-head"><div><p class="eyebrow">RAIL SERVICE / DEPARTURE</p><h2 id="setup-title">운행 준비</h2><p class="service-setup-subtitle">열차의 계통과 행선지를 고른 후 출발하세요.</p></div><button class="btn text" data-nav="rail-map">← 노선 다시 선택</button></div>
       <div class="setup-layout">
         <div id="setup-route" class="route-ticket"></div>
         <form id="setup-form" class="setup-form">
@@ -150,11 +151,33 @@
             <label><input type="radio" name="mode" value="order"><span><b>순서 맞히기</b><small>다음 역을 기억해서</small></span></label>
             <label><input type="radio" name="mode" value="endless"><span><b>무한 모드</b><small>원할 때까지 계속</small></span></label>
           </div></fieldset>
-          <fieldset id="route-range-fieldset"><legend>운행계통 · 방향 · 구간</legend><div id="journey-picker" class="journey-picker"><label class="journey-pattern-label">운행계통<select id="journey-pattern" name="journeyPattern"></select></label><label>출발역<select id="journey-origin" name="journeyOrigin"></select></label><span aria-hidden="true">→</span><label>도착역<select id="journey-destination" name="journeyDestination"></select></label><label class="journey-direction-label">방향<select id="journey-direction" name="journeyDirection"></select></label><p id="journey-summary" aria-live="polite"></p></div></fieldset>
+          <fieldset id="route-range-fieldset" class="service-selector-fieldset">
+            <legend><span class="service-step-num">01</span> 운행계통 선택 <small>실제 등록된 운행만 표시</small></legend>
+            <div id="journey-picker" class="journey-picker journey-picker-rebuilt">
+              <div class="service-picker-topline"><div><span class="service-kicker">SELECT SERVICE</span><h3>어떤 열차를 운행할까요?</h3><p>운행계통을 선택한 다음 방향과 행선지를 정하세요.</p></div><span id="operating-available-count" class="service-available-count"></span></div>
+              <label class="service-search-label" for="operating-service-search"><span>운행계통·역명 검색</span><input id="operating-service-search" type="search" placeholder="급행, 각역정차, 출발역 또는 행선지" autocomplete="off"></label>
+              <div id="operating-pattern-cards" class="operating-pattern-cards" role="group" aria-label="운행계통 선택"></div>
+              <div class="operating-subsection-head"><span class="service-step-num">02</span><div><strong>운행 방향</strong><small>해당 계통에서 선택 가능한 방향</small></div></div>
+              <div id="operating-direction-cards" class="operating-direction-cards" role="group" aria-label="운행 방향 선택"></div>
+              <div class="operating-subsection-head"><span class="service-step-num">03</span><div><strong>출발역 · 행선지</strong><small>같은 계통의 서로 다른 정차 패턴도 구분됩니다.</small></div><span id="operating-journey-count" class="operating-journey-count"></span></div>
+              <div id="operating-journey-grid" class="operating-journey-grid" role="group" aria-label="실제 운행 구간 선택"></div>
+              <button id="operating-more" type="button" class="operating-more" hidden>다른 운행 구간 더 보기</button>
+              <div id="operating-selected" class="operating-selected" aria-live="polite"></div>
+              <p id="journey-summary" class="operating-a11y-summary" aria-live="polite"></p>
+              <details class="operating-advanced"><summary>운행계통 직접 선택 · 고급 설정</summary>
+                <div class="journey-legacy-controls">
+                  <label class="journey-pattern-label">운행계통<select id="journey-pattern" name="journeyPattern"></select></label>
+                  <label class="journey-direction-label">방향<select id="journey-direction" name="journeyDirection"></select></label>
+                  <label>출발역<select id="journey-origin" name="journeyOrigin"></select></label>
+                  <label>도착역<select id="journey-destination" name="journeyDestination"></select></label>
+                </div>
+              </details>
+            </div>
+          </fieldset>
           <div class="korean-only-notice"><b>한국어 전용 운행</b><span>일본어와 한국어 역명을 함께 보고, 표시된 한국어 역명을 입력합니다.</span></div>
           <input id="service-direction" type="hidden" value="forward"><input id="game-map-mode" type="hidden" value="geographic"><button id="map-view-toggle" type="button" hidden aria-hidden="true"></button>
           <fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto" checked><span>AUTO · 자동 이동</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE · 확인 후 이동</span></label></div></fieldset>
-          <button class="btn primary full" type="submit">운행 시작 <span>→</span></button>
+          <div class="service-start-bar"><p><strong>출발 준비</strong><span>선택한 운행계통의 정차역을 따라 타이핑합니다.</span></p><button class="btn primary full" type="submit">운행 시작 →</button></div>
         </form>
       </div>
     </section>

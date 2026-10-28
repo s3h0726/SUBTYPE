@@ -1,0 +1,84 @@
+/* SUBTYPE / 2026 operating-service picker rebuild.
+   Only applies to game-setup; preserves real journey selection form fields. */
+#screen-setup.service-setup-page{--svc-accent:#369a76}
+.service-setup-page .section-head{align-items:flex-end;gap:20px;margin-bottom:24px}
+.service-setup-page .section-head h2{font-size:clamp(30px,3.6vw,48px);line-height:1.08;letter-spacing:-.035em}
+.service-setup-subtitle{margin:9px 0 0;color:var(--muted,#798580);font-size:14px}
+.service-setup-page .setup-layout{display:grid;grid-template-columns:minmax(250px,.78fr) minmax(0,1.6fr);gap:clamp(18px,3vw,42px);align-items:start}
+.service-setup-page .route-ticket{min-height:400px;max-width:100%;position:sticky;top:20px;box-shadow:9px 9px 0 var(--svc-accent);border-radius:16px;padding:clamp(22px,3vw,34px);overflow:hidden}
+.service-setup-page .route-ticket h3{font-size:clamp(28px,3vw,42px);overflow-wrap:anywhere}
+.service-setup-page .route-ticket .setup-stations{max-height:280px;overflow:auto;scrollbar-width:thin}
+.service-setup-page .setup-form{min-width:0;display:grid;gap:20px}
+.service-setup-page .setup-form>fieldset:not(#route-range-fieldset){background:var(--surface,#fff);border:1px solid var(--line,#d1dcd4);border-radius:14px;padding:18px 20px;margin:0}
+.service-setup-page .setup-form>fieldset:not(#route-range-fieldset) legend{padding:0 5px;font-size:13px;letter-spacing:.02em}
+.service-setup-page .setup-form .choice-grid{gap:8px}
+.service-setup-page .setup-form .choice-grid span,.service-setup-page .setup-form .segmented span{border-radius:10px}
+.service-setup-page .service-selector-fieldset{border:1px solid var(--line,#cbd7cf);border-radius:18px;padding:clamp(15px,2.4vw,25px);margin:0;background:var(--surface,#fff);min-width:0}
+.service-selector-fieldset>legend{font-size:15px;font-weight:900;padding:0 8px;display:flex;gap:9px;align-items:center}
+.service-selector-fieldset>legend small{font-size:11px;font-weight:500;color:var(--muted,#71847a);margin-left:8px}
+.service-step-num{display:inline-grid;place-items:center;flex:0 0 25px;width:25px;height:25px;border-radius:8px;background:var(--svc-accent);color:#fff;font-size:11px;font-weight:900;letter-spacing:.05em}
+.service-setup-page .journey-picker-rebuilt{display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch;gap:15px}
+.service-setup-page .journey-picker-rebuilt[hidden]{display:none!important}
+.service-picker-topline{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.service-picker-topline h3{margin:4px 0 7px;font-size:clamp(19px,2.2vw,26px);line-height:1.24;letter-spacing:-.025em}
+.service-picker-topline p{margin:0;color:var(--muted,#738078);font:500 12px/1.55 system-ui,sans-serif}
+.service-kicker{font-size:10px;letter-spacing:.15em;font-weight:900;color:var(--svc-accent)}
+.service-available-count{flex:0 0 auto;background:color-mix(in srgb,var(--svc-accent) 10%,var(--surface,#fff));color:var(--ink,#183328);border:1px solid color-mix(in srgb,var(--svc-accent) 30%,transparent);border-radius:99px;padding:7px 11px;font-size:11px;font-weight:800}
+.service-search-label{display:grid;gap:6px;font-size:11px;font-weight:750;color:var(--muted,#667);margin:0}
+.service-search-label input{appearance:none;min-height:44px;width:100%;background:var(--surface,#fff);color:var(--ink,#15261e);border:1px solid var(--line,#bdc9c1);border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;outline-offset:3px}
+.service-search-label input:focus{border-color:var(--svc-accent);outline:2px solid color-mix(in srgb,var(--svc-accent) 30%,transparent)}
+.operating-pattern-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-height:355px;overflow-y:auto;padding:3px;scrollbar-width:thin}
+.operating-pattern-card,.operating-direction-card,.operating-journey-card{font:inherit;min-width:0;text-align:left;color:var(--ink,#17251d);border:1px solid var(--line,#c5d1c9);background:var(--surface,#fff);cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+.operating-pattern-card{display:grid;gap:10px;min-height:115px;padding:14px;border-radius:14px;align-content:space-between}
+.operating-pattern-card:hover,.operating-direction-card:hover,.operating-journey-card:hover{border-color:var(--svc-accent)}
+.operating-pattern-card.is-active,.operating-direction-card.is-active,.operating-journey-card.is-active{border:2px solid var(--svc-accent);background:color-mix(in srgb,var(--svc-accent) 7%,var(--surface,#fff));box-shadow:0 0 0 2px color-mix(in srgb,var(--svc-accent) 13%,transparent)}
+.operating-pattern-card:focus-visible,.operating-direction-card:focus-visible,.operating-journey-card:focus-visible,.operating-more:focus-visible{outline:3px solid var(--svc-accent);outline-offset:3px}
+.operating-pattern-card-top,.journey-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.operating-pattern-index,.journey-card-number{color:var(--muted,#718078);font-size:11px;font-weight:900;letter-spacing:.12em}
+.operating-pattern-state,.journey-card-status{flex:0 0 auto;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:800}
+.operating-pattern-state.is-ready,.journey-card-status.ready{color:#10704f;background:#e4f5ec}
+.operating-pattern-state.is-unavailable,.journey-card-status.blocked{color:#a05a1f;background:#fff0de}
+.operating-pattern-card>strong{font-size:clamp(13px,1.25vw,16px);font-weight:850;line-height:1.35;overflow-wrap:anywhere}
+.operating-pattern-meta{font-size:11px;color:var(--muted,#657b6f);font-weight:600}
+.operating-subsection-head{display:flex;align-items:center;gap:10px;margin-top:6px}
+.operating-subsection-head div{display:grid;gap:2px;flex:1}
+.operating-subsection-head strong{font-size:14px}
+.operating-subsection-head small{font-size:11px;color:var(--muted,#69786f)}
+.operating-journey-count{font-size:11px;font-weight:800;color:var(--muted,#65756c)}
+.operating-direction-cards{display:flex;flex-wrap:wrap;gap:9px}
+.operating-direction-card{display:flex;align-items:center;gap:10px;justify-content:space-between;border-radius:10px;padding:11px 13px;min-height:44px;flex:1 1 155px;font-size:12px;font-weight:750}
+.direction-track-icon{font-size:17px;line-height:1;color:var(--svc-accent)}
+.direction-check{font-size:15px;font-weight:900;color:var(--svc-accent)}
+.operating-journey-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-height:370px;overflow:auto;padding:3px;scrollbar-width:thin}
+.operating-journey-card{display:grid;gap:10px;padding:15px;border-radius:13px;position:relative;align-content:start}
+.operating-journey-card.is-unavailable{opacity:.7}
+.journey-card-stations{display:grid;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr);align-items:center;gap:6px}
+.journey-card-stations strong{font-size:14px;font-weight:850;min-width:0;overflow-wrap:anywhere}
+.journey-arrow{text-align:center;font-size:19px;color:var(--svc-accent)}
+.journey-card-meta{font-size:11px;font-weight:700;color:var(--muted,#69786f)}
+.journey-selected-mark{justify-self:start;color:var(--svc-accent);font-weight:900;font-size:10px}
+.operating-empty{grid-column:1/-1;padding:18px;border-radius:10px;background:color-mix(in srgb,var(--svc-accent) 5%,var(--surface,#fff));font-size:12px;color:var(--muted,#65786a)}
+.operating-more{justify-self:center;min-height:42px;border:1px solid var(--line,#b5c5b9);border-radius:9px;padding:9px 18px;background:var(--surface,#fff);color:var(--ink,#183128);font-weight:800;font-size:12px;cursor:pointer}
+.operating-more[hidden]{display:none!important}
+.operating-selected{display:grid;gap:8px;background:#101e19;border-left:5px solid var(--svc-accent);color:#f1f7f2;padding:19px 20px;border-radius:13px;overflow-wrap:anywhere}
+.operating-selected-label{color:#9dd9b9;text-transform:uppercase;font-size:10px;font-weight:850;letter-spacing:.09em}
+.operating-selected-route{display:flex;align-items:center;flex-wrap:wrap;gap:12px}
+.operating-selected-route strong{font-size:clamp(16px,2vw,22px);font-weight:900}
+.operating-selected-route span{font-size:24px;color:#75d7a6}
+.operating-selected p,.operating-selected small{color:#c4d9cc;font-size:12px;line-height:1.6;margin:0}
+.service-setup-page .operating-a11y-summary{margin:0;font-size:11px;line-height:1.6;color:var(--muted,#6d7d73);white-space:normal;overflow-wrap:anywhere}
+.operating-advanced{border:1px dashed var(--line,#b2c1b7);border-radius:11px;padding:11px 13px}
+.operating-advanced summary{font-size:12px;cursor:pointer;font-weight:800;color:var(--muted,#50695b)}
+.journey-legacy-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.service-setup-page .journey-legacy-controls label{display:grid;gap:6px;font-size:11px;font-weight:800}
+.service-setup-page .journey-legacy-controls select{width:100%;min-width:0;min-height:43px;background:var(--surface,#fff);color:var(--ink,#12281b);border:1px solid var(--line,#bbcabd);border-radius:8px;padding:8px}
+.service-setup-page .korean-only-notice{margin:0}
+.service-start-bar{display:grid;gap:11px;padding:16px;border:1px solid var(--line,#bacac0);border-radius:14px;background:var(--surface,#fff)}
+.service-start-bar p{display:grid;gap:3px;margin:0}
+.service-start-bar p strong{font-size:12px}
+.service-start-bar p span{color:var(--muted,#6c786d);font-size:11px}
+.service-start-bar .btn{min-height:52px;border-radius:11px;font-size:16px;font-weight:900}
+@media(min-width:1300px){.service-setup-page .setup-layout{grid-template-columns:minmax(290px,.78fr) minmax(0,1.75fr)}}
+@media(max-width:1030px){.service-setup-page .setup-layout{grid-template-columns:minmax(0,1fr)}.service-setup-page .route-ticket{position:relative;top:auto;min-height:260px}.service-setup-page .route-ticket .setup-stations{max-height:130px}}
+@media(max-width:600px){.service-setup-page .section-head{align-items:start}.service-picker-topline{flex-wrap:wrap}.service-available-count{white-space:normal}.operating-pattern-cards,.operating-journey-grid{grid-template-columns:1fr;max-height:410px}.journey-legacy-controls{grid-template-columns:1fr}.service-setup-page .service-selector-fieldset{padding:14px}.service-setup-page .route-ticket{box-shadow:6px 6px 0 var(--svc-accent)}.operating-selected-route strong{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.operating-pattern-card,.operating-direction-card,.operating-journey-card{transition:none}}
