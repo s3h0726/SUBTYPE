@@ -6,6 +6,7 @@ on:
       - 'tools/test-integrations-playwright.cjs'
       - 'tools/verify-supabase-records.cjs'
       - 'tools/fetch-osm-candidate.mjs'
+      - 'tools/review-osm-route.mjs'
       - 'tools/audit-geometry-turf.mjs'
       - 'js/maplibre-adapter.js'
       - 'js/realtime-duel.js'
@@ -16,7 +17,7 @@ permissions:
   contents: read
 jobs:
   integration-smoke:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
@@ -31,9 +32,11 @@ jobs:
       - run: node --check tools/verify-supabase-records.cjs
       - run: node --check tools/fetch-osm-candidate.mjs
       - run: node --check tools/audit-geometry-turf.mjs
+      - run: node --check tools/review-osm-route.mjs
       - run: node --check js/maplibre-adapter.js
       - run: node --check js/realtime-duel.js
       - run: node tools/audit-geometry-turf.mjs --input integrations/geometry-fixture.geojson
+      - run: node --input-type=module -e "import {toMapLibreLine} from './js/maplibre-adapter.js'; const f=toMapLibreLine([[35,139],[35.01,139.01]]); if(f.geometry.coordinates[0][0]!==139) process.exit(1);"
       - run: node tools/test-integrations-playwright.cjs
   # Production Supabase data is NEVER modified by this workflow.
   # Read-only cloud test: run with a dedicated JWT via tools/verify-supabase-records.cjs.
