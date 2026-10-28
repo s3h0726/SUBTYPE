@@ -24,7 +24,7 @@ class AuthClient{
   get key(){return this.config.anonKey||this.config.publishableKey||''}
   get userId(){return this.session?.user?.id||null}
   readSession(){try{const s=JSON.parse(localStorage.getItem(SESSION_KEY)||'null');return s?.access_token&&s?.refresh_token&&s?.user?.id?s:null}catch{return null}}
-  headers(token){return{'Content-Type':'application/json',apikey:this.key,Authorization:'Bearer '+(token||this.key)}}
+  headers(token){return{'Content-Type':'application/json',apikey:this.key,...(token?{Authorization:'Bearer '+token}:{})}}
   async api(path,{method='GET',body,token,prefer}={}){
     if(!this.configured)throw Error('Supabase 프로젝트 URL과 공개 키가 설정되지 않았습니다.');
     const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),SUPABASE_AUTH_TIMEOUT);
@@ -105,7 +105,7 @@ class AuthClient{
     $$('[data-auth-mode]',form).forEach(button=>{
       const active=button.dataset.authMode===this.mode;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active))
     });
-    $$('[data-signup-field]',form).forEach(field=>{field.hidden=!signup;const input=field.querySelector('input');if(input)input.required=signup});
+    $$('[data-signup-field]',form).forEach(field=>{field.hidden=!(signup||reset);const input=field.querySelector('input');if(input)input.required=signup||reset});
     const email=form.elements.email,password=form.elements.password;
     email.closest('label').hidden=reset;email.required=!reset;
     password.closest('label').hidden=recover;password.required=!recover;
@@ -115,6 +115,7 @@ class AuthClient{
     form.querySelector('.auth-tabs').hidden=recover||reset;
     const back=$('#auth-back');if(back)back.hidden=!recover&&!reset;
     const help=$('#auth-forgot');if(help)help.hidden=this.mode!=='login';
+    const nick=form.elements.nickname?.closest('label');if(nick)nick.hidden=!signup;
     form.querySelector('[type="submit"]').textContent=signup?'회원가입':recover?'재설정 이메일 보내기':reset?'새 비밀번호 저장':'로그인';
     this.clearError();
   }
@@ -135,7 +136,7 @@ class AuthClient{
     button.disabled=true;
     try{
       if(this.mode==='recover'){
-        await this.api('/auth/v1/recover',{method:'POST',body:{email}});
+        await this.api('/auth/v1/recover?redirect_to='+encodeURIComponent(location.origin+location.pathname),{method:'POST',body:{email}});
         toast('가입된 이메일이라면 재설정 메일이 발송됩니다.');this.setMode('login');return
       }
       if(this.mode==='reset'){

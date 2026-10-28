@@ -55,7 +55,7 @@ async function globalRows(){
  if(route)q.set('route_id','eq.'+route);
  const auth=getAuth(),key=config().anonKey||config().publishableKey,token=await auth?.accessToken().catch(()=>null);
  const response=await fetch(String(config().url).replace(/\/$/,'')+'/rest/v1/ranking_best?'+q,{
-   headers:{apikey:key,Authorization:'Bearer '+(token||key)}
+   headers:{apikey:key,...(token?{Authorization:'Bearer '+token}:{})}
  });
  const body=await response.json().catch(()=>null);
  if(!response.ok)throw Error(body?.message||body?.error||('랭킹 불러오기 실패: '+response.status));
@@ -66,7 +66,21 @@ function table(list,global=false){
  return '<div class="ranking-scroll"><table class="ranking-table"><thead><tr><th>순위</th><th>플레이어</th><th>노선</th><th>타수</th><th>정확도</th><th>완주 시간</th></tr></thead><tbody>'+
  sorted(list).slice(0,100).map((r,i)=>`<tr><td>${i+1}</td><td>${escapeText(global?(r.nickname||'철도러'):(getAuth()?.profile?.nickname||'나'))}</td><td>${escapeText(r.route_name||r.route_id)}</td><td><strong>${Math.round(Number(r.cpm)||0)}</strong></td><td>${Number(r.accuracy||0).toFixed(1)}%</td><td>${(Number(r.elapsed_ms||0)/1000).toFixed(2)}초</td></tr>`).join('')+'</tbody></table></div>';
 }
+function populateRoutes(){
+ const select=byId('ranking-route');if(!select||select.dataset.populated==='true')return;
+ const routes=globalThis.TRT_JAPAN_LITE_INDEX?.routes||globalThis.TRT_EMBEDDED_LINE_WORKSPACES?.index?.routes||[];
+ if(!routes.length)return;
+ const current=select.value,seen=new Set();
+ for(const route of routes){
+   if(!route?.id||seen.has(route.id))continue;seen.add(route.id);
+   const option=document.createElement('option');option.value=route.id;
+   option.textContent=String(route.line?.ko||route.names?.ko||route.line?.ja||route.id)+' ('+route.id+')';
+   select.append(option);
+ }
+ select.value=current;select.dataset.populated='true';
+}
 async function render(){
+ populateRoutes();
  const board=byId('ranking-board'),status=byId('ranking-status');if(!board||!status)return;
  const request=++renderGeneration,scope=byId('ranking-scope')?.value||'personal',country=byId('ranking-country')?.value||'all',
  route=String(byId('ranking-route')?.value||'').trim();

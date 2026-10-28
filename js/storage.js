@@ -34,7 +34,7 @@ export const storage={
   persistent:hasLocalStorage,
   activeUser:()=>activeAccountId,
   setAccount(id){activeAccountId=/^[0-9a-f-]{36}$/i.test(String(id||''))?String(id):null},
-  cloudSnapshot(){return{records:this.records(),custom_routes:this.routes()}},
+  cloudSnapshot(){return{records:read('records',{}),custom_routes:loadCustomRoutes()}},
   applyCloudSnapshot(snapshot={}){
     write('records',mergeRecords(read('records',{}),snapshot.records));
     saveCustomRoutes(mergeRoutes(loadCustomRoutes(),snapshot.custom_routes));
