@@ -1,0 +1,65 @@
+name: Build Supabase account and leaderboard UI
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/auth.js'
+      - 'js/storage.js'
+      - 'js/app.js'
+      - 'js/leaderboard.js'
+      - 'js/bootstrap.js'
+      - 'css/account-leaderboard.css'
+      - 'supabase/ranking.sql'
+      - 'tools/test-supabase-integration.cjs'
+      - '.github/workflows/supabase-ui-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: supabase-account-bundle-main
+  cancel-in-progress: false
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test guest and account isolation, auth and ranking contracts
+        run: node tools/test-supabase-integration.cjs
+      - name: Build production bundle without touching railway sources
+        run: |
+          node tools/build-app-bundle.js
+          node --check js/app.bundle.js
+          node tools/test-supabase-integration.cjs
+      - name: Commit built bundle to main (retry on concurrent pushes)
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5; do
+            git add js/app.bundle.js index.html
+            if git diff --cached --quiet; then
+              echo "Current main already contains the bundle"
+              exit 0
+            fi
+            git commit -m 'build(auth): publish Supabase account and ranking UI'
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            git fetch origin main
+            git reset --hard origin/main
+            node tools/test-supabase-integration.cjs
+            node tools/build-app-bundle.js
+            node --check js/app.bundle.js
+            sleep 2
+          done
+          echo 'Could not publish Supabase bundle safely' >&2
+          exit 1
