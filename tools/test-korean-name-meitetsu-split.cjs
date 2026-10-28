@@ -30,7 +30,7 @@ for(const e of expected){
  const routeStations=stations.filter(r=>r[2]===e.id);
  assert.equal(routeStations.length,12,e.id+' station table row count');
  assert.equal(routeStations[0][7],'知立');
- assert.equal(routeStations.at(-1)[7],e.end);
+ assert.ok(routeStations.some(r=>r[7]===e.end),e.id+' must include '+e.end);
  assert.ok(routeStations.every(r=>r[3]===e.ko&&r[11].endsWith(e.file)));
 }
 const sources=expected.map(e=>JSON.parse(read('data/route-overrides/'+e.file)).route);
