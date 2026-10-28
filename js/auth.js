@@ -105,7 +105,7 @@ class AuthClient{
     $$('[data-auth-mode]',form).forEach(button=>{
       const active=button.dataset.authMode===this.mode;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active))
     });
-    $$('[data-signup-field]',form).forEach(field=>{field.hidden=!(signup||reset);const input=field.querySelector('input');if(input)input.required=signup||reset});
+    $$('[data-signup-field]',form).forEach(field=>{field.hidden=!(signup||reset);const input=field.querySelector('input');if(input)input.required=signup||(reset&&input.name==='passwordConfirm')});
     const email=form.elements.email,password=form.elements.password;
     email.closest('label').hidden=reset;email.required=!reset;
     password.closest('label').hidden=recover;password.required=!recover;

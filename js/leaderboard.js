@@ -109,7 +109,7 @@ document.addEventListener('trt:journey-finished',event=>{
  if(document.body.dataset.currentScreen==='ranking')void render();
 });
 document.addEventListener('trt:auth-changed',()=>{void syncPending();if(document.body.dataset.currentScreen==='ranking')void render()});
-document.addEventListener('change',event=>{if(['ranking-scope','ranking-country'].includes(event.target?.id))void render()});
+document.addEventListener('change',event=>{if(['ranking-scope','ranking-country','ranking-route'].includes(event.target?.id))void render()});
 document.addEventListener('input',event=>{if(event.target?.id==='ranking-route')void render()});
 document.addEventListener('click',event=>{if(event.target.closest('[data-nav="ranking"]'))setTimeout(()=>{void render()},0);
  if(event.target.closest('[data-ranking-refresh]'))void render()});
