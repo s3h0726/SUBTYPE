@@ -49,18 +49,13 @@ jobs:
               exit 0
             fi
             git commit -m 'build(auth): publish Supabase account and ranking UI'
-            # Railway assets may be normalized by checkout/build (not part of
-            # this patch). Drop those uncommitted worktree-only changes before
-            # rebasing the two committed bundle files.
-            git restore --worktree .
-            git fetch origin main
-            # The source repository contains generated worktree files. Preserve those
-            # during the rebase instead of falsely treating them as a conflict.
-            git status --short
-            if git rebase origin/main && git push origin HEAD:main; then
+            # Fast-forward push avoids rebasing a checkout whose tracked SVG
+            # worktree is modified by line-ending normalization.
+            # If main advanced, discard this generated commit and rebuild from
+            # the latest remote head instead of overwriting unrelated work.
+            if git push origin HEAD:main; then
               exit 0
             fi
-            git rebase --abort || true
             git fetch origin main
             git reset --hard origin/main
             node tools/test-supabase-integration.cjs
