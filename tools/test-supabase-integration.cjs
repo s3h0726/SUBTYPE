@@ -70,4 +70,63 @@ assert.ok(!html.includes('data-nav="ranking"'),'Country-wide ranking shortcut mu
 assert.ok(read('js/app.js').includes('data-selected-ranking'),'Every selected line must provide a ranking action');
 assert.ok(board.includes("q.set('route_id','eq.'+activeLine.id)"),'Remote leaderboard request must be restricted to one route');
 assert.ok(board.includes("rows.filter(lineMatches)"),'Fetched records must be re-filtered by line');
-console.log(JSON.stringify({status:'PASS',accountIsolation:true,rankingEligibility:true,sqlPolicies:true,authRedirect:true}));
+(async()=>{
+assert.ok(sql.includes('create policy "player runs owner insert"'),'Missing private insert RLS policy');
+assert.ok(sql.includes('create policy "player runs owner read"'),'Missing private read RLS policy');
+assert.ok(sql.includes("user_id=(select auth.uid())"),'Private owner isolation missing');
+const cloudCode=read('js/cloud-run-sync.js');
+new vm.Script(cloudCode,{filename:'cloud-run-sync.js'});
+assert.ok(html.includes('cloud-run-sync.js'),'Cloud persistence module must load');
+const cloudListeners={},uploads=[],cloudErrors=[],docNodes={
+ 'result-cloud-status':{textContent:''},
+ 'result-cloud-retry':{hidden:true}
+};
+let currentUser=null,failUpload=false,serverHistory=[];
+const cloudDoc={addEventListener:(name,fn)=>{cloudListeners[name]=fn},
+ getElementById:id=>docNodes[id]||null,visibilityState:'visible'};
+const cloudAuth={
+ get userId(){return currentUser},
+ async privateApi(url,opts={}){
+   if(failUpload)throw Error('Network unavailable');
+   if(url.startsWith('/rest/v1/player_runs?')&&opts.method==='POST'){
+     uploads.push(opts.body);
+     if(!serverHistory.some(r=>r.run_uid===opts.body.run_uid))serverHistory.push(opts.body);
+     return null;
+   }
+   if(url.startsWith('/rest/v1/player_runs?')&&!opts.method)return serverHistory.filter(r=>r.user_id===currentUser);
+   throw Error('Unexpected cloud endpoint: '+url);
+ },
+ async syncState(){return true}
+};
+const cloudCtx={console:{warn:(...parts)=>cloudErrors.push(parts.join(' '))},localStorage,
+ crypto:{randomUUID:(()=>{let n=0;return()=>'123e4567-e89b-42d3-a456-'+String(++n).padStart(12,'0')})()},
+ document:cloudDoc,TRT_SUPABASE_CONFIG:{url:'https://subtype-test.supabase.co',anonKey:'sb_publishable_test_example_string_long_enough'},
+ TRTAuth:cloudAuth,Date,URLSearchParams};
+cloudCtx.window=cloudCtx;
+vm.createContext(cloudCtx);
+vm.runInContext(cloudCode,cloudCtx);
+const player=cloudCtx.TRTCloudRuns;
+cloudListeners['trt:journey-finished']({detail:eligible});
+assert.equal(player.history().length,1,'Guest run must remain local');
+assert.equal(uploads.length,0,'Guest run must not upload');
+currentUser=userA;
+cloudListeners['trt:journey-finished']({detail:eligible});
+await player.syncPending();
+assert.equal(uploads.length,1,'Authenticated run must be posted');
+assert.equal(player.history()[0].synced,true,'Run must be marked uploaded only on success');
+failUpload=true;
+cloudListeners['trt:journey-finished']({detail:eligible});
+await player.syncPending();
+assert.equal(player.history().filter(r=>!r.synced).length,1,'Failed upload must remain queued');
+failUpload=false;
+await player.syncPending();
+assert.equal(uploads.length,2,'Offline run must be retried');
+localStorage.setItem('trt:player-runs:v1:'+userA,'[]');
+await player.restoreRemote();
+assert.equal(player.history().length,2,'Other devices must restore server run history');
+currentUser=userB;
+assert.equal(player.history().length,0,'Run history must be isolated per account');
+assert.ok(docNodes['result-cloud-status'].textContent.length>0,'Result must show server sync feedback');
+
+console.log(JSON.stringify({status:'PASS',accountIsolation:true,rankingEligibility:true,sqlPolicies:true,authRedirect:true,serverRunUpload:true,serverRestore:true,offlineRetry:true}));
+})().catch(error=>{console.error(error);process.exitCode=1});

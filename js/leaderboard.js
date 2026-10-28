@@ -12,7 +12,7 @@ const read=()=>{try{const result=JSON.parse(localStorage.getItem(historyKey())||
 const save=runs=>{try{localStorage.setItem(historyKey(),JSON.stringify(runs.slice(0,300)))}catch{}};
 const sorted=list=>[...list].sort((a,b)=>Number(b.cpm)-Number(a.cpm)||Number(b.accuracy)-Number(a.accuracy)||Number(a.elapsed_ms)-Number(b.elapsed_ms));
 const valid=result=>{
- if(!result||result.options?.mode==='free-drive'||result.options?.researchPreview||result.route?.playStatus==='RESEARCH_PLAYABLE')return false;
+ if(!result||result.options?.mode!=='complete'||result.options?.researchPreview||result.route?.playStatus==='RESEARCH_PLAYABLE')return false;
  if(result.routeIntegrity!==true||Number(result.completed)<2)return false;
  if(result.route?.isCustom||String(result.routeId||'').startsWith('custom')||result.route?.countryId==='custom')return false;
  const cpm=Number(result.cpm),accuracy=Number(result.accuracy),elapsed=Number(result.elapsed);
@@ -42,6 +42,33 @@ const entry=result=>({
  route_integrity:true,synced:false,created_at:new Date().toISOString()
 });
 const authenticated=()=>Boolean(getAuth()?.userId);
+let rankingRestore=null,rankingRestoreUser=null;
+async function restoreRemoteRankings(){
+ const id=getAuth()?.userId,auth=getAuth();
+ if(!configured()||!id)return false;
+ if(rankingRestore){
+   if(rankingRestoreUser===id)return rankingRestore;
+   await rankingRestore;
+   if(getAuth()?.userId!==id)return false;
+   return restoreRemoteRankings();
+ }
+ rankingRestoreUser=id;
+ const job=(async()=>{
+   const query=new URLSearchParams({
+     select:'run_uid,route_id,route_name,country_id,service_key,service_name,cpm,accuracy,elapsed_ms,completed,created_at',
+     user_id:'eq.'+id,order:'created_at.desc',limit:'500'
+   });
+   try{
+     const rows=await auth.privateApi('/rest/v1/ranking_runs?'+query);
+     if(getAuth()?.userId!==id||!Array.isArray(rows))return false;
+     const byUid=new Map(read().filter(r=>r?.run_uid).map(r=>[r.run_uid,r]));
+     for(const row of rows)if(row?.run_uid)byUid.set(row.run_uid,{...byUid.get(row.run_uid),...row,synced:true,route_integrity:true});
+     save([...byUid.values()].sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||''))));
+     return true;
+   }catch(error){console.warn('Ranking server restore:',error.message);return false}
+ })().finally(()=>{if(rankingRestore===job){rankingRestore=null;rankingRestoreUser=null}});
+ rankingRestore=job;return job;
+}
 let syncing=null,renderGeneration=0,activeLine=null;
 const currentLine=()=>activeLine;
 const lineMatches=run=>Boolean(activeLine)&&String(run.route_id)===activeLine.id&&(!activeLine.countryId||run.country_id===activeLine.countryId);
@@ -155,8 +182,8 @@ document.addEventListener('trt:journey-finished',event=>{
  if(authenticated())void syncPending();
  if(document.body.dataset.currentScreen==='ranking')void render();
 });
-document.addEventListener('trt:auth-changed',()=>{void syncPending();if(document.body.dataset.currentScreen==='ranking')void render()});
+document.addEventListener('trt:auth-changed',()=>{void (async()=>{await restoreRemoteRankings();await syncPending();if(document.body.dataset.currentScreen==='ranking')await render()})()});
 document.addEventListener('change',event=>{if(['ranking-scope','ranking-service'].includes(event.target?.id))void render()});
 document.addEventListener('click',event=>{if(event.target.closest('[data-ranking-refresh]'))void render()});
-window.TRTLeaderboard={render,openRoute,currentLine,uploadPending:syncPending,history:read,validate:valid};
+window.TRTLeaderboard={render,openRoute,currentLine,uploadPending:syncPending,restoreRemote:restoreRemoteRankings,history:read,validate:valid};
 })();

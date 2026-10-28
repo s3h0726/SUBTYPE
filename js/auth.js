@@ -12,7 +12,7 @@ const authError=error=>{const message=safeText(error?.message||error);
 class AuthClient{
   constructor(storage){
     this.storage=storage;this.config=globalThis.TRT_SUPABASE_CONFIG||{};
-    this.session=this.readSession();this.profile=null;this.mode='login';this.refreshPending=null;this.restorePending=null;
+    this.session=this.readSession();this.profile=null;this.mode='login';this.refreshPending=null;this.restorePending=null;this.profileSyncPending=null;
     storage.setAccount(this.session?.user?.id);
     this.bind();this.setMode('login');this.render();
   }
@@ -176,12 +176,19 @@ class AuthClient{
     return this.restorePending;
   }
   async syncState(){
-    if(!this.userId)return;
+    if(!this.userId)return false;
+    // Serialize snapshot writes. Parallel POST upserts could overwrite newer stats.
+    const id=this.userId;
+    if(this.profileSyncPending)await this.profileSyncPending;
+    if(this.userId!==id)return false;
     const snapshot=this.storage.cloudSnapshot();
-    try{
-      await this.privateApi('/rest/v1/player_profiles?on_conflict=user_id',{method:'POST',
-        prefer:'resolution=merge-duplicates',body:{user_id:this.userId,...snapshot,updated_at:new Date().toISOString()}});
-    }catch(error){console.warn('Cloud save failed:',error.message)}
+    const job=this.privateApi('/rest/v1/player_profiles?on_conflict=user_id',{method:'POST',
+      prefer:'resolution=merge-duplicates',body:{user_id:id,...snapshot,updated_at:new Date().toISOString()}})
+      .then(()=>true)
+      .catch(error=>{console.warn('Cloud save failed:',error.message);return false})
+      .finally(()=>{if(this.profileSyncPending===job)this.profileSyncPending=null});
+    this.profileSyncPending=job;
+    return job;
   }
   async importGuest(){
     if(!this.userId)return this.open('login');
