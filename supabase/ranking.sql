@@ -91,8 +91,8 @@ create policy "ranking own insert" on public.ranking_runs for insert to authenti
 
 create or replace view public.ranking_best
  with (security_invoker = true) as
- select coalesce(p.nickname,'철도러') as nickname,r.route_id,r.route_name,r.country_id,r.service_key,r.service_name,
-    r.cpm,r.accuracy,r.elapsed_ms,r.completed,r.created_at
+ select coalesce(p.nickname,'철도러') as nickname,r.route_id,r.route_name,r.country_id,
+    r.cpm,r.accuracy,r.elapsed_ms,r.completed,r.created_at,r.service_key,r.service_name
  from (
    select distinct on (user_id,route_id,country_id,service_key) user_id,route_id,route_name,country_id,service_key,service_name,cpm,
       accuracy,elapsed_ms,completed,created_at
