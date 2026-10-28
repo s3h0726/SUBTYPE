@@ -1,0 +1,32 @@
+name: Japanese miscellaneous-line category regression
+on:
+  push:
+    paths:
+      - 'data/japan-route-category-overrides.json'
+      - 'js/japan-route-category-patch.js'
+      - 'js/japan-lite-index.js'
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'tools/build-japan-lazy-catalog.cjs'
+      - 'tools/test-japan-other-categories.cjs'
+      - '.github/workflows/japan-other-categories.yml'
+  pull_request:
+    paths:
+      - 'data/japan-route-category-overrides.json'
+      - 'js/japan-route-category-patch.js'
+      - 'js/japan-lite-index.js'
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'tools/build-japan-lazy-catalog.cjs'
+      - 'tools/test-japan-other-categories.cjs'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/test-japan-other-categories.cjs
