@@ -7,6 +7,24 @@ const rel=JSON.parse(read(folder+'stations.json'));
 const tracks=JSON.parse(read(folder+'geometry.json'));
 const route=JSON.parse(read('data/generated/routes/line-11102.json')).route;
 const former='station-1110202',a='station-1110138',b='station-1110204';
+// Validate nationwide ingest and shared station master as well as the compiled route.
+// A later data rebuild must not resurrect a closed station.
+const nationwide=JSON.parse(read('data/nationwide/routes/line-11102.json')).route;
+const shared=JSON.parse(read('data/shared-stations/stations-61.json'));
+assert.equal(nationwide.stations.length,17);
+assert.equal(nationwide.stationSequence.length,17);
+assert.equal(nationwide.stations.some(s=>s.stationMasterId===former||s.ja==='二股'),false);
+assert.equal(nationwide.stationSequence.includes(former),false);
+assert.equal(shared.some(s=>s.id===former),false);
+assert.equal(nationwide.stations[0].ja,'長万部');
+assert.equal(nationwide.stations[1].ja,'黒松内');
+assert.equal(nationwide.stations.at(-1).ja,'小樽');
+assert.equal(nationwide.geometry.length,1435);
+assert.deepEqual(nationwide.stationSequence,route.stations.map(s=>s.id));
+// The separate, active Kyoto Tango Railway Futamata (二俣) must be preserved.
+const kyoto=JSON.parse(read('data/generated/routes/line-99608.json')).route;
+assert.ok(kyoto.stations.some(s=>s.ja==='二俣'));
+
 assert.equal(route.stations.length,17);
 assert.equal(route.directedSegments.length,16);
 assert.equal(route.geometry.length,1435,'Do not replace real curves with straight tracks');
