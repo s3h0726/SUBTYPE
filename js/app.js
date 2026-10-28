@@ -821,6 +821,8 @@ function renderCustomLibrary(){const list=storage.routes().filter(route=>(route.
 function showResult(result){
  let isRecord=false;
  try{isRecord=storage.saveResult(result)}catch(error){console.error('Unable to save result',error)}
+ // Account records are saved even when the game result is not leaderboard eligible.
+ void globalThis.TRTAuth?.syncState?.();
  // Logo elements were intentionally removed from the result screen.
  // Never require optional decorations for the completion transition.
  const setText=(id,value)=>{const el=$(id);if(el)el.textContent=String(value??'')};
@@ -902,6 +904,7 @@ function restartFeatureTimer(){clearInterval(featureTimer);if(matchMedia('(prefe
 document.querySelector('.feature-controls').addEventListener('click',e=>{const direction=e.target.closest('[data-slide]')?.dataset.slide,to=e.target.closest('[data-slide-to]')?.dataset.slideTo;if(direction)setFeature(featureIndex+(direction==='next'?1:-1));if(to!==undefined)setFeature(+to);restartFeatureTimer()});
 $('#feature-viewport').addEventListener('mouseenter',()=>clearInterval(featureTimer));$('#feature-viewport').addEventListener('mouseleave',restartFeatureTimer);restartFeatureTimer();
 $('#library-import').addEventListener('change',async e=>{await editor.import(e.target.files[0]);e.target.value='';renderCustomLibrary();go('custom-editor')});
+document.addEventListener('trt:cloud-restored',()=>{if(currentScreen==='records')renderStats()});
 initAuth(storage);applyCountryUi();refreshCountryCopy();renderHome();renderCustomLibrary();refreshRoutes();freeDrive?.setNetwork(freeDriveNetworkRoutes());renderHomeNetwork();if(currentScreen==='records')renderStats();if(['game','game-setup','result'].includes(currentScreen)){window.TRTNavigation?.showScreen('rail-map',{history:'replace'});toast('노선을 먼저 선택해 주세요.')}
 async function reloadRailData(){const summary=$('#data-summary');dataLoading=true;summary.classList.remove('error','has-count-chips');summary.textContent=`${countryId==='kr'?'대한민국 대중교통':'일본 전국 철도'} 카탈로그를 불러오는 중...`;try{let edits={};try{const response=await fetch('./data/editor-overrides.json?ts='+Date.now(),{cache:'no-store',signal:globalThis.AbortSignal?.timeout?.(4000)});if(response.ok)edits=await response.json()}catch(error){console.warn('Name editor overrides unavailable:',error)}globalThis.TRT_EDITOR_OVERRIDES=edits;
     // Apply editable Korean service names to source catalogs before routes are normalized.

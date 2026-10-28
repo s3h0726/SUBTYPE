@@ -60,7 +60,10 @@
       showScreen(trigger.dataset.nav);
     });
     addEventListener('popstate', event => showScreen(event.state?.screen || location.hash.slice(1), { history: 'none' }));
-    showScreen(initialScreen(), { history: 'replace' });
+    // Preserve Supabase email-confirmation/password-recovery URL fragments.
+    // auth.js needs to consume access_token before #home replaces this hash.
+    const authRedirect=/^(?:access_token|refresh_token|error|type)=/.test(location.hash.slice(1));
+    showScreen(initialScreen(), { history: authRedirect ? 'none' : 'replace' });
   }
 
   window.TRTNavigation = { showScreen, initialScreen };
