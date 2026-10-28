@@ -1,12 +1,11 @@
-# 하코다테혼선초우만부～오타루
+# 하코다테 본선(오샤만베~오타루)
 
-- Operator: JR 홋카이도
-- Japanese: 函館本線(長万部～小樽)
-- Korean: 하코다테혼선초우만부～오타루
-- Stations: 18
-- Symbol: 공식 로컬 asset 없음
-- Geometry: MLIT-N02-2025
-- Canonical direction: stations.json order 1 → 18
-- Reverse: runtime generated only
+- 운영사: JR 홋카이도
+- 일본어: 函館本線(長万部～小樽)
+- 현재 영업역: 17개 (오샤만베~쿠로마츠나이 사이 후타마타역 제외)
+- 후타마타(二股): 2026년 3월 14일 폐역 (JR 홋카이도 2026년 3월 시각표 개정)
+- 실제 선형: MLIT-N02-2025, 1,435개 좌표점 보존. 폐역 지점은 선로가 통과하지만 정차·타이핑하지 않음
+- 연결: 오샤만베~쿠로마츠나이 직접 1개 구간, 기존 연속 선형을 결합
+- 정방향: `stations.json` 1~17순 / 역방향: 플레이 런타임 생성
 
-Source of truth: line.json, stations.json, geometry.json
+원본: `line.json`, `stations.json`, `geometry.json`
