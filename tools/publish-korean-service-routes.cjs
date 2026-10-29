@@ -123,13 +123,19 @@ for(const item of endpointless){
  assert(track.length>0,'No verified OSM running track '+id);
  const line=maps['passenger-lines'].get(service.passengerLineId);
  const op=maps.operators.get(service.operatorIds?.[0]);
- assert(line?.names?.ko&&op?.names?.ko,'Missing passenger line/operator metadata '+id);
- const name=String(line.names.ko);
+ // Wolmi Sea Train's imported relation lacks an operator name; Incheon
+ // Transit Corporation is the confirmed public operator (2026-09-03 press release).
+ const namedOperator=relationId==='14074976'?'인천교통공사':null;
+ const operatorName=op?.names?.ko||namedOperator;
+ const name=String(line?.names?.ko||service.names?.ko||'').trim();
+ assert(line&&name&&operatorName,'Missing passenger line/operator metadata '+id);
+ const operatorId=op?.id||'kr-operator-wolmi-incheon-transit';
+ if(!op)operators.set(operatorId,{id:operatorId,ko:operatorName,ja:operatorName,en:'Incheon Transit Corporation'});
  const route={
   id,schemaVersion:2,countryId:'kr',category:({subway:'subway',light_rail:'light_rail',monorail:'monorail',tram:'tram',train:'commuter_rail'})[line.mode]||'commuter_rail',
   mode:line.mode==='train'?'rail':line.mode,regionId:line.regionId,
-  operatorId:op.id,operator:{...op.names,ja:op.names.ko},
-  line:{...line.names,ja:line.names.ko},lineColor:line.color||'#126499',
+  operatorId,operator:{...op?.names,ja:operatorName,ko:operatorName,en:op?.names?.en||operatorName},
+  line:{...line.names,ja:name,ko:name},lineColor:line.color||'#126499',
   passengerLineId:service.passengerLineId,passengerLineName:name,
   sourceRelationId:relationId,sourceServiceId:service.id,directionId:service.directionId,
   ...journey,loop:journey.stations[0].id===journey.stations.at(-1).id,
