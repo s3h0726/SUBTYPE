@@ -7,6 +7,17 @@ const prefix='window.TRT_EMBEDDED_LINE_WORKSPACES=';
 const begin=source.indexOf(prefix);
 if(begin<0)throw new Error('Missing canonical browser workspace');
 const ws=JSON.parse(source.slice(begin+prefix.length).trim().replace(/;\s*$/,''));
+const duplicateAliases=JSON.parse(fs.readFileSync(path.join(root,'data/japan-duplicate-route-aliases.json'),'utf8')).aliases;
+for(const [retired,canonical] of Object.entries(duplicateAliases)){
+ const old=ws.routes.find(r=>r.id===retired),keep=ws.routes.find(r=>r.id===canonical);
+ if(!old)continue;
+ if(!keep)throw Error('Duplicate route canonical source missing: '+canonical);
+ const names=route=>(route.stations||[]).map(st=>st.ja||st.names?.ja||'').join('|');
+ if(old.operatorId!==keep.operatorId||names(old)!==names(keep))
+  throw Error('Not an exact duplicate: '+retired+' versus '+canonical);
+}
+ws.routes=ws.routes.filter(r=>!duplicateAliases[r.id]);
+
 // Legitimate exact-duplicate consolidation reduced 601+ workspaces to 598.
 // Preserve a hard safety floor while allowing the canonical deduplicated inventory.
 if(!Array.isArray(ws.routes)||ws.routes.length<590)throw new Error('Canonical Japan route count fell below 590');
