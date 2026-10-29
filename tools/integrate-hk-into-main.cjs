@@ -40,6 +40,24 @@ if(!html.includes('js/hong-kong-index-data.js')){
 if(!html.includes('data-country="hk"'))html=html.replace(/(<div class="country-switch"[^>]*>)/,'$1<button data-country="hk">홍콩 Hong Kong / 香港</button>');
 assert(html.includes('data-country="hk"'),'Hong Kong country button missing');
 write('index.html',html);
+// Restore HK-only gameplay behaviors on top of main's newer game engine.
+let game=read('js/game.js');
+if(!game.includes('if(hongKongRouteBlockReason(route))'))
+ game=game.replace('this.stop(false);if(isKoreanResearch(route))',
+ 'this.stop(false);if(hongKongRouteBlockReason(route)){toast(hongKongRouteBlockReason(route));return false}if(isKoreanResearch(route))');
+game=game.replace('stations:this.resolvedRoute.stations,geometry:this.resolvedRoute.geometry',
+ "stations:this.resolvedRoute.stations.map(s=>route.countryId==='hk'&&this.options.inputMode==='memory'?{...s,ko:''}:s),geometry:this.resolvedRoute.geometry");
+game=game.replace('!state?.station||koreanRouteBlockReason(state.route)',
+ '!state?.station||hongKongRouteBlockReason(state.route)||koreanRouteBlockReason(state.route)');
+game=game.replace('||state.edges?.[0]',"||(route.countryId==='hk'?null:state.edges?.[0])");
+game=game.replace('||state?.edges?.[0]',"||(this.route?.countryId==='hk'?null:state?.edges?.[0])");
+if(!game.includes("if(this.route?.countryId==='hk'){this.renderFreeDriveState(state);return}"))
+ game=game.replace("toast('이 역에서 이어지는 다음 역이 없습니다.');return",
+ "if(this.route?.countryId==='hk'){this.renderFreeDriveState(state);return}toast('이 역에서 이어지는 다음 역이 없습니다.');return");
+if(!game.includes('  hintName(station)'))
+ game=game.replace('  showDeparture(){',
+ "  hintName(station){return this.route?.countryId==='hk'&&this.options.inputMode==='memory'?(station?.romaji||station?.ja||''):(station?.ko||'')}\n  showDeparture(){");
+write('js/game.js',game);
 const markers={
  'js/app.js':['HONG_KONG_CATEGORIES','hongKongRouteCards','prepareHongKongTramChoices',"countryId==='hk'"],
  'js/data-loader.js':['TRT_HONG_KONG_INDEX','hong-kong-lazy-index'],
