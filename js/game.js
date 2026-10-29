@@ -1,5 +1,4 @@
 import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
-import{isKoreanResearch,assertKoreanResearchRoute}from'./korean-research-resolver.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
 import{$,escapeHtml,formatTime,toast,koreanStationDisplayName,koreanRouteDisplayText}from'./utils.js';
 import{TypingController}from'./typing.js';
@@ -21,7 +20,7 @@ class Game{
     document.addEventListener('keydown',event=>{if(!$('#screen-game').classList.contains('active'))return;if(event.key==='Escape'){event.preventDefault();this.togglePause()}if(event.code==='Space'&&this.phase==='CORRECT_WAITING'&&!this.typing.isComposing()){event.preventDefault();this.advance()}})
   }
   start(route,options={}){
-    this.stop(false);if(hongKongRouteBlockReason(route)){toast(hongKongRouteBlockReason(route));return false}if(isKoreanResearch(route)){if(options.researchPreview!==true)return false;assertKoreanResearchRoute(route)}if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
+    this.stop(false);if(hongKongRouteBlockReason(route)){toast(hongKongRouteBlockReason(route));return false}if(route?.countryId==='kr'&&(route.previewContract==='kr-research-v1'||route.playStatus==='RESEARCH_PLAYABLE'||route.releaseStatus==='research')){toast('정식 공개되지 않은 한국 철도 경로입니다.');return false}if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
     route=railDataRepository.resolveRoute(route);if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
     if(!route||!Array.isArray(route.stations)||route.stations.length<2){console.error('Cannot start invalid line:',route?.id||route);toast('플레이하려면 역이 2개 이상인 노선이 필요합니다.');return false}
     this.route=route;this.options={mode:'complete',difficulty:'normal',display:'ja',input:'ko',direction:'forward',stationAdvance:'auto',mapMode:'geographic',stationLabel:'ja',mapLabels:'normal',motion:true,...options};this.service=route.services?.find(service=>service.id===this.options.service)||route.services?.find(service=>service.id==='local')||route.services?.[0]||{id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:route.stations.map(station=>station.id)};this.servicePattern=this.options.servicePattern||null;this.serviceJourney=this.options.serviceJourney||route.serviceJourney||null;this.trainType=this.options.trainType||null;this.trainTypeContexts=this.options.trainTypeContexts||route.trainTypeContexts||[];this.destinationStationId=this.options.destinationStationId||this.service.destinationStationId||null;
