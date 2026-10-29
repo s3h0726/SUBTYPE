@@ -51,7 +51,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for p in .gitattributes .gitignore data/kr data/generated data/lines data/operators data/nationwide data/source-audit data/edited reports/korean-names js/line-workspace-data.js js/korean-access-data.js tools/build-line-workspaces.js tools/lib/kr-service-reconstruction.js tools/lib/kr-topology-corrections.js tools/import-kr-network.js tools/import-kr-platforms.py; do
+          for p in .github/workflows .gitattributes .gitignore data/kr data/generated data/lines data/operators data/nationwide data/source-audit data/edited reports/korean-names js/line-workspace-data.js js/korean-access-data.js tools/build-line-workspaces.js tools/lib/kr-service-reconstruction.js tools/lib/kr-topology-corrections.js tools/import-kr-network.js tools/import-kr-platforms.py; do
             git restore --source=HEAD --staged --worktree -- "$p" 2>/dev/null || true
           done
           git status --short | head -55 || true
