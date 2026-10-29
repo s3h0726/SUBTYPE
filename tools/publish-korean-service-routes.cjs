@@ -43,7 +43,7 @@ for(const entry of source.routes){
  const sha=crypto.createHash('sha256').update(JSON.stringify({stations:original.stations,geometry:original.geometry,directedSegments:original.directedSegments})).digest('hex');
  const serviceName=String(original.line?.ko||'').replace(/:\s*/g,' · ').trim();
  const category=({subway:'subway',light_rail:'light_rail',monorail:'monorail',tram:'tram',train:'commuter_rail'})[original.mode]||'commuter_rail';
- const material={...original,id,category,releaseStatus:'released',playStatus:'RELEASED',visibility:'public',
+ const material={...original,id,category,mode:original.mode==='train'?'rail':original.mode,releaseStatus:'released',playStatus:'RELEASED',visibility:'public',
    serviceValidationStatus:'external-timetable-unverified',
    schemaVersion:2,sourceStatus:'osm-service-geometry',
    sourceServiceId:original.sourceServiceId,
