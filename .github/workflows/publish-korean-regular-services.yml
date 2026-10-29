@@ -1,0 +1,45 @@
+name: Publish playable Korean services into regular game
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/publish-korean-service-routes.cjs'
+      - 'tools/test-korean-regular-promotion.cjs'
+      - '.github/workflows/publish-korean-regular-services.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-korean-regular-main
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: true, fetch-depth: 1}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Promote all current-source playable Korean routes to regular game catalog
+        run: node tools/publish-korean-service-routes.cjs
+      - name: Rebuild public app bundle
+        run: node tools/build-app-bundle.js
+      - name: Check all published source geometry, station sequence, game selector
+        run: |
+          node --check js/app.bundle.js
+          node tools/test-korean-regular-promotion.cjs
+          node tools/test-hk-route-selector.cjs
+          node tools/test-exact-duplicate-jp-routes.cjs
+      - name: Commit generated regular routes into main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/kr/generated data/kr/evidence js/korea-index-data.js js/app.bundle.js index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "feat(kr): publish 121 current Korean OSM route directions as regular game lines"
+            git push origin HEAD:main
+          fi
