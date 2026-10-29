@@ -1517,7 +1517,6 @@ function renderSvg(container,route,{editable=false,onMove}={}){const stations=ro
 
 
 
-
 const transportStopNoun=route=>route?.mode==='river_bus'?'선착장':['bus','village_bus','express_bus'].includes(route?.mode)?'정류장':'역';
 const operatorVariantIndex=value=>{let hash=2166136261;for(const ch of String(value||'')){hash^=ch.codePointAt(0);hash=Math.imul(hash,16777619)}return Math.abs(hash>>>0)%6};
 class Game{
@@ -3136,7 +3135,6 @@ class AuthClient{
 function initAuth(storage){
   const client=new AuthClient(storage);globalThis.TRTAuth=client;void client.initialize();return client;
 }
-
 
 
 
