@@ -118,3 +118,63 @@
   #route-grid .line-card .line-card-description{-webkit-line-clamp:4;line-clamp:4}
   .service-setup-page .operating-pattern-card{min-height:120px}
 }
+
+/* v0.8.3: prevent line-card text clipping across every route, not only selected lines. */
+#route-grid .line-card{
+  box-sizing:border-box!important;
+  height:auto!important;
+  min-height:208px!important;
+  max-height:none!important;
+  min-width:0!important;
+  overflow:visible!important;
+  align-content:start!important;
+}
+#route-grid .line-card>*{
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+#route-grid .line-card h1,
+#route-grid .line-card h2,
+#route-grid .line-card h3,
+#route-grid .line-card .line-name,
+#route-grid .line-card .route-name{
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  white-space:normal!important;
+  text-overflow:clip!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  line-height:1.2!important;
+}
+#route-grid .line-card .line-card-description{
+  display:block!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  -webkit-line-clamp:unset!important;
+  line-clamp:unset!important;
+  -webkit-box-orient:initial!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:keep-all!important;
+}
+#route-grid .line-card footer{
+  margin-top:auto!important;
+  min-width:0!important;
+  flex-wrap:wrap!important;
+  white-space:normal!important;
+  gap:6px 10px!important;
+}
+#route-grid .line-card footer>*{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow-wrap:anywhere!important;
+}
+@media(max-width:600px){
+  #route-grid .line-card{min-height:0!important;padding-bottom:14px!important}
+  #route-grid .line-card h1,
+  #route-grid .line-card h2,
+  #route-grid .line-card h3{font-size:clamp(17px,5.5vw,22px)!important;letter-spacing:-.02em!important}
+}
