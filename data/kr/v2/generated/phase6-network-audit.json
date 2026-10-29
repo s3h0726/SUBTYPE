@@ -13,20 +13,22 @@
     "registeredStations": 1528,
     "registeredLineCandidates": 85,
     "registeredServiceCandidates": 317,
-    "registered": 317,
-    "sourceAssemblable": 261,
-    "researchPlayable": 128,
-    "researchBlocked": 177,
+    "registered": 442,
+    "sourceAssemblable": 263,
+    "researchPlayable": 325,
+    "researchBlocked": 105,
     "excluded": 12,
     "officialReleased": 0,
-    "unassembled": 56,
-    "passengerUnassembled": 44,
+    "sourceRegistered": 317,
+    "publishedPatternRoutes": 125,
+    "unassembled": 54,
+    "passengerUnassembled": 42,
     "officialVerifiedCallDayPatterns": 65,
     "highspeedResearchTrainRows": 621,
     "highspeedResearchPatterns": 551,
     "highspeedPatternsWithExactCandidateNames": 0,
     "originalPreviewPayloadsPreserved": 123,
-    "newResearchPaths": 5
+    "newResearchPaths": 202
   },
   "sourceCurrentness": {
     "highspeedWorkbookSha256": "cf69ea35e0b6ad9fb82c0e0b44f60833e34eadab55ea610eaf6784622351e9d0",
@@ -2252,7 +2254,7 @@
     {
       "path": "data/kr/v2/services.json",
       "sha256": "54212bd576ab95bf89aa0cf5d2c1025bf6e896cf1710995563397fc47af8cf93",
-      "currentSha256": "a56e742425476ea80286fc1e8e72991040244d0ecf6bf204a0d3f6e7ac77f9b2"
+      "currentSha256": "3dbfba2af39ee56d042471dd9bb36f3da78fa18c5b58ec240a20515b02452386"
     },
     {
       "path": "data/kr/generated/index.json",
@@ -2262,12 +2264,12 @@
     {
       "path": "data/kr/preview/index.json",
       "sha256": "f191b4bff785eb5e8eb4c9c27fff39df08613f604691074f65ad84db6507fed5",
-      "currentSha256": "751d27ce84eecbb65f80f10fb8389d9f2de42812a95800eb4965aad3de651227"
+      "currentSha256": "896cb3da6b092167a3190ef71e18c18a67fea5729292fffd90cc5f5dd860d412"
     },
     {
       "path": "js/app.bundle.js",
       "sha256": "def88533fae7efadafadebfdfa18b034eff4ab79cf143a58f9d51d8b5b042087",
-      "currentSha256": "b344ff3b58d9ff7f87e8cfe477c0728df6263441c5cad40ba41c3f178b07523b"
+      "currentSha256": "0e12462ceb81bb52a732945e6e92128eaacca8771601597cea6c1ff4ca11b597"
     }
   ],
   "geometry": [
@@ -2323,7 +2325,7 @@
       "lengthKm": 49.016460633998605,
       "maximumSourceSampleGapKm": 1.1303055594603784,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-2718884",
@@ -2332,7 +2334,7 @@
       "lengthKm": 71.47194499702225,
       "maximumSourceSampleGapKm": 1.8144960848176677,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-2718887",
@@ -2341,7 +2343,7 @@
       "lengthKm": 55.81954890629619,
       "maximumSourceSampleGapKm": 1.2377898241444316,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-2718888",
@@ -2350,7 +2352,7 @@
       "lengthKm": 40.63168865130019,
       "maximumSourceSampleGapKm": 1.3693824570460338,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-2718901",
@@ -2368,7 +2370,7 @@
       "lengthKm": 63.856003256421246,
       "maximumSourceSampleGapKm": 2.465206206169808,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-3012654",
@@ -2440,7 +2442,7 @@
       "lengthKm": 48.98629696666384,
       "maximumSourceSampleGapKm": 1.2227798321424008,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-4729445",
@@ -2458,7 +2460,7 @@
       "lengthKm": 71.39000100799848,
       "maximumSourceSampleGapKm": 2.015711871480681,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-4744337",
@@ -2494,7 +2496,7 @@
       "lengthKm": 45.3838985775933,
       "maximumSourceSampleGapKm": 1.2711516237087332,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-4748705",
@@ -2521,7 +2523,7 @@
       "lengthKm": 118.35496204353603,
       "maximumSourceSampleGapKm": 3.189180107432291,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-5993212",
@@ -2530,7 +2532,7 @@
       "lengthKm": 118.14697301162138,
       "maximumSourceSampleGapKm": 3.1913638927808328,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-6060963",
@@ -2557,7 +2559,7 @@
       "lengthKm": 55.72359980086922,
       "maximumSourceSampleGapKm": 1.3427703035109568,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-6064114",
@@ -2566,7 +2568,7 @@
       "lengthKm": 55.72359980086922,
       "maximumSourceSampleGapKm": 1.3427703035109568,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-6064115",
@@ -2593,7 +2595,7 @@
       "lengthKm": 55.91784404603705,
       "maximumSourceSampleGapKm": 1.2799552301415649,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-6708903",
@@ -2602,7 +2604,7 @@
       "lengthKm": 63.67604380654561,
       "maximumSourceSampleGapKm": 1.1097365668954928,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-7237829",
@@ -2638,7 +2640,7 @@
       "lengthKm": 10.573864519906726,
       "maximumSourceSampleGapKm": 0.6675607148436333,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-7530881",
@@ -2647,7 +2649,7 @@
       "lengthKm": 10.594804730813483,
       "maximumSourceSampleGapKm": 0.5508347197985946,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-7533582",
@@ -2674,7 +2676,7 @@
       "lengthKm": 37.56340624557254,
       "maximumSourceSampleGapKm": 0.9909310738754021,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-7685727",
@@ -2701,7 +2703,7 @@
       "lengthKm": 5.533932737029308,
       "maximumSourceSampleGapKm": 0.6072377136475885,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-7705729",
@@ -2746,7 +2748,7 @@
       "lengthKm": 37.57769581748717,
       "maximumSourceSampleGapKm": 0.9903889005702899,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-7883314",
@@ -2755,7 +2757,7 @@
       "lengthKm": 40.60658211610641,
       "maximumSourceSampleGapKm": 0.5852941876637905,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-7919000",
@@ -2764,7 +2766,7 @@
       "lengthKm": 63.88814782114096,
       "maximumSourceSampleGapKm": 2.818106033421675,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-7919018",
@@ -2836,7 +2838,7 @@
       "lengthKm": 63.6773688803084,
       "maximumSourceSampleGapKm": 0.8658584534852554,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-8656357",
@@ -2863,7 +2865,7 @@
       "lengthKm": 85.45278733163572,
       "maximumSourceSampleGapKm": 1.0827039455965661,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-8656362",
@@ -2872,7 +2874,7 @@
       "lengthKm": 81.23676164704281,
       "maximumSourceSampleGapKm": 1.0827039455965661,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-8656363",
@@ -2899,7 +2901,7 @@
       "lengthKm": 45.77830953644474,
       "maximumSourceSampleGapKm": 0.8326482000496901,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-8667956",
@@ -2908,7 +2910,7 @@
       "lengthKm": 45.98642945435463,
       "maximumSourceSampleGapKm": 0.8332779953210605,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-8691809",
@@ -3016,7 +3018,7 @@
       "lengthKm": 65.26722092493604,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-9849094",
@@ -3025,7 +3027,7 @@
       "lengthKm": 69.4090525839942,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-9931363",
@@ -3034,7 +3036,7 @@
       "lengthKm": 5.545767082840915,
       "maximumSourceSampleGapKm": 0.8748223172538402,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-9961459",
@@ -3097,7 +3099,7 @@
       "lengthKm": 123.8164257904326,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10685371",
@@ -3106,7 +3108,7 @@
       "lengthKm": 123.83795663787089,
       "maximumSourceSampleGapKm": 1.1121657674081622,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10685419",
@@ -3115,7 +3117,7 @@
       "lengthKm": 96.17409093196478,
       "maximumSourceSampleGapKm": 1.1107088625672286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10685420",
@@ -3124,7 +3126,7 @@
       "lengthKm": 96.06343705569704,
       "maximumSourceSampleGapKm": 1.1110687774989811,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10700967",
@@ -3133,7 +3135,7 @@
       "lengthKm": 42.422134768320106,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10700968",
@@ -3142,7 +3144,7 @@
       "lengthKm": 87.06591522138474,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10700978",
@@ -3187,7 +3189,7 @@
       "lengthKm": 45.67157756445081,
       "maximumSourceSampleGapKm": 1.1027298902187417,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10727493",
@@ -3196,7 +3198,7 @@
       "lengthKm": 47.172370520369206,
       "maximumSourceSampleGapKm": 1.1027298902187417,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10727605",
@@ -3214,7 +3216,7 @@
       "lengthKm": 64.98398370987654,
       "maximumSourceSampleGapKm": 1.8144960848176677,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10727607",
@@ -3223,7 +3225,7 @@
       "lengthKm": 71.47194499702225,
       "maximumSourceSampleGapKm": 1.8144960848176677,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10727608",
@@ -3232,7 +3234,7 @@
       "lengthKm": 71.39000100799848,
       "maximumSourceSampleGapKm": 2.015711871480681,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10746635",
@@ -3268,7 +3270,7 @@
       "lengthKm": 34.8727161074554,
       "maximumSourceSampleGapKm": 0.7694707292886861,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10776869",
@@ -3277,7 +3279,7 @@
       "lengthKm": 17.215853470064737,
       "maximumSourceSampleGapKm": 0.4835022588736896,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10799694",
@@ -3304,7 +3306,7 @@
       "lengthKm": 47.185457745907144,
       "maximumSourceSampleGapKm": 1.1027861778906791,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10828182",
@@ -3313,7 +3315,7 @@
       "lengthKm": 45.84591358254449,
       "maximumSourceSampleGapKm": 1.1027861778906791,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10869816",
@@ -3331,7 +3333,7 @@
       "lengthKm": 12.934346477199087,
       "maximumSourceSampleGapKm": 1.641270287913885,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10922025",
@@ -3349,7 +3351,7 @@
       "lengthKm": 6.141957664552782,
       "maximumSourceSampleGapKm": 0.6693386265994499,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-10947038",
@@ -3358,7 +3360,7 @@
       "lengthKm": 64.98871196638123,
       "maximumSourceSampleGapKm": 2.015711871480681,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-11073605",
@@ -3457,7 +3459,7 @@
       "lengthKm": 48.73336482574385,
       "maximumSourceSampleGapKm": 1.0429425597590394,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-11636212",
@@ -3475,7 +3477,7 @@
       "lengthKm": 48.85854087566669,
       "maximumSourceSampleGapKm": 1.2063281630797231,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-11651118",
@@ -3664,7 +3666,7 @@
       "lengthKm": 74.82478781848776,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-13528565",
@@ -3673,7 +3675,7 @@
       "lengthKm": 57.167925181097125,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-13675921",
@@ -3718,7 +3720,7 @@
       "lengthKm": 10.573864519906726,
       "maximumSourceSampleGapKm": 0.6675607148436333,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-13738411",
@@ -3826,7 +3828,7 @@
       "lengthKm": 6.052298812929505,
       "maximumSourceSampleGapKm": 0.26517777555428756,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-14115749",
@@ -3862,7 +3864,7 @@
       "lengthKm": 67.15897755738892,
       "maximumSourceSampleGapKm": 0.7427419018712269,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-14138330",
@@ -3871,7 +3873,7 @@
       "lengthKm": 67.02782656436663,
       "maximumSourceSampleGapKm": 0.8098340534212981,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-14138331",
@@ -3880,7 +3882,7 @@
       "lengthKm": 104.15974174719554,
       "maximumSourceSampleGapKm": 0.8971744377672136,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-14181831",
@@ -3898,7 +3900,7 @@
       "lengthKm": 104.26907445233779,
       "maximumSourceSampleGapKm": 0.8975732601371634,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-14191876",
@@ -3925,7 +3927,7 @@
       "lengthKm": 13.074021811006597,
       "maximumSourceSampleGapKm": 0.4835022588736896,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-15044497",
@@ -3961,7 +3963,7 @@
       "lengthKm": 34.8727161074554,
       "maximumSourceSampleGapKm": 0.7694707292886861,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-15055925",
@@ -3997,7 +3999,7 @@
       "lengthKm": 47.629830276402274,
       "maximumSourceSampleGapKm": 1.1421998347428364,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-15801809",
@@ -4006,7 +4008,7 @@
       "lengthKm": 47.75148785696022,
       "maximumSourceSampleGapKm": 1.1126138144556983,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-15802274",
@@ -4015,7 +4017,7 @@
       "lengthKm": 30.86674742279291,
       "maximumSourceSampleGapKm": 0.4835022588736896,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-15833199",
@@ -4024,7 +4026,7 @@
       "lengthKm": 37.22066222266113,
       "maximumSourceSampleGapKm": 0.7694707292886861,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-15833652",
@@ -4096,7 +4098,7 @@
       "lengthKm": 58.405458231433954,
       "maximumSourceSampleGapKm": 1.8144960848176677,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-15870297",
@@ -4105,7 +4107,7 @@
       "lengthKm": 58.345042569922754,
       "maximumSourceSampleGapKm": 2.015711871480681,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-15870343",
@@ -4168,7 +4170,7 @@
       "lengthKm": 77.69805413594547,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-16244687",
@@ -4315,6 +4317,24 @@
       "playableResearch": true
     },
     {
+      "serviceId": "kr-osm-service-16665961",
+      "stops": 14,
+      "geometryPoints": 247,
+      "lengthKm": 26.018273076339433,
+      "maximumSourceSampleGapKm": 1.8144960848176677,
+      "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
+      "playableResearch": true
+    },
+    {
+      "serviceId": "kr-osm-service-16665962",
+      "stops": 14,
+      "geometryPoints": 226,
+      "lengthKm": 25.93011680406375,
+      "maximumSourceSampleGapKm": 2.015711871480681,
+      "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
+      "playableResearch": true
+    },
+    {
       "serviceId": "kr-osm-service-16665963",
       "stops": 4,
       "geometryPoints": 120,
@@ -4420,7 +4440,7 @@
       "lengthKm": 107.3373828211932,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-16850862",
@@ -4429,7 +4449,7 @@
       "lengthKm": 80.35046500551917,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-16850863",
@@ -4438,7 +4458,7 @@
       "lengthKm": 55.144183707263714,
       "maximumSourceSampleGapKm": 0.7694707292886861,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-16850864",
@@ -4447,7 +4467,7 @@
       "lengthKm": 95.09625541829622,
       "maximumSourceSampleGapKm": 1.11149060862286,
       "sampleGapInterpretation": "Exact source polyline samples; long sample intervals require review and are not fabricated bridges",
-      "playableResearch": false
+      "playableResearch": true
     },
     {
       "serviceId": "kr-osm-service-16851102",
@@ -8587,44 +8607,6 @@
       ]
     },
     {
-      "serviceId": "kr-osm-service-16665961",
-      "relationId": "16665961",
-      "passengerCandidate": true,
-      "reason": "UNRESOLVED_IMPORT_TOPOLOGY",
-      "issues": [
-        {
-          "code": "AMBIGUOUS_ORIENTATION"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS"
-        },
-        {
-          "code": "OFFICIAL_TIMETABLE_REQUIRED"
-        }
-      ]
-    },
-    {
-      "serviceId": "kr-osm-service-16665962",
-      "relationId": "16665962",
-      "passengerCandidate": true,
-      "reason": "UNRESOLVED_IMPORT_TOPOLOGY",
-      "issues": [
-        {
-          "code": "NON_PUBLIC_TRACK_REVIEW",
-          "wayId": "626070235"
-        },
-        {
-          "code": "AMBIGUOUS_ORIENTATION"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS"
-        },
-        {
-          "code": "OFFICIAL_TIMETABLE_REQUIRED"
-        }
-      ]
-    },
-    {
       "serviceId": "kr-osm-service-16665967",
       "relationId": "16665967",
       "passengerCandidate": true,
@@ -9176,9 +9158,9 @@
     "OFFICIAL_TIMETABLE_REQUIRED": 317,
     "ORDERED_STOPS_NOT_ON_TRACK": 3,
     "STOP_NOT_ON_ORDERED_TRACK": 118,
-    "AMBIGUOUS_ORIENTATION": 5,
-    "MISSING_ORDERED_STOPS": 27,
-    "NON_PUBLIC_TRACK_REVIEW": 556,
+    "AMBIGUOUS_ORIENTATION": 3,
+    "MISSING_ORDERED_STOPS": 25,
+    "NON_PUBLIC_TRACK_REVIEW": 555,
     "MISSING_MEMBER_WAY": 45,
     "MISSING_TRACK": 8,
     "DISCONNECTED_MEMBERS": 384,
@@ -28662,8 +28644,8 @@
     "STATION_METADATA_NOT_VERIFIED": 295,
     "OPERATOR_NOT_VERIFIED": 305,
     "OPERATOR_LOGO_NOT_VERIFIED": 301,
-    "UNRESOLVED_IMPORT_TOPOLOGY": 44,
-    "NON_PUBLIC_TRACK_REQUIRES_EXCLUSION": 139,
+    "UNRESOLVED_IMPORT_TOPOLOGY": 42,
+    "NON_PUBLIC_TRACK_REQUIRES_EXCLUSION": 140,
     "ONEWAY_DIRECTION_CONFLICT": 23,
     "ROAD_OR_AMBIGUOUS_RAIL_ROAD_WAY": 4
   },
