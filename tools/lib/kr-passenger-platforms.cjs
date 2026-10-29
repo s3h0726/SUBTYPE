@@ -1,11 +1,12 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{assemble,km}=require('./kr-network');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),digest=o=>hash(JSON.stringify(o));
+const evidenceTextSha256=bytes=>hash(bytes.toString('utf8').replace(/\r\n/g,'\n'));
 function loadPassengerPlatforms(base,data,ways){
  if(!base||!fs.existsSync(path.join(base,'passenger-platform-sidings.json')))return new Map();
  const policy=JSON.parse(fs.readFileSync(path.join(base,'passenger-platform-sidings.json'),'utf8')),bytes=fs.readFileSync(path.join(base,'official-station-reference.json'));
- if(policy.policy!=='kr-passenger-platform-v1'||hash(bytes)!==policy.officialReferenceSha256)throw Error('STALE_PASSENGER_PLATFORM_REFERENCE');
- const highspeed=JSON.parse(fs.readFileSync(path.join(base,'korail-highspeed-pattern-research.json'),'utf8')),areas=new Map(JSON.parse(fs.readFileSync(path.join(base,'source/osm-relations.json'),'utf8')).map(r=>[r.id,r]));if(hash(fs.readFileSync(path.join(base,'korail-highspeed-pattern-research.json')))!==policy.highspeedDocumentSha256)throw Error('STALE_PASSENGER_TIMETABLE');
+ if(policy.policy!=='kr-passenger-platform-v1'||policy.documentHashEncoding!=='sha256-utf8-lf'||evidenceTextSha256(bytes)!==policy.officialReferenceSha256)throw Error('STALE_PASSENGER_PLATFORM_REFERENCE');
+ const highspeed=JSON.parse(fs.readFileSync(path.join(base,'korail-highspeed-pattern-research.json'),'utf8')),areas=new Map(JSON.parse(fs.readFileSync(path.join(base,'source/osm-relations.json'),'utf8')).map(r=>[r.id,r]));if(evidenceTextSha256(fs.readFileSync(path.join(base,'korail-highspeed-pattern-research.json')))!==policy.highspeedDocumentSha256)throw Error('STALE_PASSENGER_TIMETABLE');
  const refs=new Map(JSON.parse(bytes).map(r=>[r.id,r])),nodes=new Map(JSON.parse(fs.readFileSync(path.join(base,'source/osm-nodes.json'))).map(n=>[n.id,n])),services=new Map(data.services.map(s=>[s.id,s])),result=new Map(),tidy=n=>String(n||'').normalize('NFC').replace(/\([^)]*\)/g,'').replace(/역$/,'').trim();
  for(const group of policy.groups){const s=services.get(group.sourceServiceId);if(!s||s.access?.passengerCandidate===false||group.classification!=='PASSENGER_PLATFORM_SIDING'||digest(s.paths)!==group.sourcePathsSha256||digest(s.stops)!==group.sourceStopsSha256||!group.stops.length||!group.ways.length)throw Error('STALE_PASSENGER_PLATFORM_SERVICE');
   const start=s.paths.findIndex((p,i)=>group.ways.every((w,j)=>s.paths[i+j]?.geometryId==='kr-geometry-'+w.wayId&&s.paths[i+j].reverse===w.reverse));if(start<0)throw Error('PASSENGER_PLATFORM_NOT_SOURCE_CHAIN');
@@ -22,4 +23,4 @@ function loadPassengerPlatforms(base,data,ways){
  }
  return result;
 }
-module.exports={loadPassengerPlatforms};
+module.exports={loadPassengerPlatforms,evidenceTextSha256};

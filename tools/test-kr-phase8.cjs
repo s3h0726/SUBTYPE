@@ -41,3 +41,5 @@ test('physical selector families unify variants without changing research or off
 });
 
 test('hydrated Korean route station names survive the shared repository without merging another platform or timetable alias',async()=>{const {railDataRepository:repo}=await import('../js/rail-data-repository.js'),{normalizeLine}=await import('../js/data-loader.js'),api=await runtime;repo.reset();for(const meta of index.routes){const r=await routeFor(meta);for(const st of r.stations)repo.registerStation({...st,ko:'다른 계통의 이름'});const resolved=repo.resolveRoute(normalizeLine(r));assert.deepEqual(resolved.stations.map(s=>s.ko),r.stations.map(s=>s.ko));assert.deepEqual(resolved.stations.map(s=>[s.id,s.latitude,s.longitude]),r.stations.map(s=>[s.id,s.latitude,s.longitude]));api.assertKoreanResearchRoute(resolved);}repo.reset();});
+
+test('platform evidence ignores checkout CRLF only and rejects changed document content',()=>{const {evidenceTextSha256:h}=require('./lib/kr-passenger-platforms.cjs');assert.equal(h(Buffer.from('a\nb\n')),h(Buffer.from('a\r\nb\r\n')));assert.notEqual(h(Buffer.from('a\nb\n')),h(Buffer.from('a\nc\n')));});

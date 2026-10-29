@@ -1,3 +1,4 @@
+const {evidenceTextSha256}=require('./lib/kr-passenger-platforms.cjs');
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {load,validate,assemble,km}=require('./lib/kr-network');
@@ -17,7 +18,7 @@ for(const service of data.services){if(service.access?.passengerCandidate===fals
  };
  for(const part of service.paths){const w=ways.get(part.geometryId.replace('kr-geometry-',''));if(w?.tags.service==='siding'&&['rail','subway','light_rail'].includes(w.tags.railway)&&!w.tags.highway&&!['no','private'].includes(w.tags.access)&&!['military','industrial','test'].includes(w.tags.usage)&&!((w.tags.oneway==='yes'&&part.reverse)||(w.tags.oneway==='-1'&&!part.reverse)))run.push(part);else flush();}flush();
 }
-const policy={schemaVersion:1,policy:'kr-passenger-platform-v1',sourceMeaning:'https://wiki.openstreetmap.org/wiki/Key:service',reviewStatus:'AUTOMATED_PROVISIONAL_CLASSIFICATION_NOT_RELEASE_APPROVAL',highspeedDocumentSha256:hash(fs.readFileSync(path.join(base,'korail-highspeed-pattern-research.json'))),officialReferenceSha256:hash(fs.readFileSync(path.join(base,'official-station-reference.json'))),groups};
+const policy={schemaVersion:1,policy:'kr-passenger-platform-v1',documentHashEncoding:'sha256-utf8-lf',sourceMeaning:'https://wiki.openstreetmap.org/wiki/Key:service',reviewStatus:'AUTOMATED_PROVISIONAL_CLASSIFICATION_NOT_RELEASE_APPROVAL',highspeedDocumentSha256:evidenceTextSha256(fs.readFileSync(path.join(base,'korail-highspeed-pattern-research.json'))),officialReferenceSha256:evidenceTextSha256(fs.readFileSync(path.join(base,'official-station-reference.json'))),groups};
 fs.writeFileSync(path.join(base,'passenger-platform-sidings.json'),JSON.stringify(policy,null,2)+'\n');
 const manifest=[...new Map(groups.flatMap(g=>g.ways.map(w=>[w.wayId,{wayId:w.wayId,version:w.version,groupId:g.id}]))).values()];
 fs.writeFileSync(path.join(root,'js/korean-passenger-track-data.js'),'/* Generated from pinned source tracks and official station references. */\nexport const KR_PASSENGER_PLATFORM_SIDINGS='+JSON.stringify(manifest)+';\n');
