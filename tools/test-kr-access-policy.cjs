@@ -34,3 +34,7 @@ test('Game start refuses both saved restricted IDs and restricted repository res
  assert.equal(g.start('kr-osm-service-3399104'),false);assert.equal(resolves,0);assert.equal(g.start({id:'old-alias'}),false);assert.equal(resolves,1);
  assert.equal(g.startFreeDrive({route:{id:'kr-osm-service-17585166'},station:{id:'terminal'}}),false);
 });
+
+test('the Pyeongtaek to Anjung leg cannot be promoted to a standalone service',()=>{
+ const evidence=JSON.parse(read('data/kr/v2/korail-seohae-pattern-research.json')),r=policy.relations.find(r=>r.osmRelationId==='20500839');assert.equal(r.passengerCandidate,false);assert.equal(r.classification,'RESEARCH_PARTIAL_OPERATING_SERVICE');assert.deepEqual(evidence.relationReviews[0].matchedCompleteTrainNumbers,[]);assert.deepEqual(evidence.relationReviews[0].matchedLegTrainNumbers,['1242','1244','1246']);for(const number of ['1242','1244','1246']){const t=evidence.trains.find(t=>t.trainNumber===number);assert.equal(t.origin,'홍성');assert.equal(t.destination,'홍성');assert(t.calls.some((c,i)=>c.stationName==='평택'&&t.calls[i+1]?.stationName==='안중'));assert.equal(t.operatingDaysVerified,false);assert.equal(t.releaseApproved,false)}
+});

@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-10-20T10:27:00.158Z",
+  "status": "PASS_WITH_LIMITED_SCOPE",
+  "consoleErrors": 0,
+  "consoleScope": "Fresh local preview session, HK DRL DT normal and memory play; not every pending service or cloud flow.",
+  "darkMobile": "PASS",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "horizontalOverflow": false,
+      "light": "PASS",
+      "dark": "PASS",
+      "memoryAnswerHidden": true,
+      "footerBottom": 825.34
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "checkedAt": "2026-10-18",
+      "horizontalOverflow": false,
+      "light": "PASS",
+      "dark": "PASS"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "DRL DT normal AUTO completion",
+      "status": "PASS",
+      "checkedAt": "2026-10-18"
+    },
+    {
+      "name": "DRL UT memory SPACE completion",
+      "status": "PASS",
+      "checkedAt": "2026-10-18"
+    },
+    {
+      "name": "HK CUSTOM create/save/reload/play",
+      "status": "PASS",
+      "checkedAt": "2026-10-18"
+    },
+    {
+      "name": "HK to JP and KR catalog navigation",
+      "status": "PASS",
+      "checkedAt": "2026-10-18"
+    },
+    {
+      "name": "DRL DT mobile memory AUTO completion",
+      "status": "PASS",
+      "checkedAt": "2026-10-20"
+    }
+  ],
+  "cloudAuthentication": "NOT_TESTED: Supabase public configuration absent",
+  "pendingServicePlaythrough": "NOT_TESTED: blocked intentionally",
+  "screenshots": [
+    "output/hk/final-mobile-light.jpg",
+    "output/hk/final-mobile-dark.jpg",
+    "output/hk/final-mobile-result.jpg"
+  ],
+  "screenshotsTracked": false
+}

@@ -1,0 +1,810 @@
+{
+  "id": "hk-peak-tram-pending",
+  "countryId": "hk",
+  "schemaVersion": 1,
+  "canonicalLineId": "hk-peak-tram",
+  "servicePatternId": "hk-peak-tram-pending",
+  "serviceLabel": "Garden Road Peak Tram Terminal → Peak Tram Terminus",
+  "operatorId": "hk-peak-tram",
+  "operator": {
+    "ja": "山頂纜車",
+    "en": "Peak Tram",
+    "ko": "피크트램"
+  },
+  "line": {
+    "ja": "山頂纜車",
+    "en": "Peak Tram",
+    "ko": "피크트램"
+  },
+  "category": "funicular",
+  "mode": "funicular",
+  "code": "",
+  "officialSymbolExists": false,
+  "lineColor": "#71857d",
+  "lineTheme": {
+    "code": "",
+    "color": "#71857d",
+    "style": "hk",
+    "colorVerified": false,
+    "colorSource": "OSM candidate; official colour audit pending"
+  },
+  "loop": false,
+  "lazy": false,
+  "playable": false,
+  "releaseStatus": "INCOMPLETE",
+  "geometryReady": true,
+  "geometryStatus": "verified",
+  "blockedReasons": [
+    "조건부 운행 시간대 검증 필요",
+    "한국어 역명 검수 필요"
+  ],
+  "direction": "up",
+  "validWhen": {
+    "type": "request-stop",
+    "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
+  },
+  "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+  "stopStatus": "verified",
+  "geometry": [
+    [
+      22.2771695,
+      114.158577
+    ],
+    [
+      22.2769392,
+      114.1583785
+    ],
+    [
+      22.2768893,
+      114.158338
+    ],
+    [
+      22.2768355,
+      114.1582941
+    ],
+    [
+      22.2767649,
+      114.1582439
+    ],
+    [
+      22.276545,
+      114.1580862
+    ],
+    [
+      22.2764321,
+      114.158008
+    ],
+    [
+      22.2762955,
+      114.1579122
+    ],
+    [
+      22.2756926,
+      114.1574881
+    ],
+    [
+      22.2751722,
+      114.1571206
+    ],
+    [
+      22.2747827,
+      114.1568307
+    ],
+    [
+      22.2742035,
+      114.1564041
+    ],
+    [
+      22.2733633,
+      114.155887
+    ],
+    [
+      22.2730611,
+      114.1556754
+    ],
+    [
+      22.2723574,
+      114.1551776
+    ],
+    [
+      22.272298,
+      114.1551248
+    ],
+    [
+      22.2722192,
+      114.1550396
+    ],
+    [
+      22.2719353,
+      114.1548486
+    ],
+    [
+      22.2715303,
+      114.1545673
+    ],
+    [
+      22.2710864,
+      114.1542534
+    ],
+    [
+      22.2709635,
+      114.1541532
+    ],
+    [
+      22.270904,
+      114.1540965
+    ],
+    [
+      22.2708276,
+      114.1539696
+    ],
+    [
+      22.2707511,
+      114.1537372
+    ],
+    [
+      22.2707279,
+      114.1536027
+    ],
+    [
+      22.2707327,
+      114.153445
+    ],
+    [
+      22.2707523,
+      114.1532799
+    ],
+    [
+      22.2707971,
+      114.1528732
+    ],
+    [
+      22.2708323,
+      114.1525915
+    ],
+    [
+      22.2708793,
+      114.1524047
+    ],
+    [
+      22.2709577,
+      114.1517471
+    ],
+    [
+      22.270978,
+      114.1515542
+    ],
+    [
+      22.2709886,
+      114.1514534
+    ],
+    [
+      22.2711097,
+      114.1503039
+    ],
+    [
+      22.271123,
+      114.1501414
+    ]
+  ],
+  "directedSegments": [
+    {
+      "id": "hk-track-d99f20d2841f59177a",
+      "fromStationId": "hk-peak-stop-99801",
+      "toStationId": "hk-peak-stop-99802",
+      "geometry": [
+        [
+          22.2771695,
+          114.158577
+        ],
+        [
+          22.2769392,
+          114.1583785
+        ],
+        [
+          22.2768893,
+          114.158338
+        ],
+        [
+          22.2768355,
+          114.1582941
+        ],
+        [
+          22.2767649,
+          114.1582439
+        ],
+        [
+          22.276545,
+          114.1580862
+        ]
+      ],
+      "segmentLengthMeters": 85.93472296285222,
+      "sourceWayIds": [
+        85404150,
+        1308940441,
+        1308940440,
+        1046739317,
+        1046739316
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-2215938547adfaeb8b",
+      "fromStationId": "hk-peak-stop-99802",
+      "toStationId": "hk-peak-stop-99803",
+      "geometry": [
+        [
+          22.276545,
+          114.1580862
+        ],
+        [
+          22.2764321,
+          114.158008
+        ],
+        [
+          22.2762955,
+          114.1579122
+        ],
+        [
+          22.2756926,
+          114.1574881
+        ],
+        [
+          22.2751722,
+          114.1571206
+        ]
+      ],
+      "segmentLengthMeters": 182.13588282206302,
+      "sourceWayIds": [
+        1046739316,
+        85404052,
+        265943515
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-7e26bd74711cbccba7",
+      "fromStationId": "hk-peak-stop-99803",
+      "toStationId": "hk-peak-stop-99804",
+      "geometry": [
+        [
+          22.2751722,
+          114.1571206
+        ],
+        [
+          22.2747827,
+          114.1568307
+        ],
+        [
+          22.2742035,
+          114.1564041
+        ],
+        [
+          22.2733633,
+          114.155887
+        ]
+      ],
+      "segmentLengthMeters": 238.04516823147287,
+      "sourceWayIds": [
+        265943515
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-21ff7c2a24a00b1adb",
+      "fromStationId": "hk-peak-stop-99804",
+      "toStationId": "hk-peak-stop-99805",
+      "geometry": [
+        [
+          22.2733633,
+          114.155887
+        ],
+        [
+          22.2730611,
+          114.1556754
+        ],
+        [
+          22.2723574,
+          114.1551776
+        ],
+        [
+          22.272298,
+          114.1551248
+        ],
+        [
+          22.2722192,
+          114.1550396
+        ],
+        [
+          22.2719353,
+          114.1548486
+        ],
+        [
+          22.2715303,
+          114.1545673
+        ],
+        [
+          22.2710864,
+          114.1542534
+        ],
+        [
+          22.2709635,
+          114.1541532
+        ],
+        [
+          22.270904,
+          114.1540965
+        ],
+        [
+          22.2708276,
+          114.1539696
+        ],
+        [
+          22.2707511,
+          114.1537372
+        ],
+        [
+          22.2707279,
+          114.1536027
+        ],
+        [
+          22.2707327,
+          114.153445
+        ],
+        [
+          22.2707523,
+          114.1532799
+        ],
+        [
+          22.2707971,
+          114.1528732
+        ],
+        [
+          22.2708323,
+          114.1525915
+        ],
+        [
+          22.2708793,
+          114.1524047
+        ],
+        [
+          22.2709577,
+          114.1517471
+        ]
+      ],
+      "segmentLengthMeters": 578.1036845111081,
+      "sourceWayIds": [
+        265943515,
+        265943513,
+        1165024097
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-1a645eb4f02d1f59c7",
+      "fromStationId": "hk-peak-stop-99805",
+      "toStationId": "hk-peak-stop-99806",
+      "geometry": [
+        [
+          22.2709577,
+          114.1517471
+        ],
+        [
+          22.270978,
+          114.1515542
+        ],
+        [
+          22.2709886,
+          114.1514534
+        ],
+        [
+          22.2711097,
+          114.1503039
+        ],
+        [
+          22.271123,
+          114.1501414
+        ]
+      ],
+      "segmentLengthMeters": 166.25041110954893,
+      "sourceWayIds": [
+        1165024097,
+        622565242,
+        4338940,
+        1117280223
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-25",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    }
+  ],
+  "stations": [
+    {
+      "id": "hk-peak-stop-99801",
+      "code": "",
+      "sourceStopNodeId": 2525250101,
+      "nameZhHant": "花園道纜車總站",
+      "nameEn": "Garden Road Peak Tram Terminal",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": false,
+      "governmentStopId": "99801",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99801",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2771695,
+        "lng": 114.158577
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/2525250101",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-peak-tram-pending-stop-0",
+      "physicalStationId": "hk-peak-stop-99801",
+      "lineId": "hk-peak-tram",
+      "stopPosition": {
+        "lat": 22.2771695,
+        "lng": 114.158577,
+        "sourceNodeId": 2525250101,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/2525250101"
+      },
+      "geometryIndex": 0,
+      "stationMasterId": "hk-peak-stop-99801",
+      "ja": "花園道纜車總站",
+      "kana": "",
+      "romaji": "Garden Road Peak Tram Terminal",
+      "ko": "",
+      "koAliases": [],
+      "latitude": 22.2771695,
+      "longitude": 114.158577,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc"
+    },
+    {
+      "id": "hk-peak-stop-99802",
+      "code": "",
+      "sourceStopNodeId": 526904599,
+      "nameZhHant": "堅尼地道站",
+      "nameEn": "Kennedy Road Station",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": true,
+      "governmentStopId": "99802",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99802",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.276545,
+        "lng": 114.1580862
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/526904599",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-peak-tram-pending-stop-1",
+      "physicalStationId": "hk-peak-stop-99802",
+      "lineId": "hk-peak-tram",
+      "stopPosition": {
+        "lat": 22.276545,
+        "lng": 114.1580862,
+        "sourceNodeId": 526904599,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/526904599"
+      },
+      "geometryIndex": 5,
+      "stationMasterId": "hk-peak-stop-99802",
+      "ja": "堅尼地道站",
+      "kana": "",
+      "romaji": "Kennedy Road Station",
+      "ko": "",
+      "koAliases": [],
+      "latitude": 22.276545,
+      "longitude": 114.1580862,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc"
+    },
+    {
+      "id": "hk-peak-stop-99803",
+      "code": "",
+      "sourceStopNodeId": 988059698,
+      "nameZhHant": "麥當勞道站",
+      "nameEn": "Macdonnell Road Station",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": true,
+      "governmentStopId": "99803",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99803",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2751722,
+        "lng": 114.1571206
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/988059698",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-peak-tram-pending-stop-2",
+      "physicalStationId": "hk-peak-stop-99803",
+      "lineId": "hk-peak-tram",
+      "stopPosition": {
+        "lat": 22.2751722,
+        "lng": 114.1571206,
+        "sourceNodeId": 988059698,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/988059698"
+      },
+      "geometryIndex": 9,
+      "stationMasterId": "hk-peak-stop-99803",
+      "ja": "麥當勞道站",
+      "kana": "",
+      "romaji": "Macdonnell Road Station",
+      "ko": "",
+      "koAliases": [],
+      "latitude": 22.2751722,
+      "longitude": 114.1571206,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc"
+    },
+    {
+      "id": "hk-peak-stop-99804",
+      "code": "",
+      "sourceStopNodeId": 988059498,
+      "nameZhHant": "梅道站",
+      "nameEn": "May Road Station",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": true,
+      "governmentStopId": "99804",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99804",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2733633,
+        "lng": 114.155887
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/988059498",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-peak-tram-pending-stop-3",
+      "physicalStationId": "hk-peak-stop-99804",
+      "lineId": "hk-peak-tram",
+      "stopPosition": {
+        "lat": 22.2733633,
+        "lng": 114.155887,
+        "sourceNodeId": 988059498,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/988059498"
+      },
+      "geometryIndex": 12,
+      "stationMasterId": "hk-peak-stop-99804",
+      "ja": "梅道站",
+      "kana": "",
+      "romaji": "May Road Station",
+      "ko": "",
+      "koAliases": [],
+      "latitude": 22.2733633,
+      "longitude": 114.155887,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc"
+    },
+    {
+      "id": "hk-peak-stop-99805",
+      "code": "",
+      "sourceStopNodeId": 988059821,
+      "nameZhHant": "白加道站",
+      "nameEn": "Barker Road Station",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": true,
+      "governmentStopId": "99805",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99805",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2709577,
+        "lng": 114.1517471
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/988059821",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-peak-tram-pending-stop-4",
+      "physicalStationId": "hk-peak-stop-99805",
+      "lineId": "hk-peak-tram",
+      "stopPosition": {
+        "lat": 22.2709577,
+        "lng": 114.1517471,
+        "sourceNodeId": 988059821,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/988059821"
+      },
+      "geometryIndex": 30,
+      "stationMasterId": "hk-peak-stop-99805",
+      "ja": "白加道站",
+      "kana": "",
+      "romaji": "Barker Road Station",
+      "ko": "",
+      "koAliases": [],
+      "latitude": 22.2709577,
+      "longitude": 114.1517471,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc"
+    },
+    {
+      "id": "hk-peak-stop-99806",
+      "code": "",
+      "sourceStopNodeId": 26412045,
+      "nameZhHant": "山頂纜車總站",
+      "nameEn": "Peak Tram Terminus",
+      "nameKo": null,
+      "nameStatus": "unverified",
+      "governmentLastUpdate": "2025-02-14T00:00:00",
+      "requestStop": false,
+      "governmentStopId": "99806",
+      "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "canonicalStationId": "hk-peak-stop-99806",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.271123,
+        "lng": 114.1501414
+      },
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/26412045",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-peak-tram-pending-stop-5",
+      "physicalStationId": "hk-peak-stop-99806",
+      "lineId": "hk-peak-tram",
+      "stopPosition": {
+        "lat": 22.271123,
+        "lng": 114.1501414,
+        "sourceNodeId": 26412045,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/26412045"
+      },
+      "geometryIndex": 34,
+      "stationMasterId": "hk-peak-stop-99806",
+      "ja": "山頂纜車總站",
+      "kana": "",
+      "romaji": "Peak Tram Terminus",
+      "ko": "",
+      "koAliases": [],
+      "latitude": 22.271123,
+      "longitude": 114.1501414,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc"
+    }
+  ],
+  "services": [
+    {
+      "id": "hk-peak-tram-pending",
+      "nameJa": "山頂纜車",
+      "nameEn": "Peak Tram",
+      "nameKo": "피크트램",
+      "stops": [
+        "hk-peak-stop-99801",
+        "hk-peak-stop-99802",
+        "hk-peak-stop-99803",
+        "hk-peak-stop-99804",
+        "hk-peak-stop-99805",
+        "hk-peak-stop-99806"
+      ]
+    }
+  ],
+  "operatingConditionFingerprint": "a2400aac8fae4e48fcb8a7552d2b16a88cb43c60a10aaea38fbb293e427647eb",
+  "validationFingerprint": "ce1f931a5cd46a90ec42ae826a88e0051e2b58151398847740aa2a8bf183aacb"
+}

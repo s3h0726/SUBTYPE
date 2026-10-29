@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-10-24",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "status": "PASS",
+  "dark": "images/mobile-dark-transfer.jpg",
+  "light": "images/mobile-light-transfer.jpg",
+  "beforeFix": "HUD at y70 overlapped transfer tabs y4–97 and header y107–161; fixed to y166.",
+  "after": {
+    "boxes": [
+      {
+        "bottom": 97.33333587646484,
+        "height": 93.33333587646484,
+        "left": 6,
+        "right": 384,
+        "selector": "#game-free-drive-tabs",
+        "top": 4,
+        "width": 378,
+        "x": 6,
+        "y": 4
+      },
+      {
+        "bottom": 161,
+        "height": 54,
+        "left": 7,
+        "right": 383,
+        "selector": ".game-top",
+        "top": 107,
+        "width": 376,
+        "x": 7,
+        "y": 107
+      },
+      {
+        "bottom": 220,
+        "height": 54,
+        "left": 12,
+        "right": 378,
+        "selector": ".hud-strip",
+        "top": 166,
+        "width": 366,
+        "x": 12,
+        "y": 166
+      },
+      {
+        "bottom": 826,
+        "height": 362.125,
+        "left": 12,
+        "right": 378,
+        "selector": "#station-sign",
+        "top": 463.875,
+        "width": 366,
+        "x": 12,
+        "y": 463.875
+      }
+    ],
+    "scrollWidth": 390,
+    "theme": "light",
+    "width": 390
+  }
+}

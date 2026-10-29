@@ -9,9 +9,10 @@ const coords=new Map();for(const w of read('source/osm-ways'))w.nodeIds.forEach(
 const nodes=new Map(read('source/osm-nodes').map(n=>[n.id,n]));
 const official=new Map(read('timetable-verifications').map(v=>[v.serviceId,v]));
 const platformRows=read('official-platform-reference');
-const rows=[];let assemblable=0;
+const rows=[];let assemblable=0,playableSourceCandidates=0;
 for(const s of data.services){
- try{assemble(s,maps);assemblable++;continue}catch{}
+ let journey;try{journey=assemble(s,maps);assemblable++}catch{}
+ if(journey&&s.access?.passengerCandidate!==false){playableSourceCandidates++;continue}
  const id=s.id.split('-').at(-1),relation=sourceRelations.get(id),causes=[];
  const policy=s.access?.passengerCandidate===false;
  if(policy)causes.push(s.access.classification);
@@ -22,7 +23,7 @@ for(const s of data.services){
  if(facilityMembers.length)causes.push('NON_RAIL_FACILITY_MEMBER_REQUIRES_REAL_TRACK_SOURCE');
  const v=official.get(s.id);
  rows.push({serviceId:s.id,relationId:id,sourceName:s.names.ko,origin:s.osmFrom,destination:s.osmTo,passengerLineId:s.passengerLineId,
-  category:policy?'EXCLUDED_OR_QUARANTINED':'PASSENGER_RESEARCH',access:s.access||null,causes,
+  category:policy?'EXCLUDED_OR_QUARANTINED':'PASSENGER_RESEARCH',sourceAssemblable:!!journey,access:s.access||null,causes,
   relationUrl:'https://www.openstreetmap.org/relation/'+id,sourceWayIds:relation.members.filter(m=>m.type==='w').map(m=>m.ref),
   officialStopOrder:v?.calls.map(c=>c.officialStationName)||null,officialTimetableStatus:v?.status||'NOT_VERIFIED',
   issues:s.issues.map(i=>{const n=nodes.get(i.nodeId);return {...i,fromCoordinates:coords.get(i.from)||null,toCoordinates:coords.get(i.to)||null,stopCoordinates:n?[n.lat,n.lon]:null,stopTags:n?.tags||null}}),facilityMembers,

@@ -1,0 +1,155 @@
+{
+  "checkedAt": "2026-10-20T11:15:13.175Z",
+  "totalInvestigated": 9,
+  "resolved": 3,
+  "remainingRelationIds": [
+    3263757,
+    3264047,
+    4088518,
+    5317704,
+    6582965,
+    6582966
+  ],
+  "inventedConnections": 0,
+  "roadOnlyWaysAccepted": 0,
+  "cases": [
+    {
+      "relationId": 2941790,
+      "sourceUrl": "https://www.openstreetmap.org/relation/2941790",
+      "evidenceFile": "data/hk/sources/phase2/relation-2941790.json",
+      "before": "stop not on railway within 80m: 1783169566",
+      "status": "RESOLVED",
+      "current": "source geometry extracted",
+      "freshStandaloneError": null,
+      "nearestStopDistanceMeters": 0,
+      "actualSourceStopCount": 16,
+      "explanation": "A closed 706 source chain started at a different way from the first stop. Rotate at the exact first source stop vertex only when the chain is closed. No closing chord is added.",
+      "extractedStops": 16,
+      "sourceWays": 22
+    },
+    {
+      "relationId": 3263757,
+      "sourceUrl": "https://www.openstreetmap.org/relation/3263757",
+      "evidenceFile": "data/hk/sources/phase2/relation-3263757.json",
+      "before": "stop not on railway within 80m: 5470724238",
+      "status": "INCOMPLETE",
+      "current": "stop not on railway within 80m: 5470724238",
+      "freshStandaloneError": "stop not on railway within 80m: 5470724238",
+      "nearestStopDistanceMeters": 0,
+      "actualSourceStopCount": 31,
+      "explanation": "Broadwood Road is an existing source track vertex, but appears after Happy Valley Terminus in the relation stop members. The stop is not displaced; ordered stop members conflict with the track direction. Keep blocked until official complete stop order is resolved."
+    },
+    {
+      "relationId": 3264047,
+      "sourceUrl": "https://www.openstreetmap.org/relation/3264047",
+      "evidenceFile": "data/hk/sources/phase2/relation-3264047.json",
+      "before": "stop not on railway within 80m: 988059821",
+      "status": "INCOMPLETE",
+      "current": "stop not on railway within 80m: 988059821",
+      "freshStandaloneError": "stop not on railway within 80m: 988059821",
+      "nearestStopDistanceMeters": 0,
+      "actualSourceStopCount": 6,
+      "explanation": "The relation lists The Peak first while its ways run toward The Peak; May Road and MacDonnell Road also conflict with descending source indices. Do not guess a direction or current intermediate calling pattern."
+    },
+    {
+      "relationId": 4088518,
+      "sourceUrl": "https://www.openstreetmap.org/relation/4088518",
+      "evidenceFile": "data/hk/sources/phase2/relation-4088518.json",
+      "before": "stop not on railway within 80m: 5470724238",
+      "status": "INCOMPLETE",
+      "current": "stop not on railway within 80m: 5470724238",
+      "freshStandaloneError": "stop not on railway within 80m: 5470724238",
+      "nearestStopDistanceMeters": 0,
+      "actualSourceStopCount": 30,
+      "explanation": "Broadwood Road is appended after Happy Valley Terminus here too. Do not reorder official stops on proximity alone."
+    },
+    {
+      "relationId": 5317704,
+      "sourceUrl": "https://www.openstreetmap.org/relation/5317704",
+      "evidenceFile": "data/hk/sources/phase2/relation-5317704.json",
+      "before": "disconnected railway way 1558652637",
+      "status": "INCOMPLETE",
+      "current": "disconnected railway way 1558652637",
+      "freshStandaloneError": "disconnected railway way 1558652637",
+      "nearestStopDistanceMeters": null,
+      "actualSourceStopCount": 8,
+      "explanation": "The gap between source nodes 10930801895 and 10931051406 is about 765 metres. A missing railway connection is not repaired by a straight chord or by borrowing the other direction."
+    },
+    {
+      "relationId": 6485218,
+      "sourceUrl": "https://www.openstreetmap.org/relation/6485218",
+      "evidenceFile": "data/hk/sources/phase2/relation-6485218.json",
+      "before": "disconnected railway way 221446352",
+      "status": "RESOLVED",
+      "current": "source geometry extracted",
+      "freshStandaloneError": null,
+      "nearestStopDistanceMeters": null,
+      "actualSourceStopCount": 23,
+      "explanation": "Fresh full relation is connected. Select newer OSM object versions when combining snapshots; the old composite contained a stale shared way.",
+      "sharedWay221446352": {
+        "beforeVersion": 12,
+        "afterVersion": 12,
+        "beforeNodes": [
+          1783170643,
+          1783170665
+        ],
+        "afterNodes": [
+          1783170643,
+          1783170665
+        ]
+      },
+      "extractedStops": 23,
+      "sourceWays": 64
+    },
+    {
+      "relationId": 6485219,
+      "sourceUrl": "https://www.openstreetmap.org/relation/6485219",
+      "evidenceFile": "data/hk/sources/phase2/relation-6485219.json",
+      "before": "disconnected railway way 221446352",
+      "status": "RESOLVED",
+      "current": "source geometry extracted",
+      "freshStandaloneError": null,
+      "nearestStopDistanceMeters": null,
+      "actualSourceStopCount": 9,
+      "explanation": "Fresh full relation is connected. Same stale shared-way issue as 751. This does not establish the special service calling pattern.",
+      "sharedWay221446352": {
+        "beforeVersion": 12,
+        "afterVersion": 12,
+        "beforeNodes": [
+          1783170643,
+          1783170665
+        ],
+        "afterNodes": [
+          1783170643,
+          1783170665
+        ]
+      },
+      "extractedStops": 9,
+      "sourceWays": 24
+    },
+    {
+      "relationId": 6582965,
+      "sourceUrl": "https://www.openstreetmap.org/relation/6582965",
+      "evidenceFile": "data/hk/sources/phase2/relation-6582965.json",
+      "before": "non-railway way 1492453330",
+      "status": "INCOMPLETE",
+      "current": "non-railway way 1492453330",
+      "freshStandaloneError": "non-railway way 1492453330",
+      "nearestStopDistanceMeters": null,
+      "actualSourceStopCount": 11,
+      "explanation": "Historical Tuen Mun–Hung Hom relation retains razed railway way 1492453330, ended 2021-06-20. Exclude this obsolete relation, use other current full Tuen Ma relations only when matched to official stops."
+    },
+    {
+      "relationId": 6582966,
+      "sourceUrl": "https://www.openstreetmap.org/relation/6582966",
+      "evidenceFile": "data/hk/sources/phase2/relation-6582966.json",
+      "before": "non-railway way 1492453329",
+      "status": "INCOMPLETE",
+      "current": "non-railway way 1492453329",
+      "freshStandaloneError": "non-railway way 1492453329",
+      "nearestStopDistanceMeters": null,
+      "actualSourceStopCount": 11,
+      "explanation": "Historical Hung Hom–Tuen Mun relation retains disused railway way 1492453329, ended 2021-06-20. It is not an operational railway source."
+    }
+  ]
+}

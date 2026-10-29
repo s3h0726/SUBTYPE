@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<base href="https://www.hktramways.com/">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- tell Internet Explorer to use the highest mode available -->
+
+<!--link rel="shortcut icon" href="favicon.ico" /-->
+<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+<link rel="manifest" href="favicons/manifest.json">
+<link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="favicons/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hong Kong Tramways - Interactive Map</title>
+<meta name="description" lang="en" content="Interactive Map,map,tram map,tram route,tram station,westbound,eastbound,tram stop,Terminus,route map" />
+<meta name="keywords" content="" />
+<link rel="image_src" href="https://www.hktramways.com/images/logo500x262.jpg" />
+
+<meta property="og:title" content="Hong Kong Tramways - Interactive Map" />
+<meta property="og:description" content="Interactive Map,map,tram map,tram route,tram station,westbound,eastbound,tram stop,Terminus,route map" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.hktramways.com/en/interactive-map/" />
+<meta property="og:image" content="https://www.hktramways.com/images/logo500x262.jpg" />
+
+<script type="text/javascript">var isIE8 = false;var isIE = false;</script>
+<!--[if lte IE 8]>
+<script type="text/javascript">isIE8 = true;</script>
+<![endif]-->
+<script type="text/javascript">
+var lang = 'en';
+//var section = 'interactive-map';
+//var id = 0;
+var baseURL = '/';
+var isMobile = false;
+</script>
+
+<!--script type="text/javascript" src="js/jquery.min.js"></script-->
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+<link rel="stylesheet" href="plugin/custom-form-elements/custom-form-elements.css" type="text/css" charset="utf-8" />
+<script type="text/javascript" src="plugin/custom-form-elements/custom-form-elements.js"></script>
+<link rel="stylesheet" href="plugin/fancybox2/jquery.fancybox.css" type="text/css" charset="utf-8" />
+<script type="text/javascript" src="plugin/fancybox2/jquery.fancybox.js"></script>
+<link rel="stylesheet" href="https://use.typekit.net/grd1zmi.css">
+<link rel="stylesheet" href="css/style.css?v=1" type="text/css" charset="utf-8" />
+<script src="plugin/greensock/TweenMax.min.js"></script>
+<script src="plugin/greensock/plugins/CSSPlugin.min.js"></script>
+<script src="plugin/greensock/plugins/ScrollToPlugin.min.js"></script>
+<script src="plugin/greensock/easing/EasePack.min.js"></script>
+
+<script type="text/javascript" src="js/nextTram.js"></script>
+<script type="text/javascript" src="js/nextTramData.js"></script>
+<script src="js/placeholder.js"></script>
+<script type="text/javascript" src="js/socialMedia.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<link rel="stylesheet" href="css/nav.css" type="text/css" charset="utf-8" />
+<script type="text/javascript" src="js/nav.js"></script>
+
+
+<script type="text/javascript">
+$(function() {
+
+});
+
+$(window).load(function() {
+
+});
+</script>
+<script type="text/javascript">
+$(function() {
+    TweenMax.to($('#contentWrapper'), 0, {autoAlpha:0});
+});
+
+$(window).load(function(){
+    TweenMax.to($('#contentWrapper'), 0.3, {autoAlpha:1});
+    TweenMax.to($('#pageLoader'), 0, {autoAlpha:1, onComplete:function(){
+        $('#pageLoader').hide();
+    }});
+});
+</script>
+<script type="text/javascript">isIE = msieversion();</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GXLWJ81WQH"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-GXLWJ81WQH');
+</script>
+<script type="text/javascript">
+//google analytics code
+
+var gaId = 'UA-62646343-1';
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+//ga('create', gaId, 'auto');
+ga('create', 'UA-62646343-1', 'auto');
+ga('send', 'pageview');
+
+/*
+$(function (){
+    setInterval(function(){
+        gaLoop();
+    }, 10000);  //send event log to ga every 10 sec.
+    
+    
+});
+*/
+
+function gaLink(section){
+    //ga('send', 'event', 'link', 'click', section, section);
+    ga('send', {
+        'hitType': 'event',         
+        'eventCategory': 'link', 
+        'eventAction': 'click',     
+        'eventLabel': section,
+        'hitCallback' : function () {
+            //alert("Event received");
+        }
+    });
+    switch(section){
+        case '':  break;
+        default: ;
+    }
+    gtag('event', 'link_click', {
+        'page_location': section
+    });
+}
+
+function gaLoop(){
+    var date = new Date(); // for now
+    var time2String = String(date.getFullYear())
+                      +"-"+ String(date.getMonth()+1) 
+                      +"-"+ String(date.getDate()) 
+                      +" "+ String(date.getHours()) 
+                      +":"+ String(date.getMinutes());
+                      //+":"+ String(date.getSeconds());
+    ga('send', 'event', 'log', 'log', time2String, 1);
+    //if(isPlaying) ga('send', 'event', 'VideosTimeLog', 'TimeLog', dataVideo[playerId - 1]['title']+"(TimeLog)", 10);
+}
+</script>
+</head>
+<body>
+<div id="headerWrapper">
+<!-- Start of XMO site-wide Tag -->
+<script type="text/javascript">
+(function(){
+var script0 = document.createElement("script");
+script0.src = "//j02.optimix.asia/events/opxLoader.js";
+script0.type = "text/javascript";
+script0.async = "async";
+document.getElementsByTagName("head")[0].appendChild(script0);
+var opxUid='0';
+var opxcounter='1';
+var opxClientID='6027';
+var opxParams="opxvrsn=ut;opxUid="+opxUid+";"+"opxClientID="+opxClientID+";"+"opxcounter="+opxcounter+";";
+if (script0.readyState) {
+  script0.onreadystatechange = function() {
+    if (script0.readyState == "loaded" || script0.readyState == "complete") {
+      opxLoad("//e02.optimix.asia", opxParams);
+    }
+  };
+} else {
+  script0.onload = function () {
+    opxLoad("//e02.optimix.asia", opxParams);
+  };
+}
+})();
+</script>
+<!-- End of XMO site-wide Tag -->
+<script type="text/javascript">
+navInsidePage = true;
+navSubCurrent = 0;
+$(function(){
+$('#nav_home > ul > li:eq(0) > div.btn').find('.line').addClass('selected');
+$('#nav_home > ul > li:eq(0) > div.sub > ul > li:eq(0) > a').find('.line').addClass('selected');
+});
+</script>
+
+    <div id="nav">
+        <div id="nav_bar" class="floatDiv">
+            <img src="images/nav/navIcon.png" alt="" />
+        </div><!-- id:nav_bar -->
+        <div id="nav_home" class="floatDiv">
+            <!--div class="bg floatDiv" style=""></div-->
+            <a href="javascript:getURL('', true, '');" style='width: 100%;text-align: center;'><img class="logo" src="images/nav/logoWhite.png" alt="" /></a>
+            <ul class="ulListVertical">
+                <!-- plan your ride -->
+                <li>
+                    <div class="sub">
+                        <ul class="ulListVertical">
+                            <li rel="interactive-map"><a href="./en/interactive-map">Interactive Map<div class="line"></div></a></li>
+                                                        <li rel="schedules-fares"><a href="./en/schedules-fares">Schedules and Fares<div class="line"></div></a></li>
+                                                        <li rel="service-updates"><a href="./en/service-updates">Service Updates<div class="line"></div></a></li>
+                            <li rel="notice-to-passengers"><a href="./en/notice-to-passengers">Notice to Passengers<div class="line"></div></a></li>
+                        </ul>
+                    </div>
+                    <div class="btn" rel="plan-your-ride"><a href="./en/plan-your-ride">Plan Your Ride<div class="line"></div></a></div>
+                    <div class="containerDiv"><div class="extra"></div></div>
+                </li>
+                <!-- tramoramic -->
+                <li>
+                    <div class="sub">
+                        <ul class="ulListVertical">
+                            <li rel="tramoramic"><a href="./en/tramoramic">Tour Details<div class="line"></div></a></li>
+                            <li rel=""><a href="javascript:getURL('hktramways.zaui.net/modules/webBooking/index.php?lang=1', false, '', 'true');">Book Now<div class="line"></div></a></li>
+                            <li rel="thematic-journeys"><a href="./en/thematic-journeys">Things To Do<div class="line"></div></a></li>
+                            <li rel="fares-faq"><a href="./en/fares-faq">Fares & FAQ<div class="line"></div></a></li>
+                            <li rel="tramoramic-gallery"><a href="./en/tramoramic-gallery">TramOramic Gallery<div class="line"></div></a></li>
+                                                    </ul>
+                    </div>
+                    <div class="btn" rel="tramoramic"><a href="./en/tramoramic">Book a TramOramic Tour<div class="line"></div></a></div>
+                    <div class="containerDiv"><div class="extra"></div></div>
+                </li>
+                <!-- book -->
+                <li>
+                    <div class="btn" rel="book-your-party-tram"><a href="./en/book-your-party-tram">Charter Your Party Tram<div class="line"></div></a></div>
+                    <div class="containerDiv"><div class="extra"></div></div>
+                </li>
+                <!-- souvenirs -->
+                <li>
+                    <div class="btn" rel="tram-souvenirs"><a href="./en/tram-souvenirs">Shop Tram Souvenirs<div class="line"></div></a></div>
+                    <div class="containerDiv"><div class="extra"></div></div>
+                </li>
+                				                <!-- along track -->
+                <li>
+                    <div class="btn" rel="explore-along-tram-tracks"><a href="./en/explore-along-tram-tracks">Explore Along Tracks<div class="line"></div></a></div>
+                    <div class="containerDiv"><div class="extra"></div></div>
+                </li>
+                <!-- adv -->
+                <li>
+                    <div class="btn" rel="discover-tram-advertising"><a href="./en/discover-tram-advertising">Discover Tram Advertising<div class="line"></div></a></div>
+                    <div class="containerDiv"><div class="extra"></div></div>
+                </li>
+                <!-- about -->
+                <li>
+                    <div class="sub">
+                        <ul class="ulListVertical">
+                            <li rel="about-hong-kong-tramways"><a href="./en/about-hong-kong-tramways">Key Figures<div class="line"></div></a>
+                                <div class="subSub">
+                                    <ul class="ulListVertical">
+                                                                                <li><a href="javascript:">Vision, Mission and Values<div class="line"></div></a></li>
+                                        <li><a href="javascript:">Sustainable Services<div class="line"></div></a></li>
+                                        <li><a href="javascript:">Our Shareholders<div class="line"></div></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li rel="our-story"><a href="./en/our-story">Our Story<div class="line"></div></a></li>
+                            <li rel="press-releases"><a href="./en/press-releases">Press Releases<div class="line"></div></a></li>
+                            <li rel="media-coverage"><a href="./en/media-coverage">Media Coverage<div class="line"></div></a></li>
+                                                        <li><a href="javascript:getURL('https://careers.hktramways.com/en', false, '_blank', true);">Careers<div class="line"></div></a></li>
+                            <li rel="contact-us"><a href="./en/contact-us">Contact Us<div class="line"></div></a></li>
+                                                    </ul>
+                    </div>
+                    <div class="btn" rel="about-us"><a href="./en/about-us">About HK Tramways<div class="line"></div></a></div>
+                    <div class="containerDiv"><div class="extra"></div></div>
+                </li>
+                								                <li>
+                    <div class="btn"><a href="javascript:getURL('hktramways.com/120/en/', false, '_blank', true);">120 Celebration<div class="line"></div></a></div>
+                    <div class="containerDiv"><div class="extra"></div></div>
+                </li>
+            </ul>
+            
+            <div class="floatDiv navLang">
+                <ul class="ulListVertical">
+                    <li><a href="javascript:changeLang('tc');" class="btn" style="background-image:url(images/nav/btn_tc.png);"></a></li>
+                    <li><a href="javascript:changeLang('sc');" class="btn" style="background-image:url(images/nav/btn_sc.png);"></a></li>
+    
+                </ul>
+                <a href="javascript:changeLang('en');" class="btn selected" style="background-image:url(images/nav/btn_en.png);"></a>
+            </div><!-- class:navLang -->
+            <ul class="navSocialLink floatDiv aCenter">
+                <li class="socialLinkFb btn"><a href="javascript:getURL('www.facebook.com/hongkongtramways', false, '_blank');"></a></li>
+                <li class="socialLinkInstagram btn"><a href="javascript:getURL('www.instagram.com/hktramways', false, '_blank');"></a></li>
+                <li class="socialLinkYoutube btn"><a href="javascript:getURL('www.youtube.com/user/hktramways', false, '_blank');"></a></li>
+                <li style="width:100%;height:0;margin:0;"></li>
+                <li class="socialLinkXhs btn"><a href="javascript:getURL('www.xiaohongshu.com/user/profile/6646b9900000000003032516', false, '_blank', true);"></a></li>
+                <li class="socialLinkWechat btn wechat-btn"><div class="wechat-bubble"><div class="wechat-arrow"></div><img src="images/nav/hktramways_wechat.jpg" alt=""></div></a></li>
+                <li class="socialLinkWeibo btn"><a href="javascript:getURL('www.weibo.com/hongkongtramways', false, '_blank');"></a></li>
+                <li class="socialLinkTripAdvisor btn"><a href="javascript:getURL('en.tripadvisor.com.hk/Attraction_Review-g294217-d1992541-Reviews-Hong_Kong_Tramways_Ding_Ding-Hong_Kong.html', false, '_blank');"></a></li>
+            </ul><!-- class:navSocialLink -->
+        </div><!-- id:nav_home -->
+        <div id="nav_sub_bg" class="floatDiv">
+            <a href="javascript:getURL('', true, '');"><img class="logo" src="images/nav/logo.png" alt="" /></a>
+            <div class="containerDiv ">
+                <div class="sub_head aCenter">Plan Your Ride</div>
+                <div class="sub_head aCenter" style="font-size:25px !important;">Book a TramOramic Tour</div>
+                <div class="sub_head aCenter">Charter Your Party Tram</div>
+                <div class="sub_head aCenter">Shop Tram Souvenirs</div>
+                                <div class="sub_head aCenter">Explore Along Tracks</div>
+                <div class="sub_head aCenter">Discover Exclusive Services</div>
+                <div class="sub_head aCenter">About HK Tramways</div>
+                <div class="sub_head aCenter">Ding Ding Diaries</div>
+                <div class="sub_head aCenter">#dingding115yrs</div>
+                <img style="top:19px;left:-5px;" class="floatDiv" alt="" src="images/nav/navArrow.png">
+            </div>
+            <div class="floatDiv navLang">
+                <ul class="ulListVertical">
+                    <li><a href="javascript:changeLang('tc');" class="btn" style="background-image:url(images/nav/btn_tc_gr.png);"></a></li>
+                    <li><a href="javascript:changeLang('sc');" class="btn" style="background-image:url(images/nav/btn_sc_gr.png);"></a></li>
+                </ul>
+                <a href="javascript:changeLang('en');" class="btn selected" style="background-image:url(images/nav/btn_en_gr.png);"></a>
+            </div><!-- class:navLang -->
+            <ul class="navSocialLink floatDiv aCenter">
+                <li class="socialLinkFb btn"><a href="javascript:getURL('www.facebook.com/hongkongtramways', false, '_blank');"></a></li>
+                <li class="socialLinkInstagram btn"><a href="javascript:getURL('www.instagram.com/hktramways', false, '_blank');"></a></li>
+                <li class="socialLinkYoutube btn"><a href="javascript:getURL('www.youtube.com/user/hktramways', false, '_blank');"></a></li>
+                <li style="width:100%;height:0;margin:0;"></li>
+                <li class="socialLinkXhs btn"><a href="javascript:getURL('www.xiaohongshu.com/user/profile/6646b9900000000003032516', false, '_blank', true);"></a></li>
+                <li class="socialLinkWechat btn wechat-btn"><div class="wechat-bubble"><div class="wechat-arrow"></div><img src="images/nav/hktramways_wechat.jpg" alt=""></div></a></li>
+                <li class="socialLinkWeibo btn"><a href="javascript:getURL('www.weibo.com/hongkongtramways', false, '_blank');"></a></li>
+                <li class="socialLinkTripAdvisor btn"><a href="javascript:getURL('en.tripadvisor.com.hk/Attraction_Review-g294217-d1992541-Reviews-Hong_Kong_Tramways_Ding_Ding-Hong_Kong.html', false, '_blank');"></a></li>
+            </ul><!-- class:navSocialLink -->
+        </div><!-- id:nav_sub_bg -->
+    </div>
+    <h1 style="display:none;">Interactive Map</h1><!-- SEO H1 -->
+</div><!-- id:headerWrapper -->
+<div id="contentWrapper">
+	<style>
+.sharePanel{position:fixed;top:230px;right:-210px;z-index:20;}
+.sharePanel ul{background-color:#007549;}
+.sharePanel li{text-align:center;line-height:70px;font-size:16px;width:70px;color:#ffffff;}
+.sharePanel li:first-child{border-right:1px solid #39b2a6;}
+.sharePanel a{display:block;overflow:hidden;width:70px;height:70px;background-position: left bottom;}
+.sharePanel a:hover{background-position: left top;}
+</style>
+<script>
+	function switchSharePanel(){
+		var pos;
+		var target = $('.sharePanel');
+		pos = (target.css('right').replace('px','') != 0) ? 0 : -210;
+		TweenMax.to(target,0.2,{'right': pos + 'px'});
+	}
+</script>
+<div class="sharePanel">
+	<ul class="ulList clearfix">
+		<li><a href="javascript:switchSharePanel();" style="background-image:url(images/share/shareIcon.png);"><img src="images/spacer.gif" alt="" /></a></li>
+		<!--li class="defaultFont">Share</li-->
+		<li><a href="javascript:socialMedia('sina', 'https://www.hktramways.com/en/interactive-map/', 'Hong Kong Tramways - Interactive Map' ,'Interactive Map,map,tram map,tram route,tram station,westbound,eastbound,tram stop,Terminus,route map', 'en');" style="background-image:url(images/share/sinaIcon.png);"><img src="images/spacer.gif" alt="" /></a></li>
+		<li><a href="javascript:socialMedia('fb', 'https://www.hktramways.com/en/interactive-map/', 'Hong Kong Tramways - Interactive Map' ,'Interactive Map,map,tram map,tram route,tram station,westbound,eastbound,tram stop,Terminus,route map', 'en');" style="background-image:url(images/share/fbIcon.png);"><img src="images/spacer.gif" alt="" /></a></li>
+		<li><a href="javascript:socialMedia('twitter', 'https://www.hktramways.com/en/interactive-map/', 'Hong Kong Tramways - Interactive Map' ,'Interactive Map,map,tram map,tram route,tram station,westbound,eastbound,tram stop,Terminus,route map', 'en');" style="background-image:url(images/share/twitterIcon.png);"><img src="images/spacer.gif" alt="" /></a></li>
+	</ul>
+</div><script>
+if (!Array.prototype.indexOf){
+    Array.prototype.indexOf = function(elt /*, from*/){
+        var len = this.length >>> 0;
+
+        var from = Number(arguments[1]) || 0;
+        from = (from < 0)? Math.ceil(from): Math.floor(from);
+        if (from < 0) from += len;
+
+        for (; from < len; from++){
+            if (from in this && this[from] === elt)
+                return from;
+        }
+        return -1;
+    };
+}
+</script>
+<script type="text/javascript" src="plugin/jScrollPane/script/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="plugin/jScrollPane/script/jquery.jscrollpane.js"></script>
+<link rel="stylesheet" href="plugin/jScrollPane/style/jquery.jscrollpane.css" type="text/css" />
+<script type="text/javascript" src="plugin/elevateZoom/jquery.elevatezoom.js"></script>
+
+<style>
+#nav_home{width:220px;}
+#nav_home div.sub{left:220px;}
+#scroll-paneEB, #scroll-paneWB{width: 470px;height: 100%;overflow: hidden;}
+.horizontal-only{height: auto;}
+.jspVerticalBar{width:6px;}
+.jspHorizontalBar{height:20px;}
+.jspArrow{width:20px !important;}
+.jspTrack{background:none repeat scroll 0 0 #000000;}
+.jspDrag{background:none repeat scroll 0 0 #02a64d;margin:0 1px;}
+.jspArrowLeft{background:url(images/tramCharters/scrollbar-arrow-left.jpg) no-repeat left top !important;}
+.jspArrowRight{background:url(images/tramCharters/scrollbar-arrow-right.jpg) no-repeat left top !important;}
+
+#routeMapWBContainer, #routeMapEBContainer{position: absolute;top:0;left: 0;width: 100%;height: 100%;}
+#scroll-paneWB .hitMap a div{border:0px solid green;}
+#scroll-paneEB .hitMap a div{border:0px solid red;}
+.zoomContainer{/*z-index: 999;*/top:0 !important;left:0 !important;}
+
+#contentWrapper, #outerWrapper{height:100%;}
+#pac-input {background:url(images/googleMap/icon-search.png) #fff no-repeat right center;padding:0 65px 0 8px;width:347px;font-size:14px;line-height:29px;height:29px;text-overflow:ellipsis;margin:5px 5px 0px 0px !important;border:1px solid #ccc;z-index:99 !important;/*right:0px;*/left:5px !important;}
+/* routemap*/
+#leftContent {float:left;height:100%;width: 51px;}
+#rightContent {width:auto;height:100%;overflow: hidden;}
+#flap {position: relative;float: left;width: 55px;height:100%;background:url(images/googleMap/flap-base.png) center;}
+#flap a{display:inline-block;}
+.flapTip {position: absolute;top: 50%;width: 55px;height: 246px;margin-top: -123px}
+#flapHit {position: absolute;width: 55px;height: 100%;z-index: 1000;}
+#overlay {position: absolute;top:0px;left:30px;height:100%;min-height:650px;margin-left: 190px;z-index: 0;}
+#routeMap {float: left;width: 470px;height: 100%;position:relative;background: #FFF;overflow: hidden;box-sizing:border-box;-moz-box-sizing:border-box;padding-top: 62px;z-index: 1;}
+#routeMapBtn {width: 100%;height: 62px;margin-top: -62px;}
+#routeMapBtn .btn {float:left;text-align: center;height:62px;width:50%;background: #01443D url("images/googleMap/routeMapBtnBg.png") 100% 0%;color: #FFF;}
+#routeMapBtn a:first-child .btn {box-sizing: border-box;border-right: 1px solid #FFFFFF;background-position-x: 0%;}
+#routeMapBtn .btn.selected{background: #007549 url("images/googleMap/routeMapBtnBgOn.png") 0% 0%;}
+#routeMapBtn .btn .btnLabel {display: table;margin: 0 auto;}
+#routeMapBtn .btn .btnText {float: left;}
+#routeMapBtn .btn .btnMain {font-size: 20px;vertical-align: bottom;margin-top: 8px;line-height: 24px;letter-spacing: 1px;}
+#routeMapBtn .btn .btnMain img{margin-bottom: 3px;margin-right: 5px;}
+#routeMapBtn .btn .btnSub {font-size: 14px;line-height: 21px;letter-spacing: 1px;}
+#routeMapBtn .btn .btnIcon {float: left;margin-left:7px;margin-top:14px;}
+#btnArrow {position:absolute;top:62px;width: 243px;text-align: center;line-height: 0px;z-index: 1;}
+#routeMapImage {text-align: right;width: 100%;height: 100%;overflow: auto;overflow: hidden;position:relative;background: #E7E7E9;}
+#routeMapImageEB > img, #routeMapImageWB > img {width: 470px;margin-left:-2px;}
+#routeMapImageEB,  #routeMapImageWB{position: relative;/*display: none;*/}
+.fixPanel{position:absolute;top:750px;left:10px;z-index:10;}
+.fixPanel a{display:block;margin:1px;}
+.fixPanel a:hover{background-position:left bottom;}
+.fixPanel a.up{background-image:url(images/googleMap/arrowUp.jpg);width:36px;height:36px;}
+.fixPanel a.down{background-image:url(images/googleMap/arrowDown.jpg);width:36px;height:36px;}
+.fixPanel a.download{background-image:url(images/googleMap/pdf-download.jpg);}
+.fixPanel a.download div{color:#ffffff;left:36px;top:0;width:0;white-space:nowrap;overflow:hidden;padding-left:1px;}
+.fixPanel a.download div span{background-color:#007549;line-height:36px;padding:0 20px;display:inline-block;}
+.fixPanel a img{width:36px;height:36px;}
+.hitMap {position: absolute;width: 100%;height: 100%;top: 0px;left: 0px;}
+.hitMap a{}
+.hitMap div{position: absolute;line-height: 0px;/*z-index: 999;border:1px solid red;*/}
+.hitMap div a img{width: 100%;height: 100%;}
+#extendTip {display: block;}
+.expand #extendTip {display: none;}
+#collapseTip {display: none;}
+.expand #collapseTip {display: block;}
+.mapInfoWindow {font-size: 16px;text-align: center;overflow: hidden;}
+</style>
+<script src="plugin/jquery-mousewheel/jquery.mousewheel.min.js"></script>
+<!--script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en&libraries=places"></script-->
+<!--script src="https://maps.googleapis.com/maps/api/js?v=3&language=en&libraries=places"></script-->
+<!--script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAwL-FBnkv1gXEG4dGi33F4X93RJcxTlso&language=en&libraries=places" type="text/javascript"></script-->
+<script src="js/googleMap.js?v=1"></script>
+<script>
+var mapScrollPosY = 0;
+var paneWB, paneEB;
+navWidth = 220;
+var scrollOffset = 200;
+$(function(){
+    $("#routeMapWB").elevateZoom({ //scroll-paneWB, routeMapWB
+        zoomType : "lens", 
+        lensShape : "round", 
+        lensSize : 200,
+        scrollZoom: false,
+        borderSize: (isIE8)?4:0,
+        borderColour: '#fff',
+        zoomActivation: 'hover',
+        container: "#routeMapWBContainer"
+    });
+
+    $("#routeMapEB").elevateZoom({ //scroll-paneEB, routeMapEB
+        zoomType : "lens", 
+        lensShape : "round", 
+        lensSize : 200, 
+        scrollZoom: false,
+        borderSize: (isIE8)?4:0,
+        borderColour: '#fff',
+        zoomActivation: 'hover',
+        container: "#routeMapEBContainer"
+    });
+    
+    $('.fixPanel a.up, .fixPanel a.down').click(function(){
+        //if($(this).hasClass('up') || $(this).hasClass('down')){
+            var action = ($(this).hasClass('up')) ? 'up' : 'down';
+            scrollContent(action);
+        //}
+    });
+    
+    $('.fixPanel a.download').click(function(){
+        var link;
+        if($('#scroll-paneEB').is(':visible')){
+            link = 'www.hktramways.com/images/googleMap/HK-tram-route-map-EB.pdf';
+        }else{
+            link = 'www.hktramways.com/images/googleMap/HK-tram-route-map-WB.pdf';
+        }
+        getURL(link, false, '_blank');
+    }).hover(function(){
+        var mc;
+        var offset = 40;
+        if($('#scroll-paneEB').is(':visible')){
+            mc = $(this).find('.east');
+        }else{
+            mc = $(this).find('.west');
+        }
+        TweenLite.to(mc, 0.4, {width:mc.find('span').width()+offset+'px'});
+    }, function(){
+        TweenLite.to($(this).find('div'), 0.2, {width:"0"});
+    });
+
+    $('#scroll-paneEB').mousewheel(function(e) {
+        e.preventDefault();
+        var action = (e.deltaY == 1) ? 'up' : 'down';
+        scrollContent(action); 
+    });
+    $('#scroll-paneWB').mousewheel(function(e) {
+        e.preventDefault();
+        var action = (e.deltaY == 1) ? 'up' : 'down';
+        scrollContent(action); 
+    });
+});
+
+function scrollContent(act){
+    var paneEB = $('#scroll-paneEB');
+    var paneWB = $('#scroll-paneWB');
+    var targetObj = (paneEB.css('display') == 'none') ? paneWB : paneEB;
+    var offset = 0;
+    if (act == 'up')
+        offset = scrollOffset * -1;
+    else
+        offset = scrollOffset * 1;
+    
+    var _top = targetObj.scrollTop() + offset;
+    _top = (_top <= 0) ? 0 : _top;
+    TweenMax.to(targetObj,0.1,{'scrollTop':_top});
+}
+
+$(window).load(function(){
+    //initialize();  //disable google map@2021-02-25
+    /*paneEB = $("#scroll-paneEB").jScrollPane({
+        showArrows: false,
+        autoReinitialiseDelay: 1000,
+        autoReinitialise: true
+    });
+    paneWB = $("#scroll-paneWB").jScrollPane({
+        showArrows: false,
+        autoReinitialiseDelay: 1000,
+        autoReinitialise: true
+    });*/
+    setTimeout(function(){
+        setAllMap(map,markersEB);
+		mapWB();
+        expandFlap(null);
+        $("#routeMapImageWB .hitMap").appendTo("#routeMapWBContainer .zoomContainer");
+        $("#routeMapImageEB .hitMap").appendTo("#routeMapEBContainer .zoomContainer");
+        resizeHandler();
+        if(typeof isIE8 && !isIE8){
+            $('.zoomLens').html('<img src="images/googleMap/zoomContainerBg.png" alt="" />');
+        }
+        scrollRebind();
+    }, 3000);
+    
+});
+
+$(window).resize(function(){
+    setTimeout(function(){
+        resizeHandler()
+    }, 500);
+});
+
+function resetScroll(){
+    var paneEB = $('#scroll-paneEB');
+    var paneWB = $('#scroll-paneWB');
+    paneEB.scrollTop(0);
+    paneWB.scrollTop(0);
+}
+
+function scrollRebind(){
+    /*
+    $("#routeMapImage").on(("onwheel" in document.createElement("div") ? "wheel" : "mousewheel"), function (e) {  //html, body, #routeMapImage
+        var evt = e.originalEvent || e;
+
+        //this is what really matters
+        var deltaY = evt.deltaY || (-1 / 40 * evt.wheelDelta); //wheel || mousewheel
+        var scrollTop = $(this).scrollTop() || $("body").scrollTop(); //fix safari
+
+        var scrollText = "";
+        var api;
+        
+        if(deltaY > 0){  //down
+            if($("#scroll-paneWB").css("display") == 'none'){
+                api = paneEB.data('jsp');
+                api.scrollBy(0, 30);
+            }else{
+                api = paneWB.data('jsp');
+                api.scrollBy(0, 30);
+            }
+        }else{  //up
+            if($("#scroll-paneWB").css("display") == 'none'){
+                api = paneEB.data('jsp');
+                api.scrollBy(0, -30);
+            }else{
+                api = paneWB.data('jsp');
+                api.scrollBy(0, -30);
+            }
+        }
+        //console.log("originalEvent: "+scrollText);
+        //alert("originalEvent: "+scrollText);
+    });*/
+}
+
+function resizeHandler(){
+    //fix ie8 bug
+    //console.log($(window).height());
+    if(typeof isIE8 && isIE8){
+        var wH = 0;
+        var wH2 = 0;
+        if($(window).height() > 650){
+            wH = $(window).height() - $('#footerWrapper').height() - 9;
+            wH2 = $(window).height();
+        }else{  //53 $('#footerWrapper').height()
+            wH = 650;
+            wH2 = 650;
+        }
+        $('#flap').height(wH2); $('#flap').css('position', 'relative');
+        $('#scroll-paneWB').height(wH); $('#scroll-paneWB').css('position', 'relative');
+        $('#scroll-paneEB').height(wH); $('#scroll-paneEB').css('position', 'relative');
+        $('#routeMapImage').height(wH); $('#routeMapImage').css('position', 'relative');
+        $('#routeMap').height(wH); $('#routeMap').css('position', 'relative');
+        $('#routeMap').css('overflow', 'hidden');
+    }
+    //fix ie8 bug eof
+}
+</script>
+    <div id="outerWrapper"><!-- outerWrapper -->
+        <div id="leftContent">
+            <img src="images/spacer.gif">
+        </div>
+        <div id="rightContent">
+            <!--input id="pac-input" class="controls" type="text" placeholder="Search Location by Keyword">
+            <div id="map-canvas" style="width:100%;height:100%;border:0px solid black;">map-canvas</div-->
+            <iframe id="map-canvas" src="https://maps.google.com/maps?q=hktramways+stop+hong+kong&t=&z=14&ie=UTF8&iwloc=&output=embed" style="width:100%;height:100%;border:0;" allowfullscreen="" loading="lazy"></iframe>
+            
+        </div>
+        <div id="overlay" class="expand">
+            <div class="fixPanel">
+                <a href="javascript:" class="up btn"><img src="images/spacer.gif" alt="" /></a>
+                <a href="javascript:" class="down btn"><img src="images/spacer.gif" alt="" /></a>
+                <a href="javascript:" class="download btn containerDiv" style="background-repeat:no-repeat;">
+                    <img src="images/spacer.gif" alt="" />
+                    <div class="west floatDiv"><span>Westbound Route Map</span></div>
+                    <div class="east floatDiv"><span>Eastbound Route Map</span></div>
+                </a>
+            </div>
+            <div id="routeMap">
+                <div id="routeMapBtn" class="">
+                <!-- <a href="javascript:mapWB();"><div class="btn selected"><img src="images/googleMap/routeMapBtnWB.png"/></div></a>
+                <a href="javascript:mapEB();"><div class="btn"><img src="images/googleMap/routeMapBtnEB.png"/></div></a> -->
+                <a href="javascript:mapWB();"><div class="btn selected"><div class="btnLabel"><div class="btnText"><div class="btnMain"><img src="images/googleMap/routeMapBtnTram.png" />Westbound</div><div class="btnSub">Kennedy Town Bound</div></div><div class="btnIcon"><img src="images/googleMap/routeMapBtnArrowWB.png"/></div></div></div></a>
+                <a href="javascript:mapEB();"><div class="btn"><div class="btnLabel"><div class="btnText"><div class="btnMain"><img src="images/googleMap/routeMapBtnTram.png" />Eastbound</div><div class="btnSub">Shau Kei Wan Bound</div></div><div class="btnIcon"><img src="images/googleMap/routeMapBtnArrowEB.png"/></div></div></div></a>
+                <div id="btnArrow"><img src="images/googleMap/btnArrow.png"/></div>
+            </div><!-- id:routeMap -->
+            <div id="routeMapImage">
+                <div id="scroll-paneEB"><div id="routeMapImageEB">
+                    <div id="routeMapEBContainer"></div>
+                    <img id="routeMapEB" src="images/googleMap/routeMapEB.jpg" data-zoom-image="images/googleMap/routeMapEB.jpg" />
+                    <div class="hitMap">
+                    <!--a id="EB_KTT"><div style="top:1.56%;left:53%;width:29%;height:1.09%;"><img src="images/spacer.gif" /></div></a><a id="EB_01E"><div><img src="images/spacer.gif" /></div></a-->
+<div style="top:1.56%;left:49.17%;width:18.51%;height:2.06%;"><a id="EB_KTT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:5.89%;left:61.55%;width:27.34%;height:1.19%;"><a id="EB_01E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:7.9%;left:65.87%;width:16.6%;height:1.1%;"><a id="EB_03E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:9.98%;left:68.46%;width:22.87%;height:1.1%;"><a id="EB_05E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:13.55%;left:71.01%;width:11.06%;height:0.87%;"><a id="EB_07E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:14.68%;left:68.13%;width:19.04%;height:1.97%;"><a id="EB_WST" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:11.37%;left:62.81%;width:30.11%;height:1.97%;"><a id="EB_94W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:17.02%;left:71.96%;width:24.89%;height:0.96%;"><a id="EB_09E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:18.11%;left:71.86%;width:13.4%;height:0.82%;"><a id="EB_11E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:19.01%;left:71.76%;width:16.91%;height:0.96%;"><a id="EB_13E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:20.02%;left:71.76%;width:25.32%;height:1.05%;"><a id="EB_15E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:22.06%;left:70.17%;width:15.64%;height:1.05%;"><a id="EB_17E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:24.14%;left:69.82%;width:22.77%;height:1.01%;"><a id="EB_19E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:25.44%;left:63.97%;width:27.77%;height:1.97%;"><a id="EB_WMT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:27.67%;left:65.99%;width:27.02%;height:1.01%;"><a id="EB_21E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:29.54%;left:67.16%;width:17.55%;height:1.05%;"><a id="EB_23E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:30.66%;left:66.69%;width:22.45%;height:0.96%;"><a id="EB_25E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:32.68%;left:65.39%;width:27.13%;height:0.92%;"><a id="EB_27E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:33.69%;left:64.33%;width:16.91%;height:0.96%;"><a id="EB_29E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:34.68%;left:61.99%;width:14.26%;height:1.01%;"><a id="EB_31E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:35.72%;left:56.52%;width:14.89%;height:1.01%;"><a id="EB_33E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:37.74%;left:55.48%;width:35.85%;height:0.96%;"><a id="EB_35E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:38.78%;left:55.54%;width:16.6%;height:0.96%;"><a id="EB_37E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:39.92%;left:55.48%;width:16.49%;height:0.92%;"><a id="EB_39E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:41.82%;left:56.31%;width:14.26%;height:1.05%;"><a id="EB_41E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:43.83%;left:59.5%;width:28.3%;height:0.96%;"><a id="EB_43E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:44.99%;left:59.45%;width:16.6%;height:0.96%;"><a id="EB_45E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:46.96%;left:56.43%;width:18.09%;height:1.01%;"><a id="EB_47E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:50.19%;left:54.99%;width:19.26%;height:1.01%;"><a id="EB_49E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:47.06%;left:30.52%;width:9.04%;height:1.56%;"><a id="EB_112" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:44.34%;left:29.58%;width:10.43%;height:2.2%;"><a id="EB_111" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:40.77%;left:21.81%;width:14.15%;height:1.65%;"><a id="EB_110" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:40.31%;left:11.65%;width:7.55%;height:2.2%;"><a id="EB_109" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:46.21%;left:9.56%;width:17.34%;height:2.29%;"><a id="EB_HVT_B" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:49.28%;left:8.34%;width:12.34%;height:2.15%;"><a id="EB_108" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:52.95%;left:11.76%;width:8.4%;height:2.38%;"><a id="EB_107" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:52.91%;left:21.77%;width:7.02%;height:2.38%;"><a id="EB_106" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:53.04%;left:31.71%;width:7.23%;height:2.2%;"><a id="EB_105" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:53.16%;left:55.91%;width:17.77%;height:1.05%;"><a id="EB_51E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:54.28%;left:57.23%;width:31.7%;height:0.92%;"><a id="EB_53E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:56.6%;left:51.88%;width:27.45%;height:1.92%;"><a id="EB_CBT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:58.93%;left:68.31%;width:16.06%;height:1.01%;"><a id="EB_55E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:60.02%;left:68.93%;width:19.68%;height:0.96%;"><a id="EB_57E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:61.01%;left:71.43%;width:26.91%;height:1.05%;"><a id="EB_59E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:64.12%;left:74.45%;width:17.77%;height:0.96%;"><a id="EB_61E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:65.19%;left:74.93%;width:15.21%;height:0.96%;"><a id="EB_63E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:66.36%;left:76.15%;width:22.87%;height:0.92%;"><a id="EB_65E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:67.43%;left:76.62%;width:18.72%;height:0.92%;"><a id="EB_67E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:68.66%;left:77.26%;width:17.55%;height:0.96%;"><a id="EB_69E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:70.12%;left:73.15%;width:16.81%;height:2.02%;"><a id="EB_NPT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:72.68%;left:75.7%;width:22.34%;height:0.96%;"><a id="EB_71E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:73.88%;left:75.22%;width:15.53%;height:0.73%;"><a id="EB_73E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:74.84%;left:74.64%;width:21.06%;height:0.87%;"><a id="EB_75E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:75.79%;left:74.39%;width:20%;height:0.87%;"><a id="EB_77E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:76.97%;left:73.46%;width:12.98%;height:0.73%;"><a id="EB_79E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:77.9%;left:72.25%;width:24.04%;height:1.05%;"><a id="EB_81E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:78.97%;left:70.99%;width:20.21%;height:0.78%;"><a id="EB_83E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:79.85%;left:69.76%;width:15.64%;height:0.96%;"><a id="EB_85E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:80.97%;left:69.2%;width:20.43%;height:0.96%;"><a id="EB_87E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:82.01%;left:69.03%;width:20.85%;height:0.82%;"><a id="EB_89E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:83.01%;left:68.84%;width:16.28%;height:0.92%;"><a id="EB_91E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:84.06%;left:67.73%;width:26.49%;height:0.92%;"><a id="EB_93E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:86.01%;left:65.51%;width:16.17%;height:0.96%;"><a id="EB_95E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:87.5%;left:52.18%;width:20.32%;height:2.02%;"><a id="EB_97E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:91.11%;left:55.9%;width:17.66%;height:0.82%;"><a id="EB_99E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:92.05%;left:55.9%;width:16.17%;height:0.92%;"><a id="EB_101E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:94.1%;left:40.16%;width:18.09%;height:1.92%;"><a id="EB_SKT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:1.55%;left:43.87%;width:4.79%;height:2.02%;"><a id="EB_KTT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:5.94%;left:51.13%;width:5%;height:1.05%;"><a id="EB_01E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:7.94%;left:54.45%;width:5.96%;height:1.1%;"><a id="EB_03E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:9.93%;left:58.91%;width:5%;height:1.1%;"><a id="EB_05E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:13.6%;left:59.95%;width:5%;height:0.87%;"><a id="EB_07E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:14.68%;left:62.93%;width:4.57%;height:2.15%;"><a id="EB_WST" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:11.89%;left:56.02%;width:5%;height:0.87%;"><a id="EB_94W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:17.03%;left:60.06%;width:5%;height:0.87%;"><a id="EB_09E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:18.05%;left:59.95%;width:5%;height:0.92%;"><a id="EB_11E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:19.16%;left:60.06%;width:5%;height:0.92%;"><a id="EB_13E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:20.16%;left:59.95%;width:5%;height:1.01%;"><a id="EB_15E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:22.09%;left:59.95%;width:5%;height:1.01%;"><a id="EB_17E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:24.09%;left:59.74%;width:5%;height:1.01%;"><a id="EB_19E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:25.36%;left:58.57%;width:4.89%;height:2.06%;"><a id="EB_WMT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:27.59%;left:56.72%;width:5%;height:1.05%;"><a id="EB_21E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:29.62%;left:52.97%;width:5.64%;height:0.96%;"><a id="EB_23E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:30.65%;left:50.95%;width:5%;height:1.01%;"><a id="EB_25E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:32.59%;left:47.46%;width:4.89%;height:1.01%;"><a id="EB_27E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:33.71%;left:45.3%;width:4.89%;height:1.01%;"><a id="EB_29E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:34.73%;left:43.36%;width:4.89%;height:1.01%;"><a id="EB_31E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:35.78%;left:43.41%;width:5%;height:1.01%;"><a id="EB_33E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:37.74%;left:43.44%;width:5%;height:1.01%;"><a id="EB_35E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:38.82%;left:43.33%;width:5%;height:1.01%;"><a id="EB_37E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:39.92%;left:43.33%;width:5%;height:1.01%;"><a id="EB_39E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:41.87%;left:43.33%;width:5%;height:1.01%;"><a id="EB_41E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:43.84%;left:43.12%;width:5%;height:1.01%;"><a id="EB_43E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:44.95%;left:43.33%;width:5%;height:1.05%;"><a id="EB_45E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:46.96%;left:43.55%;width:5%;height:1.01%;"><a id="EB_47E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:50.19%;left:43.33%;width:5.53%;height:0.96%;"><a id="EB_49E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:48.54%;left:32.93%;width:4.26%;height:1.56%;"><a id="EB_112" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:45%;left:25.43%;width:4.04%;height:1.24%;"><a id="EB_111" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:42.46%;left:21.66%;width:4.79%;height:1.28%;"><a id="EB_110" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:42.55%;left:11.6%;width:5%;height:1.24%;"><a id="EB_109" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:46.26%;left:4.41%;width:5%;height:2.06%;"><a id="EB_HVT_B" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:49.9%;left:2.24%;width:5.21%;height:1.01%;"><a id="EB_108" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:51.77%;left:11.55%;width:4.89%;height:1.24%;"><a id="EB_107" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:51.72%;left:21.68%;width:5%;height:1.24%;"><a id="EB_106" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:51.85%;left:31.53%;width:4.89%;height:1.24%;"><a id="EB_105" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:53.06%;left:43.44%;width:5%;height:1.01%;"><a id="EB_51E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:54.13%;left:43.33%;width:5%;height:1.05%;"><a id="EB_53E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:56.55%;left:46.51%;width:4.89%;height:2.06%;"><a id="EB_CBT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:59.01%;left:47.77%;width:6.06%;height:1.01%;"><a id="EB_55E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:60.01%;left:50.29%;width:5%;height:1.01%;"><a id="EB_57E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:61.06%;left:52.9%;width:5.64%;height:0.96%;"><a id="EB_59E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:63.94%;left:60.96%;width:5%;height:1.19%;"><a id="EB_61E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:65.08%;left:63.73%;width:5%;height:1.15%;"><a id="EB_63E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:66.32%;left:65.21%;width:4.89%;height:0.78%;"><a id="EB_65E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:67.39%;left:69.18%;width:4.89%;height:1.01%;"><a id="EB_67E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:68.63%;left:65.17%;width:4.47%;height:1.05%;"><a id="EB_69E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:70.07%;left:68.01%;width:4.36%;height:2.06%;"><a id="EB_NPT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:72.77%;left:64.96%;width:4.89%;height:0.96%;"><a id="EB_71E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:73.77%;left:64.96%;width:4.89%;height:1.01%;"><a id="EB_73E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:74.93%;left:62.73%;width:5.11%;height:0.78%;"><a id="EB_75E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:75.89%;left:60.39%;width:4.89%;height:1.01%;"><a id="EB_77E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:76.96%;left:58.05%;width:5.53%;height:0.73%;"><a id="EB_79E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:77.96%;left:55.85%;width:5%;height:0.73%;"><a id="EB_81E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:78.89%;left:53.46%;width:5.11%;height:0.78%;"><a id="EB_83E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:79.99%;left:53.15%;width:5.53%;height:0.78%;"><a id="EB_85E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:80.88%;left:53.47%;width:4.89%;height:0.96%;"><a id="EB_87E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:82.09%;left:53.41%;width:5.43%;height:0.69%;"><a id="EB_89E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:83.14%;left:53.34%;width:5.43%;height:0.69%;"><a id="EB_91E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:84.14%;left:53.46%;width:5%;height:0.78%;"><a id="EB_93E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:86.01%;left:53.5%;width:5.21%;height:0.96%;"><a id="EB_95E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:87.98%;left:44.93%;width:4.57%;height:0.96%;"><a id="EB_97E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:91.02%;left:43.44%;width:5%;height:1.01%;"><a id="EB_99E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:92.08%;left:41.07%;width:6.06%;height:1.01%;"><a id="EB_101E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:94.13%;left:34.69%;width:4.79%;height:1.92%;"><a id="EB_SKT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+                    </div><!-- class: hitMap -->
+                </div><!-- id:routeMapImageEB --></div>
+                <div id="scroll-paneWB"><div id="routeMapImageWB">
+                    <div id="routeMapWBContainer"></div>
+                    <img id="routeMapWB" src="images/googleMap/routeMapWB.jpg" data-zoom-image="images/googleMap/routeMapWB.jpg" />
+                    <div class="hitMap">
+<div style="top:1.6%;left:49.13%;width:18.51%;height:1.92%;"><a id="WB_KTT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:3.88%;left:56.66%;width:17.02%;height:1.1%;"><a id="WB_104W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:4.88%;left:59.83%;width:28.94%;height:1.1%;"><a id="WB_102W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:6.98%;left:63.64%;width:14.89%;height:1.01%;"><a id="WB_100W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:8.94%;left:66.68%;width:24.68%;height:1.01%;"><a id="WB_98W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:10.08%;left:68.16%;width:23.19%;height:0.92%;"><a id="WB_96W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:13.59%;left:70.78%;width:11.49%;height:0.82%;"><a id="WB_92W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:14.67%;left:68.06%;width:18.94%;height:2.02%;"><a id="WB_WST" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:11.41%;left:62.81%;width:21.06%;height:1.92%;"><a id="WB_94W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:16.89%;left:71.68%;width:25.32%;height:1.19%;"><a id="WB_90W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:18.06%;left:71.86%;width:13.62%;height:1.01%;"><a id="WB_88W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:19.09%;left:71.86%;width:16.7%;height:0.82%;"><a id="WB_86W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:20.01%;left:71.86%;width:24.89%;height:1.19%;"><a id="WB_84W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:21.22%;left:71.07%;width:19.79%;height:0.82%;"><a id="WB_82W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:23.03%;left:69.57%;width:23.4%;height:1.01%;"><a id="WB_80W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:24.08%;left:69.89%;width:22.13%;height:1.01%;"><a id="WB_78W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:25.35%;left:63.86%;width:27.66%;height:1.92%;"><a id="WB_WMT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:28.61%;left:67.49%;width:28.72%;height:1.01%;"><a id="WB_76W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:29.66%;left:67.59%;width:17.23%;height:0.92%;"><a id="WB_74W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:31.58%;left:66.07%;width:23.62%;height:0.92%;"><a id="WB_72W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:32.67%;left:65.16%;width:27.66%;height:1.01%;"><a id="WB_70W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:34.74%;left:61.74%;width:15.11%;height:1.01%;"><a id="WB_68W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:36.73%;left:55.46%;width:18.3%;height:1.01%;"><a id="WB_66W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:37.74%;left:55.27%;width:35.96%;height:1.01%;"><a id="WB_64W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:38.76%;left:55.33%;width:17.45%;height:1.01%;"><a id="WB_62W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:40.88%;left:55.52%;width:17.87%;height:1.01%;"><a id="WB_60W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:42.94%;left:59.39%;width:16.38%;height:0.92%;"><a id="WB_58W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:43.97%;left:59.54%;width:28.09%;height:1.01%;"><a id="WB_56W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:45.98%;left:57.4%;width:17.87%;height:0.92%;"><a id="WB_54W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:46.96%;left:56.59%;width:18.3%;height:1.01%;"><a id="WB_52W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:50.19%;left:55.38%;width:19.36%;height:0.92%;"><a id="WB_50W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:47.25%;left:30.52%;width:8.94%;height:1.37%;"><a id="WB_112" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:41.01%;left:21.44%;width:14.26%;height:1.37%;"><a id="WB_110" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:40.42%;left:11.35%;width:8.3%;height:1.92%;"><a id="WB_109" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:46.21%;left:4.72%;width:4.47%;height:1.92%;"><a id="WB_HVT_K" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:49.28%;left:8.13%;width:12.34%;height:2.2%;"><a id="WB_108" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:53.12%;left:11.41%;width:8.72%;height:2.11%;"><a id="WB_107" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:53.02%;left:21.5%;width:7.02%;height:2.29%;"><a id="WB_106" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:53.06%;left:31.8%;width:6.81%;height:2.11%;"><a id="WB_105" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:54.15%;left:57.72%;width:31.49%;height:1.1%;"><a id="WB_48W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:55.24%;left:58.57%;width:20.64%;height:0.92%;"><a id="WB_46W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:56.51%;left:51.77%;width:27.02%;height:2.02%;"><a id="WB_CBT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:58.97%;left:68.38%;width:15.32%;height:1.01%;"><a id="WB_44W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:60.05%;left:69.09%;width:18.3%;height:0.82%;"><a id="WB_42W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:62.01%;left:72.64%;width:26.17%;height:1.19%;"><a id="WB_40W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:63.17%;left:73.98%;width:14.89%;height:0.82%;"><a id="WB_38W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:65.18%;left:74.96%;width:15.32%;height:0.92%;"><a id="WB_36W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:66.26%;left:75.88%;width:23.83%;height:1.01%;"><a id="WB_34W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:68.52%;left:77.05%;width:17.66%;height:1.01%;"><a id="WB_32W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:70.03%;left:73.26%;width:16.81%;height:2.02%;"><a id="WB_NPT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:72.77%;left:75.49%;width:22.55%;height:0.82%;"><a id="WB_30W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:73.77%;left:75.22%;width:16.81%;height:1.01%;"><a id="WB_28W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:74.79%;left:74.64%;width:20.85%;height:0.82%;"><a id="WB_26W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:75.88%;left:74.07%;width:20.64%;height:0.82%;"><a id="WB_24W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:76.87%;left:73.25%;width:12.98%;height:0.82%;"><a id="WB_22W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:77.9%;left:72.14%;width:24.04%;height:0.92%;"><a id="WB_20W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:78.97%;left:71.1%;width:20.21%;height:0.82%;"><a id="WB_18W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:79.94%;left:69.65%;width:15.53%;height:0.92%;"><a id="WB_16W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:80.97%;left:69.2%;width:20.85%;height:1.01%;"><a id="WB_14W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:82.03%;left:69.05%;width:20.64%;height:0.82%;"><a id="WB_12W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:82.98%;left:68.3%;width:17.23%;height:0.92%;"><a id="WB_10W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:84.94%;left:66.42%;width:29.79%;height:1.01%;"><a id="WB_08W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:86.06%;left:65.29%;width:17.45%;height:0.92%;"><a id="WB_06W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:87.51%;left:52.39%;width:20%;height:1.92%;"><a id="WB_97E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:90.07%;left:55.3%;width:16.6%;height:1.01%;"><a id="WB_04W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:92.01%;left:55.86%;width:16.17%;height:0.92%;"><a id="WB_02W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:94.05%;left:39.95%;width:32.55%;height:2.11%;"><a id="WB_SKT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:1.54%;left:43.97%;width:4.68%;height:2.02%;"><a id="WB_KTT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:3.81%;left:42.89%;width:6.81%;height:1.01%;"><a id="WB_104W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:4.94%;left:44.95%;width:5.96%;height:1.01%;"><a id="WB_102W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:7.09%;left:48.78%;width:6.38%;height:0.92%;"><a id="WB_100W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:8.9%;left:53.1%;width:5.74%;height:1.01%;"><a id="WB_98W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:10.08%;left:55%;width:5.53%;height:0.92%;"><a id="WB_96W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:11.89%;left:55.49%;width:4.89%;height:0.82%;"><a id="WB_94W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:13.54%;left:56.25%;width:5.96%;height:1.01%;"><a id="WB_92W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:14.72%;left:62.93%;width:4.47%;height:1.92%;"><a id="WB_WST" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:16.94%;left:55.83%;width:5.96%;height:1.01%;"><a id="WB_90W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:18.12%;left:55.83%;width:5.96%;height:0.92%;"><a id="WB_88W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:19.14%;left:55.83%;width:5.96%;height:1.01%;"><a id="WB_86W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:20.21%;left:55.93%;width:5.96%;height:0.64%;"><a id="WB_84W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:21.11%;left:55.83%;width:5.96%;height:1.01%;"><a id="WB_82W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:23.14%;left:55.83%;width:5.96%;height:1.01%;"><a id="WB_80W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:24.18%;left:55.83%;width:5.96%;height:1.01%;"><a id="WB_78W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:25.4%;left:58.55%;width:4.68%;height:1.97%;"><a id="WB_WMT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:28.54%;left:50.94%;width:6.38%;height:1.01%;"><a id="WB_76W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:29.63%;left:48.48%;width:7.02%;height:1.01%;"><a id="WB_74W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:31.56%;left:45.02%;width:7.02%;height:1.01%;"><a id="WB_72W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:32.69%;left:42.71%;width:7.02%;height:1.01%;"><a id="WB_70W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:34.73%;left:38.7%;width:7.02%;height:1.01%;"><a id="WB_68W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:36.73%;left:38.92%;width:7.02%;height:1.01%;"><a id="WB_66W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:37.8%;left:39.03%;width:5.96%;height:1.01%;"><a id="WB_64W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:38.85%;left:39.24%;width:5.96%;height:1.01%;"><a id="WB_62W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:40.8%;left:39.24%;width:5.96%;height:1.01%;"><a id="WB_60W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:42.86%;left:39.14%;width:5.96%;height:1.01%;"><a id="WB_58W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:43.92%;left:39.24%;width:5.96%;height:1.01%;"><a id="WB_56W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:45.97%;left:39.35%;width:5.96%;height:1.01%;"><a id="WB_54W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:47%;left:39.31%;width:5.96%;height:0.92%;"><a id="WB_52W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:50.16%;left:39.14%;width:5.96%;height:1.01%;"><a id="WB_50W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:48.54%;left:32.71%;width:4.47%;height:1.47%;"><a id="WB_112" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:44.87%;left:25.54%;width:13.4%;height:1.37%;"><a id="WB_111" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:42.41%;left:21.18%;width:4.68%;height:1.37%;"><a id="WB_110" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:42.39%;left:11.37%;width:4.89%;height:1.37%;"><a id="WB_109" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:46.3%;left:9.73%;width:17.45%;height:2.11%;"><a id="WB_HVT_K" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:49.85%;left:2.45%;width:5.32%;height:1.01%;"><a id="WB_108" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:51.72%;left:11.23%;width:4.89%;height:1.19%;"><a id="WB_107" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:51.79%;left:21.2%;width:4.89%;height:1.19%;"><a id="WB_106" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:51.7%;left:31.67%;width:5.11%;height:1.37%;"><a id="WB_105" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:54.06%;left:39.46%;width:6.17%;height:1.01%;"><a id="WB_48W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:55.14%;left:39.21%;width:5.96%;height:1.01%;"><a id="WB_46W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:56.55%;left:46.62%;width:4.89%;height:2.02%;"><a id="WB_CBT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:58.93%;left:43.3%;width:6.38%;height:0.92%;"><a id="WB_44W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:60.05%;left:46.23%;width:6.17%;height:0.92%;"><a id="WB_42W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:62.11%;left:51.64%;width:5.74%;height:0.92%;"><a id="WB_40W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:63.23%;left:54.43%;width:5.74%;height:0.92%;"><a id="WB_38W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:65.23%;left:59.7%;width:5.74%;height:0.92%;"><a id="WB_36W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:66.26%;left:60.93%;width:5.96%;height:0.92%;"><a id="WB_34W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:68.63%;left:60.56%;width:6.17%;height:1.01%;"><a id="WB_32W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:70.03%;left:67.98%;width:4.47%;height:2.02%;"><a id="WB_NPT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:72.81%;left:60.77%;width:5.96%;height:0.92%;"><a id="WB_30W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:73.77%;left:60.88%;width:6.38%;height:0.92%;"><a id="WB_28W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:74.88%;left:58.54%;width:6.38%;height:1.01%;"><a id="WB_26W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:75.99%;left:56.09%;width:6.17%;height:0.64%;"><a id="WB_24W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:76.76%;left:54.15%;width:6.38%;height:1.01%;"><a id="WB_22W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:77.96%;left:51.77%;width:5.74%;height:0.73%;"><a id="WB_20W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:78.98%;left:49.55%;width:5.53%;height:0.73%;"><a id="WB_18W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:80.08%;left:49.77%;width:5.32%;height:0.73%;"><a id="WB_16W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:81.11%;left:49.67%;width:5.53%;height:0.64%;"><a id="WB_14W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:82.02%;left:49.57%;width:5.74%;height:0.82%;"><a id="WB_12W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:83.06%;left:49.45%;width:6.38%;height:0.82%;"><a id="WB_10W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:85.03%;left:49.4%;width:6.17%;height:0.92%;"><a id="WB_08W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:86.19%;left:49.41%;width:5.74%;height:0.64%;"><a id="WB_06W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:88.12%;left:45.16%;width:4.47%;height:0.82%;"><a id="WB_97E" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:90.02%;left:40.63%;width:7.02%;height:1.01%;"><a id="WB_04W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:92.05%;left:36.5%;width:7.02%;height:1.01%;"><a id="WB_02W" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+<div style="top:94.08%;left:34.69%;width:4.89%;height:2.11%;"><a id="WB_SKT" href="javascript:" onclick="mapGoto(this);if(event.preventDefault){event.preventDefault();}else{event.returnValue = false;}"><img src="images/spacer.gif" /></a></div>
+                    </div><!-- class:hitMap-->
+                </div><!-- id:routeMapImageWB --></div>
+            </div><!-- id:routeMapImage -->
+        </div>
+            <!--a href="javascript:expandFlap();"-->
+                <div id="flap"><a href="javascript:expandFlap();">
+                    <img class="flapTip" src="images/googleMap/flap-base-tip.png" />
+                    <img class="flapTip" id="collapseTip" src="images/googleMap/flap-base-tip-text-extend_en.png" />
+                    <img class="flapTip" id="extendTip" src="images/googleMap/flap-base-tip-text-collapse.png" />
+                    <div id="flapHit"><img src="images/spacer.gif" /></div>
+                </a></div>
+            <!--/a-->
+        </div><!-- id:overlay -->
+        <div id="outerContent"><!-- outerContent -->
+            <!--div id="map-canvas" style="width:500px;height:500px;border:0px solid black;">map-canvas</div-->
+            <div id="contentMain"><!-- contentMain -->
+                <!-- no use -->
+            </div><!-- contentMain EOT -->
+        </div><!-- outerContent EOT -->
+    </div><!-- outerWrapper EOT -->
+
+</div><!-- contentWrapper eof -->
+<div id="pageLoader"><img src="images/ajax-loader.gif" alt="" /></div>
+<style type="text/css">
+#siteMapContainer{height:0px;background-color: #eeeeee;width: 100%;bottom: 67px;overflow: hidden;}
+#sitemap{padding-left: 190px;}
+#siteMapContainer .centerContent{max-width: 950px;margin: 0 auto;padding-left: 30px;font-size: 14px;line-height: 14px;}
+#siteMapContainer h3{font-size: 16px;line-height: 16px;}
+#siteMapContainer h3 a{color:#414141;}
+#siteMapContainer .centerContent > ul > li{float:left;list-style: none;padding: 0 20px;}
+#siteMapContainer .centerContent > ul > li:first-child{padding-left:0px;}
+#siteMapContainer .sectionContent{margin-top: 20px;}
+#siteMapContainer .sectionContent ul{padding-top: 16px;}
+#siteMapContainer .sectionContent ul li{list-style: none;padding:4px 0px;}
+#siteMapContainer a{color:#868686;}
+#siteMapContainer a:hover{text-decoration: underline;}
+#siteMapContainer .fullLine{width: 100%;height:1px;background-color: #b9b9b9}
+</style>
+<script>
+$(function(){
+    $('#siteMapContainer .btnHideSiteMap').click(function(){
+        var siteMapContainerObj = $('#siteMapContainer');
+        TweenMax.to(siteMapContainerObj,0.3,{'height':'0px'});
+    });
+});
+function showSiteMap(){
+    var siteMapContainerObj = $('#siteMapContainer');
+    var siteMapObj = $('#sitemap');
+    TweenMax.to(siteMapContainerObj,0.3,{'height':siteMapObj.height() + 'px'});
+}
+</script>
+<div id="footerWrapper">
+    <div id="siteMapContainer" class="floatDiv defaultFont">
+        <div id="sitemap">
+            <div style="height:20px;">&nbsp;</div>
+            <div class="centerContent containerDiv">
+                <h3 style="border-left:3px solid #007549;padding-left:10px;color:#007549;line-height:16px;margin:0px 0px 22px 0px;">Site Map</h3>
+                <a href="javascript:" class="floatDiv btnHideSiteMap" style="right:5px;top:-12px;"><img src="images/sitemap/btnHide.jpg" alt="" /></a>
+            </div>
+            <div class="fullLine"></div>
+            <div class="centerContent containerDiv clearfix">
+                <ul class='clearfix' style="height:270px;">
+                    <li>
+                        <div class="sectionContent">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'plan-your-ride');">Plan Your Ride</a></h3>
+                            <ul>                    
+                                <li><a href="javascript:changeSectionLink('sub', 0, 'interactive-map');">Interactive Map</a></li>
+                                                                <li><a href="javascript:changeSectionLink('sub', 0, 'schedules-fares');">Schedules and Fares</a></li>
+                                                                <li><a href="javascript:changeSectionLink('sub', 0, 'service-updates');">Service Updates</a></li>
+                                <li><a href="javascript:changeSectionLink('sub', 0, 'notice-to-passengers');">Notice to Passengers</a></li>
+                            </ul>
+                        </div>
+                        <div class="sectionContent">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'book-your-party-tram');">Charter Your Party Tram</a></h3>
+                            <ul>                    
+                                <li><a href="javascript:changeSectionLink('main', 99, 'party-tram-book');">Book Now</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sectionContent">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'tramoramic');">Book a TramOramic Tour</a></h3>
+                            <ul>                    
+                                <li><a href="javascript:changeSectionLink('main', 99, 'tramoramic');">Tour Details</a></li>
+                                <li><a href="javascript:getURL('hktramways.zaui.net/modules/webBooking/index.php?lang=1', false, '', 'true');">Book Now</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'thematic-journeys');">Things To Do</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'fares-faq');">Fares & FAQ</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'tramoramic-gallery');">TramOramic Gallery</a></li>
+                                                            </ul>
+                        </div>
+                        <div class="sectionContent">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'discover-tram-advertising');">Discover Tram Advertising</a></h3>
+                            <ul>                    
+                                <li><a href="javascript:changeSectionLink('main', 99, 'discover-tram-advertising-detail/1/');">Tram Body</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'discover-tram-advertising-detail/2/');">Tram Shelter</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sectionContent">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks');">Explore Along Tracks</a></h3>
+                            <ul>                    
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/1/');">Kennedy Town</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/2/');">Sai Ying Pun</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/3/');">Sheung Wan</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/4/');">Central</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/5/');">Wan Chai</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/6/');">Happy Valley</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/7/');">Causeway Bay</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/8/');">North Point</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/9/');">Quarry Bay</a></li>
+                                <li><a href="javascript:changeSectionLink('main', 99, 'explore-along-tram-tracks-node/10/');">Shau Kei Wan</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sectionContent">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'about-us');">About HK Tramways</a></h3>
+                            <ul>                    
+                                <li><a href="javascript:changeSectionLink('sub', 6, 'about-hong-kong-tramways');">Key Figures</a></li>
+                                <li><a href="javascript:changeSectionLink('sub', 6, 'our-story');">Our Story</a></li>
+                                <li><a href="javascript:changeSectionLink('sub', 6, 'press-releases');">Press Releases</a></li>
+                                <li><a href="javascript:changeSectionLink('sub', 6, 'media-coverage');">Media Coverage</a></li>
+                                                                <li><a href="https://careers.hktramways.com/en" target="_blank">Careers</a></li>
+                                <li><a href="javascript:changeSectionLink('sub', 6, 'contact-us');">Contact Us</a></li>
+                                <!--li><a href="javascript:changeSectionLink('sub', 6, 'tram-souvenirs');">Shop Tram Souvenirs</a></li-->
+                            </ul>
+                        </div>
+                        <div class="sectionContent">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'tram-souvenirs');">Shop Tram Souvenirs</a></h3>
+                        </div>
+                        <div class="sectionContent">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'disclaimer');">Disclaimer and Privacy Policy</a></h3>
+                        </div>
+                        <div class="sectionContent" style="margin-top:10px;">
+                            <h3><a href="javascript:changeSectionLink('main', 99, 'images-attribution');">Image Attribution</a></h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div style="height:22px;">&nbsp;</div>
+        </div>
+    </div>
+    <div id="footerContent">
+        <div class="floatLeft">
+            <ul class="ulList menu clearfix">
+                <li><a href="javascript:changeSectionLink('sub', 0, 'service-updates');">Service Updates</a></li>
+                <li><a href="javascript:changeSectionLink('main', 99, 'tramoramic');">Book a TramOramic Tour</a></li>
+                <li><a href="javascript:changeSectionLink('main', 99, 'book-your-party-tram');">Charter Your Party Tram</a></li>
+                <!--li><a href="javascript:changeSectionLink('main', 99, 'discover-tram-advertising');">Discover Tram Advertising</a></li-->
+                <li><a href="javascript:changeSectionLink('sub', 6, 'contact-us');">Contact Us</a></li>
+                <li><a href="javascript:showSiteMap();">Site Map</a></li>
+                <li><a href="javascript:changeSectionLink('main', '', 'disclaimer');">Disclaimer and Privacy Policy</a></li>
+            </ul>
+                        <i>A member of RATP Dev Group</i> &#124; <span style="font-family:Arial">&copy;</span> Hong Kong Tramways Limited. All rights reserved.        </div>
+        <div class="floatRight">
+            <!--a href="javascript:getURL('itunes.apple.com/hk/app/hong-kong-tramways-official/id819218007', false, '_blank');" style="margin-right:5px;"><img src="images/common/app_ios.png" alt="" /></a-->
+            <!--a href="javascript:getURL('play.google.com/store/apps/details?id=com.hktramways.tram', false, '_blank');"><img src="images/common/app_android.png" alt="" /></a-->
+			<img src="images/common/logo_caringcompany.jpg" alt="" />
+        </div>
+    </div>
+</div><!-- footerWrapper eof -->
+
+
+</body>
+</html>

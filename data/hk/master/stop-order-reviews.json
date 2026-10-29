@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-22",
+  "relations": [
+    {
+      "relationId": 3263757,
+      "relationVersion": 33,
+      "status": "verified",
+      "sourceFile": "data/hk/sources/phase2/relation-3263757.json",
+      "sha256": "6b29ce19721d8847e7f2788e8ecf986361f6dc753bb858cd98ffca8bbc4533e7",
+      "moveStopNodeId": 5470724238,
+      "insertBeforeStopNodeId": 3112114538,
+      "officialEvidence": "data/hk/sources/phase4/tram-next-data.js",
+      "officialSourceUrl": "https://www.hktramways.com/en/interactive-map/",
+      "officialOrderedStopCodes": [
+        "106",
+        "107",
+        "108",
+        "HVT_K"
+      ],
+      "explanation": "Official operator map branch lists Leighton Road, Broadwood Road, Wong Nai Chung Road, Happy Valley in this order. Source appends Broadwood after terminus. Move only this already-member stop; retain every original railway way and vertex. All four stop nodes are exact vertices in increasing order. Full service stop approval remains separate; unnamed source stop still incomplete."
+    },
+    {
+      "relationId": 4088518,
+      "relationVersion": 20,
+      "status": "verified",
+      "sourceFile": "data/hk/sources/phase2/relation-4088518.json",
+      "sha256": "d30905f51f0ee79b661885a6a55184e195856adc22206a00ae13d0353ca4f60c",
+      "moveStopNodeId": 5470724238,
+      "insertBeforeStopNodeId": 3112114538,
+      "officialEvidence": "data/hk/sources/phase4/tram-next-data.js",
+      "officialSourceUrl": "https://www.hktramways.com/en/interactive-map/",
+      "officialOrderedStopCodes": [
+        "106",
+        "107",
+        "108",
+        "HVT_K"
+      ],
+      "explanation": "Official operator map branch lists Leighton Road, Broadwood Road, Wong Nai Chung Road, Happy Valley in this order. Source appends Broadwood after terminus. Move only this already-member stop; retain every original railway way and vertex. All four stop nodes are exact vertices in increasing order. Full service stop approval remains separate; unnamed source stop still incomplete."
+    }
+  ]
+}

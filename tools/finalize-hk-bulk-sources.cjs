@@ -1,0 +1,11 @@
+const fs=require('node:fs'),crypto=require('node:crypto');
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8')),write=(f,v)=>fs.writeFileSync(f,JSON.stringify(v,null,2)+'\n'),hash=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const file='data/hk/master/bulk-service-reviews.json',review=read(file),manifest=read('data/hk/sources/manifest.json');
+review.sources=[{file:'data/hk/sources/bulk/east-rail-2026.pdf',sha256:hash('data/hk/sources/bulk/east-rail-2026.pdf'),sourceUrl:'https://www.tlb.gov.hk/eng/legislative/transport/special/land/TLB-1-e1_2026.pdf',role:'2026 official corroboration of peak short-haul workings, including Sha Tin and Tai Po Market'}];
+for(const s of review.services)s.validWhen.noteKo=s.validWhen.noteKo.replaceAll('황푸','왐포아').replaceAll('금종행','애드미럴티행');
+const special={'east-rail-short.html':'https://www.news.gov.hk/eng/2022/06/20220615/20220615_144843_453.html','east-rail-2026.pdf':review.sources[0].sourceUrl,'tung-chung-short.pdf':'https://www.districtcouncils.gov.hk/island/doc/2024_2027/en/committee_meetings_minutes/TTC/TTCmin17022025_EN.pdf','light-rail.html':'https://www.mtr.com.hk/en/customer/services/schedule_index.html','service-frequency.html':'https://www.mtr.com.hk/en/customer/services/train_service_index.html','jplannerdata_en.js':'https://www.mtr.com.hk/share/customer/js/jplannerdata_en.js'};
+const keep=new Set(['jplannerdata_en.js',...review.sources.map(s=>s.file.split('/').at(-1)),...review.services.flatMap(s=>s.sources.filter(p=>p.file.includes('/bulk/')).map(p=>p.file.split('/').at(-1)))]);
+for(const name of keep){const sourceUrl=special[name]||'https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station='+name.match(/^hours-(\d+)\.html$/)[1];const file='data/hk/sources/bulk/'+name;manifest['bulk/'+name]={sourceUrl,sourceType:'official',checkedAt:'2026-10-29',retrievedAt:new Date().toISOString(),sha256:hash(file),license:'REVIEW_REQUIRED',status:'retrieved'};}
+write(file,review);write('data/hk/sources/manifest.json',manifest);write('output/hk/bulk-expansion/source-keep.json',[...keep]);
+const prep='tools/prepare-hk-bulk.cjs';let source=fs.readFileSync(prep,'utf8').replaceAll('황푸','왐포아').replaceAll('금종행','애드미럴티행');fs.writeFileSync(prep,source);
+console.log('Pinned official source files: '+keep.size);

@@ -32,15 +32,19 @@ const server=http.createServer((req,res)=>{
 });
 (async()=>{
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const url='http://127.0.0.1:'+server.address().port;
- const browser=await chromium.launch({headless:true}),results=[];
+ let browser=await chromium.launch({headless:true});const results=[],transportRestarts=[];
  try{
-  const batches=[['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]].flatMap(([device,viewport])=>Array.from({length:Math.ceil(candidates.length/12)},(_,batch)=>({device,viewport,start:batch*12,end:(batch+1)*12})));
+  const batchSize=24;
+  const batches=[['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]].flatMap(([device,viewport])=>Array.from({length:Math.ceil(candidates.length/batchSize)},(_,batch)=>({device,viewport,start:batch*batchSize,end:(batch+1)*batchSize})));
   for(const {device,viewport,start,end} of batches){
-   const context=await browser.newContext({viewport,isMobile:device==='mobile',hasTouch:device==='mobile'}),page=await context.newPage(),pageErrors=[];
-   page.on('pageerror',e=>pageErrors.push(e.message));
-   await page.goto(url,{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!!globalThis.__KR_BROWSER_QA__,{timeout:60000});
-   await page.locator('[data-country="kr"]').click();await page.waitForFunction(()=>document.documentElement.dataset.country==='kr');
-   await page.locator('[data-country="jp"]').click();await page.waitForFunction(()=>document.documentElement.dataset.country==='jp');
+   let context,page;const pageErrors=[];
+   for(let attempt=0;attempt<3;attempt++){
+    context=await browser.newContext({viewport,isMobile:device==='mobile',hasTouch:device==='mobile'});page=await context.newPage();page.on('pageerror',e=>pageErrors.push(e.message));
+    try{await page.goto(url,{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!!globalThis.__KR_BROWSER_QA__,{timeout:60000});break}
+    catch(error){if(!String(error.message).includes('ERR_NETWORK_IO_SUSPENDED')||attempt===2)throw error;transportRestarts.push({device,batchStart:start,attempt:attempt+1,error:'ERR_NETWORK_IO_SUSPENDED'});await context.close();await browser.close();browser=await chromium.launch({headless:true})}
+   }
+   await page.locator('[data-country="kr"]').click({noWaitAfter:true});await page.waitForFunction(()=>document.readyState!=='loading'&&!!globalThis.__KR_BROWSER_QA__&&document.documentElement.dataset.country==='kr');
+   await page.locator('[data-country="jp"]').click({noWaitAfter:true});await page.waitForFunction(()=>document.readyState!=='loading'&&!!globalThis.__KR_BROWSER_QA__&&document.documentElement.dataset.country==='jp');
    const runs=await page.evaluate(async({start,end})=>{
     const qa=globalThis.__KR_BROWSER_QA__,routes=(await(await fetch('/__qa-candidates.json')).json()).slice(start,end),results=[];
     for(const route of routes){
@@ -86,6 +90,6 @@ const server=http.createServer((req,res)=>{
   }
  }finally{await browser.close();server.close()}
  for(const input of inputs)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,input.file))).digest('hex'),input.sha256,'INPUT_CHANGED_DURING_BROWSER_QA:'+input.file);
- const report={status:results.every(r=>!r.pageErrors.length&&r.runs.every(t=>t.status==='PASS'))?'PASS':'FAIL',scope:'Unapproved source candidate diagnostics; not national completion, verified timetable, transfer or release approval',limitations:['Synthetic composition events, not physical device IME','Motion disabled for batch traversal; animation timing not certified','TAB transfers and official timetable applicability not certified'],testedAt:new Date().toISOString(),inputs,excludedTopology,results};
+ const report={status:results.every(r=>!r.pageErrors.length&&r.runs.every(t=>t.status==='PASS'))?'PASS':'FAIL',scope:'Unapproved source candidate diagnostics; not national completion, verified timetable, transfer or release approval',limitations:['Synthetic composition events, not physical device IME','Motion disabled for batch traversal; animation timing not certified','TAB transfers and official timetable applicability not certified'],testedAt:new Date().toISOString(),inputs,transportRestarts,excludedTopology,results};
  console.log(JSON.stringify(report,null,2));if(process.env.KR_BROWSER_REPORT)fs.writeFileSync(process.env.KR_BROWSER_REPORT,JSON.stringify(report,null,2)+'\n');if(report.status!=='PASS')process.exitCode=1;
 })().catch(e=>{console.error(e);server.close();process.exitCode=1});

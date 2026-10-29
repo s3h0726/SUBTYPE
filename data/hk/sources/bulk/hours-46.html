@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KR5MZDK');</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="Keywords" content="Train service,coverage,MTR stations,Tourist,Train Frequency,Service Hours,First Trains,Last Trains,Customer service ,Fares table, MTR Station Facilities,MTR Wi-Fi Services,MTR ATM Service,eInstant Bonus Terminals,Public Toilets in MTR  stations,MTR Facilities For Passengers With Disabilities,Facilities for Visually Impaired Passengers,Facilities for Hearing Impaired Passengers,Facilities for Mobility Impaired Passengers,station concourses,Customer Service Centres,Information Centres" />
+<meta name="Description" content="Train service,coverage,MTR stations,Tourist,Train Frequency,Service Hours,First Trains,Last Trains,Customer service ,Fares table, MTR Station Facilities,MTR Wi-Fi Services,MTR ATM Service,eInstant Bonus Terminals,Public Toilets in MTR  stations,MTR Facilities For Passengers With Disabilities,Facilities for Visually Impaired Passengers,Facilities for Hearing Impaired Passengers,Facilities for Mobility Impaired Passengers,station concourses,Customer Service Centres,Information Centres" />
+<!--Open Graph Desciption-->
+<meta property="og:image" content="http://www.mtr.com.hk/en/customer/images/fb_logo.jpg"/>
+<meta property="og:Description" content=" "/>
+<!--End Of Open Graph Desciption-->
+<title>MTR &gt; MTR Train Services</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/master_grid.css" />
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" id="responsive_css"/>
+
+<link rel="stylesheet" id="tourist_css"/>
+<link rel="stylesheet" id="tourist_section_css"/>
+
+<link rel="stylesheet" href="../css/services.css"/>
+<link rel="stylesheet" href="../css/desktop_services.css" id="section_css"/>
+<script src="/share/common/js/jquery-3.5.1.min.js"></script>
+<script src="/share/common/js/jquery-migrate-3.3.2.min.js"></script>
+<script src="/share/common/js/jquery-browser-migration.js"></script>
+<script>
+breadcrumb_tail = '3.1.2';
+$(document).ready(function(){    
+    load_html_fragment();
+	serviceHoursInitialStation(42);
+	$( '.trainLine' ).each( function(i){
+		var stationName = eval( "lineMapping." + $( this ).attr( 'class' ).replace( 'trainLine ', '' ) );
+		$( this ).html( stationName );
+	} );
+});
+clickSearch = function(){
+	var stationId = $( '#station' ).val();
+	if( stationId!=null && stationId.length>0 && !isNaN( stationId ) ){
+		location.href = './service_hours_search.php?query_type=search&station=' + stationId;
+	}
+};
+document.addEventListener('DOMContentLoaded', function() {
+    var stnName = mapStationName(42);
+    document.getElementById('stnName').textContent = (stnName === "") ? "" : " - " + stnName;
+});
+</script>
+<script src="/share/customer/js/frame_responsive.js"></script>
+<script src="/share/customer/js/responsive.js"></script>
+<script src="/share/customer/js/selectivizr.js"></script>
+<script src="/share/customer/js/jquery_cookie.js"></script>
+<script src="/share/customer/js/common.js"></script>
+<script src="/share/customer/js/inside.js"></script>
+<link rel="stylesheet" href="../css/jquery.sidr.dark.css">
+<script src="/share/customer/js/jquery.sidr.min.js"></script>
+<script src="/share/customer/js/mobilemenu.js"></script>
+
+
+</head>
+
+<body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KR5MZDK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="headerWrap"></div>
+<div id="insidebanner">
+	<img src="../images/banner_services.jpg" alt="services and facilities" />
+    <div class="insidebanner-tt">
+    	<div class="main"><div class="col12"><strong>services and facilities</strong></div></div>
+    </div>
+</div>
+<div class="inside-jp main fixed">
+    <div class="jp-col col3 Mcol12 fixed">
+    </div>
+</div>
+<div id="breadcrumbnav"></div>
+
+<div id="main">
+	<div class="main fixed">
+    	<div id="leftNav"></div>
+    	<div class="col9 last Tcol12 Mcol12">
+            <div class="services_content search_content ">
+				<a id="skip" class="skipSymbol">-</a>
+            	<h1 class="generaltitle">Service hours<span id="stnName"/></h1>
+             <div class="search_top fixed">
+
+          <form name="Select_From" method="get" action="free_search.php#searchResult">
+          <input type="hidden" name="query_type" value="search">
+          <a name="top" id="top" class="skipSymbol">-</a>
+          
+          <div class="col4 Mcol12">
+            <select name="station" class="home_pulldown" onchange="getValueSelected('')" id="station">
+                            </select>                                     
+          </div>
+         
+          <div class="free_btn search_btn col2 Mcol12"><a href="javascript:clickSearch();" title="Search">Search</a> </div>
+          </form>
+        </div>
+		
+ <h2 class="headlineInContent"><span class="js_station_42" ></span></h2>
+        <p>Station opening hours: 05:49-01:14</p>
+
+        <div class="resultWrap">
+         <br /> <h2 class="trainLine AEL"></h2>
+
+          <div>
+         
+          <table class="table-d table-topline">
+            <tbody><tr>
+              <th>To</th>
+              <th>First Train</th>
+              <th>Last Train</th>
+            </tr>
+            <tr>
+              <td class="tr-color"><span class="js_station_56_ael" >-</span></td>
+              <td class="firstTrain">0600</td>
+              <td>0059</td>
+            </tr>
+	<!--
+            <tr>
+              <td class="tr-color">Tuen Mun</td>
+              <td class="firstTrain">0600</td>
+              <td>0015</td>
+            </tr>
+             <tr>
+              <td class="tr-color">Hung Hom</td>
+              <td  class="firstTrain">0600</td>
+              <td>0025</td>
+            </tr>
+			-->
+          </tbody></table>
+		  <p>Passenger may not pass through the entry gates less than 5 minutes before the scheduled departure times of the last train</p>
+        </div>
+         <br /> <h2 class="trainLine TCL"></h2>
+
+          <div>
+         
+          <table class="table-d table-topline">
+            <tbody><tr>
+              <th>To</th>
+              <th>First Train</th>
+              <th>Last Train</th>
+            </tr>
+            <tr>
+              <td class="tr-color"><span class="js_station_39" >-</span></td>
+              <td class="firstTrain">0559</td>
+              <td>0058</td>
+            </tr>
+            <tr>
+              <td class="tr-color"><span class="js_station_43" >-</span></td>
+              <td class="firstTrain">0615</td>
+              <td>0104</td>
+            </tr>
+	<!--
+            <tr>
+              <td class="tr-color">Tuen Mun</td>
+              <td class="firstTrain">0600</td>
+              <td>0015</td>
+            </tr>
+             <tr>
+              <td class="tr-color">Hung Hom</td>
+              <td  class="firstTrain">0600</td>
+              <td>0025</td>
+            </tr>
+			-->
+          </tbody></table>
+		  <p>Passenger may not pass through the entry gates less than 5 minutes before the scheduled departure times of the last train</p>
+        </div>
+		<!--
+          <h2 class="trainLine WRL">West Rail Line</h2>
+
+          <div>
+         
+          <table class="table-d table-topline">
+            <tbody><tr>
+              <th>To</th>
+              <th>First Train</th>
+              <th>Last Train</th>
+            </tr>
+            <tr>
+              <td class="tr-color">Tuen Mun</td>
+              <td class="firstTrain">0600</td>
+              <td>0015</td>
+            </tr>
+             <tr>
+              <td class="tr-color">Hung Hom</td>
+              <td  class="firstTrain">0600</td>
+              <td>0025</td>
+            </tr>
+          </tbody></table>
+        </div>
+        <h2 class="trainLine TCL">Tung Chung Line</h2>
+
+          <div>
+         
+          <table class="table-d table-topline">
+            <tbody><tr>
+              <th>To</th>
+              <th>First Train</th>
+              <th>Last Train</th>
+            </tr>
+            <tr>
+              <td class="tr-color">Hong Kong</td>
+              <td class="firstTrain">0600</td>
+              <td>0015</td>
+            </tr>
+             <tr>
+              <td class="tr-color">Tung Chung</td>
+              <td  class="firstTrain">0600</td>
+              <td>0025</td>
+            </tr>
+          </tbody></table>
+        </div>
+		-->
+
+        </div>
+              <div class="singleshare"></div>
+				<div class="topbtn"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="footerWrap"></div>
+</body>
+</html>
+

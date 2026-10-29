@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-24",
+  "lightRail751P": {
+    "candidates": 3,
+    "status": "INCOMPLETE",
+    "official": {
+      "checkedAt": "2026-10-24",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "sourceFile": "data/hk/sources/phase5/light-rail.html",
+      "sourceSha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
+      "ref": "751P",
+      "status": "PARTIAL_VERIFICATION",
+      "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
+      "routeColorStatus": "INCOMPLETE",
+      "colorNote": "The shared #D53359 special-service heading is not evidence of a distinct751P route colour.",
+      "fullCallingOrderStatus": "INCOMPLETE"
+    },
+    "csvIncludes751P": false,
+    "reason": "Official current prose confirms conditional morning Tin Wing→Tin Shui Wai and evening Tin Shui Wai↔Tin Yat. Current CSV contains no full751P sequences. Three OSM candidates are not automatic proof of current pattern/time window. Morning Tin Wing origin candidate not fabricated."
+  },
+  "peak": {
+    "status": "INCOMPLETE",
+    "source": {
+      "sourceUrl": "https://www.thepeak.com.hk/en/faq",
+      "sourceType": "official",
+      "status": "INCOMPLETE",
+      "checkedAt": "2026-10-24",
+      "reason": "HTTP 403"
+    },
+    "geometryRelation": 3264047,
+    "currentIntermediateStops": "NOT_VERIFIED",
+    "elevation3d": "NOT_TESTED"
+  },
+  "highSpeed": {
+    "status": "INCOMPLETE",
+    "officialDestination": {
+      "sourceUrl": "https://www.highspeed.mtr.com.hk/en/ticket/destination.html",
+      "sourceType": "official",
+      "status": "retrieved",
+      "checkedAt": "2026-10-24",
+      "sha256": "d5e31c86c06437196aba0d97676d7683522d4b8114e304868673e515b4b1ec81",
+      "license": "REVIEW_REQUIRED"
+    },
+    "trainTimetable": {
+      "sourceUrl": "https://www.highspeed.mtr.com.hk/res/pdf/long-haul-train-timetable-en.pdf",
+      "sourceType": "official",
+      "status": "retrieved",
+      "checkedAt": "2026-10-24",
+      "sha256": "c3e5d76a4b08544f8f9922673f8d03939a378190ac4f2ab31ea403305f30371e",
+      "license": "REVIEW_REQUIRED"
+    },
+    "currentTrainPatternsVerified": 0,
+    "reason": "Current individual train patterns and entire mainland/cross-border rail chain not verified. Destination list not combined as a fake through-service."
+  },
+  "logos": {
+    "approved": 0,
+    "required": 3,
+    "reason": "No new source licence allowing redistribution. Text identities only."
+  }
+}

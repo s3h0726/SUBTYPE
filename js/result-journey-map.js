@@ -6,8 +6,15 @@ let completedMap;
 const number=v=>Number.isFinite(Number(v))?Number(v):NaN;
 const coordinate=s=>{const p=[number(s?.latitude??s?.coordinates?.lat),number(s?.longitude??s?.coordinates?.lng)];return p.every(Number.isFinite)?p:null};
 const same=(a,b)=>a&&b&&Math.abs(a[0]-b[0])<.0000001&&Math.abs(a[1]-b[1])<.0000001;
+// A circular service visits its physical origin again at a different track offset.
+function passedStations(result,route){
+ const stations=route.stations||[],ids=result.typedStationIds||[];
+ if(route.countryId!=='hk'){const byId=new Map(stations.map(s=>[s.id,s]));return ids.map(id=>byId.get(id)).filter(Boolean)}
+ let cursor=-1;
+ return ids.map(id=>{let index=stations.findIndex((s,i)=>i>cursor&&s.id===id);if(index<0)index=stations.findIndex(s=>s.id===id);cursor=index;return stations[index]}).filter(Boolean);
+}
 function segmentPath(route,from,to){
- const stations=route.stations||[],i=stations.findIndex(s=>s.id===from.id),j=stations.findIndex(s=>s.id===to.id);
+ const stations=route.stations||[],index=s=>route.countryId==='hk'&&stations.indexOf(s)>=0?stations.indexOf(s):stations.findIndex(p=>p.id===s.id),i=index(from),j=index(to);
  if(Math.abs(i-j)!==1)return null;
  if(route.countryId!=='kr'&&!Array.isArray(route.directedSegments)&&Array.isArray(route.geometry)&&route.geometry.length>1){
   const source=route.geometry,first=stations[i],last=stations[j];
@@ -35,7 +42,7 @@ async function showCompletedJourneyOnMap(result){
  // Replay the exact same geometry and station offsets used by the live game renderer.
  const travel=travelGeometry(route),parts=[];let missing=0;
  for(let i=1;i<passed.length;i++){
-  const fromIndex=stations.findIndex(st=>st.id===passed[i-1].id),toIndex=stations.findIndex(st=>st.id===passed[i].id);
+  const visitIndex=s=>route.countryId==='hk'?stations.indexOf(s):stations.findIndex(p=>p.id===s.id),fromIndex=visitIndex(passed[i-1]),toIndex=visitIndex(passed[i]);
   let path=null;
   if(travel&&fromIndex>=0&&toIndex>=0&&fromIndex!==toIndex){
    const x=travel.offsets[fromIndex],y=travel.offsets[toIndex];
@@ -95,8 +102,7 @@ async function showCompletedJourneyOnMap(result){
 const radians=d=>d*Math.PI/180;
 const distanceMeters=(a,b)=>{const x=radians(b[0]-a[0]),y=radians(b[1]-a[1]);const h=Math.sin(x/2)**2+Math.cos(radians(a[0]))*Math.cos(radians(b[0]))*Math.sin(y/2)**2;return 12742000*Math.asin(Math.min(1,Math.sqrt(h)))};
 function journeyDistance(result){
- const route=result?.route||{},stations=route.stations||[],byId=new Map(stations.map(s=>[s.id,s]));
- const passed=(result?.typedStationIds||[]).map(id=>byId.get(id)).filter(Boolean);
+ const route=(result?.route?.countryId==='hk'?result.mapRoute||result.route:result?.route)||{},passed=passedStations(result||{},route);
  let meters=0,approximate=false,segments=0;
  for(let i=1;i<passed.length;i++){
   const detailed=segmentPath(route,passed[i-1],passed[i]);

@@ -1,3 +1,4 @@
+import{hongKongRouteBlockReason,hongKongTransferAllowed}from'./hong-kong-policy.js';
 const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-main","kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 // recommit-trigger: free-drive-move-fix-20261007
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
@@ -649,7 +650,7 @@ const routeName=r=>koreanRouteDisplayText(r?.line?.ko||r?.line?.ja||r?.line?.en|
 const stationName=(s,r)=>koreanStationDisplayName(s?.ko||s?.ja||s?.romaji||s?.id||'역',r?.countryId,r);
 const routeColor=r=>r?.lineColor||r?.color||'#73837b';
 const routeSegments=route=>{
-  if(route?.countryId==='kr'){
+  if(route?.countryId==='kr'||route?.countryId==='hk'){
     if(route.geometryReady!==true)return[];
     return(route.directedSegments||[]).filter(segment=>segment.geometryStatus==='ready').map(segment=>segment.geometry)
   }
@@ -717,6 +718,21 @@ export class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    const hkPairs=new Map;
+    for(const pair of globalThis.TRT_HONG_KONG_INDEX?.transfers||[]){
+      if(pair.status!=='verified'||pair.enabled!==true||!pair.from||!pair.to)continue;
+      for(const id of [pair.from,pair.to]){
+        if(hkPairs.has(id))throw new Error('Conflicting Hong Kong interchange '+id);
+        hkPairs.set(id,pair);
+      }
+    }
+    for(const route of routes||[])if(route.countryId==='hk')for(const stop of route.stations||[]){
+      if(stop.countryId&&stop.countryId!=='hk')throw new Error('Cross-country stop in '+route.id);
+      stop.countryId='hk';delete stop.hkTransferKey;delete stop.hkTransferRequiresExit;
+      const pair=hkPairs.get(String(stop.stationMasterId||stop.sourceStationId||stop.id));
+      if(pair){stop.hkTransferKey='hk-transfer:'+pair.id;stop.hkTransferRequiresExit=pair.requiresExit===true;}
+    }
+
     for(const route of routes||[])if(route.countryId==='jp'){
       const stops=route.stations||[],first=stops[0],last=stops.at(-1);
       const sharedEnd=route.loop&&stops.length>2&&first&&last
@@ -769,12 +785,12 @@ export class FreeDrive{
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
     }
     assignJapanInterchangeComponents(routes);
-    this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
+    this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)&&!hongKongRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
     this.graph=new Map;
     const ensure=(station,route,index)=>{
       const key=freeDriveStationKey(station);if(!key)return null;let node=this.graph.get(key);
       if(!node){node={key,station,coord:coords(station),edges:[],routeIds:new Set,stationsByRoute:new Map,coordsByRoute:new Map};this.graph.set(key,node)}
-      node.routeIds.add(route.id);
+      node.routeIds.add(route.id);if(station.hkTransferKey)node.transferRequiresExit=station.hkTransferRequiresExit===true;
       if(!node.stationsByRoute.has(route.id)){
         node.stationsByRoute.set(route.id,{station,index});
         node.coordsByRoute.set(route.id,coords(station));
@@ -789,7 +805,7 @@ export class FreeDrive{
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
         if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
-      if(route.loop&&route.stations.length>2){
+      if(route.countryId!=='hk'&&route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
         if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
       }
@@ -819,7 +835,7 @@ export class FreeDrive{
   coordsForRoute(key,routeId){return this.graph.get(key)?.coordsByRoute?.get(routeId)||null}
   selectRoute(routeId){
     const node=this.current();
-    if(!node?.stationsByRoute?.has(routeId)||!this.routes.some(route=>route.id===routeId))return false;
+    if(!node?.stationsByRoute?.has(routeId)||!this.availableRouteIds().includes(routeId))return false;
     if(this.currentRouteId===routeId)return true;
     this.currentRouteId=routeId;
     this.render();this.emit();
@@ -828,28 +844,29 @@ export class FreeDrive{
   moveTo(to,routeId){
     if(!to||!routeId)return false;
     const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===to&&e.routeId===routeId);
-    if(!edge)return false;
+    if(!edge||!this.availableRouteIds().includes(routeId))return false;
     this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
     this.render();this.emit();return true
   }
   switchRouteAtCurrentStation(routeId){
     const node=this.current(),route=this.routes.find(r=>r.id===routeId);
-    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
+    if(!node||!route||routeId===this.currentRouteId||!this.availableRouteIds().includes(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
     this.currentRouteId=routeId;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
+  availableRouteIds(){const node=this.current(),from=this.routes.find(r=>r.id===this.currentRouteId);return[...(node?.routeIds||[])].filter(id=>(from?.countryId!=='hk'||id===this.currentRouteId||node.edges.some(e=>e.routeId===id))&&hongKongTransferAllowed(from,this.routes.find(r=>r.id===id),this.currentKey))}
   snapshot(){
     const node=this.current(),route=this.routes.find(r=>r.id===this.currentRouteId)||this.startRoute;
     if(!node||!route)return null;
     const indexedStop=node.stationsByRoute?.get(this.currentRouteId);
     const stationIndex=indexedStop?.index??Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
-    return{node,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
+    const availableRouteIds=this.availableRouteIds(),transferCount=route.countryId==='hk'?new Set(availableRouteIds.map(id=>this.routes.find(r=>r.id===id)?.canonicalLineId).filter(id=>id&&id!==route.canonicalLineId)).size:Math.max(0,availableRouteIds.length-1);return{node,availableRouteIds,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount}
   }
   emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
   edges(){
     const node=this.current();if(!node)return[];
     const seen=new Set;
-    return node.edges.filter(e=>{const k=`${e.to}|${e.routeId}`;if(seen.has(k))return false;seen.add(k);return true})
+    const available=this.availableRouteIds();return node.edges.filter(e=>{if(!available.includes(e.routeId))return false;const k=`${e.to}|${e.routeId}`;if(seen.has(k))return false;seen.add(k);return true})
       .sort((a,b)=>(a.routeId===this.currentRouteId?-1:0)-(b.routeId===this.currentRouteId?-1:0)||routeName(a.route).localeCompare(routeName(b.route),'ko'));
   }
   render(){

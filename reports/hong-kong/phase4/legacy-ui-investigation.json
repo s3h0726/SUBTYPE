@@ -1,0 +1,104 @@
+{
+  "checkedAt": "2026-10-24",
+  "legacyStaticChecks": {
+    "inputValueIsNfcSoleSource": false,
+    "stationBadgeUsesOfficialCodeOnly": true,
+    "koreanProgressUsesAnswerLength": false,
+    "autoAdvance150ms": false,
+    "routeGridWindowed": true,
+    "osakaMetroCanonical": true,
+    "hitoyoshiCanonical": true,
+    "hitoyoshiInternalIdNotPromoted": true,
+    "firstAnswerIsStartStation": false,
+    "typedArrivalInvariant": true,
+    "duplicateCompleteGuard": true,
+    "noJapaneseInKoreanFields": true
+  },
+  "effectiveChecks": {
+    "inputValueIsNfcSoleSource": true,
+    "stationBadgeUsesOfficialCodeOnly": true,
+    "koreanProgressUsesAnswerLength": true,
+    "autoAdvance150ms": false,
+    "routeGridWindowed": true,
+    "osakaMetroCanonical": true,
+    "hitoyoshiCanonical": true,
+    "hitoyoshiInternalIdNotPromoted": true,
+    "firstAnswerIsStartStation": true,
+    "typedArrivalInvariant": true,
+    "duplicateCompleteGuard": true,
+    "noJapaneseInKoreanFields": true
+  },
+  "behavior": {
+    "checkedAt": "2026-10-23T15:39:18.563Z",
+    "source": "Actual TypingController and Game prototype execution in a small DOM fixture; no browser or OS IME claim",
+    "checks": {
+      "inputValueIsNfcSoleSource": {
+        "status": "PASS"
+      },
+      "koreanProgressUsesAnswerLength": {
+        "status": "PASS"
+      },
+      "autoAdvanceBarrier": {
+        "status": "PASS"
+      },
+      "firstAnswerIsStartStation": {
+        "status": "PASS"
+      }
+    }
+  },
+  "autoAdvanceMeasurement": {
+    "scope": "Final transition samples of actual Phase 4 AUTO runs, full animation. Initial 901ms outlier remains a failure, even when later samples meet 150–300ms.",
+    "samples": [
+      901.3,
+      254.2,
+      253,
+      252,
+      284.9,
+      246.9,
+      256.2,
+      272,
+      251.1,
+      253.2,
+      256.6,
+      242.3,
+      261.7,
+      254.8,
+      261.8,
+      259.3,
+      261.9,
+      250,
+      255.6,
+      244.8,
+      253.6,
+      253.5,
+      247.2,
+      252,
+      255.3,
+      251.1,
+      249.7,
+      249.4,
+      252.8,
+      249.9,
+      252.2,
+      243.5,
+      264,
+      240.4,
+      254.5,
+      247.9,
+      254.3,
+      248.1,
+      254.9
+    ],
+    "targetMs": [
+      150,
+      300
+    ],
+    "status": "FAIL"
+  },
+  "notes": [
+    "Exact legacy regex checks preserved, not padded with matching implementation strings.",
+    "NFC input/composition/backspace and punctuation-aware progress proven by executing actual TypingController/Game methods in DOM fixture, not native OS input.",
+    "First target checked in normal/free/custom and actual five TAB scenarios.",
+    "AUTO uses minimum150ms and actual railway animation completion. Finite240ms animation replaces asymptotic settling; 901.3ms browser sample retained as FAIL despite later approximately240–272ms samples."
+  ]
+}

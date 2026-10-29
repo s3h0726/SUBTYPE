@@ -9,6 +9,7 @@
   <title>SUBTYPE — 대중교통 타이핑</title>
   <style id="critical-screen-visibility">[data-screen]:not(.active){display:none!important}html:not([data-navigation-bound]) [data-screen]:not(#screen-home){display:none!important}</style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/hong-kong.css">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/responsive.css?v=20261007-mobilefix">
   <link rel="stylesheet" href="./css/home-night.css?v=20261007-motionfix">
@@ -85,7 +86,7 @@
       </header>
       <div class="home-stage">
         <div class="home-menu">
-          <div class="country-switch" role="group" aria-label="국가 선택"><button class="active" data-country="jp">일본</button><button data-country="kr" hidden disabled aria-hidden="true">대한민국</button></div>
+          <div class="country-switch" role="group" aria-label="국가 선택"><button data-country="hk">홍콩 Hong Kong / 香港</button><button class="active" data-country="jp">일본</button><button data-country="kr" hidden disabled aria-hidden="true">대한민국</button></div>
           <p class="home-kicker">01 / DEPARTURE MENU</p>
           <h1 id="hero-title">일본 철도를<br><span>타이핑하다.</span></h1>
           <p id="home-intro" class="home-intro">전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.</p>
@@ -119,6 +120,7 @@
     <section id="screen-select" data-screen="rail-map" class="screen line-select-screen" aria-labelledby="select-title">
       <div class="line-select-heading"><div><p>JAPAN RAILWAY NETWORK / 日本</p><h2 id="select-title">노선 선택</h2><span>PHYSICAL LINE · ROUTE · SERVICE</span></div><button class="btn text" data-nav="home">← HOME</button></div>
       <div id="data-summary" class="data-summary" role="status" aria-live="polite">철도 데이터를 불러오는 중...</div>
+<div id="country-network-status" class="country-network-status" hidden></div>
       <div class="line-select-layout">
         <section class="selected-line-panel" aria-labelledby="selected-line-heading">
           <header><span>SELECTED LINE</span><button id="clear-route-selection" type="button">↻ 선택 초기화</button></header>
@@ -292,7 +294,7 @@
     </section>
 
     <section id="screen-settings" data-screen="settings" class="screen" aria-labelledby="settings-title"><div class="section-head"><div><p class="eyebrow">환경 설정</p><h2 id="settings-title">설정</h2><p><a class="btn ghost" href="./editor/">철도 데이터 에디터 열기</a></p></div><button class="btn text" data-nav="home">← HOME</button></div><form id="settings-form" class="settings-form"><fieldset><legend>화면 테마</legend><div class="segmented"><label><input type="radio" name="theme" value="dark"><span>어둡게</span></label><label><input type="radio" name="theme" value="light"><span>밝게</span></label><label><input type="radio" name="theme" value="system"><span>시스템 설정</span></label></div></fieldset><fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto"><span>자동으로 다음 역</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE로 다음 역</span></label></div></fieldset><div class="korean-only-notice"><b>입력 언어 · 한국어</b><span>일본어·가나·로마자는 문제 표시 전용입니다.</span></div><input type="hidden" name="mapMode" value="geographic"><label>지도 역명<select name="stationLabel"><option value="ja">日本語</option><option value="ja-romaji">日本語 + Romaji</option></select></label><label>지도 라벨 밀도<select name="mapLabels"><option value="low">낮음</option><option value="normal">보통</option><option value="high">높음</option></select></label><label class="check"><input name="sound" type="checkbox"> 효과음 사용</label><label class="check"><input name="motion" type="checkbox"> 열차 이동 애니메이션</label><label class="check"><input name="reducedMotion" type="checkbox"> 애니메이션 줄이기</label><button class="btn primary" type="submit">설정 저장</button></form></section>
-    <section id="screen-credits" data-screen="credits" class="screen credits-screen" aria-labelledby="credits-title"><div class="section-head"><div><p class="eyebrow">DATA & CREDITS</p><h2 id="credits-title">철도 데이터와 자산 출처</h2><p>검증일 2026-08-28 · 나무위키 canonical Korean naming policy</p></div><button class="btn text" data-nav="settings">← SETTINGS</button></div><div class="credits-grid"><article><h3>MAP</h3><p>Leaflet 1.9.4</p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></article><article><h3>STATION / LINE DATA</h3><p>일본어 공식 명칭, Kana, 역번호와 운행 정보는 각 철도 운영사의 공식 자료와 교차 검증합니다. 지도와 철도 선형은 국토교통성 및 OpenStreetMap 등 별도 공간정보 출처를 사용합니다.</p></article><article><h3>ROUTE SYMBOLS / LOGOS</h3><p>로고와 심볼의 식별 기준에는 나무위키를 사용하고, 실제 이미지 자산은 공식 배포자료 또는 사용 조건을 확인할 수 있는 원본을 사용합니다.</p><a href="./ASSET_CREDITS.md" target="_blank" rel="noopener">ASSET_CREDITS.md</a></article><article><h3>KOREAN NAMES</h3><p>SUBTYPE의 일본 철도 회사명·노선명·역명 등 한국어 표기는 나무위키의 한국어 철도 표기를 canonical 기준으로 사용합니다. 직접 접근이 제한되더라도 정책은 유지하며, 실제로 확인하지 못한 항목은 검수 필요 상태로 남깁니다.</p><a href="./DATA_SOURCES.md" target="_blank" rel="noopener">DATA_SOURCES.md</a></article></div></section>
+    <section id="screen-credits" data-screen="credits" class="screen credits-screen" aria-labelledby="credits-title"><div class="section-head"><div><p class="eyebrow">DATA & CREDITS</p><h2 id="credits-title">철도 데이터와 자산 출처</h2><p>검증일 2026-08-28 · 나무위키 canonical Korean naming policy</p></div><button class="btn text" data-nav="settings">← SETTINGS</button></div><div class="credits-grid"><article id="hk-credits" hidden><h3>HONG KONG NETWORK</h3><p>홍콩의 번체중문·영문 역명과 정차순서는 MTR·운영사 공식 자료, 실제 선로는 OpenStreetMap 원본을 사용합니다. 한국어 표기와 특수 운행·선로가 미검증인 서비스는 플레이에서 제외합니다. 로고 권리 검수가 끝나기 전에는 문자 운영사명을 표시합니다.</p><a href="https://www.mtr.com.hk/en/customer/services/system_map.html" target="_blank" rel="noopener">MTR 공식 자료</a> · <a href="https://www.hktramways.com/en/schedules-fares/" target="_blank" rel="noopener">Hong Kong Tramways</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap / ODbL</a></article><article><h3>MAP</h3><p>Leaflet 1.9.4</p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></article><article><h3>STATION / LINE DATA</h3><p>일본어 공식 명칭, Kana, 역번호와 운행 정보는 각 철도 운영사의 공식 자료와 교차 검증합니다. 지도와 철도 선형은 국토교통성 및 OpenStreetMap 등 별도 공간정보 출처를 사용합니다.</p></article><article><h3>ROUTE SYMBOLS / LOGOS</h3><p>로고와 심볼의 식별 기준에는 나무위키를 사용하고, 실제 이미지 자산은 공식 배포자료 또는 사용 조건을 확인할 수 있는 원본을 사용합니다.</p><a href="./ASSET_CREDITS.md" target="_blank" rel="noopener">ASSET_CREDITS.md</a></article><article><h3>KOREAN NAMES</h3><p>SUBTYPE의 일본 철도 회사명·노선명·역명 등 한국어 표기는 나무위키의 한국어 철도 표기를 canonical 기준으로 사용합니다. 직접 접근이 제한되더라도 정책은 유지하며, 실제로 확인하지 못한 항목은 검수 필요 상태로 남깁니다.</p><a href="./DATA_SOURCES.md" target="_blank" rel="noopener">DATA_SOURCES.md</a></article></div></section>
   </main>
   <button class="credits-nav" data-nav="credits">DATA & CREDITS</button>
 
@@ -329,6 +331,7 @@
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script defer src="./js/bootstrap.js?v=p0-sync-1"></script>
+  <script defer src="./js/hong-kong-index-data.js"></script>
   <script defer src="./js/japan-lite-index.js?v=0e5565582d0d"></script>
   <script defer src="./js/japan-route-category-patch.js?v=station-id-unified-20261029"></script>
   <script defer src="./js/japan-route-identity-patch.js?v=station-id-unified-20261029"></script>
@@ -348,8 +351,8 @@
   <script defer src="./js/lines-csv-overrides.js?v=20261011"></script>
   <script defer src="./js/leaderboard.js?v=server-records-20261029"></script>
   <script defer src="./js/cloud-run-sync.js?v=server-records-20261029"></script>
-  <script type="module" src="./js/result-journey-map.js?v=a73d025a3b00"></script>
+  <script type="module" src="./js/result-journey-map.js?v=611b08df73e4"></script>
     <script defer src="./js/disney-resort-line-data.js?v=563283d39bbf"></script>
-  <script defer src="./js/app.bundle.js?v=673811b27c72"></script>
+  <script defer src="./js/app.bundle.js?v=4b270a08d929"></script>
 </body>
 </html>

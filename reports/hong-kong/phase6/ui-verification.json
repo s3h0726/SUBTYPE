@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-25T12:47:17.845Z",
+  "status": "PARTIAL_WITH_RECORDED_FAILURE",
+  "consoleErrors": 0,
+  "consoleErrorScope": "Current inspected tab log since latest reload, bounded200 error entries; not a claim about every historical run.",
+  "consoleLogs": [],
+  "darkMobile": "PASS_WITH_RECORDED_SCOPE",
+  "mobileViewport": {
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390
+  },
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "stationSignEvidence": [
+    "reports/hong-kong/phase6/images/mobile-tkl-light.jpg",
+    "reports/hong-kong/phase6/images/mobile-tkl-dark.jpg",
+    "reports/hong-kong/phase6/images/mobile-ocean-dark.jpg"
+  ],
+  "actualWindowsIme": "NOT_TESTED",
+  "actualMobileKeyboard": "NOT_TESTED",
+  "supabase": "NOT_TESTED",
+  "autoTarget": "FAIL",
+  "browserCompleteDirections": 62,
+  "tabPairs": 15,
+  "customSaveReload": "PASS",
+  "nativeInputScope": "DOM fill and pressSequentially fixtures; no native OS keyboard access.",
+  "mobileNewDirections": 8,
+  "mobileCircularDirections": 2,
+  "terminalAutomaticForeignRoute": "FIXED_AND_BROWSER_RETESTED",
+  "originalCustomNamesPreserved": [
+    "홍콩 검증 여정",
+    "홍콩 2차 검증",
+    "홍콩 Phase 3 환승역 좌표 검증"
+  ],
+  "homeFeaturedDistinctLines": [
+    "홍콩섬선",
+    "췬완선"
+  ],
+  "notes": [
+    "Actual mobile viewport emulation only, not a physical mobile operating system.",
+    "One clean-input fixture initially99.8%; first failure retained and full rerun100%.",
+    "Long UI batches were resumed from persisted input order after a tool timeout; RUNNING records not counted as completed.",
+    "Native apps unavailable; no Supabase test credentials/config supplied."
+  ]
+}

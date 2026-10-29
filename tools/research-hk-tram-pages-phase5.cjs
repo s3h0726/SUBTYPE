@@ -1,0 +1,11 @@
+// Research candidates only. Follow actual published document links, never invent
+// Korean names or promote a record merely because a title can be fetched.
+const fs=require('node:fs'),crypto=require('node:crypto'),{norm}=require('./lib/hk-geometry.cjs');
+const dir='output/hk/phase5/tram-pages';fs.mkdirSync(dir,{recursive:true});
+const links=JSON.parse(fs.readFileSync('output/hk/phase5-tram-xref.json')),identities=JSON.parse(fs.readFileSync('data/hk/master/tram-stop-review.json')).identities;
+const previous=fs.existsSync(dir+'/candidates.json')?JSON.parse(fs.readFileSync(dir+'/candidates.json')).rows:[];const rows=[];
+(async()=>{for(let i=0;i<links.length;i+=3){const batch=await Promise.allSettled(links.slice(i,i+3).map(async link=>{
+ if(previous.some(r=>r.status==='INCOMPLETE'&&r.reason?.startsWith(link.title+' HTTP 404')))throw Error(link.title+' HTTP 404 (cached)');const file=dir+'/'+crypto.createHash('sha256').update(link.url).digest('hex').slice(0,16)+'.html';let html;if(fs.existsSync(file))html=fs.readFileSync(file,'utf8');else{const r=await fetch(link.url,{signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error(link.title+' HTTP '+r.status);html=await r.text();fs.writeFileSync(file,html)}
+ const text=html.replace(/<[^>]*>/g,' ').replace(/&#(\d+);/g,(_,n)=>String.fromCodePoint(Number(n))).replace(/&nbsp;/g,' ').replace(/\[ruby\(([^,]+),[^\]]+\)\]/g,'$1').replace(/\s+/g,' '),headerEnglish=text.match(/\|\s*([^|]+?)\s+Tram Stop/)?.[1]?.trim(),matches=identities.filter(s=>norm(headerEnglish)===norm(s.nameEn)&&norm(text).includes(norm(s.nameZhHant)));
+ return{title:link.title,documentTitle:/<title>([^<]+)/.exec(html)?.[1],headerEnglish,url:link.url,rawSha256:crypto.createHash('sha256').update(html).digest('hex'),matches:matches.map(s=>{const at=text.indexOf(s.nameEn);return{id:s.id,code:s.code,en:s.nameEn,zh:s.nameZhHant,excerpt:at<0?'Matched normalized bilingual identity':text.slice(Math.max(0,at-45),at+s.nameEn.length+45)}}),status:'REVIEW_REQUIRED'};
+ }));for(const r of batch){if(r.status==='fulfilled'){rows.push(r.value);console.log(r.value.title,r.value.matches.map(s=>s.code).join(','))}else{rows.push({status:'INCOMPLETE',reason:r.reason.message});console.log(r.reason.message)}}fs.writeFileSync(dir+'/candidates.json',JSON.stringify({checkedAt:'2026-10-24',rows},null,2)+'\n');await new Promise(r=>setTimeout(r,350))}})();

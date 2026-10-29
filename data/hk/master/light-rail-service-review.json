@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-10-20",
+  "sourceFile": "data/hk/sources/phase2/light-rail.html",
+  "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+  "timezone": "Asia/Hong_Kong",
+  "sourceHeading": "Special Services During Weekday Peak Hours",
+  "fullOrderedStopListsVerified": false,
+  "playable": false,
+  "notice": "Listed via points are not a complete all-stop pattern. Service number changes are not passenger transfer edges. Do not infer permanent regular service or compose source geometry without a fully reviewed calling pattern.",
+  "services": [
+    {
+      "ref": "506P",
+      "departureTimes": [
+        "07:20",
+        "07:35"
+      ],
+      "origin": "Tuen Mun Ferry Pier",
+      "via": [
+        "Lung Mun",
+        "Tuen Mun",
+        "Pui To",
+        "Prime View"
+      ],
+      "destination": "Siu Hong",
+      "schoolHolidays": "no-service",
+      "continuesAs": {
+        "07:20": [
+          {
+            "ref": "720",
+            "from": "Siu Hong",
+            "to": "Tin Wing"
+          },
+          {
+            "ref": "751P",
+            "from": "Tin Wing",
+            "to": "Tin Shui Wai"
+          }
+        ]
+      }
+    },
+    {
+      "ref": "507P",
+      "departureTimes": [
+        "07:42"
+      ],
+      "origin": "Siu Hong",
+      "via": [
+        "Ching Chung",
+        "Kin Sang",
+        "Tin King"
+      ],
+      "destination": "Tuen Mun Ferry Pier",
+      "schoolHolidays": "not-stated; do not infer no-service",
+      "incomingWorking": {
+        "departureTime": "07:11",
+        "ref": "751",
+        "from": "Tin Yat",
+        "to": "Siu Hong"
+      }
+    },
+    {
+      "ref": "720",
+      "departureTimes": [
+        "07:46"
+      ],
+      "origin": "Siu Hong",
+      "via": [
+        "Hung Shui Kiu",
+        "Tin Yiu",
+        "Chestwood"
+      ],
+      "destination": "Tin Wing",
+      "schoolHolidays": "no-service",
+      "continuesAs": [
+        {
+          "ref": "751P",
+          "from": "Tin Wing",
+          "to": "Tin Shui Wai"
+        }
+      ]
+    },
+    {
+      "ref": "610P",
+      "departureTimes": [
+        "07:30"
+      ],
+      "origin": "Siu Hong",
+      "via": [
+        "Tuen Mun Hospital",
+        "Tai Hing",
+        "Ching Chung"
+      ],
+      "destination": "Siu Hong",
+      "schoolHolidays": "no-service"
+    }
+  ],
+  "route751P": [
+    {
+      "timeOfDay": "morning",
+      "origin": "Tin Wing",
+      "destination": "Tin Shui Wai",
+      "schoolHolidays": "no-service",
+      "operation": "conditional peak operation"
+    },
+    {
+      "timeOfDay": "evening",
+      "between": [
+        "Tin Shui Wai",
+        "Tin Yat"
+      ],
+      "schoolHolidays": "reduced-frequency",
+      "operation": "conditional peak operation"
+    }
+  ]
+}

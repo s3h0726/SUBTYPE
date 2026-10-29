@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-22",
+  "legacyFailuresBefore": 4,
+  "legacyFailuresAfter": 4,
+  "testsDeleted": 0,
+  "assertionsWeakened": 0,
+  "cases": [
+    {
+      "check": "inputValueIsNfcSoleSource",
+      "status": "FAIL",
+      "cause": "Legacy regex requires the literal String(rawValue).normalize('NFC'). TypingController instead normalizes String(value??'') through normalizeTypingValue; no character reversal. Existing 18 typing and 10 IME fixtures remain PASS.",
+      "code": "js/typing.js:normalizeTypingValue",
+      "action": "Keep legacy FAIL; do not change implementation or weaken check for syntactic compliance."
+    },
+    {
+      "check": "koreanProgressUsesAnswerLength",
+      "status": "FAIL",
+      "cause": "Legacy regex expects letters.map/Array.from(answer). Current renderer uses buildTypingModel().cells for fixed punctuation and inputText for required characters.",
+      "code": "js/game.js:renderKoreanProgress",
+      "action": "Keep legacy FAIL. Browser completion/character display and typing-model tests provide separate behavioral evidence."
+    },
+    {
+      "check": "autoAdvance150ms",
+      "status": "FAIL",
+      "cause": "Legacy regex requires an exact 150ms timeout. Current AUTO waits for trainArrival promise to reach the source track destination. Phase 3 does not establish the master requirement 150–300ms under full animation.",
+      "code": "js/game.js:onCorrect",
+      "action": "Keep legacy FAIL and requirement 138 INCOMPLETE. Do not skip railway arrival or claim timing target PASS."
+    },
+    {
+      "check": "firstAnswerIsStartStation",
+      "status": "FAIL",
+      "cause": "Legacy regex recognizes an older boarding ternary. Current first-station logic includes freeDriveAwaitingStart; 22 Hong Kong journeys verified the displayed first station before typing.",
+      "code": "js/game.js:targetStation/onInput",
+      "action": "Keep legacy FAIL; actual first-station behavior tracked separately."
+    }
+  ],
+  "actualUiFix": {
+    "issue": "Hong Kong compact mobile CSS hid a verified official station code",
+    "code": "css/hong-kong.css",
+    "before": "FAIL: PRE display:none at 390×844",
+    "after": "PASS: PRE visible, horizontal overflow 0, station sign bottom 826 < 844 in light/dark"
+  },
+  "fixtureUpdate": {
+    "test": "unconfirmed names remain blocked",
+    "reason": "HFC now has a reviewed published Korean name; replace obsolete assertion that HFC must remain missing with an explicit unverified-name mutation and runtime rejection. Name-source consistency assertions retained."
+  }
+}

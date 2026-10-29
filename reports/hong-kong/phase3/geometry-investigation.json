@@ -1,0 +1,1868 @@
+{
+  "checkedAt": "2026-10-22",
+  "investigated": 6,
+  "resolved": 1,
+  "remainingRelationIds": [
+    3263757,
+    3264047,
+    4088518,
+    6582965,
+    6582966
+  ],
+  "inventedVertices": 0,
+  "roadWaysAccepted": 0,
+  "cases": [
+    {
+      "relationId": 3263757,
+      "sourceFile": "data/hk/sources/phase2/relation-3263757.json",
+      "sourceDate": "2026-10-20 (Oct 22 refetch HTTP 429)",
+      "type": "route",
+      "route": "tram",
+      "ref": null,
+      "from": "堅尼地城 Kennedy Town",
+      "to": "跑馬地 Happy Valley",
+      "endDate": null,
+      "currentStatus": "INCOMPLETE",
+      "rawExtraction": {
+        "status": "FAIL",
+        "reason": "stop not on railway within 80m: 5470724238"
+      },
+      "afterReviewedCorrection": "stop not on railway within 80m: 5470724238",
+      "memberWays": [
+        {
+          "id": 774636022,
+          "railway": "tram",
+          "first": 1923609213,
+          "last": 1923609304
+        },
+        {
+          "id": 241901098,
+          "railway": "tram",
+          "first": 1923609304,
+          "last": 5015230023
+        },
+        {
+          "id": 774636024,
+          "railway": "tram",
+          "first": 5015230023,
+          "last": 5015459066
+        },
+        {
+          "id": 205674756,
+          "railway": "tram",
+          "first": 5015459066,
+          "last": 2156469248
+        },
+        {
+          "id": 205674755,
+          "railway": "tram",
+          "first": 2156469248,
+          "last": 2494747810
+        },
+        {
+          "id": 241901097,
+          "railway": "tram",
+          "first": 2494747810,
+          "last": 1034004821
+        },
+        {
+          "id": 26599367,
+          "railway": "tram",
+          "first": 1034004821,
+          "last": 2494747838
+        },
+        {
+          "id": 241901096,
+          "railway": "tram",
+          "first": 2494747838,
+          "last": 2917466052
+        },
+        {
+          "id": 774636031,
+          "railway": "tram",
+          "first": 2917466052,
+          "last": 6241753855
+        },
+        {
+          "id": 308826996,
+          "railway": "tram",
+          "first": 6241753855,
+          "last": 2559285913
+        },
+        {
+          "id": 249311744,
+          "railway": "tram",
+          "first": 2559285913,
+          "last": 3141194260
+        },
+        {
+          "id": 308827004,
+          "railway": "tram",
+          "first": 3141194260,
+          "last": 2496629909
+        },
+        {
+          "id": 242113712,
+          "railway": "tram",
+          "first": 2496629909,
+          "last": 2495743820
+        },
+        {
+          "id": 86325211,
+          "railway": "tram",
+          "first": 2495743820,
+          "last": 2495743738
+        },
+        {
+          "id": 242379507,
+          "railway": "tram",
+          "first": 2495743738,
+          "last": 2498627485
+        },
+        {
+          "id": 242379505,
+          "railway": "tram",
+          "first": 2498627485,
+          "last": 1002550728
+        },
+        {
+          "id": 774633924,
+          "railway": "tram",
+          "first": 1002550728,
+          "last": 2300434274
+        },
+        {
+          "id": 220977131,
+          "railway": "tram",
+          "first": 2300434274,
+          "last": 2300434349
+        },
+        {
+          "id": 308827011,
+          "railway": "tram",
+          "first": 2300434349,
+          "last": 2300434402
+        },
+        {
+          "id": 220977136,
+          "railway": "tram",
+          "first": 2300434402,
+          "last": 2300434383
+        },
+        {
+          "id": 292229922,
+          "railway": "tram",
+          "first": 2300434383,
+          "last": 2957737627
+        },
+        {
+          "id": 749599973,
+          "railway": "tram",
+          "first": 2957737627,
+          "last": 292205053
+        },
+        {
+          "id": 292229923,
+          "railway": "tram",
+          "first": 292205053,
+          "last": 292205330
+        },
+        {
+          "id": 308826998,
+          "railway": "tram",
+          "first": 292205330,
+          "last": 3141194075
+        },
+        {
+          "id": 308827002,
+          "railway": "tram",
+          "first": 3141194075,
+          "last": 2978939692
+        }
+      ],
+      "sourceStops": [
+        {
+          "id": 1923609213,
+          "en": "Kennedy Town Terminus",
+          "lat": 22.2829676,
+          "lon": 114.1262105
+        },
+        {
+          "id": 1923609311,
+          "en": "North Street",
+          "lat": 22.2833866,
+          "lon": 114.1287509
+        },
+        {
+          "id": 1923609366,
+          "en": "Holland Street",
+          "lat": 22.2843975,
+          "lon": 114.1303557
+        },
+        {
+          "id": 2156469183,
+          "en": "Queen's Road West",
+          "lat": 22.2864665,
+          "lon": 114.1322113
+        },
+        {
+          "id": 2156469181,
+          "en": "Hill Road",
+          "lat": 22.2871088,
+          "lon": 114.1343586
+        },
+        {
+          "id": 2494747896,
+          "en": "Whitty Street",
+          "lat": 22.2867962,
+          "lon": 114.1364386
+        },
+        {
+          "id": 2494957355,
+          "en": "Water Street",
+          "lat": 22.2874114,
+          "lon": 114.1386509
+        },
+        {
+          "id": 2494747888,
+          "en": "Western Street",
+          "lat": 22.2878891,
+          "lon": 114.1404374
+        },
+        {
+          "id": 2494957347,
+          "en": "Eastern Street",
+          "lat": 22.2878958,
+          "lon": 114.1435081
+        },
+        {
+          "id": 2494957359,
+          "en": "Queen Street",
+          "lat": 22.2876897,
+          "lon": 114.1468969
+        },
+        {
+          "id": 24358842,
+          "en": "Macau Ferry Terminal",
+          "lat": 22.2877949,
+          "lon": 114.1498675
+        },
+        {
+          "id": 2559285914,
+          "en": "Hillier Street",
+          "lat": 22.2866093,
+          "lon": 114.1518901
+        },
+        {
+          "id": 3112111427,
+          "en": "Gilman Street",
+          "lat": 22.2854763,
+          "lon": 114.1546269
+        },
+        {
+          "id": 3112114529,
+          "en": "Jubilee Street",
+          "lat": 22.2846944,
+          "lon": 114.1556398
+        },
+        {
+          "id": 3112114534,
+          "en": "Pedder Street",
+          "lat": 22.2822258,
+          "lon": 114.1576056
+        },
+        {
+          "id": 3112111428,
+          "en": "Ice House Street",
+          "lat": 22.2810609,
+          "lon": 114.1585684
+        },
+        {
+          "id": 6233384589,
+          "lat": 22.2804176,
+          "lon": 114.1601856
+        },
+        {
+          "id": 2496629601,
+          "en": "Murray Road",
+          "lat": 22.2797752,
+          "lon": 114.1617302
+        },
+        {
+          "id": 2496629534,
+          "en": "Admiralty MTR Station",
+          "lat": 22.2783988,
+          "lon": 114.1643304
+        },
+        {
+          "id": 2495743724,
+          "en": "Arsenal Street",
+          "lat": 22.2778394,
+          "lon": 114.168197
+        },
+        {
+          "id": 2498627220,
+          "en": "Fenwick Street",
+          "lat": 22.2772484,
+          "lon": 114.1700535
+        },
+        {
+          "id": 2498627259,
+          "en": "Luard Road",
+          "lat": 22.2764398,
+          "lon": 114.1719788
+        },
+        {
+          "id": 2498627270,
+          "en": "O'Brien Road",
+          "lat": 22.276562,
+          "lon": 114.1731412
+        },
+        {
+          "id": 2498627238,
+          "en": "Fleming Road",
+          "lat": 22.2769883,
+          "lon": 114.1753516
+        },
+        {
+          "id": 2300434310,
+          "en": "Tonnochy Road",
+          "lat": 22.2782634,
+          "lon": 114.1778314
+        },
+        {
+          "id": 2300434361,
+          "en": "Canal Road West",
+          "lat": 22.2792254,
+          "lon": 114.1807835
+        },
+        {
+          "id": 9710475033,
+          "lat": 22.278755,
+          "lon": 114.1831976
+        },
+        {
+          "id": 2957737064,
+          "en": "Leighton Road",
+          "lat": 22.276998,
+          "lon": 114.1823444
+        },
+        {
+          "id": 3112114538,
+          "en": "Wong Nai Chung Road",
+          "lat": 22.2722351,
+          "lon": 114.1844531
+        },
+        {
+          "id": 2978939692,
+          "en": "Happy Valley Terminus",
+          "lat": 22.2698949,
+          "lon": 114.1842566
+        },
+        {
+          "id": 5470724238,
+          "en": "Broadwood Road",
+          "lat": 22.2738855,
+          "lon": 114.183666
+        }
+      ],
+      "decision": "Happy Valley stop members append Broadwood Road after terminus although the node is on the railway. Official complete stop order remains needed; do not auto-sort by proximity."
+    },
+    {
+      "relationId": 3264047,
+      "sourceFile": "data/hk/sources/phase3/relation-3264047.json",
+      "sourceDate": "2026-10-22",
+      "type": "route",
+      "route": "funicular",
+      "ref": null,
+      "from": "花園道 Garden Road",
+      "to": "山頂 The Peak",
+      "endDate": null,
+      "currentStatus": "INCOMPLETE",
+      "rawExtraction": {
+        "status": "FAIL",
+        "reason": "stop not on railway within 80m: 988059821"
+      },
+      "afterReviewedCorrection": "stop not on railway within 80m: 988059821",
+      "memberWays": [
+        {
+          "id": 636324517,
+          "first": 6000875417,
+          "last": 6000875417
+        },
+        {
+          "id": 85404150,
+          "railway": "funicular",
+          "first": 2525250108,
+          "last": 2525250101
+        },
+        {
+          "id": 1308940441,
+          "railway": "funicular",
+          "first": 12121482731,
+          "last": 2525250108
+        },
+        {
+          "id": 1308940440,
+          "railway": "funicular",
+          "first": 9625531416,
+          "last": 12121482731
+        },
+        {
+          "id": 1046739317,
+          "railway": "funicular",
+          "first": 9625547917,
+          "last": 9625531416
+        },
+        {
+          "id": 1046739316,
+          "railway": "funicular",
+          "first": 990120464,
+          "last": 9625547917
+        },
+        {
+          "id": 85404052,
+          "railway": "funicular",
+          "first": 990120648,
+          "last": 990120464
+        },
+        {
+          "id": 265943515,
+          "railway": "funicular",
+          "first": 2715451261,
+          "last": 990120648
+        },
+        {
+          "id": 265943513,
+          "railway": "funicular",
+          "first": 2715451261,
+          "last": 9628742368
+        },
+        {
+          "id": 265943513,
+          "railway": "funicular",
+          "first": 2715451261,
+          "last": 9628742368
+        },
+        {
+          "id": 265943512,
+          "railway": "funicular",
+          "first": 9628742368,
+          "last": 2715451261
+        },
+        {
+          "id": 1165024097,
+          "railway": "funicular",
+          "first": 5880372272,
+          "last": 9628742368
+        },
+        {
+          "id": 622565242,
+          "railway": "funicular",
+          "first": 5880372271,
+          "last": 5880372272
+        },
+        {
+          "id": 4338940,
+          "railway": "funicular",
+          "first": 2525250104,
+          "last": 5880372271
+        },
+        {
+          "id": 1117280223,
+          "railway": "funicular",
+          "first": 2529451076,
+          "last": 2525250104
+        }
+      ],
+      "sourceStops": [
+        {
+          "id": 26412045,
+          "en": "The Peak",
+          "lat": 22.271123,
+          "lon": 114.1501414
+        },
+        {
+          "id": 988059821,
+          "en": "Barker Road",
+          "lat": 22.2709577,
+          "lon": 114.1517471
+        },
+        {
+          "id": 988059498,
+          "en": "May Road",
+          "lat": 22.2733633,
+          "lon": 114.155887
+        },
+        {
+          "id": 988059698,
+          "en": "MacDonnell Road",
+          "lat": 22.2751722,
+          "lon": 114.1571206
+        },
+        {
+          "id": 526904599,
+          "en": "Kennedy Road",
+          "lat": 22.276545,
+          "lon": 114.1580862
+        },
+        {
+          "id": 279086619,
+          "en": "Garden Road",
+          "lat": 22.277624,
+          "lon": 114.1592155
+        }
+      ],
+      "decision": "Peak source way direction and stop ordering conflict; current intermediate calling pattern remains unverified. Do not guess or reverse."
+    },
+    {
+      "relationId": 4088518,
+      "sourceFile": "data/hk/sources/phase2/relation-4088518.json",
+      "sourceDate": "2026-10-20 (Oct 22 refetch HTTP 429)",
+      "type": "route",
+      "route": "tram",
+      "ref": null,
+      "from": "筲箕灣 Shau Kei Wan",
+      "to": "跑馬地 Happy Valley",
+      "endDate": null,
+      "currentStatus": "INCOMPLETE",
+      "rawExtraction": {
+        "status": "FAIL",
+        "reason": "stop not on railway within 80m: 5470724238"
+      },
+      "afterReviewedCorrection": "stop not on railway within 80m: 5470724238",
+      "memberWays": [
+        {
+          "id": 296714059,
+          "railway": "tram",
+          "first": 984409308,
+          "last": 2978559529
+        },
+        {
+          "id": 296714048,
+          "railway": "tram",
+          "first": 2978559529,
+          "last": 3005247232
+        },
+        {
+          "id": 296714056,
+          "railway": "tram",
+          "first": 3005247232,
+          "last": 257006529
+        },
+        {
+          "id": 86811720,
+          "railway": "tram",
+          "first": 257006529,
+          "last": 3005248487
+        },
+        {
+          "id": 296714063,
+          "railway": "tram",
+          "first": 3005248487,
+          "last": 3005248492
+        },
+        {
+          "id": 296714061,
+          "railway": "tram",
+          "first": 3005248492,
+          "last": 3005248498
+        },
+        {
+          "id": 774630448,
+          "railway": "tram",
+          "first": 3005248498,
+          "last": 5098932912
+        },
+        {
+          "id": 774630447,
+          "railway": "tram",
+          "first": 5098932912,
+          "last": 5098932914
+        },
+        {
+          "id": 296714058,
+          "railway": "tram",
+          "first": 5098932914,
+          "last": 3005247193
+        },
+        {
+          "id": 230987767,
+          "railway": "tram",
+          "first": 3005247193,
+          "last": 1898227234
+        },
+        {
+          "id": 179445720,
+          "railway": "tram",
+          "first": 1898227234,
+          "last": 1898227200
+        },
+        {
+          "id": 308826994,
+          "railway": "tram",
+          "first": 1898227200,
+          "last": 1898291286
+        },
+        {
+          "id": 717139976,
+          "railway": "tram",
+          "first": 1898291286,
+          "last": 1898291276
+        },
+        {
+          "id": 179452215,
+          "railway": "tram",
+          "first": 1898291276,
+          "last": 1898291216
+        },
+        {
+          "id": 179467688,
+          "railway": "tram",
+          "first": 1898291216,
+          "last": 1898352421
+        },
+        {
+          "id": 774633930,
+          "railway": "tram",
+          "first": 1898352421,
+          "last": 1898508063
+        },
+        {
+          "id": 179467683,
+          "railway": "tram",
+          "first": 1898508063,
+          "last": 1898508022
+        },
+        {
+          "id": 774633925,
+          "railway": "tram",
+          "first": 1898508022,
+          "last": 7227321370
+        },
+        {
+          "id": 220977133,
+          "railway": "tram",
+          "first": 7227321370,
+          "last": 2300434413
+        },
+        {
+          "id": 220977135,
+          "railway": "tram",
+          "first": 2300434413,
+          "last": 2300434383
+        },
+        {
+          "id": 292229922,
+          "railway": "tram",
+          "first": 2300434383,
+          "last": 2957737627
+        },
+        {
+          "id": 749599973,
+          "railway": "tram",
+          "first": 2957737627,
+          "last": 292205053
+        },
+        {
+          "id": 292229923,
+          "railway": "tram",
+          "first": 292205053,
+          "last": 292205330
+        },
+        {
+          "id": 308826998,
+          "railway": "tram",
+          "first": 292205330,
+          "last": 3141194075
+        },
+        {
+          "id": 87081193,
+          "railway": "tram",
+          "first": 3141194075,
+          "last": 292205443
+        }
+      ],
+      "sourceStops": [
+        {
+          "id": 984409308,
+          "en": "Shau Kei Wan Terminus",
+          "lat": 22.2778906,
+          "lon": 114.2301671
+        },
+        {
+          "id": 3005247187,
+          "en": "Chai Wan Road",
+          "lat": 22.2767644,
+          "lon": 114.2289547
+        },
+        {
+          "id": 3005247196,
+          "en": "Sun Sing Street",
+          "lat": 22.2795184,
+          "lon": 114.2258382
+        },
+        {
+          "id": 2978559566,
+          "en": "Hoi Foo Street",
+          "lat": 22.2804046,
+          "lon": 114.2244168
+        },
+        {
+          "id": 3005247192,
+          "en": "Holy Cross Path",
+          "lat": 22.281222,
+          "lon": 114.2226481
+        },
+        {
+          "id": 3005247198,
+          "en": "Tai Hong Street",
+          "lat": 22.2831726,
+          "lon": 114.2210583
+        },
+        {
+          "id": 3005247200,
+          "en": "Tai Koo Shing Road",
+          "lat": 22.2840807,
+          "lon": 114.2203484
+        },
+        {
+          "id": 3005247193,
+          "en": "Kornhill",
+          "lat": 22.2846258,
+          "lon": 114.216095
+        },
+        {
+          "id": 3005247195,
+          "en": "Shipyard Lane",
+          "lat": 22.284661,
+          "lon": 114.2138435
+        },
+        {
+          "id": 3112415528,
+          "en": "Mount Parker Road",
+          "lat": 22.2847917,
+          "lon": 114.2121917
+        },
+        {
+          "id": 3005247189,
+          "en": "Finnie Street",
+          "lat": 22.2886064,
+          "lon": 114.2098354
+        },
+        {
+          "id": 2941505389,
+          "en": "Java Road",
+          "lat": 22.2907378,
+          "lon": 114.2090979
+        },
+        {
+          "id": 3005247190,
+          "en": "Healthy Street East",
+          "lat": 22.2917159,
+          "lon": 114.207516
+        },
+        {
+          "id": 2941505617,
+          "en": "Healthy Street West",
+          "lat": 22.292086,
+          "lon": 114.2051537
+        },
+        {
+          "id": 3112418733,
+          "en": "Tin Chiu Street",
+          "lat": 22.2918434,
+          "lon": 114.2035352
+        },
+        {
+          "id": 3112418731,
+          "en": "Shu Kuk Street",
+          "lat": 22.2912187,
+          "lon": 114.200488
+        },
+        {
+          "id": 3112418729,
+          "en": "North Point Road",
+          "lat": 22.2905268,
+          "lon": 114.1971272
+        },
+        {
+          "id": 2099848101,
+          "en": "Fortress Hill",
+          "lat": 22.2891216,
+          "lon": 114.1942731
+        },
+        {
+          "id": 2099848104,
+          "en": "Jupiter Street",
+          "lat": 22.2866044,
+          "lon": 114.1929092
+        },
+        {
+          "id": 1898291227,
+          "en": "Lau Li Street",
+          "lat": 22.2845042,
+          "lon": 114.19275
+        },
+        {
+          "id": 1898507944,
+          "en": "Lau Sin Street",
+          "lat": 22.282755,
+          "lon": 114.1922152
+        },
+        {
+          "id": 1898507959,
+          "en": "Victoria Park",
+          "lat": 22.2806934,
+          "lon": 114.1896072
+        },
+        {
+          "id": 1898507951,
+          "en": "Shelter Street",
+          "lat": 22.2796819,
+          "lon": 114.1880986
+        },
+        {
+          "id": 1898508075,
+          "en": "Pennington Street",
+          "lat": 22.2795252,
+          "lon": 114.1865618
+        },
+        {
+          "id": 2300434263,
+          "en": "Paterson Street",
+          "lat": 22.2798278,
+          "lon": 114.1856238
+        },
+        {
+          "id": 9710475033,
+          "lat": 22.278755,
+          "lon": 114.1831976
+        },
+        {
+          "id": 2957737064,
+          "en": "Leighton Road",
+          "lat": 22.276998,
+          "lon": 114.1823444
+        },
+        {
+          "id": 3112114538,
+          "en": "Wong Nai Chung Road",
+          "lat": 22.2722351,
+          "lon": 114.1844531
+        },
+        {
+          "id": 292205443,
+          "en": "Happy Valley Terminus",
+          "lat": 22.2698375,
+          "lon": 114.1842709
+        },
+        {
+          "id": 5470724238,
+          "en": "Broadwood Road",
+          "lat": 22.2738855,
+          "lon": 114.183666
+        }
+      ],
+      "decision": "Happy Valley stop members append Broadwood Road after terminus although the node is on the railway. Official complete stop order remains needed; do not auto-sort by proximity."
+    },
+    {
+      "relationId": 5317704,
+      "sourceFile": "data/hk/sources/phase3/relation-5317704.json",
+      "sourceDate": "2026-10-22",
+      "type": "route",
+      "route": "subway",
+      "ref": "TCL",
+      "from": "東涌 Tung Chung",
+      "to": "香港 Hong Kong",
+      "endDate": null,
+      "currentStatus": "RESOLVED",
+      "rawExtraction": {
+        "status": "FAIL",
+        "reason": "disconnected railway way 1558652637"
+      },
+      "afterReviewedCorrection": "PASS",
+      "memberWays": [
+        {
+          "id": 26321721,
+          "railway": "subway",
+          "first": 2291194993,
+          "last": 2291222877
+        },
+        {
+          "id": 220247462,
+          "railway": "subway",
+          "first": 2291222877,
+          "last": 2291222919
+        },
+        {
+          "id": 264571632,
+          "railway": "subway",
+          "first": 2291222919,
+          "last": 2291194410
+        },
+        {
+          "id": 1558652640,
+          "railway": "subway",
+          "first": 2291194410,
+          "last": 10930801895
+        },
+        {
+          "id": 1558652637,
+          "railway": "subway",
+          "first": 10931051406,
+          "last": 2291194457
+        },
+        {
+          "id": 219993980,
+          "railway": "subway",
+          "first": 2291194457,
+          "last": 2291194395
+        },
+        {
+          "id": 219993983,
+          "railway": "subway",
+          "first": 2291194395,
+          "last": 2291194592
+        },
+        {
+          "id": 219993997,
+          "railway": "subway",
+          "first": 2291194592,
+          "last": 2291195186
+        },
+        {
+          "id": 219994031,
+          "railway": "subway",
+          "first": 2291195186,
+          "last": 2291194740
+        },
+        {
+          "id": 219993786,
+          "railway": "subway",
+          "first": 2291194740,
+          "last": 2291194576
+        },
+        {
+          "id": 219994128,
+          "railway": "subway",
+          "first": 2291194576,
+          "last": 2291194769
+        },
+        {
+          "id": 219993851,
+          "railway": "subway",
+          "first": 2291194769,
+          "last": 2291194959
+        },
+        {
+          "id": 219994004,
+          "railway": "subway",
+          "first": 2291194959,
+          "last": 2291195142
+        },
+        {
+          "id": 219993794,
+          "railway": "subway",
+          "first": 2291195142,
+          "last": 2291194453
+        },
+        {
+          "id": 219994110,
+          "railway": "subway",
+          "first": 2291194453,
+          "last": 2291194867
+        },
+        {
+          "id": 219993841,
+          "railway": "subway",
+          "first": 2291194867,
+          "last": 2291194962
+        },
+        {
+          "id": 219993825,
+          "railway": "subway",
+          "first": 2291194962,
+          "last": 2291195152
+        },
+        {
+          "id": 219993718,
+          "railway": "subway",
+          "first": 2291195152,
+          "last": 2292179693
+        },
+        {
+          "id": 220096043,
+          "railway": "subway",
+          "first": 2292179693,
+          "last": 6001086414
+        },
+        {
+          "id": 636356917,
+          "railway": "subway",
+          "first": 6001086414,
+          "last": 2292179735
+        },
+        {
+          "id": 1466757756,
+          "railway": "subway",
+          "first": 2292179735,
+          "last": 288376783
+        },
+        {
+          "id": 875742667,
+          "railway": "subway",
+          "first": 288376783,
+          "last": 2355888910
+        },
+        {
+          "id": 26321818,
+          "railway": "subway",
+          "first": 2355888910,
+          "last": 5051610949
+        },
+        {
+          "id": 517711049,
+          "railway": "subway",
+          "first": 5051610949,
+          "last": 288376811
+        },
+        {
+          "id": 1466757737,
+          "railway": "subway",
+          "first": 288376811,
+          "last": 2355888929
+        },
+        {
+          "id": 26321824,
+          "railway": "subway",
+          "first": 2355888929,
+          "last": 2292179529
+        },
+        {
+          "id": 220096037,
+          "railway": "subway",
+          "first": 2292179529,
+          "last": 2292179550
+        },
+        {
+          "id": 454648310,
+          "railway": "subway",
+          "first": 2292179550,
+          "last": 2292179708
+        },
+        {
+          "id": 773093064,
+          "railway": "subway",
+          "first": 2292179708,
+          "last": 1295654775
+        },
+        {
+          "id": 875742665,
+          "railway": "subway",
+          "first": 1295654775,
+          "last": 2293418014
+        },
+        {
+          "id": 264561975,
+          "railway": "subway",
+          "first": 2293418014,
+          "last": 2292179520
+        },
+        {
+          "id": 1317069343,
+          "railway": "subway",
+          "first": 2292179520,
+          "last": 2292179642
+        },
+        {
+          "id": 875742659,
+          "railway": "subway",
+          "first": 2292179642,
+          "last": 2292179656
+        },
+        {
+          "id": 220096055,
+          "railway": "subway",
+          "first": 2292179656,
+          "last": 2321827387
+        },
+        {
+          "id": 223266294,
+          "railway": "subway",
+          "first": 2321827387,
+          "last": 288378646
+        },
+        {
+          "id": 26322035,
+          "railway": "subway",
+          "first": 288378646,
+          "last": 2923377497
+        },
+        {
+          "id": 333556784,
+          "railway": "subway",
+          "first": 2923377497,
+          "last": 288378712
+        },
+        {
+          "id": 25609005,
+          "railway": "subway",
+          "first": 288378712,
+          "last": 2923377493
+        },
+        {
+          "id": 333556781,
+          "railway": "subway",
+          "first": 2923377493,
+          "last": 278952093
+        },
+        {
+          "id": 220134603,
+          "railway": "subway",
+          "first": 278952093,
+          "last": 2292548134
+        },
+        {
+          "id": 220134607,
+          "railway": "subway",
+          "first": 2292548134,
+          "last": 6002991081
+        },
+        {
+          "id": 875742653,
+          "railway": "subway",
+          "first": 6002991081,
+          "last": 8151110337
+        },
+        {
+          "id": 875742658,
+          "railway": "subway",
+          "first": 8151110337,
+          "last": 278952081
+        },
+        {
+          "id": 875742648,
+          "railway": "subway",
+          "first": 278952081,
+          "last": 8151110335
+        },
+        {
+          "id": 220134590,
+          "railway": "subway",
+          "first": 8151110335,
+          "last": 288378931
+        },
+        {
+          "id": 220134594,
+          "railway": "subway",
+          "first": 288378931,
+          "last": 288378935
+        },
+        {
+          "id": 875742647,
+          "railway": "subway",
+          "first": 288378935,
+          "last": 288378937
+        },
+        {
+          "id": 220247468,
+          "railway": "subway",
+          "first": 288378937,
+          "last": 2293753478
+        },
+        {
+          "id": 220134586,
+          "railway": "subway",
+          "first": 2293753478,
+          "last": 2292548124
+        },
+        {
+          "id": 264571635,
+          "railway": "subway",
+          "first": 2292548124,
+          "last": 2292548144
+        },
+        {
+          "id": 249196544,
+          "railway": "subway",
+          "first": 2292548144,
+          "last": 2557051037
+        },
+        {
+          "id": 1176509649,
+          "railway": "subway",
+          "construction": "subway",
+          "first": 10930801895,
+          "last": 10930801903
+        },
+        {
+          "id": 1558652644,
+          "railway": "subway",
+          "construction": "subway",
+          "first": 10930801903,
+          "last": 13238819880
+        },
+        {
+          "id": 1558652643,
+          "railway": "subway",
+          "construction": "subway",
+          "first": 13238819880,
+          "last": 10931051406
+        }
+      ],
+      "sourceStops": [
+        {
+          "id": 2291194993,
+          "en": "Tung Chung",
+          "lat": 22.289278,
+          "lon": 113.9413221
+        },
+        {
+          "id": 1295654804,
+          "en": "Sunny Bay",
+          "lat": 22.3319141,
+          "lon": 114.0287808
+        },
+        {
+          "id": 1295654775,
+          "en": "Tsing Yi",
+          "lat": 22.3583861,
+          "lon": 114.1074313
+        },
+        {
+          "id": 2292179656,
+          "en": "Lai King",
+          "lat": 22.3484137,
+          "lon": 114.12604
+        },
+        {
+          "id": 279126413,
+          "en": "Nam Cheong",
+          "lat": 22.3263199,
+          "lon": 114.1537684
+        },
+        {
+          "id": 279126405,
+          "en": "Olympic",
+          "lat": 22.317703,
+          "lon": 114.1604114
+        },
+        {
+          "id": 278952085,
+          "en": "Kowloon",
+          "lat": 22.3048965,
+          "lon": 114.1616963
+        },
+        {
+          "id": 2557051037,
+          "en": "Hong Kong",
+          "lat": 22.2851469,
+          "lon": 114.1584546
+        }
+      ],
+      "decision": "Restore member ordering only: original members 1176509649 / 1558652644 / 1558652643 inserted after 1558652640; exact shared nodes, official MTR PR055/26 commissioning 2026-09-13. All source vertices retained.",
+      "unreviewedConstructionGuard": {
+        "status": "FAIL",
+        "reason": "construction railway way requires commissioning review 1176509649",
+        "test": "tools/test-hk-network.cjs: construction tags cannot be treated as operational without an explicit commissioning review"
+      }
+    },
+    {
+      "relationId": 6582965,
+      "sourceFile": "data/hk/sources/phase2/relation-6582965.json",
+      "sourceDate": "2026-10-20 (Oct 22 refetch HTTP 429)",
+      "type": "route",
+      "route": "subway",
+      "ref": "TML",
+      "from": "屯門 Tuen Mun",
+      "to": "紅磡 Hung Hom",
+      "endDate": null,
+      "currentStatus": "INCOMPLETE",
+      "rawExtraction": {
+        "status": "FAIL",
+        "reason": "non-railway way 1492453330"
+      },
+      "afterReviewedCorrection": "non-railway way 1492453330",
+      "memberWays": [
+        {
+          "id": 207698342,
+          "railway": "rail",
+          "first": 2179507747,
+          "last": 2179507644
+        },
+        {
+          "id": 220343054,
+          "railway": "rail",
+          "first": 2179507644,
+          "last": 8510200670
+        },
+        {
+          "id": 916238727,
+          "railway": "rail",
+          "first": 8510200670,
+          "last": 2179507707
+        },
+        {
+          "id": 207698347,
+          "railway": "rail",
+          "first": 2179507707,
+          "last": 2179507665
+        },
+        {
+          "id": 207698335,
+          "railway": "rail",
+          "first": 2179507665,
+          "last": 2179507700
+        },
+        {
+          "id": 1369943435,
+          "railway": "rail",
+          "first": 2179507700,
+          "last": 2179507670
+        },
+        {
+          "id": 1369943438,
+          "railway": "rail",
+          "first": 2179507670,
+          "last": 2179507673
+        },
+        {
+          "id": 230683402,
+          "railway": "rail",
+          "first": 2179507673,
+          "last": 2391510804
+        },
+        {
+          "id": 455727410,
+          "railway": "rail",
+          "first": 2391510804,
+          "last": 4520856827
+        },
+        {
+          "id": 455727412,
+          "railway": "rail",
+          "first": 4520856827,
+          "last": 4520852575
+        },
+        {
+          "id": 455727415,
+          "railway": "rail",
+          "first": 4520852575,
+          "last": 2391510881
+        },
+        {
+          "id": 455727414,
+          "railway": "rail",
+          "first": 2391510881,
+          "last": 4520852578
+        },
+        {
+          "id": 455727450,
+          "railway": "rail",
+          "first": 4520852578,
+          "last": 2179507669
+        },
+        {
+          "id": 455727421,
+          "railway": "rail",
+          "first": 2179507669,
+          "last": 4520856832
+        },
+        {
+          "id": 455727433,
+          "railway": "rail",
+          "first": 4520856832,
+          "last": 2391510777
+        },
+        {
+          "id": 455727429,
+          "railway": "rail",
+          "first": 2391510777,
+          "last": 4520852568
+        },
+        {
+          "id": 455727454,
+          "railway": "rail",
+          "first": 4520852568,
+          "last": 2391510849
+        },
+        {
+          "id": 646307197,
+          "railway": "rail",
+          "first": 2391510849,
+          "last": 2179507694
+        },
+        {
+          "id": 455727370,
+          "railway": "rail",
+          "first": 2179507694,
+          "last": 4520855492
+        },
+        {
+          "id": 230711825,
+          "railway": "rail",
+          "first": 4520855492,
+          "last": 2179527335
+        },
+        {
+          "id": 958477235,
+          "railway": "rail",
+          "first": 2179527335,
+          "last": 3830515303
+        },
+        {
+          "id": 958534976,
+          "railway": "rail",
+          "first": 3830515303,
+          "last": 8869018416
+        },
+        {
+          "id": 958534984,
+          "railway": "rail",
+          "first": 8869018416,
+          "last": 3830515290
+        },
+        {
+          "id": 958534982,
+          "railway": "rail",
+          "first": 3830515290,
+          "last": 8869023334
+        },
+        {
+          "id": 958534975,
+          "railway": "rail",
+          "first": 8869023334,
+          "last": 2294628341
+        },
+        {
+          "id": 33613634,
+          "railway": "rail",
+          "first": 2294628341,
+          "last": 2556786436
+        },
+        {
+          "id": 1488590341,
+          "railway": "rail",
+          "first": 2556786436,
+          "last": 13496101498
+        },
+        {
+          "id": 230791426,
+          "railway": "rail",
+          "first": 13496101498,
+          "last": 13496377902
+        },
+        {
+          "id": 414788010,
+          "railway": "rail",
+          "first": 13496377902,
+          "last": 2179557452
+        },
+        {
+          "id": 230791429,
+          "railway": "rail",
+          "first": 2179557452,
+          "last": 2411989465
+        },
+        {
+          "id": 391176772,
+          "railway": "rail",
+          "first": 2411989465,
+          "last": 2937008611
+        },
+        {
+          "id": 958446614,
+          "railway": "rail",
+          "first": 2937008611,
+          "last": 2179557472
+        },
+        {
+          "id": 1492453330,
+          "railway": "razed",
+          "first": 2179557472,
+          "last": 2179557474
+        },
+        {
+          "id": 290162486,
+          "railway": "disused",
+          "first": 2179557474,
+          "last": 2179557475
+        }
+      ],
+      "sourceStops": [
+        {
+          "id": 2179507747,
+          "en": "Tuen Mun",
+          "lat": 22.3953319,
+          "lon": 113.9731045
+        },
+        {
+          "id": 2179507660,
+          "en": "Siu Hong",
+          "lat": 22.4118356,
+          "lon": 113.9788437
+        },
+        {
+          "id": 2179507646,
+          "en": "Tin Shui Wai",
+          "lat": 22.4481513,
+          "lon": 114.0045668
+        },
+        {
+          "id": 2179507764,
+          "en": "Long Ping",
+          "lat": 22.4477635,
+          "lon": 114.0254333
+        },
+        {
+          "id": 2179507624,
+          "en": "Yuen Long",
+          "lat": 22.4461812,
+          "lon": 114.0352447
+        },
+        {
+          "id": 2179507704,
+          "en": "Kam Sheung Road",
+          "lat": 22.4349379,
+          "lon": 114.0634357
+        },
+        {
+          "id": 2179527380,
+          "en": "Tsuen Wan West",
+          "lat": 22.3682204,
+          "lon": 114.1100671
+        },
+        {
+          "id": 2179527342,
+          "en": "Mei Foo",
+          "lat": 22.3388903,
+          "lon": 114.1365875
+        },
+        {
+          "id": 2179557427,
+          "en": "Nam Cheong",
+          "lat": 22.3265137,
+          "lon": 114.1539473
+        },
+        {
+          "id": 2179557419,
+          "en": "Austin",
+          "lat": 22.3042568,
+          "lon": 114.1667055
+        },
+        {
+          "id": 2179557425,
+          "en": "East Tsim Sha Tsui",
+          "lat": 22.295647,
+          "lon": 114.1750129
+        }
+      ],
+      "decision": "Obsolete pre-integration Tuen Ma relation. Excluded from current services; current 27-stop integrated source relations are separate. No disused/razed way used."
+    },
+    {
+      "relationId": 6582966,
+      "sourceFile": "data/hk/sources/phase3/relation-6582966.json",
+      "sourceDate": "2026-10-22",
+      "type": "route",
+      "route": "subway",
+      "ref": "TML",
+      "from": "紅磡 Hung Hom",
+      "to": "屯門 Tuen Mun",
+      "endDate": null,
+      "currentStatus": "INCOMPLETE",
+      "rawExtraction": {
+        "status": "FAIL",
+        "reason": "non-railway way 1492453329"
+      },
+      "afterReviewedCorrection": "non-railway way 1492453329",
+      "memberWays": [
+        {
+          "id": 1492453329,
+          "railway": "disused",
+          "first": 384143710,
+          "last": 2333317479
+        },
+        {
+          "id": 28262889,
+          "railway": "razed",
+          "first": 2333317479,
+          "last": 5271274814
+        },
+        {
+          "id": 958446613,
+          "railway": "rail",
+          "first": 5271274814,
+          "last": 384143714
+        },
+        {
+          "id": 391176771,
+          "railway": "rail",
+          "first": 384143714,
+          "last": 384143709
+        },
+        {
+          "id": 493204263,
+          "railway": "rail",
+          "first": 384143709,
+          "last": 2294628325
+        },
+        {
+          "id": 290162485,
+          "railway": "rail",
+          "first": 2294628325,
+          "last": 262146165
+        },
+        {
+          "id": 414788011,
+          "railway": "rail",
+          "first": 262146165,
+          "last": 13496377903
+        },
+        {
+          "id": 25609328,
+          "railway": "rail",
+          "first": 13496377903,
+          "last": 13496101499
+        },
+        {
+          "id": 1488590340,
+          "railway": "rail",
+          "first": 13496101499,
+          "last": 279126753
+        },
+        {
+          "id": 442160600,
+          "railway": "rail",
+          "first": 279126753,
+          "last": 279126759
+        },
+        {
+          "id": 958534974,
+          "railway": "rail",
+          "first": 279126759,
+          "last": 2320926080
+        },
+        {
+          "id": 248973173,
+          "railway": "rail",
+          "first": 2320926080,
+          "last": 8869023333
+        },
+        {
+          "id": 958534981,
+          "railway": "rail",
+          "first": 8869023333,
+          "last": 3830515289
+        },
+        {
+          "id": 958534983,
+          "railway": "rail",
+          "first": 3830515289,
+          "last": 2392423786
+        },
+        {
+          "id": 958534977,
+          "railway": "rail",
+          "first": 2392423786,
+          "last": 3830515302
+        },
+        {
+          "id": 958477234,
+          "railway": "rail",
+          "first": 3830515302,
+          "last": 2179527360
+        },
+        {
+          "id": 230711824,
+          "railway": "rail",
+          "first": 2179527360,
+          "last": 4520855493
+        },
+        {
+          "id": 455727369,
+          "railway": "rail",
+          "first": 4520855493,
+          "last": 2391717997
+        },
+        {
+          "id": 646307196,
+          "railway": "rail",
+          "first": 2391717997,
+          "last": 2391717983
+        },
+        {
+          "id": 455727457,
+          "railway": "rail",
+          "first": 2391717983,
+          "last": 4520856839
+        },
+        {
+          "id": 455727442,
+          "railway": "rail",
+          "first": 4520856839,
+          "last": 2391510985
+        },
+        {
+          "id": 455727438,
+          "railway": "rail",
+          "first": 2391510985,
+          "last": 4520856831
+        },
+        {
+          "id": 455727426,
+          "railway": "rail",
+          "first": 4520856831,
+          "last": 279244975
+        },
+        {
+          "id": 455727446,
+          "railway": "rail",
+          "first": 279244975,
+          "last": 4520852579
+        },
+        {
+          "id": 455727418,
+          "railway": "rail",
+          "first": 4520852579,
+          "last": 2391510830
+        },
+        {
+          "id": 455727417,
+          "railway": "rail",
+          "first": 2391510830,
+          "last": 4520852574
+        },
+        {
+          "id": 455727413,
+          "railway": "rail",
+          "first": 4520852574,
+          "last": 4520856828
+        },
+        {
+          "id": 455727411,
+          "railway": "rail",
+          "first": 4520856828,
+          "last": 2391510847
+        },
+        {
+          "id": 192243920,
+          "railway": "rail",
+          "first": 2391510847,
+          "last": 279248220
+        },
+        {
+          "id": 1369943437,
+          "railway": "rail",
+          "first": 279248220,
+          "last": 2179507676
+        },
+        {
+          "id": 1369943436,
+          "railway": "rail",
+          "first": 2179507676,
+          "last": 502954543
+        },
+        {
+          "id": 41178303,
+          "railway": "rail",
+          "first": 502954543,
+          "last": 2179507722
+        },
+        {
+          "id": 207698345,
+          "railway": "rail",
+          "first": 2179507722,
+          "last": 2179507768
+        },
+        {
+          "id": 916238728,
+          "railway": "rail",
+          "first": 2179507768,
+          "last": 8510200671
+        },
+        {
+          "id": 111707416,
+          "railway": "rail",
+          "first": 8510200671,
+          "last": 279248229
+        },
+        {
+          "id": 220343046,
+          "railway": "rail",
+          "first": 279248229,
+          "last": 279248230
+        }
+      ],
+      "sourceStops": [
+        {
+          "id": 384143704,
+          "en": "East Tsim Sha Tsui",
+          "lat": 22.2954745,
+          "lon": 114.1751008
+        },
+        {
+          "id": 262146161,
+          "en": "Austin",
+          "lat": 22.3041946,
+          "lon": 114.166541
+        },
+        {
+          "id": 262146168,
+          "en": "Nam Cheong",
+          "lat": 22.3264779,
+          "lon": 114.1539138
+        },
+        {
+          "id": 279126759,
+          "en": "Mei Foo",
+          "lat": 22.3388904,
+          "lon": 114.136522
+        },
+        {
+          "id": 2163048344,
+          "en": "Tsuen Wan West",
+          "lat": 22.3681757,
+          "lon": 114.1100226
+        },
+        {
+          "id": 279130944,
+          "en": "Kam Sheung Road",
+          "lat": 22.4346473,
+          "lon": 114.0634136
+        },
+        {
+          "id": 279244979,
+          "en": "Yuen Long",
+          "lat": 22.4459905,
+          "lon": 114.0352444
+        },
+        {
+          "id": 279248191,
+          "en": "Long Ping",
+          "lat": 22.447583,
+          "lon": 114.0254341
+        },
+        {
+          "id": 279248202,
+          "en": "Tin Shui Wai",
+          "lat": 22.4480421,
+          "lon": 114.004696
+        },
+        {
+          "id": 279248223,
+          "en": "Siu Hong",
+          "lat": 22.4117934,
+          "lon": 113.9790219
+        },
+        {
+          "id": 279248230,
+          "en": "Tuen Mun",
+          "lat": 22.3952837,
+          "lon": 113.9733214
+        }
+      ],
+      "decision": "Obsolete pre-integration Tuen Ma relation. Excluded from current services; current 27-stop integrated source relations are separate. No disused/razed way used."
+    }
+  ]
+}

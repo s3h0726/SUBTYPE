@@ -1,3 +1,4 @@
+import{buildHongKongCustomRoute}from'./hong-kong-policy.js';
 import{isCountryEnabled}from'./feature-flags.js';
 const PREFIX='trt:';
 const CUSTOM_ROUTES_KEY='tokyoRailTyping.customRoutes.v1';
@@ -50,7 +51,7 @@ export const storage={
   saveSettings:value=>write('settings',value),
   favorites:()=>read('favorites',[]),
   toggleFavorite(id){const set=new Set(this.favorites());set.has(id)?set.delete(id):set.add(id);write('favorites',[...set]);return set.has(id)},
-  routes:()=>loadCustomRoutes().filter(route=>isCountryEnabled(route.countryId||'jp')),
+  routes:()=>loadCustomRoutes().filter(route=>isCountryEnabled(route.countryId||'jp')).map(route=>{if(route.countryId==='hk'&&route.coverage==='rail-network'&&route.geometryStatus==='verified'&&route.stations?.slice(1).every(s=>s.hkIncomingEdge)){try{return buildHongKongCustomRoute(route)}catch{return route}}return route}),
   saveRoute(route){const list=loadCustomRoutes();const i=list.findIndex(r=>r.id===route.id);i<0?list.push(route):list.splice(i,1,route);return saveCustomRoutes(list)},
   deleteRoute(id){return saveCustomRoutes(loadCustomRoutes().filter(r=>r.id!==id))},
   records:()=>Object.fromEntries(Object.entries(read('records',{})).filter(([,record])=>isCountryEnabled(record.countryId||'jp'))),
