@@ -113,7 +113,10 @@ for(const item of recoveryTargets){
   !blockedFamilies.has(service.passengerLineId)&&!previewRestricted.has(service.id),
   'Restricted service in endpointless recovery: '+item.serviceId);
  const relationId=String(item.relationId),id='kr-service-'+relationId;
- assert(!byId.has(id),'Duplicate endpointless service '+id);
+ const existing=byId.get(id);
+ assert(!existing||existing.sourceRelationId===relationId&&
+  ['osm-endpointless-geometry','osm-endpoint-metadata-corrected'].includes(existing.sourceStatus),
+  'Conflicting pre-existing route identity '+id);
  const journey=network.assemble(service,maps);
  if(aliasCase)assert.deepEqual([journey.stations[0].ko,journey.stations.at(-1).ko],
    aliasCase.assembled,'Assembled endpoints shifted: '+relationId);
