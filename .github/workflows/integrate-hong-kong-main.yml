@@ -1,0 +1,76 @@
+name: Integrate Hong Kong railway into main safely
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/integrate-hk-into-main.cjs'
+      - '.github/workflows/integrate-hong-kong-main.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: safe-hong-kong-merge-main
+  cancel-in-progress: false
+jobs:
+  merge:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Merge HK branch, preferring current main in overlapping conflicts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags origin feature/hong-kong-railway
+          echo "Main $(git rev-parse HEAD), Hong Kong $(git rev-parse origin/feature/hong-kong-railway)"
+          if git merge --no-commit --no-ff -X ours origin/feature/hong-kong-railway; then
+            echo "Conflict-free auto-merge"
+          else
+            echo "Resolving remaining conflicting paths by keeping main"
+            while IFS= read -r -d '' file; do
+              case "$file" in
+                data/hk/*|js/hong-kong-*|css/hong-kong.css|tools/*hk*|tools/lib/hk-*)
+                  git checkout --theirs -- "$file" 2>/dev/null || true ;;
+                *)
+                  git checkout --ours -- "$file" 2>/dev/null || git rm -f -- "$file" || true ;;
+              esac
+              git add -A -- "$file"
+            done < <(git diff --name-only --diff-filter=U -z)
+            if git ls-files -u | grep -q .; then echo "Unresolved conflicts"; exit 1; fi
+          fi
+      - name: Restore protected Japanese/Korean data and non-HK work
+        shell: bash
+        run: |
+          set -euo pipefail
+          for p in .gitattributes .gitignore data/kr data/generated data/lines data/operators data/nationwide data/source-audit data/edited reports/korean-names js/line-workspace-data.js js/korean-access-data.js tools/build-line-workspaces.js tools/lib/kr-service-reconstruction.js tools/lib/kr-topology-corrections.js tools/import-kr-network.js tools/import-kr-platforms.py; do
+            git restore --source=HEAD --staged --worktree -- "$p" 2>/dev/null || true
+          done
+          git status --short | head -55 || true
+      - name: Repair HK entry points without overriding main
+        run: node tools/integrate-hk-into-main.cjs
+      - name: Build browser JS and verify multi-country runtime
+        run: |
+          node tools/build-app-bundle.js
+          node --check js/app.bundle.js
+          node --check tools/build-hk-data.cjs
+          node tools/test-hk-phase6.cjs
+          node tools/test-exact-duplicate-jp-routes.cjs
+          node tools/test-unified-mlit-station-ids.cjs
+      - name: Merge commit and push (only after tests pass)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          test -f .git/MERGE_HEAD || { echo "No merge state"; exit 1; }
+          git commit -m "merge: integrate Hong Kong railway into main, preserve Japan and Korea"
+          git push origin HEAD:main
+          echo "MERGED_SHA=$(git rev-parse HEAD)"
