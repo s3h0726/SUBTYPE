@@ -16,6 +16,11 @@ const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]|
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
   .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103');
+// Disney Resort Line is maintained in its dedicated route-data module, not data/lines/*/line.json.
+if(!lines.some(x=>x.meta.id==='jp-disney-resort-line')){
+ const file='js/disney-resort-line-data.js';
+ lines.push({file,meta:{id:'jp-disney-resort-line',operatorId:'maihama-resort-line',names:{ja:'ディズニーリゾートライン',ko:'디즈니 리조트라인',en:'Disney Resort Line'},color:'#D699B8',visibility:'public'}});
+}
 // The public Mikawa and Hakodate Main Line cards have been split at actual
 // operational section boundaries (Chiryu / Sapporo). Keep original physical
 // route definitions for historic records but exclude obsolete unified cards.
@@ -48,6 +53,11 @@ for(const x of lines){
 for(let i=operators.length-1;i>=0;i--)if(canonicalId(operators[i].meta.id)!==operators[i].meta.id)operators.splice(i,1);
 operators.sort((a,b)=>(a.meta.names?.ko||'').localeCompare(b.meta.names?.ko||'','ko'));
 lines.sort((a,b)=>(a.meta.operatorId||'').localeCompare(b.meta.operatorId||'')||(a.meta.names?.ko||'').localeCompare(b.meta.names?.ko||'','ko'));
+if(process.argv.includes('--lines-only')) {
+ fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),x.meta.names?.ja,x.meta.names?.en,effectiveColor(x.meta.id,x.meta),toRel(x.file)])]));
+ console.log(JSON.stringify({lines:lines.length,output:'reports/korean-names/lines.csv'}));
+ process.exit(0);
+}
 fs.writeFileSync(path.join(output,'operators.csv'),csv([['운영사ID','한국어명','일본어명','영어명','데이터경로'],...operators.map(x=>[x.meta.id,effectiveOperator(x.meta.id),x.meta.names?.ja,x.meta.names?.en,toRel(x.file)])]));
 fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),x.meta.names?.ja,x.meta.names?.en,effectiveColor(x.meta.id,x.meta),toRel(x.file)])]));
 const generatedDir=path.join(root,'data/generated/routes');
