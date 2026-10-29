@@ -1,54 +1,54 @@
 // Narita Express: branch-specific, train-level journeys.  Never traverse the legacy
 // Ofuna -> Shinjuku single-chain railway as a real train path.
-const NEX_AIRPORT='station-1132705',NEX_T2='station-1132813',NEX_TOKYO='station-mlit-003766';
+const NEX_AIRPORT='station-1132705',NEX_T2='station-1132813',NEX_TOKYO='station-1130101';
 const NEX_EXAMPLES=[
   {
     id:'nex-5-shinjuku',variantId:'nex-shinjuku-physical-candidate',
     direction:'forward',trainNumber:'2205M',trainName:'成田エクスプレス5号',nameKo:'특급 나리타 익스프레스 5호 · 신주쿠발',
     source:'https://timetables.jreast.co.jp/2610/train/030/031141.html',
-    stops:['station-mlit-003700','station-mlit-003922',NEX_TOKYO,'station-mlit-004173',NEX_T2,NEX_AIRPORT]
+    stops:['station-003700','station-003922',NEX_TOKYO,'station-1131339',NEX_T2,NEX_AIRPORT]
   },
   {
     id:'nex-5-ofuna',variantId:'nex-ofuna-physical-candidate',
     direction:'forward',trainNumber:'2005M',trainName:'成田エクスプレス5号',nameKo:'특급 나리타 익스프레스 5호 · 오후나발',
     source:'https://timetables.jreast.co.jp/2610/train/030/031141.html',
-    stops:['station-mlit-004961','station-mlit-004818','station-mlit-004633','station-mlit-004301','station-mlit-004095',NEX_TOKYO,'station-mlit-004173',NEX_T2,NEX_AIRPORT]
+    stops:['station-1130107','station-1130106','station-1130105','station-004301','station-1130103',NEX_TOKYO,'station-1131339',NEX_T2,NEX_AIRPORT]
   },
   {
     id:'nex-14-shinjuku',variantId:'nex-shinjuku-physical-candidate',
     direction:'reverse',trainNumber:'2214M',trainName:'成田エクスプレス14号',nameKo:'특급 나리타 익스프레스 14호 · 신주쿠행',
     source:'https://timetables.jreast.co.jp/2610/train/045/047971.html',
-    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-004173',NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+    stops:[NEX_AIRPORT,NEX_T2,'station-1131339',NEX_TOKYO,'station-003922','station-003700']
   },
   {
     id:'nex-14-ofuna',variantId:'nex-ofuna-physical-candidate',
     direction:'reverse',trainNumber:'2014M',trainName:'成田エクスプレス14号',nameKo:'특급 나리타 익스프레스 14호 · 오후나행',
     source:'https://timetables.jreast.co.jp/2610/train/045/047971.html',
-    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-004173',NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+    stops:[NEX_AIRPORT,NEX_T2,'station-1131339',NEX_TOKYO,'station-1130103','station-004301','station-1130105','station-1130106','station-1130107']
   },
   {
     id:'nex-2-shinjuku',variantId:'nex-shinjuku-physical-candidate',
     direction:'reverse',trainNumber:'2202M',trainName:'成田エクスプレス2号',nameKo:'특급 나리타 익스프레스 2호 · 신주쿠행',
     source:'https://timetables.jreast.co.jp/en/2610/train/025/029042.html',
-    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173',NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+    stops:[NEX_AIRPORT,NEX_T2,'station-1132703','station-1131415','station-003898','station-1131339',NEX_TOKYO,'station-003922','station-003700']
   },
   {
     id:'nex-2-ofuna',variantId:'nex-ofuna-physical-candidate',
     direction:'reverse',trainNumber:'2002M',trainName:'成田エクスプレス2号',nameKo:'특급 나리타 익스프레스 2호 · 오후나행',
     source:'https://timetables.jreast.co.jp/en/2610/train/025/029042.html',
-    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173',NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+    stops:[NEX_AIRPORT,NEX_T2,'station-1132703','station-1131415','station-003898','station-1131339',NEX_TOKYO,'station-1130103','station-004301','station-1130105','station-1130106','station-1130107']
   },
   {
     id:'nex-54-shinjuku',variantId:'nex-shinjuku-physical-candidate',
     direction:'reverse',trainNumber:'2254M',trainName:'成田エクスプレス54号',nameKo:'특급 나리타 익스프레스 54호 · 신주쿠행',
     source:'https://timetables.jreast.co.jp/en/2610/train/030/031291.html',
-    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-003922','station-003700']
   },
   {
     id:'nex-54-ofuna',variantId:'nex-ofuna-physical-candidate',
     direction:'reverse',trainNumber:'2054M',trainName:'成田エクスプレス54号',nameKo:'특급 나리타 익스프레스 54호 · 오후나행',
     source:'https://timetables.jreast.co.jp/en/2610/train/030/031291.html',
-    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-1130103','station-004301','station-1130105','station-1130106','station-1130107']
   }
 ];
 const pointDistance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);

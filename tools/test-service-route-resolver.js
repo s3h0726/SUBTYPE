@@ -14,10 +14,10 @@ const assert=(condition,message)=>{if(!condition)errors.push(message)};
 
 const marunouchiMain=getRoute('line-28002'),branchRoute=getRoute('line-28002-honancho-branch'),marunouchiBranch=catalog.branches.find(branch=>branch.id==='tokyo-metro-marunouchi-honancho-branch');
 assert(marunouchiMain.stations.length===25,'Marunouchi main line must end at Ogikubo with 25 stations');
-assert(marunouchiMain.stations.at(-1).stationMasterId==='station-mlit-003575','Marunouchi main terminal is not Ogikubo');
+assert(marunouchiMain.stations.at(-1).stationMasterId==='station-003575','Marunouchi main terminal is not Ogikubo');
 assert(branchRoute?.dataKind==='branchRoute','Honancho branch is not retained as the internal geometry source');
 assert(branchRoute?.visibility==='internal'&&branchRoute?.playable===false,'Honancho branch must not be a passenger-facing route card');
-assert(marunouchiBranch?.parentLineId==='line-28002'&&marunouchiBranch?.junctionStationId==='station-mlit-003643','Honancho branch parent or junction is wrong');
+assert(marunouchiBranch?.parentLineId==='line-28002'&&marunouchiBranch?.junctionStationId==='station-003643','Honancho branch parent or junction is wrong');
 assert(branchRoute?.stations.length===4,'Honancho branch station count is not 4');
 assert(branchRoute?.directedSegments.length===3,'Honancho branch geometry segment count is not 3');
 assert(branchRoute?.geometry.length===57,'Honancho branch must retain the 57-point OSM alignment');
@@ -43,18 +43,18 @@ assert(fukutoshin.stations[0].distanceKm===0&&fukutoshin.stations.at(-1).distanc
 assert(fukutoshin.stations[8].transfers.some(transfer=>transfer.lineId==='line-11302'&&transfer.stationCode==='JY13'),'Ikebukuro transfer metadata is missing');
 assert(express.route.stations.length===16,'Fukutoshin express lost physical stations');
 assert(express.service.stops.length===6,'Fukutoshin express stop count is not 6');
-assert(express.service.stops[0]==='station-mlit-003123'&&express.service.stops.at(-1)==='station-mlit-003922','Fukutoshin express endpoints are wrong');
+assert(express.service.stops[0]==='station-003123'&&express.service.stops.at(-1)==='station-003922','Fukutoshin express endpoints are wrong');
 assert(express.route.geometry.length===fukutoshin.geometry.length,'Fukutoshin express must retain the complete physical geometry');
 const commuterExpress=resolveServiceSelection({baseRoute:fukutoshin,servicePatternId:'fukutoshin-commuter-express-wakoshi-shibuya',getRoute});
 assert(commuterExpress.service.stops.length===10,'Fukutoshin commuter express stop count is not 10');
-assert(!commuterExpress.service.stops.includes('station-mlit-003471')&&commuterExpress.service.stops.includes('station-1130206'),'Fukutoshin commuter express stop pattern is wrong');
+assert(!commuterExpress.service.stops.includes('station-003471')&&commuterExpress.service.stops.includes('station-1130206'),'Fukutoshin commuter express stop pattern is wrong');
 
 const through=resolveServiceSelection({baseRoute:fukutoshin,servicePatternId:'fukutoshin-tokyu-minatomirai-forward',getRoute});
 const operatorIds=new Set(through.route.segments.map(segment=>segment.operatorId));
 assert(through.route.dataKind==='throughService','Fukutoshin/Minatomirai pattern did not resolve as a through service');
 assert(operatorIds.size>=3,'Fukutoshin/Minatomirai operator contexts were not preserved');
-assert(through.route.stations.at(-1).stationMasterId==='station-mlit-004704','Fukutoshin/Minatomirai destination is wrong');
-assert(through.destinationStationId==='station-mlit-004704','Resolved destination metadata is wrong');
+assert(through.route.stations.at(-1).stationMasterId==='station-004704','Fukutoshin/Minatomirai destination is wrong');
+assert(through.destinationStationId==='station-004704','Resolved destination metadata is wrong');
 assert(servicePatternsForRoute('line-28010').filter(pattern=>pattern.throughServiceId).length===8,'Fukutoshin setup must expose eight directional through patterns');
 for(const patternId of ['fukutoshin-local-wakoshi-shibuya','fukutoshin-express-wakoshi-shibuya','fukutoshin-commuter-express-wakoshi-shibuya'])assert(catalog.servicePatterns.some(pattern=>pattern.id===patternId),`Fukutoshin legacy pattern was lost: ${patternId}`);
 assert(!servicePatternsForRoute('line-28010').some(pattern=>pattern.id==='fukutoshin-s-train-metro-section'),'Metadata-only S-TRAIN pattern must not be offered as a standalone route');
@@ -101,7 +101,7 @@ for(const journey of catalog.serviceJourneys||[]){
   try{const resolved=resolveServiceJourney({baseRoute:getRoute(journey.baseRouteId),journeyId:journey.id,getRoute});assert(resolved.route.stations[0].id===journey.originStationId&&resolved.route.stations.at(-1).id===journey.destinationStationId,`${journey.id}: journey endpoints mismatch`);assert(resolved.journeyId===journey.id,`${journey.id}: journey identity lost`);assert(resolved.trainTypeContexts.length>0,`${journey.id}: train type contexts missing`);for(let i=1;i<resolved.route.stations.length;i++)assert(!(resolved.route.stations[i-1].ja===resolved.route.stations[i].ja),`${journey.id}: duplicated boundary station`) }catch(error){assert(false,`${journey.id}: ${error.message}`)}
 }
 assert(serviceJourneysForRoute('line-99302').filter(item=>item.throughServiceId).length===2,'Asakusa must expose both airport directions');assert(serviceJourneysForRoute('line-99303').filter(item=>item.throughServiceId).length===2,'Mita must expose both Sotetsu directions');
-rejected=false;try{resolveServiceJourney({baseRoute:fukutoshin,originStationId:'station-mlit-002708',destinationStationId:'station-mlit-004704',trainTypeId:'tokyo-local',getRoute})}catch(error){rejected=/실제로 운행/.test(error.message)}assert(rejected,'Impossible journey combinations must be rejected');
+rejected=false;try{resolveServiceJourney({baseRoute:fukutoshin,originStationId:'station-002708',destinationStationId:'station-004704',trainTypeId:'tokyo-local',getRoute})}catch(error){rejected=/실제로 운행/.test(error.message)}assert(rejected,'Impossible journey combinations must be rejected');
 const baseJourneyRoutes=['line-28001','line-28002','line-28003','line-28004','line-28005','line-28006','line-28008','line-28009','line-28010','line-99302','line-99303','line-99304','line-99301'];
 for(const routeId of baseJourneyRoutes){const journeys=serviceJourneysForRoute(routeId).filter(item=>!item.throughServiceId);assert(journeys.some(item=>item.directionId==='forward'),`${routeId}: full forward base journey missing`);assert(journeys.some(item=>item.directionId==='reverse'),`${routeId}: full reverse base journey missing`)}
 const ginzaShort=resolveServiceJourney({baseRoute:getRoute('line-28001'),journeyId:'journey-base-journey-ginza-shibuya-ueno',getRoute});

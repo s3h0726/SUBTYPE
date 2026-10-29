@@ -5,8 +5,8 @@
 const workspace=window.TRT_EMBEDDED_LINE_WORKSPACES;
 if(workspace&&Array.isArray(workspace.routes)&&!workspace.routes.some(r=>r.id===id)){
  const source=workspace.routes.find(r=>r.id==='line-23001');
- const sourceSegment=source?.directedSegments?.find(s=>s.fromStationId==='station-mlit-003166'&&s.toStationId==='station-2300141');
- const stops=source?.stations?.filter(s=>s.id==='station-mlit-003166'||s.id==='station-2300141');
+ const sourceSegment=source?.directedSegments?.find(s=>s.fromStationId==='station-003166'&&s.toStationId==='station-2300141');
+ const stops=source?.stations?.filter(s=>s.id==='station-003166'||s.id==='station-2300141');
  if(source&&sourceSegment&&stops?.length===2){
   const newRoute={...source,id,legacyId:id,line:{ja:'京成東成田線',ko:'히가시나리타선',kana:'けいせいひがしなりたせん',en:'Keisei Higashi-Narita Line'},
    stations:stops.map((station,index)=>({...station,order:index+1,geometryIndex:index===0?0:sourceSegment.geometry.length-1})),

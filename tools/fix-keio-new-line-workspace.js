@@ -11,8 +11,8 @@ const geometry = JSON.parse(fs.readFileSync(geometryFile, 'utf8'));
 
 const ids = {
   shinjuku: 'station-1130208',
-  hatsudai: 'station-mlit-003764',
-  hatagaya: 'station-mlit-003791',
+  hatsudai: 'station-003764',
+  hatagaya: 'station-003791',
   sasazuka: 'station-2400104'
 };
 const byId = new Map(stations.map(station => [station.stationId, station]));

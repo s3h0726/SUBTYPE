@@ -30,7 +30,7 @@ const generatedRouteSource=id=>{
 };
 const signedRouteSource=id=>stationSignOverrides[id]?generatedRouteSource(id):files.get(id);
 const honanchoBranch=ws.routes.find(r=>r.id==='line-28002-honancho-branch');
-const honanchoExtraStations=(honanchoBranch?.stations||[]).filter(station=>String(station.id)!=='station-mlit-003643');
+const honanchoExtraStations=(honanchoBranch?.stations||[]).filter(station=>String(station.id)!=='station-003643');
 const passengerStations=r=>r.id==='line-28002'?[...(r.stations||[]),...honanchoExtraStations]:(r.stations||[]);
 const categoryOverrides=JSON.parse(fs.readFileSync(path.join(root,'data/japan-route-category-overrides.json'),'utf8')).categoryByRouteId;
 const routes=ws.routes.map(r=>({id:r.id,category:categoryOverrides[r.id]||r.category,mode:r.mode||'rail',countryId:r.countryId||'jp',operatorId:r.operatorId,operator:r.operator,line:r.line,code:r.code||'',lineColor:r.lineColor||r.color||'#777777',loop:!!r.loop,...(r.parentLineId?{parentLineId:r.parentLineId}:{}),...(r.visibility?{visibility:r.visibility}:{}),...(r.legacyRouteAliasFor?{legacyRouteAliasFor:r.legacyRouteAliasFor}:{}),stationCount:passengerStations(r).length,lazySource:r.id==='line-28002-honancho-branch'?generatedRouteSource(r.id):signedRouteSource(r.id),searchStations:passengerStations(r).flatMap(s=>[s.names?.ja||s.ja,s.names?.ko||s.ko].filter(Boolean)),...(typeof r.geometryReady==='boolean'?{geometryReady:r.geometryReady}:{}),...(r.playable===false?{playable:false}:(r.geometryReady===true?{playable:true}:{}))}));
