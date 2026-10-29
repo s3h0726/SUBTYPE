@@ -58,6 +58,7 @@ if(!game.includes('  hintName(station)'))
  game=game.replace('  showDeparture(){',
  "  hintName(station){return this.route?.countryId==='hk'&&this.options.inputMode==='memory'?(station?.romaji||station?.ja||''):(station?.ko||'')}\n  showDeparture(){");
 write('js/game.js',game);
+require('./repair-hk-main-compat.cjs');
 const markers={
  'js/app.js':['HONG_KONG_CATEGORIES','hongKongRouteCards','prepareHongKongTramChoices',"countryId==='hk'"],
  'js/data-loader.js':['TRT_HONG_KONG_INDEX','hong-kong-lazy-index'],
