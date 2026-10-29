@@ -31,7 +31,7 @@ for(const file of fs.readdirSync(chunkDir).filter(x=>/^chunk-\d+\.json$/.test(x)
   count++;
  }
 }
-assert.equal(count,index.filter(r=>r.lazySource?.includes('/jp-canonical/')).length,'Chunk/catalog count mismatch');
+assert.equal(count,workspace.length,'Chunk/workspace count mismatch');
 for(const file of ['js/feature-flags.js','js/app.bundle.js']){
  const text=read(file);
  for(const [old,id] of Object.entries(aliases))
