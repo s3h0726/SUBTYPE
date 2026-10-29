@@ -1,0 +1,55 @@
+name: Refresh Korean line name table
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/export-korean-names.js'
+      - '.github/workflows/refresh-korean-lines.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-lines:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate complete line table
+        run: node tools/export-korean-names.js --lines-only
+      - name: Validate line table
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const p = 'reports/korean-names/lines.csv';
+          const s = fs.readFileSync(p, 'utf8').replace(/^\\uFEFF/, '');
+          const rows = s.trimEnd().split(/\\r?\\n/);
+          const header = rows.shift();
+          if (!header.includes('노선ID') || !header.includes('노선 한글명')) throw new Error('Unexpected CSV header');
+          const ids = rows.map(line => {
+            const m = line.match(/^"[^"]*","[^"]*","([^"]+)"/);
+            if (!m) throw new Error('Malformed CSV row: ' + line);
+            return m[1];
+          });
+          if (new Set(ids).size !== ids.length) throw new Error('Duplicate line IDs detected');
+          if (!ids.includes('jp-disney-resort-line')) throw new Error('Disney Resort Line missing');
+          console.log('Validated ' + ids.length + ' line rows; IDs unique; Disney Resort Line present.');
+          NODE
+      - name: Commit refreshed line table
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/korean-names/lines.csv
+          if git diff --cached --quiet; then
+            echo 'Line table is already up to date.'
+          else
+            git commit -m 'v0.8.2 Refresh complete Korean line name table'
+            git push origin HEAD:main
+          fi
