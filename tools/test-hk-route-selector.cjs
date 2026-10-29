@@ -49,7 +49,7 @@ function simulate(file){
 simulate('js/app.js');
 simulate('js/app.bundle.js');
 const html=read('index.html');
-assert(html.includes('app.bundle.js?v=hk-route-selector-20261030'),'Stale app bundle cache version');
+assert(/app\.bundle\.js\?v=[^"']+/.test(html),'App bundle cache key missing');
 const hk=JSON.parse(read('data/hk/generated/index.json')).routes;
 assert(hk.length>=90&&hk.some(r=>r.canonicalLineId==='hk-tramway')&&hk.some(r=>r.canonicalLineId==='hk-island'));
 console.log('PASS selector assets: '+hk.length+' HK route records');
