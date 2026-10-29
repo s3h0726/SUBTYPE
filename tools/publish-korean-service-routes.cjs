@@ -77,6 +77,20 @@ const endpointless=(recoveryAudit.blocked||[]).filter(row=>
  row.reasons?.length===1&&row.reasons[0]==='CANDIDATE_ENDPOINT_MISMATCH'&&
  Array.isArray(row.candidateEndpoints)&&row.candidateEndpoints.length===2&&
  row.candidateEndpoints.every(v=>v==null||String(v).trim()===''));
+// These four relations have complete usable geometry; the source name is
+// missing, aliased or reversed, NOT a missing track. Exact-match source and
+// assembled names below prevent unintentionally admitting truncated journeys.
+const aliasCases=new Map([
+ ['6060963',{source:['신사','광교(경기대)'],assembled:['신분당선 신사','광교역'],explanation:'Shinbundang station prefix and Gwanggyo parenthetical alias'}],
+ ['7527497',{source:['운연',null],assembled:['운연','검단오류'],explanation:'Opposite terminal tag omitted; ordered stops identify it'}],
+ ['12080315',{source:['응암순환','신내'],assembled:['응암','6호선 신내역'],explanation:'Eungam loop shorthand and subway-line station prefix'}],
+ ['19425645',{source:['송도달빛축제공원','검단호수공원'],assembled:['검단호수공원','송도달빛축제공원'],explanation:'Both source endpoint tags reversed relative to validated stop order'}]
+]);
+const metadataAliases=(recoveryAudit.blocked||[]).filter(row=>
+ row.reasons?.length===1&&row.reasons[0]==='CANDIDATE_ENDPOINT_MISMATCH'&&
+ aliasCases.has(String(row.relationId)));
+assert.equal(metadataAliases.length,aliasCases.size,'Source alias inventory changed; re-review required');
+const recoveryTargets=[...endpointless,...metadataAliases];
 const base=abs('data/kr/v2'),network=require('./lib/kr-network'),full=network.load(base);
 const verified=network.validate(full,{base});
 assert.equal(verified.errors.length,0,'Korean source evidence failed integrity checks');
@@ -87,14 +101,25 @@ const blockedFamilies=new Set(parse('data/kr/v2/relation-access-policy.json').re
  .filter(x=>x.passengerCandidate===false).flatMap(x=>x.lineIds||[]));
 const previewRestricted=new Set(parse('data/kr/preview-policy.json').blockedServices.map(x=>x.serviceId));
 audit.recoveredEndpointless=[];
-for(const item of endpointless){
+audit.recoveredEndpointAliases=[];
+for(const item of recoveryTargets){
+ const aliasCase=aliasCases.get(String(item.relationId));
+ if(aliasCase){
+  assert.deepEqual(item.candidateEndpoints,aliasCase.source,'Alias source tags changed: '+item.relationId);
+  assert.deepEqual(item.assembledEndpoints,aliasCase.assembled,'Alias actual endpoints changed: '+item.relationId);
+ }
  const service=allServices.get(item.serviceId);
  assert(service&&service.access?.passengerCandidate!==false&&
   !blockedFamilies.has(service.passengerLineId)&&!previewRestricted.has(service.id),
   'Restricted service in endpointless recovery: '+item.serviceId);
  const relationId=String(item.relationId),id='kr-service-'+relationId;
- assert(!byId.has(id),'Duplicate endpointless service '+id);
+ const existing=byId.get(id);
+ assert(!existing||existing.sourceRelationId===relationId&&
+  ['osm-endpointless-geometry','osm-endpoint-metadata-corrected'].includes(existing.sourceStatus),
+  'Conflicting pre-existing route identity '+id);
  const journey=network.assemble(service,maps);
+ if(aliasCase)assert.deepEqual([journey.stations[0].ko,journey.stations.at(-1).ko],
+   aliasCase.assembled,'Assembled endpoints shifted: '+relationId);
  assert(journey.stations.length>=2&&journey.geometry.length>=2&&
   journey.directedSegments.length===journey.stations.length-1);
  assert(journey.stations.every(st=>/[가-힣]/.test(st.ko)&&st.ko!=='MISSING_KOREAN_NAME'),'Unlabelled station '+id);
@@ -143,7 +168,7 @@ for(const item of endpointless){
    stops:journey.stations.map(st=>st.id)}],
   geometryReady:true,geometryStatus:'ready',playable:true,
   visibility:'public',releaseStatus:'released',playStatus:'RELEASED',
-  sourceStatus:'osm-endpointless-geometry',serviceValidationStatus:'external-timetable-unverified'
+  sourceStatus:aliasCase?'osm-endpoint-metadata-corrected':'osm-endpointless-geometry',serviceValidationStatus:'external-timetable-unverified'
  };
  const outfile='data/kr/generated/routes/'+id+'.json',rendered=JSON.stringify({route})+'\n';
  fs.mkdirSync(path.dirname(abs(outfile)),{recursive:true});fs.writeFileSync(abs(outfile),rendered);
@@ -156,22 +181,26 @@ for(const item of endpointless){
   stationCount:route.stations.length,serviceCount:route.services.length};
  byId.set(id,compact);
  audit.published[id]={sourceRelationId:relationId,legacyId:null,geometrySha256:digest,
-  sourceEvidence:{endpointMetadata:'missing-in-source',geometryProvenance:track,
+  sourceEvidence:{endpointMetadata:aliasCase?aliasCase.explanation:'missing-in-source',geometryProvenance:track,
    sourceUrl:'https://www.openstreetmap.org/relation/'+relationId},
   externalTimetableVerified:false};
- audit.recoveredEndpointless.push({id,sourceRelationId:relationId,
+ const recoveryRow={id,sourceRelationId:relationId,
   origin:route.stations[0].ko,destination:route.stations.at(-1).ko,
-  limitation:'OSM source has no published origin or destination tags'});
+  limitation:aliasCase?aliasCase.explanation:'OSM source has no published origin or destination tags'};
+ if(aliasCase)audit.recoveredEndpointAliases.push(recoveryRow);
+ else audit.recoveredEndpointless.push(recoveryRow);
 }
 assert.equal(audit.recoveredEndpointless.length,endpointless.length,
  'Some eligible endpointless game routes were not recovered');
-const extraPublished=audit.recoveredEndpointless.length;
+assert.equal(audit.recoveredEndpointAliases.length,metadataAliases.length,
+ 'Some pinned endpoint aliases were not recovered');
+const extraPublished=audit.recoveredEndpointless.length+audit.recoveredEndpointAliases.length;
 const index={...main,operators:[...operators.values()],routes:[...byId.values()]};
-index.counts={...main.counts,routes:index.routes.length,gamePublishedServices:published+extraPublished,endpointlessRecovered:extraPublished,sourceRelationExclusions:skipped.length};
+index.counts={...main.counts,routes:index.routes.length,gamePublishedServices:published+extraPublished,endpointlessRecovered:audit.recoveredEndpointless.length,endpointAliasesRecovered:audit.recoveredEndpointAliases.length,sourceRelationExclusions:skipped.length};
 fs.writeFileSync(abs(indexPath),JSON.stringify(index)+'\n');
 fs.writeFileSync(abs('js/korea-index-data.js'),'/* Published Korean game catalog; external timetables require separate verification. */\nwindow.TRT_KOREA_INDEX='+JSON.stringify(index)+';\n');
 fs.mkdirSync(abs('data/kr/evidence'),{recursive:true});
 fs.writeFileSync(abs('data/kr/evidence/regular-service-source-audit.json'),JSON.stringify(audit,null,2)+'\n');
 const count=index.routes.filter(r=>/^kr-service-/.test(r.id)).length;
 assert.equal(count,published+extraPublished);
-console.log('KR_REGULAR_GAME_PUBLICATION '+JSON.stringify({existingPassengerRoutes:main.routes.length,regularServiceRoutes:count,recoveredEndpointless:extraPublished,remainingBlocked:recoveryAudit.blocked.length-extraPublished,skipped,finalCatalog:index.routes.length}));
+console.log('KR_REGULAR_GAME_PUBLICATION '+JSON.stringify({existingPassengerRoutes:main.routes.length,regularServiceRoutes:count,recoveredEndpointless:audit.recoveredEndpointless.length,recoveredAliases:audit.recoveredEndpointAliases.length,remainingBlocked:recoveryAudit.blocked.length-extraPublished,skipped,finalCatalog:index.routes.length}));

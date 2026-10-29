@@ -9,7 +9,7 @@ const excluded=new Set(['13695367','13695368']);
 assert.equal(source.routes.length,123);
 const expected=source.routes.filter(x=>!excluded.has(x.sourceRelationId));
 const promoted=published.routes.filter(x=>/^kr-service-\d+$/.test(x.id));
-const extra=audit.recoveredEndpointless||[];
+const extra=[...(audit.recoveredEndpointless||[]),...(audit.recoveredEndpointAliases||[])];
 assert.equal(promoted.length,expected.length+extra.length,'Regular catalog must include source routes and endpointless recoveries');
 assert.equal(expected.length,121,'Existing promoted services must be preserved');
 for(const e of expected)assert(promoted.some(p=>p.id==='kr-service-'+e.sourceRelationId),'Published source route disappeared: '+e.sourceRelationId);
@@ -19,6 +19,8 @@ for(const e of extra){
  assert(e.origin&&e.destination,'Recovered route lacks ordered station endpoints');
 }
 assert.equal(published.counts.gamePublishedServices,promoted.length);
+assert.equal(published.counts.endpointlessRecovered,(audit.recoveredEndpointless||[]).length);
+assert.equal(published.counts.endpointAliasesRecovered,(audit.recoveredEndpointAliases||[]).length);
 assert.equal(published.counts.routes,published.routes.length);
 assert(published.routes.length>=129,'Existing passenger lines lost');
 const ids=new Set(published.routes.map(x=>x.id));
