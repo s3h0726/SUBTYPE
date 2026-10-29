@@ -41,6 +41,8 @@ jobs:
       - run: npm run audit:korea-failures
       - run: npm run audit:korea-phase6
       - run: npm run audit:korea-phase7-evidence
+        env:
+          KR_PROMOTION_REPORT_DIR: reports/korea/phase8/ci-evidence
       - name: Ensure source corrections and generated data are reproducible
         run: git diff --exit-code -- data/kr/v2 data/kr/preview data/kr/provisional js/korean-access-data.js js/korean-preview-access-data.js js/korean-passenger-track-data.js js/korean-provisional-pattern-data.js
       - run: npm run validate:korea
