@@ -1,0 +1,1505 @@
+[
+  {
+    "serviceId": "hk-tseung-kwan-o-short-tik-poa",
+    "status": "PASS",
+    "fingerprint": "a185859de103fffa45e2fa97b518f20e44756f442135a30a9cd17aa568a0f9f6",
+    "conditionFingerprint": "b8d573c9a06f13a805b9a209a8e7f68c95eb26871231e1647915edc7ba5d404d",
+    "checkedAt": "2026-10-29T14:21:01.229Z",
+    "stationCount": 4,
+    "mode": "normal",
+    "advance": "AUTO",
+    "inputStyle": "burst",
+    "dataReleaseStatusAtRun": "ready",
+    "viewport": {
+      "height": 720,
+      "theme": "dark",
+      "width": 1280
+    },
+    "reducedMotion": false,
+    "steps": [
+      {
+        "order": 0,
+        "id": "hk-mtr-TIK",
+        "zh": "調景嶺",
+        "ko": "티우켕렝",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "153.8",
+        "transition": {
+          "animationFrames": null,
+          "animationMs": 0.19999992847442627,
+          "barrierMs": 153.80000007152557,
+          "inputToConfirmMs": 2.899999976158142,
+          "kind": "auto",
+          "mapWaitMs": 2.700000047683716,
+          "outcome": "target",
+          "postBarrierMs": 22.399999976158146,
+          "targetId": "hk-mtr-TIK",
+          "targetReadyMs": 176.20000004768372,
+          "typingWorkMs": 1.7,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 1,
+        "id": "hk-mtr-TKO",
+        "zh": "將軍澳",
+        "ko": "정관오",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "251.9",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 247.40000004769536,
+            "frames": 16,
+            "maxFrameGapMs": 17,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 250.69999992847443,
+          "barrierMs": 251.89999997615817,
+          "inputToConfirmMs": 2.799999952316284,
+          "kind": "auto",
+          "mapWaitMs": 1.100000023841858,
+          "outcome": "target",
+          "postBarrierMs": 17.100000023841858,
+          "targetId": "hk-mtr-TKO",
+          "targetReadyMs": 269,
+          "typingWorkMs": 2.4,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 2,
+        "id": "hk-mtr-HAH",
+        "zh": "坑口",
+        "ko": "항하우",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "261.0",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 246.00000004767207,
+            "frames": 13,
+            "maxFrameGapMs": 50,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 259.7000000476837,
+          "barrierMs": 261,
+          "inputToConfirmMs": 1.600000023841858,
+          "kind": "auto",
+          "mapWaitMs": 1.1999999284744265,
+          "outcome": "target",
+          "postBarrierMs": 16.799999952316284,
+          "targetId": "hk-mtr-HAH",
+          "targetReadyMs": 277.7999999523163,
+          "typingWorkMs": 1.4,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 3,
+        "id": "hk-mtr-POA",
+        "zh": "寶琳",
+        "ko": "포람",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 252.70000000001164,
+            "frames": 10,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 260.7999999523163,
+          "barrierMs": 261.89999997615814,
+          "inputToConfirmMs": 1.5,
+          "kind": "auto",
+          "mapWaitMs": 1,
+          "outcome": "result",
+          "postBarrierMs": 54,
+          "targetId": "hk-mtr-POA",
+          "targetReadyMs": 315.89999997615814,
+          "typingWorkMs": 1,
+          "visibility": "visible"
+        }
+      }
+    ],
+    "resultSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- banner:\n  - button \"홈으로\":\n    - generic: T\n    - generic: SUBTYPE\n    - generic: 홍콩 철도 타이핑\n  - navigation \"주 메뉴\":\n    - button \"PLAY\"\n    - button \"CUSTOM\"\n    - button \"RECORDS\"\n    - button \"SETTINGS\"\n- main:\n  - region \"운행 완료!\":\n    - paragraph: ROUTE COMPLETE\n    - heading \"운행 완료!\" [level=2]\n    - generic: 將軍澳綫 · 정관오선 · 홍콩 MTR\n    - text: DISTANCE · 운행 거리\n    - generic: 3.08 km\n    - text: 실제 선형 기반 이동 거리\n    - paragraph: 한국 서울역~시청 기준 거리의 약 2.05배 (대략적인 거리 비교)\n    - generic: TIME\n    - strong: 00:07.14\n    - generic: ACCURACY\n    - strong: 100.0%\n    - generic: TYPING\n    - strong: 252 타/min\n    - generic: ERRORS\n    - strong: \"0\"\n    - generic: MAX COMBO\n    - strong: \"30\"\n    - generic: WPM\n    - strong: \"50\"\n    - button \"내 운행 경로 보기 · 노선도 ↗\"\n    - paragraph: NEW RECORD!\n    - button \"RETRY · 다시 플레이\"\n    - button \"CHANGE LINE · 다른 노선\"\n    - button \"HOME · 메인 메뉴\"\n- button \"DATA & CREDITS\"\n- status: 정관오선 노선 상세 데이터를 불러오는 중입니다.",
+    "timing": {
+      "advanceMs": "261.9",
+      "arrivalMs": "261.9"
+    },
+    "screenshot": "output/hk/bulk-expansion/hk-tseung-kwan-o-short-tik-poa-result.jpg"
+  },
+  {
+    "serviceId": "hk-kwun-tong-short-tik-hom",
+    "status": "PASS",
+    "fingerprint": "39fbe5e7cbab31a8ceed652c1a5f6583c9c88ce810d038de6a98efdf5b6f5871",
+    "conditionFingerprint": "dc21323b247fadd2117d6d3becfc15d35aae617ceadd4bc851487fd2b9a78205",
+    "checkedAt": "2026-10-29T14:21:21.300Z",
+    "stationCount": 16,
+    "mode": "normal",
+    "advance": "AUTO",
+    "inputStyle": "burst",
+    "dataReleaseStatusAtRun": "ready",
+    "viewport": {
+      "height": 720,
+      "theme": "dark",
+      "width": 1280
+    },
+    "reducedMotion": false,
+    "steps": [
+      {
+        "order": 0,
+        "id": "hk-mtr-TIK",
+        "zh": "調景嶺",
+        "ko": "티우켕렝",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "155.1",
+        "transition": {
+          "animationFrames": null,
+          "animationMs": 0.19999992847442627,
+          "barrierMs": 155.10000002384186,
+          "inputToConfirmMs": 1.0999999046325684,
+          "kind": "auto",
+          "mapWaitMs": 1.3000000715255735,
+          "outcome": "target",
+          "postBarrierMs": 15.200000047683716,
+          "targetId": "hk-mtr-TIK",
+          "targetReadyMs": 170.30000007152557,
+          "typingWorkMs": 0.7,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 1,
+        "id": "hk-mtr-YAT",
+        "zh": "油塘",
+        "ko": "야우통",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "257.8",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 244.70000004768372,
+            "frames": 15,
+            "maxFrameGapMs": 33.10000000000582,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 256.60000002384186,
+          "barrierMs": 257.7999999523163,
+          "inputToConfirmMs": 1.3000000715255735,
+          "kind": "auto",
+          "mapWaitMs": 1.0999999046325684,
+          "outcome": "target",
+          "postBarrierMs": 17.5,
+          "targetId": "hk-mtr-YAT",
+          "targetReadyMs": 275.2999999523163,
+          "typingWorkMs": 1.1,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 2,
+        "id": "hk-mtr-LAT",
+        "zh": "藍田",
+        "ko": "람틴",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "264.5",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 259.2000000953558,
+            "frames": 11,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 263.39999997615814,
+          "barrierMs": 264.5,
+          "inputToConfirmMs": 1.2999999523162842,
+          "kind": "auto",
+          "mapWaitMs": 1,
+          "outcome": "target",
+          "postBarrierMs": 17.200000047683716,
+          "targetId": "hk-mtr-LAT",
+          "targetReadyMs": 281.7000000476837,
+          "typingWorkMs": 1,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 3,
+        "id": "hk-mtr-KWT",
+        "zh": "觀塘",
+        "ko": "쿤통",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "251.1",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 242.10000002384183,
+            "frames": 13,
+            "maxFrameGapMs": 33.20000000001164,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 250,
+          "barrierMs": 251.10000002384183,
+          "inputToConfirmMs": 1,
+          "kind": "auto",
+          "mapWaitMs": 1,
+          "outcome": "target",
+          "postBarrierMs": 24.09999990463257,
+          "targetId": "hk-mtr-KWT",
+          "targetReadyMs": 275.1999999284744,
+          "typingWorkMs": 0.8,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 4,
+        "id": "hk-mtr-NTK",
+        "zh": "牛頭角",
+        "ko": "응아우타우콕",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "257.7",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 249.3000000238535,
+            "frames": 11,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 255.89999997615817,
+          "barrierMs": 257.7000000476837,
+          "inputToConfirmMs": 1.399999976158142,
+          "kind": "auto",
+          "mapWaitMs": 1.600000023841858,
+          "outcome": "target",
+          "postBarrierMs": 21.299999952316284,
+          "targetId": "hk-mtr-NTK",
+          "targetReadyMs": 279,
+          "typingWorkMs": 1.1,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 5,
+        "id": "hk-mtr-KOB",
+        "zh": "九龍灣",
+        "ko": "까우룽베이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "260.4",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 252.3000000476895,
+            "frames": 14,
+            "maxFrameGapMs": 33.60000000000582,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 259,
+          "barrierMs": 260.39999997615814,
+          "inputToConfirmMs": 1,
+          "kind": "auto",
+          "mapWaitMs": 1.2999999523162842,
+          "outcome": "target",
+          "postBarrierMs": 20.100000023841854,
+          "targetId": "hk-mtr-KOB",
+          "targetReadyMs": 280.5,
+          "typingWorkMs": 0.6,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 6,
+        "id": "hk-mtr-CHH",
+        "zh": "彩虹",
+        "ko": "초이훙",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "276.4",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 267.50000009537325,
+            "frames": 13,
+            "maxFrameGapMs": 33.39999999999418,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 275.2999999523163,
+          "barrierMs": 276.39999997615814,
+          "inputToConfirmMs": 1.2000000476837158,
+          "kind": "auto",
+          "mapWaitMs": 1,
+          "outcome": "target",
+          "postBarrierMs": 19.5,
+          "targetId": "hk-mtr-CHH",
+          "targetReadyMs": 295.89999997615814,
+          "typingWorkMs": 0.9,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 7,
+        "id": "hk-mtr-DIH",
+        "zh": "鑽石山",
+        "ko": "다이아몬드힐",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "258.9",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 246.60000000000585,
+            "frames": 16,
+            "maxFrameGapMs": 17.10000000000582,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 257.6999999284744,
+          "barrierMs": 258.89999997615814,
+          "inputToConfirmMs": 1.399999976158142,
+          "kind": "auto",
+          "mapWaitMs": 1.100000023841858,
+          "outcome": "target",
+          "postBarrierMs": 19.899999976158146,
+          "targetId": "hk-mtr-DIH",
+          "targetReadyMs": 278.7999999523163,
+          "typingWorkMs": 0.9,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 8,
+        "id": "hk-mtr-WTS",
+        "zh": "黃大仙",
+        "ko": "웡타이신",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "262.1",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 251.9000000715314,
+            "frames": 12,
+            "maxFrameGapMs": 33.39999999999418,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 261,
+          "barrierMs": 262.10000002384186,
+          "inputToConfirmMs": 1.3000000715255735,
+          "kind": "auto",
+          "mapWaitMs": 0.8999999761581421,
+          "outcome": "target",
+          "postBarrierMs": 15.699999928474426,
+          "targetId": "hk-mtr-WTS",
+          "targetReadyMs": 277.7999999523163,
+          "typingWorkMs": 1,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 9,
+        "id": "hk-mtr-LOF",
+        "zh": "樂富",
+        "ko": "록푸",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "249.9",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 244.2000000953558,
+            "frames": 10,
+            "maxFrameGapMs": 33.70000000001164,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 248.69999992847443,
+          "barrierMs": 249.89999997615817,
+          "inputToConfirmMs": 1.100000023841858,
+          "kind": "auto",
+          "mapWaitMs": 1.2000000476837158,
+          "outcome": "target",
+          "postBarrierMs": 17.700000047683716,
+          "targetId": "hk-mtr-LOF",
+          "targetReadyMs": 267.60000002384186,
+          "typingWorkMs": 0.7,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 10,
+        "id": "hk-mtr-KOT",
+        "zh": "九龍塘",
+        "ko": "까우룽통",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "244.8",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 241.3000000238535,
+            "frames": 14,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 243.60000002384183,
+          "barrierMs": 244.79999995231628,
+          "inputToConfirmMs": 1.100000023841858,
+          "kind": "auto",
+          "mapWaitMs": 1.0999999046325684,
+          "outcome": "target",
+          "postBarrierMs": 19.799999952316284,
+          "targetId": "hk-mtr-KOT",
+          "targetReadyMs": 264.59999990463257,
+          "typingWorkMs": 0.8,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 11,
+        "id": "hk-mtr-SKM",
+        "zh": "石硤尾",
+        "ko": "섹깁메이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "245.1",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 242.20000002384768,
+            "frames": 13,
+            "maxFrameGapMs": 33.39999999999418,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 244.10000002384183,
+          "barrierMs": 245.10000002384183,
+          "inputToConfirmMs": 1.1999999284744265,
+          "kind": "auto",
+          "mapWaitMs": 1,
+          "outcome": "target",
+          "postBarrierMs": 19.399999976158146,
+          "targetId": "hk-mtr-SKM",
+          "targetReadyMs": 264.5,
+          "typingWorkMs": 0.8,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 12,
+        "id": "hk-mtr-PRE",
+        "zh": "太子",
+        "ko": "프린스에드워드",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "253.9",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 249.60000000000585,
+            "frames": 15,
+            "maxFrameGapMs": 33.39999999999418,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 252.79999995231628,
+          "barrierMs": 253.89999997615817,
+          "inputToConfirmMs": 1.2999999523162842,
+          "kind": "auto",
+          "mapWaitMs": 1.100000023841858,
+          "outcome": "target",
+          "postBarrierMs": 12.600000023841858,
+          "targetId": "hk-mtr-PRE",
+          "targetReadyMs": 266.5,
+          "typingWorkMs": 0.9,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 13,
+        "id": "hk-mtr-MOK",
+        "zh": "旺角",
+        "ko": "몽콕",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "258.6",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 240.10000000000585,
+            "frames": 13,
+            "maxFrameGapMs": 33.40000000002328,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 257.39999997615814,
+          "barrierMs": 258.60000002384186,
+          "inputToConfirmMs": 0.7000000476837158,
+          "kind": "auto",
+          "mapWaitMs": 1.100000023841858,
+          "outcome": "target",
+          "postBarrierMs": 15.899999976158142,
+          "targetId": "hk-mtr-MOK",
+          "targetReadyMs": 274.5,
+          "typingWorkMs": 0.6,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 14,
+        "id": "hk-mtr-YMT",
+        "zh": "油麻地",
+        "ko": "야우마테이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "254.5",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 250.60000009537907,
+            "frames": 14,
+            "maxFrameGapMs": 33.29999999998836,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 253.10000002384183,
+          "barrierMs": 254.5,
+          "inputToConfirmMs": 0.9000000953674316,
+          "kind": "auto",
+          "mapWaitMs": 1.2999999523162842,
+          "outcome": "target",
+          "postBarrierMs": 13.699999928474426,
+          "targetId": "hk-mtr-YMT",
+          "targetReadyMs": 268.1999999284744,
+          "typingWorkMs": 0.7,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 15,
+        "id": "hk-mtr-HOM",
+        "zh": "何文田",
+        "ko": "호만틴",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 244.10000009537907,
+            "frames": 15,
+            "maxFrameGapMs": 33.29999999998836,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 251.80000007152557,
+          "barrierMs": 252.80000007152557,
+          "inputToConfirmMs": 1.100000023841858,
+          "kind": "auto",
+          "mapWaitMs": 0.8999999761581421,
+          "outcome": "result",
+          "postBarrierMs": 27.399999976158146,
+          "targetId": "hk-mtr-HOM",
+          "targetReadyMs": 280.2000000476837,
+          "typingWorkMs": 0.8,
+          "visibility": "visible"
+        }
+      }
+    ],
+    "resultSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- banner:\n  - button \"홈으로\":\n    - generic: T\n    - generic: SUBTYPE\n    - generic: 홍콩 철도 타이핑\n  - navigation \"주 메뉴\":\n    - button \"PLAY\"\n    - button \"CUSTOM\"\n    - button \"RECORDS\"\n    - button \"SETTINGS\"\n- main:\n  - region \"운행 완료!\":\n    - paragraph: ROUTE COMPLETE\n    - heading \"운행 완료!\" [level=2]\n    - generic: 觀塘綫 · 쿤통선 · 홍콩 MTR\n    - text: DISTANCE · 운행 거리\n    - generic: 16.48 km\n    - text: 실제 선형 기반 이동 거리\n    - paragraph: 한국 광화문~강남 기준 거리의 약 1.65배 (대략적인 거리 비교)\n    - generic: TIME\n    - strong: 00:06.88\n    - generic: ACCURACY\n    - strong: 100.0%\n    - generic: TYPING\n    - strong: 1298 타/min\n    - generic: ERRORS\n    - strong: \"0\"\n    - generic: MAX COMBO\n    - strong: \"149\"\n    - generic: WPM\n    - strong: \"260\"\n    - button \"내 운행 경로 보기 · 노선도 ↗\"\n    - paragraph: NEW RECORD!\n    - button \"RETRY · 다시 플레이\"\n    - button \"CHANGE LINE · 다른 노선\"\n    - button \"HOME · 메인 메뉴\"\n- button \"DATA & CREDITS\"\n- status: 쿤통선 노선 상세 데이터를 불러오는 중입니다.",
+    "timing": {
+      "advanceMs": "252.8",
+      "arrivalMs": "252.7"
+    },
+    "screenshot": "output/hk/bulk-expansion/hk-kwun-tong-short-tik-hom-result.jpg"
+  },
+  {
+    "serviceId": "hk-light-rail-751p-short-500-430",
+    "status": "PASS",
+    "fingerprint": "24786f35639f7aa1a147cb9284d069d241674f2230bf649bc9f5247a454b2825",
+    "conditionFingerprint": "848629e9d95341e2d5f3f34a3b572b0589ed9937147013f2ad740edaf99b9ed7",
+    "checkedAt": "2026-10-29T14:23:10.742Z",
+    "stationCount": 5,
+    "mode": "normal",
+    "advance": "SPACE",
+    "inputStyle": "burst",
+    "dataReleaseStatusAtRun": "ready",
+    "viewport": {
+      "height": 844,
+      "theme": "dark",
+      "width": 390
+    },
+    "reducedMotion": false,
+    "steps": [
+      {
+        "order": 0,
+        "id": "hk-lr-500",
+        "zh": "天榮",
+        "ko": "틴윙",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0"
+      },
+      {
+        "order": 1,
+        "id": "hk-lr-455",
+        "zh": "銀座",
+        "ko": "긴자",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0"
+      },
+      {
+        "order": 2,
+        "id": "hk-lr-450",
+        "zh": "天湖",
+        "ko": "틴우",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0"
+      },
+      {
+        "order": 3,
+        "id": "hk-lr-435",
+        "zh": "天慈",
+        "ko": "틴치",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0"
+      },
+      {
+        "order": 4,
+        "id": "hk-lr-430",
+        "zh": "天水圍",
+        "ko": "틴수이와이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0"
+      }
+    ],
+    "resultSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- banner:\n  - button \"홈으로\":\n    - generic: T\n    - generic: SUBTYPE\n  - navigation \"주 메뉴\":\n    - button \"PLAY\"\n- main:\n  - region \"운행 완료!\":\n    - paragraph: ROUTE COMPLETE\n    - heading \"운행 완료!\" [level=2]\n    - generic: 輕鐵 751P · 경전철 751P · 홍콩 MTR\n    - text: DISTANCE · 운행 거리\n    - generic: 1.36 km\n    - text: 실제 선형 기반 이동 거리\n    - paragraph: 한국 서울역~시청 기준 거리의 약 0.91배 (대략적인 거리 비교)\n    - generic: TIME\n    - strong: 00:01.41\n    - generic: ACCURACY\n    - strong: 100.0%\n    - generic: TYPING\n    - strong: 1356 타/min\n    - generic: ERRORS\n    - strong: \"0\"\n    - generic: MAX COMBO\n    - strong: \"32\"\n    - generic: WPM\n    - strong: \"271\"\n    - button \"내 운행 경로 보기 · 노선도 ↗\"\n    - paragraph: NEW RECORD!\n    - button \"RETRY · 다시 플레이\"\n    - button \"CHANGE LINE · 다른 노선\"\n    - button \"HOME · 메인 메뉴\"\n- button \"DATA & CREDITS\"\n- status: 경전철 751P 노선 상세 데이터를 불러오는 중입니다.",
+    "timing": null,
+    "screenshot": "output/hk/bulk-expansion/hk-light-rail-751p-short-500-430-result.jpg"
+  },
+  {
+    "serviceId": "hk-tuen-ma-short-wks-taw",
+    "status": "PASS",
+    "fingerprint": "8d2657ccb715d81880a328a14dd6200da819dbc3d6103e3a6e68035ec9e53646",
+    "conditionFingerprint": "81b05754937b28dabb1401d1e2d669821a6ed5544af06470a1b60d5baffe0715",
+    "checkedAt": "2026-10-29T14:23:20.719Z",
+    "stationCount": 9,
+    "mode": "normal",
+    "advance": "AUTO",
+    "inputStyle": "sequential",
+    "dataReleaseStatusAtRun": "ready",
+    "viewport": {
+      "height": 844,
+      "theme": "dark",
+      "width": 390
+    },
+    "reducedMotion": false,
+    "steps": [
+      {
+        "order": 0,
+        "id": "hk-mtr-WKS",
+        "zh": "烏溪沙",
+        "ko": "우카이샤",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "152.8",
+        "transition": {
+          "animationFrames": null,
+          "animationMs": 0.10000002384185792,
+          "barrierMs": 152.79999995231628,
+          "inputToConfirmMs": 0.7000000476837158,
+          "kind": "auto",
+          "mapWaitMs": 0.6999999284744263,
+          "outcome": "target",
+          "postBarrierMs": 12.5,
+          "targetId": "hk-mtr-WKS",
+          "targetReadyMs": 165.29999995231628,
+          "typingWorkMs": 0.5,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 1,
+        "id": "hk-mtr-MOS",
+        "zh": "馬鞍山",
+        "ko": "마온산",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "273.9",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 272.40000009536743,
+            "frames": 9,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 273,
+          "barrierMs": 273.89999997615814,
+          "inputToConfirmMs": 0.8000000715255737,
+          "kind": "auto",
+          "mapWaitMs": 0.8999999761581421,
+          "outcome": "target",
+          "postBarrierMs": 12.199999928474426,
+          "targetId": "hk-mtr-MOS",
+          "targetReadyMs": 286.09999990463257,
+          "typingWorkMs": 0.6,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 2,
+        "id": "hk-mtr-HEO",
+        "zh": "恆安",
+        "ko": "항온",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "254.4",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 252.80000009539071,
+            "frames": 8,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 253.39999997615817,
+          "barrierMs": 254.39999997615817,
+          "inputToConfirmMs": 0.8000000715255737,
+          "kind": "auto",
+          "mapWaitMs": 1,
+          "outcome": "target",
+          "postBarrierMs": 10,
+          "targetId": "hk-mtr-HEO",
+          "targetReadyMs": 264.39999997615814,
+          "typingWorkMs": 0.6,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 3,
+        "id": "hk-mtr-TSH",
+        "zh": "大水坑",
+        "ko": "타이수이항",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "251.5",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 251.0000000715372,
+            "frames": 8,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 250.69999992847443,
+          "barrierMs": 251.5,
+          "inputToConfirmMs": 0.7999999523162842,
+          "kind": "auto",
+          "mapWaitMs": 0.8000000715255737,
+          "outcome": "target",
+          "postBarrierMs": 9.700000047683716,
+          "targetId": "hk-mtr-TSH",
+          "targetReadyMs": 261.2000000476837,
+          "typingWorkMs": 0.6,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 4,
+        "id": "hk-mtr-SHM",
+        "zh": "石門",
+        "ko": "섹문",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "251.2",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 249.8000000238535,
+            "frames": 8,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 250.39999997615817,
+          "barrierMs": 251.19999992847443,
+          "inputToConfirmMs": 0.8000000715255737,
+          "kind": "auto",
+          "mapWaitMs": 0.7999999523162842,
+          "outcome": "target",
+          "postBarrierMs": 14.100000023841858,
+          "targetId": "hk-mtr-SHM",
+          "targetReadyMs": 265.2999999523163,
+          "typingWorkMs": 0.6,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 5,
+        "id": "hk-mtr-CIO",
+        "zh": "第一城",
+        "ko": "시티원",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "247.8",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 246.10000002384183,
+            "frames": 8,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 246.89999997615817,
+          "barrierMs": 247.80000007152557,
+          "inputToConfirmMs": 0.6000000238418579,
+          "kind": "auto",
+          "mapWaitMs": 0.8000000715255737,
+          "outcome": "target",
+          "postBarrierMs": 7.5,
+          "targetId": "hk-mtr-CIO",
+          "targetReadyMs": 255.30000007152557,
+          "typingWorkMs": 0.5,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 6,
+        "id": "hk-mtr-STW",
+        "zh": "沙田圍",
+        "ko": "샤틴와이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "273.2",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 271.3000000715256,
+            "frames": 9,
+            "maxFrameGapMs": 33.399999999965075,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 272.60000002384186,
+          "barrierMs": 273.2000000476837,
+          "inputToConfirmMs": 0.6999999284744263,
+          "kind": "auto",
+          "mapWaitMs": 0.6000000238418579,
+          "outcome": "target",
+          "postBarrierMs": 15,
+          "targetId": "hk-mtr-STW",
+          "targetReadyMs": 288.2000000476837,
+          "typingWorkMs": 0.5,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 7,
+        "id": "hk-mtr-CKT",
+        "zh": "車公廟",
+        "ko": "체공묘",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "269.2",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 268.60000002384186,
+            "frames": 9,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 268.39999997615814,
+          "barrierMs": 269.1999999284744,
+          "inputToConfirmMs": 0.8999999761581421,
+          "kind": "auto",
+          "mapWaitMs": 0.7999999523162842,
+          "outcome": "target",
+          "postBarrierMs": 7.700000047683716,
+          "targetId": "hk-mtr-CKT",
+          "targetReadyMs": 276.89999997615814,
+          "typingWorkMs": 0.8,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 8,
+        "id": "hk-mtr-TAW",
+        "zh": "大圍",
+        "ko": "타이와이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 241.50000009534415,
+            "frames": 8,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 246.60000002384183,
+          "barrierMs": 247.39999997615817,
+          "inputToConfirmMs": 0.7000000476837158,
+          "kind": "auto",
+          "mapWaitMs": 0.6999999284744263,
+          "outcome": "result",
+          "postBarrierMs": 20.699999928474423,
+          "targetId": "hk-mtr-TAW",
+          "targetReadyMs": 268.09999990463257,
+          "typingWorkMs": 0.5,
+          "visibility": "visible"
+        }
+      }
+    ],
+    "resultSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- banner:\n  - button \"홈으로\":\n    - generic: T\n    - generic: SUBTYPE\n  - navigation \"주 메뉴\":\n    - button \"PLAY\"\n- main:\n  - region \"운행 완료!\":\n    - paragraph: ROUTE COMPLETE\n    - heading \"운행 완료!\" [level=2]\n    - generic: 屯馬綫 · 튄마선 · 홍콩 MTR\n    - text: DISTANCE · 운행 거리\n    - generic: 10.07 km\n    - text: 실제 선형 기반 이동 거리\n    - paragraph: 한국 광화문~강남 기준 거리의 약 1.01배 (대략적인 거리 비교)\n    - generic: TIME\n    - strong: 00:06.12\n    - generic: ACCURACY\n    - strong: 100.0%\n    - generic: TYPING\n    - strong: 686 타/min\n    - generic: ERRORS\n    - strong: \"0\"\n    - generic: MAX COMBO\n    - strong: \"70\"\n    - generic: WPM\n    - strong: \"137\"\n    - button \"내 운행 경로 보기 · 노선도 ↗\"\n    - paragraph: NEW RECORD!\n    - button \"RETRY · 다시 플레이\"\n    - button \"CHANGE LINE · 다른 노선\"\n    - button \"HOME · 메인 메뉴\"\n- button \"DATA & CREDITS\"\n- status: 튄마선 노선 상세 데이터를 불러오는 중입니다.",
+    "timing": {
+      "advanceMs": "247.4",
+      "arrivalMs": "247.4"
+    },
+    "screenshot": "output/hk/bulk-expansion/hk-tuen-ma-short-wks-taw-result.jpg"
+  },
+  {
+    "serviceId": "hk-kwun-tong-short-tik-hom",
+    "status": "PASS",
+    "fingerprint": "39fbe5e7cbab31a8ceed652c1a5f6583c9c88ce810d038de6a98efdf5b6f5871",
+    "conditionFingerprint": "6e2578e2f37eed634e88564af3c8a0c2d40ef2359ab89c04e2b20a15f6bbccf1",
+    "checkedAt": "2026-10-29T14:31:34.200Z",
+    "stationCount": 16,
+    "mode": "normal",
+    "advance": "AUTO",
+    "inputStyle": "burst",
+    "dataReleaseStatusAtRun": "ready",
+    "viewport": {
+      "height": 720,
+      "theme": "dark",
+      "width": 1280
+    },
+    "reducedMotion": false,
+    "steps": [
+      {
+        "order": 0,
+        "id": "hk-mtr-TIK",
+        "zh": "調景嶺",
+        "ko": "티우켕렝",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "150.9",
+        "transition": {
+          "animationFrames": null,
+          "animationMs": 0.20000004768371585,
+          "barrierMs": 150.89999997615814,
+          "inputToConfirmMs": 1.2999999523162842,
+          "kind": "auto",
+          "mapWaitMs": 1,
+          "outcome": "target",
+          "postBarrierMs": 9.899999976158142,
+          "targetId": "hk-mtr-TIK",
+          "targetReadyMs": 160.79999995231628,
+          "typingWorkMs": 0.9,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 1,
+        "id": "hk-mtr-YAT",
+        "zh": "油塘",
+        "ko": "야우통",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "242.7",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 241.1999999761574,
+            "frames": 13,
+            "maxFrameGapMs": 50.10000000000037,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 241,
+          "barrierMs": 242.70000004768372,
+          "inputToConfirmMs": 3.200000047683716,
+          "kind": "auto",
+          "mapWaitMs": 1.600000023841858,
+          "outcome": "target",
+          "postBarrierMs": 11.399999976158142,
+          "targetId": "hk-mtr-YAT",
+          "targetReadyMs": 254.10000002384183,
+          "typingWorkMs": 2.7,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 2,
+        "id": "hk-mtr-LAT",
+        "zh": "藍田",
+        "ko": "람틴",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "267.2",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 258.1999999761574,
+            "frames": 10,
+            "maxFrameGapMs": 50.29999999999927,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 265.7000000476837,
+          "barrierMs": 267.2000000476837,
+          "inputToConfirmMs": 1.600000023841858,
+          "kind": "auto",
+          "mapWaitMs": 1.5,
+          "outcome": "target",
+          "postBarrierMs": 13.199999928474426,
+          "targetId": "hk-mtr-LAT",
+          "targetReadyMs": 280.39999997615814,
+          "typingWorkMs": 1.2,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 3,
+        "id": "hk-mtr-KWT",
+        "zh": "觀塘",
+        "ko": "쿤통",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "258.1",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 255,
+            "frames": 16,
+            "maxFrameGapMs": 33.30000000000109,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 256.7000000476837,
+          "barrierMs": 258.10000002384186,
+          "inputToConfirmMs": 1.5,
+          "kind": "auto",
+          "mapWaitMs": 1.2999999523162842,
+          "outcome": "target",
+          "postBarrierMs": 12.199999928474426,
+          "targetId": "hk-mtr-KWT",
+          "targetReadyMs": 270.2999999523163,
+          "typingWorkMs": 1.3,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 4,
+        "id": "hk-mtr-NTK",
+        "zh": "牛頭角",
+        "ko": "응아우타우콕",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "259.4",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 256.59999992847406,
+            "frames": 11,
+            "maxFrameGapMs": 33.399999999999636,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 257.8000000715256,
+          "barrierMs": 259.39999997615814,
+          "inputToConfirmMs": 1.5,
+          "kind": "auto",
+          "mapWaitMs": 1.5,
+          "outcome": "target",
+          "postBarrierMs": 6.600000023841858,
+          "targetId": "hk-mtr-NTK",
+          "targetReadyMs": 266,
+          "typingWorkMs": 1.2,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 5,
+        "id": "hk-mtr-KOB",
+        "zh": "九龍灣",
+        "ko": "까우룽베이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "246.4",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 243.2999999046333,
+            "frames": 13,
+            "maxFrameGapMs": 49.89999999999963,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 244.89999997615817,
+          "barrierMs": 246.39999997615817,
+          "inputToConfirmMs": 1.600000023841858,
+          "kind": "auto",
+          "mapWaitMs": 1.399999976158142,
+          "outcome": "target",
+          "postBarrierMs": 9.799999952316284,
+          "targetId": "hk-mtr-KOB",
+          "targetReadyMs": 256.1999999284744,
+          "typingWorkMs": 1,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 6,
+        "id": "hk-mtr-CHH",
+        "zh": "彩虹",
+        "ko": "초이훙",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "242.4",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 240.70000000000073,
+            "frames": 16,
+            "maxFrameGapMs": 16.899999999999636,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 241.20000004768372,
+          "barrierMs": 242.40000009536743,
+          "inputToConfirmMs": 0.8999999761581421,
+          "kind": "auto",
+          "mapWaitMs": 1.2000000476837158,
+          "outcome": "target",
+          "postBarrierMs": 9.399999976158142,
+          "targetId": "hk-mtr-CHH",
+          "targetReadyMs": 251.80000007152557,
+          "typingWorkMs": 0.7,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 7,
+        "id": "hk-mtr-DIH",
+        "zh": "鑽石山",
+        "ko": "다이아몬드힐",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "247.1",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 245.89999997615817,
+            "frames": 16,
+            "maxFrameGapMs": 16.899999999999636,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 246.10000002384183,
+          "barrierMs": 247.10000002384183,
+          "inputToConfirmMs": 1.100000023841858,
+          "kind": "auto",
+          "mapWaitMs": 1,
+          "outcome": "target",
+          "postBarrierMs": 5,
+          "targetId": "hk-mtr-DIH",
+          "targetReadyMs": 252.10000002384183,
+          "typingWorkMs": 0.9,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 8,
+        "id": "hk-mtr-WTS",
+        "zh": "黃大仙",
+        "ko": "웡타이신",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "259.1",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 256.1999999523159,
+            "frames": 16,
+            "maxFrameGapMs": 17,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 258.5,
+          "barrierMs": 259.10000002384186,
+          "inputToConfirmMs": 0.5999999046325684,
+          "kind": "auto",
+          "mapWaitMs": 0.6000000238418579,
+          "outcome": "target",
+          "postBarrierMs": 6.899999976158142,
+          "targetId": "hk-mtr-WTS",
+          "targetReadyMs": 266,
+          "typingWorkMs": 0.4,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 9,
+        "id": "hk-mtr-LOF",
+        "zh": "樂富",
+        "ko": "록푸",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "254.4",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 246.2999999046333,
+            "frames": 10,
+            "maxFrameGapMs": 33.5,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 253.59999990463257,
+          "barrierMs": 254.39999997615817,
+          "inputToConfirmMs": 0.6000000238418579,
+          "kind": "auto",
+          "mapWaitMs": 0.6000000238418579,
+          "outcome": "target",
+          "postBarrierMs": 11.899999976158142,
+          "targetId": "hk-mtr-LOF",
+          "targetReadyMs": 266.2999999523163,
+          "typingWorkMs": 0.4,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 10,
+        "id": "hk-mtr-KOT",
+        "zh": "九龍塘",
+        "ko": "까우룽통",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "270.0",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 257.2999999523163,
+            "frames": 13,
+            "maxFrameGapMs": 33.600000000000364,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 268.7999999523163,
+          "barrierMs": 270,
+          "inputToConfirmMs": 1.399999976158142,
+          "kind": "auto",
+          "mapWaitMs": 1.2000000476837158,
+          "outcome": "target",
+          "postBarrierMs": 12.800000071525574,
+          "targetId": "hk-mtr-KOT",
+          "targetReadyMs": 282.8000000715256,
+          "typingWorkMs": 1.1,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 11,
+        "id": "hk-mtr-SKM",
+        "zh": "石硤尾",
+        "ko": "섹깁메이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "250.3",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 246.09999999999857,
+            "frames": 13,
+            "maxFrameGapMs": 49.89999999999963,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 249.89999997615817,
+          "barrierMs": 250.29999995231628,
+          "inputToConfirmMs": 0.6000000238418579,
+          "kind": "auto",
+          "mapWaitMs": 0.3999999761581421,
+          "outcome": "target",
+          "postBarrierMs": 7.5,
+          "targetId": "hk-mtr-SKM",
+          "targetReadyMs": 257.7999999523163,
+          "typingWorkMs": 0.4,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 12,
+        "id": "hk-mtr-PRE",
+        "zh": "太子",
+        "ko": "프린스에드워드",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "266.1",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 247.59999990463257,
+            "frames": 16,
+            "maxFrameGapMs": 17,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 265.7000000476837,
+          "barrierMs": 266.10000002384186,
+          "inputToConfirmMs": 0.5,
+          "kind": "auto",
+          "mapWaitMs": 0.3999999761581421,
+          "outcome": "target",
+          "postBarrierMs": 13.100000023841858,
+          "targetId": "hk-mtr-PRE",
+          "targetReadyMs": 279.2000000476837,
+          "typingWorkMs": 0.4,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 13,
+        "id": "hk-mtr-MOK",
+        "zh": "旺角",
+        "ko": "몽콕",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "264.8",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 260.2999999046333,
+            "frames": 14,
+            "maxFrameGapMs": 33.400000000001455,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 263.39999997615814,
+          "barrierMs": 264.7999999523163,
+          "inputToConfirmMs": 0.9000000953674316,
+          "kind": "auto",
+          "mapWaitMs": 1.1999999284744265,
+          "outcome": "target",
+          "postBarrierMs": 9.299999952316284,
+          "targetId": "hk-mtr-MOK",
+          "targetReadyMs": 274.09999990463257,
+          "typingWorkMs": 0.6,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 14,
+        "id": "hk-mtr-YMT",
+        "zh": "油麻地",
+        "ko": "야우마테이",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "advanceMs": "263.3",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 245.4999999761567,
+            "frames": 13,
+            "maxFrameGapMs": 33.400000000001455,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 260.60000002384186,
+          "barrierMs": 263.2999999523163,
+          "inputToConfirmMs": 0.7000000476837158,
+          "kind": "auto",
+          "mapWaitMs": 2.6999999284744263,
+          "outcome": "target",
+          "postBarrierMs": 8.700000047683716,
+          "targetId": "hk-mtr-YMT",
+          "targetReadyMs": 272,
+          "typingWorkMs": 0.6,
+          "visibility": "visible"
+        }
+      },
+      {
+        "order": 15,
+        "id": "hk-mtr-HOM",
+        "zh": "何文田",
+        "ko": "호만틴",
+        "shown": true,
+        "koreanVisible": true,
+        "entered": true,
+        "errorsAfterInput": "0",
+        "transition": {
+          "animationFrames": {
+            "elapsedMs": 251.6999999046311,
+            "frames": 13,
+            "maxFrameGapMs": 33.39999999999782,
+            "plannedDurationMs": 240
+          },
+          "animationMs": 257.40000009536743,
+          "barrierMs": 258.8000000715256,
+          "inputToConfirmMs": 1.2999999523162842,
+          "kind": "auto",
+          "mapWaitMs": 1.399999976158142,
+          "outcome": "result",
+          "postBarrierMs": 36.29999995231629,
+          "targetId": "hk-mtr-HOM",
+          "targetReadyMs": 295.10000002384186,
+          "typingWorkMs": 0.8,
+          "visibility": "visible"
+        }
+      }
+    ],
+    "resultSnapshot": "- link \"본문으로 건너뛰기\":\n  - /url: \"#main\"\n- banner:\n  - button \"홈으로\":\n    - generic: T\n    - generic: SUBTYPE\n    - generic: 홍콩 철도 타이핑\n  - navigation \"주 메뉴\":\n    - button \"PLAY\"\n    - button \"CUSTOM\"\n    - button \"RECORDS\"\n    - button \"SETTINGS\"\n- main:\n  - region \"운행 완료!\":\n    - paragraph: ROUTE COMPLETE\n    - heading \"운행 완료!\" [level=2]\n    - generic: 觀塘綫 · 쿤통선 · 홍콩 MTR\n    - text: DISTANCE · 운행 거리\n    - generic: 16.48 km\n    - text: 실제 선형 기반 이동 거리\n    - paragraph: 한국 광화문~강남 기준 거리의 약 1.65배 (대략적인 거리 비교)\n    - generic: TIME\n    - strong: 00:09.03\n    - generic: ACCURACY\n    - strong: 100.0%\n    - generic: TYPING\n    - strong: 989 타/min\n    - generic: ERRORS\n    - strong: \"0\"\n    - generic: MAX COMBO\n    - strong: \"149\"\n    - generic: WPM\n    - strong: \"198\"\n    - button \"내 운행 경로 보기 · 노선도 ↗\"\n    - button \"RETRY · 다시 플레이\"\n    - button \"CHANGE LINE · 다른 노선\"\n    - button \"HOME · 메인 메뉴\"\n- button \"DATA & CREDITS\"\n- status: 쿤통선 노선 상세 데이터를 불러오는 중입니다.",
+    "timing": {
+      "advanceMs": "258.8",
+      "arrivalMs": "258.8"
+    },
+    "screenshot": "output/hk/bulk-expansion/hk-kwun-tong-short-tik-hom-result.jpg"
+  }
+]

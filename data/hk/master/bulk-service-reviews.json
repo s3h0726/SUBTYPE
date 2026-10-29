@@ -1,0 +1,1692 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-29T14:13:13.465Z",
+  "baseline": "3294f7a07fe756e3a9737404a56557220e9932b3",
+  "notice": "Existing physical lines only. Direction-specific canonical railway slices; no extra physical-line cards. First trains and late/peak short workings are conditional services, never all-day routes.",
+  "services": [
+    {
+      "id": "hk-island-short-cab-ket",
+      "sourceServiceId": "hk-island-dt",
+      "canonicalLineId": "hk-island",
+      "direction": "hk-mtr-CAB-to-hk-mtr-KET",
+      "stopStationIds": [
+        "hk-mtr-CAB",
+        "hk-mtr-WAC",
+        "hk-mtr-ADM",
+        "hk-mtr-CEN",
+        "hk-mtr-SHW",
+        "hk-mtr-SYP",
+        "hk-mtr-HKU",
+        "hk-mtr-KET"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:01 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "ISL",
+          "to": "Kennedy Town",
+          "first": "0601",
+          "last": "0052",
+          "file": "data/hk/sources/bulk/hours-28.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=28"
+        },
+        "upstream": {
+          "line": "ISL",
+          "to": "Kennedy Town",
+          "first": "0609",
+          "last": "0050",
+          "file": "data/hk/sources/bulk/hours-29.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=29"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-28.html",
+          "sha256": "4cf040730bff2a6367dccb62193eff00b28dfab67b19bc87794bed05cc551e2d"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-29.html",
+          "sha256": "c41804c8563062c2527bcbd1cb9643b0eba9a621c735e70f82b1efa75dff8aa0"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tsuen-wan-short-pre-cen",
+      "sourceServiceId": "hk-tsuen-wan-dt",
+      "canonicalLineId": "hk-tsuen-wan",
+      "direction": "hk-mtr-PRE-to-hk-mtr-CEN",
+      "stopStationIds": [
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-JOR",
+        "hk-mtr-TST",
+        "hk-mtr-ADM",
+        "hk-mtr-CEN"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:08 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "TWL",
+          "to": "Central",
+          "first": "0608",
+          "last": "0047",
+          "file": "data/hk/sources/bulk/hours-16.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=16"
+        },
+        "upstream": {
+          "line": "TWL",
+          "to": "Central",
+          "first": "0614",
+          "last": "0045",
+          "file": "data/hk/sources/bulk/hours-17.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=17"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-16.html",
+          "sha256": "77b3ed8dbf111c17c8e3a85b6f2e12f4caa9ba1118a591ff0f5a90e95db17bcb"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-17.html",
+          "sha256": "8e49be5a2a1fd5d1657f0eb285c1ce09541d34f48796e2dd375119b7cee05b61"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tsuen-wan-short-ymt-cen",
+      "sourceServiceId": "hk-tsuen-wan-dt",
+      "canonicalLineId": "hk-tsuen-wan",
+      "direction": "hk-mtr-YMT-to-hk-mtr-CEN",
+      "stopStationIds": [
+        "hk-mtr-YMT",
+        "hk-mtr-JOR",
+        "hk-mtr-TST",
+        "hk-mtr-ADM",
+        "hk-mtr-CEN"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:01 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "TWL",
+          "to": "Central",
+          "first": "0601",
+          "last": "0050",
+          "file": "data/hk/sources/bulk/hours-5.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=5"
+        },
+        "upstream": {
+          "line": "TWL",
+          "to": "Central",
+          "first": "0610",
+          "last": "0048",
+          "file": "data/hk/sources/bulk/hours-6.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=6"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-5.html",
+          "sha256": "95774e71f576d83de76fb24c6850a947f2c15b1523695f0da8810a2a83130c8d"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-6.html",
+          "sha256": "ccedc787e63fbf57b4e71972d4fe651dc54c2281ecd04e119c4f93f641b1e9f2"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-kwt-wha",
+      "sourceServiceId": "hk-kwun-tong-dt",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-KWT-to-hk-mtr-WHA",
+      "stopStationIds": [
+        "hk-mtr-KWT",
+        "hk-mtr-NTK",
+        "hk-mtr-KOB",
+        "hk-mtr-CHH",
+        "hk-mtr-DIH",
+        "hk-mtr-WTS",
+        "hk-mtr-LOF",
+        "hk-mtr-KOT",
+        "hk-mtr-SKM",
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-HOM",
+        "hk-mtr-WHA"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:00 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "KTL",
+          "to": "Whampoa",
+          "first": "0600",
+          "last": "0030",
+          "file": "data/hk/sources/bulk/hours-15.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=15"
+        },
+        "upstream": {
+          "line": "KTL",
+          "to": "Whampoa",
+          "first": "0612",
+          "last": "0028",
+          "file": "data/hk/sources/bulk/hours-38.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=38"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-15.html",
+          "sha256": "9f425bda9d9795de67a4321c5666290d9b8f0019aafb831bf472f6785e93fca5"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-38.html",
+          "sha256": "b3b4a31edac155353db5342db69257855151ed7e93c22e4ff63d37fad42e2931"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-chh-wha",
+      "sourceServiceId": "hk-kwun-tong-dt",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-CHH-to-hk-mtr-WHA",
+      "stopStationIds": [
+        "hk-mtr-CHH",
+        "hk-mtr-DIH",
+        "hk-mtr-WTS",
+        "hk-mtr-LOF",
+        "hk-mtr-KOT",
+        "hk-mtr-SKM",
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-HOM",
+        "hk-mtr-WHA"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:57 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "KTL",
+          "to": "Whampoa",
+          "first": "0557",
+          "last": "0035",
+          "file": "data/hk/sources/bulk/hours-12.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=12"
+        },
+        "upstream": {
+          "line": "KTL",
+          "to": "Whampoa",
+          "first": "0603",
+          "last": "0033",
+          "file": "data/hk/sources/bulk/hours-13.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=13"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-12.html",
+          "sha256": "f0badcbf2b68f24a6035f41b94431f741ed40c2763a7e71a40b6b776a6676231"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-13.html",
+          "sha256": "a36d0ad1430a506260cc5daa7a8a21b54333a1438cabd5a9e73c7a96767b4e3d"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-chh-tik",
+      "sourceServiceId": "hk-kwun-tong-ut",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-CHH-to-hk-mtr-TIK",
+      "stopStationIds": [
+        "hk-mtr-CHH",
+        "hk-mtr-KOB",
+        "hk-mtr-NTK",
+        "hk-mtr-KWT",
+        "hk-mtr-LAT",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:15 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "KTL",
+          "to": "Tiu Keng Leng",
+          "first": "0615",
+          "last": "0058",
+          "file": "data/hk/sources/bulk/hours-12.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=12"
+        },
+        "upstream": {
+          "line": "KTL",
+          "to": "Tiu Keng Leng",
+          "first": "0626",
+          "last": "0056",
+          "file": "data/hk/sources/bulk/hours-11.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=11"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-12.html",
+          "sha256": "f0badcbf2b68f24a6035f41b94431f741ed40c2763a7e71a40b6b776a6676231"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-11.html",
+          "sha256": "bd4eca1d9c1f998c7164fdf6c660acfc88ed34cbc71bf8831b70e97293cfca41"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-ntk-tik",
+      "sourceServiceId": "hk-kwun-tong-ut",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-NTK-to-hk-mtr-TIK",
+      "stopStationIds": [
+        "hk-mtr-NTK",
+        "hk-mtr-KWT",
+        "hk-mtr-LAT",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:02 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "KTL",
+          "to": "Tiu Keng Leng",
+          "first": "0602",
+          "last": "0102",
+          "file": "data/hk/sources/bulk/hours-14.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=14"
+        },
+        "upstream": {
+          "line": "KTL",
+          "to": "Tiu Keng Leng",
+          "first": "0616",
+          "last": "0100",
+          "file": "data/hk/sources/bulk/hours-13.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=13"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-14.html",
+          "sha256": "78c4a5dd4f8138fdcde91289c97d1fb2b05faf340ad7a5bdf1e709ee1a578ab3"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-13.html",
+          "sha256": "a36d0ad1430a506260cc5daa7a8a21b54333a1438cabd5a9e73c7a96767b4e3d"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tseung-kwan-o-short-tik-poa",
+      "sourceServiceId": "hk-tseung-kwan-o-ut",
+      "canonicalLineId": "hk-tseung-kwan-o",
+      "direction": "hk-mtr-TIK-to-hk-mtr-POA",
+      "stopStationIds": [
+        "hk-mtr-TIK",
+        "hk-mtr-TKO",
+        "hk-mtr-HAH",
+        "hk-mtr-POA"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:15 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "TKL",
+          "to": "Po Lam",
+          "first": "0615",
+          "last": "0121",
+          "file": "data/hk/sources/bulk/hours-49.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49"
+        },
+        "upstream": {
+          "line": "TKL",
+          "to": "Po Lam",
+          "first": "0619",
+          "last": "0118",
+          "file": "data/hk/sources/bulk/hours-48.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=48"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-49.html",
+          "sha256": "9c6b33d7e3e9f434d9b8389485516654fa52b2e7dfe46ab78ecf4d8fb70ad1e5"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-48.html",
+          "sha256": "8811bcf637b39ec2c2321492e86b0e57f4d46afa14d5ef20078b06c7c15d2037"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tung-chung-short-tsy-hok",
+      "sourceServiceId": "hk-tung-chung-dt",
+      "canonicalLineId": "hk-tung-chung",
+      "direction": "hk-mtr-TSY-to-hk-mtr-HOK",
+      "stopStationIds": [
+        "hk-mtr-TSY",
+        "hk-mtr-LAK",
+        "hk-mtr-NAC",
+        "hk-mtr-OLY",
+        "hk-mtr-KOW",
+        "hk-mtr-HOK"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:59 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "TCL",
+          "to": "Hong Kong",
+          "first": "0559",
+          "last": "0058",
+          "file": "data/hk/sources/bulk/hours-46.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=46"
+        },
+        "upstream": {
+          "line": "TCL",
+          "to": "Hong Kong",
+          "first": "0609",
+          "last": "0050",
+          "file": "data/hk/sources/bulk/hours-54.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=54"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-46.html",
+          "sha256": "c0dcd33e546dd8bce21835948028f593d833c0e17aa516dc7c56da25b599a212"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-54.html",
+          "sha256": "182e996a7d4f7213e0ac5386e2bc0f8a95b2033f45875f32a1cb2aa1bf553ee5"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-shs-adm",
+      "sourceServiceId": "hk-east-rail-dt",
+      "canonicalLineId": "hk-east-rail",
+      "direction": "hk-mtr-SHS-to-hk-mtr-ADM",
+      "stopStationIds": [
+        "hk-mtr-SHS",
+        "hk-mtr-FAN",
+        "hk-mtr-TWO",
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-FOT",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:40 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "EAL",
+          "to": "Admiralty",
+          "first": "0540",
+          "last": "0004",
+          "file": "data/hk/sources/bulk/hours-75.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=75"
+        },
+        "upstream": {
+          "line": "EAL",
+          "to": "Admiralty",
+          "first": "0555",
+          "last": "0000",
+          "file": "data/hk/sources/bulk/hours-76.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=76"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-75.html",
+          "sha256": "dfa1fe3125a6e1f22b8c653dff605e7e4a096ba163165a44ae6e22eb0e76f0fe"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-76.html",
+          "sha256": "29611237156252bdce3f479ae626b396df6ba09e16b0c216afbcefe61e621fe7"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-sht-adm",
+      "sourceServiceId": "hk-east-rail-dt",
+      "canonicalLineId": "hk-east-rail",
+      "direction": "hk-mtr-SHT-to-hk-mtr-ADM",
+      "stopStationIds": [
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:38 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "EAL",
+          "to": "Admiralty",
+          "first": "0538",
+          "last": "0028",
+          "file": "data/hk/sources/bulk/hours-68.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=68"
+        },
+        "upstream": {
+          "line": "EAL",
+          "to": "Admiralty",
+          "first": "0601",
+          "last": "0025",
+          "file": "data/hk/sources/bulk/hours-69.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=69"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-68.html",
+          "sha256": "a5704ccd5e28d20e4e545b3331942ff51eb673fe1dc6b731e1585d8a85fdff12"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-69.html",
+          "sha256": "36df38d1b467885e6d162d43afe3ca0d29779346721b818f036b380a842bf559"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-huh-low",
+      "sourceServiceId": "hk-east-rail-ut",
+      "canonicalLineId": "hk-east-rail",
+      "direction": "hk-mtr-HUH-to-hk-mtr-LOW",
+      "stopStationIds": [
+        "hk-mtr-HUH",
+        "hk-mtr-MKK",
+        "hk-mtr-KOT",
+        "hk-mtr-TAW",
+        "hk-mtr-SHT",
+        "hk-mtr-FOT",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS",
+        "hk-mtr-LOW"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:30 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "EAL",
+          "to": "Lo Wu",
+          "first": "0530",
+          "last": "2307",
+          "file": "data/hk/sources/bulk/hours-64.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=64"
+        },
+        "upstream": {
+          "line": "EAL",
+          "to": "Lo Wu",
+          "first": "0607",
+          "last": "2303",
+          "file": "data/hk/sources/bulk/hours-94.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=94"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-64.html",
+          "sha256": "aff9d0bd1a511cf01223d32d6a83ca77cf207f6adb4c9b95e8fe165c0d06d2b7"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-94.html",
+          "sha256": "8e0491cdc99456b7db45d8de918c16017e6e6abf3e35fb95218badcdcf173d7d"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-sht-low",
+      "sourceServiceId": "hk-east-rail-ut",
+      "canonicalLineId": "hk-east-rail",
+      "direction": "hk-mtr-SHT-to-hk-mtr-LOW",
+      "stopStationIds": [
+        "hk-mtr-SHT",
+        "hk-mtr-FOT",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS",
+        "hk-mtr-LOW"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:35 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "EAL",
+          "to": "Lo Wu",
+          "first": "0535",
+          "last": "2320",
+          "file": "data/hk/sources/bulk/hours-68.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=68"
+        },
+        "upstream": {
+          "line": "EAL",
+          "to": "Lo Wu",
+          "first": "0540",
+          "last": "2317",
+          "file": "data/hk/sources/bulk/hours-67.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=67"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-68.html",
+          "sha256": "a5704ccd5e28d20e4e545b3331942ff51eb673fe1dc6b731e1585d8a85fdff12"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-67.html",
+          "sha256": "416a232b935938dd31979d2717962bfaa89df8a429d563b548dae30e3ec1be05"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-huh-tum",
+      "sourceServiceId": "hk-tuen-ma-ut",
+      "canonicalLineId": "hk-tuen-ma",
+      "direction": "hk-mtr-HUH-to-hk-mtr-TUM",
+      "stopStationIds": [
+        "hk-mtr-HUH",
+        "hk-mtr-ETS",
+        "hk-mtr-AUS",
+        "hk-mtr-NAC",
+        "hk-mtr-MEF",
+        "hk-mtr-TWW",
+        "hk-mtr-KSR",
+        "hk-mtr-YUL",
+        "hk-mtr-LOP",
+        "hk-mtr-TIS",
+        "hk-mtr-SIH",
+        "hk-mtr-TUM"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:53 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "TML",
+          "to": "Tuen Mun",
+          "first": "0553",
+          "last": "0032",
+          "file": "data/hk/sources/bulk/hours-64.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=64"
+        },
+        "upstream": {
+          "line": "TML",
+          "to": "Tuen Mun",
+          "first": "0614",
+          "last": "0030",
+          "file": "data/hk/sources/bulk/hours-84.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=84"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-64.html",
+          "sha256": "aff9d0bd1a511cf01223d32d6a83ca77cf207f6adb4c9b95e8fe165c0d06d2b7"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-84.html",
+          "sha256": "c56d6e09922eca108b76997ad53248f3adfdcae8456f59c6805b966f7f407f5a"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-ksr-tum",
+      "sourceServiceId": "hk-tuen-ma-ut",
+      "canonicalLineId": "hk-tuen-ma",
+      "direction": "hk-mtr-KSR-to-hk-mtr-TUM",
+      "stopStationIds": [
+        "hk-mtr-KSR",
+        "hk-mtr-YUL",
+        "hk-mtr-LOP",
+        "hk-mtr-TIS",
+        "hk-mtr-SIH",
+        "hk-mtr-TUM"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:03 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "TML",
+          "to": "Tuen Mun",
+          "first": "0603",
+          "last": "0054",
+          "file": "data/hk/sources/bulk/hours-115.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=115"
+        },
+        "upstream": {
+          "line": "TML",
+          "to": "Tuen Mun",
+          "first": "0609",
+          "last": "0048",
+          "file": "data/hk/sources/bulk/hours-114.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=114"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-115.html",
+          "sha256": "e10efacd331ac1f83be3aa20f5c11d7f3713cdf2edca1337de06e3da026cab45"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-114.html",
+          "sha256": "f00cf1465c379f5e141f746e7238a6de5b1544d468063c72d59c661a6e656bcd"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-ets-wks",
+      "sourceServiceId": "hk-tuen-ma-dt",
+      "canonicalLineId": "hk-tuen-ma",
+      "direction": "hk-mtr-ETS-to-hk-mtr-WKS",
+      "stopStationIds": [
+        "hk-mtr-ETS",
+        "hk-mtr-HUH",
+        "hk-mtr-HOM",
+        "hk-mtr-TKW",
+        "hk-mtr-SUW",
+        "hk-mtr-KAT",
+        "hk-mtr-DIH",
+        "hk-mtr-HIK",
+        "hk-mtr-TAW",
+        "hk-mtr-CKT",
+        "hk-mtr-STW",
+        "hk-mtr-CIO",
+        "hk-mtr-SHM",
+        "hk-mtr-TSH",
+        "hk-mtr-HEO",
+        "hk-mtr-MOS",
+        "hk-mtr-WKS"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:01 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "TML",
+          "to": "Wu Kai Sha",
+          "first": "0601",
+          "last": "0045",
+          "file": "data/hk/sources/bulk/hours-80.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=80"
+        },
+        "upstream": {
+          "line": "TML",
+          "to": "Wu Kai Sha",
+          "first": "0618",
+          "last": "0042",
+          "file": "data/hk/sources/bulk/hours-111.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=111"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-80.html",
+          "sha256": "175970227d05d2c0df6f633adb54c90c5b1612277039f119d956925eeaeccd06"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-111.html",
+          "sha256": "e132f8ece7ddf0b02e3bb141f615cde1eedf94e670b577ed3e604c0f219d3595"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-taw-wks",
+      "sourceServiceId": "hk-tuen-ma-dt",
+      "canonicalLineId": "hk-tuen-ma",
+      "direction": "hk-mtr-TAW-to-hk-mtr-WKS",
+      "stopStationIds": [
+        "hk-mtr-TAW",
+        "hk-mtr-CKT",
+        "hk-mtr-STW",
+        "hk-mtr-CIO",
+        "hk-mtr-SHM",
+        "hk-mtr-TSH",
+        "hk-mtr-HEO",
+        "hk-mtr-MOS",
+        "hk-mtr-WKS"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:40 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "first-departure-frontier",
+        "at": {
+          "line": "TML",
+          "to": "Wu Kai Sha",
+          "first": "0540",
+          "last": "0105",
+          "file": "data/hk/sources/bulk/hours-67.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=67"
+        },
+        "upstream": {
+          "line": "TML",
+          "to": "Wu Kai Sha",
+          "first": "0618",
+          "last": "0102",
+          "file": "data/hk/sources/bulk/hours-90.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=90"
+        },
+        "reason": "At the next adjacent station the first train departs earlier than the upstream first train. An all-stop train cannot arrive from upstream; service starts at this station. Exact complete suffix follows the official station CSV."
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-67.html",
+          "sha256": "416a232b935938dd31979d2717962bfaa89df8a429d563b548dae30e3ec1be05"
+        },
+        {
+          "file": "data/hk/sources/bulk/hours-90.html",
+          "sha256": "193762b73bc535ccb9088a4b4b7efcbcd8839096a181b63164f1d08f701e54a4"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-wha-kwt",
+      "sourceServiceId": "hk-kwun-tong-ut",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-WHA-to-hk-mtr-KWT",
+      "stopStationIds": [
+        "hk-mtr-WHA",
+        "hk-mtr-HOM",
+        "hk-mtr-YMT",
+        "hk-mtr-MOK",
+        "hk-mtr-PRE",
+        "hk-mtr-SKM",
+        "hk-mtr-KOT",
+        "hk-mtr-LOF",
+        "hk-mtr-WTS",
+        "hk-mtr-DIH",
+        "hk-mtr-CHH",
+        "hk-mtr-KOB",
+        "hk-mtr-NTK",
+        "hk-mtr-KWT"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 01:00 막차, 쿤통행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "terminal-later-last-destination",
+        "at": {
+          "line": "KTL",
+          "to": "Kwun Tong",
+          "first": "0610",
+          "last": "0100",
+          "file": "data/hk/sources/bulk/hours-85.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=85"
+        },
+        "fullDestination": {
+          "line": "KTL",
+          "to": "Tiu Keng Leng",
+          "first": "0610",
+          "last": "0040",
+          "file": "data/hk/sources/bulk/hours-85.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=85"
+        }
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-85.html",
+          "sha256": "6ab4c48033668193576f7295fc5a56fd734ba78371d01c349554dab68407015d"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-tik-chh",
+      "sourceServiceId": "hk-kwun-tong-dt",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-TIK-to-hk-mtr-CHH",
+      "stopStationIds": [
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-LAT",
+        "hk-mtr-KWT",
+        "hk-mtr-NTK",
+        "hk-mtr-KOB",
+        "hk-mtr-CHH"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 01:06 막차, 초이훙행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "terminal-later-last-destination",
+        "at": {
+          "line": "KTL",
+          "to": "Choi Hung",
+          "first": "0607",
+          "last": "0106",
+          "file": "data/hk/sources/bulk/hours-49.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49"
+        },
+        "fullDestination": {
+          "line": "KTL",
+          "to": "Whampoa",
+          "first": "0607",
+          "last": "0022",
+          "file": "data/hk/sources/bulk/hours-49.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49"
+        }
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-49.html",
+          "sha256": "9c6b33d7e3e9f434d9b8389485516654fa52b2e7dfe46ab78ecf4d8fb70ad1e5"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-tik-kwt",
+      "sourceServiceId": "hk-kwun-tong-dt",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-TIK-to-hk-mtr-KWT",
+      "stopStationIds": [
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-LAT",
+        "hk-mtr-KWT"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 01:15 막차, 쿤통행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "terminal-later-last-destination",
+        "at": {
+          "line": "KTL",
+          "to": "Kwun Tong",
+          "first": "0607",
+          "last": "0115",
+          "file": "data/hk/sources/bulk/hours-49.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49"
+        },
+        "fullDestination": {
+          "line": "KTL",
+          "to": "Whampoa",
+          "first": "0607",
+          "last": "0022",
+          "file": "data/hk/sources/bulk/hours-49.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49"
+        }
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-49.html",
+          "sha256": "9c6b33d7e3e9f434d9b8389485516654fa52b2e7dfe46ab78ecf4d8fb70ad1e5"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-tum-huh",
+      "sourceServiceId": "hk-tuen-ma-dt",
+      "canonicalLineId": "hk-tuen-ma",
+      "direction": "hk-mtr-TUM-to-hk-mtr-HUH",
+      "stopStationIds": [
+        "hk-mtr-TUM",
+        "hk-mtr-SIH",
+        "hk-mtr-TIS",
+        "hk-mtr-LOP",
+        "hk-mtr-YUL",
+        "hk-mtr-KSR",
+        "hk-mtr-TWW",
+        "hk-mtr-MEF",
+        "hk-mtr-NAC",
+        "hk-mtr-AUS",
+        "hk-mtr-ETS",
+        "hk-mtr-HUH"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:15 막차, 홍함행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "terminal-later-last-destination",
+        "at": {
+          "line": "TML",
+          "to": "Hung Hom",
+          "first": "0545",
+          "last": "0015",
+          "file": "data/hk/sources/bulk/hours-120.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=120"
+        },
+        "fullDestination": {
+          "line": "TML",
+          "to": "Wu Kai Sha",
+          "first": "0545",
+          "last": "0009",
+          "file": "data/hk/sources/bulk/hours-120.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=120"
+        }
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-120.html",
+          "sha256": "cc778bd757c15e737e99a0bce46561b3a1bcd2d8ca5ac8b312fbc54830b63e25"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-wks-huh",
+      "sourceServiceId": "hk-tuen-ma-ut",
+      "canonicalLineId": "hk-tuen-ma",
+      "direction": "hk-mtr-WKS-to-hk-mtr-HUH",
+      "stopStationIds": [
+        "hk-mtr-WKS",
+        "hk-mtr-MOS",
+        "hk-mtr-HEO",
+        "hk-mtr-TSH",
+        "hk-mtr-SHM",
+        "hk-mtr-CIO",
+        "hk-mtr-STW",
+        "hk-mtr-CKT",
+        "hk-mtr-TAW",
+        "hk-mtr-HIK",
+        "hk-mtr-DIH",
+        "hk-mtr-KAT",
+        "hk-mtr-SUW",
+        "hk-mtr-TKW",
+        "hk-mtr-HOM",
+        "hk-mtr-HUH"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:14 막차, 홍함행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "terminal-later-last-destination",
+        "at": {
+          "line": "TML",
+          "to": "Hung Hom",
+          "first": "0538",
+          "last": "0014",
+          "file": "data/hk/sources/bulk/hours-103.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=103"
+        },
+        "fullDestination": {
+          "line": "TML",
+          "to": "Tuen Mun",
+          "first": "0538",
+          "last": "2354",
+          "file": "data/hk/sources/bulk/hours-103.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=103"
+        }
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-103.html",
+          "sha256": "3940a4b9c4ae3fa9b557af0f6e3f938dabc3c7df525c9d2c71403b3c48bc7112"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-wks-taw",
+      "sourceServiceId": "hk-tuen-ma-ut",
+      "canonicalLineId": "hk-tuen-ma",
+      "direction": "hk-mtr-WKS-to-hk-mtr-TAW",
+      "stopStationIds": [
+        "hk-mtr-WKS",
+        "hk-mtr-MOS",
+        "hk-mtr-HEO",
+        "hk-mtr-TSH",
+        "hk-mtr-SHM",
+        "hk-mtr-CIO",
+        "hk-mtr-STW",
+        "hk-mtr-CKT",
+        "hk-mtr-TAW"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:39 막차, 타이와이행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "terminal-later-last-destination",
+        "at": {
+          "line": "TML",
+          "to": "Tai Wai",
+          "first": "0538",
+          "last": "0039",
+          "file": "data/hk/sources/bulk/hours-103.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=103"
+        },
+        "fullDestination": {
+          "line": "TML",
+          "to": "Tuen Mun",
+          "first": "0538",
+          "last": "2354",
+          "file": "data/hk/sources/bulk/hours-103.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=103"
+        }
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-103.html",
+          "sha256": "3940a4b9c4ae3fa9b557af0f6e3f938dabc3c7df525c9d2c71403b3c48bc7112"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-low-huh",
+      "sourceServiceId": "hk-east-rail-dt",
+      "canonicalLineId": "hk-east-rail",
+      "direction": "hk-mtr-LOW-to-hk-mtr-HUH",
+      "stopStationIds": [
+        "hk-mtr-LOW",
+        "hk-mtr-SHS",
+        "hk-mtr-FAN",
+        "hk-mtr-TWO",
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-FOT",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:30 막차, 홍함행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "terminal-later-last-destination",
+        "at": {
+          "line": "EAL",
+          "to": "Hung Hom",
+          "first": "0555",
+          "last": "0030",
+          "file": "data/hk/sources/bulk/hours-76.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=76"
+        },
+        "fullDestination": {
+          "line": "EAL",
+          "to": "Admiralty",
+          "first": "0555",
+          "last": "0000",
+          "file": "data/hk/sources/bulk/hours-76.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=76"
+        }
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-76.html",
+          "sha256": "29611237156252bdce3f479ae626b396df6ba09e16b0c216afbcefe61e621fe7"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-adm-shs",
+      "sourceServiceId": "hk-east-rail-ut",
+      "canonicalLineId": "hk-east-rail",
+      "direction": "hk-mtr-ADM-to-hk-mtr-SHS",
+      "stopStationIds": [
+        "hk-mtr-ADM",
+        "hk-mtr-EXC",
+        "hk-mtr-HUH",
+        "hk-mtr-MKK",
+        "hk-mtr-KOT",
+        "hk-mtr-TAW",
+        "hk-mtr-SHT",
+        "hk-mtr-FOT",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:22 막차, 셩슈이행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true
+      },
+      "operationEvidence": {
+        "method": "terminal-later-last-destination",
+        "at": {
+          "line": "EAL",
+          "to": "Sheung Shui",
+          "first": "0604",
+          "last": "0022",
+          "file": "data/hk/sources/bulk/hours-2.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=2"
+        },
+        "fullDestination": {
+          "line": "EAL",
+          "to": "Lo Wu",
+          "first": "0604",
+          "last": "2301",
+          "file": "data/hk/sources/bulk/hours-2.html",
+          "url": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=2"
+        }
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/hours-2.html",
+          "sha256": "5cb88a0c973c8573c046927e9ce26b9dee80ed61737fd75e14526956cdf5a819"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-tik-hom",
+      "sourceServiceId": "hk-kwun-tong-dt",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-TIK-to-hk-mtr-HOM",
+      "stopStationIds": [
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-LAT",
+        "hk-mtr-KWT",
+        "hk-mtr-NTK",
+        "hk-mtr-KOB",
+        "hk-mtr-CHH",
+        "hk-mtr-DIH",
+        "hk-mtr-WTS",
+        "hk-mtr-LOF",
+        "hk-mtr-KOT",
+        "hk-mtr-SKM",
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-HOM"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "peak-short-turn",
+        "noteKo": "평일 혼잡시간 호만틴 종착 단축편. 왐포아행과 교대로 운행하며 전 구간 운행편과 구분합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false
+      },
+      "operationEvidence": {
+        "method": "operator-and-government-short-service",
+        "sourceFiles": [
+          "data/hk/sources/bulk/service-frequency.html"
+        ]
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/service-frequency.html",
+          "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-hom-tik",
+      "sourceServiceId": "hk-kwun-tong-ut",
+      "canonicalLineId": "hk-kwun-tong",
+      "direction": "hk-mtr-HOM-to-hk-mtr-TIK",
+      "stopStationIds": [
+        "hk-mtr-HOM",
+        "hk-mtr-YMT",
+        "hk-mtr-MOK",
+        "hk-mtr-PRE",
+        "hk-mtr-SKM",
+        "hk-mtr-KOT",
+        "hk-mtr-LOF",
+        "hk-mtr-WTS",
+        "hk-mtr-DIH",
+        "hk-mtr-CHH",
+        "hk-mtr-KOB",
+        "hk-mtr-NTK",
+        "hk-mtr-KWT",
+        "hk-mtr-LAT",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "peak-short-turn",
+        "noteKo": "평일 혼잡시간 호만틴 출발 단축편. 왐포아 출발편과 구분합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false
+      },
+      "operationEvidence": {
+        "method": "operator-and-government-short-service",
+        "sourceFiles": [
+          "data/hk/sources/bulk/service-frequency.html"
+        ]
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/service-frequency.html",
+          "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-tung-chung-short-hok-tsy",
+      "sourceServiceId": "hk-tung-chung-ut",
+      "canonicalLineId": "hk-tung-chung",
+      "direction": "hk-mtr-HOK-to-hk-mtr-TSY",
+      "stopStationIds": [
+        "hk-mtr-HOK",
+        "hk-mtr-KOW",
+        "hk-mtr-OLY",
+        "hk-mtr-NAC",
+        "hk-mtr-LAK",
+        "hk-mtr-TSY"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "peak-short-turn",
+        "noteKo": "평일 혼잡시간 홍콩–칭이 단축편. 퉁충 종착편과 구분합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false
+      },
+      "operationEvidence": {
+        "method": "operator-and-government-short-service",
+        "sourceFiles": [
+          "data/hk/sources/bulk/service-frequency.html",
+          "data/hk/sources/bulk/tung-chung-short.pdf"
+        ]
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/service-frequency.html",
+          "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+        },
+        {
+          "file": "data/hk/sources/bulk/tung-chung-short.pdf",
+          "sha256": "4b371f7a29caf68e118b2e5e69fb801abfd76e12307e2d38b8dc27e98d2c3478"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-tap-adm",
+      "sourceServiceId": "hk-east-rail-dt",
+      "canonicalLineId": "hk-east-rail",
+      "direction": "hk-mtr-TAP-to-hk-mtr-ADM",
+      "stopStationIds": [
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-FOT",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "peak-short-turn",
+        "noteKo": "혼잡시간 수요에 따라 투입되는 타이포마켓 출발 애드미럴티행 단축편. 고정 출발 시각은 보장하지 않습니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false
+      },
+      "operationEvidence": {
+        "method": "operator-and-government-short-service",
+        "sourceFiles": [
+          "data/hk/sources/bulk/east-rail-short.html"
+        ]
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/east-rail-short.html",
+          "sha256": "a83d41740733c4c25631608108bfd4a66fee7dd954324659cc20a4791973e887"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    },
+    {
+      "id": "hk-light-rail-751p-short-500-430",
+      "sourceServiceId": "hk-light-rail-751p-osm-2929802",
+      "canonicalLineId": "hk-light-rail-751p",
+      "direction": "hk-lr-500-to-hk-lr-430",
+      "stopStationIds": [
+        "hk-lr-500",
+        "hk-lr-455",
+        "hk-lr-450",
+        "hk-lr-435",
+        "hk-lr-430"
+      ],
+      "stopStatus": "verified",
+      "status": "verified",
+      "validWhen": {
+        "type": "weekday-morning-peak",
+        "noteKo": "751P 오전 특별편 · 틴윙 → 틴수이와이. 평일 혼잡시간 운행, 토·일·공휴일 및 방학 미운행. 운행일 당일 안내를 확인하세요.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false
+      },
+      "operationEvidence": {
+        "method": "official-751p-morning-same-track-suffix",
+        "sourceFiles": [
+          "data/hk/sources/bulk/light-rail.html",
+          "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+          "data/hk/sources/phase6/lr-partial-751.html"
+        ]
+      },
+      "sources": [
+        {
+          "file": "data/hk/sources/bulk/light-rail.html",
+          "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+        },
+        {
+          "file": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+          "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27"
+        },
+        {
+          "file": "data/hk/sources/phase6/lr-partial-751.html",
+          "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "file": "data/hk/sources/bulk/east-rail-2026.pdf",
+      "sha256": "99fb494412519704b298d239ffac8d1bbe0e06046b0d39bea51fdaf1d12ac3f2",
+      "sourceUrl": "https://www.tlb.gov.hk/eng/legislative/transport/special/land/TLB-1-e1_2026.pdf",
+      "role": "2026 official corroboration of peak short-haul workings, including Sha Tin and Tai Po Market"
+    }
+  ]
+}

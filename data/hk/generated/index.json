@@ -6748,6 +6748,3821 @@
       ]
     },
     {
+      "id": "hk-island-short-cab-ket",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-island",
+      "servicePatternId": "hk-island-short-cab-ket",
+      "serviceLabel": "Causeway Bay → Kennedy Town",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "港島綫",
+        "en": "Island Line",
+        "ko": "홍콩섬선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "ISL",
+      "officialSymbolExists": false,
+      "lineColor": "#0075c2",
+      "lineTheme": {
+        "code": "ISL",
+        "color": "#0075c2",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-CAB-to-hk-mtr-KET",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:01 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-28.html",
+            "sha256": "4cf040730bff2a6367dccb62193eff00b28dfab67b19bc87794bed05cc551e2d"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-29.html",
+            "sha256": "c41804c8563062c2527bcbd1cb9643b0eba9a621c735e70f82b1efa75dff8aa0"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=28",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-island-short-cab-ket",
+          "nameJa": "港島綫",
+          "nameEn": "Island Line",
+          "nameKo": "홍콩섬선",
+          "stops": [
+            "hk-mtr-CAB",
+            "hk-mtr-WAC",
+            "hk-mtr-ADM",
+            "hk-mtr-CEN",
+            "hk-mtr-SHW",
+            "hk-mtr-SYP",
+            "hk-mtr-HKU",
+            "hk-mtr-KET"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "021e63923cf4153656da154226dd360c409995110cb2ea12213f984db63df927",
+      "validationFingerprint": "0ce56791c018ad0ecb53d1a8a48231ad229446459f4c012473930a844f5956ac",
+      "lazySource": "data/hk/generated/routes/hk-island-short-cab-ket.json",
+      "stationCount": 8,
+      "stationSequence": [
+        "hk-mtr-CAB",
+        "hk-mtr-WAC",
+        "hk-mtr-ADM",
+        "hk-mtr-CEN",
+        "hk-mtr-SHW",
+        "hk-mtr-SYP",
+        "hk-mtr-HKU",
+        "hk-mtr-KET"
+      ],
+      "searchStations": [
+        "銅鑼灣",
+        "Causeway Bay",
+        "코즈웨이베이",
+        "灣仔",
+        "Wan Chai",
+        "완차이",
+        "金鐘",
+        "Admiralty",
+        "애드미럴티",
+        "中環",
+        "Central",
+        "센트럴",
+        "上環",
+        "Sheung Wan",
+        "상환",
+        "西營盤",
+        "Sai Ying Pun",
+        "새이잉펀",
+        "香港大學",
+        "HKU",
+        "홍콩대학",
+        "堅尼地城",
+        "Kennedy Town",
+        "케네디 타운"
+      ]
+    },
+    {
+      "id": "hk-tsuen-wan-short-pre-cen",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tsuen-wan",
+      "servicePatternId": "hk-tsuen-wan-short-pre-cen",
+      "serviceLabel": "Prince Edward → Central",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "荃灣綫",
+        "en": "Tsuen Wan Line",
+        "ko": "췬완선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TWL",
+      "officialSymbolExists": false,
+      "lineColor": "#e60012",
+      "lineTheme": {
+        "code": "TWL",
+        "color": "#e60012",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-PRE-to-hk-mtr-CEN",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:08 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-16.html",
+            "sha256": "77b3ed8dbf111c17c8e3a85b6f2e12f4caa9ba1118a591ff0f5a90e95db17bcb"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-17.html",
+            "sha256": "8e49be5a2a1fd5d1657f0eb285c1ce09541d34f48796e2dd375119b7cee05b61"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=16",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tsuen-wan-short-pre-cen",
+          "nameJa": "荃灣綫",
+          "nameEn": "Tsuen Wan Line",
+          "nameKo": "췬완선",
+          "stops": [
+            "hk-mtr-PRE",
+            "hk-mtr-MOK",
+            "hk-mtr-YMT",
+            "hk-mtr-JOR",
+            "hk-mtr-TST",
+            "hk-mtr-ADM",
+            "hk-mtr-CEN"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "a0921490d9ed8d0d72dc3b604ecf4eee7af239e5c3587c750e2f632c78dcf271",
+      "validationFingerprint": "58dd05ffe8489c237a1a66ddf703e16e631d3f9f73e847792f32df32a4c18842",
+      "lazySource": "data/hk/generated/routes/hk-tsuen-wan-short-pre-cen.json",
+      "stationCount": 7,
+      "stationSequence": [
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-JOR",
+        "hk-mtr-TST",
+        "hk-mtr-ADM",
+        "hk-mtr-CEN"
+      ],
+      "searchStations": [
+        "太子",
+        "Prince Edward",
+        "프린스에드워드",
+        "旺角",
+        "Mong Kok",
+        "몽콕",
+        "油麻地",
+        "Yau Ma Tei",
+        "야우마테이",
+        "佐敦",
+        "Jordan",
+        "조던",
+        "尖沙咀",
+        "Tsim Sha Tsui",
+        "침사추이",
+        "金鐘",
+        "Admiralty",
+        "애드미럴티",
+        "中環",
+        "Central",
+        "센트럴"
+      ]
+    },
+    {
+      "id": "hk-tsuen-wan-short-ymt-cen",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tsuen-wan",
+      "servicePatternId": "hk-tsuen-wan-short-ymt-cen",
+      "serviceLabel": "Yau Ma Tei → Central",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "荃灣綫",
+        "en": "Tsuen Wan Line",
+        "ko": "췬완선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TWL",
+      "officialSymbolExists": false,
+      "lineColor": "#e60012",
+      "lineTheme": {
+        "code": "TWL",
+        "color": "#e60012",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-YMT-to-hk-mtr-CEN",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:01 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-5.html",
+            "sha256": "95774e71f576d83de76fb24c6850a947f2c15b1523695f0da8810a2a83130c8d"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-6.html",
+            "sha256": "ccedc787e63fbf57b4e71972d4fe651dc54c2281ecd04e119c4f93f641b1e9f2"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=5",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tsuen-wan-short-ymt-cen",
+          "nameJa": "荃灣綫",
+          "nameEn": "Tsuen Wan Line",
+          "nameKo": "췬완선",
+          "stops": [
+            "hk-mtr-YMT",
+            "hk-mtr-JOR",
+            "hk-mtr-TST",
+            "hk-mtr-ADM",
+            "hk-mtr-CEN"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "45c88e668c9e1265e0e98f48a0d8deaef415e8023b3e123a6048a7ccb3bb54ed",
+      "validationFingerprint": "a9473ab4650c605801c40f8cb6b4f215157b203cb855bfbd9874d90a5c18ab0b",
+      "lazySource": "data/hk/generated/routes/hk-tsuen-wan-short-ymt-cen.json",
+      "stationCount": 5,
+      "stationSequence": [
+        "hk-mtr-YMT",
+        "hk-mtr-JOR",
+        "hk-mtr-TST",
+        "hk-mtr-ADM",
+        "hk-mtr-CEN"
+      ],
+      "searchStations": [
+        "油麻地",
+        "Yau Ma Tei",
+        "야우마테이",
+        "佐敦",
+        "Jordan",
+        "조던",
+        "尖沙咀",
+        "Tsim Sha Tsui",
+        "침사추이",
+        "金鐘",
+        "Admiralty",
+        "애드미럴티",
+        "中環",
+        "Central",
+        "센트럴"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-kwt-wha",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-kwt-wha",
+      "serviceLabel": "Kwun Tong → Whampoa",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-KWT-to-hk-mtr-WHA",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:00 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-15.html",
+            "sha256": "9f425bda9d9795de67a4321c5666290d9b8f0019aafb831bf472f6785e93fca5"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-38.html",
+            "sha256": "b3b4a31edac155353db5342db69257855151ed7e93c22e4ff63d37fad42e2931"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=15",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-kwt-wha",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-KWT",
+            "hk-mtr-NTK",
+            "hk-mtr-KOB",
+            "hk-mtr-CHH",
+            "hk-mtr-DIH",
+            "hk-mtr-WTS",
+            "hk-mtr-LOF",
+            "hk-mtr-KOT",
+            "hk-mtr-SKM",
+            "hk-mtr-PRE",
+            "hk-mtr-MOK",
+            "hk-mtr-YMT",
+            "hk-mtr-HOM",
+            "hk-mtr-WHA"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "6c97732ed21221f6febbea16a0816db63a97f798565169bb114577263a874e18",
+      "validationFingerprint": "88f8d900b55d140d79320c2b5f5c0ee4c11a1c1cb05aa9b9f0fcc6695fb34241",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-kwt-wha.json",
+      "stationCount": 14,
+      "stationSequence": [
+        "hk-mtr-KWT",
+        "hk-mtr-NTK",
+        "hk-mtr-KOB",
+        "hk-mtr-CHH",
+        "hk-mtr-DIH",
+        "hk-mtr-WTS",
+        "hk-mtr-LOF",
+        "hk-mtr-KOT",
+        "hk-mtr-SKM",
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-HOM",
+        "hk-mtr-WHA"
+      ],
+      "searchStations": [
+        "觀塘",
+        "Kwun Tong",
+        "쿤통",
+        "牛頭角",
+        "Ngau Tau Kok",
+        "응아우타우콕",
+        "九龍灣",
+        "Kowloon Bay",
+        "까우룽베이",
+        "彩虹",
+        "Choi Hung",
+        "초이훙",
+        "鑽石山",
+        "Diamond Hill",
+        "다이아몬드힐",
+        "黃大仙",
+        "Wong Tai Sin",
+        "웡타이신",
+        "樂富",
+        "Lok Fu",
+        "록푸",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "石硤尾",
+        "Shek Kip Mei",
+        "섹깁메이",
+        "太子",
+        "Prince Edward",
+        "프린스에드워드",
+        "旺角",
+        "Mong Kok",
+        "몽콕",
+        "油麻地",
+        "Yau Ma Tei",
+        "야우마테이",
+        "何文田",
+        "Ho Man Tin",
+        "호만틴",
+        "黃埔",
+        "Whampoa",
+        "왐포아"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-chh-wha",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-chh-wha",
+      "serviceLabel": "Choi Hung → Whampoa",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-CHH-to-hk-mtr-WHA",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:57 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-12.html",
+            "sha256": "f0badcbf2b68f24a6035f41b94431f741ed40c2763a7e71a40b6b776a6676231"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-13.html",
+            "sha256": "a36d0ad1430a506260cc5daa7a8a21b54333a1438cabd5a9e73c7a96767b4e3d"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=12",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-chh-wha",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-CHH",
+            "hk-mtr-DIH",
+            "hk-mtr-WTS",
+            "hk-mtr-LOF",
+            "hk-mtr-KOT",
+            "hk-mtr-SKM",
+            "hk-mtr-PRE",
+            "hk-mtr-MOK",
+            "hk-mtr-YMT",
+            "hk-mtr-HOM",
+            "hk-mtr-WHA"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "2d9bec41e0b16436e5f4280a07286e9879dafab60b1d62cd8895258459f549db",
+      "validationFingerprint": "6d2a263b16a5c38dab0902de50f2985659275a8f137666b8e5f12175c6106498",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-chh-wha.json",
+      "stationCount": 11,
+      "stationSequence": [
+        "hk-mtr-CHH",
+        "hk-mtr-DIH",
+        "hk-mtr-WTS",
+        "hk-mtr-LOF",
+        "hk-mtr-KOT",
+        "hk-mtr-SKM",
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-HOM",
+        "hk-mtr-WHA"
+      ],
+      "searchStations": [
+        "彩虹",
+        "Choi Hung",
+        "초이훙",
+        "鑽石山",
+        "Diamond Hill",
+        "다이아몬드힐",
+        "黃大仙",
+        "Wong Tai Sin",
+        "웡타이신",
+        "樂富",
+        "Lok Fu",
+        "록푸",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "石硤尾",
+        "Shek Kip Mei",
+        "섹깁메이",
+        "太子",
+        "Prince Edward",
+        "프린스에드워드",
+        "旺角",
+        "Mong Kok",
+        "몽콕",
+        "油麻地",
+        "Yau Ma Tei",
+        "야우마테이",
+        "何文田",
+        "Ho Man Tin",
+        "호만틴",
+        "黃埔",
+        "Whampoa",
+        "왐포아"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-chh-tik",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-chh-tik",
+      "serviceLabel": "Choi Hung → Tiu Keng Leng",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-CHH-to-hk-mtr-TIK",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:15 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-12.html",
+            "sha256": "f0badcbf2b68f24a6035f41b94431f741ed40c2763a7e71a40b6b776a6676231"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-11.html",
+            "sha256": "bd4eca1d9c1f998c7164fdf6c660acfc88ed34cbc71bf8831b70e97293cfca41"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=12",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-chh-tik",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-CHH",
+            "hk-mtr-KOB",
+            "hk-mtr-NTK",
+            "hk-mtr-KWT",
+            "hk-mtr-LAT",
+            "hk-mtr-YAT",
+            "hk-mtr-TIK"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "5980d188787421b4a5ffd1893fb0cfd9d54e861efbf4c567f297138db179ec97",
+      "validationFingerprint": "62cce0c2e8dfbb11274173d1fb8d270e18c34a082586102f302174606e8e30ce",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-chh-tik.json",
+      "stationCount": 7,
+      "stationSequence": [
+        "hk-mtr-CHH",
+        "hk-mtr-KOB",
+        "hk-mtr-NTK",
+        "hk-mtr-KWT",
+        "hk-mtr-LAT",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK"
+      ],
+      "searchStations": [
+        "彩虹",
+        "Choi Hung",
+        "초이훙",
+        "九龍灣",
+        "Kowloon Bay",
+        "까우룽베이",
+        "牛頭角",
+        "Ngau Tau Kok",
+        "응아우타우콕",
+        "觀塘",
+        "Kwun Tong",
+        "쿤통",
+        "藍田",
+        "Lam Tin",
+        "람틴",
+        "油塘",
+        "Yau Tong",
+        "야우통",
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-ntk-tik",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-ntk-tik",
+      "serviceLabel": "Ngau Tau Kok → Tiu Keng Leng",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-NTK-to-hk-mtr-TIK",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:02 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-14.html",
+            "sha256": "78c4a5dd4f8138fdcde91289c97d1fb2b05faf340ad7a5bdf1e709ee1a578ab3"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-13.html",
+            "sha256": "a36d0ad1430a506260cc5daa7a8a21b54333a1438cabd5a9e73c7a96767b4e3d"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=14",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-ntk-tik",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-NTK",
+            "hk-mtr-KWT",
+            "hk-mtr-LAT",
+            "hk-mtr-YAT",
+            "hk-mtr-TIK"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "2087b097f730edbe6122e4f96ae36566a1b0d62f8514b37bb81909ca4239a8a0",
+      "validationFingerprint": "5398f0d5082c8fc6a8366316c89f544dd8a1292ab33dc6b3b3fc546b8d550d0e",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-ntk-tik.json",
+      "stationCount": 5,
+      "stationSequence": [
+        "hk-mtr-NTK",
+        "hk-mtr-KWT",
+        "hk-mtr-LAT",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK"
+      ],
+      "searchStations": [
+        "牛頭角",
+        "Ngau Tau Kok",
+        "응아우타우콕",
+        "觀塘",
+        "Kwun Tong",
+        "쿤통",
+        "藍田",
+        "Lam Tin",
+        "람틴",
+        "油塘",
+        "Yau Tong",
+        "야우통",
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝"
+      ]
+    },
+    {
+      "id": "hk-tseung-kwan-o-short-tik-poa",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tseung-kwan-o",
+      "servicePatternId": "hk-tseung-kwan-o-short-tik-poa",
+      "serviceLabel": "Tiu Keng Leng → Po Lam",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "將軍澳綫",
+        "en": "Tseung Kwan O Line",
+        "ko": "정관오선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TKL",
+      "officialSymbolExists": false,
+      "lineColor": "#7e3c93",
+      "lineTheme": {
+        "code": "TKL",
+        "color": "#7e3c93",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-TIK-to-hk-mtr-POA",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:15 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-49.html",
+            "sha256": "9c6b33d7e3e9f434d9b8389485516654fa52b2e7dfe46ab78ecf4d8fb70ad1e5"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-48.html",
+            "sha256": "8811bcf637b39ec2c2321492e86b0e57f4d46afa14d5ef20078b06c7c15d2037"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tseung-kwan-o-short-tik-poa",
+          "nameJa": "將軍澳綫",
+          "nameEn": "Tseung Kwan O Line",
+          "nameKo": "정관오선",
+          "stops": [
+            "hk-mtr-TIK",
+            "hk-mtr-TKO",
+            "hk-mtr-HAH",
+            "hk-mtr-POA"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "b8d573c9a06f13a805b9a209a8e7f68c95eb26871231e1647915edc7ba5d404d",
+      "validationFingerprint": "a185859de103fffa45e2fa97b518f20e44756f442135a30a9cd17aa568a0f9f6",
+      "lazySource": "data/hk/generated/routes/hk-tseung-kwan-o-short-tik-poa.json",
+      "stationCount": 4,
+      "stationSequence": [
+        "hk-mtr-TIK",
+        "hk-mtr-TKO",
+        "hk-mtr-HAH",
+        "hk-mtr-POA"
+      ],
+      "searchStations": [
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝",
+        "將軍澳",
+        "Tseung Kwan O",
+        "정관오",
+        "坑口",
+        "Hang Hau",
+        "항하우",
+        "寶琳",
+        "Po Lam",
+        "포람"
+      ]
+    },
+    {
+      "id": "hk-tung-chung-short-tsy-hok",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tung-chung",
+      "servicePatternId": "hk-tung-chung-short-tsy-hok",
+      "serviceLabel": "Tsing Yi → Hong Kong",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東涌綫",
+        "en": "Tung Chung Line",
+        "ko": "퉁충선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TCL",
+      "officialSymbolExists": false,
+      "lineColor": "#f3982d",
+      "lineTheme": {
+        "code": "TCL",
+        "color": "#f3982d",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-TSY-to-hk-mtr-HOK",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:59 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-46.html",
+            "sha256": "c0dcd33e546dd8bce21835948028f593d833c0e17aa516dc7c56da25b599a212"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-54.html",
+            "sha256": "182e996a7d4f7213e0ac5386e2bc0f8a95b2033f45875f32a1cb2aa1bf553ee5"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=46",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tung-chung-short-tsy-hok",
+          "nameJa": "東涌綫",
+          "nameEn": "Tung Chung Line",
+          "nameKo": "퉁충선",
+          "stops": [
+            "hk-mtr-TSY",
+            "hk-mtr-LAK",
+            "hk-mtr-NAC",
+            "hk-mtr-OLY",
+            "hk-mtr-KOW",
+            "hk-mtr-HOK"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "c2107b36ef769f85b4aea218a647d109547d04d7f6fa742fcc76f963f143dabc",
+      "validationFingerprint": "4f9e656c88ba17e9f3a84586f2dd7ec7c706bc7a88c50b920aa8ad90edd43c80",
+      "lazySource": "data/hk/generated/routes/hk-tung-chung-short-tsy-hok.json",
+      "stationCount": 6,
+      "stationSequence": [
+        "hk-mtr-TSY",
+        "hk-mtr-LAK",
+        "hk-mtr-NAC",
+        "hk-mtr-OLY",
+        "hk-mtr-KOW",
+        "hk-mtr-HOK"
+      ],
+      "searchStations": [
+        "青衣",
+        "Tsing Yi",
+        "칭이",
+        "茘景",
+        "Lai King",
+        "라이킹",
+        "南昌",
+        "Nam Cheong",
+        "남청",
+        "奧運",
+        "Olympic",
+        "올림픽",
+        "九龍",
+        "Kowloon",
+        "구룡",
+        "香港",
+        "Hong Kong",
+        "홍콩"
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-shs-adm",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-short-shs-adm",
+      "serviceLabel": "Sheung Shui → Admiralty",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-SHS-to-hk-mtr-ADM",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:40 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-75.html",
+            "sha256": "dfa1fe3125a6e1f22b8c653dff605e7e4a096ba163165a44ae6e22eb0e76f0fe"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-76.html",
+            "sha256": "29611237156252bdce3f479ae626b396df6ba09e16b0c216afbcefe61e621fe7"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=75",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-short-shs-adm",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-SHS",
+            "hk-mtr-FAN",
+            "hk-mtr-TWO",
+            "hk-mtr-TAP",
+            "hk-mtr-UNI",
+            "hk-mtr-FOT",
+            "hk-mtr-SHT",
+            "hk-mtr-TAW",
+            "hk-mtr-KOT",
+            "hk-mtr-MKK",
+            "hk-mtr-HUH",
+            "hk-mtr-EXC",
+            "hk-mtr-ADM"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "8747d39b33c8eda02a5d32f5b2d74f5e147c28a0800e03061157fbbfe3a458f4",
+      "validationFingerprint": "e577e3742bf808f7c80b0d25b01e80c15dbba92fd42789f8ecc76c5b2535735f",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-short-shs-adm.json",
+      "stationCount": 13,
+      "stationSequence": [
+        "hk-mtr-SHS",
+        "hk-mtr-FAN",
+        "hk-mtr-TWO",
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-FOT",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "searchStations": [
+        "上水",
+        "Sheung Shui",
+        "셩슈이",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "大學",
+        "University",
+        "유니버시티",
+        "火炭",
+        "Fo Tan",
+        "포탄",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "會展",
+        "Exhibition Centre",
+        "전시장",
+        "金鐘",
+        "Admiralty",
+        "애드미럴티"
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-sht-adm",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-short-sht-adm",
+      "serviceLabel": "Sha Tin → Admiralty",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-SHT-to-hk-mtr-ADM",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:38 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-68.html",
+            "sha256": "a5704ccd5e28d20e4e545b3331942ff51eb673fe1dc6b731e1585d8a85fdff12"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-69.html",
+            "sha256": "36df38d1b467885e6d162d43afe3ca0d29779346721b818f036b380a842bf559"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=68",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-short-sht-adm",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-SHT",
+            "hk-mtr-TAW",
+            "hk-mtr-KOT",
+            "hk-mtr-MKK",
+            "hk-mtr-HUH",
+            "hk-mtr-EXC",
+            "hk-mtr-ADM"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "c3bdf4785ab19ddf3f02c45a1e33e0f5c752438c6291ed9287170b0c481f2c89",
+      "validationFingerprint": "f977749885e1bfb7475c70b06b6fb65ef19f4ce15c60887aa90baabedbf05497",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-short-sht-adm.json",
+      "stationCount": 7,
+      "stationSequence": [
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "searchStations": [
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "會展",
+        "Exhibition Centre",
+        "전시장",
+        "金鐘",
+        "Admiralty",
+        "애드미럴티"
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-huh-low",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-short-huh-low",
+      "serviceLabel": "Hung Hom → Lo Wu",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-HUH-to-hk-mtr-LOW",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:30 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-64.html",
+            "sha256": "aff9d0bd1a511cf01223d32d6a83ca77cf207f6adb4c9b95e8fe165c0d06d2b7"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-94.html",
+            "sha256": "8e0491cdc99456b7db45d8de918c16017e6e6abf3e35fb95218badcdcf173d7d"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=64",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-short-huh-low",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-HUH",
+            "hk-mtr-MKK",
+            "hk-mtr-KOT",
+            "hk-mtr-TAW",
+            "hk-mtr-SHT",
+            "hk-mtr-FOT",
+            "hk-mtr-UNI",
+            "hk-mtr-TAP",
+            "hk-mtr-TWO",
+            "hk-mtr-FAN",
+            "hk-mtr-SHS",
+            "hk-mtr-LOW"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "0bec74260dea0851774de490fe2d9c30c5b2aeb92b7cfee51d5e433f10108a1f",
+      "validationFingerprint": "1ce93895e153ea00be2d3b08b940e8c2d44c84c851ce5c7e9484ce90a9b7fab5",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-short-huh-low.json",
+      "stationCount": 12,
+      "stationSequence": [
+        "hk-mtr-HUH",
+        "hk-mtr-MKK",
+        "hk-mtr-KOT",
+        "hk-mtr-TAW",
+        "hk-mtr-SHT",
+        "hk-mtr-FOT",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS",
+        "hk-mtr-LOW"
+      ],
+      "searchStations": [
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "火炭",
+        "Fo Tan",
+        "포탄",
+        "大學",
+        "University",
+        "유니버시티",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "上水",
+        "Sheung Shui",
+        "셩슈이",
+        "羅湖",
+        "Lo Wu",
+        "로위"
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-sht-low",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-short-sht-low",
+      "serviceLabel": "Sha Tin → Lo Wu",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-SHT-to-hk-mtr-LOW",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:35 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-68.html",
+            "sha256": "a5704ccd5e28d20e4e545b3331942ff51eb673fe1dc6b731e1585d8a85fdff12"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-67.html",
+            "sha256": "416a232b935938dd31979d2717962bfaa89df8a429d563b548dae30e3ec1be05"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=68",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-short-sht-low",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-SHT",
+            "hk-mtr-FOT",
+            "hk-mtr-UNI",
+            "hk-mtr-TAP",
+            "hk-mtr-TWO",
+            "hk-mtr-FAN",
+            "hk-mtr-SHS",
+            "hk-mtr-LOW"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "f72423f7ab5f7482c01f7964be53b5daf943a733e15c48665d80104c5e8d9da7",
+      "validationFingerprint": "d38902307a0fe2d24c64bc7ef812561aa469a1c5708f71bc1a545259013fdcff",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-short-sht-low.json",
+      "stationCount": 8,
+      "stationSequence": [
+        "hk-mtr-SHT",
+        "hk-mtr-FOT",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS",
+        "hk-mtr-LOW"
+      ],
+      "searchStations": [
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "火炭",
+        "Fo Tan",
+        "포탄",
+        "大學",
+        "University",
+        "유니버시티",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "上水",
+        "Sheung Shui",
+        "셩슈이",
+        "羅湖",
+        "Lo Wu",
+        "로위"
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-huh-tum",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tuen-ma",
+      "servicePatternId": "hk-tuen-ma-short-huh-tum",
+      "serviceLabel": "Hung Hom → Tuen Mun",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "屯馬綫",
+        "en": "Tuen Ma Line",
+        "ko": "튄마선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TML",
+      "officialSymbolExists": false,
+      "lineColor": "#9c2e00",
+      "lineTheme": {
+        "code": "TML",
+        "color": "#9c2e00",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-HUH-to-hk-mtr-TUM",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:53 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-64.html",
+            "sha256": "aff9d0bd1a511cf01223d32d6a83ca77cf207f6adb4c9b95e8fe165c0d06d2b7"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-84.html",
+            "sha256": "c56d6e09922eca108b76997ad53248f3adfdcae8456f59c6805b966f7f407f5a"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=64",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tuen-ma-short-huh-tum",
+          "nameJa": "屯馬綫",
+          "nameEn": "Tuen Ma Line",
+          "nameKo": "튄마선",
+          "stops": [
+            "hk-mtr-HUH",
+            "hk-mtr-ETS",
+            "hk-mtr-AUS",
+            "hk-mtr-NAC",
+            "hk-mtr-MEF",
+            "hk-mtr-TWW",
+            "hk-mtr-KSR",
+            "hk-mtr-YUL",
+            "hk-mtr-LOP",
+            "hk-mtr-TIS",
+            "hk-mtr-SIH",
+            "hk-mtr-TUM"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "d502b7f456a9c537da3db1e60ee31cbc8e5272c1a386d9bef422d34443660fcf",
+      "validationFingerprint": "76a4dd0c138af18dedf761a49ea4deb23d37518ea9eceddd242d77325221ebf7",
+      "lazySource": "data/hk/generated/routes/hk-tuen-ma-short-huh-tum.json",
+      "stationCount": 12,
+      "stationSequence": [
+        "hk-mtr-HUH",
+        "hk-mtr-ETS",
+        "hk-mtr-AUS",
+        "hk-mtr-NAC",
+        "hk-mtr-MEF",
+        "hk-mtr-TWW",
+        "hk-mtr-KSR",
+        "hk-mtr-YUL",
+        "hk-mtr-LOP",
+        "hk-mtr-TIS",
+        "hk-mtr-SIH",
+        "hk-mtr-TUM"
+      ],
+      "searchStations": [
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "尖東",
+        "East Tsim Sha Tsui",
+        "이스트 침사추이",
+        "柯士甸",
+        "Austin",
+        "어스틴",
+        "南昌",
+        "Nam Cheong",
+        "남청",
+        "美孚",
+        "Mei Foo",
+        "메이푸",
+        "荃灣西",
+        "Tsuen Wan West",
+        "추엔완웨스트",
+        "錦上路",
+        "Kam Sheung Road",
+        "캄셩로드",
+        "元朗",
+        "Yuen Long",
+        "윈롱",
+        "朗屏",
+        "Long Ping",
+        "롱핑",
+        "天水圍",
+        "Tin Shui Wai",
+        "틴슈이와이",
+        "兆康",
+        "Siu Hong",
+        "시유홍",
+        "屯門",
+        "Tuen Mun",
+        "툰문"
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-ksr-tum",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tuen-ma",
+      "servicePatternId": "hk-tuen-ma-short-ksr-tum",
+      "serviceLabel": "Kam Sheung Road → Tuen Mun",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "屯馬綫",
+        "en": "Tuen Ma Line",
+        "ko": "튄마선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TML",
+      "officialSymbolExists": false,
+      "lineColor": "#9c2e00",
+      "lineTheme": {
+        "code": "TML",
+        "color": "#9c2e00",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-KSR-to-hk-mtr-TUM",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:03 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-115.html",
+            "sha256": "e10efacd331ac1f83be3aa20f5c11d7f3713cdf2edca1337de06e3da026cab45"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-114.html",
+            "sha256": "f00cf1465c379f5e141f746e7238a6de5b1544d468063c72d59c661a6e656bcd"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=115",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tuen-ma-short-ksr-tum",
+          "nameJa": "屯馬綫",
+          "nameEn": "Tuen Ma Line",
+          "nameKo": "튄마선",
+          "stops": [
+            "hk-mtr-KSR",
+            "hk-mtr-YUL",
+            "hk-mtr-LOP",
+            "hk-mtr-TIS",
+            "hk-mtr-SIH",
+            "hk-mtr-TUM"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "216c323e524f6bf16012b80ae63c36218312d3a1b5a3b8ae8b49f54b79b729c9",
+      "validationFingerprint": "bea1e8112a3b6139ff441cc54a8f6d317454e6c7bc6a8a618a44de98940d4efc",
+      "lazySource": "data/hk/generated/routes/hk-tuen-ma-short-ksr-tum.json",
+      "stationCount": 6,
+      "stationSequence": [
+        "hk-mtr-KSR",
+        "hk-mtr-YUL",
+        "hk-mtr-LOP",
+        "hk-mtr-TIS",
+        "hk-mtr-SIH",
+        "hk-mtr-TUM"
+      ],
+      "searchStations": [
+        "錦上路",
+        "Kam Sheung Road",
+        "캄셩로드",
+        "元朗",
+        "Yuen Long",
+        "윈롱",
+        "朗屏",
+        "Long Ping",
+        "롱핑",
+        "天水圍",
+        "Tin Shui Wai",
+        "틴슈이와이",
+        "兆康",
+        "Siu Hong",
+        "시유홍",
+        "屯門",
+        "Tuen Mun",
+        "툰문"
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-ets-wks",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tuen-ma",
+      "servicePatternId": "hk-tuen-ma-short-ets-wks",
+      "serviceLabel": "East Tsim Sha Tsui → Wu Kai Sha",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "屯馬綫",
+        "en": "Tuen Ma Line",
+        "ko": "튄마선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TML",
+      "officialSymbolExists": false,
+      "lineColor": "#9c2e00",
+      "lineTheme": {
+        "code": "TML",
+        "color": "#9c2e00",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-ETS-to-hk-mtr-WKS",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 06:01 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-80.html",
+            "sha256": "175970227d05d2c0df6f633adb54c90c5b1612277039f119d956925eeaeccd06"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-111.html",
+            "sha256": "e132f8ece7ddf0b02e3bb141f615cde1eedf94e670b577ed3e604c0f219d3595"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=80",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tuen-ma-short-ets-wks",
+          "nameJa": "屯馬綫",
+          "nameEn": "Tuen Ma Line",
+          "nameKo": "튄마선",
+          "stops": [
+            "hk-mtr-ETS",
+            "hk-mtr-HUH",
+            "hk-mtr-HOM",
+            "hk-mtr-TKW",
+            "hk-mtr-SUW",
+            "hk-mtr-KAT",
+            "hk-mtr-DIH",
+            "hk-mtr-HIK",
+            "hk-mtr-TAW",
+            "hk-mtr-CKT",
+            "hk-mtr-STW",
+            "hk-mtr-CIO",
+            "hk-mtr-SHM",
+            "hk-mtr-TSH",
+            "hk-mtr-HEO",
+            "hk-mtr-MOS",
+            "hk-mtr-WKS"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "9c21d3574797a61f0e8be073938c1499c21cc9f438e775671faf52d89ca66ee8",
+      "validationFingerprint": "3c5f1697ce71fa67bf02bd328300c6e22046752bb68198390cb332776157acf7",
+      "lazySource": "data/hk/generated/routes/hk-tuen-ma-short-ets-wks.json",
+      "stationCount": 17,
+      "stationSequence": [
+        "hk-mtr-ETS",
+        "hk-mtr-HUH",
+        "hk-mtr-HOM",
+        "hk-mtr-TKW",
+        "hk-mtr-SUW",
+        "hk-mtr-KAT",
+        "hk-mtr-DIH",
+        "hk-mtr-HIK",
+        "hk-mtr-TAW",
+        "hk-mtr-CKT",
+        "hk-mtr-STW",
+        "hk-mtr-CIO",
+        "hk-mtr-SHM",
+        "hk-mtr-TSH",
+        "hk-mtr-HEO",
+        "hk-mtr-MOS",
+        "hk-mtr-WKS"
+      ],
+      "searchStations": [
+        "尖東",
+        "East Tsim Sha Tsui",
+        "이스트 침사추이",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "何文田",
+        "Ho Man Tin",
+        "호만틴",
+        "土瓜灣",
+        "To Kwa Wan",
+        "토콰완",
+        "宋皇臺",
+        "Sung Wong Toi",
+        "송웡토이",
+        "啟德",
+        "Kai Tak",
+        "카이탁",
+        "鑽石山",
+        "Diamond Hill",
+        "다이아몬드힐",
+        "顯徑",
+        "Hin Keng",
+        "힌켕",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "車公廟",
+        "Che Kung Temple",
+        "체공묘",
+        "沙田圍",
+        "Sha Tin Wai",
+        "샤틴와이",
+        "第一城",
+        "City One",
+        "시티원",
+        "石門",
+        "Shek Mun",
+        "섹문",
+        "大水坑",
+        "Tai Shui Hang",
+        "타이수이항",
+        "恆安",
+        "Heng On",
+        "항온",
+        "馬鞍山",
+        "Ma On Shan",
+        "마온산",
+        "烏溪沙",
+        "Wu Kai Sha",
+        "우카이샤"
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-taw-wks",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tuen-ma",
+      "servicePatternId": "hk-tuen-ma-short-taw-wks",
+      "serviceLabel": "Tai Wai → Wu Kai Sha",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "屯馬綫",
+        "en": "Tuen Ma Line",
+        "ko": "튄마선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TML",
+      "officialSymbolExists": false,
+      "lineColor": "#9c2e00",
+      "lineTheme": {
+        "code": "TML",
+        "color": "#9c2e00",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-TAW-to-hk-mtr-WKS",
+      "validWhen": {
+        "type": "first-train",
+        "noteKo": "첫차 단축 운행 · 05:40 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-67.html",
+            "sha256": "416a232b935938dd31979d2717962bfaa89df8a429d563b548dae30e3ec1be05"
+          },
+          {
+            "file": "data/hk/sources/bulk/hours-90.html",
+            "sha256": "193762b73bc535ccb9088a4b4b7efcbcd8839096a181b63164f1d08f701e54a4"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=67",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tuen-ma-short-taw-wks",
+          "nameJa": "屯馬綫",
+          "nameEn": "Tuen Ma Line",
+          "nameKo": "튄마선",
+          "stops": [
+            "hk-mtr-TAW",
+            "hk-mtr-CKT",
+            "hk-mtr-STW",
+            "hk-mtr-CIO",
+            "hk-mtr-SHM",
+            "hk-mtr-TSH",
+            "hk-mtr-HEO",
+            "hk-mtr-MOS",
+            "hk-mtr-WKS"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "2008ac5170ec0b591641c4548eec74d0b8d3bd7dd420c53ba2d4f78f87f48fd8",
+      "validationFingerprint": "80c3f5d2347c61a691139fb7d674dee1532d02328297248490017b486835d1dd",
+      "lazySource": "data/hk/generated/routes/hk-tuen-ma-short-taw-wks.json",
+      "stationCount": 9,
+      "stationSequence": [
+        "hk-mtr-TAW",
+        "hk-mtr-CKT",
+        "hk-mtr-STW",
+        "hk-mtr-CIO",
+        "hk-mtr-SHM",
+        "hk-mtr-TSH",
+        "hk-mtr-HEO",
+        "hk-mtr-MOS",
+        "hk-mtr-WKS"
+      ],
+      "searchStations": [
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "車公廟",
+        "Che Kung Temple",
+        "체공묘",
+        "沙田圍",
+        "Sha Tin Wai",
+        "샤틴와이",
+        "第一城",
+        "City One",
+        "시티원",
+        "石門",
+        "Shek Mun",
+        "섹문",
+        "大水坑",
+        "Tai Shui Hang",
+        "타이수이항",
+        "恆安",
+        "Heng On",
+        "항온",
+        "馬鞍山",
+        "Ma On Shan",
+        "마온산",
+        "烏溪沙",
+        "Wu Kai Sha",
+        "우카이샤"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-wha-kwt",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-wha-kwt",
+      "serviceLabel": "Whampoa → Kwun Tong",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-WHA-to-hk-mtr-KWT",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 01:00 막차, 쿤통행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-85.html",
+            "sha256": "6ab4c48033668193576f7295fc5a56fd734ba78371d01c349554dab68407015d"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=85",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-wha-kwt",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-WHA",
+            "hk-mtr-HOM",
+            "hk-mtr-YMT",
+            "hk-mtr-MOK",
+            "hk-mtr-PRE",
+            "hk-mtr-SKM",
+            "hk-mtr-KOT",
+            "hk-mtr-LOF",
+            "hk-mtr-WTS",
+            "hk-mtr-DIH",
+            "hk-mtr-CHH",
+            "hk-mtr-KOB",
+            "hk-mtr-NTK",
+            "hk-mtr-KWT"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "bef477771411314709623b016dadc33f980117428677310d6f76608c66fcce05",
+      "validationFingerprint": "d45ad37ee9cb191d0d3b8620019a924b068a8f45a1ede3c80274eb24fd4dcffb",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-wha-kwt.json",
+      "stationCount": 14,
+      "stationSequence": [
+        "hk-mtr-WHA",
+        "hk-mtr-HOM",
+        "hk-mtr-YMT",
+        "hk-mtr-MOK",
+        "hk-mtr-PRE",
+        "hk-mtr-SKM",
+        "hk-mtr-KOT",
+        "hk-mtr-LOF",
+        "hk-mtr-WTS",
+        "hk-mtr-DIH",
+        "hk-mtr-CHH",
+        "hk-mtr-KOB",
+        "hk-mtr-NTK",
+        "hk-mtr-KWT"
+      ],
+      "searchStations": [
+        "黃埔",
+        "Whampoa",
+        "왐포아",
+        "何文田",
+        "Ho Man Tin",
+        "호만틴",
+        "油麻地",
+        "Yau Ma Tei",
+        "야우마테이",
+        "旺角",
+        "Mong Kok",
+        "몽콕",
+        "太子",
+        "Prince Edward",
+        "프린스에드워드",
+        "石硤尾",
+        "Shek Kip Mei",
+        "섹깁메이",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "樂富",
+        "Lok Fu",
+        "록푸",
+        "黃大仙",
+        "Wong Tai Sin",
+        "웡타이신",
+        "鑽石山",
+        "Diamond Hill",
+        "다이아몬드힐",
+        "彩虹",
+        "Choi Hung",
+        "초이훙",
+        "九龍灣",
+        "Kowloon Bay",
+        "까우룽베이",
+        "牛頭角",
+        "Ngau Tau Kok",
+        "응아우타우콕",
+        "觀塘",
+        "Kwun Tong",
+        "쿤통"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-tik-chh",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-tik-chh",
+      "serviceLabel": "Tiu Keng Leng → Choi Hung",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-TIK-to-hk-mtr-CHH",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 01:06 막차, 초이훙행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-49.html",
+            "sha256": "9c6b33d7e3e9f434d9b8389485516654fa52b2e7dfe46ab78ecf4d8fb70ad1e5"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-tik-chh",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-TIK",
+            "hk-mtr-YAT",
+            "hk-mtr-LAT",
+            "hk-mtr-KWT",
+            "hk-mtr-NTK",
+            "hk-mtr-KOB",
+            "hk-mtr-CHH"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "2ab79939ddfadbb4dc549e11627da6eb48f8c7cde6ecdaf21427d553ae108704",
+      "validationFingerprint": "9cb5e89fe8ad93554f4194755d858cfcf3c579dd9a61789b85e1b627739292d9",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-tik-chh.json",
+      "stationCount": 7,
+      "stationSequence": [
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-LAT",
+        "hk-mtr-KWT",
+        "hk-mtr-NTK",
+        "hk-mtr-KOB",
+        "hk-mtr-CHH"
+      ],
+      "searchStations": [
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝",
+        "油塘",
+        "Yau Tong",
+        "야우통",
+        "藍田",
+        "Lam Tin",
+        "람틴",
+        "觀塘",
+        "Kwun Tong",
+        "쿤통",
+        "牛頭角",
+        "Ngau Tau Kok",
+        "응아우타우콕",
+        "九龍灣",
+        "Kowloon Bay",
+        "까우룽베이",
+        "彩虹",
+        "Choi Hung",
+        "초이훙"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-tik-kwt",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-tik-kwt",
+      "serviceLabel": "Tiu Keng Leng → Kwun Tong",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-TIK-to-hk-mtr-KWT",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 01:15 막차, 쿤통행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-49.html",
+            "sha256": "9c6b33d7e3e9f434d9b8389485516654fa52b2e7dfe46ab78ecf4d8fb70ad1e5"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-tik-kwt",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-TIK",
+            "hk-mtr-YAT",
+            "hk-mtr-LAT",
+            "hk-mtr-KWT"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "441ce4fd27af352af463030394bc12b2dd15920576d8d3460e08256eb7ca1abb",
+      "validationFingerprint": "1fe4ac90a34f68ac39765805e6f875fd155dfeb830a5849bdfaf30604933d1e6",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-tik-kwt.json",
+      "stationCount": 4,
+      "stationSequence": [
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-LAT",
+        "hk-mtr-KWT"
+      ],
+      "searchStations": [
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝",
+        "油塘",
+        "Yau Tong",
+        "야우통",
+        "藍田",
+        "Lam Tin",
+        "람틴",
+        "觀塘",
+        "Kwun Tong",
+        "쿤통"
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-tum-huh",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tuen-ma",
+      "servicePatternId": "hk-tuen-ma-short-tum-huh",
+      "serviceLabel": "Tuen Mun → Hung Hom",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "屯馬綫",
+        "en": "Tuen Ma Line",
+        "ko": "튄마선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TML",
+      "officialSymbolExists": false,
+      "lineColor": "#9c2e00",
+      "lineTheme": {
+        "code": "TML",
+        "color": "#9c2e00",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-TUM-to-hk-mtr-HUH",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:15 막차, 홍함행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-120.html",
+            "sha256": "cc778bd757c15e737e99a0bce46561b3a1bcd2d8ca5ac8b312fbc54830b63e25"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=120",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tuen-ma-short-tum-huh",
+          "nameJa": "屯馬綫",
+          "nameEn": "Tuen Ma Line",
+          "nameKo": "튄마선",
+          "stops": [
+            "hk-mtr-TUM",
+            "hk-mtr-SIH",
+            "hk-mtr-TIS",
+            "hk-mtr-LOP",
+            "hk-mtr-YUL",
+            "hk-mtr-KSR",
+            "hk-mtr-TWW",
+            "hk-mtr-MEF",
+            "hk-mtr-NAC",
+            "hk-mtr-AUS",
+            "hk-mtr-ETS",
+            "hk-mtr-HUH"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "50ad706adc222c0dbf36a5062300fef87abbd8b816aedbac459a4f13d0c125bf",
+      "validationFingerprint": "9f8857c56b71e9e8112c230f9c84a64ed8791457ae6bab12255a5d3c84921023",
+      "lazySource": "data/hk/generated/routes/hk-tuen-ma-short-tum-huh.json",
+      "stationCount": 12,
+      "stationSequence": [
+        "hk-mtr-TUM",
+        "hk-mtr-SIH",
+        "hk-mtr-TIS",
+        "hk-mtr-LOP",
+        "hk-mtr-YUL",
+        "hk-mtr-KSR",
+        "hk-mtr-TWW",
+        "hk-mtr-MEF",
+        "hk-mtr-NAC",
+        "hk-mtr-AUS",
+        "hk-mtr-ETS",
+        "hk-mtr-HUH"
+      ],
+      "searchStations": [
+        "屯門",
+        "Tuen Mun",
+        "툰문",
+        "兆康",
+        "Siu Hong",
+        "시유홍",
+        "天水圍",
+        "Tin Shui Wai",
+        "틴슈이와이",
+        "朗屏",
+        "Long Ping",
+        "롱핑",
+        "元朗",
+        "Yuen Long",
+        "윈롱",
+        "錦上路",
+        "Kam Sheung Road",
+        "캄셩로드",
+        "荃灣西",
+        "Tsuen Wan West",
+        "추엔완웨스트",
+        "美孚",
+        "Mei Foo",
+        "메이푸",
+        "南昌",
+        "Nam Cheong",
+        "남청",
+        "柯士甸",
+        "Austin",
+        "어스틴",
+        "尖東",
+        "East Tsim Sha Tsui",
+        "이스트 침사추이",
+        "紅磡",
+        "Hung Hom",
+        "홍함"
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-wks-huh",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tuen-ma",
+      "servicePatternId": "hk-tuen-ma-short-wks-huh",
+      "serviceLabel": "Wu Kai Sha → Hung Hom",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "屯馬綫",
+        "en": "Tuen Ma Line",
+        "ko": "튄마선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TML",
+      "officialSymbolExists": false,
+      "lineColor": "#9c2e00",
+      "lineTheme": {
+        "code": "TML",
+        "color": "#9c2e00",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-WKS-to-hk-mtr-HUH",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:14 막차, 홍함행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-103.html",
+            "sha256": "3940a4b9c4ae3fa9b557af0f6e3f938dabc3c7df525c9d2c71403b3c48bc7112"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=103",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tuen-ma-short-wks-huh",
+          "nameJa": "屯馬綫",
+          "nameEn": "Tuen Ma Line",
+          "nameKo": "튄마선",
+          "stops": [
+            "hk-mtr-WKS",
+            "hk-mtr-MOS",
+            "hk-mtr-HEO",
+            "hk-mtr-TSH",
+            "hk-mtr-SHM",
+            "hk-mtr-CIO",
+            "hk-mtr-STW",
+            "hk-mtr-CKT",
+            "hk-mtr-TAW",
+            "hk-mtr-HIK",
+            "hk-mtr-DIH",
+            "hk-mtr-KAT",
+            "hk-mtr-SUW",
+            "hk-mtr-TKW",
+            "hk-mtr-HOM",
+            "hk-mtr-HUH"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "cbeea8ebf8cd57e865baab90588421dbc132ea83498a6b59ee31de9c063fd0c0",
+      "validationFingerprint": "b834ef0bddb22b025f529fb20d05782d70ff6b6f7dfcab968a7849854154c251",
+      "lazySource": "data/hk/generated/routes/hk-tuen-ma-short-wks-huh.json",
+      "stationCount": 16,
+      "stationSequence": [
+        "hk-mtr-WKS",
+        "hk-mtr-MOS",
+        "hk-mtr-HEO",
+        "hk-mtr-TSH",
+        "hk-mtr-SHM",
+        "hk-mtr-CIO",
+        "hk-mtr-STW",
+        "hk-mtr-CKT",
+        "hk-mtr-TAW",
+        "hk-mtr-HIK",
+        "hk-mtr-DIH",
+        "hk-mtr-KAT",
+        "hk-mtr-SUW",
+        "hk-mtr-TKW",
+        "hk-mtr-HOM",
+        "hk-mtr-HUH"
+      ],
+      "searchStations": [
+        "烏溪沙",
+        "Wu Kai Sha",
+        "우카이샤",
+        "馬鞍山",
+        "Ma On Shan",
+        "마온산",
+        "恆安",
+        "Heng On",
+        "항온",
+        "大水坑",
+        "Tai Shui Hang",
+        "타이수이항",
+        "石門",
+        "Shek Mun",
+        "섹문",
+        "第一城",
+        "City One",
+        "시티원",
+        "沙田圍",
+        "Sha Tin Wai",
+        "샤틴와이",
+        "車公廟",
+        "Che Kung Temple",
+        "체공묘",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "顯徑",
+        "Hin Keng",
+        "힌켕",
+        "鑽石山",
+        "Diamond Hill",
+        "다이아몬드힐",
+        "啟德",
+        "Kai Tak",
+        "카이탁",
+        "宋皇臺",
+        "Sung Wong Toi",
+        "송웡토이",
+        "土瓜灣",
+        "To Kwa Wan",
+        "토콰완",
+        "何文田",
+        "Ho Man Tin",
+        "호만틴",
+        "紅磡",
+        "Hung Hom",
+        "홍함"
+      ]
+    },
+    {
+      "id": "hk-tuen-ma-short-wks-taw",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tuen-ma",
+      "servicePatternId": "hk-tuen-ma-short-wks-taw",
+      "serviceLabel": "Wu Kai Sha → Tai Wai",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "屯馬綫",
+        "en": "Tuen Ma Line",
+        "ko": "튄마선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TML",
+      "officialSymbolExists": false,
+      "lineColor": "#9c2e00",
+      "lineTheme": {
+        "code": "TML",
+        "color": "#9c2e00",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-WKS-to-hk-mtr-TAW",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:39 막차, 타이와이행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-103.html",
+            "sha256": "3940a4b9c4ae3fa9b557af0f6e3f938dabc3c7df525c9d2c71403b3c48bc7112"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=103",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tuen-ma-short-wks-taw",
+          "nameJa": "屯馬綫",
+          "nameEn": "Tuen Ma Line",
+          "nameKo": "튄마선",
+          "stops": [
+            "hk-mtr-WKS",
+            "hk-mtr-MOS",
+            "hk-mtr-HEO",
+            "hk-mtr-TSH",
+            "hk-mtr-SHM",
+            "hk-mtr-CIO",
+            "hk-mtr-STW",
+            "hk-mtr-CKT",
+            "hk-mtr-TAW"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "81b05754937b28dabb1401d1e2d669821a6ed5544af06470a1b60d5baffe0715",
+      "validationFingerprint": "8d2657ccb715d81880a328a14dd6200da819dbc3d6103e3a6e68035ec9e53646",
+      "lazySource": "data/hk/generated/routes/hk-tuen-ma-short-wks-taw.json",
+      "stationCount": 9,
+      "stationSequence": [
+        "hk-mtr-WKS",
+        "hk-mtr-MOS",
+        "hk-mtr-HEO",
+        "hk-mtr-TSH",
+        "hk-mtr-SHM",
+        "hk-mtr-CIO",
+        "hk-mtr-STW",
+        "hk-mtr-CKT",
+        "hk-mtr-TAW"
+      ],
+      "searchStations": [
+        "烏溪沙",
+        "Wu Kai Sha",
+        "우카이샤",
+        "馬鞍山",
+        "Ma On Shan",
+        "마온산",
+        "恆安",
+        "Heng On",
+        "항온",
+        "大水坑",
+        "Tai Shui Hang",
+        "타이수이항",
+        "石門",
+        "Shek Mun",
+        "섹문",
+        "第一城",
+        "City One",
+        "시티원",
+        "沙田圍",
+        "Sha Tin Wai",
+        "샤틴와이",
+        "車公廟",
+        "Che Kung Temple",
+        "체공묘",
+        "大圍",
+        "Tai Wai",
+        "타이와이"
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-low-huh",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-short-low-huh",
+      "serviceLabel": "Lo Wu → Hung Hom",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-LOW-to-hk-mtr-HUH",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:30 막차, 홍함행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-76.html",
+            "sha256": "29611237156252bdce3f479ae626b396df6ba09e16b0c216afbcefe61e621fe7"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=76",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-short-low-huh",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-LOW",
+            "hk-mtr-SHS",
+            "hk-mtr-FAN",
+            "hk-mtr-TWO",
+            "hk-mtr-TAP",
+            "hk-mtr-UNI",
+            "hk-mtr-FOT",
+            "hk-mtr-SHT",
+            "hk-mtr-TAW",
+            "hk-mtr-KOT",
+            "hk-mtr-MKK",
+            "hk-mtr-HUH"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "29a2daf17cfe06a8a51b9b9eb948dd0be8c48ff1759a9c8151447eec865c6dc8",
+      "validationFingerprint": "c13ca6ead3b96888871fb4a680c6f7aebdfdbd93e6d47912b3457fdb10949ae1",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-short-low-huh.json",
+      "stationCount": 12,
+      "stationSequence": [
+        "hk-mtr-LOW",
+        "hk-mtr-SHS",
+        "hk-mtr-FAN",
+        "hk-mtr-TWO",
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-FOT",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH"
+      ],
+      "searchStations": [
+        "羅湖",
+        "Lo Wu",
+        "로위",
+        "上水",
+        "Sheung Shui",
+        "셩슈이",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "大學",
+        "University",
+        "유니버시티",
+        "火炭",
+        "Fo Tan",
+        "포탄",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "紅磡",
+        "Hung Hom",
+        "홍함"
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-adm-shs",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-short-adm-shs",
+      "serviceLabel": "Admiralty → Sheung Shui",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-ADM-to-hk-mtr-SHS",
+      "validWhen": {
+        "type": "late-short-turn",
+        "noteKo": "심야 단축 운행 · 00:22 막차, 셩슈이행. 전 구간 막차 이후 일부 열차만 운행합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/hours-2.html",
+            "sha256": "5cb88a0c973c8573c046927e9ce26b9dee80ed61737fd75e14526956cdf5a819"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=2",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-short-adm-shs",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-ADM",
+            "hk-mtr-EXC",
+            "hk-mtr-HUH",
+            "hk-mtr-MKK",
+            "hk-mtr-KOT",
+            "hk-mtr-TAW",
+            "hk-mtr-SHT",
+            "hk-mtr-FOT",
+            "hk-mtr-UNI",
+            "hk-mtr-TAP",
+            "hk-mtr-TWO",
+            "hk-mtr-FAN",
+            "hk-mtr-SHS"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "cc26b68083ab2ae299dc8e068d641d18d6a8aeaf9481a0e3a1958cd7ddb91d6c",
+      "validationFingerprint": "a321461e774117594846cfa7de91d088b65922342e0b0f62d71497c12420a631",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-short-adm-shs.json",
+      "stationCount": 13,
+      "stationSequence": [
+        "hk-mtr-ADM",
+        "hk-mtr-EXC",
+        "hk-mtr-HUH",
+        "hk-mtr-MKK",
+        "hk-mtr-KOT",
+        "hk-mtr-TAW",
+        "hk-mtr-SHT",
+        "hk-mtr-FOT",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS"
+      ],
+      "searchStations": [
+        "金鐘",
+        "Admiralty",
+        "애드미럴티",
+        "會展",
+        "Exhibition Centre",
+        "전시장",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "火炭",
+        "Fo Tan",
+        "포탄",
+        "大學",
+        "University",
+        "유니버시티",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "上水",
+        "Sheung Shui",
+        "셩슈이"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-tik-hom",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-tik-hom",
+      "serviceLabel": "Tiu Keng Leng → Ho Man Tin",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-TIK-to-hk-mtr-HOM",
+      "validWhen": {
+        "type": "peak-short-turn",
+        "noteKo": "평일 혼잡시간 호만틴 종착 단축편. 왐포아행과 교대로 운행하며 전 구간 운행편과 구분합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/service-frequency.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-tik-hom",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-TIK",
+            "hk-mtr-YAT",
+            "hk-mtr-LAT",
+            "hk-mtr-KWT",
+            "hk-mtr-NTK",
+            "hk-mtr-KOB",
+            "hk-mtr-CHH",
+            "hk-mtr-DIH",
+            "hk-mtr-WTS",
+            "hk-mtr-LOF",
+            "hk-mtr-KOT",
+            "hk-mtr-SKM",
+            "hk-mtr-PRE",
+            "hk-mtr-MOK",
+            "hk-mtr-YMT",
+            "hk-mtr-HOM"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "6e2578e2f37eed634e88564af3c8a0c2d40ef2359ab89c04e2b20a15f6bbccf1",
+      "validationFingerprint": "39fbe5e7cbab31a8ceed652c1a5f6583c9c88ce810d038de6a98efdf5b6f5871",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-tik-hom.json",
+      "stationCount": 16,
+      "stationSequence": [
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-LAT",
+        "hk-mtr-KWT",
+        "hk-mtr-NTK",
+        "hk-mtr-KOB",
+        "hk-mtr-CHH",
+        "hk-mtr-DIH",
+        "hk-mtr-WTS",
+        "hk-mtr-LOF",
+        "hk-mtr-KOT",
+        "hk-mtr-SKM",
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-HOM"
+      ],
+      "searchStations": [
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝",
+        "油塘",
+        "Yau Tong",
+        "야우통",
+        "藍田",
+        "Lam Tin",
+        "람틴",
+        "觀塘",
+        "Kwun Tong",
+        "쿤통",
+        "牛頭角",
+        "Ngau Tau Kok",
+        "응아우타우콕",
+        "九龍灣",
+        "Kowloon Bay",
+        "까우룽베이",
+        "彩虹",
+        "Choi Hung",
+        "초이훙",
+        "鑽石山",
+        "Diamond Hill",
+        "다이아몬드힐",
+        "黃大仙",
+        "Wong Tai Sin",
+        "웡타이신",
+        "樂富",
+        "Lok Fu",
+        "록푸",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "石硤尾",
+        "Shek Kip Mei",
+        "섹깁메이",
+        "太子",
+        "Prince Edward",
+        "프린스에드워드",
+        "旺角",
+        "Mong Kok",
+        "몽콕",
+        "油麻地",
+        "Yau Ma Tei",
+        "야우마테이",
+        "何文田",
+        "Ho Man Tin",
+        "호만틴"
+      ]
+    },
+    {
+      "id": "hk-kwun-tong-short-hom-tik",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-kwun-tong",
+      "servicePatternId": "hk-kwun-tong-short-hom-tik",
+      "serviceLabel": "Ho Man Tin → Tiu Keng Leng",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "觀塘綫",
+        "en": "Kwun Tong Line",
+        "ko": "쿤통선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "KTL",
+      "officialSymbolExists": false,
+      "lineColor": "#00a040",
+      "lineTheme": {
+        "code": "KTL",
+        "color": "#00a040",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-HOM-to-hk-mtr-TIK",
+      "validWhen": {
+        "type": "peak-short-turn",
+        "noteKo": "평일 혼잡시간 호만틴 출발 단축편. 왐포아 출발편과 구분합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/service-frequency.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-kwun-tong-short-hom-tik",
+          "nameJa": "觀塘綫",
+          "nameEn": "Kwun Tong Line",
+          "nameKo": "쿤통선",
+          "stops": [
+            "hk-mtr-HOM",
+            "hk-mtr-YMT",
+            "hk-mtr-MOK",
+            "hk-mtr-PRE",
+            "hk-mtr-SKM",
+            "hk-mtr-KOT",
+            "hk-mtr-LOF",
+            "hk-mtr-WTS",
+            "hk-mtr-DIH",
+            "hk-mtr-CHH",
+            "hk-mtr-KOB",
+            "hk-mtr-NTK",
+            "hk-mtr-KWT",
+            "hk-mtr-LAT",
+            "hk-mtr-YAT",
+            "hk-mtr-TIK"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "a297fd50643aa150ceaf79f22827bcca0f2a53e4dff321cbd758d24f489f02f2",
+      "validationFingerprint": "4e3b9ab464899f69ba12be7df7baafdfb1f02b213f53be2245be2b3c77abc574",
+      "lazySource": "data/hk/generated/routes/hk-kwun-tong-short-hom-tik.json",
+      "stationCount": 16,
+      "stationSequence": [
+        "hk-mtr-HOM",
+        "hk-mtr-YMT",
+        "hk-mtr-MOK",
+        "hk-mtr-PRE",
+        "hk-mtr-SKM",
+        "hk-mtr-KOT",
+        "hk-mtr-LOF",
+        "hk-mtr-WTS",
+        "hk-mtr-DIH",
+        "hk-mtr-CHH",
+        "hk-mtr-KOB",
+        "hk-mtr-NTK",
+        "hk-mtr-KWT",
+        "hk-mtr-LAT",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK"
+      ],
+      "searchStations": [
+        "何文田",
+        "Ho Man Tin",
+        "호만틴",
+        "油麻地",
+        "Yau Ma Tei",
+        "야우마테이",
+        "旺角",
+        "Mong Kok",
+        "몽콕",
+        "太子",
+        "Prince Edward",
+        "프린스에드워드",
+        "石硤尾",
+        "Shek Kip Mei",
+        "섹깁메이",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "樂富",
+        "Lok Fu",
+        "록푸",
+        "黃大仙",
+        "Wong Tai Sin",
+        "웡타이신",
+        "鑽石山",
+        "Diamond Hill",
+        "다이아몬드힐",
+        "彩虹",
+        "Choi Hung",
+        "초이훙",
+        "九龍灣",
+        "Kowloon Bay",
+        "까우룽베이",
+        "牛頭角",
+        "Ngau Tau Kok",
+        "응아우타우콕",
+        "觀塘",
+        "Kwun Tong",
+        "쿤통",
+        "藍田",
+        "Lam Tin",
+        "람틴",
+        "油塘",
+        "Yau Tong",
+        "야우통",
+        "調景嶺",
+        "Tiu Keng Leng",
+        "티우켕렝"
+      ]
+    },
+    {
+      "id": "hk-tung-chung-short-hok-tsy",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-tung-chung",
+      "servicePatternId": "hk-tung-chung-short-hok-tsy",
+      "serviceLabel": "Hong Kong → Tsing Yi",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東涌綫",
+        "en": "Tung Chung Line",
+        "ko": "퉁충선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "TCL",
+      "officialSymbolExists": false,
+      "lineColor": "#f3982d",
+      "lineTheme": {
+        "code": "TCL",
+        "color": "#f3982d",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-HOK-to-hk-mtr-TSY",
+      "validWhen": {
+        "type": "peak-short-turn",
+        "noteKo": "평일 혼잡시간 홍콩–칭이 단축편. 퉁충 종착편과 구분합니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/service-frequency.html",
+            "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+          },
+          {
+            "file": "data/hk/sources/bulk/tung-chung-short.pdf",
+            "sha256": "4b371f7a29caf68e118b2e5e69fb801abfd76e12307e2d38b8dc27e98d2c3478"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-tung-chung-short-hok-tsy",
+          "nameJa": "東涌綫",
+          "nameEn": "Tung Chung Line",
+          "nameKo": "퉁충선",
+          "stops": [
+            "hk-mtr-HOK",
+            "hk-mtr-KOW",
+            "hk-mtr-OLY",
+            "hk-mtr-NAC",
+            "hk-mtr-LAK",
+            "hk-mtr-TSY"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "9438bb6a2997b95ee2ccafa80a22955a28fac6eecf4f9b1a11cdecf4568d284f",
+      "validationFingerprint": "684b0e7ad3ae9d6f25518cda3412f24635090a758bbb1e9566f0f1263a24e46a",
+      "lazySource": "data/hk/generated/routes/hk-tung-chung-short-hok-tsy.json",
+      "stationCount": 6,
+      "stationSequence": [
+        "hk-mtr-HOK",
+        "hk-mtr-KOW",
+        "hk-mtr-OLY",
+        "hk-mtr-NAC",
+        "hk-mtr-LAK",
+        "hk-mtr-TSY"
+      ],
+      "searchStations": [
+        "香港",
+        "Hong Kong",
+        "홍콩",
+        "九龍",
+        "Kowloon",
+        "구룡",
+        "奧運",
+        "Olympic",
+        "올림픽",
+        "南昌",
+        "Nam Cheong",
+        "남청",
+        "茘景",
+        "Lai King",
+        "라이킹",
+        "青衣",
+        "Tsing Yi",
+        "칭이"
+      ]
+    },
+    {
+      "id": "hk-east-rail-short-tap-adm",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-short-tap-adm",
+      "serviceLabel": "Tai Po Market → Admiralty",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-mtr-TAP-to-hk-mtr-ADM",
+      "validWhen": {
+        "type": "peak-short-turn",
+        "noteKo": "혼잡시간 수요에 따라 투입되는 타이포마켓 출발 애드미럴티행 단축편. 고정 출발 시각은 보장하지 않습니다.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/east-rail-short.html",
+            "sha256": "a83d41740733c4c25631608108bfd4a66fee7dd954324659cc20a4791973e887"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-short-tap-adm",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-TAP",
+            "hk-mtr-UNI",
+            "hk-mtr-FOT",
+            "hk-mtr-SHT",
+            "hk-mtr-TAW",
+            "hk-mtr-KOT",
+            "hk-mtr-MKK",
+            "hk-mtr-HUH",
+            "hk-mtr-EXC",
+            "hk-mtr-ADM"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "bbbf6137cfe27e7d97f45b5955273b3dd35e8776bb0f0c2539243f64ea5e4e2f",
+      "validationFingerprint": "d96611a910f0cc4b9174c72ceecef5c3e4f0f4733eb262f42ae9206dfbc7aed6",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-short-tap-adm.json",
+      "stationCount": 10,
+      "stationSequence": [
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-FOT",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "searchStations": [
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "大學",
+        "University",
+        "유니버시티",
+        "火炭",
+        "Fo Tan",
+        "포탄",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "會展",
+        "Exhibition Centre",
+        "전시장",
+        "金鐘",
+        "Admiralty",
+        "애드미럴티"
+      ]
+    },
+    {
+      "id": "hk-light-rail-751p-short-500-430",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-light-rail-751p",
+      "servicePatternId": "hk-light-rail-751p-short-500-430",
+      "serviceLabel": "Tin Wing → Tin Shui Wai",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "輕鐵 751P",
+        "en": "Light Rail 751P",
+        "ko": "경전철 751P"
+      },
+      "category": "light_rail",
+      "mode": "light_rail",
+      "code": "751P",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "751P",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "hk-lr-500-to-hk-lr-430",
+      "validWhen": {
+        "type": "weekday-morning-peak",
+        "noteKo": "751P 오전 특별편 · 틴윙 → 틴수이와이. 평일 혼잡시간 운행, 토·일·공휴일 및 방학 미운행. 운행일 당일 안내를 확인하세요.",
+        "timezone": "Asia/Hong_Kong",
+        "exactDepartureTimesVerified": false,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+          },
+          {
+            "file": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+            "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27"
+          },
+          {
+            "file": "data/hk/sources/phase6/lr-partial-751.html",
+            "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb"
+          },
+          {
+            "file": "data/hk/sources/phase3/mtr-stations.csv",
+            "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-light-rail-751p-short-500-430",
+          "nameJa": "輕鐵 751P",
+          "nameEn": "Light Rail 751P",
+          "nameKo": "경전철 751P",
+          "stops": [
+            "hk-lr-500",
+            "hk-lr-455",
+            "hk-lr-450",
+            "hk-lr-435",
+            "hk-lr-430"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "848629e9d95341e2d5f3f34a3b572b0589ed9937147013f2ad740edaf99b9ed7",
+      "validationFingerprint": "24786f35639f7aa1a147cb9284d069d241674f2230bf649bc9f5247a454b2825",
+      "lazySource": "data/hk/generated/routes/hk-light-rail-751p-short-500-430.json",
+      "stationCount": 5,
+      "stationSequence": [
+        "hk-lr-500",
+        "hk-lr-455",
+        "hk-lr-450",
+        "hk-lr-435",
+        "hk-lr-430"
+      ],
+      "searchStations": [
+        "天榮",
+        "Tin Wing",
+        "틴윙",
+        "銀座",
+        "Ginza",
+        "긴자",
+        "天湖",
+        "Tin Wu",
+        "틴우",
+        "天慈",
+        "Tin Tsz",
+        "틴치",
+        "天水圍",
+        "Tin Shui Wai",
+        "틴수이와이"
+      ]
+    },
+    {
       "id": "hk-tram-western-market-shau-kei-wan-4088321",
       "countryId": "hk",
       "schemaVersion": 1,
@@ -10062,8 +13877,8 @@
   },
   "audit": {
     "status": "INCOMPLETE",
-    "totalServices": 66,
-    "playableServices": 62,
+    "totalServices": 96,
+    "playableServices": 92,
     "missingKoreanNames": 6,
     "geometryIssues": 3
   }
