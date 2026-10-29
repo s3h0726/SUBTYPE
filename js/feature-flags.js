@@ -7,7 +7,7 @@ export const FEATURE_FLAGS=Object.freeze({
 // Keep historical play records playable after a physical branch becomes an
 // internal part of its passenger line. IDs remain stable in stored records;
 // only their current display/playback parent changes.
-const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3','line-99815':'line-99814'});
+const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3','line-99815':'line-99814','line-11317--hachikosen-hachioji-komagawa':'line-11317','line-11229--jobansen-totte-iwaki':'line-11229','line-11320--jobansen-ueno-totte':'line-11320'});
 export const canonicalRouteId=routeId=>LEGACY_ROUTE_ALIASES[String(routeId||'')]||routeId;
 
 export const isCountryEnabled=countryId=>countryId!=='kr'||FEATURE_FLAGS.korea;
