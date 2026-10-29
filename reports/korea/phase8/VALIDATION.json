@@ -98,12 +98,35 @@
     "physicalMobile": "NOT_TESTED",
     "osIme": "NOT_TESTED",
     "supabaseAccount": "NOT_TESTED",
-    "liveDeployment": "NOT_TESTED"
+    "liveDeployment": "NOT_TESTED",
+    "defaultSelector": {
+      "status": "PASS",
+      "scenarios": 12,
+      "report": "DEFAULT_UI_RESULTS.json"
+    },
+    "totalScenarios": 44
   },
   "preservedOriginalPayloads": 128,
   "koreanUnitTests": {
-    "pass": 98,
+    "pass": 99,
     "fail": 0
   },
-  "otherCountryDataChanges": 0
+  "otherCountryDataChanges": 0,
+  "ciInitialFailures": [
+    {
+      "sha": "a02455f7",
+      "reason": "CRLF/LF evidence text hash mismatch",
+      "resolution": "sha256-utf8-lf encoding with strict content checks"
+    },
+    {
+      "sha": "36ab6c9c",
+      "reason": "Legacy promotion audit assumed every preview identity was an OSM service",
+      "resolution": "Resolve real donor with exact geometry and stop identity; retain formal release blockers"
+    },
+    {
+      "sha": "0e747cc9",
+      "reason": "Stale generated Phase 6 network audit",
+      "resolution": "Regenerate from source, keep reproducibility gate unchanged"
+    }
+  ]
 }

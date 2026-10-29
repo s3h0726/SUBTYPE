@@ -132,11 +132,19 @@ jobs:
         env:
           SUBTYPE_SITE_REPORT: reports/korea/phase8/BROWSER_RESULTS.json
         run: npm run test:korea-phase8-site
+      - name: Default Korea selector provisional play and record separation
+        env:
+          SUBTYPE_KOREA_MODE: released
+          SUBTYPE_TEST_CASES: 10685370,16665962,pattern-04880983f78495db
+          SUBTYPE_SITE_REPORT: reports/korea/phase8/DEFAULT_UI_RESULTS.json
+        run: npm run test:korea-phase8-site
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: korea-candidate-browser-diagnostics
           path: |
+            reports/korea/phase8/DEFAULT_UI_RESULTS.json
+            reports/korea/phase8/DEFAULT_UI_RESULTS-screens/
             reports/korea/phase8/BROWSER_RESULTS.json
             reports/korea/phase8/BROWSER_RESULTS-screens/
             reports/korea/phase8/ENGINE_RESULTS.json
