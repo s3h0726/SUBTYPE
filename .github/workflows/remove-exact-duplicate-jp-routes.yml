@@ -1,0 +1,45 @@
+name: Remove exact duplicate Japanese railway routes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/prune-exact-duplicate-jp-routes.cjs'
+      - 'tools/test-exact-duplicate-jp-routes.cjs'
+      - 'data/japan-duplicate-route-aliases.json'
+      - '.github/workflows/remove-exact-duplicate-jp-routes.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: japan-duplicate-route-main
+  cancel-in-progress: false
+jobs:
+  remove-duplicates:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Remove verified duplicate route sources and regenerate index
+        run: node tools/prune-exact-duplicate-jp-routes.cjs
+      - name: Check all canonical routes, chunks and backward-compatible old score IDs
+        run: |
+          node tools/test-exact-duplicate-jp-routes.cjs
+          node --check js/app.bundle.js
+      - name: Commit and push to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/lines/jr-east/hachikosen-hachioji-komagawa-2 data/lines/jr-east/jobansen-totte-iwaki-2 data/lines/jr-east/jobansen-ueno-totte-2 data/jp-canonical data/generated/japan-transfer-neighbors.json js/line-workspace-data.js js/japan-lite-index.js index.html
+          if git diff --cached --quiet; then
+            echo 'No duplicate artifacts left'
+          else
+            git commit -m "fix(jp): purge exact duplicate railway payloads, preserve canonical services"
+            git push origin HEAD:main
+          fi
