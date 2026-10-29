@@ -1,0 +1,28 @@
+name: Verify Hong Kong route selection
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'index.html'
+      - 'tools/test-hk-route-selector.cjs'
+      - '.github/workflows/test-hk-route-selector.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check browser bundle syntax
+        run: node --check js/app.bundle.js
+      - name: Test HK MTR/TRAM, JP and KR route-card clicks
+        run: node tools/test-hk-route-selector.cjs
+      - name: Verify Hong Kong Phase6 route data
+        run: node tools/test-hk-phase6.cjs
