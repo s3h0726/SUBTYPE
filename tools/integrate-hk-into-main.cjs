@@ -57,7 +57,23 @@ if(!game.includes("if(this.route?.countryId==='hk'){this.renderFreeDriveState(st
 if(!game.includes('  hintName(station)'))
  game=game.replace('  showDeparture(){',
  "  hintName(station){return this.route?.countryId==='hk'&&this.options.inputMode==='memory'?(station?.romaji||station?.ja||''):(station?.ko||'')}\n  showDeparture(){");
+// Preserve explicit TAB transfer at Hong Kong terminal; never auto-take a different line.
+const hkTarget="else if(defaultEdge){const targetStation=defaultEdge.route?.stations?.[defaultEdge.index]||null;if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation)}";
+const hkTerminal="else if(defaultEdge){const targetStation=defaultEdge.route?.stations?.[defaultEdge.index]||null;if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation)}else if(route.countryId==='hk'){this.freeDriveTarget=null;this.phase='AT_TERMINAL';$('#typing-input').readOnly=true;$('#station-context').textContent='종착역 도착 · 자유주행';$('#input-status').textContent='ARRIVED';}";
+if(!game.includes("this.phase='AT_TERMINAL'")){
+ if(!game.includes(hkTarget))throw Error('Hong Kong terminal branch anchor missing');
+ game=game.replace(hkTarget,hkTerminal);
+}
 write('js/game.js',game);
+// The branch fixture predates main's Korean station display helper. Supply
+// its pure presentation dependency rather than weakening the terminal assertion.
+const testFile='tools/test-hk-phase6.cjs';
+if(fs.existsSync(path.join(root,testFile))){
+ let test=read(testFile);
+ const oldFixture='c={console,performance,document:';
+ if(test.includes(oldFixture))test=test.replace(oldFixture,'c={console,performance,koreanStationDisplayName:v=>String(v||\'\'),document:');
+ write(testFile,test);
+}
 require('./repair-hk-main-compat.cjs');
 const markers={
  'js/app.js':['HONG_KONG_CATEGORIES','hongKongRouteCards','prepareHongKongTramChoices',"countryId==='hk'"],
