@@ -1,6 +1,5 @@
 import{hongKongTramChoices,resolveHongKongTramChoice,hongKongLineChoices,resolveHongKongLineChoice}from'./hong-kong-tram.js';
 import{hongKongRouteBlockReason,HONG_KONG_CATEGORIES}from'./hong-kong-policy.js';
-import{isKoreanResearch,assertKoreanResearchRoute,koreanResearchChoices,resolveKoreanResearchChoice}from'./korean-research-resolver.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
 const KR_APP_TRANSFER_PAIRS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-main","kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 import{$,$$,escapeHtml,formatTime,normalize,toast,koreanStationDisplayName,koreanRouteDisplayText}from'./utils.js';
@@ -232,7 +231,7 @@ function refreshTramNetworkGroups(eligible){
 
 function filteredRoutes(){const queries=searchVariants($('#route-search').value);return routes.filter(r=>(countryId==='jp'||transportGroup==='all'||routeTransportGroup(r)===transportGroup)&&(countryId!=='kr'||transportGroup!=='bus'||regionFilter==='all'||r.regionId===regionFilter)&&routeCategoryMatches(r)&&(operatorFilter==='all'||operatorKey(r)===operatorFilter)&&(!queries[0]||queries.some(query=>searchable(r).includes(query))))}
 function stopWord(route){return['bus','village_bus','express_bus','brt'].includes(route.mode)?'정류장':['river_bus','ferry'].includes(route.mode)?'선착장':'역'}
-function krLineFamily(r){if(/^kr-service-\d+$/.test(r?.id||''))return r.passengerLineId||r.id;if(isKoreanResearch(r))return r.integratedLine1===true?'kr-passenger-metro-1':r.id;return r.countryId==='kr'?(r.passengerLineId||r.id):null}
+function krLineFamily(r){if(/^kr-service-\d+$/.test(r?.id||''))return r.passengerLineId||r.id;return r.countryId==='kr'?(r.passengerLineId||r.id):null}
 function krRouteLabel(r){return r?.integratedLine1===true?'수도권 전철 1호선':koreanRouteDisplayText(String(r.passengerLineName||r.line?.ko||r.id).trim(),r)}
 // Unreleased research and structurally incomplete Korean routes are not playable.
 function koreanRouteUnavailableReason(route){
@@ -405,7 +404,6 @@ function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(choice.kind==='koreanGameService'){const actual=choice.sourceRouteId?(builtin.find(r=>r.id===choice.sourceRouteId)||route):route;if(!actual||actual.lazy||actual.stations?.length<2||actual.geometryReady!==true||actual.services?.length<1)throw Error('선택한 한국 운행 경로의 선로·역 목록을 아직 불러오지 못했습니다.');if(actual.stations[0].id!==choice.originId||actual.stations.at(-1).id!==choice.destinationId)throw Error('출발·종착역 불일치');return{route:actual,service:actual.services[0],direction:'forward',pattern:null,trainType:null,destinationStationId:actual.stations.at(-1).id,trainTypeContexts:[]}}
   if(choice.kind==='nex')return resolveNexOperatingChoice(route,choice);
   if(choice.kind==='famousExpress')return resolveFamousLimitedExpressChoice(route,choice);
-  if(isKoreanResearch(route))return resolveKoreanResearchChoice(choice,route);
   if(route.countryId==='kr'&&route.schemaVersion===2)return resolveKoreanVerifiedChoice(choice,route);
   if(choice.kind==='koreanFamilyService')return resolveKoreanFamilyService(choice,id=>builtin.find(item=>item.id===id));
   if(choice.kind==='catalog')return buildCatalogResolved(choice);
@@ -460,7 +458,6 @@ function actualOperatingChoices(route){
   // N'EX requires separate Ofuna/Shinjuku paths: never offer legacy chained local/fallback choices.
   if(route?.id==='line-11328')return nexOperatingChoices(route);
   if(route?.famousExpress)return famousLimitedExpressChoices(route);
-  if(route?.countryId==='kr'&&isKoreanResearch(route))return koreanResearchChoices(route);
   if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
   const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
   const add=choice=>{const key=[choice.kind==='catalog'?choice.id:(choice.kind||''),choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
