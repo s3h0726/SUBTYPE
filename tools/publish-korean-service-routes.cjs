@@ -47,7 +47,7 @@ for(const entry of source.routes){
    schemaVersion:2,sourceStatus:'osm-service-geometry',
    sourceServiceId:original.sourceServiceId,
    line:{...original.line,ko:serviceName||original.line?.ko,ja:original.line?.ja||serviceName},
-   passengerLineName:String(original.passengerLineName||'').replace(/:\s*/g,' · ')};
+   passengerLineName:String(original.passengerLineName||'').split(':')[0].trim()};
  delete material.previewContract;
  delete material.researchEvidence;
  delete material.researchPreview;
@@ -58,7 +58,7 @@ for(const entry of source.routes){
  const rendered=JSON.stringify({route:material})+'\n';
  fs.mkdirSync(path.dirname(abs(outfile)),{recursive:true});
  fs.writeFileSync(abs(outfile),rendered);
- const compact={...material,stations:[],geometry:[],directedSegments:[],services:[],lazy:true,
+ const compact={...material,stations:[],geometry:[],directedSegments:[],services:[],lazy:true,originNames:{id:material.stations[0].id,ko:material.stations[0].ko},destinationNames:{id:material.stations.at(-1).id,ko:material.stations.at(-1).ko},
    lazySource:outfile+'?v='+crypto.createHash('sha256').update(rendered).digest('hex').slice(0,12),
    stationCount:material.stations.length,serviceCount:material.services?.length||0};
  byId.set(id,compact);
