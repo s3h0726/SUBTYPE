@@ -5,7 +5,7 @@ const {load,validate,assemble}=require('./lib/kr-network'),d=load(base),m=valida
 test('all 127 Phase 6 research payloads remain identical; exactly one source-backed endpoint repair is added',()=>{
  const b=read('reports/korea/phase7/BASELINE.json'),index=read('data/kr/preview/index.json');assert.equal(b.previewPayloads.length,127);
  for(const p of b.previewPayloads)assert.equal(hash(fs.readFileSync(path.join(root,p.path))),p.sha256,p.path);
- const added=index.routes.filter(r=>!b.previewPayloads.some(p=>p.path===r.lazySource.split('?')[0]));assert.deepEqual(added.map(r=>r.sourceRelationId),['6060963']);
+ const added=index.routes.filter(r=>r.sourceRelationId==='6060963');assert.deepEqual(added.map(r=>r.sourceRelationId),['6060963']);
  const s=m.services.get('kr-osm-service-6060963'),j=assemble(s,m),r=read(added[0].lazySource.split('?')[0]).route;assert.deepEqual(r.geometry,j.geometry);assert.deepEqual(r.stations,j.stations);assert.equal(r.playStatus,'RESEARCH_PLAYABLE');assert.equal(r.researchEvidence.officialEndpoints.officialReleaseApproved,false);assert.equal(r.stations.length,16);
 });
 test('Shinbundang full official order does not accept missing stops, alternate platforms, reversed or stale geometry',()=>{

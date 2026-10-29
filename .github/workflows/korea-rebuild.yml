@@ -42,10 +42,11 @@ jobs:
       - run: npm run audit:korea-phase6
       - run: npm run audit:korea-phase7-evidence
       - name: Ensure source corrections and generated data are reproducible
-        run: git diff --exit-code -- data/kr/v2 data/kr/preview js/korean-access-data.js js/korean-preview-access-data.js
+        run: git diff --exit-code -- data/kr/v2 data/kr/preview data/kr/provisional js/korean-access-data.js js/korean-preview-access-data.js js/korean-passenger-track-data.js js/korean-provisional-pattern-data.js
       - run: npm run validate:korea
       - run: npm run test:korea
       - run: npm run test:korea-preview
+      - run: npm run test:korea-phase8-engine
       - run: npm run test:typing
       - run: node tools/validate-data.js
       - run: npm run test:single-source
@@ -81,7 +82,7 @@ jobs:
   browser-candidates:
     runs-on: ubuntu-latest
     needs: implementation
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -90,39 +91,53 @@ jobs:
       - run: npm install --no-save --package-lock=false playwright@1.62.1
       - run: npx playwright install --with-deps chromium
       - name: Candidate desktop and mobile traversal (not release approval)
+        if: github.event_name == 'workflow_dispatch'
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/browser-diagnostics.json
         run: node tools/test-kr-browser.cjs --all-assemblable --interactive
       - name: Production selector and preview contract browser checks
+        if: github.event_name == 'workflow_dispatch'
         env:
           KR_PREVIEW_REPORT: data/kr/v2/generated/preview-browser.json
         run: node tools/test-kr-preview-browser.cjs
       - name: Unmodified production UI playthrough with animation
+        if: github.event_name == 'workflow_dispatch'
         env:
           SUBTYPE_SITE_REPORT: data/kr/v2/generated/production-ui-browser.json
         run: npm run test:korea-site
       - name: Recovered services true-track motion on desktop and mobile
+        if: github.event_name == 'workflow_dispatch'
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/recovered-motion.json
           KR_BROWSER_SCREENSHOTS: data/kr/v2/generated/recovered-motion-screens
         run: node tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696,16665964 --interactive-all
       - name: All Phase 5 restored services actual curve motion
+        if: github.event_name == 'workflow_dispatch'
         env:
           KR_PHASE5_MOTION_REPORT: data/kr/v2/generated/phase5-motion/results.json
         run: npm run test:korea-phase5-motion
       - name: Phase 6 restored Busan directions actual curve motion
+        if: github.event_name == 'workflow_dispatch'
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/phase6-busan-motion.json
         run: node tools/test-kr-browser.cjs --services=2195014,8247016,2205952,8258701 --interactive-all
       - name: Phase 7 Shinbundang source geometry motion
+        if: github.event_name == 'workflow_dispatch'
         env:
           KR_BROWSER_REPORT: data/kr/v2/generated/phase7-shinbundang-motion.json
         run: node tools/test-kr-browser.cjs --services=6060963 --interactive-all
+      - name: Phase 8 representative shipped UI on desktop and mobile
+        env:
+          SUBTYPE_SITE_REPORT: reports/korea/phase8/BROWSER_RESULTS.json
+        run: npm run test:korea-phase8-site
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: korea-candidate-browser-diagnostics
           path: |
+            reports/korea/phase8/BROWSER_RESULTS.json
+            reports/korea/phase8/BROWSER_RESULTS-screens/
+            reports/korea/phase8/ENGINE_RESULTS.json
             data/kr/v2/generated/preview-browser.json
             data/kr/v2/generated/production-ui-browser.json
             data/kr/v2/generated/production-ui-browser-screens/

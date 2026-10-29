@@ -2,7 +2,7 @@
 
 기준 2026-10-24 · **INCOMPLETE**
 
-{"registeredServices":317,"sourceAssemblable":261,"remaining":56,"passengerResearch":44,"excludedOrQuarantined":12,"officialTimetablePatterns":65,"releaseApproved":0}
+{"registeredServices":317,"sourceAssemblable":263,"remaining":54,"passengerResearch":42,"excludedOrQuarantined":12,"officialTimetablePatterns":65,"releaseApproved":0}
 
 실제 노선 수와 OSM relation 후보 수는 다르다. 아래 제외·보류 항목은 복구 성공으로 세지 않는다. 공식 시간표 패턴 일치는 선로·승강장·운행일 예외·배포 승인을 의미하지 않는다.
 
@@ -48,8 +48,6 @@
 | kr-osm-service-13781616 | 경부선 ITX-새마을 (필수정차): 서울 → 부산 | 서울 → 부산 | PASSENGER_RESEARCH | DISCONNECTED_MEMBERS, NON_PUBLIC_TRACK_REVIEW, DISCONNECTED_ORDERED_WAYS, STOP_NOT_ON_ORDERED_TRACK, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_MEMBER_CONTINUITY_UNRESOLVED, SOURCE_STOP_TRACK_OR_PLATFORM_MISMATCH | [OSM](https://www.openstreetmap.org/relation/13781616) |
 | kr-osm-service-15802275 | 수도권 전철 1호선: 서울역 → 양주 | 서울역 → 양주 | PASSENGER_RESEARCH | DISCONNECTED_MEMBERS, NON_PUBLIC_TRACK_REVIEW, DISCONNECTED_ORDERED_WAYS, STOP_NOT_ON_ORDERED_TRACK, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_MEMBER_CONTINUITY_UNRESOLVED, SOURCE_STOP_TRACK_OR_PLATFORM_MISMATCH | [OSM](https://www.openstreetmap.org/relation/15802275) |
 | kr-osm-service-15833655 | 수도권 전철 1호선: 구로 → 청량리 | 구로 → 청량리 | PASSENGER_RESEARCH | DISCONNECTED_MEMBERS, DISCONNECTED_ORDERED_WAYS, STOP_NOT_ON_ORDERED_TRACK, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_MEMBER_CONTINUITY_UNRESOLVED, SOURCE_STOP_TRACK_OR_PLATFORM_MISMATCH | [OSM](https://www.openstreetmap.org/relation/15833655) |
-| kr-osm-service-16665961 | 수도권 전철 4호선: 금정 → 오이도 | 금정 → 오이도 | PASSENGER_RESEARCH | AMBIGUOUS_ORIENTATION, MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665961) |
-| kr-osm-service-16665962 | 수도권 전철 4호선: 오이도 → 금정 | 오이도 → 금정 | PASSENGER_RESEARCH | NON_PUBLIC_TRACK_REVIEW, AMBIGUOUS_ORIENTATION, MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665962) |
 | kr-osm-service-16665967 | 수도권 전철 4호선: 창동 → 사당 | 창동 → 사당 | PASSENGER_RESEARCH | MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665967) |
 | kr-osm-service-16665968 | 수도권 전철 4호선: 창동 → 오이도 | 창동 → 오이도 | PASSENGER_RESEARCH | MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665968) |
 | kr-osm-service-16665970 | 수도권 전철 4호선: 오이도 → 노원 | 오이도 → 노원 | PASSENGER_RESEARCH | NON_PUBLIC_TRACK_REVIEW, MISSING_ORDERED_STOPS, OFFICIAL_TIMETABLE_REQUIRED; SOURCE_STOP_SEQUENCE_INCOMPLETE | [OSM](https://www.openstreetmap.org/relation/16665970) |

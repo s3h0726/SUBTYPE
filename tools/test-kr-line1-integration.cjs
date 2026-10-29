@@ -16,7 +16,7 @@ test('metro Line 1 replaces five legacy cards with reviewed research directions 
  assert(integrated.every(route=>route.releaseStatus==='research'&&route.playStatus==='RESEARCH_PLAYABLE'&&route.previewContract==='kr-research-v1'&&route.lazySource));
  const preserved=published.routes.filter(route=>!/^kr-metro-1-/.test(route.id)).map(route=>route.id);
  assert.deepEqual(merged.routes.filter(route=>!route.integratedLine1).map(route=>route.id),preserved);
- assert.equal(preview.routes.length,128);
+ assert.equal(preview.routes.length,325);
  assert.equal(published.routes.length,13);
  for(const route of integrated){const file=route.lazySource.split('?')[0];assert(fs.existsSync(path.join(root,file)),route.id+' missing source file')}
 });

@@ -32,10 +32,10 @@
     "sourceMetadataAudited": 62,
     "officialPassengerVerified": 0,
     "officialTimetablePatternsIn62": 2,
-    "sourceGeometryRestored": 6,
+    "sourceGeometryRestored": 8,
     "excluded": 6,
-    "partial": 6,
-    "needsResearch": 50
+    "partial": 8,
+    "needsResearch": 48
   },
   "rows": [
     {
@@ -419818,14 +419818,12 @@
         ]
       },
       "after": {
-        "sourceAssemblable": false,
-        "sourceStopCount": 1,
-        "assemblyError": "UNRESOLVED_IMPORT_TOPOLOGY",
+        "sourceAssemblable": true,
+        "sourceStopCount": 14,
+        "assemblyError": null,
         "publicPlayable": false,
         "releaseApproved": false,
         "failureCodes": [
-          "AMBIGUOUS_ORIENTATION",
-          "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
         "releaseBlockers": [
@@ -419839,7 +419837,7 @@
           "STATION_METADATA_NOT_VERIFIED",
           "OPERATOR_NOT_VERIFIED",
           "OPERATOR_LOGO_NOT_VERIFIED",
-          "UNRESOLVED_IMPORT_TOPOLOGY"
+          "NON_PUBLIC_TRACK_REQUIRES_EXCLUSION"
         ],
         "access": {
           "number": 43,
@@ -419855,7 +419853,64 @@
           "name": "금정"
         }
       ],
-      "officialStopOrder": null,
+      "officialStopOrder": [
+        {
+          "officialStationCode": "1458",
+          "officialStationName": "금정"
+        },
+        {
+          "officialStationCode": "1751",
+          "officialStationName": "산본"
+        },
+        {
+          "officialStationCode": "1763",
+          "officialStationName": "수리산"
+        },
+        {
+          "officialStationCode": "1752",
+          "officialStationName": "대야미"
+        },
+        {
+          "officialStationCode": "1753",
+          "officialStationName": "반월"
+        },
+        {
+          "officialStationCode": "1754",
+          "officialStationName": "상록수"
+        },
+        {
+          "officialStationCode": "1755",
+          "officialStationName": "한대앞"
+        },
+        {
+          "officialStationCode": "1756",
+          "officialStationName": "중앙"
+        },
+        {
+          "officialStationCode": "1757",
+          "officialStationName": "고잔"
+        },
+        {
+          "officialStationCode": "1758",
+          "officialStationName": "초지"
+        },
+        {
+          "officialStationCode": "1759",
+          "officialStationName": "안산"
+        },
+        {
+          "officialStationCode": "1760",
+          "officialStationName": "신길온천"
+        },
+        {
+          "officialStationCode": "1761",
+          "officialStationName": "정왕"
+        },
+        {
+          "officialStationCode": "1762",
+          "officialStationName": "오이도"
+        }
+      ],
       "memberWayReviews": [
         {
           "wayId": "1221943823",
@@ -419902,22 +419957,6 @@
       ],
       "issues": [
         {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
           "toCoordinates": null,
@@ -419927,17 +419966,34 @@
         }
       ],
       "sourceURLs": [
-        "https://www.openstreetmap.org/relation/16665961"
+        "https://www.openstreetmap.org/relation/16665961",
+        "https://www.data.go.kr/data/15098251/fileData.do"
       ],
       "changedPaths": [
         "data/kr/v2/relation-access-policy.json",
         "data/kr/v2/source/osm-62-20261017",
-        "data/kr/v2/services.json"
+        "data/kr/v2/services.json",
+        "data/kr/v2/service-reconstructions.json",
+        "tools/lib/kr-service-reconstruction.js",
+        "tools/import-kr-network.js"
       ],
-      "status": "NEEDS_RESEARCH",
-      "reconstructionEvidence": null,
+      "status": "PARTIAL",
+      "reconstructionEvidence": {
+        "donorServiceId": "kr-osm-service-2718884",
+        "sourceId": "seoulmetro-official-20260901",
+        "officialTripIds": [
+          "seoulmetro-official-20260901-train-7363",
+          "seoulmetro-official-20260901-train-7364",
+          "seoulmetro-official-20260901-train-7367",
+          "seoulmetro-official-20260901-train-7368",
+          "seoulmetro-official-20260901-train-7371",
+          "seoulmetro-official-20260901-train-7372"
+        ],
+        "reviewedOn": "2026-10-25",
+        "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+      },
       "officialTimetableVerification": null,
-      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
+      "reason": "공식 실제 열차의 전체 정차 패턴과 기존 동일 방향 선로로 복구. 운행일 일부만 존재하므로 전 요일 시간표·승강장·방향·배포 승인은 미완료.",
       "tests": [
         "Source validation only; no complete service evidence"
       ],
@@ -419997,15 +420053,12 @@
         ]
       },
       "after": {
-        "sourceAssemblable": false,
-        "sourceStopCount": 1,
-        "assemblyError": "UNRESOLVED_IMPORT_TOPOLOGY",
+        "sourceAssemblable": true,
+        "sourceStopCount": 14,
+        "assemblyError": null,
         "publicPlayable": false,
         "releaseApproved": false,
         "failureCodes": [
-          "NON_PUBLIC_TRACK_REVIEW",
-          "AMBIGUOUS_ORIENTATION",
-          "MISSING_ORDERED_STOPS",
           "OFFICIAL_TIMETABLE_REQUIRED"
         ],
         "releaseBlockers": [
@@ -420019,8 +420072,7 @@
           "STATION_METADATA_NOT_VERIFIED",
           "OPERATOR_NOT_VERIFIED",
           "OPERATOR_LOGO_NOT_VERIFIED",
-          "NON_PUBLIC_TRACK_REQUIRES_EXCLUSION",
-          "UNRESOLVED_IMPORT_TOPOLOGY"
+          "NON_PUBLIC_TRACK_REQUIRES_EXCLUSION"
         ],
         "access": {
           "number": 44,
@@ -420036,7 +420088,64 @@
           "name": "오이도"
         }
       ],
-      "officialStopOrder": null,
+      "officialStopOrder": [
+        {
+          "officialStationCode": "1762",
+          "officialStationName": "오이도"
+        },
+        {
+          "officialStationCode": "1761",
+          "officialStationName": "정왕"
+        },
+        {
+          "officialStationCode": "1760",
+          "officialStationName": "신길온천"
+        },
+        {
+          "officialStationCode": "1759",
+          "officialStationName": "안산"
+        },
+        {
+          "officialStationCode": "1758",
+          "officialStationName": "초지"
+        },
+        {
+          "officialStationCode": "1757",
+          "officialStationName": "고잔"
+        },
+        {
+          "officialStationCode": "1756",
+          "officialStationName": "중앙"
+        },
+        {
+          "officialStationCode": "1755",
+          "officialStationName": "한대앞"
+        },
+        {
+          "officialStationCode": "1754",
+          "officialStationName": "상록수"
+        },
+        {
+          "officialStationCode": "1753",
+          "officialStationName": "반월"
+        },
+        {
+          "officialStationCode": "1752",
+          "officialStationName": "대야미"
+        },
+        {
+          "officialStationCode": "1763",
+          "officialStationName": "수리산"
+        },
+        {
+          "officialStationCode": "1751",
+          "officialStationName": "산본"
+        },
+        {
+          "officialStationCode": "1458",
+          "officialStationName": "금정"
+        }
+      ],
       "memberWayReviews": [
         {
           "wayId": "626070235",
@@ -420066,31 +420175,6 @@
       ],
       "issues": [
         {
-          "code": "NON_PUBLIC_TRACK_REVIEW",
-          "wayId": "626070235",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
-          "code": "AMBIGUOUS_ORIENTATION",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
-          "code": "MISSING_ORDERED_STOPS",
-          "fromCoordinates": null,
-          "toCoordinates": null,
-          "stopCoordinates": null,
-          "sourceStopInterval": null,
-          "basis": "Exact OSM member/node evidence; no official calling pattern inferred"
-        },
-        {
           "code": "OFFICIAL_TIMETABLE_REQUIRED",
           "fromCoordinates": null,
           "toCoordinates": null,
@@ -420100,17 +420184,33 @@
         }
       ],
       "sourceURLs": [
-        "https://www.openstreetmap.org/relation/16665962"
+        "https://www.openstreetmap.org/relation/16665962",
+        "https://www.data.go.kr/data/15098251/fileData.do"
       ],
       "changedPaths": [
         "data/kr/v2/relation-access-policy.json",
         "data/kr/v2/source/osm-62-20261017",
-        "data/kr/v2/services.json"
+        "data/kr/v2/services.json",
+        "data/kr/v2/service-reconstructions.json",
+        "tools/lib/kr-service-reconstruction.js",
+        "tools/import-kr-network.js"
       ],
-      "status": "NEEDS_RESEARCH",
-      "reconstructionEvidence": null,
+      "status": "PARTIAL",
+      "reconstructionEvidence": {
+        "donorServiceId": "kr-osm-service-4744311",
+        "sourceId": "seoulmetro-official-20260901",
+        "officialTripIds": [
+          "seoulmetro-official-20260901-train-7362",
+          "seoulmetro-official-20260901-train-7365",
+          "seoulmetro-official-20260901-train-7366",
+          "seoulmetro-official-20260901-train-7369",
+          "seoulmetro-official-20260901-train-7370"
+        ],
+        "reviewedOn": "2026-10-25",
+        "scope": "Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required"
+      },
       "officialTimetableVerification": null,
-      "reason": "공식 정차·방향·실제 선로 보완이 필요한 여객 후보; UNRESOLVED_IMPORT_TOPOLOGY; 공식 운행표·방향·승강장 검증 미완료",
+      "reason": "공식 실제 열차의 전체 정차 패턴과 기존 동일 방향 선로로 복구. 운행일 일부만 존재하므로 전 요일 시간표·승강장·방향·배포 승인은 미완료.",
       "tests": [
         "Source validation only; no complete service evidence"
       ],

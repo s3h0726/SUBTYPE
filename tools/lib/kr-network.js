@@ -96,4 +96,4 @@ function compile(data,options={}){
  const complete=coverage.status==='verified'&&coverageVerified&&Array.isArray(expected)&&expected.length>0&&Array.isArray(expectedServices)&&expectedServices.length>0&&blocked.length===0&&expected.length===routes.length&&expected.every(id=>routesByLine.has(id))&&expectedServices.length===releasedServiceIds.size&&new Set(expectedServices).size===expectedServices.length&&expectedServices.every(id=>releasedServiceIds.has(id));
  return {status:complete?'COMPLETE':'INCOMPLETE',errors,routes,blocked,excluded,counts:{sourceStations:data.stations.length,sourcePassengerLines:data['passenger-lines'].length,sourceServices:data.services.length,activeServiceCandidates:data.services.length-excluded.length,excludedServices:excluded.length,officialTimetableVerifiedServices,releasedLines:routes.length,releasedServices:routes.reduce((n,r)=>n+r.verifiedJourneys.length,0),officialPassengerLines:expected?.length??null,officialServices:expectedServices?.length??null}};
 }
-module.exports={load,validate,assemble,compile,releaseReasons};
+module.exports={load,validate,assemble,compile,releaseReasons,km};

@@ -36,7 +36,7 @@ function reconstructService(target,donor,maps,config,relation,trips,endpointEvid
  }
  if(!target.paths.every(p=>selected.some(q=>q.geometryId===p.geometryId)))fail('ORIGINAL_WAY_OMITTED');
  const track=new Map([...maps.infrastructure.values()].map(i=>[i.geometryId,i]));
- for(const p of selected){const t=track.get(p.geometryId);if(!t||['yard','siding','spur'].includes(t.service)||(t.oneway==='yes'&&p.reverse)||(t.oneway==='-1'&&!p.reverse))fail('UNREVIEWED_DIRECTION_OR_NON_PUBLIC_TRACK')}
+ for(const p of selected){const t=track.get(p.geometryId);if(!t||(['yard','spur'].includes(t.service)||(t.service==='siding'&&!endpointEvidence.passengerPlatforms?.has(p.geometryId.replace('kr-geometry-',''))))||(t.oneway==='yes'&&p.reverse)||(t.oneway==='-1'&&!p.reverse))fail('UNREVIEWED_DIRECTION_OR_NON_PUBLIC_TRACK')}
  const result={...target,...(renames.length?{operatingEndpoints:{origin:config.origin,destination:config.destination},sourceNames:target.sourceNames||target.names,names:{...target.names,ko:config.officialDisplayName}}:{}),paths:selected,stops:calls.map(c=>({...c,geometryIndex:c.geometryIndex-removed})),sourceIssues:target.issues,reconstruction:{donorServiceId:donor.id,sourceId:config.sourceId,officialTripIds:config.officialTripIds,reviewedOn:config.reviewedOn,...(renames.length?{endpointNameCorrections:renames}:{}),scope:'Candidate source-track and complete published calling-pattern reconstruction only; release reviews remain required'},issues:[{code:'OFFICIAL_TIMETABLE_REQUIRED'}]};
  assemble(result,maps);return result;
 }

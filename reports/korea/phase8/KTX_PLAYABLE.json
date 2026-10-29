@@ -1,0 +1,77 @@
+{
+  "stoppingPatterns": 1,
+  "sourceResearchTrains": 621,
+  "sourceResearchCallingCalendarPatterns": 551,
+  "timetableCurrentness": "UNVERIFIED",
+  "released": 0,
+  "routes": [
+    {
+      "id": "kr-preview-pattern-04880983f78495db",
+      "sourceServiceId": "kr-provisional-04880983f78495db",
+      "relationId": "11272645",
+      "origin": "용산",
+      "destination": "광주송정",
+      "stops": 3,
+      "trackSource": "https://www.openstreetmap.org/relation/11272645",
+      "geometryRef": {
+        "url": "data/kr/provisional/geometry/cd3932025a623fd49e39d9d43ddfaea59c3a45788357ae0ca43966e17824317e.json",
+        "fullSha256": "cd3932025a623fd49e39d9d43ddfaea59c3a45788357ae0ca43966e17824317e",
+        "range": [
+          0,
+          1268
+        ],
+        "sha256": "cd3932025a623fd49e39d9d43ddfaea59c3a45788357ae0ca43966e17824317e"
+      },
+      "timetableSource": "data/kr/v2/korail-highspeed-pattern-research.json",
+      "playStatus": "RESEARCH_PLAYABLE",
+      "officialReleaseApproved": false,
+      "evidence": {
+        "kind": "ktx",
+        "sourceDocument": "data/kr/v2/korail-highspeed-pattern-research.json",
+        "sourceDocumentSha256": "929361dcd750b7bcf8babdc5bfede720eff346f3646e35d980ac28327f14d5ce",
+        "sourceId": "korail-highspeed-20260901",
+        "sourceTripIds": [
+          "korail-highspeed-20260901-373",
+          "korail-highspeed-20260901-374"
+        ],
+        "trainNumbers": [
+          "429",
+          "473"
+        ],
+        "trainTypes": [
+          "KTX-청룡",
+          "KTX"
+        ],
+        "calendarVariants": [
+          {
+            "id": "korail-highspeed-20260901-373",
+            "calendar": "월화수목",
+            "weeklyDays": [
+              "MON",
+              "TUE",
+              "WED",
+              "THU"
+            ]
+          },
+          {
+            "id": "korail-highspeed-20260901-374",
+            "calendar": "금토일",
+            "weeklyDays": [
+              "FRI",
+              "SAT",
+              "SUN"
+            ]
+          }
+        ],
+        "callingNames": [
+          "용산",
+          "익산",
+          "광주송정"
+        ],
+        "donorServiceId": "kr-osm-service-11272645",
+        "timetableCurrentness": "UNVERIFIED",
+        "officialReleaseApproved": false
+      }
+    }
+  ]
+}
