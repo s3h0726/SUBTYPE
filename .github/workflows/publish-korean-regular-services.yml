@@ -42,5 +42,8 @@ jobs:
           git add -A data/kr/generated data/kr/evidence js/korea-index-data.js js/app.bundle.js index.html
           if ! git diff --cached --quiet; then
             git commit -m "feat(kr): publish 121 current Korean OSM route directions as regular game lines"
+            git fetch origin main
+            git rebase -X theirs origin/main
+            node tools/test-korean-regular-promotion.cjs
             git push origin HEAD:main
           fi
