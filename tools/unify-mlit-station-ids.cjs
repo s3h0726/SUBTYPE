@@ -93,7 +93,9 @@ for(const file of files){
  if(path.basename(file)!=='stations.json'||!file.includes('/data/lines/'))continue;
  const relations=JSON.parse(updates.get(file)||fs.readFileSync(file,'utf8'));
  const ids=relations.map(r=>r.stationId);
- if(ids.length!==new Set(ids).size)throw Error('Collapsed two stops in '+file);
+ const oldIds=JSON.parse(fs.readFileSync(file,'utf8')).map(r=>r.stationId);
+ for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++)
+  if(ids[i]===ids[j]&&oldIds[i]!==oldIds[j])throw Error('Newly collapsed stops in '+file+' at '+i+'/'+j);
  for(const id of ids)if(!stationIds.has(id))throw Error('Missing station master '+id+' ('+file+')');
  const geo=path.join(path.dirname(file),'geometry.json');
  if(!fs.existsSync(geo))continue;
