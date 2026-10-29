@@ -9,8 +9,17 @@ const excluded=new Set(['13695367','13695368']);
 assert.equal(source.routes.length,123);
 const expected=source.routes.filter(x=>!excluded.has(x.sourceRelationId));
 const promoted=published.routes.filter(x=>/^kr-service-\d+$/.test(x.id));
-assert.equal(promoted.length,expected.length,'All current active source routes must be visible in normal catalog');
-assert.equal(promoted.length,121);
+const extra=audit.recoveredEndpointless||[];
+assert.equal(promoted.length,expected.length+extra.length,'Regular catalog must include source routes and endpointless recoveries');
+assert.equal(expected.length,121,'Existing promoted services must be preserved');
+for(const e of expected)assert(promoted.some(p=>p.id==='kr-service-'+e.sourceRelationId),'Published source route disappeared: '+e.sourceRelationId);
+for(const e of extra){
+ assert(!expected.some(p=>p.sourceRelationId===e.sourceRelationId),'Recovery duplicated an existing route');
+ assert(promoted.some(p=>p.id===e.id),'Recovered missing-endpoint route absent from public index');
+ assert(e.origin&&e.destination,'Recovered route lacks ordered station endpoints');
+}
+assert.equal(published.counts.gamePublishedServices,promoted.length);
+assert.equal(published.counts.routes,published.routes.length);
 assert(published.routes.length>=129,'Existing passenger lines lost');
 const ids=new Set(published.routes.map(x=>x.id));
 assert.equal(ids.size,published.routes.length,'Duplicate public route ID');
@@ -52,4 +61,4 @@ for(const sourceCode of [app,bundle]){
 assert(!loader.includes("const previewUrl=new URL("),'Runtime still loads research mode index');
 assert(!stats.includes('<option value="research">'),'Research-only record selector returned');
 assert(read('js/korea-index-data.js').includes('"kr-service-443803"'));
-console.log('PASS Korean regular-game routes: '+promoted.length+' / '+source.routes.length+' source routes; historical '+excluded.size+' excluded; legacy paths, real geometry, HK/JP compatibility retained');
+console.log('PASS Korean regular-game routes: '+promoted.length+' = '+expected.length+' prior + '+extra.length+' verified endpointless; historical '+excluded.size+' excluded; legacy paths, real geometry, HK/JP compatibility retained');
