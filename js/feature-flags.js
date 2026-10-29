@@ -10,7 +10,7 @@ export const FEATURE_FLAGS=Object.freeze({
 // internal part of its passenger line. IDs remain stable in stored records;
 // only their current display/playback parent changes.
 const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3','line-99815':'line-99814','line-11317--hachikosen-hachioji-komagawa':'line-11317','line-11229--jobansen-totte-iwaki':'line-11229','line-11320--jobansen-ueno-totte':'line-11320'});
-export const canonicalRouteId=routeId=>LEGACY_ROUTE_ALIASES[String(routeId||'')]||routeId;
+export const canonicalRouteId=routeId=>{const id=String(routeId||'');const former=id.match(/^kr-preview-(\d+)$/);return former?'kr-service-'+former[1]:LEGACY_ROUTE_ALIASES[id]||id};
 
 export const isCountryEnabled=countryId=>countryId==='jp'||(countryId==='kr'&&FEATURE_FLAGS.korea)||(countryId==='hk'&&FEATURE_FLAGS.hongKong);
 
