@@ -28,8 +28,8 @@ jobs:
           node - <<'NODE'
           const fs = require('fs');
           const p = 'reports/korean-names/lines.csv';
-          const s = fs.readFileSync(p, 'utf8').replace(/^\\uFEFF/, '');
-          const rows = s.trimEnd().split(/\\r?\\n/);
+          const s = fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, '');
+          const rows = s.trimEnd().split(/\r?\n/);
           const header = rows.shift();
           if (!header.includes('노선ID') || !header.includes('노선 한글명')) throw new Error('Unexpected CSV header');
           const ids = rows.map(line => {
