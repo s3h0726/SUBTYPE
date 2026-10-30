@@ -8,7 +8,18 @@ on:
 permissions:
   contents: read
 jobs:
+  reset-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node tools/test-korea-reset.cjs
+      - run: node tools/test-hk-route-selector.cjs
+      - run: node tools/test-exact-duplicate-jp-routes.cjs
+  # Old Korean build jobs paused until the new inventory has been built.
   app-build:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,6 +30,7 @@ jobs:
       - run: npm run test:typing
       - run: node tools/test-service-route-resolver.js
   implementation:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

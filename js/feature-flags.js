@@ -2,6 +2,7 @@ import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
 export const FEATURE_FLAGS=Object.freeze({
   korea:true,
+  koreaRoutesReset:true,
   hongKong:true,
   visibleJapanRegion:'all'
 });
@@ -15,6 +16,7 @@ export const canonicalRouteId=routeId=>{const id=String(routeId||'');const forme
 export const isCountryEnabled=countryId=>countryId==='jp'||(countryId==='kr'&&FEATURE_FLAGS.korea)||(countryId==='hk'&&FEATURE_FLAGS.hongKong);
 
 export function isRouteVisible(route){
+  if(FEATURE_FLAGS.koreaRoutesReset&&route?.countryId==='kr')return false;
   if(koreanRouteBlockReason(route)||hongKongRouteBlockReason(route))return false;
   // Physical branch workspaces can be required for geometry and legacy record
   // resolution without becoming an independent passenger-facing line.
