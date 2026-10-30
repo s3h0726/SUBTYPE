@@ -13,7 +13,7 @@ assert.equal(new Set([...routeA.stations,...routeB.stations].map(s=>s.id)).size,
 assert.equal(routeB.stations.find(s=>s.ja==='厚別')?.ko,'아쓰베쓰');
 assert.equal(routeB.stations.find(s=>s.ja==='大麻')?.ko,'오아사');
 assert.deepEqual(routeB.services.map(s=>s.stops.length),[27,13,15,7,7]);
-const trackCode=read('js/route-integrity.js').replace(/^export /gm,'');
+const trackCode=read('js/route-integrity.js').replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'');
 const runner={};vm.createContext(runner);
 vm.runInContext(trackCode+';globalThis.resolvePlayableRoute=resolvePlayableRoute;',runner);
 for(const route of [routeA,routeB])for(const service of route.services)for(const direction of ['forward','reverse']){
