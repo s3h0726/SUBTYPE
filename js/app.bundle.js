@@ -1519,6 +1519,7 @@ function renderSvg(container,route,{editable=false,onMove}={}){const stations=ro
 
 
 
+
 const transportStopNoun=route=>route?.mode==='river_bus'?'선착장':['bus','village_bus','express_bus'].includes(route?.mode)?'정류장':'역';
 const operatorVariantIndex=value=>{let hash=2166136261;for(const ch of String(value||'')){hash^=ch.codePointAt(0);hash=Math.imul(hash,16777619)}return Math.abs(hash>>>0)%6};
 class Game{
@@ -2557,7 +2558,7 @@ const indexedKoreanLineName=id=>globalThis.TRT_KOREA_INDEX?.routes?.find(route=>
 
 function renderStats(){
   const oldPicker=$('#records-mode');if(oldPicker)oldPicker.remove();
-  const records=Object.entries(storage.records()).map(([routeId,record])=>({...record,routeId})).filter(record=>isCountryEnabled(record.countryId||'jp')&&!(FEATURE_FLAGS.koreaRoutesReset&&record.countryId==='kr'));
+  const records=Object.entries(storage.records()).map(([routeId,record])=>({...record,routeId})).filter(record=>isCountryEnabled(record.countryId||'jp'));
   const plays=records.reduce((n,r)=>n+r.plays,0),stations=records.reduce((n,r)=>n+r.totalStations,0),acc=records.length?records.reduce((n,r)=>n+r.bestAccuracy,0)/records.length:0,cpm=Math.max(0,...records.map(r=>r.bestCpm)),combo=Math.max(0,...records.map(r=>r.maxCombo));
   $('#stats-summary').innerHTML=[['총 플레이',`${plays}회`],['입력 지점',`${stations}곳`],['평균 정확도',`${acc.toFixed(1)}%`],['최고 타수',`${cpm}타`],['최고 콤보',`${combo}`]].map(x=>`<div class="stat-card"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('');
   $('#records-table').innerHTML=`<div class="record-row header"><span>노선</span><span>플레이</span><span>최고 시간</span><span>정확도</span><span>타수</span><span>콤보</span></div>`+(records.length?records.sort((a,b)=>b.plays-a.plays).map(r=>{
@@ -2625,6 +2626,7 @@ class CustomGeoMap{
  render(route){this.route=route;if(!this.L)return;this.layer.clearLayers();this.markers=[];const points=route.stations.filter(s=>Number.isFinite(s.latitude)&&Number.isFinite(s.longitude)).map(s=>[s.latitude,s.longitude]);if(points.length>1)this.L.polyline(points,{color:route.lineColor,weight:6}).addTo(this.layer);route.stations.forEach((s,i)=>{if(!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude))return;const marker=this.L.marker([s.latitude,s.longitude],{draggable:true,title:koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`}).addTo(this.layer);marker.bindTooltip(koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`);marker.on('dragend',e=>{const p=e.target.getLatLng();this.onMove(i,{latitude:+p.lat.toFixed(6),longitude:+p.lng.toFixed(6)})});this.markers.push(marker)})}
  show(){if(this.map)setTimeout(()=>this.map.invalidateSize(),50)}
 }
+
 
 
 
