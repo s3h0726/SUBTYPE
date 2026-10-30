@@ -2,15 +2,14 @@
 
 원본 범위: 공유 역명 8878개, 노선 파일 607개, 운영사 161개, 노선별 별도 역명 46개. 디즈니 리조트라인 별도 포함.
 
-- 오류: 44건
-- 재검토 후보: 2366건
+- 오류: 0건
+- 재검토 후보: 2352건
 - 확실한 표기 교정: 0건
 
 | 검사항목 | 건수 |
 |---|---:|
-| EN_INTERNAL_CAMEL_CASE | 1872 |
-| EN_ROMAJI_LINE_SUFFIX | 488 |
-| EN_NON_LATIN | 44 |
+| EN_INTERNAL_CAMEL_CASE | 1866 |
+| EN_ROMAJI_LINE_SUFFIX | 480 |
 | EDITOR_LINE_ORPHAN | 4 |
 | EDITOR_OPERATOR_ORPHAN | 1 |
 | EDITOR_STATION_ROUTE_ORPHAN | 1 |
@@ -42,7 +41,6 @@
 - EN_INTERNAL_CAMEL_CASE / station-002993 / 流山セントラルパーク / 나가레야마센토라루파쿠 / data/shared-stations/stations-00.json
 - EN_INTERNAL_CAMEL_CASE / station-003060 / 見沼代親水公園 / 미누마다이신스이코엔 / data/shared-stations/stations-00.json
 - EN_INTERNAL_CAMEL_CASE / station-003396 / 飯岡 / 이이오카 / data/shared-stations/stations-00.json
-- EN_NON_LATIN / station-003479 / 曳舟 / 히키후네 / data/shared-stations/stations-00.json
 - EN_INTERNAL_CAMEL_CASE / station-1122707 / 新鶴 / 니이츠루 / data/shared-stations/stations-01.json
 - EN_INTERNAL_CAMEL_CASE / station-1141608 / 美濃太田 / 미노오타 / data/shared-stations/stations-01.json
 - EN_INTERNAL_CAMEL_CASE / station-1160708 / 王寺 / 오지 / data/shared-stations/stations-01.json
@@ -54,3 +52,4 @@
 - EN_INTERNAL_CAMEL_CASE / station-9920811 / 両石 / 료이시 / data/shared-stations/stations-01.json
 - EN_INTERNAL_CAMEL_CASE / station-9920904 / 大野台 / 오노다이 / data/shared-stations/stations-01.json
 - EN_INTERNAL_CAMEL_CASE / station-9930623 / 上長瀞 / 조초토로 / data/shared-stations/stations-01.json
+- EN_INTERNAL_CAMEL_CASE / station-9931412 / 大雄山 / 다이유잔 / data/shared-stations/stations-01.json
