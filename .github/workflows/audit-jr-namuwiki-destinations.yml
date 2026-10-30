@@ -1,0 +1,59 @@
+name: Audit all JR destination boundaries using Namuwiki
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/audit-jr-namuwiki-destinations.cjs'
+      - '.github/workflows/audit-jr-namuwiki-destinations.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: jr-namuwiki-destination-audit-main
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source code
+        run: node --check tools/audit-jr-namuwiki-destinations.cjs
+      - name: Full JR route names and endpoints inventory
+        run: node tools/audit-jr-namuwiki-destinations.cjs
+      - name: Existing JR destination regression
+        run: |
+          node tools/test-jr-destination-splits.cjs
+          node tools/test-jr-sanyo-destinations.cjs
+          node tools/test-jr-tokaido-maibara.cjs
+          node tools/test-jr-minoakasaka-split.cjs
+          node tools/test-jr-hokkaido-hakodate-split.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jr-six-companies-destination-review
+          path: |
+            reports/jr/namuwiki-destination-inventory.json
+            reports/jr/namuwiki-destination-review.md
+      - name: Persist audit without modifying station geometry or service patterns
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git -c core.autocrlf=false reset --hard origin/main
+            node tools/audit-jr-namuwiki-destinations.cjs
+            git add reports/jr/namuwiki-destination-inventory.json reports/jr/namuwiki-destination-review.md
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'audit(jr): all six JR companies section termini and destinations'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 2
+          done
+          exit 1
