@@ -17,16 +17,18 @@ function add(kind,id,source,names,file,extra={}){
  total[kind]++;
  const ja=String(names?.ja||''),ko=String(names?.ko||''),en=String(names?.en||'');
  const fromBatch=batchById.get(kind+':'+id),proof=kind==='station'?source?.namuwikiBatchProof:null;
- const url=kind==='station'?source?.koSourceUrl:(source?.sources?.koreanName?.url||'');
- const meta=kind==='station'?{verified:source?.koVerified,method:source?.koSourceMethod}:source?.sources?.koreanName;
+ const url=kind==='station'?source?.koSourceUrl:kind==='routeSpecificStation'?source?.namuwikiUrl:(source?.sources?.koreanName?.url||'');
+ const meta=kind==='station'?{verified:source?.koVerified,method:source?.koSourceMethod}:kind==='routeSpecificStation'?{verified:source?.namuwikiVerified,method:'manual'}:source?.sources?.koreanName;
  const batchProofValid=kind==='station'?
    (proof&&proof.stationJa===ja&&proof.stationKo===ko&&isNamuUrl(proof.source)&&url===proof.source):
+   kind==='routeSpecificStation'?
+   (source?.namuwikiVerified===true&&isNamuUrl(url)&&source?.proofKind==='route-scoped-Japanese-name-and-Korean-station-list'):
    (fromBatch&&fromBatch.names?.ko===ko&&fromBatch.wikiUrl===url&&isNamuUrl(url)&&meta?.verified===true);
  const claimVerified=meta?.verified===true;
  const status=batchProofValid?'NAMUWIKI_BATCH_CROSSCHECKED':claimVerified?'LEGACY_CLAIM_NOT_RECHECKED':'SOURCE_REVIEW_REQUIRED';
  statuses[status]=(statuses[status]||0)+1;
  const item={kind,id,ja,ko,en,file,status,issues:[],...extra};
- if(batchProofValid)item.namuwikiEvidence={url:kind==='station'?proof.source:url,scope:kind==='station'?proof.routeId:fromBatch.id};
+ if(batchProofValid)item.namuwikiEvidence={url:kind==='station'?proof.source:url,scope:kind==='station'?proof.routeId:kind==='routeSpecificStation'?extra.routeId:fromBatch.id};
  if(!ja)warn(item,'EMPTY_JA');
  if(!ko)warn(item,'EMPTY_KO');
  if(!en)warn(item,'EMPTY_EN');
@@ -48,7 +50,7 @@ for(const file of stationFiles){
 }
 const routeNames=read('data/japan-route-station-names.json').routes||{};
 for(const [routeId,stops] of Object.entries(routeNames))for(const [stationId,names] of Object.entries(stops)){
- const item=add('routeSpecificStation',routeId+'::'+stationId,{},names,'data/japan-route-station-names.json',{routeId,stationId});
+ const item=add('routeSpecificStation',routeId+'::'+stationId,names,names,'data/japan-route-station-names.json',{routeId,stationId});
  if(!lines.has(routeId))warn(item,'ROUTE_SPECIFIC_LINE_NOT_FOUND');
  if(!stations.has(stationId))warn(item,'ROUTE_SPECIFIC_STATION_NOT_FOUND');
 }
