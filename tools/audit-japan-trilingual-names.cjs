@@ -138,7 +138,7 @@ if(!check){
   const table='| 검사항목 | 건수 |\n|---|---:|\n'+Object.entries(byCode).sort((a,b)=>b[1]-a[1]).map(([code,n])=>'| '+code+' | '+n+' |').join('\n')+'\n\n';
   const warning='**주의:** 자동검사 통과는 공식 검증 완료를 의미하지 않습니다. 출처 미확인 이름은 검증되지 않은 것으로 유지됩니다. 일본어 원문은 MLIT N02 및 운영사 공식 자료, 영어는 운영사 공식 영문 역명판/안내, 한국어는 확정된 자료와 대조가 필요합니다. 같은 이름을 사용하는 서로 다른 역과 노선별 공식 별칭을 일괄 통일하지 마세요.\n\n';
   const preview='## 우선 확인할 항목 (최대 35건)\n\n'+issues.slice(0,35).map(i=>'- '+i.code+' / '+i.id+' / '+(i.ja||'')+' / '+(i.ko||'')+' / '+i.file).join('\n')+'\n';
-  fs.writeFileSync(path.join(root,out,'README.md'),heading+intro+'- 오류: '+(bySeverity.error||0)+'건\n- 재검토 후보: '+(bySeverity.review||0)+'건\n- 확실한 표기 교정: '+fixes.length+'건\n\n'+table+warning+preview+'\n');
+  fs.writeFileSync(path.join(root,out,'README.md'),heading+intro+'- 오류: '+(bySeverity.error||0)+'건\n- 재검토 후보: '+(bySeverity.review||0)+'건\n- 확실한 표기 교정: '+fixes.length+'건\n\n'+table+warning+preview);
 }
 console.log(JSON.stringify({status:'AUDITED',...summary},null,2));
 if(check&&oldNameCount){console.error('FAIL: Source still has '+oldNameCount+' 온선 transcription defects');process.exitCode=1;}
