@@ -16,15 +16,21 @@ const base='data/generated/routes/';
 const allCards=index.routes.filter(r=>jrOperators.includes(r.operatorId)),cards=[];
 const faults=[],patterns=[],byCompany={};
 const cite=(title)=>'https://namu.moe/w/'+encodeURIComponent(title);
+// Source records below are *exact section boundary* assertions, not
+// station-list assumptions based on railway naming conventions. Sanyo West
+// subsegments (Okayama–Mihara, Mihara–Iwakuni, Iwakuni–Shimonoseki) are
+// implementation divisions of a longer line. Do not label them as errors
+// merely because Namuwiki also documents other railway service regions.
 const exactSources={
  'line-11501':{title:'도카이도 본선/JR 도카이',section:'시즈오카 지구',start:'熱海',end:'豊橋'},
  'line-11502':{title:'도카이도 본선/JR 도카이',section:'나고야 지구',start:'豊橋',end:'米原'},
- 'line-11319':{title:'우츠노미야선',section:'전 구간',start:'東京',end:'黒磯'},
- 'line-11609':{title:'산요 본선',section:'JR 서일본 히메지~오카야마',start:'姫路',end:'岡山'},
- 'line-11610':{title:'산요 본선',section:'JR 서일본 오카야마~후쿠야마',start:'岡山',end:'福山'},
- 'line-11611':{title:'산요 본선',section:'JR 서일본 후쿠야마~히로시마',start:'福山',end:'広島'},
- 'line-11612':{title:'산요 본선',section:'JR 서일본 히로시마~시모노세키',start:'広島',end:'下関'},
- 'line-11226':{title:'반에쓰사이선',section:'아이즈와카마쓰~니쓰',start:'会津若松',end:'新津'}
+ 'line-11319':{title:'도호쿠 본선',section:'우츠노미야선 우에노~쿠로이소',start:'上野',end:'黒磯'},
+ 'line-11225':{title:'반에츠사이선/역 목록',section:'코리야마~아이즈와카마츠',start:'郡山',end:'会津若松'},
+ 'line-11226':{title:'반에츠사이선/역 목록',section:'아이즈와카마츠~니츠',start:'会津若松',end:'新津'},
+ 'line-11508':{title:'간사이 본선',section:'JR 도카이 나고야~카메야마',start:'名古屋',end:'亀山'},
+ 'line-11509':{title:'간사이 본선',section:'JR 서일본 카메야마~카모',start:'亀山',end:'加茂'},
+ 'line-11603':{title:'JR 고베선',section:'도카이도 본선 오사카~고베',start:'大阪',end:'神戸'},
+ 'line-11608':{title:'JR 고베선',section:'산요 본선 고베~히메지',start:'神戸',end:'姫路'}
 };
 const rangeParse=s=>{
  const m=String(s||'').match(/[（(]([^）)]+)[）)]/);
