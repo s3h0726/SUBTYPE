@@ -2,6 +2,7 @@ import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
 import{KR_LINE1_INTEGRATION_RELATIONS}from'./korean-preview-access-data.js';
 import{isKoreanResearch,assertKoreanResearchRoute,koreanLine1ServiceDetails}from'./korean-research-resolver.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
+import{FEATURE_FLAGS}from'./feature-flags.js';
 const text=(...values)=>String(values.find(value=>typeof value==='string'&&value.trim())||'').normalize('NFC').trim();
 const cleanDisplayLineName=value=>text(value).replace(/^JR/,'').replace(/^東京メトロ/,'').replace(/^都営/,'').replace(/^大阪メトロ/,'');
 // The editor saves a small JSON file independently of the generated catalog.
@@ -165,6 +166,7 @@ export async function loadTransportData(countryId='jp',koreaMode='released'){
     }
     return data;
   }
+  if(FEATURE_FLAGS.koreaRoutesReset)return{country:{id:'kr',names:{ko:'대한민국',en:'South Korea'}},operators:[],lines:[],stations:[],assets:{operators:{},lines:{}},errors:[],counts:{},fallbackUsed:false,source:'korea-reset'};
   const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
   const lines=(data.routes||[]).filter(route=>route.releaseStatus!=='research'&&route.playStatus!=='RESEARCH_PLAYABLE'&&!route.previewContract&&!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators,lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}

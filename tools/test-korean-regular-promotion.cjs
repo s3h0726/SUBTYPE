@@ -2,6 +2,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+if(require('../data/kr/publication-policy.json').mode==='reset'){require('./test-korea-reset.cjs');process.exit(0)}
 const source=JSON.parse(read('data/kr/preview/index.json'));
 const published=JSON.parse(read('data/kr/generated/index.json'));
 const audit=JSON.parse(read('data/kr/evidence/regular-service-source-audit.json'));

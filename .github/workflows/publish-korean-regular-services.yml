@@ -1,69 +1,10 @@
-name: Publish playable Korean services into regular game
+name: Korean publication (paused during full route reset)
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'tools/publish-korean-service-routes.cjs'
-      - 'js/app.js'
-      - 'tools/test-korean-regular-promotion.cjs'
-      - '.github/workflows/publish-korean-regular-services.yml'
   workflow_dispatch:
-  pull_request:
-    paths:
-      - 'tools/publish-korean-service-routes.cjs'
-      - 'tools/test-korean-regular-promotion.cjs'
-      - '.github/workflows/publish-korean-regular-services.yml'
 permissions:
-  contents: write
-concurrency:
-  group: publish-korean-regular-main
-  cancel-in-progress: false
+  contents: read
 jobs:
-  validate-recovered-routes:
-    if: github.event_name == 'pull_request'
+  publication-paused:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: {node-version: '22'}
-      - name: Materialize recovered Korean services using unmodified verified OSM geometry
-        run: node tools/publish-korean-service-routes.cjs
-      - name: Verify no broken stations, false paths, duplicate routes, or historical regressions
-        run: |
-          node tools/test-korean-regular-promotion.cjs
-          node tools/test-hk-route-selector.cjs
-          node tools/test-exact-duplicate-jp-routes.cjs
-  publish:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v4
-        with: {persist-credentials: true, fetch-depth: 1}
-      - uses: actions/setup-node@v4
-        with: {node-version: '22'}
-      - name: Promote all current-source playable Korean routes to regular game catalog
-        run: node tools/publish-korean-service-routes.cjs
-      - name: Rebuild public app bundle
-        run: node tools/build-app-bundle.js
-      - name: Check all published source geometry, station sequence, game selector
-        run: |
-          node --check js/app.bundle.js
-          node tools/test-korean-regular-promotion.cjs
-          node tools/test-hk-route-selector.cjs
-          node tools/test-exact-duplicate-jp-routes.cjs
-      - name: Commit generated regular routes into main
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/kr/generated data/kr/evidence js/korea-index-data.js js/app.bundle.js index.html
-          if ! git diff --cached --quiet; then
-            git commit -m "feat(kr): publish 121 current Korean OSM route directions as regular game lines"
-            git fetch origin main
-            git rebase -X theirs origin/main
-            node tools/test-korean-regular-promotion.cjs
-            git push origin HEAD:main
-          fi
+      - run: echo "Korean routes reset; restore requires explicit change to data/kr/publication-policy.json."
