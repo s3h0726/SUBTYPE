@@ -44,6 +44,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div class="toolbar"><label for="githubToken">GitHub fine-grained 토큰 (Contents: Read and write)</label><input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_..." style="flex:1;min-width:200px;padding:9px;border:1px solid #bdccd8;border-radius:8px"><small>토큰은 서버·브라우저 저장소에 저장하지 않습니다.</small></div>
 <div class="panel"><div id="status" role="status">자료 읽는 중…</div><div id="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div></div>
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
+<p class="note">일본 노선의 최신 나무위키 대조 명칭을 반영했습니다. 역명·고유 역명 탭에는 <strong>출처 검증</strong>과 <strong>근거 URL</strong>이 표시됩니다. 검증되지 않은 항목은 자동으로 정확하다고 확정하지 않습니다. 예전 브라우저 임시 저장본이 최신 원본명을 덮어쓰지 않도록 편집 초안을 새 버전으로 분리했습니다.</p>
 <p class="note">초록색 한글명(직통·운행계통 포함)과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
 </main>
 <script src="../../js/service-data.js?v=services-editor-20261026"></script>
@@ -51,7 +52,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 'use strict';
 const FILES=['operators','lines','korea-lines','services','stations-by-line','stations-unique'];
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0;
-const DATA_VERSION='20261011-current'; // Keep existing browser drafts compatible
+const DATA_VERSION='20261031-namuwiki-revalidated'; // Isolate stale drafts from revalidated canonical names; older local drafts remain recoverable under their earlier storage key
 const FRESH_DATA_QUERY='ts='+Date.now();
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
@@ -71,7 +72,7 @@ function applyRemote(){
  if(file==='operators'&&remoteOverrides.operators[id])row[1]=remoteOverrides.operators[id];
  if(file==='lines'||file==='korea-lines'){const v=remoteOverrides.lines[id];if(v?.ko)row[3]=v.ko;if(v?.color)row[6]=v.color;else row[6]=cssToHex(row[6]);}
  if(file==='services'){const v=remoteOverrides.services[row[0]];if(v)row[4]=v}
- if(file==='stations-by-line'){const v=remoteOverrides.stations[row[2]]?.[row[4]]||remoteOverrides.stations[row[2]]?.[row[5]];if(v)row[6]=v;}
+ if(file==='stations-by-line'){const v=remoteOverrides.stations[row[2]]?.[row[4]]||remoteOverrides.stations[row[2]]?.[row[5]];if(v&&v!==row[6]){row[6]=v;if(heads.includes('출처 검증'))row[heads.indexOf('출처 검증')]='편집표 별도값(원본 대조 필요)';}}
  }
 }
 function parseCSV(text){
@@ -137,7 +138,7 @@ function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.sl
  table.querySelector('thead').innerHTML='<tr><th>#</th>'+heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr>';
  table.querySelector('tbody').innerHTML=part.map(i=>'<tr><td>'+(i+1)+'</td>'+rows[i].map((v,j)=>(j===edit||j===rgb)
   ?'<td class="editable '+(v!==original[i][j]?'edited':'')+'">'+(j===rgb?'<input type="color" data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:46px;min-width:46px;vertical-align:middle"><input data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:90px;min-width:90px" aria-label="RGB 색상">':'<input data-r="'+i+'" data-c="'+j+'" value="'+escape(v)+'" aria-label="'+escape(heads[j])+'">')+'</td>'
-  :'<td>'+escape(v)+'</td>').join('')+'</tr>').join('');
+  :'<td>'+(heads[j]==='근거 URL'&&/^https:\/\//i.test(String(v))?'<a href="'+escape(v)+'" target="_blank" rel="noopener noreferrer">근거 보기</a>':escape(v))+'</td>').join('')+'</tr>').join('');
  const changes=rows.reduce((n,r,i)=>n+(isChanged(i)?1:0),0);
  status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+changes.toLocaleString()+'건';
  document.querySelector('#pageinfo').textContent=visible.length?(page*size+1).toLocaleString()+'–'+e.toLocaleString()+' / '+visible.length.toLocaleString():'0건';
