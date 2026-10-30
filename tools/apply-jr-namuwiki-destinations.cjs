@@ -61,6 +61,12 @@ for(const item of manifest.stations){
  if(apply){
   target.koSourceFamily='namuwiki';target.koSource='namuwiki-manual';target.koSourceMethod='manual';
   target.koSourceUrl=item.source.url;target.koVerified=true;target.koVerifiedDate=manifest.batchDate;
+  // Clear stale fallback search metadata to prevent the game and name editor
+  // from showing a former incorrect Korean title or "access blocked" after
+  // source-linked manual cross-check.
+  target.koSearchReference='site:namu.moe '+item.expectedJa+' '+item.names.ko;
+  target.sourceAccess='namuwiki-article-crosschecked';
+  target.namuwikiStatus='article-identity-crosschecked';
   target.koConfidence='HIGH';target.koReviewStatus='VERIFIED';target.canonicalKoreanPolicy='namuwiki';
   target.namuwikiDestinationIdentity={article:item.source.title,ja:item.expectedJa,ko:item.names.ko,
    url:item.source.url,scope:item.source.scope,verifiedDate:manifest.batchDate};
