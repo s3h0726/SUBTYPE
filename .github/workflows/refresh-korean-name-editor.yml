@@ -1,9 +1,7 @@
 name: Refresh Korean name editor tables
+# Push-driven editor updates are handled by export-korean-names.yml.
+# Leave this legacy entry point available for an explicit manual refresh.
 on:
-  push:
-    paths:
-      - 'reports/korean-names/editor.html'
-      - '.github/workflows/refresh-korean-name-editor.yml'
   workflow_dispatch:
 permissions:
   contents: write
