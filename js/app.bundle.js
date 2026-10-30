@@ -2790,7 +2790,7 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
     // canonical runtime index. Never mutate or replace existing catalog lines.
     const extra=globalThis.TRT_DISNEY_RESORT_ROUTE;
     if(extra&&!data.lines.some(line=>line.id===extra.id)){
-      const line=normalizeLine(extra,{category:'other'});
+      const line=normalizeLine(extra,{category:'monorail'});
       data.lines.push(line);
       data.counts.other=(data.counts.other||0)+1;
     }
