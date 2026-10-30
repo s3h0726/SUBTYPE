@@ -60,6 +60,7 @@ for(const abs of stationFiles){
       }
     }
     checkNames('station',s.id,s.names,rel);
+    if(/[\u3400-\u9fff]/u.test(String(s.names?.kana||'')))issue('error','KANA_HAS_KANJI','station',{id:s.id,...s.names,file:rel},'Kana reading contains unresolved kanji from dictionary conversion');
     if(s.names?.kana)inc('stationKanaPresent');
     if(s.koVerified===true)inc('stationKoreanSourceVerified');
     else inc('stationKoreanUnverified');
@@ -141,4 +142,4 @@ if(!check){
   fs.writeFileSync(path.join(root,out,'README.md'),heading+intro+'- 오류: '+(bySeverity.error||0)+'건\n- 재검토 후보: '+(bySeverity.review||0)+'건\n- 확실한 표기 교정: '+fixes.length+'건\n\n'+table+warning+preview);
 }
 console.log(JSON.stringify({status:'AUDITED',...summary},null,2));
-if(check&&oldNameCount){console.error('FAIL: Source still has '+oldNameCount+' 온선 transcription defects');process.exitCode=1;}
+if(check&&(oldNameCount||(byCode.EN_NON_LATIN||0))){console.error('FAIL: Source still has onsen or non-Latin English entries');process.exitCode=1;}
