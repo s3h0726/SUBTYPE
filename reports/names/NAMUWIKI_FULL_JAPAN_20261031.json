@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T15:56:29.362Z",
+  "generatedAt": "2026-10-30T16:00:28.464Z",
   "policy": {
     "canonicalKorean": "namuwiki exact article title or Japanese-name matched station list",
     "originalJapanese": "retain official identity and route-specific Japanese variant",
@@ -13,13 +13,13 @@
       "line": 608,
       "station": 8878,
       "operator": 162,
-      "routeSpecificStation": 51
+      "routeSpecificStation": 52
     },
-    "allNameRecords": 9699,
+    "allNameRecords": 9700,
     "statuses": {
       "LEGACY_CLAIM_NOT_RECHECKED": 93,
       "SOURCE_REVIEW_REQUIRED": 9561,
-      "NAMUWIKI_BATCH_CROSSCHECKED": 45
+      "NAMUWIKI_BATCH_CROSSCHECKED": 46
     },
     "issueCounts": {
       "SUSPICIOUS_ROMAJI_CAMELCASE": 1854,
@@ -27,11 +27,11 @@
       "LEGACY_CITATION_RECHECK_REQUIRED": 93,
       "EN_INCLUDES_NON_LATIN_OR_SYMBOLS": 24
     },
-    "sourceKnown": 45,
+    "sourceKnown": 46,
     "previousVerificationClaimsNotYetRechecked": 93,
     "sourceReviewRequired": 9561,
     "editorDisplayExceptions": 174,
-    "coveragePercent": 0.46,
+    "coveragePercent": 0.47,
     "completeNamuwikiVerification": false
   },
   "editorConflicts": [
@@ -120733,6 +120733,22 @@
       "issues": [],
       "routeId": "line-99637",
       "stationId": "station-1160821"
+    },
+    {
+      "kind": "routeSpecificStation",
+      "id": "line-99326::station-9932006",
+      "ja": "湘南江の島",
+      "ko": "쇼난에노시마",
+      "en": "Shonan-Enoshima",
+      "file": "data/japan-route-station-names.json",
+      "status": "NAMUWIKI_BATCH_CROSSCHECKED",
+      "issues": [],
+      "routeId": "line-99326",
+      "stationId": "station-9932006",
+      "namuwikiEvidence": {
+        "url": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0",
+        "scope": "line-99326"
+      }
     },
     {
       "kind": "line",
