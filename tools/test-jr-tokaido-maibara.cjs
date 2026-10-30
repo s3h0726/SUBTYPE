@@ -44,7 +44,8 @@ assert.equal(published.directedSegments.length,41);
 assert.equal(published.geometryReady,true);
 assert.equal(published.missingSegments?.length,0);
 assert.equal(card.stationCount,42);
-assert.equal(card.line.ko,'도카이도 본선(토요하시~마이바라)');
+const editor=JSON.parse(read('data/editor-overrides.json'));
+assert.equal(card.line.ko,editor.lines?.[route.id]?.ko||'도카이도 본선(토요하시~마이바라)');
 assert(card.lazySource.includes('chunk-02.json'));
 assert.equal(card.playable,true);
 // The map must consume the surveyed polyline, never a straight station-to-station chord.
