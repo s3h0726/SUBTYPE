@@ -16,7 +16,7 @@ test('official four-stop counterclockwise resort line closes at Resort Gateway',
  assert.equal(route.id,'jp-disney-resort-line');
  assert.equal(route.loop,true);
  assert.equal(route.oneWay,true);
- assert.equal(route.category,'other');
+ assert.equal(route.category,'monorail');
  assert.equal(route.mode,'monorail');
  assert.deepEqual(Array.from(route.stations.slice(0,4),s=>s.ja),official);
  assert.equal(route.stations.length,5);

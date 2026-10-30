@@ -3,6 +3,15 @@ on:
   push:
     paths:
       - 'data/japan-route-category-overrides.json'
+      - 'data/lines/chibatoshimonoreru/**'
+      - 'data/lines/kitakyushukosokutetsudo/**'
+      - 'data/lines/okinawatoshimonoreru/**'
+      - 'data/lines/osakamonoreru/**'
+      - 'data/lines/shonanmonoreru/**'
+      - 'data/lines/tama-monorail/**'
+      - 'data/lines/tokyo-monorail/**'
+      - 'js/disney-resort-line-data.js'
+      - 'js/data-loader.js'
       - 'js/japan-route-category-patch.js'
       - 'js/japan-lite-index.js'
       - 'js/app.js'
@@ -13,6 +22,15 @@ on:
   pull_request:
     paths:
       - 'data/japan-route-category-overrides.json'
+      - 'data/lines/chibatoshimonoreru/**'
+      - 'data/lines/kitakyushukosokutetsudo/**'
+      - 'data/lines/okinawatoshimonoreru/**'
+      - 'data/lines/osakamonoreru/**'
+      - 'data/lines/shonanmonoreru/**'
+      - 'data/lines/tama-monorail/**'
+      - 'data/lines/tokyo-monorail/**'
+      - 'js/disney-resort-line-data.js'
+      - 'js/data-loader.js'
       - 'js/japan-route-category-patch.js'
       - 'js/japan-lite-index.js'
       - 'js/app.js'

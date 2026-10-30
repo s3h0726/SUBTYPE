@@ -49,7 +49,7 @@
     stationCode:'',officialCode:'',order:index+1
   }));
   globalThis.TRT_DISNEY_RESORT_ROUTE={
-    id:'jp-disney-resort-line',countryId:'jp',category:'other',mode:'monorail',
+    id:'jp-disney-resort-line',countryId:'jp',category:'monorail',mode:'monorail',
     operatorId:'maihama-resort-line',operator:{ja:'舞浜リゾートライン',ko:'마이하마 리조트라인',en:'Maihama Resort Line'},
     line:{ja:'ディズニーリゾートライン',ko:'디즈니 리조트라인',en:'Disney Resort Line'},
     code:'DR',lineColor:'#D699B8',loop:true,oneWay:true,
