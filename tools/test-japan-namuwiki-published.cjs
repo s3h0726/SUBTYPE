@@ -16,7 +16,7 @@ assert.equal(ws.routes.length,lite.routes.length);
 for(const item of manifest.lines){
  const src=byId.get(item.id),card=liteById.get(item.id);
  assert(src&&card,'Missing route '+item.id);
- for(const field of ['ja','en','ko']){
+ for(const field of ['ja','kana','en','ko']){
   const expected=field==='ko'?(editor.lines?.[item.id]?.ko||item.names.ko):item.names[field];
   assert.equal(src.line[field],expected,item.id+' workspaces '+field);
   assert.equal(card.line[field],expected,item.id+' lightweight card '+field);
@@ -45,6 +45,7 @@ const shonanEnd=shonan?.stations?.find(s=>s.id==='station-9932006');
 assert.equal(shonanEnd?.ja,'湘南江の島','Shonan route must not borrow Enoden 江ノ島 station name');
 assert.equal(shonanEnd?.ko,'쇼난에노시마');
 assert.equal(shonanEnd?.romaji,'Shonan-Enoshima');
+assert.equal(shonanEnd?.kana,'しょうなんえのしま');
 assert.equal(invalid.length,0,'Manual proof conflicts with prior verified station names');
 assert(report.scope.lines===9&&report.scope.operators===6&&report.scope.stationReferences===32);
 assert(audit.summary.total.station>=8800&&audit.summary.total.line>=600&&audit.summary.total.operator>=160);
