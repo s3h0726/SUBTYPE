@@ -13,7 +13,7 @@ const physical=json('data/lines/jr-central/tokaidohonsen-hamamatsu-gifu/geometry
 const gap=physical['station-1150304::station-1150307'];
 const context={};
 vm.createContext(context);
-vm.runInContext(read('js/route-integrity.js').replace(/^export\s+/gm,'')+';globalThis.resolvePlayableRouteForTest=resolvePlayableRoute;',context);
+vm.runInContext(read('js/route-integrity.js').replace(/^import[^\n]*\n/gm,'').replace(/^export\s+/gm,'')+';globalThis.resolvePlayableRouteForTest=resolvePlayableRoute;',context);
 assert.equal(route.stations.length,42);
 assert.equal(route.stations[0].ja,'豊橋');
 assert.equal(route.stations.at(-1).ja,'米原');
