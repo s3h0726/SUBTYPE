@@ -52,7 +52,7 @@ assert.equal(card.playable,true);
 const renderer=read('js/route-renderer.js');
 const mapBegin=renderer.indexOf('const latLngs=route=>'),mapEnd=renderer.indexOf('const validCoordinates=',mapBegin);
 assert(mapBegin>=0&&mapEnd>mapBegin,'missing renderer geometry logic');
-vm.runInContext(renderer.slice(mapBegin,mapEnd).replace(/\\bexport\\s+/g,'')+';globalThis.travelGeometryForTest=travelGeometry;',context);
+vm.runInContext(renderer.slice(mapBegin,mapEnd).replace(/export\s+/g,'')+';globalThis.travelGeometryForTest=travelGeometry;',context);
 for(const source of [route,published]){
  for(const direction of ['forward','reverse']){
   const resolved=context.resolvePlayableRouteForTest(source,{direction,service:{id:'local',stops:ids}});
