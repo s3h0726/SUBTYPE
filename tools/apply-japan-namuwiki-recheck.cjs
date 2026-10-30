@@ -59,13 +59,25 @@ for(const entry of manifest.operators){
  }
  seen.add('operator:'+op.id);
 }
-const stationProofs=new Map;
+const stationProofs=new Map,routeScopedProofs=new Set;
+const scopedNames=read('data/japan-route-station-names.json').routes||{};
 for(const entry of manifest.stationNames){
  const line=lineMap.get(entry.routeId);if(!line)throw Error('STATION_LINE_NOT_FOUND:'+entry.routeId);
  const rows=read(line.folder+'/stations.json');
  const options=rows.map(s=>({relation:s,source:stationMap.get(s.stationId)}))
   .filter(x=>x.source?.item.names?.ja===entry.ja);
- if(options.length!==1){review.push({type:'STATION_JA_AMBIGUOUS_OR_MISSING',routeId:entry.routeId,ja:entry.ja,ko:entry.ko,matches:options.length});continue;}
+ if(options.length!==1){
+  const routeProof=rows.filter(rel=>{
+   const named=scopedNames[entry.routeId]?.[rel.stationId];
+   return named?.ja===entry.ja&&named?.ko===entry.ko&&named?.namuwikiVerified===true&&named?.namuwikiUrl===entry.wikiUrl;
+  });
+  if(routeProof.length===1){
+   routeScopedProofs.add(entry.routeId+'::'+routeProof[0].stationId);
+   seen.add('routeStation:'+entry.routeId+'::'+routeProof[0].stationId);
+   continue; // Shared physical ID may have another operator's official name.
+  }
+  review.push({type:'STATION_JA_AMBIGUOUS_OR_MISSING',routeId:entry.routeId,ja:entry.ja,ko:entry.ko,matches:options.length});continue;
+ }
  const {item:station,file}=options[0].source;
  const prior=stationProofs.get(station.id);
  if(prior&&prior!==entry.ko){review.push({type:'CROSS_ROUTE_NAME_CONFLICT',stationId:station.id,ja:entry.ja,first:prior,second:entry.ko});continue;}
@@ -109,7 +121,7 @@ if(apply){
 const report={
  schemaVersion:1,date:manifest.batch,
  policy:'Namuwiki explicit Japanese-name / Korean-name matches only. Japanese and English forms may be independently normalized; verified Korean status does not certify English.',
- scope:{lines:manifest.lines.length,operators:manifest.operators.length,stationReferences:manifest.stationNames.length,uniqueStationsVerified:stationProofs.size},
+ scope:{lines:manifest.lines.length,operators:manifest.operators.length,stationReferences:manifest.stationNames.length,uniqueStationsVerified:stationProofs.size,routeSpecificStationNamesVerified:routeScopedProofs.size},
  applied:apply,changedFields:diffs.length,
  changedEntries:new Set(diffs.map(x=>x.kind+':'+x.id)).size,
  reviewRequired:review.length,review,diffs,
@@ -118,4 +130,4 @@ const report={
 if(apply){
  const file='reports/names/NAMUWIKI_APPLIED_BATCH_20261031.json';write(file,report);
 }
-console.log(JSON.stringify({status:review.length?'PARTIAL_REVIEW':'PASS',applied:apply,changes:diffs.length,reviewCount:review.length,verifiedStationEntries:stationProofs.size,touchedFiles:touched.size},null,2));
+console.log(JSON.stringify({status:review.length?'PARTIAL_REVIEW':'PASS',applied:apply,changes:diffs.length,reviewCount:review.length,verifiedStationEntries:stationProofs.size,verifiedRouteScopedStations:routeScopedProofs.size,touchedFiles:touched.size},null,2));
