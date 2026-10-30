@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-31",
+  "policy": "Namuwiki explicit Japanese-name / Korean-name matches only. Japanese and English forms may be independently normalized; verified Korean status does not certify English.",
+  "scope": {
+    "lines": 9,
+    "operators": 6,
+    "stationReferences": 32,
+    "uniqueStationsVerified": 30
+  },
+  "applied": true,
+  "changedFields": 35,
+  "changedEntries": 22,
+  "reviewRequired": 1,
+  "review": [
+    {
+      "type": "STATION_JA_AMBIGUOUS_OR_MISSING",
+      "routeId": "line-99326",
+      "ja": "湘南江の島",
+      "ko": "쇼난에노시마",
+      "matches": 0
+    }
+  ],
+  "diffs": [
+    {
+      "kind": "line",
+      "id": "line-99326",
+      "field": "ja",
+      "from": "湘南モノレール",
+      "to": "江の島線",
+      "file": "data/lines/shonanmonoreru/shonanmonoreru/line.json",
+      "source": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99326",
+      "field": "ko",
+      "from": "쇼난 모노레일",
+      "to": "에노시마선",
+      "file": "data/lines/shonanmonoreru/shonanmonoreru/line.json",
+      "source": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99326",
+      "field": "en",
+      "from": "ShōNanmonorēRu",
+      "to": "Enoshima Line",
+      "file": "data/lines/shonanmonoreru/shonanmonoreru/line.json",
+      "source": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99908",
+      "field": "ja",
+      "from": "北九州モノレール",
+      "to": "小倉線",
+      "file": "data/lines/kitakyushukosokutetsudo/kitakyushumonoreru/line.json",
+      "source": "https://namu.moe/w/%ED%82%A4%ED%83%80%ED%81%90%EC%8A%88%20%EA%B3%A0%EC%86%8D%EC%B2%A0%EB%8F%84%20%EC%BD%94%EC%BF%A0%EB%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99908",
+      "field": "ko",
+      "from": "키타큐슈 모노레일",
+      "to": "코쿠라선",
+      "file": "data/lines/kitakyushukosokutetsudo/kitakyushumonoreru/line.json",
+      "source": "https://namu.moe/w/%ED%82%A4%ED%83%80%ED%81%90%EC%8A%88%20%EA%B3%A0%EC%86%8D%EC%B2%A0%EB%8F%84%20%EC%BD%94%EC%BF%A0%EB%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99908",
+      "field": "en",
+      "from": "KitakyūShūMonorēRu",
+      "to": "Kokura Line",
+      "file": "data/lines/kitakyushukosokutetsudo/kitakyushumonoreru/line.json",
+      "source": "https://namu.moe/w/%ED%82%A4%ED%83%80%ED%81%90%EC%8A%88%20%EA%B3%A0%EC%86%8D%EC%B2%A0%EB%8F%84%20%EC%BD%94%EC%BF%A0%EB%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99927",
+      "field": "ja",
+      "from": "ゆいレール",
+      "to": "沖縄都市モノレール線",
+      "file": "data/lines/okinawatoshimonoreru/yuireru/line.json",
+      "source": "https://namu.moe/w/%EC%98%A4%ED%82%A4%EB%82%98%EC%99%80%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99927",
+      "field": "ko",
+      "from": "유이레루",
+      "to": "오키나와 도시 모노레일선",
+      "file": "data/lines/okinawatoshimonoreru/yuireru/line.json",
+      "source": "https://namu.moe/w/%EC%98%A4%ED%82%A4%EB%82%98%EC%99%80%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99927",
+      "field": "en",
+      "from": "YuirēRu",
+      "to": "Okinawa Urban Monorail",
+      "file": "data/lines/okinawatoshimonoreru/yuireru/line.json",
+      "source": "https://namu.moe/w/%EC%98%A4%ED%82%A4%EB%82%98%EC%99%80%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99334",
+      "field": "ja",
+      "from": "多摩モノレール",
+      "to": "多摩都市モノレール線",
+      "file": "data/lines/tama-monorail/tama-monorail/line.json",
+      "source": "https://namu.moe/w/%ED%83%80%EC%B9%B4%EB%A7%88%EC%B8%A0%EC%97%AD(%EB%8F%84%EC%BF%84)"
+    },
+    {
+      "kind": "line",
+      "id": "line-99334",
+      "field": "ko",
+      "from": "다마 모노레일",
+      "to": "타마 도시 모노레일선",
+      "file": "data/lines/tama-monorail/tama-monorail/line.json",
+      "source": "https://namu.moe/w/%ED%83%80%EC%B9%B4%EB%A7%88%EC%B8%A0%EC%97%AD(%EB%8F%84%EC%BF%84)"
+    },
+    {
+      "kind": "line",
+      "id": "line-99334",
+      "field": "en",
+      "from": "Tama Monorail",
+      "to": "Tama Monorail Line",
+      "file": "data/lines/tama-monorail/tama-monorail/line.json",
+      "source": "https://namu.moe/w/%ED%83%80%EC%B9%B4%EB%A7%88%EC%B8%A0%EC%97%AD(%EB%8F%84%EC%BF%84)"
+    },
+    {
+      "kind": "line",
+      "id": "line-99336",
+      "field": "ja",
+      "from": "東京モノレール",
+      "to": "羽田空港線",
+      "file": "data/lines/tokyo-monorail/tokyo-monorail-haneda-airport-line/line.json",
+      "source": "https://namu.moe/w/%EB%8F%84%EC%BF%84%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%ED%95%98%EB%84%A4%EB%8B%A4%20%EA%B3%B5%ED%95%AD%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99336",
+      "field": "ko",
+      "from": "도쿄 모노레일 하네다 공항선",
+      "to": "하네다 공항선",
+      "file": "data/lines/tokyo-monorail/tokyo-monorail-haneda-airport-line/line.json",
+      "source": "https://namu.moe/w/%EB%8F%84%EC%BF%84%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%ED%95%98%EB%84%A4%EB%8B%A4%20%EA%B3%B5%ED%95%AD%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99336",
+      "field": "en",
+      "from": "Tokyo Monorail Haneda Airport Line",
+      "to": "Haneda Airport Line",
+      "file": "data/lines/tokyo-monorail/tokyo-monorail-haneda-airport-line/line.json",
+      "source": "https://namu.moe/w/%EB%8F%84%EC%BF%84%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%ED%95%98%EB%84%A4%EB%8B%A4%20%EA%B3%B5%ED%95%AD%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99627",
+      "field": "ja",
+      "from": "大阪モノレール彩都線",
+      "to": "彩都線",
+      "file": "data/lines/osakamonoreru/osakamonoreruirodoritosen/line.json",
+      "source": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%82%AC%EC%9D%B4%ED%86%A0%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99627",
+      "field": "ko",
+      "from": "오사카 모노레일 사이토선",
+      "to": "사이토선",
+      "file": "data/lines/osakamonoreru/osakamonoreruirodoritosen/line.json",
+      "source": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%82%AC%EC%9D%B4%ED%86%A0%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99627",
+      "field": "en",
+      "from": "ōSakamonorēRuirodoritosen",
+      "to": "Osaka Monorail Saito Line",
+      "file": "data/lines/osakamonoreru/osakamonoreruirodoritosen/line.json",
+      "source": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%82%AC%EC%9D%B4%ED%86%A0%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99626",
+      "field": "en",
+      "from": "ōSakamonorēRusen",
+      "to": "Osaka Monorail Main Line",
+      "file": "data/lines/osakamonoreru/osakamonorerusen/line.json",
+      "source": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC"
+    },
+    {
+      "kind": "line",
+      "id": "line-99331",
+      "field": "en",
+      "from": "ChibatoshimonorēRu1gōSen",
+      "to": "Chiba Urban Monorail Line 1",
+      "file": "data/lines/chibatoshimonoreru/chibatoshimonoreru1gosen/line.json",
+      "source": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%201%ED%98%B8%EC%84%A0"
+    },
+    {
+      "kind": "line",
+      "id": "line-99332",
+      "field": "en",
+      "from": "ChibatoshimonorēRu2gōSen",
+      "to": "Chiba Urban Monorail Line 2",
+      "file": "data/lines/chibatoshimonoreru/chibatoshimonoreru2gosen/line.json",
+      "source": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%202%ED%98%B8%EC%84%A0"
+    },
+    {
+      "kind": "operator",
+      "id": "shonanmonoreru",
+      "field": "en",
+      "from": "ShōNanmonorēRu",
+      "to": "Shonan Monorail",
+      "file": "data/operators/shonanmonoreru/operator.json",
+      "source": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0"
+    },
+    {
+      "kind": "operator",
+      "id": "tama-monorail",
+      "field": "ko",
+      "from": "다마 도시 모노레일",
+      "to": "타마 도시 모노레일",
+      "file": "data/operators/tama-monorail/operator.json",
+      "source": "https://namu.moe/w/%ED%83%80%EC%B9%B4%EB%A7%88%EC%B8%A0%EC%97%AD(%EB%8F%84%EC%BF%84)"
+    },
+    {
+      "kind": "operator",
+      "id": "chibatoshimonoreru",
+      "field": "en",
+      "from": "ChibatoshimonorēRu",
+      "to": "Chiba Urban Monorail",
+      "file": "data/operators/chibatoshimonoreru/operator.json",
+      "source": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%201%ED%98%B8%EC%84%A0"
+    },
+    {
+      "kind": "operator",
+      "id": "kitakyushukosokutetsudo",
+      "field": "ko",
+      "from": "기타큐슈 고속철도",
+      "to": "키타큐슈 고속철도",
+      "file": "data/operators/kitakyushukosokutetsudo/operator.json",
+      "source": "https://namu.moe/w/%ED%82%A4%ED%83%80%ED%81%90%EC%8A%88%20%EA%B3%A0%EC%86%8D%EC%B2%A0%EB%8F%84%20%EC%BD%94%EC%BF%A0%EB%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "operator",
+      "id": "kitakyushukosokutetsudo",
+      "field": "en",
+      "from": "KitakyūShūKōSokutetsudō",
+      "to": "Kitakyushu Rapid Transit",
+      "file": "data/operators/kitakyushukosokutetsudo/operator.json",
+      "source": "https://namu.moe/w/%ED%82%A4%ED%83%80%ED%81%90%EC%8A%88%20%EA%B3%A0%EC%86%8D%EC%B2%A0%EB%8F%84%20%EC%BD%94%EC%BF%A0%EB%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "operator",
+      "id": "okinawatoshimonoreru",
+      "field": "en",
+      "from": "OkinawatoshimonorēRu",
+      "to": "Okinawa Urban Monorail",
+      "file": "data/operators/okinawatoshimonoreru/operator.json",
+      "source": "https://namu.moe/w/%EC%98%A4%ED%82%A4%EB%82%98%EC%99%80%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%EC%84%A0"
+    },
+    {
+      "kind": "operator",
+      "id": "osakamonoreru",
+      "field": "en",
+      "from": "ōSakamonorēRu",
+      "to": "Osaka Monorail",
+      "file": "data/operators/osakamonoreru/operator.json",
+      "source": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC"
+    },
+    {
+      "kind": "station",
+      "id": "station-9932602",
+      "field": "ko",
+      "from": "후지미마치",
+      "to": "후지미초",
+      "file": "data/shared-stations/stations-37.json",
+      "source": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0"
+    },
+    {
+      "kind": "station",
+      "id": "station-9932604",
+      "field": "ko",
+      "from": "쇼난후카자와",
+      "to": "쇼난후카사와",
+      "file": "data/shared-stations/stations-16.json",
+      "source": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0"
+    },
+    {
+      "kind": "station",
+      "id": "station-9933104",
+      "field": "ko",
+      "from": "사카에마치",
+      "to": "사카에쵸",
+      "file": "data/shared-stations/stations-40.json",
+      "source": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%201%ED%98%B8%EC%84%A0"
+    },
+    {
+      "kind": "station",
+      "id": "station-9933105",
+      "field": "ko",
+      "from": "요시가와코엔",
+      "to": "요시카와코엔",
+      "file": "data/shared-stations/stations-47.json",
+      "source": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%201%ED%98%B8%EC%84%A0"
+    },
+    {
+      "kind": "station",
+      "id": "station-9933106",
+      "field": "ko",
+      "from": "켄초마에",
+      "to": "겐초마에",
+      "file": "data/shared-stations/stations-62.json",
+      "source": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%201%ED%98%B8%EC%84%A0"
+    },
+    {
+      "kind": "station",
+      "id": "station-9962705",
+      "field": "ko",
+      "from": "아야미야코니시",
+      "to": "사이토니시",
+      "file": "data/shared-stations/stations-44.json",
+      "source": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%82%AC%EC%9D%B4%ED%86%A0%EC%84%A0"
+    },
+    {
+      "kind": "editor-line",
+      "id": "line-99927",
+      "field": "ko",
+      "from": "오키나와 도시 모노레일(유이레일)",
+      "to": "오키나와 도시 모노레일선",
+      "file": "data/editor-overrides.json",
+      "source": "verified Namuwiki line label"
+    }
+  ],
+  "guarded": {
+    "lineIdChanges": 0,
+    "stationIdChanges": 0,
+    "geometryChanges": 0,
+    "stopSequenceChanges": 0
+  }
+}

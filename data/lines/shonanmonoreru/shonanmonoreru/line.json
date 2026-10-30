@@ -5,10 +5,10 @@
   "operatorId": "shonanmonoreru",
   "category": "monorail",
   "names": {
-    "ja": "湘南モノレール",
+    "ja": "江の島線",
     "kana": "しょうなんものれーる",
-    "ko": "쇼난 모노레일",
-    "en": "ShōNanmonorēRu"
+    "ko": "에노시마선",
+    "en": "Enoshima Line"
   },
   "code": "",
   "color": "#2D2FBE",
@@ -38,18 +38,21 @@
     "geometry": "MLIT-N02-2025",
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 湘南モノレール 쇼우난모노레루 노선",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "MEDIUM",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "manual",
+      "type": "namuwiki-manual",
+      "verified": true,
+      "url": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0",
+      "wikiTitle": "쇼난 모노레일 에노시마선",
+      "sourceAccess": "verified-article-table",
+      "identityEvidence": {
+        "ja": "江の島線",
+        "ko": "에노시마선",
+        "scope": "line"
+      },
+      "verifiedDate": "2026-10-31",
+      "status": "NAMUWIKI_ARTICLE_CROSSCHECKED",
       "canonicalPolicy": "namuwiki",
-      "normalizationBatch": "2026-10-07-line-koreanization"
+      "confidence": "HIGH"
     }
   },
   "legacy": {
@@ -57,5 +60,6 @@
     "coverage": "nationwide-source-line",
     "dataKind": "physicalRoute"
   },
-  "officialKoSource": null
+  "officialKoSource": null,
+  "namuwikiSourceLineName": "쇼난 모노레일 에노시마선"
 }

@@ -7,43 +7,50 @@
     "operator": {
       "ja": "大阪モノレール株式会社",
       "ko": "오사카 모노레일",
-      "en": "ōSakamonorēRu"
+      "en": "Osaka Monorail"
     },
     "operatorSource": {
-      "family": "manual-review",
-      "method": "manual-linguistic-policy",
-      "type": "linguistic-policy",
-      "url": null,
-      "searchReference": "site:namu.wiki \"大阪モノレール株式会社\"",
-      "sourceAccess": "direct-and-search-index-unresolved",
-      "namuwikiStatus": "unresolved",
-      "verified": false,
-      "confidence": "REVIEW",
-      "verifiedDate": "2026-09-05",
-      "status": "REVIEW",
-      "canonicalPolicy": "namuwiki"
+      "family": "namuwiki",
+      "method": "manual",
+      "type": "namuwiki-manual",
+      "verified": true,
+      "url": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC",
+      "wikiTitle": "오사카 모노레일",
+      "sourceAccess": "verified-article-table",
+      "identityEvidence": {
+        "ja": "大阪モノレール株式会社",
+        "ko": "오사카 모노레일",
+        "scope": "operator"
+      },
+      "verifiedDate": "2026-10-31",
+      "status": "NAMUWIKI_ARTICLE_CROSSCHECKED",
+      "canonicalPolicy": "namuwiki",
+      "confidence": "HIGH"
     },
     "operatorAsset": null,
     "line": {
       "ja": "大阪モノレール線",
       "kana": "おおさかものれーるせん",
       "ko": "오사카 모노레일선",
-      "en": "ōSakamonorēRusen"
+      "en": "Osaka Monorail Main Line"
     },
     "koreanNameSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 大阪モノレール線 오오사카모노레루선 노선",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "MEDIUM",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "manual",
+      "type": "namuwiki-manual",
+      "verified": true,
+      "url": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC",
+      "wikiTitle": "오사카 모노레일",
+      "sourceAccess": "verified-article-table",
+      "identityEvidence": {
+        "ja": "大阪モノレール線",
+        "ko": "오사카 모노레일선",
+        "scope": "line"
+      },
+      "verifiedDate": "2026-10-31",
+      "status": "NAMUWIKI_ARTICLE_CROSSCHECKED",
       "canonicalPolicy": "namuwiki",
-      "normalizationBatch": "2026-10-07-line-koreanization"
+      "confidence": "HIGH"
     },
     "code": "",
     "lineColor": "#60736A",
@@ -327,14 +334,14 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
-        "koSearchReference": "site:namu.wiki 万博記念公園駅 반파쿠키넨코우엔 역",
+        "koSource": "namuwiki-manual",
+        "koSourceUrl": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%82%AC%EC%9D%B4%ED%86%A0%EC%84%A0",
+        "koSearchReference": "오사카 모노레일 사이토선",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
-        "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
+        "koVerified": true,
+        "koConfidence": "HIGH",
+        "koReviewStatus": "VERIFIED",
         "geometryIndex": 92,
         "coordinateSource": "line-track-geometry"
       },
@@ -2136,18 +2143,21 @@
       "geometry": "MLIT-N02-2025",
       "koreanName": {
         "family": "namuwiki",
-        "method": "unresolved",
-        "type": "namuwiki-unresolved",
-        "url": "",
-        "searchReference": "site:namu.wiki 大阪モノレール線 오오사카모노레루선 노선",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
-        "verified": false,
-        "confidence": "MEDIUM",
-        "verifiedDate": null,
-        "status": "REVIEW_REQUIRED",
+        "method": "manual",
+        "type": "namuwiki-manual",
+        "verified": true,
+        "url": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC",
+        "wikiTitle": "오사카 모노레일",
+        "sourceAccess": "verified-article-table",
+        "identityEvidence": {
+          "ja": "大阪モノレール線",
+          "ko": "오사카 모노레일선",
+          "scope": "line"
+        },
+        "verifiedDate": "2026-10-31",
+        "status": "NAMUWIKI_ARTICLE_CROSSCHECKED",
         "canonicalPolicy": "namuwiki",
-        "normalizationBatch": "2026-10-07-line-koreanization"
+        "confidence": "HIGH"
       }
     },
     "dataKind": "physicalRoute",

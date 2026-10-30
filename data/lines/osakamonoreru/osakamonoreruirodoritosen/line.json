@@ -5,10 +5,10 @@
   "operatorId": "osakamonoreru",
   "category": "monorail",
   "names": {
-    "ja": "大阪モノレール彩都線",
+    "ja": "彩都線",
     "kana": "おおさかものれーるいろどりとせん",
-    "ko": "오사카 모노레일 사이토선",
-    "en": "ōSakamonorēRuirodoritosen"
+    "ko": "사이토선",
+    "en": "Osaka Monorail Saito Line"
   },
   "code": "",
   "color": "#60736A",
@@ -38,18 +38,21 @@
     "geometry": "MLIT-N02-2025",
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 大阪モノレール彩都線 오오사카모노레루이로도리토선 노선",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "MEDIUM",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "manual",
+      "type": "namuwiki-manual",
+      "verified": true,
+      "url": "https://namu.moe/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%82%AC%EC%9D%B4%ED%86%A0%EC%84%A0",
+      "wikiTitle": "오사카 모노레일 사이토선",
+      "sourceAccess": "verified-article-table",
+      "identityEvidence": {
+        "ja": "彩都線",
+        "ko": "사이토선",
+        "scope": "line"
+      },
+      "verifiedDate": "2026-10-31",
+      "status": "NAMUWIKI_ARTICLE_CROSSCHECKED",
       "canonicalPolicy": "namuwiki",
-      "normalizationBatch": "2026-10-07-line-koreanization"
+      "confidence": "HIGH"
     }
   },
   "legacy": {
@@ -57,5 +60,6 @@
     "coverage": "nationwide-source-line",
     "dataKind": "physicalRoute"
   },
-  "officialKoSource": null
+  "officialKoSource": null,
+  "namuwikiSourceLineName": "오사카 모노레일 사이토선"
 }
