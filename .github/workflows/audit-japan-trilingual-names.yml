@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - 'tools/audit-japan-trilingual-names.cjs'
+      - 'tools/apply-japan-trilingual-confirmed.cjs'
+      - 'data/japan-trilingual-confirmed-corrections.json'
       - '.github/workflows/audit-japan-trilingual-names.yml'
       - 'data/japan-name-exceptions.json'
   workflow_dispatch:
@@ -27,6 +29,8 @@ jobs:
           node-version: '22'
       - name: Verify audit code syntax
         run: node --check tools/audit-japan-trilingual-names.cjs
+      - name: Apply 44 reviewed multilingual name corrections to canonical sources
+        run: node tools/apply-japan-trilingual-confirmed.cjs
       - name: Check all source names and apply only unambiguous errors
         run: node tools/audit-japan-trilingual-names.cjs --fix-safe
       - name: Assert that no onsen mistranscriptions remain
@@ -44,7 +48,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/shared-stations/ reports/names/
+          git add data/shared-stations/ data/lines/ data/operators/ reports/names/
           git diff --cached --check
           if git diff --cached --quiet; then
             echo 'No audit report or source change'; exit 0
