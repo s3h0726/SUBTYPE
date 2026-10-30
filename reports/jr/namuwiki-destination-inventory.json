@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T16:26:45.437Z",
+  "generatedAt": "2026-10-30T16:34:24.772Z",
   "scope": "all six JR passenger companies",
   "sourcePolicy": "Namu wiki pages verified only where explicitly linked. Other cards are validated against physical station IDs and catalog; no invented verification.",
   "caveats": "Route section != train service destination. Actual departure terminus may differ from section boundary; not all TrainLCD patterns are current. No fabricated tracks, no unlocking broken services.",
@@ -8,15 +8,15 @@
     "cards": 223,
     "sourceBacked": 8,
     "sourceMismatch": 4,
-    "titleRangeMismatch": 29,
-    "cardsNeedingReview": 39,
+    "titleRangeMismatch": 1,
+    "cardsNeedingReview": 12,
     "catalogPatternEndpointIssues": 1
   },
   "byCompany": {
     "jr-east": {
       "totalCards": 85,
       "titleRangeChecked": 12,
-      "titleRangeMismatch": 5,
+      "titleRangeMismatch": 0,
       "sourceBacked": 2,
       "sourceMismatch": 1,
       "catalogPatterns": 377,
@@ -26,7 +26,7 @@
     "jr-central": {
       "totalCards": 17,
       "titleRangeChecked": 8,
-      "titleRangeMismatch": 3,
+      "titleRangeMismatch": 0,
       "sourceBacked": 2,
       "sourceMismatch": 0,
       "catalogPatterns": 69,
@@ -36,7 +36,7 @@
     "jr-west": {
       "totalCards": 64,
       "titleRangeChecked": 18,
-      "titleRangeMismatch": 8,
+      "titleRangeMismatch": 1,
       "sourceBacked": 4,
       "sourceMismatch": 3,
       "catalogPatterns": 271,
@@ -46,7 +46,7 @@
     "jr-hokkaido": {
       "totalCards": 19,
       "titleRangeChecked": 7,
-      "titleRangeMismatch": 4,
+      "titleRangeMismatch": 0,
       "sourceBacked": 0,
       "sourceMismatch": 0,
       "catalogPatterns": 67,
@@ -66,7 +66,7 @@
     "jr-kyushu": {
       "totalCards": 30,
       "titleRangeChecked": 12,
-      "titleRangeMismatch": 9,
+      "titleRangeMismatch": 0,
       "sourceBacked": 0,
       "sourceMismatch": 0,
       "catalogPatterns": 93,
@@ -134,7 +134,7 @@
       "id": "line-11414",
       "operatorId": "jr-central",
       "ja": "飯田線(天竜峡～辰野)",
-      "ko": "이다선(텐류쿄~다쓰노)",
+      "ko": "이다선(텐류쿄~타츠노)",
       "first": {
         "id": "station-1141351",
         "ja": "天竜峡",
@@ -154,21 +154,19 @@
       ],
       "titleKoEndpoints": [
         "텐류쿄",
-        "다쓰노"
+        "타츠노"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11413",
       "operatorId": "jr-central",
       "ja": "飯田線(豊橋～天竜峡)",
-      "ko": "이다선(도요하시~텐류쿄)",
+      "ko": "이다선(토요하시~텐류쿄)",
       "first": {
         "id": "station-1141301",
         "ja": "豊橋",
@@ -187,22 +185,20 @@
         "天竜峡"
       ],
       "titleKoEndpoints": [
-        "도요하시",
+        "토요하시",
         "텐류쿄"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11508",
       "operatorId": "jr-central",
       "ja": "関西本線(名古屋～亀山)",
-      "ko": "간사이 본선(나고야~가메야마)",
+      "ko": "간사이 본선(나고야~카메야마)",
       "first": {
         "id": "station-1141101",
         "ja": "名古屋",
@@ -222,15 +218,13 @@
       ],
       "titleKoEndpoints": [
         "나고야",
-        "가메야마"
+        "카메야마"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11510",
@@ -637,11 +631,11 @@
       "id": "line-11225",
       "operatorId": "jr-east",
       "ja": "磐越西線(郡山～会津若松)",
-      "ko": "반에쓰사이선(고리야마~아이즈와카마쓰)",
+      "ko": "반에츠사이선(코리야마~아이즈와카마츠)",
       "first": {
         "id": "station-1123114",
         "ja": "郡山",
-        "ko": "코오리야마"
+        "ko": "코리야마"
       },
       "last": {
         "id": "station-1122515",
@@ -656,16 +650,14 @@
         "会津若松"
       ],
       "titleKoEndpoints": [
-        "고리야마",
-        "아이즈와카마쓰"
+        "코리야마",
+        "아이즈와카마츠"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11219",
@@ -905,7 +897,7 @@
       "id": "line-11317",
       "operatorId": "jr-east",
       "ja": "八高線",
-      "ko": "하치코선(하치오지~고마가와)",
+      "ko": "하치코선(하치오지~코마가와)",
       "first": {
         "id": "station-1130620",
         "ja": "八王子",
@@ -922,21 +914,19 @@
       "titleJaEndpoints": null,
       "titleKoEndpoints": [
         "하치오지",
-        "고마가와"
+        "코마가와"
       ],
       "titleJaMatchesStops": null,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11318",
       "operatorId": "jr-east",
       "ja": "八高線(高麗川～高崎)",
-      "ko": "하치코선(고마가와~다카사키)",
+      "ko": "하치코선(코마가와~타카사키)",
       "first": {
         "id": "station-1131709",
         "ja": "高麗川",
@@ -955,16 +945,14 @@
         "高崎"
       ],
       "titleKoEndpoints": [
-        "고마가와",
-        "다카사키"
+        "코마가와",
+        "타카사키"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11206",
@@ -1582,7 +1570,7 @@
       "id": "line-11226",
       "operatorId": "jr-east",
       "ja": "森と水とロマンの鉄道",
-      "ko": "반에쓰사이선(아이즈와카마쓰~니쓰)",
+      "ko": "반에츠사이선(아이즈와카마츠~니츠)",
       "first": {
         "id": "station-1122515",
         "ja": "会津若松",
@@ -1591,18 +1579,18 @@
       "last": {
         "id": "station-1121401",
         "ja": "新津",
-        "ko": "니이츠"
+        "ko": "니츠"
       },
       "stationCount": 28,
       "geometryReady": true,
       "playable": true,
       "titleJaEndpoints": null,
       "titleKoEndpoints": [
-        "아이즈와카마쓰",
-        "니쓰"
+        "아이즈와카마츠",
+        "니츠"
       ],
       "titleJaMatchesStops": null,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": {
         "url": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%93%B0%EC%82%AC%EC%9D%B4%EC%84%A0",
         "title": "반에쓰사이선",
@@ -1614,9 +1602,7 @@
         "matches": true
       },
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11305",
@@ -2250,7 +2236,7 @@
       "last": {
         "id": "station-1123114",
         "ja": "郡山",
-        "ko": "코오리야마"
+        "ko": "코리야마"
       },
       "stationCount": 46,
       "geometryReady": true,
@@ -2397,7 +2383,7 @@
       "id": "line-11231",
       "operatorId": "jr-east",
       "ja": "東北本線(黒磯～利府・盛岡)",
-      "ko": "도호쿠 본선(구로이소~리후·모리오카)",
+      "ko": "도호쿠 본선(쿠로이소~리후·모리오카)",
       "first": {
         "id": "station-1123101",
         "ja": "黒磯",
@@ -2416,16 +2402,14 @@
         "利府・盛岡"
       ],
       "titleKoEndpoints": [
-        "구로이소",
+        "쿠로이소",
         "리후·모리오카"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11301",
@@ -2591,7 +2575,7 @@
       "first": {
         "id": "station-1121401",
         "ja": "新津",
-        "ko": "니이츠"
+        "ko": "니츠"
       },
       "last": {
         "id": "station-1120228",
@@ -2867,7 +2851,7 @@
       "last": {
         "id": "station-1123114",
         "ja": "郡山",
-        "ko": "코오리야마"
+        "ko": "코리야마"
       },
       "stationCount": 16,
       "geometryReady": true,
@@ -3138,7 +3122,7 @@
       "id": "line-11104",
       "operatorId": "jr-hokkaido",
       "ja": "室蘭本線(長万部・室蘭～苫小牧)",
-      "ko": "무로란 본선(오샤만베·무로란~도마코마이)",
+      "ko": "무로란 본선(오샤만베·무로란~토마코마이)",
       "first": {
         "id": "station-1110138",
         "ja": "長万部",
@@ -3158,21 +3142,19 @@
       ],
       "titleKoEndpoints": [
         "오샤만베·무로란",
-        "도마코마이"
+        "토마코마이"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11105",
       "operatorId": "jr-hokkaido",
       "ja": "室蘭本線(苫小牧～岩見沢)",
-      "ko": "무로란 본선(도마코마이~이와미자와)",
+      "ko": "무로란 본선(토마코마이~이와미자와)",
       "first": {
         "id": "station-1110434",
         "ja": "苫小牧",
@@ -3191,22 +3173,20 @@
         "岩見沢"
       ],
       "titleKoEndpoints": [
-        "도마코마이",
+        "토마코마이",
         "이와미자와"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11107",
       "operatorId": "jr-hokkaido",
       "ja": "根室本線(新得～釧路)",
-      "ko": "네무로 본선(신토쿠~구시로)",
+      "ko": "네무로 본선(신토쿠~쿠시로)",
       "first": {
         "id": "station-1110618",
         "ja": "新得",
@@ -3226,21 +3206,19 @@
       ],
       "titleKoEndpoints": [
         "신토쿠",
-        "구시로"
+        "쿠시로"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11106",
       "operatorId": "jr-hokkaido",
       "ja": "根室本線(滝川～新得)",
-      "ko": "네무로 본선(다키카와~신토쿠)",
+      "ko": "네무로 본선(타키가와~신토쿠)",
       "first": {
         "id": "station-1110335",
         "ja": "滝川",
@@ -3259,15 +3237,14 @@
         "新得"
       ],
       "titleKoEndpoints": [
-        "다키카와",
+        "타키가와",
         "신토쿠"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
       "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH",
         "ROUTE_BLOCKED"
       ]
     },
@@ -3468,7 +3445,7 @@
       "last": {
         "id": "station-1192519",
         "ja": "吉松",
-        "ko": "키치마츠"
+        "ko": "요시마츠"
       },
       "stationCount": 17,
       "geometryReady": true,
@@ -3485,16 +3462,16 @@
       "id": "line-11925",
       "operatorId": "jr-kyushu",
       "ja": "えびの高原線(八代～吉松)",
-      "ko": "에비노 고원선(야쓰시로~요시마쓰)",
+      "ko": "에비노 고원선(야츠시로~요시마츠)",
       "first": {
         "id": "station-1190349",
         "ja": "八代",
-        "ko": "하치다이"
+        "ko": "야츠시로"
       },
       "last": {
         "id": "station-1192519",
         "ja": "吉松",
-        "ko": "키치마츠"
+        "ko": "요시마츠"
       },
       "stationCount": 19,
       "geometryReady": true,
@@ -3504,16 +3481,14 @@
         "吉松"
       ],
       "titleKoEndpoints": [
-        "야쓰시로",
-        "요시마쓰"
+        "야츠시로",
+        "요시마츠"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11908",
@@ -3545,7 +3520,7 @@
       "id": "line-11911",
       "operatorId": "jr-kyushu",
       "ja": "福北ゆたか線(折尾～桂川)",
-      "ko": "후쿠호쿠유타카선(오리오~가쓰라가와)",
+      "ko": "후쿠호쿠유타카선(오리오~카츠라가와)",
       "first": {
         "id": "station-1190214",
         "ja": "折尾",
@@ -3565,15 +3540,13 @@
       ],
       "titleKoEndpoints": [
         "오리오",
-        "가쓰라가와"
+        "카츠라가와"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11915",
@@ -3631,11 +3604,11 @@
       "id": "line-11926",
       "operatorId": "jr-kyushu",
       "ja": "肥薩線(吉松～隼人)",
-      "ko": "히사쓰선(요시마쓰~하야토)",
+      "ko": "히사츠선(요시마츠~하야토)",
       "first": {
         "id": "station-1192519",
         "ja": "吉松",
-        "ko": "키치마츠"
+        "ko": "요시마츠"
       },
       "last": {
         "id": "station-1190748",
@@ -3650,16 +3623,14 @@
         "隼人"
       ],
       "titleKoEndpoints": [
-        "요시마쓰",
+        "요시마츠",
         "하야토"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11914",
@@ -3717,7 +3688,7 @@
       "id": "line-11903",
       "operatorId": "jr-kyushu",
       "ja": "鹿児島本線(博多～八代)",
-      "ko": "가고시마 본선(하카타~야쓰시로)",
+      "ko": "가고시마 본선(하카타~야츠시로)",
       "first": {
         "id": "station-1190101",
         "ja": "博多",
@@ -3726,7 +3697,7 @@
       "last": {
         "id": "station-1190349",
         "ja": "八代",
-        "ko": "하치다이"
+        "ko": "야츠시로"
       },
       "stationCount": 51,
       "geometryReady": true,
@@ -3737,15 +3708,13 @@
       ],
       "titleKoEndpoints": [
         "하카타",
-        "야쓰시로"
+        "야츠시로"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11904",
@@ -3755,7 +3724,7 @@
       "first": {
         "id": "station-1190401",
         "ja": "川内",
-        "ko": "카와우치"
+        "ko": "센다이"
       },
       "last": {
         "id": "station-1190412",
@@ -3774,12 +3743,10 @@
         "가고시마"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11902",
@@ -3843,7 +3810,7 @@
       "id": "line-11917",
       "operatorId": "jr-kyushu",
       "ja": "香椎線(香椎～宇美)",
-      "ko": "가시선(가시이~우미)",
+      "ko": "카시선(카시이~우미)",
       "first": {
         "id": "station-1190227",
         "ja": "香椎",
@@ -3862,22 +3829,20 @@
         "宇美"
       ],
       "titleKoEndpoints": [
-        "가시이",
+        "카시이",
         "우미"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11909",
       "operatorId": "jr-kyushu",
       "ja": "筑肥線(姪浜～西唐津)",
-      "ko": "지쿠히선(메이노하마~니시카라쓰)",
+      "ko": "치쿠히선(메이노하마~니시카라츠)",
       "first": {
         "id": "station-1190901",
         "ja": "姪浜",
@@ -3897,21 +3862,19 @@
       ],
       "titleKoEndpoints": [
         "메이노하마",
-        "니시카라쓰"
+        "니시카라츠"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11920",
       "operatorId": "jr-kyushu",
       "ja": "筑肥線(西唐津～伊万里)",
-      "ko": "지쿠히선(니시카라쓰~이마리)",
+      "ko": "치쿠히선(니시카라츠~이마리)",
       "first": {
         "id": "station-1190920",
         "ja": "西唐津",
@@ -3930,16 +3893,14 @@
         "伊万里"
       ],
       "titleKoEndpoints": [
-        "니시카라쓰",
+        "니시카라츠",
         "이마리"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "shinkansen-kyushu",
@@ -3997,7 +3958,7 @@
       "id": "line-11905",
       "operatorId": "jr-kyushu",
       "ja": "長崎本線(鳥栖～長崎)",
-      "ko": "나가사키 본선(도스~나가사키)",
+      "ko": "나가사키 본선(토스~나가사키)",
       "first": {
         "id": "station-1190316",
         "ja": "鳥栖",
@@ -4016,16 +3977,14 @@
         "長崎"
       ],
       "titleKoEndpoints": [
-        "도스",
+        "토스",
         "나가사키"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11928",
@@ -4803,7 +4762,7 @@
       "id": "line-11626",
       "operatorId": "jr-west",
       "ja": "阪和線(天王寺～和歌山)",
-      "ko": "한와선(덴노지~와카야마)",
+      "ko": "한와선(텐노지~와카야마)",
       "first": {
         "id": "station-1160719",
         "ja": "天王寺",
@@ -4822,16 +4781,14 @@
         "和歌山"
       ],
       "titleKoEndpoints": [
-        "덴노지",
+        "텐노지",
         "와카야마"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11418",
@@ -5002,7 +4959,7 @@
       "id": "line-11509",
       "operatorId": "jr-west",
       "ja": "関西本線(亀山～加茂)",
-      "ko": "간사이 본선(가메야마~가모)",
+      "ko": "간사이 본선(카메야마~카모)",
       "first": {
         "id": "station-1150818",
         "ja": "亀山",
@@ -5021,16 +4978,14 @@
         "加茂"
       ],
       "titleKoEndpoints": [
-        "가메야마",
-        "가모"
+        "카메야마",
+        "카모"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11628",
@@ -5178,7 +5133,7 @@
       "id": "line-11634",
       "operatorId": "jr-west",
       "ja": "姫新線(佐用～新見)",
-      "ko": "기신선(사요~니미)",
+      "ko": "기신선(사요~니이미)",
       "first": {
         "id": "station-1163312",
         "ja": "佐用",
@@ -5198,15 +5153,13 @@
       ],
       "titleKoEndpoints": [
         "사요",
-        "니미"
+        "니이미"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11706",
@@ -5238,11 +5191,11 @@
       "id": "line-11608",
       "operatorId": "jr-west",
       "ja": "神戸線(神戸～姫路)",
-      "ko": "고베선(고베~히메지)",
+      "ko": "JR 고베선(고베~히메지)",
       "first": {
         "id": "station-1160315",
         "ja": "神戸",
-        "ko": "코베"
+        "ko": "고베"
       },
       "last": {
         "id": "station-1160821",
@@ -5261,18 +5214,16 @@
         "히메지"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11603",
       "operatorId": "jr-west",
       "ja": "神戸線(大阪～神戸)",
-      "ko": "고베선(오사카~고베)",
+      "ko": "JR 고베선(오사카~고베)",
       "first": {
         "id": "station-1160214",
         "ja": "大阪",
@@ -5281,7 +5232,7 @@
       "last": {
         "id": "station-1160315",
         "ja": "神戸",
-        "ko": "코베"
+        "ko": "고베"
       },
       "stationCount": 17,
       "geometryReady": true,
@@ -5295,12 +5246,10 @@
         "고베"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11605",
@@ -5754,7 +5703,7 @@
       "id": "line-11615",
       "operatorId": "jr-west",
       "ja": "山陰本線(園部～豊岡)",
-      "ko": "산인 본선(소노베~도요오카)",
+      "ko": "산인 본선(소노베~토요오카)",
       "first": {
         "id": "station-1161415",
         "ja": "園部",
@@ -5774,21 +5723,19 @@
       ],
       "titleKoEndpoints": [
         "소노베",
-        "도요오카"
+        "토요오카"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11616",
       "operatorId": "jr-west",
       "ja": "山陰本線(豊岡～米子)",
-      "ko": "산인 본선(도요오카~요나고)",
+      "ko": "산인 본선(토요오카~요나고)",
       "first": {
         "id": "station-1161524",
         "ja": "豊岡",
@@ -5807,16 +5754,14 @@
         "米子"
       ],
       "titleKoEndpoints": [
-        "도요오카",
+        "토요오카",
         "요나고"
       ],
       "titleJaMatchesStops": true,
-      "titleKoMatchesStops": false,
+      "titleKoMatchesStops": true,
       "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "KOREAN_TITLE_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11701",
@@ -6343,33 +6288,6 @@
   ],
   "faults": [
     {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11414",
-      "operatorId": "jr-central",
-      "title": "이다선(텐류쿄~다쓰노)",
-      "start": "天竜峡",
-      "end": "辰野",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11413",
-      "operatorId": "jr-central",
-      "title": "이다선(도요하시~텐류쿄)",
-      "start": "豊橋",
-      "end": "天竜峡",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11508",
-      "operatorId": "jr-central",
-      "title": "간사이 본선(나고야~가메야마)",
-      "start": "名古屋",
-      "end": "亀山",
-      "expected": null
-    },
-    {
       "kind": "ROUTE_BLOCKED",
       "id": "line-11416",
       "operatorId": "jr-central",
@@ -6388,60 +6306,12 @@
       "expected": null
     },
     {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11225",
-      "operatorId": "jr-east",
-      "title": "반에쓰사이선(고리야마~아이즈와카마쓰)",
-      "start": "郡山",
-      "end": "会津若松",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11317",
-      "operatorId": "jr-east",
-      "title": "하치코선(하치오지~고마가와)",
-      "start": "八王子",
-      "end": "高麗川",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11318",
-      "operatorId": "jr-east",
-      "title": "하치코선(고마가와~다카사키)",
-      "start": "高麗川",
-      "end": "高崎",
-      "expected": null
-    },
-    {
       "kind": "ROUTE_BLOCKED",
       "id": "line-11409",
       "operatorId": "jr-east",
       "title": "오이토선",
       "start": "松本",
       "end": "糸魚川",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11226",
-      "operatorId": "jr-east",
-      "title": "반에쓰사이선(아이즈와카마쓰~니쓰)",
-      "start": "会津若松",
-      "end": "新津",
-      "expected": [
-        "会津若松",
-        "新津"
-      ]
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11231",
-      "operatorId": "jr-east",
-      "title": "도호쿠 본선(구로이소~리후·모리오카)",
-      "start": "黒磯",
-      "end": "盛岡",
       "expected": null
     },
     {
@@ -6466,46 +6336,10 @@
       "expected": null
     },
     {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11104",
-      "operatorId": "jr-hokkaido",
-      "title": "무로란 본선(오샤만베·무로란~도마코마이)",
-      "start": "長万部",
-      "end": "苫小牧",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11105",
-      "operatorId": "jr-hokkaido",
-      "title": "무로란 본선(도마코마이~이와미자와)",
-      "start": "苫小牧",
-      "end": "岩見沢",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11107",
-      "operatorId": "jr-hokkaido",
-      "title": "네무로 본선(신토쿠~구시로)",
-      "start": "新得",
-      "end": "釧路",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11106",
-      "operatorId": "jr-hokkaido",
-      "title": "네무로 본선(다키카와~신토쿠)",
-      "start": "滝川",
-      "end": "新得",
-      "expected": null
-    },
-    {
       "kind": "ROUTE_BLOCKED",
       "id": "line-11106",
       "operatorId": "jr-hokkaido",
-      "title": "네무로 본선(다키카와~신토쿠)",
+      "title": "네무로 본선(타키가와~신토쿠)",
       "start": "滝川",
       "end": "新得",
       "expected": null
@@ -6521,96 +6355,6 @@
     },
     {
       "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11925",
-      "operatorId": "jr-kyushu",
-      "title": "에비노 고원선(야쓰시로~요시마쓰)",
-      "start": "八代",
-      "end": "吉松",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11911",
-      "operatorId": "jr-kyushu",
-      "title": "후쿠호쿠유타카선(오리오~가쓰라가와)",
-      "start": "折尾",
-      "end": "桂川",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11926",
-      "operatorId": "jr-kyushu",
-      "title": "히사쓰선(요시마쓰~하야토)",
-      "start": "吉松",
-      "end": "隼人",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11903",
-      "operatorId": "jr-kyushu",
-      "title": "가고시마 본선(하카타~야쓰시로)",
-      "start": "博多",
-      "end": "八代",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11904",
-      "operatorId": "jr-kyushu",
-      "title": "가고시마 본선(센다이~가고시마)",
-      "start": "川内",
-      "end": "鹿児島",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11917",
-      "operatorId": "jr-kyushu",
-      "title": "가시선(가시이~우미)",
-      "start": "香椎",
-      "end": "宇美",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11909",
-      "operatorId": "jr-kyushu",
-      "title": "지쿠히선(메이노하마~니시카라쓰)",
-      "start": "姪浜",
-      "end": "西唐津",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11920",
-      "operatorId": "jr-kyushu",
-      "title": "지쿠히선(니시카라쓰~이마리)",
-      "start": "西唐津",
-      "end": "伊万里",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11905",
-      "operatorId": "jr-kyushu",
-      "title": "나가사키 본선(도스~나가사키)",
-      "start": "鳥栖",
-      "end": "長崎",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11626",
-      "operatorId": "jr-west",
-      "title": "한와선(덴노지~와카야마)",
-      "start": "天王寺",
-      "end": "和歌山",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
       "id": "line-11415",
       "operatorId": "jr-west",
       "title": "호쿠리쿠 본선(마이바라~가나자와)",
@@ -6625,60 +6369,6 @@
       "title": "호쿠리쿠 본선(마이바라~가나자와)",
       "start": "米原",
       "end": "金沢",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11509",
-      "operatorId": "jr-west",
-      "title": "간사이 본선(가메야마~가모)",
-      "start": "亀山",
-      "end": "加茂",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11634",
-      "operatorId": "jr-west",
-      "title": "기신선(사요~니미)",
-      "start": "佐用",
-      "end": "新見",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11608",
-      "operatorId": "jr-west",
-      "title": "고베선(고베~히메지)",
-      "start": "神戸",
-      "end": "姫路",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11603",
-      "operatorId": "jr-west",
-      "title": "고베선(오사카~고베)",
-      "start": "大阪",
-      "end": "神戸",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11615",
-      "operatorId": "jr-west",
-      "title": "산인 본선(소노베~도요오카)",
-      "start": "園部",
-      "end": "豊岡",
-      "expected": null
-    },
-    {
-      "kind": "KOREAN_TITLE_ENDPOINT_MISMATCH",
-      "id": "line-11616",
-      "operatorId": "jr-west",
-      "title": "산인 본선(도요오카~요나고)",
-      "start": "豊岡",
-      "end": "米子",
       "expected": null
     },
     {
