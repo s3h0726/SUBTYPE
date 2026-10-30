@@ -5,7 +5,7 @@
 - 운영사: 159개
 - 노선: 609개
 - 역-노선 표기: 10700건
-- 고유 역 표기: 9015건
+- 고유 역 표기: 8853건
 - 생성 노선 상세정보 누락: 1개 (jp-disney-resort-line)
 
 CSV는 UTF-8 BOM으로 저장되어 Excel에서 바로 열 수 있습니다. 동일 역의 한글명이 노선마다 다를 수 있어 stations-by-line.csv와 stations-unique.csv를 모두 제공합니다.
