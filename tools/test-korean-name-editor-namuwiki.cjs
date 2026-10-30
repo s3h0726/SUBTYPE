@@ -60,6 +60,12 @@ assert(ops.rows.some(r=>r[get(ops,'운영사ID')]==='maihama-resort-line'));
 assert.equal(stations.rows.filter(r=>r[stationLineIdx]==='line-30005').length,0,'Retired line returned');
 assert.equal(stations.rows.filter(r=>r[stationLineIdx]==='line-11103').length,0,'Retired line returned');
 const html=read('reports/korean-names/editor.html');
+const vm=require('node:vm');
+const inlineScripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)]
+  .map(x=>x[1].trim()).filter(Boolean);
+assert(inlineScripts.length>0,'Editor must retain its browser-side edit and save logic');
+for(const script of inlineScripts)new vm.Script(script,{filename:'reports/korean-names/editor.html'});
+
 assert(html.includes("DATA_VERSION='20261031-namuwiki-revalidated'"),
  'Old browser drafts must not supersede new source-of-truth names');
 assert(html.includes("heads[j]==='근거 URL'"),'The source links must be shown in the editor');
