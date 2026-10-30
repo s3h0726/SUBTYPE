@@ -1,0 +1,80 @@
+name: Namuwiki-first Japan railway names — all-line audit and verified corrections
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/japan-namuwiki-verified-batch-20261031.json'
+      - 'tools/apply-japan-namuwiki-recheck.cjs'
+      - 'tools/audit-japan-namuwiki-full.cjs'
+      - 'tools/test-japan-namuwiki-published.cjs'
+      - '.github/workflows/namuwiki-japan-full-recheck.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: namuwiki-first-japan-main
+  cancel-in-progress: false
+jobs:
+  namuwiki-japan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check tool syntax
+        run: |
+          node --check tools/apply-japan-namuwiki-recheck.cjs
+          node --check tools/audit-japan-namuwiki-full.cjs
+          node --check tools/test-japan-namuwiki-published.cjs
+      - name: Apply only source-matched railway names, preserving geometry and IDs
+        run: node tools/apply-japan-namuwiki-recheck.cjs --apply
+      - name: Rebuild complete Japanese game catalog
+        run: node tools/build-static.js
+      - name: Audit every Japanese station, line and operator reference
+        run: node tools/audit-japan-namuwiki-full.cjs
+      - name: Test published route names, station references, and audit coverage
+        run: node tools/test-japan-namuwiki-published.cjs
+      - name: Test preexisting trilingual name repairs
+        run: node tools/test-japan-trilingual-published.cjs
+      - name: Test Japanese category grouping
+        run: node tools/test-japan-other-categories.cjs
+      - name: Test Disney monorail operation and station display
+        run: node --test tools/test-japan-disney-resort-line.cjs
+      - name: Verify browser bundle
+        run: node --check js/app.bundle.js
+      - name: Publish audit files as CI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: namuwiki-japan-complete-audit
+          path: |
+            reports/names/NAMUWIKI_FULL_JAPAN_20261031.json
+            reports/names/NAMUWIKI_FULL_REVIEW_QUEUE.csv
+            reports/names/NAMUWIKI_FULL_RECHECK_SUMMARY.md
+            reports/names/NAMUWIKI_APPLIED_BATCH_20261031.json
+      - name: Commit canonical names, browser data, and evidence audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lines/ data/operators/ data/shared-stations/ data/editor-overrides.json data/generated/ data/jp-canonical/ reports/names/ js/line-workspace-data.js js/japan-lite-index.js js/app.bundle.js index.html
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'All checked names already published'; exit 0
+          fi
+          git commit -m 'fix(jp): Namuwiki line and station names with nationwide evidence audit'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep 3
+          done
+          exit 1
