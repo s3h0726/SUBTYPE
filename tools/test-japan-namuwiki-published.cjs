@@ -38,6 +38,13 @@ for(const item of manifest.operators){
 }
 const missing=report.review.filter(x=>x.type==='STATION_JA_AMBIGUOUS_OR_MISSING');
 const invalid=report.review.filter(x=>x.type==='EXISTING_VERIFIED_NAME_CONFLICT'||x.type==='CROSS_ROUTE_NAME_CONFLICT');
+assert.equal(report.review.length,0,'Unresolved Namu wiki route station name references');
+assert.equal(report.scope.routeSpecificStationNamesVerified,1,'Shonan Monorail has distinct Shonan-Enoshima station signage');
+const shonan=byId.get('line-99326');
+const shonanEnd=shonan?.stations?.find(s=>s.id==='station-9932006');
+assert.equal(shonanEnd?.ja,'湘南江の島','Shonan route must not borrow Enoden 江ノ島 station name');
+assert.equal(shonanEnd?.ko,'쇼난에노시마');
+assert.equal(shonanEnd?.romaji,'Shonan-Enoshima');
 assert.equal(invalid.length,0,'Manual proof conflicts with prior verified station names');
 assert(report.scope.lines===9&&report.scope.operators===6&&report.scope.stationReferences===32);
 assert(audit.summary.total.station>=8800&&audit.summary.total.line>=600&&audit.summary.total.operator>=160);
