@@ -32,5 +32,5 @@ for(const [name,split] of [['source',testSource(source)],['published bundle',tes
 const jrEast=JSON.parse(read('data/generated/routes/line-11226.json')).route;
 assert.equal(jrEast.stations[0].ja,'会津若松');
 assert.equal(jrEast.stations.at(-1).ja,'新津');
-assert.equal(jrEast.line.ko,'반에쓰사이선(아이즈와카마쓰~니쓰)');
+assert.equal(jrEast.line.ko,'반에츠사이선(아이즈와카마츠~니츠)');
 console.log('PASS: JR Tokaido legacy 11502 split, Mino-Akasaka branch route, runtime preload and Aizuwakamatsu–Niitsu boundary');
