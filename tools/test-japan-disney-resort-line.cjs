@@ -3,7 +3,7 @@
 const assert=require('node:assert/strict'),test=require('node:test');
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const root=path.join(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const ctx={console};vm.createContext(ctx);
+const ctx={console,hongKongRouteBlockReason:()=>null};vm.createContext(ctx);
 vm.runInContext(read('js/disney-resort-line-data.js'),ctx);
 const route=ctx.TRT_DISNEY_RESORT_ROUTE;
 const official=['リゾートゲートウェイ・ステーション','東京ディズニーランド・ステーション','ベイサイド・ステーション','東京ディズニーシー・ステーション'];
@@ -42,7 +42,7 @@ test('surveyed physical loop geometry stays curved and near real OSM stop locati
  }
 });
 test('actual game route integrity follows real geometry, types five stations, finishes at start',()=>{
- const source=read('js/route-integrity.js').replace(/\bexport\s+/g,'');
+ const source=read('js/route-integrity.js').replace(/^import[^\n]*\n/gm,'').replace(/\bexport\s+/g,'');
  vm.runInContext(source+';globalThis.resolvePlayableRoute=resolvePlayableRoute',ctx);
  const ready=ctx.resolvePlayableRoute(route,{direction:'forward',service:route.services[0]});
  assert(!ready.fallbackGeometry,'must not fall back to straight segments');
@@ -69,7 +69,7 @@ test('country catalog registration is additive and one-way selector has no rever
 
 test('Maihama walking transfer uses two names but retains distinct per-route coordinates',()=>{
   const source=read('js/free-drive.js').replace(/^import[^\n]*\n/gm,'').replace(/\bexport\s+/g,'');
-  const context={console,normalize:name=>String(name||'').normalize('NFC').toLowerCase().trim(),$:()=>null,koreanRouteBlockReason:()=>null};
+  const context={console,normalize:name=>String(name||'').normalize('NFC').toLowerCase().trim(),$:()=>null,koreanRouteBlockReason:()=>null,hongKongRouteBlockReason:()=>null,hongKongTransferAllowed:()=>true};
   vm.createContext(context);
   require('./lib/test-kr-display-context.cjs')(context);
   vm.runInContext(source+';globalThis.FreeDriveTest=FreeDrive;globalThis.disneyKey=freeDriveStationKey',context);
