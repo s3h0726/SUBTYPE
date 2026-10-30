@@ -9,6 +9,19 @@ const csv=(rows)=>'\uFEFF'+rows.map(row=>row.map(value=>'"'+String(value??'').re
 const output=path.join(root,'reports/korean-names');fs.mkdirSync(output,{recursive:true});
 const editsFile=path.join(root,'data/editor-overrides.json');
 const edits=fs.existsSync(editsFile)?load(editsFile):{};
+const vm=require('node:vm');
+const disneySource=fs.readFileSync(path.join(root,'js/disney-resort-line-data.js'),'utf8');
+const disneyContext={};vm.runInNewContext(disneySource,disneyContext,{filename:'disney-resort-line-data.js'});
+const disney=disneyContext.TRT_DISNEY_RESORT_ROUTE;
+if(!disney?.id||disney.id!=='jp-disney-resort-line'||!Array.isArray(disney.stations)||disney.stations.length!==5)throw Error('Disney Resort Line source incomplete');
+const nameOverrides=load(path.join(root,'data/japan-route-station-names.json')).routes||{};
+const sourcedStation=(lineId,s)=>{
+ const proof=nameOverrides[lineId]?.[s.id];
+ if(proof?.namuwikiVerified===true&&proof.ja===s.ja&&proof.ko===s.ko)
+   return {status:'나무위키 확인(노선별)',source:'namuwiki-manual',url:proof.namuwikiUrl||''};
+ const source=s.koSource||s.nameKoSource||'';
+ return {status:s.koVerified===true?'확인':'검토 필요',source,url:s.koSourceUrl||''};
+};
 const effectiveOperator=id=>edits.operators?.[id]||opMap.get(id)?.names?.ko||'';
 const effectiveLine=(id,meta)=>edits.lines?.[id]?.ko||meta.names?.ko||'';
 const effectiveColor=(id,meta)=>edits.lines?.[id]?.color||meta.color||'';
@@ -16,10 +29,18 @@ const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]|
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
   .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103');
-// Disney Resort Line is maintained in its dedicated route-data module, not data/lines/*/line.json.
-if(!lines.some(x=>x.meta.id==='jp-disney-resort-line')){
- const file='js/disney-resort-line-data.js';
- lines.push({file,meta:{id:'jp-disney-resort-line',operatorId:'maihama-resort-line',names:{ja:'ディズニーリゾートライン',ko:'디즈니 리조트라인',en:'Disney Resort Line'},color:'#D699B8',visibility:'public'}});
+// The Disney route and operator are authored in the runtime source rather than
+// canonical workspaces. Export the actual four-stop loop plus the return stop.
+if(!lines.some(x=>x.meta.id===disney.id)){
+ lines.push({file:'js/disney-resort-line-data.js',meta:{
+  id:disney.id,operatorId:disney.operatorId,names:{...disney.line},
+  color:disney.lineColor,visibility:'public'
+ }});
+}
+if(!operators.some(x=>x.meta.id===disney.operatorId)){
+ operators.push({file:'js/disney-resort-line-data.js',meta:{
+  id:disney.operatorId,names:{...disney.operator}
+ }});
 }
 // The public Mikawa and Hakodate Main Line cards have been split at actual
 // operational section boundaries (Chiryu / Sapporo). Keep original physical
@@ -64,11 +85,31 @@ const generatedDir=path.join(root,'data/generated/routes');
 const byId=new Map();
 if(fs.existsSync(generatedDir))for(const name of fs.readdirSync(generatedDir).filter(n=>n.endsWith('.json'))){try{const route=load(path.join(generatedDir,name)).route; if(route?.id)byId.set(route.id,route)}catch(e){console.warn('skipped',name,e.message)}}
 for(const [id,{route}] of publishedSectionRoutes)byId.set(id,route);
+byId.set(disney.id,disney);
 const stationRows=[];const missing=[];
-for(const x of lines){const route=byId.get(x.meta.id);if(!route){missing.push(x.meta.id);continue}for(const s of route.stations||[])stationRows.push([x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),s.ja,s.kana||'',s.romaji||'',s.nameKoSource||'', publishedSectionRoutes.has(x.meta.id)?toRel(publishedSectionRoutes.get(x.meta.id).file):'data/generated/routes/'+x.meta.id+'.json']);}
+for(const x of lines){
+ const route=byId.get(x.meta.id);
+ if(!route){missing.push(x.meta.id);continue}
+ for(const s of route.stations||[]){
+  const proof=sourcedStation(x.meta.id,s);
+  const routeFile=publishedSectionRoutes.has(x.meta.id)?toRel(publishedSectionRoutes.get(x.meta.id).file):
+    x.meta.id===disney.id?'js/disney-resort-line-data.js':'data/generated/routes/'+x.meta.id+'.json';
+  stationRows.push([
+   x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),
+   s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),
+   s.ja,s.kana||'',s.romaji||s.en||'',proof.source,routeFile,
+   proof.status,proof.url
+  ]);
+ }
+}
 stationRows.sort((a,b)=>String(a[2]).localeCompare(String(b[2]))||String(a[4]).localeCompare(String(b[4])));
-fs.writeFileSync(path.join(output,'stations-by-line.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','역ID','공통역ID','역 한글명','역 일본어명','가나','로마자','한글명 출처','데이터경로'],...stationRows]));
-const unique=new Map();for(const r of stationRows){const k=r[5]||r[7]+'|'+r[6];if(!unique.has(k))unique.set(k,r)}
-fs.writeFileSync(path.join(output,'stations-unique.csv'),csv([['공통역ID','역 한글명','역 일본어명','가나','로마자','한글명 출처','예시 노선ID'],...Array.from(unique.values(),r=>[r[5],r[6],r[7],r[8],r[9],r[10],r[2]])]));
-fs.writeFileSync(path.join(output,'README.md'),'# 메트로타이핑 한글명 현황\n\n현재 저장소 원본 및 생성 데이터에서 추출한 자료입니다. 게임 코드와 운영 데이터는 수정하지 않습니다.\n\n- 운영사: '+operators.length+'개\n- 노선: '+lines.length+'개\n- 역-노선 표기: '+stationRows.length+'건\n- 고유 역 표기: '+unique.size+'건\n- 생성 노선 상세정보 누락: '+missing.length+'개 ('+missing.slice(0,20).join(', ')+')\n\nCSV는 UTF-8 BOM으로 저장되어 Excel에서 바로 열 수 있습니다. 동일 역의 한글명이 노선마다 다를 수 있어 stations-by-line.csv와 stations-unique.csv를 모두 제공합니다.\n');
+fs.writeFileSync(path.join(output,'stations-by-line.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','역ID','공통역ID','역 한글명','역 일본어명','가나','로마자','한글명 출처','데이터경로','출처 검증','근거 URL'],...stationRows]));
+// Keep physically shared station identities separate when an operator uses a
+// distinct Japanese name. This is essential for 湘南江の島 vs 江ノ島.
+const unique=new Map();for(const r of stationRows){
+ const k=(r[5]||r[4])+'::'+r[7];
+ if(!unique.has(k)||r[12]==='나무위키 확인(노선별)')unique.set(k,r);
+}
+fs.writeFileSync(path.join(output,'stations-unique.csv'),csv([['공통역ID','역 한글명','역 일본어명','가나','로마자','한글명 출처','예시 노선ID','출처 검증','근거 URL'],...Array.from(unique.values(),r=>[r[5],r[6],r[7],r[8],r[9],r[10],r[2],r[12],r[13]])]));
+fs.writeFileSync(path.join(output,'README.md'),'# 메트로타이핑 한글명 현황\n\n현재 저장소 원본 및 생성 데이터에서 추출한 자료입니다. 게임 코드와 운영 데이터는 수정하지 않습니다.\n\n- 운영사: '+operators.length+'개\n- 노선: '+lines.length+'개\n- 역-노선 표기: '+stationRows.length+'건\n- 고유 역 표기: '+unique.size+'건\n- 생성 노선 상세정보 누락: '+missing.length+'개 ('+missing.slice(0,20).join(', ')+')\n\n일본 철도 한글명은 나무위키 개별 문서/노선표 확인을 우선하며, 확인되지 않은 표기는 '검토 필요'로 유지합니다. 편집표의 출처 검증·근거 URL 열은 원본 및 노선별 증거에서 추출합니다.\n\nCSV는 UTF-8 BOM으로 저장되어 Excel에서 바로 열 수 있습니다. 동일 역의 한글명이 노선마다 다를 수 있어 stations-by-line.csv와 stations-unique.csv를 모두 제공합니다.\n');
 console.log(JSON.stringify({operators:operators.length,lines:lines.length,stationRecords:stationRows.length,uniqueStations:unique.size,missingGeneratedRoutes:missing.length}));
