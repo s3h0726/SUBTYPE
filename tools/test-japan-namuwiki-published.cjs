@@ -23,7 +23,7 @@ for(const item of manifest.lines){
  }
  assert.equal(card.category,'monorail','Monorail classification changed '+item.id);
  const chunk=read(card.lazySource.split('?')[0].replace(/^\.\//,''));
- const stored=chunk.routes.find(x=>x.id===item.id);
+ const stored=(chunk.routes||[chunk.route||chunk]).find(x=>x.id===item.id);
  assert(stored,'Missing route chunk '+item.id);
  assert.equal(stored.line.ja,src.line.ja);
  assert.equal(stored.line.ko,src.line.ko);
