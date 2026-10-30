@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T16:34:24.772Z",
+  "generatedAt": "2026-10-30T16:38:18.187Z",
   "scope": "all six JR passenger companies",
   "sourcePolicy": "Namu wiki pages verified only where explicitly linked. Other cards are validated against physical station IDs and catalog; no invented verification.",
   "caveats": "Route section != train service destination. Actual departure terminus may differ from section boundary; not all TrainLCD patterns are current. No fabricated tracks, no unlocking broken services.",
   "counts": {
     "cards": 223,
-    "sourceBacked": 8,
-    "sourceMismatch": 4,
+    "sourceBacked": 9,
+    "sourceMismatch": 0,
     "titleRangeMismatch": 1,
-    "cardsNeedingReview": 12,
+    "cardsNeedingReview": 8,
     "catalogPatternEndpointIssues": 1
   },
   "byCompany": {
@@ -17,8 +17,8 @@
       "totalCards": 85,
       "titleRangeChecked": 12,
       "titleRangeMismatch": 0,
-      "sourceBacked": 2,
-      "sourceMismatch": 1,
+      "sourceBacked": 3,
+      "sourceMismatch": 0,
       "catalogPatterns": 377,
       "uniqueDestinations": 373,
       "routeBlocked": 1
@@ -27,7 +27,7 @@
       "totalCards": 17,
       "titleRangeChecked": 8,
       "titleRangeMismatch": 0,
-      "sourceBacked": 2,
+      "sourceBacked": 3,
       "sourceMismatch": 0,
       "catalogPatterns": 69,
       "uniqueDestinations": 84,
@@ -37,8 +37,8 @@
       "totalCards": 64,
       "titleRangeChecked": 18,
       "titleRangeMismatch": 1,
-      "sourceBacked": 4,
-      "sourceMismatch": 3,
+      "sourceBacked": 3,
+      "sourceMismatch": 0,
       "catalogPatterns": 271,
       "uniqueDestinations": 302,
       "routeBlocked": 2
@@ -222,7 +222,16 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": null,
+      "wiki": {
+        "url": "https://namu.moe/w/%EA%B0%84%EC%82%AC%EC%9D%B4%20%EB%B3%B8%EC%84%A0",
+        "title": "간사이 본선",
+        "section": "JR 도카이 나고야~카메야마",
+        "expected": {
+          "start": "名古屋",
+          "end": "亀山"
+        },
+        "matches": true
+      },
       "editorTitleOverride": null,
       "issues": []
     },
@@ -655,7 +664,16 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": null,
+      "wiki": {
+        "url": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%B8%A0%EC%82%AC%EC%9D%B4%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "title": "반에츠사이선/역 목록",
+        "section": "코리야마~아이즈와카마츠",
+        "expected": {
+          "start": "郡山",
+          "end": "会津若松"
+        },
+        "matches": true
+      },
       "editorTitleOverride": null,
       "issues": []
     },
@@ -1592,9 +1610,9 @@
       "titleJaMatchesStops": null,
       "titleKoMatchesStops": true,
       "wiki": {
-        "url": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%93%B0%EC%82%AC%EC%9D%B4%EC%84%A0",
-        "title": "반에쓰사이선",
-        "section": "아이즈와카마쓰~니쓰",
+        "url": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%B8%A0%EC%82%AC%EC%9D%B4%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "title": "반에츠사이선/역 목록",
+        "section": "아이즈와카마츠~니츠",
         "expected": {
           "start": "会津若松",
           "end": "新津"
@@ -2616,19 +2634,17 @@
       "titleJaMatchesStops": null,
       "titleKoMatchesStops": null,
       "wiki": {
-        "url": "https://namu.moe/w/%EC%9A%B0%EC%B8%A0%EB%85%B8%EB%AF%B8%EC%95%BC%EC%84%A0",
-        "title": "우츠노미야선",
-        "section": "전 구간",
+        "url": "https://namu.moe/w/%EB%8F%84%ED%98%B8%EC%BF%A0%20%EB%B3%B8%EC%84%A0",
+        "title": "도호쿠 본선",
+        "section": "우츠노미야선 우에노~쿠로이소",
         "expected": {
-          "start": "東京",
+          "start": "上野",
           "end": "黒磯"
         },
-        "matches": false
+        "matches": true
       },
       "editorTitleOverride": null,
-      "issues": [
-        "NAMUWIKI_EXPECTED_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11410",
@@ -4983,7 +4999,16 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": null,
+      "wiki": {
+        "url": "https://namu.moe/w/%EA%B0%84%EC%82%AC%EC%9D%B4%20%EB%B3%B8%EC%84%A0",
+        "title": "간사이 본선",
+        "section": "JR 서일본 카메야마~카모",
+        "expected": {
+          "start": "亀山",
+          "end": "加茂"
+        },
+        "matches": true
+      },
       "editorTitleOverride": null,
       "issues": []
     },
@@ -5215,7 +5240,16 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": null,
+      "wiki": {
+        "url": "https://namu.moe/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0",
+        "title": "JR 고베선",
+        "section": "산요 본선 고베~히메지",
+        "expected": {
+          "start": "神戸",
+          "end": "姫路"
+        },
+        "matches": true
+      },
       "editorTitleOverride": null,
       "issues": []
     },
@@ -5247,7 +5281,16 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": null,
+      "wiki": {
+        "url": "https://namu.moe/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0",
+        "title": "JR 고베선",
+        "section": "도카이도 본선 오사카~고베",
+        "expected": {
+          "start": "大阪",
+          "end": "神戸"
+        },
+        "matches": true
+      },
       "editorTitleOverride": null,
       "issues": []
     },
@@ -5823,16 +5866,7 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": {
-        "url": "https://namu.moe/w/%EC%82%B0%EC%9A%94%20%EB%B3%B8%EC%84%A0",
-        "title": "산요 본선",
-        "section": "JR 서일본 히메지~오카야마",
-        "expected": {
-          "start": "姫路",
-          "end": "岡山"
-        },
-        "matches": true
-      },
+      "wiki": null,
       "editorTitleOverride": null,
       "issues": []
     },
@@ -5896,20 +5930,9 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": {
-        "url": "https://namu.moe/w/%EC%82%B0%EC%9A%94%20%EB%B3%B8%EC%84%A0",
-        "title": "산요 본선",
-        "section": "JR 서일본 히로시마~시모노세키",
-        "expected": {
-          "start": "広島",
-          "end": "下関"
-        },
-        "matches": false
-      },
+      "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "NAMUWIKI_EXPECTED_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11611",
@@ -5939,20 +5962,9 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": {
-        "url": "https://namu.moe/w/%EC%82%B0%EC%9A%94%20%EB%B3%B8%EC%84%A0",
-        "title": "산요 본선",
-        "section": "JR 서일본 후쿠야마~히로시마",
-        "expected": {
-          "start": "福山",
-          "end": "広島"
-        },
-        "matches": false
-      },
+      "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "NAMUWIKI_EXPECTED_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "line-11610",
@@ -5982,20 +5994,9 @@
       ],
       "titleJaMatchesStops": true,
       "titleKoMatchesStops": true,
-      "wiki": {
-        "url": "https://namu.moe/w/%EC%82%B0%EC%9A%94%20%EB%B3%B8%EC%84%A0",
-        "title": "산요 본선",
-        "section": "JR 서일본 오카야마~후쿠야마",
-        "expected": {
-          "start": "岡山",
-          "end": "福山"
-        },
-        "matches": false
-      },
+      "wiki": null,
       "editorTitleOverride": null,
-      "issues": [
-        "NAMUWIKI_EXPECTED_ENDPOINT_MISMATCH"
-      ]
+      "issues": []
     },
     {
       "id": "shinkansen-sanyo",
@@ -6315,18 +6316,6 @@
       "expected": null
     },
     {
-      "kind": "NAMUWIKI_EXPECTED_ENDPOINT_MISMATCH",
-      "id": "line-11319",
-      "operatorId": "jr-east",
-      "title": "우쓰노미야선",
-      "start": "上野",
-      "end": "黒磯",
-      "expected": [
-        "東京",
-        "黒磯"
-      ]
-    },
-    {
       "kind": "ROUTE_BLOCKED",
       "id": "line-11111",
       "operatorId": "jr-hokkaido",
@@ -6370,42 +6359,6 @@
       "start": "米原",
       "end": "金沢",
       "expected": null
-    },
-    {
-      "kind": "NAMUWIKI_EXPECTED_ENDPOINT_MISMATCH",
-      "id": "line-11612",
-      "operatorId": "jr-west",
-      "title": "산요 본선(이와쿠니~시모노세키)",
-      "start": "岩国",
-      "end": "下関",
-      "expected": [
-        "広島",
-        "下関"
-      ]
-    },
-    {
-      "kind": "NAMUWIKI_EXPECTED_ENDPOINT_MISMATCH",
-      "id": "line-11611",
-      "operatorId": "jr-west",
-      "title": "산요 본선(미하라~이와쿠니)",
-      "start": "三原",
-      "end": "岩国",
-      "expected": [
-        "福山",
-        "広島"
-      ]
-    },
-    {
-      "kind": "NAMUWIKI_EXPECTED_ENDPOINT_MISMATCH",
-      "id": "line-11610",
-      "operatorId": "jr-west",
-      "title": "산요 본선(오카야마~미하라)",
-      "start": "岡山",
-      "end": "三原",
-      "expected": [
-        "岡山",
-        "福山"
-      ]
     },
     {
       "kind": "ROUTE_BLOCKED",
