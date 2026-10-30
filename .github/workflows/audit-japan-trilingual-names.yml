@@ -1,0 +1,59 @@
+name: Audit all Japanese station line and operator names (JA EN KO)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/audit-japan-trilingual-names.cjs'
+      - '.github/workflows/audit-japan-trilingual-names.yml'
+      - 'data/japan-name-exceptions.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: audit-japan-trilingual-main
+  cancel-in-progress: false
+jobs:
+  names:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify audit code syntax
+        run: node --check tools/audit-japan-trilingual-names.cjs
+      - name: Check all source names and apply only unambiguous errors
+        run: node tools/audit-japan-trilingual-names.cjs --fix-safe
+      - name: Assert that no onsen mistranscriptions remain
+        run: node tools/audit-japan-trilingual-names.cjs --check
+      - name: Verify monorail names and category regression
+        run: node tools/test-japan-other-categories.cjs
+      - name: Upload full audit and review CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: japan-trilingual-name-audit
+          path: reports/names/
+      - name: Commit source corrections and full audit to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/shared-stations/ reports/names/
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'No audit report or source change'; exit 0
+          fi
+          git commit -m 'fix(jp): audit JA EN KO names and repair unambiguous onsen station typos'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep 3
+          done
+          exit 1
