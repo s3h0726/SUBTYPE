@@ -34,7 +34,7 @@ for(const entry of manifest.lines){
  if(!match)throw Error('LINE_MISSING:'+entry.id);
  const {value:line,file}=match;
  if(line.names?.ja!==entry.expectedJa&&line.names?.ja!==entry.names.ja)throw Error('LINE_JA_IDENTITY_CHANGED:'+entry.id+':'+line.names?.ja);
- for(const key of ['ja','ko','en']){
+ for(const key of ['ja','kana','ko','en']){
   const value=entry.names[key],old=line.names[key];
   if(old!==value){change('line',line.id,key,old,value,file,entry.wikiUrl);if(apply)line.names[key]=value;}
  }
