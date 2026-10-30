@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "line-jr-east-sobu-rapid",
+  "operatorId": "jr-east",
+  "category": "jr",
+  "names": {
+    "ja": "総武快速線",
+    "kana": "そうぶかいそくせん",
+    "ko": "소부 쾌속선",
+    "en": "Sobu Line (Rapid Service)"
+  },
+  "code": "JO",
+  "color": "#1069B4",
+  "symbol": {
+    "asset": "./symbol.svg",
+    "officialSymbolExists": true,
+    "source": "https://commons.wikimedia.org/wiki/File:JR_JO_line_symbol.svg",
+    "verified": true,
+    "assetSource": "wikimedia",
+    "assetSourceUrl": "https://commons.wikimedia.org/wiki/File:JR_JO_line_symbol.svg",
+    "identificationSource": "jr-east",
+    "identificationUrl": "https://www.jreast.co.jp/chiba/news/pdf/pre1801_number.pdf",
+    "note": "Unmodified existing JO line symbol reused from canonical JR East Sobu Main Line"
+  },
+  "loop": false,
+  "stationSignTemplate": "jr-east",
+  "services": [
+    {
+      "id": "sobu-rapid",
+      "names": {
+        "ja": "快速",
+        "ko": "쾌속",
+        "en": "Rapid"
+      },
+      "stopPattern": [
+        "station-1130101",
+        "station-003703",
+        "station-003668",
+        "station-003639",
+        "station-003486",
+        "station-003403",
+        "station-1131331",
+        "station-003681",
+        "station-004047",
+        "station-1131339"
+      ]
+    }
+  ],
+  "throughServiceIds": [],
+  "throughOperations": [],
+  "sources": {
+    "official": "https://www.jreast.co.jp/press/2020/yokohama/20201112_y02.pdf",
+    "timetable": "https://timetables.jreast.co.jp/en/2610/train/160/164001.html",
+    "korean": "https://namu.wiki/w/%EC%86%8C%EB%B6%80%20%EC%BE%8C%EC%86%8D%EC%84%A0",
+    "geometry": "MLIT-N02-2025",
+    "geometryReuse": {
+      "routeId": "line-11314",
+      "segmentCount": 9,
+      "status": "source-copied-independently-for-Sobu-Rapid",
+      "limitation": "Existing MLIT surveyed railway corridor is reused; do not claim separate fast-track vs local-track centrelines were independently surveyed."
+    },
+    "koreanName": {
+      "family": "namuwiki",
+      "method": "page-title",
+      "type": "namuwiki-title",
+      "url": "https://namu.wiki/w/%EC%86%8C%EB%B6%80%20%EC%BE%8C%EC%86%8D%EC%84%A0",
+      "status": "ARTICLE_TITLE",
+      "verified": false,
+      "canonicalPolicy": "namuwiki",
+      "note": "Korean label matches Namuwiki article title; access to full article was not confirmed."
+    }
+  },
+  "legacy": {
+    "origin": "curated-jr-east-2026",
+    "coverage": "東京～千葉",
+    "dataKind": "operatingRoute",
+    "sourcePhysicalRouteId": "line-11314",
+    "generatedBy": "tools/create-jr-sobu-rapid-line.cjs"
+  },
+  "routeInfo": {
+    "ja": "東京～千葉（総武線快速）",
+    "ko": "도쿄~치바 10개 역. 요코스카선·나리타선·우치보선·소토보선 직통 운행은 별도 운행계통으로 관리합니다.",
+    "source": "https://www.jreast.co.jp/press/2020/yokohama/20201112_y02.pdf"
+  }
+}

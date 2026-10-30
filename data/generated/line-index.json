@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-30T16:38:39.391Z",
+  "generated": "2026-10-30T17:03:51.789Z",
   "counts": {
-    "lines": 606,
+    "lines": 607,
     "operators": 161,
     "stations": 8878,
-    "relations": 10698,
-    "segments": 9876
+    "relations": 10708,
+    "segments": 9885
   },
   "routes": [
     {
@@ -20591,6 +20591,88 @@
         "おおぶね",
         "ōBune",
         "오후나"
+      ]
+    },
+    {
+      "id": "line-jr-east-sobu-rapid",
+      "operatorId": "jr-east",
+      "operator": {
+        "ja": "JR東日本",
+        "ko": "JR 동일본",
+        "en": "JR East"
+      },
+      "line": {
+        "ja": "総武快速線",
+        "kana": "そうぶかいそくせん",
+        "ko": "소부 쾌속선",
+        "en": "Sobu Line (Rapid Service)"
+      },
+      "category": "jr",
+      "code": "JO",
+      "lineColor": "#1069B4",
+      "loop": false,
+      "stationCount": 10,
+      "stationSequence": [
+        "station-1130101",
+        "station-003703",
+        "station-003668",
+        "station-003639",
+        "station-003486",
+        "station-003403",
+        "station-1131331",
+        "station-003681",
+        "station-004047",
+        "station-1131339"
+      ],
+      "workspace": {
+        "folder": "data/lines/jr-east/sobu-rapid",
+        "linePath": "data/lines/jr-east/sobu-rapid/line.json",
+        "stationsPath": "data/lines/jr-east/sobu-rapid/stations.json",
+        "geometryPath": "data/lines/jr-east/sobu-rapid/geometry.json"
+      },
+      "generatedSource": "./data/generated/routes/line-jr-east-sobu-rapid.json",
+      "geometryReady": true,
+      "searchStations": [
+        "東京",
+        "とうきょう",
+        "Tokyo",
+        "도쿄",
+        "新日本橋",
+        "しんにほんばし",
+        "Shinnihombashi",
+        "신니혼바시",
+        "馬喰町",
+        "ばくろちょう",
+        "Bakurocho",
+        "바쿠로초",
+        "錦糸町",
+        "きんしちょう",
+        "Kinshicho",
+        "킨시초",
+        "新小岩",
+        "しんこいわ",
+        "Shinkoiwa",
+        "신코이와",
+        "市川",
+        "いちかわ",
+        "Ichikawa",
+        "이치카와",
+        "船橋",
+        "ふなばし",
+        "Funabashi",
+        "후나바시",
+        "津田沼",
+        "つだぬま",
+        "Tsudanuma",
+        "츠다누마",
+        "稲毛",
+        "いなげ",
+        "Inage",
+        "이나게",
+        "千葉",
+        "ちば",
+        "Chiba",
+        "치바"
       ]
     },
     {
@@ -77059,6 +77141,15 @@
         "exists": true,
         "verified": true,
         "source": "https://commons.wikimedia.org/wiki/File:JR_JS_line_symbol.svg",
+        "officialExists": true
+      },
+      "line-jr-east-sobu-rapid": {
+        "asset": "./data/lines/jr-east/sobu-rapid/symbol.svg?v=de23952e45c3",
+        "file": "./data/lines/jr-east/sobu-rapid/symbol.svg",
+        "version": "de23952e45c3",
+        "exists": true,
+        "verified": true,
+        "source": "https://commons.wikimedia.org/wiki/File:JR_JO_line_symbol.svg",
         "officialExists": true
       },
       "line-11314": {
