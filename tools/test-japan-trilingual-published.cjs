@@ -5,6 +5,7 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
 const json=p=>JSON.parse(read(p));
 const extract=(p,key)=>JSON.parse(read(p).split(key)[1].trim().replace(/;\s*$/,''));
 const patches=json('data/japan-trilingual-confirmed-corrections.json');
+const editor=json('data/editor-overrides.json');
 const ws=extract('js/line-workspace-data.js','window.TRT_EMBEDDED_LINE_WORKSPACES=');
 const lite=extract('js/japan-lite-index.js','window.TRT_JAPAN_LITE_INDEX=');
 const generated=json('data/generated/line-index.json');
@@ -26,7 +27,8 @@ for(const line of patches.lines){
  const route=ws.routes.find(r=>r.id===line.id),m=lite.routes.find(r=>r.id===line.id);
  if(!route||!m)throw Error('Missing corrected line from published catalog: '+line.id);
  for(const label of ['ja','en','ko']){
-  if(route.line?.[label]!==line[label]||m.line?.[label]!==line[label])issues.push({id:line.id,type:'line',label,ws:route.line?.[label],lite:m.line?.[label],expected:line[label]});
+  const expected=label==='ko'?(editor.lines?.[line.id]?.ko||line.ko):line[label];
+  if(route.line?.[label]!==expected||m.line?.[label]!==expected)issues.push({id:line.id,type:'line',label,ws:route.line?.[label],lite:m.line?.[label],expected});
  }
  const stored=getDeployed(line.id).record;
  if(stored.line?.en!==line.en)issues.push({id:line.id,type:'chunk-line',expected:line.en,actual:stored.line?.en});
