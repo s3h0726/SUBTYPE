@@ -1,113 +1,33 @@
-name: Korean network rebuild
+name: Korean canonical transport catalog
 on:
   push:
-    branches: [main, rebuild/korea-2026-10-15]
+    branches: [main]
+    paths: ['data/kr/**', 'tools/**', 'js/**', 'package.json', '.github/workflows/korea-rebuild.yml']
   pull_request:
     paths: ['data/kr/**', 'tools/**', 'js/**', 'package.json']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  reset-integrity:
+  catalog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - run: node --check js/app.bundle.js
-      - run: node tools/test-korea-reset.cjs
+      - run: node tools/build-kr-canonical.cjs --publish
+      - run: node tools/test-kr-canonical.cjs
+      - run: node --test tools/kr-rail-rebuild.test.cjs
+      - run: node tools/kr-river-test.cjs
+      - run: node tools/kr-bus-test.cjs
+      - run: npm run test:typing
       - run: node tools/test-hk-route-selector.cjs
       - run: node tools/test-exact-duplicate-jp-routes.cjs
-  # Old Korean build jobs paused until the new inventory has been built.
-  app-build:
-    if: false
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - run: npm run build
-      - run: npm run test:typing
-      - run: node tools/test-service-route-resolver.js
-  implementation:
-    if: false
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - run: npm run check:dependencies
-      - run: npm run import:korea-intercity
-      - run: npm run import:korea
-      - run: npm run import:seoulmetro
-      - run: npm run import:korea-platforms
-      - run: npm run build:korea
-      - run: npm run build:korea-preview
-      - run: npm run release:korea-services
-      - run: npm run audit:korea-relations62
-      - run: npm run audit:korea-inventory
-      - run: npm run audit:korea-failures
-      - name: Ensure source corrections and generated data are reproducible
-        run: git diff --exit-code -- data/kr/v2 data/kr/preview js/korean-access-data.js js/korean-preview-access-data.js
-      - run: npm run validate:korea
-      - run: npm run test:korea
-      - run: npm run test:korea-preview
-      - run: npm run test:typing
-      - run: node tools/test-service-route-resolver.js
-      - run: node tools/validate-data.js
-      - run: npm run test:single-source
-      - run: npm run build:korea
-      - run: npm run match:korea
-      - run: node tools/match-kr-stations.js
+      - run: node tools/build-app-bundle.js
+      - run: node --check js/app.bundle.js
+      - name: Verify deterministic publication
+        run: git diff --exit-code -- data/kr/generated/index.json data/kr/generated/routes js/korea-index-data.js js/app.bundle.js index.html
       - uses: actions/upload-artifact@v4
         with:
-          name: korea-rebuild-audit
-          path: |
-            data/kr/v2/generated/audit.json
-            data/kr/v2/generated/relations62-audit.*
-  browser-candidates:
-    runs-on: ubuntu-latest
-    needs: implementation
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - run: npm install --no-save --package-lock=false playwright@1.62.1
-      - run: npx playwright install --with-deps chromium
-      - name: Candidate desktop and mobile traversal (not release approval)
-        env:
-          KR_BROWSER_REPORT: data/kr/v2/generated/browser-diagnostics.json
-        run: node tools/test-kr-browser.cjs --all-assemblable --interactive
-      - name: Production selector and preview contract browser checks
-        env:
-          KR_PREVIEW_REPORT: data/kr/v2/generated/preview-browser.json
-        run: node tools/test-kr-preview-browser.cjs
-      - name: Unmodified production UI playthrough with animation
-        env:
-          SUBTYPE_SITE_REPORT: data/kr/v2/generated/production-ui-browser.json
-        run: npm run test:korea-site
-      - name: Recovered services true-track motion on desktop and mobile
-        env:
-          KR_BROWSER_REPORT: data/kr/v2/generated/recovered-motion.json
-          KR_BROWSER_SCREENSHOTS: data/kr/v2/generated/recovered-motion-screens
-        run: node tools/test-kr-browser.cjs --services=8255697,16665960,16665969,16712693,16712696,16665964 --interactive-all
-      - name: All Phase 5 restored services actual curve motion
-        env:
-          KR_PHASE5_MOTION_REPORT: data/kr/v2/generated/phase5-motion/results.json
-        run: npm run test:korea-phase5-motion
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: korea-candidate-browser-diagnostics
-          path: |
-            data/kr/v2/generated/preview-browser.json
-            data/kr/v2/generated/production-ui-browser.json
-            data/kr/v2/generated/production-ui-browser-screens/
-            data/kr/v2/generated/browser-diagnostics.json
-            data/kr/v2/generated/recovered-motion.json
-            data/kr/v2/generated/recovered-motion-screens/
-            data/kr/v2/generated/phase5-motion/
+          name: korean-catalog-validation
+          path: reports/kr-rebuild

@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-31",
+  "browser": "Codex in-app browser",
+  "environment": "local production bundle",
+  "completed": [
+    {
+      "routeId": "kr-rail-seoul-2",
+      "journey": "까치산 → 도림천",
+      "stops": 4,
+      "accuracy": "100.0%",
+      "directionSwitch": true
+    },
+    {
+      "routeId": "kr-rail-gyoe",
+      "journey": "대곡 → 의정부",
+      "stops": 6,
+      "accuracy": "100.0%"
+    },
+    {
+      "routeId": "kr-hangang-west",
+      "journey": "마곡 → 여의도",
+      "stops": 3,
+      "accuracy": "100.0%",
+      "vesselIconObserved": true
+    },
+    {
+      "routeId": "kr-bus-seoul-100100022",
+      "journey": "정릉산장아파트 → 수도전기공고후문",
+      "stops": 56,
+      "accuracy": "100.0%",
+      "busIconObserved": true
+    },
+    {
+      "routeId": "kr-rail-highspeed-honam",
+      "journey": "용산 → 목포",
+      "stops": 6,
+      "accuracy": "100.0%"
+    }
+  ],
+  "notCompleted": [
+    {
+      "test": "비서울 지역 버스",
+      "reason": "검증된 도로 연결 선형이 없어 공개 대기"
+    },
+    {
+      "test": "Supabase 서버 완주 저장",
+      "reason": "브라우저가 게스트 상태. 기기 저장 확인. 원격 스키마 읽기 검사는 네트워크 TypeError로 판정 보류."
+    }
+  ],
+  "limitations": [
+    "자동 입력을 이용한 대표 완주이며 실제 사용자의 타수 측정 결과가 아님",
+    "전체 노선의 브라우저 완주를 주장하지 않음",
+    "한강버스 첫 완주에서 결과 거리 설명 오류를 발견하고 신규 경로 상태 처리와 한국어 보조 이름을 수정함"
+  ]
+}

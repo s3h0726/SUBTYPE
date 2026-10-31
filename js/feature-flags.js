@@ -2,7 +2,7 @@ import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
 export const FEATURE_FLAGS=Object.freeze({
   korea:true,
-  koreaRoutesReset:true,
+  koreaRoutesReset:false,
   hongKong:true,
   visibleJapanRegion:'all'
 });

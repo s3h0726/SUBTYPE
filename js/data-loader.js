@@ -55,6 +55,7 @@ function applyRouteTrackCoordinates(raw,stations){
   });
 }
 export function normalizeLine(raw={},defaults={}){
+  if(raw.countryId==='kr'&&raw.canonicalContract==='kr-canonical-v1')raw={...raw,line:{...raw.line,ja:raw.line?.ko,en:raw.line?.ko},operator:{...raw.operator,ja:raw.operator?.ko,en:raw.operator?.ko}};
   const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
   const verifiedTheme=globalThis.TRT_LINE_THEMES?.[id],resolvedCode=verifiedTheme?.code||code||'—';

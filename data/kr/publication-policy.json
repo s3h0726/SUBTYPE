@@ -1,8 +1,10 @@
 {
-  "schemaVersion": 1,
-  "mode": "reset",
-  "resetOn": "2026-10-30",
-  "publicRouteCount": 0,
+  "schemaVersion": 2,
+  "mode": "canonical",
+  "canonicalContract": "kr-canonical-v1",
   "automaticKoreanPublication": false,
-  "notes": "All Korean public and preview route catalogs reset. Source evidence and user records retained. Restore from backup/korea-before-reset-20261030."
+  "compiler": "tools/build-kr-canonical.cjs",
+  "publicRouteCount": 471,
+  "backupRef": "backup/korea-before-rebuild-20261030",
+  "notes": "신규 검증 배치만 공개. 기존 초기화 이전 컴파일러로 덮어쓰기 금지."
 }

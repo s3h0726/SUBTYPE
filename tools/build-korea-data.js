@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 'use strict';
 const koreaPublicationPolicy=require('../data/kr/publication-policy.json');
+// The fresh multimodal catalog owns publication after the reset is retired.
+// Never let a legacy rail-only rebuild replace its buses or river services.
+if(koreaPublicationPolicy.mode==='canonical'){
+ require('node:child_process').execFileSync(process.execPath,[require('node:path').join(__dirname,'build-kr-canonical.cjs'),...(process.argv.some(arg=>arg.startsWith('--publish'))?['--publish']:[])],{stdio:'inherit'});
+ return;
+}
 if(koreaPublicationPolicy.mode==='reset'){
  if(process.argv.includes('--publish')){console.error('KR_CATALOG_RESET: explicit publish blocked until policy is lifted');process.exit(1)}
  if(process.argv.includes('--publish-released')){console.log('KR_CATALOG_RESET: published route generation paused');process.exit(0)}

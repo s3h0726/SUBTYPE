@@ -3,6 +3,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),parse=p=>JSON.parse(read(p));
 const policy=parse('data/kr/publication-policy.json');
+if(policy.mode==='canonical'){require('node:child_process').execFileSync(process.execPath,[path.join(__dirname,'test-kr-canonical.cjs')],{stdio:'inherit'});return;}
 assert.equal(policy.mode,'reset');assert.equal(policy.automaticKoreanPublication,false);
 const publicIndex=parse('data/kr/generated/index.json'),previewIndex=parse('data/kr/preview/index.json');
 for(const [name,index]of [['public',publicIndex],['preview',previewIndex]]){
