@@ -43,7 +43,7 @@ for(const prefix of ['data/nationwide/routes/','data/generated/routes/']){
 }
 const knownNames=[
  {ja:'新倉敷',ko:'신쿠라시키',paths:['data/shared-stations/stations-16.json','data/shared-stations/stations-52.json','data/generated/routes/shinkansen-sanyo.json','data/nationwide/routes/shinkansen-sanyo.json']},
- {ja:'鹿児島中央',ko:'가고시마츄오',paths:['data/shared-stations/stations-11.json','data/shared-stations/stations-53.json','data/generated/routes/shinkansen-kyushu.json','data/nationwide/routes/shinkansen-kyushu.json']},
+ {ja:'鹿児島中央',ko:'가고시마추오',paths:['data/shared-stations/stations-11.json','data/shared-stations/stations-53.json','data/generated/routes/shinkansen-kyushu.json','data/nationwide/routes/shinkansen-kyushu.json']},
  {ja:'新潟',ko:'니가타',paths:['data/shared-stations/stations-22.json','data/shared-stations/stations-46.json','data/generated/routes/shinkansen-joetsu.json','data/nationwide/routes/shinkansen-joetsu.json']},
  {ja:'東新潟',ko:'히가시니가타',paths:['data/shared-stations/stations-29.json','data/generated/routes/line-11406.json','data/nationwide/routes/line-11406.json']}
 ];

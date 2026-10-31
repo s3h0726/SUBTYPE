@@ -1,0 +1,644 @@
+node tools/validate-data.js
+{
+  "valid": true,
+  "operators": 164,
+  "lines": 602,
+  "curatedValidatedLines": 103,
+  "nationwideSourceLines": 597,
+  "uniqueStations": 8824,
+  "curatedStationRegistry": 2760,
+  "completeness": {
+    "coordinates": 2760,
+    "japanese": 2760,
+    "kana": 2760,
+    "romaji": 2760,
+    "korean": 2760
+  },
+  "railSystem": {
+    "physicalLines": 97,
+    "passengerRoutes": 2,
+    "trainServices": 1,
+    "throughServices": 1,
+    "shinkansen": 10,
+    "geometryMatched": 103,
+    "geometryMissing": []
+  },
+  "geometry": {
+    "curatedMatched": 103,
+    "curatedTotal": 103,
+    "nationwideMatched": 583,
+    "nationwideTotal": 597
+  },
+  "operatorAssets": {
+    "verified": 22,
+    "total": 22
+  },
+  "symbolAudit": {
+    "totalPlayableLines": 103,
+    "verified": 17,
+    "missing": [
+      "line-11229",
+      "line-11303",
+      "line-11304",
+      "line-11305",
+      "line-11308",
+      "line-11309",
+      "line-11314",
+      "line-11317",
+      "line-11321",
+      "line-11322",
+      "line-11328",
+      "line-11333",
+      "line-28002",
+      "line-28003",
+      "line-28004",
+      "line-28005",
+      "line-28006",
+      "line-28008",
+      "line-28009",
+      "line-28010",
+      "line-99301",
+      "line-99302",
+      "line-99303",
+      "line-99304",
+      "line-99316",
+      "line-99343",
+      "line-21001",
+      "line-21002",
+      "line-21005",
+      "line-21006",
+      "line-22001",
+      "line-22003",
+      "line-22004",
+      "line-22006",
+      "line-22007",
+      "line-22008",
+      "line-22009",
+      "line-22010",
+      "line-22011",
+      "line-22012",
+      "line-23001",
+      "line-23002",
+      "line-23003",
+      "line-23006",
+      "line-24001",
+      "line-24002",
+      "line-24003",
+      "line-24004",
+      "line-24005",
+      "line-24006",
+      "line-24007",
+      "line-25001",
+      "line-25002",
+      "line-25003",
+      "line-26002",
+      "line-26003",
+      "line-26004",
+      "line-26005",
+      "line-26006",
+      "line-26007",
+      "line-27001",
+      "line-27002",
+      "line-29001",
+      "line-29002",
+      "line-29003",
+      "line-99310",
+      "line-99317",
+      "line-99305",
+      "line-99342",
+      "line-99307",
+      "line-99309",
+      "line-99311",
+      "line-99334",
+      "line-99336",
+      "line-99337",
+      "line-99340",
+      "shinkansen-tokaido",
+      "shinkansen-sanyo",
+      "shinkansen-tohoku",
+      "shinkansen-hokkaido",
+      "shinkansen-joetsu",
+      "shinkansen-hokuriku",
+      "shinkansen-kyushu",
+      "shinkansen-nishi-kyushu",
+      "shinkansen-yamagata",
+      "shinkansen-akita"
+    ],
+    "noOfficialSymbol": []
+  },
+  "lineMetadata": {
+    "verifiedThemes": 26,
+    "routesWithoutVerifiedTheme": 77,
+    "routesWithoutImportedCode": 50
+  },
+  "serviceRoutes": 2,
+  "servicePatterns": 5,
+  "koreanOverrides": 27,
+  "errors": [],
+  "warnings": []
+}
+
+
+node tools/audit-route-integrity.js
+{
+  "status": "BLOCKED_WITH_EXPLICIT_DATA_GAPS",
+  "totals": {
+    "routes": 597,
+    "passed": 557,
+    "blocked": 40,
+    "stations": 10566,
+    "forwardSegments": 9353,
+    "reverseSegments": 9353,
+    "missingStations": 0,
+    "missingSegments": 27,
+    "endpointMismatch": 30,
+    "reverseOrderMismatch": 0,
+    "defaultServiceSkips": 0
+  },
+  "blockedRoutes": [
+    {
+      "routeId": "line-11106",
+      "lineJa": "根室本線(滝川～新得)",
+      "lineKo": "네무로혼선타키카와～신토쿠",
+      "stations": 17,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 0,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11106: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다."
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11111",
+      "lineJa": "日高本線",
+      "lineKo": "히다카혼선",
+      "stations": 4,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 0,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11111: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다."
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11113",
+      "lineJa": "留萌本線",
+      "lineKo": "루모에혼선",
+      "stations": 12,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 0,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11113: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다."
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11116",
+      "lineJa": "石北本線",
+      "lineKo": "세키호쿠혼선",
+      "stations": 34,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11116: missing railway segment 1111601 -> 1111602"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11117",
+      "lineJa": "釧網本線",
+      "lineKo": "선모우혼선",
+      "stations": 25,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11117: missing railway segment 1111727 -> 1111728"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11409",
+      "lineJa": "北アルプス線",
+      "lineKo": "키타아루푸스선",
+      "stations": 41,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 0,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11409: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다."
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11415",
+      "lineJa": "北陸本線(米原～金沢)",
+      "lineKo": "호쿠리쿠혼선마이바라～카나자와",
+      "stations": 43,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 0,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11415: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다."
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11416",
+      "lineJa": "高山本線",
+      "lineKo": "타카야마혼선",
+      "stations": 45,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 0,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11416: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다."
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11503",
+      "lineJa": "東海道本線(岐阜～米原)",
+      "lineKo": "도카이도 본선(기후~마이바라)",
+      "stations": 10,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11503: missing railway segment station-1150304 -> station-1150307"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11710",
+      "lineJa": "瀬戸大橋線",
+      "lineKo": "세토오오하시선",
+      "stations": 6,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 0,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11710: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다."
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11717",
+      "lineJa": "可部線",
+      "lineKo": "카베선",
+      "stations": 16,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11717: missing railway segment 1171701 -> 1171716"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11722",
+      "lineJa": "美祢線",
+      "lineKo": "미네선",
+      "stations": 13,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11722: missing railway segment 1172212 -> 1172213"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11808",
+      "lineJa": "しまんとグリーンライン",
+      "lineKo": "시만토구린라인",
+      "stations": 22,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11808: missing railway segment 1180801 -> 1180802"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-11908",
+      "lineJa": "福北ゆたか線",
+      "lineKo": "후쿠키타유타카선",
+      "stations": 12,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-11908: missing railway segment 1190811 -> 1190812"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-23002",
+      "lineJa": "京成押上線",
+      "lineKo": "게이세이 오시아게선",
+      "stations": 7,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-23002: missing railway segment KS09 -> 2300207"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-26004",
+      "lineJa": "東急大井町線",
+      "lineKo": "도큐 오이마치선",
+      "stations": 18,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-26004: missing railway segment 2600416 -> 2600417"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-30006",
+      "lineJa": "名鉄豊田線",
+      "lineKo": "메이테츠토요다선",
+      "stations": 9,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-30006: missing railway segment 3000601 -> 3000602"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-31014",
+      "lineJa": "八王子線",
+      "lineKo": "하치오우지선",
+      "stations": 4,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-31014: missing railway segment 3101401 -> 3101402"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-32005",
+      "lineJa": "南海加太線",
+      "lineKo": "난카이카다선",
+      "stations": 9,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 1,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-32005: missing railway segment 3200501 -> 3200502"
+      ],
+      "warnings": [],
+      "pass": false
+    },
+    {
+      "routeId": "line-32008",
+      "lineJa": "南海高野山ケーブル",
+      "lineKo": "난카이코우야산케부루",
+      "stations": 2,
+      "forwardSegments": 0,
+      "reverseSegments": 0,
+      "missingSegments": 0,
+      "endpointMismatch": 0,
+      "reverseOrderMismatch": false,
+      "defaultServiceSkips": false,
+      "errors": [
+        "line-32008: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다."
+      ],
+      "warnings": [],
+      "pass": false
+    }
+  ]
+}
+
+
+node tools/validate-service-patterns.js
+{
+  "status": "PASS",
+  "physicalLines": 606,
+  "branches": 1,
+  "servicePatterns": 116,
+  "trainTypes": 22,
+  "destinations": 62,
+  "throughServices": 32,
+  "errors": []
+}
+
+
+node tools/build-static.js
+{"registered":317,"sourceAssemblable":261,"researchPlayable":123,"researchBlocked":182,"excluded":12,"officialReleased":0}
+{"checked":5,"corrected":0}
+{
+  "status": "PASS",
+  "source": "data/lines/**/line.json",
+  "lines": 606,
+  "operators": 161,
+  "stations": 9146,
+  "relations": 10698,
+  "segments": 9875,
+  "geometryReady": 588,
+  "operatorAssets": 25,
+  "lineAssets": 39,
+  "generatedIndex": "data/generated/line-index.json",
+  "generatedAssetRegistry": "data/generated/asset-registry.json",
+  "generatedBrowserData": "js/line-workspace-data.js",
+  "stationCoordinates": {
+    "lineTrack": 10383,
+    "fallback": 25,
+    "unverified": 290
+  },
+  "coordinateAudit": "reports/jr/route-station-coordinate-audit.json"
+}
+{"status":"PASS","routes":606,"chunks":17,"indexBytes":571915,"transfers":{"schemaVersion":1,"generated":"2026-10-29T14:36:46.674Z","routeCount":606,"neighborRouteCount":601,"groupCount":33,"identityLinks":1806,"nearbySameNameLinks":276,"namedGroupLinks":65,"farApartSharedIds":0}}
+{
+  "status": "BUILT_NOT_PUBLISHED",
+  "routes": [
+    {
+      "id": "nex-shinjuku-physical-candidate",
+      "trackPoints": 753,
+      "stops": 9
+    },
+    {
+      "id": "nex-ofuna-physical-candidate",
+      "trackPoints": 1000,
+      "stops": 12
+    }
+  ],
+  "output": "data/generated/nex-branch-geometry-candidates.json"
+}
+{"id":"line-99719","stations":22,"segments":21,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-1","stations":13,"segments":12,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-2","stations":21,"segments":20,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-3","stations":12,"segments":11,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-4","stations":27,"segments":26,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-5","stations":23,"segments":22,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{"id":"line-toyama-city-6","stations":44,"segments":43,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+Kobe track verified; manual geometry provenance review still required
+{"id":"line-hankyu-kobe-kosoku","stations":4,"segments":3,"geometryReady":true,"complete":true,"missing":[],"bad":[]}
+{
+  "status": "INCOMPLETE",
+  "sourceStations": 1528,
+  "sourcePassengerLines": 85,
+  "sourceServices": 317,
+  "activeServiceCandidates": 305,
+  "excludedServices": 12,
+  "officialTimetableVerifiedServices": 65,
+  "releasedLines": 0,
+  "releasedServices": 0,
+  "officialPassengerLines": null,
+  "officialServices": null,
+  "blockedServices": 305
+}
+{"status":"INCOMPLETE","operators":36,"routes":131,"stations":1734,"geometryReady":130,"expectedInventoryVerified":false}
+{
+  "bundle": "js/app.bundle.js",
+  "workspaceSource": "data/lines/**/line.json",
+  "workspaceBrowserData": "js/line-workspace-data.js",
+  "embeddedLines": 103,
+  "embeddedNationwideLines": 597,
+  "embeddedNationwideRouteFiles": 597,
+  "services": 5,
+  "servicePatterns": 116,
+  "branches": 1,
+  "koreanOverrides": 27,
+  "lineThemes": 26,
+  "operatorAssets": 25,
+  "lineBadges": 119,
+  "realSymbolAssets": 39,
+  "railSystem": {
+    "physicalLines": 97,
+    "passengerRoutes": 2,
+    "trainServices": 1,
+    "throughServices": 32,
+    "shinkansen": 10,
+    "geometryMatched": 103,
+    "geometryMissing": []
+  }
+}
+{"status":"PASS","groups":33,"regions":["kanto","kansai","hokkaido","tohoku","chubu","chugoku","shikoku","kyushu"],"source":"data/japan-named-transfer-groups.json"}
+{"status":"PASS","JapaneseRoutes":606,"stationOccurrences":10698,"groups":33,"active":32,"regions":8,"stationNameRoutes":41,"overrides":46,"duplicatedStopIdentities":20,"nearbyCandidatesReviewRequired":186,"report":"reports/jr/japan-national-transfer-audit.json"}
+{
+  "bundle": "js/app.bundle.js",
+  "hash": "265b65933126"
+}
+
+
+node tools/validate-korea-data.js
+{
+  "status": "INCOMPLETE",
+  "counts": {
+    "sourceStations": 1528,
+    "sourcePassengerLines": 85,
+    "sourceServices": 317,
+    "activeServiceCandidates": 305,
+    "excludedServices": 12,
+    "officialTimetableVerifiedServices": 65,
+    "releasedLines": 0,
+    "releasedServices": 0,
+    "officialPassengerLines": null,
+    "officialServices": null
+  },
+  "errors": [],
+  "blockedServices": 305
+}
+
+
+node tools/test-single-source.js
+{
+  "status": "PASS",
+  "operators": 161,
+  "lines": 606,
+  "stations": 9146,
+  "operatorAssets": 25,
+  "lineSymbols": 39,
+  "canonicalPropagation": true,
+  "errors": []
+}

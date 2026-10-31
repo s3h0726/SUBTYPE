@@ -53,6 +53,7 @@ const FILES=['operators','lines','korea-lines','services','stations-by-line','st
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0;
 const DATA_VERSION='20261011-current'; // Keep existing browser drafts compatible
 const FRESH_DATA_QUERY='ts='+Date.now();
+const EDIT_BRANCH=new URLSearchParams(location.search).get('branch')||'main';
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
 const editNameCol={'operators':'한국어명','lines':'노선 한글명','korea-lines':'노선 한글명','services':'한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
@@ -165,7 +166,7 @@ async function saveToGame(){
  try{
  const url='https://api.github.com/repos/s3h0726/SUBTYPE/contents/data/editor-overrides.json';
  const headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
- const res=await fetch(url,{headers,cache:'no-store'});if(!res.ok)throw Error('GitHub 읽기 실패: '+res.status+' (토큰 권한 확인)');
+ const res=await fetch(url+'?ref='+encodeURIComponent(EDIT_BRANCH),{headers,cache:'no-store'});if(!res.ok)throw Error('GitHub 읽기 실패: '+res.status+' (토큰 권한 확인)');
  const current=await res.json();
  if(typeof current.content!=='string'||!current.sha)throw Error('GitHub 응답에 파일 내용이 없습니다. 접근 권한을 확인하세요.');
  const rawBytes=Uint8Array.from(atob(current.content.replace(/\s/g,'')),c=>c.charCodeAt(0));
@@ -186,7 +187,7 @@ async function saveToGame(){
  if(file==='stations-by-line')for(const row of updates){json.stations[row[2]]||={};mergeChange(json.stations[row[2]],row[4],row[6].trim())}
  if(file==='stations-unique'){throw Error('고유 역명 표는 노선별 적용 범위가 불분명합니다. 노선별 역명 탭에서 변경하세요.')}
  const content=btoa(unescape(encodeURIComponent(JSON.stringify(json,null,2)+'\n')));
- const put=await fetch(url,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'data: apply Korean names and RGB edits from web editor',content,sha:current.sha,branch:'main'})});
+ const put=await fetch(url,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'data: apply Korean names and RGB edits from web editor',content,sha:current.sha,branch:EDIT_BRANCH})});
  if(!put.ok){const data=await put.text();throw Error('GitHub 저장 실패: '+put.status+' '+data.slice(0,220))}
  remoteOverrides=json;original=rows.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+DATA_VERSION+'-'+file);refresh();
  status.textContent='GitHub 저장 완료! Pages 배포 완료 후 게임에서 자동 적용됩니다.';

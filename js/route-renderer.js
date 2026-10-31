@@ -22,6 +22,7 @@ export function travelGeometry(route){
       points.push(...part);
     }
     offsets[stations.length-1]=Math.max(0,points.length-1);
+    if(route.countryId==='tw'&&route.loop&&route.loopClosingGeometry)points.push(...route.loopClosingGeometry.slice(1));
     return points.length>1?{points,offsets}:null;
   }
   if(!permitsApproximateMapGeometry(route)&&(!Array.isArray(route.geometry)||route.geometry.length<2))return null;
@@ -39,6 +40,7 @@ export function travelGeometry(route){
     points.push(...part);
   }
   offsets[stations.length-1]=Math.max(0,points.length-1);
+  if(route.countryId==='tw'&&route.loop&&route.loopClosingGeometry)points.push(...route.loopClosingGeometry.slice(1));
   return points.length>1?{points,offsets}:null;
 }
 const validCoordinates=route=>route.stations.every(station=>Number.isFinite(station.latitude)&&Number.isFinite(station.longitude));
@@ -77,7 +79,7 @@ function animateTrain(rail,from,to,motion,index){
   if(Math.hypot(from[0]-to[0],from[1]-to[1])<1e-9){rail.train.setLatLng(to);return}
   const frame=now=>{const p=duration?Math.min(1,(now-start)/duration):1,eased=1-Math.pow(1-p,3),point=pointAtTrackDistance(path,startDistance+(path.total-startDistance)*eased)||to;rail.train.setLatLng(point);if(p<1)rail.animation=requestAnimationFrame(frame);else rail.animation=null};frame(start)
 }
-function typingSegment(rail,from,to){const key=`${from}:${to}`;if(rail.segmentCache.has(key))return rail.segmentCache.get(key);const a=rail.stationOffsets[from],b=rail.stationOffsets[to],segment=a<=b?rail.points.slice(a,b+1):rail.points.slice(b,a+1).reverse(),lengths=new Float64Array(segment.length);for(let i=1;i<segment.length;i++){const p=segment[i-1],q=segment[i],dx=(q[1]-p[1])*Math.cos((p[0]+q[0])*Math.PI/360),dy=q[0]-p[0];lengths[i]=lengths[i-1]+Math.hypot(dx,dy)}const cached={segment,lengths,total:lengths.at(-1)||0};rail.segmentCache.set(key,cached);return cached}
+function typingSegment(rail,from,to){const key=`${from}:${to}`;if(rail.segmentCache.has(key))return rail.segmentCache.get(key);const a=rail.stationOffsets[from],b=rail.stationOffsets[to],last=rail.stationOffsets.length-1,closing=rail.loopClosingGeometry,segment=closing&&from===last&&to===0?closing.map(p=>[...p]):closing&&from===0&&to===last?closing.map(p=>[...p]).reverse():a<=b?rail.points.slice(a,b+1):rail.points.slice(b,a+1).reverse(),lengths=new Float64Array(segment.length);for(let i=1;i<segment.length;i++){const p=segment[i-1],q=segment[i],dx=(q[1]-p[1])*Math.cos((p[0]+q[0])*Math.PI/360),dy=q[0]-p[0];lengths[i]=lengths[i-1]+Math.hypot(dx,dy)}const cached={segment,lengths,total:lengths.at(-1)||0};rail.segmentCache.set(key,cached);return cached}
 function clearRouteLayers(rail){rail.map.stop();stopAnimation(rail);rail.railLayer.clearLayers();rail.stationLayer.clearLayers();rail.trainLayer.clearLayers();rail.markers=[];rail.train=null;rail.routeId=null;rail.routeKey=null;rail.points=[];updateDebug()}
 function stationGapZoom(rail,index,nextIndex){
  const a=rail.stationPoints?.[index],b=rail.stationPoints?.[nextIndex];
@@ -93,6 +95,7 @@ function centerArrivalCamera(rail,index,nextIndex,initial=false){
  else {rail.map.stop();rail.map.setView(at,zoom,{animate:true,duration:.12})}
 }
 function createRouteLayers(rail,route,index,options={}){
+  rail.loopClosingGeometry=route.countryId==='tw'&&route.loop?route.loopClosingGeometry:null;
   clearRouteLayers(rail);const {L,map}=rail,stationPoints=latLngs(route),travel=travelGeometry(route);if(!travel)return false;const points=travel.points;rail.routeId=route.id;rail.routeKey=route.renderKey||route.id;rail.points=points;rail.stationPoints=stationPoints;rail.stationOffsets=travel.offsets;rail.segmentCache=new Map();rail.index=index;rail.nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1);
   rail.base=L.polyline(points,{color:'#182923',weight:11,opacity:.55,lineCap:'round'}).addTo(rail.railLayer);if(Array.isArray(route.segments))for(const segment of route.segments){const from=travel.offsets[segment.fromStation],to=travel.offsets[segment.toStation];L.polyline(points.slice(Math.min(from,to),Math.max(from,to)+1),{color:segment.lineColor,weight:7,opacity:.72,lineCap:'round'}).addTo(rail.railLayer)}
   rail.remaining=L.polyline(points.slice(travel.offsets[index]),{color:route.lineColor,weight:7,opacity:.55,lineCap:'round'}).addTo(rail.railLayer);

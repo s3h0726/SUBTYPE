@@ -14,9 +14,13 @@ const effectiveLine=(id,meta)=>edits.lines?.[id]?.ko||meta.names?.ko||'';
 const effectiveColor=(id,meta)=>edits.lines?.[id]?.color||meta.color||'';
 const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]||edits.stations?.[lineId]?.[station.ja]||station.ko||'';
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
+const taiwanFile=path.join(root,'data/tw/generated/network.json');
+const taiwan=fs.existsSync(taiwanFile)?load(taiwanFile):{operators:[],lines:[]};
+operators.push(...taiwan.operators.map(meta=>({file:taiwanFile,meta})));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
   .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103');
 // Disney Resort Line is maintained in its dedicated route-data module, not data/lines/*/line.json.
+lines.push(...taiwan.lines.map(route=>({file:taiwanFile,meta:{id:route.id,operatorId:route.operatorId,names:route.line,color:route.lineColor,visibility:route.visibility}})));
 if(!lines.some(x=>x.meta.id==='jp-disney-resort-line')){
  const file='js/disney-resort-line-data.js';
  lines.push({file,meta:{id:'jp-disney-resort-line',operatorId:'maihama-resort-line',names:{ja:'ディズニーリゾートライン',ko:'디즈니 리조트라인',en:'Disney Resort Line'},color:'#D699B8',visibility:'public'}});
@@ -64,8 +68,9 @@ const generatedDir=path.join(root,'data/generated/routes');
 const byId=new Map();
 if(fs.existsSync(generatedDir))for(const name of fs.readdirSync(generatedDir).filter(n=>n.endsWith('.json'))){try{const route=load(path.join(generatedDir,name)).route; if(route?.id)byId.set(route.id,route)}catch(e){console.warn('skipped',name,e.message)}}
 for(const [id,{route}] of publishedSectionRoutes)byId.set(id,route);
+for(const route of taiwan.lines)byId.set(route.id,route);
 const stationRows=[];const missing=[];
-for(const x of lines){const route=byId.get(x.meta.id);if(!route){missing.push(x.meta.id);continue}for(const s of route.stations||[])stationRows.push([x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),s.ja,s.kana||'',s.romaji||'',s.nameKoSource||'', publishedSectionRoutes.has(x.meta.id)?toRel(publishedSectionRoutes.get(x.meta.id).file):'data/generated/routes/'+x.meta.id+'.json']);}
+for(const x of lines){const route=byId.get(x.meta.id);if(!route){missing.push(x.meta.id);continue}for(const s of route.stations||[])stationRows.push([x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),s.ja,s.kana||'',s.romaji||s.en||'',s.nameKoSource||s.koSource||'', publishedSectionRoutes.has(x.meta.id)?toRel(publishedSectionRoutes.get(x.meta.id).file):x.meta.id.startsWith('tw-')?'data/tw/generated/network.json':'data/generated/routes/'+x.meta.id+'.json']);}
 stationRows.sort((a,b)=>String(a[2]).localeCompare(String(b[2]))||String(a[4]).localeCompare(String(b[4])));
 fs.writeFileSync(path.join(output,'stations-by-line.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','역ID','공통역ID','역 한글명','역 일본어명','가나','로마자','한글명 출처','데이터경로'],...stationRows]));
 const unique=new Map();for(const r of stationRows){const k=r[5]||r[7]+'|'+r[6];if(!unique.has(k))unique.set(k,r)}

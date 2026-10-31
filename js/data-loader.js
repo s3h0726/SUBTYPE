@@ -1,3 +1,4 @@
+import{configureTaiwanNetwork,taiwanKoreanPresentation}from'./taiwan-network.js';
 import{KR_LINE1_INTEGRATION_RELATIONS}from'./korean-preview-access-data.js';
 import{isKoreanResearch,assertKoreanResearchRoute,koreanLine1ServiceDetails}from'./korean-research-resolver.js';
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
@@ -65,7 +66,7 @@ export function normalizeLine(raw={},defaults={}){
   const serviceSource=Array.isArray(raw.services)?raw.services:globalThis.TRT_SERVICE_CATALOG?.[id];
   const allStationIds=stations.map(station=>station.id),services=[];
   if(Array.isArray(serviceSource))for(let index=0;index<serviceSource.length;index++){const service=serviceSource[index],stops=[];let invalid=false;if(Array.isArray(service.stops))for(const stop of service.stops){const station=stations.find(item=>item.id===stop||item.sourceId===stop);if(!station){console.error(`${id}/${service.id||index}: service stop not found`,stop);invalid=true;break}stops.push(station.id)}if(!invalid&&stops.length>=2)services.push({id:text(service.id)||`service-${index+1}`,nameJa:text(service.nameJa,service.ja)||'各駅停車',nameKo:text(service.nameKo,service.ko)||'각역정차',nameEn:text(service.nameEn,service.en)||'Local',stops})}
-  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if(!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:allStationIds});
+  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if(raw.countryId!=='tw'&&!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:allStationIds});
   const lineTheme=verifiedTheme||{code:resolvedCode,color:text(raw.lineColor,raw.color)||'#777777',style:category==='jr'?'jr':category==='subway'?'metro':'private',operatorMark:text(operatorRaw.en,operatorRaw.ja)||'RAILWAY',colorVerified:false,colorSource:raw.colorSource||'Imported source data'};
   const editorLine=editorNameOverrides.lines[id]||{};
   const editorColor=/^#[0-9a-fA-F]{6}$/.test(editorLine.color||'')?editorLine.color:lineTheme.color;
@@ -146,6 +147,14 @@ export function integrateKoreanLine1Index(published,preview){
   return{...published,routes,operators,integratedLine1:{researchServices:merged.length,replacedLegacySections:legacy.filter(isOldLine1).length,releaseStatus:'research',officialReleased:0}};
 }
 export async function loadTransportData(countryId='jp',koreaMode='released'){
+  if(countryId==='tw'){
+    await loadEditorNameOverrides();
+    const data=await fetchJson(new URL('data/tw/generated/network.json',document.baseURI));
+    const all=data.lines.map(raw=>taiwanKoreanPresentation(normalizeLine(raw)));
+    configureTaiwanNetwork(all,data.patterns);
+    const lines=all.filter(l=>l.visibility!=='internal'&&l.playable&&l.geometryReady&&l.taiwanServices.length);
+    return{country:data.country,operators:data.operators.map(o=>({...o,names:{...o.names,ja:o.names.ko}})),lines,stations:[],assets:data.assets||{},errors:[],counts:lines.reduce((m,l)=>(m[l.category]=(m[l.category]||0)+1,m),{}),fallbackUsed:false,source:'taiwan-physical-and-service-network'};
+  }
   if(countryId==='jp'){
     const data=await loadRailData();
     // Small, independently sourced monorail not present in MLIT's 610-line

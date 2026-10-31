@@ -1,0 +1,6 @@
+/* Taiwan-specific branding; existing regional presentation stays intact. */
+html[data-country="tw"] [data-operator-logo]{display:inline-grid!important;width:38px;height:26px;flex:none;background:#fff;border-radius:4px;padding:3px;vertical-align:middle}
+html[data-country="tw"] [data-operator-logo] img{display:block;width:100%;height:100%;object-fit:contain}
+html[data-country="tw"] .line-card [data-operator-logo]{width:58px;height:30px;margin-bottom:8px}
+html[data-country="tw"] .line-card.shinkansen-card{border-top:4px solid #e85d0d;background-image:linear-gradient(135deg,#e85d0d12,transparent 65%)}
+html[data-country="tw"] .feature-operator-logo{margin-right:8px}

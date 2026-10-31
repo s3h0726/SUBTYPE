@@ -1,0 +1,186 @@
+{
+  "referenceDate": "2026-10-29",
+  "operators": [
+    {
+      "operatorId": "tw-trtc",
+      "operatorKo": "타이베이 지하철",
+      "physicalLines": 7,
+      "stationRecords": 124,
+      "servicePatterns": 11,
+      "directions": 22,
+      "realGeometryLines": 7,
+      "playableValidated": 0,
+      "implementedUnverified": 7,
+      "incomplete": 0,
+      "uniqueStations": 109,
+      "playableDirections": 2,
+      "unverifiedDirections": 20,
+      "representativeCardsTested": 2
+    },
+    {
+      "operatorId": "tw-thsr",
+      "operatorKo": "타이완 고속철도",
+      "physicalLines": 1,
+      "stationRecords": 12,
+      "servicePatterns": 12,
+      "directions": 19,
+      "realGeometryLines": 1,
+      "playableValidated": 0,
+      "implementedUnverified": 1,
+      "incomplete": 0,
+      "uniqueStations": 12,
+      "playableDirections": 1,
+      "unverifiedDirections": 18,
+      "representativeCardsTested": 1
+    },
+    {
+      "operatorId": "tw-ntmc",
+      "operatorKo": "신베이 지하철",
+      "physicalLines": 4,
+      "stationRecords": 49,
+      "servicePatterns": 5,
+      "directions": 10,
+      "realGeometryLines": 4,
+      "playableValidated": 0,
+      "implementedUnverified": 4,
+      "incomplete": 0,
+      "uniqueStations": 48,
+      "playableDirections": 2,
+      "unverifiedDirections": 8,
+      "representativeCardsTested": 2
+    },
+    {
+      "operatorId": "tw-tymc",
+      "operatorKo": "타오위안 지하철",
+      "physicalLines": 1,
+      "stationRecords": 22,
+      "servicePatterns": 5,
+      "directions": 8,
+      "realGeometryLines": 1,
+      "playableValidated": 0,
+      "implementedUnverified": 1,
+      "incomplete": 0,
+      "uniqueStations": 22,
+      "playableDirections": 1,
+      "unverifiedDirections": 7,
+      "representativeCardsTested": 1
+    },
+    {
+      "operatorId": "tw-tmrt",
+      "operatorKo": "타이중 지하철",
+      "physicalLines": 1,
+      "stationRecords": 18,
+      "servicePatterns": 1,
+      "directions": 2,
+      "realGeometryLines": 1,
+      "playableValidated": 0,
+      "implementedUnverified": 1,
+      "incomplete": 0,
+      "uniqueStations": 18,
+      "playableDirections": 1,
+      "unverifiedDirections": 1,
+      "representativeCardsTested": 1
+    },
+    {
+      "operatorId": "tw-krtc",
+      "operatorKo": "가오슝 지하철",
+      "physicalLines": 3,
+      "stationRecords": 77,
+      "servicePatterns": 3,
+      "directions": 6,
+      "realGeometryLines": 3,
+      "playableValidated": 0,
+      "implementedUnverified": 3,
+      "incomplete": 0,
+      "uniqueStations": 75,
+      "playableDirections": 3,
+      "unverifiedDirections": 3,
+      "representativeCardsTested": 2
+    },
+    {
+      "operatorId": "tw-tra",
+      "operatorKo": "타이완 철도",
+      "physicalLines": 17,
+      "stationRecords": 260,
+      "servicePatterns": 207,
+      "directions": 268,
+      "realGeometryLines": 17,
+      "playableValidated": 0,
+      "implementedUnverified": 17,
+      "incomplete": 0,
+      "uniqueStations": 240,
+      "playableDirections": 2,
+      "unverifiedDirections": 266,
+      "representativeCardsTested": 2
+    },
+    {
+      "operatorId": "tw-afr",
+      "operatorKo": "아리산 삼림철도",
+      "physicalLines": 4,
+      "stationRecords": 22,
+      "servicePatterns": 6,
+      "directions": 12,
+      "realGeometryLines": 4,
+      "playableValidated": 0,
+      "implementedUnverified": 4,
+      "incomplete": 0,
+      "uniqueStations": 19,
+      "playableDirections": 1,
+      "unverifiedDirections": 11,
+      "representativeCardsTested": 1
+    }
+  ],
+  "totalPhysicalLines": 38,
+  "totalStationRecords": 584,
+  "uniqueOperatorStations": 543,
+  "servicePatterns": 250,
+  "directions": 347,
+  "geometrySourceTraced": 38,
+  "geometryIndependentlyVerified": 0,
+  "implementedUnverified": 38,
+  "playableValidated": 13,
+  "issues": [],
+  "traRejected": {
+    "ambiguous mountain/coast/Chengzhui path between timetable calls": 221
+  },
+  "limitations": [
+    "Geometry is traced to upstream TDX/OSM snapshots; not independently certified against live GIS.",
+    "TRA paths between timetable calls are inferred from the physical network."
+  ],
+  "directionalServiceIds": 347,
+  "heldTimetableRows": 221,
+  "incompleteServiceVariants": 139,
+  "stationRecordsIncludingInternalTracks": 605,
+  "researchRoutes": 7,
+  "excludedEntries": 7,
+  "implementedUnverifiedDirections": 334,
+  "representativeCardsTested": 12,
+  "playableStatusScope": "Only the exact tested directional service IDs; other variants remain IMPLEMENTED_UNVERIFIED.",
+  "checks": [
+    {
+      "name": "consolidated-build",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "taiwan",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "typing",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "essential-regressions",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "browserEvidence": {
+    "file": "reports/taiwan/browser.json",
+    "sha256": "21fc995580557bab0df452aae7c7da4247a8eb4473e015327bf3e85010313eb5",
+    "scope": "Representative UI + real engine; synthetic Hangul IME; source topology batch tests are separate"
+  }
+}

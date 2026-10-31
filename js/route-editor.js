@@ -13,7 +13,7 @@ export class RouteEditor{
  setRailNetwork(routes){
   this.railRoutes=(Array.isArray(routes)?routes:[]).filter(route=>!koreanRouteBlockReason(route)).filter(route=>Array.isArray(route?.stations)&&route.stations.length>=2);
   this.stationGraph=new Map();
-  const keyOf=station=>station?.stationMasterId||station?.sourceStationId||station?.id||'';
+  const keyOf=station=>station?.twTransferKey||station?.stationMasterId||station?.sourceStationId||station?.id||'';
   const add=(key,station,route)=>{if(!key)return null;let node=this.stationGraph.get(key);if(!node){node={key,station,edges:[]};this.stationGraph.set(key,node)}node.routes=node.routes||new Set();node.routes.add(route.id);return node};
   for(const route of this.railRoutes){
    route.stations.forEach(station=>add(keyOf(station),station,route));
