@@ -1,0 +1,34 @@
+PASS js/app.js: HK MTR/TRAM, KR, JP click selectors
+PASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors
+PASS selector assets: 96 HK route records
+✔ tools\test-hk-route-selector.cjs (177.068ms)
+{"status":"PASS","lineId":"line-jr-east-sobu-rapid","stops":10,"segments":9,"vertices":251,"directions":["Tokyo–Chiba","Chiba–Tokyo"],"localRouteKept":"line-11313","originalMainLineKept":"line-11314","transfers":22,"csvIntegrated":true}
+✔ tools\test-jr-sobu-rapid-playable.cjs (797.4756ms)
+{
+  "passed": true,
+  "routes": 471,
+  "journeysResolved": 1091,
+  "geometryFallbacks": 0,
+  "scope": "전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개."
+}
+✔ tools\test-kr-canonical.cjs (3347.9374ms)
+✔ all eight operators and 38 physical cards survive the batch import (1.1649ms)
+✔ every service resolves over actual retained tracks in timetable order (4139.2999ms)
+✔ Korean is mandatory in every display slot and station IDs are line specific (4.0057ms)
+✔ THSR has all 12 stations and express passes are excluded from prompts (89.6456ms)
+✔ Airport express stops, excluded construction stations and unilateral short turns (3.4425ms)
+✔ Circular light rail retains its closing curve and one arrival-only boundary (28.2975ms)
+✔ same-named platforms retain coordinates and unapproved transfers cannot merge (2.7592ms)
+✔ Alishan retains thousands of original mountain vertices and no yard tracks as cards (3.2889ms)
+✔ free-drive loop crossings use only the retained closing track in either direction (13.4861ms)
+✔ editor station overrides reach the actual Taiwan journey and its destination selector (134.8795ms)
+PASS: 1393 legacy station IDs, 8878 surviving station masters, track geometry and browser cache compatibility
+✔ tools\test-unified-mlit-station-ids.cjs (1884.8036ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4864.0641

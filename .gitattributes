@@ -13,3 +13,9 @@ js/line-workspace-data.js text eol=lf
 data/kr/preview/** text eol=lf
 
 js/japan-lite-index.js text eol=lf
+
+# Taiwan source snapshots and official marks retain their provenance hashes.
+data/tw/** text eol=lf
+data/tw/source/** -text
+assets/operators/tw-thsr.svg -text -whitespace
+reports/taiwan/*.json text eol=lf

@@ -1,0 +1,3 @@
+const fs=require('node:fs');
+const query='[out:json][timeout:90];rel(21.8,119.8,25.4,122.1)[type=route][route~"^(train|subway|light_rail|tram|monorail)$"];out body;';
+(async()=>{for(const host of ['https://maps.mail.ru/osm/tools/overpass/api/interpreter','https://overpass.private.coffee/api/interpreter','https://overpass.kumi.systems/api/interpreter']){try{const r=await fetch(host+'?data='+encodeURIComponent(query),{signal:AbortSignal.timeout(210000)});if(!r.ok)throw Error('HTTP '+r.status);const data=await r.json();fs.writeFileSync('data/tw/source/relations.json',JSON.stringify(data));console.log('relations',data.elements.length);return}catch(e){console.error(host,e.message)}}process.exitCode=1})();

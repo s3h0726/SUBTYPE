@@ -1,0 +1,40 @@
+{
+  "baselineCommit": "9dbe852a63f1d69115720ebddcfa5c29d01675dc",
+  "nonTaiwanRailwayDataDifferences": [],
+  "identicalBaselineFiles": [
+    "tools/validate-data.js",
+    "js/hong-kong-policy.js",
+    "js/route-integrity.js",
+    "js/storage.js"
+  ],
+  "consolidatedBuild": {
+    "status": "FAIL",
+    "errors": 267,
+    "duplicateStationMasterIds": 267,
+    "note": "validate-data.js and all its data inputs are identical to the pinned upstream main. It does not read data/tw."
+  },
+  "legacyRegressions": {
+    "status": "FAIL",
+    "notes": [
+      "Older Korean route fixtures conflict with the current main reset policy.",
+      "Old Japanese catalog checks assume shared-station shard locations from before the station ID migration.",
+      "Hong Kong broad historical suite contains old route-schema and source-byte assertions; HK data, policy, route integrity and storage are unchanged from upstream main."
+    ]
+  },
+  "passedIntegrationSuite": "integration-essential.log (14/14)",
+  "browser": "browser.json (13 Taiwan directions, TAB, loops, Japan/HK catalogs and Korean upstream reset policy)",
+  "finalNameTableAudit": [
+    {
+      "file": "reports/korean-names/stations-by-line.csv",
+      "oldRows": 10715,
+      "changedExistingLabels": 0,
+      "samples": []
+    },
+    {
+      "file": "reports/korean-names/stations-unique.csv",
+      "oldRows": 8883,
+      "changedExistingLabels": 0,
+      "samples": []
+    }
+  ]
+}

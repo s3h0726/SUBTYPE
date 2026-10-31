@@ -27,8 +27,13 @@ const effectiveLine=(id,meta)=>edits.lines?.[id]?.ko||meta.names?.ko||'';
 const effectiveColor=(id,meta)=>edits.lines?.[id]?.color||meta.color||'';
 const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]||edits.stations?.[lineId]?.[station.ja]||station.ko||'';
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
+const taiwanFile=path.join(root,'data/tw/generated/network.json');
+const taiwan=fs.existsSync(taiwanFile)?load(taiwanFile):{operators:[],lines:[]};
+operators.push(...taiwan.operators.map(meta=>({file:taiwanFile,meta})));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
   .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103');
+
+lines.push(...taiwan.lines.map(route=>({file:taiwanFile,meta:{id:route.id,operatorId:route.operatorId,names:route.line,color:route.lineColor,visibility:route.visibility}})));
 // The Disney route and operator are authored in the runtime source rather than
 // canonical workspaces. Export the actual four-stop loop plus the return stop.
 if(!lines.some(x=>x.meta.id===disney.id)){
@@ -85,6 +90,7 @@ const generatedDir=path.join(root,'data/generated/routes');
 const byId=new Map();
 if(fs.existsSync(generatedDir))for(const name of fs.readdirSync(generatedDir).filter(n=>n.endsWith('.json'))){try{const route=load(path.join(generatedDir,name)).route; if(route?.id)byId.set(route.id,route)}catch(e){console.warn('skipped',name,e.message)}}
 for(const [id,{route}] of publishedSectionRoutes)byId.set(id,route);
+for(const route of taiwan.lines)byId.set(route.id,route);
 byId.set(disney.id,disney);
 const stationRows=[];const missing=[];
 for(const x of lines){
@@ -93,11 +99,11 @@ for(const x of lines){
  for(const s of route.stations||[]){
   const proof=sourcedStation(x.meta.id,s);
   const routeFile=publishedSectionRoutes.has(x.meta.id)?toRel(publishedSectionRoutes.get(x.meta.id).file):
-    x.meta.id===disney.id?'js/disney-resort-line-data.js':'data/generated/routes/'+x.meta.id+'.json';
+    x.meta.id.startsWith('tw-')?'data/tw/generated/network.json':x.meta.id===disney.id?'js/disney-resort-line-data.js':'data/generated/routes/'+x.meta.id+'.json';
   stationRows.push([
    x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),
    s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),
-   s.ja,s.kana||'',s.romaji||s.en||'',proof.source,routeFile,
+   s.ja,s.kana||'',s.romaji||s.en||'',s.koSource||proof.source,routeFile,
    proof.status,proof.url
   ]);
  }

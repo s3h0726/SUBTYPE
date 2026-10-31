@@ -1,0 +1,19 @@
+node --test tools/test-taiwan.cjs
+✔ all eight operators and 38 physical cards survive the batch import (1.028ms)
+✔ every service resolves over actual retained tracks in timetable order (3787.6365ms)
+✔ Korean is mandatory in every display slot and station IDs are line specific (2.3669ms)
+✔ THSR has all 12 stations and express passes are excluded from prompts (82.9229ms)
+✔ Airport express stops, excluded construction stations and unilateral short turns (3.9031ms)
+✔ Circular light rail retains its closing curve and one arrival-only boundary (14.9743ms)
+✔ same-named platforms retain coordinates and unapproved transfers cannot merge (2.1915ms)
+✔ Alishan retains thousands of original mountain vertices and no yard tracks as cards (0.9119ms)
+✔ free-drive loop crossings use only the retained closing track in either direction (11.4056ms)
+✔ editor station overrides reach the actual Taiwan journey and its destination selector (46.9516ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4193.2899

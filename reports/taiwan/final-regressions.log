@@ -1,0 +1,73 @@
+✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (4.0074ms)
+✔ directional Korean service never manufactures a reverse edge at its terminus (0.7198ms)
+✔ three or more connected Japanese lines remain individually selectable (4.5567ms)
+{
+  "status": "PASS",
+  "streetcarLines": 8,
+  "archivedLines": 2,
+  "hidakaStations": 4,
+  "curatedNamePaths": 17
+}
+✔ tools\test-japan-live-catalog.cjs (248.3002ms)
+{"status":"PASS","routesTested":6,"sharedTokyoIdentity":true,"independentMetroAndJrPlatforms":true,"rapidInvalidTrackFallback":true,"browserSelfHeals":true}
+✔ tools\test-jp-route-station-coordinates.cjs (3587.6366ms)
+✔ directional services compile without creating reverse or local services (5.8465ms)
+✔ unreviewed OSM topology cannot publish (0.739ms)
+✔ future and expired timetable evidence cannot publish (0.7552ms)
+✔ different train stops cannot be inferred from a timetable (0.3277ms)
+✔ duplicate IDs and missing references fail validation (0.399ms)
+✔ track gaps are not bridged or snapped (0.5058ms)
+✔ station offsets must match source nodes and visit order (0.7488ms)
+✔ national totals cannot be declared complete without an official inventory (0.5506ms)
+✔ excluded research cannot publish or satisfy the official national service inventory (0.679ms)
+✔ rail and road co-tagging remains blocked despite otherwise complete release evidence (0.5178ms)
+✔ runtime keeps exact directions, rejects invented destinations, preserves express track (9.4583ms)
+✔ actual Game advancement and finish run exactly once in both explicit directions (6.1737ms)
+✔ normalization never manufactures an all-stops service for v2 (5.5234ms)
+✔ omitted source stops cannot make a partial route releasable (0.3279ms)
+✔ candidate trains and unverified platform metadata cannot release (0.1856ms)
+✔ a review flag cannot authorize running against source one-way track (0.3395ms)
+✔ expired national inventory does not certify coverage (0.2049ms)
+✔ timetable matching preserves identity ambiguity and never approves a train (7.4117ms)
+✔ real game route resolver preserves express geometry and repeated loop station visits (7.7865ms)
+✔ official station matching does not merge same-name places or assign approvals (5.1659ms)
+✔ returning to a loop station uses the later map visit and adjacent segment (4.5859ms)
+✔ Korean journey identity and directions survive records and display endpoints (13.7593ms)
+✔ Korean suffix is removed exactly once; middle syllables and other countries stay unchanged (4.5025ms)
+✔ railway qualifiers at both ends and in brackets are removed from the Korean game label (0.7516ms)
+✔ the primary typing target is the station only, the source alias stays accepted (3.7418ms)
+✔ Seoul subway name is explicit and does not change the conventional railway station rule (1.7372ms)
+✔ service titles format only known station references, never generic UI or official source strings (0.9551ms)
+✔ all 13 legacy and 123 research payloads retain names, station IDs, coordinates and geometry (548.1197ms)
+✔ NFC and decomposed legacy suffix answers each complete once while the primary answer stays short (3.0129ms)
+✔ composition, Backspace and an error recover to the short default without duplicate submission (1.0349ms)
+✔ legacy suffix input uses short-target progress and combo units; wrong input and Backspace still recover (2.3214ms)
+✔ lazy selection hides the prior play action and ignores a slower superseded response (2.9827ms)
+✔ country and preview-mode switches invalidate a pending lazy selection (2.772ms)
+✔ Japanese lazy selections retain operating-connection hydration before becoming playable (1.4621ms)
+✔ all eight operators and 38 physical cards survive the batch import (1.2878ms)
+✔ every service resolves over actual retained tracks in timetable order (3522.204ms)
+✔ Korean is mandatory in every display slot and station IDs are line specific (0.6517ms)
+✔ THSR has all 12 stations and express passes are excluded from prompts (22.7355ms)
+✔ Airport express stops, excluded construction stations and unilateral short turns (0.6802ms)
+✔ Circular light rail retains its closing curve and one arrival-only boundary (3.2324ms)
+✔ same-named platforms retain coordinates and unapproved transfers cannot merge (0.4407ms)
+✔ Alishan retains thousands of original mountain vertices and no yard tracks as cards (0.2035ms)
+✔ free-drive loop crossings use only the retained closing track in either direction (2.7137ms)
+✔ editor station overrides reach the actual Taiwan journey and its destination selector (16.1871ms)
+✔ smoothing follows each retained curved edge instead of cutting its corner (3.4917ms)
+✔ rapid partial input and stale lower progress never reverse train distance (0.6452ms)
+✔ arrival waits for the current map render and stale sessions cannot move its successor (4.228ms)
+✔ resuming during an arrival cannot bypass its map and animation barrier (3.1926ms)
+✔ Korean station boundaries share the retained source vertex between adjacent segments (3.6033ms)
+✔ completed station typing catches the marker up in 50ms and never advances early (1.9735ms)
+✔ SPACE waits for real arrival and repeated presses cannot finish a journey twice (3.1621ms)
+✔ camera reset cancels old pan and changes zoom atomically (2.5115ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 57
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3897.6467
