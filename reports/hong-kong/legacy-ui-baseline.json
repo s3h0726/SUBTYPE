@@ -1,0 +1,17 @@
+{
+  "mainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
+  "baselineFailures": [
+    "inputValueIsNfcSoleSource",
+    "koreanProgressUsesAnswerLength",
+    "autoAdvance150ms",
+    "firstAnswerIsStartStation"
+  ],
+  "currentFailures": [
+    "inputValueIsNfcSoleSource",
+    "koreanProgressUsesAnswerLength",
+    "autoAdvance150ms",
+    "firstAnswerIsStartStation"
+  ],
+  "unchanged": true,
+  "explanation": "The legacy UI audit uses source-code regex checks. Its existing failures remain failures and are not counted as new PASS results."
+}

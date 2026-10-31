@@ -1,0 +1,10 @@
+{
+  "checkedAt":"2026-10-22",
+  "sourceUrl":"https://www.hktramways.com/en/schedules-fares/",
+  "note":"The six official major route pairs are current, but full ordered calls and Korean names still require separate approval. Match actual stop endpoints, not an incomplete English relation tag.",
+  "relations":[
+    {"relationId":4088321,"specId":"western-market-shau-kei-wan","fromStopNodeId":984409308,"toStopNodeId":24358851,"from":"Shau Kei Wan","to":"Western Market","operationStatus":"verified","callingPatternStatus":"INCOMPLETE","note":"Source to:en says Sheung Wan, while its own official_name and terminal node say Western Market. Official operator stop list confirms this identity."},
+    {"relationId":4088368,"specId":"western-market-shau-kei-wan","from":"Western Market","to":"Shau Kei Wan","operationStatus":"verified","callingPatternStatus":"INCOMPLETE","keepExistingServiceId":"hk-tram-western-market-shau-kei-wan","note":"Populate the existing pending Western Market→Shau Kei Wan identity with its actual source direction; do not drop its original ID."},
+    {"relationId":4088481,"specId":"shek-tong-tsui-north-point","fromStopNodeId":293661658,"toStopNodeId":296293116,"from":"Shek Tong Tsui","to":"North Point","operationStatus":"verified","callingPatternStatus":"INCOMPLETE","note":"Source lacks to:en. Original first/last stop nodes explicitly identify WST/NPT, both confirmed by official operator stop facts."}
+  ]
+}

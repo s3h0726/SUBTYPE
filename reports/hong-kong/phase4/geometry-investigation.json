@@ -1,0 +1,134 @@
+{
+  "checkedAt": "2026-10-24",
+  "historicalEvidence": "reports/hong-kong/phase3/geometry-investigation.json",
+  "investigated": 5,
+  "resolved": 2,
+  "remainingRelationIds": [
+    3264047,
+    6582965,
+    6582966
+  ],
+  "inventedVertices": 0,
+  "roadWaysAccepted": 0,
+  "cases": [
+    {
+      "relationId": 3263757,
+      "type": "route",
+      "route": "tram",
+      "from": "堅尼地城 Kennedy Town",
+      "to": "跑馬地 Happy Valley",
+      "sourceFile": "data/hk/sources/phase2/relation-3263757.json",
+      "priorRawExtraction": {
+        "status": "FAIL",
+        "reason": "stop not on railway within 80m: 5470724238"
+      },
+      "phase4FreshFetch": {
+        "sourceUrl": "https://api.openstreetmap.org/api/0.6/relation/3263757/full.json",
+        "sourceType": "osm",
+        "status": "INCOMPLETE",
+        "reason": "HTTP 429",
+        "checkedAt": "2026-10-22"
+      },
+      "status": "GEOMETRY_VERIFIED_ONLY",
+      "currentlyUsed": [
+        "hk-tram-kennedy-town-happy-valley-3263757"
+      ],
+      "review": "Move existing Broadwood Road stop member before existing Wong Nai Chung Road; official107→107→108→HVT_K branch order. Retain every original railway way/vertex. Last four stops exact source vertices. Full calling order and Korean names still unverified, PLAYABLE=false.",
+      "correctionSource": "data/hk/master/stop-order-reviews.json"
+    },
+    {
+      "relationId": 3264047,
+      "type": "route",
+      "route": "funicular",
+      "from": "花園道 Garden Road",
+      "to": "山頂 The Peak",
+      "sourceFile": "data/hk/sources/phase3/relation-3264047.json",
+      "priorRawExtraction": {
+        "status": "FAIL",
+        "reason": "stop not on railway within 80m: 988059821"
+      },
+      "phase4FreshFetch": {
+        "sourceUrl": "https://api.openstreetmap.org/api/0.6/relation/3264047/full.json",
+        "sourceType": "osm",
+        "status": "INCOMPLETE",
+        "reason": "HTTP 429",
+        "checkedAt": "2026-10-22"
+      },
+      "status": "INCOMPLETE",
+      "currentlyUsed": [],
+      "review": "Peak Tram stop/member/way direction conflict remains. Official current conditional intermediate calls unavailable (403); no invented sort, chord or 3D elevation.",
+      "correctionSource": null
+    },
+    {
+      "relationId": 4088518,
+      "type": "route",
+      "route": "tram",
+      "from": "筲箕灣 Shau Kei Wan",
+      "to": "跑馬地 Happy Valley",
+      "sourceFile": "data/hk/sources/phase2/relation-4088518.json",
+      "priorRawExtraction": {
+        "status": "FAIL",
+        "reason": "stop not on railway within 80m: 5470724238"
+      },
+      "phase4FreshFetch": {
+        "sourceUrl": "https://api.openstreetmap.org/api/0.6/relation/4088518/full.json",
+        "sourceType": "osm",
+        "status": "INCOMPLETE",
+        "reason": "HTTP 429",
+        "checkedAt": "2026-10-22"
+      },
+      "status": "GEOMETRY_VERIFIED_ONLY",
+      "currentlyUsed": [
+        "hk-tram-happy-valley-shau-kei-wan-4088518"
+      ],
+      "review": "Move existing Broadwood Road stop member before existing Wong Nai Chung Road; official107→107→108→HVT_K branch order. Retain every original railway way/vertex. Last four stops exact source vertices. Full calling order and Korean names still unverified, PLAYABLE=false.",
+      "correctionSource": "data/hk/master/stop-order-reviews.json"
+    },
+    {
+      "relationId": 6582965,
+      "type": "route",
+      "route": "subway",
+      "from": "屯門 Tuen Mun",
+      "to": "紅磡 Hung Hom",
+      "sourceFile": "data/hk/sources/phase2/relation-6582965.json",
+      "priorRawExtraction": {
+        "status": "FAIL",
+        "reason": "non-railway way 1492453330"
+      },
+      "phase4FreshFetch": {
+        "sourceUrl": "https://api.openstreetmap.org/api/0.6/relation/6582965/full.json",
+        "sourceType": "osm",
+        "status": "INCOMPLETE",
+        "reason": "HTTP 429",
+        "checkedAt": "2026-10-22"
+      },
+      "status": "INCOMPLETE",
+      "currentlyUsed": [],
+      "review": "Historical pre-integration Tuen Mun–Hung Hom candidate; non-railway members remain rejected and raw failure retained. Not used for current integrated Tuen Ma services.",
+      "correctionSource": null
+    },
+    {
+      "relationId": 6582966,
+      "type": "route",
+      "route": "subway",
+      "from": "紅磡 Hung Hom",
+      "to": "屯門 Tuen Mun",
+      "sourceFile": "data/hk/sources/phase3/relation-6582966.json",
+      "priorRawExtraction": {
+        "status": "FAIL",
+        "reason": "non-railway way 1492453329"
+      },
+      "phase4FreshFetch": {
+        "sourceUrl": "https://api.openstreetmap.org/api/0.6/relation/6582966/full.json",
+        "sourceType": "osm",
+        "status": "INCOMPLETE",
+        "reason": "HTTP 429",
+        "checkedAt": "2026-10-22"
+      },
+      "status": "INCOMPLETE",
+      "currentlyUsed": [],
+      "review": "Historical pre-integration Tuen Mun–Hung Hom candidate; non-railway members remain rejected and raw failure retained. Not used for current integrated Tuen Ma services.",
+      "correctionSource": null
+    }
+  ]
+}

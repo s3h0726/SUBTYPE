@@ -8,7 +8,7 @@ const nex=read('data/lines/jr-east/narita-express/geometry.json');
 const yok=read('data/lines/jr-east/yokosuka-line/geometry.json');
 const route=read('data/generated/routes/line-11328.json').route;
 const stations=new Map(route.stations.map(s=>[s.id,s]));
-const id={ofuna:'station-mlit-004961',totsuka:'station-mlit-004818',yokohama:'station-mlit-004633',musashi:'station-mlit-004301',nishioi:'station-mlit-004235',shinagawa:'station-mlit-004095',shinjuku:'station-mlit-003700',shibuya:'station-mlit-003922',tokyo:'station-mlit-003766',chiba:'station-mlit-004173',yotsukaido:'station-mlit-003898',sakura:'station-mlit-003531',narita:'station-mlit-003161',t2:'station-1132813',t1:'station-1132705'};
+const id={ofuna:'station-1130107',totsuka:'station-1130106',yokohama:'station-1130105',musashi:'station-004301',nishioi:'station-004235',shinagawa:'station-1130103',shinjuku:'station-003700',shibuya:'station-003922',tokyo:'station-1130101',chiba:'station-1131339',yotsukaido:'station-003898',sakura:'station-1131415',narita:'station-1132703',t2:'station-1132813',t1:'station-1132705'};
 const chain=(parts)=>{
  const coords=[],sources=[],stationGeometryIndices={};
  for(const [dataset,from,to] of parts){

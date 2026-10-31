@@ -1,0 +1,207 @@
+Official npm CLI, requested commands and actual output
+
+$ npm run build:hk
+{
+  "lines": 26,
+  "stations": 291,
+  "services": 66,
+  "trackSegments": 532,
+  "geometryCandidates": 87,
+  "playable": 62,
+  "additionalOfficialLightRailRefs": [
+    "506P",
+    "507P",
+    "720",
+    "610P"
+  ],
+  "status": "INCOMPLETE"
+}
+npm notice run build:hk
+npm notice run node tools/build-hk-data.cjs
+
+EXIT 0
+
+$ npm run test:hk
+✔ Hong Kong has ten separately identified MTR lines and stable region IDs (1.1005ms)
+✔ official branches do not invent an all-stations journey through both termini (0.2941ms)
+✔ Airport Express does not acquire Tung Chung Line stops (0.7676ms)
+✔ unverified Hong Kong cannot bypass gating through custom/imported routes or a lazy flag (1.4561ms)
+✔ Disneyland both directions use distinct retained source tracks, not reverse guesses (2.4287ms)
+✔ every playable service passes the same runtime gate as its lazy index (69.3202ms)
+✔ verified physical edges retain source IDs and connected finite source vertices (9.6276ms)
+✔ verified separately named station interchanges are explicit while HSR and uncertain walks stay pending (0.5456ms)
+✔ compiler regeneration is byte stable and leaves Japanese/Korean data unchanged (1532.4904ms)
+✔ source snapshots have valid recorded hashes; absent sources are not silently verified (3656.9978ms)
+✔ Hong Kong CUSTOM retains actual edges and rejects reordered, disconnected or imaginary loops (4.9562ms)
+✔ lazy Hong Kong metadata never validates full stop references against an empty station list (10.435ms)
+✔ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (7.3612ms)
+✔ Hong Kong CUSTOM normalization keeps replay IDs and memory does not gain kana answers (5.3379ms)
+✔ Light Rail destination dashes retain termini while interior one-way calls stay directional (1.1154ms)
+✔ Light Rail complete official sequence rejects the formerly approved truncated 614P pattern (8.547ms)
+✔ 706 rotates only a closed source chain and retains every traversed railway edge (19.5415ms)
+✔ SIL and AEL directions each resolve independent real source tracks and all their reviewed stops (8.3254ms)
+✔ all MTR codes share a single reviewed Korean name record and unconfirmed names remain blocked (7.7617ms)
+✔ MTR colours are the reviewed official PDF alternates and logos are never implicitly licensed (13.661ms)
+✔ additional Light Rail peaks retain local times, direction, holiday uncertainty and incomplete full stops (2.2351ms)
+✔ CUSTOM continuations cannot imply a transfer between opposite service directions (2.9721ms)
+✔ phase three release requires completed browser evidence for unchanged names, direction and track (256.6149ms)
+✔ each Hong Kong service stop uses its own railway vertex and stable physical station identity (148.5323ms)
+✔ Tung Chung diversion reorders exact existing source ways with official commissioning evidence (11.765ms)
+✔ off-peak LOHAS shuttle stays blocked until its operating condition is reviewed (2.2031ms)
+✔ local validation preview cannot appear as a released public service (1.6298ms)
+✔ CUSTOM rebases the first interchange stop onto its selected directed railway without changing physical IDs (3.9955ms)
+✔ new Korean usage reviews retain published station identity pairs and do not claim official Korean designations (136.4404ms)
+✔ construction tags cannot be treated as operational without an explicit commissioning review (11.2122ms)
+✔ verified Hong Kong circular services are closed at the same physical station with a sourced return edge (4.9562ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6181.8582
+npm notice run test:hk
+npm notice run node --test tools/test-hk-network.cjs
+
+EXIT 0
+
+$ npm run audit:hk
+{
+  "status": "INCOMPLETE",
+  "counts": {
+    "lineRecords": 26,
+    "stationOrDirectionalStopRecords": 291,
+    "verifiedPhysicalStationTotal": "NOT_VERIFIED",
+    "servicePatterns": 66,
+    "playableServicePatterns": 62,
+    "trackSegments": 532,
+    "mtrCoreLinesRegistered": 9,
+    "mtrCoreLinesPlayable": 9,
+    "airportExpressPlayable": 2,
+    "lightRailTargetRefs": 12,
+    "additionalOfficialLightRailRefs": [
+      "506P",
+      "507P",
+      "720",
+      "610P"
+    ],
+    "verifiedGeometries": 65,
+    "unverifiedGeometry": 1,
+    "verifiedKoNames": 285,
+    "verifiedStopPatterns": 64,
+    "remainingGeometryRelationIds": [
+      3264047,
+      6582965,
+      6582966
+    ],
+    "officialMtrLineColors": 10,
+    "officialLightRailColors": 11,
+    "reviewedTransferStations": 15,
+    "missingKoNames": 6,
+    "unreviewedKoNames": 6,
+    "brokenCoordinates": 0,
+    "duplicateStationIds": 0,
+    "duplicatePhysicalStations": "NOT_AUDITED",
+    "nonexistentServices": "NOT_VERIFIED",
+    "unverifiedStopPatterns": 2,
+    "logosVerified": 0,
+    "logosRequired": 3,
+    "brokenLogoAssets": "NOT_AUDITED",
+    "phantomTransfers": "NOT_AUDITED",
+    "enabledTransferEdges": 3,
+    "consoleErrors": 0
+  },
+  "requirements": {
+    "FAIL": 1,
+    "PASS": 85,
+    "INCOMPLETE": 93,
+    "NOT_REQUESTED": 1
+  },
+  "branch": "feature/hong-kong-railway",
+  "mainUnchanged": "PASS"
+}
+npm notice run audit:hk
+npm notice run node tools/audit-hk-data.cjs
+
+EXIT 0
+
+$ npm run audit:hk:complete
+{
+  "status": "INCOMPLETE",
+  "counts": {
+    "lineRecords": 26,
+    "stationOrDirectionalStopRecords": 291,
+    "verifiedPhysicalStationTotal": "NOT_VERIFIED",
+    "servicePatterns": 66,
+    "playableServicePatterns": 62,
+    "trackSegments": 532,
+    "mtrCoreLinesRegistered": 9,
+    "mtrCoreLinesPlayable": 9,
+    "airportExpressPlayable": 2,
+    "lightRailTargetRefs": 12,
+    "additionalOfficialLightRailRefs": [
+      "506P",
+      "507P",
+      "720",
+      "610P"
+    ],
+    "verifiedGeometries": 65,
+    "unverifiedGeometry": 1,
+    "verifiedKoNames": 285,
+    "verifiedStopPatterns": 64,
+    "remainingGeometryRelationIds": [
+      3264047,
+      6582965,
+      6582966
+    ],
+    "officialMtrLineColors": 10,
+    "officialLightRailColors": 11,
+    "reviewedTransferStations": 15,
+    "missingKoNames": 6,
+    "unreviewedKoNames": 6,
+    "brokenCoordinates": 0,
+    "duplicateStationIds": 0,
+    "duplicatePhysicalStations": "NOT_AUDITED",
+    "nonexistentServices": "NOT_VERIFIED",
+    "unverifiedStopPatterns": 2,
+    "logosVerified": 0,
+    "logosRequired": 3,
+    "brokenLogoAssets": "NOT_AUDITED",
+    "phantomTransfers": "NOT_AUDITED",
+    "enabledTransferEdges": 3,
+    "consoleErrors": 0
+  },
+  "requirements": {
+    "FAIL": 1,
+    "PASS": 85,
+    "INCOMPLETE": 93,
+    "NOT_REQUESTED": 1
+  },
+  "branch": "feature/hong-kong-railway",
+  "mainUnchanged": "PASS"
+}
+npm notice run audit:hk:complete
+npm notice run node tools/audit-hk-data.cjs --require-complete
+INCOMPLETE: nationwide coverage, source/name/asset reviews and acceptance requirements remain open.
+
+EXIT 1
+
+$ node tools/check-hk-ui-baseline.cjs
+{
+  "mainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
+  "baselineFailures": [
+    "inputValueIsNfcSoleSource",
+    "koreanProgressUsesAnswerLength",
+    "autoAdvance150ms",
+    "firstAnswerIsStartStation"
+  ],
+  "currentFailures": [
+    "inputValueIsNfcSoleSource",
+    "koreanProgressUsesAnswerLength",
+    "autoAdvance150ms",
+    "firstAnswerIsStartStation"
+  ],
+  "unchanged": true,
+  "explanation": "The legacy UI audit uses source-code regex checks. Its existing failures remain failures and are not counted as new PASS results."
+}

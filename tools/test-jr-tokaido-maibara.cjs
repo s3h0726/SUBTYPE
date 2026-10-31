@@ -13,7 +13,7 @@ const physical=json('data/lines/jr-central/tokaidohonsen-hamamatsu-gifu/geometry
 const gap=physical['station-1150304::station-1150307'];
 const context={};
 vm.createContext(context);
-vm.runInContext(read('js/route-integrity.js').replace(/^export\s+/gm,'')+';globalThis.resolvePlayableRouteForTest=resolvePlayableRoute;',context);
+vm.runInContext(read('js/route-integrity.js').replace(/^import[^\n]*\n/gm,'').replace(/^export\s+/gm,'')+';globalThis.resolvePlayableRouteForTest=resolvePlayableRoute;',context);
 assert.equal(route.stations.length,42);
 assert.equal(route.stations[0].ja,'豊橋');
 assert.equal(route.stations.at(-1).ja,'米原');
@@ -44,14 +44,15 @@ assert.equal(published.directedSegments.length,41);
 assert.equal(published.geometryReady,true);
 assert.equal(published.missingSegments?.length,0);
 assert.equal(card.stationCount,42);
-assert.equal(card.line.ko,'도카이도 본선(토요하시~마이바라)');
+const editor=JSON.parse(read('data/editor-overrides.json'));
+assert.equal(card.line.ko,editor.lines?.[route.id]?.ko||'도카이도 본선(토요하시~마이바라)');
 assert(card.lazySource.includes('chunk-02.json'));
 assert.equal(card.playable,true);
 // The map must consume the surveyed polyline, never a straight station-to-station chord.
 const renderer=read('js/route-renderer.js');
 const mapBegin=renderer.indexOf('const latLngs=route=>'),mapEnd=renderer.indexOf('const validCoordinates=',mapBegin);
 assert(mapBegin>=0&&mapEnd>mapBegin,'missing renderer geometry logic');
-vm.runInContext(renderer.slice(mapBegin,mapEnd).replace(/\\bexport\\s+/g,'')+';globalThis.travelGeometryForTest=travelGeometry;',context);
+vm.runInContext(renderer.slice(mapBegin,mapEnd).replace(/export\s+/g,'')+';globalThis.travelGeometryForTest=travelGeometry;',context);
 for(const source of [route,published]){
  for(const direction of ['forward','reverse']){
   const resolved=context.resolvePlayableRouteForTest(source,{direction,service:{id:'local',stops:ids}});

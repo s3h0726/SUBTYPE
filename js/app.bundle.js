@@ -72,6 +72,84 @@ function resolveTaiwanChoice(choice,owner){
 }
 
 
+
+// One operator card, six actual route pairs, independently sourced directions.
+// Boarding midway never fabricates a reverse trip or changes the official terminus.
+function hongKongTramChoices(routes){
+ const choices=[];
+ for(const route of routes){if(route.countryId!=='hk'||route.canonicalLineId!=='hk-tramway'||route.lazy||hongKongRouteBlockReason(route))continue;
+  const last=route.stations.at(-1),tramGroup=route.tramServiceGroup;
+  if(!tramGroup)continue;
+  const tramGroupLabel=[route.stations[0].ko,last.ko].sort().join(' ↔ ');
+  for(let boardingIndex=0;boardingIndex<route.stations.length-1;boardingIndex++){const first=route.stations[boardingIndex];choices.push({kind:'hongKongTram',id:route.id+':board:'+boardingIndex,sourceRouteId:route.id,tramGroup,tramGroupLabel,boardingIndex,originId:first.id,destinationId:last.id,originNames:first,destinationNames:last,directionOriginNames:route.stations[0],patternName:route.line,direction:route.direction,legacyServiceId:route.services[0].id})}
+ }
+ return choices;
+}
+function resolveHongKongTramChoice(choice,route){
+ if(choice?.kind!=='hongKongTram'||choice.sourceRouteId!==route?.id||hongKongRouteBlockReason(route)||!Number.isInteger(choice.boardingIndex)||choice.boardingIndex<0||choice.boardingIndex>=route.stations.length-1)throw Error('검증된 트램 승차 구간이 아닙니다.');
+ const calls=route.stations.slice(choice.boardingIndex);
+ if(calls[0].id!==choice.originId||calls.at(-1).id!==choice.destinationId)throw Error('트램 출발·종착 정류장이 원본 운행계통과 다릅니다.');
+ return{route,service:route.services[0],boardingStationId:calls[0].id,direction:'forward',pattern:null,trainType:null,destinationStationId:calls.at(-1).id,trainTypeContexts:[]};
+}
+
+// Other Hong Kong physical lines share one card; each direction keeps its full,
+// independently validated source service. No reverse geometry is synthesized.
+function hongKongLineChoices(routes,lineId){return routes.filter(r=>r.countryId==='hk'&&r.canonicalLineId===lineId&&!r.lazy&&!hongKongRouteBlockReason(r)).map(r=>({kind:'hongKongLine',id:r.id,sourceRouteId:r.id,lineGroup:[r.stations[0].id,r.stations.at(-1).id].sort().join(':'),lineGroupLabel:[r.stations[0].ko,r.stations.at(-1).ko].sort().join(' ↔ ')+(r.validWhen?.type==='regular'?'':' · 조건부'),originId:r.stations[0].id,destinationId:r.stations.at(-1).id,originNames:r.stations[0],destinationNames:r.stations.at(-1),directionOriginNames:r.stations[0],patternName:r.line,direction:r.direction,legacyServiceId:r.services[0].id}))}
+function resolveHongKongLineChoice(choice,route){if(choice?.kind!=='hongKongLine'||choice.sourceRouteId!==route?.id||hongKongRouteBlockReason(route)||route.stations[0].id!==choice.originId||route.stations.at(-1).id!==choice.destinationId)throw Error('검증된 홍콩 운행계통과 출발·종착이 다릅니다.');return{route,service:route.services[0],direction:'forward',pattern:null,trainType:null,destinationStationId:route.stations.at(-1).id,trainTypeContexts:[]}}
+
+
+// Hong Kong data must fail closed. Never reinterpret another country's records.
+function hongKongTransferAllowed(fromRoute,toRoute,stationId){
+ if(fromRoute?.countryId!=='hk'&&toRoute?.countryId!=='hk')return true;
+ if(fromRoute?.countryId!=='hk'||toRoute?.countryId!=='hk')return false;
+ if(fromRoute.id===toRoute.id)return true;
+ // Preserve explicit, reviewed differently named walking interchanges from the remote branch.
+ const pair=(globalThis.TRT_HONG_KONG_INDEX?.transfers||[]).find(p=>p.status==='verified'&&p.enabled===true&&stationId==='hk-transfer:'+p.id);
+ if(pair){const at=route=>route.stations.find(s=>s.hkTransferKey===stationId&&[pair.from,pair.to].includes(s.stationMasterId||s.sourceStationId||s.id));return !!at(fromRoute)&&!!at(toRoute)}
+ const a=fromRoute.stations.find(s=>(s.physicalStationId||s.stationMasterId||s.id)===stationId),b=toRoute.stations.find(s=>(s.physicalStationId||s.stationMasterId||s.id)===stationId);
+ return !!a&&!!b&&[a,b].every(s=>s.transferReview?.status==='verified'&&s.transferReview.stationId===stationId&&[fromRoute.canonicalLineId,toRoute.canonicalLineId].every(id=>s.transferReview.lineIds.includes(id)));
+}
+function hongKongRouteBlockReason(route){
+  if(route?.countryId!=='hk')return'';
+  if((route.releaseStatus!=='ready'&&!(route.releaseStatus==='validation-preview'&&route.validationPreview===true&&typeof location!=='undefined'&&['localhost','127.0.0.1'].includes(location.hostname)))||route.playable!==true)return(route.blockedReasons||[]).join(' · ')||'홍콩 서비스 검증 대기';
+  if(route.geometryReady!==true||route.geometryStatus!=='verified')return'실제 선로 검증 필요';
+  if(route.lazy)return'';
+  if(!Array.isArray(route.stations)||route.stations.length<2)return'정차역 자료 필요';
+  if(route.stations.some(s=>s.nameStatus!=='verified'||!s.ko||!s.ja||!s.romaji))return'한국어·번체중문·영문 역명 검수 필요';
+  if(!Array.isArray(route.directedSegments)||route.directedSegments.length!==route.stations.length-1)return'정차역 간 실제 선로 누락';
+  if(route.directedSegments.some((s,i)=>!['ready','verified'].includes(s.geometryStatus)||s.fromStationId!==route.stations[i].id||s.toStationId!==route.stations[i+1].id||!s.sourceWayIds?.length||!Array.isArray(s.geometry)||s.geometry.length<2))return'실제 선로 출처·연결 검증 필요';
+  if(route.stations.some(s=>!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude)||s.latitude<22.1||s.latitude>22.58||s.longitude<113.8||s.longitude>114.45))return'홍콩 역 좌표 검증 필요';
+  if(route.stations.some(s=>Number.isInteger(s.geometryIndex)&&route.geometry?.[s.geometryIndex]&&(s.latitude!==route.geometry[s.geometryIndex][0]||s.longitude!==route.geometry[s.geometryIndex][1])))return'노선별 정차 위치와 실제 선로 불일치';
+  return'';
+}
+
+const HONG_KONG_CATEGORIES=[['all','전체'],['subway','MTR METRO'],['airport_rail','AIRPORT EXPRESS'],['light_rail','LIGHT RAIL'],['tram','TRAM'],['funicular','FUNICULAR'],['high_speed_rail','HIGH SPEED RAIL'],['custom','CUSTOM']];
+
+function hongKongContinuationAllowed(current,source,servicePatternId){
+  const previous=current?.hkIncomingEdge;if(!previous)return true;
+  if(previous.sourceServicePatternId&&previous.sourceServicePatternId!==servicePatternId)return false;
+  return !!source?.geometry?.length&&JSON.stringify(previous.geometry?.at(-1))===JSON.stringify(source.geometry[0]);
+}
+
+function buildHongKongCustomRoute(route){
+  if(route?.countryId!=='hk')return route;
+  if(!route.stations||route.stations.length<2)throw new Error('실제 홍콩 역을 2개 이상 선택하세요.');
+  if(route.loop&&route.stations[0].sourceStationId!==route.stations.at(-1).sourceStationId)throw new Error('실제 한 바퀴가 연결된 여정만 순환선으로 저장할 수 있습니다.');
+  const stations=route.stations.map(s=>({...s,internalId:s.id})),geometry=[],directedSegments=[];
+  for(let i=0;i<stations.length-1;i++){
+    const a=stations[i],b=stations[i+1],source=b.hkIncomingEdge;
+    if(!source||source.fromStationId!==a.sourceStationId||source.toStationId!==b.sourceStationId||!source.sourceWayIds?.length||source.geometryStatus!=='ready')throw new Error('역 순서를 변경한 구간의 실제 선로를 다시 선택하세요.');
+    if(i&& !hongKongContinuationAllowed(a,source,source.sourceServicePatternId))throw new Error('미검증 서비스 변경·반대편 승강장 연결은 저장할 수 없습니다.');
+    if(geometry.length&&JSON.stringify(geometry.at(-1))!==JSON.stringify(source.geometry[0]))throw new Error('연결되지 않은 선로·미검증 환승은 저장할 수 없습니다.');
+    a.geometryIndex=Math.max(0,geometry.length-1);geometry.push(...(geometry.length?source.geometry.slice(1):source.geometry));b.geometryIndex=geometry.length-1;
+    directedSegments.push({...source,fromStationId:a.id,toStationId:b.id});
+  }
+  for(const station of stations){const point=geometry[station.geometryIndex];station.latitude=point[0];station.longitude=point[1];station.coordinates={lat:point[0],lng:point[1]};station.stopId=route.id+'-stop-'+station.geometryIndex;}
+  const result={...route,stations,geometry,directedSegments,countryId:'hk',category:'custom',servicePatternId:route.id,releaseStatus:'ready',geometryStatus:'verified',geometryReady:true,playable:true,services:[{id:route.id,nameKo:route.line.ko,nameEn:route.line.en,nameJa:route.line.ja,stops:stations.map(s=>s.id)}]};
+  const reason=hongKongRouteBlockReason(result);if(reason)throw new Error(reason);return result;
+}
+
+
 /* Generated from data/kr/v2/relation-access-policy.json. */
 const KR_BLOCKED_SOURCE_RELATIONS=[{"relationId":"3399104","lineIds":["kr-osm-line-3399104"],"reason":"도로 way가 포함된 철도 오분류 자료","classification":"REJECTED_ROAD"},{"relationId":"8032733","lineIds":["kr-osm-line-9283742"],"reason":"미개통 광주 도시철도 2호선","classification":"EXCLUDED_UNOPEN"},{"relationId":"8420974","lineIds":["kr-osm-line-8420974"],"reason":"노선·운영기관·영업 구간 식별 미완료","classification":"QUARANTINED_UNKNOWN"},{"relationId":"8448307","lineIds":["kr-osm-line-8448307"],"reason":"노선·운영기관·영업 구간 식별 미완료","classification":"QUARANTINED_UNKNOWN"},{"relationId":"9283743","lineIds":["kr-osm-line-9283742"],"reason":"미개통 광주 도시철도 2호선","classification":"EXCLUDED_UNOPEN"},{"relationId":"12115931","lineIds":["kr-osm-line-12115931"],"reason":"상시 공개 여객 운행이 확인되지 않은 비행장 전용선; 최신 OSM 명칭/운영주체 확인, 현행 일반 여객 운행의 공식 근거 미확보","classification":"EXCLUDED_NONPASSENGER"},{"relationId":"12428880","lineIds":["kr-osm-line-12428880"],"reason":"노선·운영기관·영업 구간 식별 미완료","classification":"QUARANTINED_UNKNOWN"},{"relationId":"17549372","lineIds":["kr-osm-line-17549372"],"reason":"공개 여객 운행 근거가 없는 제철소 전용선; 최신 OSM 명칭/운영주체 확인, 현행 일반 여객 운행의 공식 근거 미확보","classification":"EXCLUDED_NONPASSENGER"},{"relationId":"17585166","lineIds":["kr-osm-line-17585171"],"reason":"공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단","classification":"SPECIAL_AIRPORT_REVIEW"},{"relationId":"17585167","lineIds":["kr-osm-line-17585171"],"reason":"공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단","classification":"SPECIAL_AIRPORT_REVIEW"},{"relationId":"20042681","lineIds":["kr-osm-line-20042681"],"reason":"미개통 대전 도시철도 2호선","classification":"EXCLUDED_UNOPEN"},{"relationId":"20500839","lineIds":[],"reason":"코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리.","classification":"RESEARCH_PARTIAL_OPERATING_SERVICE"}];
 
@@ -104,21 +182,25 @@ const KR_LINE1_INTEGRATION_RELATIONS=["8820537","8820538","11079448","14138328",
 
 
 
+
 const FEATURE_FLAGS=Object.freeze({
   korea:true,
+  koreaRoutesReset:true,
+  hongKong:true,
   visibleJapanRegion:'all'
 });
 
 // Keep historical play records playable after a physical branch becomes an
 // internal part of its passenger line. IDs remain stable in stored records;
 // only their current display/playback parent changes.
-const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3','line-99815':'line-99814'});
-const canonicalRouteId=routeId=>LEGACY_ROUTE_ALIASES[String(routeId||'')]||routeId;
+const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3','line-99815':'line-99814','line-11317--hachikosen-hachioji-komagawa':'line-11317','line-11229--jobansen-totte-iwaki':'line-11229','line-11320--jobansen-ueno-totte':'line-11320'});
+const canonicalRouteId=routeId=>{const id=String(routeId||'');const former=id.match(/^kr-preview-(\d+)$/);return former?'kr-service-'+former[1]:LEGACY_ROUTE_ALIASES[id]||id};
 
-const isCountryEnabled=countryId=>countryId!=='kr'||FEATURE_FLAGS.korea;
+const isCountryEnabled=countryId=>countryId==='tw'||countryId==='jp'||(countryId==='kr'&&FEATURE_FLAGS.korea)||(countryId==='hk'&&FEATURE_FLAGS.hongKong);
 
 function isRouteVisible(route){
-  if(koreanRouteBlockReason(route))return false;
+  if(FEATURE_FLAGS.koreaRoutesReset&&route?.countryId==='kr')return false;
+  if(koreanRouteBlockReason(route)||hongKongRouteBlockReason(route))return false;
   // Physical branch workspaces can be required for geometry and legacy record
   // resolution without becoming an independent passenger-facing line.
   if(route.visibility==='internal'||route.playable===false)return false;
@@ -202,6 +284,7 @@ function operatorLogoMarkup(routeOrOperatorId,className='operator-logo'){
 
 
 
+
 const PREFIX='trt:';
 const CUSTOM_ROUTES_KEY='tokyoRailTyping.customRoutes.v1';
 const memoryStore=new Map();
@@ -253,13 +336,13 @@ const storage={
   saveSettings:value=>write('settings',value),
   favorites:()=>read('favorites',[]),
   toggleFavorite(id){const set=new Set(this.favorites());set.has(id)?set.delete(id):set.add(id);write('favorites',[...set]);return set.has(id)},
-  routes:()=>loadCustomRoutes().filter(route=>isCountryEnabled(route.countryId||'jp')),
+  routes:()=>loadCustomRoutes().filter(route=>isCountryEnabled(route.countryId||'jp')).map(route=>{if(route.countryId==='hk'&&route.coverage==='rail-network'&&route.geometryStatus==='verified'&&route.stations?.slice(1).every(s=>s.hkIncomingEdge)){try{return buildHongKongCustomRoute(route)}catch{return route}}return route}),
   saveRoute(route){const list=loadCustomRoutes();const i=list.findIndex(r=>r.id===route.id);i<0?list.push(route):list.splice(i,1,route);return saveCustomRoutes(list)},
   deleteRoute(id){return saveCustomRoutes(loadCustomRoutes().filter(r=>r.id!==id))},
-  records:()=>Object.fromEntries(Object.entries(read('records',{})).filter(([,record])=>isCountryEnabled(record.countryId||'jp'))),
+  records:()=>Object.fromEntries(Object.entries(read('records',{})).filter(([,record])=>isCountryEnabled(record.countryId||'jp')&&!(FEATURE_FLAGS.koreaRoutesReset&&record.countryId==='kr'))),
   researchRecords:()=>read('research-records',{}),
   saveResult(result){const research=result.route?.playStatus==='RESEARCH_PLAYABLE'||result.options?.researchPreview===true,recordScope=research?'research-records':'records',recentScope=research?'research-recent':'recent';const records=read(recordScope,{}),journeyId=result.serviceJourneyId||result.options?.serviceJourneyId||null,baseLineId=result.options?.serviceJourney?.baseRouteId||result.route?.serviceJourney?.baseRouteId||result.route?.id||result.routeId,recordKey=journeyId||result.routeId,prior=records[recordKey]||{plays:0,bestTime:null,bestAccuracy:0,bestCpm:0,maxCombo:0,totalStations:0},{name:discardedName,...old}=prior,isRecord=!old.bestTime||result.elapsed<old.bestTime,countryId=result.route?.countryId||old.countryId||'jp',directionId=result.directionId||result.route?.selectedDirectionId||result.options?.directionId||result.options?.direction||old.directionId||'forward',serviceContext={serviceJourneyId:journeyId,servicePatternId:result.servicePatternId||old.servicePatternId||null,trainTypeId:result.trainTypeId||old.trainTypeId||null,originStationId:result.originStationId||result.options?.serviceJourney?.originStationId||old.originStationId||null,destinationStationId:result.destinationStationId||old.destinationStationId||null,...(countryId==='kr'&&journeyId?{originName:result.options?.serviceJourney?.originNames?.ko||result.route?.stations?.[0]?.ko||old.originName||'',destinationName:result.options?.serviceJourney?.destinationNames?.ko||result.route?.stations?.at(-1)?.ko||old.destinationName||''}:{}),throughServiceId:result.throughServiceId||old.throughServiceId||null};records[recordKey]={...old,...serviceContext,lineId:baseLineId,operatorId:result.route?.operatorId||old.operatorId||'',countryId,directionId,color:result.color,plays:old.plays+1,bestTime:isRecord?result.elapsed:old.bestTime,bestAccuracy:Math.max(old.bestAccuracy,result.accuracy),bestCpm:Math.max(old.bestCpm,result.cpm),maxCombo:Math.max(old.maxCombo,result.maxCombo),totalStations:old.totalStations+result.completed};write(recordScope,records);const recent=read(recentScope,[]).filter(x=>(x.serviceJourneyId||x.routeId)!==recordKey);recent.unshift({routeId:baseLineId,lineId:baseLineId,operatorId:result.route?.operatorId||'',countryId,directionId,...serviceContext,color:result.color,elapsed:result.elapsed,accuracy:result.accuracy,date:Date.now()});write(recentScope,recent.slice(0,5));return isRecord},
-  recent:()=>read('recent',[]).filter(record=>isCountryEnabled(record.countryId||'jp'))
+  recent:()=>read('recent',[]).filter(record=>isCountryEnabled(record.countryId||'jp')&&!(FEATURE_FLAGS.koreaRoutesReset&&record.countryId==='kr'))
 };
 
 
@@ -547,6 +630,7 @@ function lineBadgeMeta(route){
   return{code,asset,officialSymbolExists,officialCodeExists,targetOps,style:operator.style||theme.style||route?.lineTheme?.style||route?.category||'other',source:asset?.source||operator.source||theme.colorSource||route?.lineTheme?.colorSource||'',color:route?.lineColor||theme.color||'#60736a'}
 }
 function lineBadgeMarkup(route,className='line-badge'){
+  if(route?.countryId==='hk')return route.category==='light_rail'?`<span class="${escapeHtml(className)} line-code-label">${escapeHtml(route.code)}</span>`:'';
   // Kanto Railway does not publish distinct official line symbols: use clearly
   // identifiable name labels instead of misrepresenting the company logo.
   const kantoRouteLabel={'line-99318':'常総','line-99319':'竜ヶ崎'}[route?.id];
@@ -581,6 +665,7 @@ const koreanTemplates={
 };
 
 function resolveTransportStopTemplate(route){
+  if(route?.countryId==='hk'){const mode=route.mode||route.category,style=mode==='light_rail'?'hk-light-rail':mode==='tram'?'hk-tram':mode==='funicular'?'hk-funicular':mode==='high_speed_rail'?'hk-hsr':'hk-mtr';return{key:style,style,family:style,referenceSource:route.sourceUrl||'Hong Kong transport learning layout; not an official sign'}}
   if(route?.countryId!=='kr')return resolveJapaneseTemplate(route);
   // Interim Korean railway signage: Japanese JR East layout, until per-operator Korean originals are implemented.
   if(!['river_bus','bus','village_bus','express_bus'].includes(route.mode))return{...resolveJapaneseTemplate({...route,operatorId:'jr-east',stationSignTemplate:'jr-east'}),key:'kr-temp-jr-east',referenceSource:'JR East-style interim layout for Korean rail; not an official Korean sign'};
@@ -589,6 +674,7 @@ function resolveTransportStopTemplate(route){
 }
 
 const transportStopTemplates=koreanTemplates;
+
 
 
 const stationId=station=>String(station?.id||'');
@@ -992,55 +1078,55 @@ function resolveServiceJourney({baseRoute,journeyId,originStationId,destinationS
 
 // Narita Express: branch-specific, train-level journeys.  Never traverse the legacy
 // Ofuna -> Shinjuku single-chain railway as a real train path.
-const NEX_AIRPORT='station-1132705',NEX_T2='station-1132813',NEX_TOKYO='station-mlit-003766';
+const NEX_AIRPORT='station-1132705',NEX_T2='station-1132813',NEX_TOKYO='station-1130101';
 const NEX_EXAMPLES=[
   {
     id:'nex-5-shinjuku',variantId:'nex-shinjuku-physical-candidate',
     direction:'forward',trainNumber:'2205M',trainName:'成田エクスプレス5号',nameKo:'특급 나리타 익스프레스 5호 · 신주쿠발',
     source:'https://timetables.jreast.co.jp/2610/train/030/031141.html',
-    stops:['station-mlit-003700','station-mlit-003922',NEX_TOKYO,'station-mlit-004173',NEX_T2,NEX_AIRPORT]
+    stops:['station-003700','station-003922',NEX_TOKYO,'station-1131339',NEX_T2,NEX_AIRPORT]
   },
   {
     id:'nex-5-ofuna',variantId:'nex-ofuna-physical-candidate',
     direction:'forward',trainNumber:'2005M',trainName:'成田エクスプレス5号',nameKo:'특급 나리타 익스프레스 5호 · 오후나발',
     source:'https://timetables.jreast.co.jp/2610/train/030/031141.html',
-    stops:['station-mlit-004961','station-mlit-004818','station-mlit-004633','station-mlit-004301','station-mlit-004095',NEX_TOKYO,'station-mlit-004173',NEX_T2,NEX_AIRPORT]
+    stops:['station-1130107','station-1130106','station-1130105','station-004301','station-1130103',NEX_TOKYO,'station-1131339',NEX_T2,NEX_AIRPORT]
   },
   {
     id:'nex-14-shinjuku',variantId:'nex-shinjuku-physical-candidate',
     direction:'reverse',trainNumber:'2214M',trainName:'成田エクスプレス14号',nameKo:'특급 나리타 익스프레스 14호 · 신주쿠행',
     source:'https://timetables.jreast.co.jp/2610/train/045/047971.html',
-    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-004173',NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+    stops:[NEX_AIRPORT,NEX_T2,'station-1131339',NEX_TOKYO,'station-003922','station-003700']
   },
   {
     id:'nex-14-ofuna',variantId:'nex-ofuna-physical-candidate',
     direction:'reverse',trainNumber:'2014M',trainName:'成田エクスプレス14号',nameKo:'특급 나리타 익스프레스 14호 · 오후나행',
     source:'https://timetables.jreast.co.jp/2610/train/045/047971.html',
-    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-004173',NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+    stops:[NEX_AIRPORT,NEX_T2,'station-1131339',NEX_TOKYO,'station-1130103','station-004301','station-1130105','station-1130106','station-1130107']
   },
   {
     id:'nex-2-shinjuku',variantId:'nex-shinjuku-physical-candidate',
     direction:'reverse',trainNumber:'2202M',trainName:'成田エクスプレス2号',nameKo:'특급 나리타 익스프레스 2호 · 신주쿠행',
     source:'https://timetables.jreast.co.jp/en/2610/train/025/029042.html',
-    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173',NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+    stops:[NEX_AIRPORT,NEX_T2,'station-1132703','station-1131415','station-003898','station-1131339',NEX_TOKYO,'station-003922','station-003700']
   },
   {
     id:'nex-2-ofuna',variantId:'nex-ofuna-physical-candidate',
     direction:'reverse',trainNumber:'2002M',trainName:'成田エクスプレス2号',nameKo:'특급 나리타 익스프레스 2호 · 오후나행',
     source:'https://timetables.jreast.co.jp/en/2610/train/025/029042.html',
-    stops:[NEX_AIRPORT,NEX_T2,'station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173',NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+    stops:[NEX_AIRPORT,NEX_T2,'station-1132703','station-1131415','station-003898','station-1131339',NEX_TOKYO,'station-1130103','station-004301','station-1130105','station-1130106','station-1130107']
   },
   {
     id:'nex-54-shinjuku',variantId:'nex-shinjuku-physical-candidate',
     direction:'reverse',trainNumber:'2254M',trainName:'成田エクスプレス54号',nameKo:'특급 나리타 익스프레스 54호 · 신주쿠행',
     source:'https://timetables.jreast.co.jp/en/2610/train/030/031291.html',
-    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-mlit-003922','station-mlit-003700']
+    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-003922','station-003700']
   },
   {
     id:'nex-54-ofuna',variantId:'nex-ofuna-physical-candidate',
     direction:'reverse',trainNumber:'2054M',trainName:'成田エクスプレス54号',nameKo:'특급 나리타 익스프레스 54호 · 오후나행',
     source:'https://timetables.jreast.co.jp/en/2610/train/030/031291.html',
-    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-mlit-004095','station-mlit-004301','station-mlit-004633','station-mlit-004818','station-mlit-004961']
+    stops:[NEX_AIRPORT,NEX_T2,NEX_TOKYO,'station-1130103','station-004301','station-1130105','station-1130106','station-1130107']
   }
 ];
 const pointDistance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
@@ -1423,7 +1509,7 @@ async function renderOsm(route,index,options){
   if(route.geometryReady===false&&!validCoordinates(route)){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='역 좌표 미확보 · 위치 표시 제한';return}
   if(!validCoordinates(route)){showKoreanTrainFallback(route,index,target);if(status)status.textContent=route.countryId==='kr'?'좌표 미확보 · 열차 위치(개략)':'좌표가 없는 노선입니다';return}
   hideKoreanTrainFallback(target);
-  if(route.countryId==='kr'&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
+  if((route.countryId==='kr'||route.countryId==='hk')&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
   const requestedNext=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(safe+1,route.stations.length-1);if(rail.routeKey!==(route.renderKey||route.id)){if(createRouteLayers(rail,route,safe,options)===false){if(status)status.textContent='실제 선로 선형 없음 · 직선 대체 차단';return}}else if(rail.index!==safe||rail.nextIndex!==requestedNext)updateRouteProgress(rail,route,safe,options.motion,options);else rail.nextIndex=requestedNext;
   requestAnimationFrame(()=>rail.map.invalidateSize());if(status)status.textContent='OPENSTREETMAP · LIVE';
@@ -1481,6 +1567,7 @@ function renderSvg(container,route,{editable=false,onMove}={}){const stations=ro
 
 
 
+
 const transportStopNoun=route=>route?.mode==='river_bus'?'선착장':['bus','village_bus','express_bus'].includes(route?.mode)?'정류장':'역';
 const operatorVariantIndex=value=>{let hash=2166136261;for(const ch of String(value||'')){hash^=ch.codePointAt(0);hash=Math.imul(hash,16777619)}return Math.abs(hash>>>0)%6};
 class Game{
@@ -1493,16 +1580,16 @@ class Game{
   }
   start(route,options={}){
     if(route?.countryId==='tw')route=taiwanKoreanPresentation(route);
-    this.stop(false);if(isKoreanResearch(route)){if(options.researchPreview!==true)return false;assertKoreanResearchRoute(route)}if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
+    this.stop(false);if(route?.countryId==='kr'&&FEATURE_FLAGS.koreaRoutesReset){toast('한국 노선이 초기화되어 플레이할 수 없습니다.');return false}if(hongKongRouteBlockReason(route)){toast(hongKongRouteBlockReason(route));return false}if(route?.countryId==='kr'&&(route.previewContract==='kr-research-v1'||route.playStatus==='RESEARCH_PLAYABLE'||route.releaseStatus==='research')){toast('정식 공개되지 않은 한국 철도 경로입니다.');return false}if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
     route=railDataRepository.resolveRoute(route);if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
     if(!route||!Array.isArray(route.stations)||route.stations.length<2){console.error('Cannot start invalid line:',route?.id||route);toast('플레이하려면 역이 2개 이상인 노선이 필요합니다.');return false}
     this.route=route;this.options={mode:'complete',difficulty:'normal',display:'ja',input:'ko',direction:'forward',stationAdvance:'auto',mapMode:'geographic',stationLabel:'ja',mapLabels:'normal',motion:true,...options};this.service=route.services?.find(service=>service.id===this.options.service)||route.services?.find(service=>service.id==='local')||route.services?.[0]||{id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:route.stations.map(station=>station.id)};this.servicePattern=this.options.servicePattern||null;this.serviceJourney=this.options.serviceJourney||route.serviceJourney||null;this.trainType=this.options.trainType||null;this.trainTypeContexts=this.options.trainTypeContexts||route.trainTypeContexts||[];this.destinationStationId=this.options.destinationStationId||this.service.destinationStationId||null;
     try{this.resolvedRoute=resolvePlayableRoute(route,{direction:this.options.direction,service:this.service});if(route.dataKind==='trainService'&&this.resolvedRoute.fallbackGeometry)throw new Error('특급열차에는 실제 철도 선형이 필요합니다.')}catch(error){console.error('Route integrity blocked game start:',error);toast(`노선 무결성 오류: ${error.message}`);return false}
-    this.sessionId=(this.sessionId||0)+1;this.serviceStations=this.resolvedRoute.stations;this.serviceStops=new Set(this.serviceStations.map(station=>station.id));this.mapRoute={...route,stations:this.resolvedRoute.stations,geometry:this.resolvedRoute.geometry,directedSegments:this.resolvedRoute.segments,renderKey:`${this.resolvedRoute.renderKey}::session-${this.sessionId}`};this.sequence=this.makeSequence();this.index=0;this.boarding=true;this.typedStationIds=[];this.visitedStationIds=[];this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.started=performance.now();this.stats.reset(this.started);this.pausedTotal=0;this.pausedAt=0;this.finished=false;this.paused=false;this.phase='TYPING';
+    this.sessionId=(this.sessionId||0)+1;this.serviceStations=this.resolvedRoute.stations;this.serviceStops=new Set(this.serviceStations.map(station=>station.id));this.mapRoute={...route,stations:this.resolvedRoute.stations.map(s=>route.countryId==='hk'&&this.options.inputMode==='memory'?{...s,ko:''}:s),geometry:this.resolvedRoute.geometry,directedSegments:this.resolvedRoute.segments,renderKey:`${this.resolvedRoute.renderKey}::session-${this.sessionId}`};this.sequence=this.makeSequence();this.index=0;this.boarding=true;this.typedStationIds=[];this.visitedStationIds=[];this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.started=performance.now();this.stats.reset(this.started);this.pausedTotal=0;this.pausedAt=0;this.finished=false;this.paused=false;this.phase='TYPING';
     const sign=$('#station-sign'),template=resolveTransportStopTemplate(route);sign.dataset.signStyle=template.style;sign.dataset.templateFamily=template.family;sign.dataset.templateSource=template.referenceSource;const stopNoun=transportStopNoun(route),serviceLabel=this.serviceLabel();$('#typing-stop-label').textContent=`한국어 ${stopNoun} 이름 입력`;$('#typing-input').placeholder=`한국어 ${stopNoun} 이름을 입력하세요`;$('#following-stop-label').textContent=`그다음 ${stopNoun}`;$('#target-stop-label').textContent=`목표 ${stopNoun}`;this.applyActiveBrand(this.sequence[0]);$('#station-service-footer').textContent=`${serviceLabel} 운행`;$('#game-service-name').textContent=`${serviceLabel}${this.service.nameJa?` · ${koreanRouteDisplayText(this.service.nameJa,this.route)}`:''}`;const origin=this.sequence[0],destination=this.sequence.at(-1);$('#service-origin-ja').textContent=this.route.countryId==='kr'?this.stationKoDisplay(origin.ko):origin.ja;$('#service-origin-ko').textContent=this.stationKoDisplay(origin.ko);$('#service-destination-ja').textContent=this.route.countryId==='kr'?this.stationKoDisplay(destination.ko):destination.ja;$('#service-destination-ko').textContent=this.stationKoDisplay(destination.ko);$('#service-stop-count').textContent=`${this.sequence.filter(s=>!s.loopArrivalOnly).length}개 ${transportStopNoun(route)}`;$('#service-route-summary').textContent=`${koreanRouteDisplayText(route.line.ko,route)} · ${serviceLabel}`;$('#service-direction-summary').textContent=`${this.stationKoDisplay(origin.ko)} → ${this.stationKoDisplay(destination.ko)}`;this.showDeparture();this.renderStation();this.updateHud();this.timer=setInterval(()=>this.tick(),50);this.typing.focus();return true
   }
   startFreeDrive(state){
-    this.stop(false);if(!state?.route||!state?.station||koreanRouteBlockReason(state.route))return false;
+    this.stop(false);if(!state?.route||!state?.station||hongKongRouteBlockReason(state.route)||koreanRouteBlockReason(state.route))return false;
     this.sessionId=(this.sessionId||0)+1;this.freeDriveMode=true;this.freeDriveAwaitingStart=true;this.finished=false;this.paused=false;this.phase='TYPING';this.started=performance.now();this.pausedTotal=0;this.pausedAt=0;this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.typedStationIds=[];this.visitedStationIds=[];this.stats.reset(this.started);
     document.body.dataset.freeDrive='true';$('#screen-game')?.classList.add('free-drive-active');
     const box=$('#typing-input').closest('.typing-box');box.hidden=false;$('#ko-progress').hidden=false;$('#next-station-button').hidden=true;$('#pause-button').hidden=true;
@@ -1543,9 +1630,9 @@ class Game{
     $('#next-station').textContent='이동할 역 선택';$('#station-service-footer').textContent='자유주행';
     $('#game-service-name').textContent='FREE DRIVE · 自由走行';$('#service-origin-ja').textContent=route.countryId==='kr'?this.stationKoDisplay(station.ko):station.ja||'';$('#service-origin-ko').textContent=this.stationKoDisplay(station.ko)||'';$('#service-destination-ja').textContent='自由';$('#service-destination-ko').textContent='자유주행';$('#service-stop-count').textContent=`${state.historyLength||1}개 역 이동`;$('#service-route-summary').textContent=`${route.line?.ko||route.line?.ja||''} · 자유주행`;$('#service-direction-summary').textContent='앞·뒤 역을 선택해 자유롭게 이동';
     $('#hud-progress').textContent=`${state.historyLength||1} VISITED`;$('#hud-cpm').textContent='—';$('#hud-accuracy').textContent='—';$('#hud-combo').textContent=`환승 ${state.transferCount||0}`;
-    const defaultEdge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state.edges?.[0];
+    const defaultEdge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||(route.countryId==='hk'?null:state.edges?.[0]);
     if(this.freeDriveAwaitingStart)this.setFreeDriveStartTarget(station);
-    else if(defaultEdge){const targetStation=defaultEdge.route?.stations?.[defaultEdge.index]||null;if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation)}
+    else if(defaultEdge){const targetStation=defaultEdge.route?.stations?.[defaultEdge.index]||null;if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation)}else if(route.countryId==='hk'){this.freeDriveTarget=null;this.phase='AT_TERMINAL';$('#typing-input').readOnly=true;$('#station-context').textContent='종착역 도착 · 자유주행';$('#input-status').textContent='ARRIVED';}
     this.mapReady=renderGameMap(this.mapRoute,this.index,{mapMode:'geographic',stationLabel:'ja-ko',mapLabels:'normal',motion:true,serviceStops:[...this.serviceStops],previousRouteIndex:Math.max(0,this.index-1),nextRouteIndex:this.freeDriveTarget?.index??Math.min(this.mapRoute.stations.length-1,this.index+1)});
   }
   serviceLabel(){const train=this.trainType?.names?.ko,destination=this.stationKoDisplay(this.sequence?.find(station=>station.id===this.destinationStationId)?.ko||this.sequence?.at(-1)?.ko);return this.servicePattern?`${train||koreanRouteDisplayText(this.service.nameKo,this.route)}${destination?` · ${destination}행`:''}`:(koreanRouteDisplayText(this.service.nameKo,this.route)||'각역정차')}
@@ -1587,9 +1674,9 @@ class Game{
       const target=this.freeDriveTarget;this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(target.station?.id||target.to);this.playTone();this.typing.clear?.();
       if(target.kind==='start'){
         this.freeDriveAwaitingStart=false;
-        const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),edge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||state?.edges?.[0];
+        const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),edge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0)||(this.route?.countryId==='hk'?null:state?.edges?.[0]);
         if(edge){const station=edge.route?.stations?.[edge.index]||null;if(station){$('#station-context').textContent='다음역 입력 · 자유주행';this.setFreeDriveTypingTarget(edge,station);return}}
-        toast('이 역에서 이어지는 다음 역이 없습니다.');return
+        if(this.route?.countryId==='hk'){this.renderFreeDriveState(state);return}toast('이 역에서 이어지는 다음 역이 없습니다.');return
       }
       const session=this.sessionId,arrival=this.arrivalPromise=this.trainArrival(1);const move=()=>{if(this.paused)return;if(this.sessionId!==session||!this.freeDriveMode||this.freeDriveTarget!==target)return;const moved=this.onFreeDriveMove?.(target.to,target.routeId);if(!moved){toast('다음 역으로 이동하지 못했습니다.');this.setFreeDriveTypingTarget(target,target.station)}};this.pendingFreeDriveMove=move;if(arrival?.then)arrival.then(reached=>{if(reached!==false)move()});else move();return
     }
@@ -1603,6 +1690,7 @@ class Game{
   advanceToNextStation(arrived){if(this.phase!=='MOVING')throw new Error('Invalid station advance');const expected=this.targetStation();if(!expected||expected.id!==arrived?.id)throw new Error('Typed station and arrival station mismatch');this.index+=1;const current=this.currentStation();if(current?.id!==arrived.id)throw new Error('Station index advanced to an unexpected station');this.visitedStationIds.push(arrived.id)}
   toggleMapMode(){this.options.mapMode=this.options.mapMode==='geographic'?'schematic':'geographic';$('#map-view-toggle').textContent=this.options.mapMode==='geographic'?'SCHEMATIC':'GEOGRAPHIC';const station=this.sequence[this.index];if(station)this.mapReady=renderGameMap(this.mapRoute,this.routeIndex(station),this.mapOptions());return this.options.mapMode}
   refreshMap(){const station=this.sequence?.[this.index];if(station)renderGameMap(this.mapRoute,this.routeIndex(station),this.mapOptions())}
+  hintName(station){return this.route?.countryId==='hk'&&this.options.inputMode==='memory'?(station?.romaji||station?.ja||''):(station?.ko||'')}
   showDeparture(){const overlay=$('#departure-overlay'),first=this.sequence[0],last=this.sequence.at(-1);overlay.style.setProperty('--route-color',this.route.lineColor);$('#departure-line').innerHTML=`<span>${escapeHtml(koreanRouteDisplayText(this.route.line.ko,this.route))} · ${escapeHtml(koreanRouteDisplayText(this.route.line.ja,this.route))}</span>`;$('#departure-service').textContent=`${this.serviceLabel()} · ${koreanRouteDisplayText(this.service.nameJa,this.route)}`;$('#departure-direction').textContent=`${this.stationKoDisplay(first.ko)} → ${this.stationKoDisplay(last.ko)} 방면`;overlay.hidden=false;clearTimeout(this.departureTimer);this.departureTimer=setTimeout(()=>{overlay.hidden=true;this.focusInput()},850)}
   playTone(){if(!this.options.sound)return;try{const context=new AudioContext(),osc=context.createOscillator(),gain=context.createGain();osc.frequency.value=720;gain.gain.setValueAtTime(.035,context.currentTime);gain.gain.exponentialRampToValueAtTime(.001,context.currentTime+.08);osc.connect(gain).connect(context.destination);osc.start();osc.stop(context.currentTime+.08)}catch{}}
   elapsed(){return performance.now()-this.started-this.pausedTotal-(this.paused?performance.now()-this.pausedAt:0)}
@@ -1613,6 +1701,7 @@ class Game{
   finish(){if(this.finished)return;this.finished=true;this.phase='FINISHED';clearInterval(this.timer);clearTimeout(this.moveTimer);this.timer=null;const expectedArrivals=this.options.mode==='complete'?this.sequence.slice(1).map(station=>station.id):[],expectedTyped=this.options.mode==='complete'?this.sequence.filter(station=>!station.loopArrivalOnly).map(station=>station.id):[],routeIntegrity=this.options.mode!=='complete'||JSON.stringify(expectedArrivals)===JSON.stringify(this.visitedStationIds)&&JSON.stringify(expectedTyped)===JSON.stringify(this.typedStationIds);if(!routeIntegrity)console.error('ROUTE INTEGRITY ERROR',{expectedArrivals,visited:this.visitedStationIds,expectedTyped,typed:this.typedStationIds});this.syncDebug();const metrics=this.metrics();this.onFinish({...metrics,errors:this.errors,maxCombo:this.maxCombo,completed:this.typedStationIds.length,routeId:this.route.id,routeName:this.route.line.ko,color:this.route.lineColor,route:this.route,mapRoute:this.mapRoute,options:this.options,serviceJourneyId:this.serviceJourney?.id||null,originStationId:this.serviceJourney?.originStationId||this.sequence[0]?.id||null,servicePatternId:this.servicePattern?.id||null,serviceId:this.service?.id||'local',serviceName:this.service?.nameKo||this.service?.nameJa||'',trainTypeId:this.trainType?.id||null,trainTypeName:this.trainType?.names?.ko||this.trainType?.nameKo||'',destinationStationId:this.destinationStationId||null,throughServiceId:this.servicePattern?.throughServiceId||this.route?.throughService?.id||null,directionId:this.serviceJourney?.directionId||this.options.direction,routeIntegrity,typedStationIds:[...this.typedStationIds],visitedStationIds:[...this.visitedStationIds]})}
   stop(notify=false){clearInterval(this.timer);clearTimeout(this.moveTimer);clearTimeout(this.departureTimer);this.timer=null;this.arrivalPromise=null;this.pendingFreeDriveMove=null;this.finished=true;this.phase='IDLE';this.paused=false;this.freeDriveMode=false;this.freeDriveAwaitingStart=false;this.freeDriveState=null;this.freeDriveTarget=null;document.body.dataset.freeDrive='false';$('#screen-game')?.classList.remove('free-drive-active');$('#pause-overlay').hidden=true;$('#departure-overlay').hidden=true;$('#typing-input').disabled=false;$('#typing-input').readOnly=false;$('#typing-input').closest('.typing-box').hidden=false;$('#ko-progress').hidden=false;$('#pause-button').hidden=false;if(notify)this.onQuit?.()}
 }
+
 
 
 const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-main","kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
@@ -2268,7 +2357,7 @@ const stationName=(s,r)=>koreanStationDisplayName(s?.ko||s?.ja||s?.romaji||s?.id
 const routeColor=r=>r?.lineColor||r?.color||'#73837b';
 const routeSegments=route=>{
   if(route?.countryId==='tw')return route.geometryReady?[route.loop&&route.loopClosingGeometry?[...route.geometry,...route.loopClosingGeometry.slice(1)]:route.geometry]:[];
-  if(route?.countryId==='kr'){
+  if(route?.countryId==='kr'||route?.countryId==='hk'){
     if(route.geometryReady!==true)return[];
     return(route.directedSegments||[]).filter(segment=>segment.geometryStatus==='ready').map(segment=>segment.geometry)
   }
@@ -2336,6 +2425,21 @@ class FreeDrive{
     addEventListener('resize',()=>this.renderMap());
   }
   setNetwork(routes){
+    const hkPairs=new Map;
+    for(const pair of globalThis.TRT_HONG_KONG_INDEX?.transfers||[]){
+      if(pair.status!=='verified'||pair.enabled!==true||!pair.from||!pair.to)continue;
+      for(const id of [pair.from,pair.to]){
+        if(hkPairs.has(id))throw new Error('Conflicting Hong Kong interchange '+id);
+        hkPairs.set(id,pair);
+      }
+    }
+    for(const route of routes||[])if(route.countryId==='hk')for(const stop of route.stations||[]){
+      if(stop.countryId&&stop.countryId!=='hk')throw new Error('Cross-country stop in '+route.id);
+      stop.countryId='hk';delete stop.hkTransferKey;delete stop.hkTransferRequiresExit;
+      const pair=hkPairs.get(String(stop.stationMasterId||stop.sourceStationId||stop.id));
+      if(pair){stop.hkTransferKey='hk-transfer:'+pair.id;stop.hkTransferRequiresExit=pair.requiresExit===true;}
+    }
+
     for(const route of routes||[])if(route.countryId==='jp'){
       const stops=route.stations||[],first=stops[0],last=stops.at(-1);
       const sharedEnd=route.loop&&stops.length>2&&first&&last
@@ -2388,12 +2492,12 @@ class FreeDrive{
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
     }
     assignJapanInterchangeComponents(routes);
-    this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
+    this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)&&!hongKongRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
     this.graph=new Map;
     const ensure=(station,route,index)=>{
       const key=freeDriveStationKey(station);if(!key)return null;let node=this.graph.get(key);
       if(!node){node={key,station,coord:coords(station),edges:[],routeIds:new Set,stationsByRoute:new Map,coordsByRoute:new Map};this.graph.set(key,node)}
-      node.routeIds.add(route.id);
+      node.routeIds.add(route.id);if(station.hkTransferKey)node.transferRequiresExit=station.hkTransferRequiresExit===true;
       if(!node.stationsByRoute.has(route.id)){
         node.stationsByRoute.set(route.id,{station,index});
         node.coordsByRoute.set(route.id,coords(station));
@@ -2408,7 +2512,7 @@ class FreeDrive{
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
         if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
-      if(route.loop&&route.stations.length>2){
+      if(route.countryId!=='hk'&&route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);
         if(an&&bn&&ak!==bk){an.edges.push({to:bk,routeId:route.id,route,index:0,direction:1,station:b});if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:route.stations.length-1,direction:-1,station:a})}
       }
@@ -2438,7 +2542,7 @@ class FreeDrive{
   coordsForRoute(key,routeId){return this.graph.get(key)?.coordsByRoute?.get(routeId)||null}
   selectRoute(routeId){
     const node=this.current();
-    if(!node?.stationsByRoute?.has(routeId)||!this.routes.some(route=>route.id===routeId))return false;
+    if(!node?.stationsByRoute?.has(routeId)||!this.availableRouteIds().includes(routeId))return false;
     if(this.currentRouteId===routeId)return true;
     this.currentRouteId=routeId;
     this.render();this.emit();
@@ -2447,28 +2551,29 @@ class FreeDrive{
   moveTo(to,routeId){
     if(!to||!routeId)return false;
     const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===to&&e.routeId===routeId);
-    if(!edge)return false;
+    if(!edge||!this.availableRouteIds().includes(routeId))return false;
     this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
     this.render();this.emit();return true
   }
   switchRouteAtCurrentStation(routeId){
     const node=this.current(),route=this.routes.find(r=>r.id===routeId);
-    if(!node||!route||routeId===this.currentRouteId||!node.routeIds.has(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
+    if(!node||!route||routeId===this.currentRouteId||!this.availableRouteIds().includes(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
     this.currentRouteId=routeId;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
+  availableRouteIds(){const node=this.current(),from=this.routes.find(r=>r.id===this.currentRouteId);return[...(node?.routeIds||[])].filter(id=>(from?.countryId!=='hk'||id===this.currentRouteId||node.edges.some(e=>e.routeId===id))&&hongKongTransferAllowed(from,this.routes.find(r=>r.id===id),this.currentKey))}
   snapshot(){
     const node=this.current(),route=this.routes.find(r=>r.id===this.currentRouteId)||this.startRoute;
     if(!node||!route)return null;
     const indexedStop=node.stationsByRoute?.get(this.currentRouteId);
     const stationIndex=indexedStop?.index??Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
-    return{node,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount:Math.max(0,(node.routeIds?.size||1)-1)}
+    const availableRouteIds=this.availableRouteIds(),transferCount=route.countryId==='hk'?new Set(availableRouteIds.map(id=>this.routes.find(r=>r.id===id)?.canonicalLineId).filter(id=>id&&id!==route.canonicalLineId)).size:Math.max(0,availableRouteIds.length-1);return{node,availableRouteIds,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount}
   }
   emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
   edges(){
     const node=this.current();if(!node)return[];
     const seen=new Set;
-    return node.edges.filter(e=>{const k=`${e.to}|${e.routeId}`;if(seen.has(k))return false;seen.add(k);return true})
+    const available=this.availableRouteIds();return node.edges.filter(e=>{if(!available.includes(e.routeId))return false;const k=`${e.to}|${e.routeId}`;if(seen.has(k))return false;seen.add(k);return true})
       .sort((a,b)=>(a.routeId===this.currentRouteId?-1:0)-(b.routeId===this.currentRouteId?-1:0)||routeName(a.route).localeCompare(routeName(b.route),'ko'));
   }
   render(){
@@ -2506,17 +2611,15 @@ class FreeDrive{
 
 
 
-const indexedResearchName=id=>globalThis.TRT_KOREA_RESEARCH_INDEX?.routes?.find(r=>r.id===id)?.line?.ko||'';
 const indexedKoreanLineName=id=>globalThis.TRT_KOREA_INDEX?.routes?.find(route=>route.id===id)?.line?.ko||globalThis.TRT_KOREA_INDEX?.routes?.find(route=>route.id===id)?.names?.ko||'';
 
 function renderStats(){
-  let picker=$('#records-mode');if(!picker){picker=document.createElement('select');picker.id='records-mode';picker.setAttribute('aria-label','기록 종류');picker.innerHTML='<option value="released">정식·기존 운영 기록</option><option value="research">연구용 미리보기 기록</option>';$('#stats-summary').before(picker);picker.addEventListener('change',()=>renderStats())}
-  if(picker.value==='research'&&!globalThis.TRT_KOREA_RESEARCH_INDEX&&!picker.dataset.loading){picker.dataset.loading='true';loadTransportData('kr','research').then(()=>{delete picker.dataset.loading;renderStats()}).catch(()=>{delete picker.dataset.loading})}
-  const records=Object.entries(picker.value==='research'?storage.researchRecords():storage.records()).map(([routeId,record])=>({...record,routeId})).filter(record=>isCountryEnabled(record.countryId||'jp'));
+  const oldPicker=$('#records-mode');if(oldPicker)oldPicker.remove();
+  const records=Object.entries(storage.records()).map(([routeId,record])=>({...record,routeId})).filter(record=>isCountryEnabled(record.countryId||'jp'));
   const plays=records.reduce((n,r)=>n+r.plays,0),stations=records.reduce((n,r)=>n+r.totalStations,0),acc=records.length?records.reduce((n,r)=>n+r.bestAccuracy,0)/records.length:0,cpm=Math.max(0,...records.map(r=>r.bestCpm)),combo=Math.max(0,...records.map(r=>r.maxCombo));
   $('#stats-summary').innerHTML=[['총 플레이',`${plays}회`],['입력 지점',`${stations}곳`],['평균 정확도',`${acc.toFixed(1)}%`],['최고 타수',`${cpm}타`],['최고 콤보',`${combo}`]].map(x=>`<div class="stat-card"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('');
   $('#records-table').innerHTML=`<div class="record-row header"><span>노선</span><span>플레이</span><span>최고 시간</span><span>정확도</span><span>타수</span><span>콤보</span></div>`+(records.length?records.sort((a,b)=>b.plays-a.plays).map(r=>{
-    const routeId=canonicalRouteId(r.lineId||r.routeId),line=railDataRepository.getLine(routeId),route=railDataRepository.getRoute(routeId),rawName=line?.names?.ko||indexedResearchName(routeId)||indexedKoreanLineName(routeId)||r.name||routeId,name=koreanRouteDisplayText(rawName,route||{countryId:r.countryId,stations:[{ko:r.originName},{ko:r.destinationName}]});
+    const routeId=canonicalRouteId(r.lineId||r.routeId),line=railDataRepository.getLine(routeId),route=railDataRepository.getRoute(routeId),rawName=line?.names?.ko||indexedKoreanLineName(routeId)||r.name||routeId,name=koreanRouteDisplayText(rawName,route||{countryId:r.countryId,stations:[{ko:r.originName},{ko:r.destinationName}]});
     return`<div class="record-row" data-route-id="${escapeHtml(routeId)}" data-country-id="${escapeHtml(r.countryId||'jp')}" data-direction-id="${escapeHtml(r.directionId||'forward')}"><b class="record-route-brand" style="border-left:4px solid ${r.color};padding-left:10px"><span>${escapeHtml(name)}${r.countryId==='kr'&&r.serviceJourneyId&&r.destinationName?`<small style="display:block">${escapeHtml(koreanStationDisplayName(r.originName,r.countryId,route))} → ${escapeHtml(koreanStationDisplayName(r.destinationName,r.countryId,route))}</small>`:''}</span></b><span>${r.plays}</span><span>${formatTime(r.bestTime)}</span><span>${r.bestAccuracy.toFixed(1)}%</span><span>${r.bestCpm}</span><span>${r.maxCombo}</span></div>`
   }).join(''):'<p class="muted" style="padding:20px">아직 기록이 없습니다.</p>')
 }
@@ -2526,7 +2629,7 @@ function renderStats(){
 let leafletPromise;
 function ensureLeaflet(){if(window.L)return Promise.resolve(window.L);if(leafletPromise)return leafletPromise;leafletPromise=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';script.crossOrigin='anonymous';script.onload=()=>resolve(window.L);script.onerror=()=>reject(new Error('Leaflet unavailable'));document.head.append(script);setTimeout(()=>window.L?resolve(window.L):reject(new Error('Leaflet timeout')),8000)});return leafletPromise}
 const tokyoBounds=[[35.49,138.94],[35.92,140.12]];
-const routeGeometry=route=>{if(route?.countryId==='tw'){if(!route.geometryReady)return[];return route.loop&&route.loopClosingGeometry?[...route.geometry,...route.loopClosingGeometry.slice(1)]:route.geometry}if(route?.countryId==='kr'){if(route.geometryReady!==true)return[];return(route.directedSegments||[]).filter(segment=>segment.geometryStatus==='ready').map(segment=>segment.geometry)}return route.stations.filter(s=>Number.isFinite(s.latitude)&&Number.isFinite(s.longitude)).map(s=>[s.latitude,s.longitude])};
+const routeGeometry=route=>{if(route?.countryId==='tw'){if(!route.geometryReady)return[];return route.loop&&route.loopClosingGeometry?[...route.geometry,...route.loopClosingGeometry.slice(1)]:route.geometry}if(route?.countryId==='kr'||route?.countryId==='hk'){if(route.geometryReady!==true)return[];return(route.directedSegments||[]).filter(segment=>segment.geometryStatus==='ready').map(segment=>segment.geometry)}return route.stations.filter(s=>Number.isFinite(s.latitude)&&Number.isFinite(s.longitude)).map(s=>[s.latitude,s.longitude])};
 class NetworkMap{
  constructor(container,status,{onRoute,onPlay}){this.container=container;this.status=status;this.onRoute=onRoute;this.onPlay=onPlay;this.ready=false;this.filter='all'}
  async init(routes,stations){this.routes=routes;this.stations=stations;try{const L=await ensureLeaflet();this.L=L;this.map=L.map(this.container,{zoomControl:true,minZoom:8,preferCanvas:true}).fitBounds(tokyoBounds);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(this.map);this.lineLayer=L.layerGroup().addTo(this.map);this.stationLayer=L.layerGroup().addTo(this.map);this.drawLines();this.map.on('zoomend',()=>this.drawStations());this.drawStations();this.ready=true;this.status.hidden=true;setTimeout(()=>this.map.invalidateSize(),50)}catch{this.status.textContent='지도를 불러올 수 없습니다. 노선 목록으로 계속 플레이할 수 있습니다.';this.status.classList.add('error')}}
@@ -2586,6 +2689,8 @@ class CustomGeoMap{
 
 
 
+
+
 const text=(...values)=>String(values.find(value=>typeof value==='string'&&value.trim())||'').normalize('NFC').trim();
 const cleanDisplayLineName=value=>text(value).replace(/^JR/,'').replace(/^東京メトロ/,'').replace(/^都営/,'').replace(/^大阪メトロ/,'');
 // The editor saves a small JSON file independently of the generated catalog.
@@ -2610,7 +2715,7 @@ function normalizeStation(raw={},index=0,lineCode='ST'){
   const internalId=text(source.internalId,source.id,source.sourceId,source.code)||`${lineCode}-internal-${index+1}`;
   const explicitCode=text(source.officialCode,source.stationCode),arrayCode=Array.isArray(raw)&&/^[A-Z]{1,4}\d{1,3}$/.test(text(source.id))?text(source.id):'',officialCode=explicitCode||arrayCode;
   const ko=text(sourceNames.ko,source.nameKo,source.ko)||'MISSING_KOREAN_NAME';
-  return{...source,id:internalId,internalId,officialCode,stationCode:officialCode,hasOfficialStationCode:source.hasOfficialStationCode??!!officialCode,stationCodeSource:source.stationCodeSource||text(source.codeSource)||(officialCode?(explicitCode?'source-explicit':'bundled-verified-array'):'none'),ja,kana:text(sourceNames.kana,source.kana,source.hiragana,ko),romaji:text(sourceNames.en,source.romaji,source.en,ko),ko,koMissing:ko==='MISSING_KOREAN_NAME',koAliases:[...new Set(aliases)],koVerified:!!source.koVerified,koSource:source.koSource||'',latitude:Number.isFinite(latitude)&&rawLatitude!==null?latitude:null,longitude:Number.isFinite(longitude)&&rawLongitude!==null?longitude:null}
+  return{...source,id:internalId,internalId,officialCode,stationCode:officialCode,hasOfficialStationCode:source.hasOfficialStationCode??!!officialCode,stationCodeSource:source.stationCodeSource||text(source.codeSource)||(officialCode?(explicitCode?'source-explicit':'bundled-verified-array'):'none'),ja,kana:source.countryId==='hk'?'':text(sourceNames.kana,source.kana,source.hiragana,ko),romaji:text(sourceNames.en,source.romaji,source.en,ko),ko,koMissing:ko==='MISSING_KOREAN_NAME',koAliases:[...new Set(aliases)],koVerified:!!source.koVerified,koSource:source.koSource||'',latitude:Number.isFinite(latitude)&&rawLatitude!==null?latitude:null,longitude:Number.isFinite(longitude)&&rawLongitude!==null?longitude:null}
 }
 // Keep a stop's railway/platform coordinate separate from the shared station
 // identity used by search, names and transfers. Geometry vertices are [lat,lon].
@@ -2650,7 +2755,7 @@ function normalizeLine(raw={},defaults={}){
   const serviceSource=Array.isArray(raw.services)?raw.services:globalThis.TRT_SERVICE_CATALOG?.[id];
   const allStationIds=stations.map(station=>station.id),services=[];
   if(Array.isArray(serviceSource))for(let index=0;index<serviceSource.length;index++){const service=serviceSource[index],stops=[];let invalid=false;if(Array.isArray(service.stops))for(const stop of service.stops){const station=stations.find(item=>item.id===stop||item.sourceId===stop);if(!station){console.error(`${id}/${service.id||index}: service stop not found`,stop);invalid=true;break}stops.push(station.id)}if(!invalid&&stops.length>=2)services.push({id:text(service.id)||`service-${index+1}`,nameJa:text(service.nameJa,service.ja)||'各駅停車',nameKo:text(service.nameKo,service.ko)||'각역정차',nameEn:text(service.nameEn,service.en)||'Local',stops})}
-  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if(raw.countryId!=='tw'&&!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:allStationIds});
+  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if(raw.countryId!=='tw'&&raw.countryId!=='hk'&&!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:allStationIds});
   const lineTheme=verifiedTheme||{code:resolvedCode,color:text(raw.lineColor,raw.color)||'#777777',style:category==='jr'?'jr':category==='subway'?'metro':'private',operatorMark:text(operatorRaw.en,operatorRaw.ja)||'RAILWAY',colorVerified:false,colorSource:raw.colorSource||'Imported source data'};
   const editorLine=editorNameOverrides.lines[id]||{};
   const editorColor=/^#[0-9a-fA-F]{6}$/.test(editorLine.color||'')?editorLine.color:lineTheme.color;
@@ -2659,9 +2764,9 @@ function normalizeLine(raw={},defaults={}){
   const lineJa=cleanDisplayLineName(text(lineRaw.ja,raw.nameJa,raw.japanese,raw.name,lineRaw.en,'新路線')),operatorJa=text(operatorRaw.ja,raw.operatorNameJa,raw.operatorName,operatorRaw.en,'Railway'),operatorKo=text(operatorRaw.ko),lineKo=text(lineRaw.ko);
   return{...raw,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:text(editorNameOverrides.operators[normalizedOperatorId],operatorKo)||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:text(editorLine.ko,lineKo)||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:editorColor,loop:!!raw.loop,lineTheme:{...lineTheme,color:editorColor},services,stations}
 }
-function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[]},{category:raw.category});return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:Number(raw.stationCount)||0,searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?raw.stationSequence:[]}}
+function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[],services:[]},{category:raw.category});return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:Number(raw.stationCount)||0,searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?raw.stationSequence:[]}}
 function validLine(line){return Array.isArray(line.stations)&&line.stations.length>=2&&line.stations.every(station=>station.ja||station.kana||station.romaji||station.ko)}
-async function fetchJson(url){const response=await fetch(url);if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
+async function fetchJson(url){const response=await fetch(url,{cache:'no-cache'});if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
 async function loadRailData(){
   await loadEditorNameOverrides();
   const canonical=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;
@@ -2739,32 +2844,33 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
     const lines=all.filter(l=>l.visibility!=='internal'&&l.playable&&l.geometryReady&&l.taiwanServices.length);
     return{country:data.country,operators:data.operators.map(o=>({...o,names:{...o.names,ja:o.names.ko}})),lines,stations:[],assets:data.assets||{},errors:[],counts:lines.reduce((m,l)=>(m[l.category]=(m[l.category]||0)+1,m),{}),fallbackUsed:false,source:'taiwan-physical-and-service-network'};
   }
+  if(countryId==='hk'){
+    const data=globalThis.TRT_HONG_KONG_INDEX||await fetchJson(new URL('data/hk/generated/index.json',document.baseURI));
+    if(data.country?.id!=='hk')throw new Error('홍콩 데이터 지역 식별자가 올바르지 않습니다.');
+    const lines=(data.routes||[]).map(normalizeLazyLine);
+    return{country:data.country,operators:data.operators||[],lines,stations:[],assets:data.assets||{},errors:[],counts:lines.reduce((c,r)=>({...c,[r.category]:(c[r.category]||0)+1}),{}),audit:data.audit,checkedAt:data.checkedAt,fallbackUsed:false,source:'hong-kong-lazy-index'};
+  }
   if(countryId==='jp'){
     const data=await loadRailData();
     // Small, independently sourced monorail not present in MLIT's 610-line
     // canonical runtime index. Never mutate or replace existing catalog lines.
     const extra=globalThis.TRT_DISNEY_RESORT_ROUTE;
     if(extra&&!data.lines.some(line=>line.id===extra.id)){
-      const line=normalizeLine(extra,{category:'other'});
+      const line=normalizeLine(extra,{category:'monorail'});
       data.lines.push(line);
       data.counts.other=(data.counts.other||0)+1;
     }
     return data;
   }
-  const previewUrl=new URL('data/kr/preview/index.json',document.baseURI);previewUrl.searchParams.set('v',new URL(document.querySelector('script[src*="app.bundle.js"]')?.src||document.baseURI).searchParams.get('v')||'1');
-  let data=koreaMode==='research'?await fetchJson(previewUrl):globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
-  if(koreaMode==='released'){
-    try{data=integrateKoreanLine1Index(data,await fetchJson(previewUrl))}
-    catch(error){console.warn('Line 1 research integration unavailable; legacy sections preserved:',error)}
-  }
-  if(koreaMode==='research')globalThis.TRT_KOREA_RESEARCH_INDEX=data;
-  if(koreaMode==='research'&&(data.previewContract!=='kr-research-v1'||data.routes.some(r=>!isKoreanResearch(r))))throw Error('INVALID_RESEARCH_INDEX');
-  const lines=(data.routes||[]).filter(route=>!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
+  if(FEATURE_FLAGS.koreaRoutesReset)return{country:{id:'kr',names:{ko:'대한민국',en:'South Korea'}},operators:[],lines:[],stations:[],assets:{operators:{},lines:{}},errors:[],counts:{},fallbackUsed:false,source:'korea-reset'};
+  const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
+  const lines=(data.routes||[]).filter(route=>route.releaseStatus!=='research'&&route.playStatus!=='RESEARCH_PLAYABLE'&&!route.previewContract&&!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators,lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
 }
-async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);const sourceRoute=Array.isArray(payload.routes)?payload.routes.find(item=>item?.id===route.id):(payload.route||payload);if(!sourceRoute)throw new Error('일본 노선 분할 파일에 해당 노선이 없습니다: '+route.id);if(isKoreanResearch(route)){if(!isKoreanResearch(sourceRoute)||sourceRoute.id!==route.id||sourceRoute.sourceServiceId!==route.sourceServiceId)throw Error('RESEARCH_LAZY_IDENTITY_MISMATCH');assertKoreanResearchRoute(sourceRoute)}const normalized=normalizeLine(sourceRoute,{category:route.category});normalized.directions=sourceRoute.directions||[];if(route.id==='line-28002'){normalized.stationCount=Number(route.stationCount)||28;normalized.searchStations=route.searchStations||[];}if(route.countryId==='kr'){normalized.playable=route.playable;normalized.visibility=route.visibility;normalized.dataKind=route.dataKind;normalized.serviceNote=route.serviceNote;normalized.operatorId=route.operatorId;normalized.operator={...normalized.operator,...route.operator};normalized.operators=route.operators||normalized.operators;normalized.operatorIds=route.operatorIds||normalized.operatorIds;normalized.countryId='kr';normalized.regionId=route.regionId;normalized.passengerLineId=route.passengerLineId;normalized.passengerLineName=route.passengerLineName;normalized.operatingPatternId=route.operatingPatternId;normalized.serviceValidationStatus=route.serviceValidationStatus;normalized.geometryReady=route.geometryReady===true;normalized.geometryStatus=route.geometryStatus||normalized.geometryStatus;normalized.releaseStatus=route.releaseStatus||normalized.releaseStatus;normalized.integratedLine1=route.integratedLine1===true;normalized.line1Service=route.line1Service||null;normalized.gameValidationStatus=route.gameValidationStatus||normalized.gameValidationStatus;}return normalized}
+async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);const sourceRoute=Array.isArray(payload.routes)?payload.routes.find(item=>item?.id===route.id):(payload.route||payload);if(!sourceRoute)throw new Error('일본 노선 분할 파일에 해당 노선이 없습니다: '+route.id);if(route.countryId==='kr'&&/^kr-service-\d+$/.test(route.id)&&(!sourceRoute||sourceRoute.id!==route.id||sourceRoute.sourceServiceId!==route.sourceServiceId))throw Error('KOREAN_SERVICE_IDENTITY_MISMATCH');if(route.countryId==='hk'&&(sourceRoute.countryId!=='hk'||sourceRoute.id!==route.id))throw new Error('홍콩 노선 파일 식별자가 일치하지 않습니다.');const normalized=normalizeLine(sourceRoute,{category:route.category});if(normalized.countryId==='hk'&&hongKongRouteBlockReason(normalized))throw new Error(hongKongRouteBlockReason(normalized));normalized.directions=sourceRoute.directions||[];if(route.id==='line-28002'){normalized.stationCount=Number(route.stationCount)||28;normalized.searchStations=route.searchStations||[];}if(route.countryId==='kr'){normalized.playable=route.playable;normalized.visibility=route.visibility;normalized.dataKind=route.dataKind;normalized.serviceNote=route.serviceNote;normalized.operatorId=route.operatorId;normalized.operator={...normalized.operator,...route.operator};normalized.operators=route.operators||normalized.operators;normalized.operatorIds=route.operatorIds||normalized.operatorIds;normalized.countryId='kr';normalized.regionId=route.regionId;normalized.passengerLineId=route.passengerLineId;normalized.passengerLineName=route.passengerLineName;normalized.operatingPatternId=route.operatingPatternId;normalized.serviceValidationStatus=route.serviceValidationStatus;normalized.geometryReady=route.geometryReady===true;normalized.geometryStatus=route.geometryStatus||normalized.geometryStatus;normalized.releaseStatus=route.releaseStatus||normalized.releaseStatus;normalized.integratedLine1=route.integratedLine1===true;normalized.line1Service=route.line1Service||null;normalized.gameValidationStatus=route.gameValidationStatus||normalized.gameValidationStatus;}return normalized}
 async function loadRoutes(){const data=await loadRailData();return{routes:data.lines,errors:data.errors,counts:data.counts,fallbackUsed:data.fallbackUsed}}
 async function loadStationMaster(){const workspaceData=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;if(!Array.isArray(workspaceData?.routes))return[];const map=new Map;for(const route of workspaceData.routes)for(const station of route.stations||[])if(!map.has(station.id))map.set(station.id,normalizeStation(station,map.size,route.code));return[...map.values()]}
+
 
 
 
@@ -2780,7 +2886,7 @@ class RouteEditor{
  stationDisplay(station,route=this.route){return koreanStationDisplayName(station?.ko||station?.ja||'',route?.countryId,station?.segment||route)}
  fresh(){return{countryId:globalThis.document?.documentElement?.dataset.country||'jp',id:uid('custom'),category:'custom',dataKind:'customJourney',operatorId:'custom',operator:{ja:'Custom Journey',en:'Custom Journey',ko:'커스텀 여정'},line:{ja:'カスタム旅程',en:'Custom Journey',ko:'커스텀 여정'},code:'CT',lineColor:'#e84747',loop:false,coverage:'rail-network',stations:[],geometry:[],segments:[]}}
  setRailNetwork(routes){
-  this.railRoutes=(Array.isArray(routes)?routes:[]).filter(route=>!koreanRouteBlockReason(route)).filter(route=>Array.isArray(route?.stations)&&route.stations.length>=2);
+  this.railRoutes=(Array.isArray(routes)?routes:[]).filter(route=>!koreanRouteBlockReason(route)&&!hongKongRouteBlockReason(route)).filter(route=>Array.isArray(route?.stations)&&route.stations.length>=2);
   this.stationGraph=new Map();
   const keyOf=station=>station?.twTransferKey||station?.stationMasterId||station?.sourceStationId||station?.id||'';
   const add=(key,station,route)=>{if(!key)return null;let node=this.stationGraph.get(key);if(!node){node={key,station,edges:[]};this.stationGraph.set(key,node)}node.routes=node.routes||new Set();node.routes.add(route.id);return node};
@@ -2792,7 +2898,7 @@ class RouteEditor{
     const an=add(ak,a,route),bn=add(bk,b,route);
     if(!an||!bn)continue;
     an.edges.push({to:bk,route,fromIndex:i,toIndex:i+1});
-    if(route.countryId!=='kr'||route.schemaVersion!==2)bn.edges.push({to:ak,route,fromIndex:i+1,toIndex:i});
+    if(route.countryId!=='hk'&&(route.countryId!=='kr'||route.schemaVersion!==2))bn.edges.push({to:ak,route,fromIndex:i+1,toIndex:i});
    }
   }
   this.renderJourneyOptions()
@@ -2802,7 +2908,7 @@ class RouteEditor{
  loadRoute(route){if(!route||koreanRouteBlockReason(route))return;this.route=structuredClone(route);this.route.geometry ||= [];this.route.segments ||= [];this.render()}
  bind(){
   $('#new-route').addEventListener('click',()=>this.createNew());$('#add-station').addEventListener('click',()=>this.addStation());$('#save-route').addEventListener('click',()=>this.save());$('#play-custom').addEventListener('click',()=>{if(this.validate())this.onPlay(this.route)});$('#export-route').addEventListener('click',()=>this.export());$('#import-route').addEventListener('change',e=>this.import(e.target.files[0]));
-  $('#station-master-search').addEventListener('input',debounce(e=>this.renderSearch(e.target.value),70));$('#station-search-results').addEventListener('click',e=>{const button=e.target.closest('[data-add-master]');if(button)this.addMasterStation(button.dataset.addMaster)});$('#journey-options').addEventListener('click',e=>{const button=e.target.closest('[data-journey-edge]');if(button)this.addGraphEdge(button.dataset.journeyEdge)});document.addEventListener('keydown',e=>{if(e.key==='Tab'&&document.body.dataset.currentScreen==='custom-editor'&&this.route.stations.length){const options=this.currentEdges();if(new Set(options.map(edge=>edge.route.id)).size>1){e.preventDefault();$('#journey-options').classList.toggle('transfer-open');$('#journey-options').focus?.()}}});
+  $('#station-master-search').addEventListener('input',debounce(e=>this.renderSearch(e.target.value),70));$('#station-search-results').addEventListener('click',e=>{const button=e.target.closest('[data-add-master]');if(button)this.addMasterStation(button.dataset.addMaster)});$('#journey-options').addEventListener('click',e=>{const button=e.target.closest('[data-journey-edge]');if(button)this.addGraphEdge(button.dataset.journeyEdge)});document.addEventListener('keydown',e=>{if(e.key==='Tab'&&!e.isComposing&&document.body.dataset.currentScreen==='custom-editor'&&this.route.stations.length){const options=this.currentEdges();if(new Set(options.map(edge=>edge.route.id)).size>1){e.preventDefault();$('#journey-options').classList.toggle('transfer-open');$('#journey-options').focus?.()}}});
   this.form.addEventListener('input',debounce(()=>{this.sync();this.draw()},60));this.list.addEventListener('click',e=>this.action(e));this.list.addEventListener('dragstart',e=>{const row=e.target.closest('.station-row');if(row){this.dragIndex=+row.dataset.index;row.classList.add('dragging')}});this.list.addEventListener('dragend',e=>e.target.closest('.station-row')?.classList.remove('dragging'));this.list.addEventListener('dragover',e=>e.preventDefault());this.list.addEventListener('drop',e=>{e.preventDefault();const to=+e.target.closest('.station-row')?.dataset.index;if(Number.isInteger(to)&&to!==this.dragIndex){this.sync();const[m]=this.route.stations.splice(this.dragIndex,1);this.route.stations.splice(to,0,m);this.render()}});
   $('#saved-routes').addEventListener('click',e=>{const id=e.target.closest('[data-id]')?.dataset.id;if(!id)return;if(e.target.matches('[data-delete]')){if(confirm('이 노선을 삭제할까요?')){storage.deleteRoute(id);this.renderSaved();this.onRoutesChanged()}}else{const found=storage.routes().find(r=>r.id===id);if(found){this.route=structuredClone(found);this.render()}}})
  }
@@ -2813,6 +2919,7 @@ class RouteEditor{
   const current=this.route.stations.at(-1);
   if(!current)return[];
   const direct=this.stationGraph.get(current.sourceStationId)?.edges||[];
+  if(this.route.countryId==='hk')return direct.filter(edge=>hongKongContinuationAllowed(current,edge.route.directedSegments?.[edge.fromIndex],edge.route.servicePatternId||edge.route.id));
   const nearby=[];
   for(const node of this.stationGraph.values()){
    if(node.station.ja!==current.ja)continue;
@@ -2827,6 +2934,13 @@ class RouteEditor{
  appendStation(source,edge){
   if(this.route.stations.length>=MAX)return toast('최대 300역까지 만들 수 있습니다.');
   this.sync();
+  if(this.route.countryId==='hk'){
+   const sourceId=source.stationMasterId||source.id,rawIncoming=edge?.route?.directedSegments?.[edge.fromIndex],incoming=rawIncoming?{...rawIncoming,sourceServicePatternId:edge.route.servicePatternId||edge.route.id,sourceRouteId:edge.route.id}:null;
+   if(edge&&(!incoming||edge.toIndex!==edge.fromIndex+1))return toast('검증된 방향의 실제 선로만 선택할 수 있습니다.');
+   if(edge&&!hongKongContinuationAllowed(this.route.stations.at(-1),incoming,edge.route.servicePatternId||edge.route.id))return toast('미검증 서비스 변경·반대편 승강장 연결은 선택할 수 없습니다.');
+   this.route.stations.push({...structuredClone(source),id:'',sourceStationId:sourceId,hkIncomingEdge:incoming?structuredClone(incoming):null});
+   this.renumber();if(this.route.stations.length>1){try{this.route=buildHongKongCustomRoute(this.route)}catch(error){this.route.releaseStatus='INCOMPLETE';this.route.playable=false;toast(error.message)}}this.render();return;
+  }
   let segment=null;
   if(edge){
    const route=edge.route,a=route.stations[edge.fromIndex],b=route.stations[edge.toIndex],from=a.geometryIndex??0,to=b.geometryIndex??0;
@@ -2850,14 +2964,14 @@ class RouteEditor{
  sync(){const f=new FormData(this.form);this.route.operator={ja:f.get('operator')||'Custom Railway',en:f.get('operator')||'Custom Railway',ko:f.get('operator')||'커스텀 철도'};this.route.code=String(f.get('code')||'CT').toUpperCase();this.route.line={ja:f.get('lineJa')||'',ko:f.get('lineKo')||'',en:f.get('lineEn')||''};this.route.lineColor=f.get('color')||'#e84747';this.route.loop=f.get('loop')==='on';$$('.station-row',this.list).forEach((row,i)=>{if(!this.route.stations[i]?.customStation)return;this.route.stations[i]={...this.route.stations[i],...Object.fromEntries($$('input[data-field]',row).map(el=>[el.dataset.field,el.value.normalize('NFC')]))}});this.renumber()}
  render(){const f=this.form.elements;f.operator.value=this.route.operator.ko||this.route.operator.en||'';f.code.value=this.route.code||'CT';f.lineJa.value=this.route.line.ja||'';f.lineKo.value=this.route.line.ko||'';f.lineEn.value=this.route.line.en||'';f.color.value=this.route.lineColor||'#e84747';f.loop.checked=!!this.route.loop;this.renumber();this.list.innerHTML=this.route.stations.length?this.route.stations.map((station,i)=>station.sourceStationId?`<div class="station-row master-row" draggable="true" data-index="${i}"><span class="drag-handle" aria-label="드래그하여 이동">☰</span><div class="master-station-copy"><b>${String(i+1).padStart(2,'0')} · ${escapeHtml(this.route.countryId==='kr'?this.stationDisplay(station):station.ja)}</b><span>${escapeHtml(this.stationDisplay(station))}</span><small>${escapeHtml(station.romaji)} · ${escapeHtml((station.operators||[]).join(' · '))}</small></div><span class="row-actions"><button type="button" data-up aria-label="위로">↑</button><button type="button" data-down aria-label="아래로">↓</button><button type="button" data-remove aria-label="삭제">×</button></span></div>`:`<div class="station-row" draggable="true" data-index="${i}"><span class="drag-handle">☰</span><input data-field="id" value="${escapeHtml(station.id)}" aria-label="역 번호"><input data-field="ja" value="${escapeHtml(station.ja)}" placeholder="공식 원문 역명" aria-label="공식 원문 역명"><input data-field="kana" value="${escapeHtml(station.kana)}" placeholder="ひらがな"><input data-field="romaji" value="${escapeHtml(station.romaji)}" placeholder="Romaji"><input data-field="ko" value="${escapeHtml(station.ko)}" placeholder="한국어 공식 원본 역명" aria-label="공식 원본 역명"><small class="station-coord">${Number.isFinite(station.latitude)?`${station.latitude.toFixed(5)}, ${station.longitude.toFixed(5)}`:'지도에서 좌표 지정 필요'}</small><span class="row-actions"><button type="button" data-up>↑</button><button type="button" data-down>↓</button><button type="button" data-remove>×</button></span></div>`).join(''):'<p class="muted">위 검색창에서 실제 역을 2개 이상 추가하세요.</p>';$('#station-count').textContent=`${this.route.stations.length} / ${MAX}`;this.draw();this.renderSaved()}
  action(e){const row=e.target.closest('.station-row');if(!row)return;const i=+row.dataset.index;this.sync();if(e.target.matches('[data-remove]'))this.route.stations.splice(i,1);else if(e.target.matches('[data-up]')&&i>0)[this.route.stations[i-1],this.route.stations[i]]=[this.route.stations[i],this.route.stations[i-1]];else if(e.target.matches('[data-down]')&&i<this.route.stations.length-1)[this.route.stations[i+1],this.route.stations[i]]=[this.route.stations[i],this.route.stations[i+1]];else return;this.renumber();this.render()}
- draw(){this.renderJourneyOptions();renderSvg($('#custom-map'),this.route);this.geo?.render(this.route)}
+ draw(){if(this.route.countryId==='hk'&&this.route.stations.length>=2){try{this.route=buildHongKongCustomRoute(this.route)}catch{this.route.geometryReady=false;this.route.geometry=[];this.route.directedSegments=[];this.route.playable=false;this.route.releaseStatus='INCOMPLETE'}}this.renderJourneyOptions();renderSvg($('#custom-map'),this.route);this.geo?.render(this.route)}
  async switchEditorView(){if(!this.geo){this.geo=new CustomGeoMap($('#custom-geo-map'),$('#geo-map-status'),point=>this.addStation(point),(i,point)=>{Object.assign(this.route.stations[i],point);this.render()});await this.geo.init(this.route)}this.geo.render(this.route);this.geo.show()}
- validate(){this.sync();if(!this.route.line.ja&&!this.route.line.ko&&!this.route.line.en)return toast('노선명을 입력하세요.'),false;if(this.route.stations.length<2)return toast('실제 역을 최소 2개 추가해 주세요.'),false;if(this.route.stations.some(station=>!station.ja||!station.ko))return toast('모든 역에 일본어와 한국어 이름이 필요합니다.'),false;if(this.route.stations.some(station=>!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))return toast('모든 역에 실제 지도 좌표가 필요합니다.'),false;if(!/^#[0-9a-f]{6}$/i.test(this.route.lineColor))return toast('노선 색상이 올바르지 않습니다.'),false;this.route=normalizeLine({...this.route,custom:true,category:'custom'},{category:'custom'});return true}
+ validate(){this.sync();if(this.route.countryId==='hk'){try{this.route=normalizeLine(buildHongKongCustomRoute(this.route));return true}catch(error){toast(error.message);return false}}if(!this.route.line.ja&&!this.route.line.ko&&!this.route.line.en)return toast('노선명을 입력하세요.'),false;if(this.route.stations.length<2)return toast('실제 역을 최소 2개 추가해 주세요.'),false;if(this.route.stations.some(station=>!station.ja||!station.ko))return toast('모든 역에 일본어와 한국어 이름이 필요합니다.'),false;if(this.route.stations.some(station=>!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))return toast('모든 역에 실제 지도 좌표가 필요합니다.'),false;if(!/^#[0-9a-f]{6}$/i.test(this.route.lineColor))return toast('노선 색상이 올바르지 않습니다.'),false;this.route=normalizeLine({...this.route,custom:true,category:'custom'},{category:'custom'});return true}
  save(){if(!this.validate())return;storage.saveRoute(this.route);toast('실제 철도망 여정을 저장했습니다.');this.renderSaved();this.onRoutesChanged();this.onSaved?.(this.route)}
- renderSaved(){const routes=storage.routes();$('#saved-routes').innerHTML=routes.length?routes.map(route=>`<div class="saved-item" style="--saved-color:${route.lineColor}" data-id="${route.id}"><span><b>${escapeHtml(route.line.ko)}</b><small>${route.stations.length}개 역</small></span><button data-delete aria-label="삭제">×</button></div>`).join(''):'<p class="muted">저장된 노선이 없습니다.</p>'}
+ renderSaved(){const routes=storage.routes().filter(route=>(route.countryId||'jp')===(this.route.countryId||'jp'));$('#saved-routes').innerHTML=routes.length?routes.map(route=>`<div class="saved-item" style="--saved-color:${route.lineColor}" data-id="${route.id}"><span><b>${escapeHtml(route.line.ko)}</b><small>${route.stations.length}개 역</small></span><button data-delete aria-label="삭제">×</button></div>`).join(''):'<p class="muted">저장된 노선이 없습니다.</p>'}
  export(){if(!this.validate())return;const blob=new Blob([JSON.stringify({version:1,type:'custom-route',...this.route},null,2)],{type:'application/json'}),anchor=document.querySelector('#custom-route-download')||document.body.appendChild(document.createElement('a'));if(anchor.href?.startsWith('blob:'))URL.revokeObjectURL(anchor.href);anchor.id='custom-route-download';anchor.hidden=true;anchor.href=URL.createObjectURL(blob);anchor.download=`${this.route.id}.json`;anchor.click();toast('JSON 파일을 내보냈습니다.')}
  async import(file){if(!file)return;try{if(file.size>1_000_000)throw new Error('파일이 너무 큽니다.');const data=JSON.parse(await file.text());this.route=this.sanitize(data);storage.saveRoute(this.route);this.render();this.onRoutesChanged();toast('노선을 가져왔습니다.')}catch(error){toast(`가져오기 실패: ${error.message}`)}finally{$('#import-route').value=''}}
- sanitize(data){if(!data||typeof data!=='object'||!Array.isArray(data.stations))throw new Error('지원하지 않는 JSON 형식입니다.');if(data.stations.length<2||data.stations.length>MAX)throw new Error('역 수가 올바르지 않습니다.');if(data.stations.some(station=>!station?.ja||!station?.ko||!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))throw new Error('역 이름 또는 실제 좌표가 없습니다.');const route=normalizeLine({...data,id:typeof data.id==='string'&&data.id?data.id:uid('custom'),custom:true,category:'custom'},{category:'custom'});route.coverage='custom';return route}
+ sanitize(data){if(!data||typeof data!=='object'||!Array.isArray(data.stations))throw new Error('지원하지 않는 JSON 형식입니다.');if(data.stations.length<2||data.stations.length>MAX)throw new Error('역 수가 올바르지 않습니다.');if(data.stations.some(station=>!station?.ja||!station?.ko||!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))throw new Error('역 이름 또는 실제 좌표가 없습니다.');const route=normalizeLine({...data,id:typeof data.id==='string'&&data.id?data.id:uid('custom'),custom:true,category:'custom'},{category:'custom'});route.coverage='custom';if(route.countryId==='hk')return buildHongKongCustomRoute(route);return route}
 }
 
 
@@ -3094,86 +3208,6 @@ function initAuth(storage){
 }
 
 
-/* SUBTYPE route/service blurbs. Presentation only; do not alter journey topology. */
-const ROUTE_KINDS={
-  jr:'JR 일반철도',shinkansen:'신칸센',subway:'지하철',metro:'도시철도',
-  private:'사철', 'third-sector':'제3섹터 철도',tram:'노면전차',
-  monorail:'모노레일', 'light_rail':'경전철',commuter_rail:'광역철도',
-  airport_rail:'공항철도',high_speed_rail:'고속철도',rail:'일반철도',
-  'limited-express':'특급열차',bus:'버스',ferry:'여객선',river_bus:'수상교통',
-  other_rail:'철도',custom:'사용자 제작'
-};
-const cleanDescription=value=>typeof value==='string'?value.trim().slice(0,110):'';
-const readableStation=value=>{
-  const raw=typeof value==='string'?value:value?.ko||value?.names?.ko||value?.ja||value?.names?.ja||'';
-  const name=String(raw).trim();
-  return name&&name.length<=35&&!/^station-|^undefined$/.test(name)?name:'';
-};
-function routeEndpoints(route){
-  const stations=route?.stations;
-  if(Array.isArray(stations)&&stations.length>0)return[readableStation(stations[0]),readableStation(stations.at(-1))];
-  // Lightweight Japanese catalog stores alternating Japanese and Korean station names.
-  const terms=route?.searchStations;
-  if(Array.isArray(terms)&&terms.length>=2){
-    if(route?.countryId==='kr')return[readableStation(terms[0]),readableStation(terms.at(-1))];
-    if(terms.length>=4)return[readableStation(terms[1]),readableStation(terms.at(-1))];
-    return[readableStation(terms[0]),readableStation(terms.at(-1))];
-  }
-  const origin=route?.researchEvidence?.origin,destination=route?.researchEvidence?.destination;
-  return[readableStation(origin),readableStation(destination)];
-}
-function describeRoute(route){
-  if(!route)return'노선 정보를 불러오는 중입니다.';
-  const written=cleanDescription(route.description||route.line?.description||route.shortDescription);
-  if(written)return written;
-  if(route.category==='custom')return'직접 구성한 역 순서와 운행 구간을 따라 달리는 사용자 노선입니다.';
-  const lineName=String(route.line?.ko||route.names?.ko||'');
-  const specificKind=/모노레일/.test(lineName)?'모노레일'
-    :/노면전차|시덴|트램/.test(lineName)?'노면전차'
-    :/경전철/.test(lineName)?'경전철'
-    :/신칸센/.test(lineName)?'신칸센'
-    :/공항철도/.test(lineName)?'공항철도':'';
-  const kind=specificKind||ROUTE_KINDS[route.category]||ROUTE_KINDS[route.normalizedCategory]||ROUTE_KINDS[route.mode]||'철도';
-  const [a,b]=routeEndpoints(route);
-  if(route.loop)return a?`${a}에서 출발해 다시 돌아오는 ${kind} 순환 노선입니다.`:`시작역으로 돌아오는 ${kind} 순환 노선입니다.`;
-  if(a&&b&&a!==b)return`${a}부터 ${b}까지 이어지는 ${kind} 노선입니다.`;
-  if(a)return`${a} 방면을 따라 운행하는 ${kind} 노선입니다.`;
-  return`${kind}의 정차역을 실제 노선 순서대로 체험합니다.`;
-}
-const choiceName=value=>typeof value==='string'?value:value?.ko||value?.nameKo||value?.names?.ko||value?.ja||value?.names?.ja||'';
-function serviceMode(choice){
-  const label=[choiceName(choice?.trainType),choiceName(choice?.patternName),choice?.nameKo||'',choice?.kind==='fallback'?'각역정차':''].join(' ');
-  if(/특급|limited.express/i.test(label))return'특급';
-  if(/특별쾌속|special.rapid/i.test(label))return'특별쾌속';
-  if(/쾌속|rapid/i.test(label))return'쾌속';
-  if(/급행|express/i.test(label))return'급행';
-  if(/완행|보통|일반|각역정차|local/i.test(label))return'보통';
-  return'';
-}
-function describeOperatingPattern(choice,route){
-  const written=cleanDescription(choice?.description||choice?.patternDescription||choice?.trainType?.description);
-  if(written)return written;
-  const a=readableStation(choice?.originNames),b=readableStation(choice?.destinationNames);
-  const link=a&&b&&a!==b?`${a}–${b} 구간`:'등록된 운행 구간';
-  const mode=serviceMode(choice);
-  const direct=choice?.throughServiceId||choice?.kind==='through';
-  const subject=mode?`${mode}열차`:'열차';
-  const extra=direct?' · 다른 노선과 직통 연결':'';
-  if(route?.loop&&a===b)return`순환 구간을 달리는 ${subject} 운행${extra}.`;
-  return`${link}을 운행하는 ${subject} 계통${extra}.`;
-}
-function describeOperatingJourney(choice,route){
-  const written=cleanDescription(choice?.journeyDescription||choice?.description);
-  if(written)return written;
-  if(choice?.kind==='fallback')return route?.loop?'시작역까지 한 바퀴 도는 기본 운행입니다.':'등록된 역 순서대로 달리는 기본 운행입니다.';
-  const mode=serviceMode(choice);
-  const direct=Boolean(choice?.throughServiceId||choice?.kind==='through');
-  const stops=Array.isArray(choice?.branchStops)?choice.branchStops.length:0;
-  const note=stops>=2?`${stops}개 정차역`:mode?`${mode} 운행`:'선택한 구간 운행';
-  return`${note}${direct?' · 다른 노선과 직통':''} · 출발역부터 행선지까지 진행합니다.`;
-}
-
-
 
 
 
@@ -3205,17 +3239,17 @@ const KR_REGIONS=[['all','전국'],['seoul','서울'],['busan','부산'],['daegu
 const KR_GROUPS=[['all','전체'],['rail','철도'],['bus','버스'],['water','수상교통'],['other','기타 교통'],['custom','커스텀']];
 const KR_CATEGORIES={rail:[['all','전체 철도'],['subway','지하철·도시철도'],['commuter_rail','광역철도'],['rail','일반철도'],['high_speed_rail','고속철도'],['light_rail','경전철'],['monorail','모노레일'],['automated-guideway','신교통'],['tram','노면전차'],['airport_rail','공항철도'],['other_rail','기타 철도']],water:[['all','전체 수상교통'],['river_bus','한강버스'],['ferry','여객선']],other:[['all','전체 기타 교통']]};
 const JP_CATEGORIES=[['all','전체'],['jr','JR'],['subway','지하철'],['private','사철'],['third-sector','제3섹터'],['monorail','모노레일'],['automated-guideway','신교통'],['tram','노면전차'],['other','기타'],['shinkansen','신칸센'],['limited-express','특급'],['custom','커스텀']];
-const COUNTRY_UI={jp:{mark:'JAPAN RAIL',status:'日本全国 · ALL JAPAN',subtitle:'일본 전국 철도 타이핑',title:'일본 철도를<br><span>타이핑하다.</span>',intro:'일본 전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.',network:'JAPAN RAILWAY NETWORK / 日本全国'},kr:{mark:'KOREA TRANSIT',status:'대한민국 · KOREA',subtitle:'대한민국 대중교통 타이핑',title:'대한민국 교통을<br><span>타이핑하다.</span>',intro:'철도·지하철·버스·수상교통의 실제 정차 순서를 따라가는 타이핑 게임.<br>한국어 역·정류장·선착장 이름을 정확히 입력하세요.',network:'KOREA PUBLIC TRANSPORT / 대한민국'}};
+const COUNTRY_UI={hk:{mark:'HONG KONG RAIL',status:'香港 · HONG KONG',subtitle:'홍콩 철도 타이핑',title:'홍콩 철도를<br><span>타이핑하다.</span>',intro:'홍콩 철도의 실제 정차 순서와 선로를 따라가는 타이핑 게임.<br>한국어 역명을 입력하며 번체중문·영문 역명을 함께 익히세요.',network:'HONG KONG RAILWAY NETWORK / 香港'},jp:{mark:'JAPAN RAIL',status:'日本全国 · ALL JAPAN',subtitle:'일본 전국 철도 타이핑',title:'일본 철도를<br><span>타이핑하다.</span>',intro:'일본 전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.',network:'JAPAN RAILWAY NETWORK / 日本全国'},kr:{mark:'KOREA TRANSIT',status:'대한민국 · KOREA',subtitle:'대한민국 대중교통 타이핑',title:'대한민국 교통을<br><span>타이핑하다.</span>',intro:'한국 철도 노선 초기화 완료 · 등록 노선 0개.<br>신규 노선 구축 전까지 한국 주행은 비활성화되어 있습니다.',network:'KOREA PUBLIC TRANSPORT / 대한민국'}};
 COUNTRY_UI.tw={mark:'TAIWAN RAIL',status:'대만 · TAIWAN',subtitle:'대만 철도 타이핑',title:'대만 철도를<br><span>타이핑하다.</span>',intro:'대만의 실제 철도 선형과 정차역을 따라 달립니다.<br>출발역부터 종착역까지 한국어 역명을 입력하세요.',network:'대만 철도 네트워크'};
 const renderTabs=(target,items,dataKey,current)=>{target.innerHTML=items.map(([id,label])=>`<button class="${id===current?'active':''}" data-${dataKey}="${id}">${label}</button>`).join('')};
 function busCategories(){const scoped=routes.filter(route=>routeTransportGroup(route)==='bus'&&(regionFilter==='all'||route.regionId===regionFilter)),values=new Map([['all','전체']]);for(const route of scoped)values.set(route.normalizedCategory||route.routeType||route.category,route.regionalCategory||route.routeType||route.category);return[...values]}
-function renderTransportFilters(){const modes=$('#korea-play-modes');if(modes){modes.hidden=countryId!=='kr';modes.querySelectorAll('[data-korea-mode]').forEach(b=>{b.classList.toggle('active',b.dataset.koreaMode===koreaPlayMode);b.setAttribute('aria-pressed',String(b.dataset.koreaMode===koreaPlayMode))})}const groupTabs=$('#transport-mode-tabs'),regionTabs=$('#region-tabs'),categoryTabs=$('#category-tabs');if(countryId==='tw'){groupTabs.hidden=true;regionTabs.hidden=true;categoryTabs.hidden=false;renderTabs(categoryTabs,TAIWAN_CATEGORIES,'category',category);return}if(countryId==='jp'){groupTabs.hidden=true;regionTabs.hidden=true;categoryTabs.hidden=false;renderTabs(categoryTabs,JP_CATEGORIES.filter(([id])=>id==='all'||id==='custom'||id==='limited-express'||routes.some(route=>routeGroup(route)===id)),'category',category);return}groupTabs.hidden=false;renderTabs(groupTabs,KR_GROUPS,'transport-group',transportGroup);regionTabs.hidden=transportGroup!=='bus';if(transportGroup==='bus')renderTabs(regionTabs,KR_REGIONS,'region',regionFilter);const items=transportGroup==='bus'?busCategories():KR_CATEGORIES[transportGroup]||[];categoryTabs.hidden=!items.length;if(items.length)renderTabs(categoryTabs,items,'category',category)}
-function applyCountryUi(){const ui=COUNTRY_UI[countryId];$('#route-search').placeholder=countryId==='tw'?'노선 검색 · 한국어 / 번체중문 / English':'노선 검색 · 한국어 / 일본어 / English';document.documentElement.dataset.country=countryId;document.documentElement.dataset.featureKorea=String(FEATURE_FLAGS.korea);$('#brand-subtitle').textContent=ui.subtitle;$('#home-country-mark').textContent=ui.mark;$('#home-country-subtitle').textContent=ui.subtitle;$('#home-country-status').textContent=ui.status;$('#hero-title').innerHTML=ui.title;$('#home-intro').innerHTML=ui.intro;document.querySelector('.line-select-heading p').textContent=ui.network;renderTransportFilters();$$('[data-country]').forEach(button=>{const enabled=isCountryEnabled(button.dataset.country);button.hidden=!enabled;button.disabled=!enabled;button.setAttribute('aria-hidden',String(!enabled));button.classList.toggle('active',enabled&&button.dataset.country===countryId)})}
+function renderTransportFilters(){const groupTabs=$('#transport-mode-tabs'),regionTabs=$('#region-tabs'),categoryTabs=$('#category-tabs');if(countryId==='tw'){groupTabs.hidden=true;regionTabs.hidden=true;categoryTabs.hidden=false;renderTabs(categoryTabs,TAIWAN_CATEGORIES,'category',category);return}if(countryId==='hk'){groupTabs.hidden=true;regionTabs.hidden=true;categoryTabs.hidden=false;renderTabs(categoryTabs,HONG_KONG_CATEGORIES,'category',category);return}if(countryId==='jp'){groupTabs.hidden=true;regionTabs.hidden=true;categoryTabs.hidden=false;renderTabs(categoryTabs,JP_CATEGORIES.filter(([id])=>id==='all'||id==='custom'||id==='limited-express'||routes.some(route=>routeGroup(route)===id)),'category',category);return}groupTabs.hidden=false;renderTabs(groupTabs,KR_GROUPS,'transport-group',transportGroup);regionTabs.hidden=transportGroup!=='bus';if(transportGroup==='bus')renderTabs(regionTabs,KR_REGIONS,'region',regionFilter);const items=transportGroup==='bus'?busCategories():KR_CATEGORIES[transportGroup]||[];categoryTabs.hidden=!items.length;if(items.length)renderTabs(categoryTabs,items,'category',category)}
+function applyCountryUi(){const ui=COUNTRY_UI[countryId];$('#route-search').placeholder=countryId==='tw'?'노선 검색 · 한국어 / 번체중문 / English':countryId==='hk'?'노선 검색 · 한국어 / 번체중문 / English':'노선 검색 · 한국어 / 일본어 / English';document.documentElement.dataset.country=countryId;document.documentElement.dataset.featureKorea=String(FEATURE_FLAGS.korea);$('#brand-subtitle').textContent=ui.subtitle;$('#home-country-mark').textContent=ui.mark;$('#home-country-subtitle').textContent=ui.subtitle;$('#home-country-status').textContent=ui.status;$('#hero-title').innerHTML=ui.title;$('#home-intro').innerHTML=ui.intro;document.querySelector('.line-select-heading p').textContent=ui.network;renderTransportFilters();$$('[data-country]').forEach(button=>{const enabled=isCountryEnabled(button.dataset.country);button.hidden=!enabled;button.disabled=!enabled;button.setAttribute('aria-hidden',String(!enabled));button.classList.toggle('active',enabled&&button.dataset.country===countryId)})}
 function refreshCountryCopy(){if(countryId==='tw'){const play=document.querySelector('.launch-menu [data-nav="rail-map"] small'),footer=document.querySelector('.home-footer span:nth-child(2)');if(play)play.textContent='대만 철도에서 노선 선택';if(footer)footer.textContent='대만 철도 한국어 타이핑';return}const korea=countryId==='kr',play=document.querySelector('.launch-menu [data-nav="rail-map"] small'),footer=document.querySelector('.home-footer span:nth-child(2)'),featureButtons=$$('#feature-viewport [data-feature-route]');if(play)play.textContent=korea?'대한민국 교통에서 노선 선택':'일본 전국 철도에서 노선 선택';if(footer)footer.textContent=korea?'대한민국 대중교통 타이핑':'일본 전국 철도 타이핑';if(!korea){if(featureButtons[0])featureButtons[0].dataset.featureRoute='line-11302';if(featureButtons[1])featureButtons[1].dataset.featureRoute='line-28001'}const custom=document.querySelector('[data-feature-index="2"] h2');if(custom)custom.textContent=korea?'나만의 노선':'新路線';document.querySelectorAll('#feature-viewport .feature-meta span:nth-child(2)').forEach(span=>{span.hidden=korea})}
 function syncHomeFeatured(){
- const seen=new Set(),available=routes.filter(route=>{if(route.countryId!==countryId||route.geometryReady!==true||route.playable===false)return false;const id=route.passengerLineId||route.id;if(seen.has(id))return false;seen.add(id);return true});
+ const seen=new Set(),available=routes.filter(route=>{if(route.countryId!==countryId||route.geometryReady!==true||route.playable===false)return false;const id=route.countryId==='hk'?(route.canonicalLineId||route.id):(route.passengerLineId||route.id);if(seen.has(id))return false;seen.add(id);return true});
  document.querySelectorAll('#feature-viewport [data-feature-route]').forEach((button,index)=>{
-  if(countryId==='kr'||countryId==='tw')button.dataset.featureRoute=available[index]?.id||'';
+  if(countryId!=='jp')button.dataset.featureRoute=available[index]?.id||'';
   const route=routes.find(r=>r.id===button.dataset.featureRoute),card=button.closest('article');button.disabled=!route;
   button.innerHTML=route?'바로 플레이 <span>↗</span>':'노선 준비 중';
   if(!route&&card){card.querySelector('[data-feature-line-ko]').textContent='노선 준비 중';for(const selector of ['.feature-number','[data-feature-operator]','[data-feature-line-secondary]','[data-feature-stations]']){const node=card.querySelector(selector);if(node)node.textContent=''}}
@@ -3227,8 +3261,8 @@ function applyExplicitDirection(){const select=$('#service-direction'),direction
 function go(name){const result=window.TRTNavigation?.showScreen(name);requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));return result}
 function applyTheme(theme){const resolved=theme==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):theme;document.documentElement.dataset.theme=resolved;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',resolved==='dark'?'#07110e':'#f5f4ef')}
 const JAPANESE_KOREAN_EXACT_FIXES={"智頭急行":"치즈 급행","富士急行":"후지 급행","福岡市交通局":"후쿠오카시 교통국","福島交通":"후쿠시마 교통","函館市交通局":"하코다테시 교통국","東葉高速鉄道":"도요 고속철도","広島高速交通":"히로시마 고속교통","北条鉄道":"호조 철도","北越急行":"호쿠에쓰 급행","伊豆急行":"이즈 급행","鹿児島市交通局":"가고시마시 교통국","関東鉄道":"간토 철도","北九州高速鉄道":"기타큐슈 고속철도","北大阪急行電鉄":"기타오사카 급행전철","神戸電鉄":"고베 전철","神戸高速鉄道":"고베 고속철도","神戸市交通局":"고베시 교통국","神戸新交通":"고베 신교통","熊本市交通局":"구마모토시 교통국","黒部峡谷鉄道":"구로베 협곡철도","京都市交通局":"교토시 교통국","京都丹後鉄道":"교토 단고 철도","名古屋臨海高速鉄道":"나고야 임해고속철도","名古屋市交通局":"나고야시 교통국","大井川鐵道":"오이가와 철도","大阪府都市開発":"오사카부 도시개발","大阪モノレール株式会社":"오사카 모노레일","嵯峨野観光鉄道":"사가노 관광철도","埼玉新都市交通":"사이타마 신도시교통","札幌市交通局":"삿포로시 교통국","仙台空港鉄道":"센다이 공항철도","仙台市交通局":"센다이시 교통국","湘南モノレール":"쇼난 모노레일","東海交通事業":"도카이 교통사업","上田交通":"우에다 교통","由利高原鉄道":"유리 고원철도","東海道新幹線":"도카이도 신칸센","山陽新幹線":"산요 신칸센","東北新幹線":"도호쿠 신칸센","北海道新幹線":"홋카이도 신칸센","上越新幹線":"조에쓰 신칸센","北陸新幹線":"호쿠리쿠 신칸센","九州新幹線":"큐슈 신칸센","西九州新幹線":"니시큐슈 신칸센","山形新幹線":"야마가타 신칸센","秋田新幹線":"아키타 신칸센","函館市電２系統":"하코다테시덴 2계통","函館市電５系統":"하코다테시덴 5계통","鹿児島市電１系統":"가고시마시덴 1계통","鹿児島市電２系統":"가고시마시덴 2계통","熊本市電Ａ系統":"구마모토시덴 A계통","熊本市電Ｂ系統":"구마모토시덴 B계통","長崎電軌１系統":"나가사키 전기궤도 1호계통","長崎電軌３系統":"나가사키 전기궤도 3호계통","長崎電軌４系統":"나가사키 전기궤도 4호계통","長崎電軌５系統":"나가사키 전기궤도 5호계통","富山地鉄市内線【１・２系統】":"도야마 지방철도 시내선 1·2계통","富山地鉄富山都心線【３系統(環状線)】":"도야마 지방철도 도야마 도심선 3계통(순환선)","大阪難波":"오사카난바","三河安城":"미카와안조","新大阪":"신오사카","大船":"오후나","大井町":"오이마치","大原":"오하라","京都":"교토"};
-const JAPANESE_KOREAN_ID_FIXES={"tokyo-metro":"도쿄 메트로","yurikamome":"유리카모메","line-28001":"긴자선","line-28002":"마루노우치선","line-28003":"히비야선","line-28004":"도자이선","line-28005":"치요다선","line-28006":"유라쿠초선","line-28008":"한조몬선","line-28009":"난보쿠선","line-28010":"후쿠토신선","line-99618":"미도스지선","line-99311":"유리카모메","station-mlit-003872":"신바시","station-mlit-003887":"시오도메","station-mlit-003958":"다케시바","station-mlit-003979":"히노데","station-mlit-004030":"시바우라 후토","station-mlit-004091":"오다이바 카이힌코엔","station-mlit-004112":"다이바","station-mlit-004128":"도쿄 국제 크루즈 터미널","station-mlit-004144":"텔레콤센터","station-mlit-004119":"아오미","station-mlit-004087":"도쿄빅사이트","station-mlit-004064":"아리아케","station-mlit-004037":"아리아케 테니스노모리","station-mlit-004001":"시조마에","station-mlit-003981":"신토요스","station-mlit-003951":"토요스","station-mlit-003729":"한조몬","station-mlit-003782":"나가타쵸","station-mlit-003839":"토요쵸","station-mlit-003542":"코라쿠엔","station-mlit-003962":"시바코엔","station-mlit-003654":"료고쿠","station-mlit-003646":"료고쿠","station-mlit-003604":"오쿠보","station-mlit-003954":"아카바네바시","station-mlit-003639":"킨시쵸","station-mlit-003900":"카미야쵸","station-mlit-003753":"스이텐구마에","station-mlit-004108":"도쿄 텔레포트","station-mlit-003545":"우에노히로코지","station-mlit-004036":"세이죠가쿠엔마에","station-mlit-004331":"케이큐카마타","station-mlit-004264":"오모리"};
-const NAMUWIKI_STATION_FIXES_BY_ID={"station-mlit-003872":"신바시","station-mlit-003887":"시오도메","station-mlit-003958":"다케시바","station-mlit-003979":"히노데","station-mlit-004030":"시바우라 후토","station-mlit-004091":"오다이바 카이힌코엔","station-mlit-004112":"다이바","station-mlit-004128":"도쿄 국제 크루즈 터미널","station-mlit-004144":"텔레콤센터","station-mlit-004119":"아오미","station-mlit-004087":"도쿄빅사이트","station-mlit-004064":"아리아케","station-mlit-004037":"아리아케 테니스노모리","station-mlit-004001":"시조마에","station-mlit-003981":"신토요스","station-mlit-003951":"토요스","station-mlit-003729":"한조몬","station-mlit-003782":"나가타쵸","station-mlit-003839":"토요쵸","station-mlit-003542":"코라쿠엔","station-mlit-003962":"시바코엔","station-mlit-003654":"료고쿠","station-mlit-003646":"료고쿠","station-mlit-003604":"오쿠보","station-mlit-003954":"아카바네바시","station-mlit-003639":"킨시쵸","station-mlit-003900":"카미야쵸","station-mlit-003753":"스이텐구마에","station-mlit-004108":"도쿄 텔레포트","station-mlit-003545":"우에노히로코지","station-mlit-004036":"세이죠가쿠엔마에","station-mlit-004331":"케이큐카마타","station-mlit-004264":"오모리","station-mlit-003785":"도쿄","station-mlit-003766":"도쿄","station-mlit-003884":"롯폰기잇초메","station-mlit-003892":"롯폰기","station-1130101":"도쿄","station-1111102":"유후츠","station-1120311":"오미나토","station-1150518":"오오카","station-9964809":"고베 공항","station-1141608":"미노오타","station-1161408":"호즈쿄","station-1192902":"휴가쇼나이","station-9932008":"가마쿠라코코마에","station-mlit-004361":"하네다 공항 제2터미널","station-3100533":"무로구치오노","station-9931303":"코엔","station-9960115":"교세라마에","station-mlit-004189":"나루토","station-3001807":"코마키구치","station-mlit-004614":"사가미오츠카","station-9931412":"다이유잔"};
+const JAPANESE_KOREAN_ID_FIXES={"tokyo-metro":"도쿄 메트로","yurikamome":"유리카모메","line-28001":"긴자선","line-28002":"마루노우치선","line-28003":"히비야선","line-28004":"도자이선","line-28005":"치요다선","line-28006":"유라쿠초선","line-28008":"한조몬선","line-28009":"난보쿠선","line-28010":"후쿠토신선","line-99618":"미도스지선","line-99311":"유리카모메","station-1130102":"신바시","station-003887":"시오도메","station-003958":"다케시바","station-003979":"히노데","station-004030":"시바우라 후토","station-004091":"오다이바 카이힌코엔","station-004112":"다이바","station-004128":"도쿄 국제 크루즈 터미널","station-004144":"텔레콤센터","station-004119":"아오미","station-004087":"도쿄빅사이트","station-004064":"아리아케","station-004037":"아리아케 테니스노모리","station-004001":"시조마에","station-003981":"신토요스","station-003951":"토요스","station-003729":"한조몬","station-003782":"나가타쵸","station-003839":"토요쵸","station-003542":"코라쿠엔","station-003962":"시바코엔","station-003654":"료고쿠","station-003646":"료고쿠","station-003604":"오쿠보","station-003954":"아카바네바시","station-003639":"킨시쵸","station-003900":"카미야쵸","station-003753":"스이텐구마에","station-004108":"도쿄 텔레포트","station-003545":"우에노히로코지","station-004036":"세이죠가쿠엔마에","station-004331":"케이큐카마타","station-004264":"오모리"};
+const NAMUWIKI_STATION_FIXES_BY_ID={"station-1130102":"신바시","station-003887":"시오도메","station-003958":"다케시바","station-003979":"히노데","station-004030":"시바우라 후토","station-004091":"오다이바 카이힌코엔","station-004112":"다이바","station-004128":"도쿄 국제 크루즈 터미널","station-004144":"텔레콤센터","station-004119":"아오미","station-004087":"도쿄빅사이트","station-004064":"아리아케","station-004037":"아리아케 테니스노모리","station-004001":"시조마에","station-003981":"신토요스","station-003951":"토요스","station-003729":"한조몬","station-003782":"나가타쵸","station-003839":"토요쵸","station-003542":"코라쿠엔","station-003962":"시바코엔","station-003654":"료고쿠","station-003646":"료고쿠","station-003604":"오쿠보","station-003954":"아카바네바시","station-003639":"킨시쵸","station-003900":"카미야쵸","station-003753":"스이텐구마에","station-004108":"도쿄 텔레포트","station-003545":"우에노히로코지","station-004036":"세이죠가쿠엔마에","station-004331":"케이큐카마타","station-004264":"오모리","station-1130101":"도쿄","station-1130101":"도쿄","station-003884":"롯폰기잇초메","station-003892":"롯폰기","station-1130101":"도쿄","station-1111102":"유후츠","station-1120311":"오미나토","station-1150518":"오오카","station-9964809":"고베 공항","station-1141608":"미노오타","station-1161408":"호즈쿄","station-1192902":"휴가쇼나이","station-9932008":"가마쿠라코코마에","station-004361":"하네다 공항 제2터미널","station-3100533":"무로구치오노","station-9931303":"코엔","station-9960115":"교세라마에","station-1131420":"나루토","station-3001807":"코마키구치","station-004614":"사가미오츠카","station-9931412":"다이유잔"};
 const NAMUWIKI_STATION_FIXES_BY_JA={"大阪難波":"오사카난바","三河安城":"미카와안조","新大阪":"신오사카","大船":"오후나","大井町":"오이마치","大原":"오하라","新倉敷":"신쿠라시키","鹿児島":"가고시마","鹿児島中央":"가고시마추오","南鹿児島":"미나미가고시마","鹿児島駅前":"가고시마에키마에","南鹿児島駅前":"미나미가고시마에키마에","鹿児島中央駅前":"가고시마추오에키마에"};
 function stationKoreanNameFromPolicy(station){
   const ja=station?.ja||station?.names?.ja||'',id=station?.id||'';
@@ -3258,7 +3292,7 @@ function cleanJapaneseKoreanName(value,ja=''){
 const YURIKAMOME_LOOP_SEGMENT=[[35.64249,139.75786],[35.64169,139.75788],[35.63918,139.75793],[35.63856,139.7579],[35.63833,139.75787],[35.63795,139.75786],[35.637362,139.757861],[35.637151,139.757839],[35.636947,139.757771],[35.636755,139.757661],[35.636582,139.757512],[35.636433,139.757328],[35.636311,139.757115],[35.636222,139.75688],[35.636167,139.756628],[35.636149,139.756369],[35.636167,139.75611],[35.636222,139.755859],[35.636311,139.755623],[35.636433,139.75541],[35.636582,139.755226],[35.636755,139.755077],[35.636947,139.754967],[35.637151,139.7549],[35.637362,139.754877],[35.637572,139.7549],[35.637777,139.754967],[35.637968,139.755077],[35.638141,139.755226],[35.638291,139.75541],[35.638412,139.755623],[35.638501,139.755859],[35.638556,139.75611],[35.638574,139.756369],[35.638556,139.756628],[35.638501,139.75688],[35.638412,139.757115],[35.638291,139.757328],[35.638141,139.757512],[35.637968,139.757661],[35.637777,139.757771],[35.637572,139.757839],[35.637362,139.757861],[35.63755,139.75815],[35.63794,139.75922],[35.63676,139.76275],[35.63588,139.76551],[35.63522,139.76757],[35.63493,139.76861],[35.63486,139.76913],[35.63491,139.77006],[35.6352,139.77124],[35.63561,139.77237],[35.63594,139.77334],[35.63628,139.77481],[35.63617,139.77562],[35.63601,139.77613],[35.63581,139.77661],[35.63554,139.77698],[35.6353,139.77721],[35.63187,139.77994],[35.63104,139.78003],[35.63079,139.77989],[35.63023,139.7793],[35.63,139.77888]];
 function applyYurikamomeLoopGeometry(route){
   if(route?.id!=='line-99311'||!Array.isArray(route.directedSegments)||!route.directedSegments.length)return route;
-  const target='station-mlit-004030::station-mlit-004091';
+  const target='station-004030::station-004091';
   const directedSegments=route.directedSegments.map(segment=>segment.fromStationId+'::'+segment.toStationId===target?{...segment,geometry:YURIKAMOME_LOOP_SEGMENT,source:'Yurikamome official Shibaura loop refinement',verified:true}:segment);
   const geometry=[],stationGeometryIndex=new Map;
   for(const segment of directedSegments){let points=(segment.geometry||[]).map(point=>[Number(point[0]),Number(point[1])]);if(!points.length)continue;stationGeometryIndex.set(segment.fromStationId,Math.max(0,geometry.length-1));if(geometry.length&&geometry.at(-1)[0]===points[0][0]&&geometry.at(-1)[1]===points[0][1])points=points.slice(1);geometry.push(...points);stationGeometryIndex.set(segment.toStationId,Math.max(0,geometry.length-1))}
@@ -3268,7 +3302,7 @@ function applyYurikamomeLoopGeometry(route){
 function fixRouteKoreanNames(route){
   if(!route)return route;
   // Korean station labels are canonical Hangul, not Japanese transliteration targets.
-  if(route.countryId==='kr'||route.countryId==='tw')return route;
+  if(route.countryId==='kr'||route.countryId==='hk'||route.countryId==='tw')return route;
   // Canonical operator identities. Preserve route IDs and station ordering.
   const canonicalOperatorId={'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[route.operatorId]||route.operatorId;
   if(canonicalOperatorId!==route.operatorId)route={...route,operatorId:canonicalOperatorId};
@@ -3292,7 +3326,7 @@ if(route.operatorId==='uekedenkitetsudo')route={...route,operator:{...(route.ope
 const JAPAN_STREETCAR_LINE_IDS=new Set(['line-99706','line-99707','line-99305','line-99521','line-99809','line-99810','line-99811','line-99812','line-99628','line-99629']);
 const JAPAN_CLOSED_LINE_IDS=new Set(['line-11113','line-99708']);
 function currentJapanServiceRoute(route){
- if(!route||route.countryId==='kr'||route.countryId==='tw')return route;
+ if(!route||route.countryId==='kr'||route.countryId==='hk'||route.countryId==='tw')return route;
  if(JAPAN_CLOSED_LINE_IDS.has(route.id))return{...route,visibility:'internal',playable:false,historical:true};
  const override=globalThis.TRT_JAPAN_CATEGORY_OVERRIDES?.[route.id];
  if(override)return{...route,category:override};
@@ -3305,7 +3339,7 @@ function currentJapanServiceRoute(route){
  }
  return route;
 }
-function allRoutes(){return[...builtin,...(countryId==='kr'&&koreaPlayMode==='research'?[]:storage.routes()).filter(route=>(route.countryId||'jp')===countryId).map(r=>railDataRepository.resolveRoute(normalizeLine(r,{category:'custom'})))].map(fixRouteKoreanNames).map(currentJapanServiceRoute).filter(isRouteVisible).filter(r=>r.lazy||(Array.isArray(r.stations)&&r.stations.length>=2))}
+function allRoutes(){return[...builtin,...storage.routes().filter(route=>(route.countryId||'jp')===countryId).map(r=>railDataRepository.resolveRoute(normalizeLine(r,{category:'custom'})))].map(fixRouteKoreanNames).map(currentJapanServiceRoute).filter(isRouteVisible).filter(r=>r.lazy||(Array.isArray(r.stations)&&r.stations.length>=2))}
 const operatorLogo=operatorLogoMarkup;
 // Company marks belong on every route card, including Tokyo Metro.
 const lineSurfaceOperatorLogo=(route,className)=>operatorLogoMarkup(route,className);
@@ -3410,14 +3444,15 @@ function refreshTramNetworkGroups(eligible){
 
 function filteredRoutes(){const queries=searchVariants($('#route-search').value);return routes.filter(r=>(countryId==='jp'||transportGroup==='all'||routeTransportGroup(r)===transportGroup)&&(countryId!=='kr'||transportGroup!=='bus'||regionFilter==='all'||r.regionId===regionFilter)&&routeCategoryMatches(r)&&(operatorFilter==='all'||operatorKey(r)===operatorFilter)&&(!queries[0]||queries.some(query=>searchable(r).includes(query))))}
 function stopWord(route){return['bus','village_bus','express_bus','brt'].includes(route.mode)?'정류장':['river_bus','ferry'].includes(route.mode)?'선착장':'역'}
-function krLineFamily(r){if(isKoreanResearch(r))return r.integratedLine1===true?'kr-passenger-metro-1':r.id;return r.countryId==='kr'?(r.passengerLineId||r.id):null}
+function krLineFamily(r){if(/^kr-service-\d+$/.test(r?.id||''))return r.passengerLineId||r.id;return r.countryId==='kr'?(r.passengerLineId||r.id):null}
 function krRouteLabel(r){return r?.integratedLine1===true?'수도권 전철 1호선':koreanRouteDisplayText(String(r.passengerLineName||r.line?.ko||r.id).trim(),r)}
 // Unreleased research and structurally incomplete Korean routes are not playable.
 function koreanRouteUnavailableReason(route){
+  if(route?.countryId==='hk')return hongKongRouteBlockReason(route);
   if(route?.countryId!=='kr')return '';
   const blocked=koreanRouteBlockReason(route);
   if(blocked)return blocked;
-  if(isKoreanResearch(route)){if(koreaPlayMode!=='research'&&!(koreaPlayMode==='released'&&route.integratedLine1===true))return '연구용 미리보기에서만 실행할 수 있습니다.';if(!route.lazy){try{assertKoreanResearchRoute(route)}catch(e){return e.message}}}
+  
   if(route.playable===false||route.visibility==='internal')return '공개 운행 검증 대기';
   if(route.geometryReady!==true||route.geometryStatus==='missing')return '실제 선로 선형 검증 대기';
   if(!route.lazy){
@@ -3428,10 +3463,11 @@ function koreanRouteUnavailableReason(route){
   }
   return '';
 }
-function krRouteCards(filtered){const groups=new Map();for(const r of filtered){const key=krLineFamily(r)||r.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}return [...groups.values()].map(members=>{const r=members[0];if(members.length<2||members.every(m=>koreanRouteUnavailableReason(m)))return routeCard(r);const integrated=r.integratedLine1===true&&isKoreanResearch(r),services=integrated?[]:koreanFamilyServiceChoices(krLineFamily(r)),count=services.length?services.length/2:members.length,label=integrated?'방향별 운행계통':services.length?'운행계통':'운행구간';return '<button type="button" class="line-card" style="--route-color:'+escapeHtml(r.lineColor||'#888')+'" data-kr-family="'+escapeHtml(krLineFamily(r))+'"><div class="line-card-identity"><span class="operator">'+escapeHtml(r.operator?.ko||'')+'</span><h3 class="line-card-line-name">'+escapeHtml(krRouteLabel(r))+'</h3></div><p class="line-card-description">'+escapeHtml(describeRoute(r))+'</p><p>'+(integrated?'경인선 급행·일반 선택 · 코레일 확인 2방향 · 나머지 시간표 검증 중':'노선을 선택한 뒤 플레이 버튼에서 행선지를 설정하세요')+'</p><footer><span>'+count+'개 '+label+'</span><span>노선 선택 →</span></footer></button>'}).join('')}
-function routeCard(r){const reason=koreanRouteUnavailableReason(r),ready=r.geometryReady===true,word=stopWord(r),action=reason?'검증 대기':r.lazy?'상세 불러오기':ready?'선택':'순서 플레이';return`<button ${reason?'disabled aria-disabled="true" title="'+escapeHtml(reason)+'"':''} class="line-card ${reason?'unplayable':''} ${selected?.id===r.id?'selected':''} ${r.category==='shinkansen'?'shinkansen-card':''}" style="--route-color:${r.lineColor}" data-route="${r.id}"><div class="line-card-identity">${r.countryId==="tw"?operatorLogoMarkup(r,"line-card-operator-logo"):""}<span class="operator">${escapeHtml(r.operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ko)}</h3></div><p>${escapeHtml(reason||(r.countryId==='kr'?krRouteLabel(r):r.line.ja||r.line.en))}</p><p class="line-card-description">${escapeHtml(describeRoute(r))}</p>${isKoreanResearch(r)?`<p class="research-card-status">${escapeHtml(koreanStationDisplayName(r.researchEvidence.origin,r.countryId,r))} → ${escapeHtml(koreanStationDisplayName(r.researchEvidence.destination,r.countryId,r))}<br>실제 선로 연결 확인 · 공식 운행 미승인 · 연구용 플레이 가능</p>`:''}<footer><span>${r.stationCount||r.stations.length}개 ${word}</span><span>${action} ${reason?'':'→'}</span></footer></button>`}
-function renderRoutes(){const filtered=filteredRoutes(),query=$('#route-search').value;const allVisible=filtered,visible=allVisible.slice(0,routeRenderLimit);$('#route-count').textContent=`${filtered.length}개 노선 · ${visible.length}개 표시`;const random=category==='all'&&transportGroup==='all'&&operatorFilter==='all'&&!query&&(countryId!=='kr'||filtered.some(r=>!koreanRouteUnavailableReason(r)))?`<button class="line-card random" style="--route-color:#45c985" data-random-route><span class="operator">${countryId==='tw'?'대만 철도':countryId==='kr'?'KOREA TRANSIT NETWORK':'JAPAN RAIL NETWORK'}</span><h3>RANDOM</h3><p>${countryId==='tw'?'대만':countryId==='kr'?'대한민국':'일본 전국'} 랜덤 노선</p><footer><span>PLAYABLE ROUTES</span><span>SELECT →</span></footer></button>`:'';const more=allVisible.length>visible.length?`<button class="line-card route-more" data-route-more><span class="operator">WINDOWED GRID</span><h3>＋ ${Math.min(96,allVisible.length-visible.length)}개 더 보기</h3><p>${allVisible.length-visible.length}개 노선 남음</p></button>`:'';$('#route-grid').innerHTML=random+(visible.length?(countryId==='kr'?krRouteCards(visible):visible.map(routeCard).join(''))+more:(countryId==='jp'&&category==='limited-express'&&famousExpressLoading?'<p class="muted" role="status">특급열차의 실제 선로와 정차역을 불러오는 중...</p>':'<p class="muted">검색 결과가 없습니다.</p>'))}
-function renderSelected(){const panel=$('#selected-line-preview');if(selectedGroup){const spec=NETWORK_GROUPS[selectedGroup],members=spec.routeIds.map(id=>routes.find(route=>route.id===id)).filter(Boolean),main=members[0];panel.innerHTML=`<div class="selected-line-card network-detail"><p class="eyebrow">${spec.kind==='services'?'운행계통':spec.kind==='physical'?'실제 노선':'분기·계통'} 선택</p><h3 id="selected-line-heading">${escapeHtml(spec.label||main?.operator.ko||'노선 그룹')}<span>${spec.kind==='services'?'운행하는 계통을 선택하세요':'노선을 선택하세요'}</span></h3><div class="network-branches">${members.map(route=>`<button data-route="${route.id}"><span><b>${escapeHtml(route.line.ja)}</b><small>${escapeHtml(route.line.ko)} · ${route.stations.length} STATIONS</small><small class="line-branch-description">${escapeHtml(describeRoute(route))}</small></span></button>`).join('')}</div></div>`;return}if(!selected){panel.innerHTML='<div class="selected-line-empty"><h3 id="selected-line-heading">노선을 선택하세요.</h3><p>오른쪽 목록에서 플레이할 노선을 선택합니다.</p></div>';return}panel.closest('.selected-line-panel').style.setProperty('--route-color',selected.lineColor);panel.innerHTML=`<div class="selected-line-card" style="--route-color:${selected.lineColor}"><div class="selected-line-operator"><span>${escapeHtml(selected.operator.ko)}</span></div><h3 id="selected-line-heading">${escapeHtml(koreanRouteDisplayText(selected.line.ja,selected))}<span>${escapeHtml(koreanRouteDisplayText(selected.line.ko,selected))} · ${escapeHtml(selected.line.en)}</span></h3><p class="selected-line-description">${escapeHtml(describeRoute(selected))}</p>${selected.section?`<p class="selected-section">${escapeHtml(koreanRouteDisplayText(selected.section.ja,selected))} · ${escapeHtml(koreanRouteDisplayText(selected.section.ko,selected))}</p>`:''}<div class="selected-line-meta"><span>${selected.stationCount||selected.stations.length} STATIONS</span><span>${selected.dataKind==='trainService'?'LIMITED EXPRESS':selected.loop?'LOOP LINE':'FULL ROUTE'}</span></div><div class="selected-line-actions"><button class="selected-play" type="button" data-selected-play="${selected.id}">PLAY THIS LINE <span>→</span></button><button class="selected-free-drive" type="button" data-selected-free-drive>FREE DRIVE <span>↗</span></button><button class="selected-ranking" type="button" data-selected-ranking="true">🏆 이 노선 랭킹 <span>→</span></button></div></div>`}
+function krRouteCards(filtered){const groups=new Map();for(const r of filtered){const key=krLineFamily(r)||r.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}return [...groups.values()].map(members=>{const r=members[0];if(members.length<2||members.every(m=>koreanRouteUnavailableReason(m)))return routeCard(r);const services=koreanFamilyServiceChoices(krLineFamily(r)),count=services.length?services.length/2:members.length,label=services.length?'운행계통':'운행구간';return '<button type="button" class="line-card" style="--route-color:'+escapeHtml(r.lineColor||'#888')+'" data-kr-family="'+escapeHtml(krLineFamily(r))+'"><div class="line-card-identity">${r.countryId==="tw"?operatorLogoMarkup(r,"line-card-operator-logo"):""}<span class="operator">'+escapeHtml(r.operator?.ko||'')+'</span><h3 class="line-card-line-name">'+escapeHtml(krRouteLabel(r))+'</h3></div><p>'+'노선을 선택한 뒤 플레이 버튼에서 행선지를 설정하세요'+'</p><footer><span>'+count+'개 '+label+'</span><span>노선 선택 →</span></footer></button>'}).join('')}
+function hongKongRouteCards(filtered){let tramShown=false;return filtered.map(r=>{if(r.canonicalLineId!=='hk-tramway'){if(!r.canonicalLineId)return routeCard(r);if(filtered.find(x=>x.canonicalLineId===r.canonicalLineId)?.id!==r.id)return'';const members=filtered.filter(x=>x.canonicalLineId===r.canonicalLineId);return`<button type="button" class="line-card" style="--route-color:${escapeHtml(r.lineColor)}" data-hk-line-family="${escapeHtml(r.canonicalLineId)}"><span class="operator">${escapeHtml(r.operator.ko)}</span><h3>${escapeHtml(r.line.ko)}</h3><p>운행계통 → 방향 → 출발역·행선지</p><footer><span>${members.length}개 검증 방향</span><span>운행계통 선택 →</span></footer></button>`;}if(tramShown)return'';tramShown=true;const members=filtered.filter(x=>x.canonicalLineId==='hk-tramway');return`<button type="button" class="line-card" style="--route-color:${escapeHtml(r.lineColor)}" data-hk-tram-family><span class="operator">Hong Kong Tramways</span><h3>홍콩 트램</h3><p>운행 구간 → 방향 → 출발 정류장·행선지</p><footer><span>${new Set(members.map(x=>x.tramServiceGroup)).size}개 운행 구간 · ${members.length}방향</span><span>운행계통 선택 →</span></footer></button>`}).join('')}
+function routeCard(r){const reason=koreanRouteUnavailableReason(r),ready=r.geometryReady===true,word=stopWord(r),action=reason?'검증 대기':r.lazy?'상세 불러오기':ready?'선택':'순서 플레이';return`<button ${reason?'disabled aria-disabled="true" title="'+escapeHtml(reason)+'"':''} class="line-card ${reason?'unplayable':''} ${selected?.id===r.id?'selected':''} ${r.category==='shinkansen'?'shinkansen-card':''}" style="--route-color:${r.lineColor}" data-route="${r.id}"><div class="line-card-identity"><span class="operator">${escapeHtml(r.operator.ko)}</span><h3 class="line-card-line-name">${escapeHtml(r.countryId==='kr'?krRouteLabel(r):r.line.ko)}</h3></div><p>${escapeHtml(reason||(r.countryId==='kr'?krRouteLabel(r):r.line.ja||r.line.en))}</p><footer><span>${r.stationCount||r.stations.length}개 ${word}</span><span>${action} ${reason?'':'→'}</span></footer></button>`}
+function renderRoutes(){const filtered=filteredRoutes(),query=$('#route-search').value;const allVisible=filtered,visible=allVisible.slice(0,routeRenderLimit);$('#route-count').textContent=`${filtered.length}개 노선 · ${visible.length}개 표시`;const random=category==='all'&&transportGroup==='all'&&operatorFilter==='all'&&!query&&(countryId!=='kr'||filtered.some(r=>!koreanRouteUnavailableReason(r)))?`<button class="line-card random" style="--route-color:#45c985" data-random-route><span class="operator">${countryId==='kr'?'KOREA TRANSIT NETWORK':'JAPAN RAIL NETWORK'}</span><h3>RANDOM</h3><p>${countryId==='kr'?'대한민국':'일본 전국'} 랜덤 노선</p><footer><span>PLAYABLE ROUTES</span><span>SELECT →</span></footer></button>`:'';const more=allVisible.length>visible.length?`<button class="line-card route-more" data-route-more><span class="operator">WINDOWED GRID</span><h3>＋ ${Math.min(96,allVisible.length-visible.length)}개 더 보기</h3><p>${allVisible.length-visible.length}개 노선 남음</p></button>`:'';$('#route-grid').innerHTML=random+(visible.length?(countryId==='kr'?krRouteCards(visible):countryId==='hk'?hongKongRouteCards(visible):visible.map(routeCard).join(''))+more:(countryId==='jp'&&category==='limited-express'&&famousExpressLoading?'<p class="muted" role="status">특급열차의 실제 선로와 정차역을 불러오는 중...</p>':'<p class="muted">검색 결과가 없습니다.</p>'))}
+function renderSelected(){const panel=$('#selected-line-preview');if(selectedGroup){const spec=NETWORK_GROUPS[selectedGroup],members=spec.routeIds.map(id=>routes.find(route=>route.id===id)).filter(Boolean),main=members[0];panel.innerHTML=`<div class="selected-line-card network-detail"><p class="eyebrow">${spec.kind==='services'?'운행계통':spec.kind==='physical'?'실제 노선':'분기·계통'} 선택</p><h3 id="selected-line-heading">${escapeHtml(spec.label||main?.operator.ko||'노선 그룹')}<span>${spec.kind==='services'?'운행하는 계통을 선택하세요':'노선을 선택하세요'}</span></h3><div class="network-branches">${members.map(route=>`<button data-route="${route.id}"><span><b>${escapeHtml(route.line.ja)}</b><small>${escapeHtml(route.line.ko)} · ${route.stations.length} STATIONS</small></span></button>`).join('')}</div></div>`;return}if(!selected){panel.innerHTML='<div class="selected-line-empty"><h3 id="selected-line-heading">노선을 선택하세요.</h3><p>오른쪽 목록에서 플레이할 노선을 선택합니다.</p></div>';return}panel.closest('.selected-line-panel').style.setProperty('--route-color',selected.lineColor);panel.innerHTML=`<div class="selected-line-card" style="--route-color:${selected.lineColor}"><div class="selected-line-operator"><span>${escapeHtml(selected.operator.ko)}</span></div><h3 id="selected-line-heading">${escapeHtml(koreanRouteDisplayText(selected.line.ja,selected))}<span>${escapeHtml(koreanRouteDisplayText(selected.line.ko,selected))} · ${escapeHtml(selected.line.en)}</span></h3>${selected.section?`<p class="selected-section">${escapeHtml(koreanRouteDisplayText(selected.section.ja,selected))} · ${escapeHtml(koreanRouteDisplayText(selected.section.ko,selected))}</p>`:''}<div class="selected-line-meta"><span>${selected.stationCount||selected.stations.length} STATIONS</span><span>${selected.dataKind==='trainService'?'LIMITED EXPRESS':selected.loop?'LOOP LINE':'FULL ROUTE'}</span></div><div class="selected-line-actions"><button class="selected-play" type="button" data-selected-play="${selected.id}">PLAY THIS LINE <span>→</span></button><button class="selected-free-drive" type="button" data-selected-free-drive>FREE DRIVE <span>↗</span></button><button class="selected-ranking" type="button" data-selected-ranking="true">🏆 이 노선 랭킹 <span>→</span></button></div></div>`}
 function throughRouteIds(spec){return spec.routeSegments?.map(segment=>segment.routeId)||spec.routeIds||[]}
 function throughSpec(route){return(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).find(item=>throughRouteIds(item).includes(route.id))}
 function buildThroughRoute(spec,directionId='forward'){
@@ -3576,9 +3612,12 @@ function buildCatalogResolved(choice){
 function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
   if(choice.kind==='taiwan')return resolveTaiwanChoice(choice,route);
+  if(choice.kind==='hongKongLine')return resolveHongKongLineChoice(choice,route);
+  if(choice.kind==='hongKongTram')return resolveHongKongTramChoice(choice,route);
+  if(choice.kind==='hongKong'){const reason=hongKongRouteBlockReason(route);if(reason)throw new Error(reason);return{route,service:route.services[0],direction:'forward',pattern:null,trainType:null,destinationStationId:route.stations.at(-1)?.id,trainTypeContexts:[]}}
+  if(choice.kind==='koreanGameService'){const actual=choice.sourceRouteId?(builtin.find(r=>r.id===choice.sourceRouteId)||route):route;if(!actual||actual.lazy||actual.stations?.length<2||actual.geometryReady!==true||actual.services?.length<1)throw Error('선택한 한국 운행 경로의 선로·역 목록을 아직 불러오지 못했습니다.');if(actual.stations[0].id!==choice.originId||actual.stations.at(-1).id!==choice.destinationId)throw Error('출발·종착역 불일치');return{route:actual,service:actual.services[0],direction:'forward',pattern:null,trainType:null,destinationStationId:actual.stations.at(-1).id,trainTypeContexts:[]}}
   if(choice.kind==='nex')return resolveNexOperatingChoice(route,choice);
   if(choice.kind==='famousExpress')return resolveFamousLimitedExpressChoice(route,choice);
-  if(isKoreanResearch(route))return resolveKoreanResearchChoice(choice,route);
   if(route.countryId==='kr'&&route.schemaVersion===2)return resolveKoreanVerifiedChoice(choice,route);
   if(choice.kind==='koreanFamilyService')return resolveKoreanFamilyService(choice,id=>builtin.find(item=>item.id===id));
   if(choice.kind==='catalog')return buildCatalogResolved(choice);
@@ -3626,12 +3665,14 @@ function operatingChoiceStatus(choice,route){
   }
 }
 function operatingChoicePlayable(choice,route){return operatingChoiceStatus(choice,route).playable}
+function koreanGameRouteChoice(route){if(!route||route.countryId!=='kr'||!/^kr-service-\d+$/.test(route.id)||route.lazy||route.stations?.length<2)return[];const a=route.stations[0],b=route.stations.at(-1);return[{kind:'koreanGameService',id:route.id,sourceRouteId:route.id,originId:a.id,destinationId:b.id,originNames:a,destinationNames:b,patternName:{ko:route.passengerLineName||route.line?.ko||'한국 철도'},patternId:route.passengerLineId||route.id,direction:'forward',legacyServiceId:route.services?.[0]?.id||route.sourceServiceId}]}
 function actualOperatingChoices(route){
   if(route?.countryId==='tw'&&route.category!=='custom')return taiwanOperatingChoices(route);
+  if(route?.countryId==='kr'&&/^kr-service-\d+$/.test(route.id))return koreanGameRouteChoice(route);
+  if(route?.countryId==='hk'){if(hongKongRouteBlockReason(route)||!route.stations?.length)return[];const first=route.stations[0],last=route.stations.at(-1);return[{kind:'hongKong',id:route.id,originId:first.id,destinationId:last.id,originNames:first,destinationNames:last,patternName:route.line,direction:'forward',legacyServiceId:route.services[0]?.id}]}
   // N'EX requires separate Ofuna/Shinjuku paths: never offer legacy chained local/fallback choices.
   if(route?.id==='line-11328')return nexOperatingChoices(route);
   if(route?.famousExpress)return famousLimitedExpressChoices(route);
-  if(route?.countryId==='kr'&&isKoreanResearch(route))return koreanResearchChoices(route);
   if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
   const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
   const add=choice=>{const key=[choice.kind==='catalog'?choice.id:(choice.kind||''),choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
@@ -3695,6 +3736,7 @@ function actualOperatingChoices(route){
   ].filter(choice=>route.countryId!=='kr'||route.category==='custom'||route.directions?.some(d=>d.id===choice.direction))
 }
 function operatingPatternKey(choice){
+  if(choice.kind==='koreanGameService')return 'kr-line:'+String(choice.patternId||choice.sourceRouteId);
   if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-ueno-'))
     return 'ueno:'+choice.throughServiceId;
 
@@ -3772,7 +3814,7 @@ function configureJourneyPicker(){
   }
   if(count){const ready=choices.filter(choice=>statusOf(choice).playable).length;count.textContent='등록 '+choices.length+'개 · 운행 가능 '+ready+'개';}
   pattern.innerHTML=patternGroups.map(([key,choice])=>'<option value="'+escapeHtml(key)+'">'+escapeHtml(operatingPatternLabel(choice))+'</option>').join('');
-  const searchText=choice=>[operatingPatternLabel(choice),operatingDirectionLabel(choice),display(choice.originNames),display(choice.destinationNames),journeyLabel(choice.trainType),describeOperatingPattern(choice,selected),describeOperatingJourney(choice,selected)].join(' ').toLowerCase();
+  const searchText=choice=>[operatingPatternLabel(choice),operatingDirectionLabel(choice),display(choice.originNames),display(choice.destinationNames),journeyLabel(choice.trainType)].join(' ').toLowerCase();
   const matchesSearch=choice=>!activeSearch||searchText(choice).includes(activeSearch);
   const renderPatterns=()=>{
     if(!patternCards)return;
@@ -3782,7 +3824,7 @@ function configureJourneyPicker(){
       const available=list.filter(item=>statusOf(item).playable).length;
       const active=pattern.value===key;
       const type=journeyLabel(choice.trainType)||'';
-      return '<button type="button" class="operating-pattern-card'+(active?' is-active':'')+'" data-operating-pattern="'+escapeHtml(key)+'" aria-pressed="'+active+'" style="--pattern-index:'+i+'"><span class="operating-pattern-card-top"><span class="operating-pattern-index">'+String(i+1).padStart(2,'0')+'</span><span class="operating-pattern-state '+(available?'is-ready':'is-unavailable')+'">'+(available?'운행 가능':'선로 미검증')+'</span></span><strong>'+escapeHtml(operatingPatternLabel(choice))+'</strong><span class="operating-pattern-description">'+escapeHtml(describeOperatingPattern(choice,selected))+'</span><span class="operating-pattern-meta">'+escapeHtml(type)+(type?' · ':'')+list.length+'개 운행 구간</span></button>';
+      return '<button type="button" class="operating-pattern-card'+(active?' is-active':'')+'" data-operating-pattern="'+escapeHtml(key)+'" aria-pressed="'+active+'" style="--pattern-index:'+i+'"><span class="operating-pattern-card-top"><span class="operating-pattern-index">'+String(i+1).padStart(2,'0')+'</span><span class="operating-pattern-state '+(available?'is-ready':'is-unavailable')+'">'+(available?'운행 가능':'선로 미검증')+'</span></span><strong>'+escapeHtml(operatingPatternLabel(choice))+'</strong><span class="operating-pattern-meta">'+escapeHtml(type)+(type?' · ':'')+list.length+'개 운행 구간</span></button>';
     }).join('')||'<p class="operating-empty">해당 검색어에 맞는 운행계통이 없습니다.</p>';
   };
   const renderDirectionButtons=()=>{
@@ -3802,7 +3844,7 @@ function configureJourneyPicker(){
       const ready=statusOf(choice).playable,active=destination.value===choice.id;
       const originName=display(choice.originNames),destName=display(choice.destinationNames);
       const type=journeyLabel(choice.trainType),through=Boolean(choice.throughServiceId);
-      return '<button type="button" class="operating-journey-card'+(active?' is-active':'')+(ready?'':' is-unavailable')+'" data-operating-journey="'+escapeHtml(choice.id)+'" aria-pressed="'+active+'"'+(!ready?' title="'+escapeHtml(statusOf(choice).reason||'운행 불가')+'"':'')+'><span class="journey-card-top"><span class="journey-card-number">'+String(i+1).padStart(2,'0')+'</span><span class="journey-card-status '+(ready?'ready':'blocked')+'">'+(ready?'● 운행 가능':'● 미검증')+'</span></span><span class="journey-card-stations"><strong>'+escapeHtml(originName)+'</strong><span aria-hidden="true" class="journey-arrow">→</span><strong>'+escapeHtml(destName)+'</strong></span><span class="journey-card-meta">'+escapeHtml(type||'각역정차')+(through?' · 직통 운행':'')+'</span><span class="journey-card-description">'+escapeHtml(describeOperatingJourney(choice,selected))+'</span>'+(active?'<span class="journey-selected-mark">선택됨 ✓</span>':'')+'</button>';
+      return '<button type="button" class="operating-journey-card'+(active?' is-active':'')+(ready?'':' is-unavailable')+'" data-operating-journey="'+escapeHtml(choice.id)+'" aria-pressed="'+active+'"'+(!ready?' title="'+escapeHtml(statusOf(choice).reason||'운행 불가')+'"':'')+'><span class="journey-card-top"><span class="journey-card-number">'+String(i+1).padStart(2,'0')+'</span><span class="journey-card-status '+(ready?'ready':'blocked')+'">'+(ready?'● 운행 가능':'● 미검증')+'</span></span><span class="journey-card-stations"><strong>'+escapeHtml(originName)+'</strong><span aria-hidden="true" class="journey-arrow">→</span><strong>'+escapeHtml(destName)+'</strong></span><span class="journey-card-meta">'+escapeHtml(type||'각역정차')+(through?' · 직통 운행':'')+'</span>'+(active?'<span class="journey-selected-mark">선택됨 ✓</span>':'')+'</button>';
     }).join('')||'<p class="operating-empty">해당 계통에서 조건에 맞는 운행 구간이 없습니다. 검색어를 지우거나 다른 계통을 선택하세요.</p>';
     if(journeyCount)journeyCount.textContent=matched.length+'개 구간';
     if(more){more.hidden=matched.length<=visibleLimit;more.textContent='다른 운행 구간 '+(matched.length-visibleLimit)+'개 더 보기 ↓';}
@@ -3816,7 +3858,7 @@ function configureJourneyPicker(){
     const trackNote=choice.patternId?.startsWith('jr-ueno-joban-')?' · 닛포리~우에노 잠정 선형':'';
     summary.textContent=operatingPatternLabel(choice)+' · '+operatingDirectionLabel(choice)+' · '+from+' → '+to+(type?' · '+type:'')+(choice.throughServiceId?' · 직통운행':'')+trackNote+(japan?(state.playable?' · 플레이 가능':' · 실행 불가: '+(state.reason||'선로 검증 필요'))+' (등록 '+total+'개 / 실행 가능 '+ready+'개)':'');
     if(submit){submit.disabled=japan&&!state.playable;submit.textContent=japan&&!state.playable?'선로 미검증 · 실행 불가':'운행 시작 →';}
-    if(selectedCard)selectedCard.innerHTML='<span class="operating-selected-label">선택한 열차 · '+(state.playable?'운행 준비 완료':'선로 검증 필요')+'</span><div class="operating-selected-route"><strong>'+escapeHtml(from)+'</strong><span aria-hidden="true">→</span><strong>'+escapeHtml(to)+'</strong></div><p>'+escapeHtml(operatingPatternLabel(choice))+(type?' · '+escapeHtml(type):'')+(choice.throughServiceId?' · 직통':'')+'</p><p class="operating-selected-description">'+escapeHtml(describeOperatingJourney(choice,selected))+'</p>'+(state.playable?'':'<small>'+escapeHtml(state.reason||'선로가 검증되지 않아 시작할 수 없습니다.')+'</small>');
+    if(selectedCard)selectedCard.innerHTML='<span class="operating-selected-label">선택한 열차 · '+(state.playable?'운행 준비 완료':'선로 검증 필요')+'</span><div class="operating-selected-route"><strong>'+escapeHtml(from)+'</strong><span aria-hidden="true">→</span><strong>'+escapeHtml(to)+'</strong></div><p>'+escapeHtml(operatingPatternLabel(choice))+(type?' · '+escapeHtml(type):'')+(choice.throughServiceId?' · 직통':'')+'</p>'+(state.playable?'':'<small>'+escapeHtml(state.reason||'선로가 검증되지 않아 시작할 수 없습니다.')+'</small>');
     const endpoints=$('#setup-route .route-endpoints');
     if(endpoints)endpoints.innerHTML='<span>'+escapeHtml(from)+'<small> 출발</small></span><span>'+escapeHtml(to)+'<small> 행선지</small></span>';
     if(choice.kind==='taiwan'){
@@ -3893,20 +3935,28 @@ function openSetup(route){
   const blocked=koreanRouteUnavailableReason(route);if(blocked){toast('플레이 불가: '+blocked);return}
   selected=route;if(!selected||!Array.isArray(selected.stations)||selected.stations.length<2){toast('플레이 가능한 역이 부족한 노선입니다.');return}
   const settings=storage.settings();$('#game-map-mode').value=settings.mapMode;document.querySelector(`#setup-form [name="stationAdvance"][value="${settings.stationAdvance}"]`).checked=true;
-  $('#setup-route').style.setProperty('--ticket-color',selected.lineColor);$('#screen-setup').style.setProperty('--svc-accent',selected.lineColor);$('#setup-route').innerHTML=`<h3>${escapeHtml(selected.countryId==='kr'?krRouteLabel(selected):selected.line.ja)}</h3><p>${escapeHtml(selected.operator.en)} · ${escapeHtml(selected.line.en)}<br>${escapeHtml(selected.countryId==='kr'?krRouteLabel(selected):selected.line.ko)} · ${selected.stations.length} STATIONS</p><p class="setup-line-description">${escapeHtml(describeRoute(selected))}</p>${selected.section?`<p class="setup-section">${escapeHtml(selected.section.ja)} · ${escapeHtml(selected.section.ko)}</p>`:''}<ol class="setup-stations">${selected.stations.map(station=>`<li><b>${escapeHtml(selected.countryId==='kr'?koreanStationDisplayName(station.ko,'kr',selected):station.ja)}</b><span>${escapeHtml(koreanStationDisplayName(station.romaji,selected.countryId,selected))} · ${escapeHtml(koreanStationDisplayName(station.ko,selected.countryId,selected))}</span></li>`).join('')}</ol><div class="route-endpoints"><span>${escapeHtml(selected.countryId==='kr'?journeyStationDisplayName(selected.stations[0]):selected.stations[0].ja)}<small> 출발</small></span><span>${escapeHtml(selected.countryId==='kr'?journeyStationDisplayName(selected.stations.at(-1)):selected.stations.at(-1).ja)}<small> 도착</small></span></div>`;
-  if(isKoreanResearch(selected))$('#setup-route').insertAdjacentHTML('afterbegin',`<div class="research-notice" role="note"><p>${selected.integratedLine1===true?(selected.line1Service?.evidenceStatus==='operator-service-confirmed'?'한국철도공사에서 용산~동인천 경인선 급행의 운행을 확인했습니다. 세부 시간표·일부 정차역은 정식 승인 전 검증이 필요합니다.':'수도권 전철 1호선 운행 유형과 행선지로 명명했습니다. 개별 시간표·정차역의 공식 검증은 남아 있습니다.'):'이 노선은 실제 철도 선형을 기반으로 만든 연구용 경로입니다. 공식 운행계통과 시간표에 대한 최종 검증이 완료되지 않았습니다.'}</p><p><a href="${escapeHtml(selected.researchEvidence.sourceUrl)}" target="_blank" rel="noopener noreferrer">OSM 원본 relation ${escapeHtml(selected.sourceRelationId)}</a> · ${escapeHtml(selected.researchEvidence.attribution)}</p><p>미검증: ${escapeHtml(selected.researchEvidence.unverified.join(' · '))}</p></div>`);
+  $('#setup-route').style.setProperty('--ticket-color',selected.lineColor);$('#screen-setup').style.setProperty('--svc-accent',selected.lineColor);$('#setup-route').innerHTML=`<h3>${escapeHtml(selected.countryId==='kr'?krRouteLabel(selected):selected.line.ja)}</h3><p>${escapeHtml(selected.operator.en)} · ${escapeHtml(selected.line.en)}<br>${escapeHtml(selected.countryId==='kr'?krRouteLabel(selected):selected.line.ko)} · ${selected.stations.length} STATIONS</p>${selected.section?`<p class="setup-section">${escapeHtml(selected.section.ja)} · ${escapeHtml(selected.section.ko)}</p>`:''}<ol class="setup-stations">${selected.stations.map(station=>`<li><b>${escapeHtml(selected.countryId==='kr'?koreanStationDisplayName(station.ko,'kr',selected):station.ja)}</b><span>${escapeHtml(koreanStationDisplayName(station.romaji,selected.countryId,selected))} · ${escapeHtml(koreanStationDisplayName(station.ko,selected.countryId,selected))}</span></li>`).join('')}</ol><div class="route-endpoints"><span>${escapeHtml(selected.countryId==='kr'?journeyStationDisplayName(selected.stations[0]):selected.stations[0].ja)}<small> 출발</small></span><span>${escapeHtml(selected.countryId==='kr'?journeyStationDisplayName(selected.stations.at(-1)):selected.stations.at(-1).ja)}<small> 도착</small></span></div>`;
+
   koreaFamilyChoices=null;
-  const family=krLineFamily(route),familyPending=route.countryId==='kr'&&routes.filter(item=>krLineFamily(item)===family).length>1;
+  const family=krLineFamily(route),tramPending=route.countryId==='hk'&&!!route.canonicalLineId,familyPending=tramPending||route.countryId==='kr'&&routes.filter(item=>krLineFamily(item)===family).length>1;
   const submit=$('#setup-form button[type="submit"]');
   if(submit){submit.disabled=familyPending;submit.textContent=familyPending?'운행계통 확인 중…':'운행 시작 →'}
   $('#journey-picker').hidden=familyPending;
-  $('#journey-summary').textContent=familyPending?'1호선의 실제 운행계통과 분기 선형을 검증하고 있습니다.':'';
+  $('#journey-summary').textContent=familyPending?(tramPending?'운행계통과 행선지를 불러오는 중입니다.':'1호선의 실제 운행계통과 분기 선형을 검증하고 있습니다.'):'';
   if(!familyPending)configureJourneyPicker();
   if(countryId==='jp'&&routeGroup(route)==='limited-express'&&!actualOperatingChoices(route).length){if(submit){submit.disabled=true;submit.textContent='운행계통을 불러올 수 없음'}}
   go('game-setup');
-  if(familyPending)void prepareKoreanFamilyChoices(route);
+  if(tramPending)void prepareHongKongTramChoices(route);else if(familyPending)void prepareKoreanFamilyChoices(route);
 }
 let koreaFamilyChoices=null;
+async function prepareHongKongTramChoices(route){
+ const members=builtin.filter(r=>r.countryId==='hk'&&r.canonicalLineId===route.canonicalLineId&&!hongKongRouteBlockReason(r));
+ for(const member of members){if(!member.lazy)continue;try{const detail=railDataRepository.resolveRoute(await hydrateRailLine(member));if(selected?.id!==route.id||countryId!=='hk')return;const at=builtin.findIndex(r=>r.id===member.id);if(at>=0)builtin[at]=detail}catch(error){console.warn('Tram service unavailable:',member.id,error)}}
+ if(selected?.id!==route.id||countryId!=='hk')return;
+ koreaFamilyChoices=route.canonicalLineId==='hk-tramway'?hongKongTramChoices(builtin):hongKongLineChoices(builtin,route.canonicalLineId);
+ const submit=$('#setup-form button[type="submit"]');if(submit){submit.disabled=!koreaFamilyChoices.length;submit.textContent=koreaFamilyChoices.length?'운행 시작 →':'검증된 운행계통 없음'}
+ configureJourneyPicker();
+}
 async function prepareKoreanFamilyChoices(route){
  const family=krLineFamily(route);if(!family||route.countryId!=='kr')return;
  const members=routes.filter(r=>krLineFamily(r)===family);
@@ -3924,7 +3974,7 @@ async function prepareKoreanFamilyChoices(route){
    if(selected?.id!==route.id||currentScreen!=='game-setup')return;
  }
  if(selected?.id!==route.id||currentScreen!=='game-setup')return;
- const familyServices=route.integratedLine1===true?[]:koreanFamilyServiceChoices(family),combined=[];
+ const familyServices=members.some(x=>/^kr-service-\d+$/.test(x.id))?[]:koreanFamilyServiceChoices(family),combined=[];
  if(familyServices.length){
    for(const choice of familyServices)if(operatingChoicePlayable(choice,route))combined.push(choice);
  }else for(const member of prepared.filter(Boolean)){
@@ -3991,7 +4041,7 @@ async function chooseRoute(id){const revision=++routeSelectionRevision,selection
 if(!selectionCurrent())return false;selected=route;if(currentScreen!=='rail-map')go('rail-map');renderSelected();renderRoutes();return true}
 function renderHomeNetwork(){const canvas=$('#home-network-canvas'),network=freeDriveNetworkRoutes();if(!canvas||!network.length)return;const tokyoBounds={minLat:35.50,maxLat:35.86,minLon:139.45,maxLon:139.96};drawNetworkCanvas(canvas,network,{bounds:tokyoBounds,alpha:.24,transferNodes:freeDrive?.graph||null})}
 function freeDriveRouteTabs(state){
-  const linked=[...(state.node?.routeIds||[])].filter(Boolean),ids=[...linked,state.routeId];
+  const linked=[...(state.availableRouteIds||state.node?.routeIds||[])].filter(Boolean),ids=[...linked,state.routeId];
   return [...new Set(ids)].map(id=>({id,route:(state.edges||[]).find(edge=>edge.routeId===id)?.route||freeDrive?.routes?.find(route=>route.id===id)||state.route}))
 }
 function renderGameFreeDriveOptions(state){
@@ -4003,7 +4053,7 @@ function renderGameFreeDriveOptions(state){
   tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${item.id===state.routeId?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(koreanRouteDisplayText(item.route?.line?.ko||item.route?.line?.ja||item.id,item.route))}</b><span>${escapeHtml(item.route?.line?.ja||'')}</span></button>`).join('');
   const edges=(state.edges||[]).filter(edge=>edge.routeId===activeId);
   const typingEdge=edges.find(edge=>edge.direction>0)||edges.find(edge=>edge.direction<0)||edges[0];
-  if(!game?.freeDriveAwaitingStart&&typingEdge){const typingStation=typingEdge.station||freeDrive?.stationForRoute(typingEdge.to,typingEdge.routeId);if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
+  if(!game?.freeDriveAwaitingStart&&typingEdge&&(game?.freeDriveTarget?.to!==typingEdge.to||game?.freeDriveTarget?.routeId!==typingEdge.routeId)){const typingStation=typingEdge.station||freeDrive?.stationForRoute(typingEdge.to,typingEdge.routeId);if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
   target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=edge.station||freeDrive?.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(koreanStationDisplayName(station?.ko||station?.ja||'다음 역',active.route?.countryId,active.route))}</b><span>${escapeHtml(active.route?.countryId==='kr'?koreanStationDisplayName(station?.ko,'kr',active.route):station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
 }
@@ -4049,7 +4099,7 @@ async function hydrateJapaneseNamedTransferConnections(route){
   }
   if(candidates.length)refreshRoutes();
 }
-async function startFreeDrive(route){if(isKoreanResearch(route))return toast('연구용 경로는 확인된 정차 순서로만 주행할 수 있습니다.');
+async function startFreeDrive(route){
   if(!route)return toast('자유주행을 시작할 노선을 선택해 주세요.');
   if(koreanRouteUnavailableReason(route))return toast('자유주행 불가: '+koreanRouteUnavailableReason(route));
   let target=route;
@@ -4087,7 +4137,7 @@ function showResult(result){
  // Logo elements were intentionally removed from the result screen.
  // Never require optional decorations for the completion transition.
  const setText=(id,value)=>{const el=$(id);if(el)el.textContent=String(value??'')};
- setText('#result-route',`${isKoreanResearch(result.route)?(result.route?.integratedLine1?'[1호선 · 계통 검증 중] ':'[연구용 기록] '):''}${koreanRouteDisplayText(result.route?.line?.ja,result.route)} · ${koreanRouteDisplayText(result.route?.line?.ko,result.route)} · ${result.route?.operator?.ko||''}`);
+ setText('#result-route',`${koreanRouteDisplayText(result.route?.line?.ja,result.route)} · ${koreanRouteDisplayText(result.route?.line?.ko,result.route)} · ${result.route?.operator?.ko||''}`);
  setText('#result-time',formatTime(result.elapsed));
  setText('#result-accuracy',`${(Number(result.accuracy)||0).toFixed(1)}%`);
  setText('#result-cpm',`${result.cpm||0} 타/min`);
@@ -4102,12 +4152,17 @@ function showResult(result){
 }
 const game=new Game({onFinish:showResult,onQuit:()=>go('select'),onFreeDriveMove:(to,routeId)=>freeDrive?.moveTo(to,routeId)});
 const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomLibrary()},onPlay:openSetup,onSaved:()=>go('custom-list')});
-freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
+freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){if(game.route?.id!==state.routeId)game.freeDriveAwaitingStart=true;freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
 $('#free-drive-custom')?.addEventListener('click',()=>{const route=editor.route;if(!route?.stations||route.stations.length<2)return toast('자유주행에는 역이 2개 이상 필요합니다.');startFreeDrive(route)});
 let currentScreen=document.body.dataset.currentScreen||'home';
 let koreaEditorLoading=false;
+let hongKongEditorLoading=false;
+async function loadHongKongEditorNetwork(){
+ if(hongKongEditorLoading)return;hongKongEditorLoading=true;
+ try{const pending=builtin.filter(r=>r.countryId==='hk'&&r.lazy&&!hongKongRouteBlockReason(r));for(const route of pending){const detail=railDataRepository.resolveRoute(await hydrateRailLine(route));if(countryId!=='hk')return;const i=builtin.findIndex(r=>r.id===route.id);if(i>=0)builtin[i]=detail}if(countryId==='hk'){refreshRoutes();const hk=builtin.filter(r=>r.countryId==='hk'&&!hongKongRouteBlockReason(r)&&!r.lazy);editor.setRailNetwork(hk);editor.setStationMaster([...new Map(hk.flatMap(r=>r.stations).map(s=>[s.stationMasterId||s.id,s])).values()])}}catch(error){toast('홍콩 편집기 노선 로딩 실패: '+error.message)}finally{hongKongEditorLoading=false}
+}
 async function loadKoreanEditorNetwork(){
- if(koreaEditorLoading||koreaPlayMode==='research')return;koreaEditorLoading=true;
+ if(koreaEditorLoading)return;koreaEditorLoading=true;
  const pending=builtin.filter(r=>r.countryId==='kr'&&r.lazy&&r.playable!==false&&r.visibility!=='internal'&&r.mode!=='river_bus');
  try{
    for(let offset=0;offset<pending.length;offset+=6){
@@ -4121,23 +4176,23 @@ async function loadKoreanEditorNetwork(){
  }finally{koreaEditorLoading=false}
 }
 window.addEventListener('trt:screenchange',e=>{const name=e.detail.name;if(currentScreen==='game'&&name!=='game'){game?.stop(false);const controls=$('#game-free-drive-options'),tabs=$('#game-free-drive-tabs');if(controls)controls.hidden=true;if(tabs)tabs.hidden=true}currentScreen=name;if(name==='rail-map')renderRoutes();if(name==='records')renderStats();if(name==='home'){renderHome();renderHomeNetwork()}if(name==='free-drive')freeDrive?.render?.();if(name==='custom-list')renderCustomLibrary();if(name==='custom-editor'){editor.activate();if(countryId==='kr')loadKoreanEditorNetwork()}});
-document.querySelector('.country-switch').addEventListener('click',async event=>{const button=event.target.closest('[data-country]');if(!button||!isCountryEnabled(button.dataset.country)||button.dataset.country===countryId)return;countryId=button.dataset.country;localStorage.setItem('trt-country',countryId);$('#route-search').value='';transportGroup='all';category='all';regionFilter='all';operatorFilter='all';routeSelectionRevision++;selected=null;selectedGroup=null;applyCountryUi();refreshCountryCopy();await reloadRailData();renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();renderSelected();toast(countryId==='kr'?'대한민국 교통 데이터로 전환했습니다.':'일본 철도 데이터로 전환했습니다.')});
+document.querySelector('.country-switch').addEventListener('click',async event=>{const button=event.target.closest('[data-country]');if(!button||!isCountryEnabled(button.dataset.country)||button.dataset.country===countryId)return;countryId=button.dataset.country;localStorage.setItem('trt-country',countryId);$('#route-search').value='';transportGroup='all';category='all';regionFilter='all';operatorFilter='all';routeSelectionRevision++;selected=null;selectedGroup=null;applyCountryUi();refreshCountryCopy();await reloadRailData();renderTransportFilters();renderOperatorFilters();renderRoutes();refreshFeatureCounts();renderSelected();toast(countryId==='hk'?'홍콩 철도 데이터로 전환했습니다.':countryId==='kr'?'대한민국 교통 데이터로 전환했습니다.':'일본 철도 데이터로 전환했습니다.')});
 $('#transport-mode-tabs').addEventListener('click',event=>{const button=event.target.closest('[data-transport-group]');if(!button)return;transportGroup=button.dataset.transportGroup;category='all';regionFilter='all';operatorFilter='all';routeSelectionRevision++;selected=null;selectedGroup=null;routeRenderLimit=96;renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected()});
 $('#region-tabs').addEventListener('click',event=>{const button=event.target.closest('[data-region]');if(!button)return;regionFilter=button.dataset.region;category='all';operatorFilter='all';routeSelectionRevision++;selected=null;selectedGroup=null;routeRenderLimit=96;renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected()});
 $('#category-tabs').addEventListener('click',e=>{const button=e.target.closest('[data-category]');if(!button)return;category=button.dataset.category;operatorFilter='all';routeSelectionRevision++;selected=null;selectedGroup=null;routeRenderLimit=96;renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();if(countryId==='jp'&&category==='limited-express')void ensureFamousExpressRoutes()});
 $('#operator-filters').addEventListener('click',e=>{const button=e.target.closest('[data-operator]');if(!button)return;operatorFilter=button.dataset.operator;routeSelectionRevision++;selected=null;selectedGroup=null;routeRenderLimit=96;renderOperatorFilters();renderRoutes();renderSelected()});
 $('#route-search').addEventListener('input',()=>{routeRenderLimit=96;renderRoutes()});
-$('#route-grid').addEventListener('click',e=>{const krFamily=e.target.closest('[data-kr-family]');if(krFamily){const r=filteredRoutes().find(r=>krLineFamily(r)===krFamily.dataset.krFamily);if(r){selectedGroup=null;void chooseRoute(r.id)}return}if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){routeSelectionRevision++;selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes().filter(r=>!koreanRouteUnavailableReason(r));if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
+$('#route-grid').addEventListener('click',e=>{const hkLine=e.target.closest('[data-hk-line-family]');if(hkLine){const r=filteredRoutes().find(r=>r.countryId==='hk'&&r.canonicalLineId===hkLine.dataset.hkLineFamily&&!koreanRouteUnavailableReason(r));if(r){selectedGroup=null;void chooseRoute(r.id)}else toast('선택 가능한 홍콩 운행계통이 없습니다.');return}const hkTram=e.target.closest('[data-hk-tram-family]');if(hkTram){const r=filteredRoutes().find(r=>r.countryId==='hk'&&r.canonicalLineId==='hk-tramway'&&!koreanRouteUnavailableReason(r));if(r){selectedGroup=null;void chooseRoute(r.id)}else toast('선택 가능한 홍콩 트램 계통이 없습니다.');return}const krFamily=e.target.closest('[data-kr-family]');if(krFamily){const r=filteredRoutes().find(r=>krLineFamily(r)===krFamily.dataset.krFamily);if(r){selectedGroup=null;void chooseRoute(r.id)}return}if(e.target.closest('[data-route-more]')){routeRenderLimit+=96;renderRoutes();return}const group=e.target.closest('[data-route-group]');if(group){routeSelectionRevision++;selected=null;selectedGroup=group.dataset.routeGroup;renderSelected();renderRoutes();return}const random=e.target.closest('[data-random-route]');if(random){const playable=filteredRoutes().filter(r=>!koreanRouteUnavailableReason(r));if(playable.length)chooseRoute(playable[Math.floor(Math.random()*playable.length)].id);return}const card=e.target.closest('[data-route]');if(card){selectedGroup=null;chooseRoute(card.dataset.route)}});
 $('#selected-line-preview').addEventListener('click',e=>{const branch=e.target.closest('[data-route]');if(branch){selectedGroup=null;chooseRoute(branch.dataset.route);return}if(e.target.closest('[data-selected-ranking]')&&selected){globalThis.TRTLeaderboard?.openRoute(selected);return}if(e.target.closest('[data-selected-play]')&&selected){openSetup(selected);return}if(e.target.closest('[data-selected-free-drive]')&&selected){startFreeDrive(selected);return}});
 $('#clear-route-selection').addEventListener('click',()=>{routeSelectionRevision++;selected=null;selectedGroup=null;renderSelected();renderRoutes()});
 $('#game-free-drive-tabs')?.addEventListener('click',event=>{
-  const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode)return;
+  const button=event.target.closest('[data-free-drive-tab]');if(!button||!game?.freeDriveMode||game.phase==='ARRIVING')return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state),index=tabs.findIndex(item=>item.id===button.dataset.freeDriveTab);if(index<0)return;
   if(!freeDrive?.selectRoute(tabs[index].id))toast('환승 노선의 역 좌표를 확인할 수 없습니다.');
 });
 document.addEventListener('keydown',event=>{
-  if(event.key!=='Tab'||currentScreen!=='game'||!game?.freeDriveMode)return;
+  if(event.key!=='Tab'||event.isComposing||game?.typing?.isComposing?.()||currentScreen!=='game'||!game?.freeDriveMode||game.phase==='ARRIVING')return;
   const state=freeDrive?.snapshot();if(!state)return;
   const tabs=freeDriveRouteTabs(state);if(tabs.length<2)return;
   event.preventDefault();
@@ -4168,7 +4223,7 @@ $('#feature-viewport').addEventListener('mouseenter',()=>clearInterval(featureTi
 $('#library-import').addEventListener('change',async e=>{await editor.import(e.target.files[0]);e.target.value='';renderCustomLibrary();go('custom-editor')});
 document.addEventListener('trt:cloud-restored',()=>{if(currentScreen==='records')renderStats()});
 initAuth(storage);applyCountryUi();refreshCountryCopy();renderHome();renderCustomLibrary();refreshRoutes();freeDrive?.setNetwork(freeDriveNetworkRoutes());renderHomeNetwork();if(currentScreen==='records')renderStats();if(['game','game-setup','result'].includes(currentScreen)){window.TRTNavigation?.showScreen('rail-map',{history:'replace'});toast('노선을 먼저 선택해 주세요.')}
-async function reloadRailData(){const summary=$('#data-summary');dataLoading=true;summary.classList.remove('error','has-count-chips');summary.textContent=`${countryId==='tw'?'대만 철도':countryId==='kr'?'대한민국 대중교통':'일본 전국 철도'} 카탈로그를 불러오는 중...`;try{let edits={};try{const response=await fetch('./data/editor-overrides.json?ts='+Date.now(),{cache:'no-store',signal:globalThis.AbortSignal?.timeout?.(4000)});if(response.ok)edits=await response.json()}catch(error){console.warn('Name editor overrides unavailable:',error)}globalThis.TRT_EDITOR_OVERRIDES=edits;
+async function reloadRailData(){const summary=$('#data-summary');dataLoading=true;summary.classList.remove('error','has-count-chips');summary.textContent=`${countryId==='tw'?'대만 철도':countryId==='hk'?'홍콩 철도':countryId==='kr'?'대한민국 대중교통':'일본 전국 철도'} 카탈로그를 불러오는 중...`;try{let edits={};try{const response=await fetch('./data/editor-overrides.json?ts='+Date.now(),{cache:'no-store',signal:globalThis.AbortSignal?.timeout?.(4000)});if(response.ok)edits=await response.json()}catch(error){console.warn('Name editor overrides unavailable:',error)}globalThis.TRT_EDITOR_OVERRIDES=edits;
     // Apply editable Korean service names to source catalogs before routes are normalized.
     const serviceNames=edits.services||{},legacy=globalThis.TRT_SERVICE_CATALOG||{},patterns=globalThis.TRT_TOKYO_SERVICE_PATTERNS||{};
     for(const [lineId,items] of Object.entries(legacy))for(const service of items||[]){
@@ -4184,7 +4239,7 @@ async function reloadRailData(){const summary=$('#data-summary');dataLoading=tru
     }
     const loaded=await loadTransportData(countryId,koreaPlayMode);railDataRepository.configure({operators:loaded.operators,lines:loaded.lines,stations:loaded.stations,assets:loaded.assets});builtin=loaded.lines.map(route=>railDataRepository.resolveRoute(route)).filter(route=>route.id!=='line-11301--tokaidohonsen-tokyo-atami'); // Canonical JR East Tokyo–Atami is line-11301; exclude stale bundled duplicate.
     if(countryId==='jp')builtin.push(...buildFamousLimitedExpressRoutes(builtin));stations=[...railDataRepository.stations.values()].map(station=>({id:station.id,stationMasterId:station.id,sourceStationId:station.id,ja:station.names.ja,kana:station.names.kana,ko:station.names.ko,romaji:station.names.en,latitude:station.coordinates.lat,longitude:station.coordinates.lng}));stations=stations.filter(station=>FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area'||!globalThis.TRT_TOKYO_AREA||countryId==='kr'||globalThis.TRT_TOKYO_AREA.stationIds.includes(station.id));editor.setStationMaster(stations);refreshRoutes();renderHome();if(countryId==='kr'){
-  summary.textContent=`${koreaPlayMode==='research'?'연구용 미리보기 · 공식 운행 미승인 · 기록 별도 저장':'기존 운영 노선 및 개별 정식 승인 서비스'} · 대한민국 도시·광역철도 · ${builtin.length}개 노선·구간 · 역 순서 데이터 구축 중 · 상세 데이터는 노선 선택 시 로드 · 검증된 실제 선형 노선만 주행 가능`;
+  summary.textContent=`대한민국 철도 · ${builtin.length}개 노선·운행방향 · 실제 선형 기반 노선 선택 및 주행`;
 }else{
   const countChips=countryId==='tw'?[['전체',routes.length],...TAIWAN_CATEGORIES.filter(([id])=>!['all','custom'].includes(id)).map(([id,label])=>[label,routes.filter(r=>r.category===id).length])]:[['전체',routes.length],['JR',routes.filter(r=>r.category==='jr').length],['지하철',routes.filter(r=>r.category==='subway').length],['사철',routes.filter(r=>r.category==='private').length],['제3섹터',routes.filter(r=>r.category==='third-sector').length],['트램',routes.filter(r=>r.category==='tram').length],['신칸센',routes.filter(r=>r.category==='shinkansen').length]];
   summary.innerHTML=`<span class="data-summary-title">${countryId==='tw'?'대만 철도':'일본 전국 철도'}</span>${countChips.map(([label,count])=>`<span class="data-summary-chip"><span class="data-summary-chip-label">${label}</span><strong class="data-summary-chip-value">${count}</strong></span>`).join('')}`;
@@ -4195,7 +4250,6 @@ if(loaded.fallbackUsed){
 }dataLoading=false;if(countryId==='jp'&&category==='limited-express')void ensureFamousExpressRoutes();if(pendingRouteId){const id=pendingRouteId;pendingRouteId=null;chooseRoute(id)}return loaded}catch(error){console.error('App transport data initialization failed:',error);builtin=[];editor.setStationMaster([]);refreshRoutes();renderHome();dataLoading=false;summary.classList.add('error');summary.textContent='교통 데이터를 불러오지 못했습니다: '+(error?.message||'알 수 없는 오류')+' ';const retryButton=document.createElement('button');retryButton.dataset.retryData='';retryButton.textContent='다시 시도';summary.append(retryButton);return null}}
 document.addEventListener('click',e=>{if(e.target.closest('[data-retry-data]'))reloadRailData()});
 function runSanityChecks(){console.assert(routes.length>0,'Transport data must contain routes');if(countryId==='jp'){console.assert(routes.some(line=>line.id==='line-11302'),'Yamanote line is required');console.assert(routes.some(line=>line.id==='line-28001'),'Ginza line is required')}else console.assert(routes.length>0,'Korean catalog must contain routes');console.assert(routes.every(line=>line.lazy||(Array.isArray(line.stations)&&line.stations.length>=2)),'Every visible route must be playable or lazy-loadable')}
-const modeTabs=document.createElement('div');modeTabs.id='korea-play-modes';modeTabs.className='filter-tabs';modeTabs.setAttribute('role','group');modeTabs.setAttribute('aria-label','한국 플레이 모드');modeTabs.innerHTML='<button type="button" data-korea-mode="released">정식 운행</button><button type="button" data-korea-mode="research">연구용 미리보기</button>';$('#transport-mode-tabs').before(modeTabs);modeTabs.addEventListener('click',async e=>{const b=e.target.closest('[data-korea-mode]');if(!b||dataLoading||b.dataset.koreaMode===koreaPlayMode)return;game.stop(false);koreaPlayMode=b.dataset.koreaMode;routeSelectionRevision++;selected=null;selectedGroup=null;transportGroup='all';category='all';operatorFilter='all';routeRenderLimit=96;$('#route-search').value='';applyCountryUi();await reloadRailData();renderSelected()});
 await reloadRailData();refreshFeatureCounts();if(['localhost','127.0.0.1'].includes(location.hostname))runSanityChecks();
 
 })().catch(error=>{console.error('Tokyo Rail Typing failed to start:',error);const toast=document.querySelector('#toast');if(toast){toast.textContent='게임을 시작하지 못했습니다. 새로고침해 주세요.';toast.classList.add('show')}})})();

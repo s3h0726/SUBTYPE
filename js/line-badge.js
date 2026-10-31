@@ -208,6 +208,7 @@ export function lineBadgeMeta(route){
   return{code,asset,officialSymbolExists,officialCodeExists,targetOps,style:operator.style||theme.style||route?.lineTheme?.style||route?.category||'other',source:asset?.source||operator.source||theme.colorSource||route?.lineTheme?.colorSource||'',color:route?.lineColor||theme.color||'#60736a'}
 }
 export function lineBadgeMarkup(route,className='line-badge'){
+  if(route?.countryId==='hk')return route.category==='light_rail'?`<span class="${escapeHtml(className)} line-code-label">${escapeHtml(route.code)}</span>`:'';
   // Kanto Railway does not publish distinct official line symbols: use clearly
   // identifiable name labels instead of misrepresenting the company logo.
   const kantoRouteLabel={'line-99318':'常総','line-99319':'竜ヶ崎'}[route?.id];

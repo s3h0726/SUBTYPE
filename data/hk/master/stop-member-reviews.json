@@ -1,0 +1,17 @@
+{
+  "checkedAt":"2026-10-22",
+  "relations":[{
+    "relationId":5955256,
+    "relationVersion":16,
+    "status":"verified",
+    "appendStopNodeId":1723162796,
+    "lastOriginalStopNodeId":770928088,
+    "existingFinalWayId":276687999,
+    "officialStopId":"001",
+    "officialLineCode":"614P",
+    "officialDirection":"2",
+    "officialSourceFile":"data/hk/sources/phase4/light-rail.csv",
+    "officialSourceUrl":"https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+    "explanation":"Source relation already ends on Tuen Mun Ferry Pier stop-position node 1723162796 in its original final railway way 276687999, but omits the terminal stop member after Siu Hei. The current official CSV and schedule both require this 13th call. Add the stop reference only; no new railway way, vertex or inferred connection."
+  }]
+}

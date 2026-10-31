@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "file": "data/hk/sources/phase6/mtr-service-hours.html",
+      "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+    },
+    {
+      "file": "data/hk/sources/phase3/mtr-stations.csv",
+      "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+    },
+    {
+      "file": "data/hk/sources/phase2/mtr-map.pdf",
+      "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+    }
+  ],
+  "services": [
+    {
+      "id": "hk-tseung-kwan-o-lohas-peak-ut",
+      "relationId": 13352937,
+      "stopCodes": [
+        "NOP",
+        "QUB",
+        "YAT",
+        "TIK",
+        "TKO",
+        "LHP"
+      ],
+      "direction": "lohas-peak-up"
+    },
+    {
+      "id": "hk-tseung-kwan-o-lohas-peak-dt",
+      "relationId": 13352938,
+      "stopCodes": [
+        "LHP",
+        "TKO",
+        "TIK",
+        "YAT",
+        "QUB",
+        "NOP"
+      ],
+      "direction": "lohas-peak-down"
+    }
+  ]
+}

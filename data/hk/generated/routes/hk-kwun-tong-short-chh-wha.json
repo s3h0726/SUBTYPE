@@ -1,0 +1,2462 @@
+{
+  "id": "hk-kwun-tong-short-chh-wha",
+  "countryId": "hk",
+  "schemaVersion": 1,
+  "canonicalLineId": "hk-kwun-tong",
+  "servicePatternId": "hk-kwun-tong-short-chh-wha",
+  "serviceLabel": "Choi Hung → Whampoa",
+  "operatorId": "hk-mtr",
+  "operator": {
+    "ja": "港鐵",
+    "en": "MTR",
+    "ko": "홍콩 MTR"
+  },
+  "line": {
+    "ja": "觀塘綫",
+    "en": "Kwun Tong Line",
+    "ko": "쿤통선"
+  },
+  "category": "subway",
+  "mode": "subway",
+  "code": "KTL",
+  "officialSymbolExists": false,
+  "lineColor": "#00a040",
+  "lineTheme": {
+    "code": "KTL",
+    "color": "#00a040",
+    "style": "hk",
+    "colorVerified": true,
+    "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+  },
+  "loop": false,
+  "lazy": false,
+  "playable": true,
+  "releaseStatus": "ready",
+  "geometryReady": true,
+  "geometryStatus": "verified",
+  "blockedReasons": [],
+  "direction": "hk-mtr-CHH-to-hk-mtr-WHA",
+  "validWhen": {
+    "type": "first-train",
+    "noteKo": "첫차 단축 운행 · 05:57 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+    "timezone": "Asia/Hong_Kong",
+    "exactDepartureTimesVerified": true,
+    "reviewStatus": "verified",
+    "sources": [
+      {
+        "file": "data/hk/sources/bulk/hours-12.html",
+        "sha256": "f0badcbf2b68f24a6035f41b94431f741ed40c2763a7e71a40b6b776a6676231"
+      },
+      {
+        "file": "data/hk/sources/bulk/hours-13.html",
+        "sha256": "a36d0ad1430a506260cc5daa7a8a21b54333a1438cabd5a9e73c7a96767b4e3d"
+      },
+      {
+        "file": "data/hk/sources/phase3/mtr-stations.csv",
+        "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+      }
+    ]
+  },
+  "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=12",
+  "stopStatus": "verified",
+  "geometry": [
+    [
+      22.3352653,
+      114.2084856
+    ],
+    [
+      22.335693,
+      114.2079391
+    ],
+    [
+      22.3358003,
+      114.2078128
+    ],
+    [
+      22.3362389,
+      114.2073751
+    ],
+    [
+      22.3365218,
+      114.2070513
+    ],
+    [
+      22.3367634,
+      114.2067524
+    ],
+    [
+      22.3370525,
+      114.2063582
+    ],
+    [
+      22.3372795,
+      114.2060348
+    ],
+    [
+      22.3375563,
+      114.2056157
+    ],
+    [
+      22.3377683,
+      114.2052586
+    ],
+    [
+      22.3381912,
+      114.2045311
+    ],
+    [
+      22.3392639,
+      114.2027418
+    ],
+    [
+      22.3393752,
+      114.2025372
+    ],
+    [
+      22.3399391,
+      114.2015739
+    ],
+    [
+      22.3405635,
+      114.2005071
+    ],
+    [
+      22.3409967,
+      114.199725
+    ],
+    [
+      22.3411524,
+      114.1994227
+    ],
+    [
+      22.3412943,
+      114.199101
+    ],
+    [
+      22.3414372,
+      114.1987369
+    ],
+    [
+      22.3415633,
+      114.1982938
+    ],
+    [
+      22.3416332,
+      114.1979755
+    ],
+    [
+      22.3416671,
+      114.1977167
+    ],
+    [
+      22.3416766,
+      114.1973904
+    ],
+    [
+      22.3416734,
+      114.1969003
+    ],
+    [
+      22.3416178,
+      114.1932053
+    ],
+    [
+      22.3416152,
+      114.193029
+    ],
+    [
+      22.341594,
+      114.1927588
+    ],
+    [
+      22.3415357,
+      114.1924371
+    ],
+    [
+      22.3414182,
+      114.1920375
+    ],
+    [
+      22.3412943,
+      114.1917489
+    ],
+    [
+      22.3411799,
+      114.1915394
+    ],
+    [
+      22.3409596,
+      114.1912073
+    ],
+    [
+      22.3407711,
+      114.1909806
+    ],
+    [
+      22.3405222,
+      114.190739
+    ],
+    [
+      22.3402807,
+      114.1905432
+    ],
+    [
+      22.3400785,
+      114.1904035
+    ],
+    [
+      22.3396993,
+      114.190147
+    ],
+    [
+      22.3394526,
+      114.1899719
+    ],
+    [
+      22.3391793,
+      114.1897245
+    ],
+    [
+      22.3388775,
+      114.1893948
+    ],
+    [
+      22.3386466,
+      114.189073
+    ],
+    [
+      22.3384327,
+      114.1887066
+    ],
+    [
+      22.3382886,
+      114.188354
+    ],
+    [
+      22.3381753,
+      114.1880368
+    ],
+    [
+      22.3375039,
+      114.1859052
+    ],
+    [
+      22.3371914,
+      114.1849132
+    ],
+    [
+      22.3369944,
+      114.1841117
+    ],
+    [
+      22.3368101,
+      114.1832335
+    ],
+    [
+      22.3367561,
+      114.1828659
+    ],
+    [
+      22.3366905,
+      114.1823495
+    ],
+    [
+      22.3366691,
+      114.1815218
+    ],
+    [
+      22.336715,
+      114.1787665
+    ],
+    [
+      22.3367533,
+      114.1772586
+    ],
+    [
+      22.3367721,
+      114.1764841
+    ],
+    [
+      22.3368328,
+      114.1729298
+    ],
+    [
+      22.3368314,
+      114.1725103
+    ],
+    [
+      22.3368168,
+      114.1721997
+    ],
+    [
+      22.3367665,
+      114.1718216
+    ],
+    [
+      22.336762,
+      114.1718024
+    ],
+    [
+      22.3366906,
+      114.1715009
+    ],
+    [
+      22.336555,
+      114.171133
+    ],
+    [
+      22.3363877,
+      114.1708075
+    ],
+    [
+      22.3361787,
+      114.170475
+    ],
+    [
+      22.335968,
+      114.1702084
+    ],
+    [
+      22.3357485,
+      114.1699738
+    ],
+    [
+      22.3355381,
+      114.169775
+    ],
+    [
+      22.3353315,
+      114.169601
+    ],
+    [
+      22.3350967,
+      114.1694826
+    ],
+    [
+      22.3348451,
+      114.1693696
+    ],
+    [
+      22.3345667,
+      114.1692626
+    ],
+    [
+      22.3341574,
+      114.1691051
+    ],
+    [
+      22.3339118,
+      114.1690421
+    ],
+    [
+      22.333552,
+      114.1689764
+    ],
+    [
+      22.3330664,
+      114.1689402
+    ],
+    [
+      22.3327742,
+      114.1689348
+    ],
+    [
+      22.3310586,
+      114.1689174
+    ],
+    [
+      22.3305165,
+      114.1689107
+    ],
+    [
+      22.3300476,
+      114.1688785
+    ],
+    [
+      22.3296437,
+      114.1688295
+    ],
+    [
+      22.3292945,
+      114.1687712
+    ],
+    [
+      22.3289211,
+      114.1686706
+    ],
+    [
+      22.3284919,
+      114.1685231
+    ],
+    [
+      22.3277712,
+      114.1682656
+    ],
+    [
+      22.3273928,
+      114.168165
+    ],
+    [
+      22.3269611,
+      114.1681221
+    ],
+    [
+      22.3265528,
+      114.1680659
+    ],
+    [
+      22.3262612,
+      114.1680562
+    ],
+    [
+      22.3259494,
+      114.1680593
+    ],
+    [
+      22.325794,
+      114.1680837
+    ],
+    [
+      22.3244672,
+      114.1683664
+    ],
+    [
+      22.3238179,
+      114.1685047
+    ],
+    [
+      22.3222423,
+      114.168841
+    ],
+    [
+      22.3204814,
+      114.1691946
+    ],
+    [
+      22.320238,
+      114.169248
+    ],
+    [
+      22.3192647,
+      114.1694523
+    ],
+    [
+      22.3184219,
+      114.1696289
+    ],
+    [
+      22.3183304,
+      114.169643
+    ],
+    [
+      22.3182309,
+      114.1696582
+    ],
+    [
+      22.3181258,
+      114.1696687
+    ],
+    [
+      22.3180682,
+      114.1696748
+    ],
+    [
+      22.3180027,
+      114.1696833
+    ],
+    [
+      22.3179441,
+      114.1696931
+    ],
+    [
+      22.3177505,
+      114.1697333
+    ],
+    [
+      22.3173976,
+      114.1698044
+    ],
+    [
+      22.3165359,
+      114.169977
+    ],
+    [
+      22.3159388,
+      114.1700985
+    ],
+    [
+      22.3153024,
+      114.1702272
+    ],
+    [
+      22.3151682,
+      114.1702478
+    ],
+    [
+      22.3149005,
+      114.1702722
+    ],
+    [
+      22.3147805,
+      114.1702852
+    ],
+    [
+      22.3146706,
+      114.1703039
+    ],
+    [
+      22.3145447,
+      114.1703272
+    ],
+    [
+      22.3142078,
+      114.1704009
+    ],
+    [
+      22.3140993,
+      114.1704222
+    ],
+    [
+      22.3139967,
+      114.170432
+    ],
+    [
+      22.3138994,
+      114.1704385
+    ],
+    [
+      22.3137748,
+      114.1704532
+    ],
+    [
+      22.3136221,
+      114.1704754
+    ],
+    [
+      22.3130605,
+      114.1705921
+    ],
+    [
+      22.3117169,
+      114.1708663
+    ],
+    [
+      22.3105206,
+      114.1710891
+    ],
+    [
+      22.3102873,
+      114.1711367
+    ],
+    [
+      22.3100386,
+      114.171187
+    ],
+    [
+      22.3098357,
+      114.1712306
+    ],
+    [
+      22.3096437,
+      114.1712809
+    ],
+    [
+      22.3094968,
+      114.1713282
+    ],
+    [
+      22.309323,
+      114.171393
+    ],
+    [
+      22.3091552,
+      114.1714643
+    ],
+    [
+      22.3090103,
+      114.1715477
+    ],
+    [
+      22.3087526,
+      114.1717193
+    ],
+    [
+      22.3084342,
+      114.1719674
+    ],
+    [
+      22.3081564,
+      114.1721962
+    ],
+    [
+      22.3078846,
+      114.1724661
+    ],
+    [
+      22.3076324,
+      114.1727857
+    ],
+    [
+      22.3074804,
+      114.172991
+    ],
+    [
+      22.3073227,
+      114.1732877
+    ],
+    [
+      22.3072126,
+      114.1735905
+    ],
+    [
+      22.3071243,
+      114.1739227
+    ],
+    [
+      22.3070561,
+      114.1743051
+    ],
+    [
+      22.307005,
+      114.1747485
+    ],
+    [
+      22.3070149,
+      114.1750221
+    ],
+    [
+      22.3070489,
+      114.1752924
+    ],
+    [
+      22.3071159,
+      114.1755727
+    ],
+    [
+      22.3072063,
+      114.1758378
+    ],
+    [
+      22.3073148,
+      114.1760512
+    ],
+    [
+      22.30744,
+      114.176246
+    ],
+    [
+      22.3075604,
+      114.1763873
+    ],
+    [
+      22.3076995,
+      114.1765359
+    ],
+    [
+      22.3077892,
+      114.1766306
+    ],
+    [
+      22.3079881,
+      114.1768126
+    ],
+    [
+      22.308205,
+      114.1770177
+    ],
+    [
+      22.3083699,
+      114.1771405
+    ],
+    [
+      22.3089214,
+      114.1775127
+    ],
+    [
+      22.3091666,
+      114.1776931
+    ],
+    [
+      22.3093856,
+      114.1778874
+    ],
+    [
+      22.309594,
+      114.1781395
+    ],
+    [
+      22.3097603,
+      114.1783729
+    ],
+    [
+      22.3099244,
+      114.1786749
+    ],
+    [
+      22.3100635,
+      114.178964
+    ],
+    [
+      22.3101769,
+      114.1792701
+    ],
+    [
+      22.3102366,
+      114.1795609
+    ],
+    [
+      22.310265,
+      114.1798859
+    ],
+    [
+      22.3102812,
+      114.1801326
+    ],
+    [
+      22.3102578,
+      114.1804422
+    ],
+    [
+      22.3101999,
+      114.1807618
+    ],
+    [
+      22.3101235,
+      114.181045
+    ],
+    [
+      22.3100157,
+      114.1813414
+    ],
+    [
+      22.3098718,
+      114.1816253
+    ],
+    [
+      22.3092775,
+      114.1826059
+    ],
+    [
+      22.3088005,
+      114.1834127
+    ],
+    [
+      22.3085623,
+      114.1838187
+    ],
+    [
+      22.3082019,
+      114.1844384
+    ],
+    [
+      22.308021,
+      114.1847394
+    ],
+    [
+      22.307835,
+      114.1850396
+    ],
+    [
+      22.3076646,
+      114.1853091
+    ],
+    [
+      22.3070928,
+      114.1862131
+    ],
+    [
+      22.3066031,
+      114.1869678
+    ],
+    [
+      22.3064903,
+      114.187143
+    ],
+    [
+      22.3061306,
+      114.1877013
+    ],
+    [
+      22.304901,
+      114.1896461
+    ]
+  ],
+  "directedSegments": [
+    {
+      "id": "hk-track-756866bc4df482fcd4",
+      "fromStationId": "hk-mtr-CHH",
+      "toStationId": "hk-mtr-DIH",
+      "geometry": [
+        [
+          22.3352653,
+          114.2084856
+        ],
+        [
+          22.335693,
+          114.2079391
+        ],
+        [
+          22.3358003,
+          114.2078128
+        ],
+        [
+          22.3362389,
+          114.2073751
+        ],
+        [
+          22.3365218,
+          114.2070513
+        ],
+        [
+          22.3367634,
+          114.2067524
+        ],
+        [
+          22.3370525,
+          114.2063582
+        ],
+        [
+          22.3372795,
+          114.2060348
+        ],
+        [
+          22.3375563,
+          114.2056157
+        ],
+        [
+          22.3377683,
+          114.2052586
+        ],
+        [
+          22.3381912,
+          114.2045311
+        ],
+        [
+          22.3392639,
+          114.2027418
+        ],
+        [
+          22.3393752,
+          114.2025372
+        ],
+        [
+          22.3399391,
+          114.2015739
+        ]
+      ],
+      "segmentLengthMeters": 883.7209255455313,
+      "sourceWayIds": [
+        448665230,
+        435248941
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-94e5145035c9750b18",
+      "fromStationId": "hk-mtr-DIH",
+      "toStationId": "hk-mtr-WTS",
+      "geometry": [
+        [
+          22.3399391,
+          114.2015739
+        ],
+        [
+          22.3405635,
+          114.2005071
+        ],
+        [
+          22.3409967,
+          114.199725
+        ],
+        [
+          22.3411524,
+          114.1994227
+        ],
+        [
+          22.3412943,
+          114.199101
+        ],
+        [
+          22.3414372,
+          114.1987369
+        ],
+        [
+          22.3415633,
+          114.1982938
+        ],
+        [
+          22.3416332,
+          114.1979755
+        ],
+        [
+          22.3416671,
+          114.1977167
+        ],
+        [
+          22.3416766,
+          114.1973904
+        ],
+        [
+          22.3416734,
+          114.1969003
+        ],
+        [
+          22.3416178,
+          114.1932053
+        ]
+      ],
+      "segmentLengthMeters": 908.7867468789943,
+      "sourceWayIds": [
+        435248941
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-78e6710b2d4af2322f",
+      "fromStationId": "hk-mtr-WTS",
+      "toStationId": "hk-mtr-LOF",
+      "geometry": [
+        [
+          22.3416178,
+          114.1932053
+        ],
+        [
+          22.3416152,
+          114.193029
+        ],
+        [
+          22.341594,
+          114.1927588
+        ],
+        [
+          22.3415357,
+          114.1924371
+        ],
+        [
+          22.3414182,
+          114.1920375
+        ],
+        [
+          22.3412943,
+          114.1917489
+        ],
+        [
+          22.3411799,
+          114.1915394
+        ],
+        [
+          22.3409596,
+          114.1912073
+        ],
+        [
+          22.3407711,
+          114.1909806
+        ],
+        [
+          22.3405222,
+          114.190739
+        ],
+        [
+          22.3402807,
+          114.1905432
+        ],
+        [
+          22.3400785,
+          114.1904035
+        ],
+        [
+          22.3396993,
+          114.190147
+        ],
+        [
+          22.3394526,
+          114.1899719
+        ],
+        [
+          22.3391793,
+          114.1897245
+        ],
+        [
+          22.3388775,
+          114.1893948
+        ],
+        [
+          22.3386466,
+          114.189073
+        ],
+        [
+          22.3384327,
+          114.1887066
+        ],
+        [
+          22.3382886,
+          114.188354
+        ],
+        [
+          22.3381753,
+          114.1880368
+        ],
+        [
+          22.3375039,
+          114.1859052
+        ]
+      ],
+      "segmentLengthMeters": 914.0010277172713,
+      "sourceWayIds": [
+        435248941
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-f043d6b975c1a6b095",
+      "fromStationId": "hk-mtr-LOF",
+      "toStationId": "hk-mtr-KOT",
+      "geometry": [
+        [
+          22.3375039,
+          114.1859052
+        ],
+        [
+          22.3371914,
+          114.1849132
+        ],
+        [
+          22.3369944,
+          114.1841117
+        ],
+        [
+          22.3368101,
+          114.1832335
+        ],
+        [
+          22.3367561,
+          114.1828659
+        ],
+        [
+          22.3366905,
+          114.1823495
+        ],
+        [
+          22.3366691,
+          114.1815218
+        ],
+        [
+          22.336715,
+          114.1787665
+        ],
+        [
+          22.3367533,
+          114.1772586
+        ]
+      ],
+      "segmentLengthMeters": 901.3370267070986,
+      "sourceWayIds": [
+        435248941
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-1ebeb881cbcb33a905",
+      "fromStationId": "hk-mtr-KOT",
+      "toStationId": "hk-mtr-SKM",
+      "geometry": [
+        [
+          22.3367533,
+          114.1772586
+        ],
+        [
+          22.3367721,
+          114.1764841
+        ],
+        [
+          22.3368328,
+          114.1729298
+        ],
+        [
+          22.3368314,
+          114.1725103
+        ],
+        [
+          22.3368168,
+          114.1721997
+        ],
+        [
+          22.3367665,
+          114.1718216
+        ],
+        [
+          22.336762,
+          114.1718024
+        ],
+        [
+          22.3366906,
+          114.1715009
+        ],
+        [
+          22.336555,
+          114.171133
+        ],
+        [
+          22.3363877,
+          114.1708075
+        ],
+        [
+          22.3361787,
+          114.170475
+        ],
+        [
+          22.335968,
+          114.1702084
+        ],
+        [
+          22.3357485,
+          114.1699738
+        ],
+        [
+          22.3355381,
+          114.169775
+        ],
+        [
+          22.3353315,
+          114.169601
+        ],
+        [
+          22.3350967,
+          114.1694826
+        ],
+        [
+          22.3348451,
+          114.1693696
+        ],
+        [
+          22.3345667,
+          114.1692626
+        ],
+        [
+          22.3341574,
+          114.1691051
+        ],
+        [
+          22.3339118,
+          114.1690421
+        ],
+        [
+          22.333552,
+          114.1689764
+        ],
+        [
+          22.3330664,
+          114.1689402
+        ],
+        [
+          22.3327742,
+          114.1689348
+        ],
+        [
+          22.3310586,
+          114.1689174
+        ]
+      ],
+      "segmentLengthMeters": 1331.0460103337055,
+      "sourceWayIds": [
+        435248941
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-17edc82dcf9f4651a7",
+      "fromStationId": "hk-mtr-SKM",
+      "toStationId": "hk-mtr-PRE",
+      "geometry": [
+        [
+          22.3310586,
+          114.1689174
+        ],
+        [
+          22.3305165,
+          114.1689107
+        ],
+        [
+          22.3300476,
+          114.1688785
+        ],
+        [
+          22.3296437,
+          114.1688295
+        ],
+        [
+          22.3292945,
+          114.1687712
+        ],
+        [
+          22.3289211,
+          114.1686706
+        ],
+        [
+          22.3284919,
+          114.1685231
+        ],
+        [
+          22.3277712,
+          114.1682656
+        ],
+        [
+          22.3273928,
+          114.168165
+        ],
+        [
+          22.3269611,
+          114.1681221
+        ],
+        [
+          22.3265528,
+          114.1680659
+        ],
+        [
+          22.3262612,
+          114.1680562
+        ],
+        [
+          22.3259494,
+          114.1680593
+        ],
+        [
+          22.325794,
+          114.1680837
+        ],
+        [
+          22.3244672,
+          114.1683664
+        ]
+      ],
+      "segmentLengthMeters": 746.5273741594661,
+      "sourceWayIds": [
+        435248941
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-d55ae9f0ca1b71cee4",
+      "fromStationId": "hk-mtr-PRE",
+      "toStationId": "hk-mtr-MOK",
+      "geometry": [
+        [
+          22.3244672,
+          114.1683664
+        ],
+        [
+          22.3238179,
+          114.1685047
+        ],
+        [
+          22.3222423,
+          114.168841
+        ],
+        [
+          22.3204814,
+          114.1691946
+        ],
+        [
+          22.320238,
+          114.169248
+        ],
+        [
+          22.3192647,
+          114.1694523
+        ]
+      ],
+      "segmentLengthMeters": 589.1849977558662,
+      "sourceWayIds": [
+        435248941,
+        435248942
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-d26713a497b903c002",
+      "fromStationId": "hk-mtr-MOK",
+      "toStationId": "hk-mtr-YMT",
+      "geometry": [
+        [
+          22.3192647,
+          114.1694523
+        ],
+        [
+          22.3184219,
+          114.1696289
+        ],
+        [
+          22.3183304,
+          114.169643
+        ],
+        [
+          22.3182309,
+          114.1696582
+        ],
+        [
+          22.3181258,
+          114.1696687
+        ],
+        [
+          22.3180682,
+          114.1696748
+        ],
+        [
+          22.3180027,
+          114.1696833
+        ],
+        [
+          22.3179441,
+          114.1696931
+        ],
+        [
+          22.3177505,
+          114.1697333
+        ],
+        [
+          22.3173976,
+          114.1698044
+        ],
+        [
+          22.3165359,
+          114.169977
+        ],
+        [
+          22.3159388,
+          114.1700985
+        ],
+        [
+          22.3153024,
+          114.1702272
+        ],
+        [
+          22.3151682,
+          114.1702478
+        ],
+        [
+          22.3149005,
+          114.1702722
+        ],
+        [
+          22.3147805,
+          114.1702852
+        ],
+        [
+          22.3146706,
+          114.1703039
+        ],
+        [
+          22.3145447,
+          114.1703272
+        ],
+        [
+          22.3142078,
+          114.1704009
+        ],
+        [
+          22.3140993,
+          114.1704222
+        ],
+        [
+          22.3139967,
+          114.170432
+        ],
+        [
+          22.3138994,
+          114.1704385
+        ],
+        [
+          22.3137748,
+          114.1704532
+        ],
+        [
+          22.3136221,
+          114.1704754
+        ],
+        [
+          22.3130605,
+          114.1705921
+        ]
+      ],
+      "segmentLengthMeters": 700.2141901860952,
+      "sourceWayIds": [
+        435248942,
+        437033596,
+        437033595,
+        435248945,
+        435254012,
+        448665232
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-c5dc9192892c6c165c",
+      "fromStationId": "hk-mtr-YMT",
+      "toStationId": "hk-mtr-HOM",
+      "geometry": [
+        [
+          22.3130605,
+          114.1705921
+        ],
+        [
+          22.3117169,
+          114.1708663
+        ],
+        [
+          22.3105206,
+          114.1710891
+        ],
+        [
+          22.3102873,
+          114.1711367
+        ],
+        [
+          22.3100386,
+          114.171187
+        ],
+        [
+          22.3098357,
+          114.1712306
+        ],
+        [
+          22.3096437,
+          114.1712809
+        ],
+        [
+          22.3094968,
+          114.1713282
+        ],
+        [
+          22.309323,
+          114.171393
+        ],
+        [
+          22.3091552,
+          114.1714643
+        ],
+        [
+          22.3090103,
+          114.1715477
+        ],
+        [
+          22.3087526,
+          114.1717193
+        ],
+        [
+          22.3084342,
+          114.1719674
+        ],
+        [
+          22.3081564,
+          114.1721962
+        ],
+        [
+          22.3078846,
+          114.1724661
+        ],
+        [
+          22.3076324,
+          114.1727857
+        ],
+        [
+          22.3074804,
+          114.172991
+        ],
+        [
+          22.3073227,
+          114.1732877
+        ],
+        [
+          22.3072126,
+          114.1735905
+        ],
+        [
+          22.3071243,
+          114.1739227
+        ],
+        [
+          22.3070561,
+          114.1743051
+        ],
+        [
+          22.307005,
+          114.1747485
+        ],
+        [
+          22.3070149,
+          114.1750221
+        ],
+        [
+          22.3070489,
+          114.1752924
+        ],
+        [
+          22.3071159,
+          114.1755727
+        ],
+        [
+          22.3072063,
+          114.1758378
+        ],
+        [
+          22.3073148,
+          114.1760512
+        ],
+        [
+          22.30744,
+          114.176246
+        ],
+        [
+          22.3075604,
+          114.1763873
+        ],
+        [
+          22.3076995,
+          114.1765359
+        ],
+        [
+          22.3077892,
+          114.1766306
+        ],
+        [
+          22.3079881,
+          114.1768126
+        ],
+        [
+          22.308205,
+          114.1770177
+        ],
+        [
+          22.3083699,
+          114.1771405
+        ],
+        [
+          22.3089214,
+          114.1775127
+        ],
+        [
+          22.3091666,
+          114.1776931
+        ],
+        [
+          22.3093856,
+          114.1778874
+        ],
+        [
+          22.309594,
+          114.1781395
+        ],
+        [
+          22.3097603,
+          114.1783729
+        ],
+        [
+          22.3099244,
+          114.1786749
+        ],
+        [
+          22.3100635,
+          114.178964
+        ],
+        [
+          22.3101769,
+          114.1792701
+        ],
+        [
+          22.3102366,
+          114.1795609
+        ],
+        [
+          22.310265,
+          114.1798859
+        ],
+        [
+          22.3102812,
+          114.1801326
+        ],
+        [
+          22.3102578,
+          114.1804422
+        ],
+        [
+          22.3101999,
+          114.1807618
+        ],
+        [
+          22.3101235,
+          114.181045
+        ],
+        [
+          22.3100157,
+          114.1813414
+        ],
+        [
+          22.3098718,
+          114.1816253
+        ],
+        [
+          22.3092775,
+          114.1826059
+        ]
+      ],
+      "segmentLengthMeters": 1860.7484646186554,
+      "sourceWayIds": [
+        435254012,
+        448665232,
+        447938816,
+        681882034,
+        681883648,
+        449066933
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-904a59e9ca6007afee",
+      "fromStationId": "hk-mtr-HOM",
+      "toStationId": "hk-mtr-WHA",
+      "geometry": [
+        [
+          22.3092775,
+          114.1826059
+        ],
+        [
+          22.3088005,
+          114.1834127
+        ],
+        [
+          22.3085623,
+          114.1838187
+        ],
+        [
+          22.3082019,
+          114.1844384
+        ],
+        [
+          22.308021,
+          114.1847394
+        ],
+        [
+          22.307835,
+          114.1850396
+        ],
+        [
+          22.3076646,
+          114.1853091
+        ],
+        [
+          22.3070928,
+          114.1862131
+        ],
+        [
+          22.3066031,
+          114.1869678
+        ],
+        [
+          22.3064903,
+          114.187143
+        ],
+        [
+          22.3061306,
+          114.1877013
+        ],
+        [
+          22.304901,
+          114.1896461
+        ]
+      ],
+      "segmentLengthMeters": 872.6858625571695,
+      "sourceWayIds": [
+        681883648,
+        449066933,
+        681883647,
+        448785617
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/272125",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    }
+  ],
+  "stations": [
+    {
+      "id": "hk-mtr-CHH",
+      "countryId": "hk",
+      "code": "CHH",
+      "nameZhHant": "彩虹",
+      "nameEn": "Choi Hung",
+      "nameKo": "초이훙",
+      "aliasesKo": [
+        "초이홍"
+      ],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3352653,
+        "lng": 114.2084856
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-CHH",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931864",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-0",
+      "physicalStationId": "hk-mtr-CHH",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331931864,
+      "stopPosition": {
+        "lat": 22.3352653,
+        "lng": 114.2084856,
+        "sourceNodeId": 4331931864,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931864"
+      },
+      "geometryIndex": 0,
+      "stationMasterId": "hk-mtr-CHH",
+      "ja": "彩虹",
+      "kana": "",
+      "romaji": "Choi Hung",
+      "ko": "초이훙",
+      "koAliases": [
+        "초이홍"
+      ],
+      "latitude": 22.3352653,
+      "longitude": 114.2084856,
+      "officialCode": "CHH",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-DIH",
+      "countryId": "hk",
+      "code": "DIH",
+      "nameZhHant": "鑽石山",
+      "nameEn": "Diamond Hill",
+      "nameKo": "다이아몬드힐",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3399391,
+        "lng": 114.2015739
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-DIH",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4331887005",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-1",
+      "physicalStationId": "hk-mtr-DIH",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331887005,
+      "stopPosition": {
+        "lat": 22.3399391,
+        "lng": 114.2015739,
+        "sourceNodeId": 4331887005,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331887005"
+      },
+      "geometryIndex": 13,
+      "stationMasterId": "hk-mtr-DIH",
+      "ja": "鑽石山",
+      "kana": "",
+      "romaji": "Diamond Hill",
+      "ko": "다이아몬드힐",
+      "koAliases": [],
+      "latitude": 22.3399391,
+      "longitude": 114.2015739,
+      "officialCode": "DIH",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-WTS",
+      "countryId": "hk",
+      "code": "WTS",
+      "nameZhHant": "黃大仙",
+      "nameEn": "Wong Tai Sin",
+      "nameKo": "웡타이신",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3416178,
+        "lng": 114.1932053
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-WTS",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931871",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-2",
+      "physicalStationId": "hk-mtr-WTS",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331931871,
+      "stopPosition": {
+        "lat": 22.3416178,
+        "lng": 114.1932053,
+        "sourceNodeId": 4331931871,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931871"
+      },
+      "geometryIndex": 24,
+      "stationMasterId": "hk-mtr-WTS",
+      "ja": "黃大仙",
+      "kana": "",
+      "romaji": "Wong Tai Sin",
+      "ko": "웡타이신",
+      "koAliases": [],
+      "latitude": 22.3416178,
+      "longitude": 114.1932053,
+      "officialCode": "WTS",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-LOF",
+      "countryId": "hk",
+      "code": "LOF",
+      "nameZhHant": "樂富",
+      "nameEn": "Lok Fu",
+      "nameKo": "록푸",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3375039,
+        "lng": 114.1859052
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-LOF",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931866",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-3",
+      "physicalStationId": "hk-mtr-LOF",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331931866,
+      "stopPosition": {
+        "lat": 22.3375039,
+        "lng": 114.1859052,
+        "sourceNodeId": 4331931866,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931866"
+      },
+      "geometryIndex": 44,
+      "stationMasterId": "hk-mtr-LOF",
+      "ja": "樂富",
+      "kana": "",
+      "romaji": "Lok Fu",
+      "ko": "록푸",
+      "koAliases": [],
+      "latitude": 22.3375039,
+      "longitude": 114.1859052,
+      "officialCode": "LOF",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-KOT",
+      "countryId": "hk",
+      "code": "KOT",
+      "nameZhHant": "九龍塘",
+      "nameEn": "Kowloon Tong",
+      "nameKo": "까우룽통",
+      "aliasesKo": [
+        "카우룬통"
+      ],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3367533,
+        "lng": 114.1772586
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-KOT",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931865",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-4",
+      "physicalStationId": "hk-mtr-KOT",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331931865,
+      "stopPosition": {
+        "lat": 22.3367533,
+        "lng": 114.1772586,
+        "sourceNodeId": 4331931865,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931865"
+      },
+      "geometryIndex": 52,
+      "stationMasterId": "hk-mtr-KOT",
+      "ja": "九龍塘",
+      "kana": "",
+      "romaji": "Kowloon Tong",
+      "ko": "까우룽통",
+      "koAliases": [
+        "카우룬통"
+      ],
+      "latitude": 22.3367533,
+      "longitude": 114.1772586,
+      "officialCode": "KOT",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-KOT",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-east-rail"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
+    },
+    {
+      "id": "hk-mtr-SKM",
+      "countryId": "hk",
+      "code": "SKM",
+      "nameZhHant": "石硤尾",
+      "nameEn": "Shek Kip Mei",
+      "nameKo": "섹깁메이",
+      "aliasesKo": [
+        "셱킵메이"
+      ],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3310586,
+        "lng": 114.1689174
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-SKM",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4331887067",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-5",
+      "physicalStationId": "hk-mtr-SKM",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331887067,
+      "stopPosition": {
+        "lat": 22.3310586,
+        "lng": 114.1689174,
+        "sourceNodeId": 4331887067,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331887067"
+      },
+      "geometryIndex": 75,
+      "stationMasterId": "hk-mtr-SKM",
+      "ja": "石硤尾",
+      "kana": "",
+      "romaji": "Shek Kip Mei",
+      "ko": "섹깁메이",
+      "koAliases": [
+        "셱킵메이"
+      ],
+      "latitude": 22.3310586,
+      "longitude": 114.1689174,
+      "officialCode": "SKM",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-PRE",
+      "countryId": "hk",
+      "code": "PRE",
+      "nameZhHant": "太子",
+      "nameEn": "Prince Edward",
+      "nameKo": "프린스에드워드",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3244672,
+        "lng": 114.1683664
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-PRE",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/288379264",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-6",
+      "physicalStationId": "hk-mtr-PRE",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331931868,
+      "stopPosition": {
+        "lat": 22.3244672,
+        "lng": 114.1683664,
+        "sourceNodeId": 4331931868,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931868"
+      },
+      "geometryIndex": 89,
+      "stationMasterId": "hk-mtr-PRE",
+      "ja": "太子",
+      "kana": "",
+      "romaji": "Prince Edward",
+      "ko": "프린스에드워드",
+      "koAliases": [],
+      "latitude": 22.3244672,
+      "longitude": 114.1683664,
+      "officialCode": "PRE",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-PRE",
+        "lineIds": [
+          "hk-tsuen-wan",
+          "hk-kwun-tong"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      }
+    },
+    {
+      "id": "hk-mtr-MOK",
+      "countryId": "hk",
+      "code": "MOK",
+      "nameZhHant": "旺角",
+      "nameEn": "Mong Kok",
+      "nameKo": "몽콕",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3192647,
+        "lng": 114.1694523
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-MOK",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/288379318",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-7",
+      "physicalStationId": "hk-mtr-MOK",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331931867,
+      "stopPosition": {
+        "lat": 22.3192647,
+        "lng": 114.1694523,
+        "sourceNodeId": 4331931867,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931867"
+      },
+      "geometryIndex": 94,
+      "stationMasterId": "hk-mtr-MOK",
+      "ja": "旺角",
+      "kana": "",
+      "romaji": "Mong Kok",
+      "ko": "몽콕",
+      "koAliases": [],
+      "latitude": 22.3192647,
+      "longitude": 114.1694523,
+      "officialCode": "MOK",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-MOK",
+        "lineIds": [
+          "hk-tsuen-wan",
+          "hk-kwun-tong"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      }
+    },
+    {
+      "id": "hk-mtr-YMT",
+      "countryId": "hk",
+      "code": "YMT",
+      "nameZhHant": "油麻地",
+      "nameEn": "Yau Ma Tei",
+      "nameKo": "야우마테이",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3130605,
+        "lng": 114.1705921
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-YMT",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/288379179",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-8",
+      "physicalStationId": "hk-mtr-YMT",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4331931872,
+      "stopPosition": {
+        "lat": 22.3130605,
+        "lng": 114.1705921,
+        "sourceNodeId": 4331931872,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4331931872"
+      },
+      "geometryIndex": 118,
+      "stationMasterId": "hk-mtr-YMT",
+      "ja": "油麻地",
+      "kana": "",
+      "romaji": "Yau Ma Tei",
+      "ko": "야우마테이",
+      "koAliases": [],
+      "latitude": 22.3130605,
+      "longitude": 114.1705921,
+      "officialCode": "YMT",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-YMT",
+        "lineIds": [
+          "hk-tsuen-wan",
+          "hk-kwun-tong"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      }
+    },
+    {
+      "id": "hk-mtr-HOM",
+      "countryId": "hk",
+      "code": "HOM",
+      "nameZhHant": "何文田",
+      "nameEn": "Ho Man Tin",
+      "nameKo": "호만틴",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3092775,
+        "lng": 114.1826059
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-HOM",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4460375639",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-9",
+      "physicalStationId": "hk-mtr-HOM",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 4460375639,
+      "stopPosition": {
+        "lat": 22.3092775,
+        "lng": 114.1826059,
+        "sourceNodeId": 4460375639,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4460375639"
+      },
+      "geometryIndex": 168,
+      "stationMasterId": "hk-mtr-HOM",
+      "ja": "何文田",
+      "kana": "",
+      "romaji": "Ho Man Tin",
+      "ko": "호만틴",
+      "koAliases": [],
+      "latitude": 22.3092775,
+      "longitude": 114.1826059,
+      "officialCode": "HOM",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-WHA",
+      "countryId": "hk",
+      "code": "WHA",
+      "nameZhHant": "黃埔",
+      "nameEn": "Whampoa",
+      "nameKo": "왐포아",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.304901,
+        "lng": 114.1896461
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-WHA",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/2319258376",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-kwun-tong-short-chh-wha-stop-10",
+      "physicalStationId": "hk-mtr-WHA",
+      "lineId": "hk-kwun-tong",
+      "sourceStopNodeId": 2319258376,
+      "stopPosition": {
+        "lat": 22.304901,
+        "lng": 114.1896461,
+        "sourceNodeId": 2319258376,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/2319258376"
+      },
+      "geometryIndex": 179,
+      "stationMasterId": "hk-mtr-WHA",
+      "ja": "黃埔",
+      "kana": "",
+      "romaji": "Whampoa",
+      "ko": "왐포아",
+      "koAliases": [],
+      "latitude": 22.304901,
+      "longitude": 114.1896461,
+      "officialCode": "WHA",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    }
+  ],
+  "services": [
+    {
+      "id": "hk-kwun-tong-short-chh-wha",
+      "nameJa": "觀塘綫",
+      "nameEn": "Kwun Tong Line",
+      "nameKo": "쿤통선",
+      "stops": [
+        "hk-mtr-CHH",
+        "hk-mtr-DIH",
+        "hk-mtr-WTS",
+        "hk-mtr-LOF",
+        "hk-mtr-KOT",
+        "hk-mtr-SKM",
+        "hk-mtr-PRE",
+        "hk-mtr-MOK",
+        "hk-mtr-YMT",
+        "hk-mtr-HOM",
+        "hk-mtr-WHA"
+      ]
+    }
+  ],
+  "operatingConditionFingerprint": "2d9bec41e0b16436e5f4280a07286e9879dafab60b1d62cd8895258459f549db",
+  "validationFingerprint": "6d2a263b16a5c38dab0902de50f2985659275a8f137666b8e5f12175c6106498"
+}

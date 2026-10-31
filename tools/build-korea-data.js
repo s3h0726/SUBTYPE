@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 'use strict';
+const koreaPublicationPolicy=require('../data/kr/publication-policy.json');
+if(koreaPublicationPolicy.mode==='reset'){
+ if(process.argv.includes('--publish')){console.error('KR_CATALOG_RESET: explicit publish blocked until policy is lifted');process.exit(1)}
+ if(process.argv.includes('--publish-released')){console.log('KR_CATALOG_RESET: published route generation paused');process.exit(0)}
+}
 const fs=require('node:fs'),path=require('node:path'),{load,compile}=require('./lib/kr-network');
 const base=path.resolve(__dirname,'../data/kr/v2'),data=load(base),result=compile(data,{base});
 if(result.errors.length){console.error(JSON.stringify(result.errors,null,2));process.exit(1)}

@@ -1,0 +1,141 @@
+✔ Hong Kong has ten separately identified MTR lines and stable region IDs (1.3582ms)
+✔ official branches do not invent an all-stations journey through both termini (0.3131ms)
+✔ Airport Express does not acquire Tung Chung Line stops (0.9117ms)
+✔ unverified Hong Kong cannot bypass gating through custom/imported routes or a lazy flag (2.0183ms)
+✔ Disneyland both directions use distinct retained source tracks, not reverse guesses (2.0704ms)
+✔ every playable service passes the same runtime gate as its lazy index (81.6808ms)
+✔ verified physical edges retain source IDs and connected finite source vertices (12.1311ms)
+✖ verified separately named station interchanges are explicit while HSR and uncertain walks stay pending (5.3101ms)
+✔ compiler regeneration is byte stable and leaves Japanese/Korean data unchanged (1723.4311ms)
+✔ source snapshots have valid recorded hashes; absent sources are not silently verified (75.7578ms)
+✔ Hong Kong CUSTOM retains actual edges and rejects reordered, disconnected or imaginary loops (3.865ms)
+✔ lazy Hong Kong metadata never validates full stop references against an empty station list (4.8392ms)
+✔ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (2.6978ms)
+✔ Hong Kong CUSTOM normalization keeps replay IDs and memory does not gain kana answers (2.7731ms)
+✔ Light Rail destination dashes retain termini while interior one-way calls stay directional (0.5595ms)
+✔ Light Rail complete official sequence rejects the formerly approved truncated 614P pattern (4.7858ms)
+✔ 706 rotates only a closed source chain and retains every traversed railway edge (8.7292ms)
+✔ SIL and AEL directions each resolve independent real source tracks and all their reviewed stops (5.6899ms)
+✔ all MTR codes share a single reviewed Korean name record and unconfirmed names remain blocked (3.0909ms)
+✔ MTR colours are the reviewed official PDF alternates and logos are never implicitly licensed (2.2234ms)
+✖ additional Light Rail peaks retain local times, direction, holiday uncertainty and incomplete full stops (1.2681ms)
+✔ CUSTOM continuations cannot imply a transfer between opposite service directions (1.2712ms)
+✔ phase three release requires completed browser evidence for unchanged names, direction and track (93.8325ms)
+✔ each Hong Kong service stop uses its own railway vertex and stable physical station identity (59.5499ms)
+✔ Tung Chung diversion reorders exact existing source ways with official commissioning evidence (4.0708ms)
+✖ off-peak LOHAS shuttle stays blocked until its operating condition is reviewed (0.5931ms)
+✔ local validation preview cannot appear as a released public service (0.9977ms)
+✔ CUSTOM rebases the first interchange stop onto its selected directed railway without changing physical IDs (1.2103ms)
+✔ new Korean usage reviews retain published station identity pairs and do not claim official Korean designations (32.4539ms)
+✔ construction tags cannot be treated as operational without an explicit commissioning review (4.4622ms)
+✔ verified Hong Kong circular services are closed at the same physical station with a sourced return edge (2.1193ms)
+✔ all original Hong Kong services and 22 reviewed MTR directions survive Phase 4 (173.7436ms)
+✔ Light Rail CSV keeps platform identities and joins only the explicitly circular route sections (8.2467ms)
+✔ 68 surface Korean reviews retain official bilingual identity and published usage provenance (37.928ms)
+✔ 20 regular Light Rail directions are released only with matching complete browser records (23.6997ms)
+✔ both circular directions keep the later closing visit and every actual rail segment (2.0299ms)
+✔ restored 614P terminal is an original exact railway endpoint, never a straight extension (54.3299ms)
+✔ Happy Valley stop-order corrections retain every raw railway way and exact stop node (26.5159ms)
+✔ Hong Kong transfers preserve exact line stops and history while refusing non-reviewed links and arrival-only directions (93.1309ms)
+✖ official Light Rail colours come from the labelled operator PDF and do not approve logos (16.6649ms)
+✔ finite arrival animation traverses the source curve and resolves exactly once after its full duration (4.4542ms)
+✔ actual typing/controller and first-target behavior replaces exact-source-spelling guesses (530.4577ms)
+✔ all six current tram route pairs retain twelve real railway directions without bypassing name or calling-order review (35.8286ms)
+✔ circular Hong Kong completion distance and replay retain separate first and closing station visits (8.4304ms)
+✔ Phase5 preserves every Phase4 candidate and released direction with unchanged rail fingerprint (3925.3526ms)
+✔ twelve tram orders match separately reviewed official codes, source hashes, and original direction-specific railway vertices (214.8633ms)
+✔ all118 tram Korean reviews retain official bilingual identities and non-machine usage provenance (192.8466ms)
+✔ one tram family contains six real route pairs and source-specific directions, boarding preserves official destination and route (57.7185ms)
+✔ tram content changes invalidate actual gameplay release evidence (25.9982ms)
+✔ 751P conditional information is byte-pinned, visible as operating guidance, and cannot approve any candidate or heading colour (6.942ms)
+✔ actual HK resolver preserves canonical full-service gating while slicing only a contiguous tram boarding suffix (113.2777ms)
+✔ all42 Phase4 directions resolve identically after optional tram boarding support (628.398ms)
+✔ all54 Phase5 directions retain exact calling orders, source geometry and browser-gated fingerprints (5194.0585ms)
+✔ each restored conditional service is exact, source-pinned, schedule-qualified and completed in browser (26.466ms)
+✔ Ocean Express uses separate operator, official Korean stops, paid-park notice and one-way source loop arms (552.6572ms)
+✔ Peak Tram recovers exact six-stop government order on actual track but remains blocked for Korean and request-stop review (16.5035ms)
+✔ original283 name reviews remain, new facility names are official, unresolved Peak names are never invented (128.1519ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 53
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6206.2499
+
+✖ failing tests:
+
+test at tools\test-hk-network.cjs:15:1
+✖ verified separately named station interchanges are explicit while HSR and uncertain walks stay pending (5.3101ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(network.servicePatterns.filter(s=>s.canonicalLineId==='hk-light-rail-751p').every(s=>s.validWhen.type==='weekday-peak-conditional'&&!s.playable))
+
+      at TestContext.<anonymous> (C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository\tools\test-hk-network.cjs:15:708)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\test-hk-network.cjs:29:1
+✖ additional Light Rail peaks retain local times, direction, holiday uncertainty and incomplete full stops (1.2681ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(network.servicePatterns.filter(s=>s.canonicalLineId==='hk-light-rail-751p').every(s=>s.validWhen.type==='weekday-peak-conditional'&&s.stopStatus==='unverified'&&!s.playable))
+
+      at TestContext.<anonymous> (C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository\tools\test-hk-network.cjs:29:635)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\test-hk-network.cjs:34:1
+✖ off-peak LOHAS shuttle stays blocked until its operating condition is reviewed (0.5931ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  true !== false
+
+      at TestContext.<anonymous> (C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository\tools\test-hk-network.cjs:34:173)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\test-hk-phase4.cjs:12:1
+✖ official Light Rail colours come from the labelled operator PDF and do not approve logos (16.6649ms)
+  TypeError: Cannot read properties of undefined (reading 'hex')
+      at TestContext.<anonymous> (C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository\tools\test-hk-phase4.cjs:12:369)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

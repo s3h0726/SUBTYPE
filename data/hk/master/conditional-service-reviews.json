@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "services": [
+    {
+      "serviceId": "hk-tseung-kwan-o-tks-dt",
+      "status": "verified",
+      "stopStationIds": [
+        "hk-mtr-LHP",
+        "hk-mtr-TKO",
+        "hk-mtr-TIK"
+      ],
+      "sources": [
+        {
+          "file": "data/hk/sources/phase6/mtr-service-hours.html",
+          "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff",
+          "url": "https://www.mtr.com.hk/en/customer/services/train_service_index.html"
+        }
+      ],
+      "validWhen": {
+        "type": "off-peak-shuttle",
+        "noteKo": "티우겡렝 ↔ 로하스파크 셔틀 · 평일 비혼잡시간 9~14분, 토요일 8.2~10분, 일요일·공휴일 9~14분 간격. 실제 시간표·당일 운영 안내 확인.",
+        "operatingDays": [
+          "weekdays-non-peak",
+          "saturday",
+          "sunday-public-holiday"
+        ],
+        "frequencyMinutes": {
+          "weekdayNonPeak": [
+            9,
+            14
+          ],
+          "saturday": [
+            8.2,
+            10
+          ],
+          "sundayPublicHoliday": [
+            9,
+            14
+          ]
+        },
+        "exactDepartureTimesVerified": false
+      },
+      "checkedAt": "2026-10-25",
+      "evidence": "Official current MTR frequency table lists Tiu Keng Leng–LOHAS Park; official station CSV gives all three stations in both directions. Exact departures are not asserted."
+    },
+    {
+      "serviceId": "hk-tseung-kwan-o-tks-ut",
+      "status": "verified",
+      "stopStationIds": [
+        "hk-mtr-TIK",
+        "hk-mtr-TKO",
+        "hk-mtr-LHP"
+      ],
+      "sources": [
+        {
+          "file": "data/hk/sources/phase6/mtr-service-hours.html",
+          "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff",
+          "url": "https://www.mtr.com.hk/en/customer/services/train_service_index.html"
+        }
+      ],
+      "validWhen": {
+        "type": "off-peak-shuttle",
+        "noteKo": "티우겡렝 ↔ 로하스파크 셔틀 · 평일 비혼잡시간 9~14분, 토요일 8.2~10분, 일요일·공휴일 9~14분 간격. 실제 시간표·당일 운영 안내 확인.",
+        "operatingDays": [
+          "weekdays-non-peak",
+          "saturday",
+          "sunday-public-holiday"
+        ],
+        "frequencyMinutes": {
+          "weekdayNonPeak": [
+            9,
+            14
+          ],
+          "saturday": [
+            8.2,
+            10
+          ],
+          "sundayPublicHoliday": [
+            9,
+            14
+          ]
+        },
+        "exactDepartureTimesVerified": false
+      },
+      "checkedAt": "2026-10-25",
+      "evidence": "Official current MTR frequency table lists Tiu Keng Leng–LOHAS Park; official station CSV gives all three stations in both directions. Exact departures are not asserted."
+    },
+    {
+      "serviceId": "hk-light-rail-751p-osm-2929802",
+      "status": "verified",
+      "stopStationIds": [
+        "hk-lr-550",
+        "hk-lr-480",
+        "hk-lr-468",
+        "hk-lr-490",
+        "hk-lr-500",
+        "hk-lr-455",
+        "hk-lr-450",
+        "hk-lr-435",
+        "hk-lr-430"
+      ],
+      "sources": [
+        {
+          "file": "data/hk/sources/phase6/light-rail.html",
+          "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
+          "url": "https://www.mtr.com.hk/en/customer/services/schedule_index.html"
+        },
+        {
+          "file": "data/hk/sources/phase6/lr-partial-751.html",
+          "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb",
+          "url": "https://www.mtr.com.hk/en/customer/services/lt_bus_index.html"
+        },
+        {
+          "file": "data/hk/sources/phase6/light-rail.csv",
+          "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066",
+          "url": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv"
+        },
+        {
+          "file": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+          "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27",
+          "url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf"
+        }
+      ],
+      "checkedAt": "2026-10-25",
+      "callingOrderReview": {
+        "status": "verified",
+        "method": "Operator explicitly states 751P follows partial 751; current schedule identifies Tin Shui Wai–Tin Yat evening endpoints. Ordered nine stops equal a contiguous directional slice of official 751 CSV, independently matched against existing OSM route.",
+        "parentServiceId": "hk-light-rail-751-osm-2926506"
+      },
+      "validWhen": {
+        "type": "weekday-peak-conditional",
+        "noteKo": "751P 오후·저녁 혼잡시간 특별편 · 틴수이와이 ↔ 틴얏. 평일 운행, 방학 중 감편. 오전 틴윙 출발편과 구분하며 당일 MTR 안내를 확인하세요. 공식 색상 미검증.",
+        "operatingDays": [
+          "weekday-evening-peak"
+        ],
+        "schoolHoliday": "reduced-service",
+        "exactDepartureTimesVerified": false
+      }
+    },
+    {
+      "serviceId": "hk-light-rail-751p-osm-6485219",
+      "status": "verified",
+      "stopStationIds": [
+        "hk-lr-430",
+        "hk-lr-435",
+        "hk-lr-450",
+        "hk-lr-455",
+        "hk-lr-500",
+        "hk-lr-490",
+        "hk-lr-468",
+        "hk-lr-480",
+        "hk-lr-550"
+      ],
+      "sources": [
+        {
+          "file": "data/hk/sources/phase6/light-rail.html",
+          "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
+          "url": "https://www.mtr.com.hk/en/customer/services/schedule_index.html"
+        },
+        {
+          "file": "data/hk/sources/phase6/lr-partial-751.html",
+          "sha256": "f1ce037bbe2d61098bb878efe9f01df7e7d383efbc7d944bea4d0ccf7ee168cb",
+          "url": "https://www.mtr.com.hk/en/customer/services/lt_bus_index.html"
+        },
+        {
+          "file": "data/hk/sources/phase6/light-rail.csv",
+          "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066",
+          "url": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv"
+        },
+        {
+          "file": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+          "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27",
+          "url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf"
+        }
+      ],
+      "checkedAt": "2026-10-25",
+      "callingOrderReview": {
+        "status": "verified",
+        "method": "Operator explicitly states 751P follows partial 751; current schedule identifies Tin Shui Wai–Tin Yat evening endpoints. Ordered nine stops equal a contiguous directional slice of official 751 CSV, independently matched against existing OSM route.",
+        "parentServiceId": "hk-light-rail-751-osm-6485218"
+      },
+      "validWhen": {
+        "type": "weekday-peak-conditional",
+        "noteKo": "751P 오후·저녁 혼잡시간 특별편 · 틴수이와이 ↔ 틴얏. 평일 운행, 방학 중 감편. 오전 틴윙 출발편과 구분하며 당일 MTR 안내를 확인하세요. 공식 색상 미검증.",
+        "operatingDays": [
+          "weekday-evening-peak"
+        ],
+        "schoolHoliday": "reduced-service",
+        "exactDepartureTimesVerified": false
+      }
+    },
+    {
+      "serviceId": "hk-tseung-kwan-o-lohas-peak-ut",
+      "status": "verified",
+      "stopStationIds": [
+        "hk-mtr-NOP",
+        "hk-mtr-QUB",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK",
+        "hk-mtr-TKO",
+        "hk-mtr-LHP"
+      ],
+      "sources": [
+        {
+          "file": "data/hk/sources/phase6/mtr-service-hours.html",
+          "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        },
+        {
+          "file": "data/hk/sources/phase2/mtr-map.pdf",
+          "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+        }
+      ],
+      "checkedAt": "2026-10-25",
+      "callingOrderReview": {
+        "status": "verified",
+        "method": "Current operator frequency table explicitly lists North Point–LOHAS Park through services. Shared North Point–Tseung Kwan O all-stop spine from official CSV, LOHAS branch from official map and shuttle CSV. Full six-stop directional order independently matches original OSM route; Po Lam branch is excluded."
+      },
+      "validWhen": {
+        "type": "peak-through-service",
+        "noteKo": "노스포인트 ↔ 로하스파크 직통 · 평일 오전·저녁 혼잡시간, 토요일 07:00~10:15에 운행. 일요일·공휴일 미운행. 그 외 시간에는 티우겡렝 셔틀 이용. 정확한 출발시각은 MTR 안내를 확인하세요.",
+        "operatingDays": [
+          "weekday-morning-peak",
+          "weekday-evening-peak",
+          "saturday-07:00-10:15"
+        ],
+        "sundayPublicHoliday": "no-through-service",
+        "exactDepartureTimesVerified": false
+      }
+    },
+    {
+      "serviceId": "hk-tseung-kwan-o-lohas-peak-dt",
+      "status": "verified",
+      "stopStationIds": [
+        "hk-mtr-LHP",
+        "hk-mtr-TKO",
+        "hk-mtr-TIK",
+        "hk-mtr-YAT",
+        "hk-mtr-QUB",
+        "hk-mtr-NOP"
+      ],
+      "sources": [
+        {
+          "file": "data/hk/sources/phase6/mtr-service-hours.html",
+          "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+        },
+        {
+          "file": "data/hk/sources/phase3/mtr-stations.csv",
+          "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+        },
+        {
+          "file": "data/hk/sources/phase2/mtr-map.pdf",
+          "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+        }
+      ],
+      "checkedAt": "2026-10-25",
+      "callingOrderReview": {
+        "status": "verified",
+        "method": "Current operator frequency table explicitly lists North Point–LOHAS Park through services. Shared North Point–Tseung Kwan O all-stop spine from official CSV, LOHAS branch from official map and shuttle CSV. Full six-stop directional order independently matches original OSM route; Po Lam branch is excluded."
+      },
+      "validWhen": {
+        "type": "peak-through-service",
+        "noteKo": "노스포인트 ↔ 로하스파크 직통 · 평일 오전·저녁 혼잡시간, 토요일 07:00~10:15에 운행. 일요일·공휴일 미운행. 그 외 시간에는 티우겡렝 셔틀 이용. 정확한 출발시각은 MTR 안내를 확인하세요.",
+        "operatingDays": [
+          "weekday-morning-peak",
+          "weekday-evening-peak",
+          "saturday-07:00-10:15"
+        ],
+        "sundayPublicHoliday": "no-through-service",
+        "exactDepartureTimesVerified": false
+      }
+    }
+  ]
+}

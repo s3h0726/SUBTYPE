@@ -55,9 +55,9 @@ const marunouchiBranch={
   id:'tokyo-metro-marunouchi-honancho-branch',
   parentLineId:'line-28002',
   legacyRouteId:'line-28002-honancho-branch',
-  junctionStationId:'station-mlit-003643',
-  stationSequence:['station-mlit-003643','station-2800226','station-2800227','station-2800228'],
-  stationCodes:{'station-mlit-003643':'M06','station-2800226':'Mb05','station-2800227':'Mb04','station-2800228':'Mb03'},
+  junctionStationId:'station-003643',
+  stationSequence:['station-003643','station-2800226','station-2800227','station-2800228'],
+  stationCodes:{'station-003643':'M06','station-2800226':'Mb05','station-2800227':'Mb04','station-2800228':'Mb03'},
   names:{ja:'丸ノ内線',ko:'마루노우치선',en:'Marunouchi Line'},
   geometrySource:'data/branches/tokyo-metro-marunouchi-honancho/geometry.json',
   sources:[{type:'official',url:'https://www.tokyometro.jp/station/nakano-sakaue/timetable/index.html',verifiedAt:'2026-09-13'}]

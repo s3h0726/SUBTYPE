@@ -1,0 +1,47 @@
+name: Unify MLIT station IDs into canonical station IDs
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/unify-mlit-station-ids.cjs'
+      - '.github/workflows/unify-mlit-station-ids.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: mlit-station-id-migration-main
+  cancel-in-progress: false
+jobs:
+  migrate:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Preflight station identity and track referential integrity
+        run: node tools/unify-mlit-station-ids.cjs
+      - name: Apply validated migration to sources and deployed assets
+        run: node tools/unify-mlit-station-ids.cjs --write
+      - name: Verify JavaScript and route source integrity
+        run: |
+          node --check js/app.bundle.js
+          node --check js/nex-route-resolver.js
+          node -e "const {loadAll}=require('./tools/lib/line-workspaces');const all=loadAll();if(!all.routes.length)process.exit(1);console.log('Verified '+all.routes.length+' routes and '+all.stations.size+' canonical stations')"
+          node -e "const fs=require('fs');const a=require('./data/station-id-aliases.json').aliases;if(!Object.keys(a).length)throw Error('No migrated station IDs');console.log('Aliases '+Object.keys(a).length)"
+      - name: Commit and push to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data js tools
+          if git diff --cached --quiet; then
+            echo 'No changes'
+          else
+            git commit -m "refactor(jp): unify MLIT station identities with canonical station IDs"
+            git push origin HEAD:main
+          fi

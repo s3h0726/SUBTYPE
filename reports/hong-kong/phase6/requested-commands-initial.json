@@ -1,0 +1,37 @@
+[
+  {
+    "requestedCommand": "npm run build:hk",
+    "actualCommand": "node C:\\Users\\galax\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules\\pnpm\\bin\\pnpm.cjs run build:hk",
+    "substitution": "npm CLI not installed in runtime; same package.json script executed by bundled pnpm, no dependencies installed.",
+    "status": "FAIL_RUNNER_SETUP",
+    "exitCode": 1
+  },
+  {
+    "requestedCommand": "npm run test:hk",
+    "actualCommand": "node C:\\Users\\galax\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules\\pnpm\\bin\\pnpm.cjs run test:hk",
+    "substitution": "npm CLI not installed in runtime; same package.json script executed by bundled pnpm, no dependencies installed.",
+    "status": "FAIL_RUNNER_SETUP",
+    "exitCode": 1
+  },
+  {
+    "requestedCommand": "npm run audit:hk",
+    "actualCommand": "node C:\\Users\\galax\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules\\pnpm\\bin\\pnpm.cjs run audit:hk",
+    "substitution": "npm CLI not installed in runtime; same package.json script executed by bundled pnpm, no dependencies installed.",
+    "status": "FAIL_RUNNER_SETUP",
+    "exitCode": 1
+  },
+  {
+    "requestedCommand": "npm run audit:hk:complete",
+    "actualCommand": "node C:\\Users\\galax\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules\\pnpm\\bin\\pnpm.cjs run audit:hk:complete",
+    "substitution": "npm CLI not installed in runtime; same package.json script executed by bundled pnpm, no dependencies installed.",
+    "status": "FAIL_RUNNER_SETUP",
+    "exitCode": 1
+  },
+  {
+    "requestedCommand": "node tools/check-hk-ui-baseline.cjs",
+    "actualCommand": "node tools/check-hk-ui-baseline.cjs",
+    "substitution": null,
+    "status": "PASS",
+    "exitCode": 0
+  }
+]

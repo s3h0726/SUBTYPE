@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-24",
+  "start": "71f7493ac2aba14d117343cbee17c1ba54486e68",
+  "remoteFeatureObserved": "60df997c057079cf1bf225134d3f5a1d739a8870",
+  "localPreservationCommit": "bda35bf456fe47c566b6b55e6fb48bfbfbe618d9",
+  "operation": "merge remote feature/hong-kong-railway into same local feature branch; no rebase, no main integration",
+  "conflicts": [
+    "index.html cache keys",
+    "js/hong-kong-index-data.js generated data"
+  ],
+  "resolution": "Preserve canonical config3 named walk pairs, source circular gate, both new remote tests; rebuild generated index/network/bundle from merged source. Extend reviewed transfer policy to explicitly paired station keys and keep per-line stop coordinates.",
+  "newBranches": 0,
+  "forcePush": false,
+  "remoteMainObservedBeforeMerge": "630f8ed9a4528224566ecdd27c570d845f43beba",
+  "regressionScope": "All five required TAB scenarios plus one named-station pair rerun on merged build; unit tests include three preserved named pairs."
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "checkedAt": "2026-10-25",
+    "status": "TOOL_TIMEOUT_NOT_A_GAME_PASS",
+    "scenario": "Two Happy Valley tram completions in one tool invocation exceeded 60 seconds. First31-stop journey already completed; second33-stop journey persisted28 inputs. Reconnected, inspected visible prompt, resumed remaining5 and observed100% terminal. All samples retained.",
+    "progressFile": "output/hk/phase6/hk-tram-kennedy-town-happy-valley-4088000-progress.json",
+    "mitigation": "Long journeys are now split into bounded UI batches; RUNNING is never counted as PASS."
+  },
+  {
+    "checkedAt": "2026-10-25",
+    "status": "REPRODUCED_GAME_BUG",
+    "scenario": "Yau Ma Tei transfer to Kwun Tong Line followed by arrival at Tiu Keng Leng. Current route had no next edge, but another line was transfer-eligible. Game chose another line edge before TAB, leaving stale/wrong next prompt while map was at terminal.",
+    "cause": "renderFreeDriveState and start confirmation fell back from same-route edges to state.edges[0], including a foreign route.",
+    "fix": "Hong Kong only: no foreign-edge fallback; remain AT_TERMINAL and wait for explicit TAB. KR/JP fallback retained pending regression.",
+    "test": "New terminal fixture plus real repeated Yau Ma Tei and Tiu Keng Leng transfers."
+  }
+]

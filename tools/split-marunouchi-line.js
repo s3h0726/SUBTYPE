@@ -2,8 +2,8 @@
 const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..'),parentFolder=path.join(root,'data','lines','tokyo-metro','marunouchi-line'),branchFolder=path.join(root,'data','lines','tokyo-metro','marunouchi-honancho-branch');
 const read=file=>JSON.parse(fs.readFileSync(file,'utf8')),write=(file,value)=>{fs.mkdirSync(path.dirname(file),{recursive:true});const temporary=`${file}.tmp-${process.pid}`;fs.writeFileSync(temporary,JSON.stringify(value,null,2)+'\n');JSON.parse(fs.readFileSync(temporary,'utf8'));fs.renameSync(temporary,file)};
-const parentStationsFile=path.join(parentFolder,'stations.json'),parentStations=read(parentStationsFile),junctionId='station-mlit-003643';
-const mainTerminalIndex=parentStations.findIndex(item=>item.stationId==='station-mlit-003575');
+const parentStationsFile=path.join(parentFolder,'stations.json'),parentStations=read(parentStationsFile),junctionId='station-003643';
+const mainTerminalIndex=parentStations.findIndex(item=>item.stationId==='station-003575');
 if(mainTerminalIndex<0)throw new Error('Marunouchi main terminal Ogikubo is missing');
 const mainStations=parentStations.slice(0,mainTerminalIndex+1).map((item,index)=>({...item,order:index+1}));
 if(!mainStations.some(item=>item.stationId===junctionId))throw new Error('Marunouchi junction Nakano-sakaue is missing');

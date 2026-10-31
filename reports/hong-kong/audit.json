@@ -1,0 +1,229 @@
+{
+  "checkedAt": "2026-10-25T13:17:08.992Z",
+  "sourceCheckedAt": "2026-10-24",
+  "remoteMainSha": "346c6da1346cecfe439a1d47a6c95aa20b00b8bd",
+  "cachedRemoteMainSha": "438f605b1e1f2a2a97991bb6e84e226c8bd0f91a",
+  "remoteMainAdvanced": true,
+  "remoteMainChangesNotIntegrated": true,
+  "status": "INCOMPLETE",
+  "branch": "feature/hong-kong-railway",
+  "mainBaseSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
+  "branchCommitSha": "338f5acbe868207bcea97d014e531542ff8bbcd5",
+  "mainSha": "67f9b780b4f60fd2586d302ddea41a4d94b6baa2",
+  "mainUnchanged": "PASS",
+  "japanKoreaDataUnchanged": "PASS",
+  "counts": {
+    "lineRecords": 26,
+    "stationOrDirectionalStopRecords": 291,
+    "verifiedPhysicalStationTotal": "NOT_VERIFIED",
+    "servicePatterns": 66,
+    "playableServicePatterns": 62,
+    "trackSegments": 532,
+    "mtrCoreLinesRegistered": 9,
+    "mtrCoreLinesPlayable": 9,
+    "airportExpressPlayable": 2,
+    "lightRailTargetRefs": 12,
+    "additionalOfficialLightRailRefs": [
+      "506P",
+      "507P",
+      "720",
+      "610P"
+    ],
+    "verifiedGeometries": 65,
+    "unverifiedGeometry": 1,
+    "verifiedKoNames": 285,
+    "verifiedStopPatterns": 64,
+    "remainingGeometryRelationIds": [
+      6582965,
+      6582966
+    ],
+    "officialMtrLineColors": 10,
+    "officialLightRailColors": 11,
+    "reviewedTransferStations": 15,
+    "missingKoNames": 6,
+    "unreviewedKoNames": 6,
+    "brokenCoordinates": 0,
+    "duplicateStationIds": 0,
+    "duplicatePhysicalStations": "NOT_AUDITED",
+    "nonexistentServices": "NOT_VERIFIED",
+    "unverifiedStopPatterns": 2,
+    "logosVerified": 0,
+    "logosRequired": 3,
+    "brokenLogoAssets": "NOT_AUDITED",
+    "phantomTransfers": "NOT_AUDITED",
+    "enabledTransferEdges": 3,
+    "consoleErrors": 0
+  },
+  "requirements": {
+    "FAIL": 1,
+    "PASS": 96,
+    "INCOMPLETE": 82,
+    "NOT_REQUESTED": 1
+  },
+  "ui": {
+    "checkedAt": "2026-10-25T12:47:17.845Z",
+    "status": "PARTIAL_WITH_RECORDED_FAILURE",
+    "consoleErrors": 0,
+    "consoleErrorScope": "Current inspected tab log since latest reload, bounded200 error entries; not a claim about every historical run.",
+    "consoleLogs": [],
+    "darkMobile": "PASS_WITH_RECORDED_SCOPE",
+    "mobileViewport": {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390
+    },
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "stationSignEvidence": [
+      "reports/hong-kong/phase6/images/mobile-tkl-light.jpg",
+      "reports/hong-kong/phase6/images/mobile-tkl-dark.jpg",
+      "reports/hong-kong/phase6/images/mobile-ocean-dark.jpg"
+    ],
+    "actualWindowsIme": "NOT_TESTED",
+    "actualMobileKeyboard": "NOT_TESTED",
+    "supabase": "NOT_TESTED",
+    "autoTarget": "FAIL",
+    "browserCompleteDirections": 62,
+    "tabPairs": 15,
+    "customSaveReload": "PASS",
+    "nativeInputScope": "DOM fill and pressSequentially fixtures; no native OS keyboard access.",
+    "mobileNewDirections": 8,
+    "mobileCircularDirections": 2,
+    "terminalAutomaticForeignRoute": "FIXED_AND_BROWSER_RETESTED",
+    "originalCustomNamesPreserved": [
+      "홍콩 검증 여정",
+      "홍콩 2차 검증",
+      "홍콩 Phase 3 환승역 좌표 검증"
+    ],
+    "homeFeaturedDistinctLines": [
+      "홍콩섬선",
+      "췬완선"
+    ],
+    "notes": [
+      "Actual mobile viewport emulation only, not a physical mobile operating system.",
+      "One clean-input fixture initially99.8%; first failure retained and full rerun100%.",
+      "Long UI batches were resumed from persisted input order after a tool timeout; RUNNING records not counted as completed.",
+      "Native apps unavailable; no Supabase test credentials/config supplied."
+    ]
+  },
+  "missingNames": [
+    {
+      "id": "hk-peak-stop-99801",
+      "nameZhHant": "花園道纜車總站",
+      "nameEn": "Garden Road Peak Tram Terminal"
+    },
+    {
+      "id": "hk-peak-stop-99802",
+      "nameZhHant": "堅尼地道站",
+      "nameEn": "Kennedy Road Station"
+    },
+    {
+      "id": "hk-peak-stop-99803",
+      "nameZhHant": "麥當勞道站",
+      "nameEn": "Macdonnell Road Station"
+    },
+    {
+      "id": "hk-peak-stop-99804",
+      "nameZhHant": "梅道站",
+      "nameEn": "May Road Station"
+    },
+    {
+      "id": "hk-peak-stop-99805",
+      "nameZhHant": "白加道站",
+      "nameEn": "Barker Road Station"
+    },
+    {
+      "id": "hk-peak-stop-99806",
+      "nameZhHant": "山頂纜車總站",
+      "nameEn": "Peak Tram Terminus"
+    }
+  ],
+  "missingCoordinates": [],
+  "pendingServices": [
+    {
+      "id": "hk-light-rail-751p-osm-12619403",
+      "line": {
+        "ja": "輕鐵 751P",
+        "en": "Light Rail 751P",
+        "ko": "경전철 751P"
+      },
+      "reason": [
+        "조건부 운행 시간대 검증 필요",
+        "현재 정차순서 검수 필요"
+      ],
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
+      "id": "hk-peak-tram-pending",
+      "line": {
+        "ja": "山頂纜車",
+        "en": "Peak Tram",
+        "ko": "피크트램"
+      },
+      "reason": [
+        "조건부 운행 시간대 검증 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
+      "id": "hk-peak-tram-down",
+      "line": {
+        "ja": "山頂纜車",
+        "en": "Peak Tram",
+        "ko": "피크트램"
+      },
+      "reason": [
+        "조건부 운행 시간대 검증 필요",
+        "한국어 역명 검수 필요"
+      ],
+      "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    },
+    {
+      "id": "hk-high-speed-pending",
+      "line": {
+        "ja": "廣深港高速鐵路",
+        "en": "Hong Kong High Speed Rail",
+        "ko": "홍콩 고속철도"
+      },
+      "reason": [
+        "현재 정차순서 검수 필요",
+        "실제 선로 검증 필요",
+        "정차역 자료 필요"
+      ],
+      "sourceUrl": "https://www.highspeed.mtr.com.hk/en/guide/destination.html",
+      "next": "Resolve the named source/name/geometry reviews, rebuild, test, and inspect this exact direction before changing release status."
+    }
+  ],
+  "geometryIssues": [
+    {
+      "type": "geometry",
+      "sourceRelationId": 3264047,
+      "reason": "stop not on railway within 80m: 988059821",
+      "status": "RESOLVED_GEOMETRY_ONLY",
+      "originalStatus": "INCOMPLETE",
+      "resolution": "Both six-stop paths validated against source railway vertices; original failure and raw relation retained. Korean/request-stop release remains INCOMPLETE.",
+      "evidenceFile": "data/hk/master/peak-tram-review.json"
+    },
+    {
+      "type": "geometry",
+      "sourceRelationId": 6582965,
+      "reason": "non-railway way 1492453330",
+      "status": "INCOMPLETE"
+    },
+    {
+      "type": "geometry",
+      "sourceRelationId": 6582966,
+      "reason": "non-railway way 1492453329",
+      "status": "INCOMPLETE"
+    }
+  ],
+  "branchPreview": "NOT_CONFIGURED",
+  "mergeToMain": "NOT_PERFORMED",
+  "productionDeployment": "NOT_PERFORMED"
+}

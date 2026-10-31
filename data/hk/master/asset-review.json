@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-20",
+  "logosApprovedForRedistribution": 0,
+  "imitationLogosCreated": 0,
+  "mtrLineColorsVerified": 10,
+  "lineColorEvidence": "data/hk/master/line-colors.json",
+  "operators": [
+    {
+      "id": "hk-mtr",
+      "originStatus": "official-map-and-website-identity-confirmed",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/system_map.html",
+      "logoSource": "Official MTR system map identity; standalone logo not imported",
+      "termsUrl": "https://www.mtr.com.hk/en/customer/main/terms_of_use.html",
+      "termsEvidence": "data/hk/sources/phase2/mtr-terms.html",
+      "redistributionStatus": "PERMISSION_NOT_ESTABLISHED",
+      "enabled": false,
+      "note": "Terms reserve intellectual property rights and restrict reuse. Text operator identity retained; no invented emblem."
+    },
+    {
+      "id": "hk-tramways",
+      "originStatus": "official-logo-announcement-and-site-asset-confirmed",
+      "sourceUrl": "https://www.hktramways.com/media/files/press-releases/New%20logo_Press%20Release%20-%20Eng.pdf",
+      "logoSource": "https://www.hktramways.com/images/nav/logo.png",
+      "announcementEvidence": "data/hk/sources/phase2/tram-logo-release.pdf",
+      "redistributionStatus": "PERMISSION_NOT_ESTABLISHED",
+      "enabled": false,
+      "note": "Official 2017 visual identity announcement confirms the smiling tram/green leaf identity. It does not grant a general redistribution licence."
+    },
+    {
+      "id": "hk-peak-tram",
+      "originStatus": "INCOMPLETE",
+      "sourceUrl": "https://www.thepeak.com.hk/en",
+      "termsUrl": "https://webstore.thepeak.com.hk/deal-preview",
+      "redistributionStatus": "PERMISSION_NOT_ESTABLISHED",
+      "enabled": false,
+      "note": "Main site returned HTTP 403. Official webstore reserves rights for Peak Tower Limited and Peak Tramways Company Limited. No logo file imported."
+    }
+  ],
+  "signage": {
+    "status": "SCOPED_IMPLEMENTATION",
+    "note": "Learning layout, not an official station-sign replica; playable stations show Traditional Chinese, English, reviewed Korean and actual line code. Official colour evidence now used for MTR. Other operators remain incomplete."
+  }
+}

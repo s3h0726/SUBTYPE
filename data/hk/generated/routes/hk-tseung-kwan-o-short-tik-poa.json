@@ -1,0 +1,858 @@
+{
+  "id": "hk-tseung-kwan-o-short-tik-poa",
+  "countryId": "hk",
+  "schemaVersion": 1,
+  "canonicalLineId": "hk-tseung-kwan-o",
+  "servicePatternId": "hk-tseung-kwan-o-short-tik-poa",
+  "serviceLabel": "Tiu Keng Leng → Po Lam",
+  "operatorId": "hk-mtr",
+  "operator": {
+    "ja": "港鐵",
+    "en": "MTR",
+    "ko": "홍콩 MTR"
+  },
+  "line": {
+    "ja": "將軍澳綫",
+    "en": "Tseung Kwan O Line",
+    "ko": "정관오선"
+  },
+  "category": "subway",
+  "mode": "subway",
+  "code": "TKL",
+  "officialSymbolExists": false,
+  "lineColor": "#7e3c93",
+  "lineTheme": {
+    "code": "TKL",
+    "color": "#7e3c93",
+    "style": "hk",
+    "colorVerified": true,
+    "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+  },
+  "loop": false,
+  "lazy": false,
+  "playable": true,
+  "releaseStatus": "ready",
+  "geometryReady": true,
+  "geometryStatus": "verified",
+  "blockedReasons": [],
+  "direction": "hk-mtr-TIK-to-hk-mtr-POA",
+  "validWhen": {
+    "type": "first-train",
+    "noteKo": "첫차 단축 운행 · 06:15 출발. 매일 운행하며 당일 운영 안내를 우선합니다.",
+    "timezone": "Asia/Hong_Kong",
+    "exactDepartureTimesVerified": true,
+    "reviewStatus": "verified",
+    "sources": [
+      {
+        "file": "data/hk/sources/bulk/hours-49.html",
+        "sha256": "9c6b33d7e3e9f434d9b8389485516654fa52b2e7dfe46ab78ecf4d8fb70ad1e5"
+      },
+      {
+        "file": "data/hk/sources/bulk/hours-48.html",
+        "sha256": "8811bcf637b39ec2c2321492e86b0e57f4d46afa14d5ef20078b06c7c15d2037"
+      },
+      {
+        "file": "data/hk/sources/phase3/mtr-stations.csv",
+        "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+      }
+    ]
+  },
+  "sourceUrl": "https://www.mtr.com.hk/en/customer/services/service_hours_search.php?query_type=search&station=49",
+  "stopStatus": "verified",
+  "geometry": [
+    [
+      22.3041145,
+      114.2523284
+    ],
+    [
+      22.3045682,
+      114.2528403
+    ],
+    [
+      22.3049161,
+      114.2532498
+    ],
+    [
+      22.3050206,
+      114.2533766
+    ],
+    [
+      22.3051282,
+      114.2535164
+    ],
+    [
+      22.305221,
+      114.253662
+    ],
+    [
+      22.3053028,
+      114.2538106
+    ],
+    [
+      22.3053775,
+      114.2539592
+    ],
+    [
+      22.3054534,
+      114.2541193
+    ],
+    [
+      22.3055309,
+      114.2542942
+    ],
+    [
+      22.3056022,
+      114.2544742
+    ],
+    [
+      22.3060671,
+      114.2558118
+    ],
+    [
+      22.3074422,
+      114.2599465
+    ],
+    [
+      22.3079606,
+      114.2615338
+    ],
+    [
+      22.3080946,
+      114.2619168
+    ],
+    [
+      22.3082232,
+      114.2621873
+    ],
+    [
+      22.3084038,
+      114.2625112
+    ],
+    [
+      22.3086746,
+      114.2628453
+    ],
+    [
+      22.3089838,
+      114.2631292
+    ],
+    [
+      22.309453,
+      114.2634989
+    ],
+    [
+      22.3100672,
+      114.2640045
+    ],
+    [
+      22.3104584,
+      114.2642322
+    ],
+    [
+      22.3112124,
+      114.2646371
+    ],
+    [
+      22.3117871,
+      114.2649161
+    ],
+    [
+      22.3120966,
+      114.2650271
+    ],
+    [
+      22.3123447,
+      114.2650949
+    ],
+    [
+      22.3126655,
+      114.2651504
+    ],
+    [
+      22.3129921,
+      114.2651735
+    ],
+    [
+      22.3134085,
+      114.2651751
+    ],
+    [
+      22.3136994,
+      114.2651396
+    ],
+    [
+      22.3139162,
+      114.2651042
+    ],
+    [
+      22.3142284,
+      114.2650163
+    ],
+    [
+      22.3144509,
+      114.2649315
+    ],
+    [
+      22.3148431,
+      114.2647635
+    ],
+    [
+      22.3155139,
+      114.2643406
+    ],
+    [
+      22.3162106,
+      114.2638232
+    ],
+    [
+      22.3166386,
+      114.2634737
+    ],
+    [
+      22.3169387,
+      114.2632224
+    ],
+    [
+      22.3172265,
+      114.2629372
+    ],
+    [
+      22.3174753,
+      114.2626272
+    ],
+    [
+      22.3181207,
+      114.2617068
+    ],
+    [
+      22.3183726,
+      114.2613501
+    ],
+    [
+      22.3185763,
+      114.2610863
+    ],
+    [
+      22.3187811,
+      114.2608537
+    ],
+    [
+      22.3190118,
+      114.2606002
+    ],
+    [
+      22.3192657,
+      114.2603664
+    ],
+    [
+      22.3196325,
+      114.260059
+    ],
+    [
+      22.3199869,
+      114.2597915
+    ],
+    [
+      22.3201222,
+      114.2597035
+    ],
+    [
+      22.3203946,
+      114.2595659
+    ],
+    [
+      22.3205454,
+      114.2594818
+    ],
+    [
+      22.3208677,
+      114.2592467
+    ],
+    [
+      22.3213507,
+      114.258884
+    ],
+    [
+      22.3214666,
+      114.2587959
+    ],
+    [
+      22.3218521,
+      114.2584969
+    ],
+    [
+      22.3225369,
+      114.2579671
+    ]
+  ],
+  "directedSegments": [
+    {
+      "id": "hk-track-02da690b68a64da6ab",
+      "fromStationId": "hk-mtr-TIK",
+      "toStationId": "hk-mtr-TKO",
+      "geometry": [
+        [
+          22.3041145,
+          114.2523284
+        ],
+        [
+          22.3045682,
+          114.2528403
+        ],
+        [
+          22.3049161,
+          114.2532498
+        ],
+        [
+          22.3050206,
+          114.2533766
+        ],
+        [
+          22.3051282,
+          114.2535164
+        ],
+        [
+          22.305221,
+          114.253662
+        ],
+        [
+          22.3053028,
+          114.2538106
+        ],
+        [
+          22.3053775,
+          114.2539592
+        ],
+        [
+          22.3054534,
+          114.2541193
+        ],
+        [
+          22.3055309,
+          114.2542942
+        ],
+        [
+          22.3056022,
+          114.2544742
+        ],
+        [
+          22.3060671,
+          114.2558118
+        ],
+        [
+          22.3074422,
+          114.2599465
+        ]
+      ],
+      "segmentLengthMeters": 877.2689976194024,
+      "sourceWayIds": [
+        485331427,
+        1507719411,
+        485648068
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/269672",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-25598b56b4ec4d8009",
+      "fromStationId": "hk-mtr-TKO",
+      "toStationId": "hk-mtr-HAH",
+      "geometry": [
+        [
+          22.3074422,
+          114.2599465
+        ],
+        [
+          22.3079606,
+          114.2615338
+        ],
+        [
+          22.3080946,
+          114.2619168
+        ],
+        [
+          22.3082232,
+          114.2621873
+        ],
+        [
+          22.3084038,
+          114.2625112
+        ],
+        [
+          22.3086746,
+          114.2628453
+        ],
+        [
+          22.3089838,
+          114.2631292
+        ],
+        [
+          22.309453,
+          114.2634989
+        ],
+        [
+          22.3100672,
+          114.2640045
+        ],
+        [
+          22.3104584,
+          114.2642322
+        ],
+        [
+          22.3112124,
+          114.2646371
+        ],
+        [
+          22.3117871,
+          114.2649161
+        ],
+        [
+          22.3120966,
+          114.2650271
+        ],
+        [
+          22.3123447,
+          114.2650949
+        ],
+        [
+          22.3126655,
+          114.2651504
+        ],
+        [
+          22.3129921,
+          114.2651735
+        ],
+        [
+          22.3134085,
+          114.2651751
+        ],
+        [
+          22.3136994,
+          114.2651396
+        ],
+        [
+          22.3139162,
+          114.2651042
+        ],
+        [
+          22.3142284,
+          114.2650163
+        ],
+        [
+          22.3144509,
+          114.2649315
+        ],
+        [
+          22.3148431,
+          114.2647635
+        ],
+        [
+          22.3155139,
+          114.2643406
+        ]
+      ],
+      "segmentLengthMeters": 1175.6050634111355,
+      "sourceWayIds": [
+        1507719411,
+        485648068,
+        1483928670,
+        485648082
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/269672",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-ba30cb792a5374d13e",
+      "fromStationId": "hk-mtr-HAH",
+      "toStationId": "hk-mtr-POA",
+      "geometry": [
+        [
+          22.3155139,
+          114.2643406
+        ],
+        [
+          22.3162106,
+          114.2638232
+        ],
+        [
+          22.3166386,
+          114.2634737
+        ],
+        [
+          22.3169387,
+          114.2632224
+        ],
+        [
+          22.3172265,
+          114.2629372
+        ],
+        [
+          22.3174753,
+          114.2626272
+        ],
+        [
+          22.3181207,
+          114.2617068
+        ],
+        [
+          22.3183726,
+          114.2613501
+        ],
+        [
+          22.3185763,
+          114.2610863
+        ],
+        [
+          22.3187811,
+          114.2608537
+        ],
+        [
+          22.3190118,
+          114.2606002
+        ],
+        [
+          22.3192657,
+          114.2603664
+        ],
+        [
+          22.3196325,
+          114.260059
+        ],
+        [
+          22.3199869,
+          114.2597915
+        ],
+        [
+          22.3201222,
+          114.2597035
+        ],
+        [
+          22.3203946,
+          114.2595659
+        ],
+        [
+          22.3205454,
+          114.2594818
+        ],
+        [
+          22.3208677,
+          114.2592467
+        ],
+        [
+          22.3213507,
+          114.258884
+        ],
+        [
+          22.3214666,
+          114.2587959
+        ],
+        [
+          22.3218521,
+          114.2584969
+        ],
+        [
+          22.3225369,
+          114.2579671
+        ]
+      ],
+      "segmentLengthMeters": 1028.7952056978538,
+      "sourceWayIds": [
+        485648082,
+        485648058,
+        485648071,
+        24268461
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/269672",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    }
+  ],
+  "stations": [
+    {
+      "id": "hk-mtr-TIK",
+      "countryId": "hk",
+      "code": "TIK",
+      "nameZhHant": "調景嶺",
+      "nameEn": "Tiu Keng Leng",
+      "nameKo": "티우켕렝",
+      "aliasesKo": [
+        "티유켕렝"
+      ],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3041145,
+        "lng": 114.2523284
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-TIK",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/984741544",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-short-tik-poa-stop-0",
+      "physicalStationId": "hk-mtr-TIK",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 307394050,
+      "stopPosition": {
+        "lat": 22.3041145,
+        "lng": 114.2523284,
+        "sourceNodeId": 307394050,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/307394050"
+      },
+      "geometryIndex": 0,
+      "stationMasterId": "hk-mtr-TIK",
+      "ja": "調景嶺",
+      "kana": "",
+      "romaji": "Tiu Keng Leng",
+      "ko": "티우켕렝",
+      "koAliases": [
+        "티유켕렝"
+      ],
+      "latitude": 22.3041145,
+      "longitude": 114.2523284,
+      "officialCode": "TIK",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-TIK",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
+    },
+    {
+      "id": "hk-mtr-TKO",
+      "countryId": "hk",
+      "code": "TKO",
+      "nameZhHant": "將軍澳",
+      "nameEn": "Tseung Kwan O",
+      "nameKo": "정관오",
+      "aliasesKo": [
+        "청콴오"
+      ],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3074422,
+        "lng": 114.2599465
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-TKO",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4784243684",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-short-tik-poa-stop-1",
+      "physicalStationId": "hk-mtr-TKO",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 307391103,
+      "stopPosition": {
+        "lat": 22.3074422,
+        "lng": 114.2599465,
+        "sourceNodeId": 307391103,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/307391103"
+      },
+      "geometryIndex": 12,
+      "stationMasterId": "hk-mtr-TKO",
+      "ja": "將軍澳",
+      "kana": "",
+      "romaji": "Tseung Kwan O",
+      "ko": "정관오",
+      "koAliases": [
+        "청콴오"
+      ],
+      "latitude": 22.3074422,
+      "longitude": 114.2599465,
+      "officialCode": "TKO",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-HAH",
+      "countryId": "hk",
+      "code": "HAH",
+      "nameZhHant": "坑口",
+      "nameEn": "Hang Hau",
+      "nameKo": "항하우",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3155139,
+        "lng": 114.2643406
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-HAH",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/2562413275",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-short-tik-poa-stop-2",
+      "physicalStationId": "hk-mtr-HAH",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 2562413325,
+      "stopPosition": {
+        "lat": 22.3155139,
+        "lng": 114.2643406,
+        "sourceNodeId": 2562413325,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/2562413325"
+      },
+      "geometryIndex": 34,
+      "stationMasterId": "hk-mtr-HAH",
+      "ja": "坑口",
+      "kana": "",
+      "romaji": "Hang Hau",
+      "ko": "항하우",
+      "koAliases": [],
+      "latitude": 22.3155139,
+      "longitude": 114.2643406,
+      "officialCode": "HAH",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-POA",
+      "countryId": "hk",
+      "code": "POA",
+      "nameZhHant": "寶琳",
+      "nameEn": "Po Lam",
+      "nameKo": "포람",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3225369,
+        "lng": 114.2579671
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-POA",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/262761250",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-short-tik-poa-stop-3",
+      "physicalStationId": "hk-mtr-POA",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 262761250,
+      "stopPosition": {
+        "lat": 22.3225369,
+        "lng": 114.2579671,
+        "sourceNodeId": 262761250,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/262761250"
+      },
+      "geometryIndex": 55,
+      "stationMasterId": "hk-mtr-POA",
+      "ja": "寶琳",
+      "kana": "",
+      "romaji": "Po Lam",
+      "ko": "포람",
+      "koAliases": [],
+      "latitude": 22.3225369,
+      "longitude": 114.2579671,
+      "officialCode": "POA",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    }
+  ],
+  "services": [
+    {
+      "id": "hk-tseung-kwan-o-short-tik-poa",
+      "nameJa": "將軍澳綫",
+      "nameEn": "Tseung Kwan O Line",
+      "nameKo": "정관오선",
+      "stops": [
+        "hk-mtr-TIK",
+        "hk-mtr-TKO",
+        "hk-mtr-HAH",
+        "hk-mtr-POA"
+      ]
+    }
+  ],
+  "operatingConditionFingerprint": "b8d573c9a06f13a805b9a209a8e7f68c95eb26871231e1647915edc7ba5d404d",
+  "validationFingerprint": "a185859de103fffa45e2fa97b518f20e44756f442135a30a9cd17aa568a0f9f6"
+}

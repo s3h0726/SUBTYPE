@@ -7,6 +7,17 @@ const prefix='window.TRT_EMBEDDED_LINE_WORKSPACES=';
 const begin=source.indexOf(prefix);
 if(begin<0)throw new Error('Missing canonical browser workspace');
 const ws=JSON.parse(source.slice(begin+prefix.length).trim().replace(/;\s*$/,''));
+const duplicateAliases=JSON.parse(fs.readFileSync(path.join(root,'data/japan-duplicate-route-aliases.json'),'utf8')).aliases;
+for(const [retired,canonical] of Object.entries(duplicateAliases)){
+ const old=ws.routes.find(r=>r.id===retired),keep=ws.routes.find(r=>r.id===canonical);
+ if(!old)continue;
+ if(!keep)throw Error('Duplicate route canonical source missing: '+canonical);
+ const names=route=>(route.stations||[]).map(st=>st.ja||st.names?.ja||'').join('|');
+ if(old.operatorId!==keep.operatorId||names(old)!==names(keep))
+  throw Error('Not an exact duplicate: '+retired+' versus '+canonical);
+}
+ws.routes=ws.routes.filter(r=>!duplicateAliases[r.id]);
+
 // Legitimate exact-duplicate consolidation reduced 601+ workspaces to 598.
 // Preserve a hard safety floor while allowing the canonical deduplicated inventory.
 if(!Array.isArray(ws.routes)||ws.routes.length<590)throw new Error('Canonical Japan route count fell below 590');
@@ -30,7 +41,7 @@ const generatedRouteSource=id=>{
 };
 const signedRouteSource=id=>stationSignOverrides[id]?generatedRouteSource(id):files.get(id);
 const honanchoBranch=ws.routes.find(r=>r.id==='line-28002-honancho-branch');
-const honanchoExtraStations=(honanchoBranch?.stations||[]).filter(station=>String(station.id)!=='station-mlit-003643');
+const honanchoExtraStations=(honanchoBranch?.stations||[]).filter(station=>String(station.id)!=='station-003643');
 const passengerStations=r=>r.id==='line-28002'?[...(r.stations||[]),...honanchoExtraStations]:(r.stations||[]);
 const categoryOverrides=JSON.parse(fs.readFileSync(path.join(root,'data/japan-route-category-overrides.json'),'utf8')).categoryByRouteId;
 const routes=ws.routes.map(r=>({id:r.id,category:categoryOverrides[r.id]||r.category,mode:r.mode||'rail',countryId:r.countryId||'jp',operatorId:r.operatorId,operator:r.operator,line:r.line,code:r.code||'',lineColor:r.lineColor||r.color||'#777777',loop:!!r.loop,...(r.parentLineId?{parentLineId:r.parentLineId}:{}),...(r.visibility?{visibility:r.visibility}:{}),...(r.legacyRouteAliasFor?{legacyRouteAliasFor:r.legacyRouteAliasFor}:{}),stationCount:passengerStations(r).length,lazySource:r.id==='line-28002-honancho-branch'?generatedRouteSource(r.id):signedRouteSource(r.id),searchStations:passengerStations(r).flatMap(s=>[s.names?.ja||s.ja,s.names?.ko||s.ko].filter(Boolean)),...(typeof r.geometryReady==='boolean'?{geometryReady:r.geometryReady}:{}),...(r.playable===false?{playable:false}:(r.geometryReady===true?{playable:true}:{}))}));

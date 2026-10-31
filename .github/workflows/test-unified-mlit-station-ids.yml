@@ -1,0 +1,26 @@
+name: Verify unified MLIT station identities
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/station-id-aliases.json'
+      - 'tools/build-rail-system.js'
+      - 'tools/test-unified-mlit-station-ids.cjs'
+      - '.github/workflows/test-unified-mlit-station-ids.yml'
+      - 'js/data-loader.js'
+      - 'index.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/test-unified-mlit-station-ids.cjs
+      - run: node --check js/app.bundle.js
+      - run: node tools/test-nex-game-routes.cjs

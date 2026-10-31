@@ -29,7 +29,7 @@ module.exports=async function interactive(page,{motionServiceId}={}){
   if(!visible())throw Error('TRAIN_OUTSIDE_VIEW_AFTER_RESTART:'+JSON.stringify({center:q.mapState().map.getCenter(),train:q.mapState().train.getLatLng(),rect:q.mapState().train.getElement()?.getBoundingClientRect().toJSON()}));
   g.stop(false);return{serviceId:route.id,frames:frames.length,retainedVertices:path.length,status:'PASS'};
  },motionServiceId);
- if(process.env.KR_BROWSER_SCREENSHOTS)await page.waitForFunction(()=>!document.querySelector('#toast')?.classList.contains('show'));
+ if(process.env.KR_BROWSER_SCREENSHOTS)await page.waitForFunction(()=>{const e=document.querySelector('#toast');return !e||(!e.classList.contains('show')&&Number(getComputedStyle(e).opacity)<0.01)});
  if(process.env.KR_BROWSER_SCREENSHOTS)await page.screenshot({path:require('node:path').join(process.env.KR_BROWSER_SCREENSHOTS,(page.viewportSize().width<600?'mobile':'desktop')+(motionServiceId?'-'+motionServiceId:'')+'-curved-game.png'),fullPage:true});
  const transfer=await page.evaluate(async()=>{
   const q=globalThis.__KR_BROWSER_QA__,f=q.freeDrive;
@@ -66,5 +66,6 @@ module.exports=async function interactive(page,{motionServiceId}={}){
   e.renderJourneyOptions=()=>{};e.setRailNetwork(routes);if(e.stationGraph.size)throw Error('RESTRICTED_CUSTOM_GRAPH');
   return{restrictedRelations:ids.length,game:'PASS',freeDrive:'PASS',customGraph:'PASS'};
  },restrictedIds);
- return{motion,transfer:{station:transfer.station,routeIds:transfer.ids,status:'PASS'},nonTransfer:'PASS',access,scope:'Candidate true-curve motion, restricted-source entry guards and actual Japanese multi-line TAB UI; Korean transfer metadata still requires individual review'};
+ const modeReset=await page.evaluate(async serviceId=>{const q=globalThis.__KR_BROWSER_QA__,routes=await(await fetch('/__qa-candidates.json')).json(),r=serviceId?routes.find(r=>r.id===serviceId):routes[0];if(!q.game.start(r,{motion:false,sound:false}))throw Error('MODE_RESET_START');await q.renderGameMap(q.game.mapRoute,q.game.index,q.game.mapOptions());for(const id of ['#game-free-drive-options','#game-free-drive-tabs']){const e=document.querySelector(id);if(!e.hidden||e.innerHTML)throw Error('STALE_FREE_DRIVE_CONTROLS:'+id)}if(q.game.freeDriveMode||q.game.freeDriveTarget||q.game.route.id!==r.id||q.game.targetStation().id!==r.stations[0].id)throw Error('STALE_FREE_DRIVE_SESSION');q.game.stop(false);return 'PASS'},motionServiceId);
+ return{motion,modeReset,transfer:{station:transfer.station,routeIds:transfer.ids,status:'PASS'},nonTransfer:'PASS',access,scope:'Candidate true-curve motion, restricted-source entry guards and actual Japanese multi-line TAB UI; Korean transfer metadata still requires individual review'};
 };

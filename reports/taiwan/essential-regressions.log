@@ -1,64 +1,150 @@
 node --test tools/test-kr-network.cjs tools/test-kr-station-display.cjs tools/test-free-drive-transfers.cjs tools/test-track-motion.cjs tools/test-route-selection.cjs tools/test-japan-live-catalog.cjs tools/test-jp-route-station-coordinates.cjs
-✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (3.5712ms)
-✔ directional Korean service never manufactures a reverse edge at its terminus (0.4452ms)
-✔ three or more connected Japanese lines remain individually selectable (4.1844ms)
-{
-  "status": "PASS",
-  "streetcarLines": 8,
-  "archivedLines": 2,
-  "hidakaStations": 4,
-  "curatedNamePaths": 17
+✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (3.2741ms)
+✔ directional Korean service never manufactures a reverse edge at its terminus (0.3415ms)
+✔ three or more connected Japanese lines remain individually selectable (2.4651ms)
+✖ stopping free drive removes Japanese choices before a Korean typing session starts (3.1311ms)
+✖ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (4.4047ms)
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: data/shared-stations/stations-16.json missing 新倉敷
+    at Object.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE\tools\test-japan-live-catalog.cjs:53:2)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
 }
-✔ tools\test-japan-live-catalog.cjs (176.5764ms)
+
+Node.js v24.22.1
+✖ tools\test-japan-live-catalog.cjs (139.9608ms)
 {"status":"PASS","routesTested":6,"sharedTokyoIdentity":true,"independentMetroAndJrPlatforms":true,"rapidInvalidTrackFallback":true,"browserSelfHeals":true}
-✔ tools\test-jp-route-station-coordinates.cjs (1878.6068ms)
-✔ directional services compile without creating reverse or local services (8.651ms)
-✔ unreviewed OSM topology cannot publish (0.7437ms)
-✔ future and expired timetable evidence cannot publish (1.0729ms)
-✔ different train stops cannot be inferred from a timetable (0.5466ms)
-✔ duplicate IDs and missing references fail validation (0.617ms)
-✔ track gaps are not bridged or snapped (0.5317ms)
-✔ station offsets must match source nodes and visit order (0.6486ms)
-✔ national totals cannot be declared complete without an official inventory (0.3034ms)
-✔ excluded research cannot publish or satisfy the official national service inventory (0.4462ms)
-✔ rail and road co-tagging remains blocked despite otherwise complete release evidence (0.5499ms)
-✔ runtime keeps exact directions, rejects invented destinations, preserves express track (6.6435ms)
-✔ actual Game advancement and finish run exactly once in both explicit directions (5.2924ms)
-✔ normalization never manufactures an all-stops service for v2 (5.4416ms)
-✔ omitted source stops cannot make a partial route releasable (0.9539ms)
-✔ candidate trains and unverified platform metadata cannot release (0.2011ms)
-✔ a review flag cannot authorize running against source one-way track (0.3391ms)
-✔ expired national inventory does not certify coverage (0.2057ms)
-✔ timetable matching preserves identity ambiguity and never approves a train (4.9573ms)
-✔ real game route resolver preserves express geometry and repeated loop station visits (4.5249ms)
-✔ official station matching does not merge same-name places or assign approvals (2.1384ms)
-✔ returning to a loop station uses the later map visit and adjacent segment (2.7395ms)
-✔ Korean journey identity and directions survive records and display endpoints (9.4017ms)
-✔ Korean suffix is removed exactly once; middle syllables and other countries stay unchanged (2.4488ms)
-✔ railway qualifiers at both ends and in brackets are removed from the Korean game label (0.3723ms)
-✔ the primary typing target is the station only, the source alias stays accepted (1.9775ms)
-✔ Seoul subway name is explicit and does not change the conventional railway station rule (1.2863ms)
-✔ service titles format only known station references, never generic UI or official source strings (0.5689ms)
-✔ all 13 legacy and 123 research payloads retain names, station IDs, coordinates and geometry (337.3749ms)
-✔ NFC and decomposed legacy suffix answers each complete once while the primary answer stays short (1.3834ms)
-✔ composition, Backspace and an error recover to the short default without duplicate submission (0.4639ms)
-✔ legacy suffix input uses short-target progress and combo units; wrong input and Backspace still recover (1.3437ms)
-✔ lazy selection hides the prior play action and ignores a slower superseded response (2.0022ms)
-✔ country and preview-mode switches invalidate a pending lazy selection (2.5921ms)
-✔ Japanese lazy selections retain operating-connection hydration before becoming playable (1.1268ms)
-✔ smoothing follows each retained curved edge instead of cutting its corner (5.3782ms)
-✔ rapid partial input and stale lower progress never reverse train distance (0.4881ms)
-✔ arrival waits for the current map render and stale sessions cannot move its successor (3.0724ms)
-✔ resuming during an arrival cannot bypass its map and animation barrier (4.163ms)
-✔ Korean station boundaries share the retained source vertex between adjacent segments (4.7394ms)
-✔ completed station typing catches the marker up in 50ms and never advances early (2.3381ms)
-✔ SPACE waits for real arrival and repeated presses cannot finish a journey twice (2.6777ms)
-✔ camera reset cancels old pan and changes zoom atomically (2.5892ms)
-ℹ tests 47
+✔ tools\test-jp-route-station-coordinates.cjs (11112.6074ms)
+✔ directional services compile without creating reverse or local services (5.2694ms)
+✔ unreviewed OSM topology cannot publish (0.6248ms)
+✔ future and expired timetable evidence cannot publish (0.8809ms)
+✔ different train stops cannot be inferred from a timetable (0.4755ms)
+✔ duplicate IDs and missing references fail validation (0.7928ms)
+✔ track gaps are not bridged or snapped (0.6874ms)
+✔ station offsets must match source nodes and visit order (0.5529ms)
+✔ national totals cannot be declared complete without an official inventory (0.2954ms)
+✔ excluded research cannot publish or satisfy the official national service inventory (0.4539ms)
+✔ rail and road co-tagging remains blocked despite otherwise complete release evidence (0.4957ms)
+✔ runtime keeps exact directions, rejects invented destinations, preserves express track (5.5557ms)
+✔ actual Game advancement and finish run exactly once in both explicit directions (4.3897ms)
+✔ normalization never manufactures an all-stops service for v2 (5.6897ms)
+✔ omitted source stops cannot make a partial route releasable (0.3686ms)
+✔ candidate trains and unverified platform metadata cannot release (0.2074ms)
+✔ a review flag cannot authorize running against source one-way track (0.3582ms)
+✔ expired national inventory does not certify coverage (0.2252ms)
+✔ timetable matching preserves identity ambiguity and never approves a train (4.9282ms)
+✔ real game route resolver preserves express geometry and repeated loop station visits (5.1381ms)
+✔ official station matching does not merge same-name places or assign approvals (2.7051ms)
+✔ returning to a loop station uses the later map visit and adjacent segment (2.6487ms)
+✖ Korean journey identity and directions survive records and display endpoints (3.9986ms)
+✔ Korean suffix is removed exactly once; middle syllables and other countries stay unchanged (2.7892ms)
+✔ railway qualifiers at both ends and in brackets are removed from the Korean game label (0.4045ms)
+✔ the primary typing target is the station only, the source alias stays accepted (1.8728ms)
+✔ Seoul subway name is explicit and does not change the conventional railway station rule (0.1995ms)
+✔ service titles format only known station references, never generic UI or official source strings (1.5657ms)
+✖ all 13 legacy and 123 research payloads retain names, station IDs, coordinates and geometry (1.4855ms)
+✔ NFC and decomposed legacy suffix answers each complete once while the primary answer stays short (2.1165ms)
+✔ composition, Backspace and an error recover to the short default without duplicate submission (0.5723ms)
+✔ legacy suffix input uses short-target progress and combo units; wrong input and Backspace still recover (1.6616ms)
+✔ lazy selection hides the prior play action and ignores a slower superseded response (1.9786ms)
+✔ country and preview-mode switches invalidate a pending lazy selection (2.5225ms)
+✔ Japanese lazy selections retain operating-connection hydration before becoming playable (0.9605ms)
+✔ smoothing follows each retained curved edge instead of cutting its corner (4.3041ms)
+✔ rapid partial input and stale lower progress never reverse train distance (0.4794ms)
+✔ arrival waits for the current map render and stale sessions cannot move its successor (3.8163ms)
+✔ resuming during an arrival cannot bypass its map and animation barrier (2.6313ms)
+✔ Korean station boundaries share the retained source vertex between adjacent segments (3.1923ms)
+✔ completed station typing catches the marker up in 50ms and never advances early (2.0755ms)
+✔ SPACE waits for real arrival and repeated presses cannot finish a journey twice (3.0343ms)
+✔ camera reset cancels old pan and changes zoom atomically (2.3109ms)
+ℹ tests 49
 ℹ suites 0
-ℹ pass 47
-ℹ fail 0
+ℹ pass 44
+ℹ fail 5
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 1915.625
+ℹ duration_ms 11168.3649
+
+✖ failing tests:
+
+test at tools\test-free-drive-transfers.cjs:17:1
+✖ stopping free drive removes Japanese choices before a Korean typing session starts (3.1311ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  false !== true
+
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE\tools\test-free-drive-transfers.cjs:21:79)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\test-free-drive-transfers.cjs:24:1
+✖ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (4.4047ms)
+  TypeError [Error]: Cannot read properties of undefined (reading 'routeIds')
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE\tools\test-free-drive-transfers.cjs:31:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tools\test-japan-live-catalog.cjs:1:1
+✖ tools\test-japan-live-catalog.cjs (139.9608ms)
+  'test failed'
+
+test at tools\test-kr-network.cjs:70:1
+✖ Korean journey identity and directions survive records and display endpoints (3.9986ms)
+  ReferenceError [Error]: FEATURE_FLAGS is not defined
+      at evalmachine.<anonymous>:55:133
+      at Array.filter (<anonymous>)
+      at Object.records (evalmachine.<anonymous>:55:69)
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE\tools\test-kr-network.cjs:80:24)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tools\test-kr-station-display.cjs:35:1
+✖ all 13 legacy and 123 research payloads retain names, station IDs, coordinates and geometry (1.4855ms)
+  Error: ENOENT: no such file or directory, scandir 'C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE\data\kr\generated\routes'
+      at Object.readdirSync (node:fs:1630:26)
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE\tools\test-kr-station-display.cjs:35:215)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'scandir',
+    path: 'C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE\\data\\kr\\generated\\routes'
+  }

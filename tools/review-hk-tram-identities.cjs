@@ -1,0 +1,12 @@
+// Cross-check published operator stop facts. This never approves Korean names,
+// full calling patterns, timetable conditions, or gameplay.
+const fs=require('node:fs'),{norm}=require('./lib/hk-geometry.cjs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
+const source='data/hk/sources/phase4/tram-next-data.js',script=fs.readFileSync(path.join(root,source),'utf8'),facts=[];
+for(const m of script.matchAll(/nextTramStops([WE])\.push\((\[[^\n]+\])\);/g)){const [code,en,zhHant]=JSON.parse(m[2].replace(/\\'/g,"'")).map(s=>s.trim());facts.push({directionList:m[1],code,en,zhHant})}
+if(facts.length<100)throw Error('Incomplete official tram stop facts');
+const elements=new Map(read('data/hk/sources/osm-network.json').elements.map(e=>[e.type+':'+e.id,e]));
+for(const phase of ['phase2','phase3'])for(const file of fs.readdirSync(path.join(root,'data/hk/sources',phase)).filter(f=>/^relation-\d+\.json$/.test(f)))for(const e of read('data/hk/sources/'+phase+'/'+file).elements){const key=e.type+':'+e.id,old=elements.get(key);if(!old||(e.version||0)>(old.version||0))elements.set(key,e)}
+const stopIds=new Set([...elements.values()].filter(e=>e.type==='relation'&&e.tags?.route==='tram').flatMap(r=>r.members.filter(m=>m.type==='node'&&/^stop/.test(m.role)).map(m=>m.ref)));
+const stations=[];for(const nodeId of stopIds){const n=elements.get('node:'+nodeId),en=n?.tags?.['name:en'];if(!en)continue;let matches=facts.filter(f=>f.code===n.tags.ref&&norm(f.en)===norm(en));if(!matches.length)matches=facts.filter(f=>norm(f.en)===norm(en));if(!matches.length)continue;const names=new Set(matches.map(f=>f.en+'|'+f.zhHant));if(names.size!==1)continue;stations.push({id:'hk-tram-stop-'+nodeId,nodeId,nameEn:matches[0].en,nameZhHant:matches[0].zhHant,officialStopCodeCandidates:[...new Set(matches.map(f=>f.code))],identityStatus:'verified',koreanNameStatus:'INCOMPLETE',sourceUrl:'https://www.hktramways.com/js/nextTramData.js',sourceFile:source,checkedAt:'2026-10-22',sourceType:'official',note:'Operator bilingual stop identity only. Direction/platform candidates remain explicit; no invented Korean spelling.'})}
+fs.writeFileSync(path.join(root,'data/hk/master/tram-identity-review.json'),JSON.stringify({checkedAt:'2026-10-22',officialFacts:facts,stations},null,2)+'\n');console.log({officialStopFacts:facts.length,matchedSourceStopIdentities:stations.length});

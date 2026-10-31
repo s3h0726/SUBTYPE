@@ -159,8 +159,8 @@
   "checks": [
     {
       "name": "consolidated-build",
-      "status": "PASS",
-      "exitCode": 0
+      "status": "FAIL",
+      "exitCode": 1
     },
     {
       "name": "taiwan",
@@ -174,13 +174,22 @@
     },
     {
       "name": "essential-regressions",
+      "status": "FAIL",
+      "exitCode": 1
+    },
+    {
+      "name": "latest-main-integration-essential",
       "status": "PASS",
-      "exitCode": 0
+      "tests": 14
+    },
+    {
+      "name": "app-bundle",
+      "status": "PASS"
     }
   ],
   "browserEvidence": {
     "file": "reports/taiwan/browser.json",
-    "sha256": "21fc995580557bab0df452aae7c7da4247a8eb4473e015327bf3e85010313eb5",
+    "sha256": "ae700d59ab0e0cf5ed8a6fd21502bd015e35a74d421a58c1daf78ee112bd331a",
     "scope": "Representative UI + real engine; synthetic Hangul IME; source topology batch tests are separate"
   }
 }

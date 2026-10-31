@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),vm=require('vm'),path=require('path');
 const root=path.resolve(__dirname,'..'),network=JSON.parse(fs.readFileSync(path.join(root,'data/tw/generated/network.json'),'utf8'));
-const c={console,globalThis:{}};vm.createContext(c);for(const file of ['taiwan-network','route-integrity'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+file+'.js'),'utf8').replace(/export /g,''),c);
+const c={console,globalThis:{}};vm.createContext(c);for(const file of ['hong-kong-policy','taiwan-network','route-integrity'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+file+'.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),c);
 vm.runInContext(';globalThis.api={configureTaiwanNetwork,taiwanKoreanPresentation,taiwanOperatingChoices,resolveTaiwanChoice,resolvePlayableRoute}',c);const api=c.globalThis.api;
 const lines=network.lines.map(api.taiwanKoreanPresentation);api.configureTaiwanNetwork(lines,network.patterns);const publicLines=lines.filter(l=>l.visibility!=='internal');
 test('all eight operators and 38 physical cards survive the batch import',()=>{assert.equal(network.operators.length,8);assert.equal(publicLines.length,38);assert.equal(network.patterns.length,new Set(network.patterns.map(p=>p.id)).size);assert.equal(publicLines.filter(l=>l.operatorId==='tw-trtc').length,7);assert.equal(publicLines.filter(l=>l.operatorId==='tw-tra').length,17)});

@@ -2931,9 +2931,9 @@
     "id": "station-1190528",
     "names": {
       "ja": "西諫早",
-      "kana": "にし諫はや",
+      "kana": "にしいさはや",
       "ko": "니시이사하야",
-      "en": "Nishi諫Haya"
+      "en": "Nishi-Isahaya"
     },
     "aliases": {
       "ko": []
@@ -2963,6 +2963,13 @@
       "basis": "namuwiki-style-normalization",
       "date": "2026-10-07",
       "verified": false
+    },
+    "trilingualNameAudit": {
+      "evidence": "https://www.jrkyushu.co.jp/railway/station/1191745_1601.html",
+      "sourceNameJa": "西諫早",
+      "englishNameMethod": "reference-crosscheck",
+      "koreanNameMethod": "transcribed-review-required",
+      "verifiedKoreanName": false
     }
   },
   {
@@ -4429,22 +4436,29 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
-    "koSearchReference": "site:namu.wiki 桜木駅 사쿠라기 역",
+    "koSource": "namuwiki-manual",
+    "koSourceUrl": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%202%ED%98%B8%EC%84%A0",
+    "koSearchReference": "치바 도시 모노레일 2호선",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-10-31",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "bulk-normalized-review",
+    "koSourceMethod": "manual",
     "canonicalKoreanPolicy": "namuwiki",
     "bulkNormalization": {
       "basis": "namuwiki-style-normalization",
       "date": "2026-10-07",
       "verified": false
+    },
+    "namuwikiBatchProof": {
+      "source": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%202%ED%98%B8%EC%84%A0",
+      "wikiTitle": "치바 도시 모노레일 2호선",
+      "stationJa": "桜木",
+      "stationKo": "사쿠라기",
+      "routeId": "line-99332"
     }
   },
   {
@@ -5780,7 +5794,7 @@
     }
   },
   {
-    "id": "station-mlit-002989",
+    "id": "station-002989",
     "names": {
       "ja": "浦和",
       "kana": "うらわ",
@@ -5818,7 +5832,7 @@
     }
   },
   {
-    "id": "station-mlit-003104",
+    "id": "station-003104",
     "names": {
       "ja": "西高島平",
       "kana": "にしたかしまだいら",
@@ -5856,7 +5870,7 @@
     }
   },
   {
-    "id": "station-mlit-003269",
+    "id": "station-003269",
     "names": {
       "ja": "大山",
       "kana": "おおやま",
@@ -5894,7 +5908,7 @@
     }
   },
   {
-    "id": "station-mlit-003351",
+    "id": "station-003351",
     "names": {
       "ja": "巣鴨新田",
       "kana": "すがもしんでん",
@@ -5932,7 +5946,7 @@
     }
   },
   {
-    "id": "station-mlit-003393",
+    "id": "station-003393",
     "names": {
       "ja": "東長崎",
       "kana": "ひがしながさき",
@@ -5970,7 +5984,7 @@
     }
   },
   {
-    "id": "station-mlit-003549",
+    "id": "station-003549",
     "names": {
       "ja": "東中野",
       "kana": "ひがしなかの",
@@ -6008,45 +6022,7 @@
     }
   },
   {
-    "id": "station-mlit-003634",
-    "names": {
-      "ja": "立川",
-      "kana": "たちかわ",
-      "ko": "타치카와",
-      "en": "Tachikawa"
-    },
-    "aliases": {
-      "ko": []
-    },
-    "coordinates": {
-      "lat": 35.697535,
-      "lng": 139.414305
-    },
-    "prefectureCode": 13,
-    "sources": {
-      "name": "dictionary-transliteration",
-      "coordinate": "MLIT-N02-2025-line-station-composite"
-    },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
-    "koSearchReference": "site:namu.wiki 立川駅 타치카와 역",
-    "sourceAccess": "blocked",
-    "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
-    "koSourceFamily": "namuwiki",
-    "koSourceMethod": "bulk-normalized-review",
-    "canonicalKoreanPolicy": "namuwiki",
-    "bulkNormalization": {
-      "basis": "namuwiki-style-normalization",
-      "date": "2026-10-07",
-      "verified": false
-    }
-  },
-  {
-    "id": "station-mlit-003736",
+    "id": "station-003736",
     "names": {
       "ja": "富士見ヶ丘",
       "kana": "ふじみがおか",
@@ -6084,7 +6060,7 @@
     }
   },
   {
-    "id": "station-mlit-003933",
+    "id": "station-003933",
     "names": {
       "ja": "つつじヶ丘",
       "kana": "つつじゖおか",
@@ -6122,7 +6098,7 @@
     }
   },
   {
-    "id": "station-mlit-004006",
+    "id": "station-004006",
     "names": {
       "ja": "西太子堂",
       "kana": "にしたいしどう",
@@ -6160,7 +6136,7 @@
     }
   },
   {
-    "id": "station-mlit-004087",
+    "id": "station-004087",
     "names": {
       "ja": "東京ビッグサイト",
       "kana": "とうきょうびっぐさいと",
@@ -6205,7 +6181,7 @@
     }
   },
   {
-    "id": "station-mlit-004151",
+    "id": "station-004151",
     "names": {
       "ja": "東千葉",
       "kana": "ひがしちば",
@@ -6243,7 +6219,7 @@
     }
   },
   {
-    "id": "station-mlit-004163",
+    "id": "station-004163",
     "names": {
       "ja": "南大沢",
       "kana": "みなみおおさわ",
@@ -6281,7 +6257,7 @@
     }
   },
   {
-    "id": "station-mlit-004216",
+    "id": "station-004216",
     "names": {
       "ja": "九品仏",
       "kana": "くほんぶつ",
@@ -6319,45 +6295,7 @@
     }
   },
   {
-    "id": "station-mlit-004281",
-    "names": {
-      "ja": "蘇我",
-      "kana": "そが",
-      "ko": "소가",
-      "en": "Soga"
-    },
-    "aliases": {
-      "ko": []
-    },
-    "coordinates": {
-      "lat": 35.582323,
-      "lng": 140.130653
-    },
-    "prefectureCode": 12,
-    "sources": {
-      "name": "dictionary-transliteration",
-      "coordinate": "MLIT-N02-2025-line-station-composite"
-    },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
-    "koSearchReference": "site:namu.wiki 蘇我駅 소가 역",
-    "sourceAccess": "blocked",
-    "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
-    "koSourceFamily": "namuwiki",
-    "koSourceMethod": "bulk-normalized-review",
-    "canonicalKoreanPolicy": "namuwiki",
-    "bulkNormalization": {
-      "basis": "namuwiki-style-normalization",
-      "date": "2026-10-07",
-      "verified": false
-    }
-  },
-  {
-    "id": "station-mlit-004437",
+    "id": "station-004437",
     "names": {
       "ja": "原当麻",
       "kana": "はらとうま",

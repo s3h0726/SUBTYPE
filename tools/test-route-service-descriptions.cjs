@@ -1,45 +1,32 @@
 #!/usr/bin/env node
 'use strict';
+// Route and service blurbs were intentionally removed. Prevent their accidental return.
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
-const vm=require('node:vm');
-const root=path.resolve(__dirname,'..');
-const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const descriptionSrc=read('js/route-service-descriptions.js').replace(/\bexport\s+/g,'');
-const ctx={};vm.createContext(ctx);
-vm.runInContext(descriptionSrc+';globalThis.descriptions={describeRoute,describeOperatingPattern,describeOperatingJourney}',ctx);
-const {describeRoute,describeOperatingPattern,describeOperatingJourney}=ctx.descriptions;
-const index=read('js/japan-lite-index.js');
-const japan=JSON.parse(index.slice(index.indexOf('=')+1,index.lastIndexOf(';')));
-const koreanSrc=read('js/korea-index-data.js');
-const korea=JSON.parse(koreanSrc.slice(koreanSrc.indexOf('=')+1,koreanSrc.lastIndexOf(';')));
-let total=0;
-for(const route of [...japan.routes,...korea.routes]){
-  const label=describeRoute(route);
-  assert.ok(label&&label.length<112,route.id+': missing or long description');
-  assert.ok(!/undefined|null|NaN/.test(label),route.id+': invalid description');
-  total++;
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const app=read('js/app.js'),bundle=read('js/app.bundle.js'),css=read('css/service-picker-rebuild.css'),builder=read('tools/build-app-bundle.js');
+const generatedBlurbs=[
+ 'describeRoute(', 'describeOperatingPattern(', 'describeOperatingJourney(',
+ 'line-card-description', 'selected-line-description', 'line-branch-description',
+ 'setup-line-description', 'operating-pattern-description', 'journey-card-description',
+ 'operating-selected-description'
+];
+for(const file of [['source',app],['bundle',bundle],['CSS',css]]){
+ for(const blurb of generatedBlurbs)assert(!file[1].includes(blurb),file[0]+': obsolete blurb still shown: '+blurb);
 }
-const koreanMain=korea.routes.find(r=>r.id==='kr-metro-1-main');
-assert.ok(koreanMain,'Korean Line 1 missing from selector');
-assert.match(describeRoute(koreanMain),/연천부터 구로까지/);
-const loop=describeRoute({category:'subway',loop:true,stations:[{ko:'시청'},{ko:'시청'}]});
-assert.match(loop,/순환/);
-const express={originNames:{ko:'용산'},destinationNames:{ko:'동인천'},trainType:{ko:'급행'},throughServiceId:'sample'};
-assert.match(describeOperatingPattern(express,{}),/급행/);
-assert.match(describeOperatingPattern(express,{}),/직통/);
-assert.match(describeOperatingJourney(express,{}),/직통/);
-assert.match(describeOperatingJourney({kind:'fallback'},{}),/기본 운행/);
-assert.match(describeRoute({description:'운영사 확인을 거친 노선 설명',category:'jr'}),/운영사 확인/);
-for(const file of ['js/app.js','js/app.bundle.js']){
- const src=read(file);
- for(const marker of ['describeRoute(r)','describeRoute(selected)','describeOperatingPattern(choice,selected)','describeOperatingJourney(choice,selected)','operating-pattern-description','journey-card-description','line-card-description'])
-   assert.ok(src.includes(marker),file+': missing UI blurb '+marker);
-}
-const bundle=read('js/app.bundle.js');
-assert.ok(bundle.includes('function describeRoute('));
-assert.doesNotThrow(()=>new Function(bundle),'Deployed bundle syntax must remain valid');
-const css=read('css/service-picker-rebuild.css');
-assert.ok(css.includes('.line-card-description')&&css.includes('.operating-pattern-description'));
-console.log('PASS: '+total+' Japanese/Korean route card descriptions and service UI/bundle checks');
+assert(!builder.includes('"route-service-descriptions.js"'),'Description generator still bundled');
+assert(!fs.existsSync(path.join(root,'js/route-service-descriptions.js')),'Unneeded description generator not removed');
+for(const required of [
+ 'function routeCard(r)', 'function renderSelected()', 'function openSetup(route)',
+ 'function configureJourneyPicker(', 'function hongKongRouteCards(', 'function renderRoutes()',
+ "countryId==='hk'?hongKongRouteCards(visible)",
+ "const hkLine=e.target.closest('[data-hk-line-family]')",
+ "const hkTram=e.target.closest('[data-hk-tram-family]')"
+])assert(app.includes(required),'Preserve route selection/setup functionality: '+required);
+assert(bundle.includes("countryId==='hk'?hongKongRouteCards(visible)"),'Hong Kong cards missing from actual browser bundle');
+assert(app.includes('operatingPatternLabel(choice)'),'Operating service type names must remain');
+assert(app.includes('operatingDirectionLabel(choice)'),'Direction labels must remain');
+assert(app.includes('display(choice.originNames)'),'Origin station search must remain');
+assert(app.includes('display(choice.destinationNames)'),'Destination station search must remain');
+console.log('PASS: route and operating-service blurbs removed in source, bundle and styles; country pickers and journeys retained.');

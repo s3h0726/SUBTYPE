@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-24",
+  "automationLimitations": [
+    "Several locator.click operations returned before the intended screen changed; one explicit CDP before-dispatch deadline was observed. Failed first launch attempts retained as inconclusive interaction attempts, not successful journeys.",
+    "Re-observed actual setup and used native button Enter activation before full journey verification.",
+    "Background browser frame cadence dropped to one animation frame around900ms despite document.visibilityState=visible. Animation not skipped."
+  ],
+  "failedAttempts": [
+    {
+      "case": "first LMC DT/UT and Tuen Ma DT setup submit",
+      "status": "INCONCLUSIVE_AUTOMATION",
+      "observed": "Setup remained visible; manual second activation started correct route. Complete subsequent journeys stored independently."
+    },
+    {
+      "case": "second TAB scenario initial launch",
+      "status": "INCONCLUSIVE_AUTOMATION",
+      "observed": "Old South Island free-drive screen remained visible. No transfer PASS stored; restart with fresh page and verify."
+    }
+  ]
+}

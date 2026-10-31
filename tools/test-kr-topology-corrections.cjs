@@ -40,23 +40,32 @@ test('correction cannot bridge gaps, ignore a stop or run against one-way track'
 test('all reviewed national corrections preserve exact source geometry and remain blocked for release',()=>{
  const base=path.resolve(__dirname,'../data/kr/v2'),read=n=>JSON.parse(fs.readFileSync(path.join(base,n+'.json'),'utf8'));
  const relations=new Map(read('source/osm-relations').map(r=>[r.id,r])),ways=new Map(read('source/osm-ways').map(w=>[w.id,w]));
+ const facilityWays=new Map(read('source/osm-62-20261017/osm-ways').map(w=>[w.id,w]));
  const data=load(base),{maps,errors}=validate(data,{base});assert.deepEqual(errors,[]);
  const compiled=compile(data,{base}),corrections=read('topology-corrections');assert(corrections.length>0);
  for(const c of corrections){
-  const r=relations.get(c.relationId),result=applyTopologyCorrection(r,ways,c),service=maps.services.get('kr-osm-service-'+r.id);
+  const r=relations.get(c.relationId),result=applyTopologyCorrection(r,ways,c,facilityWays),service=maps.services.get('kr-osm-service-'+r.id);
   const stops=r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role)).map(m=>m.ref);
   const oriented=orientOrderedWays(result.members,ways,stops),journey=assemble(service,maps);
   assert.equal(oriented.status,'UNIQUE_SOURCE_ORDER');assert.equal(journey.stations.length,stops.length);
   assert.deepEqual(service.paths,oriented.parts.map(p=>({geometryId:'kr-geometry-'+p.wayId,reverse:p.reverse})));
   assert.deepEqual(service.stops.map(s=>maps.stops.get(s.stopId).osmNodeId),stops);
-  const blocked=compiled.blocked.find(s=>s.serviceId===service.id);assert(blocked);
+  const blocked=compiled.blocked.find(s=>s.serviceId===service.id);if(service.access?.passengerCandidate===false){assert.equal(service.id,'kr-osm-service-20500839');assert(compiled.excluded.some(s=>s.serviceId===service.id));assert.equal(service.playable,false)}else{assert(blocked);
   const timetableEvidence=read('timetable-verifications').find(v=>v.serviceId===service.id);
   if(timetableEvidence){assert.equal(timetableEvidence.status,'verified');assert.equal(timetableEvidence.groups.length,3);assert(timetableEvidence.groups.every(g=>g.trainCount>0));assert(!blocked.reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'))}
   else assert(blocked.reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'));
-  assert(blocked.reasons.includes('OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED'));assert(blocked.reasons.includes('VERIFIED_TRIP_REQUIRED'));assert.equal(compiled.counts.releasedServices,0);
+  assert(blocked.reasons.includes('OFFICIAL_STATION_AND_DIRECTION_REVIEW_REQUIRED'));assert(blocked.reasons.includes('VERIFIED_TRIP_REQUIRED'));}assert.equal(compiled.counts.releasedServices,0);
   for(const [i,p] of service.paths.entries()){
    const source=ways.get(oriented.parts[i].wayId),geometry=maps.geometry.get(p.geometryId);
    assert.deepEqual(geometry.nodeIds,source.nodeIds);assert.deepEqual(geometry.coordinates,source.coordinates);
   }
  }
+});
+
+test('a closed bridge facility can be replaced only with pinned real rail ways and exact source stop continuity',()=>{
+ const base=path.resolve(__dirname,'../data/kr/v2'),read=n=>JSON.parse(fs.readFileSync(path.join(base,n+'.json'),'utf8')),relation=read('source/osm-relations').find(r=>r.id==='20500839'),config=read('topology-corrections').find(c=>c.relationId===relation.id),ways=new Map(read('source/osm-ways').map(w=>[w.id,w])),facilities=new Map(read('source/osm-62-20261017/osm-ways').map(w=>[w.id,w]));
+ const run=(c=config,w=ways,f=facilities)=>applyTopologyCorrection(relation,w,c,f),result=run(),original=relation.members.filter(m=>m.type==='w'&&m.ref!=='1491252314');assert(original.every(m=>result.members.some(r=>r.ref===m.ref)));assert(!result.members.some(m=>m.ref==='1491252314'));assert.equal(result.members.length,original.length+2);assert.equal(result.evidence.operationalDirectionVerified,false);assert.deepEqual(orientOrderedWays(result.members,ways,['13739900852','13739828932']).status,'UNIQUE_SOURCE_ORDER');
+ assert.throws(()=>run(config,ways,new Map()),/UNPROVEN_NON_RAIL_FACILITY/);
+ for(const mutate of [c=>c.replacedMember.facilitySha256='0'.repeat(64),c=>c.replacementWays.pop(),c=>c.replacementWays.push(c.replacementWays[0])]){const bad=structuredClone(config);mutate(bad);assert.throws(()=>run(bad))}
+ const badWays=new Map(ways),id=config.replacementWays[0].wayId,badConfig=structuredClone(config),bad={...ways.get(id),tags:{...ways.get(id).tags,service:'siding'}};badWays.set(id,bad);badConfig.replacementWays[0].sha256=relationHash(bad);assert.throws(()=>run(badConfig,badWays),/UNPROVEN_REPLACEMENT_TRACK/);
 });

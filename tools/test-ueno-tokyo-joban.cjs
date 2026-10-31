@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'),json=p=>JSON.parse(read(p));
 const C=json('data/tokyo-service-patterns.json'),T=json('data/through-services.json');
-const ids=['line-11343','line-11320','line-11332','line-11301','line-11229--jobansen-totte-iwaki'];
+const ids=['line-11343','line-11320','line-11332','line-11301','line-11229'];
 const R=new Map(ids.map(id=>[id,json('data/generated/routes/'+id+'.json').route]));
 const ctx={console};ctx.globalThis=ctx;ctx.TRT_TOKYO_SERVICE_PATTERNS=C;ctx.TRT_RAIL_SYSTEM={throughServices:T.services};
 vm.createContext(ctx);vm.runInContext(read('js/service-route-resolver.js').replace(/\bexport\s+/g,''),ctx);
@@ -40,7 +40,7 @@ const km=(a,b)=>{const rad=Math.PI/180,lat=(b[0]-a[0])*rad,lon=(b[1]-a[1])*rad;r
 const coord=(id,ja)=>{const r=R.get(id),s=r.stations.find(s=>s.ja===ja);return r.geometry[s.geometryIndex]};
 assert(km(coord('line-11332','上野'),coord('line-11343','上野'))<1e-5);
 assert(km(coord('line-11332','日暮里'),coord('line-11320','日暮里'))<1e-5);
-assert(km(coord('line-11320','取手'),coord('line-11229--jobansen-totte-iwaki','取手'))<1e-5);
+assert(km(coord('line-11320','取手'),coord('line-11229','取手'))<1e-5);
 const specs=T.services.filter(s=>s.id.startsWith('jr-ueno-joban-'));
 assert.equal(specs.length,6);
 assert(specs.every(s=>s.geometryProvenance.status==='parallel-jr-track-proxy'&&s.geometryProvenance.exactJobanAlignmentVerified===false));

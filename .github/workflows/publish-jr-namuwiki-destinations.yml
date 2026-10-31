@@ -1,0 +1,90 @@
+name: Publish Namuwiki JR destination and station-name corrections
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/jr-namuwiki-destination-batch-20261031.json'
+      - 'tools/apply-jr-namuwiki-destinations.cjs'
+      - 'tools/test-jr-namuwiki-destinations.cjs'
+      - '.github/workflows/publish-jr-namuwiki-destinations.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-jr-namuwiki-destinations-main
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify guarded source update and JR regression syntax
+        run: |
+          node --check tools/apply-jr-namuwiki-destinations.cjs
+          node --check tools/test-jr-namuwiki-destinations.cjs
+      - name: Apply exact-ID guarded Namuwiki names
+        run: node tools/apply-jr-namuwiki-destinations.cjs --apply
+      - name: Rebuild complete game with all routes and services
+        run: node tools/build-static.js
+      - name: Refresh Korean name editor
+        run: node tools/export-korean-names.js
+      - name: Run full six-company destination inventory
+        run: node tools/audit-jr-namuwiki-destinations.cjs
+      - name: Test Namuwiki destinations and gameplay labels
+        run: node tools/test-jr-namuwiki-destinations.cjs
+      - name: Existing JR route regression
+        run: |
+          node tools/test-jr-destination-splits.cjs
+          node tools/test-jr-sanyo-destinations.cjs
+          node tools/test-jr-tokaido-maibara.cjs
+          node tools/test-jr-hokkaido-hakodate-split.cjs
+      - name: Existing name editor regression
+        run: |
+          node tools/test-korean-name-editor-namuwiki.cjs
+          node tools/test-korean-name-meitetsu-split.cjs
+          node tools/test-korean-name-hakodate-split.cjs
+      - name: Verify compiled game JS
+        run: node --check js/app.bundle.js
+      - name: Upload result and full national review
+        uses: actions/upload-artifact@v4
+        with:
+          name: jr-namuwiki-terminal-corrections
+          path: |
+            reports/jr/namuwiki-destination-batch-applied.json
+            reports/jr/namuwiki-destination-inventory.json
+            reports/jr/namuwiki-destination-review.md
+            reports/korean-names/
+      - name: Commit canonical records, generated game data and editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lines/ data/shared-stations/ data/generated/ data/jp-canonical/ js/line-workspace-data.js js/japan-lite-index.js js/app.bundle.js js/nationwide-data.js index.html reports/jr/ reports/korean-names/
+          git diff --cached --check
+          if git diff --cached --quiet; then echo 'Canonical destination names already published'; exit 0; fi
+          git commit -m 'fix(jr): Namuwiki station names and destinations across all JR operators'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            git reset --hard origin/main
+            node tools/apply-jr-namuwiki-destinations.cjs --apply
+            node tools/build-static.js
+            node tools/export-korean-names.js
+            node tools/audit-jr-namuwiki-destinations.cjs
+            node tools/test-jr-namuwiki-destinations.cjs
+            git add data/lines/ data/shared-stations/ data/generated/ data/jp-canonical/ js/line-workspace-data.js js/japan-lite-index.js js/app.bundle.js js/nationwide-data.js index.html reports/jr/ reports/korean-names/
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'fix(jr): Namuwiki station names and destinations across all JR operators'
+            sleep 2
+          done
+          exit 1

@@ -1,0 +1,84 @@
+name: Add JR East Sobu Rapid Line to playable game
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/create-jr-sobu-rapid-line.cjs'
+      - 'tools/test-jr-sobu-rapid-playable.cjs'
+      - '.github/workflows/publish-jr-sobu-rapid.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-jr-sobu-rapid-main
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify generator and test syntax
+        run: |
+          node --check tools/create-jr-sobu-rapid-line.cjs
+          node --check tools/test-jr-sobu-rapid-playable.cjs
+      - name: Create source-grounded Sobu Rapid canonical files
+        run: node tools/create-jr-sobu-rapid-line.cjs --apply
+      - name: Rebuild complete SUBTYPE runtime from source
+        run: node tools/build-static.js
+      - name: Export Korean name editor including Sobu Rapid
+        run: node tools/export-korean-names.js
+      - name: Test all ten Sobu Rapid stations, geometry, reversal and transfers
+        run: node tools/test-jr-sobu-rapid-playable.cjs
+      - name: Preserve JR and Japanese category contracts
+        run: |
+          node tools/test-exact-duplicate-jp-routes.cjs
+          node tools/test-japan-other-categories.cjs
+          node tools/test-korean-name-editor-namuwiki.cjs
+          node tools/test-jr-destination-splits.cjs
+      - name: Validate compiled JavaScript
+        run: node --check js/app.bundle.js
+      - name: Publish proof of run
+        uses: actions/upload-artifact@v4
+        with:
+          name: jr-sobu-rapid-jp-jo19-jo28
+          path: |
+            data/lines/jr-east/sobu-rapid/
+            data/generated/routes/line-jr-east-sobu-rapid.json
+            reports/korean-names/lines.csv
+            reports/korean-names/stations-by-line.csv
+      - name: Publish Sobu Rapid canonical and generated game into main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          stage() {
+            git add data/lines/jr-east/sobu-rapid/ data/japan-route-station-names.json data/generated/ data/jp-canonical/ js/line-workspace-data.js js/japan-lite-index.js js/app.bundle.js js/nationwide-data.js index.html reports/korean-names/ reports/jr/
+            git diff --cached --check
+          }
+          stage
+          if git diff --cached --quiet; then echo 'Sobu Rapid source and game already up to date'; exit 0; fi
+          git commit -m 'feat(jp): playable JR Sobu Rapid Tokyo–Chiba JO19–JO28 real railway geometry'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            git reset --hard origin/main
+            node tools/create-jr-sobu-rapid-line.cjs --apply
+            node tools/build-static.js
+            node tools/export-korean-names.js
+            node tools/test-jr-sobu-rapid-playable.cjs
+            stage
+            if git diff --cached --quiet; then echo 'Latest main already contains Sobu Rapid'; exit 0; fi
+            git commit -m 'feat(jp): playable JR Sobu Rapid Tokyo–Chiba JO19–JO28 real railway geometry'
+            sleep 3
+          done
+          exit 1

@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-25",
+  "scope": "Current passenger railway systems; service directions, service codes, physical systems and station records are separate counts. HSR additions excluded by subsequent explicit user instruction.",
+  "systems": [
+    {
+      "id": "hk-mtr-heavy",
+      "operatorId": "hk-mtr",
+      "status": "operational",
+      "categories": [
+        "subway",
+        "airport_rail"
+      ],
+      "lineCount": 10,
+      "note": "Nine MTR heavy-rail lines plus separately classified Airport Express; existing directions preserved. Racecourse and official short turns remain research unless a complete current calling pattern is verified.",
+      "sources": [
+        {
+          "sourceFile": "data/hk/sources/phase6/mtr-service-hours.html",
+          "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+          "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+        }
+      ]
+    },
+    {
+      "id": "hk-light-rail",
+      "operatorId": "hk-mtr",
+      "status": "operational",
+      "officialPhysicalStops": 68,
+      "serviceCodes": [
+        "505",
+        "507",
+        "610",
+        "614",
+        "614P",
+        "615",
+        "615P",
+        "705",
+        "706",
+        "751",
+        "751P",
+        "761P"
+      ],
+      "additionalConditionalCodes": [
+        "506P",
+        "507P",
+        "610P",
+        "720"
+      ],
+      "note": "Official Phase6 CSV and schedule are byte-identical to Phase4 snapshots. 751P evening variants verified as official partial751. Morning Tin Wing platform commissioning and special chained numbers require separate calling/platform review.",
+      "sources": [
+        {
+          "sourceFile": "data/hk/sources/phase6/light-rail.csv",
+          "sourceUrl": "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",
+          "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066"
+        },
+        {
+          "sourceFile": "data/hk/sources/phase6/light-rail.html",
+          "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+          "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+        },
+        {
+          "sourceFile": "data/hk/sources/phase6/mtr-pr-26-029.pdf",
+          "sourceUrl": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf",
+          "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27"
+        }
+      ]
+    },
+    {
+      "id": "hk-tramways",
+      "operatorId": "hk-tramways",
+      "status": "operational",
+      "servicePairs": 6,
+      "playableDirections": 12,
+      "note": "One operator card, independent directional stops and original railway=tram ways; all Phase5 source identities retained.",
+      "sources": [
+        {
+          "sourceFile": "data/hk/sources/phase5/tram-map.html",
+          "sourceUrl": "https://www.hktramways.com/en/interactive-map/",
+          "sha256": "3958df6f4fa484a7e00cdf997736380b70a78f7349a0257fb834efea124c2469"
+        }
+      ]
+    },
+    {
+      "id": "hk-peak-tram",
+      "operatorId": "hk-peak-tram",
+      "status": "operational",
+      "stopCount": 6,
+      "directions": 2,
+      "playable": false,
+      "note": "Read-only government MDB yields both six-stop sequences. Actual source geometry recovered, Korean names/request-stop release incomplete.",
+      "sources": [
+        {
+          "sourceFile": "data/hk/sources/phase6/peak-resource.html",
+          "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
+          "sha256": "2e2a31a0c22f482fee51dd7a4fc2c215540fc9c2f4adbf9ee767d9c3cd497d5e"
+        },
+        {
+          "sourceFile": "data/hk/sources/phase6/peak-stops.mdb",
+          "sourceUrl": "https://static.data.gov.hk/td/routes-and-fares/RSTOP_PTRAM.mdb",
+          "sha256": "15bf28104fac079addeb0b3274af3b2772e44486baa14a614b0b417810357be7"
+        }
+      ]
+    },
+    {
+      "id": "hk-airport-apm",
+      "operatorId": "hk-airport-authority",
+      "status": "operational",
+      "category": "automated_people_mover",
+      "playable": false,
+      "notAirportExpress": true,
+      "access": "Airside passenger restrictions; Terminal2 departures require security and immigration before the APM. SkyPier transfer eligibility is not an unrestricted metro interchange.",
+      "reviewedFacilityLabels": [
+        "Terminal 1",
+        "Terminal 2",
+        "T1 Midfield Concourse",
+        "SkyPier Terminal"
+      ],
+      "opening": {
+        "terminal2Departure": "2026-05-27",
+        "terminal2Concourse": "Future opening, expected by end2027; not included as operating"
+      },
+      "officialHours": {
+        "terminal2Terminal1Midfield": "05:30–00:30",
+        "terminal1SkyPier": "06:15–23:45"
+      },
+      "geometryStatus": "INCOMPLETE",
+      "reason": "Overpass406, OSM API429 twice with independent-work backoff and smaller retry. No further repeated requests or substitute road geometry. Platform/direction paths remain unverified, so no empty playable card is emitted.",
+      "sources": [
+        {
+          "sourceFile": "data/hk/sources/phase6/apm.html",
+          "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+          "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+        },
+        {
+          "sourceFile": "data/hk/sources/phase6/apm-t2-opening.html",
+          "sourceUrl": "https://www.hongkongairport.com/en/media-centre/press-release/2026/pr_1868",
+          "sha256": "3aef083386cc7c8fb34628207fefad72b703e2ac057a698eb15382e59013efac"
+        }
+      ]
+    },
+    {
+      "id": "hk-ocean-express",
+      "operatorId": "hk-ocean-park",
+      "status": "operational",
+      "category": "facility_funicular",
+      "stopCount": 2,
+      "directions": 2,
+      "parkAdmissionRequired": true,
+      "note": "Official Korean/Chinese identity and existing direction-specific OSM funicular ways, including one-way passing arms.",
+      "sources": [
+        {
+          "sourceFile": "data/hk/sources/phase6/ocean-express-ko.html",
+          "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+          "sha256": "950e5ac01329bcbc297195c3d6104928c3042e82012fe6aeadd550b07bba9ebd"
+        },
+        {
+          "sourceFile": "data/hk/sources/phase6/ocean-express-tc.html",
+          "sourceUrl": "https://www.oceanpark.com.hk/tc/a-day-at-the-park/attractions/ocean-express-the-waterfront",
+          "sha256": "da36a624bce1a3863317f9c4501363966657e10c9c3fe81792d5aa4fc52d8a66"
+        },
+        {
+          "sourceFile": "data/hk/sources/phase6/ocean-map.json",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/map.json?bbox=114.166,22.233,114.182,22.250",
+          "sha256": "ab02fbe5a52d93c4ee7b09851f016ef2a5befbe917b4f6f353163b6c6ac40d1c"
+        }
+      ]
+    },
+    {
+      "id": "hk-disneyland-railroad",
+      "status": "temporarily-suspended",
+      "playable": false,
+      "closedFrom": "2026-03-02",
+      "until": "further-notice",
+      "note": "Official park page explicitly announces temporary suspension; distinct from operational MTR Disneyland Resort Line.",
+      "sources": [
+        {
+          "sourceFile": "data/hk/sources/phase6/disney-railroad.html",
+          "sourceUrl": "https://www.hongkongdisneyland.com/attractions/hong-kong-disneyland-railroad-main-street-station/",
+          "sha256": "376d8614296dfef8f2690fedc46178be93834b2a00760d3ed098873df7d232cd"
+        }
+      ]
+    },
+    {
+      "id": "ngong-ping-360",
+      "status": "OUT_OF_SCOPE",
+      "category": "cable_car",
+      "countedAsRailway": false,
+      "note": "Cable transport, not a railway way; original requirement90 preserved."
+    },
+    {
+      "id": "ocean-park-toto-loco",
+      "status": "OUT_OF_SCOPE",
+      "category": "closed_loop_amusement_ride",
+      "countedAsTransportRailway": false,
+      "note": "Official attractions list a mini train as a Family Fun ride; excluded under user instruction distinguishing enclosed amusement rides from passenger transport.",
+      "sources": [
+        {
+          "sourceFile": "data/hk/sources/phase6/ocean-attractions-ko.html",
+          "sourceUrl": "https://www.oceanpark.com.hk/kr/a-day-at-the-park/attractions",
+          "sha256": "f3116b9dca96cab51be4536c41970e62cd9bcfcb82890ce15b5bc9d9050fa892"
+        }
+      ]
+    }
+  ],
+  "nationalComplete": false,
+  "knownOperatingSystemFamilies": 6,
+  "systemFamilyCounting": "MTR heavy rail including Airport Express; Light Rail; Tramways; Peak Tram; HKIA APM; Ocean Express. These six are not the 26 route/service-code records.",
+  "unresolved": "APM railway geometry, Peak Korean/request-stop release, morning751P platform route, special Light Rail chained services, Racecourse/short turn completeness. This is not a claim that all Hong Kong passenger railways are complete."
+}

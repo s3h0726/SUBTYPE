@@ -1,0 +1,135 @@
+{
+  "checkedAt": "2026-10-22",
+  "status": "PASS_WITH_LIMITED_SCOPE",
+  "consoleErrors": 0,
+  "consoleScope": "Local preview tab 5; observed phase2 play, custom, country navigation. Not every pending service or cloud flow.",
+  "darkMobile": "PASS",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "horizontalOverflow": false,
+      "light": "PASS",
+      "dark": "PASS",
+      "memoryAnswerHidden": true
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "light": "PASS",
+      "dark": "PASS"
+    }
+  ],
+  "runs": [
+    {
+      "service": "hk-south-island-ut",
+      "mode": "normal",
+      "advance": "AUTO",
+      "reducedMotion": false,
+      "distanceKm": 6.95,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    },
+    {
+      "service": "hk-south-island-dt",
+      "mode": "memory",
+      "advance": "SPACE",
+      "reducedMotion": true,
+      "distanceKm": 6.93,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    },
+    {
+      "service": "hk-airport-express-dt",
+      "mode": "normal",
+      "advance": "SPACE",
+      "reducedMotion": true,
+      "distanceKm": 34.94,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    },
+    {
+      "service": "hk-airport-express-ut",
+      "mode": "memory",
+      "advance": "AUTO",
+      "reducedMotion": true,
+      "distanceKm": 34.95,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    },
+    {
+      "service": "hk-disneyland-dt",
+      "mode": "normal",
+      "advance": "AUTO",
+      "reducedMotion": true,
+      "distanceKm": 3.09,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    },
+    {
+      "service": "hk-disneyland-ut",
+      "mode": "normal",
+      "advance": "AUTO",
+      "reducedMotion": true,
+      "distanceKm": 3.09,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    },
+    {
+      "service": "custom-adm-ocp-wch",
+      "mode": "normal",
+      "advance": "AUTO",
+      "reducedMotion": true,
+      "distanceKm": 4.64,
+      "status": "PASS",
+      "completion": "all stops",
+      "accuracy": 100,
+      "errors": 0
+    }
+  ],
+  "custom": {
+    "status": "PASS",
+    "route": "ADM → OCP → WCH",
+    "saved": true,
+    "reloaded": true,
+    "replayed": true,
+    "reverseServiceOfferRemoved": true,
+    "directHashEditorHydration": "PASS"
+  },
+  "japanKorea": {
+    "automated": "PASS",
+    "homeCountrySwitch": "PASS",
+    "fullBrowserReplay": "NOT_REPEATED_IN_PHASE2",
+    "dataUnchanged": "PASS"
+  },
+  "ime": {
+    "automated": "PASS",
+    "nativeOperatingSystemIme": "NOT_TESTED"
+  },
+  "legacyUiFailures": {
+    "count": 4,
+    "unchanged": true,
+    "evidence": "reports/hong-kong/legacy-ui-baseline.json"
+  },
+  "supabase": "NOT_TESTED",
+  "screenshots": [
+    "output/hk/phase2-sil-mobile-light.jpg",
+    "output/hk/phase2-sil-mobile-dark.jpg",
+    "output/hk/phase2-ael-ut-result.jpg",
+    "output/hk/phase2-custom-result.jpg"
+  ],
+  "settingsRestored": true,
+  "scopeNote": "SIL UT tested with train motion. Remaining recorded runs used reduced motion; source geometry was checked independently. Korean label input uses browser fill and does not simulate native IME."
+}

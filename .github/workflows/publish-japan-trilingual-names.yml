@@ -1,0 +1,58 @@
+name: Publish audited Japanese trilingual station line operator names
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/test-japan-trilingual-published.cjs'
+      - '.github/workflows/publish-japan-trilingual-names.yml'
+      - 'reports/names/japan-confirmed-corrections-applied.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-japan-trilingual-main
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild runtime from canonical source of truth
+        run: node tools/build-static.js
+      - name: Check the published canonical and lazy route names
+        run: node tools/test-japan-trilingual-published.cjs
+      - name: Check Japanese miscellaneous categories
+        run: node tools/test-japan-other-categories.cjs
+      - name: Check Disney route playability
+        run: node --test tools/test-japan-disney-resort-line.cjs
+      - name: Validate JavaScript bundle
+        run: node --check js/app.bundle.js
+      - name: Commit only generated Japan name and game runtime artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/generated/routes/ data/generated/line-index.json data/generated/asset-registry.json data/generated/japan-transfer-neighbors.json data/jp-canonical/ js/line-workspace-data.js js/japan-lite-index.js js/app.bundle.js index.html
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'Published names already consistent'; exit 0
+          fi
+          git commit -m 'build(jp): publish verified multilingual name corrections to playable catalog'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git -c rebase.autoStash=true rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            sleep 3
+          done
+          exit 1

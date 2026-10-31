@@ -1,0 +1,2098 @@
+{
+  "id": "hk-tseung-kwan-o-lohas-peak-ut",
+  "countryId": "hk",
+  "schemaVersion": 1,
+  "canonicalLineId": "hk-tseung-kwan-o",
+  "servicePatternId": "hk-tseung-kwan-o-lohas-peak-ut",
+  "serviceLabel": "North Point → LOHAS Park",
+  "operatorId": "hk-mtr",
+  "operator": {
+    "ja": "港鐵",
+    "en": "MTR",
+    "ko": "홍콩 MTR"
+  },
+  "line": {
+    "ja": "將軍澳綫",
+    "en": "Tseung Kwan O Line",
+    "ko": "정관오선"
+  },
+  "category": "subway",
+  "mode": "subway",
+  "code": "TKL",
+  "officialSymbolExists": false,
+  "lineColor": "#7e3c93",
+  "lineTheme": {
+    "code": "TKL",
+    "color": "#7e3c93",
+    "style": "hk",
+    "colorVerified": true,
+    "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+  },
+  "loop": false,
+  "lazy": false,
+  "playable": true,
+  "releaseStatus": "ready",
+  "geometryReady": true,
+  "geometryStatus": "verified",
+  "blockedReasons": [],
+  "direction": "lohas-peak-up",
+  "validWhen": {
+    "type": "peak-through-service",
+    "noteKo": "노스포인트 ↔ 로하스파크 직통 · 평일 오전·저녁 혼잡시간, 토요일 07:00~10:15에 운행. 일요일·공휴일 미운행. 그 외 시간에는 티우겡렝 셔틀 이용. 정확한 출발시각은 MTR 안내를 확인하세요.",
+    "operatingDays": [
+      "weekday-morning-peak",
+      "weekday-evening-peak",
+      "saturday-07:00-10:15"
+    ],
+    "sundayPublicHoliday": "no-through-service",
+    "exactDepartureTimesVerified": false,
+    "reviewStatus": "verified",
+    "sources": [
+      {
+        "file": "data/hk/sources/phase6/mtr-service-hours.html",
+        "sha256": "129a38d23e2993750120091862ca3e1c8a80b987fa8abd669c12ed797d0b69ff"
+      },
+      {
+        "file": "data/hk/sources/phase3/mtr-stations.csv",
+        "sha256": "e0e781152e2e6c5f6d7763262acbae76577b71ca4c66b4b7b72a97252175e0c3"
+      },
+      {
+        "file": "data/hk/sources/phase2/mtr-map.pdf",
+        "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+      }
+    ]
+  },
+  "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+  "stopStatus": "verified",
+  "geometry": [
+    [
+      22.2906116,
+      114.2005391
+    ],
+    [
+      22.2908018,
+      114.2014931
+    ],
+    [
+      22.2908302,
+      114.201684
+    ],
+    [
+      22.2908514,
+      114.2019346
+    ],
+    [
+      22.2908553,
+      114.2021024
+    ],
+    [
+      22.2908519,
+      114.2022877
+    ],
+    [
+      22.2908399,
+      114.2024478
+    ],
+    [
+      22.2908168,
+      114.2026197
+    ],
+    [
+      22.2907853,
+      114.202785
+    ],
+    [
+      22.2907422,
+      114.2029596
+    ],
+    [
+      22.2906927,
+      114.2031225
+    ],
+    [
+      22.2906088,
+      114.2033472
+    ],
+    [
+      22.2905065,
+      114.2035678
+    ],
+    [
+      22.290412,
+      114.2037376
+    ],
+    [
+      22.2902924,
+      114.2039196
+    ],
+    [
+      22.2901687,
+      114.2040824
+    ],
+    [
+      22.2900389,
+      114.204231
+    ],
+    [
+      22.2898554,
+      114.2044061
+    ],
+    [
+      22.2895467,
+      114.2046618
+    ],
+    [
+      22.2891626,
+      114.204981
+    ],
+    [
+      22.2890338,
+      114.2051016
+    ],
+    [
+      22.2889173,
+      114.2052271
+    ],
+    [
+      22.2888192,
+      114.2053444
+    ],
+    [
+      22.2886991,
+      114.2055124
+    ],
+    [
+      22.2885788,
+      114.2057047
+    ],
+    [
+      22.2884896,
+      114.2058741
+    ],
+    [
+      22.2884013,
+      114.2060733
+    ],
+    [
+      22.2883212,
+      114.2063087
+    ],
+    [
+      22.2882562,
+      114.2065498
+    ],
+    [
+      22.2882147,
+      114.2067757
+    ],
+    [
+      22.2881887,
+      114.2070197
+    ],
+    [
+      22.2881779,
+      114.2074224
+    ],
+    [
+      22.2883589,
+      114.2093923
+    ],
+    [
+      22.2883953,
+      114.2097582
+    ],
+    [
+      22.2884401,
+      114.2102793
+    ],
+    [
+      22.2884594,
+      114.2104634
+    ],
+    [
+      22.2884916,
+      114.210687
+    ],
+    [
+      22.2885409,
+      114.210929
+    ],
+    [
+      22.2886079,
+      114.2111616
+    ],
+    [
+      22.2886857,
+      114.2113775
+    ],
+    [
+      22.2887701,
+      114.2115826
+    ],
+    [
+      22.299471,
+      114.2313845
+    ],
+    [
+      22.2996337,
+      114.2317079
+    ],
+    [
+      22.2997405,
+      114.231956
+    ],
+    [
+      22.2998935,
+      114.232451
+    ],
+    [
+      22.2999886,
+      114.232821
+    ],
+    [
+      22.3000358,
+      114.2330503
+    ],
+    [
+      22.3000717,
+      114.2334044
+    ],
+    [
+      22.3000914,
+      114.2335922
+    ],
+    [
+      22.3000829,
+      114.2338067
+    ],
+    [
+      22.300073,
+      114.2341112
+    ],
+    [
+      22.3000283,
+      114.23437
+    ],
+    [
+      22.2999477,
+      114.2346825
+    ],
+    [
+      22.2998633,
+      114.2349493
+    ],
+    [
+      22.2997572,
+      114.2351928
+    ],
+    [
+      22.2996356,
+      114.2354201
+    ],
+    [
+      22.2994942,
+      114.2356447
+    ],
+    [
+      22.29938,
+      114.2358023
+    ],
+    [
+      22.2992857,
+      114.2359069
+    ],
+    [
+      22.2991831,
+      114.2360245
+    ],
+    [
+      22.2990525,
+      114.2361401
+    ],
+    [
+      22.2988893,
+      114.2362785
+    ],
+    [
+      22.2985506,
+      114.2365382
+    ],
+    [
+      22.2977986,
+      114.2370945
+    ],
+    [
+      22.2970862,
+      114.2376325
+    ],
+    [
+      22.2967081,
+      114.2379081
+    ],
+    [
+      22.296193,
+      114.2383307
+    ],
+    [
+      22.2959121,
+      114.2386058
+    ],
+    [
+      22.2957454,
+      114.2387929
+    ],
+    [
+      22.2955907,
+      114.2389845
+    ],
+    [
+      22.2954254,
+      114.239267
+    ],
+    [
+      22.2953364,
+      114.2394336
+    ],
+    [
+      22.2952455,
+      114.2396341
+    ],
+    [
+      22.2951478,
+      114.2398611
+    ],
+    [
+      22.2950701,
+      114.240107
+    ],
+    [
+      22.2950269,
+      114.2402924
+    ],
+    [
+      22.294991,
+      114.2405041
+    ],
+    [
+      22.2949637,
+      114.2407245
+    ],
+    [
+      22.2949457,
+      114.2409107
+    ],
+    [
+      22.2949313,
+      114.2411711
+    ],
+    [
+      22.2949228,
+      114.2414394
+    ],
+    [
+      22.2949248,
+      114.2416797
+    ],
+    [
+      22.2949399,
+      114.2419982
+    ],
+    [
+      22.2949688,
+      114.2422828
+    ],
+    [
+      22.2950115,
+      114.2426192
+    ],
+    [
+      22.2950936,
+      114.2430441
+    ],
+    [
+      22.2952231,
+      114.2434494
+    ],
+    [
+      22.2953962,
+      114.2438387
+    ],
+    [
+      22.295564,
+      114.2441455
+    ],
+    [
+      22.2957639,
+      114.2444283
+    ],
+    [
+      22.2959811,
+      114.244685
+    ],
+    [
+      22.2962197,
+      114.2449328
+    ],
+    [
+      22.2965749,
+      114.2452358
+    ],
+    [
+      22.2967718,
+      114.2453909
+    ],
+    [
+      22.2969607,
+      114.2455285
+    ],
+    [
+      22.2988407,
+      114.2467758
+    ],
+    [
+      22.2992209,
+      114.247062
+    ],
+    [
+      22.2995441,
+      114.247332
+    ],
+    [
+      22.2999809,
+      114.2477533
+    ],
+    [
+      22.3013116,
+      114.2492563
+    ],
+    [
+      22.3014884,
+      114.2494287
+    ],
+    [
+      22.3016684,
+      114.24959
+    ],
+    [
+      22.3018866,
+      114.2498015
+    ],
+    [
+      22.3025532,
+      114.2505487
+    ],
+    [
+      22.302828,
+      114.2508643
+    ],
+    [
+      22.3031631,
+      114.2512587
+    ],
+    [
+      22.3041145,
+      114.2523284
+    ],
+    [
+      22.3045682,
+      114.2528403
+    ],
+    [
+      22.3049161,
+      114.2532498
+    ],
+    [
+      22.3050206,
+      114.2533766
+    ],
+    [
+      22.3051282,
+      114.2535164
+    ],
+    [
+      22.305221,
+      114.253662
+    ],
+    [
+      22.3053028,
+      114.2538106
+    ],
+    [
+      22.3053775,
+      114.2539592
+    ],
+    [
+      22.3054534,
+      114.2541193
+    ],
+    [
+      22.3055309,
+      114.2542942
+    ],
+    [
+      22.3056022,
+      114.2544742
+    ],
+    [
+      22.3060671,
+      114.2558118
+    ],
+    [
+      22.3074422,
+      114.2599465
+    ],
+    [
+      22.3079606,
+      114.2615338
+    ],
+    [
+      22.3080946,
+      114.2619168
+    ],
+    [
+      22.3082232,
+      114.2621873
+    ],
+    [
+      22.3084038,
+      114.2625112
+    ],
+    [
+      22.3086746,
+      114.2628453
+    ],
+    [
+      22.3089838,
+      114.2631292
+    ],
+    [
+      22.309453,
+      114.2634989
+    ],
+    [
+      22.3097416,
+      114.2638005
+    ],
+    [
+      22.3099752,
+      114.2640827
+    ],
+    [
+      22.3101653,
+      114.2643402
+    ],
+    [
+      22.310292,
+      114.2645238
+    ],
+    [
+      22.3105177,
+      114.264902
+    ],
+    [
+      22.3107433,
+      114.2653541
+    ],
+    [
+      22.3108852,
+      114.2657213
+    ],
+    [
+      22.3110145,
+      114.2661186
+    ],
+    [
+      22.3110811,
+      114.2664522
+    ],
+    [
+      22.3111362,
+      114.2668146
+    ],
+    [
+      22.3111539,
+      114.2672146
+    ],
+    [
+      22.3111413,
+      114.2676393
+    ],
+    [
+      22.3111007,
+      114.2679325
+    ],
+    [
+      22.3110247,
+      114.2683271
+    ],
+    [
+      22.3108776,
+      114.2688039
+    ],
+    [
+      22.3107205,
+      114.2691848
+    ],
+    [
+      22.3104796,
+      114.269593
+    ],
+    [
+      22.3101957,
+      114.2699904
+    ],
+    [
+      22.309894,
+      114.2703109
+    ],
+    [
+      22.3095315,
+      114.2706288
+    ],
+    [
+      22.3091944,
+      114.2708823
+    ],
+    [
+      22.3068589,
+      114.2727084
+    ],
+    [
+      22.3060256,
+      114.2733475
+    ],
+    [
+      22.3052985,
+      114.2739138
+    ],
+    [
+      22.3050555,
+      114.274097
+    ],
+    [
+      22.3047246,
+      114.2742913
+    ],
+    [
+      22.3044755,
+      114.2743928
+    ],
+    [
+      22.3042222,
+      114.2744811
+    ],
+    [
+      22.303973,
+      114.2745275
+    ],
+    [
+      22.303732,
+      114.2745473
+    ],
+    [
+      22.3035339,
+      114.2745551
+    ],
+    [
+      22.3029181,
+      114.2745319
+    ],
+    [
+      22.3027149,
+      114.2745319
+    ],
+    [
+      22.3021267,
+      114.2744899
+    ],
+    [
+      22.3018101,
+      114.2744347
+    ],
+    [
+      22.3015446,
+      114.2743464
+    ],
+    [
+      22.3013485,
+      114.274267
+    ],
+    [
+      22.3010912,
+      114.2741301
+    ],
+    [
+      22.3008686,
+      114.2739844
+    ],
+    [
+      22.2997872,
+      114.2732584
+    ],
+    [
+      22.2983789,
+      114.2723068
+    ],
+    [
+      22.2982626,
+      114.2722185
+    ],
+    [
+      22.2981651,
+      114.2721403
+    ],
+    [
+      22.2979042,
+      114.2718853
+    ],
+    [
+      22.2977921,
+      114.2717487
+    ],
+    [
+      22.2976149,
+      114.2715602
+    ],
+    [
+      22.2975118,
+      114.2714053
+    ],
+    [
+      22.2974473,
+      114.2712984
+    ],
+    [
+      22.297384,
+      114.2712121
+    ],
+    [
+      22.2973218,
+      114.2711271
+    ],
+    [
+      22.2972364,
+      114.2710163
+    ],
+    [
+      22.2971512,
+      114.2709058
+    ],
+    [
+      22.2970374,
+      114.2707549
+    ],
+    [
+      22.2969261,
+      114.2706074
+    ],
+    [
+      22.2967089,
+      114.270317
+    ],
+    [
+      22.296586,
+      114.2701528
+    ],
+    [
+      22.2965101,
+      114.270059
+    ],
+    [
+      22.2962037,
+      114.26968
+    ],
+    [
+      22.2960722,
+      114.2695119
+    ],
+    [
+      22.2955114,
+      114.2687986
+    ]
+  ],
+  "directedSegments": [
+    {
+      "id": "hk-track-bf707a91dbf4c12492",
+      "fromStationId": "hk-mtr-NOP",
+      "toStationId": "hk-mtr-QUB",
+      "geometry": [
+        [
+          22.2906116,
+          114.2005391
+        ],
+        [
+          22.2908018,
+          114.2014931
+        ],
+        [
+          22.2908302,
+          114.201684
+        ],
+        [
+          22.2908514,
+          114.2019346
+        ],
+        [
+          22.2908553,
+          114.2021024
+        ],
+        [
+          22.2908519,
+          114.2022877
+        ],
+        [
+          22.2908399,
+          114.2024478
+        ],
+        [
+          22.2908168,
+          114.2026197
+        ],
+        [
+          22.2907853,
+          114.202785
+        ],
+        [
+          22.2907422,
+          114.2029596
+        ],
+        [
+          22.2906927,
+          114.2031225
+        ],
+        [
+          22.2906088,
+          114.2033472
+        ],
+        [
+          22.2905065,
+          114.2035678
+        ],
+        [
+          22.290412,
+          114.2037376
+        ],
+        [
+          22.2902924,
+          114.2039196
+        ],
+        [
+          22.2901687,
+          114.2040824
+        ],
+        [
+          22.2900389,
+          114.204231
+        ],
+        [
+          22.2898554,
+          114.2044061
+        ],
+        [
+          22.2895467,
+          114.2046618
+        ],
+        [
+          22.2891626,
+          114.204981
+        ],
+        [
+          22.2890338,
+          114.2051016
+        ],
+        [
+          22.2889173,
+          114.2052271
+        ],
+        [
+          22.2888192,
+          114.2053444
+        ],
+        [
+          22.2886991,
+          114.2055124
+        ],
+        [
+          22.2885788,
+          114.2057047
+        ],
+        [
+          22.2884896,
+          114.2058741
+        ],
+        [
+          22.2884013,
+          114.2060733
+        ],
+        [
+          22.2883212,
+          114.2063087
+        ],
+        [
+          22.2882562,
+          114.2065498
+        ],
+        [
+          22.2882147,
+          114.2067757
+        ],
+        [
+          22.2881887,
+          114.2070197
+        ],
+        [
+          22.2881779,
+          114.2074224
+        ],
+        [
+          22.2883589,
+          114.2093923
+        ]
+      ],
+      "segmentLengthMeters": 1018.9820411971905,
+      "sourceWayIds": [
+        254297810,
+        253921170,
+        254299887
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-f0010380c469309cc0",
+      "fromStationId": "hk-mtr-QUB",
+      "toStationId": "hk-mtr-YAT",
+      "geometry": [
+        [
+          22.2883589,
+          114.2093923
+        ],
+        [
+          22.2883953,
+          114.2097582
+        ],
+        [
+          22.2884401,
+          114.2102793
+        ],
+        [
+          22.2884594,
+          114.2104634
+        ],
+        [
+          22.2884916,
+          114.210687
+        ],
+        [
+          22.2885409,
+          114.210929
+        ],
+        [
+          22.2886079,
+          114.2111616
+        ],
+        [
+          22.2886857,
+          114.2113775
+        ],
+        [
+          22.2887701,
+          114.2115826
+        ],
+        [
+          22.299471,
+          114.2313845
+        ],
+        [
+          22.2996337,
+          114.2317079
+        ],
+        [
+          22.2997405,
+          114.231956
+        ],
+        [
+          22.2998935,
+          114.232451
+        ],
+        [
+          22.2999886,
+          114.232821
+        ],
+        [
+          22.3000358,
+          114.2330503
+        ],
+        [
+          22.3000717,
+          114.2334044
+        ],
+        [
+          22.3000914,
+          114.2335922
+        ],
+        [
+          22.3000829,
+          114.2338067
+        ],
+        [
+          22.300073,
+          114.2341112
+        ],
+        [
+          22.3000283,
+          114.23437
+        ],
+        [
+          22.2999477,
+          114.2346825
+        ],
+        [
+          22.2998633,
+          114.2349493
+        ],
+        [
+          22.2997572,
+          114.2351928
+        ],
+        [
+          22.2996356,
+          114.2354201
+        ],
+        [
+          22.2994942,
+          114.2356447
+        ],
+        [
+          22.29938,
+          114.2358023
+        ],
+        [
+          22.2992857,
+          114.2359069
+        ],
+        [
+          22.2991831,
+          114.2360245
+        ],
+        [
+          22.2990525,
+          114.2361401
+        ],
+        [
+          22.2988893,
+          114.2362785
+        ],
+        [
+          22.2985506,
+          114.2365382
+        ],
+        [
+          22.2977986,
+          114.2370945
+        ]
+      ],
+      "segmentLengthMeters": 3297.4776601566437,
+      "sourceWayIds": [
+        254299887,
+        254297775,
+        254297780,
+        254297777
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-c57312c1d9d35ab85d",
+      "fromStationId": "hk-mtr-YAT",
+      "toStationId": "hk-mtr-TIK",
+      "geometry": [
+        [
+          22.2977986,
+          114.2370945
+        ],
+        [
+          22.2970862,
+          114.2376325
+        ],
+        [
+          22.2967081,
+          114.2379081
+        ],
+        [
+          22.296193,
+          114.2383307
+        ],
+        [
+          22.2959121,
+          114.2386058
+        ],
+        [
+          22.2957454,
+          114.2387929
+        ],
+        [
+          22.2955907,
+          114.2389845
+        ],
+        [
+          22.2954254,
+          114.239267
+        ],
+        [
+          22.2953364,
+          114.2394336
+        ],
+        [
+          22.2952455,
+          114.2396341
+        ],
+        [
+          22.2951478,
+          114.2398611
+        ],
+        [
+          22.2950701,
+          114.240107
+        ],
+        [
+          22.2950269,
+          114.2402924
+        ],
+        [
+          22.294991,
+          114.2405041
+        ],
+        [
+          22.2949637,
+          114.2407245
+        ],
+        [
+          22.2949457,
+          114.2409107
+        ],
+        [
+          22.2949313,
+          114.2411711
+        ],
+        [
+          22.2949228,
+          114.2414394
+        ],
+        [
+          22.2949248,
+          114.2416797
+        ],
+        [
+          22.2949399,
+          114.2419982
+        ],
+        [
+          22.2949688,
+          114.2422828
+        ],
+        [
+          22.2950115,
+          114.2426192
+        ],
+        [
+          22.2950936,
+          114.2430441
+        ],
+        [
+          22.2952231,
+          114.2434494
+        ],
+        [
+          22.2953962,
+          114.2438387
+        ],
+        [
+          22.295564,
+          114.2441455
+        ],
+        [
+          22.2957639,
+          114.2444283
+        ],
+        [
+          22.2959811,
+          114.244685
+        ],
+        [
+          22.2962197,
+          114.2449328
+        ],
+        [
+          22.2965749,
+          114.2452358
+        ],
+        [
+          22.2967718,
+          114.2453909
+        ],
+        [
+          22.2969607,
+          114.2455285
+        ],
+        [
+          22.2988407,
+          114.2467758
+        ],
+        [
+          22.2992209,
+          114.247062
+        ],
+        [
+          22.2995441,
+          114.247332
+        ],
+        [
+          22.2999809,
+          114.2477533
+        ],
+        [
+          22.3013116,
+          114.2492563
+        ],
+        [
+          22.3014884,
+          114.2494287
+        ],
+        [
+          22.3016684,
+          114.24959
+        ],
+        [
+          22.3018866,
+          114.2498015
+        ],
+        [
+          22.3025532,
+          114.2505487
+        ],
+        [
+          22.302828,
+          114.2508643
+        ],
+        [
+          22.3031631,
+          114.2512587
+        ],
+        [
+          22.3041145,
+          114.2523284
+        ]
+      ],
+      "segmentLengthMeters": 2151.5993656224978,
+      "sourceWayIds": [
+        254297777,
+        485331464,
+        485352716,
+        485331427
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-02da690b68a64da6ab",
+      "fromStationId": "hk-mtr-TIK",
+      "toStationId": "hk-mtr-TKO",
+      "geometry": [
+        [
+          22.3041145,
+          114.2523284
+        ],
+        [
+          22.3045682,
+          114.2528403
+        ],
+        [
+          22.3049161,
+          114.2532498
+        ],
+        [
+          22.3050206,
+          114.2533766
+        ],
+        [
+          22.3051282,
+          114.2535164
+        ],
+        [
+          22.305221,
+          114.253662
+        ],
+        [
+          22.3053028,
+          114.2538106
+        ],
+        [
+          22.3053775,
+          114.2539592
+        ],
+        [
+          22.3054534,
+          114.2541193
+        ],
+        [
+          22.3055309,
+          114.2542942
+        ],
+        [
+          22.3056022,
+          114.2544742
+        ],
+        [
+          22.3060671,
+          114.2558118
+        ],
+        [
+          22.3074422,
+          114.2599465
+        ]
+      ],
+      "segmentLengthMeters": 877.2689976194024,
+      "sourceWayIds": [
+        485331427,
+        1507719411,
+        485648068
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-8f28b0a89284a336f5",
+      "fromStationId": "hk-mtr-TKO",
+      "toStationId": "hk-mtr-LHP",
+      "geometry": [
+        [
+          22.3074422,
+          114.2599465
+        ],
+        [
+          22.3079606,
+          114.2615338
+        ],
+        [
+          22.3080946,
+          114.2619168
+        ],
+        [
+          22.3082232,
+          114.2621873
+        ],
+        [
+          22.3084038,
+          114.2625112
+        ],
+        [
+          22.3086746,
+          114.2628453
+        ],
+        [
+          22.3089838,
+          114.2631292
+        ],
+        [
+          22.309453,
+          114.2634989
+        ],
+        [
+          22.3097416,
+          114.2638005
+        ],
+        [
+          22.3099752,
+          114.2640827
+        ],
+        [
+          22.3101653,
+          114.2643402
+        ],
+        [
+          22.310292,
+          114.2645238
+        ],
+        [
+          22.3105177,
+          114.264902
+        ],
+        [
+          22.3107433,
+          114.2653541
+        ],
+        [
+          22.3108852,
+          114.2657213
+        ],
+        [
+          22.3110145,
+          114.2661186
+        ],
+        [
+          22.3110811,
+          114.2664522
+        ],
+        [
+          22.3111362,
+          114.2668146
+        ],
+        [
+          22.3111539,
+          114.2672146
+        ],
+        [
+          22.3111413,
+          114.2676393
+        ],
+        [
+          22.3111007,
+          114.2679325
+        ],
+        [
+          22.3110247,
+          114.2683271
+        ],
+        [
+          22.3108776,
+          114.2688039
+        ],
+        [
+          22.3107205,
+          114.2691848
+        ],
+        [
+          22.3104796,
+          114.269593
+        ],
+        [
+          22.3101957,
+          114.2699904
+        ],
+        [
+          22.309894,
+          114.2703109
+        ],
+        [
+          22.3095315,
+          114.2706288
+        ],
+        [
+          22.3091944,
+          114.2708823
+        ],
+        [
+          22.3068589,
+          114.2727084
+        ],
+        [
+          22.3060256,
+          114.2733475
+        ],
+        [
+          22.3052985,
+          114.2739138
+        ],
+        [
+          22.3050555,
+          114.274097
+        ],
+        [
+          22.3047246,
+          114.2742913
+        ],
+        [
+          22.3044755,
+          114.2743928
+        ],
+        [
+          22.3042222,
+          114.2744811
+        ],
+        [
+          22.303973,
+          114.2745275
+        ],
+        [
+          22.303732,
+          114.2745473
+        ],
+        [
+          22.3035339,
+          114.2745551
+        ],
+        [
+          22.3029181,
+          114.2745319
+        ],
+        [
+          22.3027149,
+          114.2745319
+        ],
+        [
+          22.3021267,
+          114.2744899
+        ],
+        [
+          22.3018101,
+          114.2744347
+        ],
+        [
+          22.3015446,
+          114.2743464
+        ],
+        [
+          22.3013485,
+          114.274267
+        ],
+        [
+          22.3010912,
+          114.2741301
+        ],
+        [
+          22.3008686,
+          114.2739844
+        ],
+        [
+          22.2997872,
+          114.2732584
+        ],
+        [
+          22.2983789,
+          114.2723068
+        ],
+        [
+          22.2982626,
+          114.2722185
+        ],
+        [
+          22.2981651,
+          114.2721403
+        ],
+        [
+          22.2979042,
+          114.2718853
+        ],
+        [
+          22.2977921,
+          114.2717487
+        ],
+        [
+          22.2976149,
+          114.2715602
+        ],
+        [
+          22.2975118,
+          114.2714053
+        ],
+        [
+          22.2974473,
+          114.2712984
+        ],
+        [
+          22.297384,
+          114.2712121
+        ],
+        [
+          22.2973218,
+          114.2711271
+        ],
+        [
+          22.2972364,
+          114.2710163
+        ],
+        [
+          22.2971512,
+          114.2709058
+        ],
+        [
+          22.2970374,
+          114.2707549
+        ],
+        [
+          22.2969261,
+          114.2706074
+        ],
+        [
+          22.2967089,
+          114.270317
+        ],
+        [
+          22.296586,
+          114.2701528
+        ],
+        [
+          22.2965101,
+          114.270059
+        ],
+        [
+          22.2962037,
+          114.26968
+        ],
+        [
+          22.2960722,
+          114.2695119
+        ],
+        [
+          22.2955114,
+          114.2687986
+        ]
+      ],
+      "segmentLengthMeters": 3197.134463116196,
+      "sourceWayIds": [
+        1507719411,
+        485648068,
+        485648066,
+        485648069,
+        1462197755,
+        1428980098,
+        819328206,
+        1341283537,
+        819328204,
+        485648061,
+        1507719412,
+        485648062
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13352937",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    }
+  ],
+  "stations": [
+    {
+      "id": "hk-mtr-NOP",
+      "countryId": "hk",
+      "code": "NOP",
+      "nameZhHant": "北角",
+      "nameEn": "North Point",
+      "nameKo": "노스 포인트",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2906116,
+        "lng": 114.2005391
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#NOP",
+      "note": "Access points 4 through 7 identify North Point MTR exit A1.",
+      "canonicalStationId": "hk-mtr-NOP",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/253288836",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-lohas-peak-ut-stop-0",
+      "physicalStationId": "hk-mtr-NOP",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 984409361,
+      "stopPosition": {
+        "lat": 22.2906116,
+        "lng": 114.2005391,
+        "sourceNodeId": 984409361,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/984409361"
+      },
+      "geometryIndex": 0,
+      "stationMasterId": "hk-mtr-NOP",
+      "ja": "北角",
+      "kana": "",
+      "romaji": "North Point",
+      "ko": "노스 포인트",
+      "koAliases": [],
+      "latitude": 22.2906116,
+      "longitude": 114.2005391,
+      "officialCode": "NOP",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html"
+    },
+    {
+      "id": "hk-mtr-QUB",
+      "countryId": "hk",
+      "code": "QUB",
+      "nameZhHant": "鰂魚涌",
+      "nameEn": "Quarry Bay",
+      "nameKo": "쿼리 베이",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2883589,
+        "lng": 114.2093923
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "sourceType": "official-tourism-korean",
+      "checkedAt": "2026-10-20",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameEvidence": "data/hk/master/korean-name-review.json#QUB",
+      "note": "Access points 9 and 10 identify Quarry Bay MTR exit C.",
+      "canonicalStationId": "hk-mtr-QUB",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/984741558",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-lohas-peak-ut-stop-1",
+      "physicalStationId": "hk-mtr-QUB",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 2600841716,
+      "stopPosition": {
+        "lat": 22.2883589,
+        "lng": 114.2093923,
+        "sourceNodeId": 2600841716,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/2600841716"
+      },
+      "geometryIndex": 32,
+      "stationMasterId": "hk-mtr-QUB",
+      "ja": "鰂魚涌",
+      "kana": "",
+      "romaji": "Quarry Bay",
+      "ko": "쿼리 베이",
+      "koAliases": [],
+      "latitude": 22.2883589,
+      "longitude": 114.2093923,
+      "officialCode": "QUB",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://www.discoverhongkong.com/kr/attractions/scenic-victoria-harbour-walk.html",
+      "transferReview": {
+        "stationId": "hk-mtr-QUB",
+        "lineIds": [
+          "hk-island",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
+    },
+    {
+      "id": "hk-mtr-YAT",
+      "countryId": "hk",
+      "code": "YAT",
+      "nameZhHant": "油塘",
+      "nameEn": "Yau Tong",
+      "nameKo": "야우통",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2977986,
+        "lng": 114.2370945
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-YAT",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/2674392736",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-lohas-peak-ut-stop-2",
+      "physicalStationId": "hk-mtr-YAT",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 991295084,
+      "stopPosition": {
+        "lat": 22.2977986,
+        "lng": 114.2370945,
+        "sourceNodeId": 991295084,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/991295084"
+      },
+      "geometryIndex": 63,
+      "stationMasterId": "hk-mtr-YAT",
+      "ja": "油塘",
+      "kana": "",
+      "romaji": "Yau Tong",
+      "ko": "야우통",
+      "koAliases": [],
+      "latitude": 22.2977986,
+      "longitude": 114.2370945,
+      "officialCode": "YAT",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-YAT",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
+    },
+    {
+      "id": "hk-mtr-TIK",
+      "countryId": "hk",
+      "code": "TIK",
+      "nameZhHant": "調景嶺",
+      "nameEn": "Tiu Keng Leng",
+      "nameKo": "티우켕렝",
+      "aliasesKo": [
+        "티유켕렝"
+      ],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3041145,
+        "lng": 114.2523284
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%BF%A4%ED%86%B5-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-TIK",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/984741544",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-lohas-peak-ut-stop-3",
+      "physicalStationId": "hk-mtr-TIK",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 984741544,
+      "stopPosition": {
+        "lat": 22.3041145,
+        "lng": 114.2523284,
+        "sourceNodeId": 984741544,
+        "snapMeters": 0.5512755981454823,
+        "sourceUrl": "https://www.openstreetmap.org/node/984741544"
+      },
+      "geometryIndex": 106,
+      "stationMasterId": "hk-mtr-TIK",
+      "ja": "調景嶺",
+      "kana": "",
+      "romaji": "Tiu Keng Leng",
+      "ko": "티우켕렝",
+      "koAliases": [
+        "티유켕렝"
+      ],
+      "latitude": 22.3041145,
+      "longitude": 114.2523284,
+      "officialCode": "TIK",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "transferReview": {
+        "stationId": "hk-mtr-TIK",
+        "lineIds": [
+          "hk-kwun-tong",
+          "hk-tseung-kwan-o"
+        ],
+        "status": "verified",
+        "sourceUrl": "https://www.mtr.com.hk/archive/en/services/routemap.pdf",
+        "sourceFile": "data/hk/sources/phase2/mtr-map.pdf",
+        "sourceSha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4",
+        "checkedAt": "2026-10-25",
+        "evidence": "Official map marks these lines as an interchange at this same physical station. Each source service retains its own stop coordinates; no rail connection or through train is inferred."
+      }
+    },
+    {
+      "id": "hk-mtr-TKO",
+      "countryId": "hk",
+      "code": "TKO",
+      "nameZhHant": "將軍澳",
+      "nameEn": "Tseung Kwan O",
+      "nameKo": "정관오",
+      "aliasesKo": [
+        "청콴오"
+      ],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3074422,
+        "lng": 114.2599465
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-TKO",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4784243684",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-lohas-peak-ut-stop-4",
+      "physicalStationId": "hk-mtr-TKO",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 307391103,
+      "stopPosition": {
+        "lat": 22.3074422,
+        "lng": 114.2599465,
+        "sourceNodeId": 307391103,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/307391103"
+      },
+      "geometryIndex": 118,
+      "stationMasterId": "hk-mtr-TKO",
+      "ja": "將軍澳",
+      "kana": "",
+      "romaji": "Tseung Kwan O",
+      "ko": "정관오",
+      "koAliases": [
+        "청콴오"
+      ],
+      "latitude": 22.3074422,
+      "longitude": 114.2599465,
+      "officialCode": "TKO",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    },
+    {
+      "id": "hk-mtr-LHP",
+      "countryId": "hk",
+      "code": "LHP",
+      "nameZhHant": "康城",
+      "nameEn": "LOHAS Park",
+      "nameKo": "로하스파크",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.2955114,
+        "lng": 114.2687986
+      },
+      "nameStatus": "verified",
+      "sourceUrl": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv",
+      "sourceType": "official",
+      "checkedAt": "2026-10-22",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "koreanNameSource": {
+        "sourceUrl": "https://aahk.tistory.com/entry/%ED%99%8D%EC%BD%A9%EC%9D%98-%EC%A7%80%ED%95%98%EC%B2%A0-%EC%B2%AD%EC%BD%B4%EC%98%A4-%EB%9D%BC%EC%9D%B8",
+        "sourceType": "reviewed-korean-usage",
+        "checkedAt": "2026-10-22",
+        "confidence": "medium"
+      },
+      "canonicalStationId": "hk-mtr-LHP",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/4784241743",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-tseung-kwan-o-lohas-peak-ut-stop-5",
+      "physicalStationId": "hk-mtr-LHP",
+      "lineId": "hk-tseung-kwan-o",
+      "sourceStopNodeId": 4784241742,
+      "stopPosition": {
+        "lat": 22.2955114,
+        "lng": 114.2687986,
+        "sourceNodeId": 4784241742,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/4784241742"
+      },
+      "geometryIndex": 185,
+      "stationMasterId": "hk-mtr-LHP",
+      "ja": "康城",
+      "kana": "",
+      "romaji": "LOHAS Park",
+      "ko": "로하스파크",
+      "koAliases": [],
+      "latitude": 22.2955114,
+      "longitude": 114.2687986,
+      "officialCode": "LHP",
+      "hasOfficialStationCode": true,
+      "stationCodeSource": "https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv"
+    }
+  ],
+  "services": [
+    {
+      "id": "hk-tseung-kwan-o-lohas-peak-ut",
+      "nameJa": "將軍澳綫",
+      "nameEn": "Tseung Kwan O Line",
+      "nameKo": "정관오선",
+      "stops": [
+        "hk-mtr-NOP",
+        "hk-mtr-QUB",
+        "hk-mtr-YAT",
+        "hk-mtr-TIK",
+        "hk-mtr-TKO",
+        "hk-mtr-LHP"
+      ]
+    }
+  ],
+  "operatingConditionFingerprint": "e563da19ee05e45d2b071b1a9d89cef92339a35349c939a1e1541ba3f9668bad",
+  "validationFingerprint": "a29d3810b9db6f2307e90b91636fcfb02ecdb01e0127417cc1ad3835d299c386"
+}

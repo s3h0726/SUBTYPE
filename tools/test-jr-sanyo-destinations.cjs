@@ -8,7 +8,7 @@ const cat=JSON.parse(read('js/nationwide-service-catalog.js').split('window.TRT_
 const ids=['11609','11610','11611','11612'];
 const routes=ids.map(id=>json('data/generated/routes/line-'+id+'.json').route);
 const context={};vm.createContext(context);
-vm.runInContext(read('js/route-integrity.js').replace(/\bexport\s+/g,'')+';globalThis.auditRouteIntegrity=auditRouteIntegrity;',context);
+vm.runInContext(read('js/route-integrity.js').replace(/^import[^\n]*\n/gm,'').replace(/\bexport\s+/g,'')+';globalThis.auditRouteIntegrity=auditRouteIntegrity;',context);
 for(let i=0;i<routes.length;i++){
  const r=routes[i],id=ids[i];
  assert.equal(r.id,'line-'+id);

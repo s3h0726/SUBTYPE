@@ -1,8 +1,8 @@
 [
   {
     "name": "consolidated-build",
-    "status": "PASS",
-    "exitCode": 0
+    "status": "FAIL",
+    "exitCode": 1
   },
   {
     "name": "taiwan",
@@ -16,7 +16,16 @@
   },
   {
     "name": "essential-regressions",
+    "status": "FAIL",
+    "exitCode": 1
+  },
+  {
+    "name": "latest-main-integration-essential",
     "status": "PASS",
-    "exitCode": 0
+    "tests": 14
+  },
+  {
+    "name": "app-bundle",
+    "status": "PASS"
   }
 ]

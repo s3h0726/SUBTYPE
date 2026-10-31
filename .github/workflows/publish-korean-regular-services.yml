@@ -1,0 +1,10 @@
+name: Korean publication (paused during full route reset)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publication-paused:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Korean routes reset; restore requires explicit change to data/kr/publication-policy.json."

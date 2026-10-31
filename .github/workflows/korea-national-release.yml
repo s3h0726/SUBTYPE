@@ -9,7 +9,10 @@ on:
 permissions:
   contents: read
 jobs:
+  # The inventory contains zero published Korean routes after explicit reset.
+  # Reactivate national approval checks when a new Korean catalog is built.
   national-release:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

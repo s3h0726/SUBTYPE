@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-10-22",
+  "status": "PASS_WITH_LIMITED_SCOPE",
+  "consoleErrors": 0,
+  "consoleScope": "Local preview tab 5. Hong Kong 22 completed directional services and custom, Japanese samples and Korean sample/free drive. Browser-tool selector errors are not app console exceptions.",
+  "darkMobile": "PASS",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "light": "PASS",
+      "dark": "PASS",
+      "horizontalOverflow": false,
+      "stationSignBottom": 826,
+      "officialStationCodeVisible": "PRE",
+      "longKoreanName": "프린스에드워드"
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "scope": "Phase 2 retained; Phase 3 desktop default viewport also used"
+    }
+  ],
+  "browserEvidence": "reports/hong-kong/phase3/browser-runs.json",
+  "hongKongCompleted": 22,
+  "advanceModes": [
+    "AUTO",
+    "SPACE"
+  ],
+  "inputModes": [
+    "normal",
+    "memory"
+  ],
+  "reducedMotion": true,
+  "fullAnimationPhase3": "NOT_TESTED",
+  "nativeOsIme": "NOT_TESTED",
+  "automatedIme": {
+    "fixtures": 10,
+    "status": "PASS"
+  },
+  "custom": {
+    "status": "PASS",
+    "newRoute": "PRE → SSP → CSW",
+    "save": true,
+    "reload": true,
+    "replay": true,
+    "completion": true,
+    "phase1SavedRouteReplay": "PASS",
+    "phase2SavedRouteReplay": "PASS",
+    "coordinateRebase": "PASS"
+  },
+  "japanKorea": {
+    "dataUnchanged": "PASS",
+    "automated": "PASS",
+    "korea": "Seongsu → Sinseol-dong 5 stops complete; free drive City Hall → Euljiro 1-ga → Euljiro 3-ga",
+    "japan": "Nishi Kyushu Shinkansen 5 stops complete; Narita Express 5 Shinjuku → Narita Airport 6 stops complete",
+    "actualTransferExecution": "NOT_TESTED",
+    "qualification": "Existing Japanese NEX setup showed a grouped service caption differing from the selected journey and its result reports some distance estimates. These Japanese data/selection/distance implementations were not modified in Phase 3; do not claim a full Japanese geometry/UX audit."
+  },
+  "supabase": "NOT_TESTED",
+  "legacyUiFailureCount": 4,
+  "legacyUiEvidence": "reports/hong-kong/phase3/legacy-ui-investigation.json",
+  "screenshots": [
+    "output/hk/phase3-mobile-light-code.jpg",
+    "output/hk/phase3-mobile-dark-code.jpg",
+    "output/hk/phase3-custom-result.jpg",
+    "output/hk/phase3-jp-shinkansen-result.jpg",
+    "output/hk/phase3-jp-express-result.jpg",
+    "output/hk/phase3-kr-branch-result.jpg",
+    "output/hk/phase3-kr-free-drive.jpg"
+  ],
+  "settingsRestored": true,
+  "notes": "Browser fill is automated input and not human typing speed. Results verify completion, not typing performance. Native IME and real transfer execution remain separate NOT_TESTED items."
+}

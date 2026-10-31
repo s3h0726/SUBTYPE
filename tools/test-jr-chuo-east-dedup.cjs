@@ -12,8 +12,8 @@ const es=read(east+'stations.json'),eg=read(east+'geometry.json');
 const rapid=read('data/lines/jr-east/chuo-line-rapid/stations.json');
 assert.equal(e.id,'line-11311');assert.equal(e.names.ko,'츄오토선');
 assert.equal(es.length,42);
-assert.equal(es[0].stationId,'station-mlit-004029');
-assert.equal(es.at(-1).stationId,'station-mlit-002616');
+assert.equal(es[0].stationId,'station-1131112');
+assert.equal(es.at(-1).stationId,'station-1131153');
 assert.equal(Object.keys(eg).length,es.length-1);
 for(let i=0;i<es.length;i++){
  assert.equal(es[i].order,i+1);
@@ -23,7 +23,7 @@ for(let i=0;i<es.length;i++){
  }
 }
 assert.equal(rapid[0].stationId,'station-1130101');
-assert.equal(rapid.at(-1).stationId,'station-mlit-004029');
+assert.equal(rapid.at(-1).stationId,'station-1131112');
 assert.equal(rapid.length,24);
 // The published workspace must be rebuilt from the canonical source, not merely hidden in the UI.
 const runtime='js/line-workspace-data.js';

@@ -24,16 +24,16 @@ for(const choice of choices){
  assert(route.stations.every((s,i)=>i===0||s.geometryIndex>route.stations[i-1].geometryIndex));
  assert.equal(route.stations[0].geometryIndex,0);
  assert.equal(route.stations.at(-1).geometryIndex,route.geometry.length-1);
- assert(stops.includes('station-mlit-003766'),'Tokyo must be served');
+ assert(stops.includes('station-1130101'),'Tokyo must be served');
  if(choice.nexVariantId.includes('shinjuku')){
    assert(route.stations.some(s=>s.ja==='渋谷'));
-   assert(!stops.includes('station-mlit-004095'),'Shinagawa is a Shinjuku pass-through, not a stop');
+   assert(!stops.includes('station-1130103'),'Shinagawa is a Shinjuku pass-through, not a stop');
  }else{
-   assert(stops.includes('station-mlit-004095'),'Ofuna calls at Shinagawa');
-   assert(!stops.includes('station-mlit-003922'),'Ofuna must not call at Shibuya');
+   assert(stops.includes('station-1130103'),'Ofuna calls at Shinagawa');
+   assert(!stops.includes('station-003922'),'Ofuna must not call at Shibuya');
  }
- if(choice.id.startsWith('nex-54-'))assert(!stops.includes('station-mlit-004173'),'Train 54 skips Chiba');
- if(choice.id.startsWith('nex-2-'))for(const stationId of ['station-mlit-003161','station-mlit-003531','station-mlit-003898','station-mlit-004173'])assert(stops.includes(stationId),'Train 2 additional call missing: '+stationId);
+ if(choice.id.startsWith('nex-54-'))assert(!stops.includes('station-1131339'),'Train 54 skips Chiba');
+ if(choice.id.startsWith('nex-2-'))for(const stationId of ['station-1132703','station-1131415','station-003898','station-1131339'])assert(stops.includes(stationId),'Train 2 additional call missing: '+stationId);
  for(const segment of route.directedSegments){assert(segment.geometry.length>=2);assert.equal(segment.verified,false);}
  summary.push({choice:choice.id,stations:route.stations.length,stops:stops.length,points:route.geometry.length,first:route.stations[0].ja,last:route.stations.at(-1).ja});
 }
