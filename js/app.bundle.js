@@ -1293,10 +1293,13 @@ function resolveFamousLimitedExpressChoice(route,choice){
 
 // A v2 journey is already directional and contains only timetable stopping calls.
 // Geometry between calls includes every non-stopping station and track curve.
+function koreanServiceIsCurrent(window={}){
+ const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul'}).format(new Date());
+ return(!window.start||date>=window.start)&&(!window.end||date<=window.end);
+}
 function koreanVerifiedChoices(route){
  if(route?.countryId!=='kr'||route.schemaVersion!==2||route.releaseStatus!=='verified')return[];
- const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul'}).format(new Date());
- return(route.verifiedJourneys||[]).filter(journey=>(!journey.serviceDates?.start||date>=journey.serviceDates.start)&&(!journey.serviceDates?.end||date<=journey.serviceDates.end)).map(journey=>({kind:'koreanVerified',id:journey.id,patternId:journey.patternId,patternName:journey.patternName,direction:journey.directionId,originId:journey.stations[0].id,destinationId:journey.stations.at(-1).id,originNames:journey.stations[0],destinationNames:journey.stations.at(-1),trainType:null}));
+ return(route.verifiedJourneys||[]).filter(journey=>koreanServiceIsCurrent(journey.serviceDates)).map(journey=>({kind:'koreanVerified',id:journey.id,patternId:journey.patternId,patternName:journey.patternName,direction:journey.directionId,originId:journey.stations[0].id,destinationId:journey.stations.at(-1).id,originNames:journey.stations[0],destinationNames:journey.stations.at(-1),trainType:null}));
 }
 function resolveKoreanVerifiedChoice(choice,route){
  if(route?.countryId!=='kr'||route.schemaVersion!==2||route.releaseStatus!=='verified'||!route.geometryReady)throw Error('검증되지 않은 한국 철도 데이터입니다.');
@@ -2650,6 +2653,7 @@ class CustomGeoMap{
 
 
 
+
 const text=(...values)=>String(values.find(value=>typeof value==='string'&&value.trim())||'').normalize('NFC').trim();
 const cleanDisplayLineName=value=>text(value).replace(/^JR/,'').replace(/^東京メトロ/,'').replace(/^都営/,'').replace(/^大阪メトロ/,'');
 // The editor saves a small JSON file independently of the generated catalog.
@@ -2816,7 +2820,7 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
   }
   if(FEATURE_FLAGS.koreaRoutesReset)return{country:{id:'kr',names:{ko:'대한민국',en:'South Korea'}},operators:[],lines:[],stations:[],assets:{operators:{},lines:{}},errors:[],counts:{},fallbackUsed:false,source:'korea-reset'};
   const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
-  const lines=(data.routes||[]).filter(route=>route.releaseStatus!=='research'&&route.playStatus!=='RESEARCH_PLAYABLE'&&!route.previewContract&&!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
+  const lines=(data.routes||[]).filter(route=>(!route.serviceWindows||route.serviceWindows.some(koreanServiceIsCurrent))&&route.releaseStatus!=='research'&&route.playStatus!=='RESEARCH_PLAYABLE'&&!route.previewContract&&!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators,lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
 }
 async function hydrateRailLine(route){if(!route?.lazy)return route;const key=String(route.lazySource).replace(/^\.\//,''),embedded=globalThis.TRT_EMBEDDED_NATIONWIDE?.routes?.[key];if(embedded)return normalizeLine(embedded.route||embedded,{category:route.category});const url=new URL(key,document.baseURI),payload=await fetchJson(url);const sourceRoute=Array.isArray(payload.routes)?payload.routes.find(item=>item?.id===route.id):(payload.route||payload);if(!sourceRoute)throw new Error('일본 노선 분할 파일에 해당 노선이 없습니다: '+route.id);if(route.countryId==='kr'&&/^kr-service-\d+$/.test(route.id)&&(!sourceRoute||sourceRoute.id!==route.id||sourceRoute.sourceServiceId!==route.sourceServiceId))throw Error('KOREAN_SERVICE_IDENTITY_MISMATCH');if(route.countryId==='hk'&&(sourceRoute.countryId!=='hk'||sourceRoute.id!==route.id))throw new Error('홍콩 노선 파일 식별자가 일치하지 않습니다.');const normalized=normalizeLine(sourceRoute,{category:route.category});if(normalized.countryId==='hk'&&hongKongRouteBlockReason(normalized))throw new Error(hongKongRouteBlockReason(normalized));normalized.directions=sourceRoute.directions||[];if(route.id==='line-28002'){normalized.stationCount=Number(route.stationCount)||28;normalized.searchStations=route.searchStations||[];}if(route.countryId==='kr'){normalized.playable=route.playable;normalized.visibility=route.visibility;normalized.dataKind=route.dataKind;normalized.serviceNote=route.serviceNote;normalized.operatorId=route.operatorId;normalized.operator={...normalized.operator,...route.operator};normalized.operators=route.operators||normalized.operators;normalized.operatorIds=route.operatorIds||normalized.operatorIds;normalized.countryId='kr';normalized.regionId=route.regionId;normalized.passengerLineId=route.passengerLineId;normalized.passengerLineName=route.passengerLineName;normalized.operatingPatternId=route.operatingPatternId;normalized.serviceValidationStatus=route.serviceValidationStatus;normalized.geometryReady=route.geometryReady===true;normalized.geometryStatus=route.geometryStatus||normalized.geometryStatus;normalized.releaseStatus=route.releaseStatus||normalized.releaseStatus;normalized.integratedLine1=route.integratedLine1===true;normalized.line1Service=route.line1Service||null;normalized.gameValidationStatus=route.gameValidationStatus||normalized.gameValidationStatus;}return normalized}

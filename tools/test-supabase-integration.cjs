@@ -20,7 +20,7 @@ const map=new Map(),localStorage={
   setItem:(key,value)=>{map.set(key,String(value))},
   removeItem:key=>map.delete(key)
 };
-const context={console,localStorage,isCountryEnabled:()=>true,Map,Set,JSON};
+const context={console,localStorage,FEATURE_FLAGS:{koreaRoutesReset:false},isCountryEnabled:()=>true,Map,Set,JSON};
 vm.createContext(context);
 vm.runInContext(storageCode.replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'')+'\n;globalThis.testStorage=storage',context);
 const s=context.testStorage;
