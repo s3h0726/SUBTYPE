@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+
+if(require('../data/kr/publication-policy.json').mode==='canonical'){require('node:child_process').execFileSync(process.execPath,[require('node:path').join(__dirname,'build-kr-canonical.cjs'),'--publish'],{stdio:'inherit'});return;}
 /* Preserve actual OpenStreetMap-based Line 1 routes across build:data rebuilds. */
 const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
