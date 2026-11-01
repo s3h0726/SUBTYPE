@@ -3614,46 +3614,34 @@ function japaneseRouteRgb(route){
  const match=/^#([0-9a-f]{6})$/i.exec(String(route?.lineColor||route?.lineTheme?.color||'').trim());
  return match?[0,2,4].map(i=>parseInt(match[1].slice(i,i+2),16)):null;
 }
-function japaneseRouteHue(rgb){
- const [r,g,b]=rgb,max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
- if(!delta)return 360;
- const fraction=max===r?((g-b)/delta)%6:max===g?(b-r)/delta+2:(r-g)/delta+4;
- return(fraction*60+360)%360;
+function japaneseMainline(route){
+ return /본선|本線/u.test([route?.line?.ko,route?.line?.ja].filter(Boolean).join(' '));
 }
 function sortJapaneseRouteCards(items){
  const operators=new Map();
- for(const r of items){
-  const operator=String(r?.operatorId||r?.operator?.ko||r?.operator?.ja||'');
+ for(const route of items){
+  const operator=String(route?.operatorId||route?.operator?.ko||route?.operator?.ja||'');
   if(!operators.has(operator))operators.set(operator,[]);
-  operators.get(operator).push(r);
+  operators.get(operator).push(route);
  }
  const result=[];
  for(const members of operators.values()){
-  const colors=new Map(),uncolored=[];
-  for(const r of members){
-   const rgb=japaneseRouteRgb(r);
-   if(!rgb){uncolored.push(r);continue}
-   const key=rgb.map(v=>v.toString(16).padStart(2,'0')).join('');
-   if(!colors.has(key))colors.set(key,{key,rgb,lines:[]});
-   colors.get(key).lines.push(r);
+  const colors=new Map();
+  for(const route of members){
+   const rgb=japaneseRouteRgb(route);
+   // No approximate RGB ordering. Unknown colors retain their individual input positions.
+   const key=rgb?rgb.map(v=>v.toString(16).padStart(2,'0')).join(''):'unknown:'+route.id;
+   if(!colors.has(key))colors.set(key,{lines:[],hasMainline:false});
+   const group=colors.get(key);
+   group.lines.push(route);
+   if(japaneseMainline(route))group.hasMainline=true;
   }
-  // Keep exact RGB matches contiguous; arrange distinct colors by nearest RGB distance.
-  const remaining=[...colors.values()].sort((a,b)=>japaneseRouteHue(a.rgb)-japaneseRouteHue(b.rgb)||a.key.localeCompare(b.key));
-  let previous=null;
-  while(remaining.length){
-   let chosen=0;
-   if(previous){
-    let best=Infinity;
-    for(let i=0;i<remaining.length;i++){
-     const distance=remaining[i].rgb.reduce((sum,v,j)=>sum+(v-previous[j])**2,0);
-     if(distance<best){best=distance;chosen=i}
-    }
-   }
-   const group=remaining.splice(chosen,1)[0];
-   result.push(...group.lines);
-   previous=group.rgb;
+  // Mainline color groups first; all remaining groups keep their first-seen order.
+  // Within any exact-color group, a 本線 / 본선 route precedes its branch lines.
+  const groups=[...colors.values()];
+  for(const group of [...groups.filter(g=>g.hasMainline),...groups.filter(g=>!g.hasMainline)]){
+   result.push(...group.lines.filter(japaneseMainline),...group.lines.filter(route=>!japaneseMainline(route)));
   }
-  result.push(...uncolored);
  }
  return result;
 }
