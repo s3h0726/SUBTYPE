@@ -66,7 +66,7 @@ function renderTaiwanGameDisplay(game){
  // Match Japan/Hong Kong: preserve the common line badge and add Taiwan labels.
  const lineHeading=document.getElementById('game-line-name');
  if(lineHeading){const badge=lineHeading.querySelector('.game-line-symbol,.line-badge,.line-symbol-asset')?.outerHTML||'';lineHeading.innerHTML=badge+taiwanNameMarkup(route.line,{english:true})}
- markup('game-operator',route.operator);
+ set('game-operator',getTaiwanDisplayNames(route.operator).ko);
  set('service-origin-ko',getTaiwanDisplayNames(first).ko);set('service-origin-ja',getTaiwanDisplayNames(first).zh);set('service-destination-ko',getTaiwanDisplayNames(last).ko);set('service-destination-ja',getTaiwanDisplayNames(last).zh);
  const service=game.freeDriveMode?{ko:'자유주행',zh:'自由駕駛',en:'Free Drive'}:game.service;markup('game-service-name',service);markup('station-service-footer',service);markup('service-route-summary',route.line);markup('service-direction-summary',taiwanDirectionNames({originNames:first,destinationNames:last}));
  // Do not overwrite applyActiveBrand()'s common symbol/operator branding.
@@ -77,9 +77,14 @@ function renderTaiwanGameDisplay(game){
   if(original){original.textContent=nativeLine.zh||nativeLine.en;original.lang='zh-Hant'}
  }
 }
-function renderTaiwanSetupHeader(route){
- if(route?.countryId!=='tw')return;const root=document.getElementById('setup-route');if(!root)return;
- root.querySelector('h3').innerHTML=taiwanNameMarkup(route.line,{english:true});root.querySelector('p').innerHTML=taiwanNameMarkup(route.operator,{english:true})+(route.source?.official&&route.description?'<small class="tw-operation-note" lang="ko">'+twEscape(route.description)+'</small>':'');
+function renderTaiwanSetupHeader(route,stationCount){
+ if(route?.countryId!=='tw')return;
+ const root=document.getElementById('setup-route');if(!root)return;
+ const line=getTaiwanDisplayNames(route.line),operator=getTaiwanDisplayNames(route.operator);
+ const heading=root.querySelector('h3'),meta=root.querySelector('p');
+ // Keep the shared route ticket: Korean line heading, compact Chinese subtitle.
+ if(heading)heading.textContent=line.ko;
+ if(meta)meta.innerHTML=twEscape(operator.ko)+(line.zh?' · <span lang="zh-Hant">'+twEscape(line.zh)+'</span>':line.en?' · '+twEscape(line.en):'')+'<br>'+Number(stationCount??route.stationCount??route.stations?.length??0)+' STATIONS';
 }
 globalThis.TRTTaiwanDisplay={names:getTaiwanDisplayNames,text:taiwanNameText,markup:taiwanNameMarkup,record:taiwanRecordDisplay,recordMarkup:taiwanRecordMarkup,recordText:taiwanRecordText,ensure:ensureTaiwanDisplay};
 
