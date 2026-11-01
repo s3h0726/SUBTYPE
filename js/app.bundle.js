@@ -3607,7 +3607,55 @@ function refreshTramNetworkGroups(eligible){
  }
 }
 
-function filteredRoutes(){const queries=searchVariants($('#route-search').value);return routes.filter(r=>(countryId==='jp'||transportGroup==='all'||routeTransportGroup(r)===transportGroup)&&(countryId!=='kr'||regionFilter==='all'||r.regionId===regionFilter)&&routeCategoryMatches(r)&&(operatorFilter==='all'||operatorKey(r)===operatorFilter)&&(!queries[0]||queries.some(query=>searchable(r).includes(query))))}
+// Japanese selector only: group identical operators and line RGBs without touching route data.
+function japaneseRouteRgb(route){
+ const match=/^#([0-9a-f]{6})$/i.exec(String(route?.lineColor||route?.lineTheme?.color||'').trim());
+ return match?[0,2,4].map(i=>parseInt(match[1].slice(i,i+2),16)):null;
+}
+function japaneseRouteHue(rgb){
+ const [r,g,b]=rgb,max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
+ if(!delta)return 360;
+ const fraction=max===r?((g-b)/delta)%6:max===g?(b-r)/delta+2:(r-g)/delta+4;
+ return(fraction*60+360)%360;
+}
+function sortJapaneseRouteCards(items){
+ const operators=new Map();
+ for(const r of items){
+  const operator=String(r?.operatorId||r?.operator?.ko||r?.operator?.ja||'');
+  if(!operators.has(operator))operators.set(operator,[]);
+  operators.get(operator).push(r);
+ }
+ const result=[];
+ for(const members of operators.values()){
+  const colors=new Map(),uncolored=[];
+  for(const r of members){
+   const rgb=japaneseRouteRgb(r);
+   if(!rgb){uncolored.push(r);continue}
+   const key=rgb.map(v=>v.toString(16).padStart(2,'0')).join('');
+   if(!colors.has(key))colors.set(key,{key,rgb,lines:[]});
+   colors.get(key).lines.push(r);
+  }
+  // Keep exact RGB matches contiguous; arrange distinct colors by nearest RGB distance.
+  const remaining=[...colors.values()].sort((a,b)=>japaneseRouteHue(a.rgb)-japaneseRouteHue(b.rgb)||a.key.localeCompare(b.key));
+  let previous=null;
+  while(remaining.length){
+   let chosen=0;
+   if(previous){
+    let best=Infinity;
+    for(let i=0;i<remaining.length;i++){
+     const distance=remaining[i].rgb.reduce((sum,v,j)=>sum+(v-previous[j])**2,0);
+     if(distance<best){best=distance;chosen=i}
+    }
+   }
+   const group=remaining.splice(chosen,1)[0];
+   result.push(...group.lines);
+   previous=group.rgb;
+  }
+  result.push(...uncolored);
+ }
+ return result;
+}
+function filteredRoutes(){const queries=searchVariants($('#route-search').value);const filtered=routes.filter(r=>(countryId==='jp'||transportGroup==='all'||routeTransportGroup(r)===transportGroup)&&(countryId!=='kr'||regionFilter==='all'||r.regionId===regionFilter)&&routeCategoryMatches(r)&&(operatorFilter==='all'||operatorKey(r)===operatorFilter)&&(!queries[0]||queries.some(query=>searchable(r).includes(query))));return countryId==='jp'?sortJapaneseRouteCards(filtered):filtered;}
 function stopWord(route){return['bus','village_bus','express_bus','brt'].includes(route.mode)?'정류장':['river_bus','ferry'].includes(route.mode)?'선착장':'역'}
 function krLineFamily(r){if(/^kr-service-\d+$/.test(r?.id||''))return r.passengerLineId||r.id;return r.countryId==='kr'?(r.passengerLineId||r.id):null}
 function krRouteLabel(r){return r?.integratedLine1===true?'수도권 전철 1호선':koreanRouteDisplayText(String(r.passengerLineName||r.line?.ko||r.id).trim(),r)}
