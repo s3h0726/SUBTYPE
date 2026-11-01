@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-11-01T03:45:16.973Z",
+  "status": "PASS",
+  "scope": "Current completion/source/geometry/engine-proof/selector contracts and deterministic rebuild. This status does not override historical UI/AUTO or unexecuted live-account checks.",
+  "protectedBase": "af289bd27239985dc7fa0f32345670e42f0a9316",
+  "protectedDiff": [],
+  "rebuildChangedFiles": [],
+  "commands": [
+    {
+      "name": "build-hk",
+      "command": "node tools/build-hk-data.cjs",
+      "exitCode": 0,
+      "evidence": "build-hk.txt"
+    },
+    {
+      "name": "build-app",
+      "command": "node tools/build-app-bundle.js",
+      "exitCode": 0,
+      "evidence": "build-app.txt"
+    },
+    {
+      "name": "bundle-syntax",
+      "command": "node --check js/app.bundle.js",
+      "exitCode": 0,
+      "evidence": "bundle-syntax.txt"
+    },
+    {
+      "name": "completion-contracts",
+      "command": "node --test tools/test-hk-completion.cjs",
+      "exitCode": 0,
+      "evidence": "completion-contracts.txt"
+    },
+    {
+      "name": "phase6-compatibility",
+      "command": "node --test tools/test-hk-phase6.cjs",
+      "exitCode": 0,
+      "evidence": "phase6-compatibility.txt"
+    },
+    {
+      "name": "route-selection",
+      "command": "node tools/test-hk-route-selector.cjs",
+      "exitCode": 0,
+      "evidence": "route-selection.txt"
+    }
+  ],
+  "notTested": [
+    "Windows native Korean IME",
+    "Physical mobile keyboard",
+    "Live Supabase account login/save/restore"
+  ],
+  "remainingPerformanceStatus": "FAIL"
+}

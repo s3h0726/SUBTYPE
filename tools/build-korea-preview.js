@@ -1,4 +1,7 @@
 'use strict';
+if(require.main===module&&require('../data/kr/publication-policy.json').mode==='canonical'){
+ console.log('신규 한국 대중교통 목록 사용: 이전 연구용 목록 재발행 생략');process.exit(0);
+}
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {load,validate,assemble,compile}=require('./lib/kr-network');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');

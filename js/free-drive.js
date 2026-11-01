@@ -628,6 +628,8 @@ const jpDisneyTransferKey=(station,route)=>{
 };
 const freeDriveStationKey=s=>{
   if(s?.countryId==='hk')return String(s.hkTransferKey||s.stationMasterId||s.sourceStationId||s.id);
+  if(s?.operator_id?.startsWith('tw-'))return s.twTransferKey||s.station_id||s.id;
+
   if(s?.jpUnifiedTransferKey)return s.jpUnifiedTransferKey;
   if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.jpNamedTransferKey)return s.jpNamedTransferKey;
@@ -651,6 +653,7 @@ const routeName=r=>koreanRouteDisplayText(r?.line?.ko||r?.line?.ja||r?.line?.en|
 const stationName=(s,r)=>koreanStationDisplayName(s?.ko||s?.ja||s?.romaji||s?.id||'역',r?.countryId,r);
 const routeColor=r=>r?.lineColor||r?.color||'#73837b';
 const routeSegments=route=>{
+  if(route?.countryId==='tw')return route.geometryReady?[route.loop&&route.loopClosingGeometry?[...route.geometry,...route.loopClosingGeometry.slice(1)]:route.geometry]:[];
   if(route?.countryId==='kr'||route?.countryId==='hk'){
     if(route.geometryReady!==true)return[];
     return(route.directedSegments||[]).filter(segment=>segment.geometryStatus==='ready').map(segment=>segment.geometry)

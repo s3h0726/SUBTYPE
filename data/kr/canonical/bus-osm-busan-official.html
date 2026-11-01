@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>부산 대중교통정보 안내홈페이지</title>
+<link href="css/layout2.css" rel="stylesheet" type="text/css" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<style>
+#mpop{position:absolute; z-index:9999; top:120px; left:50%; margin-left:-262.5px; margin-bottom:50px; width:535px; height:1031px; background:pink; border:1px solid #666; box-shadow:1px 1px 15px #666;}
+/*#mpop>a{display:block; width:100%; height:100%; background:url(./img/pop/pop_dongbaek_230713.jpg);}*/
+#mpop{background:url(./img/pop/pop_dongbaek_230713.jpg);}
+#mpop>a{position:absolute; top:514px; height:42px;}
+#mpop>a:nth-child(1){left:116px; width:182px;}
+#mpop>a:nth-child(2){left:315px; width:91px;}
+.mpop_close{position:absolute; bottom:0px; width:100%; background-color:#3E4156; color:#fff; box-sizing:border-box;}
+.mpop_close a{color:#fff;}
+.pull-right{float:right}
+</style>
+<script type="text/javascript" src="Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="Scripts/mainFunction.js" ></script>
+<script type="text/javascript">
+function fnExcelView()
+{
+	alert("데이타량이 많아 다소 시간이 소요됩니다. 잠시만 기다리시면 다운로드 됩니다.");
+	document.getElementById("ifrmExcel").src = "./StationInfo.asp";
+}
+function fnExcelView2()
+{
+	document.getElementById("ifrmExcel").src = "./LineInfo.asp";
+}
+function fnpopUps(gubun)
+{
+    Fnc_UserCount(gubun);
+
+    
+	if(gubun == "4"){
+	    //window.open("http://bus.busan.go.kr/busanBIMS/bus_map/map_main2.asp?menuNum=" + gubun + "&amp;mapGubun=" + $('input[name=radio]:checked').val(), "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+	    window.open("../busanBIMS/bus_map/map_main2.asp?menuNum=" + gubun + "&amp;mapGubun=" + $('input[name=radio]:checked').val(), "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+	}else if(gubun == "5"){
+	    //window.open("http://bus.busan.go.kr/busanBIMS/bus_map/map_main.asp?menuNum=" + gubun + "&amp;mapGubun=daum", "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+	    window.open("../busanBIMS/bus_map/map_main.asp?menuNum=" + gubun + "&amp;mapGubun=daum", "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+	}else{
+		//window.open("http://bus.busan.go.kr/busanBIMS/bus_map/map_main.asp?menuNum=" + gubun + "&amp;mapGubun=" + $('input[name=radio]:checked').val(), "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+		window.open("../busanBIMS/bus_map/map_main.asp?menuNum=" + gubun + "&amp;mapGubun=" + $('input[name=radio]:checked').val(), "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+
+				
+	}	
+}
+    function Fnc_UserCount(type) {
+        $.ajax({
+            type: "GET",
+            url: "https://bus.busan.go.kr/busanbims/inc/add_usercount.asp?UCN="+type,
+            success: function (data) {  },
+            error: function () {
+               
+            }
+        });
+    }
+
+function notice_getCookie(name) {
+    var nameOfCookie = name + "=";
+    var x = 0;
+    while (x <= document.cookie.length) {
+        var y = (x + nameOfCookie.length);
+        if (document.cookie.substring(x, y) == nameOfCookie) {
+            if ((endOfCookie = document.cookie.indexOf(";", y)) == -1)
+                endOfCookie = document.cookie.length;
+            return unescape(document.cookie.substring(y, endOfCookie));
+        }
+        x = document.cookie.indexOf(" ", x) + 1;
+        if (x == 0)
+            break;
+    }
+    return "";
+}
+//134 , 416
+
+    if ( notice_getCookie( "notice" ) != "done" )
+    {
+        var today = new Date();
+	var endDate = new Date(2017,9,30);
+
+	if(today < endDate){
+        	window.open('popup.html', 'notice', 'toolbar=no,status=no,location=no,directories=no,menubat=no,scrollbars=yes,resizable=no,top=50,left=50,width=822,height=600');
+        	//window.open('popup.html','busan_notice','top=1,left=1,width=350,height=420');
+	}
+    }
+
+    function fnc_popup() {
+        window.open("http://happybusday.net");
+    }
+
+    //팝업 오늘하루 그만보기
+	function setCookie( name, value, expiredays ) {
+		var todayDate = new Date();
+		todayDate.setDate( todayDate.getDate() + expiredays );
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+	}
+
+</script>
+
+</head>
+
+
+ 
+<body>
+<!-- 메뉴 건너뛰기/skipnavigation -->
+<div id="skipnavigation">
+	<a href="#gnb">메뉴 건너뛰기</a>
+    <!--a href="#gnb">주메뉴로 바로가기</a--> 
+</div>
+<!-- //메뉴 건너뛰기/skipnavigation -->
+<!--container-->
+<div class="container">
+	<!--.header-->
+
+<!--popup-->    
+	<div id="mpop">
+		<!--a href="https://www.busan.go.kr/holiday/tempBus.jsp" title="새창열림" target="_blank"></a-->
+		<a  href="javascript:closePop();" title="창닫기"></a>
+        <form name="pop_form" class="mpop_close">
+	<input type="hidden" name="CSRFToken" value="B743151E-6D63-420F-A7CD-3E49BC4107CD">
+        <fieldset style="border:none;">
+            <input type="checkbox" id="chk" name="chkbox" />
+            <label for="chk" class="mpop_bt">
+                오늘 하루 이 창을 열지 않습니다. 
+                <strong><a href="javascript:closePop();" title="창닫기" class="pull-right">[창닫기]</a></strong>
+            </label>
+        </fieldset>
+        </form>               
+	</div> 
+<!--//popup--> 
+
+
+	<div class="header" id="jumenu">
+    	<div style="border-bottom:1px solid #D7D7D7;">
+        	
+<!-- script type="text/javascript" src="/busanBIMS/Scripts/jquery-1.7.1.min.js"></script-->
+<script type="text/javascript">
+function fnpopUps(gubun)
+{
+    Fnc_UserCount(gubun);
+
+    
+	if(gubun == "5"){	
+		//window.open("https://bus.busan.go.kr/busanBIMS/bus_map/map_main.asp?menuNum="+gubun+"&amp;mapGubun=daum", "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");	
+		window.open("/busanBIMS/bus_map/map_main.asp?menuNum="+gubun+"&amp;mapGubun=daum", "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");	
+	}else if(gubun == "4"){
+		//window.open("https://bus.busan.go.kr/busanBIMS/bus_map/map_main2.asp?menuNum="+gubun+"&amp;mapGubun="+$('input[name=radio]:checked').val()+"", "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+		window.open("/busanBIMS/bus_map/map_main2.asp?menuNum="+gubun+"&amp;mapGubun="+$('input[name=radio]:checked').val()+"", "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+		
+	}else{
+		//window.open("https://bus.busan.go.kr/busanBIMS/bus_map/map_main.asp?menuNum="+gubun+"&amp;mapGubun="+$('input[name=radio]:checked').val()+"", "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+		window.open("/busanBIMS/bus_map/map_main.asp?menuNum="+gubun+"&amp;mapGubun="+$('input[name=radio]:checked').val()+"", "bus_map", "fullscreen=yes,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+	}
+}
+    function Fnc_UserCount(type) {
+        $.ajax({
+            type: "GET",
+            url: "https://bus.busan.go.kr/busanbims/inc/add_usercount.asp?UCN="+type,
+            success: function (data) {  },
+            error: function () {
+		return;
+               // alert("fail"); 
+            }
+        });
+    }
+
+</script>
+<script type="text/javascript">
+//2014.09.25 요청으로 삽입
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54848480-29', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<div style="border-bottom:1px solid #D7D7D7;">
+    <div class="topmenu">
+        <p style="margin:0 auto; width:1050px;">
+        <!--a href="../default.asp">HOME</a--><a href="/busanBIMS/site_info/site_map.asp">사이트맵</a>
+        </p>
+    </div>
+        <div class="menu">
+          <div class="tlogo"><a href="../default.asp"><img src="/busanBIMS/img/logo.jpg" alt="BIMS 부산시버스정보관리시스템//Bus Information Management System"/></a>
+        </div>
+        <ul id="minitabs">
+             <li><a href='javascript:' onclick="fnpopUps('1');">출발도착검색</a></li>
+             <!--li><a onclick="fnpopUps('2');" href="javascript:">노선검색</a></li>
+             <li><a onclick="fnpopUps('3');" href="javascript:">정류소검색</a></li-->
+             <li><a onclick="fnpopUps('2');" href="javascript:">노선/정류소검색</a></li>
+             <li><a href='javascript:' onclick="fnpopUps('4');">실시간버스위치검색</a></li>
+             <li><a href='/busanBIMS/bus_info/busInfo_outline.asp'>대중교통안내</a></li>
+             <li><a href="/busanBIMS/bus_info/data_line.asp">대중교통데이터</a></li>
+        </ul>
+    </div>
+</div>
+        </div>
+        <!--div class="map">
+            <img src="img/main/icon_mapsel.jpg" alt="지도선택"/>
+            <label><input name="radio" type="radio" id="radio1" value="daum"  checked="checked" /><img src="img/main/icon_daum.jpg" alt="다음"/></label> 
+            <label><input name="radio" type="radio" id="radio2" value="naver"  /><img src="img/main/icon_naver.jpg" alt="네이버"/></label>
+        </div-->
+        <div class="mainimg">
+        	<img src="img/main/main_img2.png" alt="오늘도 행복한//부산버스"/>
+        </div> 
+	</div>
+	<!--//.header -->
+  
+<div style="display:table; margin:0 auto; width:1050px;">    
+  <div class="sidebar1" id="gnb">
+     <iframe title="정류소 검색" src="bus_search.asp" frameborder="0" scrolling="no" height="364" width="100%" class="mgb_20"><!--height="360" scrolling="auto"-->
+     </iframe>
+        
+
+<!--다운로드-->
+	<div class="busarrbanner">
+        <h4 class="title_s01">다운로드</h4>
+        <!--span><img src="images/main/mg_icon_down.jpg" alt="" /></span-->
+        <a href="javascript:fnExcelView2();" title="노선 운행정보 다운로드">
+        	<img src="img/main/icon_infodown.png" alt=""/><br /><strong>노선 운행정보</strong>
+        </a>
+        <a class="fr" href="javascript:fnExcelView();" title="노선 운행정보 다운로드">
+        	<img src="img/main/icon_stopdown.png"  alt=""/><br /><strong>노선별 정류소</strong>
+        </a>    
+    </div>
+<!--//다운로드-->
+    
+  </div>
+<!-- end .sidebar1 -->
+<div style="width:32%; float:left;">
+  <div class="content">
+    <div class="contit">버스도착예정시간안내</div>
+    <div class="busarrtime">
+      <div class="arssearch">
+      <label for="txtARSNO">정류소 번호</label>
+      	<input name="txtARSNO" type="text" id="txtARSNO" size="8" value="" onkeydown="if(event.keyCode == 13) javascript:fnARSList();"/>
+        <a href="#" onclick="fnARSList();" role="button"><img src="img/main/btn_search.png" alt="검색" /></a>
+      </div> 
+      <div class="arsresult"><span class="arsNO" id="arsNO"></span></div> 
+      
+      <div class="bustimescroll">
+      <table class="bustime"  border="0" cellpadding="0" cellspacing="0" summary="">
+      <caption style="width:0px; height:0px; visibility:hidden;">버스도착예정시간 표</caption>
+      <colgroup>  
+      <col width="17%" />
+      <col width="15%" />
+      <col width="28%" />
+      <col width="28%" />
+      </colgroup>  
+      
+      <thead>
+      <tr>
+      <th class="cell1" scope="colgroup">노선</th>
+      <th class="cell1" scope="colgroup">도착예정</th>
+      <th class="cell1" scope="colgroup">현재위치</th>
+      <th class="cell1" scope="colgroup">방향</th>
+      </tr>
+      </thead>
+      
+      <tfoot>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+          </tr>
+      </tfoot>
+
+      <tbody class="arslist" id="arslist" >   
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+          </tr>
+      </tbody>
+      </table>
+      </div>
+	<div>
+        <div class="busarrtip">
+        	- 정류소 번호로 버스도착예정시간을 보다 편리하게 알아볼 수 있습니다.<br/>
+			- 우측에서 정류소번호 검색을 하실수 있습니다.</div>
+        </div>      
+    </div>
+  </div>
+  	<!--바로가기-->
+    <div class="warp_btns">
+    	<h4 class="title_s01">바로가기</h4>
+    	<a class="mgb_10" href="./bus_info/busInfo_transfer.asp" title="환승안내 페이지이동">환승안내</a>
+        <a class="mgb_10" href="./bus_info/intro_BIMS.asp" title="BIS란? 페이지이동">BIS란?</a>
+        <a href="./bus_info/busInfo_mobile.asp" title="앱 다운로드 페이지이동">모바일 웹</a>
+        <a href="./bus_info/data_line.asp" title="대중교통 이용현황 페이지이동">대중교통 이용현황</a>
+    </div>
+    <!--//바로가기-->
+</div>
+<!--//container-->
+
+
+ 
+  <div class="sidebar2">
+  	<!--//노선조정안내-->  
+    <div class="linetit">
+         <img src="img/main/icon_bus.png" alt=""/>
+         <span><strong>노선조정 안내</strong></span>
+         <a class="s_txt" href="bus_info/adjust_list.asp">더보기 +<!--img src="img/main/icon_more.jpg"  alt="more"/--></a>
+    </div> 
+    <div class="linecon mgb_20" tabindex="0">
+        <ul>
+        
+            <li></li>
+            <li></li>
+            <li></li>
+        
+        </ul>
+    </div>
+    <!--//노선조정안내--> 
+    <!--공지사항--> 
+    <div class="noticetit mgb_20">
+    	<img src="img/main/icon_bus.png" alt=""/>
+    	<span><strong>공지사항</strong></span>
+        <a class="s_txt" href="bus_info/notice_list.asp">더보기 +</a>
+    </div>
+    
+    <div class="noticecon">    
+    <ul>
+       <!--공지사항 리스트 5개까지나오도록-->
+    <li><img alt="" src="img/main/icon_dot.jpg" /><a href="bus_info/notice_view.asp?seq=181">25.12.22. 2000번 결행</a> <em> 2025.12.22</em></li>
+       <!--공지사항 리스트 5개까지나오도록-->
+    <li><img alt="" src="img/main/icon_dot.jpg" /><a href="bus_info/notice_view.asp?seq=81">노선조정안내 (20231104)</a> <em> 2023.11.01</em></li>
+         
+    </ul> 
+    </div>
+    <!--//공지사항-->
+    <!--팝업영역-->
+     <div class="poptit">
+         <img src="img/main/icon_bus.png" alt=""/>
+         <span><strong>POPUP</strong></span>
+     </div> 
+     <div class="popcon">
+     	<a href="javascript:">
+        	<img style="width:100%; height:auto;" src="img/main/popup_img1.jpg" alt="2015년7월1일부터 대중교통환승요금 200원무료입니다. 클릭하시면 팝업창이 뜨게 됩니다." style="cursor:pointer;" onclick="javascript:window.open('http://bus.busan.go.kr/popup.html','findpost','width=1050,height=510');"/>
+        </a>
+     </div>  
+	 <!--팝업영역-->    
+
+  </div>
+<!-- end .sidebar2 --> 
+</div>    
+    
+    
+  <div class="footer">
+  
+<!--script type="text/javascript" src="/busanBIMS/Scripts/jquery-1.4.2.min.js"></script-->
+<script type="text/javascript" src="/busanBIMS/Scripts/jcarousellite_1.0.1.js"></script>
+<div style="display:table; margin:0 auto;">
+    <div class="copyle">
+    <img src="/busanBIMS/img/copylogo.jpg" alt="Dynamic BUSAN //부산시버스정보관리시스템" />
+    </div>
+    
+    <div class="copyce">
+         <a href="#" role="button" onclick="bannerMove('L');"><img src="/busanBIMS/img/main/icon_bannerback.jpg" alt="뒤로 이동" /></a>
+        <div class="slidelist01">		
+            <ul tabindex="0">
+            <li id="liBanner01"><a href="http://www.busan.go.kr/" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/busanBIMS/img/banner1.jpg" alt="부산광역시"/></a></li>
+            <li id="liBanner02"><a href="http://its.busan.go.kr/" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/busanBIMS/img/banner2.jpg" alt="Dynamic BUSAN 교통정보"/></a></li>
+            <li id="liBanner03"><a href="http://www.busanbus.or.kr/" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/busanBIMS/img/banner3.jpg" alt="부산광역시버스운송사업조합"/></a></li>
+            <li id="liBanner04"><a href="http://www.humetro.busan.kr" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/busanBIMS/img/banner4.jpg" alt="부산교통공사홈페이지"/></a></li>
+            </ul>
+        </div>
+        <a href="#" role="button" onclick="bannerMove('R');"><img src="/busanBIMS/img/main/icon_bannerprev.jpg" alt="앞으로 이동"/></a>
+    </div>
+    
+    <div class="copyri">
+        <img src="/busanBIMS/img/icon_dotblack.jpg" alt="방문자수 통계"/> 방문자수 통계<br />
+        <ul>
+            <li><strong><img src='/busanBIMS/img/icon_dotblue.jpg' alt='금일'/> TODAY :</strong> <em>7</em></li> <li><span><img src='/busanBIMS/img/icon_dotblue.jpg' alt='총계'/> TOTAL :</span> <em>258866</em></li>
+        </ul>
+    </div>
+    
+    <div style="clear:both; width:100%; text-align:center;">
+        <span>
+        Copyright (C) Busan Metropolitan City. All Rights Reserved. <br />
+        우) 611-735 부산광역시 연제구 중앙대로 1001 (연산동) | 홈페이지관련문의 : 051-888-3964   민원대표전화 : 051-120
+        </span>
+    </div>
+</div>
+<script type ="text/javascript">
+	/*jQuery(function() {
+		jQuery(".slidelist01").jCarouselLite({			
+			btnNext: ".next",			
+			btnPrev: ".prev",			
+			visible: 4,			
+			speed: 200,
+			circular: false		
+		});
+	});*/
+    //<![CDATA[
+	var bannerNum = 8;	 // 배너 개수
+
+	var banner = new Array(bannerNum);
+	for (var i = 1; i <= bannerNum; i++) {
+	 banner[i] = new Array(2);
+	}
+	banner[1][0] = "http://www.busan.go.kr/"; //링크
+	//banner[1][1] = "96";			//가로길이
+	banner[2][0] = "http://its.busan.go.kr/";
+	//banner[2][1] = "115";
+	banner[3][0] = "http://www.busanbus.or.kr/";
+	//banner[3][1] = "101";	
+	banner[4][0] = "http://www.humetro.busan.kr/";
+	//banner[4][1] = "92";	
+	banner[5][0] = "http://bus.yangsan.go.kr/";
+	//banner[5][1] = "145";
+	banner[6][0] = "http://bus.gimhae.go.kr/";
+	//banner[6][1] = "104";
+	banner[7][0] = "http://www.tago.go.kr/";
+	//banner[7][1] = "82";
+	banner[8][0] = "http://www.bmbus.co.kr/";
+	//banner[8][1] = "126";
+	
+	var startNum = 1;
+	var endNum = 4;
+	function bannerMove(sType){
+		var moveChk = false;	
+		if(sType == "L"){
+			if(startNum==1){
+				alert("이동할 배너가 없습니다.");
+				moveChk = false;	
+			}else{
+				endNum = endNum - 1;
+				startNum = startNum - 1;			
+				moveChk = true;
+			}
+		}else if(sType == "R"){			
+			if(endNum==bannerNum){
+				alert("이동할 배너가 없습니다.");
+				moveChk = false;		
+			}else{
+				endNum = endNum + 1;
+				startNum = startNum + 1;
+				moveChk = true;						
+			}	
+		}
+		if(moveChk){
+			idx = 1;
+			for(var i = startNum; i<=endNum; i++){
+				 
+				$('#liBanner0'+idx+' a').attr("href", banner[i][0]);
+				$('#liBanner0'+idx+' img').attr("src", "/busanBIMS/img/banner"+i+".jpg")
+																.css("width", banner[i][1]);
+				idx = idx + 1;
+			}	
+		}
+	}	
+    //]]>
+</script>
+<script type="text/javascript">
+function fnpopUp(gubun)
+{
+    Fnc_UserCount(gubun);
+
+    
+    alert('');
+	if(''=="5"){	
+		window.open("http://bus.busan.go.kr/bus_map/map_main.asp?menuNum="+gubun+"&amp;mapGubun=daum", "bus_map", "fullscreen=no,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");	
+	}else{
+		window.open("http://bus.busan.go.kr/bus_map/map_main.asp?menuNum="+gubun+"&amp;mapGubun="+$('input[name=radio]:checked').val()+"", "bus_map", "fullscreen=no,menubar=no,toolbar=no,location=no,scrollbar=yes, resizable=yes");
+		
+	}	
+}
+    function Fnc_UserCount(type) {
+        $.ajax({
+            type: "GET",
+            url: "https://bus.busan.go.kr/busanbims/inc/add_usercount.asp?UCN="+type,
+            success: function (data) {  },
+            error: function () {
+		return;                
+//alert("fail"); 
+            }
+        });
+    }
+
+</script>
+
+  </div>
+  <!-- end .footer -->  
+    
+    
+    
+    
+    
+</div>
+  <!-- end .container -->
+<iframe title="엑셀" name="ifrmExcel" id="ifrmExcel" width="0" height="0"></iframe>
+<script type="text/javascript">
+	var lastARSNO = getCookie("arsNumber");
+	if(lastARSNO =="") lastARSNO = "13046";
+	//$("#txtARSNO").attr("value", lastARSNO);
+$("#txtARSNO").val(lastARSNO);
+	fnARSList();
+
+	//팝업쿠키
+	cookiedata = document.cookie;
+	if ( cookiedata.indexOf("mainpop=done") < 0 ){
+		document.all['mpop'].style.visibility = "visible";
+		}
+		else {
+			document.all['mpop'].style.visibility = "hidden";
+	}
+	function closePop() {
+		if ( document.pop_form.chkbox.checked ){
+		setCookie( "mainpop", "done" , 1 );
+		}
+		document.all['mpop'].style.visibility = "hidden";
+	}
+
+</script>
+  
+</body>
+</html>

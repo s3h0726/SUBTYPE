@@ -23,7 +23,7 @@ for(const group of groups){
 }
 if(regions.size<7)throw Error('JP_NAMED_TRANSFERS_NOT_NATIONWIDE');
 const target='js/free-drive.js';
-const old=read(target);
+const old=read(target).replace(/\r\n/g,'\n');
 const begin=old.indexOf('const JP_NAMED_TRANSFER_GROUPS=');
 const end=old.indexOf(';\nexport function japaneseNamedTransferNamesForRoute(',begin);
 if(begin<0||end<begin)throw Error('JP_TRANSFER_RUNTIME_ANCHOR_NOT_FOUND');

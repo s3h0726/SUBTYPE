@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-25",
+  "checkedAt": "2026-11-01",
   "scope": "Current passenger railway systems; service directions, service codes, physical systems and station records are separate counts. HSR additions excluded by subsequent explicit user instruction.",
   "systems": [
     {
@@ -12,7 +12,7 @@
         "airport_rail"
       ],
       "lineCount": 10,
-      "note": "Nine MTR heavy-rail lines plus separately classified Airport Express; existing directions preserved. Racecourse and official short turns remain research unless a complete current calling pattern is verified.",
+      "note": "Existing full and conditional directions preserved; three complete race-day via-Racecourse relations released, northbound Lok Ma Chau source missing Sha Tin remains unapproved.",
       "sources": [
         {
           "sourceFile": "data/hk/sources/phase6/mtr-service-hours.html",
@@ -86,8 +86,8 @@
       "status": "operational",
       "stopCount": 6,
       "directions": 2,
-      "playable": false,
-      "note": "Read-only government MDB yields both six-stop sequences. Actual source geometry recovered, Korean names/request-stop release incomplete.",
+      "playable": true,
+      "note": "Six government stop identities and original passing-loop geometry; reviewed Korean usage. Explicit all-four-intermediate-stops-requested learning simulation, not a verified current real-time request-stop rule.",
       "sources": [
         {
           "sourceFile": "data/hk/sources/phase6/peak-resource.html",
@@ -99,14 +99,17 @@
           "sourceUrl": "https://static.data.gov.hk/td/routes-and-fares/RSTOP_PTRAM.mdb",
           "sha256": "15bf28104fac079addeb0b3274af3b2772e44486baa14a614b0b417810357be7"
         }
-      ]
+      ],
+      "playableDirections": 2,
+      "simulation": true,
+      "currentRequestStopRules": "INCOMPLETE"
     },
     {
       "id": "hk-airport-apm",
       "operatorId": "hk-airport-authority",
       "status": "operational",
       "category": "automated_people_mover",
-      "playable": false,
+      "playable": true,
       "notAirportExpress": true,
       "access": "Airside passenger restrictions; Terminal2 departures require security and immigration before the APM. SkyPier transfer eligibility is not an unrestricted metro interchange.",
       "reviewedFacilityLabels": [
@@ -123,8 +126,8 @@
         "terminal2Terminal1Midfield": "05:30–00:30",
         "terminal1SkyPier": "06:15–23:45"
       },
-      "geometryStatus": "INCOMPLETE",
-      "reason": "Overpass406, OSM API429 twice with independent-work backoff and smaller retry. No further repeated requests or substitute road geometry. Platform/direction paths remain unverified, so no empty playable card is emitted.",
+      "geometryStatus": "PARTIAL",
+      "reason": "Current source-backed SkyPier/T1 and East/West/Midfield directions released. Current T2 alignment/platforms and RR recovery-line passenger service remain incomplete; old disused T2 stop excluded.",
       "sources": [
         {
           "sourceFile": "data/hk/sources/phase6/apm.html",
@@ -135,8 +138,35 @@
           "sourceFile": "data/hk/sources/phase6/apm-t2-opening.html",
           "sourceUrl": "https://www.hongkongairport.com/en/media-centre/press-release/2026/pr_1868",
           "sha256": "3aef083386cc7c8fb34628207fefad72b703e2ac057a698eb15382e59013efac"
+        },
+        {
+          "sourceFile": "data/hk/sources/completion/apm-map.json",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/map.json?bbox=113.913,22.302,113.955,22.328",
+          "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+        },
+        {
+          "sourceFile": "data/hk/sources/completion/apm-official.html",
+          "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+          "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+        },
+        {
+          "sourceFile": "data/hk/sources/completion/apm-access.html",
+          "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/special-needs-access",
+          "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+        },
+        {
+          "sourceFile": "data/hk/sources/completion/apm-government.pdf",
+          "sourceUrl": "https://www.emsd.gov.hk/filemanager/en/content_1490/Rgltry_Regime_Leaflet_APM_Safety.pdf",
+          "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
         }
-      ]
+      ],
+      "previousInvestigation": {
+        "checkedAt": "2026-10-25",
+        "geometryStatus": "INCOMPLETE",
+        "reason": "Overpass406, OSM API429 twice with independent-work backoff and smaller retry. No further repeated requests or substitute road geometry. Platform/direction paths remain unverified, so no empty playable card is emitted."
+      },
+      "playableDirections": 4,
+      "complete": false
     },
     {
       "id": "hk-ocean-express",
@@ -205,5 +235,5 @@
   "nationalComplete": false,
   "knownOperatingSystemFamilies": 6,
   "systemFamilyCounting": "MTR heavy rail including Airport Express; Light Rail; Tramways; Peak Tram; HKIA APM; Ocean Express. These six are not the 26 route/service-code records.",
-  "unresolved": "APM railway geometry, Peak Korean/request-stop release, morning751P platform route, special Light Rail chained services, Racecourse/short turn completeness. This is not a claim that all Hong Kong passenger railways are complete."
+  "unresolved": "Current T2 APM alignment/platforms and RR passenger service; current Peak request-stop rules (released as explicit learning simulation); other special Light Rail and incomplete Racecourse patterns. Not a claim of complete national coverage."
 }

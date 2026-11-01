@@ -1,0 +1,140 @@
+{
+  "checkedAt": "2026-11-01T03:40:33.043Z",
+  "status": "FAIL",
+  "requirement": 138,
+  "targetMs": [
+    150,
+    300
+  ],
+  "cohort": [
+    "hk-island-dt",
+    "hk-light-rail-705-osm-2941692",
+    "hk-light-rail-706-osm-2941790",
+    "hk-tram-shek-tong-tsui-causeway-bay-4088086"
+  ],
+  "comparableWorkload": {
+    "current": {
+      "count": 75,
+      "median": 269.90000009536743,
+      "p95": 933.5,
+      "worst": 941.5,
+      "over300": 37,
+      "under150": 36
+    },
+    "historicalSameServices": {
+      "count": 75,
+      "median": 258.2000000476837,
+      "p95": 277.39999997615814,
+      "worst": 281.6999999284744,
+      "over300": 0,
+      "under150": 0
+    },
+    "currentRuns": [
+      {
+        "id": "hk-island-dt",
+        "mode": "normal",
+        "inputStyle": "burst",
+        "viewport": {
+          "height": 720,
+          "theme": "dark",
+          "width": 1280
+        }
+      },
+      {
+        "id": "hk-light-rail-705-osm-2941692",
+        "mode": "normal",
+        "inputStyle": "burst",
+        "viewport": {
+          "height": 720,
+          "theme": "dark",
+          "width": 1280
+        }
+      },
+      {
+        "id": "hk-light-rail-706-osm-2941790",
+        "mode": "normal",
+        "inputStyle": "burst",
+        "viewport": {
+          "height": 720,
+          "theme": "dark",
+          "width": 1280
+        }
+      },
+      {
+        "id": "hk-tram-shek-tong-tsui-causeway-bay-4088086",
+        "mode": "normal",
+        "inputStyle": "burst",
+        "viewport": {
+          "height": 720,
+          "theme": "dark",
+          "width": 1280
+        }
+      }
+    ],
+    "historicalRuns": [
+      {
+        "id": "hk-island-dt",
+        "mode": "normal",
+        "inputStyle": "burst",
+        "viewport": {
+          "height": 604,
+          "theme": "light",
+          "width": 665
+        }
+      },
+      {
+        "id": "hk-tram-shek-tong-tsui-causeway-bay-4088086",
+        "mode": "normal",
+        "inputStyle": "burst",
+        "viewport": {
+          "height": 604,
+          "theme": "light",
+          "width": 665
+        }
+      },
+      {
+        "id": "hk-light-rail-705-osm-2941692",
+        "mode": "normal",
+        "inputStyle": "burst",
+        "viewport": {
+          "height": 844,
+          "theme": "dark",
+          "width": 390
+        }
+      },
+      {
+        "id": "hk-light-rail-706-osm-2941790",
+        "mode": "normal",
+        "inputStyle": "burst",
+        "viewport": {
+          "height": 844,
+          "theme": "dark",
+          "width": 390
+        }
+      }
+    ]
+  },
+  "historicalFull": {
+    "count": 1242,
+    "min": 153.10000002384186,
+    "median": 263.1999999284744,
+    "p95": 966.5,
+    "worst": 1248.5,
+    "over300": 218
+  },
+  "allValidNewRuns": {
+    "count": 97,
+    "median": 86.79999995231628,
+    "p95": 930.0999999046326,
+    "worst": 941.5,
+    "over300": 37,
+    "under150": 58
+  },
+  "invalidDiagnosticRunCount": 29,
+  "limitations": [
+    "Original Phase5/6 samples are unchanged. All v1 diagnostic runs are retained but their stale intermediate values cannot be used as measurements; exclusion is based on instrument validity, never speed.",
+    "v2 checks route and visit identity at every target. It measures confirmation to ready input/target and terminal transition; not OS IME or mobile hardware keyboard latency.",
+    "Same services and calls are compared. Latest main already uses a 50ms catch-up animation, unlike the older 240ms engine. Hardware/frame scheduling was not controlled. These results do not demonstrate an improvement caused by this Hong Kong change.",
+    "The full historical workload was not rerun. The 300ms goal remains failed; slow samples were retained."
+  ]
+}

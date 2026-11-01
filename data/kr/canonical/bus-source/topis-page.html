@@ -1,0 +1,2529 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>서울시 교통정보 시스템 - TOPIS**</title>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/js/jquery/jquery-ui-1.12.1.custom/jquery-ui.css"/>
+<link rel="stylesheet" href="/css/topis.css"/>
+<link rel="stylesheet" href="/css/non-responsive.css"/>
+<link rel="stylesheet" href="/css/circle.css"/>
+<link rel="stylesheet" href="/js/slick/slick.css" />
+<link rel="stylesheet" href="/js/slick/slick-theme.css" />
+
+<!-- uinetworks 예측 3차 -->
+<link rel="stylesheet" property='stylesheet'  href="/common/css/pr.css" />
+<link rel="stylesheet" property='stylesheet'  href="/common/css/pr.result.css" />
+<link rel="stylesheet" property='stylesheet'  href="/css/jquery/jquery.datetimepicker.min.css" />
+<!-- uinetworks 예측 3차 -->
+
+<script src="/js/jquery/jquery-3.4.1.min.js"></script>
+<script src="/js/jquery/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="/js/jquery/jquery-validation-1.19.1/dist/jquery.validate.js"></script>
+<script src="/js/jquery/jquery-validation-1.19.1/dist/additional-methods.js"></script> 
+<script src="/js/jquery/jquery-validation-1.19.1/dist/localization/messages_ko.js"></script>
+<script src="/js/jquery/bootstrap-3.3.2/bootstrap.min.js"></script>
+<script src="/js/jquery/tmpl-master/jquery.tmpl.js"></script>
+<script src="/js/slick/slick.min.js"></script>
+<script src="/js/jquery/jquery.smint.js"></script>
+
+<!-- uinetworks 예측 3차 -->
+<script src="/js/jquery/jquery.datetimepicker.full.min.js" ></script>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="/js/pr/pr.js" ></script>
+<script src="/js/pr/pr.result.js" ></script>
+<script src="/js/pr/async.min.js" ></script>
+<!-- uinetworks 예측 3차 -->
+
+<script src="/js/common.js"></script>
+<script src="//www.seoul.go.kr/seoulgnb/gnb.js" async="async"></script>
+
+<script src="/js/cctv/nPlayer.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+
+<style>
+#pop01 .sub-nav-pills>li {
+    border: 1px solid #0c82e9;
+    background: #fff;
+}
+#pop01 .sub-nav-pills>li>a {
+    color: #000;
+}
+#pop01 .sub-nav-pills>li.active>a {
+    color: #0c82e9;
+}
+
+#popWrap img {width: 280px;}
+
+.statBox{display: none; visibility: hidden;}
+.statBox.active {display: block; visibility: visible;}
+
+/*스킵 네비게이션 */
+#skip{ position: absolute; margin: 0 auto; width: 100%; list-style: none; font-size: 18px; top: -38px; left: 0; z-index: 999999; }
+#skip a{ margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent; text-decoration: none; color: #222; outline: 0; }
+#skip a:focus, #skip a:active { position: absolute; padding-top: 12px; padding-bottom: 12px; width: 100%; top: 38px; z-index: 999999; text-align: center; color:#fff; background: #333; overflow: visible; clip: unset; }
+
+.blind{position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: polygon(0 0, 0 0, 0 0);}
+
+table caption{/* visibility: hidden !important; */ height: 0px !important; font-size: 0 !important; padding: 0 !important;}
+</style>
+
+<script>
+
+var GL_KAKAO_KEY= "395f65811b672518844344582cd174a7";						//카카오 api key
+var GL_KAKAO_URL_LOCAL="https://dapi.kakao.com/v2/local/search/keyword.json";			//키워드 =>장소 검색
+var GL_KAKAO_URL_TRANSCOORD="https://dapi.kakao.com/v2/local/geo/transcoord.json";  	//좌표계 변환
+var GL_KAKAO_URL_COORD2ADDR="https://dapi.kakao.com/v2/local/geo/coord2address.json"; 	//좌표=> 주소 변환
+
+$(document).ready(function() {
+	if(location.href.indexOf("175") > 0) {
+		location.href = location.href.replace(location.href.substring(0,location.href.indexOf("/",location.href.indexOf("/")+2)),"https://topis.seoul.go.kr");
+	}
+	
+	jQuery.validator.setDefaults({
+		onkeyup : false,
+		onclick : false,
+		onfocusout : false,
+		showErrors : function(errorMap, errorList) {
+			if (errorList[0] != undefined) {
+				var caption = $(errorList[0].element).attr('caption')
+						|| $(errorList[0].element).attr('name');
+				alert('[ ' + caption + ' ]는(은) ' + errorList[0].message);
+				$(errorList[0].element).focus();
+			}
+		}
+	});
+	
+	$("#left-area").css("min-height", "690px");
+	
+	$("#searchTxt").keydown(function(e) {
+		if (e.keyCode == "13") {
+			fn_goTotalMap();
+		} 
+	});
+	
+	fn_initGnb();
+});
+
+/*************************************************************************
+ * 통합검색 페이지 이동
+ *************************************************************************/
+ function fn_goTotalMap() {
+		if(fn_isSLetters($("#searchTxt").val())) return;
+		var searchTxt = escape(encodeURIComponent($("#searchTxt").val()));
+		
+		if (searchTxt == null || searchTxt == "") {
+			alert("검색어를 입력해 주십시오.");
+			$("#searchTxt").focus();
+			return;
+		} else if (searchTxt.length < 2) {
+			alert("2자리 이상 입력해 주십시오.");
+			return;
+		}	
+		location.href = "/map/openTotalMap.do?searchTxt="+searchTxt;	//크롬에선 위코딩이 안먹힘.
+	}
+
+function fn_initGnb() {
+	try {
+		Yjs.Gnb.init('G045','seoul-integrated-menu');
+	} catch(e) {
+		setTimeout(fn_initGnb, 1000);
+	}
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/js/openLayers/v4.6.5/css/ol.css" />
+<link rel="stylesheet" href="/common/css/map.css" />
+
+<script src="/js/map/proj4.js"></script>
+<script src="/js/map/proj4js.js"></script>
+
+<script src="/js/openLayers/v4.6.5/build/ol.js" ></script>
+<script>
+proj4.defs("EPSG:5181","+proj=tmerc +lat_0=38 +lon_0=127 +k=1 +x_0=200000 +y_0=500000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+proj4.defs("EPSG:5179","+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs");
+proj4.defs("EPSG:5174","+proj=tmerc +lat_0=38 +lon_0=127.0028902777778 +k=1 +x_0=200000 +y_0=500000 +ellps=bessel +units=m +no_defs +towgs84=-115.80,474.99,674.11,1.16,-2.31,-1.63,6.43");
+var hpMapDivCd = "K";
+var epsgDaum = 'EPSG:5181';
+var epsg4326 = 'EPSG:4326';
+
+var extent = [107516.3257, 45569.7688, 292483.6743, 537099.1393];
+var center = [197988, 452291];   
+
+var projection = new ol.proj.Projection({
+    code: epsgDaum,
+    extent: [-30000,-60000, 1018576, 988576],
+    units: 'm' 
+});
+
+var resolutions = [2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0.5, 0.25];
+
+if(hpMapDivCd == "N"){
+	epsgDaum = 'EPSG:5179';
+	extent = [861321, 1546313, 1048743, 2036702];
+	center = ol.proj.transform(center,'EPSG:5181',epsgDaum);
+	
+	projection = new ol.proj.Projection({
+	    code: epsgDaum,
+	    extent: [723324, 1441426, 1776764, 2483677],
+	    units: 'm' 
+	});
+	resolutions = [4096, 2000, 1000, 500, 245, 122, 61.5, 30.5, 15, 7.5, 3.8, 1.9, 0.95, 0.475]
+	// resolutions = [4096, 2000, 1000, 500, 250, 120, 60, 30, 15, 7.8, 3.8, 2.2, 1.2, 0.6]
+	// 네이버 거리 = [X, 100000, 50000, 30000, 20000(여기까지 소통정보 표출), 10000, 5000, 3000, 1000, 500, 300, 100, 50, 30]
+	// 카카오 거리 = [X, 64000, 32000, 16000, 8000(여기까지 소통정보 표출), 4000, 2000, 1000, 500, 250, 100, 50, 30, 20]
+	// 서울맵 거리 = [200000, 100000, 50000, 20000(여기까지 소통정보 표출), 10000, 5000, 3000, 1000, 500, 300, 100, 50, 30, 20]
+} else if (hpMapDivCd == "S") {
+	epsgDaum = 'EPSG:5174'
+	center = ol.proj.transform(center,'EPSG:5181',epsgDaum);
+	extent = ol.proj.transformExtent(extent,'EPSG:4326',epsgDaum);
+
+}
+var projectionExtent = projection.getExtent();
+</script>
+
+
+
+
+
+	<script  type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9bc32382bdb0e0451771a66fe649b54"></script>
+
+
+
+<script src="/js/map/layer.js"></script>
+<script src="/js/map/map.js"></script>
+<script src="/js/map/kml.js"></script>
+<script src="/js/map/detail.js"></script>
+<script src="/js/map/route.js"></script>
+
+<style>
+.ol-control{padding: 0px;}
+.ol-control button{margin: 0px;}
+.ol-control button:focus, .ol-control button:hover{background-color: #fff; color: #23527c;}
+.ol-zoom {position: absolute; top: inherit; left: inherit; bottom: 163px; right: 15px;}
+.ol-zoom .ol-zoom-in{width: 50px; height: 22px; border: 1px solid #ccc; background-color: #fff; color: #333; font-size: 16px; font-weight: bold;}
+.ol-zoom .ol-zoom-out{width: 50px; height: 21px; border: 1px solid #ccc; border-top: none; background-color: #fff; color: #333; font-size: 16px; font-weight: bold;}
+
+.map-search-box {z-index:1200;position:absolute;width:320px;background-color:#fff;display:block;right:80px;top:85px;border-right:1px solid #ddd;}
+.map-search-box .search-box {padding:10px;overflow:hidden;border-bottom:1px solid #ddd;background-color:#fff;}
+.map-search-box .search-box .int-search {width:245px;height:39px;border:1px solid #c5c6c6;padding:10px 5px 7px 5px;}
+.map-search-box .search-box .int-btn {padding:10px 5px 7px 5px;background-color:#539bed;background:url('/images/main/icon-search-btn.png') no-repeat;background-position:-12px ;border:none;width:48px;border:1px solid #539bed;}
+.map-search-box .map-fn-box {list-style:none;margin:0;padding:0;clear:both;}
+.map-search-box .map-fn-box li {border-bottom:1px solid #ddd;border-left:1px solid #ddd;background-color:#fff;padding:15px 0;}
+.map-search-box .map-fn-box span.icon-search {margin:0 auto;display:block;background:url('/images/main/icon-search.png');width:42px;height:42px;}
+.map-search-box .map-fn-box span.icon-txt {font-weight:600;}
+.map-search-box hr {width:90%;}
+
+.list-box dl dd {line-height: 17px; height: 40px; display: flex; align-items:center; padding-left: 10px;}
+</style>
+
+<link rel="stylesheet" href="/css/jquery/jquery.fileupload.css" />
+
+<script src="/js/jquery/jquery.ui.widget.js"></script>
+<script src="/js/jquery/jquery.fileupload.js"></script>
+
+<script>
+	/**
+	 * Base64로 인코딩한 String 데이터를 Blob으로 변환
+	 * @param b64Data - Base64로 인코딩한 String 데이터
+	 * @return blob - Blob 객체
+	 */
+	function fn_b64toBlob(b64Data) {
+		var byteCharacters = atob(b64Data);
+		var byteNumbers = new Array(byteCharacters.length);
+		for (var i = 0; i < byteCharacters.length; i++) {
+		    byteNumbers[i] = byteCharacters.charCodeAt(i);
+		}
+		var byteArray = new Uint8Array(byteNumbers);
+		var blob = new Blob([byteArray]);
+	    return blob;
+	}
+	
+	function fn_b64toBlob2(b64Data) {
+		sliceSize = 2000000;
+
+		var byteCharacters = atob(b64Data);
+		var byteArrays = [];
+
+		for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+			var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+			var byteNumbers = new Array(slice.length);
+			for (var i = 0; i < slice.length; i++) {
+				byteNumbers[i] = slice.charCodeAt(i);
+			}
+
+			var byteArray = new Uint8Array(byteNumbers);
+
+			byteArrays.push(byteArray);
+		}
+
+		var blob = new Blob(byteArrays);
+		return blob;
+	}
+	
+	
+	
+	function charCodeFromCharacter(c) {
+      return c.charCodeAt(0);
+   }
+   
+   function fn_b64toBlob3(b64Data) {
+      var sliceSize = 1024;
+      var byteCharacters = atob(b64Data);
+      var byteArrays = [];
+      for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+         var slice = byteCharacters.slice(offset, offset + sliceSize);
+         var byteNumbers = Array.prototype.map.call(slice, charCodeFromCharacter);
+         var byteArray = new Uint8Array(byteNumbers);
+         byteArrays.push(byteArray);
+        }
+       var blob = new Blob(byteArrays);
+		return blob;
+   }
+	
+	/**
+	 * 파일 다운로드
+	 * @param sId - 파일 업로드 ID
+	 * @param row - 파일 업로드 그리드 Row Number
+	 * @return 없음
+	 */
+	function fn_downLoad(sId, row) {
+		var file = $("#"+sId+"Grid").jqxGrid("getcellvalue", row, "file");
+		var fileName = $("#"+sId+"Grid").jqxGrid("getcellvalue", row, "fileName");
+		
+		try { //explorer
+			window.navigator.msSaveOrOpenBlob(file, fileName);
+		} catch(e) { //chrome, etc..
+			var a = document.createElement("a");
+		    document.body.appendChild(a);
+		    a.style = "display: none";
+		    var url = window.URL.createObjectURL(file);
+		    a.href = url;
+		    a.download = fileName;
+		    a.click();
+		    window.URL.revokeObjectURL(url);
+		}
+	}
+	
+	/**
+	 * 추가한 파일 취소
+	 * @param sId - 파일 업로드 ID
+	 * @param row - 파일 업로드 그리드 Row Number
+	 * @return 없음
+	 */
+	var buttonclick = function (sId, row) {
+		var rowid = $("#"+sId+"Grid").jqxGrid("getrowid", row);
+		$("#"+sId+"Grid").jqxGrid("deleterow", rowid);
+	}
+	
+	/**
+	 * 추가한 파일 취소
+	 * @param sId - 파일 업로드 ID
+	 * @return 없음
+	 */
+	function fn_fileInit(sId) {
+		$("#"+sId+"Grid").jqxGrid("clear");
+	}
+	
+	/**
+	 * 추가한 파일 취소
+	 * @param sId - 파일 업로드 ID
+	 * @param fileDiv - 파일 업로드 객체가 들어갈 Div
+	 * @param mutiple - 멀티 업로드 여부
+	 * @param maxFileSize - 파일 최대 사이즈
+	 * @param height - 파일 업로드 객체 높이
+	 * @param rowsheight - 파일 업로드 그리드 행 높이
+	 * @param success - 파일 업로드 성공시 함수
+	 * @param rowdelete - 파일 업로드 취소시 함수
+	 * @return 없음
+	 */
+	function fn_createFileObj(sId, fileDiv, mutiple, maxFileSize, height, rowsheight, success, rowdelete) {
+		var marginTop1 = Math.round((rowsheight - 17) / 2);
+		var marginTop2 = Math.round((rowsheight - 22) / 2);
+		var htmlString = "<div style='float: left; width: 100%; height: 25px; text-align: left; border-top: 1px solid; border-left: 1px solid; border-right: 1px solid;'>"
+		               + "<input type='button' id='"+sId+"BtnFileAdd' style='float: left; width: 18px; height: 18px; margin: 3px; background-image: url(/images/egovframework/com/cmm/icon/action_add.gif);' />"
+		               + "<div style='float: left; margin-left: 3px; margin-top: 5px;'>버튼을 클릭하거나 파일을 드래그 하세요.</div>"
+		               + "</div>"
+		               + "<div id='"+sId+"DropZone' style='float: left; width: 100%; height: "+height+"px; border: 1px solid;'>"
+		               + "<div id='"+sId+"Grid' style='padding: 0px; border: none;'></div>"
+		               + "</div>"
+		               + "<input id='"+sId+"' name='files[]' type='file' ";
+		if (mutiple) htmlString += "mutiple ";
+		htmlString += "style='display: none;'>";
+		$("#"+sId+"Div").html(htmlString);
+		
+		$("#"+sId+"BtnFileAdd").jqxButton({theme: theme});
+		$("#"+sId+"BtnFileAdd").click(function (event) {
+        	$("#"+sId).click();
+        });
+		
+		$("#"+sId+"Grid").jqxGrid({
+		    columns: [
+		    	{ text: "파일", datafield: "fileView", width: "20%", align: "center", cellsrenderer: function (row, datafield, value) {
+		    		var fileName = $("#"+sId+"Grid").jqxGrid("getcellvalue", row, "fileName");
+		    		var fileExt = fileName.split(".");
+		    		fileExt = fileExt[fileExt.length-1].toLowerCase();
+		    		var regex = /^(jpg|jpeg|gif|png|bmp)$/;
+		    		var src = "";
+		    		if (regex.test(fileExt)) {
+		    			src = value;
+		    		} else {
+		    			src = "/images/fileicon/"+fileExt+".png";
+		    			
+		    			$.ajax({
+		    		        url: src,
+		    		        type: 'HEAD',
+		    		        async: false
+		    		    }).fail(function() {
+		    		    	src = "/images/fileicon/file.png";
+		    		    });	
+		    		}
+		    		
+		    		return '<div style="text-align: center; overflow: hidden; width: 100%; height: 100%;"><img height="100%" src="' + src + '"/></div>';
+	            } },
+		    	{ text: "파일명", datafield: "fileName", width: "40%", align: "center", cellsrenderer: function (row, datafield, value) {
+		    		return '<div style="overflow: hidden; padding-left: 3px; padding-bottom: 2px; padding-right: 3px; margin-top: '+marginTop1+'px; -ms-text-overflow: ellipsis;"><a href="javascript:fn_downLoad(\'' + sId + '\', ' + row + ')"><font color="blue">' + value + '</font></a></dvi>';
+		    	} },
+		    	{ text: "파일크기", datafield: "fileSize", width: "25%", align: "center", cellsalign: "center", cellsformat: "n"},
+		    	{ text: "취소", datafield: "fileBtn", width: "15%", align: "center", cellsrenderer: function (row, datafield, value) {
+		    		return '<div style="text-align: center; overflow: hidden; margin-top: '+marginTop2+'px;"><input type="button" onclick="buttonclick(\'' + sId + '\',' + row + '); rowdelete(\'' + sId + '\',' + row + ');" style="width: 22px; height: 22px; background-image: url(/images/egovframework/com/cmm/icon/bu_icon_delete.gif); background-position:center center; border: none;"/></div>'
+	            } },
+	            { datafield: "file", hidden: true}
+		    ],
+		    width: "100%",
+		    height: height - 2,
+		    rowsheight: rowsheight,
+		    columnsresize: true,
+		    showsortmenuitems: false
+		});
+		 
+		$("#"+sId).fileupload({
+ 	        url: "",
+ 	        dataType: "json",
+ 	        dropZone: $("#"+sId+"DropZone"),
+ 	        autoUpload: false,
+ 	        maxFileSize: maxFileSize,
+ 	        previewMaxWidth: 100,
+ 	        previewMaxHeight: 100,
+ 	        previewCrop: true
+ 	    });
+ 	    
+		$("#"+sId).on("fileuploadadd", function (e, data) {
+			$.each(data.files, function (index, file) {
+ 	 			var regex = null;
+ 	 			var fileName = file.name;
+ 	 			var fileSize = file.size;
+ 	 			var fileSplit = fileName.split(".");
+ 	 			var fileExt = fileSplit[fileSplit.length - 1].toLowerCase();
+ 	 			
+ 	 			switch (fileDiv) {
+ 	 				default:
+ 	 				case "all":
+ 	 					break;
+ 	 				case "image":
+ 	 					regex = /^(jpg|jpeg|gif|png|bmp)$/;
+ 	 					if (!regex.test(fileExt)) {
+ 	 						alert("이미지 파일을 선택하세요. [jpg/jpeg/gif/png/bmp]");
+ 	 						return;
+ 	 					}
+ 	 					break;
+ 	 			}
+ 	 			
+ 	 			if (fileSize > maxSize) {
+                	alert("허용된 파일사이즈 ["+formatFileSize(maxSize)+"]를 초과합니다.");
+                	return;
+                }
+ 	 			
+ 	 			if (typeof (FileReader) == "undefined") {
+ 	 				alert("This browser does not support FileReader.");
+ 	 				return;
+ 	 			}
+ 	 			
+ 	 			if (!mutiple) {
+ 	 				fn_fileInit(sId);
+            	}
+ 	 			
+ 	 			var reader = new FileReader();
+ 	 			reader.onload = function(e) {
+ 	 				$("#"+sId+"Grid").jqxGrid("addrow", null, {fileView: e.target.result, fileName: fileName, fileSize: fileSize, file: file});
+ 	 				success(fileName, e);
+            	}
+            	reader.readAsDataURL(file);
+			});
+ 	    });
+	}
+</script>
+
+<style>
+.label-warning {
+	background-color: #A46A19 !important;
+}
+.label-info {
+	background-color: #6C6C6C !important;
+}
+.label-weather {
+	background-color: #3867c8 !important;
+}
+</style>
+
+<script src='/js/html2canvas.min.js'></script>
+
+<script>
+var gAccid = "null";
+var filter = "win16|win32|win64|mac|macintel";
+if (navigator.platform ) {
+	if ((navigator.userAgent.indexOf('Mobile') > 0) && (filter.indexOf(navigator.platform.toLowerCase()) < 0)) {
+		location.href = "https://m.topis.seoul.go.kr";
+	}
+} 
+
+if (location.protocol == "http:" && location.href.indexOf("localhost") < 0 && location.href.indexOf("192") < 0 && location.href.indexOf("127") < 0) {
+	location.href = location.href.replace("http:", "https:");
+}
+
+var nowDate = new Date();
+
+$(document).ready(function() {
+	var calDate = nowDate;
+	calDate.setMonth(calDate.getMonth() - 1);
+	
+	$("#pop01").height($(window).height());
+	
+	fn_getMainWeatherInfo(); //날씨&미세먼지
+	fn_getSpdStat(); //현재속도
+	fn_getPopupList(); //팝업공지
+	fn_getMainAccList("Y"); //진행중
+	fn_getMainAccList("N"); //예정
+	fn_getMainNoticeList(); //공지사항
+	//fn_getMainCardnewsList(); //카드뉴스
+	fn_getMainRefroomList("05", "", "1"); //서울시 차량통행속도 보고서
+	fn_getMainRefroomList("06", calDate.format("yyyy"), "2"); //서울시 차량통행속도 보고서
+	fn_getMainRefroomList("07", "", "3"); //서울시 차량통행속도 보고서
+	fn_getMainRefroomList("08", calDate.format("yyyy"), "4"); //서울시 차량통행속도 보고서
+	fn_getMainTrfcList1(); //지하철 TOP5
+	fn_getMainTrfcList2(); //버스 TOP5
+	fn_getMainTrfcList3(); //평균이동시간/거리
+	fn_getMainDisasterInfo(); //기상/재난 팝업
+	fn_getMainTwitterInfo(); // 트위터 정보
+	
+	//주기적 소통 정보 업데이트(2분30초)
+	//window.setInterval(function() {updateTrafficCls();}, 150000);
+	
+	//주기적 돌발 정보 업데이트(5분)
+	//window.setInterval(function() {fn_getMainAccList("Y");}, 300000);
+	//주기적 트위터 정보 업데이트(5분)
+	//window.setInterval(function() {fn_getMainTwitterInfo();}, 300000);
+});
+
+function fn_mapTab2(seq) {
+	if (seq == 1) {
+		$("#t22").hide();
+		$("#t21").show();
+		
+		$("#t21Wrap").css("zoom", 0.8);
+	} else {
+		if ($("#t22Wrap div img").attr("src").indexOf("smartway") == -1) {
+			$("#t22Wrap div").css("background-image", "url(https://smartway.seoul.go.kr/main/getImage.do?imageMapName=StatMap)");
+			$("#t22Wrap div img").attr("src", "https://smartway.seoul.go.kr/images/imageMap/StatKor.png");
+		}
+		
+		$("#t21").hide();
+		$("#t22").show();
+		
+		$("#t22Wrap").css("zoom", 1.4);
+	}
+}
+
+function fn_zoomIn() {
+ 	var obj;
+ 	if ($("#t21").css("display") != "none") {
+ 		obj = $("#t21Wrap");
+ 	} else {
+ 		obj = $("#t22Wrap");
+ 	}
+ 	
+ 	var zoom = obj.css("zoom").replace("%", "") * 1;
+ 	if (zoom > 10) {
+ 		zoom = zoom / 100;
+ 	}
+ 	zoom = zoom + 0.2;
+ 	if (zoom > 3) zoom = 3;
+ 	obj.css("zoom", zoom);
+}
+
+function fn_zoomOut() {
+ 	var obj;
+ 	if ($("#t21").css("display") != "none") {
+ 		obj = $("#t21Wrap");
+ 	} else {
+ 		obj = $("#t22Wrap");
+ 	}
+ 			
+ 	var zoom = obj.css("zoom").replace("%", "") * 1;
+ 	if (zoom > 10) {
+ 		zoom = zoom / 100;
+ 	}
+ 	zoom = zoom - 0.2;
+ 	if (zoom < 0.8) zoom = 0.8;
+ 	obj.css("zoom", zoom);
+}
+
+function fn_getMainDisasterInfo() {
+	$(".modal-dialog").css("margin-top", ($(".modal").height()/2)-420);
+	commonAjax(null, "/disa/selectCurDisasterInfo.do", callback = function(returnData){
+		if (returnData && returnData.rows1 != undefined && returnData.rows1.length > 0) {
+			if (returnData.rows1[0].dispYn == "Y") {
+				$("#iframe_disa").attr("src", "openDisasterInfo.do");
+				$("#pop03").modal();
+			}
+		}
+	});
+}
+
+function fn_refreshMainDisasterInfo() {
+	var iframe_disa = document.getElementById('iframe_disa').contentWindow;
+	iframe_disa.fn_search();
+}
+
+function fn_report() {
+	document.getElementById('iframe_disa').contentWindow.scrollTo(0, 0);
+	
+	setTimeout(
+		function() {
+			var disaPopup = document.getElementById('iframe_disa').contentWindow.document.querySelector('#disaPopup');
+			
+			html2canvas(disaPopup, {
+				//options
+			}).then(function(canvas) {
+				//alert('보고서 생성이 완료되었습니다.');
+				var downloadLink = document.createElement('a');
+				downloadLink.setAttribute('download', '기상재난.png');
+			    canvas.toBlob(function(blob) {
+			    	var url = URL.createObjectURL(blob);
+			    	downloadLink.setAttribute('href', url);
+			    	downloadLink.click();
+			    	downloadLink.remove();
+			    });
+			});
+		}
+	, 500);
+}
+
+</script>
+</head>
+<body>
+
+
+
+
+<script>
+$.datepicker.setDefaults({
+    dateFormat: 'yy-mm-dd'	//날짜 포맷
+    , showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+    , showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+    //, changeYear: true //콤보박스에서 년 선택 가능
+    //, changeMonth: true //콤보박스에서 월 선택 가능 
+    , prevText: '이전 달'	// 마우스 오버시 이전달 텍스트
+    , nextText: '다음 달'	// 마우스 오버시 다음달 텍스트
+    , closeText: '닫기' // 닫기 버튼 텍스트 변경
+    , currentText: '오늘' // 오늘 텍스트 변경
+    , monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']	//한글 캘린더중 월 표시를 위한 부분
+    , monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']	//한글 캘린더 중 월 표시를 위한 부분
+    , dayNames: ['일', '월', '화', '수', '목', '금', '토']	//한글 캘린더 요일 표시 부분
+    , dayNamesShort: ['일', '월', '화', '수', '목', '금', '토']	//한글 요일 표시 부분
+    , dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']	// 한글 요일 표시 부분
+    , showMonthAfterYear: true	// true : 년 월  false : 월 년 순으로 보여줌
+    , yearSuffix: '년'
+    //, showButtonPanel: true	// 오늘로 가는 버튼과 달력 닫기 버튼 보기 옵션
+    , defaultDate: "+1w" 
+    //, minDate: "-6Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+    //, maxDate: "0M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+    //, buttonImageOnly: true	// input 옆에 조그만한 아이콘으로 캘린더 선택가능하게 하기
+    //, buttonImage: "/images/icon-calendar.png"	// 조그만한 아이콘 이미지
+    //, buttonText: "Select date"	// 조그만한 아이콘 툴팁
+});
+</script>
+
+<div id="skip">
+	<a href="#contents-area">본문 내용 바로가기</a>
+</div>
+
+<!-- loading Bar 표시-->
+<div id="lodingBar" style="z-index: 99999999999999999999999999999999999999; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: none;">
+	<div style="z-index:100001; position: absolute; top:50%; left:50%; text-align:center; width:100px; height:100px;">
+		<img src="/images/common/ajax_loading.gif" alt="로딩중">
+	</div>
+</div>
+
+<div class="text-center" style="height: 48px;">
+	<div id="seoul-integrated-menu" style="position: relative; z-index: 8888; width: 100%;"></div>
+</div>
+
+<!-- navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/"><img src="/images/common/logo.png" alt="Topis logo"></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">서울시 교통정보 열람 <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu" >
+						<li role="presentation"><a href="/refRoom/openRefRoom_1.do" role="menuitem">속도 정보</a></li>
+						<li role="presentation"><a href="/refRoom/openRefRoom_2.do" role="menuitem">교통량 정보</a></li>
+						<li role="presentation"><a href="/refRoom/openRefRoom_3_1.do" role="menuitem">대중교통 정보</a></li>
+						<li role="presentation"><a href="/refRoom/openRefRoom_8.do" role="menuitem">교통이용 통계</a></li>
+						<li role="presentation"><a href="/refRoom/openRefRoom_3_3.do" role="menuitem">기타 정보</a></li>
+						<li role="presentation"><a href="/refRoom/openRefRoom_1_3.do" role="menuitem">교통 현황</a></li>
+						<li role="presentation"><a href="/refRoom/openRefRoom_4.do" role="menuitem">OPEN API</a></li>
+						<li role="presentation" style="text-align: right; padding-right: 10px; font-size: 10px; font-weight:bold;"><span><a href="javascript:void(0)" role="menuitem" title="서울시 교통정보 열람 닫기">X</a></span></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">알림마당 <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li role="presentation"><a href="/notice/openNoticeList.do" role="menuitem">공지사항</a></li>
+						<li role="presentation"><a href="/notice/openNewsLetter.do" role="menuitem">뉴스레터</a></li>
+						<li role="presentation" style="text-align: right; padding-right: 10px; font-size: 10px; font-weight:bold;"><span><a href="javascript:void(0)" role="menuitem" title="알림마당 닫기">X</a></span></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TOPIS 소개 <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li role="presentation"><a href="/intro/openIntro.do" role="menuitem">TOPIS 소개</a></li>
+						<li role="presentation"><a href="/intro/openVisit.do" role="menuitem">찾아오시는 길</a></li>
+						<li role="presentation"><a href="/visit/openVisitInfo.do" role="menuitem">견학안내</a></li>
+						<li role="presentation"><a href="https://news.seoul.go.kr/traffic/greentraffic" role="menuitem" target="_blank" onclick="return confirm('새 창에서 열립니다. 새 창을 여시겠습니까?');">녹색교통지역 안내</a></li>
+						<li role="presentation"><a href="https://avms.eseoul.go.kr/hub/simulator/login" role="menuitem" target="_blank" onclick="return confirm('새 창에서 열립니다. 새 창을 여시겠습니까?');">자율차 시뮬레이터</a>
+						<li role="presentation" style="text-align: right; padding-right: 10px; font-size: 10px; font-weight:bold;"><span><a href="javascript:void(0)" role="menuitem" title="TOPIS 소개 닫기">X</a></span></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="/eng/english.jsp" class="link" style="display: inline-block; border: 1px solid #cccccc; background: #333; padding: 1px 6px; color: #fff; margin: 25px 0; font-size: 16px; text-decoration: none;" >English</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+
+
+
+<script>
+var PLAY_IMG  = '/images/main/play.png';
+var PAUSE_IMG = '/images/main/pause.png';
+
+var isPauseFlag = false;
+
+
+$(document).ready(function() {
+	$('.map-fn-l-box a').hover(function() {
+		$(this).addClass('active');
+	}, function() {
+		$(this).removeClass('active');
+	});
+	
+	$(".map-type-04").show(); //소통이미지
+	
+	var param = { "mapType" : "SUB" };
+	initMap(param);
+	
+	setLayerVisible('traffic', '', 4);
+	fn_makeAccLayer();
+
+	$('#banWrap').on('afterChange', function(e, slick, cur){
+		  $(this).find('.slick-slide a').attr('tabindex','-1');
+		  $(this).find('.slick-slide[data-slick-index="'+cur+'"] a').attr('tabindex','0');
+	})
+	
+	$("#banWrap").on("init reInit", function(){
+		$(this).find(".slick-cloned[id='']").removeAttr("id");
+	});
+	
+	$("#banWrap").slick({
+		autoplay: true,
+		autoplaySpeed: 5000,
+		arrows: false,
+		pauseOnFocus: true,
+		pauseOnHover: true,
+		accessibility: false
+	});
+	
+	$("#banWrap").show();
+});
+
+
+
+function fn_bannerPlay() {
+	var imgSrc = ($("#imgPlay").attr('src') == '/images/main/play.png') ? '/images/main/pause.png' : '/images/main/play.png';
+	$("#imgPlay").attr('src', imgSrc);
+	isPause = ($("#imgPlay").attr('src') == PLAY_IMG); // stop일 때 TRUE
+	if (isPause) fn_stopPlay();
+	else fn_startPlay();
+}
+
+function fn_startPlay() {
+	$("#banWrap").slick("slickPlay");
+	$("#imgPlay").attr("alt","배너 슬라이드 정지");
+	isPauseFlag = false;
+};
+
+function fn_stopPlay() {
+	$("#banWrap").slick("slickPause");
+	$("#imgPlay").attr("alt","배너 슬라이드 재생");
+	isPauseFlag = true;
+};
+
+/* ********************************************************
+ * 날씨 / 미세먼지 조회
+ ******************************************************** */
+function fn_getMainWeatherInfo() {
+	var weatherData;
+	
+	var date = new Date();
+	today = date.format('yyyyMMdd');
+	currTime = date.format('HH') + "00";
+	var regCd = "111121";
+	
+	var data = {today : today, currTime : currTime, regCd : regCd};
+	
+	//commonAjax(data, "/main/selectWeatherInfo.do", callback = function(returnData){
+/* 	commonAjax(data, "/main/selectWeather.do", callback = function(returnData){
+		if (returnData && returnData.rows != undefined && returnData.rows.length > 0) {
+			weatherData = returnData.rows;
+			// 날씨
+			if (weatherData[0].pty == 0){
+				switch (weatherData[0].skySttus){
+				case 1 : 
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 맑음');
+					break;
+				case 2 : 
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 구름조금');
+					break;
+				case 3 : 
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 구름많음');
+					break;
+				case 4 : 
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 흐림');
+					break;
+				default : 
+					$('#todayWeather').html(weatherData[0].tmprt+'°C ');
+				}
+			} else if (weatherData[0].pty == 1) {
+				$('#todayWeather').html(weatherData[0].tmprt+'°C 비');
+			} else if (weatherData[0].pty == 2) {
+				$('#todayWeather').html(weatherData[0].tmprt+'°C 비/눈');
+			} else if (weatherData[0].pty == 3) {
+				$('#todayWeather').html(weatherData[0].tmprt+'°C 눈');
+			} else if (weatherData[0].pty == 4) {
+				$('#todayWeather').html(weatherData[0].tmprt+'°C 소나기');
+			} else if (weatherData[0].pty == 5) {
+				$('#todayWeather').html(weatherData[0].tmprt+'°C 빗방울');
+			} else if (weatherData[0].pty == 6) {
+				$('#todayWeather').html(weatherData[0].tmprt+'°C 빗방울/눈');
+			} else if (weatherData[0].pty == 7) {
+				$('#todayWeather').html(weatherData[0].tmprt+'°C 눈날림');
+			} else {
+				$('#todayWeather').html(weatherData[0].tmprt+'°C 비/눈');
+			}
+			
+			// 미세먼지
+			switch(weatherData[0].curPm10G){
+				case 'A' : 
+					$('#pm10').attr('class', 'c-blue');
+					$('#pm10Dtl').html('좋음');
+					break;
+				case 'B' : 
+					$('#pm10').attr('class', 'c-green');
+					$('#pm10Dtl').html('보통');
+					break;
+				case 'C' : 
+					$('#pm10').attr('class', 'c-orange');
+					$('#pm10Dtl').html('나쁨');
+					break;
+				case 'D' : 
+					$('#pm10').attr('class', 'c-red');
+					$('#pm10Dtl').html('매우나쁨');
+					break;
+				default : 
+					$('#pm10').attr('class', 'c-blue');
+					$('#pm10Dtl').html('좋음');
+			}
+			
+			// 초미세먼지
+			switch(weatherData[0].curPm25G){
+				case 'A' : 
+					$('#pm25').attr('class', 'c-blue');
+					$('#pm25Dtl').html('좋음');
+					break;
+				case 'B' : 
+					$('#pm25').attr('class', 'c-green');
+					$('#pm25Dtl').html('보통');
+					break;
+				case 'C' : 
+					$('#pm25').attr('class', 'c-orange');
+					$('#pm25Dtl').html('나쁨');
+					break;
+				case 'D' : 
+					$('#pm25').attr('class', 'c-red');
+					$('#pm25Dtl').html('매우나쁨');
+					break;
+				default : 
+					$('#pm25').attr('class', 'c-blue');
+					$('#pm25Dtl').html('좋음');
+			}
+		}	
+	}, false); */
+	
+	$.ajax({
+		url : "/main/selectWeather.do",
+		type : "post",
+		dataType: "json",
+		data: data,
+		async: true,
+		beforeSend: function() {
+	    	
+	    },
+	    complete: function() {
+	    },
+	    success: function(returnData) {
+	    	if (returnData && returnData.rows != undefined && returnData.rows.length > 0) {
+				weatherData = returnData.rows;
+				// 날씨
+				if (weatherData[0].pty == 0){
+					switch (weatherData[0].skySttus){
+					case 1 : 
+						$('#todayWeather').html(weatherData[0].tmprt+'°C 맑음');
+						break;
+					case 2 : 
+						$('#todayWeather').html(weatherData[0].tmprt+'°C 구름조금');
+						break;
+					case 3 : 
+						$('#todayWeather').html(weatherData[0].tmprt+'°C 구름많음');
+						break;
+					case 4 : 
+						$('#todayWeather').html(weatherData[0].tmprt+'°C 흐림');
+						break;
+					default : 
+						$('#todayWeather').html(weatherData[0].tmprt+'°C ');
+					}
+				} else if (weatherData[0].pty == 1) {
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 비');
+				} else if (weatherData[0].pty == 2) {
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 비/눈');
+				} else if (weatherData[0].pty == 3) {
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 눈');
+				} else if (weatherData[0].pty == 4) {
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 소나기');
+				} else if (weatherData[0].pty == 5) {
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 빗방울');
+				} else if (weatherData[0].pty == 6) {
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 빗방울/눈');
+				} else if (weatherData[0].pty == 7) {
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 눈날림');
+				} else {
+					$('#todayWeather').html(weatherData[0].tmprt+'°C 비/눈');
+				}
+				
+				// 미세먼지
+				switch(weatherData[0].curPm10G){
+					case 'A' : 
+						$('#pm10').attr('class', 'c-blue');
+						$('#pm10Dtl').html('좋음');
+						break;
+					case 'B' : 
+						$('#pm10').attr('class', 'c-green');
+						$('#pm10Dtl').html('보통');
+						break;
+					case 'C' : 
+						$('#pm10').attr('class', 'c-orange');
+						$('#pm10Dtl').html('나쁨');
+						break;
+					case 'D' : 
+						$('#pm10').attr('class', 'c-red');
+						$('#pm10Dtl').html('매우나쁨');
+						break;
+					default : 
+						$('#pm10').attr('class', 'c-blue');
+						$('#pm10Dtl').html('좋음');
+				}
+				
+				// 초미세먼지
+				switch(weatherData[0].curPm25G){
+					case 'A' : 
+						$('#pm25').attr('class', 'c-blue');
+						$('#pm25Dtl').html('좋음');
+						break;
+					case 'B' : 
+						$('#pm25').attr('class', 'c-green');
+						$('#pm25Dtl').html('보통');
+						break;
+					case 'C' : 
+						$('#pm25').attr('class', 'c-orange');
+						$('#pm25Dtl').html('나쁨');
+						break;
+					case 'D' : 
+						$('#pm25').attr('class', 'c-red');
+						$('#pm25Dtl').html('매우나쁨');
+						break;
+					default : 
+						$('#pm25').attr('class', 'c-blue');
+						$('#pm25Dtl').html('좋음');
+				}
+			}	
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			
+		}
+	});
+	
+}
+
+function fn_getSpdStat() {
+	commonAjax(null, "/main/selectSpdStat.do", callback = function(returnData) {
+		if (returnData != null) {
+			var rows = returnData.rows[0];
+			var colorClass = "";
+			var colorDetClass = "";
+			var spdRngExp = "";
+			if (rows.trfClsCd1 == "1") {
+				colorClass = "txt-g";
+				colorDetClass = "txt-g-det";
+				spdRngExp = "원활";
+			} else if (rows.trfClsCd1 == "2") {
+				colorClass = "txt-y";
+				colorDetClass = "txt-y-det";
+				spdRngExp = "서행";
+			} else if (rows.trfClsCd1 == "3") {
+				colorClass = "txt-r";
+				colorDetClass = "txt-r-det";
+				spdRngExp = "정체";
+			} else {
+				colorClass = "";
+				colorDetClass = "";
+			}
+			$("#spdStat1").removeClass();
+			//$("#spdStat1").addClass(colorClass);
+			$("#spdStat1").html(rows.val1 + "km/h");
+			
+			$("#spdStat1Det").removeClass();
+			$("#spdStat1Det").addClass(colorDetClass);
+			$("#spdStat1Det").html(spdRngExp);
+			
+			if (rows.trfClsCd2 == "1") {
+				colorClass = "txt-g";
+				colorDetClass = "txt-g-det";
+				spdRngExp = "원활";
+			} else if (rows.trfClsCd2 == "2") {
+				colorClass = "txt-y";
+				colorDetClass = "txt-y-det";
+				spdRngExp = "서행";
+			} else if (rows.trfClsCd2 == "3") {
+				colorClass = "txt-r";
+				colorDetClass = "txt-r-det";
+				spdRngExp = "정체";
+			} else {
+				colorClass = "";
+				colorDetClass = "";
+			}
+			$("#spdStat2").removeClass();
+			//$("#spdStat2").addClass(colorClass);
+			$("#spdStat2").html(rows.val2 + "km/h");
+			
+			$("#spdStat2Det").removeClass();
+			$("#spdStat2Det").addClass(colorDetClass);
+			$("#spdStat2Det").html(spdRngExp);
+		}
+	}, false);
+}
+
+function fn_getPopupList() {
+	commonAjax(null, "/main/selectPopupList.do", callback = function(returnData) {
+		var popupTag = '';
+		if (returnData != null && returnData.rows != undefined && returnData.rows.length > 0) {
+			for (var i=0; i<returnData.rows.length; i++) {
+				popupTag += '<div>' + returnData.rows[i].popCts + '</div>'
+			}
+		} else {
+			popupTag = '<div><img src="/images/main/popup.png" alt="서울교통정보센터 TOPIS" /></div>';
+		}
+		$("#popWrap").html(popupTag);
+		if (popupTag != "") {
+			$("#popWrap").slick({
+				autoplay: true,
+				autoplaySpeed: 5000,
+				arrows: false,
+				pauseOnFocus: true,
+				pauseOnHover: true
+			});
+			
+			$("#popWrap").show();
+		}
+	}, false);
+}
+
+function fn_goView(bdwrSeq) {
+	var url = "/notice/openNoticeView.do";
+	var param = [{name:'bdwrSeq', value:bdwrSeq}];
+	goPostRqst(url, param);
+}
+
+function mapFnBtn(div) {
+	if ( $(".map-fn-more-box").css("display") == "none" ) {
+		$(".map-fn-more-box").show();
+	} else {
+		$(".map-fn-more-box").hide();
+	}
+}
+
+</script>
+
+<!--좌측 기능(지도)메뉴//-->
+<div class="map-fn-l-box">	
+	<a href="/map/openAccMap.do" class="fn-alert" title="돌발"><span class="blind">돌발</span></a>
+	<a href="/map/openControlMap.do" class="fn-stop" title="통제"><span class="blind">통제</span></a>
+	<a href="/map/openTrafficMap.do" class="fn-road" title="소통정보"><span class="blind">소통정보</span></a>
+	<a href="/map/openCctvMap.do" class="fn-cctv" title="CCTV정보 조회"><span class="blind">CCTV</span></a>
+	<a href="/map/openBusMap.do" class="fn-bus" title="버스정보 조회"><span class="blind">버스</span></a>
+	<!-- <a href="/prdc/openPrdcRouteMap.do" class="fn-preroute" title="예측경로탐색"><span class="blind">예측경로탐색</span></a> -->
+	<!-- <a href="/prdc/openPrdcMap.do" class="fn-premap" title="예측지도"><span class="blind">예측지도</span></a> 20230808 -->
+	<a href="https://bus.go.kr/app/#viewpage/1000003/main.subwayinfo/1/title=Home%20%3E%20%EC%A7%80%ED%95%98%EC%B2%A0%EC%A0%95%EB%B3%B4" target="_blank" class="fn-subway" title="지하철 새창보기" onclick="return confirm('새 창에서 열립니다. 새 창을 여시겠습니까?');"><span class="blind">지하철</span></a>
+	<a href="/map/openBicMap.do" class="fn-bike" title="따릉이정보 조회"><span class="blind">따릉이</span></a>
+	<a href="/map/openVmsMap.do" class="fn-vms" title="전광판정보 조회"><span class="blind">전광판</span></a>
+	
+	<a href="javascript:void(0)" class="fn-more" onclick="mapFnBtn()" title="메뉴 더보기"><span class="blind">메뉴 더보기</span></a>
+</div>
+
+<div class="map-fn-l-box map-fn-more-box" style="top: 642px; height: 62px;">
+	<!-- <a href="/map/openCarshareMap.do" class="fn-sharecar" title="나눔카정보 조회"><span class="blind">나눔카정보 조회</span></a> -->
+	<a href="/map/openParkMap.do" class="fn-park" title="주차장정보 조회"><span class="blind">주차장정보 조회</span></a>
+	<a href="/map/openCameraMap.do" class="fn-cam" title="단속카메라 정보"><span class="blind">단속카메라 정보</span></a>
+	<a href="/map/openTaxiMap.do" class="fn-taxi" title="택시승차대정보 조회"><span class="blind">택시승차대정보 조회</span></a>
+<!-- 	<a href="/map/openRouteMap.do" class="fn-rout" title="경로탐색"><span class="blind">경로탐색</span></a> -->
+</div>
+
+<div class="map-left-box" id="contents-area">
+	<div class="search-box">
+		<table>
+			<tr>
+				<td style="vertical-align:top;"><input type="text" class="int-search" id="searchTxt" placeholder="검색어를 입력하세요" title="통합검색"></td>
+				<td><input type="button" class="int-btn" style="text-indent: -99999px;" value="통합검색" onclick="fn_goTotalMap()"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="info-box" style="padding-top: 0px;">
+		<div style="width: 100%; height: 60px; float: left;">
+			<div style="float: left;padding-top: 10px;width: 102px; text-align: center">
+				<h4 class="txt-w" id="todayWeather" style="width: 100%">0.0°C 맑음</h4>
+			</div>
+			<div style="float: left;padding-left: 26px;">
+				<p class="txt-m">미세먼지 </p>
+				<p><span class="c-blue" id="pm10"><em id="pm10Dtl"></em></span></p>
+			</div>
+			<div style="float: left;padding-left: 17px;text-align: center;">
+				<p class="txt-m">초미세먼지 </p>
+				<p><span class="c-blue" id="pm25"><em id="pm25Dtl"></em></span></p>
+			</div>
+		</div>
+		<div style="width: 100%; height: 90px; float: left;">
+			<div class="v-info">
+				<h4 class="tit">서울시 전체속도 <span class="txt-g-det" id="spdStat1Det"></span><span class="txt-g" id="spdStat1">0.0km/h</span></h4>
+				<h4 class="tit" style="margin-left: 16px;">도심 전체속도 <span class="txt-g-det" id="spdStat2Det"></span><span class="txt-g" id="spdStat2">0.0km/h</span></h4>
+			</div>
+			<div class="v-bar" style="display:none;padding-bottom: 0px;">
+				<img src="/images/main/iBar.png" alt="속도범례">
+			</div>
+		</div>
+	</div>
+	<hr style="margin-top: 0px;"/>
+	<div class="text-center" style="width: 100%; height: 207px;">
+		<div class="owl-carousel owl-theme" id="popWrap" style="width: 280px; height: 202px; margin-left: 20px; display: none;">
+		</div>
+	</div>
+	<div class="text-center" style="width: 100%;">
+		<div class="owl-carousel owl-theme" id="banWrap" style="width: 280px; height: 95px; margin-left: 20px; display: none;">
+			<!-- <div><a href="https://mediahub.seoul.go.kr/archives/2011685?utm_medium=email&utm_source=npcrm&utm_campaign=mediahub&utm_content=npcrm_content&utm_term=npcrm_mail" target="_blank"><img src="/images/banner/subway8.png" alt="8호선 연장개통"></a></div> -->
+			<!-- <div><a href="https://topis.seoul.go.kr/notice/openCardNews.do" target="_blank"><img src="/images/banner/seoulTraffic.jpg" alt="서울교통 주간 브리핑"></a></div> -->
+			<!-- <div><a href="https://play.google.com/store/apps/details?id=kr.go.seoul.mydata" target="_blank"><img src="/images/banner/My-T.jpg" alt="대중교통 코로나 안심앱"></a></div> -->
+<!-- 			<div><a href="http://blog.naver.com/haechiseoul/223417334954" target="_blank"><img src="/images/banner/seoulDonghaengMap.jpg" alt="교통약자 맞춤형 대중교통 서비스" onclick="return confirm('새 창에서 열립니다. 새 창을 여시겠습니까?');"></a></div> -->
+			<div><a href="https://forms.gle/7PdQNP92ujq2zb3t6" target="_blank"><img src="/images/banner/seoulDonghaengMap_survey.png" alt="서울동행맵 이용자 설문조사" onclick="return confirm('새 창에서 열립니다. 새 창을 여시겠습니까?');"></a></div>
+			<div><a href="https://news.seoul.go.kr/traffic/greentraffic" target="_blank"><img src="/images/banner/greentraffic.png" alt="녹색교통지역 운행제한안내" onclick="return confirm('새 창에서 열립니다. 새 창을 여시겠습니까?');"></a></div>
+			<div><a href="https://avms.eseoul.go.kr/hub/simulator/login" target="_blank"><img src="/images/banner/carSimulator.png" alt="자율차 시뮬레이터" onclick="return confirm('새 창에서 열립니다. 새 창을 여시겠습니까?');"></a></div>				
+			<!-- <div><a href="http://topis.seoul.go.kr/intro/openTestBed.do" target="_blank"><img src="/images/banner/testbed.png" alt="자율주행 셔틀버스 이용신청"></a></div> -->
+			<!-- <div><a href="/openRider/openRider.do"><img src="/images/banner/bikerider.png" alt="자전거환경개선 정보안내"></a></div> -->
+		</div>
+		<button onclick="fn_bannerPlay()" style="border:none; padding-top: 5px;"><img id="imgPlay" src="/images/main/pause.png" alt="배너 슬라이더 정지" style="cursor:pointer;"></button>
+	</div>
+</div>
+
+<div style="position: absolute; left: 381px; right: 0px; height: 579px;">
+	<div id="dmap-daum" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; z-index: -1;"></div>
+	<div id="dmap" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 0;">
+		
+<script>
+var vectorSearchIconLayers = [];
+function mapRBtn() {
+	if ( $(".map-right-more-box").css("display") == "none" ) {
+		$(".map-right-more-box").show();
+		$(".m-ar").addClass('m-ar-close');
+	} else {			
+		$(".map-right-more-box").hide();
+		$(".m-ar").removeClass('m-ar-close');
+	}
+}	
+
+function maplegendBtn() {
+	$(".map-legend-dtl").show();
+}		
+
+function maplegendCloseBtn() {
+	$(".map-legend-dtl").hide();
+}
+
+function fn_colorblind_traffic(obj) {
+	if($(".map-type-99").hasClass("active")) {
+		$(".map-type-99").removeClass("active");
+		$(".map-type-03").addClass("active");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-green").css("border-bottom", "5px solid #28c613");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-yellow").css("border-bottom", "5px solid #ffc600");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-red").css("border-bottom", "5px solid #f11406");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-gray").css("border-bottom", "5px solid #797978");
+	}else{
+		$(".map-type-99").addClass("active");
+		$(".map-type-03").removeClass("active");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-green").css("border-bottom", "5px solid #D7E9FA");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-yellow").css("border-bottom", "5px solid #7CB6EE");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-red").css("border-bottom", "5px solid #3E69B2");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-gray").css("border-bottom", "5px solid #666666");
+		
+	}
+	
+	/* if (obj.style.backgroundColor == "rgb(255, 255, 255)") { //색각이상자용
+		obj.style.backgroundColor = "#1f2429";
+		obj.style.color = "rgb(255, 255, 255)";
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-green").css("border-bottom", "5px solid #D7E9FA");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-yellow").css("border-bottom", "5px solid #7CB6EE");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-red").css("border-bottom", "5px solid #3E69B2");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-gray").css("border-bottom", "5px solid #666666");
+	} else {
+		obj.style.backgroundColor = "rgb(255, 255, 255)";
+		obj.style.color = "#1f2429";
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-green").css("border-bottom", "5px solid #28c613");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-yellow").css("border-bottom", "5px solid #ffc600");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-red").css("border-bottom", "5px solid #f11406");
+		$(".map-right-box .map-legend-dtl .legendTbl th.th-gray").css("border-bottom", "5px solid #797978");
+	} */
+	updateBounds();
+}
+
+function fn_logHistory(){
+	
+	var data = {param1 : "traffic"};
+	var url = "/main/insertLogHistory.do";
+
+	$.ajax({
+		url : url,
+		type : 'post',
+		data: data,
+		dataType: "json",
+		async: true,
+	});
+	
+}
+
+function fn_openSearch() {
+	if ($("#searchPoiBtn").hasClass("active")){
+		$("#searchPoiBtn").removeClass("active");
+		$("#searchBox").css("display","none");
+		$("#list-box").css("display","none");
+		$("#searchPoiBtn").attr("style","color: #000 !important; background-color: #fff");
+		
+		for (var i=0; i<vectorSearchIconLayers.length; i++) {
+			map.removeLayer(vectorSearchIconLayers[i]);
+		}
+		
+	} else {
+		$("#searchPoiBtn").addClass("active");
+		$("#searchBox").css("display","block");
+		$("#searchPoiBtn").attr("style","color: #fff !important; background-color: #539bed");
+	}
+}
+
+function fn_searchPoiMap() {
+	fn_searchPlace($("#searchMapTxt").val());
+}
+
+
+function fn_setPoiData(data) {
+	$("#list-box").empty();
+	
+	var listHtml = '';
+	if(data.documents.length > 0) {
+		$("#list-box").css("display","block");
+		listHtml += "<dl>\n";
+		for (var i=0; i<data.documents.length; i++) {
+			var item = data.documents[i]
+			var addr = '';
+			var showPoiIcon = "\""+item.x+"\", \""+item.y+"\", \""+item.id+"\", \""+item.place_name+"\", true";
+			if(item.road_address_name =='') addr = item.address_name;
+			else addr = item.road_address_name;
+			listHtml += "<dd style='boder 1px sold'>"
+					 + "<a href='javascript:fn_showPoi("+ showPoiIcon +")' title= " + item.address_name +">"
+					 + "<span>" + addr +"("+item.place_name+")</span>"
+					 + "</a>"
+					 + "</dd>\n";
+		}
+		listHtml += "</dl>\n"
+	}
+	
+	$("#list-box").html(listHtml);
+}
+
+function fn_showPoi(x,y,id,name,transform) {
+	for (var i=0; i<vectorSearchIconLayers.length; i++) {
+		map.removeLayer(vectorSearchIconLayers[i]);
+	}
+	vectorSearchIconLayers = [];
+	makeSearchMapIconLayer([x*1, y*1], "POI", id, name, transform);
+}
+
+function makeSearchMapIconLayer(coordinates, layerGubn, code, name, transform) {
+	var iconImg = new Image();
+	iconImg.src = "/common/img/map/tit_pin_blue.png";
+	
+	var iconWidth;
+	var iconHeight;
+	var iconScale;
+	
+	//이미지 로드 후 아이콘 그리기
+	iconImg.onload = function() {
+		iconWidth = parseInt(iconImg.width)/2;
+		iconHeight = parseInt(iconImg.height);
+		
+		iconScale = 38 / parseInt(iconImg.width);
+		
+		var iconPoint = new ol.geom.Point(coordinates);
+		if (transform == false) {
+			if (hpMapDivCd == "N") {
+				iconPoint = iconPoint.transform('EPSG:5181',epsgDaum);
+			}
+		}
+		if (transform == true) {		
+			iconPoint = iconPoint.transform(epsg4326, epsgDaum);
+		}
+		var vectorSearchIconLayer = new ol.layer.Vector({
+			name: 'Map' + code,
+		    source: new ol.source.Vector({
+		        features: [new ol.Feature({
+		            geometry: iconPoint,
+		            name: name,
+		            code: code,
+		            desc: name,
+		            draggable: false,
+		            coordinates: coordinates,
+		            layerGubn : layerGubn,
+		            data: []
+		        })]
+		    }),
+			style: new ol.style.Style({
+				image: new ol.style.Icon(({
+					anchor: [iconWidth, iconHeight], //아이콘 크기에 따라 유동적으로 변경 필요
+					anchorXUnits: 'pixels',
+					anchorYUnits: 'pixels',
+					src: iconImg.src,
+					scale: iconScale
+				}))
+			})
+		}); 
+		
+		map.addLayer(vectorSearchIconLayer);
+		vectorSearchIconLayers.push(vectorSearchIconLayer);
+		
+		//map.getView().setZoom(12);
+		map.getView().setCenter(iconPoint.getCoordinates());
+		//map.updateSize();
+		
+    };
+}
+
+$(document).ready(function() {
+	$("#searchMapTxt").keydown(function(e) {
+		if(e.keyCode=="13") {
+			fn_searchPoiMap()
+		}
+	});
+});
+</script>
+
+<div class="map-right-box">
+	<div class="map-type" style="z-index: 1000;">
+		<div>
+			<a href="javascript:void(0)" class="map-type-04 text-center" onclick="fn_logHistory()" style="display: none;" data-toggle="modal" data-target="#pop01" title="소통이미지">소통<br/>이미지</a>
+			<a href="javascript:void(0)" class="map-type-04 text-center" style="font-size: 14px; font-family: 'NanumGothic', 'NanumGothicBold', 'serif'" onclick="fn_openSearch()"  id="searchPoiBtn" title="위치검색">위치<br/>검색</a>
+			<a href="javascript:void(0)" class="map-type-99"  onclick="fn_colorblind_traffic(this);" title="색각이상자용"><span class="blind">색각이상자용</span></a>
+			<a href="javascript:void(0)" class="map-type-03 active" onclick="setMapLayerVisible('03');" title="일반지도"><span class="blind">일반지도</span></a>
+			<a href="javascript:void(0)" class="map-type-01" onclick="setMapLayerVisible('01');" title="위성지도"><span class="blind">위성지도</span></a>
+			<a href="javascript:void(0)" class="map-type-02" onclick="setMapLayerVisible('02');" title="로드뷰"><span class="blind">로드뷰</span></a>
+		</div>
+	</div>
+<div class="map-search-box" id="contents-search-area">
+	<div class="search-box" id="searchBox" style="display:none;">
+		<table>
+			<tbody>
+				<tr>
+					<td style="vertical-align:top;">
+						<input type="text" class="int-search" id="searchMapTxt" placeholder="위치를 입력하세요" title="위치검색">
+					</td>
+					<td>
+						<input type="button" class="int-btn" id="searchMapBtn" style="text-indent: -99999px;" value="위치검색" onclick="fn_searchPoiMap()">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="list-box" id="list-box" style="display:none; height: 250px; overflow: scroll;">
+	</div>
+</div>
+	<a href="javascript:void(0)" class="map-legend" onclick="maplegendBtn();" style="background-color: #fff;">
+		<span class="txt">범례</span>
+		<span class="icon"></span>
+	</a>
+	<div class="map-legend-dtl">
+		<a href="javascript:void(0)"><span class="btn-close-legend" onclick="maplegendCloseBtn();">X</span></a>
+		<table class="legendTbl">
+			<caption>지도 범례</caption>
+			<colgroup>
+				<col style="width: 20%">
+				<col style="width: 20%">
+				<col style="width: 20%">
+				<col style="width: 20%">
+				<col style="width: 20%">
+			</colgroup>
+			<tr>
+				<th class="text-center">(km/h)</th>
+				<th class="text-center th-green">원활</th>
+				<th class="text-center th-yellow">서행</th>
+				<th class="text-center th-red">정체</th>
+				<th class="text-center th-gray">정보없음</th>
+			</tr>
+			<tr>
+				<td class="text-center">일반도로</td>
+				<td class="text-center">25이상</td>
+				<td class="text-center">15~25</td>
+				<td class="text-center">15미만</td>
+				<td class="text-center">-</td>
+			</tr>
+			<tr>
+				<td class="text-center">도시고속</td>
+				<td class="text-center">50이상</td>
+				<td class="text-center">30~50</td>
+				<td class="text-center">30미만</td>
+				<td class="text-center">-</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="map-right-box map-right-more-box" style="z-index: 1000;">
+	<div class="map-icon-menu">
+		<ul class="icon-menu">
+			<li class="m-subway mfLeft mfBorder" onclick="setLayerVisible('MapLayer_SubwayInfo', '', 9);" id="MapLayer_SubwayInfo"></li>
+			<li class="m-bus mfLeft mfBorder" onclick="setLayerVisible('MapLayer_BusInfo', '', 11);" id="MapLayer_BusInfo"></li>
+			<!--  <li class="m-park mfLeft mfBorder" onclick="setLayerVisible('MapLayer_ParkInfo', '', 11);" id="MapLayer_ParkInfo"></li> -->
+		</ul>	
+	</div>
+	
+	<div class="map-zoom-slider">
+		<div class="range-plus">+</div>
+		<div class="range-minus">-</div>
+	</div>
+</div>
+		
+		<div id="popup" class="map_layer" style="z-index:10000000;">
+			<a href="javascript:void(0)" id="popup-refresh" class="close" style="right:40px;background:url('/common/img/map/layer_refresh.png') center center no-repeat; display: none;" ><span class="blind">새로고침</span></a>
+			<a href="javascript:void(0)" id="popup-closer" class="close"><span class="blind">닫기</span></a>
+            <div id="popup-content"></div>
+		</div>
+		<div id="info"></div>
+	</div>
+</div>
+
+<script>
+var parameterX;
+var parameterY;
+var parameterLinkId;
+function fn_getMainAccList(ingYn) {
+	var data = {sIngYn: ingYn};
+	commonAjax(data, "/main/selectAccList.do", callback = function(returnData) {
+		if (returnData != null && returnData.rows != undefined && returnData.rows.length > 0) {
+			var rowData = returnData.rows;
+			
+			var accAllCnt1 = 0, accAllCnt2 = 0, accCnt11 = 0, accCnt12 = 0, accCnt13 = 0, accCnt14 = 0;
+			var accInfo11 = '', accInfo12 = '', accInfo13 = '', accInfo14 = '', accInfo2 = '';
+			
+			if (ingYn == "Y") { //진행중
+				$("#nowTime1").html(rowData[0].nowTime.substring(8,10)+":"+rowData[0].nowTime.substring(10));
+				$("#nowTime2").html(rowData[0].nowTime.substring(8,10)+":"+rowData[0].nowTime.substring(10));
+				$("#nowTime3").html(rowData[0].nowTime.substring(8,10)+":"+rowData[0].nowTime.substring(10));
+				$("#nowTime4").html(rowData[0].nowTime.substring(8,10)+":"+rowData[0].nowTime.substring(10));
+				
+				for (var i=0; i<rowData.length; i++) {
+					if(gAccid!=null&&gAccid==rowData[i].accId){
+						parameterX = rowData[i].posX;
+						parameterY = rowData[i].posY;
+						parameterLinkId = rowData[i].linkId;
+					}
+					accAllCnt1 += 1;
+					
+					var accHtml = '<a href="javascript:fn_goAccIcon(\''+rowData[i].accId+'\', \''+rowData[i].linkId+'\', \''+rowData[i].posX+'\', \''+rowData[i].posY+'\')" class="list-group-item w-list-group-item">\n'
+					            + '<span class="icon-box"><img src="/images/map/'+rowData[i].accType+'.png" alt="'+rowData[i].accTypeNm+'"></span>\n'
+					            + '<div class="acc-txt">\n'
+					            + '<h5 class="list-group-item-heading">' + rowData[i].accInfo;
+					if (rowData[i].accRoadCode == "009") {
+						accHtml += ' <small class="label label-danger">전면통제</small>\n'
+					} else if (rowData[i].accRoadCode == "010") {
+						accHtml += ' <small class="label label-warning">부분통제</small>\n'
+					}
+					accHtml += '</h5>\n'
+					         + '<div class="date">\n'
+					         + '<small>발생일시 ' + rowData[i].occrDate.substring(4,6) + '.' + rowData[i].occrDate.substring(6) + ' ' + rowData[i].occrTime.substring(0,2) + ':' + rowData[i].occrTime.substring(2,4) + '<br/>\n'
+					         + '완료예정 ' + rowData[i].clrDate.substring(4,6) + '.' + rowData[i].clrDate.substring(6) + ' ' + rowData[i].clrTime.substring(0,2) + ':' + rowData[i].clrTime.substring(2,4) + '</small>\n'
+					         + '</div>\n'
+					         + '</div>\n'
+					         + '</a>\n';
+					
+					accCnt11 += 1;
+					accInfo11 += accHtml;
+					
+					/* if (rowData[i].accType == "A01" || rowData[i].accType == "A02" || rowData[i].accType == "A03"
+						|| rowData[i].accType == "A06" || rowData[i].accType == "A07" || rowData[i].accType == "A08") {
+						accCnt12 += 1;
+						accInfo12 += accHtml;
+					} else if (rowData[i].accType == "A04" || rowData[i].accType == "A09" || rowData[i].accType == "A10") {
+						accCnt13 += 1;
+						accInfo13 += accHtml;
+					} else {
+						accCnt14 += 1;
+						accInfo14 += accHtml;
+					} */
+					
+					if (rowData[i].accType == "A04" || rowData[i].accType == "A10") {
+						accCnt13 += 1;
+						accInfo13 += accHtml;
+					} else if (rowData[i].accType == "A08" || rowData[i].accType == "A09") {
+						accCnt14 += 1;
+						accInfo14 += accHtml;
+					} else {
+						accCnt12 += 1;
+						accInfo12 += accHtml;
+					}
+				}
+				
+				$("#accAllCnt1").html(accAllCnt1+" 건");
+				
+				$("#accCnt11").html(accCnt11);
+				$("#accCnt12").html(accCnt12);
+				$("#accCnt13").html(accCnt13);
+				$("#accCnt14").html(accCnt14);
+				
+				$("#accInfo11").html(accInfo11);
+				$("#accInfo12").html(accInfo12);
+				$("#accInfo13").html(accInfo13);
+				$("#accInfo14").html(accInfo14);
+			} else { //예정
+				var chkOccrDate = '';
+				
+				for (var i=0; i<rowData.length; i++) {
+					accAllCnt2 += 1;
+					
+					var accHtml = '';
+					if (chkOccrDate != rowData[i].occrDate) {
+						if (i > 0) accHtml += '</div>\n</div>\n'; //list-group w-list-group w1140
+						accHtml += '<div style="width: 100%; float: left; padding-bottom: 5px;">\n'
+							     + '<div class="demo-timeline" style="width: 100px;">\n'
+							     + '<div class="dt-cycle text-center" style="margin-top: 0px;">\n';
+						if (rowData[0].nowTime.substring(0,8) == rowData[i].occrDate) {
+							accHtml += '<h4>오늘</h4>\n'
+							         + '<h5>'+rowData[i].nowTime.substring(8,10)+":"+rowData[i].nowTime.substring(10)+'</h5>\n';
+						} else {
+							accHtml += '<h4>'+rowData[i].occrDate.substring(4,6)+'.'+rowData[i].occrDate.substring(6,8)+'</h4>\n'
+							         + '<h5>'+rowData[i].occrDate.dateFormat("e")+'</h5>\n';
+						}
+						accHtml += '</div>\n' //dt-cycle text-center
+						         + '</div>\n' //demo-timeline
+						         + '<div class="list-group w-list-group w1140">\n'
+						         + '<a class="list-group-item w-list-group-item" style="padding-right: 0px; padding-top: 20px;">\n'
+					             + '<span class="icon-box"><img src="/images/map/'+rowData[i].accType+'.png" alt="'+rowData[i].accTypeNm+'"></span>\n'
+					             + '<div class="acc-txt">\n'
+					             + '<h5 class="list-group-item-heading">'+rowData[i].accInfo+'</h5>\n'
+					             + '<div class="date">\n'
+					             + '<small>발생일시 ' + rowData[i].occrDate.substring(4,6) + '.' + rowData[i].occrDate.substring(6) + ' ' + rowData[i].occrTime.substring(0,2) + ':' + rowData[i].occrTime.substring(2,4) + '<br/>\n'
+					             + '완료예정 ' + rowData[i].clrDate.substring(4,6) + '.' + rowData[i].clrDate.substring(6) + ' ' + rowData[i].clrTime.substring(0,2) + ':' + rowData[i].clrTime.substring(2,4) + '</small>\n'
+					             + '</div>\n' //date
+					             + '</div>\n' //acc-txt
+					             + '</a>\n';
+					} else {
+						accHtml += '<a class="list-group-item w-list-group-item" style="padding-right: 0px;">\n'
+					             + '<span class="icon-box"><img src="/images/map/'+rowData[i].accType+'.png" alt="'+rowData[i].accTypeNm+'"></span>\n'
+					             + '<div class="acc-txt">\n'
+					             + '<h5 class="list-group-item-heading">'+rowData[i].accInfo+'</h5>\n'
+					             + '<div class="date">\n'
+					             + '<small>발생일시 ' + rowData[i].occrDate.substring(4,6) + '.' + rowData[i].occrDate.substring(6) + ' ' + rowData[i].occrTime.substring(0,2) + ':' + rowData[i].occrTime.substring(2,4) + '<br/>\n'
+					             + '완료예정 ' + rowData[i].clrDate.substring(4,6) + '.' + rowData[i].clrDate.substring(6) + ' ' + rowData[i].clrTime.substring(0,2) + ':' + rowData[i].clrTime.substring(2,4) + '</small>\n'
+					             + '</div>\n' //date
+					             + '</div>\n' //acc-txt
+					             + '</a>\n';
+					}
+					
+					chkOccrDate = rowData[i].occrDate;
+					
+					accInfo2 += accHtml;
+				}
+				
+				$("#accAllCnt2").html(accAllCnt2+" 건");
+				
+				if (accInfo2 != "") accInfo2 += '</div>\n</div>\n'; //list-group w-list-group w1140
+				$("#accInfo2").html(accInfo2);
+			}
+		}
+		if (gAccid != null && gAccid != "null" && parameterLinkId!=undefined) {
+			fn_goAccIcon(gAccid,parameterLinkId,parameterX,parameterY);
+			$("#d0").removeClass("active");
+			$("#d3").addClass("active");
+			$(".w-nav").children().first().removeClass("active");
+			$(".w-nav").children().last().addClass("active");
+		}
+	}, true);
+}
+
+function fn_getMainNoticeList() {
+	var data = {mainBdwrRowNum: 10};
+	commonAjax(data, "/notice/selectNoticeList.do", callback = function(returnData) {
+		if (returnData != null && returnData.rows != undefined && returnData.rows.length > 0) {
+			var rowData = returnData.rows;
+			
+			var notiHtml = '';
+			for (var i=0; i<rowData.length; i++) {
+				notiHtml += '<a href="javascript:fn_goNotiView(\''+rowData[i].blbdDivCd+'\',\''+rowData[i].bdwrSeq+'\')" class="list-group-item w-list-group-item">\n'
+				          + '<div class="notice-txt">\n'
+				          + '<span class="mdot">&middot;</span>\n';
+				if (rowData[i].bdwrDivCd == "0201") {
+					notiHtml += '<span class="label label-danger">통제안내</span>\n';
+				} else if (rowData[i].bdwrDivCd == "0202") {
+					notiHtml += '<span class="label label-warning">버스안내</span>\n';
+				} else if (rowData[i].bdwrDivCd == "0203") {
+					notiHtml += '<span class="label label-success">정책안내</span>\n';
+				} else if (rowData[i].bdwrDivCd == "0205") {
+					notiHtml += '<span class="label label-weather">기상안내</span>\n';
+				} else {
+					notiHtml += '<span class="label label-info">기타안내</span>\n';
+				}
+				//notiHtml += '<h5 class="list-group-item-heading notice-tit">'+rowData[i].bdwrTtlNm+'</h5>\n'
+				notiHtml += '<h4 class="list-group-item-heading notice-tit" style="font-size:14px;">'+rowData[i].bdwrTtlNm+'</h4>\n'						
+				          + '<div class="date"><small>'+rowData[i].createDate.substring(0,10).replace("-",".").replace("-",".")+'</small></div>\n'
+				          + '</div>\n'
+				          + '</a>\n';
+			}
+			
+			$("#notiList").html(notiHtml);
+		}
+	}, true);		
+}
+
+/*********************************************************
+ * 공지사항 상세화면 이동
+ *********************************************************/
+function fn_goNotiView (blbdDivCd, bdwrSeq) {
+	var url = "/notice/openNoticeView.do";
+	var param = [{name: 'blbdDivCd', value: blbdDivCd}, {name:'bdwrSeq', value:bdwrSeq}];
+	goPostRqst(url, param);
+}
+
+/*********************************************************
+ * 돌발 이동
+ *********************************************************/
+function fn_goAccIcon(accId, linkId, x, y) {
+	var coordinate = [x*1, y*1];
+	map.getView().setZoom(10);
+	if(hpMapDivCd == "N"){
+		map.getView().setZoom(9);
+		coordinate = ol.proj.transform(coordinate,'EPSG:5181', epsgDaum);
+	} else if(hpMapDivCd == "S") {
+		coordinate = ol.proj.transform(coordinate,'EPSG:5181', epsgDaum);
+	}
+	
+	map.getView().setCenter(coordinate);
+	
+	if (!$(".m-alert").hasClass("active")) {
+		fn_makeAccLayer();
+	}
+	
+	setTimeout(function() {
+		var feature = {'code': accId, 'linkId': linkId};
+		openPopupAcc(feature, coordinate);
+	}, 100);
+}
+
+/*********************************************************
+ * 트위터 정보
+ *********************************************************/
+function fn_getMainTwitterInfo() {
+	
+	var data = {};
+	commonAjax(data,"main/selectTwitterInfo.do",callback=function(returnData){
+		var rowData = returnData.rows;
+		
+		var twitterHtml = "";
+		for(var i=0; i<10; i++) {
+			var snsImgSize = parseInt(rowData[i].snsImgSize);
+			var sns = rowData[i].snsMsg;
+			var snsMsg = "";
+			var snsMsg2 = "";
+			if(sns.indexOf("https") > 0){
+			 	snsMsg = sns.substring(0,sns.indexOf("https"));
+			 	snsMsg2 = sns.substring(sns.indexOf("https"),sns.length);
+			} else {
+				snsMsg = sns;
+			} 
+			var gAccId = sns.substring(sns.indexOf("=")+1,sns.length);
+			if(snsImgSize > 0) {
+				twitterHtml += '<div style="border:0px solid black; margin:10px 10px 5px 10px; border-bottom : 1px solid #ddd">'
+				//twitterHtml += '</span><h4><img style="width:20px; height:20px; margin-right:5px;" src="/images/main/t02.png">Seoul TOPIS<span style="font-size:12px;font-weight:normal;">@seoultopis</span></h4>';
+				twitterHtml += '<span>'+snsMsg+'</span>'
+				if(sns.indexOf("https") > 0){
+					twitterHtml += '<br><a style="color:#3366cc; font-size:12px;" href="javascript:fn_getAccList('+gAccId+')">'+snsMsg2+'</a>'
+				}
+				twitterHtml += '<div style="margin-top:5px;"><img style="width:100%; margin-bottom:10px;" alt="관련 이미지" src="data:image/png;base64,'+rowData[i].snsImg+'"></div>';
+				twitterHtml += '</div>'
+			}else{
+				twitterHtml += '<div style="border:0px solid black; margin:10px 10px 5px 10px; border-bottom : 1px solid #ddd">'
+				//twitterHtml += '</span><h4><img style="width:20px; height:20px; margin-right:5px;" src="/images/main/t02.png">Seoul TOPIS<span style="font-size:12px;font-weight:normal;">@seoultopis</span></h4>';
+				twitterHtml += '<span>'+snsMsg+'</span>'
+				twitterHtml += '<br><a style="color:#3366cc; font-size:12px; margin-bottom:10px;" href="javascript:fn_getAccList('+gAccId+')">'+snsMsg2+'</a>'
+				twitterHtml += '</div>'
+			}
+		}
+		$(".tw-box").html(twitterHtml);
+	});
+}
+
+function fn_getAccList(accId){
+	fn_getMainAccList("Y");
+	gAccid = accId;
+};
+
+$(document).on('shown.bs.tab', '.main-nav li a[data-toggle="tab"], .w-nav li a[data-toggle="tab"]', function(e) {
+	$(e.target).attr('aria-selected', true).removeAttr('aria-expanded');
+	
+	if(e.relatedTarget) {
+		$(e.relatedTarget).attr('aria-selected', false).removeAttr('aria-expanded');
+	}
+})
+
+$(document).on('click', 'a[href="#profile"], a[href="#notice"]', function(e) {
+	var tabsA = document.querySelectorAll('.w-nav li[role="presentation"] a[role="tab"]');
+
+	for(var j = 0; j < tabsA.length; j++) {
+		tabsA[j].removeAttribute('aria-expanded');
+		tabsA[j].removeAttribute('aria-selected');
+	}
+});
+
+
+$(document).on('click', 'a[href="#home"]', function(e) {
+	var tabsLi = document.querySelectorAll('.w-nav li');
+	var tabsA = document.querySelectorAll('.w-nav li[role="presentation"] a[role="tab"]');
+
+	for(var j = 0; j < tabsA.length; j++) {
+		tabsA[j].removeAttribute('aria-expanded');
+		tabsA[j].removeAttribute('aria-selected');
+		tabsLi[j].classList.remove("active");
+	}
+	$('.w-nav li[role="presentation"]:first').addClass('active');
+	$('.w-nav li[role="presentation"] a[role="tab"]').first().attr('aria-selected', true);
+	
+});
+
+
+
+</script>
+<!-- 실시간 교통정보 -->
+<div id="container" class="container bg-gray container-rt">
+	<!-- Example row of columns -->
+	<div class="row rt-box">
+		<div class="col-xs-12">
+			<div class="row">
+				<div class="col-xs-9">
+					<div class="h20"></div>			
+					
+					<!-- tabpanel -->
+					<div role="tabpanel">
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs nav-justified nav-pills main-nav" role="tablist">
+							<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" aria-selected="true"><h3>사고 및 통제 <span class="badge" id="accAllCnt1">0 건</span></h3></a></li>
+							<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><h3>이번 주 집회/행사(예정) <span class="badge" id="accAllCnt2">0 건</span></h3></a></li>
+							<li role="presentation" class=""><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab"><h3>공지사항 </h3></a></li>
+							<!--<li role="presentation"><a href="#comm" aria-controls="comm" role="tab" data-toggle="tab"><h3>주요도로 소통상황</h3></a></li>//-->
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							
+							<!-- Tab : 사고, 공사 등 통제 -->
+							<div role="tabpanel" class="tab-pane active acc-box" id="home">
+								<h3 class="blind">사고 및 통제</h3>
+								<div role="tabpanel">
+									<!-- Nav tabs -->
+									<ul class="nav nav-tabs nav-justified w-nav" role="tablist">
+										<li role="presentation" class="active"><a href="#d0" aria-controls="d0" role="tab" data-toggle="tab" aria-selected="true">전체 <span class="badge" id="accCnt11">0</span></a></li>
+										<li role="presentation"><a href="#d1" aria-controls="d1" role="tab" data-toggle="tab">사고/고장 <span class="badge" id="accCnt12">0</span></a></li>
+										<li role="presentation"><a href="#d2" aria-controls="d2" role="tab" data-toggle="tab">공사/집회 <span class="badge" id="accCnt13">0</span></a></li>
+										<li role="presentation"><a href="#d3" aria-controls="d3" role="tab" data-toggle="tab">기상/화재 <span class="badge" id="accCnt14">0</span></a></li>
+									</ul>											
+									<!-- Tab panes -->
+									<div class="tab-content w-tab-content">
+										<div role="tabpanel" class="tab-pane acc-pane active" id="d0">
+											<div class="dt-cycle text-center">
+												<h4>현재</h4>
+												<h5 id="nowTime1">00:00</h5>
+											</div>
+											<div class="list-group w-list-group w1140" id="accInfo11"></div>
+										</div>
+										<div role="tabpanel" class="tab-pane acc-pane" id="d1">
+											<div class="dt-cycle text-center">
+												<h4>현재</h4>
+												<h5 id="nowTime2">00:00</h5>
+											</div>
+											<div class="list-group w-list-group w1140" id="accInfo12"></div>
+										</div>
+										<div role="tabpanel" class="tab-pane acc-pane" id="d2">
+											<div class="dt-cycle text-center">
+												<h4>현재</h4>
+												<h5 id="nowTime3">00:00</h5>
+											</div>
+											<div class="list-group w-list-group w1140" id="accInfo13"></div>
+										</div>
+										<div role="tabpanel" class="tab-pane acc-pane" id="d3">
+											<div class="dt-cycle text-center">
+												<h4>현재</h4>
+												<h5 id="nowTime4">00:00</h5>
+											</div>
+											<div class="list-group w-list-group w1140" id="accInfo14"></div>
+										</div>
+									</div>
+								</div>								
+							</div>
+							<!-- Tab : 사고, 공사 등 통제 종료 -->
+							
+							<!-- Tab : 집회/행사 -->
+							<div role="tabpanel" class="tab-pane acc-box demo-line" id="profile">
+								<h3 class="blind">이번 주 집회/행사(예정)</h3>
+								<div role="tabpanel">
+									<!-- Tab panes -->
+									<div class="tab-content w-tab-content">
+										<div role="tabpanel" class="tab-pane active acc-pane demo-pane" id="accInfo2" tabindex=0></div>
+									</div>
+								</div>
+							</div>
+							<!-- Tab : 집회/행사 종료 -->
+							
+							<!-- Tab : 공지사항 -->
+							<div role="tabpanel" class="tab-pane notice-box" id="notice" style="margin-bottom: 0px;">
+								<h3 class="blind">공지사항</h3>
+<!-- 								<div class="btn-notice-more"><a href="/notice/openNoticeList.do" class="btn btn-default" role="button"><small class="glyphicon glyphicon-plus"></small> 더 보기</a></div>﻿ -->
+								<div role="tabpanel" class="tab-pane active notice-pane">
+									<div class="list-group w-list-group w1140" id="notiList" style="margin-bottom: 0px;"></div>
+								</div>
+							</div>
+							<!--Tab : 공지사항 종료 -->
+						</div>
+					</div>
+				</div>
+				
+				<!-- 트위터 실시간 교통정보 -->
+				<div class="col-xs-3">
+					<div class="h20"></div>
+					<h3 class="mTit" style="margin-bottom:19px;">실시간 서울시 교통정보</h3>
+					<div class="tw-box">
+						<!-- <a class="twitter-timeline" href="https://twitter.com/seoultopis?ref_src=twsrc%5Etfw">Tweets by seoultopis</a> <script async src="https://platform.twitter.com/widgets.js"></script> -->
+						<!--https://publish.twitter.com//-->
+					</div>					
+				</div>
+				
+			</div>				
+			<div class="h40"></div>			
+		</div>			
+	</div>					       
+</div>
+<!-- 실시간 교통정보 종료 //-->
+
+
+<script>
+function fn_getMainRefroomList(blbdDivCd, bdwrDivCd, divSeq) {
+	var data = {blbdDivCd: blbdDivCd, bdwrDivCd: bdwrDivCd, mainBdwrRowNum: 6};
+	commonAjax(data, "/refroom/selectRefRoomList.do", callback = function(returnData) {
+		if (returnData != null && returnData.rows != undefined && returnData.rows.length > 0) {
+			var rowData = returnData.rows;
+			
+			var refroomHtml = '';
+			if (divSeq == "1") {
+				refroomHtml = '<h4 class="tit">서울시 차량통행속도 보고서</h4>';
+			} else if (divSeq == "2") {
+				refroomHtml = '<h4 class="tit">도로별 일자별 통행속도 - '+bdwrDivCd+'년</h4>';
+			} else if (divSeq == "3") {
+				refroomHtml = '<h4 class="tit">서울시 교통량조사 보고서</h4>';
+			} else if (divSeq == "4") {
+				refroomHtml = '<h4 class="tit">지점별 일자별 교통량 - '+bdwrDivCd+'년</h4>';
+			}
+			
+/*  			 for (var i=0; i<6; i++) {
+				refroomHtml += '<div  class="col-xs-2 active">'
+				if (divSeq == "1" || divSeq == "3") {
+					refroomHtml += '<h5 tabindex="0" role="button" aria-pressed="false" style="cursor: pointer; color:#fff;" onkeydown="if(event.keyCode === 13) {fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\')};" onclick="fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\');">' + rowData[i].bdwrDivCd + '년&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom"></small></h5>'
+				} else if (divSeq == "2" || divSeq == "4") {
+					if (rowData[i] != undefined) {
+						refroomHtml += '<h5 tabindex="0" role="button" aria-pressed="false" style="cursor: pointer; color:#fff;" onkeydown="if(event.keyCode ===13) {fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\');}" onclick="fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\');">' + rowData[i].bdwrTtlNm.split("월")[0] + '월&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom"></small></h5>';
+					} else {
+						refroomHtml += '<h5>&nbsp;</h5>';
+					}
+				}
+				refroomHtml += '</div>';
+			} */
+			
+ 			for (var i=0; i<6; i++) {
+				refroomHtml += '<div class="col-xs-2 active">'
+				if (divSeq == "1" || divSeq == "3") {
+					if(divSeq == "1")
+						//refroomHtml += '<h5 tabindex="0" role="button" aria-pressed="false" style="cursor: pointer; color:#fff;" onkeydown="if(event.keyCode === 13) {fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\')};" onclick="fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\'); openSurvey()">' + rowData[i].bdwrDivCd + '년&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom"></small></h5>'
+						refroomHtml += '<h5 style="color:#fff;"><button type="button" style="display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:inherit;cursor:pointer;" onclick="fn_refRoomFileDown(\'' + rowData[i].apndFileNm + '\',\'' + rowData[i].apndFilePathNm + '\',\'' + rowData[i].bdwrSeq + '\',\'' + rowData[i].blbdDivCd + '\'); openSurvey();">' + rowData[i].bdwrDivCd + '년&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></small></button></h5>';
+					else
+						refroomHtml += '<h5 style="cursor: pointer; color:#fff;" onclick="fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\');">' + rowData[i].bdwrDivCd + '년&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom"></small></h5>'
+				} else if (divSeq == "2" || divSeq == "4") {
+					if (rowData[i] != undefined) {
+						//if(divSeq == "2") refroomHtml += '<h5 tabindex="0" role="button" aria-pressed="false" style="cursor: pointer; color:#fff;" onkeydown="if(event.keyCode ===13) {fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\');}" onclick="fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\'); openSurvey()">' + rowData[i].bdwrTtlNm.split("월")[0] + '월&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom"></small></h5>'; 
+						if (divSeq == "2") refroomHtml += '<h5 style="color:#fff;"><button type="button" style="display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:inherit;cursor:pointer;" onclick="fn_refRoomFileDown(\'' + rowData[i].apndFileNm + '\',\'' + rowData[i].apndFilePathNm + '\',\'' + rowData[i].bdwrSeq + '\',\'' + rowData[i].blbdDivCd + '\'); openSurvey();">' + rowData[i].bdwrTtlNm.split("월")[0] + '월&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></small></button></h5>';
+						//else refroomHtml += '<h5 tabindex="0" role="button" aria-pressed="false" style="cursor: pointer; color:#fff;" onkeydown="if(event.keyCode ===13) {fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\');}" onclick="fn_refRoomFileDown(\''+rowData[i].apndFileNm+'\', \''+rowData[i].apndFilePathNm+'\', \''+rowData[i].bdwrSeq+'\', \''+rowData[i].blbdDivCd+'\');">' + rowData[i].bdwrTtlNm.split("월")[0] + '월&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom"></small></h5>';
+						else refroomHtml += '<h5 style="color:#fff;"><button type="button" style="display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:inherit;cursor:pointer;" onclick="fn_refRoomFileDown(\'' + rowData[i].apndFileNm + '\',\'' + rowData[i].apndFilePathNm + '\',\'' + rowData[i].bdwrSeq + '\',\'' + rowData[i].blbdDivCd + '\');">' + rowData[i].bdwrTtlNm.split("월")[0] + '월&nbsp;&nbsp;<small class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></small></button></h5>';
+					} else {
+						refroomHtml += '<h5>&nbsp;</h5>';
+					}
+				}
+				refroomHtml += '</div>';
+			}
+			
+			$("#refroomList"+divSeq).html(refroomHtml);
+		}
+	}, true);		
+}
+
+/*********************************************************
+ * 첨부파일 다운로드
+ *********************************************************/
+function fn_refRoomFileDown(apndFileNm, apndFilePathNm, bdwrSeq, blbdDivCd) {
+	fn_fileDownloadRefRoom("/downloadFileRefRoom.do", apndFileNm, apndFilePathNm, bdwrSeq, blbdDivCd); // common.js
+}
+
+function openSurvey(){
+	
+ 	if(getCookie("closePopUp") != "end"){
+		$("#surveyConfirm").modal();
+ 	}
+}
+
+</script>
+<!-- 교통정보 //-->
+
+<script type="text/javascript">
+$(document).ready(function() {
+	/* $("#surveyConfirm").modal(); 
+	customPopup.confirm("설문조사에 참여하시겠습니까?",function(){
+		var openPopup = window.open('../openSurvey.do','Survey','width=1200, height=800, scrollbars=1');
+	});  */
+	
+	
+	
+	
+});
+function openModal(){
+	$("#surveyConfirm").modal();
+}
+
+function checkConfirm(){
+	var openPopup = window.open('../openSurvey.do','Survey','width=1200, height=800, scrollbars=1, resizable=1');
+}
+
+function day(){
+	setCookie("closePopUp", "end", "1");
+}
+
+function week(){
+	setCookie("closePopUp", "end", "7");
+}
+
+function setCookie(cname, value, expire) {
+	   var todayValue = new Date();
+	   // 오늘 날짜를 변수에 저장
+
+	   todayValue.setDate(todayValue.getDate() + expire);
+	   document.cookie = cname + "=" + encodeURI(value) + "; expires=" + todayValue.toGMTString() + "; path=/;";
+	}
+	
+function getCookie(name) {
+	   var cookieName = name + "=";
+	   var x = 0;
+	   while ( x <= document.cookie.length ) {
+	      var y = (x+cookieName.length);
+	      if ( document.cookie.substring( x, y ) == cookieName) {
+	         if ((lastChrCookie=document.cookie.indexOf(";", y)) == -1)
+	            lastChrCookie = document.cookie.length;
+	         return decodeURI(document.cookie.substring(y, lastChrCookie));
+	      }
+	      x = document.cookie.indexOf(" ", x ) + 1;
+	      if ( x == 0 )
+	         break;
+	      }
+	   return "";
+	}
+</script>
+<div class="modal fade bs-example-modal-lg" id="surveyConfirm" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 999999999; overflow: hidden;">
+	<div class="modal-dialog modal-lg" style="width: 25%;">
+		<div class="modal-content text-center" style="height: calc(100% - 800px);">
+			<div role="tabpanel" style="width: 100%; height:60%; font-size: 20px; font-weight: bold; padding-top: 5%; padding-bottom: 5%">
+				<span>설문조사에 참여하시겠습니까?</span>
+				<label style="font-size: 15px; font-weight: normal; margin-top: 10px;">※ 팝업 차단 해제 후 설문조사 이용이 가능합니다.</label>
+			</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal" onclick="checkConfirm();">확인</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal" onclick="day()">오늘 하루 그만 보기</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal" onclick="week()">1주일 동안 그만 보기</button>
+		</div>
+		</div>
+	</div>
+</div>
+
+<div class="container data-area">		
+	<div class="h20"></div>
+	<div class="row mtSection">
+		<h3 class="mTit text-left pl20">서울시 교통정보</h3>
+		<div class="row">
+			<div class="col-xs-3">			
+				<div class="mt-data-p">
+					<h4 class="text-center">&nbsp;<!-- 제목을 입력하세요.<br/>두 줄 이상 --></h4>					
+				</div>				
+			</div>	
+			<div class="col-xs-9">
+				<div role="tabpanel" class="main-data-box">
+					<div class="data-box-header">
+						<h3 class="data-box-tit">자료실</h3>
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation"><a href="#trafficvol" aria-controls="trafficvol" role="tab" data-toggle="tab">교통량정보</a></li>
+							<li role="presentation" class="active"><a href="#velocity" aria-controls="velocity" role="tab" data-toggle="tab">속도정보</a></li>
+						</ul>
+					</div>
+
+					<!-- Tab panes -->
+					<div class="tab-content data-box-dtl">
+						<!--속도정보 시작//-->
+						<div role="tabpanel" class="tab-pane active" id="velocity">
+							<div class="mtv-box">
+								<div class="box-body clearb">
+									<div class="h10"></div>
+									<div class="row" id="refroomList1"></div>	
+									<div class="row" id="refroomList2"></div>				
+								</div>				
+							</div>
+						</div>
+						<!--속도정보 끝//-->
+						
+						<!--교통량정보 시작//-->
+						<div role="tabpanel" class="tab-pane" id="trafficvol">
+							<div class="mtv-box">
+								<div class="box-body clearb">
+									<div class="h10"></div>
+									<div class="row" id="refroomList3"></div>	
+									<div class="row" id="refroomList4"></div>				
+								</div>				
+							</div>
+						</div>
+						<!--교통량정보 끝//-->
+					</div>
+				</div>
+			</div>		
+		</div>
+		<div class="h20"></div>
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="mtBox mtBox01">
+					<h3>open API </h3>
+					<p>서울시의 다양한 교통정보를 open API로 제공합니다.</p>
+					<a class="btn btn-default" href="/refRoom/openRefRoom_4.do">바로가기 <small>></small></a>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="mtBox mtBox02">
+					<h3>대중교통 정보</h3>
+					<ul>
+						<li><a href="/refRoom/openRefRoom_3_1.do">버스 운행노선 현황</a><small><span class="glyphicon glyphicon-menu-right"></span></small></li>
+						<li><a href="/refRoom/openRefRoom_3_4.do">대중교통 O/D 현황</a><small><span class="glyphicon glyphicon-menu-right"></span></small></li>
+					</ul>
+				</div>
+			</div>	
+			<div class="col-xs-3">
+				<div class="mtBox mtBox03">
+					<h3>교통현황</h3>
+					<ul>
+						<li><a href="/refRoom/openRefRoom_1_3.do">일자별 서울시 속도</a><small><span class="glyphicon glyphicon-menu-right"></span></small></li>
+						<li><a href="/prdc/openTodayFcst.do">교통예보</a> <small><span class="glyphicon glyphicon-menu-right"></span></small></li>
+<!-- 						<li><a href="/prdcBus/openPrdcBus.do">버스 통행시간 예보</a> <small><span class="glyphicon glyphicon-menu-right"></span></small></li> -->
+						<!-- <li><a href="/refRoom/openRefRoom_5.do">보행자 사고</a> <small><span class="glyphicon glyphicon-menu-right"></span></small></li>
+						uinetworks_20200907
+						<li><a href="/openRider/openRider.do">자전거 환경개선</a> <small><span class="glyphicon glyphicon-menu-right"></span></small></li>
+						uinetworks_20200907 -->
+					</ul>
+				</div>
+			</div>	
+			<div class="col-xs-3">
+				<div class="mtBox mtBox04">
+					<h3>기타정보</h3>
+					<ul>
+						<!-- <li><a href="/refRoom/openRefRoom_3_2.do">집회/행사 교통관리</a> <small><span class="glyphicon glyphicon-menu-right"></span></small></li> -->
+						<li><a href="/refRoom/openRefRoom_3_3.do">기반 정보</a> <small><span class="glyphicon glyphicon-menu-right"></span></small></li>
+						<li><a href="/refRoom/openRefRoom_3_5.do">C-ITS 자료실</a> <small><span class="glyphicon glyphicon-menu-right"></span></small></li>
+					</ul>
+				</div>
+			</div>				
+		</div>
+	</div>
+	<div class="h40"></div>
+</div>
+<!-- 교통정보 종료 //-->
+
+
+<script>
+function fn_getMainTrfcList1() {
+	commonAjax(null, "/main/selectTrafficList1.do", callback = function(returnData) {
+		if (returnData != null && returnData.rows != undefined && returnData.rows.length > 0) {
+			var rowData = returnData.rows;
+			
+			var trfc11Html = '', trfc12Html = '';
+			
+			for (var i=0; i<rowData.length; i++) {
+				trfc11Html += '<tr>'
+		                    + '<td>'
+		                    + '<span class="txt-rank '+(i<3?'active-top':'')+'">'+rowData[i].rNum+'</span>'
+		                    + '<ul>'
+		                    + '<li class="txt-place">'+rowData[i].s1Nm+'</li>'
+		                    + '<li class="txt-place-num" style="text-align: left;">'+rowData[i].s1Id+'<span class="blind">정류장 ID</span></li>'
+		                    + '</ul>'
+		                    + '</td>'
+		                    + '<td class="text-right">'
+		                    + '<span class="icon-people glyphicon glyphicon-user"><span class="blind">이용자수</span></span><span class="txt-cnt">&nbsp;&nbsp;'+addComma(rowData[i].s1Cnt)+'</span>'
+		                    + '</td>'
+		                    + '</tr>';
+		        
+		        trfc12Html += '<tr>'
+		                    + '<td>'
+		                    + '<span class="txt-rank '+(i<3?'active-top':'')+'">'+rowData[i].rNum+'</span>'
+		                    + '<ul>'
+		                    + '<li class="txt-place">'+rowData[i].s2Nm+'</li>'
+		                    + '<li class="txt-place-num" style="text-align: left;">'+rowData[i].s2Id+'<span class="blind">정류장 ID</span></li>'
+		                    + '</ul>'
+		                    + '</td>'
+		                    + '<td class="text-right">'
+		                    + '<span class="icon-people glyphicon glyphicon-user"><span class="blind">이용자수</span></span><span class="txt-cnt">&nbsp;&nbsp;'+addComma(rowData[i].s2Cnt)+'</span>'
+		                    + '</td>'
+		                    + '</tr>';
+			}
+			
+			$("#trfc11").html(trfc11Html);
+			$("#trfc12").html(trfc12Html);
+		}
+	}, true);
+}
+
+function fn_getMainTrfcList2() {
+	commonAjax(null, "/main/selectTrafficList2.do", callback = function(returnData) {
+		if (returnData != null && returnData.rows != undefined && returnData.rows.length > 0) {
+			var rowData = returnData.rows;
+			
+			var trfc21Html = '', trfc22Html = '';
+			
+			for (var i=0; i<rowData.length; i++) {
+				trfc21Html += '<tr>'
+		                    + '<td>'
+		                    + '<span class="txt-rank '+(i<3?'active-top':'')+'">'+rowData[i].rNum+'</span>'
+		                    + '<ul>'
+		                    + '<li class="txt-place">'+rowData[i].s1Nm+'</li>'
+		                    + '<li class="txt-place-num" style="text-align: left;">'+rowData[i].s1Ars+'<span class="blind">ARS ID</span></li>'
+		                    + '</ul>'
+		                    + '</td>'
+		                    + '<td class="text-right">'
+		                    + '<span class="icon-people glyphicon glyphicon-user"><span class="blind">이용자수</span></span><span class="txt-cnt">&nbsp;&nbsp;'+addComma(rowData[i].s1Cnt)+'</span>'
+		                    + '</td>'
+		                    + '</tr>';
+		        
+		        trfc22Html += '<tr>'
+		                    + '<td>'
+		                    + '<span class="txt-rank '+(i<3?'active-top':'')+'">'+rowData[i].rNum+'</span>'
+		                    + '<ul>'
+		                    + '<li class="txt-place">'+rowData[i].s2Nm+'</li>'
+		                    + '<li class="txt-place-num" style="text-align: left;">'+rowData[i].s2Ars+'<span class="blind">ARS ID</span></li>'
+		                    + '</ul>'
+		                    + '</td>'
+		                    + '<td class="text-right">'
+		                    + '<span class="icon-people glyphicon glyphicon-user"><span class="blind">이용자수</span></span><span class="txt-cnt">&nbsp;&nbsp;'+addComma(rowData[i].s2Cnt)+'</span>'
+		                    + '</td>'
+		                    + '</tr>';
+			}
+			
+			$("#trfc21").html(trfc21Html);
+			$("#trfc22").html(trfc22Html);
+		}
+	}, true);
+}
+
+function fn_getMainTrfcList3() {
+	commonAjax(null, "/main/selectTrafficList3.do", callback = function(returnData) {
+		if (returnData != null && returnData.rows != undefined && returnData.rows.length > 0) {
+			var rowData = returnData.rows[0];
+			var trfc1303Html = '', trfc1304Html = '', trfc1307Html = '', trfc1308Html = '', trfc1311Html = '', trfc1312Html = '', trfc1315Html = '', trfc1316Html = '';
+						  
+			$("#trfc1301").addClass("p"+rowData.tdSubTimeRate);
+			$("#trfc1302").html(rowData.tdSubTime+"분");
+			if (rowData.ydSubTimeRate >= 0) trfc1303Html += '<span class="blind">상승</span>';
+			else trfc1303Html += '<span class="blind">하락</span>';
+			trfc1303Html += ' ' + rowData.ydSubTimeRate;
+			$("#trfc1303").html(trfc1303Html);
+			$("#trfc1303").addClass(rowData.ydSubTimeRate>=0?"glyphicon-triangle-top stat-top":"glyphicon-triangle-bottom stat-down");
+			if (rowData.lwSubTimeRate >= 0) trfc1304Html += '<span class="blind">상승</span>';
+			else trfc1304Html += '<span class="blind">하락</span>';
+			trfc1304Html += ' ' + rowData.lwSubTimeRate;
+			$("#trfc1304").html(trfc1304Html);
+			$("#trfc1304").addClass(rowData.lwSubTimeRate>=0?"glyphicon-triangle-top stat-top":"glyphicon-triangle-bottom stat-down");
+			
+					
+			$("#trfc1305").addClass("p"+rowData.tdSubDstnRate);
+			$("#trfc1306").html(rowData.tdSubDstn+"km");
+			if (rowData.ydSubDstnRate >= 0) trfc1307Html += '<span class="blind">상승</span>';
+			else trfc1307Html += '<span class="blind">하락</span>';
+			trfc1307Html += ' ' + rowData.ydSubDstnRate;
+			$("#trfc1307").html(trfc1307Html);
+			$("#trfc1307").addClass(rowData.ydSubDstnRate>=0?"glyphicon-triangle-top stat-top":"glyphicon-triangle-bottom stat-down");
+			if (rowData.lwSubDstnRate >= 0) trfc1308Html += '<span class="blind">상승</span>';
+			else trfc1308Html += '<span class="blind">하락</span>';
+			trfc1308Html += ' ' + rowData.lwSubDstnRate;
+			$("#trfc1308").html(trfc1308Html);
+			$("#trfc1308").addClass(rowData.lwSubDstnRate>=0?"glyphicon-triangle-top stat-top":"glyphicon-triangle-bottom stat-down");
+			
+			
+			$("#trfc1309").addClass("p"+rowData.tdBusTimeRate);
+			$("#trfc1310").html(rowData.tdBusTime+"분");
+			if (rowData.ydBusTimeRate >= 0) trfc1311Html += '<span class="blind">상승</span>';
+			else trfc1311Html += '<span class="blind">하락</span>';
+			trfc1311Html += ' ' + rowData.ydBusTimeRate;
+			$("#trfc1311").html(trfc1311Html);
+			$("#trfc1311").addClass(rowData.ydBusTimeRate>=0?"glyphicon-triangle-top stat-top":"glyphicon-triangle-bottom stat-down");
+			if (rowData.lwBusTimeRate >= 0) trfc1312Html += '<span class="blind">상승</span>';
+			else trfc1312Html += '<span class="blind">하락</span>';
+			trfc1312Html += ' ' + rowData.lwBusTimeRate;
+			$("#trfc1312").html(trfc1312Html);
+			$("#trfc1312").addClass(rowData.lwBusTimeRate>=0?"glyphicon-triangle-top stat-top":"glyphicon-triangle-bottom stat-down");
+			
+			
+			$("#trfc1313").addClass("p"+rowData.tdBusDstnRate);
+			$("#trfc1314").html(rowData.tdBusDstn+"km");
+			if (rowData.ydBusDstnRate >= 0) trfc1315Html += '<span class="blind">상승</span>';
+			else trfc1315Html += '<span class="blind">하락</span>';
+			trfc1315Html += ' ' + rowData.ydBusDstnRate;
+			$("#trfc1315").html(trfc1315Html);
+			$("#trfc1315").addClass(rowData.ydBusDstnRate>=0?"glyphicon-triangle-top stat-top":"glyphicon-triangle-bottom stat-down");
+			if (rowData.lwBusDstnRate >= 0) trfc1316Html += '<span class="blind">상승</span>';
+			else trfc1316Html += '<span class="blind">하락</span>';
+			trfc1316Html += ' ' + rowData.lwBusDstnRate;
+			$("#trfc1316").html(trfc1316Html);
+			$("#trfc1316").addClass(rowData.lwBusDstnRate>=0?"glyphicon-triangle-top stat-top":"glyphicon-triangle-bottom stat-down");
+		}
+	}, true);
+}
+</script>
+
+<!-- 교통통계 //-->
+<div class="container">
+	<div class="h20"></div>
+	<div class="row">
+		<h3 class="text-center">교통통계로 본 서울의 하루</h3>
+		<div class="h20"><p style="float: right;">※ 3일전 교통카드 데이터를 기반으로 한 자료입니다.</p></div>
+		
+		<div role="tabpanel" class="col-lg-12 text-center">
+			<ul role="tablist" class="nav nav-tabs">
+				<li role="presentation" class="active"><a href="#subtraffic" aria-controls="subtraffic" role="tab" data-toggle="tab">지하철 교통현황</a></li>
+				<li role="presentation"><a href="#bustraffic" aria-controls="bustraffic" role="tab" data-toggle="tab">버스 교통현황</a></li>
+			</ul>	
+			<div class="h20"></div>
+			
+			<div role="tabpanel" class="statBox active" id="subtraffic" title="지하철 교통현황">
+				<span class="blind">지하철 교통현황</span>
+				<div class="col-sm-3">
+					<h4 class="text-left">승차역 TOP 5</h4>
+					<div class="rank" style="background-color: #395cb3;">1위 ~ 5위</div>
+					<table class="stInfoTbl" id="trfc11"></table>	
+				</div>
+				
+				<div class="col-sm-3">
+					<h4 class="text-left">하차역 TOP 5</h4>
+					<div class="rank" style="background-color: #CB4D34;">1위 ~ 5위</div>
+					<table class="stInfoTbl" id="trfc12"></table>	
+				</div>
+				
+				<div class="col-sm-3 chartBox">
+					<h5 class="text-center txt-green" style="font-size: 18px;">평균이동시간</h5>					
+					<div class="c100 center green" id="trfc1301">
+	                    <span class="txt-green" id="trfc1302">0.0분</span>
+	                    <div class="slice">
+	                        <div class="bar"></div>
+	                        <div class="fill"></div>
+	                    </div>
+	                </div>
+					<table class="stInfoTbl2">
+						<tr>
+							<td class="text-left bottomLine"><span>[전일대비]</span></td>
+							<td class="text-right bottomLine"><span class="glyphicon" id="trfc1303"> 0.0</span>(%)</td>
+						</tr>
+						<tr>
+							<td class="text-left"><span>[전주대비]</span></td>
+							<td class="text-right"><span class="glyphicon" id="trfc1304"> 0.0</span>(%)</td>
+						</tr>
+					</table>					
+				</div>
+				
+				<div class="col-sm-3 chartBox">
+					<h5 class="text-center txt-blue" style="font-size: 18px;">평균이동거리</h5>					
+					<div class="c100 center blue" id="trfc1305">
+	                    <span class="txt-blue" id="trfc1306">0.0km</span>
+	                    <div class="slice">
+	                        <div class="bar"></div>
+	                        <div class="fill"></div>
+	                    </div>
+	                </div>
+					<table class="stInfoTbl2">
+						<tr>
+							<td class="text-left bottomLine"><span>[전일대비]</span></td>
+							<td class="text-right bottomLine"><span class="glyphicon" id="trfc1307"> 0.0</span>(%)</td>
+						</tr>
+						<tr>
+							<td class="text-left"><span>[전주대비]</span></td>
+							<td class="text-right"><span class="glyphicon" id="trfc1308"> 0.0</span>(%)</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div role="tabpanel" class="statBox" id="bustraffic" title="버스 교통현황">
+				<span class="blind">버스 교통현황</span>
+				<div class="col-sm-3">
+					<h4 class="text-left">중앙 TOP 5</h4>
+					<div class="rank" style="background-color: #395cb3;">1위 ~ 5위</div>
+					<table class="stInfoTbl" id="trfc21"></table>
+				</div>
+				
+				<div class="col-sm-3">
+					<h4 class="text-left">가로변 TOP 5</h4>
+					<div class="rank" style="background-color: #CB4D34;">1위 ~ 5위</div>
+					<table class="stInfoTbl" id="trfc22"></table>	
+				</div>
+				
+				<div class="col-sm-3 chartBox">
+					<h5 class="text-center txt-green" style="font-size: 18px;">평균이동시간</h5>					
+					<div class="c100 center green" id="trfc1309">
+	                    <span class="txt-green" id="trfc1310">0.0분</span>
+	                    <div class="slice">
+	                        <div class="bar"></div>
+	                        <div class="fill"></div>
+	                    </div>
+	                </div>
+					<table class="stInfoTbl2">
+						<tr>
+							<td class="text-left bottomLine"><span>[전일대비]</span></td>
+							<td class="text-right bottomLine"><span class="glyphicon" id="trfc1311"> 0.0</span>(%)</td>
+						</tr>
+						<tr>
+							<td class="text-left"><span>[전주대비]</span></td>
+							<td class="text-right"><span class="glyphicon" id="trfc1312"> 0.0</span>(%)</td>
+						</tr>
+					</table>					
+				</div>
+				
+				<div class="col-sm-3 chartBox">
+					<h5 class="text-center txt-blue" style="font-size: 18px;">평균이동거리</h5>					
+					<div class="c100 center blue" id="trfc1313">
+	                    <span class="txt-blue" id="trfc1314">0.0km</span>
+	                    <div class="slice">
+	                        <div class="bar"></div>
+	                        <div class="fill"></div>
+	                    </div>
+	                </div>
+					<table class="stInfoTbl2">
+						<tr>
+							<td class="text-left bottomLine"><span>[전일대비]</span></td>
+							<td class="text-right bottomLine"><span class="glyphicon" id="trfc1315"> 0.0</span>(%)</td>
+						</tr>
+						<tr>
+							<td class="text-left"><span>[전주대비]</span></td>
+							<td class="text-right"><span class="glyphicon" id="trfc1316"> 0.0</span>(%)</td>
+						</tr>
+					</table>					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="h20"></div>
+</div>
+<!-- 교통통계 종료 //-->
+
+<!--이하 팝업 샘플링//-->
+<!-- 1. 소통이미지 -->
+<div class="modal fade bs-example-modal-lg" id="pop01" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 999999999; overflow: hidden;">
+	<div class="modal-dialog modal-lg" style="width: 80%; height: 100%;">
+		<div class="modal-content text-center" style="height: calc(100% - 100px);">
+			<div role="tabpanel" style="width: 260px; position: absolute;">
+				<div class="boxTab-box clearb">
+					<ul class="nav nav-pills sub-nav-pills boxTab nav-justified">
+						<li class="active"><a href="#imgMap1" data-toggle="tab" onclick="fn_mapTab2('1');">서울전체</a></li>
+						<li><a href="#imgMap2" data-toggle="tab" onclick="fn_mapTab2('2');">도시고속도로</a></li>
+					</ul>
+				</div>
+			</div>
+			<div style="position: absolute; bottom: 25px; right: 25px;">
+				<button type="button" class="btn btn-default" style="width: 30px; height: 30px; padding: 0; font-size: 16px; font-weight: bold;"  onclick="fn_zoomIn()">+</button>
+				<button type="button" class="btn btn-default" style="width: 30px; height: 30px; padding: 0; font-size: 16px; font-weight: bold;"  onclick="fn_zoomOut()">-</button>
+			</div>
+			<div id="t21" style="overflow: auto; background: #F0E8D1; width: 100%; height: 100%;">
+				<div id="t21Wrap" style="float: left; box-sizing: border-box; width: 1920px; height: 1080px; background: #F0E8D1; zoom: 0.8;">
+					<ul style="float: left; margin: 0px; padding: 0px; list-style-type: none;">
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img1" src="/capture/mapImg/svgMap1.png" alt="1" style="border: none; width: 100%; margin-top: -4px;"></li>
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img2" src="/capture/mapImg/svgMap2.png" alt="2" style="border: none; width: 100%; margin-top: -4px;"></li>
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img3" src="/capture/mapImg/svgMap3.png" alt="3" style="border: none; width: 100%; margin-top: -4px;"></li>
+				    </ul>
+				    <ul style="float: left; margin: 0px; padding: 0px; list-style-type: none;"> 
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img4" src="/capture/mapImg/svgMap4.png" alt="4" style="border: none; width: 100%; margin-top: -4px;"></li>
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img5" src="/capture/mapImg/svgMap5.png" alt="5" style="border: none; width: 100%; margin-top: -4px;"></li>
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img6" src="/capture/mapImg/svgMap6.png" alt="6" style="border: none; width: 100%; margin-top: -4px;"></li>
+				    </ul>
+				    <ul style="float: left; margin: 0px; padding: 0px; list-style-type: none;">
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img7" src="/capture/mapImg/svgMap7.png" alt="7" style="border: none; width: 100%; margin-top: -4px;"></li>
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img8" src="/capture/mapImg/svgMap8.png" alt="8" style="border: none; width: 100%; margin-top: -4px;"></li>
+				        <li style="float: left; width: 33.3%; list-style: none;"><img id="img9" src="/capture/mapImg/svgMap9.png" alt="9" style="border: none; width: 100%; margin-top: -4px;"></li>
+				    </ul>
+				</div>
+			</div>
+			<div id="t22" style="overflow: auto; background: #E1DED4; width: 100%; height: 100%; padding: 100px; display: none;">
+				<div id="t22Wrap" style="float: left; box-sizing: border-box; width: 100%; height: 100%; background: #E1DED4; zoom: 1.4;">
+					<div style="width: 927px; height: 543px; background-repeat: no-repeat;">
+						<img src="/images/common/loading.gif" alt="로딩중">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+</div>
+
+<!-- 2. 알기 쉬운 교통정보 -->
+<div class="modal fade bs-example-modal-lg" id="pop02" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 999999999;">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content text-center">
+			<img src="/images/main/info02.png" alt="알기 쉬운 교통정보">
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+</div>
+
+<!-- 3. 기상/재난 팝업 -->
+<div class="modal fade bs-example-modal-lg" id="pop03" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 999999999; overflow: hidden;">
+	<div class="modal-dialog modal-lg" style="width: 1400px;height: 720px;">
+		<div class="modal-content text-center" style="height: calc(100% - 101px);">
+			<iframe id="iframe_disa" title="기상/재난" style="width: 100%; height: 100%; border: none;"></iframe>
+			<a href="javascript:fn_refreshMainDisasterInfo()" id="pop03-refresh" class="refresh" style="position: absolute; right: 95px; top: 20px;"><span class="blind">새로고침</span></a>
+			<a href="javascript:fn_report()" id="pop03-downImg" class="imgDown" style="position: absolute; right: 65px; top: 20px;"><span class="blind">저장</span></a>
+			<a href="javascript:void(0)" id="pop03-closer" class="close" data-dismiss="modal" style="position: absolute; right: 35px; top: 20px;"><span class="blind">닫기</span></a>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- Footer //-->
+<div class="container footer">
+	<div class="row">
+		<div class="col-sm-2" style="padding-top: 8px; width: 0;">
+			<!-- <h4 class="text-left"> --><!-- <img src="/images/common/iseoulu.png" alt="I SEOUL U"/> --><!-- </h4> -->
+		</div>
+		<div class="col-sm-10 text-left" style="width:87%;">
+			<ul class="footer-nav">
+				<li><a style="color: #999;" href="/">홈</a></li>
+				<li><small>|</small></li>
+				<li><a style="color: #999;" href="/refRoom/openRefRoom_1.do">서울시 교통정보 열람</a></li>
+				<li><small>|</small></li>
+				<li><a style="color: #999;" href="/notice/openNoticeList.do">알림마당</a></li>
+				<li><small>|</small></li>
+				<li><a style="color: #999;" href="/intro/openIntro.do">TOPIS 소개</a></li>
+				<li><small>|</small></li>
+				<li><a style="color: #999;" href="/intro/openVisit.do">찾아오시는 길</a></li>
+			</ul>
+			<p style="float: left;">[04515] 서울특별시 중구 덕수궁길 15(서소문동 37, 서소문청사 1동 5층) ㅣ 전화안내 - 다산콜센터 :120</p>
+			<!-- <p>※ TOPIS 홈페이지는 보안상 이유로 IE 10 이상 버전에 최적화 되어있습니다.<br/>※ IE 10 이상에서 화면이 안뜨실 경우 해결방법
+ -‘호환성 보기 설정’ &gt; ‘호환성 보기에 추가한 웹 사이트’ 항목의 seoul.go.kr을 삭제
+</p> -->
+
+
+<a href="/WAQC-251401_TOPIS.pdf" onclick="return confirm('새 창에서 열립니다. 새 창을 여시겠습니까?');" target="_blank" style="top: -7px; position: absolute; float: left; left:95%;"><img src="/images/main/WA_251401.png" border="0" alt="과학기술정보통신부 WA(WEB접근성) 품질인증 마크, 웹와치(WebWatch) 2025.11.21 ~ 2026.11.20" title="WA 품질인증 마크, 웹와치(WebWatch) 2025.11.21 ~ 2026.11.20" style="width:300%; max-width:300%;"></a>
+		</div>
+	</div>
+	<div class="h10"></div>
+</div>
+<!-- Footer 종료 //-->
+
+<script type='text/javascript'>
+/* window.onload = function() {
+	Yjs.Gnb.init('G045','seoul-integrated-menu');
+} */
+</script>
+
+<script async type="text/javascript" src="//weblog.eseoul.go.kr/wlo/js/install.js"></script>
+</body>
+</html>

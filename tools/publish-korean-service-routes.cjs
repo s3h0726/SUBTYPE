@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 'use strict';
+if(require('../data/kr/publication-policy.json').mode==='canonical'){
+ require('node:child_process').execFileSync(process.execPath,[require('node:path').join(__dirname,'build-kr-canonical.cjs'),'--publish'],{stdio:'inherit'});
+ return;
+}
 if(require('../data/kr/publication-policy.json').mode==='reset')throw Error('KR_CATALOG_RESET: Korean publication requires explicit policy removal');
 // Publish all structurally playable Korean OSM service paths in the regular
 // in-game catalog. This is a GAME release, NOT operator timetable certification.

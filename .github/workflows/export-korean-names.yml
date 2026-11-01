@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - 'tools/export-korean-names.js'
+      - 'tools/test-korean-name-editor-namuwiki.cjs'
+      - 'data/japan-route-station-names.json'
+      - 'data/japan-namuwiki-verified-batch-20261031.json'
+      - 'js/disney-resort-line-data.js'
+      - 'reports/korean-names/editor.html'
       - 'data/editor-overrides.json'
       - 'data/operators/**'
       - 'data/lines/**'
@@ -33,12 +38,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Syntax-check Korean name export and editor regression tests
+        run: |
+          node --check tools/export-korean-names.js
+          node --check tools/test-korean-name-editor-namuwiki.cjs
       - name: Export all registered Korean names
         run: node tools/export-korean-names.js
       - name: Verify that Mikawa mountain/sea line names and stations are exported
         run: node tools/test-korean-name-meitetsu-split.cjs
       - name: Verify Hakodate Main Line split in Korean-name editor
         run: node tools/test-korean-name-hakodate-split.cjs
+      - name: Verify current Namuwiki name table and special routes
+        run: node tools/test-korean-name-editor-namuwiki.cjs
       - name: Publish refreshed CSV reports without merging unrelated files
         shell: bash
         run: |
@@ -52,6 +63,7 @@ jobs:
             node tools/export-korean-names.js
             node tools/test-korean-name-meitetsu-split.cjs
             node tools/test-korean-name-hakodate-split.cjs
+            node tools/test-korean-name-editor-namuwiki.cjs
             git add reports/korean-names/
             if git diff --cached --quiet; then
               echo "Korean name editor already up to date."

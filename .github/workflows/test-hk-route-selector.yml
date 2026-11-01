@@ -7,6 +7,9 @@ on:
       - 'js/app.bundle.js'
       - 'index.html'
       - 'tools/test-hk-route-selector.cjs'
+      - 'tools/test-hk-completion.cjs'
+      - 'data/hk/**'
+      - 'js/hong-kong-*.js'
       - '.github/workflows/test-hk-route-selector.yml'
   workflow_dispatch:
 permissions:
@@ -28,3 +31,5 @@ jobs:
         run: node tools/test-hk-route-selector.cjs
       - name: Verify Hong Kong Phase6 route data
         run: node tools/test-hk-phase6.cjs
+      - name: Verify released Hong Kong source, geometry and actual-engine completion evidence
+        run: node --test tools/test-hk-completion.cjs

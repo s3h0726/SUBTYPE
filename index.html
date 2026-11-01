@@ -9,7 +9,7 @@
   <title>SUBTYPE — 대중교통 타이핑</title>
   <style id="critical-screen-visibility">[data-screen]:not(.active){display:none!important}html:not([data-navigation-bound]) [data-screen]:not(#screen-home){display:none!important}</style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/hong-kong.css?v=completion-20261031">
+  <link rel="stylesheet" href="./css/hong-kong.css?v=41ba00a5e3d8">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/responsive.css?v=20261007-mobilefix">
   <link rel="stylesheet" href="./css/home-night.css?v=20261007-motionfix">
@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="./css/account-leaderboard.css?v=per-line-ranking-20261028">
   <link rel="stylesheet" href="./css/service-picker-rebuild.css?v=20261030-no-route-blurbs">
   <link rel="stylesheet" href="./css/cloud-run-sync.css?v=20261029">
+  <link rel="stylesheet" href="./css/taiwan.css?v=20261030">
 
 <style id="hide-record-card-logos">
 /* History and completion cards are text-first: no company or line marks. */
@@ -85,7 +86,7 @@
       </header>
       <div class="home-stage">
         <div class="home-menu">
-          <div class="country-switch" role="group" aria-label="국가 선택"><button data-country="hk">홍콩 Hong Kong / 香港</button><button class="active" data-country="jp">일본</button><button data-country="kr" hidden disabled aria-hidden="true">대한민국</button></div>
+          <div class="country-switch" role="group" aria-label="국가 선택"><button data-country="hk">홍콩 Hong Kong / 香港</button><button class="active" data-country="jp">일본</button><button data-country="kr" hidden disabled aria-hidden="true">대한민국</button><button data-country="tw">대만</button></div>
           <p class="home-kicker">01 / DEPARTURE MENU</p>
           <h1 id="hero-title">일본 철도를<br><span>타이핑하다.</span></h1>
           <p id="home-intro" class="home-intro">전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.</p>
@@ -330,16 +331,17 @@
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script defer src="./js/bootstrap.js?v=p0-sync-1"></script>
-  <script defer src="./js/hong-kong-index-data.js"></script>
-  <script defer src="./js/japan-lite-index.js?v=0e5565582d0d"></script>
+  <script defer src="./js/hong-kong-index-data.js?v=8d857c805fe9"></script>
+  <script defer src="./js/japan-lite-index.js?v=0bbb055e5dbe"></script>
+
   <script defer src="./js/japan-route-category-patch.js?v=station-id-unified-20261029"></script>
   <script defer src="./js/japan-route-identity-patch.js?v=station-id-unified-20261029"></script>
   <script defer src="./js/jr-hokkaido-hakodate-split.js?v=20261029-sapporo-asahikawa"></script>
   <script defer src="./js/meitetsu-mikawa-sections-patch.js?v=20261029-mikawa-split-v1"></script>
   <script defer src="./js/tosakuroshio-nakamura-sukumo-patch.js?v=20261029-merged-v1"></script>
   <script defer src="./js/dedupe-toyama-line3.js?v=20261015"></script>
-  <script defer src="./js/korea-index-data.js?v=d2f5b2f8e54a"></script>
-  <script defer src="./js/service-data.js?v=cd002688fd9a"></script>
+  <script defer src="./js/korea-index-data.js?v=40ee5fdf4c30"></script>
+  <script defer src="./js/service-data.js?v=3f745f1e16bf"></script>
   <script defer src="./js/line-theme-data.js?v=v0-8-5-tokyu-colors"></script>
   <script defer src="./js/line-badge-data.js?v=20260930-original-png"></script>
   <script defer src="./js/rail-system-data.js?v=station-id-unified-20261029"></script>
@@ -350,8 +352,9 @@
   <script defer src="./js/lines-csv-overrides.js?v=20261011"></script>
   <script defer src="./js/leaderboard.js?v=server-records-20261029"></script>
   <script defer src="./js/cloud-run-sync.js?v=server-records-20261029"></script>
-  <script type="module" src="./js/result-journey-map.js?v=611b08df73e4"></script>
+  <script type="module" src="./js/result-journey-map.js?v=60bd58c89dfd"></script>
     <script defer src="./js/disney-resort-line-data.js?v=563283d39bbf"></script>
-  <script defer src="./js/app.bundle.js?v=3baf20c3a768"></script>
+  <script defer src="./js/app.bundle.js?v=82a757fc2006"></script>
+
 </body>
 </html>

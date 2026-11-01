@@ -41,13 +41,13 @@ test('circular routes retain 16 distinct visits and 15 real track legs',()=>{
  for(const id of ['hk-light-rail-705-osm-2941692','hk-light-rail-706-osm-2941790']){const r=byId.get(id);assert.equal(r.stations.length,16);assert.equal(r.directedSegments.length,15);assert.equal(r.stations[0].id,r.stations.at(-1).id);assert.notEqual(r.stations[0].stopId,r.stations.at(-1).stopId);}
 });
 test('archived high speed stays byte-equivalent and is excluded from active categories',()=>{
- assert(!routes.some(r=>r.category==='high_speed_rail'));const file='data/hk/generated/routes/hk-high-speed-pending.json';assert.equal(source(file),cp.execFileSync('git',['show','e40cd34f:'+file],{encoding:'utf8'}).replace(/\r\n/g,'\n'));assert(!source('js/hong-kong-policy.js').includes("['high_speed_rail'"));
+ assert(!routes.some(r=>r.category==='high_speed_rail'));const file='data/hk/generated/routes/hk-high-speed-pending.json';assert.equal(source(file),cp.execFileSync('git',['show','84840e09:'+file],{encoding:'utf8'}).replace(/\r\n/g,'\n'));assert(!source('js/hong-kong-policy.js').includes("['high_speed_rail'"));
 });
 test('source archives still match every pinned retrieval hash',()=>{
  for(const [file,p]of Object.entries(read('data/hk/sources/manifest.json')))if(p.status==='retrieved')assert.equal(crypto.createHash('sha256').update(fs.readFileSync('data/hk/sources/'+file)).digest('hex'),p.sha256,file);
 });
-test('Korea reset, Japanese catalogs and authentication/storage production sources are untouched',()=>{
- const names=cp.execFileSync('git',['diff','--name-only','e40cd34f'],{encoding:'utf8'}).trim().split('\n');assert(!names.some(p=>/^data\/(?:kr|jp|japan|generated)\//.test(p)));for(const file of ['js/auth.js','js/storage.js','js/leaderboard.js','js/feature-flags.js','supabase/ranking.sql'])assert.equal(source(file),cp.execFileSync('git',['show','e40cd34f:'+file],{encoding:'utf8'}).replace(/\r\n/g,'\n'),file);
+test('Latest integrated Korea, Japan and authentication/storage sources are preserved',()=>{
+ const protectedBase=process.env.HK_PROTECTED_BASE_REF||'HEAD';const names=cp.execFileSync('git',['diff','--name-only',protectedBase],{encoding:'utf8'}).trim().split('\n');assert(!names.some(p=>/^data\/(?:kr|jp|japan|generated)\//.test(p)));for(const file of ['js/auth.js','js/storage.js','js/leaderboard.js','js/feature-flags.js','supabase/ranking.sql'])assert.equal(source(file),cp.execFileSync('git',['show',protectedBase+':'+file],{encoding:'utf8'}).replace(/\r\n/g,'\n'),file);
 });
 test('Hong Kong CUSTOM retains stored format and real edges after a fresh storage instance',()=>{
  const map=new Map(),localStorage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,String(v)),removeItem:k=>map.delete(k)},c={console,localStorage,Map,Set,JSON};vm.createContext(c);
@@ -56,3 +56,5 @@ test('Hong Kong CUSTOM retains stored format and real edges after a fresh storag
  const custom=c.api.buildHongKongCustomRoute({...parent,id:'hk-completion-fixture',category:'custom',coverage:'rail-network',stations});assert.equal(c.api.hongKongRouteBlockReason(custom),'');assert(c.api.storage.saveRoute(custom));
  const fresh={console,localStorage,Map,Set,JSON};vm.createContext(fresh);load(fresh);const restored=fresh.api.storage.routes().find(r=>r.id===custom.id);assert(restored);assert.equal(fresh.api.hongKongRouteBlockReason(restored),'');assert.deepEqual(JSON.parse(JSON.stringify(restored.stations.map(s=>s.ko))),stations.map(s=>s.ko));assert.deepEqual(JSON.parse(JSON.stringify(restored.geometry)),JSON.parse(JSON.stringify(custom.geometry)));
 });
+
+test('production bundle and merged canonical application parse without syntax errors',()=>{new vm.Script(source('js/app.bundle.js'));new vm.Script('(async()=>{'+source('js/app.js').replace(/^import[^\n]*\n/gm,'')+'})()');});

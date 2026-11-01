@@ -1,0 +1,79 @@
+[
+  {
+    "name": "korea-canonical",
+    "command": "node tools/test-kr-canonical.cjs",
+    "exitCode": 0,
+    "stdout": "{\n  \"passed\": true,\n  \"routes\": 471,\n  \"journeysResolved\": 1087,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "korea-policy",
+    "command": "node tools/test-korea-reset.cjs",
+    "exitCode": 0,
+    "stdout": "{\n  \"passed\": true,\n  \"routes\": 471,\n  \"journeysResolved\": 1087,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "taiwan",
+    "command": "node tools/test-taiwan.cjs",
+    "exitCode": 0,
+    "stdout": "✔ all eight operators and 38 physical cards survive the batch import (1.4193ms)\n✔ every service resolves over actual retained tracks in timetable order (6347.4594ms)\n✔ Korean is mandatory in every display slot and station IDs are line specific (2.0167ms)\n✔ THSR has all 12 stations and express passes are excluded from prompts (72.6874ms)\n✔ Airport express stops, excluded construction stations and unilateral short turns (2.7645ms)\n✔ Circular light rail retains its closing curve and one arrival-only boundary (12.0623ms)\n✔ same-named platforms retain coordinates and unapproved transfers cannot merge (1.4362ms)\n✔ Alishan retains thousands of original mountain vertices and no yard tracks as cards (0.6192ms)\n✔ free-drive loop crossings use only the retained closing track in either direction (7.5784ms)\n✔ editor station overrides reach the actual Taiwan journey and its destination selector (48.085ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 6525.324\n",
+    "stderr": ""
+  },
+  {
+    "name": "supabase",
+    "command": "node tools/test-supabase-integration.cjs",
+    "exitCode": 0,
+    "stdout": "{\"status\":\"PASS\",\"accountIsolation\":true,\"rankingEligibility\":true,\"sqlPolicies\":true,\"authRedirect\":true,\"serverRunUpload\":true,\"serverRestore\":true,\"offlineRetry\":true}\n",
+    "stderr": ""
+  },
+  {
+    "name": "hk-selector",
+    "command": "node tools/test-hk-route-selector.cjs",
+    "exitCode": 0,
+    "stdout": "PASS js/app.js: HK MTR/TRAM, KR, JP click selectors\nPASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors\nPASS selector assets: 104 HK route records\n",
+    "stderr": ""
+  },
+  {
+    "name": "typing",
+    "command": "node tools/test-typing-model.js",
+    "exitCode": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"cases\": 18,\n  \"bracketsOnlyAutoFilled\": true,\n  \"errors\": []\n}\n",
+    "stderr": "18616) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/OneDrive/%EB%AC%B8%EC%84%9C/ChatGPT/SUBTYPE/repository/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+  },
+  {
+    "name": "ime-fixture",
+    "command": "node tools/test-ime-controller.js",
+    "exitCode": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"fixtures\": 10,\n  \"visualUpdate\": \"synchronous during composition\",\n  \"completion\": \"compositionend or unchanged exact composition timer\",\n  \"duplicateCompletions\": 0,\n  \"leadingWhitespaceRemoved\": true,\n  \"spaceInsertionPrevented\": true,\n  \"timerCancellation\": true\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "motion-transfers",
+    "command": "node --test tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs",
+    "exitCode": 0,
+    "stdout": "✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (5.3157ms)\n✔ directional Korean service never manufactures a reverse edge at its terminus (1.3712ms)\n✔ three or more connected Japanese lines remain individually selectable (4.9425ms)\n✔ stopping free drive removes Japanese choices before a Korean typing session starts (4.7431ms)\n✔ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (10.3479ms)\n✔ smoothing follows each retained curved edge instead of cutting its corner (4.394ms)\n✔ rapid partial input and stale lower progress never reverse train distance (0.3373ms)\n✔ arrival waits for the current map render and stale sessions cannot move its successor (6.3632ms)\n✔ resuming during an arrival cannot bypass its map and animation barrier (3.9175ms)\n✔ Korean station boundaries share the retained source vertex between adjacent segments (4.5359ms)\n✔ completed station typing catches the marker up in 50ms and never advances early (3.3559ms)\n✔ SPACE waits for real arrival and repeated presses cannot finish a journey twice (4.4374ms)\n✔ camera reset cancels old pan and changes zoom atomically (3.5987ms)\nℹ tests 13\nℹ suites 0\nℹ pass 13\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 243.9917\n",
+    "stderr": ""
+  },
+  {
+    "name": "japan-nex",
+    "command": "node tools/test-nex-game-routes.cjs",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "me-routes.cjs:46:1)\r\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47\r\n\r\nNode.js v24.22.1\r\n"
+  },
+  {
+    "name": "japan-shonan",
+    "command": "node tools/test-shonan-shinjuku-service-journeys.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: 12 Shonan-Shinjuku through-service journey directions\n",
+    "stderr": ""
+  },
+  {
+    "name": "japan-joban",
+    "command": "node tools/test-ueno-tokyo-joban.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: 11 November 2026 JR Joban journeys, accurate stop order, no 0m gaps; approach track provisional\n",
+    "stderr": ""
+  }
+]

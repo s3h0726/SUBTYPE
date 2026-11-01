@@ -1,4 +1,4 @@
-name: Korean card interaction and temporary JR signage
+name: Korean card interaction and Korean transport signage
 on:
   push:
     branches: [main]
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check Korean card navigation and Japanese JR rail signage
+      - name: Check Korean card navigation and Korean transport signage
         run: |
           node - <<'JS'
           const fs=require('fs'),vm=require('vm');
@@ -33,11 +33,11 @@ jobs:
           vm.runInContext(sign.replace(/import[^;]+;/g,'').replace(/export /g,'')+';globalThis.resolveTransportStopTemplate=resolveTransportStopTemplate',context);
           for(const id of ['kr-seoul-metro','kr-korail','kr-shinbundang']) {
             const t=context.resolveTransportStopTemplate({countryId:'kr',mode:'commuter_rail',operatorId:id,category:'commuter_rail'});
-            if(t.style!=='jr-east')throw Error('Temporary JR sign missing for '+id);
+            if(!['kr-seoul-metro','kr-korail','kr-shinbundang'].includes(t.style))throw Error('Korean rail sign missing for '+id);
           }
           const bus=context.resolveTransportStopTemplate({countryId:'kr',mode:'bus',operatorId:'kr-seoul-metro'});
           if(bus.style!=='kr-bus-stop')throw Error('Bus sign should not change');
-          console.log('PASS: Korean cards select preview; Korean rail uses JR East signs; bus stays Korean');
+          console.log('PASS: Korean cards select preview; Korean rail uses Korean signs; bus stays Korean');
           JS
           node tools/test-line1-playability.js
       - name: Regenerate deployed app bundle

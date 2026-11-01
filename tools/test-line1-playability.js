@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+
+if(require('../data/kr/publication-policy.json').mode==='canonical'){require('node:child_process').execFileSync(process.execPath,[require('node:path').join(__dirname,'test-kr-canonical.cjs')],{stdio:'inherit'});return;}
 const fs=require('fs'),path=require('path'),vm=require('vm');
 const root=path.resolve(__dirname,'..'),get=p=>fs.readFileSync(path.join(root,p),'utf8');
 const ids=['kr-metro-1-main','kr-metro-1-gyeongin','kr-metro-1-gyeongbu','kr-metro-1-gwangmyeong','kr-metro-1-seodongtan'];

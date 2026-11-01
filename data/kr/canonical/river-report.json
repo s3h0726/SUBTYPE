@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 2,
+  "checkedAt": "2026-10-31",
+  "mode": "river_bus",
+  "status": "geometry-validated",
+  "publicRouteCount": 2,
+  "publicServiceDirectionCount": 6,
+  "candidatePatternCount": 3,
+  "candidateDirectionCount": 0,
+  "terminalInventoryCount": 9,
+  "activeTerminalCount": 8,
+  "completeGeometryCount": 2,
+  "maxEdgeMeters": 816.4059051023121,
+  "maxStopOffsetMeters": 93.84874996921941,
+  "failures": [],
+  "sourceIds": [
+    "seoul-659",
+    "seoul-647",
+    "seoul-open-data",
+    "operator",
+    "osm-ferry",
+    "osm-ferry-ways",
+    "seoul-council-operator"
+  ],
+  "snapshots": [
+    {
+      "file": "river-osm.json",
+      "sha256": "a46f0cde8306ca3a84ab0de5c19d840b6478e6fa3ef607948a9457779c3a6a4a"
+    },
+    {
+      "file": "river-osm-terminals.json",
+      "sha256": "acec8c5b4938bd58a2a8459d73e781b8c5cc26e613b345938d5d9060aa712897"
+    }
+  ],
+  "validation": {
+    "uniquePatternIds": true,
+    "terminalReferences": true,
+    "koreanNames": true,
+    "unverifiedGeometryExcluded": true
+  },
+  "notesKo": [
+    "한강버스는 철도·도로버스와 분리한 수상교통 수단으로 저장한다.",
+    "동부와 서부는 여의도에서 환승한다.",
+    "10월 말의 임시 운항 종료는 일자 정밀도가 아닌 월 정밀도이며 11월 자동 연장하지 않는다.",
+    "안내 지도나 강 중심선을 선박 항로로 간주하지 않는다."
+  ]
+}

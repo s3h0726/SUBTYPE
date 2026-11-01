@@ -9,12 +9,12 @@ const same=(a,b)=>a&&b&&Math.abs(a[0]-b[0])<.0000001&&Math.abs(a[1]-b[1])<.00000
 // A circular service visits its physical origin again at a different track offset.
 function passedStations(result,route){
  const stations=route.stations||[],ids=result.typedStationIds||[];
- if(route.countryId!=='hk'){const byId=new Map(stations.map(s=>[s.id,s]));return ids.map(id=>byId.get(id)).filter(Boolean)}
+ if(!['hk','kr'].includes(route.countryId)){const byId=new Map(stations.map(s=>[s.id,s]));return ids.map(id=>byId.get(id)).filter(Boolean)}
  let cursor=-1;
  return ids.map(id=>{let index=stations.findIndex((s,i)=>i>cursor&&s.id===id);if(index<0)index=stations.findIndex(s=>s.id===id);cursor=index;return stations[index]}).filter(Boolean);
 }
 function segmentPath(route,from,to){
- const stations=route.stations||[],index=s=>route.countryId==='hk'&&stations.indexOf(s)>=0?stations.indexOf(s):stations.findIndex(p=>p.id===s.id),i=index(from),j=index(to);
+ const stations=route.stations||[],index=s=>['hk','kr'].includes(route.countryId)&&stations.indexOf(s)>=0?stations.indexOf(s):stations.findIndex(p=>p.id===s.id),i=index(from),j=index(to);
  if(Math.abs(i-j)!==1)return null;
  if(route.countryId!=='kr'&&!Array.isArray(route.directedSegments)&&Array.isArray(route.geometry)&&route.geometry.length>1){
   const source=route.geometry,first=stations[i],last=stations[j];
@@ -37,12 +37,12 @@ async function showCompletedJourneyOnMap(result){
  const box=document.getElementById('result-journey-map'),note=document.getElementById('result-journey-note'),heading=document.getElementById('result-journey-heading');
  if(!box||!note||!heading)return;
  const route=result.mapRoute||result.route||{},stations=route.stations||[],byId=new Map(stations.map(s=>[s.id,s]));
- const passed=(result.typedStationIds||[]).map(id=>byId.get(id)).filter(Boolean);
+ const passed=passedStations(result,route);
  heading.textContent=(koreanStationDisplayName(passed[0]?.ko||passed[0]?.ja||'출발',route.countryId,route))+' → '+(koreanStationDisplayName(passed.at(-1)?.ko||passed.at(-1)?.ja||'도착',route.countryId,route));
  // Replay the exact same geometry and station offsets used by the live game renderer.
  const travel=travelGeometry(route),parts=[];let missing=0;
  for(let i=1;i<passed.length;i++){
-  const visitIndex=s=>route.countryId==='hk'?stations.indexOf(s):stations.findIndex(p=>p.id===s.id),fromIndex=visitIndex(passed[i-1]),toIndex=visitIndex(passed[i]);
+  const visitIndex=s=>['hk','kr'].includes(route.countryId)?stations.indexOf(s):stations.findIndex(p=>p.id===s.id),fromIndex=visitIndex(passed[i-1]),toIndex=visitIndex(passed[i]);
   let path=null;
   if(travel&&fromIndex>=0&&toIndex>=0&&fromIndex!==toIndex){
    const x=travel.offsets[fromIndex],y=travel.offsets[toIndex];

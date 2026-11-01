@@ -1,0 +1,468 @@
+{
+  "schemaVersion": 1,
+  "batchDate": "2026-10-31",
+  "policy": "Only modify source names with explicit Japanese ID and route-boundary identity guards; use a separately documented Namuwiki line/station article. Never change station order, geometry, route ids, or enable suspended rail service.",
+  "wikiScopeNotice": "Article title verified or station name table present. Historic split boundaries and through-service boundaries can differ. Existing block statuses must be preserved.",
+  "lines": [
+    {
+      "id": "line-11414",
+      "expectedJa": "飯田線(天竜峡～辰野)",
+      "expectedKo": "이다선(텐류쿄~다쓰노)",
+      "expectedStartJa": "天竜峡",
+      "expectedEndJa": "辰野",
+      "ko": "이다선(텐류쿄~타츠노)",
+      "source": {
+        "title": "츄오 본선",
+        "url": "https://namu.moe/w/%EC%B8%84%EC%98%A4%20%EB%B3%B8%EC%84%A0",
+        "scope": "ROUTE_LABEL_STATION_READING"
+      }
+    },
+    {
+      "id": "line-11413",
+      "expectedJa": "飯田線(豊橋～天竜峡)",
+      "expectedKo": "이다선(도요하시~텐류쿄)",
+      "expectedStartJa": "豊橋",
+      "expectedEndJa": "天竜峡",
+      "ko": "이다선(토요하시~텐류쿄)",
+      "source": {
+        "title": "도카이도 본선/JR 도카이",
+        "url": "https://namu.moe/w/%EB%8F%84%EC%B9%B4%EC%9D%B4%EB%8F%84%20%EB%B3%B8%EC%84%A0%2FJR%20%EB%8F%84%EC%B9%B4%EC%9D%B4",
+        "scope": "ROUTE_LABEL_STATION_READING"
+      }
+    },
+    {
+      "id": "line-11508",
+      "expectedJa": "関西本線(名古屋～亀山)",
+      "expectedKo": "간사이 본선(나고야~가메야마)",
+      "expectedStartJa": "名古屋",
+      "expectedEndJa": "亀山",
+      "ko": "간사이 본선(나고야~카메야마)",
+      "source": {
+        "title": "간사이 본선",
+        "url": "https://namu.moe/w/%EA%B0%84%EC%82%AC%EC%9D%B4%20%EB%B3%B8%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11225",
+      "expectedJa": "磐越西線(郡山～会津若松)",
+      "expectedKo": "반에쓰사이선(고리야마~아이즈와카마쓰)",
+      "expectedStartJa": "郡山",
+      "expectedEndJa": "会津若松",
+      "ko": "반에츠사이선(코리야마~아이즈와카마츠)",
+      "source": {
+        "title": "반에츠사이선/역 목록",
+        "url": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%B8%A0%EC%82%AC%EC%9D%B4%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11317",
+      "expectedJa": "八高線",
+      "expectedKo": "하치코선(하치오지~고마가와)",
+      "expectedStartJa": "八王子",
+      "expectedEndJa": "高麗川",
+      "ko": "하치코선(하치오지~코마가와)",
+      "source": {
+        "title": "하치코선",
+        "url": "https://namu.moe/w/%ED%95%98%EC%B9%98%EC%BD%94%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11318",
+      "expectedJa": "八高線(高麗川～高崎)",
+      "expectedKo": "하치코선(고마가와~다카사키)",
+      "expectedStartJa": "高麗川",
+      "expectedEndJa": "高崎",
+      "ko": "하치코선(코마가와~타카사키)",
+      "source": {
+        "title": "하치코선",
+        "url": "https://namu.moe/w/%ED%95%98%EC%B9%98%EC%BD%94%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11226",
+      "expectedJa": "森と水とロマンの鉄道",
+      "expectedKo": "반에쓰사이선(아이즈와카마쓰~니쓰)",
+      "expectedStartJa": "会津若松",
+      "expectedEndJa": "新津",
+      "ko": "반에츠사이선(아이즈와카마츠~니츠)",
+      "source": {
+        "title": "반에츠사이선/역 목록",
+        "url": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%B8%A0%EC%82%AC%EC%9D%B4%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11231",
+      "expectedJa": "東北本線(黒磯～利府・盛岡)",
+      "expectedKo": "도호쿠 본선(구로이소~리후·모리오카)",
+      "expectedStartJa": "黒磯",
+      "expectedEndJa": "盛岡",
+      "ko": "도호쿠 본선(쿠로이소~리후·모리오카)",
+      "source": {
+        "title": "도호쿠 본선/역 목록",
+        "url": "https://namu.moe/w/%EB%8F%84%ED%98%B8%EC%BF%A0%20%EB%B3%B8%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11104",
+      "expectedJa": "室蘭本線(長万部・室蘭～苫小牧)",
+      "expectedKo": "무로란 본선(오샤만베·무로란~도마코마이)",
+      "expectedStartJa": "長万部",
+      "expectedEndJa": "苫小牧",
+      "ko": "무로란 본선(오샤만베·무로란~토마코마이)",
+      "source": {
+        "title": "무로란 본선/역 목록",
+        "url": "https://namu.moe/w/%EB%AC%B4%EB%A1%9C%EB%9E%80%20%EB%B3%B8%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11105",
+      "expectedJa": "室蘭本線(苫小牧～岩見沢)",
+      "expectedKo": "무로란 본선(도마코마이~이와미자와)",
+      "expectedStartJa": "苫小牧",
+      "expectedEndJa": "岩見沢",
+      "ko": "무로란 본선(토마코마이~이와미자와)",
+      "source": {
+        "title": "무로란 본선/역 목록",
+        "url": "https://namu.moe/w/%EB%AC%B4%EB%A1%9C%EB%9E%80%20%EB%B3%B8%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11107",
+      "expectedJa": "根室本線(新得～釧路)",
+      "expectedKo": "네무로 본선(신토쿠~구시로)",
+      "expectedStartJa": "新得",
+      "expectedEndJa": "釧路",
+      "ko": "네무로 본선(신토쿠~쿠시로)",
+      "source": {
+        "title": "네무로 본선",
+        "url": "https://namu.moe/w/%EB%84%A4%EB%AC%B4%EB%A1%9C%20%EB%B3%B8%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11106",
+      "expectedJa": "根室本線(滝川～新得)",
+      "expectedKo": "네무로 본선(다키카와~신토쿠)",
+      "expectedStartJa": "滝川",
+      "expectedEndJa": "新得",
+      "ko": "네무로 본선(타키가와~신토쿠)",
+      "source": {
+        "title": "네무로 본선",
+        "url": "https://namu.moe/w/%EB%84%A4%EB%AC%B4%EB%A1%9C%20%EB%B3%B8%EC%84%A0",
+        "scope": "HISTORIC_SECTION_REVIEW_REQUIRED"
+      }
+    },
+    {
+      "id": "line-11925",
+      "expectedJa": "えびの高原線(八代～吉松)",
+      "expectedKo": "에비노 고원선(야쓰시로~요시마쓰)",
+      "expectedStartJa": "八代",
+      "expectedEndJa": "吉松",
+      "ko": "에비노 고원선(야츠시로~요시마츠)",
+      "source": {
+        "title": "히사츠선",
+        "url": "https://namu.moe/w/%ED%9E%88%EC%82%AC%EC%B8%A0%EC%84%A0",
+        "scope": "SUSPENDED_SERVICE_KEEP_BLOCKED"
+      }
+    },
+    {
+      "id": "line-11911",
+      "expectedJa": "福北ゆたか線(折尾～桂川)",
+      "expectedKo": "후쿠호쿠유타카선(오리오~가쓰라가와)",
+      "expectedStartJa": "折尾",
+      "expectedEndJa": "桂川",
+      "ko": "후쿠호쿠유타카선(오리오~카츠라가와)",
+      "source": {
+        "title": "후쿠호쿠유타카선",
+        "url": "https://namu.moe/w/%ED%9B%84%EC%BF%A0%ED%98%B8%EC%BF%A0%EC%9C%A0%ED%83%80%EC%B9%B4%EC%84%A0",
+        "scope": "SUBSECTION_OF_THROUGH_SERVICE"
+      }
+    },
+    {
+      "id": "line-11926",
+      "expectedJa": "肥薩線(吉松～隼人)",
+      "expectedKo": "히사쓰선(요시마쓰~하야토)",
+      "expectedStartJa": "吉松",
+      "expectedEndJa": "隼人",
+      "ko": "히사츠선(요시마츠~하야토)",
+      "source": {
+        "title": "히사츠선",
+        "url": "https://namu.moe/w/%ED%9E%88%EC%82%AC%EC%B8%A0%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11903",
+      "expectedJa": "鹿児島本線(博多～八代)",
+      "expectedKo": "가고시마 본선(하카타~야쓰시로)",
+      "expectedStartJa": "博多",
+      "expectedEndJa": "八代",
+      "ko": "가고시마 본선(하카타~야츠시로)",
+      "source": {
+        "title": "히사츠선",
+        "url": "https://namu.moe/w/%ED%9E%88%EC%82%AC%EC%B8%A0%EC%84%A0",
+        "scope": "NAMUWIKI_STATION_READING"
+      }
+    },
+    {
+      "id": "line-11904",
+      "expectedJa": "鹿児島本線(川内～鹿児島)",
+      "expectedKo": "가고시마 본선(센다이~가고시마)",
+      "expectedStartJa": "川内",
+      "expectedEndJa": "鹿児島",
+      "ko": "가고시마 본선(센다이~가고시마)",
+      "source": {
+        "title": "센다이역(가고시마)",
+        "url": "https://namu.moe/w/%EC%84%BC%EB%8B%A4%EC%9D%B4%EC%97%AD(%EA%B0%80%EA%B3%A0%EC%8B%9C%EB%A7%88)",
+        "scope": "NAMUWIKI_STATION_READING"
+      }
+    },
+    {
+      "id": "line-11917",
+      "expectedJa": "香椎線(香椎～宇美)",
+      "expectedKo": "가시선(가시이~우미)",
+      "expectedStartJa": "香椎",
+      "expectedEndJa": "宇美",
+      "ko": "카시선(카시이~우미)",
+      "source": {
+        "title": "역번호/JR",
+        "url": "https://namu.moe/w/%EC%97%AD%EB%B2%88%ED%98%B8%2FJR",
+        "scope": "NAMUWIKI_LINE_AND_STATION_READING"
+      }
+    },
+    {
+      "id": "line-11909",
+      "expectedJa": "筑肥線(姪浜～西唐津)",
+      "expectedKo": "지쿠히선(메이노하마~니시카라쓰)",
+      "expectedStartJa": "姪浜",
+      "expectedEndJa": "西唐津",
+      "ko": "치쿠히선(메이노하마~니시카라츠)",
+      "source": {
+        "title": "치쿠히선",
+        "url": "https://namu.moe/w/%EC%B9%98%EC%BF%A0%ED%9E%88%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11920",
+      "expectedJa": "筑肥線(西唐津～伊万里)",
+      "expectedKo": "지쿠히선(니시카라쓰~이마리)",
+      "expectedStartJa": "西唐津",
+      "expectedEndJa": "伊万里",
+      "ko": "치쿠히선(니시카라츠~이마리)",
+      "source": {
+        "title": "치쿠히선",
+        "url": "https://namu.moe/w/%EC%B9%98%EC%BF%A0%ED%9E%88%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11905",
+      "expectedJa": "長崎本線(鳥栖～長崎)",
+      "expectedKo": "나가사키 본선(도스~나가사키)",
+      "expectedStartJa": "鳥栖",
+      "expectedEndJa": "長崎",
+      "ko": "나가사키 본선(토스~나가사키)",
+      "source": {
+        "title": "나가사키 본선/역 목록",
+        "url": "https://namu.moe/w/%EB%82%98%EA%B0%80%EC%82%AC%ED%82%A4%20%EB%B3%B8%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11626",
+      "expectedJa": "阪和線(天王寺～和歌山)",
+      "expectedKo": "한와선(덴노지~와카야마)",
+      "expectedStartJa": "天王寺",
+      "expectedEndJa": "和歌山",
+      "ko": "한와선(텐노지~와카야마)",
+      "source": {
+        "title": "한와선",
+        "url": "https://namu.moe/w/%ED%95%9C%EC%99%80%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11509",
+      "expectedJa": "関西本線(亀山～加茂)",
+      "expectedKo": "간사이 본선(가메야마~가모)",
+      "expectedStartJa": "亀山",
+      "expectedEndJa": "加茂",
+      "ko": "간사이 본선(카메야마~카모)",
+      "source": {
+        "title": "간사이 본선",
+        "url": "https://namu.moe/w/%EA%B0%84%EC%82%AC%EC%9D%B4%20%EB%B3%B8%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11634",
+      "expectedJa": "姫新線(佐用～新見)",
+      "expectedKo": "기신선(사요~니미)",
+      "expectedStartJa": "佐用",
+      "expectedEndJa": "新見",
+      "ko": "기신선(사요~니이미)",
+      "source": {
+        "title": "산인 본선",
+        "url": "https://namu.moe/w/%EC%82%B0%EC%9D%B8%20%EB%B3%B8%EC%84%A0",
+        "scope": "STATION_READING_ALIGNMENT_REVIEW"
+      }
+    },
+    {
+      "id": "line-11608",
+      "expectedJa": "神戸線(神戸～姫路)",
+      "expectedKo": "고베선(고베~히메지)",
+      "expectedStartJa": "神戸",
+      "expectedEndJa": "姫路",
+      "ko": "JR 고베선(고베~히메지)",
+      "source": {
+        "title": "JR 고베선",
+        "url": "https://namu.moe/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0",
+        "scope": "SPLIT_PHYSICAL_SECTION_OF_JR_KOBE_LINE"
+      }
+    },
+    {
+      "id": "line-11603",
+      "expectedJa": "神戸線(大阪～神戸)",
+      "expectedKo": "고베선(오사카~고베)",
+      "expectedStartJa": "大阪",
+      "expectedEndJa": "神戸",
+      "ko": "JR 고베선(오사카~고베)",
+      "source": {
+        "title": "JR 고베선",
+        "url": "https://namu.moe/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0",
+        "scope": "SPLIT_PHYSICAL_SECTION_OF_JR_KOBE_LINE"
+      }
+    },
+    {
+      "id": "line-11615",
+      "expectedJa": "山陰本線(園部～豊岡)",
+      "expectedKo": "산인 본선(소노베~도요오카)",
+      "expectedStartJa": "園部",
+      "expectedEndJa": "豊岡",
+      "ko": "산인 본선(소노베~토요오카)",
+      "source": {
+        "title": "산인 본선",
+        "url": "https://namu.moe/w/%EC%82%B0%EC%9D%B8%20%EB%B3%B8%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    },
+    {
+      "id": "line-11616",
+      "expectedJa": "山陰本線(豊岡～米子)",
+      "expectedKo": "산인 본선(도요오카~요나고)",
+      "expectedStartJa": "豊岡",
+      "expectedEndJa": "米子",
+      "ko": "산인 본선(토요오카~요나고)",
+      "source": {
+        "title": "산인 본선",
+        "url": "https://namu.moe/w/%EC%82%B0%EC%9D%B8%20%EB%B3%B8%EC%84%A0",
+        "scope": "NAMUWIKI_LINE_BOUNDARY"
+      }
+    }
+  ],
+  "stations": [
+    {
+      "id": "station-1160315",
+      "expectedJa": "神戸",
+      "names": {
+        "ko": "고베",
+        "kana": "こうべ",
+        "en": "Kobe"
+      },
+      "source": {
+        "title": "고베역",
+        "url": "https://namu.moe/w/%EA%B3%A0%EB%B2%A0%EC%97%AD",
+        "scope": "NAMUWIKI_STATION_ARTICLE"
+      }
+    },
+    {
+      "id": "station-1190349",
+      "expectedJa": "八代",
+      "names": {
+        "ko": "야츠시로",
+        "kana": "やつしろ",
+        "en": "Yatsushiro"
+      },
+      "source": {
+        "title": "히사츠선",
+        "url": "https://namu.moe/w/%ED%9E%88%EC%82%AC%EC%B8%A0%EC%84%A0",
+        "scope": "NAMUWIKI_ROUTE_STATION_TABLE"
+      }
+    },
+    {
+      "id": "station-1190401",
+      "expectedJa": "川内",
+      "names": {
+        "ko": "센다이",
+        "kana": "せんだい",
+        "en": "Sendai"
+      },
+      "source": {
+        "title": "센다이역(가고시마)",
+        "url": "https://namu.moe/w/%EC%84%BC%EB%8B%A4%EC%9D%B4%EC%97%AD(%EA%B0%80%EA%B3%A0%EC%8B%9C%EB%A7%88)",
+        "scope": "NAMUWIKI_STATION_ARTICLE"
+      }
+    },
+    {
+      "id": "station-1192519",
+      "expectedJa": "吉松",
+      "names": {
+        "ko": "요시마츠",
+        "kana": "よしまつ",
+        "en": "Yoshimatsu"
+      },
+      "source": {
+        "title": "히사츠선",
+        "url": "https://namu.moe/w/%ED%9E%88%EC%82%AC%EC%B8%A0%EC%84%A0",
+        "scope": "NAMUWIKI_ROUTE_STATION_TABLE"
+      }
+    },
+    {
+      "id": "station-1121401",
+      "expectedJa": "新津",
+      "names": {
+        "ko": "니츠",
+        "kana": "にいつ",
+        "en": "Niitsu"
+      },
+      "source": {
+        "title": "반에츠사이선/역 목록",
+        "url": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%B8%A0%EC%82%AC%EC%9D%B4%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+        "scope": "NAMUWIKI_ROUTE_STATION_TABLE"
+      }
+    },
+    {
+      "id": "station-1123114",
+      "expectedJa": "郡山",
+      "names": {
+        "ko": "코리야마",
+        "kana": "こおりやま",
+        "en": "Koriyama"
+      },
+      "source": {
+        "title": "코리야마역(후쿠시마)",
+        "url": "https://namu.moe/w/%EC%BD%94%EB%A6%AC%EC%95%BC%EB%A7%88%EC%97%AD(%ED%9B%84%EC%BF%A0%EC%8B%9C%EB%A7%88)",
+        "scope": "NAMUWIKI_STATION_ARTICLE"
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "id": "line-11415",
+      "reason": "JR West Hokuriku Main Line old Kanazawa coverage moved to third-sector after 2024; cannot truncate without authoritative replacement tracks and running services."
+    },
+    {
+      "id": "line-11319",
+      "reason": "Namuwiki Utsunomiya line starts at Tokyo but current playable source begins at Ueno; do not invent Tokyo–Ueno geometry."
+    }
+  ]
+}

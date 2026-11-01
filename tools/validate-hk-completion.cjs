@@ -1,0 +1,12 @@
+const fs=require('node:fs'),crypto=require('node:crypto'),cp=require('node:child_process');
+const dir='reports/hong-kong/completion',sha=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const files=['data/hk/master/network.json','data/hk/generated/index.json','js/hong-kong-index-data.js','js/app.bundle.js','index.html',...fs.readdirSync('data/hk/generated/routes').map(f=>'data/hk/generated/routes/'+f)];
+const before=Object.fromEntries(files.map(f=>[f,sha(f)])),commands=[];
+const run=(name,args,env={})=>{const p=cp.spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:32e6,env:{...process.env,...env}}),output=(p.stdout||'')+(p.stderr||'');fs.writeFileSync(dir+'/'+name+'.txt',output);commands.push({name,command:'node '+args.join(' '),exitCode:p.status,evidence:name+'.txt'});return p.status===0};
+run('build-hk',['tools/build-hk-data.cjs']);run('build-app',['tools/build-app-bundle.js']);
+const after=Object.fromEntries(files.map(f=>[f,sha(f)])),changed=files.filter(f=>before[f]!==after[f]);
+run('bundle-syntax',['--check','js/app.bundle.js']);run('completion-contracts',['--test','tools/test-hk-completion.cjs'],{HK_PROTECTED_BASE_REF:'af289bd2'});run('phase6-compatibility',['--test','tools/test-hk-phase6.cjs']);run('route-selection',['tools/test-hk-route-selector.cjs']);
+const protectedPaths=['data/kr','data/generated','data/jp','data/japan','data/tw','js/auth.js','js/storage.js','js/leaderboard.js','js/feature-flags.js','supabase/ranking.sql'];
+const protectedDiff=cp.execFileSync('git',['diff','--name-only','af289bd2','--',...protectedPaths],{encoding:'utf8'}).trim();
+const report={checkedAt:new Date().toISOString(),status:commands.every(c=>c.exitCode===0)&&!changed.length&&!protectedDiff?'PASS':'FAIL',scope:'Current completion/source/geometry/engine-proof/selector contracts and deterministic rebuild. This status does not override historical UI/AUTO or unexecuted live-account checks.',protectedBase:'af289bd27239985dc7fa0f32345670e42f0a9316',protectedDiff:protectedDiff.split('\n').filter(Boolean),rebuildChangedFiles:changed,commands,notTested:['Windows native Korean IME','Physical mobile keyboard','Live Supabase account login/save/restore'],remainingPerformanceStatus:'FAIL'};
+fs.writeFileSync(dir+'/generated-hashes.json',JSON.stringify({checkedAt:report.checkedAt,files:after},null,2)+'\n');fs.writeFileSync(dir+'/validation.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(report.status!=='PASS')process.exitCode=1;

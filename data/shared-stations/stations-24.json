@@ -574,8 +574,8 @@
     "names": {
       "ja": "新津",
       "kana": "にいつ",
-      "ko": "니이츠",
-      "en": "NīTsu"
+      "ko": "니츠",
+      "en": "Niitsu"
     },
     "aliases": {
       "ko": []
@@ -589,22 +589,30 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
-    "koSearchReference": "site:namu.wiki 新津駅 니이츠 역",
-    "sourceAccess": "blocked",
-    "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koSource": "namuwiki-manual",
+    "koSourceUrl": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%B8%A0%EC%82%AC%EC%9D%B4%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+    "koSearchReference": "site:namu.moe 新津 니츠",
+    "sourceAccess": "namuwiki-article-crosschecked",
+    "namuwikiStatus": "article-identity-crosschecked",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-10-31",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "bulk-normalized-review",
+    "koSourceMethod": "manual",
     "canonicalKoreanPolicy": "namuwiki",
     "bulkNormalization": {
       "basis": "namuwiki-style-normalization",
       "date": "2026-10-07",
       "verified": false
+    },
+    "namuwikiDestinationIdentity": {
+      "article": "반에츠사이선/역 목록",
+      "ja": "新津",
+      "ko": "니츠",
+      "url": "https://namu.moe/w/%EB%B0%98%EC%97%90%EC%B8%A0%EC%82%AC%EC%9D%B4%EC%84%A0%2F%EC%97%AD%20%EB%AA%A9%EB%A1%9D",
+      "scope": "NAMUWIKI_ROUTE_STATION_TABLE",
+      "verifiedDate": "2026-10-31"
     }
   },
   {
@@ -2967,9 +2975,9 @@
     "id": "station-3001802",
     "names": {
       "ja": "味鋺",
-      "kana": "あじ鋺",
-      "ko": "아지",
-      "en": "Aji鋺"
+      "kana": "あじま",
+      "ko": "아지마",
+      "en": "Ajima"
     },
     "aliases": {
       "ko": []
@@ -2999,6 +3007,13 @@
       "basis": "namuwiki-style-normalization",
       "date": "2026-10-07",
       "verified": false
+    },
+    "trilingualNameAudit": {
+      "evidence": "https://www.meitetsu.co.jp/train/station_info/line14/station/3511.html",
+      "sourceNameJa": "味鋺",
+      "englishNameMethod": "reference-crosscheck",
+      "koreanNameMethod": "transcribed-review-required",
+      "verifiedKoreanName": false
     }
   },
   {
@@ -3591,22 +3606,29 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
-    "koSearchReference": "site:namu.wiki 小倉台駅 오구라다이 역",
+    "koSource": "namuwiki-manual",
+    "koSourceUrl": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%202%ED%98%B8%EC%84%A0",
+    "koSearchReference": "치바 도시 모노레일 2호선",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-10-31",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "bulk-normalized-review",
+    "koSourceMethod": "manual",
     "canonicalKoreanPolicy": "namuwiki",
     "bulkNormalization": {
       "basis": "namuwiki-style-normalization",
       "date": "2026-10-07",
       "verified": false
+    },
+    "namuwikiBatchProof": {
+      "source": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%202%ED%98%B8%EC%84%A0",
+      "wikiTitle": "치바 도시 모노레일 2호선",
+      "stationJa": "小倉台",
+      "stationKo": "오구라다이",
+      "routeId": "line-99332"
     }
   },
   {

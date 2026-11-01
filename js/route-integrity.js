@@ -53,7 +53,7 @@ function combineServiceSegment(segmentMap,fullRoute,fromIndex,toIndex){
 }
 function combineAlignedSegments(fullRoute,fullSegments,fromIndex,toIndex){const fromStation=fullRoute[fromIndex],toStation=fullRoute[toIndex],parts=fullSegments.slice(fromIndex,toIndex);if(!parts.length)throw new Error(`Missing railway segment: ${stationId(fromStation)} -> ${stationId(toStation)}`);const geometry=[];for(const part of parts){const points=cloneGeometry(part.geometry);if(geometry.length&&points.length&&geometry.at(-1)[0]===points[0][0]&&geometry.at(-1)[1]===points[0][1])points.shift();geometry.push(...points)}return{fromStationId:stationId(fromStation),toStationId:stationId(toStation),geometry,parts,serviceCombined:parts.length>1,endpointMismatch:parts.some(part=>part.endpointMismatch)}}
 
-const permitsApproximateGeometry=route=>route?.category==='custom'||['bus','village_bus','express_bus','river_bus','ferry'].includes(route?.mode);
+const permitsApproximateGeometry=route=>route?.category==='custom'||(route?.countryId!=='kr'&&['bus','village_bus','express_bus','river_bus','ferry'].includes(route?.mode));
 
 export function resolvePlayableRoute(route,{direction='forward',service=null,boardingStationId=null}={}){
   if(route?.countryId==='hk'){

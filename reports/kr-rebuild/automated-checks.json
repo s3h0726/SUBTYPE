@@ -1,0 +1,112 @@
+[
+  {
+    "name": "전체 데이터",
+    "args": [
+      "tools/validate-data.js"
+    ],
+    "status": 1,
+    "stdout": "uplicate station master id: station-1161216\",\n    \"duplicate station master id: station-1161224\",\n    \"duplicate station master id: station-1161230\",\n    \"duplicate station master id: station-1161234\",\n    \"duplicate station master id: station-1190205\",\n    \"duplicate station master id: station-1190101\",\n    \"duplicate station master id: station-1123106\",\n    \"duplicate station master id: station-1123114\",\n    \"duplicate station master id: station-1123124\",\n    \"duplicate station master id: station-1123143\",\n    \"duplicate station master id: station-1122104\",\n    \"duplicate station master id: station-1123166\",\n    \"duplicate station master id: station-1123174\",\n    \"duplicate station master id: station-1120903\",\n    \"duplicate station master id: station-1123185\",\n    \"duplicate station master id: station-9920509\",\n    \"duplicate station master id: station-9920515\",\n    \"duplicate station master id: station-1120601\",\n    \"duplicate station master id: station-1120265\",\n    \"duplicate station master id: station-1111806\",\n    \"duplicate station master id: station-1110106\",\n    \"duplicate station master id: station-1134220\",\n    \"duplicate station master id: station-1134227\",\n    \"duplicate station master id: station-1134236\",\n    \"duplicate station master id: station-1141006\",\n    \"duplicate station master id: station-1140442\",\n    \"duplicate station master id: station-9940301\",\n    \"duplicate station master id: station-1140125\",\n    \"duplicate station master id: station-9940311\",\n    \"duplicate station master id: station-1140305\",\n    \"duplicate station master id: station-1140710\",\n    \"duplicate station master id: station-1140317\",\n    \"duplicate station master id: station-1140516\",\n    \"duplicate station master id: station-1140501\",\n    \"duplicate station master id: station-100917\",\n    \"duplicate station master id: station-1141543\",\n    \"duplicate station master id: station-1141534\",\n    \"duplicate station master id: station-1141531\",\n    \"duplicate station master id: station-1141527\",\n    \"duplicate station master id: station-1141523\",\n    \"duplicate station master id: station-1141512\",\n    \"duplicate station master id: station-1190542\",\n    \"duplicate station master id: station-1190318\",\n    \"duplicate station master id: station-1190322\",\n    \"duplicate station master id: station-1190341\",\n    \"duplicate station master id: station-1190348\",\n    \"duplicate station master id: station-9992112\",\n    \"duplicate station master id: station-9992116\",\n    \"duplicate station master id: station-1190411\",\n    \"duplicate station master id: station-1191805\",\n    \"duplicate station master id: station-1190527\",\n    \"duplicate station master id: station-1190541\",\n    \"duplicate station master id: station-1121609\",\n    \"duplicate station master id: station-1121611\",\n    \"duplicate station master id: station-1121612\",\n    \"duplicate station master id: station-1121615\",\n    \"duplicate station master id: station-1121618\",\n    \"duplicate station master id: station-1121624\",\n    \"duplicate station master id: station-1121627\",\n    \"duplicate station master id: station-1121629\",\n    \"duplicate station master id: station-1121631\",\n    \"duplicate station master id: station-1120201\",\n    \"duplicate station master id: station-1121104\",\n    \"duplicate station master id: station-1121107\",\n    \"duplicate station master id: station-1121111\",\n    \"duplicate station master id: station-1120220\",\n    \"duplicate station master id: station-1120228\"\n  ],\n  \"warnings\": []\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "운행계통",
+    "args": [
+      "tools/validate-service-patterns.js"
+    ],
+    "status": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"physicalLines\": 607,\n  \"branches\": 1,\n  \"servicePatterns\": 116,\n  \"trainTypes\": 22,\n  \"destinations\": 62,\n  \"throughServices\": 32,\n  \"errors\": []\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "한국 공개 목록",
+    "args": [
+      "tools/test-kr-canonical.cjs"
+    ],
+    "status": 0,
+    "stdout": "{\n  \"passed\": true,\n  \"routes\": 471,\n  \"journeysResolved\": 1091,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "버스 실제 도로",
+    "args": [
+      "tools/kr-bus-test.cjs"
+    ],
+    "status": 0,
+    "stdout": "{\"passed\":true,\"publicBusRoutes\":444,\"actualDirectionServices\":869,\"candidateRoutes\":7957,\"checks\":[\"canonical schema\",\"duplicate identifiers\",\"Korean displays\",\"source stop IDs and order\",\"independent direction grouping\",\"exact official road geometry slices\",\"no invented nationwide sequences\"]}\n",
+    "stderr": ""
+  },
+  {
+    "name": "철도 원본 선형",
+    "args": [
+      "--test",
+      "tools/kr-rail-rebuild.test.cjs"
+    ],
+    "status": 0,
+    "stdout": "✔ rail publications pass complete geometry, language and reference gates (59.6375ms)\n✔ every published geometry edge is an actual source rail edge in its direction (149.8905ms)\n✔ official metro journeys preserve complete official Korean call sequences (435.4016ms)\n✔ conventional railway has independent actual tracks in both directions (15.4207ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (12.4361ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 898.5161\n",
+    "stderr": ""
+  },
+  {
+    "name": "한강 항로",
+    "args": [
+      "tools/kr-river-test.cjs"
+    ],
+    "status": 0,
+    "stdout": "한강버스 2개 구간·6개 방향: 항로 연결, 기종점, 선착장 순서, 교차 정차, 임시 운항 종료일 검증 통과\n",
+    "stderr": ""
+  },
+  {
+    "name": "한글 입력 모델",
+    "args": [
+      "tools/test-typing-model.js"
+    ],
+    "status": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"cases\": 18,\n  \"bracketsOnlyAutoFilled\": true,\n  \"errors\": []\n}\n",
+    "stderr": "(node:18388) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+  },
+  {
+    "name": "한글 조합",
+    "args": [
+      "tools/test-ime-controller.js"
+    ],
+    "status": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"fixtures\": 10,\n  \"visualUpdate\": \"synchronous during composition\",\n  \"completion\": \"compositionend or unchanged exact composition timer\",\n  \"duplicateCompletions\": 0,\n  \"leadingWhitespaceRemoved\": true,\n  \"spaceInsertionPrevented\": true,\n  \"timerCancellation\": true\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "홍콩 선택 화면",
+    "args": [
+      "tools/test-hk-route-selector.cjs"
+    ],
+    "status": 0,
+    "stdout": "PASS js/app.js: HK MTR/TRAM, KR, JP click selectors\nPASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors\nPASS selector assets: 96 HK route records\n",
+    "stderr": ""
+  },
+  {
+    "name": "일본 노선 유지",
+    "args": [
+      "tools/test-exact-duplicate-jp-routes.cjs"
+    ],
+    "status": 0,
+    "stdout": "PASS {\"published\":607,\"workspace\":607,\"chunkRoutes\":607,\"retired\":3}\n",
+    "stderr": ""
+  },
+  {
+    "name": "소부 쾌속선 보존",
+    "args": [
+      "--test",
+      "tools/test-jr-sobu-rapid-playable.cjs"
+    ],
+    "status": 0,
+    "stdout": "{\"status\":\"PASS\",\"lineId\":\"line-jr-east-sobu-rapid\",\"stops\":10,\"segments\":9,\"vertices\":251,\"directions\":[\"Tokyo–Chiba\",\"Chiba–Tokyo\"],\"localRouteKept\":\"line-11313\",\"originalMainLineKept\":\"line-11314\",\"transfers\":22,\"csvIntegrated\":true}\n✔ tools\\test-jr-sobu-rapid-playable.cjs (486.2149ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 496.7244\n",
+    "stderr": ""
+  },
+  {
+    "name": "Supabase 연동 단위검사",
+    "args": [
+      "tools/test-supabase-integration.cjs"
+    ],
+    "status": 0,
+    "stdout": "{\"status\":\"PASS\",\"accountIsolation\":true,\"rankingEligibility\":true,\"sqlPolicies\":true,\"authRedirect\":true,\"serverRunUpload\":true,\"serverRestore\":true,\"offlineRetry\":true}\n",
+    "stderr": ""
+  }
+]

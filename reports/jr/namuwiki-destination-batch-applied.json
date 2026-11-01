@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-31",
+  "status": "PASS",
+  "applied": true,
+  "scopedRailwayRoutes": 28,
+  "scopedStations": 6,
+  "changedFields": 0,
+  "changedEntries": 0,
+  "untouchedJRLineCards": "Every other JR route retained original canonical names",
+  "preserved": {
+    "lines": 607,
+    "stations": 8878,
+    "geometryAltered": 0,
+    "relationsAltered": 0,
+    "servicesAltered": 0
+  },
+  "excluded": [
+    {
+      "id": "line-11415",
+      "reason": "JR West Hokuriku Main Line old Kanazawa coverage moved to third-sector after 2024; cannot truncate without authoritative replacement tracks and running services."
+    },
+    {
+      "id": "line-11319",
+      "reason": "Namuwiki Utsunomiya line starts at Tokyo but current playable source begins at Ueno; do not invent Tokyo–Ueno geometry."
+    }
+  ],
+  "review": [],
+  "records": [],
+  "touchedFiles": [
+    "data/lines/jr-central/idasen-tenryukyo-tatsuno/line.json",
+    "data/lines/jr-central/idasen-toyohashi-tenryukyo/line.json",
+    "data/lines/jr-central/kansaihonsen-nagoya-kameyama/line.json",
+    "data/lines/jr-east/ban-etsusaisen-koriyama-aizuwakamatsu/line.json",
+    "data/lines/jr-east/hachikosen-hachioji-komagawa/line.json",
+    "data/lines/jr-east/hachikosen-komagawa-takasaki/line.json",
+    "data/lines/jr-east/moritomizutoromannotetsudo/line.json",
+    "data/lines/jr-east/tohokuhonsen-kuroiso-rifu-morioka/line.json",
+    "data/lines/jr-hokkaido/muroranhonsen-chomanbu-muroran-tomakomai/line.json",
+    "data/lines/jr-hokkaido/muroranhonsen-tomakomai-iwamizawa/line.json",
+    "data/lines/jr-hokkaido/nemurohonsen-shintoku-kushiro/line.json",
+    "data/lines/jr-hokkaido/nemurohonsen-takikawa-shintoku/line.json",
+    "data/lines/jr-kyushu/ebinokogensen-hachidai-yoshimatsu/line.json",
+    "data/lines/jr-kyushu/fukukitayutakasen-orio-katsuragawa/line.json",
+    "data/lines/jr-kyushu/hisatsusen-yoshimatsu-hayato/line.json",
+    "data/lines/jr-kyushu/kagoshimahonsen-hakata-hachidai/line.json",
+    "data/lines/jr-kyushu/kagoshimahonsen-sendai-kagoshima/line.json",
+    "data/lines/jr-kyushu/kashiisen-kashii-umi/line.json",
+    "data/lines/jr-kyushu/koesen-meinohama-nishikaratsu/line.json",
+    "data/lines/jr-kyushu/koesen-nishikaratsu-imari/line.json",
+    "data/lines/jr-kyushu/nagasakihonsen-tosu-nagasaki/line.json",
+    "data/lines/jr-west/hanwasen-tennoji-wakayama/line.json",
+    "data/lines/jr-west/kansaihonsen-kameyama-kamo/line.json",
+    "data/lines/jr-west/kishinsen-sayo-nimi/line.json",
+    "data/lines/jr-west/kobesen-kobe-himeji/line.json",
+    "data/lines/jr-west/kobesen-osaka-kobe/line.json",
+    "data/lines/jr-west/san-inhonsen-sonobe-toyooka/line.json",
+    "data/lines/jr-west/san-inhonsen-toyooka-yonago/line.json",
+    "data/shared-stations/stations-10.json",
+    "data/shared-stations/stations-24.json",
+    "data/shared-stations/stations-26.json",
+    "data/shared-stations/stations-30.json",
+    "data/shared-stations/stations-46.json",
+    "data/shared-stations/stations-61.json"
+  ]
+}

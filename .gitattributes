@@ -17,3 +17,9 @@ js/japan-lite-index.js text eol=lf
 data/hk/** text eol=lf
 data/hk/sources/** -text
 js/hong-kong-index-data.js text eol=lf
+
+# Taiwan source snapshots and official marks retain their provenance hashes.
+data/tw/** text eol=lf
+data/tw/source/** -text
+assets/operators/tw-thsr.svg -text -whitespace
+reports/taiwan/*.json text eol=lf

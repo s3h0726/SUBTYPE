@@ -2,7 +2,7 @@
 const fs=require('fs'),path=require('path'),{pathToFileURL}=require('url');
 const root=path.resolve(__dirname,'..'),read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
 (async()=>{
-  const moduleSource=fs.readFileSync(path.join(root,'js','route-integrity.js'),'utf8'),integrity=await import(`data:text/javascript;base64,${Buffer.from(moduleSource).toString('base64')}`),index=read('data/nationwide/index.json'),curatedFiles=['jr','subway','private','other','shinkansen'],byId=new Map;
+  const moduleSource=fs.readFileSync(path.join(root,'js','route-integrity.js'),'utf8'),integrity=await import(pathToFileURL(path.join(root,'js','route-integrity.js')).href),index=read('data/nationwide/index.json'),curatedFiles=['jr','subway','private','other','shinkansen'],byId=new Map;
   for(const meta of index.routes){const route=read(meta.lazySource.replace(/^\.\//,'')).route;byId.set(route.id,route)}
   for(const name of curatedFiles)for(const route of read(`data/lines/${name}.json`).routes||[])byId.set(route.id,route);
   const rows=[],totals={routes:byId.size,passed:0,blocked:0,stations:0,forwardSegments:0,reverseSegments:0,missingStations:0,missingSegments:0,endpointMismatch:0,reverseOrderMismatch:0,defaultServiceSkips:0};

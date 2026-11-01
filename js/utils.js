@@ -3,6 +3,7 @@ export const $$=(s,p=document)=>[...p.querySelectorAll(s)];
 // Presentation only: retain canonical names and evidence unchanged.
 // Strip railway line labels from KR station display/typing only. Preserve canonical station data.
 export const koreanStationDisplayName=(value,countryId,route=null)=>{
+ if(countryId==='kr'&&route?.canonicalContract==='kr-canonical-v1')return String(value??'').normalize('NFC');
  const raw=String(value??'');if(countryId!=='kr')return raw;
 const KR_STATION_LINE_QUALIFIER="(?:(?:(?:수도권\\s*(?:전철\\s*)?|인천\\s*)?\\d{1,2}호선)|(?:[가-힣A-Za-z0-9·-]+(?:선|철도))|GTX(?:-[A-Z])?|KTX|도시철도|지하철|기차역|신분당|서해)";
 const KR_STATION_PREFIX=new RegExp('^'+KR_STATION_LINE_QUALIFIER+'\\s+(?=\\S)','u');
