@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),vm=require('vm'),path=require('path');
 const root=path.resolve(__dirname,'..'),network=JSON.parse(fs.readFileSync(path.join(root,'data/tw/generated/network.json'),'utf8'));
-const c={console,globalThis:{}};vm.createContext(c);for(const file of ['hong-kong-policy','taiwan-network','route-integrity'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+file+'.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),c);
+const c={console,globalThis:{}};vm.createContext(c);for(const file of ['taiwan-display','hong-kong-policy','taiwan-network','route-integrity'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+file+'.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),c);
 vm.runInContext(';globalThis.api={configureTaiwanNetwork,taiwanKoreanPresentation,taiwanOperatingChoices,resolveTaiwanChoice,resolvePlayableRoute}',c);const api=c.globalThis.api;
 const lines=network.lines.map(api.taiwanKoreanPresentation);api.configureTaiwanNetwork(lines,network.patterns);const publicLines=lines.filter(l=>l.visibility!=='internal');
 test('all eight operators and 38 physical cards survive the batch import',()=>{assert.equal(network.operators.length,8);assert.equal(publicLines.length,38);assert.equal(network.patterns.length,new Set(network.patterns.map(p=>p.id)).size);assert.equal(publicLines.filter(l=>l.operatorId==='tw-trtc').length,7);assert.equal(publicLines.filter(l=>l.operatorId==='tw-tra').length,17)});
@@ -21,7 +21,7 @@ test('editor station overrides reach the actual Taiwan journey and its destinati
  const d={console,URL,crypto:require('crypto').webcrypto,document:{baseURI:'https://subtype.test/'}};vm.createContext(d);
  const line=network.lines.find(l=>l.id==='tw-trtc-wenhu'),id=line.stations[0].id;
  d.fetch=async url=>({ok:true,json:async()=>String(url).includes('editor-overrides')?{stations:{[line.id]:{[id]:'편집된출발역'}}}:network});
- for(const name of ['taiwan-network','data-loader'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+name+'.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),d);
+ for(const name of ['taiwan-display','taiwan-network','data-loader'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+name+'.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),d);
  vm.runInContext(';globalThis.api={loadTransportData,taiwanOperatingChoices,resolveTaiwanChoice}',d);
  const data=await d.api.loadTransportData('tw'),l=data.lines.find(l=>l.id===line.id),choice=d.api.taiwanOperatingChoices(l)[0],resolved=d.api.resolveTaiwanChoice(choice,l);
  assert.equal(choice.originNames.ko,'편집된출발역');assert.equal(resolved.route.stations[0].ja,'편집된출발역');assert.equal(resolved.route.stations[0].zh,line.stations[0].zh);

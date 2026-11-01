@@ -38,7 +38,7 @@ async function showCompletedJourneyOnMap(result){
  if(!box||!note||!heading)return;
  const route=result.mapRoute||result.route||{},stations=route.stations||[],byId=new Map(stations.map(s=>[s.id,s]));
  const passed=passedStations(result,route);
- heading.textContent=(koreanStationDisplayName(passed[0]?.ko||passed[0]?.ja||'출발',route.countryId,route))+' → '+(koreanStationDisplayName(passed.at(-1)?.ko||passed.at(-1)?.ja||'도착',route.countryId,route));
+ if(route.countryId==='tw'&&globalThis.TRTTaiwanDisplay)heading.textContent=globalThis.TRTTaiwanDisplay.text(passed[0])+' → '+globalThis.TRTTaiwanDisplay.text(passed.at(-1));else heading.textContent=(koreanStationDisplayName(passed[0]?.ko||passed[0]?.ja||'출발',route.countryId,route))+' → '+(koreanStationDisplayName(passed.at(-1)?.ko||passed.at(-1)?.ja||'도착',route.countryId,route));
  // Replay the exact same geometry and station offsets used by the live game renderer.
  const travel=travelGeometry(route),parts=[];let missing=0;
  for(let i=1;i<passed.length;i++){
@@ -66,7 +66,7 @@ async function showCompletedJourneyOnMap(result){
  }
  for(let i=0;i<passed.length;i++){
   const position=coordinate(passed[i]);if(!position)continue;
-  L.circleMarker(position,{radius:i===0||i===passed.length-1?7:3,weight:2,color:'#ffffff',fillColor:i===0?'#16a34a':i===passed.length-1?'#dc2626':color,fillOpacity:1}).bindTooltip(koreanStationDisplayName(passed[i].ko||passed[i].ja||'',route.countryId,route),{direction:'top'}).addTo(journeyMap);
+  L.circleMarker(position,{radius:i===0||i===passed.length-1?7:3,weight:2,color:'#ffffff',fillColor:i===0?'#16a34a':i===passed.length-1?'#dc2626':color,fillOpacity:1}).bindTooltip(route.countryId==='tw'&&globalThis.TRTTaiwanDisplay?globalThis.TRTTaiwanDisplay.markup(passed[i]):koreanStationDisplayName(passed[i].ko||passed[i].ja||'',route.countryId,route),{direction:'top'}).addTo(journeyMap);
  }
  const bounds=L.latLngBounds(linePoints);
  // Follow-camera zoom reflects the distance covered, not an arbitrary fixed zoom.

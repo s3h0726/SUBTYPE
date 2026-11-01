@@ -70,7 +70,9 @@
     "test:korea:canonical": "node tools/test-kr-canonical.cjs",
     "test:korea:legacy": "node --test tools/test-kr-network.cjs tools/test-kr-osm-order.cjs tools/test-kr-topology-corrections.cjs tools/test-kric-calls.cjs tools/test-kr-timetable-bindings.cjs tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs tools/test-kr-service-reconstruction.cjs tools/test-kr-station-names.cjs tools/test-kr-access-policy.cjs tools/test-kr-stop-bindings.cjs tools/test-route-selection.cjs tools/test-kr-station-display.cjs tools/test-kr-phase5.cjs",
     "build:taiwan": "node tools/build-taiwan.cjs",
-    "test:taiwan": "node --test tools/test-taiwan.cjs"
+    "test:taiwan": "node --test tools/test-taiwan.cjs",
+    "audit:taiwan:multilingual": "node tools/audit-taiwan-multilingual.cjs",
+    "test:taiwan:multilingual": "node tools/test-taiwan-multilingual.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

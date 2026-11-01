@@ -1,0 +1,45 @@
+PASS js/app.js: HK MTR/TRAM, KR, JP click selectors
+PASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors
+PASS selector assets: 96 HK route records
+✔ tools\test-hk-route-selector.cjs (291.4928ms)
+{"status":"PASS","lineId":"line-jr-east-sobu-rapid","stops":10,"segments":9,"vertices":251,"directions":["Tokyo–Chiba","Chiba–Tokyo"],"localRouteKept":"line-11313","originalMainLineKept":"line-11314","transfers":22,"csvIntegrated":true}
+✔ tools\test-jr-sobu-rapid-playable.cjs (830.4384ms)
+{
+  "passed": true,
+  "routes": 471,
+  "journeysResolved": 1087,
+  "geometryFallbacks": 0,
+  "scope": "전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개."
+}
+✔ tools\test-kr-canonical.cjs (9928.1847ms)
+✔ lazy selection hides the prior play action and ignores a slower superseded response (4.4593ms)
+✔ country and preview-mode switches invalidate a pending lazy selection (5.0626ms)
+✔ Japanese lazy selections retain operating-connection hydration before becoming playable (2.6264ms)
+✔ all eight operators and 38 physical cards survive the batch import (2.6971ms)
+✔ every service resolves over actual retained tracks in timetable order (10309.8838ms)
+✔ Korean is mandatory in every display slot and station IDs are line specific (3.087ms)
+✔ THSR has all 12 stations and express passes are excluded from prompts (101.1753ms)
+✔ Airport express stops, excluded construction stations and unilateral short turns (3.9742ms)
+✔ Circular light rail retains its closing curve and one arrival-only boundary (24.1653ms)
+✔ same-named platforms retain coordinates and unapproved transfers cannot merge (9.0995ms)
+✔ Alishan retains thousands of original mountain vertices and no yard tracks as cards (1.0943ms)
+✔ free-drive loop crossings use only the retained closing track in either direction (48.6656ms)
+✔ editor station overrides reach the actual Taiwan journey and its destination selector (260.7928ms)
+✔ smoothing follows each retained curved edge instead of cutting its corner (7.5503ms)
+✔ rapid partial input and stale lower progress never reverse train distance (0.4728ms)
+✔ arrival waits for the current map render and stale sessions cannot move its successor (6.8537ms)
+✔ resuming during an arrival cannot bypass its map and animation barrier (8.332ms)
+✔ Korean station boundaries share the retained source vertex between adjacent segments (7.9054ms)
+✔ completed station typing catches the marker up in 50ms and never advances early (4.2524ms)
+✔ SPACE waits for real arrival and repeated presses cannot finish a journey twice (5.8824ms)
+✔ camera reset cancels old pan and changes zoom atomically (4.8128ms)
+PASS: 1393 legacy station IDs, 8878 surviving station masters, track geometry and browser cache compatibility
+✔ tools\test-unified-mlit-station-ids.cjs (564.1236ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11389.0223
