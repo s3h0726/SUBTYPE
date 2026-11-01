@@ -3992,7 +3992,7 @@ function configureJourneyPicker(){
     const frequencies=new Map(labels.map(label=>[label,labels.filter(value=>value===label).length]));
     destination.innerHTML=available.map((choice,i)=>{
       const typeLabel=journeyLabel(choice.trainType),through=choice.throughServiceId?' · 직통':'';
-      const duplicate=frequencies.get(labels[i])>1?' · 계통 '+(choice.catalogPattern?.id||choice.patternId||choice.id):'';
+      const duplicate=frequencies.get(labels[i])>1?' · 계통 '+(selected.countryId==='kr'?i+1:(choice.catalogPattern?.id||choice.patternId||choice.id)):'';
       const unavailable=japan&&!statusOf(choice).playable?' · 실행 불가':'';
       return '<option value="'+escapeHtml(choice.id)+'" data-destination-id="'+escapeHtml(choice.destinationId||'')+'">'+escapeHtml(display(choice.destinationNames))+(typeLabel?' · '+escapeHtml(typeLabel):'')+through+escapeHtml(duplicate)+unavailable+'</option>';
     }).join('');
