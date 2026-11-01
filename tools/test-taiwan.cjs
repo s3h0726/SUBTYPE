@@ -57,6 +57,8 @@ test('Taiwan selector shares HK/JP/KR visual templates with selective Traditiona
  const display=fs.readFileSync(path.join(root,'js/taiwan-display.js'),'utf8');
  assert(display.includes('if(heading)heading.textContent=line.ko'));
  assert(display.includes("set('game-operator',getTaiwanDisplayNames(route.operator).ko)"));
+ const map=fs.readFileSync(path.join(root,'js/network-map.js'),'utf8');
+ assert(map.includes("panel.querySelector('.map-kicker').textContent=getTaiwanDisplayNames(route.operator).ko"));
  assert(bundle.includes('function renderTaiwanSetupHeader(route,stationCount)'));
  assert(bundle.includes("set('game-operator',getTaiwanDisplayNames(route.operator).ko)"));
  const css=fs.readFileSync(path.join(root,'css/taiwan.css'),'utf8');
