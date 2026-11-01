@@ -1,0 +1,29 @@
+name: Validate Hong Kong and Taiwan Japanese-style UI
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'css/hong-kong.css'
+      - 'css/taiwan.css'
+      - 'tools/test-hk-route-selector.cjs'
+      - 'tools/test-taiwan.cjs'
+      - '.github/workflows/validate-hk-tw-japanese-ui.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  interface-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check bundled app syntax
+        run: node --check js/app.bundle.js
+      - name: Verify Hong Kong route family selection and bilingual cards
+        run: node tools/test-hk-route-selector.cjs
+      - name: Verify Taiwan station, route and native-language contracts
+        run: node --test tools/test-taiwan.cjs
