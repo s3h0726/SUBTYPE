@@ -33,3 +33,26 @@ for(const correction of manifest.corrections){
 }
 assert.equal(byId.get('station-1150910').names.ko,'오카와라','Kansai namesake unexpectedly changed');
 console.log('PASS '+manifest.corrections.length+' verified Japanese station labels / '+routes.size+' generated routes / unrelated namesake preserved');
+const november=read('data/japan-namuwiki-crosscheck-20261102.json');
+assert.equal(november.fixes.length,6,'The new station evidence batch must contain six records');
+for(const correction of november.fixes){
+ const {routeId,stationId,ja,ko,kana,romaji,sourceUrl}=correction;
+ const station=byId.get(stationId);
+ assert(station,stationId+': canonical station missing');
+ assert.equal(station.names.ja,ja);
+ assert.equal(station.names.ko,ko);
+ assert.equal(station.names.kana,kana);
+ assert.equal(station.names.en,romaji);
+ assert.equal(station.koSourceUrl,sourceUrl);
+ assert.equal(station.koVerified,true);
+ assert.equal(editor.stations?.[routeId]?.[stationId],ko,routeId+': live editor override mismatch');
+ const route=read('data/generated/routes/'+routeId+'.json').route;
+ const same=route.stations.filter(row=>row.id===stationId&&row.ja===ja);
+ assert.equal(same.length,1);
+ assert.equal(same[0].ko,ko);
+ assert.equal(same[0].kana,kana);
+ assert.equal(same[0].romaji,romaji);
+ assert.equal(same[0].koSourceUrl,sourceUrl);
+}
+console.log('PASS '+november.fixes.length+' additional Namuwiki station records including Kana/Romaji');
+
