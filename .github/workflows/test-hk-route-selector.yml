@@ -7,6 +7,7 @@ on:
       - 'js/app.bundle.js'
       - 'index.html'
       - 'tools/test-hk-route-selector.cjs'
+      - 'tools/test-japanese-route-color-order.cjs'
       - 'tools/test-hk-completion.cjs'
       - 'data/hk/**'
       - 'js/hong-kong-*.js'
@@ -29,6 +30,8 @@ jobs:
         run: node --check js/app.bundle.js
       - name: Test HK MTR/TRAM, JP and KR route-card clicks
         run: node tools/test-hk-route-selector.cjs
+      - name: Verify Japanese operator and RGB route-card order
+        run: node tools/test-japanese-route-color-order.cjs
       - name: Verify Hong Kong Phase6 route data
         run: node tools/test-hk-phase6.cjs
       - name: Verify released Hong Kong source, geometry and actual-engine completion evidence
