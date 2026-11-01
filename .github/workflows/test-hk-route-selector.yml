@@ -9,6 +9,9 @@ on:
       - 'tools/test-hk-route-selector.cjs'
       - 'tools/test-japanese-route-color-order.cjs'
       - 'tools/test-japan-station-name-corrections.cjs'
+      - 'tools/test-japan-namuwiki-policy.cjs'
+      - 'data/japan-namuwiki-policy-corrections-20261102.json'
+      - 'js/disney-resort-line-data.js'
       - 'data/japan-verified-station-name-corrections-20261101.json'
       - 'data/editor-overrides.json'
       - 'data/shared-stations/**'
@@ -39,6 +42,8 @@ jobs:
         run: node tools/test-japanese-route-color-order.cjs
       - name: Verify Japanese Namuwiki station spelling corrections
         run: node tools/test-japan-station-name-corrections.cjs
+      - name: Verify Japanese railway name policy and active station labels
+        run: node tools/test-japan-namuwiki-policy.cjs
       - name: Verify Hong Kong Phase6 route data
         run: node tools/test-hk-phase6.cjs
       - name: Verify released Hong Kong source, geometry and actual-engine completion evidence
