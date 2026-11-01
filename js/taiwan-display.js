@@ -2,8 +2,9 @@
 const twEscape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let twDisplayLines=new Map(),twDisplayPatterns=new Map(),twDisplayStations=new Map(),twDisplayLoading=null;
 export function getTaiwanDisplayNames(entity={}){
- const e=entity||{},n=e.displayNames||e.names||{};
- return{ko:String(e.ko??e.nameKo??n.ko??''),zh:String(e.zh??e.nameZh??n.zh??''),en:String(e.en??e.nameEn??n.en??e.romaji??'')};
+ const e=entity||{},n={...(e.names||{}),...(e.displayNames||{})};
+ const first=(...values)=>String(values.find(value=>typeof value==='string'&&value.trim())||'');
+ return{ko:first(e.ko,e.nameKo,n.ko),zh:first(e.zh,e.nameZh,n.zh),en:first(e.en,e.nameEn,n.en,e.romaji)};
 }
 export function taiwanNameText(entity,{english=false}={}){const n=getTaiwanDisplayNames(entity);return[n.ko,n.zh,english?n.en:''].filter(Boolean).join(' / ')}
 export function taiwanNameMarkup(entity,{english=false}={}){
@@ -24,9 +25,11 @@ export function taiwanRecordMarkup(record,{service=false}={}){const d=taiwanReco
 export function taiwanRecordText(record){const d=taiwanRecordDisplay(record);return d?[taiwanNameText(d.service||d.line),d.origin&&d.destination?taiwanNameText(taiwanDirectionNames({originNames:d.origin,destinationNames:d.destination})):null].filter(Boolean).join(' · '):''}
 export function renderTaiwanGameDisplay(game){
  if(game.route?.countryId!=='tw')return;
- const route=game.route,station=game.freeDriveMode?(game.freeDriveState?.station||game.currentStation()):game.targetStation(),first=game.freeDriveMode?game.freeDriveState?.station:game.sequence?.[0],last=game.freeDriveMode?(game.freeDriveTarget?.station||station):game.sequence?.at(-1),n=getTaiwanDisplayNames(station);
+ const route=game.route,station=game.freeDriveMode?(game.freeDriveTarget?.station||game.freeDriveState?.station||game.currentStation()):game.targetStation(),first=game.freeDriveMode?game.freeDriveState?.station:game.sequence?.[0],last=game.freeDriveMode?(game.freeDriveTarget?.station||station):game.sequence?.at(-1),n=getTaiwanDisplayNames(station);
  const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value||''},markup=(id,entity)=>{const el=document.getElementById(id);if(el)el.innerHTML=taiwanNameMarkup(entity,{english:true})};
- set('prompt-main',n.ko);set('prompt-ko',game.options?.inputMode==='memory'?'정답 비공개':n.zh);set('prompt-kana','');set('prompt-sub',game.options?.difficulty==='hard'?'한국어 역 이름을 입력하세요':n.en);
+ const memory=game.options?.inputMode==='memory';
+ set('prompt-main',n.zh||n.en||(memory?'번체중문 역명 미등록':n.ko));set('prompt-ko',memory?'정답 비공개':n.ko);document.getElementById('prompt-ko')?.classList.toggle('memory-hidden',memory);
+ set('prompt-kana','');set('prompt-sub',game.options?.difficulty==='hard'?'한국어 역 이름을 입력하세요':n.en);
  const currentIndex=game.freeDriveMode?game.index:game.sequence?.indexOf(station),previous=game.freeDriveMode?game.sequence?.[game.index-1]:game.boarding?null:game.currentStation(),next=game.sequence?.[(currentIndex??0)+1];
  for(const [prefix,s]of[['previous',previous],['next',next]]){const v=getTaiwanDisplayNames(s);set(prefix+'-station-name',v.ko|| (prefix==='previous'?'출발지':'종착지'));set(prefix+'-station-romaji',[v.zh,v.en].filter(Boolean).join(' · '));}
  markup('game-line-name',route.line);markup('game-operator',route.operator);

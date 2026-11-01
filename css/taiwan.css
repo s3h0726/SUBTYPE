@@ -29,8 +29,9 @@ html[data-country="tw"] #setup-route .setup-stations li{height:auto;min-height:5
 html[data-country="tw"] #screen-game .station-sign{height:auto!important;min-height:100%;max-height:none!important;overflow:visible!important;grid-template-rows:5px auto minmax(180px,1fr) auto}
 html[data-country="tw"] #screen-game .station-sign-brand{height:auto;min-height:45px;flex-wrap:wrap;gap:8px}
 html[data-country="tw"] #station-line-label{white-space:normal}
-html[data-country="tw"] #station-sign .station-current #prompt-main{font-size:clamp(30px,3vw,48px)!important;white-space:normal;line-height:1.15}
-html[data-country="tw"] #station-sign #prompt-ko{display:block!important;font:500 clamp(20px,2.1vw,28px)/1.3 "Noto Sans TC","Microsoft JhengHei",sans-serif!important;white-space:normal;margin:3px 0!important}
+html[data-country="tw"] #station-sign .station-current #prompt-main{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif!important;font-size:clamp(30px,3vw,48px)!important;white-space:normal;line-height:1.15}
+html[data-country="tw"] #station-sign #prompt-ko{display:block!important;font:600 clamp(20px,2.1vw,28px)/1.3 "Noto Sans KR","Malgun Gothic",sans-serif!important;white-space:normal;margin:3px 0!important}
+html[data-country="tw"] #station-sign #prompt-ko.memory-hidden{display:none!important}
 html[data-country="tw"] #station-sign #prompt-kana:empty{display:none}
 html[data-country="tw"] #station-sign #prompt-sub{font-size:13px;line-height:1.3}
 html[data-country="tw"] #station-sign .station-neighbor span{font-size:14px;line-height:1.4;white-space:normal}
@@ -65,8 +66,8 @@ html[data-country="tw"] #screen-game .game-top>div:nth-child(2){display:grid;gri
 html[data-country="tw"] #screen-game .game-top h2,html[data-country="tw"] #screen-game .game-top small{white-space:normal;overflow:visible;max-width:100%}
 html[data-country="tw"] #screen-game .service-summary{position:relative;inset:auto;transform:none;width:100%;max-width:none;grid-row:2;justify-content:space-around;margin:0;box-sizing:border-box}
 html[data-country="tw"] #screen-game .service-summary>div:not(.service-summary-center){display:flex;flex-direction:column}
-html[data-country="tw"] #service-origin-ko,html[data-country="tw"] #service-destination-ko{order:1;font-size:17px!important;color:var(--ink)}
-html[data-country="tw"] #service-origin-ja,html[data-country="tw"] #service-destination-ja{order:2;font-size:14px!important}
+html[data-country="tw"] #service-origin-ko,html[data-country="tw"] #service-destination-ko{order:2;font-size:14px!important;color:var(--muted)}
+html[data-country="tw"] #service-origin-ja,html[data-country="tw"] #service-destination-ja{order:1;font-size:17px!important;color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif}
 html[data-country="tw"] #screen-game .game-map-shell{position:relative;inset:auto;grid-row:3;min-height:120px;height:auto}
 html[data-country="tw"] #screen-game .hud-strip{position:relative;inset:auto;transform:none;width:100%;grid-row:4;box-sizing:border-box;border-radius:0;margin:0}
 html[data-country="tw"] #screen-game .hud-strip{background:var(--surface);color:var(--ink)}
