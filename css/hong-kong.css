@@ -69,16 +69,31 @@
 [data-country="hk"] .station-current{display:flex;flex-direction:column;align-items:center}
 [data-country="hk"] #station-context{order:0}
 [data-country="hk"] #station-badge{order:1}
-[data-country="hk"] #prompt-ko{order:2;font-size:clamp(24px,3vw,36px);font-weight:800;overflow-wrap:anywhere}
-[data-country="hk"] #prompt-main{order:3;font-size:clamp(18px,2vw,24px)!important}
+[data-country="hk"] #prompt-main{order:2;font-size:clamp(27px,3.3vw,44px)!important;font-weight:800;overflow-wrap:anywhere}
+[data-country="hk"] #prompt-ko{order:3;font-size:clamp(17px,2vw,26px)!important;font-weight:600;overflow-wrap:anywhere}
 [data-country="hk"] #prompt-kana{order:4}
 [data-country="hk"] #prompt-sub{order:5}
 [data-country="hk"] #ko-progress{order:6}
 [data-country="hk"] .station-sign-input{order:7;width:100%}
 [data-country="hk"] #next-station-button{order:8}
 [data-country="hk"] #game-free-drive-options{order:9;width:100%}
-/* Korean is the primary Hong Kong answer at every responsive breakpoint. */
-[data-country="hk"] #screen-game.active .station-current{display:flex!important;flex-direction:column!important;align-items:center!important;gap:7px!important}
-[data-country="hk"] #screen-game.active .station-current #prompt-ko{grid-area:auto!important;order:2!important;font-size:clamp(24px,3vw,36px)!important;font-weight:800!important;line-height:1.2!important;margin:0!important}
-[data-country="hk"] #screen-game.active .station-current #prompt-main{grid-area:auto!important;order:3!important;font-size:clamp(18px,2vw,24px)!important;line-height:1.2!important;margin:0!important}
+/* Same Japanese station-sign reading order: local language above Korean. */
+[data-country="hk"] #screen-game.active .station-current{display:flex!important;flex-direction:column!important;align-items:center!important;gap:4px!important}
+[data-country="hk"] #screen-game.active .station-current #prompt-main{grid-area:auto!important;order:2!important;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif!important;font-size:clamp(27px,3.3vw,44px)!important;font-weight:800!important;line-height:1.14!important;margin:0!important;white-space:normal!important;overflow-wrap:anywhere}
+[data-country="hk"] #screen-game.active .station-current #prompt-ko{grid-area:auto!important;order:3!important;font-family:"Noto Sans KR","Malgun Gothic",sans-serif!important;font-size:clamp(17px,2vw,26px)!important;font-weight:600!important;line-height:1.15!important;margin:0!important;white-space:normal!important;overflow-wrap:anywhere}
+[data-country="hk"] #screen-game.active .station-current #prompt-ko.memory-hidden{font-size:12px!important;font-weight:600!important}
 [data-country="hk"] .hk-operating-note{white-space:normal;overflow-wrap:anywhere;font-size:13px;line-height:1.6;padding:12px;border:1px solid var(--border,#81958a);border-radius:8px}
+
+/* Match Japan's line cards without changing canonical Hong Kong service groups. */
+[data-country="hk"] #route-grid .hk-line-card{display:flex;flex-direction:column;gap:6px;min-height:156px;overflow:visible}
+[data-country="hk"] .hk-line-card .operator{white-space:normal;overflow:visible}
+[data-country="hk"] .hk-line-card .operator small{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:10px;line-height:1.2}
+[data-country="hk"] .hk-line-card .hk-line-native{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:clamp(13px,1.25vw,16px);line-height:1.35;white-space:normal;overflow-wrap:anywhere}
+[data-country="hk"] .hk-line-card footer{margin-top:auto}
+[data-country="hk"] #selected-line-heading .hk-selected-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-weight:800;overflow-wrap:anywhere}
+[data-country="hk"] #screen-game.active .station-current #prompt-main{max-width:100%}
+@media(max-width:600px){
+ [data-country="hk"] #screen-game.active .station-current #prompt-main{font-size:clamp(25px,6.5vw,34px)!important}
+ [data-country="hk"] #screen-game.active .station-current #prompt-ko{font-size:clamp(16px,4.2vw,22px)!important}
+ [data-country="hk"] #route-grid .hk-line-card{min-height:0}
+}
