@@ -21,7 +21,9 @@ html[data-country="tw"] #route-grid .tw-line-card{display:flex!important;flex-di
 html[data-country="tw"] .tw-line-card .line-card-identity{min-width:0}
 html[data-country="tw"] .tw-line-card .operator{display:block;height:auto;max-height:none;overflow:visible;white-space:normal;font-size:11px}
 html[data-country="tw"] .tw-line-card .line-card-line-name{font-size:clamp(17px,1.5vw,22px);white-space:normal}
-html[data-country="tw"] .tw-line-card .tw-card-direction{height:auto!important;max-height:none!important;overflow:visible!important;white-space:normal;font-size:12px;line-height:1.4}
+html[data-country="tw"] .tw-line-card .tw-card-native{height:auto!important;max-height:none!important;overflow:visible!important;white-space:normal;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:clamp(13px,1.25vw,16px);line-height:1.35}
+html[data-country="tw"] .tw-line-card .tw-operator-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:10px;line-height:1.2}
+html[data-country="tw"] #selected-line-heading .tw-selected-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-weight:800;overflow-wrap:anywhere}
 html[data-country="tw"] .tw-line-card footer{position:static!important;margin-top:auto}
 html[data-country="tw"] #operator-filters button{height:auto;min-height:46px;white-space:normal}
 html[data-country="tw"] .selected-line-card .tw-name,
@@ -63,13 +65,12 @@ html[data-country="tw"] #station-line-label .tw-name{flex-direction:row;align-it
 html[data-country="tw"] #station-line-label small{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;white-space:normal;overflow-wrap:anywhere}
 html[data-country="tw"] .station-sign[data-sign-style="taiwan"] .station-sign-strip{background:var(--route-color)}
 
-/* Hong Kong's Korean-primary typing hierarchy, Japanese shared sign geometry.
-   #prompt-main always holds the actual native name, never copied Korean text. */
+/* Japan-style native-first sign hierarchy; Korean remains the input answer. */
 html[data-country="tw"] #station-sign .station-current{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center;gap:2px;min-width:0}
 html[data-country="tw"] #station-sign #station-context{order:0}
 html[data-country="tw"] #station-sign #station-badge{order:1}
-html[data-country="tw"] #station-sign #prompt-ko{order:2;display:block!important;font:800 clamp(23px,3vw,36px)/1.12 "Noto Sans KR","Malgun Gothic",sans-serif!important;white-space:normal;overflow-wrap:anywhere;max-width:100%;margin:0!important}
-html[data-country="tw"] #station-sign #prompt-main{order:3;display:block!important;font:600 clamp(17px,2vw,24px)/1.12 "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif!important;white-space:normal;overflow-wrap:anywhere;max-width:100%;margin:0!important}
+html[data-country="tw"] #station-sign #prompt-main{order:2;display:block!important;font:800 clamp(27px,3.3vw,44px)/1.12 "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif!important;white-space:normal;overflow-wrap:anywhere;max-width:100%;margin:0!important}
+html[data-country="tw"] #station-sign #prompt-ko{order:3;display:block!important;font:600 clamp(17px,2vw,26px)/1.12 "Noto Sans KR","Malgun Gothic",sans-serif!important;white-space:normal;overflow-wrap:anywhere;max-width:100%;margin:0!important}
 html[data-country="tw"] #station-sign #prompt-ko.memory-hidden{font-size:11px!important;font-weight:600!important;letter-spacing:.08em;opacity:.75}
 html[data-country="tw"] #station-sign #prompt-kana{order:4}
 html[data-country="tw"] #station-sign #prompt-kana:empty{display:none}
@@ -97,8 +98,8 @@ html[data-country="tw"] .free-drive-line header{height:auto;white-space:normal}
  html[data-country="tw"] #game-line-name .tw-zh{font-size:11px}
  html[data-country="tw"] #game-line-name .game-line-symbol{display:none}
  html[data-country="tw"] #station-sign .station-current{gap:3px;padding:5px 9px}
- html[data-country="tw"] #station-sign #prompt-ko{font-size:clamp(19px,5.5vw,29px)!important}
- html[data-country="tw"] #station-sign #prompt-main{font-size:clamp(15px,4vw,21px)!important}
+ html[data-country="tw"] #station-sign #prompt-main{font-size:clamp(25px,6.5vw,34px)!important}
+ html[data-country="tw"] #station-sign #prompt-ko{font-size:clamp(16px,4.2vw,22px)!important}
  html[data-country="tw"] #station-sign .station-neighbor span{display:none}
 }
 @media(max-width:520px){
