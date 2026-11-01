@@ -42,3 +42,21 @@ test('Taiwan uses Hong Kong/Japan common sign geometry and preserves native labe
  assert.equal(n.ko,'타이베이');assert.equal(n.zh,'臺北');
  assert(vm.runInContext("taiwanNameMarkup({ko:'타이베이',zh:'臺北'})",c).includes('lang="zh-Hant"'));
 });
+
+test('Taiwan selector shares HK/JP/KR visual templates with selective Traditional Chinese',()=>{
+ const app=fs.readFileSync(path.join(root,'js/app.js'),'utf8'),bundle=fs.readFileSync(path.join(root,'js/app.bundle.js'),'utf8');
+ for(const source of [app,bundle]){
+  assert(source.includes('renderTaiwanSetupHeader(selected,stops.length)'));
+  assert(source.includes('class="tw-selected-ko"'));
+  assert(!source.includes('taiwanNameMarkup(route.operator)'));
+  assert(!source.includes('taiwanNameMarkup(choice.patternName)'));
+  assert(!source.includes('taiwanNameMarkup(s,{english:true})'));
+  assert(source.includes('if(selected.countryId===\'tw\')renderTaiwanSetupHeader(selected)'));
+  assert(source.includes('taiwanNameText(choice.originNames,{english:true})'));
+ }
+ const display=fs.readFileSync(path.join(root,'js/taiwan-display.js'),'utf8');
+ assert(display.includes('if(heading)heading.textContent=line.ko'));
+ assert(display.includes("set('game-operator',getTaiwanDisplayNames(route.operator).ko)"));
+ const css=fs.readFileSync(path.join(root,'css/taiwan.css'),'utf8');
+ assert(css.includes('#selected-line-heading .tw-selected-native'));
+});

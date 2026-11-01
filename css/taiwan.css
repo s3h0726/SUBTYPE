@@ -29,8 +29,8 @@ html[data-country="tw"] .tw-line-card .line-card-identity{min-width:0}
 html[data-country="tw"] .tw-line-card .operator{white-space:normal;overflow:visible}
 html[data-country="tw"] .tw-line-card .line-card-line-name{white-space:normal}
 html[data-country="tw"] .tw-line-card .tw-card-native{height:auto!important;max-height:none!important;overflow:visible!important;white-space:normal;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:clamp(13px,1.25vw,16px);line-height:1.35}
-html[data-country="tw"] .tw-line-card .tw-operator-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:10px;line-height:1.2}
-html[data-country="tw"] #selected-line-heading .tw-selected-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-weight:800;overflow-wrap:anywhere}
+/* Operator labels are Korean-only; no Taiwan operator-native subtitle. */
+html[data-country="tw"] #selected-line-heading .tw-selected-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:.55em;line-height:1.3;font-weight:600;overflow-wrap:anywhere}
 html[data-country="tw"] .tw-line-card footer{margin-top:auto}
 html[data-country="tw"] #operator-filters button{height:auto;white-space:normal}
 html[data-country="tw"] .selected-line-card .tw-name,
@@ -120,3 +120,12 @@ html[data-country="tw"] .free-drive-line header{height:auto;white-space:normal}
 }
 
 html[data-country="tw"] .tw-operation-note{display:block;margin-top:8px;font-size:14px;line-height:1.5;white-space:normal;overflow-wrap:anywhere}
+
+/* Align Taiwan selection and setup typography with the shared Japan/HK/KR template. */
+html[data-country="tw"] #selected-line-heading .tw-selected-ko{display:block;font-size:1em;line-height:1.2}
+html[data-country="tw"] .selected-line-card .selected-line-operator small{display:none}
+html[data-country="tw"] #setup-route>h3{font-size:clamp(24px,2.1vw,34px);line-height:1.2;overflow-wrap:anywhere}
+html[data-country="tw"] #setup-route>p{font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+html[data-country="tw"] #setup-route .setup-stations li>b{display:block}
+html[data-country="tw"] #setup-route .setup-stations li>span{display:block;font-size:12px;line-height:1.35;overflow-wrap:anywhere}
+html[data-country="tw"] .tw-line-card .line-card-line-name{font-size:inherit}
