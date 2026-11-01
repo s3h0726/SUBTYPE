@@ -60,11 +60,10 @@ const JAPANESE_KOREAN_ID_FIXES={"tokyo-metro":"도쿄 메트로","yurikamome":"�
 const NAMUWIKI_STATION_FIXES_BY_ID={"station-1130102":"신바시","station-003887":"시오도메","station-003958":"다케시바","station-003979":"히노데","station-004030":"시바우라 후토","station-004091":"오다이바 카이힌코엔","station-004112":"다이바","station-004128":"도쿄 국제 크루즈 터미널","station-004144":"텔레콤센터","station-004119":"아오미","station-004087":"도쿄빅사이트","station-004064":"아리아케","station-004037":"아리아케 테니스노모리","station-004001":"시조마에","station-003981":"신토요스","station-003951":"토요스","station-003729":"한조몬","station-003782":"나가타쵸","station-003839":"토요쵸","station-003542":"코라쿠엔","station-003962":"시바코엔","station-003654":"료고쿠","station-003646":"료고쿠","station-003604":"오쿠보","station-003954":"아카바네바시","station-003639":"킨시쵸","station-003900":"카미야쵸","station-003753":"스이텐구마에","station-004108":"도쿄 텔레포트","station-003545":"우에노히로코지","station-004036":"세이죠가쿠엔마에","station-004331":"케이큐카마타","station-004264":"오모리","station-1130101":"도쿄","station-1130101":"도쿄","station-003884":"롯폰기잇초메","station-003892":"롯폰기","station-1130101":"도쿄","station-1111102":"유후츠","station-1120311":"오미나토","station-1150518":"오오카","station-9964809":"고베 공항","station-1141608":"미노오타","station-1161408":"호즈쿄","station-1192902":"휴가쇼나이","station-9932008":"가마쿠라코코마에","station-004361":"하네다 공항 제2터미널","station-3100533":"무로구치오노","station-9931303":"코엔","station-9960115":"교세라마에","station-1131420":"나루토","station-3001807":"코마키구치","station-004614":"사가미오츠카","station-9931412":"다이유잔"};
 const NAMUWIKI_STATION_FIXES_BY_JA={"大阪難波":"오사카난바","三河安城":"미카와안조","新大阪":"신오사카","大船":"오후나","大井町":"오이마치","大原":"오하라","新倉敷":"신쿠라시키","鹿児島":"가고시마","鹿児島中央":"가고시마추오","南鹿児島":"미나미가고시마","鹿児島駅前":"가고시마에키마에","南鹿児島駅前":"미나미가고시마에키마에","鹿児島中央駅前":"가고시마추오에키마에"};
 function stationKoreanNameFromPolicy(station){
-  const ja=station?.ja||station?.names?.ja||'',id=station?.id||'';
-  const verified=NAMUWIKI_STATION_FIXES_BY_ID[id]||NAMUWIKI_STATION_FIXES_BY_JA[ja];
-  if(verified)return{name:verified,source:'namuwiki',status:'VERIFIED'};
-  const fallback=cleanJapaneseKoreanName(station?.ko||station?.names?.ko||'',ja);
-  return{name:fallback,source:'fallback-transliteration',status:'REVIEW_REQUIRED'}
+  // Source/editor names are also the typing answers. Never shorten vowels or
+  // overwrite a route-specific identity with a Japanese-name-only lookup.
+  const name=String(station?.ko||station?.names?.ko||'').normalize('NFC').trim();
+  return{name,source:station?.koSource||'canonical-station-source',status:station?.koVerified===true?'VERIFIED':'REVIEW_REQUIRED'}
 }
 function cleanJapaneseKoreanName(value,ja=''){
   const exact=JAPANESE_KOREAN_EXACT_FIXES[ja];if(exact)return exact;

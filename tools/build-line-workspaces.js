@@ -8,6 +8,10 @@ const editorOverridesPath=path.join(projectRoot,'data','editor-overrides.json');
 const editorOverrides=fs.existsSync(editorOverridesPath)?JSON.parse(fs.readFileSync(editorOverridesPath,'utf8')):{};
 const editorOps=editorOverrides.operators||{},editorLines=editorOverrides.lines||{},editorStations=editorOverrides.stations||{};
 const stationsOverridden=[];
+// Preserve the latest route-specific policy evidence during every rebuild.
+// A policy application is not an independently checked station article.
+const policyFile=path.join(projectRoot,'data','japan-namuwiki-policy-corrections-20261102.json');
+const policyNames=new Map((fs.existsSync(policyFile)?JSON.parse(fs.readFileSync(policyFile,'utf8')).corrections:[]).map(p=>[p.routeId+'::'+p.stationId,p]));
 for(const route of data.routes){
   const opName=editorOps[route.operatorId];
   if(typeof opName==='string'&&opName.trim())route.operator.ko=opName.trim();
@@ -26,6 +30,13 @@ for(const route of data.routes){
       station.ko=target.trim();
       station.routeSpecificStationName=true;
       station.editorStationNameOverride=true;
+      const proof=policyNames.get(route.id+'::'+station.id);
+      if(proof&&proof.ja===station.ja&&proof.ko===station.ko){
+        station.koSourceUrl=proof.sourceUrl;
+        station.koSource=proof.verification==='policy'?'namuwiki-policy':'namuwiki-article';
+        station.koVerified=proof.verification!=='policy';
+        station.koReviewStatus=proof.verification==='policy'?'POLICY_APPLIED_ARTICLE_UNCHECKED':'VERIFIED';
+      }
       stationsOverridden.push([route.id,station.id]);
     }
   }

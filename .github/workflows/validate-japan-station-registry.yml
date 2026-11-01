@@ -1,0 +1,31 @@
+name: Validate nationwide Japan station names
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/shared-stations/**'
+      - 'data/source-audit/japan-*20261101.json'
+      - 'data/japan-route-station-names.json'
+      - 'js/app.js'
+      - 'js/rail-data-repository.js'
+      - 'tools/*japan*name*.cjs'
+      - 'tools/*japan*registry*.cjs'
+      - '.github/workflows/validate-japan-station-registry.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node tools/audit-japan-station-registry.cjs
+      - run: git diff --exit-code -- reports/names/nationwide-20261101/stations.jsonl reports/names/nationwide-20261101/operating-sequences.json reports/names/nationwide-20261101/summary.json
+      - run: node tools/test-japan-station-registry.cjs
+      - run: node tools/test-editor-station-runtime.cjs && node tools/test-korean-name-editor-namuwiki.cjs
+      - run: node tools/test-japan-trilingual-published.cjs && node tools/test-japan-namuwiki-published.cjs
+      - run: node tools/test-japan-namuwiki-policy.cjs
+      - run: node --check js/app.bundle.js

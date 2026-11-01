@@ -5,6 +5,9 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
 const json=p=>JSON.parse(read(p));
 const extract=(p,key)=>JSON.parse(read(p).split(key)[1].trim().replace(/;\s*$/,''));
 const patches=json('data/japan-trilingual-confirmed-corrections.json');
+const {loadStations,discoverLineFolders}=require('./lib/line-workspaces');
+const stationMaster=loadStations().map;
+const currentLines=new Map(discoverLineFolders().map(folder=>{const line=JSON.parse(fs.readFileSync(path.join(folder,'line.json'),'utf8'));return[line.id,line]}));
 const editor=json('data/editor-overrides.json');
 const ws=extract('js/line-workspace-data.js','window.TRT_EMBEDDED_LINE_WORKSPACES=');
 const lite=extract('js/japan-lite-index.js','window.TRT_JAPAN_LITE_INDEX=');
@@ -27,7 +30,9 @@ for(const line of patches.lines){
  const route=ws.routes.find(r=>r.id===line.id),m=lite.routes.find(r=>r.id===line.id);
  if(!route||!m)throw Error('Missing corrected line from published catalog: '+line.id);
  for(const label of ['ja','en','ko']){
-  const expected=label==='ko'?(editor.lines?.[line.id]?.ko||line.ko):line[label];
+  // Chikuhi labels were updated after the historical correction fixture.
+  const canonicalKo=['line-11909','line-11920'].includes(line.id)?currentLines.get(line.id).names.ko:line.ko;
+  const expected=label==='ko'?(editor.lines?.[line.id]?.ko||canonicalKo):line[label];
   if(route.line?.[label]!==expected||m.line?.[label]!==expected)issues.push({id:line.id,type:'line',label,ws:route.line?.[label],lite:m.line?.[label],expected});
  }
  const stored=getDeployed(line.id).record;
@@ -43,12 +48,13 @@ for(const op of patches.operators){
  verified.operators++;
 }
 for(const stop of patches.stations){
+ const expectedEnglish=stationMaster.get(stop.id)?.officialNameProof?.en?.value||stop.en;
  const matching=ws.routes.flatMap(r=>(r.stations||[]).filter(s=>s.id===stop.id).map(s=>({route:r,stop:s})));
  if(!matching.length)throw Error('Corrected station missing from all playable routes: '+stop.id);
- if(!matching.some(({stop:s})=>s.romaji===stop.en&&s.kana===stop.kana&&s.ko===stop.ko))
-   issues.push({id:stop.id,type:'station',expected:[stop.en,stop.kana,stop.ko],actual:matching.map(x=>[x.stop.romaji,x.stop.kana,x.stop.ko]).slice(0,5)});
+ if(!matching.some(({stop:s})=>s.romaji===expectedEnglish&&s.kana===stop.kana&&s.ko===stop.ko))
+   issues.push({id:stop.id,type:'station',expected:[expectedEnglish,stop.kana,stop.ko],actual:matching.map(x=>[x.stop.romaji,x.stop.kana,x.stop.ko]).slice(0,5)});
  const published=getDeployed(matching[0].route.id).record.stations?.find(s=>s.id===stop.id);
- if(!published||published.romaji!==stop.en)issues.push({id:stop.id,type:'chunk-station',expected:stop.en,actual:published?.romaji});
+ if(!published||published.romaji!==expectedEnglish)issues.push({id:stop.id,type:'chunk-station',expected:expectedEnglish,actual:published?.romaji});
  verified.stations++;
 }
 for(const id of routeIds)if(!indexIds.has(id))issues.push({id,type:'generated-index-missing'});

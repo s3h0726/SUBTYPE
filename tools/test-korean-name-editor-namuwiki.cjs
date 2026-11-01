@@ -66,7 +66,7 @@ const inlineScripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/
 assert(inlineScripts.length>0,'Editor must retain its browser-side edit and save logic');
 for(const script of inlineScripts)new vm.Script(script,{filename:'reports/korean-names/editor.html'});
 
-assert(html.includes("DATA_VERSION='20261031-namuwiki-revalidated'"),
+assert(html.includes("DATA_VERSION='20261102-nationwide-revalidated'"),
  'Old browser drafts must not supersede new source-of-truth names');
 assert(html.includes("heads[j]==='근거 URL'"),'The source links must be shown in the editor');
 console.log(JSON.stringify({status:'PASS',lines:lines.rows.length,operators:ops.rows.length,stations:stations.rows.length,uniqueStations:unique.rows.length,monorailLines:batch.lines.length,NamuwikiOperatorChecks:batch.operators.length,shonanAliases:2,disneyStops:disney.length}));

@@ -1,0 +1,154 @@
+{
+  "baseline": "a99da94bddb853adb7a3fc15195535202cd8a778",
+  "scope": "자동 검사 명령 단위 집계. 각 명령의 내부 fixture 수와 브라우저 실행 수는 별도 보고.",
+  "passed": 19,
+  "failed": 2,
+  "results": [
+    {
+      "name": "registry",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/registry.log"
+    },
+    {
+      "name": "editor-runtime",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/editor-runtime.log"
+    },
+    {
+      "name": "editor-table",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/editor-table.log"
+    },
+    {
+      "name": "trilingual-published",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/trilingual-published.log"
+    },
+    {
+      "name": "namuwiki-published",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/namuwiki-published.log"
+    },
+    {
+      "name": "current-policy",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/current-policy.log"
+    },
+    {
+      "name": "service-patterns",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/service-patterns.log"
+    },
+    {
+      "name": "service-resolver",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/service-resolver.log"
+    },
+    {
+      "name": "shinkansen",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/shinkansen.log"
+    },
+    {
+      "name": "shonan",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/shonan.log"
+    },
+    {
+      "name": "ueno-tokyo",
+      "exitCode": 1,
+      "status": "FAIL",
+      "log": "tests/ueno-tokyo.log"
+    },
+    {
+      "name": "joban",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/joban.log"
+    },
+    {
+      "name": "free-drive-motion",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/free-drive-motion.log"
+    },
+    {
+      "name": "typing",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/typing.log"
+    },
+    {
+      "name": "ime",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/ime.log"
+    },
+    {
+      "name": "coordinates",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/coordinates.log"
+    },
+    {
+      "name": "free-drive-flow",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/free-drive-flow.log"
+    },
+    {
+      "name": "taiwan",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/taiwan.log"
+    },
+    {
+      "name": "hong-kong-selector",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/hong-kong-selector.log"
+    },
+    {
+      "name": "korea",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "tests/korea.log"
+    },
+    {
+      "name": "legacy-data-validator",
+      "exitCode": 1,
+      "status": "FAIL",
+      "log": "tests/legacy-data-validator.log"
+    }
+  ],
+  "baselineEvidence": {
+    "legacyValidatorInputsUnchanged": true,
+    "uenoFixtureMissingAtBaseline": true
+  },
+  "knownFailures": [
+    {
+      "name": "ueno-tokyo",
+      "exitCode": 1,
+      "status": "FAIL",
+      "log": "tests/ueno-tokyo.log",
+      "classification": "기존 검사에서 참조하는 과거 경로 파일 누락"
+    },
+    {
+      "name": "legacy-data-validator",
+      "exitCode": 1,
+      "status": "FAIL",
+      "log": "tests/legacy-data-validator.log",
+      "classification": "기존 curated 역 원본 중복 ID"
+    }
+  ]
+}
