@@ -353,6 +353,8 @@ function operatorLogoAsset(routeOrOperatorId){
 }
 
 function operatorLogoMarkup(routeOrOperatorId,className='operator-logo'){
+  // Taiwan uses text-only operator identities across all screens.
+  if(routeOrOperatorId?.countryId==='tw'||(typeof routeOrOperatorId==='string'&&routeOrOperatorId.startsWith('tw-')))return'';
   const asset=operatorLogoAsset(routeOrOperatorId),url=asset?.url||asset?.asset;if(!url)return'';
   return`<span class="${escapeHtml(className)}" data-operator-logo><img loading="lazy" decoding="async" src="${escapeHtml(url)}" alt="${escapeHtml(asset.label||'운영사')} 로고"><span hidden>${escapeHtml(asset.label||'운영사')}</span></span>`
 }
