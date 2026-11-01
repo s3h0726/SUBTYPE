@@ -32,8 +32,8 @@ test('Taiwan uses Hong Kong/Japan common sign geometry and preserves native labe
  assert(css.includes('#screen-game.active{display:block!important;height:100dvh;overflow:hidden}'));
  assert(!css.includes('grid-template-rows:100px 90px'));
  assert(!css.includes('min-height:310px!important'));
- assert(css.includes('#prompt-ko{order:2'));
- assert(css.includes('#prompt-main{order:3'));
+ assert(css.includes('#prompt-main{order:2'));
+ assert(css.includes('#prompt-ko{order:3'));assert(css.includes('.tw-card-native'));
  assert(css.includes('font-family:"Noto Sans TC"')||css.includes('"Noto Sans TC"'));
  const ui=fs.readFileSync(path.join(root,'js/taiwan-display.js'),'utf8');
  assert(ui.includes("lineHeading.querySelector('.game-line-symbol,.line-badge,.line-symbol-asset')"));
