@@ -47,12 +47,16 @@ test('Taiwan selector shares HK/JP/KR visual templates with selective Traditiona
  const app=fs.readFileSync(path.join(root,'js/app.js'),'utf8'),bundle=fs.readFileSync(path.join(root,'js/app.bundle.js'),'utf8');
  for(const source of [app,bundle]){
   assert(source.includes('renderTaiwanSetupHeader(selected,stops.length)'));
-  assert(source.includes('class="tw-selected-ko"'));
+  assert(source.includes('class="tw-selected-native" lang="zh-Hant"'));
   assert(!source.includes('taiwanNameMarkup(route.operator)'));
   assert(!source.includes('taiwanNameMarkup(choice.patternName)'));
   assert(!source.includes('taiwanNameMarkup(s,{english:true})'));
   assert(source.includes('if(selected.countryId===\'tw\')renderTaiwanSetupHeader(selected)'));
   assert(source.includes('taiwanNameText(choice.originNames,{english:true})'));
+  assert(source.includes('function taiwanSetupStationRows(stations)'));
+  assert(source.includes('if(list)list.innerHTML=taiwanSetupStationRows(stops)'));
+  assert(source.includes('getTaiwanDisplayNames(choice.patternName).ko'));
+  assert(source.includes('class="tw-setup-station"'));
  }
  const display=fs.readFileSync(path.join(root,'js/taiwan-display.js'),'utf8');
  assert(display.includes('if(heading)heading.textContent=line.ko'));
@@ -62,5 +66,7 @@ test('Taiwan selector shares HK/JP/KR visual templates with selective Traditiona
  assert(bundle.includes('function renderTaiwanSetupHeader(route,stationCount)'));
  assert(bundle.includes("set('game-operator',getTaiwanDisplayNames(route.operator).ko)"));
  const css=fs.readFileSync(path.join(root,'css/taiwan.css'),'utf8');
- assert(css.includes('#selected-line-heading .tw-selected-native'));
+ assert(css.includes('li.tw-setup-station'));
+ assert(css.includes('grid-template-columns:minmax(0,42%) minmax(0,1fr)'));
+ assert(css.includes('.selected-line-card>.tw-selected-native'));
 });

@@ -53,6 +53,6 @@ export function renderTaiwanSetupHeader(route,stationCount){
  const heading=root.querySelector('h3'),meta=root.querySelector('p');
  // Keep the shared route ticket: Korean line heading, compact Chinese subtitle.
  if(heading)heading.textContent=line.ko;
- if(meta)meta.innerHTML=twEscape(operator.ko)+(line.zh?' · <span lang="zh-Hant">'+twEscape(line.zh)+'</span>':line.en?' · '+twEscape(line.en):'')+'<br>'+Number(stationCount??route.stationCount??route.stations?.length??0)+' STATIONS';
+ if(meta)meta.innerHTML=twEscape(operator.ko)+(line.en?' · '+twEscape(line.en):'')+'<br>'+Number(stationCount??route.stationCount??route.stations?.length??0)+' STATIONS';
 }
 globalThis.TRTTaiwanDisplay={names:getTaiwanDisplayNames,text:taiwanNameText,markup:taiwanNameMarkup,record:taiwanRecordDisplay,recordMarkup:taiwanRecordMarkup,recordText:taiwanRecordText,ensure:ensureTaiwanDisplay};
