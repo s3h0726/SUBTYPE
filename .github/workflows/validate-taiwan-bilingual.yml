@@ -1,0 +1,27 @@
+name: Validate Taiwan bilingual presentation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/taiwan-display.js'
+      - 'js/taiwan-network.js'
+      - 'js/data-loader.js'
+      - 'js/app.bundle.js'
+      - 'css/taiwan.css'
+      - 'tools/test-taiwan.cjs'
+      - '.github/workflows/validate-taiwan-bilingual.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check app JavaScript syntax
+        run: node --check js/app.bundle.js
+      - name: Verify Taiwan routes and bilingual layout
+        run: node --test tools/test-taiwan.cjs
