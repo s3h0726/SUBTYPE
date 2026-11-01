@@ -158,3 +158,36 @@ test('next station UI is outside the sign: options cannot push station name over
   assert.match(css,/#screen-game\.free-drive-active #game-free-drive-options\s*\{/);
   assert.match(css,/overflow-y:auto/);
 });
+
+
+test('stale IME completion cannot submit the next station after departure',()=>{
+  const {game,from,next}=fixture('jp');
+  game.freeDriveAwaitingStart=true;
+  game.freeDriveTarget={kind:'start',station:from};
+  game.correct('출발역');
+  assert.equal(game.freeDriveTarget.station.id,next.id);
+  assert.equal(game.phase,'TYPING');
+  const before=game.typedStationIds.length;
+  game.correct('출발역'); // Late duplicate compositionend from the previous target
+  assert.equal(game.phase,'TYPING');
+  assert.equal(game.freeDriveTarget.station.id,next.id);
+  assert.equal(game.typedStationIds.length,before);
+});
+
+test('route-choice renderer cannot silently change typing destination',()=>{
+  const source=fs.readFileSync(path.join(root,'js/app.js'),'utf8');
+  const renderer=source.slice(source.indexOf('function renderGameFreeDriveOptions(state){'),source.indexOf('// Keep the rail system lazy',source.indexOf('function renderGameFreeDriveOptions(state){')));
+  assert(!renderer.includes('setFreeDriveTypingTarget'),'a redraw may not mutate the typing station');
+  assert(!renderer.includes('moveTo('),'a redraw may not move the train');
+  const change=source.slice(source.indexOf('freeDrive=new FreeDrive({'),source.indexOf("$('#free-drive-custom')",source.indexOf('freeDrive=new FreeDrive({')));
+  assert(!change.includes('freeDriveAwaitingStart=true'),'a transfer should not restart departure typing');
+  assert.match(source,/onFreeDriveMove:\(to,routeId,fromKey\)=>freeDrive\?\.moveTo\(to,routeId,fromKey\)/);
+});
+
+test('free-drive desktop and short-screen CSS preserve separate input and station rows',()=>{
+  const css=fs.readFileSync(path.join(root,'css/free-drive.css'),'utf8');
+  assert.match(css,/Station-name\/typing collision fix/);
+  assert.match(css,/grid-template-rows:14px minmax\(30px,1fr\) minmax\(24px,auto\) 13px 36px!important/);
+  assert.match(css,/#screen-game\.active\.free-drive-active \.station-current #ko-progress\s*\{[\s\S]*?display:none!important/);
+  assert.match(css,/-webkit-text-fill-color:#13251c!important/);
+});
