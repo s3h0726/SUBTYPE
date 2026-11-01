@@ -65,7 +65,7 @@ let country=['jp','kr','hk','tw'].includes(new URLSearchParams(location.search).
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0,loadSequence=0;
 const routeSelection={kr:'',hk:''},indexCache={};
 const routeBar=document.querySelector('#route-filter-bar'),routePicker=document.querySelector('#route-filter');
-const DATA_VERSION='20261031-namuwiki-revalidated'; // Isolate stale drafts from revalidated canonical names; older local drafts remain recoverable under their earlier storage key
+const DATA_VERSION='20261102-nationwide-revalidated'; // Preserve old drafts under their prior key; corrected source names start a fresh draft.
 const FRESH_DATA_QUERY='ts='+Date.now();
 const EDIT_BRANCH=new URLSearchParams(location.search).get('branch')||'main';
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');

@@ -1,0 +1,112 @@
+{
+  "scope": "대표 노선의 실제 UI 선택·합성 한글 IME·실제 게임 엔진. 전국 개별 브라우저 검사는 아님.",
+  "runs": [
+    {
+      "status": "PASS",
+      "lineId": "line-99511",
+      "typedStops": 23,
+      "destination": "코조지",
+      "routeIntegrity": true,
+      "rankingServiceId": null,
+      "requestedLine": "line-99511",
+      "requestedDirection": "forward"
+    },
+    {
+      "status": "PASS",
+      "lineId": "line-99511",
+      "typedStops": 23,
+      "destination": "오카자키",
+      "routeIntegrity": true,
+      "rankingServiceId": null,
+      "requestedLine": "line-99511",
+      "requestedDirection": "reverse"
+    },
+    {
+      "status": "PASS",
+      "lineId": "through-catalog-4",
+      "typedStops": 13,
+      "destination": "가고시마츄오",
+      "routeIntegrity": true,
+      "rankingServiceId": null,
+      "requestedLine": "shinkansen-sanyo",
+      "requestedDirection": "forward"
+    },
+    {
+      "status": "PASS",
+      "lineId": "through-catalog-533",
+      "typedStops": 82,
+      "destination": "야츠시로",
+      "routeIntegrity": true,
+      "rankingServiceId": null,
+      "requestedLine": "line-11903",
+      "requestedDirection": "forward"
+    },
+    {
+      "status": "PASS",
+      "lineId": "through-catalog-815",
+      "typedStops": 26,
+      "destination": "나하리",
+      "routeIntegrity": true,
+      "rankingServiceId": null,
+      "requestedLine": "line-11801",
+      "requestedDirection": "forward"
+    },
+    {
+      "status": "PASS",
+      "lineId": "line-11101",
+      "typedStops": 3,
+      "destination": "신하코다테호쿠토",
+      "routeIntegrity": true,
+      "rankingServiceId": null,
+      "requestedLine": "line-11101",
+      "requestedDirection": "forward"
+    },
+    {
+      "status": "PASS",
+      "lineId": "line-28001",
+      "typedStops": 19,
+      "destination": "아사쿠사",
+      "routeIntegrity": true,
+      "rankingServiceId": "base-journey-ginza-full-reverse",
+      "requestedLine": "line-28001",
+      "requestedDirection": "reverse"
+    },
+    {
+      "status": "PASS",
+      "lineId": "line-99907",
+      "typedStops": 16,
+      "destination": "텐진미나미",
+      "routeIntegrity": true,
+      "rankingServiceId": null,
+      "requestedLine": "line-99907",
+      "requestedDirection": "forward"
+    }
+  ],
+  "errors": [],
+  "freeDrive": {
+    "status": "PASS",
+    "station": "岡崎",
+    "transferTo": "line-11502",
+    "nextTarget": "오카자키",
+    "beforeCoordinates": [
+      34.92666,
+      137.15716
+    ],
+    "afterCoordinates": [
+      34.92666,
+      137.15716
+    ],
+    "typing": {
+      "status": "PASS",
+      "typed": [
+        "오카자키",
+        "무츠나"
+      ],
+      "arrived": "무츠나",
+      "historyLength": 2
+    }
+  },
+  "passed": 9,
+  "failed": 0,
+  "status": "PASS"
+}

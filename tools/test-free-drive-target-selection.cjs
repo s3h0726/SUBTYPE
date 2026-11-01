@@ -133,9 +133,9 @@ test('free-drive current station label is the actual station rather than its pre
   const state={route,routeId:route.id,stationIndex:3,station:route.stations[3],
     historyLength:4,transferCount:0,edges:[abukumaEdge(route,3,4),abukumaEdge(route,3,2)]};
   game.renderFreeDriveState(state);
-  assert.equal($('#previous-station-name').textContent,'세노에','CURRENT must show Senoue, not Fukushima-Gakuinmae');
+  assert.equal($('#previous-station-name').textContent,'세노우에','CURRENT must show Senoue, not Fukushima-Gakuinmae');
   assert.equal($('#prompt-main').textContent,'向瀬上','next prompt follows current station');
-  assert.equal($('#next-station-name').textContent,'무카이세노에');
+  assert.equal($('#next-station-name').textContent,'무카이세노우에');
   assert.equal($('#following-stop-label').textContent,'다음 역');
 });
 
