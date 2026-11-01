@@ -20,6 +20,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - name: Regression test free-drive station targeting
+        run: node --test tools/test-free-drive-target-selection.cjs
       - name: Build the current app bundle including country-wide name overrides
         run: node tools/build-app-bundle.js
       - run: node --check js/app.bundle.js
