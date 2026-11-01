@@ -5,8 +5,10 @@
 html[data-country="tw"]{font-family:system-ui,"Noto Sans KR","Noto Sans TC","Microsoft JhengHei",sans-serif}
 html[data-country="tw"] [data-operator-logo]{display:inline-grid!important;place-items:center;width:38px;height:26px;flex:none;background:#fff;border-radius:4px;padding:3px}
 html[data-country="tw"] [data-operator-logo] img{display:block;width:100%;height:100%;object-fit:contain}
-html[data-country="tw"] .line-card [data-operator-logo]{width:58px;height:30px}
-html[data-country="tw"] .line-card.shinkansen-card{border-top:4px solid #e85d0d;background-image:linear-gradient(135deg,#e85d0d12,transparent 65%)}
+/* Use the same compact operator-mark dimensions as the Hong Kong/Japan cards. */
+html[data-country="tw"] #route-grid .tw-line-card [data-operator-logo]{display:block!important;width:76px;height:24px;padding:0;background:transparent;border-radius:0}
+/* The common shinkansen card already supplies the background and line tint. */
+html[data-country="tw"] .line-card.shinkansen-card{border-top:5px solid var(--route-color)}
 
 /* The identical locale component is used by cards, filters, services, maps,
    historical records, rankings, and the selected-route panel. */
@@ -15,17 +17,17 @@ html[data-country="tw"] .line-card.shinkansen-card{border-top:4px solid #e85d0d;
 .tw-name .tw-zh{display:block!important;visibility:visible!important;opacity:1!important;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:.84em;font-weight:550;line-height:1.25;white-space:normal;overflow-wrap:anywhere}
 .tw-name .tw-en{display:block;font-size:.72em;line-height:1.2;opacity:.8;white-space:normal;overflow-wrap:anywhere}
 
-/* Follow the existing Japan/Hong Kong compact cards instead of the former
-   310px-tall Taiwan-only cards. Text never gets clipped. */
-html[data-country="tw"] #route-grid .tw-line-card{display:flex!important;flex-direction:column;gap:6px;height:auto!important;min-height:156px!important;overflow:visible!important}
+/* Taiwan uses the shared compact route card layout; only bilingual text differs.
+   Keep the same sizing and spacing as Hong Kong/Japan/Korea cards. */
+html[data-country="tw"] #route-grid .tw-line-card{display:flex;flex-direction:column;gap:6px;min-height:156px;overflow:visible}
 html[data-country="tw"] .tw-line-card .line-card-identity{min-width:0}
-html[data-country="tw"] .tw-line-card .operator{display:block;height:auto;max-height:none;overflow:visible;white-space:normal;font-size:11px}
-html[data-country="tw"] .tw-line-card .line-card-line-name{font-size:clamp(17px,1.5vw,22px);white-space:normal}
+html[data-country="tw"] .tw-line-card .operator{white-space:normal;overflow:visible}
+html[data-country="tw"] .tw-line-card .line-card-line-name{white-space:normal}
 html[data-country="tw"] .tw-line-card .tw-card-native{height:auto!important;max-height:none!important;overflow:visible!important;white-space:normal;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:clamp(13px,1.25vw,16px);line-height:1.35}
 html[data-country="tw"] .tw-line-card .tw-operator-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:10px;line-height:1.2}
 html[data-country="tw"] #selected-line-heading .tw-selected-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-weight:800;overflow-wrap:anywhere}
-html[data-country="tw"] .tw-line-card footer{position:static!important;margin-top:auto}
-html[data-country="tw"] #operator-filters button{height:auto;min-height:46px;white-space:normal}
+html[data-country="tw"] .tw-line-card footer{margin-top:auto}
+html[data-country="tw"] #operator-filters button{height:auto;white-space:normal}
 html[data-country="tw"] .selected-line-card .tw-name,
 html[data-country="tw"] .operating-pattern-card .tw-name,
 html[data-country="tw"] .operating-journey-card .tw-name{max-width:100%}
@@ -103,7 +105,7 @@ html[data-country="tw"] .free-drive-line header{height:auto;white-space:normal}
  html[data-country="tw"] #station-sign .station-neighbor span{display:none}
 }
 @media(max-width:520px){
- html[data-country="tw"] #route-grid .tw-line-card{min-height:0!important}
+ html[data-country="tw"] #route-grid .tw-line-card{min-height:0}
  html[data-country="tw"] #game-operator .tw-zh{display:none!important}
  html[data-country="tw"] #game-line-name .tw-name{gap:4px}
  html[data-country="tw"] #game-service-name .tw-zh{font-size:9px}
