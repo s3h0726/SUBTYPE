@@ -42,7 +42,7 @@
       "tools/kr-rail-rebuild.test.cjs"
     ],
     "status": 0,
-    "stdout": "✔ rail publications pass complete geometry, language and reference gates (64.8077ms)\n✔ every published geometry edge is an actual source rail edge in its direction (257.4986ms)\n✔ official metro journeys preserve complete official Korean call sequences (673.4018ms)\n✔ conventional railway has independent actual tracks in both directions (2.1775ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (91.31ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1380.836\n",
+    "stdout": "✔ rail publications pass complete geometry, language and reference gates (45.3666ms)\n✔ every published geometry edge is an actual source rail edge in its direction (160.847ms)\n✔ official metro journeys preserve complete official Korean call sequences (548.9691ms)\n✔ conventional railway has independent actual tracks in both directions (1.5429ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (85.368ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1105.6843\n",
     "stderr": ""
   },
   {
@@ -61,7 +61,7 @@
     ],
     "status": 0,
     "stdout": "{\n  \"status\": \"PASS\",\n  \"cases\": 18,\n  \"bracketsOnlyAutoFilled\": true,\n  \"errors\": []\n}\n",
-    "stderr": "(node:32524) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    "stderr": "(node:26356) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
   },
   {
     "name": "한글 조합",
@@ -78,7 +78,7 @@
       "tools/test-hk-route-selector.cjs"
     ],
     "status": 0,
-    "stdout": "PASS js/app.js: HK MTR/TRAM, KR, JP click selectors\nPASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors\nPASS selector assets: 96 HK route records\n",
+    "stdout": "PASS js/app.js: HK MTR/TRAM, KR, JP click selectors\nPASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors\nPASS selector assets: 104 HK route records\n",
     "stderr": ""
   },
   {
@@ -97,7 +97,7 @@
       "tools/test-jr-sobu-rapid-playable.cjs"
     ],
     "status": 0,
-    "stdout": "{\"status\":\"PASS\",\"lineId\":\"line-jr-east-sobu-rapid\",\"stops\":10,\"segments\":9,\"vertices\":251,\"directions\":[\"Tokyo–Chiba\",\"Chiba–Tokyo\"],\"localRouteKept\":\"line-11313\",\"originalMainLineKept\":\"line-11314\",\"transfers\":22,\"csvIntegrated\":true}\n✔ tools\\test-jr-sobu-rapid-playable.cjs (707.2889ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 730.6313\n",
+    "stdout": "{\"status\":\"PASS\",\"lineId\":\"line-jr-east-sobu-rapid\",\"stops\":10,\"segments\":9,\"vertices\":251,\"directions\":[\"Tokyo–Chiba\",\"Chiba–Tokyo\"],\"localRouteKept\":\"line-11313\",\"originalMainLineKept\":\"line-11314\",\"transfers\":22,\"csvIntegrated\":true}\n✔ tools\\test-jr-sobu-rapid-playable.cjs (664.3032ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 683.3197\n",
     "stderr": ""
   },
   {

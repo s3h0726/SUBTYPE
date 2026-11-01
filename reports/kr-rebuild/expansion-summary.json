@@ -1,0 +1,94 @@
+{
+  "checkedAt": "2026-11-01T09:41:54.159Z",
+  "commit": "895454041c8ed4516a3de0508c21e5fa46f613ad",
+  "baseline": {
+    "routes": 471,
+    "directions": 1091,
+    "stops": 10487
+  },
+  "current": {
+    "routes": 3690,
+    "directions": 7176,
+    "stops": 57073
+  },
+  "added": {
+    "routes": 3219,
+    "directions": 6085,
+    "stops": 46586
+  },
+  "categories": {
+    "city_bus": {
+      "routes": 1756,
+      "directions": 3308
+    },
+    "metropolitan_bus": {
+      "routes": 446,
+      "directions": 707
+    },
+    "other_bus": {
+      "routes": 61,
+      "directions": 98
+    },
+    "village_bus": {
+      "routes": 1117,
+      "directions": 2132
+    },
+    "rural_bus": {
+      "routes": 247,
+      "directions": 442
+    },
+    "express_bus": {
+      "routes": 23,
+      "directions": 30
+    },
+    "subway": {
+      "routes": 17,
+      "directions": 301
+    },
+    "light_rail": {
+      "routes": 6,
+      "directions": 12
+    },
+    "conventional_rail": {
+      "routes": 5,
+      "directions": 27
+    },
+    "commuter_rail": {
+      "routes": 7,
+      "directions": 96
+    },
+    "high_speed_rail": {
+      "routes": 3,
+      "directions": 17
+    },
+    "river_bus": {
+      "routes": 2,
+      "directions": 6
+    }
+  },
+  "pending": {
+    "originalBusInventory": 7304,
+    "seoul": 65,
+    "tsbis": 7239,
+    "additionalGbisRoutes": 351,
+    "additionalGbisDirections": 555,
+    "busanRegular": 114,
+    "busanVillage": 75,
+    "newOfficialRailPatterns": 407,
+    "note": "후보 출처·부분 실패 방향은 서로 다른 집합이다. 합산 노선 수로 해석하지 않는다."
+  },
+  "gbisFailureRecordsByType": {
+    "타 시도 관할: 중복·별도 출처 확인": 188,
+    "정류장·도로 순서 결합 실패": 281,
+    "원본 도로 선형 단절": 78,
+    "방향별 원본 도로 선형 누락": 348,
+    "방향별 정류장 누락": 11
+  },
+  "changedProtectedPaths": [],
+  "notes": [
+    "한국 기본 표기는 한글이며 원문 영문 약호는 발음으로 변환한 경우가 있다. 원문은 출처 스냅샷에 보존한다.",
+    "임시 한강버스 종료로 현재 선택 가능한 방향은 등록 방향보다 4개 적다.",
+    "전체 데이터 검사는 기존 일본 역 ID 중복으로 실패한다.",
+    "브라우저 완주와 전체 데이터 경로 해석 검사는 서로 다른 검증이다."
+  ]
+}
