@@ -49,6 +49,15 @@
       "confidence": "unverified"
     },
     {
+      "id": "hk-airport-authority",
+      "names": {
+        "ko": "홍콩공항공사",
+        "en": "Airport Authority Hong Kong",
+        "ja": "香港機場管理局"
+      },
+      "countryId": "hk"
+    },
+    {
       "id": "hk-ocean-park",
       "names": {
         "ja": "香港海洋公園",
@@ -3184,6 +3193,477 @@
         "北角",
         "North Point",
         "노스 포인트"
+      ]
+    },
+    {
+      "id": "hk-east-rail-racecourse-4250432",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-racecourse-4250432",
+      "serviceLabel": "Lok Ma Chau → Admiralty",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "racecourse-4250432",
+      "validWhen": {
+        "type": "race-day-via-racecourse",
+        "raceDaysOnly": true,
+        "noteKo": "동철선 마장 경유 · 경마일 등 운영사가 마장역을 개방하는 날의 지정 열차만 운행합니다. 포탄역에는 정차하지 않으며 경마일의 모든 열차가 이 경로인 것은 아닙니다. 정확한 출발 시각은 당일 안내를 확인하세요.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/racecourse-official-excerpt.json",
+            "sha256": "fb71628700c8cf706c12147229710012c70667f800f0c0b79fd180b97df0e10f"
+          },
+          {
+            "file": "data/hk/sources/completion/racecourse-korean.html",
+            "sha256": "4ba6a696b1155380bd4d0141577fb05e5d7a5defc920726d8916c7331a440aa2"
+          },
+          {
+            "file": "data/hk/sources/completion/mtr-next-train.pdf",
+            "sha256": "0359b30a230c11733bc9552c6c10cbba8a6de4005e5cc76297108a1451668bd8"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          },
+          {
+            "file": "data/hk/sources/osm-network.json",
+            "sha256": "3ccfdcb2f39ab80bb1b47e6f20233c7c9a5d2858a6a71df350778b33a9f71856"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-racecourse-4250432",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-LMC",
+            "hk-mtr-SHS",
+            "hk-mtr-FAN",
+            "hk-mtr-TWO",
+            "hk-mtr-TAP",
+            "hk-mtr-UNI",
+            "hk-mtr-RAC",
+            "hk-mtr-SHT",
+            "hk-mtr-TAW",
+            "hk-mtr-KOT",
+            "hk-mtr-MKK",
+            "hk-mtr-HUH",
+            "hk-mtr-EXC",
+            "hk-mtr-ADM"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "1c74c2f3f755583ed06bc77232d976f995b1e64cd7fb1c2be577d6b6cd40628d",
+      "validationFingerprint": "334f51aec1db5db3b1506e6acc61779e3a55ace640de2701c6e0be0382fd5a68",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-racecourse-4250432.json",
+      "stationCount": 14,
+      "stationSequence": [
+        "hk-mtr-LMC",
+        "hk-mtr-SHS",
+        "hk-mtr-FAN",
+        "hk-mtr-TWO",
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-RAC",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "searchStations": [
+        "落馬洲",
+        "Lok Ma Chau",
+        "목마차우",
+        "上水",
+        "Sheung Shui",
+        "셩슈이",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "大學",
+        "University",
+        "유니버시티",
+        "馬場",
+        "Racecourse",
+        "마장",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "會展",
+        "Exhibition Centre",
+        "전시장",
+        "金鐘",
+        "Admiralty",
+        "애드미럴티"
+      ]
+    },
+    {
+      "id": "hk-east-rail-racecourse-4250433",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-racecourse-4250433",
+      "serviceLabel": "Lo Wu → Admiralty",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "racecourse-4250433",
+      "validWhen": {
+        "type": "race-day-via-racecourse",
+        "raceDaysOnly": true,
+        "noteKo": "동철선 마장 경유 · 경마일 등 운영사가 마장역을 개방하는 날의 지정 열차만 운행합니다. 포탄역에는 정차하지 않으며 경마일의 모든 열차가 이 경로인 것은 아닙니다. 정확한 출발 시각은 당일 안내를 확인하세요.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/racecourse-official-excerpt.json",
+            "sha256": "fb71628700c8cf706c12147229710012c70667f800f0c0b79fd180b97df0e10f"
+          },
+          {
+            "file": "data/hk/sources/completion/racecourse-korean.html",
+            "sha256": "4ba6a696b1155380bd4d0141577fb05e5d7a5defc920726d8916c7331a440aa2"
+          },
+          {
+            "file": "data/hk/sources/completion/mtr-next-train.pdf",
+            "sha256": "0359b30a230c11733bc9552c6c10cbba8a6de4005e5cc76297108a1451668bd8"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          },
+          {
+            "file": "data/hk/sources/osm-network.json",
+            "sha256": "3ccfdcb2f39ab80bb1b47e6f20233c7c9a5d2858a6a71df350778b33a9f71856"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-racecourse-4250433",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-LOW",
+            "hk-mtr-SHS",
+            "hk-mtr-FAN",
+            "hk-mtr-TWO",
+            "hk-mtr-TAP",
+            "hk-mtr-UNI",
+            "hk-mtr-RAC",
+            "hk-mtr-SHT",
+            "hk-mtr-TAW",
+            "hk-mtr-KOT",
+            "hk-mtr-MKK",
+            "hk-mtr-HUH",
+            "hk-mtr-EXC",
+            "hk-mtr-ADM"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "1c74c2f3f755583ed06bc77232d976f995b1e64cd7fb1c2be577d6b6cd40628d",
+      "validationFingerprint": "3b9fc73aebe7f0870f20a1b928a6d09eb517b281a58d2657d15d0ef0169a2a6b",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-racecourse-4250433.json",
+      "stationCount": 14,
+      "stationSequence": [
+        "hk-mtr-LOW",
+        "hk-mtr-SHS",
+        "hk-mtr-FAN",
+        "hk-mtr-TWO",
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-RAC",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "searchStations": [
+        "羅湖",
+        "Lo Wu",
+        "로위",
+        "上水",
+        "Sheung Shui",
+        "셩슈이",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "大學",
+        "University",
+        "유니버시티",
+        "馬場",
+        "Racecourse",
+        "마장",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "會展",
+        "Exhibition Centre",
+        "전시장",
+        "金鐘",
+        "Admiralty",
+        "애드미럴티"
+      ]
+    },
+    {
+      "id": "hk-east-rail-racecourse-4250435",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-racecourse-4250435",
+      "serviceLabel": "Admiralty → Lo Wu",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "racecourse-4250435",
+      "validWhen": {
+        "type": "race-day-via-racecourse",
+        "raceDaysOnly": true,
+        "noteKo": "동철선 마장 경유 · 경마일 등 운영사가 마장역을 개방하는 날의 지정 열차만 운행합니다. 포탄역에는 정차하지 않으며 경마일의 모든 열차가 이 경로인 것은 아닙니다. 정확한 출발 시각은 당일 안내를 확인하세요.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/racecourse-official-excerpt.json",
+            "sha256": "fb71628700c8cf706c12147229710012c70667f800f0c0b79fd180b97df0e10f"
+          },
+          {
+            "file": "data/hk/sources/completion/racecourse-korean.html",
+            "sha256": "4ba6a696b1155380bd4d0141577fb05e5d7a5defc920726d8916c7331a440aa2"
+          },
+          {
+            "file": "data/hk/sources/completion/mtr-next-train.pdf",
+            "sha256": "0359b30a230c11733bc9552c6c10cbba8a6de4005e5cc76297108a1451668bd8"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          },
+          {
+            "file": "data/hk/sources/osm-network.json",
+            "sha256": "3ccfdcb2f39ab80bb1b47e6f20233c7c9a5d2858a6a71df350778b33a9f71856"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-racecourse-4250435",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-ADM",
+            "hk-mtr-EXC",
+            "hk-mtr-HUH",
+            "hk-mtr-MKK",
+            "hk-mtr-KOT",
+            "hk-mtr-TAW",
+            "hk-mtr-SHT",
+            "hk-mtr-RAC",
+            "hk-mtr-UNI",
+            "hk-mtr-TAP",
+            "hk-mtr-TWO",
+            "hk-mtr-FAN",
+            "hk-mtr-SHS",
+            "hk-mtr-LOW"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "1c74c2f3f755583ed06bc77232d976f995b1e64cd7fb1c2be577d6b6cd40628d",
+      "validationFingerprint": "e328d81b721ebb87e7caae55219a4dbe8f71d823db5c7cfeee171dedfd3985d8",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-racecourse-4250435.json",
+      "stationCount": 14,
+      "stationSequence": [
+        "hk-mtr-ADM",
+        "hk-mtr-EXC",
+        "hk-mtr-HUH",
+        "hk-mtr-MKK",
+        "hk-mtr-KOT",
+        "hk-mtr-TAW",
+        "hk-mtr-SHT",
+        "hk-mtr-RAC",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS",
+        "hk-mtr-LOW"
+      ],
+      "searchStations": [
+        "金鐘",
+        "Admiralty",
+        "애드미럴티",
+        "會展",
+        "Exhibition Centre",
+        "전시장",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "馬場",
+        "Racecourse",
+        "마장",
+        "大學",
+        "University",
+        "유니버시티",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "上水",
+        "Sheung Shui",
+        "셩슈이",
+        "羅湖",
+        "Lo Wu",
+        "로위"
       ]
     },
     {
@@ -6343,7 +6823,7 @@
       "id": "hk-light-rail-751p-osm-12619403",
       "countryId": "hk",
       "schemaVersion": 1,
-      "canonicalLineId": "hk-light-rail-751p",
+      "canonicalLineId": "hk-light-rail-751",
       "servicePatternId": "hk-light-rail-751p-osm-12619403",
       "serviceLabel": "Tin Yat → Siu Hong",
       "operatorId": "hk-mtr",
@@ -6353,46 +6833,74 @@
         "ko": "홍콩 MTR"
       },
       "line": {
-        "ja": "輕鐵 751P",
-        "en": "Light Rail 751P",
-        "ko": "경전철 751P"
+        "ja": "輕鐵 751",
+        "en": "Light Rail 751",
+        "ko": "경전철 751"
       },
       "category": "light_rail",
       "mode": "light_rail",
-      "code": "751P",
+      "code": "751",
       "officialSymbolExists": false,
-      "lineColor": "#71857d",
+      "lineColor": "#f58220",
       "lineTheme": {
-        "code": "751P",
-        "color": "#71857d",
+        "code": "751",
+        "color": "#f58220",
         "style": "hk",
-        "colorVerified": false,
-        "colorSource": "OSM candidate; official colour audit pending"
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/LR_routemap.pdf"
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "현재 정차순서 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "osm-12619403",
       "validWhen": {
-        "type": "weekday-peak-conditional",
-        "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
-        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching."
+        "type": "weekday-school-peak-special",
+        "noteKo": "751 평일 오전 특별편 · 틴얏 → 시우홍 · 06:52 / 07:11 출발. 이 지점에서 운행번호가 615 / 507P로 바뀌는 연속 운행입니다. 게임은 751 번호 구간까지만 재현하며 별도 환승으로 만들지 않습니다. 06:52편 방학 미운행, 그 외 방학 조건은 공식 안내에 명시되지 않았습니다.",
+        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching.",
+        "departureTimes": [
+          "06:52",
+          "07:11"
+        ],
+        "continuation": [
+          {
+            "departure": "06:52",
+            "nextNumber": "615",
+            "destination": "Tuen Mun Ferry Pier",
+            "schoolHolidays": "no-service"
+          },
+          {
+            "departure": "07:11",
+            "nextNumber": "507P",
+            "destination": "Tuen Mun Ferry Pier",
+            "schoolHolidays": "not-stated"
+          }
+        ],
+        "continuousWorking": true,
+        "serviceNumberChangesAreNotTransfers": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066"
+          }
+        ]
       },
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-      "stopStatus": "unverified",
+      "stopStatus": "verified",
       "services": [
         {
           "id": "hk-light-rail-751p-osm-12619403",
-          "nameJa": "輕鐵 751P",
-          "nameEn": "Light Rail 751P",
-          "nameKo": "경전철 751P",
+          "nameJa": "輕鐵 751",
+          "nameEn": "Light Rail 751",
+          "nameKo": "경전철 751",
           "stops": [
             "hk-lr-550",
             "hk-lr-480",
@@ -6412,8 +6920,8 @@
           ]
         }
       ],
-      "operatingConditionFingerprint": "31396e13a0aafe878d40b92daa311f42c9ed951af24e831184e6d1a1e628fef4",
-      "validationFingerprint": "9a64728a2bc2becbab1f2192ae6ec137dc5b53ad96a41f28e0e0586a91725a9d",
+      "operatingConditionFingerprint": "6e96e5fc41429a1a6df52504025d1c10ab2231009d917360e981766024e825e9",
+      "validationFingerprint": "566451f634227e7b38ef50d5375689cd427592cd0bfb8e6b3521e7831722303b",
       "lazySource": "data/hk/generated/routes/hk-light-rail-751p-osm-12619403.json",
       "stationCount": 15,
       "stationSequence": [
@@ -10563,6 +11071,188 @@
       ]
     },
     {
+      "id": "hk-light-rail-751-morning-ho-tin",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-light-rail-751",
+      "servicePatternId": "hk-light-rail-751-morning-ho-tin",
+      "serviceLabel": "Tin Yat → Ho Tin",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "輕鐵 751",
+        "en": "Light Rail 751",
+        "ko": "경전철 751"
+      },
+      "category": "light_rail",
+      "mode": "light_rail",
+      "code": "751",
+      "officialSymbolExists": false,
+      "lineColor": "#f58220",
+      "lineTheme": {
+        "code": "751",
+        "color": "#f58220",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/LR_routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "morning-special",
+      "validWhen": {
+        "type": "weekday-school-peak-special",
+        "departureTimes": [
+          "07:16"
+        ],
+        "continuation": [
+          {
+            "departure": "07:16",
+            "nextNumber": "507",
+            "destination": "Tuen Mun Ferry Pier",
+            "schoolHolidays": "not-stated"
+          }
+        ],
+        "continuousWorking": true,
+        "serviceNumberChangesAreNotTransfers": true,
+        "noteKo": "751 평일 오전 특별편 · 틴얏 → 호틴 · 07:16 출발. 이 지점에서 운행번호가 507로 바뀌는 연속 운행입니다. 게임은 751 번호 구간까지만 재현하며 별도 환승으로 만들지 않습니다. 06:52편 방학 미운행, 그 외 방학 조건은 공식 안내에 명시되지 않았습니다.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-light-rail-751-morning-ho-tin",
+          "nameJa": "輕鐵 751",
+          "nameEn": "Light Rail 751",
+          "nameKo": "경전철 751",
+          "stops": [
+            "hk-lr-550",
+            "hk-lr-480",
+            "hk-lr-468",
+            "hk-lr-490",
+            "hk-lr-500",
+            "hk-lr-455",
+            "hk-lr-450",
+            "hk-lr-435",
+            "hk-lr-430",
+            "hk-lr-425",
+            "hk-lr-380",
+            "hk-lr-370",
+            "hk-lr-360",
+            "hk-lr-350",
+            "hk-lr-100",
+            "hk-lr-090",
+            "hk-lr-080",
+            "hk-lr-075",
+            "hk-lr-070"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "c4aa9ffb1d5b6af05e74ab2ad8046c6ac912df077d8279e85082c188bcccfa88",
+      "validationFingerprint": "02ecab12b45c807883327192d484414db1c350593698fe9d6f0137e389135921",
+      "lazySource": "data/hk/generated/routes/hk-light-rail-751-morning-ho-tin.json",
+      "stationCount": 19,
+      "stationSequence": [
+        "hk-lr-550",
+        "hk-lr-480",
+        "hk-lr-468",
+        "hk-lr-490",
+        "hk-lr-500",
+        "hk-lr-455",
+        "hk-lr-450",
+        "hk-lr-435",
+        "hk-lr-430",
+        "hk-lr-425",
+        "hk-lr-380",
+        "hk-lr-370",
+        "hk-lr-360",
+        "hk-lr-350",
+        "hk-lr-100",
+        "hk-lr-090",
+        "hk-lr-080",
+        "hk-lr-075",
+        "hk-lr-070"
+      ],
+      "searchStations": [
+        "天逸",
+        "Tin Yat",
+        "틴얏",
+        "天富",
+        "Tin Fu",
+        "틴푸",
+        "頌富",
+        "Chung Fu",
+        "충푸",
+        "翠湖",
+        "Chestwood",
+        "체스트우드",
+        "天榮",
+        "Tin Wing",
+        "틴윙",
+        "銀座",
+        "Ginza",
+        "긴자",
+        "天湖",
+        "Tin Wu",
+        "틴우",
+        "天慈",
+        "Tin Tsz",
+        "틴치",
+        "天水圍",
+        "Tin Shui Wai",
+        "틴수이와이",
+        "坑尾村",
+        "Hang Mei Tsuen",
+        "항메이췬",
+        "洪水橋",
+        "Hung Shui Kiu",
+        "훙수이키우",
+        "鍾屋村",
+        "Chung Uk Tsuen",
+        "충욱췬",
+        "泥圍",
+        "Nai Wai",
+        "나이와이",
+        "藍地",
+        "Lam Tei",
+        "람테이",
+        "兆康",
+        "Siu Hong",
+        "시우홍",
+        "屯門醫院",
+        "Tuen Mun Hospital",
+        "튄문병원",
+        "澤豐",
+        "Affluence",
+        "어플루언스",
+        "蔡意橋",
+        "Choy Yee Bridge",
+        "초이이브릿지",
+        "河田",
+        "Ho Tin",
+        "호틴"
+      ]
+    },
+    {
       "id": "hk-tram-western-market-shau-kei-wan-4088321",
       "countryId": "hk",
       "schemaVersion": 1,
@@ -13619,18 +14309,37 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "up",
       "validWhen": {
-        "type": "request-stop",
-        "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
+        "type": "request-stop-simulation",
+        "simulation": true,
+        "requestedIntermediateStops": "all-four",
+        "currentRequestRuleStatus": "INCOMPLETE",
+        "noteKo": "피크트램 요청 정차 학습 모의운행 · 중간 4개 역을 모두 요청한 상황으로 6개 역에 정차합니다. 현재 요청 버튼·정차 보장 규칙을 확정한 실시간 운행 안내가 아닙니다. 실제 검증된 2D 선로만 사용하며 고도는 재현하지 않습니다.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase3/relation-3264047.json",
+            "sha256": "ee9d24436d21a4ba9023cc546e4aa928a18c93977b58d202ea2caaac74df4f62"
+          },
+          {
+            "file": "data/hk/sources/phase6/peak-stops.mdb",
+            "sha256": "15bf28104fac079addeb0b3274af3b2772e44486baa14a614b0b417810357be7"
+          },
+          {
+            "file": "data/hk/sources/phase6/peak-stops-extracted.json",
+            "sha256": "ac47b9768880313d6134f5fead68815b268c7d2e6c6a51b70cfd9e82007c5eff"
+          },
+          {
+            "file": "data/hk/sources/completion/peak-korean-usage.html",
+            "sha256": "7f57f711ff621c36e4fc3fd20ca2df7ab6280c55a2847cea85d5c07de550c6b6"
+          }
+        ]
       },
       "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
       "stopStatus": "verified",
@@ -13650,8 +14359,8 @@
           ]
         }
       ],
-      "operatingConditionFingerprint": "a2400aac8fae4e48fcb8a7552d2b16a88cb43c60a10aaea38fbb293e427647eb",
-      "validationFingerprint": "ce1f931a5cd46a90ec42ae826a88e0051e2b58151398847740aa2a8bf183aacb",
+      "operatingConditionFingerprint": "f071cae6454815c1ddc3ddd8eaf90db9b4d79e5123e2a4db0d66ce11a751ef4a",
+      "validationFingerprint": "71d0125ceb9697279e62ab3018c5f29861b0ea90b5c9f2ad0d149cfc01486ab9",
       "lazySource": "data/hk/generated/routes/hk-peak-tram-pending.json",
       "stationCount": 6,
       "stationSequence": [
@@ -13665,16 +14374,22 @@
       "searchStations": [
         "花園道纜車總站",
         "Garden Road Peak Tram Terminal",
+        "가든 로드",
         "堅尼地道站",
         "Kennedy Road Station",
+        "케네디 로드",
         "麥當勞道站",
         "Macdonnell Road Station",
+        "맥도널 로드",
         "梅道站",
         "May Road Station",
+        "메이 로드",
         "白加道站",
         "Barker Road Station",
+        "바커 로드",
         "山頂纜車總站",
-        "Peak Tram Terminus"
+        "Peak Tram Terminus",
+        "피크"
       ]
     },
     {
@@ -13709,18 +14424,37 @@
       },
       "loop": false,
       "lazy": true,
-      "playable": false,
-      "releaseStatus": "INCOMPLETE",
+      "playable": true,
+      "releaseStatus": "ready",
       "geometryReady": true,
       "geometryStatus": "verified",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "한국어 역명 검수 필요"
-      ],
+      "blockedReasons": [],
       "direction": "down",
       "validWhen": {
-        "type": "request-stop",
-        "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
+        "type": "request-stop-simulation",
+        "simulation": true,
+        "requestedIntermediateStops": "all-four",
+        "currentRequestRuleStatus": "INCOMPLETE",
+        "noteKo": "피크트램 요청 정차 학습 모의운행 · 중간 4개 역을 모두 요청한 상황으로 6개 역에 정차합니다. 현재 요청 버튼·정차 보장 규칙을 확정한 실시간 운행 안내가 아닙니다. 실제 검증된 2D 선로만 사용하며 고도는 재현하지 않습니다.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase3/relation-3264047.json",
+            "sha256": "ee9d24436d21a4ba9023cc546e4aa928a18c93977b58d202ea2caaac74df4f62"
+          },
+          {
+            "file": "data/hk/sources/phase6/peak-stops.mdb",
+            "sha256": "15bf28104fac079addeb0b3274af3b2772e44486baa14a614b0b417810357be7"
+          },
+          {
+            "file": "data/hk/sources/phase6/peak-stops-extracted.json",
+            "sha256": "ac47b9768880313d6134f5fead68815b268c7d2e6c6a51b70cfd9e82007c5eff"
+          },
+          {
+            "file": "data/hk/sources/completion/peak-korean-usage.html",
+            "sha256": "7f57f711ff621c36e4fc3fd20ca2df7ab6280c55a2847cea85d5c07de550c6b6"
+          }
+        ]
       },
       "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
       "stopStatus": "verified",
@@ -13740,8 +14474,8 @@
           ]
         }
       ],
-      "operatingConditionFingerprint": "a2400aac8fae4e48fcb8a7552d2b16a88cb43c60a10aaea38fbb293e427647eb",
-      "validationFingerprint": "b0f36c56b818b0e3208a8216048d9ca9de39fb17488d8c33d420912259588860",
+      "operatingConditionFingerprint": "f071cae6454815c1ddc3ddd8eaf90db9b4d79e5123e2a4db0d66ce11a751ef4a",
+      "validationFingerprint": "8d7a11a6f232b19d8118fb07c9c65911a36e7eb6776e3f8a7a4887a4f1561c6a",
       "lazySource": "data/hk/generated/routes/hk-peak-tram-down.json",
       "stationCount": 6,
       "stationSequence": [
@@ -13755,16 +14489,404 @@
       "searchStations": [
         "山頂纜車總站",
         "Peak Tram Terminus",
+        "피크",
         "白加道站",
         "Barker Road Station",
+        "바커 로드",
         "梅道站",
         "May Road Station",
+        "메이 로드",
         "麥當勞道站",
         "Macdonnell Road Station",
+        "맥도널 로드",
         "堅尼地道站",
         "Kennedy Road Station",
+        "케네디 로드",
         "花園道纜車總站",
-        "Garden Road Peak Tram Terminal"
+        "Garden Road Peak Tram Terminal",
+        "가든 로드"
+      ]
+    },
+    {
+      "id": "hk-airport-apm-14244774",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-airport-apm",
+      "servicePatternId": "hk-airport-apm-14244774",
+      "serviceLabel": "SkyPier → T1 East Hall",
+      "operatorId": "hk-airport-authority",
+      "operator": {
+        "ja": "香港機場管理局",
+        "en": "Airport Authority Hong Kong",
+        "ko": "홍콩공항공사"
+      },
+      "line": {
+        "ja": "香港國際機場旅客捷運系統",
+        "en": "Hong Kong International Airport Automated People Mover",
+        "ko": "홍콩공항 APM"
+      },
+      "category": "automated_people_mover",
+      "mode": "automated_people_mover",
+      "code": "",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "14244774",
+      "validWhen": {
+        "type": "restricted-airport-service",
+        "accessRestricted": true,
+        "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/apm-map.json",
+            "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-official.html",
+            "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-access.html",
+            "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-government.pdf",
+            "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-airport-apm-14244774",
+          "nameJa": "香港國際機場旅客捷運系統",
+          "nameEn": "Hong Kong International Airport Automated People Mover",
+          "nameKo": "홍콩공항 APM",
+          "stops": [
+            "hk-apm-skypier",
+            "hk-apm-east"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "e07937b2e935d984e46574963a1121f2bb3e969cb84ea3f5cacbb323d20c5312",
+      "validationFingerprint": "58ebc7e54bf3fdc0b081653c2ad35d6d97483edf4ba9ebdf25cb3d12bc7a302c",
+      "lazySource": "data/hk/generated/routes/hk-airport-apm-14244774.json",
+      "stationCount": 2,
+      "stationSequence": [
+        "hk-apm-skypier",
+        "hk-apm-east"
+      ],
+      "searchStations": [
+        "海天客運碼頭",
+        "SkyPier",
+        "스카이피어",
+        "T1 東大堂",
+        "T1 East Hall",
+        "T1 동대합실"
+      ]
+    },
+    {
+      "id": "hk-airport-apm-14244775",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-airport-apm",
+      "servicePatternId": "hk-airport-apm-14244775",
+      "serviceLabel": "T1 East Hall → SkyPier",
+      "operatorId": "hk-airport-authority",
+      "operator": {
+        "ja": "香港機場管理局",
+        "en": "Airport Authority Hong Kong",
+        "ko": "홍콩공항공사"
+      },
+      "line": {
+        "ja": "香港國際機場旅客捷運系統",
+        "en": "Hong Kong International Airport Automated People Mover",
+        "ko": "홍콩공항 APM"
+      },
+      "category": "automated_people_mover",
+      "mode": "automated_people_mover",
+      "code": "",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "14244775",
+      "validWhen": {
+        "type": "restricted-airport-service",
+        "accessRestricted": true,
+        "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/apm-map.json",
+            "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-official.html",
+            "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-access.html",
+            "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-government.pdf",
+            "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-airport-apm-14244775",
+          "nameJa": "香港國際機場旅客捷運系統",
+          "nameEn": "Hong Kong International Airport Automated People Mover",
+          "nameKo": "홍콩공항 APM",
+          "stops": [
+            "hk-apm-east",
+            "hk-apm-skypier"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "e07937b2e935d984e46574963a1121f2bb3e969cb84ea3f5cacbb323d20c5312",
+      "validationFingerprint": "a2dcc33024e0d60040e0dfdfe9f508f64de27af2361364117ac2c5c6430a4c88",
+      "lazySource": "data/hk/generated/routes/hk-airport-apm-14244775.json",
+      "stationCount": 2,
+      "stationSequence": [
+        "hk-apm-east",
+        "hk-apm-skypier"
+      ],
+      "searchStations": [
+        "T1 東大堂",
+        "T1 East Hall",
+        "T1 동대합실",
+        "海天客運碼頭",
+        "SkyPier",
+        "스카이피어"
+      ]
+    },
+    {
+      "id": "hk-airport-apm-14244778",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-airport-apm",
+      "servicePatternId": "hk-airport-apm-14244778",
+      "serviceLabel": "T1 Midfield Concourse → T1 East Hall",
+      "operatorId": "hk-airport-authority",
+      "operator": {
+        "ja": "香港機場管理局",
+        "en": "Airport Authority Hong Kong",
+        "ko": "홍콩공항공사"
+      },
+      "line": {
+        "ja": "香港國際機場旅客捷運系統",
+        "en": "Hong Kong International Airport Automated People Mover",
+        "ko": "홍콩공항 APM"
+      },
+      "category": "automated_people_mover",
+      "mode": "automated_people_mover",
+      "code": "",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "14244778",
+      "validWhen": {
+        "type": "restricted-airport-service",
+        "accessRestricted": true,
+        "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/apm-map.json",
+            "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-official.html",
+            "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-access.html",
+            "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-government.pdf",
+            "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-airport-apm-14244778",
+          "nameJa": "香港國際機場旅客捷運系統",
+          "nameEn": "Hong Kong International Airport Automated People Mover",
+          "nameKo": "홍콩공항 APM",
+          "stops": [
+            "hk-apm-midfield",
+            "hk-apm-west",
+            "hk-apm-east"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "e07937b2e935d984e46574963a1121f2bb3e969cb84ea3f5cacbb323d20c5312",
+      "validationFingerprint": "46defdf6f832a6dc2776d1fa4c2e5165d34a6d5df4e27a95447e348b1347117b",
+      "lazySource": "data/hk/generated/routes/hk-airport-apm-14244778.json",
+      "stationCount": 3,
+      "stationSequence": [
+        "hk-apm-midfield",
+        "hk-apm-west",
+        "hk-apm-east"
+      ],
+      "searchStations": [
+        "T1 中場客運廊",
+        "T1 Midfield Concourse",
+        "T1 미드필드 탑승동",
+        "T1 西大堂",
+        "T1 West Hall",
+        "T1 서대합실",
+        "T1 東大堂",
+        "T1 East Hall",
+        "T1 동대합실"
+      ]
+    },
+    {
+      "id": "hk-airport-apm-14244779",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-airport-apm",
+      "servicePatternId": "hk-airport-apm-14244779",
+      "serviceLabel": "T1 East Hall → T1 Midfield Concourse",
+      "operatorId": "hk-airport-authority",
+      "operator": {
+        "ja": "香港機場管理局",
+        "en": "Airport Authority Hong Kong",
+        "ko": "홍콩공항공사"
+      },
+      "line": {
+        "ja": "香港國際機場旅客捷運系統",
+        "en": "Hong Kong International Airport Automated People Mover",
+        "ko": "홍콩공항 APM"
+      },
+      "category": "automated_people_mover",
+      "mode": "automated_people_mover",
+      "code": "",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "14244779",
+      "validWhen": {
+        "type": "restricted-airport-service",
+        "accessRestricted": true,
+        "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/apm-map.json",
+            "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-official.html",
+            "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-access.html",
+            "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-government.pdf",
+            "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-airport-apm-14244779",
+          "nameJa": "香港國際機場旅客捷運系統",
+          "nameEn": "Hong Kong International Airport Automated People Mover",
+          "nameKo": "홍콩공항 APM",
+          "stops": [
+            "hk-apm-east",
+            "hk-apm-west",
+            "hk-apm-midfield"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "e07937b2e935d984e46574963a1121f2bb3e969cb84ea3f5cacbb323d20c5312",
+      "validationFingerprint": "86d5e690b94efe14e790a9735bc5a2737a63eae176903045032f7ef58e2728dd",
+      "lazySource": "data/hk/generated/routes/hk-airport-apm-14244779.json",
+      "stationCount": 3,
+      "stationSequence": [
+        "hk-apm-east",
+        "hk-apm-west",
+        "hk-apm-midfield"
+      ],
+      "searchStations": [
+        "T1 東大堂",
+        "T1 East Hall",
+        "T1 동대합실",
+        "T1 西大堂",
+        "T1 West Hall",
+        "T1 서대합실",
+        "T1 中場客運廊",
+        "T1 Midfield Concourse",
+        "T1 미드필드 탑승동"
       ]
     },
     {
@@ -13877,9 +14999,9 @@
   },
   "audit": {
     "status": "INCOMPLETE",
-    "totalServices": 96,
-    "playableServices": 92,
-    "missingKoreanNames": 6,
+    "totalServices": 104,
+    "playableServices": 103,
+    "missingKoreanNames": 0,
     "geometryIssues": 3
   }
 }

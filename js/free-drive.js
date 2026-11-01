@@ -627,6 +627,7 @@ const jpDisneyTransferKey=(station,route)=>{
     JP_MAIHAMA_RESORT_TRANSFER:null;
 };
 const freeDriveStationKey=s=>{
+  if(s?.countryId==='hk')return String(s.hkTransferKey||s.stationMasterId||s.sourceStationId||s.id);
   if(s?.jpUnifiedTransferKey)return s.jpUnifiedTransferKey;
   if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.jpNamedTransferKey)return s.jpNamedTransferKey;
@@ -803,7 +804,7 @@ export class FreeDrive{
         const a=route.stations[i],b=route.stations[i+1],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,i),bn=ensure(b,route,i+1);
         if(!an||!bn||!ak||!bk||ak===bk)continue;
         an.edges.push({to:bk,routeId:route.id,route,index:i+1,direction:1,station:b});
-        if(!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
+        if(route.countryId!=='hk'&&!route.oneWay&&!(route.countryId==='kr'&&route.schemaVersion===2))bn.edges.push({to:ak,routeId:route.id,route,index:i,direction:-1,station:a});
       }
       if(route.countryId!=='hk'&&route.loop&&route.stations.length>2){
         const a=route.stations.at(-1),b=route.stations[0],ak=freeDriveStationKey(a),bk=freeDriveStationKey(b),an=ensure(a,route,route.stations.length-1),bn=ensure(b,route,0);

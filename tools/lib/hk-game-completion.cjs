@@ -10,6 +10,7 @@ async function complete(route,{advance='AUTO'}={}){
  const context={console,performance,setTimeout,clearTimeout,setInterval:()=>1,clearInterval(){},queueMicrotask,requestAnimationFrame:()=>1,cancelAnimationFrame(){},location:{hostname:'127.0.0.1'},document:{body:{dataset:{}},createElement:element,addEventListener:(n,f)=>events[n]=f},$,escapeHtml:s=>String(s??''),formatTime:String,toast:s=>{throw Error(s)},railDataRepository:{resolveRoute:r=>r,getOperator:()=>null,getLine:()=>null},resolveTransportStopTemplate:()=>({style:'hk',family:'hk',referenceSource:'fixture'}),transportStopNoun:()=> '역',operatorLogoMarkup:()=>'',lineBadgeMarkup:()=>'',lineBadgeMeta:()=>({}),
   renderGameMap:(r,i)=>{assert(r.geometry.length>=2);const s=r.stations[i];assert(s);assert.deepEqual([s.latitude,s.longitude],Array.from(r.geometry[s.geometryIndex]));mapVisits.push(i);return Promise.resolve(true)},
   setTrainTypingProgress:(p)=>{arrivals.push(p);return Promise.resolve(true)}};
+ context.koreanStationDisplayName=v=>String(v??'');context.koreanRouteDisplayText=v=>String(v??'');
  vm.createContext(context);
  for(const file of ['hong-kong-policy.js','korean-access-data.js','korean-access-policy.js','feature-flags.js','typing-model.js','typing.js','statistics-engine.js','route-integrity.js','game.js'])vm.runInContext(fs.readFileSync(path.join(root,'js',file),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/\bexport\s+/g,''),context,{filename:file});
  vm.runInContext('globalThis.api={Game,buildTypingModel}',context);let result;
@@ -25,7 +26,7 @@ async function complete(route,{advance='AUTO'}={}){
   input.value=expected.normalize('NFD');input.events.input({isComposing:false});
   const count=g.typedStationIds.length;assert.equal(count,i+1);input.events.input({isComposing:false});assert.equal(g.typedStationIds.length,count,'duplicate input does not advance twice');
   await g.arrivalPromise;await Promise.resolve();await Promise.resolve();
-  if(advance==='SPACE'){assert.equal(g.phase,'CORRECT_WAITING');events.keydown({code:'Space',key:' ',preventDefault(){}})}
+  if(advance==='SPACE'){assert.equal(g.phase,'CORRECT_WAITING');events.keydown({code:'Space',key:' ',preventDefault(){}});await Promise.resolve();await Promise.resolve()}
   steps.push({visit:i,stationId:s.id,targetMatched:true});
  }
  assert.equal(g.finished,true);assert.equal(g.phase,'FINISHED');assert.equal(result.routeIntegrity,true);assert.equal(result.errors,0);assert.equal(result.completed,route.stations.length);

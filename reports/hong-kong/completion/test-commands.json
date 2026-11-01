@@ -1,0 +1,79 @@
+[
+  {
+    "name": "korea-reset",
+    "command": "node tools/test-korea-reset.cjs",
+    "exitCode": 0,
+    "stdout": "PASS KR ROUTE RESET: 0 public / 0 preview / 0 compiled route files; Japanese & Hong Kong unaffected\n",
+    "stderr": ""
+  },
+  {
+    "name": "supabase",
+    "command": "node tools/test-supabase-integration.cjs",
+    "exitCode": 0,
+    "stdout": "{\"status\":\"PASS\",\"accountIsolation\":true,\"rankingEligibility\":true,\"sqlPolicies\":true,\"authRedirect\":true,\"serverRunUpload\":true,\"serverRestore\":true,\"offlineRetry\":true}\n",
+    "stderr": ""
+  },
+  {
+    "name": "selector",
+    "command": "node tools/test-hk-route-selector.cjs",
+    "exitCode": 0,
+    "stdout": "PASS js/app.js: HK MTR/TRAM, KR, JP click selectors\nPASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors\nPASS selector assets: 104 HK route records\n",
+    "stderr": ""
+  },
+  {
+    "name": "typing",
+    "command": "node tools/test-typing-model.js",
+    "exitCode": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"cases\": 18,\n  \"bracketsOnlyAutoFilled\": true,\n  \"errors\": []\n}\n",
+    "stderr": "(node:22076) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/OneDrive/%EB%AC%B8%EC%84%9C/ChatGPT/SUBTYPE/repository/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+  },
+  {
+    "name": "ime-fixture",
+    "command": "node tools/test-ime-controller.js",
+    "exitCode": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"fixtures\": 10,\n  \"visualUpdate\": \"synchronous during composition\",\n  \"completion\": \"compositionend or unchanged exact composition timer\",\n  \"duplicateCompletions\": 0,\n  \"leadingWhitespaceRemoved\": true,\n  \"spaceInsertionPrevented\": true,\n  \"timerCancellation\": true\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "motion-transfers",
+    "command": "node --test tools/test-track-motion.cjs tools/test-free-drive-transfers.cjs",
+    "exitCode": 1,
+    "stdout": "ests 13\nℹ suites 0\nℹ pass 11\nℹ fail 2\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 586.7672\n\n✖ failing tests:\n\ntest at tools\\test-free-drive-transfers.cjs:17:1\n✖ stopping free drive removes Japanese choices before a Korean typing session starts (5.0776ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  false !== true\n  \n      at TestContext.<anonymous> (C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\tools\\test-free-drive-transfers.cjs:21:79)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\ntest at tools\\test-free-drive-transfers.cjs:24:1\n✖ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (13.0484ms)\n  TypeError [Error]: Cannot read properties of undefined (reading 'routeIds')\n      at TestContext.<anonymous> (C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\tools\\test-free-drive-transfers.cjs:31:40)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n",
+    "stderr": ""
+  },
+  {
+    "name": "japan",
+    "command": "node tools/test-shonan-shinjuku-service-journeys.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: 12 Shonan-Shinjuku through-service journey directions\n",
+    "stderr": ""
+  },
+  {
+    "name": "japan-selector",
+    "command": "node tools/test-shonan-shinjuku-selector.cjs",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "le._compile (node:internal/modules/cjs/loader:1929:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: true,\r\n  code: 'ERR_ASSERTION',\r\n  actual: false,\r\n  expected: true,\r\n  operator: '==',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.22.1\r\n"
+  },
+  {
+    "name": "japan-ueno",
+    "command": "node tools/test-ueno-tokyo-line.cjs",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "us>)\r\n    at Object.<anonymous> (C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\tools\\test-ueno-tokyo-line.cjs:32:137)\r\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1443:12) {\r\n  errno: -4058,\r\n  code: 'ENOENT',\r\n  syscall: 'open',\r\n  path: 'C:\\\\Users\\\\galax\\\\OneDrive\\\\문서\\\\ChatGPT\\\\SUBTYPE\\\\repository\\\\data\\\\generated\\\\routes\\\\line-11229--jobansen-totte-iwaki.json'\r\n}\r\n\r\nNode.js v24.22.1\r\n"
+  },
+  {
+    "name": "japan-joban",
+    "command": "node tools/test-ueno-tokyo-joban.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: 11 November 2026 JR Joban journeys, accurate stop order, no 0m gaps; approach track provisional\n",
+    "stderr": ""
+  },
+  {
+    "name": "historical-hk",
+    "command": "node --test tools/test-hk-network.cjs tools/test-hk-phase4.cjs tools/test-hk-phase5.cjs tools/test-hk-phase6.cjs tools/test-hk-bulk.cjs",
+    "exitCode": 1,
+    "stdout": "preserve each independently approved direction and reject a forged endpoint (71.3169ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  61 !== 50\n  \n      at TestContext.<anonymous> (C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\tools\\test-hk-phase6.cjs:10:907)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 61,\n    expected: 50,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\ntest at tools\\test-hk-phase6.cjs:13:1\n✖ national inventory distinguishes APM, airport rail, operating park railway, suspended park railroad and cable rides (20.8044ms)\n  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n  \n    assert(!n.lines.some(s=>s.id==='hk-airport-apm'))\n  \n      at TestContext.<anonymous> (C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\tools\\test-hk-phase6.cjs:13:615)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n",
+    "stderr": ""
+  }
+]

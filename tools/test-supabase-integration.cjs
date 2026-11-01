@@ -22,6 +22,8 @@ const map=new Map(),localStorage={
 };
 const context={console,localStorage,isCountryEnabled:()=>true,Map,Set,JSON};
 vm.createContext(context);
+// Load the production reset flags rather than inventing a fixture-only policy.
+vm.runInContext(read('js/feature-flags.js').replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,''),context);
 vm.runInContext(storageCode.replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'')+'\n;globalThis.testStorage=storage',context);
 const s=context.testStorage;
 const result={route:{id:'line-test',line:{ko:'테스트'},operatorId:'jr-east',countryId:'jp',lineColor:'#008843'},

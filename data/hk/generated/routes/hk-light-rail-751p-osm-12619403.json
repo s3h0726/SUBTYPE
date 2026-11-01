@@ -2,7 +2,7 @@
   "id": "hk-light-rail-751p-osm-12619403",
   "countryId": "hk",
   "schemaVersion": 1,
-  "canonicalLineId": "hk-light-rail-751p",
+  "canonicalLineId": "hk-light-rail-751",
   "servicePatternId": "hk-light-rail-751p-osm-12619403",
   "serviceLabel": "Tin Yat → Siu Hong",
   "operatorId": "hk-mtr",
@@ -12,40 +12,68 @@
     "ko": "홍콩 MTR"
   },
   "line": {
-    "ja": "輕鐵 751P",
-    "en": "Light Rail 751P",
-    "ko": "경전철 751P"
+    "ja": "輕鐵 751",
+    "en": "Light Rail 751",
+    "ko": "경전철 751"
   },
   "category": "light_rail",
   "mode": "light_rail",
-  "code": "751P",
+  "code": "751",
   "officialSymbolExists": false,
-  "lineColor": "#71857d",
+  "lineColor": "#f58220",
   "lineTheme": {
-    "code": "751P",
-    "color": "#71857d",
+    "code": "751",
+    "color": "#f58220",
     "style": "hk",
-    "colorVerified": false,
-    "colorSource": "OSM candidate; official colour audit pending"
+    "colorVerified": true,
+    "colorSource": "https://www.mtr.com.hk/archive/en/services/LR_routemap.pdf"
   },
   "loop": false,
   "lazy": false,
-  "playable": false,
-  "releaseStatus": "INCOMPLETE",
+  "playable": true,
+  "releaseStatus": "ready",
   "geometryReady": true,
   "geometryStatus": "verified",
-  "blockedReasons": [
-    "조건부 운행 시간대 검증 필요",
-    "현재 정차순서 검수 필요"
-  ],
+  "blockedReasons": [],
   "direction": "osm-12619403",
   "validWhen": {
-    "type": "weekday-peak-conditional",
-    "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
-    "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching."
+    "type": "weekday-school-peak-special",
+    "noteKo": "751 평일 오전 특별편 · 틴얏 → 시우홍 · 06:52 / 07:11 출발. 이 지점에서 운행번호가 615 / 507P로 바뀌는 연속 운행입니다. 게임은 751 번호 구간까지만 재현하며 별도 환승으로 만들지 않습니다. 06:52편 방학 미운행, 그 외 방학 조건은 공식 안내에 명시되지 않았습니다.",
+    "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching.",
+    "departureTimes": [
+      "06:52",
+      "07:11"
+    ],
+    "continuation": [
+      {
+        "departure": "06:52",
+        "nextNumber": "615",
+        "destination": "Tuen Mun Ferry Pier",
+        "schoolHolidays": "no-service"
+      },
+      {
+        "departure": "07:11",
+        "nextNumber": "507P",
+        "destination": "Tuen Mun Ferry Pier",
+        "schoolHolidays": "not-stated"
+      }
+    ],
+    "continuousWorking": true,
+    "serviceNumberChangesAreNotTransfers": true,
+    "reviewStatus": "verified",
+    "sources": [
+      {
+        "file": "data/hk/sources/bulk/light-rail.html",
+        "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+      },
+      {
+        "file": "data/hk/sources/phase6/light-rail.csv",
+        "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066"
+      }
+    ]
   },
   "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
-  "stopStatus": "unverified",
+  "stopStatus": "verified",
   "geometry": [
     [
       22.4667478,
@@ -1648,7 +1676,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -1720,7 +1748,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -1947,7 +1975,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -2076,7 +2104,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -2144,7 +2172,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -2251,7 +2279,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -2326,7 +2354,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -2441,7 +2469,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -2583,7 +2611,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -2869,7 +2897,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -2956,7 +2984,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -3039,7 +3067,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -3144,7 +3172,7 @@
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -3293,11 +3321,12 @@
         161558745,
         41707176,
         221373842,
-        738730404
+        738730404,
+        934235275
       ],
       "geometryStatus": "ready",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -3345,7 +3374,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-0",
       "physicalStationId": "hk-lr-550",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 2304841359,
       "stopPosition": {
         "lat": 22.4667478,
@@ -3406,7 +3435,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-1",
       "physicalStationId": "hk-lr-480",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1777130732,
       "stopPosition": {
         "lat": 22.4645568,
@@ -3467,7 +3496,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-2",
       "physicalStationId": "hk-lr-468",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1783169565,
       "stopPosition": {
         "lat": 22.4619992,
@@ -3528,7 +3557,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-3",
       "physicalStationId": "hk-lr-490",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1783169564,
       "stopPosition": {
         "lat": 22.4597012,
@@ -3589,7 +3618,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-4",
       "physicalStationId": "hk-lr-500",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1783169572,
       "stopPosition": {
         "lat": 22.4595274,
@@ -3650,7 +3679,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-5",
       "physicalStationId": "hk-lr-455",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 279447664,
       "stopPosition": {
         "lat": 22.4575666,
@@ -3711,7 +3740,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-6",
       "physicalStationId": "hk-lr-450",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 279447972,
       "stopPosition": {
         "lat": 22.454932,
@@ -3772,7 +3801,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-7",
       "physicalStationId": "hk-lr-435",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 279448176,
       "stopPosition": {
         "lat": 22.4527625,
@@ -3833,7 +3862,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-8",
       "physicalStationId": "hk-lr-430",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 279448431,
       "stopPosition": {
         "lat": 22.4493741,
@@ -3894,7 +3923,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-9",
       "physicalStationId": "hk-lr-425",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1777130723,
       "stopPosition": {
         "lat": 22.4451156,
@@ -3955,7 +3984,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-10",
       "physicalStationId": "hk-lr-380",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1735275623,
       "stopPosition": {
         "lat": 22.4336358,
@@ -4016,7 +4045,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-11",
       "physicalStationId": "hk-lr-370",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1735275615,
       "stopPosition": {
         "lat": 22.4296735,
@@ -4077,7 +4106,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-12",
       "physicalStationId": "hk-lr-360",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1735275650,
       "stopPosition": {
         "lat": 22.424044,
@@ -4138,7 +4167,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-13",
       "physicalStationId": "hk-lr-350",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1735275633,
       "stopPosition": {
         "lat": 22.4188831,
@@ -4199,7 +4228,7 @@
       },
       "stopId": "hk-light-rail-751p-osm-12619403-stop-14",
       "physicalStationId": "hk-lr-100",
-      "lineId": "hk-light-rail-751p",
+      "lineId": "hk-light-rail-751",
       "sourceStopNodeId": 1716515092,
       "stopPosition": {
         "lat": 22.4119631,
@@ -4225,9 +4254,9 @@
   "services": [
     {
       "id": "hk-light-rail-751p-osm-12619403",
-      "nameJa": "輕鐵 751P",
-      "nameEn": "Light Rail 751P",
-      "nameKo": "경전철 751P",
+      "nameJa": "輕鐵 751",
+      "nameEn": "Light Rail 751",
+      "nameKo": "경전철 751",
       "stops": [
         "hk-lr-550",
         "hk-lr-480",
@@ -4247,6 +4276,6 @@
       ]
     }
   ],
-  "operatingConditionFingerprint": "31396e13a0aafe878d40b92daa311f42c9ed951af24e831184e6d1a1e628fef4",
-  "validationFingerprint": "9a64728a2bc2becbab1f2192ae6ec137dc5b53ad96a41f28e0e0586a91725a9d"
+  "operatingConditionFingerprint": "6e96e5fc41429a1a6df52504025d1c10ab2231009d917360e981766024e825e9",
+  "validationFingerprint": "566451f634227e7b38ef50d5375689cd427592cd0bfb8e6b3521e7831722303b"
 }

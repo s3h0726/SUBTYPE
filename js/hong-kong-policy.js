@@ -23,7 +23,7 @@ export function hongKongRouteBlockReason(route){
   return'';
 }
 
-export const HONG_KONG_CATEGORIES=[['all','전체'],['subway','MTR METRO'],['airport_rail','AIRPORT EXPRESS'],['light_rail','LIGHT RAIL'],['tram','TRAM'],['funicular','FUNICULAR'],['high_speed_rail','HIGH SPEED RAIL'],['custom','CUSTOM']];
+export const HONG_KONG_CATEGORIES=[['all','전체'],['subway','MTR 도시철도'],['airport_rail','공항철도'],['light_rail','경전철'],['tram','트램'],['funicular','피크·시설 철도'],['automated_people_mover','공항 APM'],['custom','CUSTOM']];
 
 export function hongKongContinuationAllowed(current,source,servicePatternId){
   const previous=current?.hkIncomingEdge;if(!previous)return true;

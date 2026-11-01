@@ -49,6 +49,15 @@
       "confidence": "unverified"
     },
     {
+      "id": "hk-airport-authority",
+      "names": {
+        "ko": "홍콩공항공사",
+        "en": "Airport Authority Hong Kong",
+        "ja": "香港機場管理局"
+      },
+      "countryId": "hk"
+    },
+    {
       "id": "hk-ocean-park",
       "names": {
         "ja": "香港海洋公園",
@@ -747,6 +756,22 @@
       "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
       "sourceType": "official",
       "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-airport-apm",
+      "operatorId": "hk-airport-authority",
+      "nameKo": "홍콩공항 APM",
+      "nameEn": "Hong Kong International Airport Automated People Mover",
+      "nameZhHant": "香港國際機場旅客捷運系統",
+      "category": "automated_people_mover",
+      "status": "operational",
+      "accessNoticeKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+      "countryId": "hk",
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
       "license": "REVIEW_REQUIRED",
       "confidence": "high"
     },
@@ -4101,6 +4126,45 @@
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/3943626060",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-mtr-RAC",
+      "canonicalStationId": "hk-mtr-RAC",
+      "countryId": "hk",
+      "code": "RAC",
+      "nameZhHant": "馬場",
+      "nameEn": "Racecourse",
+      "nameKo": "마장",
+      "status": "verified",
+      "nameStatus": "verified",
+      "sourceIsMachineTranslationOnly": false,
+      "officialKoreanDesignation": false,
+      "sourceEnglishName": "Racecourse",
+      "sourceChineseName": "馬場",
+      "sourceUrl": "https://esimbaro.com/blog/sha-tin-racecourse",
+      "sourceType": "reviewed-korean-usage",
+      "checkedAt": "2026-10-31",
+      "confidence": "reviewed",
+      "evidenceFiles": [
+        "data/hk/sources/completion/racecourse-korean.html"
+      ],
+      "corroboratingUrls": [
+        "https://www.discoverhongkong.com/eng/culture/hong-kong-horse-racing/racecourse-transit-guide.html"
+      ],
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.4004416,
+        "lng": 114.2029649
+      },
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/316731315",
         "sourceType": "osm",
         "checkedAt": "2026-10-24",
         "license": "ODbL-1.0",
@@ -11491,12 +11555,21 @@
       "sourceStopNodeId": 2525250101,
       "nameZhHant": "花園道纜車總站",
       "nameEn": "Garden Road Peak Tram Terminal",
-      "nameKo": null,
-      "nameStatus": "unverified",
+      "nameKo": "가든 로드",
+      "nameStatus": "verified",
       "governmentLastUpdate": "2025-02-14T00:00:00",
       "requestStop": false,
       "governmentStopId": "99801",
       "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.tickadoo.com/ko/hong-kong/peak-tram-sky-terrace-madame-tussauds-combo-tickets",
+        "sourceType": "reviewed-korean-usage-and-editorial-review",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "sourceIsMachineTranslationOnly": false,
+        "reviewBasis": "User-supplied Korean candidates independently checked against published Korean road-name usage and exact government English/Traditional Chinese identities. Not claimed as operator-designated Korean."
+      },
       "canonicalStationId": "hk-peak-stop-99801",
       "countryId": "hk",
       "aliasesKo": [],
@@ -11525,12 +11598,21 @@
       "sourceStopNodeId": 526904599,
       "nameZhHant": "堅尼地道站",
       "nameEn": "Kennedy Road Station",
-      "nameKo": null,
-      "nameStatus": "unverified",
+      "nameKo": "케네디 로드",
+      "nameStatus": "verified",
       "governmentLastUpdate": "2025-02-14T00:00:00",
       "requestStop": true,
       "governmentStopId": "99802",
       "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.tickadoo.com/ko/hong-kong/peak-tram-sky-terrace-madame-tussauds-combo-tickets",
+        "sourceType": "reviewed-korean-usage-and-editorial-review",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "sourceIsMachineTranslationOnly": false,
+        "reviewBasis": "User-supplied Korean candidates independently checked against published Korean road-name usage and exact government English/Traditional Chinese identities. Not claimed as operator-designated Korean."
+      },
       "canonicalStationId": "hk-peak-stop-99802",
       "countryId": "hk",
       "aliasesKo": [],
@@ -11559,12 +11641,21 @@
       "sourceStopNodeId": 988059698,
       "nameZhHant": "麥當勞道站",
       "nameEn": "Macdonnell Road Station",
-      "nameKo": null,
-      "nameStatus": "unverified",
+      "nameKo": "맥도널 로드",
+      "nameStatus": "verified",
       "governmentLastUpdate": "2025-02-14T00:00:00",
       "requestStop": true,
       "governmentStopId": "99803",
       "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.tickadoo.com/ko/hong-kong/peak-tram-sky-terrace-madame-tussauds-combo-tickets",
+        "sourceType": "reviewed-korean-usage-and-editorial-review",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "sourceIsMachineTranslationOnly": false,
+        "reviewBasis": "User-supplied Korean candidates independently checked against published Korean road-name usage and exact government English/Traditional Chinese identities. Not claimed as operator-designated Korean."
+      },
       "canonicalStationId": "hk-peak-stop-99803",
       "countryId": "hk",
       "aliasesKo": [],
@@ -11593,12 +11684,21 @@
       "sourceStopNodeId": 988059498,
       "nameZhHant": "梅道站",
       "nameEn": "May Road Station",
-      "nameKo": null,
-      "nameStatus": "unverified",
+      "nameKo": "메이 로드",
+      "nameStatus": "verified",
       "governmentLastUpdate": "2025-02-14T00:00:00",
       "requestStop": true,
       "governmentStopId": "99804",
       "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.tickadoo.com/ko/hong-kong/peak-tram-sky-terrace-madame-tussauds-combo-tickets",
+        "sourceType": "reviewed-korean-usage-and-editorial-review",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "sourceIsMachineTranslationOnly": false,
+        "reviewBasis": "User-supplied Korean candidates independently checked against published Korean road-name usage and exact government English/Traditional Chinese identities. Not claimed as operator-designated Korean."
+      },
       "canonicalStationId": "hk-peak-stop-99804",
       "countryId": "hk",
       "aliasesKo": [],
@@ -11627,12 +11727,21 @@
       "sourceStopNodeId": 988059821,
       "nameZhHant": "白加道站",
       "nameEn": "Barker Road Station",
-      "nameKo": null,
-      "nameStatus": "unverified",
+      "nameKo": "바커 로드",
+      "nameStatus": "verified",
       "governmentLastUpdate": "2025-02-14T00:00:00",
       "requestStop": true,
       "governmentStopId": "99805",
       "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.tickadoo.com/ko/hong-kong/peak-tram-sky-terrace-madame-tussauds-combo-tickets",
+        "sourceType": "reviewed-korean-usage-and-editorial-review",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "sourceIsMachineTranslationOnly": false,
+        "reviewBasis": "User-supplied Korean candidates independently checked against published Korean road-name usage and exact government English/Traditional Chinese identities. Not claimed as operator-designated Korean."
+      },
       "canonicalStationId": "hk-peak-stop-99805",
       "countryId": "hk",
       "aliasesKo": [],
@@ -11661,12 +11770,21 @@
       "sourceStopNodeId": 26412045,
       "nameZhHant": "山頂纜車總站",
       "nameEn": "Peak Tram Terminus",
-      "nameKo": null,
-      "nameStatus": "unverified",
+      "nameKo": "피크",
+      "nameStatus": "verified",
       "governmentLastUpdate": "2025-02-14T00:00:00",
       "requestStop": false,
       "governmentStopId": "99806",
       "passengerCodeStatus": "NO_VERIFIED_PUBLIC_CODE",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.tickadoo.com/ko/hong-kong/peak-tram-sky-terrace-madame-tussauds-combo-tickets",
+        "sourceType": "reviewed-korean-usage-and-editorial-review",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "sourceIsMachineTranslationOnly": false,
+        "reviewBasis": "User-supplied Korean candidates independently checked against published Korean road-name usage and exact government English/Traditional Chinese identities. Not claimed as operator-designated Korean."
+      },
       "canonicalStationId": "hk-peak-stop-99806",
       "countryId": "hk",
       "aliasesKo": [],
@@ -11683,6 +11801,158 @@
       "representativeCoordinateOnly": true,
       "coordinateSource": {
         "sourceUrl": "https://www.openstreetmap.org/node/26412045",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-apm-east",
+      "code": "",
+      "sourceStopNodeId": 3900847298,
+      "nameEn": "T1 East Hall",
+      "nameZhHant": "T1 東大堂",
+      "nameKo": "T1 동대합실",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      },
+      "canonicalStationId": "hk-apm-east",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.314607,
+        "lng": 113.933799
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/9812489525",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-apm-west",
+      "code": "",
+      "sourceStopNodeId": 3900847296,
+      "nameEn": "T1 West Hall",
+      "nameZhHant": "T1 西大堂",
+      "nameKo": "T1 서대합실",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      },
+      "canonicalStationId": "hk-apm-west",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3129689,
+        "lng": 113.927137
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/3900847296",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-apm-midfield",
+      "code": "",
+      "sourceStopNodeId": 3961981068,
+      "nameEn": "T1 Midfield Concourse",
+      "nameZhHant": "T1 中場客運廊",
+      "nameKo": "T1 미드필드 탑승동",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      },
+      "canonicalStationId": "hk-apm-midfield",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3099785,
+        "lng": 113.9177325
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/3961981068",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "hk-apm-skypier",
+      "code": "",
+      "sourceStopNodeId": 3900847297,
+      "nameEn": "SkyPier",
+      "nameZhHant": "海天客運碼頭",
+      "nameKo": "스카이피어",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      },
+      "canonicalStationId": "hk-apm-skypier",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3182945,
+        "lng": 113.9437423
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/3900847297",
         "sourceType": "osm",
         "checkedAt": "2026-10-24",
         "license": "ODbL-1.0",
@@ -33372,7 +33642,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/4248589",
+      "sourceUrl": "https://www.openstreetmap.org/relation/4250432",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -53159,6 +53429,1280 @@
       "confidence": "high"
     },
     {
+      "id": "hk-track-8daa119442cb7218b1",
+      "fromStationId": "hk-mtr-UNI",
+      "toStationId": "hk-mtr-RAC",
+      "geometry": [
+        [
+          22.4133852,
+          114.2100545
+        ],
+        [
+          22.4132637,
+          114.2100395
+        ],
+        [
+          22.4131509,
+          114.2100301
+        ],
+        [
+          22.4129946,
+          114.2100236
+        ],
+        [
+          22.4127965,
+          114.2100276
+        ],
+        [
+          22.4126466,
+          114.21004
+        ],
+        [
+          22.4124762,
+          114.2100647
+        ],
+        [
+          22.4123076,
+          114.2100987
+        ],
+        [
+          22.4121501,
+          114.2101383
+        ],
+        [
+          22.4119636,
+          114.2101957
+        ],
+        [
+          22.4117708,
+          114.210268
+        ],
+        [
+          22.4114528,
+          114.2104125
+        ],
+        [
+          22.4111348,
+          114.210557
+        ],
+        [
+          22.4109565,
+          114.2106386
+        ],
+        [
+          22.410738,
+          114.2107418
+        ],
+        [
+          22.4104396,
+          114.2108756
+        ],
+        [
+          22.4103097,
+          114.2109309
+        ],
+        [
+          22.4101968,
+          114.210977
+        ],
+        [
+          22.4100664,
+          114.211024
+        ],
+        [
+          22.4099588,
+          114.211057
+        ],
+        [
+          22.409829,
+          114.211094
+        ],
+        [
+          22.4097059,
+          114.211121
+        ],
+        [
+          22.4095139,
+          114.2111556
+        ],
+        [
+          22.4094086,
+          114.2111676
+        ],
+        [
+          22.4093047,
+          114.2111765
+        ],
+        [
+          22.4090857,
+          114.2111847
+        ],
+        [
+          22.4088962,
+          114.2111764
+        ],
+        [
+          22.4087411,
+          114.2111608
+        ],
+        [
+          22.4085745,
+          114.2111353
+        ],
+        [
+          22.4083995,
+          114.2110979
+        ],
+        [
+          22.4081634,
+          114.211028
+        ],
+        [
+          22.4079955,
+          114.2109659
+        ],
+        [
+          22.4078337,
+          114.2108954
+        ],
+        [
+          22.4076584,
+          114.2108077
+        ],
+        [
+          22.4075204,
+          114.2107275
+        ],
+        [
+          22.407385,
+          114.2106377
+        ],
+        [
+          22.4072452,
+          114.2105363
+        ],
+        [
+          22.4071047,
+          114.210419
+        ],
+        [
+          22.4069256,
+          114.2102461
+        ],
+        [
+          22.4068019,
+          114.2101143
+        ],
+        [
+          22.4067072,
+          114.2100019
+        ],
+        [
+          22.4066168,
+          114.2098853
+        ],
+        [
+          22.4065203,
+          114.2097473
+        ],
+        [
+          22.4064326,
+          114.209612
+        ],
+        [
+          22.4063769,
+          114.2095161
+        ],
+        [
+          22.4063045,
+          114.2093831
+        ],
+        [
+          22.4062358,
+          114.2092518
+        ],
+        [
+          22.4061551,
+          114.2090905
+        ],
+        [
+          22.4054063,
+          114.207561
+        ],
+        [
+          22.4053383,
+          114.2074286
+        ],
+        [
+          22.4052629,
+          114.2072896
+        ],
+        [
+          22.4050441,
+          114.206902
+        ],
+        [
+          22.4049746,
+          114.2067881
+        ],
+        [
+          22.4047768,
+          114.2065027
+        ],
+        [
+          22.4045862,
+          114.2062479
+        ],
+        [
+          22.4045081,
+          114.2061384
+        ],
+        [
+          22.4042519,
+          114.2057603
+        ],
+        [
+          22.4041775,
+          114.2056563
+        ],
+        [
+          22.4040965,
+          114.205552
+        ],
+        [
+          22.4039531,
+          114.2053808
+        ],
+        [
+          22.4038881,
+          114.2053075
+        ],
+        [
+          22.4038122,
+          114.2052267
+        ],
+        [
+          22.4036964,
+          114.2051108
+        ],
+        [
+          22.403523,
+          114.2049496
+        ],
+        [
+          22.4033671,
+          114.204818
+        ],
+        [
+          22.4032468,
+          114.2047198
+        ],
+        [
+          22.4031214,
+          114.2046217
+        ],
+        [
+          22.4029754,
+          114.204515
+        ],
+        [
+          22.4023398,
+          114.2040862
+        ],
+        [
+          22.4021769,
+          114.2039887
+        ],
+        [
+          22.4019751,
+          114.2038759
+        ],
+        [
+          22.4017012,
+          114.2037229
+        ],
+        [
+          22.4013393,
+          114.2035338
+        ],
+        [
+          22.4011358,
+          114.2034099
+        ],
+        [
+          22.4004416,
+          114.2029649
+        ]
+      ],
+      "segmentLengthMeters": 1830.0941102666634,
+      "sourceWayIds": [
+        458959993,
+        1442603918,
+        584589621,
+        584589622,
+        458959994,
+        1442603920,
+        208232746,
+        208232717,
+        442530898,
+        208232753
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/4250433",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-18531d089ae222c959",
+      "fromStationId": "hk-mtr-RAC",
+      "toStationId": "hk-mtr-SHT",
+      "geometry": [
+        [
+          22.4004416,
+          114.2029649
+        ],
+        [
+          22.3997741,
+          114.2025344
+        ],
+        [
+          22.3994914,
+          114.2023449
+        ],
+        [
+          22.3991939,
+          114.2021306
+        ],
+        [
+          22.3990277,
+          114.2020009
+        ],
+        [
+          22.3986397,
+          114.2017067
+        ],
+        [
+          22.3983568,
+          114.2015099
+        ],
+        [
+          22.3980264,
+          114.2012962
+        ],
+        [
+          22.3978782,
+          114.2012003
+        ],
+        [
+          22.3977325,
+          114.2011054
+        ],
+        [
+          22.3971456,
+          114.2007341
+        ],
+        [
+          22.3966403,
+          114.2004041
+        ],
+        [
+          22.3962919,
+          114.2001711
+        ],
+        [
+          22.396139,
+          114.2000549
+        ],
+        [
+          22.395958,
+          114.1999043
+        ],
+        [
+          22.3957574,
+          114.199714
+        ],
+        [
+          22.3955922,
+          114.1995377
+        ],
+        [
+          22.3953964,
+          114.1992963
+        ],
+        [
+          22.3953113,
+          114.1991782
+        ],
+        [
+          22.3952302,
+          114.1990577
+        ],
+        [
+          22.3948902,
+          114.198529
+        ],
+        [
+          22.394788,
+          114.198383
+        ],
+        [
+          22.39467,
+          114.1982259
+        ],
+        [
+          22.3943,
+          114.1978148
+        ],
+        [
+          22.3941916,
+          114.1977077
+        ],
+        [
+          22.3941405,
+          114.1976588
+        ],
+        [
+          22.3940162,
+          114.1975474
+        ],
+        [
+          22.3938902,
+          114.1974464
+        ],
+        [
+          22.3937364,
+          114.1973249
+        ],
+        [
+          22.3935872,
+          114.1972163
+        ],
+        [
+          22.3932174,
+          114.1969516
+        ],
+        [
+          22.3927875,
+          114.1966504
+        ],
+        [
+          22.3926148,
+          114.1965232
+        ],
+        [
+          22.3925062,
+          114.1964393
+        ],
+        [
+          22.3921046,
+          114.1961234
+        ],
+        [
+          22.391732,
+          114.1958598
+        ],
+        [
+          22.3915512,
+          114.1957264
+        ],
+        [
+          22.3913494,
+          114.1955689
+        ],
+        [
+          22.3911849,
+          114.1954335
+        ],
+        [
+          22.3910295,
+          114.1952998
+        ],
+        [
+          22.3908114,
+          114.1950991
+        ],
+        [
+          22.3906052,
+          114.1948953
+        ],
+        [
+          22.3904174,
+          114.1946976
+        ],
+        [
+          22.3903495,
+          114.1946238
+        ],
+        [
+          22.3902689,
+          114.1945306
+        ],
+        [
+          22.3895604,
+          114.1936717
+        ],
+        [
+          22.3895152,
+          114.1936199
+        ],
+        [
+          22.3893628,
+          114.1934463
+        ],
+        [
+          22.3892007,
+          114.1932669
+        ],
+        [
+          22.3890408,
+          114.1930976
+        ],
+        [
+          22.3888799,
+          114.19293
+        ],
+        [
+          22.3869101,
+          114.1909366
+        ],
+        [
+          22.3863969,
+          114.1904178
+        ],
+        [
+          22.3861607,
+          114.1901851
+        ],
+        [
+          22.3859133,
+          114.1899592
+        ],
+        [
+          22.3856473,
+          114.1897354
+        ],
+        [
+          22.3854121,
+          114.1895545
+        ],
+        [
+          22.3851817,
+          114.18938
+        ],
+        [
+          22.3850346,
+          114.189276
+        ],
+        [
+          22.3846189,
+          114.1889672
+        ],
+        [
+          22.38446,
+          114.1888483
+        ],
+        [
+          22.3842739,
+          114.1887085
+        ],
+        [
+          22.3838947,
+          114.1884324
+        ],
+        [
+          22.3837138,
+          114.1882949
+        ],
+        [
+          22.3836291,
+          114.1882315
+        ],
+        [
+          22.3828402,
+          114.1876419
+        ]
+      ],
+      "segmentLengthMeters": 2528.462823356814,
+      "sourceWayIds": [
+        442530898,
+        208232753,
+        1355633339,
+        1355633338,
+        37554483,
+        208232713,
+        37554485,
+        28808000,
+        223642268,
+        135716448,
+        211907304,
+        37554415,
+        37554439
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/4250433",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-1bae2e8f164af763ea",
+      "fromStationId": "hk-mtr-SHT",
+      "toStationId": "hk-mtr-RAC",
+      "geometry": [
+        [
+          22.3828531,
+          114.1876187
+        ],
+        [
+          22.3837329,
+          114.1882643
+        ],
+        [
+          22.3839198,
+          114.1883971
+        ],
+        [
+          22.3842967,
+          114.1886749
+        ],
+        [
+          22.3846402,
+          114.1889342
+        ],
+        [
+          22.3850555,
+          114.1892422
+        ],
+        [
+          22.3852025,
+          114.1893478
+        ],
+        [
+          22.3854349,
+          114.1895185
+        ],
+        [
+          22.3856705,
+          114.1897017
+        ],
+        [
+          22.3858178,
+          114.1898233
+        ],
+        [
+          22.3859368,
+          114.1899268
+        ],
+        [
+          22.3861835,
+          114.1901551
+        ],
+        [
+          22.3864192,
+          114.1903881
+        ],
+        [
+          22.3889767,
+          114.1929716
+        ],
+        [
+          22.389086,
+          114.1930846
+        ],
+        [
+          22.3891733,
+          114.1931765
+        ],
+        [
+          22.3892658,
+          114.1932768
+        ],
+        [
+          22.3893566,
+          114.1933775
+        ],
+        [
+          22.3894502,
+          114.1934823
+        ],
+        [
+          22.3895501,
+          114.1935968
+        ],
+        [
+          22.3896588,
+          114.1937257
+        ],
+        [
+          22.390294,
+          114.1944919
+        ],
+        [
+          22.3903759,
+          114.1945873
+        ],
+        [
+          22.3904498,
+          114.1946702
+        ],
+        [
+          22.3906338,
+          114.1948672
+        ],
+        [
+          22.3907827,
+          114.1950178
+        ],
+        [
+          22.3909164,
+          114.1951471
+        ],
+        [
+          22.3910524,
+          114.1952696
+        ],
+        [
+          22.3911936,
+          114.1953927
+        ],
+        [
+          22.3913036,
+          114.1954832
+        ],
+        [
+          22.3915243,
+          114.195657
+        ],
+        [
+          22.3917104,
+          114.1957957
+        ],
+        [
+          22.3917808,
+          114.1958469
+        ],
+        [
+          22.3921056,
+          114.1960729
+        ],
+        [
+          22.3924523,
+          114.1963408
+        ],
+        [
+          22.3925786,
+          114.1964392
+        ],
+        [
+          22.3926987,
+          114.196533
+        ],
+        [
+          22.3928012,
+          114.1966133
+        ],
+        [
+          22.3932403,
+          114.1969154
+        ],
+        [
+          22.3937858,
+          114.197308
+        ],
+        [
+          22.3939169,
+          114.1974146
+        ],
+        [
+          22.3940414,
+          114.197521
+        ],
+        [
+          22.3941612,
+          114.1976297
+        ],
+        [
+          22.3942134,
+          114.1976795
+        ],
+        [
+          22.394297,
+          114.1977628
+        ],
+        [
+          22.3944773,
+          114.1979544
+        ],
+        [
+          22.3945873,
+          114.1980816
+        ],
+        [
+          22.3947157,
+          114.1982293
+        ],
+        [
+          22.3947675,
+          114.1982965
+        ],
+        [
+          22.3948599,
+          114.1984254
+        ],
+        [
+          22.3949559,
+          114.1985648
+        ],
+        [
+          22.3952482,
+          114.1990215
+        ],
+        [
+          22.3953333,
+          114.1991477
+        ],
+        [
+          22.3954328,
+          114.1992812
+        ],
+        [
+          22.3955081,
+          114.1993807
+        ],
+        [
+          22.3955871,
+          114.1994779
+        ],
+        [
+          22.3957406,
+          114.1996515
+        ],
+        [
+          22.3958722,
+          114.1997755
+        ],
+        [
+          22.3959777,
+          114.1998688
+        ],
+        [
+          22.3961673,
+          114.2000306
+        ],
+        [
+          22.3963109,
+          114.2001427
+        ],
+        [
+          22.3970269,
+          114.2006142
+        ],
+        [
+          22.3971473,
+          114.2006938
+        ],
+        [
+          22.3977484,
+          114.2010727
+        ],
+        [
+          22.3978968,
+          114.2011683
+        ],
+        [
+          22.3982078,
+          114.201367
+        ],
+        [
+          22.3983759,
+          114.2014752
+        ],
+        [
+          22.3985108,
+          114.2015636
+        ],
+        [
+          22.3988814,
+          114.2018064
+        ],
+        [
+          22.3990252,
+          114.2018986
+        ],
+        [
+          22.399225,
+          114.2020282
+        ],
+        [
+          22.3996249,
+          114.2022864
+        ],
+        [
+          22.4004961,
+          114.202847
+        ]
+      ],
+      "segmentLengthMeters": 2527.1581229323147,
+      "sourceWayIds": [
+        208232725,
+        272317122,
+        208232723,
+        208232726,
+        315753703,
+        88594524,
+        223642271,
+        315893588,
+        208064886,
+        208047840,
+        208232710,
+        208232707,
+        208232711,
+        211907308,
+        442530899,
+        208232709
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/4250435",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-2257c40830212e4832",
+      "fromStationId": "hk-mtr-RAC",
+      "toStationId": "hk-mtr-UNI",
+      "geometry": [
+        [
+          22.4004961,
+          114.202847
+        ],
+        [
+          22.4014122,
+          114.2034368
+        ],
+        [
+          22.4018384,
+          114.2037029
+        ],
+        [
+          22.4021281,
+          114.2038862
+        ],
+        [
+          22.4023608,
+          114.2040431
+        ],
+        [
+          22.4029469,
+          114.2044277
+        ],
+        [
+          22.4030351,
+          114.2044904
+        ],
+        [
+          22.4031802,
+          114.2046043
+        ],
+        [
+          22.4032916,
+          114.2046941
+        ],
+        [
+          22.4034278,
+          114.2048048
+        ],
+        [
+          22.4035193,
+          114.2048852
+        ],
+        [
+          22.403714,
+          114.2050599
+        ],
+        [
+          22.4038027,
+          114.2051488
+        ],
+        [
+          22.4038764,
+          114.2052266
+        ],
+        [
+          22.4039611,
+          114.20532
+        ],
+        [
+          22.4040368,
+          114.2054112
+        ],
+        [
+          22.4042904,
+          114.2057508
+        ],
+        [
+          22.4044891,
+          114.2060436
+        ],
+        [
+          22.4045998,
+          114.2061959
+        ],
+        [
+          22.4047752,
+          114.2064323
+        ],
+        [
+          22.4048805,
+          114.2065796
+        ],
+        [
+          22.40496,
+          114.2066858
+        ],
+        [
+          22.4050362,
+          114.2068054
+        ],
+        [
+          22.4051612,
+          114.2070198
+        ],
+        [
+          22.4052295,
+          114.2071361
+        ],
+        [
+          22.4052921,
+          114.207259
+        ],
+        [
+          22.4062142,
+          114.2091254
+        ],
+        [
+          22.4063367,
+          114.2093651
+        ],
+        [
+          22.4063928,
+          114.2094702
+        ],
+        [
+          22.4064582,
+          114.2095812
+        ],
+        [
+          22.4065325,
+          114.2096975
+        ],
+        [
+          22.4066075,
+          114.2098076
+        ],
+        [
+          22.4067812,
+          114.2100326
+        ],
+        [
+          22.4069497,
+          114.2102197
+        ],
+        [
+          22.4070299,
+          114.2102983
+        ],
+        [
+          22.4071298,
+          114.2103903
+        ],
+        [
+          22.40727,
+          114.2105076
+        ],
+        [
+          22.4074088,
+          114.2106078
+        ],
+        [
+          22.407539,
+          114.2106914
+        ],
+        [
+          22.4076736,
+          114.2107715
+        ],
+        [
+          22.4078454,
+          114.2108604
+        ],
+        [
+          22.4079989,
+          114.2109267
+        ],
+        [
+          22.4081326,
+          114.2109774
+        ],
+        [
+          22.4082743,
+          114.2110235
+        ],
+        [
+          22.4083766,
+          114.2110523
+        ],
+        [
+          22.4084795,
+          114.2110765
+        ],
+        [
+          22.4085954,
+          114.2110997
+        ],
+        [
+          22.4087349,
+          114.2111206
+        ],
+        [
+          22.408897,
+          114.2111356
+        ],
+        [
+          22.4090955,
+          114.2111439
+        ],
+        [
+          22.4093181,
+          114.2111388
+        ],
+        [
+          22.409419,
+          114.2111318
+        ],
+        [
+          22.4095207,
+          114.211119
+        ],
+        [
+          22.4097171,
+          114.2110821
+        ],
+        [
+          22.4099539,
+          114.2110202
+        ],
+        [
+          22.4101884,
+          114.2109403
+        ],
+        [
+          22.4104786,
+          114.210817
+        ],
+        [
+          22.4107292,
+          114.2106998
+        ],
+        [
+          22.4109493,
+          114.2105985
+        ],
+        [
+          22.4111205,
+          114.2105216
+        ],
+        [
+          22.4114576,
+          114.2103683
+        ],
+        [
+          22.4117598,
+          114.2102309
+        ],
+        [
+          22.4119516,
+          114.2101553
+        ],
+        [
+          22.4120731,
+          114.2101141
+        ],
+        [
+          22.4121897,
+          114.2100827
+        ],
+        [
+          22.4123361,
+          114.2100487
+        ],
+        [
+          22.4124558,
+          114.2100264
+        ],
+        [
+          22.4125892,
+          114.2100085
+        ],
+        [
+          22.4126894,
+          114.2099976
+        ],
+        [
+          22.4128026,
+          114.2099892
+        ],
+        [
+          22.4129648,
+          114.2099854
+        ],
+        [
+          22.4131206,
+          114.2099894
+        ],
+        [
+          22.4132541,
+          114.2099998
+        ],
+        [
+          22.4133903,
+          114.2100166
+        ]
+      ],
+      "segmentLengthMeters": 1829.832899224996,
+      "sourceWayIds": [
+        442530899,
+        208232709,
+        313920283,
+        211914591,
+        211907306,
+        315893591,
+        1442742849,
+        458959995,
+        584589620,
+        1442603919,
+        584589619
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/4250435",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-18",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
       "id": "hk-track-d2ad122f0888742190",
       "fromStationId": "hk-lr-100",
       "toStationId": "hk-lr-120",
@@ -63660,7 +65204,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -63743,7 +65287,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -63848,7 +65392,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -63997,11 +65541,12 @@
         161558745,
         41707176,
         221373842,
-        738730404
+        738730404,
+        934235275
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -71580,7 +73125,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/6485221",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -73564,7 +75109,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -73671,7 +75216,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -73746,7 +75291,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -73856,11 +75401,12 @@
         221446359,
         167070797,
         436524834,
-        737786733
+        737786733,
+        25637766
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/2929802",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -74014,7 +75560,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -74241,7 +75787,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -74370,7 +75916,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -74512,7 +76058,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -74798,7 +76344,7 @@
       ],
       "geometryStatus": "verified",
       "direction": "forward",
-      "sourceUrl": "https://www.openstreetmap.org/relation/12619403",
+      "sourceUrl": "https://www.openstreetmap.org/relation/2926506",
       "sourceType": "osm",
       "sourceDate": "2026-10-18",
       "checkedAt": "2026-10-24",
@@ -91381,6 +92927,248 @@
       "checkedAt": "2026-10-24",
       "license": "ODbL-1.0",
       "confidence": "high"
+    },
+    {
+      "id": "hk-track-b59fbde2bdda54d46d",
+      "fromStationId": "hk-apm-skypier",
+      "toStationId": "hk-apm-east",
+      "geometry": [
+        [
+          22.3182945,
+          113.9437423
+        ],
+        [
+          22.3172597,
+          113.9405485
+        ],
+        [
+          22.3168036,
+          113.939139
+        ],
+        [
+          22.3166609,
+          113.938966
+        ],
+        [
+          22.3162104,
+          113.9375769
+        ],
+        [
+          22.3161291,
+          113.9372746
+        ],
+        [
+          22.3155102,
+          113.935588
+        ],
+        [
+          22.3149048,
+          113.934676
+        ],
+        [
+          22.314607,
+          113.933799
+        ]
+      ],
+      "segmentLengthMeters": 1107.5621095895483,
+      "sourceWayIds": [
+        1068991108,
+        1068991107,
+        1068991116
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14244774",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-31",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-eac3eeaa1edcbcf293",
+      "fromStationId": "hk-apm-east",
+      "toStationId": "hk-apm-skypier",
+      "geometry": [
+        [
+          22.314607,
+          113.933799
+        ],
+        [
+          22.3149048,
+          113.934676
+        ],
+        [
+          22.3155102,
+          113.935588
+        ],
+        [
+          22.3161291,
+          113.9372746
+        ],
+        [
+          22.3163039,
+          113.9375298
+        ],
+        [
+          22.3164229,
+          113.937913
+        ],
+        [
+          22.3166005,
+          113.9384848
+        ],
+        [
+          22.3168036,
+          113.939139
+        ],
+        [
+          22.3172597,
+          113.9405485
+        ],
+        [
+          22.3182945,
+          113.9437423
+        ]
+      ],
+      "segmentLengthMeters": 1107.190794337342,
+      "sourceWayIds": [
+        1068991116,
+        1068991115,
+        1068991108
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14244775",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-31",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-0ebb927750ca422e9d",
+      "fromStationId": "hk-apm-midfield",
+      "toStationId": "hk-apm-west",
+      "geometry": [
+        [
+          22.3099785,
+          113.9177325
+        ],
+        [
+          22.3129689,
+          113.927137
+        ]
+      ],
+      "segmentLengthMeters": 1022.9921179176838,
+      "sourceWayIds": [
+        386733066
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14244778",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-31",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-56e47be18f180019c5",
+      "fromStationId": "hk-apm-west",
+      "toStationId": "hk-apm-east",
+      "geometry": [
+        [
+          22.3129689,
+          113.927137
+        ],
+        [
+          22.3138181,
+          113.9298268
+        ],
+        [
+          22.3150402,
+          113.9336983
+        ]
+      ],
+      "segmentLengthMeters": 713.1645665477088,
+      "sourceWayIds": [
+        386733066
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14244778",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-31",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-b77fd9cf441ba5dda1",
+      "fromStationId": "hk-apm-east",
+      "toStationId": "hk-apm-west",
+      "geometry": [
+        [
+          22.3149623,
+          113.9337274
+        ],
+        [
+          22.314638,
+          113.9327018
+        ],
+        [
+          22.3143489,
+          113.9317873
+        ],
+        [
+          22.3137401,
+          113.9298556
+        ],
+        [
+          22.312891,
+          113.9271659
+        ]
+      ],
+      "segmentLengthMeters": 713.1844458170062,
+      "sourceWayIds": [
+        512251214
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14244779",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-31",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-2fea11c4f56f920316",
+      "fromStationId": "hk-apm-west",
+      "toStationId": "hk-apm-midfield",
+      "geometry": [
+        [
+          22.312891,
+          113.9271659
+        ],
+        [
+          22.3099006,
+          113.9177614
+        ]
+      ],
+      "segmentLengthMeters": 1022.9926283772005,
+      "sourceWayIds": [
+        512251214
+      ],
+      "geometryStatus": "verified",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14244779",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-31",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
     }
   ],
   "servicePatterns": [
@@ -92748,6 +94536,243 @@
       ],
       "geometryStatus": "verified",
       "sourceRelationId": 13352938,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-east-rail-racecourse-4250432",
+      "canonicalLineId": "hk-east-rail",
+      "countryId": "hk",
+      "direction": "racecourse-4250432",
+      "origin": "hk-mtr-LMC",
+      "destination": "hk-mtr-ADM",
+      "stopStationIds": [
+        "hk-mtr-LMC",
+        "hk-mtr-SHS",
+        "hk-mtr-FAN",
+        "hk-mtr-TWO",
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-RAC",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "race-day-via-racecourse",
+        "raceDaysOnly": true,
+        "noteKo": "동철선 마장 경유 · 경마일 등 운영사가 마장역을 개방하는 날의 지정 열차만 운행합니다. 포탄역에는 정차하지 않으며 경마일의 모든 열차가 이 경로인 것은 아닙니다. 정확한 출발 시각은 당일 안내를 확인하세요.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/racecourse-official-excerpt.json",
+            "sha256": "fb71628700c8cf706c12147229710012c70667f800f0c0b79fd180b97df0e10f"
+          },
+          {
+            "file": "data/hk/sources/completion/racecourse-korean.html",
+            "sha256": "4ba6a696b1155380bd4d0141577fb05e5d7a5defc920726d8916c7331a440aa2"
+          },
+          {
+            "file": "data/hk/sources/completion/mtr-next-train.pdf",
+            "sha256": "0359b30a230c11733bc9552c6c10cbba8a6de4005e5cc76297108a1451668bd8"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          },
+          {
+            "file": "data/hk/sources/osm-network.json",
+            "sha256": "3ccfdcb2f39ab80bb1b47e6f20233c7c9a5d2858a6a71df350778b33a9f71856"
+          }
+        ]
+      },
+      "serviceType": "metro",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-3adcf60d9f1f782215",
+        "hk-track-ddaae7cce011e87c7a",
+        "hk-track-a70ba3f3ed81d7d259",
+        "hk-track-53c6304ae5e6cf3a47",
+        "hk-track-0631ff1ac468062886",
+        "hk-track-8daa119442cb7218b1",
+        "hk-track-18531d089ae222c959",
+        "hk-track-7e18f3b6676926a3f1",
+        "hk-track-37ca91a247281c03da",
+        "hk-track-6059fb264a9fe0cc63",
+        "hk-track-a79d5e97d564c8b86f",
+        "hk-track-02734d0778947bb2b8",
+        "hk-track-6a09a3de3c84af8514"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 4250432,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-east-rail-racecourse-4250433",
+      "canonicalLineId": "hk-east-rail",
+      "countryId": "hk",
+      "direction": "racecourse-4250433",
+      "origin": "hk-mtr-LOW",
+      "destination": "hk-mtr-ADM",
+      "stopStationIds": [
+        "hk-mtr-LOW",
+        "hk-mtr-SHS",
+        "hk-mtr-FAN",
+        "hk-mtr-TWO",
+        "hk-mtr-TAP",
+        "hk-mtr-UNI",
+        "hk-mtr-RAC",
+        "hk-mtr-SHT",
+        "hk-mtr-TAW",
+        "hk-mtr-KOT",
+        "hk-mtr-MKK",
+        "hk-mtr-HUH",
+        "hk-mtr-EXC",
+        "hk-mtr-ADM"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "race-day-via-racecourse",
+        "raceDaysOnly": true,
+        "noteKo": "동철선 마장 경유 · 경마일 등 운영사가 마장역을 개방하는 날의 지정 열차만 운행합니다. 포탄역에는 정차하지 않으며 경마일의 모든 열차가 이 경로인 것은 아닙니다. 정확한 출발 시각은 당일 안내를 확인하세요.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/racecourse-official-excerpt.json",
+            "sha256": "fb71628700c8cf706c12147229710012c70667f800f0c0b79fd180b97df0e10f"
+          },
+          {
+            "file": "data/hk/sources/completion/racecourse-korean.html",
+            "sha256": "4ba6a696b1155380bd4d0141577fb05e5d7a5defc920726d8916c7331a440aa2"
+          },
+          {
+            "file": "data/hk/sources/completion/mtr-next-train.pdf",
+            "sha256": "0359b30a230c11733bc9552c6c10cbba8a6de4005e5cc76297108a1451668bd8"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          },
+          {
+            "file": "data/hk/sources/osm-network.json",
+            "sha256": "3ccfdcb2f39ab80bb1b47e6f20233c7c9a5d2858a6a71df350778b33a9f71856"
+          }
+        ]
+      },
+      "serviceType": "metro",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-35db691723a383df3d",
+        "hk-track-ddaae7cce011e87c7a",
+        "hk-track-a70ba3f3ed81d7d259",
+        "hk-track-53c6304ae5e6cf3a47",
+        "hk-track-0631ff1ac468062886",
+        "hk-track-8daa119442cb7218b1",
+        "hk-track-18531d089ae222c959",
+        "hk-track-7e18f3b6676926a3f1",
+        "hk-track-37ca91a247281c03da",
+        "hk-track-6059fb264a9fe0cc63",
+        "hk-track-a79d5e97d564c8b86f",
+        "hk-track-02734d0778947bb2b8",
+        "hk-track-6a09a3de3c84af8514"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 4250433,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-east-rail-racecourse-4250435",
+      "canonicalLineId": "hk-east-rail",
+      "countryId": "hk",
+      "direction": "racecourse-4250435",
+      "origin": "hk-mtr-ADM",
+      "destination": "hk-mtr-LOW",
+      "stopStationIds": [
+        "hk-mtr-ADM",
+        "hk-mtr-EXC",
+        "hk-mtr-HUH",
+        "hk-mtr-MKK",
+        "hk-mtr-KOT",
+        "hk-mtr-TAW",
+        "hk-mtr-SHT",
+        "hk-mtr-RAC",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS",
+        "hk-mtr-LOW"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "race-day-via-racecourse",
+        "raceDaysOnly": true,
+        "noteKo": "동철선 마장 경유 · 경마일 등 운영사가 마장역을 개방하는 날의 지정 열차만 운행합니다. 포탄역에는 정차하지 않으며 경마일의 모든 열차가 이 경로인 것은 아닙니다. 정확한 출발 시각은 당일 안내를 확인하세요.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/racecourse-official-excerpt.json",
+            "sha256": "fb71628700c8cf706c12147229710012c70667f800f0c0b79fd180b97df0e10f"
+          },
+          {
+            "file": "data/hk/sources/completion/racecourse-korean.html",
+            "sha256": "4ba6a696b1155380bd4d0141577fb05e5d7a5defc920726d8916c7331a440aa2"
+          },
+          {
+            "file": "data/hk/sources/completion/mtr-next-train.pdf",
+            "sha256": "0359b30a230c11733bc9552c6c10cbba8a6de4005e5cc76297108a1451668bd8"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          },
+          {
+            "file": "data/hk/sources/osm-network.json",
+            "sha256": "3ccfdcb2f39ab80bb1b47e6f20233c7c9a5d2858a6a71df350778b33a9f71856"
+          }
+        ]
+      },
+      "serviceType": "metro",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-25",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-a7de4bbd6c296ba84f",
+        "hk-track-6d2ca2ce0e239d5e93",
+        "hk-track-0701ddf1f8badbdca2",
+        "hk-track-9e2f7be7fd4a4308fc",
+        "hk-track-de921c591078530bf4",
+        "hk-track-4c3fa7f7e3e339814b",
+        "hk-track-1bae2e8f164af763ea",
+        "hk-track-2257c40830212e4832",
+        "hk-track-b72eecaedb3778ff98",
+        "hk-track-0256019001aebca237",
+        "hk-track-ec2ec86e2e1d9b9439",
+        "hk-track-f5249fa81528752498",
+        "hk-track-0220090b91cabd9dec"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 4250435,
       "releaseStatus": "ready",
       "blockedReasons": [],
       "playable": true
@@ -94124,7 +96149,7 @@
     },
     {
       "id": "hk-light-rail-751p-osm-12619403",
-      "canonicalLineId": "hk-light-rail-751p",
+      "canonicalLineId": "hk-light-rail-751",
       "countryId": "hk",
       "direction": "osm-12619403",
       "origin": "hk-lr-550",
@@ -94146,12 +96171,43 @@
         "hk-lr-350",
         "hk-lr-100"
       ],
-      "stopStatus": "unverified",
+      "stopStatus": "verified",
       "loop": false,
       "validWhen": {
-        "type": "weekday-peak-conditional",
-        "noteKo": "평일 혼잡시간 조건부 운행. 아침: 틴윙 → 틴수이와이(방학 운행 없음). 저녁: 틴수이와이 ↔ 틴얏(방학 감편). 정확한 시간대·방향별 전체 정차는 검증 대기.",
-        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching."
+        "type": "weekday-school-peak-special",
+        "noteKo": "751 평일 오전 특별편 · 틴얏 → 시우홍 · 06:52 / 07:11 출발. 이 지점에서 운행번호가 615 / 507P로 바뀌는 연속 운행입니다. 게임은 751 번호 구간까지만 재현하며 별도 환승으로 만들지 않습니다. 06:52편 방학 미운행, 그 외 방학 조건은 공식 안내에 명시되지 않았습니다.",
+        "note": "Morning Tin Wing–Tin Shui Wai; evening Tin Shui Wai–Tin Yat; conditional operation and school-holiday restrictions require explicit variant matching.",
+        "departureTimes": [
+          "06:52",
+          "07:11"
+        ],
+        "continuation": [
+          {
+            "departure": "06:52",
+            "nextNumber": "615",
+            "destination": "Tuen Mun Ferry Pier",
+            "schoolHolidays": "no-service"
+          },
+          {
+            "departure": "07:11",
+            "nextNumber": "507P",
+            "destination": "Tuen Mun Ferry Pier",
+            "schoolHolidays": "not-stated"
+          }
+        ],
+        "continuousWorking": true,
+        "serviceNumberChangesAreNotTransfers": true,
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066"
+          }
+        ]
       },
       "serviceType": "light-rail",
       "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
@@ -94159,6 +96215,8 @@
       "checkedAt": "2026-10-22",
       "license": "REVIEW_REQUIRED",
       "confidence": "high",
+      "identityCorrection": "Legacy OSM 751P label retained only as stable ID; official current special departs as751. Original OSM evidence remains archived.",
+      "sourceServiceId": "hk-light-rail-751-osm-2926506",
       "trackEdgeIds": [
         "hk-track-77d056101aca67ef89",
         "hk-track-b4fad2c5e43436f0b7",
@@ -94176,13 +96234,10 @@
         "hk-track-894ed29d05e2fca355"
       ],
       "geometryStatus": "verified",
-      "sourceRelationId": 12619403,
-      "releaseStatus": "INCOMPLETE",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "현재 정차순서 검수 필요"
-      ],
-      "playable": false
+      "sourceRelationId": 2926506,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
     },
     {
       "id": "hk-light-rail-761p-osm-2942633",
@@ -96161,6 +98216,95 @@
       "playable": true
     },
     {
+      "id": "hk-light-rail-751-morning-ho-tin",
+      "canonicalLineId": "hk-light-rail-751",
+      "countryId": "hk",
+      "direction": "morning-special",
+      "origin": "hk-lr-550",
+      "destination": "hk-lr-070",
+      "stopStationIds": [
+        "hk-lr-550",
+        "hk-lr-480",
+        "hk-lr-468",
+        "hk-lr-490",
+        "hk-lr-500",
+        "hk-lr-455",
+        "hk-lr-450",
+        "hk-lr-435",
+        "hk-lr-430",
+        "hk-lr-425",
+        "hk-lr-380",
+        "hk-lr-370",
+        "hk-lr-360",
+        "hk-lr-350",
+        "hk-lr-100",
+        "hk-lr-090",
+        "hk-lr-080",
+        "hk-lr-075",
+        "hk-lr-070"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "weekday-school-peak-special",
+        "departureTimes": [
+          "07:16"
+        ],
+        "continuation": [
+          {
+            "departure": "07:16",
+            "nextNumber": "507",
+            "destination": "Tuen Mun Ferry Pier",
+            "schoolHolidays": "not-stated"
+          }
+        ],
+        "continuousWorking": true,
+        "serviceNumberChangesAreNotTransfers": true,
+        "noteKo": "751 평일 오전 특별편 · 틴얏 → 호틴 · 07:16 출발. 이 지점에서 운행번호가 507로 바뀌는 연속 운행입니다. 게임은 751 번호 구간까지만 재현하며 별도 환승으로 만들지 않습니다. 06:52편 방학 미운행, 그 외 방학 조건은 공식 안내에 명시되지 않았습니다.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/bulk/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066"
+          }
+        ]
+      },
+      "serviceType": "light-rail",
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-29",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-77d056101aca67ef89",
+        "hk-track-b4fad2c5e43436f0b7",
+        "hk-track-bc2af6a39e79df7e2e",
+        "hk-track-80e34ffb3d8dd359c2",
+        "hk-track-160d4eeba4d29cbafe",
+        "hk-track-e50811aa5acda2cace",
+        "hk-track-5b30f4512463afb544",
+        "hk-track-fa9cc698ea54c32a49",
+        "hk-track-f3f6509767ebc95bb0",
+        "hk-track-017d07ef2d06811a72",
+        "hk-track-c96bfd4fc7f68561ec",
+        "hk-track-94d2b391e2f1143f69",
+        "hk-track-5b70e5ffdbb8bc2378",
+        "hk-track-894ed29d05e2fca355",
+        "hk-track-fab3dbfc45a8950c96",
+        "hk-track-5adf68c611c6397c0a",
+        "hk-track-74b3677ad2ddb552ab",
+        "hk-track-289be1aecb709cf84f"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 2926506,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
       "id": "hk-tram-western-market-shau-kei-wan-4088321",
       "canonicalLineId": "hk-tramway",
       "tramServiceGroup": "western-market-shau-kei-wan",
@@ -97417,8 +99561,30 @@
       ],
       "stopStatus": "verified",
       "validWhen": {
-        "type": "request-stop",
-        "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
+        "type": "request-stop-simulation",
+        "simulation": true,
+        "requestedIntermediateStops": "all-four",
+        "currentRequestRuleStatus": "INCOMPLETE",
+        "noteKo": "피크트램 요청 정차 학습 모의운행 · 중간 4개 역을 모두 요청한 상황으로 6개 역에 정차합니다. 현재 요청 버튼·정차 보장 규칙을 확정한 실시간 운행 안내가 아닙니다. 실제 검증된 2D 선로만 사용하며 고도는 재현하지 않습니다.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase3/relation-3264047.json",
+            "sha256": "ee9d24436d21a4ba9023cc546e4aa928a18c93977b58d202ea2caaac74df4f62"
+          },
+          {
+            "file": "data/hk/sources/phase6/peak-stops.mdb",
+            "sha256": "15bf28104fac079addeb0b3274af3b2772e44486baa14a614b0b417810357be7"
+          },
+          {
+            "file": "data/hk/sources/phase6/peak-stops-extracted.json",
+            "sha256": "ac47b9768880313d6134f5fead68815b268c7d2e6c6a51b70cfd9e82007c5eff"
+          },
+          {
+            "file": "data/hk/sources/completion/peak-korean-usage.html",
+            "sha256": "7f57f711ff621c36e4fc3fd20ca2df7ab6280c55a2847cea85d5c07de550c6b6"
+          }
+        ]
       },
       "serviceType": "funicular",
       "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
@@ -97435,12 +99601,9 @@
       ],
       "geometryStatus": "verified",
       "sourceRelationId": 3264047,
-      "releaseStatus": "INCOMPLETE",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "한국어 역명 검수 필요"
-      ],
-      "playable": false
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
     },
     {
       "id": "hk-peak-tram-down",
@@ -97459,8 +99622,30 @@
       ],
       "stopStatus": "verified",
       "validWhen": {
-        "type": "request-stop",
-        "noteKo": "중간 4개 역은 요청 정차. 한국어 역명 검수 및 요청 정차 브라우저 검증 전까지 플레이 차단."
+        "type": "request-stop-simulation",
+        "simulation": true,
+        "requestedIntermediateStops": "all-four",
+        "currentRequestRuleStatus": "INCOMPLETE",
+        "noteKo": "피크트램 요청 정차 학습 모의운행 · 중간 4개 역을 모두 요청한 상황으로 6개 역에 정차합니다. 현재 요청 버튼·정차 보장 규칙을 확정한 실시간 운행 안내가 아닙니다. 실제 검증된 2D 선로만 사용하며 고도는 재현하지 않습니다.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/phase3/relation-3264047.json",
+            "sha256": "ee9d24436d21a4ba9023cc546e4aa928a18c93977b58d202ea2caaac74df4f62"
+          },
+          {
+            "file": "data/hk/sources/phase6/peak-stops.mdb",
+            "sha256": "15bf28104fac079addeb0b3274af3b2772e44486baa14a614b0b417810357be7"
+          },
+          {
+            "file": "data/hk/sources/phase6/peak-stops-extracted.json",
+            "sha256": "ac47b9768880313d6134f5fead68815b268c7d2e6c6a51b70cfd9e82007c5eff"
+          },
+          {
+            "file": "data/hk/sources/completion/peak-korean-usage.html",
+            "sha256": "7f57f711ff621c36e4fc3fd20ca2df7ab6280c55a2847cea85d5c07de550c6b6"
+          }
+        ]
       },
       "serviceType": "funicular",
       "sourceUrl": "https://data.gov.hk/en-data/dataset/hk-td-tis_3-routes-and-fares-of-public-transport/resource/7e5a2311-6b4c-4d4c-a565-3d7ff4345fbc",
@@ -97477,12 +99662,217 @@
       ],
       "geometryStatus": "verified",
       "sourceRelationId": 3264047,
-      "releaseStatus": "INCOMPLETE",
-      "blockedReasons": [
-        "조건부 운행 시간대 검증 필요",
-        "한국어 역명 검수 필요"
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-airport-apm-14244774",
+      "canonicalLineId": "hk-airport-apm",
+      "countryId": "hk",
+      "direction": "14244774",
+      "origin": "hk-apm-skypier",
+      "destination": "hk-apm-east",
+      "stopStationIds": [
+        "hk-apm-skypier",
+        "hk-apm-east"
       ],
-      "playable": false
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "restricted-airport-service",
+        "accessRestricted": true,
+        "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/apm-map.json",
+            "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-official.html",
+            "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-access.html",
+            "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-government.pdf",
+            "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+          }
+        ]
+      },
+      "serviceType": "automated-people-mover",
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-b59fbde2bdda54d46d"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 14244774,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-airport-apm-14244775",
+      "canonicalLineId": "hk-airport-apm",
+      "countryId": "hk",
+      "direction": "14244775",
+      "origin": "hk-apm-east",
+      "destination": "hk-apm-skypier",
+      "stopStationIds": [
+        "hk-apm-east",
+        "hk-apm-skypier"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "restricted-airport-service",
+        "accessRestricted": true,
+        "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/apm-map.json",
+            "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-official.html",
+            "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-access.html",
+            "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-government.pdf",
+            "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+          }
+        ]
+      },
+      "serviceType": "automated-people-mover",
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-eac3eeaa1edcbcf293"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 14244775,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-airport-apm-14244778",
+      "canonicalLineId": "hk-airport-apm",
+      "countryId": "hk",
+      "direction": "14244778",
+      "origin": "hk-apm-midfield",
+      "destination": "hk-apm-east",
+      "stopStationIds": [
+        "hk-apm-midfield",
+        "hk-apm-west",
+        "hk-apm-east"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "restricted-airport-service",
+        "accessRestricted": true,
+        "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/apm-map.json",
+            "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-official.html",
+            "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-access.html",
+            "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-government.pdf",
+            "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+          }
+        ]
+      },
+      "serviceType": "automated-people-mover",
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-0ebb927750ca422e9d",
+        "hk-track-56e47be18f180019c5"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 14244778,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
+    },
+    {
+      "id": "hk-airport-apm-14244779",
+      "canonicalLineId": "hk-airport-apm",
+      "countryId": "hk",
+      "direction": "14244779",
+      "origin": "hk-apm-east",
+      "destination": "hk-apm-midfield",
+      "stopStationIds": [
+        "hk-apm-east",
+        "hk-apm-west",
+        "hk-apm-midfield"
+      ],
+      "stopStatus": "verified",
+      "validWhen": {
+        "type": "restricted-airport-service",
+        "accessRestricted": true,
+        "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/apm-map.json",
+            "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-official.html",
+            "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-access.html",
+            "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+          },
+          {
+            "file": "data/hk/sources/completion/apm-government.pdf",
+            "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+          }
+        ]
+      },
+      "serviceType": "automated-people-mover",
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "trackEdgeIds": [
+        "hk-track-b77fd9cf441ba5dda1",
+        "hk-track-2fea11c4f56f920316"
+      ],
+      "geometryStatus": "verified",
+      "sourceRelationId": 14244779,
+      "releaseStatus": "ready",
+      "blockedReasons": [],
+      "playable": true
     },
     {
       "id": "hk-high-speed-pending",
@@ -99012,6 +101402,75 @@
       "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db",
       "license": "REVIEW_REQUIRED",
       "status": "retrieved"
+    },
+    "completion/apm-map.json": {
+      "sourceUrl": "https://api.openstreetmap.org/api/0.6/map.json?bbox=113.913,22.302,113.955,22.328",
+      "sourceType": "osm",
+      "checkedAt": "2026-10-31",
+      "retrievedAt": "2026-10-30T15:05:39.639Z",
+      "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70",
+      "license": "ODbL-1.0",
+      "status": "retrieved"
+    },
+    "completion/apm-official.html": {
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "retrievedAt": "2026-10-30T15:05:39.661Z",
+      "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592",
+      "license": "REVIEW_REQUIRED",
+      "status": "retrieved"
+    },
+    "completion/apm-access.html": {
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/special-needs-access",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "retrievedAt": "2026-10-30T15:05:39.662Z",
+      "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498",
+      "license": "REVIEW_REQUIRED",
+      "status": "retrieved"
+    },
+    "completion/apm-government.pdf": {
+      "sourceUrl": "https://www.emsd.gov.hk/filemanager/en/content_1490/Rgltry_Regime_Leaflet_APM_Safety.pdf",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "retrievedAt": "2026-10-30T15:05:39.663Z",
+      "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29",
+      "license": "REVIEW_REQUIRED",
+      "status": "retrieved"
+    },
+    "completion/peak-korean-usage.html": {
+      "sourceUrl": "https://www.tickadoo.com/ko/hong-kong/peak-tram-sky-terrace-madame-tussauds-combo-tickets",
+      "sourceType": "published-korean-usage",
+      "checkedAt": "2026-10-31",
+      "retrievedAt": "2026-10-30T15:05:39.666Z",
+      "sha256": "7f57f711ff621c36e4fc3fd20ca2df7ab6280c55a2847cea85d5c07de550c6b6",
+      "license": "REVIEW_REQUIRED",
+      "status": "retrieved"
+    },
+    "completion/racecourse-official-excerpt.json": {
+      "sourceUrl": "https://www.discoverhongkong.com/eng/culture/hong-kong-horse-racing/racecourse-transit-guide.html",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "sha256": "fb71628700c8cf706c12147229710012c70667f800f0c0b79fd180b97df0e10f",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED"
+    },
+    "completion/racecourse-korean.html": {
+      "sourceUrl": "https://esimbaro.com/blog/sha-tin-racecourse",
+      "sourceType": "reviewed-korean-usage",
+      "checkedAt": "2026-10-31",
+      "sha256": "4ba6a696b1155380bd4d0141577fb05e5d7a5defc920726d8916c7331a440aa2",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED"
+    },
+    "completion/mtr-next-train.pdf": {
+      "sourceUrl": "https://opendata.mtr.com.hk/doc/Next_Train_DataDictionary_v1.6.pdf",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "sha256": "0359b30a230c11733bc9552c6c10cbba8a6de4005e5cc76297108a1451668bd8",
+      "status": "retrieved",
+      "license": "REVIEW_REQUIRED"
     }
   },
   "audits": {

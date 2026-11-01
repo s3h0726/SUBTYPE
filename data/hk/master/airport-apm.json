@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-31",
+  "operator": {
+    "id": "hk-airport-authority",
+    "names": {
+      "ko": "홍콩공항공사",
+      "en": "Airport Authority Hong Kong",
+      "ja": "香港機場管理局"
+    }
+  },
+  "line": {
+    "id": "hk-airport-apm",
+    "operatorId": "hk-airport-authority",
+    "nameKo": "홍콩공항 APM",
+    "nameEn": "Hong Kong International Airport Automated People Mover",
+    "nameZhHant": "香港國際機場旅客捷運系統",
+    "category": "automated_people_mover",
+    "status": "operational",
+    "accessNoticeKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함."
+  },
+  "sourceFile": "data/hk/sources/completion/apm-map.json",
+  "relationId": 14244778,
+  "relationVersion": 12,
+  "sources": [
+    {
+      "file": "data/hk/sources/completion/apm-map.json",
+      "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+    },
+    {
+      "file": "data/hk/sources/completion/apm-official.html",
+      "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+    },
+    {
+      "file": "data/hk/sources/completion/apm-access.html",
+      "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+    },
+    {
+      "file": "data/hk/sources/completion/apm-government.pdf",
+      "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+    }
+  ],
+  "stations": [
+    {
+      "id": "hk-apm-east",
+      "code": "",
+      "sourceStopNodeId": 3900847298,
+      "nameEn": "T1 East Hall",
+      "nameZhHant": "T1 東大堂",
+      "nameKo": "T1 동대합실",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      }
+    },
+    {
+      "id": "hk-apm-west",
+      "code": "",
+      "sourceStopNodeId": 3900847296,
+      "nameEn": "T1 West Hall",
+      "nameZhHant": "T1 西大堂",
+      "nameKo": "T1 서대합실",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      }
+    },
+    {
+      "id": "hk-apm-midfield",
+      "code": "",
+      "sourceStopNodeId": 3961981068,
+      "nameEn": "T1 Midfield Concourse",
+      "nameZhHant": "T1 中場客運廊",
+      "nameKo": "T1 미드필드 탑승동",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      }
+    },
+    {
+      "id": "hk-apm-skypier",
+      "code": "",
+      "sourceStopNodeId": 3900847297,
+      "nameEn": "SkyPier",
+      "nameZhHant": "海天客運碼頭",
+      "nameKo": "스카이피어",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      }
+    }
+  ],
+  "directions": [
+    {
+      "id": "hk-airport-apm-14244774",
+      "direction": "14244774",
+      "relationId": 14244774,
+      "relationVersion": 9,
+      "stopIds": [
+        "hk-apm-skypier",
+        "hk-apm-east"
+      ],
+      "stopNodeIds": [
+        3900847297,
+        9812489525
+      ],
+      "wayIds": [
+        1068991108,
+        1068991107,
+        1068991116
+      ]
+    },
+    {
+      "id": "hk-airport-apm-14244775",
+      "direction": "14244775",
+      "relationId": 14244775,
+      "relationVersion": 9,
+      "stopIds": [
+        "hk-apm-east",
+        "hk-apm-skypier"
+      ],
+      "stopNodeIds": [
+        9812489525,
+        3900847297
+      ],
+      "wayIds": [
+        1068991116,
+        1068991115,
+        1068991108
+      ]
+    },
+    {
+      "id": "hk-airport-apm-14244778",
+      "direction": "14244778",
+      "relationId": 14244778,
+      "relationVersion": 12,
+      "stopIds": [
+        "hk-apm-midfield",
+        "hk-apm-west",
+        "hk-apm-east"
+      ],
+      "stopNodeIds": [
+        3961981068,
+        3900847296,
+        3900847298
+      ],
+      "wayIds": [
+        386733066
+      ]
+    },
+    {
+      "id": "hk-airport-apm-14244779",
+      "direction": "14244779",
+      "relationId": 14244779,
+      "relationVersion": 12,
+      "stopIds": [
+        "hk-apm-east",
+        "hk-apm-west",
+        "hk-apm-midfield"
+      ],
+      "stopNodeIds": [
+        5009068593,
+        5009068595,
+        5009068589
+      ],
+      "wayIds": [
+        512251214
+      ]
+    }
+  ]
+}

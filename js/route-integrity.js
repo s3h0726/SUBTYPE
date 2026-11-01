@@ -55,7 +55,18 @@ function combineAlignedSegments(fullRoute,fullSegments,fromIndex,toIndex){const 
 
 const permitsApproximateGeometry=route=>route?.category==='custom'||['bus','village_bus','express_bus','river_bus','ferry'].includes(route?.mode);
 
-export function resolvePlayableRoute(route,{direction='forward',service=null}={}){
+export function resolvePlayableRoute(route,{direction='forward',service=null,boardingStationId=null}={}){
+  if(route?.countryId==='hk'){
+    const reason=hongKongRouteBlockReason(route);if(reason)throw new Error(reason);
+    if(direction!=='forward')throw new Error('홍콩은 검증된 방향별 서비스만 허용합니다.');
+    const stations=canonicalStations(route).map(s=>({...s})),segments=route.directedSegments.map(s=>({...s,geometry:cloneGeometry(s.geometry),geometryStatus:'ready'}));
+    if(service?.stops&&JSON.stringify(service.stops)!==JSON.stringify(stations.map(s=>s.id)))throw new Error('홍콩 서비스 정차순서가 일치하지 않습니다.');
+    let boardingIndex=0;if(boardingStationId!==null){if(route.canonicalLineId!=='hk-tramway')throw new Error('중간 승차는 검증된 트램 계통만 허용합니다.');boardingIndex=stations.findIndex(s=>s.id===boardingStationId);if(boardingIndex<0||boardingIndex>=stations.length-1)throw new Error('검증된 승차 정류장이 아닙니다.');}
+    const offset=boardingIndex?stations[boardingIndex].geometryIndex:0;if(!Number.isInteger(offset))throw new Error('승차 정류장의 실제 선로 인덱스가 없습니다.');
+    const selected=stations.slice(boardingIndex).map(s=>({...s,geometryIndex:s.geometryIndex-offset}));
+    return{canonicalStations:stations,stations:selected,segments:segments.slice(boardingIndex),geometry:cloneGeometry(route.geometry.slice(offset)),canonicalSegments:segments,direction,serviceApplied:true,renderKey:route.id+'::'+route.servicePatternId+'::board-'+boardingIndex+'::'+selected.map(s=>s.id).join('>')};
+  }
+
   const canonical=canonicalStations(route),resolvedFull=direction==='reverse'?canonical.slice().reverse():canonical.slice(),fullIds=new Set(canonical.map(stationId)),requestedStops=Array.isArray(service?.stops)?service.stops.map(String):[];
   for(const stopId of requestedStops)if(!fullIds.has(stopId))throw new Error(`${route.id}/${service.id}: service stop not found ${stopId}`);
   const applyStopPattern=!!service&&service.id!=='local'&&requestedStops.length>=2&&requestedStops.length<canonical.length,stopIds=new Set(requestedStops),entries=resolvedFull.map((station,index)=>({station,index})),selectedEntries=applyStopPattern?entries.filter(entry=>stopIds.has(stationId(entry.station))):entries,selectedStations=selectedEntries.map(entry=>entry.station);

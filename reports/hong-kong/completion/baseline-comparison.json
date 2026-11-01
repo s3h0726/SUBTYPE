@@ -1,0 +1,151 @@
+[
+  {
+    "name": "motion-transfers",
+    "state": "baseline",
+    "ref": "e40cd34f",
+    "exitCode": 1,
+    "summary": [
+      "✖ stopping free drive removes Japanese choices before a Korean typing session starts (131.8702ms)",
+      "✖ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (126.8977ms)",
+      "ℹ tests 13",
+      "ℹ suites 0",
+      "ℹ pass 11",
+      "ℹ fail 2",
+      "ℹ cancelled 0",
+      "ℹ skipped 0",
+      "ℹ todo 0",
+      "ℹ duration_ms 1467.0786",
+      "✖ failing tests:",
+      "✖ stopping free drive removes Japanese choices before a Korean typing session starts (131.8702ms)",
+      "✖ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (126.8977ms)"
+    ]
+  },
+  {
+    "name": "motion-transfers",
+    "state": "current",
+    "ref": "working-tree",
+    "exitCode": 0,
+    "summary": [
+      "ℹ tests 13",
+      "ℹ suites 0",
+      "ℹ pass 13",
+      "ℹ fail 0",
+      "ℹ cancelled 0",
+      "ℹ skipped 0",
+      "ℹ todo 0",
+      "ℹ duration_ms 181.3754"
+    ]
+  },
+  {
+    "name": "japan-selector",
+    "state": "baseline",
+    "ref": "e40cd34f",
+    "exitCode": 1,
+    "summary": [
+      "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\r"
+    ]
+  },
+  {
+    "name": "japan-selector",
+    "state": "current",
+    "ref": "working-tree",
+    "exitCode": 1,
+    "summary": [
+      "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\r"
+    ]
+  },
+  {
+    "name": "japan-ueno",
+    "state": "baseline",
+    "ref": "e40cd34f",
+    "exitCode": 1,
+    "summary": [
+      "Error: ENOENT: no such file or directory, open 'C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\data\\generated\\routes\\line-11229--jobansen-totte-iwaki.json'\r"
+    ]
+  },
+  {
+    "name": "japan-ueno",
+    "state": "current",
+    "ref": "working-tree",
+    "exitCode": 1,
+    "summary": [
+      "Error: ENOENT: no such file or directory, open 'C:\\Users\\galax\\OneDrive\\문서\\ChatGPT\\SUBTYPE\\repository\\data\\generated\\routes\\line-11229--jobansen-totte-iwaki.json'\r"
+    ]
+  },
+  {
+    "name": "historical-hk",
+    "state": "baseline",
+    "ref": "e40cd34f",
+    "exitCode": 1,
+    "summary": [
+      "✖ 30 distinct official conditional directions are added to the existing physical lines (1255.1617ms)",
+      "✖ unverified Hong Kong cannot bypass gating through custom/imported routes or a lazy flag (102.6837ms)",
+      "✖ Disneyland both directions use distinct retained source tracks, not reverse guesses (106.8593ms)",
+      "✖ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (173.7986ms)",
+      "✖ SIL and AEL directions each resolve independent real source tracks and all their reviewed stops (6.0762ms)",
+      "✖ phase three release requires completed browser evidence for unchanged names, direction and track (1672.8956ms)",
+      "✖ Hong Kong transfers preserve exact line stops and history while refusing non-reviewed links and arrival-only directions (3579.6283ms)",
+      "✖ finite arrival animation traverses the source curve and resolves exactly once after its full duration (310.4895ms)",
+      "✖ actual typing/controller and first-target behavior replaces exact-source-spelling guesses (647.8887ms)",
+      "✖ actual HK resolver preserves canonical full-service gating while slicing only a contiguous tram boarding suffix (248.2328ms)",
+      "✖ all42 Phase4 directions resolve identically after optional tram boarding support (395.0925ms)",
+      "ℹ tests 67",
+      "ℹ suites 0",
+      "ℹ pass 56",
+      "ℹ fail 11",
+      "ℹ cancelled 0",
+      "ℹ skipped 0",
+      "ℹ todo 0",
+      "ℹ duration_ms 44668.4569",
+      "✖ failing tests:",
+      "✖ 30 distinct official conditional directions are added to the existing physical lines (1255.1617ms)",
+      "✖ unverified Hong Kong cannot bypass gating through custom/imported routes or a lazy flag (102.6837ms)",
+      "✖ Disneyland both directions use distinct retained source tracks, not reverse guesses (106.8593ms)",
+      "✖ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (173.7986ms)",
+      "✖ SIL and AEL directions each resolve independent real source tracks and all their reviewed stops (6.0762ms)",
+      "✖ phase three release requires completed browser evidence for unchanged names, direction and track (1672.8956ms)",
+      "✖ Hong Kong transfers preserve exact line stops and history while refusing non-reviewed links and arrival-only directions (3579.6283ms)",
+      "✖ finite arrival animation traverses the source curve and resolves exactly once after its full duration (310.4895ms)",
+      "✖ actual typing/controller and first-target behavior replaces exact-source-spelling guesses (647.8887ms)",
+      "✖ actual HK resolver preserves canonical full-service gating while slicing only a contiguous tram boarding suffix (248.2328ms)"
+    ]
+  },
+  {
+    "name": "historical-hk",
+    "state": "current",
+    "ref": "working-tree",
+    "exitCode": 1,
+    "summary": [
+      "✖ 30 distinct official conditional directions are added to the existing physical lines (2.2132ms)",
+      "✖ official branches do not invent an all-stations journey through both termini (1.0638ms)",
+      "✖ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (10.5215ms)",
+      "✖ all original Hong Kong services and 22 reviewed MTR directions survive Phase 4 (213.557ms)",
+      "✖ Hong Kong transfers preserve exact line stops and history while refusing non-reviewed links and arrival-only directions (95.5702ms)",
+      "✖ finite arrival animation traverses the source curve and resolves exactly once after its full duration (4.9651ms)",
+      "✖ actual typing/controller and first-target behavior replaces exact-source-spelling guesses (32.4543ms)",
+      "✖ each restored conditional service is exact, source-pinned, schedule-qualified and completed in browser (108.952ms)",
+      "✖ Peak Tram recovers exact six-stop government order on actual track but remains blocked for Korean and request-stop review (7.9034ms)",
+      "✖ original283 name reviews remain, new facility names are official, unresolved Peak names are never invented (147.0376ms)",
+      "✖ physical-line choices preserve each independently approved direction and reject a forged endpoint (88.09ms)",
+      "✖ national inventory distinguishes APM, airport rail, operating park railway, suspended park railroad and cable rides (5.1888ms)",
+      "ℹ tests 67",
+      "ℹ suites 0",
+      "ℹ pass 55",
+      "ℹ fail 12",
+      "ℹ cancelled 0",
+      "ℹ skipped 0",
+      "ℹ todo 0",
+      "ℹ duration_ms 10180.3427",
+      "✖ failing tests:",
+      "✖ 30 distinct official conditional directions are added to the existing physical lines (2.2132ms)",
+      "✖ official branches do not invent an all-stations journey through both termini (1.0638ms)",
+      "✖ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (10.5215ms)",
+      "✖ all original Hong Kong services and 22 reviewed MTR directions survive Phase 4 (213.557ms)",
+      "✖ Hong Kong transfers preserve exact line stops and history while refusing non-reviewed links and arrival-only directions (95.5702ms)",
+      "✖ finite arrival animation traverses the source curve and resolves exactly once after its full duration (4.9651ms)",
+      "✖ actual typing/controller and first-target behavior replaces exact-source-spelling guesses (32.4543ms)",
+      "✖ each restored conditional service is exact, source-pinned, schedule-qualified and completed in browser (108.952ms)",
+      "✖ Peak Tram recovers exact six-stop government order on actual track but remains blocked for Korean and request-stop review (7.9034ms)"
+    ]
+  }
+]

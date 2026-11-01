@@ -46,6 +46,15 @@
       "checkedAt": "2026-10-18",
       "license": "REVIEW_REQUIRED",
       "confidence": "unverified"
+    },
+    {
+      "id": "hk-airport-authority",
+      "names": {
+        "ko": "홍콩공항공사",
+        "en": "Airport Authority Hong Kong",
+        "ja": "香港機場管理局"
+      },
+      "countryId": "hk"
     }
   ],
   "mtrLines": {
@@ -1467,6 +1476,26 @@
         "checkedAt": "2026-10-22",
         "confidence": "medium"
       }
+    },
+    "RAC": {
+      "code": "RAC",
+      "nameKo": "마장",
+      "status": "verified",
+      "nameStatus": "verified",
+      "sourceIsMachineTranslationOnly": false,
+      "officialKoreanDesignation": false,
+      "sourceEnglishName": "Racecourse",
+      "sourceChineseName": "馬場",
+      "sourceUrl": "https://esimbaro.com/blog/sha-tin-racecourse",
+      "sourceType": "reviewed-korean-usage",
+      "checkedAt": "2026-10-31",
+      "confidence": "reviewed",
+      "evidenceFiles": [
+        "data/hk/sources/completion/racecourse-korean.html"
+      ],
+      "corroboratingUrls": [
+        "https://www.discoverhongkong.com/eng/culture/hong-kong-horse-racing/racecourse-transit-guide.html"
+      ]
     }
   },
   "transfers": [
@@ -1556,5 +1585,35 @@
     "routeColorStatus": "INCOMPLETE",
     "colorNote": "The shared #D53359 special-service heading is not evidence of a distinct751P route colour.",
     "fullCallingOrderStatus": "INCOMPLETE"
-  }
+  },
+  "additionalStations": [
+    {
+      "id": "hk-mtr-RAC",
+      "canonicalStationId": "hk-mtr-RAC",
+      "countryId": "hk",
+      "code": "RAC",
+      "nameZhHant": "馬場",
+      "nameEn": "Racecourse",
+      "nameKo": "마장",
+      "status": "verified",
+      "nameStatus": "verified",
+      "sourceIsMachineTranslationOnly": false,
+      "officialKoreanDesignation": false,
+      "sourceEnglishName": "Racecourse",
+      "sourceChineseName": "馬場",
+      "sourceUrl": "https://esimbaro.com/blog/sha-tin-racecourse",
+      "sourceType": "reviewed-korean-usage",
+      "checkedAt": "2026-10-31",
+      "confidence": "reviewed",
+      "evidenceFiles": [
+        "data/hk/sources/completion/racecourse-korean.html"
+      ],
+      "corroboratingUrls": [
+        "https://www.discoverhongkong.com/eng/culture/hong-kong-horse-racing/racecourse-transit-guide.html"
+      ],
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": null
+    }
+  ]
 }

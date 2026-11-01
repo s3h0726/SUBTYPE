@@ -1,0 +1,340 @@
+{
+  "id": "hk-airport-apm-14244778",
+  "countryId": "hk",
+  "schemaVersion": 1,
+  "canonicalLineId": "hk-airport-apm",
+  "servicePatternId": "hk-airport-apm-14244778",
+  "serviceLabel": "T1 Midfield Concourse → T1 East Hall",
+  "operatorId": "hk-airport-authority",
+  "operator": {
+    "ja": "香港機場管理局",
+    "en": "Airport Authority Hong Kong",
+    "ko": "홍콩공항공사"
+  },
+  "line": {
+    "ja": "香港國際機場旅客捷運系統",
+    "en": "Hong Kong International Airport Automated People Mover",
+    "ko": "홍콩공항 APM"
+  },
+  "category": "automated_people_mover",
+  "mode": "automated_people_mover",
+  "code": "",
+  "officialSymbolExists": false,
+  "lineColor": "#71857d",
+  "lineTheme": {
+    "code": "",
+    "color": "#71857d",
+    "style": "hk",
+    "colorVerified": false,
+    "colorSource": "OSM candidate; official colour audit pending"
+  },
+  "loop": false,
+  "lazy": false,
+  "playable": true,
+  "releaseStatus": "ready",
+  "geometryReady": true,
+  "geometryStatus": "verified",
+  "blockedReasons": [],
+  "direction": "14244778",
+  "validWhen": {
+    "type": "restricted-airport-service",
+    "accessRestricted": true,
+    "noteKo": "공항 제한구역 전용 무인열차 · 보안검색·출입국 및 유효한 항공/해상 환승 자격이 필요합니다. 스카이피어는 적격 환승객 전용이며 시내 철도와 자유롭게 환승할 수 없습니다. T2 신규 구간은 선로 검증 전까지 미포함.",
+    "reviewStatus": "verified",
+    "sources": [
+      {
+        "file": "data/hk/sources/completion/apm-map.json",
+        "sha256": "2335b7aa2ddcf187a10b75d0317c6ea19853eb85cda4f7d6231b41b0a920fd70"
+      },
+      {
+        "file": "data/hk/sources/completion/apm-official.html",
+        "sha256": "f3462f5c4a3be90232e155e9dc80e3269a6239d5db63923f1b1efd6dfefba592"
+      },
+      {
+        "file": "data/hk/sources/completion/apm-access.html",
+        "sha256": "322e426cda1c4f10815d04e44ec83800292ce56edd4bfe4317ca903cf73de498"
+      },
+      {
+        "file": "data/hk/sources/completion/apm-government.pdf",
+        "sha256": "7bf59f82fc4b0bf30f4a0bf96b911351af0514b046cc4eb8e5a50065866efd29"
+      }
+    ]
+  },
+  "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+  "stopStatus": "verified",
+  "geometry": [
+    [
+      22.3099785,
+      113.9177325
+    ],
+    [
+      22.3129689,
+      113.927137
+    ],
+    [
+      22.3138181,
+      113.9298268
+    ],
+    [
+      22.3150402,
+      113.9336983
+    ]
+  ],
+  "directedSegments": [
+    {
+      "id": "hk-track-0ebb927750ca422e9d",
+      "fromStationId": "hk-apm-midfield",
+      "toStationId": "hk-apm-west",
+      "geometry": [
+        [
+          22.3099785,
+          113.9177325
+        ],
+        [
+          22.3129689,
+          113.927137
+        ]
+      ],
+      "segmentLengthMeters": 1022.9921179176838,
+      "sourceWayIds": [
+        386733066
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14244778",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-31",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    },
+    {
+      "id": "hk-track-56e47be18f180019c5",
+      "fromStationId": "hk-apm-west",
+      "toStationId": "hk-apm-east",
+      "geometry": [
+        [
+          22.3129689,
+          113.927137
+        ],
+        [
+          22.3138181,
+          113.9298268
+        ],
+        [
+          22.3150402,
+          113.9336983
+        ]
+      ],
+      "segmentLengthMeters": 713.1645665477088,
+      "sourceWayIds": [
+        386733066
+      ],
+      "geometryStatus": "ready",
+      "direction": "forward",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14244778",
+      "sourceType": "osm",
+      "sourceDate": "2026-10-31",
+      "checkedAt": "2026-10-24",
+      "license": "ODbL-1.0",
+      "confidence": "high"
+    }
+  ],
+  "stations": [
+    {
+      "id": "hk-apm-midfield",
+      "code": "",
+      "sourceStopNodeId": 3961981068,
+      "nameEn": "T1 Midfield Concourse",
+      "nameZhHant": "T1 中場客運廊",
+      "nameKo": "T1 미드필드 탑승동",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      },
+      "canonicalStationId": "hk-apm-midfield",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3099785,
+        "lng": 113.9177325
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/3961981068",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-airport-apm-14244778-stop-0",
+      "physicalStationId": "hk-apm-midfield",
+      "lineId": "hk-airport-apm",
+      "stopPosition": {
+        "lat": 22.3099785,
+        "lng": 113.9177325,
+        "sourceNodeId": 3961981068,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/3961981068"
+      },
+      "geometryIndex": 0,
+      "stationMasterId": "hk-apm-midfield",
+      "ja": "T1 中場客運廊",
+      "kana": "",
+      "romaji": "T1 Midfield Concourse",
+      "ko": "T1 미드필드 탑승동",
+      "koAliases": [],
+      "latitude": 22.3099785,
+      "longitude": 113.9177325,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover"
+    },
+    {
+      "id": "hk-apm-west",
+      "code": "",
+      "sourceStopNodeId": 3900847296,
+      "nameEn": "T1 West Hall",
+      "nameZhHant": "T1 西大堂",
+      "nameKo": "T1 서대합실",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      },
+      "canonicalStationId": "hk-apm-west",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3129689,
+        "lng": 113.927137
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/3900847296",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-airport-apm-14244778-stop-1",
+      "physicalStationId": "hk-apm-west",
+      "lineId": "hk-airport-apm",
+      "stopPosition": {
+        "lat": 22.3129689,
+        "lng": 113.927137,
+        "sourceNodeId": 3900847296,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/3900847296"
+      },
+      "geometryIndex": 1,
+      "stationMasterId": "hk-apm-west",
+      "ja": "T1 西大堂",
+      "kana": "",
+      "romaji": "T1 West Hall",
+      "ko": "T1 서대합실",
+      "koAliases": [],
+      "latitude": 22.3129689,
+      "longitude": 113.927137,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover"
+    },
+    {
+      "id": "hk-apm-east",
+      "code": "",
+      "sourceStopNodeId": 3900847298,
+      "nameEn": "T1 East Hall",
+      "nameZhHant": "T1 東大堂",
+      "nameKo": "T1 동대합실",
+      "nameStatus": "verified",
+      "koreanNameSource": {
+        "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+        "sourceType": "reviewed-facility-label",
+        "checkedAt": "2026-10-31",
+        "confidence": "reviewed",
+        "officialKoreanDesignation": false,
+        "reviewBasis": "Terminal identifiers preserved; descriptive East/West Hall translated as 동/서대합실, Midfield Concourse as 미드필드 탑승동, SkyPier proper name transliterated. Checked against official English/Chinese hall identities."
+      },
+      "canonicalStationId": "hk-apm-east",
+      "countryId": "hk",
+      "aliasesKo": [],
+      "aliasesEn": [],
+      "coordinates": {
+        "lat": 22.3150402,
+        "lng": 113.9336983
+      },
+      "sourceUrl": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover",
+      "sourceType": "official",
+      "checkedAt": "2026-10-31",
+      "license": "REVIEW_REQUIRED",
+      "confidence": "high",
+      "representativeCoordinateOnly": true,
+      "coordinateSource": {
+        "sourceUrl": "https://www.openstreetmap.org/node/9812489525",
+        "sourceType": "osm",
+        "checkedAt": "2026-10-24",
+        "license": "ODbL-1.0",
+        "confidence": "high"
+      },
+      "stopId": "hk-airport-apm-14244778-stop-2",
+      "physicalStationId": "hk-apm-east",
+      "lineId": "hk-airport-apm",
+      "stopPosition": {
+        "lat": 22.3150402,
+        "lng": 113.9336983,
+        "sourceNodeId": 3900847298,
+        "snapMeters": 0,
+        "sourceUrl": "https://www.openstreetmap.org/node/3900847298"
+      },
+      "geometryIndex": 3,
+      "stationMasterId": "hk-apm-east",
+      "ja": "T1 東大堂",
+      "kana": "",
+      "romaji": "T1 East Hall",
+      "ko": "T1 동대합실",
+      "koAliases": [],
+      "latitude": 22.3150402,
+      "longitude": 113.9336983,
+      "officialCode": "",
+      "hasOfficialStationCode": false,
+      "stationCodeSource": "https://www.hongkongairport.com/en/passenger-guide/airport-facilities-services/automated-people-mover"
+    }
+  ],
+  "services": [
+    {
+      "id": "hk-airport-apm-14244778",
+      "nameJa": "香港國際機場旅客捷運系統",
+      "nameEn": "Hong Kong International Airport Automated People Mover",
+      "nameKo": "홍콩공항 APM",
+      "stops": [
+        "hk-apm-midfield",
+        "hk-apm-west",
+        "hk-apm-east"
+      ]
+    }
+  ],
+  "operatingConditionFingerprint": "e07937b2e935d984e46574963a1121f2bb3e969cb84ea3f5cacbb323d20c5312",
+  "validationFingerprint": "46defdf6f832a6dc2776d1fa4c2e5165d34a6d5df4e27a95447e348b1347117b"
+}

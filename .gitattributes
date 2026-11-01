@@ -13,3 +13,7 @@ js/line-workspace-data.js text eol=lf
 data/kr/preview/** text eol=lf
 
 js/japan-lite-index.js text eol=lf
+# Preserve Hong Kong evidence bytes and deterministic payloads on Windows.
+data/hk/** text eol=lf
+data/hk/sources/** -text
+js/hong-kong-index-data.js text eol=lf

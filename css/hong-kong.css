@@ -62,3 +62,23 @@
 /* Keep the independently positioned HUD below the reviewed transfer tabs and header. */
 [data-country="hk"] #screen-game:has(.game-free-drive-tabs:not([hidden])) .hud-strip{top:180px!important}
 @media(max-width:600px){[data-country="hk"] #screen-game:has(.game-free-drive-tabs:not([hidden])) .hud-strip{top:166px!important}}
+/* Compact rubber-tyred airport vehicle; uses the same real-track animation. */
+.osm-train.vehicle-apm{border-radius:5px;width:44px;height:26px;border:2px solid #fff;box-shadow:0 0 0 2px #526872;background:#526872}
+.osm-train.vehicle-apm i{border-radius:2px;width:28px;height:7px;left:6px;top:4px;background:repeating-linear-gradient(90deg,#d8f5ff 0 7px,#526872 7px 10px)}
+.osm-train.vehicle-apm b{font-size:9px;line-height:12px}
+[data-country="hk"] .station-current{display:flex;flex-direction:column;align-items:center}
+[data-country="hk"] #station-context{order:0}
+[data-country="hk"] #station-badge{order:1}
+[data-country="hk"] #prompt-ko{order:2;font-size:clamp(24px,3vw,36px);font-weight:800;overflow-wrap:anywhere}
+[data-country="hk"] #prompt-main{order:3;font-size:clamp(18px,2vw,24px)!important}
+[data-country="hk"] #prompt-kana{order:4}
+[data-country="hk"] #prompt-sub{order:5}
+[data-country="hk"] #ko-progress{order:6}
+[data-country="hk"] .station-sign-input{order:7;width:100%}
+[data-country="hk"] #next-station-button{order:8}
+[data-country="hk"] #game-free-drive-options{order:9;width:100%}
+/* Korean is the primary Hong Kong answer at every responsive breakpoint. */
+[data-country="hk"] #screen-game.active .station-current{display:flex!important;flex-direction:column!important;align-items:center!important;gap:7px!important}
+[data-country="hk"] #screen-game.active .station-current #prompt-ko{grid-area:auto!important;order:2!important;font-size:clamp(24px,3vw,36px)!important;font-weight:800!important;line-height:1.2!important;margin:0!important}
+[data-country="hk"] #screen-game.active .station-current #prompt-main{grid-area:auto!important;order:3!important;font-size:clamp(18px,2vw,24px)!important;line-height:1.2!important;margin:0!important}
+[data-country="hk"] .hk-operating-note{white-space:normal;overflow-wrap:anywhere;font-size:13px;line-height:1.6;padding:12px;border:1px solid var(--border,#81958a);border-radius:8px}
