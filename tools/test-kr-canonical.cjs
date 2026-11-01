@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
-const {readBatches,validateRoute}=require('./lib/kr-canonical.cjs'),root=path.resolve(__dirname,'..');
+const {readBatches,validateRoute,assembleCanonicalRoutes}=require('./lib/kr-canonical.cjs'),root=path.resolve(__dirname,'..');
 const source=file=>fs.readFileSync(path.join(root,file),'utf8');
 const context=vm.createContext({console,Intl,Date,Set,Map,Math,Number,JSON,hongKongRouteBlockReason:()=>null});
 for(const file of ['js/korean-service-resolver.js','js/route-integrity.js'])vm.runInContext(source(file).replace(/^import[^;]+;/gm,'').replace(/\bexport\s+/g,''),context);
-const routes=readBatches(root).flatMap(b=>b.routes||[]),ids=new Set;let journeys=0;
+const compiled=assembleCanonicalRoutes(readBatches(root));assert.deepEqual(compiled.rejected,[]);
+const routes=compiled.routes,ids=new Set;let journeys=0;
 for(const route of routes){
  assert(!ids.has(route.id),route.id);ids.add(route.id);assert.deepEqual(validateRoute(route),[],route.id);
  context.route={...route,canonicalContract:'kr-canonical-v1'};

@@ -23,7 +23,7 @@
       "tools/test-kr-canonical.cjs"
     ],
     "status": 0,
-    "stdout": "{\n  \"passed\": true,\n  \"routes\": 471,\n  \"journeysResolved\": 1091,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
+    "stdout": "{\n  \"passed\": true,\n  \"routes\": 3690,\n  \"journeysResolved\": 7172,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
     "stderr": ""
   },
   {
@@ -42,7 +42,7 @@
       "tools/kr-rail-rebuild.test.cjs"
     ],
     "status": 0,
-    "stdout": "✔ rail publications pass complete geometry, language and reference gates (59.6375ms)\n✔ every published geometry edge is an actual source rail edge in its direction (149.8905ms)\n✔ official metro journeys preserve complete official Korean call sequences (435.4016ms)\n✔ conventional railway has independent actual tracks in both directions (15.4207ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (12.4361ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 898.5161\n",
+    "stdout": "✔ rail publications pass complete geometry, language and reference gates (64.8077ms)\n✔ every published geometry edge is an actual source rail edge in its direction (257.4986ms)\n✔ official metro journeys preserve complete official Korean call sequences (673.4018ms)\n✔ conventional railway has independent actual tracks in both directions (2.1775ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (91.31ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1380.836\n",
     "stderr": ""
   },
   {
@@ -61,7 +61,7 @@
     ],
     "status": 0,
     "stdout": "{\n  \"status\": \"PASS\",\n  \"cases\": 18,\n  \"bracketsOnlyAutoFilled\": true,\n  \"errors\": []\n}\n",
-    "stderr": "(node:18388) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    "stderr": "(node:32524) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
   },
   {
     "name": "한글 조합",
@@ -97,7 +97,7 @@
       "tools/test-jr-sobu-rapid-playable.cjs"
     ],
     "status": 0,
-    "stdout": "{\"status\":\"PASS\",\"lineId\":\"line-jr-east-sobu-rapid\",\"stops\":10,\"segments\":9,\"vertices\":251,\"directions\":[\"Tokyo–Chiba\",\"Chiba–Tokyo\"],\"localRouteKept\":\"line-11313\",\"originalMainLineKept\":\"line-11314\",\"transfers\":22,\"csvIntegrated\":true}\n✔ tools\\test-jr-sobu-rapid-playable.cjs (486.2149ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 496.7244\n",
+    "stdout": "{\"status\":\"PASS\",\"lineId\":\"line-jr-east-sobu-rapid\",\"stops\":10,\"segments\":9,\"vertices\":251,\"directions\":[\"Tokyo–Chiba\",\"Chiba–Tokyo\"],\"localRouteKept\":\"line-11313\",\"originalMainLineKept\":\"line-11314\",\"transfers\":22,\"csvIntegrated\":true}\n✔ tools\\test-jr-sobu-rapid-playable.cjs (707.2889ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 730.6313\n",
     "stderr": ""
   },
   {

@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<link rel="stylesheet" href="../css/map_common.css" type="text/css" />
+<title></title>
+<script type="text/javascript" src="../Scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../Scripts/cscs.js"></script>
+<script type="text/javascript" src="../Scripts/mapFunction.js"></script>
+<script type="text/javascript">
+
+var oCurObj;
+var busNum;
+$(document).ready(function(){
+	
+	//$(".bline_info2").hide();
+ 	$(".btnIMG").click(function(){ 	 		
+ 		//alert($(this).attr("value"));			
+ 		
+ 		if($(this).attr("src")=="../images/map/bt_plus.gif"){
+ 			
+ 			oCurObj = parentNode($(this)).next(); 
+ 			
+ 			var busInfo = $(this).attr("value").split("_");	
+ 			
+ 			fnXHRSchOption(busInfo[0], "line"); 
+ 			parent.sMunuNum = "2";	// 지도 레벨 7으로 만들기 위해서 			
+ 			parent.setLineColor(parentNode($(this)).children(".busno").children("#busTypeImg").attr("alt"));
+ 			busNum = busInfo[1];
+ 			parent.busStopNum = busInfo[1];
+ 			parent.fnXHRSchOption(busInfo[1], 'coord2'); // 노선 좌표 가져오는 함수
+ 			parent.removeMark();
+ 						
+ 			$(".bline_list:visible").slideUp("slow");
+	 		$(".bline_info_2:visible").slideUp("slow");
+	 		$(".bline_list").children().remove();
+	 		$(".bline_info_2").children().remove();	
+	 		$("#co_img").attr("style", "display:none"); 		
+	 		
+	 		parentNode($(this)).next().slideToggle("slow");
+	 		parentNode($(this)).next().next().slideToggle("slow");		 		
+	 		
+ 		  $(".btnIMG").attr("src", "../images/map/bt_plus.gif");
+ 		  $("#bline_detail").attr("class", "bline_result");
+ 		  $("#bline_detail").attr("id", "");
+ 		  $(".bline_info1").attr("class", "");
+ 		  $(".busno2").attr("class", "busno");
+ 		  $(".btmore2").attr("class", "btmore");
+ 		  $(".busstop2").attr("class", "busstop");
+ 		  $(".bline_result").find("#co_img").attr("style", "display:none"); 			  
+ 		  //$("#co_img").attr("style", "display:black"); 		  
+ 		  
+ 			$(this).attr("src", "../images/map/bt_minus.gif");
+ 			$(this).attr("alt", "펼침닫기버튼"); 	
+ 			parentNode($(this)).parent().attr("id", "bline_detail");
+ 			parentNode($(this)).parent().attr("class", ""); 		
+	 		parentNode($(this)).attr("class", "bline_info1");	
+	 		parentNode($(this)).children(".btmore").children("#co_img").attr("style", "display:block"); 	
+	 		parentNode($(this)).children(".busno").attr("class", "busno2");  
+	 		parentNode($(this)).children(".btmore").attr("class", "btmore2");	 	
+	 		parentNode($(this)).children(".busstop").attr("class", "busstop2");
+	 		
+ 		}else{
+ 			$(this).attr("src", "../images/map/bt_plus.gif");   			 			
+ 			parentNode($(this)).next().children().remove();
+ 			parentNode($(this)).next().next().children().remove(); 	
+ 			parentNode($(this)).children(".btmore2").children("#co_img").attr("style", "display:none"); 	
+ 			//$("#bline_detail #co_img").attr("style", "display:none");
+ 			parentNode($(this)).parent().attr("class", "bline_result");
+ 			parentNode($(this)).parent().attr("id", ""); 			
+	 		parentNode($(this)).attr("class", "");	
+	 		parentNode($(this)).children().attr("class", "busno");
+	 		parentNode($(this)).children().next().attr("class", "btmore");	 	
+	 		parentNode($(this)).children().next().next().attr("class", "busstop");
+	 		
+	 		parentNode($(this)).next().slideToggle("slow");
+	 		parentNode($(this)).next().next().slideToggle("slow");	
+ 		}
+ 		
+	});
+});
+
+function parentNode(thisNode){
+
+	return thisNode.parent().parent().parent();
+}
+
+
+
+
+//xhrSendMail 콜백함수
+function cbXHRSchOption() 
+{
+	//응답완료
+	if(xhrSchOption.readyState == 4) 
+	{		
+		//상태:OK(200)		
+		if(xhrSchOption.status == 200);
+		{
+			//서버응답
+			var oNewDoc = xhrSchOption.responseXML;
+			
+			var newText = "";
+			var newID = "";
+			var newValue = "";
+			var newX ="";
+			var newY ="";
+			var busTime="";
+			var busStop="";
+			var busLineID="";
+			var remark="";
+			var remark2="";
+			var busNum= "";
+			var bigo="";
+			
+			var oNewObj = xhrSchOption.responseXML.getElementsByTagName("line");
+			
+			if(typeof(oNewObj)=="object" || typeof(oNewObj)=="function")
+			{						
+				
+				for(var i=0; i < oNewObj.length; i++)
+				{					
+					newValue = oNewObj[i].attributes["text4"].value;
+					newText = oNewObj[i].attributes["value1"].value;	
+					newX = oNewObj[i].attributes["text3"].value;	
+					newY 	= oNewObj[i].attributes["text2"].value;	
+					newID = oNewObj[i].attributes["text1"].value;
+	
+
+					if(newID==""){
+						if(oNewObj[i].attributes["value1"].value=="1"){
+							newID = "_";
+						}else{
+					 		newID = "-";
+						}
+					}
+					if(i==0){	
+						
+						busLineID = newText;
+						busNum = newID;
+					}else if(i==1){
+					
+					remark = oNewObj[i].attributes["value1"].value;
+					remark2 = oNewObj[i].attributes["text1"].value;
+					bigo = oNewObj[i].attributes["text7"].value; 
+						busTime = busTime + " <div id=\"bustime\">";
+            busTime = busTime + "<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+            busTime = busTime + " <tr>";
+            busTime = busTime + "  <th width=\"17%\" scope=\"row\">첫차</th>";
+            busTime = busTime + "  <td width=\"19%\"> "+remark+"</td>";
+            busTime = busTime + "  <th width=\"17%\" scope=\"row\">막차</th>";
+            busTime = busTime + "  <td width=\"17%\">"+remark2+"</td>";
+            busTime = busTime + "   <td width=\"30%\" class=\"brno ar pdr5\" colspan=\"2\">";
+	//if(oNewObj[i].attributes[5].value!=""){
+	    busTime = busTime + " <a href=\"#"+i+"\"><img src=\"../images/map/bt_time01.gif\" width=\"49\" height=\"18\" alt=\"시간\" onclick=\"parent.timeLyOpen('start_end','"+busLineID +"', '')\" /></a>";
+         //  }
+	    busTime = busTime + " </td></tr>";
+            busTime = busTime + " <tr>";
+            busTime = busTime + "   <th colspan=\"6\" class=\"brno pdl10\" scope=\"colgroup\">배차시간</th>";
+	if(oNewObj[i].attributes["text6"].value!=""){
+	    busTime = busTime + " <a href=\"#"+i+"\"><img src=\"../images/map/bt_time01.gif\" width=\"49\" height=\"18\" align=\"absmiddle\" alt=\"시간\"  onclick=\"parent.timeLyOpen('timeTable','"+busLineID+"', '"+busNum+"')\" /></a>";
+           }
+	    busTime = busTime + " </th></tr>";
+            busTime = busTime + " <tr>";
+            busTime = busTime + "   <th colspan=\"2\" class=\"thead2\" scope=\"col\">출.퇴근시</th>";
+            busTime = busTime + "   <th colspan=\"2\" class=\"thead2\" scope=\"col\">평상시</th>";
+            busTime = busTime + "   <th colspan=\"2\" class=\"thead2 brno\" scope=\"col\">공휴일</th>";
+            busTime = busTime + "  </tr>";
+            busTime = busTime + "  <tr>";
+            busTime = busTime + "   <td colspan=\"2\">"+newY+"</td>";
+            busTime = busTime + "  <td colspan=\"2\">"+newX+"</td>";
+            busTime = busTime + "   <td colspan=\"2\" class=\"brno\">"+newValue+"</td>";
+            busTime = busTime + " </tr>";
+	    busTime = busTime + " <tr>";
+            busTime = busTime + "   <th class=\"thead2\" scope=\"row\">비고</th>";
+            busTime = busTime + "   <td colspan=\"5\">"+bigo+"</td>";
+            busTime = busTime + "  </tr>";
+            busTime = busTime + "</table>";
+            busTime = busTime + " <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">";
+           	busTime = busTime + " <tr>";
+			<!--181106수정-->
+            busTime = busTime + "  <th width=\"30%\" scope=\"col\">ARS번호</th>";
+            busTime = busTime + "  <th width=\"70%\" class=\"brno\" scope=\"col\">정류소명</th></tr>";
+			<!--//181106수정-->
+           	busTime = busTime + " </table>";
+          	busTime = busTime + " </div>";          	
+						$(oCurObj).append(busTime);							
+					}else{	
+						if (i==2){							
+              busStop = busStop +  "<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+						}
+						busStop = busStop +  " <tr>";
+            busStop = busStop +  " <td class=\"al\">"+newValue+"</td>";
+            //if (busLineID == "2100061161" || busLineID == "2100061294" || busLineID == "2100061351" || busLineID == "2100061354" || busLineID == "2100061355" || busLineID == "2100061346") 
+            //{
+            //	busStop = busStop +  "  <td class=\"al\"><a href=\"javascript:statonARSMiddle("+newX+","+newY+",'"+newID+"', '"+newValue+"', '"+newText+"','"+busLineID+"','"+busNum+"')\">"+newID+"</a><br/></td>";
+            //}
+            //else 
+            //{
+            	busStop = busStop +  "  <td class=\"al\"><a href=\"javascript:statonARSMiddle("+newX+","+newY+",'"+newID+"', '"+newValue+"', '"+newText+"')\">"+newID+"</a><br/></td>";
+            //}
+            
+            busStop = busStop +  "  </tr>";
+            
+            if(i == oNewObj.length-1){					       
+              busStop = busStop +  " </table>"; 								
+						}
+					}
+				}				
+				$(oCurObj).next().append(busStop);	
+			}			
+		}
+	}
+}
+
+function statonARSMiddle(coordX, coordY, stopName, arsNo, stopID){
+	parent.busStopClickChk = true;
+	parent.stationARSInfo(coordX, coordY, stopName, arsNo, stopID);
+}
+
+function statonARSMiddle2(coordX, coordY, stopName, arsNo, stopID, busLineID, busNum){
+	parent.busStopClickChk = true;
+	parent.timeLyOpen2("timetable3",busLineID, stopID, stopName, busNum);
+	//parent.stationARSInfo(coordX, coordY, stopName, arsNo, stopID); 
+}
+</script>
+</head>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+		     
+					<div class="bline_result">
+						<div  name=1>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구1</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('성신', 2, '마을버스', '2100051045')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#1"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051045_동래구1" class="btnIMG" /></a></p>
+		         <p class="busstop">롯데백화점(동래점)<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />세웅병원</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 		     
+					<div class="bline_result">
+						<div  name=2>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구1-1</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('성신', 2, '마을버스', '2100051162')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#2"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051162_동래구1-1" class="btnIMG" /></a></p>
+		         <p class="busstop">온천장역<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />동래구청</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 		     
+					<div class="bline_result">
+						<div  name=3>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구2</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('세성교통(동래)', 2, '마을버스', '2100051048')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#3"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051048_동래구2" class="btnIMG" /></a></p>
+		         <p class="busstop">남일중학교<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />동래역</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 		     
+					<div class="bline_result">
+						<div  name=4>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구3</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('금정', 2, '마을버스', '2100051050')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#4"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051050_동래구3" class="btnIMG" /></a></p>
+		         <p class="busstop">금정마을<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />동래구청</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 		     
+					<div class="bline_result">
+						<div  name=5>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구5</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('지사', 2, '마을버스', '2100051119')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#5"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051119_동래구5" class="btnIMG" /></a></p>
+		         <p class="busstop">달북마을<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />동래역</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 		     
+					<div class="bline_result">
+						<div  name=6>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구6</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('창신', 2, '마을버스', '2100051137')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#6"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051137_동래구6" class="btnIMG" /></a></p>
+		         <p class="busstop">센텀트루엘아파트<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />동래역</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 		     
+					<div class="bline_result">
+						<div  name=7>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구6-1</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('창신', 2, '마을버스', '2100051052')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#7"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051052_동래구6-1" class="btnIMG" /></a></p>
+		         <p class="busstop">센텀롯데캐슬2차아파트<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />동래역</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 		     
+					<div class="bline_result">
+						<div  name=8>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구7</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('성신', 2, '마을버스', '2100051057')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#8"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051057_동래구7" class="btnIMG" /></a></p>
+		         <p class="busstop">롯데백화점(동래점)<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />센텀SK뷰아파트</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 		     
+					<div class="bline_result">
+						<div  name=9>
+		         <p class="busno"><img src="../images/map/ic_vlgbs.gif" alt="마을버스" width="15" height="15" id="busTypeImg" /><span class="bus_green1">동래구8</span></p>
+		         <p class="btmore"><a href="javascript:" style="display:none" id="co_img"><img src="../images/map/bt_buscpn.gif" onclick="javascript:parent.co_lay('㈜신아교통', 2, '마을버스', '2100051059')" alt="운수사정보 버튼" width="58" height="18" class="bt1" /></a><a href="#9"><img src="../images/map/bt_plus.gif" alt="펼쳐보기버튼" width="20" height="18" value="2100051059_동래구8" class="btnIMG" /></a></p>
+		         <p class="busstop">사직여자중학교<img src="../images/map/ic_shuttle.gif" alt="양방향 화살표" width="17" height="8" />동래역</p>
+			     	</div>
+			      <div class="bline_info_2" style="display:none">		           
+		       	</div>
+		        <div class="bline_list" style="display:none">
+             </div>
+	       </div>	       
+     <!-- 노선 검색결과 e -->
+ 
+</body>
+</html>
+    

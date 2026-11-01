@@ -51,4 +51,26 @@ function validateRoute(route){
  return [...new Set(errors)];
 }
 function readBatches(root){const dir=path.join(root,'data/kr/canonical');return fs.existsSync(dir)?fs.readdirSync(dir).filter(n=>n.endsWith('-batch.json')).sort().map(n=>({name:n,...JSON.parse(fs.readFileSync(path.join(dir,n),'utf8'))})):[]}
-module.exports={MODES,korean,coordinate,distance,validateRoute,readBatches};
+function assembleCanonicalRoutes(batches){
+ const byId=new Map,rejected=[],inputIds=new Set,merges=[];
+ for(const batch of batches)for(const route of batch.routes||[]){
+  const errors=validateRoute(route);if(inputIds.has(route.id))errors.push('노선 식별자 중복');inputIds.add(route.id);
+  if(errors.length){rejected.push({batch:batch.name,id:route.id,errors});continue}
+  if(route.mergeIntoRouteId){merges.push({batch:batch.name,route});continue}
+  byId.set(route.id,{...route,canonicalContract:'kr-canonical-v1'});
+ }
+ for(const {batch,route}of merges){
+  const target=byId.get(route.mergeIntoRouteId);
+  if(!target||target.countryId!==route.countryId||target.mode!==route.mode||target.operatorId!==route.operatorId){rejected.push({batch,id:route.id,errors:['병합 대상·교통수단·운영사 불일치']});continue}
+  const duplicate=new Set(target.verifiedJourneys.map(j=>j.id));if(route.verifiedJourneys.some(j=>duplicate.has(j.id))){rejected.push({batch,id:route.id,errors:['병합 운행계통 식별자 중복']});continue}
+  const evidence=Object.fromEntries(target.verifiedJourneys.map(j=>[j.id,target.operationalEvidence]));
+  target.operationalEvidenceByJourney={...evidence,...target.operationalEvidenceByJourney,...Object.fromEntries(route.verifiedJourneys.map(j=>[j.id,route.operationalEvidence]))};
+  target.verifiedJourneys=[...target.verifiedJourneys,...route.verifiedJourneys];
+  target.sourceRefs=[...new Map([...(target.sourceRefs||[]),...(route.sourceRefs||[])].map(s=>[JSON.stringify(s),s])).values()];
+  target.mergedRecords=[...(target.mergedRecords||[]),{id:route.id,journeys:route.verifiedJourneys.map(j=>j.id),sourceRefs:route.sourceRefs}];
+  if(route.geometryEvidence?.sparseSourceEdges?.length)target.geometryEvidence={...target.geometryEvidence,kind:'exact-osm-source-edges',sparseSourceEdges:[...(target.geometryEvidence?.sparseSourceEdges||[]),...route.geometryEvidence.sparseSourceEdges]};
+  const errors=validateRoute(target);if(errors.length)rejected.push({batch,id:target.id,errors});
+ }
+ return{routes:[...byId.values()],rejected};
+}
+module.exports={MODES,korean,coordinate,distance,validateRoute,readBatches,assembleCanonicalRoutes};
