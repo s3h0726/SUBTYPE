@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-11-01T16:06:45.942Z",
+  "baseline": "7edf6b43",
+  "status": "PASS",
+  "commands": [
+    {
+      "name": "build-hk",
+      "args": [
+        "tools/build-hk-data.cjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "build-app",
+      "args": [
+        "tools/build-app-bundle.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "contracts",
+      "args": [
+        "--test",
+        "tools/test-hk-missing.cjs",
+        "tools/test-hk-completion.cjs",
+        "tools/test-hk-phase6.cjs",
+        "tools/test-track-motion.cjs",
+        "tools/test-free-drive-transfers.cjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "selector",
+      "args": [
+        "tools/test-hk-route-selector.cjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "syntax",
+      "args": [
+        "--check",
+        "js/app.bundle.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "typing",
+      "args": [
+        "tools/test-typing-model.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "ime-fixture",
+      "args": [
+        "tools/test-ime-controller.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "japan-nex",
+      "args": [
+        "tools/test-nex-game-routes.cjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "korea-current",
+      "args": [
+        "tools/test-kr-canonical.cjs"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "rebuildChanged": [],
+  "protectedFiles": [],
+  "baselineDirections": 103,
+  "addedDirections": 2,
+  "playableDirections": 105,
+  "engineJourneys": 210,
+  "notTested": [
+    "Mobile390x844 layout in this change",
+    "Windows native IME",
+    "Physical mobile keyboard",
+    "Live Supabase account",
+    "Comparable AUTO performance benchmark"
+  ],
+  "performanceClaim": "No performance improvement claimed; historical AUTO failure retained.",
+  "protectedBase": "6e6fe6f908bbb320d3f78a025e566aad8907381c"
+}

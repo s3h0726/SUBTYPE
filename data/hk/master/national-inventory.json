@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-11-01",
+  "checkedAt": "2026-11-02",
   "scope": "Current passenger railway systems; service directions, service codes, physical systems and station records are separate counts. HSR additions excluded by subsequent explicit user instruction.",
   "systems": [
     {
@@ -12,7 +12,7 @@
         "airport_rail"
       ],
       "lineCount": 10,
-      "note": "Existing full and conditional directions preserved; three complete race-day via-Racecourse relations released, northbound Lok Ma Chau source missing Sha Tin remains unapproved.",
+      "note": "Existing full and conditional directions preserved; all four documented race-day via-Racecourse directions released. Lok Ma Chau northbound Sha Tin call restored at an existing exact railway vertex; raw source omission retained.",
       "sources": [
         {
           "sourceFile": "data/hk/sources/phase6/mtr-service-hours.html",
@@ -46,7 +46,7 @@
         "610P",
         "720"
       ],
-      "note": "Official Phase6 CSV and schedule are byte-identical to Phase4 snapshots. 751P evening variants verified as official partial751. Morning Tin Wing platform commissioning and special chained numbers require separate calling/platform review.",
+      "note": "507P weekday07:42 special released with19 officially documented calls, preserving current stop250 name Hoi Wong Road.751P existing morning/evening services retained.506P,610P and720 still require complete call/platform review.",
       "sources": [
         {
           "sourceFile": "data/hk/sources/phase6/light-rail.csv",
@@ -63,6 +63,10 @@
           "sourceUrl": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-029-E.pdf",
           "sha256": "71794a2e0fde86c64719899625cc45ae2af5c56d99a4e1de4765fe20b8bd7c27"
         }
+      ],
+      "releasedConditionalCodes": [
+        "751P",
+        "507P"
       ]
     },
     {

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-02",
+  "intermediateStops": [
+    {
+      "relationId": 4250434,
+      "relationVersion": 61,
+      "nodeId": 2185507487,
+      "code": "SHT",
+      "wayId": 208232725,
+      "beforeNodeId": 2185507407,
+      "explanation": "Sha Tin stop-position is an exact vertex of original railway way 208232725, between Tai Wai and Racecourse. Restore only this omitted call; raw relation and all ways unchanged."
+    }
+  ],
+  "compoundServices": [
+    {
+      "id": "hk-light-rail-507p-morning",
+      "canonicalLineId": "hk-light-rail-507p",
+      "parentLineId": "hk-light-rail-507",
+      "code": "507P",
+      "direction": "siu-hong-to-ferry-pier",
+      "stopStationIds": [
+        "hk-lr-100",
+        "hk-lr-120",
+        "hk-lr-130",
+        "hk-lr-140",
+        "hk-lr-150",
+        "hk-lr-160",
+        "hk-lr-212",
+        "hk-lr-220",
+        "hk-lr-230",
+        "hk-lr-075",
+        "hk-lr-070",
+        "hk-lr-295",
+        "hk-lr-280",
+        "hk-lr-270",
+        "hk-lr-265",
+        "hk-lr-260",
+        "hk-lr-250",
+        "hk-lr-240",
+        "hk-lr-001"
+      ],
+      "sourceRelationId": 3680520,
+      "sourceUrl": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-22-058-E.pdf",
+      "parts": [
+        {
+          "serviceId": "hk-light-rail-615-osm-3680520",
+          "from": "hk-lr-100",
+          "to": "hk-lr-150"
+        },
+        {
+          "serviceId": "hk-light-rail-507-osm-6481316",
+          "from": "hk-lr-150",
+          "to": "hk-lr-001"
+        }
+      ],
+      "validWhen": {
+        "type": "weekday-morning-special",
+        "departureTimes": [
+          "07:42"
+        ],
+        "timezone": "Asia/Hong_Kong",
+        "schoolHolidayCondition": "not-stated",
+        "noteKo": "507P 평일 오전 특별편 · 시우홍 → 튄문 페리부두 · 07:42 출발. 상시 운행이 아닙니다. 방학 운행 조건은 현재 공식 안내에 명시되지 않았으며 당일 운영 안내를 확인하세요. 과거 보도자료의 07:40 대신 현재 시간표를 적용했습니다."
+      }
+    }
+  ]
+}

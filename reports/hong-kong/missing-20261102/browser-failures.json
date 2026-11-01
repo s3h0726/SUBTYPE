@@ -1,0 +1,15 @@
+{
+  "failures": [
+    {
+      "status": "REPRODUCED_THEN_FIXED",
+      "scenario": "507P to615 TAB at Tin King",
+      "before": "Selected615 while map remained at Tin King; prompt incorrectly advanced to Leung King instead of typing the transfer station",
+      "fix": "HK-only same-node route change sets boarding target to the new line's current stop",
+      "rerun": "PASS: three TAB switches each typed Tin King first, then completed615 to ferry pier"
+    }
+  ],
+  "environmentIssues": [
+    "Sandbox-local preview8083 timed out; elevated preview8084 succeeded in a fresh browser tab",
+    "Older browser helper expected PLAY THIS LINE button; current main label is Korean 운행계통·방향 선택; helper updated for both labels"
+  ]
+}
