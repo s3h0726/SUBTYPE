@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "batchDate": "2026-11-02",
+  "mode": "conservative-full-catalog-audit",
+  "inventory": {
+    "totalLineStationOccurrences": 10715,
+    "originalUnverified": 10561,
+    "previouslyRecordedVerified": 154,
+    "verifiedDirectThisBatch": 6,
+    "remainingUnverified": 10555,
+    "uniqueJapaneseNamesStillUnverified": 8279
+  },
+  "integrity": {
+    "allRowsStructurallyInspected": true,
+    "samePhysicalStationNameConflictGroupsAfterVerifiedCorrections": 0,
+    "unverifiedSamePhysicalIdAndJapaneseNameConsistentOccurrences": 2883,
+    "unverifiedSingleIdentityOccurrences": 7638,
+    "unverifiedHomographOrRouteScopedNameOccurrences": 34,
+    "homographGroupsRequiringContext": 9,
+    "homographContextRowsTotal": 46
+  },
+  "sourcePolicy": "Internal consistency is not confirmation against Namuwiki. No unverified station may be promoted without visible Japanese+Korean name matching an identifiable Namuwiki page and the correct operator/line context.",
+  "verification": {
+    "pages": [
+      "https://d.namu.moe/w/%ED%82%A8%EC%8B%9C%EC%B5%B8%EC%97%AD",
+      "https://d.namu.moe/w/%EB%B0%94%EC%BF%A0%EB%A1%9C%EC%B5%B8%EC%97%AD"
+    ],
+    "verifiedNames": [
+      "錦糸町",
+      "馬喰町"
+    ],
+    "readingsCorrected": true,
+    "gameAndCanonicalSynced": true
+  },
+  "input": "jp-stations-by-line-namuwiki-reviewed.csv uploaded in conversation; 10,715 station-route occurrences",
+  "note": "All 10,561 starting rows were analyzed in one batch, but only six had newly reviewed external evidence. The remaining 10,555 are not certified as matching Namuwiki. Full verification requires a bulk Namuwiki corpus or individual supported page access.",
+  "provenance": "user CSV plus exact six online Namuwiki checks; generated local full audit CSV with 10,715 rows"
+}
