@@ -62,7 +62,7 @@ function align(shape,stops,useChainage=false){
 }
 for(const file of sources){const data=read(file);for(const raw of data.lines){
  if(!definitions[raw.id]||raw.stations.length<2)continue;
- const l=structuredClone(raw);let op=file==='thsr_track'?'thsr':['ntdlrt','ntalrt','sanying'].includes(file)||l.id==='Y'?'ntmc':file;
+ const l=structuredClone(raw);const geometryUpdate=require('./lib/taiwan-geometry-updates.cjs').updateGeometry(l);if(geometryUpdate)write('data/tw/generated/geometry-updates.json',[geometryUpdate]);let op=file==='thsr_track'?'thsr':['ntdlrt','ntalrt','sanying'].includes(file)||l.id==='Y'?'ntmc':file;
  // Su'ao is a physical branch; the Yilan trunk ends at Su'aoxin.
  const todo=l.id==='宜蘭線'?[{...l,id:'SU_AO',name:'蘇澳支線',stations:l.stations.slice(0,2)},{...l,stations:l.stations.slice(1)}]:[l];
  for(const part of todo){const [slug,ko,en,category,visibility]=definitions[part.id],id='tw-'+op+'-'+slug,operator=operators.find(o=>o.id==='tw-'+op);try{
@@ -90,7 +90,7 @@ function joinPaths(parts){const geometry=[],stations=[],segments=[];for(const {l
 const patternMap=new Map();
 function addPattern(owner,nameKo,parts,calls=null,extra={}){try{
  const route=joinPaths(parts),ids=calls?route.stations.filter(s=>calls.includes(s.networkKey)).map(s=>s.id):route.stations.map(s=>s.id);
- if(ids.length<2)throw Error('fewer than 2 calls');
+ if(ids.length<(extra.loop?1:2))throw Error('fewer than 2 calls');
  const signature=nameKo+'|'+route.stations.map(s=>s.networkKey).join('>')+'|'+ids.join('>'),id='tw-service-'+hash(signature);
  if(patternMap.has(id)){const old=patternMap.get(id);if(extra.trainNumber&&!old.trainNumbers.includes(extra.trainNumber))old.trainNumbers.push(extra.trainNumber);if(!owner.taiwanServices.includes(id))owner.taiwanServices.push(id);return}
  const spec={id,nameKo,nameZh:extra.nameZh||null,parts:parts.map(p=>({lineId:p.line.id,a:p.a??0,b:p.b??p.line.stations.length-1})),calls:ids,origin:route.stations.find(s=>s.id===ids[0]),destination:route.stations.find(s=>s.id===ids.at(-1)),trainNumbers:extra.trainNumber?[extra.trainNumber]:[],evidence:extra.evidence||officialSources[owner.operatorId.slice(3)],status:'IMPLEMENTED_UNVERIFIED',direction:extra.direction||'forward',...extra};
@@ -112,22 +112,26 @@ const airport=bySource.get('tymc:A');if(airport){both(airport,'보통',[{line:ai
  addPattern(airport,'공항행 보통',[{line:airport,a:0,b:12}]);addPattern(airport,'공항행 보통',[{line:airport,a:21,b:11}],null,{direction:'reverse'});
 }
 // THSR calls are timetable calls only: pass points have stop:false.
-const hsr=bySource.get('thsr_track:THSR');if(hsr){for(const t of read('thsr_schedule_dense').trains){const calls=t.stops.filter(s=>s.stop!==false).map(s=>'thsr:'+norm(s.name));const idx=calls.map(n=>hsr.stations.findIndex(s=>s.networkKey===n));if(idx.some(i=>i<0)||idx.length<2)continue;const ascending=idx.at(-1)>idx[0];if(idx.some((v,i)=>i&&(ascending?v<=idx[i-1]:v>=idx[i-1])))continue;addPattern(hsr,calls.length===12?'각역정차':calls.length<=6?'직통형 급행':'준급행',[{line:hsr,a:idx[0],b:idx.at(-1)}],calls,{trainNumber:t.train,direction:ascending?'forward':'reverse',evidence:'data/tw/source/thsr_schedule_dense.json; '+officialSources.thsr})}}
+const hsr=bySource.get('thsr_track:THSR');if(hsr){for(const t of JSON.parse(fs.readFileSync('data/tw/source/completion/thsr-official.json')).trains){const calls=t.stops.filter(s=>s.stop!==false).map(s=>'thsr:'+norm(s.name));const idx=calls.map(n=>hsr.stations.findIndex(s=>s.networkKey===n));if(idx.some(i=>i<0)||idx.length<2)continue;const ascending=idx.at(-1)>idx[0];if(idx.some((v,i)=>i&&(ascending?v<=idx[i-1]:v>=idx[i-1])))continue;addPattern(hsr,calls.length===12?'각역정차':calls.length<=6?'직통형 급행':'준급행',[{line:hsr,a:idx[0],b:idx.at(-1)}],calls,{trainNumber:t.train,direction:ascending?'forward':'reverse',evidence:'data/tw/source/completion/thsr-official.json; '+officialSources.thsr})}}
 // Build a topology from the physical lines. Actual TRA timetable calls choose
 // a contiguous physical chain. Reject gaps, reversals and ambiguous long jumps.
 const tra=lines.filter(l=>l.operatorId==='tw-tra'),graph=new Map();
 for(const l of tra)for(let i=0;i<l.stations.length-1;i++){const a=l.stations[i],b=l.stations[i+1],length=l.geometry.slice(a.geometryIndex,b.geometryIndex+1).reduce((v,p,j,all)=>v+(j?km(all[j-1],p):0),0);for(const [from,to,x,y]of[[a,b,i,i+1],[b,a,i+1,i]]){if(!graph.has(from.networkKey))graph.set(from.networkKey,[]);graph.get(from.networkKey).push({to:to.networkKey,line:l,a:x,b:y,length})}}
-function shortest(start,end,blocked=null){const dist=new Map([[start,0]]),previous=new Map(),queue=new Set([start]);while(queue.size){let n=[...queue].sort((a,b)=>dist.get(a)-dist.get(b))[0];queue.delete(n);if(n===end)break;for(const edge of graph.get(n)||[]){if(blocked&&((n===blocked.from&&edge.to===blocked.to)||(n===blocked.to&&edge.to===blocked.from)))continue;const d=dist.get(n)+edge.length;if(d<(dist.get(edge.to)??Infinity)){dist.set(edge.to,d);previous.set(edge.to,{from:n,edge});queue.add(edge.to)}}}if(!previous.has(end))throw Error('disconnected '+start+' → '+end);const result=[];for(let n=end;n!==start;){const p=previous.get(n);result.unshift(p.edge);n=p.from}return result}
+function shortest(start,end,blocked=null,forbidden=new Set()){const dist=new Map([[start,0]]),previous=new Map(),queue=new Set([start]);while(queue.size){let n=[...queue].sort((a,b)=>dist.get(a)-dist.get(b))[0];queue.delete(n);if(n===end)break;for(const edge of graph.get(n)||[]){if(forbidden.has(edge.to)&&edge.to!==end)continue;if(blocked&&((n===blocked.from&&edge.to===blocked.to)||(n===blocked.to&&edge.to===blocked.from)))continue;const d=dist.get(n)+edge.length;if(d<(dist.get(edge.to)??Infinity)){dist.set(edge.to,d);previous.set(edge.to,{from:n,edge});queue.add(edge.to)}}}if(!previous.has(end))throw Error('disconnected '+start+' → '+end);const result=[];for(let n=end;n!==start;){const p=previous.get(n);result.unshift(p.edge);n=p.from}return result}
 const schedule=read('tra_schedule'),validTrains=new Set(schedule.dates['2026-10-29']||[]),traRejected={},heldServices=[];
+const {plausiblePath}=require('./lib/taiwan-path-evidence.cjs');
+const routeHints=JSON.parse(fs.readFileSync('data/tw/source/completion/tra-route-hints.json'));
 const cycleJunctions=new Set(['tra:竹南','tra:彰化','tra:成功','tra:追分']);
 for(const [index,t]of schedule.trains.entries()){
  if(!validTrains.has(index)||!['區間車','區間快','自強','莒光/復興'].includes(t.typeName))continue;
  const callKeys=t.stops.filter(s=>s.stop!==false).map(s=>'tra:'+norm(s.name));if(callKeys.length<2)continue;
  try{const edges=[];for(let i=1;i<callKeys.length;i++){
-   const part=shortest(callKeys[i-1],callKeys[i]);
+   const forbidden=new Set(callKeys.filter((_,j)=>j!==i-1&&j!==i));
+   if(routeHints[t.train]?.via==='mountain')for(const l of tra.filter(l=>['tw-tra-coast','tw-tra-chengzhui'].includes(l.id)))for(const station of l.stations)if(!['tra:竹南','tra:彰化','tra:成功'].includes(station.networkKey))forbidden.add(station.networkKey);
+   const part=shortest(callKeys[i-1],callKeys[i],null,forbidden);
    const length=part.reduce((n,e)=>n+e.length,0);
-   for(const edge of part){const from=edge.line.stations[edge.a].networkKey;if(!cycleJunctions.has(from))continue;let alternate=null;try{alternate=shortest(callKeys[i-1],callKeys[i],{from,to:edge.to})}catch{}
-    if(alternate&&alternate.reduce((n,e)=>n+e.length,0)<=length*1.35+2)throw Error('ambiguous mountain/coast/Chengzhui path between timetable calls');
+   for(const edge of part){const from=edge.line.stations[edge.a].networkKey;if(!cycleJunctions.has(from))continue;let alternate=null;try{alternate=shortest(callKeys[i-1],callKeys[i],{from,to:edge.to},forbidden)}catch{}
+    if(alternate&&plausiblePath(alternate,new Set(callKeys))&&alternate.reduce((n,e)=>n+e.length,0)<=length*1.35+2)throw Error('ambiguous mountain/coast/Chengzhui path between timetable calls');
    }
    // A non-stop jump across the mountain/coast divergence cannot establish
    // which route a train used. Keep it out instead of assuming a route.
@@ -147,6 +151,8 @@ if(main&&shenmu){for(const t of read('afr_schedule_dense').trains){const calls=t
  }catch{}}
  }}
  const zhushan=bySource.get('afr:AFR_ZHUSHAN');if(zhushan)both(zhushan,'일출 열차',[{line:zhushan}],{evidence:'https://afrch.forest.gov.tw/0000300',note:'출발 시각은 전날 공지되며 고정 시각을 생성하지 않음'})}
+const touristResults=require('./lib/taiwan-tourist.cjs').importTourists({operators,lines,branding,addPattern,issues,hash});
+write('data/tw/generated/tourist-status.json',touristResults);for(const line of lines)byId.set(line.id,line);
 // Internal branch track choices belong to their single passenger-facing card.
 for(const l of lines){l.taiwanServices=[...new Set(l.taiwanServices)];if(l.visibility!=='internal'&&!l.taiwanServices.length){l.playable=false;l.status='INCOMPLETE';issues.push({id:l.id,status:'INCOMPLETE',reason:'No supported actual passenger pattern'})}}
 // Transfers are evidence-based, explicit groups. Names never merge coordinates.
@@ -154,6 +160,8 @@ const transferGroups=[];
 function transfer(group){const members=group.flatMap(([id,name])=>{const l=byId.get(id);const s=l?.stations.find(s=>norm(s.zh)===norm(name));return s?[{line:l,station:s}]:[]});if(members.length!==group.length)return;const id='tw-transfer-'+hash(group.map(p=>p.join(':')).sort().join('|'));for(const {line,station} of members){station.twTransferKey=id;station.transfers=members.filter(m=>m.line!==line).map(m=>({line_id:m.line.id,station_id:m.station.id,source:officialSources[line.operatorId.slice(3)]}))}transferGroups.push({id,stations:members.map(m=>m.station.id),source:'operator route maps'})}
 const metro=lines.filter(l=>l.operatorId==='tw-trtc');for(const name of new Set(metro.flatMap(l=>l.stations.map(s=>s.zh)))){const members=metro.filter(l=>l.stations.some(s=>s.zh===name));if(members.length>1)transfer(members.map(l=>[l.id,name]))}
 for(const group of [
+ [['tw-sugar-suantou-hsr','蒜頭'],['tw-sugar-suantou-palace','蒜頭']],
+ [['tw-krtc-red','橋頭糖廠'],['tw-sugar-kaohsiung','捷運橋頭糖廠站']],
  [['tw-trtc-songshan-xindian','大坪林'],['tw-ntmc-circular','大坪林']],
  [['tw-trtc-zhonghe-xinlu','景安'],['tw-ntmc-circular','景安']],
  [['tw-trtc-zhonghe-xinlu','頭前庄'],['tw-ntmc-circular','頭前庄']],
@@ -172,10 +180,10 @@ for(const group of transferGroups)for(const id of group.stations)parents.set(fin
 const components=new Map();for(const id of parents.keys()){const key=find(id);if(!components.has(key))components.set(key,[]);components.get(key).push(id)}
 transferGroups.length=0;for(const members of components.values()){const key='tw-transfer-'+hash(members.slice().sort().join('|'));for(const id of members){const s=stationLookup.get(id);s.twTransferKey=key;s.transfers=members.filter(other=>other!==id).map(other=>({station_id:other,line_id:stationLookup.get(other).line_id,source:'operator route maps'}))}transferGroups.push({id:key,stations:members,source:'operator route maps'})}
 for(const [ownerId,branchId]of[['tw-trtc-zhonghe-xinlu','tw-trtc-zhonghe-luzhou-track'],['tw-ntmc-danhai','tw-ntmc-danhai-blue-track']]){const owner=byId.get(ownerId),branch=byId.get(branchId);if(owner&&branch){owner.branchLineIds=[branchId];owner.stationCount=new Set([...owner.stations,...branch.stations].map(s=>s.networkKey)).size;owner.searchStations=[...new Set([...owner.stations,...branch.stations].map(s=>s.ko))]}}
-for(const l of lines){l.sourceCode=l.code;l.code=l.operatorId==='tw-tra'?'TRA':l.operatorId==='tw-afr'?'AFR':({R_XBT:'R22A',G_XBT:'G03A',O_XINZHUANG:'O',O_LUZHOU:'O',VB:'V',TG:'G',KR:'R',KO:'O',THSR:'HSR'})[l.code]||l.code;l.operatorAsset=branding[l.operatorId];l.stationCount=l.stationCount||l.stations.length;l.description=l.category==='shinkansen'?'난강에서 쭤잉까지 달리는 타이완 고속철도입니다.':l.line.ko+'의 실제 선로와 여객 운행 정차역을 따라갑니다.';}
+for(const l of lines){l.sourceCode=l.code;l.code=l.operatorId==='tw-tra'?'TRA':l.operatorId==='tw-afr'?'AFR':({R_XBT:'R22A',G_XBT:'G03A',O_XINZHUANG:'O',O_LUZHOU:'O',VB:'V',TG:'G',KR:'R',KO:'O',THSR:'HSR'})[l.code]||l.code;l.operatorAsset=branding[l.operatorId];l.stationCount=l.stationCount||l.stations.length;l.description=l.description||(l.category==='shinkansen'?'난강에서 쭤잉까지 달리는 타이완 고속철도입니다.':l.line.ko+'의 실제 선로와 여객 운행 정차역을 따라갑니다.');}
 const publicLines=lines.filter(l=>l.visibility!=='internal');const patterns=[...patternMap.values()];
 const {serviceDisplay}=require('./lib/taiwan-service-display.cjs');const afrTrainNames=read('afr_schedule_dense').trains.map(t=>t.typeName);for(const p of patterns)Object.assign(p,serviceDisplay(p,lines,afrTrainNames));
-const report={referenceDate:'2026-10-29',operators:operators.map(o=>{const ls=publicLines.filter(l=>l.operatorId===o.id),ps=new Set(ls.flatMap(l=>l.taiwanServices));return{operatorId:o.id,operatorKo:o.names.ko,physicalLines:ls.length,stationRecords:ls.reduce((n,l)=>n+l.stations.length,0),servicePatterns:ps.size,directions:ps.size,realGeometryLines:ls.filter(l=>l.geometryReady).length,playableValidated:0,implementedUnverified:ls.filter(l=>l.status==='IMPLEMENTED_UNVERIFIED').length,incomplete:ls.filter(l=>l.status==='INCOMPLETE').length}}),totalPhysicalLines:publicLines.length,totalStationRecords:publicLines.reduce((n,l)=>n+l.stations.length,0),uniqueOperatorStations:new Set(publicLines.flatMap(l=>l.stations.map(s=>s.networkKey))).size,servicePatterns:patterns.length,directions:patterns.length,geometrySourceTraced:publicLines.length,geometryIndependentlyVerified:0,implementedUnverified:publicLines.filter(l=>l.status==='IMPLEMENTED_UNVERIFIED').length,playableValidated:0,issues,traRejected,limitations:['Geometry is traced to upstream TDX/OSM snapshots; not independently certified against live GIS.','TRA paths between timetable calls are inferred from the physical network.','English station names not present in snapshots remain null; no fabricated romanization.','Taiwan is implemented-unverified until representative browser playthroughs pass.']};
+const report={referenceDate:'2026-10-29',checkedDate:'2026-11-01',touristRailways:touristResults,geometryUpdatedSections:1,thsrTimetableSource:'data/tw/source/completion/thsr-official.json',operators:operators.map(o=>{const ls=publicLines.filter(l=>l.operatorId===o.id),ps=new Set(ls.flatMap(l=>l.taiwanServices));return{operatorId:o.id,operatorKo:o.names.ko,physicalLines:ls.length,stationRecords:ls.reduce((n,l)=>n+l.stations.length,0),servicePatterns:ps.size,directions:ps.size,realGeometryLines:ls.filter(l=>l.geometryReady).length,playableValidated:0,implementedUnverified:ls.filter(l=>l.status==='IMPLEMENTED_UNVERIFIED').length,incomplete:ls.filter(l=>l.status==='INCOMPLETE').length}}),totalPhysicalLines:publicLines.length,totalStationRecords:publicLines.reduce((n,l)=>n+l.stations.length,0),uniqueOperatorStations:new Set(publicLines.flatMap(l=>l.stations.map(s=>s.networkKey))).size,servicePatterns:patterns.length,directions:patterns.length,geometrySourceTraced:publicLines.length,geometryIndependentlyVerified:0,implementedUnverified:publicLines.filter(l=>l.status==='IMPLEMENTED_UNVERIFIED').length,playableValidated:0,issues,traRejected,limitations:['Geometry is traced to upstream TDX/OSM snapshots; not independently certified against live GIS.','TRA paths between timetable calls are inferred from the physical network.','English station names not present in snapshots remain null; no fabricated romanization.','Taiwan is implemented-unverified until representative browser playthroughs pass.']};
 const familyKey=p=>{const forward=JSON.stringify(p.parts),reverse=JSON.stringify(p.parts.slice().reverse().map(part=>({lineId:part.lineId,a:part.b,b:part.a}))),calls=p.calls.map(id=>stationLookup.get(id)?.networkKey||id),a=calls.join('>'),b=calls.slice().reverse().join('>');return(p.nameZh||p.nameKo)+'|'+[forward,reverse].sort()[0]+'|'+[a,b].sort()[0]};
 report.directionalServiceIds=patterns.length;report.servicePatterns=new Set(patterns.map(familyKey)).size;
 report.heldTimetableRows=heldServices.length;report.incompleteServiceVariants=new Set(heldServices.map(s=>s.typeZh+'|'+s.callKeys.join('>'))).size;

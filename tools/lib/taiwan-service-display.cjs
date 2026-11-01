@@ -7,7 +7,8 @@ function serviceDisplay(spec,lines,afrTrainNames=[]){
  }
  if(!zh&&operator==='tw-afr'&&spec.nameKo==='아리산호')zh=afrTrainNames.find(n=>n==='阿里山號')||'';
  if(!zh){zh=lineName+(spec.loop?'':' · 停靠'+spec.calls.length+'站');kind='source-line-description';source=first?.geometrySource?.sourceFile;}
- if(spec.loop){zh+=' · '+(spec.direction==='reverse'?'逆時針':'順時針');kind='source-line-and-geographic-direction';}
+ if(spec.roundTrip){zh+=' · 1公里往返';kind='source-line-and-round-trip';}
+ if(spec.loop&&!spec.roundTrip){zh+=' · '+(spec.direction==='reverse'?'逆時針':'順時針');kind='source-line-and-geographic-direction';}
  return{displayNames:{ko:spec.nameKo,zh,en:(first?.line?.en||'')+' · '+spec.calls.length+' stops'},displayNameKind:kind,displayNameSource:source,missingChinese:!zh};
 }
 module.exports={serviceDisplay};

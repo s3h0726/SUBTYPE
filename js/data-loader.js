@@ -153,7 +153,7 @@ export function integrateKoreanLine1Index(published,preview){
 export async function loadTransportData(countryId='jp',koreaMode='released'){
   if(countryId==='tw'){
     await loadEditorNameOverrides();
-    const data=await fetchJson(new URL('data/tw/generated/network.json?v=tw-multilingual-20261101',document.baseURI));
+    const data=await fetchJson(new URL('data/tw/generated/network.json?v=tw-completion-20261101',document.baseURI));
     const all=data.lines.map(raw=>taiwanKoreanPresentation(normalizeLine(raw)));
     configureTaiwanNetwork(all,data.patterns);
     const lines=all.filter(l=>l.visibility!=='internal'&&l.playable&&l.geometryReady&&l.taiwanServices.length);

@@ -1,0 +1,13 @@
+'use strict';
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict'),crypto=require('crypto');
+const network=JSON.parse(fs.readFileSync('data/tw/generated/network.json')),baseline=JSON.parse(fs.readFileSync('data/tw/source/completion/baseline.json')),ctx={console};vm.createContext(ctx);
+for(const file of ['taiwan-display','hong-kong-policy','taiwan-network','route-integrity'])vm.runInContext(fs.readFileSync('js/'+file+'.js','utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),ctx);
+const {complete}=require('./lib/taiwan-game-completion.cjs');
+(async()=>{const lines=network.lines.map(ctx.taiwanKoreanPresentation);ctx.configureTaiwanNetwork(lines,network.patterns);for(const id of baseline.publicLineIds)assert(lines.some(l=>l.id===id));for(const id of baseline.serviceIds)assert(network.patterns.some(p=>p.id===id),'기존 운행 ID 누락: '+id);
+ const result={status:'PASS',scopeKo:'실제 게임 엔진·한글 입력·번체 표시를 DOM 대역에서 검사. 지도 그리기와 애니메이션은 대역이며 브라우저 전수 검증이 아님.',engineSha256:crypto.createHash('sha256').update(fs.readFileSync('js/game.js')).digest('hex'),runs:[],errors:[]},done=new Set();
+ outer: for(const line of lines.filter(l=>l.visibility!=='internal'))for(const choice of ctx.taiwanOperatingChoices(line)){
+  try{const selected=ctx.resolveTaiwanChoice(choice,line),resolved=ctx.resolvePlayableRoute(selected.route,{service:selected.service});assert(resolved.segments.every(s=>!s.endpointMismatch));assert(resolved.geometry.length>1);const expected=selected.service.stops;assert.deepEqual(Array.from(resolved.stations,s=>s.id),Array.from(expected));if(done.has(choice.id))continue;done.add(choice.id);const route={...selected.route,stations:resolved.stations,geometry:resolved.geometry};const proof=await complete(route);result.runs.push({serviceId:choice.id,lineId:line.id,status:'PASS',typedStops:proof.completed,terminalStationId:proof.terminalStationId,routeIntegrity:proof.routeIntegrity,zhVisible:true,koreanInput:true});if(result.runs.length%50===0)console.log('게임 엔진 '+result.runs.length+'개 방향 통과');}
+  catch(e){result.status='FAIL';result.errors.push({lineId:line.id,serviceId:choice.id,reason:e.stack});console.error(line.id,choice.id,e.message);break outer}
+ }
+ result.totalDirections=result.runs.length;result.originalDirections=result.runs.filter(r=>baseline.serviceIds.includes(r.serviceId)).length;result.originalUnverifiedDirectionsChecked=Math.min(334,result.originalDirections);fs.mkdirSync('reports/taiwan/completion',{recursive:true});fs.writeFileSync('reports/taiwan/completion/engine.json',JSON.stringify(result,null,2)+'\n');console.log(result.status,result.totalDirections,'방향',result.errors.length,'실패');if(result.errors.length)process.exitCode=1;
+})().catch(e=>{console.error(e);process.exitCode=1});

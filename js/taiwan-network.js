@@ -16,7 +16,7 @@ export function configureTaiwanNetwork(lines,patterns){
  return lines;
 }
 export function taiwanFreeDriveTracks(){return[...taiwanTracks.values()].filter(l=>l.visibility==='internal')}
-export function taiwanOperatingChoices(route){return(route?.taiwanServices||[]).map(id=>taiwanPatterns.get(id)).filter(Boolean).map(spec=>({kind:'taiwan',id:spec.id,originId:spec.origin.id,destinationId:spec.loop?spec.origin.id+'-circuit-end':spec.destination.id,originNames:taiwanStations.get(spec.origin.id)||spec.origin,destinationNames:taiwanStations.get((spec.loop?spec.origin:spec.destination).id)||(spec.loop?spec.origin:spec.destination),patternName:{en:spec.displayNames?.en||'',zh:spec.displayNames?.zh||spec.nameZh||'',ko:spec.loop?(spec.direction==='reverse'?'반시계 방향 한 바퀴':'시계 방향 한 바퀴'):spec.nameKo},trainType:null,journeyId:spec.id,patternId:spec.id,direction:spec.direction||'forward',legacyServiceId:spec.id}))}
+export function taiwanOperatingChoices(route){return(route?.taiwanServices||[]).map(id=>taiwanPatterns.get(id)).filter(Boolean).map(spec=>({kind:'taiwan',id:spec.id,originId:spec.origin.id,destinationId:spec.loop?spec.origin.id+'-circuit-end':spec.destination.id,originNames:taiwanStations.get(spec.origin.id)||spec.origin,destinationNames:taiwanStations.get((spec.loop?spec.origin:spec.destination).id)||(spec.loop?spec.origin:spec.destination),patternName:{en:spec.displayNames?.en||'',zh:spec.displayNames?.zh||spec.nameZh||'',ko:spec.loop&&!spec.roundTrip?(spec.direction==='reverse'?'반시계 방향 한 바퀴':'시계 방향 한 바퀴'):spec.nameKo},trainType:null,journeyId:spec.id,patternId:spec.id,direction:spec.direction||'forward',legacyServiceId:spec.id}))}
 const taiwanDistance=(a,b)=>Math.hypot((a[0]-b[0])*111.195,(a[1]-b[1])*111.195*Math.cos((a[0]+b[0])*Math.PI/360));
 export function resolveTaiwanChoice(choice,owner){
  const spec=taiwanPatterns.get(choice.id);if(!spec||!owner.taiwanServices?.includes(spec.id))throw Error('대만 운행계통이 없습니다.');
@@ -34,6 +34,7 @@ export function resolveTaiwanChoice(choice,owner){
   // marker so the train traverses C38 -> C1 without asking for C1 twice.
   const line=taiwanTracks.get(spec.parts[0].lineId),closing=line.loopClosingGeometry;
   if(!closing?.length)throw Error('순환선의 마지막 선로가 없습니다.');
+  if(!geometry.length&&stations.length===1)geometry.push([...line.geometry[0]]);
   let points=closing.map(p=>[...p]);if(spec.direction==='reverse')points.reverse();
   if(taiwanDistance(geometry.at(-1),points[0])>.15)throw Error('순환선 접속 오류');points[0]=geometry.at(-1);geometry.push(...points.slice(1));
   const first=stations[0],arrival={...first,id:first.id+'-circuit-end',station_id:first.station_id,loopArrivalOnly:true,geometryIndex:geometry.length-1};stations.push(arrival);calls.push(arrival.id);

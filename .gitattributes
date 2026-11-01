@@ -24,3 +24,8 @@ data/tw/** text eol=lf
 data/tw/source/** -text
 assets/operators/tw-thsr.svg -text -whitespace
 reports/taiwan/*.json text eol=lf
+
+# 대만 공식 원문과 운영기관 로고는 취득 바이트를 보존한다.
+data/tw/source/completion/** -whitespace
+assets/operators/tw-forestry-hsinchu.svg -text -whitespace
+assets/operators/tw-forestry-yilan.svg -text -whitespace

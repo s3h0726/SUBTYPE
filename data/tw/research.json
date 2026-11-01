@@ -1,19 +1,132 @@
 {
   "referenceDate": "2026-10-29",
   "routes": [
-    {"id":"tw-tra-xinma","nameKo":"신마역","status":"EXCLUDED","operationalStatus":"suspended","source":"https://www.railway.gov.tw/tra-tip-web/tip/file/a21bfcce-ffab-4ec7-a688-60dbcc877d2a","reason":"Passenger service suspended from 2022-05-31 until relocated station opens. No reference-day timetable calls; excluded from gameplay while retaining physical track geometry."},
-    {"id":"tw-wulai-trolley","nameKo":"우라이 관광궤도","status":"RESEARCH","operationalStatus":"open","source":"https://recreation.forest.gov.tw/Forestry/FR?typ_id=0200041","reason":"Official passenger operation confirmed; ordered track geometry and terminal coordinates not imported."},
-    {"id":"tw-taipingshan-bongbong","nameKo":"타이핑산 봉봉열차","status":"RESEARCH","source":"https://tps.forest.gov.tw/","reason":"Requires current official operating section, station and geometry acquisition."},
-    {"id":"tw-sugar-suantou","nameKo":"쏸터우 제당 관광철도","status":"RESEARCH","operationalStatus":"open","source":"https://www.taisugar.com.tw/chinese/Attractions_detail.aspx?n=10048&p=77&s=89","reason":"Official HSR Chiayi / Southern Palace extension confirmed; actual service paths and geometry pending."},
-    {"id":"tw-sugar-xihu","nameKo":"시후 제당 관광철도","status":"RESEARCH","source":"https://www.taisugar.com.tw/Chinese/Reservation_Form.aspx?n=10050&sn=1","reason":"Official visitor train confirmed; current station sequence and real geometry pending."},
-    {"id":"tw-sugar-wushulin","nameKo":"우수린 제당 관광철도","status":"RESEARCH","source":"https://www.taisugar.com.tw/resting/wushulin/CP2.aspx?n=11998","reason":"Visitor railway exists; regular operating section and geometry require verification. Static SL-370 is not a passenger service."},
-    {"id":"tw-sugar-xinying","nameKo":"신잉 제당 관광철도","status":"RESEARCH","source":"https://www.taisugar.com.tw/Chinese/Attractions_detail.aspx?n=10048&p=0&s=45","reason":"Official railway visitor attraction identified; current service and geometry pending."},
-    {"id":"tw-sugar-kaohsiung","nameKo":"가오슝 제당 관광철도","status":"RESEARCH","source":"https://www.taisugar.com.tw/upload/UserFiles/Forms/674/637982419324732419.pdf","reason":"Operator annual passenger-operation reference exists; present-day station and service checks pending."},
-    {"id":"tw-taoyuan-green","nameKo":"타오위안 녹선","status":"EXCLUDED","operationalStatus":"construction","reason":"Not operational on the reference date; never included in the playable catalog."},
-    {"id":"tw-taichung-blue","nameKo":"타이중 청선","status":"EXCLUDED","operationalStatus":"planned","reason":"Planned railway, excluded from playable routes."},
-    {"id":"tw-circular-future","nameKo":"신베이 순환선 미개통 연장","status":"EXCLUDED","operationalStatus":"construction","reason":"Only Dapinglin–New Taipei Industrial Park is imported."},
-    {"id":"tw-airport-A14-A23","nameKo":"공항철도 미개통역","status":"EXCLUDED","source":"https://www.tymetro.com.tw/tymetro-new/tw/_pages/travel-guide/road.php","reason":"A14 and A23 appear on planning maps but are not in the operational station sequence."},
-    {"id":"tw-infrastructure-stops","nameKo":"여객 미취급·차량기지","status":"EXCLUDED","reason":"Fangye, Alishan first/second switchback sidings and yard tracks are not passenger prompts; their real track vertices remain in geometry."},
-    {"id":"tw-cable-cars","nameKo":"케이블카","status":"EXCLUDED","reason":"Cable cars are outside the requested railway categories."}
-  ]
+    {
+      "id": "tw-tra-xinma",
+      "nameKo": "신마역",
+      "status": "EXCLUDED",
+      "operationalStatus": "suspended",
+      "source": "https://www.railway.gov.tw/tra-tip-web/tip/file/a21bfcce-ffab-4ec7-a688-60dbcc877d2a",
+      "reason": "Passenger service suspended from 2022-05-31 until relocated station opens. No reference-day timetable calls; excluded from gameplay while retaining physical track geometry."
+    },
+    {
+      "id": "tw-wulai-trolley",
+      "nameKo": "우라이 관광궤도",
+      "status": "IMPLEMENTED_UNVERIFIED",
+      "operationalStatus": "open",
+      "source": "https://recreation.forest.gov.tw/Forestry/FR?typ=11&typ_id=0200041",
+      "reason": "공식 여객 운행과 OSM 선로를 확인해 구현. 방향별 QA 결과는 별도 보고서 참조.",
+      "implementedLineIds": [
+        "tw-wulai-trolley"
+      ]
+    },
+    {
+      "id": "tw-taipingshan-bongbong",
+      "nameKo": "타이핑산 봉봉열차",
+      "status": "IMPLEMENTED_UNVERIFIED",
+      "source": "https://www.forest.gov.tw/Index/news/0079364",
+      "reason": "1km 무하차 왕복 운행만 구현. 마오싱 운휴.",
+      "operationalStatus": "open",
+      "implementedLineIds": [
+        "tw-taipingshan-bongbong"
+      ]
+    },
+    {
+      "id": "tw-sugar-suantou",
+      "nameKo": "쏸터우 제당 관광철도",
+      "status": "IMPLEMENTED_UNVERIFIED",
+      "operationalStatus": "open",
+      "source": "https://www.taisugar.com.tw/chinese/Attractions_detail.aspx?n=10048&p=77&s=89",
+      "reason": "공식 여객 운행과 OSM 선로를 확인해 구현. 방향별 QA 결과는 별도 보고서 참조.",
+      "implementedLineIds": [
+        "tw-sugar-suantou-hsr",
+        "tw-sugar-suantou-palace"
+      ]
+    },
+    {
+      "id": "tw-sugar-xihu",
+      "nameKo": "시후 제당 관광철도",
+      "status": "IMPLEMENTED_UNVERIFIED",
+      "source": "https://tourism.chcg.gov.tw/AttractionsContent.aspx?chk=b11a2980-1154-43b4-be28-59c39fb6e8c2&id=30&l=TW",
+      "reason": "공식 여객 운행과 OSM 선로를 확인해 구현. 방향별 QA 결과는 별도 보고서 참조.",
+      "operationalStatus": "open",
+      "implementedLineIds": [
+        "tw-sugar-xihu"
+      ]
+    },
+    {
+      "id": "tw-sugar-wushulin",
+      "nameKo": "우수린 제당 관광철도",
+      "status": "IMPLEMENTED_UNVERIFIED",
+      "source": "https://www.taisugar.com.tw/chinese/FAQ_list.aspx?n=10094&t1=%E6%97%85%E9%81%8A%E8%B3%87%E8%A8%8A&t2=%E7%83%8F%E6%A8%B9%E6%9E%97%E4%BC%91%E9%96%92%E5%9C%92%E5%8D%80",
+      "reason": "공식 여객 운행과 OSM 선로를 확인해 구현. 방향별 QA 결과는 별도 보고서 참조.",
+      "operationalStatus": "open",
+      "implementedLineIds": [
+        "tw-sugar-wushulin"
+      ]
+    },
+    {
+      "id": "tw-sugar-xinying",
+      "nameKo": "신잉 제당 관광철도",
+      "status": "IMPLEMENTED_UNVERIFIED",
+      "source": "https://www.taisugar.com.tw/Chinese/Attractions_detail.aspx?n=10048&p=0&s=45",
+      "reason": "공식 여객 운행과 OSM 선로를 확인해 구현. 방향별 QA 결과는 별도 보고서 참조.",
+      "operationalStatus": "open",
+      "implementedLineIds": [
+        "tw-sugar-xinying"
+      ]
+    },
+    {
+      "id": "tw-sugar-kaohsiung",
+      "nameKo": "가오슝 제당 관광철도",
+      "status": "IMPLEMENTED_UNVERIFIED",
+      "source": "https://www.taisugar.com.tw/KOB/CP2.aspx?n=11634",
+      "reason": "공식 여객 운행과 OSM 선로를 확인해 구현. 방향별 QA 결과는 별도 보고서 참조.",
+      "operationalStatus": "open",
+      "implementedLineIds": [
+        "tw-sugar-kaohsiung"
+      ]
+    },
+    {
+      "id": "tw-taoyuan-green",
+      "nameKo": "타오위안 녹선",
+      "status": "EXCLUDED",
+      "operationalStatus": "construction",
+      "reason": "Not operational on the reference date; never included in the playable catalog."
+    },
+    {
+      "id": "tw-taichung-blue",
+      "nameKo": "타이중 청선",
+      "status": "EXCLUDED",
+      "operationalStatus": "planned",
+      "reason": "Planned railway, excluded from playable routes."
+    },
+    {
+      "id": "tw-circular-future",
+      "nameKo": "신베이 순환선 미개통 연장",
+      "status": "EXCLUDED",
+      "operationalStatus": "construction",
+      "reason": "Only Dapinglin–New Taipei Industrial Park is imported."
+    },
+    {
+      "id": "tw-airport-A14-A23",
+      "nameKo": "공항철도 미개통역",
+      "status": "EXCLUDED",
+      "source": "https://www.tymetro.com.tw/tymetro-new/tw/_pages/travel-guide/road.php",
+      "reason": "A14 and A23 appear on planning maps but are not in the operational station sequence."
+    },
+    {
+      "id": "tw-infrastructure-stops",
+      "nameKo": "여객 미취급·차량기지",
+      "status": "EXCLUDED",
+      "reason": "Fangye, Alishan first/second switchback sidings and yard tracks are not passenger prompts; their real track vertices remain in geometry."
+    },
+    {
+      "id": "tw-cable-cars",
+      "nameKo": "케이블카",
+      "status": "EXCLUDED",
+      "reason": "Cable cars are outside the requested railway categories."
+    }
+  ],
+  "checkedDate": "2026-11-01"
 }

@@ -1,28 +1,29 @@
 {
   "status": "PASS",
-  "operators": 8,
-  "bilingualLineCards": 38,
-  "uniqueOperatorStations": 543,
-  "lineSpecificStationRecords": 605,
-  "bilingualDirectionalServices": 347,
-  "pairedServicePatterns": 250,
+  "operators": 11,
+  "bilingualLineCards": 46,
+  "uniqueOperatorStations": 558,
+  "lineSpecificStationRecords": 621,
+  "bilingualDirectionalServices": 505,
+  "pairedServicePatterns": 386,
   "serviceNameKinds": {
-    "source-line-description": 65,
+    "source-line-description": 67,
     "source-line-and-geographic-direction": 2,
     "official-train-class": 8,
-    "source-train-type": 272
+    "source-train-type": 427,
+    "source-line-and-round-trip": 1
   },
   "missingTranslations": [],
   "renderingBugs": [],
   "unchanged": [
-    "station IDs/names/coordinates",
-    "track geometry",
+    "기존 역 ID·이름 및 타이난 외 좌표",
+    "타이난 지하화 변경 구간 외 기존 선형",
     "service IDs/calls/directions",
     "ranking keys/payload",
     "auth/storage",
     "non-Taiwan answer implementation; Taiwan rejects Han/Kana/Latin-only aliases"
   ],
-  "sourceSnapshot": "497c470aa9e5296b27cd31b527d6ba7d0966bff90597df9525edc2e59b6e3536",
+  "sourceSnapshot": "96f486ce28004600b05eb0a1e9a2bf4c490e628d1fe460292e9f62f8994df938",
   "browserEvidence": "reports/taiwan/multilingual/browser.json",
   "scope": "Data and rendering contract audit. Actual visibility/clipping/transfer/gameplay evidence is in the browser report."
 }

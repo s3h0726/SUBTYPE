@@ -13,7 +13,7 @@ export function taiwanNameMarkup(entity,{english=false}={}){
 export function taiwanDirectionNames(choice){const a=getTaiwanDisplayNames(choice.originNames),b=getTaiwanDisplayNames(choice.destinationNames);return{ko:a.ko+' → '+b.ko,zh:a.zh&&b.zh?a.zh+' → '+b.zh:'',en:a.en&&b.en?a.en+' → '+b.en:''}}
 export function registerTaiwanDisplay(lines,patterns){twDisplayLines=new Map(lines.map(r=>[r.id,r]));twDisplayPatterns=new Map(patterns.map(p=>[p.id,p]));twDisplayStations=new Map(lines.flatMap(r=>r.stations.map(s=>[s.id,s])))}
 export function taiwanDisplayReady(){return twDisplayLines.size>0}
-export async function ensureTaiwanDisplay(){if(twDisplayLines.size)return true;if(!twDisplayLoading)twDisplayLoading=fetch(new URL('data/tw/generated/network.json?v=tw-multilingual-20261101',document.baseURI)).then(r=>{if(!r.ok)throw Error('Taiwan display catalog '+r.status);return r.json()}).then(d=>{registerTaiwanDisplay(d.lines,d.patterns);return true}).finally(()=>{twDisplayLoading=null});return twDisplayLoading}
+export async function ensureTaiwanDisplay(){if(twDisplayLines.size)return true;if(!twDisplayLoading)twDisplayLoading=fetch(new URL('data/tw/generated/network.json?v=tw-completion-20261101',document.baseURI)).then(r=>{if(!r.ok)throw Error('Taiwan display catalog '+r.status);return r.json()}).then(d=>{registerTaiwanDisplay(d.lines,d.patterns);return true}).finally(()=>{twDisplayLoading=null});return twDisplayLoading}
 export function taiwanRecordDisplay(record={}){
  const id=record.route_id||record.routeId||record.id,route=record.route||twDisplayLines.get(id);
  if(route?.countryId!=='tw'&&!String(id||'').startsWith('tw-'))return null;
@@ -48,6 +48,6 @@ export function renderTaiwanGameDisplay(game){
 }
 export function renderTaiwanSetupHeader(route){
  if(route?.countryId!=='tw')return;const root=document.getElementById('setup-route');if(!root)return;
- root.querySelector('h3').innerHTML=taiwanNameMarkup(route.line,{english:true});root.querySelector('p').innerHTML=taiwanNameMarkup(route.operator,{english:true});
+ root.querySelector('h3').innerHTML=taiwanNameMarkup(route.line,{english:true});root.querySelector('p').innerHTML=taiwanNameMarkup(route.operator,{english:true})+(route.source?.official&&route.description?'<small class="tw-operation-note" lang="ko">'+twEscape(route.description)+'</small>':'');
 }
 globalThis.TRTTaiwanDisplay={names:getTaiwanDisplayNames,text:taiwanNameText,markup:taiwanNameMarkup,record:taiwanRecordDisplay,recordMarkup:taiwanRecordMarkup,recordText:taiwanRecordText,ensure:ensureTaiwanDisplay};

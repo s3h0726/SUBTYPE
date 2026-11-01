@@ -1,0 +1,18 @@
+PASS js/app.js: HK MTR/TRAM, KR, JP click selectors
+PASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors
+PASS selector assets: 104 HK route records
+PASS JP-style Hong Kong/Taiwan cards and native-first station signs
+✔ tools\test-hk-route-selector.cjs (177.3313ms)
+{"status":"PASS","lineId":"line-jr-east-sobu-rapid","stops":10,"segments":9,"vertices":251,"directions":["Tokyo–Chiba","Chiba–Tokyo"],"localRouteKept":"line-11313","originalMainLineKept":"line-11314","transfers":22,"csvIntegrated":true}
+✔ tools\test-jr-sobu-rapid-playable.cjs (475.4533ms)
+✔ lazy selection hides the prior play action and ignores a slower superseded response (2.2106ms)
+✔ country and preview-mode switches invalidate a pending lazy selection (2.4434ms)
+✔ Japanese lazy selections retain operating-connection hydration before becoming playable (1.0346ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 507.5752

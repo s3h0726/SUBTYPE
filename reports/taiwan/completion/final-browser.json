@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "scope": "Representative UI + real engine; synthetic Hangul IME; source topology batch tests are separate",
+  "runs": [
+    {
+      "status": "PASS",
+      "lineId": "tw-taipingshan-bongbong",
+      "serviceId": "tw-service-41a23b180c5f",
+      "typedStops": 1,
+      "geometryPoints": 125,
+      "destination": "타이핑산",
+      "rankingServiceId": "tw-service-41a23b180c5f",
+      "circuit": true,
+      "map": {
+        "mapObjects": 1,
+        "tileLayers": 1,
+        "trainMarkers": 1,
+        "stationMarkers": 2,
+        "routeId": "tw-taipingshan-bongbong",
+        "routeKey": "tw-taipingshan-bongbong::forward::tw-service-41a23b180c5f::tw-station-9a19f621e191>tw-station-9a19f621e191-circuit-end::session-1",
+        "currentIndex": 0,
+        "typingProgress": 1
+      }
+    }
+  ],
+  "errors": [],
+  "multilingual": {
+    "catalog": {
+      "cards": 46,
+      "operators": 11
+    },
+    "operators": [
+      "tw-forestry-yilan"
+    ],
+    "chineseSearch": "PASS",
+    "layout": {
+      "screen-game": {
+        "position": "relative",
+        "display": "block",
+        "width": 1440,
+        "height": 1000,
+        "x": 0,
+        "y": 0
+      },
+      "game-operator": {
+        "position": "static",
+        "display": "block",
+        "width": 246.734375,
+        "height": 13.203125,
+        "x": 557.828125,
+        "y": 20
+      },
+      "game-line-name": {
+        "position": "static",
+        "display": "flex",
+        "width": 213.890625,
+        "height": 21.25,
+        "x": 574.25,
+        "y": 34.203125
+      },
+      "game-service-name": {
+        "position": "static",
+        "display": "block",
+        "width": 185.125,
+        "height": 13.203125,
+        "x": 588.625,
+        "y": 56.453125
+      },
+      "prompt-main": {
+        "position": "static",
+        "display": "block",
+        "width": 134.640625,
+        "height": 49.265625,
+        "x": 652.671875,
+        "y": 771.8125
+      },
+      "prompt-ko": {
+        "position": "static",
+        "display": "block",
+        "width": 91.53125,
+        "height": 29.109375,
+        "x": 674.21875,
+        "y": 823.078125
+      },
+      "typing-input": {
+        "position": "static",
+        "display": "block",
+        "width": 542.640625,
+        "height": 36,
+        "x": 448.671875,
+        "y": 903.1875
+      }
+    },
+    "result": "PASS",
+    "transferAndFreeDrive": "PASS",
+    "custom": "PASS",
+    "records": "PASS",
+    "recent": "PASS",
+    "rankings": {
+      "status": "PASS",
+      "source": "Intercepted read-only Supabase-shaped response; no production writes",
+      "queries": 2
+    },
+    "mobileGame": "PASS",
+    "nonTaiwanEditorRestored": true
+  },
+  "transfer": {
+    "status": "PASS",
+    "from": "tw-trtc-wenhu",
+    "before": [
+      25.033311,
+      121.54237
+    ],
+    "tab": {
+      "routeId": "tw-trtc-tamsui-xinyi",
+      "position": [
+        25.033311,
+        121.54237
+      ]
+    }
+  },
+  "mobile": {
+    "horizontalOverflow": false
+  },
+  "japanPreserved": true,
+  "koreaPreserved": true,
+  "koreaPolicy": "existing routes preserved",
+  "hongKongPreserved": true
+}
