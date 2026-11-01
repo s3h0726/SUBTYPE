@@ -132,3 +132,42 @@
     padding:8px;
   }
 }
+
+
+/* Desktop nameplates have a fixed height, even on short laptop viewports. */
+@media(min-width:821px){
+  #screen-game.active.free-drive-active .station-current{
+    min-height:0;
+    justify-content:center;
+    padding:3px 12px 5px;
+    overflow:hidden;
+  }
+  #screen-game.active.free-drive-active .station-current #station-context{
+    margin:0!important;
+    line-height:1.1;
+  }
+  #screen-game.active.free-drive-active .station-current #prompt-main{
+    font-size:clamp(20px,min(3vw,4.4dvh),40px);
+    line-height:1.06;
+    margin:0!important;
+  }
+  #screen-game.active.free-drive-active .station-current #prompt-ko{
+    font-size:clamp(16px,min(1.8vw,3.3dvh),25px)!important;
+    line-height:1.12!important;
+    margin:0!important;
+  }
+  #screen-game.active.free-drive-active .station-current .ko-progress{
+    min-height:25px;
+    height:26px;
+    margin:1px 0;
+    align-items:center;
+  }
+  #screen-game.active.free-drive-active .station-current .ko-progress .input-cell{
+    height:24px;
+    min-height:0;
+  }
+  #screen-game.active.free-drive-active .station-current .station-sign-input{
+    height:32px!important;
+    margin:2px auto 0!important;
+  }
+}
