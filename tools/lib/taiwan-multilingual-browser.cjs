@@ -19,16 +19,16 @@ async function setup(page,report,lineId,out){
 async function game(page,report,state,out){
  await page.waitForFunction(()=>document.querySelector('#departure-overlay').hidden);
  await page.evaluate(async()=>{await globalThis.__TW_QA__.game.mapReady});
- await visibleChinese(page,'#prompt-ko');await visibleChinese(page,'#game-operator .tw-zh');await visibleChinese(page,'#game-line-name .tw-zh');await visibleChinese(page,'#game-service-name .tw-zh');await visibleChinese(page,'#map-station-info .tw-zh');
+ await visibleChinese(page,'#prompt-main');await visibleChinese(page,'#game-operator .tw-zh');await visibleChinese(page,'#game-line-name .tw-zh');await visibleChinese(page,'#game-service-name .tw-zh');await visibleChinese(page,'#map-station-info .tw-zh');
  await visibleChinese(page,'.osm-station-label .tw-zh');
  report.multilingual.layout=await page.evaluate(()=>Object.fromEntries(['screen-game','game-operator','game-line-name','game-service-name','prompt-main','prompt-ko','typing-input'].map(id=>{const e=document.getElementById(id),c=getComputedStyle(e),b=e.getBoundingClientRect();return[id,{position:c.position,display:c.display,width:b.width,height:b.height,x:b.x,y:b.y}]})));
- const fonts=await page.evaluate(()=>({ko:parseFloat(getComputedStyle(document.querySelector('#prompt-main')).fontSize),zh:parseFloat(getComputedStyle(document.querySelector('#prompt-ko')).fontSize)}));assert(fonts.ko>fonts.zh,'Korean must dominate sign');
+ const fonts=await page.evaluate(()=>({zh:parseFloat(getComputedStyle(document.querySelector('#prompt-main')).fontSize),ko:parseFloat(getComputedStyle(document.querySelector('#prompt-ko')).fontSize)}));assert(fonts.zh>fonts.ko,'Traditional Chinese must be the primary station-sign label');
  if(!report.multilingual.operators.includes(state.operator)){report.multilingual.operators.push(state.operator);await page.screenshot({path:path.join(out,state.operator+'-game-dark.png'),fullPage:true});}
 }
 async function result(page,report,out){await visibleChinese(page,'#result-route .tw-zh');if(!report.multilingual.result){await page.screenshot({path:path.join(out,'result-dark.png'),fullPage:true});report.multilingual.result='PASS'}}
 async function extras(page,report,out){
  await page.screenshot({path:path.join(out,'free-drive-dark.png'),fullPage:true});
- await visibleChinese(page,'#game-free-drive-tabs');await visibleChinese(page,'#game-free-drive-options');await visibleChinese(page,'#prompt-ko');
+ await visibleChinese(page,'#game-free-drive-tabs');await visibleChinese(page,'#game-free-drive-options');await visibleChinese(page,'#prompt-main');
  // Standalone panel is a retired hidden screen; exercise the active game free-drive UI above.
  await page.evaluate(()=>{const q=globalThis.__TW_QA__;q.freeDrive.render();if(!/[\p{Script=Han}]/u.test(document.querySelector('#free-drive-station-ja').textContent))throw Error('Legacy free-drive metadata lost Chinese')});
  report.multilingual.transferAndFreeDrive='PASS';
@@ -51,7 +51,7 @@ async function extras(page,report,out){
  const clipping=await page.locator('.tw-line-card .tw-zh').evaluateAll(nodes=>nodes.filter(el=>el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1).map(el=>el.textContent));assert.deepEqual(clipping,[]);
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
  await page.screenshot({path:path.join(out,'catalog-mobile-light.png'),fullPage:true});
- await page.evaluate(async()=>{const q=globalThis.__TW_QA__;await q.startFreeDrive(q.routes().find(r=>r.id==='tw-trtc-wenhu'));document.documentElement.dataset.theme='light'});await visibleChinese(page,'#prompt-ko');await page.locator('#typing-input').scrollIntoViewIfNeeded();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);await page.screenshot({path:path.join(out,'game-mobile-light.png'),fullPage:true});report.multilingual.mobileGame='PASS';
+ await page.evaluate(async()=>{const q=globalThis.__TW_QA__;await q.startFreeDrive(q.routes().find(r=>r.id==='tw-trtc-wenhu'));document.documentElement.dataset.theme='light'});await visibleChinese(page,'#prompt-main');await page.locator('#typing-input').scrollIntoViewIfNeeded();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);await page.screenshot({path:path.join(out,'game-mobile-light.png'),fullPage:true});report.multilingual.mobileGame='PASS';
  await page.setViewportSize({width:1440,height:1000});
 }
 module.exports={catalog,setup,game,result,extras};

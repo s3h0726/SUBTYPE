@@ -6,13 +6,14 @@ function check(entity,id){const n=api.getTaiwanDisplayNames(entity);if(!han.test
 for(const op of network.operators)check(op,op.id);
 const publicLines=network.lines.filter(l=>l.visibility!=='internal'),normalized=network.lines.map(api.taiwanKoreanPresentation);api.configureTaiwanNetwork(normalized,network.patterns);
 for(const line of network.lines){check(line.line,line.id);for(const station of line.stations){check(station,station.id);const before=baseline.lines.find(l=>l.id===line.id).stations.find(s=>s.id===station.id);assert.equal(station.zh,before.zh);assert.equal(station.ko,before.ko);assert.equal(station.latitude,before.latitude);assert.equal(station.longitude,before.longitude);}}
+for(const line of normalized)check(line.operator,line.id+':operator');
 for(const line of normalized.filter(l=>l.visibility!=='internal'))for(const choice of api.taiwanOperatingChoices(line)){
  check(choice.patternName,choice.id);check(choice.originNames,choice.id+':origin');check(choice.destinationNames,choice.id+':destination');assert(han.test(api.resolveTaiwanChoice(choice,line).service.nameZh));
 }
 const stableLine=l=>({id:l.id,line:l.line,operator:l.operator,stations:l.stations,geometry:l.geometry,loopClosingGeometry:l.loopClosingGeometry,taiwanServices:l.taiwanServices}),stablePattern=p=>({id:p.id,nameKo:p.nameKo,nameZh:p.nameZh,calls:p.calls,parts:p.parts,origin:p.origin,destination:p.destination,trainNumbers:p.trainNumbers,direction:p.direction});
 assert.deepEqual(network.lines.map(stableLine),baseline.lines.map(stableLine));assert.deepEqual(network.patterns.map(stablePattern),baseline.patterns.map(stablePattern));
 // A legacy Japanese slot must never silently become a Taiwan Chinese name.
-assert.equal(api.getTaiwanDisplayNames({ko:'타이베이',ja:'臺北'}).zh,'');
+assert.equal(api.getTaiwanDisplayNames({ko:'타이베이',ja:'臺北'}).zh,'');assert.equal(api.getTaiwanDisplayNames({ko:'타이베이',names:{zh:'臺北'},displayNames:{en:'Taipei'}}).zh,'臺北');
 const s=network.lines[0].stations[0],changed=api.taiwanKoreanPresentation({...network.lines[0],stations:[{...s,ko:'편집된한국어'}]});assert.equal(changed.stations[0].zh,s.zh);assert.equal(changed.stations[0].ko,'편집된한국어');
 const leaderboard=fs.readFileSync('js/leaderboard.js','utf8'),oldBoard=cp.execFileSync('git',['show','HEAD:js/leaderboard.js'],{encoding:'utf8'}),keyCode=s=>s.slice(s.indexOf('const serviceInfo='),s.indexOf('const authenticated='));assert.equal(keyCode(leaderboard).replaceAll('\r\n','\n'),keyCode(oldBoard).replaceAll('\r\n','\n'),'Ranking keys/payload changed');
 for(const f of ['js/auth.js','js/storage.js'])assert.equal(fs.readFileSync(f,'utf8').replaceAll('\r\n','\n'),cp.execFileSync('git',['show','HEAD:'+f],{encoding:'utf8'}).replaceAll('\r\n','\n'));
