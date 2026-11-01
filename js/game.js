@@ -60,7 +60,7 @@ class Game{
     $('#station-context').textContent='다음역 입력 · 자유주행';
     const badge=$('#station-badge');badge.textContent=station.hasOfficialStationCode?station.officialCode:'';badge.hidden=!badge.textContent;
     const destination=edge.direction<0?edge.route.stations[0]:edge.route.stations.at(-1);
-    $('#next-station-name').textContent=ko||'—';$('#next-station').textContent=ko||'';
+    $('#next-station-name').textContent=ko||'—';$('#next-station-romaji').textContent=this.route?.countryId==='kr'?ko:`${station.ja||''} · ${station.romaji||''}`;$('#next-station').textContent=ko||'';
     $('#service-destination-ja').textContent=this.route.countryId==='kr'?this.stationKoDisplay(destination.ko):destination.ja||'';
     $('#service-destination-ko').textContent=this.stationKoDisplay(destination.ko)||'';
     $('#service-direction-summary').textContent=`${this.stationKoDisplay(this.currentStation()?.ko||'')} → ${this.stationKoDisplay(destination.ko||'')}`;
@@ -94,7 +94,9 @@ class Game{
     this.applyActiveBrand(station);const sign=$('#station-sign');sign.classList.remove('sign-enter');void sign.offsetWidth;sign.classList.add('sign-enter');
     $('#prompt-main').textContent=route?.countryId==='kr'?(this.stationKoDisplay(station.ko)||station.ja||''):(station.ja||'');$('#prompt-ko').textContent=this.stationKoDisplay(station.ko)||'';$('#prompt-ko').classList.remove('memory-hidden');$('#prompt-kana').textContent=this.stationKoDisplay(station.kana)||'';$('#prompt-sub').textContent=this.stationKoDisplay(station.romaji)||'';$('#station-context').textContent='현재역 · 자유주행';
     const badge=$('#station-badge'),officialCode=station.hasOfficialStationCode?station.officialCode:'';badge.textContent=officialCode;badge.hidden=!officialCode;
-    $('#previous-station-name').textContent=this.stationKoDisplay(prev?.ko)||'—';$('#previous-station-romaji').textContent=prev?`${route.countryId==='kr'?this.stationKoDisplay(prev.ko):prev.ja||''} · ${prev.romaji||''}`:'';
+    // The left sign says CURRENT station: show the graph's current station, not the previous neighbor.
+    $('#previous-station-name').textContent=this.stationKoDisplay(station.ko)||'—';$('#previous-station-romaji').textContent=route.countryId==='kr'?this.stationKoDisplay(station.ko):`${station.ja||''} · ${station.romaji||''}`;
+    $('#following-stop-label').textContent='다음 역';
     $('#next-station-name').textContent=this.stationKoDisplay(next?.ko)||'—';$('#next-station-romaji').textContent=next?`${route.countryId==='kr'?this.stationKoDisplay(next.ko):next.ja||''} · ${next.romaji||''}`:'';
     $('#next-station').textContent='이동할 역 선택';$('#station-service-footer').textContent='자유주행';
     $('#game-service-name').textContent='FREE DRIVE · 自由走行';$('#service-origin-ja').textContent=route.countryId==='kr'?this.stationKoDisplay(station.ko):station.ja||'';$('#service-origin-ko').textContent=this.stationKoDisplay(station.ko)||'';$('#service-destination-ja').textContent='自由';$('#service-destination-ko').textContent='자유주행';$('#service-stop-count').textContent=`${state.historyLength||1}개 역 이동`;$('#service-route-summary').textContent=`${route.line?.ko||route.line?.ja||''} · 자유주행`;$('#service-direction-summary').textContent='앞·뒤 역을 선택해 자유롭게 이동';
