@@ -10,6 +10,8 @@ button,input,select{font:inherit}button{cursor:pointer;border:1px solid #c9d4df;
 button:hover{background:#e6f2fa}button.primary{background:#11659a;color:white;border-color:#11659a}
 button.primary:hover{background:#094f7c}input[type=search]{padding:10px 12px;border:1px solid #bdccd8;border-radius:8px;flex:1;min-width:230px;max-width:520px}
 .tab{background:#e0e9f1}.tab.active{background:#163e5f;color:#fff}
+.country{font-weight:700;background:#e8edf5}.country.active{background:#123a58;color:#fff}
+#route-filter-bar[hidden]{display:none}#route-filter{flex:1;min-width:220px;max-width:680px;padding:9px;border:1px solid #bdccd8;border-radius:8px;background:white}
 .panel{background:#fff;border-radius:12px;border:1px solid #dbe4eb;box-shadow:0 4px 12px #1d36400a;overflow:hidden}
 #status{padding:12px 16px;border-bottom:1px solid #e8edf1;color:#456378;font-size:13px}
 #table-wrap{height:min(68vh,800px);overflow:auto}table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px}
@@ -26,38 +28,56 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 </style></head>
 <body><header><h1>메트로타이핑 · 한글명 편집표</h1><p>최신 원본 데이터 · 한글명·노선 RGB 편집 → GitHub에 저장 → 게임에 자동 반영</p></header>
 <main>
+<div class="toolbar" id="countries" role="group" aria-label="국가별 한글명 편집">
+<button class="country active" data-country="jp" aria-pressed="true">🇯🇵 일본</button>
+<button class="country" data-country="kr" aria-pressed="false">🇰🇷 대한민국</button>
+<button class="country" data-country="hk" aria-pressed="false">🇭🇰 홍콩</button>
+<button class="country" data-country="tw" aria-pressed="false">🇹🇼 대만</button>
+</div>
 <div class="toolbar" id="tabs">
 <button class="tab active" data-file="operators">운영사 <span id="count-operators">…</span></button>
 <button class="tab" data-file="lines">노선 <span id="count-lines">…</span></button>
-<button class="tab" data-file="korea-lines">한국 노선 <span id="count-korea-lines">…</span></button>
 <button class="tab" data-file="services">직통·운행계통 <span id="count-services">…</span></button>
 <button class="tab" data-file="stations-by-line">역명 <span id="count-stations-by-line">…</span></button>
 <button class="tab" data-file="stations-unique">고유 역명 <span id="count-stations-unique">…</span></button>
 </div>
 <div class="toolbar">
-<input id="q" type="search" placeholder="회사명·노선명·역명·일본어명 검색" aria-label="검색">
+<input id="q" type="search" placeholder="운영사·노선·역명·원어명 검색" aria-label="검색">
 <label><input type="checkbox" id="changesOnly"> 수정된 항목만</label>
 <button id="saveGame" class="primary">게임에 적용 (GitHub 저장)</button><button id="export">현재 표 전체 CSV 저장</button>
 <button id="exportChanges">변경 항목만 CSV 저장</button>
 <button id="reset">현재 표 변경 취소</button>
 </div>
+<div class="toolbar" id="route-filter-bar" hidden><label for="route-filter">노선 선택</label><select id="route-filter" aria-label="역명·운행계통을 편집할 노선"><option value="">노선을 선택하세요</option></select><small>한국·홍콩의 역명 및 운행계통은 선택한 노선 단위로 불러옵니다. 다른 노선의 임시 편집은 별도로 보관됩니다.</small></div>
 <div class="toolbar"><label for="githubToken">GitHub fine-grained 토큰 (Contents: Read and write)</label><input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_..." style="flex:1;min-width:200px;padding:9px;border:1px solid #bdccd8;border-radius:8px"><small>토큰은 서버·브라우저 저장소에 저장하지 않습니다.</small></div>
 <div class="panel"><div id="status" role="status">자료 읽는 중…</div><div id="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div></div>
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
+<p class="note">상단에서 <strong>일본·대한민국·홍콩·대만</strong>을 선택한 후 운영사, 노선, 운행계통 또는 역명을 편집할 수 있습니다. 국가마다 검색·수정 초안·CSV 저장이 분리됩니다. 고유 역명은 비교용이므로 실제 변경은 <strong>역명</strong> 탭에서 노선별로 적용하세요.</p>
 <p class="note">일본 노선의 최신 나무위키 대조 명칭을 반영했습니다. 역명·고유 역명 탭에는 <strong>출처 검증</strong>과 <strong>근거 URL</strong>이 표시됩니다. 검증되지 않은 항목은 자동으로 정확하다고 확정하지 않습니다. 예전 브라우저 임시 저장본이 최신 원본명을 덮어쓰지 않도록 편집 초안을 새 버전으로 분리했습니다.</p>
 <p class="note">초록색 한글명(직통·운행계통 포함)과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
 </main>
 <script src="../../js/service-data.js?v=services-editor-20261026"></script>
 <script>
 'use strict';
-const FILES=['operators','lines','korea-lines','services','stations-by-line','stations-unique'];
-let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0;
+const FILES=['operators','lines','services','stations-by-line','stations-unique'];
+const COUNTRIES={jp:'일본',kr:'대한민국',hk:'홍콩',tw:'대만'};
+let country=['jp','kr','hk','tw'].includes(new URLSearchParams(location.search).get('country'))?new URLSearchParams(location.search).get('country'):'jp';
+let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0,loadSequence=0;
+const routeSelection={kr:'',hk:''},indexCache={};
+const routeBar=document.querySelector('#route-filter-bar'),routePicker=document.querySelector('#route-filter');
 const DATA_VERSION='20261031-namuwiki-revalidated'; // Isolate stale drafts from revalidated canonical names; older local drafts remain recoverable under their earlier storage key
 const FRESH_DATA_QUERY='ts='+Date.now();
 const EDIT_BRANCH=new URLSearchParams(location.search).get('branch')||'main';
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
-const editNameCol={'operators':'한국어명','lines':'노선 한글명','korea-lines':'노선 한글명','services':'한글명','stations-by-line':'역 한글명','stations-unique':'역 한글명'};
+const editNameCol={'operators':'한국어명','lines':'노선 한글명','services':'한글명','stations-by-line':'역 한글명'};
+const HEADERS={
+ operators:['운영사ID','한국어명','원어명','영어명','데이터경로'],
+ lines:['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 원어명','노선 영어명','RGB 색상','원본경로'],
+ services:['고유 ID','종류','노선 ID','원어명','한글명','영어명','운영사 한글명','소속 노선 한글명'],
+ 'stations-by-line':['운영사ID','운영사 한글명','노선ID','노선 한글명','역ID','공통역ID','역 한글명','역 원어명','가나','로마자','한글명 출처','데이터경로','출처 검증','근거 URL'],
+ 'stations-unique':['공통역ID','역 한글명','역 원어명','가나','로마자','한글명 출처','예시 노선ID','출처 검증','근거 URL']
+};
 const isChanged=i=>rows[i]?.some((v,j)=>v!==original[i]?.[j]);
 let remoteOverrides={operators:{},lines:{},stations:{},services:{}};
 const colorRE=/^#[0-9a-f]{6}$/i;
@@ -91,8 +111,14 @@ function saveCSV(data,name){const blob=new Blob([makeCSV(data)],{type:'text/csv;
 function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 // Preserve draft edits by stable route/station identity, not by row number.
 function rowKey(r){if(file==='operators')return r[0];if(file==='lines'||file==='korea-lines')return r[2];if(file==='services')return r[0];if(file==='stations-by-line')return r[2]+'::'+r[4];if(file==='stations-unique')return r[0]||r[2]+'::'+r[3];return JSON.stringify(r)}
-function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[rowKey(r)]=r});localStorage.setItem('metrot-korean-edit-'+DATA_VERSION+'-'+file,JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
-function applyDraft(){try{const draft=JSON.parse(localStorage.getItem('metrot-korean-edit-'+DATA_VERSION+'-'+file)||'{}');const current=new Map(rows.map((r,i)=>[rowKey(r),i]));for(const saved of Object.values(draft)){if(!Array.isArray(saved)||saved.length!==heads.length)continue;const index=current.get(rowKey(saved));if(index!==undefined)rows[index]=saved}}catch{}}
+function draftKey(){return 'metrot-korean-edit-'+DATA_VERSION+'-'+country+'-'+file+((country==='kr'||country==='hk')&&['stations-by-line','stations-unique','services'].includes(file)?'-'+(routeSelection[country]||'none'):'')}
+function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[rowKey(r)]=r});localStorage.setItem(draftKey(),JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
+function applyDraft(){try{
+ const old='metrot-korean-edit-'+DATA_VERSION+'-'+(country==='kr'&&file==='lines'?'korea-lines':file);
+ const stored=localStorage.getItem(draftKey())||((country==='jp'||(country==='kr'&&file==='lines'))?localStorage.getItem(old):null);
+ const draft=JSON.parse(stored||'{}'),current=new Map(rows.map((r,i)=>[rowKey(r),i]));
+ for(const saved of Object.values(draft)){if(!Array.isArray(saved)||saved.length!==heads.length)continue;const index=current.get(rowKey(saved));if(index!==undefined)rows[index]=saved}
+}catch{}}
 async function serviceRows(){
  const response=await fetch('./lines.csv?'+FRESH_DATA_QUERY,{cache:'no-store'});
  if(!response.ok)throw Error('노선명 목록을 불러올 수 없습니다: '+response.status);
@@ -126,10 +152,122 @@ async function koreaLineRows(){
  const operators=new Map((data.operators||[]).map(o=>[o.id,o.names?.ko||o.id]));
  return (data.routes||[]).map(r=>[r.operatorId||'',operators.get(r.operatorId)||r.operator?.ko||'',r.id,r.names?.ko||r.line?.ko||'',r.names?.ja||r.line?.ja||'',r.names?.en||r.line?.en||'',r.lineColor||r.color||'#0052A4',r.lazySource||'']);
 }
-async function load(name){file=name;page=0;q.value='';changesOnly.checked=false;status.textContent='자료 읽는 중…';
+
+async function countryIndex(){
+ if(indexCache[country])return indexCache[country];
+ const path={kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json'}[country];
+ if(!path)throw Error('국가별 데이터 없음: '+country);
+ const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
+ if(!response.ok)throw Error(path+' HTTP '+response.status);
+ return indexCache[country]=await response.json();
+}
+function routeRows(index){
+ const operators=new Map((index.operators||[]).map(op=>[op.id,op.names?.ko||op.operator?.ko||op.id]));
+ return (index.routes||[]).map(r=>[r.operatorId||'',operators.get(r.operatorId)||r.operator?.ko||'',
+  r.id,r.line?.ko||r.names?.ko||'',r.line?.zh||r.line?.ja||r.names?.ja||'',r.line?.en||r.names?.en||'',
+  r.lineColor||r.color||'#60736A',r.lazySource||'']);
+}
+async function routeDoc(index){
+ const id=routeSelection[country];if(!id)return null;
+ const meta=(index.routes||[]).find(r=>r.id===id);
+ if(!meta)throw Error('선택한 노선 ID가 현재 목록에 없습니다: '+id);
+ if(Array.isArray(meta.stations)&&meta.stations.length)return meta;
+ const path=String(meta.lazySource||'').replace(/^\.\//,'');
+ if(!/^data\/(kr|hk)\/generated\/routes\/[a-zA-Z0-9._-]+\.json$/.test(path)||!path.startsWith('data/'+country+'/'))throw Error('노선 데이터 경로 오류: '+path);
+ const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
+ if(!response.ok)throw Error('역명 상세 자료 '+response.status+': '+id);
+ const payload=await response.json(),route=payload.route||payload;
+ if(route.id!==id)throw Error('불일치하는 노선 상세 자료: '+id);
+ return route;
+}
+function stationName(s,field){
+ return String(field==='ko'?(s.ko||s.nameKo||s.names?.ko||''):
+ field==='source'?(s.zh||s.nameZhHant||s.nameZh||s.names?.zh||s.ja||s.nameJa||''):
+ (s.en||s.nameEn||s.names?.en||s.romaji||''));
+}
+function routeStationRows(route){
+ const path=route.lazySource||'data/'+country+'/generated/routes/'+route.id+'.json';
+ return (route.stations||[]).map((st,i)=>[
+   route.operatorId||'',route.operator?.ko||'',route.id,route.line?.ko||'',
+   String(st.id||st.stationId||route.id+'-stop-'+i),String(st.stationMasterId||st.physicalStationId||st.networkKey||''),
+   stationName(st,'ko'),stationName(st,'source'),st.kana||'',stationName(st,'en'),
+   st.koSource||st.koreanNameSource?.sourceType||'',path,
+   st.nameStatus||(st.koVerified===true?'확인':'검토 필요'),st.koSourceUrl||st.koreanNameSource?.sourceUrl||''
+ ]);
+}
+function tableForRoute(route,name){
+ if(!route)return [HEADERS[name]];
+ if(name==='services'){
+  const services=[...(route.services||[])];
+  if(country==='kr')for(const journey of route.verifiedJourneys||[]){
+   const service=journey.service;
+   if(service?.id&&!services.some(s=>s.id===service.id))services.push({...service,nameKo:service.nameKo||journey.patternName?.ko,nameJa:service.nameJa||journey.patternName?.ko});
+  }
+  return [HEADERS.services,...services.map(s=>[
+   String(s.id||''),'운행계통',route.id,s.nameZh||s.nameJa||s.ja||'',
+   s.nameKo||s.ko||'',s.nameEn||s.en||'',route.operator?.ko||'',route.line?.ko||''
+  ]).filter(r=>r[0])];
+ }
+ const stationRecords=routeStationRows(route);
+ if(name==='stations-by-line')return [HEADERS[name],...stationRecords];
+ const seen=new Set(),unique=stationRecords.filter(r=>{const key=r[5]||r[4];if(seen.has(key))return false;seen.add(key);return true});
+ return [HEADERS[name],...unique.map(r=>[r[5]||r[4],r[6],r[7],r[8],r[9],r[10],r[2],r[12],r[13]])];
+}
+async function countryTable(name){
+ if(country==='jp'||country==='tw'){
+  if(name==='services'){
+   if(country==='jp')return [HEADERS.services,...(await serviceRows()).filter(r=>!String(r[2]).startsWith('tw-'))];
+   const data=await countryIndex(),lineNames=new Map((data.lines||[]).map(r=>[r.id,r.line?.ko||r.names?.ko||r.id]));
+   const operatorNames=new Map((data.lines||[]).map(r=>[r.id,r.operator?.ko||'']));
+   return [HEADERS.services,...(data.patterns||[]).map(p=>{
+    const id=p.parts?.[0]?.lineId||p.lineId||'';
+    return [p.id||'','운행계통',id,p.displayNames?.zh||p.nameZh||p.nameJa||'',
+      p.nameKo||p.displayNames?.ko||'',p.displayNames?.en||p.nameEn||'',operatorNames.get(id)||'',lineNames.get(id)||id];
+   }).filter(r=>r[0])];
+  }
+  const res=await fetch('./'+name+'.csv?'+FRESH_DATA_QUERY,{cache:'no-store'});
+  if(!res.ok)throw Error('CSV '+res.status);
+  const arr=parseCSV(await res.text()),header=arr.shift();
+  const keyCol=name==='operators'?0:name==='lines'?2:name==='stations-by-line'?2:6;
+  const filtered=arr.filter(r=>String(r[keyCol]||'').startsWith('tw-')===(country==='tw'));
+  if(country==='tw'){
+   if(name==='operators')header[2]='원어명(번체중문)';
+   if(name==='lines')header[4]='노선 원어명';
+   if(name==='stations-by-line')header[7]='역 원어명';
+   if(name==='stations-unique')header[2]='역 원어명';
+  }
+  return [header,...filtered];
+ }
+ const data=await countryIndex();
+ if(name==='operators')return [HEADERS.operators,...(data.operators||[]).map(o=>[o.id,o.names?.ko||o.operator?.ko||'',o.names?.zh||o.names?.ja||'',o.names?.en||'','data/'+country+'/generated/index.json'])];
+ if(name==='lines')return [HEADERS.lines,...routeRows(data)];
+ if(name==='services'||name==='stations-by-line'||name==='stations-unique')return tableForRoute(await routeDoc(data),name);
+ throw Error('지원하지 않는 탭: '+name);
+}
+async function updateRouteSelector(){
+ const visibleSelector=(country==='kr'||country==='hk')&&['services','stations-by-line','stations-unique'].includes(file);
+ routeBar.hidden=!visibleSelector;if(!visibleSelector)return;
+ const index=await countryIndex();
+ routePicker.innerHTML='<option value="">노선을 선택하세요</option>'+(index.routes||[]).map(r=>
+ '<option value="'+escape(r.id)+'"'+(routeSelection[country]===r.id?' selected':'')+'>'+
+ escape((r.line?.ko||r.names?.ko||r.id)+' · '+r.id)+'</option>').join('');
+}
+async function load(name){if(!FILES.includes(name))return;
+ file=name;const sequence=++loadSequence;page=0;q.value='';changesOnly.checked=false;status.textContent='자료 읽는 중…';
+ document.querySelectorAll('#countries .country').forEach(b=>{const active=b.dataset.country===country;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.file===name));
- try{let arr;if(name==='korea-lines')arr=[['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...await koreaLineRows()];else if(name==='services')arr=[['고유 ID','종류','노선 ID','일본어명','한글명','영어명','운영사 한글명','소속 노선 한글명'],...await serviceRows()];else{const res=await fetch('./'+name+'.csv?'+FRESH_DATA_QUERY,{cache:'no-store'});if(!res.ok)throw Error('CSV '+res.status);arr=parseCSV(await res.text())}heads=arr.shift();rows=arr;const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
- }catch(e){status.textContent='파일을 열 수 없습니다: '+e.message}}
+ try{
+  await updateRouteSelector();const arr=await countryTable(name);
+  if(sequence!==loadSequence)return;
+  heads=arr.shift();rows=arr;
+  const count=document.getElementById('count-'+name);if(count)count.textContent=rows.length.toLocaleString('ko-KR');
+  try{await fetchOverrides()}catch(e){console.warn('Could not fetch editor overrides',e)}
+  if(sequence!==loadSequence)return;
+  applyRemote();original=rows.map(r=>r.slice());applyDraft();refresh();
+  if(!routeBar.hidden&&!routeSelection[country])status.textContent=COUNTRIES[country]+' · 역명이나 운행계통을 열려면 노선을 선택하세요.';
+ }catch(e){if(sequence===loadSequence){heads=[];rows=[];original=[];visible=[];table.querySelector('thead').innerHTML='';table.querySelector('tbody').innerHTML='';
+   status.textContent='파일을 열 수 없습니다: '+e.message;}}
+}
 function refresh(){
  const key=q.value.trim().toLocaleLowerCase('ko');visible=[];
  rows.forEach((r,i)=>{if(changesOnly.checked&&!isChanged(i))return;if(key&&!r.some(v=>String(v).toLocaleLowerCase('ko').includes(key)))return;visible.push(i)});
@@ -141,7 +279,7 @@ function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.sl
   ?'<td class="editable '+(v!==original[i][j]?'edited':'')+'">'+(j===rgb?'<input type="color" data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:46px;min-width:46px;vertical-align:middle"><input data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:90px;min-width:90px" aria-label="RGB 색상">':'<input data-r="'+i+'" data-c="'+j+'" value="'+escape(v)+'" aria-label="'+escape(heads[j])+'">')+'</td>'
   :'<td>'+(heads[j]==='근거 URL'&&/^https:\/\//i.test(String(v))?'<a href="'+escape(v)+'" target="_blank" rel="noopener noreferrer">근거 보기</a>':escape(v))+'</td>').join('')+'</tr>').join('');
  const changes=rows.reduce((n,r,i)=>n+(isChanged(i)?1:0),0);
- status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+changes.toLocaleString()+'건';
+ status.textContent=COUNTRIES[country]+' · 총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+changes.toLocaleString()+'건';
  document.querySelector('#pageinfo').textContent=visible.length?(page*size+1).toLocaleString()+'–'+e.toLocaleString()+' / '+visible.length.toLocaleString():'0건';
  document.querySelector('#prev').disabled=page===0;document.querySelector('#next').disabled=e>=visible.length;
 }
@@ -154,10 +292,12 @@ if((file==='lines'||file==='korea-lines')&&c===heads.indexOf('RGB 색상')){
 el.closest('td').classList.toggle('edited',isChanged(r));persist();const n=rows.reduce((acc,row,i)=>acc+(isChanged(i)?1:0),0);status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+n+'건'});
 q.addEventListener('input',()=>{page=0;refresh()});changesOnly.addEventListener('change',()=>{page=0;refresh()});
 document.querySelector('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-file]');if(b)load(b.dataset.file)});
+document.querySelector('#countries').addEventListener('click',e=>{const b=e.target.closest('[data-country]');if(b&&b.dataset.country!==country){country=b.dataset.country;load(file)}});
+routePicker.addEventListener('change',()=>{routeSelection[country]=routePicker.value;load(file)});
 document.querySelector('#prev').onclick=()=>{page--;render()};document.querySelector('#next').onclick=()=>{page++;render()};
-document.querySelector('#export').onclick=()=>saveCSV([heads,...rows],file+'-edited.csv');
-document.querySelector('#exportChanges').onclick=()=>{const a=rows.filter((r,i)=>isChanged(i));saveCSV([heads,...a],file+'-changes-only.csv')};
-document.querySelector('#reset').onclick=()=>{if(!confirm('현재 표의 임시 수정 내용을 모두 취소할까요?'))return;rows=original.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+DATA_VERSION+'-'+file);refresh()};
+document.querySelector('#export').onclick=()=>saveCSV([heads,...rows],country+'-'+file+(routeSelection[country]?'-'+routeSelection[country]:'')+'-edited.csv');
+document.querySelector('#exportChanges').onclick=()=>{const a=rows.filter((r,i)=>isChanged(i));saveCSV([heads,...a],country+'-'+file+(routeSelection[country]?'-'+routeSelection[country]:'')+'-changes-only.csv')};
+document.querySelector('#reset').onclick=()=>{if(!confirm('현재 표의 임시 수정 내용을 모두 취소할까요?'))return;rows=original.map(r=>r.slice());localStorage.removeItem(draftKey());refresh()};
 
 function mergeChange(obj,k,v){if(v) obj[k]=v}
 async function saveToGame(){
