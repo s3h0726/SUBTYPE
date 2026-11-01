@@ -60,6 +60,17 @@ window.addEventListener('load',()=>{
    const x=bounds(a),y=bounds(b);
    if(x.bottom>y.top+2)errors.push(a+' overlaps '+b+': '+x.bottom.toFixed(1)+'/'+y.top.toFixed(1));
  }
+ const inputRect=document.querySelector('.station-sign-input').getBoundingClientRect();
+ const inputFont=parseFloat(getComputedStyle(document.querySelector('#typing-input')).fontSize);
+ const compact=innerHeight<=650;
+ const minHeight=compact?44:52;
+ const minFont=compact?18:21;
+ if(inputRect.height<minHeight)errors.push('typing field too short: '+inputRect.height.toFixed(1)+'px; required '+minHeight+'px');
+ if(inputFont<minFont)errors.push('typing font too small: '+inputFont+'px; required '+minFont+'px');
+ if(inputRect.width<Math.min(innerWidth*0.58,230))errors.push('typing field too narrow: '+inputRect.width.toFixed(1)+'px');
+ document.documentElement.dataset.inputHeight=Math.round(inputRect.height);
+ document.documentElement.dataset.inputWidth=Math.round(inputRect.width);
+ document.documentElement.dataset.inputFont=Math.round(inputFont);
  const style=getComputedStyle(document.querySelector('#typing-input'));
  if(style.color==='rgba(0, 0, 0, 0)'||style.color==='transparent'||style.opacity==='0')errors.push('typing text invisible');
  if(getComputedStyle(document.querySelector('#ko-progress')).display!=='none')errors.push('duplicate typed-text mirror visible');
