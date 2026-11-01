@@ -153,13 +153,13 @@ async function koreaLineRows(){
  return (data.routes||[]).map(r=>[r.operatorId||'',operators.get(r.operatorId)||r.operator?.ko||'',r.id,r.names?.ko||r.line?.ko||'',r.names?.ja||r.line?.ja||'',r.names?.en||r.line?.en||'',r.lineColor||r.color||'#0052A4',r.lazySource||'']);
 }
 
-async function countryIndex(){
- if(indexCache[country])return indexCache[country];
- const path={kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json'}[country];
- if(!path)throw Error('국가별 데이터 없음: '+country);
+async function countryIndex(requestedCountry=country){
+ if(indexCache[requestedCountry])return indexCache[requestedCountry];
+ const path={kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json'}[requestedCountry];
+ if(!path)throw Error('국가별 데이터 없음: '+requestedCountry);
  const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
  if(!response.ok)throw Error(path+' HTTP '+response.status);
- return indexCache[country]=await response.json();
+ return indexCache[requestedCountry]=await response.json();
 }
 function routeRows(index){
  const operators=new Map((index.operators||[]).map(op=>[op.id,op.names?.ko||op.operator?.ko||op.id]));
@@ -200,8 +200,9 @@ function tableForRoute(route,name){
  if(name==='services'){
   const services=[...(route.services||[])];
   if(country==='kr')for(const journey of route.verifiedJourneys||[]){
-   const service=journey.service;
-   if(service?.id&&!services.some(s=>s.id===service.id))services.push({...service,nameKo:service.nameKo||journey.patternName?.ko,nameJa:service.nameJa||journey.patternName?.ko});
+   const service=journey.service||{},id=String(service.id||journey.id||'');
+   if(id&&!services.some(s=>s.id===id))services.push({...service,id,nameKo:service.nameKo||journey.patternName?.ko||'',
+     nameJa:service.nameJa||journey.patternName?.ko||'',nameEn:service.nameEn||''});
   }
   return [HEADERS.services,...services.map(s=>[
    String(s.id||''),'운행계통',route.id,s.nameZh||s.nameJa||s.ja||'',
