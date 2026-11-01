@@ -50,3 +50,16 @@ jobs:
         run: node --test tools/test-hk-completion.cjs
       - name: Verify missing 507P, Racecourse and Hong Kong TAB boarding
         run: node --test tools/test-hk-missing.cjs
+  hong-kong-network:
+    # Keep HK evidence runnable even if an unrelated Japanese spelling check
+    # fails earlier in the existing verify job. All existing checks remain.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify all released HK services and new 507P / Racecourse directions
+        run: node --test tools/test-hk-completion.cjs tools/test-hk-phase6.cjs tools/test-hk-missing.cjs
