@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T16:38:42.737Z",
+  "generatedAt": "2026-11-01T14:49:36.348Z",
   "scope": "all six JR passenger companies",
   "sourcePolicy": "Namu wiki pages verified only where explicitly linked. Other cards are validated against physical station IDs and catalog; no invented verification.",
   "caveats": "Route section != train service destination. Actual departure terminus may differ from section boundary; not all TrainLCD patterns are current. No fabricated tracks, no unlocking broken services.",
   "counts": {
-    "cards": 223,
+    "cards": 224,
     "sourceBacked": 9,
     "sourceMismatch": 0,
     "titleRangeMismatch": 1,
@@ -14,7 +14,7 @@
   },
   "byCompany": {
     "jr-east": {
-      "totalCards": 85,
+      "totalCards": 86,
       "titleRangeChecked": 12,
       "titleRangeMismatch": 0,
       "sourceBacked": 3,
@@ -2179,6 +2179,32 @@
         "ko": "오후나"
       },
       "stationCount": 16,
+      "geometryReady": true,
+      "playable": true,
+      "titleJaEndpoints": null,
+      "titleKoEndpoints": null,
+      "titleJaMatchesStops": null,
+      "titleKoMatchesStops": null,
+      "wiki": null,
+      "editorTitleOverride": null,
+      "issues": []
+    },
+    {
+      "id": "line-jr-east-sobu-rapid",
+      "operatorId": "jr-east",
+      "ja": "総武快速線",
+      "ko": "소부 쾌속선",
+      "first": {
+        "id": "station-1130101",
+        "ja": "東京",
+        "ko": "도쿄"
+      },
+      "last": {
+        "id": "station-1131339",
+        "ja": "千葉",
+        "ko": "치바"
+      },
+      "stationCount": 10,
       "geometryReady": true,
       "playable": true,
       "titleJaEndpoints": null,
