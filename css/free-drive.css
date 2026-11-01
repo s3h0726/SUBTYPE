@@ -68,3 +68,67 @@
   .game-free-drive-tabs{top:4px;left:6px;right:6px;padding:6px 8px;border-radius:8px}
   .game-free-drive-tabs:not([hidden]) + .game-top{margin-top:64px}
 }
+
+
+/* Free-drive choices float over the map, outside the fixed-height nameplate.
+   They must never participate in the station sign's flex/grid measurements. */
+#screen-game.free-drive-active #game-free-drive-options{
+  position:absolute;
+  z-index:905;
+  left:50%;
+  bottom:calc(clamp(220px,31dvh,286px) + 24px);
+  transform:translateX(-50%);
+  width:min(780px,calc(100% - 32px));
+  max-height:min(29dvh,244px);
+  margin:0;
+  padding:10px;
+  box-sizing:border-box;
+  overflow-x:hidden;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
+  color:var(--ink);
+  box-shadow:0 10px 28px #0005;
+  scrollbar-width:thin;
+}
+#screen-game.free-drive-active #game-free-drive-options .free-drive-station-buttons{
+  min-width:0;
+}
+#screen-game.free-drive-active #game-free-drive-options button{
+  min-width:0;
+}
+#screen-game.free-drive-active #game-free-drive-options button b{
+  min-width:0;
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+#screen-game.free-drive-active #game-free-drive-options button.selected{
+  border-color:var(--route-color);
+  background:color-mix(in srgb,var(--route-color) 18%,var(--surface));
+  box-shadow:inset 0 0 0 1px var(--route-color);
+}
+@media(max-height:680px) and (min-width:821px){
+  #screen-game.free-drive-active #game-free-drive-options{
+    bottom:244px;
+    max-height:min(18dvh,124px);
+    padding:6px;
+  }
+}
+@media(max-width:820px){
+  #screen-game.free-drive-active #game-free-drive-options{
+    width:calc(100% - 18px);
+    bottom:calc(min(238px,38dvh) + 17px);
+    max-height:min(24dvh,180px);
+    padding:7px;
+  }
+  #screen-game.free-drive-active #game-free-drive-options .free-drive-station-buttons{
+    grid-template-columns:repeat(auto-fit,minmax(135px,1fr));
+    gap:6px;
+  }
+  #screen-game.free-drive-active #game-free-drive-options .free-drive-station-buttons button{
+    min-height:42px;
+    padding:8px;
+  }
+}
