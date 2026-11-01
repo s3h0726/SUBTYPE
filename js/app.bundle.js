@@ -72,7 +72,7 @@ function renderTaiwanGameDisplay(game){
  // Do not overwrite applyActiveBrand()'s common symbol/operator branding.
  const lineLabel=document.getElementById('station-line-label'),nativeLine=getTaiwanDisplayNames(route.line);
  if(lineLabel){
-  const title=lineLabel.querySelector('b'),original=lineLabel.querySelector('small');
+  const title=lineLabel.querySelector(':scope > b'),original=lineLabel.querySelector(':scope > small');
   if(title)title.textContent=nativeLine.ko;
   if(original){original.textContent=nativeLine.zh||nativeLine.en;original.lang='zh-Hant'}
  }

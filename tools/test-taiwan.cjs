@@ -37,7 +37,7 @@ test('Taiwan uses Hong Kong/Japan common sign geometry and preserves native labe
  assert(css.includes('font-family:"Noto Sans TC"')||css.includes('"Noto Sans TC"'));
  const ui=fs.readFileSync(path.join(root,'js/taiwan-display.js'),'utf8');
  assert(ui.includes("lineHeading.querySelector('.game-line-symbol,.line-badge,.line-symbol-asset')"));
- assert(ui.includes("lineLabel.querySelector('small')"));
+ assert(ui.includes("lineLabel.querySelector(':scope > small')"));
  const n=vm.runInContext("getTaiwanDisplayNames({ko:'타이베이',zh:'臺北',en:'Taipei',ja:'타이베이'})",c);
  assert.equal(n.ko,'타이베이');assert.equal(n.zh,'臺北');
  assert(vm.runInContext("taiwanNameMarkup({ko:'타이베이',zh:'臺北'})",c).includes('lang="zh-Hant"'));
