@@ -13,12 +13,12 @@ function loadSorter(file){
 }
 const script=read('js/japan-lite-index.js'),marker='window.TRT_JAPAN_LITE_INDEX=';
 assert(script.includes(marker),'Japanese route catalog not found');
-const routes=JSON.parse(script.slice(script.indexOf(marker)+marker.length).trim().replace(/;\\s*$/,'')).routes;
+const routes=JSON.parse(script.slice(script.indexOf(marker)+marker.length).trim().replace(/;\s*$/,'')).routes;
 assert(routes.length>=590,'Unexpectedly short Japanese route catalog');
 for(const file of files){
  const sort=loadSorter(file),sorted=sort(routes);
  assert.equal(sorted.length,routes.length,'Route count changed in '+file);
- assert.deepEqual(sorted.map(r=>r.id).sort(),routes.map(r=>r.id).sort(),'Route IDs changed in '+file);
+ assert.deepEqual(Array.from(sorted,r=>r.id).sort(),routes.map(r=>r.id).sort(),'Route IDs changed in '+file);
  const seenOperators=new Set(),seenColors=new Set();
  let lastOperator=null,lastColor=null;
  for(const route of sorted){
