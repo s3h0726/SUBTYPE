@@ -1,30 +1,19 @@
-✔ all eight operators and 38 physical cards survive the batch import (4.4477ms)
-✔ every service resolves over actual retained tracks in timetable order (5049.0668ms)
-✔ Korean is mandatory in every display slot and station IDs are line specific (2.1411ms)
-✔ THSR has all 12 stations and express passes are excluded from prompts (65.3754ms)
-✔ Airport express stops, excluded construction stations and unilateral short turns (2.8457ms)
-✔ Circular light rail retains its closing curve and one arrival-only boundary (11.1623ms)
-✔ same-named platforms retain coordinates and unapproved transfers cannot merge (1.577ms)
-✔ Alishan retains thousands of original mountain vertices and no yard tracks as cards (0.7833ms)
-✔ free-drive loop crossings use only the retained closing track in either direction (8.3204ms)
-✖ editor station overrides reach the actual Taiwan journey and its destination selector (88.747ms)
-✔ Taiwan uses Hong Kong/Japan common sign geometry and preserves native labels (5.1954ms)
+✔ all eight operators and 38 physical cards survive the batch import (1.2145ms)
+✔ every service resolves over actual retained tracks in timetable order (5541.986ms)
+✔ Korean is mandatory in every display slot and station IDs are line specific (2.4079ms)
+✔ THSR has all 12 stations and express passes are excluded from prompts (78.409ms)
+✔ Airport express stops, excluded construction stations and unilateral short turns (2.5605ms)
+✔ Circular light rail retains its closing curve and one arrival-only boundary (16.3715ms)
+✔ same-named platforms retain coordinates and unapproved transfers cannot merge (2.1063ms)
+✔ Alishan retains thousands of original mountain vertices and no yard tracks as cards (0.8886ms)
+✔ free-drive loop crossings use only the retained closing track in either direction (10.2143ms)
+✔ editor station overrides reach the actual Taiwan journey and its destination selector (73.4831ms)
+✔ Taiwan uses Hong Kong/Japan common sign geometry and preserves native labels (4.6787ms)
 ℹ tests 11
 ℹ suites 0
-ℹ pass 10
-ℹ fail 1
+ℹ pass 11
+ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 5665.3138
-
-✖ failing tests:
-
-test at tools\test-taiwan.cjs:20:1
-✖ editor station overrides reach the actual Taiwan journey and its destination selector (88.747ms)
-  Error: /data/tw/generated/network.json: invalid JSON (decodeRoutePayload is not defined)
-      at fetchJson (evalmachine.<anonymous>:77:236)
-      at async Object.loadTransportData (evalmachine.<anonymous>:149:16)
-      at async TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-taiwan.cjs:26:13)
-      at async Test.run (node:internal/test_runner/test:1409:7)
-      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+ℹ duration_ms 6096.1146
