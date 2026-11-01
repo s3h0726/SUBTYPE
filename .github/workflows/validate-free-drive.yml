@@ -40,6 +40,8 @@ jobs:
           node --check /tmp/app.mjs
           node --check /tmp/route-editor.mjs
           node --check js/bootstrap.js
+      - name: Validate real station-by-station free-drive transitions
+        run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
       - name: Rebuild static bundle
         run: node tools/build-static.js
       - name: Validate data

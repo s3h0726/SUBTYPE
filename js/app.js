@@ -932,8 +932,7 @@ function renderGameFreeDriveOptions(state){
   tabs.hidden=routeTabs.length<2;tabs.classList.toggle('has-transfer',routeTabs.length>1);
   tabs.innerHTML=routeTabs.map((item,index)=>`<button type="button" class="${index===freeDriveTabIndex?'active':''}" data-free-drive-tab="${escapeHtml(item.id)}" style="--route-color:${item.route?.lineColor||'#777'}"><small>${item.id===state.routeId?'CURRENT':'TRANSFER'}</small><b>${escapeHtml(koreanRouteDisplayText(item.route?.line?.ko||item.route?.line?.ja||item.id,item.route))}</b><span>${escapeHtml(item.route?.countryId==='tw'?getTaiwanDisplayNames(item.route?.line).zh:item.route?.line?.ja||'')}</span></button>`).join('');
   const edges=(state.edges||[]).filter(edge=>edge.routeId===activeId);
-  const selectedEdge=edges.find(edge=>edge.to===game?.freeDriveSelectedEdge?.to&&edge.routeId===game?.freeDriveSelectedEdge?.routeId);const currentEdge=edges.find(edge=>edge.to===game?.freeDriveTarget?.to&&edge.routeId===game?.freeDriveTarget?.routeId);const typingEdge=selectedEdge||currentEdge||edges.find(edge=>edge.direction>0)||edges.find(edge=>edge.direction<0);
-  if(!game?.freeDriveAwaitingStart&&typingEdge&&(game?.freeDriveTarget?.to!==typingEdge.to||game?.freeDriveTarget?.routeId!==typingEdge.routeId)){const typingStation=typingEdge.station||freeDrive?.stationForRoute(typingEdge.to,typingEdge.routeId);if(typingStation)game?.setFreeDriveTypingTarget?.(typingEdge,typingStation)}
+  // Displaying buttons must never change the active typing target or move a station.
   target.hidden=false;target.dataset.transferOpen=String(activeId!==state.routeId);
   target.innerHTML=edges.length?`<div class="free-drive-station-buttons" style="--route-color:${active.route?.lineColor||'#777'}">${edges.map(edge=>{const station=edge.station||freeDrive?.stationForRoute(edge.to,edge.routeId);const highlighted=edge.to===(game?.freeDriveSelectedEdge?.to||game?.freeDriveTarget?.to)&&edge.routeId===(game?.freeDriveSelectedEdge?.routeId||game?.freeDriveTarget?.routeId);return `<button type="button" class="${highlighted?'selected':''}" aria-pressed="${highlighted}" data-free-to="${escapeHtml(edge.to)}" data-free-route="${escapeHtml(edge.routeId)}"><b>${escapeHtml(koreanStationDisplayName(station?.ko||station?.ja||'다음 역',active.route?.countryId,active.route))}</b><span>${escapeHtml(active.route?.countryId==='tw'?getTaiwanDisplayNames(station).zh:active.route?.countryId==='kr'?koreanStationDisplayName(station?.ko,'kr',active.route):station?.ja||'')}</span><i>→</i></button>`}).join('')}</div>`:'<p class="free-drive-empty">이 노선에서 이동 가능한 인접역이 없습니다.</p>';
 }
@@ -1039,9 +1038,9 @@ function showResult(result){
  // The distance listener is independent of the result transition; map loads on button click only.
  try{document.dispatchEvent(new CustomEvent('trt:journey-finished',{detail:result}))}catch(error){console.warn('Journey summary unavailable',error)}
 }
-const game=new Game({onFinish:showResult,onQuit:()=>go('select'),onFreeDriveMove:(to,routeId)=>freeDrive?.moveTo(to,routeId)});
+const game=new Game({onFinish:showResult,onQuit:()=>go('select'),onFreeDriveMove:(to,routeId,fromKey)=>freeDrive?.moveTo(to,routeId,fromKey)});
 const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomLibrary()},onPlay:openSetup,onSaved:()=>go('custom-list')});
-freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){if(game.route?.id!==state.routeId)game.freeDriveAwaitingStart=true;freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
+freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
 $('#free-drive-custom')?.addEventListener('click',()=>{const route=editor.route;if(!route?.stations||route.stations.length<2)return toast('자유주행에는 역이 2개 이상 필요합니다.');startFreeDrive(route)});
 let currentScreen=document.body.dataset.currentScreen||'home';
 let koreaEditorLoading=false;

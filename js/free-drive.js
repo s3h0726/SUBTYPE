@@ -846,10 +846,18 @@ export class FreeDrive{
     this.render();this.emit();
     return true
   }
-  moveTo(to,routeId){
-    if(!to||!routeId)return false;
+  moveTo(to,routeId,expectedFromKey=null){
+    if(!to||!routeId||(expectedFromKey!==null&&expectedFromKey!==this.currentKey))return false;
     const node=this.graph.get(this.currentKey),edge=node?.edges?.find(e=>e.to===to&&e.routeId===routeId);
     if(!edge||!this.availableRouteIds().includes(routeId))return false;
+    // No keyboard event, stale animation or interchange may jump over a station.
+    const fromIndex=node.stationsByRoute?.get(routeId)?.index;
+    if(Number.isInteger(fromIndex)){
+      const distance=Math.abs(edge.index-fromIndex);
+      const last=(edge.route?.stations?.length||0)-1;
+      const loopWrap=edge.route?.loop===true&&distance===last;
+      if(distance!==1&&!loopWrap)return false;
+    }
     this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
     this.render();this.emit();return true
   }

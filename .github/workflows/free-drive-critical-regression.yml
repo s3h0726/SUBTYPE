@@ -1,0 +1,41 @@
+name: Free-drive critical step and nameplate regression
+on:
+  pull_request:
+    paths:
+      - 'js/game.js'
+      - 'js/free-drive.js'
+      - 'js/app.js'
+      - 'css/free-drive.css'
+      - 'index.html'
+      - 'tools/test-free-drive-step-flow.cjs'
+      - 'tools/test-free-drive-target-selection.cjs'
+      - 'tools/test-free-drive-layout-browser.cjs'
+      - 'tools/free-drive-layout-fixture.html'
+  push:
+    branches: [main]
+    paths:
+      - 'js/game.js'
+      - 'js/free-drive.js'
+      - 'js/app.js'
+      - 'css/free-drive.css'
+      - 'index.html'
+      - 'tools/test-free-drive-step-flow.cjs'
+      - 'tools/test-free-drive-target-selection.cjs'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate consecutive route transitions and station layout invariants
+        run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
+      - name: Inspect actual nameplate geometry in headless Chrome
+        run: node --test tools/test-free-drive-layout-browser.cjs
+      - name: Check existing transfer policies
+        run: node --test tools/test-free-drive-transfers.cjs
+      - name: Verify production bundle syntax
+        run: node --check js/app.bundle.js
