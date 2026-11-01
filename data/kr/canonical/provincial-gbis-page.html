@@ -1,0 +1,1317 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta property="og:image" content="">
+<meta name="application-name" content="경기버스정보" />
+<meta name="description" content="경기버스정보" />
+<meta name="format-detection" content="telephone=no, address=no, email=no" />
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://" />
+<meta property="og:title" content="경기버스정보" />
+<meta property="og:image" content="" />
+<meta property="og:site_name" content="경기버스정보" /> 
+<title>경기버스정보</title>
+<!-- google Analytics start -->
+<script type="text/javascript">
+//   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+//   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+//   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+//   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+//   ga('create', 'UA-22388487-2', 'auto');
+//   ga('send', 'pageview');
+</script>
+<!-- google Analytics end -->
+<!-- baepro 20140915 -->
+<!-- AceCounter Log Gathering Script V.71.2010011401 -->
+<script type="text/javascript">
+/*
+if(typeof _GUL == 'undefined'){
+	var _GUL = 'gbis.loginside.co.kr';
+	var _GPT='80';
+	var _SGPT='443';
+	var _AIMG = new Image();
+	var _bn=navigator.appName;
+	var _PR = location.protocol=="https:"?"http://"+_GUL+":"+_GPT:"http://"+_GUL+":"+_GPT;
+	//var _PR = location.protocol=="https:"?"https://"+_GUL+":"+_SGPT:"http://"+_GUL+":"+_GPT;
+	if( _bn.indexOf("Netscape") > -1 || _bn=="Mozilla"){
+		setTimeout("_AIMG.src = _PR+'/?cookie';",1); 
+	} else{
+		_AIMG.src = _PR+'/?cookie';
+	};
+	document.write(unescape("%3Cscript type='text/javascript' src='/gbis2014/js/acecounter/acecounter_V70.js'%3E%3C/script%3E"));
+}
+*/
+//alert('');
+</script>
+<!-- AceCounter Log Gathering Script End -->
+
+<script type="text/javascript" src="/gbis2014/js/clickwhy/UserScriptConf.js"></script>
+
+<link rel="shortcut icon" type="image/x-icon" href="https://www.gbis.go.kr/gbis2014/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/gbis2014/resources/css/style.css?ver1.83" />
+<link rel="stylesheet" type="text/css" href="/gbis2014/resources/css/sub.css?ver1.84" />
+<link rel="stylesheet" type="text/css" href="/gbis2014/resources/css/responsive.css" />
+<link rel="stylesheet" type="text/css" href="/gbis2014/resources/css/font-awesome.min.css" />
+
+<script type="text/javascript" src="/gbis2014/js/jquery-1.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.7.js" type="text/javascript"></script>
+<script type="text/javascript" src="/gbis2014/js/jquery.bpopup.min.js"></script>
+<script type="text/javascript" src="/gbis2014/js/common.js?ver=1.41"></script>
+<script type="text/javascript" src="/gbis2014/resources/js/gg_main.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+    // 컨텍스트 패스를 써야하는 서비스 이므로 전역변수 설정
+    var _CONTEXT_PATH = ""; 
+
+
+	// 비밀번호으로 이동시 ssl이 적용되어 있으면
+    // http로 변경 후 페이지 이동
+    function goMove(obj){
+    	var urlAddr = location.href;
+    	var urlProtocol = window.location.protocol;
+    	var urlHostNm = window.location.hostname;
+    	document.location.href = obj;
+    	
+    	//if(urlProtocol == "http:"){
+	   	//	document.location.href = "https://"+urlHostNm + obj;
+    	//}else{
+    	//	document.location.href = obj;
+    	//}
+    }
+//]]>
+</script>
+</head>
+<body>
+	<div class="skip">
+	        <a href="#" tabindex="0">본문 바로가기</a>
+	</div>
+<input type="hidden" id="flag" name="flag" value="Y"/>
+
+<!-- ///////////////////////// WA 웹접근성 ///////////////////////////////////////////////////// -->
+	<script>
+	    $('.skip a').on('focus', function(){
+	        $(this).stop().animate({"top":0, "opacity":1});
+	    });
+	    $('.skip a').on('click', function(){
+	        $(this).stop().animate({"top":"-30px", "opacity":0});
+	        $( '.gg_mask' ).slideUp();
+	        $('.skip_to').attr('tabindex','0').focus();
+	        if( $('#focus_01').length ){
+				$('#focus_01').attr('tabindex','0').focus();
+			}
+	    });
+	    $('.skip a').on('focusout', function(){
+	        $(this).stop().animate({"top":"-30px", "opacity":0});
+	    });
+	</script>
+
+<script type="text/javascript" src="/gbis2014/js/main.js?ver=1.02"></script>
+<script type="text/javascript" src="/gbis2014/js/util/form.js"></script>
+<script type="text/javascript" src="/gbis2014/js/businfo/mtrbsRoute.js"></script> 
+<script type="text/javascript">
+//<![CDATA[
+var sPRTC=window.location['protocol']; 
+
+var sHREF=window.location['href']; 
+
+if(sPRTC.toUpperCase()=='HTTP:')
+
+{  sHREF='HTTPS:'+sHREF.substring(sPRTC.length,sHREF.length);  
+
+    window.location.replace(sHREF); 
+
+}           
+          
+var WebUser = "";
+jQuery(document).ready(function() {
+	$('#css1').remove();
+	$('#css2').remove();
+	$('#css3').remove();
+	$('#css4').remove();
+	$('#css5').remove();
+	$('#css6').remove();
+	
+	WebUser = ""; 
+	fnNewsSearch();	//뉴스조회
+	fnMainPopup();	
+	fnMainNotice();	//공지사항조회
+	
+	//IE 7이하 업데이트권장 팝업 표출_20140822
+	//iePop();
+	
+});
+
+
+function fnSearch() { 
+	
+	var searchText = $("#searchText").val();
+	// 크로스사이트 스크립트 대응
+	searchText = searchText.replaceAll("&", "").replaceAll("<", "").replaceAll(">", "").replaceAll("\"", "").replaceAll("'", "").replaceAll("/", "").replaceAll("script","").replaceAll("onclick","").replaceAll("onerror","").replaceAll("alert","").replaceAll("document","").replaceAll("cookie","");
+	console.log('index.jsp >>> searchText ::: ' + searchText);
+
+	searchText = searchText.toUpperCase();
+	
+ 	if(searchText == ""){
+ 		alert("검색어를 입력해주세요");
+ 	}else {
+ 		$("#searchText").attr("value", searchText);
+ 		$("#mainForm").attr("action", "/gbis2014/schBus.action?cmd=mainSearchText&gubun=main");
+ 		$("#mainForm").submit(); 
+ 	}
+	
+}
+
+//IE 8 이하 업데이트권장 팝업 표출_20140822
+//IE 일때 팝업 표출
+function iePop(){
+	const agent = window.navigator.userAgent.toLowerCase();
+	let browserName = "";
+	if(agent.indexOf("trident") > -1){
+		popIE();
+		window.location = 'microsoft-edge:'+window.location ;
+	}
+	
+}
+
+// 홈페이지 장애 공지
+function popErrorNotice()
+{
+	var cookie_error = getCookie("cookie_error");
+	if(cookie_error!= "no")
+		window.open('http://www.gbis.go.kr/gbis2014/pop/systemError.html','systemError','width=361, height=493, left=0 ,top=15, status=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, copyhistory=no, resizable=no');
+}
+function systemCheckNotice()
+{
+	var cookie_systemCheckNotice = getCookie("systemCheckNotice");
+	if(cookie_systemCheckNotice!= "no") {
+		window.open('/gbis2014/pop/systemCheckNotice.html','systemCheckNotice','width=510, height=415, left=400, top=10, status=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, copyhistory=no, resizable=no');
+	}
+}
+
+
+function proposal(){
+	var stDate = new Date(2017,6,19,10,30,0); // month 는 -1
+	var edDate = new Date(2018,8,30,0,0,0); // month 는 -1
+	var now = new Date();
+
+	if (stDate < now && edDate > now) {
+		var cookie_regProposal = getCookie("cookie_regProposal");
+		if(cookie_regProposal!= "no")
+			window.open('/gbis2014/pop/proposal.html','townBus','width=500, height=510, left=25 ,top=5, status=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, copyhistory=no, resizable=no');
+	}
+}
+
+function busJammedInfo()
+{
+	var cookie_busJammedInfo = getCookie("cookie_busJammedInfo");
+	if(cookie_busJammedInfo!= "no")
+		window.open('/gbis2014/pop/busJammedInfo.html','busJammedInfo','width=540, height=670, left=25 ,top=5, status=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, copyhistory=no, resizable=no');
+}
+
+
+function consent(){
+	var stDate = new Date(2022,5,03,0,0,0); // month 는 -1
+	var edDate = new Date(2022,8,03,0,0,0); // month 는 -1
+	var now = new Date();
+
+	if (stDate < now && edDate > now) {
+		var cookie_gasang = getCookie("cookie_consent");
+		if(cookie_gasang!= "no")
+			window.open('/gbis2014/pop/consent.html','consent','width=380, height=660, left=550 ,top=100, status=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, copyhistory=no, resizable=no');
+	}
+}
+
+
+function pop_hand_bit(){ // 내손의 bit 홍보
+	 var stDate = new Date(2025,03,24,16,0,0); // month 는 -1
+	 var edDate = new Date(2025,05,02,03,0,0); // month 는 -1
+	 var now = new Date();
+	 
+	 if (stDate < now && edDate > now) {
+			var cookie_mara1 = getCookie("cookie_20250424");
+			if(cookie_mara1!= "no")
+				window.open('/gbis2014/popup/hand_bit_3.html','pop_20250424','width=810, height=900, left=100 ,top=100, status=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, copyhistory=no, resizable=no');
+	}
+ }
+ 
+ function pop_cashless(){ // 내손의 bit 홍보
+	 var stDate = new Date(2025,05,02,04,0,0); // month 는 -1
+	 var edDate = new Date(2025,05,08,23,0,0); // month 는 -1
+	 var now = new Date();
+	 
+	 if (stDate < now && edDate > now) {
+			var cookie_mara1 = getCookie("cookie_20250602");
+			if(cookie_mara1!= "no")
+				window.open('/gbis2014/popup/cashless_bus.html','pop_20250602','width=610, height=800, left=100 ,top=100, status=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, copyhistory=no, resizable=no');
+	}
+ }
+ 
+  function pop_hwarang(){ //화랑훈련
+	 var stDate = new Date(2025,05,10,04,0,0); // month 는 -1
+	 var edDate = new Date(2025,05,20,23,0,0); // month 는 -1
+	 var now = new Date();
+	 
+	 if (stDate < now && edDate > now) {
+			var cookie_mara1 = getCookie("cookie_20250616");
+			if(cookie_mara1!= "no")
+				window.open('/gbis2014/popup/hwarang.html','pop_20250616','width=810, height=800, left=100 ,top=100, status=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, copyhistory=no, resizable=no');
+	}
+ }
+
+
+//공지창을 설정합니다.
+window.onload = function(){
+
+iePop();
+//pop_hand_bit();
+}
+
+// 2021년 추가
+function fnMainTab(pIdx){
+	$('.bus_tab_wrap ul.bus_tab_menu li').filter('.gg_select').removeClass('gg_select');
+	$('.bus_tab_wrap ul.bus_tab_menu li:eq('+pIdx+')').addClass('gg_select');
+	$('.bus_tab_wrap ul.bus_tab_ct li').not(':eq('+pIdx+')').css('display', 'none');
+	$('.bus_tab_wrap ul.bus_tab_ct li:eq('+pIdx+')').fadeIn('fast');
+}
+//]]>
+</script>
+
+<!--바로가기 시작-->
+<dl class="hidden">
+	<dt>바로가기메뉴</dt>
+        <dd><a href="#smenu">메뉴 바로가기</a></dd>
+		<dd><a href="#gg_navi21">메뉴바로가기</a></dd>
+		<dd><a href="#visual_slide">비주얼영역 바로가기</a></dd>
+        <dd><a href="#banner">바로가기배너 바로가기</a></dd>
+        <dd><a href="#guide">이용안내 바로가기</a></dd>	
+        <dd><a href="#notice">공지사항 바로가기</a></dd>	
+        <dd><a href="#news">경기도 주요뉴스 바로가기</a></dd>	
+        <dd><a href="#download_wrap">다운로드 바로가기</a></dd>						
+</dl>
+<!--바로가기 끝-->
+
+<!--header 시작-->
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	
+	// 날씨조회
+	fnWeatherSearch();
+	
+	setCookie("weatherChange"	, "2", 365 );
+	$("#main_header_wrap #weatherCode").val(getCookie("weatherCode"));
+	$("#main_header_wrap #weatherName").val(getCookie("weatherName"));
+});
+
+
+//기상청날씨 조회
+function fnWeatherSearch(){
+	
+	var obj = "";
+	
+	var weatherCode = getCookie("weatherCode");
+	
+  if (weatherCode != "") {
+      obj = weatherCode;
+  } else {
+  	obj = "41115";
+  	
+  }
+	
+	var url = "/gbis2014/main.action";
+	var data = 'cmd=getWeatherJson';
+		data  += '&code=' + obj;
+	
+	$.ajax({
+		type: "post",
+		contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+		dataType: "json",
+		url: url,
+		data: data,
+		success: resultWeatherSuccess
+	});
+}
+
+//날씨결과값
+function resultWeatherSuccess(data){
+	
+	if(data.success == true) {
+		
+		//오늘날짜,최저기온,최고기온,요일
+		var todayList = data.result.todayList;
+		
+		var todayWeather = data.result.weatherList;
+		
+		if(todayWeather.length <= 0){
+			
+			weather = "w1";
+			weatherText = "맑음";
+			todayValue = "21";
+			
+		}else{
+			
+			//강수형태 코드 : 없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4)
+			var rainValue = todayWeather[0].weatherRain;
+		
+			//하늘상태 코드 : 맑음(1), 구름많음(3), 흐림(4)
+			var skyValue = todayWeather[1].weatherSky;
+			
+			//오늘 온도----------------------------------------------------------------------------------------/
+			var todayValue = todayWeather[2].weatherValue;
+			
+			var weather = "";	
+			var weatherText = "";
+			
+			//하늘/강수 형태
+			if(skyValue == "1" || rainValue =="0" || skyValue == ""){
+				
+				if(skyValue == "1"){
+					
+					weather = "w1";
+					weatherText = "맑음";
+					
+				}
+				
+				//동네예보 하늘상태 변경(구름조금 삭제)
+				/*else if(skyValue == "2"){
+					
+					weather = "w2";
+					weatherText = "구름조금";
+					
+				}*/
+				else if(skyValue == "3"){
+					weather = "w3";
+					weatherText = "구름많음";
+					
+				}else if(skyValue == "4"){
+					weather = "w6";
+					weatherText = "흐림";
+				}
+				
+			}else if(rainValue == "1"){
+				
+				weather = "w4";
+				weatherText = "비";
+						
+			}else if(rainValue == "2"){
+				
+				weather = "w8";
+				weatherText = "비/눈";
+		
+			}else if(rainValue == "3"){
+				
+				weather = "w5";
+				weatherText = "눈";
+				
+			//동네예보 강수형태 변경(소나기 추가)
+			}else if(rainValue == "4"){
+				//기존 비 이미지 활용
+				weather = "w4";
+				weatherText = "소나기";
+				
+			}
+		}
+		
+		
+		//내일 최저온도------------------------------------------------------------------------------/
+		var toMinList = data.result.tomorrowMinList;
+		
+		var toMinRain = "";
+		var toMinSky = "";
+		
+		if(toMinList.length > 0){
+			
+			toMinSky = toMinList[1].weatherSky;
+			toMinRain = toMinList[0].weatherRain;
+		
+		}else{
+			
+			toMinRain = "0";
+			toMinSky = "1";
+		}
+		
+		
+		//내일최저
+		var toMinWeather = "";	
+		var toMinWeatherText = "";
+		
+		if(toMinSky == "1" || toMinSky == "undefined" || toMinRain == "0"){
+			
+			if(toMinSky == "1"){
+				
+				toMinWeather = "w1";
+				toMinWeatherText = "맑음";
+				
+			}
+			//동네예보 하늘상태 변경(구름조금 삭제)
+			/*else if(toMinSky == "2"){
+				
+				toMinWeather = "s2";
+				toMinWeatherText = "구름조금";
+				
+			}*/
+			else if(toMinSky == "3"){
+				toMinWeather = "w3";
+				toMinWeatherText = "구름많음";
+				
+			}else if(toMinSky == "4"){
+				toMinWeather = "w6";
+				toMinWeatherText = "흐림";
+			}
+			
+		}else if(toMinRain == "1"){
+			
+			toMinWeather = "w4";
+			toMinWeatherText = "비";
+			
+		}else if(toMinRain == "2"){
+			
+			toMinWeather = "w8";
+			toMinWeatherText = "눈/비";
+			
+		}else if(toMinRain == "3"){
+			
+			toMinWeather = "w5";
+			toMinWeatherText = "눈";
+		
+		//동네예보 강수형태 변경(소나기 추가)
+		}else if(toMinRain == "4"){
+			//기존 비 이미지 활용
+			toMinWeather = "w4";
+			toMinWeatherText = "소나기";
+			
+		}
+		
+		//내일최고온도
+		var toMaxList = data.result.tomorrowMaxList;
+		
+		var toMaxRain = "";
+		var toMaxSky = "";
+		
+		if(toMaxList.length > 0) {
+			
+			toMaxRain = toMaxList[0].weatherRain;
+			toMaxSky = toMaxList[1].weatherSky;
+			
+		}else{
+			
+			toMaxRain = "0";
+			toMaxSky = "1";
+			
+		}
+		
+		
+		//내일최고
+		var toMaxWeather = "";	
+		var toMaxWeatherText = "";
+		
+		if(toMaxSky == "1" || toMaxRain == "0"){
+
+			if(toMaxSky == "1"){
+				
+				toMaxWeather = "w1";
+				toMaxWeatherText = "맑음";
+				
+			}
+			//동네예보 하늘상태 변경(구름조금 삭제)
+			/*else if(toMaxSky == "2"){
+				
+				toMaxWeather = "s2";
+				toMaxWeatherText = "구름조금";
+				
+			}*/
+			else if(toMaxSky == "3"){
+				toMaxWeather = "w3";
+				toMaxWeatherText = "구름많음";
+				
+			}else if(toMaxSky == "4"){
+				toMaxWeather = "w6";
+				toMaxWeatherText = "흐림";
+			}
+			
+			
+		}else if(toMaxRain == "1"){
+			
+			toMaxWeather = "w4";
+			toMaxWeatherText = "비";
+			
+			
+		}else if(toMaxRain == "2"){
+			
+			toMaxWeather = "w8";
+			toMaxWeatherText = "눈/비";
+		
+		}else if(toMaxRain == "3"){
+			
+			toMaxWeather = "w5";
+			toMaxWeatherText = "눈";
+		
+		//동네예보 강수형태 변경(소나기 추가)
+		}else if(toMaxRain == "4"){
+			//기존 비 이미지 활용
+			toMaxWeather = "w4";
+			toMaxWeatherText = "소나기";
+			
+		}
+		
+		var tomorrowWeatherMin = toMinWeather;
+		var tomorrowWeatherMax = toMaxWeather;
+		
+		
+		if(tomorrowWeatherMin == "s4" || tomorrowWeatherMax == "s4"){
+			toMinWeather = "w4";
+		}
+		var day = todayList[0].today;
+		var week = todayList[0].week;
+		
+		
+		
+		/**지역설정 **********************/
+		var getweatherNm = getCookie("weatherName");
+		
+	    if (getweatherNm != "") {
+	    	weatherNm = getweatherNm;
+	    } else {
+	    	weatherNm = "수원";
+	    	
+	    }
+		
+		/****************************/
+		if(toMinWeather == "") {
+			
+			toMinWeather = "w1";
+			toMinWeatherText = "맑음";
+			
+		}
+		
+		/* 기존 로직 삭제
+		var list = "";
+		list += "<h3 class='sec_tit'>경기도날씨</h3>";
+		list += 	"<div class='status'>" ;
+		list += 		"<span class='date'><em>";
+		list += 			day.substr(0,2) + "." + day.substr(2,2) + "(" + week.substr(0,1) + ")";
+		list += 		"</em></span>";
+		list += 		"<span class='area'><em>" + weatherNm +"</em></span>";
+		list += 			"<a href='javascript:weatherBtn(1);' class='set'>변경/설정</a>";
+		list +=			"</div>";
+		list += 		"<div class='today'>";
+		list += 			"<span class='ico'>";
+		list += 				"<img src='/gbis2014/images/weather/" + weather + ".gif' alt='" + weatherText + "' />";
+		list +=				"</span>";
+		list += 			"<span class='tit'>현재</span>";
+		list += 			"<span class='state'>" + weatherText + "</span>";
+		list += 			"<span class='temp'><span class='plus'>" + todayValue + "℃</span></span>";
+		list += 		"</div>";
+		list += 		"<div class='tomorrow'>";
+		list += 			"<span class='ico'><img src='/gbis2014/images/weather/" + toMinWeather + ".gif' alt='" + toMinWeatherText + "' /></span>";
+		list += 			"<span class='tit'>내일</span>";
+		list += 			"<span class='state'>"+ toMinWeatherText +"</span>";
+		list += 			"<span class='temp'><span class='minus'>" + todayList[0].tomorroMin + "℃</span>";
+		list += 				"/";
+		list += 			"<span class='plus'>" + todayList[0].tomorroMax + "℃</span></span>";
+		list += 		"<div>";
+		*/
+		
+		$("#main_header_wrap .weather .city").html(weatherNm);
+		$("#main_header_wrap .weather .w_img").html("<img src='/gbis2014/resources/img/" + weather + ".png' alt='" + weatherText + "' />");
+		$("#main_header_wrap .weather .tem").html(todayValue + "℃");
+		
+	} else {
+		alert("조회 실패!!!");
+	}
+}
+
+//변경설정
+function weatherBtn(obj) {
+	
+	if(obj == "1") {	//변경
+		
+		$("#main_header_wrap .weather .weather_pop").fadeIn('fast');
+		
+	}else if(obj == "2"){//적용
+		
+		setCookie("weatherChange"	, "2", 365 );
+		setCookie("weatherCode"		,$("#main_header_wrap #weatherCode").val(), 365 );
+		setCookie("weatherName"		,$("#main_header_wrap #weatherName").val(), 365 );
+		
+		fnWeatherSearch();
+		
+		$("#main_header_wrap .weather .weather_pop").fadeOut('fast');
+				
+	}else if(obj == "3"){ //취소
+		
+		setCookie("weatherChange"	, "1", 365 );
+		$("#main_header_wrap .weather .weather_pop").fadeOut('fast', function(){
+			$('#main_header_wrap .weather').find('a').focus();
+		});
+		
+	}
+}
+
+function weatherCode(idx,obj,nm) {
+	
+	var weatherChange = getCookie("weatherChange");
+	
+    if (weatherChange == "2") {
+    	
+    	$("#main_header_wrap #weatherCode").val(obj);
+    	$("#main_header_wrap #weatherName").val(nm);
+    }
+	
+    $("#main_header_wrap .area_list a.active").removeClass("active").attr('title',''); // WA수정사항
+    $("#main_header_wrap .area_list a:eq("+idx+")").addClass("active").attr('title','선택됨');
+}
+
+function setCookie( name, value, exdays ) {
+	
+	var clsDate = new Date();
+	clsDate.setTime( clsDate.getTime() + (exdays*24*60*60*1000 ) );
+	
+	var expires = "expires=" + clsDate.toGMTString();
+	document.cookie =  name + "=" + value + "; " + expires;
+
+}
+
+function getCookie(cname) {
+	
+   var name = cname + "=";
+   var arrList = document.cookie.split(';'); 
+   
+   for( var i=0; i < arrList.length;  i++ ) {
+	   
+	  var c = arrList[i].replace(/\s/g, "");
+     if ( c.indexOf(name) == 0 ) 
+    	 return c.substring( name.length, c.length );
+   }
+
+   return "";
+
+}
+
+// [[[ 웹접근성 ]]] 전체메뉴 닫힘 버튼 keypress 시 포커스가 다시 "전체메뉴" 로 이동
+function backToFocusTop() {
+	document.getElementById("glo").tabIndex = 0;
+	document.getElementById("plus").tabIndex = 0;
+	document.getElementById("minus").tabIndex = 0;
+	$('#allMenu').focus();
+}
+</script>
+<header class="header">
+	
+	<div id="main_header_wrap">
+	    <div class="wrap">
+	    	<div class="header1">
+	    		<ul class="top_link">
+	        		<li class="t1"><a href="/">버스정보</a></li>
+	            	<li class="t2"><a href="https://gits.gg.go.kr" target="_blank" title="경기도 교통정보센터 홈페이지 새창 열림">교통정보</a></li>
+	            	<li class="t3"><a href="https://gits.gg.go.kr/gtdb/web/trafficDb/publicTransport/passengersByRegion.do" target="_blank"  title="경기도 교통정보센터 홈페이지> 교통DB 페이지 새창 열림">교통DB</a></li>
+	        	</ul>
+	             <div class="weather">
+					<input type="hidden" id="weatherCode" name="weatherCode" value=""/>
+					<input type="hidden" id="weatherName" name="weatherName" value=""/>
+					<input type="hidden" id="weatherChange" name="weatherChange" value="1"/>
+	            	<span class="city"></span>
+	                <span class="w_img"></span>
+	                <span class="tem"></span>
+	                <a href="javascript:weatherBtn(1);">지역변경 <i class="fa fa-plus" aria-hidden="true"></i></a>
+	                <div class="weather_pop" id="weather_pop" style="display: none;">
+						
+						<div class="area_list">
+							<a class="active" title="선택됨" href="javascript:weatherCode(0,'41115','수원시');">수원시</a>
+							<a href="javascript:weatherCode(1,'41131','성남시');">성남시</a>
+							<a href="javascript:weatherCode(2,'41150','의정부시');">의정부시</a>
+							<a href="javascript:weatherCode(3,'41171','안양시');">안양시</a>
+							<a href="javascript:weatherCode(4,'41197','부천시');">부천시</a>
+							<a href="javascript:weatherCode(5,'41210','광명시');">광명시</a>
+							<a href="javascript:weatherCode(6,'41220','평택시');">평택시</a>
+							<a href="javascript:weatherCode(7,'41250','동두천시');">동두천시</a>
+							<a href="javascript:weatherCode(8,'41273','안산시');">안산시</a>
+							<a href="javascript:weatherCode(9,'41281','고양시');">고양시</a>
+							<a href="javascript:weatherCode(10,'41290','과천시');">과천시</a>
+							<a href="javascript:weatherCode(11,'41310','구리시');">구리시</a>
+							<a href="javascript:weatherCode(12,'41360','남양주시');">남양주시</a>
+							<a href="javascript:weatherCode(13,'41370','오산시');">오산시</a>
+							<a href="javascript:weatherCode(14,'41390','시흥시');">시흥시</a>
+							<a href="javascript:weatherCode(15,'41410','군포시');">군포시</a>
+							<a href="javascript:weatherCode(16,'41430','의왕시');">의왕시</a>
+							<a href="javascript:weatherCode(17,'41450','하남시');">하남시</a>
+							<a href="javascript:weatherCode(18,'41463','용인시');">용인시</a>
+							<a href="javascript:weatherCode(19,'41480','파주시');">파주시</a>
+							<a href="javascript:weatherCode(20,'41550','안성시');">안성시</a>
+							<a href="javascript:weatherCode(21,'41570','김포시');">김포시</a>
+							<a href="javascript:weatherCode(22,'41590','화성시');">화성시</a>
+							<a href="javascript:weatherCode(23,'41610','광주시');">광주시</a>
+							<a href="javascript:weatherCode(24,'41630','양주시');">양주시</a>
+							<a href="javascript:weatherCode(25,'41650','포천시');">포천시</a>
+						</div>
+						<div class="area_select">
+							<h3 class="hide">지역선택</h3>
+							<button type="button" class="btn_select" onclick="weatherBtn(2);">적용</button>
+							<button type="button" class="btn_close" onclick="weatherBtn(3);">닫기</button>
+						</div>								
+					</div>
+	            </div>
+	        </div>
+	        <div class="header2">
+	        	<ul class="join">
+					<li class="menu" ><a id="allMenu" href="#"><i class="fa fa-bars" aria-hidden="true"></i>전체메뉴</a></li>			
+					<li class="glo" ><a id="glo" href="#" >GLOBAL<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
+						<!--글로벌메뉴-->   
+			            <div class="global_menu" style="display: none;">
+			                <h3 class="hide">글로벌메뉴</h3>	
+		                    <ul>
+		                        <li><a id="wa_en" tabindex="0" href="javascript:goMove('/gbis2014/frAPI.action?cmd=main&lang=EN')">English<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+		                        <li><a id="wa_cn" href="javascript:goMove('/gbis2014/frAPI.action?cmd=main&lang=CN')">中文<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+		                        <li><a id="wa_jp" href="javascript:goMove('/gbis2014/frAPI.action?cmd=main&lang=JP')">日本語<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+		                        <li><a id="wa_vt" href="javascript:goMove('/gbis2014/frAPI.action?cmd=main&lang=VT')">Tiếng Việt<i class="fa fa-angle-right" aria-hidden="true"></i></a></li> 
+		                    </ul>
+			            </div>
+	            
+	            	<li class="plus" ><a id="plus" href="javascript:zoomIn();" title="글자크기 크게">글자크기 <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+	                <li ><a id="minus" href="javascript:zoomOut();" title="글자크기 작게"><i class="fa fa-minus" aria-hidden="true"></i></a></li>
+	            
+	            </ul>        
+	            
+	        </div>
+	    </div>
+   	</div>
+    <!--전체메뉴-->
+	<div class="allmenu">
+	    <ul class="nav">
+	        <li class="menu2">
+	            <h3><a href="javascript:goMove('/gbis2014/schBus.action')">버스정보안내</a></h3>
+	            <ul class="two_depth">
+	                <li class="menu2-1"><a href="javascript:goMove('/gbis2014/schBus.action?mapTabCd=1')">통합검색</a></li>
+	                <li class="menu2-2"><a href="javascript:goMove('/gbis2014/schBus.action?mapTabCd=2')">경로검색</a></li>
+	                <!--<li class="menu2-3"><a href="javascript:goMove('/gbis2014/schBus.action?mapTabCd=3')">실시간버스</a></li>-->
+	            </ul>
+	        </li>
+	        <li class="menu3">
+	            <h3><a href="javascript:goMove('/service/busInfo/metroBus.action?cmd=metroBusList')">노선현황</a></h3>
+	            <ul class="two_depth">
+	                <li class="menu3-1">
+	                    <a href="javascript:goMove('/service/busInfo/metroBus.action?cmd=metroBusList')">시내버스-지역별</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/service/busInfo/metroBus.action?cmd=metroBusList')"><i class="fa fa-angle-right" aria-hidden="true"></i>인허가 노선</a></li>
+	                        <li><a href="javascript:goMove('/service/busInfo/viaBus.action?cmd=viaBusList')"><i class="fa fa-angle-right" aria-hidden="true"></i>경유 노선</a></li>
+	                    </ul>
+	                </li>
+	                <li class="menu3-2">
+	                    <a href="javascript:goMove('/service/busInfo/wideExprBus.action?cmd=wideExprAuto')">시내버스-유형별</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/service/busInfo/wideExprBus.action?cmd=wideExprAuto')"><i class="fa fa-angle-right" aria-hidden="true"></i>광역급행버스</a></li>
+	                        <li><a href="javascript:goMove('/service/busInfo/latenightBus.action?cmd=latenight')"><i class="fa fa-angle-right" aria-hidden="true"></i>심야버스</a></li>
+	                    </ul>
+	                </li>
+	                <li class="menu3-3"><a href="javascript:goMove('/service/busInfo/outBus.action?cmd=outBusList2')">시외버스</a></li>
+	                <li class="menu3-7">
+	                    <a href="javascript:goMove('/service/busInfo/townBus.action?cmd=townBus')">마을버스</a>
+	                </li>
+	                <li class="menu3-4"><a href="javascript:goMove('/service/busInfo/lowfloorBus.action?cmd=lowfloorAuto')">저상버스</a></li>
+	                <li class="menu3-5">
+	                    <a href="javascript:goMove('/service/busInfo/airpIncheonBus.action?cmd=airpIncheon')">공항버스</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/service/busInfo/airpIncheonBus.action?cmd=airpIncheon')"><i class="fa fa-angle-right" aria-hidden="true"></i>인천공항(국제선)</a></li>
+	                        <li><a href="javascript:goMove('/service/busInfo/airpGimpoBus.action?cmd=airpGimpo')"><i class="fa fa-angle-right" aria-hidden="true"></i>김포공항(국내선)</a></li>
+	                    </ul>
+	                </li>
+	            </ul>
+	        </li>
+	        <li class="menu4">
+	            <h3><a href="javascript:goMove('/gbis2014/bbs.action?cmd=notice')">참여마당</a></h3>
+	            <ul class="two_depth">
+	                <li class="menu4-1"><a href="javascript:goMove('/gbis2014/bbs.action?cmd=notice')">공지사항</a></li>
+	   		        <li class="menu4-2"><a href="javascript:goMove('/gbis2014/bbs.action?cmd=infoForm')">정보오류신고</a></li>
+	                <li class="menu4-3"><a href="javascript:goMove('/gbis2014/bbs.action?cmd=routeChange')">노선신설·폐선안내</a></li>
+	                <li class="menu4-4">
+	                    <a href="javascript:goMove('/service/guide/guide1.action?cmd=myBus')">이용안내</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/service/guide/guide1.action?cmd=mybus')"><i class="fa fa-angle-right" aria-hidden="true"></i>홈페이지</a></li>
+	                        <li><a href="javascript:goMove('/service/guide/guide1.action?cmd=ars')"><i class="fa fa-angle-right" aria-hidden="true"></i>ARS(전화)</a></li>
+	                        <li><a href="javascript:goMove('/service/guide/guide1.action?cmd=inetMobileNew')"><i class="fa fa-angle-right" aria-hidden="true"></i>모바일웹</a></li>
+						</ul>
+	                </li>
+	                <li class="menu4-5">
+	                    <a href="javascript:goMove('/service/guide/guide6.action?cmd=gbis')">경기버스정보안내</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/service/guide/guide6.action?cmd=gbis')"><i class="fa fa-angle-right" aria-hidden="true"></i>버스정보안내</a></li>
+	                        <li><a href="javascript:goMove('/service/guide/guide6.action?cmd=allcAdm')"><i class="fa fa-angle-right" aria-hidden="true"></i>버스운행관리 방법</a></li>
+	                        <li><a href="javascript:goMove('/service/guide/guide6.action?cmd=staInfo')"><i class="fa fa-angle-right" aria-hidden="true"></i>정류소안내기 정보제공</a></li>
+	                        <li><a href="javascript:goMove('/service/guide/guide6.action?cmd=busExe')"><i class="fa fa-angle-right" aria-hidden="true"></i>수도권 버스정보 연계</a></li>
+	                    </ul>
+	                </li>
+	                <li class="menu4-6"><a href="javascript:goMove('/popup/popup.action?cmd=popupWeb&amp;ctg=locationSuwon')">오시는길</a></li>
+	            </ul>
+	        </li>
+	        <li class="menu5">
+	            <h3><a href="javascript:goMove('/gbis2014/publicService.action?cmd=openApiInfo')">공유서비스</a></h3>
+	            <ul class="two_depth">
+	                <li class="menu5-1"><a href="javascript:goMove('/gbis2014/publicService.action?cmd=openApiInfo')">소개</a></li>
+	                <li class="menu5-2">
+	                    <a href="javascript:goMove('/gbis2014/publicService.action?cmd=openApiRest')">개발가이드</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=openApiRest')"><i class="fa fa-angle-right" aria-hidden="true"></i>REST방식</a></li>
+	                    </ul>
+	                </li>
+	                <li class="menu5-3">
+	                    <a href="javascript:goMove('/gbis2014/publicService.action?cmd=mBusRoute')">매뉴얼</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=mBusRoute')"><i class="fa fa-angle-right" aria-hidden="true"></i>버스노선 조회 서비스</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=mBusStation')"><i class="fa fa-angle-right" aria-hidden="true"></i>정류소 조회 서비스</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=mBusLocation')"><i class="fa fa-angle-right" aria-hidden="true"></i>버스위치정보 조회 서비스</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=mBusArrivalStation')"><i class="fa fa-angle-right" aria-hidden="true"></i>버스도착정보 조회 서비스</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=mBaseInfo')"><i class="fa fa-angle-right" aria-hidden="true"></i>기반정보 관리 서비스</a></li>
+	                    </ul>
+	                </li>
+	                <li class="menu5-4">
+	                    <a href="javascript:goMove('/gbis2014/publicService.action?cmd=tBusRoute')">테스트</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=tBusRoute')"><i class="fa fa-angle-right" aria-hidden="true"></i>버스노선 조회 서비스</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=tBusStation')"><i class="fa fa-angle-right" aria-hidden="true"></i>정류소 조회 서비스</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=tBusLocation')"><i class="fa fa-angle-right" aria-hidden="true"></i>버스위치정보 조회 서비스</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=tBusArrivalStation')"><i class="fa fa-angle-right" aria-hidden="true"></i>버스도착정보 조회 서비스</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=tBaseInfo')"><i class="fa fa-angle-right" aria-hidden="true"></i>기반정보 관리 서비스</a></li>
+	                    </ul>
+	                </li>
+	                <li class="menu5-5"><a href="javascript:goMove('/gbis2014/publicService.action?cmd=publickKey')">공개키 발급</a></li>
+	                <li class="menu5-6">
+	                    <a href="javascript:goMove('/gbis2014/publicService.action?cmd=apiQna')">게시판</a>
+	                    <ul class="three_depth">
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=apiQna')"><i class="fa fa-angle-right" aria-hidden="true"></i>Q&amp;A</a></li>
+	                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=apiFaq')"><i class="fa fa-angle-right" aria-hidden="true"></i>FAQ</a></li>
+	                    </ul>
+	                </li>
+	            </ul>
+	        </li>
+	    </ul>
+	  <a href="javascript:backToFocusTop()"  class="btn_close">전체 메뉴 닫기<i class="fa fa-times" aria-hidden="true"></i></a>
+	</div>
+	<script type="text/javascript">
+		$('.header').on('click','.menu',function(){
+			var parent = $(this).closest('.header');
+			if ( ! parent.hasClass('is-open')){
+				parent.addClass('is-open');
+				parent.find('.allmenu').slideDown();
+				document.getElementById("glo").tabIndex = -1;
+				document.getElementById("plus").tabIndex = -1;
+				document.getElementById("minus").tabIndex = -1;
+				$('.header.is-open').not(parent).removeClass('is-open');
+			}else{
+				parent.removeClass('is-open');
+				document.getElementById("glo").tabIndex = 0;
+				document.getElementById("plus").tabIndex = 0;
+				document.getElementById("minus").tabIndex = 0;
+				parent.find('.allmenu').slideUp();
+			}
+		});
+		
+		$('.header .allmenu a.btn_close').on('click', function(){
+			$('.header').removeClass('is-open');
+			$('.header .allmenu').slideUp();
+			$('#allMenu').focus();
+		});
+///////////////////////////////////// WA 추가 사항 ////////////////////////////////////////////////////////		
+		$('.btn_close').focusout(function(){
+			$('#myBusBus').focus();
+		});
+
+		$('#wa_vt').focusout(function(){
+			$('#glo').attr('tabindex','0').focus();
+		});
+		
+		
+		
+ 		$('.header').on('click','.glo',function(){
+			if($(this).find('i').attr('class').indexOf('fa-angle-up') > -1){
+				$(this).find('i').attr('class', 'fa fa-angle-down');
+//-------------->//////////// WA 추가 사항 ////////////				
+				$('.glo').on('keydown', function(key){
+					if(key.keyCode == 13){
+						$('#glo').attr("title", "글로벌 메뉴 열림");
+						$('#plus').attr("tabindex", "-1");
+						$('#minus').attr("tabindex", "-1");
+						$('#wa_en').attr("tabindex", "0");
+					}
+				});
+			}else{
+				$(this).find('i').attr('class', 'fa fa-angle-up');
+//-------------->//////////// WA 추가 사항 ////////////							
+				$('.glo').on('keydown', function(key){
+					if(key.keyCode == 13){
+						$('#glo').attr("title", "글로벌 메뉴 닫힘");
+						$('#plus').attr("tabindex", "0");
+						$('#minus').attr("tabindex", "0");
+						$('#glo').attr("tabindex", "0").focus;
+					}
+				});
+			}
+			$('.global_menu').slideToggle('fast');
+		}); 
+		
+		// 접근성 추가사항
+		var nowZoom = 100;
+	    function zoomIn(){
+	    	if(nowZoom < 200){
+	    		nowZoom += 10;
+				document.body.style.zoom = nowZoom + '%';
+	    	}
+	    }
+	    function zoomOut(){
+	    	if(nowZoom > 80){
+	    		nowZoom -= 10;
+				document.body.style.zoom = nowZoom + '%';
+	    	}
+	    }
+
+	</script>
+</header>
+<!--header 끝-->
+
+<!--visual 시작-->
+<div class="wrap">
+<section>
+	<div id="visual_wrap">
+    	<div class="head">
+            <h1 class="logo"><a href="/"><img width="300px" src="/gbis2014/resources/img/logo_20260915.png" alt="경기버스정보" /></a></h1>
+        </div>
+	<!--nav 시작-->
+	<nav>
+    <div id="gg_navi21_wrap">
+    	<ul id="gg_navi21" class="menu">
+            <li class="gg_main"><a href="javascript:goMove('/gbis2014/schBus.action')">버스정보안내</a>
+            	<div class="gg_sub">
+            		<ul>
+			        	<li><a href="javascript:goMove('/gbis2014/schBus.action?mapTabCd=1')">통합검색</a></li>
+						<li><a href="javascript:goMove('/gbis2014/schBus.action?mapTabCd=2')">경로검색</a></li>
+						<!--<li><a href="javascript:goMove('/gbis2014/schBus.action?mapTabCd=3')">실시간버스</a></li> -->
+					</ul>
+                </div>  
+            </li>
+            <li class="gg_main"><a href="javascript:goMove('/service/busInfo/metroBus.action?cmd=metroBusList')">노선현황</a>
+            	<div class="gg_sub">
+            		<ul>
+			        	<li><a href="javascript:goMove('/service/busInfo/metroBus.action?cmd=metroBusList')">시내버스-지역별</a></li>
+						<li><a href="javascript:goMove('/service/busInfo/wideExprBus.action?cmd=wideExprAuto')">시내버스-유형별</a></li>
+						<li><a href="javascript:goMove('/service/busInfo/outBus.action?cmd=outBusList2')">시외버스</a></li>
+                        <li><a href="javascript:goMove('/service/busInfo/townBus.action?cmd=townBus')">마을버스</a></li>
+                        <li><a href="javascript:goMove('/service/busInfo/lowfloorBus.action?cmd=lowfloorAuto')">저상버스</a></li>
+                        <li><a href="javascript:goMove('/service/busInfo/airpIncheonBus.action?cmd=airpIncheon')">공항버스</a></li>
+					</ul>
+                </div>  
+            </li>
+            <li class="gg_main"><a href="javascript:goMove('/gbis2014/bbs.action?cmd=notice')">참여마당</a>
+            	<div class="gg_sub">
+            		<ul>
+			        	<li><a href="javascript:goMove('/gbis2014/bbs.action?cmd=notice')">공지사항</a></li>
+						<li><a href="javascript:goMove('/gbis2014/bbs.action?cmd=infoForm')">정보오류신고</a></li>
+						<li><a href="javascript:goMove('/gbis2014/bbs.action?cmd=routeChange')">노선신설·폐선안내</a></li>
+                        <li><a href="javascript:goMove('/service/guide/guide1.action?cmd=myBus')">이용안내</a></li>
+                        <li><a href="javascript:goMove('/service/guide/guide6.action?cmd=gbis')">경기버스정보안내</a></li>
+                        <li><a href="javascript:goMove('/popup/popup.action?cmd=popupWeb&amp;ctg=locationSuwon')">오시는길</a></li>
+					</ul>
+                </div>  
+            </li>
+            <li class="gg_main"><a href="javascript:goMove('/gbis2014/publicService.action?cmd=openApiInfo')">공유서비스</a>
+            	<div class="gg_sub">
+            		<ul>
+			        	<li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=openApiInfo')">소개</a></li>
+						<li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=openApiRest')">개발가이드</a></li>
+						<li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=mBusRoute')">메뉴얼</a></li>
+                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=tBusRoute')">테스트</a></li>
+                        <li><a href="javascript:goMove('/gbis2014/publicService.action?cmd=publickKey')">공개키 발급</a></li>
+                        <li><a id="wa_board" href="javascript:goMove('/gbis2014/publicService.action?cmd=apiQna')">게시판</a></li>
+					</ul>
+                </div>  
+            </li>
+            <li class="gg_main"><a href="/mybit" target="blank">나만의BIT</a></li>
+        </ul>
+       <script type="text/javascript">
+		$('#gg_navi21').gg_navi3DSwap({
+
+		});
+		</script>
+    </div>    
+    </nav>
+    <!--nav 끝-->
+    <div id="visual_slide">
+    <span class="hide">마우스 오버시 자동슬라이드 이미지 정지, 마우스를 이미지 밖으로 떼면 자동슬라이드 다시 작동합니다.</span>
+     	<div class="search_box skip_to">
+          	<form id="mainForm" name="mainForm" class="search" action="" method="post">
+				<fieldset class="search">
+				<legend>노선번호, 정류소명, 정류소번호 검색</legend>
+				<input type="text" id="searchText" name="searchText" title="노선번호, 정류소명, 정류소번호를 검색하세요." placeholder="노선번호, 정류소명, 정류소번호를 검색하세요." class="search">
+				<input class="sch_btn" type="submit" value="검색" onclick="fnSearch();return false;" />
+				</fieldset>
+			</form>
+             <p>예) 3000, 경기도청, 03039</p>       
+         </div>
+    	<ul class="gg_slide_list v_img">
+   			<li class="v1">
+				<!-- 
+    			<h2>경기버스정보</h2>
+        		<h1><span class="blue1">변화의 </span> <span class="blue2">중심,</span> <span class="blue3">기회의 경기</span></h1>	
+				-->
+           </li>
+<!--            <li class="v2">
+    	        <h2>경기도에서는 무정차 안녕~!</h2>
+                <h1><span class="blue1">"승차벨" </span> <span class="blue2">서비스 </span> <span class="blue3">오픈</span></h1>
+           </li>
+             <li class="v3">
+    	        <h2>경기버스정보앱 누구나 쉽게~!</h2>
+                <h1><span class="blue1">글로벌 </span> <span class="blue2">서비스 </span> <span class="blue3">오픈</span></h1>
+           </li>   -->                 
+        </ul>
+<!--         <div class="bt_wrap">
+       		<span class="prev gg_real_dir gg_real_prev"  tabindex="0" alt="이전 이미지 보기"><i class="fa fa-angle-up"></i></span>
+            <span id="traffic_total" class="num"></span>
+         	<span class="next gg_real_dir gg_real_next"  tabindex="0" alt="다음 이미지 보기"><i class="fa fa-angle-down" ></i></span>
+       </div> -->
+    </div>
+    <script type="text/javascript">
+/*		$('#visual_slide').gg_tabArrowSlideMove({
+			imgWidth:'100%',
+			motionType:'fade',         //모션타입('none','x','y','fade')
+			autoRollingTime:3000,   //자동롤링속도(밀리초)
+			menuVisible:true        //메뉴보이기(true,false)
+		}) */
+///////////////////////////////////// WA 추가 사항 ////////////////////////////////////////////////////////		
+		$('#wa_board').focusout(function(){
+			//console.log('wa_board focus out!! focus out!! focus out!! ')
+			$( '.gg_sub' ).slideUp();
+		});		
+</script>
+    </div>
+</section>
+<!--visual 끝-->
+<!--content 시작-->
+<section>
+	<div id="content_wrap">
+    	<div class="ct1" id="banner">
+        	<div class="icon_wrap1">
+            	<ul>
+                	<li class="i1"><a href="/gbis2014/schBus.action?mapTabCd=1"><span class="icon"></span><span class="text">통합검색</span></a></li>
+                    <li class="i2"><a href="/gbis2014/schBus.action?mapTabCd=2"><span class="icon"></span><span class="text">경로안내</span></a></li>
+					<li class="i3"><a href="/gbis2014/bbs.action?cmd=getNoticeView&amp;noticeIdx=1672" target="blank"><span class="icon"></span><span class="text">내손의 BIT</span></a></li>
+                    <li class="i4"><a href="javascript:goMove('/gbis2014/publicService.action?cmd=openApiInfo')"><span class="icon"></span><span class="text">OpenAPI</span></a></li>
+                    <li class="i5"><a href="/service/guide/guide1.action?cmd=myBus"><span class="icon"></span><span class="text">이용안내</span></a></li>
+                    <li class="i6"><a href="/mybit" target="blank"><span class="icon"></span><span class="text">나만의 BIT</span></a></li>
+                </ul>
+            </div>
+            <div class="gnb">
+            	<ul>
+				 	<li class="g1"><a href="https://data.go.kr/data/15080346/openapi.do" target="_blank" title="공공데이터포털 경기도_버스도착정보조회 새 창 열림" >OpenAPI 신청 바로가기 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+				 	<li class="g2"><a href="/service/busInfo/townBus.action?cmd=townBus">마을버스현황 바로가기 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+				 	<li class="g3"><a href="/service/busInfo/airpIncheonBus.action?cmd=airpIncheon">공항버스현황 바로가기 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+					<li class="g4"><a href="javascript:goMove('/popup/popup.action?cmd=popupWeb&amp;ctg=locationSuwon')">오시는길 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                    <li class="g5"><a href="javascript:goMove('/service/guide/guide6.action?cmd=gbis')">경기버스정보 안내 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                </ul>
+                </ul>
+            </div>
+        </div>
+        <div id="bus_tab" class="bus_tab_wrap">
+    		<ul class="bus_tab_menu">
+        		<li class="t1 gg_select"><a href="javascript:fnMainTab(0);">경기도 주요뉴스</a></li>
+           	 	<li class="t2"><a href="javascript:fnMainTab(1);">공지사항</a></li>
+            	<li class="t3"><a href="javascript:fnMainTab(2);">이용안내</a></li>
+        	</ul>
+        	<div class="bus_tab_ct_wrap"> 
+	        	<ul class="bus_tab_ct">
+	        		<li id="gNews"></li>
+	                <li id="noticeList" style="display:none;"></li>
+	        		<li style="display:none;">
+	                	<div class="ct_wrap guide" id="guide">
+	                		<h3><a href="/service/guide/guide1.action?cmd=mybus">홈페이지</a></h3>
+	                         <a href="/service/guide/guide1.action?cmd=mybus#guide_data2" class="glist">통합검색</a>
+	                         <a href="/service/guide/guide1.action?cmd=mybus#guide_data3" class="glist">경로검색</a>
+	                         <a href="/service/guide/guide1.action?cmd=mybus#guide_data5" class="glist">지도맵서비스</a>
+	                    </div>
+	                    <div class="ct_wrap guide">
+	                		<h3><a href="/service/guide/guide1.action?cmd=ars">ARS(전화)</a></h3>
+	                    	 <a href="/service/guide/guide1.action?cmd=ars#guide_data1" class="glist">제공기능</a>
+	                         <a href="/service/guide/guide1.action?cmd=ars#guide_data2" class="glist">빠른도착 예정시간 안내</a>
+	                         <a href="/service/guide/guide1.action?cmd=ars#guide_data3" class="glist glist2">시내버스 도착예정시간 안내, 저상버스 도착예정시간 안내</a>
+	                    </div>
+	                    <div class="ct_wrap guide">
+	                		<h3><a href="/service/guide/guide1.action?cmd=inetMobileNew">모바일웹</a></h3>
+	                    	 <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data1" class="glist">모바일 웹 설치방법</a>
+	                         <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data2" class="glist glist3 line">제공기능</a>
+	                         <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data3" class="glist glist3">간략검색</a>
+	                         <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data4" class="glist glist3 line">즐겨찾기</a>
+	                         <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data5" class="glist glist3">주변정류소</a>
+	                         <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data6" class="glist glist3 line">노선번호</a>
+	                         <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data7" class="glist glist3">버스정류소</a>
+	                         <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data8" class="glist glist3 line">길찾기</a>
+	                         <a href="/service/guide/guide1.action?cmd=inetMobileNew#guide_data9" class="glist glist3">More</a>
+	                    </div>
+	                </li>
+	        	</ul>
+	        </div>
+    	</div>
+        <script type="text/javascript">
+		$('#bus_tab').gg_tabArrowSlideMove({
+			motionType:'fade',      //모션타입('none','x','y','fade')
+			autoRollingTime:8000,   //자동롤링속도(밀리초)
+			menuVisible:true        //메뉴보이기(true,false)
+		})
+		</script>
+        <div id="download_wrap">
+        	<ul>
+            	<li class="d1"><a href="/service/adm/banner/download.action?cmd=download&amp;fName=GGD_RouteInfo_M.xlsx"><span class="icon"></span><span class="text">버스노선정보<br> 다운로드</span></a></li>
+                <li class="d2"><a href="/service/adm/banner/download.action?cmd=download&amp;fName=GGD_RouteStationInfo_M.xlsx"><span class="icon"></span><span class="text">노선경유정보<br> 다운로드</span></a></li>
+                <li class="d3"><a href="/service/adm/banner/download.action?cmd=download&amp;fName=GGD_StationInfo_M.xlsx"><span class="icon"></span><span class="text">정류소정보<br> 다운로드</span></a></li>
+                <li class="d4"><a href="https://play.google.com/store/apps/details?id=kr.or.gbushybrid" target="_blank" title="[새창으로 열림]"><span class="icon"></span><span class="text">경기버스정보앱<br>안드로이드 다운로드</span></a></li>
+                <li class="d5"><a href="https://itunes.apple.com/kr/app/gyeong-gibeoseujeongbo2/id895828154?mt=8" target="_blank" title="[새창으로 열림]"><span class="icon"></span><span class="text">경기버스정보앱<br>아이폰 다운로드</span></a></li>
+            </ul>
+        </div>
+    </div>
+    </section>
+   </div> 
+    <!--content 끝-->
+   
+ <!--footer 시작-->
+	<footer>
+		<div id="footer_wrap">
+         <div class="sfooter_wrap">
+        	<div class="f_menu_wrap sf_menu_wrap">
+    			<ul class="f_menu">
+        			<li class="f1 stress"><a href="javascript:goMove('/popup/popup.action?cmd=popupWeb&amp;ctg=course')">개인정보처리방침</a></li>
+            		<li class="f1"><a href="javascript:goMove('/popup/popup.action?cmd=popupWeb&amp;ctg=provision')">이용약관</a></li>
+            		<li class="f1"><a href="javascript:goMove('/popup/popup.action?cmd=popupWeb&amp;ctg=nemail')">이메일무단수집거부</a></li>
+            		<li class="f1"><a href="javascript:goMove('/service/guide/guide1.action?cmd=mybus')">이용안내</a></li>
+            		<li class="f1"><a href="javascript:goMove('/popup/popup.action?cmd=popupWeb&amp;ctg=locationSuwon')">오시는 길</a></li>
+        		</ul>
+        		<div class="select s_select" >
+        			<span class="placeholder"  id="placeholder" tabindex="0" role="button" >관련사이트</span><span class="hide">클릭하여 열기</span>
+                    <ul>
+    					<li><a href="https://topis.seoul.go.kr/" target="_blank" title="새창으로이동">서울교통정보센터<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li><a href="http://bus.incheon.go.kr/bis/main.view" target="_blank" title="새창으로이동">인천버스정보관리<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.tago.go.kr/" target="_blank" title="새창으로이동">국가대중교통정보센터<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.gg.go.kr/" target="_blank" title="새창으로이동">경기도<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.gg.go.kr/contents/contents.do?ciIdx=758&menuId=2534" target="_blank" title="새창으로이동">수도권통합요금<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li><a href="https://gits.gg.go.kr/" target="_blank" title="새창으로이동">경기도교통정보센터<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li><a id="lastLink" href="http://www.gbus.or.kr/" target="_blank" title="새창으로이동">경기도버스운송조합<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+  				    </ul>
+        		</div>
+                <script type="text/javascript">
+					$('.select').bind('keypress click','.placeholder',function(){
+	  					var parent = $(this).closest('.select');
+	  					if ( ! parent.hasClass('is-open')){
+		   					parent.addClass('is-open');
+		   					parent.attr("title","관련 사이트 목록 열림");
+		    				$('.select.is-open').not(parent).removeClass('is-open');
+	  					}else{
+	    					parent.removeClass('is-open');
+	    					parent.attr("title","관련 사이트 목록 닫힘");
+	  					}
+					}).on('click','ul>li',function(){
+  					var parent = $(this).closest('.select');
+  					parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
+					});
+					
+					$('#lastLink').focusout(function(){
+						$('#placeholder').attr('tabindex','0').focus();
+					});
+			  </script>
+              </div>
+            </div>
+            <div class="footer sfooter">
+            	<div class="add">
+					<address>
+						<p class="ally-hidden">경기도 로고</p>
+						<p>우편번호 16381 경기도 수원시 권선구 칠보로 1번길 38 경기도교통정보센터</p>
+						<!-- <p>Phone 1688-9090 FAX 031-294-6815  </p> -->
+						<p class="copy">Copyright The province of Gyeonggi, All rights reserved.</p>
+					</address>
+            	</div>
+            <div class="call">
+                <span class="callnumber">031-120 </span><span class="callname"> 경기도콜센터</span>
+            </div>
+            
+            <div class="wa">
+			
+			    <a href="http://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110">
+				   <img src="/gbis2014/resources/img/WA_Mark_202511.png" alt="웹접근성인증마크" style="width:121px;"/>
+			    </a>
+			
+                <a href="javascript:void(0);" class="top" title="위로가기"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>  
+            </div>
+             
+                <script type="text/javascript">
+					$('.footer a.top').on('click',function(){
+						$('html, body').animate({
+							scrollTop: 0
+						}, 'fast');
+					});
+			  </script>
+            </div>
+    	</div>
+	</footer>
+	<!--footer 끝-->
+
+</body>
+</html>
+
+
+   
+<script type="text/javascript">
+	function updateTitles() {
+		var lis = document.querySelectorAll('.bus_tab_menu li');
+		for (var i = 0; i < lis.length; i++) {
+			var li = lis[i];
+			if (li.classList.contains('gg_select')) {
+				var text = li.innerText.replace(/^\s+|\s+$/g, '');
+				li.setAttribute('title', text + ' 선택됨');
+			} else {
+				li.removeAttribute('title');
+			}
+		}
+	}
+	
+	// 초기 1회 실행
+	updateTitles();
+	
+	// gg_select 클래스 변화 감시
+	var target = document.querySelector('.bus_tab_menu');
+	var observer = new MutationObserver(function(mutations) {
+		var shouldUpdate = false;
+		for (var i = 0; i < mutations.length; i++) {
+			var mutation = mutations[i];
+			if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+				shouldUpdate = true;
+				break;
+			}
+		}
+		if (shouldUpdate) {
+			updateTitles();
+		}
+	});
+	
+	// li의 class 변화 감시 설정
+	observer.observe(target, {
+		subtree: true,
+		attributes: true,
+		attributeFilter: ['class']
+	});
+</script>

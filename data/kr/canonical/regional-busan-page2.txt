@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<link rel="stylesheet" href="../css/map_common.css" type="text/css" />
+<style>
+#skipnavigation {position:absolute; left:0; top:-1000px; width:100%; height: 0px; z-index:1000; line-height:0px; font-size:0px;}
+#skipnavigation a{display:block; text-align:center; width: 100%; line-height:0px; font-size:0px;}
+#skipnavigation a:focus, #skipnavigation a:hover, #skipnavigation a:active {position:absolute; left:0px; top:1000px; padding: 8px 0;  display:block; height:20px; background:#20262c; font-size:12px; font-weight:bold; line-height:18px; color:#fff;}
+</style>
+<title>BIMS 부산버스정보시스템</title>
+<script type="text/javascript">
+	var lineLength;
+	function getLineLength()
+	{
+		return lineLength;
+	}
+</script>
+<!--script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64626ef863fc96049e2c956e9579b11a&libraries=services"></script-->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=855cef1f1577ba278c27d30a8ea864e3&libraries=services"></script>
+<script type="text/javascript" src="../Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/cscs.js"></script>
+<script type="text/javascript" src="../Scripts/mapFunction.js"></script>
+<script type="text/javascript" src="../Scripts/map_mainFn.js"></script>
+<script type="text/javascript" src="../Scripts/map_daum.js"></script>
+<script type="text/javascript" src="../Scripts/map_naver.js"></script>
+<script type="text/javascript">
+$(document).ready(	function(){ fnResize();	getBusTypeList("G");		});
+</script>
+<!--script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&amp;key=c204699db517938be7728356f6ff918a"></script-->
+<!--script type="text/javascript" src="https://apis.daum.net/maps/maps3.js?apikey=2236f340093839afb8ebd034d35f1d33270128b6" charset="utf-8"></script--> 
+
+<!--script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25fa05321abfe69c71c071d726915761&libraries=services"></script 20181106-->
+<script src="../include/js/jquery-1.3.2-vsdoc2.js" type="text/javascript"></script>
+</head>
+<body id="body1" class="am_bg" onload="init(2, 'daum');" >
+    <!--<body id="body1" class="am_bg" onload="init(2, 'daum');" onresize="fnResize();" oncontextmenu="return false" onselectstart="return false" ondragstart="return false">-->
+<!-- top -->
+
+<div id="skipnavigation" tabindex="1">
+    <a href="#jumenu">본문으로 바로가기</a>
+</div>
+<div id="am_header" tabindex="1">
+  <div id="am_topm0">
+    <div id="am_topm1">
+        <div id="am_topm1_1"><img src="../images/map/logo_map.gif" width="300" height="55" alt="BIMS 부산시 버스정보관리시스템 Bus Information Mangement System" /></div>
+        <div id="am_topm1_2">
+          <ul>
+            <li><a href="map_main.asp?menuNum=1&amp;mapGubun=daum"><img src="../images/map/menu01.gif" onmouseover="this.src='../images/map/menu01_on.gif'" onmouseout="this.src='../images/map/menu01.gif'" alt="출발도착검색" width="130" height="55" /></a></li><li ><a href="map_main.asp?menuNum=2&amp;mapGubun=daum"><img src="../images/map/menu02_on.gif" onmouseover="this.src='../images/map/menu02_on.gif'" onmouseout="this.src='../images/map/menu02_on.gif'" alt="노선및정류소검색" width="130" height="55" /></a></li><li><a href="map_main2.asp?menuNum=4&amp;mapGubun=daum"><img src="../images/map/menu04.gif" onmouseover="this.src='../images/map/menu04_on.gif'" onmouseout="this.src='../images/map/menu04.gif'" alt="실시간버스위치검색" width="130" height="55" /></a></li>
+          </ul></div>
+    </div>
+    <div id="am_topm3"><a href="javascript:self.close();"><img src="../images/map/btn_close_off.jpg" alt="닫기" width="30" height="55" onmouseover="this.src='../images/map/btn_close_off.jpg'" onmouseout="this.src='../images/map/btn_close_on.jpg'" /></a></div>
+     
+     <div id="am_topm2">  
+      <div id="am_topm2_1a"><img src="../images/map/logo_map2.gif" width="300" height="40" alt="" /></div>
+      <div id="am_topm2_2">부산광역시 > 연제구 > 연산제5동 </div>
+      <div id="am_topm2_3">
+      <ul>
+       <!--li><a href="#">URL복사<img src="../images/map/ic_arrow02.gif" alt="화살표시아이콘" width="13" height="12"></a></li><li><a href="#"><img src="../images/map/ic_print.gif" alt="인쇄" width="14" height="12"></a></li><li><a href="#"><img src="../images/map/ic_save.gif" alt="저장" width="13" height="12"></a></li--><li><a href="javascript:fnDraw();"><img src="../images/map/ic_distance.gif" alt="거리" width="13" height="12" /></a></li><!--li><a href="#"><img src="../images/map/ic_area.gif" alt="면적" width="13" height="12"></a></li--></ul></div>
+    </div>  
+      
+  </div>
+</div>
+
+<!-- top -->
+
+
+	<!-- 왼쪽 s -->
+	
+	<div id="am_container">	
+	<div id="am_headHeight"><!-- 상단고정영역 --></div>
+	
+<script type="text/JavaScript">		
+
+function selectTab(mode){
+	if(mode=="loction"){
+		$("#btnBus").attr("src", "../images/map/left_tab01.gif");
+		$("#btnLocation").attr("src", "../images/map/left_tab02_on.gif");
+		$("#dlLocation").attr("style", "display:block");
+		$("#dlBus").attr("style", "display:none");
+		
+	}else{
+		$("#btnBus").attr("src", "../images/map/left_tab01_on.gif");
+		$("#btnLocation").attr("src", "../images/map/left_tab02.gif");
+		$("#dlBus").attr("style", "display:black");
+		$("#dlLocation").attr("style", "display:none");
+		
+	}	
+}
+function getDongList(){	
+	
+	fnXHRSchOption($("#gu").attr("value"), "gun");
+
+}
+//xhrSendMail 콜백함수 
+function gugunList() 
+{
+    //<![CDATA[
+	//응답완료
+	if(xhrSchOption.readyState == 4) 
+	{		
+		//상태:OK(200)
+		
+		if(xhrSchOption.status == 200)
+		{
+			//서버응답
+			var oNewDoc = xhrSchOption.responseXML;		
+			var oNewObj = xhrSchOption.responseXML.getElementsByTagName("gun");			
+			
+			if(typeof(oNewObj)=="object" || typeof(oNewObj)=="function")
+			{					
+				$("#dong").children().remove();
+				$("#dong").append("<option value=''>선택</option>");
+				for(var i=0; i < oNewObj.length; i++)
+				{		
+					 $("#dong").append("<option value='"+oNewObj[i].attributes[0].value+"'>"+oNewObj[i].attributes[1].value+"</option>");
+				}				
+			}			
+		}
+	}
+    //]]>
+}
+function lineChk(mode){
+	
+	if(mode=="bus"){
+		var replaceStr = replaceSpecialChar_map($("#key").attr("value"));
+		$("#key").attr("value", replaceStr);
+		if($("#key").attr("value")==""){
+			alert("노선번호를 입력해주세요");
+			$("#key").focus();
+			return false;
+		}else{	
+			
+			$("#form1").attr("action", "frm_busRoute.asp");
+			$("#form1").submit();
+		}
+	}else{
+		
+		if($("#dong").attr("value")==""){
+			alert("지역을 선택해주세요");
+			$("#gu").focus();
+			return false;
+		}else{
+			$("#form1").attr("action", "frm_busRoute2.asp");
+			$("#form1").submit();
+		}	
+	}
+}
+function timeLyOpen(gubun, lineID, busNum){
+	
+	if(gubun=="start_end")
+	{
+		$("#timetable1").attr("style", "display:black;");
+		fnXHRSchOption(lineID, 'start_end_time');
+	}else if(gubun=="timeTable")
+	{
+		$("#timetableNum").html(busNum+"번 배차시간표");
+		$("#timetable2").attr("style", "display:black;");
+		fnXHRSchOption(lineID, 'bustimetable');
+	}
+}
+
+/* dasolution */
+function timeLyOpen2(gubun, lineID, stationID, stationName, busNum)
+{
+	if(gubun=="timetable3")
+	{
+		$("#timetable3").attr("style", "display:black;");
+		fnGetTimeTable(lineID, stationID, busNum, stationName);
+		//$("#timetableNum2").html(busNum+"번 "+stationName+"정류소 운행시간표");
+	}	
+}
+
+function TimeLyClose(gubun){
+	
+	if(gubun=="start_end"){
+		$("#timetable1").attr("style", "display:none;");		
+	}else if(gubun=="timeTable"){
+		$("#timetable2").attr("style", "display:none;");		
+	}else if(gubun=="timeTable3"){
+		$("#timetable3").attr("style", "display:none;");		
+	}
+	
+}
+
+    $(document).attr('title','노선 및 정류소 검색-BIMS');
+
+</script>
+  <div id="am_left">
+	<!-- 왼쪽 버스검색부분 s -->
+	<div id="bline_search">
+				<form name="form1" id="form1" method="post" target="iResult" action="frm_busRoute.asp">
+				<input type="hidden" name="CSRFToken" value="58DC7420-9F1F-43D0-A263-A3CD497A03E4">
+        <div id="bline_sch">
+        	<h2 class="map">노선 및 정류소 검색</h2>
+        	<span class="tab_st">
+            	<a class="on" href="#" title="노선 검색 탭">노선검색</a>
+              <a href="map_main.asp?menuNum=3&amp;mapGubun=daum" title="정류소 검색탭으로 변경">정류소검색</a>
+			  <a href="map_main.asp?menuNum=7&amp;mapGubun=daum" title="ARS 검색탭으로 변경" style="margin-left:-5px;">ARS검색</a>
+          </span>
+            <!-- h2 class="map"><img src="../images/map/map_tit05.gif" alt="노선검색" width="49" height="14" /></h2-->
+            <!--ul>
+            <li><a href="#"><img src="../images/map/left_tab01_on.gif" alt="버스번호" width="80" height="29" id="btnBus" onclick="selectTab('bus');" /></a></li><li><a href="#"><img src="../images/map/left_tab02.gif" alt="지역별" width="80" height="29" id="btnLocation" onclick="selectTab('loction');" /></a></li>
+            </ul-->
+            <!--p><img src="../images/map/left_tab01bgt.gif" width="240" height="6" /></p-->
+             <p class="topline"><img src="../images/map/left_bgt.gif" width="240" height="10" alt="topline" /></p>
+            <dl style="display:block;" id="dlBus">
+             <dd><label for="key" style="text-indent:-999; position:absolute; left:-99999px;">노선번호 입력</label><input name="key" type="text" class="nowrite" id="key" size="22" maxlength="20" /></dd>
+             <dd class="btn"> <button style="border: 0 none;     padding: 0px;" onclick="lineChk('bus')"><img src="../images/map/bt_search.gif" alt="검색" width="53" height="20" style="cursor:pointer" /></button></dd>
+             <dd class="txt">노선번호를 입력해 주세요. <br />예) 100-1, 1000, 강서구1</dd>
+            </dl>           
+            <p style="position:relative; top:-5px; display:inline-block; width:240px; height:10px; background:url(../images/map/left_bgb.gif);"></p>
+         </div>
+         </form>
+		     <!-- 노선 검색결과 s -->
+		     <h2 class="map"><img src="../images/map/map_tit01.gif" alt="검색결과" width="46" height="14" /></h2>
+					<iframe class="ifram_style" title="노선검색" src= "frm_busRoute.asp" id="ifResult" name="iResult" frameborder="0" marginheight="0" marginwidth="0" width="260" scrolling="yes" style="overflow-x:hidden"></iframe>
+    <!-- 노선 검색결과 e -->
+	</div>		
+    <!-- 왼쪽 버스검색부분 e -->	
+   </div>
+   <!-- 왼쪽 e -->	
+<!-- 운수사정보 (지도위레이어) s -->
+<div id="co_detail_onMap" style="display:none;">
+   <div class="bline_info1_1">  
+   <p class="btmore2"><a href="javascript:co_close()"><img src="../images/map/bt_close.gif" width="18" height="18"  alt="close"/></a></p>
+   </div>
+   <div class="bline_info3">       
+   </div>
+</div>
+<!-- 운수사정보 (지도위레이어)  e -->
+ 
+<!-- 첫차/막차 시간표 s --> 
+<div id="timetable1" style="display:none;">
+ <div class="tmtitle1">
+ <p class="busno2">첫차/막차 시간표</p>
+ <p class="btmore2"><a href="javascript:"><img src="../images/map/bt_close.gif" width="18" height="18" alt="close" onclick="TimeLyClose('start_end')"/></a></p>
+ </div>
+ <div class="tmtitle1_1">
+  <div id="av_table1">
+   <table width="222" border="0" cellspacing="0" cellpadding="0" id="start_end_table" class="start_end_table">
+   		<caption style="visibility:hidden; width:0px; height:0px;" style="visibility:hidden;">첫차, 막차 시간표</caption>
+        <tbody>
+        </tbody>
+   </table>
+   </div>
+ </div>
+</div>
+<!-- 첫차/막차 시간표 e -->
+ <!-- 배차 시간표 s --> 
+<div id="timetable2" style="display:none;">
+ <div class="tmtitle2">
+ <p class="busno2" id="timetableNum">99번 배차시간표</p>
+ <p class="btmore2"><a href="javascript:"><img src="../images/map/bt_close.gif" width="18" height="18" alt="close" onclick="TimeLyClose('timeTable')"/></a></p>
+ </div>
+ <div class="tmtitle2_2">
+  <div id="av_table1">
+   <table width="222" border="0" cellspacing="0" cellpadding="0" id="bustimetable">
+      	<caption style="visibility:hidden; width:0px; height:0px;" style="visibility:hidden;">배차 시간표</caption>
+        <tbody>
+        </tbody>
+   </table>
+   </div>
+ </div>
+</div>
+<!-- 배차 시간표 e -->
+<div id="timetable3" style="display:none;">
+    <div class="tmtitle1">
+     <p class="busno2" id="timetableNum2">번 배차시간표 상세</p>
+     <p class="btmore2">
+         <p class="btmore2"><a href="javascript:"><img src="../images/map/bt_close.gif" width="18" height="18" alt="close" onclick="TimeLyClose('timeTable3')"/></a></p>
+     </p>
+     </div>
+     <div class="tmtitle1_1" style="float:left;">
+      <!--평일 테이블-->
+      <div id="" class="week_table">
+        <h4 style="background:#ececec;">평일</h4>
+        <table border="0" cellspacing="0" cellpadding="0" id="">
+        	<caption style="visibility:hidden; width:0px; height:0px;" style="visibility:hidden;">평일 배차 시간표</caption>
+        	<tbody>
+            <tr>
+                <th>5시</th>
+                <td><span>21분</span><span>25분</span></td>             
+            </tr>
+            <tr>
+                <th>6시</th>
+                <td><span>21분</span><span>25분</span></td>             
+            </tr>
+            </tbody>        
+        </table>
+        </div>
+       <!--//평일 테이블-->
+       <!--토요일 테이블-->
+       <div id="" class="week_table">
+       <h4 style="background:#a2cee8;">토요일</h4>
+        <table border="0" cellspacing="0" cellpadding="0" id="">
+        	<caption style="visibility:hidden; width:0px; height:0px;" style="visibility:hidden;">토요일 배차 시간표</caption>
+        	<tbody>
+            <tr>
+                <th>5시</th>
+                <td><span>21분</span><span>25분</span></td>             
+            </tr>
+            <tr>
+                <th>6시</th>
+                <td><span>21분</span><span>25분</span></td>             
+            </tr>
+            </tbody>        
+       </table>
+       </div>
+       <!--//토요일 테이블-->
+       <!--주말 테이블-->
+       <div id="" class="week_table">
+       <h4 style="background:#dca9af;">일/공휴일</h4>
+        <table border="0" cellspacing="0" cellpadding="0" id="">
+        	<caption style="visibility:hidden; width:0px; height:0px;" style="visibility:hidden;">주말 배차 시간표</caption>
+        	<tbody>
+            <tr>
+                <th>5시</th>
+                <td><span>21분</span><span>25분</span></td>             
+            </tr>
+            <tr>
+                <th>6시</th>
+                <td><span>21분</span><span>25분</span></td>             
+            </tr> 
+            </tbody>       
+        </table>      
+       </div>
+       <!--//주말 테이블-->
+    </div>
+</div>
+	
+   <!-- 왼쪽 e -->
+	<!-- 중앙 컨텐츠 s -->
+
+
+<div id="am_content">
+        <div id="am_right0">
+        <div id="am_right2">
+            <div id="lyMap" style="width:100%;height:100%;z-index:5;">
+            </div>	
+	    </div>
+     </div>
+    </div>
+
+
+
+	<!-- 중앙 컨텐츠 e -->
+
+	</div>
+	 	
+<!-- 메인 컨텐츠 영역 래퍼 s -->
+	<!-- 하단 s --><div id="am_footer"><p><img src="../images/map/copyright_01.gif" width="900" height="62" alt="우편번호 611-735 부산광역시 연제구 중앙대로 1001"/></p>
+</div>
+<script type="text/javascript">
+//2014.09.25 요청으로 삽입
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54848480-29', 'auto');
+  ga('send', 'pageview');
+
+</script><!-- 하단 e -->
+    <!-- 지도 출/도착 선택 (지도위레이어) s -->
+<div id="dvPositionLy" style="display:none;">
+   <div style="padding:5px 2px;">  
+   <p class="btmore2"><a href="javascript:fnSetMapPosition('start')">출발지로 선택</a></p>
+   <!--p class="btmore2"><a href="javascript:fnSetMapPosition('via')">경유지 선택</a></p-->
+   <p class="btmore2"><a href="javascript:fnSetMapPosition('end')">도착지 선택</a></p>
+   </div>   
+</div>
+<!-- 지도 출/도착 선택 (지도위레이어)  e -->
+
+<!-- 지도 거리재기 레이어(지도위레이어) s -->
+<div id="dvLineLngLy" style="display:none;">
+   <div>  
+   <p class="btmore2">111111111111111111</p>  
+   </div>   
+</div>
+<!-- 지도 출/도착 선택 (지도위레이어)  e -->
+ 
+<script type="text/javascript">
+if('2'=="4"){
+	getTimeStamp();
+}
+</script>
+
+
+</body>
+
+</html>
+<!-- 버스도착정보 (지도위레이어) s >
+ <div id="bus_arrive2_onMap" style="display:none;">
+   <div class="bline_info1">
+   <p class="busno2">실시간버스정보 이용방법</p>
+   <p class="btmore2"><a href="javascript:closeInfo();"><img src="../images/map/bt_close.gif" width="18" height="18" /></a></p>
+   </div>
+   <div class="bline_info3"><img src="../images/map/realtime_info.jpg" width="276" height="461" /></div>
+</div>
+< 버스도착정보 (지도위레이어)  e -->
+

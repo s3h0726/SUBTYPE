@@ -661,6 +661,12 @@ function configureJourneyPicker(){
     const endpoints=$('#setup-route .route-endpoints');
     if(endpoints)endpoints.innerHTML='<span>'+escapeHtml(from)+'<small> 출발</small></span><span>'+escapeHtml(to)+'<small> 행선지</small></span>';
     if(selected?.countryId==='hk'){const serviceRoute=builtin.find(r=>r.id===(choice.sourceRouteId||choice.id));if(serviceRoute)renderHongKongSetupRoute(serviceRoute,choice);}
+    if(choice.kind==='koreanVerified'){
+      const resolved=resolveKoreanVerifiedChoice(choice,selected),stops=resolved.route.stations,list=$('#setup-route .setup-stations');
+      if(list)list.innerHTML=stops.map(s=>'<li><b>'+escapeHtml(s.ko)+'</b></li>').join('');
+      const description=$('#setup-route > p');
+      if(description)description.textContent=selected.operator.ko+' · '+krRouteLabel(selected)+' · '+stops.length+'개 '+stopWord(selected);
+    }
     if(choice.kind==='taiwan'){
       renderTaiwanSetupHeader(selected);
       if(endpoints)endpoints.innerHTML=taiwanNameMarkup(taiwanDirectionNames(choice));
