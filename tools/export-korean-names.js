@@ -25,6 +25,10 @@ const sourcedStation=(lineId,s)=>{
 const effectiveOperator=id=>edits.operators?.[id]||opMap.get(id)?.names?.ko||'';
 const effectiveLine=(id,meta)=>edits.lines?.[id]?.ko||meta.names?.ko||'';
 const effectiveColor=(id,meta)=>edits.lines?.[id]?.color||meta.color||'';
+// Taiwan names are written in Traditional Chinese, not in the legacy Japanese
+// fallback field used by the game's trilingual compatibility layer.
+const originalName=(meta,operatorOrLineId)=>operatorOrLineId?.startsWith('tw-')?
+ (meta?.zh||meta?.nameZhHant||meta?.nameZh||meta?.ja||''):(meta?.ja||'');
 const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]||edits.stations?.[lineId]?.[station.ja]||station.ko||'';
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
 const taiwanFile=path.join(root,'data/tw/generated/network.json');
@@ -80,11 +84,11 @@ for(let i=operators.length-1;i>=0;i--)if(canonicalId(operators[i].meta.id)!==ope
 operators.sort((a,b)=>(a.meta.names?.ko||'').localeCompare(b.meta.names?.ko||'','ko'));
 lines.sort((a,b)=>(a.meta.operatorId||'').localeCompare(b.meta.operatorId||'')||(a.meta.names?.ko||'').localeCompare(b.meta.names?.ko||'','ko'));
 if(process.argv.includes('--lines-only')) {
- fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),x.meta.names?.ja,x.meta.names?.en,effectiveColor(x.meta.id,x.meta),toRel(x.file)])]));
+ fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),originalName(x.meta.names,x.meta.id),x.meta.names?.en,effectiveColor(x.meta.id,x.meta),toRel(x.file)])]));
  console.log(JSON.stringify({lines:lines.length,output:'reports/korean-names/lines.csv'}));
  process.exit(0);
 }
-fs.writeFileSync(path.join(output,'operators.csv'),csv([['운영사ID','한국어명','일본어명','영어명','데이터경로'],...operators.map(x=>[x.meta.id,effectiveOperator(x.meta.id),x.meta.names?.ja,x.meta.names?.en,toRel(x.file)])]));
+fs.writeFileSync(path.join(output,'operators.csv'),csv([['운영사ID','한국어명','일본어명','영어명','데이터경로'],...operators.map(x=>[x.meta.id,effectiveOperator(x.meta.id),originalName(x.meta.names,x.meta.id),x.meta.names?.en,toRel(x.file)])]));
 fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),x.meta.names?.ja,x.meta.names?.en,effectiveColor(x.meta.id,x.meta),toRel(x.file)])]));
 const generatedDir=path.join(root,'data/generated/routes');
 const byId=new Map();
@@ -103,7 +107,7 @@ for(const x of lines){
   stationRows.push([
    x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),
    s.id,s.stationMasterId||'',effectiveStation(x.meta.id,s),
-   s.ja,s.kana||'',s.romaji||s.en||'',s.koSource||proof.source,routeFile,
+   originalName(s,x.meta.id),s.kana||'',s.romaji||s.en||'',s.koSource||proof.source,routeFile,
    proof.status,proof.url
   ]);
  }
