@@ -5,6 +5,8 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'reports/names/nation
 const suites=[
  ['registry',['tools/test-japan-station-registry.cjs']],['editor-runtime',['tools/test-editor-station-runtime.cjs']],['editor-table',['tools/test-korean-name-editor-namuwiki.cjs']],['trilingual-published',['tools/test-japan-trilingual-published.cjs']],['namuwiki-published',['tools/test-japan-namuwiki-published.cjs']],
  ['current-policy',['tools/test-japan-namuwiki-policy.cjs']],
+ ['existing-november-names',['tools/test-japan-station-name-corrections.cjs']],['futamata',['tools/test-futamata-retirement.cjs']],['famous-express',['tools/test-famous-limited-express.cjs']],
+ ['national-geometry',['tools/test-japan-name-geometry-preservation.cjs']],
  ['service-patterns',['tools/validate-service-patterns.js']],['service-resolver',['tools/test-service-route-resolver.js']],['shinkansen',['tools/test-japan-shinkansen-services.cjs']],['shonan',['tools/test-shonan-shinjuku-service-journeys.cjs']],['ueno-tokyo',['tools/test-ueno-tokyo-line.cjs']],['joban',['tools/test-ueno-tokyo-joban.cjs']],
  ['free-drive-motion',['--test','tools/test-free-drive-transfers.cjs','tools/test-track-motion.cjs']],['typing',['tools/test-typing-model.js']],['ime',['tools/test-ime-controller.js']],['coordinates',['tools/test-jp-route-station-coordinates.cjs']],
  ['free-drive-flow',['--test','tools/test-free-drive-target-selection.cjs','tools/test-free-drive-step-flow.cjs']],

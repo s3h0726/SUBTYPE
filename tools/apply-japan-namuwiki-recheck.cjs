@@ -88,7 +88,12 @@ for(const entry of manifest.stationNames){
  }
  const old=station.names.ko;
  if(old!==entry.ko){change('station',station.id,'ko',old,entry.ko,file,entry.wikiUrl);if(apply)station.names.ko=entry.ko;}
- if(apply){
+ const directProof=station.nameRevalidation?.ko,proofDate=station.nameRevalidation?.date||'';
+ const keepNewer=station.names.ko===entry.ko&&[station.koVerifiedDate||'',directProof?.status==='VERIFIED'?proofDate:''].some(date=>date>manifest.batch);
+ if(apply&&keepNewer&&directProof?.status==='VERIFIED'&&proofDate>(station.koVerifiedDate||'')){
+  station.koSourceUrl=directProof.source;station.koSource='namuwiki-article';station.koSourceMethod='article-header-identity-match';station.koVerifiedDate=proofDate;touched.add(file);
+ }
+ if(apply&&!keepNewer){
   station.koVerified=true;station.koSourceFamily='namuwiki';station.koSource='namuwiki-manual';
   station.koSourceMethod='manual';station.koSourceUrl=entry.wikiUrl;
   station.koVerifiedDate=manifest.batch;station.koConfidence='HIGH';station.koReviewStatus='VERIFIED';

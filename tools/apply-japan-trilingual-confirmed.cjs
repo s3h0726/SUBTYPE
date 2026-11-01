@@ -9,7 +9,7 @@ const descriptors=[
  {key:'operators',files:collect('data/operators','operator.json'),array:false},
  {key:'lines',files:collect('data/lines','line.json'),array:false}
 ];
-const changes=[];
+const changes=[],review=[];
 for(const desc of descriptors){
  const mapping=new Map(manifest[desc.key].map(v=>[v.id,v]));
  if(mapping.size!==manifest[desc.key].length)throw Error('Duplicate manifest ID in '+desc.key);
@@ -26,7 +26,15 @@ for(const desc of descriptors){
     if(!(field in patch))continue;
     const before=record.names[field]||'',after=patch[field];
     if(before===after)continue;
-    if(field==='en'&&!/[\u3040-\u30ff\u3400-\u9fff]/u.test(before))throw Error('EN field changed unexpectedly before audit: '+record.id);
+    // This older batch repairs contaminated fields. It must not overwrite a
+    // newer official spelling or a subsequently reviewed Korean/reading name.
+    if(record.officialNameProof?.[field]?.value===before||
+       field==='ko'&&record.nameRevalidation?.ko||
+       field==='kana'&&record.nameRevalidation?.kana?.status==='SUPPORTING_REFERENCE')continue;
+    if(field==='en'&&!/[\u3040-\u30ff\u3400-\u9fff]/u.test(before)||
+       field==='ko'&&/[가-힣]/.test(before)&&!/[\u3040-\u30ff\u3400-\u9fff]/u.test(before)){
+      review.push({id:record.id,field,current:before,olderBatch:after,reason:'Preserve newer well-formed name; explicit source reconciliation required'});continue;
+    }
     const verified=desc.key==='stations'?record.koVerified===true:record.sources?.koreanName?.verified===true;
     if(field==='ko'&&verified)throw Error('Do not replace independently verified Korean name: '+record.id);
     record.names[field]=after;changesForId.push({field,before,after});
@@ -43,5 +51,5 @@ for(const desc of descriptors){
 }
 const out=path.join(root,'reports/names/japan-confirmed-corrections-applied.json');
 fs.mkdirSync(path.dirname(out),{recursive:true});
-fs.writeFileSync(out,JSON.stringify({schemaVersion:1,scope:'only 44 previously contaminated Japanese source names',total:manifest.stations.length+manifest.lines.length+manifest.operators.length,changed:changes.length,changes},null,2)+'\n');
+fs.writeFileSync(out,JSON.stringify({schemaVersion:1,scope:'only 44 previously contaminated Japanese source names',total:manifest.stations.length+manifest.lines.length+manifest.operators.length,changed:changes.length,changes,review},null,2)+'\n');
 console.log(JSON.stringify({status:'PASS',checked:44,changed:changes.length,byKind:Object.fromEntries(descriptors.map(x=>[x.key,changes.filter(v=>v.kind===x.key).length]))}));

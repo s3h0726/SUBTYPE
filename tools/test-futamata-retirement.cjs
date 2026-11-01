@@ -54,9 +54,14 @@ const card=lite.routes.find(x=>x.id==='line-11102');assert.ok(card);
 assert.equal(card.stationCount,17);
 assert.equal(card.searchStations.includes('二股'),false);
 assert.equal(card.searchStations.includes('후타마타'),false);
-assert.ok(card.lazySource.includes('data/generated/routes/line-11102.json'));
-const routeModule=read('js/route-integrity.js').replace(/^export /gm,'');
+const payload=JSON.parse(read(card.lazySource.split('?')[0].replace(/^\.\//,'')));
+const hydrated=(payload.routes||[payload.route||payload]).find(r=>r.id===route.id);
+assert.ok(hydrated,'The selected lazy payload must include the audited line');
+assert.deepEqual(hydrated.stations.map(s=>s.id),route.stations.map(s=>s.id),'Lazy hydration must preserve the retired-station correction');
+assert.deepEqual(hydrated.geometry,route.geometry,'Lazy hydration must preserve the curved track');
+const routeModule=read('js/route-integrity.js').replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'');
 const context={};vm.createContext(context);
+require('./lib/test-kr-access-context.cjs')(context);
 vm.runInContext(routeModule+';globalThis.resolvePlayableRoute=resolvePlayableRoute;',context);
 const service={id:'local',stops:route.stations.map(s=>s.id)};
 for(const direction of ['forward','reverse']){

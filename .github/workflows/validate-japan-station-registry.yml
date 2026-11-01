@@ -25,6 +25,7 @@ jobs:
       - run: node tools/audit-japan-station-registry.cjs
       - run: git diff --exit-code -- reports/names/nationwide-20261101/stations.jsonl reports/names/nationwide-20261101/operating-sequences.json reports/names/nationwide-20261101/summary.json
       - run: node tools/test-japan-station-registry.cjs
+      - run: node tools/test-japan-name-geometry-preservation.cjs
       - run: node tools/test-editor-station-runtime.cjs && node tools/test-korean-name-editor-namuwiki.cjs
       - run: node tools/test-japan-trilingual-published.cjs && node tools/test-japan-namuwiki-published.cjs
       - run: node tools/test-japan-namuwiki-policy.cjs
