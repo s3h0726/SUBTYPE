@@ -171,3 +171,198 @@
     margin:2px auto 0!important;
   }
 }
+
+
+/* Station-name/typing collision fix: an explicit five-row free-drive layout.
+   The desktop input is visible; the duplicate answer-cell mirror is hidden.
+   This does not change ordinary route-play or the Taiwan/HK native labels. */
+#screen-game.active.free-drive-active{
+  --fd-nameplate-height:clamp(230px,37dvh,320px);
+}
+#screen-game.active.free-drive-active .station-sign-hud{
+  height:var(--fd-nameplate-height)!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+#screen-game.active.free-drive-active .station-sign{
+  height:100%!important;
+  display:grid!important;
+  grid-template-rows:5px 34px minmax(0,1fr) 25px!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+#screen-game.active.free-drive-active .station-sign-main{
+  display:grid!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+#screen-game.active.free-drive-active .station-current{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:14px minmax(30px,1fr) minmax(24px,auto) 13px 36px!important;
+  justify-items:center!important;
+  align-items:center!important;
+  align-content:stretch!important;
+  row-gap:2px!important;
+  min-height:0!important;
+  min-width:0!important;
+  padding:3px 10px 6px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+#screen-game.active.free-drive-active .station-current #station-context{
+  grid-column:1!important;
+  grid-row:1!important;
+  margin:0!important;
+  font-size:10px!important;
+  line-height:1.1!important;
+}
+#screen-game.active.free-drive-active .station-current #prompt-main{
+  grid-column:1!important;
+  grid-row:2!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0 3px!important;
+  box-sizing:border-box!important;
+  font-size:clamp(21px,2.8vw,40px)!important;
+  line-height:1.08!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  overflow:hidden!important;
+  align-self:center!important;
+}
+#screen-game.active.free-drive-active .station-current #prompt-ko{
+  grid-column:1!important;
+  grid-row:3!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  font-size:clamp(16px,1.8vw,25px)!important;
+  line-height:1.12!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  overflow:hidden!important;
+}
+#screen-game.active.free-drive-active .station-current #prompt-kana,
+#screen-game.active.free-drive-active .station-current #ko-progress{
+  display:none!important;
+}
+#screen-game.active.free-drive-active .station-current #prompt-sub{
+  grid-column:1!important;
+  grid-row:4!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:0!important;
+  font-size:10px!important;
+  line-height:1.15!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#screen-game.active.free-drive-active .station-current .station-sign-input{
+  display:grid!important;
+  grid-column:1!important;
+  grid-row:5!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  position:relative!important;
+  width:min(94%,640px)!important;
+  height:36px!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  clip:auto!important;
+  transform:none!important;
+  opacity:1!important;
+  border:1px solid #83978d!important;
+  border-bottom:3px solid var(--route-color)!important;
+  border-radius:5px!important;
+  background:#fff!important;
+  z-index:1;
+}
+#screen-game.active.free-drive-active .station-current .station-sign-input input{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+  padding:4px 10px!important;
+  border:0!important;
+  outline:0!important;
+  background:#fff!important;
+  color:#13251c!important;
+  -webkit-text-fill-color:#13251c!important;
+  caret-color:#166cb3!important;
+  font:600 16px/1.3 "Noto Sans KR","Malgun Gothic",sans-serif!important;
+  opacity:1!important;
+}
+#screen-game.active.free-drive-active .station-current .station-sign-input #input-status{
+  font-size:9px!important;
+  white-space:nowrap!important;
+  padding:0 9px!important;
+  color:#526359!important;
+}
+#screen-game.active.free-drive-active .station-current .station-badge{
+  position:absolute!important;
+  top:18px!important;
+  left:7px!important;
+  max-width:44px!important;
+  max-height:40px!important;
+  font-size:10px!important;
+  transform:none!important;
+}
+#screen-game.active.free-drive-active #game-free-drive-options{
+  bottom:calc(var(--fd-nameplate-height) + 22px)!important;
+  max-height:min(24dvh,192px)!important;
+}
+#screen-game.active.free-drive-active .station-neighbor b{
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+@media(max-height:650px){
+  #screen-game.active.free-drive-active{--fd-nameplate-height:clamp(190px,48dvh,242px);}
+  #screen-game.active.free-drive-active .station-sign{
+    grid-template-rows:4px 27px minmax(0,1fr) 21px!important;
+  }
+  #screen-game.active.free-drive-active .station-current{
+    grid-template-rows:12px minmax(24px,1fr) 21px 11px 30px!important;
+    row-gap:1px!important;
+    padding:2px 8px!important;
+  }
+  #screen-game.active.free-drive-active .station-current #prompt-main{
+    font-size:clamp(18px,3dvh,30px)!important;
+  }
+  #screen-game.active.free-drive-active .station-current #prompt-ko{
+    font-size:clamp(15px,2.3dvh,20px)!important;
+  }
+  #screen-game.active.free-drive-active .station-current .station-sign-input{height:30px!important;}
+  #screen-game.active.free-drive-active #game-free-drive-options{
+    max-height:min(18dvh,100px)!important;
+  }
+}
+@media(max-width:820px){
+  #screen-game.active.free-drive-active .station-sign-main{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  #screen-game.active.free-drive-active .station-neighbor{
+    display:none!important;
+  }
+  #screen-game.active.free-drive-active .station-current{
+    grid-column:1!important;
+  }
+  #screen-game.active.free-drive-active .station-current #prompt-main{
+    font-size:clamp(22px,5vw,36px)!important;
+  }
+  #screen-game.active.free-drive-active .station-current #prompt-ko{
+    font-size:clamp(17px,3.6vw,24px)!important;
+  }
+}
