@@ -15,6 +15,11 @@ const script=read('js/japan-lite-index.js'),marker='window.TRT_JAPAN_LITE_INDEX=
 assert(script.includes(marker),'Japanese route catalog not found');
 const routes=JSON.parse(script.slice(script.indexOf(marker)+marker.length).trim().replace(/;\s*$/,'')).routes;
 assert(routes.length>=590,'Unexpectedly short Japanese route catalog');
+function sourceHasSimilarColorSort(source){
+ const begin=source.indexOf('function japaneseRouteRgb('),end=source.indexOf('function filteredRoutes()',begin);
+ const sorter=source.slice(begin,end);
+ return sorter.includes('japaneseRouteHue')||sorter.includes('previous=group.rgb')||sorter.includes('Math.hypot(')||sorter.includes('remaining.length');
+}
 for(const file of files){
  const sort=loadSorter(file),sorted=sort(routes);
  assert.equal(sorted.length,routes.length,'Route count changed in '+file);
@@ -34,15 +39,28 @@ for(const file of files){
    seenColors.add(key);lastColor=color;
   }
  }
+ const firstByOperator=new Map();
+ for(const route of sorted){
+  const op=String(route.operatorId||route.operator?.ko||route.operator?.ja||'');
+  if(!firstByOperator.has(op))firstByOperator.set(op,route);
+ }
+ for(const [operator,first] of firstByOperator){
+  const hasMainline=routes.some(r=>String(r.operatorId||r.operator?.ko||r.operator?.ja||'')===operator&&/본선|本線/u.test([r.line?.ko,r.line?.ja].filter(Boolean).join(' ')));
+  if(hasMainline)assert(/본선|本線/u.test([first.line?.ko,first.line?.ja].filter(Boolean).join(' ')),'Mainline not first for operator '+operator);
+ }
+ assert(!sourceHasSimilarColorSort(read(file)),'Approximate RGB sort must not be restored');
  const sample=[
-  {id:'red1',operatorId:'a',lineColor:'#ff0000'},
-  {id:'blue1',operatorId:'b',lineColor:'#0000ff'},
-  {id:'red2',operatorId:'a',lineColor:'#FF0000'},
-  {id:'orange',operatorId:'a',lineColor:'#ff1000'},
-  {id:'blue2',operatorId:'b',lineColor:'#0000ff'}
+  {id:'redBranch',operatorId:'a',lineColor:'#ff0000',line:{ko:'북부지선'}},
+  {id:'blue1',operatorId:'b',lineColor:'#0000ff',line:{ko:'블루선'}},
+  {id:'far',operatorId:'a',lineColor:'#0000ff',line:{ko:'남부선'}},
+  {id:'similar',operatorId:'a',lineColor:'#ff1000',line:{ko:'빨간색 유사선'}},
+  {id:'redMain',operatorId:'a',lineColor:'#FF0000',line:{ko:'동서본선'}},
+  {id:'blueMain',operatorId:'a',lineColor:'#0000FF',line:{ja:'中央本線'}},
+  {id:'blue2',operatorId:'b',lineColor:'#0000ff',line:{ko:'또다른선'}}
  ];
- const result=sort(sample).map(x=>x.id);
- assert.deepEqual(Array.from(result),['red1','red2','orange','blue1','blue2'],'Synthetic RGB/operator grouping failed');
+ const result=Array.from(sort(sample),r=>r.id);
+ assert.deepEqual(result,['redMain','redBranch','blueMain','far','similar','blue1','blue2'],
+  'Mainline-first / exact RGB / original remaining order failed');
  assert.equal(sample[1].id,'blue1','Source array mutated');
- console.log('PASS '+file+': '+sorted.length+' Japanese cards, '+seenOperators.size+' operators, contiguous RGB groups');
+ console.log('PASS '+file+': '+sorted.length+' Japanese cards, '+seenOperators.size+' operators, exact RGB groups; mainlines first; original other-color order');
 }
