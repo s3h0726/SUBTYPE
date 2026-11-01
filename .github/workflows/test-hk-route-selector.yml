@@ -8,6 +8,11 @@ on:
       - 'index.html'
       - 'tools/test-hk-route-selector.cjs'
       - 'tools/test-japanese-route-color-order.cjs'
+      - 'tools/test-japan-station-name-corrections.cjs'
+      - 'data/japan-verified-station-name-corrections-20261101.json'
+      - 'data/editor-overrides.json'
+      - 'data/shared-stations/**'
+      - 'data/generated/routes/**'
       - 'tools/test-hk-completion.cjs'
       - 'data/hk/**'
       - 'js/hong-kong-*.js'
@@ -32,6 +37,8 @@ jobs:
         run: node tools/test-hk-route-selector.cjs
       - name: Verify Japanese operator and RGB route-card order
         run: node tools/test-japanese-route-color-order.cjs
+      - name: Verify Japanese Namuwiki station spelling corrections
+        run: node tools/test-japan-station-name-corrections.cjs
       - name: Verify Hong Kong Phase6 route data
         run: node tools/test-hk-phase6.cjs
       - name: Verify released Hong Kong source, geometry and actual-engine completion evidence
