@@ -17,7 +17,7 @@ export const operatorVariantIndex=value=>{let hash=2166136261;for(const ch of St
 class Game{
   constructor({onFinish,onQuit,onFreeDriveMove}){
     this.onFinish=onFinish;this.onQuit=onQuit;this.onFreeDriveMove=onFreeDriveMove;this.timer=null;this.moveTimer=null;this.phase='IDLE';this.stats=new TypingStatistics();
-    this.typing=new TypingController($('#typing-input'),{onChange:value=>this.onInput(value),onSubmit:()=>this.correct()});
+    this.typing=new TypingController($('#typing-input'),{onChange:value=>this.onInput(value),onSubmit:answer=>this.correct(answer)});
     $('#pause-button').addEventListener('click',()=>this.togglePause());$('#resume-game').addEventListener('click',()=>this.togglePause(false));$('#quit-game').addEventListener('click',()=>this.stop(true));$('#next-station-button').addEventListener('click',()=>this.advance());
     $('#screen-game').addEventListener('pointerdown',event=>{if(this.phase==='TYPING'&&!event.target.closest('button,a,select,input,textarea'))this.focusInput()});
     document.addEventListener('keydown',event=>{if(!$('#screen-game').classList.contains('active'))return;if(event.key==='Escape'){event.preventDefault();this.togglePause()}if(event.code==='Space'&&this.phase==='CORRECT_WAITING'&&!this.typing.isComposing()){event.preventDefault();this.advance()}})
@@ -48,7 +48,7 @@ class Game{
   }
   setFreeDriveTypingTarget(edge,station){
     if(!this.freeDriveMode||!edge||!station)return;
-    this.freeDriveTarget={to:edge.to,routeId:edge.routeId,index:edge.index,station};
+    this.freeDriveTarget={to:edge.to,routeId:edge.routeId,index:edge.index,station,fromKey:this.freeDriveState?.node?.key||null};
     // Every country must show the station the player is actually typing.
     // Previously only Hong Kong updated the sign; Japan/Korea/Taiwan showed the previous station.
     const ko=this.stationKoDisplay(station.ko)||station.ja||'';
@@ -144,9 +144,12 @@ class Game{
     return motion?Promise.resolve(this.mapReady).then(arrive):arrive();
   }
   onInput({state,value,isComposing=false}){value=String(value||'').normalize('NFC');if(this.route?.countryId==='kr'&&value===buildTypingModel(this.targetStation()?.ko||'').inputText)value=this.answerValues(this.targetStation())[0]||value;if(this.paused||this.phase!=='TYPING')return;const started=performance.now();this.renderKoreanProgress(value,state);const answer=this.answerValues(this.targetStation())[0]||'',target=Array.from(answer),typed=Array.from(value||'');let prefix=0;while(prefix<target.length&&typed[prefix]===target[prefix])prefix++;setTrainTypingProgress((this.freeDriveMode?this.freeDriveAwaitingStart:this.boarding)?0:target.length?prefix/target.length:0,this.options.motion&&!this.options.reducedMotion,this.mapRoute?.renderKey);const observed=this.stats.observe({value,state,isComposing});this.errors=this.stats.mistakeUnits;const targetJamo=Array.from(answer.normalize('NFD')),typedJamo=Array.from(String(value||'').normalize('NFD'));let jamoPrefix=0;while(jamoPrefix<targetJamo.length&&typedJamo[jamoPrefix]===targetJamo[jamoPrefix])jamoPrefix++;if(observed.mistakeAdded){this.combo=0;this.comboPrefixUnits=jamoPrefix;$('#error-count').textContent=this.errors}else if(state!=='wrong'&&jamoPrefix>this.comboPrefixUnits){this.combo+=jamoPrefix-this.comboPrefixUnits;this.comboPrefixUnits=jamoPrefix;this.maxCombo=Math.max(this.maxCombo,this.combo)}$('#input-status').textContent=this.route?.countryId==='kr'?(state==='wrong'?'확인':(state==='typing'||state==='composing')?`입력 ${Math.round(prefix/Math.max(1,target.length)*100)}%`:'입력'):(state==='wrong'?'CHECK':(state==='typing'||state==='composing')?`TYPING ${Math.round(prefix/Math.max(1,target.length)*100)}%`:'TYPE');$('#input-status').style.color=state==='wrong'?'#d93f3f':'';document.body.dataset.typingUpdateMs=(performance.now()-started).toFixed(2);this.updateHud()}
-  correct(){
+  correct(submittedAnswer=null){
     if(this.freeDriveMode){
       if(this.paused||this.finished||this.phase!=='TYPING'||!this.freeDriveTarget)return;
+      // The IME may submit an earlier completed value after the target changes.
+      // Never advance the NEW target using a submission from the previous station.
+      if(submittedAnswer!==null&&!this.answerValues(this.freeDriveTarget.station).includes(String(submittedAnswer).normalize('NFC')))return;
       const target=this.freeDriveTarget;this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(target.station?.id||target.to);this.playTone();this.typing.clear?.();
       if(target.kind==='start'){
         this.freeDriveAwaitingStart=false;
@@ -154,7 +157,7 @@ class Game{
         if(edge){const station=edge.route?.stations?.[edge.index]||null;if(station){$('#station-context').textContent='다음역 입력 · 자유주행';this.setFreeDriveTypingTarget(edge,station);return}}
         this.renderFreeDriveState(state);return
       }
-      const session=this.sessionId,arrival=this.arrivalPromise=this.trainArrival(1);const move=()=>{if(this.paused)return;if(this.sessionId!==session||!this.freeDriveMode||this.freeDriveTarget!==target)return;const moved=this.onFreeDriveMove?.(target.to,target.routeId);if(!moved){toast('다음 역으로 이동하지 못했습니다.');this.setFreeDriveTypingTarget(target,target.station)}};this.pendingFreeDriveMove=move;if(arrival?.then)arrival.then(reached=>{if(reached!==false)move()});else move();return
+      const session=this.sessionId,arrival=this.arrivalPromise=this.trainArrival(1);const move=()=>{if(this.paused)return;if(this.sessionId!==session||!this.freeDriveMode||this.freeDriveTarget!==target)return;const moved=this.onFreeDriveMove?.(target.to,target.routeId,target.fromKey);if(!moved){toast('다음 역으로 이동하지 못했습니다.');this.setFreeDriveTypingTarget(target,target.station)}};this.pendingFreeDriveMove=move;if(arrival?.then)arrival.then(reached=>{if(reached!==false)move()});else move();return
     }
     if(this.paused||this.finished||this.phase!=='TYPING')return;const station=this.targetStation();if(!station)return;if(this.route?.countryId==='hk'&&this.options.stationAdvance!=='space')this.hkTimedAdvance={started:performance.now(),stationId:station.id,visitIndex:this.typedStationIds.length};this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(station.id);const manual=this.options.stationAdvance==='space';this.arrivalSettled=false;this.manualAdvanceRequested=false;const arrival=this.arrivalPromise=this.trainArrival(this.boarding?0:1);$('#typing-input').readOnly=true;$('#typing-input').closest('.typing-box').classList.add('waiting');$('#input-status').textContent=this.route?.countryId==='kr'?(manual?'스페이스로 출발':this.boarding?'출발 중':'도착 중'):(manual?'SPACE NEXT':this.boarding?'DEPARTING':'ARRIVING');$('#next-station-button').hidden=!manual;this.phase=manual?'CORRECT_WAITING':'ARRIVING';this.playTone();this.updateHud();this.syncDebug();if(!manual){const session=this.sessionId;queueMicrotask(()=>{const advance=()=>{if(this.sessionId===session&&!this.finished&&this.options.stationAdvance!=='space')this.advance()};if(arrival?.then)arrival.then(reached=>{if(reached!==false){this.arrivalSettled=true;advance()}}).catch(error=>{console.error('Train arrival failed:',error);this.arrivalSettled=true;advance()});else{this.arrivalSettled=true;advance()}})}
 
