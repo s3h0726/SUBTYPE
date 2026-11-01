@@ -8,7 +8,7 @@ const candidates=['google-chrome','google-chrome-stable','chromium','chromium-br
 const chrome=candidates.find(name=>spawnSync('which',[name],{encoding:'utf8'}).status===0);
 if(!chrome)throw Error('A headless Chrome/Chromium binary is required');
 const fixture=pathToFileURL(path.join(__dirname,'free-drive-layout-fixture.html')).href;
-for(const [width,height] of [[1624,900],[1280,580],[390,844]]){
+for(const [width,height] of [[1624,900],[1280,580],[1624,430],[390,844]]){
   test('free-drive label and input never overlap at '+width+'x'+height,()=>{
     const run=spawnSync(chrome,[
       '--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage',
