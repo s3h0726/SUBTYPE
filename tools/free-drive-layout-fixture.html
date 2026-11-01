@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko" data-country="jp" data-theme="light">
+<head><meta charset="utf-8">
+<link rel="stylesheet" href="../css/hong-kong.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/home-night.css">
+<link rel="stylesheet" href="../css/game-upgrade.css">
+<link rel="stylesheet" href="../css/station-sign-ui.css">
+<link rel="stylesheet" href="../css/station-sign-families.css">
+<link rel="stylesheet" href="../css/osm-single-screen.css">
+<link rel="stylesheet" href="../css/typing-fit-fixes.css">
+<link rel="stylesheet" href="../css/asset-runtime.css">
+<link rel="stylesheet" href="../css/free-drive.css">
+<link rel="stylesheet" href="../css/account-leaderboard.css">
+<link rel="stylesheet" href="../css/service-picker-rebuild.css">
+<link rel="stylesheet" href="../css/cloud-run-sync.css">
+<link rel="stylesheet" href="../css/taiwan.css">
+<style>html,body{margin:0}</style>
+</head>
+<body data-current-screen="game" data-free-drive="true">
+<main><section id="screen-game" class="screen game-screen active free-drive-active" data-screen="game">
+  <div class="game-free-drive-tabs" hidden></div>
+  <div class="game-top"><button>종료</button><div><h2>아부쿠마 급행선</h2></div><div><button>테마</button></div></div>
+  <div class="service-summary"><div>기점</div><div>아부쿠마 급행선</div><div>종점</div></div>
+  <div class="hud-strip"><div>시간</div><div>진행</div><div>분당 타수</div><div>정확도</div><div>콤보</div></div>
+  <div class="map-shell game-map-shell"><div id="route-map" class="route-map game-rail-map"></div></div>
+  <div class="station-sign-hud">
+   <section id="station-sign" class="station-sign" style="--route-color:#007bc0" data-sign-style="local">
+    <div class="station-sign-strip"></div>
+    <div class="station-sign-brand"><span>아부쿠마 급행</span><span id="station-line-label">아부쿠마 급행선</span></div>
+    <div class="station-sign-main">
+      <div class="station-neighbor previous"><small>현재역</small><b>세노에</b><span>瀬上</span></div>
+      <div class="station-current">
+        <p id="station-context">다음역 입력 · 자유주행</p>
+        <div id="station-badge" class="station-badge" hidden></div>
+        <h1 id="prompt-main">向瀬上</h1>
+        <p id="prompt-ko" class="prompt-ko">무카이세노에</p>
+        <p id="prompt-kana" class="prompt-kana">むかいせのうえ</p>
+        <p id="prompt-sub" class="prompt-romaji">Mukaisenoue</p>
+        <div id="ko-progress" class="ko-progress"><span class="input-cell">무</span><span class="input-cell">카</span></div>
+        <label class="typing-box station-sign-input"><input id="typing-input" value="무카이" lang="ko"><span id="input-status">TYPE</span></label>
+        <button class="next-station-button" hidden>다음</button>
+      </div>
+      <div class="station-neighbor next"><small>다음 역</small><b>무카이세노에</b><span>向瀬上</span></div>
+    </div>
+    <div class="station-sign-footer"><span>오타 0</span><span>자유주행</span><span>목표역</span></div>
+   </section>
+  </div>
+  <div id="game-free-drive-options" class="game-free-drive-options">
+    <div class="free-drive-station-buttons"><button>이전역</button><button>다음역</button></div>
+  </div>
+</section></main>
+<script>
+window.addEventListener('load',()=>{
+ const bounds=sel=>{const r=document.querySelector(sel).getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right}};
+ const pairs=[['.station-sign-brand','#prompt-main'],['#prompt-main','#prompt-ko'],['#prompt-ko','#prompt-sub'],['#prompt-sub','.station-sign-input'],['.station-sign-input','.station-sign-footer']];
+ const errors=[];
+ for(const [a,b] of pairs){
+   const x=bounds(a),y=bounds(b);
+   if(x.bottom>y.top+2)errors.push(a+' overlaps '+b+': '+x.bottom.toFixed(1)+'/'+y.top.toFixed(1));
+ }
+ const style=getComputedStyle(document.querySelector('#typing-input'));
+ if(style.color==='rgba(0, 0, 0, 0)'||style.color==='transparent'||style.opacity==='0')errors.push('typing text invisible');
+ if(getComputedStyle(document.querySelector('#ko-progress')).display!=='none')errors.push('duplicate typed-text mirror visible');
+ if(getComputedStyle(document.querySelector('#station-badge')).display!=='none')errors.push('hidden badge still visible');
+ if(bounds('.station-sign').bottom>bounds('.station-sign-hud').bottom+2)errors.push('nameplate exceeds HUD');
+ document.documentElement.dataset.layoutResult=errors.length?'FAIL':'PASS';
+ document.documentElement.dataset.layoutErrors=errors.join(' | ');
+});
+</script></body></html>
