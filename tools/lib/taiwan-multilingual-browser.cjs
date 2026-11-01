@@ -19,10 +19,10 @@ async function setup(page,report,lineId,out){
 async function game(page,report,state,out){
  await page.waitForFunction(()=>document.querySelector('#departure-overlay').hidden);
  await page.evaluate(async()=>{await globalThis.__TW_QA__.game.mapReady});
- await visibleChinese(page,'#prompt-main');await visibleChinese(page,'#game-operator .tw-zh');await visibleChinese(page,'#game-line-name .tw-zh');await visibleChinese(page,'#game-service-name .tw-zh');await visibleChinese(page,'#map-station-info .tw-zh');
+ await visibleChinese(page,'#prompt-main');await page.waitForFunction(()=>/^[가-힣]/u.test(document.querySelector('#prompt-ko')?.textContent||''));await visibleChinese(page,'#game-operator .tw-zh');await visibleChinese(page,'#game-line-name .tw-zh');await visibleChinese(page,'#game-service-name .tw-zh');await visibleChinese(page,'#map-station-info .tw-zh');
  await visibleChinese(page,'.osm-station-label .tw-zh');
  report.multilingual.layout=await page.evaluate(()=>Object.fromEntries(['screen-game','game-operator','game-line-name','game-service-name','prompt-main','prompt-ko','typing-input'].map(id=>{const e=document.getElementById(id),c=getComputedStyle(e),b=e.getBoundingClientRect();return[id,{position:c.position,display:c.display,width:b.width,height:b.height,x:b.x,y:b.y}]})));
- const fonts=await page.evaluate(()=>({zh:parseFloat(getComputedStyle(document.querySelector('#prompt-main')).fontSize),ko:parseFloat(getComputedStyle(document.querySelector('#prompt-ko')).fontSize)}));assert(fonts.zh>fonts.ko,'Traditional Chinese must be the primary station-sign label');
+ const fonts=await page.evaluate(()=>({zh:parseFloat(getComputedStyle(document.querySelector('#prompt-main')).fontSize),ko:parseFloat(getComputedStyle(document.querySelector('#prompt-ko')).fontSize)}));assert(fonts.ko>fonts.zh,'Korean answer should be prominent as in Hong Kong, with native Traditional Chinese underneath');
  if(!report.multilingual.operators.includes(state.operator)){report.multilingual.operators.push(state.operator);await page.screenshot({path:path.join(out,state.operator+'-game-dark.png'),fullPage:true});}
 }
 async function result(page,report,out){await visibleChinese(page,'#result-route .tw-zh');if(!report.multilingual.result){await page.screenshot({path:path.join(out,'result-dark.png'),fullPage:true});report.multilingual.result='PASS'}}

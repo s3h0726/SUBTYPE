@@ -32,10 +32,19 @@ export function renderTaiwanGameDisplay(game){
  set('prompt-kana','');set('prompt-sub',game.options?.difficulty==='hard'?'한국어 역 이름을 입력하세요':n.en);
  const currentIndex=game.freeDriveMode?game.index:game.sequence?.indexOf(station),previous=game.freeDriveMode?game.sequence?.[game.index-1]:game.boarding?null:game.currentStation(),next=game.sequence?.[(currentIndex??0)+1];
  for(const [prefix,s]of[['previous',previous],['next',next]]){const v=getTaiwanDisplayNames(s);set(prefix+'-station-name',v.ko|| (prefix==='previous'?'출발지':'종착지'));set(prefix+'-station-romaji',[v.zh,v.en].filter(Boolean).join(' · '));}
- markup('game-line-name',route.line);markup('game-operator',route.operator);
+ // Match Japan/Hong Kong: preserve the common line badge and add Taiwan labels.
+ const lineHeading=document.getElementById('game-line-name');
+ if(lineHeading){const badge=lineHeading.querySelector('.game-line-symbol,.line-badge,.line-symbol-asset')?.outerHTML||'';lineHeading.innerHTML=badge+taiwanNameMarkup(route.line,{english:true})}
+ markup('game-operator',route.operator);
  set('service-origin-ko',getTaiwanDisplayNames(first).ko);set('service-origin-ja',getTaiwanDisplayNames(first).zh);set('service-destination-ko',getTaiwanDisplayNames(last).ko);set('service-destination-ja',getTaiwanDisplayNames(last).zh);
  const service=game.freeDriveMode?{ko:'자유주행',zh:'自由駕駛',en:'Free Drive'}:game.service;markup('game-service-name',service);markup('station-service-footer',service);markup('service-route-summary',route.line);markup('service-direction-summary',taiwanDirectionNames({originNames:first,destinationNames:last}));
- markup('station-line-label',route.line);
+ // Do not overwrite applyActiveBrand()'s common symbol/operator branding.
+ const lineLabel=document.getElementById('station-line-label'),nativeLine=getTaiwanDisplayNames(route.line);
+ if(lineLabel){
+  const title=lineLabel.querySelector('b'),original=lineLabel.querySelector('small');
+  if(title)title.textContent=nativeLine.ko;
+  if(original){original.textContent=nativeLine.zh||nativeLine.en;original.lang='zh-Hant'}
+ }
 }
 export function renderTaiwanSetupHeader(route){
  if(route?.countryId!=='tw')return;const root=document.getElementById('setup-route');if(!root)return;

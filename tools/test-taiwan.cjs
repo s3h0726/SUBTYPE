@@ -26,3 +26,19 @@ test('editor station overrides reach the actual Taiwan journey and its destinati
  const data=await d.api.loadTransportData('tw'),l=data.lines.find(l=>l.id===line.id),choice=d.api.taiwanOperatingChoices(l)[0],resolved=d.api.resolveTaiwanChoice(choice,l);
  assert.equal(choice.originNames.ko,'편집된출발역');assert.equal(resolved.route.stations[0].ja,'편집된출발역');assert.equal(resolved.route.stations[0].zh,line.stations[0].zh);
 });
+
+test('Taiwan uses Hong Kong/Japan common sign geometry and preserves native labels',()=>{
+ const css=fs.readFileSync(path.join(root,'css/taiwan.css'),'utf8');
+ assert(css.includes('#screen-game.active{display:block!important;height:100dvh;overflow:hidden}'));
+ assert(!css.includes('grid-template-rows:100px 90px'));
+ assert(!css.includes('min-height:310px!important'));
+ assert(css.includes('#prompt-ko{order:2'));
+ assert(css.includes('#prompt-main{order:3'));
+ assert(css.includes('font-family:"Noto Sans TC"')||css.includes('"Noto Sans TC"'));
+ const ui=fs.readFileSync(path.join(root,'js/taiwan-display.js'),'utf8');
+ assert(ui.includes("lineHeading.querySelector('.game-line-symbol,.line-badge,.line-symbol-asset')"));
+ assert(ui.includes("lineLabel.querySelector('small')"));
+ const n=api.getTaiwanDisplayNames({ko:'타이베이',zh:'臺北',en:'Taipei',ja:'타이베이'});
+ assert.equal(n.ko,'타이베이');assert.equal(n.zh,'臺北');
+ assert(api.taiwanNameMarkup({ko:'타이베이',zh:'臺北'}).includes('lang="zh-Hant"'));
+});
