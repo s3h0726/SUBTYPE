@@ -9,6 +9,8 @@ on:
       - 'index.html'
       - 'tools/test-free-drive-step-flow.cjs'
       - 'tools/test-free-drive-target-selection.cjs'
+      - 'tools/test-free-drive-layout-browser.cjs'
+      - 'tools/free-drive-layout-fixture.html'
   push:
     branches: [main]
     paths:
@@ -33,5 +35,7 @@ jobs:
         run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
       - name: Inspect actual nameplate geometry in headless Chrome
         run: node --test tools/test-free-drive-layout-browser.cjs
+      - name: Check existing transfer policies
+        run: node --test tools/test-free-drive-transfers.cjs
       - name: Verify production bundle syntax
         run: node --check js/app.bundle.js
