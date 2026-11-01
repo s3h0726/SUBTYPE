@@ -31,5 +31,7 @@ jobs:
           node-version: '22'
       - name: Validate consecutive route transitions and station layout invariants
         run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
+      - name: Inspect actual nameplate geometry in headless Chrome
+        run: node --test tools/test-free-drive-layout-browser.cjs
       - name: Verify production bundle syntax
         run: node --check js/app.bundle.js
