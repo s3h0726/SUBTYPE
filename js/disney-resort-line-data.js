@@ -36,7 +36,7 @@
   const geometry=pixels.map(toGeo);
   const stopInfo=[
     {id:'dr-01',ja:'リゾートゲートウェイ・ステーション',kana:'りぞーとげーとうぇい・すてーしょん',ko:'리조트 게이트웨이 스테이션',en:'Resort Gateway Station',lat:35.63524,lon:139.88510,osm:2270963951,geometryIndex:0},
-    {id:'dr-02',ja:'東京ディズニーランド・ステーション',kana:'とうきょうでぃずにーらんど・すてーしょん',ko:'도쿄디즈니랜드 스테이션',en:'Tokyo Disneyland Station',lat:35.63593,lon:139.87867,osm:8073893293,geometryIndex:5},
+    {id:'dr-02',ja:'東京ディズニーランド・ステーション',kana:'とうきょうでぃずにーらんど・すてーしょん',ko:'도쿄 디즈니랜드 스테이션',en:'Tokyo Disneyland Station',lat:35.63593,lon:139.87867,osm:8073893293,geometryIndex:5},
     {id:'dr-03',ja:'ベイサイド・ステーション',kana:'べいさいど・すてーしょん',ko:'베이사이드 스테이션',en:'Bayside Station',lat:35.62786,lon:139.87637,osm:2270963950,geometryIndex:14},
     {id:'dr-04',ja:'東京ディズニーシー・ステーション',kana:'とうきょうでぃずにーしー・すてーしょん',ko:'도쿄디즈니씨 스테이션',en:'Tokyo DisneySea Station',lat:35.62740,lon:139.88952,osm:2270963949,geometryIndex:34},
     {id:'dr-01-return',ja:'リゾートゲートウェイ・ステーション',kana:'りぞーとげーとうぇい・すてーしょん',ko:'리조트 게이트웨이 스테이션',en:'Resort Gateway Station',lat:35.63524,lon:139.88510,osm:2270963951,geometryIndex:geometry.length-1}
