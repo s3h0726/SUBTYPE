@@ -59,7 +59,7 @@
     "test:korea-preview": "node --test tools/test-kr-preview.cjs && node --test tools/test-kr-line1-integration.cjs && node --test tools/test-kr-line1-evidence.cjs",
     "import:korea-intercity": "python tools/import-korail-conventional.py",
     "test:korea-site": "node tools/test-kr-site.cjs",
-    "test:route-selection": "node --test tools/test-route-selection.cjs && node tools/test-japanese-route-color-order.cjs && node tools/test-japan-station-name-corrections.cjs",
+    "test:route-selection": "node --test tools/test-route-selection.cjs && node tools/test-japanese-route-color-order.cjs && node tools/test-japan-station-name-corrections.cjs && node tools/test-japan-namuwiki-policy.cjs",
     "test:korea-station-display": "node --test tools/test-kr-station-display.cjs",
     "test:korea-phase5-motion": "node tools/test-kr-phase5-motion.cjs",
     "report:korea-phase5": "node tools/build-kr-phase5-report.js",
