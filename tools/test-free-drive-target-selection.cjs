@@ -187,7 +187,9 @@ test('route-choice renderer cannot silently change typing destination',()=>{
 test('free-drive desktop and short-screen CSS preserve separate input and station rows',()=>{
   const css=fs.readFileSync(path.join(root,'css/free-drive.css'),'utf8');
   assert.match(css,/Station-name\/typing collision fix/);
-  assert.match(css,/grid-template-rows:14px minmax\(30px,1fr\) minmax\(24px,auto\) 13px 36px!important/);
+  assert.match(css,/grid-template-rows:14px minmax\(30px,1fr\) minmax\(24px,auto\) 13px 56px!important/);
+  assert.match(css,/grid-template-rows:12px minmax\(24px,1fr\) 21px 11px 46px!important/);
+  assert.match(css,/font:650 22px\/1\.3/);
   assert.match(css,/#screen-game\.active\.free-drive-active \.station-current #ko-progress\s*\{[\s\S]*?display:none!important/);
   assert.match(css,/-webkit-text-fill-color:#13251c!important/);
 });

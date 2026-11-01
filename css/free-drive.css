@@ -177,7 +177,7 @@
    The desktop input is visible; the duplicate answer-cell mirror is hidden.
    This does not change ordinary route-play or the Taiwan/HK native labels. */
 #screen-game.active.free-drive-active{
-  --fd-nameplate-height:clamp(230px,37dvh,320px);
+  --fd-nameplate-height:clamp(260px,39dvh,350px);
 }
 #screen-game.active.free-drive-active .station-sign-hud{
   height:var(--fd-nameplate-height)!important;
@@ -195,12 +195,13 @@
   display:grid!important;
   height:100%!important;
   min-height:0!important;
+  grid-template-columns:minmax(120px,.55fr) minmax(0,3.1fr) minmax(120px,.55fr)!important;
   overflow:hidden!important;
 }
 #screen-game.active.free-drive-active .station-current{
   display:grid!important;
   grid-template-columns:minmax(0,1fr)!important;
-  grid-template-rows:14px minmax(30px,1fr) minmax(24px,auto) 13px 36px!important;
+  grid-template-rows:14px minmax(30px,1fr) minmax(24px,auto) 13px 56px!important;
   justify-items:center!important;
   align-items:center!important;
   align-content:stretch!important;
@@ -274,8 +275,8 @@
   grid-row:5!important;
   grid-template-columns:minmax(0,1fr) auto!important;
   position:relative!important;
-  width:min(94%,640px)!important;
-  height:36px!important;
+  width:min(98%,780px)!important;
+  height:56px!important;
   min-height:0!important;
   margin:0!important;
   padding:0!important;
@@ -295,14 +296,14 @@
   height:100%!important;
   min-width:0!important;
   box-sizing:border-box!important;
-  padding:4px 10px!important;
+  padding:8px 14px!important;
   border:0!important;
   outline:0!important;
   background:#fff!important;
   color:#13251c!important;
   -webkit-text-fill-color:#13251c!important;
   caret-color:#166cb3!important;
-  font:600 16px/1.3 "Noto Sans KR","Malgun Gothic",sans-serif!important;
+  font:650 22px/1.3 "Noto Sans KR","Malgun Gothic",sans-serif!important;
   opacity:1!important;
 }
 #screen-game.active.free-drive-active .station-current .station-sign-input #input-status{
@@ -329,12 +330,12 @@
   word-break:break-word;
 }
 @media(max-height:650px){
-  #screen-game.active.free-drive-active{--fd-nameplate-height:clamp(190px,48dvh,242px);}
+  #screen-game.active.free-drive-active{--fd-nameplate-height:clamp(232px,49dvh,276px);}
   #screen-game.active.free-drive-active .station-sign{
     grid-template-rows:4px 27px minmax(0,1fr) 21px!important;
   }
   #screen-game.active.free-drive-active .station-current{
-    grid-template-rows:12px minmax(24px,1fr) 21px 11px 30px!important;
+    grid-template-rows:12px minmax(24px,1fr) 21px 11px 46px!important;
     row-gap:1px!important;
     padding:2px 8px!important;
   }
@@ -344,7 +345,8 @@
   #screen-game.active.free-drive-active .station-current #prompt-ko{
     font-size:clamp(15px,2.3dvh,20px)!important;
   }
-  #screen-game.active.free-drive-active .station-current .station-sign-input{height:30px!important;}
+  #screen-game.active.free-drive-active .station-current .station-sign-input{height:46px!important;}
+  #screen-game.active.free-drive-active .station-current .station-sign-input input{font-size:19px!important;padding:5px 12px!important;}
   #screen-game.active.free-drive-active #game-free-drive-options{
     max-height:min(18dvh,100px)!important;
   }
@@ -364,6 +366,9 @@
   }
   #screen-game.active.free-drive-active .station-current #prompt-ko{
     font-size:clamp(17px,3.6vw,24px)!important;
+  }
+  #screen-game.active.free-drive-active .station-current .station-sign-input{
+    width:100%!important;
   }
 }
 
