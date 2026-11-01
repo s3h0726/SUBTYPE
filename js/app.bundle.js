@@ -2837,6 +2837,19 @@ class CustomGeoMap{
 }
 
 
+// Large route payloads remain independent lazy assets. Decompression restores
+// the exact canonical JSON; it never simplifies or approximates geometry.
+async function decodeRoutePayload(payload){
+ if(payload?.encoding!=='subtype-route-gzip-v1')return payload;
+ const bytes=Uint8Array.from(atob(payload.data),c=>c.charCodeAt(0));
+ const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+ const decoded=await new Response(stream).json();
+ if(decoded?.route?.id!==payload.routeId||decoded.route.countryId!=='kr')throw Error('한국 노선 압축 파일 식별자 불일치');
+ return decoded;
+}
+
+
+
 
 
 
@@ -2926,7 +2939,7 @@ function normalizeLine(raw={},defaults={}){
 }
 function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[],services:[]},{category:raw.category});return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:Number(raw.stationCount)||0,searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?raw.stationSequence:[]}}
 function validLine(line){return Array.isArray(line.stations)&&line.stations.length>=2&&line.stations.every(station=>station.ja||station.kana||station.romaji||station.ko)}
-async function fetchJson(url){const response=await fetch(url,{cache:'no-cache'});if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
+async function fetchJson(url){const response=await fetch(url,{cache:'no-cache'});if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await decodeRoutePayload(await response.json())}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
 async function loadRailData(){
   await loadEditorNameOverrides();
   const canonical=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;
