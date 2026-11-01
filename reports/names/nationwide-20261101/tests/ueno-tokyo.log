@@ -1,0 +1,22 @@
+node:fs:483
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-jp-audit\data\generated\routes\line-11229--jobansen-totte-iwaki.json'
+    at Object.readFileSync (node:fs:483:20)
+    at read (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-jp-audit\tools\test-ueno-tokyo-line.cjs:4:18)
+    at json (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-jp-audit\tools\test-ueno-tokyo-line.cjs:4:86)
+    at C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-jp-audit\tools\test-ueno-tokyo-line.cjs:32:149
+    at Array.map (<anonymous>)
+    at Object.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-jp-audit\tools\test-ueno-tokyo-line.cjs:32:137)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-jp-audit\\data\\generated\\routes\\line-11229--jobansen-totte-iwaki.json'
+}
+
+Node.js v24.22.1

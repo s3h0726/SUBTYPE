@@ -1,11 +1,11 @@
 # 일본 철도 나무위키 재검증: 전체 출처 감사
 
-대상: 공유 역 8878개, 노선 608개(디즈니 포함), 운영사 162개(디즈니 포함), 노선별 별도 역명 52개.
+대상: 공유 역 8878개, 노선 609개(디즈니 포함), 운영사 162개(디즈니 포함), 노선별 별도 역명 54개.
 
 | 판정 | 건수 |
 |---|---:|
-| LEGACY_CLAIM_NOT_RECHECKED | 93 |
-| SOURCE_REVIEW_REQUIRED | 9561 |
+| LEGACY_CLAIM_NOT_RECHECKED | 1183 |
+| SOURCE_REVIEW_REQUIRED | 8474 |
 | NAMUWIKI_BATCH_CROSSCHECKED | 46 |
 
 개별 문서나 일본어 역명을 함께 확인하지 못한 항목은 자동 음역을 그대로 검증 완료로 간주하지 않습니다.

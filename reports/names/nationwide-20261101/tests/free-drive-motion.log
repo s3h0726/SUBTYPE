@@ -1,0 +1,21 @@
+✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (3.7734ms)
+✔ directional Korean service never manufactures a reverse edge at its terminus (0.3925ms)
+✔ three or more connected Japanese lines remain individually selectable (2.5597ms)
+✔ stopping free drive removes Japanese choices before a Korean typing session starts (3.669ms)
+✔ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (5.4288ms)
+✔ smoothing follows each retained curved edge instead of cutting its corner (3.1659ms)
+✔ rapid partial input and stale lower progress never reverse train distance (0.2504ms)
+✔ arrival waits for the current map render and stale sessions cannot move its successor (3.7588ms)
+✔ resuming during an arrival cannot bypass its map and animation barrier (3.2398ms)
+✔ Korean station boundaries share the retained source vertex between adjacent segments (3.4824ms)
+✔ completed station typing catches the marker up in 50ms and never advances early (2.056ms)
+✔ SPACE waits for real arrival and repeated presses cannot finish a journey twice (3.0601ms)
+✔ camera reset cancels old pan and changes zoom atomically (2.7237ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 318.4761

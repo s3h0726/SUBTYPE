@@ -136,7 +136,7 @@
     "names": {
       "ja": "北秩父別",
       "kana": "きたちっぷべつ",
-      "ko": "키타칬푸베츠",
+      "ko": "키타칫푸베츠",
       "en": "Kitachippubetsu"
     },
     "aliases": {
@@ -151,18 +151,38 @@
       "name": "dictionary-transliteration",
       "coordinate": ""
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%ED%82%A4%ED%83%80%EC%B9%AB%ED%91%B8%EB%B2%A0%EC%B8%A0%EC%97%AD",
     "koSearchReference": "site:namu.wiki 北秩父別駅 키타칬푸베츠 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%ED%82%A4%ED%83%80%EC%B9%AB%ED%91%B8%EB%B2%A0%EC%B8%A0%EC%97%AD",
+        "sha256": "5a6d2f1453c40fb3393a43ea09202cb9355b3036e8a756609b50942ee405fdd3"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%82%A4%ED%83%80%EC%B9%AB%ED%91%B8%EB%B2%A0%EC%B8%A0%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%82%A4%ED%83%80%EC%B9%AB%ED%91%B8%EB%B2%A0%EC%B8%A0%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1111504",
@@ -283,18 +303,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%98%A4%ED%9B%84%EB%82%98%ED%86%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 千厩駅 센마야 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%98%A4%ED%9B%84%EB%82%98%ED%86%A0%EC%84%A0",
+        "sha256": "0626694d213ff4dbfb6e488c350d125c23bd482b2ef56c2a35f3e7bc2af88fbd"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%98%A4%ED%9B%84%EB%82%98%ED%86%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1121402",
@@ -302,7 +342,7 @@
       "ja": "京ケ瀬",
       "kana": "きょうがせ",
       "ko": "쿄가세",
-      "en": "KyōGase"
+      "en": "Kyogase"
     },
     "aliases": {
       "ko": []
@@ -327,7 +367,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Kyogase",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=39",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=39"
+      },
+      "ja": {
+        "value": "京ケ瀬",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=39"
+      }
+    }
   },
   {
     "id": "station-1121609",
@@ -349,18 +403,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%9A%94%EB%84%A4%EC%82%AC%EC%B9%B4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 米沢駅 요네자와 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Yonezawa",
+        "date": "2026-11-01",
+        "source": "https://www.jreast.co.jp/en/e/stations/e1648.html",
+        "listSource": "https://www.jreast.co.jp/en/multi/stations/",
+        "japaneseSource": "https://www.jreast.co.jp/estation/stations/1648.html"
+      },
+      "ja": {
+        "value": "米沢",
+        "date": "2026-11-01",
+        "source": "https://www.jreast.co.jp/estation/stations/1648.html"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%9A%94%EB%84%A4%EC%82%AC%EC%B9%B4%EC%84%A0",
+        "sha256": "c00d49f9f1a976cbaf3841a06abf273c45f9dcaccc361976a8d4471d713f07b5"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%9A%94%EB%84%A4%EC%82%AC%EC%B9%B4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1121628",
@@ -382,18 +470,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%95%BC%EB%A7%88%EA%B0%80%ED%83%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 東根駅 히가시네 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%95%BC%EB%A7%88%EA%B0%80%ED%83%80%EC%84%A0",
+        "sha256": "88f17f41e229771ff8e19ea4d6db012e61284a60a7ea1aabf4fd32090525f640"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%95%BC%EB%A7%88%EA%B0%80%ED%83%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1121804",
@@ -415,18 +523,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%95%84%ED%85%8C%EB%9D%BC%EC%9E%90%EC%99%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 羽前山辺駅 우젠야마베 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%95%84%ED%85%8C%EB%9D%BC%EC%9E%90%EC%99%80%EC%84%A0",
+        "sha256": "bd1c31365fe6a1b81c5ccca852e87f84f28b65b650ddce2bf8151d39bfe64e56"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%95%84%ED%85%8C%EB%9D%BC%EC%9E%90%EC%99%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1122713",
@@ -448,18 +576,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%83%80%EB%8B%A4%EB%AF%B8%EC%84%A0?from=%EB%8B%A4%EB%8B%A4%EB%AF%B8%EC%84%A0",
     "koSearchReference": "site:namu.wiki 郷戸駅 고우도 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%83%80%EB%8B%A4%EB%AF%B8%EC%84%A0?from=%EB%8B%A4%EB%8B%A4%EB%AF%B8%EC%84%A0",
+        "sha256": "d5bb0c67d881e970b0576a1c7d95960c4e822c92ac302df63526b2982a0890f4"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%83%80%EB%8B%A4%EB%AF%B8%EC%84%A0?from=%EB%8B%A4%EB%8B%A4%EB%AF%B8%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1122801",
@@ -481,18 +629,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%B0%98%EC%97%90%EC%B8%A0%ED%86%A0%EC%84%A0?from=%EB%B0%98%EC%97%90%EC%93%B0%ED%86%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki いわき駅 이와키 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Iwaki",
+        "date": "2026-11-01",
+        "source": "https://www.jreast.co.jp/en/e/stations/e166.html",
+        "listSource": "https://www.jreast.co.jp/en/multi/stations/",
+        "japaneseSource": "https://www.jreast.co.jp/estation/stations/166.html"
+      },
+      "ja": {
+        "value": "いわき",
+        "date": "2026-11-01",
+        "source": "https://www.jreast.co.jp/estation/stations/166.html"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%B0%98%EC%97%90%EC%B8%A0%ED%86%A0%EC%84%A0?from=%EB%B0%98%EC%97%90%EC%93%B0%ED%86%A0%EC%84%A0",
+        "sha256": "5efe1fcdecd4bebeb396e37320e060165e77f94172a923b1797ac6fde4c3b2de"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%B0%98%EC%97%90%EC%B8%A0%ED%86%A0%EC%84%A0?from=%EB%B0%98%EC%97%90%EC%93%B0%ED%86%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1123027",
@@ -547,26 +729,60 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%84%B8%EC%9D%B4%EB%B6%80%20%EC%BD%94%EC%BF%A0%EB%B6%84%EC%A7%80%EC%84%A0?from=%EC%BD%94%EC%BF%A0%EB%B6%84%EC%A7%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 国分寺駅 코쿠분지 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Kokubunji",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=36",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=36"
+      },
+      "ja": {
+        "value": "国分寺",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=36"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%84%B8%EC%9D%B4%EB%B6%80%20%EC%BD%94%EC%BF%A0%EB%B6%84%EC%A7%80%EC%84%A0?from=%EC%BD%94%EC%BF%A0%EB%B6%84%EC%A7%80%EC%84%A0",
+        "sha256": "4ccb0183c67231f9d5c4d37405e988c12574181c0af2bcd4f91e45fb8c8dabf6"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%84%B8%EC%9D%B4%EB%B6%80%20%EC%BD%94%EC%BF%A0%EB%B6%84%EC%A7%80%EC%84%A0?from=%EC%BD%94%EC%BF%A0%EB%B6%84%EC%A7%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1132406",
     "names": {
       "ja": "土気",
       "kana": "つちけ",
-      "ko": "츠치케",
-      "en": "Tsuchike"
+      "ko": "토케",
+      "en": "Toke"
     },
     "aliases": {
       "ko": []
@@ -580,18 +796,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%86%8C%ED%86%A0%EB%B3%B4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 土気駅 츠치케 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Toke",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=71",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=71"
+      },
+      "ja": {
+        "value": "土気",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=71"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%86%8C%ED%86%A0%EB%B3%B4%EC%84%A0",
+        "sha256": "cd758541546209747df597155ed78af63a09cae21f071cab104b86682b926a89"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%86%8C%ED%86%A0%EB%B3%B4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1132724",
@@ -613,18 +863,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%82%98%EB%A6%AC%ED%83%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 布佐駅 후사 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Fusa",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=10",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=10"
+      },
+      "ja": {
+        "value": "布佐",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=10"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%82%98%EB%A6%AC%ED%83%80%EC%84%A0",
+        "sha256": "4ec64245c1cef3dd073a9fdee1d298c3c449f453c55c8c858b76abd57706e781"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%82%98%EB%A6%AC%ED%83%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1133408",
@@ -646,18 +930,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%B9%B4%EB%9D%BC%EC%8A%A4%EC%95%BC%EB%A7%88%EC%84%A0",
     "koSearchReference": "site:namu.wiki 烏山駅 카라스야마 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Karasuyama",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=30",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=30"
+      },
+      "ja": {
+        "value": "烏山",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=30"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%B9%B4%EB%9D%BC%EC%8A%A4%EC%95%BC%EB%A7%88%EC%84%A0",
+        "sha256": "20b3f8415e9a2b33e281bc28ef2f69a6f6b4800c5fda632c7c5ed3192d2905bc"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%B9%B4%EB%9D%BC%EC%8A%A4%EC%95%BC%EB%A7%88%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1134221",
@@ -679,18 +997,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%A1%B0%EC%97%90%EC%B8%A0%EC%84%A0?from=%EC%A1%B0%EC%97%90%EC%93%B0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 石打駅 이시우치 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Ishiuchi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23"
+      },
+      "ja": {
+        "value": "石打",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%A1%B0%EC%97%90%EC%B8%A0%EC%84%A0?from=%EC%A1%B0%EC%97%90%EC%93%B0%EC%84%A0",
+        "sha256": "0e34f092e7984a26bb4f1d4908a049a3ec89031b9f7b8ae61ddca07deef4b4ea"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%A1%B0%EC%97%90%EC%B8%A0%EC%84%A0?from=%EC%A1%B0%EC%97%90%EC%93%B0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1134231",
@@ -698,7 +1050,7 @@
       "ja": "北堀之内",
       "kana": "きたほりのうち",
       "ko": "키타호리노치",
-      "en": "Kitahorinouchi"
+      "en": "Kita-Horinouchi"
     },
     "aliases": {
       "ko": []
@@ -723,7 +1075,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Kita-Horinouchi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=34",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=34"
+      },
+      "ja": {
+        "value": "北堀之内",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=34"
+      }
+    }
   },
   {
     "id": "station-1134233",
@@ -745,18 +1111,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%A1%B0%EC%97%90%EC%B8%A0%EC%84%A0?from=%EC%A1%B0%EC%97%90%EC%93%B0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 小千谷駅 오지야 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Ojiya",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=54",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=54"
+      },
+      "ja": {
+        "value": "小千谷",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=54"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%A1%B0%EC%97%90%EC%B8%A0%EC%84%A0?from=%EC%A1%B0%EC%97%90%EC%93%B0%EC%84%A0",
+        "sha256": "0e34f092e7984a26bb4f1d4908a049a3ec89031b9f7b8ae61ddca07deef4b4ea"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%A1%B0%EC%97%90%EC%B8%A0%EC%84%A0?from=%EC%A1%B0%EC%97%90%EC%93%B0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1140127",
@@ -778,26 +1178,46 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%BD%94%EC%9A%B0%EB%AF%B8%EC%84%A0?from=%EA%B3%A0%EC%9A%B0%EB%AF%B8%EC%84%A0",
     "koSearchReference": "site:namu.wiki 美里駅 미사토 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%BD%94%EC%9A%B0%EB%AF%B8%EC%84%A0?from=%EA%B3%A0%EC%9A%B0%EB%AF%B8%EC%84%A0",
+        "sha256": "52cd2c2998c16821d9bf6350ee0a14fe80d3b25e9c88a451ddc2261b0964ec8d"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%BD%94%EC%9A%B0%EB%AF%B8%EC%84%A0?from=%EA%B3%A0%EC%9A%B0%EB%AF%B8%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1140229",
     "names": {
       "ja": "芦川",
       "kana": "あしかわ",
-      "ko": "아시카와",
-      "en": "Ashikawa"
+      "ko": "아시가와",
+      "en": "Ashigawa"
     },
     "aliases": {
       "ko": []
@@ -811,18 +1231,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%AF%B8%EB%85%B8%EB%B6%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 芦川駅 아시카와 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Ashigawa",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=4",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=4"
+      },
+      "ja": {
+        "value": "芦川",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=4"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%85%B8%EB%B6%80%EC%84%A0",
+        "sha256": "6b227e8cdd406b00d5ba14d09bd5660a3f36b88c66f819dc2c06e7bbf90b3ff7"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%85%B8%EB%B6%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1140719",
@@ -844,18 +1298,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%9D%B4%EC%95%BC%EB%A7%88%EC%84%A0",
     "koSearchReference": "site:namu.wiki 平滝駅 히라타키 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Hirataki",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=17",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=17"
+      },
+      "ja": {
+        "value": "平滝",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=17"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%9D%B4%EC%95%BC%EB%A7%88%EC%84%A0",
+        "sha256": "d60fea4ac967e3334e87562f7bed1120aaa5f387e2420ec5468e207e9aa1c783"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%9D%B4%EC%95%BC%EB%A7%88%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1140806",
@@ -877,18 +1365,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%97%90%EC%B9%98%EA%B3%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 西山駅 니시야마 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Nishiyama",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52"
+      },
+      "ja": {
+        "value": "西山",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%97%90%EC%B9%98%EA%B3%A0%EC%84%A0",
+        "sha256": "4b197a57ffd583ebbf5923e8b904a00627694c75727095afa898c347405d8c0f"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%97%90%EC%B9%98%EA%B3%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1141411",
@@ -921,7 +1443,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Sakuramachi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59"
+      },
+      "ja": {
+        "value": "桜町",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59"
+      }
+    }
   },
   {
     "id": "station-1141434",
@@ -954,7 +1490,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Inashi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=22",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=22"
+      },
+      "ja": {
+        "value": "伊那市",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=22"
+      }
+    }
   },
   {
     "id": "station-1141623",
@@ -976,18 +1526,52 @@
       "name": "dictionary-transliteration",
       "coordinate": ""
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EB%82%98%EA%B8%B0%EC%82%AC%EC%97%AD(%EA%B8%B0%ED%9B%84)",
     "koSearchReference": "site:namu.wiki 渚駅 나기사 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EB%82%98%EA%B8%B0%EC%82%AC%EC%97%AD(%EA%B8%B0%ED%9B%84)",
+        "sha256": "81a4d5a889b2434cb7dbc5de6c404bf7a83d46522fe95fcb05c5c8a32ac0aef4"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%82%98%EA%B8%B0%EC%82%AC%EC%97%AD(%EA%B8%B0%ED%9B%84)"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%82%98%EA%B8%B0%EC%82%AC%EC%97%AD(%EA%B8%B0%ED%9B%84)"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    },
+    "officialNameProof": {
+      "en": {
+        "value": "Nagisa",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=47",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=47"
+      },
+      "ja": {
+        "value": "渚",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=47"
+      }
+    }
   },
   {
     "id": "station-1141626",
@@ -1009,18 +1593,52 @@
       "name": "dictionary-transliteration",
       "coordinate": ""
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%83%80%EC%B9%B4%EC%95%BC%EB%A7%88%20%EB%B3%B8%EC%84%A0?from=%EB%8B%A4%EC%B9%B4%EC%95%BC%EB%A7%88%20%EB%B3%B8%EC%84%A0",
     "koSearchReference": "site:namu.wiki 高山駅 타카야마 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Takayama",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=69",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=69"
+      },
+      "ja": {
+        "value": "高山",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=69"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%83%80%EC%B9%B4%EC%95%BC%EB%A7%88%20%EB%B3%B8%EC%84%A0?from=%EB%8B%A4%EC%B9%B4%EC%95%BC%EB%A7%88%20%EB%B3%B8%EC%84%A0",
+        "sha256": "d53de3357eb20671711fe81948750711e3bd956a5bb7754a14be79a15fca7400"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%83%80%EC%B9%B4%EC%95%BC%EB%A7%88%20%EB%B3%B8%EC%84%A0?from=%EB%8B%A4%EC%B9%B4%EC%95%BC%EB%A7%88%20%EB%B3%B8%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1141913",
@@ -1042,18 +1660,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%82%98%EB%82%98%EC%98%A4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 千路駅 치지 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Chiji",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=6",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=6"
+      },
+      "ja": {
+        "value": "千路",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=6"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%82%98%EB%82%98%EC%98%A4%EC%84%A0",
+        "sha256": "61af7d7329f8cf5f6d487e3be44899594424e1ebfaa5c9b0900aaa873870ae75"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%82%98%EB%82%98%EC%98%A4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1142203",
@@ -1061,7 +1713,7 @@
       "ja": "青郷",
       "kana": "あおのごう",
       "ko": "아오노고",
-      "en": "Aonogō"
+      "en": "Aonogo"
     },
     "aliases": {
       "ko": []
@@ -1075,18 +1727,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%98%A4%EB%B0%94%EB%A7%88%EC%84%A0",
     "koSearchReference": "site:namu.wiki 青郷駅 아오노고우 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Aonogo",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=3",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=3"
+      },
+      "ja": {
+        "value": "青郷",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=3"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%B0%94%EB%A7%88%EC%84%A0",
+        "sha256": "81132249e7412b627360b957e399bc3ff9d951f3f45d5c5257fe8ef26fe2f359"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%B0%94%EB%A7%88%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1150405",
@@ -1108,18 +1794,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%9D%B4%ED%86%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 宇佐美駅 우사미 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Usami",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=76",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=76"
+      },
+      "ja": {
+        "value": "宇佐美",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=76"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%9D%B4%ED%86%A0%EC%84%A0",
+        "sha256": "5e38bfeb9b3d97e5c4dad16f029d309487dcfed4dd37da686f908917a329112f"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%9D%B4%ED%86%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1150810",
@@ -1185,7 +1905,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Yokkaichi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=79",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=79"
+      },
+      "ja": {
+        "value": "四日市",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=79"
+      }
+    }
   },
   {
     "id": "station-1150902",
@@ -1218,7 +1952,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Seki",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=60",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=60"
+      },
+      "ja": {
+        "value": "関",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=60"
+      }
+    }
   },
   {
     "id": "station-1160305",
@@ -1226,7 +1974,7 @@
       "ja": "甲子園口",
       "kana": "こうしえんぐち",
       "ko": "코시엔구치",
-      "en": "KōShienguchi"
+      "en": "Koshienguchi"
     },
     "aliases": {
       "ko": []
@@ -1240,18 +1988,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 甲子園口駅 코우시엔구치 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Koshienguchi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=37",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=37"
+      },
+      "ja": {
+        "value": "甲子園口",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=37"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0",
+        "sha256": "b450884859bce614c5743cfd4ac8917d01629e8dd21ce7258f3d04156b2e2a44"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1160313",
@@ -1273,18 +2055,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 三ノ宮駅 산노미야 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Sannomiya",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59"
+      },
+      "ja": {
+        "value": "三ノ宮",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0",
+        "sha256": "b450884859bce614c5743cfd4ac8917d01629e8dd21ce7258f3d04156b2e2a44"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/JR%20%EA%B3%A0%EB%B2%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1160915",
@@ -1292,7 +2108,7 @@
       "ja": "東岡山",
       "kana": "ひがしおかやま",
       "ko": "히가시오카야마",
-      "en": "Higashiokayama"
+      "en": "Higashi-Okayama"
     },
     "aliases": {
       "ko": []
@@ -1306,18 +2122,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%95%84%EC%BD%94%EC%84%A0",
     "koSearchReference": "site:namu.wiki 東岡山駅 히가시오카야마 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Higashi-Okayama",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=16",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=16"
+      },
+      "ja": {
+        "value": "東岡山",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=16"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%BD%94%EC%84%A0",
+        "sha256": "c2ea0423eb39b13f16a8bd2cdf7658e7fb16da86644fd291879d895686549c47"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%BD%94%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1161014",
@@ -1339,18 +2189,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%9B%84%EC%BF%A0%EC%97%94%EC%84%A0",
     "koSearchReference": "site:namu.wiki 福山駅 후쿠야마 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Fukuyama",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=10",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=10"
+      },
+      "ja": {
+        "value": "福山",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=10"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%9B%84%EC%BF%A0%EC%97%94%EC%84%A0",
+        "sha256": "06af8545bb52d6b3d10dc891297213bca86d494e86d41c9db73cebd765e3a7e9"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%9B%84%EC%BF%A0%EC%97%94%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1161129",
@@ -1383,7 +2267,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Waki",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=77",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=77"
+      },
+      "ja": {
+        "value": "和木",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=77"
+      }
+    }
   },
   {
     "id": "station-1161236",
@@ -1416,7 +2314,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Shimonoseki",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=62",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=62"
+      },
+      "ja": {
+        "value": "下関",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=62"
+      }
+    }
   },
   {
     "id": "station-1161721",
@@ -1438,18 +2350,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%B9%B4%ED%83%80%EB%A7%88%EC%B9%98%EC%84%A0?from=%EA%B0%93%EC%BC%84%ED%86%A0%EC%8B%9C%EC%84%A0",
     "koSearchReference": "site:namu.wiki 徳庵駅 토쿠안 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Tokuan",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=72",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=72"
+      },
+      "ja": {
+        "value": "徳庵",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=72"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%B9%B4%ED%83%80%EB%A7%88%EC%B9%98%EC%84%A0?from=%EA%B0%93%EC%BC%84%ED%86%A0%EC%8B%9C%EC%84%A0",
+        "sha256": "72e555f6a81f1b913f8de2741be8bc9f45922b482f9e1802c1d3b4ea7f47d9fc"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%B9%B4%ED%83%80%EB%A7%88%EC%B9%98%EC%84%A0?from=%EA%B0%93%EC%BC%84%ED%86%A0%EC%8B%9C%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1162311",
@@ -1471,18 +2417,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EC%88%9C%ED%99%98%EC%84%A0",
     "koSearchReference": "site:namu.wiki 天満駅 텐마 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Temma",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=70",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=70"
+      },
+      "ja": {
+        "value": "天満",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=70"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EC%88%9C%ED%99%98%EC%84%A0",
+        "sha256": "86ef0a0cc1cb94ef537860bcf0a2ab5d02c2b66cc70a9301a69101bfa185a888"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%98%A4%EC%82%AC%EC%B9%B4%20%EC%88%9C%ED%99%98%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1163110",
@@ -1490,7 +2470,7 @@
       "ja": "備前片上",
       "kana": "びぜんかたかみ",
       "ko": "비젠카타카미",
-      "en": "Bizenkatakami"
+      "en": "Bizen-Katakami"
     },
     "aliases": {
       "ko": []
@@ -1504,18 +2484,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%95%84%EC%BD%94%EC%84%A0",
     "koSearchReference": "site:namu.wiki 備前片上駅 비젠카타카미 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Bizen-Katakami",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=6",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=6"
+      },
+      "ja": {
+        "value": "備前片上",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=6"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%BD%94%EC%84%A0",
+        "sha256": "c2ea0423eb39b13f16a8bd2cdf7658e7fb16da86644fd291879d895686549c47"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%BD%94%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1163220",
@@ -1537,26 +2551,60 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%B9%B4%EC%BD%94%EA%B0%80%EC%99%80%EC%84%A0?from=%EA%B0%80%EC%BD%94%EA%B0%80%EC%99%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 久下村駅 쿠게무라 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Kugemura",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=38",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=38"
+      },
+      "ja": {
+        "value": "久下村",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=38"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%B9%B4%EC%BD%94%EA%B0%80%EC%99%80%EC%84%A0?from=%EA%B0%80%EC%BD%94%EA%B0%80%EC%99%80%EC%84%A0",
+        "sha256": "4a69e28d096af026a4860a940f1b2aae4584047418a829622f6539bcda576d81"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%B9%B4%EC%BD%94%EA%B0%80%EC%99%80%EC%84%A0?from=%EA%B0%80%EC%BD%94%EA%B0%80%EC%99%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1163413",
     "names": {
       "ja": "美作千代",
-      "kana": "みさくちよ",
-      "ko": "미사쿠치요",
-      "en": "Misakuchiyo"
+      "kana": "みまさかせんだい",
+      "ko": "미마사카센다이",
+      "en": "Mimasaka-Sendai"
     },
     "aliases": {
       "ko": []
@@ -1570,18 +2618,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EB%AF%B8%EB%A7%88%EC%82%AC%EC%B9%B4%EC%84%BC%EB%8B%A4%EC%9D%B4%EC%97%AD",
     "koSearchReference": "site:namu.wiki 美作千代駅 미사쿠치요 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%A7%88%EC%82%AC%EC%B9%B4%EC%84%BC%EB%8B%A4%EC%9D%B4%EC%97%AD",
+        "sha256": "ab330a24ad12defd5fd5e67537ae3157f54dd03a58352c8bee38055a0ce2233a"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%A7%88%EC%82%AC%EC%B9%B4%EC%84%BC%EB%8B%A4%EC%9D%B4%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%A7%88%EC%82%AC%EC%B9%B4%EC%84%BC%EB%8B%A4%EC%9D%B4%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    },
+    "officialNameProof": {
+      "en": {
+        "value": "Mimasaka-Sendai",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=42",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=42"
+      },
+      "ja": {
+        "value": "美作千代",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=42"
+      }
+    }
   },
   {
     "id": "station-1170312",
@@ -1589,7 +2671,7 @@
       "ja": "備中高梁",
       "kana": "びっちゅうたかはし",
       "ko": "빗츄타카하시",
-      "en": "BitchūTakahashi"
+      "en": "Bitchu-Takahashi"
     },
     "aliases": {
       "ko": []
@@ -1603,18 +2685,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%95%98%EC%BF%A0%EB%B9%84%EC%84%A0",
     "koSearchReference": "site:namu.wiki 備中高梁駅 빘추우타카하시 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Bitchu-Takahashi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=5",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=5"
+      },
+      "ja": {
+        "value": "備中高梁",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=5"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%95%98%EC%BF%A0%EB%B9%84%EC%84%A0",
+        "sha256": "6393bce1caafda8f1e00fd3a376ede64195ee153b55ae815723c9c84e9db6d44"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%95%98%EC%BF%A0%EB%B9%84%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1171407",
@@ -1636,17 +2752,17 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EB%85%B8%EC%B9%98%EC%97%AD",
     "koSearchReference": "site:namu.wiki 野馳駅 노 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
+    "koSourceMethod": "article-header-identity-match",
     "canonicalKoreanPolicy": "namuwiki",
     "trilingualNameAudit": {
       "evidence": "https://transit.yahoo.co.jp/station/27130",
@@ -1654,15 +2770,49 @@
       "englishNameMethod": "reference-crosscheck",
       "koreanNameMethod": "transcribed-review-required",
       "verifiedKoreanName": false
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EB%85%B8%EC%B9%98%EC%97%AD",
+        "sha256": "86b2d5f91ca7d90851fb56a7f47371229a368a84570a90c174c844a6eeee67ad"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%85%B8%EC%B9%98%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%85%B8%EC%B9%98%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    },
+    "officialNameProof": {
+      "en": {
+        "value": "Nochi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52"
+      },
+      "ja": {
+        "value": "野馳",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52"
+      }
     }
   },
   {
     "id": "station-1171615",
     "names": {
       "ja": "仁方",
-      "kana": "にかた",
-      "ko": "니카타",
-      "en": "Nikata"
+      "kana": "にがた",
+      "ko": "니가타",
+      "en": "Nigata"
     },
     "aliases": {
       "ko": []
@@ -1676,18 +2826,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EB%8B%88%EA%B0%80%ED%83%80%EC%97%AD(%ED%9E%88%EB%A1%9C%EC%8B%9C%EB%A7%88)",
     "koSearchReference": "site:namu.wiki 仁方駅 니카타 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EB%8B%88%EA%B0%80%ED%83%80%EC%97%AD(%ED%9E%88%EB%A1%9C%EC%8B%9C%EB%A7%88)",
+        "sha256": "297fb20987c9004c2ae625b6c436e0347a8ac6f644bdc281958a64bbe183b068"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%8B%88%EA%B0%80%ED%83%80%EC%97%AD(%ED%9E%88%EB%A1%9C%EC%8B%9C%EB%A7%88)"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%8B%88%EA%B0%80%ED%83%80%EC%97%AD(%ED%9E%88%EB%A1%9C%EC%8B%9C%EB%A7%88)"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    },
+    "officialNameProof": {
+      "en": {
+        "value": "Nigata",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=49",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=49"
+      },
+      "ja": {
+        "value": "仁方",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=49"
+      }
+    }
   },
   {
     "id": "station-1171703",
@@ -1709,26 +2893,60 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%B9%B4%EB%B2%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 三滝駅 미타키 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Mitaki",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=44",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=44"
+      },
+      "ja": {
+        "value": "三滝",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=44"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%B9%B4%EB%B2%A0%EC%84%A0",
+        "sha256": "61a36709906b7985f48b5c09cf9b1d014bf661f3243684711da27f554942efa3"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%B9%B4%EB%B2%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1172006",
     "names": {
       "ja": "道上",
-      "kana": "みちがみ",
-      "ko": "미치가미",
-      "en": "Michigami"
+      "kana": "みちのうえ",
+      "ko": "미치노우에",
+      "en": "Michinoue"
     },
     "aliases": {
       "ko": []
@@ -1742,18 +2960,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EB%AF%B8%EC%B9%98%EB%85%B8%EC%9A%B0%EC%97%90%EC%97%AD",
     "koSearchReference": "site:namu.wiki 道上駅 미치가미 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EC%B9%98%EB%85%B8%EC%9A%B0%EC%97%90%EC%97%AD",
+        "sha256": "d708d55b6a23b993c72952b84df42ad96137f9e10f0c8c8e0ff8ac68f2e14b17"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EC%B9%98%EB%85%B8%EC%9A%B0%EC%97%90%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EC%B9%98%EB%85%B8%EC%9A%B0%EC%97%90%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    },
+    "officialNameProof": {
+      "en": {
+        "value": "Michinoue",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=41",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=41"
+      },
+      "ja": {
+        "value": "道上",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=41"
+      }
+    }
   },
   {
     "id": "station-1172013",
@@ -1775,18 +3027,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%9B%84%EC%BF%A0%EC%97%94%EC%84%A0",
     "koSearchReference": "site:namu.wiki 高木駅 타카기 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%9B%84%EC%BF%A0%EC%97%94%EC%84%A0",
+        "sha256": "06af8545bb52d6b3d10dc891297213bca86d494e86d41c9db73cebd765e3a7e9"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%9B%84%EC%BF%A0%EC%97%94%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1172211",
@@ -1808,18 +3080,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%AF%B8%EB%84%A4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 板持駅 이타모치 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Itamochi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23"
+      },
+      "ja": {
+        "value": "板持",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%84%A4%EC%84%A0",
+        "sha256": "104494f64418d99c0b8c9b1c9400b4982a11ce6f08b0bb749cea0ae9478aed5d"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%84%A4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1180218",
@@ -1827,7 +3133,7 @@
       "ja": "讃岐白鳥",
       "kana": "さぬきしろとり",
       "ko": "사누키시로토리",
-      "en": "Sanukishirotori"
+      "en": "Sanuki-Shirotori"
     },
     "aliases": {
       "ko": []
@@ -1841,18 +3147,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%BD%94%ED%86%A0%EC%BF%A0%EC%84%A0?from=%EA%B3%A0%ED%86%A0%EC%BF%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 讃岐白鳥駅 사누키시로토리 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Sanuki-Shirotori",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59"
+      },
+      "ja": {
+        "value": "讃岐白鳥",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=59"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%BD%94%ED%86%A0%EC%BF%A0%EC%84%A0?from=%EA%B3%A0%ED%86%A0%EC%BF%A0%EC%84%A0",
+        "sha256": "3265e5917328174cdafff6c79f18514f03bf049d3a039e29ba72bad3ff332a26"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%BD%94%ED%86%A0%EC%BF%A0%EC%84%A0?from=%EA%B3%A0%ED%86%A0%EC%BF%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1180222",
@@ -1874,18 +3214,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%BD%94%ED%86%A0%EC%BF%A0%EC%84%A0?from=%EA%B3%A0%ED%86%A0%EC%BF%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 板野駅 이타노 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Itano",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23"
+      },
+      "ja": {
+        "value": "板野",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%BD%94%ED%86%A0%EC%BF%A0%EC%84%A0?from=%EA%B3%A0%ED%86%A0%EC%BF%A0%EC%84%A0",
+        "sha256": "3265e5917328174cdafff6c79f18514f03bf049d3a039e29ba72bad3ff332a26"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%BD%94%ED%86%A0%EC%BF%A0%EC%84%A0?from=%EA%B3%A0%ED%86%A0%EC%BF%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1180645",
@@ -1893,7 +3267,7 @@
       "ja": "大西",
       "kana": "おおにし",
       "ko": "오니시",
-      "en": "ōNishi"
+      "en": "Onishi"
     },
     "aliases": {
       "ko": []
@@ -1918,7 +3292,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Onishi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=56",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=56"
+      },
+      "ja": {
+        "value": "大西",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=56"
+      }
+    }
   },
   {
     "id": "station-1180656",
@@ -1926,7 +3314,7 @@
       "ja": "三津浜",
       "kana": "みつづはま",
       "ko": "미츠즈하마",
-      "en": "Mitsuzuhama"
+      "en": "Mitsuhama"
     },
     "aliases": {
       "ko": []
@@ -1951,7 +3339,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Mitsuhama",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=44",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=44"
+      },
+      "ja": {
+        "value": "三津浜",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=44"
+      }
+    }
   },
   {
     "id": "station-1180707",
@@ -1984,7 +3386,21 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Mukaibara",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=46",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=46"
+      },
+      "ja": {
+        "value": "向井原",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=46"
+      }
+    }
   },
   {
     "id": "station-1190317",
@@ -1992,7 +3408,7 @@
       "ja": "肥前旭",
       "kana": "ひぜんあさひ",
       "ko": "히젠아사히",
-      "en": "Hizen'Asahi"
+      "en": "Hizen-Asahi"
     },
     "aliases": {
       "ko": []
@@ -2017,7 +3433,28 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "kana": {
+        "value": "ひぜんあさひ",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191804_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191804_1601.html"
+      },
+      "ja": {
+        "value": "肥前旭",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=18"
+      },
+      "en": {
+        "value": "Hizen-Asahi",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=18",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=18"
+      }
+    }
   },
   {
     "id": "station-1190350",
@@ -2050,7 +3487,28 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "kana": {
+        "value": "とみあい",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191722_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191722_1601.html"
+      },
+      "ja": {
+        "value": "富合",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=72"
+      },
+      "en": {
+        "value": "Tomiai",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=72",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=72"
+      }
+    }
   },
   {
     "id": "station-1190405",
@@ -2083,7 +3541,28 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "kana": {
+        "value": "いちき",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191410_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191410_1601.html"
+      },
+      "ja": {
+        "value": "市来",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=20"
+      },
+      "en": {
+        "value": "Ichiki",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=20",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=20"
+      }
+    }
   },
   {
     "id": "station-1190518",
@@ -2091,7 +3570,7 @@
       "ja": "肥前飯田",
       "kana": "ひぜんいいだ",
       "ko": "히젠이이다",
-      "en": "HizenīDa"
+      "en": "Hizen-Iida"
     },
     "aliases": {
       "ko": []
@@ -2116,7 +3595,28 @@
     "koReviewStatus": "REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "kana": {
+        "value": "ひぜんいいだ",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191805_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191805_1601.html"
+      },
+      "ja": {
+        "value": "肥前飯田",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=18"
+      },
+      "en": {
+        "value": "Hizen-Iida",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=18",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=18"
+      }
+    }
   },
   {
     "id": "station-1190911",
@@ -2124,7 +3624,7 @@
       "ja": "筑前深江",
       "kana": "ちくぜんふかえ",
       "ko": "치쿠젠후카에",
-      "en": "Chikuzenfukae"
+      "en": "Chikuzen-Fukae"
     },
     "aliases": {
       "ko": []
@@ -2138,26 +3638,67 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%B9%98%EC%BF%A0%ED%9E%88%EC%84%A0",
     "koSearchReference": "site:namu.wiki 筑前深江駅 치쿠젠후카에 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "kana": {
+        "value": "ちくぜんふかえ",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191697_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191697_1601.html"
+      },
+      "ja": {
+        "value": "筑前深江",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=7"
+      },
+      "en": {
+        "value": "Chikuzen-Fukae",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=7",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=7"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%B9%98%EC%BF%A0%ED%9E%88%EC%84%A0",
+        "sha256": "6391f1052695da9a815fb3f4905d0a4f3fb22b3e2d6e5c621c62f69916be6183"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%B9%98%EC%BF%A0%ED%9E%88%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1191108",
     "names": {
       "ja": "直方",
-      "kana": "ちょくほう",
-      "ko": "초쿠호",
-      "en": "Chokuhō"
+      "kana": "のおがた",
+      "ko": "노가타",
+      "en": "Nogata"
     },
     "aliases": {
       "ko": []
@@ -2171,18 +3712,59 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EB%85%B8%EA%B0%80%ED%83%80%EC%97%AD(%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4)",
     "koSearchReference": "site:namu.wiki 直方駅 초쿠호우 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EB%85%B8%EA%B0%80%ED%83%80%EC%97%AD(%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4)",
+        "sha256": "27d41bbdc1e30c88c5dc9a17078891c98b48a244ca831fc567fd67b6dcbf0a13"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%85%B8%EA%B0%80%ED%83%80%EC%97%AD(%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4)"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%85%B8%EA%B0%80%ED%83%80%EC%97%AD(%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4)"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    },
+    "officialNameProof": {
+      "kana": {
+        "value": "のおがた",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191764_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191764_1601.html"
+      },
+      "ja": {
+        "value": "直方",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52"
+      },
+      "en": {
+        "value": "Nogata",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=52"
+      }
+    }
   },
   {
     "id": "station-1192817",
@@ -2204,26 +3786,67 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%8B%88%EC%B9%98%EB%82%9C%EC%84%A0",
     "koSearchReference": "site:namu.wiki 日南駅 니치난 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "kana": {
+        "value": "にちなん",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191762_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191762_1601.html"
+      },
+      "ja": {
+        "value": "日南",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=49"
+      },
+      "en": {
+        "value": "Nichinan",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=49",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=49"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%8B%88%EC%B9%98%EB%82%9C%EC%84%A0",
+        "sha256": "2146de4f2414a41f439216d6ae6c04013062575854409b069a3f0eb74c6b7467"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%8B%88%EC%B9%98%EB%82%9C%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1193029",
     "names": {
       "ja": "石垣",
-      "kana": "いしがき",
-      "ko": "이시가키",
-      "en": "Ishigaki"
+      "kana": "いしかき",
+      "ko": "이시카키",
+      "en": "Ishikaki"
     },
     "aliases": {
       "ko": []
@@ -2237,26 +3860,67 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%9D%B4%EB%B6%80%EC%8A%A4%ED%82%A4%EB%A7%88%EC%BF%A0%EB%9D%BC%EC%9E%90%ED%82%A4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 石垣駅 이시가키 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "kana": {
+        "value": "いしかき",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191404_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191404_1601.html"
+      },
+      "ja": {
+        "value": "石垣",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23"
+      },
+      "en": {
+        "value": "Ishikaki",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=23"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%9D%B4%EB%B6%80%EC%8A%A4%ED%82%A4%EB%A7%88%EC%BF%A0%EB%9D%BC%EC%9E%90%ED%82%A4%EC%84%A0",
+        "sha256": "c5e6807d52d1f8c9399552db4f57343d96c0ec546caf7fc0d8d389df9864d86b"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%9D%B4%EB%B6%80%EC%8A%A4%ED%82%A4%EB%A7%88%EC%BF%A0%EB%9D%BC%EC%9E%90%ED%82%A4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-1193035",
     "names": {
       "ja": "薩摩板敷",
-      "kana": "さつまいたじき",
-      "ko": "사츠마이타지키",
-      "en": "Satsumaitajiki"
+      "kana": "さつまいたしき",
+      "ko": "사츠마이타시키",
+      "en": "Satsuma-Itashiki"
     },
     "aliases": {
       "ko": []
@@ -2270,18 +3934,59 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%9D%B4%EB%B6%80%EC%8A%A4%ED%82%A4%EB%A7%88%EC%BF%A0%EB%9D%BC%EC%9E%90%ED%82%A4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 薩摩板敷駅 사츠마이타지키 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "kana": {
+        "value": "さつまいたしき",
+        "date": "2026-11-01",
+        "source": "https://www.jrkyushu.co.jp/railway/station/1191595_1601.html",
+        "listSource": "https://www.jrkyushu.co.jp/railway/station/",
+        "japaneseSource": "https://www.jrkyushu.co.jp/railway/station/1191595_1601.html"
+      },
+      "ja": {
+        "value": "薩摩板敷",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=60"
+      },
+      "en": {
+        "value": "Satsuma-Itashiki",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=60",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=60"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%9D%B4%EB%B6%80%EC%8A%A4%ED%82%A4%EB%A7%88%EC%BF%A0%EB%9D%BC%EC%9E%90%ED%82%A4%EC%84%A0",
+        "sha256": "c5e6807d52d1f8c9399552db4f57343d96c0ec546caf7fc0d8d389df9864d86b"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%9D%B4%EB%B6%80%EC%8A%A4%ED%82%A4%EB%A7%88%EC%BF%A0%EB%9D%BC%EC%9E%90%ED%82%A4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-2100810",
@@ -2336,18 +4041,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%84%B8%EC%9D%B4%20%EC%B9%98%EB%B0%94%EC%84%A0?from=%EC%B9%98%EB%B0%94%EC%84%A0",
     "koSearchReference": "site:namu.wiki 新千葉駅 신치바 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%84%B8%EC%9D%B4%20%EC%B9%98%EB%B0%94%EC%84%A0?from=%EC%B9%98%EB%B0%94%EC%84%A0",
+        "sha256": "aaa53508c8c61e7ad5e9fed1ed5d2869b649d2fcb74db25af6fb2366ad0babfe"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%84%B8%EC%9D%B4%20%EC%B9%98%EB%B0%94%EC%84%A0?from=%EC%B9%98%EB%B0%94%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-3000105",
@@ -2419,8 +4144,8 @@
     "id": "station-3000304",
     "names": {
       "ja": "碧海古井",
-      "kana": "へきかいこい",
-      "ko": "헤키카이코이",
+      "kana": "へきかいふるい",
+      "ko": "헤키카이후루이",
       "en": "Hekikaikoi"
     },
     "aliases": {
@@ -2435,18 +4160,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%ED%97%A4%ED%82%A4%EC%B9%B4%EC%9D%B4%ED%9B%84%EB%A3%A8%EC%9D%B4%EC%97%AD",
     "koSearchReference": "site:namu.wiki 碧海古井駅 헤키카이코이 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%ED%97%A4%ED%82%A4%EC%B9%B4%EC%9D%B4%ED%9B%84%EB%A3%A8%EC%9D%B4%EC%97%AD",
+        "sha256": "b0be17bfa254f5f25112e069c290d51cb150629d22f3a7ef870b476df1c6f2d7"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%97%A4%ED%82%A4%EC%B9%B4%EC%9D%B4%ED%9B%84%EB%A3%A8%EC%9D%B4%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%97%A4%ED%82%A4%EC%B9%B4%EC%9D%B4%ED%9B%84%EB%A3%A8%EC%9D%B4%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-3000506",
@@ -2468,18 +4213,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%EB%AF%B8%EC%B9%B4%EC%99%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 三河高浜駅 미카와타카하마 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%EB%AF%B8%EC%B9%B4%EC%99%80%EC%84%A0",
+        "sha256": "04b2d27f79d0b340903938b2a5fabbf92f58cfb348483703bf870f3a1c2a2288"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%EB%AF%B8%EC%B9%B4%EC%99%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-3000511",
@@ -2501,18 +4266,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%EB%AF%B8%EC%B9%B4%EC%99%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 重原駅 시게하라 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%EB%AF%B8%EC%B9%B4%EC%99%80%EC%84%A0",
+        "sha256": "04b2d27f79d0b340903938b2a5fabbf92f58cfb348483703bf870f3a1c2a2288"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%EB%AF%B8%EC%B9%B4%EC%99%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-3000606",
@@ -2534,18 +4319,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%ED%86%A0%EC%9A%94%ED%83%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 黒笹駅 쿠로자사 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%ED%86%A0%EC%9A%94%ED%83%80%EC%84%A0",
+        "sha256": "fa8e16eb753e5d1a4501936808f418aaa8222f2c2da5f48fc1648470ed9951d7"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%85%8C%EC%B8%A0%20%ED%86%A0%EC%9A%94%ED%83%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-3100540",
@@ -2600,18 +4405,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%82%A8%ED%85%8C%EC%B8%A0%20%EB%82%98%EA%B3%A0%EC%95%BC%EC%84%A0",
     "koSearchReference": "site:namu.wiki 近鉄四日市駅 킨테츠욨카이치 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%82%A8%ED%85%8C%EC%B8%A0%20%EB%82%98%EA%B3%A0%EC%95%BC%EC%84%A0",
+        "sha256": "983014bb18bd8f637ef0a676c9cf1472b6a8f6f2f6a8e1c0fbb08e548deb141a"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%82%A8%ED%85%8C%EC%B8%A0%20%EB%82%98%EA%B3%A0%EC%95%BC%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-3200704",
@@ -2717,8 +4542,8 @@
     "names": {
       "ja": "JR野江",
       "kana": "jrのえ",
-      "ko": "jr노에",
-      "en": "JRnoe"
+      "ko": "JR노에",
+      "en": "JR-Noe"
     },
     "aliases": {
       "ko": []
@@ -2732,18 +4557,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/JR%EB%85%B8%EC%97%90%EC%97%AD",
     "koSearchReference": "site:namu.wiki JR野江駅 jr노에 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/JR%EB%85%B8%EC%97%90%EC%97%AD",
+        "sha256": "f6434def59203a04b2b9d04883311f6e1c70be25e70878bbccf74ce6c3d83cc4"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/JR%EB%85%B8%EC%97%90%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    },
+    "officialNameProof": {
+      "en": {
+        "value": "JR-Noe",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=26",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=26"
+      },
+      "ja": {
+        "value": "JR野江",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=26"
+      }
+    }
   },
   {
     "id": "station-3400806",
@@ -2996,18 +4855,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%95%98%EC%BD%94%EB%8B%A4%ED%85%8C%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8",
     "koSearchReference": "site:namu.wiki 谷地頭駅 야치가시라 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%95%98%EC%BD%94%EB%8B%A4%ED%85%8C%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8",
+        "sha256": "4b253107d0e4b7e1d4e616e5eaddc282cbf3cc58507a341d25eab0926ac5c194"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%95%98%EC%BD%94%EB%8B%A4%ED%85%8C%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9930812",
@@ -3046,7 +4925,7 @@
     "id": "station-9932012",
     "names": {
       "ja": "長谷",
-      "kana": "ながたに",
+      "kana": "はせ",
       "ko": "하세",
       "en": "Nagatani"
     },
@@ -3074,6 +4953,26 @@
     "koSourceFamily": "namuwiki",
     "koSourceMethod": "manual",
     "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%ED%95%98%EC%84%B8%EC%97%AD(%EA%B0%80%EB%82%98%EA%B0%80%EC%99%80)",
+        "sha256": "deaf8abbd4c8e1c34425247e87799b1e4779bb8b6cdc983f633c3e73f159f294"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%95%98%EC%84%B8%EC%97%AD(%EA%B0%80%EB%82%98%EA%B0%80%EC%99%80)"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%95%98%EC%84%B8%EC%97%AD(%EA%B0%80%EB%82%98%EA%B0%80%EC%99%80)"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    },
     "koreanNameSource": {
       "family": "namuwiki",
       "method": "manual",
@@ -3090,7 +4989,7 @@
     "names": {
       "ja": "新里",
       "kana": "にいさと",
-      "ko": "니이사토",
+      "ko": "니사토",
       "en": "NīSato"
     },
     "aliases": {
@@ -3105,25 +5004,45 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EB%8B%88%EC%82%AC%ED%86%A0%EC%97%AD(%EA%B5%B0%EB%A7%88)",
     "koSearchReference": "site:namu.wiki 新里駅 니이사토 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EB%8B%88%EC%82%AC%ED%86%A0%EC%97%AD(%EA%B5%B0%EB%A7%88)",
+        "sha256": "2d61da49fff13994eeb6ae4a23800a8557331e44b1a08e1d1ae2bd4ab8645d10"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%8B%88%EC%82%AC%ED%86%A0%EC%97%AD(%EA%B5%B0%EB%A7%88)"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%8B%88%EC%82%AC%ED%86%A0%EC%97%AD(%EA%B5%B0%EB%A7%88)"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9932817",
     "names": {
       "ja": "東新川",
-      "kana": "ひがししんかわ",
-      "ko": "히가시신카와",
+      "kana": "ひがしにっかわ",
+      "ko": "히가시닛카와",
       "en": "Higashishinkawa"
     },
     "aliases": {
@@ -3138,18 +5057,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%ED%9E%88%EA%B0%80%EC%8B%9C%EB%8B%9B%EC%B9%B4%EC%99%80%EC%97%AD",
     "koSearchReference": "site:namu.wiki 東新川駅 히가시신카와 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%ED%9E%88%EA%B0%80%EC%8B%9C%EB%8B%9B%EC%B9%B4%EC%99%80%EC%97%AD",
+        "sha256": "fac346cb27fa1e65459687123a2d02fd45f01dd49ee3f59c9da17ac78e8da146"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%9E%88%EA%B0%80%EC%8B%9C%EB%8B%9B%EC%B9%B4%EC%99%80%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%9E%88%EA%B0%80%EC%8B%9C%EB%8B%9B%EC%B9%B4%EC%99%80%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9933017",
@@ -3353,8 +5292,8 @@
     "id": "station-9951719",
     "names": {
       "ja": "相生山",
-      "kana": "あいおいさん",
-      "ko": "아이오이산",
+      "kana": "あいおいやま",
+      "ko": "아이오이야마",
       "en": "Aioisan"
     },
     "aliases": {
@@ -3369,18 +5308,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%98%A4%EC%9D%B4%EC%95%BC%EB%A7%88%EC%97%AD",
     "koSearchReference": "site:namu.wiki 相生山駅 아이오이산 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%98%A4%EC%9D%B4%EC%95%BC%EB%A7%88%EC%97%AD",
+        "sha256": "71e32c14842548f6764d941e76423fee8c676c9c6c9c7402566c8f1b641484da"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%98%A4%EC%9D%B4%EC%95%BC%EB%A7%88%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%98%A4%EC%9D%B4%EC%95%BC%EB%A7%88%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9951721",
@@ -3402,18 +5361,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%82%98%EA%B3%A0%EC%95%BC%20%EC%8B%9C%EC%98%81%20%EC%A7%80%ED%95%98%EC%B2%A0%20%EC%82%AC%EC%BF%A0%EB%9D%BC%EB%8F%84%EB%A6%AC%EC%84%A0",
     "koSearchReference": "site:namu.wiki 徳重駅 토쿠시게 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%82%98%EA%B3%A0%EC%95%BC%20%EC%8B%9C%EC%98%81%20%EC%A7%80%ED%95%98%EC%B2%A0%20%EC%82%AC%EC%BF%A0%EB%9D%BC%EB%8F%84%EB%A6%AC%EC%84%A0",
+        "sha256": "c795ab8f6932b7419479861011f19521794ea628a6cf35ec0590ee0b1f6bfc10"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%82%98%EA%B3%A0%EC%95%BC%20%EC%8B%9C%EC%98%81%20%EC%A7%80%ED%95%98%EC%B2%A0%20%EC%82%AC%EC%BF%A0%EB%9D%BC%EB%8F%84%EB%A6%AC%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9952005",
@@ -3453,7 +5432,7 @@
     "names": {
       "ja": "母野",
       "kana": "ははの",
-      "ko": "하하노",
+      "ko": "한노",
       "en": "Hahano"
     },
     "aliases": {
@@ -3468,18 +5447,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%82%98%EA%B0%80%EB%9D%BC%EA%B0%80%EC%99%80%20%EC%B2%A0%EB%8F%84%20%EC%97%90%EC%B8%A0%EB%AF%B8%EB%82%9C%EC%84%A0",
     "koSearchReference": "site:namu.wiki 母野駅 하하노 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%82%98%EA%B0%80%EB%9D%BC%EA%B0%80%EC%99%80%20%EC%B2%A0%EB%8F%84%20%EC%97%90%EC%B8%A0%EB%AF%B8%EB%82%9C%EC%84%A0",
+        "sha256": "1af44c8dc55e113e238c818386ea1eafc8bd27653d28af6d2dccd8d0256198a8"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%82%98%EA%B0%80%EB%9D%BC%EA%B0%80%EC%99%80%20%EC%B2%A0%EB%8F%84%20%EC%97%90%EC%B8%A0%EB%AF%B8%EB%82%9C%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9960118",
@@ -3551,8 +5550,8 @@
     "id": "station-9962919",
     "names": {
       "ja": "綾ノ町",
-      "kana": "あやのまち",
-      "ko": "아야노마치",
+      "kana": "あやノちょう",
+      "ko": "아야노쵸",
       "en": "Ayanomachi"
     },
     "aliases": {
@@ -3567,18 +5566,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EC%95%84%EC%95%BC%EB%85%B8%EC%B5%B8%EC%97%AD",
     "koSearchReference": "site:namu.wiki 綾ノ町駅 아야노마치 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%95%BC%EB%85%B8%EC%B5%B8%EC%97%AD",
+        "sha256": "ad0ca1a1989e09fa82b50ad657558cb19174207a03515d3bd6e92a45652ec4af"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%95%BC%EB%85%B8%EC%B5%B8%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%95%84%EC%95%BC%EB%85%B8%EC%B5%B8%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9962922",
@@ -3600,18 +5619,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%95%9C%EC%B9%B4%EC%9D%B4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 花田口駅 하나타구치 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%95%9C%EC%B9%B4%EC%9D%B4%EC%84%A0",
+        "sha256": "f9350dd01d1710805510212e3da5a3aec7a25583380766ff43b3ebcadc6535e7"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%95%9C%EC%B9%B4%EC%9D%B4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9962931",
@@ -3633,18 +5672,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%95%9C%EC%B9%B4%EC%9D%B4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 石津北駅 이시즈키타 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%95%9C%EC%B9%B4%EC%9D%B4%EC%84%A0",
+        "sha256": "f9350dd01d1710805510212e3da5a3aec7a25583380766ff43b3ebcadc6535e7"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%95%9C%EC%B9%B4%EC%9D%B4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9963202",
@@ -3666,18 +5725,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EA%B3%A0%EB%B2%A0%20%EC%A0%84%EC%B2%A0%20%EC%95%84%EB%A6%AC%EB%A7%88%EC%84%A0?from=%EC%95%84%EB%A6%AC%EB%A7%88%EC%84%A0",
     "koSearchReference": "site:namu.wiki 長田駅 나가타 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EA%B3%A0%EB%B2%A0%20%EC%A0%84%EC%B2%A0%20%EC%95%84%EB%A6%AC%EB%A7%88%EC%84%A0?from=%EC%95%84%EB%A6%AC%EB%A7%88%EC%84%A0",
+        "sha256": "acbdf75ae44a6e3d7177622492eae2ba5a10de4f44287e3f68a61c228a4a29b5"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EA%B3%A0%EB%B2%A0%20%EC%A0%84%EC%B2%A0%20%EC%95%84%EB%A6%AC%EB%A7%88%EC%84%A0?from=%EC%95%84%EB%A6%AC%EB%A7%88%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9963730",
@@ -3732,18 +5811,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%98%A4%EC%82%AC%EC%B9%B4%EB%A9%94%ED%8A%B8%EB%A1%9C%20%EC%9D%B4%EB%A7%88%EC%9E%90%ED%86%A0%EC%8A%A4%EC%A7%80%EC%84%A0?from=%EC%9D%B4%EB%A7%88%EC%9E%90%ED%86%A0%EC%8A%A4%EC%A7%80%EC%84%A0",
     "koSearchReference": "site:namu.wiki 井高野駅 이타카노 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%98%A4%EC%82%AC%EC%B9%B4%EB%A9%94%ED%8A%B8%EB%A1%9C%20%EC%9D%B4%EB%A7%88%EC%9E%90%ED%86%A0%EC%8A%A4%EC%A7%80%EC%84%A0?from=%EC%9D%B4%EB%A7%88%EC%9E%90%ED%86%A0%EC%8A%A4%EC%A7%80%EC%84%A0",
+        "sha256": "05ef24e83c5e3e7189fd1f09d12e3803d5b1cfd9df406ddc22e96a9f1937fb2c"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%98%A4%EC%82%AC%EC%B9%B4%EB%A9%94%ED%8A%B8%EB%A1%9C%20%EC%9D%B4%EB%A7%88%EC%9E%90%ED%86%A0%EC%8A%A4%EC%A7%80%EC%84%A0?from=%EC%9D%B4%EB%A7%88%EC%9E%90%ED%86%A0%EC%8A%A4%EC%A7%80%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9970407",
@@ -3963,18 +6062,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EB%82%98%EC%B9%B4%EC%9D%B4%EC%A6%88%EB%AF%B8%EC%97%AD",
     "koSearchReference": "site:namu.wiki 中泉駅 나카이즈미 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EB%82%98%EC%B9%B4%EC%9D%B4%EC%A6%88%EB%AF%B8%EC%97%AD",
+        "sha256": "722ce8c6260bd6d9f0addf0f5ca0a36f0d1e1e566a39510aba304b2d9e90f5b9"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%82%98%EC%B9%B4%EC%9D%B4%EC%A6%88%EB%AF%B8%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%82%98%EC%B9%B4%EC%9D%B4%EC%A6%88%EB%AF%B8%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9990304",
@@ -3996,18 +6115,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%ED%97%A4%EC%9D%B4%EC%84%B8%EC%9D%B4%20%EC%B9%98%EC%BF%A0%ED%98%B8%20%EC%B2%A0%EB%8F%84%20%EC%9D%B4%ED%86%A0%EB%8B%A4%EC%84%A0?from=%EC%9D%B4%ED%86%A0%EB%8B%A4%EC%84%A0",
     "koSearchReference": "site:namu.wiki 糸田駅 이토다 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%ED%97%A4%EC%9D%B4%EC%84%B8%EC%9D%B4%20%EC%B9%98%EC%BF%A0%ED%98%B8%20%EC%B2%A0%EB%8F%84%20%EC%9D%B4%ED%86%A0%EB%8B%A4%EC%84%A0?from=%EC%9D%B4%ED%86%A0%EB%8B%A4%EC%84%A0",
+        "sha256": "e7de1510d0180e7a453f2577b31d7cf9e10919f596e63136ae00abf2f6b9c612"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%97%A4%EC%9D%B4%EC%84%B8%EC%9D%B4%20%EC%B9%98%EC%BF%A0%ED%98%B8%20%EC%B2%A0%EB%8F%84%20%EC%9D%B4%ED%86%A0%EB%8B%A4%EC%84%A0?from=%EC%9D%B4%ED%86%A0%EB%8B%A4%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9990913",
@@ -4095,18 +6234,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%AF%B8%EB%82%98%EB%AF%B8%EC%95%84%EC%86%8C%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EC%B9%B4%EB%AA%A8%EB%A6%AC%EC%84%A0?from=%ED%83%80%EC%B9%B4%EB%AA%A8%EB%A6%AC%EC%84%A0",
     "koSearchReference": "site:namu.wiki 長陽駅 초우요우 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%82%98%EB%AF%B8%EC%95%84%EC%86%8C%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EC%B9%B4%EB%AA%A8%EB%A6%AC%EC%84%A0?from=%ED%83%80%EC%B9%B4%EB%AA%A8%EB%A6%AC%EC%84%A0",
+        "sha256": "86ff1f2f346e6c43088a6b58ffabfb9a3cd705c083a30424cc00e112aea104e9"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%AF%B8%EB%82%98%EB%AF%B8%EC%95%84%EC%86%8C%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EC%B9%B4%EB%AA%A8%EB%A6%AC%EC%84%A0?from=%ED%83%80%EC%B9%B4%EB%AA%A8%EB%A6%AC%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9992014",
@@ -4128,25 +6287,45 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%BF%A0%EB%A7%88%EA%B0%80%EC%99%80%20%EC%B2%A0%EB%8F%84%20%EC%9C%A0%EB%85%B8%EB%A7%88%EC%97%90%EC%84%A0?from=%EC%9C%A0%EB%85%B8%EB%A7%88%EC%97%90%EC%84%A0",
     "koSearchReference": "site:namu.wiki 湯前駅 유노마에 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%BF%A0%EB%A7%88%EA%B0%80%EC%99%80%20%EC%B2%A0%EB%8F%84%20%EC%9C%A0%EB%85%B8%EB%A7%88%EC%97%90%EC%84%A0?from=%EC%9C%A0%EB%85%B8%EB%A7%88%EC%97%90%EC%84%A0",
+        "sha256": "ee4ea63b01d631f5f7be1a8eeb472ad8f463908a389c5bc3fd4664b9ebae8334"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%BF%A0%EB%A7%88%EA%B0%80%EC%99%80%20%EC%B2%A0%EB%8F%84%20%EC%9C%A0%EB%85%B8%EB%A7%88%EC%97%90%EC%84%A0?from=%EC%9C%A0%EB%85%B8%EB%A7%88%EC%97%90%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9992201",
     "names": {
       "ja": "田崎橋",
       "kana": "たさききょう",
-      "ko": "타사키쿄",
+      "ko": "타사키바시",
       "en": "Tasakikyō"
     },
     "aliases": {
@@ -4161,18 +6340,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8",
     "koSearchReference": "site:namu.wiki 田崎橋駅 타사키쿄우 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8",
+        "sha256": "dbe25e38c094e01e73078a684683f217d239fe20c9f62781f1614a8c82b85f3e"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9992224",
@@ -4194,18 +6393,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8",
     "koSearchReference": "site:namu.wiki 動植物園入口駅 도우쇼쿠부츠엔이리구치 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8",
+        "sha256": "dbe25e38c094e01e73078a684683f217d239fe20c9f62781f1614a8c82b85f3e"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9992303",
@@ -4227,25 +6446,45 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8",
     "koSearchReference": "site:namu.wiki 本妙寺入口駅 혼묘우지이리구치 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8",
+        "sha256": "adc0716c95a94d60987bee31a8816073543ee1d24a003aa9e201724895c404de"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%20%EC%8B%9C%EC%98%81%20%EC%A0%84%EC%B0%A8"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-9992704",
     "names": {
       "ja": "奥武山公園",
       "kana": "おうのやまこうえん",
-      "ko": "오노야마코엔",
+      "ko": "오노야마공원",
       "en": "ōNoyamakōEn"
     },
     "aliases": {
@@ -4260,18 +6499,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%EC%98%A4%EB%85%B8%EC%95%BC%EB%A7%88%EA%B3%B5%EC%9B%90%EC%97%AD",
     "koSearchReference": "site:namu.wiki 奥武山公園駅 오우노야마코우엔 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%85%B8%EC%95%BC%EB%A7%88%EA%B3%B5%EC%9B%90%EC%97%AD",
+        "sha256": "d7eab6d9088da3c4e420ba2edb7ed5e10b7af82a02a88d4efc9f229cdd9e08b5"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%85%B8%EC%95%BC%EB%A7%88%EA%B3%B5%EC%9B%90%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%85%B8%EC%95%BC%EB%A7%88%EA%B3%B5%EC%9B%90%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-002940",
@@ -4326,18 +6585,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025-line-station-composite"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%8F%84%EB%B6%80%20%ED%86%A0%EC%A3%A0%20%EB%B3%B8%EC%84%A0?from=%ED%86%A0%EC%A1%B0%20%EB%B3%B8%EC%84%A0",
     "koSearchReference": "site:namu.wiki 志木駅 시키 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%8F%84%EB%B6%80%20%ED%86%A0%EC%A3%A0%20%EB%B3%B8%EC%84%A0?from=%ED%86%A0%EC%A1%B0%20%EB%B3%B8%EC%84%A0",
+        "sha256": "0f3b8ae1276f19f8a86e1d60a640d6e8f9b7666b4a18d29833da1ce22fac2421"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%8F%84%EB%B6%80%20%ED%86%A0%EC%A3%A0%20%EB%B3%B8%EC%84%A0?from=%ED%86%A0%EC%A1%B0%20%EB%B3%B8%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-003058",
@@ -4359,18 +6638,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025-line-station-composite"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%98%A4%EB%A9%94%EC%84%A0",
     "koSearchReference": "site:namu.wiki 鳩ノ巣駅 하토노스 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Hatonosu",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=14",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=14"
+      },
+      "ja": {
+        "value": "鳩ノ巣",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=14"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%A9%94%EC%84%A0",
+        "sha256": "9fc70619757d83c797b3f2b9246b19e046e10039258568efa6d44a75acc570dc"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%A9%94%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-003074",
@@ -4392,18 +6705,52 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025-line-station-composite"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%98%A4%EB%A9%94%EC%84%A0",
     "koSearchReference": "site:namu.wiki 軍畑駅 이쿠사바타 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Ikusabata",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=21",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=21"
+      },
+      "ja": {
+        "value": "軍畑",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=21"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%A9%94%EC%84%A0",
+        "sha256": "9fc70619757d83c797b3f2b9246b19e046e10039258568efa6d44a75acc570dc"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%98%A4%EB%A9%94%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-003135",
@@ -4524,18 +6871,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025-line-station-composite"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%8F%84%EB%B6%80%20%EC%B9%B4%EB%A9%94%EC%9D%B4%EB%8F%84%EC%84%A0?from=%EC%B9%B4%EB%A9%94%EC%9D%B4%EB%8F%84%EC%84%A0",
     "koSearchReference": "site:namu.wiki 東あずま駅 히가시아즈마 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%8F%84%EB%B6%80%20%EC%B9%B4%EB%A9%94%EC%9D%B4%EB%8F%84%EC%84%A0?from=%EC%B9%B4%EB%A9%94%EC%9D%B4%EB%8F%84%EC%84%A0",
+        "sha256": "c536ce68d3186bc9291fb837b5b1f73fb9bb1df8adca7cff2a79d49d3d6984af"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%8F%84%EB%B6%80%20%EC%B9%B4%EB%A9%94%EC%9D%B4%EB%8F%84%EC%84%A0?from=%EC%B9%B4%EB%A9%94%EC%9D%B4%EB%8F%84%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-003624",
@@ -4557,18 +6924,52 @@
       "name": "verified-seed",
       "coordinate": "MLIT-N02-2025-line-station-composite"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%ED%9E%8C%ED%86%A0%ED%98%B8%EC%BF%A0%EC%84%A0?from=%EA%B2%8C%EC%9D%B4%ED%9E%8C%EB%8F%84%ED%98%B8%EC%BF%A0%EC%84%A0",
     "koSearchReference": "site:namu.wiki 秋葉原駅 아키하바라 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Akihabara",
+        "date": "2026-11-01",
+        "source": "https://www.jreast.co.jp/en/e/stations/e41.html",
+        "listSource": "https://www.jreast.co.jp/en/multi/stations/",
+        "japaneseSource": "https://www.jreast.co.jp/estation/stations/41.html"
+      },
+      "ja": {
+        "value": "秋葉原",
+        "date": "2026-11-01",
+        "source": "https://www.jreast.co.jp/estation/stations/41.html"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%ED%9E%8C%ED%86%A0%ED%98%B8%EC%BF%A0%EC%84%A0?from=%EA%B2%8C%EC%9D%B4%ED%9E%8C%EB%8F%84%ED%98%B8%EC%BF%A0%EC%84%A0",
+        "sha256": "a92c4994b36f93c247cd28513c1ed0c8ba9ce581b069e72f302355e8e0ee7a3b"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%ED%9E%8C%ED%86%A0%ED%98%B8%EC%BF%A0%EC%84%A0?from=%EA%B2%8C%EC%9D%B4%ED%9E%8C%EB%8F%84%ED%98%B8%EC%BF%A0%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-004066",
@@ -4590,18 +6991,38 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025-line-station-composite"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%98%A4%20%EC%82%AC%EA%B0%80%EB%AF%B8%ED%95%98%EB%9D%BC%EC%84%A0?from=%EC%82%AC%EA%B0%80%EB%AF%B8%ED%95%98%EB%9D%BC%EC%84%A0",
     "koSearchReference": "site:namu.wiki 京王稲田堤駅 케이오우이나다즈츠미 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%98%A4%20%EC%82%AC%EA%B0%80%EB%AF%B8%ED%95%98%EB%9D%BC%EC%84%A0?from=%EC%82%AC%EA%B0%80%EB%AF%B8%ED%95%98%EB%9D%BC%EC%84%A0",
+        "sha256": "1b3ce367f80df7cd86b7d29235b998fed5af00d089f0333b8cfe6b6500035193"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%98%A4%20%EC%82%AC%EA%B0%80%EB%AF%B8%ED%95%98%EB%9D%BC%EC%84%A0?from=%EC%82%AC%EA%B0%80%EB%AF%B8%ED%95%98%EB%9D%BC%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-004366",
@@ -4642,7 +7063,7 @@
       "ja": "新杉田",
       "kana": "しんすぎた",
       "ko": "신스기타",
-      "en": "Shinsugita"
+      "en": "Shin-Sugita"
     },
     "aliases": {
       "ko": []
@@ -4656,25 +7077,59 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025-line-station-composite"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-route-table",
+    "koSourceUrl": "https://namu.wiki/w/%EB%84%A4%EA%B8%B0%EC%8B%9C%EC%84%A0",
     "koSearchReference": "site:namu.wiki 新杉田駅 신스기타 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
     "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "exact-route-table-and-station-link",
+    "canonicalKoreanPolicy": "namuwiki",
+    "officialNameProof": {
+      "en": {
+        "value": "Shin-Sugita",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=65",
+        "listSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf",
+        "japaneseSource": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=65"
+      },
+      "ja": {
+        "value": "新杉田",
+        "date": "2026-11-01",
+        "source": "https://www.westjr.co.jp/global/en/howto/train-reservation/condition/station/Station_name.pdf#page=65"
+      }
+    },
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "TABLE_MATCHED",
+        "source": "https://namu.wiki/w/%EB%84%A4%EA%B8%B0%EC%8B%9C%EC%84%A0",
+        "sha256": "2cb99884f2eca4baf5f8b4fde678c777b49f891c0d2a629b056aa4fa089d37df"
+      },
+      "kana": {
+        "status": "UNVERIFIED",
+        "source": null
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%EB%84%A4%EA%B8%B0%EC%8B%9C%EC%84%A0"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   },
   {
     "id": "station-005146",
     "names": {
       "ja": "螢田",
-      "kana": "ほたるた",
-      "ko": "호타루타",
+      "kana": "ほたるだ",
+      "ko": "호타루다",
       "en": "Hotaruta"
     },
     "aliases": {
@@ -4689,17 +7144,37 @@
       "name": "dictionary-transliteration",
       "coordinate": "MLIT-N02-2025-line-station-composite"
     },
-    "koSource": "namuwiki-unresolved",
-    "koSourceUrl": "",
+    "koSource": "namuwiki-article",
+    "koSourceUrl": "https://namu.wiki/w/%ED%98%B8%ED%83%80%EB%A3%A8%EB%8B%A4%EC%97%AD",
     "koSearchReference": "site:namu.wiki 螢田駅 호타루타 역",
     "sourceAccess": "blocked",
     "namuwikiStatus": "access-blocked",
-    "koVerified": false,
-    "koConfidence": "LOW",
-    "koVerifiedDate": null,
-    "koReviewStatus": "REVIEW_REQUIRED",
+    "koVerified": true,
+    "koConfidence": "HIGH",
+    "koVerifiedDate": "2026-11-01",
+    "koReviewStatus": "VERIFIED",
     "koSourceFamily": "namuwiki",
-    "koSourceMethod": "unresolved",
-    "canonicalKoreanPolicy": "namuwiki"
+    "koSourceMethod": "article-header-identity-match",
+    "canonicalKoreanPolicy": "namuwiki",
+    "nameRevalidation": {
+      "date": "2026-11-01",
+      "ko": {
+        "status": "VERIFIED",
+        "source": "https://namu.wiki/w/%ED%98%B8%ED%83%80%EB%A3%A8%EB%8B%A4%EC%97%AD",
+        "sha256": "58225b4f84e018d13c4e667adb71895ebdd5efe346a8486bd983b663d2c5408d"
+      },
+      "kana": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%98%B8%ED%83%80%EB%A3%A8%EB%8B%A4%EC%97%AD"
+      },
+      "ja": {
+        "status": "SUPPORTING_REFERENCE",
+        "source": "https://namu.wiki/w/%ED%98%B8%ED%83%80%EB%A3%A8%EB%8B%A4%EC%97%AD"
+      },
+      "en": {
+        "status": "UNVERIFIED"
+      },
+      "identity": "station-id + route-membership + exact Japanese source name"
+    }
   }
 ]
