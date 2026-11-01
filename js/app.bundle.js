@@ -1743,6 +1743,10 @@ class Game{
     if(!state?.route||!state?.station)return;
     this.freeDriveSelectedEdge=null;
     const route=railDataRepository.resolveRoute(state.route),station=state.station,index=Math.max(0,state.stationIndex||0);
+    // A TAB interchange changes the boarding platform without driving to a
+    // neighbor. Hong Kong must type that new line's current stop first.
+    const previousState=this.freeDriveState;
+    if(route.countryId==='hk'&&previousState?.node?.key&&previousState.node.key===state.node?.key&&previousState.routeId!==state.routeId)this.freeDriveAwaitingStart=true;
     this.route=route;this.freeDriveState=state;this.options={mode:'free-drive',mapMode:'geographic',mapLabels:'normal',motion:true,reducedMotion:false};this.service={id:'free-drive',nameJa:'自由走行',nameKo:'자유주행',nameEn:'Free Drive',stops:route.stations.map(item=>item.id)};
     try{this.resolvedRoute=resolvePlayableRoute(route,{direction:'forward',service:this.service})}catch{this.resolvedRoute={stations:route.stations,geometry:route.geometry||[],segments:route.directedSegments||[]}}
     this.serviceStations=this.resolvedRoute.stations||route.stations;this.serviceStops=new Set(this.serviceStations.map(item=>item.id));this.mapRoute={...route,stations:this.serviceStations,geometry:this.resolvedRoute.geometry||route.geometry||[],directedSegments:this.resolvedRoute.segments||route.directedSegments||[],renderKey:`${route.id}::free-drive`};this.sequence=this.serviceStations;this.index=Math.max(0,Math.min(index,this.sequence.length-1));this.boarding=false;

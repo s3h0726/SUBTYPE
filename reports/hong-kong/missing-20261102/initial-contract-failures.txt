@@ -1,0 +1,86 @@
+warning: in the working copy of 'index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'reports/hong-kong/completion/engine-completions.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tools/build-hk-data.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tools/complete-hk-network.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tools/test-hk-completion.cjs', LF will be replaced by CRLF the next time Git touches it
+✔ 92 baseline directions retain exact source geometry, names, order and validation identity (13828.7526ms)
+✔ all released directions have unique identities, Korean calls and connected sourced railway segments (16.615ms)
+✔ 105 actual-engine proofs are fresh for AUTO and SPACE, including duplicate-event and terminal checks (1867.0666ms)
+✔ Peak six identities and passing loop remain original, with an explicit all-requested simulation (351.8283ms)
+✔ APM uses operational relation railways and retains restricted passenger access (319.2171ms)
+✔ 751 historical ID is retained under verified current 751 identity; timed 751P remains (2.1169ms)
+✔ unified latest-main selector groups directions and distinguishes Racecourse services (19.8806ms)
+✔ circular routes retain 16 distinct visits and 15 real track legs (0.6158ms)
+✔ archived high speed stays byte-equivalent and is excluded from active categories (157.8525ms)
+✔ source archives still match every pinned retrieval hash (4129.2645ms)
+✔ Latest integrated Korea, Japan and authentication/storage sources are preserved (1408.6052ms)
+✔ Hong Kong CUSTOM retains stored format and real edges after a fresh storage instance (20.3801ms)
+✔ production bundle and merged canonical application parse without syntax errors (41.9284ms)
+✔ all 103 previously released directions preserve geometry, station records and identities (15688.2221ms)
+✔ 507P follows official 19 calls and joins exact directed source sections without a connector (13.6676ms)
+✔ Racecourse Lok Ma Chau restores Sha Tin on an original railway vertex without changing ways (168.02ms)
+✔ all54 Phase5 directions retain exact calling orders, source geometry and browser-gated fingerprints (7531.0512ms)
+✔ each restored conditional service is exact, source-pinned, schedule-qualified and completed in browser (90.8538ms)
+✔ Ocean Express uses separate operator, official Korean stops, paid-park notice and one-way source loop arms (515.3214ms)
+✔ Peak Tram recovers exact six-stop government order on actual track with reviewed Korean names and an explicitly labelled request-stop simulation (22.1708ms)
+✔ original283 names remain; additional reviewed facility names retain distinct provenance (199.4901ms)
+✖ physical-line choices preserve each independently approved direction and reject a forged endpoint (189.3414ms)
+✔ changed conditional operation invalidates browser approval without changing the original rail fingerprint (31.9896ms)
+✔ all six TKL directions retain the real branch and conditional endpoints (0.7731ms)
+✔ national inventory distinguishes APM, airport rail, operating park railway, suspended park railroad and cable rides (30.2173ms)
+✖ Hong Kong free-drive terminal waits for TAB instead of silently choosing a foreign-line edge (15.0527ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 24
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22528.1944
+
+✖ failing tests:
+
+test at tools\test-hk-phase6.cjs:10:1
+✖ physical-line choices preserve each independently approved direction and reject a forged endpoint (189.3414ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  63 !== 61
+  
+      at TestContext.<anonymous> (C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository\tools\test-hk-phase6.cjs:10:907)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 63,
+    expected: 61,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\test-hk-phase6.cjs:14:1
+✖ Hong Kong free-drive terminal waits for TAB instead of silently choosing a foreign-line edge (15.0527ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '종착역 도착 · 환승 노선을 선택하세요'
+  - '종착역 도착 · 자유주행'
+              ^
+  
+      at TestContext.<anonymous> (C:\Users\galax\OneDrive\문서\ChatGPT\SUBTYPE\repository\tools\test-hk-phase6.cjs:14:1411)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '종착역 도착 · 환승 노선을 선택하세요',
+    expected: '종착역 도착 · 자유주행',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

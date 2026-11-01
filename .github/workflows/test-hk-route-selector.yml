@@ -48,3 +48,5 @@ jobs:
         run: node tools/test-hk-phase6.cjs
       - name: Verify released Hong Kong source, geometry and actual-engine completion evidence
         run: node --test tools/test-hk-completion.cjs
+      - name: Verify missing 507P, Racecourse and Hong Kong TAB boarding
+        run: node --test tools/test-hk-missing.cjs

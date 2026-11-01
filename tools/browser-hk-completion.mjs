@@ -9,7 +9,7 @@ export async function start(tab,root,id,{mode='normal',advance='AUTO'}={}){
  await tab.playwright.getByRole('searchbox',{name:'⌕',exact:true}).fill(r.line.ko);await tab.playwright.domSnapshot();
  const isTram=r.canonicalLineId==='hk-tramway';
  await tab.playwright.locator(isTram?'[data-hk-tram-family]':'[data-hk-line-family="'+r.canonicalLineId+'"]').press('Enter');await tab.playwright.domSnapshot();
- await tab.playwright.getByRole('button',{name:'PLAY THIS LINE →',exact:true}).press('Enter');
+ await tab.playwright.getByRole('button',{name:/^(PLAY THIS LINE →|운행계통·방향 선택 →)$/}).press('Enter');
  const group=isTram?r.tramServiceGroup:[r.stations[0].id,r.stations.at(-1).id].sort().join(':')+(r.validWhen?.type==='race-day-via-racecourse'?':racecourse':'');
  await tab.playwright.locator('[data-operating-pattern="'+group+'"]').waitFor({state:'visible',timeoutMs:15000});
  await tab.playwright.locator('[data-operating-pattern="'+group+'"]').press('Enter');await tab.playwright.domSnapshot();
@@ -57,7 +57,7 @@ export async function freeStart(tab,root,id){
  await tab.playwright.getByRole('searchbox',{name:'⌕',exact:true}).fill(r.line.ko);await tab.playwright.domSnapshot();
  await tab.playwright.locator('[data-hk-line-family="'+r.canonicalLineId+'"]').press('Enter');await tab.playwright.domSnapshot();
  const picked=await tab.playwright.locator('[data-selected-play]').getAttribute('data-selected-play');if(picked!==id)throw Error('Free drive family default differs: '+picked);await tab.playwright.domSnapshot();
- await tab.playwright.getByRole('button',{name:'FREE DRIVE ↗',exact:true}).press('Enter');
+ await tab.playwright.getByRole('button',{name:/^(FREE DRIVE ↗|자유주행 ↗)$/}).press('Enter');
  await tab.playwright.locator('#typing-input').waitFor({state:'visible',timeoutMs:15000});
  await displayed(tab,'#prompt-main',r.stations[0].ja);return r;
 }
@@ -71,7 +71,7 @@ export async function transfer(tab,root,{from,to,stationId,toStationId=stationId
  await switchByTab(to);if(roundTrip){await switchByTab(from);await switchByTab(to)}
  proof.transferSnapshot=await tab.playwright.domSnapshot();proof.transferScreenshot='output/hk/completion/transfer-'+from+'-'+to+'.jpg';await fs.writeFile(root+'/'+proof.transferScreenshot,await tab.screenshot({fullPage:false}));
  for(let i=targetAt;i<destination.stations.length;i++){const stop=destination.stations[i];await displayed(tab,'#prompt-main',stop.ja);await tab.playwright.locator('#typing-input').fill(stop.ko);proof.completion.push({id:stop.id,ko:stop.ko});}
- await displayed(tab,'#station-context','종착역 도착 · 자유주행');
+ await displayed(tab,'#station-context','종착역 도착 · 환승 노선을 선택하세요');
  await displayed(tab,'#map-station-info b',destination.stations.at(-1).ja);
  proof.terminalSnapshot=await tab.playwright.domSnapshot();proof.terminal=destination.stations.at(-1).id;proof.status='PASS';
  proof.terminalScreenshot='output/hk/completion/terminal-'+from+'-'+to+'.jpg';await fs.writeFile(root+'/'+proof.terminalScreenshot,await tab.screenshot({fullPage:false}));

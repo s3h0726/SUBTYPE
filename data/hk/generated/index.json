@@ -3667,6 +3667,163 @@
       ]
     },
     {
+      "id": "hk-east-rail-racecourse-4250434",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-east-rail",
+      "servicePatternId": "hk-east-rail-racecourse-4250434",
+      "serviceLabel": "Admiralty → Lok Ma Chau",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "東鐵綫",
+        "en": "East Rail Line",
+        "ko": "동철선"
+      },
+      "category": "subway",
+      "mode": "subway",
+      "code": "EAL",
+      "officialSymbolExists": false,
+      "lineColor": "#5eb7e8",
+      "lineTheme": {
+        "code": "EAL",
+        "color": "#5eb7e8",
+        "style": "hk",
+        "colorVerified": true,
+        "colorSource": "https://www.mtr.com.hk/archive/en/services/routemap.pdf"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "racecourse-4250434",
+      "validWhen": {
+        "type": "race-day-via-racecourse",
+        "raceDaysOnly": true,
+        "noteKo": "동철선 마장 경유 · 경마일 등 운영사가 마장역을 개방하는 날의 지정 열차만 운행합니다. 포탄역에는 정차하지 않으며 경마일의 모든 열차가 이 경로인 것은 아닙니다. 정확한 출발 시각은 당일 안내를 확인하세요.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/completion/racecourse-official-excerpt.json",
+            "sha256": "fb71628700c8cf706c12147229710012c70667f800f0c0b79fd180b97df0e10f"
+          },
+          {
+            "file": "data/hk/sources/completion/racecourse-korean.html",
+            "sha256": "4ba6a696b1155380bd4d0141577fb05e5d7a5defc920726d8916c7331a440aa2"
+          },
+          {
+            "file": "data/hk/sources/completion/mtr-next-train.pdf",
+            "sha256": "0359b30a230c11733bc9552c6c10cbba8a6de4005e5cc76297108a1451668bd8"
+          },
+          {
+            "file": "data/hk/sources/phase2/mtr-map.pdf",
+            "sha256": "46f44e54046398bc7c90417bd9180c2bf2748e2292c9e0916104be819759aff4"
+          },
+          {
+            "file": "data/hk/sources/osm-network.json",
+            "sha256": "3ccfdcb2f39ab80bb1b47e6f20233c7c9a5d2858a6a71df350778b33a9f71856"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-east-rail-racecourse-4250434",
+          "nameJa": "東鐵綫",
+          "nameEn": "East Rail Line",
+          "nameKo": "동철선",
+          "stops": [
+            "hk-mtr-ADM",
+            "hk-mtr-EXC",
+            "hk-mtr-HUH",
+            "hk-mtr-MKK",
+            "hk-mtr-KOT",
+            "hk-mtr-TAW",
+            "hk-mtr-SHT",
+            "hk-mtr-RAC",
+            "hk-mtr-UNI",
+            "hk-mtr-TAP",
+            "hk-mtr-TWO",
+            "hk-mtr-FAN",
+            "hk-mtr-SHS",
+            "hk-mtr-LMC"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "1c74c2f3f755583ed06bc77232d976f995b1e64cd7fb1c2be577d6b6cd40628d",
+      "validationFingerprint": "79215d3d6c3924e429295b2ea9373df8c15e93113868f25d3134e4c9fee296f5",
+      "lazySource": "data/hk/generated/routes/hk-east-rail-racecourse-4250434.json",
+      "stationCount": 14,
+      "stationSequence": [
+        "hk-mtr-ADM",
+        "hk-mtr-EXC",
+        "hk-mtr-HUH",
+        "hk-mtr-MKK",
+        "hk-mtr-KOT",
+        "hk-mtr-TAW",
+        "hk-mtr-SHT",
+        "hk-mtr-RAC",
+        "hk-mtr-UNI",
+        "hk-mtr-TAP",
+        "hk-mtr-TWO",
+        "hk-mtr-FAN",
+        "hk-mtr-SHS",
+        "hk-mtr-LMC"
+      ],
+      "searchStations": [
+        "金鐘",
+        "Admiralty",
+        "애드미럴티",
+        "會展",
+        "Exhibition Centre",
+        "전시장",
+        "紅磡",
+        "Hung Hom",
+        "홍함",
+        "旺角東",
+        "Mong Kok East",
+        "몽콕 이스트",
+        "九龍塘",
+        "Kowloon Tong",
+        "까우룽통",
+        "大圍",
+        "Tai Wai",
+        "타이와이",
+        "沙田",
+        "Sha Tin",
+        "샤틴",
+        "馬場",
+        "Racecourse",
+        "마장",
+        "大學",
+        "University",
+        "유니버시티",
+        "大埔墟",
+        "Tai Po Market",
+        "타이포마켓",
+        "太和",
+        "Tai Wo",
+        "타이워",
+        "粉嶺",
+        "Fanling",
+        "판링",
+        "上水",
+        "Sheung Shui",
+        "셩슈이",
+        "落馬洲",
+        "Lok Ma Chau",
+        "목마차우"
+      ]
+    },
+    {
       "id": "hk-light-rail-505-osm-3515354",
       "countryId": "hk",
       "schemaVersion": 1,
@@ -11071,6 +11228,188 @@
       ]
     },
     {
+      "id": "hk-light-rail-507p-morning",
+      "countryId": "hk",
+      "schemaVersion": 1,
+      "canonicalLineId": "hk-light-rail-507p",
+      "servicePatternId": "hk-light-rail-507p-morning",
+      "serviceLabel": "Siu Hong → Tuen Mun Ferry Pier",
+      "operatorId": "hk-mtr",
+      "operator": {
+        "ja": "港鐵",
+        "en": "MTR",
+        "ko": "홍콩 MTR"
+      },
+      "line": {
+        "ja": "輕鐵 507P",
+        "en": "Light Rail 507P",
+        "ko": "경전철 507P"
+      },
+      "category": "light_rail",
+      "mode": "light_rail",
+      "code": "507P",
+      "officialSymbolExists": false,
+      "lineColor": "#71857d",
+      "lineTheme": {
+        "code": "507P",
+        "color": "#71857d",
+        "style": "hk",
+        "colorVerified": false,
+        "colorSource": "OSM candidate; official colour audit pending"
+      },
+      "loop": false,
+      "lazy": true,
+      "playable": true,
+      "releaseStatus": "ready",
+      "geometryReady": true,
+      "geometryStatus": "verified",
+      "blockedReasons": [],
+      "direction": "siu-hong-to-ferry-pier",
+      "validWhen": {
+        "type": "weekday-morning-special",
+        "departureTimes": [
+          "07:42"
+        ],
+        "timezone": "Asia/Hong_Kong",
+        "schoolHolidayCondition": "not-stated",
+        "noteKo": "507P 평일 오전 특별편 · 시우홍 → 튄문 페리부두 · 07:42 출발. 상시 운행이 아닙니다. 방학 운행 조건은 현재 공식 안내에 명시되지 않았으며 당일 운영 안내를 확인하세요. 과거 보도자료의 07:40 대신 현재 시간표를 적용했습니다.",
+        "reviewStatus": "verified",
+        "sources": [
+          {
+            "file": "data/hk/sources/missing-20261102/light-rail.html",
+            "sha256": "e1d6b935d081164e4405dcdd3c2a81b756b97f8d601930ef5b3b448b8feb47db"
+          },
+          {
+            "file": "data/hk/sources/missing-20261102/507p-routing-excerpt.json",
+            "sha256": "6b121da53f9c96b8953d4171c74edf4ad9fc43790896fb1f3881f41bb52fc749"
+          },
+          {
+            "file": "data/hk/sources/phase6/light-rail.csv",
+            "sha256": "f2fec60de38b72f38d3478fcdeecea4e3332b300b73c23bf41b22d412a2c2066"
+          },
+          {
+            "file": "data/hk/sources/osm-network.json",
+            "sha256": "3ccfdcb2f39ab80bb1b47e6f20233c7c9a5d2858a6a71df350778b33a9f71856"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-22-058-E.pdf",
+      "stopStatus": "verified",
+      "services": [
+        {
+          "id": "hk-light-rail-507p-morning",
+          "nameJa": "輕鐵 507P",
+          "nameEn": "Light Rail 507P",
+          "nameKo": "경전철 507P",
+          "stops": [
+            "hk-lr-100",
+            "hk-lr-120",
+            "hk-lr-130",
+            "hk-lr-140",
+            "hk-lr-150",
+            "hk-lr-160",
+            "hk-lr-212",
+            "hk-lr-220",
+            "hk-lr-230",
+            "hk-lr-075",
+            "hk-lr-070",
+            "hk-lr-295",
+            "hk-lr-280",
+            "hk-lr-270",
+            "hk-lr-265",
+            "hk-lr-260",
+            "hk-lr-250",
+            "hk-lr-240",
+            "hk-lr-001"
+          ]
+        }
+      ],
+      "operatingConditionFingerprint": "c5f36ed79479540fc52548e912d51d6975a0cd09b4d9de6f3d7c735f53f92575",
+      "validationFingerprint": "997dab2bfc2c61ebf3a24529dcf6058630afc333456cd07dd2195344c54e9297",
+      "lazySource": "data/hk/generated/routes/hk-light-rail-507p-morning.json",
+      "stationCount": 19,
+      "stationSequence": [
+        "hk-lr-100",
+        "hk-lr-120",
+        "hk-lr-130",
+        "hk-lr-140",
+        "hk-lr-150",
+        "hk-lr-160",
+        "hk-lr-212",
+        "hk-lr-220",
+        "hk-lr-230",
+        "hk-lr-075",
+        "hk-lr-070",
+        "hk-lr-295",
+        "hk-lr-280",
+        "hk-lr-270",
+        "hk-lr-265",
+        "hk-lr-260",
+        "hk-lr-250",
+        "hk-lr-240",
+        "hk-lr-001"
+      ],
+      "searchStations": [
+        "兆康",
+        "Siu Hong",
+        "시우홍",
+        "青松",
+        "Ching Chung",
+        "칭충",
+        "建生",
+        "Kin Sang",
+        "킨상",
+        "田景",
+        "Tin King",
+        "틴킹",
+        "良景",
+        "Leung King",
+        "렁킹",
+        "新圍",
+        "San Wai",
+        "산와이",
+        "大興 (北)",
+        "Tai Hing (North)",
+        "타이힝(북)",
+        "大興 (南)",
+        "Tai Hing (South)",
+        "타이힝(남)",
+        "銀圍",
+        "Ngan Wai",
+        "응안와이",
+        "蔡意橋",
+        "Choy Yee Bridge",
+        "초이이브릿지",
+        "河田",
+        "Ho Tin",
+        "호틴",
+        "屯門",
+        "Tuen Mun",
+        "튄문",
+        "市中心",
+        "Town Centre",
+        "타운센터",
+        "安定",
+        "On Ting",
+        "온팅",
+        "兆麟",
+        "Siu Lun",
+        "시우런",
+        "豐景園",
+        "Goodview Garden",
+        "굿뷰가든",
+        "海皇路",
+        "Hoi Wong Road",
+        "호이웡로",
+        "兆禧",
+        "Siu Hei",
+        "시우헤이",
+        "屯門碼頭",
+        "Tuen Mun Ferry Pier",
+        "튄문페리피어"
+      ]
+    },
+    {
       "id": "hk-light-rail-751-morning-ho-tin",
       "countryId": "hk",
       "schemaVersion": 1,
@@ -14999,8 +15338,8 @@
   },
   "audit": {
     "status": "INCOMPLETE",
-    "totalServices": 104,
-    "playableServices": 103,
+    "totalServices": 106,
+    "playableServices": 105,
     "missingKoreanNames": 0,
     "geometryIssues": 3
   }
