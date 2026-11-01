@@ -53,3 +53,18 @@ assert(/app\.bundle\.js\?v=[^"']+/.test(html),'App bundle cache key missing');
 const hk=JSON.parse(read('data/hk/generated/index.json')).routes;
 assert(hk.length>=90&&hk.some(r=>r.canonicalLineId==='hk-tramway')&&hk.some(r=>r.canonicalLineId==='hk-island'));
 console.log('PASS selector assets: '+hk.length+' HK route records');
+
+for(const file of ['js/app.js','js/app.bundle.js']){
+ const app=read(file);
+ assert(app.includes('class="line-card hk-line-card'),'Hong Kong Japanese-style cards missing in '+file);
+ assert(app.includes('class="hk-line-native" lang="zh-Hant"'),'Hong Kong native Chinese line label missing in '+file);
+ assert(app.includes('class="tw-card-native" lang="zh-Hant"'),'Taiwan native Chinese line label missing in '+file);
+ assert(app.includes('class="hk-selected-native" lang="zh-Hant"'),'Hong Kong selected-line detail missing in '+file);
+ assert(app.includes('class="tw-selected-native" lang="zh-Hant"'),'Taiwan selected-line detail missing in '+file);
+}
+const hkStyle=read('css/hong-kong.css'),twStyle=read('css/taiwan.css');
+assert(hkStyle.includes('#prompt-main{grid-area:auto!important;order:2!important'),'Hong Kong native name must be above Korean');
+assert(twStyle.includes('#prompt-main{order:2'),'Taiwan native name must be above Korean');
+assert(hkStyle.includes('#prompt-ko{grid-area:auto!important;order:3!important'),'Hong Kong Korean subtitle must follow native name');
+assert(twStyle.includes('#prompt-ko{order:3'),'Taiwan Korean subtitle must follow native name');
+console.log('PASS JP-style Hong Kong/Taiwan cards and native-first station signs');
