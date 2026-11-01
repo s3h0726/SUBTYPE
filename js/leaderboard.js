@@ -42,6 +42,8 @@ const entry=result=>({
  route_integrity:true,synced:false,created_at:new Date().toISOString()
 });
 const authenticated=()=>Boolean(getAuth()?.userId);
+const twDisplay=()=>globalThis.TRTTaiwanDisplay;
+const isTaiwanLine=()=>Boolean(activeLine?.id?.startsWith('tw-'));
 let rankingRestore=null,rankingRestoreUser=null;
 async function restoreRemoteRankings(){
  const id=getAuth()?.userId,auth=getAuth();
@@ -75,9 +77,10 @@ const lineMatches=run=>Boolean(activeLine)&&String(run.route_id)===activeLine.id
 function openRoute(route){
  if(!route?.id)return false;
  activeLine={id:String(route.id),countryId:route.countryId==='kr'?'kr':route.countryId==='jp'?'jp':null,name:String(route.line?.ko||route.line?.ja||route.name||route.id),operator:String(route.operator?.ko||route.operator?.en||'')};
+ if(route.countryId==='tw')activeLine.taiwanRoute=route;
  ++renderGeneration;
  const service=byId('ranking-service'),scope=byId('ranking-scope');if(service)service.replaceChildren(new Option('모든 운행계통',''));if(scope)scope.value='global';
- const title=byId('ranking-line-name'),operator=byId('ranking-line-operator');if(title)title.textContent=activeLine.name;if(operator)operator.textContent=activeLine.operator;
+ const title=byId('ranking-line-name'),operator=byId('ranking-line-operator');if(title){if(isTaiwanLine()&&twDisplay())title.innerHTML=twDisplay().markup(route.line);else title.textContent=activeLine.name}if(operator){if(isTaiwanLine()&&twDisplay())operator.innerHTML=twDisplay().markup(route.operator);else operator.textContent=activeLine.operator}
  globalThis.TRTNavigation?.showScreen?.('ranking');
  void render();return true;
 }
@@ -120,11 +123,11 @@ function table(list,global=false){
  const groups=new Map();
  for(const run of sorted(list).slice(0,100)){
    const key=String(run.service_key||'legacy');
-   if(!groups.has(key))groups.set(key,{name:String(run.service_name||'기존 기록 · 계통 미분류'),runs:[]});
+   if(!groups.has(key))groups.set(key,{key,name:String(run.service_name||'기존 기록 · 계통 미분류'),runs:[]});
    groups.get(key).runs.push(run);
  }
  return '<div class="ranking-service-list">'+[...groups.values()].sort((a,b)=>a.name.localeCompare(b.name,'ko')).map(group=>
-   '<section class="ranking-service-group"><h3>'+escapeText(group.name)+'</h3><p class="ranking-group-count">'+group.runs.length+'명·건의 기록 · 타수순</p>'+
+   '<section class="ranking-service-group"><h3>'+(isTaiwanLine()&&twDisplay()?twDisplay().recordMarkup({route_id:activeLine.id,service_key:group.key},{service:true}):escapeText(group.name))+'</h3><p class="ranking-group-count">'+group.runs.length+'명·건의 기록 · 타수순</p>'+
    '<div class="ranking-scroll"><table class="ranking-table"><thead><tr><th>순위</th><th>플레이어</th><th>타수</th><th>정확도</th><th>완주 시간</th></tr></thead><tbody>'+
    group.runs.map((r,i)=>`<tr><td>${i+1}</td><td>${escapeText(global?(r.nickname||'철도러'):(getAuth()?.profile?.nickname||'나'))}</td><td><strong>${Math.round(Number(r.cpm)||0)}</strong></td><td>${Number(r.accuracy||0).toFixed(1)}%</td><td>${(Number(r.elapsed_ms||0)/1000).toFixed(2)}초</td></tr>`).join('')+
    '</tbody></table></div></section>').join('')+'</div>';
@@ -147,15 +150,15 @@ async function populateServices(){
  if(activeLine?.id!==route)return;
  const choices=new Map();for(const row of rows)if(row.service_key&&!choices.has(row.service_key))choices.set(row.service_key,row.service_name||'계통 미분류');
  select.replaceChildren(new Option('모든 운행계통',''));
- for(const [key,name] of [...choices].sort((a,b)=>a[1].localeCompare(b[1],'ko')))select.add(new Option(name,key));
+ for(const [key,name] of [...choices].sort((a,b)=>a[1].localeCompare(b[1],'ko')))select.add(new Option(isTaiwanLine()&&twDisplay()?twDisplay().recordText({route_id:route,service_key:key})||name:name,key));
  select.value=choices.has(previous)?previous:'';
 }
 async function render(){
  const board=byId('ranking-board'),status=byId('ranking-status');if(!board||!status)return;
  const request=++renderGeneration;
  const title=byId('ranking-line-name'),operator=byId('ranking-line-operator');
- if(title)title.textContent=activeLine?.name||'노선을 선택하세요';
- if(operator)operator.textContent=activeLine?.operator||'';
+ if(title){if(isTaiwanLine()&&twDisplay())title.innerHTML=twDisplay().markup(activeLine.taiwanRoute.line);else title.textContent=activeLine?.name||'노선을 선택하세요';}
+ if(operator){if(isTaiwanLine()&&twDisplay())operator.innerHTML=twDisplay().markup(activeLine.taiwanRoute.operator);else operator.textContent=activeLine?.operator||'';}
  if(!activeLine){board.textContent='';status.textContent='PLAY에서 노선을 선택하고 「이 노선 랭킹」을 눌러 주세요.';return;}
  await populateServices();
  if(request!==renderGeneration)return;

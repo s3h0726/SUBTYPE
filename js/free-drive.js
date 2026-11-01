@@ -1,3 +1,4 @@
+import{taiwanNameMarkup,taiwanNameText,getTaiwanDisplayNames}from'./taiwan-display.js';
 import{hongKongRouteBlockReason,hongKongTransferAllowed}from'./hong-kong-policy.js';
 const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-main","kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 // recommit-trigger: free-drive-move-fix-20261007
@@ -821,7 +822,7 @@ export class FreeDrive{
   }
   populateStartStations(route){
     const select=$('#free-drive-start-station');if(!select)return;
-    select.innerHTML=route.stations.map((s,i)=>`<option value="${i}">${escapeHtml(stationName(s,route))} · ${escapeHtml(route.countryId==='kr'?stationName(s,route):s.ja||'')}</option>`).join('');
+    select.innerHTML=route.stations.map((s,i)=>`<option value="${i}">${escapeHtml(stationName(s,route))} · ${escapeHtml(route.countryId==='tw'?getTaiwanDisplayNames(s).zh:route.countryId==='kr'?stationName(s,route):s.ja||'')}</option>`).join('');
   }
   updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
@@ -876,15 +877,15 @@ export class FreeDrive{
     const route=this.routes.find(r=>r.id===this.currentRouteId);
     const actual=this.stationForRoute(this.currentKey,this.currentRouteId)||node.station;
     $('#free-drive-station-ko').textContent=stationName(actual,route);
-    $('#free-drive-station-ja').textContent=route?.countryId==='kr'?stationName(actual,route):actual.ja||'';
-    $('#free-drive-current-line').textContent=routeName(route);
+    $('#free-drive-station-ja').textContent=route?.countryId==='tw'?getTaiwanDisplayNames(actual).zh:route?.countryId==='kr'?stationName(actual,route):actual.ja||'';
+    $('#free-drive-current-line').textContent=route.countryId==='tw'?taiwanNameText(route.line):routeName(route);
     $('#free-drive-transfer-count').textContent=String(Math.max(0,(node.routeIds?.size||1)-1));
     $('#free-drive-visited-count').textContent=String(this.history.length);
     const edges=this.edges(),target=$('#free-drive-options');
     const groups=new Map;for(const edge of edges){if(!groups.has(edge.routeId))groups.set(edge.routeId,[]);groups.get(edge.routeId).push(edge)}
     target.innerHTML=[...groups.entries()].map(([routeId,list])=>{
       const r=list[0].route,transfer=routeId!==this.currentRouteId;
-      return `<section class="free-drive-line ${transfer?'transfer':''}" style="--route-color:${routeColor(r)}"><header><span>${transfer?'TRANSFER · 환승':'CURRENT LINE'}</span><b>${escapeHtml(routeName(r))}</b><small>${escapeHtml(r.operator?.ko||r.operator?.ja||'')}</small></header><div>${list.map(edge=>{const dest=edge.station||this.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(stationName(dest,r))}</b><span>${escapeHtml(r.countryId==='kr'?stationName(dest,r):dest?.ja||'')}</span><i>→</i></button>`}).join('')}</div></section>`
+      return `<section class="free-drive-line ${transfer?'transfer':''}" style="--route-color:${routeColor(r)}"><header><span>${transfer?'TRANSFER · 환승':'CURRENT LINE'}</span><b>${(r.countryId==='tw'?taiwanNameMarkup(r.line):escapeHtml(routeName(r)))}</b><small>${(r.countryId==='tw'?taiwanNameMarkup(r.operator):escapeHtml(r.operator?.ko||r.operator?.ja||''))}</small></header><div>${list.map(edge=>{const dest=edge.station||this.stationForRoute(edge.to,edge.routeId);return `<button type="button" data-free-edge="${encodeURIComponent(JSON.stringify([edge.to,edge.routeId]))}"><b>${escapeHtml(stationName(dest,r))}</b><span>${escapeHtml(r.countryId==='tw'?getTaiwanDisplayNames(dest).zh:r.countryId==='kr'?stationName(dest,r):dest?.ja||'')}</span><i>→</i></button>`}).join('')}</div></section>`
     }).join('')||'<p class="muted">이 역에서 이어지는 선로를 찾지 못했습니다.</p>';
     this.renderMap();
   }

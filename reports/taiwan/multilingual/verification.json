@@ -1,0 +1,154 @@
+{
+  "status": "PASS",
+  "baseCommit": "af289bd27239985dc7fa0f32345670e42f0a9316",
+  "branch": "feature/taiwan-railway",
+  "coverage": {
+    "operators": 8,
+    "lineCards": 38,
+    "stations": 543,
+    "stationRecords": 605,
+    "servicePatterns": 250,
+    "directions": 347
+  },
+  "build": {
+    "command": "node tools/build-app-bundle.js",
+    "status": "PASS",
+    "bundleSha256": "c96c53016cbb9a3881a8da1ff7be541577033e4b5d7567a7477f6823ceaff53f",
+    "cssSha256": "262aff059877db3a41b4309499be5d47e5a5ef9bd79b163175b8a314c39e9d10",
+    "networkSha256": "497c470aa9e5296b27cd31b527d6ba7d0966bff90597df9525edc2e59b6e3536"
+  },
+  "checks": {
+    "dataAudit": "PASS",
+    "targetedRegressions": {
+      "passed": 25,
+      "failed": 0
+    },
+    "browserJourneys": {
+      "passed": 13,
+      "operators": 8,
+      "hangulComposition": true,
+      "tabTransfer": true,
+      "circularBothDirections": true,
+      "multilingual": {
+        "catalog": {
+          "cards": 38,
+          "operators": 8
+        },
+        "operators": [
+          "tw-trtc",
+          "tw-thsr",
+          "tw-ntmc",
+          "tw-tymc",
+          "tw-tmrt",
+          "tw-krtc",
+          "tw-tra",
+          "tw-afr"
+        ],
+        "chineseSearch": "PASS",
+        "layout": {
+          "screen-game": {
+            "position": "relative",
+            "display": "grid",
+            "width": 1440,
+            "height": 1000,
+            "x": 0,
+            "y": 0
+          },
+          "game-operator": {
+            "position": "static",
+            "display": "block",
+            "width": 399.328125,
+            "height": 65.65625,
+            "x": 68.203125,
+            "y": 17.171875
+          },
+          "game-line-name": {
+            "position": "static",
+            "display": "flex",
+            "width": 399.328125,
+            "height": 65.65625,
+            "x": 481.53125,
+            "y": 17.171875
+          },
+          "game-service-name": {
+            "position": "static",
+            "display": "block",
+            "width": 399.328125,
+            "height": 65.65625,
+            "x": 894.859375,
+            "y": 17.171875
+          },
+          "prompt-main": {
+            "position": "static",
+            "display": "block",
+            "width": 176.265625,
+            "height": 43.203125,
+            "x": 631.859375,
+            "y": 749.765625
+          },
+          "prompt-ko": {
+            "position": "static",
+            "display": "block",
+            "width": 80.640625,
+            "height": 36.390625,
+            "x": 679.671875,
+            "y": 795.96875
+          },
+          "typing-input": {
+            "position": "static",
+            "display": "block",
+            "width": 700,
+            "height": 36,
+            "x": 369.984375,
+            "y": 897.25
+          }
+        },
+        "result": "PASS",
+        "transferAndFreeDrive": "PASS",
+        "custom": "PASS",
+        "records": "PASS",
+        "recent": "PASS",
+        "rankings": {
+          "status": "PASS",
+          "source": "Intercepted read-only Supabase-shaped response; no production writes",
+          "queries": 2
+        },
+        "mobileGame": "PASS",
+        "nonTaiwanEditorRestored": true
+      }
+    }
+  },
+  "screenshots": [
+    "catalog-light.png",
+    "catalog-mobile-light.png",
+    "custom-editor-dark.png",
+    "desktop-catalog.png",
+    "free-drive-dark.png",
+    "game-mobile-light.png",
+    "mobile-light-catalog.png",
+    "ranking-dark.png",
+    "records-dark.png",
+    "result-dark.png",
+    "tw-afr-game-dark.png",
+    "tw-afr-setup-dark.png",
+    "tw-krtc-game-dark.png",
+    "tw-krtc-setup-dark.png",
+    "tw-ntmc-game-dark.png",
+    "tw-ntmc-setup-dark.png",
+    "tw-thsr-game-dark.png",
+    "tw-thsr-setup-dark.png",
+    "tw-tmrt-game-dark.png",
+    "tw-tmrt-setup-dark.png",
+    "tw-tra-game-dark.png",
+    "tw-tra-setup-dark.png",
+    "tw-trtc-game-dark.png",
+    "tw-trtc-setup-dark.png",
+    "tw-tymc-game-dark.png",
+    "tw-tymc-setup-dark.png"
+  ],
+  "missingTranslations": [],
+  "productionDatabaseWrites": false,
+  "rankingScope": "Read-only intercepted Supabase-shaped responses; route and service query keys asserted. No production account or data mutation.",
+  "oldCustomData": "Missing explicit zh in older user-authored custom names requires author input; never inferred from ja.",
+  "fullProjectBuild": "Not run for this UI change; targeted bundle/data rebuild and regression checks only."
+}
