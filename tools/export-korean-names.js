@@ -28,7 +28,7 @@ const effectiveColor=(id,meta)=>edits.lines?.[id]?.color||meta.color||'';
 // Taiwan names are written in Traditional Chinese, not in the legacy Japanese
 // fallback field used by the game's trilingual compatibility layer.
 const originalName=(meta,operatorOrLineId)=>operatorOrLineId?.startsWith('tw-')?
- (meta?.zh||meta?.nameZhHant||meta?.nameZh||meta?.ja||''):(meta?.ja||'');
+ (meta?.zh||meta?.names?.zh||meta?.nameZhHant||meta?.nameZh||meta?.ja||''):(meta?.ja||'');
 const effectiveStation=(lineId,station)=>edits.stations?.[lineId]?.[station.id]||edits.stations?.[lineId]?.[station.ja]||station.ko||'';
 const operators=walk(path.join(root,'data/operators'),'operator.json').map(file=>({file,meta:load(file)}));
 const taiwanFile=path.join(root,'data/tw/generated/network.json');
