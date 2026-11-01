@@ -20,7 +20,7 @@ for(const [lineId,label]of scenarios.filter(s=>!process.env.TW_SCENARIO||s[0].in
  for(let n=0;n<170&&!g.finished;n++){
  if(g.phase==='ARRIVING'){const reached=await g.arrivalPromise;if(reached===false)throw Error('ARRIVAL_FALSE '+JSON.stringify({index:g.index,next:g.targetStation(),map:globalThis.__TRT_MAP_DEBUG__}));await new Promise(r=>setTimeout(r,0));continue}
   if(g.phase!=='TYPING')throw Error('WRONG_PHASE '+g.phase);
-  const station=g.targetStation();if(station.loopArrivalOnly)throw Error('DUPLICATE_BOUNDARY_PROMPT');if(document.querySelector('#prompt-main').textContent!==station.ko)throw Error('NON_KOREAN_BOARD');
+  const station=g.targetStation();if(station.loopArrivalOnly)throw Error('DUPLICATE_BOUNDARY_PROMPT');if(document.querySelector('#prompt-main').textContent!==(station.zh||station.nameZh||station.names?.zh||station.en||''))throw Error('MISSING_TAIWAN_TRADITIONAL_CHINESE');
   const input=document.querySelector('#typing-input'),answer=qa.buildTypingModel(station.ko).inputText;input.dispatchEvent(new CompositionEvent('compositionstart',{bubbles:true}));let value='';for(const unit of answer.normalize('NFD')){value+=unit;input.value=value.normalize('NFC');input.dispatchEvent(new InputEvent('input',{bubbles:true,isComposing:true,inputType:'insertCompositionText'}))}input.dispatchEvent(new CompositionEvent('compositionend',{bubbles:true,data:answer}));await Promise.resolve();await Promise.resolve();await new Promise(r=>setTimeout(r,0));
  }
  if(!g.finished||finished!==1||!result?.routeIntegrity)throw Error('TERMINAL_INTEGRITY '+JSON.stringify({phase:g.phase,finished,routeIntegrity:result?.routeIntegrity,typed:g.typedStationIds.length,sequence:g.sequence.length}));
