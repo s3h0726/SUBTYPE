@@ -54,3 +54,7 @@ Supabase 테스트는 실제 현행 FEATURE_FLAGS를 fixture에 로드하고 계
 - 240ms 애니메이션 완료 기대와 기존 UI 동작 도구: 최신 main 엔진/지연 기준 관련 두 실패. 현재 motion 계약 13개와 AUTO 실측 FAIL을 별도로 기록했다.
 
 시작 main의 일본 선택기 정적 문자열 검사와 삭제된 조반 분할 파일을 요구하는 검사 2건도 baseline-comparison.json에 동일 실패를 재현해 남겼다. 최신 관련 NEX/쇼난/조반 검사 PASS가 이 실패를 소급해서 지우지는 않는다. 전체 프로젝트가 무결점 PASS라는 결론을 내리지 않는다.
+
+## 원격 CI와 게시 확인
+
+구현 커밋 9ce3e9f9의 홍콩 선택/완주 계약, 빠른 역 진행, Supabase UI 및 한국 canonical CI는 성공했다. GitHub Pages 배포도 성공했고 index·bundle·홍콩 index·CSS·신규 11개 payload 총 16개 파일을 커밋 blob과 해시 대조했다. 일부 공통 CI는 일본 station master 중복 ID 때문에 Validate data에서 실패했고, 일본 특급 검사는 기존 VM의 ESM import 처리 실패가 확인됐다(remote-ci.json). 전체 CI가 모두 성공했다고 보고하지 않는다. 최초 게시 해시 검사에서는 Windows CSS 줄바꿈을 로컬 기준으로 비교한 차이를 발견해 커밋 blob 기준으로 고쳤고, CSS LF 규칙과 캐시 키 재현성도 보완했다.

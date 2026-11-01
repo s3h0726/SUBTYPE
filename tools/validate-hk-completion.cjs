@@ -1,6 +1,6 @@
 const fs=require('node:fs'),crypto=require('node:crypto'),cp=require('node:child_process');
 const dir='reports/hong-kong/completion',sha=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
-const files=['data/hk/master/network.json','data/hk/generated/index.json','js/hong-kong-index-data.js','js/app.bundle.js','index.html',...fs.readdirSync('data/hk/generated/routes').map(f=>'data/hk/generated/routes/'+f)];
+const files=['data/hk/master/network.json','data/hk/generated/index.json','js/hong-kong-index-data.js','js/app.bundle.js','css/hong-kong.css','index.html',...fs.readdirSync('data/hk/generated/routes').map(f=>'data/hk/generated/routes/'+f)];
 const before=Object.fromEntries(files.map(f=>[f,sha(f)])),commands=[];
 const run=(name,args,env={})=>{const p=cp.spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:32e6,env:{...process.env,...env}}),output=(p.stdout||'')+(p.stderr||'');fs.writeFileSync(dir+'/'+name+'.txt',output);commands.push({name,command:'node '+args.join(' '),exitCode:p.status,evidence:name+'.txt'});return p.status===0};
 run('build-hk',['tools/build-hk-data.cjs']);run('build-app',['tools/build-app-bundle.js']);

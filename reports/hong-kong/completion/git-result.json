@@ -1,0 +1,107 @@
+{
+  "checkedAt": "2026-11-01T09:20:21.531Z",
+  "branch": "main",
+  "startingMain": "e40cd34f3dfeed2db62249bf9c58d4c7524de349",
+  "featureBaseline": "84840e09b1ee2140c4266a0bf28c86d87e6754a2",
+  "integratedRemoteMain": "af289bd27239985dc7fa0f32345670e42f0a9316",
+  "checkpoint": "0b592446",
+  "releaseCommit": "9ce3e9f9d33f082704a64b8ffb4f434550f81ef4",
+  "remoteMainWhenVerified": "9ce3e9f9d33f082704a64b8ffb4f434550f81ef4",
+  "remoteMatchedRelease": true,
+  "pushSucceeded": true,
+  "backupReference": "backup/main-before-hk-completion-20261031",
+  "forcePush": false,
+  "rebase": false,
+  "protectedSourceDiff": [],
+  "publicationStatus": "PUBLISHED_ASSETS_VERIFIED",
+  "deployment": {
+    "id": 7471032866,
+    "sha": "9ce3e9f9d33f082704a64b8ffb4f434550f81ef4",
+    "environment": "github-pages",
+    "statuses": [
+      {
+        "state": "success",
+        "url": "https://s3h0726.github.io/SUBTYPE/",
+        "logUrl": "https://github.com/s3h0726/SUBTYPE/actions/runs/41292293141/job/124805977005"
+      },
+      {
+        "state": "in_progress",
+        "url": "",
+        "logUrl": "https://github.com/s3h0726/SUBTYPE/actions/runs/41292293141/job/124805977005"
+      },
+      {
+        "state": "queued",
+        "url": "",
+        "logUrl": "https://github.com/s3h0726/SUBTYPE/actions/runs/41292293141/job/124805977005"
+      },
+      {
+        "state": "queued",
+        "url": "",
+        "logUrl": "https://github.com/s3h0726/SUBTYPE/actions/runs/41292293141/job/124805977005"
+      },
+      {
+        "state": "waiting",
+        "url": "",
+        "logUrl": "https://github.com/s3h0726/SUBTYPE/actions/runs/41292293141/job/124805977005"
+      }
+    ]
+  },
+  "notes": "This post-release evidence is committed separately. Its own commit identity is obtained from git log -1 -- reports/hong-kong/completion/git-result.json; the final response states the last remote HEAD. Runtime code and the 103-direction inventory are already in the verified release commit.",
+  "postReleaseAdjustments": [
+    "Canonical LF and reproducible cache key for Hong Kong CSS",
+    "Hong Kong home page title follows the selected country",
+    "Publication evidence compares committed Git blobs, not platform checkout line endings"
+  ],
+  "postReleaseValidation": {
+    "checkedAt": "2026-11-01T09:23:15.457Z",
+    "status": "PASS",
+    "scope": "Current completion/source/geometry/engine-proof/selector contracts and deterministic rebuild. This status does not override historical UI/AUTO or unexecuted live-account checks.",
+    "protectedBase": "af289bd27239985dc7fa0f32345670e42f0a9316",
+    "protectedDiff": [],
+    "rebuildChangedFiles": [],
+    "commands": [
+      {
+        "name": "build-hk",
+        "command": "node tools/build-hk-data.cjs",
+        "exitCode": 0,
+        "evidence": "build-hk.txt"
+      },
+      {
+        "name": "build-app",
+        "command": "node tools/build-app-bundle.js",
+        "exitCode": 0,
+        "evidence": "build-app.txt"
+      },
+      {
+        "name": "bundle-syntax",
+        "command": "node --check js/app.bundle.js",
+        "exitCode": 0,
+        "evidence": "bundle-syntax.txt"
+      },
+      {
+        "name": "completion-contracts",
+        "command": "node --test tools/test-hk-completion.cjs",
+        "exitCode": 0,
+        "evidence": "completion-contracts.txt"
+      },
+      {
+        "name": "phase6-compatibility",
+        "command": "node --test tools/test-hk-phase6.cjs",
+        "exitCode": 0,
+        "evidence": "phase6-compatibility.txt"
+      },
+      {
+        "name": "route-selection",
+        "command": "node tools/test-hk-route-selector.cjs",
+        "exitCode": 0,
+        "evidence": "route-selection.txt"
+      }
+    ],
+    "notTested": [
+      "Windows native Korean IME",
+      "Physical mobile keyboard",
+      "Live Supabase account login/save/restore"
+    ],
+    "remainingPerformanceStatus": "FAIL"
+  }
+}
