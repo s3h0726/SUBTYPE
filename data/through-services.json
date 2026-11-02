@@ -2651,6 +2651,61 @@
           "officialTimetableUrl": "https://timetables.jreast.co.jp/2611/train/130/132401.html"
         }
       }
+    },
+    {
+      "id": "iyotetsu-takahama-yokogawara-local",
+      "nameJa": "高浜線・横河原線直通（普通）",
+      "nameKo": "타카하마선·요코가와라선 직통 · 보통",
+      "nameEn": "Takahama–Yokogawara Through Local",
+      "participatingOperatorIds": [
+        "iyotetsudo"
+      ],
+      "participatingLineIds": [
+        "line-99806",
+        "line-99807"
+      ],
+      "boundaryStations": [
+        "松山市"
+      ],
+      "boundarySnapToleranceKm": 0.02,
+      "allowedDestinations": [
+        "高浜",
+        "横河原"
+      ],
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99806",
+            "direction": "forward",
+            "startStationJa": "高浜",
+            "endStationJa": "松山市"
+          },
+          {
+            "routeId": "line-99807",
+            "direction": "forward",
+            "startStationJa": "松山市",
+            "endStationJa": "横河原"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-99807",
+            "direction": "reverse",
+            "startStationJa": "横河原",
+            "endStationJa": "松山市"
+          },
+          {
+            "routeId": "line-99806",
+            "direction": "reverse",
+            "startStationJa": "松山市",
+            "endStationJa": "高浜"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.iyotetsu.co.jp/rosen/rail/kogai_time.pdf",
+      "supportingSourceUrl": "https://www.iyotetsu.co.jp/rosen/index.html",
+      "sourceTimetableRevision": "2023-11-01",
+      "reviewedDate": "2026-11-03"
     }
   ],
   "inventoryScope": "Tokyo Metro and Toei current reciprocal through services",

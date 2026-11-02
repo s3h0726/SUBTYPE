@@ -3889,7 +3889,7 @@ function resolveOperatingChoice(choice,route,{preview=false}={}){
     const throughRoute=buildThroughRoute(spec,choice.direction);
     if(!throughRoute||!Array.isArray(throughRoute.stations)||throughRoute.stations.length<2)throw new Error('직통운행 경로를 만들 수 없습니다.');
     const service={id:'local',nameJa:spec?.nameJa||'直通',nameKo:spec?.nameKo||'직통',nameEn:spec?.nameEn||'Through',stops:throughRoute.stations.map(station=>station.id)};
-    return{route:{...throughRoute,services:[service]},service,direction:'forward',pattern:null,trainType:choice.trainType,destinationStationId:choice.destinationId,trainTypeContexts:[]};
+    return{route:{...throughRoute,services:[service]},service,direction:'forward',pattern:null,trainType:choice.trainType,destinationStationId:throughRoute.stations.at(-1)?.id||null,trainTypeContexts:[]};
   }
   if(choice.journeyId)return resolveServiceJourney({baseRoute:route,journeyId:choice.journeyId,getRoute:id=>builtin.find(item=>item.id===id)});
   if(choice.patternId)return resolveServiceSelection({baseRoute:route,servicePatternId:choice.patternId,directionId:choice.direction||'forward',getRoute:id=>builtin.find(item=>item.id===id)});

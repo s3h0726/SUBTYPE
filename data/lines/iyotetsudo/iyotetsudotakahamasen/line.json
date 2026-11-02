@@ -30,8 +30,31 @@
   },
   "loop": false,
   "stationSignTemplate": "iyotetsudo",
-  "services": [],
-  "throughServiceIds": [],
+  "services": [
+    {
+      "id": "iyotetsu-takahama-local",
+      "names": {
+        "ja": "普通（高浜〜松山市）",
+        "ko": "보통 · 타카하마~마츠야마시",
+        "en": "Local Takahama–Matsuyamashi"
+      },
+      "stopPattern": [
+        "station-9980601",
+        "station-9980602",
+        "station-9980603",
+        "station-9980604",
+        "station-9980605",
+        "station-9980606",
+        "station-9980607",
+        "station-9980608",
+        "station-9980609",
+        "station-9980501"
+      ]
+    }
+  ],
+  "throughServiceIds": [
+    "iyotetsu-takahama-yokogawara-local"
+  ],
   "sources": {
     "official": "https://www.iyotetsu.co.jp/railbus/timetable/map.html",
     "korean": "https://namu.moe/w/이요%20철도%20타카하마선",

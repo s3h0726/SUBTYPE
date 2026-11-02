@@ -6,6 +6,9 @@ on:
       - 'data/iyotetsu-namuwiki-rebuild-20261102.json'
       - 'data/generated/routes/line-998*.json'
       - 'data/lines/iyotetsudo/**'
+      - 'data/through-services.json'
+      - 'js/rail-system-data.js'
+      - 'tools/test-iyotetsu-through-service.cjs'
       - 'data/operators/iyotetsudo/**'
       - 'data/shared-stations/**'
       - 'data/editor-overrides.json'
@@ -31,6 +34,8 @@ jobs:
           node-version: '22'
       - name: Test Iyotetsu rail and tram line classification and full loop
         run: node tools/test-iyotetsu-namuwiki-rebuild.cjs
+      - name: Verify Takahama–Yokogawara through-service and two branch-local services
+        run: node tools/test-iyotetsu-through-service.cjs
       - name: Test existing tram category preservation
         run: node tools/test-japan-tram-classifications.cjs
       - name: Verify national transfer graph integration

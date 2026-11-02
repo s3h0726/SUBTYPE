@@ -66,8 +66,34 @@
     "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "iyotetsudo",
-    "services": [],
-    "throughServiceIds": [],
+    "services": [
+      {
+        "id": "iyotetsu-yokogawara-local",
+        "nameJa": "普通（松山市〜横河原）",
+        "nameKo": "보통 · 마츠야마시~요코가와라",
+        "nameEn": "Local Matsuyamashi–Yokogawara",
+        "stops": [
+          "station-9980501",
+          "station-9980702",
+          "station-9980703",
+          "station-9980704",
+          "station-9980705",
+          "station-9980706",
+          "station-9980707",
+          "station-9980708",
+          "station-9980709",
+          "station-9980710",
+          "station-9980711",
+          "station-9980712",
+          "station-9980713",
+          "station-9980714",
+          "station-9980715"
+        ]
+      }
+    ],
+    "throughServiceIds": [
+      "iyotetsu-takahama-yokogawara-local"
+    ],
     "throughOperations": [],
     "routeInfo": null,
     "stations": [
@@ -1341,7 +1367,7 @@
       "geometryPath": "data/lines/iyotetsudo/iyotetsudoyokogawarasen/geometry.json"
     },
     "sources": {
-      "official": "",
+      "official": "https://www.iyotetsu.co.jp/rosen/rail/kogai_time.pdf",
       "korean": "",
       "geometry": "MLIT-N02-2025",
       "koreanName": {

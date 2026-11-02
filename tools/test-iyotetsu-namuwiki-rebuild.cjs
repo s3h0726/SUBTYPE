@@ -84,6 +84,17 @@ assert.equal(end.id,'station-iyotetsu-gunchuko');assert.equal(end.stationCode,'I
 assert(!gunchu.stations.some(s=>s.ja==='伊予市'),'JR Iyo-shi is a neighboring separate station');
 assert.equal(network.get('line-99806').stations.length,10);
 assert.equal(network.get('line-99807').stations.length,15);
+for(const [id,local] of [
+ ['line-99806','iyotetsu-takahama-local'],
+ ['line-99807','iyotetsu-yokogawara-local']
+]){
+ const route=network.get(id);
+ assert.equal(route.services.length,1,'Suburban section-local service must remain available: '+id);
+ assert.equal(route.services[0].id,local);
+ assert.deepEqual(route.services[0].stops,route.stations.map(station=>station.id));
+ assert(route.throughServiceIds.includes('iyotetsu-takahama-yokogawara-local'),'Missing through link '+id);
+}
+
 const city5=network.get('line-99811');
 assert.equal(city5.stations[0].ja,'JR松山駅前');
 assert.equal(city5.stations[1].ja,'大手町駅前');

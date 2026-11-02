@@ -66,8 +66,29 @@
     "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "iyotetsudo",
-    "services": [],
-    "throughServiceIds": [],
+    "services": [
+      {
+        "id": "iyotetsu-takahama-local",
+        "nameJa": "普通（高浜〜松山市）",
+        "nameKo": "보통 · 타카하마~마츠야마시",
+        "nameEn": "Local Takahama–Matsuyamashi",
+        "stops": [
+          "station-9980601",
+          "station-9980602",
+          "station-9980603",
+          "station-9980604",
+          "station-9980605",
+          "station-9980606",
+          "station-9980607",
+          "station-9980608",
+          "station-9980609",
+          "station-9980501"
+        ]
+      }
+    ],
+    "throughServiceIds": [
+      "iyotetsu-takahama-yokogawara-local"
+    ],
     "throughOperations": [],
     "routeInfo": null,
     "stations": [
@@ -1176,7 +1197,7 @@
       "geometryPath": "data/lines/iyotetsudo/iyotetsudotakahamasen/geometry.json"
     },
     "sources": {
-      "official": "",
+      "official": "https://www.iyotetsu.co.jp/rosen/rail/kogai_time.pdf",
       "korean": "",
       "geometry": "MLIT-N02-2025",
       "koreanName": {
