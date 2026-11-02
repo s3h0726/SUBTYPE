@@ -5,13 +5,13 @@
   "operatorId": "iyotetsudo",
   "category": "tram",
   "names": {
-    "ja": "伊予鉄道環状線",
+    "ja": "松山市内線環状線",
     "kana": "いよてつどうかんじょうせん",
-    "ko": "이요 철도 순환선",
-    "en": "IyotetsudōKanjōSen"
+    "ko": "마츠야마 시내선 순환계통(1·2호선)",
+    "en": "Matsuyama City Tram Circular Line"
   },
   "code": "",
-  "color": "#BE2DB2",
+  "color": "#EB6100",
   "symbol": {
     "asset": null,
     "officialSymbolExists": false,
@@ -33,29 +33,28 @@
   "services": [],
   "throughServiceIds": [],
   "sources": {
-    "official": "",
-    "korean": "",
+    "official": "https://www.iyotetsu.co.jp/railbus/timetable/map.html",
+    "korean": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
     "geometry": "MLIT-N02-2025",
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 伊予鉄道環状線 이요테츠도우칸조우선 노선",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "MEDIUM",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki",
-      "normalizationBatch": "2026-10-07-line-koreanization"
+      "method": "direct",
+      "type": "line-table",
+      "verified": true,
+      "url": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+      "verifiedDate": "2026-11-02",
+      "status": "VERIFIED_ROUTE_LABEL"
     }
   },
   "legacy": {
     "origin": "nationwide",
     "coverage": "nationwide-source-line",
-    "dataKind": "physicalRoute"
+    "dataKind": "physicalRoute",
+    "visibility": "internal",
+    "supersededBy": [
+      "line-99809-1",
+      "line-99809-2"
+    ]
   },
   "officialKoSource": null
 }
