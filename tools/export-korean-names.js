@@ -89,7 +89,7 @@ if(process.argv.includes('--lines-only')) {
  process.exit(0);
 }
 fs.writeFileSync(path.join(output,'operators.csv'),csv([['운영사ID','한국어명','일본어명','영어명','데이터경로'],...operators.map(x=>[x.meta.id,effectiveOperator(x.meta.id),originalName(x.meta.names,x.meta.id),x.meta.names?.en,toRel(x.file)])]));
-fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),x.meta.names?.ja,x.meta.names?.en,effectiveColor(x.meta.id,x.meta),toRel(x.file)])]));
+fs.writeFileSync(path.join(output,'lines.csv'),csv([['운영사ID','운영사 한글명','노선ID','노선 한글명','노선 일본어명','노선 영어명','RGB 색상','원본경로'],...lines.map(x=>[x.meta.operatorId,effectiveOperator(x.meta.operatorId),x.meta.id,effectiveLine(x.meta.id,x.meta),originalName(x.meta.names,x.meta.id),x.meta.names?.en,effectiveColor(x.meta.id,x.meta),toRel(x.file)])]));
 const generatedDir=path.join(root,'data/generated/routes');
 const byId=new Map();
 if(fs.existsSync(generatedDir))for(const name of fs.readdirSync(generatedDir).filter(n=>n.endsWith('.json'))){try{const route=load(path.join(generatedDir,name)).route; if(route?.id)byId.set(route.id,route)}catch(e){console.warn('skipped',name,e.message)}}
