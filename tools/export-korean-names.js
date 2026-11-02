@@ -81,7 +81,7 @@ for(const id of matsuyamaLoopIds){
  if(!fs.existsSync(file))throw new Error('Matsuyama tram loop data missing: '+id);
  const route=load(file).route;
  if(route?.id!==id||route.operatorId!=='iyotetsudo'||route.stations?.length!==23||
-   route.stations[0]?.id!==route.stations.at(-1)?.id)
+   (route.stations[0]?.stationMasterId!==route.stations.at(-1)?.stationMasterId||route.stations.at(-1)?.virtualLoopReturn!==true))
    throw new Error('Invalid complete Matsuyama tram loop: '+id);
  if(lines.some(x=>x.meta.id===id))throw new Error('Duplicate Matsuyama tram line: '+id);
  lines.push({file,meta:{
