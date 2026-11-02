@@ -55,9 +55,45 @@
     "source": "MLIT-N02-2025",
     "verified": true
   },
-  "station-9981204::station-9980803": {
+  "station-9980802::station-9980501": {
+    "fromStationId": "station-9980802",
+    "toStationId": "station-9980501",
+    "geometry": [
+      [
+        33.83928,
+        132.76178
+      ],
+      [
+        33.8382,
+        132.76179
+      ],
+      [
+        33.836512,
+        132.761731
+      ],
+      [
+        33.836179,
+        132.761759
+      ],
+      [
+        33.83603,
+        132.761952
+      ],
+      [
+        33.836027,
+        132.762066
+      ],
+      [
+        33.83603,
+        132.762613
+      ]
+    ],
+    "source": "MLIT-N02-2025: city circular reverse track",
+    "verified": true
+  },
+  "station-9981204::station-iyotetsu-honmachi-itchome": {
     "fromStationId": "station-9981204",
-    "toStationId": "station-9980803",
+    "toStationId": "station-iyotetsu-honmachi-itchome",
     "geometry": [
       [
         33.84538,
@@ -76,21 +112,35 @@
         132.75865
       ]
     ],
-    "source": "MLIT-N02-2025",
+    "source": "MLIT-N02-2025 (actual Hommachi 1-chome stop)",
     "verified": true
   },
-  "station-9980803::station-9980802": {
-    "fromStationId": "station-9980803",
+  "station-iyotetsu-honmachi-itchome::station-9980802": {
+    "fromStationId": "station-iyotetsu-honmachi-itchome",
     "toStationId": "station-9980802",
-    "geometry": [],
-    "source": "MLIT-N02-2025",
-    "verified": false
-  },
-  "station-9980802::station-9980501": {
-    "fromStationId": "station-9980802",
-    "toStationId": "station-9980501",
-    "geometry": [],
-    "source": "MLIT-N02-2025",
+    "geometry": [
+      [
+        33.8403,
+        132.75865
+      ],
+      [
+        33.83964,
+        132.75865
+      ],
+      [
+        33.83953,
+        132.75909
+      ],
+      [
+        33.83945,
+        132.76091
+      ],
+      [
+        33.83928,
+        132.76178
+      ]
+    ],
+    "source": "MLIT-N02-2025 reused from city 5 tram, 20-m stop offset",
     "verified": false
   }
 }
