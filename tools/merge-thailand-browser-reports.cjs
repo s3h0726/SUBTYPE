@@ -1,0 +1,10 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const reports=[0,1,2].map(i=>JSON.parse(fs.readFileSync('reports/thailand/browser-part-'+i+'/browser-validation.json','utf8')));
+for(const r of reports)assert.equal(r.status,'PASS',r.failure);
+const runs=reports.flatMap(r=>r.runs),index=JSON.parse(fs.readFileSync('data/th/generated/index.json','utf8'));
+assert.equal(runs.length,index.routes.reduce((n,r)=>n+r.serviceCount,0));assert.equal(new Set(runs.map(r=>r.serviceId)).size,runs.length);assert(runs.every(r=>r.recordSaved));
+const report={status:'PASS',scope:reports[0].scope,runs,errors:reports.flatMap(r=>r.errors),countries:reports[0].countries,naming:reports[0].naming,mobileOverflow:reports.some(r=>r.mobileOverflow),partitionCount:3};
+fs.writeFileSync('reports/thailand/browser-validation.json',JSON.stringify(report,null,2)+'\n');
+for(const name of ['desktop-catalog.png','mobile-light-catalog.png'])fs.copyFileSync('reports/thailand/browser-part-0/'+name,'reports/thailand/'+name);
+console.log('전체 브라우저 검증 통합: '+runs.length+'개 계통, '+runs.reduce((n,r)=>n+r.stops,0)+'개 입력 정차');

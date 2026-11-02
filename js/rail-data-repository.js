@@ -10,7 +10,7 @@ class Repository{
   reset(){this.operators=new Map;this.lines=new Map;this.stations=new Map;this.routes=new Map;this.assets={operators:{},lines:{}}}
   configure({operators=[],lines=[],stations=[],assets={}}={}){
     this.reset();this.assets={operators:assets.operators||{},lines:assets.lines||{}};
-    for(const operator of operators){const names=operator.names||operator.operator||{};this.operators.set(operator.id,{...operator,id:operator.id,names:{ja:clean(names.ja),ko:clean(names.ko),en:clean(names.en),...(operator.id.startsWith('tw-')?{zh:clean(names.zh)}:{})}})}
+    for(const operator of operators){const names=operator.names||operator.operator||{};this.operators.set(operator.id,{...operator,id:operator.id,names:{...names,ja:clean(names.ja),ko:clean(names.ko),en:clean(names.en),...(operator.id.startsWith('tw-')?{zh:clean(names.zh)}:{})}})}
     for(const station of stations)this.registerStation(station);
     for(const route of lines)this.registerRoute(route);
     return this
@@ -18,13 +18,13 @@ class Repository{
   registerStation(station){
     const id=clean(station?.stationMasterId||station?.sourceStationId||station?.internalId||station?.id);if(!id)return null;
     const existing=this.stations.get(id),names=station.canonicalStationNames||station.names||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji||station.en};
-    const rawLat=station.latitude??station.coordinates?.lat,rawLng=station.longitude??station.coordinates?.lng,record=existing||{id,type:station.type||'rail_station',names:{ja:clean(names.ja),kana:clean(names.kana),ko:clean(names.ko),en:clean(names.en),...(id.startsWith('tw-')?{zh:clean(station.zh||names.zh)}:{})},coordinates:{lat:rawLat===null||rawLat===undefined?null:Number(rawLat),lng:rawLng===null||rawLng===undefined?null:Number(rawLng)}};
+    const rawLat=station.latitude??station.coordinates?.lat,rawLng=station.longitude??station.coordinates?.lng,record=existing||{id,type:station.type||'rail_station',names:{...names,ja:clean(names.ja),kana:clean(names.kana),ko:clean(names.ko),en:clean(names.en),...(id.startsWith('tw-')?{zh:clean(station.zh||names.zh)}:{})},coordinates:{lat:rawLat===null||rawLat===undefined?null:Number(rawLat),lng:rawLng===null||rawLng===undefined?null:Number(rawLng)}};
     if(!existing)this.stations.set(id,record);return record
   }
   registerRoute(route){
     if(!route?.id)return route;const operatorNames=route.operator?.names||route.operator||{},lineNames=route.line?.names||route.line||{};
-    if(!this.operators.has(route.operatorId))this.operators.set(route.operatorId,{id:route.operatorId,names:{ja:clean(operatorNames.ja),ko:clean(operatorNames.ko),en:clean(operatorNames.en),...(route.countryId==='tw'?{zh:clean(operatorNames.zh)}:{})}});
-    this.lines.set(route.id,{id:route.id,operatorId:route.operatorId,names:{ja:clean(lineNames.ja),kana:clean(lineNames.kana),ko:clean(lineNames.ko),en:clean(lineNames.en),...(route.countryId==='tw'?{zh:clean(lineNames.zh)}:{})},color:route.lineColor||route.color,code:route.code||'',workspace:route.workspace});
+    if(!this.operators.has(route.operatorId))this.operators.set(route.operatorId,{id:route.operatorId,names:{ja:clean(operatorNames.ja),ko:clean(operatorNames.ko),en:clean(operatorNames.en),...(route.countryId==='th'?{th:operatorNames.th}:{}),...(route.countryId==='tw'?{zh:clean(operatorNames.zh)}:{})}});
+    this.lines.set(route.id,{id:route.id,operatorId:route.operatorId,names:{ja:clean(lineNames.ja),kana:clean(lineNames.kana),ko:clean(lineNames.ko),en:clean(lineNames.en),...(route.countryId==='th'?{th:lineNames.th}:{}),...(route.countryId==='tw'?{zh:clean(lineNames.zh)}:{})},color:route.lineColor||route.color,code:route.code||'',workspace:route.workspace});
     for(const station of route.stations||[])this.registerStation(station);this.routes.set(route.id,route);return route
   }
   getOperator(id){return this.operators.get(id)||null}
