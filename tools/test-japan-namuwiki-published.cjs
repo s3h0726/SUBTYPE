@@ -12,7 +12,10 @@ const lite=fromJs('js/japan-lite-index.js','window.TRT_JAPAN_LITE_INDEX=');
 const byId=new Map(ws.routes.map(r=>[r.id,r]));
 const liteById=new Map(lite.routes.map(r=>[r.id,r]));
 assert(ws.routes.length>=590&&lite.routes.length>=590,'Japan inventory loss');
-assert.equal(ws.routes.length,lite.routes.length);
+// The physical legacy loop becomes two unique playable service cards in the lite catalog.
+assert.equal(ws.routes.length+1,lite.routes.length);
+assert(!liteById.has('line-99809'),'Deprecated combined circular card must not reappear');
+assert(liteById.has('line-99809-1')&&liteById.has('line-99809-2'),'Iyo outer/inner service cards missing');
 for(const item of manifest.lines){
  const src=byId.get(item.id),card=liteById.get(item.id);
  assert(src&&card,'Missing route '+item.id);
