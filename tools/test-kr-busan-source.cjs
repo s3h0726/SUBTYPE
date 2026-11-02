@@ -22,4 +22,5 @@ for(const suffix of process.argv.includes('--terminal-recovery')?['-terminal-rec
   if(suffix.includes('village')){assert.equal(route.operator.ko,rows[0].text6.replaceAll('㈜','').replaceAll('(주)','').split(/[,·]/).map(s=>s.trim()).filter(Boolean).join('·'));assert(!/^(강서구|금정구|기장군|해운대구)$/.test(route.operator.ko),'district used as company')}
  }
 }
-console.log(JSON.stringify({passed:true,routes,directions,checks:['official road segments','official full direction calls','exact official turn stop','actual company field']}));
+const report={passed:true,routes,directions,checks:['official road segments','official full direction calls','exact official turn stop','actual company field']};
+if(process.argv.includes('--terminal-recovery'))fs.writeFileSync(path.resolve(__dirname,'../reports/kr-rebuild/부산-복구-원본-검증.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

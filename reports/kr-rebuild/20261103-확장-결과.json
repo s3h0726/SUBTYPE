@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-02T17:07:24.975Z",
+  "checkedAt": "2026-11-02T17:09:02.253Z",
   "baselineCommit": "28f9e1bd20f46a21144580dac9cd078ac7a77c37",
   "before": {
     "routes": 7136,
@@ -20279,9 +20279,15 @@
       "scope": "전체 신규 지자체 계통의 원본 선분·굴곡·정류장 순서 대조. 브라우저 완주와 별개."
     },
     "busanRecoveredSources": {
+      "passed": true,
       "routes": 26,
       "directions": 52,
-      "passed": true
+      "checks": [
+        "official road segments",
+        "official full direction calls",
+        "exact official turn stop",
+        "actual company field"
+      ]
     },
     "nativeKoreanIme": "미검증. 조합 이벤트 경합 단위검사와 브라우저 한글 자동 입력을 구분한다.",
     "supabasePersistence": "로그인 서버 저장 미검증. 단위검사 및 게스트 브라우저 저장 확인."
