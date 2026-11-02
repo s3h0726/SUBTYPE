@@ -1,0 +1,37 @@
+name: Verify Iyotetsu Namuwiki railway rebuild
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/iyotetsu-namuwiki-rebuild-20261102.json'
+      - 'data/generated/routes/line-998*.json'
+      - 'data/lines/iyotetsudo/**'
+      - 'data/operators/iyotetsudo/**'
+      - 'data/shared-stations/**'
+      - 'data/editor-overrides.json'
+      - 'data/japan-route-station-names.json'
+      - 'data/generated/japan-transfer-neighbors.json'
+      - 'js/japan-lite-index.js'
+      - 'tools/build-japan-lazy-catalog.cjs'
+      - 'tools/test-iyotetsu-namuwiki-rebuild.cjs'
+      - 'tools/test-jp-national-transfer-neighbors.cjs'
+      - 'index.html'
+      - '.github/workflows/test-iyotetsu.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test Iyotetsu rail and tram line classification and full loop
+        run: node tools/test-iyotetsu-namuwiki-rebuild.cjs
+      - name: Test existing tram category preservation
+        run: node tools/test-japan-tram-classifications.cjs
+      - name: Verify national transfer graph integration
+        run: node tools/test-jp-national-transfer-neighbors.cjs
