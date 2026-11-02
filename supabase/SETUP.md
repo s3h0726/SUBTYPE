@@ -13,7 +13,16 @@
    };
    ```
    ⚠️ `service_role`, `sb_secret_` 키, DB 비밀번호 및 사용자 비밀번호는 **절대 저장소나 브라우저 JS에 입력하지 마세요.**
-5. Authentication > URL Configuration의 **Site URL**을 `https://s3h0726.github.io/SUBTYPE/`로 설정하고 해당 주소를 Redirect URLs에 추가. 이메일 인증 및 비밀번호 재설정 메일이 이 주소로 오도록 확인.
+5. Authentication > **URL Configuration**에서 다음 값을 확인합니다.
+   - **Site URL**: `https://s3h0726.github.io/SUBTYPE/`
+   - **Redirect URLs**: `https://s3h0726.github.io/SUBTYPE/`를 정확히 허용합니다.
+   - 임시 GitHub Pages 미리보기, 이전 커밋 주소, `localhost`, `index.html?v=날짜`를 운영 Site URL로 사용하지 않습니다.
+   - 이 설정은 Supabase Dashboard의 **서버 측 설정**입니다. GitHub 소스만 수정해도 자동 변경되지 않으므로 최초 한 번은 대시보드에서 확인해야 합니다.
+   - **Authentication > Email Templates**의 `Confirm signup`과 `Reset password` 메일에서 링크를 하드코딩한 과거 주소 대신 `{{ .ConfirmationURL }}`로 연결하세요. 커스텀 HTML이 `{{ .SiteURL }}`만 사용하면 호출 코드의 `redirect_to`가 반영되지 않을 수 있습니다.
+   - SUBTYPE은 회원가입 및 비밀번호 재설정 요청에 고정 운영 URL을 `redirect_to`로 명시하므로 이후 게임을 새 버전으로 배포해도 이메일 주소를 다시 수정할 필요가 없습니다. 이메일 인증 후에는 브라우저가 `auth_latest`라는 일회성 캐시 무효화 매개변수로 최신 배포 HTML을 다시 읽고, 세션을 처리한 후 이를 주소에서 제거합니다.
+   - **이전에 발송된 확인 메일의 링크는 소급하여 바뀌지 않습니다.** 이미 발송된 링크가 오래된 주소를 가리킨다면 새 인증 메일을 발급받아 확인하세요.
+   - 회귀 검사: `npm run test:auth-redirect`. GitHub Actions `test-auth-redirect.yml`에서도 소스 수정 시 검사합니다.
+   - 참고: https://supabase.com/docs/guides/auth/redirect-urls 및 https://supabase.com/docs/guides/auth/auth-email-templates
 6. 메일 인증을 요구하면 확인 메일을 받은 뒤 링크로 접속. 비밀번호 재설정은 로그인 모달의 '비밀번호 찾기'에서 진행.
 7. PC와 모바일에서 각각 신규 회원가입·로그인, 닉네임 변경, 비밀번호 초기화, 로그아웃, 기록 복원, 일반 노선 완주 후 랭킹 등록·조회 확인.
 
