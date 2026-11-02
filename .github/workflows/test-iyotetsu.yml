@@ -9,6 +9,10 @@ on:
       - 'data/through-services.json'
       - 'js/rail-system-data.js'
       - 'tools/test-iyotetsu-through-service.cjs'
+      - 'tools/test-iyotetsu-circular-play.cjs'
+      - 'js/free-drive.js'
+      - 'js/game.js'
+      - 'js/route-integrity.js'
       - 'data/operators/iyotetsudo/**'
       - 'data/shared-stations/**'
       - 'data/editor-overrides.json'
@@ -36,6 +40,8 @@ jobs:
         run: node tools/test-iyotetsu-namuwiki-rebuild.cjs
       - name: Verify Takahama–Yokogawara through-service and two branch-local services
         run: node tools/test-iyotetsu-through-service.cjs
+      - name: Verify both Iyotetsu circular directions, full finishing and free-drive transfer graph
+        run: node tools/test-iyotetsu-circular-play.cjs
       - name: Test existing tram category preservation
         run: node tools/test-japan-tram-classifications.cjs
       - name: Verify national transfer graph integration

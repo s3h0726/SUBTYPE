@@ -2473,10 +2473,21 @@ const jpDisneyTransferKey=(station,route)=>{
     Math.abs(lat-35.63524)<0.006&&Math.abs(lon-139.88510)<0.006?
     JP_MAIHAMA_RESORT_TRANSFER:null;
 };
+// The published circular line contains a distinct *visit* for the arrival,
+ // but both visits are the same physical stop. Other repeats mid-loop (e.g.
+ // Minamihoribata) MUST retain separate visit keys to preserve step order.
+const japaneseLoopClosure=route=>{
+  const stops=route?.stations||[],first=stops[0],last=stops.at(-1);
+  return route?.countryId==='jp'&&route.loop===true&&stops.length>2&&first&&last
+    &&String(first.stationMasterId||first.id)===String(last.stationMasterId||last.id)
+    &&first.ja===last.ja&&coords(first)&&coords(last)
+    &&jpTransferDistanceKm(coords(first),coords(last))<=0.15;
+};
 const freeDriveStationKey=s=>{
   if(s?.countryId==='hk')return String(s.hkTransferKey||s.stationMasterId||s.sourceStationId||s.id);
   if(s?.operator_id?.startsWith('tw-'))return s.twTransferKey||s.station_id||s.id;
 
+  if(s?.jpLoopClosureKey)return s.jpLoopClosureKey;
   if(s?.jpUnifiedTransferKey)return s.jpUnifiedTransferKey;
   if(s?.jpTransferKey)return s.jpTransferKey;
   if(s?.jpNamedTransferKey)return s.jpNamedTransferKey;
@@ -2586,10 +2597,7 @@ class FreeDrive{
 
     for(const route of routes||[])if(route.countryId==='jp'){
       const stops=route.stations||[],first=stops[0],last=stops.at(-1);
-      const sharedEnd=route.loop&&stops.length>2&&first&&last
-        &&String(first.stationMasterId||first.id)===String(last.stationMasterId||last.id)
-        &&first.ja===last.ja&&coords(first)&&coords(last)
-        &&jpTransferDistanceKm(coords(first),coords(last))<=0.15;
+      const sharedEnd=japaneseLoopClosure(route);
       stops.forEach((stop,index)=>{
         stop.jpIsolatedStopKey='jp-route-stop:'+route.id+':'+
           (sharedEnd&&index===stops.length-1?0:index);
@@ -2617,7 +2625,11 @@ class FreeDrive{
         const id=String(stop.transferStationId||stop.stationMasterId||stop.sourceStationId||'');
         if(id)counts.set(id,(counts.get(id)||0)+1);
       }
-      for(const [id,count] of counts)if(count>1)ambiguousByRoute.add(route.id+'|'+id);
+      // A circular arrival at the starting platform is not an ambiguous
+      // duplicate. Keep mid-loop repeated stops distinct for step-by-step drive.
+      const closureId=japaneseLoopClosure(route)?String(route.stations[0].stationMasterId||route.stations[0].id):null;
+      for(const [id,count] of counts)
+        if(count>1&&!(id===closureId&&count===2))ambiguousByRoute.add(route.id+'|'+id);
     }
     for(const route of routes||[])for(const stop of route.stations||[]){
       if(route.countryId==='jp'){
@@ -2636,6 +2648,14 @@ class FreeDrive{
       if(transfer)stop.krTransferKey='kr-transfer:'+region+':'+transfer.name;
     }
     assignJapanInterchangeComponents(routes);
+    // Reconcile the arrival occurrence AFTER transfer inference. Otherwise a
+    // named/nearby interchange can give the first visit a shared key while
+    // the terminal visit keeps its isolated key, breaking the completed loop.
+    for(const route of routes||[])if(route.countryId==='jp'){
+      for(const stop of route.stations||[])delete stop.jpLoopClosureKey;
+      if(japaneseLoopClosure(route))
+        route.stations.at(-1).jpLoopClosureKey=freeDriveStationKey(route.stations[0]);
+    }
     this.routes=(routes||[]).filter(r=>!koreanRouteBlockReason(r)&&!hongKongRouteBlockReason(r)).filter(r=>Array.isArray(r.stations)&&r.stations.length>=2&&(r.countryId!=='kr'||r.geometryReady===true));
     this.graph=new Map;
     const ensure=(station,route,index)=>{
@@ -2670,7 +2690,10 @@ class FreeDrive{
   }
   populateStartStations(route){
     const select=$('#free-drive-start-station');if(!select)return;
-    select.innerHTML=route.stations.map((s,i)=>`<option value="${i}">${escapeHtml(stationName(s,route))} · ${escapeHtml(route.countryId==='tw'?getTaiwanDisplayNames(s).zh:route.countryId==='kr'?stationName(s,route):s.ja||'')}</option>`).join('');
+    // Hide only the synthetic closing visit from the departure dropdown.
+    // The route still contains it and will traverse its final real segment.
+    const stops=japaneseLoopClosure(route)?route.stations.slice(0,-1):route.stations;
+    select.innerHTML=stops.map((s,i)=>`<option value="${i}">${escapeHtml(stationName(s,route))} · ${escapeHtml(route.countryId==='tw'?getTaiwanDisplayNames(s).zh:route.countryId==='kr'?stationName(s,route):s.ja||'')}</option>`).join('');
   }
   updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
