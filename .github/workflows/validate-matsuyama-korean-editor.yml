@@ -1,0 +1,27 @@
+name: Matsuyama Korean-name editor regression
+on:
+  pull_request:
+    paths:
+      - 'tools/export-korean-names.js'
+      - 'tools/test-korean-name-matsuyama-loops.cjs'
+      - 'data/generated/routes/line-99809-1.json'
+      - 'data/generated/routes/line-99809-2.json'
+      - '.github/workflows/export-korean-names.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate current editor CSV in checkout
+        run: node tools/export-korean-names.js
+      - name: Verify Matsuyama tram loops and preserved existing editor entries
+        run: |
+          node tools/test-korean-name-matsuyama-loops.cjs
+          node tools/test-korean-name-editor-namuwiki.cjs
+          node tools/test-korean-name-meitetsu-split.cjs
+          node tools/test-korean-name-hakodate-split.cjs

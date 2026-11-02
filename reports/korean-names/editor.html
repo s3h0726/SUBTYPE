@@ -44,7 +44,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div class="toolbar">
 <input id="q" type="search" placeholder="운영사·노선·역명·원어명 검색" aria-label="검색">
 <label><input type="checkbox" id="changesOnly"> 수정된 항목만</label>
-<button id="saveGame" class="primary">게임에 적용 (GitHub 저장)</button><button id="export">현재 표 전체 CSV 저장</button>
+<button id="saveGame" class="primary">게임에 적용 (GitHub 저장)</button><button id="reloadLatest" type="button">최신 원본 새로고침</button><button id="export">현재 표 전체 CSV 저장</button>
 <button id="exportChanges">변경 항목만 CSV 저장</button>
 <button id="reset">현재 표 변경 취소</button>
 </div>
@@ -52,6 +52,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <div class="toolbar"><label for="githubToken">GitHub fine-grained 토큰 (Contents: Read and write)</label><input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_..." style="flex:1;min-width:200px;padding:9px;border:1px solid #bdccd8;border-radius:8px"><small>토큰은 서버·브라우저 저장소에 저장하지 않습니다.</small></div>
 <div class="panel"><div id="status" role="status">자료 읽는 중…</div><div id="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div></div>
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
+<p class="note">원본 데이터가 추가·변경된 경우 <strong>최신 원본 새로고침</strong>을 누르세요. 검색 목록과 국가별 노선 캐시를 갱신하며, 저장하지 않은 편집 초안은 안정적인 노선·역 ID로 보존합니다.</p>
 <p class="note">상단에서 <strong>일본·대한민국·홍콩·대만</strong>을 선택한 후 운영사, 노선, 운행계통 또는 역명을 편집할 수 있습니다. 국가마다 검색·수정 초안·CSV 저장이 분리됩니다. 고유 역명은 비교용이므로 실제 변경은 <strong>역명</strong> 탭에서 노선별로 적용하세요.</p>
 <p class="note">일본 노선의 최신 나무위키 대조 명칭을 반영했습니다. 역명·고유 역명 탭에는 <strong>출처 검증</strong>과 <strong>근거 URL</strong>이 표시됩니다. 검증되지 않은 항목은 자동으로 정확하다고 확정하지 않습니다. 예전 브라우저 임시 저장본이 최신 원본명을 덮어쓰지 않도록 편집 초안을 새 버전으로 분리했습니다.</p>
 <p class="note">초록색 한글명(직통·운행계통 포함)과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
@@ -66,7 +67,7 @@ let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0,loadSequence=0;
 const routeSelection={kr:'',hk:''},indexCache={};
 const routeBar=document.querySelector('#route-filter-bar'),routePicker=document.querySelector('#route-filter');
 const DATA_VERSION='20261102-nationwide-revalidated'; // Preserve old drafts under their prior key; corrected source names start a fresh draft.
-const FRESH_DATA_QUERY='ts='+Date.now();
+let FRESH_DATA_QUERY='ts='+Date.now();
 const EDIT_BRANCH=new URLSearchParams(location.search).get('branch')||'main';
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
 const q=document.querySelector('#q'),changesOnly=document.querySelector('#changesOnly');
@@ -299,6 +300,14 @@ document.querySelector('#prev').onclick=()=>{page--;render()};document.querySele
 document.querySelector('#export').onclick=()=>saveCSV([heads,...rows],country+'-'+file+(routeSelection[country]?'-'+routeSelection[country]:'')+'-edited.csv');
 document.querySelector('#exportChanges').onclick=()=>{const a=rows.filter((r,i)=>isChanged(i));saveCSV([heads,...a],country+'-'+file+(routeSelection[country]?'-'+routeSelection[country]:'')+'-changes-only.csv')};
 document.querySelector('#reset').onclick=()=>{if(!confirm('현재 표의 임시 수정 내용을 모두 취소할까요?'))return;rows=original.map(r=>r.slice());localStorage.removeItem(draftKey());refresh()};
+document.querySelector('#reloadLatest').onclick=async()=>{
+  // Preserve each country's pending edits by stable IDs before reloading fresh catalog files.
+  persist();
+  FRESH_DATA_QUERY='ts='+Date.now();
+  for(const key of Object.keys(indexCache))delete indexCache[key];
+  const button=document.querySelector('#reloadLatest');button.disabled=true;
+  try{await load(file)}finally{button.disabled=false}
+};
 
 function mergeChange(obj,k,v){if(v) obj[k]=v}
 async function saveToGame(){
