@@ -43,6 +43,23 @@ for(const id of expected){
  }
  assert(new Set(route.stations.map(s=>s.id)).size===route.stations.length,'Repeated station ID: '+id);
 }
+// Verify every canonical Korean stop sign and its picker/editor representation.
+for(const route of network.values()){
+ for(const station of route.stations){
+  const expected=spec.stationCorrectionsByJapaneseName[station.ja];
+  if(expected)assert.equal(station.ko,expected,'Wrong NamuWiki Korean sign: '+route.id+'/'+station.ja);
+ }
+}
+for(const [name,expected] of Object.entries({
+ '宮田町':'미야타초','高砂町':'타카사고초','鉄砲町':'텟포초','赤十字病院前':'세키쥬지뵤인마에'
+})){
+ for(const id of ['line-99809-1','line-99809-2']){
+  const stop=network.get(id).stations.find(s=>s.ja===name);
+  assert(stop&&stop.ko===expected,'Loop stop name mismatch: '+id+'/'+name);
+  assert(lite.routes.find(r=>r.id===id)?.searchStations.includes(expected),'Stale station search index '+id+'/'+name);
+  assert.equal(editor.stations[id]?.[stop.stationMasterId],expected,'Editor station override missing '+id+'/'+name);
+ }
+}
 for(const id of ['line-99809-1','line-99809-2']){
  const r=network.get(id);
  assert.equal(r.stations.length,23);

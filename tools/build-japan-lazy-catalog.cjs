@@ -112,12 +112,19 @@ fs.writeFileSync(path.join(root,'data/generated/japan-transfer-neighbors.json'),
 // passenger cards. The old combined circular route remains an auditable workspace
 // source, but must never replace the complete outer/inner running patterns.
 const iyotetsuSpec=JSON.parse(fs.readFileSync(path.join(root,'data/iyotetsu-namuwiki-rebuild-20261102.json'),'utf8'));
+const assertIyotetsuStationNames=route=>{
+ for(const station of route.stations||[]){
+  const ko=iyotetsuSpec.stationCorrectionsByJapaneseName[station.ja];
+  if(ko&&station.ko!==ko)throw Error('IYOTETSU_NAMUWIKI_STATION_STALE:'+route.id+':'+station.ja+':'+station.ko);
+ }
+};
 const circularLegacy='line-99809',circularIds=iyotetsuSpec.preservation.newVisibleLoopIds;
 const iyotetsuPublished=routes.flatMap(card=>{
  if(card.id===circularLegacy)return circularIds.map(id=>{
   const route=JSON.parse(fs.readFileSync(path.join(root,'data/generated/routes',id+'.json'),'utf8')).route;
   if(route.id!==id||route.stations.length!==23||route.directedSegments.length!==22||route.geometryReady!==true)
    throw Error('IYOTETSU_LOOP_INVALID:'+id);
+  assertIyotetsuStationNames(route);
   return {...card,id,category:'tram',operator:route.operator,line:route.line,lineColor:route.lineColor,loop:true,
    stationCount:route.stations.length,lazySource:generatedRouteSource(id),playable:true,
    searchStations:route.stations.flatMap(s=>[s.ja,s.ko])};
@@ -127,6 +134,7 @@ const iyotetsuPublished=routes.flatMap(card=>{
  const desired=iyotetsuSpec.lines[card.id];
  if(!desired||route.id!==card.id||route.line.ko!==desired.ko)
   throw Error('IYOTETSU_GENERATED_ROUTE_STALE:'+card.id);
+ assertIyotetsuStationNames(route);
  return[{...card,category:route.category,operator:route.operator,line:route.line,lineColor:route.lineColor,
   stationCount:route.stations.length,lazySource:generatedRouteSource(card.id),
   searchStations:route.stations.flatMap(s=>[s.ja,s.ko])}];
