@@ -11,6 +11,7 @@ on:
       - 'js/disney-resort-line-data.js'
       - 'reports/korean-names/editor.html'
       - 'data/editor-overrides.json'
+      - 'data/tw/generated/network.json'
       - 'data/operators/**'
       - 'data/lines/**'
       - 'data/generated/routes/**'
@@ -19,6 +20,8 @@ on:
       - '.github/workflows/export-korean-names.yml'
       - 'tools/test-korean-name-meitetsu-split.cjs'
       - 'tools/test-korean-name-hakodate-split.cjs'
+      - 'tools/test-korean-name-matsuyama-loops.cjs'
+      - 'data/iyotetsu-namuwiki-rebuild-20261102.json'
   workflow_dispatch:
 
 permissions:
@@ -48,6 +51,8 @@ jobs:
         run: node tools/test-korean-name-meitetsu-split.cjs
       - name: Verify Hakodate Main Line split in Korean-name editor
         run: node tools/test-korean-name-hakodate-split.cjs
+      - name: Verify Matsuyama city tram 1/2 circular routes in name editor
+        run: node tools/test-korean-name-matsuyama-loops.cjs
       - name: Verify current Namuwiki name table and special routes
         run: node tools/test-korean-name-editor-namuwiki.cjs
       - name: Publish refreshed CSV reports without merging unrelated files
@@ -63,6 +68,7 @@ jobs:
             node tools/export-korean-names.js
             node tools/test-korean-name-meitetsu-split.cjs
             node tools/test-korean-name-hakodate-split.cjs
+            node tools/test-korean-name-matsuyama-loops.cjs
             node tools/test-korean-name-editor-namuwiki.cjs
             git add reports/korean-names/
             if git diff --cached --quiet; then

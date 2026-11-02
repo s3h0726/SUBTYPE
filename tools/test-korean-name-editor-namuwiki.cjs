@@ -69,4 +69,11 @@ for(const script of inlineScripts)new vm.Script(script,{filename:'reports/korean
 assert(html.includes("DATA_VERSION='20261102-nationwide-revalidated'"),
  'Old browser drafts must not supersede new source-of-truth names');
 assert(html.includes("heads[j]==='근거 URL'"),'The source links must be shown in the editor');
+assert(html.includes('id="reloadLatest"'),'The editor must expose an explicit latest-source refresh control');
+assert(html.includes("for(const key of Object.keys(indexCache))delete indexCache[key]"),'Refresh must drop cached Korean/Hong Kong/Taiwan indexes');
+assert(html.includes("persist();\n  FRESH_DATA_QUERY='ts='+Date.now();"),'Unsaved editor drafts must be preserved before changing data version queries');
+const exporterSource=read('tools/export-korean-names.js');
+assert(exporterSource.includes('originalName(x.meta.names,x.meta.id),x.meta.names?.en,effectiveColor'),
+ 'Taiwanese original line names must use Traditional Chinese rather than fallback Japanese text');
+
 console.log(JSON.stringify({status:'PASS',lines:lines.rows.length,operators:ops.rows.length,stations:stations.rows.length,uniqueStations:unique.rows.length,monorailLines:batch.lines.length,NamuwikiOperatorChecks:batch.operators.length,shonanAliases:2,disneyStops:disney.length}));
