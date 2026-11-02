@@ -1,6 +1,10 @@
 import{$,$$,toast}from'./utils.js';
 const SESSION_KEY='trt:supabase.session.v1';
 const SUPABASE_AUTH_TIMEOUT=18000;
+// One stable production address for all future GitHub Pages releases.
+// Do not bind emails to build-specific hashes, previews or the page used to sign up.
+const SUBTYPE_AUTH_REDIRECT_URL='https://s3h0726.github.io/SUBTYPE/';
+const authRedirectEndpoint=endpoint=>endpoint+'?redirect_to='+encodeURIComponent(SUBTYPE_AUTH_REDIRECT_URL);
 const safeText=value=>String(value??'').trim();
 const authError=error=>{const message=safeText(error?.message||error);
   if(/invalid login credentials/i.test(message))return '이메일 또는 비밀번호가 올바르지 않습니다.';
@@ -74,7 +78,7 @@ class AuthClient{
     try{const json=atob(userPart.replace(/-/g,'+').replace(/_/g,'/'));const claims=JSON.parse(json);if(claims.sub)user={id:claims.sub,email:claims.email||'',user_metadata:{}}}catch{}
     if(!user)return;
     this.saveSession({access_token:access,refresh_token:refresh,user,expires_in:Number(hash.get('expires_in'))||3600});
-    const type=hash.get('type');history.replaceState(history.state,'',location.pathname+location.search+'#home');
+    const type=hash.get('type');const cleanUrl=new URL(location.href);cleanUrl.searchParams.delete('auth_latest');history.replaceState(history.state,'',cleanUrl.pathname+cleanUrl.search+'#home');
     if(type==='recovery'){this.open('reset');toast('새 비밀번호를 설정하세요.')}
     else{toast('이메일 인증이 완료되었습니다.');void this.restoreCloud()}
   }
@@ -136,14 +140,14 @@ class AuthClient{
     button.disabled=true;
     try{
       if(this.mode==='recover'){
-        await this.api('/auth/v1/recover?redirect_to='+encodeURIComponent(location.origin+location.pathname),{method:'POST',body:{email}});
+        await this.api(authRedirectEndpoint('/auth/v1/recover'),{method:'POST',body:{email}});
         toast('가입된 이메일이라면 재설정 메일이 발송됩니다.');this.setMode('login');return
       }
       if(this.mode==='reset'){
         await this.privateApi('/auth/v1/user',{method:'PUT',body:{password}});
         toast('비밀번호가 변경되었습니다.');this.close();return
       }
-      const signup=this.mode==='signup',data=await this.api(signup?'/auth/v1/signup':'/auth/v1/token?grant_type=password',{
+      const signup=this.mode==='signup',data=await this.api(signup?authRedirectEndpoint('/auth/v1/signup'):'/auth/v1/token?grant_type=password',{
         method:'POST',body:signup?{email,password,data:{nickname}}:{email,password}
       });
       if(!data?.access_token){toast('가입 확인 이메일을 보냈습니다. 메일을 인증한 뒤 로그인하세요.');this.setMode('login');return}

@@ -55,6 +55,16 @@ for(const review of read('data/hk/master/stop-order-reviews.json').relations){
  const moved=relation.members.filter(m=>m.type==='node'&&m.ref===review.moveStopNodeId);if(moved.length!==1)throw Error('Stop review member mismatch');
  const rest=relation.members.filter(m=>m!==moved[0]),at=rest.findIndex(m=>m.type==='node'&&m.ref===review.insertBeforeStopNodeId);if(at<0)throw Error('Missing reviewed stop anchor');relation.members=[...rest.slice(0,at),moved[0],...rest.slice(at)];
 }
+// Restore a reviewed intermediate call only when its original stop-position is
+// already a vertex of the relation railway. Never change or extend any way.
+const missingReview=read('data/hk/master/missing-service-reviews.json');
+for(const r of missingReview.intermediateStops){
+ const relation=relations.find(e=>e.id===r.relationId),node=elements.find(e=>e.type==='node'&&e.id===r.nodeId);
+ if(relation?.version!==r.relationVersion||node?.tags?.ref!==r.code||!relation.members.some(m=>m.type==='way'&&m.ref===r.wayId)||!elements.find(e=>e.type==='way'&&e.id===r.wayId)?.nodes.includes(r.nodeId))throw Error('Changed intermediate-stop evidence');
+ if(relation.members.some(m=>m.type==='node'&&m.ref===r.nodeId))throw Error('Intermediate stop already present; review needed');
+ const at=relation.members.findIndex(m=>m.type==='node'&&m.ref===r.beforeNodeId&&/^stop/.test(m.role));if(at<0)throw Error('Missing intermediate stop anchor');
+ relation.members.splice(at,0,{type:'node',ref:r.nodeId,role:'stop'});
+}
 for(const relation of relations){try{const candidate=extractRelation(relation,elements,{operationalWayIds:geometryReviews.filter(r=>r.relationId===relation.id&&r.status==='verified').flatMap(r=>r.moveWayIds)});candidate.sourceSnapshotDate=fs.existsSync(path.join(root,'data/hk/sources/phase3/relation-'+relation.id+'.json'))?'2026-10-22':fs.existsSync(path.join(root,'data/hk/sources/phase2/relation-'+relation.id+'.json'))?'2026-10-20':manifest['osm-network.json'].checkedAt;candidates.set(relation.id,candidate)}catch(error){issues.push({type:'geometry',sourceRelationId:relation.id,reason:error.message,status:'INCOMPLETE'})}}
 const mtrSource=manifest['phase3/mtr-stations.csv']?.status==='retrieved'?'phase3/mtr-stations.csv':manifest['phase2/mtr-stations.csv']?.status==='retrieved'?'phase2/mtr-stations.csv':'mtr-stations.csv';
 const lrSource=manifest['phase4/light-rail.html']?.status==='retrieved'?'phase4/light-rail.html':manifest['phase2/light-rail.html']?.status==='retrieved'?'phase2/light-rail.html':'light-rail.html';
@@ -66,7 +76,7 @@ for(const station of config.additionalStations||[])stations.set(station.id,stati
 function registerGeometry(candidate,stationIds){
  const edges=[];
  candidate.bindings.forEach((b,i)=>{const station=stations.get(stationIds[i]);if(!station.coordinates)station.coordinates={lat:b.node.lat,lng:b.node.lon};station.representativeCoordinateOnly=true;station.coordinateSource ||= {sourceUrl:'https://www.openstreetmap.org/node/'+b.node.id,sourceType:'osm',checkedAt:config.checkedAt,license:'ODbL-1.0',confidence:b.snapMeters?'medium':'high'};if(!station.nameKo&&b.node.tags?.['name:ko']){station.nameKo=b.node.tags['name:ko'];station.nameStatus='review-required';station.koreanNameSource={...station.coordinateSource,confidence:'unverified'}}});
- candidate.segments.forEach((s,i)=>{const fingerprint=crypto.createHash('sha256').update(JSON.stringify([stationIds[i],stationIds[i+1],s.geometry])).digest('hex').slice(0,18),id='hk-track-'+fingerprint;const edge={id,fromStationId:stationIds[i],toStationId:stationIds[i+1],...s,geometryStatus:'verified',direction:'forward',sourceUrl:'https://www.openstreetmap.org/relation/'+candidate.sourceRelationId,sourceType:'osm',sourceDate:candidate.sourceSnapshotDate||manifest['osm-network.json'].checkedAt,checkedAt:config.checkedAt,license:'ODbL-1.0',confidence:'high'};trackSegments.set(id,edge);edges.push(id)});return edges;
+ candidate.segments.forEach((s,i)=>{const fingerprint=crypto.createHash('sha256').update(JSON.stringify([stationIds[i],stationIds[i+1],s.geometry])).digest('hex').slice(0,18),id='hk-track-'+fingerprint;const edge={id,fromStationId:stationIds[i],toStationId:stationIds[i+1],...s,geometryStatus:'verified',direction:'forward',sourceUrl:'https://www.openstreetmap.org/relation/'+(s.sourceRelationId||candidate.sourceRelationId),sourceType:'osm',sourceDate:candidate.sourceSnapshotDate||manifest['osm-network.json'].checkedAt,checkedAt:config.checkedAt,license:'ODbL-1.0',confidence:'high'};trackSegments.set(id,edge);edges.push(id)});return edges;
 }
 const serviceCandidates=new Map;
 const bulkReview=read('data/hk/master/bulk-service-reviews.json'),bulkServices=bulkReview.services;
@@ -126,6 +136,25 @@ for(const d of bulkServices){
  if(services.some(s=>s.canonicalLineId===d.canonicalLineId&&JSON.stringify(s.stopStationIds)===JSON.stringify(d.stopStationIds)))throw Error('Duplicate working '+d.id);
  const candidate={...source,bindings:source.bindings.slice(start,end),segments:source.segments.slice(start,end-1)};
  catalog.push(finishService({id:d.id,canonicalLineId:d.canonicalLineId,countryId:'hk',direction:d.direction,origin:d.stopStationIds[0],destination:d.stopStationIds.at(-1),stopStationIds:d.stopStationIds,stopStatus:'verified',validWhen:d.validWhen,serviceType:parent.serviceType,sourceUrl:d.operationEvidence.at?.url||'https://www.mtr.com.hk/en/customer/services/train_service_index.html',sourceType:'official',checkedAt:'2026-10-29',confidence:'high',sourceServiceId:parent.id},candidate));
+}
+// A documented special can reuse multiple ordinary directed railway sections.
+// Join only at the identical source stop node and coordinate, never a nearby
+// platform, station-centre coordinate, or an invented connector.
+for(const d of missingReview.compoundServices){
+ const bindings=[],segments=[];
+ for(const part of d.parts){
+  const parent=services.find(s=>s.id===part.serviceId),source=serviceCandidates.get(part.serviceId);
+  const start=parent?.stopStationIds.indexOf(part.from),end=parent?.stopStationIds.indexOf(part.to);
+  if(!source||start<0||end<=start)throw Error('Invalid directed compound section');
+  const bs=source.bindings.slice(start,end+1),ss=source.segments.slice(start,end);
+  if(bindings.length&&(bindings.at(-1).node.id!==bs[0].node.id||JSON.stringify(segments.at(-1).geometry.at(-1))!==JSON.stringify(ss[0].geometry[0])))throw Error('Disconnected compound railway section');
+  bindings.push(...(bindings.length?bs.slice(1):bs));segments.push(...ss.map(s=>({...s,sourceRelationId:source.sourceRelationId})));
+ }
+ const stopStationIds=bindings.map(b=>'hk-lr-'+b.node.tags.ref);
+ if(JSON.stringify(stopStationIds)!==JSON.stringify(d.stopStationIds))throw Error('Compound service differs from official calling order');
+ const parentLine=lines.find(l=>l.id===d.parentLineId);if(!parentLine)throw Error('Missing physical family');
+ lines.push({...parentLine,id:d.canonicalLineId,code:d.code,nameZhHant:'輕鐵 '+d.code,nameEn:'Light Rail '+d.code,nameKo:'경전철 '+d.code,lineColor:null,colorReview:null,sourceUrl:d.sourceUrl});
+ catalog.push(finishService({id:d.id,canonicalLineId:d.canonicalLineId,countryId:'hk',direction:d.direction,origin:stopStationIds[0],destination:stopStationIds.at(-1),stopStationIds,stopStatus:'verified',validWhen:d.validWhen,serviceType:'light-rail',sourceUrl:d.sourceUrl,sourceType:'official'}, {bindings,segments,sourceRelationId:d.sourceRelationId,sourceSnapshotDate:manifest['osm-network.json'].checkedAt}));
 }
 // Tram tracks are shared by one physical line. A major route is not a new physical track.
 for(const d of completionReviews.filter(d=>d.sourceServiceId&&!d.identityCorrection)){const parent=services.find(s=>s.id===d.sourceServiceId),source=serviceCandidates.get(d.sourceServiceId);if(!parent||!source||parent.canonicalLineId!==d.canonicalLineId||JSON.stringify(parent.stopStationIds.slice(0,d.stopStationIds.length))!==JSON.stringify(d.stopStationIds))throw Error('Unverified special railway suffix');catalog.push(finishService({id:d.serviceId,canonicalLineId:d.canonicalLineId,countryId:'hk',direction:'morning-special',origin:d.stopStationIds[0],destination:d.stopStationIds.at(-1),stopStationIds:d.stopStationIds,stopStatus:'verified',validWhen:d.validWhen,serviceType:'light-rail',...provenance('bulk/light-rail.html')},{...source,bindings:source.bindings.slice(0,d.stopStationIds.length),segments:source.segments.slice(0,d.stopStationIds.length-1)}));}

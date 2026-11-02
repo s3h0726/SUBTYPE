@@ -1,0 +1,35 @@
+name: Verify Supabase email links stay on latest SUBTYPE
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/auth.js'
+      - 'js/app.bundle.js'
+      - 'index.html'
+      - 'supabase/SETUP.md'
+      - 'tools/test-auth-confirmation-latest.cjs'
+      - 'package.json'
+      - '.github/workflows/test-auth-redirect.yml'
+  pull_request:
+    paths:
+      - 'js/auth.js'
+      - 'js/app.bundle.js'
+      - 'index.html'
+      - 'tools/test-auth-confirmation-latest.cjs'
+      - 'package.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-auth-email-redirect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify auth bundle syntax
+        run: node --check js/app.bundle.js
+      - name: Verify stable production email redirects and fresh landing
+        run: npm run test:auth-redirect

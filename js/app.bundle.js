@@ -1743,6 +1743,10 @@ class Game{
     if(!state?.route||!state?.station)return;
     this.freeDriveSelectedEdge=null;
     const route=railDataRepository.resolveRoute(state.route),station=state.station,index=Math.max(0,state.stationIndex||0);
+    // A TAB interchange changes the boarding platform without driving to a
+    // neighbor. Hong Kong must type that new line's current stop first.
+    const previousState=this.freeDriveState;
+    if(route.countryId==='hk'&&previousState?.node?.key&&previousState.node.key===state.node?.key&&previousState.routeId!==state.routeId)this.freeDriveAwaitingStart=true;
     this.route=route;this.freeDriveState=state;this.options={mode:'free-drive',mapMode:'geographic',mapLabels:'normal',motion:true,reducedMotion:false};this.service={id:'free-drive',nameJa:'自由走行',nameKo:'자유주행',nameEn:'Free Drive',stops:route.stations.map(item=>item.id)};
     try{this.resolvedRoute=resolvePlayableRoute(route,{direction:'forward',service:this.service})}catch{this.resolvedRoute={stations:route.stations,geometry:route.geometry||[],segments:route.directedSegments||[]}}
     this.serviceStations=this.resolvedRoute.stations||route.stations;this.serviceStops=new Set(this.serviceStations.map(item=>item.id));this.mapRoute={...route,stations:this.serviceStations,geometry:this.resolvedRoute.geometry||route.geometry||[],directedSegments:this.resolvedRoute.segments||route.directedSegments||[],renderKey:`${route.id}::free-drive`};this.sequence=this.serviceStations;this.index=Math.max(0,Math.min(index,this.sequence.length-1));this.boarding=false;
@@ -2837,6 +2841,19 @@ class CustomGeoMap{
 }
 
 
+// Large route payloads remain independent lazy assets. Decompression restores
+// the exact canonical JSON; it never simplifies or approximates geometry.
+async function decodeRoutePayload(payload){
+ if(payload?.encoding!=='subtype-route-gzip-v1')return payload;
+ const bytes=Uint8Array.from(atob(payload.data),c=>c.charCodeAt(0));
+ const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+ const decoded=await new Response(stream).json();
+ if(decoded?.route?.id!==payload.routeId||decoded.route.countryId!=='kr')throw Error('한국 노선 압축 파일 식별자 불일치');
+ return decoded;
+}
+
+
+
 
 
 
@@ -2926,7 +2943,7 @@ function normalizeLine(raw={},defaults={}){
 }
 function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[],services:[]},{category:raw.category});return{...normalized,lazy:true,lazySource:raw.lazySource,stationCount:Number(raw.stationCount)||0,searchStations:Array.isArray(raw.searchStations)?raw.searchStations:[],stationSequence:Array.isArray(raw.stationSequence)?raw.stationSequence:[]}}
 function validLine(line){return Array.isArray(line.stations)&&line.stations.length>=2&&line.stations.every(station=>station.ja||station.kana||station.romaji||station.ko)}
-async function fetchJson(url){const response=await fetch(url,{cache:'no-cache'});if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await response.json()}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
+async function fetchJson(url){const response=await fetch(url,{cache:'no-cache'});if(!response.ok)throw new Error(`${url.pathname}: HTTP ${response.status}`);try{return await decodeRoutePayload(await response.json())}catch(error){throw new Error(`${url.pathname}: invalid JSON (${error.message})`)}}
 async function loadRailData(){
   await loadEditorNameOverrides();
   const canonical=globalThis.TRT_EMBEDDED_LINE_WORKSPACES;
@@ -3151,6 +3168,10 @@ class RouteEditor{
 
 const SESSION_KEY='trt:supabase.session.v1';
 const SUPABASE_AUTH_TIMEOUT=18000;
+// One stable production address for all future GitHub Pages releases.
+// Do not bind emails to build-specific hashes, previews or the page used to sign up.
+const SUBTYPE_AUTH_REDIRECT_URL='https://s3h0726.github.io/SUBTYPE/';
+const authRedirectEndpoint=endpoint=>endpoint+'?redirect_to='+encodeURIComponent(SUBTYPE_AUTH_REDIRECT_URL);
 const safeText=value=>String(value??'').trim();
 const authError=error=>{const message=safeText(error?.message||error);
   if(/invalid login credentials/i.test(message))return '이메일 또는 비밀번호가 올바르지 않습니다.';
@@ -3224,7 +3245,7 @@ class AuthClient{
     try{const json=atob(userPart.replace(/-/g,'+').replace(/_/g,'/'));const claims=JSON.parse(json);if(claims.sub)user={id:claims.sub,email:claims.email||'',user_metadata:{}}}catch{}
     if(!user)return;
     this.saveSession({access_token:access,refresh_token:refresh,user,expires_in:Number(hash.get('expires_in'))||3600});
-    const type=hash.get('type');history.replaceState(history.state,'',location.pathname+location.search+'#home');
+    const type=hash.get('type');const cleanUrl=new URL(location.href);cleanUrl.searchParams.delete('auth_latest');history.replaceState(history.state,'',cleanUrl.pathname+cleanUrl.search+'#home');
     if(type==='recovery'){this.open('reset');toast('새 비밀번호를 설정하세요.')}
     else{toast('이메일 인증이 완료되었습니다.');void this.restoreCloud()}
   }
@@ -3286,14 +3307,14 @@ class AuthClient{
     button.disabled=true;
     try{
       if(this.mode==='recover'){
-        await this.api('/auth/v1/recover?redirect_to='+encodeURIComponent(location.origin+location.pathname),{method:'POST',body:{email}});
+        await this.api(authRedirectEndpoint('/auth/v1/recover'),{method:'POST',body:{email}});
         toast('가입된 이메일이라면 재설정 메일이 발송됩니다.');this.setMode('login');return
       }
       if(this.mode==='reset'){
         await this.privateApi('/auth/v1/user',{method:'PUT',body:{password}});
         toast('비밀번호가 변경되었습니다.');this.close();return
       }
-      const signup=this.mode==='signup',data=await this.api(signup?'/auth/v1/signup':'/auth/v1/token?grant_type=password',{
+      const signup=this.mode==='signup',data=await this.api(signup?authRedirectEndpoint('/auth/v1/signup'):'/auth/v1/token?grant_type=password',{
         method:'POST',body:signup?{email,password,data:{nickname}}:{email,password}
       });
       if(!data?.access_token){toast('가입 확인 이메일을 보냈습니다. 메일을 인증한 뒤 로그인하세요.');this.setMode('login');return}

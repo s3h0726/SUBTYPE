@@ -1,16 +1,16 @@
-✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (6.3088ms)
-✔ directional Korean service never manufactures a reverse edge at its terminus (0.4995ms)
-✔ three or more connected Japanese lines remain individually selectable (2.9763ms)
-✔ stopping free drive removes Japanese choices before a Korean typing session starts (4.1428ms)
-✔ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (7.5626ms)
-✔ smoothing follows each retained curved edge instead of cutting its corner (4.4768ms)
-✔ rapid partial input and stale lower progress never reverse train distance (0.2917ms)
-✔ arrival waits for the current map render and stale sessions cannot move its successor (4.3104ms)
-✔ resuming during an arrival cannot bypass its map and animation barrier (4.7054ms)
-✔ Korean station boundaries share the retained source vertex between adjacent segments (4.5308ms)
-✔ completed station typing catches the marker up in 50ms and never advances early (3.0425ms)
-✔ SPACE waits for real arrival and repeated presses cannot finish a journey twice (3.7107ms)
-✔ camera reset cancels old pan and changes zoom atomically (3.4609ms)
+✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (4.052ms)
+✔ directional Korean service never manufactures a reverse edge at its terminus (0.3969ms)
+✔ three or more connected Japanese lines remain individually selectable (1.6621ms)
+✔ stopping free drive removes Japanese choices before a Korean typing session starts (3.7604ms)
+✔ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (20.4731ms)
+✔ smoothing follows each retained curved edge instead of cutting its corner (3.3745ms)
+✔ rapid partial input and stale lower progress never reverse train distance (0.2546ms)
+✔ arrival waits for the current map render and stale sessions cannot move its successor (3.8151ms)
+✔ resuming during an arrival cannot bypass its map and animation barrier (3.3123ms)
+✔ Korean station boundaries share the retained source vertex between adjacent segments (3.7279ms)
+✔ completed station typing catches the marker up in 50ms and never advances early (2.3453ms)
+✔ SPACE waits for real arrival and repeated presses cannot finish a journey twice (3.3747ms)
+✔ camera reset cancels old pan and changes zoom atomically (3.0449ms)
 ℹ tests 13
 ℹ suites 0
 ℹ pass 13
@@ -18,4 +18,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 228.7239
+ℹ duration_ms 201.5724

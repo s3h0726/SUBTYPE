@@ -1,0 +1,3341 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+
+
+<meta charset="UTF-8" /> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+<meta name="author" content="광역 버스정보시스템" />
+<meta name="copyright" content="Copyright 2018. (주)솔루파인 Co., Ltd. all rights reserved. " />
+
+<title>광역 버스정보시스템</title>
+<link rel="shortcut icon" type="image/x-icon" href="/resources/images/favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="/resources/css/datepicker/jquery.datetimepicker.min.css" /><!-- 달력 -->
+<link rel="stylesheet" type="text/css" href="/resources/css/tabulator/tabulator_simple.min.css" /><!-- tabulator 테마 -->
+<link type="text/css" rel="stylesheet" href="/resources/css/style.css" /><!-- 공통 스타일 -->
+ 	
+<script type="text/javascript" src="/resources/js/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/common/tabulator/tabulator.min.js"></script><!-- tabulator 스크립트 -->
+<script type="text/javascript" src="/resources/js/common.js"></script><!-- 공통 스크립트 -->
+
+<script src="/resources/js/common/datepicker/jquery.datetimepicker.full.min.js"></script><!-- 달력 -->
+<script type="text/javascript" src="/resources/js/common/echarts/echarts.min.js"></script><!-- Apache ECharts -->
+
+	
+	<link type="text/css" rel="stylesheet" href="/resources/css/swiper/swiper-bundle.min.css" /><!-- 스와이퍼 -->
+	<link type="text/css" rel="stylesheet" href="/resources/css/main.css" />
+	
+	<script type="text/javascript" src="/resources/js/common/swiper/swiper.min.js"></script><!-- 스와이퍼 -->
+	<script src="/resources/js/main.js?v=2026101502"></script>
+	<script type="text/javascript">
+		contextPath = "";
+	</script>
+</head>       
+<body>
+    <div class="wrapper">
+      	<!-- 탑 메뉴 -->
+      	
+
+
+
+
+<header class="header">
+	<div class="container">
+		<a href="/" class="link-home" title="홈" onclick="fnHome();">HOME</a>
+		<nav class="gnb">
+  			<ul id="regionList" class="gnb-list">
+		      <li class="gnb-item"><button class="btn-area">강원도</button>
+		      	<ul class="sub-list">
+		      		
+		      			<li class="sub-item">
+		            		
+		            			<a href="/259/main_search.do" class="link-sub" onclick="fnLocalPage('259');">영월군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/262/main_search.do" class="link-sub" onclick="fnLocalPage('262');">철원군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/254/main_search.do" class="link-sub" onclick="fnLocalPage('254');">태백시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/257/main_search.do" class="link-sub" onclick="fnLocalPage('257');">홍천군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		        </ul>
+		      </li>
+		      <li class="gnb-item"><button class="btn-area">충청남도</button>
+		      	<ul class="sub-list">
+		      		
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/290/main_search.do" class="link-sub" onclick="fnLocalPage('290');">논산시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/300/main_search.do" class="link-sub" onclick="fnLocalPage('300');">당진시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/294/main_search.do" class="link-sub" onclick="fnLocalPage('294');">부여군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		        </ul>
+		      </li>
+		      <li class="gnb-item"><button class="btn-area">충청북도</button>
+		      	<ul class="sub-list">
+		      		
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/280/main_search.do" class="link-sub" onclick="fnLocalPage('280');">괴산군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/282/main_search.do" class="link-sub" onclick="fnLocalPage('282');">단양군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/277/main_search.do" class="link-sub" onclick="fnLocalPage('277');">영동군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/281/main_search.do" class="link-sub" onclick="fnLocalPage('281');">음성군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/279/main_search.do" class="link-sub" onclick="fnLocalPage('279');">진천군</a>
+		            		
+		            	</li>
+		            
+		        </ul>
+		      </li>
+		      <li class="gnb-item"><button class="btn-area">전라남도</button>
+		      	<ul class="sub-list">
+		      		
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/332/main_search.do" class="link-sub" onclick="fnLocalPage('332');">고흥군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/331/main_search.do" class="link-sub" onclick="fnLocalPage('331');">구례군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/345/main_search.do" class="link-sub" onclick="fnLocalPage('345');">신안군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/338/main_search.do" class="link-sub" onclick="fnLocalPage('338');">영암군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/343/main_search.do" class="link-sub" onclick="fnLocalPage('343');">완도군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/342/main_search.do" class="link-sub" onclick="fnLocalPage('342');">장성군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/335/main_search.do" class="link-sub" onclick="fnLocalPage('335');">장흥군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/344/main_search.do" class="link-sub" onclick="fnLocalPage('344');">진도군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/337/main_search.do" class="link-sub" onclick="fnLocalPage('337');">해남군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		        </ul>
+		      </li>
+		      <li class="gnb-item"><button class="btn-area">전라북도</button>
+		      	<ul class="sub-list">
+		      		
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/318/main_search.do" class="link-sub" onclick="fnLocalPage('318');">고창군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/311/main_search.do" class="link-sub" onclick="fnLocalPage('311');">김제시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/314/main_search.do" class="link-sub" onclick="fnLocalPage('314');">무주군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/319/main_search.do" class="link-sub" onclick="fnLocalPage('319');">부안군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/317/main_search.do" class="link-sub" onclick="fnLocalPage('317');">순창군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/316/main_search.do" class="link-sub" onclick="fnLocalPage('316');">임실군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/315/main_search.do" class="link-sub" onclick="fnLocalPage('315');">장수군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/309/main_search.do" class="link-sub" onclick="fnLocalPage('309');">정읍시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/313/main_search.do" class="link-sub" onclick="fnLocalPage('313');">진안군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		        </ul>
+		      </li>
+		      <li class="gnb-item"><button class="btn-area">경상남도</button>
+		      	<ul class="sub-list">
+		      		
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/397/main_search.do" class="link-sub" onclick="fnLocalPage('397');">거창군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/392/main_search.do" class="link-sub" onclick="fnLocalPage('392');">고성군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/393/main_search.do" class="link-sub" onclick="fnLocalPage('393');">남해군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/395/main_search.do" class="link-sub" onclick="fnLocalPage('395');">산청군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/389/main_search.do" class="link-sub" onclick="fnLocalPage('389');">의령군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/391/main_search.do" class="link-sub" onclick="fnLocalPage('391');">창녕군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/383/main_search.do" class="link-sub" onclick="fnLocalPage('383');">통영시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/394/main_search.do" class="link-sub" onclick="fnLocalPage('394');">하동군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/390/main_search.do" class="link-sub" onclick="fnLocalPage('390');">함안군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/396/main_search.do" class="link-sub" onclick="fnLocalPage('396');">함양군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/398/main_search.do" class="link-sub" onclick="fnLocalPage('398');">합천군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		        </ul>
+		      </li>
+		      <li class="gnb-item"><button class="btn-area">경상북도</button>
+		      	<ul class="sub-list">
+		      		
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/367/main_search.do" class="link-sub" onclick="fnLocalPage('367');">고령군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/359/main_search.do" class="link-sub" onclick="fnLocalPage('359');">문경시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/371/main_search.do" class="link-sub" onclick="fnLocalPage('371');">봉화군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/358/main_search.do" class="link-sub" onclick="fnLocalPage('358');">상주시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/368/main_search.do" class="link-sub" onclick="fnLocalPage('368');">성주군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/356/main_search.do" class="link-sub" onclick="fnLocalPage('356');">영주시</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/373/main_search.do" class="link-sub" onclick="fnLocalPage('373');">울릉군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/372/main_search.do" class="link-sub" onclick="fnLocalPage('372');">울진군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/362/main_search.do" class="link-sub" onclick="fnLocalPage('362');">의성군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            			<a href="/366/main_search.do" class="link-sub" onclick="fnLocalPage('366');">청도군</a>
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		      			<li class="sub-item">
+		            		
+		            	</li>
+		            
+		        </ul>
+		      </li>
+		    </ul>
+  			
+  			<!-- 메인 헤더 지자체 목록 : 지자체 표출 순서 변경되어 미사용
+  			<ul id="regionList" class="gnb-list">
+		    
+		        
+		            <li class="gnb-item">
+		                <button class="btn-area">강원도</button>
+		                <ul class="sub-list">
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/259/main_search.do" class="link-sub" onclick="fnLocalPage('259');">영월군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/262/main_search.do" class="link-sub" onclick="fnLocalPage('262');">철원군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/254/main_search.do" class="link-sub" onclick="fnLocalPage('254');">태백시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/257/main_search.do" class="link-sub" onclick="fnLocalPage('257');">홍천군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                </ul>
+		            </li>
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		            <li class="gnb-item">
+		                <button class="btn-area">경상남도</button>
+		                <ul class="sub-list">
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/397/main_search.do" class="link-sub" onclick="fnLocalPage('397');">거창군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/392/main_search.do" class="link-sub" onclick="fnLocalPage('392');">고성군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/393/main_search.do" class="link-sub" onclick="fnLocalPage('393');">남해군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/395/main_search.do" class="link-sub" onclick="fnLocalPage('395');">산청군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/389/main_search.do" class="link-sub" onclick="fnLocalPage('389');">의령군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/391/main_search.do" class="link-sub" onclick="fnLocalPage('391');">창녕군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/383/main_search.do" class="link-sub" onclick="fnLocalPage('383');">통영시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/394/main_search.do" class="link-sub" onclick="fnLocalPage('394');">하동군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/390/main_search.do" class="link-sub" onclick="fnLocalPage('390');">함안군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/396/main_search.do" class="link-sub" onclick="fnLocalPage('396');">함양군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/398/main_search.do" class="link-sub" onclick="fnLocalPage('398');">합천군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                </ul>
+		            </li>
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		            <li class="gnb-item">
+		                <button class="btn-area">경상북도</button>
+		                <ul class="sub-list">
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/367/main_search.do" class="link-sub" onclick="fnLocalPage('367');">고령군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/359/main_search.do" class="link-sub" onclick="fnLocalPage('359');">문경시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/371/main_search.do" class="link-sub" onclick="fnLocalPage('371');">봉화군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/358/main_search.do" class="link-sub" onclick="fnLocalPage('358');">상주시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/368/main_search.do" class="link-sub" onclick="fnLocalPage('368');">성주군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/356/main_search.do" class="link-sub" onclick="fnLocalPage('356');">영주시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/373/main_search.do" class="link-sub" onclick="fnLocalPage('373');">울릉군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/372/main_search.do" class="link-sub" onclick="fnLocalPage('372');">울진군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/362/main_search.do" class="link-sub" onclick="fnLocalPage('362');">의성군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/366/main_search.do" class="link-sub" onclick="fnLocalPage('366');">청도군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                </ul>
+		            </li>
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		            <li class="gnb-item">
+		                <button class="btn-area">전라남도</button>
+		                <ul class="sub-list">
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/332/main_search.do" class="link-sub" onclick="fnLocalPage('332');">고흥군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/331/main_search.do" class="link-sub" onclick="fnLocalPage('331');">구례군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/345/main_search.do" class="link-sub" onclick="fnLocalPage('345');">신안군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/338/main_search.do" class="link-sub" onclick="fnLocalPage('338');">영암군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/343/main_search.do" class="link-sub" onclick="fnLocalPage('343');">완도군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/342/main_search.do" class="link-sub" onclick="fnLocalPage('342');">장성군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/335/main_search.do" class="link-sub" onclick="fnLocalPage('335');">장흥군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/344/main_search.do" class="link-sub" onclick="fnLocalPage('344');">진도군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/337/main_search.do" class="link-sub" onclick="fnLocalPage('337');">해남군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                </ul>
+		            </li>
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		            <li class="gnb-item">
+		                <button class="btn-area">전라북도</button>
+		                <ul class="sub-list">
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/318/main_search.do" class="link-sub" onclick="fnLocalPage('318');">고창군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/311/main_search.do" class="link-sub" onclick="fnLocalPage('311');">김제시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/314/main_search.do" class="link-sub" onclick="fnLocalPage('314');">무주군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/319/main_search.do" class="link-sub" onclick="fnLocalPage('319');">부안군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/317/main_search.do" class="link-sub" onclick="fnLocalPage('317');">순창군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/316/main_search.do" class="link-sub" onclick="fnLocalPage('316');">임실군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/315/main_search.do" class="link-sub" onclick="fnLocalPage('315');">장수군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/309/main_search.do" class="link-sub" onclick="fnLocalPage('309');">정읍시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/313/main_search.do" class="link-sub" onclick="fnLocalPage('313');">진안군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                </ul>
+		            </li>
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		            <li class="gnb-item">
+		                <button class="btn-area">충청남도</button>
+		                <ul class="sub-list">
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/290/main_search.do" class="link-sub" onclick="fnLocalPage('290');">논산시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/300/main_search.do" class="link-sub" onclick="fnLocalPage('300');">당진시</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/294/main_search.do" class="link-sub" onclick="fnLocalPage('294');">부여군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                </ul>
+		            </li>
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		            <li class="gnb-item">
+		                <button class="btn-area">충청북도</button>
+		                <ul class="sub-list">
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/280/main_search.do" class="link-sub" onclick="fnLocalPage('280');">괴산군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/282/main_search.do" class="link-sub" onclick="fnLocalPage('282');">단양군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/277/main_search.do" class="link-sub" onclick="fnLocalPage('277');">영동군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/281/main_search.do" class="link-sub" onclick="fnLocalPage('281');">음성군</a>
+		                            </li>
+		                        
+		                    
+		                        
+		                            <li class="sub-item">
+		                                <a href="/279/main_search.do" class="link-sub" onclick="fnLocalPage('279');">진천군</a>
+		                            </li>
+		                        
+		                    
+		                </ul>
+		            </li>
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+		        
+		    
+	  		</ul>-->
+	  	</nav>
+	  	<ul class="login-list">
+		    <li class="login-item">
+		      <a href="notice.do" class="link-notice">공지사항</a>
+		    </li>
+		    <!-- <li class="login-item">
+		      <a href="inconvenience.do" class="link-complain">불편사항접수</a>
+		    </li> -->
+	  	</ul>
+  	</div>
+</header>	
+      
+      	<div class="container">
+        	<main class="main">
+          		<section class="sc-header">
+            		<h1 class="logo">
+	              		
+
+
+
+<!-- 메인 화면 TS 로고 -->
+<svg width="119" height="63" viewBox="0 0 119 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path
+     d="M2.41991 55.24H3.23991V57.53H3.2599L4.94991 55.24H5.77991L3.95992 57.6L5.9799 60.42H4.99991L3.24991 57.9H3.2299V60.42H2.40991V55.24H2.41991Z"
+     fill="#898989"
+   />
+   <path
+     d="M6.89981 58.63C6.89981 57.97 6.97981 57.08 7.64981 57.08C8.31981 57.08 8.40982 57.98 8.40982 58.63C8.40982 59.28 8.32981 60.18 7.64981 60.18C6.96981 60.18 6.89981 59.28 6.89981 58.63ZM7.64981 60.49C8.69981 60.49 9.22981 59.83 9.22981 58.62C9.22981 57.41 8.69981 56.75 7.64981 56.75C6.59981 56.75 6.06982 57.41 6.06982 58.62C6.06982 59.83 6.58981 60.49 7.64981 60.49Z"
+     fill="#898989"
+   />
+   <path
+     d="M10.01 60.41H10.77V58.77C10.77 57.81 11.21 57.56 11.94 57.54V56.75C11.29 56.8 11.02 57.26 10.78 57.74H10.76V56.83H10V60.4L10.01 60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M12.9499 57.87C12.9699 57.67 13.0799 57.07 13.6599 57.07C14.2399 57.07 14.3199 57.59 14.3199 57.87H12.9499ZM14.9999 59.95C14.7699 60.06 14.5499 60.1 14.3199 60.1C13.2499 60.1 12.9299 58.93 12.9299 58.22H15.0699C15.0699 57.53 14.8499 56.76 13.6999 56.76C12.5499 56.76 12.1699 57.48 12.1699 58.47C12.1699 59.91 12.9699 60.5 13.9599 60.5C14.4099 60.5 14.6899 60.43 14.9999 60.3V59.95Z"
+     fill="#898989"
+   />
+   <path
+     d="M17.5899 60.41H18.3499V58.11C18.3499 57.41 18.2499 56.76 17.0899 56.76C15.9299 56.76 15.7499 57.32 15.7199 57.86H16.5199C16.5499 57.44 16.6299 57.08 17.0999 57.08C17.5999 57.08 17.5999 57.72 17.5999 58.12V58.43C17.1299 58.45 15.6099 58.5 15.6099 59.61C15.6099 60.11 16.0199 60.5 16.5799 60.5C17.1399 60.5 17.4699 60.13 17.5899 59.92H17.5999V60.42L17.5899 60.41ZM17.5899 59.16C17.5899 59.77 17.1199 60.02 16.8499 60.02C16.5999 60.02 16.4199 59.81 16.4199 59.49C16.4199 58.83 17.2799 58.76 17.5899 58.74V59.16Z"
+     fill="#898989"
+   />
+   <path
+     d="M22.0798 60.41H22.9098V55.73H24.1598V55.24H20.8298V55.73H22.0798V60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M24.5 60.41H25.26V58.77C25.26 57.81 25.7 57.56 26.43 57.54V56.75C25.78 56.8 25.52 57.26 25.28 57.74H25.26V56.83H24.5V60.4V60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M28.6899 59.16C28.6899 59.77 28.2199 60.02 27.9499 60.02C27.6999 60.02 27.5199 59.81 27.5199 59.49C27.5199 58.83 28.3699 58.76 28.6899 58.74V59.16ZM28.6899 60.41H29.4499V58.11C29.4499 57.41 29.3499 56.76 28.1899 56.76C27.0299 56.76 26.8499 57.32 26.8199 57.86H27.6099C27.6399 57.44 27.7199 57.08 28.1899 57.08C28.6899 57.08 28.6899 57.72 28.6899 58.12V58.43C28.2199 58.45 26.6899 58.5 26.6899 59.61C26.6899 60.11 27.1099 60.5 27.6699 60.5C28.2299 60.5 28.5499 60.13 28.6699 59.92H28.6899V60.42V60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M30.47 56.84H31.23V57.69H31.25C31.37 57.43 31.71 56.76 32.5 56.76C33.13 56.76 33.4 57.28 33.4 57.8V60.41H32.65V58.17C32.65 57.72 32.58 57.31 32.2 57.31C31.45 57.31 31.24 58.48 31.24 58.92V60.4H30.48V56.83L30.47 56.84Z"
+     fill="#898989"
+   />
+   <path
+     d="M36.2199 57.54C35.9599 57.37 35.6799 57.19 35.3199 57.19C35.0799 57.19 34.8099 57.3 34.8099 57.56C34.8099 58.21 36.4499 58.27 36.4499 59.41C36.4499 60.18 35.8499 60.49 35.0899 60.49C34.6299 60.49 34.3199 60.39 34.1399 60.33V59.63C34.3599 59.78 34.7099 60.01 35.1299 60.01C35.5499 60.01 35.7399 59.78 35.7399 59.56C35.7399 58.93 34.1299 58.81 34.1299 57.78C34.1299 57.24 34.4899 56.75 35.3799 56.75C35.7599 56.75 36.0899 56.86 36.2199 56.89V57.53V57.54Z"
+     fill="#898989"
+   />
+   <path
+     d="M37.1099 56.84H37.8699V57.43H37.8899C37.9999 57.19 38.2399 56.76 38.8099 56.76C39.8499 56.76 40.1599 57.6 40.1599 58.63C40.1599 59.66 39.7599 60.5 38.8099 60.5C38.2099 60.5 37.9899 60.12 37.8899 59.92H37.8699V62.02H37.1099V56.84ZM38.6099 60.06C39.1999 60.06 39.3299 59.25 39.3299 58.63C39.3299 58.01 39.2199 57.24 38.6099 57.24C37.9999 57.24 37.8999 58.04 37.8999 58.63C37.8999 59.22 37.9599 60.06 38.6099 60.06Z"
+     fill="#898989"
+   />
+   <path
+     d="M41.4899 58.63C41.4899 57.97 41.5699 57.08 42.2399 57.08C42.9099 57.08 42.9999 57.98 42.9999 58.63C42.9999 59.28 42.9199 60.18 42.2399 60.18C41.5599 60.18 41.4899 59.28 41.4899 58.63ZM42.2399 60.49C43.2999 60.49 43.8199 59.83 43.8199 58.62C43.8199 57.41 43.2899 56.75 42.2399 56.75C41.1899 56.75 40.6699 57.41 40.6699 58.62C40.6699 59.83 41.1899 60.49 42.2399 60.49Z"
+     fill="#898989"
+   />
+   <path
+     d="M44.6099 60.41H45.3699V58.77C45.3699 57.81 45.8099 57.56 46.5399 57.54V56.75C45.8899 56.8 45.6299 57.26 45.3899 57.74H45.3799V56.83H44.6199V60.4L44.6099 60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M49.0398 60.44C48.8898 60.48 48.6898 60.49 48.5098 60.49C47.7998 60.49 47.3898 60.27 47.3898 59.58V57.23H46.8198V56.84H47.3898V56L48.1498 55.54V56.84H49.1298V57.23H48.1498V59.29C48.1498 59.81 48.1998 60.07 48.6898 60.07C48.8098 60.07 48.9398 60.06 49.0398 60.01V60.44Z"
+     fill="#898989"
+   />
+   <path
+     d="M51.49 59.16C51.49 59.77 51.02 60.02 50.75 60.02C50.5 60.02 50.32 59.81 50.32 59.49C50.32 58.83 51.17 58.76 51.49 58.74V59.16ZM51.49 60.41H52.25V58.11C52.25 57.41 52.15 56.76 50.99 56.76C49.83 56.76 49.66 57.32 49.62 57.86H50.42C50.45 57.44 50.53 57.08 51 57.08C51.5 57.08 51.5 57.72 51.5 58.12V58.43C51.03 58.45 49.5 58.5 49.5 59.61C49.5 60.11 49.91 60.5 50.47 60.5C51.03 60.5 51.36 60.13 51.48 59.92H51.5V60.42L51.49 60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M55.1399 60.01C55.0399 60.06 54.9099 60.07 54.7899 60.07C54.2999 60.07 54.2499 59.81 54.2499 59.29V57.23H55.2299V56.84H54.2499V55.54L53.4899 56V56.84H52.9199V57.23H53.4899V59.58C53.4899 60.27 53.8999 60.49 54.6099 60.49C54.7799 60.49 54.9799 60.47 55.1299 60.44V60.01H55.1399Z"
+     fill="#898989"
+   />
+   <path
+     d="M55.8598 56.84H56.6198V60.41H55.8598V56.84ZM55.8298 55.24H56.6498V55.99H55.8298V55.24Z"
+     fill="#898989"
+   />
+   <path
+     d="M58.2699 58.63C58.2699 57.97 58.3499 57.08 59.0199 57.08C59.6899 57.08 59.7699 57.98 59.7699 58.63C59.7699 59.28 59.6899 60.18 59.0199 60.18C58.3499 60.18 58.2699 59.28 58.2699 58.63ZM59.0199 60.49C60.0699 60.49 60.5999 59.83 60.5999 58.62C60.5999 57.41 60.0699 56.75 59.0199 56.75C57.9699 56.75 57.4399 57.41 57.4399 58.62C57.4399 59.83 57.9599 60.49 59.0199 60.49Z"
+     fill="#898989"
+   />
+   <path
+     d="M61.3799 56.84H62.1399V57.69H62.1599C62.2799 57.43 62.6199 56.76 63.4099 56.76C64.0399 56.76 64.3099 57.28 64.3099 57.8V60.41H63.5499V58.17C63.5499 57.72 63.4799 57.31 63.0999 57.31C62.3499 57.31 62.1399 58.48 62.1399 58.92V60.4H61.3799V56.83V56.84Z"
+     fill="#898989"
+   />
+   <path
+     d="M69.9799 56C69.7899 55.89 69.2599 55.65 68.6999 55.65C68.2399 55.65 67.9199 55.91 67.9199 56.31C67.9199 57.4 70.3599 57.37 70.3599 58.99C70.3599 60.08 69.5199 60.51 68.4799 60.51C67.8899 60.51 67.3299 60.38 67.1699 60.32V59.51C67.3999 59.64 67.9999 59.97 68.6099 59.97C69.1499 59.97 69.5399 59.74 69.5399 59.22C69.5399 58.04 67.1099 58.11 67.1099 56.5C67.1099 55.66 67.7299 55.17 68.7999 55.17C69.2799 55.17 69.7899 55.27 69.9999 55.31V56.02L69.9799 56Z"
+     fill="#898989"
+   />
+   <path
+     d="M72.7998 60.41H73.5598V58.11C73.5598 57.41 73.4598 56.76 72.2998 56.76C71.1398 56.76 70.9698 57.32 70.9298 57.86H71.7198C71.7498 57.44 71.8298 57.08 72.2998 57.08C72.7998 57.08 72.7998 57.72 72.7998 58.12V58.43C72.3298 58.45 70.7998 58.5 70.7998 59.61C70.7998 60.11 71.2198 60.5 71.7798 60.5C72.3398 60.5 72.6598 60.13 72.7898 59.92H72.7998V60.42V60.41ZM72.7998 59.16C72.7998 59.77 72.3298 60.02 72.0698 60.02C71.8198 60.02 71.6298 59.81 71.6298 59.49C71.6298 58.83 72.4898 58.76 72.7998 58.74V59.16Z"
+     fill="#898989"
+   />
+   <path
+     d="M74.84 57.23H74.22V56.84H74.84V56.5C74.84 55.84 75 55.15 76.2 55.15C76.51 55.15 76.78 55.2 76.96 55.23V55.75C76.8 55.68 76.6 55.59 76.29 55.59C75.67 55.59 75.6 56.03 75.6 56.42V56.84H76.61V57.23H75.6V60.41H74.84V57.23Z"
+     fill="#898989"
+   />
+   <path
+     d="M79.7199 59.95C79.4999 60.06 79.2699 60.1 79.0399 60.1C77.9699 60.1 77.6499 58.93 77.6499 58.22H79.7899C79.7899 57.53 79.5699 56.76 78.4199 56.76C77.2699 56.76 76.8999 57.48 76.8999 58.47C76.8999 59.91 77.6899 60.5 78.6799 60.5C79.1299 60.5 79.4099 60.43 79.7199 60.3V59.95ZM77.6699 57.87C77.6899 57.67 77.7999 57.07 78.3899 57.07C78.9799 57.07 79.0499 57.59 79.0499 57.87H77.6699Z"
+     fill="#898989"
+   />
+   <path
+     d="M82.4299 60.01C82.3299 60.06 82.2 60.07 82.08 60.07C81.59 60.07 81.5399 59.81 81.5399 59.29V57.23H82.5099V56.84H81.5399V55.54L80.78 56V56.84H80.21V57.23H80.78V59.58C80.78 60.27 81.1899 60.49 81.8999 60.49C82.0699 60.49 82.2799 60.47 82.4299 60.44V60.01Z"
+     fill="#898989"
+   />
+   <path
+     d="M83.4298 62.02H84.0398L85.8798 56.84H85.1598L84.3198 59.39H84.2998L83.3698 56.84H82.5798L83.9498 60.45L83.4298 62.02Z"
+     fill="#898989"
+   />
+   <path
+     d="M89.9899 55.98H90.0099L90.7399 58.38H89.2599L89.9899 55.98ZM87.8999 60.41H88.6299L89.0999 58.87H90.8799L91.3599 60.41H92.2099L90.4799 55.23H89.6299L87.8999 60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M94.92 60.41H95.68V56.84H94.92V58.32C94.92 58.76 94.71 59.93 93.96 59.93C93.58 59.93 93.51 59.52 93.51 59.07V56.83H92.75V59.44C92.75 59.96 93.02 60.48 93.65 60.48C94.44 60.48 94.77 59.81 94.89 59.55H94.91V60.4L94.92 60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M98.5999 60.01C98.4899 60.06 98.3699 60.07 98.2499 60.07C97.7599 60.07 97.7099 59.81 97.7099 59.29V57.23H98.6899V56.84H97.7099V55.54L96.9499 56V56.84H96.3799V57.23H96.9499V59.58C96.9499 60.27 97.3599 60.49 98.0699 60.49C98.2399 60.49 98.4499 60.47 98.5999 60.44V60.01Z"
+     fill="#898989"
+   />
+   <path
+     d="M99.28 55.24H100.04V57.69H100.05C100.17 57.43 100.51 56.76 101.3 56.76C101.93 56.76 102.2 57.28 102.2 57.8V60.41H101.44V58.17C101.44 57.72 101.37 57.31 100.99 57.31C100.24 57.31 100.03 58.48 100.03 58.92V60.4H99.27V55.22L99.28 55.24Z"
+     fill="#898989"
+   />
+   <path
+     d="M103.81 58.63C103.81 57.97 103.89 57.08 104.56 57.08C105.23 57.08 105.32 57.98 105.32 58.63C105.32 59.28 105.24 60.18 104.56 60.18C103.88 60.18 103.81 59.28 103.81 58.63ZM104.56 60.49C105.61 60.49 106.14 59.83 106.14 58.62C106.14 57.41 105.61 56.75 104.56 56.75C103.51 56.75 102.99 57.41 102.99 58.62C102.99 59.83 103.51 60.49 104.56 60.49Z"
+     fill="#898989"
+   />
+   <path
+     d="M106.92 56.84H107.68V57.75H107.69C107.93 57.27 108.19 56.82 108.85 56.76V57.55C108.12 57.57 107.68 57.82 107.68 58.78V60.42H106.92V56.85V56.84Z"
+     fill="#898989"
+   />
+   <path
+     d="M109.49 55.98H110.31V55.23H109.49V55.98ZM109.52 60.41H110.28V56.84H109.52V60.41Z"
+     fill="#898989"
+   />
+   <path
+     d="M113.23 60.44C113.08 60.48 112.88 60.49 112.71 60.49C111.99 60.49 111.58 60.27 111.58 59.58V57.23H111.01V56.84H111.58V56L112.34 55.54V56.84H113.31V57.23H112.34V59.29C112.34 59.81 112.39 60.07 112.88 60.07C113 60.07 113.13 60.06 113.23 60.01V60.44Z"
+     fill="#898989"
+   />
+   <path
+     d="M114.76 60.45L113.39 56.84H114.17L115.11 59.39H115.12L115.96 56.84H116.67L114.83 62.02H114.22L114.75 60.45H114.76Z"
+     fill="#898989"
+   />
+   <path
+     d="M40.37 39.47H31.26V38.25H42.56V49.61H40.37V39.47ZM38.54 43.86H36.36V50.83H34.44V43.86H32.25V50.83H30.28V52.05H43.85V50.83H38.54V43.86Z"
+     fill="#898989"
+   />
+   <path
+     d="M118.47 41.05V42.27H116.46V48.39H114.28V45.12C113.39 45.25 111.84 45.45 110.27 45.45C107.95 45.45 106.52 45.22 105.95 45.08C105.94 45.08 105.93 45.08 105.92 45.08H105.9C105.18 44.88 104.74 44.44 104.74 43.83V38.25H112.05V39.47H106.93V44.01C107.23 44.08 108.06 44.23 110.17 44.23C111.76 44.23 113.36 44.05 114.28 43.92V37.81H116.46V41.05H118.47ZM108.42 51.08V47.1H106.24V50.89C106.24 50.89 106.17 51.85 107.45 52.15C108.01 52.29 109.44 52.52 111.77 52.52C114.1 52.52 116.54 52.07 116.54 52.07V50.84C116.34 50.91 113.99 51.29 111.67 51.29C109.55 51.29 108.72 51.15 108.43 51.07L108.42 51.08Z"
+     fill="#898989"
+   />
+   <path
+     d="M72.5799 41H74.6999V42.22H72.5799V48.4H70.3999V37.81H72.5799V41ZM64.5399 51.08V47.1H62.3499V50.89C62.3499 50.89 62.2899 51.85 63.5599 52.15C64.1299 52.29 65.5599 52.52 67.8899 52.52C70.2199 52.52 72.6599 52.07 72.6599 52.07V50.84C72.4599 50.91 70.1099 51.29 67.7899 51.29C65.6699 51.29 64.8399 51.15 64.5499 51.07L64.5399 51.08ZM64.2899 46.14C62.0199 46.14 60.1899 44.28 60.1899 41.97C60.1899 39.66 62.0299 37.8 64.2899 37.8C66.5499 37.8 68.3999 39.67 68.3999 41.97C68.3999 44.27 66.5599 46.14 64.2899 46.14ZM64.2899 44.92C65.3499 44.92 66.2099 43.6 66.2099 41.98C66.2099 40.36 65.3499 39.04 64.2899 39.04C63.2299 39.04 62.3699 40.36 62.3699 41.98C62.3699 43.6 63.2299 44.92 64.2899 44.92Z"
+     fill="#898989"
+   />
+   <path
+     d="M52.0001 46.17C48.9701 46.17 46.5201 47.71 46.5201 49.6C46.5201 51.49 48.9801 53.03 52.0001 53.03C55.0201 53.03 57.4801 51.49 57.4801 49.6C57.4801 47.71 55.0301 46.17 52.0001 46.17ZM52.0001 51.8C50.2701 51.8 48.8701 50.81 48.8701 49.6C48.8701 48.39 50.2701 47.4 52.0001 47.4C53.7301 47.4 55.1301 48.39 55.1301 49.6C55.1301 50.81 53.7301 51.8 52.0001 51.8ZM53.1001 44.45H58.8501V45.67H45.1401V44.45H50.9201V43.83C49.1501 43.77 48.0201 43.61 47.5101 43.5C46.0601 43.18 46.1301 42.24 46.1301 42.24V38.24H57.8601V39.46H48.3201V40.36H57.8601V41.58H48.3201V42.41C48.9601 42.49 49.9101 42.63 52.3201 42.63C54.9601 42.63 57.6301 42.26 57.8601 42.18V43.39C57.8601 43.39 55.5901 43.77 53.1001 43.83V44.43V44.45Z"
+     fill="#898989"
+   />
+   <path
+     d="M101.62 44.03H103.21V45.26H89.5V44.03H94.14V41.63H96.32V44.03H99.44V39.46H90.79V38.24H101.62V44.03ZM101.84 49.58C101.84 51.47 99.39 53.01 96.36 53.01C93.33 53.01 90.88 51.48 90.88 49.58C90.88 47.68 93.33 46.15 96.36 46.15C99.39 46.15 101.84 47.68 101.84 49.58ZM99.49 49.58C99.49 48.36 98.09 47.38 96.36 47.38C94.63 47.38 93.23 48.37 93.23 49.58C93.23 50.79 94.63 51.78 96.36 51.78C98.09 51.78 99.49 50.79 99.49 49.58Z"
+     fill="#898989"
+   />
+   <path
+     d="M85.5499 42.22H83.4699V40.99H85.5499V37.8H87.7399V48.39H85.5499V42.22ZM79.6899 51.08V47.1H77.5099V50.89C77.5099 50.89 77.4499 51.85 78.7199 52.15C79.2799 52.29 80.7099 52.52 83.0499 52.52C85.3899 52.52 87.8199 52.07 87.8199 52.07V50.84C87.6199 50.91 85.2699 51.29 82.9499 51.29C80.8299 51.29 79.9999 51.15 79.7099 51.07L79.6899 51.08ZM79.4999 43.1C80.3399 44.32 81.8199 45.36 82.9399 46.01L83.8299 44.94C81.8499 43.62 80.6699 42.08 80.6699 39.81V39.46H83.3599V38.24H75.6299V39.46H78.3199V39.81C78.3199 42.08 77.1399 43.61 75.1699 44.94L76.0599 46.01C77.1799 45.35 78.6599 44.32 79.4999 43.1Z"
+     fill="#898989"
+   />
+   <path
+     d="M12.45 41H14.57V42.22H12.45V48.4H10.27V37.81H12.45V41ZM4.41002 51.08V47.1H2.22002V50.89C2.22002 50.89 2.16001 51.85 3.43001 52.15C4.00001 52.29 5.43001 52.52 7.76001 52.52C10.09 52.52 12.53 52.07 12.53 52.07V50.84C12.33 50.91 9.98002 51.29 7.66002 51.29C5.54002 51.29 4.71001 51.15 4.42001 51.07L4.41002 51.08ZM7.98001 42.66C7.98001 41.71 7.55002 40.84 6.86002 40.22H8.02002V38.95H5.37001V37.78H2.93001V38.95H0.26001V40.22H1.42001C0.730013 40.85 0.300018 41.71 0.300018 42.66C0.300018 44.57 2.02001 46.12 4.14001 46.12C6.26001 46.12 7.99002 44.57 7.99002 42.66H7.98001ZM2.33002 42.53C2.33002 41.25 3.13002 40.21 4.13002 40.21C5.13002 40.21 5.93001 41.25 5.93001 42.53C5.93001 43.81 5.12002 44.85 4.13002 44.85C3.14002 44.85 2.33002 43.81 2.33002 42.53Z"
+     fill="#898989"
+   />
+   <path
+     d="M28.6001 45.29H22.7101V47.1H27.1801V53.01H24.9201V48.37H15.9701V47.1H20.4401V45.29H14.5601V44.03H24.8001V39.46H16.1501V38.24H26.9801V44.02H28.5901V45.28L28.6001 45.29Z"
+     fill="#898989"
+   />
+   <path
+     d="M80.2001 21.05C82.5001 21.97 81.9101 24.77 79.2001 24.77H61.7402C61.2402 24.77 60.8202 25.24 60.8202 25.83V28.07C60.8202 28.65 61.2302 29.13 61.7402 29.13H82.0901C86.8501 29.13 90.5901 26.8 90.5901 22.06C90.5901 18.91 89.1902 16.34 85.7802 14.79C83.7402 13.85 70.8102 8.44 70.8102 8.44C68.4902 7.52 69.0602 4.71997 71.8002 4.71997H89.2601C89.7501 4.71997 90.1702 4.25999 90.1702 3.67999V1.44C90.1702 0.840002 89.7501 0.400024 89.2601 0.400024H68.8902C64.1502 0.400024 60.4102 2.69 60.4102 7.44C60.4102 10.6 61.8001 13.16 65.2301 14.71C67.2601 15.65 80.2001 21.05 80.2001 21.05Z"
+     fill="url(#paint0_linear_4_304)"
+   />
+   <path
+     d="M59.2601 0.380005H25.5401C25.0401 0.380005 24.6201 0.839983 24.6201 1.41998V3.67999C24.6201 4.24999 25.0501 4.71997 25.5401 4.71997H37.6901V28.12C37.6901 28.69 38.1301 29.18 38.6301 29.18H46.1701C46.6801 29.18 47.1001 28.69 47.1001 28.12V4.71997H59.2601C59.7501 4.71997 60.1801 4.24999 60.1801 3.67999V1.41998C60.1801 0.839983 59.7601 0.380005 59.2601 0.380005Z"
+     fill="url(#paint1_linear_4_304)"
+   />
+  <defs>
+    <linearGradient
+      id="paint0_linear_4_304"
+      x1="58.8402"
+      y1="2.14002"
+      x2="89.2601"
+      y2="25.18"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#00AFEC" />
+      <stop offset="0.25" stop-color="#00A9E7" />
+      <stop offset="0.58" stop-color="#0098DB" />
+      <stop offset="0.94" stop-color="#007DC6" />
+      <stop offset="1" stop-color="#0079C3" />
+    </linearGradient>
+    <linearGradient
+      id="paint1_linear_4_304"
+      x1="29.8701"
+      y1="-4.74999"
+      x2="52.3601"
+      y2="18.28"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#FDD000" />
+      <stop offset="1" stop-color="#F08300" />
+    </linearGradient>
+  </defs>
+</svg>	
+              			버스정보시스템
+            		</h1>
+          		</section>
+
+          		<div class="col-left">
+            		<section class="sc-search">
+              			<h2 class="blind">검색</h2>
+		              		<ul class="search-list">
+		                		<li class="search-item"><a href="javascript:fnPage('route');">노선 검색</a></li>
+		                		<li class="search-item"><a href="javascript:fnPage('station');">정류소 검색</a></li>
+		              		</ul>
+              				<form action="" class="form-search">
+				                <fieldset>
+				                  	<input type="text" class="input-text" placeholder="노선번호, 정류소명, 정류소번호 검색"
+								      	id="main_searchKeyword" name="main_searchKeyword" />
+				   				  	<button id="btnIntegratedSearch" type="submit" class="btn-submit active">
+					                    <span class="blind">전송</span>
+					                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+						                    <path
+						                        d="M24.5 24.5L19.2663 19.257M22.1667 12.25C22.1667 14.8801 21.1219 17.4024 19.2621 19.2622C17.4024 21.1219 14.8801 22.1667 12.25 22.1667C9.61994 22.1667 7.09759 21.1219 5.23786 19.2622C3.37812 17.4024 2.33333 14.8801 2.33333 12.25C2.33333 9.61995 3.37812 7.0976 5.23786 5.23787C7.09759 3.37813 9.61994 2.33334 12.25 2.33334C14.8801 2.33334 17.4024 3.37813 19.2621 5.23787C21.1219 7.0976 22.1667 9.61995 22.1667 12.25Z"
+						                        stroke="#1E316D"
+						                        stroke-width="2.33333"
+						                        stroke-linecap="round"
+						                    />
+					                    </svg>
+				                  	</button>
+				                </fieldset>
+			              	</form>
+              				<p class="desc">예) 1000, 군청, 39083</p>
+            			</section>
+            			<section class="sc-menu">
+              				<h2 class="blind">메뉴</h2>
+			              	<ul class="menu-list">
+			                	<li class="menu-item">
+			                  		<a href="#" id="imgIntegratedSearch" class="link-menu">
+					                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					                      	<path
+						                        fill-rule="evenodd"
+						                        clip-rule="evenodd"
+						                        d="M12.1001 3C8.7062 3 7.0088 3 5.9549 4.0548C4.9973 5.0115 4.9091 6.4974 4.9001 9.3H4.0001C3.7614 9.3 3.53248 9.39482 3.3637 9.5636C3.19492 9.73239 3.1001 9.96131 3.1001 10.2V11.1C3.1001 11.2397 3.13263 11.3775 3.19511 11.5025C3.2576 11.6275 3.34832 11.7362 3.4601 11.82L4.9001 12.9C4.9091 15.7026 4.9973 17.1885 5.9549 18.1452C6.1727 18.3639 6.4175 18.5367 6.7001 18.6735V20.1C6.7001 20.3387 6.79492 20.5676 6.9637 20.7364C7.13248 20.9052 7.3614 21 7.6001 21H8.9501C9.18879 21 9.41771 20.9052 9.58649 20.7364C9.75528 20.5676 9.8501 20.3387 9.8501 20.1V19.1838C10.5044 19.2 11.2487 19.2 12.1001 19.2C12.9515 19.2 13.6958 19.2 14.3501 19.1838V20.1C14.3501 20.3387 14.4449 20.5676 14.6137 20.7364C14.7825 20.9052 15.0114 21 15.2501 21H16.6001C16.8388 21 17.0677 20.9052 17.2365 20.7364C17.4053 20.5676 17.5001 20.3387 17.5001 20.1V18.6735C17.7767 18.541 18.0287 18.3623 18.2453 18.1452C19.2029 17.1885 19.292 15.7026 19.3001 12.9L20.7401 11.82C20.8519 11.7362 20.9426 11.6275 21.0051 11.5025C21.0676 11.3775 21.1001 11.2397 21.1001 11.1V10.2C21.1001 9.96131 21.0053 9.73239 20.8365 9.5636C20.6677 9.39482 20.4388 9.3 20.2001 9.3H19.3001C19.2911 6.4974 19.2029 5.0115 18.2453 4.0548C17.1914 3 15.494 3 12.1001 3ZM6.2501 9.75C6.2501 11.0226 6.2501 11.6589 6.6461 12.054C7.0412 12.45 7.6775 12.45 8.9501 12.45H15.2501C16.5227 12.45 17.159 12.45 17.5541 12.054C17.9501 11.6589 17.9501 11.0226 17.9501 9.75V7.5C17.9501 6.2274 17.9501 5.5911 17.5541 5.196C17.1599 4.8 16.5236 4.8 15.2501 4.8H8.9501C7.6775 4.8 7.0412 4.8 6.6461 5.196C6.2501 5.5902 6.2501 6.2265 6.2501 7.5V9.75ZM6.9251 15.6C6.9251 15.421 6.99621 15.2493 7.1228 15.1227C7.24939 14.9961 7.42108 14.925 7.6001 14.925H8.9501C9.12912 14.925 9.30081 14.9961 9.42739 15.1227C9.55398 15.2493 9.6251 15.421 9.6251 15.6C9.6251 15.779 9.55398 15.9507 9.42739 16.0773C9.30081 16.2039 9.12912 16.275 8.9501 16.275H7.6001C7.42108 16.275 7.24939 16.2039 7.1228 16.0773C6.99621 15.9507 6.9251 15.779 6.9251 15.6ZM17.2751 15.6C17.2751 15.421 17.204 15.2493 17.0774 15.1227C16.9508 14.9961 16.7791 14.925 16.6001 14.925H15.2501C15.0711 14.925 14.8994 14.9961 14.7728 15.1227C14.6462 15.2493 14.5751 15.421 14.5751 15.6C14.5751 15.779 14.6462 15.9507 14.7728 16.0773C14.8994 16.2039 15.0711 16.275 15.2501 16.275H16.6001C16.7791 16.275 16.9508 16.2039 17.0774 16.0773C17.204 15.9507 17.2751 15.779 17.2751 15.6Z"
+						                        fill="white"
+						                    />
+				                    	</svg>
+				                    	<span class="text">통합 검색</span>
+			                  		</a>
+			               		</li>
+			                	<li class="menu-item">
+			                  		<a href="javascript:fnPage('info');" class="link-menu">
+					                    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+					                      	<path
+					                        	d="M60 105C71.9347 105 83.3807 100.259 91.8198 91.8198C100.259 83.3807 105 71.9347 105 60C105 48.0653 100.259 36.6193 91.8198 28.1802C83.3807 19.7411 71.9347 15 60 15C48.0653 15 36.6193 19.7411 28.1802 28.1802C19.7411 36.6193 15 48.0653 15 60C15 71.9347 19.7411 83.3807 28.1802 91.8198C36.6193 100.259 48.0653 105 60 105ZM65.2313 52.0575L59.6063 78.5231C59.2125 80.4356 59.7694 81.5212 61.3162 81.5212C62.4075 81.5212 64.0556 81.1275 65.175 80.1375L64.68 82.4775C63.0656 84.4238 59.505 85.8412 56.4394 85.8412C52.485 85.8412 50.8031 83.4675 51.8944 78.4219L56.0456 58.9144C56.4056 57.2663 56.0794 56.67 54.4313 56.2706L51.8944 55.815L52.3556 53.6719L65.2313 52.0575ZM60 45.9375C58.5082 45.9375 57.0774 45.3449 56.0225 44.29C54.9676 43.2351 54.375 41.8043 54.375 40.3125C54.375 38.8207 54.9676 37.3899 56.0225 36.335C57.0774 35.2801 58.5082 34.6875 60 34.6875C61.4918 34.6875 62.9226 35.2801 63.9775 36.335C65.0324 37.3899 65.625 38.8207 65.625 40.3125C65.625 41.8043 65.0324 43.2351 63.9775 44.29C62.9226 45.3449 61.4918 45.9375 60 45.9375Z"
+					                        	fill="white"
+					                      	/>
+					                    </svg>
+					                    <span class="text">이용 안내</span>
+			                  		</a>
+			                	</li>
+				                <li class="menu-item">
+				                  	<a href="notice.do" class="link-menu">
+					                    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+					                      	<path
+						                        d="M55.0001 29.41V96.2C54.9986 98.2723 54.2658 100.278 52.9308 101.863C51.5958 103.448 49.7442 104.511 47.7023 104.865C45.6604 105.218 43.5591 104.84 41.7687 103.797C39.9783 102.753 38.6136 101.111 37.9151 99.16L27.1801 68.41M27.1801 68.41C22.9362 66.6056 19.446 63.3953 17.3002 59.3133C15.1545 55.2314 14.4849 50.5334 15.4048 46.0145C16.3247 41.4956 18.7776 37.4333 22.3483 34.515C25.9191 31.5967 30.3885 30.0018 35.0001 30H44.1601C64.6601 30 82.2851 23.83 90.0001 15V85C82.2851 76.17 64.6651 70 44.1601 70H35.0001C32.3134 70.0023 29.6538 69.4582 27.1801 68.41ZM90.0001 65C93.9783 65 97.7936 63.4196 100.607 60.6066C103.42 57.7936 105 53.9782 105 50C105 46.0218 103.42 42.2064 100.607 39.3934C97.7936 36.5804 93.9783 35 90.0001 35"
+						                        stroke="white"
+						                        stroke-width="6.5"
+						                        stroke-linecap="round"
+						                        stroke-linejoin="round"
+					                      	/>
+					                    </svg>
+					                    <span class="text">공지사항</span>
+				                  	</a>
+				                </li>
+								<li class="menu-item">
+								    <a href="#" class="link-menu">
+								        <svg xmlns="http://www.w3.org/2000/svg"
+								             width="24" height="24" viewBox="0 0 688 570"
+								             preserveAspectRatio="xMidYMid meet">
+								            <g transform="translate(0.000000,570.000000) scale(0.100000,-0.100000)"
+								               fill="white" stroke="none">
+								                <path d="M2970 4670 c-933 -65 -1622 -312 -1960 -702 -172 -199 -250 -369
+								                -250 -546 0 -101 24 -181 80 -268 181 -276 539 -321 897 -111 145 85 278 220
+								                354 359 74 134 103 233 114 386 7 106 21 145 62 183 67 63 -6 59 1101 59 1095
+								                0 1047 2 1104 -55 43 -43 55 -83 67 -225 6 -74 19 -167 30 -206 94 -333 345
+								                -525 785 -600 219 -37 350 -3 471 120 110 112 155 214 155 353 0 109 -22 195
+								                -80 308 -116 228 -355 452 -627 589 -341 170 -742 276 -1283 337 -196 22 -812
+								                34 -1020 19z"/>
+								                <path d="M2493 3838 c-68 -27 -67 -25 -73 -276 l-5 -227 -76 -115 c-42 -63
+								                -102 -155 -134 -205 -87 -134 -195 -301 -312 -480 -57 -88 -174 -267 -259
+								                -398 l-155 -238 3 -427 3 -427 24 -38 c38 -62 60 -71 190 -77 l116 -5 3 -40
+								                c2 -22 8 -45 14 -52 15 -18 411 -18 426 0 6 7 12 30 14 52 l3 40 1095 0 1095
+								                0 3 -40 c2 -22 8 -45 14 -52 8 -10 61 -13 208 -13 109 0 205 3 214 6 10 4 16
+								                18 16 39 0 64 2 65 111 65 121 0 158 13 196 71 l28 43 3 427 3 428 -128 196
+								                c-70 107 -153 234 -184 283 -74 115 -279 430 -470 722 l-154 235 -5 226 c-4
+								                200 -7 229 -23 247 -32 35 -93 44 -274 40 -251 -5 -246 1 -244 -276 1 -109 -1
+								                -206 -5 -215 -6 -16 -39 -17 -404 -17 -365 0 -398 1 -404 17 -4 9 -6 106 -5
+								                215 1 211 -3 232 -51 258 -30 16 -378 23 -417 8z m625 -740 c8 -8 12 -51 12
+								                -130 0 -106 -2 -118 -19 -128 -11 -5 -67 -10 -125 -10 -137 0 -136 -1 -136
+								                136 0 58 5 114 10 125 10 17 22 19 128 19 79 0 122 -4 130 -12z m380 0 c15
+								                -15 16 -221 2 -249 -10 -17 -22 -19 -130 -19 -108 0 -120 2 -130 19 -14 28
+								                -13 234 2 249 8 8 51 12 128 12 77 0 120 -4 128 -12z m382 -7 c5 -11 10 -67
+								                10 -125 0 -82 -3 -108 -16 -120 -12 -13 -38 -16 -120 -16 -58 0 -114 5 -125
+								                10 -17 10 -19 22 -19 128 0 79 4 122 12 130 8 8 51 12 130 12 106 0 118 -2
+								                128 -19z m-766 -377 c13 -5 16 -26 16 -128 0 -82 -4 -126 -12 -134 -8 -8 -50
+								                -12 -124 -12 -146 0 -144 -2 -144 136 0 148 -4 144 135 144 62 0 120 -3 129
+								                -6z m384 -6 c17 -17 17 -239 0 -256 -8 -8 -51 -12 -130 -12 -142 0 -138 -4
+								                -138 140 0 144 -4 140 138 140 79 0 122 -4 130 -12z m382 -7 c5 -11 10 -69 10
+								                -130 0 -99 -2 -111 -19 -121 -28 -14 -234 -13 -249 2 -17 17 -17 239 0 256 8
+								                8 51 12 130 12 106 0 118 -2 128 -19z m-769 -391 c17 -10 19 -22 19 -134 0
+								                -122 0 -123 -25 -134 -40 -18 -206 -15 -233 4 -20 14 -22 23 -22 126 0 148 0
+								                148 137 148 57 0 113 -5 124 -10z m385 -7 c9 -13 13 -53 14 -130 0 -141 -2
+								                -143 -140 -143 -138 0 -140 2 -140 141 0 152 -3 149 139 149 97 0 116 -3 127
+								                -17z m376 0 c15 -14 18 -32 18 -129 0 -105 -1 -114 -22 -128 -27 -19 -193 -22
+								                -233 -4 -25 11 -25 12 -25 135 0 148 -6 141 144 142 79 1 103 -2 118 -16z"/>
+								            </g>
+								        </svg>
+								        <span class="text">문의 1588-6442</span>
+								    </a>
+								</li>
+
+			              	</ul>
+			            </section>
+			      	</div>
+          			<div class="col-right">
+            			<section class="sc-img">
+				            <img src= "/resources/images/main/main-img.jpg" alt="" />
+            			</section>
+          			</div>
+        		</main>
+        		<footer class="footer">
+		          	<!-- 시군구 링크 목록 -->
+	              	
+
+
+
+<!-- 지자체별 링크 목록 -->
+<div class="swiper-container">
+	<div class="swiper-wrapper">
+		 <div class="swiper-slide">
+		 	<a href="https://www.yw.go.kr/www/index.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/259.png" alt="영월군" />
+	      	</a>
+		 </div>
+		 <div class="swiper-slide">
+		 	<a href="https://www.cwg.go.kr/www/index.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/262.png" alt="철원군" />
+	      	</a>
+		 </div>
+		 <div class="swiper-slide">
+		 	<a href="https://www.taebaek.go.kr/intro.jsp" class="link-city" target="_blank">
+	           	<img src="resources/images/city/254.png" alt="태백시" />
+	      	</a>
+		 </div>
+		 <div class="swiper-slide">
+	    	<a href="https://www.hongcheon.go.kr/www/index.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/257.png" alt="홍천군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.geochang.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/397.png" alt="거창군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.goseong.go.kr/index.goseong" class="link-city" target="_blank">
+	           	<img src="resources/images/city/392.png" alt="고성군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.namhae.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/393.png" alt="남해군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.sancheong.go.kr/www/index.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/395.png" alt="산청군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.uiryeong.go.kr/index.uiryeong" class="link-city" target="_blank">
+	           	<img src="resources/images/city/389.png" alt="의령군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.cng.go.kr/main.web" class="link-city" target="_blank">
+	           	<img src="resources/images/city/391.png" alt="창녕군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.tongyeong.go.kr/main.web" class="link-city" target="_blank">
+	           	<img src="resources/images/city/383.png" alt="통영시" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.hadong.go.kr/main.web" class="link-city" target="_blank">
+	           	<img src="resources/images/city/394.png" alt="하동군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://haman.go.kr/_res/intro/intro.jsp" class="link-city" target="_blank">
+	           	<img src="resources/images/city/390.png" alt="함안군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.hygn.go.kr/main.web" class="link-city" target="_blank">
+	           	<img src="resources/images/city/396.png" alt="함양군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.hc.go.kr/hc.web" class="link-city" target="_blank">
+	           	<img src="resources/images/city/398.png" alt="합천군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.goryeong.go.kr/kor/index.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/367.png" alt="고령군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.gbmg.go.kr/main.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/359.png" alt="문경시" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.bonghwa.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/371.png" alt="봉화군" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://www.sangju.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/358.png" alt="상주시" />
+	      	</a>
+	 	</div>
+		<div class="swiper-slide">
+	    	<a href="https://sj.go.kr/main.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/368.png" alt="성주군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.yeongju.go.kr/design/main/index.html" class="link-city" target="_blank">
+	           	<img src="resources/images/city/356.png" alt="영주시" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.ulleung.go.kr/ko/main.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/373.png" alt="울릉군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.uljin.go.kr/index.uljin" class="link-city" target="_blank">
+	           	<img src="resources/images/city/372.png" alt="울진군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.usc.go.kr/ko/main.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/362.png" alt="의성군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.cheongdo.go.kr/main.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/366.png" alt="청도군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.goheung.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/332.png" alt="고흥군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.gurye.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/331.png" alt="구례군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.shinan.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/345.png" alt="신안군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.yeongam.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/338.png" alt="영암군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.wando.go.kr/intro/intro.htm" class="link-city" target="_blank">
+	           	<img src="resources/images/city/343.png" alt="완도군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.jangseong.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/342.png" alt="장성군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.jangheung.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/335.png" alt="장흥군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.jindo.go.kr/home/main.cs" class="link-city" target="_blank">
+	           	<img src="resources/images/city/344.png" alt="진도군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.haenam.go.kr/intro/intro_20220630.html" class="link-city" target="_blank">
+	           	<img src="resources/images/city/337.png" alt="해남군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.gochang.go.kr/index.gochang" class="link-city" target="_blank">
+	           	<img src="resources/images/city/318.png" alt="고창군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.gimje.go.kr/index.gimje" class="link-city" target="_blank">
+	           	<img src="resources/images/city/311.png" alt="김제시" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.muju.go.kr/index.9is?contentUid=4028a6d28a8bff23018c336c49950e70" class="link-city" target="_blank">
+	           	<img src="resources/images/city/314.png" alt="무주군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.buan.go.kr/index.buan" class="link-city" target="_blank">
+	           	<img src="resources/images/city/319.png" alt="부안군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.sunchang.go.kr/index.sunchang" class="link-city" target="_blank">
+	           	<img src="resources/images/city/317.png" alt="순창군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.imsil.go.kr/index.imsil" class="link-city" target="_blank">
+	           	<img src="resources/images/city/316.png" alt="임실군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.jangsu.go.kr/index.jangsu" class="link-city" target="_blank">
+	           	<img src="resources/images/city/315.png" alt="장수군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.jeongeup.go.kr/index.jeongeup" class="link-city" target="_blank">
+	           	<img src="resources/images/city/309.png" alt="정읍시" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.jinan.go.kr/index.jinan" class="link-city" target="_blank">
+	           	<img src="resources/images/city/313.png" alt="진안군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://nonsan.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/290.png" alt="논산시" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.dangjin.go.kr/kor.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/300.png" alt="당진시" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.buyeo.go.kr/intro.html" class="link-city" target="_blank">
+	           	<img src="resources/images/city/294.png" alt="부여군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.goesan.go.kr/www/index.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/280.png" alt="괴산군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.danyang.go.kr/dy21/1" class="link-city" target="_blank">
+	           	<img src="resources/images/city/282.png" alt="단양군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.yd21.go.kr/" class="link-city" target="_blank">
+	           	<img src="resources/images/city/277.png" alt="영동군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.eumseong.go.kr/www/index.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/281.png" alt="음성군" />
+	      	</a>
+	 	</div> 
+		<div class="swiper-slide">
+	    	<a href="https://www.jincheon.go.kr/home/main.do" class="link-city" target="_blank">
+	           	<img src="resources/images/city/279.png" alt="진천군" />
+	      	</a>
+	 	</div> 
+	</div>
+</div>	
+        		</footer>
+      		</div>
+    	</div>
+    	<!-- div id="noti_pop" class="map-search" style="display: none;">
+    		<div class="modal-area" style="margin-top: 30px; height: 250px;">
+	    		<div class="modal-container" style="background-color: #f5f5f5">
+		    		<div class="title-wrap">
+		    			<strong class="bold">시범 운영중입니다.</strong>
+		    			<span class="number"></span>
+		            </div>
+		            <div class="modal-list">
+		            	지금은 시범 운영하는 기간입니다.<br>
+		            	다소 불편한 점이 있더라도 양해바랍니다.<br>
+		            	감사합니다.
+		            	<br>
+		            </div>
+		            <div class="modal-check" style="margin-left: 10px; margin-bottom: 20px; ">
+		                <label>
+		                    <input type="checkbox" id="hide_today"> 오늘 하루 더 이상 열지 않기
+		                </label>
+		            </div>
+		       		<button id="closePop" class="btn-close">
+		           		<span class="blind">창 닫기</span> <i class="ic-close"></i>
+		           	</button>
+	           	</div>
+           	</div>
+    	</div -->
+  	</body>
+</html>

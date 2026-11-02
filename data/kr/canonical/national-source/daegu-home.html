@@ -1,0 +1,4506 @@
+<!DOCTYPE html>
+<html lang="ko" style="height:100%;overflow: hidden">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="/dbms_web/static/img/common/icon.png" />
+  <link rel="apple-touch-icon" href="/dbms_web/static/img/common/icon.png" />
+  <link rel="apple-touch-icon" sizes="72*72" href="/dbms_web/static/img/common/icon.png" />
+  <link rel="apple-touch-icon" href="/dbms_web/static/img/common/icon.png" />
+  <title>대구광역시 버스정보시스템</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans|Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/fontawesome-free/css/all.min.css">
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/jquery-ui/jquery-ui.min.css">
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Preloader -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/preloader/preloader.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/daterangepicker/daterangepicker.css">
+  <!-- jQuery contextMenu -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/contextMenu/jquery.contextMenu.min.css">
+  <!-- Openlayers -->
+  <link rel="stylesheet" href="/dbms_web/static/js/ol-ext/Control/ZoomBar.css">
+  <link rel="stylesheet" href="/dbms_web/static/css/common.css?_=1793297018963">
+  <link rel="stylesheet" href="/dbms_web/static/css/map.css?_=1793297018963">
+  <link rel="stylesheet" href="/dbms_web/static/css/map_ngii.css?_=1793297018963">
+  <script>
+  var CONFIG = {
+      ctx: '/dbms_web',
+      apiPrefix: '/dbms_web_api',
+      locale: 'ko',
+      mapType: 'ngii',
+      mapMode: '0',
+      qrcode: ''
+  };
+  var searchText = '';
+  </script>
+</head>
+<body style="height:100%;">
+<div id="map-sidebar" style="height:100%;">
+    <style>
+.bsHidden{
+    display:none;
+}
+.routeHidden{
+    display:none;
+}
+.addrHidden{
+    display:none;
+}
+.nearBsHidden{
+    display:none;
+}
+.sidebar-contents{
+    overflow:auto;
+}
+.havBus{
+    padding-bottom: 0px;
+}
+.havBusNext{
+    padding-top: 0px;
+}
+
+.hideImportant{
+    display:none !important;
+}
+
+.stedLabel{
+    padding-left: 10px;
+    position: absolute;
+    color: #306fd9;
+}
+
+.sted > a{
+    color : white;
+}
+.stedText{
+    padding-left: 70px !important;
+}
+.selectStEd-group{
+    float: right;
+    margin-top: -20px;
+    font-size: 10px;
+}
+.selectStEd{
+    padding: .1rem .5rem;
+    font-size: 12px;
+}
+.srcdst-type{
+    color: #306fd9;
+}
+.StEd-group{
+    float: right;
+    margin-top: -35px;
+    font-size: 12px;
+}
+.btn-white{
+    width: 40px;
+    cursor: pointer;
+    border-top-right-radius: 0.45rem;
+    border-bottom-right-radius: 0.45rem;
+    background: #fff url(/dbms_web/static/img/map/btn_search_location.png) no-repeat center center !important;
+    background-size: 23px !important;
+}
+.busArrShow{
+    right: 5px;
+    padding-top: 10px;
+    height: 40px;
+}
+.busArrShow > button{
+    padding: 2px 10px;
+}
+.li-p{
+    margin-bottom: 5px;
+}
+.bt-a{
+    text-align: right;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 12px;
+}
+.addBusInfo > ul{
+    justify-content: space-between;
+    display: flex;
+
+}
+.stedFn{
+    font-size:95%;
+}
+
+#srcdstrouteList .list-group-item li{
+    display: flex;
+}
+#routeTab .nav-item{
+    position: relative;
+}
+#routeTab #routeRefresh{
+    position: absolute;
+    right:10px;
+    top:8px;
+    cursor:pointer;
+    background: #535353;
+    border:1px solid #535353;
+    border-radius: 50%;
+    color:#fff;
+    font-weight: 900;
+    padding:7px;
+}
+
+.stedText::placeholder{
+    font-size: 16px;
+}
+
+.routeInfo {
+    background-color: white;
+    border: 1px solid #f2f2f2;
+    justify-content: space-between;
+    padding: 2%;
+}
+
+.routeInfo li {
+    border: none;
+}
+
+.routeInfo li a:nth-of-type(1) {
+    background-color: white;
+    color: black;
+}
+
+/* 작업중인 css */
+
+#srcdstrouteList .list-group-item-action{
+    border: 0px;
+}
+
+#srcdstrouteList .list-group-item-action:hover, .list-group-item-action:focus{
+    color: black;
+    background-color: transparent;
+}
+
+#srcdstrouteList .refreshButton{
+    position: absolute;
+    right: 10px;
+    top: 13px;
+    cursor: pointer;
+    background: #535353;
+    border: 1px solid #535353;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 900;
+    padding: 7px;
+    margin-bottom: 0.25rem;
+    min-width: 30px;
+    font-size: 0.9rem !important;
+}
+
+#srcdstrouteList .totalTimeTag{
+    display: inline-block;
+    font-size: 17px;
+}
+
+#srcdstrouteList .totalTime{
+    display: inline-block;
+    font-size: 19px;
+}
+
+#srcdstrouteList li div{
+    border: 1px solid #e1e1e1;
+    border-top: 0px;
+    padding: 10px;
+}
+
+#srcdstrouteList ul li div:nth-child(2){
+    border-top: 1px solid #e1e1e1;
+}
+
+.list-group-item-action .busType{
+    background-color: #1C75BC;
+    color: white;
+    padding: 2%;
+    font-size: 0.7rem;
+}
+
+.list-group-item-action .busType{
+    background-color: #1C75BC;
+    color: white;
+    padding: 2%;
+    font-size: 0.7rem;
+    margin-right: 2%;
+}
+
+.list-group-item-action .ext-route{
+    display: inline-block;
+    margin-top: -1px;
+    padding: 0 5px 2px 4px;
+    font-size: 65%;
+    font-weight: normal;
+    border-radius: 4px;
+    border: 1px solid #0e32c5;
+    background: #306fd9;
+    color: #fff;
+    /* width: 13%; */
+}
+
+.list-group-item-action .bus1{
+    border: 1px solid #FF4917;
+    background: #FF4917;
+    color: #fff;
+}
+
+.list-group-item-action .bus2{
+    border: 1px solid #5BD338;
+    background: #5BD338;
+    color: #fff;
+}
+
+.list-group-item-action .bus3{
+    border: 1px solid #2C78CF;
+    background: #2C78CF;
+    color: #fff;
+}
+
+.list-group-item-action .bus4{
+    border: 1px solid #FFC000;
+    background: #FFC000;
+    color: #fff;
+}
+
+.list-group-item-action .busNumber{
+    /* font-weight: 600; */
+    /* margin-right: 2%;
+    padding: 2%;
+    font-size: 0.65rem; */
+    vertical-align: middle;
+    display: inline-block;
+    /* width: 20%; */
+}
+
+.list-group-item-action .busNote{
+    vertical-align: middle;
+    /* display: inline-block; */
+    width: 61%;
+    padding-left: 3%;
+    font-size: 0.8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* white-space: nowrap; */
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.list-group-item-action .wheelchair{
+    vertical-align: bottom;
+    padding-left: 2%;
+}
+
+.list-group-item-action .busWaitTime{
+	color : red;
+	font-weight: bold;
+	margin-right: 2%;
+}
+
+.list-group-item-action .countBs{
+	color: #A6A6A6;
+}
+
+.list-group-item-action .routeDetailInfo{
+	color: #A6A6A6;
+}
+
+.list-group-item-action .firstBusStation{
+	font-weight: bold;
+}
+
+.list-group-item-action .lastBusStation{
+	font-weight: bold;
+}
+
+.list-group-item-action .refresh{
+	float: right;
+}
+
+.list-group-item-action .busGroup{
+	border: 1px solid #e1e1e1;
+    padding: 1%;
+}
+
+.list-group-item-action .busGroup table{
+    width: 100%;
+}
+
+.busContent h6{
+    margin-bottom: 0px;
+}
+
+.busContent table:nth-child(2) td{
+    padding-left: 2%;
+}
+
+.busContent table:nth-child(2) tr:nth-child(1) td{
+    padding-left: 1.5%;
+}
+
+.list-group-item-action .busCircle{
+    text-align: center;
+}
+
+.list-group-item-action .busLine{
+    text-align: left;
+    width: 8%;
+}
+
+.list-group-item-action .busLine img{
+    height: 50%;
+    width: 100%;
+}
+
+
+</style>
+
+
+
+<div id="MapSearch" class="sidebar-header" style="z-index:990">
+    <div class="container">
+        <h3 style="cursor: pointer;" class="mb-0">
+            <i onclick="location.href='/dbms_web'" class="fas fa-home"></i>
+            <small onclick="location.href='/dbms_web'">대구버스 통합검색</small>
+            <button class="sidebar-header-position" type="button" onClick="getLocation('my')" title='내위치'></button>
+        </h3>
+        <div class="form-inline shadow-sm searchText mt-1 mb-1 ">
+            <input class="form-control form-sm" type="text" id="searchText" placeholder="" aria-label="Search" value="" 
+            autocomplete="off" onfocus="this.select()" onKeypress="javascript:if(event.keyCode==13) {searchBtn()}">
+            <input type=hidden id="wincId" value="" >
+            <button class="sidebar-header-btn" type="button" onClick="searchBtn()"></button>
+            <button class="sidebar-header-btn2 sidebar-header-sted" type="button" onClick="stedMode()" title='출도착지 검색'></button>
+        </div>
+        <div class="bt-a" style="display:none">
+            <a id="getMyPos" href="javascript:getLocation('my')" style="margin-right:20px; color : white;">내위치</a>
+            <a id="stedMode" href="javascript:stedMode()" style="color : white;">출도착지 검색</a>
+        </div>
+        
+        <div class="form-inline shadow-sm sted" style="margin-top: 5px;display:none;">
+            <label class="stedLabel" style="top:55px">출발지｜ </label>
+            <input class="form-control form-sm stedText" type="text" id="sdSearchText" placeholder="" aria-label="Search" value='' 
+                autocomplete="off" onfocus="setStedFocus('st')" onKeypress="javascript:if(event.keyCode==13) {searchSted('st',this)}">
+            <button class="sidebar-header-btn" type="button" onClick="searchSted('st',this)"></button>
+            <button class="sidebar-header-btn2 sidebar-header-change" type="button" onClick="changeSted()" title='출도착지 순서 바꾸기'></button>
+            <input id="srcXPos" type="hidden">
+            <input id="srcYPos" type="hidden">
+            <input id="srcBsID" type="hidden">
+        </div>
+        
+        <div class="form-inline shadow-sm sted" style="margin-top: 5px;padding-bottom: 5px;display:none;">
+            <label class="stedLabel" style="top:100px">도착지｜ </label>
+            <input class="form-control form-sm stedText" type="text" id="edSearchText" placeholder="" aria-label="Search" value='' 
+                autocomplete="off" onfocus="setStedFocus('ed')" onKeypress="javascript:if(event.keyCode==13) {searchSted('ed',this)}">
+            <button class="sidebar-header-btn" type="button" onClick="searchSted('ed',this)"></button>
+            <button class="sidebar-header-btn2 sidebar-header-cancel" type="button" onClick="stedMode()" title='출도착지 검색 종료'></button>
+            <input id="dstXPos" type="hidden">
+            <input id="dstYPos" type="hidden">
+            <input id="dstBsID" type="hidden">
+        </div>
+        <div class="stedBtn" style="display:none !important;">
+            <button id="setMyLocation" type="button" onclick="getLocation('sted')" class="stedFn btn btn-info small">내위치</button>
+            <button id="setMapLocation" type="button" onclick="mapSelectMode('sted')" class="stedFn btn btn-warning small d-none d-md-inline">지도</button>
+            <button type="button" onclick="srcDstRouteSearch()" class="stedSearch btn btn-danger">출도착지 검색</button>
+        </div>
+        <!-- 
+        <div class="btn-group selectStEd-group">
+            <button type="button" onclick="setMyPosition('edSearchText')" class="selectStEd btn btn-primary">내위치</button>
+        </div>
+         -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.sidebar-header -->
+<div class="sidebar-contents" id="sidebar-main">
+
+    <!-- 통합검색 정류소 -->
+    <ul class="nav nav-tabs nav-justified bsTab" id="bsTab" role="tablist" style="display:none">
+        <li class="nav-item">
+            <button type="button" onclick="selectVhcModeBs()" class="smfont smbtn btn btn-gps-off" id="btn-vhc-mode-bs" style="position: absolute; top: 98px; left: 5px; padding-top: 2px; padding-bottom: 2px; color: #fff; display: none;">초정밀 버스</button>
+            <a href="javascript:expanseThis('bs-tab', 'bsTabContent')" class="nav-link active" id="bs-tab">정류소<i class="fas fa-chevron-down"></i></a>
+        </li>
+    </ul>
+    <div class="tab-content bsTab" id="bsTabContent" style="display:none">
+        <div class="tab-pane fade show active" id="bsList" role="tabpanel" aria-labelledby="bs-tab">
+            <ul class="list-group">
+                
+            </ul>
+            <a href="javascript:bsAll()" class="bsMore more" style="display:none">더보기</a>
+        </div>
+    </div>
+    <!-- 통합검색 정류소 -->
+
+    <!-- 통합검색 노선 -->
+    <ul class="nav nav-tabs nav-justified routeTab" id="routeTab" role="tablist" style="display:none">
+        <li class="nav-item">
+            <button type="button" onclick="selectVhcMode()" class="smfont smbtn btn btn-gps-off" id="btn-vhc-mode" style="position: absolute; top: 7px; left: 5px; padding-top: 2px; padding-bottom: 2px; color: #fff;/*display: none;*/">초정밀 버스</button>
+            <a href="javascript:expanseThis('route-tab', 'routeTabContent')" class="nav-link active" id="route-tab">버스노선<i class="fas fa-chevron-down"></i></a>
+            <span id="routeRefresh" class="smfont smbtn fas fa-sync-alt"></span><!-- class="fas fa-map-marker-alt" -->
+        </li>
+    </ul>
+    <div class="tab-content routeTab" id="routeTabContent" style="display:none">
+        <div class="tab-pane fade show active" id="routeList" role="tabpanel" aria-labelledby="route-tab">
+            <ul class="list-group">
+                
+            </ul>
+            <a href="javascript:routeAll()" class="routeMore more" style="display:none">더보기</a>
+        </div>
+    </div>
+<!-- 통합검색 노선 -->
+    
+    <!-- 다음 주소검색 -->
+    <ul class="nav nav-tabs nav-justified addrTab" id="addrTab" role="tablist" style="display:none">
+        <li class="nav-item">
+            <a href="javascript:expanseThis('addr-tab', 'addrTabContent')" class="nav-link active" id="addr-tab">주소정보<i class="fas fa-chevron-down"></i></a>
+        </li>
+    </ul>
+    <div class="tab-content addrTab" id="addrTabContent" style="display:none">
+        <div class="tab-pane fade show active" id="addrList" role="tabpanel" aria-labelledby="addr-tab">
+            <ul class="list-group">
+            </ul>
+            <a href="javascript:addrAll()" class="addrMore more" style="display:none">더보기</a>
+        </div>
+    </div>
+    <!-- 다음 주소검색 -->
+    
+    <!-- 주소 선택 시 인근 정류소 -->
+    <ul class="nav nav-tabs nav-justified nearBsTab" id="nearBsTab" role="tablist" style="display:none">
+        <li class="nav-item">
+            <a href="javascript:expanseThis('nearBs-tab', 'nearBsTabContent')" class="nav-link active" id="nearBs-tab">주변 정류소<i class="fas fa-chevron-down"></i></a>
+        </li>
+    </ul>
+    <div class="tab-content nearBsTab" id="nearBsTabContent" style="display:none">
+        <div class="tab-pane fade show active" id="nearBsList" role="tabpanel" aria-labelledby="nearBs-tab">
+            <ul class="list-group">
+                
+            </ul>
+            <a href="javascript:nearBsAll()" class="nearBsMore more" style="display:none">더보기</a>
+        </div>
+    </div>
+    <!-- 주소 선택 시 인근 정류소 -->
+    
+    <div id="routeBsList" class="" style="height: calc(100% - 80px);display:none">
+        <ul class="nav nav-tabs nav-justified" id="routeBsListTitle" role="tablist">
+            <li class="nav-item dir1-tab" style="display:none">
+                <a class="nav-link active" id="dir1-tab" data-toggle="tab" href="#dir1" role="tab" aria-controls="dir1" aria-selected="true">버스노선도<i class="fas fa-chevron-down"></i></a>
+            </li>
+            <li class="nav-item dir0-tab" style="display:none">
+                <a class="nav-link" id="dir0-tab" data-toggle="tab" href="#dir0" role="tab" aria-controls="dir0" aria-selected="false">역방향<i class="fas fa-chevron-down"></i></a>
+            </li>
+        </ul>
+        <!-- /.nav-tabs -->
+        <div class="tab-content mt-0" id="mapTabContent" style="overflow-y: auto;height: 98%;">
+            <div class="tab-pane fade show active" id="dir1" role="tabpanel" aria-labelledby="dir1-tab">
+                <ul class="list-group" style="margin: 1rem 0 !important;">
+                </ul>
+            </div>
+            <!-- /.tab-cont-01 -->
+            <div class="tab-pane fade" id="dir0" role="tabpanel" aria-labelledby="dir0-tab">
+                <ul class="list-group" style="margin: 1rem 0 !important;">
+                </ul>
+            </div>
+            <!-- /.tab-cont-02 -->
+        </div>
+        <!-- /.tab-content -->
+    </div>
+    
+    <!-- 정류소 선택 시 도착정보 -->
+    <ul class="nav nav-tabs nav-justified selectRouteTab" id="selectRouteTab" role="tablist" style="display:none">
+        <li class="nav-item tab-button">
+            <a href="javascript:expanseThis('selectRoute-tab', 'selectRouteContent')" class="nav-link active" id="selectRoute-tab">버스도착정보<i class="fas fa-chevron-down"></i></a>
+        </li>
+        <li class="tab-button list-group-item-action">
+            <button type="button" onclick="arrDataSort(this)" class="smfont smbtn btn btn-nomal" id="btn-arr-sort">도착시간순</button>
+            <button type="button" onclick="selectShowType(this)" class="smfont smbtn btn btn-nomal">전광판</button>
+            <button type="button" onclick="selectArrReflash()" class="smfont smbtn btn btn-nomal"><i class="fas fa-sync-alt"></i></button>
+        </li>
+    </ul>
+    <div class="tab-content selectRouteTab" id="selectRouteContent" style="display:none">
+        <div class="tab-pane fade show active" id="selectRouteList" role="tabpanel" aria-labelledby="selectRoute-tab">
+            <ul class="list-group">
+            </ul>
+        </div>
+        <div id="selectRoutePaenl" style="margin-top: 20px;text-align: center;;display:none">
+            
+        </div>
+    </div>
+    <!-- 정류소 선택 시 도착정보 -->
+    
+    <!-- 출도착지 결과 -->
+    <ul class="nav nav-tabs nav-justified srcdstTab" id="srcdstTab" role="tablist" style="display:none">
+        <li class="nav-item">
+            <a href="javascript:expanseThis('srcdstroute-tab', 'srcdstrouteContent')" class="nav-link active" id="selectRoute-tab">출도착지정보<i class="fas fa-chevron-down"></i></a>
+        </li>
+    </ul>
+    <div class="tab-content srcdstTab" id="srcdstrouteContent" style="display:none">
+        <div class="tab-pane fade show active" id="srcdstrouteList" role="tabpanel" aria-labelledby="srcdstroute-tab">
+            <ul class="list-group">
+                <!-- <li class="list-group-item list-group-item-action" id="srcdstroute0"
+                    onclick="selectSrcDst(0)"><h6 class="mr-auto"
+                        style="margin-top: 10px;">노선 테스트1번</h6>
+                    <ul class="routeInfo" style="padding-left: 20px;">
+                        <li style="font-size: 14px"><a style="font-weight: bold;">탑승</a><a>대구은행역(1번출구)</a></li>
+                        <li style="font-size: 14px"><a style="font-weight: bold;">하차</a><a>약령시건너(동성로입구)</a></li>
+                        <li style="font-size: 14px"><a style="font-weight: bold;">거리</a><a>1.9km</a></li>
+                        <li style="font-size: 14px"><a style="font-weight: bold;">정류소</a><a>3개소</a></li>
+                        <li style="font-size: 14px"><a style="font-weight: bold;">소요시간</a><a>9분</a></li>
+                    </ul></li>
+                    
+                    <li class="list-group-item list-group-item-action" id="srcdstroute0"
+                    onclick="selectSrcDst(0)"><h6 class="mr-auto"
+                        style="margin-top: 10px;">노선 테스트2번</h6>
+                    <ul class="routeInfo" style="padding-left: 20px;">
+                        <li style="font-size: 14px"><a style="font-weight: bold;">탑승</a><a>대구은행역(1번출구)</a></li>
+                        <li style="font-size: 14px"><a style="font-weight: bold;">하차</a><a>약령시건너(동성로입구)</a></li>
+                        <li style="font-size: 14px"><a style="font-weight: bold;">거리</a><a>1.9km</a></li>
+                        <li style="font-size: 14px"><a style="font-weight: bold;">정류소</a><a>3개소</a></li>
+                        <li style="font-size: 14px"><a style="font-weight: bold;">소요시간</a><a>9분</a></li>
+                    </ul></li> -->
+                    
+                    </ul>
+        </div>
+    </div>
+    <!-- 출도착지 결과 -->
+    <!-- 검색결과 없음 -->
+    <ul class="nav nav-tabs nav-justified noData" id="noData" role="tablist" style="display:none">
+        <li class="nav-item" style="padding: 20px 10px;">
+            <h8 class="text-info" style="font-size: 14px;">출도착지 정류소가 원거리입니다.<br>출도착지를 조정하여 재검색하세요.</h8>
+        </li>
+    </ul>
+</div>
+
+<div class="toast" id="substToast" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute;;display:none">
+    <div class="toast-header">
+        <strong class="mr-auto substTitle"></strong>
+        <small></small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" onClick="closeSubstToast()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        <table  id="substTable" width="100%" border="0" cellpadding="0" cellspacing="0" class="bbs_view">
+            
+        </table>
+    </div>
+</div>
+<!-- 
+<div class="sidebar-contents" id="sidebar-routeList" style="display:none">
+    <ul class="nav nav-tabs nav-justified" id="selectRouteTab" role="tablist">
+        <li class="nav-item">
+            <a href="javascript:expanseThis('selectRoute-tab', 'selectRouteContent')" class="nav-link active" id="selectRoute-tab">경유노선<i class="fas fa-chevron-down"></i></a>
+        </li>
+    </ul>
+    <div class="tab-content" id="selectRouteContent">
+        <div class="tab-pane fade show active" id="selectRouteList" role="tabpanel" aria-labelledby="selectRoute-tab">
+            <ul class="list-group">
+            </ul>
+        </div>
+    </div>
+</div>
+ -->
+<!-- /.sidebar-contents -->
+</div>
+<div id="map-wrap">
+    <style>
+.mapClose{
+    position: absolute;
+    bottom: 43px;
+    right : 20px;
+}
+</style>
+<!-- 
+<div id="shadow" class="Shadow d-block d-md-none" >
+    <span id="shadowToggle" class="toggle" onclick="shadow()"></span>
+</div>
+ -->
+
+<div id="map">
+</div>
+<input type="hidden" id="initBsId">
+<input type="hidden" id="autoSearch" value="">
+
+<div id="btn-close-map" class="btn-group d-md-none d-block mapClose" style="bottom: 66px !important; right: 16px !important;">
+    <button type="button" onclick="closeMap()" class="smfont smbtn btn btn-danger">닫기</button>
+</div>
+
+<div id="tools-mode" style="opacity: 1 !important; width: 87% !important; display: none !important;">
+    <div class="btn-group btn-group-toggle group1" data-toggle="buttons" aria-label="지도유형">
+        <label class="btn btn-sm btn-light">
+            <input type="radio" name="map-mode" value="0" autocomplete="off">일반
+        </label>
+        <label class="btn btn-sm btn-light">
+            <input type="radio" name="map-mode" value="1" autocomplete="off">위성
+        </label>
+    </div>
+    <div class="btn-group btn-group-toggle group2" data-toggle="buttons">
+        <label class="btn btn-sm btn-light">
+            <input type="radio" name="map-mode" value="3" autocomplete="off">English
+        </label></div>
+    <div id="upgps-note-box" class="btn-group btn-group-toggle group3" style="display: inline-flex;float: right; display: none !important;">
+        <label class="btn" style="background-color:#306fd9; color:#fff; padding: 4px 7px; flex: none; box-shadow: rgb(0 0 0 / 30%) 0px 3px 5px; border: 1px solid #306fd9;">
+            의견수렴
+        </label>
+        <input onkeypress="javascript:if(event.keyCode==13) {saveUpgpsNote($('#upgps-note').val()); $('#upgps-note').val('');}" type="text" id="upgps-note" name="upgps-note" placeholder="초정밀 버스정보 서비스에 대한 의견을 남겨주세요." maxlength="200" style="box-shadow: rgb(0 0 0 / 30%) 0px 3px 5px; border: 1px solid #999; padding-left: 5px;">
+        <button onclick="{saveUpgpsNote($('#upgps-note').val()); $('#upgps-note').val('');}" class="btn" style="box-shadow: rgb(0 0 0 / 30%) 1px 3px 5px; border: none; background-color: #65c400 !important;">
+            보내기
+        </button>
+    </div>
+</div>
+
+<div id="tools-map" class="d-none d-md-block">
+    <ul>
+        <li style="background: url(/dbms_web/static/img/bg_tools_map_top.png); background-repeat: repeat-y; height: 30px;"></li>
+        <li style="background: url(/dbms_web/static/img/bg_tools_map.png); background-repeat: repeat-y;">
+            <ul class="toolButton">
+                <li class="hint--left" data-hint="이동"><a href="#tool-pan" onclick="return false;"><i class="far fa-hand-paper"></i></a></li>
+                <li class="hint--left" data-hint="확대"><a href="#tool-zoomBox" onclick="return false;"><img src="/dbms_web/static/img/icon_zoom_box.svg" /></a></li>
+                <li class="hint--left" data-hint="이전"><a href="#tool-navPrev" onclick="return false;"><i class="fa fa-arrow-left"></i></a></li>
+                <li class="hint--left" data-hint="다음"><a href="#tool-navNext" onclick="return false;"><i class="fa fa-arrow-right"></i></a></li>
+                <li class="hint--left" data-hint="거리"><a href="#tool-measureDist" onclick="return false;"><img src="/dbms_web/static/img/icon_measure_dist.svg" /></a></li>
+                <li class="hint--left" data-hint="면적"><a href="#tool-measureArea" onclick="return false;"><img src="/dbms_web/static/img/icon_measure_area.svg" /></a></li>
+                <li class="hint--left" data-hint="초기화"><a href="#tool-reset" onclick="return false;"><i class="fas fa-sync-alt"></i></a></li>
+            </ul>
+        </li>
+        <li><img src="/dbms_web/static/img/bg_tools_map_bottom.png" width="39" height="24" alt=""></li>
+    </ul>
+</div>
+
+<div id="map-popup" class="map-popup" style="display: none;">
+    <div class="popup-close">
+        <a href="#" onclick="ZMAP.closePopup($(this).closest('.map-popup').attr('id'));"><i class="fa fa-close"></i></a>
+    </div>
+    <div class="popup-content"></div>
+</div>
+
+<div id="map-tooltip" class="map-tooltip" style="display: none;">
+    <div class="tooltip-content"></div>
+</div>
+
+<div id="footer" onclick="shadow()">
+    <div class="float-left d-md-block d-none">Copyright <span>Daegu BusInfo</span> All rights reserved.</div>
+    <div class="float-right d-md-block d-none"><img src="/dbms_web/static/img/icon_bit.png" alt="버스정보안내기 아이콘"> : 버스정보안내기가 설치된 정류소</div>
+</div>
+
+<div id="upgpsInfo" style="display:none; position:absolute; margin:0; padding:0; bottom:67px; right:0; font-family:'Nanum Gothic', sans-serif; font-size:13px !important; text-align:right;">
+<span style="display: block;
+    line-height: 15px;
+    margin: 10px;
+    position: relative;
+    z-index: 999;">시범 운영 중으로 오차 발생 가능하며,<br/>장시간 모바일 사용 시 데이터 요금이 부과될 수 있습니다.</span>
+<div style="position:absolute;top:0;width:100%;height:100%;background-color:#fff;opacity:0.5;"></div>
+</div>
+
+<div id="upgps-note-box-2" class="btn-group btn-group-toggle group3" style="float: right;  display: none !important;">
+    <label class="btn" style="background-color:#306fd9; color:#fff; padding: 4px 7px; flex: none; box-shadow: rgb(0 0 0 / 30%) 0px 3px 5px; border: 1px solid #306fd9;">
+        의견수렴
+    </label>
+    <input onkeypress="javascript:if(event.keyCode==13) {saveUpgpsNote($('#upgps-note-2').val()); $('#upgps-note-2').val('');}" type="text" id="upgps-note-2" name="upgps-note" placeholder="초정밀 버스정보 서비스 의견 남기기" maxlength="200" style="box-shadow: rgb(0 0 0 / 30%) 0px 3px 5px; border: 1px solid #999; padding-left: 5px;">
+    <button onclick="{saveUpgpsNote($('#upgps-note-2').val()); $('#upgps-note-2').val('');}" class="btn" style="box-shadow: rgb(0 0 0 / 30%) 1px 3px 5px; border: none; background-color: #65c400 !important;">
+        보내기
+    </button>
+</div>
+
+<div id="naviTrackingMask" style="display: block;position:fixed;margin:0;padding:0;top:0;left:0;width:100%;height:100%;background-color:#fff;opacity:0.01;" onclick="vhcTracking(false);"></div>
+
+<div id="naviPanel" style="display: none;">
+    <div id="naviPanelBox">
+        <div class="" style="border-bottom: 1px solid #999;">
+            <span id="naviRouteNo" style="
+                display: inline-block;
+                line-height: 37px;
+                font-size: 20px;
+                font-weight: bold;">...</span>
+            <span id="naviRouteNote" style="
+                display: inline-block;
+                font-size: 17px;
+                margin-left: 3px;"></span>
+            <span style="
+                padding: 9px 2px 5px 10px;
+                display: inline-block;
+                float: right;
+                font-size: 12px;
+                font-weight: bold;
+                cursor: pointer;" onclick="hideNaviPanel(naviCrfId);">X</span>
+        </div>
+        <div class="" style="float: left; width: 80%;">
+            <span id="naviDstBsNm" style="
+                display: block;
+                line-height: 35px;
+                font-size: 16px;
+                font-weight: bold;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                width: 100%;
+                "><span>...</span> <span style="font-size:14px;font-weight:normal;margin-left:3px;">정류소로 이동중</span></span>
+            <span id="naviVhcNo" style="
+                padding-right: 10px;
+                line-height: 17px;
+                font-size: 14px;
+                border-right: 1px solid #ddd;">차량번호</span>
+            <span id="naviVhcSpeed" style="
+                padding-left: 10px;
+                line-height: 17px;
+                font-size: 14px;">속도 : ...km/h</span>
+
+
+
+            <span class="debug-span" style="
+                display: inline-block;
+                padding-left: 10px; width: 100px;
+                line-height: 17px;
+                font-size: 14px;"></span>
+            <span class="debug-span" style="
+                display: inline-block;
+                padding-left: 10px; width: 100px;
+                line-height: 17px;
+                font-size: 14px;"></span>
+            <span class="debug-span" style="
+                display: inline-block;
+                padding-left: 10px; width: 120px;
+                line-height: 17px;
+                font-size: 14px;"></span>
+            <span class="debug-span" style="
+                display: inline-block;
+                padding-left: 10px; width: 120px;
+                line-height: 17px;
+                font-size: 14px;"></span>
+            <span class="debug-span" style="
+                display: inline-block;
+                padding-left: 10px; width: 120px;
+                line-height: 17px;
+                font-size: 14px;"></span>
+        </div>
+        <div id="naviPanelMode" class="gray-filter" onclick="vhcTracking(!naviTracking);"><!--주행-->&nbsp;</div>
+    </div>
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="/dbms_web/static/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/dbms_web/static/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/dbms_web/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="/dbms_web/static/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<!-- preloader -->
+<script src="/dbms_web/static/plugins/preloader/jquery.preloader.min.js"></script>
+<!-- daterangepicker -->
+<script src="/dbms_web/static/plugins/moment/moment.min.js"></script>
+<script src="/dbms_web/static/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- jQuery contextMenu -->
+<script src="/dbms_web/static/plugins/contextMenu/jquery.contextMenu.min.js"></script>
+<script src="/dbms_web_api/static/js/basic-data.js?_=1793297018963"></script>
+<script src="/dbms_web/static/js/Z.js?_=1793297018963"></script>
+<script src="/dbms_web/static/js/Zdata.js?_=1793297018963"></script>
+<script src="/dbms_web/static/js/proj4js-compressed.js"></script>
+<script src="/dbms_web/static/js/proj4js-defs.js"></script>
+<script src="/dbms_web/static/js/ol/OpenLayers.js"></script>
+<script src="/dbms_web/static/js/ol-ext/Control/ZoomBar.js"></script>
+<script src="/dbms_web/static/js/ol-custom/Control/Click.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5523763929a6432ba7bcbfefb377a273&libraries=services" charset="utf-8"></script>
+<script src="//map.ngii.go.kr/openapi/ngiiMap.js?apikey=BB937A542BBD2071646EAB08626851E3" charset="utf-8"></script>
+<script src="/dbms_web/static/js/map.js?_=1793297018963"></script>
+<script src="/dbms_web/static/js/map_resource.js?_=1793297018963"></script>
+<script src="/dbms_web/static/js/map_ngii.js?_=1793297018963"></script>
+<script src="/dbms_web/static/js/common.js?_=1793297018963"></script>
+<script src="/dbms_web/static/js/storage.js?_=1793297018963"></script>
+<script src="/dbms_web/static/js/queue.js?_=1793297018963"></script>
+<script>
+var menuCd = "WV-02";
+setCountAccess(menuCd);
+
+var userAgent = navigator.userAgent.toLowerCase(); // 접속 핸드폰 정보 
+
+    // 모바일 홈페이지 바로가기 링크 생성 
+    if(userAgent.match('iphone')) { 
+        document.write('<link rel="apple-touch-icon" href="/dbms_web/static/img/common/icon.png" />') 
+    } else if(userAgent.match('ipad')) { 
+        document.write('<link rel="apple-touch-icon" sizes="72*72" href="/dbms_web/static/img/common/icon.png" />') 
+    } else if(userAgent.match('ipod')) { 
+        document.write('<link rel="apple-touch-icon" href="/dbms_web/static/img/common/icon.png" />') 
+    } else if(userAgent.match('android')) { 
+        document.write('<link rel="shortcut icon" href="/dbms_web/static/img/common/icon.png" />') 
+    }
+</script>
+<script>
+
+$('#map').preloader({
+    zIndex: '9999'
+});
+
+$(function() {
+
+
+    $( "#footer" ).on( "swipe", swipeHandler );
+    var drag_x1 = false;
+    $("#footer").on({
+        mousedown: function(event) {
+          drag_x1 = event.offsetY;
+        },
+        mouseup: function(event) {
+          if(event.offsetY - drag_x1 > 15) {
+              resizeWindow("half");
+              $("#footer").addClass("active")
+          }
+          if(event.offsetY - drag_x1 < -15) {
+              /*
+              */
+              resizeWindow("full");
+              $("#footer").removeClass("active")
+          }
+        }
+      });
+    
+    initMap(function() {
+        for (var i = 0, cnt = map.layers.length; i < cnt; i++) {
+            map.layers[i].numZoomLevels = 13;
+        }
+
+        var options = {
+            mapProjectionName: CONFIG.mapType == 'kakao' ? 'EPSG:5181' : 'EPSG:5179',
+            locale: CONFIG.locale,
+            resetTool: function(onlyUi) {
+                if (onlyUi) {
+                    $('#tools-map ul>li>a').removeClass('active');
+                } else {
+                    ZMAP.changeTool('pan', $('#tools-map ul>li>a').eq(0)[0]);
+                }
+            }
+        };
+
+        ZMAP.init(options, function() {
+            $('#tools-mode label>input').on('change', function(event) {
+                changeMapMode(this.value);
+            });
+
+            $('#tools-map ul>li>a').click(function() {
+                ZMAP.changeTool(this.hash.substr(6), this);
+            });
+
+            $(map.div).on('loaded.map.layers', function(event) {
+                $('#map').preloader('remove');
+                var bsId = $("#initBsId").val();
+                if(bsId){
+                    $("#initBsId").val('');
+                    if (bsId == '7001009600' || bsId == '7001010400' || bsId == '7361000600') { // 국채보상운동기념공원, 대구시동인청사건너, 우보면사무소
+                        ZMAP.setCenterByBsId2(bsId);
+                    } else {
+                        ZMAP.setCenterByBsId(bsId);
+                    }
+                }
+            }).on('click.map.context-menu', function(event, data) {
+                handleContextMenu(data.key, data.lon, data.lat);
+            });
+            
+        });
+    }, CONFIG.mapMode);
+
+    $('#tools-mode input[value="' + CONFIG.mapMode + '"]').prop('checked', true).parent().addClass('active');
+});
+
+function changeMapMode(mm) {
+    var mt = mm == '0' || mm == '1' ? 'kakao' : 'ngii';
+
+    if (CONFIG.mapType == mt) {
+        ZMAP.setMode(mm);
+    } else {
+        if(mm == '0' || mm == '1')
+            location.href = '?locale=ko&mapMode=' + mm + '&searchText=' + $('#searchText').val();
+        else
+            location.href = '?locale=en&mapMode=' + mm + '&searchText=' + $('#searchText').val();
+    }
+}
+
+function shadow(){
+    if($("#footer").hasClass("active")){
+        $("#footer").removeClass("active")
+        resizeWindow("full");
+    }else{
+        $("#footer").addClass("active")
+        resizeWindow("half"); 
+    }
+}
+
+// Callback function references the event target and adds the 'swipe' class to it
+function swipeHandler( event ){
+    debugger;
+  $( event.target ).addClass( "swipe" );
+}
+
+function saveUpgpsNote(noteStr){
+    if (noteStr.trim().length != 0) {
+        $.ajax({
+            type : "POST",
+            url : "/upgpsNote",
+            dataType : "json",
+            data : 'bodyNote=' + noteStr,
+            success : function(data) {
+                var item = data.header;
+                if(item.success){
+                    alert("의견수렴 요청이 완료되었습니다.");
+                }
+            }
+        });
+    }
+}
+</script><script>
+
+var ACCUBUS_URL = "https://accubus.daegu.go.kr:8095/dbms_web_api";
+
+var UPGPS_ROUTE_IDS = "*";
+
+var UPGPS_BS_IDS = "disabled";
+
+var addrData = {};
+var searchBsData = {};
+var searchBsData2 = {};
+var selectRouteData = {};
+var routeListData = {};
+var busPisition = {};
+
+var searchBsBool = false;
+var searchRouteBool = false;
+var searchAddrBool = false;
+var searchAddrCnt = 0;
+var selectBsId = "";
+
+var searchMode = "none";
+var mapSizeMode = "none;"
+
+var timer = null;
+var firstRoute = true;
+
+var keywordSearchOptions ={
+        x : 128.601277028,
+        y : 35.8714742094319
+};
+
+var searchObject = [];
+var mBookMark = [];
+
+var mapTabContentScrollHeight = 0;
+
+var vhcMode = "NORMAL";
+var vhcModeBs = "NORMAL";
+var searchArrTimeParam = {};
+var searchArrTimeCrfIds = "";
+var searchArrTimeCrfIdsByRoute = [];
+var searchArrTimeCrfIdsByRouteBounds = [];
+var crfIdArr = [];
+var timerIdArr = [];
+var vhcDataArr = [];
+var naviMode = false;
+var naviTracking = false;
+var naviCrfId = "";
+var curMapRouteId = "";
+var selectBsNoIdx = -1;
+var activeId = null; 
+var curMapZoom = 0;
+var curMapCenter = null;
+var crfIdByVhcNo = [];
+
+const VERTEX_LENGTH = 100; // 100cm(1m)
+const FPS_CAL_FAC = 28;
+const RENDER_INTERVAL_COR_FAC = 1; // 적은 값이 이동을 빠르게 함
+
+$(function(){
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+            console.log('탭이 비활성화됨');
+        } else {
+            console.log('탭이 다시 활성화됨');
+            if (vhcMode == "UPGPS") {
+                $('body').preloader({zIndex: '9999'});
+                setTimeout(function() {
+                    $('body').preloader('remove');
+                }, 3000);
+                $('#routeRefresh').trigger('click');
+            }
+        }
+    });
+
+    backControl(callbackFunction);  // 뒤로가기 버튼 컨트롤
+    var ps = null;
+
+    if (typeof kakao != 'undefined') {
+        ps = new kakao.maps.services.Places(); // 장소 검색 객체 생성
+    }
+
+    resizeWindow();
+    search(true);
+    
+    $( window ).resize( function() {
+        resizeWindow();
+      } );
+    
+    $(document).click(function(e){ //문서 body를 클릭했을때
+        if(e.target.className =="toast"){return false} //내가 클릭한 요소(target)를 기준으로 상위요소에 .share-pop이 없으면 (갯수가 0이라면)
+        $('#substToast').toast('hide');
+        $('#substToast').hide();
+    });
+    
+    setMyIcon();
+    timer = setInterval(setMyIcon, 5000);
+    
+    searchObject = getStorage("searchObject");
+    mBookMark = getStorage("mBookMark");
+    
+    $("#routeRefresh").click(function(){
+        initUpgps();
+        mapTabContentScrollHeight = $("#mapTabContent").scrollTop();
+
+        var $selectRoute = $("#routeList li").has("#routeInfo");
+        var index = 0;
+        let allRouteNo = [];
+        
+        for( let i = 0; i < $("#routeList > ul > li").length; i++ ){
+            let route = $("#routeList > ul > li")[i];
+            if(route.innerText.indexOf('노선 전체 보기') > 1){
+                allRouteNo.push(i);
+            } 
+        };
+        
+        if($("#routeList > ul > li").length > 1){
+            
+            if(allRouteNo.length > -1){
+                let allRouteCnt = 0;
+                //노선 전체 보기 있을경우
+                
+                for( let k = 0;  k < allRouteNo.length; k ++ ){
+                    if(allRouteNo[k] < $("#routeList > ul > li").index($selectRoute)){
+                        allRouteCnt ++;
+                    }
+                }
+                
+                if(allRouteCnt > 0){
+                    index = $("#routeList > ul > li").index($selectRoute) - allRouteCnt;
+                }else{
+                    index = $("#routeList > ul > li").index($selectRoute);
+                }
+            }else{
+                index = $("#routeList > ul > li").index($selectRoute);
+            }
+            
+        }else{
+            
+            var route = $("#routeList > ul > li").text().split(" ")[0];
+            
+            for(var i = 0; i < routeListData.length; i++){
+                if(routeListData[i].routeNo == route){
+                    index = i;
+                }
+            }
+        }
+        
+        selectRouteNo(index);
+    })
+    
+    $('.stedText').on('focus keypress', function(event){
+        if(event.keyCode != 13)
+            $(this).attr("placeholder","");
+    });
+
+    $.ajax({
+        method: 'GET',
+        url: ACCUBUS_URL + '/realtime/crfIdList',
+        cache: false,
+        loadingTarget: false,
+        dataType: 'json',
+        success: function(data) {
+            if (data != null && data != undefined && data.body != null && data.body != undefined) {
+                crfIdByVhcNo = [];
+                for (var i = 0; i < data.body.length; i++) {
+                    var vhc = data.body[i];
+                    crfIdByVhcNo[vhc.vhcNo] = vhc.crfId;
+                }
+            }
+        }
+    });
+});
+
+function setMyIcon(){
+    getLocation('my2');
+}
+
+function init(){
+    if (sizeCheck()) {
+        mapControl(false);  // 지도 숨기기
+    }
+    hideAll('All');
+    $('#noData').hide();
+    $('#bsList > ul').html('');
+    $('#routeList > ul').html('');
+    $('#addrList > ul').html('');
+    $('#selectRouteList > ul').html('');
+    $('#nearBsList > ul').html('');
+    
+    addrData = {};
+    searchBsData = {};
+    searchBsData2 = {};
+    selectRouteData = {};
+    routeListData = {};
+    busPisition = {};
+    
+    searchBsBool = false;
+    searchRouteBool = false;
+    searchAddrBool = false;
+    searchAddrCnt = 0;
+    searchMode = "none";
+    
+    $('.fa-chevron-up').each(function(index, item){
+        $(item).addClass('fa-chevron-down');
+        $(item).removeClass('fa-chevron-up');
+    })
+    
+    vhcMode = "NORMAL";
+//     vhcMode = "UPGPS";
+    initUpgps();
+
+    setInterval(function() {
+        if (!($("#selectRouteTab").css("display") == "none"))
+            selectArrReflash(true);
+    }, 10000);
+
+    setInterval(ttt, 100);
+
+}
+
+    function backControl(callbackFunction) {
+        var text = $('#searchText').val();
+        var wincId = $('#wincId').val();
+        pathName = "map?searchText=" + text + "&wincId=" + wincId;
+
+        var check = localStorage.getItem("history");
+        if(check == "true"){
+            history.pushState({page:"map"}, document.title, pathName);
+            localStorage.setItem("history", "false");
+
+        }else{
+            localStorage.setItem("history", "goHome");
+        }
+
+
+        //popstate Event Listener 
+        window.addEventListener('popstate', function(event) {
+            var check = localStorage.getItem("history");
+
+            if($('#map-wrap').css('z-index') == '101'){
+                closeMap();
+            }else{
+                location.href = "map?searchText=" + text + "&wincId=" + wincId;
+            }
+        });
+    }
+
+    function callbackFunction() {
+        /*$Z.confirm("메인화면으로 가시겠습니까??", 'info', function() {
+            location.href = CONFIG.ctx;
+        });*/
+        if($('#map-wrap').css('z-index') == '101'){
+            closeMap();
+        }else{
+            location.href='';
+        }
+        
+    }
+    
+    function searchBtn(){
+        localStorage.setItem("history", "true");
+        var searchText = $('#searchText').val();
+        location.href='map?mapMode=0&searchText=' + searchText +'&auto=' + modalSearch;
+        
+    }
+
+    function search(all) {
+
+        var searchText = $('#searchText').val();
+        var wincId = $('#wincId').val();
+        
+        $('#wincId').val('')
+        if (wincId && wincId.length > 0) {
+            searchText = wincId;
+        }
+
+        $('#bsList > ul').html('');
+        $('#routeList > ul').html('');
+        $('#addrList > ul').html('');
+
+        init();
+
+        if(all){
+            searchAll(searchText);
+        }
+    }
+    
+    function searchAll(searchText){
+        if (searchText.isNum() && searchText.length == 5) {
+            var wincId = searchText;
+            searchRouteBool = true;
+            searchAddrBool = true;
+            searchAddrCnt = 0;
+            searchBs(null, wincId);
+        } else if (searchText != null && searchText != '') {
+            if (typeof kakao != 'undefined') {
+                var ps = new kakao.maps.services.Places();
+                ps.keywordSearch(searchText, placesSearchCB, keywordSearchOptions);
+            }
+            searchBs(searchText, null);
+            searchRoute(searchText);
+        }
+    }
+
+    function searchCallBack() { // 3개 모두 검색 완료 체크 후 콜백 기능 실행
+        if (searchBsBool == true && searchRouteBool == true && searchAddrBool == true) {
+            var searchBsCnt = searchBsData.length;
+            var searchRouteCnt = routeListData.length;
+            if (!searchBsCnt) {
+                searchBsCnt = 0;
+            }
+            if (!searchRouteCnt) {
+                searchRouteCnt = 0;
+            }
+            if (searchAddrCnt == 0) {
+                if (searchBsCnt == 0 && searchRouteCnt > 0) {
+                    if (searchRouteCnt < 2) { // 4->2
+                        selectRouteNo(0);
+                    }
+                } else if (searchRouteCnt == 0 && searchBsCnt == 1) {
+                    selectBS(0);
+                } else if (searchRouteCnt == 0 && searchBsCnt == 0) {
+                    $('#noData').show();
+                }
+            } else if (searchText.match(/^\d{3,4}$/) && searchRouteCnt == 1) {
+                selectRouteNo(0);
+            }
+        }
+    }
+
+    function wait(msecs) {
+        var start = new Date().getTime();
+        var cur = start;
+        while (cur - start < msecs) {
+            cur = new Date().getTime();
+        }
+    }
+
+    function hideAll(ignore) {
+        if (ignore.indexOf("bsTab") < 0) {
+            $('.bsTab').hide();
+        }
+        if (ignore.indexOf("routeTab") < 0) {
+            $('.routeTab').hide();
+        }
+        if (ignore.indexOf("addrTab") < 0) {
+            $('.addrTab').hide();
+        }
+        if (ignore.indexOf("selectRouteTab") < 0) {
+            $('.selectRouteTab').hide();
+        }
+        if (ignore.indexOf("nearBsTab") < 0) {
+            $('.nearBsTab').hide();
+        }
+        if (ignore.indexOf("routeBsList") < 0) {
+            $('#routeBsList').hide();
+        }
+
+        if (ignore.indexOf("srcdstTab") < 0) {
+            $('.srcdstTab').hide();
+        }
+    }
+
+    function searchBs(searchText, wincId) { // 검색어를 이용한 정류소 조회
+        $.ajax({
+            type: 'GET',
+            url: "/bs/search",
+            dataType: "json",
+            loadingTarget: false,
+            data: {
+                searchText: searchText,
+                wincId: wincId
+            },
+            success: function(data) {
+                var item = data.body;
+                searchBsData = item;
+                if (item.length > 0) {
+                    $('#bsTab').show();
+                    $('#bsTabContent').show();
+                } else {
+                    $('#bsTab').hide();
+                    $('#bsTabContent').hide();
+                }
+
+                var tag = $('#bsList > ul')
+                for (var i = 0; i < item.length; i++) {
+                    //displayMarker(data[i]);
+                    var html = '';
+                    if (i > 4) {
+                        $('.bsMore').show();
+                        html = '<li class="list-group-item list-group-item-action bsHidden" id="selectBS'+i+'">';
+                    } else {
+                        html = '<li class="list-group-item list-group-item-action" id="selectBS'+i+'">';
+                    }
+                    if(searchMode == "none"){
+                        html += '<a class="d-flex w-100 justify-content-between" onclick="selectBS(' + i + ')"><div class="form-inline">';
+                        html += '<h6 class="li-p" >' + item[i].bsNm + '</h6>';
+                    }else if(searchMode == "st"){
+                        html += '<a class="d-flex w-100 justify-content-between" onclick="selectBsSt(' + i + ')"><div class="form-inline">';
+                        html += '<h6 class="li-p" >' + item[i].bsNm + '</h6>';
+                    }else if(searchMode == "ed"){
+                        html += '<a class="d-flex w-100 justify-content-between" onclick="selectBsEd(' + i + ')"><div class="form-inline">';
+                        html += '<h6 class="li-p" >' + item[i].bsNm + '</h6>';
+                    }
+                    if(item[i].substIds){
+                        var line = item[i].substIds.substr(0, 1);
+                        html += '<img class="substImg  ml-2" src="' + CONFIG.ctx + '/static/img/icon_subwayline'+line+'.png" onclick="selectSubWay(\''+item[i].bsNm+'\' , '+item[i].substIds+')">';
+                    }
+                    html += '</div>';
+                    if(searchMode == "none"){
+                        var active = "";
+                        var bookmarkIndex = searchObject.indexOf(item[i].bsNm);
+                        if(bookmarkIndex > -1){
+                            if(mBookMark[bookmarkIndex] == 'true'){
+                                active = "active";
+                            }
+                        }
+                        html += '<div  class="d-md-none d-inline" style="overflow:hidden;">';
+                        html += '<i onclick="setBookMark('+i+', \'' + item[i].bsNm + '\')" id="fa-star-'+i+'" class="fas fa-star '+active+'" style="font-size: 1.5rem;float:left;margin-top:3px;margin-right:4px;"></i>';
+                        html += '<i onclick="selectBsMap(' + i + ')" class="fas fa-map-marker-alt"></i>';
+                        html += '</div>';
+                    }
+                    html += '</a>';
+                    if(item[i].wincId){
+                        html += '<p class="h-35">' + item[i].wincId + '</p>';
+                    }else{
+                        html += '<p class="h-35">&nbsp</p>';
+                    }
+                    html += '<div class="selectStEd-group" >';
+                    if(searchMode == "none"){
+                        html += '<button type="button" onclick="selectBsSt(' + i + ')" class="mr-2 smfont2 smbtn btn btn-nomal">출발</button>';
+                        html += '<button type="button" onclick="selectBsEd(' + i + ')" class="smfont2 smbtn btn btn-danger2">도착</button>';
+                    }
+                    html += '</div>';
+                    html += '</li>';
+
+                    tag.append(html);
+                }
+
+                searchBsBool = true;
+                searchCallBack();
+                
+                if($('#autoSearch').val() == 'true'){
+                    selectBS(0);
+                    $('#autoSearch').val(false);
+                    modalSearch = false;
+                };
+            }
+        });
+    }
+
+    function bsAll() { // 정류소 전체 표시
+        $('.bsHidden').show();
+        $('.bsMore').hide();
+    }
+
+    function selectBS(index) { // 정류소 선택
+        localStorage.setItem("history", "false");
+        var bsId = searchBsData[index].bsId;
+        var moveDir = searchBsData[index].moveDir;
+
+        hideAll('bsTab');
+        expanseThis('bs-tab', 'bsTabContent');
+
+        $('.selectBS').removeClass('selectBS');
+        $('#selectBS' + index).addClass('selectBS');
+
+
+        if (UPGPS_BS_IDS.indexOf(bsId) >= 0 || UPGPS_BS_IDS == "*") {
+            var el = $("#btn-vhc-mode-bs");
+
+            if (vhcMode == "NORMAL") {
+                el.removeClass("btn-gps-on");
+                el.addClass("btn-gps-off");
+                el.html('초정밀 버스');
+                if (UPGPS_BS_IDS == "disabled") {
+                    el.hide();
+                } else {
+                    el.show();
+                }
+                vhcMode = "NORMAL";
+            } else {
+
+                el.removeClass("btn-gps-off");
+                el.addClass("btn-gps-on");
+                el.html('초정밀 버스');
+                if (UPGPS_BS_IDS == "disabled") {
+                    el.hide();
+                } else {
+                    el.show();
+                }
+                vhcMode = "UPGPS";
+                vhcModeBs = "UPGPS";
+
+            }
+
+        } else {
+            var el = $("#btn-vhc-mode-bs");
+            el.hide();
+            vhcMode = "NORMAL";
+            vhcModeBs = "NORMAL";
+        }
+
+        searchArrTime(bsId);
+        $('#selectBS' + index).slideDown();
+        $('.bsMore').hide();
+    }
+
+    function selectBsMap(index) {
+        localStorage.setItem("history", "false");
+        if(event)
+            event.stopPropagation();
+        /*ZMAP.geometryPoint.x = searchBsData[index].ngisXPos;
+        ZMAP.geometryPoint.y = searchBsData[index].ngisYPos;
+        ZMAP.geometryPoint.transform(ZMAP.geographic, ZMAP.geographicWGS84);
+
+        ZMAP.setCenterByPos(ZMAP.geometryPoint.x, ZMAP.geometryPoint.y);*/
+        ZMAP.setCenterByBsId(searchBsData[index].bsId);
+        if (sizeCheck()) {
+            mapControl(true);  // 지도 표출
+        }
+    }
+
+    function selectBsSt(index) { // 정류소 선택
+        localStorage.setItem("history", "false");
+        $('#stedMode').removeClass('active');
+        stedMode();
+        $('.sidebar-contents').css('padding-bottom', '190px');
+        $('#sdSearchText').val(searchBsData[index].bsNm);
+
+        var srcXPos = searchBsData[index].ngisXPos;
+        var srcYPos = searchBsData[index].ngisYPos;
+        var bsId = searchBsData[index].bsId
+        $('#srcXPos').val(srcXPos);
+        $('#srcYPos').val(srcYPos);
+        $('#srcBsID').val(bsId);
+
+        var dstXPos = $('#dstXPos').val();
+        var dstYPos = $('#dstYPos').val();
+
+        ZMAP.geometryPoint.x = srcXPos;
+        ZMAP.geometryPoint.y = srcYPos;
+        ZMAP.geometryPoint.transform(ZMAP.geographic, ZMAP.geographicWGS84);
+
+        ZMAP.setCenterByBsId(bsId, 'directionsDeparture');
+        //ZMAP.setIconByPos(ZMAP.geometryPoint.x, ZMAP.geometryPoint.y, 'directionsDeparture');
+
+        if (dstXPos != null && dstXPos.length > 0 && dstYPos != null && dstYPos.length > 0) {
+            srcDstRoute();
+        }
+    }
+    
+    function selectMapBsSt() { // 정류소 선택
+        localStorage.setItem("history", "false");
+        $('#stedMode').removeClass('active');
+        stedMode();
+        $('.sidebar-contents').css('padding-bottom', '190px');
+        $('#sdSearchText').val(bsObject.bsNm);
+
+        var srcXPos = bsObject.ngisXPos;
+        var srcYPos = bsObject.ngisYPos;
+        var bsId = bsObject.bsId
+        $('#srcXPos').val(srcXPos);
+        $('#srcYPos').val(srcYPos);
+        $('#srcBsID').val(bsId);
+
+        var dstXPos = $('#dstXPos').val();
+        var dstYPos = $('#dstYPos').val();
+
+        ZMAP.geometryPoint.x = srcXPos;
+        ZMAP.geometryPoint.y = srcYPos;
+        ZMAP.geometryPoint.transform(ZMAP.geographic, ZMAP.geographicWGS84);
+
+        ZMAP.setCenterByBsId(bsId, 'directionsDeparture');
+        //ZMAP.setIconByPos(ZMAP.geometryPoint.x, ZMAP.geometryPoint.y, 'directionsDeparture');
+        if (dstXPos != null && dstXPos.length > 0 && dstYPos != null && dstYPos.length > 0) {
+            srcDstRoute();
+        }
+    }
+
+    function selectBsEd(index) { // 정류소 선택
+        localStorage.setItem("history", "false");
+        $('#stedMode').removeClass('active');
+        stedMode();
+        $('.sidebar-contents').css('padding-bottom', '190px');
+        $('#edSearchText').val(searchBsData[index].bsNm);
+
+        var dstXPos = searchBsData[index].ngisXPos;
+        var dstYPos = searchBsData[index].ngisYPos;
+        var bsId = searchBsData[index].bsId;
+        $('#dstXPos').val(dstXPos);
+        $('#dstYPos').val(dstYPos);
+        $('#dstBsID').val(bsId);
+
+        var srcXPos = $('#srcXPos').val();
+        var srcYPos = $('#srcYPos').val();
+
+        ZMAP.geometryPoint.x = dstXPos;
+        ZMAP.geometryPoint.y = dstYPos;
+        ZMAP.geometryPoint.transform(ZMAP.geographic, ZMAP.geographicWGS84);
+
+        ZMAP.setCenterByBsId(bsId, 'directionsArrival');
+        //ZMAP.setIconByPos(ZMAP.geometryPoint.x, ZMAP.geometryPoint.y, 'directionsArrival');
+
+        if (srcXPos != null && srcXPos.length > 0 && srcYPos != null && srcYPos.length > 0) {
+            srcDstRoute();
+        } else {
+            getLocation("none");
+        }
+    }
+    
+    function selectMapBsEd() { // 정류소 선택
+        localStorage.setItem("history", "false");
+        $('#stedMode').removeClass('active');
+        stedMode();
+        $('.sidebar-contents').css('padding-bottom', '190px');
+        $('#edSearchText').val(bsObject.bsNm);
+
+        var dstXPos = bsObject.ngisXPos;
+        var dstYPos = bsObject.ngisYPos;
+        var bsId = bsObject.bsId;
+        $('#dstXPos').val(dstXPos);
+        $('#dstYPos').val(dstYPos);
+        $('#dstBsID').val(bsId);
+
+        var srcXPos = $('#srcXPos').val();
+        var srcYPos = $('#srcYPos').val();
+
+        ZMAP.geometryPoint.x = dstXPos;
+        ZMAP.geometryPoint.y = dstYPos;
+        ZMAP.geometryPoint.transform(ZMAP.geographic, ZMAP.geographicWGS84);
+
+        ZMAP.setCenterByBsId(bsId, 'directionsArrival');
+        //ZMAP.setIconByPos(ZMAP.geometryPoint.x, ZMAP.geometryPoint.y, 'directionsArrival');
+
+        if (srcXPos != null && srcXPos.length > 0 && srcYPos != null && srcYPos.length > 0) {
+            srcDstRoute();
+        } else {
+            getLocation("none");
+        }
+    }
+    
+    function sdSetPosition(result, status) {
+        localStorage.setItem("history", "false");
+        if (status === kakao.maps.services.Status.OK) {
+            if (result.length > 0) {
+                var addrName = result[0].address_name.split(' ');
+                $('#sdSearchText').val("내위치 : " + addrName[addrName.length - 1]);
+            }
+        }
+    }
+
+    function edSetPosition(result, status) {
+        localStorage.setItem("history", "false");
+        if (status === kakao.maps.services.Status.OK) {
+            if (result.length > 0) {
+                var addrName = result[0].address_name.split(' ');
+                $('#edSearchText').val("내위치 : " + addrName[addrName.length - 1]);
+            }
+        }
+    }
+
+    function srcGetPosition(result, status) {
+        
+        if (status === kakao.maps.services.Status.OK) {
+            if (result.length > 0) {
+                var addrName = result[0].address_name.split(' ');
+                $('#sdSearchText').val("내위치 : " + addrName[addrName.length - 1]);
+
+                ZMAP.setCenterByPos(result[0].x, result[0].y, 'myPos');
+
+                var position = (new OpenLayers.LonLat(result[0].x, result[0].y)).transform(ZMAP.geographicWGS84, ZMAP.geographic);
+                var lon = position.lon;
+                var lat = position.lat;
+
+                $('#srcXPos').val(lon);
+                $('#srcYPos').val(lat);
+                $('#srcBsID').val("");
+
+                srcDstRoute();
+            }
+        }
+    }
+
+    function getLocation(type) { // 위치정보 조회
+        if (navigator.geolocation) { // GPS를 지원하면
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var geocoder = new kakao.maps.services.Geocoder();
+                var callback = null;
+                if (type == "sted") {
+                    hideNaviPanel(naviCrfId);
+
+                    if(searchMode == "st"){
+                        callback = sdSetPosition;
+                        ZMAP.setCenterByPos(position.coords.longitude, position.coords.latitude, 'directionsDeparture');
+                        handleContextMenu('departure', position.coords.longitude, position.coords.latitude)
+                    } else if (searchMode == "ed") {
+                        callback = edSetPosition;
+                        ZMAP.setCenterByPos(position.coords.longitude, position.coords.latitude, 'directionsArrival');
+                        handleContextMenu('arrival', position.coords.longitude, position.coords.latitude)
+                    } 
+                } else if (type == "my") {
+                    hideNaviPanel(naviCrfId);
+
+                    var geometry = ZMAP.transform(position.coords.longitude, position.coords.latitude, ZMAP.geographicWGS84);
+                    var lonlat = new OpenLayers.LonLat(geometry.x, geometry.y);
+                    map.setCenter(lonlat, ZMAP.options.bsZoom - 2);
+                    ZMAP.addIcon(ZMAP.layer.position, 'ZMAP_ICON_MYPOS', geometry, null, {
+                        style: 'myPos'
+                    });
+                    if (sizeCheck()) {
+                        mapControl(true);
+                    }
+                } else if (type == "my2") {
+                    var geometry = ZMAP.transform(position.coords.longitude, position.coords.latitude, ZMAP.geographicWGS84);
+                    ZMAP.addIcon(ZMAP.layer.position, 'ZMAP_ICON_MYPOS', geometry, null, {
+                        style: 'myPos'
+                    });
+                    //ZMAP.setIconByPos(position.coords.longitude, position.coords.latitude, 'myPos');
+                } else {
+                    callback = srcGetPosition;
+                }
+                if(callback)
+                    geocoder.coord2RegionCode(position.coords.longitude, position.coords.latitude, callback);
+            }, function(error) {
+                //alert(error.message);
+                //console.error("위치정보를 획득할 수 없습니다 : " + error.message);
+            }, {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                timeout: Infinity
+            });
+        } else {
+            //alert('GPS를 지원하지 않습니다');
+        }
+    }
+
+    function getAddr(longitude, latitude) {
+        // 좌표로 행정동 주소 정보를 요청합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+        geocoder.coord2RegionCode(longitude, latitude, srcGetPosition);
+    }
+    
+    function arrDataSort(el){
+        if ($(el).hasClass("active") === true) {
+            $(el).removeClass("active");
+            $(el).text("도착시간순");
+            searchArrTime(selectBsId, false);
+        } else {
+            $(el).addClass("active");
+            $(el).text("노선번호순");
+            searchArrTime(selectBsId, true);
+        }
+    }
+
+    function searchArrTime(bsId, sort, autoRef) { // 정류소 선택시 도착정보 표출
+        //console.log("call searchArrTime");
+        selectBsId = bsId;
+        var menuCd = CONFIG.qrcode ? '01-05' : 'SV-01';
+        setCountAccess(menuCd);
+        CONFIG.qrcode = false;
+
+        $.ajax({
+            type: 'GET',
+            url: '/realtime/arr2/' + bsId.trim(),
+            dataType: 'json',
+            loadingTarget: false,
+            success: function(data) {
+                selectBsId = bsId;
+
+                var html = '';
+                var html2 = '';
+                var arrCnt = 0;
+                var block = data.body.block;
+                var routeIds = "";
+                searchArrTimeCrfIds = "";
+                searchArrTimeCrfIdsByRoute = [];
+                searchArrTimeCrfIdsByRouteBounds = [];
+
+                if (block) {
+                    html += '<li class="list-group-item list-group-item-action selectRoute">\
+                                <a class="d-flex w-100 justify-content-between">\
+                                    <h6 class="mb-0 text-warning" style="color: red !important;">' + data.body.blockMsg + '</h6>\
+                                </a>\
+                            </li>';
+                    $('#selectRouteList > ul').html(html);
+                    $('#selectRoutePaenl').html(html2);
+                    $('.selectRouteTab').slideDown();
+                    bsLocalStorage(bsId);
+                    return;
+                }
+
+                if (data.body.blockMsg) {
+                    html += '<li class="list-group-item list-group-item-action selectRoute">\
+                        <a class="d-flex w-100 justify-content-between">\
+                            <h6 class="mb-0 text-warning" style="color: red !important;">' + data.body.blockMsg + '</h6>\
+                        </a>\
+                    </li>';
+                }
+
+                var list = data.body.list;
+                var list1 = []; // 첫 번째 버스
+
+                if (sort) {
+                    list.sort(function(a, b) {
+                        var aCnt = a.arrList.length;
+                        var bCnt = b.arrList.length;
+
+                        if (aCnt > 0 && bCnt > 0 || aCnt == 0 && bCnt == 0) {
+                            if (a.routeNo > b.routeNo) {
+                                return 1;
+                            }
+                            if (a.routeNo < b.routeNo) {
+                                return -1;
+                            }
+                            return 0;
+                        }
+                        if (aCnt == 0) {
+                            return 1;
+                        }
+                        if (bCnt == 0) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                }
+
+                for (var i = 0, cnt = list.length; i < cnt; i++) {
+                    var arrInfo = list[i];
+                    var routeNo = arrInfo.routeNo;
+                    var busCnt = arrInfo.arrList.length;
+
+                    if (busCnt > 0) {
+                        var items = arrInfo.arrList;
+
+                        html += '<li class="list-group-item list-group-item-action selectRoute" style="min-height: 60px;" id="selectRoute' + i + '" onclick="selectRouteNo2(' + i + ')">\
+                                    <div class="d-flex w-100 justify-content-between">\
+                                        <a class="w-100"><div><h6 class="mb-0">' + routeNo + '</h6></div></a>\
+                                        <div style="margin: auto 0px;float: right;min-width: 60px;">\
+                                            <a style="float: right;" href="javascript:selectRouteNoMap(' + i + ');"><span class="text-primary text-wrap"><i class="fas fa-map-marker-alt"></i></span></a>\
+                                        </div>\
+                                    </div>\
+                                    <ul id="selectRouteUl' + i + '" style="padding:0;">';
+
+                        for (var j = 0; j < busCnt; j++) {
+                            var item = items[j];
+                            var routeNote = item.routeNote ? '(' + item.routeNote + ')' : '';
+                            var arrState = item.bsGap < 0 && item.bsGap > -3 ? '' : (item.arrState || item.bsNm);
+                            var text = 'info';
+                            if (item.prevBsGap == 2) {
+                                text = 'danger2';
+                            } else if (item.prevBsGap == 1) {
+                                text = 'danger';
+                            } else if (j == 0 && (arrState.indexOf('분') > -1 || arrState.indexOf('Min') > -1)) {
+                                text = 'primary';
+                            }
+                            if (routeNo.indexOf("직행") >= 0) {
+                                text = 'info';
+                            }
+                            var lastBs = item.lastBsNm ? '<small class="lastBs">종점 : ' + item.lastBsNm +'</small>' : '';
+                            var gap = '';
+                            if (routeNo.indexOf("직행") < 0 && item.prevBsGap > 2 && item.bsGap > 0) {
+                                gap = item.bsGap + '개소전';
+                            }
+
+                            if (item.bsNm !== undefined) {
+                                html += '<li class="d-flex w-100 justify-content-between">\
+                                            <div class="marquee-parent">\
+                                                <img src="' + CONFIG.ctx + '/static/img/ic_bus' + item.busTCd2 + item.busTCd3 + '.png" alt="">\
+                                                <span></span><div><div class="marquee"' + (item.bsNm.indexOf("우회") >= 0 || item.bsNm.indexOf("미정차") >= 0 ? ' style="color: red !important;;"' : '') + '>' + (item.bsNm || '') + '<small class="text-note" title="' + (routeNote || '') + '">' + (routeNote || '') + '</small></div>' + lastBs + '</div>\
+                                            </div>\
+                                            <div><small class="text-right">' + gap + '</small></div>\
+                                            <div><span class="text-' + text + ' text-wrap text-right arrMin">' + arrState + '</span></div>\
+                                        </li>';
+                            }
+
+                            if (j == 0) {
+                                if (item.bsGap < 0) {
+                                    arrState = item.arrState;
+                                }
+                                html2 += '<div class="btn-group" style="margin: 2px;">\
+                                            <button type="button" onclick="" style="min-width: 65px; padding: 3px 2px;" class="btn btn-outline-secondary">' + routeNo + '</button>\
+                                            <button type="button" onclick="" style="min-width: 68px; padding: 3px 2px;" class="btn btn-' + text + '">' + arrState + '</button>\
+                                        </div>';
+                            }
+                            if (routeIds != "") {
+                                routeIds += ",";
+                            }
+                            routeIds += item.routeId;
+                            if (searchArrTimeCrfIds != "") {
+                                searchArrTimeCrfIds += ",";
+                            }
+                            if (item.vhcNo2 != null && item.vhcNo2 != undefined && crfIdByVhcNo[item.vhcNo2] != null && crfIdByVhcNo[item.vhcNo2] != undefined) {
+                                searchArrTimeCrfIds += "" + crfIdByVhcNo[item.vhcNo2];
+                                if (searchArrTimeCrfIdsByRoute[item.routeId] == undefined) {
+                                    searchArrTimeCrfIdsByRoute[item.routeId] = "";
+                                }
+                                if (searchArrTimeCrfIdsByRoute[item.routeId] != "") {
+                                    searchArrTimeCrfIdsByRoute[item.routeId] += ",";
+                                }
+                                searchArrTimeCrfIdsByRoute[item.routeId] += "" + crfIdByVhcNo[item.vhcNo2];
+
+                            }
+                        }
+
+                        html += '</ul></li>';
+                        items[0].bsId = bsId;
+                        list1.push(items[0]);
+
+
+                        searchArrTimeParam = {
+                            "list": list,
+                            "bsId": bsId
+                        };
+                    } else {
+                        html2 += '<div class="btn-group" style="margin: 2px;">\
+                                    <button type="button" onclick="" style="min-width: 65px; padding: 3px 2px;" class="btn btn-outline-secondary">' + routeNo + '</button>\
+                                    <button type="button" onclick="" style="min-width: 68px; padding: 3px 2px;" class="btn btn-'+text+'">정보없음</button>\
+                                </div>';
+                    }
+
+                    arrCnt += busCnt;
+                }
+
+                if (arrCnt == 0) {
+                    html += '<li class="list-group-item list-group-item-action selectRoute">\
+                                <a class="d-flex w-100 justify-content-between">\
+                                    <h6 class="mb-0 text-warning">' + data.body.msg + '</h6>\
+                                </a>\
+                            </li>';
+                } else {
+                    html += '<li class="list-group-item list-group-item-action selectRoute">\
+                        <a class="d-flex w-100 justify-content-between">\
+                            <h6 class="mb-0 text-warning" style="color: #8D60A6 !important; font-size: 16px !important; font-weight: normal;">※ 도착 예정 시간보다 30분 이상 늦어질 경우,<br/>053)803-5590으로 문의해 주시기 바랍니다.</h6>\
+                        </a>\
+                    </li>';
+                }
+
+                selectRouteData = list1;
+
+                $('#selectRouteList > ul').html(html);
+                $('#selectRoutePaenl').html(html2);
+                $('.selectRouteTab').slideDown();
+                bsLocalStorage(bsId);
+
+                if (UPGPS_BS_IDS.indexOf(bsId) >= 0 || UPGPS_BS_IDS == "*") { 
+                    if (vhcMode == "NORMAL") {
+                        searchArrTimeCrfIds = "";
+                        routeIds = "";
+                    } else {
+                        vhcModeBs = "UPGPS";
+                    }
+
+                    if (autoRef == true) {
+                    } else {
+
+                        if (vhcMode == "UPGPS") {
+                            drawVhcPos('|' + routeIds + '|', '', autoRef);
+                        }
+
+                        var fid = 'bs.' + bsId;
+                        var layer = ZMAP.layer['bs'];
+                        var feature = layer.getFeatureByFid(fid);
+                        if (feature) {
+                            if (autoRef == true) {
+                            } else {
+                                if (vhcMode == "UPGPS") {
+                                    ZMAP.setCenterByBsId2(bsId);
+                                } else {
+                                    ZMAP.setCenterByBsId(bsId);
+                                }
+                            }
+                        } else {
+                            $('#initBsId').val(bsId);
+                        }
+
+                    }
+
+                } else {
+                    var fid = 'bs.' + bsId;
+                    if (autoRef == true) {
+                        $('#initBsId').val(bsId);
+                    } else {
+                        var feature = ZMAP.setCenterByFid(fid);
+                        if (feature) {
+                            ZMAP.setCenterByBsId(bsId);
+                        } else {
+                            $('#initBsId').val(bsId);
+                        }
+                    }
+                }
+
+                marquee('marquee');
+            }
+        });
+    }
+
+    function ttt() {
+        if (!($("#selectRouteTab").css("display") == "none")) {
+            var list = searchArrTimeParam.list;
+            var bsId = searchArrTimeParam.bsId;
+
+
+            if (searchArrTimeCrfIdsByRoute[list[list.length - 1].arrList[0].routeId] == undefined) {
+
+                return;
+            }
+
+            var feature = ZMAP.layer['bs'].getFeatureByFid('bs.' + bsId);
+
+            for (var k = 0; k < list.length; k++) {
+                if (searchArrTimeCrfIdsByRoute[list[k].arrList[0].routeId] != undefined) {
+                    if (ZMAP.layer.vhcPos.getFeatureByFid(searchArrTimeCrfIdsByRoute[list[k].arrList[0].routeId].split(",")[0]) != undefined &&
+                            ZMAP.layer.vhcPos.getFeatureByFid(searchArrTimeCrfIdsByRoute[list[k].arrList[0].routeId].split(",")[1]) != undefined) {
+                        searchArrTimeCrfIdsByRouteBounds[list[k].arrList[0].routeId] = 
+                             "" + ZMAP.layer.vhcPos.getFeatureByFid(searchArrTimeCrfIdsByRoute[list[k].arrList[0].routeId].split(",")[0]).geometry.x +
+                             "," + ZMAP.layer.vhcPos.getFeatureByFid(searchArrTimeCrfIdsByRoute[list[k].arrList[0].routeId].split(",")[0]).geometry.y +
+                             "," + ZMAP.layer.vhcPos.getFeatureByFid(searchArrTimeCrfIdsByRoute[list[k].arrList[0].routeId].split(",")[1]).geometry.x +
+                             "," + ZMAP.layer.vhcPos.getFeatureByFid(searchArrTimeCrfIdsByRoute[list[k].arrList[0].routeId].split(",")[1]).geometry.y;
+
+                        if (feature) {
+                            searchArrTimeCrfIdsByRouteBounds[list[k].arrList[0].routeId] +=
+                                "," + feature.geometry.x +
+                                "," + feature.geometry.y;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    function marquee(cls) {
+        $('.' + cls).each(function() {
+            var $this = $(this);
+            var $parent = $(this).parent().parent();
+            var width1 = $this.innerWidth() + 65;
+            var width2 = $parent.innerWidth();
+
+            if (width1 > width2) {
+                $this.wrapInner('<marquee></marquee>');
+            }
+            $this.removeClass(cls);
+        });
+    }
+
+    function selectRouteNo2(index) { // 버스도착정보에서 노선정보 선택
+        selectBsNoIdx = -1;
+
+
+        routeListData = selectRouteData;
+        $('#routeTab').show();
+        $('#routeTabContent').show();
+
+        var tag = $('#routeList > ul');
+        var html = '';
+        //displayMarker(data[i]);
+
+        html += '<li class="list-group-item list-group-item-action" id="routeList'+index+'">';
+        html += '<a class="d-flex w-100 justify-content-between">';
+        var note = selectRouteData[index].routeNote ? selectRouteData[index].routeNote : '';
+        html += '<h6>' + selectRouteData[index].routeNo + ' <small class="text-black-50">' + note + '</small></h6></a>';
+        html += '</li>';
+        tag.html(html);
+        
+        firstRoute = true;
+
+        selectRouteNo(index);
+    }
+
+    function selectRouteNoMap(index) {
+        //vhcMode = "UPGPS";
+        //vhcMode = "NORMAL";
+        //initUpgps();
+        if (sizeCheck()) {
+            mapControl(true);
+        }
+    }
+
+    function selectVhcMode() {
+        var el = $("#btn-vhc-mode");
+        if (vhcMode == 'NORMAL') {
+            $('body').preloader({zIndex: '9999'});
+            setTimeout(function() {
+                $('body').preloader('remove');
+            }, 3000);
+
+            vhcMode = 'UPGPS';
+            el.removeClass("btn-gps-off");
+            el.addClass("btn-gps-on");
+            el.html('초정밀 버스');
+            $("#tools-mode div.group2").hide();
+        } else {
+            vhcMode = 'NORMAL';
+            el.removeClass("btn-gps-on");
+            el.addClass("btn-gps-off");
+            el.html('초정밀 버스');
+            $("#tools-mode div.group2").show();
+        }
+        $('#routeRefresh').trigger('click');
+    }
+
+    function selectVhcModeBs() {
+        var el = $("#btn-vhc-mode-bs");
+        if (vhcMode == 'NORMAL') {
+            vhcMode = 'UPGPS';
+            vhcModeBs = 'UPGPS';
+            el.removeClass("btn-gps-off");
+            el.addClass("btn-gps-on");
+            el.html('초정밀 버스');
+        } else {
+            vhcMode = 'NORMAL';
+            vhcModeBs = 'NORMAL';
+            el.removeClass("btn-gps-on");
+            el.addClass("btn-gps-off");
+            el.html('초정밀 버스');
+        }
+        selectArrReflash();
+    }
+
+    function selectShowType(el) {
+        if ($(el).hasClass("btn-nomal-active") === true) {
+            $(el).removeClass("btn-nomal-active");
+            $(el).addClass("btn-nomal");
+            $('#selectRouteList').slideDown();
+            $('#selectRoutePaenl').slideUp();
+            $(el).html('전광판');
+        } else {
+            $(el).addClass("btn-nomal-active");
+            $(el).removeClass("btn-nomal");
+            $('#selectRouteList').slideUp();
+            $('#selectRoutePaenl').slideDown();
+            $(el).html('펼쳐보기');
+        }
+    }
+
+    function selectArrReflash(autoRef) {
+        if (selectBsId && selectBsId != '') {
+            searchArrTime(selectBsId, $('#btn-arr-sort').hasClass('active'), autoRef);
+        }
+    }
+
+    var vv;
+    var ff;
+    var ll;
+    var lookup;
+    var timerCnt = 0;
+
+
+
+    function redrawRouteVhcList(routeId) {
+        mapTabContentScrollHeight = $("#mapTabContent").scrollTop();
+        $.ajax({ // 노선도에 버스 위치 표시 
+            type: 'GET',
+            url: "/bs/position",
+            dataType: "json",
+            loadingTarget: false,
+            data: {
+                routeId: routeId
+            },
+            success: function(data2) {
+                var position = data2.body;
+                for (var i = 0; i < position.length; i++) {
+                    var dir = position[i].moveDir;
+                    var html = "";
+                    var busType = position[i].areaCd + position[i].busTCd2 + position[i].busTCd3;
+                    busType = busType.toLowerCase();
+                    html += '<div class="d-flex w-100 busImg" id="vhc_' + position[i].crfId + '" onclick="showNaviPanel(\'' + position[i].crfId + '\')">';
+                    html += '<img class="mr-2" src="' + CONFIG.ctx + '/static/img/ic_bus'+ position[i].busTCd2 + position[i].busTCd3 +'.png" >';
+                    html += '<img src="' + CONFIG.ctx + '/static/img/icon_vhc_'+dir+ busType +'.png" style="width: 50px;">';
+                    html += '<div style="text-align: center;margin-top: 5px;">';
+                    html += '<p class="text-primary" style="font-size: 16px;margin-bottom: 0;">' + position[i].vhcNo + '</p>';
+                    html += '<p class="text-primary" style="font-size: 14px;margin-bottom: 0;">(' + position[i].arTime.toString().formatTime() + ')</p></div></div>';
+
+                    if (position[i].areaCd != 'G' && position[i].areaCd != 'Y') {
+                        $('#bsNoList' + dir + '_' + position[i].idxPrd)
+                                .addClass('havBus')
+                                .append(html);
+                        $('#bsNoList' + dir + '_' + (position[i].idxPrd + 1)).addClass('havBusNext');
+                    } else {
+                        $('.bsNoList' + dir + '_' + position[i].bsId)
+                                .addClass('havBus')
+                                .append(html)
+                                .next().addClass('havBusNext');
+                    }
+                }
+
+                $('#mapTabContent').animate({scrollTop : mapTabContentScrollHeight}, 0);
+            }
+        });
+    }
+    
+    function initUpgps() {
+        $('body').preloader({zIndex: '9999'});
+        setTimeout(function() {
+            $('body').preloader('remove');
+        }, 3000);
+
+        if (vhcRafId !== null && vhcRafId !== undefined)
+            cancelAnimationFrame(vhcRafId);
+        clearInterval(timerIdArr["posQueue"]);
+
+        crfIdArr = [];
+        timerIdArr = [];
+        vhcDataArr = [];
+        hideNaviPanel(naviCrfId);
+    }
+
+    function showNaviPanel(crfId) {
+        if (vhcMode == 'UPGPS' && ZMAP.layer.vhcPos.getFeatureByFid(crfId) != null) {
+            $("#btn-close-map").css("bottom", "187px");
+
+            if (ZMAP.layer.vhcPos.getFeatureByFid(naviCrfId) != null) {
+                var curFeature = ZMAP.layer.vhcPos.getFeatureByFid(naviCrfId);
+
+                var targetZoom = ZMAP.options.bsZoom - 2;
+                if (map.getZoom() > targetZoom) {
+                    targetZoom = map.getZoom();
+                }
+
+                var highlight ='';
+                if (targetZoom < ZMAP.options.bsZoom - 5) {
+                    if (curFeature.attributes.style != ('vhcGpsS'+highlight)) {
+                        curFeature.attributes.style = ('vhcGpsS'+highlight);
+                        ZMAP.layer.vhcPos.drawFeature(curFeature);
+                    }
+                } else if (targetZoom < ZMAP.options.bsZoom) {
+                    if (curFeature.attributes.style != ('vhcGpsM'+highlight)) {
+                        curFeature.attributes.style = ('vhcGpsM'+highlight);
+                        ZMAP.layer.vhcPos.drawFeature(curFeature);
+                    }
+                } else {
+                    if (curFeature.attributes.style != ('vhcGps'+highlight)) {
+                        curFeature.attributes.style = ('vhcGps'+highlight);
+                        ZMAP.layer.vhcPos.drawFeature(curFeature);
+                    }
+                }
+            }
+
+            naviMode = true;
+            naviCrfId = crfId;
+            vhcTracking(true); // true : remove gray-filter, false add gray-filter
+            //vhcScrollAuto(crfId);
+
+            if (sizeCheck()) {
+                mapControl(true);
+            }
+
+            var curFeature = ZMAP.layer.vhcPos.getFeatureByFid(crfId);
+            var curFeatureData = curFeature.data;
+
+            var targetZoom = ZMAP.options.bsZoom - 2;
+            if (map.getZoom() > targetZoom) {
+                targetZoom = map.getZoom();
+            }
+
+            var highlight ='_H';
+            if (targetZoom < ZMAP.options.bsZoom - 5) {
+                if (curFeature.attributes.style != ('vhcGpsS'+highlight)) {
+                    curFeature.attributes.style = ('vhcGpsS'+highlight);
+                    ZMAP.layer.vhcPos.drawFeature(curFeature);
+                }
+            } else if (targetZoom < ZMAP.options.bsZoom) {
+                if (curFeature.attributes.style != ('vhcGpsM'+highlight)) {
+                    curFeature.attributes.style = ('vhcGpsM'+highlight);
+                    ZMAP.layer.vhcPos.drawFeature(curFeature);
+                }
+            } else {
+                if (curFeature.attributes.style != ('vhcGps'+highlight)) {
+                    curFeature.attributes.style = ('vhcGps'+highlight);
+                    ZMAP.layer.vhcPos.drawFeature(curFeature);
+                }
+            }
+
+            var highlight ='_H';
+            if (targetZoom < ZMAP.options.bsZoom - 5) {
+                if (curFeature.attributes.style != ('vhcGpsS'+highlight)) {
+                    curFeature.attributes.style = ('vhcGpsS'+highlight);
+                    ZMAP.layer.vhcPos.drawFeature(curFeature);
+                }
+            } else if (targetZoom < ZMAP.options.bsZoom) {
+                if (curFeature.attributes.style != ('vhcGpsM'+highlight)) {
+                    curFeature.attributes.style = ('vhcGpsM'+highlight);
+                    ZMAP.layer.vhcPos.drawFeature(curFeature);
+                }
+            } else {
+                if (curFeature.attributes.style != ('vhcGps'+highlight)) {
+                    curFeature.attributes.style = ('vhcGps'+highlight);
+                    ZMAP.layer.vhcPos.drawFeature(curFeature);
+                }
+            }
+
+            var vhcTCdImg = "";
+            if (curFeatureData.vhcTCd == "0ddc" || curFeatureData.vhcTCd == "1ddc")
+                vhcTCdImg = "<img src='" + CONFIG.ctx + "/static/img/ic_busDC.png' style='width:23px;margin-right:7px;margin-bottom:3px;' />";
+            else if (curFeatureData.vhcTCd == "0ddn" || curFeatureData.vhcTCd == "1ddn")
+                vhcTCdImg = "<img src='" + CONFIG.ctx + "/static/img/ic_busDN.png' style='width:23px;margin-right:7px;margin-bottom:3px;' />";
+            else if (curFeatureData.vhcTCd == "0dnc" || curFeatureData.vhcTCd == "1dnc")
+                vhcTCdImg = "<img src='" + CONFIG.ctx + "/static/img/ic_busNC.png' style='width:23px;margin-right:7px;margin-bottom:3px;' />";
+            else 
+                vhcTCdImg = "";
+
+            $("#naviRouteNo").html(vhcTCdImg + curFeatureData.routeNo);
+            if (curFeature.attributes.routeNote != null && curFeature.attributes.routeNote != undefined && curFeature.attributes.routeNote != "") {
+                $("#naviRouteNote").html("(" + curFeature.attributes.routeNote + ")");
+            } else {
+                $("#naviRouteNote").html("");
+            }
+            if (curFeatureData.posQueue.peekFront().dstBsNm !== undefined) {
+                $("#naviDstBsNm span:nth-child(1)").html(curFeatureData.posQueue.peekFront().dstBsNm);
+            } else {
+                $("#naviDstBsNm span:nth-child(1)").html("...");
+            }
+            $("#naviVhcNo").html("차량번호 : " + curFeatureData.vhcNo2);
+            if (curFeatureData.posQueue.peekFront().speed !== undefined) {
+                $("#naviVhcSpeed").html("속도 : " + curFeatureData.posQueue.peekFront().speed + "km/h");
+            } else {
+                $("#naviVhcSpeed").html("속도 : ...km/h");
+            }
+            $("#naviPanelMode").removeClass("gray-filter");
+            $("#naviPanel").show();
+
+            //map.setCenter(new OpenLayers.LonLat(curFeatureData.posQueue.peekFront().mapXPos, curFeatureData.posQueue.peekFront().mapYPos), targetZoom);
+            var centerPoint = ZMAP.transform(curFeatureData.posQueue.peekFront().xPos, curFeatureData.posQueue.peekFront().yPos, ZMAP.geographicWGS84);
+            map.setCenter(new OpenLayers.LonLat(centerPoint.x, centerPoint.y), targetZoom);
+
+        }
+// var curFeature = ZMAP.layer.vhcPos.getFeatureByFid(crfId);
+// var curFeatureData = curFeature.data;
+// map.setCenter(ZMAP.transform(curFeatureData.posQueue.peekFront().xPos, curFeatureData.posQueue.peekFront().yPos, ZMAP.geographicWGS84), ZMAP.options.bsZoom - 2);
+    }
+
+    function hideNaviPanel(crfId) {
+        $("#btn-close-map").css("bottom", "66px");
+        $("#naviPanel").hide();
+        naviMode = false;
+        naviCrfId = "";
+        vhcTracking(false);
+    }
+
+    function posQueueTimer() {
+        if (vhcMode != "UPGPS") {
+            clearInterval(timerIdArr["posQueue"]);
+        }
+
+        for (var i = 0; i < ZMAP.layer.vhcPos.features.length; i++) {
+
+
+            if (ZMAP.layer.vhcPos.features[i] == null || ZMAP.layer.vhcPos.features[i].data == null)
+                continue;
+
+            var curFeature = ZMAP.layer.vhcPos.features[i];
+
+            var lastData = null;
+            var vhcPosParam = "";
+            if (curFeature != undefined && curFeature.data != undefined && curFeature.data.posQueue != undefined && !curFeature.data.posQueue.isEmpty()) {
+                lastData = curFeature.data.posQueue.rear.data;
+                if (lastData != null) {
+                    var lastDataLinkId = "";
+                    if (lastData.linkId.indexOf(",") >= 0) {
+                        lastDataLinkId = lastData.linkId.split(",")[0];
+                    } else {
+                        lastDataLinkId = lastData.linkId;
+                    }
+                    vhcPosParam = "?posNo=" + curFeature.data.vhc.posNo + "&linkId=" + lastDataLinkId + "&linkSeq=" + lastData.linkSeq + "&vertexSeq=" + lastData.vertexSeq;
+                } else {
+                    vhcPosParam = "?posNo=0&linkId=&linkSeq=&vertexSeq=";
+                }
+            }
+
+            $.ajax({
+                method: 'GET',
+                url: ACCUBUS_URL + '/realtime/vhcPos/' + curFeature.fid + vhcPosParam,
+
+                cache: false,
+                loadingTarget: false,
+                dataType: 'json',
+                success: function(data) {
+
+                    if (data.body === null || data.body === undefined || data.body.crfId === null || data.body.vertexList == null || data.body.vertexList.length < 1) {
+
+                        return;
+                    }
+
+                    var curFeature = ZMAP.layer.vhcPos.getFeatureByFid(data.body.crfId);
+                    if (curFeature == null) {
+
+                        return;
+                    }
+
+                    curFeature.data.routeId = data.body.routeId;
+                    curFeature.data.moveDir = data.body.moveDir;
+                    curFeature.data.ralloSeq = data.body.ralloSeq;
+
+                    if (map.getZoom() < ZMAP.options.bsZoom - 5) {
+                        if (naviCrfId == data.body.crfId) {
+                            curFeature.data.style = 'vhcGpsS_H';
+                        } else {
+                            curFeature.data.style = 'vhcGpsS';
+                        }
+                    } else if (map.getZoom() < ZMAP.options.bsZoom) {
+                        if (naviCrfId == data.body.crfId) {
+                            curFeature.data.style = 'vhcGpsM_H';
+                        } else {
+                            curFeature.data.style = 'vhcGpsM';
+                        }
+                    } else {
+                        if (naviCrfId == data.body.crfId) {
+                            curFeature.data.style = 'vhcGps_H';
+                        } else {
+                            curFeature.data.style = 'vhcGps';
+                        }
+                    }
+
+                    if (curFeature.data.vhc.posNo != data.body.posNo) {
+                        curFeature.data.vhc = data.body;
+
+                        var q = curFeature.data.posQueue;
+                        for (var i = 0; i < data.body.vertexList.length; i++) {
+                            q.insert(data.body.vertexList[i]);
+                        }
+                    }
+
+                }
+            });
+        }
+    }
+
+    function drawVhcPos(routeId, routeTCd, autoRef) {
+
+        routeId = routeId.trim();
+        if(typeof routeTCd == "undefined" || routeTCd == null || routeTCd == "") {
+            routeTCd = '';
+        } else {
+            switch (routeTCd) {
+                case 'D':
+                    routeTCd = 'DG';
+                    break;
+                case 'G':
+                    routeTCd = 'GS';
+                    break;
+                case 'C':
+                    routeTCd = 'CG';
+                    break;
+                case 'Y':
+                    routeTCd = 'YC';
+                    break;
+                case 'M':
+                    routeTCd = 'DG';
+                    break;
+                default:
+                    routeTCd = '';
+                    break;
+            }
+        }
+
+        ZMAP.drawRoute(routeId, routeTCd, false, function() {
+            if (autoRef == true && vhcModeBs == "UPGPS") {
+                for (var i = 0; i < ZMAP.layer.vhcPos.features.length; i++) {
+                    var curFeature = ZMAP.layer.vhcPos.features[i];
+
+                    if (searchArrTimeCrfIds.indexOf(curFeature.fid + "") < 0) {
+                        ZMAP.layer.vhcPos.destroyFeatures([curFeature]);
+                    }
+                    searchArrTimeCrfIds = searchArrTimeCrfIds.replaceAll(curFeature.fid + ",", "");
+                    searchArrTimeCrfIds = searchArrTimeCrfIds.replaceAll("," + curFeature.fid, "");
+                    searchArrTimeCrfIds = searchArrTimeCrfIds.replaceAll(curFeature.fid + "", "");
+                }
+
+                if (searchArrTimeCrfIds != "" && searchArrTimeCrfIds.indexOf("16") >= 0) {
+                    $.ajax({
+                        method: 'GET',
+                        url: ACCUBUS_URL + '/realtime/pos2?crfId=' + searchArrTimeCrfIds,
+                        cache: false,
+                        loadingTarget: false,
+                        dataType: 'json',
+                        success: function(data) {
+                            var list = data.body;
+                            for (var i = 0; i < list.length; i++) {
+                                var vhc = {
+                                        "routeId": list[i].routeId,
+                                        "routeIdNo": list[i].routeId.substring(0, 8),
+                                        "moveDir": list[i].moveDir,
+                                        "textDir": "w",
+                                        "routeTCd": (list[i].routeNo.indexOf("급행") >= 0 || list[i].routeNo.indexOf("직행") >= 0 ? "r" : "g"),
+                                        "arTime": list[i].arTime,
+                                        "seq": list[i].seq,
+                                        "bsId": list[i].bsId,
+                                        "ngisXPos": list[i].ngisXPos,
+                                        "ngisYPos": list[i].ngisYPos,
+                                        "busId": list[i].busId,
+                                        "vhcNo": list[i].vhcNo,
+                                        "vhcNo2": list[i].vhcNo2,
+                                        //"vhcTCd": list[i].moveDir + "gps",
+                                        "vhcTCd": list[i].vhcTCd,
+                                        "routeNo": list[i].routeNo,
+                                        "style": "vhcGpsS",
+                                        //"posIdx": 0,
+                                        "angle": 0,
+                                        "posQueue": new Queue() 
+                                    };
+
+
+                                if (map.getZoom() < ZMAP.options.bsZoom - 5) {
+                                    if (naviCrfId == list[i].crfId) {
+                                        vhc.style = 'vhcGpsS_H';
+                                    } else {
+                                        vhc.style = 'vhcGpsS';
+                                    }
+                                } else if (map.getZoom() < ZMAP.options.bsZoom) {
+                                    if (naviCrfId == list[i].crfId) {
+                                        vhc.style = 'vhcGpsM_H';
+                                    } else {
+                                        vhc.style = 'vhcGpsM';
+                                    }
+                                } else {
+                                    if (naviCrfId == list[i].crfId) {
+                                        vhc.style = 'vhcGps_H';
+                                    } else {
+                                        vhc.style = 'vhcGps';
+                                    }
+                                }
+
+                                // 차량고유번호 배열에 저장
+                                crfIdArr[i] = list[i].crfId;
+
+                                // 버스정보 배열에 저장
+                                vhcDataArr[list[i].crfId] = vhc;
+
+                                $.ajax({
+                                    method: 'GET',
+                                    url: ACCUBUS_URL + '/realtime/vhcPos/' + list[i].crfId + "?posNo=0",
+                                    cache: false,
+                                    loadingTarget: false,
+                                    dataType: 'json',
+                                    success: function(data) {
+                                        if (data.body === null || data.body === undefined || data.body.crfId === null || data.body.vertexList == null || data.body.vertexList.length < 1) {
+
+                                            return;
+                                        }
+
+                                        if (vhcDataArr[data.body.crfId] === undefined) {
+                                            return;
+                                        }
+
+                                        var layer = ZMAP.layer.vhcPos;
+                                        var features = [];
+
+                                        vhcDataArr[data.body.crfId].vhc = data.body;
+
+                                        var q = new Queue();
+                                        var vertexData;
+                                        for (var i = 0; i < data.body.vertexList.length; i++) {
+                                            vertexData = data.body.vertexList[i];
+
+                                            q.insert(vertexData);
+
+                                        }
+
+                                        var feature = new OpenLayers.Feature.Vector(ZMAP.transform(vertexData.xPos, vertexData.yPos, ZMAP.geographicWGS84), vhcDataArr[data.body.crfId]);
+
+                                        feature.fid = data.body.crfId;
+                                        feature.renderIntent = 'default';
+                                        feature.attributes.angle = vhcDataArr[data.body.crfId].vhc.heading * 2;
+                                        feature.attributes.textDir = ((vhcDataArr[data.body.crfId].vhc.heading * 2) > 0 && (vhcDataArr[data.body.crfId].vhc.heading * 2) < 180) ? "e" : "w";
+                                        feature.attributes.busTCd = vhcDataArr[data.body.crfId].vhc.busTCd;
+                                        if (map.getZoom() < ZMAP.options.bsZoom - 5) {
+                                            if (naviCrfId == feature.fid) {
+                                                feature.attributes.style = 'vhcGpsS_H';
+                                            } else {
+                                                feature.attributes.style = 'vhcGpsS';
+                                            }
+                                        } else if (map.getZoom() < ZMAP.options.bsZoom) {
+                                            if (naviCrfId == feature.fid) {
+                                                feature.attributes.style = 'vhcGpsM_H';
+                                            } else {
+                                                feature.attributes.style = 'vhcGpsM';
+                                            }
+                                        } else {
+                                            if (naviCrfId == feature.fid) {
+                                                feature.attributes.style = 'vhcGps_H';
+                                            } else {
+                                                feature.attributes.style = 'vhcGps';
+                                            }
+                                        }
+                                        features.push(feature);
+
+                                        layer.addFeatures(features, {'rotation': vhcDataArr[data.body.crfId].vhc.heading * 2});
+                                        layer.setVisibility(true);
+
+
+                                        if (vhcRafId !== null && vhcRafId !== undefined)
+                                            cancelAnimationFrame(vhcRafId);
+                                        render(makeCb());
+                                    } // end of ajax success
+                                }); // end of ajax
+                            }
+                        }
+                    });
+                }
+                return;
+            }
+
+            $.ajax({
+                method: 'GET',
+                url: ACCUBUS_URL + '/realtime/pos/' + routeId + '?routeTCd=' + routeTCd,
+                cache: false,
+                loadingTarget: false,
+                dataType: 'json',
+                success: function(data) {
+                    var list = data.body;
+                    if (vhcMode == "NORMAL") {
+                        ZMAP.drawVhc(list);
+                        /* settingRefresh(); */
+                    } else {
+                        initUpgps();
+
+
+
+                        timerIdArr["posQueue"] = setInterval(posQueueTimer, 600, list); // end of each feature posQueue interval
+
+//                         var layer = ZMAP.layer.vhcPos;
+//                         var features = [];
+                        for (var i = 0; i < list.length; i++) {
+                            if (searchArrTimeCrfIds != "") {
+                                if (searchArrTimeCrfIds.indexOf(list[i].crfId) < 0) {
+                                    continue;
+                                }
+                            }
+//                             if (list[i].crfId != "1644569089")
+//                                 continue;
+                            var vhc = {
+                                    "routeId": list[i].routeId,
+                                    "routeIdNo": list[i].routeId.substring(0, 8),
+                                    "moveDir": list[i].moveDir,
+                                    "gpsTm": list[i].gpsTm,
+                                    "textDir": "w",
+                                    "routeTCd": (list[i].routeNo.indexOf("급행") >= 0 || list[i].routeNo.indexOf("직행") >= 0 ? "r" : "g"),
+                                    "arTime": list[i].arTime,
+                                    "seq": list[i].seq,
+                                    "bsId": list[i].bsId,
+                                    "ngisXPos": list[i].ngisXPos,
+                                    "ngisYPos": list[i].ngisYPos,
+                                    "busId": list[i].busId,
+                                    "vhcNo": list[i].vhcNo,
+                                    "vhcNo2": list[i].vhcNo2,
+                                    //"vhcTCd": list[i].moveDir + "gps",
+                                    "vhcTCd": list[i].vhcTCd,
+                                    "routeNo": list[i].routeNo,
+                                    "routeNote": list[i].routeNote,
+                                    "style": "vhcGpsS",
+                                    //"posIdx": 0,
+                                    "angle": 0,
+                                    "posQueue": new Queue() 
+                                };
+
+
+                            if (map.getZoom() < ZMAP.options.bsZoom - 5) {
+                                if (naviCrfId == list[i].crfId) {
+                                    vhc.style = 'vhcGpsS_H';
+                                } else {
+                                    vhc.style = 'vhcGpsS';
+                                }
+                            } else if (map.getZoom() < ZMAP.options.bsZoom) {
+                                if (naviCrfId == list[i].crfId) {
+                                    vhc.style = 'vhcGpsM_H';
+                                } else {
+                                    vhc.style = 'vhcGpsM';
+                                }
+                            } else {
+                                if (naviCrfId == list[i].crfId) {
+                                    vhc.style = 'vhcGps_H';
+                                } else {
+                                    vhc.style = 'vhcGps';
+                                }
+                            }
+
+                            // 차량고유번호 배열에 저장
+                            crfIdArr[i] = list[i].crfId;
+
+                            // 버스정보 배열에 저장
+                            vhcDataArr[list[i].crfId] = vhc;
+
+                            $.ajax({
+                                method: 'GET',
+                                url: ACCUBUS_URL + '/realtime/vhcPos/' + list[i].crfId + "?posNo=0",
+                                cache: false,
+                                loadingTarget: false,
+                                dataType: 'json',
+                                success: function(data) {
+                                    if (data.body === null || data.body === undefined || data.body.crfId === null || data.body.vertexList == null || data.body.vertexList.length < 1) {
+
+                                        return;
+                                    }
+
+                                    if (vhcDataArr[data.body.crfId] === undefined) {
+                                        return;
+                                    }
+ 
+                                    var layer = ZMAP.layer.vhcPos;
+                                    var features = [];
+
+                                    vhcDataArr[data.body.crfId].vhc = data.body;
+
+                                    var q = new Queue();
+                                    var vertexData;
+                                    for (var i = 0; i < data.body.vertexList.length; i++) {
+                                        vertexData = data.body.vertexList[i];
+
+                                        q.insert(vertexData);
+
+                                    }
+
+                                    var feature = new OpenLayers.Feature.Vector(ZMAP.transform(vertexData.xPos, vertexData.yPos, ZMAP.geographicWGS84), vhcDataArr[data.body.crfId]);
+
+                                    feature.fid = data.body.crfId;
+                                    feature.renderIntent = 'default';
+                                    feature.attributes.angle = vhcDataArr[data.body.crfId].vhc.heading * 2;
+                                    feature.attributes.textDir = ((vhcDataArr[data.body.crfId].vhc.heading * 2) > 0 && (vhcDataArr[data.body.crfId].vhc.heading * 2) < 180) ? "e" : "w";
+                                    feature.attributes.busTCd = vhcDataArr[data.body.crfId].vhc.busTCd;
+                                    if (map.getZoom() < ZMAP.options.bsZoom - 5) {
+                                        if (naviCrfId == feature.fid) {
+                                            feature.attributes.style = 'vhcGpsS_H';
+                                        } else {
+                                            feature.attributes.style = 'vhcGpsS';
+                                        }
+                                    } else if (map.getZoom() < ZMAP.options.bsZoom) {
+                                        if (naviCrfId == feature.fid) {
+                                            feature.attributes.style = 'vhcGpsM_H';
+                                        } else {
+                                            feature.attributes.style = 'vhcGpsM';
+                                        }
+                                    } else {
+                                        if (naviCrfId == feature.fid) {
+                                            feature.attributes.style = 'vhcGps_H';
+                                        } else {
+                                            feature.attributes.style = 'vhcGps';
+                                        }
+                                    }
+                                    features.push(feature);
+
+                                    layer.addFeatures(features, {'rotation': vhcDataArr[data.body.crfId].vhc.heading * 2});
+                                    layer.setVisibility(true);
+
+                                    //timerIdArr[data.body.crfId] = setInterval(vhcMoveCallback, (1080 / data.body.speed) - ((1080 / data.body.speed) * (q.size / 10 / 100)), data.body.crfId); // 타이머 끝
+                                    if (vhcRafId !== null && vhcRafId !== undefined)
+                                        cancelAnimationFrame(vhcRafId);
+                                    render(makeCb());
+                                } // end of ajax success
+                            }); // end of ajax
+
+                        } // end of for
+
+                    } // end of vhcMode == 'UPGPS'
+                } // end of ajax success
+            }); // end of ajax
+        }, autoRef); // end of ZMAP.drawRoute
+    }
+
+    function searchRoute(searchText) { // 노선 검색어 조회
+        $.ajax({
+            type: 'GET',
+            url: "/route/search",
+            dataType: "json",
+            loadingTarget: false,
+            data: {
+                searchText: searchText
+            },
+            success: function(data) {
+                var item = data.body;
+                routeListData = item;
+                if (item.length > 0) {
+                    $('#routeTab').show();
+                    $('#routeTabContent').show();
+                } else {
+                    $('#routeTab').hide();
+                    $('#routeTabContent').hide();
+                }
+
+                var tag = $('#routeList > ul');
+                var html = '';
+                for (var i = 0; i < item.length; i++) {
+                    //displayMarker(data[i]);
+
+                    if (i > 4) {
+                        $('.routeMore').show();
+                        html += '<li class="list-group-item list-group-item-action routeHidden" id="routeList'+i+'" data-rno="'+(item[i].routeTCd=='C'?'칠곡':'')+item[i].routeNo+'">';
+                    } else {
+                        html += '<li class="list-group-item list-group-item-action" id="routeList'+i+'" data-rno="'+(item[i].routeTCd=='C'?'칠곡':'')+item[i].routeNo+'">';
+                    }
+                    html += '<a href="javascript:selectRouteNo(' + i + ')" class="d-flex w-100 justify-content-between">';
+                    var note = item[i].routeNote ? item[i].routeNote : '';
+                    html += '<h6>';
+
+                    switch (item[i].routeTCd) {
+                        case 'G':
+                            html += '<span class="ext-route">경산</span> ';
+                            break;
+                        case 'C':
+                            html += '<span class="ext-route">칠곡</span> ';
+                            break;
+                        case 'Y':
+                            html += '<span class="ext-route">영천</span> ';
+                            break;
+                        case 'M':
+                            html += '<span class="ext-route">군위</span> ';
+                            break;
+                    }
+
+                    html += '<span>' + item[i].routeNo + '</span> <small class="text-black-50">' + note + '</small></h6></a>';
+                    html += '</li>';
+                }
+                tag.html(html);
+                if(isMobileView() == false){
+                    checkBranchRouteNo(item);
+                }
+                
+                searchRouteBool = true;
+                searchCallBack();
+            }
+        });
+    }
+    
+    function checkBranchRouteNo(item){//노선 전체보기 표시
+        var tag = $('#routeList > ul');
+        var routeNo = 0;
+        var routeNoList = [];        
+        
+        $(item).each(function(i, obj){
+            if(routeNo != obj.routeNo){
+                var json = {};
+                json.routeNo = routeNo = obj.routeNo;
+                json.routeTCd = obj.routeTCd;
+                json.count = 1;
+                routeNoList.push(json);
+            }else{
+                var json = routeNoList[routeNoList.length-1];
+                json.count++;
+            }
+        });
+        
+        $(routeNoList).each(function(i,obj){
+            if(obj.count > 1){
+                var routeNo = obj.routeNo;
+                var routeTCd = obj.routeTCd;
+                var $target = tag.find('li[data-rno="'+(routeTCd=='C'?'칠곡':'')+routeNo+'"]:first');
+                var html = '';
+                if($target.hasClass("routeHidden")){
+                    html += '<li class="list-group-item list-group-item-action routeHidden" class="routeAllsearch">';
+                }else{
+                    html += '<li class="list-group-item list-group-item-action" class="routeAllsearch">';
+                }
+                html += '<a href="javascript:selectRouteAllSearch(\''+routeNo+'\', \''+obj.routeTCd+'\')" class="d-flex w-100 justify-content-between">';
+                html += '<h6>';
+
+                switch (obj.routeTCd) {
+                    case 'G':
+                        html += '<span class="ext-route">경산</span> ';
+                        break;
+                    case 'C':
+                        html += '<span class="ext-route">칠곡</span> ';
+                        break;
+                    case 'Y':
+                        html += '<span class="ext-route">영천</span> ';
+                        break;
+                    case 'M':
+                        html += '<span class="ext-route">군위</span> ';
+                        break;
+                }
+
+                html += '<span>' + routeNo + '</span> <small class="text-black-50"> 노선 전체 보기 </small></h6></a>';
+                html += '</li>';
+                $target.before(html);
+            }
+        })
+    } 
+    
+    function routeAll() { // 노선번호 전체 표시
+        $('.routeHidden').show();
+        $('.routeMore').hide();
+    }
+
+    function selectRouteNo(index) { // 노선도 표시
+        if (index < 0)
+            return;
+
+        if (routeListData[index] == undefined)
+            return;
+
+        localStorage.setItem("history", "false");
+        var routeId = routeListData[index].routeId;
+        var infoHtml = "";
+        $("#searchText").val(routeListData[index].routeNo);
+        $('#routeList > ul > li').hide();
+        //$('#routeList' + index).slideDown(); //접혀진 상태로 나타나게 수정
+        $("#route-tab i").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+        
+        var menuCd = "SV-02";
+        setCountAccess(menuCd);
+        
+        $.ajax({ // 노선정보 표출
+            type: 'GET',
+            url: "/route/info",
+            dataType: "json",
+            loadingTarget: false,
+            data: {
+                routeId: routeId
+            },
+            success: function(data) {
+                var item = data.body;
+                
+                $('#routeInfo').remove();
+                $('.routeMap').remove();
+//              infoHtml = '<ul id="routeInfo" style="display:none;padding-left:20px;">';
+                infoHtml = '<ul id="routeInfo" style="padding-left:20px;">';
+                infoHtml += '<li style="font-size:14px"><a style="font-weight:bold;">기점</a><a class="text-info">' + item.stNm + ' </a></li>'
+                infoHtml += '<li style="font-size:14px"><a style="font-weight:bold;">종점</a><a class="text-info">' + item.edNm + ' </a></li>'
+                if (item.avgTm) {
+                    infoHtml += '<li style="font-size:14px"><a style="font-weight:bold;">배차간격</a><a class="text-info">' + item.avgTm + ' </a></li>'
+                }
+                if (item.comNm) {
+                    infoHtml += '<li style="font-size:14px"><a style="font-weight:bold;">회사</a><a class="text-info">' + item.comNm + ' </a>'
+                }
+                if (item.telNo) {
+                    infoHtml += '</li><li style="font-size:14px"><a style="font-weight:bold;">전화번호</a><a class="text-info">' + item.telNo + ' </a>';
+                }
+                //infoHtml += '<div class="btn-group d-md-none d-block" style="float: right;">';
+                //infoHtml += '<button type="button" onclick="' + "mapControl(true);" + '" class="smfont smbtn selectStEd btn btn-success" style="padding: 2px 2px;">지도</button></div></li>';
+                infoHtml += '</li></ul>';
+                $('#routeList' + index).append(infoHtml);
+                
+                infoHtml = '<div class="routeMap d-md-none d-inline"><i onclick="' + "mapControl(true);" + '" class="fas fa-map-marked-alt"></i></div>'
+                $('#routeList' + index + ' > a').append(infoHtml);
+
+
+            }
+        });
+        if ($("#selectRouteTab").css("display") == "none") {
+            //console.log("routeInfo slideDown call");
+            $('#routeInfo').slideDown(0, function() {//접혀진 상태로 나타나게 수정 "fast" -> 0
+                //var height = $("#posTab").height() + $("#routeTab").height() + $("#routeTabContent").height() + 35;
+                var height = $("#routeTab").height() + $("#routeTabContent").height() + 29; //+ 35;
+                $("#routeBsList").css("height", "calc(100% - "+height+"px)");
+                //console.log("routeInfo slideDown finish");
+            });
+        }
+        drawRouteInfo(routeId, index);
+    }
+
+    function drawRouteInfo(routeId, index) { // 노선도 표시
+        activeId = null; 
+
+        var bsId = null;
+        var routeNo = routeListData[index].routeNo;
+        if(routeListData[index].bsId)
+            bsId = routeListData[index].bsId;
+        $.ajax({
+            type: 'GET',
+            url: "/bs/route",
+            dataType: "json",
+            loadingTarget: false,
+            data: {
+                routeId: routeId
+            },
+            success: function(data) {
+                var item = data.body;
+                searchBsData2 = item;
+                
+
+                var dir0 = $("#dir0 > ul");
+                var dir1 = $("#dir1 > ul");
+                dir0.html("");
+                dir1.html("");
+                $('.dir0-tab').hide();
+                $('.dir1-tab').hide();
+                $("#dir1-tab").html("버스노선도<i class='fas fa-chevron-down'></i>");
+                
+
+                
+                //노선표시 새로고침 단순히 active 여부로 확인
+                if (firstRoute == true){
+                    var index = -1;
+                    for (var i = 0; i < item.length; ++i) {
+                        if (item[i].bsId == selectBsId) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (selectBsId == ''){
+                        $("#dir1-tab").trigger("click");
+                        firstRoute = false;
+                    }else{
+                        if (item[index].moveDir == "1") {
+                            $("#dir1-tab").trigger("click");
+                            firstRoute = false;
+                        } else {
+                            $("#dir0-tab").trigger("click");
+                            firstRoute = false;
+                        }
+                    }
+                }else{
+                    if($('#dir1-tab').attr('class').indexOf('active') > 0){
+                        $("#dir1-tab").trigger("click");
+                    }else{
+                        $("#dir0-tab").trigger("click");
+                    }
+                }
+                
+                
+
+                
+                var positionCnt = 0;
+                var dir0cnt = 1;
+                var dir1cnt = 1;
+                
+                for (var i = 0; i < item.length; i++) {
+                    searchBsData2[i].routeIndex = index;
+                    var cnt = 0;
+                    var html = "";
+                    if (item[i].moveDir == "1") {
+                        cnt = dir1cnt;
+                        dir1cnt++;
+                    } else {
+                        cnt = dir0cnt;
+                        dir0cnt++;
+                    }
+                    searchBsData2[i].cnt = cnt;
+                    html += '<li class="list-group-item bsNoList2 bsNoList' + item[i].moveDir + '_'+ item[i].bsId;
+                    if(bsId){
+                        if(bsId == item[i].bsId){
+                            html += ' active';
+                            activeId = "bsNoList"+item[i].moveDir+'_'+ cnt;
+                        }
+                    }
+                    html += '" id="bsNoList' + item[i].moveDir + '_' + cnt + '">';
+                    html += '<div class="d-flex w-100 text-ellipsis">';
+                    html += '<a style="width: 80%;" href="javascript:selectBsNo2(' + i + ');" ><img class="routeImg" src="static/img/map/icon_route.png">';
+                    html += '<span style="margin-top: 5px;" title="'+item[i].bsNm+'">' + item[i].bsNm + '</span></a>';
+                    html += '<div style="margin: auto 0px;float: right;min-width: 60px;"">';
+                    if (item[i].substIds) {
+                        var substs = item[i].substIds;
+                        var substArray = substs.split(',');
+                        var substImg = null;
+                        
+                        var subCnt = 0;
+                        if (substArray.length > 1) {
+                            var temp = substArray[0].trim().substr(0,1);
+                            for(var k=0; k < substArray.length; k++){
+                                if(temp == substArray[k].trim().substr(0,1)){
+                                }else{
+                                    temp = substArray[k].trim().substr(0,1);
+                                    subCnt++;
+                                }
+                                
+                            }
+                        }
+                        
+                        if (subCnt > 0) {
+                            substImg = "icon_subwaytransfer";
+                        } else {
+                            var subLine = substs.substring(0, 1);
+                            substImg = "icon_subwayline" + subLine;
+                        }
+                        html += '<a class="mr-2" style="float: left;" href="javascript:selectSubWay(\'' + item[i].bsNm + '\',\'' + item[i].substIds + '\');" >';
+                        html += '<img class="substImg" src="' + CONFIG.ctx + '/static/img/'+substImg+'.png"></a>';
+                    }
+                    html += '<a style="float: right; padding: 5px 5px 5px 0; margin-top: -5px;" href="javascript:setCenterBs(\'' + item[i].bsId + '\');"><span class="text-primary text-wrap"><i class="fas fa-map-marker-alt"></i></span></a>';
+                    html += '</div></div></li>';
+                    if (item[i].moveDir == "1") {
+                        $('.dir1-tab').show();
+                        dir1.append(html);
+                    } else {
+                        $("#dir1-tab").html("정방향<i class='fas fa-chevron-down'></i>");
+                        $('.dir0-tab').show();
+                        dir0.append(html);
+                    }
+                }
+                
+                hideAll('routeTab');
+                //$('#posTab').show();
+
+                //expanseThis('route-tab', 'routeTabContent')
+                
+                //console.log("routeBsList slideDown");
+                //$('#routeBsList').slideDown();
+                $('#routeBsList').slideDown(0, function() {//접혀진 상태로 나타나게 수정 "fast" -> 0
+                    //var height = $("#posTab").height() + $("#routeTab").height() + $("#routeTabContent").height() + 35;
+                    var height = $("#routeTab").height() + $("#routeTabContent").height() + 29; //+ 35;
+                    $("#routeBsList").css("height", "calc(100% - "+height+"px)");
+                    //console.log("routeBsList slideDown finish");
+                    if (UPGPS_ROUTE_IDS.indexOf(routeId) >= 0 || UPGPS_ROUTE_IDS == "*") {
+                        var el = $("#btn-vhc-mode");
+                        if (vhcMode == "NORMAL") {
+                            el.removeClass("btn-gps-on");
+                            el.addClass("btn-gps-off");
+                            el.html('초정밀 버스');
+                            el.show();
+                            vhcMode = "NORMAL";
+                        } else {
+                            el.removeClass("btn-gps-off");
+                            el.addClass("btn-gps-on");
+                            el.html('초정밀 버스');
+                            el.show();
+                            vhcMode = "UPGPS";
+                        }
+                    } else {
+                        var el = $("#btn-vhc-mode");
+                        el.hide();
+                        vhcMode = "NORMAL";
+                    }
+                });
+
+                //버스노선 상세정보 내림
+                /* $('#routeList' + index).slideDown(); */
+                $('.routeMore').hide();
+                
+
+                $.ajax({ // 노선도에 버스 위치 표시 
+                    type: 'GET',
+                    url: "/bs/position",
+                    dataType: "json",
+                    loadingTarget: false,
+                    data: {
+                        routeId: routeId
+                    },
+                    success: function(data2) {
+                        var position = data2.body;
+                        for (var i = 0; i < position.length; i++) {
+                            var dir = position[i].moveDir;
+                            var html = "";
+                            var busType = position[i].areaCd + position[i].busTCd2 + position[i].busTCd3;
+                            busType = busType.toLowerCase();
+                            html += '<div class="d-flex w-100 busImg" id="vhc_' + position[i].crfId + '" onclick="showNaviPanel(\'' + position[i].crfId + '\')">';
+                            html += '<img class="mr-2" src="' + CONFIG.ctx + '/static/img/ic_bus'+ position[i].busTCd2 + position[i].busTCd3 +'.png" >';
+                            html += '<img src="' + CONFIG.ctx + '/static/img/icon_vhc_'+dir+ busType +'.png" style="width: 50px;">';
+                            html += '<div style="text-align: center;margin-top: 5px;">';
+                            html += '<p class="text-primary" style="font-size: 16px;margin-bottom: 0;">' + position[i].vhcNo + '</p>';
+                            html += '<p class="text-primary" style="font-size: 14px;margin-bottom: 0;">(' + position[i].arTime.toString().formatTime() + ')</p></div></div>';
+
+                            if (position[i].areaCd != 'G' && position[i].areaCd != 'Y') {
+                                $('#bsNoList' + dir + '_' + position[i].idxPrd)
+                                        .addClass('havBus')
+                                        .append(html);
+                                $('#bsNoList' + dir + '_' + (position[i].idxPrd + 1)).addClass('havBusNext');
+                            } else {
+                                $('.bsNoList' + dir + '_' + position[i].bsId)
+                                        .addClass('havBus')
+                                        .append(html)
+                                        .next().addClass('havBusNext');
+                            }
+                        }
+
+                        if (selectBsNoIdx >= 0) {
+                            selectBsNo2(selectBsNoIdx);
+                            //console.log("selectBsNo2(" + selectBsNoIdx + ")");
+                        }
+
+                        if(activeId) {
+                            routeScrollAuto(activeId);
+                            //console.log("routeScrollAuto(\'" + activeId + "\')");
+                        } else {
+                            $('#mapTabContent').animate({scrollTop : mapTabContentScrollHeight}, 0);
+                            //console.log("mapTabContent scroll to " + mapTabContentScrollHeight);
+                        }
+
+                        searchArrTimeCrfIds = "";
+                        selectBsId = "";
+                        drawVhcPos(routeId);
+                    }
+                });
+            }
+        });
+
+        
+        //drawVhcPos(routeNo);//yhjung_test
+    }
+    
+    function selectRouteAllSearch(routeNo, routeTCd){
+        searchArrTimeCrfIds = "";
+        drawVhcPos(routeNo, routeTCd);
+    }
+
+    function selectSubWay(bsNm , substIdList){
+        localStorage.setItem("history", "false");
+        if(event)
+            event.stopPropagation();
+        
+        $.ajax({ // 노선도에 버스 위치 표시 
+            type: 'GET',
+            url: "/getSubwayArrInfo",
+            dataType: "json",
+            loadingTarget: false,
+            data: {
+                substIdList: substIdList
+            },
+            success: function(data) {
+                var item = data.body;
+                var html = '';
+                $('.substTitle').html(bsNm);
+                for(var i=0; i < item.length; i++){
+                    var arTime = item[i].arTime;
+                    if(item[i].arTime == '0'){
+                        arTime = 도착;
+                    }else{
+                        arTime = arTime + '분' + "<span class='small'>" + '도착예정시간' + "</span>";
+                    }
+                    html += '<tr class="substTr'+item[i].subRouteId+'">\
+                        <th class="text-center" width="25%">'+item[i].substNm+' 역\
+                        <p class="small" style="margin: 0px;">'+item[i].subRouteId+' 호선</p></th>\
+                        <td class="text-center" width="35%">'+item[i].routeNote+' 방면</td>\
+                        <td width="40%">'+arTime+'</td>\
+                        </tr>';   //
+                }
+                $("#substTable").html(html);
+                $('#substToast').show();
+                $('#substToast').addClass("fade show");
+                
+            }
+        });
+    }
+    
+    function closeSubstToast(){
+        $('#substToast').toast('hide');
+        $('#substToast').hide();
+    }
+
+    function setCenterBs(bsId) {
+        ZMAP.setCenterByBsId(bsId)
+        if (sizeCheck()) {
+            mapControl(true);
+        }
+    }
+
+    function selectBsNo2(index) {
+//         ZMAP.modalAutoSearch(searchBsData2[index].bsNm, searchBsData2[index].wincId);
+        selectBsNoIdx = index;
+        if (searchBsData2[index].act) {
+            //$("#routeBsList").css("height", "calc(100% - 215px)");
+            searchBsData2[index].act = false;
+            selectRouteNo(searchBsData2[index].routeIndex == undefined ? 0 : searchBsData2[index].routeIndex);
+            $('.busImg').removeClass('hideImportant');
+            //console.log("selectBsNo2 act true");
+        } else {
+            $("#routeBsList").css("height", "auto");
+            searchBsData2[index].act = true;
+            $('.bsNoList2').slideUp();
+            $('#bsNoList' + searchBsData2[index].moveDir + '_' + searchBsData2[index].cnt).slideDown();
+            searchArrTime(searchBsData2[index].bsId);
+            $('.busImg').addClass('hideImportant');
+            //console.log("selectBsNo2 act false");
+        }
+    }
+
+    //주소 검색 콜백
+    function placesSearchCB(data, status, pagination) {
+        
+        if(CONFIG.locale == "en"){
+            return;
+        }
+        if (status === kakao.maps.services.Status.OK) {
+
+            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+            // LatLngBounds 객체에 좌표를 추가합니다
+            //var bounds = new kakao.maps.LatLngBounds();
+            addrData = data;
+
+            var tag = $('#addrList > ul');
+            searchAddrCnt = 0;
+            if (ZMAP.locale.indexOf('ko') > -1) {
+                ZMAP.locale = 'ko';
+            }
+            for (var i = 0; i < data.length; i++) {
+                //displayMarker(data[i]);
+                var addr = data[i].address_name.split(" ");
+                if (addr[0].indexOf('대구') > -1) { // 대구인것만 셋팅
+
+                    /*ZMAP.geometryPoint.x = data[i].x;
+                    ZMAP.geometryPoint.y = data[i].y;
+                    ZMAP.geometryPoint.transform(ZMAP.geographicWGS84, ZMAP.mercator);*/
+                    var position = (new OpenLayers.LonLat(data[i].x, data[i].y)).transform(ZMAP.geographicWGS84, ZMAP.geographic);
+                    var lon = position.lon;
+                    var lat = position.lat;
+                    data[i].lon = position.lon;
+                    data[i].lat = position.lat;
+                    var html = '';
+                    if (i > 4) {
+                        $('.addrMore').show();
+                        html = '<li class="list-group-item list-group-item-action addrHidden" id="selectAddr'+i+'">';
+                    } else {
+                        html = '<li class="list-group-item list-group-item-action" id="selectAddr'+i+'">';
+                    }
+                    if(searchMode == "none"){
+                        html += '<a href="javascript:selectAddr(' + i + ')" class="d-flex">';
+                    }else if(searchMode == "st"){
+                        html += '<a href="javascript:selectSt(' + i + ')" class="d-flex">';
+                    }else if(searchMode == "ed"){
+                        html += '<a href="javascript:selectEd(' + i + ')" class="d-flex">';
+                    }
+                    html += '<h6 class="li-p mr-auto">' + data[i].place_name + '</h6>';
+                    html += '<div  class="d-md-none d-inline">';
+                    html += '<i onclick="selectAddrMap(' + i + ')" class="fas fa-map-marked-alt"></i>';
+                    html += '</div> </a>';
+                    html += '<p class="h-35">' + data[i].address_name + '</p>';
+                    
+                    html += '<div class="selectStEd-group" >';
+                    if(searchMode == "none"){
+                        html += '<button type="button" onclick="selectSt(' + i + ')" class="mr-2 smfont2 smbtn btn btn-nomal">출발</button>';
+                        html += '<button type="button" onclick="selectEd(' + i + ')" class="smfont2 smbtn btn btn-danger2">도착</button>';
+                    }
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</li>';
+
+                    //bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+
+                    tag.append(html);
+                    searchAddrCnt++;
+                    //map.setBounds(bounds); // 검색된 장소 위치를 기준으로 지도 범위 재설정
+
+
+                    var pointFeature = new OpenLayers.Feature.Vector(ZMAP.transform(data[i].x, data[i].y, ZMAP.geographic));
+
+                    var feature = new OpenLayers.Feature.Vector(pointFeature.geometry, {
+                        style: 'here',
+                        upon: 'bs'
+                    }, null);
+                    feature.id = 'ZMAP_ICON_HERE';
+                    ZMAP.layer.bs.addFeatures([feature]);
+                    ZMAP.layer.bs.setVisibility(true);
+                }
+            }
+
+            searchAddrBool = true;
+            searchCallBack();
+            if (searchAddrCnt > 0) {
+                $('#addrTab').show();
+                $('#addrTabContent').show();
+            } else {
+                $('#addrTab').hide();
+                $('#addrTabContent').hide();
+            }
+        } else if (status == kakao.maps.services.Status.ZERO_RESULT) {
+            searchAddrCnt = 0;
+            searchAddrBool = true;
+            searchCallBack();
+        }
+    }
+
+    function selectAddr(index) {
+        localStorage.setItem("history", "false");
+        hideAll('addrTab');
+        expanseThis('addr-tab', 'addrTabContent');
+
+        var xPos = addrData[index].x;
+        var yPos = addrData[index].y;
+
+        getNearbyBs(xPos, yPos);
+        ZMAP.setCenterByPos(xPos, yPos);
+
+        //ZMAP.addIcon(ZMAP.layer.route, 'ZMAP_ICON_HERE', feature.geometry, null, {style: 'here', upon: 'bs'});
+        $('#' + 'selectAddr' + index).slideDown();
+        $('.addrMore').hide();
+    }
+
+    function sdSearch() {
+        $('#srcXPos').val('');
+        $('#srcYPos').val('');
+        //$('#dstXPos').val('');
+        //$('#dstYPos').val('');
+    }
+    function edSearch() {
+        //$('#srcXPos').val('');
+        //$('#srcYPos').val('');
+        $('#dstXPos').val('');
+        $('#dstYPos').val('');
+    }
+
+    function selectAddrMap(index) {
+        localStorage.setItem("history", "false");
+        ZMAP.setCenterByPos(addrData[index].x, addrData[index].y);
+        mapControl(true);
+    }
+    function selectSt(index) {
+        localStorage.setItem("history", "false");
+        $('#stedMode').removeClass('active');
+        stedMode();
+
+        $('.sidebar-contents').css('padding-bottom', '190px');
+        $('#sdSearchText').val(addrData[index].place_name);
+
+        var srcXPos = addrData[index].lon;
+        var srcYPos = addrData[index].lat;
+        $('#srcXPos').val(srcXPos);
+        $('#srcYPos').val(srcYPos);
+        $('#srcBsID').val("");
+
+        var dstXPos = $('#dstXPos').val();
+        var dstYPos = $('#dstYPos').val();
+
+        ZMAP.setCenterByPos(addrData[index].x, addrData[index].y, 'directionsDeparture');
+        //ZMAP.setIconByPos(addrData[index].x, addrData[index].y, 'directionsDeparture');
+        if (dstXPos != null && dstXPos.length > 0 && dstYPos != null && dstYPos.length > 0) {
+            srcDstRoute();
+        }
+    }
+    function selectEd(index) {
+        localStorage.setItem("history", "false");
+        $('#stedMode').removeClass('active');
+        stedMode();
+
+        $('.sidebar-contents').css('padding-bottom', '190px');
+        $('#edSearchText').val(addrData[index].place_name);
+
+        var dstXPos = addrData[index].lon;
+        var dstYPos = addrData[index].lat;
+        $('#dstXPos').val(dstXPos);
+        $('#dstYPos').val(dstYPos);
+        $('#dstBsID').val("");
+
+        var srcXPos = $('#srcXPos').val();
+        var srcYPos = $('#srcYPos').val();
+
+        //var position = (new OpenLayers.LonLat(addrData[index].x, addrData[index].y)).transform(ZMAP.geographicWGS84, ZMAP.mercator);
+        //map.setCenter(position, 10);
+        ZMAP.setCenterByPos(addrData[index].x, addrData[index].y, 'directionsArrival');
+        //ZMAP.setIconByPos(addrData[index].x, addrData[index].y, 'directionsArrival');
+        if (srcXPos != null && srcXPos.length > 0 && srcYPos != null && srcYPos.length > 0) {
+            srcDstRoute();
+        } else {
+            getLocation("none");
+        }
+    }
+
+    function stedMode() {
+        if ($('#stedMode').hasClass('active')) {
+            $(".sted").slideUp(function() {
+                $(".searchText").show();
+                resizeWindow();
+            });
+            $(".stedBtn").slideUp(function() {
+                $('.stedFn').hide();
+                $('.stedSearch').show();
+                resizeWindow();
+            });
+            searchMode = "none";
+            $('#stedMode').removeClass('active');
+            $('#stedMode').text('출도착지 검색')
+
+            $('#sdSearchText').val("");
+            $('#srcXPos').val("");
+            $('#srcYPos').val("");
+            $('#srcBsID').val("");
+            $('#edSearchText').val("");
+            $('#dstXPos').val("");
+            $('#dstYPos').val("");
+            $('#dstBsID').val("");
+            var layer = ZMAP.layer.route;
+            layer.refresh();
+        } else {
+            $(".sted").slideDown(function() {
+                resizeWindow();
+            });
+            $(".searchText").hide();
+            //$('.sidebar-contents').css('padding-bottom', '190px');
+            $('#stedMode').addClass('active');
+            $('#stedMode').text('출도착지 검색 종료')
+        }
+        resizeWindow();
+    }
+    
+    function setStedFocus(type) {
+        $('.stedSearch').hide();
+        $('.stedFn').show();
+        //$('.stedFn').attr( "style", "display: inline !important;" )
+        $(".stedBtn").slideDown(function() {
+            resizeWindow();
+        });
+        searchMode = type;
+        if(type == 'st'){
+            $("#setMyLocation").text("출발지 내 위치 선택");
+            $("#setMapLocation").text("출발지 지도 선택");
+        }else if(type == 'ed'){
+            $("#setMyLocation").text("도착지 내 위치 선택");
+            $("#setMapLocation").text("도착지 지도 선택");
+        }
+    }
+    
+    function srcDstRoute() {
+        $('.stedFn').attr( "style", "display: none !important;" )
+        $('.stedSearch').show();
+        $(".stedBtn").slideDown(function() {
+            resizeWindow();
+        });
+    }
+    
+    function srcDstRouteSearch() {
+        var srcXPos = $('#srcXPos').val();
+        var srcYPos = $('#srcYPos').val();
+        var dstXPos = $('#dstXPos').val();
+        var dstYPos = $('#dstYPos').val();
+        var srcBsID = $('#srcBsID').val();
+        var dstBsID = $('#dstBsID').val();
+        
+        var tag = $('#srcdstrouteList > ul');
+
+        var menuCd = "SV-03";
+        setCountAccess(menuCd);
+
+        $.ajax({ // 출도착지 조회 
+            type: 'GET',
+            url: '/srcdstroute',
+            dataType: "json",
+            data: {
+                srcXPos: srcXPos,
+                srcYPos: srcYPos,
+                dstXPos: dstXPos,
+                dstYPos: dstYPos,
+                srcBsID: srcBsID,
+                dstBsID: dstBsID
+            },
+            success: function(data) {
+            	var items = data.body;
+                var html = '';
+
+
+                tag.data('result', items);
+
+                if (items.length < 1) {
+                    $('.noData').show();
+                } else {
+                    $('.noData').hide();
+                }
+                
+                
+                for (var i = 0, icnt = items.length; i < icnt; i++) {
+                	
+                	var item = items[i];
+                    var list = item.list;
+                    
+                    html += '<li class="list-group-item list-group-item-action" id="srcdstroute0" onclick="selectSrcDst(' + i + ', event)">';
+                    html += '<h6 class="mr-auto" style="margin-top: 10px;">';
+                    
+                    var timeSub = item.totalTime.substring(0, item.totalTime.indexOf('분'));
+                    
+                    if(timeSub != '0'){
+                        if(i == 0){
+                            if(list.length > 1){
+
+                                html += '<span class="totalTimeTag">환승 <span class="totalTime">' + item.totalTime + '</span></span>';
+                            }else{
+
+                                html += '<span class="totalTimeTag"><span class="totalTime">' +item.totalTime + '</span></span>';
+                            }
+                            
+                        }else{
+                            if(list.length > 1){
+                                html += '<span class="totalTimeTag">환승 <span class="totalTime">' + item.totalTime + '</span></span>';
+                            }else{
+                                html += '<span class="totalTimeTag"><span class="totalTime">' + item.totalTime + '</span></span>';
+                            }
+                            
+                        }
+                    }else{
+                        html += '<span class="totalTimeTag"><span class="totalTime"></span></span>';
+                    }
+                    
+
+                    
+                    for (var j = 0, jcnt = list.length; j < jcnt; j++) {
+                        
+                    	var section = list[j];
+                    	var bus_info = null;
+                    	var route_count = 0;
+                    	var section_arrState = '';
+                    	var section_prevBsGap = '';
+                    	var section_bsGap = '';
+                    	var section_t_type = '';
+                    	var section_k_type = '';
+                    	var section_gap;
+                    	var section_dTCd = '';
+                    	var wheelchair = '';
+                    	
+
+                         html += '<div class="busContent">';
+
+                         html += '<table style="font-size: 13px; width : 100%">';
+                         html += '<tbody>';
+                         html += '<tr>';
+                         html += '<td style="text-align: center;width: 10%;">';
+
+                         if (section.routeType == null || section.routeType == undefined) {
+                             html += '<img src="/dbms_web/static/img/bu_subst.png"></td>';
+                         } else {
+                             html += '<img src="/dbms_web/static/img/add/busType1_3.png" style="width:22px;"></td>';
+                         }
+
+                         html += '<td><h6 style="display: inline-block; width: 100%">';
+
+                         switch (section.routeType) {
+                             case '급행':
+                                 html += '<span class="ext-route" style="border-color: #b70000; background-color: #ff0000; vertical-align: middle;">급행</span> ';
+                                 break;
+                             case '순환':
+                                 html += '<span class="ext-route" style="border-color: #027938; background-color: #027938; vertical-align: middle;">순환</span> ';
+                                 break;
+                             case '간선':
+                                 html += '<span class="ext-route" style="vertical-align: middle;">간선</span> ';
+                                 break;
+                             case '지선':
+                                 html += '<span class="ext-route" style="border-color: #d1a418; background-color: #f3bd16; vertical-align: middle;">지선</span> ';
+                                 break;
+                             case '맞춤':
+                                 html += '<span class="ext-route" style="vertical-align: middle;">맞춤</span> ';
+                                 break;
+                             case '직행':
+                                 html += '<span class="ext-route" style="border-color: #b70000; background-color: #ffffff; color: #ff0000; vertical-align: middle;">직행</span> ';
+                                 break;
+                             case '마을':
+                                 html += '<span class="ext-route" style="border-color: #027938; background-color: #ffffff; color: #027938; vertical-align: middle;">마을</span> ';
+                                 break;
+                             case '경산':
+                                 html += '<span class="ext-route" style="vertical-align: middle;">경산</span> ';
+                                 break;
+                             case '칠곡':
+                                 html += '<span class="ext-route" style="vertical-align: middle;">칠곡</span> ';
+                                 break;
+                             case '영천':
+                                 html += '<span class="ext-route" style="vertical-align: middle;">영천</span> ';
+                                 break;
+                         }
+
+                         html += '<span class="busNumber" style="margin-bottom: 2px;">' + section.routeNo + '</span>';
+                         if (typeof(section.routeNote) != 'undefined') {
+                             html += '<span class="busNote text-black-50">' + section.routeNote + '</span>';
+                         }
+
+                    	html += '</h6>';
+                    	
+                    	html += '</td>';
+                    	
+                    	html += '</tr>';
+                    	
+                        html += '</tbody>';
+						html += '</table>';
+                    	
+                    	
+						html += '<table style="font-size: 15px;  width : 100%">';
+                    	
+                        html += '<tbody>';
+                    	
+                    	html += "<tr style='display:none;'>";
+
+                    	if (section.routeType == null || section.routeType == undefined || section.routeType == "경산" || section.routeType == "칠곡" || section.routeType == "영천") {
+                    	    html += "<td>";
+                    	} else {
+                    	    html += '<td colspan="2"><span class="busWaitTime"></span>&nbsp;<span class="countBs"></span>';
+                    	}
+                    	
+                    	html += '</td>';
+                    	html += "</tr>";
+                    	
+                    	
+                    	html += '<tr>';
+                    	html += '<td class="busCircle"><img src="/dbms_web/static/img/map/circle.png" ></td>';
+                    	html += '<td class="firstBusStation">' + section.stBsNm + '<input type="hidden" class="stBsId" value="' + section.stBsId + '"></td>';
+                    	html += '</tr>';
+                    	
+                    	html += '<tr>';
+                    	html += '<td class="busLine"><img src="/dbms_web/static/img/node/line2.png" ></td>';
+                    	
+                    	if(section.time == null){
+                    		html += '<td rowspan="2" class="routeDetailInfo">소요시간 : ' + section.gap;
+                    	}else{
+                    		html += '<td rowspan="2" class="routeDetailInfo">소요시간 : ' + section.time + ', ' + section.gap;
+                    	}
+
+                    	html += '</tr>';
+                    	
+                    	html += '<tr>';
+                    	html += '<td class="busLine" ><img src="/dbms_web/static/img/node/line2.png" ></td>';
+                    	html += '</tr>';
+                    	
+                    	html += '<tr>';
+                    	html += '<td class="busCircle"><img src="/dbms_web/static/img/map/circle.png" ></td>';
+                    	html += '<td class="lastBusStation">' + section.edBsNm + '</td>';
+                    	html += '</tr>';
+                    	
+                    	html += '</tbody>';
+                        html += '</table>';
+                        
+                        html += '</div>'
+                    	
+                    }
+                    
+                    html += '</li>';
+                    
+                }
+                
+                tag.html(html);
+                hideAll('srcdstTab');
+                $('.srcdstTab').slideDown();
+
+                if (sizeCheck()) {
+                    mapControl(false);
+                }
+
+//                 setTimeout(function() {
+//                     $(".refreshButton").trigger("click");
+//                 }, 100);
+                $(".refreshButton").each(function(idx, el){
+                    setTimeout(function() {
+                        $(el).trigger("click");
+                    }, 100);
+                });
+            }
+        });
+    }
+    
+    function routeTimeRefresh(event){
+        
+        var parentLi = $(event).closest("li");
+        var childrenDiv = $(parentLi).children('div');
+        
+        for(var i = 0; i < childrenDiv.length; i++){
+            var div = childrenDiv[i];
+            
+            var prevTable = $(div).children("table")[0];
+            var table = $(div).children("table")[1];
+            
+            var routeNumber = $($(prevTable).children().find(".busNumber")[0]).text();
+            var stBsId = $($(table).children().find(".stBsId")[0]);
+            
+            var arrState = $($(table).children().find(".busWaitTime")[0]);
+            var prevBsGap = $($(table).children().find(".countBs")[0]);
+            var wheelchair = $($(table).children().find(".wheelchair")[0]);
+            
+            $.ajax({
+                method: 'GET',
+                url: '/realtime/arr/' + $(stBsId).val(),
+                cache: false,
+                loadingTarget: false,
+                dataType: 'json',
+                async: false,
+                success: function(data) {
+                    
+                    section_arrState = '';
+                    section_prevBsGap = '';
+                    section_bsGap = '';
+                    
+                    for(var p = 0; p < data.body.list.length; p++){
+                        var arrBusInfo = data.body.list[p];
+                        
+                        if(routeNumber.includes(arrBusInfo.routeNo)){
+                            
+                            $(arrState).parent().parent().show();
+                            if (arrBusInfo.arrState != "운행종료") {
+                                $(arrState).html(arrBusInfo.bsNm);
+                            } else {
+                                $(arrState).html(arrBusInfo.arrState);
+                            }
+                            if (arrBusInfo.arrState != "운행종료" && arrBusInfo.arrState != "기점출발예정") {
+                                $(prevBsGap).html(arrBusInfo.prevBsGap + "정류소");
+                            } else {
+                                $(prevBsGap).html("");
+                            }
+                            
+                            if(arrBusInfo.busTCd2 == 'D'){
+                                wheelchair.html('<img style="width: 8%" src="/dbms_web/static/img/wheelchair.png" >');
+                            }else{
+                                wheelchair.html('');
+                            }
+                            
+                        }
+                    }
+                }
+            });
+        }
+    	
+    	
+    }
+
+    function selectSrcDst(index, event) {
+        
+        var eventTarger = event.target;
+        if(eventTarger.tagName != 'I'){
+            var data = $('#srcdstrouteList > ul').data('result')[index].list;
+
+            ZMAP.drawDirections(data);
+
+            if (sizeCheck()) {
+                mapControl(true);
+            }
+        }
+        
+    }
+
+    function addrAll() { // 주소정보 조회 전체 표시
+        $('.addrHidden').show();
+        $('.addrMore').hide();
+    }
+
+    function getNearbyBs(xPos, yPos) { // 근접 정류소 
+        localStorage.setItem("history", "false");
+        $.ajax({
+            type: 'GET',
+            url: "/bs/nearby",
+            dataType: "json",
+            loadingTarget: false,
+            data: {
+                xPos: xPos,
+                yPos: yPos,
+                radius: 1000
+            },
+            success: function(data) {
+                var item = data.body;
+
+                var html = '';
+                for (var i = 0; i < item.length; i++) {
+                    if (i > 4) {
+                        $('.nearBsMore').show();
+                        html += '<li class="list-group-item list-group-item-action nearBsHidden" id="nearBsList'+i+'">';
+                    } else {
+                        html += '<li class="list-group-item list-group-item-action" id="nearBsList'+i+'">';
+                    }
+
+                    html += '<div class="d-flex w-100 justify-content-between">';
+                    html += '<a href="javascript:selectNearBs(\'' + item[i].bsId + '\', ' + i + ');" >' + item[i].bsNm + '</a>';
+                    html += '<a href="javascript:selectNearBs(\'' + item[i].bsId + '\', ' + i + ');"><span class="text-primary text-wrap">' + item[i].dist + 'm</span></a>';
+                    html += '</div></li>';
+
+                    if (i > 9) {
+                        break;
+                    }
+                }
+                $("#nearBsList > ul").html(html);
+                $('.nearBsTab').slideDown();
+            }
+        });
+    }
+
+    function nearBsAll() { // 주소정보 조회 전체 표시
+        $('.nearBsHidden').show();
+        $('.nearBsMore').hide();
+    }
+
+    function selectNearBs(bsId, i) {
+        expanseThis('nearBs-tab', 'nearBsTabContent');
+        $('.nearBsMore').hide();
+        searchArrTime(bsId);
+        $('#nearBsList' + i).slideDown();
+    }
+
+    function handleContextMenu(menuId, lon, lat) { // lon, lat: BMS좌표계
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // WGS84로 좌표 변환
+        var x = 0;
+        var y = 0;
+
+        ZMAP.geometryPoint.x = lon;
+        ZMAP.geometryPoint.y = lat;
+
+        if (lon > 1000) {
+            ZMAP.geometryPoint.transform(ZMAP.mercator, ZMAP.geographicWGS84);
+            x = ZMAP.geometryPoint.x;
+            y = ZMAP.geometryPoint.y;
+        } else {
+            x = lon;
+            y = lat;
+            ZMAP.geometryPoint.transform(ZMAP.geographicWGS84, ZMAP.mercator);
+            lon = ZMAP.geometryPoint.x;
+            lat = ZMAP.geometryPoint.y;
+        }
+
+        var geometry = new OpenLayers.Geometry.Point(lon, lat);
+        var iconStyle = 'directions' + menuId[0].toUpperCase() + menuId.slice(1);
+        ZMAP.addIcon(ZMAP.layer.position, 'ZMAP_ICON_' + iconStyle.toUpperCase(), geometry, null, {style: iconStyle});
+
+        var position = (new OpenLayers.LonLat(x, y)).transform(ZMAP.geographicWGS84, ZMAP.geographic);
+        var geoLon = position.lon;
+        var geoLat = position.lat;
+
+        if (menuId == 'departure') {
+            geocoder.coord2RegionCode(x, y, setContextDeparture);
+
+            $('#stedMode').removeClass('active');
+            stedMode();
+
+            $('.sidebar-contents').css('padding-bottom', '190px');
+
+            $('#srcXPos').val(geoLon);
+            $('#srcYPos').val(geoLat);
+            $('#srcBsID').val("");
+
+            var dstXPos = $('#dstXPos').val();
+            var dstYPos = $('#dstYPos').val();
+
+            if (dstXPos != null && dstXPos.length > 0 && dstYPos != null && dstYPos.length > 0) {
+                srcDstRoute();
+            }
+        } else if (menuId == 'arrival') {
+            geocoder.coord2RegionCode(x, y, setContextArrival);
+
+            $('#stedMode').removeClass('active');
+            stedMode();
+
+            $('.sidebar-contents').css('padding-bottom', '190px');
+
+            $('#dstXPos').val(geoLon);
+            $('#dstYPos').val(geoLat);
+            $('#dstBsID').val("");
+
+            var srcXPos = $('#srcXPos').val();
+            var srcYPos = $('#srcYPos').val();
+
+            if (srcXPos != null && srcXPos.length > 0 && srcYPos != null && srcYPos.length > 0) {
+                srcDstRoute();
+            } else {
+                getLocation("none");
+            }
+        }
+        $('#map').css({
+            'cursor': 'auto'
+        })
+    }
+
+    function setContextDeparture(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            if (result.length > 0) {
+                var addrName = result[0].address_name.split(' ');
+                $('#sdSearchText').val(addrName[addrName.length - 1]);
+            }
+        }
+    }
+
+    function setContextArrival(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            if (result.length > 0) {
+                var addrName = result[0].address_name.split(' ');
+                $('#edSearchText').val(addrName[addrName.length - 1]);
+            }
+        }
+    }
+
+    function mapSelectMode(type) {
+        if(type == 'sted'){
+            type = searchMode;
+        }
+        if (type == 'st') {
+            ZMAP.edSelectMode = false;
+            ZMAP.stSelectMode = true;
+            //$("#map-wrap").css("cursor", "url('../img/icon_context_departure.png')");
+            $('#map').css({
+                'cursor': 'url(' + CONFIG.ctx + '/static/img/icon_context_departure.png), auto'
+            });
+        } else if (type == 'ed') {
+            ZMAP.stSelectMode = false;
+            ZMAP.edSelectMode = true;
+            $('#map').css({
+                'cursor': 'url(' + CONFIG.ctx + '/static/img/icon_context_arrival.png), auto'
+            });
+        }
+        if (sizeCheck()) {
+            mapControl(true);
+        }
+    }
+    
+    function changeSted(){
+        var srcXPos = $('#srcXPos').val();
+        var srcYPos = $('#srcYPos').val();
+        var srcBsID = $('#srcBsID').val();
+        var srcSearchText = $("#sdSearchText").val();
+        
+        var dstXPos = $('#dstXPos').val();
+        var dstYPos = $('#dstYPos').val();
+        var dstBsID = $('#dstBsID').val();
+        var dstSearchText = $("#edSearchText").val();
+        
+        $('#srcXPos').val(dstXPos);
+        $('#srcYPos').val(dstYPos);
+        $('#srcBsID').val(dstBsID);
+        $("#sdSearchText").val(dstSearchText);
+        
+        $('#dstXPos').val(srcXPos);
+        $('#dstYPos').val(srcYPos);
+        $('#dstBsID').val(srcBsID);
+        $("#edSearchText").val(srcSearchText);
+    }
+    
+    function searchSted(mode, target) {
+        var $stedText = $(target).closest('.sted').find('.stedText');
+        if($stedText.val() == ''){
+            
+            $stedText.attr("placeholder",'위치를 입력(선택)');
+            return;
+        }
+        
+        init();
+        var searchText = null;
+        searchMode = mode;
+        if(mode == 'st'){
+            searchText = $("#sdSearchText").val();
+        }else if(mode == 'ed'){
+            searchText = $("#edSearchText").val();
+        }
+        if (typeof kakao != 'undefined') {
+            var ps = new kakao.maps.services.Places();
+            ps.keywordSearch(searchText, placesSearchCB, keywordSearchOptions);
+        }
+        searchBs(searchText, null);
+    }
+
+    function expanseThis(el, listTag) {
+        var elChild = $('#' + el).find('i');
+
+        if (elChild.hasClass('fa-chevron-down')) {
+            elChild.removeClass('fa-chevron-down');
+            $('#' + listTag + ' > div > ul> li').slideUp('fast', function() { // Animation complete. 
+                elChild.addClass('fa-chevron-up');
+            });
+        } else {
+            elChild.removeClass('fa-chevron-up');
+            $('#' + listTag + ' > div > ul> li').slideDown('fast', function() { // Animation complete. 
+                elChild.addClass('fa-chevron-down');
+            });
+        }
+    }
+
+    function bsLocalStorage(bsId) { // 검색이력 저장
+        var searchBsId = localStorage.getItem("searchBsId");
+        var searchBsIdObject = [];
+        if (searchBsId != null && searchBsId != "") {
+            searchBsId.replaceAll(",,", ",");
+            searchBsIdObject = searchBsId.split(',');
+        }
+
+        if (searchBsIdObject.indexOf(bsId) < 0) {
+            if (searchBsIdObject.length > 9) {
+                searchBsIdObject.splice(searchBsIdObject.length - 1, 1);
+            }
+            searchBsIdObject.push(bsId);
+            var searchBsIdText = "";
+            for (var i = 0; i < searchBsIdObject.length; i++) {
+                if (searchBsIdObject[i] == '')
+                    continue;
+                searchBsIdText += searchBsIdObject[i] + ',';
+            }
+
+            var temp = searchBsIdText.substring(searchBsIdText.length - 1, searchBsIdText.length);
+            if (temp == ',') {
+                searchBsIdText = searchBsIdText.substring(0, searchBsIdText.length - 1);
+            }
+
+            localStorage.setItem("searchBsId", searchBsIdText);
+        }
+    }
+
+    function resizeWindow(mode) {
+        var total_H = $("#map-sidebar").height();
+        var search_H = $("#MapSearch").height();
+                
+        
+        if (sizeCheck()) {
+            if(mode == 'full'){
+                mapSizeMode = mode;
+                
+                $("#sidebar-main").animate({
+                    height:total_H - search_H,
+                },500);
+                
+                $("#map-wrap").animate({
+                    height:total_H - search_H,
+                    top:search_H
+                },500,function() {
+                    map.updateSize();
+                });
+                return;
+            }else if(mode == 'half'){
+                mapSizeMode = mode;
+                
+                $('#sidebar-main').css('display', 'block');
+                var halfSize = (total_H - search_H) / 2;
+                
+                $("#sidebar-main").animate({
+                    height:halfSize,
+                    top:(search_H + halfSize)
+                },500);
+                
+                $("#map-wrap").animate({
+                    height:halfSize
+                },500,function() {
+                    map.updateSize();
+                });
+                return;
+            }else if(mode == 'none'){
+                mapSizeMode = mode;
+                $("#sidebar-main").height(total_H - search_H);
+                $("#map-wrap").height(total_H - search_H);
+                $("#sidebar-main").css("top", search_H + "px");
+                $("#map-wrap").css("top", search_H + "px");
+
+                if ("korail" == get_cookie("app")) {
+                    $("#sidebar-main").height($("#sidebar-main").height() - 80);
+                    $("#map-wrap").height($("#map-wrap").height() - 80);
+                }
+            }else{
+                if(mapSizeMode == 'full'){
+                    $("#sidebar-main").height(total_H - search_H);
+                    $("#map-wrap").height(total_H - search_H);
+                    $("#sidebar-main").css("top", search_H + "px");
+                }else if(mapSizeMode == 'half'){
+                    var halfSize = (total_H - search_H) / 2;
+                    $("#sidebar-main").height(halfSize);
+                    $("#map-wrap").height(halfSize);
+                    $("#sidebar-main").css("top", search_H + halfSize + "px");
+                }else{
+                    $("#sidebar-main").height(total_H - search_H);
+                    $("#map-wrap").height(total_H - search_H);
+                    $("#sidebar-main").css("top", search_H + "px");
+                }
+                $("#map-wrap").css("top", search_H + "px");
+            }
+        } else {
+            $("#sidebar-main").height(total_H - search_H);
+            
+            $("#map-wrap").css("top", "0px");
+            $("#map-wrap").height(total_H);
+        }
+
+        map.updateSize();
+        //console.log("resizeWindow(\'" + mode + "\') sizeCheck : " + sizeCheck());
+    }
+
+    function sizeCheck() {
+        var html_W = $("html").width();
+        if (html_W < 768) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    function mapControl(mode){
+        localStorage.setItem("history", "false");
+        if(mode){
+            //$('#map').css('bottom', ($("html").height() - 796) + 'px');
+            $('#map-wrap').css('z-index', '101');  // 지도 표출
+            if(mapSizeMode != "half"){
+                $('#sidebar-main').hide();
+            }
+        }else{
+            if(mapSizeMode == "half"){
+                
+            }else{
+                $('#map-wrap').css('z-index', '99');  // 지도 숨기기
+                $('#sidebar-main').css('display', 'block');
+                mapSize = 'none';
+            }
+        }
+    }
+    
+    function closeMap(){
+        $('#map-wrap').css('z-index', '99');  // 지도 숨기기
+        $('#sidebar-main').css('display', 'block');
+        $("#footer").removeClass("active")
+        resizeWindow('none');
+    }
+    
+    function setBookMark(index, text){
+        if(event)
+            event.stopPropagation();
+        var el = $('#fa-star-' + index);
+        var bookmarkIndex = searchObject.indexOf(text);
+        if(bookmarkIndex > -1){
+            if(mBookMark[bookmarkIndex] == 'true'){
+                el.removeClass('active');
+                mBookMark[bookmarkIndex] = 'false';
+            }else{
+                el.addClass('active');
+                mBookMark[bookmarkIndex] = 'true';
+            }
+        }else{
+            el.addClass('active');
+            searchObject.unshift(text);
+            mBookMark.unshift("true");
+        }
+        saveLocalStorage(searchObject, mBookMark);
+        if(mBookMark[bookmarkIndex] == 'true'){
+            $Z.alert("즐겨찾기에 추가되었습니다.", 2000);
+        }else{
+            $Z.alert("즐겨찾기에서 해제되었습니다.", 2000);
+        }
+    }
+    
+    function settingRefresh(){
+        if (selectBsId && selectBsId != '') {
+            var list = null;
+            if($('#dir0-tab')[0].className.indexOf('active') > 0){
+                list = $('#dir0 ul li');
+            }else{
+                list = $('#dir1 ul li');
+            }
+            for(var i = 0; i < list.length; i++){
+                var res = list[i];
+                if(res.className.indexOf(selectBsId) > 0){
+                    var target = '#' + res.id;
+                    var offset = $(target).offset();
+                    var height = $("html").height();
+                    var top = offset.top - height*3/5;
+                    $('#mapTabContent').animate({scrollTop : top}, 2000);
+                    break;
+                }
+                
+            }
+        }
+    }
+
+    function routeScrollAuto() {
+        var offset = $("#" + activeId).offset();
+        var height = $("html").height();
+        var top = offset.top - height*3/5;
+        $('#mapTabContent').animate({scrollTop : top}, 0);
+    }
+
+    function vhcScrollAuto(crfId) {
+        var curFeature = ZMAP.layer.vhcPos.getFeatureByFid(naviCrfId);
+        if (curFeature != null && curFeature != undefined && 
+                curFeature.data != null && curFeature.data != undefined && 
+                curFeature.data.moveDir != null && curFeature.data.moveDir != undefined) {
+            if ($("#dir" + curFeature.data.moveDir + "-tab").attr('class').indexOf('active') < 0){
+                $("#dir" + curFeature.data.moveDir + "-tab").trigger("click");
+            }
+            setTimeout(function(crfId) {
+                if ($("#vhc_" + crfId).parent()[0] != null && $("#vhc_" + crfId).parent()[0] != undefined) {
+                    $("#vhc_" + crfId).parent()[0].scrollIntoView(true);
+                    $("#mapTabContent")[0].scrollIntoView(false);
+                }
+            }, 100, crfId);
+        }
+    }
+
+    function vhcTracking(flag) {
+        if (flag) {
+            $('#naviTrackingMask').show();
+
+            naviTracking = true;
+            $('#naviPanelMode').removeClass('gray-filter');
+
+            var curFeature = ZMAP.layer.vhcPos.getFeatureByFid(naviCrfId);
+            if (curFeature != null && curFeature != undefined && 
+                    curFeature.data != null && curFeature.data != undefined && 
+                    curFeature.data.posQueue != null && curFeature.data.posQueue != undefined &&
+                    curFeature.data.posQueue.front != null && curFeature.data.posQueue.front != undefined) {
+
+                if (curFeature.data.renderCount != null  && curFeature.data.renderCount != undefined)
+                    curFeature.data.renderCount = 0;
+
+                var curVhcPos = curFeature.data.posQueue.front.data;
+                var targetZoom = ZMAP.options.bsZoom - 2;
+                if (map.getZoom() > targetZoom) {
+                    targetZoom = map.getZoom();
+                }
+                var centerPoint = ZMAP.transform(curVhcPos.xPos, curVhcPos.yPos, ZMAP.geographicWGS84);
+                map.setCenter(new OpenLayers.LonLat(centerPoint.x, centerPoint.y), targetZoom);
+
+            }
+        } else {
+            $('#naviTrackingMask').hide();
+
+            naviTracking = false;
+            $('#naviPanelMode').addClass('gray-filter');
+        }
+    }
+
+var vhcRafId = null;
+const render = (cb) => {
+
+    vhcRafId = requestAnimationFrame(cb);
+};
+
+const makeCb = () => {
+    /* 
+     * makeCb 지역 변수
+     * render 함수 호출될 때 항상 초기화 됨
+     */
+    var start;
+    var layer = ZMAP.layer.vhcPos;
+    var features = ZMAP.layer.vhcPos.features;
+    var curFeature = null;
+    var curVhcPos = null;
+    for (var i = 0; i < features.length; i++) {
+
+        curFeature = features[i];
+        curFeature.data.fps = 100;
+        curFeature.data.interval = 10;
+        curFeature.data.renderCount = 0;
+        curFeature.data.prevBsNm = "";
+
+        if (curFeature.data.posQueue != null && curFeature.data.posQueue.front != null) {
+            curVhcPos = curFeature.data.posQueue.peekFront();
+            curFeature.geometry.x = curVhcPos.xPos;
+            curFeature.geometry.y = curVhcPos.yPos;
+            layer.drawFeature(curFeature);
+            layer.setVisibility(true);
+        }
+    }
+
+    return function cb(timestamp) {
+        if (vhcMode != "UPGPS") {
+            if (vhcRafId !== null && vhcRafId !== undefined)
+                cancelAnimationFrame(vhcRafId);
+            return;
+        }
+
+        if (start === undefined) {
+            start = window.performance.now().toFixed(1);
+            for (var i = 0; i < features.length; i++) {
+
+                if (features[i] != null && features[i].data != null)
+                    features[i].data.then = window.performance.now().toFixed(1);
+            }
+        }
+
+
+        for (var i = 0; i < features.length; i++) {
+
+            if (features[i] == null || features[i].data == null)
+                continue;
+
+            curFeature = features[i];
+
+            curVhcPos = curFeature.data.posQueue.peekFront();
+
+
+            calVhcFps(curFeature.data, curVhcPos.speed);
+
+            curFeature.data.elapsed = timestamp - curFeature.data.then;
+
+            if (curFeature.data.elapsed >= (curFeature.data.interval * RENDER_INTERVAL_COR_FAC)) {
+                curFeature.data.then = timestamp - (curFeature.data.elapsed % (curFeature.data.interval * RENDER_INTERVAL_COR_FAC));
+                curFeature.data.renderCount++;
+                curFeature.data.renderCount = curFeature.data.renderCount % 30;
+
+                    var curVhcPos = curFeature.data.posQueue.peekFront();
+
+                        calVhcFps(curFeature.data, curVhcPos.speed);
+
+                    // 렌더링 60건마다 네비 모드일 때 지도 이동
+                    if (curFeature.data.renderCount == 15) {
+                        if (naviMode && naviTracking && naviCrfId == curFeature.data.vhc.crfId && curFeature.data.posQueue.size > 2) {
+                            //$("#naviPanel span:nth-child(5)").text("navi mode paning...");
+                            var targetZoom = ZMAP.options.bsZoom - 2;
+                            if (map.getZoom() > targetZoom) {
+                                targetZoom = map.getZoom();
+                            }
+                            map.zoomTo(targetZoom);
+                            //map.panTo(new OpenLayers.LonLat(curVhcPos.mapXPos, curVhcPos.mapYPos));
+                            var panToPoint = ZMAP.transform(curVhcPos.xPos, curVhcPos.yPos, ZMAP.geographicWGS84);
+                            map.panTo(new OpenLayers.LonLat(panToPoint.x, panToPoint.y));
+                        }
+                    }
+
+                    // vhcModeBs
+                    if (vhcModeBs == "UPGPS") {
+                        if (curFeature.data.dsdBsMarkOn != null && curFeature.data.dsdBsMarkOn != undefined) {
+                            if (curVhcPos.dstBsId != selectBsId) {
+                                layer.destroyFeatures([curFeature]);
+                                searchArrTimeCrfIds = searchArrTimeCrfIds.replaceAll(curFeature.fid + ",", "");
+                                searchArrTimeCrfIds = searchArrTimeCrfIds.replaceAll("," + curFeature.fid, "");
+                                searchArrTimeCrfIds = searchArrTimeCrfIds.replaceAll(curFeature.fid + "", "");
+                                //selectArrReflash(true);
+                                continue;
+                            }
+                        }
+                        if (curVhcPos.dstBsId == selectBsId) {
+                            curFeature.data.dsdBsMarkOn = "On";
+                        }
+                    }
+
+                    if (naviCrfId == features[i].fid) {
+
+                        if (curVhcPos.dstBsNm != undefined) {
+                            if ($("#naviDstBsNm span:nth-child(1)").html() != curVhcPos.dstBsNm)
+                                $("#naviDstBsNm span:nth-child(1)").html(curVhcPos.dstBsNm);
+                        } else {
+                            if ($("#naviDstBsNm span:nth-child(1)").html() != "...")
+                                $("#naviDstBsNm span:nth-child(1)").html("...");
+                        }
+                        if (curVhcPos.speed != undefined) {
+                            if ($("#naviVhcSpeed").html() != ("속도 : " + curVhcPos.speed + "km/h"))
+                                $("#naviVhcSpeed").html("속도 : " + curVhcPos.speed + "km/h");
+                        } else {
+                            if ($("#naviVhcSpeed").html() != ("속도 : ...km/h"))
+                                $("#naviVhcSpeed").html("속도 : ...km/h");
+                        }
+
+                    }
+
+                    if (map.getZoom() < ZMAP.options.bsZoom - 5) {
+                        if (naviCrfId == features[i].fid) {
+                            curFeature.data.style = 'vhcGpsS_H';
+                        } else {
+                            curFeature.data.style = 'vhcGpsS';
+                        }
+                        curFeature.attributes.style = curFeature.data.style;
+                    } else if (map.getZoom() < ZMAP.options.bsZoom) {
+                        if (naviCrfId == features[i].fid) {
+                            curFeature.data.style = 'vhcGpsM_H';
+                        } else {
+                            curFeature.data.style = 'vhcGpsM';
+                        }
+                        curFeature.attributes.style = curFeature.data.style;
+                    } else {
+                        if (naviCrfId == features[i].fid) {
+                            curFeature.data.style = 'vhcGps_H';
+                        } else {
+                            curFeature.data.style = 'vhcGps';
+                        }
+                        curFeature.attributes.style = curFeature.data.style;
+                    }
+
+                    var mx = 0;
+                    var my = 0;
+                    if (curFeature.data.posQueue.front != null && curFeature.data.posQueue.front.next != null) {
+                        if (curFeature.data.posQueue.front.next.data.xPos != undefined &&
+                                curFeature.data.posQueue.front.next.data.yPos != undefined &&
+                                curVhcPos.xPos != undefined &&
+                                curVhcPos.yPos != undefined) {
+                            var curLonLat = ZMAP.transform(curVhcPos.xPos, curVhcPos.yPos, ZMAP.geographicWGS84);
+                            var nextLonLat = ZMAP.transform(curFeature.data.posQueue.front.next.data.xPos, curFeature.data.posQueue.front.next.data.yPos, ZMAP.geographicWGS84);
+
+                            mx = nextLonLat.x - curLonLat.x;
+                            my = nextLonLat.y - curLonLat.y;
+                        }
+
+                        if (mx != 0 && my != 0 && curFeature.data.posQueue.size > 2) {
+                            curVhcPos.angle = Math.atan2(mx, my) * 180 / Math.PI;
+                            curFeature.attributes.angle = curVhcPos.angle;
+                        }
+                        curFeature.attributes.moveDir = curFeature.data.moveDir;
+                        if (curVhcPos.angle != undefined)
+                            curFeature.attributes.textDir = (curVhcPos.angle > 0 && curVhcPos.angle < 180) ? "e" : "w";
+
+                            if (mx != 0 && my != 0 && curFeature.data.renderCount % 10 == 9) {
+//                                 var moveLonLat = ZMAP.transform(mx, my, ZMAP.geographicWGS84);
+//                                 curFeature.geometry.move(moveLonLat.x, moveLonLat.y);
+                                curFeature.geometry.move(mx, my);
+                            } else {
+                                var moveLonLat = ZMAP.transform(curVhcPos.xPos, curVhcPos.yPos, ZMAP.geographicWGS84);
+                                curFeature.geometry.x = moveLonLat.x;
+                                curFeature.geometry.y = moveLonLat.y;
+                            }
+                            // 사용한 버텍스 큐 삭제
+                            if (curFeature.data.posQueue.size > 1) {
+
+                                if (curFeature.data.renderCount % 10 == 9) {
+                                    $("#bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq - 2)).removeClass("havBus");
+                                    $("#bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq - 1)).removeClass("havBusNext");
+                                    $("#bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq - 1)).addClass("havBus");
+                                    if (("bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq - 1)) != $("#vhc_" + features[i].fid).parent().attr("id")) {
+                                        console.log(("bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq - 1)) + "!=" + $("#vhc_" + features[i].fid).parent().attr("id"));
+                                        if ($("#bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq - 1) + " div.busImg").length == 0) {
+                                            $("#bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq - 1)).append($("#vhc_" + features[i].fid));
+                                        } else {
+                                            $("#bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq - 1) + " div.text-ellipsis").after($("#vhc_" + features[i].fid));
+                                        }
+                                    }
+                                    $("#bsNoList" + curFeature.data.moveDir + "_" + (curVhcPos.dstBsSeq)).addClass("havBusNext");
+                                    var gpsTmStr ="(" + curFeature.data.vhc.gpsTm.substring(0, 2) + ":" + curFeature.data.vhc.gpsTm.substring(2, 4) + ":" + curFeature.data.vhc.gpsTm.substring(4, 6) + ")";
+                                    $("#vhc_" + features[i].fid + " p:nth-child(2)").html(gpsTmStr);
+                                    if (curFeature.data.moveDir == "0") {
+                                        if ($("#vhc_" + features[i].fid + " img:nth-child(2)").attr("src") != undefined && $("#vhc_" + features[i].fid + " img:nth-child(2)").attr("src").indexOf("_1") > 0)
+                                            $("#vhc_" + features[i].fid + " img:nth-child(2)").attr("src", $("#vhc_" + features[i].fid + " img:nth-child(2)").attr("src").replaceAll("_1", "_0"));
+                                    } else {
+                                        if ($("#vhc_" + features[i].fid + " img:nth-child(2)").attr("src") != undefined && $("#vhc_" + features[i].fid + " img:nth-child(2)").attr("src").indexOf("_0") > 0)
+                                            $("#vhc_" + features[i].fid + " img:nth-child(2)").attr("src", $("#vhc_" + features[i].fid + " img:nth-child(2)").attr("src").replaceAll("_0", "_1"));
+                                    }
+                                }
+
+                                curFeature.data.posQueue.remove();
+
+                            }
+
+                        layer.drawFeature(curFeature);
+                        layer.setVisibility(true);
+                    } else {
+
+                    }
+
+            }
+        }
+
+        vhcRafId = requestAnimationFrame(cb);
+    };
+};
+
+function calVhcFps(vhcFeatureData, speed) {
+    
+
+    if (vhcFeatureData.posQueue.size == 1 || speed == null || speed == 'null' || speed == undefined || speed == 'undefined') {
+        vhcFeatureData.fps = 100;
+        vhcFeatureData.interval = 10;
+        return;
+    }
+
+    if (speed == 0) {
+        vhcFeatureData.fps = 100;
+        vhcFeatureData.interval = 10;
+    } else {
+        vhcFeatureData.fps = Math.ceil(speed * FPS_CAL_FAC / VERTEX_LENGTH);
+        vhcFeatureData.interval = 1000 / vhcFeatureData.fps;
+
+        var vCnt = speed * 1000 / 60 / 60 * 100 / VERTEX_LENGTH * 2; 
+        if (vhcFeatureData.posQueue.size > vCnt) {
+            vhcFeatureData.interval -= (vhcFeatureData.interval * (vhcFeatureData.posQueue.size * Math.ceil(vhcFeatureData.posQueue.size / vCnt) / 10 / 100)) * 1.05;
+            if (vhcFeatureData.interval <= 0)
+                vhcFeatureData.interval = 1;
+        } else {
+            if (vhcFeatureData.posQueue.size > 5) {
+                vhcFeatureData.interval += (vhcFeatureData.interval * (Math.abs(vhcFeatureData.posQueue.size - vCnt) * Math.ceil(vhcFeatureData.posQueue.size / vCnt) * 10 / 100)) * 1.05;
+            }
+        }
+
+    }
+}
+</script><div id="korail_app_banner" style="background: #fff; border: 2px solid #B7E233; display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 80px; z-index: 999999; text-align: center;">
+    <a href="https://tour.daegu.go.kr" target="_daegu_tour"><img src="/dbms_web/static/img/banner/image5.jpg" style="width: auto; height:90%; margin-top: 2px;"/></a>
+</div>
+<script>
+function get_cookie(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+}
+
+if ("korail" == get_cookie("app")) {
+    $("#korail_app_banner").show();
+    setTimeout(() => {
+        $("#sidebar-main").height($("#sidebar-main").height() - 80);
+        $("#map-wrap").height($("#map-wrap").height() - 80);
+    }, 1000);
+}
+</script>
+</body>
+</html>

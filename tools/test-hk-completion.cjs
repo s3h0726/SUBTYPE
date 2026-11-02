@@ -4,8 +4,8 @@ const routes=index.routes.filter(r=>r.playable).map(r=>read(r.lazySource)),byId=
 const source=p=>fs.readFileSync(p,'utf8').replace(/\r\n/g,'\n');
 test('92 baseline directions retain exact source geometry, names, order and validation identity',()=>{
  const old=JSON.parse(cp.execFileSync('git',['show','84840e09:data/hk/generated/index.json'],{encoding:'utf8',maxBuffer:16e6}));
- assert.equal(old.routes.filter(r=>r.playable).length,92);assert.equal(routes.length,103);
- for(const m of old.routes.filter(r=>r.playable)){const a=byId.get(m.id),b=JSON.parse(cp.execFileSync('git',['show','84840e09:'+m.lazySource],{encoding:'utf8',maxBuffer:8e6}));assert(a,m.id);assert.equal(a.validationFingerprint,b.validationFingerprint);assert.deepEqual(a.geometry,b.geometry);assert.deepEqual(a.stations,b.stations);}
+ assert.equal(old.routes.filter(r=>r.playable).length,92);assert.equal(routes.length,105);
+ for(const m of old.routes.filter(r=>r.playable)){const a=byId.get(m.id),b=JSON.parse(cp.execFileSync('git',['show','84840e09:'+m.lazySource],{encoding:'utf8',maxBuffer:8e6}));assert(a,m.id);assert.equal(a.validationFingerprint,b.validationFingerprint);assert.deepEqual(a.geometry,b.geometry);assert.deepEqual(a.stations,require('./lib/hk-missing-stations.cjs').with507PTransfer(b.stations));}
 });
 test('all released directions have unique identities, Korean calls and connected sourced railway segments',()=>{
  assert.equal(new Set(index.routes.map(r=>r.id)).size,index.routes.length);
@@ -14,8 +14,8 @@ test('all released directions have unique identities, Korean calls and connected
   r.directedSegments.forEach((e,i)=>{assert(e.sourceWayIds.length);assert(e.geometry.length>=2);assert.deepEqual(e.geometry[0],r.geometry[r.stations[i].geometryIndex]);assert.deepEqual(e.geometry.at(-1),r.geometry[r.stations[i+1].geometryIndex]);});
  }
 });
-test('103 actual-engine proofs are fresh for AUTO and SPACE, including duplicate-event and terminal checks',()=>{
- const {engineFingerprint}=require('./lib/hk-game-completion.cjs'),release=require('./lib/hk-release.cjs'),proof=read('reports/hong-kong/completion/engine-completions.json');assert.equal(proof.runs.length,103);
+test('105 actual-engine proofs are fresh for AUTO and SPACE, including duplicate-event and terminal checks',()=>{
+ const {engineFingerprint}=require('./lib/hk-game-completion.cjs'),release=require('./lib/hk-release.cjs'),proof=read('reports/hong-kong/completion/engine-completions.json');assert.equal(proof.runs.length,105);
  for(const r of routes){const p=proof.runs.find(p=>p.serviceId===r.id);assert(p);for(const mode of ['auto','space']){assert.equal(p[mode].engineFingerprint,engineFingerprint());assert.equal(p[mode].routeIntegrity,true);assert.equal(p[mode].terminalReached,true);assert.equal(p[mode].errors,0);assert.deepEqual(p[mode].typedStationIds,r.stations.map(s=>s.id));}assert.equal(p.fingerprint,release.gameplayFingerprint(r));}
 });
 test('Peak six identities and passing loop remain original, with an explicit all-requested simulation',()=>{
@@ -33,9 +33,9 @@ test('751 historical ID is retained under verified current 751 identity; timed 7
 });
 test('unified latest-main selector groups directions and distinguishes Racecourse services',()=>{
  const c={};vm.createContext(c);vm.runInContext(source('js/hong-kong-tram.js').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),Object.assign(c,{hongKongRouteBlockReason:()=>''}));
- const choices=c.hongKongLineChoices(routes,'hk-east-rail'),race=choices.filter(c=>c.lineGroup.endsWith(':racecourse'));assert.equal(race.length,3);for(const c of race)assert.match(c.lineGroupLabel,/마장/);
+ const choices=c.hongKongLineChoices(routes,'hk-east-rail'),race=choices.filter(c=>c.lineGroup.endsWith(':racecourse'));assert.equal(race.length,4);for(const c of race)assert.match(c.lineGroupLabel,/마장/);
  const app=source('js/app.js');const a=app.indexOf('function operatingPatternKey('),b=app.indexOf('function operatingPatternLabel(',a);vm.runInContext(app.slice(a,b),c);
- const peak=c.hongKongLineChoices(routes,'hk-peak-tram');assert.equal(c.operatingPatternKey(peak[0]),c.operatingPatternKey(peak[1]));assert.equal(new Set(routes.map(r=>r.canonicalLineId)).size,26);
+ const peak=c.hongKongLineChoices(routes,'hk-peak-tram');assert.equal(c.operatingPatternKey(peak[0]),c.operatingPatternKey(peak[1]));assert.equal(new Set(routes.map(r=>r.canonicalLineId)).size,27);
 });
 test('circular routes retain 16 distinct visits and 15 real track legs',()=>{
  for(const id of ['hk-light-rail-705-osm-2941692','hk-light-rail-706-osm-2941790']){const r=byId.get(id);assert.equal(r.stations.length,16);assert.equal(r.directedSegments.length,15);assert.equal(r.stations[0].id,r.stations.at(-1).id);assert.notEqual(r.stations[0].stopId,r.stations.at(-1).stopId);}

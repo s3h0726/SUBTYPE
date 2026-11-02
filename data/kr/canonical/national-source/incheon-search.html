@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>버스정보시스템</title>
+	
+	<link rel="stylesheet" type="text/css" href="../css/style.css?ver=20190729"/>
+	<link rel="stylesheet" type="text/css" href="../css/serch_style.css?ver=20200217"/>
+	<link rel="stylesheet" type="text/css" href="../css/m_style.css?ver=20190729"/>
+	
+	<script src="../js/lib/jquery-1.12.3.min.js"></script>	
+	<script src="../js/lib/hashMap.js"></script>	
+	<script src="../js/lib/printThis.js"></script>
+	
+	<script src="../js/comm/comm.js?ver=20200217"></script>	
+	<script src="../js/comm/naverMapKey.js"></script>
+	<script src="../js/comm/nMap.js?ver=20200217"></script>	
+	<script src="../js/bis/search1.js?ver=20200730"></script>	
+	
+	<script>
+		var searchWord = '';
+		var ROUTEID = '';
+	</script>
+	
+</head>
+
+<body>
+	<div class="serch_wrap">
+		<div class="header_wrap">
+		
+
+<link rel="stylesheet" type="text/css" href="../css/lib/alertify.core.css"/>
+<link rel="stylesheet" type="text/css" href="../css/lib/alertify.default.css"/>
+
+<script src="../js/lib/alertify.min.js"></script>
+<script src="../js/comm/commDialog.js"></script>
+<script src="../js/comm/commHeader.js"></script>
+
+	<header>
+		
+		<button class="m_menu"><img src="../images/m_menu.png" alt="모바일메뉴"></button>
+		<h1><a href="../bis/main.view" title="인천광역시버스정보"><img src="../images/logo.jpg" alt="인천광역시 버스정보"></a></h1>
+		<div class="menu_right ">
+			<button class="m_menu_close"></button>
+			<div class="menu_top_wrap">    
+			
+			<ul class="menu_top">
+				<li class="top1"><a href="../bis/main.view" title="처음으로">처음으로</a></li>
+				<li class="top4"><a href="../bis/center.view" title="찾아오시는길"><span>찾아</span>오시는길</a></li>
+				<li class="top5"><a href="../bis/sitemap.view" title="사이트맵">사이트맵</a></li>
+			</ul>
+			</div>
+			<nav class="" id="menu_wrap">
+				<ul class="mon">				
+					<li class="menu">
+        				<a href="../bis/search1.view" title="통합버스정보" class="menuname">통합버스정보</a>
+        				<div class="menu_title">
+        					<strong>통합버스정보</strong>
+        					<p>시민과 함께하는<br/>행복한 인천의 대중교통입니다.</p>
+        				</div>
+        				<ul class="menu_sub">
+        					<li><a href="../bis/search1.view" title="버스통합검색"><span> · </span>버스통합검색</a></li>
+        					<!--<li><a href="../bis/search2.view" title="경로검색"><span> · </span>경로검색</a></li>-->
+        					<li><a href="../bis/search3.view" title="요약맵"><span> · </span>요약맵</a></li>
+        				</ul>
+        			</li>
+        			
+        			<li class="menu">
+        				<a href="../bis/rout.view" title="노선·요금" class="menuname">노선·요금</a>
+        				<div class="menu_title">
+        					<strong>노선·요금</strong>
+        					<p>인천 버스정보를<br/>상세히 안내해 드립니다.</p>
+        				</div>
+        				<ul class="menu_sub">
+        					<li><a href="../bis/rout.view" title="전체노선현황"><span> · </span>전체노선현황</a></li>
+        					<li><a href="../bis/routeArea.view" title="지역별노선현황"><span> · </span>지역별노선현황</a></li>
+        					<li><a href="../bis/fare.view" title="인천시 요금안내"><span> · </span>인천시 요금정보안내</a></li>
+        					<li><a href="../bis/trip.view" title="군.구 요금안내"><span> · </span>군.구 요금정보안내</a></li>
+        				</ul>
+        			</li>
+        			
+        			<li class="menu">
+        				<a href="../bis/notice.view" title="공지·안내" class="menuname">공지·안내</a>
+        				<div class="menu_title">
+        					<strong>공지·안내</strong>
+        					<p>인천 버스정보의 <br/>새로운 소식을 알려드립니다.</p>
+        				</div>
+        				<ul class="menu_sub">
+        					<li><a href="../bis/notice.view" title="공지사항"><span> · </span>공지사항</a></li>
+        					<li><a href="../bis/bis.view" title="BIS란?"><span> · </span>BIS란?</a></li>
+        					<li><a href="../bis/guide1.view" title="이용안내"><span> · </span>이용안내</a></li>
+        					<li><a href="../bis/center.view" title="센터 찾아오시는 길"><span> · </span>찾아오시는 길</a></li>
+        				</ul>
+        			</li>
+        			
+        			
+        			<li class="menu apimenu">
+        				<a href="../bis/openApiGuide01.view" title="API개발가이드" class="menuname">API개발가이드</a>
+        				<div class="menu_title">
+        					<strong>API개발가이드</strong>
+        					<p>인천 버스정보를 창의적인 어플리케이션으로<br/>직접 제작할 수 있습니다.</p>
+        				</div>
+        				<ul class="menu_sub">
+        					<li><a href="../bis/openApiGuide01.view" title="소개"><span> · </span>소개</a></li>
+        					<li><a href="../bis/openApiGuide02.view" title="개발가이드"><span> · </span>개발가이드</a></li>
+        					<li><a href="../bis/openApiGuide05.view" title="매뉴얼"><span> · </span>매뉴얼</a></li>
+        					<li><a href="../bis/openApiGuide17.view" title="공개키발급"><span> · </span>공개키발급</a></li>
+        					<li><a href="../bis/openApiGuide18.view" title="게시판"><span> · </span>게시판</a></li>
+        				</ul>
+        			</li>    
+      			</ul>
+			</nav>
+			<div class="manu_back"></div>			
+		</div>
+	</header>
+
+		</div>
+		
+		<article class="sub_article">
+			<h2>통합버스정보</h2>
+			<section class="serch_body">
+				<ul class="serch_tab">
+					<li class="serch_title1 click">통합검색</li>
+					<!--<li class="serch_title2"><a href="../bis/search2.view">경로검색</a></li>-->
+					<li class="serch_title3"><a href="../bis/search3.view">요약맵</a></li>
+				</ul>
+				
+				<!-- 통합검색 -->
+				<div class="all_body">
+					<div class="serch_box">
+						<h3>통합검색</h3>
+						<p class="input_box">
+							<input id="input_total_search" type="search" title="검색어입력" placeholder="검색어를 입력하세요" >
+							<button id="btn_total_search" title="검색"><img src="../images/btn_serch.png" alt="검색버튼"></button>
+						</p>
+						<p class="serch_ex">노선번호, 정류소명, 정류소번호로 검색하세요.</p>
+					</div>
+					
+					<!-- 통합검색 리스트 -->
+					<div class="list1">
+						<ul class="list1_t">
+							<li class="bus click">버스 <span id="txt_routeCnt">0</span></li>
+							<li class="stop">정류장 <span id="txt_stopCnt">0</span></li>
+							<li class="place">지역 <span id="txt_placeCnt">0</span></li>
+						</ul>
+						
+						<!-- 버스 -->
+						<div class="listBox bus_box">
+							<!-- 버스 검색 전 -->
+							<div class="nolist nolist1">
+								<img src="../images/nolist_bus.png" alt="">
+								<dl>
+									<dt>실시간 버스도착정보를 검색으로<br>확인하세요!</dt>
+									<dd>버스를 선택하시면 현재 위치를 상세히<br>확인하실 수 있습니다.</dd>
+								</dl>
+							</div>
+							<!-- 버스 검색 전 끝 -->
+							
+							<!-- 검색결과 없음 -->
+							<div class="searchnone searchnone1" id="route_none">
+								<span></span> 에 대한 검색 결과가 없습니다.
+							</div>
+							<!-- 검색결과 없음 끝 -->
+							
+							<!-- 버스 검색결과 -->
+							<div class="route_result_wrap" style="display: none;">
+								<p class="bus_top" id="check_routetp">
+									<label><input type="checkbox" checked="checked" id="1" title="일반·간선">간선 </label>
+									<label><input type="checkbox" checked="checked" id="2" title="마을버스">지선 </label>
+									<label><input type="checkbox" checked="checked" id="3" title="급행·광역">급행·광역</label>
+									<label><input type="checkbox" checked="checked" id="4" title="공항·시외">공항·시외</label>
+								</p>
+								<ul class="list_conten" id="route_list">
+								<!--[ bus_nml:일반간선 ],[ bus_town:마을버스 ],[ bus_ex:급행&광역 ],[ bus_in:공항&시외 ] -->
+								<!-- <li>
+									<a class="nosun" title="노선상세">
+										<span class="bus_p bus_nml">일반</span> 
+										<span class="nomber">1</span>
+										<span class="btn_name">노선보기</span>
+									</a>
+								</li>
+
+								<li>
+									<a class="nosun" title="노선상세">
+										<span class="bus_p bus_town">마을</span> 
+										<span class="nomber">1</span>
+										<span class="btn_name">노선보기</span>
+									</a>
+								</li>
+								<li>
+									<a class="nosun" title="노선상세">
+										<span class="bus_p bus_nml">일반</span> 
+										<span class="nomber">1</span>
+										<span class="btn_name">노선보기</span>
+									</a>
+								</li> -->
+								</ul>
+							</div>
+							<!-- 버스 검색결과 끝 -->
+						</div>
+						<!-- 버스 끝-->
+						
+						<!-- 정류장 -->
+						<div class="listBox busstop_box">
+						
+							<!-- 정류장 검색 전 -->
+							<div class="nolist nolist1">
+								<img src="../images/nolist_busstop.png" alt="">
+								<dl>
+									<dt>실시간 버스도착정보를 검색으로<br>확인하세요!</dt>
+									<dd>정류장을 선택하시면 정류장의<br>버스 도착정보를 상세히 확인하실 수<br>있습니다.</dd>
+								</dl>
+							</div>
+							<!-- 정류장 검색 전 끝 -->
+						
+							<!-- 검색결과 없음 -->
+							<div class="searchnone searchnone1" id="stop_none">
+								<span></span> 에 대한 검색 결과가 없습니다.
+							</div>
+							<!-- 검색결과 없음 끝 -->
+						
+							<!-- 정류장 검색결과 -->
+							<div class="stop_result_wrap" style="display: none;">
+								<ul class="busstop_conten" id="stop_list">
+								<!-- <li>
+									<a href="" title="정류장 상세보기" class="">
+										<span class="stop_name">정류장이름</span>
+										<span class="stop_num">[123456]</span>
+									</a>
+								</li>
+								<li>
+									<a href="" title="정류장 상세보기" class="">
+										<span class="stop_name">정류장이름2</span>
+										<span class="stop_num">[678901]</span>
+									</a>
+								</li> -->
+								</ul>
+							</div>
+						</div>
+						<!-- 정류장 끝-->
+						
+						
+						<!-- 지역 -->
+						<div class="listBox place_box">
+							<!-- 지역 검색 전 -->
+							<div class="nolist nolist1">
+								<img src="../images/nolist_place.png" alt="">
+								<dl>
+									<dt>간편 지역 검색으로<br>이동 경로를 확인하세요!</dt>
+									<dd>해당 지역을 선택하시면<br>이동 경로를 간편하게 확인하실 수<br>있습니다.</dd>
+								</dl>
+							</div>
+							<!-- 지역 검색 전 끝 -->
+							
+							<!-- 검색결과 없음 -->
+							<div class="searchnone searchnone1">
+								<span></span> 에 대한 검색 결과가 없습니다.
+							</div>
+							<!-- 검색결과 없음 끝 -->
+							
+							<!-- 지역 검색결과 -->
+							<div class="place_result_wrap" style="">
+								<ul class="busstop_conten" id="place_list">
+									<!-- <li>
+										<a href="" title="지역 상세보기" class="">
+											<span class="stop_name">동아서안임광10단지아파트</span>
+											<span class="stop_num">경기 고양시 일산서구 일산동 1074</span>
+										</a>
+									</li>
+									<li>
+										<a href="" title="지역 상세보기" class="">
+											<span class="stop_name">장소이름</span>
+											<span class="stop_num">장소 주소</span>
+										</a>
+									</li> -->
+								</ul>
+							</div>
+							<!-- 지역 검색결과 끝 -->
+						</div>
+						<!-- 지역 끝-->
+						
+						
+					</div>
+					<!-- 통합검색 리스트 끝-->
+	
+					<!-- 통합검색 -노선보기 -->
+					<div class="list1-detail" id="route_detail_wrap">
+						<!-- 상단 시작 -->
+						<div class="detail_top">
+							<div class="detail_top1">
+								<p class="bus_nml" id="m_routetp">일반</p>
+								<span class="nomber"  id="m_routeno">1</span>
+								<ul class="list1_btn">
+									<li><button class="info_close" title="정보닫기">정보닫기</button></li>
+									<li><button class="btn_map" title="지도보기">지도보기</button></li>
+									<li><button class="nosun_close" title="이전">이전</button></li>
+								</ul>
+							</div>
+							
+							<!-- 통합검색 -노선보기 상세내용 시작 -->
+							<table class="table1">
+									<tr>
+										<th rowspan="2" class="l3_1">기점</th>
+										<td rowspan="2" class="l3_2" id="txt_origin"></td>
+										<th class="l3_3">주중</th>
+										<td class="l3_4" id="first_last">04:30~22:30</td>
+									</tr>
+									<tr class="border">
+										<th class="l3_3">주말</th>
+										<td class="l3_4" id="first_last_holi">04:30~22:30</td>
+									</tr>
+									<tr>
+										<th rowspan="2" class="l3_1">종점</th>
+										<td rowspan="2" class="l3_2" id="txt_dest"></td>
+										<th class="l3_3">주중</th>
+										<td class="l3_4" id="turn_first_last"></td> 
+									</tr>
+									<tr class="border">
+										<th class="l3_3">주말</th>
+										<td class="l3_4" id="turn_first_last_holi"></td>
+									</tr>
+							</table>
+							<!-- <span class="ex">※ 막차 시간은 교통상황 및 이용수요에 따라 조정될 수 있음 </span> -->
+							<span class="ex">※ 여유 좌석 수 및 혼잡도는 현금 지급 및 하차 시 카드 미 태그로 오차가 발생할 수 있음을 앙해하여 주시기 바랍니다.</span>
+							<table class="table2">
+									<tr>
+										<th>배차간격</th>
+										<td id="txt_delay" colspan="2">평일 12~20분/주말 15~25분</td>
+									</tr>
+									<tr>
+										<th rowspan="2">본사</th>
+										<td class="comp_info" id="txt_comp_info0" title=""></td>
+										<td class="comp_info" id="txt_comp_info1" title=""></td>
+									</tr>
+									<tr>
+										<td class="comp_info" id="txt_comp_info2" title=""></td>
+										<td class="comp_info" id="txt_comp_info3" title=""></td>
+									</tr>
+									<!-- <tr>
+										<th>차고지</th>
+							   			<td>진벌리 영업소 031-574-0169</td>
+									</tr> -->
+									<tr>
+										<th>운행대수</th>
+										<td colspan="2">현재 <span class="red" id="txt_drv_cnt"></span>대 운행중</td>
+									</tr>
+							</table>		
+							
+							<div class="list1_time">
+								<span>정보갱신주기</span>
+								<select id="select_bus_loc_interval">
+									<option value="20">20초</option>
+									<option value="30">30초</option>
+									<option value="40">40초</option>
+									<option value="50">50초</option>
+									<option value="60">60초</option>
+								</select>
+							</div>	
+							<!--  통합검색 -노선보기 상세내용  끝-->	
+						</div>
+						<!-- 상단 끝 -->
+						
+						
+						<div class="close_body">
+						
+						<!-- 방향 버튼 시작 -->
+						<div class="moveBtn_body">
+							<ul id="btn_ahead">
+								<li class="moveBtn_up"><a title="상행"><span class="movename" id="txt_Sdir">구문2</span> <span> 방면</span></a></li>
+								<li class="moveBtn_down"><a title="하행"><span class="movename" id="txt_Edir">발안만세시세시세시</span> <span> 방면</span></a></li>
+							</ul>
+						</div>
+						<!-- 방향 버튼 끝-->
+						
+						<div class="detail_con">
+							<ul id="m_list_wrap">
+								<!-- <li>
+									<p class="name">왕길동12 <span>[12345]</span></p>
+									<div class="start_blue"></div>   파란길 기점: .start_blue , 빨간길 기점: .start_red
+								</li>
+								<li>
+									<p class="name">경인특장 <span>[12345]</span></p>
+									<div class="line_blue"></div>
+								</li>
+								<li>
+									<p class="name">경인계량소 <span>[12345]</span></p>
+									<div class="line_blue"> 
+										<p><span>7339</span></p>
+										<span class="seat1">여유</span>
+										<span class="bus_blue"></span>  .bus_blue (파랑버스) , .bus_red(빨강버스) , .bus_green(초록버스) , .bus_low(저상버스)
+									</div>
+								</li>
+								<li>
+									<p class="name">왕길고가 <span>[12345]</span></p>
+									<div class="line_blue"> 
+										<p><span>1234</span></p>
+										<span class="seat2">보통</span>
+										<span class="bus_red"></span>
+									</div> 
+								</li>
+								<li>
+									<p class="name">금강종합상가 <span>[12345]</span></p>
+									<div class="line_red">    
+										<p><span>1234</span></p>
+										<span class="seat3">혼잡</span>
+										<span class="bus_green"></span>
+									</div>
+								</li>
+								<li>
+									<p class="name">검단원흥아파트 <span>[12345]</span></p>
+									<div class="line_red">   
+										<p><span>1234</span></p>
+										<span class="seat1">여유</span>
+										<span class="bus_low"></span>
+									</div>
+								</li>
+								<li>
+									<p class="name">대림아파트 <span>[12345]</span></p>
+									<div class="blue_turn"></div>
+								</li>
+								<li>
+									<p class="name">검단사거리역 <span>[12345]</span></p>
+									<div class="last_red"></div>
+								</li> -->
+							</ul>
+						</div>
+						
+						
+						</div>
+						
+					</div>
+					<!-- 통합검색 -노선보기 끝-->
+					
+				</div>
+				<!-- 통합검색 끝-->
+			</section>
+			
+			<div class="map">
+				<!-- 모바일용  -->
+				<div class="mo_map_top detail_top">
+					<p class="bus_nml" id="m_routetp2"></p>
+					<span class="nomber" id="m_routeno2"></span>
+					<ul class="list1_btn">
+						<li><button class="btn_list" title="목록보기">목록보기</button></li>
+					</ul>
+				</div>
+				
+				<!-- 지도 위 버튼들  -->
+				<div class="topBtn">
+					<ul class="topBtnset1" id="btn_bus_type">
+						<li class="btn_up" data-value="UP"><button>상행</button></li> <!-- 선택 시 .click 추가-->
+						<li class="btn_down" data-value="DOWN"><button>하행</button></li>
+						<!-- <li class="btn_low"><button>저상</button></li>
+						<li class="btn_none"><button>버스안보기</button></li> -->
+						<li class="btn_all click"  data-value="ALL"><button>모든버스보기</button></li>
+						
+					</ul>
+					<ul class="topBtnset2">
+						<li id="btn_print" class="btn_prent"><button>프린트</button></li>
+						<li id="btn_surr_bus" class="btn_surr"><button>주변정류소보기</button></li>
+						<!-- <li class="btn_gov"><button>주변관공서보기</button></li> -->
+					</ul>
+				</div>
+				
+				<div class="map_conten" id="map_wrap">
+				</div>
+				
+			</div>
+			
+		</article>
+		
+		<footer class="searchFooter">
+			<p>COPYRIGHT ⒞ 2019 INCHEON METROPOLITAN CITY. ALL RIGHT RESERVED.</p>
+			<p class="number">콜센터 032-120</p>
+		</footer>
+		
+	</div>
+</body>
+</html>

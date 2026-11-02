@@ -2,6 +2,19 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
+  <script>
+    // Supabase returns tokens in the URL fragment. On a confirmation landing,
+    // fetch the current deployed HTML once instead of reusing an outdated cached entry.
+    // The token stays in #fragment and is never sent in the HTTP query.
+    (() => {
+      const hash = new URLSearchParams(location.hash.replace(/^#/, ''));
+      if (!hash.has('access_token') || !hash.has('refresh_token')) return;
+      const url = new URL(location.href);
+      if (url.searchParams.has('auth_latest')) return;
+      url.searchParams.set('auth_latest', String(Date.now()));
+      location.replace(url.href);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#101820">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101820'/%3E%3Cpath d='M16 18h32v9H37v23H27V27H16z' fill='%2345c985'/%3E%3C/svg%3E">
@@ -9,7 +22,7 @@
   <title>SUBTYPE — 대중교통 타이핑</title>
   <style id="critical-screen-visibility">[data-screen]:not(.active){display:none!important}html:not([data-navigation-bound]) [data-screen]:not(#screen-home){display:none!important}</style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/hong-kong.css?v=20261101-jp-layout-native-first">
+  <link rel="stylesheet" href="./css/hong-kong.css?v=bfc6d662cf79">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/responsive.css?v=20261007-mobilefix">
   <link rel="stylesheet" href="./css/home-night.css?v=20261007-motionfix">
@@ -333,8 +346,8 @@
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script defer src="./js/bootstrap.js?v=p0-sync-1"></script>
-  <script defer src="./js/hong-kong-index-data.js?v=8d857c805fe9"></script>
-  <script defer src="./js/japan-lite-index.js?v=a8edc151052a"></script>
+  <script defer src="./js/hong-kong-index-data.js?v=54d1b011339c"></script>
+  <script defer src="./js/japan-lite-index.js?v=97f7e021083e"></script>
 
   <script defer src="./js/japan-route-category-patch.js?v=station-id-unified-20261029"></script>
   <script defer src="./js/japan-route-identity-patch.js?v=station-id-unified-20261029"></script>
@@ -342,7 +355,7 @@
   <script defer src="./js/meitetsu-mikawa-sections-patch.js?v=20261029-mikawa-split-v1"></script>
   <script defer src="./js/tosakuroshio-nakamura-sukumo-patch.js?v=20261029-merged-v1"></script>
   <script defer src="./js/dedupe-toyama-line3.js?v=20261015"></script>
-  <script defer src="./js/korea-index-data.js?v=c21ad47f1fd3"></script>
+  <script defer src="./js/korea-index-data.js?v=43389578eb77"></script>
   <script defer src="./js/service-data.js?v=224335c3f3ff"></script>
   <script defer src="./js/line-theme-data.js?v=v0-8-5-tokyu-colors"></script>
   <script defer src="./js/line-badge-data.js?v=20260930-original-png"></script>
@@ -356,7 +369,7 @@
   <script defer src="./js/cloud-run-sync.js?v=server-records-20261029"></script>
   <script type="module" src="./js/result-journey-map.js?v=13b109860bbd"></script>
     <script defer src="./js/disney-resort-line-data.js?v=20261102-namuwiki-name-rules"></script>
-  <script defer src="./js/app.bundle.js?v=ced2e1008706"></script>
+  <script defer src="./js/app.bundle.js?v=c4bd4b4089e7"></script>
 
 </body>
 </html>
