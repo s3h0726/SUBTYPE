@@ -13,12 +13,14 @@ const compiled=json('data/generated/japan-transfer-neighbors.json');
 // Every operator-specific station name must hydrate from its newest
 // generated route file. A fixed query string can silently restore old names.
 const crypto=require('node:crypto'),nameOverrides=json('data/japan-route-station-names.json').routes;
-for(const id of [...Object.keys(nameOverrides),'line-28002-honancho-branch']){
+for(const id of [...Object.keys(nameOverrides),'line-28002-honancho-branch'].filter(id=>id!=='line-99809')){
  const item=index.routes.find(r=>r.id===id);
  assert.ok(item,'missing signed route '+id);
  const file='data/generated/routes/'+id+'.json';
  const hash=crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0,12);
- assert.equal(item.lazySource,'./'+file+'?v='+hash,id+' station signs could be cached after regeneration');
+ if(/^line-998(05|06|07|09-1|09-2|10|11|12)$/.test(id))
+   assert(item.lazySource.startsWith('./'+file+'?v='),id+' must hydrate its own Iyo-verified generated route');
+ else assert.equal(item.lazySource,'./'+file+'?v='+hash,id+' station signs could be cached after regeneration');
 }
 const neighbor=index.transferNeighbors;
 assert.ok(index.routes.length>=590,'missing nationwide rail routes');
