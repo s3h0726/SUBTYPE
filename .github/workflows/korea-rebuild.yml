@@ -19,8 +19,11 @@ jobs:
         with: {node-version: '22'}
       - run: node tools/build-kr-canonical.cjs --publish
       - run: node tools/test-kr-canonical.cjs
+      - run: node tools/test-kr-city-sources.cjs
+      - run: node tools/test-ime-controller.js
       - run: node --test tools/test-kr-road-binding.cjs
       - run: node tools/test-kr-busan-source.cjs --village
+      - run: node tools/test-kr-busan-source.cjs --terminal-recovery
       - run: node tools/kr-provincial-gbis-test.cjs
       - run: node tools/test-kr-rail-expansion.cjs
       - run: node tools/test-kr-rail-expansion.cjs --network

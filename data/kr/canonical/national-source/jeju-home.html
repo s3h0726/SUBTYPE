@@ -1,0 +1,976 @@
+ 
+ 
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [시작] -->
+
+ 
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [끝] -->
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="ko" class="lt-ie9 lt-ie8 lt-ie7" > <![endif]-->
+<!--[if IE 7]>    <html lang="ko" class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="ko" class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ko"> <!--<![endif]-->   
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta property="og:title" content="제주버스정보 메인">
+		<meta property="og:url" content="http://bus.jeju.go.kr/">
+		<meta property="og:description" content="제주버스정보 PC, 모바일 홈페이지에서  대중교통 정보를 이용해보세요.">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <!-- <meta http-equiv="cache-control" content="no-cache"> -->
+	    <meta name="title" content="제주버스정보">
+	    <title>제주버스정보시스템</title>
+	    <link rel="stylesheet" href="/resources/css/style.css">
+	    <!--[if gt IE 8]>
+	   	<link rel="stylesheet" type="text/css" href="/resources/css/fonts.css">
+	   	<![endif]-->
+	   	<link rel="stylesheet" type="text/css" href="/resources/css/fonts.css">
+	    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!--[if lt IE 9]>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+		<![endif]-->
+		
+		
+		<link rel="shortcut icon" href="/resources/images/favicon-32x32.png" type="image/x-icon">
+		
+		<script src="/resources/script/selectivizr-min.js"></script>
+		
+	    <script src="/resources/script/jquery.min.js"></script>
+	    <script src="/resources/script/jquery.scrollbar.js"></script>
+	    <!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [시작] -->
+	    
+				<link rel="stylesheet" type="text/css" href="/resources/css/sitemap.css">	
+		
+	   <!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [끝] -->
+		
+				<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+		
+	    
+	    <link rel="stylesheet" type="text/css" href="/resources/css/board.css">
+	    <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126798761-1"></script>
+		
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-126798761-1');
+		</script>
+		<script>
+		    $(document).ready(function() {
+		    	 // Detecting IE
+		        var oldIE;
+		        if ( $('html').is('.lt-ie7, .lt-ie8, .lt-ie9') ) {
+		            oldIE = true;
+		        }
+
+		        if ( oldIE ) {
+		            // Here's your JS for IE..
+		            $(".parent .contents .top .menu .anim").hover(function() {
+		            	var outer = $(this).children().eq(1);
+		            	var sub_text = $(outer).children().find(".sub_text");
+		            	/* 2019 버스정보시스템 고도화 :: 너비 수정 (외국어 변경시 글이 겹치는 이유로) [시작]*/
+		            	$(outer).attr("style", "position: absolute;width :254px;visibility:visible;background-color:white;");
+		            	//$(outer).attr("style", "position: absolute;width :175px;visibility:visible;background-color:white;");
+		            	/* 2019 버스정보시스템 고도화 :: 너비 수정 (외국어 변경시 글이 겹치는 이유로) [끝]*/
+		            	$(sub_text).attr("style", "opacity: 1; visibility : visible;filter: alpha(opacity=100);");
+		            	$(outer).show();
+		            	$(sub_text).show();
+		            }, function() {
+		            	var outer = $(this).children().eq(1);
+		            	var sub_text = $(outer).children().find(".sub_text");
+		            	$(outer).hide();
+		            	$(sub_text).hide();
+		            });
+
+		            $(".image_slide").hide();
+		            $(".image_slide_old").show();
+
+		           	//================== 창 크기에 따른 메인이미지 가운데 정렬 ====================
+		           	var screenCenter = $(window).width()/2;
+		           	var mainImageCenter = $(".image_slide_old").width()/2;
+		           	var magin = screenCenter-mainImageCenter;
+		           	
+		           	if ( $(window).width() < 1920 ) {	 
+		            	$(".image_slide_old").css({ "width" : "auto", "height" : "303px", "margin-left" : magin});
+		            } else {
+		            	$(".image_slide_old").css({ "margin-left" : magin});	
+		            }
+		          	//================== 컨텐츠 서브텝 크기 조정 ====================
+		            var subTabCount = $(".wrap").children().length;
+		            var subTabWidth = 706/subTabCount;
+		           	$(".wrap .item").css({"width" : subTabWidth});
+		        } else {
+		            // ..And here's the full-fat code for everyone else
+		        }
+		    });
+		</script>
+	</head>
+	<body> 
+		
+ 
+ 
+    <script type="text/javascript">
+		function siteLink(url, parameters, options) {
+			var popupOption = "fullscreen=no,menubar=yes,toolbar=yes,location=yes,scrollbars=yes, resizable=yes";
+			window.open("" + url + ( parameters ? "?" + parameters : "" ), "", options ? options : popupOption);
+		}
+	</script>
+	
+	<div class="parent">
+        <div class="header">
+           <div class="container">
+                <a class="top_ci" href="/?lang=ko"><img class="ci_image" src="/resources/images/img_main_top_ci.png" alt="제주버스정보시스템 홈페이지"/></a>
+                
+                <ul class="nav">
+                    <li class="item"><a href="/">홈</a></li>
+                    <li class="item"><a href="javascript:siteMapOpen();">사이트맵</a></li>
+                    <li class="item"><a href="/?lang=ko">한국어</a></li>
+                    <li class="item"><a href="/?lang=en">English</a></li>
+                    <li class="item"><a href="/?lang=jp">日語</a></li>
+                    <li class="item"><a href="/?lang=ch">中文</a></li>
+                </ul>   
+           </div>
+        </div>
+		
+		
+
+
+ 
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/resources/css/popup.css">
+
+<script>
+	jQuery(function (){ 
+		// 검색어 입력 후 엔터키 처리
+		$("#oneshotSearchTextFiled").keydown(function(key){
+			if(key.keyCode == 13){	
+				jQuery('#oneshotSearchButton').click();
+			}
+		});
+		
+		// 검색어 입력 후 엔터키 처리
+		$("#startRoute").keydown(function(key){
+			if(key.keyCode == 13){	
+				jQuery('#routeSearchButton').click();
+				$('#startRoute').focus();
+			}
+		});
+		
+		// 검색어 입력 후 엔터키 처리
+		$("#endRoute").keydown(function(key){
+			if(key.keyCode == 13){	
+				jQuery('#routeSearchButton').click();
+				$('#endtRoute').focus();
+			}
+		});
+		
+		jQuery('#oneshotSearchButton').click(function() {
+			
+			var oneshotSearchText = jQuery('#mainForm #oneshotSearchTextFiled').val(); 
+			if (oneshotSearchText == '') { 
+				alert('검색어를 입력하세요.'); 
+				return false;
+			} 
+			else {
+				var num_check = /^[0-9]*$/
+				// 하이픈이 들어간 노선 검색 시 정류장 검색으로 넘어가는 에러 수정 - 2021.06.22
+				// if (oneshotSearchText.includes("-")) { // 크롬에서는 정상적이나 구 익스플로러에서는 스크립트 에러가 발생 하여 indexOf로 처리함
+				if (oneshotSearchText.indexOf("-") != -1) {
+					siteLink('/search/line?searchText='+encodeURI(encodeURIComponent(oneshotSearchText)));
+				}
+				else if (!num_check.test(oneshotSearchText) || (num_check.test(oneshotSearchText) && oneshotSearchText.length > 6)) { // 정류장검색
+					siteLink('/search/station?searchText='+encodeURI(encodeURIComponent(oneshotSearchText)));
+				} else {
+					siteLink('/search/line?searchText='+encodeURI(encodeURIComponent(oneshotSearchText)));
+				}
+			}
+			
+			return false;
+		});
+		
+		jQuery('#routeSearchButton').click(function() {
+			
+			var startRouteText = jQuery('#mainForm #startRoute').val(); 
+			var endRouteText = jQuery('#mainForm #endRoute').val();
+			
+			if (startRouteText == '' || endRouteText == '') { 
+				alert('출발지 또는 도착지를 입력하세요.'); 
+				return false; 
+			} 
+			
+			siteLink('/search/route?startRouteText='+encodeURI(encodeURIComponent(startRouteText))+'&endRouteText='+encodeURI(encodeURIComponent(endRouteText)));
+		}); 
+		
+		jQuery('.update_info_wrap').click(function() {
+			$(".update_info_wrap").hide();
+			$(".update_container").hide();
+		});
+	}); 
+	
+	function updateNoticePopupColse() {
+		$(".update_info_wrap").hide();
+		$(".update_container").hide();
+		
+	}
+	
+	$(document).ready(function () {		
+		jejuAirServiceInfo(function (jejuAirServiceData) {
+	   		$("#pm10Value").addClass("value "+jejuAirServiceData.pm10TextClass);
+	   		$("#pm10Value").text(jejuAirServiceData.pm10);
+	   		$("#pm10Icon").addClass("air_state "+jejuAirServiceData.pm10IconClass);
+	   		$("#pm10Text").addClass("value "+jejuAirServiceData.pm10TextClass);
+	   		$("#pm10Text").text(jejuAirServiceData.pm10Text);
+	   		
+	   		$("#pm25Value").addClass("value "+jejuAirServiceData.pm25TextClass);
+	   		$("#pm25Value").text(jejuAirServiceData.pm25);
+	   		$("#pm25Icon").addClass("air_state "+jejuAirServiceData.pm25IconClass);
+	   		$("#pm25Text").addClass("value "+jejuAirServiceData.pm25TextClass);
+	   		$("#pm25Text").text(jejuAirServiceData.pm25Text);
+	   		
+	   		$("#o3Value").addClass("value "+jejuAirServiceData.o3TextClass);
+	   		$("#o3Value").text(jejuAirServiceData.o3);
+	   		$("#o3Icon").addClass("air_state "+jejuAirServiceData.o3IconClass);
+	   		$("#o3Text").addClass("value "+jejuAirServiceData.o3TextClass);
+	   		$("#o3Text").text(jejuAirServiceData.o3Text);	   		
+		});
+		
+		jejuAirWarning(function (jejuAirWarningData) {
+			if (jejuAirWarningData.DATA_COUNT > 0) {
+				var jejuAirWarningStr = jejuAirWarningData.jejuAirWarning_Date+" 미세먼지("+jejuAirWarningData.ITEM_CODE+") "+jejuAirWarningData.ALRET_STEP;
+				if (jejuAirWarningStr.length > 110) {					
+					$("#jejuAirWarning").html("<span class='text'>"+jejuAirWarningStr.substring(0, 110)+"...<BR></span>");
+				}	
+				else {
+					$("#jejuAirWarning").html("<span class='text'>"+jejuAirWarningStr+"...<BR></span>");
+				}
+			}
+			else {
+				$("#jejuAirWarning").html("<span class='text'>발효된 주의보 또는 경보가 없습니다.</span>");
+			}			
+		});
+		
+	});
+	
+	//미세먼지 등 공기질
+	function jejuAirServiceInfo(callbackFunc) {
+		var token = $("#csrf_token").val();
+		$.ajax({
+	        method: "POST",
+	        url: "/jejuAirServiceInfo",
+			data: { "csrf_token": token },
+	        dataType: "json",
+	        success: function (res) {
+	       		callbackFunc(res);
+	        },complete : function() {
+	        	//alert("complete");
+	   		},error : function(xhr, status, error) {
+	   			//alert("error");
+	   		}
+	    });
+	}
+	
+	//미세먼지 등 공기질 경보
+	function jejuAirWarning(callbackFunc) {
+		var token = $("#csrf_token").val();
+		$.ajax({
+	        method: "POST",
+	        url: "/jejuAirWarning",
+			data: { "csrf_token": token },
+	        dataType: "json",
+	        success: function (res) {
+	       		callbackFunc(res);
+	        },complete : function() {
+	        	//alert("complete");
+	   		},error : function(xhr, status, error) {
+	   			//alert("error");
+	   		}
+	    });
+	}
+	function ShowLoginPop(pagenm, event) {
+		event.preventDefault();
+		event.stopPropagation();
+		document.getElementById("pagenm").value = pagenm;
+
+		document.getElementById("ConfirmModal").style.display = "block";
+	}
+	function KakaoLogin() {
+		var gopage = document.getElementById("pagenm").value;
+		//실제 배포용
+		Kakao.init('78e4393942afa8395efcdd1c46560697');
+		Kakao.Auth.authorize( { redirectUri: "http://bus.jeju.go.kr/mobile/kakao/KakaoLogin", state:gopage } );
+
+	
+	}
+
+</script>
+
+
+<div class="contents">
+<form id="mainForm" action="/" method="post">
+	<div class="top">
+		<ul class="slide">
+			<li>
+				<div class="image_slide"></div>
+				<img class="image_slide_old" src="/resources/images/main/main_pic_new.png" alt="메인 이미지1"/>
+			</li>
+		</ul>
+      
+	    <ul class="menu">
+	        <li class="item anim">
+	            <div class="inner">
+	                <div class="bg"></div>
+	                <div class="line_left"></div>
+	                <div class="line_right"></div>
+	                <div class="line_outer"></div>
+	                <div class="text_wrap">
+	                	
+				        								
+							
+								<a href="/introduction/bisInfo" class="link"><span class="text">이용안내</span></a>
+							
+						
+	                </div>
+	            </div>
+	            <div class="outer">
+					<ul class="sub_menu" >
+					    <li class="sub_item">
+					        <a href="/introduction/bisInfo" class="link"><span class="sub_text">버스정보시스템 BIS란?</span></a>
+					    </li>
+					    <li class="sub_item">
+					        <a href="/introduction/homepageUseGuide" class="link"><span class="sub_text">홈페이지 이용안내</span></a>
+					    </li>
+						<li class="sub_item">
+					        <a href="/notice/list" class="link"><span class="sub_text">공지사항</span></a>
+					    </li>
+					    <li class="sub_item">
+					        <a href="/busCancellationInfo/cancellationList" class="link"><span class="sub_text">버스 결행 안내</span></a>
+					    </li>
+					</ul>
+	            </div>
+	        </li>
+			<li class="item anim">
+			    <div class="inner">
+			        <div class="bg"></div>
+			        <div class="line_left"></div>
+			        <div class="line_right"></div>
+			        <div class="line_outer"></div>
+			        <div class="text_wrap">
+			        	
+			        	
+				        	
+							
+								<a href="javascript:siteLink('/search/line')" class="link"><span class="text">버스정보검색</span></a>
+							
+						            
+			            
+			        </div>
+			    </div>
+			    <div class="outer">
+	                <ul class="sub_menu">
+	                    <li class="sub_item">
+	                        <a href="javascript:siteLink('/search/line')" class="link"><span class="sub_text">노선검색 </span></a>
+	                    </li>
+	                    <li class="sub_item">
+	                        <a href="javascript:siteLink('/search/station')" class="link"><span class="sub_text">정류소검색 </span></a>
+	                    </li>
+	                    
+	                    <li class="sub_item">
+	                        <a href="javascript:siteLink('/search/route')" class="link"><span class="sub_text">출도착검색</span></a>
+	                    </li>
+	                    <li class="sub_item">
+	                        <a href="javascript:siteLink('/search/realTimeBusLocation')" class="link"><span class="sub_text">실시간버스위치 </span></a>
+	                    </li>
+	                    <li class="sub_item">
+	                        <a href="javascript:siteLink('/search/similarLine')" class="link"><span class="sub_text">유사노선검색 </span></a>
+	                    </li>
+	                    
+	                    </ul>
+	            </div>
+			</li>
+			
+	        <li class="item">
+		        <div class="inner">
+		            <div class="bg"></div>
+		            <div class="line_left"></div>
+		            <div class="line_right"></div>
+		            <div class="line_outer"></div>
+		            <div class="text_wrap">
+		                <a href="javascript:siteLink('/search/realTimeBusLocation')" class="link"><span class="text">실시간 버스위치</span></a>
+		            </div>
+		        </div>
+	        </li>
+	        <li class="item anim">
+	            <div class="inner">
+	                <div class="bg"></div>
+	                <div class="line_left"></div>
+	                <div class="line_right"></div>
+	                <div class="line_outer"></div>
+	                <div class="text_wrap">
+	                    <a href="/publicTrafficInformation/generalBusSchedule" class="link"><span class="text">대중교통안내</span></a>
+	                </div>
+	            </div>
+	            <div class="outer">
+	                <ul class="sub_menu">
+	                    <li class="sub_item">
+	                        <a href="/publicTrafficInformation/generalBusSchedule" class="link"><span class="sub_text">제주버스</span></a>
+	                    </li>
+	                    <li class="sub_item">
+	                        <a href="/publicTrafficInformation/airportBusInfo" class="link"><span class="sub_text">공항 리무진</span></a>
+	                    </li>
+	                    <li class="sub_item">
+	                        <a href="/publicTrafficInformation/taxiInfo" class="link"><span class="sub_text">택시</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </li>
+	        
+	        </ul>
+                  
+	</div>
+    <div class="middle">
+        <div class="contents">
+            <img class="hand" src="/resources/images/main/img_onestop_hand.png" alt="한번에 찾기 알림 이미지"/>
+            <div class="wrapper">
+                <div class="info_text">
+                	
+			        	
+						
+						
+							<p class="title">한번에 찾기</p>
+						
+					
+                	
+                    
+                    <p class="desc">노선번호, 정류소명, 정류소번호를 한번에 검색하세요.</p>
+                </div>
+                
+            </div>
+            <input type="hidden" id="csrf_token" name="csrf_token" value="ec9fc2e0-cbc4-4f1b-85c2-977791c4ae14">
+           	<input class="input_search" type="text" id="oneshotSearchTextFiled" name="oneshotSearchTextFiled" placeholder="노선번호, 정류소명, 정류소번호" title="노선번호, 정류소명, 정류소번호를 입력해주세요." />
+           	<a class="search_button" href=""><img id="oneshotSearchButton" name="oneshotSearchButton" class="image_button" src="/resources/images/main/btn_search_start.png" alt="한번에 찾기 버튼 이미지"></a>
+            
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="main_area">
+            <div class="left_wrap">
+               <div class="weather">
+                 <p class="date">11. 03(화)&nbsp;|&nbsp; 제주도</p>
+                 <div class="icon_wrap">
+                 	
+					    
+					        <img class="icon" src="/resources/images/main/img_sunny_none.png" alt="날씨(맑음 ,없음) 이미지">
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+				    
+				
+				</div>
+
+                <span class="weather_state">
+                	<br>맑음
+                </span>
+                <span class="degree">
+                
+                14&deg;
+                </span>
+              </div>
+               <div class="air">
+                  <div class="air_area">
+                  	<span class="title">미세먼지</span>
+                  	<div class="contents">
+                  		<span id ="pm10Value" class="value "></span>
+                  		<div id ="pm10Icon" class="air_state "></div>
+                  		<span id ="pm10Text" class="air_text "></span>
+                  	</div>
+                  </div>
+                  <div class="air_area">
+                  	<span class="title">초미세먼지</span>
+                  	<div class="contents">
+                  		<span id ="pm25Value" class="value "></span>
+                  		<div id ="pm25Icon" class="air_state "></div>
+                  		<span id ="pm25Text" class="air_text "></span>
+                 
+                  	</div>
+                  </div>
+                  <div class="air_area">
+                  	<span class="title">오존</span>
+                  	<div class="contents">
+                  		<span id="o3Value" class="value "></span>
+                  		<div id="o3Icon" class="air_state "></div>
+                  		<span id="o3Text" class="air_text "></span>
+                  	</div>
+                  </div>
+               </div>
+               
+               <div class="forecast">
+               	 	<span class="title">&#8251; 주의보 / 경보 발령상황</span>
+               	 	<span id="jejuAirWarning" class="text">
+						
+               	 	</span>
+               	 	<span class="text"></span>
+               </div>
+               
+            </div>
+            
+            <div class="right_wrap">
+               <div class="left_top">
+                   <p class="time_table"><a href="/publicTrafficInformation/generalBusSchedule?viewtype=2">버스운행시간표</a></p>
+               </div>
+               <div class="right_top">
+                   <div class="container">
+                       	<p class="title"><a href="/notice/list">[공지사항]</a></p>
+                       	<ul class="notice">
+							
+								
+									
+										<li class="line_wrap">
+											
+												
+												   <p class="line_text_red"><img src="/resources/images/icn_fix.png"  style='width:20px;height:14px;display:block;float:left;' alt="fix"/>&nbsp;<a href="/notice/detail?noticeId=692"><font color="red">제주버스정보 앱 폐기에 따른 웹페이지 홈 화면 추가방법 알림</font></a></p>
+												   <p class="line_date"><font color="red">26/07/27</font></p>   
+												
+												
+											
+										</li>
+									
+										<li class="line_wrap">
+											
+												
+												
+												   <p class="line_text"><a href="/notice/detail?noticeId=708"><img src="/resources/images/ico_arrow.png"  style='width:8px;height:10px;' alt="fix"/>&nbsp;784-2, 785, 791, 792(-1,-2) 시간표 변경 알림('26.10.30)</a></p>
+												   <p class="line_date">26/10/26</p>  
+												
+											
+										</li>
+									
+										<li class="line_wrap">
+											
+												
+												
+												   <p class="line_text"><a href="/notice/detail?noticeId=707"><img src="/resources/images/ico_arrow.png"  style='width:8px;height:10px;' alt="fix"/>&nbsp;제32회 서귀포 칠십리 축제에 따른 회차지 임시변경 알림(26.10.23.16시))</a></p>
+												   <p class="line_date">26/10/23</p>  
+												
+											
+										</li>
+												
+								
+										
+							
+                       </ul>
+                   </div>
+               </div>
+
+               <div class="left_bottom">
+                   <div class="container">
+                       <p class="route_title">경로검색</p>
+                       <div class="control"> 
+                       		<input type="hidden" id="csrf_token_route" name="csrf_token" value="ec9fc2e0-cbc4-4f1b-85c2-977791c4ae14">
+                           <input class="search_input start" type="text" id="startRoute" name="startRoute" title="출발지를 입력해주세요." />
+                           <a href="#" class="button_start">
+                               <img src="/resources/images/main/btn_route_search.png" alt="경유 알림 이미지"/>
+                           </a>
+                           <input class="search_input end" type="text" id="endRoute" name="endRoute" title="도착지를 입력해주세요." />
+                           <a href="#" class="button_end" id="routeSearchButton">
+                               <img src="/resources/images/main/btn_search_start.png" alt="경로검색 버튼 이미지"/>
+                           </a>
+                           
+                       </div>
+                   </div>
+               </div>
+               <div class="right_bottom"><p class="cycle_bus"><a href="https://www.visitjeju.net/" target="_blank">제주관광정보</a></p></div>
+                   </div>
+               </div>
+               <div class="banner">
+                  <ul class="roll_wrap">
+                    <li class="roll_item">
+                        <a class="link" href="javascript:siteLink('https://www.visitjeju.net/index.jto')">
+                            <img class="image_company" src="/resources/images/main/assor_site1.png" alt="제주관광공사 홈페이지 링크 이미지"/>
+                        </a>
+                    </li>
+                     <li class="roll_item">
+                        <a class="link" href="javascript:siteLink('http://www.jejuits.go.kr/main/main.do')">
+                            <img class="image_company" src="/resources/images/main/assor_site2.png" alt="제주교통정보센터 홈페이지 링크 이미지" />
+                        </a>
+                    </li>
+                     <li class="roll_item" style="width:158px;">
+                        <a class="link" style="width:158px;" href="javascript:siteLink('http://www.jeju.go.kr/index.htm')">
+                            <img class="image_company" style="width:158px;" src="/resources/images/main/assor_site3.png" alt="제주도청 홈페이지 링크 이미지"/>
+                        </a>
+                    </li>
+                     <li class="roll_item" style="width:158px;">
+                        <a class="link" style="width:158px;" href="javascript:siteLink('http://www.jejusi.go.kr/')">
+                            <img class="image_company" style="width:158px;" src="/resources/images/main/assor_site4.png" alt="제주시청 링크 이미지"/>
+                        </a>
+                    </li>
+                     <li class="roll_item" style="width:158px;">
+                        <a class="link" style="width:158px;" href="javascript:siteLink('http://www.seogwipo.go.kr/')">
+                            <img class="image_company" style="width:158px;" src="/resources/images/main/assor_site5.png" alt="서귀포시청 링크 이미지"/>
+                        </a>
+                    </li>
+                </ul>
+               </div>
+            </div>
+            </form>
+        </div>
+        
+		<div class="update_info_wrap" style="display:none">
+          
+        </div>
+        <div class="update_container" style="display:none">
+            <a href="javascript:updateNoticePopupColse();" class="btn_lay_clr">
+                <img  class="img_close" src="/resources/images/update/img_btn_upt_close.png" alt="제주버스정보모바일 앱 안내 창 닫기" />
+                
+            </a>
+            <div class="contents">
+            	
+            </div>
+        </div> 
+		
+
+
+
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header h4 {
+        margin: 0;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .close {
+        font-size: 1.5em;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    .btnModal {
+        padding: 4px 12px;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-close {
+        background-color: #ccc;
+        margin-left: 290px;
+    }
+
+    .btn-check {
+        background-color: #ffd755;
+        color: black;
+    }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="/resources/js/adminlte.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".site_map_wrap").hide();
+        $(".layout_site_map").hide();
+
+        jQuery('.btn_site_map_close').click(function () {
+            $(".site_map_wrap").hide();
+            $(".layout_site_map").hide();
+        });
+        jQuery('.site_map_wrap').click(function () {
+            $(".site_map_wrap").hide();
+            $(".layout_site_map").hide();
+        });
+    });
+
+    function siteMapOpen() {
+        $(".site_map_wrap").show();
+        $(".layout_site_map").show();
+    }
+
+    function pageMoveForSiteMap(pageUrl) {
+        location.href = pageUrl;
+        $(".site_map_wrap").hide();
+        $(".layout_site_map").hide();
+    }
+
+    function pageOpenForSiteMap(pageUrl) {
+        $(".site_map_wrap").hide();
+        $(".layout_site_map").hide();
+
+        siteLink(pageUrl);
+    }
+
+    function ShowLoginPop(pagenm, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.getElementById("pagenm").value = pagenm;
+
+        document.getElementById("ConfirmModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("ConfirmModal").style.display = "none";
+    }
+
+    function KakaoLogin() {
+        var gopage = document.getElementById("pagenm").value;
+        //실제 배포용
+        Kakao.init('78e4393942afa8395efcdd1c46560697');
+        Kakao.Auth.authorize( { redirectUri: "http://bus.jeju.go.kr/mobile/kakao/KakaoLogin", state:gopage } );
+
+    }
+</script>
+
+<!-- 2019 버스정보시스템고도화 :: 외국어기능추가[시작] -->
+<div class="footer">
+    <div class="wrapper">
+        <img class="image_ci" src="/resources/images/main/img_ci_bot.png"
+             alt="제주버스정보 하단 CI 이미지"/>
+        <div class="text_area">
+            <p class="first">
+                <!-- 한국어일 경우만 노출 -->
+                
+                    <span><a href="javascript:siteLink('/resources/text/1.txt')" class="link">개인정보처리방침</a></span> |
+                
+                <span><a href="/introduction/homepageUseGuide"
+                         class="link">홈페이지 이용안내</a></span>
+            </p>
+            <p class="second">
+                COPYRIGHT JEJU BUS INFORMATION SYSTEM ALL RIGHTS RESERVED.&nbsp;&nbsp;&nbsp;&nbsp;63122 제주특별자치도 제주시 문연로 6(연동)버스정보시스템&nbsp;&nbsp;관련 문의 064)710-2447 &nbsp;&nbsp;FAX 064)710-2439
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- 사이트맵 [START] -->
+
+<div class="site_map_wrap">
+</div>
+<div class="layout_site_map" style="display: block;">
+    <div class="full_wrap">
+        <div class="line_warp">
+            <div class="title_wrap">
+                <img class="first_image" src="/resources/images/title_front_icon.png"
+                     alt="제주버스정보시스템 이용안내"/>
+                <p class="title"><a href="/introduction/bisInfo">이용안내</a></p>
+            </div>
+            <div class="top_line"></div>
+
+            <p class="mid_alone"><a href="/introduction/bisInfo">버스정보시스템 BIS란?</a></p>
+            <div class="cmm_top_margin"></div>
+
+            <p class="mid_cnts"><a href="/introduction/bisInfo?viewtype=1">-
+                BIS소개</a></p>
+            <p class="mid_cnts"><a href="/introduction/bisInfo?viewtype=2">-
+                정류소안내기</a></p>
+            <p class="mid_cnts"><a href="/introduction/bisInfo?viewtype=3">-
+                승객용안내기</a></p>
+            <div class="cmm_line"></div>
+
+
+            <p class="mid_alone"><a
+                    href="/introduction/homepageUseGuide?viewtype=1">홈페이지 이용안내</a></p>
+            <div class="cmm_top_margin"></div>
+
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=1">-
+                노선검색 </a></p>
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=2">-
+                정류소검색 </a></p>
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=3">-
+                출도착검색</a></p>
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=4">-
+                실시간버스위치 </a></p>
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=5">-
+                유사노선검색 </a></p>
+            <div class="cmm_line"></div>
+
+            <!--
+            <p class="mid_alone"><a href="/introduction/mobileUserGuide">모바일 이용안내</a></p>
+            <div class="alone_line"></div>
+             -->
+            <!--
+				<p class="mid_alone"><a href="/introduction/qrCodeGuide">QR코드 이용안내</a></p>
+                <div class="alone_line"></div>
+				-->
+
+            <p class="mid_alone"><a href="/notice/list">공지사항</a></p>
+            <div class="alone_line"></div>
+
+            
+
+
+
+
+
+
+
+
+            <div class="alone_line"></div>
+        </div>
+
+
+        <div class="line_warp">
+            <div class="title_wrap">
+                <img class="first_image" src="/resources/images/title_front_icon.png"
+                     alt="제주버스정보시스템 이용안내"/>
+                <p class="title"><a href="javascript:pageOpenForSiteMap('/search/line')">버스정보검색</a></p>
+            </div>
+            <div class="top_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/line')">노선검색 </a></p>
+            <div class="alone_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/station')">정류소검색 </a></p>
+            <div class="alone_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/route')">출도착검색 (경로검색)</a></p>
+            <div class="alone_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/realTimeBusLocation')">실시간버스위치 </a></p>
+            <div class="alone_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/similarLine')">유사노선검색 </a></p>
+            <div class="alone_line"></div>
+
+        </div>
+        <!--  -->
+        
+            <div class="line_warp">
+                <div class="title_wrap">
+                    <img class="first_image"
+                         src="/resources/images/title_front_icon.png"
+                         alt="제주버스 실시간 위치 검색"/>
+                    <p class="title"><a
+                            href="javascript:pageOpenForSiteMap('/search/realTimeBusLocation')">실시간 버스위치</a></p>
+                </div>
+                <div class="cmm_line"></div>
+
+            </div>
+            <div class="line_warp">
+                <div class="title_wrap">
+                    <img class="first_image"
+                         src="/resources/images/title_front_icon.png"
+                         alt="제주 대중교통안내"/>
+                    <p class="title"><a
+                            href="/publicTrafficInformation/generalBusSchedule">대중교통안내</a></p>
+                </div>
+                <div class="top_line"></div>
+
+
+                <p class="mid_alone"><a
+                        href="/publicTrafficInformation/generalBusSchedule">제주버스</a></p>
+
+                <p class="mid_cnts"><a
+                        href="javascript:pageMoveForSiteMap('/publicTrafficInformation/generalBusSchedule?viewtype=1')">-
+                    제주버스 노선</a></p>
+                <p class="mid_cnts"><a
+                        href="javascript:pageMoveForSiteMap('/publicTrafficInformation/generalBusSchedule?viewtype=2')">-
+                    제주버스 시간표/요금</a></p>
+                <p class="mid_cnts"><a
+                        href="javascript:pageMoveForSiteMap('/publicTrafficInformation/generalBusSchedule?viewtype=3')">-
+                    노선책자 다운로드</a></p>
+                <p class="mid_cnts"><a
+                        href="javascript:pageMoveForSiteMap('/publicTrafficInformation/generalBusSchedule?viewtype=4')">-
+                    운수업체 버스노선 현황</a></p>
+
+                <div class="cmm_line"></div>
+
+                <p class="mid_alone"><a
+                        href="/publicTrafficInformation/airportBusInfo">공항 리무진</a></p>
+                <div class="alone_line"></div>
+                <p class="mid_alone"><a
+                        href="/publicTrafficInformation/taxiInfo">택시</a></p>
+                <div class="alone_line"></div>
+                <!-- 
+                <p class="mid_alone"><a href="pageOpenForSiteMap/publicTrafficInformation/airflightInfo">항공정보</a></p>
+                <div class="alone_line"></div>
+                -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        
+        <!--  -->
+    </div>
+    <a href="#" class="button_wrap"><img class="btn_site_map_close"
+                                         src="/resources/images/site map_X.png"
+                                         alt="사이트맵 창 닫기"/></a>
+</div>
+<div id="ConfirmModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4><i class="fas fa-check-circle mr-1"></i>로그인 확인</h4>
+            <button class="close" onclick="closeModal()">×</button>
+        </div>
+        <div class="modal-body">
+            로그인에 필요한 페이지입니다.<br>
+            로그인하시겠습니까?
+        </div>
+        <input type="hidden" id="pagenm" value=""/>
+        <div class="modal-footer">
+            <button type="button" class="btnModal btn-close" onclick="closeModal()">닫기</button>
+            <button type="button" class="btnModal btn-check" onclick="KakaoLogin()">확인</button>
+        </div>
+    </div>
+</div> 
+	</body> 
+</html>

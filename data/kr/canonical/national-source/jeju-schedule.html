@@ -1,0 +1,2574 @@
+ 
+ 
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [시작] -->
+
+ 
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [끝] -->
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="ko" class="lt-ie9 lt-ie8 lt-ie7" > <![endif]-->
+<!--[if IE 7]>    <html lang="ko" class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="ko" class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ko"> <!--<![endif]-->   
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta property="og:title" content="제주버스정보 메인">
+		<meta property="og:url" content="http://bus.jeju.go.kr/">
+		<meta property="og:description" content="제주버스정보 PC, 모바일 홈페이지에서  대중교통 정보를 이용해보세요.">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <!-- <meta http-equiv="cache-control" content="no-cache"> -->
+	    <meta name="title" content="제주버스정보">
+	    <title>제주버스정보시스템</title>
+	    <link rel="stylesheet" href="/resources/css/style.css">
+	    <!--[if gt IE 8]>
+	   	<link rel="stylesheet" type="text/css" href="/resources/css/fonts.css">
+	   	<![endif]-->
+	   	<link rel="stylesheet" type="text/css" href="/resources/css/fonts.css">
+	    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!--[if lt IE 9]>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+		<![endif]-->
+		
+		
+		<link rel="shortcut icon" href="/resources/images/favicon-32x32.png" type="image/x-icon">
+		
+		<script src="/resources/script/selectivizr-min.js"></script>
+		
+	    <script src="/resources/script/jquery.min.js"></script>
+	    <script src="/resources/script/jquery.scrollbar.js"></script>
+	    <!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [시작] -->
+	    
+				<link rel="stylesheet" type="text/css" href="/resources/css/sitemap.css">	
+		
+	   <!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [끝] -->
+		
+				<link rel="stylesheet" type="text/css" href="/resources/css/sub.css">
+		
+	    
+	    <link rel="stylesheet" type="text/css" href="/resources/css/board.css">
+	    <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126798761-1"></script>
+		
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-126798761-1');
+		</script>
+		<script>
+		    $(document).ready(function() {
+		    	 // Detecting IE
+		        var oldIE;
+		        if ( $('html').is('.lt-ie7, .lt-ie8, .lt-ie9') ) {
+		            oldIE = true;
+		        }
+
+		        if ( oldIE ) {
+		            // Here's your JS for IE..
+		            $(".parent .contents .top .menu .anim").hover(function() {
+		            	var outer = $(this).children().eq(1);
+		            	var sub_text = $(outer).children().find(".sub_text");
+		            	/* 2019 버스정보시스템 고도화 :: 너비 수정 (외국어 변경시 글이 겹치는 이유로) [시작]*/
+		            	$(outer).attr("style", "position: absolute;width :254px;visibility:visible;background-color:white;");
+		            	//$(outer).attr("style", "position: absolute;width :175px;visibility:visible;background-color:white;");
+		            	/* 2019 버스정보시스템 고도화 :: 너비 수정 (외국어 변경시 글이 겹치는 이유로) [끝]*/
+		            	$(sub_text).attr("style", "opacity: 1; visibility : visible;filter: alpha(opacity=100);");
+		            	$(outer).show();
+		            	$(sub_text).show();
+		            }, function() {
+		            	var outer = $(this).children().eq(1);
+		            	var sub_text = $(outer).children().find(".sub_text");
+		            	$(outer).hide();
+		            	$(sub_text).hide();
+		            });
+
+		            $(".image_slide").hide();
+		            $(".image_slide_old").show();
+
+		           	//================== 창 크기에 따른 메인이미지 가운데 정렬 ====================
+		           	var screenCenter = $(window).width()/2;
+		           	var mainImageCenter = $(".image_slide_old").width()/2;
+		           	var magin = screenCenter-mainImageCenter;
+		           	
+		           	if ( $(window).width() < 1920 ) {	 
+		            	$(".image_slide_old").css({ "width" : "auto", "height" : "303px", "margin-left" : magin});
+		            } else {
+		            	$(".image_slide_old").css({ "margin-left" : magin});	
+		            }
+		          	//================== 컨텐츠 서브텝 크기 조정 ====================
+		            var subTabCount = $(".wrap").children().length;
+		            var subTabWidth = 706/subTabCount;
+		           	$(".wrap .item").css({"width" : subTabWidth});
+		        } else {
+		            // ..And here's the full-fat code for everyone else
+		        }
+		    });
+		</script>
+	</head>
+	<body> 
+		
+ 
+ 
+    <script type="text/javascript">
+		function siteLink(url, parameters, options) {
+			var popupOption = "fullscreen=no,menubar=yes,toolbar=yes,location=yes,scrollbars=yes, resizable=yes";
+			window.open("" + url + ( parameters ? "?" + parameters : "" ), "", options ? options : popupOption);
+		}
+	</script>
+	
+	<div class="parent">
+        <div class="header">
+           <div class="container">
+                <a class="top_ci" href="/?lang=ko"><img class="ci_image" src="/resources/images/img_main_top_ci.png" alt="제주버스정보시스템 홈페이지"/></a>
+                
+                <ul class="nav">
+                    <li class="item"><a href="/">홈</a></li>
+                    <li class="item"><a href="javascript:siteMapOpen();">사이트맵</a></li>
+                    <li class="item"><a href="/?lang=ko">한국어</a></li>
+                    <li class="item"><a href="/?lang=en">English</a></li>
+                    <li class="item"><a href="/?lang=jp">日語</a></li>
+                    <li class="item"><a href="/?lang=ch">中文</a></li>
+                </ul>   
+           </div>
+        </div>
+		
+		
+
+
+
+
+<style>
+	.parent .contents .right .tab .wrap .item { width:calc(793px/3); /*서브메뉴 3개*/ }
+	.none { display:none; }
+</style>
+
+<script type="text/javascript">
+	var selectMenu;
+	$(document).ready(function() {
+		var pathName = jQuery(location).attr('pathname');
+		$.post("/web/common/getMenuInfo", {
+			"pathName" : pathName
+		}, function(result){
+			if (result) {
+				if (result.mainMenuEngName == "introduction") {
+					$("#introduction_on").show();
+					$("#introduction_off").hide();
+
+					$("#publicTrafficInformation_on").hide();
+					$("#publicTrafficInformation_off").show();
+
+					// 현재 페이지 메뉴 호버
+					var subList = $("#introduction_on .menu");
+					menuHover(subList, result.subMenuName);
+				} else if (result.mainMenuEngName == "publicTrafficInformation") {
+					$("#introduction_on").hide();
+					$("#introduction_off").show()
+
+					$("#publicTrafficInformation_on").show();
+					$("#publicTrafficInformation_off").hide();
+
+					// 현재 페이지 메뉴 호버
+					var subList = $("#publicTrafficInformation_on .menu");
+					menuHover(subList, result.subMenuName);
+				}
+
+				selectMenu.mouseenter(function() {
+					selectMenu.css({'color':'#ffd40a','font-weight':'bolder'});
+					$(this).parents(".sub_item").css('background-color','#ffffff');
+				});
+
+				$("#mainMenuLink").attr("href", result.mainMenuUrl);
+				$("#mainMenuName").append(result.mainMenuName+"&nbsp;&gt;&nbsp;");
+
+				$("#subMenuLink").attr("href", result.subMenuUrl);
+				$("#subMenuName").append(result.subMenuName);
+			}
+
+            selectMenu = $(".menu_item");
+
+			return false;
+		});
+	});
+
+	function menuHover(subList, currentMenu) {
+		var subManuCount = subList.length;
+		for (var i = 0; i < subManuCount; ++i) {
+			var subTitle = subList.eq(i).text();
+			if (subTitle == currentMenu) {
+				subList.eq(i).css({'color':'#ffd40a','font-weight':'bolder'});
+				selectMenu = subList.eq(i);
+			}
+		}
+	}
+    function ShowLoginPop(pagenm, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.getElementById("pagenm").value = pagenm;
+
+        document.getElementById("ConfirmModal").style.display = "block";
+    }
+    function KakaoLogin() {
+        var gopage = document.getElementById("pagenm").value;
+        //실제 배포용
+        Kakao.init('78e4393942afa8395efcdd1c46560697');
+        Kakao.Auth.authorize( { redirectUri: "http://bus.jeju.go.kr/mobile/kakao/KakaoLogin", state:gopage } );
+
+
+    }
+</script>
+
+<div class="page_header">
+    <p class="desc">
+        <a href="/"><span>HOME&nbsp;&gt;&nbsp;</span></a><a id="mainMenuLink" href="#"><span id="mainMenuName"></span></a><a id="subMenuLink" href="#"><span id="subMenuName"></span></a>
+    </p>
+</div>
+
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가  [시작]-->
+<div class="contents">
+     <div class="left">
+     	<ul class="main_list">
+			<li id="introduction_on" class="main_item on">
+            	<p class="current"><a href="#">이용안내</a></p>
+                <div class="divider"></div>
+                <ul class="sub_list">
+                	<li class="sub_item"><a href="/introduction/bisInfo" class="menu_link"><span class="menu">버스정보시스템 BIS란?</span></a></li>
+                    <li class="sub_item"><a href="/introduction/homepageUseGuide" class="menu_link"><span class="menu">홈페이지 이용안내</span></a></li>
+                    <!--<li class="sub_item"><a href="/introduction/qrCodeGuide" class="menu_link"><span class="menu">QR코드 이용안내</span></a></li>-->
+                    <li class="sub_item"><a href="/notice/list" class="menu_link"><span class="menu">공지사항</span></a></li>
+                    <li class="sub_item"><a href="/busCancellationInfo/cancellationList" class="menu_link"><span class="menu">버스 결행 안내</span></a></li>
+
+
+
+
+
+
+
+				</ul>
+			</li>
+            <li id="introduction_off" class="main_item">
+            	<a href="/introduction/bisInfo" class="menu_link"><span class="top_menu">이용안내</span></a>
+			</li>
+
+             <!-- 일반[START] -->
+             <li class="main_item">
+                 <a href="javascript:siteLink('/search/line')" class="menu_link"><span class="top_menu">버스정보검색</span></a>
+             </li>
+
+             
+             <!-- 한국어 인경우만 메뉴 노출 되도록 -->
+             <li class="main_item">
+                 <a href="javascript:siteLink('/search/realTimeBusLocation')" class="menu_link"><span class="top_menu">실시간 버스위치</span></a>
+             </li>
+             <!-- 일반[END] -->
+
+             <!-- 일반[START] -->
+             <li id="publicTrafficInformation_off" class="main_item">
+                 <a href="/publicTrafficInformation/generalBusSchedule" class="menu_link"><span class="top_menu">대중교통안내</span></a>
+             </li>
+
+             <!-- 일반[END] -->
+             <!-- 오버[START]-->
+             <li id="publicTrafficInformation_on" class="main_item on" style="display:none;">
+                 <p class="current"><a href="#">대중교통안내</a></p>
+                 <div class="divider"></div>
+                   <ul class="sub_list">
+                    <li class="sub_item"><a href="/publicTrafficInformation/generalBusSchedule" class="menu_link"><span class="menu">제주버스</span></a></li>
+	                <li class="sub_item"><a href="/publicTrafficInformation/airportBusInfo" class="menu_link"><span class="menu">공항 리무진</span></a></li>
+	                <li class="sub_item"><a href="/publicTrafficInformation/taxiInfo" class="menu_link"><span class="menu">택시</span></a></li>
+
+
+
+
+
+
+
+                 </ul>
+             </li>
+             
+         </ul>
+    </div>
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가  [끝]--> 
+	   	
+		
+
+
+<script src="/resources/script/old/sum_common.js"></script>
+
+<script src='/resources/layouts/web/daumMapControl.js'></script>
+<script src="/resources/layouts/web/searchContol.js"></script>
+<script src="/resources/script/spin.js"></script>
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [시작] -->
+
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [끝] -->
+
+<style>
+	.blind { overflow:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0 }
+	.parent .contents .right  .tab  .wrap  .item  {  width: calc(791px/4.1); }
+	.text_en{
+		font-size : 13px;
+		display : table-cell;
+		vertical-align : middle;
+	}
+	.none { display: none; }
+	.hyperspan { backgroundclok; position:absolute; width:100%; height:100%; left:0; top:0; }
+
+	.table_hover .ttable_head:hover { cursor:pointer; }
+
+	#linebook { margin-top: 40px; margin-left: 30px; background-color: #4877C0; color: white; display: block; line-height: 50px; text-decoration: none; width: 250px; text-align: center; }
+	#schedulebook { margin-top: 40px; margin-left: 30px; background-color: #E97D44; color: white; display: block; line-height: 50px; text-decoration: none; width: 250px; text-align: center; }
+
+	.btn-box { display:none; width: 704px; margin: 0 auto; border-top: #f6b333 1px solid; border-bottom: #f6b333 1px solid; }
+	.btn { display: inline-block; width: 140px; height: 50px; padding: 0.375rem 0; font-size: 1rem; line-height: 1.2rem; font-weight: 400; color: #212529;
+		text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+		background-color: transparent; border: 1px solid transparent; border-radius: 0.25rem; }
+
+	.btn-default { background-color: #f8f9fa; border-color: #ddd; color: #444; }
+
+	.bg-yellow { background: #ffd40a; }
+	.bg-gray { background: #cccccc; }
+</style>
+
+<script>
+	var searchControl = new searchControl();
+
+	$(document).ready(function() {
+		$("ul.wrap li").click(function(){
+			var index = $(this).index();
+
+			$("ul.wrap li").each(function(i) {
+				if ( i==index ) {
+					$("#bis_info_tab"+(i+1)).addClass("on");
+					$("#bis_info_tab_text"+(i+1)).addClass("on");
+
+					$("#page"+(i+1)).removeClass("none");
+
+				} else {
+					$("#bis_info_tab"+(i+1)).removeClass("on");
+					$("#bis_info_tab_text"+(i+1)).removeClass("on");
+
+					$("#page"+(i+1)).addClass("none");
+				}
+			});
+		});
+
+		var type = "";
+
+		if (type == "1") {
+			$('#bis_info_tab1').click();
+		} else if (type == "2") {
+			$('#bis_info_tab2').click();
+		} else if (type == "3") {
+			$('#bis_info_tab3').click();
+		} else if (type == "4") {
+			$('#bis_info_tab4').click();
+		}
+	});
+
+	function showRouteNum(grouteType) {
+		if ( $("#groute" + grouteType + " button").length == 0 ) {
+			var sb = new StringBuilder();
+
+			$.ajax({
+				type	 	: "POST",
+				cache	    : false,
+				dataType : "json",
+				data   	: { "GROUTE_TYPE" : grouteType },
+				async    	: false,
+				url 	 	: "/publicTrafficInformation/getBusRouteNum",
+				success : function(data) {
+					data.forEach(function (subitem, index) {
+						var routeNum = subitem.GSCHEDULE_NM.split(",")[0];
+						sb.Append("<button class='btn btn-default' id='"+ subitem.GSCHEDULE_ID +"' onclick=\"downloadSchedulExcel('" + subitem.GSCHEDULE_ID  + "');\">"+ subitem.GSCHEDULE_NM +"</a>");
+					});
+				}, error: function(data) { 	}
+			});
+
+			$("#groute" + grouteType).html(sb.ToString());
+		}
+
+		$(".groutebtn").removeClass("bg-yellow");
+		$("#groute" + grouteType + "btn").addClass("bg-yellow");
+
+		$(".btn-box").css("display", "none");
+		$("#groute" + grouteType).css("display", "block");
+	}
+
+	function downloadSchedulExcel(gscheduleId) {
+		$(".btn.btn-default").removeClass("bg-gray");
+		$("#" + gscheduleId).addClass("bg-gray");
+
+		$.ajax({
+			type	 	: "POST",
+			cache	    : false,
+			dataType : "json",
+			data   	: { "gscheduleId" : gscheduleId },
+			async    	: false,
+			url 	 	: "/data/schedule/getGroupScheduleInfo",
+			success : function(data) {
+				if ( data.length != 0 ) {
+					checkDownloadComplete();
+					$("#downloadTarget").attr("src", "/data/schedule/downScheduleExcel?gscheduleId=" + gscheduleId);
+				} else
+					alert("해당의 노선 시간표가 없습니다.");
+			}, error: function(data) { 	}
+		});
+	}
+
+	function checkDownloadComplete() {
+		$(".layout_right").css("display", "block");
+		searchControl.pageLoding($(".layout_right"));
+
+		var downloadtimer = setInterval(function () {
+			iframe = document.getElementById('downloadTarget');
+			var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+			// Check if loading is complete
+			if ( iframeDoc.readyState == 'complete' || iframeDoc.readyState == 'interactive' ) {
+				$(".layout_right").css("display", "none");
+				searchControl.pageLoding($(".layout_right"), "hide");
+				clearInterval(downloadtimer);
+				return;
+			}
+		}, 1000);
+	}
+
+	$(window).scroll(function () {
+		var scrollValue = $(document).scrollTop();
+		$(".layout_right").css("top", scrollValue);
+	});
+</script>
+<iframe title="downloadTarget" id="downloadTarget" name="downloadTarget" style="display:none"></iframe>
+<div class="layout_right" id="layout_right" style="display: none; position:absolute; top:0; right:0; width:100%; height:100%; overflow:hidden;"></div>
+
+<div class="right type2">
+	<div class="top"><p class="page_title">제주버스	</p></div>
+
+	<div class="tab">
+		<!-- 서브메뉴 적용부분 2개 [START]-->
+		<ul class="wrap">
+			<li id="bis_info_tab1" class="item on"><a href="#" class="link"><span id="bis_info_tab_text1" class="text on">제주버스 노선</span></a></li>
+			<li id="bis_info_tab2" class="item"><a href="#" class="link"><span id="bis_info_tab_text2" class="text">제주버스 시간표/요금</span></a></li>
+			<li id="bis_info_tab3" class="item"><a href="#" class="link"><span id="bis_info_tab_text3" class="text">노선책자 다운로드</span></a></li>
+			
+				
+				
+					<li id="bis_info_tab4" class="item"><a href="#" class="link"><span id="bis_info_tab_text4" class="text">운수업체 버스노선 현황</span></a></li>
+				
+			
+		</ul>
+		<!-- 서브메뉴 적용부분 [END]-->
+	</div>
+	<br><br><br>
+
+	<div id="page1">
+		<div class="middle"><p class="sub_title">제주버스 노선 분류(앞자리)</p></div>
+		<div class="deep_divider"></div>
+
+		<div class="main table_blank_top">
+			<table class="table_common" summary="제주버스 노선 분류(앞자리)">
+				<caption class="blind">제주버스 노선 분류(앞자리)</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="head1" style="width:20%;">앞자리</th>
+					<th scope="col" class="head2" style="width:20%;">구분</th>
+					<th scope="col" class="head2" style="width:10%;"></th>
+					<th scope="col" class="head3" style="width:20%;">앞자리</th>
+					<th scope="col" class="head3" style="width:20%;">구분</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">1</td>
+					<td class="table_divide td_ttable border_gray_bot">급행버스</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+					<td class="table_divide td_ttable border_gray_bot">5</td>
+					<td class="table_divide td_ttable border_gray_bot">서귀포간선버스</td>
+				</tr>
+				<tr>
+
+					<td class="table_divide td_ttable bg_odd border_gray_bot">2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">일반간선버스</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">6</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">서귀포지선버스</td>
+				</tr>
+				<tr>
+
+					<td class="table_divide td_ttable border_gray_bot">3</td>
+					<td class="table_divide td_ttable border_gray_bot">제주간선버스</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+					<td class="table_divide td_ttable border_gray_bot">7</td>
+					<td class="table_divide td_ttable border_gray_bot">읍면지선버스</td>
+				</tr>
+				<tr>
+
+					<td class="table_divide bg_odd td_ttable border_gray_bot">4</td>
+					<td class="table_divide bg_odd td_ttable border_gray_bot">제주지선버스</td>
+					<td class="table_divide bg_odd td_ttable border_gray_bot"></td>
+					<td class="table_divide bg_odd td_ttable border_gray_bot">810, 820</td>
+					<td class="table_divide bg_odd td_ttable border_gray_bot">관광지순환버스</td>
+				</tr>
+				<tr>
+
+					<td class="table_divide td_ttable border_gray_bot">기타</td>
+					<td class="table_divide td_ttable border_gray_bot">공항 리무진</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+					<td class="table_divide td_ttable border_gray_bot">기타</td>
+					<td class="table_divide td_ttable border_gray_bot">리무진</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="middle"><p class="sub_title">제주버스 노선</p></div>
+		<div class="deep_divider"></div>
+		<div class="main">
+			<table class="table_common" summary="급행버스 노선">
+				<p class="desc">○ 급행버스</p><br>
+				<caption class="blind">급행버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">101</td>
+					<td class="table_divide td_ttable border_gray_bot">제주공항 ↔ 동일주로 ↔ 남원</td>
+					<td class="table_divide td_ttable border_gray_bot">동일주로 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">102</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 서일주로 ↔ 모슬포남항(운진항)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">서일주로 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">111</td>
+					<td class="table_divide td_ttable border_gray_bot">제주공항 ↔ 대천동 ↔ 성산포항</td>
+					<td class="table_divide td_ttable border_gray_bot">송당 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">121<br>122</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주공항 ↔ 대천동 ↔ 표선(제주민속촌)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot" style="text-align:left;">번영로 운행<br>▪121: 봉개 경유<br>▪122: 제주시청, 애조로 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">131<br>132</td>
+					<td class="table_divide td_ttable border_gray_bot">제주공항 ↔ 교래사거리 ↔ 남원체육관</td>
+					<td class="table_divide td_ttable border_gray_bot" style="text-align:left;">남조로 운행<br>▪131: 봉개 경유<br>▪132: 제주시청, 제주대학교 입구 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">151</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 동광 ↔ 모슬포남항(운진항)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">평화로 운행<br>일부 회차 신평리 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">181</td>
+					<td class="table_divide td_ttable border_gray_bot">제주공항 → 제주버스터미널 →  서귀포버스터미널 → 공항 → 제주버스터미널</td>
+					<td class="table_divide td_ttable border_gray_bot">516도로 → 서귀포 → 평화로 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">182</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 → 제주공항 →  서귀포버스터미널 → 제주버스터미널 → 제주공항</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">평화로 → 서귀포 → 516도로 운행</td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="일반간선버스 노선">
+				<p class="desc">○ 일반간선버스</p><br>
+				<caption class="blind">일반간선버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">201</td>
+					<td class="table_divide td_ttable border_gray_bot">제주버스터미널 ↔ 성산일출봉 ↔ 서귀포버스터미널</td>
+					<td class="table_divide td_ttable border_gray_bot">동일주로 운행<br>일부 회차 세화고, 오조, 효돈초교 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">202</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 고산1리 ↔ 서귀포등기소</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot" style="text-align:left;">서일주로 운행<br>일부 회차 남녕고, 사계 경유<br>▪202-3: 서귀포등기소-서귀포버스터미널 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">202-1<br>202-2</td>
+					<td class="table_divide td_ttable border_gray_bot">한림 ↔ 애월 ↔ 신제주로터리</td>
+					<td class="table_divide td_ttable border_gray_bot">(주말/방학기간 미운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">211<br>212</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 대천동 ↔ 수산 ↔ 성산항</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot" style="text-align:left;">번영로 운행<br>▪211: 봉개 경유<br>▪212: 제주시청, 제주대학교 입구 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">221<br>222</td>
+					<td class="table_divide td_ttable border_gray_bot">제주버스터미널 ↔ 대천동 ↔ 성읍 ↔ 표선(제주민속촌)</td>
+					<td class="table_divide td_ttable border_gray_bot" style="text-align:left;">번영로 운행<br>▪221: 봉개 경유<br>▪222: 제주시청, 애조로 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">231<br>232</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 교래사거리 ↔ 의귀초등학교 ↔ 남원읍사무소</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot" style="text-align:left;">남조로 운행<br>▪231: 봉개 경유<br>▪232: 제주시청, 제주대학교 입구 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">240</td>
+					<td class="table_divide td_ttable border_gray_bot">제주버스터미널 ↔ 어리목 입구 ↔ 중문사거리 ↔ 제주국제컨벤션센터</td>
+					<td class="table_divide td_ttable border_gray_bot">1100도로 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">251<br>251-1<br>252<br>253<br>254</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 모슬포남항(운진항)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot" style="text-align:left;">번영로 운행<br>▪251-1: 동광까지 급행 노선 운행 </td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">255</td>
+					<td class="table_divide td_ttable border_gray_bot">제주버스터미널 ↔ 영어교육도시 ↔  인성리 ↔ 모슬포남항(운진항)</td>
+					<td class="table_divide td_ttable border_gray_bot">평화로 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">260</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 봉개동 ↔ 선흘 ↔ 해녀박물관</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">270</td>
+					<td class="table_divide td_ttable border_gray_bot">애월하나로마트 ↔ 한라대학교 ↔ 민오름 ↔ 제주대학교</td>
+					<td class="table_divide td_ttable border_gray_bot">애조로 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">281</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 제주시청 ↔ 중앙로터리 ↔ 서귀포버스터미널</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">516도로 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">282</td>
+					<td class="table_divide td_ttable border_gray_bot">제주버스터미널 ↔ 중문우체국 ↔ 구터미널(1호광장)</td>
+					<td class="table_divide td_ttable border_gray_bot">평화로 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">291<br>292</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 봉성리사무소 ↔ 한림</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">293</td>
+					<td class="table_divide td_ttable border_gray_bot">제주대학교 ↔ 한라도서관 ↔ 장전 ↔ 상가 ↔ 한림</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">295</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">서귀포버스터미널 ↔ 가시리 ↔ 신산리 ↔ 성산항
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="제주간선버스 노선">
+				<p class="desc">○ 제주간선버스</p><br>
+				<caption class="blind">제주간선버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">300<br>301</td>
+					<td class="table_divide td_ttable border_gray_bot">함덕종점(신사동) ↔ 천수동(인제) ↔ 보건소(터미널) ↔ 한라병원 ↔ 번대동(하귀)</td>
+					<td class="table_divide td_ttable border_gray_bot">도심급행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">302</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주공항 ↔ 중앙로 ↔ 제주시청 ↔ 제주대/국제대 ↔ 제주시청 ↔ 중앙로 ↔ 제주공항</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">도심급행<br>순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">311</td>
+					<td class="table_divide td_ttable border_gray_bot">한라수목원 ↔ 한라병원 ↔ 보건소(연삼로) ↔ 제주시청 ↔ 인제(천수동) ↔ 삼양동주민센터 ↔ 함덕종점(신사동)</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">312</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한라수목원 ↔ 한라병원 ↔ 보건소(연삼로) ↔ 제주시청 ↔ 중앙로사거리 ↔ 삼화지구(도련초) ↔ 함덕종점(신사동)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">315</td>
+					<td class="table_divide td_ttable border_gray_bot">하귀(수산) ↔ 외도초교 ↔ 노형우체국 ↔ 신제주로터리 ↔ 제주공항 ↔ 제주버스터미널 ↔ 중앙로사거리 ↔ 국제여객선터미널</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">316</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">하귀(번대) ↔ 외도초교 ↔ 노형우체국 ↔ 신제주로터리 ↔ 제주공항 ↔ 용담사거리 ↔ 동문로터리 ↔ 삼양1동</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">320</td>
+					<td class="table_divide td_ttable border_gray_bot">하귀(수산) ↔ 외도부영 ↔ 롯데마트 ↔ 제주여고(정문) ↔ 근로복지공단(연삼로) ↔ 화북휴먼시아 ↔ 화북휴먼시아 정문</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">325</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">함덕종점(신사동) ↔ 삼양동주민센터 ↔ 동문로터리 ↔ 제주공항 ↔ 원노형 ↔ 한라수목원</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">331</td>
+					<td class="table_divide td_ttable border_gray_bot">삼양종점 ↔ 동광초등학교(신천동) ↔ 제주시청 ↔ 제주버스터미널 ↔ 제주공항 ↔ 제주민속오일시장 ↔ 한라수목원</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">332</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">삼양종점 ↔ 천수동(인제) ↔ 중앙로사거리 ↔ 제주버스터미널 ↔ 제주공항 ↔ 제원아파트 ↔ 한라수목원</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">335<br>336</td>
+					<td class="table_divide td_ttable border_gray_bot">봉개(큰동네) ↔ 천수동(인제) ↔ 제주버스터미널 ↔ 제주관광대학</td>
+					<td class="table_divide td_ttable border_gray_bot" style="text-align:left;">▪335: 삼양동, 제원아파트, 백록초 경유<br>▪336: 삼화지구(오름중), 한라대 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">341</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">함덕종점(신사동) ↔ 삼양초등학교 ↔ 천수동(인제) ↔ 제주시청 ↔ 제주대(영주고)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">342</td>
+					<td class="table_divide td_ttable border_gray_bot">함덕종점(신사동) ↔ 삼화지구(오름중) ↔ 천수동(인제) ↔ 제주시청 ↔ 제주대(영주고)</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">43-1</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주절물자연휴양림 ↔ 봉개동 ↔ 대유대림아파트 ↔ 제주시청 ↔ 제주버스터미널 ↔ 제주공항</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">43-2</td>
+					<td class="table_divide td_ttable border_gray_bot">제주절물자연휴양림 ↔ 봉개동 ↔ 대유대림아파트 ↔ 동문로터리 ↔ 용담사거리 ↔ 제주공항 ↔ 제주버스터미널</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">43-3</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주절물자연휴양림 ↔ 봉개동 ↔ 화북남문 ↔ 천수동 ↔ 제주버스터미널 ↔ 제주공항</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">345</td>
+					<td class="table_divide td_ttable border_gray_bot">제주대학교 → 탐라중학교 → 거로사거리 → 삼화지구 → 거로사거리 → 탐라중학교 → 제주대학교</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">346</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">영주고 ↔ 한일베라체/제일중학교 ↔ 서해아파트 ↔ 오현중고등학교↔ 삼화지구</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">347</td>
+					<td class="table_divide td_ttable border_gray_bot">월평(중앙고) → 아라중학교 → 일도대유대림아파트 → 삼화지구 → 일도대유대림아파트 → 아라중학교 → 월평(중앙고)</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">351</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">봉개(큰동네) ↔ 삼양초등학교 ↔ 천수동(인제) ↔ 동문로터리 ↔ 제주시청 ↔ 제주대학교(영주고)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">355<br>356</td>
+					<td class="table_divide td_ttable border_gray_bot">하귀(수산) ↔ 외도부영 ↔ 제주도청(신제주로터리) ↔ 제주대학교(영주고)</td>
+					<td class="table_divide td_ttable border_gray_bot" style="text-align:left;">▪355: 제주지방법원, 제주버스터미널 경유<br>▪356: 이도초등학교, 보건소 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">360</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">부영아파트 ↔ 제주도청(신제주로터리) ↔ 제주시청 ↔ 제주대학교(영주고)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">365</td>
+					<td class="table_divide td_ttable border_gray_bot">한라대학교 ↔ 제원아파트 ↔ 제주공항 ↔ 중앙로사거리 ↔ 제주시청 ↔ 제주대학교(영주고)</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">366</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한라대 → 한라병원 → 제주여고 → 제주대</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">(등교시 1회 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">367</td>
+					<td class="table_divide td_ttable border_gray_bot">한라대 ↔ 한라병원 ↔ 제주여고 ↔ 월평</td>
+					<td class="table_divide td_ttable border_gray_bot">(등교시 1회, 하교시 1회 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">368</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한라대 → 노형성당 → 제주여고 → 월평</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">(등교시 1회 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">370</td>
+					<td class="table_divide td_ttable border_gray_bot">하귀(수산) ↔ 제주도청(신제주로터리) ↔ 제주공항 ↔ 중앙로사거리 ↔ 제주시청 ↔ 제주대학교병원</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">380</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">함덕종점(신사동) ↔ 삼양주민센터 ↔ 동문로터리 ↔ 제주시청 ↔ 제주대학교병원</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="제주지선버스 노선">
+				<p class="desc">○ 제주지선버스</p><br>
+				<caption class="blind">제주지선버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">411</td>
+					<td class="table_divide td_ttable border_gray_bot">국제여객선터미널(국제부두) → 동문로터리 → 봉개동(대기고) → 국제여객선터미널(국제부두)</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">412</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">국제여객선터미널(국제부두) → 봉개동(대기고) → 동문로터리 국제여객선터미널(국제부두)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">415</td>
+					<td class="table_divide td_ttable border_gray_bot">국제여객선터미널(국제부두) ↔ 중앙로사거리 ↔ 동광양 ↔ 대유대림아파트 ↔ 이도주공아파트 ↔ 보건소 ↔ 한라수목원</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">421</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주대 → 화북주공아파트입구 → 제주여고 → 제주대</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">422</td>
+					<td class="table_divide td_ttable border_gray_bot">제주대 → 제주여고 → 화북주공아파트입구 → 제주대</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">423</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 → 화북주공아파트입구 → 제주여중고 → 제주버스터미널</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">424</td>
+					<td class="table_divide td_ttable border_gray_bot">제주버스터미널 → 제주시청 → 제주여중고 → 화북주공아파트입구 → 제주버스터미널</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">425</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">국제여객선터미널(국제부두) ↔ 한일베라체 ↔ 제주국제대학교</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">426</td>
+					<td class="table_divide td_ttable border_gray_bot">국제여객선터미널(국제부두) ↔ 제주여고 ↔ 제주국제대학교</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">431</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 → 사대부중고 → 탐라광장 → 제주시청 → 제주버스터미널</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">432</td>
+					<td class="table_divide td_ttable border_gray_bot">제주버스터미널 → 제주시청 → 탐라광장 → 사대부중고 → 제주버스터미널</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">434</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한라도서관 → 오등동 → 중앙로 → 한라도서관</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">435</td>
+					<td class="table_divide td_ttable border_gray_bot">한라도서관 → 중앙로사거리 → 제주시청 → 한라도서관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">436</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한라도서관 → 연미마을 → 한라중학교 → 한라도서관</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">437</td>
+					<td class="table_divide td_ttable border_gray_bot">한라도서관  → 한라초등학교 → 연미마을 → 한라도서관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">440</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한라수목원 ↔ 한라중학교 ↔ 제주도청(신제주로터리) ↔ 중앙여중 ↔ 사대부고 ↔ 중앙로사거리 ↔ 제주시청 ↔ 제일중학교 ↔ 봉개동(큰동네) → 월평</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">441</td>
+					<td class="table_divide td_ttable border_gray_bot">제주대(별빛누리공원) → 제주시청 → 중앙로사거리 → 사대부고 → 제주중앙여중 → 부민장례식장  → 제주여자중고 → 제주대(별빛누리공원)</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">442</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주대(별빛누리공원) → 제주여중고 → 부민장례식장 → 중앙여중 → 사대부고 → 중앙로사거리 → 제주시청 → 제주대(별빛누리공원)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">444</td>
+					<td class="table_divide td_ttable border_gray_bot">도평 → 한라병원 → 버스터미널 → 중앙로 → 사대부고 → 도평</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">445</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">도평 → 사대부고 → 중앙로 → 버스터미널 → 한라병원 → 도평</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">446</td>
+					<td class="table_divide td_ttable border_gray_bot">도평 ↔ 도리초 ↔ 백록초 ↔ 제주도청(신제주로터리) ↔ 용담사거리 ↔ 중앙로 ↔ 제주시청 ↔ 제주대학교(월평)</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">447</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">도평 ↔ 외도초 ↔ 도두 ↔ 사대부고 ↔ 중앙로 ↔ 제주시청 ↔ 제주대학교</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">451</td>
+					<td class="table_divide td_ttable border_gray_bot">도리초등학교(도두동) → 오일장 → 신제주초 → 한라대 → 도평동 → 외도 → 도리초등학교(도두동)</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">452</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">도리초등학교(도두동) → 외도 → 도평동 → 한라대 → 신제주초 → 오일장 → 도리초등학교(도두동)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">453</td>
+					<td class="table_divide td_ttable border_gray_bot">도두동 → 오일장 → 신제주로터리 → 제주공항 → 용담 → 사대부고 → 도리초등학교(도두동)</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">454</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">도리초등학교(도두동) → 사대부고 → 용담 → 제주공항 → 신제주로터리 → 오일장 → 도리초등학교(도두동) </td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">455</td>
+					<td class="table_divide td_ttable border_gray_bot">장전리 ↔ 고성리 ↔ 광령1리 ↔ 제주도청(신제주로터리) ↔ 제주공항 ↔ 중앙로사거리 ↔ 제주대학교</td>
+					<td class="table_divide td_ttable border_gray_bot">2,7일 제주민속오일시장 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">461</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 → 중앙로 → 제주도청 → 해안마을 → 제주도청 → 제주버스터미널</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">462</td>
+					<td class="table_divide td_ttable border_gray_bot">제주버스터미널 → 용담 → 제주민속오일시장 → 해안마을 → 제주민속오일시장 → 제주버스터미널</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">465</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">신비마을 → 용담사거리 → 제주연안여객터미널 → 제주버스터미널 → 신비마을</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">466</td>
+					<td class="table_divide td_ttable border_gray_bot">신비마을 → 제주버스터미널 → 제주연안여객터미널 → 용담사거리 → 신비마을</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">471</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주국제대학교 ↔ 오등동 ↔ 정실 ↔ 한라대학교</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">472</td>
+					<td class="table_divide td_ttable border_gray_bot">제주국제대학교 ↔ 한라도서관입구(연북로) ↔ 한라대학교</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">473</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주국제대학교 ↔ 제주대학교 ↔ 디케이서비스 ↔ 정실 ↔ 한라대학교</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">475</td>
+					<td class="table_divide td_ttable border_gray_bot">제주대학교 → 탐라교육원 → 제주대학교</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">477</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주대학교 → 연북로 → S중앙병원 →연북로 → 제주대학교</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">490</td>
+					<td class="table_divide td_ttable border_gray_bot">제주대학교 → 디지털융합센터(카카오) → 제주대학교</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">491</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">신성여중고 → 아라동주민센터 → 신성여중고</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환<br>(주말/방학기간 미운행)</td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="서귀포간선버스 노선">
+				<p class="desc">○ 서귀포간선버스</p><br>
+				<caption class="blind">서귀포간선버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">500</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">모슬포남항(운진항) ↔ 일주도로 ↔ 남원 </td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">도심급행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">510</td>
+					<td class="table_divide td_ttable border_gray_bot">남원읍사무소 ↔ 삼성여고 ↔ 중앙로터리 ↔ 서귀포여고 ↔ 중문우체국 ↔ 컨벤션센터</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">520</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">쇠소깍 ↔ 보목신협 ↔ 주공3,4단지 ↔ 서귀포등기소 ↔ 법환농협 ↔ 강정초교 ↔ 중문우체국 ↔ 컨벤션센터</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">531</td>
+					<td class="table_divide td_ttable border_gray_bot">하례리입구 ↔ 오일장 ↔ 중앙로터리 ↔ 서귀포버스터미널 ↔ 중문우체국 ↔ 대평리</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">532</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">화순 ↔ 안덕계곡 ↔ 색달 ↔ 중문우체국 ↔ 법환농협 ↔ 중앙로터리 ↔ 하례리입구</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="서귀포지선버스 노선">
+				<p class="desc">○ 서귀포지선버스</p><br>
+				<caption class="blind">서귀포지선버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">611<br>612</td>
+					<td class="table_divide td_ttable border_gray_bot">충혼묘지 ↔ 돈내코 ↔ 비석거리 ↔ 천지연</td>
+					<td class="table_divide td_ttable border_gray_bot" style="text-align:left;">▪611: 서귀여중, 서문로터리 경유<br>▪612: 공업단지, 중앙로터리 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">615</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">하례리입구 ↔ 토평초등학교 ↔ 서귀포향토오일시장 ↔ 중앙로터리 ↔ 외돌개</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">621</td>
+					<td class="table_divide td_ttable border_gray_bot">하례리입구 → 신례초등학교 → 서귀포향토오일시장 → 신례초등학교 → 하례리입구</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">622</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">공영버스차고지 ↔ 공천포 ↔ 서귀포등기소 ↔ 서귀여중 ↔ 서귀여고 ↔ 삼매봉</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">623</td>
+					<td class="table_divide td_ttable border_gray_bot">하례리입구 → 신례리 → 중앙로터리 → 동상효 → 하례리입구</td>
+					<td class="table_divide td_ttable border_gray_bot">순환<br>일부 회차 위미초/위미중 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">624</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">하례리입구 → 동상효 → 중앙로터리 → 신례리 → 하례리입구</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환<br> 일부 회차 위미중 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">625</td>
+					<td class="table_divide td_ttable border_gray_bot">헬스케어타운 ↔ 중앙로터리 ↔ 동문로터리 ↔ 오일장 ↔ 토평</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">627</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">외돌개 ↔ 중앙로터리 ↔ 효돈중학교 ↔ 신례초등학교 ↔ 하례환승정류장 ↔ 공업단지입구</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">630</td>
+					<td class="table_divide td_ttable border_gray_bot">서귀포운수차고지 ↔ 서귀포향토오일시장 ↔ 중앙로터리 ↔ 서귀포중학교 ↔ 세기아파트 ↔ 보목포구</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">633</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">대평리 ↔ 중문우체국 ↔ 서귀포여중/여고 ↔ 동문로터리 ↔ 삼성여고</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">635</td>
+					<td class="table_divide td_ttable border_gray_bot">서귀포운수차고지 ↔ 서귀포향토오일시장 ↔ 서귀포보건소 ↔ 중앙로터리(서) ↔ 남군농협 ↔ 남주중고등학교</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">641</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">천지연폭포 → 동문로터리 → 중앙로터리 → 서홍동복지회관 → 서귀포경찰서 → 법환초등학교 → 서문로터리 → 천지연폭포</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">642</td>
+					<td class="table_divide td_ttable border_gray_bot">천지연폭포 → 서문로터리  → 법환초등학교 → 서귀포경찰서 → 서홍동복지회관 → 중앙로터리 → 동문로터리 → 천지연폭포</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">643</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">강창학경기장 → 신시가지 → 중앙로터리 → 강정초교 → 강창학경기장</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">644</td>
+					<td class="table_divide td_ttable border_gray_bot">강창학경기장 → 강정초교 → 중앙로터리 → 신시가지 → 강창학경기장</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">645</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">약천사 → 강정초교 → 월드컵경기장 → 신시가지 → 서귀여중 → 중앙로터리 → 서귀여중 → 신시가지 → 월드컵경기장 → 강정초교 → 약천사</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">651</td>
+					<td class="table_divide td_ttable border_gray_bot">회수 ↔ 중문우체국 ↔ 월평 ↔ 강정천 ↔ 법환초등학교 ↔ 서귀포여고 ↔ 동문로터리 ↔ 서복전시관</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">652</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">회수 ↔ 중문우체국 ↔ 대포 ↔ 강정천 ↔ 법환초등학교 ↔ 서귀포여고↔ 동문로터리 ↔ 서복전시관</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">655</td>
+					<td class="table_divide td_ttable border_gray_bot">천제연폭포 ↔ 회수사거리 ↔ 신시가지 ↔ 중앙로터리 ↔ 서귀포향토오일시장 ↔ 신례초등학교 ↔ 제주공천포전지훈련센터</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">680</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">강정항 → 법환우체국 → 서귀포여자고등학교 → 구.중앙파출소 → 올레시장중앙공영주차장 → 중앙로터리 → 동문로터리 → 솔동산입구 → 서문로터리 → 법환우체국 → 강정항</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">690</td>
+					<td class="table_divide td_ttable border_gray_bot">평안전문요양원 ↔ 중앙로터리(서) ↔ 법환농협 ↔ 중문우체국 ↔ 대포포구</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">691</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">천지연 → 서홍새마을금고 → 신시가지 → 서귀포여고 → 천지연</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환<br>(아침 3회 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">692</td>
+					<td class="table_divide td_ttable border_gray_bot">천지연 → 서귀포여고 → 신시가지 → 서귀포여고 → 천지연</td>
+					<td class="table_divide td_ttable border_gray_bot">순환<br>(아침 1회 운행)</td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="○ 읍면지선버스 노선">
+				<p class="desc">○ 읍면지선버스</p><br>
+				<caption class="blind">○ 읍면지선버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">701-1</td>
+					<td class="table_divide td_ttable border_gray_bot">조천체육관 → 대흘2리새동네 → 교래리 종합복지회관 → 조천제육관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">701-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">조천체육관 → 교래리 종합복지회관 → 대흘2리새동네 → 조천체육관</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">702-1</td>
+					<td class="table_divide td_ttable border_gray_bot">신촌초등학교 → 함덕고등학교 → 고상동 → 신촌초등학교</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">702-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">신촌초등학교 → 고상동 → 함덕고등학교 → 신촌초등학교</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">703-1</td>
+					<td class="table_divide td_ttable border_gray_bot">신촌초등학교 → 함덕고등학교 → 봉소동 → 신촌초등학교</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">703-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">신촌초등학교 → 봉소동 → 함덕고등학교 → 신촌초등학교</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">704-1</td>
+					<td class="table_divide td_ttable border_gray_bot">조천체육관 → 양잠단지 → 백화동 조천제육관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">704-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">조천체육관 → 백화동 → 양잠단지 조천제육관</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">704-3</td>
+					<td class="table_divide td_ttable border_gray_bot">조천체육관 → 웃가름 → 낙선동 → 조천체육관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">704-4</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">조천체육관 ↔ 한사동 ↔ 덕천리 ↔ 송당리</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">705</td>
+					<td class="table_divide td_ttable border_gray_bot">월평회차지 → 아라초 → 제주대학교 → 첨단과기단지 → 용강교차로 → 신촌초 → 함덕종점(신사동)</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">711-1</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">김녕리 ↔ 덕천리 ↔ 송당 ↔ 비자림 ↔ 평대 ↔ 해녀박물관</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">711-2</td>
+					<td class="table_divide td_ttable border_gray_bot">김녕리 ↔ 덕천리 ↔ 한동리 ↔ 평대 ↔ 해녀박물관 ↔ 종달항</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">721-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">대천환승정류장 → 수산초등학교 → 성산고 → 고성오일시장 → 섭지코지 → 고성환승정류장</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">721-3</td>
+					<td class="table_divide td_ttable border_gray_bot">성읍문화마을 → 수산초등학교 → 성비코지 → 성산고 → 고성환승정류장</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">722-1<br>722-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">성읍문화마을 ↔ 온평초등학교 ↔ 고성환승정류장</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">731-1<br>731-2</td>
+					<td class="table_divide td_ttable border_gray_bot">성읍문화마을 ↔ 하천하동 ↔ 표선(제주민속촌)</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">732-1</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">성읍문화마을 ↔ 세화1리 ↔ 표선(제주민속촌)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">732-2</td>
+					<td class="table_divide td_ttable border_gray_bot">표선생활체육관 → 향기마을 → 동삼동사거리 → 향기마을 → 표선생활체육관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">732-3</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">표선(제주민속촌) ↔ 농기구수리센터 ↔ 세화3리삼거리 ↔ 토산보건소 동쪽</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">741-1</td>
+					<td class="table_divide td_ttable border_gray_bot">금호리조트 → 토신초 → 신흥1리 → 금호리조트</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">741-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">금호리조트 → 신흥1리 → 토신초 → 금호리조트</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">742-1</td>
+					<td class="table_divide td_ttable border_gray_bot">토평공업단지입구(향토오일시장) → 하례환승정류장 → 한남리사무소 → 하례환승정류장 → 토평공업단지입구(향토오일시장)</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">742-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">금호리조트 → 한남리 → 신흥1리 → 금호리조트</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">743</td>
+					<td class="table_divide td_ttable border_gray_bot">남원체육관 → 상위미 → 한남리 → 의귀초 → 한남리 → 상위미 → 남원체육관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">744</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">신흥2리사무소 → 한남리 → 신례리 → 서귀포오일시장 → 신례리 → 한남리 → 신흥2리사무소</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">751-1</td>
+					<td class="table_divide td_ttable border_gray_bot">운진항(모슬포남항) ↔ 한국국제학교 ↔ 덕수초등학교 ↔ 안덕면사무소</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">751-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">운진항(모슬포남항) ↔ 인성리 ↔ 서광서리 ↔ 안덕농협 ↔ 대평리</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">752-1</td>
+					<td class="table_divide td_ttable border_gray_bot">운진항(모슬포남항) → 안덕농협 → 동광환승정류장 → 신화역사공원 → 운진항(모슬포남항)</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">752-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">운진항(모슬포남항)→ 신화역사공원 → 동광환승정류장 → 안덕농협 → 운진항(모슬포남항)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">753</td>
+					<td class="table_divide td_ttable border_gray_bot">대평리(기종점) ↔ 예래초등학교 ↔ 색달동 ↔ 중문초등학교 ↔ 대포동 ↔ 제주컨벤션센터</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">761-1</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">고산1리 ↔ 신도2리 ↔ 인향동 ↔ 보성리대정농협 ↔ 운진항(모슬포남항)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">761-2</td>
+					<td class="table_divide td_ttable border_gray_bot">고산1리 ↔ 좌기동 ↔ 동일1리 ↔ 운진항(모슬포남항)</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">761-3</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">운진항(모슬포남항) ↔ 신평리 ↔ 평지동 ↔ 현대미술관</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">771-1</td>
+					<td class="table_divide td_ttable border_gray_bot">고산1리(고산성당) ↔ 용수리 ↔ 낙천리 ↔ 청수마을회관 ↔ 오설록 ↔ 동광환승센터</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">771-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">고산1리(고산성당) ↔ 고산1리 ↔ 산수동 ↔ 청수리 ↔ 오설록 ↔ 동광환승센터</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">772-1</td>
+					<td class="table_divide td_ttable border_gray_bot">고산1리(고산성당) → 저청중학교 → 한경면사무소 → 고산1리(고산성당)</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">772-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">고산1리(고산성당) → 한경면사무소 → 저청중학교 → 고산1리(고산성당)</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">781-1</td>
+					<td class="table_divide td_ttable border_gray_bot">한림2리 → 귀덕1리 → 한림오일시장 → 한림2리</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">781-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한림2리 → 한림오일시장 → 귀덕1리 → 한림2리</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">782-1</td>
+					<td class="table_divide td_ttable border_gray_bot">한림2리 → 봉성하나로마트 → 귀덕초등학교 → 한림2리</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">782-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한림2리 → 귀덕초등학교 → 봉성하나로마트 → 한림2리</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">783-1</td>
+					<td class="table_divide td_ttable border_gray_bot">한림체육관 ↔ 한림2리 ↔ 고림동 ↔ 금악 ↔ 동광환승센터</td>
+					<td class="table_divide td_ttable border_gray_bot">4, 9일<br>한림오일시장경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">783-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한림체육관 ↔ 동명리 ↔ 고림동 ↔ 양돈단지 ↔ 동광환승센터</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">4, 9일<br>한림오일시장경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">784-1</td>
+					<td class="table_divide td_ttable border_gray_bot">한림체육관 ↔ 금능농공단지 ↔ 신화역사공원 ↔ 동광환승센터</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">784-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">한림체육관 ↔ 조수리 ↔ 신화역사공원 ↔ 동광환승센터</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">785</td>
+					<td class="table_divide td_ttable border_gray_bot">한림체육관 ↔ 금악 ↔ 조수1리 ↔ 한경면사무소</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">791</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">성수동 → 유수암리사무소 → 성수동</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">792-1</td>
+					<td class="table_divide td_ttable border_gray_bot">성수동 → 소길리 → 유수암리사무소 → 성수동</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">792-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">성수동 → 유수암리사무소 → 소길리 → 성수동</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">793-1</td>
+					<td class="table_divide td_ttable border_gray_bot">애월하나로마트 ↔ 광령1리 ↔ 하가 ↔ 하귀하나로마트</td>
+					<td class="table_divide td_ttable border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">793-2</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">애월하나로마트 ↔ 하가 ↔ 신엄 ↔ 하귀하나로마트</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">794-1<br>794-2</td>
+					<td class="table_divide td_ttable border_gray_bot">애월하나로마트 → 납읍 → 어음2리 → 납읍 → 애월하나로마트</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">795</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">하귀하나로마트 → 애월하나로마트 → 금성리 경로당 → 애월하나로마트 → 하귀하나로마트</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">880</td>
+					<td class="table_divide td_ttable border_gray_bot">오일장 → 중앙로터리 → 천지연 → 칠십리음식특화거리 → 오일장</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="관광지순환버스 노선">
+				<p class="desc">○ 관광지순환버스</p><br>
+				<caption class="blind">관광지순환버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">810-1</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">대천환승정류장 → 거슨새미오름 → 비자림 → 선흘2리 → 대천환승정류장</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">810-2</td>
+					<td class="table_divide td_ttable border_gray_bot">대천환승정류장 → 선흘2리 → 비자림 → 거슨새미오름 → 대천환승정류장</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">820-1</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">동광환승정류장 → 자동차박물관 → 신화역사공원 → 동광환승정류장</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">순환</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">820-2</td>
+					<td class="table_divide td_ttable border_gray_bot">동광환승정류장 → 신화역사공원 → 자동차박물관 → 동광환승정류장</td>
+					<td class="table_divide td_ttable border_gray_bot">순환</td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="공항리무진버스 노선">
+				<p class="desc">※ 공항리무진버스</p><br>
+				<caption class="blind">공항리무진버스 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">600<br>601</td>
+					<td class="table_divide td_ttable border_gray_bot">제주공항 ↔ 중문(컨벤션센터) ↔ 서귀포칼호텔</td>
+					<td class="table_divide td_ttable border_gray_bot" style="text-align:left;">▪600: 컨벤션센터, 월드컵경기장, 서귀포칼호텔 경유<br>▪601: 컨벤션센터까지만 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">800<br>801</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">제주버스터미널 ↔ 공항 ↔ 서귀포등기소</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot" style="text-align:left;">▪800: 서귀포버스터미널 경유<br>▪801: 서귀포등기소 경유</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">800-1</td>
+					<td class="table_divide td_ttable border_gray_bot">제주공항 ↔ 서귀포등기소(구터미널)</td>
+					<td class="table_divide td_ttable border_gray_bot">※아침/심야 시간대만 운행</td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="자율주행버스 노선">
+				<p class="desc">※ 자율주행버스</p><br>
+				<caption class="blind">자율주행버스</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">901</td>
+					<td class="table_divide td_ttable border_gray_bot">제주시청 ↔ 제주공항 ↔ 관광대 ↔ 동광 ↔ 중문 ↔ 서귀포등기소</td>
+					<td class="table_divide td_ttable border_gray_bot">첫째주 금요일 및 법정공휴일 미운행<br>2026.5.29 까지만 한시 운행</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">902</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">롯데마트 ↔ 신제주로터리 ↔ 제주공항 ↔ 신제주로터리 ↔ 롯데마트</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">첫째주 금요일 및 법정공휴일 미운행<br>2026.5.29 까지만 한시 운행</td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="table_common" summary="심야버스(제주시:3000번대, 서귀포시:5000번대) 노선">
+				<p class="desc">※ 심야버스(제주시:3000번대, 서귀포시:5000번대)</p><br>
+				<caption class="blind">심야버스(제주시:3000번대, 서귀포시:5000번대) 노선</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;">노선번호</th>
+					<th scope="col" class="ttable_head" style="width:60%;">출발지 &harr; 도착지</th>
+					<th scope="col" class="ttable_head" style="width:20%;">비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">3001</td>
+					<td class="table_divide td_ttable border_gray_bot">제주공항 ↔ 노형 ↔  제주공항 ↔ 중앙로 ↔ 제주공항</td>
+					<td class="table_divide td_ttable border_gray_bot">공항순환<br>(평일,휴일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">3002</td>
+					<td class="table_divide td_ttable border_gray_bot">영주고 ↔ 제주여고 ↔ 시청 ↔ 삼양</td>
+					<td class="table_divide td_ttable border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">3003</td>
+					<td class="table_divide td_ttable border_gray_bot">영주고 ↔ 제주여고 ↔ 사대부고 ↔ 제주고</td>
+					<td class="table_divide td_ttable border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">3004</td>
+					<td class="table_divide td_ttable border_gray_bot">중앙고 ↔ 제주여고 ↔ 사대부고 ↔ 제주고</td>
+					<td class="table_divide td_ttable border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">3005</td>
+					<td class="table_divide td_ttable border_gray_bot">대기고 ↔ 이도주공 ↔ 남녕고 ↔ 제주고</td>
+					<td class="table_divide td_ttable border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">3006</td>
+					<td class="table_divide td_ttable border_gray_bot">대기고 ↔ 오현고 ↔ 터미널 ↔ 제주고</td>
+					<td class="table_divide td_ttable border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">3007</td>
+					<td class="table_divide td_ttable border_gray_bot">우당도서관 → 중앙여중 → 인제 → 화북  → 우당도서관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환<br>(휴일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable border_gray_bot">3008</td>
+					<td class="table_divide td_ttable border_gray_bot">탐라도서관 → 한라병원 → 제주공항 → 외도 → 탐라도서관</td>
+					<td class="table_divide td_ttable border_gray_bot">순환<br>(휴일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">5001</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">남주고 → 중앙로터리 → 남원  신흥1리</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">5002</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">서귀여고 → 중앙로터리 → 남원 → 신흥1리</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">5003</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">서귀여고 → 중앙로터리 → 토평</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">5004</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">남주고 → 중앙로터리 → 신시가지 → 강정 → 법환</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">5005</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">삼성여고 → 중앙로터리 → 신시가지 → 중문 → 안덕</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">(평일 운행)</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">5006</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">남주고 → 신시가지 → 중문 → 안덕</td>
+					<td class="table_divide td_ttable bg_odd border_gray_bot">(평일 운행)</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div id="page2" class="none">
+		<div class="middle"><p class="sub_title">제주버스 시간표	</p></div>
+		<div class="deep_divider"></div>
+
+		<div class="main table_blank_top table_hover">
+			<p style="width:704px; margin:10px 0 10px 50px;">※ 버스 타입을 선택 후 노선을 선택해주세요.</p>
+
+			<table class="table_common" summary="제주버스 시간표">
+				<caption class="blind">제주버스 시간표</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute4btn" onclick="showRouteNum('4')">급행</th>
+					<th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute3btn" onclick="showRouteNum('3')">일반간선</th>
+					<th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute1btn" onclick="showRouteNum('1')">제주/서귀포 간선</th>
+					<th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute2btn" onclick="showRouteNum('2')">제주/서귀포 지선</th>
+					<th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute5btn" onclick="showRouteNum('5')">읍면지선</th>
+				</tr>
+				</thead>
+			</table>
+
+			<div id="groute4" class="btn-box">
+			</div>
+
+			<div id="groute3" class="btn-box">
+			</div>
+
+			<div id="groute1" class="btn-box">
+			</div>
+
+			<div id="groute2" class="btn-box">
+			</div>
+
+			<div id="groute5" class="btn-box">
+			</div>
+
+			<br><br>
+
+			<table class="table_common" summary="제주버스 시간표">
+				<caption class="blind">제주버스 시간표</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head groutebtn" style="width:16%;" id="groute0btn" onclick="showRouteNum('0')">마을버스</th>
+					<th scope="col" class="ttable_head groutebtn" style="width:16%;" id="groute6btn" onclick="showRouteNum('6')">리무진</th>
+					<th scope="col" class="ttable_head groutebtn" style="width:16%;" id="groute7btn" onclick="showRouteNum('7')">자율주행</th>
+					<th scope="col" class="ttable_head groutebtn" style="width:16%;" id="groute8btn" onclick="showRouteNum('8')">관광지순환</th>
+					<th scope="col" class="ttable_head groutebtn" style="width:16%;" id="groute9btn" onclick="showRouteNum('9')">심야버스</th>
+					<!-- <th scope="col" class="ttable_head groutebtn" style="width:17%;" id="groute13btn" onclick="showRouteNum('13')">800번 공항리무진</th> -->
+				</tr>
+				</thead>
+			</table>
+
+			<div id="groute0" class="btn-box">
+			</div>
+
+			<div id="groute6" class="btn-box">
+			</div>
+
+			<div id="groute7" class="btn-box">
+			</div>
+
+			<div id="groute8" class="btn-box">
+			</div>
+
+			<div id="groute9" class="btn-box">
+			</div>
+
+			<!-- <div id="groute13" class="btn-box">
+            </div> -->
+
+			<!-- <br><br> -->
+
+			<!-- <table class="table_common" summary="제주버스 시간표">
+                <caption class="blind">제주버스 시간표</caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute10btn" onclick="showRouteNum('9')">심야</th>
+                        <th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute11btn" onclick="showRouteNum('11')">저상버스</th>
+                        <th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute14btn" onclick="showRouteNum('14')">서귀포 시티투어</th>
+                        <th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute16btn" onclick="showRouteNum('16')">제주 시티투어</th>
+                        <th scope="col" class="ttable_head groutebtn" style="width:20%;" id="groute17btn" onclick="showRouteNum('0')">마을버스</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <div id="groute10" class="btn-box">
+            </div>
+
+            <div id="groute11" class="btn-box">
+            </div>
+
+            <div id="groute14" class="btn-box">
+            </div>
+
+            <div id="groute16" class="btn-box">
+            </div>
+
+            <div id="groute17" class="btn-box">
+            </div> -->
+		</div>
+
+		<div class="middle"><p class="sub_title">제주버스 요금체계</p></div>
+		<div class="deep_divider"></div>
+		<div class="main">
+			<p class="desc">○ 제주버스 이용요금</p><br>
+			<table class="table_common" summary="제주버스 이용요금">
+				<caption class="blind">제주버스 이용요금</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:30%;background-color:#ffd40a;border: #f6b333 1px solid;" colspan="3" rowspan="2">노선<br />(노선유형)</th>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;" colspan="2">일반<br />(19세 이상)</th>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;" colspan="2">청소년<br />(13세~18세)</th>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;" colspan="2">어린이<br />(6세~13세 미만)</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;" rowspan="2">비고</th>
+				</tr>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">카드</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">현금</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">카드</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">현금</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">카드</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">현금</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">간/지선버스<br />(관광지순환버스 포함)</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+					<td class="table_divide td_ttable td_fare_table">1,200</td>
+					<td class="table_divide td_ttable td_fare_table">850</td>
+					<td class="table_divide td_ttable td_fare_table">900</td>
+					<td class="table_divide td_ttable td_fare_table">350</td>
+					<td class="table_divide td_ttable td_fare_table">400</td>
+					<td class="table_divide td_ttable td_fare_table">단일요금</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" rowspan="7">급행<br>버스</td>
+					<td class="table_divide td_ttable td_fare_table" colspan="2">기본요금(20km)<br />[승차시]</td>
+					<td class="table_divide td_ttable td_fare_table">2,000</td>
+					<td class="table_divide td_ttable td_fare_table" rowspan="6">3,000</td>
+					<td class="table_divide td_ttable td_fare_table">1,600</td>
+					<td class="table_divide td_ttable td_fare_table" rowspan="6">2,400</td>
+					<td class="table_divide td_ttable td_fare_table">1,000</td>
+					<td class="table_divide td_ttable td_fare_table" rowspan="6">1,500</td>
+					<td class="table_divide td_ttable td_fare_table" rowspan="7">거리비례<br />요금</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" rowspan="5">추가<br>거리요금<br />[하차시]</td>
+					<td class="table_divide td_ttable td_fare_table">5km</td>
+					<td class="table_divide td_ttable td_fare_table">200</td>
+					<td class="table_divide td_ttable td_fare_table">160</td>
+					<td class="table_divide td_ttable td_fare_table">100</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">10km</td>
+					<td class="table_divide td_ttable td_fare_table">400</td>
+					<td class="table_divide td_ttable td_fare_table">320</td>
+					<td class="table_divide td_ttable td_fare_table">200</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">15km</td>
+					<td class="table_divide td_ttable td_fare_table">600</td>
+					<td class="table_divide td_ttable td_fare_table">480</td>
+					<td class="table_divide td_ttable td_fare_table">300</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">20km</td>
+					<td class="table_divide td_ttable td_fare_table">800</td>
+					<td class="table_divide td_ttable td_fare_table">640</td>
+					<td class="table_divide td_ttable td_fare_table">400</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">20km<br>초과</td>
+					<td class="table_divide td_ttable td_fare_table">1,000</td>
+					<td class="table_divide td_ttable td_fare_table">800</td>
+					<td class="table_divide td_ttable td_fare_table">500</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="2">최대요금<br>(40km 초과)</td>
+					<td class="table_divide td_ttable td_fare_table">3,000</td>
+					<td class="table_divide td_ttable td_fare_table">3,000</td>
+					<td class="table_divide td_ttable td_fare_table">2,400</td>
+					<td class="table_divide td_ttable td_fare_table">2,400</td>
+					<td class="table_divide td_ttable td_fare_table">1,500</td>
+					<td class="table_divide td_ttable td_fare_table">1,500</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" rowspan="3" colspan="2">마을버스</td>
+					<td class="table_divide td_ttable td_fare_table">동복리</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+					<td class="table_divide td_ttable td_fare_table">1,000</td>
+					<td class="table_divide td_ttable td_fare_table">750</td>
+					<td class="table_divide td_ttable td_fare_table">800</td>
+					<td class="table_divide td_ttable td_fare_table">350</td>
+					<td class="table_divide td_ttable td_fare_table">400</td>
+					<td class="table_divide td_ttable td_fare_table" rowspan="2"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">추자<br>/우도</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+					<td class="table_divide td_ttable td_fare_table">1,000</td>
+					<td class="table_divide td_ttable td_fare_table">550</td>
+					<td class="table_divide td_ttable td_fare_table">600</td>
+					<td class="table_divide td_ttable td_fare_table">350</td>
+					<td class="table_divide td_ttable td_fare_table">400</td>
+				</tr>
+				</tbody>
+				<tfoot>
+				</tfoot>
+			</table>
+			<p style="width:704px;margin-left:50px;margin-top:10px;">※ 급행버스는 현금 이용 시, 최대 요금 적용&nbsp;&nbsp;&nbsp;<a href="/publicTrafficInformation/download/fast/fee">● 급행버스 요금체계 보기</a></p>
+			<p style="width:704px;margin-left:50px;margin-top:10px;text-decoration:underline"></p>
+			<p style="width:704px;margin-left:50px;margin-top:10px;">
+				※ 공항리무진버스<br>
+				- 600번 : 1,300원~ 5,500원 (일반 기준)&nbsp;&nbsp;&nbsp;<a href="/publicTrafficInformation/download/600/fee">● 공항리무진 600번 구간 요금표 보기</a><br>
+				- 800(800-1)번: 1,300원 ~ 5,000원 (일반 기준)&nbsp;&nbsp;&nbsp;<a href="/publicTrafficInformation/download/800/fee">● 공항리무진 800번 구간 요금표 보기</a>
+			</p>
+			</p><br>
+
+			</p>
+
+			<p class="desc">○ 교통복지카드 요금 할인</p>
+			<p class="text">
+				▸ 간선/지선/관광지순환/마을버스: 요금면제(할인율 100%)<br /><br />
+				&nbsp;&nbsp;&nbsp;- 대상자별 요금 할인 범위<br />
+
+			<table class="table_common"  style = "width:756px; margin-left:30px;" summary="교통복지카드 요금 할인 범위">
+				<caption class="blind">교통복지카드 요금 할인 범위</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;" colspan="4">이용 대상</th>
+					<th scope="col" class="ttable_head" style="width:30%;background-color:#ffd40a;border: #f6b333 1px solid;" rowspan="2">요금할인 범위</th>
+
+				</tr>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">유형</th>
+					<th scope="col" class="ttable_head" style="width:30%;background-color:#ffd40a;border: #f6b333 1px solid;">대상자</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" rowspan="7">국 가<br>유공자</td>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(관련 예우법에 따른) 독립유공자(애국지사)</td>
+					<td class="table_divide td_ttable td_fare_table">본인, 보호자1인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(관련 예우법에 따른) 국가유공자 상이1급</td>
+					<td class="table_divide td_ttable td_fare_table">본인, 보호자1인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(관련 예우법에 따른) 국가유공자 상이2~7급</td>
+					<td class="table_divide td_ttable td_fare_table">본인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(관련 예우법에 따른) 5·18민주유공자 1급</td>
+					<td class="table_divide td_ttable td_fare_table">본인, 보호자1인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(관련 예우법에 따른) 5·18민주유공자 2~14급</td>
+					<td class="table_divide td_ttable td_fare_table">본인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(관련 예우법에 따른) 참전유공자</td>
+					<td class="table_divide td_ttable td_fare_table">본인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">기타 국가유공자로 등록된 자<br />(무공수훈자, 보국수훈자, 재일학도의용군인,<br />4.19혁명공로자, 국가사회발전특별공로자)</td>
+					<td class="table_divide td_ttable td_fare_table">본인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" rowspan="2">장애인</td>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(장애인복지법에 따른)장애의 정도가 심한 장애인</td>
+					<td class="table_divide td_ttable td_fare_table">본인, 보호자1인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(장애인복지법에 따른) 장애의 정도가 심하지 않은 장애인</td>
+					<td class="table_divide td_ttable td_fare_table">본인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">어르신</td>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(제주도내 주민등록) 만 65세 이상 노인</td>
+					<td class="table_divide td_ttable td_fare_table">본인</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">어린이</td>
+					<td class="table_divide td_ttable td_fare_table" colspan="3">(제주도내 주민등록) 만6세~만12세 어린이</td>
+					<td class="table_divide td_ttable td_fare_table">본인</td>
+				</tr>
+				</tbody>
+			</table>
+
+			<p class="text">
+				※ 애국지사, 상이1급 국가유공자, 1급 5·18민주유공자, 장애의 정도가 심한 장애인은 동반 보호자 1인 포함<br>
+				- 이용방법: 제주교통복지카드 이용
+			</p><br>
+			</p>
+		</div>
+
+		<div class="middle"><p class="sub_title">교통카드 이용안내</p></div>
+		<div class="deep_divider"></div>
+		<div class="main" style="overflow:hidden">
+			<p class="desc">○ 교통카드 종류</p>
+			<p class="text">
+				▸ 선불교통카드(충전식): 티머니(T-money), 캐시비, 마이비, 내일플러스, 한페이, 원패스 등 전국호환 교통카드<br />
+				&nbsp;&nbsp;&nbsp;- 카드구입 및 충전: 가까운 편의점 등<br />
+				&nbsp;&nbsp;&nbsp;- 청소년, 어린이는 선불교통카드 구입 후 해당 카드사 홈페이지 등 고객센터를 통해 등록하여야 청소년, 어린이 할인 가능<br /><br />
+				▸ 신용카드(후불식): 후불 교통카드 기능이 포함된 신용카드
+			</p><br>
+
+			<p class="desc">○ 교통카드 장점</p>
+			<p class="text">
+				▸ 간/지선, 마을버스 이용 시, 현금 대비 50원 할인 적용<br /><br />
+				▸ 환승할인제를 이용하면 추가 교통비 절감(최대 2회)<br /><br />
+				▸ 교통카드 이용금액 소득공제 적용(교통카드사 홈페이지 등록 시)
+			</p><br>
+
+			<p class="desc">○ 교통카드 환승할인</p>
+			<p class="text">
+				▸ 환승할인 적용 시간 및 횟수 : 하차태그 후 40분 이내, 최대 2회<br /><br />
+				▸ 환승할인 가능 노선 (동일 노선을 제외하고 가능)<br />
+				&nbsp;&nbsp;&nbsp;- LED표출 상이한 노선번호는 환승할인 적용<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예시) 111(성산방향) ↔ 112(제주시방향) : 환승가능<br />
+				&nbsp;&nbsp;&nbsp;- LED표출 동일노선번호는 서로 환승할인 불가 (왕복 포함)<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예시) 111(성산방향) ↔ 111(제주시방향) : 환승불가<br />
+			</p>
+			<br>
+			<table style = "width:746px; margin-left:43.5px; border: 1.5px dashed #f6b333;" summary="교통카드 환승할인 예외">
+				<tbody>
+				<tr>
+					<td colspan="2" style ="font-size:13px;font-family='lotteDream', '맑은 고딕', 'Malgun Gothic';">
+						※ 단, 읍면지선 및 관광지 순환노선은 LED표출 주 노선번호(‘-’ 앞 세자리)가 동일하면 서로 환승할인 불가!<br>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:2%;"></td>
+					<td style ="width:98%;font-size:13px;font-family='lotteDream', '맑은 고딕', 'Malgun Gothic';">
+						→ 읍면 지선(순환) : 702-1/-2, 703-1/-2, 741-1/-2, 742-1/-2, 743-1/-2, 752-1/-2, 772-1/-2, 781-1/-2,782-1/-2, 792-1/-2<br>
+						→ 관광지 순환 : 810-1/-2, 820-1/-2
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+			<p class="text">
+				▸ 환승할인 금액 <br />
+				&nbsp;&nbsp;&nbsp;- 환승 버스요금이 직전 버스요금보다 작거나 같으면 무료<br />
+				&nbsp;&nbsp;&nbsp;- 환승 버스요금이 직전 버스요금보다 크면 직전 버스요금만큼 할인<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 급행버스는 하차 시, 환승할인과 관계없이 추가 거리요금이 결제되며, 급행/공항리무진 ↔ 급행/공항리무진 환승 시,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성인 1,150원, 청소년 850원, 어린이 350원만 할인됨<br /><br />
+				[예시] 노선유형별 환승할인 및 결제금액 (성인기준)
+			</p>
+
+			<table class="table_common"  style = "width:756px; margin-left:30px;" summary="노선유형별 환승할인 및 결제금액 (성인기준) 예시">
+				<caption class="blind">노선유형별 환승할인 및 결제금액 (성인기준) 예시</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;" rowspan="2">초 승</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;" rowspan="2"></th>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;" rowspan="2">환 승</th>
+					<th scope="col" class="ttable_head" style="width:30%;background-color:#ffd40a;border: #f6b333 1px solid;" colspan="3">결제금액(원)</th>
+					<th scope="col" class="ttable_head" style="width:30%;background-color:#ffd40a;border: #f6b333 1px solid;" rowspan="2">환승할인<br>금액(원)</th>
+				</tr>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">초승</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">환승</th>
+					<th scope="col" class="ttable_head" style="width:10%;background-color:#ffd40a;border: #f6b333 1px solid;">계</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">마을버스</td>
+					<td class="table_divide td_ttable td_fare_table">↔</td>
+					<td class="table_divide td_ttable td_fare_table">마을버스</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+					<td class="table_divide td_ttable td_fare_table">0</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">마을버스</td>
+					<td class="table_divide td_ttable td_fare_table">→</td>
+					<td class="table_divide td_ttable td_fare_table">간/지선버스</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+					<td class="table_divide td_ttable td_fare_table">200</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">마을버스</td>
+					<td class="table_divide td_ttable td_fare_table">→</td>
+					<td class="table_divide td_ttable td_fare_table">급행/공항리무진</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+					<td class="table_divide td_ttable td_fare_table">1,050</td>
+					<td class="table_divide td_ttable td_fare_table">2,000</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">간/지선버스</td>
+					<td class="table_divide td_ttable td_fare_table">→</td>
+					<td class="table_divide td_ttable td_fare_table">마을버스</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+					<td class="table_divide td_ttable td_fare_table">0</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">간/지선버스</td>
+					<td class="table_divide td_ttable td_fare_table">↔</td>
+					<td class="table_divide td_ttable td_fare_table">간/지선버스</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+					<td class="table_divide td_ttable td_fare_table">0</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">간/지선버스</td>
+					<td class="table_divide td_ttable td_fare_table">→</td>
+					<td class="table_divide td_ttable td_fare_table">급행/공항리무진</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+					<td class="table_divide td_ttable td_fare_table">850</td>
+					<td class="table_divide td_ttable td_fare_table">2,000</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">급행/공항리무진</td>
+					<td class="table_divide td_ttable td_fare_table">→</td>
+					<td class="table_divide td_ttable td_fare_table">마을버스</td>
+					<td class="table_divide td_ttable td_fare_table">2,000</td>
+					<td class="table_divide td_ttable td_fare_table">0</td>
+					<td class="table_divide td_ttable td_fare_table">2,000</td>
+					<td class="table_divide td_ttable td_fare_table">950</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">급행/공항리무진</td>
+					<td class="table_divide td_ttable td_fare_table">→</td>
+					<td class="table_divide td_ttable td_fare_table">간/지선버스</td>
+					<td class="table_divide td_ttable td_fare_table">2,000</td>
+					<td class="table_divide td_ttable td_fare_table">0</td>
+					<td class="table_divide td_ttable td_fare_table">2,000</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table">급행/공항리무진</td>
+					<td class="table_divide td_ttable td_fare_table">↔</td>
+					<td class="table_divide td_ttable td_fare_table">급행/공항리무진</td>
+					<td class="table_divide td_ttable td_fare_table">2,000</td>
+					<td class="table_divide td_ttable td_fare_table">850</td>
+					<td class="table_divide td_ttable td_fare_table">2,850</td>
+					<td class="table_divide td_ttable td_fare_table">1,150</td>
+				</tr>
+				</tbody>
+			</table>
+
+			<p class="text">
+				▸ 다인승 환승 <br />
+				&nbsp;&nbsp;&nbsp;→ 다인승 승차는 허용하나, 다인승 환승은 불가<br />
+				&nbsp;&nbsp;&nbsp;→ 다인승 승차 후 환승시, 최대 권종 기준으로 1인만 환승 할인 적용<br />
+			</p>
+		</div>
+	</div>
+
+	<div id="page3" class="none">
+		<div class="middle"><p class="sub_title">노선책자 다운로드</p></div>
+		<div class="deep_divider"></div>
+
+		<div style="/* display:inline; */min-width: 1200px;margin-left: 50px;">
+			<div style="display:inline;float:left;width:400px">
+				<a id="linebook" href="/publicTrafficInformation/downloadBook/line">
+					<font style="font-size: 30px; font-weight: bold;">버스노선 책자</font><br>
+					<font style="font-size: 20px;">(2026년 1월 1일 기준)</font></a>
+			</div>
+		</div>
+
+		<p style="width:704px;margin-left:50px;margin-top:10px;"></p>
+	</div>
+
+	<div id="page4" class="none">
+		<div class="middle"><p class="sub_title">운수업체별 버스노선 현황</p></div>
+		<div class="deep_divider"></div>
+
+		<div class="main table_blank_top">
+
+			<table class="table_common" summary="운수업체별 버스노선 현황">
+				<caption class="blind">운수업체별 버스노선 현황</caption>
+				<thead>
+				<tr>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;">업체명</th>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;">급행,일반간선,관광지순환</th>
+					<th scope="col" class="ttable_head" style="width:20%;background-color:#ffd40a;border: #f6b333 1px solid;" colspan="2">시내 간·지선, 읍면지선</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">극동여객(주)<br>☏064-753-0310</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">151,<br>251-1 *일부구간 급행<br>251, 252, 253, 254, 255, 270,<br>300, 301 *시내급행</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">325, 43-1, 43-2, 43-3,<br>411, 412, 425, 426, 431, 432</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">(주)동진여객<br>☏064-757-5714</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">131, 132, 181,<br>231, 232, 281</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">345, 346, 347,<br>434, 435, 436, 437,<br>451, 452, 453, 454,<br>471, 472, 473, 475, 477</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">(주)삼화여객<br>☏064-753-1621</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">182, 240, 282,<br> 800, 801</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">311, 312, 415, 440,<br>441, 442, 444, 445,<br>446, 447, 455, 461, 462,<br>465, 466, 490</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">제주여객(주)<br>☏064-753-2056</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">102, 121, 122,<br>202, 221, 222,<br>291, 292, 293</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">315, 316</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">(주)삼영교통<br>☏064-713-7000</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">300, 301, 302 *시내급행<br>600, 601</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">320, 335, 336, 341, 342,<br>351, 355, 356,<br>360, 365, 366, 367, 368, 369,<br>370, 380</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;" rowspan="2">관광지순환버스<br>☏064-746-7310</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;" rowspan="2">810-1, 810-2,<br>820-1, 820-2, 820-3</td></td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)<br>임시버스</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">202-1, 202-2,<br>491</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)<br>심야버스</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">3001, 3002, 3003, 3004,<br>3005, 3006, 3007, 3008</td>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;" rowspan="2">금남여객(주)<br>☏064-753-4423<br><br>(서귀포지사)<br>☏064-767-0667</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;" rowspan="2">101, 111,<br>201, 211, 212, 260,<br>295</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">331, 332,<br>421, 422, 423, 424</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(서귀포시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">611, 612, 615,<br>633, 641, 642, 643, 644,<br>651, 652, 655</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;" rowspan="2">서귀포운수<br>(예전 이름)동서교통(주)<br>☏064-732-4934</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;" rowspan="2">500 *도심급행</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(서귀포시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;"><br>510, 520, 521, 531, 532,<br>621, 623, 624, 625,<br>630, 635, 645</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(서귀포시)<br>심야버스</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">5001, 5002, 5003,<br>5004, 5005, 5006</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;"rowspan="2">제주시공영버스<br>제주시교통행정과<br>☏064-728-3211~3</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;"rowspan="2"></td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;"></td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)<br>읍면지선</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">701-1, 701-2, 702-1, 702-2,<br>703-1, 703-2,<br>704-1, 704-2, 704-3, 704-4,<br>705, 711-1, 711-2, <br>771-1, 771-2, 772-1, 772-2,<br>781-1, 781-2, 782-1, 782-2,<br>783-1, 783-2, 784-1, 784-2, 785, 791, 792-1, 792-2,<br>793-1, 793-2, 794-1, 794-2, 795</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;"rowspan="2">서귀포시공영버스<br>서귀포시교통행정과<br>☏064-760-3111~3</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;"rowspan="2">880</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(서귀포시)</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">622, 627, 690, 691, 692</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(서귀포시)<br>읍면지선</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">721-2, 721-3, 722-1, 722-2,<br>731-1, 731-2, 732-1, 732-2, 732-3,<br>741-1, 741-2, 742-1, 742-2,<br>743, 744,<br>751-1, 751-2, 752-1, 752-2,<br>761-1, 761-2, 761-3</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;"rowspan="2">수요응답형<br>교통수단</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;"rowspan="2"></td>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(제주시)<br>읍면지선</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">703-1, 703-2,<br>781-1, 781-2, 782-1, 782-2</td>
+				</tr>
+				<tr>
+					<td class="table_divide td_ttable td_fare_table" style="width:10%;">(서귀포시)<br>읍면지선</td>
+					<td class="table_divide td_ttable td_fare_table" style="width:20%;">743, 744, 761-1, 761-3</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</div>  
+		
+
+
+
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header h4 {
+        margin: 0;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .close {
+        font-size: 1.5em;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    .btnModal {
+        padding: 4px 12px;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-close {
+        background-color: #ccc;
+        margin-left: 290px;
+    }
+
+    .btn-check {
+        background-color: #ffd755;
+        color: black;
+    }
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="/resources/js/adminlte.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".site_map_wrap").hide();
+        $(".layout_site_map").hide();
+
+        jQuery('.btn_site_map_close').click(function () {
+            $(".site_map_wrap").hide();
+            $(".layout_site_map").hide();
+        });
+        jQuery('.site_map_wrap').click(function () {
+            $(".site_map_wrap").hide();
+            $(".layout_site_map").hide();
+        });
+    });
+
+    function siteMapOpen() {
+        $(".site_map_wrap").show();
+        $(".layout_site_map").show();
+    }
+
+    function pageMoveForSiteMap(pageUrl) {
+        location.href = pageUrl;
+        $(".site_map_wrap").hide();
+        $(".layout_site_map").hide();
+    }
+
+    function pageOpenForSiteMap(pageUrl) {
+        $(".site_map_wrap").hide();
+        $(".layout_site_map").hide();
+
+        siteLink(pageUrl);
+    }
+
+    function ShowLoginPop(pagenm, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.getElementById("pagenm").value = pagenm;
+
+        document.getElementById("ConfirmModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("ConfirmModal").style.display = "none";
+    }
+
+    function KakaoLogin() {
+        var gopage = document.getElementById("pagenm").value;
+        //실제 배포용
+        Kakao.init('78e4393942afa8395efcdd1c46560697');
+        Kakao.Auth.authorize( { redirectUri: "http://bus.jeju.go.kr/mobile/kakao/KakaoLogin", state:gopage } );
+
+    }
+</script>
+
+<!-- 2019 버스정보시스템고도화 :: 외국어기능추가[시작] -->
+<div class="footer">
+    <div class="wrapper">
+        <img class="image_ci" src="/resources/images/main/img_ci_bot.png"
+             alt="제주버스정보 하단 CI 이미지"/>
+        <div class="text_area">
+            <p class="first">
+                <!-- 한국어일 경우만 노출 -->
+                
+                    <span><a href="javascript:siteLink('/resources/text/1.txt')" class="link">개인정보처리방침</a></span> |
+                
+                <span><a href="/introduction/homepageUseGuide"
+                         class="link">홈페이지 이용안내</a></span>
+            </p>
+            <p class="second">
+                COPYRIGHT JEJU BUS INFORMATION SYSTEM ALL RIGHTS RESERVED.&nbsp;&nbsp;&nbsp;&nbsp;63122 제주특별자치도 제주시 문연로 6(연동)버스정보시스템&nbsp;&nbsp;관련 문의 064)710-2447 &nbsp;&nbsp;FAX 064)710-2439
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- 사이트맵 [START] -->
+
+<div class="site_map_wrap">
+</div>
+<div class="layout_site_map" style="display: block;">
+    <div class="full_wrap">
+        <div class="line_warp">
+            <div class="title_wrap">
+                <img class="first_image" src="/resources/images/title_front_icon.png"
+                     alt="제주버스정보시스템 이용안내"/>
+                <p class="title"><a href="/introduction/bisInfo">이용안내</a></p>
+            </div>
+            <div class="top_line"></div>
+
+            <p class="mid_alone"><a href="/introduction/bisInfo">버스정보시스템 BIS란?</a></p>
+            <div class="cmm_top_margin"></div>
+
+            <p class="mid_cnts"><a href="/introduction/bisInfo?viewtype=1">-
+                BIS소개</a></p>
+            <p class="mid_cnts"><a href="/introduction/bisInfo?viewtype=2">-
+                정류소안내기</a></p>
+            <p class="mid_cnts"><a href="/introduction/bisInfo?viewtype=3">-
+                승객용안내기</a></p>
+            <div class="cmm_line"></div>
+
+
+            <p class="mid_alone"><a
+                    href="/introduction/homepageUseGuide?viewtype=1">홈페이지 이용안내</a></p>
+            <div class="cmm_top_margin"></div>
+
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=1">-
+                노선검색 </a></p>
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=2">-
+                정류소검색 </a></p>
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=3">-
+                출도착검색</a></p>
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=4">-
+                실시간버스위치 </a></p>
+            <p class="mid_cnts"><a href="/introduction/homepageUseGuide?viewtype=5">-
+                유사노선검색 </a></p>
+            <div class="cmm_line"></div>
+
+            <!--
+            <p class="mid_alone"><a href="/introduction/mobileUserGuide">모바일 이용안내</a></p>
+            <div class="alone_line"></div>
+             -->
+            <!--
+				<p class="mid_alone"><a href="/introduction/qrCodeGuide">QR코드 이용안내</a></p>
+                <div class="alone_line"></div>
+				-->
+
+            <p class="mid_alone"><a href="/notice/list">공지사항</a></p>
+            <div class="alone_line"></div>
+
+            
+
+
+
+
+
+
+
+
+            <div class="alone_line"></div>
+        </div>
+
+
+        <div class="line_warp">
+            <div class="title_wrap">
+                <img class="first_image" src="/resources/images/title_front_icon.png"
+                     alt="제주버스정보시스템 이용안내"/>
+                <p class="title"><a href="javascript:pageOpenForSiteMap('/search/line')">버스정보검색</a></p>
+            </div>
+            <div class="top_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/line')">노선검색 </a></p>
+            <div class="alone_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/station')">정류소검색 </a></p>
+            <div class="alone_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/route')">출도착검색 (경로검색)</a></p>
+            <div class="alone_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/realTimeBusLocation')">실시간버스위치 </a></p>
+            <div class="alone_line"></div>
+            <p class="mid_alone"><a href="javascript:pageOpenForSiteMap('/search/similarLine')">유사노선검색 </a></p>
+            <div class="alone_line"></div>
+
+        </div>
+        <!--  -->
+        
+            <div class="line_warp">
+                <div class="title_wrap">
+                    <img class="first_image"
+                         src="/resources/images/title_front_icon.png"
+                         alt="제주버스 실시간 위치 검색"/>
+                    <p class="title"><a
+                            href="javascript:pageOpenForSiteMap('/search/realTimeBusLocation')">실시간 버스위치</a></p>
+                </div>
+                <div class="cmm_line"></div>
+
+            </div>
+            <div class="line_warp">
+                <div class="title_wrap">
+                    <img class="first_image"
+                         src="/resources/images/title_front_icon.png"
+                         alt="제주 대중교통안내"/>
+                    <p class="title"><a
+                            href="/publicTrafficInformation/generalBusSchedule">대중교통안내</a></p>
+                </div>
+                <div class="top_line"></div>
+
+
+                <p class="mid_alone"><a
+                        href="/publicTrafficInformation/generalBusSchedule">제주버스</a></p>
+
+                <p class="mid_cnts"><a
+                        href="javascript:pageMoveForSiteMap('/publicTrafficInformation/generalBusSchedule?viewtype=1')">-
+                    제주버스 노선</a></p>
+                <p class="mid_cnts"><a
+                        href="javascript:pageMoveForSiteMap('/publicTrafficInformation/generalBusSchedule?viewtype=2')">-
+                    제주버스 시간표/요금</a></p>
+                <p class="mid_cnts"><a
+                        href="javascript:pageMoveForSiteMap('/publicTrafficInformation/generalBusSchedule?viewtype=3')">-
+                    노선책자 다운로드</a></p>
+                <p class="mid_cnts"><a
+                        href="javascript:pageMoveForSiteMap('/publicTrafficInformation/generalBusSchedule?viewtype=4')">-
+                    운수업체 버스노선 현황</a></p>
+
+                <div class="cmm_line"></div>
+
+                <p class="mid_alone"><a
+                        href="/publicTrafficInformation/airportBusInfo">공항 리무진</a></p>
+                <div class="alone_line"></div>
+                <p class="mid_alone"><a
+                        href="/publicTrafficInformation/taxiInfo">택시</a></p>
+                <div class="alone_line"></div>
+                <!-- 
+                <p class="mid_alone"><a href="pageOpenForSiteMap/publicTrafficInformation/airflightInfo">항공정보</a></p>
+                <div class="alone_line"></div>
+                -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        
+        <!--  -->
+    </div>
+    <a href="#" class="button_wrap"><img class="btn_site_map_close"
+                                         src="/resources/images/site map_X.png"
+                                         alt="사이트맵 창 닫기"/></a>
+</div>
+<div id="ConfirmModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4><i class="fas fa-check-circle mr-1"></i>로그인 확인</h4>
+            <button class="close" onclick="closeModal()">×</button>
+        </div>
+        <div class="modal-body">
+            로그인에 필요한 페이지입니다.<br>
+            로그인하시겠습니까?
+        </div>
+        <input type="hidden" id="pagenm" value=""/>
+        <div class="modal-footer">
+            <button type="button" class="btnModal btn-close" onclick="closeModal()">닫기</button>
+            <button type="button" class="btnModal btn-check" onclick="KakaoLogin()">확인</button>
+        </div>
+    </div>
+</div> 
+	</body> 
+</html>

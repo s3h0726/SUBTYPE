@@ -1,0 +1,45 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>세종특별자치시 교통정보시스템</title>
+	<script>
+	
+	/* var mobileKeyWords = new Array('LG','SAMSUNG','Samsung','iPhone','iPod','Android','Windows CE','BlackBerry','Symbian','Windows','Phone','webOS','Opera Mini','Opera Mobi','POLARIS','IEMobile','lgtelecom','nokia','SonyEricsson');
+	for (var word in mobileKeyWords){
+	    if (navigator.userAgent.match(mobileKeyWords[word]) != null){
+	        location.href = "https://mbis.sejong.go.kr/mobile/main/m_main.view";
+	        break;
+	    }else{
+	    	if(location.hostname.indexOf('bis.sejong.go.kr') ==0) {
+	    		window.location = "/web/main/main.view";
+	    	} else if (location.hostname.indexOf('mbis.sejong.go.kr') ==0){
+	    		window.location = "/mobile/main/m_main.view";
+	    	}
+	    }
+	}
+	 */
+	var filter = "win16|win32|win64|mac|macintel";
+	 
+	if (navigator.platform) {
+		if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+			window.location = "https://mbis.sejong.go.kr/mobile/main/m_main.view";
+			//window.location = "https://bis.sejong.go.kr/mobile/main/m_main.view";
+		} else {
+			if(location.hostname.indexOf('bis.sejong.go.kr') == 0) {
+				window.location = "/web/main/main.view";
+			} else if (location.hostname.indexOf('mbis.sejong.go.kr') == 0){
+				window.location = "/mobile/main/m_main.view";
+			} else {
+				// default
+				window.location = "/web/main/main.view";
+			}
+		} 
+	
+	}
+	
+	</script>
+</head>
+</html>
+        

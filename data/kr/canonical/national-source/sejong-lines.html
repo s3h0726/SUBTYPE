@@ -1,0 +1,868 @@
+
+
+
+<!DOCTYPE html>
+<html lang="ko" id="html1" style="height: 100%">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon-precomposed" href="../../resources/images_new/c/icon_114.png">
+	<link rel="shortcut icon" href="../../resources/images_new/c/favicon.ico">
+	
+	<title>세종특별자치시 교통정보시스템 실시간노선검색</title>
+	<script type="text/javascript" src="../../resources/js/w/secureUrlSetFunction.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../resources/css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../resources/css/w/layout.css"/>
+	<link rel="stylesheet" type="text/css" href="../../resources/css/w/stationInfoBox.css"/>
+	<script type="text/javascript" src="../../resources/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="../../resources/js/hashMap.js"></script>
+	<script type="text/javascript" src="../../resources/js/w/commonTraffic.js"></script>
+	
+	<script type="text/javascript">
+	var bisKeyObj;
+	
+	var ROUTEID = "";
+	var REAL_BUS_INTERVAL = null;
+	var route_type = null; 
+	
+	$(document).ready(function(){
+		
+		//$("#busRoute").focus();
+		
+		//메인 검색		
+		var paramBusRoute = '';
+		var paramAuto_route_id = '';
+		
+		if(paramBusRoute != "" && paramBusRoute != null){
+			var form_data = {};
+			if(paramAuto_route_id != "" && paramAuto_route_id != null){
+				form_data = {
+	            		busRoute: paramBusRoute,
+	            		busRouteId: paramAuto_route_id
+	            };
+			} else {
+				form_data = {
+	            		busRoute: paramBusRoute
+	            };				
+			}
+			
+			//상단 타입 버튼 초기화
+			resetRouteTypeBtn();
+			
+			ajaxCall("../../web/traffic/searchBusRoute.do", form_data, ajaxBeforeSend, ajaxSuccess);
+            $("#busRoute").val(paramBusRoute);
+		} else {
+			resetRouteTypeBtn();
+			ajaxCall("../../web/traffic/searchBusRoute.do", { busRoute: "" }, ajaxBeforeSend, ajaxSuccess);
+		}
+		
+		$("#busRoute").keydown(function (key) {
+            if (key.keyCode == 13) {
+            	if($("#busRoute").val() == "" || $("#busRoute").val() == null){
+    				alert("노선 번호를 입력해 주세요.");
+    				return;
+    			} else {
+    				
+    				//상단 타입 버튼 초기화
+    				resetRouteTypeBtn();
+    				
+    	            var form_data = {
+    	            		busRoute: $("#busRoute").val()
+    	            };
+    	            
+    	            ajaxCall("../../web/traffic/searchBusRoute.do", form_data, ajaxBeforeSend, ajaxSuccess);
+    	            return false;
+    			}
+            }
+        });
+		
+		$("#btn_search").click( function(){ 
+			
+			if($("#busRoute").val() == "" || $("#busRoute").val() == null){
+				alert("노선 번호를 입력해 주세요.");
+				return;
+			} else {
+				
+				//상단 타입 버튼 초기화
+				resetRouteTypeBtn();
+			
+	            var form_data = {
+	            		busRoute: $("#busRoute").val()
+	            };
+	            
+	            ajaxCall("../../web/traffic/searchBusRoute.do", form_data, ajaxBeforeSend, ajaxSuccess);
+			}
+
+		});
+		
+		$(".bis_contents_title li a").click( function(){
+			var $obj = $(this).attr("id");
+			
+			// title 속성 초기화
+			$(".bis_contents_title li a").each(function(){
+				$(this).attr("title",$(this).text());
+			});
+			
+			//버튼 효과
+			$(".bis_contents_title li").removeClass("on");
+			$(this).parents("li").addClass("on");
+			$(this).attr("title",$(this).text() + " 선택");
+			
+			if($('#bis_contents_ul li').length == 1 && $('#bis_contents_ul li').attr("class") == "serach_none"){
+				return false;	
+			}
+			
+			//슬라이드 초기화
+			var onClassObj= $('#bis_contents_ul li');
+			onClassObj.find('.bis_cont_detail').hide();
+			onClassObj.find('.bis_cont_detail').find('ul').empty();
+			onClassObj.attr('class', 'off');
+			onClassObj.find('.btn_plus').attr("src","../../resources/images_new/w/btn_layer_open.png");
+			
+			if($obj == "r_type0"){
+				$(".r_type1").parents("li").show();
+				$(".r_type2").parents("li").show();
+			} else if($obj == "r_type1"){
+				$(".r_type1").parents("li").show();
+				$(".r_type2").parents("li").hide();
+			} else {
+				$(".r_type1").parents("li").hide();
+				$(".r_type2").parents("li").show();
+			}
+			
+			//스크롤 위치 변경
+			$("#bis_contents_ul").scrollTop($(".off:eq(0)"));
+		});
+	
+	});
+	
+	//상단 타입 버튼 초기화	
+	function resetRouteTypeBtn(){
+		$(".bis_contents_title li").removeClass("on");
+		$("#r_type0").parents("li").addClass("on");
+	}
+	
+	function ajaxBeforeSend(xhr){
+		var strTemp = "<li id='bis_loader' class='bis_loader' style='border:none; height:100%; text-align:center; margin-top: 60px;'><img style='width: 25px; height: 25px;' alt='로딩중' src='../../resources/images/w/loader.gif'></li>";
+    	$("#bis_contents_ul").empty().append(strTemp);
+	}
+	
+	function ajaxSuccess(data){
+		sortBusRouteList(data.busRouteList);
+
+		var strValue = "";
+		if(data.busRouteList.length == 0 && data.busRouteList2.length == 0){
+			strValue += "<li class='serach_none'>검색 결과가 없습니다.</li>";
+		}else if(data.busRouteList.length == 0 && data.busRouteList2.length >= 0){
+			$.each( data.busRouteList2, function( index, value ) {
+				strValue += "<li class='off' id='"+value.route_name+"' tabindex='0'>";
+				
+	    			if(value.route_type == 50){
+				    	//대전광역
+				    	strValue += "<div class='bis_cont r_type1'>";
+				    	strValue += "<p class='cont_type type2'>대전</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name+"</p>";
+				    	strValue += "<br>";
+				    	strValue += "<br>";
+				    	strValue += "<div style='text-align:center; margin-top:5px; margin-left:10px; font-size:14px;'>";
+				    	strValue += "<p style='text-align:center;'>조회하신 노선은 대전시 노선입니다.</p>";
+				    	strValue += "<p style='text-align:center; color:#0054FF; font-weight:700;'><a href='"+value.route_explain+"' target='_blank' title='대전시 노선정보 조회 새창열기'>[대전시 노선조회 바로가기]</a></p>";
+			    		strValue += "</div>";
+				    	strValue += "</div>";
+				    } else if(value.route_type == 51){
+				    	//청주광역
+				    	strValue += "<div class='bis_cont r_type1'>";
+				    	strValue += "<p class='cont_type type2'>청주</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name+"</p>";
+				    	strValue += "<br>";
+				    	strValue += "<br>";
+				    	strValue += "<div style='text-align:center; margin-top:5px; margin-left:10px; font-size:14px;'>";
+				    	strValue += "<p style='text-align:center;'>조회하신 노선은 청주시 노선입니다.</p>";
+				    	strValue += "<p style='text-align:center; color:#0054FF; font-weight:700;'><a href='"+value.route_explain+"' target='_blank' title='청주시 노선정보 조회 새창열기'>[청주시 노선조회 바로가기]</a></p>";
+			    		strValue += "</div>";
+				    	strValue += "</div>";
+				    	
+				    } else if(value.route_type == 52){
+				    	//공주
+				    	strValue += "<div class='bis_cont r_type1'>";
+				    	strValue += "<p class='cont_type type2'>공주</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name+"</p>";
+				    	strValue += "<br>";
+				    	strValue += "<br>";
+				    	strValue += "<div style='text-align:center; margin-top:5px; margin-left:10px; font-size:14px;'>";
+				    	strValue += "<p style='text-align:center;'>조회하신 노선은 공주시 노선입니다.</p>";
+				    	strValue += "<p style='text-align:center; color:#0054FF; font-weight:700;'><a href='"+value.route_explain+"' target='_blank' title='공주시 노선정보 조회 새창열기'>[공주시 노선조회 바로가기]</a></p>";
+			    		strValue += "</div>";
+				    	strValue += "</div>";
+				    } else if(value.route_type == 53){
+				    	//천안
+				    	strValue += "<div class='bis_cont r_type2'>";
+				    	strValue += "<p class='cont_type type2'>천안</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name+"</p>";
+				    	strValue += "<br>";
+				    	strValue += "<br>";
+				    	strValue += "<div style='text-align:center; margin-top:5px; margin-left:10px; font-size:14px;'>";
+				    	strValue += "<p style='text-align:center;'>조회하신 노선은 천안시 노선입니다.</p>";
+				    	strValue += "<p style='text-align:center; color:#0054FF; font-weight:700;'><a href='"+value.route_explain+"' target='_blank' title='천안시 노선정보 조회 새창열기'>[천안시 노선조회 바로가기]</a></p>";
+			    		strValue += "</div>";
+				    	strValue += "</div>";
+						
+				    }
+				strValue += "</li>";
+		    			
+				}
+			);//ecah
+		}
+				
+		$.each( data.busRouteList, function( index, value ) {
+			
+			var stTime1 = null;
+			var stTime2 = null;
+			var edTime1 = null;
+			var edTime2 = null;
+			
+			var stExplan = "";
+			if(value.first_operation_explain != null && value.first_operation_explain != ""){
+				stExplan = " (" + value.first_operation_explain + ")";
+			}
+			var edExplan = "";
+			if(value.last_operation_explain != null && value.last_operation_explain != ""){
+				edExplan = " (" + value.last_operation_explain + ")";
+			}
+			
+			var tmpStTime = (value.start_time).replace(/\s/g,'');
+			var tmpEdTime = (value.end_time).replace(/\s/g,'');
+			
+			if(tmpStTime != "정보없음"){
+				if(tmpStTime.length == 3){
+					stTime1 = "0" + tmpStTime.substring(0,1);
+					stTime2 = "시 " + tmpStTime.substring(1,3) + "분";
+				} else {
+					stTime1 = tmpStTime.substring(0,2);
+					stTime2 = "시 " + tmpStTime.substring(2,4) + "분";
+				}
+			} else {
+				stTime1 = "정보";
+				stTime2 = "없음";
+			}
+			
+			if(tmpEdTime != "정보없음"){
+				if(tmpEdTime.length == 3){
+					edTime1 = "0" + tmpEdTime.substring(0,1);
+					edTime2 = "시 " + tmpEdTime.substring(1,3) + "분";
+				} else {
+					edTime1 = tmpEdTime.substring(0,2);
+					edTime2 = "시 " + tmpEdTime.substring(2,4) + "분";
+				}
+			} else {
+				edTime1 = "정보";
+				edTime2 = "없음";
+			}
+			
+			// 정류장 방향
+			var disp_stop_name = value.disp_stop_name;
+		    if (disp_stop_name != "") {
+		    	disp_stop_name = "<span style='font-size:14px;'> (" + disp_stop_name + ")<span>";
+		    } 
+		    
+		    strValue += "<li class='off' id='"+value.route_id+"' tabindex='0'>";
+				    
+				    if(value.route_type == 43){
+				    	//세종광역
+				    	strValue += "<div class='bis_cont r_type1'>";
+				    	strValue += "<p class='cont_type type2'>세종</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name + disp_stop_name + "</p>";
+				    } else if(value.route_type == 50){
+				    	//대전광역
+				    	strValue += "<div class='bis_cont r_type1'>";
+				    	strValue += "<p class='cont_type type2'>대전</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name + disp_stop_name + "</p>";
+				    } else if(value.route_type == 51){
+				    	//청주광역
+				    	strValue += "<div class='bis_cont r_type1'>";
+				    	strValue += "<p class='cont_type type2'>청주</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name + disp_stop_name + "</p>";
+				    } else if(value.route_type == 52){
+				    	//공주
+				    	strValue += "<div class='bis_cont r_type1'>";
+				    	strValue += "<p class='cont_type type2'>공주</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name + disp_stop_name + "</p>";
+				    } else if(value.route_type == 53){
+				    	//천안
+				    	strValue += "<div class='bis_cont r_type2'>";
+				    	strValue += "<p class='cont_type type2'>천안</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name + disp_stop_name + "</p>";
+				    } else if(value.route_type == 30){
+				    	//마을
+				    	strValue += "<div class='bis_cont r_type2'>";
+				    	strValue += "<p class='cont_type type1'>일반</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name + disp_stop_name + "</p>";
+				    } else {
+				    	//일반
+				    	strValue += "<div class='bis_cont r_type2'>";
+				    	strValue += "<p class='cont_type type1'>일반</p>";
+				    	strValue += "<p class='bis_li_tit'>"+value.route_name + disp_stop_name + "</p>";
+				    }
+				    
+				    strValue += "<a href='javascript:void(0);' title='상세보기'><img class='btn_plus' alt='상세보기' src='../../resources/images_new/w/btn_layer_open.png'></a>"
+				    + "</div>";
+			if(value.turn_useflag == "0"){
+				strValue += "<p class='bis_cont_station'>"+value.st_stop_name+"<span class='element-hidden'>출발</span> <img src='../../resources/images_new/w/icon_arrow_simplex.png' alt=''/> "+value.ed_stop_name+" <span class='element-hidden'>도착</span></p>";
+			} else {
+				strValue += "<p class='bis_cont_station'>"+value.st_stop_name+"<span class='element-hidden'>출발</span> <img src='../../resources/images_new/w/icon_arrow_duplex.png' alt=''/> "+value.ed_stop_name+" <span class='element-hidden'>도착</span></p>";
+			}
+			
+			strValue += "<div class='bis_cont_detail'>"
+					
+				    + "<div class='bis_detail_list'>"
+				    + "<p><span>첫&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp차</span>"+stTime1+stTime2+"</p>"
+				    + "<p><span>막&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp차</span>"+edTime1+edTime2+"</p>"
+				    + "<p><span>운행횟수</span>"+value.alloc_time+"</p>"
+				    + "</div>"				    	
+				    + "<div class='bis_detail_img'>"
+				    + "<a href='javascript:void(0);' class='btn_bus_time' id='btn_bus_time_"+ value.route_id +"'><img alt='운행시간표' src='../../resources/images_new/w/btn_timetable.png'>"
+				    + "<input type='hidden' class='route_id' value='"+value.route_id+"'/>"
+				    + "<input type='hidden' class='route_name' value='"+value.route_name+"'/>"
+					+ "<input type='hidden' class='st_stop_name' value='"+value.st_stop_name+"'/>"
+					+ "<input type='hidden' class='ed_stop_name' value='"+value.ed_stop_name+"'/>"
+					+ "<input type='hidden' class='st_time' value='"+stTime1+stTime2+stExplan+"'/>"
+					+ "<input type='hidden' class='ed_time' value='"+edTime1+edTime2+edExplan+"'/>"
+					+ "<input type='hidden' class='term_time' value='"+value.alloc_time+"'/>"
+					+ "<input type='hidden' class='route_type' value='"+value.route_type+"'/>"
+					+ "<input type='hidden' class='turn_useflag' value='"+value.turn_useflag+"'/>"
+					+ "</a>"
+				    + "</div>"
+				    
+				    + "<div class='bis_pop_wrap pop_content' id='bis_pop_wrap_" + value.route_id + "'></div>" // 운행시간표 영역
+				    
+				    + "<ul>"	
+				    + "</ul>"
+				    + "</div>"
+				    + "</li>";
+		});
+		
+		$("#bis_contents_ul").empty().append(strValue);
+		
+		$('#bis_contents_ul li .bis_cont ').click(function(){
+			
+			if($(this).parents("li").attr('class') == 'off'){
+				var strTemp = "<li id='bis_loader' style='height: 110px; text-align: center; margin-top: 55px;'><img style='width: 25px; height: 25px;' alt='로딩중' src='../../resources/images/w/loader.gif'></li>";
+				$(this).parents("li").find("ul").empty().append(strTemp);
+				
+				ROUTEID = $(this).parents("li").attr("id");
+				
+				var form_data = {
+						busRouteId: $(this).parents("li").attr("id")
+	            };
+	            
+	            ajaxCall("../../web/traffic/searchBusRouteDetail.do", form_data, ajaxBeforeSend1, ajaxSuccess1);
+			}
+			
+			commonBISSlide($(this).parents("li").find(".bis_cont .btn_plus"), "bis_cont_detail");
+		});
+
+		//운행 시간표 팝업 이벤트
+		$('#bis_contents_ul li .btn_bus_time').click(function(){
+			var route_id = $(this).find(".route_id").val();
+			var route_name =  $(this).find(".route_name").val();
+			var st_stop_nm =  $(this).find(".st_stop_name").val();
+			var ed_stop_nm =  $(this).find(".ed_stop_name").val();
+			var st_time =  $(this).find(".st_time").val();
+			var ed_time =  $(this).find(".ed_time").val();
+			var term_time =  $(this).find(".term_time").val();
+			var turn_useflag =  $(this).find(".turn_useflag").val();
+			
+			bisKeyObj = $(this).attr("id"); // 키보드 초점
+			
+			var strValue = "";
+			strValue += "<div class='pop_header pop_content'>"
+					+ "<p class='title pop_content'>운행시간표</p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+					+ "<button id='timetable' class='timetable pop_content'>전체시간표</button>"
+					+ "<p class='close pop_content'><a href='javascript:void(0);' id='btn_pop_close' class='pop_content' title='닫기'>X</a></p>"
+					+ "<form name='noticeDetail' action='../../web/community/community_notice_detail.view' method='post' target='_blank'>"
+					+ "<input name='notice_id' id='notice_id' type='hidden'/>"
+					+ "</form>"
+					+ "</div>"
+					+ "<div class='pop_content'>"
+					+ "<div class='cont pop_content'>"			
+					+ "<div class='detail_2 pop_content'>"
+					+ "<ul class='pop_content' id='pop_content_ul'>"
+					+ "<li class='li_first pop_content'>"
+					+ "<div class='li_tit_box pop_content'>"
+					+ "<p id='pop_route_id' class='tit_1 pop_content'>"+route_name+"</p>";
+					
+			if(turn_useflag == "0"){
+				strValue += "<p id='pop_explan' class='tit_2 pop_content'>"+st_stop_nm+" →  "+ed_stop_nm+"</p>";
+			} else {
+				strValue += "<p id='pop_explan' class='tit_2 pop_content'>"+st_stop_nm+" ↔  "+ed_stop_nm+"</p>";
+			}
+			
+			strValue += "</div>"
+					+ "</li>"
+					+ "<li class='li_second pop_content'>"
+					+ "<p class='pop_content'>· 첫&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp차&nbsp;:&nbsp;<span class='pop_content'>"+st_time+"</span></p>"
+					+ "<p class='pop_content'>· 막&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp차&nbsp;:&nbsp;<span class='pop_content'>"+ed_time+"</span></p>"
+					+ "<p class='pop_content'>· 운행횟수&nbsp;:&nbsp;<span class='pop_content'>"+term_time+"</span></p>"
+					+ "</li>"
+					+ "</ul>"
+					+ "</div>"
+					+ "<div class='detail_3 pop_content'>"
+					+ "<ul class='ul_tit pop_content'>"
+					+ "<li class='pop_content'>"
+					+ "<div class='ul_tit_cont4 pop_content'><p>운행출발시간</p></div>"
+					+ "<div class='ul_tit_cont4 pop_content'><p>운행종료시간</p></div>"
+					+ "</li>"
+					
+					+ "</ul>"
+					+ "<ul class='ul_data pop_content' id='route_data'>"
+					+ "</ul>"				
+					+ "</div>"
+					+ "</div>"
+					+ "</div>";
+					
+			$("#bis_pop_wrap_" + route_id).empty().append(strValue).show();
+			
+			//팝업 닫기
+			$('#btn_pop_close').click(function(event){
+				event.preventDefault();
+				event.stopPropagation();
+				$(".bis_pop_wrap").empty().hide();
+				
+				$("#" + bisKeyObj).focus();
+			});
+			
+			$('#timetable').click(function(){
+				$("#notice_id").val('520');
+				document.noticeDetail.submit();
+			});
+			
+			//Ajax Call
+			var form_data = {
+					busRouteId: $(this).parents("li").attr("id")
+            };
+			ajaxCall("../../web/traffic/searchBusTimeList.do", form_data, ajaxBeforeSend2, ajaxSuccess2);
+		});
+	}
+
+	function sortBusRouteList(busRouteList){
+		busRouteList.sort(function(firstRoute, secondRoute){
+			var firstTypeOrder = isWideAreaRoute(firstRoute.route_type) ? 0 : 1;
+			var secondTypeOrder = isWideAreaRoute(secondRoute.route_type) ? 0 : 1;
+			
+			if(firstTypeOrder != secondTypeOrder){
+				return firstTypeOrder - secondTypeOrder;
+			}
+			
+			if(firstRoute.route_name < secondRoute.route_name){
+				return -1;
+			}
+			if(firstRoute.route_name > secondRoute.route_name){
+				return 1;
+			}
+			if(firstRoute.route_id < secondRoute.route_id){
+				return -1;
+			}
+			if(firstRoute.route_id > secondRoute.route_id){
+				return 1;
+			}
+			return 0;
+		});
+	}
+
+	function isWideAreaRoute(routeType){
+		return routeType == 43 || routeType == 50 || routeType == 51 || routeType == 52 || routeType == 53;
+	}
+	
+	function ajaxBeforeSend1(xhr){
+		$("#loading_wrap").show();
+	}
+	function ajaxSuccess1(data){
+		
+		$("#loading_wrap").hide();
+		
+		//타이머 초기화
+		if(REAL_BUS_INTERVAL != null){
+			clearInterval(REAL_BUS_INTERVAL);
+		}
+		
+		var strTemp = "";
+		
+		strTemp += "<li class='bis_title'>"
+				+ "<p class='bis_id1'>ID</p>"
+				+ "<p class='bis_name1'>정류장명</p>"
+				+ "<p class='bis_loc1'>위치</p>"
+				+ "</li>";
+		if(data.busRouteDetailList.length == 0){
+			strTemp += "<li class='serach_none'>검색 결과가 없습니다.</li>";
+		}
+		
+		
+		
+		$.each( data.busRouteDetailList, function( index, value ) {
+			
+			
+			if(value.turn_useflag == 1){//비순환
+				if(value.turn_flag == "UP"){//상행
+					strTemp += "<li class='bis_list li_up btn_bus_stop' id='"+value.stop_id+"' tabindex='0'>";
+				}else{ 						//하행
+					strTemp += "<li class='bis_list li_dw btn_bus_stop' id='"+value.stop_id+"' tabindex='0'>";
+				}
+			}else{						//순환
+				strTemp += "<li class='bis_list li_Cr btn_bus_stop' id='"+value.stop_id+"' tabindex='0'>";
+			}
+			
+			 //strTemp += "<a href='javascript:void(0);' class='btn_bus_stop'>"
+			 strTemp += "<div class='btn_bus_stop'>"
+				+ "<p class='busUniqueNum'></p>"
+				+ "<p class='bis_id_list1'>["+value.service_id+"]</p>"
+				+ "<p class='bis_name_list1'>"+value.stop_name+"</p>"; 
+				
+			if(value.turn_useflag == 1){//비순환
+				if(value.turn_flag == "UP"){//상행
+					if(index == 0){				//기점
+						strTemp += "<p class='bis_loc_list1 direct_up'><img alt='기점' src='../../resources/images_new/w/img_route_blue_start.png'></p>";
+					}else{
+						strTemp += "<p class='bis_loc_list1 direct_up'><img alt='상행' src='../../resources/images_new/w/img_route_blue_marker.png'></p>";
+					}
+					check_turn_flag="UP";		
+					returnStation_stop_id=value.stop_id;
+				}else{//하행
+					if((data.busRouteDetailList.length-1) == index){  // 종점
+						strTemp += "<p class='bis_loc_list1 direct_dw'><img alt='종점' src='../../resources/images_new/w/img_route_orange_end.png'></p>";
+					}else{					
+						strTemp += "<p class='bis_loc_list1 direct_dw'><img alt='하행' src='../../resources/images_new/w/img_route_orange_marker.png'></p>";
+					}
+				}
+			}else{//순환
+				if(index == 0){
+					strTemp += "<p class='bis_loc_list1 direct_Cr'><img alt='기점' src='../../resources/images_new/w/img_route_blue_start.png'></p>";
+				}  else if ((data.busRouteDetailList.length-1) == index){
+					strTemp += "<p class='bis_loc_list1 direct_Cr'><img alt='종점' src='../../resources/images_new/w/img_route_blue_end.png'></p>";
+				 }  else {
+					strTemp += "<p class='bis_loc_list1 direct_Cr'><img alt='순환' src='../../resources/images_new/w/img_route_blue_marker.png'></p>";
+				} 
+			}
+				
+			strTemp += "<input type='hidden' class='latVal' value='"+value.lat+"'/>"
+				+ "<input type='hidden' class='lngVal' value='"+value.lng+"'/>"
+				//+ "</a>"
+				+ "</li>";
+				    
+		});
+		$("#" + ROUTEID).find("ul").empty().append(strTemp);
+		$("#" + returnStation_stop_id).attr("class","bis_list li_dw");
+		$("#" + returnStation_stop_id).find(".bis_loc_list1").attr("class","bis_loc_list1 direct_dw").find("img").attr("alt","회차지");
+		
+		//스크롤 위치 변경
+		var slideH = 0;
+		for(var i = 0; i < $(".btn_plus").index($("#" + ROUTEID).find(".btn_plus")); i++){
+			slideH = slideH + ($(".off:eq(" + i + ")").height() + 1);
+		}
+		$("#bis_contents_ul").scrollTop(slideH);
+		
+		reloadMapView();	//지도 재생성
+		createRoutePolyline(data.busRouteDetailMapVoList);	//폴리라인 생성
+		createBisBusStopMarkerMulti1(data.busRouteDetailList1, MARKER_IMG.BUSSTOP, MARKER_IMG.S_STOP.W, MARKER_IMG.S_STOP.H);	//정류장 멀티 마커 생성
+		
+		//정류장 리스트 클릭
+		$('#bis_contents_ul li .btn_bus_stop').on("keypress click", function(event) {			
+			if (event.which == 1 || event.which == 13) {
+				var id = $(this).parents("li").attr("id");
+				var lat = $(this).find(".latVal").val();
+				var lng = $(this).find(".lngVal").val();
+				var tit = $(this).find(".bis_name_list1").text() + "[" + $(this).find(".bis_id_list1").text() + "]";
+				
+				setScreenLocationCenter(lat, lng, id);
+			}
+		});
+		
+		realBusLocation();
+		REAL_BUS_INTERVAL = setInterval(realBusLocation, 3000); //버스 마커 실시간 생성
+	}
+	
+	//운행 시간표
+	function ajaxBeforeSend2(xhr){
+		var strTemp = "<li id='bis_loader' class='bis_loader' style='width: 230px; border:none; text-align:center; margin-left: 11px;  margin-top: 60px;'><img style='width: 25px; height: 25px;' alt='로딩중' src='../../resources/images/w/loader.gif'></li>";
+    	$("#route_data").empty().append(strTemp);
+	}
+	function ajaxSuccess2(data){
+		
+		var strTemp = "";
+		if(data.busTimeList.length == 0){
+			strTemp += "<li class='serach_none1'>검색 결과가 없습니다.</li>";
+		}		
+		$.each( data.busTimeList, function( index, value ) {
+			strTemp += "<li class='btn_bus_stop' tabindex='0'>"
+					+ "<div >";
+					
+					var tmpDeTime = (value.departure_time).replace(/\s/g,'');
+					var tmpArTime = (value.arrival_time).replace(/\s/g,'');
+					
+					if(value.departure_time == "-"){
+						strTemp += "<div class='ul_data_cont4'><p>"+value.departure_time+"</p></div>";		
+					} else {
+						
+						if(value.departure_time != null && value.departure_time != ""){
+							var stTime1 = (tmpDeTime).substring(0,2);
+							var stTime2 = (tmpDeTime).substring(2,4);
+							
+// 							var stTime1 = null;
+// 							var stTime2 = null;
+// 							if(tmpDeTime.length == 3){
+// 								stTime1 = "0" + (tmpDeTime).substring(0,1);
+// 								stTime2 = (tmpDeTime).substring(1,3);
+// 							} else {
+// 								stTime1 = (tmpDeTime).substring(0,2);
+// 								stTime2 = (tmpDeTime).substring(2,4);
+// 							}
+							strTemp += "<div class='ul_data_cont4'><p>"+stTime1+":"+stTime2+"</p></div>";	
+						} else {
+							strTemp += "<div class='ul_data_cont4'><p>-</p></div>";
+						}
+											
+					}
+					if((value.arrival_time).indexOf("-") > -1){
+						strTemp += "<div class='ul_data_cont4'><p>"+value.arrival_time+"</p></div>";	
+					} else {
+						
+						if(value.arrival_time != null && value.arrival_time != ""){
+							var edTime1 = (tmpArTime).substring(0,2);
+							var edTime2 = (tmpArTime).substring(2,4);
+// 							var edTime1 = null;
+// 							var edTime2 = null;
+// 							if(tmpArTime.length == 3){
+// 								edTime1 = "0" + (tmpArTime).substring(0,1);
+// 								edTime2 = (tmpArTime).substring(1,3);
+// 							} else {
+// 								edTime1 = (tmpArTime).substring(0,2);
+// 								edTime2 = (tmpArTime).substring(2,4);
+// 							}
+							strTemp += "<div class='ul_data_cont4'><p>"+edTime1+":"+edTime2+"</p></div>";
+						} else {
+							strTemp += "<div class='ul_data_cont4'><p>-</p></div>";
+						}
+					}
+					strTemp += "</a>"
+					+ "</li>";
+		});
+		
+		$("#route_data").empty().append(strTemp);
+	}
+	
+	var check_turn_flag="";
+	var returnStation_stop_id="";
+	
+	//실시간 버스 위치 얻기 
+	function realBusLocation(){
+		var form_data = {
+				busRouteId: ROUTEID
+        };
+        ajaxCall("../../web/traffic/searchBusRealLocationDetail.do", form_data, "", ajaxSuccess3);
+	}
+	
+	
+	//실시간 버스 위치 콜백
+	function ajaxSuccess3(data){
+		
+		route_type = $("#"+ROUTEID).find(".route_type").attr("value");;
+		$("#"+ROUTEID).find(".busUniqueNum").text("");
+		
+		//순환
+		$("#" + ROUTEID).find(".direct_Cr").empty().append("<img alt='순환' src='../../resources/images_new/w/img_route_blue_marker.png'>");
+		$("#" + ROUTEID + " .direct_Cr").first().empty().append("<img alt='기점' src='../../resources/images_new/w/img_route_blue_start.png'>");
+		$("#" + ROUTEID + " .direct_Cr").last().empty().append("<img alt='종점' src='../../resources/images_new/w/img_route_blue_end.png'>");
+		
+		//상행 
+		$("#" + ROUTEID).find(".direct_up").empty().append("<img alt='상행' src='../../resources/images_new/w/img_route_blue_marker.png'>");
+		$("#" + ROUTEID + " .direct_up").first().empty().append("<img alt='기점' src='../../resources/images_new/w/img_route_blue_start.png'>");
+		
+		//하행
+		$("#" + ROUTEID).find(".direct_dw").empty().append("<img alt='하행' src='../../resources/images_new/w/img_route_orange_marker.png'>");
+		$("#" + ROUTEID + " .direct_dw").last().empty().append("<img alt='종점' src='../../resources/images_new/w/img_route_orange_end.png'>");
+		
+		//회차지
+		if(returnStation_stop_id!="" && returnStation_stop_id!=null && returnStation_stop_id!=" "){
+			$("#" + ROUTEID + " #" + returnStation_stop_id).find(".direct_dw").empty().append("<img alt='회차지' src='../../resources/images_new/w/img_route_blue_turn.png'>");
+		}
+		
+		$.each( data.busRealLocList, function( index, value ) {
+			var plate_no = value.plate_no;
+			var plate_no2 = plate_no.substr(plate_no.length-4);
+			
+			
+			if(value.turn_flag=='DW'){
+				if(route_type == 43 || route_type == 50 || route_type == 51){
+			    	//광역
+					if(value.event_type=='2'){ //1:정류장에서 출발 , 2:정류장 도착, 3:교차로 통과
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".direct_dw").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_orange_busLFarrival.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".direct_dw").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_orange_busSarrival.png'>");							
+						}
+					}else{
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".direct_dw").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_orange_busLFstart.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".direct_dw").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_orange_busSstart.png'>");
+						}
+					}
+			    } else {
+			    	//일반
+			    	if(value.event_type=='2'){ //1:정류장에서 출발 , 2:정류장 도착, 3:교차로 통과
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".direct_dw").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_orange_busLFarrival.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".direct_dw").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_orange_busarrival.png'>");							
+						}
+					}else{
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".direct_dw").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_orange_busLFstart.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".direct_dw").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_orange_busstart.png'>");							
+						}
+					}
+			    }
+				$("#"+ROUTEID+" .li_dw[id='" + value.stop_id + "']").find(".busUniqueNum").text(plate_no2);
+				
+			}else if(value.turn_flag=='UP') {
+				if(route_type == 43 || route_type == 50 || route_type == 51){
+			    	//광역
+					if(value.event_type=='2'){ //1:정류장에서 출발 , 2:정류장 도착, 3:교차로 통과
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".direct_up").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_blue_busLFarrival.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".direct_up").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_blue_busSarrival.png'>");							
+						}
+					}else{
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".direct_up").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_blue_busLFstart.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".direct_up").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_blue_busSstart.png'>");
+						}
+					}
+			    } else {
+			    	//일반
+			    	if(value.event_type=='2'){ //1:정류장에서 출발 , 2:정류장 도착, 3:교차로 통과
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".direct_up").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_blue_busLFarrival.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".direct_up").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_blue_busarrival.png'>");							
+						}
+					}else{
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".direct_up").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_blue_busLFstart.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".direct_up").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_blue_busstart.png'>");							
+						}
+					}
+			    }
+				$("#"+ROUTEID+" .li_up[id='" + value.stop_id + "']").find(".busUniqueNum").text(plate_no2);
+			}else {
+				if(route_type == 43 || route_type == 50 || route_type == 51 || route_type == 52 || route_type == 53){
+			    	//광역
+					if(value.event_type=='2'){ //1:정류장에서 출발 , 2:정류장 도착, 3:교차로 통과
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".direct_Cr").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_blue_busLFarrival.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".direct_Cr").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_blue_busSarrival.png'>");							
+						}
+					}else{
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".direct_Cr").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_blue_busLFstart.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".direct_Cr").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_blue_busSstart.png'>");
+						}
+					}
+			    } else {
+			    	//일반
+			    	if(value.event_type=='2'){ //1:정류장에서 출발 , 2:정류장 도착, 3:교차로 통과
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".direct_Cr").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_blue_busLFarrival.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".direct_Cr").empty().append("<img alt='도착' src='../../resources/images_new/w/img_route_blue_busarrival.png'>");							
+						}
+					}else{
+						if(value.low_flag == '1'){ //저상
+							$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".direct_Cr").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_blue_busLFstart.png'>");
+						} else {
+							$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".direct_Cr").empty().append("<img alt='출발' src='../../resources/images_new/w/img_route_blue_busstart.png'>");
+						}
+					}
+			    }
+				$("#"+ROUTEID+" .li_Cr[id='" + value.stop_id + "']").find(".busUniqueNum").text(plate_no2);
+				
+			}
+			
+		});
+		
+		createBisBusMarkerMulti(data.busRealLocList, 3, MARKER_IMG.S_BUS.W, MARKER_IMG.S_BUS.H, route_type);
+	}
+	</script>
+	
+</head>
+
+<body id="body1" onresize="fnResize();">
+	<!-- <div class="bis_pop_wrap" id="bis_pop_wrap"></div>  -->
+	<div class="wrap search">
+		<div class="header1 search">
+			<div class="gnb1">
+				<div class="top">
+					<h1>
+						<span id="header_title" style="font-size: 0px;position: absolute;width: 0px;height: 0px;">세종특별자치시 교통정보시스템 노선검색</span>
+						<img class="top_logo" src="../../resources/images_new/w/popup_toplogo.png" alt="세종특별자치시 교통정보시스템" />
+					</h1>
+					<img src="../../resources/images_new/w/popup_top_logobg.png" alt="" />
+				</div>
+				<div class="cate_box">
+					<ul class="cate">
+						<!--<li class="cate_5"><a href="../../web/traffic/traffic_bus_loc_search.view" title="초정밀버스정보"></a></li>-->
+						<li class="cate_1"><a class="on" href="../../web/traffic/traffic_bus_line_search.view" title="노선검색"></a></li>
+						<li class="cate_2"><a href="../../web/traffic/traffic_station_search.view" title="정류장검색"></a></li>
+						<li class="cate_4"><a href="../../web/traffic/traffic_route_explore.view" title="경로검색"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wrap_contents1">
+			<div class="bis_left_menu">
+				<form name="busRouteForm" id="busRouteForm" method="post">
+				<div class="bis_search_box">
+					<h3 class="bis_search_title"><label for="busRoute">실시간노선검색</label></h3>
+					<div class="bis_search">
+						<input type="text" id="busRoute" name="busRoute">
+						<a href="javascript:void(0);" id="btn_search">
+							<span>검색</span>
+						</a>
+					</div>
+				</div>
+				</form>
+				<div class="bis_contents">
+					<div class="bis_contents_title">
+						<ul class='bis_contents_ul'>
+							<li class="type_st type1 on"><a id="r_type0" href="javascript: return false;" title="전체 선택">전체</a></li>
+							<li class="type_st type2"><a id="r_type2" href="javascript: return false;" title="일반">일반</a></li>
+							<li class="type_st type3"><a id="r_type1" href="javascript: return false;" title="광역">광역</a></li>
+						</ul>
+					</div>
+					<ul id="bis_contents_ul">
+						<li class="serach_none">버스노선번호를 입력하세요.</li>
+					</ul>
+				</div>
+
+			</div> 
+
+			<div class="map">
+				<div id="loading_wrap" style="display: none;background-color:#000; filter:alpha(opacity=60); opacity:.6; position: absolute; z-index: 999;">
+					<img style='width: 30px;height: 30px;top: 47%;position: absolute;left: 50%;' alt='로딩중' src='../../resources/images/w/loader.gif'>
+				</div>
+				<div class="map_cont" id="map_view">
+				</div>
+			</div>
+
+			
+		</div>
+		
+	</div>
+</body>
+</html>

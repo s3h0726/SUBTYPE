@@ -439,7 +439,8 @@ class TypingController{
   this.imeCompletionTimer=setTimeout(()=>{
    if(this.submitted||this.input.disabled||this.input.readOnly)return;
    if(normalizeTypingValue(this.input.value)!==value||!this.targets.includes(value))return;
-   this.input.blur();if(this.submitted)return;this.submitted=true;this.committedValue=value;this.composing=false;
+   // 조합 종료 이벤트가 다음 목표를 열기 전에 제출을 예약한다.
+   this.submitted=true;this.committedValue=value;this.composing=false;this.input.blur();
    this.input.closest('.typing-box')?.classList.add('correct');this.onSubmit?.(value);
   },50);
  }
@@ -4076,6 +4077,7 @@ function configureJourneyPicker(){
   const patternCards=$('#operating-pattern-cards'),directionCards=$('#operating-direction-cards'),journeyGrid=$('#operating-journey-grid'),search=$('#operating-service-search'),more=$('#operating-more'),count=$('#operating-available-count'),journeyCount=$('#operating-journey-count'),selectedCard=$('#operating-selected');
   if(!picker||!pattern||!directionPicker||!origin||!destination)return;
   const japan=selected?.countryId==='jp';
+  const koreanSurface=selected?.countryId==='kr'&&['bus','village_bus','express_bus','brt','river_bus'].includes(selected.mode);
   const statusById=new Map(japan?choices.map(choice=>[choice.id,operatingChoiceStatus(choice,selected)]):[]);
   const statusOf=choice=>statusById.get(choice?.id)||{playable:true,reason:''};
   const directionKey=choice=>String(choice.line1UiDirection||choice.direction||'forward');
@@ -4124,7 +4126,7 @@ function configureJourneyPicker(){
       const ready=statusOf(choice).playable,active=destination.value===choice.id;
       const originName=display(choice.originNames),destName=display(choice.destinationNames);
       const type=journeyLabel(choice.trainType),through=Boolean(choice.throughServiceId);
-      return '<button type="button" class="operating-journey-card'+(active?' is-active':'')+(ready?'':' is-unavailable')+'" data-operating-journey="'+escapeHtml(choice.id)+'" aria-pressed="'+active+'"'+(!ready?' title="'+escapeHtml(statusOf(choice).reason||'운행 불가')+'"':'')+'><span class="journey-card-top"><span class="journey-card-number">'+String(i+1).padStart(2,'0')+'</span><span class="journey-card-status '+(ready?'ready':'blocked')+'">'+(ready?'● 운행 가능':'● 미검증')+'</span></span><span class="journey-card-stations"><strong>'+escapeHtml(originName)+'</strong><span aria-hidden="true" class="journey-arrow">→</span><strong>'+escapeHtml(destName)+'</strong></span><span class="journey-card-meta">'+escapeHtml(type||(choice.kind==='taiwan'?operatingPatternLabel(choice):'각역정차'))+(through?' · 직통 운행':'')+'</span>'+(active?'<span class="journey-selected-mark">선택됨 ✓</span>':'')+'</button>';
+      return '<button type="button" class="operating-journey-card'+(active?' is-active':'')+(ready?'':' is-unavailable')+'" data-operating-journey="'+escapeHtml(choice.id)+'" aria-pressed="'+active+'"'+(!ready?' title="'+escapeHtml(statusOf(choice).reason||'운행 불가')+'"':'')+'><span class="journey-card-top"><span class="journey-card-number">'+String(i+1).padStart(2,'0')+'</span><span class="journey-card-status '+(ready?'ready':'blocked')+'">'+(ready?'● 운행 가능':'● 미검증')+'</span></span><span class="journey-card-stations"><strong>'+escapeHtml(originName)+'</strong><span aria-hidden="true" class="journey-arrow">→</span><strong>'+escapeHtml(destName)+'</strong></span><span class="journey-card-meta">'+escapeHtml(type||(choice.kind==='taiwan'?operatingPatternLabel(choice):koreanSurface?'모든 정차지':'각역정차'))+(through?' · 직통 운행':'')+'</span>'+(active?'<span class="journey-selected-mark">선택됨 ✓</span>':'')+'</button>';
     }).join('')||'<p class="operating-empty">해당 계통에서 조건에 맞는 운행 구간이 없습니다. 검색어를 지우거나 다른 계통을 선택하세요.</p>';
     if(journeyCount)journeyCount.textContent=matched.length+'개 구간';
     if(more){more.hidden=matched.length<=visibleLimit;more.textContent='다른 운행 구간 '+(matched.length-visibleLimit)+'개 더 보기 ↓';}
@@ -4138,7 +4140,7 @@ function configureJourneyPicker(){
     const trackNote=choice.patternId?.startsWith('jr-ueno-joban-')?' · 닛포리~우에노 잠정 선형':'';
     summary.textContent=operatingPatternLabel(choice)+' · '+operatingDirectionLabel(choice)+' · '+from+' → '+to+(type?' · '+type:'')+(choice.throughServiceId?' · 직통운행':'')+trackNote+(japan?(state.playable?' · 플레이 가능':' · 실행 불가: '+(state.reason||'선로 검증 필요'))+' (등록 '+total+'개 / 실행 가능 '+ready+'개)':'');
     if(submit){submit.disabled=japan&&!state.playable;submit.textContent=japan&&!state.playable?'선로 미검증 · 실행 불가':'운행 시작 →';}
-    if(selectedCard)selectedCard.innerHTML='<span class="operating-selected-label">선택한 열차 · '+(state.playable?'운행 준비 완료':'선로 검증 필요')+'</span><div class="operating-selected-route"><strong>'+escapeHtml(from)+'</strong><span aria-hidden="true">→</span><strong>'+escapeHtml(to)+'</strong></div><p>'+escapeHtml(operatingPatternLabel(choice))+(type?' · '+escapeHtml(type):'')+(choice.throughServiceId?' · 직통':'')+'</p>'+(state.playable?'':'<small>'+escapeHtml(state.reason||'선로가 검증되지 않아 시작할 수 없습니다.')+'</small>');
+    if(selectedCard)selectedCard.innerHTML='<span class="operating-selected-label">'+(koreanSurface?'선택한 운행':'선택한 열차')+' · '+(state.playable?'운행 준비 완료':'선로 검증 필요')+'</span><div class="operating-selected-route"><strong>'+escapeHtml(from)+'</strong><span aria-hidden="true">→</span><strong>'+escapeHtml(to)+'</strong></div><p>'+escapeHtml(operatingPatternLabel(choice))+(type?' · '+escapeHtml(type):'')+(choice.throughServiceId?' · 직통':'')+'</p>'+(state.playable?'':'<small>'+escapeHtml(state.reason||'선로가 검증되지 않아 시작할 수 없습니다.')+'</small>');
     const endpoints=$('#setup-route .route-endpoints');
     if(endpoints)endpoints.innerHTML='<span>'+escapeHtml(from)+'<small> 출발</small></span><span>'+escapeHtml(to)+'<small> 행선지</small></span>';
     if(selected?.countryId==='hk'){const serviceRoute=builtin.find(r=>r.id===(choice.sourceRouteId||choice.id));if(serviceRoute)renderHongKongSetupRoute(serviceRoute,choice);}

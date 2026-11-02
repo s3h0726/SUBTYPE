@@ -9,7 +9,8 @@ export class TypingController{
   this.imeCompletionTimer=setTimeout(()=>{
    if(this.submitted||this.input.disabled||this.input.readOnly)return;
    if(normalizeTypingValue(this.input.value)!==value||!this.targets.includes(value))return;
-   this.input.blur();if(this.submitted)return;this.submitted=true;this.committedValue=value;this.composing=false;
+   // 조합 종료 이벤트가 다음 목표를 열기 전에 제출을 예약한다.
+   this.submitted=true;this.committedValue=value;this.composing=false;this.input.blur();
    this.input.closest('.typing-box')?.classList.add('correct');this.onSubmit?.(value);
   },50);
  }

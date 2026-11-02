@@ -1,0 +1,1670 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon-precomposed" href="../../resources/images_new/c/icon_114.png">
+	<link rel="shortcut icon" href="../../resources/images_new/c/favicon.ico">
+
+	<title>세종특별자치시 교통정보시스템 홈</title>
+	<script type="text/javascript" src="../../resources/js/w/secureUrlSetFunction.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../resources/css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../resources/css/w/layout.css"/>
+	<script type="text/javascript" src="../../resources/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="../../resources/js/w/mainFunction.js"></script>
+	<script type="text/javascript" src="../../resources/js/w/main_banner.js"></script>
+	<script type="text/javascript" src="/resources/js/commonUtils.js"></script>
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function(){		
+		
+		//Title 설정 - 접근성
+		var title = "세종특별자치시 교통정보시스템";
+		$("#header_title").text(title);
+		$("#header_title_img").attr("alt", title);
+		
+		var path = (location.href).split("/");
+		if(path[path.length-1] != "main.view" && path[path.length-1] != "bis_main"){
+			alert("현재 로그인 상태입니다.");
+			location.href = "../../web/main/main.view";
+		}
+		
+		//공지사항팝업
+		var cookieValue = getCookie("today");
+    	if(cookieValue != "done") {
+    		ajaxCall("../../web/community/selectNoticePopupList.do", "", ajaxBeforeSendNoticePop, ajaxSuccessNoticePop);
+    	}
+		function ajaxBeforeSendNoticePop(xhr){
+			
+		}
+		function ajaxSuccessNoticePop(data){
+			
+			$.each( data.noticePopList, function( index, value ) {
+				if(index == 0){
+					window.open("../../web/community/pop_notice.view", 'popup', "width=610, height=455,top=100,left=100,resizable=no,scrollbars=no, toolbar=no, menubar=no" );
+					return false;
+				}
+			});
+		}
+		function getCookie(name) {    
+			var wcname = name + '=';
+			var wcstart, wcend, end;
+			var i = 0;   
+		  	while(i <= document.cookie.length) {            
+		   		wcstart = i;  
+			 	wcend   = (i + wcname.length);            
+			 	if(document.cookie.substring(wcstart, wcend) == wcname) {                    
+			  		if((end = document.cookie.indexOf(';', wcend)) == -1)                           
+			   			end = document.cookie.length;      
+			  		return document.cookie.substring(wcend, end);            
+			   	}           
+	 			i = document.cookie.indexOf('', i) + 1;            
+			  
+		   		if(i == 0)                    
+			  		break;    
+		  	}    
+	  		return '';
+		}
+		
+		//소통정보
+		ajaxCall("../../web/atms/atms_traffic_main.do", "", ajaxBeforeSendTraffic, ajaxSuccessTraffic);
+		function ajaxBeforeSendTraffic(xhr){
+			
+		}
+		function ajaxSuccessTraffic_old(data){
+			var strTemp = "";
+			$.each( data.trafficInfoList, function( index, value ) {
+				
+				//두개씩 세트
+				if(index%2 == 0){
+					strTemp += '<div class="traffic_con">';					
+				}
+				strTemp += '<ul>'
+						+  '<li class="name">'+ value.strt_nm_0 +'</li>'
+						+  '<li class="arrow">';
+				if(value.trco_clss_1 == "1"){
+					strTemp += '<p class="left"><img src="../../resources/images_new/w/img_arrow_left03.png" alt="'+value.strt_nm_0+' 방향 소통원할"/></p>';
+				} else if(value.trco_clss_1 == "2"){
+					strTemp += '<p class="left"><img src="../../resources/images_new/w/img_arrow_left02.png" alt="'+value.strt_nm_0+' 방향 지체서행"/></p>';
+				} else if(value.trco_clss_1 == "3"){
+					strTemp += '<p class="left"><img src="../../resources/images_new/w/img_arrow_left01.png" alt="'+value.strt_nm_0+' 방향 정제"/></p>';
+				} else {
+					strTemp += '<p class="left"><img src="../../resources/images_new/w/img_arrow_left04.png" alt="'+value.strt_nm_0+' 방향 정보없음"/></p>';
+				}
+				
+				if(value.trco_clss_0 == "1"){
+					strTemp += '<p class="right"><img src="../../resources/images_new/w/img_arrow_right03.png" alt="'+value.strt_nm_1+' 방향 소통원할"/></p>';
+				} else if(value.trco_clss_0 == "2"){
+					strTemp += '<p class="right"><img src="../../resources/images_new/w/img_arrow_right02.png" alt="'+value.strt_nm_1+' 방향 지체서행"/></p>';
+				} else if(value.trco_clss_0 == "3"){
+					strTemp += '<p class="right"><img src="../../resources/images_new/w/img_arrow_right01.png" alt="'+value.strt_nm_1+' 방향 정제"/></p>';
+				} else {
+					strTemp += '<p class="right"><img src="../../resources/images_new/w/img_arrow_right04.png" alt="'+value.strt_nm_1+' 방향 정보없음"/></p>';
+				}
+				strTemp += '</li>'
+						+ '<li class="name">'+ value.strt_nm_1 +'</li>'
+						+ '</ul>';
+				
+				//두개씩 세트
+				if(index%2 == 1){
+					strTemp += '</div>';		
+				}
+				
+				//전체가 홀수일때 태그 마감
+				if((data.trafficInfoList.length)%2 == 1){
+					if((data.trafficInfoList.length - 1) == index){
+						strTemp += '</div>';	
+					}
+				}
+						
+				
+			});
+			
+			$("#traffic_slide_box").empty().append(strTemp);
+			
+			$.each( $("#traffic_slide_box .name"), function( index, value ) {
+				
+				if($(this).height() > 19){
+					$(this).css("margin-top", "2px");
+				}
+			});
+		}
+		
+		function ajaxSuccessTraffic(data){
+			var strTemp = "";
+			$.each( data.trafficInfoList, function( index, value ) {
+				
+				//두개씩 세트
+				if(index%2 == 0){
+					strTemp += '<div class="traffic_con">';					
+				}
+				strTemp += '<ul>'
+						+  '<li class="name">'+ value.strt_nm_0 +'</li>'
+						+  '<li class="arrow">';
+				if(value.trco_clss_1 == "1"){
+					strTemp += '<p class="left"><img src="../../resources/images_new/w/img_arrow_left03.png" alt="원활"/></p>';
+				} else if(value.trco_clss_1 == "2"){
+					strTemp += '<p class="left"><img src="../../resources/images_new/w/img_arrow_left02.png" alt="지체"/></p>';
+				} else if(value.trco_clss_1 == "3"){
+					strTemp += '<p class="left"><img src="../../resources/images_new/w/img_arrow_left01.png" alt="정체"/></p>';
+				} else {
+					strTemp += '<p class="left"><img src="../../resources/images_new/w/img_arrow_left04.png" alt="정보없음"/></p>';
+				}
+				
+				if(value.trco_clss_0 == "1"){
+					strTemp += '<p class="right"><img src="../../resources/images_new/w/img_arrow_right03.png" alt="원활"/></p>';
+				} else if(value.trco_clss_0 == "2"){
+					strTemp += '<p class="right"><img src="../../resources/images_new/w/img_arrow_right02.png" alt="지체"/></p>';
+				} else if(value.trco_clss_0 == "3"){
+					strTemp += '<p class="right"><img src="../../resources/images_new/w/img_arrow_right01.png" alt="정체"/></p>';
+				} else {
+					strTemp += '<p class="right"><img src="../../resources/images_new/w/img_arrow_right04.png" alt="정보없음"/></p>';
+				}
+				strTemp += '</li>'
+						+ '<li class="name">'+ value.strt_nm_1 +'</li>'
+						+ '</ul>';
+				
+				//두개씩 세트
+				if(index%2 == 1){
+					strTemp += '</div>';		
+				}
+				
+				//전체가 홀수일때 태그 마감
+				if((data.trafficInfoList.length)%2 == 1){
+					if((data.trafficInfoList.length - 1) == index){
+						strTemp += '</div>';	
+					}
+				}
+						
+				
+			});
+			
+			$("#traffic_slide_box").empty().append(strTemp);
+			
+			$.each( $("#traffic_slide_box .name"), function( index, value ) {
+				
+				if($(this).height() > 19){
+					$(this).css("margin-top", "2px");
+				}
+			});
+		}
+		
+		//BIGDATA 이미지
+		//플레이 버튼
+//		$("#btn_bigdata_start").click(function () {
+//			var imgTemp = "";
+			
+//			imgTemp = '<p><img src=""/></p>';
+//			$("#bigdata_slide_box").empty().append(imgTemp);
+			
+//			ajaxCall("../../web/atms/selectCctvImgList.do", "", ajaxBeforeSendCctvImg, ajaxSuccessCctvImg);
+//        });
+		
+		//이미지 클릭
+/*		$("#btn_bigdata_img").click(function () {
+			var imgTemp = "";
+			
+			imgTemp = '<p><img src=""/></p>';
+			$("#bigdata_slide_box").empty().append(imgTemp);
+			
+			ajaxCall("../../web/atms/selectCctvImgList.do", "", ajaxBeforeSendCctvImg, ajaxSuccessCctvImg);
+        });
+*/		
+		/* 20171106 홈페이지 메인화면 속도 개선관련 function으로 넣음 */
+//		ajaxCall("../../web/atms/selectCctvImgList.do", "", ajaxBeforeSendCctvImg, ajaxSuccessCctvImg);
+/*		function ajaxBeforeSendCctvImg(xhr){
+			
+		}
+		function ajaxSuccessCctvImg(data){
+			
+			var strTemp = "";
+			$.each( data.cctvImgList, function( index, value ) {
+				
+				// if(value.cctvid == "1" || value.cctvid == "2" || value.cctvid == "3") { 
+					if(value.cctvid == "1" || value.cctvid == "2" || value.cctvid == "3" || value.cctvid == "6" || value.cctvid == "7" 
+					|| value.cctvid == "8" || value.cctvid == "9" || value.cctvid == "10" ) {
+				
+					//두개씩 세트
+					if(index%2 == 0){
+						strTemp += '<div class="cctv_con">';					
+					}
+					
+					strTemp += '<p><img src="../../web/atms/showBmpImage.do?seq='+value.seq+'" title="'+value.istl_lctn_nm+'" alt="'+value.istl_lctn_nm+'"/></p>';
+					//두개씩 세트
+					if(index%2 == 1){
+						strTemp += '</div>';			
+					}
+					
+					//전체가 홀수일때 태그 마감
+					if((data.cctvImgList.length)%2 == 1){
+						if((data.cctvImgList.length - 1) == index){
+							strTemp += '</div>';	
+						}
+					}
+				
+				}
+			});
+			
+			$("#cctv_slide_box").empty().append(strTemp);
+		}
+			
+*/			
+			
+		
+		var params  = 'width=1500';
+		params += ', height='+(screen.height-100);
+		params += ', top=0, left=0';
+		params += ', fullscreen=no, resizable=yes';
+		
+		//노선 검색
+		$("#busRoute").keydown(function (key) {
+			if(key.keyCode == 8 || key.keyCode == 9 || key.keyCode == 37 || key.keyCode == 39|| key.keyCode == 46){
+				return;
+			}else if (key.keyCode == 13) {
+            	$("#btn_busRoute").trigger('click');
+            }else{
+				return;
+            }
+        });
+		$("#btn_busRoute").click( function(){ 
+
+			if($("#busRoute").val() == "" || $("#busRoute").val() == null){
+				alert("노선 번호를 입력해 주세요.");
+				return;
+			} else {
+				tform = document.busRouteForm;
+			    window.open("","popup", params);         
+			    tform.target = "popup";               
+			    tform.action = "../../web/traffic/traffic_bus_line_search.view";
+			    tform.method = "post";
+			    tform.submit();    
+			    $("#busStop").val("");
+			    $("#realBusRoute").val("");
+			}
+
+		});
+		
+		//정류장 검색
+		$("#busStop").keydown(function (key) {
+            if (key.keyCode == 13) {
+            	$("#btn_busStop").trigger('click');
+            }
+        });
+		$("#btn_busStop").click( function(){ 
+
+			if($("#busStop").val() == "" || $("#busStop").val() == null){
+				alert("정류장명을 입력해 주세요.");
+				return;
+			} else {
+				tform = document.busStopForm;
+			    window.open("","popup", params);         
+			    tform.target = "popup";               
+			    tform.action = "../../web/traffic/traffic_station_search.view";
+			    tform.method = "post";
+			    tform.submit();  
+			    $("#busRoute").val("");
+			    $("#realBusRoute").val("");
+			}
+
+		});
+		
+		//실시간 검색
+		$("#realBusRoute").keydown(function (key) {
+            if (key.keyCode == 13) {
+            	$("#btn_realBusRoute").trigger('click');
+            }
+        });
+		$("#btn_realBusRoute").click( function(){ 
+
+			if($("#realBusRoute").val() == "" || $("#realBusRoute").val() == null){
+				alert("노선 번호를 입력해 주세요.");
+				return;
+			} else {
+				tform = document.realBusRouteForm;
+			    window.open("","popup", params);         
+			    tform.target = "popup";               
+			    tform.action = "../../web/traffic/traffic_real_time_bus.view";
+			    tform.method = "post";
+			    tform.submit();  
+			    $("#busRoute").val("");
+			    $("#busStop").val("");
+			}
+
+		});
+		
+		$("body").click( function(){ 
+			$("#auto_txt_section, #auto_txt_section_1, #auto_txt_section_2").hide();
+			$("#auto_route, #auto_station, #auto_real").empty();
+		});
+		
+		//노선 자동
+		$("#busRoute").keyup(function (key) {
+			
+			if($(this).val().length < 2){
+				return false;
+			}
+			
+			$("#auto_route_id").val("");
+			
+			if($("#busRoute").val() == ""){
+				$("#auto_txt_section").hide();
+				$("#auto_route").empty();
+			} else {
+				var form_data = {
+						busRoute: $("#busRoute").val()
+	            };
+	            $.ajax({
+	                type: "POST",
+	                url: "../../web/traffic/searchBusRoute.do",
+	                data: form_data,
+	                async: false,
+	                success: function(data) {
+	                	
+	                	$("#auto_txt_section").removeClass("long");
+	                	
+	                	var strTemp = "";
+	            		$.each( data.busRouteList, function( index, value ) {
+	            			
+	            			if(index%2 == 0){
+	            				strTemp += '<li class="bg">';	
+	            			} else {
+	            				strTemp += '<li>';
+	            			}
+	            			strTemp += '<a href="javascript:void(0);">'
+									+ '<span title="'+value.route_name2+'">'+value.route_name2+'</span>'
+									+ '<input type="hidden" value="'+value.route_id+'">'
+									+ '</a>'
+									+ '</li>';
+	            		});
+	            		
+	            		if(data.busRouteList.length > 10){
+	        				$("#auto_txt_section").addClass("long");
+	            		}
+	            		
+	            		$("#auto_route").empty().append(strTemp);
+	            		$("#auto_txt_section").show();
+	            		
+	            		if(data.busRouteList.length <= 0){
+	            			$("#auto_txt_section").hide();
+	            		}
+	            		//클릭
+	            		$("#auto_route li a").click( function(){ 
+	            			$("#busRoute").val($(this).find("span").text());
+	            			$("#auto_route_id").val($(this).find("input").val());
+	            			$("#auto_txt_section").hide();
+	            			$("#auto_route").empty();
+	            			
+	            		});
+	                }
+	        	});
+			}
+        });
+		
+		//정류장 자동
+		$("#busStop").keyup(function (key) {
+			
+			if($(this).val().length < 2){
+				return false;
+			}
+			
+			$("#auto_stop_id").val("");
+			
+			if($("#busStop").val() == ""){
+				$("#auto_txt_section_1").hide();
+				$("#auto_station").empty();
+			} else {
+				var form_data = {
+						busStop: $("#busStop").val()
+	            };
+	            $.ajax({
+	                type: "POST",
+	                url: "../../web/traffic/searchBusStop.do",
+	                data: form_data,
+	                async: false,
+	                success: function(data) {
+	                	
+	                	$("#auto_txt_section_1").removeClass("long");
+	                	
+	                	var strTemp = "";
+	            		$.each( data.busStopList, function( index, value ) {
+	            			
+	            			if(index%2 == 0){
+	            				strTemp += '<li class="bg">';	
+	            			} else {
+	            				strTemp += '<li>';
+	            			}
+	            			strTemp += '<a href="javascript:void(0);">'
+									+ '<span title="'+value.route_name+'">'+value.stop_name+'</span>'
+									+ '<input type="hidden" value="'+value.stop_id+'">'
+									+ '</a>'
+									+ '</li>';
+	            		});
+	            		
+	            		if(data.busStopList.length > 10){
+	        				$("#auto_txt_section_1").addClass("long");
+	            		} 
+	            		
+	            		$("#auto_station").empty().append(strTemp);
+	            		$("#auto_txt_section_1").show();
+	            		
+	            		if(data.busStopList.length <= 0){
+	            			$("#auto_txt_section_1").hide();
+	            		}
+	            		
+	            		//클릭
+	            		$("#auto_station li a").click( function(){ 
+	            			$("#busStop").val($(this).find("span").text());
+	            			$("#auto_stop_id").val($(this).find("input").val());
+	            			$("#auto_txt_section_1").hide();
+	            			$("#auto_station").empty();
+	            			
+	            		});
+	                }
+	        	});
+			}
+        });
+		
+		//실시간 자동
+		$("#realBusRoute").keyup(function (key) {
+			
+			$("#auto_real_id").val("");
+			
+			if($("#realBusRoute").val() == ""){
+				$("#auto_txt_section_2").hide();
+				$("#auto_real").empty();
+			} else {
+				var form_data = {
+						busRoute: $("#realBusRoute").val()
+	            };
+	            $.ajax({
+	                type: "POST",
+	                url: "../../web/traffic/searchBusRoute.do",
+	                data: form_data,
+	                async: false,
+	                success: function(data) {
+	                	
+	                	$("#auto_txt_section_1").removeClass("long");
+	                	
+	                	var strTemp = "";
+	            		$.each( data.busRouteList, function( index, value ) {
+	            			
+	            			if(index%2 == 0){
+	            				strTemp += '<li class="bg">';	
+	            			} else {
+	            				strTemp += '<li>';
+	            			}
+	            			strTemp += '<a href="javascript:void(0);">'
+									+ '<span title="'+value.route_name+'">'+value.route_name+'</span>'
+									+ '<input type="hidden" value="'+value.route_id+'">'
+									+ '</a>'
+									+ '</li>';
+	            		});
+	            		
+	            		if(data.busRouteList.length > 10){
+	        				$("#auto_txt_section_2").addClass("long");
+	            		} 
+	            		
+	            		$("#auto_real").empty().append(strTemp);
+	            		$("#auto_txt_section_2").show();
+	            		
+	            		if(data.busRouteList.length <= 0){
+	            			$("#auto_txt_section_2").hide();
+	            		}
+	            		
+	            		//클릭
+	            		$("#auto_real li a").click( function(){ 
+	            			$("#realBusRoute").val($(this).find("span").text());
+	            			$("#auto_real_id").val($(this).find("input").val());
+	            			$("#auto_txt_section_2").hide();
+	            			$("#auto_real").empty();
+	            			
+	            		});
+	                }
+	        	});
+			}
+        });
+		
+	});
+	
+	function goDetail(val) {
+		$("#notice_id").val(val);
+		document.noticeDetail.submit();
+	}
+		
+	</script>
+	
+</head>
+
+<body class="body_1">
+	<div class="wrap">
+		
+		
+    
+
+	<script type="text/javascript">
+	var gs_userId = "null";
+	
+	$(document).ready(function(){
+		var strTemp = "";
+		if(gs_userId != "null" && gs_userId != "undefined" && gs_userId != ""){
+			strTemp += '<a href="#line_map" title="본문 바로가기">본문 바로가기</a>'
+					+ '<span class="bar">|</span>'
+					+ '<a href="../../web/custom_info/logout.do" style="color: red;font-weight: bold;" title="로그아웃">로그아웃</a>'
+					+ '<span class="bar">|</span>'
+					+ '<a href="../../web/custom_info/member_modify.view" title="회원정보" >회원정보</a>'
+					+ '<span class="bar">|</span>' 
+					+ '<a href="../../web/main/sitemap.view">사이트맵</a>';
+					
+		} 
+			else {
+			
+			strTemp += '<a href="#line_map" title="본문 바로가기">본문 바로가기</a>'
+					+ '<span class="bar">|</span>'
+					+ '<a href="../../web/main/sitemap.view" title="사이트맵">사이트맵</a>';
+		}
+		
+		$("#topLogin").empty().append(strTemp);
+	
+	});
+	
+	</script>
+	<div id="header" class="header" >
+		<div class="gnb">
+			<h1>
+				
+				<a href="../../web/main/main.view" class="btn_top_logo"><img id="header_title_img" alt="" src="../../resources/images_new/w/top_logo.png"></a>
+			</h1>
+			
+			<div class="header_left">
+				<div id="topLogin" class="top"></div>
+				
+				<ul id="header_cate" class="cate">
+					<li id="menu01">
+						<a title="새창열림" class="naviTraffic" href="javascript:void(0);" onclick="javascript:popTraffic('traffic');"><span>교통정보</span></a>
+						<ul class="sub_cate" id="menu_sub01">
+							<h2 class="menu_subject">교통정보</h2>
+							<li><a title="새창열림" href="javascript:void(0);" onclick="javascript:popTraffic('tr_07');">소통정보</a></li>
+							<li><a title="새창열림" href="javascript:void(0);" onclick="javascript:popTraffic('tr_05');">교통CCTV</a></li>
+						</ul>
+					</li>
+					<li id="menu02">
+						<a title="새창열림" class="naviBusInfo" href="javascript:void(0);" onclick="javascript:popTraffic('tr_01');"><span>버스정보</span></a>
+						<ul class="sub_cate" id="menu_sub02">
+							<h2 class="menu_subject">버스정보</h2>
+							<!-- <li><a title="새창열림" href="javascript:void(0);" onclick="javascript:popTraffic('tr_10');">초정밀버스정보</a></li> -->
+							<li><a title="새창열림" href="javascript:void(0);" onclick="javascript:popTraffic('tr_01');">실시간노선검색</a></li>
+							<li><a title="새창열림" href="javascript:void(0);" onclick="javascript:popTraffic('tr_02');">정류장검색</a></li>
+							<li><a title="새창열림" href="javascript:void(0);" onclick="javascript:popTraffic('tr_04');">경로검색</a></li>
+						</ul>
+					</li>
+					<li id="menu06">
+						<a class="naviparking" href= "../../ext/w/parkingInfo.view"><span>주차정보</span></a>
+					</li>
+					<!-- 돌발 숨김<li id="menu03"><a class="naviEvent" href="../../web/atms/event_list.view"><span>돌발/통제</span></a></li> -->
+					<li id="menu03">
+						<a title="새창열림" class="naviBigData" href="#" onclick="openLinkPage('bigdata'); return false;" target="_blank"><span>빅데이터</span></a>
+					</li> 
+					<li id="menu04">
+						<a class="naviCumm" href="../../web/community/community_notice.view"><span>커뮤니티</span></a>
+						<ul class="sub_cate" id="menu_sub04">
+							<h2 class="menu_subject">커뮤니티</h2>
+							<!-- <li><a tabindex="54" href="../../ext/w/question.view">설문조사</a></li> -->
+							<li><a href="../../web/community/community_notice.view">공지사항</a></li>
+							<li><a href="#" title="새창열림" onclick="openLinkPage('citizen'); return false;" target="_blank">참여마당</a></li>
+					    	<li><a href="../../web/community/community_lostinfo.view">분실물안내</a>
+						<!--<li><a tabindex="55" href="../../ext/w/question.view">설문조사</a></li>
+					    	<li><a tabindex="54" href="../../web/community/community_lookfor.view">찾아주세요</a></li>
+							<li><a tabindex="53" href="../../web/community/community_pickupyour.view">찾아가세요</a></li>-->
+						</ul>
+					</li>
+					<li id="menu05">
+						<a class="naviCenter" href="../../web/information/information_system.view"><span>센터소개</span></a>
+						<ul class="sub_cate" id="menu_sub05">
+							<h2 class="menu_subject">센터소개</h2>
+							<li><a href="../../web/information/information_system.view">시스템소개</a></li>
+							<li><a href="../../web/information/information_web.view">사이트이용안내</a></li>
+							<li><a href="../../web/information/information_mobile.view">모바일 이용안내</a></li>
+							<li><a href="../../web/information/information_rough_map.view" >찾아오시는길</a></li>
+						    <li><a href="../../web/information/information_mark.view" >웹접근성품질인증</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script>
+	// 페이지 새창 열기
+	function openLinkPage(type){
+		// 접속이력 기록 
+		var params = { "type" : type };
+		
+        $.ajax({
+            type: "POST",
+            url: "/stat/url/history.do",
+            data: params,
+            success: function(response) {
+            	//console.log(response);
+            },
+            error: function(request, status, error) {
+            	//console.log(status);
+            },
+            complete : function () { 
+            	// 사이트 이동
+        		if (type === "bigdata") {
+        			// 20211028.1410
+        			window.open("http://tdata.sejong.go.kr:8080");
+        			// window.open("http://bis.sejong.go.kr:9090");
+        		} else if (type === "citizen") {
+        			window.open("http://www.sejong.go.kr/citizen.do");
+        		}
+            }
+    	});
+	}
+	</script>
+
+		
+	<link rel="stylesheet" type="text/css" href="../../resources/css/w/layout.css"/>
+  	<script type="text/javascript">
+  	$(document).ready(function(){
+  		$.ajax({
+  	        type: "POST",
+  	        url: "../../ext/selectSurveyCompleteDivision.do",
+  	        data: null,
+  	        dataType : "json",
+  	        beforeSend: null,
+  	        success: function(data) {
+  	        	if(data.isComplete == "N") 
+  	        		$(".type6").addClass("new");
+  	        	else 
+  	        		$(".type6").removeClass("new");
+  	        }
+  		});
+  		
+  	});
+  	</script>
+  
+	<div class="flow_menu" style="left:1380px">
+			<ul>
+				<li class="btn_flow">
+					<a class="type3" title="새창열림" href="javascript:void(0);" onclick="javascript:popTraffic('tr_01');">
+						<span class="font_flow">실시간<br>노선검색</span>
+					</a>
+				</li>
+				<li class="btn_flow">
+					<a class="type4" title="새창열림" href="javascript:void(0)" onclick="javascript:popTraffic('tr_02');">
+						<span class="font_flow">정류장<br>검색</span>
+					</a>
+				</li>
+				<li class="btn_flow">
+					<a class="type5" title="새창열림" href="javascript:void(0)" onclick="javascript:popTraffic('tr_04');">
+						<span class="font_flow">경로검색</span>
+					</a>
+				</li>
+				<!-- <li class="btn_flow">
+					<a class="type6" href="../../ext/w/question.view">
+						<span class="font_flow">설문</span>
+					</a>
+				</li> -->	
+			</ul>
+	</div>
+		
+		<div class="top_banner">
+			<div style="float: right;margin: 10px;">
+				<p class="line_map" id="line_map">
+					<img class="home" src="../../resources/images_new/w/icon_home.png" alt=""/>
+				</p>
+				<div class="element-hidden">시민의 편의를 위하여 최선을 다하는 세종특별자치시 교통정보시스템</div>
+			</div>
+		</div>
+		
+		<div id="content" class="wrap_contents" style="margin-top: 5px; min-height: 465px;">
+			
+			<div class="main_content_1">
+			
+				<div class="search" title="버스통합검색">
+					<div class="search_wrap">
+						<div class="title_box">
+							<div class="title_img">
+							
+								<img src="../../resources/images_new/w/main_title01.png" alt="버스통합검색"/>
+							</div>
+						</div>
+						
+						<p class="search_explain"><img src="../../resources/images_new/w/main_title01_info.png" alt="정류장명, 번호를 입력하세요."/></p>
+						
+						<form name="busStopForm" id="busStopForm" method="post">
+						
+							<input type="hidden" id="auto_stop_id" name="auto_stop_id" value="" />
+							
+							<div class="input_box">
+								<label for="busStop" title="정류장 검색">
+									<span class="blind">정류장 검색 입력</span>
+									<input title="정류장 검색 입력" type="text" id="busStop" name="busStop" autocomplete="off" onfocus="if(this.value=='정류장 번호/명을 입력하세요.')this.value=''" onblur="if(this.value=='')this.value='정류장 번호/명을 입력하세요.'" value="정류장 번호/명을 입력하세요."/>
+								</label>
+								<a title="정류장 검색(새 창 열림)" href="javascript:void(0);" id="btn_busStop"><img src="../../resources/images_new/w/btn_search.png" alt="정류장 검색"/></a>
+							</div>
+							
+							<div id="auto_txt_section_1" class="auto_txt_section ea1">
+								<ul id="auto_station"></ul>
+							</div>
+						</form>
+						
+						<form name="busRouteForm" id="busRouteForm" method="post">
+						
+							<input type="hidden" id="auto_route_id" name="auto_route_id" value="" />
+							
+							<div class="input_box last">
+								<label for="busRoute" title="노선 검색">
+									<span class="blind">노선 검색 입력</span>
+									<input title="노선 검색 입력" type="text" id="busRoute" name="busRoute" autocomplete="off" onfocus="if(this.value=='노선번호를 입력하세요.')this.value=''" onblur="if(this.value=='')this.value='노선번호를 입력하세요.'" value="노선번호를 입력하세요." />
+								</label>
+								<a title="노선 검색(새 창 열림)" href="javascript:void(0);" id="btn_busRoute"><img src="../../resources/images_new/w/btn_search.png" alt="노선 검색"/></a>
+							</div>
+							
+							<div id="auto_txt_section" class="auto_txt_section ea2">
+								<ul id="auto_route"></ul>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				<div class="traffic" title="소통정보">
+					<div class="traffic_wrap">
+					
+						<div class="title_box">
+							<div class="title_img">
+								<a title="소통정보 새창열림" href="javascript:popTraffic('tr_07');" ><img src="../../resources/images_new/w/main_title02.png" alt="소통정보"/></a>
+							</div>
+							<div class="btn_box">
+								<a id="btn_traffic_start" href="javascript:void(0);"><img src="../../resources/images_new/w/btn_route_play.png" alt="소통정보 슬라이드 재생"/></a>
+								<a id="btn_traffic_stop" href="javascript:void(0);"><img src="../../resources/images_new/w/btn_route_pause.png" alt="소통정보 슬라이드 정지"/></a>
+							</div>
+						</div>
+						
+						<div class="traffic_slide_wrap">
+							<div id="traffic_slide_box" class="traffic_slide_box">
+							<!--  
+							스크립트로 표출 							
+							 -->
+							</div>
+						</div>
+						
+					</div>
+				</div>
+<!-- 20201120 수정 시작 부분 (빅데이터 화면 ) -->				
+<!-- 				<div class="bigdata">
+					<div class="bigdata_wrap">					
+						<div class="title_box">
+							<div class="title_img">
+								<a tabindex="40" title="새창열림" class="naviBigData" href="http://bis.sejong.go.kr:9090" target="_blank">
+									<img src="../../resources/images_new/w/main_title03.png" alt="빅데이터"/>
+								</a>
+							</div>							
+ 							<div class="btn_box">
+								<a id="btn_bigdata_start" href="javascript:void(0);"><img src="../../resources/images_new/w/btn_route_play.png" alt="BIGDATA 슬라이드 재생"/></a>
+								<a id="btn_bigdata_stop" href="javascript:void(0);"><img src="../../resources/images_new/w/btn_route_pause.png" alt="BIGDATA 슬라이드 정지"/></a>
+							</div>
+						</div>
+						
+ 						<p class="bigdata_explain"><img src="../../resources/images_new/w/main_title03_info.png" alt="다양한 통계를 확인할 수 있습니다."/></p>
+ 						<div class="bigdata_slide_wrap">
+							<div id="bigdata_slide_box" class="bigdata_slide_box">
+								<div class="bigdata_con">
+									<a title="새창열림" class="naviBigData" href="http://bis.sejong.go.kr:9090" target="_blank">
+							
+										<img src="../../resources/images_new/w/bigdata_img01.png" alt="노선별 이용현황"/>
+									</a>
+								</div>
+								<div class="bigdata_con">
+									<a title="새창열림" class="naviBigData" href="http://bis.sejong.go.kr:9090" target="_blank">
+							
+										<img src="../../resources/images_new/w/bigdata_img02.png" alt="노선별 이용현황"/>
+									</a>
+								</div>
+								<div class="bigdata_con">
+									<a title="새창열림" class="naviBigData" href="http://bis.sejong.go.kr:9090" target="_blank">
+							
+										<img src="../../resources/images_new/w/bigdata_img03.png" alt="노선별 이용현황"/>
+									</a>
+								</div>	
+								<div class="bigdata_con">
+									<a title="새창열림" class="naviBigData" href="http://bis.sejong.go.kr:9090" target="_blank">
+							
+										<img src="../../resources/images_new/w/bigdata_img04.png" alt="노선별 이용현황"/>
+									</a>
+								</div>				
+							</div>
+						</div>
+														
+					</div>
+				</div>
+				
+			</div>
+-->			
+<!-- 20201120 수정 끝 부분  -->
+<!-- 20201125 수정 시작 부분 (주차정보화면 ) -->				
+				<div class="parkingInfo">
+					<div class="parkingInfo_wrap pageMoveUrl" data-url="../../ext/w/parkingInfo.view" title="실시간 주차정보 (잔여)">
+						<div class="title_box" tabindex="0" >
+							<div class="title_img">
+								<img src="../../resources/images_new/w/main_title04.png" alt="실시간 주차정보 (잔여)"/>
+							</div>							
+						</div>						
+ 						<div class="parkingInfo_slide_wrap">
+ 							<div class="parkingInfo_con">
+	 							<ul>
+								
+											
+											
+											<li class="name"> <img src="../../resources/images_new/w/list_con.png" alt=""/> 도시상징광장 주차장 </li>
+											<li class="stcnt">(</li>
+											<li class="cnt">259</li>
+											<li class="endcnt">)</li>
+											
+											
+								
+											
+											
+								
+											
+											
+								
+											
+											
+								
+											
+											
+											<li class="name"> <img src="../../resources/images_new/w/list_con.png" alt=""/> 아름동 주차타워 </li>
+											<li class="stcnt">(</li>
+											<li class="cnt">218</li>
+											<li class="endcnt">)</li>
+											
+											
+								
+											
+											
+											<li class="name"> <img src="../../resources/images_new/w/list_con.png" alt=""/> 조치원 주차타워 </li>
+											<li class="stcnt">(</li>
+											<li class="cnt">134</li>
+											<li class="endcnt">)</li>
+											
+											
+								
+											
+											
+											<li class="name"> <img src="../../resources/images_new/w/list_con.png" alt=""/> 종촌동 주차타워 </li>
+											<li class="stcnt">(</li>
+											<li class="cnt">25</li>
+											<li class="endcnt">)</li>
+											
+											
+								
+											
+											
+											<li class="name"> <img src="../../resources/images_new/w/list_con.png" alt=""/> 첫마을 BRT 환승 주차장A </li>
+											<li class="stcnt">(</li>
+											<li class="cnt">231</li>
+											<li class="endcnt">)</li>
+											
+											
+								
+											
+											
+											<li class="name"> <img src="../../resources/images_new/w/list_con.png" alt=""/> 첫마을 BRT 환승 주차장B </li>
+											<li class="stcnt">(</li>
+											<li class="cnt">266</li>
+											<li class="endcnt">)</li>
+											
+											
+								
+	 							</ul>							
+ 							</div>														
+						</div>
+						<!-- </a>  -->														
+					</div>
+				</div>
+			</div>
+			
+<!-- 20201125 수정 끝 부분  -->
+
+			<div class="main_content_2">
+			
+				<div class="notice" title="공지사항">
+					<div class="box_wrap">
+						<ul class="notice_ul">
+							<li class="box_title">
+								<h3 class="title_txt">공지사항</h3>
+								<a href="../../web/community/community_notice.view" class="more" title="공지사항 더보기">+ 더보기</a>
+							</li>
+							
+								<li class="notice_list">
+									<img class="new" src="../../resources/images_new/w/ico_new.gif" alt="새로운 글"/>
+									<p class="notice_date">[2026/10/30]</p>
+									<p class="notice_title"><a href="javascript:goDetail('999');" title="노선시간표 안내">
+									노선시간표 안내</a></p>
+								</li>
+										
+								<li class="notice_list">
+									<p class="notice_date">[2025/12/12]</p>	
+									<p class="notice_title"><a href="javascript:goDetail('998');" title="세종 시내버스 노선도 안내">
+									세종 시내버스 노선도 안내</a></p>
+								</li>
+										
+								<li class="notice_list">
+									<p class="notice_date">[2026/04/24]</p>	
+									<p class="notice_title"><a href="javascript:goDetail('544');" title="52, 53번 노선 운행경로 변경 알림">
+									52, 53번 노선 운행경로 변경 알림</a></p>
+								</li>
+										
+						</ul>
+					</div>
+				</div>				
+				
+				<div class="event" title="돌발정보">
+					<div class="box_wrap">
+						<ul class="notice_ul">
+							<li class="box_title">
+								<h3 class="title_txt">돌발정보</h3>
+								<a href="../../web/atms/event_list.view" class="more" title="돌발정보 더보기">+ 더보기</a>
+							</li>
+							
+										<li class="event_list">
+										
+										 	<p class="evnet_date type2">
+												<span style="width: 0px;">[</span><span><img class="event_icon" src="../../resources/images_new/w/icon_alert.png" alt="돌발유형"/></span>공사 (26.09.17 10:50)]
+											</p>
+										
+											<p class="evnet_title">
+												<a href="javascript:void(0);">
+													[일반국도36호선] 주추지하차도 남측 → 올망초등학교
+												</a>
+											</p>
+										</li>
+									
+						</ul>
+					</div>
+				</div>
+				<div class="etc">
+					<ul>
+						<li class="etc_1">
+							<p class="etc_img">
+								<a title="사이트 이용안내" href="../../web/information/information_web.view"></a>
+							</p>
+							<p>사이트<br />이용안내</p>
+						</li>
+						<li class="etc_2">
+							<p class="etc_img">
+								<a title="세종시 공공자전거 새창열림" href="https://www.sejongbike.kr/" target="_blank"></a>
+							</p>
+							<p>세종시<br />공공자전거</p>
+						</li>
+						<li class="etc_3">
+							<p class="etc_img">
+								<!-- <a title="새창열림" href="http://data.sejong.go.kr" target="_blank"><span class="blind">세종시 데이터 실록</span></a> -->
+								<a title="세종 도시교통공사 새창열림" href="http://www.sctc.kr" target="_blank"></a>
+							</p>
+							<p>세종<br />도시교통공사</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="main_banners">
+				<div class="btn_banner_arrow" style="margin-top: 5px; text-align: right;">
+ 					<button type="button" class="btn_start btn_img"><img alt="슬라이드 중지" src="../../resources/images/w/btn_arrow_stop.png" width="20px"></button>
+				</div>
+				<ul class="banner_wrap">
+					<li class="btn_prev_box">
+						<a href="javascript:void(0);"><img class="btn_left" alt="이전 배너 보기" src="../../resources/images_new/w/banner_arrow_prev.png"></a>
+					</li>
+					<li class="banner_cont">
+						<div class="banner_box">
+							<ul>
+								<li><a title="세종특별자치시청 새창열림" target="_blank" href="http://www.sejong.go.kr/"><img alt="세종특별자치시청 " src="../../resources/images/w/logo_1.png"></a></li>
+								<li><a title="국가교통정보센터 새창열림" target="_blank" href="http://www.its.go.kr/index.jsp"><img alt="국가교통정보센터" src="../../resources/images/w/logo_2.png"></a></li>
+								<li><a title="대전지방국토관리청 새창열림" target="_blank" href="http://www.molit.go.kr/drocm/intro.do"><img alt="대전지방국토관리청" src="../../resources/images/w/logo_3.png"></a></li>
+								<li><a title="타고(TAGO) 새창열림" target="_blank" href="http://www.tago.go.kr/"><img alt="타고(TAGO)" src="../../resources/images/w/logo_4.png"></a></li>
+								<li><a title="대전교통정보센터 새창열림" target="_blank" href="http://traffic.daejeon.go.kr/"><img alt="대전교통정보센터" src="../../resources/images/w/logo_5.png"></a></li>
+								<li><a title="청주시 버스정보시스템 새창열림" target="_blank" href="http://www.dcbis.go.kr/"><img alt="청주시 버스정보시스템" src="../../resources/images/w/logo_6.png"></a></li>
+								<li><a title="한국도로공사 새창열림" target="_blank" href="http://www.ex.co.kr/"><img alt="한국도로공사" src="../../resources/images/w/logo_7.png"></a></li>
+								<li><a title="한국철도공사 새창열림" target="_blank" href="http://www.letskorail.com/"><img alt="한국철도공사" src="../../resources/images/w/logo_8.png"></a></li>
+								<li><a title="청주국제공항 새창열림" target="_blank" href="http://www.airport.co.kr/cheongju/main.do"><img alt="청주국제공항" src="../../resources/images/w/logo_9.png"></a></li>
+								<!-- <li><a title="새창열림" target="_blank" href="http://www.sctc.kr"><img alt="세종도시교통공사" src="../../resources/images/w/logo_10.png"></a></li> -->
+							</ul>
+						</div>
+					</li>
+					<li class="btn_next_box">
+						<a href="javascript:void(0);"><img class="btn_right" alt="다음 배너 보기" src="../../resources/images_new/w/banner_arrow_next.png"></a>
+					</li>
+					
+				</ul>
+			</div>
+				
+		</div>
+		<form name="noticeDetail" action="../../web/community/community_notice_detail.view" method="post">
+							<input name="notice_id" id="notice_id" type="hidden"/>
+		</form>
+
+		
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		setDate();
+		
+		function setDate() {
+			var dayWeek = ["(일)", "(월)", "(화)", "(수)", "(목)", "(금)", "(토)"];
+			var date = new Date();
+			
+			$("#date").empty().append("<span class='small_txt'>오늘</span>" +(date.getMonth() + 1)+"/"+date.getDate()+" "+ dayWeek[date.getDay()]);
+		}
+		
+       	ajaxCall("../../web/main/selectWeatherInfo.do", null, null, ajaxSuccessWeatherInfo);
+       	
+       	function ajaxSuccessWeatherInfo(data) {
+       		if(data.weatherList != null) {
+       			var air_stts = data.weatherList[0].atmp_stts_cd;
+       			var tmp = data.weatherList[0].prst_tmpr;
+       			$("#text_temp").text(Math.round(tmp)+ "℃");
+       			
+       			if(air_stts=="SKY_O01") {//맑음
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather01.png");  
+       				$("#img_air").attr("alt", "날씨맑음");  
+       			}else if(air_stts=="SKY_O02") {//구름조금
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather02.png"); 
+       				$("#img_air").attr("alt", "날씨 구름조금");  
+       			}else if(air_stts=="SKY_O03") {//구름많음
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather03.png"); 
+       				$("#img_air").attr("alt", "날씨 구름많음");  
+       			}else if(air_stts=="SKY_O04") {//구름많고 비
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather05.png"); 
+       				$("#img_air").attr("alt", "날씨 구름많고 비");
+       			}else if(air_stts=="SKY_O05") {//구름많고 눈
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather07.png"); 
+       				$("#img_air").attr("alt", "날씨 구름많고 눈");
+       			}else if(air_stts=="SKY_O06") {//구름많고 비 또는 눈
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather06.png"); 
+       				$("#img_air").attr("alt", "날씨 구름많고 비 또는 눈");
+       			}else if(air_stts=="SKY_O07") {//흐림
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather04.png"); 
+       				$("#img_air").attr("alt", "날씨 흐림");
+       			}else if(air_stts=="SKY_O08") {//흐리고 비
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather05.png"); 
+       				$("#img_air").attr("alt", "날씨 흐리고 비");
+       			}else if(air_stts=="SKY_O09") {//흐리고 눈
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather07.png"); 
+       				$("#img_air").attr("alt", "날씨 흐리고 눈");
+       			}else if(air_stts=="SKY_O10") {//흐리고 비 또는 눈
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather06.png"); 
+       				$("#img_air").attr("alt", "날씨 흐리고 비 또는 눈");
+       			}else if(air_stts=="SKY_O11") {//흐리고 낙뢰
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather04.png"); 
+       				$("#img_air").attr("alt", "날씨 흐리고 낙뢰");
+       			}else if(air_stts=="SKY_O12") {//뇌우 비
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather05.png"); 
+       				$("#img_air").attr("alt", "날씨 뇌우 비");
+       			}else if(air_stts=="SKY_O13") {//뇌우 눈
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather07.png");
+       				$("#img_air").attr("alt", "날씨 뇌우 눈"); 
+       			}else if(air_stts=="SKY_O14") {//뇌우 비Ehsms 눈
+       				$("#img_air").attr("src", "../../resources/images_new/c/img_weather06.png"); 
+       				$("#img_air").attr("alt", "날씨 뇌우 눈"); 
+       			}
+       		}
+       	}
+       	
+		ajaxCall("../../web/main/selectDustInfo.do", null, null, ajaxSuccessDustInfo);
+       	
+       	function ajaxSuccessDustInfo(data) {
+       		if(data.dustList != null && data.dustList != "") {
+       			var dust = data.dustList[0].pm10_code;
+       			var hh = data.dustList[0].hh;
+       			var mm = data.dustList[0].mm;
+       			$("#text_time").text("("+(hh) + "시" + (mm) + "분  " +"측정기준"+")");
+       			$("#text_dust").text(dust); 
+       			if(dust == "좋음") {
+       				$("#text_dust").attr('style', 'color:#0054FF');   
+       			}else if(dust == "보통") {
+       				$("#text_dust").attr('style', 'color:#009300'); 
+       			}else if(dust == "나쁨") {
+       				$("#text_dust").attr('style', 'color:#DB3A00');  
+       			}else if(dust == "매우나쁨") {
+       				$("#text_dust").attr('style', 'color:#FF0000');  
+       			}
+       		}else{
+       			$("#text_time").text("00시 00분 측정기준");
+       			$("#text_dust1").text("");
+       		}
+       	}
+       	
+       	function ajaxCall(url, data, beforeSend, success){
+       		$.ajax({
+       	        type: "POST",
+       	        url: url,
+       	        data: data,
+       	        dataType : "json",
+       	        beforeSend: beforeSend,
+       	        success: success
+       		});
+       	}
+	});
+</script>
+<!-- LOGGER TRACKING SCRIPT V.31 FOR bis.sejong.go.kr / 1057 : FAIL-SAFE TYPE / DO NOT ALTER THIS SCRIPT. -->
+<!-- COPYRIGHT (C) 2002-2016 BIZSPRING INC. LOGGER(TM) ALL RIGHTS RESERVED. -->
+<script language="JavaScript">/* LOGGER TRACKING SCRIPT V.31 : 1057 *//*X*//* COPYRIGHT 2002-2016 BIZSPRING INC. *//*X*//* DO NOT MODIFY THIS SCRIPT. *//*X*/
+
+var _TRK_LID = "1057";
+var _L_TD = null;
+var _TRK_DOMAIN = null;
+
+var _trk_bMSIE = (document.all)?true:false;
+var _trk_bJS12 = (window.screen)?true:false;
+
+function _trk_escape(_str) { 
+	var str, ch;
+	var bEncURI = "N";
+	eval("try{bEncURI=encodeURI('Y');}catch(_e){ }");
+	if( bEncURI == "Y" ) {
+		str=encodeURI(_str);
+	}else { 
+		str = escape(_str);
+		str=str.split("+").join("%2B");
+		str=str.split("/").join("%2F");
+		str=str.split("&").join("%26");
+		str=str.split("?").join("%3F");
+		str=str.split(":").join("%3A");
+		str=str.split("#").join("%23");
+		return str;
+	}
+}
+
+function _trk_setCookie(name,value,expire) {
+	var today=new Date();
+	today.setTime(today.getTime()+ expire );
+	document.cookie = name + "=" + value + ";path=/;expires=" + today.toGMTString() + ";" ;
+}
+
+function _trk_getCookie(name) {
+	var cookieName=name+"=";
+	var x=0;
+	while( x<=document.cookie.length) { 
+		var y=(x+cookieName.length);
+		if( document.cookie.substring(x,y) == cookieName ){
+			if((endOfCookie=document.cookie.indexOf(";}",y))==-1) endOfCookie=document.cookie.length;
+		return unescape(document.cookie.substring(y,endOfCookie));
+	} x=document.cookie.indexOf(" ",x)+1;
+	
+	if(x == 0) 
+		break;
+	} 
+	return "";
+}
+
+function _trk_getParameter(name) {
+	var paraName=name+"=";
+	var URL=""+self.document.location.search;
+	var tURL="";
+	eval("try{ tURL=top.document.location.search;}catch(_e){}");
+	URL = URL + "&" + tURL ;
+	if(URL.indexOf(paraName)!=-1) { 
+		var x=URL.indexOf(paraName)+paraName.length;
+		var y=URL.substr(x).indexOf("&");
+		if(y!=-1) {
+			return URL.substring(x,x+y);
+		} else { 
+			return URL.substr(x);
+		}
+	}
+	return "";
+}
+
+function getNewSID(len) { 
+	var str="01234567890abcdef";
+	var ret="";
+	for(var i=0; i<len; i++) {
+		ret = ret + ( str.substr ( Math.floor ( Math.random() * str.length ), 1 ) ) ;
+	}
+	return ret;
+}
+
+function _trk_make_code(_TRK_SERVER,_TRK_U) { 
+	var dt=document.title.toString();
+	dt=dt.substr(0,128);
+	var dr=self.document.referrer;
+	var tdr="";
+	eval("try{ tdr=top.document.referrer;}catch(_e){}");
+	var tdu="";
+	eval("try{ tdu=top.document.location.href;}catch(_e){}");
+	var bFrm=false;
+	if(dr==tdu) { 
+		dr=tdr;
+		bFrm=true;
+	}
+	if(dr=="undefined") dr="";
+		var du=self.document.location.href;
+	if(du.substr(0,4)=="file") return "";
+	var adKeyVal = "";
+
+	if(bFrm) { adKeyVal=_trk_getParameter("OVKEY");
+
+	if(adKeyVal!="" && du.indexOf("OVKEY=")<0) {  if(du.indexOf("?")!=-1) du=du+"&OVKEY="+adKeyVal;
+
+	else du=du+"?OVKEY="+adKeyVal;
+
+	adKeyVal=_trk_getParameter("OVRAW");
+	
+	if(adKeyVal!="" && du.indexOf("OVRAW=")<0 )
+		if(du.indexOf("?")!=-1) du=du+"&OVRAW="+adKeyVal;
+
+		else du=du+"?OVRAW="+adKeyVal;
+
+	} else {  
+		
+		adKeyVal=_trk_getParameter("netpia");
+		if(adKeyVal!="" && du.indexOf("netpia=")<0 ){  
+			if(du.indexOf("?")!=-1){ 
+				du=du+"&netpia="+adKeyVal;
+			} else {
+				du=du+"?netpia="+adKeyVal;
+			}
+		}
+	}
+	
+	adKeyVal=_trk_getParameter("logger_kw");
+
+	if(adKeyVal!="" && du.indexOf("logger_kw=")<0 )  if(du.indexOf("?")!=-1) du=du+"&logger_kw="+adKeyVal;
+
+	else du=du+"?logger_kw="+adKeyVal;
+
+	adKeyVal=_trk_getParameter("source");
+
+	if(adKeyVal!="" && du.indexOf("source=")<0 )  if(du.indexOf("?")!=-1) du=du+"&source="+adKeyVal;
+
+	else du=du+"?source="+adKeyVal;
+
+	adKeyVal=_trk_getParameter("keywd");
+
+	if(adKeyVal!="" && du.indexOf("keywd=")<0 )  if(du.indexOf("?")!=-1) du=du+"&keywd="+adKeyVal;
+
+	else du=du+"?keywd="+adKeyVal;
+
+	adKeyVal=_trk_getParameter("NVADID");
+
+	if(adKeyVal!="" && du.indexOf("NVADID=")<0 )  if(du.indexOf("?")!=-1) du=du+"&NVADID="+adKeyVal;
+
+	else du=du+"?NVADID="+adKeyVal;
+
+	adKeyVal=_trk_getParameter("NVAR");
+
+	if(adKeyVal!="" && du.indexOf("NVAR=")<0 )  if(du.indexOf("?")!=-1) du=du+"&NVAR="+adKeyVal;
+
+	else du=du+"?NVAR="+adKeyVal;
+
+	adKeyVal=_trk_getParameter("NVADKWD");
+
+	if(adKeyVal!="" && du.indexOf("NVADKWD=")<0)  if(du.indexOf("?")!=-1) du=du+"&NVADKWD="+adKeyVal;
+
+	else du=du+"?NVADKWD="+adKeyVal;
+
+	adKeyVal=_trk_getParameter("NVKWD");
+
+	if(adKeyVal!="" && du.indexOf("NVKWD=")<0 )  if(du.indexOf("?")!=-1) du=du+"&NVKWD="+adKeyVal;
+
+	else du=du+"?NVKWD="+adKeyVal;
+
+	adKeyVal=_trk_getParameter("n_query");
+
+	if(adKeyVal!="" && du.indexOf("n_query=")<0 )  if(du.indexOf("?")!=-1) du=du+"&rc_code="+adKeyVal;
+else du=du+"?n_query="+adKeyVal;
+adKeyVal=_trk_getParameter("n_keyword");
+if(adKeyVal!="" && du.indexOf("n_keyword=")<0 )  if(du.indexOf("?")!=-1) du=du+"&rc_code="+adKeyVal;
+else du=du+"?n_keyword="+adKeyVal;
+adKeyVal=_trk_getParameter("DMCOL");
+if(adKeyVal!="" && du.indexOf("DMCOL=")<0 )  if(du.indexOf("?")!=-1) du=du+"&DMCOL="+adKeyVal;
+else du=du+"?DMCOL="+adKeyVal;
+adKeyVal=_trk_getParameter("DMKW");
+if(adKeyVal!="" && du.indexOf("DMKW=")<0 )  if(du.indexOf("?")!=-1) du=du+"&DMKW="+adKeyVal;
+else du=du+"?DMKW="+adKeyVal;
+adKeyVal=_trk_getParameter("DMSKW");
+if(adKeyVal!="" && du.indexOf("DMSKW=")<0 )  if(du.indexOf("?")!=-1) du=du+"&DMSKW="+adKeyVal;
+else du=du+"?DMSKW="+adKeyVal;
+adKeyVal=_trk_getParameter("DWIT");
+if(adKeyVal!="" && du.indexOf("DWIT=")<0)  if(du.indexOf("?")!=-1) du=du+"&DWIT="+adKeyVal;
+else du=du+"?DWIT="+adKeyVal;
+adKeyVal=_trk_getParameter("DWIC");
+if(adKeyVal!="" && du.indexOf("DWIC=")<0 )  if(du.indexOf("?")!=-1) du=du+"&DWIC="+adKeyVal;
+else du=du+"?DWIC="+adKeyVal;
+adKeyVal=_trk_getParameter("gad");
+if(adKeyVal!="" && du.indexOf("gad=")<0 )  if(du.indexOf("?")!=-1) du=du+"&gad="+adKeyVal;
+else du=du+"?gad="+adKeyVal;
+adKeyVal=_trk_getParameter("gclid");
+if(adKeyVal!="" && du.indexOf("gclid=")<0 )  if(du.indexOf("?")!=-1) du=du+"&gclid="+adKeyVal;
+else du=du+"?gclid="+adKeyVal;
+adKeyVal=_trk_getParameter("gkw");
+if(adKeyVal!="" && du.indexOf("gkw=")<0 )  if(du.indexOf("?")!=-1) du=du+"&gkw="+adKeyVal;
+else du=du+"?gkw="+adKeyVal;
+adKeyVal=_trk_getParameter("rcsite");
+if(adKeyVal!="" && du.indexOf("rcsite=")<0 )  if(du.indexOf("?")!=-1) du=du+"&rcsite="+adKeyVal;
+else du=du+"?rcsite="+adKeyVal;
+adKeyVal=_trk_getParameter("rctype");
+if(adKeyVal!="" && du.indexOf("rctype=")<0 )  if(du.indexOf("?")!=-1) du=du+"&rctype="+adKeyVal;
+else du=du+"?rctype="+adKeyVal;
+adKeyVal=_trk_getParameter("rc_code");
+if(adKeyVal!="" && du.indexOf("rc_code=")<0 )  if(du.indexOf("?")!=-1) du=du+"&rc_code="+adKeyVal;
+else du=du+"?rc_code="+adKeyVal;
+adKeyVal=_trk_getParameter("_C_");
+if(adKeyVal!="" && du.indexOf("_C_=")<0 )  if(du.indexOf("?")!=-1) du=du+"&_C_="+adKeyVal;
+else du=du+"?_C_="+adKeyVal;
+} var ce=navigator.cookieEnabled?"Y":"N";
+var je=navigator.javaEnabled()?"Y":"N";
+var ss="";
+var cd = "";
+if(_trk_bJS12) { ss=screen.width+"x"+screen.height;
+	cd=screen.colorDepth;
+} 
+
+if(!dt){ 
+	dt="";
+}
+if(!dr){
+	dr="";
+}
+if(!du){
+	du="";
+}
+if(!ce){
+	ce="";
+}
+if(!je){
+	je="";
+}
+var t = new Date;
+var tye=(_trk_bMSIE)?(t.getYear()):(t.getFullYear());
+var tmo=t.getMonth()+1;
+var tda=t.getDate();
+var tho=t.getHours();
+var tmi=t.getMinutes();
+var tse=t.getSeconds();
+var tzo=t.getTimezoneOffset();
+var tc = "";
+var prtcl=document.location.protocol.indexOf("https")!=-1?"https://":"http://";
+if(prtcl=="https://") _TRK_SERVER=_TRK_DOMAIN;
+tc=tc+prtcl+_TRK_SERVER;
+var bPNF=((typeof _TRK_PI)!="undefined" && _TRK_PI=="PNF")?true:false;
+if(bPNF) tc=tc+"/tracker_click.tsp";
+else tc=tc+"/tracker.1.tsp";
+tc=tc+"?u="+_TRK_U+"&XU=&TREX="+_TRK_EX;
+tc=tc+"&UID="+_TRK_UID+"&SID="+_TRK_SID;
+if(bPNF) { tc=tc+"&rnd="+Math.random()+"&CKFL="+_TRK_PI+"&CKDATA="+_trk_escape(du);
+} else { tc=tc+"&dr="+_trk_escape(dr)+"&XDR="+"&dt="+_trk_escape(dt)+"&du="+_trk_escape(du);
+if((typeof _TRK_CP)!="undefined" && _TRK_CP!="") tc=tc+"&CP="+_trk_escape(_TRK_CP)+"&XCP=";
+if((typeof _TRK_PI)!="undefined" && _TRK_PI!="") tc=tc+"&PI="+_TRK_PI;
+if((typeof _TRK_PN)!="undefined" && _TRK_PN!="") tc=tc+"&PN="+_trk_escape(_TRK_PN);
+if((typeof _TRK_MF)!="undefined" && _TRK_MF!="") tc=tc+"&MF="+_trk_escape(_TRK_MF);
+if((typeof _TRK_OA)!="undefined" && _TRK_OA!="") tc=tc+"&OA="+_TRK_OA;
+if((typeof _TRK_OP)!="undefined" && _TRK_OP!="") tc=tc+"&OP="+_trk_escape(_TRK_OP);
+if((typeof _TRK_OE)!="undefined" && _TRK_OE!="") tc=tc+"&OE="+_TRK_OE;
+if((typeof _TRK_CC)!="undefined" && _TRK_CC!="") tc=tc+"&CC="+_TRK_CC;
+if((typeof _TRK_RK)!="undefined" && _TRK_RK!="") tc=tc+"&RK="+_trk_escape(_TRK_RK);
+if((typeof _TRK_SX)!="undefined" && _TRK_SX!="") tc=tc+"&SX="+_TRK_SX;
+if((typeof _TRK_AG)!="undefined" && _TRK_AG!="") tc=tc+"&AG="+_TRK_AG;
+if((typeof _TRK_IK)!="undefined" && _TRK_IK!="") tc=tc+"&IK="+_trk_escape(_TRK_IK);
+if((typeof _TRK_CN)!="undefined" && _TRK_CN!="") tc=tc+"&CN="+_trk_escape(_TRK_CN);
+tc=tc+"&js=Y"+"&ss="+escape(ss)+"&cd="+cd+"&ce="+ce+"&je="+je+"&tzo="+tzo+"&tye="+tye+"&tmo="+tmo+"&tda="+tda+"&tho="+tho+"&tmi="+tmi+"&tse="+tse;
+if((typeof _TRK_VN)!="undefined" && _TRK_VN>=0) tc=tc+"&VN="+_TRK_VN;
+if((typeof _TRK_CR)!="undefined" && _TRK_CR!="") tc=tc+"&CR="+_trk_escape(_TRK_CR)+"&XCR=1";
+if((typeof _TRK_CQ)!="undefined" && _TRK_CQ!="") tc=tc+"&CQ="+_trk_escape(_TRK_CQ)+"&XCQ=1";
+} return tc;
+}var _TRK_LIFE=_trk_getParameter("_L_");
+if(_TRK_LIFE=="") _TRK_LIFE=14;
+_TRK_LIFE = parseInt(_TRK_LIFE)*24*60*60*1000;
+if ((typeof _TRK_U) != "undefined" && _TRK_U != "") { _TRK_U = _TRK_U;
+} else { var _TRK_U = "";
+}var _TRK_U_P=_trk_getParameter("_U_");
+var _TRK_U_C= _trk_getCookie("_TRK_U");
+if(_TRK_U_C!="") _TRK_U=_TRK_U_C;
+if(_TRK_U_P!="") _TRK_U=_TRK_U_P;
+if(_TRK_U!="" && _TRK_U_P!="") _trk_setCookie("_TRK_U",_TRK_U,_TRK_LIFE);
+var _TRK_CC_C=_trk_getCookie("_TRK_CC");
+var _TRK_CC_P=_trk_getParameter("_C_");
+if((typeof _TRK_CC)!="undefined" && _TRK_CC!="") _TRK_CC_P=_TRK_CC;
+if(_TRK_CC_C!="") _TRK_CC=_TRK_CC_C;
+if(_TRK_CC_P!="") _TRK_CC=_TRK_CC_P;
+if((typeof _TRK_CC)!="undefined" && _TRK_CC!="" && _TRK_CC_P!="") _trk_setCookie("_TRK_CC",_TRK_CC,_TRK_LIFE);
+var _TRK_RK_C=_trk_getCookie("_TRK_RK");
+var _TRK_RK_P=_trk_getParameter("_R_");
+if((typeof _TRK_RK)!="undefined" && _TRK_RK!="") _TRK_RK_P=_TRK_RK;
+if(_TRK_RK_C!="") _TRK_RK=_TRK_RK_C;
+if(_TRK_RK_P!="") _TRK_RK=_TRK_RK_P;
+if((typeof _TRK_RK)!="undefined" && _TRK_RK!="" && _TRK_RK_P!="") _trk_setCookie("_TRK_RK",_TRK_RK,_TRK_LIFE);
+var _SS_LIFE = 30*60*1000;
+var _TRK_EX = _trk_getCookie("_TRK_EX");
+if( _TRK_EX == "" ) _TRK_EX = 0;
+_TRK_EX ++;
+_trk_setCookie("_TRK_EX",_TRK_EX,_SS_LIFE);
+var _TRK_UID=_trk_getCookie("_TRK_UID").split(":")[0];
+var _TRK_VN=_trk_getCookie("_TRK_UID").split(":")[1];
+var _TRK_SID=_trk_getCookie("_TRK_SID");
+if(_TRK_UID=="") _TRK_UID=getNewSID(32);
+if(_TRK_VN=="" || _TRK_VN=="NaN" || typeof(_TRK_VN)=="undefined") _TRK_VN=0;
+else _TRK_VN=parseInt(_TRK_VN);
+if(_TRK_SID=="") { _TRK_SID=getNewSID(32);
+_TRK_VN++;
+}_trk_setCookie("_TRK_UID",_TRK_UID+":"+_TRK_VN.toString(),30*365*24*60*60*1000);
+_trk_setCookie("_TRK_SID",_TRK_SID,_SS_LIFE);
+var _TRK_CR=_trk_getCookie("_TRK_CR");
+var _TRK_CQ=_trk_getCookie("_TRK_CQ");
+if(_TRK_EX==1) { var dr = self.document.referrer;
+var tdu = "";
+eval("try{ tdu=top.document.location.href;}catch(_e){}");
+var _TRK_CR_S = (dr==tdu ? top.document.referrer : self.document.referrer);
+if(_TRK_CR_S!="") _TRK_CR=_TRK_CR_S;
+if((typeof _TRK_CR)!="undefined" && _TRK_CR!="" && _TRK_CR_S!="") _trk_setCookie("_TRK_CR",_trk_escape(_TRK_CR),_TRK_LIFE);
+var _TRK_CQ_S = (dr==tdu ? top.document.location.search : self.document.location.search);
+if(_TRK_CQ_S!="") _TRK_CQ=_TRK_CQ_S;
+if((typeof _TRK_CQ)!="undefined" && _TRK_CQ!="" && _TRK_CQ_S!="") _trk_setCookie("_TRK_CQ",_trk_escape(_TRK_CQ),_TRK_LIFE);
+}var _trk_code_base=_trk_make_code(_L_TD,_TRK_LID);
+var _trk_code_chan="";
+if(_TRK_U!="") _trk_code_chan=_trk_code_base.replace(/\?u=[0-9A-z]+&XU=/g,"?u="+_TRK_U+"&XU=");
+var _trk_img_base=new Image();
+var _trk_img_chan=new Image();
+var _trk_img_base_click=new Image();
+var _trk_img_chan_click=new Image();
+if(_trk_bJS12==true) { if(_trk_bMSIE) { _trk_img_base.src=_trk_code_base;
+if(_TRK_U!="") _trk_img_chan.src=_trk_code_chan;
+} else { setTimeout("_trk_img_base.src=_trk_code_base;",1);
+if(_TRK_U!="") setTimeout("_trk_img_chan.src=_trk_code_chan;",1);
+}} else { if(_trk_bMSIE) document.write('<div style=\"display: none\">');
+document.write('<img src=\"'+_trk_code_base+'\" height=\"0\" width=\"0\">');
+if(_TRK_U!="") document.write('<img src=\"'+_trk_code_chan+'\" height=\"0\" width=\"0\">');
+if(_trk_bMSIE) document.write('<\/div>');
+}
+
+
+function _trk_flashEnvView(env1,env2,env3,env4,env5,env6,env7,env8,env9,env10,env11,env12){ 
+	var _trk_code_flash=_trk_code_base;
+	for (var envCnt=1; envCnt< 13; envCnt++) {
+		if( (eval("env"+envCnt) != "") && ( typeof eval("env"+envCnt) != "undefined" ) ) {
+			var trk_str  = eval("env"+envCnt);			
+			if(trk_str.indexOf("_TRK_CP")>=0){  
+				var trk_cp 	= trk_str.split('=');
+				var _TRK_CP = trk_cp[1];
+				_trk_code_flash=_trk_code_flash.replace(/&CP=.*&XCP=/g,"&XCP=");
+				_trk_code_flash=_trk_code_flash.replace(/&dr=.*&XDR=/g,"&XDR=");
+				_trk_code_flash=_trk_code_flash+"&dr=&CP="+_trk_escape(_TRK_CP)+"&rnd="+Math.random();
+				if(_TRK_U!="") {
+					_trk_code_flash=_trk_code_flash.replace(/\?u=[0-9A-z]+&XU=/g,"?u="+_TRK_U+"&XU=");
+				}
+			}
+			
+			if((trk_str.indexOf("_TRK_PN")>=0) || (trk_str.indexOf("_TRK_MF")>=0) || (trk_str.indexOf("_TRK_RK")>=0) || (trk_str.indexOf("_TRK_OP")>=0) || (trk_str.indexOf("_TRK_IK")>=0) || (trk_str.indexOf("_TRK_CN")>=0)){   
+				var trk_env = trk_str.split('=');
+				var _TRK_ENV = _trk_escape(trk_env[1]);
+				var tkr_env_name = trk_str.substring(trk_str.indexOf('_',1)+1,trk_str.lastIndexOf('='));
+				var _trk_envs = "&"+tkr_env_name+"="+ _TRK_ENV;
+				if( _trk_code_flash.indexOf("&"+tkr_env_name+"=") > 0) {
+					var regVal = "\&"+tkr_env_name+"\=(.*)(\&PN\=|\&MF\=|\&OA\=|\&OP\=|\&OE\=|\&CC\=|\&RK\=|\&SX\=|\&AG\=|\&IK\=|\&js\=|\&CN\=)";
+					var envReg = new RegExp(regVal, 'gi');
+					var envRst = _trk_code_flash.match(envReg);
+					var envRst = envRst.toString();
+					var envArr = envRst.split('&');
+					var envVar = envArr[1];
+					_trk_code_flash=_trk_code_flash.replace("&"+envVar+"&", _trk_envs);
+				} else {
+					_trk_code_flash = _trk_code_flash+"&"+tkr_env_name+"="+_TRK_ENV;
+				}
+			}
+			if((trk_str.indexOf("_TRK_PI")>=0) || (trk_str.indexOf("_TRK_OA")>=0) || (trk_str.indexOf("_TRK_OE")>=0) || (trk_str.indexOf("_TRK_CC")>=0) || (trk_str.indexOf("_TRK_SX")>=0) || (trk_str.indexOf("_TRK_AG")>=0)){   
+				var trk_env = trk_str.split('=');
+				var _TRK_ENV = trk_env[1];
+				var tkr_env_name = trk_str.substring(trk_str.indexOf('_',1)+1,trk_str.lastIndexOf('='));
+				var _trk_envs = "&"+tkr_env_name+"="+_TRK_ENV+"&";
+				
+				if( _trk_code_flash.indexOf("&"+tkr_env_name+"=") > 0) {
+					var regVal = "\&"+tkr_env_name+"\=(.*)(\&PN\=|\&MF\=|\&OA\=|\&OP\=|\&OE\=|\&CC\=|\&RK\=|\&SX\=|\&AG\=|\&IK\=|\&js\=|\&CN\=)";
+					var envReg = new RegExp(regVal, 'gi');
+					var envRst = _trk_code_flash.match(envReg);
+					var envRst = envRst.toString();
+					var envArr = envRst.split('&');
+					var envVar = envArr[1];
+					_trk_code_flash=_trk_code_flash.replace("&"+envVar+"&", _trk_envs);
+				} else {
+					_trk_code_flash = _trk_code_flash+"&"+tkr_env_name+"="+_TRK_ENV;
+				}
+			}
+		} 
+	} 
+	_trk_img_base_click.src=_trk_code_flash ;
+}
+
+function _trk_flashContentsView(_TRK_PI, _TRK_CP) { 
+	var _trk_code_flash=_trk_code_base;
+	var _trk_piv = "&PI="+_TRK_PI+"&";
+	_trk_code_flash=_trk_code_flash.replace(/&CP=.*&XCP=/g,"&XCP=");
+	_trk_code_flash=_trk_code_flash.replace(/&dr=.*&XDR=/g,"&XDR=");
+	if( _trk_code_flash.indexOf("&PI=") > 0) {
+		var regVal = "\&PI\=(.*)(\&PN\=|\&MF\=|\&OA\=|\&OP\=|\&OE\=|\&CC\=|\&RK\=|\&SX\=|\&AG\=|\&IK\=|\&js\=)";
+		var envReg = new RegExp(regVal, 'gi');
+		var envRst = _trk_code_flash.match(envReg);
+		var envRst = envRst.toString();
+		var envArr = envRst.split('&');
+		var envVar = envArr[1];
+		_trk_code_flash=_trk_code_flash.replace("&"+envVar+"&", _trk_piv );
+	} else { 
+		_trk_code_flash = _trk_code_flash+"&PI="+_TRK_PI;
+	} 
+	_trk_img_base_click.src=_trk_code_flash+"&dr=&CP="+_trk_escape(_TRK_CP)+"&rnd="+Math.random();
+	if(_TRK_U!="") { 
+		_trk_code_flash=_trk_code_flash.replace(/\?u=[0-9A-z]+&XU=/g,"?u="+_TRK_U+"&XU=");
+		_trk_img_chan_click.src=_trk_code_flash+"&dr=&CP="+_trk_escape(_TRK_CP)+"&rnd="+Math.random();
+	}
+}
+
+function _trk_clickTrace(_TRK_CKFL,_TRK_CKDATA) { 
+	var _trk_code_click = _trk_code_base.substr(0,_trk_code_base.indexOf("tracker.1.tsp"));
+	_trk_code_click = _trk_code_click + "tracker_click.tsp?rnd=" + Math.random() + "&CKFL=" 
+			          + _TRK_CKFL + "&CKDATA=" + _trk_escape(_TRK_CKDATA) + "&UID=" + _trk_getCookie("_TRK_UID").split(":")[0]+"&SID="+_trk_getCookie("_TRK_SID");
+	_trk_img_base_click.src=_trk_code_click+"&u="+_TRK_LID;
+	if(_TRK_U!="") _trk_img_chan_click.src=_trk_code_click+"&u="+_TRK_U;
+}
+
+function _trk_adClick( adSvr, svcCode, adCode ) {
+	var ac = "";
+	var prtcl=document.location.protocol.indexOf("https")!=-1?"https://":"http://";
+	if( prtcl == "https://" ){
+		adSvr="ssl."+_TRK_DOMAIN;
+	}
+	ac = ac + prtcl + adSvr;
+	_trk_img_base_click.src = ac + "/tracker_ad.tsp?u=" + svcCode + "&mode=C&adCode=" + adCode;
+}
+
+function _trk_adClickImpress( adSvr, svcCode, adCode ) {
+	var ac = "";
+	var prtcl=document.location.protocol.indexOf("https")!=-1?"https://":"http://";
+	if( prtcl=="https://" ){
+		adSvr=_TRK_DOMAIN;
+	}
+	ac = ac + prtcl + adSvr;
+	_trk_img_base_click.src = ac + "/tracker_ad.tsp?u=" + svcCode + "&mode=I&adCode=" + adCode;
+}
+
+</script>
+<noscript>
+</noscript>
+<!-- END OF LOGGER TRACKING SCRIPT -->
+<div class="footer">
+	<div class="cont">
+		<div class="left_txt">
+			<p class="addr">
+				<!-- <span>우)30128 세종특별자치시 한누리대로 328 도시통합정보센터(나성동 725) </span> <a
+					title="새창열림" href="http://www.sejong.go.kr/kor/sitemap_13.do"
+					target="_blank"> <span><b>&#60;개인정보처리방침&#62;</b></span> -->
+					<!-- 개인정보처리방침 링크주소 변경 - 191011 박선영 -->
+					<span>우)30128 세종특별자치시 한누리대로 328 도시통합정보센터(나성동 725) </span> <a
+					title="새창열림" href="https://www.sejong.go.kr/kor/sitemap_06.do"
+					target="_blank"> <span><b>&#60;개인정보처리방침&#62;</b></span>
+				</a>
+			</p>
+			<p class="addr" style="padding-top: 0px;">
+				<span>대표전화 | [배차/노선 문의]044-120, [교통정보시스템문의] 044-300-6664, 044-300-7937</span> 
+				<br> 
+				<span>&emsp;&emsp;&emsp;&emsp;&emsp;[분실물/버스운행 문의]044-867-7166(세종교통), 044-867-0125(세종도시교통공사)</span>
+			</p>
+			<p class="copy">Copyright ⓒ 2016 세종특별자치시. All Rights Reserved.</p>
+			<!-- 				<p class="addr">
+					<a title="새창열림" href="http://www.sejong.go.kr/kor/sitemap_13.do" target="_blank">
+						<span><b>개인정보처리방침</b></span>
+					</a>
+				</p>-->
+		</div>
+	<!-- 	<div class="eb_icon">
+			<a href="../../web/information/information_mark.view"><img
+				src="../../resources/images_new/w/icon_eb.png" style='width:70px;height:40px' alt="접근성인증마크"></a>
+			</div>
+		 -->
+		<div class="right_txt">
+			<div class="weather">
+				<!-- <a href="../../web/information/information_mark.view"><img
+				src="../../resources/images_new/w/icon_eb.png" style='width:110px;height:75px' alt="접근성인증마크"></a> -->
+				<a title="새창" href="http://www.wa.or.kr/board/list.asp?BoardID=0006" target="_blank">
+				<img
+				src="../../resources/images_new/w/icon_eb_251026.png" style='width:110px;height:75px' alt="(사)한국장애인단체총연합회 한국웹접근성인증평가원 웹 접근성 우수사이트 인증마크(WA인증마크)"></a>
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+				<!-- <div class="txt">
+						<a title="새창열림" href="https://www.sejong.go.kr/air/index.do" target="_blank">
+						<b><font size = "2">미세먼지</font>
+							<font size = "3"><span id="text_dust"></span></font>
+						</b>
+						</a>
+						<p class="today_txt1" id="text_time">$("#text_time")</p>
+						
+				</div> -->
+				<!-- <div class="txt">
+					<p class="today_txt" id="date"></p>
+					<p>
+						<span class="h_txt" id="text_temp">03℃</span>
+					</p>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<p class="icon">
+					<img id="img_air" alt="날씨맑음" src="../../resources/images_new/c/img_weather01.png">	
+				</p> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+		
+	</div>
+</body>
+</html>

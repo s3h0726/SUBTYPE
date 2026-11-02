@@ -1,0 +1,825 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko" xml:lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- 웹취약점(CSRF) 조치: Ajax 요청용 토큰 -->
+<meta name="csrf-token" content="411ca6bb28152d8fb760d699100fc878f5fc6b7d8e96a9752976a49888577c03"/>
+<meta name="csrf-param" content="CSRFToken"/>
+
+<meta property="og:title" content="광주광역시 버스운행정보" /> <!-- 사이트제목을 넣어주세요 -->
+<meta name="description" content="버스 노선번호, 정류소, 동이름, 지명 검색, 분실물 확인전화, 교통정보 제공." /> <!-- 상호하단 소개문구 40자 이내로 넣어주세요 -->
+<meta property="og:description" content="버스 노선번호, 정류소, 동이름, 지명 검색, 분실물 확인전화, 교통정보 제공." /> <!-- 상호하단 소개문구 40자 이내로 넣어주세요 -->
+<meta property="og:url" content="https://bus.jeonnam-gwangju.go.kr/" /> <!-- 홈페이지주소를 넣어주세요  -->
+<meta name="Robots" content="INDEX, FOLLOW" />
+
+<meta name="naver-site-verification" content="22137f487ade418e3f02a585b68a16ac351672bc"/> <!-- 네이버 웹마스터 도구 -->
+<meta name="google-site-verification" content="R6IUC2ysiWROOgg5XpsyZ72l-5JZVo57Lslx4HjUEL8" /> <!--  구글 웹마스터 도구 -->
+<meta name="google-site-verification" content="02B9X5phJsutuzSNgqXVupMTFCOcXmDfy-iq8VT2PRA" /> <!-- 구글 웹마스터 도구2 -->
+
+<title>전남광주통합특별시 버스정보</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare/nanumsquare.css"><!-- 웹취약점 9.1 조치: 주소의 버전(@1.0) 제거 -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+
+<link rel="canonical" href="https://bus.jeonnam-gwangju.go.kr/"> <!-- 대표 URL -->
+
+<link rel="stylesheet" href="/css/style.css" type="text/css"/>
+<link rel="stylesheet" href="/css/default.css" type="text/css"/>
+<link rel="stylesheet" href="/css/basic_top.css" type="text/css"/>
+<!--[if lte IE 8]> <link rel="stylesheet" href="/css/basic_top_ie.css" type="text/css"/> <![endif]-->
+
+<!--  
+<link rel="SHORTCUT ICON"    href="/images/ico/favicon.ico" type="text/css" />
+<link rel="apple-touch-icon" href="/images/ico/favicon.ico" type="text/css" />
+ -->
+<link rel="stylesheet" href="/css/sub08.css" type="text/css"/>
+<link type="text/css" rel="stylesheet" href="/jqwidgets/styles/jqx.base.css"/>
+<link type="text/css" rel="stylesheet" href="/jqwidgets/styles/jqx.energyblue.css"/>
+
+<!-- 신규 슬라이드 Font Awesome 아이콘용 (웹취약점 9.1 조치: 주소에 버전이 보이는 CDN 대신 자체 사본) -->
+<link rel="stylesheet" href="/common/low/vendor/fontawesome-free/css/all.min.css" />
+
+</head>
+<script type="text/javascript">
+// 자바스크립트에서 사용하는 전역변수 선언
+var g4_is_gecko  = navigator.userAgent.toLowerCase().indexOf("gecko") != -1;
+var g4_is_ie     = navigator.userAgent.toLowerCase().indexOf("msie") != -1;
+</script>
+
+<script type="text/javascript" src="/js/jquery-pc.min.js"></script>
+<script type="text/javascript" src="/js/csrf.js"></script><!-- 웹취약점(CSRF) 조치: jQuery 바로 다음 -->
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/navigation.js"></script>
+
+<!-- 구도메인을 신규도메인으로  -->
+
+
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<a name="g4_head"></a>
+
+
+<script>
+fnTCounter('WEB');
+</script>
+
+<script type="text/javaScript" language="javascript" defer="defer">
+<!--
+$(document).ready(function () {
+    document.title = '전남광주통합특별시 버스운행정보';
+    /*
+    if(getCookie("notToday2")!="Y"){
+        popupOpenNew('/popup/popup2', '550', '600', '5', '25');
+	}
+	*/
+
+
+});
+
+/* 공지사항 화면 이동 function */
+function fnView(id) {
+    var form = document.form1;
+    form.B_IDX.value = id;
+    form.action = "/guide/notice/noticeView;jsessionid=Fv3oy6fBYIh95NMRCnz65DW0ENOyBi1albY4YObworqQfH3nTO13WbnsFqVdVpKv.GJBIMS01_servlet_engine2";
+    form.submit();
+}
+
+function popupOpenNew(url, w, h, l, t){
+    var popUrl = url;	//팝업창에 출력될 페이지 URL
+    var popOption = "width="+ w +", height="+ h +", left="+ l +", top="+ t +", scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+    	window.open(popUrl,"",popOption);
+}
+
+function getCookie(name) {
+    var cName = name + "=";
+    var x = 0; // 기존 코드의 x 사용
+
+    while (x <= document.cookie.length) {  // 여기서 i가 아니라 x를 사용해야 함
+        var y = (x + cName.length);
+        if (document.cookie.substring(x, y) == cName) {
+            var endOfCookie = document.cookie.indexOf(";", y);
+            if (endOfCookie == -1)
+                endOfCookie = document.cookie.length;
+            return unescape(document.cookie.substring(y, endOfCookie));
+        }
+        x = document.cookie.indexOf(" ", x) + 1;
+        if (x == 0)
+            break;
+    }
+    return "";
+}
+
+/* 저상버스 예약서비스 새탭 열기 */
+function openReservationService() {
+    // 실제 예약 서비스 URL로 변경해주세요
+    var reservationUrl = "/low/main";
+    window.open(reservationUrl, "_blank");
+}
+
+-->
+</script>
+
+<!-- Font Awesome 아이콘용 (웹취약점 9.1 조치: 주소에 버전이 보이는 CDN 대신 자체 사본) -->
+<link rel="stylesheet" href="/common/low/vendor/fontawesome-free/css/all.min.css" />
+
+
+<style>
+    .right_banner_wrap { position:absolute; left:50%; margin-left:500px; margin-top:170px; background:#f00; }
+    .banner_img1 { width:350px; border:1px solid #999; }
+
+    .bottom_banner_wrap { position:absolute; left:50%; margin-left:-40px; margin-top:348px; background:#fff;
+        width:540px; height:180px;
+     }
+     .banner_img2 { margin-left:5px; margin-top:2px; }
+
+     /*  */
+     #gj_container {
+        width:1130px;
+     }
+	 #gj_footer_content {
+        width:1130px;
+     }
+     #gj_main_right {
+        /* 699 */
+        width:850px;
+        background: url(/images/main_home/main_visual3.png) top no-repeat !important;
+    }
+
+
+     /* 왼쪽 - 이용안내 부분  */
+     #gj_guide ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #gj_guide ul li {
+        flex: 0 0 45%; /* 2열 구성 */
+        text-align: center;
+        margin: 2px; /* 위아래 여백을 작게 */
+    }
+
+    #gj_guide ul li img {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #gj_guide ul li:nth-child(2),
+    #gj_guide ul li:nth-child(4) {
+      position: relative;
+      left: 5px;
+    }
+
+   /* 신규 슬라이드 */
+   #mainSlider {
+    width: 830px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    margin: 27px auto 0 auto; /* 위쪽 마진 10px, 좌우 가운데 정렬 유지, 아래 마진 0 */
+    left: 5px; /* ⬅️ 오른쪽으로 10px 이동 */
+    border: 1px solid #ccc;
+    border-radius: 30px; /* 추가 */
+  }
+
+  .slider-wrapper {
+    display: flex;
+    width: calc(830px * 3); /* 이미지 수만큼 곱함 */
+    height: 400px;
+    position: relative;
+    left: 0;
+    transition: left 0.5s;
+  }
+
+  .slider-wrapper img {
+    width: 830px;
+    height: 400px;
+    flex-shrink: 0;
+    border-radius: 20px;
+  }
+
+  .notify_ctrl.notify_ctrl1 {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+/*     background: rgba(0, 0, 0, 0.4);  기본 */
+/*     background: rgba(128, 0, 128, 0.4); /* 퍼플톤, 투명도 40% */
+    background: rgba(18, 30, 62, 0.6); /* #121e3e + 60% 투명도 */
+
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .notify_ctrl a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .notify_ctrl .paging {
+    font-weight: bold;
+  }
+
+  .notify_ctrl i {
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+  }
+
+  /* 저상버스 예약서비스 스타일 */
+  #gj_low_floor_bus {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #gj_low_floor_bus:hover {
+  <!--  transform: translateY(-3px); -->
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  }
+
+  .low-floor-bus-container {
+    text-align: center;
+    color: white;
+  }
+
+  .service-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .service-description {
+    font-size: 13px;
+    margin: 0 0 15px 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+  }
+
+  .reservation-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    min-width: 180px;
+    justify-content: center;
+  }
+
+  .reservation-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .reservation-btn:active {
+    transform: scale(0.98);
+  }
+
+  .reservation-btn i {
+    font-size: 16px;
+  }
+
+  .reservation-btn .fas.fa-external-link-alt {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+
+  /* 배너 왼쪽 아래 버튼 2개 (첨부 test2.html/이미지 참고) */
+  .slider-wrapper > .slide {
+    position: relative;   /* 버튼 위치 기준점 */
+  }
+
+  .bl-btn-group {
+    position: absolute;
+    left: 0;
+    bottom: 64px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;  /* 두 버튼이 더 긴 쪽 폭에 맞춰 같은 길이가 되도록 */
+    gap: 8px;
+  }
+
+  /* :link/:visited까지 선택자에 넣는 이유: default.css의 "a:link, a:visited { color:#3A5870; font-size:11px }"가
+     명시도가 더 높아서 .bl-btn { color:#fff } 만으로는 덮어써짐 (배너 버튼 색이 어둡게 보이던 것과 동일한 원인) */
+  .bl-btn,
+  .bl-btn:link,
+  .bl-btn:visited {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    height: 48px;
+    padding: 0 20px 0 16px;
+    border-radius: 0 999px 999px 0;  /* 왼쪽은 각지게(잘린 느낌), 오른쪽만 둥글게 */
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+    text-decoration: none;
+    background: rgba(110, 110, 110, 0.75);  /* 기본: 어두운 회색 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .bl-btn .arrow {
+    font-size: 15px;
+    font-weight: 400;
+    transition: transform 0.25s ease;
+  }
+
+  .bl-btn:hover {
+    background: linear-gradient(90deg, rgba(138, 79, 226, 0.88) 0%, rgba(45, 114, 225, 0.88) 100%);  /* hover: 보라 → 파랑 그라데이션 */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  .bl-btn:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  /* 261014 (배너작업) 개편 배너(bus_reform_261014.jpg) 그림 버튼 위에 겹치는 투명 링크
+     좌표는 830x400 기준 실측값 → 배너 이미지를 바꾸면 다시 맞춰야 함
+     :link/:visited 포함 이유는 위 .bl-btn 주석과 동일 */
+  .bn-hot,
+  .bn-hot:link,
+  .bn-hot:visited {
+    position: absolute;
+    z-index: 3;
+    left: 447px;
+    width: 264px;
+    height: 40px;
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bn-hot-down   { top: 183px; }  /* 주황: 개편 노선 내려받기 */
+  .bn-hot-search { top: 231px; }  /* 초록: 개편 노선 바로 검색 */
+
+  .bn-hot:hover,
+  .bn-hot:focus {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  .bn-hot:focus {
+    outline: 2px solid #fff;   /* 키보드(Tab) 이동 시 위치 표시 */
+    outline-offset: 2px;
+  }
+
+  /* 화면에는 안 보이고 스크린리더만 읽는 버튼 이름 */
+  .bn-hot-txt {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+</style>
+
+<form name="form1" method="post"><input type="hidden" name="CSRFToken" value="411ca6bb28152d8fb760d699100fc878f5fc6b7d8e96a9752976a49888577c03"/>
+<input type="hidden" name="B_IDX" />
+</form>
+
+<div id="wrap">
+    <div id="gj_wrap">
+
+        <!-- header start -->
+        <div id="gj_header">
+            
+
+
+
+
+<!-- 신규 메뉴바 -->
+
+
+<script>
+$(document).ready(function () {
+    
+    // 마우스
+    $('#top_menu_wrap').mouseover(function() {
+        $('#sub_bar').css('display', 'block');
+        $('#top_menu_wrap #top_menu_wrap_li #top_sub_list').css('display', 'block');
+    });
+    $('#top_menu_wrap').mouseout(function() {
+        $('#sub_bar').css('display', 'none');
+        $('#top_menu_wrap #top_menu_wrap_li #top_sub_list').css('display', 'none');
+    });
+    
+	// 키보드
+    $('#top_menu_wrap').bind('keyup', function() { // 메뉴바의 각 메뉴들에 마우스를 올리거나 키보드로 이동하면,
+        $('#sub_bar').css('display', 'block');
+    });
+    $('#top_menu_wrap').bind('keyup', function() { // 메뉴바의 각 메뉴들에 마우스를 올리거나 키보드로 이동하면,
+        $('#top_menu_wrap #top_menu_wrap_li #top_sub_list').css('display', 'block');
+    });
+    
+    $('#top_home_a').bind('keyup', function() { // 메뉴바의 각 메뉴들에 마우스를 올리거나 키보드로 이동하면,
+        $('#sub_bar').css('display', 'none');
+        $('#top_menu_wrap #top_menu_wrap_li #top_sub_list').css('display', 'none');
+    });
+    
+    $('#top_logo').bind('keyup', function() { // 메뉴바의 각 메뉴들에 마우스를 올리거나 키보드로 이동하면,
+        $('#sub_bar').css('display', 'none');
+        $('#top_menu_wrap #top_menu_wrap_li #top_sub_list').css('display', 'none');
+    });
+    
+    
+}); 
+    
+    
+</script>
+
+<div id="top_bar"> 
+    <div id="center_wrap">
+        <a href="/main/main" id="top_logo"><img src="/images/top/logo3.png" id="top_logo_img"></a>
+        <ul id="top_menu_wrap"> 
+            <li id="top_menu_wrap_li">
+                <a href="/bisinfo/bisInfo" id="top_a">버스시스템소개</a>
+                <ul id="top_sub_list" style="border-left:1px solid #666;">
+                    <li id="top_sub_li"><a href="/bisinfo/bisInfo" id="sub_a">버스정보시스템소개</a></li>
+                    <li id="top_sub_li"><a href="/bisinfo/orgGuide" id="sub_a">관련기관안내</a></li>
+                </ul>
+            </li>
+            <li id="top_menu_wrap_li">
+                <a href="/busmap/lineSearch" id="top_a">버스도착정보</a>
+                <ul id="top_sub_list">
+                    <li id="top_sub_li"><a href="/busmap/lineSearch" id="sub_a">노선검색</a></li>
+                    <li id="top_sub_li"><a href="/busmap/lowSearch" id="sub_a">노선검색(저상버스)</a></li>
+                    <li id="top_sub_li"><a href="/busmap/stationSearch" id="sub_a">정류소검색</a></li>
+                    <li id="top_sub_li"><a href="/busmap/locationSearch" id="sub_a">버스위치검색</a></li>
+                    <li id="top_sub_li"><a href="/busmap/routeSearch" id="sub_a">환승검색</a></li>
+                    <li id="top_sub_li"><a href="/busmap/quickSearch" id="sub_a">빠른길찾기</a></li>
+                </ul>
+            </li>
+            <li id="top_menu_wrap_li">
+                <a href="/guide/trafficfare/trafficFare" id="top_a">버스교통정보</a>
+                <ul id="top_sub_list">
+                    <li id="top_sub_li"><a href="/guide/trafficfare/trafficFare" id="sub_a">교통카드/요금안내</a></li>
+                    <li id="top_sub_li"><a href="/guide/trafficfare/welfareCard" id="sub_a">무임교통카드</a></li>
+                    <li id="top_sub_li"><a href="/guide/stnguide/stnGuide" id="sub_a">정류소번호안내</a></li>
+                    <li id="top_sub_li"><a href="/guide/bustime/busTime" id="sub_a">운행시간표</a></li>
+                </ul>
+            </li>
+			<!--
+            <li id="top_menu_wrap_li">
+                <a href="/mybus/myBus" id="top_a">마이버스</a>
+                <ul id="top_sub_list">
+                    <li id="top_sub_li"><a href="/mybus/myBus" id="sub_a">마이버스란</a></li>
+                    <li id="top_sub_li"><a href="/mybus/myBusMng" id="sub_a">마이버스관리</a></li>
+                </ul>
+            </li>
+			-->
+            <li id="top_menu_wrap_li">
+                <a href="/guide/notice/noticeList" id="top_a">이용안내</a>
+                <ul id="top_sub_list">
+                    <li id="top_sub_li"><a href="/guide/notice/noticeList" id="sub_a">공지사항</a></li>
+                    <li id="top_sub_li"><a href="/guide/usemethod/busArriveInfo" id="sub_a">이용방법</a></li>
+                    <li id="top_sub_li"><a href="/guide/faq/faqList" id="sub_a">자주묻는질문</a></li>
+                    <li id="top_sub_li"><a href="/guide/lost/lostList" id="sub_a" style="color:#eee">분실물센터(이관)</a></li>
+                    <li id="top_sub_li"><a href="/guide/usemethod/siteMap" id="sub_a">사이트맵</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul id="top_menu_wrap_eng">
+            <li id="top_menu_wrap_eng_li">BIS INFO</li>
+            <li id="top_menu_wrap_eng_li">BUS INFORMATION</li>
+            <li id="top_menu_wrap_eng_li">BUS HELPER</li>
+            <!--<li id="top_menu_wrap_eng_li">MY BUS</li>-->
+            <li id="top_menu_wrap_eng_li">USE HELPER</li>
+        </ul>
+        <span id="top_span1"><a href="/main/main" id="top_home_a">HOME</a></span>
+        <span id="top_span2"><a href="/guide/usemethod/siteMap" id="top_home_a">SITEMAP</a></span>
+        
+    </div>    
+</div>
+<div id="sub_bar">
+</div>
+
+
+<!-- 기존 영역을 유지시키기 위함 gj_header(기존 주석처리) -->
+<div id="gj_header2">
+</div>
+
+
+
+        </div>
+        <!-- header end -->
+
+        <!-- container start -->
+        <div id="gj_container">
+
+            <!--container left부분 start -->
+            <div id="gj_main_left" style="width:248px;">
+                <div id="gj_notice">
+                    <h2><a href="/guide/notice/noticeList"><img src="/images/main/notice_title.gif" border="0" alt="공지사항" /></a></h2>
+
+                    <ul>
+                        <li>
+                            <!-- 공지사항 -->
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table01">
+                              <colgroup>
+                                  <col width="100%" />
+                              </colgroup>
+                              <thead>
+                                
+                                <tr>
+                                  
+                                    
+                                    <td class="notice_start"><p class="p_notice"><a href="javascript:fnView('1239')">&lt;임시경유 안내&gt; 16번 진흥더블파크 아파트 임시경유</a></p></td>
+                                    
+                                    
+                                  
+                                </tr>
+                                
+                                <tr>
+                                  
+                                    
+                                    <td class="notice_start"><p class="p_notice"><a href="javascript:fnView('1238')">&lt;미정차 및 우회운행 안내&gt; 금남로일대 집회</a></p></td>
+                                    
+                                    
+                                  
+                                </tr>
+                                
+                                <tr>
+                                  
+                                    
+                                    <td class="notice_start"><p class="p_notice"><a href="javascript:fnView('1237')">&lt;우회운행 안내&gt; 2026년 군분로 토요야시장 관련 우회운행</a></p></td>
+                                    
+                                    
+                                  
+                                </tr>
+                                
+                                <tr>
+                                  
+                                    
+                                    
+                                    <td class="notice_end"><p class="p_notice"><a href="javascript:fnView('1236')">&lt;경로변경 안내&gt; 도시철도 9공구 관련 경로변경 안내</a></p></td>
+                                    
+                                  
+                                </tr>
+                                
+                                
+                              </thead>
+                            </table>
+                            <!-- /공지사항 -->
+                        </li>
+                    </ul>
+                </div>
+                <div id="gj_guide" style="height:245px;">
+                    <h2><img src="/images/main/guide_title.gif" alt="이용안내" /></h2>
+                    <ul>
+                        <li><a href="/busmap/lineSearch"><img src="/images/main_home/mainmenu1.png" width="120" height="115" alt="버스도착정보" /></a></li>
+                        <li><a href="/busmap/locationSearch"><img src="/images//main_home/mainmenu2.png" width="120" height="115" alt="노선정보" /></a></li>
+                        <li><a href="/busmap/stationSearch"><img src="/images//main_home/mainmenu3.png" width="120" height="115" alt="정류소검색" /></a></li>
+                        <li><a href="/busmap/quickSearch"><img src="/images//main_home/mainmenu4.png" width="120" height="115" alt="빠른길찾기" /></a></li>
+                    </ul>
+                </div>
+                <div id="gj_phone" style="height:5px;">
+                    <!-- <img src="/images/main/phone.gif" border="0" alt="버스노선문의는 국번없이 바로 120" /> -->
+                </div>
+                <div id="gj_low_floor_bus" style="margin-top: 5px;">
+                    <div class="low-floor-bus-container">
+                        <h3 class="service-title">저상버스승하차 예약서비스</h3>
+                        <!-- <p class="service-description">편리한 저상버스 이용을 위한 예약 서비스</p> -->
+                        <button class="reservation-btn" onclick="openReservationService()">
+                            <i class="fas fa-wheelchair"></i>
+                            <span>예약하기</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+				<div style="margin-top:5px";>
+<!-- 				<a href="https://welfare.gwangju.go.kr"><img style="" src="/images/main/welfare_logo.gif" border="0" width="200px" height="35px"/></a> -->
+			 </div>
+
+            </div>
+            <!--container left부분 end -->
+
+
+            <!--container right부분 start -->
+            <div id="gj_main_right">
+
+                <div id="gj_popup">
+                    <div class="left" style="margin-top: 13px;">
+                    <!-- <a href="https://barosotong.gwangju.go.kr/agoraVView.do?pageId=platform109&seq=5308471&orderBy=B&sort=D&listType=C&searchCtgry=agora01&searchTp=T" target="_blank" ><img src="/images/banner/banner_210308.gif" ></a> -->
+                    </div>
+                    <div class="right">
+
+                    </div>
+                </div>
+
+                <!-- 신규 슬라이드 START -->
+                <div id="mainSlider">
+                  <div class="slider-wrapper">
+                    
+                    <div class="slide">
+                        <img src="/images/banner/bus_reform_261014.jpg" alt="2026년 10월 31일 더 새로워진 광주 시내버스를 만나보세요. 문의: 광주버스운송사업조합 062-227-8711, 광주청사 교통정책과 062-613-4991~4, 콜센터 062-120" />
+                        <a href="javascript:fnView('1222')" class="bn-hot bn-hot-down"><span class="bn-hot-txt">개편 노선 내려받기</span></a>
+                        <a href="http://125.136.150.185:8603/" class="bn-hot bn-hot-search" target="_blank" rel="noopener"><span class="bn-hot-txt">개편 노선 바로 검색</span></a>
+                    </div>
+                    
+					<!--
+                    <div class="slide">
+					<a href="https://gwangju.go.kr/traffic/contentsView.do?pageId=traffic61"><img src="/images/banner/image1.png" alt="슬라이드1" /></a>
+
+                    </div>
+					<a href="#"><img src="/images/banner/image2.png" alt="슬라이드2" /></a> -->
+					</div>
+
+
+
+
+                  <div class="notify_ctrl notify_ctrl1">
+                    <span class="paging"><span id="slide_index">1</span>/<span id="slide_total">3</span></span>
+                    <a href="#" class="prev" id="noti_prev1" title="이전슬라이드"><i class="fas fa-chevron-left"></i></a>
+                    <a href="#" class="next" id="noti_next1" title="다음슬라이드"><i class="fas fa-chevron-right"></i></a>
+                  </div>
+                </div>
+                <!-- 신규슬라이드 END  -->
+
+            </div>
+            <!--container right부분 end -->
+        </div>
+        <!-- container end -->
+
+        <!-- footer start -->
+        <div id="gj_footer">
+            <div id="gj_footer_content">
+                
+<style>
+.footer_left {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* 이미지와 텍스트 사이 간격 */
+  font-size: 13px;
+  color: #333;
+  padding-top: 20px; /* 상단 여백 추가 */
+}
+
+.footer_text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+   font-size: 11px;
+}
+
+.footer_left img {
+  vertical-align: middle;
+}
+</style>
+ 
+<div class="footer_left">
+    <!-- <a href="https://www.gwangju.go.kr/"><img src="/images/main_home/footer_logo.png" alt="주소" border="0" /></a> -->
+    <div class="footer_text">
+        <div>주소 : 전남광주통합특별시 서구 내방로 111(치평동) | 전화 : 062-120</div>
+        <div>Copyrightⓒ2014 전남광주통합특별시 교통정책과 All Rights Reserved.</div>
+    </div>
+</div>
+<div class="footer_right">
+    <select name="select" id="select" style="width:150px; height:19px;background :#EfEfef;border:1 solid #787878;cursor: hand; vertical-align:middle;">
+        <option selected="selected" value="/">관련사이트 바로가기</option>
+        <!-- <option value="http://www.gwangju.go.kr">광주시청</option> -->
+        <option value="https://its.sc.go.kr/main.view">순천시</option>
+        <option value="https://its.yeosu.go.kr/main">여수시</option>
+        <option value="https://its.mokpo.go.kr/its/main.view?lang=ko">목포시</option>
+        <option value="https://its.gwangyang.go.kr/">광양시</option>
+        <option value="https://bis.naju.go.kr/main/main">나주시</option>
+        <option value="https://its.mokpo.go.kr/its/bus7_1.view">무안군</option>
+        <option value="https://www.tsbis.kr/337/main_search.do">해남군</option>
+        <option value="https://bis.hwasun.go.kr/main/main">화순군</option>
+        <option value="https://www.tsbis.kr/332/main_search.do">고흥군</option>
+        <option value="https://www.yeonggwang.go.kr/subpage/?site=headquarter_new&amp;mn=9635">영광군</option>
+        <option value="https://www.tsbis.kr/338/main_search.do">영암군</option>
+        <option value="https://www.tsbis.kr/343/main_search.do">완도군</option>
+        <option value="http://bis.damyang.go.kr/main/main">담양군</option>
+        <option value="https://www.tsbis.kr/342/main_search.do">장성군</option>
+        <option value="https://bis.sc.go.kr/web/main.view">보성군</option>
+        <option value="https://www.tsbis.kr/345/main_search.do">신안군</option>
+        <option value="https://www.tsbis.kr/335/main_search.do">장흥군</option>
+        <option value="https://www.gangjin.go.kr/culture/guide/traffic/bus">강진군</option>
+        <option value="http://bis.hampyeong.go.kr/main/main">함평군</option>
+        <option value="https://www.tsbis.kr/344/main_search.do">진도군</option>
+        <option value="https://www.gokseong.go.kr/bis/driving/board">곡성군</option>
+        <option value="https://www.tsbis.kr/331/main_search.do">구례군</option>
+    </select>
+    <a href="javascript:MM_jumpMenu()"><img alt="이동" src="/images/main/button.gif" border="0" /></a>
+</div>
+            </div>
+        </div>
+        <!-- footer end -->
+
+    </div>
+</div>
+
+
+<script>
+$(function () {
+  let index = 0;
+  const slideWidth = 830;
+  //const slideCount = $('.slider-wrapper img').length; // ✅ 한 번만 선언
+  const slideCount = $('.slider-wrapper').children().length;
+  let interval;
+
+  function updateSlide(newIndex) {
+    index = (newIndex + slideCount) % slideCount;
+    $('.slider-wrapper').css('left', -(slideWidth * index) + 'px');
+    $('#slide_index').text(index + 1);
+  }
+
+  function startAutoSlide() {
+    clearInterval(interval);   // 중복 호출 시(예: mouseleave) 기존 타이머가 안 지워지고 겹쳐 쌓이는 것 방지
+    if (slideCount > 1) {
+      interval = setInterval(() => {
+        updateSlide(index + 1);
+      }, 4000);
+    }
+  }
+
+  function resetInterval() {
+    clearInterval(interval);
+    startAutoSlide();
+  }
+
+  $('#noti_prev1').click(function (e) {
+    e.preventDefault();
+    if (slideCount > 1) {
+      updateSlide(index - 1);
+      resetInterval();
+    }
+  });
+
+  $('#noti_next1').click(function (e) {
+    e.preventDefault();
+    if (slideCount > 1) {
+      updateSlide(index + 1);
+      resetInterval();
+    }
+  });
+
+  // 초기 설정
+  updateSlide(0);
+  startAutoSlide();
+
+  // 총 개수 표시
+  $('#slide_total').text(slideCount);
+
+  // 마우스 올리면 자동 넘김 정지 (버튼 오클릭 방지)
+  $('#mainSlider').hover(
+    function () { clearInterval(interval); },
+    function () { startAutoSlide(); }
+  );
+
+  // 슬라이드가 1개 이하면 버튼 숨기기
+//   if (slideCount <= 1) {
+//     $('.notify_ctrl1').hide();
+//   }
+});
+</script>
+
+
+
+
+</body>
+</html>

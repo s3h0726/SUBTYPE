@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+	
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta charset="utf-8"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, maximum-scale=1, width=device-width" />
+
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/base.css?20230725"/>
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/main.css?20230802"/>
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/slick.css">
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/sub.css">
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/media.css?20261028">
+<link rel="stylesheet" type="text/css" href="/resource/aljjabaegi/grid/css/aljjabaegi.grid-1.0.0.css" />
+
+<link rel="stylesheet" type="text/css" href="/resource/aljjabaegi/datepicker/css/aljjabaegi.picker2.css" />
+
+<script type="text/javascript" src="/resource/cmmn/js/ns-1.0.0.js"></script>
+<script type="text/javascript">
+	NS.ctx = '';
+	NS.baseMap = 'https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v17_9nwki/';
+	NS.baseSkyMap = 'https://map0.daumcdn.net/map_skyview/L';
+	NS.baseSkyMapVer = 'jpg?v=160114';
+	NS.baseHybrid = 'https://map0.daumcdn.net/map_hybrid/2111ydg/L';
+</script>
+<script type="text/javascript" src="/resource/aljjabaegi/aljjabaegi-2.0.1.js" ></script>
+
+<!-- 오픈레이어 -->
+<link rel="stylesheet" type="text/css" href="/resource/openlayers/css/ol.css">
+
+<script type="text/javascript" src="/resource/openlayers/js/ol.js" ></script>
+<script type="text/javascript" src="/resource/openlayers/js/proj4.js" ></script>
+<script type="text/javascript" src="/resource/openlayers/js/lsMap.js?v=2"></script>
+
+<script type="text/javascript" src="/resource/openlayers/cmmn/OpenLayers.js"></script>
+<script type="text/javascript" src="/resource/openlayers/cmmn/proj4js.js"></script>
+<script type="text/javascript" src="/resource/openlayers/cmmn/ulsanMap.js"></script>
+
+<script type="text/javascript" src="/resource/openlayers/js/main.js?v=2"></script>
+
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.core-2.0.1.js" ></script>
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.plugin.edit-1.0.1.js" ></script>
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.plugin.msearch-2.0.1.js" ></script>
+
+<script type="text/javascript" src="/resource/aljjabaegi/datepicker/js/aljjabaegi.picker-2.0.6.js"></script>
+
+<link rel="shortcut icon" href="/resource/cmmn/images/favicon.ico">
+
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/solid.min.css">
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/v4-shims.min.css">
+
+<title>울산교통관리센터</title>
+
+</head>
+<body>
+	
+
+
+
+
+<header>
+	<div role="button" class="goContent" tabindex="0" >본문바로가기</div>
+	<h1><a href="/">울산교통관리센터</a></h1>
+	<a href="javascript:menuOpen()" class="mb sitemap">메뉴 열기</a>
+	<strong>시민과 함께 다시 뛰는 울산</strong>
+	<ul id="lis" class="gnb">
+		<li class="on" id="traffic">
+			<a href="javascript:void('0')">교통정보</a>
+			<ul>
+				<li><a href="/traffic/traffic.do">소통지도</a></li>
+				<li><a href="https://its.ulsan.kr/walletfree/parking/autoPayParking.do" target="blank"  title="새 창 열림" class="new_open">주차정보</a></li>
+				<li><a href="https://carfree.ulsan.go.kr/" target="blank"  title="새 창 열림" class="new_open">승용차요일제</a></li>
+			</ul>
+		</li>
+		<li id="route">
+			<a href="javascript:void('0')">버스정보</a>
+			<ul>
+				<li><a href="/route/route.do">버스지도</a></li>
+				<li><a id="transferA" href="javascript:void('0')" title="새 창 열림" class="new_open">버스환승</a></li>
+				<li><a href="/route/fare.do">버스요금안내</a></li>
+				<li><a href="/route/timetable.do">배차시간표</a></li>
+				<li><a href="/route/busType.do">시내버스소개</a></li>
+
+			</ul>
+		</li>
+		<li id="center">
+			<a href="javascript:void('0')">교통관리센터</a>
+			<ul>
+				<li><a href="/center/its.do">ITS소개</a></li>
+				<li><a href="/center/cits.do">C-ITS소개</a></li>
+				<li><a href="/center/history.do">연혁</a></li>
+				<li><a href="/center/center.do">교통관리센터</a></li>
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+			</ul>
+		</li>
+		<li id="noti">
+			<a href="javascript:void('0')">알림마당</a>
+			<ul>
+				<li><a href="/noti/notice.do">공지사항</a></li>
+				<li><a href="/noti/busInfo.do">버스정보이용안내</a></li>
+				<li><a href="/noti/trafficInfo.do">교통정보이용안내</a></li>
+				<li><a href="http://www.ulsan.go.kr/s/lost/main.ulsan" target="blank"  title="새 창 열림" class="new_open">분실물신고센터</a></li>
+			</ul>
+		</li>
+	</ul>
+	<strong>시민과 함께 다시 뛰는 울산</strong>
+	<div style="background : white;">
+	</div>
+</header>
+
+<script type="text/javascript">
+var marqueeArr = [];
+var marqueeIdx = 0;
+var marqueeTimer = 1000;
+var focusedElement;
+AF.onload(function(){
+	NS.func(setNavEvent);
+	NS.func(checkContent);
+	window.addEventListener('keydown', function(event) {
+	  if(event.key === 'Tab') {
+	    focusedElement = document.activeElement;
+	    var classNm = focusedElement?.parentNode?.parentNode.className == "" ?  focusedElement?.parentNode?.parentNode?.parentNode?.parentNode?.className 
+	    																	 : focusedElement?.parentNode?.parentNode.className;
+	    var hd = document.getElementsByTagName("header")[0];
+	    if(classNm=="gnb"){
+			hd.classList.add("on");
+		}else{
+			hd.classList.remove("on");
+		}
+	  }
+	});
+	
+	document.getElementById("transferA").addEventListener("click", function(){
+		if(AF.mobileChk()){
+			window.open('https://m.map.kakao.com/actions/routeView/');
+		}else{
+			window.open('https://map.kakao.com/');
+		}
+	})
+});
+
+var checkContent = function(){
+	var selector = document.getElementById("ctntFocus");
+	goContent(selector);	
+}
+
+var goContent = function(selector){
+	let div = document.querySelector(".goContent");
+	div.addEventListener("keydown", function(e){
+		if(e.key == "Enter") selector.focus();
+	});
+	div.addEventListener("click", function(e){
+		selector.focus();
+	})
+}
+
+var setNavEvent = function(){
+	var idx = 0;
+	var menus = document.querySelectorAll('header>ul>li');
+	var menusIt = NS.iterator(menus);
+	while(menusIt.hasNext()){
+		var li = menusIt.next();
+		li.addEventListener('click', selectMenu);
+	}
+
+	const curPath = location.pathname;
+	const liTag =  document.querySelectorAll("#lis li");
+	for(let i of liTag){
+		if(curPath.indexOf(i.id) !== -1 && i.id !== ""){
+			selectMenu2(i);
+		}
+	}
+}
+
+var menuOpen = function(){
+	var headerCls = document.querySelector('header').classList;
+	if(headerCls.contains('on')){
+		headerCls.remove('on');
+		NS.opaqueMobile(".pMain", false);
+	}else{
+		headerCls.add('on');
+		if(window.screen.width<=820) NS.opaqueMobile(".pMain", true);
+	}
+}
+
+var selectMenu = function(){
+	var prevLi = document.querySelector('header>ul>li.on');
+	prevLi.classList.remove('on');
+	this.classList.add('on');
+}
+
+var selectMenu2 = function(i){
+	var prevLi = document.querySelector('header>ul>li.on');
+	prevLi.classList.remove('on');
+	i.classList.add('on');
+} 
+</script>
+
+	
+
+
+
+
+
+<main>
+	<article class="subHead">
+		<div>
+			<h2>버스정보</h2>
+			<ul class="location">
+				<li>홈</li>
+				<li>버스정보</li>
+				<li>배차시간표</li>
+			</ul>
+			<ul class="caList">
+				<li><a href="/route/fare.do">버스요금안내</a></li>
+				<li class="on"><a href="#">배차시간표</a></li>
+				<li><a href="/route/busType.do">시내버스소개</a></li>
+			</ul>
+		</div>
+	</article>
+	<section>
+		<ul class="expList exp2" id="ctntFocus" tabindex="0">
+			<li><div class="cale"></div></li>
+			<li>
+				<h4>배차시간표</h4>
+				<fieldset>
+				<span><label for="selectBox"> 버스번호</label></span>
+				<select id="selectBox"></select>
+				<br />
+				<span><label for="selectDywkBox"> 요일구분</label></span>
+				<select id="selectDywkBox"></select>
+<!-- 				<span>기간구분</span>   -->
+<!-- 				<select id="selectTermBox"></select> -->
+				<button id="cfrm" tabindex="0" onClick="javascript:searchBusInfo()" style="cursor : pointer;">검색</button>
+				</fieldset>
+			</li>
+		</ul>
+			<div class="expTab">
+				<span id="extraTxt"></span>
+				<div class="tabWrap on">
+					<h3 id="selectBusNm">버스번호</h3>
+					<div class="tbl">
+						<ul id="timeTit1" class="tblTime">
+							<li class="timeTit">기점방향</li>
+							<li class="w100"><a>검색하실 버스정보를 입력해주세요.</a></li>
+						</ul>
+						<ul id="timeTit2" class="tblTime">
+							<li class="timeTit">종점방향 </li>
+							<li class="w100"><a>검색하실 버스정보를 입력해주세요.</a></li>
+						</ul>
+					</div>
+					<a href="javascript:dwnExcel()" class="hexBtn">배차시간표 출력</a>
+				</div>
+			</div>
+	</section>
+</main>
+
+<script type="text/javascript">
+let BUS_INFO = [];
+let EXCEL_FLAG = 0;
+let SELECTED_BUS;
+AF.onload(function(){
+	document.title = "배차시간표";
+	getDywkData();
+	getComboList();
+});
+
+// 요일데이터
+// 		let dywkData = returnData.rows[0].dywkClss;
+// 		let dywkData = ["평일", "토요일", "일요일", "명절1", "명절2", "명절3"];
+let dywkData = ["평일", "토요일", "일요일(공휴일)"];
+
+var getDywkData = function(){
+	const params = {
+			postData : {
+				serviceName : 'routeBusService',
+				methodName : 'isHolidayIncluded'
+			},
+			record:{useYn:[{value:null}]}
+	}
+
+	AF.ajax("/mpng//getData.json", params, function(returnData){
+		if(returnData.data.useYn === 'Y'){
+			dywkData.push("명절");
+			const extraTxtElement = document.getElementById("extraTxt");
+
+			extraTxtElement.innerHTML =
+					"명절 배차시간표는 날짜별로 다를수 있으니 자세한 시간표는 " +
+					"<a href='https://www.ulsanbus.or.kr/bbs/board.php?bo_table=notice' target='_blank' style='color: red; text-decoration: underline; font-weight: bold'>" +
+					"울산광역시버스운송사업조합 > 공지사항</a>" +
+					"을 참고하시기 바랍니다.";
+		}
+	},'json');
+}
+
+var getComboList = function(){
+	const params = {
+			postData : {
+				serviceName : 'routeBusService',
+				methodName : 'getOptionList'
+			}
+	}
+
+	AF.ajax("/mpng/getList.json", params, function(returnData){
+		let busData = returnData.rows;
+		const routeIt = NS.iterator(busData);
+		while(routeIt.hasNext()){
+			const data = routeIt.next();
+			const option = document.createElement('option');
+
+			option.value= data.brtNo;
+			option.innerHTML = data.bnodeName;
+			selectBox.appendChild(option);
+
+			BUS_INFO.push({busId : data.brtNo.split(":")[0], busNm : data.bnodeName});
+		}
+
+
+		const dywkIt = NS.iterator(dywkData);
+		while(dywkIt.hasNext()){
+			const data = dywkIt.next();
+			const option = document.createElement('option');
+			option.value= data;
+			option.innerHTML = data;
+			selectDywkBox.appendChild(option);
+		}
+	},'json');
+}
+
+var searchBusInfo = function(){
+	const selectedVal = document.getElementById("selectBox").value;
+	const selectedDate = document.getElementById("selectDywkBox").value;
+	const dayObj = {
+		"토요일" : 7,
+		"일요일(공휴일)" : 1,
+		"평일" : 0,
+		"명절" : "H"
+// 		"명절1" : "A",
+// 		"명절2" : "B",
+// 		"명절3" : "C"
+	}
+	const dywk = dayObj[selectedDate];
+
+	const bttDirection = selectedVal.split(":")[4];
+	let stStation = null;
+	let edStation = null;
+
+	SELECTED_BUS = document.getElementById("selectBox").selectedOptions[0].innerHTML.split("(")[0];
+
+	const params = {
+		postData : {
+			serviceName : "routeBusService",
+			methodName : "getBusTimeTableInfo",
+	 		brtId : selectedVal.split(":")[0],
+			brtNo : SELECTED_BUS,
+	 		dywkVal : dywk,
+	 		brtClass : selectedVal.split(":")[2],
+	 		bttDirection : bttDirection
+		}
+	}
+	AF.ajax('/mpng/getList.json', params, function(returnData){
+		// 시점방향 테이블
+		const fiducialTbl = document.getElementById('timeTit1');
+		const fdcData = bttDirection == 3 ? returnData.rows[0].circularInfo : returnData.rows[0].fiducialInfo;
+		const fdcStation = bttDirection == 3 ? returnData.rows[0].circularTitle[0] : returnData.rows[0].fiducialTitle[0];
+
+		fiducialTbl.innerHTML = "";
+		if(fdcData.length==0){
+			EXCEL_FLAG = 0;
+			fiducialTbl.innerHTML = "<li class='timeTit'>기점방향</li>"; // 만약에 여기서 데이터가 존재한다면 어쩔수가 없는 상황일텐데.
+			const li = document.createElement('li');
+			const text = document.createTextNode("검색결과가 없습니다.");
+			li.appendChild(text);
+			li.style.width = '100%';
+			fiducialTbl.appendChild(li);
+		}else{
+			EXCEL_FLAG++;
+			let index = 0;
+			if(fdcData[0].bttStarttime.indexOf("(")!==-1) index++; // 기점방향
+			fiducialTbl.innerHTML = "<li class='timeTit'>"+(bttDirection==3?"순환형":"기점방향")+"<i>"+fdcStation.stStopName+" → "+fdcStation.edStopName+"</i></li>";
+
+			let forCnt = fdcData.length;
+			if(fdcData.length%6 != 0){
+				const additionalLiCnt = 6-(fdcData.length%6);
+				forCnt+=additionalLiCnt;
+			}
+			for(let i=0; i<forCnt; i++){
+				const li = document.createElement('li');
+				const textData = (typeof fdcData[i] !== "undefined") ? fdcData[i].bttStarttime.substring(0,2)+":"+fdcData[i].bttStarttime.substring(2,4) : "";
+				const text = document.createTextNode(textData);
+				if(text.data.indexOf("(")!== -1){
+					li.style.fontSize = '13px';
+				}
+				li.appendChild(text);
+				fiducialTbl.appendChild(li);
+			}
+		}
+
+		// 종점방향 테이블
+		if(bttDirection==3){
+			let timeTable2 = document.getElementById("timeTit2");
+			if(timeTable2 !== null){
+				timeTable2.style.display = "none";
+			}else{
+				return;
+			}
+		}else{
+			const terminalTbl = document.getElementById('timeTit2');
+			const tmnData = returnData.rows[0].terminalInfo;
+			const tmnStation = returnData.rows[0].terminalTitle[0];
+			terminalTbl.style.display = "flex";
+			terminalTbl.innerHTML = "";
+			if(tmnData.length==0){
+				terminalTbl.innerHTML = "<li class='timeTit'>종점방향</li>";
+				const li = document.createElement('li');
+				const text = document.createTextNode("검색결과가 없습니다.");
+				li.appendChild(text);
+				li.style.width = '100%';
+				terminalTbl.appendChild(li);
+			}else{
+				let index = 0;
+				if(tmnData[0].bttStarttime.indexOf("(")!==-1) index ++;
+	 			terminalTbl.innerHTML = "<li class='timeTit'>종점방향 <i>"+tmnStation.stStopName+" → "+tmnStation.edStopName+"</i></li>";
+
+				let forCnt = tmnData.length;
+				if(tmnData.length%6 != 0){
+					const additionalLiCnt = 6-(tmnData.length%6);
+					forCnt+=additionalLiCnt;
+				}
+				for(let i=0; i<forCnt; i++){
+					const li = document.createElement('li');
+					const textData = (typeof tmnData[i] !== "undefined") ? tmnData[i].bttStarttime.substring(0,2)+":"+tmnData[i].bttStarttime.substring(2,4) : "";
+					const text = document.createTextNode(textData);
+					if(text.data.indexOf("(")!== -1){
+						li.style.fontSize = '13px';
+					}
+					li.appendChild(text);
+					terminalTbl.appendChild(li);
+				}
+			}
+		}
+		if(selectedVal.split(":")[3] === "40" && selectedDate === "평일"){
+			document.getElementById("selectBusNm").innerText = SELECTED_BUS +" ( "+selectedDate+" )   ※ 매주 월, 화요일, 설, 추석 명절 연휴 미운영"
+		}else{
+			document.getElementById("selectBusNm").innerText = SELECTED_BUS+" ( "+selectedDate+" )";
+		}
+	},'json');
+}
+
+var dwnExcel = function(){
+	if(EXCEL_FLAG != 0){
+		let fiducialMtx = document.getElementById('timeTit1').childNodes;
+		let terminalMtx = [];
+		if(document.getElementById('timeTit2')!==null) terminalMtx = document.getElementById('timeTit2').childNodes;
+
+		let fidArr = new Array();
+		let terArr = new Array();
+		for(let i=0; i<fiducialMtx.length; i++){
+			fidArr.push(fiducialMtx[i].innerText);
+		}
+		for(let i=0; i<terminalMtx.length; i++){
+			terArr.push(terminalMtx[i].innerText);
+		}
+		const params = {
+			postData : {
+				serviceName :'routeBusService',
+				methodName : "getGridListExcel",
+				fidArr : fidArr,
+				terArr : terArr
+			},
+			menuNmjava : SELECTED_BUS+'번'
+		}
+		if(confirm('엑셀파일을 출력하시겠습니까?')){
+			const form = document.createElement('form');
+			form.action = '/mpng/mDwnExcel.excel';
+			form.method = 'POST';
+			const input = document.createElement('input');
+			input.name = 'params';
+			input.value = JSON.stringify(params);
+			form.appendChild(input);
+			document.body.appendChild(form);
+
+			form.submit();
+			form.style.display="none";
+		}
+	}else{
+		alert('출력할 데이터가 없습니다.');
+	}
+}
+</script>
+
+	
+
+
+
+
+
+<footer>
+	<div>
+		<h6>울산광역시</h6>
+		<div>
+			<ul class="pc">
+				<li><a href="/help/survey.do">정기교통량 조사결과</a></li>
+
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+				<li><a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005008002000000" target="_blank" class="new_open" title="새 창 열림">영상정보처리기기 운영·관리방침</a></li>
+			</ul>
+			<address>
+				(44686) 울산광역시 남구 번영로 235(신정동)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대표전화 052)120<br>
+				Copyrightⓒ2010 Ulsan Metropolitan City. All Rights Reserved
+			</address>
+			<ul class="mb">
+				<li><a href="/help/survey.do">정기교통량 조사결과</a></li>
+
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+				<li><a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005008002000000" target="_blank" class="new_open" title="새 창 열림">영상정보처리기기 운영·관리방침</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<script>
+</script>
+</body>
+</html>

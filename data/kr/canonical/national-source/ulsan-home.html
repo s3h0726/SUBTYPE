@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+	
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta charset="utf-8"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, maximum-scale=1, width=device-width" />
+
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/base.css?20230725"/>
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/main.css?20230802"/>
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/slick.css">
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/sub.css">
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/media.css?20240809">
+<link rel="stylesheet" type="text/css" href="/resource/aljjabaegi/grid/css/aljjabaegi.grid-1.0.0.css" />
+
+<link rel="stylesheet" type="text/css" href="/resource/aljjabaegi/datepicker/css/aljjabaegi.picker2.css" />
+
+<script type="text/javascript" src="/resource/cmmn/js/ns-1.0.0.js"></script>
+<script type="text/javascript">
+	NS.ctx = '';
+	NS.baseMap = 'https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v17_9nwki/';
+	NS.baseSkyMap = 'https://map0.daumcdn.net/map_skyview/L';
+	NS.baseSkyMapVer = 'jpg?v=160114';
+	NS.baseHybrid = 'https://map0.daumcdn.net/map_hybrid/2111ydg/L';
+</script>
+<script type="text/javascript" src="/resource/aljjabaegi/aljjabaegi-2.0.1.js" ></script>
+
+<!-- 오픈레이어 -->
+<link rel="stylesheet" type="text/css" href="/resource/openlayers/css/ol.css">
+
+<script type="text/javascript" src="/resource/openlayers/js/ol.js" ></script>
+<script type="text/javascript" src="/resource/openlayers/js/proj4.js" ></script>
+<script type="text/javascript" src="/resource/openlayers/js/lsMap.js?v=2"></script>
+
+<script type="text/javascript" src="/resource/openlayers/cmmn/OpenLayers.js"></script>
+<script type="text/javascript" src="/resource/openlayers/cmmn/proj4js.js"></script>
+<script type="text/javascript" src="/resource/openlayers/cmmn/ulsanMap.js"></script>
+
+<script type="text/javascript" src="/resource/openlayers/js/main.js?v=2"></script>
+
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.core-2.0.1.js" ></script>
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.plugin.edit-1.0.1.js" ></script>
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.plugin.msearch-2.0.1.js" ></script>
+
+<script type="text/javascript" src="/resource/aljjabaegi/datepicker/js/aljjabaegi.picker-2.0.6.js"></script>
+
+<link rel="shortcut icon" href="/resource/cmmn/images/favicon.ico">
+
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/solid.min.css">
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/v4-shims.min.css">
+
+<title>울산교통관리센터</title>
+</head>
+<body>
+	
+
+
+
+
+<header>
+	<div role="button" class="goContent" tabindex="0" >본문바로가기</div>
+	<h1><a href="/">울산교통관리센터</a></h1>
+	<a href="javascript:menuOpen()" class="mb sitemap">메뉴 열기</a>
+	<strong>시민과 함께 다시 뛰는 울산</strong>
+	<ul id="lis" class="gnb">
+		<li class="on" id="traffic">
+			<a href="javascript:void('0')">교통정보</a>
+			<ul>
+				<li><a href="/traffic/traffic.do">소통지도</a></li>
+				<li><a href="https://its.ulsan.kr/walletfree/parking/autoPayParking.do" target="blank"  title="새 창 열림" class="new_open">주차정보</a></li>
+				<li><a href="https://carfree.ulsan.go.kr/" target="blank"  title="새 창 열림" class="new_open">승용차요일제</a></li>
+			</ul>
+		</li>
+		<li id="route">
+			<a href="javascript:void('0')">버스정보</a>
+			<ul>
+				<li><a href="/route/route.do">버스지도</a></li>
+				<li><a id="transferA" href="javascript:void('0')" title="새 창 열림" class="new_open">버스환승</a></li>
+				<li><a href="/route/fare.do">버스요금안내</a></li>
+				<li><a href="/route/timetable.do">배차시간표</a></li>
+				<li><a href="/route/busType.do">시내버스소개</a></li>
+
+			</ul>
+		</li>
+		<li id="center">
+			<a href="javascript:void('0')">교통관리센터</a>
+			<ul>
+				<li><a href="/center/its.do">ITS소개</a></li>
+				<li><a href="/center/cits.do">C-ITS소개</a></li>
+				<li><a href="/center/history.do">연혁</a></li>
+				<li><a href="/center/center.do">교통관리센터</a></li>
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+			</ul>
+		</li>
+		<li id="noti">
+			<a href="javascript:void('0')">알림마당</a>
+			<ul>
+				<li><a href="/noti/notice.do">공지사항</a></li>
+				<li><a href="/noti/busInfo.do">버스정보이용안내</a></li>
+				<li><a href="/noti/trafficInfo.do">교통정보이용안내</a></li>
+				<li><a href="http://www.ulsan.go.kr/s/lost/main.ulsan" target="blank"  title="새 창 열림" class="new_open">분실물신고센터</a></li>
+			</ul>
+		</li>
+	</ul>
+	<strong>시민과 함께 다시 뛰는 울산</strong>
+	<div style="background : white;">
+	</div>
+</header>
+
+<script type="text/javascript">
+var marqueeArr = [];
+var marqueeIdx = 0;
+var marqueeTimer = 1000;
+var focusedElement;
+AF.onload(function(){
+	NS.func(setNavEvent);
+	NS.func(checkContent);
+	window.addEventListener('keydown', function(event) {
+	  if(event.key === 'Tab') {
+	    focusedElement = document.activeElement;
+	    var classNm = focusedElement?.parentNode?.parentNode.className == "" ?  focusedElement?.parentNode?.parentNode?.parentNode?.parentNode?.className 
+	    																	 : focusedElement?.parentNode?.parentNode.className;
+	    var hd = document.getElementsByTagName("header")[0];
+	    if(classNm=="gnb"){
+			hd.classList.add("on");
+		}else{
+			hd.classList.remove("on");
+		}
+	  }
+	});
+	
+	document.getElementById("transferA").addEventListener("click", function(){
+		if(AF.mobileChk()){
+			window.open('https://m.map.kakao.com/actions/routeView/');
+		}else{
+			window.open('https://map.kakao.com/');
+		}
+	})
+});
+
+var checkContent = function(){
+	var selector = document.getElementById("ctntFocus");
+	goContent(selector);	
+}
+
+var goContent = function(selector){
+	let div = document.querySelector(".goContent");
+	div.addEventListener("keydown", function(e){
+		if(e.key == "Enter") selector.focus();
+	});
+	div.addEventListener("click", function(e){
+		selector.focus();
+	})
+}
+
+var setNavEvent = function(){
+	var idx = 0;
+	var menus = document.querySelectorAll('header>ul>li');
+	var menusIt = NS.iterator(menus);
+	while(menusIt.hasNext()){
+		var li = menusIt.next();
+		li.addEventListener('click', selectMenu);
+	}
+
+	const curPath = location.pathname;
+	const liTag =  document.querySelectorAll("#lis li");
+	for(let i of liTag){
+		if(curPath.indexOf(i.id) !== -1 && i.id !== ""){
+			selectMenu2(i);
+		}
+	}
+}
+
+var menuOpen = function(){
+	var headerCls = document.querySelector('header').classList;
+	if(headerCls.contains('on')){
+		headerCls.remove('on');
+		NS.opaqueMobile(".pMain", false);
+	}else{
+		headerCls.add('on');
+		if(window.screen.width<=820) NS.opaqueMobile(".pMain", true);
+	}
+}
+
+var selectMenu = function(){
+	var prevLi = document.querySelector('header>ul>li.on');
+	prevLi.classList.remove('on');
+	this.classList.add('on');
+}
+
+var selectMenu2 = function(i){
+	var prevLi = document.querySelector('header>ul>li.on');
+	prevLi.classList.remove('on');
+	i.classList.add('on');
+} 
+</script>
+
+	
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/oMain.css">
+<link rel="stylesheet" type="text/css" href="/resource/openlayers/css/ol.css">
+<link rel="stylesheet" type="text/css" href="/resource/videojs/css/videojs.css">
+<script type="text/javascript" src="/resource/aljjabaegi/aljjabaegi-2.0.1.js" ></script>
+<script type="text/javascript" src="/resource/videojs/js/videojs.js"></script>
+<script type="text/javascript" src="/resource/videojs/js/videojs-contrib-hls.js"></script>
+<script type="text/javascript" src="/resource/cmmn/js/mainPg.js"></script>
+<script type="text/javascript" src="/resource/js/traffic/turf.min.js"></script>
+<style>
+	.title {
+		text-align: center;
+		font-size: 20px;
+/* 		font-weight: bold; */
+		color: black; /* 기본 폰트 색상 검정 */
+	}
+	.ctnt {
+		margin-left: 25px;
+		font-weight: 500;
+	}
+	.notice {
+		text-align: center; /* 중앙 정렬 */
+		font-weight: 500;
+		font-size: 18px;
+	}
+	.highlightCtnt {
+		color: red; /* 폰트 색상 빨강 */
+		font-weight: 500;
+		font-size: 18px;
+	}
+	.closeToday {
+		text-align: center;
+	}
+	#closeBtn {
+		width: 60px;
+		height: 38px;
+		text-shadow: 0 0 1px black;
+	}
+	.noticePopup {
+		display: none;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		z-index: 10000;
+		width: 600px;
+		max-width: calc(100vw - 24px);
+		transform: translate(-50%, -50%);
+		background: #fff;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, .35);
+	}
+	.noticePopup img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.noticePopupFooter {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+		padding: 8px 10px;
+		background: #fff;
+	}
+	.noticePopupFooter button {
+		padding: 6px 10px;
+		border: 1px solid #bbb;
+		background: #fff;
+		cursor: pointer;
+	}
+</style>
+<main class="pMain">
+	<div style="display:none;" id="mouse-position"></div>
+	<div class="mapArea mainMap">
+		<aside>
+			<ul class="mapList">
+			<li class="siteMap"><a href="javascript:menuOpen()"></a></li>
+				<li><a href="/traffic/traffic.do">교통</a>
+					<div class="mapDetail" style="z-index:3" tabindex="0" id="ctntFocus">
+						<div class="searchBox">
+							<div class="d_flex">
+								<strong>교통지도<i>실시간도로구간별소통상황</i></strong>
+								<strong>서행 <span id="totAvgSpeed"></span><i>울산시평균속도</i></strong>
+							</div>
+							<ul class="vsbhd mt50">
+								<li>
+									<a href="javascript:void('0')" onclick="mainPg.toggleMap(this);">지도보기</a>
+								</li>
+							</ul>
+							<ul id="searchCondition">
+								<li id="roadType"><a href="javascript:void('0')" title="선택됨" tabindex="0">도로검색</a></li>
+								<li id="intersectionType"><a href="javascript:void('0')" title="선택됨" tabindex="0">교차로검색</a></li>
+								<li id="bookmarkBtn"><a href="javascript:void('0')" title="선택됨" tabindex="0">즐겨찾기</a></li>
+							</ul>
+							<fieldset>
+								<input id="searchKeyword" type="text" placeholder="도로명 을 입력해주세요." />
+								<label for="searchKeyword" class="hiddenLabel">도로명 </label> 
+								<button id="searchBtn">검색</button>
+							</fieldset>
+						</div>
+						<div class="result">
+							<ul class="tblHead">
+								<li>출발지</li>
+								<li>도착지</li>
+								<li>거리</li>
+								<li>시간</li>
+							</ul>
+							<ol id="searchList"></ol>
+							<a href="javascript:void('0')">더 보기</a>
+						</div>
+					</div>
+					<div class="mapDetail" style="visibility: hidden" id="roadDetailDialog" role="dialog" aria-modal="true" tabindex="-1">
+						<div class="searchBox searchDetail" id="roadDetailView">
+						</div>
+						<div class="roadInfo" style="position:relative;">
+							<div id="closeBtn" class="closeBtn" >
+								<a href="javascript:void('0');" onclick="mainPg.closeDetail(this);">닫기</a>
+							</div>
+
+							<ul id="roadDetailList">
+								<li class="tight">
+									<p>태화R</p>
+									<strong>10.6<i>혼잡</i></strong>
+								</li>
+								<li class="delay">
+									<p>반영교남</p>
+									<strong>10.6<i>부분혼잡</i></strong>
+								</li>
+								<li class="fast">
+									<p>태화R</p>
+									<strong>10.6<i>원활</i></strong>
+								</li>
+								<li>
+									<p>명촌교</p>
+								</li>
+							</ul>
+							<ul id="roadDetaiReverselList"></ul>
+<!-- 							<ol> -->
+<!-- 								<li>정체</li> -->
+<!-- 								<li>서행</li> -->
+<!-- 								<li>원활</li> -->
+<!-- 							</ol> -->
+						</div>
+					</div>
+				</li>
+				<li><a href="/route/route.do">버스</a></li>
+				<li><a href="/traffic/incident.do">돌발/통제</a></li>
+				<li><a href="/traffic/cctv.do">CCTV</a></li>
+				<li><a href="https://its.ulsan.kr/walletfree/" target="blank" title="새 창 열림" class="new_open">주차패스</a></li>
+				<li><a href="http://carfree.ulsan.go.kr/" target="blank" title="새 창 열림" class="new_open">요일제</a></li>
+			</ul>
+		</aside>
+		<div class="map mainMap" id="map" style="">
+		<div class="scr">
+			
+		</div>
+		</div>
+		<div class="mapPop" id="mainPop" style="display:none;">
+			
+		</div>
+		<div class="mapPop" id="cctvPop" style="display:none;">
+			
+		</div>
+		<div class="mapPop" id="gridPop" style="display:none;">
+			
+		</div>
+		<ul class="btnList">
+			<li class="toggle"></li>
+			<li><a href="javascript:void('0')" onclick="mainPg.toggleCctv(this)">CCTV</a></li>
+			<li><a href="javascript:void('0')" onclick="mainPg.toggleInc(this)">돌발/통제</a></li>
+			<li><a href="javascript:void('0')" onclick="mainPg.toggleSky(this)" style="background:#fff;font-size:13px;text-align:center;">위성 지도</a></li>
+		</ul>
+		<ul class="btnList">
+			<li><a href="javascript:void('0')" onclick="mainPg.zoomIn()">확대</a></li>
+			<li><a href="javascript:void('0')" onclick="mainPg.zoomOut()">축소</a></li>
+		</ul>
+		<ul class="btnList">
+			<li><a href="javascript:void('0')" onclick="mainPg.myLocation(this)">현재위치</a></li>
+		</ul>
+		<div id="mainCloseBtn" class="closeBtn" onclick="mainPg.openNav(this);" title="메뉴 다시 보기">
+			<i class="fa-solid fa-angles-right"></i>
+		</div>
+	</div>
+	<div class="newsHubArea">
+		<section class="news" id="news">
+			<h2>NEWS</h2>
+			<strong>돌발.사고.통제 사황 및 공지사항을 알려드립니다.</strong>
+			<ul class="tab" id="boardSearch">
+				<li id="noticeBoard"><a href="javascript:void('0')">공지사항</a></li>
+			</ul>
+			<div class="albWrap on outList"> <!-- outList or noticeList -->
+				<ul class="alb" id="boardListNotice">
+					
+				</ul>
+			</div>
+			<a href="javascript:void('0')" id="viewMoreNotice">View More</a>
+		</section>
+<!-- 		<section class="news" id="news"> -->
+		<section class="news">
+			<h2>NEWS</h2>
+			<strong>돌발.사고.통제 사황 및 공지사항을 알려드립니다.</strong>
+<!-- 			<ul class="tab" id="boardSearch"> -->
+			<ul class="tab">
+				<li id="incidentBoard"><a href="javascript:void('0')">돌발/통제</a></li>
+			</ul>
+			<div class="albWrap on outList"> <!-- outList or noticeList -->
+				<ul class="alb" id="boardListInci">
+				</ul>
+			</div>
+			<a href="javascript:void('0')" id="viewMoreInci">View More</a>
+		</section>
+	</div>
+	<section class="ulsInfo">
+		<h2>차별화된 울산형 <i>BIS + ITS</i> 통합 실시간 교통정보<br class="mb"> 서비스와 시내버스 정보를 알려드립니다.</h2>
+		<ol class="mb slideDot">
+			<li class="on"><a href="javascript:mainPg.infoTab(1)">1</a></li>
+			<li class=""><a href="javascript:mainPg.infoTab(2)">2</a></li>
+<!-- 			<li class=""><a href="javascript:mainPg.infoTab(3)">3</a></li> -->
+		</ol><!-- 모바일에선 슬라이드 -->
+		<ul class="alb2" style="position:relative;">
+			<li class="on">
+				<div>
+					<img src="/resource/cmmn/images/img01-01.png" alt="애니메이션용 이미지" />
+					<img src="/resource/cmmn/images/img01-02.png" alt="애니메이션용 이미지" />
+					<img src="/resource/cmmn/images/img01-03.png" alt="애니메이션용 이미지" />
+				</div>
+				<strong>울산시<br />교통관리센터 소개</strong>
+				<span>첨단화된 지능형 교통정보시스템에 대해 알려드려요</span>
+				<a href="/center/its.do">정보확인</a>
+			</li>
+			<li class="on">
+				<div>
+					<img src="/resource/cmmn/images/img03-01.png" alt="애니메이션용 이미지" />
+					<img src="/resource/cmmn/images/img03-02.png" alt="애니메이션용 이미지" />
+					<img src="/resource/cmmn/images/img03-03.png" alt="애니메이션용 이미지" />
+				</div>
+				<strong>대중교통<br />분실물 신고 센터</strong>
+				<span>잃어버린 대중교통 유실물은 여기서 찾으세요</span>
+				<a href="http://www.ulsan.go.kr/s/lost/main.ulsan">바로가기</a> 
+			</li>
+		</ul>
+	</section>
+</main>
+<div id="noticePopup" class="noticePopup" role="dialog" aria-modal="true" aria-label="공지사항">
+	<img src="/resource/cmmn/images/popup/popup.png"
+		 alt="2026년 10월 31일부터 현금 결제 없는 시내버스 시범운영 안내">
+	<div class="noticePopupFooter">
+		<button type="button" onclick="closePopupFnc(true)">오늘 하루 보지 않기</button>
+		<button type="button" onclick="closePopupFnc(false)">닫기</button>
+	</div>
+</div>
+<script type="text/javascript" src="/resource/js/traffic/traffic.js?v=1"></script>
+<script type="text/javascript">
+traffic['geoserver.url'] = 'http://210.97.27.69/proxy/gs';
+traffic['geoserver.url2'] = 'http://210.97.27.69/proxy2/gs';
+traffic['geoserver.url3'] = 'http://210.97.27.69/proxy3/gs';
+traffic['geoserver.url4'] = 'http://210.97.27.69/proxy4/gs';
+traffic['result.nodata'] = '조회결과가 없습니다.';
+
+AF.onload(function(){
+	// 이벤트 함수
+	setEvent();
+	tabEvent();
+	openPopupFnc();
+});
+
+var setEvent = function(){
+}
+
+var initRoadTabs = function(){
+	const tabUp   = document.getElementById('tabUp');
+	const tabDown = document.getElementById('tabDown');
+	const upList  = document.getElementById('roadDetailList');
+	const dnList  = document.getElementById('roadDetaiReverselList');
+
+	if (!tabUp || !tabDown || !upList || !dnList) return;
+
+	tabUp.classList.add('on');
+	tabDown.classList.remove('on');
+
+	upList.style.display = '';
+	dnList.style.display = 'none';
+}
+
+var tabEvent = function(){
+
+	const tabUp   = document.getElementById('tabUp');
+	const tabDown = document.getElementById('tabDown');
+	if (!tabUp || !tabDown) return;
+	activateUpTab();
+
+	tabUp.addEventListener('click', activateUpTab);
+	tabDown.addEventListener('click', activateDownTab);
+
+	const keyHandler = e => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			e.target.click();
+		}
+	};
+	tabUp .addEventListener('keydown', keyHandler);
+	tabDown.addEventListener('keydown', keyHandler);
+}
+
+function activateUpTab(){
+	const tabUp   = document.getElementById('tabUp');
+	const tabDown = document.getElementById('tabDown');
+	const upList  = document.getElementById('roadDetailList');
+	const dnList  = document.getElementById('roadDetaiReverselList');
+
+	tabUp.classList.add('on');
+	tabDown.classList.remove('on');
+	upList.style.display = '';
+	dnList.style.display = 'none';
+	tabUp.focus();
+}
+
+function activateDownTab(){
+	const tabUp   = document.getElementById('tabUp');
+	const tabDown = document.getElementById('tabDown');
+	const upList  = document.getElementById('roadDetailList');
+	const dnList  = document.getElementById('roadDetaiReverselList');
+
+	tabDown.classList.add('on');
+	tabUp.classList.remove('on');
+	upList.style.display = 'none';
+	dnList.style.display = '';
+	tabDown.focus();
+}
+
+var closePopupFnc = function(){
+	var hideToday = arguments[0] === true;
+	if (hideToday) {
+		var today = new Date().toISOString().slice(0, 10);
+		localStorage.setItem('cashlessBusPopupHideUntil', today);
+	}
+	document.getElementById('noticePopup').style.display = 'none';
+}
+
+var openPopupFnc = function(){
+	var today = new Date().toISOString().slice(0, 10);
+	if (localStorage.getItem('cashlessBusPopupHideUntil') !== today) {
+		document.getElementById('noticePopup').style.display = 'block';
+	}
+}
+
+var renderTotAvgSpeed = function(data){
+	document.getElementById('totAvgSpeed').innerHTML = data.totAvgSpeed+'km';
+}
+/* 도로별 목록 조회 결과 */
+var renderRoadList = function(data){
+	var color = ['rd','yl','gr','gray'];
+	var trfObj = {
+		"green" : "원활",
+		"yellow" : "부분혼잡",
+		"red" : "혼잡",
+		"gray": "정보없음"
+	};
+	var html = '';
+	var altTxt = data.nodeShortname1 + "에서&nbsp" + data.nodeShortname2 + "구간&nbsp";
+	if(data.sp1Color != data.sp2Color){
+		altTxt += data.nodeShortname1 + "방면&nbsp"+trfObj[data.sp1Color]+"/"+data.nodeShortname2+"방면&nbsp"+trfObj[data.sp2Color];
+	}else{
+		altTxt += "양방향"+trfObj[data.sp1Color];
+	}
+	html += '<li class="cursor" id="trf_'+data.gg4Id+'" role="button" aria-label="'+data.kname+' 상세보기" tabindex="0" onkeydown="traffic.viewRoadDetailKeydown(\''+data.gg4Id+'\',\''+data.gg4IdRevers+'\', event)" onclick="traffic.viewRoadDetail(\''+data.gg4Id+'\',\''+data.gg4IdRevers+'\'); traffic.moveTo(\''+data.gg4Id+'\',\'link\');">';
+		html += '<span class="road_name">'+data.kname+'</span>';
+		html += '<ul>';
+			html += '<li><span tabindex="0" role="button" aria-hidden="true" onclick="event.stopPropagation(); traffic.moveTo(\''+data.gg4Id+'\',\'st\');">'+data.nodeShortname1+'</span></li>';
+			html += '<li class="road" aria-label='+altTxt+'>';
+				html += '<ol>';
+					html += '<li class="'+data.sp2Color+'"></li>';
+					html += '<li class="'+data.sp1Color+'"></li>';
+				html += '</ol>';
+			html += '</li>';
+			html += '<li>'+data.distance+'km';
+				html += '<span tabindex="0" role="button" aria-hidden="true" onclick="event.stopPropagation(); traffic.moveTo(\''+data.gg4Id+'\',\'ed\');">'+data.nodeShortname2+'</span>';
+			html += '</li>';
+		html += '</ul>';
+		html += '<a href="javascript:void(\'0\')" class="bmrk" tabindex="0" onclick="event.stopPropagation(); mainPg.toggleBmrk(\'roadType\',\''+data.gg4Id+'\')" title="즐겨찾기 추가">즐겨찾기</a>';
+	html += '</li>';
+	return html;
+}
+
+/*도로별 목록 조회 소통정보*/
+var renderRoadListTraffic = function(list){
+	for(var i = 0; i < list.length; i++){
+		// 얘도 위의 renderRoadList함수랑 똑같이, 왕복차선도로의 id값은 제외
+		if(list[i].gg4Direction == 2) continue;
+		var trf = document.querySelectorAll('#trf_'+list[i].gg4Id+' .road li');
+		trf[0].className = list[i].sp2Color;
+		trf[1].className = list[i].sp1Color;
+	}
+	
+	// 도로클릭 -> 상세
+	let gg4IdVal = null;
+	let lis = document.querySelectorAll('#roadDetailView>ul li');
+	for(let j=0, n=lis.length; j<n; j++){
+		if(lis[j].className.indexOf("on")!=-1){
+			gg4IdVal = lis[j].id;
+			break;
+		}
+	}
+	for(let i=0; i<list.length; i++){
+		if(list[i].gg4Id==gg4IdVal){
+			let trf = document.querySelectorAll('#roadDetailList')[0].childNodes;
+			trf[0].className = traffic.spdCd[list[i].sp2Color];
+			trf[1].className = traffic.spdCd[list[i].sp1Color];
+		}
+	}
+}
+/* 교차로검색 목록 조회 */
+var renderIntersectionList = function(data){
+	var html = '';
+	if(data.crsrdNm == '-') return html;
+	if(data.useYn === 'N') return html;
+	if(data.crsrdNm.length > 5 && !isNaN(data.crsrdNm.substr(0,5))) return html;
+	html += '<li id="trf_'+data.nodeId+'" class="cursor" role="button" tabindex="0" onclick="traffic.clickIntersection(\''+data.nodeId+'\')" onkeydown="if(event.key===\'Enter\'||event.keyCode===13){ this.click(); }">';
+		html += '<ul>';
+			html += '<li>'+data.crsrdNm+'<i class="intrI">('+data.nodeId+')</i></li>';
+		html += '</ul>';
+// 		html += '<a href="javascript:void(\'0\')" class="bmrk four_way" title="선택됨" onclick="event.stopPropagation();  mainPg.toggleBmrk(\'intersectionType\',\''+data.nodeId+'\')">즐겨찾기</a>';
+	html += '</li>';
+	return html;
+}
+
+var renderMblIntersectionList = function(data){
+	var html = '';
+	if(data.crsrdNm == '-') return html;
+	if(data.crsrdNm.length > 5 && !isNaN(data.crsrdNm.substr(0,5))) return html;
+	
+	html += '<li id="trf_'+data.nodeId+'" class="cursor" tabindex="0" onclick="traffic.clickIntersection(\''+data.nodeId+'\'); mainPg.toggleMap(this)">';
+		html += '<ul>';
+			html += '<li>'+data.crsrdNm+'<i class="intrI">('+data.nodeId+')</i></li>';
+		html += '</ul>';
+		html += '<a href="javascript:void(\'0\')" class="bmrk " title="즐겨찾기 추가" onclick="event.stopPropagation(); mainPg.toggleBmrk(\'intersectionType\',\''+data.nodeId+'\');">즐겨찾기</a>';
+	html += '</li>';
+	return html;
+}
+
+/* 데이터 없음 */
+var renderNoData = function(){
+	return '<li><ul>'+traffic['result.nodata']+'</ul></li>';
+}
+
+/*도로 상세 정보 표출*/
+var renderRoadDetail = function(idx, data){
+	var gg4Id = data.gg4Id;
+	var flag = traffic.getBmrkRoad(gg4Id);
+	var html = '';
+	html += '<a id="closeBtnInner" href="javascript:void(\'0\')" onclick="traffic.roadBack(\'' + gg4Id + '\');" class="closeDet">닫기</a>';
+	html += '<span>상세 소통 현황</span>';
+	html += '<h2>'+data.kname+'</h2>';
+	/*2025-05-21 소요시간 제외 - 권수석님 요청*/
+	/*html += '<p>소요시간 '+data.ttM1+'분 | '+data.ttM2+'분 </p>';*/
+	html += '<ol id="olId">';
+		html += '<li>'+data.nodeShortname1+' - '+data.nodeShortname2+'</li>';
+		// html += '<li>'+data.nodeShortname2+'</li>';
+		html += '<li class="dit" style="margin-left: 5px;">'+data.distance+'km</li>';
+	html += '</ol>';
+	html += '<ul class="vsbhd mt50"><li style="margin-left:auto;margin-right:0px;opacity:1;"><a style="border-bottom:1px solid #fff;" href="javascript:void(\'0\')" onclick="mainPg.toggleMap(this);">지도보기</a></li></ul>';
+	html += '<ul class="directionPt">';
+	
+	html += '<li class="on wd50" id="tabUp" tabindex="0" onclick="activateUpTab()" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){ activateUpTab(); }">상행</li>';
+	html += '<li class="wd50" id= "tabDown" tabindex="0" onclick="activateDownTab()" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){ activateDownTab(); }">하행</li>';
+	
+	html += '</ul>';
+	html += '<a href="javascript:void(\'0\')" class="bmrk '+flag+'" onclick="event.stopPropagation(); mainPg.toggleDtlBmrk(\'roadType\',\''+data.gg4Id+'\')" title="북마크 추가">북마크</a>';
+	return html;
+}
+/*도로 상세 목록 표출*/ 
+var renderRoadDetailList = function(data){
+	var html = '';
+	if(typeof data.single !== "undefined"){ // 단 두개만 있을 떄
+		html += '<li class="'+traffic.spdCd[data.spd]+'">';
+		html += '<p role="img" aria-label="구간시작점: '+ data.strtPoint + '">'+data.strtPoint+'</p>';
+		html += '<strong><i>'+traffic.spdNm[data.spd]+'</i></strong>';
+		html += '</li>';
+
+		html += '<li>';
+		html += '<p role="img" aria-label="구간끝지점: '+ data.endPoint + '">'+data.endPoint+'</p>';
+		html += '<strong></strong>';
+		html += '</li>';
+	}else{
+		if(typeof data.end === 'object'){ // 마지막지점
+			html += '<li class="'+traffic.spdCd[data.spd]+'">';
+			html += '<p role="img" aria-label="구간중간지점: '+ data.strtPoint + '">'+data.strtPoint+'</p>';
+			html += '<strong><i id="trf_sp2Nm">'+traffic.spdNm[data.spd]+'</i></strong>';
+			html += '</li>';
+
+			html += '<li>';
+			html += '<p role="img" aria-label="구간끝지점: '+ data.endPoint + '">'+data.endPoint+'</p>';
+			html += '<strong></strong>';
+			html += '</li>'; // 플필 데이터 입출력에 대한 문제
+		}else if(data.str == null){ // 스타트지점
+			html += '<li class="'+traffic.spdCd[data.spd]+'">';
+			html += '<p role="img" aria-label="구간시작점: '+ data.strtPoint + '">'+data.strtPoint+'</p>';
+			html += '<strong><i>'+traffic.spdNm[data.spd]+'</i></strong>';
+			html += '</li>';
+		}else { // 중간지점
+			html += '<li class="'+traffic.spdCd[data.spd]+'">';
+			html += '<p role="img" aria-label="구간중간지점: '+ data.strtPoint + '">'+data.strtPoint+'</p>';
+			html += '<strong><i id="trf_sp2Nm">'+traffic.spdNm[data.spd]+'</i></strong>';
+			html += '</li>';
+		}
+	}
+	return html;
+}
+
+var renderRoadDetaiReverselList = function(data){
+	var html = '';
+	if(typeof data.single !== "undefined"){ // 단 두개만 있을 떄
+		html += '<li class="'+traffic.spdCd[data.spd]+'">';
+		html += '<p role="img" aria-label="구간시작점: '+ data.endPoint + '">'+data.endPoint+'</p>';
+		html += '<strong><i>'+traffic.spdNm[data.spd]+'</i></strong>';
+		html += '</li>';	
+		
+		html += '<li>';
+		html += '<p role="img" aria-label="구간끝지점: '+ data.strtPoint + '">'+data.strtPoint+'</p>';
+		html += '<strong></strong>';
+		html += '</li>';
+	}else{
+		if(typeof data.end === "undefined"){ // 스타트지점
+			html += '<li class="'+traffic.spdCd[data.spd]+'">';
+			html += '<p role="img" aria-label="구간시작점: '+ data.endPoint + '">'+data.endPoint+'</p>';
+			html += '<strong><i>'+traffic.spdNm[data.spd]+'</i></strong>';
+			html += '</li>';	
+		}else if(typeof data.str === "undefined"){ // 마지막지점
+			html += '<li class="'+traffic.spdCd[data.spd]+'">';
+			html += '<p role="img" aria-label="구간중간지점: '+ data.endPoint + '">'+data.endPoint+'</p>';
+			html += '<strong><i>'+traffic.spdNm[data.spd]+'</i></strong>';
+			html += '</li>';
+			
+			html += '<li>';
+			html += '<p role="img" aria-label="구간끝지점: '+ data.strtPoint + '">'+data.strtPoint+'</p>';
+			html += '<strong></strong>';
+			html += '</li>';
+		}else { // 중간지점
+			html += '<li class="'+traffic.spdCd[data.spd]+'">';
+			html += '<p role="img" aria-label="구간중간지점: '+ data.endPoint + '">'+data.endPoint+'</p>';
+			html += '<strong><i>'+traffic.spdNm[data.spd]+'</i></strong>';
+			html += '</li>';
+		}
+	}
+	return html;
+}
+
+
+var renderInterPop = function(data){
+	var html = '';
+	html += '<a href="javascript:void(\'0\')" onclick="mainPg.removeTooltip(\'gridPop\')">닫기</a>';
+	html += '<strong><p>'+data.crsrdNm+'</p></strong>';
+	/* 길찾기 기능 추가 시, 아래코드 주석해제 */ 
+// 	html += '<a href="/traffic/bestway.do?nodeId='+data.nodeId+'">길찾기</a>';
+	return html;
+}
+var renderBasicPop = function(data){
+	var html = '';
+	html += '<a href="javascript:void(\'0\')" onclick="mainPg.removeTooltip(\'gridPop\')">닫기</a>';
+	html += '<strong><p>'+data.name+'</p></strong>';
+	return html;
+}
+</script>
+
+	
+
+
+
+
+
+<footer>
+	<div>
+		<h6>울산광역시</h6>
+		<div>
+			<ul class="pc">
+				<li><a href="/help/survey.do">정기교통량 조사결과</a></li>
+
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+				<li><a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005008002000000" target="_blank" class="new_open" title="새 창 열림">영상정보처리기기 운영·관리방침</a></li>
+			</ul>
+			<address>
+				(44686) 울산광역시 남구 번영로 235(신정동)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대표전화 052)120<br>
+				Copyrightⓒ2010 Ulsan Metropolitan City. All Rights Reserved
+			</address>
+			<ul class="mb">
+				<li><a href="/help/survey.do">정기교통량 조사결과</a></li>
+
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+				<li><a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005008002000000" target="_blank" class="new_open" title="새 창 열림">영상정보처리기기 운영·관리방침</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<script>
+</script>
+</body>
+</html>

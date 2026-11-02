@@ -31,6 +31,8 @@ for(const field of ['disabled','readOnly']){
  controller.setTarget(['서울']);emit('input','서울',true);input[field]=true;flushTimers();input[field]=false;
  assert.equal(completions,beforeChanged,'Inactive inputs cannot complete');
 }
+// 완주 콜백이 즉시 같은 이름의 다음 정류장을 열어도 한 번만 전진해야 한다.
+const originalSubmit=controller.onSubmit;let adjacentAdvances=0;controller.onSubmit=()=>{adjacentAdvances++;controller.setTarget(['서울'])};controller.setTarget(['서울']);emit('compositionstart','');emit('input','서울',true);flushTimers();assert.equal(adjacentAdvances,1,'조합 종료와 타이머가 같은 입력을 중복 제출하지 않아야 한다');assert.equal(input.value,'');controller.onSubmit=originalSubmit;
 controller.setTarget(['서울']);emit('input','서울',true);controller.destroy();flushTimers();
 assert.equal(completions,beforeChanged,'Destroy cancels pending completion');assert.equal(Object.keys(handlers).length,0);
 console.log(JSON.stringify({status:'PASS',fixtures:names.length+3,visualUpdate:'synchronous during composition',completion:'compositionend or unchanged exact composition timer',duplicateCompletions:0,leadingWhitespaceRemoved:true,spaceInsertionPrevented:true,timerCancellation:true},null,2));

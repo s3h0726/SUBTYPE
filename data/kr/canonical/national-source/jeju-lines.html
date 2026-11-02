@@ -1,0 +1,335 @@
+
+
+
+
+
+
+
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [시작] -->
+ 
+<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가 [끝] -->
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="ko" class="lt-ie9 lt-ie8 lt-ie7" > <![endif]-->
+<!--[if IE 7]>    <html lang="ko" class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="ko" class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ko"> <!--<![endif]-->   
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8;"/>
+	    <!-- <meta http-equiv="cache-control" content="no-cache">  -->
+	    <meta name="title" content="제주버스정보">
+		<meta name="author" content="제주특별자치도 버스정보시스템" />
+		<meta name="keywords" content="제주특별자치도 버스정보시스템, 제주 버스정보시스템" />
+		<meta name="description" content="제주특별자치도 버스정보시시스템 개편노선 홈페이지" />
+	    <title>제주버스 노선검색</title>
+	    <!--[if gt IE 8]>
+	   	<link rel="stylesheet" type="text/css" href="/resources/css/fonts.css">
+	   	<![endif]-->
+	   	<link rel="stylesheet" type="text/css" href="/resources/css/fonts.css">
+	    <link rel="stylesheet" href="/resources/css/style.css">
+	    
+	    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!--[if lt IE 9]>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+		<![endif]-->
+	    <script src="/resources/script/jquery.min.js"></script>
+	    <script src="/resources/script/selectivizr-min.js"></script>
+	    <script src="/resources/script/jquery.scrollbar.js"></script>
+	    <script src='/resources/layouts/web/daumMapControl.js'></script>
+	    <script src="/resources/layouts/web/searchContol.js?ver=1793634812439"></script>
+		<script src="/resources/layouts/web/sum_common.js"></script>
+		<script src="/resources/script/spin.js"></script>
+	    
+	    <link rel="stylesheet" type="text/css" href="/resources/css/modify_line_search.css">
+	    
+	    <style>
+			/*최초는 가려진 상태로 시작*/
+	        .time_table,.first_blind_wrap { visibility: hidden; }
+	    </style>
+	    
+	    <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126798761-1"></script>
+		
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-126798761-1');
+		</script>
+		
+		<!-- 2019 버스정보시스템고도화 :: 외국어 기능 추가  [시작]-->
+		<script>
+			var contextPath = "";
+			var locale = "ko_KR";
+		</script>
+		<!-- 2019 버스정보시스템고도화 :: 외국어 기능 추가  [끝]-->
+	</head>
+
+	<script>
+		var searchControl = new searchControl();
+		var searchText = '';
+		var searchId = '';
+		var searchType = "2"; // 1:기노선, 2:신규노선
+		var selectRouteId;
+		var busUpdateTimer;
+
+		var siteUrl = new Array(
+				"/search/line",
+				"/search/station",
+				"/search/route",
+				"/search/realTimeBusLocation",
+				"/search/similarLine"
+				);
+			
+		function siteLink(url, parameters, options) {
+			var popupOption = "fullscreen=no,menubar=yes,toolbar=yes,location=yes,scrollbars=yes, resizable=yes";
+			window.open("" + url+(parameters?"?"+parameters:""), "", options ? options : popupOption);
+		}
+
+		function getQueryParameter(name) {
+			const urlParams = new URLSearchParams(window.location.search);
+			return urlParams.get(name);
+		}
+
+		//=========================================
+		//화면이 완전히 로딩된 후 발생
+		//=========================================
+		$(document).ready(function() {
+			var params = new URLSearchParams(window.location.search);
+			var routeNum = params.get('routeNum');
+			var routeId = params.get('routeId');
+
+			const btnTimeElement = document.getElementById("btn_time");
+			if (btnTimeElement) {
+				btnTimeElement.value = routeId; // btn_time의 값 설정
+			}
+
+			// searchControl.lineSearchResultStationList(selectIdx);
+
+			/*
+			if(searchType == "1"){
+				$(".text_newline").text("구노선정보");
+			}else if(searchType == "2"){
+				$(".text_newline").text("개편노선정보");
+			}
+			*/
+			$('.scrollbar-outer').scrollbar();
+
+			//지도 세팅 및 정류소 마커 이벤트 연결
+			searchControl.init();
+
+			//링크이동
+			$(".first ul").on("click","li", function() {
+				window.open(siteUrl[$(this).index()],"_self");
+			});
+
+			// 검색어 키워드가 있을 시
+			if ( searchText ) {
+				$(".btn_time").val(searchText);
+				searchControl.lineSearchKeyword(searchText, searchType);
+			}
+			// 검색어 입력 후 엔터키 처리
+			$(".btn_time").keydown(function(key) {
+				if ( key.keyCode == 13 ) {
+					lineKeyword = $(".btn_time").val();
+					searchId = null;
+					if ( lineKeyword == null || lineKeyword == '' ) {
+						returnErrMsg("error.keyword.msg");
+						return false;
+					} else {
+						searchControl.lineSearchKeyword(lineKeyword, searchType);
+					}
+				}
+			});
+
+			// 검색어 입력 후 서치버튼 클릭
+			$(".right_input a").click(function() {
+				lineKeyword = $(".btn_time").val();
+				searchId = null;
+
+				if ( lineKeyword == null || lineKeyword == '' ) {
+					returnErrMsg("error.keyword.msg");
+					return false;
+				} else{
+					searchControl.lineSearchKeyword(lineKeyword, searchType);
+				}
+			});
+
+			// 노선 클릭
+			$(".line_list").on("click", "li", function() {
+				//클릭된 인덱스 가져옴
+				var idx = $(this).index();
+
+				// idx 0번은 셀렉트박스 목록 보여주기, 1부터는 노선선택
+				if ( idx == 0 ) {
+					searchControl.lineSearchResultInfo();
+					// 실시간 버스위치 갱신 중지
+					clearInterval(busUpdateTimer);
+				} else {
+					$(this).parent().css("height", "74px");
+					$(this).parent().css("position", "absolute");
+					$(this).parent().css("z-index", "5");
+
+					// 검색결과 클릭 상태 세팅
+					var title = $(this).find("p").eq(0).text();
+					var path = $(this).find("p").eq(1).text();
+					searchControl.lineSearchLineSelected(title, path);
+
+					// SelectBox 선택 인덱스 0번은 title이기 때문에 -1 해줌
+					var selectIdx = idx-1;
+
+					// 경유정류소 뿌려줌
+					searchControl.lineSearchResultStationList(selectIdx);
+
+					// 경유노선 그리기
+					var stationInfo = searchControl.searchResultInfo.get(selectIdx);
+					selectRouteId = stationInfo.routeId;
+					searchControl.setlineLink(selectRouteId);
+
+					// 10초마다 한번씩 실시간 버스위치 갱신
+					busUpdateTimer = setInterval(function() {
+						var busType = searchControl.searchResultInfo.get(selectIdx).busTypeStr;
+						searchControl.realTimeBusInfo(selectRouteId, busType);
+					},30000);
+				}
+			});
+
+			// 경유 정류소 선택 시
+			$(".station_list").on("click", ".container", function(){
+				// $(".infopopwrap").show();
+				var selectIndex = $(this).index();
+				searchControl.clickRouteStation(selectIndex, "line");
+			});
+		});
+		
+		//=========================================
+		//MapEvent : 현재위치와 지도 zoom Level에 따른 정류장 마커 생성
+		//=========================================
+		function mapIdleEvent() {
+			searchControl.setStationMaker();
+		}
+		
+		//=========================================
+		//MapEvent : 정류장 마커를 클릭했을 시 정보를 보여줌
+		//=========================================
+		function markerClickEvent() {
+			searchControl.clickStationMaker(this);
+		}
+		
+		//=========================================
+		// ErrorMessage : 언어에 따라 메시지 출력
+		//=========================================
+		function returnErrMsg(codeId){
+			console.log(codeId);
+			var html = "";
+			if(codeId == "error.keyword.msg")
+				html = '검색어를 입력하세요.';
+			
+			alert(html);
+			return false;
+		}
+	</script>
+
+	<body>
+	    <div class="search_layout_parent">
+	        <div class="top_ci">
+	        	<img class="img_bg_ci" src="/resources/images/img_top_ci.png" alt="버스정보시스템 CI 이미지 입니다."/>
+	            <!--  <a href="#" class="btn_wrap"><span class="text_newline">개편노선정보</span></a> -->
+	        </div>
+	        <div class="layout_left">
+	            <div class="first">
+	                <ul>
+	                	<!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가  [시작]-->
+	                	
+	                	
+	                	
+	                	
+	                	
+	                	
+	                	
+	                	<li class="single_on">노선검색</li>
+	                    <li class="single">정류소검색</li>
+	                    <li class="multi">
+	                        <p class="child">출도착검색<br />(경로검색)</p>
+	                    </li>
+	                    <li class="multi">
+	                        <p class="child">실시간<br />버스위치</p>
+	                    </li>
+	                    <li class="multi">
+	                        <p class="child">유사노선<br />조회</p>
+	                    </li>
+	                	
+	                    
+	                    <!-- 2019 버스정보시스템 고도화 :: 외국어 기능 추가  [끝]-->
+	                </ul>
+	            </div>
+				<div class="shadow"></div>
+	        </div>
+	        
+	        <div class="layout_right" id="layout_right">
+	
+	            <div class="wrap">
+	            	<!-- 2019 버스정보시스템 고도화  :: 외국어 기능 추가 [시작] -->
+	                <p class="top_title">노선검색</p>
+	                <div class="right_input">
+	                	
+	                    <input class="btn_time" type="text" placeholder="버스노선을 입력하세요" value="" title="버스노선을 입력하세요" />
+	                    <a href="#">
+	                        <img src="/resources/images/btn_srch.png" alt="노선 검색 버튼" />
+	                    </a>
+	                </div>
+	                
+	                <!-- <p class="station_search_desc">( 예:360, 355-1 )</p> -->
+	                
+	                
+	                
+	                
+	                
+	                
+	                
+	                	<p class="station_search_desc">( 예:360, 355-1 )</p>
+	                
+	              	<!-- 2019 버스정보시스템고도화 :: 외국어 기능 추가 [끝] -->
+	                <div class="time_table"></div>
+	                
+	                <div class="first_blind_wrap">
+	                    <div class="blind_scroll">
+	                        <ul class="line_list"></ul>
+	                        <!-- 버스정보 추가  -->
+	                        <div class="realtime_info" style="z-index:3;"></div>
+	                        <div class="station_list" style="z-index:4;"></div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div id="layout_map" class="layout_map">
+	            
+	            
+	            
+	            
+	            
+	            
+	            
+	            	<img class="marker_info" alt="지도 상에 나오는 마커 안내정보 이미지" src="/resources/images/img_marker_info.png" />
+	            
+	          	<!-- 2019 버스정보시스템고도화 :: 외국어 기능 추가 [끝] -->
+	        	
+	        	<div id="map" class="main_map">
+	        	</div>
+	        </div>
+	        
+	        <div class="layout_bottom">
+	        	<img class="img_bot_ci" src="/resources/images/img_ci_bot.png" alt="제주버스정보시스템 하단 CI 이미지"/> 
+	            <p class="bottom_ci"></p>
+	            <div class="shadow"></div>
+	        </div>
+	        
+	        <iframe id="fileDown" style="visibility:hidden" src="" title="파일 다운로드"></iframe>
+	    </div>
+	</body>
+</html>

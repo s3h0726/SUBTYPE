@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>대구광역시 버스정보시스템</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" href="/dbms_web/static/img/common/icon.png?_=1793296972173" />
+  <link rel="apple-touch-icon" href="/dbms_web/static/img/common/icon.png?_=1793296972173" />
+  <link rel="apple-touch-icon" sizes="72*72" href="/dbms_web/static/img/common/icon.png?_=1793296972173" />
+  <link rel="apple-touch-icon" href="/dbms_web/static/img/common/icon.png?_=1793296972173" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans|Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/fontawesome-free/css/all.min.css">
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/jquery-ui/jquery-ui.min.css">
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Preloader -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/preloader/preloader.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/dbms_web/static/plugins/daterangepicker/daterangepicker.css">
+
+  <!-- Animate On Scroll Library -->
+  <link rel="stylesheet" href="/dbms_web/static/css/aos.css">
+  <link rel="stylesheet" href="/dbms_web/static/css/slick.css">
+  <!-- Style -->
+  <link rel="stylesheet" href="/dbms_web/static/js/ol-ext/Control/ZoomBar.css">
+  <link rel="stylesheet" href="/dbms_web/static/css/common.css?_=1793296972173">
+  <link rel="stylesheet" href="/dbms_web/static/css/map.css?_=1793296972173">
+  <link rel="stylesheet" href="/dbms_web/static/css/style.css?_=1793296972173">
+  <link rel="stylesheet" href="/dbms_web/static/css/font.css">
+  <link rel="stylesheet" href="/dbms_web/static/css/detour.css?_=1793296972173">
+  <script>
+  var CONFIG = {
+      ctx: '/dbms_web',
+      apiPrefix: '/dbms_web_api',
+      locale: 'ko',
+      mapType: 'kakao',
+      mapMode: '0'
+  };
+  </script>
+</head>
+<body>
+
+<header>
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+    <nav class="navbar navbar-expand-xl navbar-light"><!-- dark fixed-top -->
+        <div class="container">
+            <a class="navbar-brand" href="/dbms_web">대구광역시<br class="d-sm-none d-md-none d-lg-none d-xl-none"><span>버스정보시스템</span></a>
+            <div class="collapse navbar-collapse" id="navbars">
+                <ul class="navbar-nav ml-auto">
+                    <li class="breadcrumb-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="menuDepth1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">버스 이용 안내</a>
+                        <div class="dropdown-menu" aria-labelledby="menuDepth1">
+                            <a class="dropdown-item" href="/dbms_web/content/businfo/busfare"><i class="fas fa-bus mr-2 blue"></i>버스 요금 안내</a>
+                            <a class="dropdown-item" href="/dbms_web/content/businfo/schedule"><i class="fas fa-bus mr-2 blue"></i>버스 운행 시간표</a>
+                            <a class="dropdown-item" href="/dbms_web/content/businfo/lowfloorbus"><i class="fas fa-bus mr-2 blue"></i>저상버스 운행 시간표<span class="d-md-none" style="font-size:inherit;"> &amp; 교통약자 승차예약</span></a>
+                            <a class="dropdown-item" href="/dbms_web/content/businfo/carrierbus"><i class="fas fa-bus mr-2 blue"></i>캐리어버스 운행 시간표</a>
+                            <a class="dropdown-item" href="/dbms_web/content/businfo/company"><i class="fas fa-bus mr-2 blue"></i>버스 회사 정보 조회</a><a class="dropdown-item" href="/dbms_web/content/busstop/guidelocation"><i class="fas fa-bus mr-2 blue"></i>버스정보안내기 위치</a>
+                            <a class="dropdown-item" href="/dbms_web/content/busstop/stopnumber"><i class="fas fa-bus mr-2 blue"></i>정류소 번호 조회</a>
+                            <a class="dropdown-item" href="/dbms_web/content/businfo/usagestatus"><i class="fas fa-bus mr-2 blue"></i>버스 이용 통계</a>
+                            <a class="dropdown-item" href="/dbms_web/content/businfo/usageinfo"><i class="fas fa-bus mr-2 blue"></i>정류소별 이용 통계</a>
+                        </div>
+                    </li>
+                    <li class="breadcrumb-item dropdown">
+                        <a class="nav-link dropdown-toggle" onclick="window.open('http://daegubus.or.kr/lost.htm', '_blank');" href="#" id="menuDepth2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분실물 센터</a>
+                        </li>
+                    <li class="breadcrumb-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="menuDepth3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">알림 마당</a>
+                        <div class="dropdown-menu" aria-labelledby="menuDepth3">
+                            <a class="dropdown-item" href="/dbms_web/content/customer/notice"><i class="fas fa-bus mr-2 blue"></i>공지사항</a>
+                            <a class="dropdown-item" href="/dbms_web/content/customer/newstop"><i class="fas fa-bus mr-2 blue"></i>정류소 신설·이전 및 정보안내기 설치</a>
+                            <a class="dropdown-item" href="/dbms_web/content/customer/replacement"><i class="fas fa-bus mr-2 blue"></i>저상버스 대체 안내</a>
+                            <a class="dropdown-item" href="/dbms_web/content/customer/infor"><i class="fas fa-bus mr-2 blue"></i>홈페이지 정보수정 요청</a>
+                            <a class="dropdown-item" href="/dbms_web/content/customer/faq"><i class="fas fa-bus mr-2 blue"></i>FAQ</a>
+                            <a class="dropdown-item d-md-none" href="/dbms_web/content/customer/guide"><i class="fas fa-bus mr-2 blue"></i>앱(App)처럼 사용하기</a>
+                        </div>
+                    </li>
+                    <li class="breadcrumb-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="menuDepth4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">BMS 소개</a>
+                        <div class="dropdown-menu" aria-labelledby="menuDepth4">
+                            <a class="dropdown-item" href="/dbms_web/content/bms/overview"><i class="fas fa-bus mr-2 blue"></i>BMS 개요</a>
+                            <a class="dropdown-item" href="/dbms_web/content/bms/management"><i class="fas fa-bus mr-2 blue"></i>버스 운행 관리</a>
+                            <a class="dropdown-item" href="/dbms_web/content/bms/collection"><i class="fas fa-bus mr-2 blue"></i>버스 운행 정보 수집</a>
+                            <a class="dropdown-item" href="/dbms_web/content/bms/provide"><i class="fas fa-bus mr-2 blue"></i>버스 운행 정보 제공</a>
+                            <a class="dropdown-item" href="/dbms_web/content/bms/guide"><i class="fas fa-bus mr-2 blue"></i>버스정보안내기 정보제공</a>
+                            <a class="dropdown-item" href="/dbms_web/content/bms/benefit"><i class="fas fa-bus mr-2 blue"></i>기대효과</a>
+                            <a class="dropdown-item" href="/dbms_web/content/bms/development"><i class="fas fa-bus mr-2 blue"></i>발전방향</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-sm-block" style="margin-left: auto;margin-right: 10px;font-size: 0.8em;">
+                <div class="form-group" style="    margin-bottom: 0rem;">
+                    <label for="SelectLanguage"></label>
+                    <select class="form-control form-control-sm" id="SelectLanguage" style="font-size: 1em;" onchange="if(this.value) location.href=(this.value);">
+                        <option value="?locale=ko">KOR</option>
+                        <option value="?locale=en">ENG</option>
+                    </select>
+                </div>
+            </form>
+            <button class="navbar-toggler" type="button"  data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> 
+            </button>
+        </div>
+        <!-- /container -->
+    </nav>
+</header>
+
+<style>
+#weatherCd2{
+    height: 60px;
+    margin-right: 15px;
+}
+#mapTabContent > div > ul > li{
+    padding: 0.5rem 1rem;
+    height: 2.5rem;
+}
+.fa-times{
+    font-size : 24px !important;
+    margin-top: 5px;
+    
+}
+
+.fa-star{
+    font-size : 20px !important;
+    margin-right: 15px !important;
+}
+.frequent-title{
+    border-bottom: 1px solid #f0f0f0;border-radius: .25em .25em 0 0;
+}
+
+.around-title{
+    border-bottom: 1px solid #f0f0f0;border-radius: .25em .25em 0 0;
+}
+
+.nav-item > a{
+    border-radius: 0.25em 0.25em 0 0 !important;
+}
+
+.autoTab{
+    max-height: 210px;
+    overflow-x: auto;
+    margin-top: -20px;
+}
+
+.autoDiv{
+    margin-top:-1rem;
+    padding-bottom: 0;
+    padding-top: 1.5rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+.autoTitle{
+    padding-top:0px !important;
+    border-top: 1px solid #e1e1e1;
+}
+.autoList{
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+.notice h4 a{
+    color:inherit;
+}
+.notice h4 span{
+    color:#00a1e9;
+}
+.nav-tabs .nav-link {
+    height: 39px;
+}
+.tab-content {
+    margin-top: 0;
+}
+.list-group {
+    margin-top: 0;
+}
+.sidebar-contents.mobileS {
+    min-height: 7rem;
+    margin: 0.6rem 0 0 0;
+}
+.sidebar-contents {
+    padding-bottom: 0.5rem;
+}
+.jumbotron {
+    padding: 1rem 0 1.5rem 0;
+}
+.jumbotron .link a {
+    margin: 0.5rem auto 1rem !important;
+}
+</style>
+<main role="main">
+    <input type="hidden" id="device" name="device">
+    
+    <div class="toast" id="reseachToast" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute;display:none;top:-10%">
+        <div class="toast-header">
+            <strong class="mr-auto">버스정보시스템 이용자 만족도 설문조사</strong>
+            <small></small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" onClick="closeToast()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+
+            <form>
+                <div class="form-group row jumbotron main" style="background-image:none;min-height:100px; padding:2rem 1rem;">
+                    <label for="searchTxt" class="text-center main-title" style="width: 100%;padding-top: 0px;font-size: 2em;margin: 0px;">
+                                            버스정보 시스템 </br> 이용자 만족도 설문조사
+                    </label>
+                </div>
+                <div>
+                <label style="font-size: 16px;word-break: keep-all;margin-top: 10px;">
+                본 조사는 여러분의 의견을 수렴하여   향후 시스템 개선 및 정책 수립을 위한 
+                기초 자료로만 활용되오니 조사에 적극 참여해주시길 바랍니다. 감사합니다.
+                </label>
+                </div>
+                <div>
+                    <label class="blue">조사기간 : 2020년 6월 3일 ~ 2020년 6월 16일</label>
+                </div>
+                <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="noShow" id="noShow" value="1" onclick="researchNoShow()">
+                        <label class="form-check-label" for="noShow">오늘 하루 보지않기.</label>
+                </div>
+            </form>
+            <input type="hidden" id="researchNo">
+            <div class="text-center">
+                <button type="button" class="btn btn-primary btn-sm" onClick="openPopup()">확인</button>
+                <a class="btn btn-outline-primary btn-sm" onClick="closeToast()">취소</a>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="d-none link-quick"><!-- d-md-block  -->
+        <ul>
+            <li><a href="#MainSearch" class="active">통합검색<span></span></a></li>
+            <li><a href="#">자주 찾는 서비스<span></span></a></li>
+            <li><a href="#MainNotice">공지사항<span></span></a></li>
+            <li><a href="#MainPopupzone">알림존<span></span></a></li>
+        </ul>
+    </div>
+
+    <div id="MainSearch" class="jumbotron main">
+        <div class="container">
+            <label for="searchTxt" class="text-center main-title" style="width: 100%;">버스정보&nbsp;통합검색</label>
+            <div class="form-inline" style="position: relative;">
+                <input class="form-control form-control-lg" id="searchTxt" type="text" placeholder="『정류소, 노선, 목적지』를 입력하세요." aria-label="Search" style="height:50px;ime-mode:desativated" autocomplete="off"
+                oninput="changeSearcTxt()" onclick="searchTxtFocus(this)" onKeypress="javascript:if(event.keyCode==13) {search_submit()}">
+                <span aria-hidden="true" class="txtClear" onclick="txtClear('searchTxt')"><i class="fas fa-times"></i></span>
+                <button class="" type="submit" style="height:50px;" onClick="search_submit()"></button>
+            </div>
+            
+            <div class="sidebar-contents autoDiv" style="display:none;">
+                <!-- 정류소 -->
+                <ul class="nav nav-tabs nav-justified bsTab autoTitle" id="bsTab"  style="display:none;">
+                    <li class="nav-item" style="background-color:#ffffff">
+                        <a class="nav-link autoTitle active" id="bs-tab" >정류소<i class="fas fa-chevron-down"></i></a>
+                    </li>
+                </ul>
+                <div class="tab-content bsTab autoTab" id="bsTabContent" style="display:none;">
+                    <div class="tab-pane fade show active" id="bsList">
+                        <ul class="list-group">
+                            
+                        </ul>
+                    </div>
+                </div>
+                <!-- 정류소 -->
+                <!-- 노선 -->
+                <ul class="nav nav-tabs nav-justified routeTab autoTitle" id="routeTab" style="display:none;">
+                    <li class="nav-item" style="background-color:#ffffff">
+                        <a class="nav-link autoTitle active" id="route-tab" >버스노선<i class="fas fa-chevron-down"></i></a>
+                    </li>
+                </ul>
+                <div class="tab-content routeTab autoTab" id="routeTabContent" style="display:none;">
+                    <div class="tab-pane fade show active" id="routeList" >
+                        <ul class="list-group">
+                            
+                        </ul>
+                    </div>
+                </div>
+                <!-- 노선 -->
+            </div>
+            <div class="bookmark d-none d-md-block" ></div>
+
+            <div id="mobileMain" class="sidebar-contents mobileS d-block d-md-none" >
+                <ul class="nav nav-tabs nav-justified" id="mapTab" role="tablist">
+                    <li class="nav-item frequent-tab frequent-title" >
+                        <a class="nav-link active" id="frequent-tab" data-toggle="tab" href="#frequent" role="tab" aria-controls="frequent" aria-selected="true">최근 검색 내역</a>
+                    </li>
+                    <li class="nav-item around-tab around-title" >
+                        <a class="nav-link " id="around-tab" data-toggle="tab" href="#around" role="tab" aria-controls="around" aria-selected="false">내주변 정류소</a>
+                    </li>
+                </ul>
+                <!-- /.nav-tabs -->
+                <div class="tab-content" id="mapTabContent">
+                    <div class="tab-pane fade frequent-tab show active" id="frequent" role="tabpanel" aria-labelledby="frequent-tab" style="height: 158px; overflow-y: scroll;">
+                        <ul class="list-group">
+                            
+                        </ul>
+                    </div>
+                    <!-- /.tab-cont-01 -->
+                    <div class="tab-pane fade around-tab" id="around" role="tabpanel" aria-labelledby="around-tab" >
+                        <ul class="list-group">
+                        </ul>
+                    </div>
+                    <!-- /.tab-cont-02 -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            
+            <div id="mobileNotice" class="mNotice d-block d-md-none" style="display: none; height: 0px; padding: 0;">
+                
+            </div>
+
+<!--                  onClick="mobileBannerClick();"> -->
+<!--             </div> -->
+
+        <div id="mobileWeather" class="weather mobileW d-block d-md-none" style="padding:10px 0 10px 30px; background-image:url('/dbms_web/static/img/add/main_bg_app.png'); background-repeat: no-repeat; background-size: 60px; background-position: -6px 14px;">
+                <div class="row">
+                    <div class="text-white h5" style="margin: 0 auto; text-align: center; font-size:1.2rem; letter-spacing: -0.13em;">앱(App)처럼 사용하기 <span style="font-size:1.0rem; letter-spacing: -0.13em;">(홈 화면 바로가기 추가)</span>
+                        <div class="row text-center pt-2" style="font-size: 15px; font-weight: normal;">
+                            <div class="text-white p0 rounded-pill border border-white text-warning" style="flex: 0 0 30%; margin:1% 1% 1% 8%; padding:5px 0 5px 0 !important; border-radius:0.4rem; background-color:#4173b8; box-shadow:0 5px 10px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.3); border:none !important;" onclick="location.href='/dbms_web/content/customer/guide'">삼성 인터넷</div>
+                            <div class="text-white p0 rounded-pill border border-white text-warning" style="flex: 0 0 17%; margin:1%; padding:5px 0 5px 0 !important; border-radius:0.4rem; background-color:#4173b8; box-shadow:0 5px 10px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.3); border:none !important;" onclick="location.href='/dbms_web/content/customer/guide1'">iOS</div>
+                            <div class="text-white p0 rounded-pill border border-white text-warning" style="flex: 0 0 32%; margin:1%; padding:5px 0 5px 0 !important; border-radius:0.4rem; background-color:#4173b8; box-shadow:0 5px 10px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.3); border:none !important;" onclick="location.href='/dbms_web/content/customer/guide2'">크롬 브라우저</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <style>
+/* quickLink
+.quickLink .linkSlider {overflow:hidden;  margin:0 auto;}
+.quickLink .linkSlider li {float:left; box-sizing:border-box; display:block; margin:0 20px;}
+.quickLink .linkSlider li a {display:block; position:relative; padding-top:150px; color:#131313; text-align:center; font-size:16px; color:#fff; font-weight:500;}
+.quickLink .linkSlider li a:before {content:''; position:absolute; top:0px; left:0; width:138px; height:138px; border-radius:50%;}
+.quickLink .linkSlider li.link01 a:before {background:#fff url('/dbms_web/static/img/add/link1.png') no-repeat center;}
+.quickLink .linkSlider li.link02 a:before {background:#fff url('/dbms_web/static/img/add/link2.png') no-repeat center;}
+.quickLink .linkSlider li.link03 a:before {background:#fff url('/dbms_web/static/img/add/link3.png') no-repeat center;}
+.quickLink .linkSlider li.link04 a:before {background:#fff url('/dbms_web/static/img/add/link4.png') no-repeat center;}
+.quickLink .linkBtn {display:none;}
+@media all and (max-width:768px) {
+    .quickLink .linkSlider li {margin:0;}
+    .jumbotron .link a {min-width:120px; }
+    .quickLink .linkSlider li a {padding-top:110px;}
+    .quickLink .linkSlider li a:before {width:100px; height:100px; background-size:60px !important; left:50%; margin-left:-50px; }
+}
+@media all and (max-width:480px) {
+    .quickLink .linkSlider li a {min-width:100px; padding-top:110px;}
+    .quickLink .linkSlider li {margin:0 12%;}
+}
+@media all and (max-width:420px) {
+    .quickLink .linkSlider li {margin:0 10%;}
+}
+@media all and (max-width:360px) {
+    .quickLink .linkSlider li {margin:0 8%;}
+}*/
+</style>
+<!-- 
+            <div class="justify-content-center link">
+                <div class="row quickLink" data-aos="fade-up" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <ul class="linkSlider">
+                    	<li class="link01"><a href="/dbms_web/content/businfo/schedule">버스운행시간표</a></li>
+                    	<li class="link02"><a href="/dbms_web/content/customer/replacement">저상버스 운행정보</a></li>
+                    	<li class="link03 d-none d-md-block"><a href="/dbms_web/content/customer/lost">분실물 신고</a></li>
+                    	<li class="link04 d-none d-md-block"><a href="/dbms_web/content/customer/found">습득물 공지</a></li>
+                    </ul>
+                </div>
+            </div>  -->
+            <!-- /.d-flex -->
+            <div class="justify-content-center link"><!-- d-flex -->
+                <div class="row">
+                    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                            <a href="javascript:$('#noticeModal').modal('show');"><div class="figure"><img src="/dbms_web/static/img/add/link8.png" class="" border="0" alt="" style="height: 65px !important; margin-top: 26px !important; margin-left: 5px !important;"><p style="margin-top: 39px;">초정밀 이용안내</p></div></a>
+                        </div>
+                    <div class="col-6 col-md-3 d-md-block" data-aos="fade-up" data-aos-offset="150" data-aos-delay="150" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <a href="/dbms_web/content/businfo/schedule"><div class="figure"><img src="/dbms_web/static/img/add/link1.png" class="" border="0" alt=""><p>버스운행시간표</p></div></a>
+                    </div>
+                    <div class="col-6 col-md-3 d-none d-md-block" data-aos="fade-up" data-aos-offset="150" data-aos-delay="250" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <a href="/dbms_web/content/businfo/lowfloorbus"><div class="figure"><img src="/dbms_web/static/img/add/link2.png" class="" border="0" alt=""><p>저상버스 운행정보</p></div></a>
+                    </div>
+                    <div class="col-6 col-md-3 d-md-none" data-aos="fade-up" data-aos-offset="150" data-aos-delay="150" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <a href="/dbms_web/content/businfo/lowfloorbus">
+                            <div class="figure">
+                                <img src="/dbms_web/static/img/add/link2.png" class="" border="0" alt="">
+                                <p style="width:140px;margin-left:-10px;">
+                                    저상버스 운행정보<br>&amp; 교통약자 승차예약</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 d-none d-md-block" data-aos="fade-up" data-aos-offset="150" data-aos-delay="250" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <a href="/dbms_web/content/businfo/usagestatus"><div class="figure"><img src="/dbms_web/static/img/add/link3.png" class="" border="0" alt=""><p>버스 이용 현황</p></div></a>
+                    </div>
+                    <div class="col-6 col-md-3 d-md-block" data-aos="fade-up" data-aos-offset="150" data-aos-delay="250" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <a onclick="getDetourList(true)" href="#"><div class="figure"><img src="/dbms_web/static/img/add/link9.png?v=3" class="" border="0" alt=""><p>우회운행안내</p></div></a>
+                        </div>
+                    </div>
+
+                <!-- /.row -->
+            </div>
+            <!-- /.d-flex -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /jumbotron -->
+
+    <section id="MainNotice" class="link-notice">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 py-3 border-right border-left border-light" data-aos="fade-down" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <div class="notice">
+                            <h4>공지<span>사항</span></h4>
+                            <a href="/dbms_web/content/customer/notice" class="more">더보기</a>
+                            <div id="carouselFadeNotice" class="carousel slide carousel-fade" data-ride="carousel">
+                                <ul class="carousel-inner">
+                                    <!--/ <li class="carousel-item active">
+                                        <small>이용가이드</small>
+                                        <a href="/dbms_web/content/customer/notice">대구시 버스노선안내 <br>
+                                        모바일 웹(m.businfo.go.kr) <br>
+                                        활용 안내</a>
+                                        <span>2019.02.27</span>
+                                    </li>
+                                    item01 -->
+                                    <!--/ <li class="carousel-item">
+                                        <small>알려드립니다</small>
+                                        <a href="/dbms_web/content/customer/notice">공지사항 두번째</a>
+                                        <span>2019.02.27</span>
+                                    </li>
+                                    item02 -->
+                                </ul>
+                                <!--/.carousel-inner -->
+                                <a class="carousel-control-prev" href="#carouselFadeNotice" role="button" data-slide="prev"><span class="" aria-hidden="true"><img src="/dbms_web/static/img/main/icon_prev.png" border="0" alt=""></span><span class="sr-only">Previous</span></a>
+                                <a class="carousel-control-next" href="#carouselFadeNotice" role="button" data-slide="next"><span class="" aria-hidden="true"><img src="/dbms_web/static/img/main/icon_next.png" border="0" alt=""></span><span class="sr-only">Next</span></a>
+                            </div>
+                            <!--/.carousel -->
+    
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3 border-right border-light d-none d-md-block" data-aos="fade-down" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <div class="notice" style="padding-top: 1rem;">
+                            <h4>정류소<span class="ml-2">신·이설</span><br/>정보안내기<span class="ml-2">설치</span></h4>
+                            <a href="/dbms_web/content/customer/newstop" class="more" style="margin-bottom: 0.75rem">더보기</a>
+                            <div id="newStopNotice" class="carousel slide carousel-fade" data-ride="carousel">
+                                <ul class="carousel-inner">
+                                    <!--/ <li class="carousel-item active">
+                                        <small>이용가이드</small>
+                                        <a href="/dbms_web/content/customer/notice">대구시 버스노선안내 <br>
+                                        모바일 웹(m.businfo.go.kr) <br>
+                                        활용 안내</a>
+                                        <span>2019.02.27</span>
+                                    </li>
+                                    item01 -->
+                                    <!--/<li class="carousel-item">
+                                        <small>알려드립니다</small>
+                                        <a href="/dbms_web/content/customer/notice">공지사항 두번째</a>
+                                        <span>2019.02.27</span>
+                                    </li>
+                                     item02 -->
+                                </ul>
+                                <!--/.carousel-inner -->
+                                <a class="carousel-control-prev" href="#newStopNotice" role="button" data-slide="prev"><span class="" aria-hidden="true"><img src="/dbms_web/static/img/main/icon_prev.png" border="0" alt=""></span><span class="sr-only">Previous</span></a>
+                                <a class="carousel-control-next" href="#newStopNotice" role="button" data-slide="next"><span class="" aria-hidden="true"><img src="/dbms_web/static/img/main/icon_next.png" border="0" alt=""></span><span class="sr-only">Next</span></a>
+                            </div>
+                            <!--/.carousel -->
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3 border-right border-light" data-aos="fade-down" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <div class="notice">
+                            <h4 style="font-size: 1.7em;">저상버스<span class="ml-2">대체안내</span></h4>
+                            <h4><span> </span></h4>
+                            <a href="/dbms_web/content/customer/replacement" class="more">더보기</a>
+                            <div id="replacementNotice" class="carousel slide carousel-fade" data-ride="carousel">
+                                <ul class="carousel-inner">
+                                    <!--/ <li class="carousel-item active">
+                                        <small></small>
+                                        <a href="/dbms_web/content/customer/notice">대구시 버스노선안내 모바일 웹(m.businfo.go.kr) 활용 안내</a>
+                                        <span>2019.02.27</span>
+                                    </li>
+                                    item01 -->
+                                    <!--/ <li class="carousel-item">
+                                        <small></small>
+                                        <a href="/dbms_web/content/customer/notice">공지사항 두번째</a>
+                                        <span>2019.02.27</span>
+                                    </li>
+                                    item02 -->
+                                </ul>
+                                <!--/.carousel-inner -->
+                                <a class="carousel-control-prev" href="#replacementNotice" role="button" data-slide="prev"><span class="" aria-hidden="true"><img src="/dbms_web/static/img/main/icon_prev.png" border="0" alt=""></span><span class="sr-only">Previous</span></a>
+                                <a class="carousel-control-next" href="#replacementNotice" role="button" data-slide="next"><span class="" aria-hidden="true"><img src="/dbms_web/static/img/main/icon_next.png" border="0" alt=""></span><span class="sr-only">Next</span></a>
+                            </div>
+                            <!--/.carousel -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 py-3 border-right border-light d-md-none" data-aos="fade-down" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                        <div class="notice">
+                            <h4 style="font-size: 1.7em;margin-bottom:20px;"><a href="/dbms_web/content/customer/guide">앱(App)처럼<span class="ml-2"> 사용하기</span></a></h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /container -->
+        </section>
+    <section id="MainPopupzone" class="link-popup py-5 d-none d-md-block">
+        <div class="container">
+            <h3 class="text-center my-4">알림존</h3>
+            <div class="row">
+                <div class="col-md-8 mb-4" data-aos="fade-right" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <div id="carouselBanner" class="carousel slide carousel-fade" data-ride="carousel">
+                        <ul class="carousel-inner banner-item mb-0">
+<!--                             <li class="carousel-item active "> -->
+<!--                             </li> -->
+<!--                             <li class="carousel-item"> -->
+<!--                             </li> -->
+                            <li class="carousel-item active ">
+                                <img src="/dbms_web/static/img/banner/image6.jpg">
+                            </li>
+                        </ul>
+                        <!--/.carousel-inner -->
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 d-none d-md-block" data-aos="fade-down" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <div class="text-white weather">
+                        <h6>오늘의 날씨</h6>
+                        <div class="today"><img id="weatherCd2" src="/dbms_web/static/img/main/weather_01.png" alt="날씨 이미지"> <strong class="temp">11</strong> <small>℃</small></div>
+                        <ul class="list-inline">
+                            <li class="list-inline-item microdust"><span>미세먼지</span><br>보통</li>
+                            <li class="list-inline-item ultrafinedust"><span>초미세먼지</span><br>보통</li>
+                            <li class="list-inline-item ozone"><span>오존</span><br>보통</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <div class="bg-white guide">
+                        <h4>이용안내</h4>
+                        <h6><small class="text-uppercase">user guide</small></h6>
+                        <ul class="">
+                            <li><a href="javascript:downRoute('5')">홈페이지 이용안내</a></li>
+                            <li><a href="javascript:downRoute('6')">모바일 이용안내</a></li>
+                            <!-- <li><a href="">저작권 이용안내<span class="badge text-danger text-wrap text-uppercase font-weight-lighter">New</span></a></li>  -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 mb-4" data-aos="fade-left" data-aos-offset="150" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <div class="bg-white download">
+                        <h4>자료 다운로드</h4>
+                        <ul class="">
+                            <li><a href="javascript:downRoute('1')"><span>노선별 정류소 목록</span><span class="badge text-primary text-wrap text-uppercase font-weight-lighter route-select1">Download</span></a>
+                                <select id="route-select1" name=route-select data-auto-fill="routeNo" onchange="selectRoute('1')" style="display:none">
+                                    <option value="">- 선택 -</option>
+                                </select> 
+                            </li>
+                            <li><a href="javascript:downRoute('2')"><span>노선별 저상버스시간표</span><span class="badge text-primary text-wrap text-uppercase font-weight-lighter route-select2">Download</span></a>
+                                <select id="route-select2" name=route-select2 data-auto-fill="lowRouteNo" onchange="selectRoute('2')" style="display:none">
+                                    <option value="">- 선택 -</option>
+                                </select>
+                            </li>
+                            <li><a href="javascript:downRoute('3')" class=""><span>버스회사목록</span><span class="badge text-primary text-wrap text-uppercase font-weight-lighter">Download</span></a></li>
+                            <li><a href="http://ebook.daegu.go.kr/Viewer/new_bus" class="" target="_blank"><span>노선안내 책자 </span><span class="badge text-primary text-wrap text-uppercase font-weight-lighter">Download</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /container -->
+    </section>
+
+</main>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <p class="phone mr-auto mb-0 mb-md-3">
+                    교통불편신고안내<a href="tel:053-120" class="">053)120</a> 
+                    버스정보안내기고장신고<a href="tel:053-803-5590" class="">053)803-5590</a> 
+                    시내버스운행관련문의<a href="tel:053-803-4841" class="">053)803-4841</a> 
+                    대구버스조합<a href="tel:053-474-1123" class="">053)474-1123</a>
+                </p>
+            </div>
+            
+            <div class="col-md-3 text-md-right">
+                <form class="link-site mr-0 mb-2">
+                    <select onchange="goPage(this.value);">
+                        <option selected>주요사이트 바로가기</option>
+                        <option value="https://www.daegu.go.kr/">대구광역시청</option>
+                        <option value="https://car.daegu.go.kr/">대구광역시 교통종합정보</option>
+                        <option value="https://www.dtro.or.kr/">대구도시철도공사</option>
+                        <option value="http://gis.go.kr/">생활공간정보시스템</option>
+                        <option value="https://tago.go.kr/">시외.고속버스.철도통합안내(TAGO)</option>
+                        <option value="https://www.juso.go.kr/">대구광역시 도로명주소안내</option>
+                        <option value="https://tour.daegu.go.kr/">대구광역시 관광문화정보시스템</option>
+                        <option value="http://its.gbgs.go.kr/">경산시 버스정보시스템</option>
+                        <option value="http://bus.chilgok.go.kr/">칠곡군 버스정보시스템</option>
+                    </select>
+                    <!--<button type="button" class="btn btn-outline-primary btn-sm">이동</button>-->
+               </form>
+            </div>
+        </div>
+        <!-- /.row -->
+        <hr>
+        <div class="row">
+            <div class="col-md-8">
+                <!-- 
+                <nav class="navbar navbar-expand">
+                    <ul class="navbar-nav my-0 my-md-2 mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">이용약관</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">개인정보취급방침</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">이메일수집거부</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">사이트맵</a></li>
+                    </ul>
+                </nav> -->
+                <address>42183  대구광역시 수성구 무학로 227 (지산동) 대구시 교통정보운영과<br><small>Copyright <span>Daegu BusInfo</span> All rights reserved.</small></address>
+            </div>
+            <div class="col-md-4 d-none d-sm-block">
+                <p class="mr-0 ml-auto link-mobile"><strong>모바일로 만나는 대구버스정보</strong><small>사용자 환경에 맞게 노선 안내 홈페이지<br>정보를 찾아보실 수 있습니다.</small></p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!--/container -->
+</footer>
+
+<div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeModalLabel" aria-hidden="true" style="padding-right: 0 !important;">
+<!--     <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="width: 33%; margin: 0 auto; max-width: 360px !important; min-width: 260px !important;"> -->
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="width: 90%; margin: 0 auto; max-width: 600px !important; min-width: 260px !important;">
+        <div class="modal-content" style="box-shadow: 0px 3px 9px rgba(0,0,0,.7) !important; background-clip: padding-box !important;">
+<div style="width: 100%; height: auto; background-color: #fff;">
+                <div style="width: 100%; height: 80vh;; overflow: scroll; overflow-x: hidden; background-color: #fff;">
+<img src="/dbms_web/static/img/popup/image21.jpg" style="width: 100%; height:auto;"/>
+</div>
+                <span style="display:block; color: #555 !important; padding: 3px; float: right; cursor: pointer; margin-bottom: 5px; padding-right: 10px;" onclick="noticeHide();">X 오늘 하루 표시하지 않음</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="noticeModal2" tabindex="-1" role="dialog" aria-labelledby="noticeModalLabel" aria-hidden="true" style="padding-right: 0 !important;">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="width: 90%; margin: 0 auto; max-width: 1000px !important; min-width: 260px !important;">
+        <div class="modal-content" style="box-shadow: 0px 3px 9px rgba(0,0,0,.7) !important; background-clip: padding-box !important;">
+            <div style="width: 100%; height: auto; background-color: #fff;">
+                <div style="width: 100%; overflow: hidden; overflow-x: hidden; background-color: #fff;">
+                    <a href="/dbms_web/content/customer/detail?no=47161&type=%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD"><img src="/dbms_web/static/img/popup/image23.jpg" style="width: 100%; height:auto;"/></a>
+                </div>
+                <span style="display:block; color: #555 !important; padding: 3px; float: right; cursor: pointer; margin-bottom: 5px; padding-right: 10px;" onclick="noticeHide2();">X 오늘 하루 표시하지 않음</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/dbms_web/static/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/dbms_web/static/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/dbms_web/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="/dbms_web/static/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<!-- preloader -->
+<script src="/dbms_web/static/plugins/preloader/jquery.preloader.min.js"></script>
+<!-- daterangepicker -->
+<script src="/dbms_web/static/plugins/moment/moment.min.js"></script>
+<script src="/dbms_web/static/plugins/daterangepicker/daterangepicker.js"></script>
+
+<script src="/dbms_web_api/static/js/basic-data.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/Z.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/Zdata.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/proj4js-compressed.js"></script>
+<script src="/dbms_web/static/js/proj4js-defs.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/ol/OpenLayers.js"></script>
+<script src="/dbms_web/static/js/ol-ext/Control/ZoomBar.js"></script>
+<script src="/dbms_web/static/js/ol-custom/Layer/Kakao.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5523763929a6432ba7bcbfefb377a273&libraries=services" charset="utf-8"></script>
+<script src="/dbms_web/static/js/map.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/map_resource.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/map_kakao.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/common.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/storage.js?_=1793296972173"></script>
+<script src="/dbms_web/static/js/aos.js"></script>
+<script src="/dbms_web/static/js/jquery.placeholder.min.js"></script>
+<script src="/dbms_web/static/js/slick.js"></script>
+
+<script>
+    // AOS : Animate On Scroll Library
+    AOS.init();
+    var menuCd = "WV-01";
+    setCountAccess(menuCd);
+    if(CONFIG.locale == 'en'){
+        $("#SelectLanguage option:eq(1)").prop("selected",true);
+    } else {
+        $("#SelectLanguage option:eq(0)").prop("selected",true);
+    }
+    // Top Navbar
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            $(".navbar.fixed-top").removeClass('navbar-dark').addClass("navbar-light bg-white shadow-sm");
+            $(".link-quick a > span").removeClass("border-white");
+            $(".link-quick a.active").removeClass("text-white");
+            $(".link-quick a.active > span").removeClass("bg-white");
+        } else {
+            $(".navbar.fixed-top").removeClass("navbar-light bg-white shadow-sm").addClass('navbar-dark');
+            $(".link-quick a > span").addClass("border-white");
+            $(".link-quick a.active").addClass("text-white");
+            $(".link-quick a.active > span").addClass("bg-white");
+        }
+    }
+
+    function goPage(value){
+        window.open(value);  
+    }
+
+    var userAgent = navigator.userAgent.toLowerCase(); // 접속 핸드폰 정보 
+
+    // 모바일 홈페이지 바로가기 링크 생성 
+    if(userAgent.match('iphone')) { 
+        document.write('<link rel="apple-touch-icon" href="/dbms_web/static/img/common/icon.png" />') 
+    } else if(userAgent.match('ipad')) { 
+        document.write('<link rel="apple-touch-icon" sizes="72*72" href="/dbms_web/static/img/common/icon.png" />') 
+    } else if(userAgent.match('ipod')) { 
+        document.write('<link rel="apple-touch-icon" href="/dbms_web/static/img/common/icon.png" />') 
+    } else if(userAgent.match('android')) { 
+        document.write('<link rel="shortcut icon" href="/dbms_web/static/img/common/icon.png" />') 
+    }
+
+
+    /* 스토리지 제어 함수 정의 */
+    var handleStorage = {
+        // 스토리지에 데이터 쓰기(이름, 만료일)
+        setStorage: function (name, exp) {
+            // 만료 시간 구하기(exp를 ms단위로 변경)
+            var date = new Date();
+            date = date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+
+            // 로컬 스토리지에 저장하기
+            // (값을 따로 저장하지 않고 만료 시간을 저장)
+            localStorage.setItem(name, date)
+        },
+        // 스토리지 읽어오기
+        getStorage: function (name) {
+            var now = new Date();
+            now = now.setTime(now.getTime());
+            // 현재 시각과 스토리지에 저장된 시각을 각각 비교하여
+            // 시간이 남아 있으면 true, 아니면 false 리턴
+            return parseInt(localStorage.getItem(name)) > now
+        }
+    };
+
+    /* 모달 팝업 */
+    $(function() {
+        var now = new Date();
+        var todayDtm = parseInt(now.getFullYear() + "" + ((now.getMonth()+1) < 10 ? "0" + (now.getMonth()+1) : (now.getMonth()+1)) + "" + (now.getDate() < 10 ? "0" + now.getDate() : now.getDate())) + "" + (now.getHours() < 10 ? "0" + now.getHours() : now.getHours()) + "" + (now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes());
+
+        // 모달 1
+        // YYYY-MM-DD HH:MM
+        if (!((20260101 * 10000 + 1111) <= todayDtm && todayDtm <= (20260101 * 10000 + 2359))) {
+            // 패스
+        } else {
+            // 쿠키 읽고 화면 보이게
+            if (handleStorage.getStorage("noticeSetting")) {
+                //$(".main_popup").removeClass("on");
+                // 오늘 하루 열지 않음
+            } else {
+                $('#noticeModal').modal('show');
+            }
+        }
+
+        // 모달 2
+        if (!((20260820 * 10000 + 2359) <= todayDtm && todayDtm <= (20260830 * 10000 + 1103))) {
+            // 패스
+        } else {
+            if (handleStorage.getStorage("noticeSetting2")) {
+                // 오늘 하루 열지 않음
+            } else {
+                $('#noticeModal2').modal('show');
+            }
+        }
+    });
+    /**/
+
+    function noticeHide() {
+        // 로컬 스토리지에 today라는 이름으로 1일(24시간 뒤) 동안 보이지 않게
+        handleStorage.setStorage("noticeSetting", 1);
+        $('#noticeModal').modal('hide');
+    }
+
+    function noticeHide2() {
+        // 로컬 스토리지에 today라는 이름으로 1일(24시간 뒤) 동안 보이지 않게
+        handleStorage.setStorage("noticeSetting2", 1);
+        $('#noticeModal2').modal('hide');
+    }
+
+    // 재난상황 팝업
+    window.addEventListener('message', receiveMsgFromChild);
+    function receiveMsgFromChild(e) {
+        if (isReceiveMsgFromChild) {
+            return false;
+        }
+
+        isReceiveMsgFromChild = true;
+
+        // 쿠키 읽고 화면 보이게
+        if (handleStorage.getStorage("weatherSetting")) {
+            //
+        } else {
+            //$("#weatherIFrame").attr("src", "https://businfo.daegu.go.kr:7443" + e.data);
+            //weatherModalShow('weatherModal');
+        }
+    }
+
+    var zIndex = 9999;
+    var weatherModal;
+    var weatherModalBg;
+    var isReceiveMsgFromChild = false;
+
+    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+    Element.prototype.setStyle = function(styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+    function weatherModalShow(id) {
+        zIndex = 9999;
+        weatherModal = document.getElementById(id);
+
+        // 모달 div 뒤에 희끄무레한 레이어
+        weatherModalBg = document.createElement('div');
+        weatherModalBg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            // 레이어 색갈은 여기서 바꾸면 됨
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(weatherModalBg);
+
+        weatherModal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+            // 시꺼먼 레이어 보다 한칸 위에 보이기
+            zIndex: zIndex + 1,
+
+            // div center 정렬
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+    }
+
+    function weatherModalHide() {
+        // 로컬 스토리지에 today라는 이름으로 1일(24시간 뒤) 동안 보이지 않게
+        //handleStorage.setStorage("weatherSetting", 1);
+        //$('#weatherModal').modal('hide');
+        weatherModalBg.remove();
+        weatherModal.style.display = 'none';
+
+        if ($("#notTodayCheck").is(':checked')) {
+            handleStorage.setStorage("weatherSetting", 1);
+        }
+    }
+</script>
+<script>
+var searchObject = [];
+var mBookMark = [];
+var nearbyBsData = {};
+var dataArray = [];
+var autoDataWincId = [];
+
+var autoData = [];
+var autoRoute = [];
+var autoRouteValue = [];
+var autoBs = [];
+var autoBsValue = [];
+
+var fontCnt = 0;
+
+$(function(){
+    mSearchTextSet();
+    searchTextSet();
+    
+    var browser = checkBrowser();
+    if(browser.indexOf('ie') > -1){
+        
+    }else{
+        searchTextAutoComplete();
+    }
+    
+   
+    getBoardA();  // 신이설
+    getBoardB();  // 저상
+    getBoardC();  // 공지사항
+    getImgList();
+    getDetourList(false);
+    
+    //getMobileNotice();
+    getWeather();
+    
+    getLocation();
+    
+    getResearch();
+
+    $('.carousel').carousel({
+      interval: 3000
+    })
+});
+
+    function changeFont() {
+        var font = ['Recipe', 'HS', 'ON', 'jong', 'han', 'coo', 'jal', 'ka', 'dream', 'head'];
+
+        //var randIdex = Math.floor((Math.random() * 9));
+        fontCnt = fontCnt % 10;
+        $(".main-title").css("font-family", font[fontCnt]);
+        fontCnt++;
+    }
+    
+    function getResearch() {
+        var research = localStorage.getItem("research");
+        var today = new Date().format('yyyyMMdd');
+        if(research && research == today){
+            return;
+        }
+        $.ajax({
+            type: 'GET',
+            url: "/getResearch",
+            dataType: "json",
+            data: {},
+            loadingTarget: false,
+            success: function(data) {
+                var item = data.body;
+                if(item && item.appBgDt) {
+                    if(item.appBgDt <= today && item.appEdDt >= today ) {
+                      if(!item.clientIp || item.clientIp == "false") {
+                          //alert("설문조사 시작")
+                          $('#researchNo').val(item.researchNo);
+                          $('#reseachToast').show();
+                          $('#reseachToast').addClass("fade show");
+                      }
+                    }
+                }
+            }
+        });
+    }
+    
+    function closeToast(){
+        $('#reseachToast').toast('hide');
+        $('#reseachToast').hide();
+    }
+    
+    function openPopup(){
+        var researchNo = $('#researchNo').val();
+        var width = 850;
+        var popupWidth = width;
+        var popupHeight = 900;
+        var popupX = (window.screen.width/2) - (popupWidth/2);
+        var popupY= (window.screen.height/2) - (popupHeight/2);
+        
+        if ($("html").width() < 768) {
+            width = $("html").width();
+        }
+        window.open('https://businfo.daegu.go.kr/ba/popup/bt179.do?act=preview&id=' + researchNo,'popup_research','toolbar=yes,scrollbars=yes,resizable=yes,left='+popupX+',top='+popupY+',width='+width+',height='+popupHeight);
+        closeToast();
+    }
+    
+    function researchNoShow(){
+        var today = new Date().format('yyyyMMdd');
+        localStorage.setItem("research", today);
+        closeToast();
+    }
+
+    function getWeather() {
+        $.ajax({
+            type: 'GET',
+            url: "/getWeather",
+            dataType: "json",
+            data: {},
+            loadingTarget: false,
+            success: function(data) {
+                var item = data.body;
+                var imgurl = "/dbms_web/static/img/weather/NB" + item.weatherCd + ".png";
+                $("#weatherCd1").attr("src", imgurl);
+                $("#weatherCd2").attr("src", imgurl);
+                $(".temp").text(item.temp);
+                $(".microdust").html("<span >미세</span><br>" + chagneLocale(item.microdust));
+                $(".ultrafinedust").html("<span >초미세</span><br>" + chagneLocale(item.ultrafinedust));
+                $(".ozone").html("<span >오존</span><br>" + chagneLocale(item.ozone));
+            }
+        });
+    }
+
+    function chagneLocale(text) {
+        if (CONFIG.locale == "en") {
+            if (text == "좋음")
+                text = "Excellent";
+            else if (text == "보통")
+                text = "Fair";
+            else if (text == "나쁨")
+                text = "Poor";
+        }
+        return text;
+    }
+
+    function searchTextSet() { // 웹 버전 검색 이력 표출
+        var searchText = localStorage.getItem("searchObject");
+        //alert(searchText);
+        if (searchText != null && searchText != "") {
+            searchText.replaceAll(";;", ";");
+            searchObject = searchText.split(';');
+        }
+
+        if (searchObject.length > 0) {
+            $(".bookmark").show();
+            var html = '<strong><i></i> 최근 검색 내역</strong>'
+            var text = null;
+            for (var i = 0; i < searchObject.length; i++) {
+                if (searchObject[i] == null || searchObject[i] == '') {
+                    continue;
+                }
+                
+                text = $Z.escapeHtml(searchObject[i].trim());
+                html += '<a href="javascript:setSearchText(\'' + text + '\');">' + text + '</a>';
+            }
+
+            html += '<a href="javascript:delSearchText();"><span class="badge text-warning text-wrap text-uppercase font-weight-lighter">전체삭제</span></a>';
+            $(".bookmark").html(html);
+        } else {
+            $(".bookmark").hide();
+        }
+    }
+
+    function mSearchTextSet() { // 모바일 버전 웹 검색 이력 표출
+
+        searchObject = getStorage("searchObject");
+        mBookMark = getStorage("mBookMark");
+
+        if (searchObject.length > 0) {
+            $("#mobileMain").show();
+            //$(".frequent-tab").show();
+
+            var html = '';
+            for (var i = 0; i < searchObject.length; i++) {
+                if (searchObject[i] == null || searchObject[i] == '') {
+                    continue;
+                }
+
+                var markClass = "";
+                if (mBookMark[i] == "true")
+                    markClass = "active";
+
+                html += '<li class="list-group-item d-flex align-items-center">';
+                html += '<a class="mr-auto" href="javascript:setSearchText(\'' + searchObject[i].trim() + '\');">' + searchObject[i].trim() + '</a>';
+                html += '<a href="javascript:setBookMark(' + i + ')" aria-label="Bookmark"><i id="fa-star-'+i+'" class="fas fa-star '+markClass+'"></i></a>';
+                html += '<a href="javascript:delBookMark(' + i + ')" aria-label="Delete"><i class="fas fa-times"></i></a></li>';
+            }
+
+            $("#frequent > ul").html(html);
+        } else {
+            $('.frequent-tab').hide();
+            $('#frequent').removeClass('show');
+            $('#frequent').removeClass('active');
+            $('.around-tab').addClass('show');
+            $('.around-tab').addClass('active');
+            //$('#mobileMain').attr('style','display:none !important');
+        }
+    }
+
+    function setBookMark(index) { // 북마크 설정
+        var el = $('#fa-star-' + index);
+        if (el.hasClass('active')) {
+            el.removeClass('active');
+            mBookMark[index] = 'false';
+        } else {
+            el.addClass('active');
+            mBookMark[index] = 'true';
+        }
+        //saveLocalStorage();
+        saveLocalStorage(searchObject, mBookMark)
+    }
+
+    function delBookMark(index) { // 북마크 삭제
+        var el = $('#fa-star-' + index);
+        if (el.hasClass('active')) {
+            $Z.confirm("삭제 하시겠습니까?", 'warning', function() {
+                searchObject.splice(index, 1);
+                mBookMark.splice(index, 1);
+                $('#fa-star-' + index).parent().parent().remove();
+                //saveLocalStorage();
+                saveLocalStorage(searchObject, mBookMark)
+            });
+        } else {
+            searchObject.splice(index, 1);
+            mBookMark.splice(index, 1);
+            //$('#fa-star-' + index).parent().parent().remove();
+            //saveLocalStorage();
+            saveLocalStorage(searchObject, mBookMark)
+            mSearchTextSet();
+        }
+        if (searchObject.length < 1) {
+            //$(".frequent-tab").hide();
+        }
+    }
+    /*
+        function saveLocalStorage(searchObject, mBookMark) { // 검색이력 저장
+            var searchText = '';
+            var searchTextActive = '';
+            var bookMarkText = '';
+            var bookMarkTextActive = '';
+            if (mBookMark.length > 0) {
+                //var index = mBookMark.length -1;
+                for (var i = 0; i < mBookMark.length; i++) {
+                    if (searchObject[i] == '')
+                        continue;
+                    if (mBookMark[i] == 'true') {
+                        searchTextActive += searchObject[i] + ',';
+                        bookMarkTextActive += mBookMark[i] + ',';
+                    } else {
+                        searchText += searchObject[i] + ',';
+                        bookMarkText += mBookMark[i] + ',';
+                    }
+                }
+                var temp = searchText.substring(searchText.length - 1,
+                        searchText.length);
+                if (temp == ',') {
+                    searchText = searchText.substring(0, searchText.length - 1);
+                }
+                var temp = bookMarkText.substring(bookMarkText.length - 1,
+                        bookMarkText.length);
+                if (temp == ',') {
+                    bookMarkText = bookMarkText.substring(0,
+                            bookMarkText.length - 1);
+                }
+                localStorage.setItem("searchObject", searchTextActive + searchText);
+                localStorage.setItem("mBookMark", bookMarkTextActive + bookMarkText);
+            } else {
+                localStorage.setItem("searchObject", "");
+                localStorage.setItem("mBookMark", "");
+            }
+        }*/
+
+    function setSearchText(text) {
+        $("#searchTxt").val(text);
+        var index = dataArray.indexOf(text);
+        if (index > -1) {
+            if (autoDataWincId[index] != "none") {
+                localStorage.setItem("history", "true");
+                location.href = "map?mapMode=0&searchText=" + text + "&wincId=" + autoDataWincId[index];
+            }else{
+                search_submit();
+            }
+        }else{
+            //changeSearcTxt()
+            search_submit(); //바로 검색되도록 수정
+        }
+        
+    }
+
+    function setSearchBS(bsNm, wincId) {
+        $("#searchTxt").val(bsNm);
+        search_submit(wincId);
+    }
+
+    function delSearchText() { // 검색이력 삭제
+        $Z.confirm("최근 검색어를 삭제 하시겠습니까?", 'warning', function() {
+            localStorage.clear();
+            $(".bookmark").hide();
+            location.href = "";
+        });
+    }
+
+    function searchTextAutoComplete() { // 검색어 자동완성 설정
+        $.ajax({
+            type: 'GET',
+            url: "/autocomplete",
+            dataType: "json",
+            //request.term = $("#autocomplete").val()
+            data: {},
+            loadingTarget: false,
+            success: function(data) {
+
+                var item = data.body;
+                autoData = item;
+                dataArray = [];
+                var bhtml = "";
+                var rhtml = "";
+                for (var i = 0; i < item.length; i++) {
+                    item[i].index = i;
+
+                    if (item[i].wincId && item[i].wincId.length > 4) {
+                        autoDataWincId.push(item[i].wincId);
+                    } else {
+                        autoDataWincId.push("none");
+                    }
+                    if (item[i].type == 'bs') {
+                        dataArray.push(item[i].text);
+                        bhtml += '<li class="list-group-item list-group-item-action autoList" id="autoList-'+i+'">';
+                        bhtml += '<a href="javascript: selectAuto(\'' + item[i].text + '\')" class="d-flex w-100 justify-content-between">';
+                        var note = item[i].note ? item[i].note : '';
+                        bhtml += '<h7>' + item[i].text + ' <small>' + note + '</small></h7></a>';
+                        bhtml += '</li>';
+                        autoBs.push(item[i]);
+                        autoBsValue.push(item[i].text);
+                    } else {
+                        if (item[i].value.charAt(0) == ' ' && item[i].value.charAt(1) == '0')
+                            item[i].value = item[i].value.slice(2);
+                        if (item[i].value.charAt(0) == ' ' && item[i].value.charAt(1) == '1')
+                            item[i].value = item[i].value.slice(1);
+                        dataArray.push(item[i].value);
+                        rhtml += '<li class="list-group-item list-group-item-action autoList" id="autoList-'+i+'">';
+                        rhtml += '<a href="javascript: selectAuto(\'' + item[i].value + '\')" class="d-flex w-100 justify-content-between">';
+                        var note = item[i].note ? item[i].note : '';
+                        rhtml += '<h7>' + item[i].text + ' <small>' + note + '</small></h7></a>';
+                        rhtml += '</li>';
+                        autoRoute.push(item[i]);
+                        autoRouteValue.push(item[i].text);
+                    }
+
+                }
+                $('#bsList > ul').append(bhtml);
+                $('#routeList > ul').append(rhtml);
+                $('.autoList').hide();
+            }
+        });
+    }
+
+    function selectAuto(text) {
+        $("#searchTxt").val(text);
+
+        $(".autoDiv").hide();
+        $('.bsTab').hide();
+        $('.routeTab').hide();
+        var index = dataArray.indexOf(text);
+        if (index > -1) {
+            if (autoDataWincId[index] != "none") {
+                autoDataWincId[index]
+                search_submit(autoDataWincId[index]);
+                return;
+            }
+        }
+        search_submit();
+    }
+
+    function changeSearcTxt() {
+        var val = $("#searchTxt").val().trim();
+        if (!val || val == null || val == "") {
+            $('.autoList').hide();
+            $('.autoDiv').hide();
+            $('.bsTab').hide();
+            $('.routeTab').hide();
+            $('.txtClear').hide();
+            return;
+        }
+        $('.txtClear').show();
+        $('.autoList').hide();
+        var show = false;
+        var bs = false;
+        var route = false;
+
+        if (val.isNum() && val.length == 5) {
+            for(var i=0; i < autoBs.length; i++){
+                if(autoBs[i].wincId == val){
+                    $("#searchTxt").val(autoBs[i].text);
+                    break;
+                }
+            }
+        }
+
+        if (val.length > 1) {
+            for (var i = 0; i < autoBs.length; i++) {
+                if (autoBsValue[i].indexOf(val) > -1) {
+                    show = true;
+                    bs = true;
+                    $('.autoDiv').show();
+                    $('.bsTab').show();
+                    var index = autoBs[i].index;
+                    $("#autoList-" + index).show();
+                }
+            }
+        } else {
+            show = false;
+            bs = false;
+        }
+        for (var i = 0; i < autoRoute.length; i++) {
+
+            if (autoRouteValue[i].indexOf(val) > -1) {
+                show = true;
+                route = true;
+                $('.autoDiv').show();
+                $('.routeTab').show();
+                var index = autoRoute[i].index;
+                $("#autoList-" + index).show();
+            }
+        }
+
+        if (show) {
+        } else {
+            $('.autoDiv').hide();
+        }
+
+        if (bs) {
+        } else {
+            $('.bsTab').hide();
+        }
+
+        if (route) {
+        } else {
+            $('.routeTab').hide();
+        }
+    }
+    
+    function txtClear(id){
+        $('#'+id).val('');
+        $('.txtClear').hide();
+        changeSearcTxt();
+    }
+
+    function search_submit(wincId) { // 검색
+        var el = $("#searchTxt").val();
+        if (el == "" || el == null || el == "undefined")
+            return;
+        el = el.replaceAll("<", "").replaceAll(">", "").replaceAll("&", "").replaceAll("#", "").replaceAll("\"", "").replaceAll("'", "");
+        if (!searchObject) {
+            searchObject = [];
+            mBookMark = [];
+        }
+
+        if (searchObject.indexOf(el) < 0) {
+            if (searchObject.length > 5) { // 6개만 저장되도록
+                for (var i = searchObject.length - 1; i > 0; i--) {
+                    if (mBookMark[i] == 'true') {
+                        continue;
+                    } else {
+                        searchObject.splice(i, 1);
+                        mBookMark.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+            searchObject.unshift(el);
+            mBookMark.unshift("false");
+            //saveLocalStorage();
+            saveLocalStorage(searchObject, mBookMark);
+        } else {
+            var index = searchObject.indexOf(el);
+            if (mBookMark[index] == 'true') {
+
+            } else {
+                searchObject.splice(index, 1);
+                mBookMark.splice(index, 1);
+                searchObject.unshift(el);
+                mBookMark.unshift("false");
+                //saveLocalStorage();
+                saveLocalStorage(searchObject, mBookMark)
+            }
+        }
+        localStorage.setItem("history", "true");
+        if (wincId) {
+            location.href = "map?mapMode=0&searchText=" + el + "&wincId=" + wincId;
+        } else {
+            location.href = "map?mapMode=0&searchText=" + el;
+        }
+
+    }
+
+    function searchTxtFocus(el) {
+        el.select();
+        searchTxtClick(el)
+    }
+
+    function searchTxtClick(el) {
+        if ($("html").width() < 768) {
+            var offset = $("#searchTxt").offset();
+            var top = offset.top - 10;
+            $('html').animate({
+                scrollTop: top
+            }, 200);
+        }
+    }
+
+    function getLocation() { // 위치정보 조회
+        if (navigator.geolocation) { // GPS를 지원하면
+            navigator.geolocation.getCurrentPosition(function(position) {
+                //alert(position.coords.latitude + ' ' + position.coords.longitude);
+                getNearbyBs(position.coords.longitude, position.coords.latitude);
+            }, function(error) {
+                //alert(error.message);
+                //console.error("위치정보를 획득할 수 없습니다 : " + error.message);
+                $('.around-tab').hide();
+                $('.frequent-tab').addClass('show');
+                $('.frequent-tab').addClass('active');
+            }, {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                timeout: Infinity
+            });
+        } else {
+            alert('GPS를 지원하지 않습니다');
+        }
+    }
+
+    function getNearbyBs(xPos, yPos) { // 근접 정류소 
+
+        $.ajax({
+            type: 'GET',
+            url: "/bs/nearby",
+            dataType: "json",
+            loadingTarget: false,
+            data: {
+                xPos: xPos,
+                yPos: yPos,
+                radius: 1000
+            },
+            success: function(data) {
+                var item = data.body;
+                nearbyBsData = item;
+                var html = '';
+                if (item.length > 0) {
+                    $('#mobileMain').show();
+                    for (var i = 0; i < item.length; i++) {
+                        if (i > 5) {
+                            break;
+                        }
+
+                        html += '<li class="list-group-item">';
+                        html += '<div class="d-flex w-100 justify-content-between">';
+                        html += '<a href="javascript:setSearchBS(\'' + item[i].bsNm + "', '" + item[i].wincId + '\');" >' + item[i].bsNm + '</a>';
+                        html += '<a href="#"><span class="text-primary text-wrap">' + item[i].dist + 'm</span></a>';
+                        html += '</div></li>';
+                    }
+                    //$('.around-tab').show();
+                    $("#around > ul").html(html);
+                    //findNearbyBsHistory();
+                } else {
+                    $('.around-tab').hide();
+                    $('.frequent-tab').addClass('show');
+                    $('.frequent-tab').addClass('active');
+                }
+
+            }
+        });
+
+        console.log("근접정류소 호출 종료");
+    }
+
+    function findNearbyBsHistory() { // 인근 정류소중 최근 검색한 정류소가 있는지 확인 후 자동 검색 
+        var searchBsId = localStorage.getItem("searchBsId");
+        if (!searchBsId) {
+            return;
+        }
+        searchBsId.replaceAll(",,", ",");
+        var searchBsIdObject = searchBsId.split(',');
+        if (searchBsIdObject && searchBsIdObject.length > 0) {
+
+            for (var i = 0; i < searchBsIdObject.length; i++) {
+                for (var j = 0; j < nearbyBsData.length; j++) {
+                    if (searchBsIdObject[i] == nearbyBsData[j].bsId) {
+                        var wincId = nearbyBsData[j].wincId;
+                        var bsNm = nearbyBsData[j].bsNm;
+                        if ($("#searchTxt").val() == ""){
+                            $("#searchTxt").val(bsNm);
+                            changeSearcTxt();
+                            $("#searchTxt").select();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function getBoardA() { // 신이설
+        $.ajax({
+            type: 'GET',
+            url: "/boardA",
+            dataType: "json",
+            loadingTarget: false,
+            success: function(data) {
+                var item = data.body;
+
+                var html = '';
+                for (var i = 0; i < item.length; i++) {
+                    if (i > 5) {
+                        break;
+                    }
+                    if (i == 0) {
+                        html += '<li class="carousel-item active">';
+                    } else {
+                        html += '<li class="carousel-item">';
+                    }
+                    html += '<small></small>';
+                    html += '<a href="/dbms_web/content/customer/detail?no=' + item[i].no + '&type=정류소신설·이전">' + item[i].ttle + '</a>';
+                    html += '<span>' + item[i].regDt + '.</span></li>';
+                }
+                $("#newStopNotice > ul").html(html);
+            }
+        });
+    }
+
+    function getBoardB() { // 저상버스
+        $.ajax({
+            type: 'GET',
+            url: "/boardB",
+            dataType: "json",
+            loadingTarget: false,
+            success: function(data) {
+                var item = data.body;
+
+                var html = '';
+                for (var i = 0; i < item.length; i++) {
+                    if (i > 5) {
+                        break;
+                    }
+                    if (i == 0) {
+                        html += '<li class="carousel-item active">';
+                    } else {
+                        html += '<li class="carousel-item">';
+                    }
+                    html += '<small></small>';
+                    html += '<a href="/dbms_web/content/customer/detail?no=' + item[i].no + '&type=저상버스 대체 안내">' + item[i].ttle + '</a>';
+                    html += '<span>' + item[i].regDt + '.</span></li>';
+                }
+                $("#replacementNotice > ul").html(html);
+            }
+        });
+    }
+
+    function getBoardC() { // 공지
+        $.ajax({
+            type: 'GET',
+            url: "/boardC",
+            dataType: "json",
+            loadingTarget: false,
+            success: function(data) {
+                var item = data.body;
+
+                var html = '';
+                var cnt = 0;
+                for (var cnt = 0; cnt < item.length; cnt++) {
+                    if (cnt > 5) {
+                        break;
+                    }
+                    if (cnt == 0) {
+                        html += '<li class="carousel-item active">';
+                    } else {
+                        html += '<li class="carousel-item">';
+                    }
+                    //html += '<small>공지사항</small>';
+                    html += '<a href="/dbms_web/content/customer/detail?no=' + item[cnt].no + '&type=공지사항">' + item[cnt].ttle + '</a>';
+                    html += '<span>' + item[cnt].regDt + '.</span></li>';
+                }
+                $("#carouselFadeNotice > ul").html(html);
+
+                $.ajax({
+                    type: 'GET',
+                    url: "/boardD",
+                    dataType: "json",
+                    loadingTarget: false,
+                    success: function(data) {
+                        var item2 = data.body;
+
+                        var html2 = '';
+                        var length = 5 - cnt;
+                        for (var i = 0; i < item2.length; i++) {
+                            if (i > length) {
+                                break;
+                            }
+                            html2 += '<li class="carousel-item">';
+                            html2 += '<small></small>';
+                            html2 += '<a href="/dbms_web/content/customer/detail?no=' + item2[i].no + '&type=공지사항">' + item2[i].ttle + '</a>';
+                            html2 += '<span>' + item2[i].regDt + '.</span></li>';
+                        }
+                        $("#carouselFadeNotice > ul").append(html2);
+                    }
+                });
+            }
+        });
+    }
+    
+    function getImgList() {
+        $.ajax({
+            type: 'GET',
+            url: "/imglist",
+            dataType: "json",
+            loadingTarget: false,
+            success: function(data) {
+                var item = data.body;
+
+                var html = '';
+                for (var i = 0; i < item.length; i++) {
+                    
+                    if(i == 0){
+                        html += '<li class="carousel-item active ">';
+                    }else{
+                        html += '<li class="carousel-item">';
+                    }
+                    if (item[i].link != null && item[i].link.indexOf("youtube") > 0) {
+                        html += '<a class= "mt-0 mb-0" href="'+item[i].link+'" target="_blank">';
+                    } else {
+                        html += '<a class= "mt-0 mb-0" href="'+item[i].link+'">';
+                    }
+                    html += '<img src="' + CONFIG.apiPrefix + '/main/img?sn=' + item[i].no + '" width="556" height="251" alt="'+ item[i].ttle +'" onerror="this.src=\'/dbms_web/static/img/banner/image1.png\'">';
+                    html += '</a></li>';
+                }
+                $("#carouselBanner > ul").html(html);
+            }
+        });
+    }
+
+    function getDetourList(isClick) {
+        if (!isClick && handleStorage.getStorage("detourSetting")) {
+            // 오늘은 팝업 표시 안함
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: "/detourList",
+                dataType: "json",
+                loadingTarget: false,
+                success: function(data) {
+                    var item = data.body;
+
+                    var params = [];
+                    for (var i = 0; i < item.length; i++) {
+                        params[i] = item[i].no + "|" + (i+1) + "|" + item.length;
+                    }
+
+                    if (params.length > 0) {
+                        loadHtmlSequentially(params);
+                    } else {
+                        if (isClick) {
+                            params[0] = "0|0|0";
+                            loadHtmlSequentially(params);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function getMobileNotice() {
+        $.ajax({
+            type: 'GET',
+            url: "/bitNotice",
+            dataType: "json",
+            loadingTarget: false,
+            success: function(data) {
+                var item = data.body;
+                var msg = "";
+                for (var i = 0; i < item.length; i++) {
+                    msg += item[i].bitMsg.replace("*", "○ ") + "&nbsp; &nbsp;"
+                }
+                var html = '<marquee behavior="scroll" style="color: #ffa1a1 !important;">' + msg + '</marquee>'
+                $("#mobileNotice").html(html);
+            }
+        });
+    }
+
+    function downRoute(type) {
+        if (type == '3') {
+            //var url = "/dbms_web/static/files/";
+            //var fileName = "버스회사 목록_20191226201032.xls";
+            //window.location.assign(url + fileName);
+            window.location.assign('https://businfo.daegu.go.kr/ba/download/download.do?act=excelBusCom');
+        } else if (type == '4') {
+            var fileName = "시내버스 노선안내 책자.pdf";
+            window.open("https://ebook.daegu.go.kr/Viewer/XJSVSKUAGIQ7", "시내버스 노선안내", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+        } else if (type == '5') {
+            var fileName = "홈페이지 이용안내.pdf";
+            window.open("/dbms_web/static/files/" + fileName, "홈페이지 이용안내", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+        } else if (type == '6') {
+            var fileName = "모바일 이용안내.pdf";
+            window.open("/dbms_web/static/files/" + fileName, "모바일 이용안내", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+        } else {
+            $('#route-select' + type).show();
+            $('.route-select' + type).hide();
+        }
+    }
+
+    function selectRoute(type) {
+        var routeNo = $('#route-select' + type).val();
+        $('#route-select' + type).val('').hide();
+        $('.route-select' + type).show();
+        var url = null;
+        if (type == '1') {
+            url = 'https://businfo.daegu.go.kr/ba/download/download.do?act=excelBusstop&bsRouteNo=';
+        } else {
+            url = 'https://businfo.daegu.go.kr/ba/download/download.do?act=excelTableTable&ttRouteNo=';
+        }
+
+        window.location.assign(url + encodeURI(encodeURI(routeNo)));
+    }
+
+    function getCoordCallback(x, y) {
+        // x, y는 BMS에서 사용하는 좌표계
+        // WGS84로 좌표 변환
+        console.log("x : " + x + ", y : " + y);
+        var point = new OpenLayers.Geometry.Point();
+        var geographicWGS84 = new OpenLayers.Projection('EPSG:4326'); // GPS 좌표계
+        var WGS84 = new OpenLayers.Projection('EPSG:5181');
+        var geographic = new OpenLayers.Projection('EPSG:5187'); // DB 좌표계
+        var mercator = new OpenLayers.Projection('EPSG:5179');
+
+        var jbAry = new Array();
+        jbAry[0] = geographicWGS84;
+        jbAry[1] = WGS84;
+        jbAry[2] = geographic;
+        jbAry[3] = mercator;
+
+        for (var i = 0; i < jbAry.length; i++) {
+            for (var v = 0; v < jbAry.length; v++) {
+                point.x = x;
+                point.y = y;
+                point.transform(jbAry[i], jbAry[v]);
+                console.log("[result " + i + ", " + v + "] " + "x : " + point.x + ", y : " + point.y);
+            }
+        }
+    }
+    
+    $(function() {
+        if (CONFIG.locale == "en") {
+            $('.justify-content-center' ,'#MainSearch').find('.col-6').prop('style', 'margin : 0 auto;');
+        }
+    });
+
+    function mobileBannerClick() {
+        var mobileKeyArr = new Array('iPhone', 'iPad', 'iPod');
+
+        for (var word in mobileKeyArr ) {
+            if (navigator.userAgent.match(mobileKeyArr [word]) != null) {
+                setTimeout("location.href = 'itms://itunes.apple.com/kr/app/%EB%8C%80%EA%B5%AC-%ED%88%AC%EC%96%B4-daegu-tour/id1618396724';", 10);
+                break;
+            }
+        }
+
+        for (var word in mobileKeyArr ) {
+            if (navigator.userAgent.match('Android') != null) {
+                setTimeout("location.href = 'market://details?id=com.touro';", 10);
+                break;
+            }
+        }
+    }
+</script>
+<div id="korail_app_banner" style="background: #fff; border: 2px solid #B7E233; display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 80px; z-index: 999999; text-align: center;">
+    <a href="https://tour.daegu.go.kr" target="_daegu_tour"><img src="/dbms_web/static/img/banner/image5.jpg" style="width: auto; height:90%; margin-top: 2px;"/></a>
+</div>
+<script>
+function get_cookie(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+}
+
+if ("korail" == get_cookie("app")) {
+    $("#korail_app_banner").show();
+    setTimeout(() => {
+        $("footer .container").css("padding-bottom", "80px");
+    }, 1000);
+}
+</script>
+    <div id="modalOverlay" class="detour-modal-overlay">
+        <div id="detour-modal-content" class="detour-modal-content">
+
+            <button id="detour-prev-btn" class="detour-prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button id="detour-next-btn" class="detour-next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <div id="detour-carousel-inner" class="detour-carousel-inner">
+</div>
+
+            <div id="detour-carousel-indicators" class="detour-carousel-indicators">
+</div>
+
+            <div class="detour-modal-footer">
+                <label><input type="checkbox" id="notTodayDetourCheck" /> 오늘 하루 표시하지 않음</label>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 현재 슬라이드 번호 (1부터 시작)
+        var slideIndex = 1;
+        var detourModalBg;
+
+        async function loadHtmlSequentially(params) {
+//             for (const file of files) {
+//                 const data = await $.ajax({ url: '/dbms_web/static/detour/' + file, dataType: 'html' });
+//                 $('#detour-carousel-inner').append(data);
+//             }
+            //const container = document.getElementById('detour-carousel-inner');
+            const container = $('#detour-carousel-inner');
+            const indicators = $('#detour-carousel-indicators');
+            container.html('');
+            indicators.html('');
+            slideIndex = 1;
+
+            var dotIdx = 1;
+            for (const param of params) {
+                try {
+                    
+                    const response = await fetch('/dbms_web_api/detourDetail?no=' + param.split("|")[0] + '&curPage=' + param.split("|")[1] + '&totalPage=' + param.split("|")[2], {
+                        cache: 'no-store',
+                        headers: {
+                            'Cache-Control': 'no-cache',
+                            'Pragma': 'no-cache'
+                        }
+                    });
+                    var html = await response.text();
+                    if (html == 'null') {
+                        html = '';
+                        html += '<div class="detour-carousel-item">';
+                        html += '    <div class="detour-modal-header">';
+                        html += '        <h2>시내버스 우회운행 안내</h2>';
+                        html += '        <p>&nbsp;</p>';
+                        html += '        <span class="detour-close-btn" onclick="closeModal()">&times;</span>';
+                        html += '    </div>';
+                        html += '    <div class="detour-modal-body">';
+                        html += '        <p class="schedule-date"><strong>우회운행 정보 없음</strong></p>';
+                        html += '    </div>';
+                        html += '</div>';
+                    }
+
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = html;
+
+                    // 각 파일의 내용을 container에 append
+                    while (tempDiv.firstChild) {
+                        //container.appendChild(tempDiv.firstChild);
+                        container.append($(tempDiv.firstChild));
+                    }
+                    indicators.append($("<span class='detour-dot' onclick='currentSlide(" + dotIdx++ + ")'></span>"));
+                } catch (error) {
+                    console.error('Error loading :', error);
+                }
+            }
+
+            if (params.length <= 1) {
+                $("#detour-carousel-indicators").hide();
+                $("#detour-prev-btn").hide();
+                $("#detour-next-btn").hide();
+            }
+            openModal();
+        }
+
+        // 팝업 열기/닫기 JavaScript
+        function openModal() {
+         // 모달 div 뒤에 희끄무레한 레이어
+            detourModalBg = document.createElement('div');
+            detourModalBg.setStyle({
+                position: 'fixed',
+                zIndex: zIndex,
+                left: '0px',
+                top: '0px',
+                width: '100%',
+                height: '100%',
+                overflow: 'auto',
+                // 레이어 색갈은 여기서 바꾸면 됨
+                backgroundColor: 'rgba(0,0,0,0.4)'
+            });
+            detourModalBg.addEventListener('click', function() {
+                closeModal();
+            });
+            document.body.append(detourModalBg);
+
+            document.getElementById('modalOverlay').setStyle({
+                zIndex: zIndex + 1
+            });
+            document.getElementById('modalOverlay').style.display = 'flex';
+            showSlides(slideIndex); // 팝업 열 때 1번 슬라이드 표시
+
+//             document.getElementById('modalOverlay').addEventListener('click', function() {
+//                 closeModal();
+//             });
+        }
+
+        function closeModal() {
+            if ($("#notTodayDetourCheck").is(':checked')) {
+                handleStorage.setStorage("detourSetting", 1);
+            }
+
+            detourModalBg.remove();
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        // 다음/이전 슬라이드로 이동 (-1 또는 1)
+        function moveSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // 특정 슬라이드로 바로 이동
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        // 슬라이드 표시 핵심 함수
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("detour-carousel-item");
+            const dots = document.getElementsByClassName("detour-dot");
+
+            // 마지막 슬라이드에서 넘어갈 경우 1번으로 돌아옴
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+
+            // 1번 슬라이드에서 뒤로 갈 경우 마지막으로 돌아감
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+
+            // 모든 슬라이드를 숨김
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none"; 
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            // 현재 슬라이드만 표시하고 인디케이터 활성화
+            slides[slideIndex - 1].style.display = "block";  
+            dots[slideIndex - 1].className += " active";
+            $($($(".detour-modal-body")[slideIndex - 1]).find(".bus-row")[0]).trigger("click"); // 보여지는 슬라이드의 첫 노선의 대상 정류소 펼침
+        }
+
+        // 노선 상세 정보 토글 함수
+        function toggleDetails(detailsId) {
+            const detailsElement = document.getElementById(detailsId);
+
+            // 현재 숨겨져 있으면 보이게 하고, 보이면 숨김
+            if (detailsElement.classList.contains('hidden')) {
+                detailsElement.classList.remove('hidden');
+                detailsElement.style.maxHeight = detailsElement.scrollHeight + "px"; // 애니메이션 효과를 위해 높이 설정
+            } else {
+                detailsElement.style.maxHeight = "0"; // 높이를 0으로 설정하여 숨김
+                detailsElement.classList.add('hidden');
+            }
+
+            // 모든 다른 상세 정보 닫기 (선택 사항: 한 번에 하나만 열리게 하려면)
+            const allDetails = document.querySelectorAll('.bus-details');
+            allDetails.forEach(detail => {
+                if (detail.id !== detailsId && !detail.classList.contains('hidden')) {
+                    detail.style.maxHeight = "0";
+                    detail.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

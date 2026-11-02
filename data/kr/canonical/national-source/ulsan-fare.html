@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+	
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta charset="utf-8"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, maximum-scale=1, width=device-width" />
+
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/base.css?20230725"/>
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/main.css?20230802"/>
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/slick.css">
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/sub.css">
+<link rel="stylesheet" type="text/css" href="/resource/cmmn/css/media.css?20240809">
+<link rel="stylesheet" type="text/css" href="/resource/aljjabaegi/grid/css/aljjabaegi.grid-1.0.0.css" />
+
+<link rel="stylesheet" type="text/css" href="/resource/aljjabaegi/datepicker/css/aljjabaegi.picker2.css" />
+
+<script type="text/javascript" src="/resource/cmmn/js/ns-1.0.0.js"></script>
+<script type="text/javascript">
+	NS.ctx = '';
+	NS.baseMap = 'https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v17_9nwki/';
+	NS.baseSkyMap = 'https://map0.daumcdn.net/map_skyview/L';
+	NS.baseSkyMapVer = 'jpg?v=160114';
+	NS.baseHybrid = 'https://map0.daumcdn.net/map_hybrid/2111ydg/L';
+</script>
+<script type="text/javascript" src="/resource/aljjabaegi/aljjabaegi-2.0.1.js" ></script>
+
+<!-- 오픈레이어 -->
+<link rel="stylesheet" type="text/css" href="/resource/openlayers/css/ol.css">
+
+<script type="text/javascript" src="/resource/openlayers/js/ol.js" ></script>
+<script type="text/javascript" src="/resource/openlayers/js/proj4.js" ></script>
+<script type="text/javascript" src="/resource/openlayers/js/lsMap.js?v=2"></script>
+
+<script type="text/javascript" src="/resource/openlayers/cmmn/OpenLayers.js"></script>
+<script type="text/javascript" src="/resource/openlayers/cmmn/proj4js.js"></script>
+<script type="text/javascript" src="/resource/openlayers/cmmn/ulsanMap.js"></script>
+
+<script type="text/javascript" src="/resource/openlayers/js/main.js?v=2"></script>
+
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.core-2.0.1.js" ></script>
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.plugin.edit-1.0.1.js" ></script>
+<script type="text/javascript" src="/resource/aljjabaegi/grid/js/aljjabaegi.grid.plugin.msearch-2.0.1.js" ></script>
+
+<script type="text/javascript" src="/resource/aljjabaegi/datepicker/js/aljjabaegi.picker-2.0.6.js"></script>
+
+<link rel="shortcut icon" href="/resource/cmmn/images/favicon.ico">
+
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/solid.min.css">
+<link rel="stylesheet" type="text/css" href="/resource/fontawesome/css/v4-shims.min.css">
+
+<title>울산교통관리센터</title>
+</head>
+<body>
+	
+
+
+
+
+<header>
+	<div role="button" class="goContent" tabindex="0" >본문바로가기</div>
+	<h1><a href="/">울산교통관리센터</a></h1>
+	<a href="javascript:menuOpen()" class="mb sitemap">메뉴 열기</a>
+	<strong>시민과 함께 다시 뛰는 울산</strong>
+	<ul id="lis" class="gnb">
+		<li class="on" id="traffic">
+			<a href="javascript:void('0')">교통정보</a>
+			<ul>
+				<li><a href="/traffic/traffic.do">소통지도</a></li>
+				<li><a href="https://its.ulsan.kr/walletfree/parking/autoPayParking.do" target="blank"  title="새 창 열림" class="new_open">주차정보</a></li>
+				<li><a href="https://carfree.ulsan.go.kr/" target="blank"  title="새 창 열림" class="new_open">승용차요일제</a></li>
+			</ul>
+		</li>
+		<li id="route">
+			<a href="javascript:void('0')">버스정보</a>
+			<ul>
+				<li><a href="/route/route.do">버스지도</a></li>
+				<li><a id="transferA" href="javascript:void('0')" title="새 창 열림" class="new_open">버스환승</a></li>
+				<li><a href="/route/fare.do">버스요금안내</a></li>
+				<li><a href="/route/timetable.do">배차시간표</a></li>
+				<li><a href="/route/busType.do">시내버스소개</a></li>
+
+			</ul>
+		</li>
+		<li id="center">
+			<a href="javascript:void('0')">교통관리센터</a>
+			<ul>
+				<li><a href="/center/its.do">ITS소개</a></li>
+				<li><a href="/center/cits.do">C-ITS소개</a></li>
+				<li><a href="/center/history.do">연혁</a></li>
+				<li><a href="/center/center.do">교통관리센터</a></li>
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+			</ul>
+		</li>
+		<li id="noti">
+			<a href="javascript:void('0')">알림마당</a>
+			<ul>
+				<li><a href="/noti/notice.do">공지사항</a></li>
+				<li><a href="/noti/busInfo.do">버스정보이용안내</a></li>
+				<li><a href="/noti/trafficInfo.do">교통정보이용안내</a></li>
+				<li><a href="http://www.ulsan.go.kr/s/lost/main.ulsan" target="blank"  title="새 창 열림" class="new_open">분실물신고센터</a></li>
+			</ul>
+		</li>
+	</ul>
+	<strong>시민과 함께 다시 뛰는 울산</strong>
+	<div style="background : white;">
+	</div>
+</header>
+
+<script type="text/javascript">
+var marqueeArr = [];
+var marqueeIdx = 0;
+var marqueeTimer = 1000;
+var focusedElement;
+AF.onload(function(){
+	NS.func(setNavEvent);
+	NS.func(checkContent);
+	window.addEventListener('keydown', function(event) {
+	  if(event.key === 'Tab') {
+	    focusedElement = document.activeElement;
+	    var classNm = focusedElement?.parentNode?.parentNode.className == "" ?  focusedElement?.parentNode?.parentNode?.parentNode?.parentNode?.className 
+	    																	 : focusedElement?.parentNode?.parentNode.className;
+	    var hd = document.getElementsByTagName("header")[0];
+	    if(classNm=="gnb"){
+			hd.classList.add("on");
+		}else{
+			hd.classList.remove("on");
+		}
+	  }
+	});
+	
+	document.getElementById("transferA").addEventListener("click", function(){
+		if(AF.mobileChk()){
+			window.open('https://m.map.kakao.com/actions/routeView/');
+		}else{
+			window.open('https://map.kakao.com/');
+		}
+	})
+});
+
+var checkContent = function(){
+	var selector = document.getElementById("ctntFocus");
+	goContent(selector);	
+}
+
+var goContent = function(selector){
+	let div = document.querySelector(".goContent");
+	div.addEventListener("keydown", function(e){
+		if(e.key == "Enter") selector.focus();
+	});
+	div.addEventListener("click", function(e){
+		selector.focus();
+	})
+}
+
+var setNavEvent = function(){
+	var idx = 0;
+	var menus = document.querySelectorAll('header>ul>li');
+	var menusIt = NS.iterator(menus);
+	while(menusIt.hasNext()){
+		var li = menusIt.next();
+		li.addEventListener('click', selectMenu);
+	}
+
+	const curPath = location.pathname;
+	const liTag =  document.querySelectorAll("#lis li");
+	for(let i of liTag){
+		if(curPath.indexOf(i.id) !== -1 && i.id !== ""){
+			selectMenu2(i);
+		}
+	}
+}
+
+var menuOpen = function(){
+	var headerCls = document.querySelector('header').classList;
+	if(headerCls.contains('on')){
+		headerCls.remove('on');
+		NS.opaqueMobile(".pMain", false);
+	}else{
+		headerCls.add('on');
+		if(window.screen.width<=820) NS.opaqueMobile(".pMain", true);
+	}
+}
+
+var selectMenu = function(){
+	var prevLi = document.querySelector('header>ul>li.on');
+	prevLi.classList.remove('on');
+	this.classList.add('on');
+}
+
+var selectMenu2 = function(i){
+	var prevLi = document.querySelector('header>ul>li.on');
+	prevLi.classList.remove('on');
+	i.classList.add('on');
+} 
+</script>
+
+	
+
+
+
+
+<style>
+	/*table.pl55 tbody td:first-child, table.pl55 tbody th:first-child{padding-left: 19px;}*/
+
+	.tblView{width: 100% !important; border-collapse: collapse !important; margin-left: 0 !important; table-layout: fixed !important;}
+	.tblView th,
+	.tblView td {border: 1px solid #ccc !important; padding: 8px 12px !important; text-align: center !important; vertical-align: middle !important; word-break: keep-all !important;}
+	.tblView thead th {background: #fafafa !important; font-weight: 600 !important;}
+	.tblView thead tr:first-child th {background: #fff !important;}
+	.tblView tbody th {background: #fff !important; font-weight: 500 !important;}
+	.tblView tbody .ar {text-align: right !important;}
+</style>
+<main>
+	<article class="subHead">
+		<div>
+			<h2>버스정보</h2>
+			<ul class="location">
+				<li>홈</li>
+				<li>버스정보</li>
+				<li>버스요금안내</li>
+			</ul>
+			<ul class="caList">
+				<li class="on"><a href="#">버스요금안내</a></li>
+				<li><a href="/route/timetable.do">배차시간표</a></li>
+				<li><a href="/route/busType.do">시내버스소개</a></li>
+			</ul>
+		</div>
+	</article>
+	<section>
+		<ul class="expList exp2" tabindex="0" id="ctntFocus">
+			<li><div class="coin"></div></li>
+			<li>
+				<h4>버스요금안내</h4>
+				<p>울산시 버스는 시내 전역을 운행하는 일반버스와 각 구, 군내 지역별로 운행하는 지선버스, 그리고 울산시내용 좌석버스와 타 도시 까지 광역으로 운행되는 좌석버스가 있으며, 울산터미널에서 출발하여 인천공항을 종점으로 하는 공항(리무진)버스가 있습니다.</p>
+				<span class="gr">특별히 2010년 11월 1일부터 울산역 KTX 연계 리무진(급행)버스 5개 노선이 신설되어, 지정된 정류장과 KTX울산역간 운행되고  있습니다.</span>
+			</li>
+			
+		</ul>
+		<ol>
+			<li><a href="https://www.letskorail.com/" target="blank"  title="새 창 열림">철도(KTX)</a></li>
+			<li><a href="https://etk.srail.kr/main.do" target="blank"  title="새 창 열림">철도(SRT)</a></li>
+			<li><a href="https://kobus.co.kr/main.do" target="blank"  title="새 창 열림">고속버스</a></li>
+			<li><a href="https://www.airport.co.kr/ulsan/index.do" target="blank"  title="새 창 열림">항공</a></li>
+		</ol>
+		<div class="expTab">
+				<ul class="tab">
+					<li><a href="javascript:void('0')">시내버스 요금</a></li>
+<!-- 					<li><a href="javascript:void('0')">교통카드</a></li> -->
+				</ul>
+				<div class="tabWrap">
+					<h3>울산시내 버스 요금</h3>
+					<div class="tbl">
+						<table class="tblView pc type2 pl55">
+							<caption>울산시내 버스 요금표</caption>
+							<colgrup>
+								<col width="148">
+								<col width="13%">
+								<col width="13%">
+								<col width="13%">
+								<col width="13%">
+								<col width="13%">
+								<col width="13%">
+							</colgrup>
+							<thead>
+								<tr>
+									<th rowspan="2" scope="colgroup"></th>
+									<th colspan="2" scope="colgroup">성인</th>
+									<th colspan="2" scope="colgroup">청소년</th>
+									<th colspan="2" scope="colgroup">어린이</th>
+								</tr>
+								<tr>
+									<th scope="col">카드</th>
+									<th scope="col">현금</th>
+									<th scope="col">카드</th>
+									<th scope="col">현금</th>
+									<th scope="col">카드</th>
+									<th scope="col">현금</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">일반버스</th>
+									<td class="ar">1,500원</td>
+									<td class="ar">1,600원</td>
+									<td class="ar">950원</td>
+									<td class="ar">1,000원</td>
+									<td class="ar">0원</td>
+									<td class="ar">600원</td>
+								</tr>
+								<tr>
+									<th scope="row">직행좌석</th>
+									<td  class="ar">2,300원</td>
+									<td  class="ar">2,500원</td>
+									<td  class="ar">1,800원</td>
+									<td  class="ar">2,000원</td>
+									<td  class="ar">0원</td>
+									<td  class="ar">1,500원</td>
+								</tr>
+								<tr>
+									<th scope="row">직행 시계외(1144, 1154, 1214, 1224)</th>
+									<td  class="ar">2,900원</td>
+									<td  class="ar">3,100원</td>
+									<td  class="ar">2,200원</td>
+									<td  class="ar">2,500원</td>
+									<td  class="ar">0원</td>
+									<td  class="ar">1,700원</td>
+								</tr>
+								<tr>
+									<th scope="row">리무진버스</th>
+									<td  class="ar">3,900원</td>
+									<td  class="ar">4,000원</td>
+									<td  class="ar">3,000원</td>
+									<td  class="ar">3,200원</td>
+									<td  class="ar">0원</td>
+									<td  class="ar">3,200원</td>
+								</tr>
+								<tr>
+									<th scope="row">지선버스</th>
+									<td  class="ar">1,000원</td>
+									<td  class="ar">1,100원</td>
+									<td  class="ar">750원</td>
+									<td  class="ar">800원</td>
+									<td  class="ar">0원</td>
+									<td  class="ar">500원</td>
+								</tr>
+								<tr>
+									<th scope="row">마을버스</th>
+									<td  class="ar">1,000원</td>
+									<td  class="ar">1,100원</td>
+									<td  class="ar">750원</td>
+									<td  class="ar">800원</td>
+									<td  class="ar">0원</td>
+									<td  class="ar">500원</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>버스 요금에 대한 상세정보는 <i><a href="https://www.ulsanbus.or.kr/theme/daontheme_business02/html/business/03.php" target="blank" title="새 창 열림" class="new_open">바로가기</a></i> 링크에서 확인이 가능합니다.</p>
+						<ul class="mb tblMny">
+							<li>일반</li>
+							<li>
+								<ol>
+									<li>성인</li>
+									<li><span>1,500</span>원</li>
+									<li><span>1,600</span>원</li>
+								</ol>
+								<ol>
+									<li>청소년</li>
+									<li><span>950</span>원</li>
+									<li><span>1,000</span>원</li>
+								</ol>
+								<ol>
+									<li>어린이</li>
+									<li><span>0</span>원</li>
+									<li><span>600</span>원</li>
+								</ol>
+							</li>
+						</ul>
+						<ul class="mb tblMny">
+							<li>직행좌석</li>
+							<li>
+								<ol>
+									<li>성인</li>
+									<li><span>2,300</span>원</li>
+									<li><span>2,500</span>원</li>
+								</ol>
+								<ol>
+									<li>청소년</li>
+									<li><span>1,800</span>원</li>
+									<li><span>2,000</span>원</li>
+								</ol>
+								<ol>
+									<li>어린이</li>
+									<li><span>0</span>원</li>
+									<li><span>1,500</span>원</li>
+								</ol>
+							</li>
+						</ul><ul class="mb tblMny">
+							<li><p>직행 시계외</p><p>(1144, 1154, 1214, 1224)</p></li>
+							<li>
+								<ol>
+									<li>성인</li>
+									<li><span>2,900</span>원</li>
+									<li><span>3,100</span>원</li>
+								</ol>
+								<ol>
+									<li>청소년</li>
+									<li><span>2,200</span>원</li>
+									<li><span>2,500</span>원</li>
+								</ol>
+								<ol>
+									<li>어린이</li>
+									<li><span>0</span>원</li>
+									<li><span>1,700</span>원</li>
+								</ol>
+							</li>
+						</ul><ul class="mb tblMny">
+							<li>리무진버스</li>
+							<li>
+								<ol>
+									<li>성인</li>
+									<li><span>3,900</span>원</li>
+									<li><span>4,000</span>원</li>
+								</ol>
+								<ol>
+									<li>청소년</li>
+									<li><span>3,000</span>원</li>
+									<li><span>3,200</span>원</li>
+								</ol>
+								<ol>
+									<li>어린이</li>
+									<li><span>0</span>원</li>
+									<li><span>3200</span>원</li>
+								</ol>
+							</li>
+						</ul><ul class="mb tblMny">
+							<li>지선버스</li>
+							<li>
+								<ol>
+									<li>성인</li>
+									<li><span>1,000</span>원</li>
+									<li><span>1,100</span>원</li>
+								</ol>
+								<ol>
+									<li>청소년</li>
+									<li><span>750</span>원</li>
+									<li><span>800</span>원</li>
+								</ol>
+								<ol>
+									<li>어린이</li>
+									<li><span>0</span>원</li>
+									<li><span>500</span>원</li>
+								</ol>
+							</li>
+						</ul><ul class="mb tblMny">
+							<li>마을버스</li>
+							<li>
+								<ol>
+									<li>성인</li>
+									<li><span>1,000</span>원</li>
+									<li><span>1,100</span>원</li>
+								</ol>
+								<ol>
+									<li>청소년</li>
+									<li><span>750</span>원</li>
+									<li><span>800</span>원</li>
+								</ol>
+								<ol>
+									<li>어린이</li>
+									<li><span>0</span>원</li>
+									<li><span>500</span>원</li>
+								</ol>ulsa
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabWrap">
+					<h3>디지털 울산카드</h3>
+					<ul>
+						<li>울산광역시의 협약에 의해 탄생한 울산광역시의 공식전자화폐입니다.
+							<ol>
+								<li>한 장의 카드로 교통, 유통, 인터넷, 무인민원발급기 등 일상 전 분야에 편리하게 사용</li>
+								<li> 카드 발급사 : 경남은행, 국민카드, 삼성카드</li>
+							</ol>
+						</li>
+					</ul>
+					<h3>카드 종류별 발급방법</h3>
+					<ul>
+						<li>디지털 울산카드 발급은행이나 발급사에 직접 방문하거나 전화를 통한 신청 후 수령할 수 있습니다.</li>
+					</ul>
+					<h3>보충방법</h3>
+					<div class="tbl">
+						<table class="tblList pl42">
+						<caption>보충방법</caption>
+							<colgroup>
+								<col width="*">
+								<col width="84%">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="col" >오프라인</th>
+									<td scope="col">일반 보충소, 부산은행 창구, 지하철 매표소, 유료도로 매표소 등</td>
+								</tr>
+								<tr>
+									<th scope="col" >온라인</th>
+									<td scope="col">인터넷더미 단말기, CD/ATM등(계좌이체방식) 5,000원 이상 1,000원 단위로 500,000원까지 보충 가능</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<h3>서비스혜택</h3>
+					<div class="tbl">
+						<table class="tblView">
+							<caption>서비스혜택</caption>
+							<colgroup>
+								<col width="*">
+								<col width="42%">
+								<col width="42%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="row">구분</th>
+									<th scope="row">서비스혜택</th>
+									<th scope="row">사용상 혜택</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">교통</th>
+									<td scope="row" class="mb">서비스 혜택</td>
+									<td scope="row">시내버스, 마을버스, 지하철, 유료도로/터널, 택시, 주차장 등</td>
+									<td scope="row" class="mb">서비스 혜택</td>
+									<td scope="row">버스, 마을버스, 지하철 요금 할인</td>
+								</tr>
+								<tr>
+									<th scope="row">유통</th>
+									<td scope="row" class="mb">서비스 혜택</td>
+									<td scope="row">음식점, 문구점, 편의점, 패스트푸드점, 약국, 단체급식처 등 / 마이비 지정 가맹점</td>
+									<td scope="row" class="mb">서비스 혜택</td>
+									<td scope="row">마이비 유통가맹점 최고 10% 할인</td>
+								</tr>
+								<tr>
+									<th scope="row">여가</th>
+									<td scope="row" class="mb">서비스 혜택</td>
+									<td scope="row">어린이대공원, 금강, 태종대공원, 시립미술관, 박물관, 충렬사</td>
+									<td scope="row" class="mb">서비스 혜택</td>
+									<td scope="row">메가박스 영화관 매주 금요일 1,500원 할인</td>
+								</tr>
+								<tr>
+									<th scope="row">기타</th>
+									<td scope="row" class="mb">서비스 혜택</td>
+									<td scope="row">전자상거래, 자동판매기, 무인민원발급기, PC방 등	</td>
+									<td scope="row" class="mb">서비스 혜택</td>
+									<td scope="row">마이비 서비스지역 내 자유롭게 호환 사용 가능</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="mb tblSvc">
+							<li></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+	</section>
+</main>
+<script type="text/javascript">
+AF.onload(function(){
+	document.title = "버스요금안내";
+	NS.tabOnEvt('.tab li', '.tabWrap');
+	
+	var tabLi = document.querySelector('.tab li');
+	tabLi.click();
+});
+</script>
+
+	
+
+
+
+
+
+<footer>
+	<div>
+		<h6>울산광역시</h6>
+		<div>
+			<ul class="pc">
+				<li><a href="/help/survey.do">정기교통량 조사결과</a></li>
+
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+				<li><a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005008002000000" target="_blank" class="new_open" title="새 창 열림">영상정보처리기기 운영·관리방침</a></li>
+			</ul>
+			<address>
+				(44686) 울산광역시 남구 번영로 235(신정동)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대표전화 052)120<br>
+				Copyrightⓒ2010 Ulsan Metropolitan City. All Rights Reserved
+			</address>
+			<ul class="mb">
+				<li><a href="/help/survey.do">정기교통량 조사결과</a></li>
+
+				<li><a href="/center/map.do">찾아오시는길</a></li>
+				<li><a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005008002000000" target="_blank" class="new_open" title="새 창 열림">영상정보처리기기 운영·관리방침</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<script>
+</script>
+</body>
+</html>
