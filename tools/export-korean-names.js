@@ -35,7 +35,7 @@ const taiwanFile=path.join(root,'data/tw/generated/network.json');
 const taiwan=fs.existsSync(taiwanFile)?load(taiwanFile):{operators:[],lines:[]};
 operators.push(...taiwan.operators.map(meta=>({file:taiwanFile,meta})));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
-  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103');
+  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103' && x.meta.id!=='line-99809');
 
 lines.push(...taiwan.lines.map(route=>({file:taiwanFile,meta:{id:route.id,operatorId:route.operatorId,names:route.line,color:route.lineColor,visibility:route.visibility}})));
 // The Disney route and operator are authored in the runtime source rather than
@@ -72,6 +72,24 @@ for(const name of publishedSectionFiles){
  }});
 }
 if(publishedSectionRoutes.size!==4)throw new Error('Missing published split sections (Meitetsu/Hakodate)');
+// Matsuyama tram services 1 and 2 are separately selectable, complete circular
+// routes. Their former combined source (line-99809) remains in canonical data for
+// auditing but must not replace either playable route in the Korean-name editor.
+const matsuyamaLoopIds=['line-99809-1','line-99809-2'];
+for(const id of matsuyamaLoopIds){
+ const file=path.join(root,'data/generated/routes',id+'.json');
+ if(!fs.existsSync(file))throw new Error('Matsuyama tram loop data missing: '+id);
+ const route=load(file).route;
+ if(route?.id!==id||route.operatorId!=='iyotetsudo'||route.stations?.length!==23||
+   (route.stations[0]?.stationMasterId!==route.stations.at(-1)?.stationMasterId||route.stations.at(-1)?.virtualLoopReturn!==true))
+   throw new Error('Invalid complete Matsuyama tram loop: '+id);
+ if(lines.some(x=>x.meta.id===id))throw new Error('Duplicate Matsuyama tram line: '+id);
+ lines.push({file,meta:{
+  id,operatorId:route.operatorId,
+  names:{ja:route.line.ja,ko:route.line.ko,en:route.line.en},
+  color:route.lineColor,visibility:'public'
+ }});
+}
 // Retired or duplicate identifiers are folded into active operators.
 const canonicalId=id=>({'san-yodenkitetsudo':'sanyodenkitetsudo','osakafutoshikaihatsu':'nankaidentetsu'}[id]||id);
 const opMap=new Map(operators.map(x=>[x.meta.id,x.meta]));
@@ -94,6 +112,7 @@ const generatedDir=path.join(root,'data/generated/routes');
 const byId=new Map();
 if(fs.existsSync(generatedDir))for(const name of fs.readdirSync(generatedDir).filter(n=>n.endsWith('.json'))){try{const route=load(path.join(generatedDir,name)).route; if(route?.id)byId.set(route.id,route)}catch(e){console.warn('skipped',name,e.message)}}
 for(const [id,{route}] of publishedSectionRoutes)byId.set(id,route);
+for(const id of matsuyamaLoopIds)byId.set(id,load(path.join(generatedDir,id+'.json')).route);
 for(const route of taiwan.lines)byId.set(route.id,route);
 byId.set(disney.id,disney);
 const stationRows=[];const missing=[];
