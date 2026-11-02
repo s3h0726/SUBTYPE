@@ -1,0 +1,308 @@
+{
+  "checkedAt": "2026-11-02T14:09:25.407Z",
+  "implementationCommit": "cffa639ff705e032ef05d187e81bd5d6ab64f1f0",
+  "integrationCommit": "1f7379d262db14fe2101fbbfc45fd563db76c57c",
+  "baseline": {
+    "routes": 3690,
+    "directions": 7176,
+    "stopIds": 57073
+  },
+  "current": {
+    "routes": 7136,
+    "registeredDirections": 15221,
+    "selectableRoutes": 7135,
+    "selectableDirections": 15217,
+    "stopIds": 92961
+  },
+  "newBusCards": 3446,
+  "newBusDirections": 7990,
+  "recoveredRailDirections": 55,
+  "newPhysicalRailLines": 0,
+  "newStopIds": 35888,
+  "sourceSupportedRoutes": 7136,
+  "originalCandidatesProcessed": 7304,
+  "additionalGbisProcessed": 351,
+  "additionalBusanProcessed": 189,
+  "originalSourceCandidatesPublished": 6046,
+  "newNationalSourceCandidatesPublished": 23,
+  "remainingBusSources": 1666,
+  "remainingRailPatterns": 352,
+  "validation": {
+    "runtime": {
+      "passed": true,
+      "routes": 7136,
+      "journeysResolved": 15217,
+      "geometryFallbacks": 0,
+      "scope": "전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개."
+    },
+    "regression": {
+      "passed": 10,
+      "failed": 2,
+      "failures": [
+        "전체 데이터",
+        "소부 쾌속선 보존"
+      ]
+    },
+    "taiwan": {
+      "passed": 12,
+      "failed": 0
+    },
+    "hongKongFull": {
+      "passed": 28,
+      "failed": 3
+    }
+  },
+  "browser": {
+    "localCompletions": 9,
+    "liveCompletions": 1,
+    "input": "자동 한국어 입력",
+    "nativeImeComposition": "브라우저 네이티브 조합 미검증; 한글 조합 모델 자동 검사 통과",
+    "supabaseAuthenticatedPersistence": "미검증"
+  },
+  "publication": {
+    "workflows": [
+      {
+        "id": 41325118264,
+        "name": "Publish SUBTYPE runtime to Pages",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41325118264",
+        "headSha": "1f7379d262db14fe2101fbbfc45fd563db76c57c",
+        "updatedAt": "2026-11-01T16:14:54Z"
+      },
+      {
+        "id": 41325118334,
+        "name": "Korean OSM geometry safety gate",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41325118334",
+        "headSha": "1f7379d262db14fe2101fbbfc45fd563db76c57c",
+        "updatedAt": "2026-11-01T16:14:41Z"
+      },
+      {
+        "id": 41325118372,
+        "name": "Korean canonical transport catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41325118372",
+        "headSha": "1f7379d262db14fe2101fbbfc45fd563db76c57c",
+        "updatedAt": "2026-11-01T16:16:59Z"
+      }
+    ],
+    "liveVerification": {
+      "checkedAt": "2026-11-02T14:03:15.221Z",
+      "url": "https://s3h0726.github.io/SUBTYPE/",
+      "publicRoutes": 7136,
+      "directions": 15221,
+      "canonicalContract": "kr-canonical-v1",
+      "localIndexMatches": true,
+      "bundleMatches": true,
+      "koreaResetDisabled": true,
+      "samples": [
+        {
+          "id": "kr-bus-ts-bis-281000047",
+          "services": 2,
+          "geometryPoints": 142
+        },
+        {
+          "id": "kr-bus-ts-bis-391000072",
+          "services": 6,
+          "geometryPoints": 277
+        },
+        {
+          "id": "kr-bus-seoul-100100022",
+          "services": 2,
+          "geometryPoints": 779
+        },
+        {
+          "id": "kr-bus-seoul-103900013",
+          "services": 2,
+          "geometryPoints": 65
+        },
+        {
+          "id": "kr-bus-gbis-204000183",
+          "services": 2,
+          "geometryPoints": 98
+        },
+        {
+          "id": "kr-bus-busan-2100051033",
+          "services": 2,
+          "geometryPoints": 19
+        },
+        {
+          "id": "kr-bus-busan-2100093313",
+          "services": 2,
+          "geometryPoints": 259
+        },
+        {
+          "id": "kr-hangang-west",
+          "services": 2,
+          "geometryPoints": 81
+        },
+        {
+          "id": "kr-rail-gyoe",
+          "services": 2,
+          "geometryPoints": 505
+        },
+        {
+          "id": "kr-rail-highspeed-honam",
+          "services": 26,
+          "geometryPoints": 1828
+        },
+        {
+          "id": "kr-rail-expansion-gyeongbu-conventional",
+          "services": 4,
+          "geometryPoints": 1716
+        },
+        {
+          "id": "kr-rail-expansion-gyeongbu-highspeed",
+          "services": 14,
+          "geometryPoints": 805
+        }
+      ],
+      "htmlReferences": [
+        "korea-index-data.js?v=43389578eb77",
+        "app.bundle.js?v=5a23e87634e4"
+      ],
+      "passed": true
+    }
+  },
+  "regions": [
+    {
+      "region": "서울특별시",
+      "previousBusCards": 653,
+      "addedBusCards": 0,
+      "currentBusCards": 653,
+      "remainingSourceCandidates": 65,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "경기도",
+      "previousBusCards": 2874,
+      "addedBusCards": 0,
+      "currentBusCards": 2874,
+      "remainingSourceCandidates": 163,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "인천광역시",
+      "previousBusCards": 0,
+      "addedBusCards": 0,
+      "currentBusCards": 0,
+      "remainingSourceCandidates": 52,
+      "coverage": "검증된 공개 버스 미확보"
+    },
+    {
+      "region": "부산광역시",
+      "previousBusCards": 123,
+      "addedBusCards": 0,
+      "currentBusCards": 123,
+      "remainingSourceCandidates": 189,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "대구광역시",
+      "previousBusCards": 0,
+      "addedBusCards": 0,
+      "currentBusCards": 0,
+      "remainingSourceCandidates": 0,
+      "coverage": "검증된 공개 버스 미확보"
+    },
+    {
+      "region": "광주광역시",
+      "previousBusCards": 0,
+      "addedBusCards": 0,
+      "currentBusCards": 0,
+      "remainingSourceCandidates": 0,
+      "coverage": "검증된 공개 버스 미확보"
+    },
+    {
+      "region": "대전광역시",
+      "previousBusCards": 0,
+      "addedBusCards": 0,
+      "currentBusCards": 0,
+      "remainingSourceCandidates": 0,
+      "coverage": "검증된 공개 버스 미확보"
+    },
+    {
+      "region": "울산광역시",
+      "previousBusCards": 0,
+      "addedBusCards": 0,
+      "currentBusCards": 0,
+      "remainingSourceCandidates": 0,
+      "coverage": "검증된 공개 버스 미확보"
+    },
+    {
+      "region": "세종특별자치시",
+      "previousBusCards": 0,
+      "addedBusCards": 0,
+      "currentBusCards": 0,
+      "remainingSourceCandidates": 0,
+      "coverage": "검증된 공개 버스 미확보"
+    },
+    {
+      "region": "강원특별자치도",
+      "previousBusCards": 0,
+      "addedBusCards": 138,
+      "currentBusCards": 138,
+      "remainingSourceCandidates": 46,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "충청북도",
+      "previousBusCards": 0,
+      "addedBusCards": 504,
+      "currentBusCards": 504,
+      "remainingSourceCandidates": 0,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "충청남도",
+      "previousBusCards": 0,
+      "addedBusCards": 537,
+      "currentBusCards": 537,
+      "remainingSourceCandidates": 19,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "전북특별자치도",
+      "previousBusCards": 0,
+      "addedBusCards": 388,
+      "currentBusCards": 388,
+      "remainingSourceCandidates": 251,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "전라남도",
+      "previousBusCards": 0,
+      "addedBusCards": 409,
+      "currentBusCards": 409,
+      "remainingSourceCandidates": 540,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "경상북도",
+      "previousBusCards": 0,
+      "addedBusCards": 686,
+      "currentBusCards": 686,
+      "remainingSourceCandidates": 11,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "경상남도",
+      "previousBusCards": 0,
+      "addedBusCards": 784,
+      "currentBusCards": 784,
+      "remainingSourceCandidates": 234,
+      "coverage": "공개 노선 있음"
+    },
+    {
+      "region": "제주특별자치도",
+      "previousBusCards": 0,
+      "addedBusCards": 0,
+      "currentBusCards": 0,
+      "remainingSourceCandidates": 0,
+      "coverage": "검증된 공개 버스 미확보"
+    }
+  ]
+}

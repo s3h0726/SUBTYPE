@@ -13,7 +13,7 @@
 
 지역별 버스 현황은 [nationwide-regions.md](nationwide-regions.md), 집계 원본은 [nationwide-summary.json](nationwide-summary.json), 브라우저 결과는 [nationwide-browser.json](nationwide-browser.json)에 있다. 지역 표의 0은 수집·공개 실적이며 실제 미구축 노선이 없다는 뜻이 아니다. 인천·대구·광주·대전·울산·세종·제주의 버스 자료 확보 등 전국 구축은 계속 필요하다.
 
-배포 상태와 최종 커밋은 후속 실제 확인 결과로 기록한다.
+구현 커밋 cffa639ff705e032ef05d187e81bd5d6ab64f1f0, 통합 커밋 1f7379d262db14fe2101fbbfc45fd563db76c57c의 한국 카탈로그 CI·OSM 안전 검사·Pages 배포가 모두 성공했다. 2026-11-02 공개 목록과 새 압축 버스 파일을 포함한 표본 12개의 다운로드 및 목록·번들 해시 일치를 확인했다. 공개 사이트 음성군 690번도 자동 한국어 입력으로 완주했다. 로컬 9건과 공개 1건의 대표 완주이며 전체 노선의 브라우저 완주를 뜻하지 않는다. 최신 홍콩 전체 검사는 31개 중 28개 통과·3개 실패(분기 정차 기대값, 재생성 바이트 일치, 테스트 문맥의 FEATURE_FLAGS 누락)로 별도 기록했다. 검사 도구가 재생성한 홍콩 파일은 원본 커밋으로 복구했다. 이후 main의 인증·일본·홍콩 변경도 보존했다. 상세 증거는 nationwide-final.json 및 nationwide-live-browser.json에 있다.
 
 
 ## 2026-11-01 대량 확장
