@@ -26,7 +26,8 @@ const ids=['line-99809-1','line-99809-2'];
 for(const id of ids){
  const route=JSON.parse(read('data/generated/routes/'+id+'.json')).route;
  assert.equal(route.stations.length,23,id+' includes both ends of circular line');
- assert.equal(route.stations[0].id,route.stations.at(-1).id,id+' last station equals first');
+ assert.equal(route.stations[0].stationMasterId,route.stations.at(-1).stationMasterId,id+' returns to physical first station');
+ assert.equal(route.stations.at(-1).virtualLoopReturn,true,id+' uses dedicated virtual arrival event');
  const found=lines.filter(r=>r[2]===id);
  assert.equal(found.length,1,id+' is listed once');
  assert.equal(found[0][0],'iyotetsudo');
