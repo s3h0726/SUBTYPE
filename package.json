@@ -74,7 +74,8 @@
     "audit:taiwan:multilingual": "node tools/audit-taiwan-multilingual.cjs",
     "test:taiwan:multilingual": "node tools/test-taiwan-multilingual.cjs",
     "test:taiwan:batch": "node tools/test-taiwan-batch.cjs",
-    "test:auth-redirect": "node tools/test-auth-confirmation-latest.cjs"
+    "test:auth-redirect": "node tools/test-auth-confirmation-latest.cjs",
+    "test:iyotetsu": "node tools/test-iyotetsu-namuwiki-rebuild.cjs && node tools/test-jp-national-transfer-neighbors.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",
