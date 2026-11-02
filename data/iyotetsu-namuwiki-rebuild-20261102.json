@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-02",
+  "operatorId": "iyotetsudo",
+  "operatorKo": "이요 철도",
+  "sources": {
+    "namuwiki": {
+      "network": "https://namu.moe/w/틀:이요%20철도의%20노선",
+      "suburban": {
+        "line-99805": "https://namu.moe/w/이요%20철도%20군츄선",
+        "line-99806": "https://namu.moe/w/이요%20철도%20타카하마선",
+        "line-99807": "https://namu.moe/w/이요%20철도%20요코가와라선"
+      },
+      "tram": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선"
+    },
+    "operator": "https://www.iyotetsu.co.jp/railbus/timetable/map.html",
+    "colorReference": "https://ayaito.net/webtips/color_code/12232/",
+    "physicalStops": {
+      "gunchuko": "https://mapfan.com/spots/SCH%2CJ%2CIGR",
+      "honmachi1": "https://mapfan.com/spots/SCH%2CJ%2CW84"
+    }
+  },
+  "lines": {
+    "line-99805": {
+      "ja": "郡中線",
+      "ko": "군츄선",
+      "en": "Gunchu Line",
+      "color": "#F15A22",
+      "category": "private",
+      "kind": "suburban"
+    },
+    "line-99806": {
+      "ja": "高浜線",
+      "ko": "타카하마선",
+      "en": "Takahama Line",
+      "color": "#9ACD32",
+      "category": "private",
+      "kind": "suburban"
+    },
+    "line-99807": {
+      "ja": "横河原線",
+      "ko": "요코가와라선",
+      "en": "Yokogawara Line",
+      "color": "#00BBEE",
+      "category": "private",
+      "kind": "suburban"
+    },
+    "line-99809": {
+      "ja": "松山市内線環状線",
+      "ko": "마츠야마 시내선 순환계통(1·2호선)",
+      "en": "Matsuyama City Tram Circular Line",
+      "color": "#EB6100",
+      "category": "tram",
+      "kind": "retired-combined-source"
+    },
+    "line-99810": {
+      "ja": "松山市内線３号線",
+      "ko": "마츠야마 시내선 3호선",
+      "en": "Matsuyama City Tram Route 3",
+      "color": "#EB6100",
+      "category": "tram",
+      "kind": "tram-service"
+    },
+    "line-99811": {
+      "ja": "松山市内線５号線",
+      "ko": "마츠야마 시내선 5호선",
+      "en": "Matsuyama City Tram Route 5",
+      "color": "#EB6100",
+      "category": "tram",
+      "kind": "tram-service"
+    },
+    "line-99812": {
+      "ja": "松山市内線６号線",
+      "ko": "마츠야마 시내선 6호선",
+      "en": "Matsuyama City Tram Route 6",
+      "color": "#EB6100",
+      "category": "tram",
+      "kind": "tram-service"
+    },
+    "line-99809-1": {
+      "ja": "松山市内線１号線",
+      "ko": "마츠야마 시내선 1호선(외선순환)",
+      "en": "Matsuyama City Tram Route 1 (Outer Loop)",
+      "color": "#EB6100",
+      "category": "tram",
+      "kind": "new-complete-loop"
+    },
+    "line-99809-2": {
+      "ja": "松山市内線２号線",
+      "ko": "마츠야마 시내선 2호선(내선순환)",
+      "en": "Matsuyama City Tram Route 2 (Inner Loop)",
+      "color": "#EB6100",
+      "category": "tram",
+      "kind": "new-complete-loop"
+    }
+  },
+  "stationCorrectionsByJapaneseName": {
+    "三津": "미츠",
+    "山西": "야마니시",
+    "古町": "코마치",
+    "古泉": "코이즈미",
+    "いよ立花": "이요타치바나",
+    "梅本": "우메노모토",
+    "田窪": "타노쿠보",
+    "西堀端": "니시호리바타",
+    "上一万": "카미이치만",
+    "勝山町": "카츠야마초",
+    "県庁前": "겐초마에",
+    "平和通一丁目": "헤이와도리잇초메"
+  },
+  "tramStationIdentityCorrections": {
+    "station-9980501": {
+      "ja": "松山市駅",
+      "ko": "마츠야마시에키",
+      "en": "Matsuyama City Station (Tram)"
+    },
+    "station-9980609": {
+      "ja": "大手町駅前",
+      "ko": "오테마치에키마에",
+      "en": "Otemachi-ekimae"
+    },
+    "station-1180657": {
+      "ja": "JR松山駅前",
+      "ko": "JR마츠야마에키마에",
+      "en": "JR Matsuyama-ekimae"
+    }
+  },
+  "newPhysicalStops": [
+    {
+      "oldId": "station-1180706",
+      "id": "station-iyotetsu-gunchuko",
+      "ja": "郡中港",
+      "kana": "ぐんちゅうこう",
+      "ko": "군츄항",
+      "en": "Gunchuko",
+      "lat": 33.7560392,
+      "lon": 132.7021563,
+      "route": "line-99805",
+      "code": "IY35"
+    },
+    {
+      "oldId": "station-9980803",
+      "id": "station-iyotetsu-honmachi-itchome",
+      "ja": "本町一丁目",
+      "kana": "ほんまちいっちょうめ",
+      "ko": "혼마치잇초메",
+      "en": "Hommachi 1-chome",
+      "lat": 33.8404507,
+      "lon": 132.7587337,
+      "route": "line-99812",
+      "code": "25"
+    }
+  ],
+  "servicePatterns": {
+    "loop1": [
+      "松山市駅",
+      "南堀端",
+      "西堀端",
+      "大手町駅前",
+      "JR松山駅前",
+      "宮田町",
+      "古町",
+      "萱町六丁目",
+      "本町六丁目",
+      "木屋町",
+      "高砂町",
+      "清水町",
+      "鉄砲町",
+      "赤十字病院前",
+      "平和通一丁目",
+      "上一万",
+      "警察署前",
+      "勝山町",
+      "大街道",
+      "県庁前",
+      "市役所前",
+      "南堀端",
+      "松山市駅"
+    ],
+    "loop2": [
+      "松山市駅",
+      "南堀端",
+      "市役所前",
+      "県庁前",
+      "大街道",
+      "勝山町",
+      "警察署前",
+      "上一万",
+      "平和通一丁目",
+      "赤十字病院前",
+      "鉄砲町",
+      "清水町",
+      "高砂町",
+      "木屋町",
+      "本町六丁目",
+      "萱町六丁目",
+      "古町",
+      "宮田町",
+      "JR松山駅前",
+      "大手町駅前",
+      "西堀端",
+      "南堀端",
+      "松山市駅"
+    ]
+  },
+  "preservation": {
+    "legacyRouteId": "line-99809",
+    "newVisibleLoopIds": [
+      "line-99809-1",
+      "line-99809-2"
+    ],
+    "keepStationMasterCoordinatesDistinct": true,
+    "keepOriginalSourceDataForAudit": true
+  }
+}
