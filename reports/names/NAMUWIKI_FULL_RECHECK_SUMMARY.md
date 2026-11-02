@@ -4,9 +4,9 @@
 
 | 판정 | 건수 |
 |---|---:|
-| LEGACY_CLAIM_NOT_RECHECKED | 1183 |
+| LEGACY_CLAIM_NOT_RECHECKED | 1186 |
 | SOURCE_REVIEW_REQUIRED | 8474 |
-| NAMUWIKI_BATCH_CROSSCHECKED | 46 |
+| NAMUWIKI_BATCH_CROSSCHECKED | 43 |
 
 개별 문서나 일본어 역명을 함께 확인하지 못한 항목은 자동 음역을 그대로 검증 완료로 간주하지 않습니다.
 한글 역명 나무위키 기준: 장음 원칙적 미표기, え단 + い의 에이 유지, 개별 표제어 우선.

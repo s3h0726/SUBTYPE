@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-01T16:01:08.204Z",
+  "generatedAt": "2026-11-02T14:21:27.598Z",
   "policy": {
     "canonicalKorean": "namuwiki exact article title or Japanese-name matched station list",
     "originalJapanese": "retain official identity and route-specific Japanese variant",
@@ -17,22 +17,22 @@
     },
     "allNameRecords": 9703,
     "statuses": {
-      "LEGACY_CLAIM_NOT_RECHECKED": 1183,
+      "LEGACY_CLAIM_NOT_RECHECKED": 1186,
       "SOURCE_REVIEW_REQUIRED": 8474,
-      "NAMUWIKI_BATCH_CROSSCHECKED": 46
+      "NAMUWIKI_BATCH_CROSSCHECKED": 43
     },
     "issueCounts": {
       "SUSPICIOUS_ROMAJI_CAMELCASE": 1446,
       "CLAIM_WITHOUT_NAMUWIKI_ARTICLE_URL": 31,
-      "LEGACY_CITATION_RECHECK_REQUIRED": 1183,
+      "LEGACY_CITATION_RECHECK_REQUIRED": 1186,
       "EN_INCLUDES_NON_LATIN_OR_SYMBOLS": 25,
       "PRIORITY_KOREAN_POLICY_REVIEW": 1
     },
-    "sourceKnown": 46,
-    "previousVerificationClaimsNotYetRechecked": 1183,
+    "sourceKnown": 43,
+    "previousVerificationClaimsNotYetRechecked": 1186,
     "sourceReviewRequired": 8474,
     "editorDisplayExceptions": 174,
-    "coveragePercent": 0.47,
+    "coveragePercent": 0.44,
     "completeNamuwikiVerification": false
   },
   "editorConflicts": [
@@ -23644,16 +23644,13 @@
       "ko": "도부츠코엔",
       "en": "DōButsukōEn",
       "file": "data/shared-stations/stations-07.json",
-      "status": "NAMUWIKI_BATCH_CROSSCHECKED",
+      "status": "LEGACY_CLAIM_NOT_RECHECKED",
       "issues": [
-        "SUSPICIOUS_ROMAJI_CAMELCASE"
+        "SUSPICIOUS_ROMAJI_CAMELCASE",
+        "LEGACY_CITATION_RECHECK_REQUIRED"
       ],
       "kana": "どうぶつこうえん",
-      "sourceAccess": "blocked",
-      "namuwikiEvidence": {
-        "url": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%202%ED%98%B8%EC%84%A0",
-        "scope": "line-99332"
-      }
+      "sourceAccess": "blocked"
     },
     {
       "kind": "station",
@@ -58085,14 +58082,12 @@
       "ko": "니시카마쿠라",
       "en": "Nishikamakura",
       "file": "data/shared-stations/stations-27.json",
-      "status": "NAMUWIKI_BATCH_CROSSCHECKED",
-      "issues": [],
+      "status": "LEGACY_CLAIM_NOT_RECHECKED",
+      "issues": [
+        "LEGACY_CITATION_RECHECK_REQUIRED"
+      ],
       "kana": "にしかまくら",
-      "sourceAccess": "blocked",
-      "namuwikiEvidence": {
-        "url": "https://namu.moe/w/%EC%87%BC%EB%82%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%20%EC%97%90%EB%85%B8%EC%8B%9C%EB%A7%88%EC%84%A0",
-        "scope": "line-99326"
-      }
+      "sourceAccess": "blocked"
     },
     {
       "kind": "station",
@@ -119111,16 +119106,13 @@
       "ko": "겐초마에",
       "en": "KenchōMae",
       "file": "data/shared-stations/stations-62.json",
-      "status": "NAMUWIKI_BATCH_CROSSCHECKED",
+      "status": "LEGACY_CLAIM_NOT_RECHECKED",
       "issues": [
-        "SUSPICIOUS_ROMAJI_CAMELCASE"
+        "SUSPICIOUS_ROMAJI_CAMELCASE",
+        "LEGACY_CITATION_RECHECK_REQUIRED"
       ],
       "kana": "けんちょうまえ",
-      "sourceAccess": "blocked",
-      "namuwikiEvidence": {
-        "url": "https://namu.moe/w/%EC%B9%98%EB%B0%94%20%EB%8F%84%EC%8B%9C%20%EB%AA%A8%EB%85%B8%EB%A0%88%EC%9D%BC%201%ED%98%B8%EC%84%A0",
-        "scope": "line-99331"
-      }
+      "sourceAccess": "blocked"
     },
     {
       "kind": "station",
@@ -121959,7 +121951,7 @@
       "id": "line-jr-east-sobu-rapid::station-003668",
       "ja": "馬喰町",
       "ko": "바쿠로초",
-      "en": "Bakurocho",
+      "en": "Bakurochō",
       "file": "data/japan-route-station-names.json",
       "status": "SOURCE_REVIEW_REQUIRED",
       "issues": [],
@@ -121971,7 +121963,7 @@
       "id": "line-jr-east-sobu-rapid::station-003639",
       "ja": "錦糸町",
       "ko": "킨시초",
-      "en": "Kinshicho",
+      "en": "Kinshichō",
       "file": "data/japan-route-station-names.json",
       "status": "SOURCE_REVIEW_REQUIRED",
       "issues": [],
