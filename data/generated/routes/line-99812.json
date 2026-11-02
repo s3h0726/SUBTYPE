@@ -25,10 +25,10 @@
     },
     "operatorAsset": null,
     "line": {
-      "ja": "伊予鉄道本町線",
+      "ja": "松山市内線６号線",
       "kana": "いよてつどうほんちょうせん",
-      "ko": "이요철도혼초선",
-      "en": "IyotetsudōHonchōSen"
+      "ko": "마츠야마 시내선 6호선",
+      "en": "Matsuyama City Tram Route 6"
     },
     "koreanNameSource": {
       "family": "namuwiki",
@@ -45,7 +45,7 @@
       "canonicalPolicy": "namuwiki"
     },
     "code": "",
-    "lineColor": "#BE2D78",
+    "lineColor": "#EB6100",
     "symbolAsset": null,
     "symbolMeta": {
       "asset": null,
@@ -66,7 +66,23 @@
     "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "iyotetsudo",
-    "services": [],
+    "services": [
+      {
+        "id": "iyotetsu-6-local",
+        "nameJa": "６号線",
+        "nameKo": "6호선",
+        "nameEn": "Route 6",
+        "stops": [
+          "station-9980809",
+          "station-9981202",
+          "station-9981203",
+          "station-9981204",
+          "station-iyotetsu-honmachi-itchome",
+          "station-9980802",
+          "station-9980501"
+        ]
+      }
+    ],
     "throughServiceIds": [],
     "throughOperations": [],
     "routeInfo": null,
@@ -84,28 +100,27 @@
         "latitude": 33.85334,
         "longitude": 132.75885,
         "order": 1,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "29",
+        "stationCode": "29",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "operator-stop-number",
+          "url": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+          "verified": true,
+          "confidence": "high"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-route-station-table",
+        "koSourceUrl": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
         "koSearchReference": "site:namu.wiki 本町六丁目駅 혼마치로쿠초우메 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
+        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
         "geometryIndex": 0,
         "coordinateSource": "line-track-geometry"
       },
@@ -122,29 +137,28 @@
         "latitude": 33.85102,
         "longitude": 132.75876,
         "order": 2,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "28",
+        "stationCode": "28",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "operator-stop-number",
+          "url": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+          "verified": true,
+          "confidence": "high"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-route-station-table",
+        "koSourceUrl": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
         "koSearchReference": "site:namu.wiki 本町五丁目駅 혼마치고초우메 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 1,
+        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
+        "geometryIndex": 2,
         "coordinateSource": "line-track-geometry"
       },
       {
@@ -160,29 +174,28 @@
         "latitude": 33.84783,
         "longitude": 132.75873,
         "order": 3,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "27",
+        "stationCode": "27",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "operator-stop-number",
+          "url": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+          "verified": true,
+          "confidence": "high"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-route-station-table",
+        "koSourceUrl": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
         "koSearchReference": "site:namu.wiki 本町四丁目駅 혼마치욘초우메 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 4,
+        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
+        "geometryIndex": 5,
         "coordinateSource": "line-track-geometry"
       },
       {
@@ -198,68 +211,67 @@
         "latitude": 33.84538,
         "longitude": 132.75871,
         "order": 4,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "26",
+        "stationCode": "26",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "operator-stop-number",
+          "url": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+          "verified": true,
+          "confidence": "high"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-route-station-table",
+        "koSourceUrl": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
         "koSearchReference": "site:namu.wiki 本町三丁目駅 혼마치산초우메 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 5,
+        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
+        "geometryIndex": 6,
         "coordinateSource": "line-track-geometry"
       },
       {
-        "id": "station-9980803",
-        "internalId": "station-9980803",
-        "stationMasterId": "station-9980803",
-        "sourceId": "station-9980803",
-        "ja": "西堀端",
-        "kana": "にしぼりただし",
-        "ko": "니시보리타다시",
-        "romaji": "Nishiboritadashi",
+        "id": "station-iyotetsu-honmachi-itchome",
+        "internalId": "station-iyotetsu-honmachi-itchome",
+        "stationMasterId": "station-iyotetsu-honmachi-itchome",
+        "sourceId": "station-iyotetsu-honmachi-itchome",
+        "ja": "本町一丁目",
+        "kana": "ほんまちいっちょうめ",
+        "ko": "혼마치잇초메",
+        "romaji": "Hommachi 1-chome",
         "koAliases": [],
-        "latitude": 33.8403,
-        "longitude": 132.75865,
+        "latitude": 33.8404507,
+        "longitude": 132.7587337,
         "order": 5,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "25",
+        "stationCode": "25",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "operator-stop-number",
+          "url": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+          "verified": true,
+          "confidence": "high"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-route-station-table",
+        "koSourceUrl": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
         "koSearchReference": "site:namu.wiki 西堀端駅 니시보리타다시 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 8,
-        "coordinateSource": "line-track-geometry"
+        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
+        "geometryIndex": 9,
+        "coordinateSource": "named-iyotetsu-physical-platform",
+        "routeSpecificStationName": true
       },
       {
         "id": "station-9980802",
@@ -274,28 +286,27 @@
         "latitude": 33.83928,
         "longitude": 132.76178,
         "order": 6,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "02",
+        "stationCode": "02",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "operator-stop-number",
+          "url": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+          "verified": true,
+          "confidence": "high"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-route-station-table",
+        "koSourceUrl": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
         "koSearchReference": "site:namu.wiki 南堀端駅 미나미호리바타 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
+        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
         "geometryIndex": 13,
         "coordinateSource": "line-track-geometry"
       },
@@ -304,38 +315,44 @@
         "internalId": "station-9980501",
         "stationMasterId": "station-9980501",
         "sourceId": "station-9980501",
-        "ja": "松山市",
+        "ja": "松山市駅",
         "kana": "まつやまし",
-        "ko": "마츠야마시",
-        "romaji": "Matsuyamashi",
+        "ko": "마츠야마시에키",
+        "romaji": "Matsuyama City Station (Tram)",
         "koAliases": [],
         "latitude": 33.83603,
         "longitude": 132.762613,
         "order": 7,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "01",
+        "stationCode": "01",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "operator-stop-number",
+          "url": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+          "verified": true,
+          "confidence": "high"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-route-station-table",
+        "koSourceUrl": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
         "koSearchReference": "site:namu.wiki 松山市駅 마츠야마시 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
-        "geometryIndex": 19,
-        "coordinateSource": "line-track-geometry"
+        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
+        "geometryIndex": 18,
+        "coordinateSource": "line-track-geometry",
+        "canonicalStationNames": {
+          "ja": "松山市",
+          "ko": "마츠야마시",
+          "kana": "まつやまし",
+          "en": "Matsuyamashi"
+        },
+        "routeSpecificStationName": true
       }
     ],
     "geometry": [
@@ -373,10 +390,6 @@
       ],
       [
         33.84049,
-        132.75865
-      ],
-      [
-        33.8403,
         132.75865
       ],
       [
@@ -479,7 +492,7 @@
       },
       {
         "fromStationId": "station-9981204",
-        "toStationId": "station-9980803",
+        "toStationId": "station-iyotetsu-honmachi-itchome",
         "geometry": [
           [
             33.84538,
@@ -498,11 +511,11 @@
             132.75865
           ]
         ],
-        "source": "MLIT-N02-2025",
-        "verified": true
+        "source": "MLIT-N02-2025 (corrected stop identity)",
+        "verified": false
       },
       {
-        "fromStationId": "station-9980803",
+        "fromStationId": "station-iyotetsu-honmachi-itchome",
         "toStationId": "station-9980802",
         "geometry": [
           [
@@ -526,8 +539,8 @@
             132.76178
           ]
         ],
-        "source": "MLIT-N02-2025 [line-99811]",
-        "verified": true
+        "source": "MLIT-N02-2025 [line-99811] (20m platform offset)",
+        "verified": false
       },
       {
         "fromStationId": "station-9980802",
@@ -601,9 +614,11 @@
         "verifiedDate": null,
         "status": "REVIEW_REQUIRED",
         "canonicalPolicy": "namuwiki"
-      }
+      },
+      "namuwikiRoute": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+      "actualPlatform": "https://mapfan.com/spots/SCH%2CJ%2CW84"
     },
     "dataKind": "physicalRoute",
-    "coverage": "nationwide-source-line"
+    "coverage": "Hommachi 6-chome–Matsuyamashi tram route 6 with distinct Hommachi 1-chome stop"
   }
 }
