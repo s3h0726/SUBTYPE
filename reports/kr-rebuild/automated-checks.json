@@ -23,7 +23,7 @@
       "tools/test-kr-canonical.cjs"
     ],
     "status": 0,
-    "stdout": "{\n  \"passed\": true,\n  \"routes\": 3690,\n  \"journeysResolved\": 7172,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
+    "stdout": "{\n  \"passed\": true,\n  \"routes\": 7136,\n  \"journeysResolved\": 15217,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
     "stderr": ""
   },
   {
@@ -42,7 +42,7 @@
       "tools/kr-rail-rebuild.test.cjs"
     ],
     "status": 0,
-    "stdout": "✔ rail publications pass complete geometry, language and reference gates (45.3666ms)\n✔ every published geometry edge is an actual source rail edge in its direction (160.847ms)\n✔ official metro journeys preserve complete official Korean call sequences (548.9691ms)\n✔ conventional railway has independent actual tracks in both directions (1.5429ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (85.368ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1105.6843\n",
+    "stdout": "✔ rail publications pass complete geometry, language and reference gates (76.7322ms)\n✔ every published geometry edge is an actual source rail edge in its direction (290.4152ms)\n✔ official metro journeys preserve complete official Korean call sequences (760.6425ms)\n✔ conventional railway has independent actual tracks in both directions (2.9297ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (125.2472ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1606.1457\n",
     "stderr": ""
   },
   {
@@ -61,7 +61,7 @@
     ],
     "status": 0,
     "stdout": "{\n  \"status\": \"PASS\",\n  \"cases\": 18,\n  \"bracketsOnlyAutoFilled\": true,\n  \"errors\": []\n}\n",
-    "stderr": "(node:26356) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    "stderr": "(node:13484) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
   },
   {
     "name": "한글 조합",
@@ -78,7 +78,7 @@
       "tools/test-hk-route-selector.cjs"
     ],
     "status": 0,
-    "stdout": "PASS js/app.js: HK MTR/TRAM, KR, JP click selectors\nPASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors\nPASS selector assets: 104 HK route records\n",
+    "stdout": "PASS js/app.js: HK MTR/TRAM, KR, JP click selectors\nPASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors\nPASS selector assets: 104 HK route records\nPASS JP-style Hong Kong/Taiwan cards and native-first station signs\n",
     "stderr": ""
   },
   {
@@ -96,8 +96,8 @@
       "--test",
       "tools/test-jr-sobu-rapid-playable.cjs"
     ],
-    "status": 0,
-    "stdout": "{\"status\":\"PASS\",\"lineId\":\"line-jr-east-sobu-rapid\",\"stops\":10,\"segments\":9,\"vertices\":251,\"directions\":[\"Tokyo–Chiba\",\"Chiba–Tokyo\"],\"localRouteKept\":\"line-11313\",\"originalMainLineKept\":\"line-11314\",\"transfers\":22,\"csvIntegrated\":true}\n✔ tools\\test-jr-sobu-rapid-playable.cjs (664.3032ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 683.3197\n",
+    "status": 1,
+    "stdout": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'바쿠로쵸' !== '바쿠로초'\n\n    at Object.<anonymous> (C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\tools\\test-jr-sobu-rapid-playable.cjs:52:9)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: '바쿠로쵸',\n  expected: '바쿠로초',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.22.1\n✖ tools\\test-jr-sobu-rapid-playable.cjs (921.5885ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 947.4237\n\n✖ failing tests:\n\ntest at tools\\test-jr-sobu-rapid-playable.cjs:1:1\n✖ tools\\test-jr-sobu-rapid-playable.cjs (921.5885ms)\n  'test failed'\n",
     "stderr": ""
   },
   {

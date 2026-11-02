@@ -21,7 +21,7 @@ test('editor station overrides reach the actual Taiwan journey and its destinati
  const d={console,URL,crypto:require('crypto').webcrypto,document:{baseURI:'https://subtype.test/'}};vm.createContext(d);
  const line=network.lines.find(l=>l.id==='tw-trtc-wenhu'),id=line.stations[0].id;
  d.fetch=async url=>({ok:true,json:async()=>String(url).includes('editor-overrides')?{stations:{[line.id]:{[id]:'편집된출발역'}}}:network});
- for(const name of ['taiwan-display','taiwan-network','data-loader'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+name+'.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),d);
+ for(const name of ['taiwan-display','taiwan-network','route-payload','data-loader'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+name+'.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),d);
  vm.runInContext(';globalThis.api={loadTransportData,taiwanOperatingChoices,resolveTaiwanChoice}',d);
  const data=await d.api.loadTransportData('tw'),l=data.lines.find(l=>l.id===line.id),choice=d.api.taiwanOperatingChoices(l)[0],resolved=d.api.resolveTaiwanChoice(choice,l);
  assert.equal(choice.originNames.ko,'편집된출발역');assert.equal(resolved.route.stations[0].ja,'편집된출발역');assert.equal(resolved.route.stations[0].zh,line.stations[0].zh);
