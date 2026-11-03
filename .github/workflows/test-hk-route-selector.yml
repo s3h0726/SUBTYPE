@@ -31,6 +31,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: 홍콩 과거 검증 기준 커밋 확보
+        run: git fetch origin 9272e1d3afe57bd72461942600fc4d3d472d90ca
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -58,6 +60,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: 홍콩 과거 검증 기준 커밋 확보
+        run: git fetch origin 9272e1d3afe57bd72461942600fc4d3d472d90ca
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
