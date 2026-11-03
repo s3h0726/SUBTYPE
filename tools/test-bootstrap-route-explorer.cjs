@@ -8,7 +8,7 @@ const countries=new Map([['hk','홍콩'],['jp','일본'],['kr','대한민국'],[
 assert.match(html,/bootstrap@5\.3\.8\/dist\/css\/bootstrap-grid\.min\.css/);
 assert.match(html,/bootstrap@5\.3\.8\/dist\/css\/bootstrap-utilities\.min\.css/);
 assert.match(html,/bootstrap-route-explorer\.css\?v=/);
-assert.match(html,/app\\.bundle\\.js\\?v=[^\\"']+/);
+assert.match(html,/app\.bundle\.js\?v=[^"']+/);
 assert.match(html,/class="line-select-layout row gx-3 gy-3"/);
 assert.match(html,/class="selected-line-panel col-12 col-lg-4"/);
 assert.match(html,/class="line-list-panel col-12 col-lg-8"/);
