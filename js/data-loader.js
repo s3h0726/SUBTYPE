@@ -143,7 +143,7 @@ function restoreKrBusRouteName(raw){
  const oldLine=raw.line||{};
  const line={...oldLine,ko:updated,aliases:[...new Set([...(oldLine.aliases||[]),previous])]};
  for(const language of ['ja','en'])if(!oldLine[language]||oldLine[language]===previous)line[language]=updated;
- return{...raw,line,routeNumber:official,sourceRouteNumber:raw.sourceRouteNumber||fromSource};
+ return{...raw,line,routeNumber:official,legacyPhoneticRouteNumber:fromSource};
 }
 export function restoreKrBusLatinRoute(raw){
  if(raw?.countryId!=='kr'||!(['bus','village_bus','express_bus','brt'].includes(raw.mode)||String(raw.id||'').startsWith('kr-bus-')))return raw;
