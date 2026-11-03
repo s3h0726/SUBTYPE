@@ -75,7 +75,11 @@
     "test:taiwan:multilingual": "node tools/test-taiwan-multilingual.cjs",
     "test:taiwan:batch": "node tools/test-taiwan-batch.cjs",
     "test:auth-redirect": "node tools/test-auth-confirmation-latest.cjs",
-    "test:iyotetsu": "node tools/test-iyotetsu-namuwiki-rebuild.cjs && node tools/test-jp-national-transfer-neighbors.cjs"
+    "test:iyotetsu": "node tools/test-iyotetsu-namuwiki-rebuild.cjs && node tools/test-jp-national-transfer-neighbors.cjs",
+    "build:thailand": "node tools/normalize-thailand.cjs && node tools/build-thailand.cjs && node tools/build-app-bundle.js",
+    "import:thailand": "node tools/fetch-thailand.cjs",
+    "test:thailand": "node tools/test-thailand.cjs && node tools/test-thailand-records.cjs && node --test tools/test-thailand-source.cjs",
+    "test:thailand:browser": "node tools/test-thailand-browser.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

@@ -1,0 +1,30 @@
+{
+  status: 'PASS',
+  localRecordCountry: 'th',
+  rankingCountry: 'th',
+  rankingFilterCountry: 'th',
+  serviceIdentityPreserved: true,
+  liveAuthenticatedWrite: '미실행'
+}
+✔ tools\test-thailand-records.cjs (192.6378ms)
+✔ 자기 닫힘 노드가 다음 역의 태그를 흡수하지 않는다 (2.9786ms)
+✔ 분리된 실선로를 직선으로 연결하지 않는다 (1.5715ms)
+✔ 원자료 스냅샷 SHA-256와 공개 요청 URL이 일치한다 (4711.0786ms)
+✔ 태국 환승 식별자는 근접 좌표 대신 명시적 그룹을 사용한다 (1.0784ms)
+{
+  "status": "PASS",
+  "routes": 23,
+  "patterns": 165,
+  "stops": 4733,
+  "sourceCompletenessVerified": false,
+  "failures": []
+}
+✔ tools\test-thailand.cjs (1669.3353ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5123.2315

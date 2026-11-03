@@ -22,6 +22,8 @@ jobs:
         with: {node-version: '22'}
       - name: Regression test free-drive station targeting
         run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
+      - name: 태국 공개 계통과 원자료 무결성 검증
+        run: npm run test:thailand
       - name: Check responsive station sign with Chrome before publishing
         run: node --test tools/test-free-drive-layout-browser.cjs
       - name: Build the current app bundle including country-wide name overrides

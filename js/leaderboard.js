@@ -36,7 +36,7 @@ const entry=result=>({
  ...serviceInfo(result),
  run_uid:crypto.randomUUID(),route_id:String(result.route?.id||result.routeId||'').slice(0,140),
  route_name:String(result.route?.line?.ko||result.route?.line?.ja||result.routeName||'').slice(0,150),
- country_id:result.route?.countryId==='kr'?'kr':'jp',
+ country_id:result.route?.countryId==='th'?'th':result.route?.countryId==='kr'?'kr':'jp',
  cpm:Math.round(Number(result.cpm)),accuracy:Math.round(Number(result.accuracy)*100)/100,
  elapsed_ms:Math.round(Number(result.elapsed)),completed:Math.floor(Number(result.completed)),
  route_integrity:true,synced:false,created_at:new Date().toISOString()
@@ -76,7 +76,7 @@ const currentLine=()=>activeLine;
 const lineMatches=run=>Boolean(activeLine)&&String(run.route_id)===activeLine.id&&(!activeLine.countryId||run.country_id===activeLine.countryId);
 function openRoute(route){
  if(!route?.id)return false;
- activeLine={id:String(route.id),countryId:route.countryId==='kr'?'kr':route.countryId==='jp'?'jp':null,name:String(route.line?.ko||route.line?.ja||route.name||route.id),operator:String(route.operator?.ko||route.operator?.en||'')};
+ activeLine={id:String(route.id),countryId:route.countryId==='th'?'th':route.countryId==='kr'?'kr':route.countryId==='jp'?'jp':null,name:String(route.line?.ko||route.line?.ja||route.name||route.id),operator:String(route.operator?.ko||route.operator?.en||'')};
  if(route.countryId==='tw')activeLine.taiwanRoute=route;
  ++renderGeneration;
  const service=byId('ranking-service'),scope=byId('ranking-scope');if(service)service.replaceChildren(new Option('모든 운행계통',''));if(scope)scope.value='global';

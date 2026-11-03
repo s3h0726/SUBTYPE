@@ -1,0 +1,372 @@
+{
+ "datasets": [
+  {
+   "id": "airport.don-mueang",
+   "path": "airport/don-mueang/tileset.json",
+   "build": "20261024",
+   "region": [
+    1.7557583221496695,
+    0.24279263538388166,
+    1.7559040392121958,
+    0.2430279911428664,
+    -1.0,
+    23.0
+   ],
+   "title": {
+    "en": "Don Mueang Airport (DMK), with airliners at the gates and an RTAF fighter line",
+    "th": "ท่าอากาศยานดอนเมือง พร้อมเครื่องบินโดยสารที่ประตูและแถวเครื่องบินขับไล่ของกองทัพอากาศ"
+   },
+   "source": "longdo-map-3d-models generator/airport-don-mueang via tools/trains-build-tiles.py --global airport; terminals, gates, hangars and the RTAF Museum from OpenStreetMap; shapes and the aircraft parked are made up",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 14,
+   "view": {
+    "center": [
+     100.603,
+     13.9172
+    ],
+    "zoom": 16.9,
+    "pitch": 60,
+    "bearing": 295
+   },
+   "night": {
+    "tileset": "night/tileset.json",
+    "note": "lit: the terminals and piers behind their glass (inside each build; Longdo3D swaps it in with setNight; the aircraft have night models of their own)"
+   },
+   "stations": "airport/don-mueang/20261024/stations.geojson",
+   "placements": "airport/don-mueang/20261024/placements.geojson"
+  },
+  {
+   "id": "airport.suvarnabhumi",
+   "path": "airport/suvarnabhumi/tileset.json",
+   "build": "20261024",
+   "region": [
+    1.7583000333789163,
+    0.2387748251756696,
+    1.7585413704767798,
+    0.23905142426969422,
+    -1.1925091594457626,
+    133.1999969482422
+   ],
+   "title": {
+    "en": "Suvarnabhumi Airport (BKK), with aircraft at the stands",
+    "th": "ท่าอากาศยานสุวรรณภูมิ พร้อมเครื่องบินจอดที่หลุมจอด"
+   },
+   "source": "longdo-map-3d-models generator/airport-suvarnabhumi via tools/trains-build-tiles.py --global airport; outlines, stands and tower from OpenStreetMap; shapes and the aircraft parked are made up",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 14,
+   "view": {
+    "center": [
+     100.7502,
+     13.6905
+    ],
+    "zoom": 16.2,
+    "pitch": 60,
+    "bearing": 20
+   },
+   "night": {
+    "tileset": "night/tileset.json",
+    "note": "lit: the terminal and concourses behind their glass, the concourses' translucent membrane roofs and skylights glowing soft white, the roof's underside over the glass hall, the tower's cab (inside each build; Longdo3D swaps it in with setNight; the aircraft have night models of their own)"
+   },
+   "stations": "airport/suvarnabhumi/20261024/stations.geojson",
+   "placements": "airport/suvarnabhumi/20261024/placements.geojson"
+  },
+  {
+   "id": "building.chao-phraya-riverside",
+   "path": "building/chao-phraya-riverside/tileset.json",
+   "build": "20261101e",
+   "region": [
+    1.7540881530378625,
+    0.23919500103012986,
+    1.7543587761983344,
+    0.23962904557734482,
+    -1.600000023841858,
+    365.3337707519531
+   ],
+   "title": {
+    "en": "ICONSIAM, Millennium Hilton, The Peninsula, State Tower, Asiatique Sky and cruise boats on the Chao Phraya, lit by night",
+    "th": "ไอคอนสยาม มิลเลนเนียม ฮิลตัน เดอะ เพนนินซูลา สเตททาวเวอร์ เอเชียทีค สกาย และเรือสำราญบนเจ้าพระยา เปิดไฟยามค่ำคืน"
+   },
+   "source": "longdo-map-3d-models generator/riverside-landmarks via tools/trains-build-tiles.py --global landmarks; towers on Longdo Map's own outlines and heights, ICONSIAM's mall and Asiatique Sky on OpenStreetMap's; heights published (Wikipedia, operators), shapes after photographs; the cruise boats our own design",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 14,
+   "view": {
+    "center": [
+     100.5108,
+     13.7262
+    ],
+    "zoom": 16.2,
+    "pitch": 65,
+    "bearing": 260
+   },
+   "night": {
+    "tileset": "night/tileset.json",
+    "note": "lit: ICONSIAM's glass and gold krathong roof, the towers' gold fins and windows, State Tower's gold dome, the Hilton's ring, the wheel's LEDs, the boats' neon (inside each build; Longdo3D swaps it in with setNight)"
+   },
+   "stations": "building/chao-phraya-riverside/20261101e/stations.geojson"
+  },
+  {
+   "id": "palace.grand-palace",
+   "path": "palace/grand-palace/tileset.json",
+   "build": "20261101b",
+   "region": [
+    1.753866025833617,
+    0.23992443633835606,
+    1.7539552887604768,
+    0.2400293801294778,
+    -1.0,
+    78.16736602783203
+   ],
+   "title": {
+    "en": "The Grand Palace and Wat Phra Kaew",
+    "th": "พระบรมมหาราชวังและวัดพระศรีรัตนศาสดาราม"
+   },
+   "source": "longdo-map-3d-models generator/palace-grand-palace via tools/trains-build-tiles.py --global palace; outlines from OpenStreetMap (tools/grand-palace-extract.py, local OSM database); heights from published figures (Phra Si Rattana Chedi 40 m, Dusit Maha Prasat 50.4 m) and photographs; ornament made up after them",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 15,
+   "night": {
+    "tileset": "night/tileset.json"
+   },
+   "view": {
+    "center": [
+     100.4935,
+     13.751
+    ],
+    "zoom": 17.6,
+    "pitch": 66,
+    "bearing": 225
+   },
+   "stations": "palace/grand-palace/20261101b/stations.geojson"
+  },
+  {
+   "id": "rail.bangkok-trains",
+   "path": "rail/bangkok-trains/tileset.json",
+   "build": "20261101",
+   "region": [
+    1.752440972237747,
+    0.23676867746066343,
+    1.7586014757603614,
+    0.244198577676639,
+    -1.600000023841858,
+    44.400001525878906
+   ],
+   "title": {
+    "en": "Bangkok rail network",
+    "th": "โครงข่ายรถไฟกรุงเทพฯ"
+   },
+   "source": "map-demo-index-web tools/trains-build-tiles.py from web/bangkok-trains/self-contained.php",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 14,
+   "view": {
+    "center": [
+     100.5328,
+     13.7462
+    ],
+    "zoom": 17.3,
+    "pitch": 62,
+    "bearing": 58
+   },
+   "night": {
+    "tileset": "night/tileset.json",
+    "note": "lit: station concourses and platforms, the canopies underneath, each line's colored fascia; Hua Lamphong floodlit, its arch's panes glowing; Krung Thep Aphiwat's glass walls, canopies and clock (inside each build; Longdo3D swaps it in with setNight)"
+   },
+   "stations": "rail/bangkok-trains/20261101/stations.geojson",
+   "exits": "rail/bangkok-trains/20261101/exits.geojson",
+   "lines": "rail/bangkok-trains/20261101/lines.json",
+   "cover": "rail/bangkok-trains/20261101/cover.geojson"
+  },
+  {
+   "id": "river.chao-phraya-bridges",
+   "path": "river/chao-phraya-bridges/tileset.json",
+   "build": "20261101",
+   "region": [
+    1.7536114961472473,
+    0.23791241664839166,
+    1.7547965485807824,
+    0.24289446815070354,
+    -7.012825012207031,
+    187.10000610351562
+   ],
+   "title": {
+    "en": "Chao Phraya bridges: Rama VIII, Phra Pin Klao, Memorial Bridge, Taksin Bridge's span, Rama IX, Thotsamarachan, Bhumibol and Kanchanaphisek; the other bridges' lights by night",
+    "th": "สะพานข้ามแม่น้ำเจ้าพระยา: สะพานพระราม 8 สะพานสมเด็จพระปิ่นเกล้า สะพานพระพุทธยอดฟ้า ช่วงข้ามแม่น้ำของสะพานตากสิน สะพานพระราม 9 สะพานทศมราชัน สะพานภูมิพล และสะพานกาญจนาภิเษก และไฟของสะพานอื่นยามค่ำคืน"
+   },
+   "source": "longdo-map-3d-models generator/river-bridges via tools/trains-build-tiles.py --global bridges; carriageways, river crossings and Rama VIII's pylon from OpenStreetMap (tools/river-bridges-extract.py); Rama IX and Thotsamarachan's pylons from OpenStreetMap; spans, heights and shapes from published figures (Wikipedia, Thai PBS) and photographs; Taksin's, Rama IX's and Thotsamarachan's decks follow road/thailand-motorways' where they meet it, and the other bridges' lights sit on its decks",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 13,
+   "view": {
+    "center": [
+     100.4968,
+     13.7688
+    ],
+    "zoom": 16.4,
+    "pitch": 66,
+    "bearing": 200
+   },
+   "night": {
+    "tileset": "night/tileset.json",
+    "note": "lit: Rama VIII's pylon and gold stays, Memorial Bridge's trusses, Phra Pin Klao's girders, Rama IX's gold pylons and stays, Thotsamarachan's colored legs and gold crest, Bhumibol's and Kanchanaphisek's gold-floodlit pylons, the other bridges' light strings, girders and lamps (inside each build; Longdo3D swaps it in with setNight)"
+   },
+   "stations": "river/chao-phraya-bridges/20261101/stations.geojson",
+   "decks": "river/chao-phraya-bridges/20261101/decks.json"
+  },
+  {
+   "id": "road.bangkok-expressways",
+   "path": "road/bangkok-expressways/tileset.json",
+   "build": "20261101",
+   "region": [
+    1.7490828153851488,
+    0.23208330653513964,
+    1.7637111762357245,
+    0.2469733152303686,
+    -1.5,
+    61.900001525878906
+   ],
+   "title": {
+    "en": "Bangkok expressways and flyovers",
+    "th": "ทางพิเศษและสะพานข้ามแยก กรุงเทพฯ"
+   },
+   "source": "generator/bangkok-expressways (OpenStreetMap ways, extracted 2026-10-12) baked by tools/trains-build-tiles.py",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 13,
+   "view": {
+    "center": [
+     100.5568,
+     13.7168
+    ],
+    "zoom": 17.6,
+    "pitch": 65,
+    "bearing": -40
+   },
+   "stations": "road/bangkok-expressways/20261101/stations.geojson"
+  },
+  {
+   "id": "road.thailand-motorways",
+   "path": "road/thailand-motorways/tileset.json",
+   "build": "20261101",
+   "region": [
+    1.7383195239346507,
+    0.22181467812962347,
+    1.7812101973054046,
+    0.2617785906504419,
+    -1.5,
+    61.900001525878906
+   ],
+   "title": {
+    "en": "Thailand motorways and Bangkok expressways",
+    "th": "ทางหลวงพิเศษระหว่างเมืองและทางพิเศษ"
+   },
+   "source": "generator/bangkok-expressways bake-thailand.html (OpenStreetMap ways, extracted 2026-10-13) baked by tools/trains-build-tiles.py",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 12,
+   "view": {
+    "center": [
+     100.5568,
+     13.7168
+    ],
+    "zoom": 17.6,
+    "pitch": 65,
+    "bearing": -40
+   },
+   "stations": "road/thailand-motorways/20261101/stations.geojson",
+   "decks": "road/thailand-motorways/20261101/decks.json"
+  },
+  {
+   "id": "street.phaya-thai-road",
+   "path": "street/phaya-thai-road/tileset.json",
+   "build": "20261024",
+   "region": [
+    1.7544783954095842,
+    0.23962006138550174,
+    1.7547005372850575,
+    0.24004821319165606,
+    -1.0,
+    15.600000381469727
+   ],
+   "title": {
+    "en": "Phaya Thai, Rama I and Rama IV Roads (street)",
+    "th": "ถนนพญาไท ถนนพระรามที่ 1 และถนนพระรามที่ 4 (ถนนสามมิติ)"
+   },
+   "source": "generator/street-phayathai (OpenStreetMap, extracted 2026-10-13: carriageways, lanes, turn:lanes, crossings, signals, bus stops, trees, footbridges) baked by tools/trains-build-tiles.py; tree and lamp positions, and two Rama IV footbridges OSM lacks, from Longdo Map's Phaya Thai 3D data (map.longdo.com/main/3d-dataset tree_l, tree_ll, light_l, light_ll, bridge_l, bridge_ll); hide points from Longdo Map's building footprints",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 16,
+   "view": {
+    "center": [
+     100.5302,
+     13.7436
+    ],
+    "zoom": 18.6,
+    "pitch": 64,
+    "bearing": 10
+   },
+   "stations": "street/phaya-thai-road/20261024/stations.geojson"
+  },
+  {
+   "id": "temple.wat-arun",
+   "path": "temple/wat-arun/tileset.json",
+   "build": "20261101b",
+   "region": [
+    1.7538291814745564,
+    0.23985354696115058,
+    1.7538970122474409,
+    0.239898144312133,
+    -1.0,
+    68.45999908447266
+   ],
+   "title": {
+    "en": "Wat Arun: the prangs, mondops, halls and grounds",
+    "th": "วัดอรุณราชวราราม: พระปรางค์ มณฑป พระอุโบสถ พระวิหาร และบริเวณวัด"
+   },
+   "source": "longdo-map-3d-models generator/temple-wat-arun via tools/trains-build-tiles.py --global temple; outlines, axis and riverbank from OpenStreetMap (tools/wat-arun-extract.py); heights and shapes from the 67 m height and photographs (incl. Wikimedia Commons); ornament made up after them",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 15,
+   "view": {
+    "center": [
+     100.4893,
+     13.7439
+    ],
+    "zoom": 18.2,
+    "pitch": 68,
+    "bearing": 245
+   },
+   "night": {
+    "tileset": "night/tileset.json",
+    "note": "the floodlit version, for a dark map: inside each build (Longdo3D swaps it in with setNight)"
+   },
+   "stations": "temple/wat-arun/20261101b/stations.geojson"
+  },
+  {
+   "id": "temple.wat-pho",
+   "path": "temple/wat-pho/tileset.json",
+   "build": "20261101c",
+   "region": [
+    1.7539000674431273,
+    0.23989973924799113,
+    1.753956075372431,
+    0.23993982243644885,
+    -1.0,
+    43.599998474121094
+   ],
+   "title": {
+    "en": "Wat Pho: the four great chedis, the ordination hall, the Reclining Buddha's viharn and grounds",
+    "th": "วัดพระเชตุพนวิมลมังคลาราม (วัดโพธิ์): พระมหาเจดีย์สี่รัชกาล พระอุโบสถ พระวิหารพระพุทธไสยาส และบริเวณวัด"
+   },
+   "source": "longdo-map-3d-models generator/temple-wat-pho via tools/trains-build-tiles.py --global watpho; outlines from OpenStreetMap (tools/wat-pho-extract.py); heights and shapes from published figures (the great chedis 42 m) and photographs; ornament made up after them",
+   "license": "Derived from OpenStreetMap, © OpenStreetMap contributors, ODbL",
+   "minZoom": 15,
+   "view": {
+    "center": [
+     100.4922,
+     13.7463
+    ],
+    "zoom": 18.2,
+    "pitch": 66,
+    "bearing": 200
+   },
+   "night": {
+    "tileset": "night/tileset.json",
+    "note": "the floodlit version, for a dark map: inside each build (Longdo3D swaps it in with setNight)"
+   },
+   "stations": "temple/wat-pho/20261101c/stations.geojson"
+  }
+ ]
+}
