@@ -1,9 +1,9 @@
 {
   "city": "daegu",
-  "checkedAt": "2026-11-02T16:02:09.949Z",
+  "checkedAt": "2026-11-03T14:25:05.587Z",
   "inventory": 232,
-  "routes": 136,
-  "directions": 329,
+  "routes": 140,
+  "directions": 335,
   "outcomes": [
     {
       "id": "3000101011",
@@ -87,8 +87,8 @@
     },
     {
       "id": "3000156000",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "NO_ORDERED_ROAD_BINDING:2"
+      "status": "PUBLISHED",
+      "directions": 1
     },
     {
       "id": "3000204000",
@@ -462,8 +462,8 @@
     },
     {
       "id": "7361102008",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "NO_ORDERED_ROAD_BINDING:9"
+      "status": "STOP_SEQUENCE_UNRESOLVED",
+      "reason": "공식 방향과 정류장 또는 선형 결합 실패"
     },
     {
       "id": "7361102009",
@@ -497,8 +497,8 @@
     },
     {
       "id": "7361106011",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "NO_ORDERED_ROAD_BINDING:19"
+      "status": "PUBLISHED",
+      "directions": 1
     },
     {
       "id": "7361106012",
@@ -532,8 +532,8 @@
     },
     {
       "id": "1000010000",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "SOURCE_GEOMETRY_GAP"
+      "status": "PUBLISHED",
+      "directions": 1
     },
     {
       "id": "1000001000",
@@ -587,8 +587,8 @@
     },
     {
       "id": "1000009200",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "NO_ORDERED_ROAD_BINDING:13"
+      "status": "STOP_SEQUENCE_UNRESOLVED",
+      "reason": "공식 방향과 정류장 또는 선형 결합 실패"
     },
     {
       "id": "4130001000",
@@ -727,8 +727,8 @@
     },
     {
       "id": "4040006022",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "NO_ORDERED_ROAD_BINDING:9"
+      "status": "STOP_SEQUENCE_UNRESOLVED",
+      "reason": "공식 방향과 정류장 또는 선형 결합 실패"
     },
     {
       "id": "4040007011",
@@ -832,8 +832,8 @@
     },
     {
       "id": "4060003002",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "NO_ORDERED_ROAD_BINDING:20"
+      "status": "PUBLISHED",
+      "directions": 1
     },
     {
       "id": "4060004000",
@@ -897,8 +897,8 @@
     },
     {
       "id": "4070002031",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "NO_ORDERED_ROAD_BINDING:2"
+      "status": "PUBLISHED",
+      "directions": 1
     },
     {
       "id": "4070002032",
@@ -1037,8 +1037,8 @@
     },
     {
       "id": "5000002000",
-      "status": "GEOMETRY_UNRESOLVED",
-      "reason": "SOURCE_GEOMETRY_GAP"
+      "status": "PUBLISHED",
+      "directions": 1
     },
     {
       "id": "4090001001",
@@ -1164,6 +1164,74 @@
       "id": "4110002000",
       "status": "PUBLISHED",
       "directions": 2
+    }
+  ],
+  "failedDirections": [
+    {
+      "id": "3000156000",
+      "direction": "0",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:2"
+    },
+    {
+      "id": "7361102008",
+      "direction": "1",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:9"
+    },
+    {
+      "id": "7361106011",
+      "direction": "1",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:19"
+    },
+    {
+      "id": "1000010000",
+      "direction": "0",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "SOURCE_GEOMETRY_GAP"
+    },
+    {
+      "id": "1000009200",
+      "direction": "0",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:13"
+    },
+    {
+      "id": "1000009200",
+      "direction": "1",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:27"
+    },
+    {
+      "id": "4040006022",
+      "direction": "0",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:9"
+    },
+    {
+      "id": "4040006022",
+      "direction": "1",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:11"
+    },
+    {
+      "id": "4060003002",
+      "direction": "0",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:20"
+    },
+    {
+      "id": "4070002031",
+      "direction": "0",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "NO_ORDERED_ROAD_BINDING:2"
+    },
+    {
+      "id": "5000002000",
+      "direction": "0",
+      "status": "GEOMETRY_UNRESOLVED",
+      "reason": "SOURCE_GEOMETRY_GAP"
     }
   ]
 }

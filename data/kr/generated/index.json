@@ -72360,6 +72360,126 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daegu-0fecf9247f3ddc",
+      "countryId": "kr",
+      "regionId": "daegu",
+      "regionKo": "대구광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "간선버스",
+      "line": {
+        "ko": "대구 156번"
+      },
+      "routeNumber": "156",
+      "operatorId": "kr-daegu-operator-af7b19600e98be",
+      "operator": {
+        "ko": "경북교통(주), 신흥버스(주), 대명교통(주)"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=3000156000",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:57:42.974Z",
+          "sha256": "b180f83898a3ff57abdb4a2c8ed3a3f6376916e60dd2f199def59b4789965bab",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/bs/route?routeId=3000156000",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:57:43.391Z",
+          "sha256": "ff73db38012081f090372da04b3da78dedd17a3547b0f9c4d01031b0dd8ffaa2",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/wfs",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:43.539Z",
+          "sha256": "2e6b570b5f57ce3bcd976d80eb9c1ddac847f031fe714a0c4cfae6c4e943a037",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        }
+      ],
+      "sourceRouteIds": [
+        "3000156000"
+      ],
+      "operationalEvidence": {
+        "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=3000156000",
+        "checkedAt": "2026-11-02T15:57:42.974Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daegu-0fecf9247f3ddc.json",
+      "stationCount": 53,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "신덕마을입구건너",
+        "용계동4",
+        "용계동2",
+        "신평동1",
+        "강변동서마을건너",
+        "은하타운앞",
+        "우방강촌마을건너",
+        "화랑교2",
+        "동촌유원지",
+        "아양아트센터건너",
+        "청기와주유소건너",
+        "효목네거리3",
+        "태왕메트로시티건너",
+        "대구지방법원등기국건너",
+        "동대구역복합환승센터앞",
+        "동대구역",
+        "동대구역화성파크드림",
+        "평화시장(닭똥집골목)앞",
+        "공고네거리1",
+        "강남약국건너",
+        "농협중앙회앞",
+        "칠성시장앞1",
+        "동인찜갈비골목건너",
+        "씨지브이대구한일건너",
+        "곽병원앞1",
+        "섬유회관건너1",
+        "큰장네거리1",
+        "대구제일고등학교건너",
+        "비산노인복지관앞",
+        "구)대영학원앞",
+        "새길시장건너",
+        "반고개1",
+        "반고개(내당역4번출구)",
+        "현대해상건너",
+        "두류역(달성고등학교앞)",
+        "광장타운앞",
+        "두류정수사업소건너",
+        "감삼초등학교앞",
+        "대구광역시교육연수원앞",
+        "성당코오롱하늘채2",
+        "제일여자상업고등학교건너",
+        "더샵달서센트럴아파트앞",
+        "본리아카시아맨션",
+        "본리네거리3",
+        "남대구아이씨2",
+        "남부자동차종합시장앞",
+        "대구물류터미널건너",
+        "경희강재건너",
+        "중앙일보건너",
+        "한국산업인력공단앞",
+        "푸드웰앞",
+        "한국산업은행성서지점건너",
+        "신흥버스"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daegu-fc56dbc6d4652b",
       "countryId": "kr",
       "regionId": "daegu",
@@ -84527,6 +84647,30 @@
           "attribution": "대구광역시 공식 버스정보시스템"
         },
         {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=7361106011",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:58:35.491Z",
+          "sha256": "156a24cdd159f5af1872d711608752e9823a6dd8158f57aaa5fd7a65e16cb4e8",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/bs/route?routeId=7361106011",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:58:35.669Z",
+          "sha256": "5427cbdb6effaeed9e90a8c071711e645b7b0a185639d733308b7731b02d2b01",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/wfs",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:35.969Z",
+          "sha256": "2713c771849bba6a98d62bd47d8cf85c38597665393f050f110d51c03f8c3307",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
           "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=7361106012",
           "method": "GET",
           "retrievedAt": "2026-11-02T15:58:35.551Z",
@@ -84553,6 +84697,7 @@
       ],
       "sourceRouteIds": [
         "7361106009",
+        "7361106011",
         "7361106012"
       ],
       "operationalEvidence": {
@@ -84563,8 +84708,9 @@
       "lazy": true,
       "lazySource": "data/kr/generated/routes/kr-bus-daegu-7749c69d7ab966.json",
       "stationCount": 63,
-      "serviceCount": 3,
+      "serviceCount": 4,
       "serviceWindows": [
+        {},
         {},
         {},
         {}
@@ -84600,6 +84746,18 @@
         "효령-중구리",
         "군위군민회관",
         "군위우체국앞",
+        "매곡2리",
+        "매곡1리경로회관",
+        "매곡1리정미소",
+        "고매초등학교",
+        "고곡보건지소",
+        "고곡2리",
+        "고곡1리",
+        "고곡리",
+        "청수송어장낚시터",
+        "군위유통센타앞",
+        "장군2리",
+        "장군1리",
         "신녕버스정류장",
         "화남3리-경로당건너",
         "화남3리(삼산방면)",
@@ -85097,6 +85255,91 @@
         "군위버스터미널건너",
         "군위군민회관",
         "군위우체국앞"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daegu-dcc5449d6fee8a",
+      "countryId": "kr",
+      "regionId": "daegu",
+      "regionKo": "대구광역시",
+      "mode": "express_bus",
+      "category": "express_bus",
+      "normalizedCategory": "express_bus",
+      "categoryKo": "급행버스",
+      "line": {
+        "ko": "대구 급행10번"
+      },
+      "routeNumber": "급행10",
+      "operatorId": "kr-daegu-operator-5a1988c9de49ce",
+      "operator": {
+        "ko": "(주)세진교통, 세운버스(주)"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=1000010000",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:58:37.164Z",
+          "sha256": "099c58523ce11d0128528414f7122c5373646a6ad5395c2a505de9a30a6a14a7",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/bs/route?routeId=1000010000",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:58:37.337Z",
+          "sha256": "600ed68de7e052e75c38f80fd1e4471560eeac031ad067a0a6cff39beaaf2a16",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/wfs",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:37.517Z",
+          "sha256": "c32b5c512b6d7ed446acbb996f0ed93dffb70287721e3bf367471184f76c6958",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        }
+      ],
+      "sourceRouteIds": [
+        "1000010000"
+      ],
+      "operationalEvidence": {
+        "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=1000010000",
+        "checkedAt": "2026-11-02T15:58:37.164Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daegu-dcc5449d6fee8a.json",
+      "stationCount": 18,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "대천공영차고지앞",
+        "유천교2",
+        "수목원삼성래미안1차앞",
+        "대곡주공8단지건너",
+        "대곡사계절타운건너",
+        "토지주택공사앞",
+        "상인장미아파트앞",
+        "파동우체국앞",
+        "가창면행정복지센터건너",
+        "범물1동행정복지센터앞",
+        "대구미술관(대구간송미술관)앞",
+        "수성알파시티2",
+        "고산2동행정복지센터건너",
+        "신매역(6번출구)",
+        "매호1교건너",
+        "수성구리틀야구장건너",
+        "안심교(반야월방향)",
+        "반야월역(3번출구)"
       ],
       "stations": [],
       "services": []
@@ -90480,6 +90723,134 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daegu-159ef2a9369267",
+      "countryId": "kr",
+      "regionId": "daegu",
+      "regionKo": "대구광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "지선버스",
+      "line": {
+        "ko": "대구 북구3번"
+      },
+      "routeNumber": "북구3",
+      "operatorId": "kr-daegu-operator-82563178e6e535",
+      "operator": {
+        "ko": "(주)달구벌버스"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=4060003002",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:59:01.800Z",
+          "sha256": "110d31cd12bbbf38b5f55c37c8a1717aa919f640f0df4ac5b7c92d0ce8d5eeda",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/bs/route?routeId=4060003002",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:59:02.057Z",
+          "sha256": "7d2036ac5b3386db7eb344a46faf7c79ebf7c528e1cc4c1083237fa22de99171",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/wfs",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:59:02.213Z",
+          "sha256": "11bd7fe15a5d3800c1589a85e39fbe5887fc662095359092543a1592b514163d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        }
+      ],
+      "sourceRouteIds": [
+        "4060003002"
+      ],
+      "operationalEvidence": {
+        "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=4060003002",
+        "checkedAt": "2026-11-02T15:59:01.800Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daegu-159ef2a9369267.json",
+      "stationCount": 61,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "노곡동",
+        "노곡교(하중도)2",
+        "보성기계건너",
+        "한국로봇산업진흥원후문앞",
+        "노원119안전센터건너",
+        "팔달시장역",
+        "팔달시장건너",
+        "원대역2",
+        "서구제일사회복지관앞",
+        "북구청네거리1",
+        "북구청역(3번출구)",
+        "고성아파트건너",
+        "시민교회건너",
+        "대구역서희스타힐스건너",
+        "대구북부소방서앞",
+        "도시철도대구역",
+        "대구역꽃시장",
+        "칠성시장역(서문프라자앞)",
+        "신천엘에이치아파트건너",
+        "신천역(3번출구)",
+        "역전시장앞",
+        "대구신문사",
+        "동대구역",
+        "동대구역화성파크드림",
+        "케이티동대구지사앞",
+        "신암4동행정복지센터앞",
+        "동구청건너",
+        "아양교역(2번출구)",
+        "동촌강나루아파트건너",
+        "효동초등학교건너",
+        "대구일마이스터고교건너",
+        "아양아트센터앞",
+        "대구지방기상청",
+        "조양회관",
+        "망우당공원건너",
+        "화랑교1",
+        "우방강촌마을앞",
+        "은하타운건너",
+        "강변동서마을앞",
+        "용계삼거리3",
+        "엘지물류센터건너",
+        "정동고등학교건너",
+        "율하역(4번출구)",
+        "율하롯데캐슬탑클래스건너",
+        "율하휴먼시아5단지건너",
+        "율하휴먼시아6단지건너",
+        "율하휴먼시아9단지앞",
+        "율원초등학교건너",
+        "신기역(화성타운건너)",
+        "안심중학교건너",
+        "반야월역(4번출구)1",
+        "경북교통앞",
+        "동부고교건너",
+        "동부경찰서건너",
+        "신서롯데캐슬레전드서편건너",
+        "동호육교1",
+        "신서성당앞",
+        "강동중·고등학교",
+        "영조아파트건너",
+        "상록아파트",
+        "동호공영차고지건너"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daegu-f9af6ee77800ac",
       "countryId": "kr",
       "regionId": "daegu",
@@ -91607,6 +91978,30 @@
           "attribution": "대구광역시 공식 버스정보시스템"
         },
         {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=4070002031",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:59:06.960Z",
+          "sha256": "901f8eb96b556a858f365810b321b9c8555b2b27f2b74754e35cc84254501339",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/bs/route?routeId=4070002031",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:59:07.158Z",
+          "sha256": "2a9a4c684cf8bea2ecc1510c4660218959f99c144e69b642bbf50712caa5270b",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/wfs",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:59:07.331Z",
+          "sha256": "998c420f0e8f44a06b6c87549c1214268d32c3bf495ebc845e7eb005e2b5eded",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
           "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=4070002032",
           "method": "GET",
           "retrievedAt": "2026-11-02T15:59:07.009Z",
@@ -91755,6 +92150,7 @@
         "4070002028",
         "4070002029",
         "4070002030",
+        "4070002031",
         "4070002032",
         "4070002035",
         "4070002036",
@@ -91770,8 +92166,9 @@
       "lazy": true,
       "lazySource": "data/kr/generated/routes/kr-bus-daegu-40202196dc5501.json",
       "stationCount": 74,
-      "serviceCount": 18,
+      "serviceCount": 19,
       "serviceWindows": [
+        {},
         {},
         {},
         {},
@@ -93989,6 +94386,78 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daegu-f83e9d83339471",
+      "countryId": "kr",
+      "regionId": "daegu",
+      "regionKo": "대구광역시",
+      "mode": "express_bus",
+      "category": "express_bus",
+      "normalizedCategory": "express_bus",
+      "categoryKo": "직행버스",
+      "line": {
+        "ko": "대구 직행2번"
+      },
+      "routeNumber": "직행2",
+      "operatorId": "kr-daegu-operator-9bc361938991e4",
+      "operator": {
+        "ko": "(주)세진교통, 세한여객(주)"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=5000002000",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:59:17.615Z",
+          "sha256": "ffc46e9cf405c983575a990aba47c7b72c31eba8a45138fe70740bdb4c08e0aa",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/bs/route?routeId=5000002000",
+          "method": "GET",
+          "retrievedAt": "2026-11-02T15:59:17.788Z",
+          "sha256": "fd842200bbdf0561c1ccc8c1283643be9128669d00992cf537b6008e34a8cd2d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/wfs",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:59:17.948Z",
+          "sha256": "42966e2b4877082726eb435f3f7d82298327537ea112ed553078259fc69f1307",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대구광역시 공식 버스정보시스템"
+        }
+      ],
+      "sourceRouteIds": [
+        "5000002000"
+      ],
+      "operationalEvidence": {
+        "url": "https://businfo.daegu.go.kr:8095/dbms_web_api/route/info?routeId=5000002000",
+        "checkedAt": "2026-11-02T15:59:17.615Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daegu-f83e9d83339471.json",
+      "stationCount": 5,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "기업은행국가산단지점건너",
+        "과학마을청아람앞",
+        "유가읍행정복지센터건너",
+        "2.28기념중앙공원앞",
+        "동대구역(2번출구)건너"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daegu-3008d58f01b203",
       "countryId": "kr",
       "regionId": "daegu",
@@ -95725,6 +96194,103 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300100",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "express_bus",
+      "category": "express_bus",
+      "normalizedCategory": "express_bus",
+      "categoryKo": "급행버스",
+      "line": {
+        "ko": "대전 급행1번"
+      },
+      "routeNumber": "급행1",
+      "operatorId": "kr-daejeon-operator-8fae6a1210d805",
+      "operator": {
+        "ko": "경익운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:35.343Z",
+          "sha256": "39a541b00f60ef2edb160f1ca295248c0c70bcf0e304590fc44c990bef57741f",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:35.753Z",
+          "sha256": "0a2c9036df9fb8f02fe738a74a41cde1798811359303b86edd035987ad0f4c10",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:36.151Z",
+          "sha256": "83815c4c4c287f26a569580bc71552d73e3b3662841cf4e91c1ed569ba4782e1",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300100"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:35.343Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300100.json",
+      "stationCount": 24,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "신안동",
+        "대동역3번출구",
+        "대전역/역전시장",
+        "목척교",
+        "중앙로역6번출구",
+        "중구청역",
+        "서대전네거리역3번출구",
+        "서대전역네거리",
+        "유천동현대아파트",
+        "유천동서대전농협",
+        "버드내아파트",
+        "도마시장",
+        "도마삼거리",
+        "정림동",
+        "가수원육교.가수원시장",
+        "건양대병원네거리",
+        "신선마을아파트",
+        "롯데마트서대전점",
+        "샘물타운아파트",
+        "원내네거리",
+        "원내동",
+        "진잠중학교",
+        "서대전아이씨",
+        "원내동공영차고지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daejeon-30300037",
       "countryId": "kr",
       "regionId": "daejeon",
@@ -95872,6 +96438,135 @@
         "유성온천역6번출구",
         "현충원역3번출구",
         "운암네오미아/신협연수원"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300038",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 103번"
+      },
+      "routeNumber": "103",
+      "operatorId": "kr-daejeon-operator-bf18581f5b564c",
+      "operator": {
+        "ko": "대전운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:38.726Z",
+          "sha256": "9aa3e8ef960db740c4efe39841c2cea012951aec22327f0db411b546c82fbd00",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:38.973Z",
+          "sha256": "57feb1e6c5fe776dc6826de2f0051083779450c70be8464fd59bcb21f62c1397",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:39.369Z",
+          "sha256": "d8bd3a8ef05e921f19818abeb1ac9588f8f33f19c5de583d41fd7734fd778b94",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300038"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:38.726Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300038.json",
+      "stationCount": 56,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "신대차고지",
+        "들말",
+        "신대아파트/한국수자원공사",
+        "와동초등학교",
+        "성우동산",
+        "대한통운종점",
+        "읍내동현대아파트",
+        "대전지방국세청",
+        "보람아파트",
+        "그린아파트",
+        "선비마을입구",
+        "선비마을3단지",
+        "선비마을4단지",
+        "송촌고등학교",
+        "금성백조아파트",
+        "길치근린공원",
+        "명석고등학교",
+        "한국폴리텍대학",
+        "대전보건대학교",
+        "가양동우체국",
+        "흥룡초등학교",
+        "대주파크빌",
+        "우송대학교서캠퍼스",
+        "대성여자중고등학교",
+        "신안동",
+        "대동역3번출구",
+        "대전화병원",
+        "중앙시장",
+        "목척교",
+        "으능정이거리",
+        "중앙로역6번출구",
+        "중구청역",
+        "대전충남병무청",
+        "서대전네거리역5번출구",
+        "중도일보",
+        "오룡역3번출구",
+        "태평1동행정복지센터",
+        "태평오거리",
+        "가장교",
+        "가장네거리",
+        "한민시장",
+        "괴정네거리",
+        "케이티인재개발원",
+        "푸른아파트",
+        "둔산소방서",
+        "동산아파트입구",
+        "갈마네거리",
+        "대전일보사",
+        "월평삼거리",
+        "대전교통공사",
+        "만년교",
+        "유성온천역3번출구",
+        "봉명동",
+        "유성고등학교",
+        "유성구보훈회관",
+        "구암동기점지"
       ],
       "stations": [],
       "services": []
@@ -96159,6 +96854,232 @@
         "월평삼거리",
         "유성온천역7번출구",
         "온천교"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300041",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 106번"
+      },
+      "routeNumber": "106",
+      "operatorId": "kr-daejeon-operator-a87d6a849029fb",
+      "operator": {
+        "ko": "금남교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:39.762Z",
+          "sha256": "10dd229f7ba8625dee447156bd1f9f658ac64164c413c28be3de39fa07a77af2",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:39.960Z",
+          "sha256": "10b04d4fb758fe4f245281d515eadddbc009a804911fdfcb0e694c79ea13f994",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:40.362Z",
+          "sha256": "4f287ba03d2814128ecd6eef48c350b86bb231c515c9fd21d96972840e253efc",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300041"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:39.762Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300041.json",
+      "stationCount": 41,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "목원대학교",
+        "흥도초등학교",
+        "도안고등학교",
+        "상대네거리",
+        "트리풀시티9단지",
+        "도안센트럴시티",
+        "유성온천역2번출구",
+        "유성온천역7번출구",
+        "온천교",
+        "충남대학교",
+        "홈플러스유성점",
+        "월평역",
+        "전원아파트",
+        "누리아파트",
+        "누리아파트후문",
+        "갈마역",
+        "둔산여자고등학교",
+        "갤러리아타임월드",
+        "에스케이브로드밴드",
+        "대전광역시청",
+        "시청역",
+        "목련아파트",
+        "청솔아파트",
+        "보라삼거리",
+        "남선공원네거리",
+        "중촌초등학교",
+        "중촌동행정복지센터",
+        "현암교",
+        "홍도지하차도",
+        "복합터미널",
+        "동부네거리",
+        "동대전도서관",
+        "가양네거리",
+        "대전보건대학교",
+        "한국폴리텍대학",
+        "명석고등학교",
+        "길치근린공원",
+        "금성백조아파트",
+        "비래동",
+        "비래동종점"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300042",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 107번"
+      },
+      "routeNumber": "107",
+      "operatorId": "kr-daejeon-operator-72459bc24894ff",
+      "operator": {
+        "ko": "대전승합"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:40.301Z",
+          "sha256": "b6a635b396539790a5d99b1141572d6df400e3149cddb72af2e29337ddb70eff",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:40.758Z",
+          "sha256": "bd971ffe273e4e462f2cfe21aab85c4bc6f338cc6c35a4e8148ad0af7b59cb99",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:41.166Z",
+          "sha256": "846375c2b07413214e61853d92373773230367b24ea071ffe920e248937f8751",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300042"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:40.301Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300042.json",
+      "stationCount": 40,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "동학사",
+        "동학사입구",
+        "학봉리",
+        "학봉삼거리",
+        "박정자삼거리",
+        "사봉",
+        "갑동",
+        "유성컨트리클럽",
+        "국립대전현충원",
+        "덕명네거리",
+        "주유소",
+        "구암8통",
+        "현충원역1번출구",
+        "천양원",
+        "구암역",
+        "봉명네거리",
+        "봉명동우체국",
+        "유성온천역4번출구",
+        "만년교",
+        "대전교통공사",
+        "대전일보사",
+        "갈마네거리",
+        "갈마육교",
+        "큰마을아파트",
+        "둔산자이아이파크",
+        "탄방네거리",
+        "롯데백화점",
+        "용문역1번출구",
+        "오룡역4번출구",
+        "오룡역7번출구",
+        "충남여자중고등학교",
+        "한사랑아파트",
+        "중촌네거리",
+        "세명요양병원",
+        "대전여상",
+        "중앙로역7번출구",
+        "중앙로역1번출구",
+        "대전역",
+        "대전역동광장",
+        "대전역동광장종점"
       ],
       "stations": [],
       "services": []
@@ -96570,6 +97491,239 @@
         "서부종합시장",
         "서남부터미널",
         "서남부터미널종점"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300046",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 114번"
+      },
+      "routeNumber": "114",
+      "operatorId": "kr-daejeon-operator-8fae6a1210d805",
+      "operator": {
+        "ko": "경익운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:41.505Z",
+          "sha256": "a2dbaf1ca542d5216b0f2c18137e17c1d7edc765667405fc61cfd667bdee1f45",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:41.961Z",
+          "sha256": "11b6738b541c2cefea408d738f1c3b056e95afd77344eb5b2530754d1f7ec6f7",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:42.358Z",
+          "sha256": "33140278de543d78bb3b49fdda1fe04f775c4525529bc61a53bd79fd93c950d7",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300046"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:41.505Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300046.json",
+      "stationCount": 50,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "노은휴먼시아4단지",
+        "새미래중학교",
+        "트리풀시티포레1단지",
+        "계룡리슈빌아파트",
+        "해랑숲마을5단지",
+        "꿈에그린아파트",
+        "군수사령부",
+        "반석2통",
+        "반석마을5단지",
+        "반석고등학교",
+        "반석네거리",
+        "유성구청소년수련관",
+        "유성여고",
+        "유성경찰서",
+        "열매마을5.6단지",
+        "노은역",
+        "월드컵경기장역",
+        "노은농수산물시장",
+        "죽동네거리",
+        "온천2동주민센터",
+        "충남대학교",
+        "온천교",
+        "유성온천역6번출구",
+        "유성온천역3번출구",
+        "도안센트럴시티",
+        "예미지7단지",
+        "신안인스빌",
+        "원신흥동",
+        "옥녀봉네거리",
+        "트리풀시티레이크포레",
+        "수목토아파트",
+        "도안베르디움",
+        "가수원지구대",
+        "가수원육교.가수원시장",
+        "동방고등학교",
+        "건양대병원네거리",
+        "건양대병원",
+        "원앙1,2단지",
+        "대자연아파트",
+        "원앙4단지",
+        "느리울12단지",
+        "느리울13단지",
+        "선암초교네거리",
+        "구봉마을8단지",
+        "금동초등학교",
+        "샘물타운아파트",
+        "진잠타운아파트",
+        "서대전아이씨",
+        "원내동공영차고지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300047",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 115번"
+      },
+      "routeNumber": "115",
+      "operatorId": "kr-daejeon-operator-2211a0439444db",
+      "operator": {
+        "ko": "대전버스"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:41.707Z",
+          "sha256": "a7cab5acef091737f41744fe0ff184ece2bf44a76acde62f7bf4907eff73610d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:42.155Z",
+          "sha256": "28099d695d954b8794f847a729aacd1a6acbe6a1115859a4a62a808fe322c32b",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:42.559Z",
+          "sha256": "68d6675d13d0232a87b65bb4657ceb2b8ebe88780ca4ad482f1d62d71c0b00ad",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300047"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:41.707Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300047.json",
+      "stationCount": 38,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "충대농대종점",
+        "한빛아파트",
+        "충대농대입구",
+        "궁동",
+        "충남대학교",
+        "온천교",
+        "유성온천역6번출구",
+        "유성온천역3번출구",
+        "휴먼시아4단지",
+        "트리풀시티9단지",
+        "상대네거리",
+        "도안고등학교",
+        "흥도초등학교",
+        "목원대네거리",
+        "도안동예미지아파트",
+        "옥녀봉체육공원",
+        "트리풀시티레이크포레",
+        "수목토아파트",
+        "도안베르디움",
+        "가수원지구대",
+        "가수원네거리",
+        "정림삼거리",
+        "정림동",
+        "서부소방서",
+        "도마삼거리",
+        "도마네거리",
+        "효성타운아파트",
+        "머티네거리",
+        "산성동행정복지센터",
+        "산성네거리",
+        "산성초등학교",
+        "사정동",
+        "산성어린이도서관",
+        "상당",
+        "오월드회전교차로",
+        "오월드",
+        "윗사정삼거리",
+        "오월드기점지"
       ],
       "stations": [],
       "services": []
@@ -96989,6 +98143,119 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300137",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 20번"
+      },
+      "routeNumber": "20",
+      "operatorId": "kr-daejeon-operator-2211a0439444db",
+      "operator": {
+        "ko": "대전버스"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:44.512Z",
+          "sha256": "968fffd80a985a2975b100c6dcd171b8c5d630dbe6979db35e4709e4392364a4",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:44.963Z",
+          "sha256": "925ea79caaebb74742e4c1f0064f1dc169609986854287dd1280736851d17368",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:45.368Z",
+          "sha256": "05990ce60cbe02309f29781e6efecd26e8a021fe6ff278a44cf6983872ce2022",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300137"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:44.512Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300137.json",
+      "stationCount": 40,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "장안동",
+        "장태산자연휴양림",
+        "장태산길곡길입구",
+        "장안저수지",
+        "용바위",
+        "용태울",
+        "토옥골",
+        "밤갈미",
+        "매노동",
+        "기성중학교",
+        "기성농협",
+        "흑석네거리",
+        "사진개",
+        "상보안",
+        "벌말",
+        "고릿골구름다리",
+        "괴곡동.고리골",
+        "가수원역",
+        "가수원시장",
+        "가수원네거리",
+        "정림삼거리",
+        "정림동",
+        "서부소방서",
+        "도마삼거리",
+        "도마이편한세상아파트",
+        "도마시장",
+        "버드내아파트",
+        "버드내네거리",
+        "유천시장",
+        "서대전육교",
+        "서대전역네거리",
+        "대전충남병무청",
+        "중구청",
+        "중앙로역4번출구",
+        "대전역",
+        "중앙시장",
+        "이스트시티아파트",
+        "대동역2번출구",
+        "신안동",
+        "대전역동광장종점"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daejeon-30300051",
       "countryId": "kr",
       "regionId": "daejeon",
@@ -97136,6 +98403,321 @@
         "원앙4단지",
         "구봉마을8단지",
         "금동초등학교"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300131",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 203번"
+      },
+      "routeNumber": "203",
+      "operatorId": "kr-daejeon-operator-47727b0bab671b",
+      "operator": {
+        "ko": "대전교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:45.738Z",
+          "sha256": "aef1cff921c76de0ff5c3477c97bf63ac8e9512df02896af4c8ce44220dc2fb8",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:46.160Z",
+          "sha256": "af5886e13efdde95a454bfd0623dd1e89b706400eaf20118f6d42321f72f44a0",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:46.561Z",
+          "sha256": "5fd11b95d0a4f351f74588efac124e54238b8c87680eb727ccab39898c154c74",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300131"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:45.738Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300131.json",
+      "stationCount": 28,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "시청환승지",
+        "시청.교육청",
+        "을지대학병원",
+        "정부청사역",
+        "이마트",
+        "갤러리아타임월드",
+        "은하수네거리",
+        "갈마2동주민센터/충청투데이",
+        "둔원고등학교",
+        "안골네거리",
+        "코오롱아파트",
+        "옥녀봉네거리",
+        "트리풀시티레이크포레",
+        "수목토아파트",
+        "도솔초등학교",
+        "관저중학교",
+        "건양대병원네거리",
+        "느리울12단지",
+        "느리울13단지",
+        "어반힐스아파트",
+        "다온숲아파트",
+        "관저체육공원",
+        "관저동예미지아파트",
+        "구봉고등학교",
+        "금동초등학교",
+        "샘물타운아파트",
+        "진잠타운아파트",
+        "서대전아이씨"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300101",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 216번"
+      },
+      "routeNumber": "216",
+      "operatorId": "kr-daejeon-operator-8fae6a1210d805",
+      "operator": {
+        "ko": "경익운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:47.506Z",
+          "sha256": "a6ce22adf0743b7041ab5008876dc0975ad297123b605cd733c6f97d6dc5b4c1",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:47.973Z",
+          "sha256": "ac776ff007f77fb53c01b3dca6403f324e29a0cee235aaff781b77789f84068d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:48.366Z",
+          "sha256": "47b552b4740bf92d1cdffbe16c283bcac40890d272995f8c7d77ab4110bf2536",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300101"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:47.506Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300101.json",
+      "stationCount": 35,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "시청환승지",
+        "시청.교육청",
+        "을지대학병원",
+        "정부청사역",
+        "이마트",
+        "갤러리아타임월드",
+        "은하수네거리",
+        "갈마2동주민센터/충청투데이",
+        "안골네거리",
+        "내동중학교",
+        "목운주택입구",
+        "대아아파트",
+        "배재대학교",
+        "대전지방조달청",
+        "복음양지아파트",
+        "공굴안",
+        "대청병원",
+        "계룡아파트",
+        "서부경찰서",
+        "정림동",
+        "가수원교",
+        "가수원육교.가수원시장",
+        "동방고등학교",
+        "건양대병원네거리",
+        "관저지하차도",
+        "신선마을아파트",
+        "봉우중학교",
+        "구봉마을7단지",
+        "금동초등학교",
+        "진잠네거리",
+        "샘물타운아파트",
+        "원내네거리",
+        "원내동",
+        "진잠중학교",
+        "서대전아이씨"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300007",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 22번"
+      },
+      "routeNumber": "22",
+      "operatorId": "kr-daejeon-operator-8fae6a1210d805",
+      "operator": {
+        "ko": "경익운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:47.704Z",
+          "sha256": "7f4ddcb169485ce68264d0a474da6dd9d62257ed9397ef512cdc66f51155e36e",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:47.982Z",
+          "sha256": "8042ee3980242118b0cfb925be4f4de4395f30294e7984c28a1879c7761ff89d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:48.561Z",
+          "sha256": "8c9a08f2136900cf305a5c7a35593576ca3738f90261bb24404bc7b6428866fd",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300007"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:47.704Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300007.json",
+      "stationCount": 34,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "서남부터미널기점",
+        "도마시장",
+        "도마네거리",
+        "도마삼거리",
+        "서부소방서",
+        "정림동",
+        "가수원교",
+        "가수원시장",
+        "가수원역",
+        "지에스칼텍스저유소",
+        "괴곡동.고리골",
+        "고릿골구름다리",
+        "벌말",
+        "상보안",
+        "사진개",
+        "흑석네거리",
+        "기성농협",
+        "기성중학교",
+        "매노동",
+        "오룡골",
+        "산직2동종점",
+        "밤갈미",
+        "토옥골",
+        "용태울",
+        "용바위",
+        "장안저수지",
+        "장태산길곡길입구",
+        "장태산자연휴양림",
+        "장안동",
+        "목련농원",
+        "하산막골",
+        "산막골",
+        "장안동종점"
       ],
       "stations": [],
       "services": []
@@ -97381,6 +98963,236 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300104",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "express_bus",
+      "category": "express_bus",
+      "normalizedCategory": "express_bus",
+      "categoryKo": "급행버스",
+      "line": {
+        "ko": "대전 급행3번"
+      },
+      "routeNumber": "급행3",
+      "operatorId": "kr-daejeon-operator-8fae6a1210d805",
+      "operator": {
+        "ko": "경익운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:50.317Z",
+          "sha256": "7147fad0d8fad2c8e120655694be6a01fb486b08a2f5801f29eb28f8d96397dd",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:50.768Z",
+          "sha256": "c32f153aacd5d112733f6b1f1ad9f7e6c57430c68711fd9205b840261ba59de1",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:51.169Z",
+          "sha256": "2739c312548e210fc6160a72bfe9275c29c6fa312b3da09715f9d8e7401cd00c",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300104"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:50.317Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300104.json",
+      "stationCount": 26,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "디씨씨종점",
+        "신세계백화점",
+        "통계센터",
+        "갤러리아타임월드",
+        "은하수네거리",
+        "갈마육교",
+        "갈마네거리",
+        "대전일보사",
+        "월평삼거리",
+        "봉명베르디움",
+        "예미지7단지",
+        "신안인스빌",
+        "원신흥동",
+        "옥녀봉네거리",
+        "트리풀시티레이크포레",
+        "수목토아파트",
+        "도안베르디움",
+        "가수원지구대",
+        "가수원육교.가수원시장",
+        "건양대병원네거리",
+        "신선마을아파트",
+        "롯데마트서대전점",
+        "샘물타운아파트",
+        "진잠타운아파트",
+        "서대전아이씨",
+        "원내동공영차고지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300013",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 30번"
+      },
+      "routeNumber": "30",
+      "operatorId": "kr-daejeon-operator-a78228ba583646",
+      "operator": {
+        "ko": "동인여객"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:50.522Z",
+          "sha256": "8016b5ef096faeeb67b8539bc3b949793d67a1cf1e261678ffa8fd2dff609a65",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:50.963Z",
+          "sha256": "41cfb7707e7dc43e0289f5580fcf1d754f63268221c6ce14bd93f4ce0237fc2e",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:51.357Z",
+          "sha256": "5924900aca14afb64d2f85c8326f18ebd85f9ab918f64fd6d3d6f699dc93a064",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300013"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:50.522Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300013.json",
+      "stationCount": 60,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "대전역동광장",
+        "신안동",
+        "대동역3번출구",
+        "대전화병원",
+        "원동네거리",
+        "대전역/역전시장",
+        "목척교",
+        "선화동우체국",
+        "중구청역",
+        "서대전네거리역1번출구",
+        "충대병원네거리",
+        "충남대학교병원",
+        "센트럴파크2단지",
+        "동산중고등학교",
+        "충남기계공고",
+        "문화동주공아파트",
+        "중구보건소",
+        "산성동새마을회관",
+        "산성시장",
+        "산성네거리",
+        "산성초등학교",
+        "사정동",
+        "산성어린이도서관",
+        "상당",
+        "오월드회전교차로",
+        "보문산교통광장",
+        "침산교/점말",
+        "침산동",
+        "대전청소년수련마을",
+        "침산동입구",
+        "중구체육복지센터",
+        "목달동",
+        "정생농협창고",
+        "정생1동",
+        "화곡",
+        "정생2동",
+        "사기정골",
+        "금동이고개",
+        "모랭이",
+        "금동마을",
+        "금동",
+        "장척동",
+        "소호2동",
+        "소호동",
+        "소리.말미",
+        "지푸재",
+        "대별동",
+        "감나무골입구",
+        "토토자연학습원",
+        "이사동입구",
+        "면허시험장",
+        "오투그란데아파트",
+        "산내주공아파트",
+        "이편한세상아파트",
+        "산내초등학교",
+        "석천들마을아파트",
+        "남대전종합물류단지",
+        "낭월공영차고지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daejeon-30300054",
       "countryId": "kr",
       "regionId": "daejeon",
@@ -97528,6 +99340,119 @@
         "테크노밸리5단지",
         "한마을아파트후문",
         "한솔아파트"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300158",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 302번"
+      },
+      "routeNumber": "302",
+      "operatorId": "kr-daejeon-operator-60654017d5e489",
+      "operator": {
+        "ko": "금남교통 · 동인여객 · 산호교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:51.523Z",
+          "sha256": "66a9d02d1f03328f608156fd008cb708397d6c5abf22cb1b9f83ade6df7bbdd9",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:51.762Z",
+          "sha256": "659ae2724b1f9f64cad6f25f74a9ac26302c344496e4fd8e6bcd2e150fb233a4",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:52.156Z",
+          "sha256": "bc729c4f4aa51acdd8772fc891eda7cb5dfd06adcdde3767763713dc173d397d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300158"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:51.523Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300158.json",
+      "stationCount": 40,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "윗사정삼거리",
+        "오월드",
+        "오월드회전교차로",
+        "상당",
+        "산성어린이도서관",
+        "사정교",
+        "복수동사정교",
+        "초록마을3단지",
+        "신계초등학교",
+        "계룡아파트",
+        "서부경찰서",
+        "정림동",
+        "가수원교",
+        "가수원육교.가수원시장",
+        "동방고등학교",
+        "건양대병원네거리",
+        "관저네거리",
+        "신선마을아파트",
+        "롯데마트서대전점",
+        "샘물타운아파트",
+        "진잠타운아파트",
+        "서대전아이씨",
+        "방동저수지",
+        "방동4통",
+        "방동3통",
+        "삿갓집",
+        "알로에농장",
+        "계룡과선교",
+        "방동1통",
+        "송정2통",
+        "송정1통",
+        "양정",
+        "삼진아파트",
+        "성원아파트",
+        "엄사네거리",
+        "평리",
+        "계룡대제2문",
+        "신도안면사무소",
+        "계룡대쇼핑센터",
+        "신도안아파트"
       ],
       "stations": [],
       "services": []
@@ -97843,6 +99768,235 @@
         "대덕구장애인복지관",
         "연축아파트/한국수자원공사",
         "와동현대아파트"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300056",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 312번"
+      },
+      "routeNumber": "312",
+      "operatorId": "kr-daejeon-operator-a87d6a849029fb",
+      "operator": {
+        "ko": "금남교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:53.354Z",
+          "sha256": "27e63a7b20176f3d7073d3a09126cf74488b9befd8b725f299369ab99b202eca",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:53.578Z",
+          "sha256": "c985f083d390a529eb5bacdfd69202da2670a82a8a3ca04e5a7ceb26e4229cd0",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:53.958Z",
+          "sha256": "af7f936cd560fa6b01091e993ed1fa087b5ca4153ce22924d5c0c01aab4a4647",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300056"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:53.354Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300056.json",
+      "stationCount": 47,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "목원대학교",
+        "흥도초등학교",
+        "도안고등학교",
+        "상대네거리",
+        "트리풀시티9단지",
+        "도안센트럴시티",
+        "진터네거리",
+        "유성고등학교",
+        "유성생명과학고등학교",
+        "구암동",
+        "정보통신공사협회",
+        "유성복합터미널",
+        "봉명네거리",
+        "봉명동우체국",
+        "유성온천역4번출구",
+        "만년교",
+        "대전교통공사",
+        "대전일보사",
+        "갈마네거리",
+        "갈마중학교입구",
+        "상수도사업본부",
+        "갈마도서관",
+        "대전외국어고/롯데아파트",
+        "서우아파트1단지",
+        "내동중학교",
+        "목운주택입구",
+        "대아아파트",
+        "배재대학교",
+        "도마중학교",
+        "구농도원네거리",
+        "호반써밋그랜드센트럴",
+        "도마네거리",
+        "효성타운아파트",
+        "머티네거리",
+        "산성동행정복지센터",
+        "한밭가든아파트",
+        "신계초등학교",
+        "초록마을네거리",
+        "복수동사정교",
+        "사정교",
+        "우남스타원아파트",
+        "농산물유통센터",
+        "효문화마을입구",
+        "한국효문화진흥원",
+        "효문화마을/뿌리공원"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300057",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 313번"
+      },
+      "routeNumber": "313",
+      "operatorId": "kr-daejeon-operator-70fe89d371e179",
+      "operator": {
+        "ko": "산호교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:53.368Z",
+          "sha256": "29fbf9a0bea02db251450bf0e3415ed637ec3efcc7f2dc8029377b6125d7a643",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:53.557Z",
+          "sha256": "0b3c6a8041a718e8dc4db04d2906863c3884ef62c1bf75aadefdb7ea4ef39f9d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:53.967Z",
+          "sha256": "c18718fcfa511d7e19d1e44954e36343ba1d598b561119ee91a31940f9541a51",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300057"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:53.368Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300057.json",
+      "stationCount": 42,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "대전동신과학고",
+        "삼정동",
+        "판암차량기지",
+        "판암아이씨",
+        "판암네거리",
+        "판암역",
+        "판암역네거리",
+        "판암근린공원",
+        "신흥역",
+        "신흥마을아파트",
+        "동부경찰서",
+        "신인동주민센터",
+        "중앙시장",
+        "목척교",
+        "중앙로역6번출구",
+        "대고오거리",
+        "대전중학교",
+        "보문오거리",
+        "테미고개",
+        "테미삼거리",
+        "충남대학교병원",
+        "센트럴파크2단지",
+        "동산중고등학교",
+        "충남기계공고",
+        "문화동주공아파트",
+        "중구보건소",
+        "산성동새마을회관",
+        "산성시장",
+        "산성네거리",
+        "산성초등학교",
+        "사정동",
+        "우남스타원아파트",
+        "농산물유통센터",
+        "안영생활체육단지",
+        "한빛고교",
+        "효문화마을입구",
+        "한국효문화진흥원",
+        "효문화마을/뿌리공원"
       ],
       "stations": [],
       "services": []
@@ -98495,6 +100649,221 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300017",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 41번"
+      },
+      "routeNumber": "41",
+      "operatorId": "kr-daejeon-operator-2211a0439444db",
+      "operator": {
+        "ko": "대전버스"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:57.323Z",
+          "sha256": "6dd716d30b32c6913434a20d3305c283d81c4c78527a681c0d9e9ea58cbe6274",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:57.755Z",
+          "sha256": "f407cb3dd0f6b8a346aea46b19b9252de4f89bfdc303f19413d301021a7dec18",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:58.180Z",
+          "sha256": "bb61ede88678a73da0aba647087679aac6a26c4fdb81e9477448c3d5ae96bff7",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300017"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:57.323Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300017.json",
+      "stationCount": 34,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "국립대전숲체원",
+        "성북1통",
+        "성북동산림욕장",
+        "성북1통마을회관",
+        "성북2통마을회관앞",
+        "성북2통동구나무",
+        "성북3통굿개말길",
+        "성북3통마을회관",
+        "방동5통",
+        "방동새운네",
+        "방동저수지",
+        "서대전아이씨",
+        "진잠중학교",
+        "원내동",
+        "원내네거리",
+        "샘물타운아파트",
+        "구봉마을5단지",
+        "신선마을아파트",
+        "관저네거리",
+        "건양대병원네거리",
+        "동방고등학교",
+        "가수원육교.가수원시장",
+        "가수원네거리",
+        "정림삼거리",
+        "정림동",
+        "서부소방서",
+        "도마삼거리",
+        "도마이편한세상아파트",
+        "도마시장",
+        "버드내아파트",
+        "서부종합시장",
+        "서남부터미널",
+        "서남부터미널종점"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300018",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 42번"
+      },
+      "routeNumber": "42",
+      "operatorId": "kr-daejeon-operator-2211a0439444db",
+      "operator": {
+        "ko": "대전버스"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:57.712Z",
+          "sha256": "5416192721d096912df960d8c9fbe7a39635546d3c56351fc4887f3ac8215183",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:57.966Z",
+          "sha256": "697e458faf51c290ad843ea185b0deb51cd2481a976ed4d8ef0ff59bd4731f88",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:57:58.374Z",
+          "sha256": "389d8b7fe601736a1dfd1f49a6771275adcc91602b59c7ec09440542689db7b8",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300018"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:57:57.712Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300018.json",
+      "stationCount": 37,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "서남부터미널기점",
+        "도마시장",
+        "도마네거리",
+        "도마삼거리",
+        "서부소방서",
+        "정림동",
+        "가수원교",
+        "가수원육교.가수원시장",
+        "동방고등학교",
+        "건양대병원네거리",
+        "관저지하차도",
+        "관저네거리",
+        "신선마을아파트",
+        "롯데마트서대전점",
+        "샘물타운아파트",
+        "원내네거리",
+        "원내동",
+        "진잠중학교",
+        "서대전아이씨",
+        "방동저수지",
+        "방동4통",
+        "방동3통",
+        "삿갓집",
+        "알로에농장",
+        "계룡과선교",
+        "방동1통",
+        "사봉",
+        "세동2통",
+        "구억들",
+        "중세동",
+        "삼박골",
+        "돌마루",
+        "양새터골",
+        "감골",
+        "쉼터공동체",
+        "세동종점"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daejeon-30300063",
       "countryId": "kr",
       "regionId": "daejeon",
@@ -98784,6 +101153,320 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300066",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 513번"
+      },
+      "routeNumber": "513",
+      "operatorId": "kr-daejeon-operator-a78228ba583646",
+      "operator": {
+        "ko": "동인여객"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:01.512Z",
+          "sha256": "76b969038b2778a87bec88ad0503980d5abde348bbbd8a58392b1e8c0ae8906b",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:01.953Z",
+          "sha256": "44b5272301813f31134774478cf5bc8e649f0e28d1cc14fc0c818ebfcce0fa03",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:02.378Z",
+          "sha256": "1a7703653cfcb55af938e70350d146c7fb23421f2e38a345b0cd1ff8e90f37a5",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300066"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:01.512Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300066.json",
+      "stationCount": 40,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "안영동검바위마을",
+        "한빛고교",
+        "안영생활체육단지",
+        "농산물유통센터",
+        "우남스타원아파트",
+        "사정동",
+        "산성초등학교",
+        "산성네거리",
+        "산성시장",
+        "문성초등학교입구",
+        "산성우성아파트",
+        "문화초등학교",
+        "문화육교",
+        "동산중고등학교",
+        "센트럴파크1단지",
+        "서대전역네거리",
+        "대전충남병무청",
+        "성모병원",
+        "성모오거리",
+        "대전고등학교",
+        "대흥동네거리",
+        "오토바이거리",
+        "한밭종합운동장",
+        "부사오거리",
+        "동명중학교",
+        "석교동행정복지센터",
+        "석교치안센터",
+        "호동",
+        "은혜아파트",
+        "옥계동",
+        "옥계교",
+        "대성삼거리",
+        "운전면허시험장",
+        "오투그란데아파트",
+        "산내주공아파트",
+        "이편한세상아파트",
+        "산내초등학교",
+        "석천들마을아파트",
+        "남대전종합물류단지",
+        "낭월공영차고지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300067",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 514번"
+      },
+      "routeNumber": "514",
+      "operatorId": "kr-daejeon-operator-70fe89d371e179",
+      "operator": {
+        "ko": "산호교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:01.721Z",
+          "sha256": "afbad00df1403b2d42ccab5cda131f5e60505e79017ce1e5dfc6a030b27be0ee",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:02.159Z",
+          "sha256": "21c0edd06a504ca85ed7946a911b4a448238eaaee9f3ca4e21d967278dc6928c",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:02.559Z",
+          "sha256": "cee54d03c5c7e1f2d02e62d54f3862115dc4681f4599de45d941dba21378a835",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300067"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:01.721Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300067.json",
+      "stationCount": 49,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "둔천초등학교",
+        "초원아파트",
+        "무궁화아파트",
+        "한아름아파트",
+        "월평주공아파트",
+        "누리아파트",
+        "누리아파트후문",
+        "향촌아파트",
+        "이마트",
+        "서구청",
+        "법원.검찰청",
+        "한마루아파트",
+        "한밭초등학교",
+        "탄방중학교",
+        "남선공원종합체육관",
+        "남선공원네거리",
+        "중촌초등학교",
+        "중촌동행정복지센터",
+        "세명요양병원",
+        "대전여상",
+        "중앙로역7번출구",
+        "으능정이거리",
+        "대전역",
+        "중앙시장",
+        "원동네거리",
+        "인동네거리",
+        "동부경찰서",
+        "신흥마을아파트후문",
+        "신흥역",
+        "판암근린공원",
+        "미리내아파트",
+        "동구청",
+        "은어송마을6단지",
+        "은어송마을3단지후문",
+        "은어송마을3단지",
+        "은어송마을5단지",
+        "홈플러스가오점",
+        "은어송마을1단지",
+        "은어송초등학교",
+        "은어송하늘채리버뷰",
+        "고산사입구",
+        "운전면허시험장",
+        "오투그란데아파트",
+        "산내주공아파트",
+        "이편한세상아파트",
+        "산내초등학교",
+        "석천들마을아파트",
+        "남대전종합물류단지",
+        "낭월공영차고지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300157",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 55번"
+      },
+      "routeNumber": "55",
+      "operatorId": "kr-daejeon-operator-70fe89d371e179",
+      "operator": {
+        "ko": "산호교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:02.519Z",
+          "sha256": "e97f73f61e2e5c15e0327a84aebc3d4d1c0a7d2452b6a15dcb6c0c7ab5124ae5",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:02.767Z",
+          "sha256": "edd533633724352fa17e0e478ec18ce6bf4be4fe799bd0b2ffd342753e794765",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:03.153Z",
+          "sha256": "3eca1bc279510174b8d5cfb6fe98efbb8761e2c4515def7cbdd6a3daef2692ec",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300157"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:02.519Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300157.json",
+      "stationCount": 8,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "윗사정삼거리",
+        "오월드",
+        "보문산교통광장",
+        "침산동입구",
+        "무수동입구",
+        "대전치유의숲"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daejeon-30300068",
       "countryId": "kr",
       "regionId": "daejeon",
@@ -99059,6 +101742,239 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300070",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 603번"
+      },
+      "routeNumber": "603",
+      "operatorId": "kr-daejeon-operator-2211a0439444db",
+      "operator": {
+        "ko": "대전버스"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:03.717Z",
+          "sha256": "4a5a263bafa90275ce8572eb5f9469f4cd7cd8116a6e5336531e981157835c02",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:03.977Z",
+          "sha256": "42b9529065ea317dfd70ee1549e089da3126d3e7ce5c7b36869c77942ca2f2b0",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:04.356Z",
+          "sha256": "108eeac35b8a86bce5abc89d2f5fda5b4c94890943a77c250dfa5d4932d86b06",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300070"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:03.717Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300070.json",
+      "stationCount": 52,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "목원대학교",
+        "목원대네거리",
+        "도안동예미지아파트",
+        "옥녀봉체육공원",
+        "서우아파트1단지",
+        "내동중학교",
+        "목운주택입구",
+        "한국전력공사",
+        "봉산중학교입구",
+        "내동주민센터",
+        "괴정네거리",
+        "괴정동주민센터",
+        "케이티서대전지사입구",
+        "래미안아파트2단지",
+        "가장네거리",
+        "가장교",
+        "태평오거리",
+        "삼부아파트",
+        "태평초등학교",
+        "쌍용예가아파트",
+        "서대전역입구",
+        "오류초등학교입구",
+        "중도일보",
+        "서대전초등학교",
+        "호수돈여고",
+        "중구국민체육센터",
+        "나라키움청사/3.8기념관",
+        "대전도시공사",
+        "으능정이거리",
+        "대전역",
+        "대전역/중앙시장",
+        "이스트시티아파트",
+        "새들뫼아파트",
+        "대동초등학교",
+        "용방마을아파트",
+        "용운종합사회복지관",
+        "대전대학교입구",
+        "대전대학교",
+        "에코포레아파트",
+        "용운동주민센터",
+        "용운초등학교",
+        "용운도서관",
+        "모리아파트",
+        "판암주공5단지",
+        "판암2동주민센터",
+        "판암역",
+        "판암동성당",
+        "용운국제수영장",
+        "복음아파트",
+        "새울"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300072",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 605번"
+      },
+      "routeNumber": "605",
+      "operatorId": "kr-daejeon-operator-70fe89d371e179",
+      "operator": {
+        "ko": "산호교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:04.512Z",
+          "sha256": "4f48a4dbd29de9f4a79ad0048d462ee626190444c1edf4df1fc8b306d67aef23",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:04.766Z",
+          "sha256": "09f434b22deb46d074012508ad363df83885bf31249413ce21ac616c6ad0b534",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:05.157Z",
+          "sha256": "c22555d29da674790d64f8414d495718d8cca2f0c9e369a6ffa8f93493043507",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300072"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:04.512Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300072.json",
+      "stationCount": 37,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "대전대학교동문",
+        "용운마젤란아파트",
+        "꿈에그린아파트",
+        "우송대동캠퍼스",
+        "자양동주민센터",
+        "우송고등학교",
+        "자양초등학교",
+        "대동역3번출구",
+        "대전화병원",
+        "원동네거리",
+        "대전역/역전시장",
+        "중앙동주민센터",
+        "대성여자고등학교",
+        "성남네거리",
+        "아침마을아파트",
+        "가양초등학교",
+        "가양네거리",
+        "동대전도서관",
+        "한국전기공사협회",
+        "대전문학관입구",
+        "한국전력공사",
+        "중리네거리",
+        "증산도교육문화회관",
+        "중리지구대",
+        "신동아아파트",
+        "오정농수산물시장",
+        "수정타운아파트",
+        "수정타운아파트정문",
+        "꿈나무아파트",
+        "사학연금회관",
+        "정부청사역",
+        "이마트",
+        "갤러리아타임월드",
+        "은하수네거리",
+        "갈마삼거리",
+        "한밭고.갈마중입구",
+        "갈마아파트3단지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daejeon-30300074",
       "countryId": "kr",
       "regionId": "daejeon",
@@ -99212,6 +102128,114 @@
         "홍도아파트",
         "가양중학교입구",
         "비래동노인회관"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300130",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 608번"
+      },
+      "routeNumber": "608",
+      "operatorId": "kr-daejeon-operator-47727b0bab671b",
+      "operator": {
+        "ko": "대전교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:05.513Z",
+          "sha256": "f424cf79a238edfafa48d7515baecad0331c4fc3cad8b715c764ce30f368f043",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:05.956Z",
+          "sha256": "f16760b20e37d34b767011478a049bf50b0c622b5b418cbf90c94c526bd71b76",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:06.371Z",
+          "sha256": "95757167bcf8ccb4755d6745657ce911eac5deffe068d83b326bfa42654fb24d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300130"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:05.513Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300130.json",
+      "stationCount": 35,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "은어송마을3단지후문",
+        "은어송마을5단지",
+        "동구청",
+        "판암역",
+        "판암동성당",
+        "용운국제수영장",
+        "복음아파트",
+        "새울",
+        "대전대학교",
+        "대전대학교동문",
+        "용운마젤란아파트",
+        "용수골",
+        "우송대동캠퍼스",
+        "자양동주민센터",
+        "우송고등학교",
+        "자양초등학교",
+        "대동역3번출구",
+        "대전화병원",
+        "중앙시장",
+        "목척교",
+        "으능정이거리",
+        "중앙로역6번출구",
+        "중구청역",
+        "대전충남병무청",
+        "서대전네거리역3번출구",
+        "서대전역네거리",
+        "유천동현대아파트",
+        "유천동서대전농협",
+        "버드내아파트",
+        "삼부/새롬아파트",
+        "파라곤아파트",
+        "도마시장",
+        "도마네거리",
+        "효성타운아파트",
+        "서남부터미널종점"
       ],
       "stations": [],
       "services": []
@@ -99810,6 +102834,332 @@
         "모리아파트",
         "판암주공5단지",
         "판암2동주민센터"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300029",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 62번"
+      },
+      "routeNumber": "62",
+      "operatorId": "kr-daejeon-operator-a87d6a849029fb",
+      "operator": {
+        "ko": "금남교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:09.527Z",
+          "sha256": "1771a96bd0551fcb00e02edb2ed8d31abdc201c1a782d24b43e3b49bb3ebe941",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:09.959Z",
+          "sha256": "b579cd30f0aaede8cef65e2fbfbd07fce903ac05c607ba10efb9c739ebdad87e",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:10.368Z",
+          "sha256": "bea9208b678e3fb3cb40752b26386132bd421a1ef8e760d2788664dbbce8e57f",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300029"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:09.527Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300029.json",
+      "stationCount": 32,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "방아실",
+        "한저골",
+        "와정.자괏",
+        "금오골",
+        "새거리",
+        "항곡리종점",
+        "남송타운",
+        "비야리",
+        "안아감마을",
+        "바깥아감",
+        "세천삼거리",
+        "대청동행정복지센터",
+        "세천동",
+        "세천/새동네",
+        "가는골",
+        "대전동신과학고",
+        "삼정동",
+        "판암차량기지",
+        "판암아이씨",
+        "판암네거리",
+        "판암역",
+        "판암역네거리",
+        "판암근린공원",
+        "신흥역",
+        "신흥마을아파트",
+        "동부경찰서",
+        "신인동주민센터",
+        "원동네거리",
+        "대전역/역전시장",
+        "대전역동광장",
+        "대전역동광장종점"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300144",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 622번"
+      },
+      "routeNumber": "622",
+      "operatorId": "kr-daejeon-operator-a87d6a849029fb",
+      "operator": {
+        "ko": "금남교통"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:09.906Z",
+          "sha256": "9c7220247ee2cb855e07c1e6cba39f88d25a50843b268fd00534cef325e1588e",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:10.181Z",
+          "sha256": "88173e1b8952ddf5de7540776134575247f1884162dd9ba4239be76c28b61831",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:10.572Z",
+          "sha256": "e7318e5652aecd1d94534c83a9168dc96772473606109951c28b42d291e2314d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300144"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:09.906Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300144.json",
+      "stationCount": 23,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "비래동종점",
+        "비래동",
+        "만남웨딩홀",
+        "비래검문소",
+        "한신휴플러스",
+        "적십자혈액원",
+        "동부네거리",
+        "복합터미널",
+        "효촌마을아파트",
+        "스마트뷰아파트",
+        "성남네거리",
+        "삼성초등학교",
+        "대전역",
+        "목척교",
+        "으능정이거리",
+        "중앙로역6번출구",
+        "중구청역",
+        "대전충남병무청",
+        "서대전네거리역5번출구",
+        "중도일보",
+        "오류네거리",
+        "서대전역"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300030",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 63번"
+      },
+      "routeNumber": "63",
+      "operatorId": "kr-daejeon-operator-bf18581f5b564c",
+      "operator": {
+        "ko": "대전운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:10.525Z",
+          "sha256": "6357c3a87af974aaf727b75b7eaa964b34af0ab1a57afb976e4f9c3525390191",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:10.955Z",
+          "sha256": "a6e3fa4b5c9d737641117d7fb6e3bd67a663d01e79d7dc5b3fe87f63af372402",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:11.411Z",
+          "sha256": "a771ad8a10c1f681cfdf55768f1f17d086865a714cd6a3089fb03c0fa4ccf754",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300030"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:10.525Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300030.json",
+      "stationCount": 54,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "회남종점",
+        "남대문공원",
+        "남대문리",
+        "신곡리",
+        "분저리",
+        "송림가든",
+        "양지공원",
+        "양중지",
+        "회남대교",
+        "사음리",
+        "어부동",
+        "우무동리",
+        "토망대.오동",
+        "오동",
+        "주촌2구",
+        "주촌1구",
+        "주촌동",
+        "방아실입구.와정리",
+        "사성동",
+        "모래재",
+        "국제금식기도원",
+        "신촌동",
+        "구절골",
+        "신절골",
+        "비금마을",
+        "요골",
+        "바깥아감",
+        "세천삼거리",
+        "오리골",
+        "대청동행정복지센터",
+        "세천동",
+        "세정골",
+        "가는골입구",
+        "세천공원",
+        "대전동신과학고",
+        "삼정동",
+        "판암차량기지",
+        "판암아이씨",
+        "판암네거리",
+        "판암역",
+        "판암역네거리",
+        "판암근린공원",
+        "신흥역",
+        "신흥마을아파트",
+        "동부경찰서",
+        "신인동주민센터",
+        "대전역/역전시장",
+        "대전역/하나은행",
+        "삼성네거리",
+        "계룡디지텍고입구",
+        "성남네거리",
+        "대성여자고등학교",
+        "중앙동주민센터",
+        "대전역동광장종점"
       ],
       "stations": [],
       "services": []
@@ -100538,6 +103888,457 @@
     },
     {
       "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300091",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 711번"
+      },
+      "routeNumber": "711",
+      "operatorId": "kr-daejeon-operator-7ba9cc2d43a152",
+      "operator": {
+        "ko": "동건운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:15.774Z",
+          "sha256": "ef191db928384baf46653e205da68dc29dbbe3e60c2d1afbf37854d255e3ad31",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:16.161Z",
+          "sha256": "6310816c5d45ad13fd6f2064f4a949c11141fc3cc349b5eef12e41bf29e00e4b",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:16.566Z",
+          "sha256": "453d406b699cdc51f2ec67b8ac2773d6fd54d9caa20a6c25e9d11799a77b3ff1",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300091"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:15.774Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300091.json",
+      "stationCount": 47,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "대전역동광장",
+        "신안동",
+        "대동역3번출구",
+        "대전화병원",
+        "원동네거리",
+        "대흥교",
+        "대흥동성당",
+        "으능정이거리",
+        "대전역",
+        "삼성초등학교",
+        "삼성네거리",
+        "한밭자이아파트",
+        "솔랑마을아파트",
+        "대덕구청",
+        "한남오거리",
+        "한남대학교",
+        "대전신학대학교",
+        "한남로삼거리",
+        "한숲아파트",
+        "동대전고등학교",
+        "중리동주민센터",
+        "중리근린공원",
+        "중리시장",
+        "유원아파트",
+        "삼정하이츠타운",
+        "제월당",
+        "정수장",
+        "대덕구장애인복지관",
+        "성우동산",
+        "연축아파트/한국수자원공사",
+        "와동현대아파트",
+        "들말/신대차고지",
+        "선바위삼거리",
+        "선바위",
+        "상서삼거리",
+        "신탄진한일병원",
+        "평촌동",
+        "덕암동주민센터",
+        "남경마을",
+        "석봉과선교",
+        "석봉초등학교",
+        "신탄진고등학교",
+        "동일스위트리버스카이",
+        "신탄진네거리",
+        "신탄진시장",
+        "금강엑슬루타워",
+        "신탄진기점지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300092",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 712번"
+      },
+      "routeNumber": "712",
+      "operatorId": "kr-daejeon-operator-7ba9cc2d43a152",
+      "operator": {
+        "ko": "동건운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:16.320Z",
+          "sha256": "32ad85528bf8f02ca1ef563ef47a4f7fef24e901ae65c2e8faaf715931531af7",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:16.761Z",
+          "sha256": "0a06b0205f237a832e8315298d70d29fab211b9e7187922f8361ed53e92d9145",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:17.154Z",
+          "sha256": "a499b795d6cbe10564a17bf07d8a74aedb101c59c0ff4632f0628186261b533d",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300092"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:16.320Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300092.json",
+      "stationCount": 36,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "철도차량정비단",
+        "달수정",
+        "평촌동",
+        "태양마을",
+        "케이티&지사택",
+        "신탄진과선교",
+        "남경마을",
+        "신탄진역",
+        "신탄진시장",
+        "금강엑슬루타워",
+        "석봉네거리",
+        "대전이문고",
+        "덕암동",
+        "대덕구보건소",
+        "신탄중앙중학교",
+        "행복한마을아파트",
+        "덕암우체국",
+        "상서삼거리",
+        "국방신뢰성연구센터",
+        "동건운수",
+        "신일네거리",
+        "한솔제지",
+        "기흥기계",
+        "신구교",
+        "한국가스기술공사",
+        "웅진에너지",
+        "한신에스메카",
+        "관평중학교",
+        "중일고등학교",
+        "테크노밸리6.10단지",
+        "테크노밸리11.12단지",
+        "호반써밋그랜드파크",
+        "호반써밋그랜드파크2단지",
+        "탑립육교",
+        "탑립1통산의절",
+        "탑립동"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300035",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "rural_bus",
+      "normalizedCategory": "rural_bus",
+      "categoryKo": "외곽버스",
+      "line": {
+        "ko": "대전 75번"
+      },
+      "routeNumber": "75",
+      "operatorId": "kr-daejeon-operator-bf18581f5b564c",
+      "operator": {
+        "ko": "대전운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:17.765Z",
+          "sha256": "2d41b947e30ed194d3553db5bc45f33c2543c3c686eb54f6cfc05e1b39ec8617",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:18.162Z",
+          "sha256": "aa0f12dcfdfe41b9c21b16ec883c9c252fb44bc4e7d481c9093909691fd563cf",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:18.568Z",
+          "sha256": "7089424c5c2faff87962134425da8bdf4788242c3c5727fbcb3d40e7166f2c5e",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300035"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:17.765Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300035.json",
+      "stationCount": 41,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "보훈병원종점",
+        "석봉초등학교",
+        "신탄진역",
+        "신탄진시장",
+        "금강엑슬루타워",
+        "한국타이어후문",
+        "목상동주민센터",
+        "한국교통안전공단",
+        "효성신탄진공장",
+        "기흥기계",
+        "신구교",
+        "한국가스기술공사",
+        "송강전통시장",
+        "송강마을아파트",
+        "구즉동주민센터입구",
+        "대광로제비앙아파트",
+        "협진운수",
+        "금고2통",
+        "금고동매립장",
+        "금고1통",
+        "금고동",
+        "대동금탄동입구",
+        "꽃묘생산단지",
+        "신동천교",
+        "신동",
+        "박산고개",
+        "박산리",
+        "대박리",
+        "대박리(광덕사)",
+        "초정약수터",
+        "황용리삼성복지회관",
+        "황용리(황용1교)",
+        "장재리(길재고개)",
+        "장재리(태련암입구)",
+        "장재리",
+        "장영실고등학교,호탄리(안터)",
+        "호탄리",
+        "신촌리",
+        "금남초등학교",
+        "용포리",
+        "세종고속시외버스터미널"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300094",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "bus",
+      "category": "city_bus",
+      "normalizedCategory": "city_bus",
+      "categoryKo": "도시버스",
+      "line": {
+        "ko": "대전 911번"
+      },
+      "routeNumber": "911",
+      "operatorId": "kr-daejeon-operator-7ad1727fd05a0c",
+      "operator": {
+        "ko": "금남교통 · 대전운수"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:18.328Z",
+          "sha256": "abcab27309d390e537b1b3fd243f9261447d8488451dce2f9d6bdf15f44fd572",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:18.559Z",
+          "sha256": "304228a962979d2e34782040312f4a36f9d6d0a1b82df22362fcd97674b78bfe",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteUpLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:18.971Z",
+          "sha256": "a4758afc9f523d3bd3690f72e39f9f2a02f57ef3b0cfc013cbd31d3652676788",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300094"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:18.328Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300094.json",
+      "stationCount": 35,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "충대농대종점",
+        "한빛아파트",
+        "충대농대입구",
+        "궁동",
+        "충남대학교",
+        "한진오피스텔",
+        "유성온천역1번출구",
+        "만년교",
+        "갑천역",
+        "월평역",
+        "전원아파트",
+        "누리아파트",
+        "누리아파트후문",
+        "갈마역",
+        "둔산여자고등학교",
+        "갤러리아타임월드",
+        "에스케이브로드밴드",
+        "대전광역시청",
+        "샤크존",
+        "한우리아파트",
+        "한가람아파트",
+        "탄방동주민센터",
+        "문정초등학교",
+        "국화아파트",
+        "수정타운아파트정문",
+        "꿈나무아파트",
+        "샘머리아파트",
+        "한밭수목원",
+        "대전예술의전당",
+        "서구보건소",
+        "신세계백화점",
+        "대전컨벤션센터",
+        "스마트시티5단지",
+        "스마트시티2단지",
+        "디씨씨종점"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "kr-bus-daejeon-30300095",
       "countryId": "kr",
       "regionId": "daejeon",
@@ -100824,6 +104625,106 @@
         "화암네거리",
         "테크노밸리5단지",
         "테크노밸리11.12단지"
+      ],
+      "stations": [],
+      "services": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "kr-bus-daejeon-30300128",
+      "countryId": "kr",
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "mode": "express_bus",
+      "category": "metropolitan_bus",
+      "normalizedCategory": "metropolitan_bus",
+      "categoryKo": "광역버스",
+      "line": {
+        "ko": "대전 비1번"
+      },
+      "routeNumber": "B1",
+      "operatorId": "kr-daejeon-operator-07ba4d2a6f9d23",
+      "operator": {
+        "ko": "대전비알티"
+      },
+      "lineColor": "#2876bd",
+      "releaseStatus": "verified",
+      "geometryReady": true,
+      "sourceRefs": [
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:21.310Z",
+          "sha256": "24a94f4b5def228a897998f9d82df068480306fd5d999e36f50c6a36de97d3ab",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownRun",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:21.759Z",
+          "sha256": "11e153a1e8f88e6309b473c7e236b34ef7edf6de7e5fb5c2e4b838a474056e96",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDownLinkLine",
+          "method": "POST",
+          "retrievedAt": "2026-11-02T15:58:22.160Z",
+          "sha256": "8bf2685742fb1d66411babb43b438683c7d9898e11df0d1a7a4b3728cb411e80",
+          "license": "공개 버스 운행 사실정보; 제공 지자체 공공데이터 이용 조건",
+          "attribution": "대전광역시 공식 버스정보시스템"
+        },
+        {
+          "url": "https://www.daejeonbus.or.kr/sub0202.do",
+          "retrievedAt": "2026-11-02T16:22:00Z",
+          "license": "대전광역시버스운송사업조합 공개 운행 시간표 사실정보",
+          "attribution": "대전광역시버스운송사업조합"
+        }
+      ],
+      "sourceRouteIds": [
+        "30300128"
+      ],
+      "operationalEvidence": {
+        "url": "https://traffic.daejeon.go.kr/web-service/api/v1/busInfo/getBusRouteDetail",
+        "checkedAt": "2026-11-02T15:58:21.310Z"
+      },
+      "canonicalContract": "kr-canonical-v1",
+      "lazy": true,
+      "lazySource": "data/kr/generated/routes/kr-bus-daejeon-30300128.json",
+      "stationCount": 27,
+      "serviceCount": 1,
+      "serviceWindows": [
+        {}
+      ],
+      "searchStations": [
+        "오송역2.3.4",
+        "누리동",
+        "한별동",
+        "해밀동,산울동",
+        "세종충남대학교병원",
+        "도담동",
+        "정부세종청사 북측",
+        "정부세종청사 남측",
+        "다정동",
+        "새롬동,나성동",
+        "한솔동",
+        "세종고속시외버스터미널(지하)",
+        "대평동",
+        "보람동,대평동",
+        "세종시청,시의회,교육청",
+        "소담동(새샘마을)",
+        "한국개발연구원(케이디아이)",
+        "국제과학비즈니스벨트",
+        "대덕산업단지",
+        "오정농수산오거리",
+        "오정동행정복지센터",
+        "한남오거리(비알티)",
+        "대덕구청",
+        "솔랑마을아파트",
+        "한밭자이아파트",
+        "대전역",
+        "대전역동광장"
       ],
       "stations": [],
       "services": []
@@ -1029979,6 +1033880,14 @@
       }
     },
     {
+      "id": "kr-daegu-operator-af7b19600e98be",
+      "names": {
+        "ko": "경북교통(주), 신흥버스(주), 대명교통(주)",
+        "ja": "경북교통(주), 신흥버스(주), 대명교통(주)",
+        "en": "경북교통(주), 신흥버스(주), 대명교통(주)"
+      }
+    },
+    {
       "id": "kr-daegu-operator-9305d48b1e9198",
       "names": {
         "ko": "한일운수(주), 우주교통(주)",
@@ -1030363,6 +1034272,14 @@
       }
     },
     {
+      "id": "kr-daegu-operator-5a1988c9de49ce",
+      "names": {
+        "ko": "(주)세진교통, 세운버스(주)",
+        "ja": "(주)세진교통, 세운버스(주)",
+        "en": "(주)세진교통, 세운버스(주)"
+      }
+    },
+    {
       "id": "kr-daegu-operator-f0b6d33892a550",
       "names": {
         "ko": "광남자동차(주), 우진교통(주)",
@@ -1030571,11 +1034488,35 @@
       }
     },
     {
+      "id": "kr-daegu-operator-9bc361938991e4",
+      "names": {
+        "ko": "(주)세진교통, 세한여객(주)",
+        "ja": "(주)세진교통, 세한여객(주)",
+        "en": "(주)세진교통, 세한여객(주)"
+      }
+    },
+    {
+      "id": "kr-daejeon-operator-8fae6a1210d805",
+      "names": {
+        "ko": "경익운수",
+        "ja": "경익운수",
+        "en": "경익운수"
+      }
+    },
+    {
       "id": "kr-daejeon-operator-b202bcbaedf50c",
       "names": {
         "ko": "계룡버스",
         "ja": "계룡버스",
         "en": "계룡버스"
+      }
+    },
+    {
+      "id": "kr-daejeon-operator-bf18581f5b564c",
+      "names": {
+        "ko": "대전운수",
+        "ja": "대전운수",
+        "en": "대전운수"
       }
     },
     {
@@ -1030595,6 +1034536,22 @@
       }
     },
     {
+      "id": "kr-daejeon-operator-a87d6a849029fb",
+      "names": {
+        "ko": "금남교통",
+        "ja": "금남교통",
+        "en": "금남교통"
+      }
+    },
+    {
+      "id": "kr-daejeon-operator-72459bc24894ff",
+      "names": {
+        "ko": "대전승합",
+        "ja": "대전승합",
+        "en": "대전승합"
+      }
+    },
+    {
       "id": "kr-daejeon-operator-a78228ba583646",
       "names": {
         "ko": "동인여객",
@@ -1030603,11 +1034560,11 @@
       }
     },
     {
-      "id": "kr-daejeon-operator-8fae6a1210d805",
+      "id": "kr-daejeon-operator-2211a0439444db",
       "names": {
-        "ko": "경익운수",
-        "ja": "경익운수",
-        "en": "경익운수"
+        "ko": "대전버스",
+        "ja": "대전버스",
+        "en": "대전버스"
       }
     },
     {
@@ -1030627,11 +1034584,11 @@
       }
     },
     {
-      "id": "kr-daejeon-operator-2211a0439444db",
+      "id": "kr-daejeon-operator-47727b0bab671b",
       "names": {
-        "ko": "대전버스",
-        "ja": "대전버스",
-        "en": "대전버스"
+        "ko": "대전교통",
+        "ja": "대전교통",
+        "en": "대전교통"
       }
     },
     {
@@ -1030643,19 +1034600,19 @@
       }
     },
     {
+      "id": "kr-daejeon-operator-60654017d5e489",
+      "names": {
+        "ko": "금남교통 · 동인여객 · 산호교통",
+        "ja": "금남교통 · 동인여객 · 산호교통",
+        "en": "금남교통 · 동인여객 · 산호교통"
+      }
+    },
+    {
       "id": "kr-daejeon-operator-70fe89d371e179",
       "names": {
         "ko": "산호교통",
         "ja": "산호교통",
         "en": "산호교통"
-      }
-    },
-    {
-      "id": "kr-daejeon-operator-bf18581f5b564c",
-      "names": {
-        "ko": "대전운수",
-        "ja": "대전운수",
-        "en": "대전운수"
       }
     },
     {
@@ -1030672,14 +1034629,6 @@
         "ko": "국민버스",
         "ja": "국민버스",
         "en": "국민버스"
-      }
-    },
-    {
-      "id": "kr-daejeon-operator-47727b0bab671b",
-      "names": {
-        "ko": "대전교통",
-        "ja": "대전교통",
-        "en": "대전교통"
       }
     },
     {
@@ -1030707,6 +1034656,14 @@
       }
     },
     {
+      "id": "kr-daejeon-operator-7ad1727fd05a0c",
+      "names": {
+        "ko": "금남교통 · 대전운수",
+        "ja": "금남교통 · 대전운수",
+        "en": "금남교통 · 대전운수"
+      }
+    },
+    {
       "id": "kr-daejeon-operator-33735f5432b91e",
       "names": {
         "ko": "국민버스 · 한일버스",
@@ -1030720,6 +1034677,14 @@
         "ko": "계룡버스 · 대전승합 · 동건운수",
         "ja": "계룡버스 · 대전승합 · 동건운수",
         "en": "계룡버스 · 대전승합 · 동건운수"
+      }
+    },
+    {
+      "id": "kr-daejeon-operator-07ba4d2a6f9d23",
+      "names": {
+        "ko": "대전비알티",
+        "ja": "대전비알티",
+        "en": "대전비알티"
       }
     },
     {
@@ -1034727,12 +1038692,12 @@
       "tsbis-398-batch.json",
       "ulsan-batch.json"
     ],
-    "publicRoutes": 8185,
-    "playableDirections": 17676,
-    "uniqueStops": 117152,
+    "publicRoutes": 8220,
+    "playableDirections": 17713,
+    "uniqueStops": 117484,
     "byMode": {
-      "bus": 6357,
-      "express_bus": 595,
+      "bus": 6387,
+      "express_bus": 600,
       "village_bus": 1193,
       "subway": 16,
       "light_rail": 6,
@@ -1034743,12 +1038708,12 @@
       "river_bus": 2
     },
     "byCategory": {
-      "city_bus": 2994,
-      "metropolitan_bus": 485,
+      "city_bus": 3015,
+      "metropolitan_bus": 486,
       "other_bus": 68,
       "village_bus": 1193,
-      "rural_bus": 3346,
-      "express_bus": 59,
+      "rural_bus": 3355,
+      "express_bus": 63,
       "subway": 17,
       "light_rail": 6,
       "conventional_rail": 5,

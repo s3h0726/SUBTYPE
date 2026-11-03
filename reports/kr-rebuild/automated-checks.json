@@ -23,7 +23,7 @@
       "tools/test-kr-canonical.cjs"
     ],
     "status": 0,
-    "stdout": "{\n  \"passed\": true,\n  \"routes\": 8185,\n  \"journeysResolved\": 17672,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
+    "stdout": "{\n  \"passed\": true,\n  \"routes\": 8220,\n  \"journeysResolved\": 17709,\n  \"geometryFallbacks\": 0,\n  \"scope\": \"전체 공개 계통의 실제 게임 경로 해석 검사. 브라우저 완주 검사와 별개.\"\n}\n",
     "stderr": ""
   },
   {
@@ -32,7 +32,7 @@
       "tools/test-kr-city-sources.cjs"
     ],
     "status": 0,
-    "stdout": "{\"passed\":true,\"routes\":1023,\"directions\":2403,\"points\":1543080,\"projectedStops\":116938,\"regions\":{\"incheon\":{\"routes\":344,\"directions\":511},\"daegu\":{\"routes\":136,\"directions\":329},\"gwangju\":{\"routes\":117,\"directions\":227},\"ulsan\":{\"routes\":178,\"directions\":420},\"sejong\":{\"routes\":18,\"directions\":31},\"daejeon\":{\"routes\":36,\"directions\":72},\"jeju\":{\"routes\":194,\"directions\":813}},\"scope\":\"전체 신규 지자체 계통의 원본 선분·굴곡·정류장 순서 대조. 브라우저 완주와 별개.\"}\n",
+    "stdout": "{\"passed\":true,\"routes\":1058,\"directions\":2440,\"points\":1556078,\"projectedStops\":118348,\"regions\":{\"incheon\":{\"routes\":344,\"directions\":511},\"daegu\":{\"routes\":140,\"directions\":335},\"gwangju\":{\"routes\":117,\"directions\":227},\"ulsan\":{\"routes\":178,\"directions\":420},\"sejong\":{\"routes\":18,\"directions\":31},\"daejeon\":{\"routes\":67,\"directions\":103},\"jeju\":{\"routes\":194,\"directions\":813}},\"scope\":\"전체 신규 지자체 계통의 원본 선분·굴곡·정류장 순서 대조. 브라우저 완주와 별개.\"}\n",
     "stderr": ""
   },
   {
@@ -61,7 +61,7 @@
       "tools/kr-rail-rebuild.test.cjs"
     ],
     "status": 0,
-    "stdout": "✔ rail publications pass complete geometry, language and reference gates (63.9715ms)\n✔ every published geometry edge is an actual source rail edge in its direction (241.8745ms)\n✔ official metro journeys preserve complete official Korean call sequences (684.346ms)\n✔ conventional railway has independent actual tracks in both directions (1.2726ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (56.4441ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1396.551\n",
+    "stdout": "✔ rail publications pass complete geometry, language and reference gates (59.6781ms)\n✔ every published geometry edge is an actual source rail edge in its direction (170.7042ms)\n✔ official metro journeys preserve complete official Korean call sequences (577.2213ms)\n✔ conventional railway has independent actual tracks in both directions (1.02ms)\n✔ high-speed route uses a complete current official train and exact actual source edges (54.4237ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1121.6119\n",
     "stderr": ""
   },
   {
@@ -80,7 +80,7 @@
     ],
     "status": 0,
     "stdout": "{\n  \"status\": \"PASS\",\n  \"cases\": 18,\n  \"bracketsOnlyAutoFilled\": true,\n  \"errors\": []\n}\n",
-    "stderr": "(node:25312) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    "stderr": "(node:62516) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/typing-model.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
   },
   {
     "name": "한글 조합",
@@ -116,7 +116,7 @@
       "tools/test-jr-sobu-rapid-playable.cjs"
     ],
     "status": 1,
-    "stdout": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'바쿠로쵸' !== '바쿠로초'\n\n    at Object.<anonymous> (C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\tools\\test-jr-sobu-rapid-playable.cjs:52:9)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: '바쿠로쵸',\n  expected: '바쿠로초',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.22.1\n✖ tools\\test-jr-sobu-rapid-playable.cjs (618.6886ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 630.7907\n\n✖ failing tests:\n\ntest at tools\\test-jr-sobu-rapid-playable.cjs:1:1\n✖ tools\\test-jr-sobu-rapid-playable.cjs (618.6886ms)\n  'test failed'\n",
+    "stdout": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'바쿠로쵸' !== '바쿠로초'\n\n    at Object.<anonymous> (C:\\Users\\galax\\.codex\\.chatgpt-projects\\g-p-6ab9a6001d408191a749cf13376025cb\\SUBTYPE-rebuild\\tools\\test-jr-sobu-rapid-playable.cjs:52:9)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: '바쿠로쵸',\n  expected: '바쿠로초',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.22.1\n✖ tools\\test-jr-sobu-rapid-playable.cjs (434.0412ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 446.487\n\n✖ failing tests:\n\ntest at tools\\test-jr-sobu-rapid-playable.cjs:1:1\n✖ tools\\test-jr-sobu-rapid-playable.cjs (434.0412ms)\n  'test failed'\n",
     "stderr": ""
   },
   {
