@@ -58,7 +58,46 @@ function applyRouteTrackCoordinates(raw,stations){
       :{...station,coordinateSource:station.coordinateSource||'station-master-fallback',trackEndpointOffsetKm:+offset.toFixed(3)};
   });
 }
+// Published Korean bus payloads spell Latin initials phonetically to satisfy
+// a Hangul-only publication validator. Restore the official source letter names
+// for display/typing without altering route IDs, coordinates, or stored payloads.
+const KR_BUS_SPELLED_LATIN=['에이','비','씨','디','이','에프','지','에이치','아이','제이','케이','엘','엠','엔','오','피','큐','알','에스','티','유','브이','더블유','엑스','와이','지'];
+function restoreKrBusLatinStation(station){
+ if(!station||typeof station!=='object')return station;
+ const official=String(station.sourceName||'').normalize('NFC').trim();
+ const previous=String(station.ko||'').normalize('NFC').trim();
+ if(!/[A-Za-z]/.test(official)||!previous)return station;
+ const letterName=c=>KR_BUS_SPELLED_LATIN[c.toUpperCase().charCodeAt(0)-65];
+ const spelled=official.replace(/[A-Za-z]/g,letterName);
+ const aptSpelled=official.replace(/APT/gi,'아파트').replace(/[A-Za-z]/g,letterName);
+ // Only reverse the generator's exact phonetic rendering. Never replace a
+ // Korean '비' or '이' when the official source has no corresponding Latin.
+ if(previous!==spelled&&previous!==aptSpelled)return station;
+ const restored=previous===aptSpelled?official.replace(/APT/gi,'아파트'):official;
+ if(restored===previous)return station;
+ return{...station,ko:restored,ja:restored,kana:restored,romaji:restored,
+  koAliases:[...new Set([...(station.koAliases||[]),previous])],
+  nameLocalization:'원본 영문 알파벳 표기 유지'};
+}
+function restoreKrBusLatinRoute(raw){
+ if(raw?.countryId!=='kr'||!(['bus','village_bus','express_bus','brt'].includes(raw.mode)||String(raw.id||'').startsWith('kr-bus-')))return raw;
+ const correct=stations=>Array.isArray(stations)?stations.map(restoreKrBusLatinStation):stations;
+ const original=raw.verifiedJourneys;
+ const journeys=Array.isArray(original)?original.map(journey=>{
+  const before=journey.stations||[],stations=correct(before);
+  // Direction labels often contain an exact 'origin → destination' prefix.
+  const from=before[0],to=before.at(-1),newFrom=stations[0],newTo=stations.at(-1);
+  const oldPair=(from?.ko||'')+' → '+(to?.ko||''),newPair=(newFrom?.ko||'')+' → '+(newTo?.ko||'');
+  const fixLabel=label=>typeof label==='string'&&oldPair!==' → '&&label.includes(oldPair)
+    ?label.replace(oldPair,newPair):label;
+  const pattern=journey.patternName||{},service=journey.service||{};
+  return{...journey,stations,patternName:{...pattern,ko:fixLabel(pattern.ko)},
+   service:{...service,nameKo:fixLabel(service.nameKo)}};
+ }):original;
+ return{...raw,stations:correct(raw.stations),verifiedJourneys:journeys};
+}
 export function normalizeLine(raw={},defaults={}){
+  raw=restoreKrBusLatinRoute(raw);
   if(raw.countryId==='kr'&&raw.canonicalContract==='kr-canonical-v1')raw={...raw,line:{...raw.line,ja:raw.line?.ko,en:raw.line?.ko},operator:{...raw.operator,ja:raw.operator?.ko,en:raw.operator?.ko}};
   const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
