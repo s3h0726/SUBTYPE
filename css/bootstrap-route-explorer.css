@@ -1,0 +1,340 @@
+/*
+ * SUBTYPE country + route explorer / Bootstrap 5.3.8
+ * Scope all custom styling to the home country switch and #screen-select.
+ * Bootstrap's grid and utilities CSS are loaded separately; the app's existing
+ * event handlers, route IDs, lazy data loaders, and game screens are untouched.
+ */
+
+/* Country picker — large, legible touch targets without language mixing. */
+#screen-home .subtype-country-selector,
+#screen-select .subtype-country-selector{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px!important;
+  width:max-content;max-width:100%;padding:6px;
+  border-radius:16px;border:1px solid color-mix(in srgb,currentColor 14%,transparent);
+}
+#screen-home .subtype-country-selector{
+  margin:0 0 24px;
+  background:rgba(3,17,22,.75);color:#eafaf2;
+  box-shadow:0 18px 48px #0005;backdrop-filter:blur(14px);
+}
+#screen-home .subtype-country-selector button,
+#screen-select .subtype-country-selector button{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:74px;min-height:42px;padding:10px 15px;
+  border:1px solid transparent;border-radius:11px;
+  background:transparent;color:inherit;
+  font:800 13px/1.15 "Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s;
+}
+#screen-home .subtype-country-selector button:hover,
+#screen-home .subtype-country-selector button:focus-visible{background:#16372e;color:#f3fff9}
+#screen-home .subtype-country-selector button.active{
+  color:#052116;background:#64e2a7;border-color:#8af4bd;
+  box-shadow:0 8px 20px rgba(62,198,129,.26);
+}
+#screen-home .subtype-country-selector button[hidden],
+#screen-select .subtype-country-selector button[hidden]{display:none!important}
+#screen-home .subtype-country-selector button:focus-visible,
+#screen-select .subtype-country-selector button:focus-visible{
+  outline:3px solid #56bdff;outline-offset:3px;
+}
+
+/* Keep the route explorer scrollable, including short laptop viewports. */
+body[data-current-screen="rail-map"]{
+  height:auto!important;min-height:100dvh;
+  overflow-x:hidden!important;overflow-y:auto!important;
+}
+body[data-current-screen="rail-map"] main{
+  height:auto!important;min-height:calc(100dvh - 78px);
+  overflow:visible!important;
+}
+body[data-current-screen="rail-map"] #screen-select.subtype-route-explorer.active{
+  display:block!important;box-sizing:border-box;
+  height:auto!important;min-height:calc(100dvh - 78px)!important;
+  width:100%;max-width:1620px;margin:0 auto;
+  padding:clamp(20px,3vw,42px) clamp(14px,3.5vw,54px) 42px;
+  overflow:visible!important;
+  color:var(--ink);background:transparent;
+}
+#screen-select.subtype-route-explorer .subtype-explorer-header{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:16px 24px;height:auto!important;min-height:0;margin:0 0 16px!important;
+}
+#screen-select .subtype-explorer-heading{min-width:0}
+#screen-select .subtype-explorer-heading p{margin:0 0 5px;letter-spacing:.12em}
+#screen-select .subtype-explorer-heading h2{
+  margin:0;font-size:clamp(36px,4.4vw,56px);
+  font-weight:900;line-height:1.06;letter-spacing:-.055em;
+}
+#screen-select .subtype-explorer-heading>span{display:block;margin-top:9px}
+#screen-select .subtype-explorer-tools{
+  display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;
+  gap:10px;min-width:0;
+}
+#screen-select .subtype-explorer-country-caption{
+  color:var(--muted);font-size:11px;font-weight:800;
+  letter-spacing:.04em;white-space:nowrap;
+}
+#screen-select .subtype-country-selector{
+  background:var(--surface);color:var(--ink);border-color:var(--line);
+  box-shadow:0 6px 24px color-mix(in srgb,var(--ink) 7%,transparent);
+}
+#screen-select .subtype-country-selector button{min-height:38px;min-width:58px;padding:9px 12px;font-size:12px}
+#screen-select .subtype-country-selector button:hover{background:var(--surface-soft);color:var(--ink)}
+#screen-select .subtype-country-selector button.active{
+  background:var(--ink);color:var(--paper);border-color:var(--ink);
+  box-shadow:0 3px 12px color-mix(in srgb,var(--ink) 12%,transparent);
+}
+#screen-select .subtype-back-button{
+  min-height:42px;border:1px solid var(--line)!important;
+  border-radius:12px!important;padding:10px 14px!important;
+  color:var(--ink)!important;background:var(--surface)!important;
+  font-size:12px;font-weight:800;white-space:nowrap;
+}
+#screen-select .data-summary{margin:0 0 16px!important;height:auto;max-width:100%;line-height:1.5}
+
+/* Bootstrap .row and .col-lg-* for the two principal selector panels. */
+#screen-select.subtype-route-explorer .line-select-layout.row{
+  display:flex!important;flex-wrap:wrap!important;align-content:start;
+  grid-template-columns:none!important;gap:0!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  overflow:visible!important;background:transparent;border:0;border-radius:0;
+  --bs-gutter-x:clamp(14px,1.8vw,24px);--bs-gutter-y:18px;
+  margin-top:calc(-1 * var(--bs-gutter-y));
+  margin-right:calc(-.5 * var(--bs-gutter-x));
+  margin-left:calc(-.5 * var(--bs-gutter-x));
+}
+#screen-select.subtype-route-explorer .line-select-layout.row>.selected-line-panel,
+#screen-select.subtype-route-explorer .line-select-layout.row>.line-list-panel{
+  position:relative;display:block;box-sizing:border-box;
+  flex:0 0 auto;width:100%;max-width:100%;min-height:0!important;
+  height:auto!important;padding:var(--bs-gutter-y) calc(.5 * var(--bs-gutter-x)) 0!important;
+  margin:0!important;border:0!important;overflow:visible!important;
+  background:transparent!important;
+}
+#screen-select.subtype-route-explorer .line-select-layout .selected-line-panel{order:2}
+#screen-select.subtype-route-explorer .line-select-layout .line-list-panel{order:1}
+#screen-select .subtype-panel-surface{
+  min-width:0;height:auto;min-height:0;
+  border:1px solid var(--line);border-radius:22px;
+  box-shadow:0 14px 36px color-mix(in srgb,var(--ink) 6%,transparent);
+  background:var(--surface);color:var(--ink);overflow:hidden;
+}
+#screen-select .subtype-selected-surface{
+  display:flex;flex-direction:column;gap:18px;
+  padding:clamp(20px,2.5vw,32px);
+  background:linear-gradient(150deg,color-mix(in srgb,var(--surface) 94%,var(--green) 6%),var(--surface) 48%);
+}
+#screen-select .subtype-list-surface{
+  display:flex;flex-direction:column;gap:12px;
+  padding:clamp(18px,2.15vw,28px);
+}
+#screen-select .subtype-selected-surface>header,
+#screen-select .subtype-list-surface>header{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;min-height:0!important;
+}
+#screen-select .subtype-list-surface>header h3{font-size:clamp(21px,2vw,27px);font-weight:850}
+#screen-select .subtype-list-surface>header strong{
+  display:inline-block;border:1px solid var(--line);
+  border-radius:999px;background:var(--paper);
+  padding:7px 11px;color:var(--muted);font-size:11px;
+}
+#screen-select .subtype-selected-surface>header button{
+  display:inline-flex;align-items:center;min-height:36px;
+  background:var(--paper);border:1px solid var(--line);
+  color:var(--ink);border-radius:10px;padding:8px 12px;font-size:11px;
+  cursor:pointer;
+}
+#screen-select .subtype-selected-surface .selected-line-preview{
+  display:grid;place-items:center;flex:1 1 auto;
+  height:auto!important;min-height:265px;
+  overflow:visible!important;
+}
+#screen-select .subtype-selected-surface .selected-line-card{
+  width:100%;height:auto!important;padding:6px 0;overflow:visible!important;
+}
+#screen-select .subtype-selected-surface .selected-line-card h3{
+  margin:12px 0 10px;line-height:1.13;
+  font-size:clamp(27px,2.7vw,45px);
+  overflow-wrap:anywhere;white-space:normal;
+}
+#screen-select .subtype-selected-surface .selected-line-actions{
+  display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;
+}
+#screen-select .subtype-selected-surface .selected-line-actions button{
+  min-height:45px;min-width:0;border-radius:12px;
+  padding:12px 15px;font-weight:800;white-space:normal;
+}
+#screen-select .subtype-selected-surface .selected-line-actions .selected-play{
+  flex:1 1 100%;display:flex;align-items:center;justify-content:center;
+  width:100%;margin-top:0;background:var(--green);
+  color:#fff;
+}
+#screen-select .subtype-selected-surface .selected-line-actions .selected-free-drive,
+#screen-select .subtype-selected-surface .selected-line-actions .selected-ranking{
+  flex:1 1 145px;border:1px solid var(--line);
+  background:var(--paper);color:var(--ink);
+}
+#screen-select .subtype-selected-surface .selected-line-meta span{
+  background:var(--paper);border:1px solid var(--line);color:var(--muted);
+}
+
+/* Shared Bootstrap-style pills for route type and operator filters. */
+#screen-select .subtype-list-surface .line-category-tabs,
+#screen-select .subtype-list-surface .operator-logo-filters{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:7px;min-height:0;max-height:none!important;
+  height:auto;overflow:visible!important;margin:0!important;
+  padding:2px 0 5px!important;background:transparent!important;
+}
+#screen-select .subtype-list-surface .line-category-tabs[hidden],
+#screen-select .subtype-list-surface .operator-logo-filters[hidden]{display:none!important}
+#screen-select .subtype-list-surface .line-category-tabs button,
+#screen-select .subtype-list-surface .operator-logo-filters button{
+  flex:0 0 auto;display:inline-flex;gap:7px;align-items:center;justify-content:center;
+  border:1px solid var(--line);border-radius:11px;
+  min-height:37px;max-width:100%;padding:9px 12px;
+  color:var(--ink);background:var(--paper);
+  font:800 11px/1.2 "Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  white-space:normal;overflow-wrap:anywhere;cursor:pointer;
+  transition:border-color .14s,background .14s;
+}
+#screen-select .subtype-list-surface .line-category-tabs button:hover,
+#screen-select .subtype-list-surface .operator-logo-filters button:hover{
+  background:var(--surface-soft);border-color:var(--green);
+}
+#screen-select .subtype-list-surface .line-category-tabs button.active,
+#screen-select .subtype-list-surface .operator-logo-filters button.active{
+  background:var(--ink);color:var(--paper);border-color:var(--ink);
+}
+#screen-select .subtype-list-surface .operator-logo-filters button img{max-width:54px;max-height:22px;object-fit:contain}
+#screen-select .subtype-search-field{
+  display:flex;align-items:center;gap:10px;
+  min-height:52px;height:auto;border:1px solid var(--line);
+  border-radius:14px;padding:0 15px;
+  background:var(--paper);color:var(--ink);
+}
+#screen-select .subtype-search-field:focus-within{
+  outline:2px solid var(--green);outline-offset:1px;
+}
+#screen-select .subtype-search-field>span{font-size:24px;color:var(--muted);line-height:1}
+#screen-select .subtype-search-field input{
+  display:block;min-width:0;min-height:48px;
+  background:transparent!important;color:var(--ink);
+  font-size:14px;font-weight:600;outline:0;border:0;
+}
+#screen-select .subtype-search-field input::placeholder{color:var(--muted);opacity:1}
+
+/* Bootstrap row of route-card columns, independent of legacy grid rules. */
+#screen-select .subtype-list-surface .subtype-route-grid.row{
+  display:flex!important;flex-wrap:wrap!important;align-content:flex-start;
+  grid-template-columns:none!important;gap:0!important;
+  flex:1 1 auto;min-height:165px;max-height:min(64vh,760px)!important;
+  width:auto;height:auto;overflow:auto!important;
+  --bs-gutter-x:12px;--bs-gutter-y:12px;
+  margin-top:calc(-1 * var(--bs-gutter-y));
+  margin-right:calc(-.5 * var(--bs-gutter-x));
+  margin-left:calc(-.5 * var(--bs-gutter-x));
+  padding:0 4px 10px!important;scrollbar-gutter:stable;
+}
+#screen-select .subtype-route-grid.row>.subtype-route-col{
+  box-sizing:border-box;flex:0 0 auto;width:100%;max-width:100%;
+  padding:var(--bs-gutter-y) calc(.5 * var(--bs-gutter-x)) 0;
+  min-width:0;
+}
+#screen-select .subtype-route-grid .subtype-route-col>.line-card{
+  display:flex;flex-direction:column;align-items:stretch;
+  width:100%;height:100%!important;min-height:168px!important;
+  margin:0!important;padding:16px!important;
+  border:1px solid var(--line);border-top:4px solid var(--route-color,var(--green));
+  border-radius:16px;overflow:visible!important;
+  background:var(--paper);color:var(--ink);
+  box-shadow:0 4px 16px color-mix(in srgb,var(--ink) 3%,transparent);
+  text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;
+}
+#screen-select .subtype-route-grid .line-card:after{height:0!important}
+#screen-select .subtype-route-grid .line-card:hover,
+#screen-select .subtype-route-grid .line-card:focus-visible{
+  border-color:var(--route-color,var(--green));
+  box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 12%,transparent);
+  transform:translateY(-2px);
+}
+#screen-select .subtype-route-grid .line-card.selected{
+  border-color:var(--route-color,var(--green));
+  box-shadow:inset 0 0 0 1px var(--route-color,var(--green)),0 10px 26px color-mix(in srgb,var(--ink) 10%,transparent);
+}
+#screen-select .subtype-route-grid .line-card:focus-visible,
+#screen-select .subtype-list-surface button:focus-visible,
+#screen-select .subtype-selected-surface button:focus-visible{
+  outline:3px solid #248fe7;outline-offset:3px;
+}
+#screen-select .subtype-route-grid .line-card .operator{
+  margin:8px 0 5px;max-width:100%;
+  color:var(--muted);font:800 11px/1.35 "Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  white-space:normal;overflow:visible;overflow-wrap:anywhere;
+}
+#screen-select .subtype-route-grid .line-card h3{
+  min-height:0!important;max-height:none!important;height:auto;
+  display:block!important;overflow:visible!important;
+  color:var(--ink);font-size:clamp(17px,1.6vw,23px);
+  font-weight:850;line-height:1.28;letter-spacing:-.03em;
+  white-space:normal;overflow-wrap:anywhere;
+}
+#screen-select .subtype-route-grid .line-card p{
+  display:block!important;max-height:none!important;overflow:visible!important;
+  margin:7px 0 0;font-size:11px;line-height:1.48;
+  color:var(--muted);white-space:normal;overflow-wrap:anywhere;
+}
+#screen-select .subtype-route-grid .line-card footer{
+  margin-top:auto;padding-top:13px;
+  display:flex;align-items:center;flex-wrap:wrap;gap:5px 10px;
+  color:var(--muted);font-size:10px;line-height:1.4;
+}
+#screen-select .subtype-route-grid .line-card.random{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--paper) 85%,var(--green) 15%),var(--paper));
+}
+#screen-select .subtype-route-grid .line-card:disabled{cursor:not-allowed;opacity:.68;transform:none;box-shadow:none}
+#screen-select .subtype-route-grid .subtype-route-col>.muted{
+  padding:24px 12px;color:var(--muted);font-size:13px;
+}
+
+/* Bootstrap lg two-column layout; one column / list first on smaller screens. */
+@media(min-width:576px){
+  #screen-select .subtype-route-grid.row>.subtype-route-col{width:50%}
+}
+@media(min-width:992px){
+  #screen-select.subtype-route-explorer .line-select-layout.row>.selected-line-panel{order:1;width:33.333333%;max-width:33.333333%}
+  #screen-select.subtype-route-explorer .line-select-layout.row>.line-list-panel{order:2;width:66.666667%;max-width:66.666667%}
+  #screen-select .subtype-selected-surface{position:sticky;top:16px;min-height:520px}
+  #screen-select .subtype-list-surface{min-height:520px}
+  #screen-select .subtype-route-grid.row>.subtype-route-col{width:50%}
+}
+@media(min-width:1450px){
+  #screen-select .subtype-route-grid.row>.subtype-route-col{width:33.333333%}
+}
+@media(max-width:991px){
+  #screen-select .subtype-explorer-tools{justify-content:flex-start;width:100%}
+  #screen-select .subtype-selected-surface{min-height:280px}
+  #screen-select .subtype-route-grid.row{max-height:min(65vh,680px)!important}
+  #screen-select .selected-line-panel{scroll-margin-top:18px}
+}
+@media(max-width:575px){
+  #screen-home .subtype-country-selector{width:100%;justify-content:center}
+  #screen-home .subtype-country-selector button{flex:1 1 auto;min-width:76px}
+  #screen-select .subtype-explorer-heading>span{display:none}
+  #screen-select .subtype-explorer-tools{gap:7px}
+  #screen-select .subtype-explorer-country-caption{width:100%}
+  #screen-select .subtype-country-selector{width:100%;gap:4px!important}
+  #screen-select .subtype-country-selector button{flex:1 1 auto;min-width:48px;padding:9px 8px;font-size:11px}
+  #screen-select .subtype-back-button{width:100%;text-align:center}
+  #screen-select .subtype-list-surface,#screen-select .subtype-selected-surface{padding:17px}
+  #screen-select .subtype-route-grid.row>.subtype-route-col{width:100%}
+  #screen-select .subtype-route-grid .subtype-route-col>.line-card{min-height:132px!important}
+  #screen-select .subtype-list-surface .line-category-tabs button,
+  #screen-select .subtype-list-surface .operator-logo-filters button{min-height:38px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  #screen-home .subtype-country-selector button,#screen-select .subtype-country-selector button,
+  #screen-select .subtype-route-grid .line-card{transition:none!important;transform:none!important}
+}
