@@ -19,7 +19,7 @@ for(const [id,entry] of Object.entries(audit.stations)){
  assert.equal(catalogStation.en,entry.en,id+' English name preserved');
  if(id.startsWith('th-srt-')){
   const number=id.slice('th-srt-'.length);
-  assert(srtSource.split(/\\r?\\n/).includes(number+'|'+entry.ko),id+' missing SRT Korean source');
+  assert(srtSource.split(/\r?\n/).includes(number+'|'+entry.ko),id+' missing SRT Korean source');
  }else{
   const prefix=Object.keys(routeToKey).find(r=>id.startsWith(r+'-'));
   assert(prefix,id+' unknown urban source line');
