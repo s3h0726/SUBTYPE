@@ -33,9 +33,12 @@ const debounce=(fn,wait=120)=>{let t;return(...args)=>{clearTimeout(t);t=setTime
 const THAILAND_CATEGORIES=[['all','전체'],['rail','국철'],['commuter_rail','광역철도'],['subway','도시철도'],['monorail','모노레일'],['airport_rail','공항철도'],['automated-guideway','기타 여객철도'],['custom','커스텀']];
 const thEscape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function thLocalNames(){try{return JSON.parse(localStorage.getItem('subtype-thai-names-v1')||'{}')}catch{return{}}}
+let thailandNameEvidence={}; // Reviewed Korean station names; legacy gzip routes remain immutable.
+
 function thailandNames(entity={},kind='stations'){
  const n=entity.canonicalThaiNames||entity.names||entity,edits=thLocalNames(),id=entity.station_id||entity.stationMasterId||entity.id,edit=edits[kind]?.[id];
- return{ko:(typeof edit==='string'?edit:edit?.ko)||n.ko||entity.ko||entity.nameKo||'',th:n.th||entity.th||entity.nameTh||'',en:n.en||entity.en||entity.nameEn||entity.romaji||''};
+ const reviewedKo=kind==='stations'?thailandNameEvidence[id]?.ko:'';
+ return{ko:(typeof edit==='string'?edit:edit?.ko)||reviewedKo||n.ko||entity.ko||entity.nameKo||'',th:n.th||entity.th||entity.nameTh||'',en:n.en||entity.en||entity.nameEn||entity.romaji||''};
 }
 function thailandNameText(entity,kind='stations'){const n=thailandNames(entity,kind);return[n.ko,n.th,n.en].filter(Boolean).join(' / ')}
 function thailandNameMarkup(entity,kind='stations'){const n=thailandNames(entity,kind);return'<span class="th-name"><span lang="ko">'+thEscape(n.ko)+'</span>'+(n.th?'<small lang="th">'+thEscape(n.th)+'</small>':'')+(n.en?'<small lang="en">'+thEscape(n.en)+'</small>':'')+'</span>'}
@@ -3090,6 +3093,9 @@ function integrateKoreanLine1Index(published,preview){
 async function loadTransportData(countryId='jp',koreaMode='released'){
   if(countryId==='th'){
     await loadEditorNameOverrides();
+    // Overlay reviewed Thai station names on existing compressed route payloads at runtime.
+    // A missing reference file must not make all routes unplayable.
+    try{const reviewed=await fetchJson(new URL('data/th/namuwiki-station-names.json?v=20261103-r2',document.baseURI));thailandNameEvidence=reviewed?.countryId==='th'?reviewed.stations||{}:{}}catch(error){console.warn('Thai reviewed names could not load',error);thailandNameEvidence={}}
     const data=await fetchJson(new URL('data/th/generated/index.json',document.baseURI));
     if(data.country?.id!=='th')throw Error('태국 국가 식별자가 올바르지 않습니다.');
     const lines=data.routes.filter(r=>r.operationalStatus==='OPERATIONAL'&&r.playable&&r.geometryReady&&r.serviceCount>0).map(r=>thailandPresentation(normalizeLazyLine(r)));
