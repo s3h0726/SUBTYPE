@@ -62,24 +62,33 @@ function applyRouteTrackCoordinates(raw,stations){
 // a Hangul-only publication validator. Restore the official source letter names
 // for display/typing without altering route IDs, coordinates, or stored payloads.
 const KR_BUS_SPELLED_LATIN=['에이','비','씨','디','이','에프','지','에이치','아이','제이','케이','엘','엠','엔','오','피','큐','알','에스','티','유','브이','더블유','엑스','와이','지'];
-function restoreKrBusLatinStation(station){
+// Also used by gameplay and free drive after repository canonicalization.
+export function restoreKrBusLatinStation(station){
  if(!station||typeof station!=='object')return station;
  const official=String(station.sourceName||'').normalize('NFC').trim();
- const previous=String(station.ko||'').normalize('NFC').trim();
+ const previous=String(station.ko||station.names?.ko||'').normalize('NFC').trim();
  if(!/[A-Za-z]/.test(official)||!previous)return station;
  const letterName=c=>KR_BUS_SPELLED_LATIN[c.toUpperCase().charCodeAt(0)-65];
  const spelled=official.replace(/[A-Za-z]/g,letterName);
  const aptSpelled=official.replace(/APT/gi,'아파트').replace(/[A-Za-z]/g,letterName);
- // Only reverse the generator's exact phonetic rendering. Never replace a
- // Korean '비' or '이' when the official source has no corresponding Latin.
- if(previous!==spelled&&previous!==aptSpelled)return station;
- const restored=previous===aptSpelled?official.replace(/APT/gi,'아파트'):official;
+ // Allow punctuation differences; never replace native Korean words without
+ // an independently documented Latin source.
+ const compact=value=>value.replace(/[.·\-()\[\]\/\s]/g,'');
+ const match=previous===spelled||compact(previous)===compact(spelled);
+ const matchApt=previous===aptSpelled||compact(previous)===compact(aptSpelled);
+ if(!match&&!matchApt)return station;
+ const restored=matchApt&&!match?official.replace(/APT/gi,'아파트'):official;
  if(restored===previous)return station;
- return{...station,ko:restored,ja:restored,kana:restored,romaji:restored,
+ const corrected={...station,ko:restored,ja:restored,kana:restored,romaji:restored,
   koAliases:[...new Set([...(station.koAliases||[]),previous])],
   nameLocalization:'원본 영문 알파벳 표기 유지'};
+ // normalizeStation and the shared repository may prioritize nested labels.
+ if(station.names)corrected.names={...station.names,ko:restored,ja:restored,kana:restored,en:restored};
+ if(station.canonicalStationNames)corrected.canonicalStationNames={...station.canonicalStationNames,ko:restored,ja:restored,kana:restored,en:restored};
+ if(station.nameKo)corrected.nameKo=restored;
+ return corrected;
 }
-function restoreKrBusLatinRoute(raw){
+export function restoreKrBusLatinRoute(raw){
  if(raw?.countryId!=='kr'||!(['bus','village_bus','express_bus','brt'].includes(raw.mode)||String(raw.id||'').startsWith('kr-bus-')))return raw;
  const correct=stations=>Array.isArray(stations)?stations.map(restoreKrBusLatinStation):stations;
  const original=raw.verifiedJourneys;
