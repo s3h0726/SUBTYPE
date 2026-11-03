@@ -56,6 +56,17 @@ for(const [input,number,want] of [
   assert(/[A-Z]/.test(converted.routeNumber),'routeNumber converted to Latin letters');
  }
 }
+const repositoryModule=fs.readFileSync(path.join(root,'js/rail-data-repository.js'),'utf8');
+const Repository=new Function(repositoryModule.replace(/\bexport\s+/g,'')+'; return Repository;')();
+const repository=new Repository();
+const aliased=repository.resolveRoute(route({id:'kr-bus-alias',countryId:'kr',mode:'bus',
+ line:{ko:'서울 에이1번'},routeNumber:'에이1'}));
+assert.equal(aliased.line.ko,'서울 A1번','repository must preserve visible Latin route name');
+assert(aliased.line.aliases.includes('서울 에이1번'),'legacy Hangul route name must remain searchable after repository');
+const appSource=fs.readFileSync(path.join(root,'js/app.js'),'utf8');
+assert(appSource.includes("r.countryId==='kr'?krRouteLabel(r):r.line.ko"),'route picker must show Korean route title');
+assert(appSource.includes('...(r.line.aliases||[])'),'route search must include legacy Hangul aliases');
+
 const originalOfficial=route({id:'kr-bus-source-number',countryId:'kr',mode:'express_bus',
  line:{ko:'서울 엠100번'},routeNumber:'M100'});
 assert.equal(originalOfficial.line.ko,'서울 M100번','use official Latin route number when available');
