@@ -18,7 +18,10 @@ for(const meta of index.routes)try{
  }
  if(route.id==='th-bem-blue'){const p=route.patterns[0],tha=p.stations.filter(s=>s.stationCode==='BL01');assert.equal(tha.length,2);assert.equal(tha[0].station_id,tha[1].station_id);assert.notEqual(tha[0].id,tha[1].id);assert.equal(p.stations.length,39);}
  if(route.id==='th-nbm-pink'){assert.equal(route.patterns.filter(p=>p.branch).length,2);const main=route.patterns[0].stations.find(s=>s.stationCode==='PK10'),branch=route.patterns.find(p=>p.branch).stations[0];assert.equal(main.station_id,branch.station_id);assert.notDeepEqual([main.latitude,main.longitude],[branch.latitude,branch.longitude]);}
- if(route.id==='th-bts-sukhumvit'){const s=route.patterns[0].stations;assert.equal(s.length,47);assert(s.some(s=>s.stationCode==='N8'));assert(!s.some(s=>s.stationCode==='N6'));}
+ if(route.id==='th-bts-sukhumvit'){const s=route.patterns[0].stations;assert.equal(s.length,47);assert(s.some(s=>s.stationCode==='N8'));assert(!s.some(s=>s.stationCode==='N6'));assert(route.stations.find(s=>s.stationCode==='N8').transfers.includes('th-bem-blue'));}
+ if(route.id==='th-srt-sawankhalok')assert(route.patterns.every(p=>p.stations.some(s=>s.sourceStationId==='1143')),'표의 빈칸을 지선 경유로 분류하면 안 됨');
+ if(route.id==='th-srt-maeklong-east'){const current=route.patterns.find(p=>p.trainNumbers.includes('9347'));if(current){assert.equal(current.stations.find(s=>s.th==='วุฒากาศ').station_id,'th-srt-5036');assert.equal(current.stations.find(s=>s.th==='นิคมรถไฟมหาชัย').station_id,'th-srt-5037')}}
  report.routes++;
 }catch(e){report.status='FAIL';report.failures.push({route:meta.id,error:e.stack})}
+assert.equal(fs.readdirSync('data/th/generated/routes').filter(f=>f.endsWith('.json')).length,index.routes.length,'미공개 잔여 노선 파일');
 fs.mkdirSync('reports/thailand',{recursive:true});fs.writeFileSync('reports/thailand/static-validation.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(report.status!=='PASS')process.exitCode=1;

@@ -152,6 +152,9 @@ for(const route of routes){
  index.routes.push({...meta,lazy:true,lazySource,stationSequence:[...new Map(patterns.flatMap(p=>p.stations).map(s=>[s.station_id,s])).values()].map(s=>({id:s.id,ko:s.ko,th:s.th,en:s.en})),searchStations:[...new Set(patterns.flatMap(p=>p.stations.flatMap(s=>[s.ko,s.th,s.en])))],serviceCount:patterns.length,geometryPointCount:geometry.length});
  editor.lines.push({id:route.id,...route.line,operatorId:route.operatorId});for(const p of patterns){editor.services.push({id:p.id,lineId:route.id,ko:p.nameKo,th:p.nameTh,en:p.nameEn,trainNumbers:p.trainNumbers});for(const s of p.stations)if(!editor.stations.some(x=>x.id===s.station_id))editor.stations.push({id:s.station_id,ko:s.ko,th:s.th,en:s.en});}
 }
+// 이전 빌드에서 보류로 바뀐 계통 파일이 배포 폴더에 남지 않도록 정리한다.
+const activeFiles=new Set(index.routes.map(r=>path.basename(r.lazySource)));
+for(const file of fs.readdirSync('data/th/generated/routes'))if(/^th-[a-z0-9-]+\.json$/.test(file)&&!activeFiles.has(file))fs.unlinkSync(path.join('data/th/generated/routes',file));
 write('data/th/generated/index.json',index);write('data/th/generated/names.json',editor);
 write('reports/thailand/inventory.json',{sourceTrainInventory:sourceTrains.length,officialTrains:inventory,physicalCorridors:corridorDefs.map(([slug,ko,en,region,a,b])=>({id:'th-srt-'+slug,nameKo:ko,srtRegion:region,origin:a,destination:b})),candidates,limitations:[index.sourceNotice,'추가 도시·관광 철도와 국경 운행에 대한 전국 공식 재고 인증은 미완료입니다.']});
 write('reports/thailand/unresolved.json',{issues,candidates,missingNames:[...missingNames.values()]});
