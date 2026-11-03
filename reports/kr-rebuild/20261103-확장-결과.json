@@ -1,6 +1,16 @@
 {
-  "checkedAt": "2026-11-02T17:09:02.253Z",
+  "checkedAt": "2026-11-03T13:56:21.787Z",
   "baselineCommit": "28f9e1bd20f46a21144580dac9cd078ac7a77c37",
+  "implementationCommit": "ec95f4052ed698908413caf8e90eb0238deda2e8",
+  "sourceSupportedRoutes": 8185,
+  "newBusCategories": {
+    "city_bus": 820,
+    "other_bus": 7,
+    "rural_bus": 73,
+    "express_bus": 36,
+    "village_bus": 75,
+    "metropolitan_bus": 38
+  },
   "before": {
     "routes": 7136,
     "buses": 7096,
@@ -20214,6 +20224,14 @@
     ]
   },
   "newCityCandidates": {
+    "failedPartialDirections": 195,
+    "outcomes": {
+      "STOP_SEQUENCE_UNRESOLVED": 19,
+      "GEOMETRY_UNRESOLVED": 217,
+      "OPERATOR_UNRESOLVED": 363,
+      "INSUFFICIENT_SOURCE": 287,
+      "OTHER_BLOCKED": 1
+    },
     "rows": 2871,
     "remainingRows": 887,
     "note": "지역별 원본 계통 행 단위. 노선 카드 수와 다르며 광주 인접 지자체 후보 286행을 포함한다. 기존 후보와 전국 합계로 단순 합산하지 않는다."
