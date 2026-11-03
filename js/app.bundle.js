@@ -1741,7 +1741,7 @@ class Game{
   start(route,options={}){if(route?.countryId==='th')route=thailandPresentation(route);
     if(route?.countryId==='tw')route=taiwanKoreanPresentation(route);
     this.stop(false);if(route?.countryId==='kr'&&FEATURE_FLAGS.koreaRoutesReset){toast('한국 노선 점검 중입니다.');return false}if(hongKongRouteBlockReason(route)){toast(hongKongRouteBlockReason(route));return false}if(route?.countryId==='kr'&&(route.previewContract==='kr-research-v1'||route.playStatus==='RESEARCH_PLAYABLE'||route.releaseStatus==='research')){toast('정식 공개되지 않은 한국 철도 경로입니다.');return false}if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
-    route=railDataRepository.resolveRoute(route);if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
+    route=restoreKrBusLatinRoute(railDataRepository.resolveRoute(route));if(koreanRouteBlockReason(route)){toast('공개 여객 운행으로 검증되지 않은 자료입니다.');return false}
     if(!route||!Array.isArray(route.stations)||route.stations.length<2){console.error('Cannot start invalid line:',route?.id||route);toast('플레이하려면 역이 2개 이상인 노선이 필요합니다.');return false}
     this.route=route;this.options={mode:'complete',difficulty:'normal',display:'ja',input:'ko',direction:'forward',stationAdvance:'auto',mapMode:'geographic',stationLabel:'ja',mapLabels:'normal',motion:true,...options};this.service=route.services?.find(service=>service.id===this.options.service)||route.services?.find(service=>service.id==='local')||route.services?.[0]||{id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:route.stations.map(station=>station.id)};this.servicePattern=this.options.servicePattern||null;this.serviceJourney=this.options.serviceJourney||route.serviceJourney||null;this.trainType=this.options.trainType||null;this.trainTypeContexts=this.options.trainTypeContexts||route.trainTypeContexts||[];this.destinationStationId=this.options.destinationStationId||this.service.destinationStationId||null;
     try{this.resolvedRoute=resolvePlayableRoute(route,{direction:this.options.direction,service:this.service,boardingStationId:this.options.boardingStationId??null});if(route.dataKind==='trainService'&&this.resolvedRoute.fallbackGeometry)throw new Error('특급열차에는 실제 철도 선형이 필요합니다.')}catch(error){console.error('Route integrity blocked game start:',error);toast(`노선 무결성 오류: ${error.message}`);return false}
@@ -1749,6 +1749,7 @@ class Game{
     const sign=$('#station-sign'),template=resolveTransportStopTemplate(route);sign.dataset.signStyle=template.style;sign.dataset.templateFamily=template.family;sign.dataset.templateSource=template.referenceSource;const stopNoun=transportStopNoun(route),serviceLabel=this.serviceLabel();$('#typing-stop-label').textContent=`한국어 ${stopNoun} 이름 입력`;$('#typing-input').placeholder=`한국어 ${stopNoun} 이름을 입력하세요`;$('#following-stop-label').textContent=`그다음 ${stopNoun}`;$('#target-stop-label').textContent=`목표 ${stopNoun}`;this.applyActiveBrand(this.sequence[0]);$('#station-service-footer').textContent=`${serviceLabel} 운행`;$('#game-service-name').textContent=`${serviceLabel}${this.service.nameJa?` · ${koreanRouteDisplayText(this.service.nameJa,this.route)}`:''}`;const origin=this.sequence[0],destination=this.sequence.at(-1);$('#service-origin-ja').textContent=this.route.countryId==='kr'?this.stationKoDisplay(origin.ko):origin.ja;$('#service-origin-ko').textContent=this.stationKoDisplay(origin.ko);$('#service-destination-ja').textContent=this.route.countryId==='kr'?this.stationKoDisplay(destination.ko):destination.ja;$('#service-destination-ko').textContent=this.stationKoDisplay(destination.ko);$('#service-stop-count').textContent=`${this.sequence.filter(s=>!s.loopArrivalOnly).length}개 ${transportStopNoun(route)}`;$('#service-route-summary').textContent=`${koreanRouteDisplayText(route.line.ko,route)} · ${serviceLabel}`;$('#service-direction-summary').textContent=`${this.stationKoDisplay(origin.ko)} → ${this.stationKoDisplay(destination.ko)}`;this.showDeparture();this.renderStation();this.updateHud();this.timer=setInterval(()=>this.tick(),50);this.typing.focus();return true
   }
   startFreeDrive(state){
+    if(state?.route?.countryId==='kr'&&['bus','village_bus','express_bus','brt'].includes(state.route.mode))state={...state,route:restoreKrBusLatinRoute(state.route),station:restoreKrBusLatinStation(state.station)};
     this.stop(false);if(!state?.route||!state?.station||hongKongRouteBlockReason(state.route)||koreanRouteBlockReason(state.route))return false;
     this.sessionId=(this.sessionId||0)+1;this.freeDriveMode=true;this.freeDriveAwaitingStart=true;this.freeDriveSelectedEdge=null;this.finished=false;this.paused=false;this.phase='TYPING';this.started=performance.now();this.pausedTotal=0;this.pausedAt=0;this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.typedStationIds=[];this.visitedStationIds=[];this.stats.reset(this.started);
     document.body.dataset.freeDrive='true';$('#screen-game')?.classList.add('free-drive-active');
@@ -1757,6 +1758,7 @@ class Game{
   }
   setFreeDriveStartTarget(station){
     if(!this.freeDriveMode||!station)return;
+    if(this.route?.countryId==='kr'&&['bus','village_bus','express_bus','brt'].includes(this.route.mode))station=restoreKrBusLatinStation(station);
     this.freeDriveTarget={kind:'start',station};renderTaiwanGameDisplay(this);this.phase='TYPING';this.comboPrefixUnits=0;
     const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
     $('#station-context').textContent='출발역 입력 · 자유주행';$('#input-status').textContent=this.route?.countryId==='kr'?'입력':'TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
@@ -1764,6 +1766,8 @@ class Game{
   }
   setFreeDriveTypingTarget(edge,station){
     if(!this.freeDriveMode||!edge||!station)return;
+    const serving=edge.route||this.route;
+    if(serving?.countryId==='kr'&&['bus','village_bus','express_bus','brt'].includes(serving.mode))station=restoreKrBusLatinStation(station);
     this.freeDriveTarget={to:edge.to,routeId:edge.routeId,index:edge.index,station,fromKey:this.freeDriveState?.node?.key||null};
     // Every country must show the station the player is actually typing.
     // Previously only Hong Kong updated the sign; Japan/Korea/Taiwan showed the previous station.
@@ -1830,7 +1834,7 @@ class Game{
   makeSequence(){const base=[...this.serviceStations];if(this.options.mode==='random')return Array.from({length:100},()=>base[Math.floor(Math.random()*base.length)]);if(this.options.mode==='endless')return Array.from({length:500},(_,i)=>base[i%base.length]);return base}
   focusInput(){if(!this.paused&&this.phase==='TYPING')this.typing.focus()}
   stationKoDisplay(value){return koreanStationDisplayName(value,this.route?.countryId,this.route)}
-  answerValues(station){const original=station?.ko||'';if(this.route?.countryId==='tw')return[...new Set([original,...(station?.koAliases||[])])].filter(v=>/[가-힣]/.test(v)&&!/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(v)).map(value=>buildTypingModel(value).inputText);if(this.route?.canonicalContract==='kr-canonical-v1')return[buildTypingModel(original).inputText];return[...new Set([this.stationKoDisplay(original),original,...(station?.koAliases||[])])].map(value=>buildTypingModel(value).inputText)}
+  answerValues(station){if(this.route?.countryId==='kr'&&['bus','village_bus','express_bus','brt'].includes(this.route.mode))station=restoreKrBusLatinStation(station);const original=station?.ko||'';if(this.route?.countryId==='tw')return[...new Set([original,...(station?.koAliases||[])])].filter(v=>/[가-힣]/.test(v)&&!/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(v)).map(value=>buildTypingModel(value).inputText);if(this.route?.canonicalContract==='kr-canonical-v1')return[...new Set([original,...(this.route?.mode==='bus'||this.route?.mode==='village_bus'||this.route?.mode==='express_bus'||this.route?.mode==='brt'?station?.koAliases||[]:[])])].filter(Boolean).map(value=>buildTypingModel(value).inputText);return[...new Set([this.stationKoDisplay(original),original,...(station?.koAliases||[])])].map(value=>buildTypingModel(value).inputText)}
   routeIndex(station){const visit=this.mapRoute.stations.indexOf(station);if(visit>=0)return visit;const exact=this.mapRoute.stations.findIndex(item=>item.id===station?.id&&item.geometryIndex===station?.geometryIndex);return exact>=0?exact:Math.max(0,this.mapRoute.stations.findIndex(item=>item.id===station?.id))}
   currentStation(){return this.sequence?.[this.index]||null}
   targetStation(){if(this.freeDriveMode)return this.freeDriveTarget?.station||null;return this.boarding?this.sequence?.[0]||null:this.sequence?.[this.index+1]||null}
@@ -3002,22 +3006,31 @@ function applyRouteTrackCoordinates(raw,stations){
 // a Hangul-only publication validator. Restore the official source letter names
 // for display/typing without altering route IDs, coordinates, or stored payloads.
 const KR_BUS_SPELLED_LATIN=['에이','비','씨','디','이','에프','지','에이치','아이','제이','케이','엘','엠','엔','오','피','큐','알','에스','티','유','브이','더블유','엑스','와이','지'];
+// Also used by gameplay and free drive after repository canonicalization.
 function restoreKrBusLatinStation(station){
  if(!station||typeof station!=='object')return station;
  const official=String(station.sourceName||'').normalize('NFC').trim();
- const previous=String(station.ko||'').normalize('NFC').trim();
+ const previous=String(station.ko||station.names?.ko||'').normalize('NFC').trim();
  if(!/[A-Za-z]/.test(official)||!previous)return station;
  const letterName=c=>KR_BUS_SPELLED_LATIN[c.toUpperCase().charCodeAt(0)-65];
  const spelled=official.replace(/[A-Za-z]/g,letterName);
  const aptSpelled=official.replace(/APT/gi,'아파트').replace(/[A-Za-z]/g,letterName);
- // Only reverse the generator's exact phonetic rendering. Never replace a
- // Korean '비' or '이' when the official source has no corresponding Latin.
- if(previous!==spelled&&previous!==aptSpelled)return station;
- const restored=previous===aptSpelled?official.replace(/APT/gi,'아파트'):official;
+ // Allow punctuation differences; never replace native Korean words without
+ // an independently documented Latin source.
+ const compact=value=>value.replace(/[.·\-()\[\]\/\s]/g,'');
+ const match=previous===spelled||compact(previous)===compact(spelled);
+ const matchApt=previous===aptSpelled||compact(previous)===compact(aptSpelled);
+ if(!match&&!matchApt)return station;
+ const restored=matchApt&&!match?official.replace(/APT/gi,'아파트'):official;
  if(restored===previous)return station;
- return{...station,ko:restored,ja:restored,kana:restored,romaji:restored,
+ const corrected={...station,ko:restored,ja:restored,kana:restored,romaji:restored,
   koAliases:[...new Set([...(station.koAliases||[]),previous])],
   nameLocalization:'원본 영문 알파벳 표기 유지'};
+ // normalizeStation and the shared repository may prioritize nested labels.
+ if(station.names)corrected.names={...station.names,ko:restored,ja:restored,kana:restored,en:restored};
+ if(station.canonicalStationNames)corrected.canonicalStationNames={...station.canonicalStationNames,ko:restored,ja:restored,kana:restored,en:restored};
+ if(station.nameKo)corrected.nameKo=restored;
+ return corrected;
 }
 function restoreKrBusLatinRoute(raw){
  if(raw?.countryId!=='kr'||!(['bus','village_bus','express_bus','brt'].includes(raw.mode)||String(raw.id||'').startsWith('kr-bus-')))return raw;
