@@ -71,8 +71,7 @@ function resolveThailandChoice(choice,owner){
 function renderThailandGameDisplay(game){
  if(game.route?.countryId!=='th')return;
  thailandPresentation(game.route);for(const s of game.sequence||[])Object.assign(s,thailandNames(s));
- // Thai is the primary station-sign title; Korean remains the smaller typing hint.
- // Free drive must use the currently selected next stop, not a stale route index.
+ // 동시 배포된 태국 역명판과 자유주행 목표 보정을 재생성 가능한 원본에도 보존한다.
  const target=game.freeDriveMode?(game.freeDriveTarget?.station||game.targetStation()||game.currentStation()):game.targetStation();
  const n=thailandNames(target),memory=game.options?.inputMode==='memory',set=(id,text)=>{const el=document.getElementById(id);if(el)el.textContent=text||''};
  set('prompt-main',n.th||n.ko);
