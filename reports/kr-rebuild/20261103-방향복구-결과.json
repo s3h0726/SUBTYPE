@@ -21148,7 +21148,13 @@
     },
     "independentDirections": "양방향 손상 격리 검사 2건 통과",
     "nativeIme": "운영체제 한국어 IME 미검증",
-    "supabase": "인증된 서버 저장 미검증"
+    "supabase": "인증된 서버 저장 미검증",
+    "hongKong": {
+      "passed": 27,
+      "failed": 0,
+      "actualEngineRuns": 210,
+      "browser": false
+    }
   },
   "publication": {
     "status": "success",
@@ -21487,7 +21493,439 @@
       "regressionFailed": 0,
       "historyRef": "9272e1d3afe57bd72461942600fc4d3d472d90ca",
       "note": "기준 이력 확보 후 실제 엔진 증거 재생성. 앞선 코드 커밋의 실패 Actions를 소급 통과로 바꾸어 보고하지 않는다."
+    },
+    "latestIntegration": {
+      "codeCommit": "a136fb39641bd9b3fc29211fe2d34556686bd01e",
+      "catalogWorkflow": {
+        "id": 41657796437,
+        "name": "Korean canonical transport catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796437"
+      },
+      "pagesWorkflow": {
+        "id": 41657796445,
+        "name": "Publish SUBTYPE runtime to Pages",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796445"
+      },
+      "hongKongWorkflow": {
+        "id": 41657796457,
+        "name": "Verify Hong Kong route selection",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796457"
+      },
+      "workflowCounts": {
+        "failure": 6,
+        "success": 20
+      },
+      "allWorkflows": [
+        {
+          "id": 41657796351,
+          "name": "Validate nationwide Japan station names",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796351"
+        },
+        {
+          "id": 41657796237,
+          "name": "Sync Japanese rail grouping UI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796237"
+        },
+        {
+          "id": 41657796289,
+          "name": "Monitor logo regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796289"
+        },
+        {
+          "id": 41657796388,
+          "name": "Build Supabase account and leaderboard UI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796388"
+        },
+        {
+          "id": 41657796394,
+          "name": "Restore Japanese operating services regression",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796394"
+        },
+        {
+          "id": 41657796412,
+          "name": "Japan operating-choice visibility regression",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796412"
+        },
+        {
+          "id": 41657796457,
+          "name": "Verify Hong Kong route selection",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796457"
+        },
+        {
+          "id": 41657796550,
+          "name": "Validate Disney Resort Line",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796550"
+        },
+        {
+          "id": 41657796177,
+          "name": "Verify Iyotetsu Namuwiki railway rebuild",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796177"
+        },
+        {
+          "id": 41657796414,
+          "name": "Ensure short route descriptions stay removed",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796414"
+        },
+        {
+          "id": 41657796180,
+          "name": "Validate Hong Kong and Taiwan Japanese-style UI",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796180"
+        },
+        {
+          "id": 41657796286,
+          "name": "Free-drive critical step and nameplate regression",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796286"
+        },
+        {
+          "id": 41657796410,
+          "name": "Verify Supabase email links stay on latest SUBTYPE",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796410"
+        },
+        {
+          "id": 41657796445,
+          "name": "Publish SUBTYPE runtime to Pages",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796445"
+        },
+        {
+          "id": 41657796442,
+          "name": "Verify unified MLIT station identities",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796442"
+        },
+        {
+          "id": 41657796128,
+          "name": "Japanese miscellaneous-line category regression",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796128"
+        },
+        {
+          "id": 41657796417,
+          "name": "Validate destination playability",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796417"
+        },
+        {
+          "id": 41657796529,
+          "name": "Publish canonical Japan routes and deduplicated Tokaido cards",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796529"
+        },
+        {
+          "id": 41657796314,
+          "name": "Validate famous Japanese limited express journeys",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796314"
+        },
+        {
+          "id": 41657796385,
+          "name": "Rebuild record cards without logos",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796385"
+        },
+        {
+          "id": 41657796256,
+          "name": "Korean card interaction and Korean transport signage",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796256"
+        },
+        {
+          "id": 41657796242,
+          "name": "Validate NEX branches and timetable evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796242"
+        },
+        {
+          "id": 41657796348,
+          "name": "Repair subway identities",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796348"
+        },
+        {
+          "id": 41657797661,
+          "name": "pages build and deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657797661"
+        },
+        {
+          "id": 41657796437,
+          "name": "Korean canonical transport catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796437"
+        },
+        {
+          "id": 41657796291,
+          "name": "Validate free drive",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41657796291"
+        }
+      ],
+      "publicArtifacts": {
+        "verifiedAt": "2026-11-03T14:56:03.240Z",
+        "commit": "a136fb39641bd9b3fc29211fe2d34556686bd01e",
+        "url": "https://s3h0726.github.io/SUBTYPE/",
+        "passed": true,
+        "routes": 8220,
+        "registeredDirections": 17713,
+        "stopIds": 117484,
+        "assets": [
+          {
+            "file": "data/kr/generated/index.json",
+            "bytes": 35311263,
+            "sha256": "bc70c483d6a601b1e149ad5cddb2f80a6ad85673a28595d3ba01761478dcd964",
+            "matched": true
+          },
+          {
+            "file": "js/korea-index-data.js",
+            "bytes": 25643412,
+            "sha256": "f82b437b21e810017b25c763500636dd2eb0de4e4339839e0177ac9f8cb5e96c",
+            "matched": true
+          },
+          {
+            "file": "js/app.bundle.js",
+            "bytes": 486719,
+            "sha256": "925d7a50950e7c95590d8e4197119cb318042da2bcb0ff1963b6b6b7645b551a",
+            "matched": true
+          }
+        ],
+        "samples": [
+          {
+            "id": "kr-bus-incheon-365000001",
+            "name": "인천 1번",
+            "directions": 1,
+            "bytes": 57644,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-daegu-16dc368a89b428",
+            "name": "대구 101번",
+            "directions": 8,
+            "bytes": 460963,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-gwangju-2",
+            "name": "광주 01번",
+            "directions": 2,
+            "bytes": 28396,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-daejeon-30300100",
+            "name": "대전 급행1번",
+            "directions": 1,
+            "bytes": 7711,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-ulsan-754232cbcf773e",
+            "name": "울산 111번",
+            "directions": 2,
+            "bytes": 27147,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-sejong-4fc82b26aecb47",
+            "name": "세종 11번",
+            "directions": 1,
+            "bytes": 16532,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-jeju-43-2",
+            "name": "제주 43-2번",
+            "directions": 8,
+            "bytes": 106484,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-busan-2100062338",
+            "name": "부산 6번",
+            "directions": 2,
+            "bytes": 46187,
+            "matched": true
+          },
+          {
+            "id": "kr-rail-seoul-1",
+            "name": "수도권 전철 1호선",
+            "directions": 93,
+            "bytes": 1670115,
+            "matched": true
+          },
+          {
+            "id": "kr-rail-gyoe",
+            "name": "교외선 무궁화호",
+            "directions": 2,
+            "bytes": 22788,
+            "matched": true
+          },
+          {
+            "id": "kr-rail-expansion-jeolla-highspeed",
+            "name": "고속철도 전라선",
+            "directions": 3,
+            "bytes": 161262,
+            "matched": true
+          },
+          {
+            "id": "kr-hangang-west",
+            "name": "한강버스 서부 구간",
+            "directions": 2,
+            "bytes": 3143,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-daejeon-30300157",
+            "name": "대전 55번",
+            "directions": 1,
+            "bytes": 5079,
+            "matched": true
+          },
+          {
+            "id": "kr-bus-daegu-0fecf9247f3ddc",
+            "name": "대구 156번",
+            "directions": 1,
+            "bytes": 31943,
+            "matched": true
+          }
+        ],
+        "scope": "공개 HTTP 산출물 바이트 및 표본 지연 로딩 확인. 전체 브라우저 완주 검사와 별개."
+      }
     }
   },
-  "note": "원본 후보 행과 공개 카드 수가 다르다. 대구 6개 후보 행은 기존 카드 통합을 포함해 신규 카드 4개와 방향 6개로 반영된다. 만료된 한강버스 1개 카드·4개 방향은 계속 선택 제외한다."
+  "note": "원본 후보 행과 공개 카드 수가 다르다. 대구 6개 후보 행은 기존 카드 통합을 포함해 신규 카드 4개와 방향 6개로 반영된다. 만료된 한강버스 1개 카드·4개 방향은 계속 선택 제외한다.",
+  "browser": {
+    "testedAt": "2026-11-03T14:28:11.121Z",
+    "environment": "로컬 브라우저",
+    "route": "kr-bus-daejeon-30300157",
+    "name": "대전 55번",
+    "directions": 1,
+    "stops": 8,
+    "completed": true,
+    "accuracy": 100,
+    "progress": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "consecutiveSameNameStops": "첫 두 정류장과 마지막 두 정류장 각각 한 번씩 입력해 별도 진행 확인",
+    "guestSaved": true,
+    "authenticatedSupabase": false,
+    "nativeIme": false,
+    "input": "DOM 한글 입력",
+    "screenshot": "20261103-대전55-완주.png",
+    "regressionCompletions": [
+      {
+        "name": "교외선 무궁화호",
+        "from": "대곡",
+        "to": "의정부",
+        "stops": 6,
+        "accuracy": 100,
+        "completed": true
+      },
+      {
+        "name": "고속철도 전라선",
+        "from": "용산",
+        "to": "전주",
+        "stops": 6,
+        "accuracy": 100,
+        "completed": true
+      },
+      {
+        "name": "광주 도시철도 1호선",
+        "from": "평동",
+        "to": "녹동",
+        "stops": 20,
+        "accuracy": 100,
+        "completed": true
+      },
+      {
+        "name": "한강버스 서부 구간",
+        "from": "마곡",
+        "to": "여의도",
+        "stops": 3,
+        "accuracy": 100,
+        "completed": true
+      },
+      {
+        "name": "서울 143번",
+        "from": "정릉산장아파트",
+        "to": "수도전기공고후문",
+        "stops": 56,
+        "accuracy": 100,
+        "completed": true
+      }
+    ],
+    "localCompletions": 6,
+    "production": {
+      "verified": true,
+      "route": "kr-bus-daejeon-30300157",
+      "stops": 8,
+      "progress": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "accuracy": 100,
+      "completed": true,
+      "guestSaved": true,
+      "nativeIme": false,
+      "authenticatedSupabase": false,
+      "screenshot": "20261103-운영-대전55-완주.png"
+    }
+  }
 }
