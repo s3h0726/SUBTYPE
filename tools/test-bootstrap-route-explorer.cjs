@@ -12,7 +12,7 @@ assert.match(html,/app\.bundle\.js\?v=[^"']+/);
 assert.match(html,/class="line-select-layout row gx-3 gy-3"/);
 assert.match(html,/class="selected-line-panel col-12 col-lg-4"/);
 assert.match(html,/class="line-list-panel col-12 col-lg-8"/);
-assert.match(html,/id="route-grid" class="line-card-grid subtype-route-grid row g-3"/);
+assert.match(html,/id="route-grid" class="line-card-grid subtype-route-grid"/);
 const pickers=[...html.matchAll(/<div class="(?:country-switch|route-country-switch)[^"]*"[^>]*>([\s\S]*?)<\/div>/g)];
 assert.equal(pickers.length,2,'home and line explorer country pickers both exist');
 for(const picker of pickers){
@@ -24,12 +24,16 @@ for(const content of [app,bundle]){
  assert.match(content,/switchCountryFromPicker/,'both country pickers share one handler');
  assert.match(content,/\.country-switch,\.route-country-switch/);
  assert.match(content,/button\.setAttribute\('aria-pressed'/);
- assert.match(content,/subtype-route-col col-12 col-sm-6/);
+ assert.match(content,/grid\.querySelectorAll\(':scope > \.line-card'\)/);
+ assert.doesNotMatch(content,/element\.before\(column\)/,'no extra wrappers around route cards');
  assert.match(content,/role="tab" aria-selected=/);
  assert.match(content,/scrollIntoView\(\{block:'start'/);
 }
-assert.match(css,/flex-direction:row!important/,'legacy selector flex-direction must be overridden');
+assert.match(css,/#route-grid\.subtype-route-grid\{[\s\S]*?display:grid!important/,'route cards must use CSS Grid');
+assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)!important/,'two columns on medium widths');
+assert.match(css,/grid-template-columns:repeat\(3,minmax\(0,1fr\)\)!important/,'three columns on desktop');
+assert.match(css,/grid-template-columns:repeat\(4,minmax\(0,1fr\)\)!important/,'four columns on large screens');
 assert.match(css,/\.operator-logo-filters\{\s*display:flex;flex-wrap:nowrap/,'operator overflow guard');
-for(const breakpoint of [576,992,1450])assert(css.includes('@media(min-width:'+breakpoint+'px)'),'Bootstrap-responsive breakpoint '+breakpoint);
+for(const breakpoint of [576,992,1200,1600])assert(css.includes('@media(min-width:'+breakpoint+'px)'),'Bootstrap-responsive breakpoint '+breakpoint);
 assert.doesNotThrow(()=>new Function(bundle),'combined app bundle JS parses');
-console.log('PASS Bootstrap route explorer: country=5, pickers=2, Bootstrap grid/columns, filters, responsive cards, source/bundle.');
+console.log('PASS Bootstrap route explorer: country=5, pickers=2, Bootstrap layout and 1-4-column CSS route grid, filters, source/bundle.');
