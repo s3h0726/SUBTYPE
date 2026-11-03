@@ -65,4 +65,18 @@ assert(gameSource.includes('route=restoreKrBusLatinRoute(railDataRepository.reso
 assert(gameSource.includes('station=restoreKrBusLatinStation(station)'),'free drive must correct stop');
 assert(bundle.includes('route=restoreKrBusLatinRoute(railDataRepository.resolveRoute(route))'),'shipped game path corrected');
 
+// Evaluate the actual Game.answerValues method, not a copied test-only function.
+const typingSource=gameSource.slice(gameSource.indexOf('  answerValues(station){'),gameSource.indexOf('  routeIndex(station){'));
+assert(typingSource.includes('restoreKrBusLatinStation'),'actual typing path must restore stop name');
+const TestGame=new Function('restoreKrBusLatinStation','buildTypingModel',
+ 'return class TestGame{stationKoDisplay(value){return value};'+typingSource+'}'
+)(stop,value=>({inputText:String(value).normalize('NFC').replace(/[^\\p{L}\\p{N}]/gu,'')}));
+const game=new TestGame();game.route={countryId:'kr',mode:'bus',canonicalContract:'kr-canonical-v1'};
+assert.deepEqual(game.answerValues({sourceName:'B동',ko:'비동'}),['B동','비동'],'player sees and types B as first answer');
+assert.equal(game.answerValues({sourceName:'한울마을1단지.LH파주본부',ko:'한울마을1단지.엘에이치파주본부'})[0],
+ '한울마을1단지LH파주본부','Latin letters are required in real typing target');
+game.route={countryId:'jp',mode:'rail'};
+assert.equal(game.answerValues({sourceName:'B동',ko:'비동'})[0],'비동','Japanese station unaffected');
+
+
 console.log('PASS Korean bus Latin stop display: A/B/ABC, source-only conversion, directions, IDs, non-bus regression');
