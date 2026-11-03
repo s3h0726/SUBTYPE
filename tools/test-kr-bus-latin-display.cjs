@@ -44,6 +44,7 @@ for(const [input,number,want] of [
  ['서울 에이비씨10번','에이비씨10','서울 ABC10번'],
  ['서울 에이1번','A1','서울 A1번'],
  ['부산 씨100번','씨100','부산 C100번'],
+ ['서울 지1번','지1','서울 지1번'], // G and Z share the same generated Korean spelling; do not guess.
  ['경기 비봉2번','비봉2','경기 비봉2번'],
  ['서울 마을1번','마을1','서울 마을1번']
 ]){
@@ -70,6 +71,8 @@ assert(appSource.includes('...(r.line.aliases||[])'),'route search must include 
 const originalOfficial=route({id:'kr-bus-source-number',countryId:'kr',mode:'express_bus',
  line:{ko:'서울 엠100번'},routeNumber:'M100'});
 assert.equal(originalOfficial.line.ko,'서울 M100번','use official Latin route number when available');
+const sourceZ=route({id:'kr-bus-verified-z',countryId:'kr',mode:'bus',line:{ko:'서울 지1번'},routeNumber:'Z1'});
+assert.equal(sourceZ.line.ko,'서울 Z1번','restore ambiguous initial only with Latin original evidence');
 const railSource=route({id:'kr-rail-sample',countryId:'kr',mode:'rail',line:{ko:'서울 엠100번'},routeNumber:'엠100'});
 assert.equal(railSource.line.ko,'서울 엠100번','Korean rail route names untouched');
 const foreignSource=route({id:'jp-bus-sample',countryId:'jp',mode:'bus',line:{ko:'서울 에이1번'},routeNumber:'에이1'});
