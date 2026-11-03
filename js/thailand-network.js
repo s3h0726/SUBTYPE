@@ -2,9 +2,13 @@
 export const THAILAND_CATEGORIES=[['all','전체'],['rail','국철'],['commuter_rail','광역철도'],['subway','도시철도'],['monorail','모노레일'],['airport_rail','공항철도'],['automated-guideway','기타 여객철도'],['custom','커스텀']];
 const thEscape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function thLocalNames(){try{return JSON.parse(localStorage.getItem('subtype-thai-names-v1')||'{}')}catch{return{}}}
+// 동시에 반영된 태국 역명 보정이 번들 재생성 때 사라지지 않도록 원본 모듈에서 관리한다.
+let thailandNameEvidence={};
+export function setThailandNameEvidence(stations={}){thailandNameEvidence=stations;}
 export function thailandNames(entity={},kind='stations'){
  const n=entity.canonicalThaiNames||entity.names||entity,edits=thLocalNames(),id=entity.station_id||entity.stationMasterId||entity.id,edit=edits[kind]?.[id];
- return{ko:(typeof edit==='string'?edit:edit?.ko)||n.ko||entity.ko||entity.nameKo||'',th:n.th||entity.th||entity.nameTh||'',en:n.en||entity.en||entity.nameEn||entity.romaji||''};
+ const reviewedKo=kind==='stations'?thailandNameEvidence[id]?.ko:'';
+ return{ko:(typeof edit==='string'?edit:edit?.ko)||reviewedKo||n.ko||entity.ko||entity.nameKo||'',th:n.th||entity.th||entity.nameTh||'',en:n.en||entity.en||entity.nameEn||entity.romaji||''};
 }
 export function thailandNameText(entity,kind='stations'){const n=thailandNames(entity,kind);return[n.ko,n.th,n.en].filter(Boolean).join(' / ')}
 export function thailandNameMarkup(entity,kind='stations'){const n=thailandNames(entity,kind);return'<span class="th-name"><span lang="ko">'+thEscape(n.ko)+'</span>'+(n.th?'<small lang="th">'+thEscape(n.th)+'</small>':'')+(n.en?'<small lang="en">'+thEscape(n.en)+'</small>':'')+'</span>'}

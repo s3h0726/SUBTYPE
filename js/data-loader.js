@@ -1,4 +1,4 @@
-import{thailandPresentation,decodeThailandPayload}from'./thailand-network.js';
+import{thailandPresentation,decodeThailandPayload,setThailandNameEvidence}from'./thailand-network.js';
 import{decodeRoutePayload}from'./route-payload.js';
 import{configureTaiwanNetwork,taiwanKoreanPresentation}from'./taiwan-network.js';
 import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
@@ -161,6 +161,8 @@ export function integrateKoreanLine1Index(published,preview){
 export async function loadTransportData(countryId='jp',koreaMode='released'){
   if(countryId==='th'){
     await loadEditorNameOverrides();
+    // 선택적 보정표가 없어도 기존 태국 노선은 계속 불러온다.
+    try{const reviewed=await fetchJson(new URL('data/th/namuwiki-station-names.json?v=20261103-r2',document.baseURI));setThailandNameEvidence(reviewed?.countryId==='th'?reviewed.stations||{}:{})}catch(error){console.warn('태국 역명 보정표를 불러오지 못했습니다.',error);setThailandNameEvidence({})}
     const data=await fetchJson(new URL('data/th/generated/index.json',document.baseURI));
     if(data.country?.id!=='th')throw Error('태국 국가 식별자가 올바르지 않습니다.');
     const lines=data.routes.filter(r=>r.operationalStatus==='OPERATIONAL'&&r.playable&&r.geometryReady&&r.serviceCount>0).map(r=>thailandPresentation(normalizeLazyLine(r)));

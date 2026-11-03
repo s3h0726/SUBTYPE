@@ -33,8 +33,9 @@ const debounce=(fn,wait=120)=>{let t;return(...args)=>{clearTimeout(t);t=setTime
 const THAILAND_CATEGORIES=[['all','전체'],['rail','국철'],['commuter_rail','광역철도'],['subway','도시철도'],['monorail','모노레일'],['airport_rail','공항철도'],['automated-guideway','기타 여객철도'],['custom','커스텀']];
 const thEscape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function thLocalNames(){try{return JSON.parse(localStorage.getItem('subtype-thai-names-v1')||'{}')}catch{return{}}}
-let thailandNameEvidence={}; // Reviewed Korean station names; legacy gzip routes remain immutable.
-
+// 동시에 반영된 태국 역명 보정이 번들 재생성 때 사라지지 않도록 원본 모듈에서 관리한다.
+let thailandNameEvidence={};
+function setThailandNameEvidence(stations={}){thailandNameEvidence=stations;}
 function thailandNames(entity={},kind='stations'){
  const n=entity.canonicalThaiNames||entity.names||entity,edits=thLocalNames(),id=entity.station_id||entity.stationMasterId||entity.id,edit=edits[kind]?.[id];
  const reviewedKo=kind==='stations'?thailandNameEvidence[id]?.ko:'';
@@ -3093,9 +3094,8 @@ function integrateKoreanLine1Index(published,preview){
 async function loadTransportData(countryId='jp',koreaMode='released'){
   if(countryId==='th'){
     await loadEditorNameOverrides();
-    // Overlay reviewed Thai station names on existing compressed route payloads at runtime.
-    // A missing reference file must not make all routes unplayable.
-    try{const reviewed=await fetchJson(new URL('data/th/namuwiki-station-names.json?v=20261103-r2',document.baseURI));thailandNameEvidence=reviewed?.countryId==='th'?reviewed.stations||{}:{}}catch(error){console.warn('Thai reviewed names could not load',error);thailandNameEvidence={}}
+    // 선택적 보정표가 없어도 기존 태국 노선은 계속 불러온다.
+    try{const reviewed=await fetchJson(new URL('data/th/namuwiki-station-names.json?v=20261103-r2',document.baseURI));setThailandNameEvidence(reviewed?.countryId==='th'?reviewed.stations||{}:{})}catch(error){console.warn('태국 역명 보정표를 불러오지 못했습니다.',error);setThailandNameEvidence({})}
     const data=await fetchJson(new URL('data/th/generated/index.json',document.baseURI));
     if(data.country?.id!=='th')throw Error('태국 국가 식별자가 올바르지 않습니다.');
     const lines=data.routes.filter(r=>r.operationalStatus==='OPERATIONAL'&&r.playable&&r.geometryReady&&r.serviceCount>0).map(r=>thailandPresentation(normalizeLazyLine(r)));
