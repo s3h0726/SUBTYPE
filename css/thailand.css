@@ -1,2 +1,21 @@
 /* 기존 공통 카드·설정·역명판의 배치와 크기를 유지한다. */
 .th-name{display:inline-flex;flex-direction:column;gap:.15rem;vertical-align:middle}.th-name>[lang=ko]{font-weight:700}.th-name small{font-size:.75em;font-weight:400;opacity:.78;line-height:1.45;white-space:normal}.th-line-native{font-size:.9rem;line-height:1.7;opacity:.8}html[data-country=th] #prompt-main{font-family:inherit}html[data-country=th] #prompt-ko{font-family:system-ui,"Tahoma",sans-serif}html[data-country=th] .country-switch{flex-wrap:wrap}.th-source-notice{font-size:.8rem;line-height:1.6;max-width:75ch}.th-name-editor{margin-inline:.5rem}
+
+/* Share the same line-card and selected-preview layout as Japan, Korea,
+   Hong Kong and Taiwan; Thai script is a secondary label only. */
+html[data-country="th"] .th-line-card .line-card-identity{min-width:0}
+html[data-country="th"] .th-line-card .operator,
+html[data-country="th"] .th-line-card .line-card-line-name{white-space:normal;overflow-wrap:anywhere}
+html[data-country="th"] .th-line-card .th-line-native{
+  height:auto!important;max-height:none!important;overflow:visible!important;
+  white-space:normal;overflow-wrap:anywhere;font-size:clamp(13px,1.25vw,16px);
+  line-height:1.35
+}
+html[data-country="th"] .th-line-card footer{margin-top:auto}
+html[data-country="th"] .selected-line-card>.th-selected-native{
+  display:block;font-size:13px;line-height:1.4;font-weight:500;
+  color:var(--muted);white-space:normal;overflow-wrap:anywhere
+}
+html[data-country="th"] .selected-line-card .selected-line-operator,
+html[data-country="th"] .selected-line-card #selected-line-heading{overflow-wrap:anywhere}
+html[data-country="th"] #operator-filters button{height:auto;white-space:normal}
