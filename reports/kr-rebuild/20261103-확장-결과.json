@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-03T13:56:21.787Z",
+  "checkedAt": "2026-11-03T14:14:09.269Z",
   "baselineCommit": "28f9e1bd20f46a21144580dac9cd078ac7a77c37",
   "implementationCommit": "ec95f4052ed698908413caf8e90eb0238deda2e8",
   "sourceSupportedRoutes": 8185,
@@ -20316,7 +20316,36 @@
     "reason": "서울숲 임시 한강버스 동부 계통은 공식 운영 종료일 2026-10-31 이후 선택 제외 유지"
   },
   "publication": {
-    "status": "배포 확인 전"
+    "status": "success",
+    "codeCommit": "9e600d7af58661ed2168e66353d140548c35fa7e",
+    "implementationCommit": "ec95f4052ed698908413caf8e90eb0238deda2e8",
+    "url": "https://s3h0726.github.io/SUBTYPE/",
+    "catalogWorkflow": {
+      "id": 41650398483,
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41650398483",
+      "conclusion": "success"
+    },
+    "geometryWorkflow": {
+      "id": 41650398456,
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41650398456",
+      "conclusion": "success"
+    },
+    "pagesWorkflow": {
+      "id": 41650398398,
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/41650398398",
+      "conclusion": "success"
+    },
+    "artifactEvidence": "reports/kr-rebuild/20261103-공개-산출물.json",
+    "matchedRuntimeAssets": 3,
+    "matchedRouteSamples": 12,
+    "productionBrowser": {
+      "route": "인천 연수02번",
+      "completed": true,
+      "stops": 4,
+      "guestStorage": true,
+      "proof": "reports/kr-rebuild/20261103-운영-인천-완주.png"
+    },
+    "limitations": "전국망 완성 판정 아님. 실제 운영체제 한글 IME와 로그인 Supabase 기록 저장은 미검증."
   },
   "browser": {
     "checkedAt": "2026-11-02T16:59:59.427Z",
@@ -20385,6 +20414,16 @@
     "consecutiveSameName": "대전 급행4번 마지막 두 정류장의 동일 이름을 각각 입력",
     "nativeIme": false,
     "supabaseAuthenticated": false,
-    "proof": "reports/kr-rebuild/20261103-광주-순환-완주.png"
+    "proof": "reports/kr-rebuild/20261103-광주-순환-완주.png",
+    "production": {
+      "checkedAt": "2026-11-03T14:10:26.376Z",
+      "route": "인천 연수02번",
+      "stops": 4,
+      "completed": true,
+      "accuracy": 100,
+      "guestStorage": true,
+      "proof": "reports/kr-rebuild/20261103-운영-인천-완주.png",
+      "scope": "공개 운영 사이트 실제 선택·한국어 순차 입력·종착 결과 확인"
+    }
   }
 }
