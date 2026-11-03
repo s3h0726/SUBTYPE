@@ -32,7 +32,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <button class="country active" data-country="jp" aria-pressed="true">🇯🇵 일본</button>
 <button class="country" data-country="kr" aria-pressed="false">🇰🇷 대한민국</button>
 <button class="country" data-country="hk" aria-pressed="false">🇭🇰 홍콩</button>
-<a class="country" href="./thailand.html">🇹🇭 태국</a><button class="country" data-country="tw" aria-pressed="false">🇹🇼 대만</button>
+<button class="country" data-country="th" aria-pressed="false">🇹🇭 태국</button><button class="country" data-country="tw" aria-pressed="false">🇹🇼 대만</button>
 </div>
 <div class="toolbar" id="tabs">
 <button class="tab active" data-file="operators">운영사 <span id="count-operators">…</span></button>
@@ -48,12 +48,12 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <button id="exportChanges">변경 항목만 CSV 저장</button>
 <button id="reset">현재 표 변경 취소</button>
 </div>
-<div class="toolbar" id="route-filter-bar" hidden><label for="route-filter">노선 선택</label><select id="route-filter" aria-label="역명·운행계통을 편집할 노선"><option value="">노선을 선택하세요</option></select><small>한국·홍콩의 역명 및 운행계통은 선택한 노선 단위로 불러옵니다. 다른 노선의 임시 편집은 별도로 보관됩니다.</small></div>
+<div class="toolbar" id="route-filter-bar" hidden><label for="route-filter">노선 선택</label><select id="route-filter" aria-label="역명·운행계통을 편집할 노선"><option value="">노선을 선택하세요</option></select><small>한국·홍콩·태국의 역명 및 운행계통은 선택한 노선 단위로 불러옵니다. 다른 노선의 임시 편집은 별도로 보관됩니다.</small></div>
 <div class="toolbar"><label for="githubToken">GitHub fine-grained 토큰 (Contents: Read and write)</label><input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_..." style="flex:1;min-width:200px;padding:9px;border:1px solid #bdccd8;border-radius:8px"><small>토큰은 서버·브라우저 저장소에 저장하지 않습니다.</small></div>
 <div class="panel"><div id="status" role="status">자료 읽는 중…</div><div id="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div></div>
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
 <p class="note">원본 데이터가 추가·변경된 경우 <strong>최신 원본 새로고침</strong>을 누르세요. 검색 목록과 국가별 노선 캐시를 갱신하며, 저장하지 않은 편집 초안은 안정적인 노선·역 ID로 보존합니다.</p>
-<p class="note">상단에서 <strong>일본·대한민국·홍콩·대만</strong>을 선택한 후 운영사, 노선, 운행계통 또는 역명을 편집할 수 있습니다. 국가마다 검색·수정 초안·CSV 저장이 분리됩니다. 고유 역명은 비교용이므로 실제 변경은 <strong>역명</strong> 탭에서 노선별로 적용하세요.</p>
+<p class="note">상단에서 <strong>일본·대한민국·홍콩·태국·대만</strong>을 선택한 후 운영사, 노선, 운행계통 또는 역명을 편집할 수 있습니다. 국가마다 검색·수정 초안·CSV 저장이 분리됩니다. 고유 역명은 비교용이므로 실제 변경은 <strong>역명</strong> 탭에서 노선별로 적용하세요.</p>
 <p class="note">일본 노선의 최신 나무위키 대조 명칭을 반영했습니다. 역명·고유 역명 탭에는 <strong>출처 검증</strong>과 <strong>근거 URL</strong>이 표시됩니다. 검증되지 않은 항목은 자동으로 정확하다고 확정하지 않습니다. 예전 브라우저 임시 저장본이 최신 원본명을 덮어쓰지 않도록 편집 초안을 새 버전으로 분리했습니다.</p>
 <p class="note">초록색 한글명(직통·운행계통 포함)과 노선 RGB 칸을 수정할 수 있습니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
 </main>
@@ -61,10 +61,10 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <script>
 'use strict';
 const FILES=['operators','lines','services','stations-by-line','stations-unique'];
-const COUNTRIES={jp:'일본',kr:'대한민국',hk:'홍콩',tw:'대만'};
-let country=['jp','kr','hk','tw'].includes(new URLSearchParams(location.search).get('country'))?new URLSearchParams(location.search).get('country'):'jp';
+const COUNTRIES={jp:'일본',kr:'대한민국',hk:'홍콩',th:'태국',tw:'대만'};
+let country=['jp','kr','hk','th','tw'].includes(new URLSearchParams(location.search).get('country'))?new URLSearchParams(location.search).get('country'):'jp';
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0,loadSequence=0;
-const routeSelection={kr:'',hk:''},indexCache={};
+const routeSelection={kr:'',hk:'',th:''},indexCache={};
 const routeBar=document.querySelector('#route-filter-bar'),routePicker=document.querySelector('#route-filter');
 const DATA_VERSION='20261102-nationwide-revalidated'; // Preserve old drafts under their prior key; corrected source names start a fresh draft.
 let FRESH_DATA_QUERY='ts='+Date.now();
@@ -112,7 +112,7 @@ function saveCSV(data,name){const blob=new Blob([makeCSV(data)],{type:'text/csv;
 function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 // Preserve draft edits by stable route/station identity, not by row number.
 function rowKey(r){if(file==='operators')return r[0];if(file==='lines'||file==='korea-lines')return r[2];if(file==='services')return r[0];if(file==='stations-by-line')return r[2]+'::'+r[4];if(file==='stations-unique')return r[0]||r[2]+'::'+r[3];return JSON.stringify(r)}
-function draftKey(){return 'metrot-korean-edit-'+DATA_VERSION+'-'+country+'-'+file+((country==='kr'||country==='hk')&&['stations-by-line','stations-unique','services'].includes(file)?'-'+(routeSelection[country]||'none'):'')}
+function draftKey(){return 'metrot-korean-edit-'+DATA_VERSION+'-'+country+'-'+file+((country==='kr'||country==='hk'||country==='th')&&['stations-by-line','stations-unique','services'].includes(file)?'-'+(routeSelection[country]||'none'):'')}
 function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[rowKey(r)]=r});localStorage.setItem(draftKey(),JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
 function applyDraft(){try{
  const old='metrot-korean-edit-'+DATA_VERSION+'-'+(country==='kr'&&file==='lines'?'korea-lines':file);
@@ -156,7 +156,7 @@ async function koreaLineRows(){
 
 async function countryIndex(requestedCountry=country){
  if(indexCache[requestedCountry])return indexCache[requestedCountry];
- const path={kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json'}[requestedCountry];
+ const path={kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json',th:'data/th/generated/index.json'}[requestedCountry];
  if(!path)throw Error('국가별 데이터 없음: '+requestedCountry);
  const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
  if(!response.ok)throw Error(path+' HTTP '+response.status);
@@ -215,7 +215,25 @@ function tableForRoute(route,name){
  const seen=new Set(),unique=stationRecords.filter(r=>{const key=r[5]||r[4];if(seen.has(key))return false;seen.add(key);return true});
  return [HEADERS[name],...unique.map(r=>[r[5]||r[4],r[6],r[7],r[8],r[9],r[10],r[2],r[12],r[13]])];
 }
+
+async function thaiCatalog(){const response=await fetch('../../data/th/generated/names.json?'+FRESH_DATA_QUERY,{cache:'no-store'});if(!response.ok)throw Error('태국 이름 목록 HTTP '+response.status);return response.json()}
+async function thailandTable(name){
+ const [catalog,index]=await Promise.all([thaiCatalog(),countryIndex('th')]);
+ const ops=new Map(catalog.operators.map(o=>[o.id,o.names.ko]));
+ const lines=new Map(catalog.lines.map(l=>[l.id,l]));
+ if(name==='operators')return [HEADERS.operators,...catalog.operators.map(o=>[o.id,o.names.ko,o.names.th,o.names.en,'data/th/generated/names.json'])];
+ if(name==='lines')return [HEADERS.lines,...catalog.lines.map(l=>[l.operatorId,ops.get(l.operatorId)||'',l.id,l.ko,l.th,l.en,index.routes.find(r=>r.id===l.id)?.lineColor||'#60736A','data/th/generated/names.json'])];
+ const selected=routeSelection.th;
+ if(!selected)return [HEADERS[name]];
+ const meta=index.routes.find(r=>r.id===selected);if(!meta)throw Error('태국 노선이 없습니다: '+selected);
+ const line=lines.get(selected),stationMap=new Map(catalog.stations.map(st=>[st.id,st]));
+ if(name==='services')return [HEADERS.services,...catalog.services.filter(s=>s.lineId===selected).map(s=>[s.id,'운행계통',selected,s.th,s.ko,s.en,ops.get(line?.operatorId)||'',line?.ko||''])];
+ const stations=(meta.stationSequence||[]).map(st=>stationMap.get(st.id)||st).map((st,i)=>[line?.operatorId||'',ops.get(line?.operatorId)||'',selected,line?.ko||'',st.id||selected+'-stop-'+i,st.stationMasterId||'',st.ko||'',st.th||'','',st.en||'','태국 노선 원본','data/th/generated/names.json','검토 필요','']);
+ if(name==='stations-by-line')return [HEADERS[name],...stations];
+ const seen=new Set();return [HEADERS[name],...stations.filter(r=>{if(seen.has(r[4]))return false;seen.add(r[4]);return true}).map(r=>[r[4],r[6],r[7],r[8],r[9],r[10],r[2],r[12],r[13]])];
+}
 async function countryTable(name){
+ if(country==='th')return thailandTable(name);
  if(country==='jp'||country==='tw'){
   if(name==='services'){
    if(country==='jp')return [HEADERS.services,...(await serviceRows()).filter(r=>!String(r[2]).startsWith('tw-'))];
@@ -247,7 +265,7 @@ async function countryTable(name){
  throw Error('지원하지 않는 탭: '+name);
 }
 async function updateRouteSelector(){
- const visibleSelector=(country==='kr'||country==='hk')&&['services','stations-by-line','stations-unique'].includes(file);
+ const visibleSelector=(country==='kr'||country==='hk'||country==='th')&&['services','stations-by-line','stations-unique'].includes(file);
  routeBar.hidden=!visibleSelector;if(!visibleSelector)return;
  const index=await countryIndex();
  routePicker.innerHTML='<option value="">노선을 선택하세요</option>'+(index.routes||[]).map(r=>
