@@ -35,6 +35,35 @@ const fixture={id:'kr-bus-test',countryId:'kr',mode:'bus',stations:[
  service:{id:'run',nameKo:'에이동 → 비 · 일반'},
  stations:[{id:'1',sourceName:'A동',ko:'에이동',latitude:37},
  {id:'2',sourceName:'B',ko:'비',latitude:38}]}]};
+
+// Korean bus route *numbers* are also restored for route list, search and game HUD.
+for(const [input,number,want] of [
+ ['서울 에이1번','에이1','서울 A1번'],
+ ['서울 비2번','비2','서울 B2번'],
+ ['경기 성남 엠2311번','엠2311','경기 성남 M2311번'],
+ ['서울 에이비씨10번','에이비씨10','서울 ABC10번'],
+ ['서울 에이1번','A1','서울 A1번'],
+ ['부산 씨100번','씨100','부산 C100번'],
+ ['경기 비봉2번','비봉2','경기 비봉2번'],
+ ['서울 마을1번','마을1','서울 마을1번']
+]){
+ const initial={id:'kr-bus-visual-test',countryId:'kr',mode:'bus',line:{ko:input},routeNumber:number};
+ const converted=route(initial);
+ assert.equal(converted.line.ko,want,'line name: '+input);
+ assert.equal(initial.line.ko,input,'source line name must remain unchanged');
+ if(want!==input){
+  assert(converted.line.aliases.includes(input),'legacy Korean search alias for '+input);
+  assert(/[A-Z]/.test(converted.routeNumber),'routeNumber converted to Latin letters');
+ }
+}
+const originalOfficial=route({id:'kr-bus-source-number',countryId:'kr',mode:'express_bus',
+ line:{ko:'서울 엠100번'},routeNumber:'M100'});
+assert.equal(originalOfficial.line.ko,'서울 M100번','use official Latin route number when available');
+const railSource=route({id:'kr-rail-sample',countryId:'kr',mode:'rail',line:{ko:'서울 엠100번'},routeNumber:'엠100'});
+assert.equal(railSource.line.ko,'서울 엠100번','Korean rail route names untouched');
+const foreignSource=route({id:'jp-bus-sample',countryId:'jp',mode:'bus',line:{ko:'서울 에이1번'},routeNumber:'에이1'});
+assert.equal(foreignSource.line.ko,'서울 에이1번','other countries untouched');
+
 const result=route(fixture),run=result.verifiedJourneys[0];
 assert.equal(result.stations[0].ko,'A동');
 assert.equal(run.stations[1].ko,'B');
