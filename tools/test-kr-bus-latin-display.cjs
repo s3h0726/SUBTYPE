@@ -70,7 +70,7 @@ const typingSource=gameSource.slice(gameSource.indexOf('  answerValues(station){
 assert(typingSource.includes('restoreKrBusLatinStation'),'actual typing path must restore stop name');
 const TestGame=new Function('restoreKrBusLatinStation','buildTypingModel',
  'return class TestGame{stationKoDisplay(value){return value};'+typingSource+'}'
-)(stop,value=>({inputText:String(value).normalize('NFC').replace(/[^\\p{L}\\p{N}]/gu,'')}));
+)(stop,value=>({inputText:String(value).normalize('NFC').replace(/[^A-Za-z0-9가-힣]/g,'')}));
 const game=new TestGame();game.route={countryId:'kr',mode:'bus',canonicalContract:'kr-canonical-v1'};
 assert.deepEqual(game.answerValues({sourceName:'B동',ko:'비동'}),['B동','비동'],'player sees and types B as first answer');
 assert.equal(game.answerValues({sourceName:'한울마을1단지.LH파주본부',ko:'한울마을1단지.엘에이치파주본부'})[0],
