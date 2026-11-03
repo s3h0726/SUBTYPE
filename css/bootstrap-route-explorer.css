@@ -188,6 +188,17 @@ body[data-current-screen="rail-map"] #screen-select.subtype-route-explorer.activ
   height:auto;overflow:visible!important;margin:0!important;
   padding:2px 0 5px!important;background:transparent!important;
 }
+/* Operator catalogs (especially Japan) may contain hundreds of buttons.
+   Keep them on one scrollable row instead of pushing route cards below the fold. */
+#screen-select .subtype-list-surface .operator-logo-filters{
+  display:flex;flex-wrap:nowrap;align-items:center;justify-content:flex-start;
+  gap:7px;width:100%;max-height:59px!important;
+  overflow-x:auto!important;overflow-y:hidden!important;
+  padding:3px 2px 9px!important;scrollbar-width:thin;
+}
+#screen-select .subtype-list-surface .operator-logo-filters button{
+  flex:0 0 auto;white-space:nowrap;max-width:260px;
+}
 #screen-select .subtype-list-surface .line-category-tabs[hidden],
 #screen-select .subtype-list-surface .operator-logo-filters[hidden]{display:none!important}
 #screen-select .subtype-list-surface .line-category-tabs button,
