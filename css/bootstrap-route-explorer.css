@@ -237,97 +237,101 @@ body[data-current-screen="rail-map"] #screen-select.subtype-route-explorer.activ
 }
 #screen-select .subtype-search-field input::placeholder{color:var(--muted);opacity:1}
 
-/* Bootstrap row of route-card columns, independent of legacy grid rules. */
-#screen-select .subtype-list-surface .subtype-route-grid.row{
-  display:flex!important;flex-wrap:wrap!important;align-content:flex-start;
-  grid-template-columns:none!important;gap:0!important;
-  flex:1 1 auto;min-height:165px;max-height:min(64vh,760px)!important;
-  width:auto;height:auto;overflow:auto!important;
-  --bs-gutter-x:12px;--bs-gutter-y:12px;
-  margin-top:calc(-1 * var(--bs-gutter-y));
-  margin-right:calc(-.5 * var(--bs-gutter-x));
-  margin-left:calc(-.5 * var(--bs-gutter-x));
-  padding:0 4px 10px!important;scrollbar-gutter:stable;
+/* Card grid is explicitly CSS Grid, not a Bootstrap row. It stays independent
+   of the existing Japanese/Korean/Hong Kong route-card layout rules. */
+#screen-select .subtype-list-surface #route-grid.subtype-route-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-auto-flow:row!important;
+  align-content:start!important;align-items:stretch!important;
+  gap:12px!important;
+  flex:1 1 auto;
+  min-width:0;min-height:165px;
+  max-height:min(64vh,760px)!important;
+  width:100%!important;height:auto!important;
+  margin:0!important;padding:3px 5px 12px 1px!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  scrollbar-gutter:stable;
 }
-#screen-select .subtype-route-grid.row>.subtype-route-col{
-  box-sizing:border-box;flex:0 0 auto;width:100%;max-width:100%;
-  padding:var(--bs-gutter-y) calc(.5 * var(--bs-gutter-x)) 0;
-  min-width:0;
-}
-#screen-select .subtype-route-grid .subtype-route-col>.line-card{
-  display:flex;flex-direction:column;align-items:stretch;
-  width:100%;height:100%!important;min-height:168px!important;
-  margin:0!important;padding:16px!important;
+#screen-select #route-grid.subtype-route-grid>.line-card{
+  box-sizing:border-box!important;
+  display:flex!important;flex-direction:column;align-items:stretch;
+  width:100%!important;max-width:100%!important;
+  height:auto!important;min-height:146px!important;
+  margin:0!important;padding:13px 14px!important;
   border:1px solid var(--line);border-top:4px solid var(--route-color,var(--green));
-  border-radius:16px;overflow:visible!important;
+  border-radius:15px;overflow:visible!important;
   background:var(--paper);color:var(--ink);
   box-shadow:0 4px 16px color-mix(in srgb,var(--ink) 3%,transparent);
-  text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;
+  text-align:left;cursor:pointer;
+  transition:transform .15s,box-shadow .15s,border-color .15s;
 }
-#screen-select .subtype-route-grid .line-card:after{height:0!important}
-#screen-select .subtype-route-grid .line-card:hover,
-#screen-select .subtype-route-grid .line-card:focus-visible{
+#screen-select #route-grid.subtype-route-grid>.line-card:after{display:none!important}
+#screen-select #route-grid.subtype-route-grid>.line-card:hover,
+#screen-select #route-grid.subtype-route-grid>.line-card:focus-visible{
   border-color:var(--route-color,var(--green));
   box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 12%,transparent);
   transform:translateY(-2px);
 }
-#screen-select .subtype-route-grid .line-card.selected{
+#screen-select #route-grid.subtype-route-grid>.line-card.selected{
   border-color:var(--route-color,var(--green));
   box-shadow:inset 0 0 0 1px var(--route-color,var(--green)),0 10px 26px color-mix(in srgb,var(--ink) 10%,transparent);
 }
-#screen-select .subtype-route-grid .line-card:focus-visible,
+#screen-select #route-grid.subtype-route-grid>.line-card:focus-visible,
 #screen-select .subtype-list-surface button:focus-visible,
 #screen-select .subtype-selected-surface button:focus-visible{
   outline:3px solid #248fe7;outline-offset:3px;
 }
-#screen-select .subtype-route-grid .line-card .operator{
-  margin:8px 0 5px;max-width:100%;
-  color:var(--muted);font:800 11px/1.35 "Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+#screen-select #route-grid.subtype-route-grid>.line-card .operator{
+  margin:5px 0 6px;max-width:100%;
+  color:var(--muted);
+  font:800 11px/1.35 "Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
   white-space:normal;overflow:visible;overflow-wrap:anywhere;
 }
-#screen-select .subtype-route-grid .line-card h3{
-  min-height:0!important;max-height:none!important;height:auto;
+#screen-select #route-grid.subtype-route-grid>.line-card h3{
+  min-height:0!important;max-height:none!important;height:auto!important;
   display:block!important;overflow:visible!important;
-  color:var(--ink);font-size:clamp(17px,1.6vw,23px);
+  color:var(--ink);font-size:clamp(16px,1.45vw,21px);
   font-weight:850;line-height:1.28;letter-spacing:-.03em;
   white-space:normal;overflow-wrap:anywhere;
 }
-#screen-select .subtype-route-grid .line-card p{
+#screen-select #route-grid.subtype-route-grid>.line-card p{
   display:block!important;max-height:none!important;overflow:visible!important;
-  margin:7px 0 0;font-size:11px;line-height:1.48;
+  margin:6px 0 0;font-size:11px;line-height:1.48;
   color:var(--muted);white-space:normal;overflow-wrap:anywhere;
 }
-#screen-select .subtype-route-grid .line-card footer{
-  margin-top:auto;padding-top:13px;
+#screen-select #route-grid.subtype-route-grid>.line-card footer{
+  margin-top:auto;padding-top:11px;
   display:flex;align-items:center;flex-wrap:wrap;gap:5px 10px;
   color:var(--muted);font-size:10px;line-height:1.4;
 }
-#screen-select .subtype-route-grid .line-card.random{
+#screen-select #route-grid.subtype-route-grid>.line-card.random{
   background:linear-gradient(135deg,color-mix(in srgb,var(--paper) 85%,var(--green) 15%),var(--paper));
 }
-#screen-select .subtype-route-grid .line-card:disabled{cursor:not-allowed;opacity:.68;transform:none;box-shadow:none}
-#screen-select .subtype-route-grid .subtype-route-col>.muted{
-  padding:24px 12px;color:var(--muted);font-size:13px;
-}
+#screen-select #route-grid.subtype-route-grid>.line-card:disabled{cursor:not-allowed;opacity:.68;transform:none;box-shadow:none}
+#screen-select #route-grid.subtype-route-grid>.muted{grid-column:1 / -1;padding:20px 12px;color:var(--muted);font-size:13px}
 
 /* Bootstrap lg two-column layout; one column / list first on smaller screens. */
 @media(min-width:576px){
-  #screen-select .subtype-route-grid.row>.subtype-route-col{width:50%}
+  #screen-select .subtype-list-surface #route-grid.subtype-route-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 @media(min-width:992px){
   #screen-select.subtype-route-explorer .line-select-layout.row>.selected-line-panel{order:1;width:33.333333%;max-width:33.333333%}
   #screen-select.subtype-route-explorer .line-select-layout.row>.line-list-panel{order:2;width:66.666667%;max-width:66.666667%}
   #screen-select .subtype-selected-surface{position:sticky;top:16px;min-height:520px}
   #screen-select .subtype-list-surface{min-height:520px}
-  #screen-select .subtype-route-grid.row>.subtype-route-col{width:50%}
+  #screen-select .subtype-list-surface #route-grid.subtype-route-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
-@media(min-width:1450px){
-  #screen-select .subtype-route-grid.row>.subtype-route-col{width:33.333333%}
+@media(min-width:1200px){
+  #screen-select .subtype-list-surface #route-grid.subtype-route-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(min-width:1600px){
+  #screen-select .subtype-list-surface #route-grid.subtype-route-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
 }
 @media(max-width:991px){
   #screen-select .subtype-explorer-tools{justify-content:flex-start;width:100%}
   #screen-select .subtype-selected-surface{min-height:280px}
-  #screen-select .subtype-route-grid.row{max-height:min(65vh,680px)!important}
+  #screen-select .subtype-route-grid{max-height:min(65vh,680px)!important}
   #screen-select .selected-line-panel{scroll-margin-top:18px}
 }
 @media(max-width:575px){
@@ -340,8 +344,8 @@ body[data-current-screen="rail-map"] #screen-select.subtype-route-explorer.activ
   #screen-select .subtype-country-selector button{flex:1 1 auto;min-width:48px;padding:9px 8px;font-size:11px}
   #screen-select .subtype-back-button{width:100%;text-align:center}
   #screen-select .subtype-list-surface,#screen-select .subtype-selected-surface{padding:17px}
-  #screen-select .subtype-route-grid.row>.subtype-route-col{width:100%}
-  #screen-select .subtype-route-grid .subtype-route-col>.line-card{min-height:132px!important}
+  #screen-select .subtype-list-surface #route-grid.subtype-route-grid{grid-template-columns:minmax(0,1fr)!important}
+  #screen-select #route-grid.subtype-route-grid>.line-card{min-height:132px!important}
   #screen-select .subtype-list-surface .line-category-tabs button,
   #screen-select .subtype-list-surface .operator-logo-filters button{min-height:38px;font-size:11px}
 }
