@@ -95,7 +95,7 @@ body[data-current-screen="rail-map"] #screen-select.subtype-route-explorer.activ
 
 /* Bootstrap .row and .col-lg-* for the two principal selector panels. */
 #screen-select.subtype-route-explorer .line-select-layout.row{
-  display:flex!important;flex-wrap:wrap!important;align-content:start;
+  display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-content:start;
   grid-template-columns:none!important;gap:0!important;
   height:auto!important;min-height:0!important;max-height:none!important;
   overflow:visible!important;background:transparent;border:0;border-radius:0;
