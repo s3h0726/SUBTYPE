@@ -24,7 +24,7 @@ class Repository{
   registerRoute(route){
     if(!route?.id)return route;const operatorNames=route.operator?.names||route.operator||{},lineNames=route.line?.names||route.line||{};
     if(!this.operators.has(route.operatorId))this.operators.set(route.operatorId,{id:route.operatorId,names:{ja:clean(operatorNames.ja),ko:clean(operatorNames.ko),en:clean(operatorNames.en),...(route.countryId==='th'?{th:operatorNames.th}:{}),...(route.countryId==='tw'?{zh:clean(operatorNames.zh)}:{})}});
-    this.lines.set(route.id,{id:route.id,operatorId:route.operatorId,names:{ja:clean(lineNames.ja),kana:clean(lineNames.kana),ko:clean(lineNames.ko),en:clean(lineNames.en),...(route.countryId==='th'?{th:lineNames.th}:{}),...(route.countryId==='tw'?{zh:clean(lineNames.zh)}:{})},color:route.lineColor||route.color,code:route.code||'',workspace:route.workspace});
+    this.lines.set(route.id,{id:route.id,operatorId:route.operatorId,names:{ja:clean(lineNames.ja),kana:clean(lineNames.kana),ko:clean(lineNames.ko),en:clean(lineNames.en),...(Array.isArray(lineNames.aliases)?{aliases:[...new Set(lineNames.aliases.map(clean).filter(Boolean))]}:{}),...(route.countryId==='th'?{th:lineNames.th}:{}),...(route.countryId==='tw'?{zh:clean(lineNames.zh)}:{})},color:route.lineColor||route.color,code:route.code||'',workspace:route.workspace});
     for(const station of route.stations||[])this.registerStation(station);this.routes.set(route.id,route);return route
   }
   getOperator(id){return this.operators.get(id)||null}
