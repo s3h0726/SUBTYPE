@@ -40,7 +40,7 @@ function urbanBuild(raw,owner=null){
  let list=raw.stations.map((s,i)=>({...s,ko:urbanNames[raw.key][i],code:s.code||''}));
  if(raw.key==='sukhumvit'){
   list=list.filter(s=>s.code!=='N6');
-  const a=nearest(points,[13.80255,100.55378]);list.push({th:'หมอชิต',en:'Mo Chit',ko:'머칫',code:'N8',d:(a.index+a.t)*raw.step});list.sort((a,b)=>a.d-b.d);
+  const a=nearest(points,[13.80255,100.55378]);list.push({th:'หมอชิต',en:'Mo Chit',ko:'모칫',code:'N8',d:(a.index+a.t)*raw.step});list.sort((a,b)=>a.d-b.d);
   list.forEach((s,i)=>{s.code=i<18?'N'+(24-i):i<23?'N'+(23-i):i===23?'CEN':'E'+(i-23)});
  }
  if(raw.key==='silom')list[0].code='W1';
