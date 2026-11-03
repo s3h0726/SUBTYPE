@@ -3095,7 +3095,7 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
     await loadEditorNameOverrides();
     // Overlay reviewed Thai station names on existing compressed route payloads at runtime.
     // A missing reference file must not make all routes unplayable.
-    try{const reviewed=await fetchJson(new URL('data/th/namuwiki-station-names.json?v=20261103-r1',document.baseURI));thailandNameEvidence=reviewed?.countryId==='th'?reviewed.stations||{}:{}}catch(error){console.warn('Thai reviewed names could not load',error);thailandNameEvidence={}}
+    try{const reviewed=await fetchJson(new URL('data/th/namuwiki-station-names.json?v=20261103-r2',document.baseURI));thailandNameEvidence=reviewed?.countryId==='th'?reviewed.stations||{}:{}}catch(error){console.warn('Thai reviewed names could not load',error);thailandNameEvidence={}}
     const data=await fetchJson(new URL('data/th/generated/index.json',document.baseURI));
     if(data.country?.id!=='th')throw Error('태국 국가 식별자가 올바르지 않습니다.');
     const lines=data.routes.filter(r=>r.operationalStatus==='OPERATIONAL'&&r.playable&&r.geometryReady&&r.serviceCount>0).map(r=>thailandPresentation(normalizeLazyLine(r)));
