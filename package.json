@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "test:kr-bus-latin-display": "node tools/test-kr-bus-latin-display.cjs",
     "audit:recovery": "node tools/audit-data-recovery.js",
     "build:data": "node tools/audit-data-recovery.js && node tools/build-static.js && node tools/test-single-source.js",
     "build:korea": "node tools/build-korea-data.js",
@@ -36,7 +37,7 @@
     "build": "node tools/validate-data.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/build-static.js && node tools/validate-korea-data.js && node tools/test-single-source.js",
     "build:app": "node tools/build-app-bundle.js",
     "test:single-source": "node --test tools/test-workspace-contracts.cjs && node tools/test-single-source.js",
-    "test": "node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/audit-ui-quality.js && node tools/validate-korea-data.js && node tools/test-single-source.js && npm run test:shonan && npm run test:ueno",
+    "test": "node tools/test-kr-bus-latin-display.cjs && node tools/validate-data.js && node tools/audit-data-recovery.js && node tools/audit-route-integrity.js && node tools/validate-service-patterns.js && node tools/audit-ui-quality.js && node tools/validate-korea-data.js && node tools/test-single-source.js && npm run test:shonan && npm run test:ueno",
     "audit:korea": "node tools/validate-korea-data.js --require-complete",
     "audit:korea-rebuild": "node tools/build-korea-data.js",
     "research:korea:3": "node tools/research-kr-missing-tracks.mjs --line 3 --all",
