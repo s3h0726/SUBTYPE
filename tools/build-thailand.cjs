@@ -137,10 +137,13 @@ for(const route of corridors.values()){
 const candidates=[...corridors.values()].filter(r=>!r.patterns.length).map(r=>({id:r.id,line:r.line,status:'INCOMPLETE',reason:issues.filter(i=>i.corridorId===r.id).map(i=>i.reason).filter((x,i,a)=>a.indexOf(x)===i)}));
 for(const [id,ko,status]of[['orange','오렌지라인','UNDER_CONSTRUCTION'],['purple-south','퍼플라인 남부 연장','UNDER_CONSTRUCTION'],['red-extension','레드라인 미개통 연장','UNDER_CONSTRUCTION'],['high-speed','태국 고속철도','UNDER_CONSTRUCTION'],['songkhla','쏭클라 구선','CLOSED'],['laemchabang','램차방 화물 지선','FREIGHT_ONLY'],['klongluk','반클롱륵 국경 운행','INCOMPLETE']])candidates.push({id:'th-candidate-'+id,nameKo:ko,status,reason:'공개 여객 운행계통·실선로 결합 검증 미완료; 플레이 제외'});
 require('./lib/thailand-transfers.cjs').applyTransfers(routes);
+// Korean names checked against specific Namuwiki route/station lists. Thai station IDs
+// and source-language names remain authoritative; manual browser edits override these.
+const namuwiki=fs.existsSync('data/th/namuwiki-station-names.json')?read('data/th/namuwiki-station-names.json').stations||{}:{};
 const overrides=fs.existsSync('data/th/korean-overrides.json')?read('data/th/korean-overrides.json'):{};
 const override=(kind,id)=>{const v=overrides[kind]?.[id];return typeof v==='string'?v:v?.ko};
 for(const o of operators){const ko=override('operators',o.id);if(ko)Object.assign(o.names,{ko,ja:ko})}
-for(const r of routes){r.operator={...operators.find(o=>o.id===r.operatorId).names};const lineKo=override('lines',r.id);if(lineKo)Object.assign(r.line,{ko:lineKo,ja:lineKo});for(const p of r.patterns){const ko=override('services',p.id);if(ko){p.nameKo=ko;p.service.nameKo=ko;p.service.nameJa=ko}for(const s of p.stations){const name=override('stations',s.station_id);if(name){Object.assign(s,{ko:name,ja:name,kana:name});s.names={...s.names,ko:name,ja:name}}}}
+for(const r of routes){r.operator={...operators.find(o=>o.id===r.operatorId).names};const lineKo=override('lines',r.id);if(lineKo)Object.assign(r.line,{ko:lineKo,ja:lineKo});for(const p of r.patterns){const ko=override('services',p.id);if(ko){p.nameKo=ko;p.service.nameKo=ko;p.service.nameJa=ko}for(const s of p.stations){const wiki=namuwiki[s.station_id]?.ko;const name=override('stations',s.station_id)||wiki;if(name&&name!==s.ko){const previous=s.ko;Object.assign(s,{ko:name,ja:name,kana:name,koSource:override('stations',s.station_id)?'data/th/korean-overrides.json':'data/th/namuwiki-station-names.json',koVerified:false});s.names={...s.names,ko:name,ja:name};s.aliases=[...new Set([...(s.aliases||[]),previous,name].filter(Boolean))]};}}
 }
 const index={schemaVersion:1,country:{id:'th',names:{ko:'태국',th:'ประเทศไทย',en:'Thailand'}},operators,routes:[],sourceNotice:'국철: 2026-11-03 TTS 공개 전체 정차 또는 2024-12-18 전체 정차와 공식 주요역 표 대조. 계통별 기준일을 확인하세요. 현행 전국 소역 정차의 완전성은 미확인입니다.',attribution:provenance.attribution+' · SRT TTS 공개자료 / Rotfai Radar'};
 const editor={operators,lines:[],stations:[],services:[]};
