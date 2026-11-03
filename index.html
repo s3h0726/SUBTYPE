@@ -23,9 +23,6 @@
   <style id="critical-screen-visibility">[data-screen]:not(.active){display:none!important}html:not([data-navigation-bound]) [data-screen]:not(#screen-home){display:none!important}</style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/hong-kong.css?v=bfc6d662cf79">
-  <!-- Bootstrap 5.3.8 grid/utilities only: keep its global Reboot and JS away from gameplay. -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap-grid.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap-utilities.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/responsive.css?v=20261007-mobilefix">
   <link rel="stylesheet" href="./css/home-night.css?v=20261007-motionfix">
@@ -76,7 +73,6 @@
 </style>
 <style>.result-journey{margin:24px 0;text-align:left}.result-journey h3{margin:6px 0}.result-journey #result-journey-heading{margin:8px 0 12px;font-weight:700}.result-journey #result-journey-note{font-size:.86rem;opacity:.83;margin-top:9px}</style>
   <link rel="stylesheet" href="./css/thailand.css?v=20261103-thai-sign-swapped">
-  <link rel="stylesheet" href="./css/bootstrap-route-explorer.css?v=20261104-multi-column-fix">
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -104,7 +100,7 @@
       </header>
       <div class="home-stage">
         <div class="home-menu">
-          <div class="country-switch subtype-country-selector d-flex flex-wrap align-items-center gap-2" role="group" aria-label="국가 선택"><button type="button" class="subtype-country-btn" data-country="hk" aria-pressed="false">홍콩</button><button type="button" class="subtype-country-btn active" data-country="jp" aria-pressed="true">일본</button><button type="button" class="subtype-country-btn" data-country="kr" aria-pressed="false" hidden disabled aria-hidden="true">대한민국</button><button type="button" class="subtype-country-btn" data-country="th" aria-pressed="false">태국</button><button type="button" class="subtype-country-btn" data-country="tw" aria-pressed="false">대만</button></div>
+          <div class="country-switch" role="group" aria-label="국가 선택"><button data-country="hk">홍콩</button><button class="active" data-country="jp">일본</button><button data-country="kr" hidden disabled aria-hidden="true">대한민국</button><button data-country="th">태국</button><button data-country="tw">대만</button></div>
           <p class="home-kicker">01 / DEPARTURE MENU</p>
           <h1 id="hero-title">일본 철도를<br><span>타이핑하다.</span></h1>
           <p id="home-intro" class="home-intro">전국의 실제 역 순서와 선형을 따라 달리는 철도 타이핑 게임.<br>현재역에서 다음역으로, 한국어 역명을 정확히 입력하세요.</p>
@@ -135,36 +131,27 @@
       <div id="recent-list" class="home-recent" aria-live="polite"></div>
     </section>
 
-    <section id="screen-select" data-screen="rail-map" class="screen line-select-screen subtype-route-explorer" aria-labelledby="select-title">
-      <div class="line-select-heading subtype-explorer-header">
-          <div class="subtype-explorer-heading"><p>JAPAN RAILWAY NETWORK / 日本</p><h2 id="select-title">노선 선택</h2><span>PHYSICAL LINE · ROUTE · SERVICE</span></div>
-          <div class="subtype-explorer-tools">
-            <span class="subtype-explorer-country-caption">국가 선택</span>
-            <div class="route-country-switch subtype-country-selector d-flex flex-wrap align-items-center gap-2" role="group" aria-label="국가 선택"><button type="button" class="subtype-country-btn" data-country="hk" aria-pressed="false">홍콩</button><button type="button" class="subtype-country-btn active" data-country="jp" aria-pressed="true">일본</button><button type="button" class="subtype-country-btn" data-country="kr" aria-pressed="false" hidden disabled aria-hidden="true">대한민국</button><button type="button" class="subtype-country-btn" data-country="th" aria-pressed="false">태국</button><button type="button" class="subtype-country-btn" data-country="tw" aria-pressed="false">대만</button></div>
-            <button type="button" class="btn text subtype-back-button" data-nav="home">← 홈</button>
-          </div>
-        </div>
+    <section id="screen-select" data-screen="rail-map" class="screen line-select-screen" aria-labelledby="select-title">
+      <div class="line-select-heading"><div><p>JAPAN RAILWAY NETWORK / 日本</p><h2 id="select-title">노선 선택</h2><span>PHYSICAL LINE · ROUTE · SERVICE</span></div><button class="btn text" data-nav="home">← HOME</button></div>
       <div id="data-summary" class="data-summary" role="status" aria-live="polite">철도 데이터를 불러오는 중...</div>
 <div id="country-network-status" class="country-network-status" hidden></div>
-      <div class="line-select-layout row gx-3 gy-3" data-bootstrap-layout="5.3">
-        <section class="selected-line-panel col-12 col-lg-4" aria-labelledby="selected-line-heading"><div class="subtype-panel-surface subtype-selected-surface">
+      <div class="line-select-layout">
+        <section class="selected-line-panel" aria-labelledby="selected-line-heading">
           <header><span>SELECTED LINE</span><button id="clear-route-selection" type="button">↻ 선택 초기화</button></header>
           <div id="selected-line-preview" class="selected-line-preview" aria-live="polite">
             <div class="selected-line-empty"><h3 id="selected-line-heading">노선을 선택하세요.</h3><p>오른쪽에서 플레이할 노선을 선택합니다.</p></div>
           </div>
-          </div>
         </section>
-        <section class="line-list-panel col-12 col-lg-8" aria-labelledby="line-list-heading"><div class="subtype-panel-surface subtype-list-surface">
+        <section class="line-list-panel" aria-labelledby="line-list-heading">
           <header><div><span>LINE LIST</span><h3 id="line-list-heading">플레이할 노선</h3></div><strong id="route-count">불러오는 중</strong></header>
           <div id="transport-mode-tabs" class="line-category-tabs transport-mode-tabs" role="tablist" aria-label="교통수단 분류" hidden></div>
           <div id="region-tabs" class="line-category-tabs region-tabs" role="tablist" aria-label="버스 지역" hidden></div>
-          <div id="category-tabs" class="line-category-tabs subtype-filter-tabs" role="tablist" aria-label="노선 세부 분류">
+          <div id="category-tabs" class="line-category-tabs" role="tablist" aria-label="노선 세부 분류">
             <button class="active" data-category="all">전체</button><button data-category="jr">JR</button><button data-category="subway">지하철</button><button data-category="private">사철</button><button data-category="third-sector">제3섹터</button><button data-category="automated-guideway">신교통</button><button data-category="tram">노면전차</button><button data-category="other">기타</button><button data-category="shinkansen">신칸센</button><button data-category="limited-express">특급</button><button data-category="custom">커스텀</button>
           </div>
-          <div id="operator-filters" class="operator-logo-filters subtype-operator-filters" role="tablist" aria-label="철도 운영사 로고 필터"></div>
-          <label class="line-search subtype-search-field"><span aria-hidden="true">⌕</span><input id="route-search" type="search" placeholder="노선 검색 · 한국어 / 日本語 / English" autocomplete="off" aria-label="운영사, 노선명, 역명 검색"></label>
-          <div id="route-grid" class="line-card-grid subtype-route-grid" aria-live="polite"></div>
-          </div>
+          <div id="operator-filters" class="operator-logo-filters" role="tablist" aria-label="철도 운영사 로고 필터"></div>
+          <label class="line-search"><span>⌕</span><input id="route-search" type="search" placeholder="노선 검색 · 한국어 / 日本語 / English" autocomplete="off"></label>
+          <div id="route-grid" class="line-card-grid" aria-live="polite"></div>
         </section>
       </div>
     </section>
@@ -383,7 +370,7 @@
   <script defer src="./js/cloud-run-sync.js?v=server-records-20261029"></script>
   <script type="module" src="./js/result-journey-map.js?v=13b109860bbd"></script>
     <script defer src="./js/disney-resort-line-data.js?v=20261102-namuwiki-name-rules"></script>
-  <script defer src="./js/app.bundle.js?v=d9a0e2c15e85"></script>
+  <script defer src="./js/app.bundle.js?v=20261104-emergency-recovery-v1"></script>
 
 </body>
 </html>
