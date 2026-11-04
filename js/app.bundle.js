@@ -3062,33 +3062,44 @@ function restoreKrBusRouteCode(value){
 }
 function restoreKrBusRouteName(raw){
  const previous=String(raw?.line?.ko||'').normalize('NFC');
+ if(!previous)return raw;
  const fromSource=String(raw?.sourceRouteNumber||raw?.originalRouteNumber||raw?.routeNumber||'').normalize('NFC').trim();
- if(!previous||!fromSource)return raw;
- const official=/^[A-Za-z0-9-]+$/.test(fromSource)?fromSource:restoreKrBusRouteCode(fromSource);
- if(official===fromSource&&!/[A-Za-z]/.test(fromSource))return raw;
+ const official=/^[A-Za-z0-9-]+$/.test(fromSource)?fromSource.toUpperCase():restoreKrBusRouteCode(fromSource);
+ // Phonetic '지' can mean G or Z; do not guess without the original Latin source.
+ const hasVerifiedLatin=/^[A-Z0-9-]+$/.test(official)&&/[A-Z]/.test(official)
+  &&(/[A-Za-z]/.test(fromSource)||!fromSource.includes('지'));
  const read=c=>KR_BUS_SPELLED_LATIN[c.toUpperCase().charCodeAt(0)-65];
  const sourceReading=fromSource.replace(/[A-Za-z]/g,read);
- const candidates=[fromSource,sourceReading].filter(Boolean);
- // Only replace a complete route number immediately before '번' or at
- // the end of a display title. Leave prefixes/regions and all other text.
  let updated=previous;
- for(const candidate of [...new Set(candidates)].sort((a,b)=>b.length-a.length)){
-  for(const suffix of [candidate+'번',candidate]){
-   if(!updated.endsWith(suffix))continue;
-   const preceding=updated.slice(0,-suffix.length);
-   if(preceding&&/[가-힣A-Za-z0-9]$/.test(preceding))continue;
-   updated=preceding+official+(suffix.endsWith('번')?'번':'');
-   break;
+ if(hasVerifiedLatin){
+  const candidates=[fromSource,sourceReading].filter(Boolean);
+  for(const candidate of [...new Set(candidates)].sort((a,b)=>b.length-a.length)){
+   for(const suffix of [candidate+'번',candidate]){
+    if(!updated.endsWith(suffix))continue;
+    const preceding=updated.slice(0,-suffix.length);
+    if(preceding&&/[가-힣A-Za-z0-9]$/.test(preceding))continue;
+    updated=preceding+official+(suffix.endsWith('번')?'번':'');
+    break;
+   }
+   if(updated!==previous)break;
   }
-  if(updated!==previous)break;
+  if(updated===previous&&previous===sourceReading)updated=official;
  }
- // A route label may be a bare route code with no 지역/번 suffix.
- if(updated===previous&&previous===sourceReading)updated=official;
+ // Some published Korean bus lines have no original routeNumber metadata.
+ // Convert only complete route-code tokens, never part of a Korean place name.
+ if(updated===previous){
+  updated=previous.replace(/(^|[\s(·:\[])([0-9가-힣-]+?)(번)?(?=$|[\s)·:,\]])/g,(match,before,code,suffix='')=>{
+   if(code.includes('지')&&!/[A-Za-z]/.test(fromSource))return match;
+   const decoded=restoreKrBusRouteCode(code);
+   if(decoded===code||!/^[A-Za-z0-9·-]+$/.test(decoded)||!/[A-Za-z]/.test(decoded))return match;
+   return before+decoded+suffix;
+  });
+ }
  if(updated===previous)return raw;
  const oldLine=raw.line||{};
  const line={...oldLine,ko:updated,aliases:[...new Set([...(oldLine.aliases||[]),previous])]};
  for(const language of ['ja','en'])if(!oldLine[language]||oldLine[language]===previous)line[language]=updated;
- return{...raw,line,routeNumber:official,legacyPhoneticRouteNumber:fromSource};
+ return{...raw,line,...(hasVerifiedLatin?{routeNumber:official,legacyPhoneticRouteNumber:fromSource}:{})};
 }
 function restoreKrBusLatinRoute(raw){
  if(raw?.countryId!=='kr'||!(['bus','village_bus','express_bus','brt'].includes(raw.mode)||String(raw.id||'').startsWith('kr-bus-')))return raw;
