@@ -62,6 +62,10 @@ jobs:
           node --test tools/test-kr-nameplate-layout-browser.cjs
       - name: Regenerate deployed app bundle
         run: node tools/build-app-bundle.js
+      - name: Check complete shipped JavaScript for declaration collisions
+        run: node --check js/app.bundle.js
+      - name: Verify free-drive games still advance after nameplate updates
+        run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
       # Generation is verified against the source commit. Independent validation
       # jobs must not rebase/autostash or publish partial assets to main.
       - name: Verify generated deployment assets match the source commit
