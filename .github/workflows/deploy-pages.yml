@@ -34,6 +34,8 @@ jobs:
         run: npm run test:thailand
       - name: Check responsive station sign with Chrome before publishing
         run: node --test tools/test-free-drive-layout-browser.cjs
+      - name: Prevent clipped Korean station nameplates in production
+        run: node --test tools/test-kr-nameplate-layout-browser.cjs
       - name: Build the current app bundle including country-wide name overrides
         run: node tools/build-app-bundle.js
       - run: node --check js/app.bundle.js
