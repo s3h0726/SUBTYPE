@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-30",
+  "checkedAt": "2026-11-05",
   "countryId": "kr",
   "mode": "river_bus",
   "operator": {
@@ -192,6 +192,40 @@
         "seoul-659"
       ],
       "notesKo": "옥수와 압구정은 항차별 교차 정차. 서울숲은 10월 말까지 임시 운영 공지."
+    },
+    {
+      "id": "kr-hangang-east-oksu",
+      "nameKo": "한강버스 동부 구간 옥수 경유",
+      "stopIds": [
+        "kr-hangang-yeouido",
+        "kr-hangang-oksu",
+        "kr-hangang-ttukseom",
+        "kr-hangang-jamsil"
+      ],
+      "stopSequenceComplete": true,
+      "validFrom": "2026-11-01",
+      "sourceIds": [
+        "seoul-647",
+        "seoul-659"
+      ],
+      "notesKo": "서울숲 임시선착장 운영기간(6~10월) 이후 기본 동부 정차 모델. 11월 실제 항차별 정차 여부는 최신 시간표로 재검증 필요. 확인된 OSM 수상 항로와 기존 선착장 정차점만 사용."
+    },
+    {
+      "id": "kr-hangang-east-apgujeong",
+      "nameKo": "한강버스 동부 구간 압구정 경유",
+      "stopIds": [
+        "kr-hangang-yeouido",
+        "kr-hangang-apgujeong",
+        "kr-hangang-ttukseom",
+        "kr-hangang-jamsil"
+      ],
+      "stopSequenceComplete": true,
+      "validFrom": "2026-11-01",
+      "sourceIds": [
+        "seoul-647",
+        "seoul-659"
+      ],
+      "notesKo": "서울숲 임시선착장 운영기간(6~10월) 이후 기본 동부 정차 모델. 11월 실제 항차별 정차 여부는 최신 시간표로 재검증 필요. 확인된 OSM 수상 항로와 기존 선착장 정차점만 사용."
     }
   ],
   "unpublishedAnnouncements": [
