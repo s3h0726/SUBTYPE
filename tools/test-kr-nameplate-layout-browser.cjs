@@ -9,7 +9,7 @@ const chrome=['google-chrome','google-chrome-stable','chromium','chromium-browse
 if(!chrome)throw Error('Headless Chrome/Chromium required for nameplate layout QA');
 const fixture=pathToFileURL(path.resolve(__dirname,'kr-nameplate-layout-fixture.html')).href;
 for(const sign of ['kr-korail','kr-seoul-metro']){
- for(const [width,height] of [[1593,430],[1280,580],[390,844]]){
+ for(const [width,height] of [[1593,315],[1593,430],[1280,580],[390,844]]){
   test(sign+' no clipped station name/typing/footer at '+width+'x'+height,()=>{
    const result=spawnSync(chrome,[
     '--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage',
