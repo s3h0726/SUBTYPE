@@ -69,7 +69,7 @@
 #screen-game .station-sign[data-sign-style="kr-korail"] .station-current{
   display:grid;
   grid-template-columns:minmax(0,1fr);
-  grid-template-rows:none;
+  grid-template-rows:repeat(8,auto);
   align-content:center;
   justify-items:center;
   gap:5px;
