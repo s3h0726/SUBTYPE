@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-11-04T15:05:44.923Z",
+  "routes": 6,
+  "directions": 13,
+  "queue": [
+    {
+      "lineId": "kr-rail-national-uijeongbu",
+      "sourceServiceId": "kr-osm-service-13738410",
+      "reason": "차량기지 임시승강장의 완전한 현재 정차 순서 미확보",
+      "status": "STOP_SEQUENCE_UNRESOLVED"
+    },
+    {
+      "lineId": "kr-rail-national-uijeongbu",
+      "sourceServiceId": "kr-osm-service-13738411",
+      "reason": "차량기지 임시승강장의 완전한 현재 정차 순서 미확보",
+      "status": "STOP_SEQUENCE_UNRESOLVED"
+    },
+    {
+      "lineId": "kr-rail-national-gtx-a",
+      "sourceServiceId": "kr-osm-service-17413294",
+      "reason": "공식 현재 역 순서와 원본 정차열 불일치",
+      "status": "STOP_SEQUENCE_UNRESOLVED"
+    },
+    {
+      "lineId": "kr-rail-national-gtx-a",
+      "sourceServiceId": "kr-osm-service-17413296",
+      "reason": "공식 현재 역 순서와 원본 정차열 불일치",
+      "status": "STOP_SEQUENCE_UNRESOLVED"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.airportrailroad.com/train/normal/info/110/0",
+      "sourceDate": "2026-11-04",
+      "retrievedAt": "2026-11-04",
+      "license": "공식 공개 역명·운행 사실 대조; 제공기관 이용조건",
+      "localFile": "national-source/rail-arex-20261104.html",
+      "sha256": "bc57c482ad52bceb8fa4574f6a02b8d9442a6d74e19bd32f050117dcd5975b0d"
+    },
+    {
+      "url": "https://www.shinbundang.co.kr/dxline/dxline1.jsp",
+      "sourceDate": "2026-11-04",
+      "retrievedAt": "2026-11-04",
+      "license": "공식 공개 역명·운행 사실 대조; 제공기관 이용조건",
+      "localFile": "national-source/rail-shinbundang-20261104.html",
+      "sha256": "0153f7998af634748a275ef4e79684574017ba29fc9bf5c1d496a478e2757f36"
+    },
+    {
+      "url": "https://www.ulrt.co.kr/doc/contents/information/stations.php",
+      "sourceDate": "2026-11-04",
+      "retrievedAt": "2026-11-04",
+      "license": "공식 공개 역명·운행 사실 대조; 제공기관 이용조건",
+      "localFile": "national-source/rail-ulrt-stations-20261104.html",
+      "sha256": "efa450ca8a9a76839399975d3c378a2eeddf023cdedd3e1e72a69b1f1e2af571"
+    },
+    {
+      "url": "https://www.data.go.kr/data/15149895/fileData.do",
+      "sourceDate": "2026-06-30",
+      "retrievedAt": "2026-11-04",
+      "license": "이용허락범위 제한 없음",
+      "localFile": "national-source/rail-daegu-stations-20261104.csv",
+      "sha256": "0d1244409a92b63ab5e6bc87f11b7701c90154c709169a16128efc760bc89a0a"
+    },
+    {
+      "url": "https://www.ep.go.kr/dong/selectBbsNttView.do?bbsNo=42&key=4141&nttNo=292112",
+      "sourceDate": "2024-12-31",
+      "retrievedAt": "2026-11-04",
+      "license": "공식 공개 역명·운행 사실 대조; 제공기관 이용조건",
+      "localFile": "national-source/rail-gtx-government-20261104.html",
+      "sha256": "0770b2e733a5a61894ea9302258f6c5a108f637e94260014ad154f0d95a8fa9c"
+    },
+    {
+      "url": "https://www.wolmiseatrain.or.kr/intro/intro",
+      "sourceDate": "2026-11-04",
+      "retrievedAt": "2026-11-04",
+      "license": "공식 공개 역명·운행 사실 대조; 제공기관 이용조건",
+      "localFile": "national-source/rail-wolmi-20261104.html",
+      "sha256": "7a3159043c7365baff10cf18cbffdf1e1d419c2aecc4e263d990543301400aa6"
+    }
+  ]
+}

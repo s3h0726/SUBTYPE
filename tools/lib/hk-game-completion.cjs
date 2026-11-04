@@ -12,6 +12,9 @@ async function complete(route,{advance='AUTO'}={}){
   setTrainTypingProgress:(p)=>{arrivals.push(p);return Promise.resolve(true)}};
  context.koreanStationDisplayName=v=>String(v??'');context.koreanRouteDisplayText=v=>String(v??'');
  vm.createContext(context);
+ // 실제 게임의 한국 버스 이름 의존성도 원본 함수로 로드한다. 홍콩에서는 국가 검사로 그대로 반환된다.
+ const loader=fs.readFileSync(path.join(root,'js/data-loader.js'),'utf8');
+ vm.runInContext(loader.slice(loader.indexOf('// Published Korean bus payloads spell Latin initials'),loader.indexOf('export function normalizeLine(raw={},defaults={})')).replace(/\bexport\s+/g,''),context,{filename:'data-loader-bus-names.js'});
  for(const file of ['hong-kong-policy.js','korean-access-data.js','korean-access-policy.js','feature-flags.js','typing-model.js','typing.js','statistics-engine.js','route-integrity.js','game.js'])vm.runInContext(fs.readFileSync(path.join(root,'js',file),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/\bexport\s+/g,''),context,{filename:file});
  vm.runInContext('globalThis.api={Game,buildTypingModel}',context);let result;
  const g=new context.api.Game({onFinish:r=>{assert.equal(result,undefined,'only one terminal result');result=r}});

@@ -177,7 +177,8 @@ async function routeDoc(index){
  if(!/^data\/(kr|hk)\/generated\/routes\/[a-zA-Z0-9._-]+\.json$/.test(path)||!path.startsWith('data/'+country+'/'))throw Error('노선 데이터 경로 오류: '+path);
  const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
  if(!response.ok)throw Error('역명 상세 자료 '+response.status+': '+id);
- const payload=await response.json(),route=payload.route||payload;
+ // 게임과 같은 무손실 압축 해석기를 사용해 한국 노선 전체를 편집한다.
+ const payload=await (await import('../../js/route-payload.js')).decodeRoutePayload(await response.json()),route=payload.route||payload;
  if(route.id!==id)throw Error('불일치하는 노선 상세 자료: '+id);
  return route;
 }
@@ -188,7 +189,8 @@ function stationName(s,field){
 }
 function routeStationRows(route){
  const path=route.lazySource||'data/'+country+'/generated/routes/'+route.id+'.json';
- return (route.stations||[]).map((st,i)=>[
+ const seen=new Set,source=country==='kr'&&route.verifiedJourneys?.length?route.verifiedJourneys.flatMap(j=>j.stations||[]):route.stations||[];
+ return source.filter(st=>{if(seen.has(st.id))return false;seen.add(st.id);return true}).map((st,i)=>[
    route.operatorId||'',route.operator?.ko||'',route.id,route.line?.ko||'',
    String(st.id||st.stationId||route.id+'-stop-'+i),String(st.stationMasterId||st.physicalStationId||st.networkKey||''),
    stationName(st,'ko'),stationName(st,'source'),st.kana||'',stationName(st,'en'),

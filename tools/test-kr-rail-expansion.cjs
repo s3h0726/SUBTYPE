@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {validateRoute,distance}=require('./lib/kr-canonical.cjs'),{projection}=require('./lib/kr-road-binding.cjs');
-const dir=path.resolve(__dirname,'../data/kr/canonical'),batch=JSON.parse(fs.readFileSync(path.join(dir,process.argv.includes('--network')?'rail-network-recovery-batch.json':'rail-expansion-batch.json'),'utf8'));
+const dir=path.resolve(__dirname,'../data/kr/canonical'),batchFile=process.argv.find(a=>a.startsWith('--batch='))?.slice(8)||(process.argv.includes('--network')?'rail-network-recovery-batch.json':'rail-expansion-batch.json'),batch=JSON.parse(fs.readFileSync(path.join(dir,batchFile),'utf8'));
 const ways=new Map(JSON.parse(fs.readFileSync(path.resolve(dir,'../v2/source/osm-ways.json'),'utf8')).map(w=>[String(w.id),w]));
 let journeys=0,edges=0;
 const aliases=Function('return '+fs.readFileSync(path.join(__dirname,'kr-rail-expansion.cjs'),'utf8').match(/const aliases=(\{[^\n]+\});/)[1])();

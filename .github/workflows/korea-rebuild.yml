@@ -21,6 +21,9 @@ jobs:
       - run: node tools/test-kr-canonical.cjs
       - run: node tools/test-kr-city-sources.cjs
       - run: node tools/test-kr-city-directions.cjs
+      - run: node tools/test-kr-rail-expansion.cjs --batch=rail-national-recovery-batch.json
+      - run: node tools/test-kr-rail-urban.cjs
+      - run: node tools/test-kr-rail-names.cjs
       - run: node tools/test-ime-controller.js
       - run: node --test tools/test-kr-road-binding.cjs
       - run: node tools/test-kr-busan-source.cjs --village

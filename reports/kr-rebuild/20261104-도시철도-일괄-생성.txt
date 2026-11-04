@@ -1,0 +1,30 @@
+{
+  routes: 6,
+  directions: 13,
+  queue: [
+    {
+      lineId: 'kr-rail-national-uijeongbu',
+      sourceServiceId: 'kr-osm-service-13738410',
+      reason: '차량기지 임시승강장의 완전한 현재 정차 순서 미확보',
+      status: 'STOP_SEQUENCE_UNRESOLVED'
+    },
+    {
+      lineId: 'kr-rail-national-uijeongbu',
+      sourceServiceId: 'kr-osm-service-13738411',
+      reason: '차량기지 임시승강장의 완전한 현재 정차 순서 미확보',
+      status: 'STOP_SEQUENCE_UNRESOLVED'
+    },
+    {
+      lineId: 'kr-rail-national-gtx-a',
+      sourceServiceId: 'kr-osm-service-17413294',
+      reason: '공식 현재 역 순서와 원본 정차열 불일치',
+      status: 'STOP_SEQUENCE_UNRESOLVED'
+    },
+    {
+      lineId: 'kr-rail-national-gtx-a',
+      sourceServiceId: 'kr-osm-service-17413296',
+      reason: '공식 현재 역 순서와 원본 정차열 불일치',
+      status: 'STOP_SEQUENCE_UNRESOLVED'
+    }
+  ]
+}

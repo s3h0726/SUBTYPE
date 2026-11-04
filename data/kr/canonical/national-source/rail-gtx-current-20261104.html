@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#004098">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="language" content="kr">
+<link rel="shortcut icon" href="/res/img/favicon.ico">
+<link rel="apple-touch-icon" href="/res/img/favicon.png">
+<link rel="stylesheet" href="/res/lib/swiper-bundle.min.css" />
+<link rel="stylesheet" href="/res/lib/billboard.css">
+<link rel="stylesheet" href="/res/css/style.css?v=20260804">
+<link rel="stylesheet" href="/res/css/base.css">
+<script src="/res/lib/jquery.v2.2.4.js"></script>
+<script src="/res/lib/jquery.easing.js"></script>
+<script src="/res/lib/swiper-bundle.min.js"></script>
+<script src="/res/js/koti_ui.js"></script>
+<script src="/res/js/koti_item.js"></script>
+<script src="/res/lib/d3.v6.min.js"></script>
+<script src="/res/js/common.js"></script>
+<script src="/res/lib/billboard.min.js"></script>
+<script src="/res/dev_js/join.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script src="/res/dev_js/social.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<!-- Google Tag Manager 태그 추가 -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5HCQ6D5C');</script>
+<!-- End Google Tag Manager -->
+
+
+<script type="text/javascript">
+
+	$(document).ready(function (){
+		var brief_yn = '';
+		if(brief_yn){
+			if(brief_yn == "Y"){
+				kotiFn.commtabFn($(".tab .tab_item").eq(0).find("button"), 0);
+			} else {
+				kotiFn.commtabFn($(".tab .tab_item").eq(1).find("button"), 1);
+			}
+		}
+		
+		// 소셜 로그인 
+		var socialYn = $("#snslogindta").val();
+		if( socialYn != '' ){
+			$("#befSlogn").removeClass("open");
+			$("#aftSlogn").addClass("open");
+		}
+		
+	});
+	
+	
+	function setMobMenu(menu_code) {
+		
+		var target = $("#mob2Depth");
+		var markup = "";
+		
+		if ( menu_code != '' ) {
+			
+			$.ajax({
+				
+				  type : 'POST'
+				, url : "/mobMenu.do"
+				, data : { "menu_code" : menu_code } 
+				, dataType : 'json'
+				, success : function(data){
+					
+					if ( data.list.length > 0 ) {
+						
+						target.empty();
+						
+						$("#mob2DepthSeleted").text(data.list[0].MENU_NAME);
+						
+						$(data.list).each(function(i){
+							
+							var type = data.list[i].MENU_TYPE;
+							if( type == 0 ){
+								type = "_self";
+							} else {
+								type = "_blank";
+							}
+							
+							markup += '<li>';
+							markup += 	'<a href="' + data.list[i].MENU_DESC + '" target="' + type + '">' + data.list[i].MENU_NAME + '</a>';
+							markup += '</li>';
+						}) 
+						
+						target.append(markup);
+						
+					} else return false;
+					
+				}
+			  	, error:function(request,status,error){
+		        	console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        	alert("일시적인 오류가 발생했습니다.\n다시 시도해주세요.");
+		        	return false;
+		       	}
+			  	
+			});
+		}
+	}
+
+</script><meta property="og:type" content="website">
+
+<meta name="title" content="GTX-A 개통, 수도권 교통체계와 역세권 경제에 변화 가져와 - KOTI 한국교통연구원">
+		<meta name="description" content="한국교통연구원개통 영향 분석 및 정책적 시사점연구 결과 발표 개통 이후 이용수요 증가세역사 접근성 개선과 환승체계 강화가 핵심 과제 역세권 소비부동산 가격 변화 확인교통과 지역개발을 연계한 종합적 정책 추진 필요   ()(GTX-A), , GTX . , GTX , GT..">
+			<meta name="keywords" content="보도자료">
+		
+		<meta property="og:title" content="GTX-A 개통, 수도권 교통체계와 역세권 경제에 변화 가져와 - KOTI 한국교통연구원">
+		<meta property="og:description" content="한국교통연구원개통 영향 분석 및 정책적 시사점연구 결과 발표 개통 이후 이용수요 증가세역사 접근성 개선과 환승체계 강화가 핵심 과제 역세권 소비부동산 가격 변화 확인교통과 지역개발을 연계한 종합적 정책 추진 필요   ()(GTX-A), , GTX . , GTX , GT..">
+			<meta property="og:image" content="/res/img/shareimg.png">
+		<title>GTX-A 개통, 수도권 교통체계와 역세권 경제에 변화 가져와 - KOTI 한국교통연구원</title>
+		
+	</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HCQ6D5C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="skipNav"><a href="#ui_body">본문 내용으로 건너뛰기</a></div><div id="ui_wrap" class="menu_introdu">
+<div id="ui_header" class="top_banner_n">
+    <header>
+        <div class="header_guide">
+            <h1><a href="/index.do">KOTI 한국교통연구원</a></h1><nav>
+                <ul>
+                	<li><button type="button" onclick="location.href='/user/bbs/majorRsch26List.do'">연구</button>
+                				<div class="lnb">
+		                            <h2 class="lnb_tit">연구</h2>
+		                            
+		                            <!-- 연구 -->
+	                            		<div class="lnb_list">
+			                            	<div class="item ">
+				                            				<h3><a href="/user/bbs/majorRsch26List.do" target="_self">연구 보고서</a></h3>
+				                            					<ul>
+									                       				<li>
+									                       							<a href="/user/bbs/majorRsch26List.do" target="_self">2026년 주요연구·사업</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/bbs/bassRsrchReprtList.do" target="_self">기본연구보고서</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/bbs/anytmRsrchReprtList.do" target="_self">수시연구보고서</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/bbs/rndRsrchReprtList.do" target="_self">연구개발적립금보고서</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/bbs/basicCompList.do" target="_self">일반사업보고서</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/bbs/pBookList.do" target="_self">기획도서</a>
+									                       						</li>
+									                       					</ul>
+				                            					</div>	
+				            						<div class="item ">
+				                            				<h3><a href="/user/bbs/mnthngList.do" target="_self">정기 간행물</a></h3>
+				                            					<ul>
+									                       				<li>
+									                       							<a href="/user/bbs/mnthngList.do" target="_self">월간교통</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/bbs/trnsportRsrchList.do" target="_self">교통연구</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/bbs/insightList.do" target="_self">KOTI 인사이트</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/bbs/briefList.do" target="_self">브리프</a>
+									                       						</li>
+									                       					</ul>
+				                            					</div>	
+				            						<div class="item cols2">
+				                            				<h3>일반사업</h3>	
+				                            					<ul>
+									                       				<li>
+									                       							<a href="/user/smartRsrch/main.do" target="_self">스마트물류연구센터</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/northAsiaRsrch/main.do" target="_self">동북아북한교통물류</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/crbnNtrl/main.do" target="_self">탄소중립 녹색성장 교통정책 지원사업</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/frght/main.do" target="_self">화물운송시장정보센터</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="/user/traffic/main.do" target="_self">국가 교통정책 평가지표 조사사업</a>
+									                       						</li>
+									                       					</ul>
+				                            					</div>	
+				            						<div class="item ">
+				                            				<h3>정부대행사업</h3>	
+				                            					<ul>
+									                       				<li>
+									                       							<a href="https://cephis.koti.re.kr/" target="_blank">민자도로 관리지원센터</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="https://cppr.koti.re.kr/" target="_blank">민자철도 관리지원센터</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="https://celc.koti.re.kr/" target="_blank">우수물류기업인증센터</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="https://cslc.koti.re.kr/" target="_blank">인증스마트물류센터</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="https://www.ktdb.go.kr/" target="_blank">국가교통DB</a>
+									                       						</li>
+									                       					<li>
+									                       							<a href="https://greentransport.koti.re.kr/" target="_blank">지속가능 교통시스템</a>
+									                       						</li>
+									                       					</ul>
+				                            					</div>	
+				            						<div class="item ">
+				                            				<h3>종료사업</h3>	
+				                            					<ul>
+									                       				<li>
+									                       							<a href="/user/saop/main.do" target="_self">Social Acceptance Open Platform</a>
+									                       						</li>
+									                       					</ul>
+				                            					</div>	
+				            						</div>
+		                            </div>
+                			</li>
+                			
+                			<li><button type="button" onclick="location.href='/user/bbs/empmnInfo02List.do'">알림</button>
+                				<div class="lnb">
+		                            <h2 class="lnb_tit">알림</h2>
+		                            
+		                            <!-- 소식 -->
+		                            	 <div class="lnb_list cols5 grow_0">
+			                            	<div class="item">
+						                                    <h3><a href="/user/bbs/empmnInfo02List.do" target="_self">채용정보</a></h3>
+						                                    </div>
+				            						<div class="item">
+						                                    <h3><a href="/user/bbs/bidNotiList.do" target="_self">입찰공고</a></h3>
+						                                    </div>
+				            						<div class="item">
+						                                    <h3><a href="/user/bbs/eventList.do" target="_self">알립니다</a></h3>
+						                                    <ul>
+																	<li><a href="/user/bbs/eventList.do" target="_self">정책세미나</a></li>
+																		<li><a href="/user/bbs/noticeList.do" target="_self">공지사항</a></li>
+																		<li><a href="/user/bbs/jobAgremList.do" target="_self">업무협약</a></li>
+																		</ul>
+						                                    </div>
+				            						<div class="item">
+						                                    <h3><a href="/user/bbs/digitAllList.do" target="_self">디지털콘텐츠</a></h3>
+						                                    <ul>
+																	<li><a href="/user/bbs/digitAllList.do" target="_self">전체</a></li>
+																		<li><a href="/user/bbs/cardnewsList.do" target="_self">카드뉴스</a></li>
+																		<li><a href="/user/bbs/dyoutubeList.do" target="_self">유튜브</a></li>
+																		<li><a href="/user/bbs/dnewsletterList.do" target="_self">뉴스레터</a></li>
+																		</ul>
+						                                    </div>
+				            						<div class="item">
+						                                    <h3><a href="/user/cms/AwardList.do" target="_self">영상 공모전 수상작</a></h3>
+						                                    </div>
+				            						<div class="item">
+						                                    <h3><a href="/user/bbs/trfcNewsList.do" target="_self">최신교통뉴스</a></h3>
+						                                    </div>
+				            						<div class="item">
+						                                    <h3><a href="/user/bbs/asmList.do" target="_self">항공서비스평가메뉴얼</a></h3>
+						                                    </div>
+				            						</div>
+		                             	<div class="newsletter">
+			                                <a href="/user/bbs/dnewsletterView.do?bbs_no=74700">
+			                                    <span class="img"><img src="/upload/userdata/BBS/74700/2E67FEE421_1793241133842_74700.png" alt="[2026년 10월호] 한국교통연구원 뉴스레터"></span>
+			                                    <p>[2026년 10월호] 한국교통연구원 뉴스레터</p>
+			                                </a>
+			                            </div>
+		                            </div>
+                			</li>
+                			
+                			<li><button type="button" onclick="location.href='/user/cms/introCeoList.do'">소개</button>
+                				<div class="lnb">
+		                            <h2 class="lnb_tit">소개</h2>
+		                            
+		                            <!-- 소개 -->
+	                            		<div class="lnb_list">
+			                            	<ul>
+				                            		<li>
+					                       							<a href="/user/cms/introCeoList.do" target="_self">원장실</a>
+					                       						</li>
+			                            					<li>
+					                       							<a href="/user/cms/mngrgoalList.do" target="_self">경영목표</a>
+					                       						</li>
+			                            					<li>
+					                       							<a href="/user/cms/manageesgList.do" target="_self">ESG경영</a>
+					                       						</li>
+			                            					<li>
+					                       							<a href="/user/cms/historyList.do" target="_self">설립목적 및 연혁</a>
+					                       						</li>
+			                            					<li>
+					                       							<a href="javascript:layerOpen();" target="_self">조직도</a>
+					                       						</li>
+			                            					<li>
+					                       							<a href="/user/cms/rschfieldList.do" target="_self">연구분야</a>
+					                       						</li>
+			                            					<li>
+					                       							<a href="/user/cms/pciList.do" target="_self">홍보관</a>
+					                       						</li>
+			                            					<li>
+					                       							<a href="/user/cms/honorhallList.do" target="_self">명예의 전당</a>
+					                       						</li>
+			                            					<li>
+					                       							<a href="/user/cms/directionsList.do" target="_self">찾아오시는 길</a>
+					                       						</li>
+			                            					</ul>
+			                            	</div>
+		                            </div>
+                			</li>
+                			
+                			</ul>
+            </nav>
+            <div class="link">
+    <span><a href="/user/qnaList.do">열린 광장</a></span>
+    <span><a href="/user/cms/cleaninfoList.do">KOTI 클린신고센터</a></span>
+    <span><a href="https://lib.koti.re.kr/" target="_blank">전자도서관</a></span>
+</div><div class="other">
+                <span><a href="/eng.do" class="lang">ENG</a></span>
+                <span><button type="button" class="search" title="검색" onclick="kotiFn.sideSearchOpen(1);">검색하기</button></span>
+            </div>
+        </div>
+        <div class="header_all"><button type="button" title="전체 메뉴 열기" onclick="kotiUi.headerSiteMapFn(this);">전체 메뉴 열기</button></div>
+    </header>
+    
+    <div id="ui_sitemap">
+    	
+    	<!-- 모바일 전용 탭 -->
+        <div class="mob_sitemap">
+            <ul>
+            	<li><button type="button" onclick="kotiUi.moSiteMapTabFn(this, 0);" class="main_menu">연구</button></li>
+				                <li><button type="button" onclick="kotiUi.moSiteMapTabFn(this, 1);" class="main_menu">알림</button></li>
+				                <li><button type="button" onclick="kotiUi.moSiteMapTabFn(this, 2);" class="main_menu">소개</button></li>
+				                <li><button type="button" onclick="kotiUi.moSiteMapTabFn(this, 3);" class="">열린 광장</button></li>
+				                <li><button type="button" onclick="kotiUi.moSiteMapTabFn(this, 4);" class="">정보공개</button></li>
+				                <!--                 <li><a href="https://lib.koti.re.kr/guide/Static.ax?page=Info_02" target="_blank">전자도서관</a></li> -->
+            </ul>
+        </div>
+        <nav>
+            <ul>
+            	 <li class="">
+			                    <div class="lnb">
+			                        <h2 class="lnb_tit">연구</h2>
+			                        
+			                        <!-- 연구 -->
+			                        	<div class="lnb_list cols2">
+											 <div class="item">							                      			
+							                      			<h3><a href="/user/bbs/majorRsch26List.do" target="_self">연구 보고서</a></h3>
+							                      				<ul>
+								                               		<li><a href="/user/bbs/majorRsch26List.do" target="_self">2026년 주요연구·사업</a></li>
+								                       					<li><a href="/user/bbs/bassRsrchReprtList.do" target="_self">기본연구보고서</a></li>
+								                       					<li><a href="/user/bbs/anytmRsrchReprtList.do" target="_self">수시연구보고서</a></li>
+								                       					<li><a href="/user/bbs/rndRsrchReprtList.do" target="_self">연구개발적립금보고서</a></li>
+								                       					<li><a href="/user/bbs/basicCompList.do" target="_self">일반사업보고서</a></li>
+								                       					<li><a href="/user/bbs/pBookList.do" target="_self">기획도서</a></li>
+								                       					</ul>
+							                                </div>
+						                      		<div class="item">							                      			
+							                      			<h3><a href="/user/bbs/mnthngList.do" target="_self">정기 간행물</a></h3>
+							                      				<ul>
+								                               		<li><a href="/user/bbs/mnthngList.do" target="_self">월간교통</a></li>
+								                       					<li><a href="/user/bbs/trnsportRsrchList.do" target="_self">교통연구</a></li>
+								                       					<li><a href="/user/bbs/insightList.do" target="_self">KOTI 인사이트</a></li>
+								                       					<li><a href="/user/bbs/briefList.do" target="_self">브리프</a></li>
+								                       					</ul>
+							                                </div>
+						                      		<div class="item">							                      			
+							                      			<h3>일반사업</h3>
+							                      				<ul>
+								                               		<li><a href="/user/smartRsrch/main.do" target="_self">스마트물류연구센터</a></li>
+								                       					<li><a href="/user/northAsiaRsrch/main.do" target="_self">동북아북한교통물류</a></li>
+								                       					<li><a href="/user/crbnNtrl/main.do" target="_self">탄소중립 녹색성장 교통정책 지원사업</a></li>
+								                       					<li><a href="/user/frght/main.do" target="_self">화물운송시장정보센터</a></li>
+								                       					<li><a href="/user/traffic/main.do" target="_self">국가 교통정책 평가지표 조사사업</a></li>
+								                       					</ul>
+							                                </div>
+						                      		<div class="item">							                      			
+							                      			<h3>정부대행사업</h3>
+							                      				<ul>
+								                               		<li><a href="https://cephis.koti.re.kr/" target="_blank">민자도로 관리지원센터</a></li>
+								                       					<li><a href="https://cppr.koti.re.kr/" target="_blank">민자철도 관리지원센터</a></li>
+								                       					<li><a href="https://celc.koti.re.kr/" target="_blank">우수물류기업인증센터</a></li>
+								                       					<li><a href="https://cslc.koti.re.kr/" target="_blank">인증스마트물류센터</a></li>
+								                       					<li><a href="https://www.ktdb.go.kr/" target="_blank">국가교통DB</a></li>
+								                       					<li><a href="https://greentransport.koti.re.kr/" target="_blank">지속가능 교통시스템</a></li>
+								                       					</ul>
+							                                </div>
+						                      		<div class="item">							                      			
+							                      			<h3>종료사업</h3>
+							                      				<ul>
+								                               		<li><a href="/user/saop/main.do" target="_self">Social Acceptance Open Platform</a></li>
+								                       					</ul>
+							                                </div>
+						                      		</div>
+			                        </div>
+		                	</li>
+	                	<li class="">
+			                    <div class="lnb">
+			                        <h2 class="lnb_tit">알림</h2>
+			                        
+			                        <!-- 소식 -->
+				                        <div class="lnb_list cols5 grow_0">
+											<div class="item">
+						                                    <h3><a href="/user/bbs/empmnInfo02List.do" target="_self">채용정보</a></h3>
+						                                    </div>
+													<div class="item">
+						                                    <h3><a href="/user/bbs/bidNotiList.do" target="_self">입찰공고</a></h3>
+						                                    </div>
+													<div class="item">
+						                                    <h3><a href="/user/bbs/eventList.do" target="_self">알립니다</a></h3>
+						                                    <ul>
+																	<li><a href="/user/bbs/eventList.do" target="_self">정책세미나</a></li>
+																		<li><a href="/user/bbs/noticeList.do" target="_self">공지사항</a></li>
+																		<li><a href="/user/bbs/jobAgremList.do" target="_self">업무협약</a></li>
+																		</ul>
+						                                    </div>
+													<div class="item">
+						                                    <h3><a href="/user/bbs/digitAllList.do" target="_self">디지털콘텐츠</a></h3>
+						                                    <ul>
+																	<li><a href="/user/bbs/digitAllList.do" target="_self">전체</a></li>
+																		<li><a href="/user/bbs/cardnewsList.do" target="_self">카드뉴스</a></li>
+																		<li><a href="/user/bbs/dyoutubeList.do" target="_self">유튜브</a></li>
+																		<li><a href="/user/bbs/dnewsletterList.do" target="_self">뉴스레터</a></li>
+																		</ul>
+						                                    </div>
+													<div class="item">
+						                                    <h3><a href="/user/cms/AwardList.do" target="_self">영상 공모전 수상작</a></h3>
+						                                    </div>
+													<div class="item">
+						                                    <h3><a href="/user/bbs/trfcNewsList.do" target="_self">최신교통뉴스</a></h3>
+						                                    </div>
+													<div class="item">
+						                                    <h3><a href="/user/bbs/asmList.do" target="_self">항공서비스평가메뉴얼</a></h3>
+						                                    </div>
+													</div>
+		                             	<div class="newsletter">
+				                            <a href="/user/bbs/dnewsletterView.do?bbs_no=74700">
+				                                <span class="img"><img src="/upload/userdata/BBS/74700/2E67FEE421_1793241133842_74700.png" alt="[2026년 10월호] 한국교통연구원 뉴스레터"></span>
+				                                <p><strong>[2026년 10월호] 한국교통연구원 뉴스레터</strong></p>
+				                            </a>
+				                        </div>
+			                        </div>
+		                	</li>
+	                	<li class="">
+			                    <div class="lnb">
+			                        <h2 class="lnb_tit">소개</h2>
+			                        
+			                        <!-- 소개 -->
+			                        	<div class="lnb_list">
+											 <ul>
+													<li>
+																<a href="/user/cms/introCeoList.do" target="_self">원장실</a>
+																	</li>
+														<li>
+																<a href="/user/cms/mngrgoalList.do" target="_self">경영목표</a>
+																	</li>
+														<li>
+																<a href="/user/cms/manageesgList.do" target="_self">ESG경영</a>
+																	</li>
+														<li>
+																<a href="/user/cms/historyList.do" target="_self">설립목적 및 연혁</a>
+																	</li>
+														<li>
+																<a href="javascript:layerOpen();" target="_self">조직도</a>
+																	</li>
+														<li>
+																<a href="/user/cms/rschfieldList.do" target="_self">연구분야</a>
+																	</li>
+														<li>
+																<a href="/user/cms/pciList.do" target="_self">홍보관</a>
+																	</li>
+														<li>
+																<a href="/user/cms/honorhallList.do" target="_self">명예의 전당</a>
+																	</li>
+														<li>
+																<a href="/user/cms/directionsList.do" target="_self">찾아오시는 길</a>
+																	</li>
+														</ul>
+											</div>
+			                        </div>
+		                	</li>
+	                	<li class="cr_sb">
+			                    <div class="lnb">
+			                        <h2 class="lnb_tit">열린 광장</h2>
+			                        
+			                        <!-- 열린광장 -->
+			                        	<div class="lnb_list">
+											 <div class="item">
+							                                <h3><a href="javascript:;">참여 광장</a></h3>
+							                                <ul>
+								                               		<li><a href="/user/qnaList.do" target="_self">Q&A</a></li>
+								                       					<li><a href="/user/cms/papersubList.do" target="_self">논문투고</a></li>
+								                       					<li><a href="/user/cms/certificateList.do" target="_self">증명서 발급신청</a></li>
+								                       					</ul>
+							                                </div>
+						                      		<div class="item">
+							                                <h3><a href="javascript:;">KOTI 클린신고센터</a></h3>
+							                                <ul>
+								                               		<li><a href="/user/cms/cleaninfoList.do" target="_self">클린신고센터 소개</a></li>
+								                       					<li><a href="/user/cms/cleansolicitationList.do" target="_self">청탁금지법위반 신고</a></li>
+								                       					<li><a href="/user/cms/cleanemploymentList.do" target="_self">채용 비리 신고</a></li>
+								                       					<li><a href="/user/cms/cleancenterviolationList.do" target="_self">행동강령 위반 신고</a></li>
+								                       					<li><a href="/user/cms/cleancorruptionList.do" target="_self">부패행위 신고</a></li>
+								                       					<li><a href="/user/cms/cleancheatingList.do" target="_self">연구부정행위 신고</a></li>
+								                       					<li><a href="/user/cms/cleandamageList.do" target="_self">인권침해 신고</a></li>
+								                       					<li><a href="/user/cms/cleanpublicList.do" target="_self">공익신고</a></li>
+								                       					<li><a href="/user/cms/cleanPreventionList.do" target="_self">이해충돌방지법 위반 신고</a></li>
+								                       					<li><a href="/user/cms/cleangrievanceList.do" target="_self">고충·갑질·괴롭힘 신고</a></li>
+								                       					<li><a href="/user/cms/cleanequalityList.do" target="_self">성희롱·성폭력·스토킹 신고</a></li>
+								                       					</ul>
+							                                </div>
+						                      		</div>
+			                        </div>
+		                	</li>
+	                	<li class="cr_sb">
+			                    <div class="lnb">
+			                        <h2 class="lnb_tit">정보공개</h2>
+			                        
+			                        <!-- 정보공개 -->
+			                        	<div class="lnb_list">
+											 <ul>
+													<li>
+																<a href="/user/cms/policyinfoList.do" target="_self">제도안내</a>
+																	</li>
+														<li>
+																<a href="/user/bbs/adinforList.do" target="_self">사전정보공표</a>
+																	</li>
+														<li>
+																<a href="https://www.alio.go.kr/organ/organDisclosureDtl.do?apbaId=C0170&apba_id=C0170" target="_blank">경영공시</a>
+																	</li>
+														<li>
+																<a href="/user/cms/infoopenList.do" target="_self">정보공개 청구</a>
+																	</li>
+														<li>
+																<a href="/user/cms/publicdataList.do" target="_self">공공데이터개방</a>
+																	</li>
+														<li>
+																<a href="/user/cms/homecopyrightList.do" target="_self">홈페이지 저작권정책</a>
+																	</li>
+														</ul>
+											</div>
+			                        </div>
+		                	</li>
+	                	</ul>
+        </nav>
+    </div>
+</div>
+<!-- 조직도 팝업 -->
+<script>
+
+	$(function(){
+		$("#keyword").on('keydown', function(e){
+			if(e.which == 13){
+				searchGroup();
+			}//end if
+		});
+				
+		
+	});
+	
+	function scrollBtn(){
+		//스크롤 처리
+		 var searchTop = $('.comm_group_search').outerHeight();
+         $('.comm_group_inner').stop().clearQueue().animate({ scrollTop: $('.group_scroll').offset().top + $('.comm_group_inner').scrollTop() - searchTop - 150 });
+	}//scrollBtn
+	
+	function layerOpen(){
+		$("#search_result").load("/user/introduce/group.do", function(){
+			kotiFn.layerpopupFn(2, '#groupPopup');
+		});
+	}
+
+	function searchEmpByDept(cd_dept){
+		
+		$("#keyword").val('');
+		
+		$("#search_result").load("/user/introduce/group.do?cd="+cd_dept, function(){
+			$("#emp_group #emp_group_none").removeAttr("style");
+			scrollBtn();
+		});
+		
+	}
+	
+	function searchGroup(){
+		
+		let keyword = $("#keyword").val();
+		
+		if(keyword == ''){
+			alert('검색어를 입력해주세요.');
+			return;
+		}//end if
+		
+		$("#search_result").load("/user/introduce/group.do?keyword="+keyword, function(){
+			$("#emp_group #emp_group_none").removeAttr("style");
+			scrollBtn();
+		});
+		
+	}//search
+	
+	function searchEmpByDeptMob(cd_dept, thisObj){
+		
+		
+		$("#centralPopup").load("/user/introduce/groupPopup.do?cd="+cd_dept, function(){
+			kotiFn.layerpopupFn(2, '#centralPopup',thisObj);
+		});
+		
+	}
+	
+</script>
+<div id="groupPopup" class="comm_group">
+    <div class="comm_group_inner">
+        <div class="comm_group_search">
+            <strong class="comm_group_tit">직원검색</strong>
+            <!-- 검색시 "display: none;" -->
+            <div class="group_search">
+                <label><input type="text" placeholder="검색어를 입력하세요." name="keyword" id="keyword"></label>
+                <button type="button" title="검색" onclick="searchGroup();">검색</button>
+            </div>
+            <button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#groupPopup');">닫기</button>
+        </div>
+        <div class="comm_group_conts">
+            <!-- 조직도 -->
+            <div class="group_line">
+                <div class="group_line_first">
+                    <button type="button" onclick="searchEmpByDept('1')"><div class="boss">원장</div></button>
+                    <div class="audit_office">
+                        <p class="sub_boss">감사</p>
+                        <button type="button" class="sub_boss" onclick="searchEmpByDept('122')">감사실</button>
+                    </div>
+                </div>
+                <div class="group_line_second">
+                    <button type="button" onclick="searchEmpByDept('3')">연구부원장</button>
+                    <button type="button" class="right_line" onclick="searchEmpByDept('4')">경영부원장</button>
+                </div>
+                <div class="group_line_last">
+                    <ul class="item left">
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('329')">AI모빌리티<br>기술본부</button>
+                            <button type="button" onclick="searchEmpByDept('3295')">자율협력주행 <br>기술연구팀</button>
+                            <button type="button" onclick="searchEmpByDept('3403')">미래교통·<br>AI 연구팀</button>
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('319')">광역·도시교통 <br> 연구본부</button>
+                            <button type="button" onclick="searchEmpByDept('3191')">광역교통개선대책 <br>평가센터</button>
+                            <button type="button" onclick="searchEmpByDept('3194')">광역버스 <br>평가팀</button>
+                        </li>
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('314')">도로교통 <br>연구본부</button>
+                            <button type="button" onclick="searchEmpByDept('3141')">도로정책· <br>운영연구팀</button>
+                            <button type="button" onclick="searchEmpByDept('3145')">교통안전· <br>방재연구팀</button>
+                        </li>
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('315')">철도교통 <br>연구본부</button>
+                            <button type="button" onclick="searchEmpByDept('3151')">철도정책· <br>경제연구팀</button>
+                            <button type="button" onclick="searchEmpByDept('3152')">철도운영· <br>안전연구팀</button>
+                        </li>
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('317')">항공우주교통 <br>연구본부</button>
+                            <button type="button" onclick="searchEmpByDept('3171')">항공모빌리티 <br>연구팀</button>
+                            <button type="button" onclick="searchEmpByDept('3174')">공항·항행 <br>연구팀</button>
+                        </li>
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('316')">물류 연구본부</button>
+                            <button type="button" onclick="searchEmpByDept('3161')">물류산업· <br>기술혁신연구팀</button>
+                            <button type="button" onclick="searchEmpByDept('3163')">물류인프라· <br>기업연구팀</button>
+                        </li>
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('340')">교통빅데이터 <br>연구본부</button>
+                            <button type="button" onclick="searchEmpByDept('3402')">국가교통 <br>DB센터</button>
+                            <button type="button" onclick="searchEmpByDept('3404')">모빌리티데이터<br>융합연구팀</button>
+                        </li>
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('360')">민간투자 SOC <br>관리지원단</button>
+                            <button type="button" onclick="searchEmpByDept('361')">민자도로관리 <br>지원센터</button>
+                            <button type="button" onclick="searchEmpByDept('362')">민자철도관리 <br>지원센터</button>
+                        </li>                        
+                    </ul>
+                    <ul class="item right">
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('411')">기획조정실</button>
+                            <button type="button" onclick="searchEmpByDept('4111')">미래전략팀</button>
+                            <button type="button" onclick="searchEmpByDept('4113')">연구관리팀</button>
+                            <button type="button" onclick="searchEmpByDept('4112')">예산경영팀</button>
+                            <button type="button" onclick="searchEmpByDept('4115')">대외협력홍보팀</button>
+							<button type="button" onclick="searchEmpByDept('3154')">동북아·북한<br>교통연구팀</button>
+                        </li>
+                        <li>
+                            <button type="button" class="head" onclick="searchEmpByDept('413')">경영지원실</button>
+                            <button type="button" onclick="searchEmpByDept('4131')">운영관리팀</button>
+                            <button type="button" onclick="searchEmpByDept('4132')">인사팀</button>
+                            <button type="button" onclick="searchEmpByDept('4133')">재무회계팀</button>
+                            <button type="button" onclick="searchEmpByDept('4114')">정보화기획팀</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="group_line_mob">
+                    <div class="group_line_mob_wrap">
+                        <a href="javascript:;" class="vice_president">연구부원장</a>
+                        <ul class="group_mob_list">
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('329', this);">AI모빌리티 기술본부</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('3295');">자율협력주행 기술연구팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('3403');">미래교통·AI 연구팀</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('319', this);">광역·도시교통 연구본부</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('3191');">광역교통정책·평가연구팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('3194');">종합교통 연구팀</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('314', this);">도로교통연구본부</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('3141');">도로정책·운영연구팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('3145');">교통안전·방재 연구센터</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('315', this);">철도교통연구본부</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('3151');">철도정책·경제연구팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('3152');">철도운영·안전연구팀</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('317', this);">항공우주교통연구본부</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('3171');">항공모빌리티 연구팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('3174');">공항·항행 연구팀</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('316', this);">물류 연구본부</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('3161');">물류산업·기술혁신연구팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('3163');">물류인프라·기업연구팀</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('340', this);">교통빅데이터 연구본부</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('3402');">국가교통DB센터</a></li>
+                                        <li><a href="javascript:searchEmpByDept('3404');">모빌리티데이터융합연구팀</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('360', this);">민간투자SOC관리지원단</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('361');">민자도로관리 지원센터</a></li>
+                                        <li><a href="javascript:searchEmpByDept('362');">민자철도관리 지원센터</a></li>
+                                    </ul>
+                                </div>
+                            </li>                            
+                        </ul>
+                    </div>
+                    <div class="group_line_mob_wrap">
+                        <a href="javascript:;" class="vice_president">경영부원장</a>
+                        <ul class="group_mob_list">
+                            <li>
+                                <button type="button" onclick="searchEmpByDeptMob('411', this);">기획조정실</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('4111');">미래전략팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('4113');">연구관리팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('4112');">예산경영팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('4115');">대외협력홍보팀</a></li>
+										<li><a href="javascript:searchEmpByDept('3154');">동북아·북한 교통연구팀</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="last_bg">
+                                <button type="button" onclick="searchEmpByDeptMob('413', this);">경영지원실</button>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:searchEmpByDept('4131');">운영관리팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('4132');">인사팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('4133');">재무회계팀</a></li>
+                                        <li><a href="javascript:searchEmpByDept('4114');">정보화기획팀</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- // 모바일 조직도 -->
+            </div>
+			<div id="search_result">
+			
+			</div>
+        </div>
+    </div>
+</div><section id="ui_body">
+	<article id="ui_contents">
+	<section class="page_top">
+			<div class="page_top_guide">
+				<h3>보도자료</h3>
+				<p>보도자료</p>
+			</div>
+			<img src="/upload/userdata/USER_MENU/58/7A0E29C760_1688033902693_58.jpg" alt="page_top_introduction.jpg">
+		</section>	
+	<section class="page_view">
+			<div id="ui_snb">
+		    <h2><em class="snb_guide">소개</em></h2>
+		    <div class="snb_guide">
+				<ul>
+					<li>
+									<a href="/user/cms/introCeoList.do" class="">원장실</a>
+										
+										</li>
+							<li>
+									<a href="/user/cms/mngrgoalList.do" target="_self" class="">경영목표</a>
+									</li>
+							<li>
+									<a href="/user/cms/manageesgList.do" class="">ESG경영</a>
+										
+										</li>
+							<li>
+									<a href="/user/cms/historyList.do" target="_self" class="">설립목적 및 연혁</a>
+									</li>
+							<li>
+									<a href="javascript:layerOpen();" target="_self" class="">조직도</a>
+									</li>
+							<li>
+									<a href="/user/cms/rschfieldList.do" target="_self" class="">연구분야</a>
+									</li>
+							<li>
+									<a href="/user/cms/pciList.do" class="on">홍보관</a>
+										
+										</li>
+							<li>
+									<a href="/user/cms/honorhallList.do" target="_self" class="">명예의 전당</a>
+									</li>
+							<li>
+									<a href="/user/cms/directionsList.do" target="_self" class="">찾아오시는 길</a>
+									</li>
+							</ul>
+		
+				</div>
+		    <strong class="logo">KOTI 교통연구원</strong>
+
+			 <!-- 모바일 메뉴  -->
+			 <div class="snb_mo_menu">
+		        <div class="select_menu-box">
+		        
+				<div class="mu_select">
+		                <button type="button">홍보관</button>
+		                <ul>
+		                	<li><a href="/user/cms/introCeoList.do" class="">원장실</a></li>
+									<li><a href="/user/cms/mngrgoalList.do" class="">경영목표</a></li>
+									<li><a href="/user/cms/manageesgList.do" class="">ESG경영</a></li>
+									<li><a href="/user/cms/historyList.do" class="">설립목적 및 연혁</a></li>
+									<li><a href="javascript:layerOpen();" class="">조직도</a></li>
+									<li><a href="/user/cms/rschfieldList.do" class="">연구분야</a></li>
+									<li><a href="/user/cms/pciList.do" class="on">홍보관</a></li>
+									<li><a href="/user/cms/honorhallList.do" class="">명예의 전당</a></li>
+									<li><a href="/user/cms/directionsList.do" class="">찾아오시는 길</a></li>
+									</ul>
+		            </div>
+		        <div class="mu_select">
+		                <button type="button" id="mob2DepthSeleted">보도자료</button>
+		                <ul id="mob2Depth">
+		                	<li><a href="/user/cms/pciList.do" class="" target="_self">CI</a></li>
+			            			<li><a href="/user/cms/bbrochureList.do" class="" target="_self">브로셔 / 홍보영상</a></li>
+			            			<li><a href="/user/bbs/pmediaList.do" class="on" target="_self">보도자료</a></li>
+			            			</ul>
+		            </div>
+		          </div>
+		    </div>
+		</div>	
+			
+	<div class="view_container">
+				<div class="view_container_guide">
+					<div id="ui_linemap">
+    <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="#">소개</a></li>
+        <li><a href="#">홍보관</a></li>
+        <li><a href="/user/bbs/pmediaList.do">보도자료</a></li>
+        </ul>
+</div><div class="view_detail_container">
+						<div class="view_detail">
+							<!--  탭 영역 -->
+							<div class="comm_tab gradient mb0 mob_center">
+<!-- 								<div class="comm_tab gradient short mb0"> -->
+									<div class="tab">
+										<div class="tab_item"><a href="/user/cms/pciList.do" class="">CI</a></div>
+												<div class="tab_item"><a href="/user/cms/bbrochureList.do" class="">브로셔 / 홍보영상</a></div>
+												<div class="tab_item"><a href="/user/bbs/pmediaList.do" class="on">보도자료</a></div>
+												</div>
+<!-- 								</div> -->
+							</div>
+						<div class="view_detail_top">
+								<div class="view_detail_top-title center_align">
+									<strong class="title">GTX-A 개통, 수도권 교통체계와 역세권 경제에 변화 가져와</strong>
+									<span class="date">2026.10.20</span>
+									</div>
+								
+								</div>
+							<div class="view_detail_body">
+								<dl class="view_type_define">
+									<div class="item">
+										<dd>
+											<div class="editor">
+												<div style="text-align: justify;"><b><span style=""line-height:157%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">- </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">한국교통연구원</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">, ‘GTX </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">개통 영향 분석 및 정책적 시사점</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">’ </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">연구 결과 발표</span></span></span></span></span><br />
+<span style=""line-height:157%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">- </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">개통 이후 이용수요 증가세</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">, </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">역사 접근성 개선과 환승체계 강화가 핵심 과제</span></span></span></span></span><br />
+<span style=""line-height:157%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt""><span style=""font-weight:bold"">- </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt""><span style=""font-weight:bold"">역세권 소비</span></span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt""><span style=""font-weight:bold"">·</span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt""><span style=""font-weight:bold"">부동산 가격 변화 확인</span></span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt""><span style=""font-weight:bold"">, </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt""><span style=""font-weight:bold"">교통과 지역개발을 연계한 종합적 정책 추진 필요</span></span></span></span></span></span></b><br />
+<span style=""font-size:15.0pt""><span style=""line-height:180%""><span style=""text-autospace:none""> </span></span></span><br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">한국교통연구원</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">(</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">원장 김영찬</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">)</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">은 국내 최초로 개통한 수도권광역급행철도</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">(GTX-A)</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">의 이용수요와 수도권 대중교통체계 변화</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">사회경제적 파급효과를 분석하고</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">향후 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">사업의 이용 활성화와 정책 효과 제고를 위한 개선 방향을 제시한 연구 결과를 발표했다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span></span></span><br />
+<br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">수도권 대중교통카드 자료를 활용한 이용수요 분석</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">이용자 및 미이용자 설문조사</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">신용카드 거래자료와 아파트 매매가격 분석 등을 통해 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX-A </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">개통 효과를 다각적으로 검토했다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">분석 결과</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">이용수요는 역 접근체계 개선과 연계교통 확충에 따라 증가하는 경향을 보였으며</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">수도권 대중교통체계와 역세권의 사회경제적 활동에도 변화가 나타났다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">다만</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">실제 이용수요가 계획 수준에 도달하지 못한 점과 역사 접근성 및 환승 편의 개선의 필요성도 확인됐다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<br />
+<span style=""line-height:207%""><b><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold""><gtx-a></gtx-a></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold""><이용수요 증가</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">, </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">접근성 개선이 이용 활성화의 핵심</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">></span></span></span></span></span></span></b><br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">GTX-A </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">수서</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">동탄 구간의 이용수요는 개통 초기보다 증가하는 추세를 보였다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">특히 구성역 추가 개통 이후 일평균 승차인원은 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">10,538</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">명으로 직전 주보다 약 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">1.4</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">배 증가했으며</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">, 2025</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">년 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">2</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">월에는 일평균 승차인원이 약 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">14,479</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">명까지 늘어 개통 초기보다 이용수요가 크게 확대된 것으로 나타났다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">연구진은 동탄역 연계버스 노선 개통</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">서측 출입구 추가 및 동서연결도로 개통</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">열차 운행횟수 확대 등이 이용수요 증가에 긍정적인 영향을 미친 것으로 분석했다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">.</span></span></span></span></span><br />
+<br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">반면</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">개통 이후 이용수요가 증가했음에도 당초 계획한 수요에는 아직 도달하지 못한 것으로 나타났다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">수서</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">동탄 구간의 경우 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">2025</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">년 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">2</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">월 중 평일 이용수요가 예측치의 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">70%</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">를 웃도는 수준까지 증가했으나</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">계획 수요와 실제 이용수요 간 차이는 여전히 존재했다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">연구진은 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">역사가 대심도에 위치해 승강장까지 이동시간이 길고</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">기존 철도 수요예측 모형이 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">GTX</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">의 차별적인 이용 특성과 세부적인 역사 접근 여건을 충분히 반영하지 못하는 점 등을 주요 원인으로 제시했다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">.</span></span></span></span></span><br />
+<br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">이용자 설문조사에서도 역사 접근성 개선의 필요성이 확인됐다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">. GTX-A </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">수서</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">동탄 구간 이용자의 평균 접근시간은 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">21.3</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">분이었으며</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">운정중앙</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">서울역 구간은 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">16.1</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">분으로 조사됐다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">또한 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">GTX</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">를 이용하지 않는 주요 이유로 역사 접근성 불편을 꼽은 응답은 수서</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">동탄 구간 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">43.8%, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">운정중앙</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">서울역 구간 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">44.4%</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">로 나타났다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">이는 </span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">GTX</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체">의 빠른 열차 운행속도뿐만 아니라 출발지에서 역사까지의 접근과 최종 목적지까지의 이동을 포함한 통행 전반의 편의성이 이용 활성화에 중요하다는 점을 보여준다</span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:0pt"">.</span></span></span></span></span><br />
+<span style=""font-size:13.0pt""><span style=""line-height:185%""><span style=""text-autospace:none""> </span></span></span><br />
+<b><span style=""line-height:207%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold""><</span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">수도권 대중교통체계 변화</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">, </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">기존 철도와 경쟁 및 보완관계 형성</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">></span></span></span></span></span></span></b><br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX-A</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">는 기존 대중교통과 경쟁하면서도 환승을 통해 상호보완적인 관계를 형성하는 것으로 나타났다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">수서</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동탄 구간 이용자 중 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">54.7%</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">가 다른 철도 노선으로 환승했으며</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">운정중앙</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">서울역 구간에서는 철도 노선 환승 비율이 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">79.8%</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">에 달했다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">이는 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">가 독립적인 교통수단에 그치지 않고 기존 도시철도 및 광역철도와 연계될 때 수도권 광역교통체계의 효율성을 높일 수 있음을 시사한다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">한편</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, GTX-A </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">수서</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">~</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동탄 구간 개통 이후 수서고속철도</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">(SRT)</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">의 해당 구간 이용수요는 감소한 것으로 분석됐다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">개통 전후 수서고속철도의 일평균 이용수요는 하행 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">1,270</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">명에서 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">401</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">명으로</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">상행 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">1,397</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">명에서 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">360</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">명으로 줄었다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">연구진은 이러한 감소분을 바탕으로 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX-A </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">이용수요 중 약 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">33.9%</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">가 기존 수서고속철도에서 전환된 수요인 것으로 추정했다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">이는 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">가 기존 철도와의 관계에서 새로운 광역교통 서비스의 위계를 형성하고 있음을 보여준다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<span style=""font-size:13.0pt""><span style=""line-height:185%""><span style=""text-autospace:none""><span style=""letter-spacing:-0.3pt""> </span></span></span></span><br />
+<b><span style=""line-height:207%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold""><</span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">역세권 소비</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">·</span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">부동산 가격 변화</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">, </span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">교통 인프라와 지역발전 연계 필요</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">></span></span></span></span></span></span></b><br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX-A </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">개통에 따른 사회경제적 파급효과를 분석한 결과</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">일부 역세권에서 신용카드 매출액 증가와 부동산 가격 상승 등 변화가 관찰됐다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동탄역 인근 역세권의 경우 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">2024</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">년 신용카드 총매출액이 전년 대비 동탄</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">4</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">5.2%, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동탄</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">5</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">4.7%, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동탄</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">6</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">5.5% </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">증가했다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">특히 대형 상업시설과 중심상권이 위치한 동탄</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">6</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동에서 매출액 증가 폭이 두드러졌다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">같은 기간 화성시 전체 신용카드 매출액은 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">10.3% </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">감소한 것으로 나타나 역세권과 지역 전체의 변화 양상에 차이가 발생하였다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">아파트 매매가격 분석에서도 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">역과 가까운 지역에서 상대적으로 높은 가격 상승률이 관찰됐다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">비역세권 대비 직접 역세권의 가격 상승률은 수서역 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">1.07</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">배</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">성남역 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">1.28</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">배</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">구성역 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">1.75</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">배</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">동탄역 약 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">3</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">배로 분석됐다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">다만 이러한 결과는 개통 전후의 가격 변화와 역세권별 차이를 분석한 것으로</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">개통만의 독립적인 인과효과로 단정하기보다는 주변 개발과 상업시설 등 지역 여건을 함께 고려할 필요가 있다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">연구진은 이러한 분석 결과가 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">사업의 효과가 단순한 이동시간 단축에 그치지 않고 역세권의 소비 활동과 도시 공간의 변화로 이어질 가능성을 보여준다고 설명했다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">이에 따라 향후 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">사업은 철도시설 건설에만 초점을 맞추기보다 역세권 개발</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">상업</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">·</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">업무 기능의 연계</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">대중교통 접근성 개선 등을 종합적으로 고려하는 방향으로 추진할 필요가 있다고 강조했다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<span style=""font-size:3.0pt""><span style=""line-height:185%""><span style=""text-autospace:none""><span style=""letter-spacing:-0.3pt""> </span></span></span></span><br />
+<span style=""line-height:207%""><b><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold""><gtx></gtx></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold""><이용 활성화 및 정책 효과 제고를 위한 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">3</span></span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""font-weight:bold"">대 제언</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:0pt""><span style=""font-weight:bold"">></span></span></span></span></span></span></b><br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">한국교통연구원은 연구 결과를 바탕으로 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">사업의 이용 활성화와 정책 효과 제고를 위해 다음과 같은 세 가지 정책 방향을 제안했다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">- </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">첫째</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">역사 접근교통체계 개선할 필요가 있다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">이용수요가 충분히 확보되지 않았거나 접근성 만족도가 낮은 역사를 중심으로 연계버스 노선과 운행체계를 개선하고</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">버스</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">·</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">도시철도</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">·</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">환승주차장 등 다양한 접근수단 간 연계성을 강화하여 이용자의 접근시간을 단축해야 한다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">- </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">둘째</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">특성을 반영한 수요예측 체계의 고도화가 필요하다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">실제 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">이용자료를 바탕으로 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">의 운행속도</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">요금</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">역사 접근시간 및 환승 여건 등을 반영한 수요예측 모형을 개발해 향후 </span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">사업의 특성을 고려한 합리적인 수요예측 체계를 마련해야 한다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<span style=""line-height:185%""><span style=""text-autospace:none""><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">- </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">셋째</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">역세권 개발과 연계하여 지역경제를 활성화를 도모할 수 있다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">. GTX </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">개통 효과는 역세권의 토지이용과 상업시설 조성 등 주변 여건에 따라 달라질 수 있으므로</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">단순히 주거 밀집 지역 중심으로 사업을 추진하기보다는 역세권 접근성 개선</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">상업</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">·</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">업무시설 유치</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">, </span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">여가</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">·</span></span></span><span style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">관광 인프라 조성 등 종합적인 도시계획과 연계해야 한다</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span light="" style=""font-family:KoPub바탕체"><span style=""letter-spacing:-0.3pt"">.</span></span></span></span></span><br />
+<span style=""font-size:3.0pt""><span style=""line-height:205%""><span style=""text-autospace:none""><span style=""letter-spacing:-0.3pt""><span style=""font-weight:bold""><span style=""color:#0000ff""> </span></span></span></span></span></span><br />
+<span style=""line-height:165%""><span style=""text-autospace:none""><span style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt"">◆ </span></span></span><span style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt"">붙임</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt"">: <</span></span></span><a href="https://www.koti.re.kr/user/bbs/rndRsrchReprtView.do?bbs_no=70125" target="_blank"><u single="" style=""text-underline:#800080"><span style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt""><span style=""color:#800080"">광역급행철도 개통에 따른 교통체계 변화 및 기대효과</span></span></span></span></u></a><span lang=""EN-US"" style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt"">> </span></span></span><span style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt"">보고서 원문</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt"">(</span></span></span><span style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt"">제목클릭</span></span></span><span lang=""EN-US"" style=""font-size:13.0pt""><span medium="" style=""font-family:KoPub돋움체"><span style=""letter-spacing:-0.3pt"">)</span></span></span></span></span> </span></span></div>
+
+<div class=""hwp_editor_board_content"" data-hjsonver=""1.0"" data-jsonlen=""33236"" id=""hwpEditorBoardContent"" style="text-align: justify;"><span style=""line-height:207%""><span style=""line-height:207%""> </span></span></div></div>										
+										</dd>
+									</div>
+									
+									<!-- 관련 자료, 첨부파일에는 file 클래스 추가 -->									
+									<div class="item file">
+											<dt class="koti_sub_tit bd_t">첨부파일</dt>
+											<dd>
+												<div class="view_file_list">
+												<div class="list_item">
+														<p>보도자료_광역급행철도 개통에 따른 교통체계 변화 및 기대효과_이호.hwpx</p>
+														<div class="comm_view_down v_txt">
+															<div class="btn"><button type="button" koti-title="GTX-A 개통, 수도권 교통체계와 역세권 경제에 변화 가져와" class="file_preview" onclick="commonFilePreView('l1BHTBmkW0LbtkcdNNXL4A%3D%3D','Yo2OvGWfXx9HsBe2ht2l1w%3D%3D')">파일 미리보기</button></div>
+															<div class="btn"><button type="button" koti-title="GTX-A 개통, 수도권 교통체계와 역세권 경제에 변화 가져와" class="down_w" onclick="commonFileDownload('Yo2OvGWfXx9HsBe2ht2l1w%3D%3D')">다운로드</button></div>
+														</div>
+													</div>
+													</div>
+											</dd>
+										</div>										
+									</dl>
+							</div>
+							<div class="view_detail_btm">
+								<div class="comm_btn_box"><a href="./pmediaList.do?pg=&amp;pp=&amp;b_type=&amp;year=&amp;month=&amp;sort=&amp;stype=&amp;skey=&amp;quarter=">목록</a></div>
+							</div>
+						</div>
+					</div>
+					<script>
+
+	var setCount = 0;
+
+	function setSatisfied(){
+		
+		if($("#snslogindta").val() == '') {
+			alert("로그인 후 이용해주세요.");
+			$("#satisText").focus();
+			return false;
+		}
+		
+		if($("#satisText").val() == '') {
+			alert("내용을 입력해주세요.");
+			$("#satisText").focus();
+			return false;
+		}
+		
+		var form = $("form[name=satisForm]")[0];
+		var data = new FormData(form);
+		if( setCount == 0) {
+			$.ajax({
+				 type : 'POST'
+				,url : '/satis/satisProc'
+				,processData: false
+		        ,contentType: false
+				,data : data
+				,dataType : "json"
+				,success : function(data) {
+					if(data.status) {
+						$("#satisText").val('');
+						alert(data.msg);
+					}else{
+						setCount = 0;
+						alert(data.msg);
+						return false;
+					}
+				}  , error : function( request, status, error ) {
+					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        	alert("로그인 후 이용하실 수 있습니다.");
+		        	return false;
+				}
+			});
+		}
+	//		openCaptcha(0, 'satis');
+	
+	}
+
+</script>
+
+<div id="ui_satisf">
+    <div class="satisf_guide">
+        <!-- 뷰 페이지에서만 공공누리 노출 -->
+        <div class="kogl">
+	            <img src="/res/img/img_nuri_4.jpg" alt="공공누리 이미지">
+	            <p>한국교통연구원 공공저작물은 공공누리 4유형으로 <br>“출처표시+상업적이용금지+변경금지” 조건에 따라 이용할 수 있습니다.</p>
+	        </div>
+        <!-- 만족도는 언제나 노출 / .login_box에 open 클래스 추가해주셔야 노출됩니다! -->
+        <div class="satisfaction">
+	        
+	            <!-- 로그인 전 -->
+	            <div class="login_box n open" id="befSlogn">
+	                <p class="desc">현재 페이지 정보에 대해 만족도 의견을 남기시려면 로그인해주세요.</p>
+	                <div class="btn_login">
+	                    <a href="javascript:;">로그인</a>
+	                    <button type="button" class="sns n" onclick="NaverLoginSet.nvlogin('');">네이버 로그인</button>
+	                    <button type="button" class="sns k" onclick="kakaoLogin();">카카오 로그인</button>
+	                </div>
+	            </div>
+	            
+	            <!-- 로그인 후 -->
+	         	<form id="satisForm" name="satisForm">   
+		            <div class="login_box y" id="aftSlogn">
+		                <p class="desc">현재 페이지에서 제공하는 정보에 만족하시나요?</p>
+		                <input type="hidden" id="snslogindta" name="snslogindta" value="" />
+				        <input type="hidden" id="menu_cd" name="menu_cd" value="003008003" />
+				        <input type="hidden" id="menu_nm" name="menu_nm" value="보도자료" />
+		                
+		                <div class="btn_login">
+		                    <a href="javascript:;" onclick="sociallogout();">로그아웃</a>
+		                    
+		                    <button type="button" class="sns n" onclick="sociallogout();"><span id="naverloginStsatus">네이버 로그인</span></button>
+		                    <button type="button" class="sns k" onclick="sociallogout();"><span id="kakaologinStsatus">카카오 로그인</span></button>
+		                </div>
+		                <div class="investigation_box">
+		                    <div class="investigation_check">
+		                        <div class="radio_box">
+		                            <label class="comm_radio"><input type="radio" name="satisfied_select" value="1" checked><span>매우 만족</span></label>
+		                            <label class="comm_radio"><input type="radio" name="satisfied_select" value="2"><span>만족</span></label>
+		                            <label class="comm_radio"><input type="radio" name="satisfied_select" value="3"><span>보통</span></label>
+		                            <label class="comm_radio"><input type="radio" name="satisfied_select" value="4"><span>불만족</span></label>
+		                            <label class="comm_radio"><input type="radio" name="satisfied_select" value="5"><span>매우 불만족</span></label>
+		                        </div>
+		                    </div>
+		                    <div class="investigation_input">
+		                        <label><textarea id="satisText" name="sat_cn" placeholder="상세한 의견을 남겨주시길 바랍니다."></textarea></label>
+		                        <button type="button" onclick="setSatisfied();">등록</button>
+		                    </div>
+		                </div>
+		            </div>
+	           </form> 
+	            
+	        </div>
+        </div>
+</div></div>
+				<div id="ui_footer" class="main_item swiper-slide">
+    <footer>
+        <div class="footer_conts footer_top">
+            <div class="footer_guide">
+                <div class="terms_link">
+                    <ul>
+                        <li><a href="/privacy.do" class="cr_r">개인정보처리방침</a></li>
+                        <li><a href="/useterms.do">이용약관</a></li>
+                        <li><a href="/user/cms/policyinfoList.do">정보공개</a></li>
+                        <li><a href="https://lib.koti.re.kr/" target="_blank">전자도서관</a></li>
+                        <li><button type="button" class="cr_sb" onclick="kotiFn.layerpopupFn(1, '#member_joinPopup');">연회원신청</button></li>
+                    </ul>
+                </div>
+                <div class="family_site">
+                    <button type="button" title="패밀리사이트" onclick="kotiUi.footerFamilySite(this);">관련링크</button>
+                    <ul>
+                        <li><a href="https://www.opm.go.kr" target="_blank">국무총리실</a></li>
+                        <li><a href="https://www.molit.go.kr" target="_blank">국토교통부</a></li>
+                        <li><a href="https://www.nrc.re.kr" target="_blank">경제인문사회연구회</a></li>
+                        <li><a href="https://www.gov.kr" target="_blank">대한민국정부포털</a></li>
+                        <li><a href="https://www.alio.go.kr/main.do" target="_blank">공공기관경영정보</a></li>
+                        <li><a href="https://www.gojobs.go.kr/" target="_blank">공공기관채용정보</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer_conts footer_btm">
+            <div class="footer_guide">
+                <strong>KOTI 한국교통연구원</strong>
+                <address>
+                    <p class="info">
+                        <span>(우)30147 세종특별자치시 시청대로 370 세종국책연구단지 과학인프라동(B)</span>
+                        <span>TEL <a href="tel:044-211-3222">044-211-3114</a></span>
+                        <span>FAX 044-211-3222</span>
+                    </p>
+                    <p><em class="cr_r">COPYRIGHT</em> © Korea transport institute all rights reserved.</p>
+                </address>
+                <div class="sns">
+                    <span class="y"><a href="https://www.youtube.com/channel/UCPejkjCLe82BosHrdhXsgvw" target="_blank" title="유튜브">유튜브</a></span>
+                    <span class="f"><a href="https://www.facebook.com/kotiofficial86" target="_blank" title="페이스북">페이스북</a></span>
+                    <span class="n"><a href="https://blog.naver.com/koti10" target="_blank" title="네이버 블로그">네이버 블로그</a></span>
+                </div>
+            </div>
+        </div>       
+    </footer>
+</div>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HCQ6D5C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+</div>
+		</section>
+		<!-- contents // end -->
+	</article>
+	<div id="ui_side">
+    <div class="side_guide">
+        <div class="side_top">
+            <a href="/eng.do" class="lang">ENG</a>
+            <button type="button" class="search" title="검색하기" onclick="kotiFn.sideSearchOpen(1);">검색</button>
+        </div>
+        <div class="side_btm">
+            <p class="name">KOREA TRANSPORT INSTITUTE</p>
+            <button type="button" class="btn_top" onclick="kotiFn.gotoScrollTop();">TOP</button>
+        </div>
+    </div>
+</div>
+<section class="full_search_box">
+    <h5><em>국민 삶의 질을 높이는 <strong>교통정책</strong>,</em> <br><strong>한국교통연구원</strong>이 <br class="mob open_none">앞장서겠습니다</h5>
+    <div class="search_word_input">    	
+        <label><input type="text" placeholder="검색어를 입력하세요" name="term" id="term" onkeydown="kotiFn.sideSearchOpen(1, 'k');"></label>
+        <button type="button" title="닫기" class="btn_search" onclick="kotiFn.sideSearchOpen(0);">닫기</button>
+    </div>
+    <div class="keyword">
+        <div class="keyword_wrap">
+        	<span><a href="/user/search/search.do?term=대북">대북</a></span>
+        	<span><a href="/user/search/search.do?term=자전거">자전거</a></span>
+        	<span><a href="/user/search/search.do?term=자율주행">자율주행</a></span>
+        	<span><a href="/user/search/search.do?term=물류">물류</a></span>
+        	<span><a href="/user/search/search.do?term=항공">항공</a></span>
+        	<span><a href="/user/search/search.do?term=교통혼잡비용">교통혼잡비용</a></span>
+        	<span><a href="/user/search/search.do?term=화물">화물</a></span>
+        	<span><a href="/user/search/search.do?term=대중교통">대중교통</a></span>
+        	<span><a href="/user/search/search.do?term=철도">철도</a></span>
+        	<span><a href="/user/search/search.do?term=운임">운임</a></span>
+        	</div>
+        <button type="button" class="more" onclick="kotiFn.foldingFn(1, this, $(this).parent().find('.keyword_wrap'));">더보기</button>
+    </div>
+    <div class="report">
+        <h6>추천보고서</h6>
+        <div id="sideReportSlider" class="slider">
+            <div class="slider-wrapper">
+            	<div class="item">
+		        	<div class="item_wrapper">
+			            <em class="category">일반사업보고서</em>
+			            <strong><a href="/user/bbs/basicCompView.do?bbs_no=72375">2025 탄소중립·녹색성장 교통정책 지원사업</a></strong>
+			            <div class="keyword">
+							<span><a href="/user/search/search.do?term=탄소중립">탄소중립</a></span>								
+							<span><a href="/user/search/search.do?term=녹색성장">녹색성장</a></span>								
+							<span><a href="/user/search/search.do?term=친환경차">친환경차</a></span>								
+							<span><a href="/user/search/search.do?term=온실가스">온실가스</a></span>								
+							</div>
+			            <em class="date">2025.12.31</em>
+		        	</div>
+		        </div>      
+		              	            	
+            	<div class="item">
+		        	<div class="item_wrapper">
+			            <em class="category">연구개발적립금보고서</em>
+			            <strong><a href="/user/bbs/rndRsrchReprtView.do?bbs_no=73582">2026년 교통분야 미래전망 및 정책방향</a></strong>
+			            <div class="keyword">
+							<span><a href="/user/search/search.do?term=교옽분야 전망">교옽분야 전망</a></span>								
+							<span><a href="/user/search/search.do?term=2026년 미래전망">2026년 미래전망</a></span>								
+							</div>
+			            <em class="date">2026.04.30</em>
+		        	</div>
+		        </div>      
+		              	            	
+            	<div class="item">
+		        	<div class="item_wrapper">
+			            <em class="category">일반사업보고서</em>
+			            <strong><a href="/user/bbs/basicCompView.do?bbs_no=72362">2025 대도시권 광역교통 정책지원 사업</a></strong>
+			            <div class="keyword">
+							<span><a href="/user/search/search.do?term=대도시권">대도시권</a></span>								
+							<span><a href="/user/search/search.do?term=광역교통">광역교통</a></span>								
+							</div>
+			            <em class="date">2025.12.31</em>
+		        	</div>
+		        </div>      
+		              	            	
+            	</div>
+    	</div>
+    </div>
+    <p class="name">KOREA TRANSPORT <br>INSTITUTE</p>
+</section></section>
+</div>
+
+<script>
+	
+	$(function(){
+	});
+	
+	function getImg(certiId){
+		
+		let rand = Math.random(); 
+		let url = '/captcha/captchaImg?rand='+rand;
+		
+		if ( !certiId ) certiId = "captchImg";
+		
+		$("#" + certiId).attr("src", url);
+		
+	}
+
+	function anw( type ){
+		
+		//캡챠 확인(기본)
+		
+		if($("#certCode").val() == ''){
+			
+			alert("보안문자를 입력해주세요.");
+			$("#certCode").focus();
+			return false;
+			
+		}
+		
+		$.ajax({
+			
+			  type : 'POST'
+			, url : '/captcha/chkAnswerCommon.do'
+			, data : { "answer" : $("#certCode").val()  }
+			, success : function(data) {
+				if ( data == '200' ) {
+					$("#certCode").val('');
+					kdifn.miniPopupClose('#securityCode');
+				}else {
+					$("#certCode").val('');
+					kdifn.miniPopupClose('#securityCode');
+				}//end else
+			} , error : function( request, status, error ) {
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	        	alert("A temporary error has occurred.\nPlease try again");
+	        	return false;
+			}
+		});
+	}
+	
+	
+	function checkOrgSecurity(type, no, dept_no, layer_no){
+		
+		$("#email_info").text('');
+		$("#phone_info").text('');
+		
+		if($("#certCode").val() == ''){
+			
+			alert("보안문자를 입력해주세요.");
+			$("#certCode").focus();
+			return false;
+			
+		}
+		
+		$.ajax({
+			
+			  type : 'post'
+			, url : '/captcha/chkAnswerOrg.do'
+			, data : { "answer" : $("#certCode").val(), "emp_no" : no, "dept_no" : dept_no }
+			, success : function(data) {
+				
+				$("#certCode").val('');
+				
+				if ( data.result == '200' ) {
+					
+					let info = data.contactEtt;
+					
+					if ( type == 'email' ) {
+						
+						kotiFn.layerpopupFn(0, '#securityStrPopup');
+						
+						$("#email_info").text(info.EMAIL);
+						
+						kotiFn.layerpopupFn(layer_no, '#employeeCheckMailPopup')
+						
+					} else if( type == 'phone' ) {
+						
+						kotiFn.layerpopupFn(0, '#securityStrPopup');
+						
+						$("#phone_info").text(info.TEL_NO);
+						
+						kotiFn.layerpopupFn(layer_no, '#employeeCheckTelPopup')
+							
+					}
+					
+				} else if ( data.result == '300' ) {
+					
+					alert("보안문자를 확인해주세요.");
+					return false;
+					
+				}
+				
+			} , error : function( request, status, error ) {
+				
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	        	alert("일시적인 오류가 발생했습니다.\n잠시후 다시 시도해주세요.");
+	        	
+	        	$("#certCode").val('');
+        		kotiFn.layerpopupFn(0, '#securityStrPopup');
+	        	
+	        	return false;
+	        	
+			}
+		});
+	}
+	
+	function captchaOpen( type, no, dept_no ){
+
+		//캡챠 오픈
+		if(!type) type = '';
+		
+		$("#anw_btn").attr("onclick", "checkOrgSecurity('" + type + "','" + no + "','" + dept_no + "', '2')");
+		
+		getImg('certImg');
+		kotiFn.layerpopupFn(2, '#securityStrPopup');
+	}
+	
+	function captchaOpenPop( type, no, dept_no ){
+
+		//캡챠 오픈
+		if(!type) type = '';
+		
+		$("#anw_btn").attr("onclick", "checkOrgSecurity('" + type + "','" + no + "','" + dept_no + "', '3')");
+		
+		getImg('certImg');
+		kotiFn.layerpopupFn(3, '#securityStrPopup');
+	}
+	
+	function checkPopupClose(){
+		kotiFn.layerpopupFn(0, '#employeeCheckTelPopup');
+	}
+	
+</script>
+
+
+<!-- 조직도 모바일 본부 팝업 -->
+<div id="centralPopup" class="layerpopup modal central_popup">
+	
+</div>
+
+<!-- 직원 정보 확인 - 전화 -->
+<div id="employeeCheckTelPopup" class="layerpopup modal employee_check">
+	<div class="top">
+		<strong class="title">KOTI 직원 정보 확인</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#employeeCheckTelPopup');">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<p class="desc">정보를 확인해 주세요.</p>
+			<strong id="phone_info">전화번호가 존재하지 않습니다.</strong>
+		</div>
+		<div class="pop_btn">
+			<button type="button" onclick="kotiFn.layerpopupFn(0, '#employeeCheckTelPopup');">확인</button>
+		</div>
+	</div>
+</div>
+
+<!-- 직원 정보 확인 - 메일 -->
+<div id="employeeCheckMailPopup" class="layerpopup modal employee_check">
+	<div class="top">
+		<strong class="title">KOTI 직원 정보 확인</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#employeeCheckMailPopup');">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<p class="desc">정보를 확인해 주세요.</p>
+			<strong id="email_info">이메일이 존재하지 않습니다.</strong>
+		</div>
+		<div class="pop_btn">
+			<button type="button" onclick="kotiFn.layerpopupFn(0, '#employeeCheckMailPopup');">확인</button>
+		</div>
+	</div>
+</div>
+
+<!-- 보안 문자 확인 -->
+<div id="securityStrPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">보안 문자 확인</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#securityStrPopup');$('#certCode').val('');">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<p class="desc">정보의 무단수집 방지를 위해 아래 보안문자를 입력해 주세요.</p>
+			<div class="security_box">
+				<div class="security_img">
+					<span class="img"><img src="/res/img/_sample/security.jpg" alt="보안문자 이미지" id="certImg"></span>
+					<button type="button" class="refresh" onclick="getImg('certImg')">새로고침</button>
+				</div>
+				<div class="security_input">
+					<label><input type="text" placeholder="보안문자 입력" id="certCode"></label>
+					<span class="pop_btn"> <button type="button" id="anw_btn" onclick="kotiFn.layerpopupFn(0, '#securityStrPopup');kotiFn.layerpopupFn(2, '#employeeCheckTelPopup');">확인</button> </span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 인쇄물 구매 -->
+<div id="buyPrintsPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">인쇄물 구매</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#buyPrintsPopup');">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<ul>
+				<li>
+					<span class="img"><img src="/res/img/logo_gpcbooks.jpg" alt="정부간행물판매센타"></span>
+					<div class="comm_btn_box"><a href="http://gpcbooks.co.kr/newmall/shop/list.php?ca_id=3080" target="_blank">구매</a></div>
+				</li>
+				<li>
+					<span class="img"><img src="/res/img/logo_b.png" alt="한국교통연구원"></span>
+					<div class="comm_btn_box"><button type="button" onclick="kotiFn.layerpopupFn(1, '#member_buyPopup');">연회원 구매</button></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- 연회원 구매 신청 -->
+<div id="member_buyPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">연회원 구매 신청</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#member_buyPopup');">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<div class="item application_detail">
+				<p>KOTI연회원(특별회원, 정회원)은 본원 발간물 구입시 50% 할인하여 제공합니다. <button type="button" onclick="kotiFn.layerpopupFn(1, '#member_joinPopup');"><em class="cr_r underline">연회원 신청</em></button></p>
+				<p>구매를 원하시는 회원께서는 아래 이메일(kotibook@koti.re.kr)로 <em class="cr_r">보고서명 또는 정간물 연월호 정보를 포함하여 신청</em> 부탁 드립니다.</p>
+			</div>
+			<div class="item addr">
+				<strong>신청 이메일</strong>
+				<ul>
+					<li class="mail"><a href="mailto:kotibook@koti.re.kr">kotibook@koti.re.kr</a></li>
+					<li class="call"><a href="tel:044-211-3029">044-211-3029</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="pop_btn"><button type="button" onclick="kotiFn.layerpopupFn(0, '#member_buyPopup');">확인</button></div>
+	</div>
+</div>
+
+<!-- 연회원 신청 -->
+<div id="member_joinPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">연회원 신청</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#member_joinPopup'); closeInfoDel();">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<div class="item">
+				<div class="type_item">
+					<strong class="member_type special">KOTI <em>특별회원</em></strong>
+					<ul class="list_txt">
+						<li>발간물 구매시 50% 할인 (배송비 제외)</li>
+						<li>가입 후 1년간 정기간행물(월간교통, 교통연구) 제공</li>
+						<li>연구보고서 제공</li>
+					</ul>
+					<strong class="member_price">1년 가입비: 100,000원</strong>
+				</div>
+				<div class="type_item">
+					<strong class="member_type">KOTI <em>정회원</em></strong>
+					<ul class="list_txt">
+						<li>발간물 구매시 50% 할인 (배송비 제외)</li>
+						<li>가입 후 1년간 정기간행물(월간교통) 제공</li>
+					</ul>
+					<strong class="member_price">1년 가입비: 30,000원</strong>
+				</div>
+			</div>
+			<div class="item addr">
+				<strong>가입 안내</strong>
+				<ul>
+					<li class="call"><a href="tel:044-211-3029">044-211-3029</a></li>
+					<li class="mail"><a href="mailto:kotibook@koti.re.kr">kotibook@koti.re.kr</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="pop_btn"><button type="button" class="apply" onclick="kotiFn.layerpopupFn(1, '#member_termsPopup');">신청하기</button></div>
+	</div>
+</div>
+
+<!-- 연회원 신청 - 약관 -->
+<div id="member_termsPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">연회원 신청</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#member_termsPopup'); closeInfoDel();">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<div class="subscribe_form">
+				<div class="form_item">
+					<strong class="form_title koti_sub_tit">개인정보 활용 동의</strong>
+					<div class="form_detail check_terms">
+						<div class="terms_box">
+							<div class="terms_wrap">
+								<p><span style="color:#f00;">연회원 서비스 처리를 위한 개인정보 수집·이용 동의서</span></p>
+								<br />
+								<p><span style="color:#f00;">한국교통연구원의 연회원 서비스 처리</span>를 위하여 아래와 같이 개인정보를 수집·이용하고자 합니다. 내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오.</p>
+								<br />
+								<p>▸ 개인정보의 수집·이용 내역</p>
+								<p>○ 항목 : <span style="color:#f00;">성명, 이메일, 연락처, 우편번호, 주소</span></p>
+								<p>○ 수집·이용 목적 : <span style="color:#f00;">정기간행물 발송 및 회원관리</span></p>
+								<p>○ 보유·이용기간 : <span style="color:#f00; font-weight:bold;"><u>2년/회원기간 만료 후 1년까지</u></span></p>
+								<p>※ 위의 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우 <span style="color:#f00;">홈페이지 연회원 신청</span>에 제한을 받을 수 있습니다.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p style="margin-left:30px;">☞ 위와 같은 개인정보를 수집·이용하는데 동의하십니까?</p>
+			<div class="check_terms_wrap">
+				<label class="comm_radio" for="agreeY"><input type="radio" name="chkAgree" id="agreeY" value="Y" checked="checked"><span>동의</span></label>
+				<label class="comm_radio" for="agreeN"><input type="radio" name="chkAgree" id="agreeN" value="N"><span>미동의</span></label>
+			</div>
+		</div>
+		<div class="comm_btn_box">
+			<button type="button" onclick="kotiFn.layerpopupFn(1, '#member_joinPopup');" class="border">이전</button>
+			<button type="button" onclick="popChkForm('newAgree');">다음</button>
+		</div>
+	</div>
+</div>
+
+<!-- 휴대폰 인증 -->
+<div id="member_phoneCertPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">휴대폰 인증</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#member_phoneCertPopup'); closeInfoDel();">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<div class="subscribe_form">
+				<div class="form_item">
+					<div class="form_detail check_form">
+						<ul>
+							<li>
+								<div class="phone">
+									<label class="comm_select">
+										<select id="prehtl1" name="prehtl1">
+											<option value="010">010</option>
+											<option value="011">011</option>
+											<option value="016">016</option>
+											<option value="017">017</option>
+											<option value="018">018</option>
+											<option value="019">019</option>
+										</select>
+									</label>
+									<label><input type="text" id="prehtl2" name="prehtl2" maxlength="4" onkeyup="onlyNumber(this);"></label>
+									<label><input type="text" id="prehtl3" name="prehtl3" maxlength="4" onkeyup="onlyNumber(this);"></label>
+								</div>
+								<div class="comm_btn_box"><button type="button" onclick="popChkForm('precerti');">인증번호 받기</button></div>
+							</li>
+							<li>
+								<div class="certification_number">
+									<label><input type="text" placeholder="인증번호" id="certinum" name="certinum" maxlength="6" onkeyup="onlyNumber(this);"></label>
+								</div>
+								<div class="comm_btn_box"><button type="button" onclick="popChkForm('certified');">확인</button></div>
+							</li>
+						</ul>
+					</div>
+					<p class="send_txt" id="sendtxt" style="display:none;">인증번호를 발송했습니다.</p>
+				</div>
+				<p class="tip">인증번호가 오지않는다면, 휴대폰의 스팸설정여부 및 스팸편지함을 확인해주세요. 또는 착신관련 서비스를 사용중인 경우 SMS 인증 문자가 수신되지 않을 수 있습니다.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 연회원 신청 - 입력 -->
+<div id="member_joinFormPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">연회원 신청</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#member_joinFormPopup'); closeInfoDel();">닫기</button>
+	</div>
+	
+	<form id="joinForm" name="joinForm" method="post" action="/user/join/joinProc.do">
+		<input type="hidden" name="agree" id="agree" value="">
+		<input type="hidden" name="insert_precerti" id="insert_precerti" value="">
+		<input type="hidden" name="precerti" id="precerti" value="">
+		<input type="hidden" name="emaildupchk" id="emaildupchk" value="N">
+		
+		<div class="conts">
+			<div class="conts_detail">
+				<div class="subscribe_form">
+					<div class="form_item">
+						<strong class="form_title koti_sub_tit">연회원 정보 입력</strong>
+						<div class="form_detail check_form">
+							<span class="guide_required">필수 입력</span>
+							<ul>
+								<li class="required">
+									<span class="check_form_title">회원구분</span>
+									<div class="radio_box">
+										<label class="comm_radio"><input type="radio" name="memgubun" value="special" checked><span>KOTI 특별회원</span></label>
+										<label class="comm_radio"><input type="radio" name="memgubun" value="regular"><span>KOTI 정회원</span></label>
+									</div>
+								</li>
+								<li class="required">
+									<span class="check_form_title">이름</span>
+									<label><input type="text" name="name" id="name"></label>
+								</li>
+								<li class="required">
+									<span class="check_form_title">이메일</span>
+									<div class="mail confirm">
+										<label><input type="text" name="email1" id="email1"></label>
+										<em>@</em>
+										<label><input type="text" name="email2" id="email2"></label>
+										<label class="comm_select">
+											<select onchange="$('#email2').val(this.value);">
+												<option value="">직접입력</option>
+												<option value="koti.re.kr">koti.re.kr</option>
+												<option value="naver.com">naver.com</option>
+												<option value="gmail.com">gmail.com</option>
+												<option value="nate.com">nate.com</option>
+												<option value="hotmail.com">hotmail.com</option>
+											</select>
+										</label>
+										<span class="comm_btn_box">
+											<button type="button" onclick="emailDulchk();">이메일 중복확인</button>
+										</span>
+									</div>
+								</li>
+								<li class="required">
+									<span class="check_form_title">휴대폰</span>  <!-- 휴대폰인증후 꽂기, read only -->
+									<div class="phone">
+										<label class="comm_select">
+											<select id="htl1" name="htl1">
+												<option value="010">010</option>
+												<option value="011">011</option>
+												<option value="016">016</option>
+												<option value="017">017</option>
+												<option value="018">018</option>
+												<option value="019">019</option>
+											</select>
+										</label>
+										<label><input type="text" id="htl2" name="htl2" maxlength="4" onkeyup="onlyNumber(this);"></label>
+										<label><input type="text" id="htl3" name="htl3" maxlength="4" onkeyup="onlyNumber(this);"></label>
+									</div>
+								</li>
+								<li class="required">
+									<span class="check_form_title">주소</span>
+									<div class="address">
+										<div class="post">
+											<label><input type="text" class="w150" value="" id="newzip1" name="newzip1" readonly="readonly"></label>
+											<span class="comm_btn_box"><button type="button" onclick="findZip();">우편번호</button></span>
+										</div>
+										<label><input type="text" value="" id="addr01" name="addr01" readonly="readonly"></label>
+										<label><input type="text" value="" id="addr02" name="addr02" maxlength="50"></label>
+									</div>
+								</li>
+							</ul>
+							<p class="guide_required">* 필수 입력 정보를 입력해주세요.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pop_btn"><button type="button" class="apply" onclick="popChkForm('join');">신청하기</button></div>
+		</div>
+		
+	</form>	
+</div>
+
+<!-- 연회원 가입 완료_정회원 -->
+<div id="member_completeRegularPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">연회원 가입 완료</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#member_completeRegularPopup'); closeInfoDel();">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<div class="item">
+				<div class="message">
+					<strong class="member_type">KOTI <em>정회원</em></strong>
+					<p class="welcome"><em>KOTI 정회원</em> 가입이 성공적으로 완료되었습니다.</p>
+				</div>
+				<div class="note">
+					<div class="note_item">
+						<p class="desc">연회비 납부가 확인된 시점부터 1년간 아래와 같은 혜택이 제공됩니다.</p>
+						<div class="info">
+							<ul class="list_txt">
+								<li>발간물 구매시 50% 할인 (배송비 제외)</li>
+								<li>가입 후 1년간 정기간행물 (월간교통) 제공</li>
+							</ul>
+						</div>
+					</div>
+					<div class="note_item">
+						<strong class="title">연회비 입금 안내</strong>
+						<div class="info">
+							<ul class="list_txt">
+								<li>1년 가입비 : 30,000원</li>
+								<li>입금계좌 : 농협 301-0162-3867-61 (예금주 : 한국교통연구원)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item addr">
+				<strong>가입 안내</strong>
+				<ul>
+					<li class="call"><a href="tel:044-211-3029">044-211-3029</a></li>
+					<li class="mail"><a href="mailto:kotibook@koti.re.kr">kotibook@koti.re.kr</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="pop_btn"><button type="button" onclick="kotiFn.layerpopupFn(0, '#member_completeRegularPopup');">확인</button></div>
+	</div>
+</div>
+
+<!-- 연회원 가입 완료_특별회원 -->
+<div id="member_completeSpecialPopup" class="layerpopup modal">
+	<div class="top">
+		<strong class="title">연회원 가입 완료</strong>
+		<button type="button" class="close" onclick="kotiFn.layerpopupFn(0, '#member_completeSpecialPopup'); closeInfoDel();">닫기</button>
+	</div>
+	<div class="conts">
+		<div class="conts_detail">
+			<div class="item">
+				<div class="message">
+					<strong class="member_type special">KOTI <em>특별회원</em></strong>
+					<p class="welcome"><em>KOTI 특별회원</em> 가입이 성공적으로 완료되었습니다.</p>
+				</div>
+				<div class="note">
+					<div class="note_item">
+						<p class="desc">연회비 납부가 확인된 시점부터 1년간 아래와 같은 혜택이 제공됩니다.</p>
+						<div class="info">
+							<ul class="list_txt">
+								<li>발간물 구매시 50% 할인 (배송비 제외)</li>
+								<li>가입 후 1년간 정기간행물 (월간교통, 교통연구) 제공</li>
+								<li>연구보고서 제공</li>
+							</ul>
+						</div>
+					</div>
+					<div class="note_item">
+						<strong class="title">연회비 입금 안내</strong>
+						<div class="info">
+							<ul class="list_txt">
+								<li>1년 가입비 : 100,000원</li>
+								<li>입금계좌 : 농협 301-0162-3867-61 (예금주 : 한국교통연구원)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item addr">
+				<strong>가입 안내</strong>
+				<ul>
+					<li class="call"><a href="tel:044-211-3029">044-211-3029</a></li>
+					<li class="mail"><a href="mailto:kotibook@koti.re.kr">kotibook@koti.re.kr</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="pop_btn"><button type="button" onclick="kotiFn.layerpopupFn(0, '#member_completeSpecialPopup');">확인</button></div>
+	</div>
+</div>
+</body>
+</html>
