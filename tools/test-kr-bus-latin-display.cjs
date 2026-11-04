@@ -68,6 +68,31 @@ const appSource=fs.readFileSync(path.join(root,'js/app.js'),'utf8');
 assert(appSource.includes("r.countryId==='kr'?krRouteLabel(r):r.line.ko"),'route picker must show Korean route title');
 assert(appSource.includes('...(r.line.aliases||[])'),'route search must include legacy Hangul aliases');
 
+// Missing original route numbers must not prevent bus line-name correction.
+for(const [name,expected] of [
+ ['서울 에이1번','서울 A1번'],
+ ['부산 비2번','부산 B2번'],
+ ['대구 씨3번','대구 C3번'],
+ ['경기 엠123번','경기 M123번'],
+ ['울산 10에이-1번','울산 10A-1번'],
+ ['서울 에이비씨10번','서울 ABC10번'],
+ ['서울 에이치20번','서울 H20번'],
+ ['경기 더블유7번','경기 W7번'],
+ ['서울 지1번','서울 지1번'], // G/Z is ambiguous without original Latin
+ ['경기 비봉2번','경기 비봉2번'], // preserve Korean place names
+ ['서울 마을버스 3번','서울 마을버스 3번']
+]){
+ const sample={id:'kr-bus-no-number',countryId:'kr',mode:'village_bus',line:{ko:name}};
+ const changed=route(sample);
+ assert.equal(changed.line.ko,expected,'fallback route label: '+name);
+ assert.equal(sample.line.ko,name,'route name source must not be mutated');
+ if(name!==expected)assert(changed.line.aliases.includes(name),'legacy line alias preserved');
+}
+assert.equal(route({id:'kr-rail-no-number',countryId:'kr',mode:'rail',line:{ko:'서울 에이1번'}}).line.ko,
+ '서울 에이1번','railway unaffected by bus fallback');
+assert.equal(route({id:'jp-bus-no-number',countryId:'jp',mode:'bus',line:{ko:'서울 에이1번'}}).line.ko,
+ '서울 에이1번','foreign buses unaffected by Korean fallback');
+
 const originalOfficial=route({id:'kr-bus-source-number',countryId:'kr',mode:'express_bus',
  line:{ko:'서울 엠100번'},routeNumber:'M100'});
 assert.equal(originalOfficial.line.ko,'서울 M100번','use official Latin route number when available');
