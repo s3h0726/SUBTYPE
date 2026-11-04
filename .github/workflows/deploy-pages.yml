@@ -24,6 +24,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - name: Check Hangang other-bus category is clean
+        run: node tools/test-kr-hangang-other-bus.cjs
       - name: Regression test free-drive station targeting
         run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
       - name: 태국 공개 계통과 원자료 무결성 검증

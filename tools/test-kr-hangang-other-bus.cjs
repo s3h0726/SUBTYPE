@@ -1,0 +1,24 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const vm=require('node:vm');
+
+const source=fs.readFileSync(path.resolve(__dirname,'../js/app.js'),'utf8');
+const start=source.indexOf('function isLegacyHangangOtherBus(');
+const end=source.indexOf('\nfunction allRoutes()',start);
+assert.ok(start>=0&&end>start,'한강버스 기타 버스 중복 숨김 규칙 누락');
+const context=vm.createContext({});
+vm.runInContext(source.slice(start,end),context);
+const hidden=route=>vm.runInContext('isLegacyHangangOtherBus(route)',Object.assign(context,{route}));
+const bus={id:'kr-bus-seoul-duplicate',countryId:'kr',mode:'bus',normalizedCategory:'other_bus',line:{ko:'한강버스'},operator:{ko:'서울 버스'}};
+assert.equal(hidden(bus),true);
+assert.equal(hidden({...bus,line:{ko:'기타 운행'},operator:{ko:'주식회사 한강버스'}}),true);
+assert.equal(hidden({...bus,line:{ko:'한강 버스'}}),true);
+assert.equal(hidden({...bus,mode:'river_bus'}),false,'실제 수상 한강버스는 반드시 보존');
+assert.equal(hidden({...bus,mode:'ferry'}),false);
+assert.equal(hidden({...bus,normalizedCategory:'city_bus'}),false,'다른 버스 분류는 영향받지 않음');
+assert.equal(hidden({...bus,line:{ko:'기타 버스'},operator:{ko:'서울 버스'}}),false);
+assert.equal(hidden({...bus,countryId:'jp'}),false);
+assert.ok(source.includes('.filter(r=>!isLegacyHangangOtherBus(r))'),'노선 선택 필터 실제 연결 누락');
+console.log('기타 버스 한강버스 중복 노출 제외 · 수상교통 원본 보존 PASS');
