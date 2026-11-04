@@ -277,6 +277,32 @@
   overflow:hidden!important;
 }
 
+/* 220px-high HUDs on laptops cannot hold a full-size badge, title,
+   foreign-language captions, answer progress and the typing field together.
+   Keep the station name and typing input fully visible, hiding only
+   secondary explanatory text at compact viewport heights. */
+@media(max-height:860px){
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #station-context,
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-sub{
+    display:none!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current .station-badge:not([hidden]){
+    width:28px!important;
+    height:28px!important;
+    font-size:11px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-main{
+    font-size:clamp(24px,2.9vw,37px)!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-kana{
+    font-size:12px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #ko-progress{
+    height:18px!important;
+    max-height:18px!important;
+  }
+}
+
 /* The mobile typing sheet hides side neighbors but must never hide the name. */
 @media(max-width:760px){
   #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-main,
