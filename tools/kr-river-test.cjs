@@ -16,4 +16,5 @@ for(const r of routes)for(const j of r.verifiedJourneys){
   assert.equal(j.stations.some(s=>s.ko==='서울숲'),j.patternId.endsWith('-forest'));
  }else assert.deepEqual([...j.stations.map(s=>s.ko)].sort(),['마곡','망원','여의도'].sort());
 }
+assert.equal(routes.find(r=>r.id==='kr-hangang-east').verifiedJourneys.filter(j=>!j.serviceDates.validThrough).length,4);
 console.log('한강버스 2개 구간·10개 방향: 항로 연결, 기종점, 선착장 순서, 교차 정차, 임시 운항 종료일 검증 통과');
