@@ -1,0 +1,91 @@
+Editor names unavailable; using built names ReferenceError: fetch is not defined
+    at loadEditorNameOverrides (evalmachine.<anonymous>:8:20)
+    at Object.loadTransportData (evalmachine.<anonymous>:290:9)
+    at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-hk-network.cjs:20:439)
+    at Test.runInAsyncScope (node:async_hooks:227:14)
+    at Test.run (node:internal/test_runner/test:1402:25)
+    at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    at Test.postRun (node:internal/test_runner/test:1542:19)
+    at Test.run (node:internal/test_runner/test:1467:12)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+✔ Hong Kong has ten separately identified MTR lines and stable region IDs (1.5561ms)
+✖ official branches do not invent an all-stations journey through both termini (1.0429ms)
+✔ Airport Express does not acquire Tung Chung Line stops (0.8039ms)
+✔ unverified Hong Kong cannot bypass gating through custom/imported routes or a lazy flag (1.6162ms)
+✔ Disneyland both directions use distinct retained source tracks, not reverse guesses (1.6589ms)
+✔ every playable service passes the same runtime gate as its lazy index (84.436ms)
+✔ verified physical edges retain source IDs and connected finite source vertices (13.5832ms)
+✔ verified separately named station interchanges are explicit while HSR and uncertain walks stay pending (0.4529ms)
+✔ compiler regeneration is byte stable and leaves Japanese/Korean data unchanged (2333.7346ms)
+✔ source snapshots have valid recorded hashes; absent sources are not silently verified (92.1708ms)
+✔ Hong Kong CUSTOM retains actual edges and rejects reordered, disconnected or imaginary loops (1.6771ms)
+✔ lazy Hong Kong metadata never validates full stop references against an empty station list (12.2506ms)
+✖ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (2.5133ms)
+✔ Hong Kong CUSTOM normalization keeps replay IDs and memory does not gain kana answers (11.1146ms)
+✔ Light Rail destination dashes retain termini while interior one-way calls stay directional (0.5121ms)
+✔ Light Rail complete official sequence rejects the formerly approved truncated 614P pattern (4.6647ms)
+✔ 706 rotates only a closed source chain and retains every traversed railway edge (8.5954ms)
+✔ SIL and AEL directions each resolve independent real source tracks and all their reviewed stops (4.6204ms)
+✔ all MTR codes share a single reviewed Korean name record and unconfirmed names remain blocked (2.7957ms)
+✔ MTR colours are the reviewed official PDF alternates and logos are never implicitly licensed (1.7294ms)
+✔ additional Light Rail peaks retain local times, direction, holiday uncertainty and incomplete full stops (0.619ms)
+✔ CUSTOM continuations cannot imply a transfer between opposite service directions (1.2227ms)
+✔ phase three release requires completed browser evidence for unchanged names, direction and track (408.4788ms)
+✔ each Hong Kong service stop uses its own railway vertex and stable physical station identity (192.7149ms)
+✔ Tung Chung diversion reorders exact existing source ways with official commissioning evidence (9.2569ms)
+✔ off-peak LOHAS shuttle stays blocked until its operating condition is reviewed (2.95ms)
+✔ local validation preview cannot appear as a released public service (2.3126ms)
+✔ CUSTOM rebases the first interchange stop onto its selected directed railway without changing physical IDs (1.9319ms)
+✔ new Korean usage reviews retain published station identity pairs and do not claim official Korean designations (53.5973ms)
+✔ construction tags cannot be treated as operational without an explicit commissioning review (10.1574ms)
+✔ verified Hong Kong circular services are closed at the same physical station with a sourced return edge (3.7462ms)
+PASS js/app.js: HK MTR/TRAM, KR, JP click selectors
+PASS js/app.bundle.js: HK MTR/TRAM, KR, JP click selectors
+PASS selector assets: 106 HK route records
+PASS JP-style Hong Kong/Taiwan cards and native-first station signs
+✔ tools\test-hk-route-selector.cjs (96.2358ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 30
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3445.2864
+
+✖ failing tests:
+
+test at tools\test-hk-network.cjs:10:1
+✖ official branches do not invent an all-stations journey through both termini (1.0429ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  8 !== 4
+  
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-hk-network.cjs:10:198)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\test-hk-network.cjs:21:1
+✖ Hong Kong records retain service, direction, distance and do not rewrite old Japanese records (2.5133ms)
+  ReferenceError [Error]: FEATURE_FLAGS is not defined
+      at evalmachine.<anonymous>:55:133
+      at Array.filter (<anonymous>)
+      at Object.records (evalmachine.<anonymous>:55:69)
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-hk-network.cjs:21:633)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
