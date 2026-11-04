@@ -332,3 +332,84 @@
     height:29px!important;
   }
 }
+
+
+/* 2026-11-05: minimal KORAIL nameboard, preserving the live typing controller.
+   This final stylesheet loads AFTER the free-drive and regional styles.
+   Only kr-korail changes: no input rectangle, company logo or station IDs.
+   The invisible but focusable input continues handling Korean IME answers. */
+#screen-game.active .station-sign[data-sign-style="kr-korail"]{
+  grid-template-rows:minmax(0,1fr) 8px 23px!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-brand{
+  display:none!important;
+  grid-row:auto!important;
+  height:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-footer{
+  grid-row:3!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] #station-badge,
+#screen-game.active .station-sign[data-sign-style="kr-korail"] #korail-previous-badge,
+#screen-game.active .station-sign[data-sign-style="kr-korail"] #korail-next-badge,
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .korail-neighbor-badge:not([hidden]),
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current .station-badge:not([hidden]){
+  display:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current .station-sign-input{
+  /* Do NOT use display:none / visibility:hidden: game typing must retain focus. */
+  display:block!important;
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  right:auto!important;
+  bottom:auto!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  flex:none!important;
+  width:1px!important;
+  min-width:0!important;
+  max-width:1px!important;
+  height:1px!important;
+  min-height:0!important;
+  max-height:1px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  opacity:0!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  clip-path:inset(50%)!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-input #typing-input{
+  /* Leave the native input alive for IME, Enter, backspace and auto-advance. */
+  display:block!important;
+  width:1px!important;
+  min-width:0!important;
+  height:1px!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  caret-color:transparent!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-strip{
+  margin:0 40px 0 16px!important;
+  background:#f47b1b!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-strip::before{
+  content:""!important;
+  left:auto!important;
+  right:-25px!important;
+  top:-6px!important;
+  width:25px!important;
+  height:20px!important;
+  background:#f47b1b!important;
+  clip-path:polygon(0 0,100% 50%,0 100%)!important;
+}
