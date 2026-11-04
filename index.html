@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="./css/station-sign-families.css?v=20261010-seoulmetro-korean-nameplate">
   <link rel="stylesheet" href="./css/osm-single-screen.css?v=korean-rebuild-play-guard-20261017-01">
   <link rel="stylesheet" href="./css/typing-fit-fixes.css?v=v0-8-1-station-layout">
+  <link rel="stylesheet" href="./css/korail-nameplate.css?v=20261105-korail-bupyeong">
   <link rel="stylesheet" href="./css/asset-runtime.css?v=20261009-hide-all-rail-logos">
   <link rel="stylesheet" href="./css/free-drive.css?v=free-drive-larger-typing-input-20261102">
   <link rel="stylesheet" href="./css/account-leaderboard.css?v=per-line-ranking-20261028">
@@ -211,9 +212,9 @@
       <div class="station-sign-hud">
         <section id="station-sign" class="station-sign" data-sign-style="jr" aria-labelledby="prompt-main">
           <div class="station-sign-strip"></div>
-          <div class="station-sign-brand"><div id="station-operator-mark" class="station-operator-mark"></div><span id="station-line-label"></span></div>
+          <div class="station-sign-brand"><div id="station-operator-mark" class="station-operator-mark"></div><span id="station-line-label"></span><span class="korail-sign-wordmark" aria-hidden="true">KORAIL</span></div>
           <div class="station-sign-main">
-            <div class="station-neighbor previous"><small>현재역</small><b id="previous-station-name"></b><span id="previous-station-romaji"></span><i>←</i></div>
+            <div class="station-neighbor previous"><span id="korail-previous-badge" class="korail-neighbor-badge" hidden></span><small>현재역</small><b id="previous-station-name"></b><span id="previous-station-romaji"></span><i>←</i></div>
             <div class="station-current">
               <p id="station-context">다음역</p>
               <div id="station-badge" class="station-badge" hidden></div>
@@ -226,7 +227,7 @@
               <button id="next-station-button" class="next-station-button" type="button" hidden>NEXT · 다음 역으로 출발</button>
 
             </div>
-            <div class="station-neighbor next"><small id="following-stop-label">그다음 역</small><b id="next-station-name"></b><span id="next-station-romaji"></span><i>→</i></div>
+            <div class="station-neighbor next"><span id="korail-next-badge" class="korail-neighbor-badge" hidden></span><small id="following-stop-label">그다음 역</small><b id="next-station-name"></b><span id="next-station-romaji"></span><i>→</i></div>
           </div>
           <div class="station-sign-footer"><span>오타 <b id="error-count">0</b></span><span id="station-service-footer"></span><span><span id="target-stop-label">목표역</span> <b id="next-station"></b></span></div>
         </section>
