@@ -132,11 +132,11 @@ class Game{
   // Station labels are taken only from provided source fields. Do not invent
   // English/Hanja/Japanese spellings when the Korean catalog lacks them.
   applyKorailNameplateNames(station,previous,next,hard=false){
-    const korail=$('#station-sign').dataset.signStyle==='kr-korail';
+    const sign=$('#station-sign');
+    const korail=sign?.dataset?.signStyle==='kr-korail';
     for(const [id,neighbor] of [['#korail-previous-badge',previous],['#korail-next-badge',next]]){
       const badge=$(id),code=korail&&neighbor?.hasOfficialStationCode?String(neighbor.officialCode||''):'';
-      badge.textContent=code;
-      badge.hidden=!code;
+      if(badge){badge.textContent=code;badge.hidden=!code;}
     }
     if(!korail)return;
     const english=item=>{
