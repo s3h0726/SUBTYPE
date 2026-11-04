@@ -1,0 +1,34 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const template=fs.readFileSync('js/transport-stop-templates.js','utf8')
+ .replace(/^import[^\n]*\n/m,'')
+ .replace(/export /g,'');
+const sandbox={resolveStationSignTemplate:()=>({style:'jp-fallback'})};
+vm.createContext(sandbox);
+vm.runInContext(template+';globalThis.getTemplate=resolveTransportStopTemplate;globalThis.isKorail=isKorailOperatedRoute;',sandbox);
+const kr=(operatorId,ko,mode='rail')=>({countryId:'kr',mode,operatorId,operator:{ko}});
+const select=r=>sandbox.getTemplate(r).style;
+assert.equal(select(kr('kr-korail','한국철도공사')),'kr-korail');
+assert.equal(select(kr('kr-korail','한국철도공사','high_speed_rail')),'kr-korail');
+assert.equal(select(kr('kr-other-rail','한국철도공사')),'kr-korail');
+assert.equal(select(kr('kr-other-rail','KORAIL')),'kr-korail');
+assert.equal(select(kr('kr-seoul-metro','서울교통공사','subway')),'kr-seoul-metro');
+assert.equal(select(kr('kr-shinbundang','신분당선','subway')),'kr-shinbundang');
+assert.equal(select(kr('kr-seoulmetro-korail','서울교통공사·한국철도공사','subway')),'kr-seoul-metro');
+assert.equal(select(kr('kr-other-rail','부산교통공사')),'kr-generic-rail');
+assert.equal(select(kr('kr-other-rail','서울교통공사')),'kr-generic-rail');
+assert.equal(select(kr('kr-korail','한국철도공사','bus')),'kr-bus-stop');
+assert.equal(select(kr('kr-korail','한국철도공사','river_bus')),'kr-river-terminal');
+assert.equal(select({countryId:'jp',mode:'rail',operatorId:'jr-east'}),'jp-fallback');
+const html=fs.readFileSync('index.html','utf8'),game=fs.readFileSync('js/game.js','utf8'),css=fs.readFileSync('css/korail-nameplate.css','utf8');
+for(const token of ['css/korail-nameplate.css','korail-sign-wordmark','korail-previous-badge','korail-next-badge'])assert.ok(html.includes(token),'missing HTML '+token);
+assert.ok(game.includes('applyKorailNameplateNames(station,previous,following,hard)'),'normal game nameboard not applied');
+assert.ok(game.includes('applyKorailNameplateNames(station,this.currentStation(),station)'),'free-drive target not styled');
+assert.ok(game.includes('applyKorailNameplateNames(station,station,next)'),'free-drive current station not styled');
+assert.ok(css.includes('data-sign-style="kr-korail"'),'Korail scoped CSS missing');
+assert.ok(css.includes('--korail-board-navy:#061b4a')&&css.includes('--korail-board-orange:#f47b1b'));
+assert.ok(!css.includes('var(--route-color)'),'Korail nameboard must not follow route line colors');
+assert.ok(css.includes('@media(max-width:760px)'),'mobile layout missing');
+console.log('KORAIL station board: operator-only selection, navy/orange fixed styling, game/free drive, other operators PASS');
