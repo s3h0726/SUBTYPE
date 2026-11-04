@@ -12,6 +12,32 @@ const terminalElements={'kr-hangang-magok':1418419406,'kr-hangang-mangwon':14184
 const distance=(a,b)=>Math.hypot((a[0]-b[0])*111195,(a[1]-b[1])*88200);
 const coord=e=>{if(e.lat)return[e.lat,e.lon];const g=e.geometry.slice(0,-1);return[g.reduce((s,p)=>s+p.lat,0)/g.length,g.reduce((s,p)=>s+p.lon,0)/g.length]};
 const layouts={'kr-hangang-west':[1490035963],'kr-hangang-east-oksu-forest':[1527378114,1527378115,1441742054],'kr-hangang-east-apgujeong-forest':[1527378114,1527717246,1441742054],'kr-hangang-east-oksu':[1527378114,1527378115,1441742054],'kr-hangang-east-apgujeong':[1527378114,1527717246,1441742054]};
+
+// Current eastern services must bypass the former Seoul Forest pier approach.
+// Bridge the old local ferry way with the independently mapped OSM express
+// ferry way for only the short channel section; historical -forest journeys
+// retain their original approach and 2026-10-31 validity.
+const EAST_BYPASS_WAY_ID=1443233864;
+function bypassSeoulForestPier(localPoints){
+ const express=elements.get(EAST_BYPASS_WAY_ID);
+ if(express?.tags?.route!=='ferry')throw Error('서울숲 우회 수상 항로 원본 누락');
+ const expressPoints=express.geometry.map(point=>[point.lat,point.lon]);
+ const expected=[
+  [localPoints[54],[37.5279865,127.0571797]],
+  [expressPoints[24],[37.5281066,127.057125]],
+  [expressPoints[32],[37.5356871,127.0357241]],
+  [localPoints[85],[37.5358759,127.0357337]]
+ ];
+ if(expected.some(([actual,reference])=>!actual||distance(actual,reference)>1))throw Error('서울숲 우회 연결점 OSM 자료 변경: 재검증 필요');
+ const joins=[distance(localPoints[54],expressPoints[24]),distance(expressPoints[32],localPoints[85])];
+ if(joins.some(m=>m>30))throw Error('서울숲 우회 항로 연결 간격 30m 초과');
+ const corrected=[...localPoints.slice(0,55),...expressPoints.slice(24,33),...localPoints.slice(85)];
+ const forestPier=coord(elements.get(terminalElements['kr-hangang-seoul-forest']));
+ const forestOffset=Math.min(...corrected.map(point=>distance(point,forestPier)));
+ if(forestOffset<300)throw Error('서울숲 임시 선착장 접근 구간이 현재 항로에 남아 있음: '+forestOffset);
+ return corrected;
+}
+
 // The west way explicitly names Mangwon, whereas the official notice gives
 // only section endpoints. Preserve the mapped intermediate call.
 source.patterns[0].stopIds.splice(1,0,'kr-hangang-mangwon');source.patterns[0].stopSequenceComplete=true;
@@ -20,8 +46,10 @@ let maxEdgeMeters=0,maxStopOffsetMeters=0;
 for(const [group,patterns] of [['kr-hangang-west',source.patterns.slice(0,1)],['kr-hangang-east',source.patterns.slice(1)]]){
  const journeys=[];
  for(const p of patterns){try{
-  const wayIds=layouts[p.id];let full=[];
-  for(const id of wayIds){const e=elements.get(id);if(e?.tags?.route!=='ferry')throw Error('수상 항로 원본 없음: '+id);const points=e.geometry.map(p=>[p.lat,p.lon]);if(full.length&&distance(full.at(-1),points[0])>0.01)throw Error('항로 끝점 불일치: '+id);full.push(...points.slice(full.length?1:0));}
+  const wayIds=layouts[p.id],regularEast=p.id.startsWith('kr-hangang-east-')&&!p.validThrough;
+  const sourceWayIds=regularEast?[...wayIds,EAST_BYPASS_WAY_ID]:wayIds;
+  let full=[];
+  for(const id of wayIds){const e=elements.get(id);if(e?.tags?.route!=='ferry')throw Error('수상 항로 원본 없음: '+id);let points=e.geometry.map(p=>[p.lat,p.lon]);if(regularEast&&id===1527378114)points=bypassSeoulForestPier(points);if(full.length&&distance(full.at(-1),points[0])>0.01)throw Error('항로 끝점 불일치: '+id);full.push(...points.slice(full.length?1:0));}
   // Source ways use Yeouido -> Magok and Jamsil -> Yeouido respectively.
   const sourceStops=[...p.stopIds].reverse();
   for(const directionId of ['outbound','inbound']){
@@ -33,7 +61,7 @@ for(const [group,patterns] of [['kr-hangang-west',source.patterns.slice(0,1)],['
    const id=p.id+'-'+directionId;
    if(allIds.has(id))throw Error('운항 ID 중복: '+id);allIds.add(id);
    const directedSegments=stations.slice(1).map((s,i)=>({id:id+'-segment-'+i,fromStationId:stations[i].id,toStationId:s.id,fromIndex:stations[i].geometryIndex,toIndex:s.geometryIndex,geometry:geometry.slice(stations[i].geometryIndex,s.geometryIndex+1)}));
-   journeys.push({id,patternId:p.id,patternName:{ko:p.nameKo},directionId,tripIds:[p.id],stations,geometry,directedSegments,service:{id,nameKo:p.nameKo+' '+stations.at(-1).ko+'행',stops:stopIds},serviceDates:{start:p.validFrom,validFrom:p.validFrom,...(p.validThrough?{end:p.validThrough,validThrough:p.validThrough,endDatePrecision:p.endDatePrecision}:{})},sourceWayIds:wayIds});
+   journeys.push({id,patternId:p.id,patternName:{ko:p.nameKo},directionId,tripIds:[p.id],stations,geometry,directedSegments,service:{id,nameKo:p.nameKo+' '+stations.at(-1).ko+'행',stops:stopIds},serviceDates:{start:p.validFrom,validFrom:p.validFrom,...(p.validThrough?{end:p.validThrough,validThrough:p.validThrough,endDatePrecision:p.endDatePrecision}:{})},sourceWayIds});
   }
  }catch(error){failures.push({patternId:p.id,reason:error.message})}}
  if(journeys.length){const first=journeys.find(j=>!j.serviceDates.validThrough)||journeys[0],sourceDate=osm.osm3s.timestamp_osm_base.slice(0,10);routes.push({schemaVersion:2,id:group,countryId:'kr',name:{ko:group.endsWith('west')?'한강버스 서부 구간':'한강버스 동부 구간'},line:{ko:group.endsWith('west')?'한강버스 서부 구간':'한강버스 동부 구간'},nameKo:group.endsWith('west')?'한강버스 서부 구간':'한강버스 동부 구간',mode:'river_bus',regionId:'seoul',regionKo:'서울',operatorId:source.operator.id,operatorNameKo:source.operator.nameKo,operator:{id:source.operator.id,ko:source.operator.nameKo,name:source.operator.nameKo,nameKo:source.operator.nameKo},color:'#4255A5',category:'river_bus',releaseStatus:'verified',geometryReady:true,stations:first.stations,geometry:first.geometry,directedSegments:first.directedSegments,verifiedJourneys:journeys,services:journeys.map(j=>j.service),sourceRefs:[...[...new Set(journeys.flatMap(j=>j.sourceWayIds))].map(id=>({url:'https://www.openstreetmap.org/way/'+id,license:'ODbL-1.0',sourceDate})),{url:'https://www.openstreetmap.org/copyright',license:'ODbL-1.0',sourceDate,attribution:'© OpenStreetMap contributors',snapshot:'river-osm-terminals.json'},...source.sources.slice(0,2).map(s=>({url:s.url,license:s.license,sourceDate:s.updatedAt,use:'운항 사실 검증'}))],operationalEvidence:{url:source.sources[group.endsWith('west')?0:1].url,checkedAt:'2026-11-05'},transferStationIds:['kr-hangang-yeouido'],geometrySource:{type:'osm-route-ferry',wayIds:[...new Set(journeys.flatMap(j=>j.sourceWayIds))],sourceDate,license:'ODbL-1.0'}})}
@@ -51,6 +79,6 @@ for(const p of source.patterns){
  }
 }
 const snapshots=['river-osm.json','river-osm-terminals.json'].filter(f=>fs.existsSync(path.join(dir,f))).map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(dir,file))).digest('hex')}));
-const report={schemaVersion:2,checkedAt:'2026-11-05',mode:'river_bus',status:failures.length?'partial':'geometry-validated',publicRouteCount:routes.length,publicServiceDirectionCount:routes.reduce((n,r)=>n+r.verifiedJourneys.length,0),candidatePatternCount:source.patterns.length,candidateDirectionCount:queue.length,terminalInventoryCount:source.terminals.length,activeTerminalCount:new Set(routes.flatMap(r=>r.verifiedJourneys.flatMap(j=>j.stations.map(s=>s.id)))).size,completeGeometryCount:routes.length,maxEdgeMeters,maxStopOffsetMeters,failures,sourceIds:source.sources.map(s=>s.id),snapshots,validation:{uniquePatternIds:true,terminalReferences:true,koreanNames:true,unverifiedGeometryExcluded:true},notesKo:['한강버스는 철도·도로버스와 분리한 수상교통 수단으로 저장한다.','동부와 서부는 여의도에서 환승한다.','서울숲 임시 정차는 10월 말 종료되며 자동 연장하지 않는다. 신규 기본 동부 계통은 11월 이후 정차 여부 추가 확인이 필요하다.','안내 지도나 강 중심선을 선박 항로로 간주하지 않는다.']};
+const report={schemaVersion:2,checkedAt:'2026-11-05',mode:'river_bus',status:failures.length?'partial':'geometry-validated',publicRouteCount:routes.length,publicServiceDirectionCount:routes.reduce((n,r)=>n+r.verifiedJourneys.length,0),candidatePatternCount:source.patterns.length,candidateDirectionCount:queue.length,terminalInventoryCount:source.terminals.length,activeTerminalCount:new Set(routes.flatMap(r=>r.verifiedJourneys.flatMap(j=>j.stations.map(s=>s.id)))).size,completeGeometryCount:routes.length,maxEdgeMeters,maxStopOffsetMeters,failures,sourceIds:source.sources.map(s=>s.id),snapshots,validation:{uniquePatternIds:true,terminalReferences:true,koreanNames:true,unverifiedGeometryExcluded:true,activeEastBypassesSeoulForestPier:true},notesKo:['한강버스는 철도·도로버스와 분리한 수상교통 수단으로 저장한다.','동부와 서부는 여의도에서 환승한다.','서울숲 임시 정차는 10월 말 종료되며 자동 연장하지 않는다. 신규 기본 동부 계통은 11월 이후 정차 여부 추가 확인이 필요하다.','안내 지도나 강 중심선을 선박 항로로 간주하지 않는다. 현재 동부 계통은 OSM 급행선형 1443233864의 짧은 수상구간을 이용해 서울숲 선착장을 우회한다.']};
 for(const [file,data] of [['river-batch.json',{schemaVersion:2,countryId:'kr',routes}],['river-queue.json',{schemaVersion:2,countryId:'kr',candidates:queue}],['river-report.json',report]])fs.writeFileSync(path.join(dir,file),JSON.stringify(data,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));
