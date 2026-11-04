@@ -57,17 +57,33 @@ addEventListener('load',()=>{
     title=rect('#prompt-main'),input=rect('.station-sign-input'),foot=rect('.station-sign-footer');
   const err=[];
   if(s.height>hud.height+3||s.bottom>hud.bottom+3)err.push('sign outside HUD');
-  for(const [name,r] of [['title',title],['input',input]]){
-    if(r.top<current.top-2||r.bottom>current.bottom+3)err.push(name+' clipped inside current station: '+r.top+'-'+r.bottom+' vs '+current.top+'-'+current.bottom);
-    if(r.width<50||r.height<16)err.push(name+' too small');
-  }
-  if(input.top<title.bottom-1)err.push('typing input overlaps station name');
+  if(title.top<current.top-2||title.bottom>current.bottom+3||title.width<50||title.height<16)err.push('station title clipped or too small');
   if(foot.height>36||foot.top<s.top||foot.bottom>s.bottom+3)err.push('footer escapes station board or too tall');
   if(type==='kr-korail'){
     const bg=getComputedStyle(sign).backgroundColor;
     if(bg!=='rgb(6, 27, 74)')err.push('Korail navy lost: '+bg);
-    const stripe=getComputedStyle(document.querySelector('.station-sign-strip')).backgroundColor;
+    const strip=document.querySelector('.station-sign-strip');
+    const stripe=getComputedStyle(strip).backgroundColor;
     if(stripe!=='rgb(244, 123, 27)')err.push('Korail orange must not follow line color: '+stripe);
+    const tip=getComputedStyle(strip,'::before');
+    if(tip.right!=='-25px'||tip.left!=='auto'||!tip.clipPath.includes('100% 50%'))err.push('stripe arrow does not point right');
+    if(getComputedStyle(document.querySelector('.station-sign-brand')).display!=='none')err.push('Korail logo row remains visible');
+    for(const selector of ['#station-badge','.station-neighbor.previous .korail-neighbor-badge','.station-neighbor.next .korail-neighbor-badge']){
+      if(getComputedStyle(document.querySelector(selector)).display!=='none')err.push('station number circle remains: '+selector);
+    }
+    if(input.width>2||input.height>2||getComputedStyle(document.querySelector('.station-sign-input')).opacity!=='0')err.push('typing box is still visible');
+    const inputElement=document.querySelector('#typing-input');
+    inputElement.focus();
+    if(document.activeElement!==inputElement)err.push('invisible keyboard typing input cannot receive focus');
+    let typed=false;
+    inputElement.addEventListener('input',()=>typed=true);
+    inputElement.value='신창';
+    inputElement.dispatchEvent(new Event('input',{bubbles:true}));
+    if(!typed||inputElement.value!=='신창')err.push('invisible typing input does not accept Korean text');
+  }else{
+    if(input.top<current.top-2||input.bottom>current.bottom+3||input.width<50||input.height<16)err.push('non-Korail typing box clipped');
+    if(input.top<title.bottom-1)err.push('non-Korail typing input overlaps station name');
+    if(getComputedStyle(document.querySelector('.station-sign-input')).opacity==='0')err.push('non-Korail typing field accidentally hidden');
   }
   document.documentElement.dataset.nameplateResult=err.length?'FAIL':'PASS';
   document.documentElement.dataset.nameplateErrors=err.join(' | ').replaceAll('"','');
