@@ -805,20 +805,33 @@ const koreanTemplates={
   krRiver:{style:'kr-river-terminal',family:'kr-river',referenceSource:'https://hangangbus.go.kr/'}
 };
 
-// Match the actual operator, never the route colour or the fact that a line
-// belongs to the Korean railway network. Mixed-operator routes must supply an
-// explicit Korail station segment rather than painting every stop as Korail.
-function isKorailOperatedRoute(route){
+// The Seoul subway network shares routes with Korail. Its line-1 cards can
+// contain BOTH Seoul Metro's 10 underground stations and Korail's suburban
+// sections (e.g. Sinchang). Resolve the sign for the actual station, not only
+// the shared route's operatorId. No line-color inference is involved.
+const seoulMetroLine1=new Set(['서울','시청','종각','종로3가','종로5가','동대문','동묘앞','신설동','제기동','청량리']);
+const korailLine3=new Set(['대화','주엽','정발산','마두','백석','대곡','화정','원당','원흥','삼송','지축']);
+const korailLine4=new Set(['선바위','경마공원','대공원','과천','정부과천청사','인덕원','평촌','범계','금정','산본','수리산','대야미','반월','상록수','한대앞','중앙','고잔','초지','신길온천','정왕','오이도']);
+const stationName=station=>String(station?.ko||station?.names?.ko||'').normalize('NFC').replace(/\([^)]*\)/g,'').replace(/역$/,'').replace(/\s+/g,'');
+function isKorailOperatedRoute(route,station){
   if(route?.countryId!=='kr'||['bus','village_bus','express_bus','brt','river_bus','ferry'].includes(route.mode))return false;
   if(route.operatorId==='kr-korail')return true;
   const operator=String(route.operator?.ko||route.operatorNameKo||'').trim();
-  return operator==='한국철도공사'||operator==='코레일'||/^KORAIL$/i.test(operator);
+  if(operator==='한국철도공사'||operator==='코레일'||/^KORAIL$/i.test(operator))return true;
+  if(route.operatorId!=='kr-seoulmetro-korail'||!station)return false;
+  const name=stationName(station);
+  if(!name)return false;
+  const line=String(route.id||'').match(/^kr-(?:rail-seoul|metro)-([134])$/)?.[1];
+  if(line==='1')return !seoulMetroLine1.has(name);
+  if(line==='3')return korailLine3.has(name);
+  if(line==='4')return korailLine4.has(name);
+  return false;
 }
 
-function resolveTransportStopTemplate(route){
+function resolveTransportStopTemplate(route,station){
   if(route?.countryId==='hk'){const mode=route.mode||route.category,style=mode==='light_rail'?'hk-light-rail':mode==='tram'?'hk-tram':mode==='funicular'?'hk-funicular':mode==='high_speed_rail'?'hk-hsr':'hk-mtr';return{key:style,style,family:style,referenceSource:route.sourceUrl||'Hong Kong transport learning layout; not an official sign'}}
   if(route?.countryId!=='kr')return resolveJapaneseTemplate(route);
-  const key=route.mode==='river_bus'?'krRiver':['bus','village_bus','express_bus','brt'].includes(route.mode)?'krBus':route.operatorId==='kr-seoul-metro'||route.operatorId==='kr-seoulmetro-korail'?'krSeoulMetro':route.operatorId==='kr-shinbundang'?'krShinbundang':isKorailOperatedRoute(route)?'krKorail':'krGenericRail';
+  const key=route.mode==='river_bus'?'krRiver':['bus','village_bus','express_bus','brt'].includes(route.mode)?'krBus':route.operatorId==='kr-shinbundang'?'krShinbundang':isKorailOperatedRoute(route,station)?'krKorail':route.operatorId==='kr-seoul-metro'||route.operatorId==='kr-seoulmetro-korail'?'krSeoulMetro':'krGenericRail';
   return{key,...koreanTemplates[key]}
 }
 
@@ -1880,7 +1893,7 @@ class Game{
     $('#next-station-romaji').textContent=english(next);
   }
   activeRoute(station){return station?.segment||this.route}
-  applyActiveBrand(station){const active=this.activeRoute(station),operator=railDataRepository.getOperator(active.operatorId),line=railDataRepository.getLine(active.id),sign=$('#station-sign'),operatorNames=operator?.names||active.operator,lineNames=line?.names||active.line,operatorKo=operatorNames.ko||'MISSING_KOREAN_NAME',lineKo=koreanRouteDisplayText(lineNames.ko,active)||'MISSING_KOREAN_NAME',template=resolveTransportStopTemplate(active);sign.dataset.signStyle=template.style;sign.dataset.templateFamily=template.family;sign.dataset.templateSource=template.referenceSource;sign.dataset.operatorId=active.operatorId||'';sign.dataset.routeId=active.id||'';sign.dataset.operatorVariant=String(operatorVariantIndex(active.operatorId));sign.style.setProperty('--route-color',active.lineColor);$('#station-operator-mark').innerHTML=operatorLogoMarkup(active,'station-operator-logo-wrap')||`<span>${escapeHtml(operatorKo)}</span>`;$('#station-line-label').innerHTML=`${lineBadgeMarkup(active,'station-line-symbol')}<b>${escapeHtml(lineKo)}</b>${lineNames.ja?`<small>${escapeHtml(koreanRouteDisplayText(lineNames.ja,active))}</small>`:''}`;$('#game-operator').textContent=operatorKo;$('#game-line-name').innerHTML=`${lineBadgeMarkup(active,'game-line-symbol')}<span>${escapeHtml(lineKo)}</span>`;$('#station-badge').style.setProperty('--route-color',active.lineColor)}
+  applyActiveBrand(station){const active=this.activeRoute(station),operator=railDataRepository.getOperator(active.operatorId),line=railDataRepository.getLine(active.id),sign=$('#station-sign'),operatorNames=operator?.names||active.operator,lineNames=line?.names||active.line,operatorKo=operatorNames.ko||'MISSING_KOREAN_NAME',lineKo=koreanRouteDisplayText(lineNames.ko,active)||'MISSING_KOREAN_NAME',template=resolveTransportStopTemplate(active,station);sign.dataset.signStyle=template.style;sign.dataset.templateFamily=template.family;sign.dataset.templateSource=template.referenceSource;sign.dataset.operatorId=active.operatorId||'';sign.dataset.routeId=active.id||'';sign.dataset.operatorVariant=String(operatorVariantIndex(active.operatorId));sign.style.setProperty('--route-color',active.lineColor);$('#station-operator-mark').innerHTML=operatorLogoMarkup(active,'station-operator-logo-wrap')||`<span>${escapeHtml(operatorKo)}</span>`;$('#station-line-label').innerHTML=`${lineBadgeMarkup(active,'station-line-symbol')}<b>${escapeHtml(lineKo)}</b>${lineNames.ja?`<small>${escapeHtml(koreanRouteDisplayText(lineNames.ja,active))}</small>`:''}`;$('#game-operator').textContent=operatorKo;$('#game-line-name').innerHTML=`${lineBadgeMarkup(active,'game-line-symbol')}<span>${escapeHtml(lineKo)}</span>`;$('#station-badge').style.setProperty('--route-color',active.lineColor)}
   renderKoreanProgress(value='',state='empty'){const target=$('#ko-progress'),model=buildTypingModel(this.stationKoDisplay(this.targetStation()?.ko||'')),typed=Array.from(String(value).normalize('NFC')),letters=Array.from(model.inputText),mismatch=letters.findIndex((letter,index)=>typed[index]!==undefined&&typed[index]!==letter),done=mismatch<0?Math.min(typed.length,letters.length):mismatch;if(target.children.length!==model.cells.length){target.replaceChildren(...model.cells.map(item=>{const cell=document.createElement('span');cell.className=`input-cell ${item.type}`;cell.textContent=item.type==='fixed'?item.character:'';return cell}));this.fitProgressCells(model.cells.length)}let inputIndex=0;[...target.children].forEach((cell,index)=>{const item=model.cells[index];if(item.type==='fixed'){if(cell.textContent!==item.character)cell.textContent=item.character;cell.classList.add('done','fixed');cell.classList.remove('wrong');return}const text=typed[inputIndex]||'';if(cell.textContent!==text)cell.textContent=text;cell.classList.toggle('done',inputIndex<done);cell.classList.toggle('wrong',mismatch===inputIndex&&state==='wrong');inputIndex++})}
   fitProgressCells(count){const target=$('#ko-progress');cancelAnimationFrame(this.cellFitFrame);this.cellFitFrame=requestAnimationFrame(()=>{const width=Math.max(1,target.clientWidth),gap=count>=15?1:count>=10?3:count>=6?5:7,size=Math.max(11,Math.min(32,(width-gap*Math.max(0,count-1))/Math.max(1,count)));target.style.setProperty('--char-count',Math.max(1,count));target.style.setProperty('--cell-gap',`${gap}px`);target.style.setProperty('--cell-size',`${size}px`);target.dataset.lengthClass=count>=15?'compact':count>=10?'small':count>=6?'medium':'large'})}
   fitPrompt(){if(this.route?.countryId==='th')renderThailandGameDisplay(this);if(this.route?.countryId==='tw')renderTaiwanGameDisplay(this);for(const el of [$('#prompt-main'),$('#prompt-ko')]){el.style.fontSize='';let size=parseFloat(getComputedStyle(el).fontSize);while(el.scrollWidth>el.clientWidth&&size>14){size-=2;el.style.fontSize=`${size}px`}}}
