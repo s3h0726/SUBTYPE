@@ -3771,7 +3771,15 @@ function currentJapanServiceRoute(route){
  }
  return route;
 }
-function allRoutes(){return[...builtin,...storage.routes().filter(route=>(route.countryId||'jp')===countryId).map(r=>railDataRepository.resolveRoute(normalizeLine(r,{category:'custom'})))].map(fixRouteKoreanNames).map(currentJapanServiceRoute).filter(isRouteVisible).filter(r=>r.lazy||(Array.isArray(r.stations)&&(r.stations.length>=2||(r.countryId==='tw'&&r.taiwanRoundTrip&&r.stations.length===1&&r.loopClosingGeometry?.length>2))))}
+// Remove legacy road-bus duplicates labeled "한강버스" from 기타 버스.
+// Keep canonical river_bus routes and their playable journeys in 한강버스.
+function isLegacyHangangOtherBus(route){
+ if(route?.countryId!=='kr'||!['bus','village_bus','express_bus','brt'].includes(route.mode))return false;
+ const category=route.normalizedCategory||route.routeType||route.category;
+ if(category!=='other_bus')return false;
+ return /한강\s*버스/u.test([route.nameKo,route.name?.ko,route.line?.ko,route.operator?.ko,route.operatorNameKo].filter(Boolean).join(' '));
+}
+function allRoutes(){return[...builtin,...storage.routes().filter(route=>(route.countryId||'jp')===countryId).map(r=>railDataRepository.resolveRoute(normalizeLine(r,{category:'custom'})))].map(fixRouteKoreanNames).map(currentJapanServiceRoute).filter(isRouteVisible).filter(r=>!isLegacyHangangOtherBus(r)).filter(r=>r.lazy||(Array.isArray(r.stations)&&(r.stations.length>=2||(r.countryId==='tw'&&r.taiwanRoundTrip&&r.stations.length===1&&r.loopClosingGeometry?.length>2))))}
 const operatorLogo=operatorLogoMarkup;
 // Company marks belong on every route card, including Tokyo Metro.
 const lineSurfaceOperatorLogo=(route,className)=>operatorLogoMarkup(route,className);
