@@ -1,0 +1,44 @@
+name: Publish updated Hangang east canonical data
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/kr/canonical/river-sources.json'
+      - 'tools/kr-river-import.cjs'
+      - 'tools/kr-river-test.cjs'
+      - '.github/workflows/publish-hangang-east.yml'
+permissions:
+  contents: write
+jobs:
+  build-river:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild Hangang route geometry and validate every direction
+        run: |
+          node tools/kr-river-import.cjs
+          node tools/kr-river-test.cjs
+      - name: Rebuild and validate complete Korean canonical catalog
+        run: |
+          node tools/build-kr-canonical.cjs --publish
+          node tools/test-kr-canonical.cjs
+          node tools/build-app-bundle.js
+          node --check js/app.bundle.js
+      - name: Publish generated catalog and runtime to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/kr/canonical/river-batch.json data/kr/canonical/river-queue.json data/kr/canonical/river-report.json
+          git add data/kr/generated/index.json data/kr/generated/routes/kr-hangang-east.json
+          git add js/korea-index-data.js js/app.bundle.js data/kr/publication-policy.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(kr): publish active Hangang eastern river bus patterns"
+            git push origin HEAD:main
+          fi
