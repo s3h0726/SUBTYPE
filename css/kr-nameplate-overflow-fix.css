@@ -1,0 +1,334 @@
+/* Fix clipped Korean station signs inside the fixed-height OSM game HUD.
+   Match the source board's Bupyeong style on KORAIL only; Seoul Metro
+   retains its own green/white identity. Layout stays within the HUD even
+   on low-height laptops and in free drive. No route colour drives KORAIL. */
+#screen-game.active .station-sign[data-sign-style="kr-korail"]{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) 8px 29px 23px!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  overflow:hidden!important;
+  background:#061b4a!important;
+  color:#fff!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-main{
+  grid-row:1!important;
+  grid-column:1!important;
+  order:initial!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,.9fr) minmax(0,2.8fr) minmax(0,.9fr)!important;
+  min-height:0!important;
+  height:100%!important;
+  max-height:100%!important;
+  margin:0!important;
+  padding:0 5px!important;
+  overflow:hidden!important;
+  background:transparent!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current{
+  position:relative;
+  grid-column:2!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:1px!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-height:100%!important;
+  padding:3px 12px 5px!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  color:#fff!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #station-context{
+  margin:0!important;
+  line-height:1.15!important;
+  color:#c5d3ef!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current .station-badge:not([hidden]){
+  position:static!important;
+  transform:none!important;
+  display:grid!important;
+  flex:none!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  width:36px!important;
+  height:36px!important;
+  margin:0 auto 1px!important;
+  padding:0!important;
+  border:2px solid #fff!important;
+  border-radius:50%!important;
+  background:transparent!important;
+  color:#fff!important;
+  font-size:12px!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-main{
+  flex:none;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  color:#fff!important;
+  font-size:clamp(27px,3.35vw,51px)!important;
+  font-weight:900!important;
+  line-height:1.04!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-ko{
+  display:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-kana,
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-sub{
+  flex:none;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  min-height:0!important;
+  line-height:1.2!important;
+  margin:0!important;
+  color:#e4edff!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-kana{
+  font-size:clamp(11px,1.4vw,18px)!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-sub{
+  font-size:clamp(9px,1vw,13px)!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #ko-progress{
+  flex:none;
+  width:100%!important;
+  min-height:0!important;
+  height:21px!important;
+  max-height:21px!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-input{
+  position:relative!important;
+  flex:none!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  width:min(100%,570px)!important;
+  height:38px!important;
+  min-height:38px!important;
+  max-height:38px!important;
+  margin:3px auto 0!important;
+  border:1px solid #d3def1!important;
+  border-bottom:3px solid #f47b1b!important;
+  border-radius:3px!important;
+  background:#fff!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-strip{
+  grid-column:1!important;
+  grid-row:2!important;
+  order:initial!important;
+  min-height:0!important;
+  height:8px!important;
+  background:#f47b1b!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-brand{
+  grid-column:1!important;
+  grid-row:3!important;
+  order:initial!important;
+  min-height:0!important;
+  height:29px!important;
+  padding:3px 8px!important;
+  border:0!important;
+  background:#061b4a!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-footer{
+  grid-column:1!important;
+  grid-row:4!important;
+  order:initial!important;
+  display:grid!important;
+  min-height:0!important;
+  height:23px!important;
+  margin:0!important;
+  padding:4px 12px!important;
+  border:0!important;
+  border-top:1px solid #ffffff20!important;
+  background:#031336!important;
+  color:#e2edff!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-neighbor{
+  min-height:0!important;
+  max-height:100%!important;
+  overflow:hidden!important;
+  padding:5px 8px!important;
+  background:transparent!important;
+  color:#fff!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-neighbor b{
+  font-size:clamp(13px,1.9vw,26px)!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-neighbor small{
+  margin-bottom:3px!important;
+}
+
+/* Seoul Metro also had three incompatible historical grid definitions.
+   The most recent one required >=270px inside a <=286px HUD, forcing the
+   station title out of view and turning the footer into a blank panel. */
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"]{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) 24px!important;
+  min-height:0!important;
+  max-height:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-sign-brand{
+  display:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-sign-strip{
+  z-index:0!important;
+  top:38%!important;
+  height:24%!important;
+  min-height:0!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-sign-main{
+  grid-column:1!important;
+  grid-row:1!important;
+  display:grid!important;
+  position:relative!important;
+  z-index:1!important;
+  grid-template-columns:minmax(0,.9fr) minmax(0,2.9fr) minmax(0,.9fr)!important;
+  min-height:0!important;
+  max-height:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:3px 6px!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-current{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:1px!important;
+  grid-column:2!important;
+  min-height:0!important;
+  max-height:100%!important;
+  padding:4px 12px!important;
+  border:4px solid #008a50!important;
+  border-radius:26px!important;
+  background:#fff!important;
+  color:#101820!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-current .station-badge:not([hidden]){
+  position:static!important;
+  transform:none!important;
+  flex:none!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  display:grid!important;
+  place-items:center!important;
+  width:34px!important;
+  height:34px!important;
+  margin:0 auto 1px!important;
+  border:2px solid #008a50!important;
+  border-radius:50%!important;
+  background:#008a50!important;
+  color:#fff!important;
+  font-size:12px!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-current #prompt-main{
+  flex:none!important;
+  grid-row:auto!important;
+  grid-column:auto!important;
+  min-height:0!important;
+  font-size:clamp(27px,3.3vw,43px)!important;
+  line-height:1.07!important;
+  color:#101820!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-current #ko-progress{
+  flex:none!important;
+  min-height:0!important;
+  height:22px!important;
+  margin:0!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-sign-input{
+  flex:none!important;
+  grid-row:auto!important;
+  grid-column:auto!important;
+  height:38px!important;
+  min-height:38px!important;
+  margin:2px auto!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-sign-footer{
+  grid-row:2!important;
+  grid-column:1!important;
+  min-height:0!important;
+  height:24px!important;
+  margin:0!important;
+  padding:3px 12px!important;
+  border-top:2px solid #008a50!important;
+  overflow:hidden!important;
+}
+
+/* 220px-high HUDs on laptops cannot hold a full-size badge, title,
+   foreign-language captions, answer progress and the typing field together.
+   Keep the station name and typing input fully visible, hiding only
+   secondary explanatory text at compact viewport heights. */
+@media(max-height:860px){
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #station-context,
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-sub{
+    display:none!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current .station-badge:not([hidden]){
+    width:28px!important;
+    height:28px!important;
+    font-size:11px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-main{
+    font-size:clamp(24px,2.9vw,37px)!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-kana{
+    font-size:12px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #ko-progress{
+    height:18px!important;
+    max-height:18px!important;
+  }
+}
+
+/* The mobile typing sheet hides side neighbors but must never hide the name. */
+@media(max-width:760px){
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-main,
+  #screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-sign-main{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-neighbor,
+  #screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-neighbor{
+    display:none!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current,
+  #screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-current{
+    grid-column:1!important;
+    min-height:0!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-main{
+    font-size:clamp(27px,8vw,41px)!important;
+  }
+}
+@media(max-height:540px){
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #prompt-sub{
+    display:none!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current .station-badge:not([hidden]),
+  #screen-game.active .station-sign[data-sign-style="kr-seoul-metro"] .station-current .station-badge:not([hidden]){
+    width:29px!important;
+    height:29px!important;
+  }
+}

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko" data-country="kr" data-theme="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/home-night.css">
+<link rel="stylesheet" href="../css/game-upgrade.css">
+<link rel="stylesheet" href="../css/station-sign-ui.css">
+<link rel="stylesheet" href="../css/station-sign-families.css">
+<link rel="stylesheet" href="../css/osm-single-screen.css">
+<link rel="stylesheet" href="../css/typing-fit-fixes.css">
+<link rel="stylesheet" href="../css/korail-nameplate.css">
+<link rel="stylesheet" href="../css/asset-runtime.css">
+<link rel="stylesheet" href="../css/free-drive.css">
+<link rel="stylesheet" href="../css/account-leaderboard.css">
+<link rel="stylesheet" href="../css/service-picker-rebuild.css">
+<link rel="stylesheet" href="../css/cloud-run-sync.css">
+<link rel="stylesheet" href="../css/taiwan.css">
+<link rel="stylesheet" href="../css/thailand.css">
+<link rel="stylesheet" href="../css/kr-nameplate-overflow-fix.css">
+<style>html,body{margin:0}</style>
+</head>
+<body data-current-screen="game">
+<main><section id="screen-game" class="screen game-screen active" data-screen="game">
+<div class="game-top"><button>종료</button><div><h2>수도권 전철 1호선</h2></div><div><button>일시정지</button></div></div>
+<div class="service-summary"><div>기점</div><div>신창</div><div>종점</div></div>
+<div class="hud-strip"><div>시간</div><div>진행</div><div>분당타수</div><div>정확도</div><div>콤보</div></div>
+<div class="game-map-shell"><div id="route-map" class="route-map game-rail-map"></div></div>
+<div class="station-sign-hud"><section id="station-sign" class="station-sign" style="--route-color:#005dab" data-sign-style="kr-korail">
+<div class="station-sign-strip"></div>
+<div class="station-sign-brand"><div id="station-operator-mark"></div><span id="station-line-label"></span><span class="korail-sign-wordmark">KORAIL</span></div>
+<div class="station-sign-main">
+<div class="station-neighbor previous"><span class="korail-neighbor-badge">P179</span><small>이전역</small><b>온양온천</b><span>Onyangoncheon</span><i>←</i></div>
+<div class="station-current">
+<p id="station-context">다음 역 입력</p>
+<div id="station-badge" class="station-badge">P180</div>
+<h1 id="prompt-main">신창</h1>
+<p id="prompt-ko" class="prompt-ko">신창</p>
+<p id="prompt-kana" class="prompt-kana">Sinchang</p>
+<p id="prompt-sub" class="prompt-romaji">新昌</p>
+<div id="ko-progress" class="ko-progress"><span class="input-cell">신</span><span class="input-cell">창</span></div>
+<label class="typing-box station-sign-input"><input id="typing-input" aria-label="한국어 역명 입력" autocomplete="off" value="신"><span id="input-status">입력</span></label>
+<button id="next-station-button" hidden>다음</button>
+</div>
+<div class="station-neighbor next"><span class="korail-neighbor-badge">P181</span><small>다음역</small><b>아산</b><span>Asan</span><i>→</i></div>
+</div>
+<div class="station-sign-footer"><span>오타 0</span><span>신창역</span><span>목표역 신창</span></div>
+</section></div></section></main>
+<script>
+addEventListener('load',()=>{
+  const search=new URLSearchParams(location.search);
+  const type=search.get('sign')||'kr-korail';
+  const sign=document.getElementById('station-sign');sign.dataset.signStyle=type;
+  if(type==='kr-seoul-metro')sign.querySelector('.korail-sign-wordmark').style.display='none';
+  const rect=id=>document.querySelector(id).getBoundingClientRect();
+  const s=rect('#station-sign'),hud=rect('.station-sign-hud'),current=rect('.station-current'),
+    title=rect('#prompt-main'),input=rect('.station-sign-input'),foot=rect('.station-sign-footer');
+  const err=[];
+  if(s.height>hud.height+3||s.bottom>hud.bottom+3)err.push('sign outside HUD');
+  for(const [name,r] of [['title',title],['input',input]]){
+    if(r.top<current.top-2||r.bottom>current.bottom+3)err.push(name+' clipped inside current station: '+r.top+'-'+r.bottom+' vs '+current.top+'-'+current.bottom);
+    if(r.width<50||r.height<16)err.push(name+' too small');
+  }
+  if(input.top<title.bottom-1)err.push('typing input overlaps station name');
+  if(foot.height>36||foot.top<s.top||foot.bottom>s.bottom+3)err.push('footer escapes station board or too tall');
+  if(type==='kr-korail'){
+    const bg=getComputedStyle(sign).backgroundColor;
+    if(bg!=='rgb(6, 27, 74)')err.push('Korail navy lost: '+bg);
+    const stripe=getComputedStyle(document.querySelector('.station-sign-strip')).backgroundColor;
+    if(stripe!=='rgb(244, 123, 27)')err.push('Korail orange must not follow line color: '+stripe);
+  }
+  document.documentElement.dataset.nameplateResult=err.length?'FAIL':'PASS';
+  document.documentElement.dataset.nameplateErrors=err.join(' | ').replaceAll('"','');
+});
+</script></body></html>

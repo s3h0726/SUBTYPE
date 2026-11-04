@@ -7,6 +7,9 @@ on:
       - js/game.js
       - js/transport-stop-templates.js
       - css/korail-nameplate.css
+      - css/kr-nameplate-overflow-fix.css
+      - tools/test-kr-nameplate-layout-browser.cjs
+      - tools/kr-nameplate-layout-fixture.html
       - index.html
       - tools/test-korail-nameplate.cjs
       - .github/workflows/kr-card-and-jr-sign.yml
@@ -15,6 +18,9 @@ on:
       - js/game.js
       - js/transport-stop-templates.js
       - css/korail-nameplate.css
+      - css/kr-nameplate-overflow-fix.css
+      - tools/test-kr-nameplate-layout-browser.cjs
+      - tools/kr-nameplate-layout-fixture.html
       - index.html
       - tools/test-korail-nameplate.cjs
       - .github/workflows/kr-card-and-jr-sign.yml
@@ -53,6 +59,7 @@ jobs:
           JS
           node tools/test-line1-playability.js
           node tools/test-korail-nameplate.cjs
+          node --test tools/test-kr-nameplate-layout-browser.cjs
       - name: Regenerate deployed app bundle
         run: node tools/build-app-bundle.js
       # Generation is verified against the source commit. Independent validation
