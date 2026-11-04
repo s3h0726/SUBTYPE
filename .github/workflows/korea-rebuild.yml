@@ -34,6 +34,7 @@ jobs:
       - run: node tools/test-kr-tsbis.cjs
       - run: node --test tools/test-taiwan.cjs
       - run: node --test tools/kr-rail-rebuild.test.cjs
+      - run: node tools/test-kr-hangang-other-bus.cjs
       - run: node tools/kr-river-test.cjs
       - run: node tools/kr-bus-test.cjs
       - run: npm run test:typing
