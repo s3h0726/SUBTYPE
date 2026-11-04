@@ -1,0 +1,262 @@
+/* SUBTYPE KORAIL nameboard: reference supplied by the user (Bupyeong).
+   Navy face, white centered Hangul, adjacent stations with round ID badges,
+   orange fixed accent and KORAIL brand. Never derive the sign colour from
+   the rail route's lineColor. Other operators retain their own templates. */
+.korail-sign-wordmark,.korail-neighbor-badge{display:none}
+#screen-game .station-sign[data-sign-style="kr-korail"]{
+  --korail-board-navy:#061b4a;
+  --korail-board-orange:#f47b1b;
+  display:flex;
+  flex-direction:column;
+  border:2px solid #123267;
+  border-radius:2px;
+  background:var(--korail-board-navy);
+  color:#fff;
+  box-shadow:0 14px 38px #0006;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-sign-main{
+  order:1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,2.4fr) minmax(0,1fr);
+  min-height:255px;
+  background:transparent;
+  align-items:center;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-neighbor{
+  min-width:0;
+  padding:20px clamp(8px,1.8vw,26px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  border:0;
+  color:#f5f7fd;
+  text-align:center;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-neighbor small{
+  margin:0 0 8px;
+  font:700 10px "Noto Sans KR",sans-serif;
+  color:#bbcbe8;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-neighbor b{
+  margin:6px 0 0;
+  font:850 clamp(16px,2.25vw,31px)/1.2 "Noto Sans KR","Malgun Gothic",sans-serif;
+  color:#fff;
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-neighbor span:not(.korail-neighbor-badge){
+  color:#d7e3f8;
+  font:600 clamp(10px,1.1vw,15px)/1.35 "Noto Sans KR",sans-serif;
+  overflow-wrap:anywhere;
+  white-space:normal;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-neighbor i{display:none}
+#screen-game .station-sign[data-sign-style="kr-korail"] .korail-neighbor-badge:not([hidden]){
+  display:grid;
+  place-items:center;
+  width:39px;
+  height:39px;
+  flex:none;
+  margin:0 auto;
+  border:1.5px solid #eaf1ff;
+  border-radius:50%;
+  color:#fff;
+  font:750 13px "IBM Plex Mono",sans-serif;
+  text-align:center;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:repeat(8,auto);
+  align-content:center;
+  justify-items:center;
+  gap:5px;
+  min-width:0;
+  padding:17px clamp(10px,2.8vw,42px) 19px;
+  border:0;
+  background:transparent;
+  color:#fff;
+  text-align:center;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current:after{display:none}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current #station-context{
+  grid-column:1;
+  margin:0 0 1px;
+  color:#c5d3ef;
+  font:750 10px "Noto Sans KR",sans-serif;
+  letter-spacing:.04em;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current .station-badge:not([hidden]){
+  grid-column:1;
+  grid-row:auto;
+  justify-self:center;
+  display:grid;
+  place-items:center;
+  width:54px;
+  height:54px;
+  margin:0 0 5px;
+  border:2px solid #f2f6ff;
+  border-radius:50%;
+  background:transparent;
+  color:#fff;
+  box-shadow:none;
+  font:800 16px "IBM Plex Mono",sans-serif;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current #prompt-main{
+  grid-column:1;
+  margin:0;
+  min-height:0;
+  color:#fff!important;
+  font:900 clamp(37px,5.2vw,75px)/1.08 "Noto Sans KR","Malgun Gothic",sans-serif;
+  letter-spacing:.02em;
+  white-space:normal;
+  text-overflow:clip;
+  overflow-wrap:anywhere;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current #prompt-ko{display:none}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current #prompt-kana,
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current #prompt-sub{
+  grid-column:1;
+  min-height:0;
+  margin:0;
+  color:#edf3ff;
+  text-align:center;
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current #prompt-kana{
+  font:700 clamp(13px,1.65vw,22px)/1.24 "Noto Sans KR",sans-serif;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current #prompt-sub{
+  font:600 clamp(11px,1.2vw,16px)/1.32 "Noto Sans KR",sans-serif;
+  color:#cad7ef;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-sign-input{
+  grid-column:1/-1;
+  width:min(100%,630px);
+  margin:15px auto 0;
+  border:1px solid #b7c6dd;
+  border-bottom:4px solid var(--korail-board-orange);
+  border-radius:4px;
+  background:#fff!important;
+  color:#111817!important;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-current .next-station-button{
+  grid-column:1/-1;
+  background:#f47b1b;
+  color:#0c244d;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-sign-strip{
+  position:relative;
+  order:2;
+  width:auto;
+  height:10px;
+  margin:0 15px 0 47px;
+  flex:none;
+  background:var(--korail-board-orange)!important;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-sign-strip:before{
+  content:"";
+  position:absolute;
+  left:-25px;
+  top:0;
+  width:25px;
+  height:20px;
+  background:var(--korail-board-orange);
+  clip-path:polygon(0 0,100% 0,100% 100%);
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-sign-brand{
+  order:3;
+  display:flex;
+  min-height:44px;
+  justify-content:center;
+  align-items:center;
+  padding:7px 10px 10px;
+  border:0;
+  background:transparent;
+  color:#fff;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-sign-brand #station-operator-mark,
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-sign-brand #station-line-label{
+  display:none;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .korail-sign-wordmark{
+  display:block;
+  color:#fff;
+  font:italic 950 clamp(24px,2.7vw,36px)/1.1 Arial,"Noto Sans KR",sans-serif;
+  letter-spacing:-.05em;
+}
+#screen-game .station-sign[data-sign-style="kr-korail"] .station-sign-footer{
+  order:4;
+  border:0;
+  border-top:1px solid #ffffff25;
+  background:#031336;
+  color:#e2edff;
+}
+/* The existing phone typing-fit stylesheet is intentionally overridden only
+   for Korail. Preserve the compact one-column mobile input layout. */
+@media(max-width:760px){
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-main{
+    grid-template-columns:minmax(0,1fr)!important;
+    min-height:0!important;
+    display:grid!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-neighbor{
+    display:none!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current{
+    grid-column:1!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:repeat(8,auto)!important;
+    align-content:start!important;
+    background:transparent!important;
+    color:#fff!important;
+    padding:16px 13px 18px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current h1{
+    grid-column:1!important;
+    grid-row:auto!important;
+    width:100%!important;
+    min-height:0!important;
+    color:#fff!important;
+    font-size:clamp(28px,8vw,44px)!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    line-height:1.12!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current .station-badge:not([hidden]){
+    position:static!important;
+    grid-column:1!important;
+    grid-row:auto!important;
+    width:42px!important;
+    height:42px!important;
+    margin:0 auto 5px!important;
+    border:2px solid #fff!important;
+    background:transparent!important;
+    color:#fff!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] #prompt-kana,
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] #prompt-sub{
+    grid-column:1!important;
+    grid-row:auto!important;
+    color:#e2ecff!important;
+    margin:0!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] #prompt-ko{display:none!important}
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-input{
+    grid-column:1!important;
+    grid-row:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:auto!important;
+    min-height:42px;
+    margin-top:10px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-strip{
+    height:8px;
+    margin-left:34px;
+  }
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-brand{min-height:38px}
+}

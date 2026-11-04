@@ -4,7 +4,19 @@ on:
     branches: [main]
     paths:
       - js/app.js
+      - js/game.js
       - js/transport-stop-templates.js
+      - css/korail-nameplate.css
+      - index.html
+      - tools/test-korail-nameplate.cjs
+      - .github/workflows/kr-card-and-jr-sign.yml
+  pull_request:
+    paths:
+      - js/game.js
+      - js/transport-stop-templates.js
+      - css/korail-nameplate.css
+      - index.html
+      - tools/test-korail-nameplate.cjs
       - .github/workflows/kr-card-and-jr-sign.yml
   workflow_dispatch:
 permissions:
@@ -40,6 +52,7 @@ jobs:
           console.log('PASS: Korean cards select preview; Korean rail uses Korean signs; bus stays Korean');
           JS
           node tools/test-line1-playability.js
+          node tools/test-korail-nameplate.cjs
       - name: Regenerate deployed app bundle
         run: node tools/build-app-bundle.js
       # Generation is verified against the source commit. Independent validation
