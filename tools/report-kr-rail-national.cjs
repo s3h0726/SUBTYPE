@@ -5,7 +5,8 @@ const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const before=JSON.parse(cp.execFileSync('git',['show','f86f0f89806b4063d88064a8d94787f8d16bf030:data/kr/generated/index.json'],{maxBuffer:80e6}));
 const after=read('data/kr/generated/index.json'),national=read('data/kr/canonical/rail-national-recovery-batch.json'),urban=read('data/kr/canonical/rail-urban-national-batch.json');
 const bus=new Set(['bus','village_bus','express_bus','brt']),isRail=r=>!bus.has(r.mode)&&r.mode!=='river_bus';
-const metrics=index=>({전체노선:index.routes.length,철도카드:index.routes.filter(isRail).length,버스카드:index.routes.filter(r=>bus.has(r.mode)).length,등록방향:index.counts.playableDirections,역정류장ID:index.counts.uniqueStops});
+const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul'}).format(new Date()),current=w=>(!w.start||w.start<=date)&&(!w.end||date<=w.end);
+const metrics=index=>({전체노선:index.routes.length,철도카드:index.routes.filter(isRail).length,철도방향:index.routes.filter(isRail).reduce((n,r)=>n+r.serviceCount,0),버스카드:index.routes.filter(r=>bus.has(r.mode)).length,등록방향:index.counts.playableDirections,선택가능노선:index.routes.filter(r=>!r.serviceWindows||r.serviceWindows.some(current)).length,선택가능방향:index.routes.reduce((n,r)=>n+(r.serviceWindows?r.serviceWindows.filter(current).length:r.serviceCount),0),역정류장ID:index.counts.uniqueStops});
 const oldQueue=read('data/kr/canonical/rail-name-recovery-queue.json').candidates,queue=read('data/kr/canonical/rail-national-recovery-queue.json').candidates;
 const added=[...national.routes,...urban.routes],trips=new Set(national.routes.flatMap(r=>r.verifiedJourneys.flatMap(j=>j.tripIds)));
 const recovered=oldQueue.filter(c=>c.tripIds.some(t=>trips.has(t))),reasons={};
@@ -25,6 +26,7 @@ const report={검사시각:new Date().toISOString(),기준커밋:'f86f0f89806b40
   브라우저:{정상순차입력완주:completed.length,실행:completed.map(r=>({노선:r.route,방향:r.direction||'',입력역수:r.stops.length})),테스트입력오류시도:raw.runs.length-completed.length,범위:'실제 브라우저의 한국어 입력·한 역 진행·종점 완료·게스트 기록. 원시 검증에는 테스트 스크립트가 잘못된 역 목록을 보낸 두 시도도 남김.'},
   공통회귀:{통과:checks.filter(c=>c.status===0).length,실패:checks.filter(c=>c.status!==0).map(c=>c.name)},
   한글명:'공식 도시철도 역명 정규화, 대구 명덕1·반월당1 시설 번호 제거, 신규 고속열차 계통 표기 3개 교정. 편집표 압축 해제와 모든 방향 역명 합집합, 검색·행선지·게임 정답 동기화 구현.',
+  철도분류:after.routes.filter(isRail).reduce((o,r)=>{const key=r.id==='kr-rail-national-gtx-a'?'광역급행철도':r.subcategory||r.mode;o[key]??={카드:0,방향:0};o[key].카드++;o[key].방향+=r.serviceCount;return o},{}),
   미검증:['운영체제 기본 한글 IME 조합 실입력','로그인한 Supabase 서버 기록 저장'],배포:'커밋·워크플로·운영 파일 검증 결과는 별도 배포 증거에 기록'};
 const out='reports/kr-rebuild/20261105-전국-철도-확장.json';fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');
 const rows=Object.keys(report.작업전).map(k=>'| '+k+' | '+report.작업전[k]+' | '+report.작업후[k]+' | '+(report.작업후[k]-report.작업전[k])+' |').join('\n');

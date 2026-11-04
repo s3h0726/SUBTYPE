@@ -1,0 +1,124 @@
+{
+  "확인시각": "2026-11-04T15:26:38.250Z",
+  "검증된운영커밋": "179f690b5f0c1d39d72c6247ef3d9359528ecfb7",
+  "커밋주소": "https://github.com/s3h0726/SUBTYPE/commit/179f690b5f0c1d39d72c6247ef3d9359528ecfb7",
+  "한국카탈로그검사": {
+    "결과": "성공",
+    "주소": "https://github.com/s3h0726/SUBTYPE/actions/runs/41856104871"
+  },
+  "페이지배포": {
+    "결과": "성공",
+    "주소": "https://github.com/s3h0726/SUBTYPE/actions/runs/41856104605",
+    "사이트": "https://s3h0726.github.io/SUBTYPE/"
+  },
+  "홍콩검사": {
+    "결과": "성공",
+    "주소": "https://github.com/s3h0726/SUBTYPE/actions/runs/41856104706",
+    "최신로컬회귀": 27,
+    "실제엔진완주": 210,
+    "공개파일일치": 18
+  },
+  "대만회귀": {
+    "통과": 12,
+    "실패": 0
+  },
+  "운영산출물": {
+    "색인번들파일일치": 3,
+    "한국표본노선일치": 18,
+    "증거": "20261105-철도-공개-산출물.json"
+  },
+  "브라우저": {
+    "로컬완주": 7,
+    "운영완주": 1,
+    "증거": "20261105-철도-운영-완주.json"
+  },
+  "별도실패워크플로": [
+    {
+      "id": 41856104883,
+      "jobId": 126665035086,
+      "failedSteps": [
+        "Run node tools/build-meitetsu-mikawa-sections.cjs --check"
+      ],
+      "errors": [
+        "  throw new AssertionError(obj);",
+        "AssertionError [ERR_ASSERTION]: Generated umi payload is stale",
+        "  code: 'ERR_ASSERTION',"
+      ]
+    },
+    {
+      "id": 41856104636,
+      "jobId": 126665034308,
+      "failedSteps": [
+        "Run node tools/build-tosakuroshio-merged.cjs --check"
+      ],
+      "errors": [
+        "  throw new AssertionError(obj);",
+        "AssertionError [ERR_ASSERTION]: Merged payload is stale; rerun node tools/build-tosakuroshio-merged.cjs",
+        "  code: 'ERR_ASSERTION',"
+      ]
+    },
+    {
+      "id": 41856104650,
+      "jobId": 126665036205,
+      "failedSteps": [
+        "Test Iyotetsu rail and tram line classification and full loop"
+      ],
+      "errors": [
+        "  throw new AssertionError(obj);",
+        "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  code: 'ERR_ASSERTION',"
+      ]
+    },
+    {
+      "id": 41856104705,
+      "jobId": 126665035564,
+      "failedSteps": [
+        "Verify Matsuyama city tram 1/2 circular routes in name editor"
+      ],
+      "errors": [
+        "  throw new AssertionError(obj);",
+        "AssertionError [ERR_ASSERTION]: Korean name matches playable route",
+        "  code: 'ERR_ASSERTION',"
+      ]
+    },
+    {
+      "id": 41856104343,
+      "jobId": 126665033719,
+      "failedSteps": [
+        "Validate data"
+      ],
+      "errors": []
+    },
+    {
+      "id": 41856104254,
+      "jobId": 126665034332,
+      "failedSteps": [
+        "Test Mino-Akasaka physical line split against published runtime"
+      ],
+      "errors": [
+        "  throw new AssertionError(obj);",
+        "AssertionError [ERR_ASSERTION]: unverified Ogaki–Tarui must not be treated as verified track",
+        "  code: 'ERR_ASSERTION',"
+      ]
+    },
+    {
+      "id": 41856104235,
+      "jobId": 126665035504,
+      "failedSteps": [
+        "Validate data"
+      ],
+      "errors": []
+    },
+    {
+      "id": 41856104762,
+      "jobId": 126665035399,
+      "failedSteps": [
+        "Validate editor names are present in built route catalog"
+      ],
+      "errors": [
+        "Error: missing editor station line-99812:station-9980803"
+      ]
+    }
+  ],
+  "설명": "일본 자료를 변경하지 않았다. 별도 실패 8건의 단계·오류는 위 로그 요약에 보존하며 한국 카탈로그와 Pages 성공으로 대체하지 않는다. 운영체제 IME와 로그인 서버 저장은 미검증."
+}
