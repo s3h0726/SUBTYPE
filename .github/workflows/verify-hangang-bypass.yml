@@ -1,0 +1,31 @@
+name: Verify Hangang east Seoul Forest bypass
+on:
+  pull_request:
+    paths:
+      - 'data/kr/canonical/river-*'
+      - 'tools/kr-river-import.cjs'
+      - 'tools/kr-river-test.cjs'
+      - 'tools/build-kr-canonical.cjs'
+      - '.github/workflows/verify-hangang-bypass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Rebuild OSM ferry geometry and confirm reproducibility
+        run: |
+          node tools/kr-river-import.cjs
+          git diff --exit-code -- data/kr/canonical/river-batch.json data/kr/canonical/river-report.json
+      - name: Validate historical journeys and current pier bypass
+        run: node tools/kr-river-test.cjs
+      - name: Verify canonical publication permits only reviewed geometry repair
+        run: |
+          node tools/build-kr-canonical.cjs --publish
+          node tools/test-kr-canonical.cjs
