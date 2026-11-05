@@ -76,6 +76,7 @@
   <link rel="stylesheet" href="./css/thailand.css?v=20261103-thai-sign-swapped">
   <link rel="stylesheet" href="./css/kr-nameplate-overflow-fix.css?v=20261105-white-underscores-arrow-v2">
   <link rel="stylesheet" href="./css/enoden-nameplate.css?v=20261106-enoden-inputless-ko-neighbors">
+  <link rel="stylesheet" href="./css/tokyo-metro-bilingual-nameplate.css?v=20261106-nine-lines">
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -216,7 +217,7 @@
           <div class="station-sign-strip"></div>
           <div class="station-sign-brand"><div id="station-operator-mark" class="station-operator-mark"></div><span id="station-line-label"></span><span class="korail-sign-wordmark" aria-hidden="true">KORAIL</span></div>
           <div class="station-sign-main">
-            <div class="station-neighbor previous"><span id="korail-previous-badge" class="korail-neighbor-badge" hidden></span><small id="previous-stop-label">이전 역</small><b id="previous-station-name"></b><span id="previous-station-ko" class="station-neighbor-ko"></span><span id="previous-station-romaji"></span><i>←</i></div>
+            <div class="station-neighbor previous"><span id="korail-previous-badge" class="korail-neighbor-badge" hidden></span><small id="previous-stop-label">이전 역</small><b id="previous-station-name"></b><span id="previous-station-kana" class="station-neighbor-kana"></span><span id="previous-station-romaji"></span><span id="previous-station-ko" class="station-neighbor-ko"></span><i>←</i></div>
             <div class="station-current">
               <p id="station-context">다음역</p>
               <div id="station-badge" class="station-badge" hidden></div>
@@ -229,7 +230,7 @@
               <button id="next-station-button" class="next-station-button" type="button" hidden>NEXT · 다음 역으로 출발</button>
 
             </div>
-            <div class="station-neighbor next"><span id="korail-next-badge" class="korail-neighbor-badge" hidden></span><small id="following-stop-label">다음 역</small><b id="next-station-name"></b><span id="next-station-ko" class="station-neighbor-ko"></span><span id="next-station-romaji"></span><i>→</i></div>
+            <div class="station-neighbor next"><span id="korail-next-badge" class="korail-neighbor-badge" hidden></span><small id="following-stop-label">다음 역</small><b id="next-station-name"></b><span id="next-station-kana" class="station-neighbor-kana"></span><span id="next-station-romaji"></span><span id="next-station-ko" class="station-neighbor-ko"></span><i>→</i></div>
           </div>
           <div class="station-sign-footer"><span>오타 <b id="error-count">0</b></span><span id="station-service-footer"></span><span><span id="target-stop-label">목표역</span> <b id="next-station"></b></span></div>
         </section>
@@ -373,7 +374,7 @@
   <script defer src="./js/cloud-run-sync.js?v=server-records-20261029"></script>
   <script type="module" src="./js/result-journey-map.js?v=13b109860bbd"></script>
     <script defer src="./js/disney-resort-line-data.js?v=20261102-namuwiki-name-rules"></script>
-  <script defer src="./js/app.bundle.js?v=20261106-enoden-neighbor-ko"></script>
+  <script defer src="./js/app.bundle.js?v=20261106-tokyo-metro-bilingual-nine-lines"></script>
 
 </body>
 </html>
