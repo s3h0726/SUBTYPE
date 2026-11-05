@@ -396,3 +396,13 @@
   max-width:53px!important;max-height:53px!important;
   transform:translateX(-50%)!important;
 }
+
+/* Empty kana placeholders must not add spacing on other operators' signs. */
+#screen-game.active .station-neighbor .station-neighbor-kana:empty{display:none!important}
+/* White text on the two darker route bands keeps service metadata readable. */
+#screen-game.active .station-sign[data-sign-style="metro"][data-tokyo-metro-line="M"] .station-sign-footer,
+#screen-game.active .station-sign[data-sign-style="metro"][data-tokyo-metro-line="F"] .station-sign-footer,
+#screen-game.active .station-sign[data-sign-style="metro"][data-tokyo-metro-line="M"] .station-sign-footer span,
+#screen-game.active .station-sign[data-sign-style="metro"][data-tokyo-metro-line="F"] .station-sign-footer span{
+  color:#fff!important;
+}
