@@ -413,3 +413,98 @@
   background:#f47b1b!important;
   clip-path:polygon(0 0,100% 50%,0 100%)!important;
 }
+
+
+/* KORAIL typing display: the real input stays visually hidden and focusable.
+   Show each remaining answer slot as a white underscore, and each typed
+   Hangul character as white text. Do not inherit the route's blue/green. */
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #ko-progress{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  flex:0 0 35px!important;
+  align-self:center!important;
+  justify-content:center!important;
+  align-items:center!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:35px!important;
+  min-height:30px!important;
+  max-height:35px!important;
+  margin:5px auto 0!important;
+  padding:0!important;
+  gap:clamp(4px,.8vw,11px)!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  color:#fff!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #ko-progress .input-cell{
+  position:relative!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  flex:0 1 clamp(15px,2.3vw,31px)!important;
+  width:clamp(15px,2.3vw,31px)!important;
+  min-width:0!important;
+  max-width:31px!important;
+  height:32px!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-bottom:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  font:800 clamp(17px,2.3vw,27px)/1.15 "Noto Sans KR","Malgun Gothic",sans-serif!important;
+  text-align:center!important;
+  text-shadow:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #ko-progress .input-cell:empty::before{
+  content:"_"!important;
+  display:block!important;
+  color:#fff!important;
+  opacity:.93!important;
+  font:inherit!important;
+  -webkit-text-fill-color:#fff!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #ko-progress .input-cell::after{
+  display:none!important;
+  content:none!important;
+}
+/* A slimmer right-pointing sign arrow replaces the oversized triangular cap.
+   The left end has a short diagonal cut matching the nameplate motif. */
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-strip{
+  height:8px!important;
+  margin:0 33px 0 30px!important;
+  background:#f47b1b!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-strip::before{
+  content:""!important;
+  top:-4px!important;
+  right:-18px!important;
+  left:auto!important;
+  width:18px!important;
+  height:16px!important;
+  background:#f47b1b!important;
+  clip-path:polygon(0 0,100% 50%,0 100%)!important;
+}
+#screen-game.active .station-sign[data-sign-style="kr-korail"] .station-sign-strip::after{
+  content:""!important;
+  position:absolute!important;
+  top:0!important;
+  left:-11px!important;
+  width:11px!important;
+  height:8px!important;
+  background:#f47b1b!important;
+  clip-path:polygon(55% 0,100% 0,100% 100%,0 100%)!important;
+}
+@media(max-width:760px){
+  #screen-game.active .station-sign[data-sign-style="kr-korail"] .station-current #ko-progress{
+    min-height:30px!important;
+    height:32px!important;
+    max-height:32px!important;
+  }
+}
