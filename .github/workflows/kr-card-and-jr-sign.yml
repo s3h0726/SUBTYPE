@@ -6,6 +6,11 @@ on:
       - js/app.js
       - js/game.js
       - js/transport-stop-templates.js
+      - js/station-sign-templates.js
+      - css/enoden-nameplate.css
+      - tools/test-enoden-nameplate.cjs
+      - tools/test-enoden-nameplate-browser.cjs
+      - tools/enoden-nameplate-layout-fixture.html
       - css/korail-nameplate.css
       - css/kr-nameplate-overflow-fix.css
       - tools/test-kr-nameplate-layout-browser.cjs
@@ -17,6 +22,11 @@ on:
     paths:
       - js/game.js
       - js/transport-stop-templates.js
+      - js/station-sign-templates.js
+      - css/enoden-nameplate.css
+      - tools/test-enoden-nameplate.cjs
+      - tools/test-enoden-nameplate-browser.cjs
+      - tools/enoden-nameplate-layout-fixture.html
       - css/korail-nameplate.css
       - css/kr-nameplate-overflow-fix.css
       - tools/test-kr-nameplate-layout-browser.cjs
@@ -59,6 +69,8 @@ jobs:
           JS
           node tools/test-line1-playability.js
           node tools/test-korail-nameplate.cjs
+          node tools/test-enoden-nameplate.cjs
+          node --test tools/test-enoden-nameplate-browser.cjs
           node --test tools/test-kr-nameplate-layout-browser.cjs
       - name: Regenerate deployed app bundle
         run: node tools/build-app-bundle.js
