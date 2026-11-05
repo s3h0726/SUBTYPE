@@ -71,7 +71,7 @@ class Game{
     $('#service-destination-ko').textContent=this.stationKoDisplay(destination.ko)||'';
     $('#service-direction-summary').textContent=`${this.stationKoDisplay(this.currentStation()?.ko||'')} → ${this.stationKoDisplay(destination.ko||'')}`;
     this.applyActiveBrand(station);
-    this.applyKorailNameplateNames(station,this.currentStation(),station);this.applyEnodenNameplate(station,this.currentStation(),station);
+    this.applyKorailNameplateNames(station,this.currentStation(),station);this.applyEnodenNameplate(station,this.currentStation(),station);this.applyTokyoMetroNameplate(station,this.currentStation(),station,{freeDrive:true});
     if(this.mapRoute)this.mapReady=renderGameMap(this.mapRoute,this.index,{motion:true,nextRouteIndex:edge.index});
     this.phase='TYPING';this.comboPrefixUnits=0;
     const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
@@ -109,7 +109,7 @@ class Game{
     $('#previous-station-name').textContent=this.stationKoDisplay(station.ko)||'—';$('#previous-station-ko').textContent=this.stationKoDisplay(station.ko)||'';$('#previous-station-romaji').textContent=route.countryId==='kr'?this.stationKoDisplay(station.ko):`${station.ja||''} · ${station.romaji||''}`;
     $('#previous-stop-label').textContent='현재 역';$('#following-stop-label').textContent='다음 역';
     $('#next-station-name').textContent=this.stationKoDisplay(next?.ko)||'—';$('#next-station-ko').textContent=this.stationKoDisplay(next?.ko)||'';$('#next-station-romaji').textContent=next?`${route.countryId==='kr'?this.stationKoDisplay(next.ko):next.ja||''} · ${next.romaji||''}`:'';
-    this.applyKorailNameplateNames(station,station,next);this.applyEnodenNameplate(station,station,next);
+    this.applyKorailNameplateNames(station,station,next);this.applyEnodenNameplate(station,station,next);this.applyTokyoMetroNameplate(station,station,next,{freeDrive:true});
     $('#next-station').textContent='이동할 역 선택';$('#station-service-footer').textContent='자유주행';
     $('#game-service-name').textContent='FREE DRIVE · 自由走行';$('#service-origin-ja').textContent=route.countryId==='kr'?this.stationKoDisplay(station.ko):station.ja||'';$('#service-origin-ko').textContent=this.stationKoDisplay(station.ko)||'';$('#service-destination-ja').textContent='自由';$('#service-destination-ko').textContent='자유주행';$('#service-stop-count').textContent=`${state.historyLength||1}개 역 이동`;$('#service-route-summary').textContent=`${route.line?.ko||route.line?.ja||''} · 자유주행`;$('#service-direction-summary').textContent='앞·뒤 역을 선택해 자유롭게 이동';
     $('#hud-progress').textContent=`${state.historyLength||1} VISITED`;$('#hud-cpm').textContent='—';$('#hud-accuracy').textContent='—';$('#hud-combo').textContent=`환승 ${state.transferCount||0}`;
@@ -152,6 +152,40 @@ class Game{
     $('#prompt-sub').textContent=hard?'한국어 역명 입력':secondary(station);
     $('#previous-station-romaji').textContent=english(previous);
     $('#next-station-romaji').textContent=english(next);
+  }
+
+  // Tokyo Metro's nine route families share one photographic sign layout.
+  // Read every script from the actual stop data (no machine transliteration).
+  applyTokyoMetroNameplate(station,previous,next,{freeDrive=false}={}){
+    const sign=$('#station-sign'),active=this.activeRoute(station);
+    if(sign?.dataset?.signStyle!=='metro'||active?.operatorId!=='tokyo-metro')return;
+    const japanese=item=>String(item?.ja||item?.names?.ja||'').trim();
+    const kana=item=>String(item?.kana||item?.names?.kana||'').trim();
+    const english=item=>String(item?.names?.en||item?.en||item?.romaji||'').trim();
+    const place=(side,item,empty)=>{
+      const name=$(`#${side}-station-name`),reading=$(`#${side}-station-kana`),
+            latin=$(`#${side}-station-romaji`),korean=$(`#${side}-station-ko`);
+      if(name)name.textContent=japanese(item)||this.stationKoDisplay(item?.ko)||empty;
+      if(reading)reading.textContent=kana(item);
+      if(latin)latin.textContent=english(item);
+      if(korean)korean.textContent=this.stationKoDisplay(item?.ko)||'';
+    };
+    place('previous',previous,freeDrive?'현재역':'출발역');
+    place('next',next,'종착역');
+    $('#previous-stop-label').textContent=freeDrive?'현재 역':'이전 역';
+    $('#following-stop-label').textContent='다음 역';
+    // Preserve Korean answer/memory visibility and the controller's input field.
+    $('#prompt-main').textContent=japanese(station)||this.stationKoDisplay(station?.ko)||'';
+    $('#prompt-kana').textContent=kana(station);
+    $('#prompt-sub').textContent=english(station);
+    const badge=$('#station-badge');
+    const code=String(station?.officialCode||station?.stationCode||'').trim();
+    const parsed=code.match(/^([A-Za-z]{1,2})(\d{1,2})$/);
+    badge.textContent=parsed?code:'';
+    badge.hidden=!parsed;
+    badge.dataset.tokyoMetroLetter=parsed?parsed[1]:'';
+    badge.dataset.tokyoMetroNumber=parsed?parsed[2].padStart(2,'0'):'';
+    sign.dataset.tokyoMetroLine=String(active.code||this.route?.code||'').toUpperCase();
   }
   // The Enoden EN01..EN15 numbers are tied to the 15-stop Fujisawa–Kamakura
   // physical route, not to the travel direction or the game's answer sequence.
@@ -208,7 +242,7 @@ class Game{
       this.arrivalPromise.then(reached=>{if(reached===false||this.sessionId!==session)return;this.arrivalSettled=true;if(!this.paused)this.advance()});return;
     }
     const current=this.currentStation(),station=this.targetStation();if(!station)return this.finish();this.phase='TYPING';const hard=this.options.difficulty==='hard'||this.options.mode==='order',following=this.boarding?this.sequence[1]:this.sequence[this.index+2],previous=this.boarding?null:current,sign=$('#station-sign');sign.classList.remove('sign-enter');void sign.offsetWidth;sign.classList.add('sign-enter');
-    this.applyActiveBrand(station);$('#prompt-main').textContent=this.route?.countryId==='kr'?(this.stationKoDisplay(station.ko)||station.ja||''):station.ja;const memory=this.options.inputMode==='memory';$('#prompt-ko').textContent=memory?'정답 비공개':this.stationKoDisplay(station.ko);$('#prompt-ko').classList.toggle('memory-hidden',memory);$('#prompt-kana').textContent=hard?'••••••':this.stationKoDisplay(station.kana);$('#prompt-sub').textContent=hard?`한국어 ${transportStopNoun(this.route)} 이름을 입력하세요`:this.stationKoDisplay(station.romaji);const badge=$('#station-badge'),officialCode=station.hasOfficialStationCode?station.officialCode:'';badge.textContent=officialCode;badge.hidden=!officialCode;$('#station-context').textContent=this.boarding?`출발 ${transportStopNoun(this.route)} 입력`:`다음 ${transportStopNoun(this.route)} 입력`;$('#previous-station-name').textContent=this.stationKoDisplay(previous?.ko)||'출발지';$('#previous-station-ko').textContent=this.stationKoDisplay(previous?.ko)||'';$('#previous-station-romaji').textContent=previous?`${this.route.countryId==='kr'?this.stationKoDisplay(previous.ko):previous.ja} · ${previous.romaji}`:(this.route.countryId==='kr'?'출발지':'ORIGIN');$('#next-station-name').textContent=this.stationKoDisplay(following?.ko)||'종착지';$('#next-station-ko').textContent=this.stationKoDisplay(following?.ko)||'';$('#next-station-romaji').textContent=following?`${this.route.countryId==='kr'?this.stationKoDisplay(following.ko):following.ja} · ${following.romaji}`:(this.route.countryId==='kr'?'종착지':'TERMINAL');this.applyKorailNameplateNames(station,previous,following,hard);this.applyEnodenNameplate(station,previous,following);$('#next-station').textContent=this.stationKoDisplay(station.ko);$('#error-count').textContent=this.errors;this.fitPrompt();this.renderKoreanProgress();
+    this.applyActiveBrand(station);$('#prompt-main').textContent=this.route?.countryId==='kr'?(this.stationKoDisplay(station.ko)||station.ja||''):station.ja;const memory=this.options.inputMode==='memory';$('#prompt-ko').textContent=memory?'정답 비공개':this.stationKoDisplay(station.ko);$('#prompt-ko').classList.toggle('memory-hidden',memory);$('#prompt-kana').textContent=hard?'••••••':this.stationKoDisplay(station.kana);$('#prompt-sub').textContent=hard?`한국어 ${transportStopNoun(this.route)} 이름을 입력하세요`:this.stationKoDisplay(station.romaji);const badge=$('#station-badge'),officialCode=station.hasOfficialStationCode?station.officialCode:'';badge.textContent=officialCode;badge.hidden=!officialCode;$('#station-context').textContent=this.boarding?`출발 ${transportStopNoun(this.route)} 입력`:`다음 ${transportStopNoun(this.route)} 입력`;$('#previous-station-name').textContent=this.stationKoDisplay(previous?.ko)||'출발지';$('#previous-station-ko').textContent=this.stationKoDisplay(previous?.ko)||'';$('#previous-station-romaji').textContent=previous?`${this.route.countryId==='kr'?this.stationKoDisplay(previous.ko):previous.ja} · ${previous.romaji}`:(this.route.countryId==='kr'?'출발지':'ORIGIN');$('#next-station-name').textContent=this.stationKoDisplay(following?.ko)||'종착지';$('#next-station-ko').textContent=this.stationKoDisplay(following?.ko)||'';$('#next-station-romaji').textContent=following?`${this.route.countryId==='kr'?this.stationKoDisplay(following.ko):following.ja} · ${following.romaji}`:(this.route.countryId==='kr'?'종착지':'TERMINAL');this.applyKorailNameplateNames(station,previous,following,hard);this.applyEnodenNameplate(station,previous,following);this.applyTokyoMetroNameplate(station,previous,following);$('#next-station').textContent=this.stationKoDisplay(station.ko);$('#error-count').textContent=this.errors;this.fitPrompt();this.renderKoreanProgress();
     this.comboPrefixUnits=0;const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').classList.remove('waiting');$('#next-station-button').hidden=true;$('#input-status').textContent=this.route?.countryId==='kr'?'입력':'TYPE';$('#input-status').style.color='';this.typing.setTarget(this.answerValues(station));this.mapReady=renderGameMap(this.mapRoute,this.routeIndex(current),this.mapOptions());this.syncDebug();if(!this.paused)this.typing.focus();this.recordHongKongAdvance()
 
   }
