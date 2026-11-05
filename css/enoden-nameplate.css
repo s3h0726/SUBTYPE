@@ -1,0 +1,344 @@
+/* Enoshima Electric Railway / Enoden nameboard, based on the user-supplied
+   EN13 Yuigahama photograph. Scoped to Enoden only. Every label remains live.
+   Green enamel face, white lettering, EN number discs, mosaic and yellow rule. */
+#screen-game.active .station-sign[data-sign-style="enoden"]{
+  --enoden-green:#138061;
+  --enoden-yellow:#efd54c;
+  position:relative;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) 5px 27px!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  overflow:hidden!important;
+  border:2px solid #12543f!important;
+  border-radius:2px!important;
+  color:#fff!important;
+  background:linear-gradient(102deg,#0c5c45 0%,#248d70 50%,#0b674d 100%)!important;
+  box-shadow:0 12px 26px #0005;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"]::before{
+  content:"";
+  position:absolute;
+  left:6%;
+  top:-15px;
+  z-index:0;
+  width:210px;
+  height:115px;
+  opacity:.28;
+  transform:skewX(-12deg) rotate(-8deg);
+  background-image:linear-gradient(90deg,rgba(232,249,216,.8) 55%,transparent 55%),linear-gradient(rgba(232,249,216,.8) 55%,transparent 55%);
+  background-size:13px 13px;
+  background-blend-mode:multiply;
+  clip-path:polygon(0 0,100% 0,65% 100%,8% 100%);
+  pointer-events:none;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-main{
+  order:initial!important;
+  position:relative!important;
+  z-index:1;
+  grid-column:1!important;
+  grid-row:1!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,.9fr) minmax(0,2.7fr) minmax(0,.9fr)!important;
+  min-height:0!important;
+  height:100%!important;
+  max-height:100%!important;
+  padding:4px 12px 2px!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  overflow:hidden!important;
+  align-items:stretch!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-brand{
+  display:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:3px!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-height:100%!important;
+  padding:6px!important;
+  border:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  text-align:center!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor small{
+  margin:0!important;
+  color:#e4f6e9!important;
+  font:700 10px/1.2 "Noto Sans KR",sans-serif!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor b{
+  max-width:100%!important;
+  margin:0!important;
+  color:#fff!important;
+  font:850 clamp(16px,1.8vw,29px)/1.15 "Noto Sans JP","Noto Sans KR",sans-serif!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor span:not(.korail-neighbor-badge){
+  color:#e1f2e9!important;
+  font:650 clamp(10px,1vw,13px)/1.25 "Noto Sans JP",sans-serif!important;
+  white-space:normal!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor i{
+  display:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor.previous::before,
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor.next::before{
+  position:absolute;
+  top:8px;
+  color:#fff;
+  font:900 23px/1 sans-serif;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor.previous::before{content:"←";left:3px}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor.next::before{content:"→";right:3px}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor .korail-neighbor-badge:not([hidden]){
+  display:grid!important;
+  place-items:center!important;
+  flex:none!important;
+  width:38px!important;
+  height:38px!important;
+  margin:0 0 2px!important;
+  padding:0!important;
+  border:2px solid #eef7e5!important;
+  border-radius:50%!important;
+  background:#f5f8ed!important;
+  color:#12533f!important;
+  font:900 15px/1 sans-serif!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .korail-neighbor-badge:not([hidden])::before{
+  content:"EN";
+  display:block;
+  margin-top:3px;
+  color:#387b5b;
+  font:800 8px/.75 sans-serif;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-current{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:2px!important;
+  min-width:0!important;
+  min-height:0!important;
+  height:100%!important;
+  max-height:100%!important;
+  padding:5px 10px 4px!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  overflow:hidden!important;
+  text-align:center!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-current::after{display:none!important}
+#screen-game.active .station-sign[data-sign-style="enoden"] #station-context{
+  display:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-current .station-badge:not([hidden]){
+  position:absolute!important;
+  left:clamp(0px,1vw,22px)!important;
+  top:14%!important;
+  transform:none!important;
+  display:grid!important;
+  grid-template-rows:12px 24px!important;
+  place-items:center!important;
+  flex:none!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  width:48px!important;
+  height:48px!important;
+  min-width:48px!important;
+  min-height:48px!important;
+  padding:3px!important;
+  margin:0!important;
+  border:3px solid #fff!important;
+  border-radius:50%!important;
+  box-shadow:0 0 0 2px #276a52!important;
+  background:#f8f9ef!important;
+  color:#164d3f!important;
+  font:900 24px/1 Arial,sans-serif!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-current .station-badge:not([hidden])::before{
+  content:"EN";
+  color:#286149;
+  font:800 10px/1 Arial,sans-serif;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] #prompt-main{
+  display:block!important;
+  max-width:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  color:#fff!important;
+  font:900 clamp(26px,3.3vw,52px)/1.06 "Noto Sans JP","Noto Sans KR",sans-serif!important;
+  letter-spacing:.015em!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] #prompt-kana,
+#screen-game.active .station-sign[data-sign-style="enoden"] #prompt-sub,
+#screen-game.active .station-sign[data-sign-style="enoden"] #prompt-ko{
+  display:block!important;
+  max-width:100%!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  color:#eaf7ee!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  text-align:center!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] #prompt-kana{
+  font:700 clamp(12px,1.3vw,18px)/1.2 "Noto Sans JP",sans-serif!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] #prompt-sub{
+  font:700 clamp(10px,1vw,15px)/1.15 "Noto Sans KR",sans-serif!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] #prompt-ko{
+  font:700 clamp(10px,1vw,13px)/1.15 "Noto Sans KR",sans-serif!important;
+  color:#d4ecd9!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] #ko-progress{
+  display:flex!important;
+  flex:0 0 auto!important;
+  justify-content:center!important;
+  align-items:center!important;
+  width:100%!important;
+  min-height:19px!important;
+  height:21px!important;
+  max-height:21px!important;
+  margin:1px 0!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] #ko-progress .input-cell{
+  color:#fff!important;
+  border-bottom-color:#e7f7d9!important;
+  font-size:clamp(12px,1.4vw,18px)!important;
+  height:19px!important;
+  min-height:0!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-current .station-sign-input{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  flex:0 0 31px!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  width:min(85%,510px)!important;
+  min-width:0!important;
+  max-width:510px!important;
+  height:31px!important;
+  min-height:31px!important;
+  max-height:31px!important;
+  padding:0!important;
+  margin:2px 0 0!important;
+  border:1px solid #c8e7cb!important;
+  border-bottom:2px solid #f1d753!important;
+  border-radius:3px!important;
+  opacity:1!important;
+  background:#104e40!important;
+  color:#fff!important;
+  overflow:hidden!important;
+  clip:auto!important;
+  clip-path:none!important;
+  z-index:2!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-input input{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  padding:4px 8px!important;
+  border:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  caret-color:#fff!important;
+  opacity:1!important;
+  font:650 17px/1.2 "Noto Sans KR",sans-serif!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-input #input-status{
+  color:#ebf7ed!important;
+  font:700 9px/1.1 sans-serif!important;
+  padding:0 8px!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-strip{
+  position:relative!important;
+  grid-column:1!important;
+  grid-row:2!important;
+  order:initial!important;
+  width:100%!important;
+  height:5px!important;
+  min-height:5px!important;
+  margin:0!important;
+  padding:0!important;
+  background:#efd54c!important;
+  border:0!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-strip::before,
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-strip::after{
+  display:none!important;
+  content:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-footer{
+  grid-column:1!important;
+  grid-row:3!important;
+  order:initial!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  min-height:0!important;
+  height:27px!important;
+  margin:0!important;
+  padding:4px 16px!important;
+  border:0!important;
+  background:linear-gradient(90deg,#0a4937,#155d48)!important;
+  color:#e7f7e5!important;
+  overflow:hidden!important;
+}
+@media(max-height:620px){
+  #screen-game.active .station-sign[data-sign-style="enoden"] #prompt-ko{display:none!important}
+  #screen-game.active .station-sign[data-sign-style="enoden"] .station-current .station-badge:not([hidden]){
+    width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;
+    grid-template-rows:10px 18px!important;font-size:19px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="enoden"] .station-current .station-sign-input{
+    flex-basis:28px!important;height:28px!important;min-height:28px!important;max-height:28px!important;
+  }
+}
+@media(max-width:760px){
+  #screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-main{
+    grid-template-columns:minmax(0,1fr)!important;
+    padding:3px 8px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor{
+    display:none!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="enoden"] .station-current{
+    grid-column:1!important;
+    padding:5px 18px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="enoden"] .station-current .station-badge:not([hidden]){
+    left:0!important;top:3%!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="enoden"] #prompt-main{
+    font-size:clamp(25px,6vw,38px)!important;
+  }
+}
