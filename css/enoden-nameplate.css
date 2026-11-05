@@ -342,3 +342,87 @@
     font-size:clamp(25px,6vw,38px)!important;
   }
 }
+
+/* 2026-11-06: The visible typing box was covering the answer-progress cells.
+   Keep the actual input focusable for Korean IME and the typing controller;
+   only remove its painted box from the Enoden sign. */
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-current .station-sign-input{
+  position:absolute!important;
+  top:50%!important;
+  left:50%!important;
+  transform:translate(-50%,-50%)!important;
+  display:block!important;
+  flex:0 0 0px!important;
+  width:1px!important;
+  min-width:1px!important;
+  max-width:1px!important;
+  height:1px!important;
+  min-height:1px!important;
+  max-height:1px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  opacity:0!important;
+  overflow:hidden!important;
+  clip-path:inset(50%)!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-current .station-sign-input input{
+  display:block!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  opacity:0!important;
+  font-size:16px!important;
+  caret-color:transparent!important;
+  pointer-events:none!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-sign-input #input-status{display:none!important}
+
+/* The Japanese name, Korean reading and romanization each get their own row.
+   Prevent a long neighboring station name from covering the center title. */
+#screen-game.active .station-sign .station-neighbor .station-neighbor-ko{display:none!important}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor{
+  gap:2px!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor .station-neighbor-ko{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  margin:0!important;
+  color:#fff!important;
+  font:750 clamp(11px,1.1vw,16px)/1.25 "Noto Sans KR",sans-serif!important;
+  overflow-wrap:anywhere!important;
+  text-align:center!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor b,
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor span{
+  min-width:0!important;
+  max-width:100%!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] .station-current{
+  gap:3px!important;
+}
+#screen-game.active .station-sign[data-sign-style="enoden"] #ko-progress{
+  flex-shrink:0!important;
+  margin:5px 0 0!important;
+  position:relative!important;
+  z-index:1!important;
+}
+@media (max-height:440px) and (min-width:761px){
+  #screen-game.active .station-sign[data-sign-style="enoden"] #prompt-main{
+    font-size:clamp(26px,4.7dvh,39px)!important;
+    line-height:1.08!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="enoden"] .station-neighbor b{
+    font-size:clamp(17px,2vw,25px)!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="enoden"] .station-current{
+    gap:2px!important;
+  }
+}
