@@ -39,7 +39,7 @@ assert.equal(nodes['#korail-previous-badge'].textContent,'12');
 assert.equal(nodes['#korail-next-badge'].textContent,'14');
 assert.equal(nodes['#previous-station-name'].textContent,'長谷');
 assert.equal(nodes['#next-station-name'].textContent,'和田塚');
-assert.equal(nodes['#previous-station-romaji'].textContent,hase.romaji);
+assert.equal(nodes['#previous-station-romaji'].textContent,'Hase','photo-based Hase romanization must override MLIT auto-reading');
 assert.equal(nodes['#next-station-romaji'].textContent,wada.romaji);
 assert.equal(nodes['#station-badge'].hidden,false);
 probe.applyEnodenNameplate(route.stations[0],null,route.stations[1]);
