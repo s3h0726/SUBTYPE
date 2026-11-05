@@ -28,6 +28,10 @@ jobs:
         run: node tools/test-kr-hangang-other-bus.cjs
       - name: Verify KORAIL nameboard is installed for real KORAIL journeys
         run: node tools/test-korail-nameplate.cjs
+      - name: Verify Enoden EN01-EN15 and photo-style sign
+        run: |
+          node tools/test-enoden-nameplate.cjs
+          node --test tools/test-enoden-nameplate-browser.cjs
       - name: Regression test free-drive station targeting
         run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
       - name: 태국 공개 계통과 원자료 무결성 검증
