@@ -1918,13 +1918,16 @@ class Game{
     place('#korail-next-badge',next);
     // The photographed Enoden sign foregrounds native Japanese text,
     // while game answers remain the existing Korean station names.
+    // MLIT kanji auto-reading mislabels 長谷 as Nagatani; the supplied sign shows Hase.
+    const romaji=item=>item?.ja==='長谷'?'Hase':item?.romaji||'';
+    if(station?.ja==='長谷')$('#prompt-sub').textContent='Hase';
     if(previous){
       $('#previous-station-name').textContent=previous.ja||this.stationKoDisplay(previous.ko)||'';
-      $('#previous-station-romaji').textContent=previous.romaji||'';
+      $('#previous-station-romaji').textContent=romaji(previous);
     }
     if(next){
       $('#next-station-name').textContent=next.ja||this.stationKoDisplay(next.ko)||'';
-      $('#next-station-romaji').textContent=next.romaji||'';
+      $('#next-station-romaji').textContent=romaji(next);
     }
   }
   activeRoute(station){return station?.segment||this.route}
