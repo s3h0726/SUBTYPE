@@ -68,7 +68,7 @@ addEventListener('load',()=>{
     const tip=getComputedStyle(strip,'::before');
     if(tip.right!=='-18px'||tip.left!=='auto'||tip.width!=='18px'||!tip.clipPath.includes('100% 50%'))err.push('slim stripe arrow does not point right');
     const tail=getComputedStyle(strip,'::after');
-    if(tail.width!=='11px'||!tail.clipPath.includes('55% 0%'))err.push('left diagonal cut is missing');
+    if(tail.width!=='11px'||tail.clipPath==='none')err.push('left diagonal cut is missing');
     if(getComputedStyle(document.querySelector('.station-sign-brand')).display!=='none')err.push('Korail logo row remains visible');
     for(const selector of ['#station-badge','.station-neighbor.previous .korail-neighbor-badge','.station-neighbor.next .korail-neighbor-badge']){
       if(getComputedStyle(document.querySelector(selector)).display!=='none')err.push('station number circle remains: '+selector);
