@@ -158,7 +158,7 @@ class Game{
   // Read every script from the actual stop data (no machine transliteration).
   applyTokyoMetroNameplate(station,previous,next,{freeDrive=false}={}){
     const sign=$('#station-sign'),active=this.activeRoute(station);
-    if(sign?.dataset?.signStyle!=='metro'||active?.operatorId!=='tokyo-metro')return;
+    if(sign?.dataset?.signStyle!=='metro')return;
     const japanese=item=>String(item?.ja||item?.names?.ja||'').trim();
     const kana=item=>String(item?.kana||item?.names?.kana||'').trim();
     const english=item=>String(item?.names?.en||item?.en||item?.romaji||'').trim();
@@ -180,7 +180,7 @@ class Game{
     $('#prompt-sub').textContent=english(station);
     const badge=$('#station-badge');
     const code=String(station?.officialCode||station?.stationCode||'').trim();
-    const parsed=code.match(/^([A-Za-z]{1,2})(\d{1,2})$/);
+    const parsed=code.match(/^([A-Za-z]{1,2})-?(\d{1,2})$/);
     badge.textContent=parsed?code:'';
     badge.hidden=!parsed;
     badge.dataset.tokyoMetroLetter=parsed?parsed[1]:'';
