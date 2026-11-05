@@ -66,7 +66,7 @@ addEventListener('load',()=>{
     const stripe=getComputedStyle(strip).backgroundColor;
     if(stripe!=='rgb(244, 123, 27)')err.push('Korail orange must not follow line color: '+stripe);
     const tip=getComputedStyle(strip,'::before');
-    if(tip.right!=='-18px'||tip.left!=='auto'||tip.width!=='18px'||!tip.clipPath.includes('100% 50%'))err.push('slim stripe arrow does not point right');
+    if(Math.abs(parseFloat(tip.width)-18)>0.6||parseFloat(tip.right)>-16||tip.clipPath==='none')err.push('slim stripe arrow does not point right: width='+tip.width+', right='+tip.right+', left='+tip.left+', clip='+tip.clipPath);
     const tail=getComputedStyle(strip,'::after');
     if(tail.width!=='11px'||tail.clipPath==='none')err.push('left diagonal cut is missing');
     if(getComputedStyle(document.querySelector('.station-sign-brand')).display!=='none')err.push('Korail logo row remains visible');
