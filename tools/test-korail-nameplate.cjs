@@ -57,4 +57,10 @@ assert.ok(guard.includes('clip-path:polygon(0 0,100% 50%,0 100%)!important'),'or
 assert.ok(guard.includes('#station-badge')&&guard.includes('#korail-previous-badge')&&guard.includes('#korail-next-badge'),'all Korail numbered circles must be hidden');
 assert.ok(!guard.includes('visibility:hidden!important'),'native keyboard input must not be disabled');
 assert.ok(game.includes("this.typing.focus()"),'keyboard typing must still be focused by the game');
+assert.ok(guard.includes('KORAIL typing display: the real input'),'white typing display override missing');
+assert.ok(guard.includes('#ko-progress .input-cell:empty::before'),'untyped answer slots must show underscores');
+assert.ok(guard.includes('content:"_"!important'),'white underscore content missing');
+assert.ok(guard.includes('color:#fff!important'),'typed Hangul must be white');
+assert.ok(guard.includes('right:-18px!important')&&guard.includes('width:18px!important'),'right arrow should use slimmer triangular head');
+assert.ok(html.includes('20261105-white-underscores-arrow-v2'),'changed CSS must bypass old browser caches');
 console.log('KORAIL station board: operator-only selection, navy/orange fixed styling, game/free drive, other operators PASS');
