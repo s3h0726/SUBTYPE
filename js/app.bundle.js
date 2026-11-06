@@ -1936,7 +1936,7 @@ class Game{
     const lineName=String(active.line?.ja||this.route?.line?.ja||'');
     const kind=operator==='tokyu'&&routeId!=='line-26008'&&!/こどもの国線/.test(lineName)?'tokyu'
       :operator==='chichibutetsudo'&&routeId==='line-99306'?'chichibu'
-      :operator==='jr-east'&&sign.dataset.signStyle==='jr-east'?'jr-east'
+      :operator==='jr-east'?'jr-east'
       :operator==='odakyu'?'odakyu':'';
     if(!kind){delete sign.dataset.photoSign;return}
     sign.dataset.photoSign=kind;
