@@ -1,0 +1,390 @@
+{
+  "implementationCommit": "fdabc57eb5cb3ad05f29b671bad4e6c9af4ebcbf",
+  "validatedCommit": "1c4b270bbe3c19557e112c8b5e7d47064e36fa0b",
+  "pages": {
+    "run": 42244654883,
+    "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42244654883",
+    "id": 127983582834,
+    "name": "deploy",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 42244654883,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Check Hangang other-bus category is clean",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Verify KORAIL nameboard is installed for real KORAIL journeys",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Verify Enoden EN01-EN15 and photo-style sign",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Regression test free-drive station targeting",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "태국 공개 계통과 원자료 무결성 검증",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Check responsive station sign with Chrome before publishing",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Prevent clipped Korean station nameplates in production",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Build the current app bundle including country-wide name overrides",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Run node --check js/app.bundle.js",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Run node tools/stage-pages.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Run actions/configure-pages@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Run actions/upload-pages-artifact@v3",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Run actions/deploy-pages@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33
+      }
+    ]
+  },
+  "catalog": {
+    "run": 42244655015,
+    "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42244655015",
+    "id": 127983583131,
+    "name": "catalog",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 42244655015,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run node tools/test-kr-shared-geometry.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Run node tools/build-kr-canonical.cjs --publish",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Run node tools/test-kr-canonical.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run node tools/test-kr-city-sources.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Run node tools/test-kr-city-directions.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Run node tools/test-kr-rail-expansion.cjs --batch=rail-national-recovery-batch.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Run node tools/test-kr-rail-expansion.cjs --batch=rail-continuity-recovery-batch.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Run node tools/test-kr-rail-expansion.cjs --batch=rail-platform-recovery-batch.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Run node tools/test-kr-rail-urban-recovery.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Run node tools/test-kr-airport-expansion.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Run node tools/test-kr-rail-urban.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Run node tools/test-kr-rail-names.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Run node tools/test-ime-controller.js",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Run node --test tools/test-kr-road-binding.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Run node tools/test-kr-busan-source.cjs --village",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Run node tools/test-kr-busan-source.cjs --terminal-recovery",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      },
+      {
+        "name": "Run node tools/kr-provincial-gbis-test.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20
+      },
+      {
+        "name": "Run node tools/test-kr-rail-expansion.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21
+      },
+      {
+        "name": "Run node tools/test-kr-rail-expansion.cjs --network",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22
+      },
+      {
+        "name": "Run node tools/test-kr-tsbis.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23
+      },
+      {
+        "name": "Run node --test tools/test-taiwan.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24
+      },
+      {
+        "name": "Run node --test tools/kr-rail-rebuild.test.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25
+      },
+      {
+        "name": "Run node tools/test-kr-hangang-other-bus.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26
+      },
+      {
+        "name": "Run node tools/kr-river-test.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27
+      },
+      {
+        "name": "Run node tools/kr-bus-test.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28
+      },
+      {
+        "name": "Run npm run test:typing",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29
+      },
+      {
+        "name": "Run node tools/test-hk-route-selector.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30
+      },
+      {
+        "name": "Run node tools/test-exact-duplicate-jp-routes.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31
+      },
+      {
+        "name": "Run node tools/build-app-bundle.js",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32
+      },
+      {
+        "name": "Run node tools/test-kr-bus-latin-display.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33
+      },
+      {
+        "name": "Run node --check js/app.bundle.js",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 34
+      },
+      {
+        "name": "Verify deterministic publication",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 35
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 36
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 71
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 72
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 73
+      }
+    ]
+  },
+  "verifiedPublishedCommit": "87dbb1ede3d4e2c3233ccbeb8cee88fb58ee5aa1",
+  "latestConcurrentMain": "e63d3df54ca6cb2991937b6c8d334df5680c3285",
+  "newerConcurrentDeployment": {
+    "run": 42246448903,
+    "conclusion": "failure",
+    "reason": "모든 사전 검사 통과 후 updating_pages 단계에서 Deployment cancelled"
+  },
+  "scope": "한국 확장 자료와 실제 공개 자산 확인. 병행 중인 국제 번들 최신 배포와 구분.",
+  "knownInternationalFailure": {
+    "run": 42242809594,
+    "reason": "일본 전국 역명 생성물 불일치, 이번 한국 데이터 변경과 별도"
+  },
+  "nativeImeVerified": false,
+  "authenticatedSupabaseVerified": false
+}
