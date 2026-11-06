@@ -389,3 +389,17 @@
     font-size:9px!important;padding:1px!important;border-width:1px!important;
   }
 }
+
+/* 2026-11-07: remove the center station-number/logo shield from Tokyu signs.
+   Preserve the right-hand next-station badge and the Korean typing interface.
+   The orange/route-coloured horizontal ribbon must stay continuous. */
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-current #station-badge,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] .station-current #station-badge,
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-current #station-badge:not([hidden]),
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] .station-current #station-badge:not([hidden]){
+  display:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-main::after{
+  display:none!important;
+  content:none!important;
+}
