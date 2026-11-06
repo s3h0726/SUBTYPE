@@ -1972,9 +1972,6 @@ class Game{
         $(side==='previous'?'#previous-station-romaji':'#next-station-romaji').textContent=english(item).toUpperCase();
       };
       label('previous',previous);label('next',next);
-      $('#prompt-main').textContent=kana(station)||japanese(station)||'';
-      $('#prompt-kana').textContent=japanese(station)||'';
-      $('#prompt-sub').textContent=english(station).toUpperCase();
       sign.dataset.chichibuLong=Array.from(kana(station)||japanese(station)).length>7?'true':'false';
     }else delete sign.dataset.chichibuLong;
 
@@ -1983,6 +1980,11 @@ class Game{
     $('#prompt-main').textContent=japanese(station)||korean(station)||'';
     $('#prompt-kana').textContent=hard?'••••••':kana(station);
     $('#prompt-sub').textContent=hard?'한국어 역명 입력':english(station);
+    if(kind==='chichibu'){
+      $('#prompt-main').textContent=kana(station)||japanese(station)||'';
+      $('#prompt-kana').textContent=japanese(station)||'';
+      $('#prompt-sub').textContent=english(station).toUpperCase();
+    }
     // Oimachi OM01–OM16: Tokyu's own station numbering (Tokyu route guide).
     // Do not derive codes from route index: branch/direct services may be longer.
     const oimachiOfficialCodes={
