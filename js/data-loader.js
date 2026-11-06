@@ -144,7 +144,7 @@ function restoreKrBusRouteCode(value){
  return letters?restored:original;
 }
 function restoreKrBusRouteName(raw){
- const previous=String(raw?.line?.ko||'').normalize('NFC');
+ const previous=String(raw?.line?.ko||raw?.names?.ko||raw?.nameKo||'').normalize('NFC');
  if(!previous)return raw;
  const fromSource=String(raw?.sourceRouteNumber||raw?.originalRouteNumber||raw?.routeNumber||'').normalize('NFC').trim();
  const official=/^[A-Za-z0-9-]+(?:\([^()]+\))?$/.test(fromSource)?fromSource.toUpperCase():restoreKrBusRouteCode(fromSource);
@@ -171,18 +171,48 @@ function restoreKrBusRouteName(raw){
  // Some published Korean bus lines have no original routeNumber metadata.
  // Convert only complete route-code tokens, never part of a Korean place name.
  if(updated===previous){
-  updated=previous.replace(/(^|[\s(·:\[])([0-9가-힣-]+?)(번)?(?=$|[\s)·:,\]])/g,(match,before,code,suffix='')=>{
+  updated=previous.replace(/(^|[\s(·:\[])([0-9가-힣-]+?)(번)?(?=$|[\s()·:,\]])/g,(match,before,code,suffix='')=>{
    if(code.includes('지')&&!/[A-Za-z]/.test(fromSource))return match;
    const decoded=restoreKrBusRouteCode(code);
    if(decoded===code||!/^[A-Za-z0-9·-]+$/.test(decoded)||!/[A-Za-z]/.test(decoded))return match;
    return before+decoded+suffix;
   });
  }
- if(updated===previous)return raw;
- const oldLine=raw.line||{};
- const line={...oldLine,ko:updated,aliases:[...new Set([...(oldLine.aliases||[]),previous])]};
- for(const language of ['ja','en'])if(!oldLine[language]||oldLine[language]===previous)line[language]=updated;
- return{...raw,line,...(hasVerifiedLatin?{routeNumber:official,legacyPhoneticRouteNumber:fromSource}:{})};
+ // Convert phonetic alphabet code markers in bus route names only.
+ // This also covers tight codes (서울에이치100번) and (공항) variants.
+ const words=KR_BUS_ROUTE_LETTERS.filter(([ko])=>ko!=='지')
+  .sort((a,b)=>b[0].length-a[0].length).map(([ko])=>ko);
+ const letters='(?:'+words.join('|')+')+';
+ const numbered=new RegExp('('+letters+'[0-9]+(?:-[0-9]+)*)(번)(?=$|\\(|[·,])','gu');
+ updated=updated.replace(numbered,(match,code,suffix)=>{
+  const dec=restoreKrBusRouteCode(code);return dec===code?match:dec+suffix;
+ });
+ const beforeLine=new RegExp('(^|[\\s(·:,])('+letters+')(?=선(?:$|[\\s)·:,]))','gu');
+ updated=updated.replace(beforeLine,(match,prefix,code)=>{
+  const dec=restoreKrBusRouteCode(code);return dec===code?match:prefix+dec;
+ });
+ const restoreOtherTitle=value=>{
+  if(typeof value!=='string'||!value)return value;
+  if(value===previous)return updated;
+  // Reuse the same naming routine on a detached title, not its stations.
+  return restoreKrBusRouteName({...raw,line:{ko:value},names:undefined,
+   passengerLineName:undefined,nameKo:undefined}).line?.ko||value;
+ };
+ const oldNames=raw.names?.ko,oldPassenger=raw.passengerLineName,oldNameKo=raw.nameKo;
+ const names=restoreOtherTitle(oldNames),passenger=restoreOtherTitle(oldPassenger),displayName=restoreOtherTitle(oldNameKo);
+ const lineChanged=updated!==previous;
+ if(!lineChanged&&names===oldNames&&passenger===oldPassenger&&displayName===oldNameKo)return raw;
+ const result={...raw};
+ if(lineChanged){
+  const oldLine=raw.line||{};
+  result.line={...oldLine,ko:updated,aliases:[...new Set([...(oldLine.aliases||[]),previous])]};
+  for(const language of ['ja','en'])if(!oldLine[language]||oldLine[language]===previous)result.line[language]=updated;
+ }
+ if(names!==oldNames)result.names={...raw.names,ko:names,aliases:[...new Set([...(raw.names.aliases||[]),oldNames])]};
+ if(passenger!==oldPassenger)result.passengerLineName=passenger;
+ if(displayName!==oldNameKo)result.nameKo=displayName;
+ if(hasVerifiedLatin)Object.assign(result,{routeNumber:official,legacyPhoneticRouteNumber:fromSource});
+ return result;
 }
 export function restoreKrBusLatinRoute(raw){
  if(raw?.countryId!=='kr'||!(['bus','village_bus','express_bus','brt'].includes(raw.mode)||String(raw.id||'').startsWith('kr-bus-')))return raw;
