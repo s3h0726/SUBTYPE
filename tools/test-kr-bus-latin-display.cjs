@@ -80,6 +80,29 @@ for(const [input,number,want] of [
   assert(/[A-Z]/.test(converted.routeNumber),'routeNumber converted to Latin letters');
  }
 }
+// The country-specific Korean-name editor must display the same corrected
+// routes/stops as the playable catalog, without rewriting source IDs or edits.
+const editorSource=fs.readFileSync(path.join(root,'reports/korean-names/editor.html'),'utf8');
+assert(editorSource.includes("krBusRestorerPromise=import('../../js/data-loader.js')"),
+ 'editor must call the gameplay restorer, not a separate letter map');
+assert(editorSource.includes("data.routes=(data.routes||[]).map(route=>route?.countryId==='kr'?restore(route):route)"),
+ 'all Korean route cards must display corrected Latin line names');
+assert(editorSource.includes('return koreanBusDisplayRoute(route);'),
+ 'Korean lazy route detail and station-name editor must restore Latin stop names');
+assert(editorSource.includes('applyRemote();original=rows.map(r=>r.slice());applyDraft();'),
+ 'manual name overrides and unsaved drafts take precedence over generated labels');
+assert(editorSource.includes("DATA_VERSION='20261102-nationwide-revalidated'"),
+ 'keep saved editor draft namespace stable');
+const restoredEditorRoute=route({id:'kr-bus-editor-sample',countryId:'kr',mode:'bus',
+ line:{ko:'서울 에이1번'},routeNumber:'에이1',
+ verifiedJourneys:[{id:'direction-1',stations:[
+  {id:'stop-a',sourceName:'A동',ko:'에이동'},
+  {id:'stop-b',sourceName:'B동',ko:'비동'}
+ ]}]});
+assert.equal(restoredEditorRoute.line.ko,'서울 A1번');
+assert.deepEqual(restoredEditorRoute.verifiedJourneys[0].stations.map(s=>s.ko),['A동','B동']);
+assert.deepEqual(restoredEditorRoute.verifiedJourneys[0].stations.map(s=>s.id),['stop-a','stop-b']);
+
 const repositoryModule=fs.readFileSync(path.join(root,'js/rail-data-repository.js'),'utf8');
 const Repository=new Function(repositoryModule.replace(/\bexport\s+/g,'')+'; return Repository;')();
 const repository=new Repository();
