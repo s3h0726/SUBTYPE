@@ -18,7 +18,10 @@ function validateRoute(route){
  const errors=[],fail=message=>errors.push(message);
  if(!/^kr-[a-z0-9-]+$/.test(route.id||''))fail('노선 식별자 오류');
  if(route.countryId!=='kr'||!MODES.has(route.mode))fail('지원하지 않는 교통수단');
- if(!korean(route.line?.ko)||!korean(route.operator?.ko))fail('한국어 노선·운영사명 누락');
+ // 공식 버스 노선번호의 대문자는 한국어 제목 안에서도 원문 식별자로 보존한다.
+ const officialCode=['bus','village_bus','express_bus','brt'].includes(route.mode)&&route.routeNumber===route.originalRouteNumber&&/^[A-Z0-9-]+$/.test(route.routeNumber||'')?route.routeNumber:null;
+ const lineName=officialCode?route.line?.ko?.replace(officialCode+'번','번'):route.line?.ko;
+ if(!korean(lineName)||!korean(route.operator?.ko))fail('한국어 노선·운영사명 누락');
  if(!route.regionId)fail('지역 식별자 누락');
  if(!route.operatorId)fail('운영사 식별자 누락');
  if(route.schemaVersion!==2||route.releaseStatus!=='verified'||route.geometryReady!==true)fail('공개 검증 상태 누락');
@@ -50,7 +53,7 @@ function validateRoute(route){
  }
  return [...new Set(errors)];
 }
-function readBatches(root){const dir=path.join(root,'data/kr/canonical');return fs.existsSync(dir)?fs.readdirSync(dir).filter(n=>n.endsWith('-batch.json')).sort().map(n=>({name:n,...JSON.parse(fs.readFileSync(path.join(dir,n),'utf8'))})):[]}
+function readBatches(root){const dir=path.join(root,'data/kr/canonical');return fs.existsSync(dir)?fs.readdirSync(dir).filter(n=>n.endsWith('-batch.json')).sort().map(n=>require('./kr-shared-geometry.cjs').shareGeometry({name:n,...JSON.parse(fs.readFileSync(path.join(dir,n),'utf8'))})):[]}
 function assembleCanonicalRoutes(batches){
  const byId=new Map,rejected=[],inputIds=new Set,merges=[];
  for(const batch of batches)for(const route of batch.routes||[]){

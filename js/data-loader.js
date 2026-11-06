@@ -100,6 +100,9 @@ const KR_BUS_ROUTE_LETTERS=[
 ];
 function restoreKrBusRouteCode(value){
  const original=String(value??'').normalize('NFC').trim();
+ // 공식 계통 접미사는 보존하고 노선번호 부분만 복원한다.
+ const variant=original.match(/^([^()]+)(\([^()]+\))$/);
+ if(variant){const code=restoreKrBusRouteCode(variant[1]);return code===variant[1]?original:code+variant[2]}
  if(!original||!/[가-힣]/.test(original))return original;
  let remaining=original,restored='',letters=0;
  while(remaining){
@@ -119,9 +122,9 @@ function restoreKrBusRouteName(raw){
  const previous=String(raw?.line?.ko||'').normalize('NFC');
  if(!previous)return raw;
  const fromSource=String(raw?.sourceRouteNumber||raw?.originalRouteNumber||raw?.routeNumber||'').normalize('NFC').trim();
- const official=/^[A-Za-z0-9-]+$/.test(fromSource)?fromSource.toUpperCase():restoreKrBusRouteCode(fromSource);
+ const official=/^[A-Za-z0-9-]+(?:\([^()]+\))?$/.test(fromSource)?fromSource.toUpperCase():restoreKrBusRouteCode(fromSource);
  // Phonetic '지' can mean G or Z; do not guess without the original Latin source.
- const hasVerifiedLatin=/^[A-Z0-9-]+$/.test(official)&&/[A-Z]/.test(official)
+ const hasVerifiedLatin=/^[A-Z0-9-]+(?:\([^()]+\))?$/.test(official)&&/[A-Z]/.test(official)
   &&(/[A-Za-z]/.test(fromSource)||!fromSource.includes('지'));
  const read=c=>KR_BUS_SPELLED_LATIN[c.toUpperCase().charCodeAt(0)-65];
  const sourceReading=fromSource.replace(/[A-Za-z]/g,read);

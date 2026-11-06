@@ -3,6 +3,8 @@
 const fs=require('node:fs'),path=require('node:path'),{readBatches,assembleCanonicalRoutes}=require('./lib/kr-canonical.cjs');
 const {encode,decode}=require('./lib/kr-payload.cjs');
 const root=path.resolve(__dirname,'..'),batches=readBatches(root),compiled=assembleCanonicalRoutes(batches),accepted=compiled.routes,rejected=compiled.rejected;
+// 공항 연결은 원본 정차열에서 파생하며 기존 노선·방향·선형을 변경하지 않는다.
+const {airportFields}=require('./lib/kr-airport-catalog.cjs');for(const route of accepted)Object.assign(route,airportFields(route));
 const report={schemaVersion:1,batches:batches.map(b=>b.name),publicRoutes:accepted.length,playableDirections:accepted.reduce((n,r)=>n+r.verifiedJourneys.length,0),uniqueStops:new Set(accepted.flatMap(r=>r.verifiedJourneys.flatMap(j=>j.stations.map(s=>s.id)))).size,byMode:{},byCategory:{},rejected};
 for(const route of accepted){report.byMode[route.mode]=(report.byMode[route.mode]||0)+1;report.byCategory[route.normalizedCategory||route.category]=(report.byCategory[route.normalizedCategory||route.category]||0)+1}
 const write=(file,value)=>{const target=path.join(root,file);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,typeof value==='string'?value:JSON.stringify(value,null,2)+'\n')};

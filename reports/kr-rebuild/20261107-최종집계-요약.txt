@@ -1,0 +1,401 @@
+{
+  "asOf": "2026-11-07",
+  "baseline": {
+    "selectableRoutes": 8232,
+    "selectableDirections": 17844,
+    "commit": "3e313a4b63d1e61f3b2fa3e2b133aed1cfc06c8b",
+    "routes": 8234,
+    "directions": 17852,
+    "stopIds": 117813,
+    "railCards": 52,
+    "railDirections": 643,
+    "airportDedicatedCards": 52
+  },
+  "after": {
+    "routes": 8277,
+    "selectableRoutes": 8275,
+    "selectableDirections": 18093,
+    "directions": 18101,
+    "stopIds": 118240,
+    "railCards": 55,
+    "railDirections": 807,
+    "busCards": 8220,
+    "airportDedicatedCards": 92,
+    "airportServingCards": 206
+  },
+  "changes": {
+    "routes": 43,
+    "directions": 249,
+    "stopIds": 427,
+    "railCards": 3,
+    "railDirections": 164,
+    "airportBusCards": 40,
+    "airportBusDirections": 85
+  },
+  "railway": {
+    "processed": 450,
+    "outcomes": {
+      "RECOVERED_PLAYABLE": 163,
+      "BLOCKED_MISSING_DATA": 287
+    }
+  },
+  "urban": {
+    "processed": 4,
+    "outcomes": {
+      "RECOVERED_PLAYABLE": 1,
+      "BLOCKED_INVALID_ROUTE": 3
+    }
+  },
+  "airportSources": {
+    "incheon": {
+      "ALREADY_IMPLEMENTED": 77,
+      "BLOCKED_MISSING_DATA": 95,
+      "NOT_CURRENTLY_OPERATING": 1
+    },
+    "gbis": {
+      "NEW_PLAYABLE": 1,
+      "ALREADY_IMPLEMENTED": 43,
+      "BLOCKED_MISSING_DATA": 9,
+      "RECOVERED_PLAYABLE": 5
+    },
+    "cheongju": 5
+  },
+  "airports": [
+    {
+      "id": "incheon",
+      "name": "인천국제공항",
+      "registeredCards": 94,
+      "dedicatedCards": 76,
+      "ordinaryConnections": 18,
+      "addedCards": 37,
+      "registeredDirections": 153,
+      "status": "PARTIAL",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "gimpo",
+      "name": "김포국제공항",
+      "registeredCards": 36,
+      "dedicatedCards": 12,
+      "ordinaryConnections": 24,
+      "addedCards": 3,
+      "registeredDirections": 64,
+      "status": "PARTIAL",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "gimhae",
+      "name": "김해국제공항",
+      "registeredCards": 5,
+      "dedicatedCards": 2,
+      "ordinaryConnections": 3,
+      "addedCards": 2,
+      "registeredDirections": 10,
+      "status": "PARTIAL",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "jeju",
+      "name": "제주국제공항",
+      "registeredCards": 32,
+      "dedicatedCards": 4,
+      "ordinaryConnections": 28,
+      "addedCards": 0,
+      "registeredDirections": 161,
+      "status": "PARTIAL",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "daegu",
+      "name": "대구국제공항",
+      "registeredCards": 8,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 8,
+      "addedCards": 0,
+      "registeredDirections": 41,
+      "status": "PARTIAL",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "cheongju",
+      "name": "청주국제공항",
+      "registeredCards": 0,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 0,
+      "addedCards": 0,
+      "registeredDirections": 0,
+      "status": "BLOCKED",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "gwangju",
+      "name": "광주공항",
+      "registeredCards": 7,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 7,
+      "addedCards": 0,
+      "registeredDirections": 14,
+      "status": "PARTIAL",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "muan",
+      "name": "무안국제공항",
+      "registeredCards": 0,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 0,
+      "addedCards": 0,
+      "registeredDirections": 0,
+      "status": "BLOCKED",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "yangyang",
+      "name": "양양국제공항",
+      "registeredCards": 0,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 0,
+      "addedCards": 0,
+      "registeredDirections": 0,
+      "status": "BLOCKED",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "ulsan",
+      "name": "울산공항",
+      "registeredCards": 27,
+      "dedicatedCards": 1,
+      "ordinaryConnections": 26,
+      "addedCards": 0,
+      "registeredDirections": 71,
+      "status": "PARTIAL",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "pohang",
+      "name": "포항경주공항",
+      "registeredCards": 0,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 0,
+      "addedCards": 0,
+      "registeredDirections": 0,
+      "status": "BLOCKED",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "yeosu",
+      "name": "여수공항",
+      "registeredCards": 0,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 0,
+      "addedCards": 0,
+      "registeredDirections": 0,
+      "status": "BLOCKED",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "sacheon",
+      "name": "사천공항",
+      "registeredCards": 0,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 0,
+      "addedCards": 0,
+      "registeredDirections": 0,
+      "status": "BLOCKED",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "gunsan",
+      "name": "군산공항",
+      "registeredCards": 0,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 0,
+      "addedCards": 0,
+      "registeredDirections": 0,
+      "status": "BLOCKED",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    },
+    {
+      "id": "wonju",
+      "name": "원주공항",
+      "registeredCards": 0,
+      "dedicatedCards": 0,
+      "ordinaryConnections": 0,
+      "addedCards": 0,
+      "registeredDirections": 0,
+      "status": "BLOCKED",
+      "scope": "공개 카탈로그 정차열 기준. 해당 공항의 실제 전체 노선 수를 뜻하지 않음"
+    }
+  ],
+  "regions": [
+    {
+      "regionId": "seoul",
+      "regionKo": "서울특별시",
+      "previous": 653,
+      "added": 38,
+      "total": 691,
+      "airportCards": 38,
+      "airportConnections": 46
+    },
+    {
+      "regionId": "busan",
+      "regionKo": "부산광역시",
+      "previous": 149,
+      "added": 2,
+      "total": 151,
+      "airportCards": 2,
+      "airportConnections": 5
+    },
+    {
+      "regionId": "daegu",
+      "regionKo": "대구광역시",
+      "previous": 140,
+      "added": 0,
+      "total": 140,
+      "airportCards": 0,
+      "airportConnections": 8
+    },
+    {
+      "regionId": "incheon",
+      "regionKo": "인천광역시",
+      "previous": 344,
+      "added": 0,
+      "total": 344,
+      "airportCards": 0,
+      "airportConnections": 20
+    },
+    {
+      "regionId": "gwangju",
+      "regionKo": "광주광역시",
+      "previous": 117,
+      "added": 0,
+      "total": 117,
+      "airportCards": 0,
+      "airportConnections": 7
+    },
+    {
+      "regionId": "daejeon",
+      "regionKo": "대전광역시",
+      "previous": 67,
+      "added": 0,
+      "total": 67,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "ulsan",
+      "regionKo": "울산광역시",
+      "previous": 178,
+      "added": 0,
+      "total": 178,
+      "airportCards": 1,
+      "airportConnections": 27
+    },
+    {
+      "regionId": "sejong",
+      "regionKo": "세종특별자치시",
+      "previous": 18,
+      "added": 0,
+      "total": 18,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "gyeonggi",
+      "regionKo": "경기도",
+      "previous": 2874,
+      "added": 0,
+      "total": 2874,
+      "airportCards": 47,
+      "airportConnections": 61
+    },
+    {
+      "regionId": "gangwon",
+      "regionKo": "강원특별자치도",
+      "previous": 138,
+      "added": 0,
+      "total": 138,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "chungbuk",
+      "regionKo": "충청북도",
+      "previous": 504,
+      "added": 0,
+      "total": 504,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "chungnam",
+      "regionKo": "충청남도",
+      "previous": 537,
+      "added": 0,
+      "total": 537,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "jeonbuk",
+      "regionKo": "전북특별자치도",
+      "previous": 388,
+      "added": 0,
+      "total": 388,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "jeonnam",
+      "regionKo": "전라남도",
+      "previous": 409,
+      "added": 0,
+      "total": 409,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "gyeongbuk",
+      "regionKo": "경상북도",
+      "previous": 686,
+      "added": 0,
+      "total": 686,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "gyeongnam",
+      "regionKo": "경상남도",
+      "previous": 784,
+      "added": 0,
+      "total": 784,
+      "airportCards": 0,
+      "airportConnections": 0
+    },
+    {
+      "regionId": "jeju",
+      "regionKo": "제주특별자치도",
+      "previous": 194,
+      "added": 0,
+      "total": 194,
+      "airportCards": 4,
+      "airportConnections": 32
+    }
+  ],
+  "status": "PARTIAL",
+  "hiddenLegacyRoutes": [
+    {
+      "id": "kr-bus-seoul-123000021",
+      "directions": 2,
+      "reason": "기존 한강버스 기타 버스 중복 제외 정책. 현재 river_bus 계통에서 플레이하며 과거 ID는 보존"
+    },
+    {
+      "id": "kr-bus-seoul-123000024",
+      "directions": 2,
+      "reason": "기존 한강버스 기타 버스 중복 제외 정책. 현재 river_bus 계통에서 플레이하며 과거 ID는 보존"
+    }
+  ],
+  "nativeIme": "미검증",
+  "authenticatedSupabase": "미검증",
+  "timetablePolicy": "사용자 지시 이후 시간표 추가 요청·확인 없이 기존 정차열 및 선형만 사용"
+}

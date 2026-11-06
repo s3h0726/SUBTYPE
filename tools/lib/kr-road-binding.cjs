@@ -8,7 +8,7 @@ function projection(point,a,b){
 }
 // Insert only collinear points on an identified source edge. Original bends,
 // junctions and one-way source ordering are retained exactly; never route stops.
-function bindStopsToShape(shape,stops){
+function bindStopsToShape(shape,stops,options={}){
  if(shape.length<2||stops.length<2||shape.some(p=>!coordinate(p)))throw Error('SOURCE_GEOMETRY_INVALID');
  const cumulative=[0];for(let i=1;i<shape.length;i++){const step=distance(shape[i-1],shape[i]);if(step>2)throw Error('SOURCE_GEOMETRY_GAP');cumulative.push(cumulative.at(-1)+step)}
  let previous=[];
@@ -22,9 +22,9 @@ function bindStopsToShape(shape,stops){
    const position=edge+p.t,along=cumulative[edge]+p.t*(cumulative[edge+1]-cumulative[edge]);
    if(candidates.some(c=>Math.abs(c.position-position)<1e-8))continue;
    const candidate={...p,edge,position,along,score:Infinity,parent:null};
-   if(i===0){if(along>1.5)continue;candidate.score=p.offset*p.offset*40+along*.001}
+   if(i===0){if(along>(options.maximumInitialDistanceKm??1.5))continue;candidate.score=p.offset*p.offset*40+along*.001}
    else{
-    const expected=Math.max(.05,Number(stop.guganLen||0)/1000),maximum=Math.max(2,expected*1.8+.5);
+    const expected=Math.max(.05,Number(stop.guganLen||0)/1000),maximum=options.maximumLegDistanceKm??Math.max(2,expected*1.8+.5);
     for(const before of previous){const delta=along-before.along;if(position<=before.position+1e-8||delta>maximum)continue;
      const score=before.score+p.offset*p.offset*40+Math.pow((delta-expected)/Math.max(.2,expected),2)*.01;
      if(score<candidate.score){candidate.score=score;candidate.parent=before}

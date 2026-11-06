@@ -17,11 +17,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - run: node tools/test-kr-shared-geometry.cjs
       - run: node tools/build-kr-canonical.cjs --publish
       - run: node tools/test-kr-canonical.cjs
       - run: node tools/test-kr-city-sources.cjs
       - run: node tools/test-kr-city-directions.cjs
       - run: node tools/test-kr-rail-expansion.cjs --batch=rail-national-recovery-batch.json
+      - run: node tools/test-kr-rail-expansion.cjs --batch=rail-continuity-recovery-batch.json
+      - run: node tools/test-kr-rail-expansion.cjs --batch=rail-platform-recovery-batch.json
+      - run: node tools/test-kr-rail-urban-recovery.cjs
+      - run: node tools/test-kr-airport-expansion.cjs
       - run: node tools/test-kr-rail-urban.cjs
       - run: node tools/test-kr-rail-names.cjs
       - run: node tools/test-ime-controller.js
@@ -41,6 +46,7 @@ jobs:
       - run: node tools/test-hk-route-selector.cjs
       - run: node tools/test-exact-duplicate-jp-routes.cjs
       - run: node tools/build-app-bundle.js
+      - run: node tools/test-kr-bus-latin-display.cjs
       - run: node --check js/app.bundle.js
       - name: Verify deterministic publication
         run: git diff --exit-code -- data/kr/generated/index.json data/kr/generated/routes js/korea-index-data.js js/app.bundle.js index.html

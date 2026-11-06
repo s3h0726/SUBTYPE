@@ -1,0 +1,1945 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+<link rel="shortcut icon" type="image/x-icon" href="/resource/images/favicon.ico" >
+
+<link rel="stylesheet" type="text/css" href="/resource/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/base.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/sub.css" >
+<link rel="stylesheet" type="text/css" href="/resource/css/map.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/assist.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/media.css" />
+
+<script type="text/javascript">var g_contextPath = "";</script>
+
+<script type="text/javascript"  src="/resource/js/jquery-3.2.1.js"></script>
+<script type="text/javascript"  src="/resource/js/moment.min.js"></script>
+<script type="text/javascript"  src="/resource/js/daterangepicker.min.js"></script>
+<script type="text/javascript"  src="/resource/js/jquery.msgBox.js"></script>
+
+<script type="text/javascript"  src="/resource/js/common.js"></script>
+<script type="text/javascript" src="/resource/js/paging.js"></script>
+<script type="text/javascript" src="/resource/js/validation.js"></script>
+<script type="text/javascript" src="/resource/js/aljjabaegi-1.0.3.js"></script>
+<!--[if lt IE 9]>
+	<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<title>청주시 버스정보시스템</title>
+	<link rel="stylesheet" type="text/css" href="/resource/css/main.css" >
+	<script type="text/javascript" src="/resource/js/jquery-ui.1.10.1.min.js"></script>
+</head>
+<body>
+	<!--Top-->
+	
+
+
+
+	<div class="header-bg" id="layTop">
+		<header>
+			<div class="wrap">
+		        <h1 class="logo"><a href="/"><img src="/resource/images/logo.png" alt="청주">버스정보시스템</a></h1>
+		        	<section>
+		                <form action="" class="mainBusSrc" id="mainSearchForm">
+		                    <fieldset>
+		                        <legend>버스 정보 검색</legend>
+		                        <label for="mainSearchKeyword" class="readable-hidden"></label>
+		                        <input type="search" id="mainSearchKeyword" name="searchKeyword" required placeholder="노선번호 또는 정류장명으로 검색" onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchMain();}">
+		                        <button type="button" title="검색" onclick="searchMain()" class="search">검색</button>
+		                    </fieldset>
+		                    <div class="latest" id="latest" style="display: none;">
+                			</div>
+		                </form>
+		                <ul class="util">
+		                    <li><a href="/main.do">홈</a></li>
+		                    <li><a href="/buscard/buscard.do">교통카드충전소</a></li>
+		                    <li><a href="/info/notice.do">공지사항</a></li>
+
+		                    <li><a href="/info/busTime.do">운행시간표</a></li>
+<!-- 		                    <li><a href="/openAPI/apiIntro.do">OpenAPI</a></li> -->
+<!-- 	               	 		 -->
+		                </ul>
+		             </section>
+		             <div id="lang" class="language">
+		             	<select name="langCh" id="langCh" onchange="goPage(this.value)">
+<!-- 		             		<option value="">언어선택</option> -->
+		             		<option value="ko" selected>한국어</option>
+		             		<option value="en">English</option>
+		             		<option value="jp">日語</option>
+		             		<option value="ch">中文</option>
+		             	</select>
+		             </div>
+	        </div>
+	        <div class="nav-bar" onclick="navShow()">
+	        	<span></span>
+	        	<span></span>
+	        	<span></span>
+	        </div>
+
+	        <nav id="nav">
+	            <h2 class="readable-hidden">메뉴</h2>
+	            <ul>
+	                <li><a href="/intro/intro.do">BIS소개</a></li>
+	                <li><a href="/search/route.do" >노선 검색</a></li>
+	                <li><a href="/search/busStop.do" >정류장 검색</a></li>
+	                <li><a href="/way/searchWay.do" >경로 검색</a></li>
+	                <li><a href="#" onclick="depOpen('depInfo')">부가정보</a>
+	                	<ul class="nav-depth" id="depInfo">
+	                		<li><a href="/bagage/bagage.do">분실물찾기</a></li>
+	                		<li><a href="/info/notice.do">공지사항</a></li>
+	                		<li><a href="/info/faq.do">자주묻는질문</a></li>
+	                		<li><a href="/info/busTime.do">운행시간표</a></li>
+	                		<li><a href="/info/busFare.do">요금표</a></li>
+
+<!-- 	                		<li class="blank"><a href="https://parking.cheongju.go.kr/" target="_blank">교통행정포털</a></li> -->
+
+	                	</ul>
+	                </li>
+	            </ul>
+	        </nav>
+	    </header>
+    </div>
+    <div class="header-bg tr" id="mobileTop" hidden="hidden">
+        <ul class="util">
+             <li><a href="/main.do">홈</a></li>
+           	 <li><a href="/buscard/buscard.do">교통카드충전소</a></li>
+             <li><a href="/info/notice.do">공지사항</a></li>
+
+             <li><a href="/info/busTime.do">운행시간표</a></li>
+
+
+
+<!--       	 	<li><a href="#">교통카드충전소</a></li> -->
+        </ul>
+		<header>
+	        <div class="nav-bar" onclick="navShow()">
+	        	<span></span>
+	        	<span></span>
+	        	<span></span>
+	        </div>
+	        <nav id="nav">
+	        	<h1 class="logo"><a href="/"><img src="/resource/images/logo.png" alt="청주"></a></h1>
+	            <h2 class="readable-hidden">메뉴</h2>
+	            <ul>
+	                <li><a href="/intro/intro.do">BIS소개</a></li>
+	                <li><a href="/search/route.do">노선 검색</a></li>
+	                <li><a href="/search/busStop.do">정류장 검색</a></li>
+	                <li><a href="/way/searchWay.do">경로 검색</a></li>
+	                <li><a href="#" onclick="depOpen('depInfo')">부가정보</a>
+	                	<ul class="nav-depth" id="depInfo">
+	                		<li><a href="/bagage/bagage.do">분실물찾기</a></li>
+	                		<li><a href="/info/notice.do">공지사항</a></li>
+	                		<li><a href="/info/faq.do">자주묻는질문</a></li>
+
+<!-- 	                		<li class="blank"><a href="https://parking.cheongju.go.kr/" target="_blank">교통행정포털</a></li> -->
+	                	</ul>
+	                </li>
+	            </ul>
+	            	 <div id="lang" class="language">
+		             	<select name="langCh" id="langChRoute" onchange="goPageRoute(this.value)">
+<!-- 		             		<option value="">언어선택</option> -->
+		             		<option value="ko" selected>한국어</option>
+		             		<option value="en">English</option>
+		             		<option value="jp">日語</option>
+		             		<option value="ch">中文</option>
+		             	</select>
+		           </div>
+	        </nav>
+	    </header>
+    </div>
+
+<script type="text/javascript">
+// var index = 10;
+var lang = getCookie('lang');
+
+
+if(!lang){
+	lang = 'ko';
+	setCookie('lang', lang);
+}
+
+
+$(document).ready(function(){
+
+ 	setCookieHours("count", "ture", 2);
+
+	if ($("#langCh").length) {
+		$("#langCh").val(lang);
+	}
+	if ($("#langChRoute").length) {
+		$("#langChRoute").val(lang);
+	}
+
+// 	alert("조회결과가 없습니다.");
+	if(getCookie('len')==null){
+		$('#latest').hide();
+	}else if(!func.checkMobile()){
+		searchCook();
+	}
+	$('#mainSearchKeyword').mouseenter(function(){
+		if(!func.checkMobile()&&getCookie('len')!=null){
+			$("#latest").show();
+		}
+	});
+	$('#mainSearchKeyword').mouseleave(function(){
+// 		if(getCookie('len')==null){
+			$("#latest").hide();
+// 		}
+	});
+	$('#latest').mouseenter(function(){
+		if(!func.checkMobile()&&getCookie('len')!=null){
+			$("#latest").show();
+		}
+	});
+	$('#latest').mouseleave(function(){
+		$("#latest").hide();
+	});
+	mobilechk();
+	if(func.checkMobile()){
+		$("nav").hide();
+	}
+	if(getCookie('lang') != ''){
+		$('#langCh').val(lang);
+		$('#langChRoute').val(lang);
+	}
+// 	if($('#latest').css("display") != "none"){
+
+// 	}
+});
+
+$(window).resize(function() {
+	mobilechk();
+	if(func.checkMobile()){
+		$("nav").hide();
+	}else{
+		$("nav").show();
+	}
+});
+
+function mobilechk(){
+    var popWrapHeight = $(window).height() - $('header').outerHeight(true) - 2;
+
+	if(!func.checkMobile()){
+		$('.depth1 > li').mouseenter(function(){
+			$('.top').stop();
+			$('.top').animate({height:'206px'},400);
+		});
+		$('header').mouseleave(function(){
+			$('.top').stop();
+			$('.top').animate({height:'50px'},400);
+		});
+		$('#api').show();
+		$('#depInt').show();
+		$('#depSear').show();
+		$('#depWay').show();
+		$('#depInfo').show();
+		$('#depApi').show();
+		$('.depth1 > li > a').unbind();
+	}else if(func.checkMobile()){
+		$('.depth1 > li').off();
+		$('header').off();
+		$('#api').hide();
+		$('#depInt').hide();
+		$('#depSear').hide();
+		$('#depWay').hide();
+		$('#depInfo').hide();
+		$('#depApi').hide();
+		$('.depth1 > li > a').eq(0).bind('click', false);
+		$('.depth1 > li > a').eq(3).bind('click', false);
+	}
+
+}
+
+function navShow(){
+    var nav = document.getElementById("nav");
+	if(nav.style.display == 'none'){
+		$("nav").show().animate({left:0},{duration :400})
+		$(".nav-bar").addClass('on');
+	}else{
+		$("nav").hide().animate({left:-100 + "%"});
+		$(".nav-bar").removeClass('on');
+	}
+}
+
+function depOpen(depVal){
+	var dep = document.getElementById(depVal);
+	if (dep.style.display == 'none') {
+		$('#depInfo').hide();
+		$('#' + depVal).show();
+	} else {
+		$('#' + depVal).hide();
+	}
+}
+
+$('nav > ul > li:last-child').mouseenter(function(){
+	$('.nav-depth').stop();
+	$('.nav-depth').animate({height:'170px'},300);
+}).mouseleave(function(){
+    $('.nav-depth').stop();
+	$('.nav-depth').animate({height:'0'},300);
+});
+
+
+/*쿠키 출력*/
+function searchCook(){
+	var html ='';
+	$('#latest').html('');
+	html +='<label>최근검색 </label>';
+	if(getCookie('len')!=null){
+		for(var i=0;i<getCookie('len').length;i++){
+			html +='<span><a href="#" onclick="searchMain(\''+getCookie(i)+'\')">'+getCookie(i)+'</a></span>';
+		}
+	}
+	$('#latest').html(html);
+}
+
+/*메인 검색*/
+function searchMain(para){
+        const keyword = $('#mainSearchKeyword').val();
+        const safeKeyword = escapeHtml(keyword);
+	if(para){ //최근검색어 클릭시
+		$('#mainSearchKeyword').val(para);
+	}else if(Validation.isNull(keyword)){ // 널체크
+		alert("검색 내용을 입력해주세요!");
+		return;
+	}else{
+		if(getCookie('len')==null||(getCookie('len').length+1)*3+$('#latest span').text().length+keyword.length>45){
+			if(getCookie('len')!=null){
+				setCookie('len',null);
+			}
+			setCookie(0,safeKeyword,1);
+			setCookie('len','1',1);
+		}else{
+			setCookie(getCookie('len').length,safeKeyword,1);
+			setCookie('len',getCookie('len')+1,1);
+		}
+	}
+	$('#mainSearchKeyword').val(safeKeyword);
+	var params = $("#mainSearchForm").serialize();
+	setCookie('search', 'val', 1);
+	var url = '/searchMain.do';
+	var classType =new Array;
+	AF.ajaxBasic(url, params, function(returnData){
+		var data = returnData.rows;
+		var html = "";
+		var stopHtml = "";
+		var classType="";
+		$("#mainTbodyList").html("");
+		if(data.length > 0){
+			for(var i = 0; i < data.length; i++){
+				var classType = new Array;
+				if(data[i].div == "r"){
+// 					if(i==0){
+// 						$('#busStop').hide();
+// 						if(func.checkMobile()){ // 모바일 이면 바뀜
+// 							index++;
+// // 							$('#popSearch').height(550);
+// 							$('#popSearch').show().animate({top:50});
+// 							$('#popSearch').css('z-index',index);
+// 						}else{
+// 							index++;
+// 							$('#popSearch').css('z-index',index);
+// 							$('#popSearch').fadeIn();
+// 						}
+// 					}
+					if(i==data.length-1){
+						if(func.checkMobile()){ // 모바일 이면 바뀜
+// 							$('#popSearch').show().animate({top:60});
+							if(stopHtml!=''){
+								index++;
+								$('#popSearch').css('z-index',index);
+								$('#busStop').css('z-index',index);
+								$('#popSearch').show().animate({top:50});
+
+								$('#busStop').show().animate({top:'50%'});
+								$('#busStop').css('height','50%');
+								$('#popSearch').css('height','45%');
+							}else{
+								index++;
+								$('#popSearch').css('z-index',index);
+								$('#popSearch').show().animate({top:50});
+							}
+						}else{
+// 							func.openLayer();
+// 							var index = findHighestZIndex('div');
+// 							index++;
+// 							$('#popSearch').css('z-index',index);
+// 							$('#popSearch').fadeIn();
+
+							if(stopHtml!=''){
+								index++;
+								$('#busStop').css('left','40%');
+								$('#popSearch').css('z-index',index);
+								$('#busStop').css('z-index',index);
+								$('#popSearch').fadeIn();
+								$('#busStop').fadeIn();
+							}else{
+								index++;
+								$('#popSearch').css('z-index',index);
+								$('#popSearch').fadeIn();
+							}
+						}
+					}
+					html += '<tr>';
+
+					if(!func.checkMobile()){
+						html += '<th';
+						if(data[i].value){
+							html += ' class="'+data[i].value+'"';
+						}else{
+							html += ' class="typeblk"';
+						}
+						html +='><a href="#" onclick="routeOpen(\''+data[i].id+'\',\''+data[i].nm+'\')">'+data[i].nm+'</a></th>' ;
+						html += '<td><a href="javaScript:routeOpen(\''+data[i].id+'\',\''+data[i].nm+'\')">'+data[i].startRoute+'~'+data[i].endRoute+'</a></td>';
+					}else if(func.checkMobile()){
+						html += '<th><a href="javaScript:mRoute(\''+data[i].id+'\')">'+data[i].nm+'</a></th>' ;
+						html += '<td><a href="javaScript:mRoute(\''+data[i].id+'\')">'+data[i].startRoute+'~'+data[i].endRoute+'</a></td>';
+					}
+					$(window).resize(function() {
+						if(!func.checkMobile()){
+							html += '<th';
+							if(data[i].value){
+								html += ' class="'+data[i].value+'"';
+							}else{
+								html += ' class="typeblk"';
+							}
+							html += '><a href="javaScript:routeOpen(\''+data[i].id+'\',\''+data[i].nm+'\')">'+data[i].nm+'</a></th>' ;
+							html += '<td><a href="javaScript:routeOpen(\''+data[i].id+'\',\''+data[i].nm+'\')">'+data[i].startRoute+'~'+data[i].endRoute+'</a></td>';
+						}else if(func.checkMobile()){
+							html += '<th';
+							if(data[i].value){
+								html += ' class="'+data[i].value+'"';
+							}else{
+								html += ' class="typeblk"';
+							}
+							html += '><a href="javaScript:mRoute(\''+data[i].id+'\')">'+data[i].nm+'</a></th>' ;
+							html += '<td><a href="javaScript:mRoute(\''+data[i].id+'\')">'+data[i].startRoute+'~'+data[i].endRoute+'</a></td>';
+						}
+					});
+					html += '</tr>';
+					$("#mainTbodyList").html(html);
+				}else if (data[i].div == "b"){
+// 					if(i==0){
+// 						$('#popSearch').hide();
+
+// 						if(func.checkMobile()){
+// 							index++;
+// // 							$('#busStop').height(550);
+// 							$('#busStop').show().animate({top:50});
+// 							$('#busStop').css('z-index',index);
+// 						}else{
+// 							index++;
+// 							$('#busStop').css('z-index',index);
+// 							$('#busStop').fadeIn();
+// 						}
+// 					}
+					if(i==data.length-1){
+						if(func.checkMobile()){
+
+							if(html!=''){
+								index++;
+								$('#popSearch').css('z-index',index);
+								$('#busStop').css('z-index',index);
+								$('#popSearch').show().animate({top:50});
+								$('#busStop').show().animate({top:'50%'});
+								$('#busStop').css('height','50%');
+								$('#popSearch').css('height','45%');
+							}else{
+								$('#busStop').css('z-index',index);
+								$('#busStop').show().animate({top:50});
+							}
+						}else{
+							if(html!=''){
+								index++;
+								$('#busStop').css('left','46%');
+								$('#popSearch').css('z-index',index);
+								$('#busStop').css('z-index',index);
+								$('#popSearch').fadeIn();
+								$('#busStop').fadeIn();
+							}else{
+								index++;
+								$('#busStop').css('left','24%');
+								$('#busStop').css('z-index',index);
+								$('#busStop').fadeIn();
+							}
+
+						}
+					}
+					stopHtml += '<tr>';
+					stopHtml += '<th><a href="#" onclick="getStopView(\''+data[i].value+'\',\''+data[i].nm+'\','+data[i].id+',\'\',\'\',\''+data[i].startRoute+'\');startBusStopTime(\''+data[i].value+'\',\''+data[i].nm+'\','+data[i].id+')">'+data[i].nm;
+					if(data[i].startRoute){
+						stopHtml += '('+data[i].startRoute+')';
+					}
+					stopHtml += '</a></th>' ;
+					stopHtml += '<td><a href="#" onclick="getStopView(\''+data[i].value+'\',\''+data[i].nm+'\','+data[i].id+',\'\',\'\',\''+data[i].startRoute+'\');startBusStopTime(\''+data[i].value+'\',\''+data[i].nm+'\','+data[i].id+')">'+data[i].value+'</a></td>';
+					stopHtml += '</tr>';
+					$("#mainTbody").html(stopHtml);
+				}
+			}
+		}else{
+			alert("조회결과가 없습니다.");
+		}
+		searchCook();
+		$('#mainSearchKeyword').val('');
+	});
+}
+
+function setCookie(cookie_name, value, days) {
+	  var exdate = new Date();
+	  exdate.setDate(exdate.getDate() + days);
+	  // 설정 일수만큼 현재시간에 만료값으로 지정
+	  var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+	  const domain = window.location.hostname;
+	  document.cookie = cookie_name + '=' + cookie_value + ";path=/;" + "domain=" + domain + ";";
+	}
+
+function setCookieHours(cookie_name, value, Hours) {
+	  var exdate = new Date();
+	  exdate.setHours(exdate.getHours() + Hours);
+	  // 설정 일수만큼 현재시간에 만료값으로 지정
+	  var cookie_value = escape(value) + ((Hours == null) ? '' : ';    expires=' + exdate.toUTCString());
+	  const domain = window.location.hostname;
+	  document.cookie = cookie_name + '=' + cookie_value + ";path=/;" + "domain=" + domain + ";";
+	}
+
+function getCookie(cookie_name) {
+	  var x, y;
+	  var val = document.cookie.split(';');
+	  for (var i = 0; i < val.length; i++) {
+	    x = val[i].substr(0, val[i].indexOf('='));
+	    y = val[i].substr(val[i].indexOf('=') + 1);
+	    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+	    if (x == cookie_name) {
+	      return unescape(y); // unescape로 디코딩 후 값 리턴
+	    }
+	  }
+	}
+function goPage(lang){
+	console.log(lang);
+	setCookie('lang', lang);
+	window.location="/?lang="+lang;
+}
+
+function goPageRoute(lang){
+	console.log(lang);
+	setCookie('lang', lang);
+	window.location="/?lang="+lang;
+}
+function escapeHtml(text) {
+        return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;")
+                .replace(/\(/g, "&#40;")
+                .replace(/\)/g, "&#41;")
+                .replace(/#/g, "&#35;");
+}
+
+</script>
+
+	<!--//Top-->
+	
+	<!--mainVisual-->
+     <div class="visual-bg">
+        <div class="visual main-visual">
+            <p class="visual-text">
+                <span>Cheongju BUS Information System</span>언제나 어디서나 자유롭게!<br/>청주버스정보시스템</p>
+            <section class="day-info">
+                <h2 class="readable-hidden" >날짜 및 기상정보</h2>
+                <div class="date-info" id="timeInfo" style="padding: 24px 20px 14px 20px">
+
+                </div>
+                <div class="weather-info" id="weatherInfo">
+                    <div class="weather" id="weather">
+                       
+                    </div>
+                    <div class="dust" id="dustInfo">
+                      <ul>
+                      </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!--//mainVisual-->
+    <!--mainContent-->
+    <main id="main">
+       <div class="content-wrap">  
+            <section class="board">
+                    <h2>공지사항</h2>
+                    <ul class="notice-list" id="noticeList">
+
+                    </ul>
+                    <a href="/info/notice.do" title="공지사항" class="more">더보기</a>
+            </section>
+            <section class="mid-btn">
+                <h2 class="readable-hidden">바로가기</h2>
+                <ul>
+                    <li class="line">
+                        <h3 >노선 검색</h3>
+                        <p><span>언제 어디서나<br/>노선번호만 입력하면<br/>버스위치가 보여요!</span></p>
+                        <button type="button" onclick="goRoute()" title="노선검색" >노선 검색 바로가기</button>
+                    </li>
+                    <li class="station">
+                        <h3>정류장 검색</h3>
+                        <p><span>내가 서 있는 정류장<br/>버스 도착시간이<br/>궁금하다면?</span></p>
+                        <button type="button" onclick="goBusStop()" title="정류장 검색">정류장 검색 바로가기</button>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <section class="quick-banner">
+            <h2 class="readable-hidden">빠른 메뉴</h2>
+            <ul>
+            	<li class="route-banner"><a href="/search/route.do">노선 검색</a><button type="button" title="노선 검색">go</button></li>
+                <li class="station-banner"><a href="/search/busStop.do">정류장 검색</a><button type="button" title="정류장 검색">go</button></li>
+                <li class="find-banner"><a href="/way/searchWay.do">경로 검색</a><button type="button" title="경로 검색">go</button></li>
+                <li class="lost-banner"><a href="/bagage/bagage.do">분실물찾기</a><button type="button" title="분실물찾기">go</button></li>
+                <li class="timetable-banner"><a href="/info/busTime.do">운행시간표</a><button type="button" title="운행시간표">go</button></li>
+                <li class="intro-banner"><a href="/intro/intro.do">BIS소개</a><button type="button" title="BIS소개">go</button></li>
+                <!-- <li class="card-banner"><a href="#">카드충전소</a><button type="button" title="카드충전소">go</button></li> -->
+                <li class="guide-banner"><a href="/intro/guide.do">이용안내</a><button type="button" title="이용안내">go</button></li>
+            </ul>
+        </section>
+
+        
+	<div class="lyroute" id="popRoute" style="width:980px; top:16%; left:24%; display: none; height:auto;">
+		<div class="lytitle">
+			<div id="popRouteTopTitle"></div>
+			<div id="popRouteTitle"></div>
+		</div>
+		<div class="route" id="popRouteView" style="height:630px"> </div>
+		<div class="remark">
+			<ul class="fl">
+				<li class="up">상행</li>
+				<li class="down">하행</li>
+				<li class="low">저상</li>
+			</ul>
+			<ul class="fr">
+				<li><span class="smooth"></span>소통원활</li>
+				<li><span class="tie"></span>정체</li>
+				<li><span class="delay"></span>지체</li>
+				<li><span class="nodata"></span>정보없음</li>
+			</ul>
+		</div>
+	</div>
+   	<div class="lyroute arvInfo" id="busView" style="top:150px; display: none;" >
+		<div class="lytitle" >
+			<div id="topTitle"></div>
+			<div class="btn">
+				<button class="close" type="button" onclick="closePop(this.parentNode.parentNode);arvlStopTimer();"> 닫기 </button>
+			</div>
+		</div> 
+		<h3 id="bsTitle"></h3>
+		<div class="tblInfo" style="height:160px;">
+			<table>
+				<colgroup>
+					<col width="20%"/>
+					<col width="25%"/>
+					<col />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>노선</th>
+						<th>예정시간</th>
+						<th>버스위치</th>
+					</tr>
+					
+				</thead>
+				<tbody id="tbodyUp">
+
+				</tbody>
+			</table>
+		</div>
+		<h3>그외 노선 도착 예정정보</h3>
+		<div class="tblInfo" style="height:160px;">
+			<table>
+				<colgroup>
+					<col width="20%"/>
+					<col width="25%"/>
+					<col />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>노선</th>
+						<th>예정시간</th>
+						<th>버스위치</th>
+					</tr>
+				</thead>
+				<tbody id="tbodyDown">
+				</tbody>
+			</table>
+		</div>
+	</div>
+		    <!--search Popup-->
+       <div class="lyroute ui-draggable" id="popSearch" style="display: none;" >
+       	<div class="lytitle" id="serTitle">
+       		<h2><strong>노선검색</strong></h2>
+       		<div class="btn">
+       			<button type="button" class="close"  onclick="closePop(this.parentNode.parentNode)">닫기</button>
+       		</div>
+       	</div>
+       	<div class="tbl" style="height:400px">
+       		<table>
+       			<colgroup>
+       				<col width="25%"/>
+       				<col />
+       			</colgroup>
+       			<tbody id="mainTbodyList">
+       			</tbody>
+       		</table>
+       	</div>
+       </div>
+       
+       <div class="lyroute ui-draggable" id="busStop" style="display: none;">
+       	<div class="lytitle" id="serBsTitle">
+       		<h2><strong>정류장 검색</strong></h2>
+       		<div class="btn">
+       			<button type="button" class="close" onclick="closePop(this.parentNode.parentNode);">닫기</button>
+       		</div>
+       	</div>
+       	<div class="tbl" style="height:400px">
+       		<table class="station">
+       			<colgroup>
+       				<col/>
+       				<col width="20%">
+       			</colgroup>
+       			<tbody id="mainTbody">
+       			</tbody>
+       		</table>
+       	</div>
+       </div>
+<!--         정류장 도착정보 -->
+      	<div class="lyroute arvInfo" id="busPassView" style="display:none; top:150px" >
+		<div class="lytitle" >
+			<div id="lytitle"></div>
+			<div class="btn">
+				<button class="close" type="button" onclick="closePop(this.parentNode.parentNode);bsStopTimer();">닫기</button>
+			</div>
+		</div>
+		<h3>도착 예정정보</h3>
+		<div class="tblInfo" style="height:160px !important;">
+			<table>
+				<colgroup>
+					<col width="20%"/>
+					<col width="25%"/>
+					<col />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>노선</th>
+						<th>예정시간</th>
+						<th>버스위치</th>
+					</tr>
+				</thead>
+				<tbody id="getUpView">
+				</tbody>
+			</table>
+		</div>
+		<h3>통과노선</h3>
+		<div class="tbl pass" id="busSevView" style="height:160px !important;">
+			<table>
+				<colgroup>
+					<col width="25%"/>
+					<col width="25%"/>
+					<col width="25%"/>
+					<col />
+				</colgroup>
+				<tbody id="getStopView">
+				</tbody>
+			</table>
+		</div>
+	</div>
+<script type="text/javascript">
+var startWeek;
+var endWeek;
+var startFree;
+var endFree;
+// var classType = new Array();
+var bsisCodeNm;
+var routeNo;
+var routeId;
+var sttnNm;
+var popTimer;
+var popTime=3;
+var popTop;
+var popRouteId;
+var popStartRoute;
+var popEndRoute;
+var poprouteNo;
+var busCode = new Object();
+var name;
+var index = 110;
+var arvlTime;
+var busCount =0;
+
+function popReSet(){
+	clearInterval(popTimer);
+	popRouteAjax(name);
+	popTime =3;
+	popStartTimer();
+}
+function popStartTimer(){
+	clearInterval(popTimer);
+	popTimer=setInterval(function() { // 20 초마다 실행
+	 	if(popTime==0){
+	 		popRouteAjax(name);
+	 		popTime =3;
+	 	}
+	 popTime-=1;
+ 	$("#popTimer").html(popTime);
+	}, 1000);
+}
+function popStopTimer(){
+	clearInterval(popTimer);
+}
+function arvlStopTimer(){
+	clearInterval(arvlTime);
+	if(name){
+		 popStartTimer();
+	}
+}
+function bsStopTimer(){
+	clearInterval(bsTime);
+}
+
+/*노선 팝업*/
+function routeOpen(routeId,routeNo,name){
+	index++;
+	if(func.checkMobile()){ 
+		mRoute(routeId);
+	}else{
+
+		$('#popRoute').css('z-index',index);
+		$('#popRoute').fadeIn();
+		popTime=3;
+		func.closeLayer();
+		var params = "routeId="+routeId;
+		var url = '/search/getRouteInfo.do';
+		var html='';
+		var topHtml='';
+		var timeHtml = "";
+		var params = "routeId="+routeId;
+		var routeDc;
+		this.routeId = routeId;	
+
+			AF.ajaxBasic(url, params, function(returnData){
+				var data = returnData.rows;
+				var count = 1; 
+				var turnVal;
+				if(data.length > 0){
+					turnVal = data.length;
+					if(data[0].bsisCodeNm){
+						bsisCodeNm=data[0].bsisCodeNm;
+					}else{
+						bsisCodeNm="typeblk";
+					}
+					if(data[0].routeDc){
+						routeDc = data[0].routeDc;
+					}else{
+						routeDc='기타';
+					}
+					topHtml+= '<h2 class="'+bsisCodeNm+'">';
+					topHtml+= '<mark>'+routeDc+'</mark>';
+					topHtml+= '<strong>'+data[0].routeNo+'</strong>';
+					this.routeNo = routeNo;
+					topHtml+= '</h2>';	
+
+					topHtml+= '<span>'+data[0].startRoute+'&#8596;'+data[0].endRoute+'</span>';
+				html+= '<div class="timetable">';
+				if(data[0].routeStle == 1){ //순환노선인지 확인
+					html += '<em class="rtway up">[상행]</em>';
+					html += '<em>평일</em>'+data[0].weekStart+'~'+data[0].weekEnd;			
+					html += '<em>휴일</em>'+data[0].satStart+'~'+data[0].satEnd;
+					html += '<em class="rtway down">[하행]</em>';
+					html += '<em>평일</em>'+data[0].downWeekStart+'~'+data[0].downWeekEnd;			
+					html += '<em>휴일</em>'+data[0].downSatStart+'~'+data[0].downSatEnd;
+						html+= '</div>';
+						html+= '<div class="interval">';
+						html+= '<em>평일</em>'+data[0].weekMumm+'~'+data[0].weekMxmm+'분간격';
+						html+= '<em>휴일</em>'+data[0].satMumm+'~'+data[0].satMxmm+'분간격';
+					}else{
+						html += '<em>평일</em>'+data[0].weekStart+'~'+data[0].weekEnd;			
+						html += '<em>휴일</em>'+data[0].satStart+'~'+data[0].satEnd;
+						html+= '</div>';
+						html+= '<div class="interval">';
+						html+= '<em>평일</em>'+data[0].weekMumm+'~'+data[0].weekMxmm+'분간격';
+						html+= '<em>휴일</em>'+data[0].satMumm+'~'+data[0].satMxmm+'분간격';
+					}
+					html+= '</div>';
+					html+= '<div class="btn">';
+					html+= '<button type="button" id="closeRoutePop" class="close" onclick="closePop(this.parentNode.parentNode.parentNode);popStopTimer();startTimer();">닫기</button>';
+					html+= '</div>';
+					html+= '<div class="console">';
+					//html+= '<button type="button" onclick="copy(\''+location.origin+'/routePopup.do?routeId='+routeId+'\')" class="urlCopy" title="url복사">url복사</button>';
+					html+= '<button type="button" onclick="popReSet()" class="ref" title="새로고침">refresh</button>';
+					html+= '<div class="timer" id="popTimer"></div>';
+					html+= '<button type="button" onclick="popStopTimer()" class="pause" title="정지">pause</button>';
+					html+= '<button type="button" onclick="popStartTimer()" class="play" title="재생">play</button>';
+					html+= '</div>';
+					$("#popRouteTitle").html(html);
+					$("#popRouteTopTitle").html(topHtml);
+					popRouteAjax(name);
+					popRouteId=routeId;
+					popStartRoute=data[0].startRoute;
+					popEndRoute=data[0].endRoute;
+					poprouteNo= data[0].routeNo;
+					popStartTimer();
+				}else{
+					
+				}
+			});
+
+	}
+			
+}
+
+var par1;
+var par2;
+var par3;
+var par4;
+var par5;
+var popArvlTime = 20;
+/*노선 팝업 세부내용 부*/
+function popRouteAjax(name){
+	this.name=name;
+	var params = "routeId="+routeId;
+	if(!routeId){
+		console.log(routeId);
+		return 0;
+	}
+	var url = '/search/getRouteView.do';
+	var html = "";	
+	var lineCnt=0;
+	AF.ajaxBasic(url, params, function(returnData){
+		if(routeId){
+			var data = returnData.rows;
+		}else{
+			var data = 0;
+		}
+		var count = 1; 
+		
+ 		$('#popConsole').css('z-index','10000');
+ 		
+		if(data.length > 0){
+			var turnVal = data.length;
+			if(data[0].routeStle == 1){ //순환노선인지 확인
+				$('#popRouteView').attr('class', 'route');
+			}else{
+				$('#popRouteView').attr('class', 'route cycle');
+			}
+			for(var i = 0; i < data.length; i++){
+				var eventCode;
+				if(i==0||( data[i].spotId!=data[i-1].spotId)){
+				if(data[i].busId){
+					if(!busCode[data[i].busId]){
+						busCode[data[i].busId]=new Array();
+					}
+					if((data[i].eventCode==18||data[i].eventCode==19||data[i].eventCode==17)&&data[i].startSttnId<1000000000&&0<data[i].startSttnId){
+						busCode[data[i].busId].eventCode=data[i].eventCode; 
+					}
+					busCode[data[i].busId].sttnId=data[i].spotId+''+data[i].spotSn;
+					busCode[data[i].busId].lowuppt=data[i].lowupptBusSe;
+					busCode[data[i].busId].count=busCount+1;
+					busCode[data[i].busId].congestion = data[i].congestion;
+					
+					if(data[i].lowupptBusSe=='Y')
+						busCode[data[i].busId].obeId='저상'+data[i].busNo;
+					else{
+						busCode[data[i].busId].obeId=data[i].busNo;
+					}
+				}
+				
+				if(data[i].beginSpotAt==1){ // 첫번째 데이터 처리
+					html +='<ol class="odd">';
+ 					html +='<li id="'+data[i].spotId+''+data[i].spotSn+'" value="'+data[i].sttnSrvcId+'" class="up start ';
+ 					html +='" >';
+ 					html +='<mark>기점</mark>';
+ 					html +='<div class=';
+   	 				// 소통정보
+ 					if(30 <= data[i].ve ){ 
+ 	 					html +='"smooth"';
+ 					}else if(30 > data[i].ve && data[i].ve >= 15){
+ 						html +='"delay"';
+ 					}else if(data[i].ve>0&&15>data[i].ve){
+ 						html +='"tie"';
+ 					}else{
+ 						html +='"nodata"';
+ 					}
+ 					html +='>'+data[i].routeName+'</div>';
+				
+ 					if(name==data[i].spotId){
+ 						html +='<span class="ffb">'+data[i].routeName
+ 						if(data[i].sttnAdiNm){
+ 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+ 						}
+ 						html +='</span>';
+ 					}else{
+ 						html +='<span>'+data[i].routeName;
+ 						if(data[i].sttnAdiNm){
+ 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+ 						}
+ 						html += '</span>';
+ 					}
+				}else if(lineCnt%11==0||data[i].beginSpotAt==3){ //다음 줄로 넘어갈때 홀 짝 구분으로 노선도를 그린다.
+					if(lineCnt%11==0&&count%2==1){   //홀
+						html += '</ol>';
+						html += '<ol class="even">';
+					}else if(lineCnt%11==0&&count%2==0){ //짝
+						html += '</ol>';
+						html += '<ol class="odd">';
+					}
+					if(data[i].beginSpotAt==3){ //다음 줄 넘어가는 마지막 데이터
+						html += '<li id="'+data[i].spotId+''+data[i].spotSn+'" value="'+data[i].sttnSrvcId+'" class="down last" >';
+						html += '<mark>종점</mark>';
+					}else if(data[i].beginSpotAt==2){//회차
+						html +='<li id="'+data[i].spotId+''+data[i].spotSn+'" value="'+data[i].sttnSrvcId+'" class="turn">';
+						html +='<mark>회차</mark>';
+	 					html +='<div class=';
+	 					if(30 <= data[i].ve){ // 소통정보
+	 	 					html +='"smooth"';
+	 					}else if(30>data[i].ve&&data[i].ve>=15){
+	 						html +='"delay"';
+	 					}else if(data[i].ve>0&&data[i].ve<15){
+	 						html +='"tie"';
+	 					}else{
+	 						html +='"nodata"';
+	 					}
+	 					html +='>'+data[i].routeName+'</div>';
+						if(name==data[i].spotId){
+	 						html +='<span class="ffb">'+data[i].routeName;
+	 						if(data[i].sttnAdiNm){
+	 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+	 						}
+	 						html +='</span>';
+						}else{
+	 						html +='<span>'+data[i].routeName;
+	 						if(data[i].sttnAdiNm){
+	 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+	 						}
+	 						html +='</span>';
+	 					}
+	 					turnVal = lineCnt;
+					}else{
+						if(lineCnt>turnVal){ //회차지 지나고
+							html +='<li id="'+data[i].spotId+''+data[i].spotSn+'" value="'+data[i].sttnSrvcId+'" class="down ';
+		 					html +='" >';
+						}else{ //회차지 전 
+							html +='<li id="'+data[i].spotId+''+data[i].spotSn+'" value="'+data[i].sttnSrvcId+'" class="up ';
+		 					html +='" >';
+						}
+					}
+	 					html +='<div>'+data[i].routeName+'</div>';
+	 					if(name==data[i].spotId){
+	 						html +='<span class="ffb">'+data[i].routeName
+	 						if(data[i].sttnAdiNm){
+	 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+	 						}
+	 						html +='</span>';
+	 					}else{
+	 						html +='<span>'+data[i].routeName;
+	 						if(data[i].sttnAdiNm){
+	 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+	 						}
+	 						html +='</span>';
+	 					}
+	 					count++;
+				}else if(data[i].beginSpotAt==2){//회차
+					html +='<li id="'+data[i].spotId+''+data[i].spotSn+'" value="'+data[i].sttnSrvcId+'" class="turn">';
+					html +='<mark>회차</mark>';
+ 					html +='<div class=';
+ 					if(30 <= data[i].ve){ // 소통정보
+ 	 					html +='"smooth"';
+ 					}else if(30>data[i].ve&&data[i].ve>=15){
+ 						html +='"delay"';
+ 					}else if(data[i].ve>0&&data[i].ve<15){
+ 						html +='"tie"';
+ 					}else{
+ 						html +='"nodata"';
+ 					}
+ 					html +='>'+data[i].routeName+'</div>';
+					if(name==data[i].spotId){
+ 						html +='<span class="ffb">'+data[i].routeName
+ 						if(data[i].sttnAdiNm){
+ 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+ 						}
+ 						html +='</span>';
+					}else{
+ 						html +='<span>'+data[i].routeName
+ 						if(data[i].sttnAdiNm){
+ 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+ 						}
+ 						html +='</span>';
+					}
+ 					turnVal = lineCnt;
+				}else{
+					if(lineCnt>turnVal){
+						html +='<li id="'+data[i].spotId+''+data[i].spotSn+'" value="'+data[i].sttnSrvcId+'" class="down ';
+	 					html +='" >';
+					}else{ 
+						html +='<li id="'+data[i].spotId+''+data[i].spotSn+'" value="'+data[i].sttnSrvcId+'" class="up ';
+	 					html +='" >';
+					}
+ 					html +='<div class=';
+ 					if(30 <= data[i].ve){ // 소통정보
+ 	 					html +='"smooth"';
+ 					}else if(data[i].ve<30&&data[i].ve>=15){
+ 						html +='"delay"';
+ 					}else if(data[i].ve>0&&data[i].ve<15){
+ 						html +='"tie"';
+ 					}else{
+ 						html +='"nodata"';
+ 					}
+ 					html +='>'+data[i].routeName+'</div>';
+					if(name==data[i].spotId){
+ 						html +='<span class="ffb">'+data[i].routeName;
+ 						if(data[i].sttnAdiNm){
+ 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+ 						}
+ 						html +='</span>';
+					}else{
+ 						html +='<span>'+data[i].routeName
+ 						if(data[i].sttnAdiNm){
+ 							html += '&nbsp<font style="font-size: 11px;">('+data[i].sttnAdiNm+')</font>';
+ 						}
+ 						html += '</span>';
+					}
+				}
+	 							
+ 				html +='</li>';
+ 				lineCnt++;
+				}
+			}
+		}else{
+			html +='<ul><li class="ac">조회 결과가 없습니다.</li></ul>';
+		}
+		busCount+=1;
+		html += '</ol>';
+		$("#popRouteView").html(html);
+		var emHtml="";
+		var iHtml="";
+		var arrImage = ["bus_no_info.png","bus_margin.png","bus_enough.png","bus_crowded.png"];
+// 		
+		for(var x in busCode){
+			if(busCount==busCode[x].count){
+				iHtml='<i id="popObe'+x+'">'+busCode[x].obeId+'</i>';
+				if($('#'+busCode[x].sttnId).children('em').length>0){
+					if((busCode[x].eventCode==18||busCode[x].eventCode==19)&&($('#'+busCode[x].sttnId).children('em').hasClass("go")==true)){
+						iHtml='<i class="second">'+busCode[x].obeId+'</i>';
+					}else if((busCode[x].eventCode!=18&&busCode[x].eventCode!=19)&&($('#'+busCode[x].sttnId).children('em').hasClass("go")==false)){
+						iHtml='<i class="second">'+busCode[x].obeId+'</i>';
+					}
+				}
+				
+// 				console.log("con"+busCode[x].congestion)
+				
+				//x%4 혼잡도 값 넣어주면됨
+				if(busCode[x].congestion==0){
+					emHtml='<em id="popBus'+x+'">'+iHtml+'</em>';
+					
+				}else{
+					emHtml='<em id="popBus'+x+'">'+iHtml+'<image src="/resource/images/'+arrImage[busCode[x].congestion]+'" style="margin-top: -7px;margin-left: 7px;">혼잡도</image></em>';
+						
+				}
+				
+				//이미지 글자가 두글자일때 margin-left: -3px; 변경
+		
+				$('#'+busCode[x].sttnId).append(emHtml);
+				if(busCode[x].eventCode==18||busCode[x].eventCode==19){
+					$('#popBus'+x).addClass('go');
+				}
+				if(busCode[x].lowuppt=='Y'){
+					$('#popBus'+x).addClass('low');
+				}
+			}else{
+				delete busCode[x];
+			}
+		}
+		$("li").click(function(){
+			if(func.psuedoClick(this)){
+				clearInterval(popTimer);
+				getBusPop($(this).prop('value'),routeId,$(this).children().eq(1).text(),poprouteNo,$(this).prop('id'));
+				popArvlTime=20;
+				startArvlTime($(this).prop('value'),routeId,$(this).children().eq(1).text(),poprouteNo,$(this).prop('id'));
+			}
+		});
+		
+		
+	});
+}
+
+/*팝업창 닫기*/
+function closePop(para){
+	if(func.checkMobile()){
+		$(para.parentNode).hide().animate({top:100+'%'});
+	}else{
+		func.closeLayer(para);
+	}
+}
+
+function getBusPop(sttnSrvcId,routeId,sttnNm, prouteNo, spotId){//도착 정보
+	popArvlTime = 20;
+	if(sttnSrvcId==0){
+		sttnSrvcId='-';
+	}	
+// 	$("#busView").insertAfter("#popRoute");
+	var sttnId = spotId.toString().substring(0,9);
+	func.closeLayer();
+	if(func.checkMobile()){
+		$('#busView').show().animate({top:50});
+// 		$('#busView').show().animate();
+// 		$('#busView').height(550);
+	}else if(!func.checkMobile()){
+		index++;
+		$('#busView').css('z-index',index);
+		$('#busView').fadeIn();
+	}
+	var params = "sttnSrvcId="+sttnId+"&routeId="+routeId;
+	var url = '/search/getArriveOpr.do';
+	var titleHtml = "";
+	var topTitleHtml = "";
+	
+	AF.ajaxBasic(url, params, function(returnData){
+		var data = returnData.rows;
+		var html = "";	 
+		var upHtml = "";
+		//혼잡도 
+		var conArr = [ "<font style='color: gray;'>(정보없음)</font>"
+					 , "<font style='color: green;'>(여유)</font>"
+					 , "<font style='color: blue;'>(보통)</font>"
+					 , "<font style='color: red;'>(혼잡)</font>"];
+		
+		$("#topTitle").html(""); //최상위 제목
+		$("#bsTitle").html(""); //상단 제목
+		$("#tbodyUp").html(""); //팝업 상단
+		$("#tbodyDown").html(""); // 팝업 하단 
+		if(prouteNo!=null){
+			titleHtml ='<strong class='+bsisCodeNm+'>'+prouteNo+'</strong>도착 예정정보';
+		}else{
+			titleHtml ='<strong class='+bsisCodeNm+'>'+routeNo+'</strong>도착 예정정보';
+		}
+// 		if(func.checkMobile()){
+			titleHtml += '<div class="console" style="top: 48px;" id="popConsole">';
+			if(prouteNo!=null){
+				titleHtml += '<button type="button" onclick="reSetArvlTime('+sttnSrvcId+','+routeId+',\''+sttnNm+'\',\''+prouteNo+'\','+spotId+',1)" class="ref" title="새로고침">refresh()</button>';
+			}else{
+				titleHtml += '<button type="button" onclick="reSetArvlTime('+sttnSrvcId+','+routeId+',\''+sttnNm+'\',\''+routeNo+'\','+spotId+',1)" class="ref" title="새로고침">refresh()</button>';
+			}
+			
+			titleHtml += '<div class="timer" id="popArvlTime"></div>';
+			titleHtml += '</div>';
+// 		}
+		topTitleHtml +='<h2><strong>'+sttnNm+'</strong></h2>';
+		topTitleHtml +='<span>['+sttnSrvcId+']</span>';
+		$("#topTitle").html(topTitleHtml);
+		$("#bsTitle").html(titleHtml);
+		
+		if(data.length > 0){
+			for(var i = 0; i < data.length; i++){ //chan:배열로 처리
+// 				data[i].congestion=data[i].sttnLc%4; //임시
+// 				console.log(data[i].congestion);
+// 				console.log(data[i].routeId%4);
+				if((routeNo==data[i].routeNo||prouteNo==data[i].routeNo)){    // 20220217상단부
+					if(routeId){
+						if(routeId == data[i].routeId){
+							upHtml+='<tr>';
+							upHtml+='<td class="'+data[i].bsisCodeNm+'"><a href="#" onclick="routeOpen(\''+data[i].routeId+'\',\'\','+ spotId+')">'+data[i].routeNo+'</a></td> ';
+							
+							console.log("arr= "+ data[i].congestion);
+							if(data[i].msgTp == '05'){
+								var startTime = data[i].startTime.padStart(4, "0");
+								startTime = startTime.substr(0,2) + ":" + startTime.substr(2,2)
+								upHtml+='<td>' +  startTime + ' 출발예정</td>';
+								if(data[i].sttnKoreanNm.length > 12){
+									data[i].sttnKoreanNm = data[i].sttnKoreanNm.substr(0,12) + "...";
+								}
+								upHtml+='<td>'+data[i].sttnKoreanNm+' 출발</td>'
+							}else{
+								if(data[i].routeDc=='급행'||data[i].routeDc=='BRT'){
+									if(data[i].arvlPrearngeVwpoint<2&&data[i].sttnLc<2){
+										upHtml+='<td class="fcr"> 잠시 후 도착</td>';
+										upHtml+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+									}else{
+										upHtml+='<td>'+data[i].arvlPrearngeVwpoint+'분 후</td>';
+										upHtml+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+									}
+								}else{
+									if(data[i].arvlPrearngeVwpoint<2||data[i].sttnLc<2){
+										upHtml+='<td class="fcr"> 잠시 후 도착</td>';
+										upHtml+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+									}else{
+										upHtml+='<td>'+data[i].arvlPrearngeVwpoint+'분 후</td>';
+										upHtml+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+									}
+								}
+							}
+							upHtml+='</tr>';
+						}else{
+							
+							html+='<tr>';
+							
+							console.log("arr= "+ data[i].congestion);
+							
+							html+='<td class="'+data[i].bsisCodeNm+'"><a href="#" onclick="routeOpen(\''+data[i].routeId+'\',\'\','+spotId+')">'+data[i].routeNo+'</a></td>';
+							
+							if(data[i].msgTp == '05'){
+								var startTime = data[i].startTime.padStart(4, "0");
+								startTime = startTime.substr(0,2) + ":" + startTime.substr(2,2)
+								upHtml+='<td>' +  startTime + ' 출발예정</td>';
+								if(data[i].sttnKoreanNm.length > 12){
+									data[i].sttnKoreanNm = data[i].sttnKoreanNm.substr(0,12) + "...";
+								}
+								upHtml+='<td>'+data[i].sttnKoreanNm+' 출발</td>'
+							}else{
+								if(data[i].routeDc=='급행'||data[i].routeDc=='BRT'){
+									if(data[i].arvlPrearngeVwpoint<2&&data[i].sttnLc<2){
+										html+='<td class="fcr"> 잠시 후 도착</td>';
+										html+='<td>잠시 후 도착'+conArr[data[i].congestion]+'</td>';
+	//		 							html+='<td>'+data[i].sttnLc+'번째 정류장 전</td>';
+									}else{
+										html+='<td>'+data[i].arvlPrearngeVwpoint+'분 후</td>';
+										html+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+									}
+								}else{
+									if(data[i].arvlPrearngeVwpoint<2||data[i].sttnLc<2){
+										html+='<td class="fcr"> 잠시 후 도착</td>';
+										html+='<td>잠시 후 도착'+conArr[data[i].congestion]+'</td>';
+	//		 							html+='<td>'+data[i].sttnLc+'번째 정류장 전</td>';
+									}else{
+										html+='<td>'+data[i].arvlPrearngeVwpoint+'분 후</td>';
+										html+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+									}
+								}
+							}
+							html+='</tr>';
+						}
+					}else{
+						upHtml+='<tr>';
+						upHtml+='<td class="'+data[i].bsisCodeNm+'"><a href="#" onclick="routeOpen(\''+data[i].routeId+'\',\'\','+ spotId+')">'+data[i].routeNo+'</a></td> ';
+						if(data[i].msgTp == '05'){
+							var startTime = data[i].startTime.padStart(4, "0");
+							startTime = startTime.substr(0,2) + ":" + startTime.substr(2,2)
+							upHtml+='<td>' +  startTime + ' 출발예정</td>';
+							if(data[i].sttnKoreanNm.length > 12){
+								data[i].sttnKoreanNm = data[i].sttnKoreanNm.substr(0,12) + "...";
+							}
+							upHtml+='<td>'+data[i].sttnKoreanNm+' 출발</td>'
+						}else{
+							if(data[i].routeDc=='급행'||data[i].routeDc=='BRT'){
+								if(data[i].arvlPrearngeVwpoint<2&&data[i].sttnLc<2){
+									upHtml+='<td class="fcr"> 잠시 후 도착</td>';
+									upHtml+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+								}else{
+									upHtml+='<td>'+data[i].arvlPrearngeVwpoint+'분 후</td>';
+									upHtml+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+								}
+							}else{
+								if(data[i].arvlPrearngeVwpoint<2||data[i].sttnLc<2){
+									upHtml+='<td class="fcr"> 잠시 후 도착</td>';
+									upHtml+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+								}else{
+									upHtml+='<td>'+data[i].arvlPrearngeVwpoint+'분 후</td>';
+									upHtml+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+								}
+							}
+						}
+						upHtml+='</tr>';
+					}
+
+				}else{ //하단부 
+					html+='<tr>';
+					html+='<td class="'+data[i].bsisCodeNm+'"><a href="#" onclick="routeOpen(\''+data[i].routeId+'\',\'\','+spotId+')">'+data[i].routeNo+'</a></td>';
+					if(data[i].msgTp == '05'){
+						var startTime = data[i].startTime.padStart(4, "0");
+						startTime = startTime.substr(0,2) + ":" + startTime.substr(2,2)
+						html+='<td>' +  startTime + ' 출발예정</td>';
+						if(data[i].sttnKoreanNm.length > 12){
+							data[i].sttnKoreanNm = data[i].sttnKoreanNm.substr(0,12) + "...";
+						}
+						html+='<td>'+data[i].sttnKoreanNm+' 출발</td>'
+					}else{
+						if(data[i].routeDc=='급행'||data[i].routeDc=='BRT'){
+							if(data[i].arvlPrearngeVwpoint<2&&data[i].sttnLc<2){
+								html+='<td class="fcr"> 잠시 후 도착</td>';
+								html+='<td>잠시 후 도착'+conArr[data[i].congestion]+'</td>';
+	// 							html+='<td>'+data[i].sttnLc+'번째 정류장 전</td>';
+							}else{
+								html+='<td>'+data[i].arvlPrearngeVwpoint+'분 후</td>';
+								html+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+							}
+						}else{
+							if(data[i].arvlPrearngeVwpoint<2||data[i].sttnLc<2){
+								html+='<td class="fcr"> 잠시 후 도착</td>';
+								html+='<td>잠시 후 도착'+conArr[data[i].congestion]+'</td>';
+	// 							html+='<td>'+data[i].sttnLc+'번째 정류장 전</td>';
+							}else{
+								html+='<td>'+data[i].arvlPrearngeVwpoint+'분 후</td>';
+								html+='<td>'+data[i].sttnLc+'번째 정류장 전'+conArr[data[i].congestion]+'</td>';
+							}
+						}
+					}		
+					html+='</tr>';
+				}
+			}
+			if(html==""){
+				html +='<tr><td colspan="4" width="380px" class="ac">조회 결과가 없습니다.</td></tr>';
+			}else if(upHtml==""){
+				upHtml+='<tr><td colspan="4" width="380px" class="ac">조회 결과가 없습니다.</td></tr>';
+			}
+		}else{
+			html +='<tr><td colspan="4" width="380px" class="ac">조회 결과가 없습니다.</td></tr>';
+			upHtml+='<tr><td colspan="4" width="380px" class="ac">조회 결과가 없습니다.</td></tr>';
+		}	
+		$("#tbodyUp").html(upHtml);
+		$("#tbodyDown").html(html);
+	});
+}
+var busStopTime =20;
+var bsTime;
+/*정류장 상세 정보 팝업*/ 
+function getStopView(pram,spotNm,sttnId,x,y,adiNm, bitId){
+	busStopTime =20;
+// 	$("#busPassView").insertAfter("#popRoute");
+
+	if(func.checkMobile()){ 
+		index++;
+		$('#busPassView').css('z-index',index);
+		if(bitId){
+			$('#busPassView').show().animate({top:0});
+		}else{
+			$('#busPassView').show().animate({top:50});
+		}
+	}else{
+		index++;
+		$('#busPassView').css('z-index',index);
+		$('#busPassView').show();
+		$('#busPassView').fadeIn();
+	}
+	var params = 'sttnSrvcId='+sttnId+'&routeId='+0;
+	var url = '/search/getStopView.do';
+
+	AF.ajaxBasic(url, params, function(returnData){
+		
+		var data = returnData.rows;
+		var topData = returnData.topRows;
+		var html = "";	
+		var upHtml = "";
+		var titleHtml = "";
+		//혼잡도
+		var conArr = [ "<font style='color: gray;'>(정보없음)</font>"
+					 , "<font style='color: green;'>(여유)</font>"
+					 , "<font style='color: blue;'>(보통)</font>"
+					 , "<font style='color: red;'>(혼잡)</font>"];
+		$('#lytitle').html("");
+		$('#getUpView').html("");
+		$('#getStopView').html("");
+		titleHtml +='<h2><strong>'+spotNm+'</strong></h2>';
+// 		titleHtml +='<span id="adiNm"></span>';
+		if(adiNm!=null&&adiNm!='undefined'&&adiNm!=' '){
+			titleHtml +='<span>('+adiNm+')</span>';
+		}
+		titleHtml +='<span>['+pram+']</span>';
+		titleHtml += '<div class="console" style="top: 39px;right: 0px;" id="busstopConsole">';
+		titleHtml += '<button type="button" onclick="reSetBusStopTime('+pram+',\''+spotNm+'\','+sttnId+','+x+','+y+',\''+adiNm+'\','+ bitId+')" class="ref" title="새로고침">refresh()</button>';
+		titleHtml += '<div class="timer" id="busStopTime"></div>';
+		titleHtml += '</div>';
+
+		if(data.length > 0){
+			for(var i = 0; i < topData.length; i++){
+				
+				upHtml+='<tr>';
+				upHtml+='<td class="'+topData[i].bsisCodeNm+'"><a href="#" onclick="routeOpen(\''+topData[i].routeId+'\',\'\',\''+sttnId+'\'); clearInterval('+bsTime+');">'+topData[i].routeNo+'</a></td> ';
+				if(topData[i].msgTp == '05'){
+					var startTime = topData[i].startTime.padStart(4, "0");
+					startTime = startTime.substr(0,2) + ":" + startTime.substr(2,2)
+					upHtml+='<td>' +  startTime + ' 출발예정</td>';
+					if(topData[i].sttnKoreanNm.length > 12){
+						topData[i].sttnKoreanNm = topData[i].sttnKoreanNm.substr(0,12) + "...";
+					}
+					upHtml+='<td>'+topData[i].sttnKoreanNm+' 출발</td>'
+				}else{					
+					if(topData[i].routeDc=='급행'||topData[i].routeDc=='BRT'){
+						if(topData[i].arvlPrearngeVwpoint<2&&topData[i].sttnLc<2){
+							upHtml+='<td class="fcr"> 잠시 후 도착</td>';
+	// 						upHtml+='<td>'+topData[i].sttnLc+'번째 정류장 전</td>';
+							upHtml+='<td>잠시 후 도착'+conArr[topData[i].congestion]+'</td>';
+							
+						}else{
+							upHtml+='<td>'+topData[i].arvlPrearngeVwpoint+'분 후</td>';
+							upHtml+='<td>'+topData[i].sttnLc+'번째 정류장 전'+conArr[topData[i].congestion]+'</td>';
+						}
+					}else{
+						if(topData[i].arvlPrearngeVwpoint<2||topData[i].sttnLc<2){
+							upHtml+='<td class="fcr"> 잠시 후 도착</td>';
+	// 						upHtml+='<td>'+topData[i].sttnLc+'번째 정류장 전</td>';
+							upHtml+='<td>잠시 후 도착'+conArr[topData[i].congestion]+'</td>';
+						}else{
+							upHtml+='<td>'+topData[i].arvlPrearngeVwpoint+'분 후</td>';
+							upHtml+='<td>'+topData[i].sttnLc+'번째 정류장 전'+conArr[topData[i].congestion]+'</td>';
+						}
+					}
+				}
+				
+				upHtml+='</tr>';
+			}
+			for(var i = 0; i < data.length; i++){
+				if(i!=data.length-1&&data[i].routeId==data[i+1].routeId){
+					data.splice(i,1);
+					i--;
+				}else{
+					if(i==0){
+						html+='<tr>';
+					}
+					if(i%4==0){//4의 배수면 다음 줄로
+						html+='</tr>';
+						if(i+1!=data.length){ // 마지막 데이터인지 체크
+							html+='<tr>';
+						}
+					}
+					
+					html+='<td class="'+data[i].bsisCodeNm+'"><a href="#" onclick="routeOpen('+data[i].routeId+',\'\',\''+sttnId+'\'); clearInterval('+bsTime+');">'+data[i].routeNo+'</a></td>';
+						
+				}
+			}
+			if(html==""){
+				html +='<tr><td colspan="4" width="380px" class="ac">조회 결과가 없습니다.</td></tr>';
+			}else if(upHtml==""){
+				upHtml+='<tr><td colspan="4" width="380px" class="ac">조회 결과가 없습니다.</td></tr>';
+			}
+		}else{
+			html +='<tr><td colspan="4" width="380px" class="ac">조회 결과가 없습니다.</td></tr>';
+			upHtml+='<tr><td colspan="4" width="380px" class="ac">조회 결과가 없습니다.</td></tr>';
+		}	
+		$("#lytitle").html(titleHtml);
+		$('#getUpView').html(upHtml);
+		$("#getStopView").html(html);
+	}); 
+}
+
+/*모바일 경우 노선검색 결과 클릭시 페이지 이동*/
+function mRoute(){
+	location.href="/search/route.do?routeId="+arguments[0]+"&moChk="+1;
+}
+
+function findHighestZIndex(elem){
+  var elems = document.getElementsByTagName(elem);
+  var highest = 0;
+  for (var i = 0; i < elems.length; i++){
+    var zindex=document.defaultView.getComputedStyle(elems[i],null).getPropertyValue("z-index");
+    if ((zindex > highest) && (zindex != 'auto'))
+    {
+      highest = zindex;
+    }
+  }
+  return highest;
+}
+
+function copy(val,routeId) {
+	  var dummy = document.createElement('textarea');
+	  document.body.appendChild(dummy);
+	  dummy.value = val;
+	  dummy.select();
+	  document.execCommand('copy');
+	  document.body.removeChild(dummy);
+	  if(routeId){
+		  if($('#'+routeId).prop('class')=='bmark on'){
+			  $('#'+routeId).removeClass('on');
+		  }else{
+		  	$('#'+routeId).addClass('on');
+		  }
+	}
+	  alert("URL이 복사되었습니다.")
+}
+
+function openMap(){
+	var url = "/search/mobileMap.do";
+	window.open(url);
+}
+
+function startArvlTime(sttnSrvcId,routeId,sttnNm, prouteNo, spotId){
+	clearInterval(arvlTime);
+	arvlTime = setInterval(function(){ 
+		if(popArvlTime==0){
+			getBusPop(sttnSrvcId,routeId,sttnNm, prouteNo, spotId);
+		}
+		popArvlTime--;
+		$('#popArvlTime').html(popArvlTime);
+	}, 1000);
+}
+
+function reSetArvlTime(sttnSrvcId,routeId,sttnNm, prouteNo, spotId){
+	clearInterval(arvlTime);
+	getBusPop(sttnSrvcId,routeId,sttnNm, prouteNo, spotId);
+	popArvlTime=20;
+	startArvlTime(sttnSrvcId,routeId,sttnNm, prouteNo, spotId);
+	
+}
+
+function startBusStopTime(pram,spotNm,sttnId,x,y,adiNm, bitId){
+	clearInterval(bsTime);
+	bsTime = setInterval(function(){ 
+		if(busStopTime==0){
+			getStopView(pram,spotNm,sttnId,x,y,adiNm, bitId);
+		}
+		busStopTime--;
+		$('#busStopTime').html(busStopTime);
+	}, 1000);
+}
+
+function reSetBusStopTime(pram,spotNm,sttnId,x,y,adiNm, bitId){
+	clearInterval(bsTime);
+	getStopView(pram,spotNm,sttnId,x,y,adiNm, bitId);
+	startBusStopTime(pram,spotNm,sttnId,x,y,adiNm, bitId);
+	
+}
+
+</script>
+        
+    </main>
+    
+	<div id="popupGo">
+
+    </div>
+    <!--//mainContent-->
+	<!--bottom-->
+	
+
+
+
+<div class="footer-bg">
+    <footer>
+        <a href="/main.do" class="footer-logo"><img src="/resource/images/footer_logo.png" alt="청주">버스정보시스템</a>
+        <address>&#91;28542&#93; 충청북도 청주시 상당구 상당로 155 	&#40;북문로3가&#41; 청주시청 <span>TEL&#41; 043-201-2840</span></address>
+        <small>Copyright &copy; 1998-2017 Cheongju City. All Rights Reserved.</small>
+        <small>본 웹사이트에 게시된 이메일 주소가 자동수집되는 것을 거부하며, 위반시 "정보통신망법"에 의해 처벌됨을 유념하시기 바랍니다.</small>
+        <ul id="count" class="visitor">
+   		</ul>
+    </footer>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	count();
+});
+function count(){
+	var params = "";
+	var url = '/count.do';
+	AF.ajaxBasic(url, params, function(returnData){
+		var html = '';
+			//var data = returnData.rows;
+			var html = "";
+			var subTitle = "";
+			$("#count").html("");
+			html +='<li>오늘<span>'+AF.getCommaNumber(returnData.todayCnt)+'</span></li>';//AF.getCommaNumber(
+			html +='<li>총<span>'+AF.getCommaNumber(returnData.totCnt)+'</span></li>';
+			$('#count').html(html);
+	});
+}
+</script>
+	<!--//bottom-->
+    
+<script type="text/javascript">
+
+$(document).ready(function(){
+	var day = new Date();
+	var today = day.format('yyyyMMdd');
+	var dayLabel = day.getDay();
+	var week = new Array('일','월','화','수','목','금','토');
+    var timeHtml = '<time datetime="'+today.substring(0,4)+'" class="year"><em>'+today.substring(0,4)+'</em>년</time>';
+    timeHtml += '<time datetime="'+today.substring(4,6)+'-'+today.substring(6,8)+'" class="date"><em>'+today.substring(4,6)+'</em>월 <em>'+today.substring(6,8)+'</em>일<span>&#40;'+week[dayLabel]+'&#41;</span></time>';
+    $('#timeInfo').html(timeHtml);
+	mainNoticeList();
+	weatherInfo();
+	$('#popupGo').hide();
+	searchCook();
+ 	getPopup();
+	setInterval(weatherInfo(), 3600000);//1시간마다 미세먼지 갱신
+ 	setInterval(dustInfo(), 3600000);//1시간마다 미세먼지 갱신
+//  	$('#lang').html('');
+//  	$(key).value()
+	
+});
+
+/*팝업창띄우기*/
+function popupOpen(popupSj,popupCn,value,popupWidth,popupHg,popupLeftLc,popupHgLc,atchmnflId){
+	var now = new Date();
+    var year= now.getFullYear();
+    var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+    var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+    var chan_val = year + '-' + mon + '-' + day;
+    var cookieValue = getCookie("popup"+value);
+    var bool = true;
+	var url= "/popup.do?popupNo="+value; 
+	var winWidth = popupWidth;
+	var winHeight = popupHg;
+	var popupOption= "width="+winWidth+", height="+winHeight+",left="+popupLeftLc+",top="+popupHgLc;    //팝업창 옵션(optoin)
+    
+	if(cookieValue!=""&&cookieValue!=null){
+    	var list = cookieValue.split("exit;");
+        if(list.length>0){
+        	for(var k=0; k<list.length; k++){
+            	var data = list[k].split("=");
+            	if(data[k].indexOf("cookieValue"+value)!=-1 || data[k].indexOf(chan_val)!=-1){
+            		bool=false;
+            	}
+            }	
+        }
+    }
+    if(bool){
+    	var winPop;
+		winPop = window.open(url,"",popupOption);
+		winPop.focus();
+    }
+	return;	
+}
+/*팝업창을 띄우기 위한 리스트 가져오기*/
+function getPopup(){
+	var params = "";
+	var url = '/getPopup.do';
+	AF.ajaxBasic(url, params, function(returnData){
+		var html = '';
+		var data = returnData.rows;
+		if(data.length>0){
+			for(var i=0 ; i < data.length; i++){
+				popupOpen(data[i].popupSj,data[i].popupCn,data[i].popupNo,data[i].popupWidth,data[i].popupHg,data[i].popupLeftLc,data[i].popupHgLc,data[i].atchmnflId);
+			}
+		}else{
+			html += '<li class="ac">조회결과가 없습니다.</li>';
+		}
+	});
+}
+/*공지사항 상위 5개 리스트*/
+function mainNoticeList(){
+	$('#noticeOn').attr('class','on');
+	$('#faqOn').attr('class','off');
+	$('#faqList').hide();
+	$('#noticeList').show();
+	$('#goNotice').show();
+	$('#goFAQ').hide();
+	var params = "";
+	var url = '/mainNoticeList.do';
+	AF.ajaxBasic(url, params, function(returnData){
+		var html = '';
+			var data = returnData.rows;
+			var html = "";
+			var subTitle = "";
+
+			$("#noticeList").html("");
+			if(data.length>0){
+				for(var i=0 ; i < data.length; i++){
+					html +='<input type="hidden" value='+data[i].noticeNo+'/>';
+					if(compareDate(data[i].regsDate)){
+						html +='<li class="new">';
+					}else{
+						html +='<li>';
+					}
+					if(data[i].noticeSj.length>50){
+						html +='<a href="javaScript:getNoticeDetail('+data[i].noticeNo+')">'+data[i].noticeSj.substring(0,49)+'...</a>';
+					}else{
+						html += '<a href="javaScript:getNoticeDetail('+data[i].noticeNo+')">'+data[i].noticeSj+'</a>';
+					}
+					html += '<time datetime="'+data[i].regsDate+'">'+data[i].regsDate+'</time>';
+					html += "</li>";
+				}
+			}else{
+				html += '<li class="ac">조회결과가 없습니다.</li>';
+			}
+			$('#noticeList').html(html);
+	}, false);
+}
+
+/*FAQ 상위 5개 리스트*/
+function mainFaqList(){
+	$('#noticeOn').attr('class','off');
+	$('#faqOn').attr('class','on');
+	$('#noticeList').hide();
+	$('#faqList').show();
+	$('#goNotice').hide();
+	$('#goFAQ').show();
+	var params = "";
+	var url = '/mainFaqList.do';
+	AF.ajaxBasic(url, params, function(returnData){
+		var html = '';
+			var data = returnData.rows;
+			var html = "";
+			var subTitle = "";
+			$("#faqList").html("");
+			if(data.length>0){
+				for(var i=0 ; i < data.length; i++){
+					html +='<input type="hidden" value='+data[i].noticeNo+'/>';
+					if(data[i].noticeSj.length>60){
+						html +='<li><a href="javascript:getFaq('+data[i].noticeNo+')">'+data[i].noticeSj.substring(0,59)+'...</a>';
+					}else{
+						html += '<li><a href="javascript:getFaq('+data[i].noticeNo+')">'+data[i].noticeSj+'</a>';
+					}
+					if(compareDate(data[i].regsDate)){
+						html +='<img src="/resource/images/content_new.png" alt="신규 공지사항"></td>';
+					}
+					html += '<em class="fr">'+data[i].regsDate+'</em>';					
+					html += "</li>";
+				}
+			}else{
+				html += '<li class="ac">조회결과가 없습니다.</li>';
+			}
+			$('#faqList').html(html);
+	});
+}
+
+function compareDate(regDate){
+	var dt = new Date();
+	var ymd = regDate.split(' ');
+	var date = ymd[0].split('-');
+	var result = 0;
+	if(20+date[0]==dt.getFullYear()) result++;
+	if(date[1]==dt.getMonth()+1) result++;
+	if(date[2]==dt.getDate()) result++;
+	return (result == 3) ? true : false;// 
+}
+
+function getNoticeDetail(noticeNo){
+	location.href="/info/noticeView.do?seq="+noticeNo;
+}
+
+function getFaq(noticeNo){
+
+	location.href="/info/faq.do?seq="+noticeNo;
+}
+
+function goRoute(){
+	location.href="/search/route.do";
+}
+
+function goBusStop(){
+	location.href="/search/busStop.do";
+}
+
+
+/*날씨 정보*/
+function weatherInfo(){
+	var html = "";
+	var params = "";
+	var url = '/getWeather.do';
+	var wetherType = new Array();
+	AF.ajaxBasic(url, params, function(returnData){
+		var data = returnData.rows;
+		if(data.length > 0){
+            if(data[0].prcptStle=='0'){
+               if(data[0].skySttus=='1'){
+            	   wetherType[0]= 'sun';
+            	   wetherType[1] = '맑음';
+               }else if(data[0].skySttus=='2' ){
+            	   wetherType[0]= 'cloud';
+            	   wetherType[1] = '구름 조금';
+               }else if( data[0].skySttus=='3'){
+            	   wetherType[0]= 'verycloud';
+            	   wetherType[1] = '구름 많음';
+            	}else if ( data[0].skySttus=='4'){
+            		wetherType[0]= 'gray';
+            		wetherType[1] = '흐림';
+               }  
+            }else if(data[0].prcptStle=='1'){
+            	wetherType[0]= 'rain'; 
+            	wetherType[1] = '비';
+            }else if(data[0].prcptStle=='2'){
+            	wetherType[0]= 'wetsnow';
+            	wetherType[1] = '눈/비';
+            }else{
+            	wetherType[0]= 'snow';
+            	wetherType[1] = '눈';
+            }
+			 html += '<span>'+wetherType[1]+'</span>';
+			 html += '<ul class="celci">';
+			 html += '<li class="low"><span>'+data[0].lwetTmprt+'&#186;</span>최저</li>';
+			 html += '<li class="high"><span>'+data[0].topTmprt+'&#186;</span>최고</li>';
+			 html += '</ul>';
+			 html += '<time>&#40;'+data[0].frcstDt.substr(4,2)+'월&nbsp'+data[0].frcstDt.substr(6,2)+'일&nbsp'+data[0].frcstDt.substr(8,2)+'시 예보&#41;</time>';
+// 			html += '<strong>날씨정보<span class="fr">'+data[0].wetherDt+'시 기준</span></strong>';
+// 			html += '<div class="celci">'+data[0].tmprt+'</div>';
+		}else{
+			 html += '<span>날씨 데이터를<br> 조회할 수 없습니다.</span>';
+		}
+		$("#weather").html(html);
+	});
+}
+
+/*미세먼지 정보*/
+function dustInfo(){
+	var html = "";
+	var params = "";
+	var url = '/getDustInfo.do';
+	
+	AF.ajaxBasic(url, params, function(returnData){
+		var data = returnData.rows;
+		$("#dustInfo").html("");
+		if(data.length > 0){
+			html+=' <div>';
+			html+='<span>미세먼지 &#40;&#x339B;&#47;&#13221;&#41;</span>';
+				
+				if(1<data[0].fptcPm10Dnsty&&data[0].fptcPm10Dnsty<31){
+					html+='<em class="state good">';
+					html+='좋음<i class="figure">&#40;'+data[0].fptcPm10Dnsty+'&#41;</i></em>';
+					html+='<ul>';
+					html+='<li class="good"><em class="poi"></em></li>';
+					html+='<li class="normal"></li>';
+					html+='<li class="bad"></li>';
+					html+='<li class="worst"></li>';
+				}else if(data[0].fptcPm10Dnsty>30&&data[0].fptcPm10Dnsty<81){
+					html+='<em class="state normal">';
+					html+='보통<i class="figure">&#40;'+data[0].fptcPm10Dnsty+'&#41;</i></em>';
+					html+='<ul>';
+					html+='<li class="good"></li>';
+					html+='<li class="normal"><em class="poi"></em></li>';
+					html+='<li class="bad"></li>';
+					html+='<li class="worst"></li>';
+				}else if (data[0].fptcPm10Dnsty>80&&data[0].fptcPm10Dnsty<151){
+					html+='<em class="state bad">';
+					html+='나쁨<i class="figure">&#40;'+data[0].fptcPm10Dnsty+'&#41;</i></em>';
+					html+='<ul>';
+					html+='<li class="good"></li>';
+					html+='<li class="normal"></li>';
+					html+='<li class="bad"><em class="poi"></em></li>';
+					html+='<li class="worst"></li>';
+				}else if(data[0].fptcPm10Dnsty>151){
+					html+='<em class="state worst">';
+					html+='매우나쁨<i class="figure">&#40;'+data[0].fptcPm10Dnsty+'&#41;</i></em>';
+					html+='<ul>';
+					html+='<li class="good"></li>';
+					html+='<li class="normal"></li>';
+					html+='<li class="bad"></li>';
+					html+='<li class="worst"><em class="poi"></em></li>';
+				}else if(data[0].fptcPm10Dnsty=='0'){
+					html+='<em class="state">';
+					html+='-<i class="figure">&#40;상태값없음&#41;</i></em>';
+					html+='<ul>';
+					html+='<li class="good"></li>';
+					html+='<li class="normal"></li>';
+					html+='<li class="bad"></li>';
+					html+='<li class="worst"></li>';
+				}
+
+				html+='</ul>'
+				html+='</div>';
+				html+='<time datetime="10-21T12">&#40;'+data[0].dustDt.substring(0,2)+'월'+data[0].dustDt.substring(2,4)+'일'+data[0].dustDt.substring(4,6)+'시 기준&#41;</time>';
+                html+='<p style="margin-top: 3px; color: rgba(256,256,256,0.5); font-size: 1.2rem;">&#40;제공 : 청주기상지청&#41;</p>';
+        }else{
+				html+=' <div>';
+				html+='<span>미세먼지 &#40;&#x339B;&#47;&#13221;&#41;</span>';
+				html+='<em class="state">';
+				html+='-<i class="figure">&#40;상태값없음&#41;</i></em>';
+				html+='</div>';
+			} 
+		$("#dustInfo").html(html);
+	});
+}
+</script>
+</body>
+</html>

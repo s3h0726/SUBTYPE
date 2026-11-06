@@ -1,0 +1,26 @@
+'use strict';
+// 신규 공항버스 전체의 정차 ID·원본 도로 선분·좌표 출처·실행 경로만 일괄 검사한다.
+const fs=require('node:fs'),zlib=require('node:zlib'),assert=require('node:assert/strict'),vm=require('node:vm'),crypto=require('node:crypto');
+const {validateRoute}=require('./lib/kr-canonical.cjs'),base='data/kr/canonical/',read=p=>JSON.parse(fs.readFileSync(p)),gun=p=>JSON.parse(zlib.gunzipSync(fs.readFileSync(p))),sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const c=vm.createContext({console,Intl,Date,Set,Map,Math,Number,JSON,hongKongRouteBlockReason:()=>null});for(const f of ['js/korean-service-resolver.js','js/route-integrity.js'])vm.runInContext(fs.readFileSync(f,'utf8').replace(/^import[^;]+;/gm,'').replace(/\bexport\s+/g,''),c);
+const routes=['airport-seoul-batch.json','airport-gbis-batch.json','airport-busan-batch.json'].flatMap(f=>read(base+f).routes),ids=new Set;let directions=0,points=0;
+function projectionPoint(shape,position){const i=Math.floor(position),t=position-i;return !t?shape[i]:shape[i].map((x,k)=>x+(shape[i+1][k]-x)*t);}
+for(const route of routes){assert(!ids.has(route.id));ids.add(route.id);assert.deepEqual(validateRoute(route),[]);
+ if(route.originalRouteNumber){assert.equal(route.routeNumber,route.originalRouteNumber);assert(route.line.ko.includes(route.routeNumber+'번'));assert.equal(route.routeNumber,route.routeNumber.toUpperCase());}
+ for(const trip of route.verifiedJourneys){directions++;points+=trip.geometry.length;let shape,positions,calls;
+  if(route.geometryEvidence?.geometrySourceFile){const evidence=route.geometryEvidence;assert.equal(sha(evidence.geometrySourceFile),evidence.sourceSha256);assert.equal(sha(evidence.stopsSourceFile),evidence.stopsSha256);shape=gun(evidence.geometrySourceFile).rows.map(p=>[+p.posY,+p.posX]).filter((p,i,a)=>!i||JSON.stringify(p)!==JSON.stringify(a[i-1]));positions=trip.geometrySourcePositions;const raw=gun(evidence.stopsSourceFile).rows;calls=trip.sourceStopOrders.map(order=>String(raw.find(s=>s.stationOrd===order).stnId));
+   for(const s of trip.stations)if(s.coordinateEvidence){const e=s.coordinateEvidence;assert.equal(s.sourceStopId,e.sourceStopId);assert.equal(sha(base+e.sourceFile),e.sha256);const raw=gun(base+e.sourceFile).result.gg,source=['up','down'].flatMap(d=>raw[d]?.list||[]).find(x=>x.stationId===s.sourceStopId);assert(source);assert.equal(s.latitude,Math.atan(Math.sinh(+source.lat/6378137))*180/Math.PI);assert.equal(s.longitude,+source.lon/6378137*180/Math.PI);}
+  }else if(trip.geometryEvidence?.kind==='official-gbis-road-polyline'){const e=trip.geometryEvidence,raw=gun(e.sourceFile).result.gg[e.sourceDirection].list;shape=raw.map(p=>[Math.atan(Math.sinh(+p.lat/6378137))*180/Math.PI,+p.lon/6378137*180/Math.PI]).filter((p,i,a)=>!i||JSON.stringify(p)!==JSON.stringify(a[i-1]));positions=e.sourcePositions;calls=trip.sourcePattern.boardingStopIds.map(String);
+  }else{const p=route.geometryEvidence.sourceShapeFile,text=fs.readFileSync(base+p,'utf8');shape=[...text.matchAll(/<coord\s+([^>]+)\/>/g)].map(m=>Object.fromEntries([...m[1].matchAll(/(\w+)="([^"]*)"/g)].map(x=>[x[1],x[2]]))).slice(1).map(x=>[+x.value3,+x.value2]);
+   const raw=fs.readFileSync(base+route.geometryEvidence.sourceDetailsFile,'utf8');const sourceIds=[...raw.matchAll(/<line\s+[^>]*value1="([^"]+)"/g)].slice(2).map(m=>m[1]);const out=trip.directionId==='outbound',cut=sourceIds.indexOf(route.directionEvidence.sourceTerminalIds[1])+1;calls=out?sourceIds.slice(0,cut):sourceIds.slice(cut);
+   // 부산 원본은 구간별 참조가 없으므로 실제 선분 위 좌표와 원본 굴곡 보존을 직접 확인한다.
+   let previous=-1;positions=trip.geometry.map(p=>{for(let i=Math.max(0,Math.floor(previous));i<shape.length-1;i++){const a=shape[i],b=shape[i+1],k=Math.abs(b[0]-a[0])>Math.abs(b[1]-a[1])?0:1,t=(p[k]-a[k])/(b[k]-a[k]||1);if(t>=-1e-8&&t<=1+1e-8&&i+t>previous-1e-8&&p.every((x,j)=>Math.abs(x-(a[j]+(b[j]-a[j])*t))<1e-8)){previous=i+Math.max(0,Math.min(1,t));return previous;}}throw Error('부산 원본 도로 밖 좌표');});
+  }
+  assert.deepEqual(trip.stations.map(s=>String(s.sourceStopId)),calls);assert.equal(positions.length,trip.geometry.length);
+  const retained=new Set(positions);for(let i=0;i<positions.length;i++){const p=projectionPoint(shape,positions[i]);assert(p.every((x,k)=>Math.abs(x-trip.geometry[i][k])<1e-8));if(i)assert(positions[i]>positions[i-1]);}
+  for(let p=Math.ceil(positions[0]);p<positions.at(-1);p++)assert(retained.has(p),'원본 도로 굴곡 누락');
+  c.route={...route,canonicalContract:'kr-canonical-v1'};c.choiceId=trip.id;vm.runInContext("{const choice=koreanVerifiedChoices(route).find(x=>x.id===choiceId);globalThis.resolved=resolveKoreanVerifiedChoice(choice,route)}",c);c.resolvedRoute=c.resolved.route;c.service=c.resolved.service;assert.equal(vm.runInContext("resolvePlayableRoute(resolvedRoute,{direction:'forward',service}).stations.length",c),trip.stations.length);
+ }
+}
+const code=routes.find(r=>/[A-Z]/.test(r.routeNumber||''));assert(code);const bad=structuredClone(code);bad.originalRouteNumber='임의';assert(validateRoute(bad).includes('한국어 노선·운영사명 누락'));
+const result={passed:true,records:routes.length,newCards:routes.filter(r=>!r.mergeIntoRouteId).length,directions,points,scope:'신규 전체 정차 ID·공식 좌표·원본 도로 굴곡·실제 경로 해석. 브라우저·기본 IME·서버 저장과 별개.'};fs.writeFileSync('reports/kr-rebuild/20261105-공항버스-원본검증.json',JSON.stringify(result,null,2)+'\n');console.log(result);

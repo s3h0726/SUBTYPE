@@ -23,3 +23,11 @@ test('every recovered service preserves official direction, stop IDs and complet
  }
  console.log(JSON.stringify({recoveredRoutes:batch.routes.length,directions:batch.routes.reduce((n,r)=>n+r.verifiedJourneys.length,0)}));
 });
+// 공항 노선의 긴 무정차 구간을 허용해도 원본 단절과 정류장 이탈은 허용하지 않는다.
+test('공항 무정차 구간 옵션은 원본 단절·정류장 이탈을 완화하지 않는다',()=>{
+ const options={maximumInitialDistanceKm:Infinity,maximumLegDistanceKm:Infinity};
+ assert.throws(()=>bindStopsToShape([[37,127],[38,127]],[{posY:37,posX:127},{posY:38,posX:127}],options),/SOURCE_GEOMETRY_GAP/);
+ assert.throws(()=>bindStopsToShape([[37,127],[37,127.01]],[{posY:37,posX:127},{posY:37.1,posX:127.01}],options),/NO_ORDERED_ROAD_BINDING/);
+ const shape=Array.from({length:8},(_,i)=>[37,127+i*.01]),stops=[{posY:37,posX:127.02},{posY:37,posX:127.07}];
+ assert.throws(()=>bindStopsToShape(shape,stops));const result=bindStopsToShape(shape,stops,options);assert.deepEqual(result.geometry,shape);assert.deepEqual(result.indexes,[2,7]);
+});

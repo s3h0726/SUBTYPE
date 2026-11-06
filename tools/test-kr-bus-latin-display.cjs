@@ -133,6 +133,11 @@ assert(gameSource.includes('route=restoreKrBusLatinRoute(railDataRepository.reso
 assert(gameSource.includes('station=restoreKrBusLatinStation(station)'),'free drive must correct stop');
 assert(bundle.includes('route=restoreKrBusLatinRoute(railDataRepository.resolveRoute(route))'),'shipped game path corrected');
 
+// 계통 설명은 보존하고 공식 노선번호의 영문자만 대문자로 복원한다.
+for(const [original,previous,expected] of [['P9401(출근)','피9401(출근)','P9401(출근)'],['a1','에이1','A1'],['B3(단축)','비3(단축)','B3(단축)'],['ABC10','에이비씨10','ABC10']]){
+ const actual=route({id:'kr-bus-검증',countryId:'kr',mode:'bus',originalRouteNumber:original,routeNumber:previous,line:{ko:'경기 의정부시 '+previous+'번'},stations:[]});
+ assert.equal(actual.line.ko,'경기 의정부시 '+expected+'번');assert.equal(actual.id,'kr-bus-검증');
+}
 // Evaluate the actual Game.answerValues method, not a copied test-only function.
 const typingSource=gameSource.slice(gameSource.indexOf('  answerValues(station){'),gameSource.indexOf('  routeIndex(station){'));
 assert(typingSource.includes('restoreKrBusLatinStation'),'actual typing path must restore stop name');

@@ -1,0 +1,5 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto'),{shareGeometry}=require('./lib/kr-shared-geometry.cjs'),hash=s=>crypto.createHash('sha256').update(s).digest('hex');
+for(const name of ['airport-seoul-batch.json','rail-platform-recovery-batch.json']){const batch=JSON.parse(fs.readFileSync('data/kr/canonical/'+name)),before=hash(JSON.stringify(batch));shareGeometry(batch);assert.equal(hash(JSON.stringify(batch)),before,'직렬화 원본 변경');for(const r of batch.routes)for(const j of r.verifiedJourneys)for(let i=0;i<j.directedSegments.length;i++)assert.equal(j.directedSegments[i].geometry[0],j.geometry[j.stations[i].geometryIndex]);}
+const invalid={routes:[{verifiedJourneys:[{geometry:[[37,127],[37.01,127.01]],stations:[{geometryIndex:0},{geometryIndex:1}],directedSegments:[{geometry:[[37,127],[38,128]]}]}]}]},before=JSON.stringify(invalid);shareGeometry(invalid);assert.equal(JSON.stringify(invalid),before);assert.notEqual(invalid.routes[0].verifiedJourneys[0].directedSegments[0].geometry[1],invalid.routes[0].verifiedJourneys[0].geometry[1]);
+console.log('통과: 실제 두 배치의 직렬화 해시 보존·좌표 공유·잘못된 원본 보존');

@@ -67,3 +67,5 @@
 `node tools/run-kr-rebuild-checks.cjs`는 검사 결과를 automated-checks.json에 저장한다. 교통수단별 수집기는 tools/kr-bus-*, tools/kr-rail-*, tools/kr-river-*에 있다. 원본·출처·실패 자료는 data/kr/canonical에 보존한다. 이전 한국 컴파일러와 연구용 목록 생성기는 새 카탈로그를 덮어쓰지 못한다.
 
 계정·기록·Supabase SQL은 수정하지 않았다. 초기 GitHub 복구 지점은 backup/korea-before-rebuild-20261030이다. 기존 로컬 SUBTYPE 작업 폴더는 보존하고 최신 main의 일본·홍콩 변경 위에 재구축 커밋을 합쳤다.
+
+최신 철도·공항버스 확장: [2026-11-07 구현 보고](20261107-철도-공항버스-확장.md).

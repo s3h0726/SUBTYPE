@@ -3133,6 +3133,9 @@ const KR_BUS_ROUTE_LETTERS=[
 ];
 function restoreKrBusRouteCode(value){
  const original=String(value??'').normalize('NFC').trim();
+ // 공식 계통 접미사는 보존하고 노선번호 부분만 복원한다.
+ const variant=original.match(/^([^()]+)(\([^()]+\))$/);
+ if(variant){const code=restoreKrBusRouteCode(variant[1]);return code===variant[1]?original:code+variant[2]}
  if(!original||!/[가-힣]/.test(original))return original;
  let remaining=original,restored='',letters=0;
  while(remaining){
@@ -3152,9 +3155,9 @@ function restoreKrBusRouteName(raw){
  const previous=String(raw?.line?.ko||'').normalize('NFC');
  if(!previous)return raw;
  const fromSource=String(raw?.sourceRouteNumber||raw?.originalRouteNumber||raw?.routeNumber||'').normalize('NFC').trim();
- const official=/^[A-Za-z0-9-]+$/.test(fromSource)?fromSource.toUpperCase():restoreKrBusRouteCode(fromSource);
+ const official=/^[A-Za-z0-9-]+(?:\([^()]+\))?$/.test(fromSource)?fromSource.toUpperCase():restoreKrBusRouteCode(fromSource);
  // Phonetic '지' can mean G or Z; do not guess without the original Latin source.
- const hasVerifiedLatin=/^[A-Z0-9-]+$/.test(official)&&/[A-Z]/.test(official)
+ const hasVerifiedLatin=/^[A-Z0-9-]+(?:\([^()]+\))?$/.test(official)&&/[A-Z]/.test(official)
   &&(/[A-Za-z]/.test(fromSource)||!fromSource.includes('지'));
  const read=c=>KR_BUS_SPELLED_LATIN[c.toUpperCase().charCodeAt(0)-65];
  const sourceReading=fromSource.replace(/[A-Za-z]/g,read);
@@ -3760,7 +3763,7 @@ const COUNTRY_UI={hk:{mark:'HONG KONG RAIL',status:'香港 · HONG KONG',subtitl
 COUNTRY_UI.tw={mark:'TAIWAN RAIL',status:'대만 · TAIWAN',subtitle:'대만 철도 타이핑',title:'대만 철도를<br><span>타이핑하다.</span>',intro:'대만의 실제 철도 선형과 정차역을 따라 달립니다.<br>출발역부터 종착역까지 한국어 역명을 입력하세요.',network:'대만 철도 네트워크'};
 COUNTRY_UI.th={mark:'태국 철도',status:'ประเทศไทย · THAILAND',subtitle:'태국 철도 타이핑',title:'태국 철도를<br><span>타이핑하다.</span>',intro:'국철과 방콕 도시철도의 실제 선로를 따라 달립니다.<br>태국어·영문 역명을 함께 보며 한국어로 입력하세요.',network:'태국 철도 네트워크'};
 const renderTabs=(target,items,dataKey,current)=>{target.innerHTML=items.map(([id,label])=>`<button class="${id===current?'active':''}" data-${dataKey}="${id}">${label}</button>`).join('')};
-const KR_BUS_CATEGORIES=[['all','전체 버스'],['city_bus','시내버스'],['metropolitan_bus','광역버스'],['village_bus','마을버스'],['express_bus','급행버스'],['rural_bus','농어촌버스'],['other_bus','기타 버스']];
+const KR_BUS_CATEGORIES=[['all','전체 버스'],['airport_bus','공항버스·공항 연계'],['city_bus','시내버스'],['metropolitan_bus','광역버스'],['village_bus','마을버스'],['express_bus','급행버스'],['rural_bus','농어촌버스'],['other_bus','기타 버스']];
 function busCategories(){return KR_BUS_CATEGORIES;}
 function importedBusCategories(){const scoped=routes.filter(route=>routeTransportGroup(route)==='bus'&&(regionFilter==='all'||route.regionId===regionFilter)),values=new Map([['all','전체']]);for(const route of scoped)values.set(route.normalizedCategory||route.routeType||route.category,route.regionalCategory||route.routeType||route.category);return[...values]}
 function renderTransportFilters(){if(countryId==='th'){$('#transport-mode-tabs').hidden=true;$('#region-tabs').hidden=true;$('#category-tabs').hidden=false;renderTabs($('#category-tabs'),THAILAND_CATEGORIES,'category',category);return}const groupTabs=$('#transport-mode-tabs'),regionTabs=$('#region-tabs'),categoryTabs=$('#category-tabs');if(countryId==='tw'){groupTabs.hidden=true;regionTabs.hidden=true;categoryTabs.hidden=false;renderTabs(categoryTabs,TAIWAN_CATEGORIES,'category',category);return}if(countryId==='hk'){groupTabs.hidden=true;regionTabs.hidden=true;categoryTabs.hidden=false;renderTabs(categoryTabs,HONG_KONG_CATEGORIES,'category',category);return}if(countryId==='jp'){groupTabs.hidden=true;regionTabs.hidden=true;categoryTabs.hidden=false;renderTabs(categoryTabs,JP_CATEGORIES.filter(([id])=>id==='all'||id==='custom'||id==='limited-express'||routes.some(route=>routeGroup(route)===id)),'category',category);return}groupTabs.hidden=false;renderTabs(groupTabs,KR_GROUPS,'transport-group',transportGroup);regionTabs.hidden=transportGroup==='custom';if(!regionTabs.hidden)renderTabs(regionTabs,KR_REGIONS,'region',regionFilter);const items=transportGroup==='bus'?busCategories():KR_CATEGORIES[transportGroup]||[];categoryTabs.hidden=!items.length;if(items.length)renderTabs(categoryTabs,items,'category',category)}
@@ -3928,11 +3931,11 @@ function refreshRoutes(){
   try{renderHomeNetwork()}catch(error){console.error('Home network rendering failed:',error)}
 }
 function refreshFeatureCounts(){document.querySelectorAll('#feature-viewport [data-feature-route]').forEach(button=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),target=button.closest('article')?.querySelector('[data-feature-stations]');if(route&&target)target.textContent=`${route.stationCount||route.stations.length}개 ${stopWord(route)}`})}
-function searchable(r){if(r.countryId==='th')return normalize([thailandNameText(r.operator,'operators'),thailandNameText(r.line,'lines'),...(r.searchStations||[]),...(r.stations||[]).map(s=>thailandNameText(s))].join(' '));if(r.countryId==='tw')return normalize([taiwanNameText(r.operator,{english:true}),taiwanNameText(r.line,{english:true}),...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[taiwanNameText(s,{english:true}),...(s.koAliases||[])])].join(' '));return normalize([r.operator.ja,r.operator.en,r.operator.ko,r.line.ja,r.line.en,r.line.ko,...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[s.ja,s.kana,s.romaji,s.ko,...(s.koAliases||[])])].join(' '))}
+function searchable(r){if(r.countryId==='th')return normalize([thailandNameText(r.operator,'operators'),thailandNameText(r.line,'lines'),...(r.searchStations||[]),...(r.stations||[]).map(s=>thailandNameText(s))].join(' '));if(r.countryId==='tw')return normalize([taiwanNameText(r.operator,{english:true}),taiwanNameText(r.line,{english:true}),...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[taiwanNameText(s,{english:true}),...(s.koAliases||[])])].join(' '));return normalize([r.operator.ja,r.operator.en,r.operator.ko,r.line.ja,r.line.en,r.line.ko,...(r.airportNamesKo||[]),...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[s.ja,s.kana,s.romaji,s.ko,...(s.koAliases||[])])].join(' '))}
 function searchVariants(value){const base=normalize(value),variants=new Set([base]);for(const [from,to]of [['구마가와','쿠마가와'],['쿠마가와 철도','쿠마가와테츠도우']])if(base.includes(from))variants.add(base.replaceAll(from,to));return[...variants]}
 function routeGroup(route){if(route.category==='custom')return'custom';if(countryId==='jp'&&(route.id==='line-11328'||route.dataKind==='trainService'||route.famousExpress))return'limited-express';if(route.category==='shinkansen')return'shinkansen';if(countryId==='jp'&&(route.mode==='monorail'||/モノレール/.test(route.line?.ja||'')))return'monorail';return route.category}
 function routeTransportGroup(route){if(route.category==='custom')return'custom';if(['bus','village_bus','express_bus','brt'].includes(route.mode))return'bus';if(['river_bus','ferry'].includes(route.mode))return'water';if(['rail','subway','commuter_rail','high_speed_rail','light_rail','monorail','tram','airport_rail'].includes(route.mode))return'rail';return'other'}
-function routeCategoryMatches(route){if(category==='all')return true;if(transportGroup==='bus')return(category===(route.normalizedCategory||route.routeType||route.category));return routeGroup(route)===category||route.mode===category}
+function routeCategoryMatches(route){if(category==='all')return true;if(transportGroup==='bus'&&category==='airport_bus')return !!route.airportIds?.length;if(transportGroup==='bus')return(category===(route.normalizedCategory||route.routeType||route.category));return routeGroup(route)===category||route.mode===category}
 const NETWORK_GROUPS={keio:{routeIds:[],label:'케이오 본선 계통',kind:'branches'}};
 // Public service-patterns and physical tracks are separate concepts.
 // Group city-tram operators only in the selector; preserve every selectable route and its geometry.

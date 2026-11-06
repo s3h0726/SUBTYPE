@@ -14,5 +14,10 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
  const html=fs.readFileSync('reports/korean-names/editor.html','utf8');assert(html.includes("import('../../js/route-payload.js')"));
  const editor=vm.createContext({country:'kr',HEADERS:{services:[], 'stations-by-line':[], 'stations-unique':[]}});vm.runInContext(html.slice(html.indexOf('function stationName('),html.indexOf('async function thaiCatalog(')),editor);editor.input=route;
  const rows=vm.runInContext('tableForRoute(input,"stations-by-line")',editor),ids=new Set(route.verifiedJourneys.flatMap(j=>j.stations.map(s=>s.id)));assert.equal(rows.length-1,ids.size);assert.equal(new Set(rows.slice(1).map(r=>r[4])).size,ids.size);assert(ids.size>route.stations.length);
+ // 새 배치도 같은 편집표에서 모든 방향의 정차 ID를 중복 없이 제공한다.
+ for(const name of ['rail-continuity-recovery-batch.json','rail-urban-recovery-batch.json','airport-seoul-batch.json','airport-gbis-batch.json','airport-busan-batch.json','rail-platform-recovery-batch.json']){
+  const file='data/kr/canonical/'+name;if(!fs.existsSync(file))continue;
+  for(const candidate of JSON.parse(fs.readFileSync(file)).routes){editor.input=candidate;const table=vm.runInContext('tableForRoute(input,"stations-by-line")',editor),all=new Set(candidate.verifiedJourneys.flatMap(j=>j.stations.map(s=>s.id)));assert.equal(table.length-1,all.size,name+' '+candidate.id);assert.equal(new Set(table.slice(1).map(r=>r[4])).size,all.size);}
+ }
  console.log('한국 철도 편집 회귀 통과: 압축 상세 연동·전체 방향 역 목록·검색·행선지·정답·운영사·노선·좌표 보존');
 })().catch(e=>{console.error(e);process.exitCode=1});

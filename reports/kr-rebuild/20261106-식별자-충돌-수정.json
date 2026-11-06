@@ -1,0 +1,12 @@
+{
+  "status": "수정 후 재검사 통과",
+  "initialFailure": "공식 정차열 자료에서 서해선 열차 식별자가 여러 원본 정차열에 재사용되어 단일 Map이 마지막 정차열만 보존함",
+  "resolution": "식별자별 모든 원본 정차열을 유지하고 전체 정차열 일치 및 원본 행 위치를 검증. 원본 식별자와 공개 계통 ID는 보존.",
+  "exampleTripIds": [
+    "korail-conventional-20261101-서해선-1241",
+    "korail-conventional-20261101-서해선-1243",
+    "korail-conventional-20261101-서해선-1245"
+  ],
+  "timetableVerification": false,
+  "finalEvidence": "20261106-철도-승강장후보-원본검증.json"
+}

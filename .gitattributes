@@ -35,3 +35,8 @@ data/th/** text eol=lf
 data/th/source/** -text -whitespace
 reports/thailand/*.json text eol=lf
 reports/korean-names/editor.html text eol=lf
+
+# 한국 공식 원문은 해시 검증을 위해 운영체제별 개행 변환을 금지한다.
+data/kr/canonical/airport-*-source/** -text -whitespace
+data/kr/canonical/airport-source/** -text -whitespace
+data/kr/canonical/national-source/** -text -whitespace
