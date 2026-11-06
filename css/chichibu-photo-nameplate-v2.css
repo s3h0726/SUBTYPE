@@ -1,0 +1,494 @@
+/* Chichibu Railway Main Line CR01–CR37, photo-based second edition.
+   Reference: user-supplied Kagemori (CR32) nameboard. No camera glare, tilt or
+   fake texture. Scope deliberately excludes other Japanese/private railways.
+   The Japanese, Korean, romanized and official station-code text is dynamic. */
+#screen-game.active .station-sign[data-photo-sign="chichibu"]{
+  --cr-cream:#f6f1e6;
+  --cr-navy:#06447b;
+  --cr-navy-deep:#073967;
+  --cr-ink:#101315;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) 24px!important;
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  padding:0!important;
+  margin:0!important;
+  border:2px solid #1c456b!important;
+  border-radius:2px!important;
+  background:var(--cr-cream)!important;
+  color:var(--cr-ink)!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-brand,
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-strip{
+  display:none!important;
+}
+/* Two large enamel color fields: 61% ivory, 39% solid navy blue. */
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-main,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="chichibu"] .station-sign-main{
+  position:relative!important;
+  display:grid!important;
+  grid-column:1!important;
+  grid-row:1!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,61fr) minmax(0,39fr)!important;
+  align-items:stretch!important;
+  width:100%!important;
+  height:100%!important;
+  max-height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0 8px!important;
+  overflow:hidden!important;
+  background:linear-gradient(
+    to bottom,
+    var(--cr-cream) 0%,
+    var(--cr-cream) 60.5%,
+    var(--cr-navy) 60.5%,
+    var(--cr-navy) 100%
+  )!important;
+  z-index:1!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-main::before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  left:0!important;right:0!important;
+  top:60.5%!important;
+  height:5px!important;
+  background:linear-gradient(to bottom,#faf9f5 0 1px,#0d5489 1px 5px)!important;
+  z-index:2!important;
+  pointer-events:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-main::after{
+  content:"秩父鉄道  ·  치치부 철도"!important;
+  position:absolute!important;
+  left:50%!important;bottom:15px!important;
+  width:28%!important;
+  transform:translateX(-50%)!important;
+  text-align:center!important;
+  color:#d7e8f3!important;
+  font:700 clamp(10px,1.1vw,14px)/1.2 "Noto Sans KR","Noto Sans JP",sans-serif!important;
+  letter-spacing:.02em!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  z-index:3!important;
+  pointer-events:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-current,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="chichibu"] .station-current{
+  position:relative!important;
+  grid-column:1/-1!important;
+  grid-row:1!important;
+  display:grid!important;
+  grid-template-columns:minmax(64px,1fr) minmax(0,2.3fr) minmax(67px,1fr)!important;
+  grid-template-rows:minmax(0,1fr) 22px 20px!important;
+  align-items:center!important;
+  justify-items:center!important;
+  align-content:stretch!important;
+  gap:0 3px!important;
+  width:100%!important;
+  height:100%!important;
+  max-height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:5px 0 2px!important;
+  overflow:visible!important;
+  border:0!important;
+  background:transparent!important;
+  color:var(--cr-ink)!important;
+  z-index:3!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-current::after,
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #station-context{
+  display:none!important;
+}
+/* Kana is the dominant headline, exactly like かげもり in the reference. */
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-main{
+  order:initial!important;
+  grid-column:2!important;
+  grid-row:1!important;
+  align-self:center!important;
+  justify-self:center!important;
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  font:900 clamp(28px,4.6vw,70px)/1.03 "Noto Sans JP","Yu Gothic",sans-serif!important;
+  letter-spacing:.005em!important;
+  color:var(--cr-ink)!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  transform:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-kana,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="chichibu"] #prompt-kana{
+  order:initial!important;
+  grid-column:3!important;
+  grid-row:1!important;
+  align-self:end!important;
+  justify-self:start!important;
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0 0 8px!important;
+  padding:0!important;
+  font:800 clamp(13px,1.8vw,23px)/1.15 "Noto Sans JP",sans-serif!important;
+  color:#282d33!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-sub{
+  order:initial!important;
+  grid-column:2!important;grid-row:2!important;
+  justify-self:center!important;
+  display:block!important;
+  width:100%!important;min-height:0!important;
+  margin:0!important;padding:0!important;
+  font:850 clamp(15px,1.9vw,24px)/1.2 Inter,Arial,sans-serif!important;
+  color:#1a252e!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-ko{
+  order:initial!important;
+  grid-column:3!important;grid-row:2!important;
+  justify-self:start!important;
+  display:block!important;
+  width:100%!important;
+  min-height:0!important;
+  margin:0!important;padding:0!important;
+  color:#3d464e!important;
+  font:730 clamp(11px,1.25vw,17px)/1.15 "Noto Sans KR",sans-serif!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-ko.memory-hidden{visibility:hidden!important}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #ko-progress,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="chichibu"] #ko-progress{
+  order:initial!important;
+  grid-column:2!important;grid-row:3!important;
+  align-self:center!important;
+  justify-self:center!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:19px!important;
+  min-height:19px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:transparent!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #ko-progress .input-cell{
+  height:18px!important;
+  min-height:0!important;
+  line-height:18px!important;
+  font-size:clamp(11px,1.25vw,16px)!important;
+  color:#182d43!important;
+  border-bottom:2px solid #14538a!important;
+}
+/* CR01–CR37 shields: large blue header, two-row white numeric field. */
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #station-badge:not([hidden]),
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="chichibu"] #station-badge:not([hidden]){
+  position:absolute!important;
+  top:9px!important;
+  left:5.4%!important;
+  right:auto!important;
+  bottom:auto!important;
+  grid-column:auto!important;grid-row:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:54px!important;height:65px!important;
+  min-width:54px!important;min-height:65px!important;
+  max-width:54px!important;max-height:65px!important;
+  margin:0!important;padding:1px!important;
+  border:3px solid #164277!important;
+  border-radius:10px!important;
+  background:#e6edf1!important;
+  color:#142c48!important;
+  box-shadow:0 0 0 2px #f2eee5!important;
+  font-size:0!important;
+  line-height:1!important;
+  z-index:8!important;
+  transform:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #station-badge:not([hidden])::before{
+  content:attr(data-photo-prefix)!important;
+  position:static!important;
+  display:block!important;
+  width:calc(100% + 2px)!important;
+  height:auto!important;
+  padding:4px 0 2px!important;
+  margin:0!important;
+  border-radius:5px 5px 0 0!important;
+  background:#164277!important;
+  color:#fff!important;
+  font:900 13px/1 Arial,sans-serif!important;
+  text-align:center!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] #station-badge:not([hidden])::after{
+  content:attr(data-photo-number)!important;
+  position:static!important;
+  display:block!important;
+  width:auto!important;height:auto!important;
+  margin:1px 0 0!important;
+  padding:0!important;
+  background:none!important;
+  color:#15283b!important;
+  transform:none!important;
+  font:900 26px/1 Arial,sans-serif!important;
+  text-align:center!important;
+}
+/* Lower navy panel holds the two adjacent stations, both directions remain live. */
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="chichibu"] .station-neighbor{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  grid-row:2!important;
+  position:relative!important;
+  min-width:0!important;
+  min-height:0!important;
+  height:100%!important;
+  max-height:100%!important;
+  margin:0!important;
+  padding:10px 9px 7px!important;
+  gap:1px!important;
+  overflow:hidden!important;
+  border:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  text-align:left!important;
+  z-index:4!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor.previous{
+  grid-column:1!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor.next{
+  grid-column:3!important;
+  align-items:flex-end!important;
+  text-align:right!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor small,
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor .korail-neighbor-badge{
+  display:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor b,
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor span{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  color:#f5faff!important;
+  word-break:keep-all!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor b{
+  order:1!important;
+  font:900 clamp(14px,1.8vw,26px)/1.06 "Noto Sans JP",sans-serif!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  max-height:2.12em!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor .station-neighbor-kana{
+  order:2!important;
+  font:650 clamp(10px,.9vw,13px)/1.1 "Noto Sans JP",sans-serif!important;
+  color:#bcd6e9!important;
+  white-space:nowrap!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor [id$="-station-romaji"]{
+  order:3!important;
+  font:720 clamp(10px,1.1vw,15px)/1.1 Inter,Arial,sans-serif!important;
+  color:#fff!important;
+  white-space:nowrap!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor .station-neighbor-ko{
+  order:4!important;
+  font:650 clamp(10px,1.05vw,14px)/1.14 "Noto Sans KR",sans-serif!important;
+  color:#d6e4ed!important;
+  white-space:nowrap!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor i{
+  display:block!important;
+  position:absolute!important;
+  top:7px!important;
+  bottom:auto!important;
+  left:5px!important;
+  right:auto!important;
+  z-index:5!important;
+  color:#eaf4fc!important;
+  font:900 clamp(17px,2vw,27px)/1 Arial,sans-serif!important;
+  transform:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor.next i{
+  left:auto!important;right:6px!important;
+}
+/* Keep the native Korean IME input hidden but focusable, as in other photo signs. */
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-current .station-sign-input,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="chichibu"] .station-current .station-sign-input{
+  position:absolute!important;
+  top:50%!important;left:50%!important;
+  width:1px!important;height:1px!important;
+  min-width:1px!important;min-height:1px!important;
+  max-width:1px!important;max-height:1px!important;
+  padding:0!important;margin:0!important;
+  border:0!important;
+  opacity:0!important;
+  overflow:hidden!important;
+  clip-path:inset(50%)!important;
+  background:transparent!important;
+  pointer-events:none!important;
+  transform:translate(-50%,-50%)!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-footer{
+  grid-column:1!important;
+  grid-row:2!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(65px,auto) minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:8px!important;
+  height:24px!important;
+  min-height:24px!important;
+  max-height:24px!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:3px 12px!important;
+  border:0!important;
+  border-top:1px solid #32668e!important;
+  background:var(--cr-navy-deep)!important;
+  color:#fff!important;
+  font:750 9px/1.1 "Noto Sans KR",sans-serif!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-footer span{
+  min-width:0!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  color:#fff!important;
+}
+/* For the longest kana station names, reserve more space and reduce only the title. */
+#screen-game.active .station-sign[data-photo-sign="chichibu"][data-chichibu-long="true"] #prompt-main{
+  font-size:clamp(22px,3vw,43px)!important;
+}
+@media(max-height:510px) and (min-width:761px){
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-main{
+    font-size:clamp(24px,5.5dvh,43px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-current{
+    grid-template-rows:minmax(0,1fr) 18px 17px!important;
+    padding:2px 0 0!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-sub{font-size:14px!important}
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #ko-progress{
+    height:17px!important;min-height:17px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor b{
+    font-size:clamp(13px,3dvh,21px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor .station-neighbor-kana{
+    display:none!important;
+  }
+}
+@media(max-width:760px){
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-main,
+  #screen-game.active.free-drive-active .station-sign[data-photo-sign="chichibu"] .station-sign-main{
+    grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) minmax(0,1fr)!important;
+    grid-template-rows:minmax(0,60fr) minmax(0,40fr)!important;
+    background:linear-gradient(to bottom,var(--cr-cream) 0%,var(--cr-cream) 60%,var(--cr-navy) 60%,var(--cr-navy) 100%)!important;
+    padding:0 3px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-main::before{top:60%!important}
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-current{
+    grid-template-columns:minmax(33px,.8fr) minmax(0,2fr) minmax(42px,1fr)!important;
+    grid-template-rows:minmax(0,1fr) 16px 16px!important;
+    padding:4px 0 0!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-main{
+    font-size:clamp(18px,5.4vw,31px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"][data-chichibu-long="true"] #prompt-main{
+    font-size:clamp(14px,3.8vw,24px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-kana{
+    font-size:clamp(9px,2.3vw,14px)!important;
+    margin-bottom:2px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-sub{
+    font-size:clamp(10px,3vw,15px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #prompt-ko{
+    font-size:clamp(9px,2.2vw,13px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #ko-progress{
+    height:16px!important;min-height:16px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #station-badge:not([hidden]){
+    left:3px!important;top:5px!important;
+    width:39px!important;height:47px!important;
+    min-width:39px!important;min-height:47px!important;
+    max-width:39px!important;max-height:47px!important;
+    border-width:2px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #station-badge:not([hidden])::before{
+    font-size:10px!important;padding:2px 0!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] #station-badge:not([hidden])::after{font-size:18px!important}
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor{
+    display:flex!important;
+    padding:14px 3px 3px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor b{
+    font-size:clamp(10px,2.75vw,17px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor [id$="-station-romaji"]{
+    font-size:clamp(8px,2.1vw,11px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor .station-neighbor-kana{
+    display:none!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor .station-neighbor-ko{
+    font-size:clamp(8px,2.1vw,11px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-neighbor i{
+    top:2px!important;font-size:17px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-main::after{
+    bottom:12px!important;
+    font-size:9px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="chichibu"] .station-sign-footer{
+    gap:4px!important;padding:3px 6px!important;font-size:8px!important;
+  }
+}
