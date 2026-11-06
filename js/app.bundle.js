@@ -3253,26 +3253,51 @@ function applyRouteTrackCoordinates(raw,stations){
 // a Hangul-only publication validator. Restore the official source letter names
 // for display/typing without altering route IDs, coordinates, or stored payloads.
 const KR_BUS_SPELLED_LATIN=['에이','비','씨','디','이','에프','지','에이치','아이','제이','케이','엘','엠','엔','오','피','큐','알','에스','티','유','브이','더블유','엑스','와이','지'];
+// Convert only obvious English-letter markers when no original source survives.
+// Do not rewrite native Korean words such as 이동, 유동, 비봉 or 에이스.
+function restoreKrBusUnambiguousMarkers(value){
+ const input=String(value||'').normalize('NFC');
+ const table=KR_BUS_ROUTE_LETTERS.filter(([reading])=>reading!=='지')
+   .sort((a,b)=>b[0].length-a[0].length);
+ const alternatives=table.map(([reading])=>reading).join('|');
+ const pattern=new RegExp('(^|[\\s(·,./\\-])((?:'+alternatives+')+)(?=$|[\\s)·,./\\-]|[0-9]|동|관|블록|구역|출구|게이트|주차장|승강장|정류장|타워|마트)','gu');
+ return input.replace(pattern,(match,before,letters)=>{
+   if(['이','오','유'].includes(letters))return match;
+   let rest=letters,latin='';
+   while(rest){
+     const entry=table.find(([reading])=>rest.startsWith(reading));
+     if(!entry)return match;
+     latin+=entry[1];rest=rest.slice(entry[0].length);
+   }
+   return latin?before+latin:match;
+ });
+}
+
 // Also used by gameplay and free drive after repository canonicalization.
 function restoreKrBusLatinStation(station){
  if(!station||typeof station!=='object')return station;
- const official=String(station.sourceName||'').normalize('NFC').trim();
+ const sources=[station.sourceName,station.sourceStopName,station.originalStopName,station.names?.sourceName]
+   .filter(value=>typeof value==='string'&&value.trim()).map(value=>value.normalize('NFC').trim());
+ const official=sources.find(value=>/[A-Za-z]/.test(value))||sources[0]||'';
  const previous=String(station.ko||station.names?.ko||'').normalize('NFC').trim();
- if(!/[A-Za-z]/.test(official)||!previous)return station;
+ if(!previous)return station;
+ const hasLatinSource=/[A-Za-z]/.test(official);
+ const restoredWithoutSource=hasLatinSource?previous:(!official?restoreKrBusUnambiguousMarkers(previous):previous);
+ if(!hasLatinSource&&restoredWithoutSource===previous)return station;
  const letterName=c=>KR_BUS_SPELLED_LATIN[c.toUpperCase().charCodeAt(0)-65];
  const spelled=official.replace(/[A-Za-z]/g,letterName);
  const aptSpelled=official.replace(/APT/gi,'아파트').replace(/[A-Za-z]/g,letterName);
  // Allow punctuation differences; never replace native Korean words without
  // an independently documented Latin source.
- const compact=value=>value.replace(/[.·\-()\[\]\/\s]/g,'');
+ const compact=value=>value.replace(/[.·,，:;_\-()\[\]{}\/\s]/g,'');
  const match=previous===spelled||compact(previous)===compact(spelled);
  const matchApt=previous===aptSpelled||compact(previous)===compact(aptSpelled);
- if(!match&&!matchApt)return station;
- const restored=matchApt&&!match?official.replace(/APT/gi,'아파트'):official;
+ if(hasLatinSource&&!match&&!matchApt)return station;
+ const restored=hasLatinSource?(matchApt&&!match?official.replace(/APT/gi,'아파트'):official):restoredWithoutSource;
  if(restored===previous)return station;
  const corrected={...station,ko:restored,ja:restored,kana:restored,romaji:restored,
   koAliases:[...new Set([...(station.koAliases||[]),previous])],
-  nameLocalization:'원본 영문 알파벳 표기 유지'};
+  nameLocalization:hasLatinSource?'원본 영문 알파벳 표기 유지':'건물·승강장 알파벳 표기 복원'};
  // normalizeStation and the shared repository may prioritize nested labels.
  if(station.names)corrected.names={...station.names,ko:restored,ja:restored,kana:restored,en:restored};
  if(station.canonicalStationNames)corrected.canonicalStationNames={...station.canonicalStationNames,ko:restored,ja:restored,kana:restored,en:restored};
