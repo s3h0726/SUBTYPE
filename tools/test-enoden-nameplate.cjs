@@ -55,7 +55,8 @@ assert.equal(nodes['#station-badge'].textContent,'unmodified','non-Enoden templa
 
 for(const snippet of ['this.applyEnodenNameplate(station,previous,following)','this.applyEnodenNameplate(station,station,next)','this.applyEnodenNameplate(station,this.currentStation(),station)'])assert.ok(source.includes(snippet),'runtime call missing: '+snippet);
 const css=read('css/enoden-nameplate.css'),html=read('index.html');
-assert.ok(html.includes('css/enoden-nameplate.css?v=20261105-enoden-green-en13'),'public site must load Enoden stylesheet');
+// 캐시 버전은 배포마다 바뀌므로 실제 스타일시트 연결을 검사한다.
+assert.match(html,/<link\b[^>]*href=["'](?:\.\/)?css\/enoden-nameplate\.css(?:\?[^"']*)?["'][^>]*>/,'에노덴 스타일시트가 실제 HTML에 연결되어야 함');
 assert.ok(css.includes('[data-sign-style="enoden"]'),'scope styles only to Enoden');
 assert.ok(css.includes('background:#efd54c!important'),'yellow line not present');
 assert.ok(css.includes('.station-badge:not([hidden])'),'center EN number badge not styled');
