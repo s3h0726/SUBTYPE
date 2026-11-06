@@ -229,15 +229,42 @@ class Game{
     $('#prompt-main').textContent=japanese(station)||korean(station)||'';
     $('#prompt-kana').textContent=hard?'••••••':kana(station);
     $('#prompt-sub').textContent=hard?'한국어 역명 입력':english(station);
-    // Never fabricate stop numbers: only use codes in the station record.
-    const raw=String(station?.hasOfficialStationCode===false?'':station?.officialCode||station?.stationCode||'').trim();
+    // Oimachi OM01–OM16: Tokyu's own station numbering (Tokyu route guide).
+    // Do not derive codes from route index: branch/direct services may be longer.
+    const oimachiOfficialCodes={
+      '大井町':'OM01','下神明':'OM02','戸越公園':'OM03','中延':'OM04',
+      '荏原町':'OM05','旗の台':'OM06','北千束':'OM07','大岡山':'OM08',
+      '緑が丘':'OM09','自由が丘':'OM10','九品仏':'OM11','尾山台':'OM12',
+      '等々力':'OM13','上野毛':'OM14','二子玉川':'OM15','溝の口':'OM16'
+    };
+    const tokyuPrefixByRoute={
+      'line-26001':'TY','line-26002':'MG','line-26003':'DT',
+      'line-26004':'OM','line-26005':'IK','line-26006':'TM',
+      'line-26007':'SG','line-26009':'SH'
+    };
+    const tokyuCode=item=>{
+      if(!item||kind!=='tokyu')return'';
+      const source=String(item.officialCode||item.stationCode||'').trim();
+      if(item.hasOfficialStationCode!==false&&/^[A-Za-z]{1,3}[- ]?\\d{1,3}$/.test(source))return source;
+      // Only the officially verified Oimachi sequence is supplied as a fallback.
+      return routeId==='line-26004'?oimachiOfficialCodes[japanese(item)]||'':'';
+    };
+    // Never fabricate stop numbers: use confirmed values or an operator prefix only.
+    const raw=String(kind==='tokyu'?tokyuCode(station):(station?.hasOfficialStationCode===false?'':station?.officialCode||station?.stationCode||'')).trim();
     const match=raw.match(/^([A-Za-z]{1,3})[- ]?(\d{1,3})$/);
-    const fallback=kind==='chichibu'?'CR':String(active.code||this.route?.code||'').replace(/[^A-Za-z]/g,'');
+    const fallback=kind==='chichibu'?'CR':kind==='tokyu'?(tokyuPrefixByRoute[routeId]||String(active.code||this.route?.code||'').replace(/[^A-Za-z]/g,'')):String(active.code||this.route?.code||'').replace(/[^A-Za-z]/g,'');
     const badge=$('#station-badge');
     badge.dataset.photoPrefix=match?.[1]?.toUpperCase()||fallback.toUpperCase();
     badge.dataset.photoNumber=match?match[2].padStart(2,'0'):'';
     badge.textContent=match?match[0]:(fallback||'');
     badge.hidden=!(match||fallback);
+    if(kind==='tokyu'){
+      const prevBadge=$('#korail-previous-badge'),nextBadge=$('#korail-next-badge');
+      if(prevBadge){prevBadge.hidden=true;prevBadge.textContent='';}
+      // The photo's small badge is the *next* station, not the current one.
+      const nextCode=tokyuCode(next);
+      if(nextBadge){nextBadge.textContent=nextCode;nextBadge.hidden=!nextCode;}
+    }
     if(kind==='toei'||kind==='keikyu'||kind==='keio'){
       // Neighbor discs use verified station codes only. Missing codes stay hidden.
       const neighborCode=item=>{
