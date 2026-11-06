@@ -1,20 +1,20 @@
-✔ Abukuma free drive advances one station per correct answer, never two (29.347ms)
-✔ stale transition source cannot skip stops or change history (1.7562ms)
-✔ jp: next station sign matches actual typing answer (2.4908ms)
-✔ kr: next station sign matches actual typing answer (0.2048ms)
-✔ hk: next station sign matches actual typing answer (0.8105ms)
-✔ tw: next station sign matches actual typing answer (0.1787ms)
-✔ clicking a destination selects it but never moves the graph (0.2022ms)
-✔ departure typing cannot be skipped; selected reverse destination is retained (0.3498ms)
-✔ invalid or arriving selections are rejected without changing target (0.118ms)
-✔ game UI changes selected typing target instead of calling moveTo directly (27.1476ms)
-✔ Abukuma Express station order is continuous: Fukushima -> Oroshimachi -> Fukushima-Gakuinmae (2.7376ms)
-✔ free-drive current station label is the actual station rather than its predecessor (1.5209ms)
-✔ free-drive route startup ignores previously selected index from another line (0.9295ms)
-✔ next station UI is outside the sign: options cannot push station name over its header (45.8663ms)
-✔ stale IME completion cannot submit the next station after departure (0.3659ms)
-✔ route-choice renderer cannot silently change typing destination (1.0973ms)
-✔ free-drive desktop and short-screen CSS preserve separate input and station rows (0.5528ms)
+✔ Abukuma free drive advances one station per correct answer, never two (12.1371ms)
+✔ stale transition source cannot skip stops or change history (1.822ms)
+✔ jp: next station sign matches actual typing answer (1.6451ms)
+✔ kr: next station sign matches actual typing answer (0.1795ms)
+✔ hk: next station sign matches actual typing answer (0.1237ms)
+✔ tw: next station sign matches actual typing answer (1.0751ms)
+✔ clicking a destination selects it but never moves the graph (0.2313ms)
+✔ departure typing cannot be skipped; selected reverse destination is retained (0.3862ms)
+✔ invalid or arriving selections are rejected without changing target (0.1153ms)
+✔ game UI changes selected typing target instead of calling moveTo directly (1.1077ms)
+✔ Abukuma Express station order is continuous: Fukushima -> Oroshimachi -> Fukushima-Gakuinmae (1.7192ms)
+✔ free-drive current station label is the actual station rather than its predecessor (1.5775ms)
+✔ free-drive route startup ignores previously selected index from another line (0.9311ms)
+✔ next station UI is outside the sign: options cannot push station name over its header (0.9144ms)
+✔ stale IME completion cannot submit the next station after departure (0.2558ms)
+✔ route-choice renderer cannot silently change typing destination (0.9432ms)
+✔ free-drive desktop and short-screen CSS preserve separate input and station rows (0.5116ms)
 ℹ tests 17
 ℹ suites 0
 ℹ pass 17
@@ -22,4 +22,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 263.6742
+ℹ duration_ms 107.182
