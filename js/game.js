@@ -224,6 +224,21 @@ class Game{
     };
     place('previous',previous,freeDrive?'현재 역':'출발지');
     place('next',next,'종착역');
+    if(kind==='chichibu'){
+      // The photographed Chichibu panel uses kana as the largest station name.
+      // The kanji, romanized name and Korean remain separate fields.
+      const label=(side,item)=>{
+        $(side==='previous'?'#previous-station-name':'#next-station-name').textContent=kana(item)||japanese(item)||'';
+        $(side==='previous'?'#previous-station-kana':'#next-station-kana').textContent=japanese(item)||'';
+        $(side==='previous'?'#previous-station-romaji':'#next-station-romaji').textContent=english(item).toUpperCase();
+      };
+      label('previous',previous);label('next',next);
+      $('#prompt-main').textContent=kana(station)||japanese(station)||'';
+      $('#prompt-kana').textContent=japanese(station)||'';
+      $('#prompt-sub').textContent=english(station).toUpperCase();
+      sign.dataset.chichibuLong=Array.from(kana(station)||japanese(station)).length>7?'true':'false';
+    }else delete sign.dataset.chichibuLong;
+
     $('#previous-stop-label').textContent=freeDrive?'현재 역':'이전 역';
     $('#following-stop-label').textContent='다음 역';
     $('#prompt-main').textContent=japanese(station)||korean(station)||'';
@@ -250,7 +265,15 @@ class Game{
       return routeId==='line-26004'?oimachiOfficialCodes[japanese(item)]||'':'';
     };
     // Never fabricate stop numbers: use confirmed values or an operator prefix only.
-    const raw=String(kind==='tokyu'?tokyuCode(station):(station?.hasOfficialStationCode===false?'':station?.officialCode||station?.stationCode||'')).trim();
+    // Chichibu Railway's official timetable lists CR01–CR37 in fixed order.
+    // Lookup by canonical Japanese station name, not direction or service index.
+    const chichibuOfficialOrder='羽生|西羽生|新郷|武州荒木|東行田|行田市|持田|ソシオ流通センター|熊谷|上熊谷|石原|ひろせ野鳥の森|大麻生|明戸|武川|永田|ふかや花園|小前田|桜沢|寄居|波久礼|樋口|野上|長瀞|上長瀞|親鼻|皆野|和銅黒谷|大野原|秩父|御花畑|影森|浦山口|武州中川|武州日野|白久|三峰口'.split('|');
+    const chichibuCode=item=>{
+      if(!item||kind!=='chichibu')return'';
+      const n=chichibuOfficialOrder.indexOf(japanese(item));
+      return n<0?'':`CR${String(n+1).padStart(2,'0')}`;
+    };
+    const raw=String(kind==='chichibu'?chichibuCode(station):kind==='tokyu'?tokyuCode(station):(station?.hasOfficialStationCode===false?'':station?.officialCode||station?.stationCode||'')).trim();
     const match=raw.match(/^([A-Za-z]{1,3})[- ]?(\d{1,3})$/);
     const fallback=kind==='chichibu'?'CR':kind==='tokyu'?(tokyuPrefixByRoute[routeId]||String(active.code||this.route?.code||'').replace(/[^A-Za-z]/g,'')):String(active.code||this.route?.code||'').replace(/[^A-Za-z]/g,'');
     const badge=$('#station-badge');
@@ -258,6 +281,12 @@ class Game{
     badge.dataset.photoNumber=match?match[2].padStart(2,'0'):'';
     badge.textContent=match?match[0]:(fallback||'');
     badge.hidden=!(match||fallback);
+    if(kind==='chichibu'){
+      // The photo shows the main CR number; side number badges remain absent.
+      for(const id of ['#korail-previous-badge','#korail-next-badge']){
+        const node=$(id);if(node){node.textContent='';node.hidden=true}
+      }
+    }
     if(kind==='tokyu'){
       const prevBadge=$('#korail-previous-badge'),nextBadge=$('#korail-next-badge');
       if(prevBadge){prevBadge.hidden=true;prevBadge.textContent='';}
