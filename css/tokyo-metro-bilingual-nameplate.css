@@ -406,3 +406,134 @@
 #screen-game.active .station-sign[data-sign-style="metro"][data-tokyo-metro-line="F"] .station-sign-footer span{
   color:#fff!important;
 }
+
+
+/* Tokyo Metro 2026-11-07 band/footer clipping correction.
+   The number circle previously extended 53px below the white station panel,
+   crossing a 43px colour band and covering the service footer below it.
+   Keep the disc wholly inside its own colour band, and size all three rows
+   together so changes in viewport height cannot reintroduce overlap. */
+#screen-game.active .station-sign[data-sign-style="metro"]{
+  --tm-band-height:clamp(44px,7dvh,58px);
+  --tm-footer-height:clamp(23px,3.5dvh,30px);
+  --tm-disc-size:calc(var(--tm-band-height) - 6px);
+  grid-template-rows:minmax(0,1fr) var(--tm-band-height) var(--tm-footer-height)!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] .station-sign-strip{
+  grid-row:2!important;
+  height:var(--tm-band-height)!important;
+  min-height:var(--tm-band-height)!important;
+  max-height:var(--tm-band-height)!important;
+  overflow:visible!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] .station-current #station-badge:not([hidden]),
+#screen-game.active.free-drive-active .station-sign[data-sign-style="metro"] .station-current #station-badge:not([hidden]){
+  /* The circle's bottom sits 3px above the end of the colour band. */
+  box-sizing:border-box!important;
+  top:auto!important;
+  right:auto!important;
+  left:50%!important;
+  bottom:calc(-1 * (var(--tm-band-height) - 3px))!important;
+  transform:translateX(-50%)!important;
+  width:var(--tm-disc-size)!important;
+  height:var(--tm-disc-size)!important;
+  min-width:var(--tm-disc-size)!important;
+  min-height:var(--tm-disc-size)!important;
+  max-width:var(--tm-disc-size)!important;
+  max-height:var(--tm-disc-size)!important;
+  padding:1px 0 0!important;
+  border-width:3px!important;
+  z-index:6!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] #station-badge:not([hidden])::before{
+  font-size:clamp(12px,1.25vw,16px)!important;
+  line-height:1!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] #station-badge:not([hidden])::after{
+  font-size:clamp(18px,2vw,23px)!important;
+  line-height:1!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] .station-sign-footer{
+  grid-column:1!important;
+  grid-row:3!important;
+  position:relative!important;
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(84px,auto) minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:8px!important;
+  height:var(--tm-footer-height)!important;
+  min-height:var(--tm-footer-height)!important;
+  max-height:var(--tm-footer-height)!important;
+  padding:2px 12px!important;
+  margin:0!important;
+  overflow:hidden!important;
+  z-index:1!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] .station-sign-footer > span{
+  display:block!important;
+  min-width:0!important;
+  margin:0!important;
+  font-size:clamp(8px,.85vw,11px)!important;
+  line-height:1.25!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] .station-sign-footer > span:nth-child(2){
+  text-align:center!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] .station-sign-footer > span:last-child{
+  text-align:right!important;
+}
+/* Keep the station name and progress above the band even on low-height screens. */
+#screen-game.active .station-sign[data-sign-style="metro"] .station-current{
+  padding:4px 9px 1px!important;
+  gap:1px!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] #prompt-main{
+  font-size:clamp(24px,3.5vw,48px)!important;
+  line-height:1.08!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] #prompt-kana{
+  font-size:clamp(11px,1.35vw,17px)!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] #prompt-sub,
+#screen-game.active .station-sign[data-sign-style="metro"] #prompt-ko{
+  font-size:clamp(12px,1.45vw,18px)!important;
+}
+#screen-game.active .station-sign[data-sign-style="metro"] #ko-progress{
+  margin:2px 0 0!important;
+  height:18px!important;
+  min-height:18px!important;
+}
+@media(max-width:760px){
+  #screen-game.active .station-sign[data-sign-style="metro"]{
+    --tm-band-height:44px;
+    --tm-footer-height:24px;
+  }
+  #screen-game.active .station-sign[data-sign-style="metro"] .station-neighbor{
+    padding:5px 4px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="metro"] .station-neighbor.next{
+    padding-right:20px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="metro"] .station-neighbor b{
+    font-size:clamp(11px,3.3vw,17px)!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="metro"] #prompt-main{
+    font-size:clamp(19px,5.9vw,30px)!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="metro"] #prompt-kana,
+  #screen-game.active .station-sign[data-sign-style="metro"] #prompt-sub,
+  #screen-game.active .station-sign[data-sign-style="metro"] #prompt-ko{
+    font-size:clamp(10px,2.7vw,14px)!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="metro"] .station-sign-footer{
+    gap:4px!important;
+    padding:2px 6px!important;
+  }
+  #screen-game.active .station-sign[data-sign-style="metro"] .station-sign-footer > span{
+    font-size:8px!important;
+  }
+}
