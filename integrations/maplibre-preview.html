@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SUBTYPE MapLibre 선형 검토 (실험용)</title>
+<style>body{margin:0;font:15px system-ui;background:#101a20;color:#fff}header{padding:12px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}#map{height:calc(100vh - 90px);min-height:400px}#status{font-size:13px}</style></head>
+<body>
+<header><b>SUBTYPE · 선형 검토 (운영 미적용)</b><label>노선 GeoJSON <input id="file" type="file" accept=".json,.geojson"></label><span id="status">WGS84 GeoJSON LineString 파일을 선택하세요.</span></header>
+<div id="map" role="img" aria-label="검토용 철도 노선 지도"></div>
+<script type="module">
+import {createMapLibrePreview} from '../js/maplibre-adapter.js';
+let previous;
+document.querySelector('#file').addEventListener('change',async event=>{
+ const status=document.querySelector('#status'),file=event.target.files?.[0];if(!file)return;
+ try{
+  const geo=JSON.parse(await file.text()),features=geo.type==='FeatureCollection'?geo.features:geo.type==='Feature'?[geo]:[{geometry:geo}];
+  const line=features.find(f=>f.geometry?.type==='LineString');
+  if(!line)throw Error('GeoJSON에 LineString이 없습니다.');
+  const points=line.geometry.coordinates.map(c=>[c[1],c[0]]);
+  previous?.remove();previous=await createMapLibrePreview({container:document.querySelector('#map'),pointsLatLng:points});
+  status.textContent=points.length+'개 점 렌더링 완료 · 운영 데이터 변경 없음';
+ }catch(error){status.textContent='오류: '+error.message;console.error(error)}
+});
+</script></body></html>
