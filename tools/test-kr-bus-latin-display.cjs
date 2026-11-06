@@ -28,6 +28,29 @@ for(const [official,previous,expected] of [
  assert.equal(result.longitude,127,'longitude intact');
  assert.equal(original.ko,previous,'source remains untouched');
 }
+// All 26 Latin letters are restored in uppercase from a verified source.
+// G and Z both sound like 지 in legacy Hangul, so only an original code can
+// disambiguate them; native Korean place names must remain unchanged.
+const alphabetReadings=['에이','비','씨','디','이','에프','지','에이치','아이','제이','케이','엘','엠','엔','오','피','큐','알','에스','티','유','브이','더블유','엑스','와이','지'];
+for(let i=0;i<alphabetReadings.length;i++){
+ const latin=String.fromCharCode(65+i),original={id:'letter-'+latin,sourceName:latin+'동',ko:alphabetReadings[i]+'동'};
+ assert.equal(stop(original).ko,latin+'동','uppercase '+latin+' building');
+ assert.equal(original.ko,alphabetReadings[i]+'동','original phonetic station name is preserved');
+ const coded=route({id:'kr-bus-code-'+latin,countryId:'kr',mode:'bus',line:{ko:'서울 '+alphabetReadings[i]+'1번'},
+   routeNumber:latin+'1'});
+ assert.equal(coded.line.ko,'서울 '+latin+'1번','uppercase '+latin+' route code');
+}
+for(const [previous,expected] of [
+ ['에이비씨동','ABC동'],['에이치동','H동'],['더블유동','W동'],['비동','B동'],
+ ['씨동','C동'],['이동','이동'],['오동','오동'],['유동','유동'],
+ ['비봉','비봉'],['에이스','에이스']
+]){
+ assert.equal(stop({ko:previous}).ko,expected,'source-free sign marker '+previous);
+}
+assert.equal(stop({sourceName:'에이동',ko:'에이동'}).ko,'에이동','do not rewrite an explicit Korean source');
+assert.equal(stop({sourceName:'한울마을1단지, LH파주본부',ko:'한울마을1단지 엘에이치파주본부'}).ko,
+ '한울마을1단지, LH파주본부','verified Latin source with punctuation variants');
+
 const fixture={id:'kr-bus-test',countryId:'kr',mode:'bus',stations:[
  {id:'1',sourceName:'A동',ko:'에이동',latitude:37,longitude:127},
  {id:'2',sourceName:'B',ko:'비',latitude:38,longitude:128}
