@@ -55,7 +55,13 @@ addEventListener('load',()=>{
  const error=[];
  if(board.height>hud.height+4||board.bottom>hud.bottom+4)error.push('board outside HUD');
  if(title.width<30||title.height<24||title.top<main.top-2||title.bottom>main.bottom+3)error.push('Japanese station title clipped');
- if(input.width<70||input.height<22||input.top<title.bottom-1||input.bottom>main.bottom+4)error.push('typing input clipped or overlaps title');
+ // 현재 역명판은 조합 입력 필드를 투명하게 유지하고 한국어 진행 표시를 화면에 배치한다.
+ const fieldStyle=getComputedStyle(document.querySelector('#typing-input'));
+ if(Number(fieldStyle.opacity)===0){
+  const progress=rect('#ko-progress');
+  if(progress.width<30||progress.height<12||progress.top<title.bottom-1||progress.bottom>main.bottom+4)error.push('한국어 입력 진행 표시 잘림 또는 제목 겹침');
+  if(fieldStyle.display==='none'||fieldStyle.visibility==='hidden'||rect('#typing-input').width<1)error.push('투명 조합 입력 필드가 사용 불가 상태');
+ }else if(input.width<70||input.height<22||input.top<title.bottom-1||input.bottom>main.bottom+4)error.push('typing input clipped or overlaps title');
  const style=getComputedStyle(s),band=getComputedStyle(document.querySelector('.station-sign-strip'));
  if(!style.backgroundImage.includes('gradient'))error.push('Enoden gradient green missing');
  if(band.backgroundColor!=='rgb(239, 213, 76)'||band.height!=='5px')error.push('fixed thin yellow stripe missing');
