@@ -83,7 +83,7 @@ for(const [input,number,want] of [
 // The country-specific Korean-name editor must display the same corrected
 // routes/stops as the playable catalog, without rewriting source IDs or edits.
 const editorSource=fs.readFileSync(path.join(root,'reports/korean-names/editor.html'),'utf8');
-assert(editorSource.includes("krBusRestorerPromise=import('../../js/data-loader.js')"),
+assert(editorSource.includes("krBusRestorerPromise=import('../../js/data-loader.js?name-editor-route-titles-20261107')"),
  'editor must call the gameplay restorer, not a separate letter map');
 assert(editorSource.includes("data.routes=(data.routes||[]).map(route=>route?.countryId==='kr'?restore(route):route)"),
  'all Korean route cards must display corrected Latin line names');
@@ -102,6 +102,34 @@ const restoredEditorRoute=route({id:'kr-bus-editor-sample',countryId:'kr',mode:'
 assert.equal(restoredEditorRoute.line.ko,'서울 A1번');
 assert.deepEqual(restoredEditorRoute.verifiedJourneys[0].stations.map(s=>s.ko),['A동','B동']);
 assert.deepEqual(restoredEditorRoute.verifiedJourneys[0].stations.map(s=>s.id),['stop-a','stop-b']);
+
+// Route-title regression: the former display path read line, names and
+// passengerLineName independently, leaving '에이치' in the editor and picker.
+for(const [description,routeRecord,expectedTitle] of [
+ ['names-only index title',{names:{ko:'서울 에이치100번'},routeNumber:'H100'},'서울 H100번'],
+ ['passenger display title',{line:{ko:'서울 H100번'},passengerLineName:'서울 에이치100번'},'서울 H100번'],
+ ['qualifier',{line:{ko:'서울 에이치100번(공항)'},routeNumber:'H100'},'서울 H100번(공항)'],
+ ['suffix without metadata',{line:{ko:'서울 에이비씨10번(단축)'}},'서울 ABC10번(단축)'],
+ ['tightly joined prefix',{line:{ko:'서울에이치100번'}},'서울H100번'],
+ ['line title',{line:{ko:'서울 에이치선'}},'서울 H선'],
+ ['native locality protected',{line:{ko:'경기 비봉2번'}},'경기 비봉2번'],
+ ['ambiguous G/Z protected',{line:{ko:'서울 지1번'}},'서울 지1번']
+]){
+ const originalRoute={id:'kr-bus-title-test',countryId:'kr',mode:'bus',stations:[{id:'original-station',ko:'에이치동',sourceName:'에이치동'}],...routeRecord};
+ const corrected=route(originalRoute);
+ const label=description==='names-only index title'?corrected.names?.ko
+   :description==='passenger display title'?corrected.passengerLineName:corrected.line?.ko;
+ assert.equal(label,expectedTitle,description);
+ assert.equal(corrected.stations[0].ko,'에이치동','route title update does not alter stop labels without source evidence');
+ assert.equal(originalRoute.stations[0].ko,'에이치동','input station remains unchanged');
+}
+const alternateTitles=route({id:'kr-bus-title-alternates',countryId:'kr',mode:'bus',
+ line:{ko:'서울 H100번'},names:{ko:'서울 에이치100번'},passengerLineName:'서울 에이치100번'});
+assert.equal(alternateTitles.line.ko,'서울 H100번');
+assert.equal(alternateTitles.names.ko,'서울 H100번');
+assert.equal(alternateTitles.passengerLineName,'서울 H100번');
+assert.equal(route({id:'kr-rail-route-title',countryId:'kr',mode:'rail',line:{ko:'수도권 에이치선'}}).line.ko,
+ '수도권 에이치선','railway names are outside the bus-specific request');
 
 const repositoryModule=fs.readFileSync(path.join(root,'js/rail-data-repository.js'),'utf8');
 const Repository=new Function(repositoryModule.replace(/\bexport\s+/g,'')+'; return Repository;')();
