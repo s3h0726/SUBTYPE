@@ -1,0 +1,391 @@
+/* Tokyu Electric Railway nameplate v2 — based on the supplied Jiyugaoka OM10 photo.
+   The upper name field, mid-height operator-colour rule, cut-out route badge,
+   lower neighbor names, next-station badge and arrow are all live DOM/CSS.
+   Flat clean rendering (no photographic glare). Excludes Kodomonokuni via JS. */
+#screen-game.active .station-sign[data-photo-sign="tokyu"]{
+  --tokyu-face:#242528;
+  --tokyu-text:#f5f1d9;
+  --tokyu-rule:var(--route-color,#f18c43);
+  display:grid!important;
+  grid-template-rows:minmax(0,1fr) 24px!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  padding:0!important;
+  border:2px solid #131415!important;
+  border-radius:2px!important;
+  background:var(--tokyu-face)!important;
+  color:var(--tokyu-text)!important;
+  overflow:hidden!important;
+  box-shadow:inset 0 0 0 1px #ffffff16!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-brand,
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-strip{
+  display:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-main,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] .station-sign-main{
+  position:relative!important;
+  display:grid!important;
+  grid-column:1!important;
+  grid-row:1!important;
+  grid-template-columns:minmax(0,1.07fr) minmax(0,2.36fr) minmax(0,1.07fr)!important;
+  grid-template-rows:60% 40%!important;
+  align-items:stretch!important;
+  width:100%!important;
+  height:100%!important;
+  max-height:100%!important;
+  min-height:0!important;
+  padding:0 13px!important;
+  overflow:hidden!important;
+  background:var(--tokyu-face)!important;
+  z-index:1!important;
+}
+/* A continuous line-coloured ribbon, interrupted under the current station badge. */
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-main::before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;right:0!important;top:60%!important;
+  height:15px!important;
+  z-index:1!important;
+  background:linear-gradient(90deg,var(--tokyu-rule) 0%,var(--tokyu-rule) 52%,color-mix(in srgb,var(--tokyu-rule) 72%,#585555) 100%)!important;
+  pointer-events:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-main::after{
+  content:""!important;
+  position:absolute!important;
+  top:calc(60% - 2px)!important;
+  left:50%!important;
+  width:78px!important;height:19px!important;
+  transform:translateX(-50%)!important;
+  z-index:2!important;
+  background:var(--tokyu-face)!important;
+  pointer-events:none!important;
+}
+/* Photo: the center heading occupies the top field; its kana sits below the stripe. */
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-current,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] .station-current{
+  position:relative!important;
+  display:grid!important;
+  grid-column:2!important;
+  grid-row:1/3!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  grid-template-rows:auto auto minmax(0,1fr)!important;
+  align-content:start!important;
+  align-items:start!important;
+  justify-items:center!important;
+  gap:2px 4px!important;
+  min-width:0!important;
+  min-height:0!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:9px 4px 0!important;
+  border:0!important;
+  background:transparent!important;
+  color:var(--tokyu-text)!important;
+  text-align:center!important;
+  overflow:visible!important;
+  z-index:3!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-current::after,
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #station-context{display:none!important}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-main{
+  grid-column:1/-1!important;
+  grid-row:1!important;
+  order:initial!important;
+  align-self:start!important;
+  justify-self:center!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-width:100%!important;
+  padding:0!important;margin:0!important;
+  font:900 clamp(32px,4.4vw,65px)/1.03 "Noto Sans JP","Yu Gothic",sans-serif!important;
+  color:var(--tokyu-text)!important;
+  letter-spacing:.035em!important;
+  text-shadow:none!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  transform:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-sub{
+  grid-column:1!important;grid-row:2!important;
+  order:initial!important;
+  align-self:center!important;justify-self:end!important;
+  display:block!important;
+  width:auto!important;max-width:100%!important;
+  min-height:0!important;
+  margin:0!important;padding:0 5px 0 0!important;
+  font:800 clamp(12px,1.75vw,22px)/1.18 Inter,Arial,sans-serif!important;
+  color:#eae9e4!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-ko{
+  grid-column:2!important;grid-row:2!important;
+  order:initial!important;
+  align-self:center!important;justify-self:start!important;
+  display:block!important;
+  width:auto!important;max-width:100%!important;
+  min-height:0!important;
+  margin:0!important;padding:0 0 0 5px!important;
+  font:750 clamp(11px,1.4vw,18px)/1.18 "Noto Sans KR",sans-serif!important;
+  color:#b9bdba!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-ko.memory-hidden{visibility:hidden!important}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-kana,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] #prompt-kana{
+  position:absolute!important;
+  grid-row:auto!important;grid-column:auto!important;
+  order:initial!important;
+  left:0!important;right:0!important;bottom:31px!important;
+  display:block!important;
+  width:100%!important;max-width:100%!important;
+  min-height:0!important;
+  margin:0!important;padding:0 6px!important;
+  color:#f0efe6!important;
+  font:800 clamp(16px,2.5vw,29px)/1.12 "Noto Sans JP",sans-serif!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #ko-progress,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] #ko-progress{
+  position:absolute!important;
+  grid-column:auto!important;grid-row:auto!important;
+  left:0!important;right:0!important;bottom:4px!important;
+  order:initial!important;
+  display:flex!important;
+  align-items:center!important;justify-content:center!important;
+  width:100%!important;
+  height:20px!important;min-height:20px!important;
+  max-height:20px!important;
+  margin:0!important;padding:0!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #ko-progress .input-cell{
+  height:19px!important;
+  min-height:0!important;
+  font-size:clamp(11px,1.2vw,16px)!important;
+  color:#fff!important;
+  border-bottom-color:#e5e3dc!important;
+}
+/* Previous and next stations are separate lower fields, never on the top row. */
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor,
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] .station-neighbor{
+  position:relative!important;
+  display:flex!important;
+  grid-row:2!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  min-height:0!important;height:100%!important;
+  max-height:100%!important;
+  padding:21px 5px 8px!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  color:#e6e3df!important;
+  overflow:visible!important;
+  z-index:3!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.previous{
+  grid-column:1!important;
+  align-items:flex-start!important;
+  text-align:left!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.next{
+  grid-column:3!important;
+  align-items:flex-end!important;
+  text-align:right!important;
+  padding-right:8px!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor small,
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor .station-neighbor-kana{display:none!important}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor b{
+  order:1!important;
+  width:100%!important;max-width:100%!important;
+  margin:0!important;padding:0!important;
+  font:800 clamp(15px,1.95vw,27px)/1.08 "Noto Sans JP",sans-serif!important;
+  color:#eae9e3!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor [id$="-station-romaji"]{
+  order:2!important;
+  width:100%!important;max-width:100%!important;
+  margin:0!important;padding:0!important;
+  font:700 clamp(10px,1.22vw,16px)/1.08 Inter,Arial,sans-serif!important;
+  color:#e0e0dc!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor .station-neighbor-ko{
+  order:3!important;
+  width:100%!important;max-width:100%!important;
+  margin:0!important;padding:0!important;
+  font:650 clamp(10px,1.1vw,14px)/1.08 "Noto Sans KR",sans-serif!important;
+  color:#b6bab7!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.previous i{display:none!important}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.next i{
+  position:absolute!important;
+  display:block!important;
+  top:auto!important;bottom:27px!important;
+  left:-33px!important;right:auto!important;
+  font:900 clamp(22px,3vw,39px)/1 Arial,sans-serif!important;
+  color:#c4c8c8!important;
+  opacity:1!important;
+  transform:none!important;
+  z-index:5!important;
+}
+/* Center OM10 badge on the interruption of the orange ribbon. */
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-current #station-badge:not([hidden]),
+#screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] .station-current #station-badge:not([hidden]){
+  position:absolute!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;
+  left:50%!important;right:auto!important;
+  top:calc(60% - 27px)!important;bottom:auto!important;
+  width:60px!important;height:59px!important;
+  min-width:60px!important;min-height:59px!important;
+  max-width:60px!important;max-height:59px!important;
+  margin:0!important;padding:1px 0 0!important;
+  border:3px solid #f3ece5!important;
+  border-radius:12px!important;
+  background:var(--tokyu-rule)!important;
+  color:#fff!important;
+  box-shadow:0 0 0 3px var(--tokyu-face)!important;
+  transform:translateX(-50%)!important;
+  z-index:8!important;
+  font-size:0!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #station-badge:not([hidden])::before{
+  content:attr(data-photo-prefix)!important;
+  font:900 15px/1 Arial,sans-serif!important;
+  color:#fff!important;
+  margin:0!important;padding:0!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] #station-badge:not([hidden])::after{
+  content:attr(data-photo-number)!important;
+  position:static!important;
+  font:900 26px/1 Arial,sans-serif!important;
+  color:#fff!important;
+  margin:0!important;padding:0!important;
+  width:auto!important;height:auto!important;
+  background:none!important;
+  transform:none!important;
+}
+/* Small OM11 station number on the right of the band. */
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor .korail-neighbor-badge{display:none!important}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.next .korail-neighbor-badge:not([hidden]){
+  position:absolute!important;
+  top:-15px!important;right:18px!important;
+  display:flex!important;
+  align-items:center!important;justify-content:center!important;
+  width:45px!important;height:41px!important;
+  min-width:45px!important;min-height:41px!important;
+  max-width:45px!important;max-height:41px!important;
+  padding:2px!important;margin:0!important;
+  border:2px solid #f0e9e3!important;border-radius:9px!important;
+  background:var(--tokyu-rule)!important;color:#fff!important;
+  box-shadow:0 0 0 2px var(--tokyu-face)!important;
+  font:900 13px/1.05 Arial,sans-serif!important;
+  text-align:center!important;
+  z-index:7!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.next .korail-neighbor-badge:not([hidden])::before,
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.next .korail-neighbor-badge:not([hidden])::after{
+  display:none!important;
+  content:none!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-footer{
+  grid-row:2!important;grid-column:1!important;
+  height:24px!important;min-height:24px!important;
+  background:#242528!important;
+  color:#b7b7b7!important;
+  font-size:8px!important;
+  border-top:1px solid #ffffff1b!important;
+  overflow:hidden!important;
+}
+#screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-footer span{color:inherit!important}
+@media(max-height:510px) and (min-width:761px){
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-main{
+    font-size:clamp(27px,5.2dvh,42px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-sub{
+    font-size:clamp(11px,2.4dvh,15px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-ko{font-size:11px!important}
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-kana{
+    font-size:clamp(14px,3.5dvh,22px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor b{
+    font-size:clamp(13px,3.7dvh,21px)!important;
+  }
+}
+@media(max-width:760px){
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-main,
+  #screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] .station-sign-main{
+    grid-template-columns:minmax(0,.8fr) minmax(0,1.8fr) minmax(0,.8fr)!important;
+    grid-template-rows:58% 42%!important;
+    padding:0 4px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-main::before{top:58%!important}
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-main::after{top:calc(58% - 2px)!important}
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-current #station-badge:not([hidden]),
+  #screen-game.active.free-drive-active .station-sign[data-photo-sign="tokyu"] .station-current #station-badge:not([hidden]){
+    top:calc(58% - 19px)!important;
+    width:44px!important;height:43px!important;
+    min-width:44px!important;min-height:43px!important;
+    max-width:44px!important;max-height:43px!important;
+    border-width:2px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-sign-main::after{width:60px!important}
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #station-badge:not([hidden])::before{font-size:12px!important}
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #station-badge:not([hidden])::after{font-size:18px!important}
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-current{padding:8px 1px 0!important}
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-main{
+    font-size:clamp(19px,6vw,31px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-sub{
+    font-size:clamp(9px,2.7vw,12px)!important;
+    padding-right:2px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-ko{
+    font-size:clamp(9px,2.6vw,12px)!important;
+    padding-left:2px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] #prompt-kana{
+    font-size:clamp(12px,3.7vw,18px)!important;
+    bottom:29px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor{
+    display:flex!important;
+    padding:20px 2px 7px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor b{
+    font-size:clamp(11px,3vw,16px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor [id$="-station-romaji"],
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor .station-neighbor-ko{
+    font-size:clamp(8px,2.05vw,11px)!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.next i{
+    left:-22px!important;bottom:24px!important;font-size:19px!important;
+  }
+  #screen-game.active .station-sign[data-photo-sign="tokyu"] .station-neighbor.next .korail-neighbor-badge:not([hidden]){
+    top:-14px!important;right:3px!important;
+    width:31px!important;height:30px!important;
+    min-width:31px!important;min-height:30px!important;
+    max-width:31px!important;max-height:30px!important;
+    font-size:9px!important;padding:1px!important;border-width:1px!important;
+  }
+}
