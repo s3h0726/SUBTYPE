@@ -6,10 +6,11 @@ const path=require('node:path');
 const vm=require('node:vm');
 
 const root=path.resolve(__dirname,'..');
+// 실제 DOM과 같이 dataset을 제공해 최신 역명판 정리 코드도 실행한다.
 const elements=new Map();
 const $=id=>{
   if(!elements.has(id))elements.set(id,{
-    textContent:'',innerHTML:'',hidden:false,disabled:false,readOnly:false,
+    textContent:'',innerHTML:'',hidden:false,disabled:false,readOnly:false,dataset:{},
     style:{setProperty(){}},classList:{add(){},remove(){}},
     closest(){return{hidden:false,classList:{add(){},remove(){}}}}
   });
