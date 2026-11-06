@@ -198,7 +198,10 @@ class Game{
     const kind=operator==='tokyu'&&routeId!=='line-26008'&&!/こどもの国線/.test(lineName)?'tokyu'
       :operator==='chichibutetsudo'&&routeId==='line-99306'?'chichibu'
       :operator==='jr-east'?'jr-east'
-      :operator==='odakyu'?'odakyu':'';
+      :operator==='odakyu'?'odakyu'
+      :operator==='toei'&&(active.category==='subway'||/^line-9930[1-4]$/.test(routeId))?'toei'
+      :operator==='keikyu'?'keikyu'
+      :operator==='keio'?'keio':'';
     if(!kind){delete sign.dataset.photoSign;return}
     sign.dataset.photoSign=kind;
     const japanese=item=>String(item?.ja||item?.names?.ja||'').trim();
@@ -235,6 +238,20 @@ class Game{
     badge.dataset.photoNumber=match?match[2].padStart(2,'0'):'';
     badge.textContent=match?match[0]:(fallback||'');
     badge.hidden=!(match||fallback);
+    if(kind==='toei'||kind==='keikyu'||kind==='keio'){
+      // Neighbor discs use verified station codes only. Missing codes stay hidden.
+      const neighborCode=item=>{
+        if(!item||item.hasOfficialStationCode===false)return'';
+        const code=String(item.officialCode||item.stationCode||'').trim();
+        return /^[A-Za-z]{1,3}[- ]?\d{1,3}$/.test(code)?code:'';
+      };
+      for(const [id,item] of [['#korail-previous-badge',previous],['#korail-next-badge',next]]){
+        const node=$(id),code=neighborCode(item);
+        if(node){node.textContent=code;node.hidden=!code;}
+      }
+      // The station sign is intentionally text-only for Keikyu: no operator logo.
+      if(kind==='keikyu')$('#station-operator-mark').textContent='';
+    }
   }
   // The Enoden EN01..EN15 numbers are tied to the 15-stop Fujisawa–Kamakura
   // physical route, not to the travel direction or the game's answer sequence.
