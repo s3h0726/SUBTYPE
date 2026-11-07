@@ -3370,6 +3370,15 @@ function restoreKrBusRouteName(raw){
    const spoken=codeBase.replace(/[A-Z]/g,l=>KR_BUS_SPELLED_LATIN[l.charCodeAt(0)-65]);
    const escaped=spoken.replace(/[^가-힣0-9]/g,c=>'\\'+c);
    title=title.replace(new RegExp(escaped+'(?=번|선|$|[\\s)·,/:\\[(])','gu'),codeBase);
+   // Preserve a slash/hyphen separating a verified alphabet prefix from digits,
+   // e.g. "지/10" means G/10 or Z/10 according to the official route code.
+   const officialParts=codeBase.match(/^([A-Z]+)([0-9]+)$/);
+   const spokenParts=spoken.match(/^([가-힣]+)([0-9]+)$/);
+   if(officialParts&&spokenParts&&officialParts[2]===spokenParts[2]){
+    const prefix=spokenParts[1];
+    const withSeparator=new RegExp(prefix+'([/\\\\-])'+spokenParts[2]+'(?=번|$|[\\s)·,])','gu');
+    title=title.replace(withSeparator,(match,sep)=>officialParts[1]+sep+officialParts[2]);
+   }
   }
   const swap=(pattern,fn)=>{title=title.replace(pattern,(...args)=>{
    const offset=args[args.length-2],full=args[args.length-1],data=fn(args);
@@ -3388,7 +3397,7 @@ function restoreKrBusRouteName(raw){
   swap(new RegExp('('+letterRE+')\\s+([0-9]+(?:-[0-9]+)*)(?=번|$|\\(|[\\s·,])','gu'),
    args=>({code:args[1]+args[2]}));
   // Letter sequences without digits are still meaningful line-name tokens.
-  swap(new RegExp('(^|[\\s(·,/:\\[])('+letterRE+')(?=번|선|$|[\\s)·,/:\\]])','gu'),
+  swap(new RegExp('(^|[\\s(·,/\\-:\\[])('+letterRE+')(?=번|선|$|[\\s)·,/\\-:\\]])','gu'),
    args=>({before:args[1],code:args[2]}));
   swap(new RegExp('('+letterRE+')(?=번|선(?:$|[\\s)·,]))','gu'),
    args=>({code:args[1]}));
