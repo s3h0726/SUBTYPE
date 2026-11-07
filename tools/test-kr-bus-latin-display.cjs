@@ -103,6 +103,42 @@ assert.equal(restoredEditorRoute.line.ko,'서울 A1번');
 assert.deepEqual(restoredEditorRoute.verifiedJourneys[0].stations.map(s=>s.ko),['A동','B동']);
 assert.deepEqual(restoredEditorRoute.verifiedJourneys[0].stations.map(s=>s.id),['stop-a','stop-b']);
 
+// Test the complete Latin alphabet in route NAMES (not just station names).
+// Each officially sourced code must work when joined, numbered, standalone,
+// qualified or separated. Stop names and IDs are not part of this correction.
+for(let i=0;i<alphabetReadings.length;i++){
+ const latin=String.fromCharCode(65+i),spoken=alphabetReadings[i];
+ for(const variant of ['joined','number-first','standalone','qualified','slash']){
+  const title=variant==='joined'?'서울'+spoken+'10번':
+   variant==='number-first'?'서울 20'+spoken+'번':
+   variant==='standalone'?'서울 '+spoken:
+   variant==='qualified'?'서울 '+spoken+'10번(공항)':'서울 '+spoken+'/10번';
+  const source=variant==='number-first'?'20'+latin:
+   variant==='standalone'?latin:latin+'10';
+  const initial={id:'kr-bus-alphabet-'+latin,countryId:'kr',mode:'bus',routeNumber:source,
+   line:{ko:title},stations:[{id:'test-station',ko:'에이치동',sourceName:'에이치동'}]};
+  const actual=route(initial);
+  assert.equal(actual.line.ko,title.replace(spoken,latin),latin+' '+variant+' uppercase route label');
+  assert.equal(actual.stations[0].ko,'에이치동',latin+' leaves station names unchanged');
+  assert.equal(initial.line.ko,title,'original name not mutated');
+ }
+}
+for(const [input,expected,routeNumber] of [
+ ['서울 에이/에이치','서울 A/H',null],
+ ['서울 에이-에이치','서울 A-H',null],
+ ['서울 10에이-1번','서울 10A-1번',null],
+ ['서울 에프10번(단축)','서울 F10번(단축)',null],
+ ['서울 h10번','서울 H10번',null],
+ ['서울 지10번','서울 지10번',null], // ambiguous G/Z: refuse to guess
+ ['서울 지10번','서울 G10번','G10'],
+ ['서울 지10번','서울 Z10번','Z10'],
+ ['경기 비봉2번','경기 비봉2번',null],
+ ['서울 이동1번','서울 이동1번',null]
+]){
+ const original={id:'kr-bus-alphabet-extra',countryId:'kr',mode:'bus',line:{ko:input},
+  ...(routeNumber?{routeNumber}:{})};
+ assert.equal(route(original).line.ko,expected,input+' route alphabet / place name');
+}
 // Route-title regression: the former display path read line, names and
 // passengerLineName independently, leaving '에이치' in the editor and picker.
 for(const [description,routeRecord,expectedTitle] of [
