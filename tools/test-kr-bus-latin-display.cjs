@@ -83,7 +83,7 @@ for(const [input,number,want] of [
 // The country-specific Korean-name editor must display the same corrected
 // routes/stops as the playable catalog, without rewriting source IDs or edits.
 const editorSource=fs.readFileSync(path.join(root,'reports/korean-names/editor.html'),'utf8');
-assert(editorSource.includes("krBusRestorerPromise=import('../../js/data-loader.js?name-editor-route-titles-20261107')"),
+assert(editorSource.includes("krBusRestorerPromise=import('../../js/data-loader.js?name-editor-all-letters-20261107')"),
  'editor must call the gameplay restorer, not a separate letter map');
 assert(editorSource.includes("data.routes=(data.routes||[]).map(route=>route?.countryId==='kr'?restore(route):route)"),
  'all Korean route cards must display corrected Latin line names');
