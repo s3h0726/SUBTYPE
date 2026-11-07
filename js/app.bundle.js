@@ -3382,6 +3382,38 @@ function restoreKrBusRouteName(raw){
  updated=updated.replace(beforeLine,(match,prefix,code)=>{
   const dec=restoreKrBusRouteCode(code);return dec===code?match:prefix+dec;
  });
+ // Full A-Z alphabet recovery, scoped to Korean bus ROUTE TITLES ONLY.
+ // Distinct letter names can be parsed without a source; "지" (G/Z) cannot.
+ const letterWords=KR_BUS_ROUTE_LETTERS.filter(([name])=>name!=='지')
+  .sort((a,b)=>b[0].length-a[0].length).map(([name])=>name);
+ const letterPattern='(?:'+letterWords.join('|')+')+';
+ const letterFirst=new RegExp('('+letterPattern+'[0-9]+(?:-[0-9]+)*)(?=번|\\(|$|[\\s·,./:-])','gu');
+ const numberFirst=new RegExp('([0-9]+'+letterPattern+'(?:-[0-9]+)*)(?=번|\\(|$|[\\s·,./:-])','gu');
+ const standalone=new RegExp('(^|[\\s(·,:/\\-])('+letterPattern+')(?=\\s*(?:번|선|노선|\\(|$|[)·,:/\\-]))','gu');
+ const decodeLetterCode=code=>{
+  const decoded=restoreKrBusRouteCode(code);
+  return decoded===code?code:decoded;
+ };
+ updated=updated.replace(letterFirst,whole=>decodeLetterCode(whole))
+  .replace(numberFirst,whole=>decodeLetterCode(whole))
+  .replace(standalone,(whole,prefix,code)=>prefix+decodeLetterCode(code));
+ if(hasVerifiedLatin&&sourceReading&&sourceReading!==official){
+  // Official source letters are authoritative, including ambiguous G/Z.
+  const escaped=sourceReading.replace(/[^A-Za-z0-9가-힣]/g,'\\ const restoreOtherTitle=value=>{');
+  const precise=new RegExp(escaped+'(?=번|\\(|$|[\\s·,./:-])','gu');
+  updated=updated.replace(precise,official);
+  // Preserve code separators when a source-backed letter and number are split.
+  const spelled=sourceReading.match(/^([가-힣]+)([0-9]+)$/);
+  const officialParts=official.match(/^([A-Z]+)([0-9]+)$/);
+  if(spelled&&officialParts&&spelled[2]===officialParts[2]){
+   const part=spelled[1].replace(/[^가-힣]/g,'\\ const restoreOtherTitle=value=>{');
+   const separated=new RegExp(part+'([/\\-])'+spelled[2]+'(?=번|\\(|$|[\\s·,./:-])','gu');
+   updated=updated.replace(separated,(whole,separator)=>officialParts[1]+separator+officialParts[2]);
+  }
+ }
+ // Uppercase already-Latin route codes, without modifying place names.
+ updated=updated.replace(/(^|[\s(·,:/\-])([a-z]+)(?=[0-9]|번|선|$)/gu,
+  (whole,prefix,letters)=>prefix+letters.toUpperCase());
  const restoreOtherTitle=value=>{
   if(typeof value!=='string'||!value)return value;
   if(value===previous)return updated;
