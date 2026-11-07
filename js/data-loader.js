@@ -143,108 +143,86 @@ function restoreKrBusRouteCode(value){
  // cannot accidentally be rewritten merely because it contains '비' or '이'.
  return letters?restored:original;
 }
+// Route title formatter shared by the game and the country-specific editor.
+// Convert all documented A-Z letter pronunciations only in Korean bus line
+// names, not station names, identifiers, coordinates or foreign routes.
 function restoreKrBusRouteName(raw){
- const previous=String(raw?.line?.ko||raw?.names?.ko||raw?.nameKo||'').normalize('NFC');
- if(!previous)return raw;
- const fromSource=String(raw?.sourceRouteNumber||raw?.originalRouteNumber||raw?.routeNumber||'').normalize('NFC').trim();
- const official=/^[A-Za-z0-9-]+(?:\([^()]+\))?$/.test(fromSource)?fromSource.toUpperCase():restoreKrBusRouteCode(fromSource);
- // Phonetic '지' can mean G or Z; do not guess without the original Latin source.
- const hasVerifiedLatin=/^[A-Z0-9-]+(?:\([^()]+\))?$/.test(official)&&/[A-Z]/.test(official)
-  &&(/[A-Za-z]/.test(fromSource)||!fromSource.includes('지'));
- const read=c=>KR_BUS_SPELLED_LATIN[c.toUpperCase().charCodeAt(0)-65];
- const sourceReading=fromSource.replace(/[A-Za-z]/g,read);
- let updated=previous;
- if(hasVerifiedLatin){
-  const candidates=[fromSource,sourceReading].filter(Boolean);
-  for(const candidate of [...new Set(candidates)].sort((a,b)=>b.length-a.length)){
-   for(const suffix of [candidate+'번',candidate]){
-    if(!updated.endsWith(suffix))continue;
-    const preceding=updated.slice(0,-suffix.length);
-    if(preceding&&/[가-힣A-Za-z0-9]$/.test(preceding))continue;
-    updated=preceding+official+(suffix.endsWith('번')?'번':'');
-    break;
-   }
-   if(updated!==previous)break;
+ const first=String(raw?.line?.ko||raw?.names?.ko||raw?.nameKo||'').normalize('NFC');
+ if(!first)return raw;
+ const source=String(raw?.sourceRouteNumber||raw?.originalRouteNumber||raw?.routeNumber||'').normalize('NFC').trim();
+ const decodedSource=restoreKrBusRouteCode(source);
+ const official=/^[A-Za-z0-9-]+(?:\([^()]+\))?$/.test(source)?source.toUpperCase():decodedSource;
+ const verified=/^[A-Z0-9-]+(?:\([^()]+\))?$/.test(official)&&/[A-Z]/.test(official)
+    &&(/[A-Za-z]/.test(source)||!source.includes('지'));
+ const codeBase=verified?official.replace(/\([^()]+\)$/,''):'';
+ const letterNames=KR_BUS_ROUTE_LETTERS.filter(([ko])=>ko!=='지').sort((a,b)=>b[0].length-a[0].length);
+ const letterRE='(?:'+letterNames.map(([ko])=>ko).join('|')+')+';
+ function decode(token){
+  let value=String(token||'').replace(/\s+/g,''),result='',letters=0;
+  while(value){
+   const number=value.match(/^[0-9]+/);
+   if(number){result+=number[0];value=value.slice(number[0].length);continue}
+   if(value[0]==='-'){result+='-';value=value.slice(1);continue}
+   const latin=value.match(/^[A-Za-z]/);
+   if(latin){result+=latin[0].toUpperCase();value=value.slice(1);letters++;continue}
+   const piece=letterNames.find(([ko])=>value.startsWith(ko));
+   if(!piece)return '';
+   result+=piece[1];value=value.slice(piece[0].length);letters++;
   }
-  if(updated===previous&&previous===sourceReading)updated=official;
+  return letters&&/^[A-Z0-9-]+$/.test(result)?result:'';
  }
- // Some published Korean bus lines have no original routeNumber metadata.
- // Convert only complete route-code tokens, never part of a Korean place name.
- if(updated===previous){
-  updated=previous.replace(/(^|[\s(·:\[])([0-9가-힣-]+?)(번)?(?=$|[\s()·:,\]])/g,(match,before,code,suffix='')=>{
-   if(code.includes('지')&&!/[A-Za-z]/.test(fromSource))return match;
-   const decoded=restoreKrBusRouteCode(code);
-   if(decoded===code||!/^[A-Za-z0-9·-]+$/.test(decoded)||!/[A-Za-z]/.test(decoded))return match;
-   return before+decoded+suffix;
-  });
- }
- // Convert phonetic alphabet code markers in bus route names only.
- // This also covers tight codes (서울에이치100번) and (공항) variants.
- const words=KR_BUS_ROUTE_LETTERS.filter(([ko])=>ko!=='지')
-  .sort((a,b)=>b[0].length-a[0].length).map(([ko])=>ko);
- const letters='(?:'+words.join('|')+')+';
- const numbered=new RegExp('('+letters+'[0-9]+(?:-[0-9]+)*)(번)(?=$|\\(|[·,])','gu');
- updated=updated.replace(numbered,(match,code,suffix)=>{
-  const dec=restoreKrBusRouteCode(code);return dec===code?match:dec+suffix;
- });
- const beforeLine=new RegExp('(^|[\\s(·:,])('+letters+')(?=선(?:$|[\\s)·:,]))','gu');
- updated=updated.replace(beforeLine,(match,prefix,code)=>{
-  const dec=restoreKrBusRouteCode(code);return dec===code?match:prefix+dec;
- });
- // Full A-Z alphabet recovery, scoped to Korean bus ROUTE TITLES ONLY.
- // Distinct letter names can be parsed without a source; "지" (G/Z) cannot.
- const letterWords=KR_BUS_ROUTE_LETTERS.filter(([name])=>name!=='지')
-  .sort((a,b)=>b[0].length-a[0].length).map(([name])=>name);
- const letterPattern='(?:'+letterWords.join('|')+')+';
- const letterFirst=new RegExp('('+letterPattern+'[0-9]+(?:-[0-9]+)*)(?=번|\\(|$|[\\s·,./:-])','gu');
- const numberFirst=new RegExp('([0-9]+'+letterPattern+'(?:-[0-9]+)*)(?=번|\\(|$|[\\s·,./:-])','gu');
- const standalone=new RegExp('(^|[\\s(·,:/\\-])('+letterPattern+')(?=\\s*(?:번|선|노선|\\(|$|[)·,:/\\-]))','gu');
- const decodeLetterCode=code=>{
-  const decoded=restoreKrBusRouteCode(code);
-  return decoded===code?code:decoded;
- };
- updated=updated.replace(letterFirst,whole=>decodeLetterCode(whole))
-  .replace(numberFirst,whole=>decodeLetterCode(whole))
-  .replace(standalone,(whole,prefix,code)=>prefix+decodeLetterCode(code));
- if(hasVerifiedLatin&&sourceReading&&sourceReading!==official){
-  // Official source letters are authoritative, including ambiguous G/Z.
-  const escaped=sourceReading.replace(/[^A-Za-z0-9가-힣]/g,'\\ const restoreOtherTitle=value=>{');
-  const precise=new RegExp(escaped+'(?=번|\\(|$|[\\s·,./:-])','gu');
-  updated=updated.replace(precise,official);
-  // Preserve code separators when a source-backed letter and number are split.
-  const spelled=sourceReading.match(/^([가-힣]+)([0-9]+)$/);
-  const officialParts=official.match(/^([A-Z]+)([0-9]+)$/);
-  if(spelled&&officialParts&&spelled[2]===officialParts[2]){
-   const part=spelled[1].replace(/[^가-힣]/g,'\\ const restoreOtherTitle=value=>{');
-   const separated=new RegExp(part+'([/\\-])'+spelled[2]+'(?=번|\\(|$|[\\s·,./:-])','gu');
-   updated=updated.replace(separated,(whole,separator)=>officialParts[1]+separator+officialParts[2]);
-  }
- }
- // Uppercase already-Latin route codes, without modifying place names.
- updated=updated.replace(/(^|[\s(·,:/\-])([a-z]+)(?=[0-9]|번|선|$)/gu,
-  (whole,prefix,letters)=>prefix+letters.toUpperCase());
- const restoreOtherTitle=value=>{
+ function label(value){
   if(typeof value!=='string'||!value)return value;
-  if(value===previous)return updated;
-  // Reuse the same naming routine on a detached title, not its stations.
-  return restoreKrBusRouteName({...raw,line:{ko:value},names:undefined,
-   passengerLineName:undefined,nameKo:undefined}).line?.ko||value;
- };
- const oldNames=raw.names?.ko,oldPassenger=raw.passengerLineName,oldNameKo=raw.nameKo;
- const names=restoreOtherTitle(oldNames),passenger=restoreOtherTitle(oldPassenger),displayName=restoreOtherTitle(oldNameKo);
- const lineChanged=updated!==previous;
- if(!lineChanged&&names===oldNames&&passenger===oldPassenger&&displayName===oldNameKo)return raw;
- const result={...raw};
- if(lineChanged){
-  const oldLine=raw.line||{};
-  result.line={...oldLine,ko:updated,aliases:[...new Set([...(oldLine.aliases||[]),previous])]};
-  for(const language of ['ja','en'])if(!oldLine[language]||oldLine[language]===previous)result.line[language]=updated;
+  let title=value.normalize('NFC');
+  // Source-backed codes resolve the ambiguous "지" spelling (G vs Z).
+  if(codeBase){
+   const spoken=codeBase.replace(/[A-Z]/g,l=>KR_BUS_SPELLED_LATIN[l.charCodeAt(0)-65]);
+   const escaped=spoken.replace(/[^가-힣0-9]/g,c=>'\\'+c);
+   title=title.replace(new RegExp(escaped+'(?=번|선|$|[\\s)·,/:\\[(])','gu'),codeBase);
+  }
+  const swap=(pattern,fn)=>{title=title.replace(pattern,(...args)=>{
+   const offset=args[args.length-2],full=args[args.length-1],data=fn(args);
+   const prefix=full.slice(0,offset+(data.before||'').length);
+   const rawCode=data.code;
+   // "어린이100번" is not the E100 bus; single native syllables
+   // embedded in Korean words need an explicit source code to be changed.
+   if(!codeBase&&/[가-힣]$/.test(prefix)&&rawCode.replace(/[0-9\s-]/g,'').length===1)return args[0];
+   const converted=decode(rawCode);
+   return converted?(data.before||'')+converted+(data.after||''):args[0];
+  })};
+  swap(new RegExp('('+letterRE+'[0-9]+(?:-[0-9]+)*)(?=번|$|\\(|[\\s·,])','gu'),
+   args=>({code:args[1]}));
+  swap(new RegExp('([0-9]+'+letterRE+'(?:-[0-9]+)*)(?=번|$|\\(|[\\s·,])','gu'),
+   args=>({code:args[1]}));
+  swap(new RegExp('('+letterRE+')\\s+([0-9]+(?:-[0-9]+)*)(?=번|$|\\(|[\\s·,])','gu'),
+   args=>({code:args[1]+args[2]}));
+  // Letter sequences without digits are still meaningful line-name tokens.
+  swap(new RegExp('(^|[\\s(·,/:\\[])('+letterRE+')(?=번|선|$|[\\s)·,/:\\]])','gu'),
+   args=>({before:args[1],code:args[2]}));
+  swap(new RegExp('('+letterRE+')(?=번|선(?:$|[\\s)·,]))','gu'),
+   args=>({code:args[1]}));
+  title=title.replace(/(^|[\s(·,/:])([A-Z])\s+([0-9]+(?:-[0-9]+)*)(?=번|$|\(|[\s·,])/g,
+   (match,before,letter,number)=>before+letter+number);
+  title=title.replace(/(^|[\s(·,/:])([a-z]+[0-9]+(?:-[0-9]+)*)(?=번|$|\(|[\s·,])/g,
+   (match,before,code)=>before+code.toUpperCase());
+  return title;
  }
- if(names!==oldNames)result.names={...raw.names,ko:names,aliases:[...new Set([...(raw.names.aliases||[]),oldNames])]};
- if(passenger!==oldPassenger)result.passengerLineName=passenger;
- if(displayName!==oldNameKo)result.nameKo=displayName;
- if(hasVerifiedLatin)Object.assign(result,{routeNumber:official,legacyPhoneticRouteNumber:fromSource});
- return result;
+ const oldNames=raw?.names?.ko,oldPassenger=raw?.passengerLineName,oldKo=raw?.nameKo;
+ const corrected=label(first),newNames=label(oldNames),newPassenger=label(oldPassenger),newKo=label(oldKo);
+ const changeLine=corrected!==first,changeNames=newNames!==oldNames,
+  changePassenger=newPassenger!==oldPassenger,changeKo=newKo!==oldKo;
+ if(!changeLine&&!changeNames&&!changePassenger&&!changeKo)return raw;
+ const answer={...raw};
+ if(changeLine){
+  const oldLine=raw.line||{};
+  answer.line={...oldLine,ko:corrected,aliases:[...new Set([...(oldLine.aliases||[]),first])]};
+  for(const lang of ['ja','en'])if(!oldLine[lang]||oldLine[lang]===first)answer.line[lang]=corrected;
+ }
+ if(changeNames)answer.names={...raw.names,ko:newNames,aliases:[...new Set([...(raw.names.aliases||[]),oldNames])]};
+ if(changePassenger)answer.passengerLineName=newPassenger;
+ if(changeKo)answer.nameKo=newKo;
+ if(verified)Object.assign(answer,{routeNumber:official,legacyPhoneticRouteNumber:source});
+ return answer;
 }
 export function restoreKrBusLatinRoute(raw){
  if(raw?.countryId!=='kr'||!(['bus','village_bus','express_bus','brt'].includes(raw.mode)||String(raw.id||'').startsWith('kr-bus-')))return raw;
