@@ -159,7 +159,7 @@ async function koreaLineRows(){
 // second transliteration map in the editor. This preserves IDs and overrides.
 let krBusRestorerPromise;
 async function krBusRestorer(){
- if(!krBusRestorerPromise)krBusRestorerPromise=import('../../js/data-loader.js?name-editor-all-letters-20261107')
+ if(!krBusRestorerPromise)krBusRestorerPromise=import('../../js/data-loader.js?name-editor-all-letters-20261107-final')
    .then(module=>module.restoreKrBusLatinRoute)
    .catch(error=>{krBusRestorerPromise=null;throw error});
  return krBusRestorerPromise;
