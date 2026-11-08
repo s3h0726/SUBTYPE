@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "countryId": "gb",
+  "id": "eu-gb-research-tfl-victoria",
+  "operator": {
+    "native": "Transport for London",
+    "en": "Transport for London",
+    "ko": null
+  },
+  "line": {
+    "native": "Victoria line",
+    "en": "Victoria line",
+    "ko": "빅토리아선",
+    "color": "#0098D4"
+  },
+  "operationalEvidence": {
+    "status": "active-as-of-published-timetable",
+    "officialSourceUrl": "https://tfl.gov.uk/tube/timetable/victoria?FromId=940GZZLUBXN&SelectedTime=8&ToId=940GZZLUVIC&departureHour=08&departureMins=20&selectedDate=mondaythursday",
+    "additionalEvidenceUrl": "https://content.tfl.gov.uk/fandl-vic-ttn-116-26.pdf",
+    "officialTrackAPI": "https://api.tfl.gov.uk/Line/victoria/Route/Sequence/outbound",
+    "checkedDate": "2026-11-08"
+  },
+  "stations": [
+    {
+      "order": 1,
+      "native": "Brixton",
+      "en": "Brixton",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 2,
+      "native": "Stockwell",
+      "en": "Stockwell",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 3,
+      "native": "Vauxhall",
+      "en": "Vauxhall",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 4,
+      "native": "Pimlico",
+      "en": "Pimlico",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 5,
+      "native": "Victoria",
+      "en": "Victoria",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 6,
+      "native": "Green Park",
+      "en": "Green Park",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 7,
+      "native": "Oxford Circus",
+      "en": "Oxford Circus",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 8,
+      "native": "Warren Street",
+      "en": "Warren Street",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 9,
+      "native": "Euston",
+      "en": "Euston",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 10,
+      "native": "King's Cross St. Pancras",
+      "en": "King's Cross St. Pancras",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 11,
+      "native": "Highbury & Islington",
+      "en": "Highbury & Islington",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 12,
+      "native": "Finsbury Park",
+      "en": "Finsbury Park",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 13,
+      "native": "Seven Sisters",
+      "en": "Seven Sisters",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 14,
+      "native": "Tottenham Hale",
+      "en": "Tottenham Hale",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 15,
+      "native": "Blackhorse Road",
+      "en": "Blackhorse Road",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    },
+    {
+      "order": 16,
+      "native": "Walthamstow Central",
+      "en": "Walthamstow Central",
+      "ko": null,
+      "officialStationId": null,
+      "geometryIndex": null,
+      "reviewStatus": "unverified-Korean"
+    }
+  ],
+  "publishGate": {
+    "playable": false,
+    "geometryReady": false,
+    "koreanNameReview": "missing",
+    "trackShape": "not-acquired",
+    "stopIdentifiers": "not-acquired",
+    "license": "pending-review",
+    "reverseDirection": "not-verified"
+  },
+  "notes": "Official ordered stops researched; intentionally not exported as a playable route until a licensed railway track polyline, official station IDs and independently reviewed Korean names are supplied."
+}
