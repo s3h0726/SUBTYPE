@@ -12,4 +12,13 @@ write('js/app.bundle.js',bundle);
 const hash=crypto.createHash('sha256').update(bundle).digest('hex').slice(0,12),html=read('index.html').replace(/(\.\/js\/app\.bundle\.js)(?:\?v=[^"']*)?/g,`$1?v=${hash}`);const workspaceHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'js/line-workspace-data.js'))).digest('hex').slice(0,12);write('index.html',html.replace(/(\.\/js\/japan-lite-index\.js)(?:\?v=[^"']*)?/g,`$1?v=${crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'js/japan-lite-index.js'))).digest('hex').slice(0,12)}`).replace(/(\.\/js\/line-workspace-data\.js)(?:\?v=[^"']*)?/g,`$1?v=${workspaceHash}`));
 const kr=read('js/korea-index-data.js');write('index.html',read('index.html').replace(/(\.\/js\/korea-index-data\.js)(?:\?v=[^"']*)?/g,'$1?v='+crypto.createHash('sha256').update(kr).digest('hex').slice(0,12)));
 write('index.html',read('index.html').replace(/(\.\/js\/result-journey-map\.js)(?:\?v=[^"']*)?/g,'$1?v='+crypto.createHash('sha256').update(read('js/result-journey-map.js')).digest('hex').slice(0,12)));
-console.log(JSON.stringify({bundle:'js/app.bundle.js',hash},null,2));
+const appVersion=JSON.parse(read('package.json')).version;
+if(!/^\d+\.\d+\.\d+$/.test(appVersion))throw new Error('package.json must define a semantic version X.Y.Z');
+let syncedVersionLabels=0;
+const versionedHtml=read('index.html')
+  .replace(/(<(?:span|strong)\b[^>]*\bdata-app-version\b[^>]*>)[^<]*(<\/(?:span|strong)>)/g,(_,open,close)=>{syncedVersionLabels++;return open+'v'+appVersion+close})
+  .replace(/(<meta name="application-version" content=")[^"]*(")/,(_,open,close)=>open+appVersion+close)
+  .replace(/(\.\/css\/app-version\.css)(?:\?v=[^"']*)?/g,'$1?v='+appVersion);
+if(syncedVersionLabels<4)throw new Error('Missing SUBTYPE version labels in index.html');
+write('index.html',versionedHtml);
+console.log(JSON.stringify({bundle:'js/app.bundle.js',hash,version:'v'+appVersion,versionLabels:syncedVersionLabels},null,2));

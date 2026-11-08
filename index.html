@@ -17,6 +17,7 @@
   </script>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#101820">
+  <meta name="application-version" content="0.9.0">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101820'/%3E%3Cpath d='M16 18h32v9H37v23H27V27H16z' fill='%2345c985'/%3E%3C/svg%3E">
   <meta name="description" content="일본과 대한민국의 다음 역·정류장·선착장을 한국어로 입력하는 대중교통 타이핑 게임">
   <title>SUBTYPE — 대중교통 타이핑</title>
@@ -81,13 +82,14 @@
   <link rel="stylesheet" href="./css/tokyu-photo-nameplate-v2.css?v=20261107-tokyu-no-center-badge">
   <link rel="stylesheet" href="./css/chichibu-photo-nameplate-v2.css?v=20261107-chichibu-cr37">
 <link rel="stylesheet" href="./css/uk-rail.css?v=1">
+  <link rel="stylesheet" href="./css/app-version.css?v=0.9.0">
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
   <header class="topbar">
     <button class="brand" data-nav="home" aria-label="홈으로">
       <span class="brand-mark" aria-hidden="true">T</span>
-      <span><b>SUBTYPE</b><small id="brand-subtitle">대중교통 타이핑</small></span>
+      <span><b>SUBTYPE</b><small id="brand-subtitle">대중교통 타이핑</small></span><span class="app-version-badge" data-app-version>v0.9.0</span>
     </button>
     <nav aria-label="주 메뉴">
       <button data-nav="rail-map">PLAY</button>
@@ -103,7 +105,7 @@
         <canvas id="home-network-canvas"></canvas>
       </div>
       <header class="home-top">
-        <button class="home-brand" data-nav="home" aria-label="SUBTYPE 홈"><span class="home-brand-mark">ST</span><span><b>SUBTYPE</b><strong id="home-country-mark">JAPAN RAIL</strong><small id="home-country-subtitle">일본 철도 타이핑</small></span></button>
+        <button class="home-brand" data-nav="home" aria-label="SUBTYPE 홈"><span class="home-brand-mark">ST</span><span><b>SUBTYPE</b><span class="app-version-badge home-version-badge" data-app-version>v0.9.0</span><strong id="home-country-mark">JAPAN RAIL</strong><small id="home-country-subtitle">일본 철도 타이핑</small></span></button>
         <div class="home-status"><b id="clock">--:--</b><span id="home-country-status">日本全国 · JAPAN</span><div class="auth-state" data-auth-state></div></div>
       </header>
       <div class="home-stage">
@@ -135,7 +137,7 @@
           <div class="feature-controls" aria-label="추천 노선 슬라이드"><button data-slide="prev" aria-label="이전 노선">←</button><div><button class="active" data-slide-to="0" aria-label="추천 노선 1"></button><button data-slide-to="1" aria-label="추천 노선 2"></button><button data-slide-to="2" aria-label="커스텀 노선"></button></div><button data-slide="next" aria-label="다음 노선">→</button></div>
         </aside>
       </div>
-      <footer class="home-footer"><span>SUBTYPE · 2026</span><span>일본 전국 철도 타이핑</span><span>OPENSTREETMAP</span></footer>
+      <footer class="home-footer"><span>SUBTYPE <span data-app-version>v0.9.0</span> · 2026</span><span>일본 전국 철도 타이핑</span><span>OPENSTREETMAP</span></footer>
       <div id="recent-list" class="home-recent" aria-live="polite"></div>
     </section>
 
@@ -317,7 +319,7 @@
       </div>
     </section>
 
-    <section id="screen-settings" data-screen="settings" class="screen" aria-labelledby="settings-title"><div class="section-head"><div><p class="eyebrow">환경 설정</p><h2 id="settings-title">설정</h2><p><a class="btn ghost" href="./editor/">철도 데이터 에디터 열기</a></p></div><button class="btn text" data-nav="home">← HOME</button></div><form id="settings-form" class="settings-form"><fieldset><legend>화면 테마</legend><div class="segmented"><label><input type="radio" name="theme" value="dark"><span>어둡게</span></label><label><input type="radio" name="theme" value="light"><span>밝게</span></label><label><input type="radio" name="theme" value="system"><span>시스템 설정</span></label></div></fieldset><fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto"><span>자동으로 다음 역</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE로 다음 역</span></label></div></fieldset><div class="korean-only-notice"><b>입력 언어 · 한국어</b><span>일본어·가나·로마자는 문제 표시 전용입니다.</span></div><input type="hidden" name="mapMode" value="geographic"><label>지도 역명<select name="stationLabel"><option value="ja">日本語</option><option value="ja-romaji">日本語 + Romaji</option></select></label><label>지도 라벨 밀도<select name="mapLabels"><option value="low">낮음</option><option value="normal">보통</option><option value="high">높음</option></select></label><label class="check"><input name="sound" type="checkbox"> 효과음 사용</label><label class="check"><input name="motion" type="checkbox"> 열차 이동 애니메이션</label><label class="check"><input name="reducedMotion" type="checkbox"> 애니메이션 줄이기</label><button class="btn primary" type="submit">설정 저장</button></form></section>
+    <section id="screen-settings" data-screen="settings" class="screen" aria-labelledby="settings-title"><div class="section-head"><div><p class="eyebrow">환경 설정</p><h2 id="settings-title">설정</h2><p><a class="btn ghost" href="./editor/">철도 데이터 에디터 열기</a></p></div><button class="btn text" data-nav="home">← HOME</button></div><p class="app-version-settings">현재 버전 <strong data-app-version>v0.9.0</strong> <span>· 개발 버전</span></p><form id="settings-form" class="settings-form"><fieldset><legend>화면 테마</legend><div class="segmented"><label><input type="radio" name="theme" value="dark"><span>어둡게</span></label><label><input type="radio" name="theme" value="light"><span>밝게</span></label><label><input type="radio" name="theme" value="system"><span>시스템 설정</span></label></div></fieldset><fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto"><span>자동으로 다음 역</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE로 다음 역</span></label></div></fieldset><div class="korean-only-notice"><b>입력 언어 · 한국어</b><span>일본어·가나·로마자는 문제 표시 전용입니다.</span></div><input type="hidden" name="mapMode" value="geographic"><label>지도 역명<select name="stationLabel"><option value="ja">日本語</option><option value="ja-romaji">日本語 + Romaji</option></select></label><label>지도 라벨 밀도<select name="mapLabels"><option value="low">낮음</option><option value="normal">보통</option><option value="high">높음</option></select></label><label class="check"><input name="sound" type="checkbox"> 효과음 사용</label><label class="check"><input name="motion" type="checkbox"> 열차 이동 애니메이션</label><label class="check"><input name="reducedMotion" type="checkbox"> 애니메이션 줄이기</label><button class="btn primary" type="submit">설정 저장</button></form></section>
     <section id="screen-credits" data-screen="credits" class="screen credits-screen" aria-labelledby="credits-title"><div class="section-head"><div><p class="eyebrow">DATA & CREDITS</p><h2 id="credits-title">철도 데이터와 자산 출처</h2><p>검증일 2026-08-28 · 나무위키 canonical Korean naming policy</p></div><button class="btn text" data-nav="settings">← SETTINGS</button></div><div class="credits-grid"><article id="uk-credits"><h3>영국 철도</h3><p>Powered by TfL Open Data. 실제 선로 및 지역 철도 정차 자료: © OpenStreetMap contributors, ODbL 1.0. 한국어 역명은 SUBTYPE 편집 표기입니다. 공식 로고를 사용하지 않은 학습용 역명판입니다.</p><a href="https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service" target="_blank" rel="noopener">TfL 데이터 이용약관</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OSM / ODbL</a></article><article id="th-credits"><h3>태국 철도</h3><p>국철 정차: SRT 공식 시간표·공개 TTS 자료·Longdo Transit·Rotfai Radar. 선로: © OpenStreetMap contributors, ODbL 1.0. 계통별 원본 기준일이 다르며 현행 전국 소역 정차의 완전성은 미확인입니다. 한국어는 태국어 기반 프로젝트 표기입니다.</p><a href="https://ttsview.railway.co.th/timetable_modern.php?ln=en" target="_blank" rel="noopener">SRT</a> · <a href="https://transit.longdo.com/api/" target="_blank" rel="noopener">Longdo Transit</a> · <a href="https://rotfai.live/" target="_blank" rel="noopener">Rotfai Radar</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OSM / ODbL</a></article><article id="hk-credits" hidden><h3>HONG KONG NETWORK</h3><p>홍콩의 번체중문·영문 역명과 정차순서는 MTR·운영사 공식 자료, 실제 선로는 OpenStreetMap 원본을 사용합니다. 한국어 표기와 특수 운행·선로가 미검증인 서비스는 플레이에서 제외합니다. 로고 권리 검수가 끝나기 전에는 문자 운영사명을 표시합니다.</p><a href="https://www.mtr.com.hk/en/customer/services/system_map.html" target="_blank" rel="noopener">MTR 공식 자료</a> · <a href="https://www.hktramways.com/en/schedules-fares/" target="_blank" rel="noopener">Hong Kong Tramways</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap / ODbL</a></article><article><h3>MAP</h3><p>Leaflet 1.9.4</p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></article><article><h3>STATION / LINE DATA</h3><p>일본어 공식 명칭, Kana, 역번호와 운행 정보는 각 철도 운영사의 공식 자료와 교차 검증합니다. 지도와 철도 선형은 국토교통성 및 OpenStreetMap 등 별도 공간정보 출처를 사용합니다.</p></article><article><h3>ROUTE SYMBOLS / LOGOS</h3><p>로고와 심볼의 식별 기준에는 나무위키를 사용하고, 실제 이미지 자산은 공식 배포자료 또는 사용 조건을 확인할 수 있는 원본을 사용합니다.</p><a href="./ASSET_CREDITS.md" target="_blank" rel="noopener">ASSET_CREDITS.md</a></article><article><h3>KOREAN NAMES</h3><p>SUBTYPE의 일본 철도 회사명·노선명·역명 등 한국어 표기는 나무위키의 한국어 철도 표기를 canonical 기준으로 사용합니다. 직접 접근이 제한되더라도 정책은 유지하며, 실제로 확인하지 못한 항목은 검수 필요 상태로 남깁니다.</p><a href="./DATA_SOURCES.md" target="_blank" rel="noopener">DATA_SOURCES.md</a></article></div></section>
   </main>
   <button class="credits-nav" data-nav="credits">DATA & CREDITS</button>
