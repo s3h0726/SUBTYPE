@@ -3368,7 +3368,7 @@ function restoreKrBusRouteName(raw){
   // Source-backed codes resolve the ambiguous "지" spelling (G vs Z).
   if(codeBase){
    const spoken=codeBase.replace(/[A-Z]/g,l=>KR_BUS_SPELLED_LATIN[l.charCodeAt(0)-65]);
-   const escaped=spoken.replace(/[^가-힣0-9]/g,c=>'\\'+c);
+   const escaped=spoken.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
    title=title.replace(new RegExp(escaped+'(?=번|선|$|[\\s)·,/:\\[(])','gu'),codeBase);
    // Preserve a slash/hyphen separating a verified alphabet prefix from digits,
    // e.g. "지/10" means G/10 or Z/10 according to the official route code.
