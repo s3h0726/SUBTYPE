@@ -80,7 +80,10 @@
     "build:thailand": "node tools/normalize-thailand.cjs && node tools/build-thailand.cjs && node tools/build-app-bundle.js",
     "import:thailand": "node tools/fetch-thailand.cjs",
     "test:thailand": "node tools/test-thailand.cjs && node tools/test-thailand-records.cjs && node --test tools/test-thailand-source.cjs",
-    "test:thailand:browser": "node tools/test-thailand-browser.cjs"
+    "test:thailand:browser": "node tools/test-thailand-browser.cjs",
+    "build:uk": "node tools/build-uk-regional.cjs",
+    "test:uk": "node --test tools/test-uk-track-graph.cjs && node tools/test-uk-rail.cjs",
+    "test:uk:browser": "node tools/test-uk-browser.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

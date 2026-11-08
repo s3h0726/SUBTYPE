@@ -1,0 +1,913 @@
+{
+  "status": "PASS",
+  "lines": 28,
+  "operators": 9,
+  "directions": 129,
+  "stationIds": 657,
+  "source": "all generated routes through production UK resolver and route-integrity engine",
+  "patterns": [
+    {
+      "lineId": "uk-bakerloo",
+      "patternId": "uk-osm-102771",
+      "stations": 25,
+      "geometryPoints": 596,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-bakerloo",
+      "patternId": "uk-osm-7666697",
+      "stations": 25,
+      "geometryPoints": 559,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-osm-102768",
+      "stations": 37,
+      "geometryPoints": 894,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-osm-7667065",
+      "stations": 31,
+      "geometryPoints": 636,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-osm-7667069",
+      "stations": 31,
+      "geometryPoints": 565,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-osm-7667070",
+      "stations": 37,
+      "geometryPoints": 778,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-tfl-central-d74a3f2e950e",
+      "stations": 32,
+      "geometryPoints": 672,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-tfl-central-a4653ac57521",
+      "stations": 32,
+      "geometryPoints": 730,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-tfl-central-11313ff0ecb0",
+      "stations": 36,
+      "geometryPoints": 801,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-tfl-central-1156e6f1d7cf",
+      "stations": 36,
+      "geometryPoints": 835,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-tfl-central-dc69710bd8b8",
+      "stations": 36,
+      "geometryPoints": 703,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-central",
+      "patternId": "uk-tfl-central-84fef388ef08",
+      "stations": 36,
+      "geometryPoints": 671,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-circle",
+      "patternId": "uk-osm-102769",
+      "stations": 37,
+      "geometryPoints": 908,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-circle",
+      "patternId": "uk-osm-7671006",
+      "stations": 37,
+      "geometryPoints": 901,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-osm-102770",
+      "stations": 43,
+      "geometryPoints": 1171,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-osm-7677091",
+      "stations": 14,
+      "geometryPoints": 374,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-osm-7677093",
+      "stations": 14,
+      "geometryPoints": 385,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-osm-7677095",
+      "stations": 42,
+      "geometryPoints": 1118,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-osm-7677290",
+      "stations": 42,
+      "geometryPoints": 1145,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-osm-7677292",
+      "stations": 43,
+      "geometryPoints": 1173,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-tfl-district-f66e2a7344dc",
+      "stations": 16,
+      "geometryPoints": 465,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-tfl-district-a8cd49c7e5fd",
+      "stations": 7,
+      "geometryPoints": 172,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-tfl-district-d016a271fe4d",
+      "stations": 16,
+      "geometryPoints": 466,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-tfl-district-f6dfa3d52f3c",
+      "stations": 15,
+      "geometryPoints": 411,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-tfl-district-4322d4ad13a5",
+      "stations": 7,
+      "geometryPoints": 175,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-tfl-district-146edf27116f",
+      "stations": 15,
+      "geometryPoints": 439,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-district",
+      "patternId": "uk-tfl-district-ef62cd155b77",
+      "stations": 41,
+      "geometryPoints": 1091,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772551",
+      "stations": 12,
+      "geometryPoints": 515,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772552",
+      "stations": 12,
+      "geometryPoints": 534,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772553",
+      "stations": 19,
+      "geometryPoints": 453,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772555",
+      "stations": 16,
+      "geometryPoints": 438,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772556",
+      "stations": 15,
+      "geometryPoints": 448,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772557",
+      "stations": 13,
+      "geometryPoints": 594,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772558",
+      "stations": 13,
+      "geometryPoints": 563,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772559",
+      "stations": 16,
+      "geometryPoints": 545,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-dlr",
+      "patternId": "uk-osm-7772560",
+      "stations": 16,
+      "geometryPoints": 504,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-10969853",
+      "stations": 16,
+      "geometryPoints": 763,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-10969854",
+      "stations": 16,
+      "geometryPoints": 712,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-12843954",
+      "stations": 9,
+      "geometryPoints": 461,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-12843955",
+      "stations": 9,
+      "geometryPoints": 497,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-14773903",
+      "stations": 19,
+      "geometryPoints": 685,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-14773905",
+      "stations": 27,
+      "geometryPoints": 1171,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-14773906",
+      "stations": 18,
+      "geometryPoints": 887,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-14773907",
+      "stations": 27,
+      "geometryPoints": 1120,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-14773908",
+      "stations": 18,
+      "geometryPoints": 932,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-14773911",
+      "stations": 25,
+      "geometryPoints": 1178,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-14773912",
+      "stations": 25,
+      "geometryPoints": 1131,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-5642190",
+      "stations": 14,
+      "geometryPoints": 734,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-5793620",
+      "stations": 14,
+      "geometryPoints": 715,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-6375986",
+      "stations": 9,
+      "geometryPoints": 517,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-osm-7022860",
+      "stations": 9,
+      "geometryPoints": 471,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-tfl-elizabeth-1967f0ff0653",
+      "stations": 27,
+      "geometryPoints": 1190,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-elizabeth",
+      "patternId": "uk-tfl-elizabeth-f82e7e4556de",
+      "stations": 27,
+      "geometryPoints": 1130,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-hammersmith-city",
+      "patternId": "uk-osm-102787",
+      "stations": 29,
+      "geometryPoints": 685,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-hammersmith-city",
+      "patternId": "uk-osm-7666924",
+      "stations": 29,
+      "geometryPoints": 711,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-jubilee",
+      "patternId": "uk-osm-102773",
+      "stations": 27,
+      "geometryPoints": 711,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-jubilee",
+      "patternId": "uk-osm-7673325",
+      "stations": 27,
+      "geometryPoints": 720,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-liberty",
+      "patternId": "uk-osm-141910",
+      "stations": 3,
+      "geometryPoints": 89,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-liberty",
+      "patternId": "uk-osm-9752356",
+      "stations": 3,
+      "geometryPoints": 89,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-lioness",
+      "patternId": "uk-osm-1242272",
+      "stations": 19,
+      "geometryPoints": 644,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-lioness",
+      "patternId": "uk-osm-9752359",
+      "stations": 19,
+      "geometryPoints": 560,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metropolitan",
+      "patternId": "uk-osm-102783",
+      "stations": 23,
+      "geometryPoints": 939,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metropolitan",
+      "patternId": "uk-osm-7673614",
+      "stations": 23,
+      "geometryPoints": 1084,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metropolitan",
+      "patternId": "uk-osm-7673615",
+      "stations": 23,
+      "geometryPoints": 1028,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metropolitan",
+      "patternId": "uk-osm-7673617",
+      "stations": 22,
+      "geometryPoints": 777,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metropolitan",
+      "patternId": "uk-osm-7673620",
+      "stations": 22,
+      "geometryPoints": 765,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metropolitan",
+      "patternId": "uk-osm-7673622",
+      "stations": 24,
+      "geometryPoints": 883,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metropolitan",
+      "patternId": "uk-tfl-metropolitan-6a9264045e4b",
+      "stations": 21,
+      "geometryPoints": 857,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metropolitan",
+      "patternId": "uk-tfl-metropolitan-df7a4ea8158f",
+      "stations": 21,
+      "geometryPoints": 791,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-mildmay",
+      "patternId": "uk-osm-6413186",
+      "stations": 23,
+      "geometryPoints": 734,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-mildmay",
+      "patternId": "uk-osm-6413187",
+      "stations": 23,
+      "geometryPoints": 755,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-mildmay",
+      "patternId": "uk-osm-9674325",
+      "stations": 23,
+      "geometryPoints": 830,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-mildmay",
+      "patternId": "uk-osm-9674326",
+      "stations": 23,
+      "geometryPoints": 857,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern",
+      "patternId": "uk-osm-102767",
+      "stations": 22,
+      "geometryPoints": 480,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern",
+      "patternId": "uk-osm-7702937",
+      "stations": 31,
+      "geometryPoints": 609,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern",
+      "patternId": "uk-osm-7702938",
+      "stations": 22,
+      "geometryPoints": 496,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern",
+      "patternId": "uk-osm-7702941",
+      "stations": 31,
+      "geometryPoints": 639,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern",
+      "patternId": "uk-osm-7702943",
+      "stations": 23,
+      "geometryPoints": 420,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern",
+      "patternId": "uk-osm-7702970",
+      "stations": 32,
+      "geometryPoints": 531,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern",
+      "patternId": "uk-osm-7702971",
+      "stations": 32,
+      "geometryPoints": 552,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern",
+      "patternId": "uk-osm-7702972",
+      "stations": 23,
+      "geometryPoints": 395,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-piccadilly",
+      "patternId": "uk-osm-102788",
+      "stations": 38,
+      "geometryPoints": 1108,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-piccadilly",
+      "patternId": "uk-osm-7703380",
+      "stations": 38,
+      "geometryPoints": 1121,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-piccadilly",
+      "patternId": "uk-osm-7703381",
+      "stations": 37,
+      "geometryPoints": 1080,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-piccadilly",
+      "patternId": "uk-osm-7703382",
+      "stations": 42,
+      "geometryPoints": 1253,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-piccadilly",
+      "patternId": "uk-osm-7703383",
+      "stations": 38,
+      "geometryPoints": 1107,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-piccadilly",
+      "patternId": "uk-osm-7703384",
+      "stations": 42,
+      "geometryPoints": 1306,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-suffragette",
+      "patternId": "uk-osm-419512",
+      "stations": 13,
+      "geometryPoints": 459,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-suffragette",
+      "patternId": "uk-osm-9683819",
+      "stations": 13,
+      "geometryPoints": 478,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tram",
+      "patternId": "uk-osm-6994815",
+      "stations": 23,
+      "geometryPoints": 557,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tram",
+      "patternId": "uk-osm-7560898",
+      "stations": 25,
+      "geometryPoints": 578,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tram",
+      "patternId": "uk-osm-9976022",
+      "stations": 27,
+      "geometryPoints": 689,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tram",
+      "patternId": "uk-osm-9976023",
+      "stations": 29,
+      "geometryPoints": 714,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tram",
+      "patternId": "uk-tfl-tram-28cb30a0d496",
+      "stations": 14,
+      "geometryPoints": 491,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tram",
+      "patternId": "uk-tfl-tram-9198b2ebd9ae",
+      "stations": 12,
+      "geometryPoints": 409,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-victoria",
+      "patternId": "uk-osm-6354920",
+      "stations": 16,
+      "geometryPoints": 333,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-victoria",
+      "patternId": "uk-osm-6354921",
+      "stations": 16,
+      "geometryPoints": 295,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-waterloo-city",
+      "patternId": "uk-osm-102762",
+      "stations": 2,
+      "geometryPoints": 74,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-waterloo-city",
+      "patternId": "uk-osm-7672074",
+      "stations": 2,
+      "geometryPoints": 61,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-weaver",
+      "patternId": "uk-osm-9105025",
+      "stations": 15,
+      "geometryPoints": 707,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-weaver",
+      "patternId": "uk-osm-9105026",
+      "stations": 17,
+      "geometryPoints": 928,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-weaver",
+      "patternId": "uk-osm-9105027",
+      "stations": 17,
+      "geometryPoints": 937,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-weaver",
+      "patternId": "uk-osm-9105028",
+      "stations": 15,
+      "geometryPoints": 717,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-weaver",
+      "patternId": "uk-osm-9683722",
+      "stations": 11,
+      "geometryPoints": 581,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-weaver",
+      "patternId": "uk-osm-9683729",
+      "stations": 11,
+      "geometryPoints": 591,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-windrush",
+      "patternId": "uk-osm-10107560",
+      "stations": 18,
+      "geometryPoints": 689,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-windrush",
+      "patternId": "uk-osm-10107561",
+      "stations": 18,
+      "geometryPoints": 663,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-windrush",
+      "patternId": "uk-osm-10114892",
+      "stations": 21,
+      "geometryPoints": 560,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-windrush",
+      "patternId": "uk-osm-10114893",
+      "stations": 21,
+      "geometryPoints": 518,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-windrush",
+      "patternId": "uk-osm-10972594",
+      "stations": 13,
+      "geometryPoints": 373,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-windrush",
+      "patternId": "uk-osm-959677",
+      "stations": 18,
+      "geometryPoints": 436,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-windrush",
+      "patternId": "uk-osm-9683128",
+      "stations": 18,
+      "geometryPoints": 475,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-windrush",
+      "patternId": "uk-tfl-windrush-ccdae767e5ff",
+      "stations": 13,
+      "geometryPoints": 345,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-edinburgh-trams",
+      "patternId": "uk-osm-2632877",
+      "stations": 23,
+      "geometryPoints": 647,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-edinburgh-trams",
+      "patternId": "uk-osm-4116776",
+      "stations": 23,
+      "geometryPoints": 657,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-glasgow-subway",
+      "patternId": "uk-osm-225658",
+      "stations": 16,
+      "geometryPoints": 264,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-glasgow-subway",
+      "patternId": "uk-osm-7734172",
+      "stations": 16,
+      "geometryPoints": 260,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tyne-wear-green",
+      "patternId": "uk-osm-172927",
+      "stations": 31,
+      "geometryPoints": 840,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tyne-wear-green",
+      "patternId": "uk-osm-8215203",
+      "stations": 31,
+      "geometryPoints": 807,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tyne-wear-yellow",
+      "patternId": "uk-osm-8215232",
+      "stations": 42,
+      "geometryPoints": 1131,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-tyne-wear-yellow",
+      "patternId": "uk-osm-8215233",
+      "stations": 42,
+      "geometryPoints": 1152,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-sheffield-yellow",
+      "patternId": "uk-osm-165852",
+      "stations": 25,
+      "geometryPoints": 682,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-sheffield-yellow",
+      "patternId": "uk-osm-9701823",
+      "stations": 25,
+      "geometryPoints": 726,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-sheffield-blue",
+      "patternId": "uk-osm-165857",
+      "stations": 33,
+      "geometryPoints": 975,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-sheffield-blue",
+      "patternId": "uk-osm-9701743",
+      "stations": 33,
+      "geometryPoints": 1003,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-sheffield-purple",
+      "patternId": "uk-osm-165858",
+      "stations": 14,
+      "geometryPoints": 390,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-sheffield-purple",
+      "patternId": "uk-osm-9701599",
+      "stations": 14,
+      "geometryPoints": 422,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-sheffield-tram-train",
+      "patternId": "uk-osm-9701871",
+      "stations": 15,
+      "geometryPoints": 440,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-sheffield-tram-train",
+      "patternId": "uk-osm-9701872",
+      "stations": 15,
+      "geometryPoints": 423,
+      "status": "PASS"
+    }
+  ]
+}

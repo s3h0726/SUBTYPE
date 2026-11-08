@@ -638,6 +638,7 @@ const japaneseLoopClosure=route=>{
     &&jpTransferDistanceKm(coords(first),coords(last))<=0.15;
 };
 const freeDriveStationKey=s=>{
+  if(s?.countryId==='uk')return String(s.physicalStationId||s.stationMasterId||s.id);
   if(s?.countryId==='th')return String(s.thTransferKey||s.station_id||s.stationMasterId||s.id);
   if(s?.countryId==='hk')return String(s.hkTransferKey||s.stationMasterId||s.sourceStationId||s.id);
   if(s?.operator_id?.startsWith('tw-'))return s.twTransferKey||s.station_id||s.id;

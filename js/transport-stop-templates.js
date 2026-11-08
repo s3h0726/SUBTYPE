@@ -34,6 +34,7 @@ export function isKorailOperatedRoute(route,station){
 }
 
 export function resolveTransportStopTemplate(route,station){
+  if(route?.countryId==='uk'){const style=route.id==='uk-glasgow-subway'?'uk-metro':route.category==='subway'?'uk-underground':route.category==='tram'?'uk-tram':route.category==='light_rail'?'uk-metro':'uk-national-rail';return{key:style,style,family:'uk-bilingual',referenceSource:'SUBTYPE original bilingual railway learning layout; no official logos'}}
   if(route?.countryId==='hk'){const mode=route.mode||route.category,style=mode==='light_rail'?'hk-light-rail':mode==='tram'?'hk-tram':mode==='funicular'?'hk-funicular':mode==='high_speed_rail'?'hk-hsr':'hk-mtr';return{key:style,style,family:style,referenceSource:route.sourceUrl||'Hong Kong transport learning layout; not an official sign'}}
   if(route?.countryId!=='kr')return resolveJapaneseTemplate(route);
   const key=route.mode==='river_bus'?'krRiver':['bus','village_bus','express_bus','brt'].includes(route.mode)?'krBus':route.operatorId==='kr-shinbundang'?'krShinbundang':isKorailOperatedRoute(route,station)?'krKorail':route.operatorId==='kr-seoul-metro'||route.operatorId==='kr-seoulmetro-korail'?'krSeoulMetro':'krGenericRail';

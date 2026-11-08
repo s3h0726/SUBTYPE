@@ -1,5 +1,6 @@
 import{thailandPresentation,decodeThailandPayload,setThailandNameEvidence}from'./thailand-network.js';
 import{decodeRoutePayload}from'./route-payload.js';
+import{configureUKNames,ukPresentation,ukPatternRoute}from'./uk-network.js';
 import{configureTaiwanNetwork,taiwanKoreanPresentation}from'./taiwan-network.js';
 import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
 import{koreanServiceIsCurrent}from'./korean-service-resolver.js';
@@ -363,7 +364,18 @@ export function integrateKoreanLine1Index(published,preview){
   const operators=[...new Map([...(published.operators||[]),...(preview.operators||[])].map(operator=>[operator.id,operator])).values()];
   return{...published,routes,operators,integratedLine1:{researchServices:merged.length,replacedLegacySections:legacy.filter(isOldLine1).length,releaseStatus:'research',officialReleased:0}};
 }
+let ukGeometryPromise;
+async function loadUKGeometry(){if(!ukGeometryPromise)ukGeometryPromise=fetchJson(new URL('data/uk/generated/geometry.json',document.baseURI)).then(d=>d.segments).catch(e=>{ukGeometryPromise=null;throw e});return ukGeometryPromise}
 export async function loadTransportData(countryId='jp',koreaMode='released'){
+  if(countryId==='uk'){
+    await loadEditorNameOverrides();
+    const data=await fetchJson(new URL('data/uk/generated/index.json',document.baseURI));
+    configureUKNames(editorNameOverrides,data.stationNameIndex||[]);
+    if(data.country?.id!=='uk')throw Error('UK_COUNTRY_IDENTITY');
+    const lines=data.routes.filter(r=>r.playable&&r.geometryReady&&r.serviceCount>0).map(r=>ukPresentation(normalizeLazyLine(r)));
+    return{country:data.country,operators:data.operators.map(o=>({...o,names:{...o.names,ko:editorNameOverrides.operators[o.id]||o.names.ko}})),lines,stations:[],assets:{},errors:[],counts:lines.reduce((m,r)=>(m[r.category]=(m[r.category]||0)+1,m),{}),source:'uk-verified-lazy-network',sourceNotice:data.sourceNotice};
+  }
+
   if(countryId==='th'){
     await loadEditorNameOverrides();
     // 선택적 보정표가 없어도 기존 태국 노선은 계속 불러온다.
@@ -416,6 +428,13 @@ export async function loadTransportData(countryId='jp',koreaMode='released'){
   return{country:data.country,operators:withEditorOperators(operators),lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
 }
 export async function hydrateRailLine(route){if(!route?.lazy)return route;
+ if(route.countryId==='uk'){
+  const [raw,segments]=await Promise.all([fetchJson(new URL(route.lazySource,document.baseURI)),loadUKGeometry()]);
+  if(raw.countryId!=='uk'||raw.id!==route.id||!raw.patterns?.length)throw Error('UK_ROUTE_IDENTITY');
+  const owner=ukPresentation(normalizeLine({...raw,ukGeometry:segments}));
+  const first=ukPatternRoute(owner,owner.patterns[0]);return{...first,services:owner.services,patterns:owner.patterns,stationCatalog:owner.stationCatalog};
+ }
+
  if(route.countryId==='th'){
   const response=await fetch(new URL(route.lazySource,document.baseURI));if(!response.ok)throw Error('태국 노선 파일 로딩 실패: '+response.status);
   const data=await decodeThailandPayload(await response.json());if(data.route.id!==route.id)throw Error('태국 상세 노선 불일치');return thailandPresentation(normalizeLine(data.route));
