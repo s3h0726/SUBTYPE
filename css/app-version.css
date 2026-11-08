@@ -1,0 +1,35 @@
+/* SUBTYPE semantic-version marker; the displayed text is synced from package.json. */
+.app-version-badge{
+  display:inline-flex;
+  align-items:center;
+  align-self:center;
+  justify-content:center;
+  flex-shrink:0;
+  width:max-content;
+  border:1px solid currentColor;
+  border-radius:999px;
+  padding:4px 8px;
+  background:color-mix(in srgb,currentColor 6%,transparent);
+  color:inherit;
+  font:600 10px/1.15 "IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.025em;
+  white-space:nowrap;
+  opacity:.78;
+}
+.brand .app-version-badge{margin-left:10px;opacity:.7}
+.home-brand .home-version-badge{
+  display:inline-flex;
+  margin-left:10px;
+  vertical-align:middle;
+  color:#75eec4;
+  border-color:#75eec488;
+  background:#75eec418;
+  opacity:1;
+}
+.app-version-settings{margin:0 0 16px;color:var(--muted,#77818a);font-size:13px}
+.app-version-settings strong{margin-left:4px;font:700 13px/1.4 "IBM Plex Mono",ui-monospace,monospace;color:var(--ink,#e7f4ef)}
+.app-version-settings span{margin-left:6px}
+@media(max-width:620px){
+  .topbar .app-version-badge{padding:3px 6px;font-size:9px;margin-left:5px}
+  .home-brand .home-version-badge{padding:3px 7px;margin-left:7px;font-size:9px}
+}
