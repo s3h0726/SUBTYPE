@@ -4722,7 +4722,13 @@ function configureJourneyPicker(){
   const statusById=new Map(japan?choices.map(choice=>[choice.id,operatingChoiceStatus(choice,selected)]):[]);
   const statusOf=choice=>statusById.get(choice?.id)||{playable:true,reason:''};
   const directionKey=choice=>String(choice.line1UiDirection||choice.direction||'forward');
-  const preferred=items=>items.find(choice=>statusOf(choice).playable)||items[0];
+  const isLocalChoice=choice=>{
+    if(!choice||choice.throughServiceId||choice.throughSpecId||['through','koreanFamilyService'].includes(choice.kind))return false;
+    if(choice.kind==='fallback'||choice.kind==='legacy'&&choice.legacyServiceId==='local')return true;
+    const title=[journeyLabel(choice.patternName),journeyLabel(choice.trainType),choice.trainType?.names?.en||''].filter(Boolean).join(' ');
+    return /각역정차|각역 정차|(^|[\\s·(])보통(?:열차)?($|[\\s·)])|各駅停車|普通|(^|[\\s·(])local($|[\\s·)])/i.test(title);
+  };
+  const preferred=items=>items.find(choice=>isLocalChoice(choice)&&statusOf(choice).playable)||items.find(choice=>statusOf(choice).playable)||items[0];
   const patternGroups=[...new Map(choices.map(choice=>[operatingPatternKey(choice),choice])).entries()];
   const patternChoices=()=>choices.filter(choice=>operatingPatternKey(choice)===pattern.value);
   let visibleLimit=24,activeSearch='';
@@ -4772,6 +4778,24 @@ function configureJourneyPicker(){
     if(journeyCount)journeyCount.textContent=matched.length+'개 구간';
     if(more){more.hidden=matched.length<=visibleLimit;more.textContent='다른 운행 구간 '+(matched.length-visibleLimit)+'개 더 보기 ↓';}
   };
+  const renderJapanServiceStops=choice=>{
+    if(!japan)return;
+    const list=$('#setup-route .setup-stations'),description=$('#setup-route > p');
+    if(!list)return;
+    try{
+      const actualChoice=choice.sourceChoice||choice;
+      const source=choice.sourceRouteId?(builtin.find(route=>route.id===choice.sourceRouteId)||routes.find(route=>route.id===choice.sourceRouteId)||selected):selected;
+      const resolved=resolveOperatingChoice(actualChoice,source,{preview:true});
+      const applied=resolvePlayableRoute(resolved.route,{direction:resolved.direction||choice.direction||'forward',service:resolved.service||null,boardingStationId:resolved.boardingStationId??null});
+      const stops=applied.stations.filter(station=>!station.loopArrivalOnly);
+      if(stops.length<2)throw new Error('계통 정차역이 부족합니다.');
+      list.innerHTML=stops.map(station=>'<li><b>'+escapeHtml(station.ja||station.ko||'')+'</b><span>'+escapeHtml([station.romaji||station.en||'',station.ko||''].filter(Boolean).join(' · '))+'</span></li>').join('');
+      if(description)description.textContent=(selected.operator?.en||selected.operator?.ko||'')+' · '+(selected.line?.ko||'')+' · '+operatingPatternLabel(choice)+' · '+stops.length+'개 정차역';
+    }catch(error){
+      list.innerHTML='<li class="operating-empty">'+escapeHtml('선택한 운행계통의 정차역을 확인할 수 없습니다: '+(error?.message||'경로 검증 필요'))+'</li>';
+      if(description)description.textContent='운행계통 정차역 검증 필요';
+    }
+  };
   const selectChoice=choice=>{
     if(!choice){if(submit)submit.disabled=true;if(selectedCard)selectedCard.innerHTML='<p>운행 구간을 선택하세요.</p>';renderJourneys();return;}
     destination.value=choice.id;destination.dataset.stationId=choice.destinationId||'';
@@ -4799,6 +4823,7 @@ function configureJourneyPicker(){
       if(list)list.innerHTML=taiwanSetupStationRows(stops);
     }
 
+    if(japan)renderJapanServiceStops(choice);
     renderJourneys();
   };
   const renderDestinations=()=>{
