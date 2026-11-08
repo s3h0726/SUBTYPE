@@ -1,0 +1,199 @@
+/* SUBTYPE — Japan operator nameboards, phase 1 (2026-11-08)
+ * Scope: all remaining Japanese operator-family/local/tram/monorail fallback
+ * templates. The existing Tokyo Metro, JR, private-company photo CSS,
+ * Nishitetsu, Enoden, Tokyu and Chichibu nameplates are intentionally exempt.
+ * Colors come from the ACTUAL selected route (--route-color), rather than
+ * unverified company branding. This is a SUBTYPE design, not an official sign.
+ * The horizontal line is an essential visual element: do not hide it when
+ * removing station-number/logo marks.
+ */
+
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]){
+  --jp-board-color:var(--route-color,#2677a1);
+  --jp-board-face:#fafbf9;
+  --jp-board-ink:#17232b;
+  --jp-board-muted:#52606b;
+  --jp-board-footer:#172b38;
+  --jp-board-line-height:8px;
+  --jp-board-line-bg:var(--jp-board-color);
+  isolation:isolate!important;
+  box-sizing:border-box!important;
+  border:2px solid color-mix(in srgb,var(--jp-board-color) 58%,#32444f)!important;
+  border-radius:4px!important;
+  background:var(--jp-board-face)!important;
+  color:var(--jp-board-ink)!important;
+  overflow:hidden!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-strip{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  z-index:5!important;
+  width:100%!important;
+  height:6px!important;
+  min-height:6px!important;
+  padding:0!important;
+  background:var(--jp-board-color)!important;
+  pointer-events:none!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-brand{
+  box-sizing:border-box!important;
+  background:var(--jp-board-face)!important;
+  color:var(--jp-board-ink)!important;
+  border:0!important;
+  border-bottom:1px solid color-mix(in srgb,var(--jp-board-color) 32%,#e6e8e9)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-brand b,
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-brand span{
+  color:var(--jp-board-ink)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-main{
+  position:relative!important;
+  isolation:isolate!important;
+  min-height:0!important;
+  background:var(--jp-board-face)!important;
+  overflow:hidden!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-main::before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  top:61%!important;
+  width:100%!important;
+  height:var(--jp-board-line-height)!important;
+  min-height:var(--jp-board-line-height)!important;
+  border:0!important;
+  background:var(--jp-board-line-bg)!important;
+  opacity:1!important;
+  visibility:visible!important;
+  z-index:1!important;
+  pointer-events:none!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-neighbor,
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-current{
+  position:relative!important;
+  z-index:2!important;
+  background:transparent!important;
+  color:var(--jp-board-ink)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-neighbor small,
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-neighbor span{
+  color:var(--jp-board-muted)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-current::after{
+  /* Avoid a second legacy bottom bar competing with the main highlight. */
+  display:none!important;
+  content:none!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-footer{
+  background:var(--jp-board-footer)!important;
+  color:#fff!important;
+  border:0!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-footer span{
+  color:#f3f6f8!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-footer span:nth-child(2){
+  color:#d1e4e9!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-neighbor i{
+  color:var(--jp-board-color)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-current #prompt-main{
+  color:var(--jp-board-ink)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-current #prompt-kana,
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-current #prompt-sub{
+  color:var(--jp-board-muted)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) #ko-progress .input-cell{
+  color:var(--jp-board-ink)!important;
+  border-bottom-color:color-mix(in srgb,var(--jp-board-color) 55%,#57646b)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) #ko-progress .input-cell.wrong{
+  color:#b91d33!important;
+  border-bottom-color:#b91d33!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) #ko-progress .input-cell.done{
+  color:var(--jp-board-color)!important;
+  border-bottom-color:var(--jp-board-color)!important;
+}
+
+/* Visual families. All still derive their main accent from routeColor. */
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style="operator-metro"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]){
+  --jp-board-face:#f6f9fc;
+  --jp-board-footer:#15364d;
+  --jp-board-line-height:12px;
+  border-radius:9px!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style="operator-private"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]){
+  --jp-board-face:#fbfbf9;
+  --jp-board-line-height:10px;
+  --jp-board-footer:#202e38;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style="operator-tram"],[data-sign-style="tram"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]){
+  --jp-board-face:#fffaf2;
+  --jp-board-footer:#3d3530;
+  --jp-board-line-height:5px;
+  border-radius:2px!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style="operator-monorail"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]){
+  --jp-board-face:#f4f9fc;
+  --jp-board-footer:#18354f;
+  --jp-board-line-height:11px;
+  --jp-board-line-bg:linear-gradient(90deg,var(--jp-board-color) 0 74%,color-mix(in srgb,var(--jp-board-color) 35%,white) 74%);
+  border-radius:13px!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style="operator-new-transit"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]){
+  --jp-board-face:#f6f9f9;
+  --jp-board-line-height:9px;
+  --jp-board-line-bg:linear-gradient(90deg,var(--jp-board-color) 0 72%,color-mix(in srgb,var(--jp-board-color) 45%,white) 72%);
+  border-radius:3px!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style="operator-local"],[data-sign-style="local"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]){
+  --jp-board-face:#faf9f5;
+  --jp-board-footer:#283a40;
+  --jp-board-line-height:7px;
+  border-radius:3px!important;
+}
+
+/* Regional municipal subway group — rounder header and stronger stripe. */
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]):is([data-operator-id="sapporoshikotsukyoku"],[data-operator-id="sendaishikotsukyoku"],[data-operator-id="nagoyashikotsukyoku"],[data-operator-id="kyotoshikotsukyoku"],[data-operator-id="kobeshikotsukyoku"],[data-operator-id="fukuokashikotsukyoku"],[data-operator-id="yokohama-municipal-subway"]){
+  --jp-board-face:#f8fbff;
+  --jp-board-footer:#17354b;
+  --jp-board-line-height:12px;
+}
+/* Distinctive river/coastal regional networks — a quiet dual-tone divider. */
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]):is([data-operator-id="aoimoritetsudo"],[data-operator-id="ainokazetoyamatetsudo"],[data-operator-id="echigotokimekitetsudo"],[data-operator-id="irishikawatetsudo"],[data-operator-id="igryuwategingatetsudo"],[data-operator-id="sanrikutetsudo"],[data-operator-id="tosakuroshiotetsudo"],[data-operator-id="shinanotetsudo"]){
+  --jp-board-line-bg:linear-gradient(90deg,var(--jp-board-color) 0 82%,color-mix(in srgb,var(--jp-board-color) 35%,white) 82%);
+}
+/* Elevated, guideway and monorail operators — two-piece horizontal marker. */
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]):is([data-operator-id="tokyo-monorail"],[data-operator-id="tama-monorail"],[data-operator-id="chibatoshimonoreru"],[data-operator-id="osakamonoreru"],[data-operator-id="shonanmonoreru"],[data-operator-id="okinawatoshimonoreru"],[data-operator-id="kobeshinkotsu"],[data-operator-id="yokohama-seaside-line"]){
+  --jp-board-face:#f5f9fc;
+  --jp-board-line-height:11px;
+  --jp-board-line-bg:linear-gradient(90deg,var(--jp-board-color) 0 65%,#d5e2eb 65% 67%,var(--jp-board-color) 67%);
+}
+/* Local mountain and scenic railways — warm paper and crisp route stripe. */
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]):is([data-operator-id="hakonetozantetsudo"],[data-operator-id="fujikyuko"],[data-operator-id="izukyuko"],[data-operator-id="oigawatetsudo"],[data-operator-id="kominatotetsudo"],[data-operator-id="kurobekyokokutetsudo"],[data-operator-id="saganokankotetsudo"],[data-operator-id="tenryuhamanakotetsudo"]){
+  --jp-board-face:#fffbf4;
+  --jp-board-footer:#353c3a;
+}
+/* Dedicated streetcar roster — preserve a fine line instead of a subway band. */
+html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]):is([data-operator-id="hiroshimadentetsu"],[data-operator-id="nagasakidenkikido"],[data-operator-id="kagoshimashikotsukyoku"],[data-operator-id="kumamotoshikotsukyoku"],[data-operator-id="hakodateshikotsukyoku"],[data-operator-id="bansakaidenkikido"],[data-operator-id="okayamadenkikido"],[data-operator-id="iyotetsudo"]){
+  --jp-board-face:#fffaf2;
+  --jp-board-line-height:5px;
+  --jp-board-footer:#393b36;
+}
+/* Responsive protection: no operator-specific CSS changes the typing box,
+   free-drive input focus, station sequence, or station-name DOM. */
+@media(max-width:760px){
+  html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-sign-main::before{
+    top:62%!important;
+    height:clamp(4px,var(--jp-board-line-height),10px)!important;
+    min-height:4px!important;
+  }
+  html[data-country="jp"] #screen-game.active #station-sign:is([data-sign-style^="operator-"],[data-sign-style="local"],[data-sign-style="tram"],[data-sign-style="monorail"]):not([data-photo-sign]):not([data-operator-id="nishinihontetsudo"]) .station-neighbor{min-width:0!important}
+}
