@@ -580,15 +580,15 @@ function actualOperatingChoices(route){if(route?.countryId==='uk'&&route.categor
   // Do not merge the TrainLCD nationwide physical-track catalog into a
   // curated Shonan-Shinjuku selector. N'EX is a different limited express.
   if(route?.countryId==='jp'&&route.id==='line-11333')
-    return choices.filter(choice=>choice.kind==='journey'&&
-      choice.patternId?.startsWith('jr-shonan-')&&choice.throughServiceId?.startsWith('jr-shonan-'))
+    return [...choices.filter(choice=>choice.kind==='legacy'&&choice.legacyServiceId==='local'),...choices.filter(choice=>choice.kind==='journey'&&
+      choice.patternId?.startsWith('jr-shonan-')&&choice.throughServiceId?.startsWith('jr-shonan-'))]
       .sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||
         journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   // Curated Ueno–Tokyo journeys must never inherit the unrelated nationwide
   // TrainLCD catalog (including Hitachi, Tokiwa and Narita Express).
   if(route?.countryId==='jp'&&route.id==='line-11343')
-    return choices.filter(choice=>choice.kind==='journey'&&
-      choice.patternId?.startsWith('jr-ueno-')&&choice.throughServiceId?.startsWith('jr-ueno-'))
+    return [...choices.filter(choice=>choice.kind==='legacy'&&choice.legacyServiceId==='local'),...choices.filter(choice=>choice.kind==='journey'&&
+      choice.patternId?.startsWith('jr-ueno-')&&choice.throughServiceId?.startsWith('jr-ueno-'))]
       .sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||
         journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   for(const service of route?.services||[]){
