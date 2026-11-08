@@ -80,6 +80,21 @@ for(const [input,number,want] of [
   assert(/[A-Z]/.test(converted.routeNumber),'routeNumber converted to Latin letters');
  }
 }
+// Regression: source-backed hyphenated route numbers must compile with /u.
+// Escaping '-' outside a character class previously threw a SyntaxError and
+// aborted the whole Korean catalog loading process.
+for(let i=0;i<alphabetReadings.length;i++){
+ const latin=String.fromCharCode(65+i),spoken=alphabetReadings[i];
+ const input={id:'kr-bus-hyphen-'+latin,countryId:'kr',mode:'bus',
+  line:{ko:'경기 500-1'+spoken+'번'},routeNumber:'500-1'+latin,
+  stations:[{id:'stop-preserved',ko:'서울역',latitude:37,longitude:127}]};
+ const result=route(input);
+ assert.equal(result.line.ko,'경기 500-1'+latin+'번','hyphenated official code '+latin);
+ assert.equal(result.routeNumber,'500-1'+latin,'official route code unchanged');
+ assert.equal(result.stations[0].id,'stop-preserved','station identity intact');
+ assert.equal(result.stations[0].latitude,37,'stop coordinates intact');
+ assert.equal(input.line.ko,'경기 500-1'+spoken+'번','legacy source name not mutated');
+}
 // The country-specific Korean-name editor must display the same corrected
 // routes/stops as the playable catalog, without rewriting source IDs or edits.
 const editorSource=fs.readFileSync(path.join(root,'reports/korean-names/editor.html'),'utf8');
