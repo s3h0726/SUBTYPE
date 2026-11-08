@@ -18,7 +18,7 @@ test('free-drive loop crossings use only the retained closing track in either di
  const area=l.loopClosingGeometry.reduce((v,p,i,a)=>v+(i?a[i-1][1]*p[0]-p[1]*a[i-1][0]:0),0);assert(Number.isFinite(area));
 });
 test('editor station overrides reach the actual Taiwan journey and its destination selector',async()=>{
- const d={console,URL,crypto:require('crypto').webcrypto,document:{baseURI:'https://subtype.test/'}};vm.createContext(d);
+ const d={console,URL,crypto:require('crypto').webcrypto,document:{baseURI:'https://subtype.test/'},isEuropeCountry:()=>false};vm.createContext(d);
  const line=network.lines.find(l=>l.id==='tw-trtc-wenhu'),id=line.stations[0].id;
  d.fetch=async url=>({ok:true,json:async()=>String(url).includes('editor-overrides')?{stations:{[line.id]:{[id]:'편집된출발역'}}}:network});
  for(const name of ['taiwan-display','taiwan-network','route-payload','data-loader'])vm.runInContext(fs.readFileSync(path.join(root,'js/'+name+'.js'),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/export /g,''),d);
