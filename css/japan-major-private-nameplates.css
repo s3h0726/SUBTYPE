@@ -418,3 +418,49 @@
   #screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-current .station-sign-input{inset:auto 4px 5px 4px!important;height:37px!important;min-height:37px!important;max-height:37px!important}
   #screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-current .station-sign-input input{font-size:16px!important;padding:5px 8px!important}
 }
+
+
+/* 2026-11-08 — Japanese station signs: hide station-number discs and route logos.
+   Includes Odakyu, Tokyo Metro, Keikyu, Enoden, Tokyu, Chichibu,
+   the major private railways and all other Japanese railway sign families.
+   Do not delete officialCode data: numbering remains available in line
+   selection, metadata and validation. Gameplay nameplates are logo-free.
+   Keep railway-colour ribbons, arrows, neighboring station names, and Korean
+   typing progress/input intact. Scoped to the active Japanese country only. */
+html[data-country="jp"] #screen-game.active #station-sign #station-badge,
+html[data-country="jp"] #screen-game.active #station-sign #station-badge:not([hidden]),
+html[data-country="jp"] #screen-game.active #station-sign .station-current .station-badge,
+html[data-country="jp"] #screen-game.active #station-sign .station-current .station-badge:not([hidden]),
+html[data-country="jp"] #screen-game.active.free-drive-active #station-sign #station-badge:not([hidden]),
+html[data-country="jp"] #screen-game.active #station-sign #korail-previous-badge,
+html[data-country="jp"] #screen-game.active #station-sign #korail-next-badge,
+html[data-country="jp"] #screen-game.active #station-sign .station-neighbor .korail-neighbor-badge,
+html[data-country="jp"] #screen-game.active #station-sign .station-neighbor .korail-neighbor-badge:not([hidden]){
+  display:none!important;
+  visibility:hidden!important;
+  width:0!important;height:0!important;min-width:0!important;min-height:0!important;
+  margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign #station-badge::before,
+html[data-country="jp"] #screen-game.active #station-sign #station-badge::after,
+html[data-country="jp"] #screen-game.active #station-sign .korail-neighbor-badge::before,
+html[data-country="jp"] #screen-game.active #station-sign .korail-neighbor-badge::after{
+  content:none!important;display:none!important;
+}
+/* Operator emblems and line-symbol art have independent legacy wrappers. */
+html[data-country="jp"] #screen-game.active #station-sign #station-operator-mark,
+html[data-country="jp"] #screen-game.active #station-sign #station-line-label .line-badge,
+html[data-country="jp"] #screen-game.active #station-sign #station-line-label .line-symbol-asset,
+html[data-country="jp"] #screen-game.active #station-sign #station-line-label .line-code-label,
+html[data-country="jp"] #screen-game.active #station-sign #station-line-label [data-line-symbol],
+html[data-country="jp"] #screen-game.active #station-sign .station-operator-logo-wrap,
+html[data-country="jp"] #screen-game.active #station-sign .station-line-symbol,
+html[data-country="jp"] #screen-game.active #station-sign [data-operator-logo]{
+  display:none!important;
+}
+/* Keep the station name centered after the old side badge is hidden.
+   Never hide #ko-progress or #typing-input: they are the game controls. */
+html[data-country="jp"] #screen-game.active #station-sign #prompt-main,
+html[data-country="jp"] #screen-game.active #station-sign #ko-progress{
+  max-width:100%!important;
+}
