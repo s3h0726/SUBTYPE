@@ -46,3 +46,6 @@
 .ranking-group-count{margin:0 0 8px;color:var(--muted,#667);font-size:12px}
 @media(max-width:800px){.ranking-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.ranking-line-context{grid-column:1/-1}.ranking-controls>button{grid-column:1/-1}}
 @media(max-width:480px){.ranking-controls{grid-template-columns:minmax(0,1fr)}.ranking-line-context,.ranking-controls>button{grid-column:1/-1}}
+
+/* Route history: distinguish each completed line from its actual operating endpoints. */
+#records-table .record-route-section{display:block;max-width:100%;margin-top:3px;font-size:.8em;font-weight:500;line-height:1.4;white-space:normal;overflow-wrap:anywhere;opacity:.86}

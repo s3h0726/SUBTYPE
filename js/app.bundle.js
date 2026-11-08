@@ -526,7 +526,7 @@ const storage={
   deleteRoute(id){return saveCustomRoutes(loadCustomRoutes().filter(r=>r.id!==id))},
   records:()=>Object.fromEntries(Object.entries(read('records',{})).filter(([,record])=>isCountryEnabled(record.countryId||'jp')&&!(FEATURE_FLAGS.koreaRoutesReset&&record.countryId==='kr'))),
   researchRecords:()=>read('research-records',{}),
-  saveResult(result){const research=result.route?.playStatus==='RESEARCH_PLAYABLE'||result.options?.researchPreview===true,recordScope=research?'research-records':'records',recentScope=research?'research-recent':'recent';const records=read(recordScope,{}),journeyId=result.serviceJourneyId||result.options?.serviceJourneyId||null,baseLineId=result.options?.serviceJourney?.baseRouteId||result.route?.serviceJourney?.baseRouteId||result.route?.id||result.routeId,recordKey=journeyId||result.routeId,prior=records[recordKey]||{plays:0,bestTime:null,bestAccuracy:0,bestCpm:0,maxCombo:0,totalStations:0},{name:discardedName,...old}=prior,isRecord=!old.bestTime||result.elapsed<old.bestTime,countryId=result.route?.countryId||old.countryId||'jp',directionId=result.directionId||result.route?.selectedDirectionId||result.options?.directionId||result.options?.direction||old.directionId||'forward',serviceContext={serviceJourneyId:journeyId,servicePatternId:result.servicePatternId||old.servicePatternId||null,trainTypeId:result.trainTypeId||old.trainTypeId||null,originStationId:result.originStationId||result.options?.serviceJourney?.originStationId||old.originStationId||null,destinationStationId:result.destinationStationId||old.destinationStationId||null,...(countryId==='kr'&&journeyId?{originName:result.options?.serviceJourney?.originNames?.ko||result.route?.stations?.[0]?.ko||old.originName||'',destinationName:result.options?.serviceJourney?.destinationNames?.ko||result.route?.stations?.at(-1)?.ko||old.destinationName||''}:{}),throughServiceId:result.throughServiceId||old.throughServiceId||null};records[recordKey]={...old,...serviceContext,lineId:baseLineId,operatorId:result.route?.operatorId||old.operatorId||'',countryId,directionId,color:result.color,plays:old.plays+1,bestTime:isRecord?result.elapsed:old.bestTime,bestAccuracy:Math.max(old.bestAccuracy,result.accuracy),bestCpm:Math.max(old.bestCpm,result.cpm),maxCombo:Math.max(old.maxCombo,result.maxCombo),totalStations:old.totalStations+result.completed};write(recordScope,records);const recent=read(recentScope,[]).filter(x=>(x.serviceJourneyId||x.routeId)!==recordKey);recent.unshift({routeId:baseLineId,lineId:baseLineId,operatorId:result.route?.operatorId||'',countryId,directionId,...serviceContext,color:result.color,elapsed:result.elapsed,accuracy:result.accuracy,date:Date.now()});write(recentScope,recent.slice(0,5));return isRecord},
+  saveResult(result){const research=result.route?.playStatus==='RESEARCH_PLAYABLE'||result.options?.researchPreview===true,recordScope=research?'research-records':'records',recentScope=research?'research-recent':'recent';const records=read(recordScope,{}),journeyId=result.serviceJourneyId||result.options?.serviceJourneyId||null,baseLineId=result.options?.serviceJourney?.baseRouteId||result.route?.serviceJourney?.baseRouteId||result.route?.id||result.routeId,recordKey=journeyId||result.routeId,prior=records[recordKey]||{plays:0,bestTime:null,bestAccuracy:0,bestCpm:0,maxCombo:0,totalStations:0},{name:discardedName,...old}=prior,isRecord=!old.bestTime||result.elapsed<old.bestTime,countryId=result.route?.countryId||old.countryId||'jp',directionId=result.directionId||result.route?.selectedDirectionId||result.options?.directionId||result.options?.direction||old.directionId||'forward',displayStops=result.mapRoute?.stations||result.route?.stations||[],displayFirst=displayStops[0]||{},displayLast=displayStops.at(-1)||{},serviceContext={serviceJourneyId:journeyId,servicePatternId:result.servicePatternId||old.servicePatternId||null,trainTypeId:result.trainTypeId||old.trainTypeId||null,originStationId:result.originStationId||result.options?.serviceJourney?.originStationId||old.originStationId||null,destinationStationId:result.destinationStationId||old.destinationStationId||null,originName:(isRecord||!old.originName?displayFirst.ko||displayFirst.ja||result.options?.serviceJourney?.originNames?.ko||'':old.originName),destinationName:(isRecord||!old.destinationName?displayLast.ko||displayLast.ja||result.options?.serviceJourney?.destinationNames?.ko||'':old.destinationName),throughServiceId:result.throughServiceId||old.throughServiceId||null};records[recordKey]={...old,...serviceContext,lineId:baseLineId,operatorId:result.route?.operatorId||old.operatorId||'',countryId,directionId,color:result.color,routeName:result.route?.line?.ko||result.routeName||old.routeName||'',serviceName:result.serviceName||old.serviceName||'',plays:old.plays+1,bestTime:isRecord?result.elapsed:old.bestTime,bestAccuracy:Math.max(old.bestAccuracy,result.accuracy),bestCpm:Math.max(old.bestCpm,result.cpm),maxCombo:Math.max(old.maxCombo,result.maxCombo),totalStations:old.totalStations+result.completed};write(recordScope,records);const recent=read(recentScope,[]).filter(x=>(x.serviceJourneyId||x.routeId)!==recordKey);recent.unshift({routeId:baseLineId,lineId:baseLineId,operatorId:result.route?.operatorId||'',countryId,directionId,...serviceContext,color:result.color,elapsed:result.elapsed,accuracy:result.accuracy,date:Date.now()});write(recentScope,recent.slice(0,5));return isRecord},
   recent:()=>read('recent',[]).filter(record=>isCountryEnabled(record.countryId||'jp')&&!(FEATURE_FLAGS.koreaRoutesReset&&record.countryId==='kr'))
 };
 
@@ -3149,6 +3149,31 @@ class FreeDrive{
 
 const indexedKoreanLineName=id=>globalThis.TRT_KOREA_INDEX?.routes?.find(route=>route.id===id)?.line?.ko||globalThis.TRT_KOREA_INDEX?.routes?.find(route=>route.id===id)?.names?.ko||'';
 
+
+const recordCatalogPaths={jp:'data/nationwide/index.json',kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json',th:'data/th/generated/index.json',uk:'data/uk/generated/index.json'};
+const recordRouteMetadata=new Map(),recordCatalogRequests=new Set();
+function ensureRecordCatalog(countryId){
+  const path=recordCatalogPaths[countryId];
+  if(!path||recordCatalogRequests.has(countryId))return;
+  recordCatalogRequests.add(countryId);
+  fetch(new URL(path,document.baseURI)).then(response=>{
+    if(!response.ok)throw Error('기록용 노선 목록 HTTP '+response.status);
+    return response.json();
+  }).then(data=>{
+    for(const route of data.routes||data.lines||[])if(route?.id)recordRouteMetadata.set(route.id,route);
+    renderStats();
+  }).catch(error=>console.warn('이전 운행 기록의 노선 메타데이터를 불러오지 못했습니다.',error));
+}
+function recordRouteInfo(record,id){
+  const stored=railDataRepository.getRoute(id)||recordRouteMetadata.get(id);
+  if(stored)return stored;
+  const builtin=(record.countryId==='jp'?(globalThis.TRT_JAPAN_LITE_INDEX?.routes||globalThis.TRT_EMBEDDED_LINE_WORKSPACES?.routes||[]):record.countryId==='kr'?(globalThis.TRT_KOREA_INDEX?.routes||[]):record.countryId==='hk'?(globalThis.TRT_HONG_KONG_INDEX?.routes||[]):[]);
+  const match=builtin.find(route=>route?.id===id);
+  if(match)return match;
+  if(!record.routeName)ensureRecordCatalog(record.countryId||'jp');
+  return null;
+}
+
 function renderStats(){
   const oldPicker=$('#records-mode');if(oldPicker)oldPicker.remove();
   const records=Object.entries(storage.records()).map(([routeId,record])=>({...record,routeId})).filter(record=>isCountryEnabled(record.countryId||'jp'));
@@ -3156,8 +3181,21 @@ function renderStats(){
   const plays=records.reduce((n,r)=>n+r.plays,0),stations=records.reduce((n,r)=>n+r.totalStations,0),acc=records.length?records.reduce((n,r)=>n+r.bestAccuracy,0)/records.length:0,cpm=Math.max(0,...records.map(r=>r.bestCpm)),combo=Math.max(0,...records.map(r=>r.maxCombo));
   $('#stats-summary').innerHTML=[['총 플레이',`${plays}회`],['입력 지점',`${stations}곳`],['평균 정확도',`${acc.toFixed(1)}%`],['최고 타수',`${cpm}타`],['최고 콤보',`${combo}`]].map(x=>`<div class="stat-card"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('');
   $('#records-table').innerHTML=`<div class="record-row header"><span>노선</span><span>플레이</span><span>최고 시간</span><span>정확도</span><span>타수</span><span>콤보</span></div>`+(records.length?records.sort((a,b)=>b.plays-a.plays).map(r=>{
-    const routeId=canonicalRouteId(r.lineId||r.routeId),line=railDataRepository.getLine(routeId),route=railDataRepository.getRoute(routeId),rawName=line?.names?.ko||indexedKoreanLineName(routeId)||r.name||routeId,name=koreanRouteDisplayText(rawName,route||{countryId:r.countryId,stations:[{ko:r.originName},{ko:r.destinationName}]});
-    return`<div class="record-row" data-route-id="${escapeHtml(routeId)}" data-country-id="${escapeHtml(r.countryId||'jp')}" data-direction-id="${escapeHtml(r.directionId||'forward')}"><b class="record-route-brand" style="border-left:4px solid ${r.color};padding-left:10px"><span>${(r.countryId==='tw'||route?.countryId==='tw'||routeId.startsWith('tw-'))?taiwanRecordMarkup({...r,routeId,route:route||storage.routes().find(x=>x.id===routeId)}):escapeHtml(name)}${r.countryId==='kr'&&r.serviceJourneyId&&r.destinationName?`<small style="display:block">${escapeHtml(koreanStationDisplayName(r.originName,r.countryId,route))} → ${escapeHtml(koreanStationDisplayName(r.destinationName,r.countryId,route))}</small>`:''}</span></b><span>${r.plays}</span><span>${formatTime(r.bestTime)}</span><span>${r.bestAccuracy.toFixed(1)}%</span><span>${r.bestCpm}</span><span>${r.maxCombo}</span></div>`
+
+    const routeId=canonicalRouteId(r.lineId||r.routeId),route=recordRouteInfo(r,routeId);
+    const line=railDataRepository.getLine(routeId),rawName=line?.names?.ko||route?.line?.ko||route?.names?.ko||indexedKoreanLineName(routeId)||r.routeName||r.name||routeId;
+    const name=koreanRouteDisplayText(rawName,route||{countryId:r.countryId,stations:[{ko:r.originName},{ko:r.destinationName}]});
+    const calls=route?.stations?.length?route.stations:route?.stationSequence||[];
+    const stationById=id=>id?calls.find(station=>String(station.id)===String(id)||String(station.sourceId)===String(id)):null;
+    const originStation=stationById(r.originStationId)||(!r.serviceJourneyId&&!r.servicePatternId?calls[0]:null);
+    const destinationStation=stationById(r.destinationStationId)||(!r.serviceJourneyId&&!r.servicePatternId?calls.at(-1):null);
+    const origin=r.originName||originStation?.ko||originStation?.names?.ko||'';
+    const destination=r.destinationName||destinationStation?.ko||destinationStation?.names?.ko||'';
+    const isTaiwan=r.countryId==='tw'||route?.countryId==='tw'||routeId.startsWith('tw-');
+    const title=isTaiwan?taiwanRecordMarkup({...r,routeId,route:route||storage.routes().find(item=>item.id===routeId)}):escapeHtml(name);
+    const section=!isTaiwan&&origin&&destination&&origin!==destination?'<small class="record-route-section">'+escapeHtml(r.countryId==='kr'?koreanStationDisplayName(origin,'kr',route):origin)+' → '+escapeHtml(r.countryId==='kr'?koreanStationDisplayName(destination,'kr',route):destination)+'</small>':'';
+    const color=/^#[0-9a-f]{3,8}$/i.test(String(r.color||''))?r.color:/^#[0-9a-f]{3,8}$/i.test(String(route?.lineColor||''))?route.lineColor:'#777';
+    return '<div class="record-row" data-route-id="'+escapeHtml(routeId)+'" data-country-id="'+escapeHtml(r.countryId||'jp')+'" data-direction-id="'+escapeHtml(r.directionId||'forward')+'"><b class="record-route-brand" style="border-left:4px solid '+color+';padding-left:10px"><span>'+title+section+'</span></b><span>'+r.plays+'</span><span>'+formatTime(r.bestTime)+'</span><span>'+Number(r.bestAccuracy||0).toFixed(1)+'%</span><span>'+r.bestCpm+'</span><span>'+r.maxCombo+'</span></div>';
   }).join(''):'<p class="muted" style="padding:20px">아직 기록이 없습니다.</p>')
 }
 
@@ -4605,15 +4643,15 @@ function actualOperatingChoices(route){if(route?.countryId==='uk'&&route.categor
   // Do not merge the TrainLCD nationwide physical-track catalog into a
   // curated Shonan-Shinjuku selector. N'EX is a different limited express.
   if(route?.countryId==='jp'&&route.id==='line-11333')
-    return choices.filter(choice=>choice.kind==='journey'&&
-      choice.patternId?.startsWith('jr-shonan-')&&choice.throughServiceId?.startsWith('jr-shonan-'))
+    return [...choices.filter(choice=>choice.kind==='legacy'&&choice.legacyServiceId==='local'),...choices.filter(choice=>choice.kind==='journey'&&
+      choice.patternId?.startsWith('jr-shonan-')&&choice.throughServiceId?.startsWith('jr-shonan-'))]
       .sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||
         journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   // Curated Ueno–Tokyo journeys must never inherit the unrelated nationwide
   // TrainLCD catalog (including Hitachi, Tokiwa and Narita Express).
   if(route?.countryId==='jp'&&route.id==='line-11343')
-    return choices.filter(choice=>choice.kind==='journey'&&
-      choice.patternId?.startsWith('jr-ueno-')&&choice.throughServiceId?.startsWith('jr-ueno-'))
+    return [...choices.filter(choice=>choice.kind==='legacy'&&choice.legacyServiceId==='local'),...choices.filter(choice=>choice.kind==='journey'&&
+      choice.patternId?.startsWith('jr-ueno-')&&choice.throughServiceId?.startsWith('jr-ueno-'))]
       .sort((a,b)=>(b.trainType?.priority||0)-(a.trainType?.priority||0)||
         journeyLabel(a.destinationNames).localeCompare(journeyLabel(b.destinationNames),'ko'));
   for(const service of route?.services||[]){
@@ -4722,7 +4760,13 @@ function configureJourneyPicker(){
   const statusById=new Map(japan?choices.map(choice=>[choice.id,operatingChoiceStatus(choice,selected)]):[]);
   const statusOf=choice=>statusById.get(choice?.id)||{playable:true,reason:''};
   const directionKey=choice=>String(choice.line1UiDirection||choice.direction||'forward');
-  const preferred=items=>items.find(choice=>statusOf(choice).playable)||items[0];
+  const isLocalChoice=choice=>{
+    if(!choice||choice.throughServiceId||choice.throughSpecId||['through','koreanFamilyService'].includes(choice.kind))return false;
+    if(choice.kind==='fallback'||choice.kind==='legacy'&&choice.legacyServiceId==='local')return true;
+    const title=[journeyLabel(choice.patternName),journeyLabel(choice.trainType),choice.trainType?.names?.en||''].filter(Boolean).join(' ');
+    return /각역정차|각역 정차|(^|[\s·(])보통(?:열차)?($|[\s·)])|各駅停車|普通|(^|[\s·(])local($|[\s·)])/i.test(title);
+  };
+  const preferred=items=>items.find(choice=>isLocalChoice(choice)&&statusOf(choice).playable)||items.find(choice=>statusOf(choice).playable)||items[0];
   const patternGroups=[...new Map(choices.map(choice=>[operatingPatternKey(choice),choice])).entries()];
   const patternChoices=()=>choices.filter(choice=>operatingPatternKey(choice)===pattern.value);
   let visibleLimit=24,activeSearch='';
@@ -4772,6 +4816,24 @@ function configureJourneyPicker(){
     if(journeyCount)journeyCount.textContent=matched.length+'개 구간';
     if(more){more.hidden=matched.length<=visibleLimit;more.textContent='다른 운행 구간 '+(matched.length-visibleLimit)+'개 더 보기 ↓';}
   };
+  const renderJapanServiceStops=choice=>{
+    if(!japan)return;
+    const list=$('#setup-route .setup-stations'),description=$('#setup-route > p');
+    if(!list)return;
+    try{
+      const actualChoice=choice.sourceChoice||choice;
+      const source=choice.sourceRouteId?(builtin.find(route=>route.id===choice.sourceRouteId)||routes.find(route=>route.id===choice.sourceRouteId)||selected):selected;
+      const resolved=resolveOperatingChoice(actualChoice,source,{preview:true});
+      const applied=resolvePlayableRoute(resolved.route,{direction:resolved.direction||choice.direction||'forward',service:resolved.service||null,boardingStationId:resolved.boardingStationId??null});
+      const stops=applied.stations.filter(station=>!station.loopArrivalOnly);
+      if(stops.length<2)throw new Error('계통 정차역이 부족합니다.');
+      list.innerHTML=stops.map(station=>'<li><b>'+escapeHtml(station.ja||station.ko||'')+'</b><span>'+escapeHtml([station.romaji||station.en||'',station.ko||''].filter(Boolean).join(' · '))+'</span></li>').join('');
+      if(description)description.textContent=(selected.operator?.en||selected.operator?.ko||'')+' · '+(selected.line?.ko||'')+' · '+operatingPatternLabel(choice)+' · '+stops.length+'개 정차역';
+    }catch(error){
+      list.innerHTML='<li class="operating-empty">'+escapeHtml('선택한 운행계통의 정차역을 확인할 수 없습니다: '+(error?.message||'경로 검증 필요'))+'</li>';
+      if(description)description.textContent='운행계통 정차역 검증 필요';
+    }
+  };
   const selectChoice=choice=>{
     if(!choice){if(submit)submit.disabled=true;if(selectedCard)selectedCard.innerHTML='<p>운행 구간을 선택하세요.</p>';renderJourneys();return;}
     destination.value=choice.id;destination.dataset.stationId=choice.destinationId||'';
@@ -4799,6 +4861,7 @@ function configureJourneyPicker(){
       if(list)list.innerHTML=taiwanSetupStationRows(stops);
     }
 
+    if(japan)renderJapanServiceStops(choice);
     renderJourneys();
   };
   const renderDestinations=()=>{
