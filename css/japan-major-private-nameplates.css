@@ -152,7 +152,11 @@
   max-width:100%!important
 }
 #screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-sign-strip{
-  position:absolute!important;z-index:3!important;
+  /* The horizontal railway-colour line is the key nameboard highlight.
+     Keep it visible above the sign face, but never intercept typing/focus. */
+  position:absolute!important;z-index:5!important;
+  display:block!important;visibility:visible!important;opacity:1!important;
+  pointer-events:none!important;
   left:0!important;right:0!important;top:59%!important;bottom:auto!important;
   grid-column:auto!important;grid-row:auto!important;
   width:100%!important;height:10px!important;min-height:10px!important;
