@@ -4764,7 +4764,7 @@ function configureJourneyPicker(){
     if(!choice||choice.throughServiceId||choice.throughSpecId||['through','koreanFamilyService'].includes(choice.kind))return false;
     if(choice.kind==='fallback'||choice.kind==='legacy'&&choice.legacyServiceId==='local')return true;
     const title=[journeyLabel(choice.patternName),journeyLabel(choice.trainType),choice.trainType?.names?.en||''].filter(Boolean).join(' ');
-    return /각역정차|각역 정차|(^|[\\s·(])보통(?:열차)?($|[\\s·)])|各駅停車|普通|(^|[\\s·(])local($|[\\s·)])/i.test(title);
+    return /각역정차|각역 정차|(^|[\s·(])보통(?:열차)?($|[\s·)])|各駅停車|普通|(^|[\s·(])local($|[\s·)])/i.test(title);
   };
   const preferred=items=>items.find(choice=>isLocalChoice(choice)&&statusOf(choice).playable)||items.find(choice=>statusOf(choice).playable)||items[0];
   const patternGroups=[...new Map(choices.map(choice=>[operatingPatternKey(choice),choice])).entries()];
