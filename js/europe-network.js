@@ -3,8 +3,8 @@ export const EUROPE_COUNTRIES=Object.freeze([{"id":"gb","flag":"🇬🇧","names
 export const EUROPE_COUNTRY_IDS=new Set(EUROPE_COUNTRIES.map(country=>country.id));
 export const isEuropeCountry=id=>EUROPE_COUNTRY_IDS.has(id);
 export const EUROPE_CATEGORIES=[['all','전체'],['rail','일반철도'],['commuter_rail','광역철도'],['subway','도시철도'],['light_rail','경전철'],['tram','노면전차'],['high_speed_rail','고속철도'],['airport_rail','공항철도'],['monorail','모노레일'],['other_rail','기타 철도'],['custom','커스텀']];
-const km=(a,b)=>Math.hypot((a[0]-b[0])*111.195,(a[1]-b[1])*111.195*Math.cos(b[0]*Math.PI/180));
-const point=p=>Array.isArray(p)&&p.length>=2&&Number.isFinite(p[0])&&Number.isFinite(p[1])&&Math.abs(p[0])<=90&&Math.abs(p[1])<=180;
+const europeKm=(a,b)=>Math.hypot((a[0]-b[0])*111.195,(a[1]-b[1])*111.195*Math.cos(b[0]*Math.PI/180));
+const europePoint=p=>Array.isArray(p)&&p.length>=2&&Number.isFinite(p[0])&&Number.isFinite(p[1])&&Math.abs(p[0])<=90&&Math.abs(p[1])<=180;
 export function europeRouteValidation(route){
  const problems=[];
  if(!isEuropeCountry(route?.countryId))problems.push('unknown-country');
@@ -15,13 +15,13 @@ export function europeRouteValidation(route){
  if(!Array.isArray(route?.patterns)||!route.patterns.length)problems.push('no-service-patterns');
  for(const pattern of route?.patterns||[]){
   const stations=pattern.stations||[],geometry=pattern.geometry||[];
-  if(stations.length<2||geometry.length<3||geometry.some(p=>!point(p)))problems.push(pattern.id+':invalid-shape');
+  if(stations.length<2||geometry.length<3||geometry.some(p=>!europePoint(p)))problems.push(pattern.id+':invalid-shape');
   if(!pattern?.sourceTripId||!pattern?.sourceShapeId||!pattern?.serviceDate)problems.push(pattern.id+':missing-service-evidence');
   let last=-1;
   for(const station of stations){
    if(!String(station.id||'').startsWith('eu-'+route.countryId+'-stop-')||!/[가-힣]/u.test(station.ko||'')||station.nameReviewStatus!=='verified'||!station.koSource)problems.push(pattern.id+':unverified-name:'+station.id);
-   if(!Number.isInteger(station.geometryIndex)||station.geometryIndex<=last||station.geometryIndex>=geometry.length||!point(geometry[station.geometryIndex]))problems.push(pattern.id+':invalid-geometry-index:'+station.id);
-   else if(Number.isFinite(station.latitude)&&Number.isFinite(station.longitude)&&km([station.latitude,station.longitude],geometry[station.geometryIndex])>0.5)problems.push(pattern.id+':track-too-far:'+station.id);
+   if(!Number.isInteger(station.geometryIndex)||station.geometryIndex<=last||station.geometryIndex>=geometry.length||!europePoint(geometry[station.geometryIndex]))problems.push(pattern.id+':invalid-geometry-index:'+station.id);
+   else if(Number.isFinite(station.latitude)&&Number.isFinite(station.longitude)&&europeKm([station.latitude,station.longitude],geometry[station.geometryIndex])>0.5)problems.push(pattern.id+':track-too-far:'+station.id);
    last=station.geometryIndex;
   }
  }
