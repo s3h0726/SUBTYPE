@@ -920,6 +920,978 @@
         "ko": "한노"
       }
     ]
+  },
+  {
+    "id": "jp-extra-26001-limited-express",
+    "routeId": "line-26001",
+    "operatorId": "tokyu",
+    "kind": "limited-express",
+    "names": {
+      "ja": "特急・Fライナー",
+      "ko": "특급·F라이너",
+      "en": "Limited Express / F Liner"
+    },
+    "priority": 40,
+    "source": "https://rosen-zu.net/tokyu/tokyu_toyoko-top/tokyu_toyoko-rosenzu/",
+    "sourceSnapshot": "2025-06-24",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003922",
+      "station-004014",
+      "station-004196",
+      "station-004297",
+      "station-004487",
+      "station-1130105"
+    ],
+    "stationNames": [
+      "渋谷",
+      "中目黒",
+      "自由が丘",
+      "武蔵小杉",
+      "菊名",
+      "横浜"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "渋谷",
+        "ko": "시부야"
+      },
+      {
+        "ja": "中目黒",
+        "ko": "나카메구로"
+      },
+      {
+        "ja": "自由が丘",
+        "ko": "지유가오카"
+      },
+      {
+        "ja": "武蔵小杉",
+        "ko": "무사시코스기"
+      },
+      {
+        "ja": "菊名",
+        "ko": "키쿠나"
+      },
+      {
+        "ja": "横浜",
+        "ko": "요코하마"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-26001-commuter-limited-express",
+    "routeId": "line-26001",
+    "operatorId": "tokyu",
+    "kind": "commuter-limited-express",
+    "names": {
+      "ja": "通勤特急",
+      "ko": "통근특급",
+      "en": "Commuter Limited Express"
+    },
+    "priority": 35,
+    "source": "https://rosen-zu.net/tokyu/tokyu_toyoko-top/tokyu_toyoko-rosenzu/",
+    "sourceSnapshot": "2025-06-24",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003922",
+      "station-004014",
+      "station-004196",
+      "station-004297",
+      "station-004351",
+      "station-004487",
+      "station-1130105"
+    ],
+    "stationNames": [
+      "渋谷",
+      "中目黒",
+      "自由が丘",
+      "武蔵小杉",
+      "日吉",
+      "菊名",
+      "横浜"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "渋谷",
+        "ko": "시부야"
+      },
+      {
+        "ja": "中目黒",
+        "ko": "나카메구로"
+      },
+      {
+        "ja": "自由が丘",
+        "ko": "지유가오카"
+      },
+      {
+        "ja": "武蔵小杉",
+        "ko": "무사시코스기"
+      },
+      {
+        "ja": "日吉",
+        "ko": "히요시"
+      },
+      {
+        "ja": "菊名",
+        "ko": "키쿠나"
+      },
+      {
+        "ja": "横浜",
+        "ko": "요코하마"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-26001-express",
+    "routeId": "line-26001",
+    "operatorId": "tokyu",
+    "kind": "express",
+    "names": {
+      "ja": "急行",
+      "ko": "급행",
+      "en": "Express"
+    },
+    "priority": 30,
+    "source": "https://www.tokyu.co.jp/railway/ticket/q-seat/ty/",
+    "sourceSnapshot": "2025-06-24",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003922",
+      "station-004014",
+      "station-004094",
+      "station-004196",
+      "station-004245",
+      "station-004261",
+      "station-004297",
+      "station-004351",
+      "station-004406",
+      "station-004487",
+      "station-1130105"
+    ],
+    "stationNames": [
+      "渋谷",
+      "中目黒",
+      "学芸大学",
+      "自由が丘",
+      "田園調布",
+      "多摩川",
+      "武蔵小杉",
+      "日吉",
+      "綱島",
+      "菊名",
+      "横浜"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "渋谷",
+        "ko": "시부야"
+      },
+      {
+        "ja": "中目黒",
+        "ko": "나카메구로"
+      },
+      {
+        "ja": "学芸大学",
+        "ko": "가쿠게이다이가쿠"
+      },
+      {
+        "ja": "自由が丘",
+        "ko": "지유가오카"
+      },
+      {
+        "ja": "田園調布",
+        "ko": "덴엔쵸후"
+      },
+      {
+        "ja": "多摩川",
+        "ko": "타마가와"
+      },
+      {
+        "ja": "武蔵小杉",
+        "ko": "무사시코스기"
+      },
+      {
+        "ja": "日吉",
+        "ko": "히요시"
+      },
+      {
+        "ja": "綱島",
+        "ko": "츠나시마"
+      },
+      {
+        "ja": "菊名",
+        "ko": "키쿠나"
+      },
+      {
+        "ja": "横浜",
+        "ko": "요코하마"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-26003-express",
+    "routeId": "line-26003",
+    "operatorId": "tokyu",
+    "kind": "express",
+    "names": {
+      "ja": "急行",
+      "ko": "급행",
+      "en": "Express"
+    },
+    "priority": 30,
+    "source": "https://rosen-zu.net/tokyu/tokyu_denentoshi-top/tokyu_denentoshi-rosenzu/tokyu_denentoshi/",
+    "sourceSnapshot": "2025-06-24",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003922",
+      "station-004016",
+      "station-004177",
+      "station-1130310",
+      "station-004290",
+      "station-004296",
+      "station-004314",
+      "station-004392",
+      "station-1130609",
+      "station-004484",
+      "station-004498"
+    ],
+    "stationNames": [
+      "渋谷",
+      "三軒茶屋",
+      "二子玉川",
+      "溝の口",
+      "鷺沼",
+      "たまプラーザ",
+      "あざみ野",
+      "青葉台",
+      "長津田",
+      "南町田グランベリーパーク",
+      "中央林間"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "渋谷",
+        "ko": "시부야"
+      },
+      {
+        "ja": "三軒茶屋",
+        "ko": "산겐자야"
+      },
+      {
+        "ja": "二子玉川",
+        "ko": "후타코타마가와"
+      },
+      {
+        "ja": "溝の口",
+        "ko": "미조노쿠치"
+      },
+      {
+        "ja": "鷺沼",
+        "ko": "사기누마"
+      },
+      {
+        "ja": "たまプラーザ",
+        "ko": "타마 플라자"
+      },
+      {
+        "ja": "あざみ野",
+        "ko": "아자미노"
+      },
+      {
+        "ja": "青葉台",
+        "ko": "아오바다이"
+      },
+      {
+        "ja": "長津田",
+        "ko": "나가츠타"
+      },
+      {
+        "ja": "南町田グランベリーパーク",
+        "ko": "미나미마치다그랑베리파크"
+      },
+      {
+        "ja": "中央林間",
+        "ko": "츄오린칸"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-26003-semi-express",
+    "routeId": "line-26003",
+    "operatorId": "tokyu",
+    "kind": "semi-express",
+    "names": {
+      "ja": "準急",
+      "ko": "준급",
+      "en": "Semi Express"
+    },
+    "priority": 25,
+    "source": "https://rosen-zu.net/tokyu/tokyu_denentoshi-top/tokyu_denentoshi-rosenzu/tokyu_denentoshi/",
+    "sourceSnapshot": "2025-06-24",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003922",
+      "station-003972",
+      "station-004016",
+      "station-004069",
+      "station-004078",
+      "station-004109",
+      "station-004177",
+      "station-1130310",
+      "station-004290",
+      "station-004296",
+      "station-004314",
+      "station-004392",
+      "station-1130609",
+      "station-004441",
+      "station-004466",
+      "station-004484",
+      "station-004486",
+      "station-004498"
+    ],
+    "stationNames": [
+      "渋谷",
+      "池尻大橋",
+      "三軒茶屋",
+      "駒沢大学",
+      "桜新町",
+      "用賀",
+      "二子玉川",
+      "溝の口",
+      "鷺沼",
+      "たまプラーザ",
+      "あざみ野",
+      "青葉台",
+      "長津田",
+      "つくし野",
+      "すずかけ台",
+      "南町田グランベリーパーク",
+      "つきみ野",
+      "中央林間"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "渋谷",
+        "ko": "시부야"
+      },
+      {
+        "ja": "池尻大橋",
+        "ko": "이케지리오하시"
+      },
+      {
+        "ja": "三軒茶屋",
+        "ko": "산겐자야"
+      },
+      {
+        "ja": "駒沢大学",
+        "ko": "코마자와다이가쿠"
+      },
+      {
+        "ja": "桜新町",
+        "ko": "사쿠라신마치"
+      },
+      {
+        "ja": "用賀",
+        "ko": "요가"
+      },
+      {
+        "ja": "二子玉川",
+        "ko": "후타코타마가와"
+      },
+      {
+        "ja": "溝の口",
+        "ko": "미조노쿠치"
+      },
+      {
+        "ja": "鷺沼",
+        "ko": "사기누마"
+      },
+      {
+        "ja": "たまプラーザ",
+        "ko": "타마 플라자"
+      },
+      {
+        "ja": "あざみ野",
+        "ko": "아자미노"
+      },
+      {
+        "ja": "青葉台",
+        "ko": "아오바다이"
+      },
+      {
+        "ja": "長津田",
+        "ko": "나가츠타"
+      },
+      {
+        "ja": "つくし野",
+        "ko": "츠쿠시노"
+      },
+      {
+        "ja": "すずかけ台",
+        "ko": "스즈카케다이"
+      },
+      {
+        "ja": "南町田グランベリーパーク",
+        "ko": "미나미마치다그랑베리파크"
+      },
+      {
+        "ja": "つきみ野",
+        "ko": "츠키미노"
+      },
+      {
+        "ja": "中央林間",
+        "ko": "츄오린칸"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-22007-rapid-express",
+    "routeId": "line-22007",
+    "operatorId": "seibu",
+    "kind": "rapid-express",
+    "names": {
+      "ja": "快速急行",
+      "ko": "쾌속급행",
+      "en": "Rapid Express"
+    },
+    "priority": 45,
+    "source": "https://rosen-zu.net/seibu-group/seibu_shinjuku-top/seibu_shinjuku-rosenzu/",
+    "sourceSnapshot": "2026-03-14",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003648",
+      "station-003508",
+      "station-003423",
+      "station-003220",
+      "station-003131",
+      "station-003077",
+      "station-003033",
+      "station-002991",
+      "station-002963",
+      "station-002940",
+      "station-002895"
+    ],
+    "stationNames": [
+      "西武新宿",
+      "高田馬場",
+      "田無",
+      "東村山",
+      "所沢",
+      "新所沢",
+      "入曽",
+      "狭山市",
+      "新狭山",
+      "南大塚",
+      "本川越"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "西武新宿",
+        "ko": "세이부신주쿠"
+      },
+      {
+        "ja": "高田馬場",
+        "ko": "타카다노바바"
+      },
+      {
+        "ja": "田無",
+        "ko": "타나시"
+      },
+      {
+        "ja": "東村山",
+        "ko": "히가시무라야마"
+      },
+      {
+        "ja": "所沢",
+        "ko": "토코로자와"
+      },
+      {
+        "ja": "新所沢",
+        "ko": "신토코로자와"
+      },
+      {
+        "ja": "入曽",
+        "ko": "이리소"
+      },
+      {
+        "ja": "狭山市",
+        "ko": "사야마시"
+      },
+      {
+        "ja": "新狭山",
+        "ko": "신사야마"
+      },
+      {
+        "ja": "南大塚",
+        "ko": "미나미오츠카"
+      },
+      {
+        "ja": "本川越",
+        "ko": "혼카와고에"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-22007-express",
+    "routeId": "line-22007",
+    "operatorId": "seibu",
+    "kind": "express",
+    "names": {
+      "ja": "急行",
+      "ko": "급행",
+      "en": "Express"
+    },
+    "priority": 30,
+    "source": "https://rosen-zu.net/seibu-group/seibu_shinjuku-top/seibu_shinjuku-rosenzu/",
+    "sourceSnapshot": "2026-03-14",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003648",
+      "station-003508",
+      "station-003451",
+      "station-003427",
+      "station-003423",
+      "station-003430",
+      "station-003340",
+      "station-003262",
+      "station-003220",
+      "station-003131",
+      "station-003094",
+      "station-003077",
+      "station-003033",
+      "station-002991",
+      "station-002963",
+      "station-002940",
+      "station-002895"
+    ],
+    "stationNames": [
+      "西武新宿",
+      "高田馬場",
+      "鷺ノ宮",
+      "上石神井",
+      "田無",
+      "花小金井",
+      "小平",
+      "久米川",
+      "東村山",
+      "所沢",
+      "航空公園",
+      "新所沢",
+      "入曽",
+      "狭山市",
+      "新狭山",
+      "南大塚",
+      "本川越"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "西武新宿",
+        "ko": "세이부신주쿠"
+      },
+      {
+        "ja": "高田馬場",
+        "ko": "타카다노바바"
+      },
+      {
+        "ja": "鷺ノ宮",
+        "ko": "사기노미야"
+      },
+      {
+        "ja": "上石神井",
+        "ko": "카미샤쿠지이"
+      },
+      {
+        "ja": "田無",
+        "ko": "타나시"
+      },
+      {
+        "ja": "花小金井",
+        "ko": "하나코가네이"
+      },
+      {
+        "ja": "小平",
+        "ko": "코다이라"
+      },
+      {
+        "ja": "久米川",
+        "ko": "쿠메카와"
+      },
+      {
+        "ja": "東村山",
+        "ko": "히가시무라야마"
+      },
+      {
+        "ja": "所沢",
+        "ko": "토코로자와"
+      },
+      {
+        "ja": "航空公園",
+        "ko": "코쿠코엔"
+      },
+      {
+        "ja": "新所沢",
+        "ko": "신토코로자와"
+      },
+      {
+        "ja": "入曽",
+        "ko": "이리소"
+      },
+      {
+        "ja": "狭山市",
+        "ko": "사야마시"
+      },
+      {
+        "ja": "新狭山",
+        "ko": "신사야마"
+      },
+      {
+        "ja": "南大塚",
+        "ko": "미나미오츠카"
+      },
+      {
+        "ja": "本川越",
+        "ko": "혼카와고에"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-22007-semi-express",
+    "routeId": "line-22007",
+    "operatorId": "seibu",
+    "kind": "semi-express",
+    "names": {
+      "ja": "準急",
+      "ko": "준급",
+      "en": "Semi Express"
+    },
+    "priority": 25,
+    "source": "https://rosen-zu.net/seibu-group/seibu_shinjuku-top/seibu_shinjuku-rosenzu/",
+    "sourceSnapshot": "2026-03-14",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003648",
+      "station-003508",
+      "station-003451",
+      "station-003427",
+      "station-003419",
+      "station-003408",
+      "station-003409",
+      "station-003423",
+      "station-003430",
+      "station-003340",
+      "station-003262",
+      "station-003220",
+      "station-003131",
+      "station-003094",
+      "station-003077",
+      "station-003033",
+      "station-002991",
+      "station-002963",
+      "station-002940",
+      "station-002895"
+    ],
+    "stationNames": [
+      "西武新宿",
+      "高田馬場",
+      "鷺ノ宮",
+      "上石神井",
+      "武蔵関",
+      "東伏見",
+      "西武柳沢",
+      "田無",
+      "花小金井",
+      "小平",
+      "久米川",
+      "東村山",
+      "所沢",
+      "航空公園",
+      "新所沢",
+      "入曽",
+      "狭山市",
+      "新狭山",
+      "南大塚",
+      "本川越"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "西武新宿",
+        "ko": "세이부신주쿠"
+      },
+      {
+        "ja": "高田馬場",
+        "ko": "타카다노바바"
+      },
+      {
+        "ja": "鷺ノ宮",
+        "ko": "사기노미야"
+      },
+      {
+        "ja": "上石神井",
+        "ko": "카미샤쿠지이"
+      },
+      {
+        "ja": "武蔵関",
+        "ko": "타케쿠라세키"
+      },
+      {
+        "ja": "東伏見",
+        "ko": "히가시후시미"
+      },
+      {
+        "ja": "西武柳沢",
+        "ko": "세이부야기사와"
+      },
+      {
+        "ja": "田無",
+        "ko": "타나시"
+      },
+      {
+        "ja": "花小金井",
+        "ko": "하나코가네이"
+      },
+      {
+        "ja": "小平",
+        "ko": "코다이라"
+      },
+      {
+        "ja": "久米川",
+        "ko": "쿠메카와"
+      },
+      {
+        "ja": "東村山",
+        "ko": "히가시무라야마"
+      },
+      {
+        "ja": "所沢",
+        "ko": "토코로자와"
+      },
+      {
+        "ja": "航空公園",
+        "ko": "코쿠코엔"
+      },
+      {
+        "ja": "新所沢",
+        "ko": "신토코로자와"
+      },
+      {
+        "ja": "入曽",
+        "ko": "이리소"
+      },
+      {
+        "ja": "狭山市",
+        "ko": "사야마시"
+      },
+      {
+        "ja": "新狭山",
+        "ko": "신사야마"
+      },
+      {
+        "ja": "南大塚",
+        "ko": "미나미오츠카"
+      },
+      {
+        "ja": "本川越",
+        "ko": "혼카와고에"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-21001-express",
+    "routeId": "line-21001",
+    "operatorId": "tobu",
+    "kind": "express",
+    "names": {
+      "ja": "急行",
+      "ko": "급행",
+      "en": "Express"
+    },
+    "priority": 30,
+    "source": "https://rosen-zu.net/station-stops-top/station-stops/%E5%B0%8F%E5%B7%9D%E7%94%BA%E5%9F%BC%E7%8E%89%E7%9C%8C%E9%A7%85%E3%81%AE%E8%B7%AF%E7%B7%9A%E5%9B%B3/",
+    "sourceSnapshot": "2025-06-24",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003390",
+      "station-003156",
+      "station-003123",
+      "station-003097",
+      "station-003061",
+      "station-003049",
+      "station-002987",
+      "station-002909",
+      "station-002893",
+      "station-002874",
+      "station-002852",
+      "station-002837",
+      "station-2100126",
+      "station-002800",
+      "station-002753",
+      "station-002717",
+      "station-002708",
+      "station-002710",
+      "station-002709",
+      "station-1131805"
+    ],
+    "stationNames": [
+      "池袋",
+      "成増",
+      "和光市",
+      "朝霞",
+      "朝霞台",
+      "志木",
+      "ふじみ野",
+      "川越",
+      "川越市",
+      "霞ヶ関",
+      "鶴ヶ島",
+      "若葉",
+      "坂戸",
+      "北坂戸",
+      "高坂",
+      "東松山",
+      "森林公園",
+      "つきのわ",
+      "武蔵嵐山",
+      "小川町"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "池袋",
+        "ko": "이케부쿠로"
+      },
+      {
+        "ja": "成増",
+        "ko": "나리마스"
+      },
+      {
+        "ja": "和光市",
+        "ko": "와코시"
+      },
+      {
+        "ja": "朝霞",
+        "ko": "아사카"
+      },
+      {
+        "ja": "朝霞台",
+        "ko": "아사카다이"
+      },
+      {
+        "ja": "志木",
+        "ko": "시키"
+      },
+      {
+        "ja": "ふじみ野",
+        "ko": "후지미노"
+      },
+      {
+        "ja": "川越",
+        "ko": "카와고에"
+      },
+      {
+        "ja": "川越市",
+        "ko": "카와고에시"
+      },
+      {
+        "ja": "霞ヶ関",
+        "ko": "카스미가세키"
+      },
+      {
+        "ja": "鶴ヶ島",
+        "ko": "츠루가시마"
+      },
+      {
+        "ja": "若葉",
+        "ko": "와카바"
+      },
+      {
+        "ja": "坂戸",
+        "ko": "사카도"
+      },
+      {
+        "ja": "北坂戸",
+        "ko": "키타사카도"
+      },
+      {
+        "ja": "高坂",
+        "ko": "코사카"
+      },
+      {
+        "ja": "東松山",
+        "ko": "히가시마츠야마"
+      },
+      {
+        "ja": "森林公園",
+        "ko": "신린코엔"
+      },
+      {
+        "ja": "つきのわ",
+        "ko": "츠키노와"
+      },
+      {
+        "ja": "武蔵嵐山",
+        "ko": "무사시란잔"
+      },
+      {
+        "ja": "小川町",
+        "ko": "오가와마치"
+      }
+    ]
+  },
+  {
+    "id": "jp-extra-24006-express",
+    "routeId": "line-24006",
+    "operatorId": "keio",
+    "kind": "express",
+    "names": {
+      "ja": "急行",
+      "ko": "급행",
+      "en": "Express"
+    },
+    "priority": 30,
+    "source": "https://rosen-zu.net/keio/keio_inogashira-top/keio_inogashira-rosenzu/",
+    "sourceSnapshot": "2025-06-24",
+    "scope": "stop-pattern",
+    "stationIds": [
+      "station-003922",
+      "station-003908",
+      "station-003846",
+      "station-003794",
+      "station-003710",
+      "station-1131104"
+    ],
+    "stationNames": [
+      "渋谷",
+      "下北沢",
+      "明大前",
+      "永福町",
+      "久我山",
+      "吉祥寺"
+    ],
+    "stationDisplayNames": [
+      {
+        "ja": "渋谷",
+        "ko": "시부야"
+      },
+      {
+        "ja": "下北沢",
+        "ko": "시모키타자와"
+      },
+      {
+        "ja": "明大前",
+        "ko": "메이다이마에"
+      },
+      {
+        "ja": "永福町",
+        "ko": "에이후쿠쵸"
+      },
+      {
+        "ja": "久我山",
+        "ko": "쿠가야마"
+      },
+      {
+        "ja": "吉祥寺",
+        "ko": "키치죠지"
+      }
+    ]
   }
 ];
   const existingPatterns=new Set(catalog.servicePatterns.map(x=>x.id));
