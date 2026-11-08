@@ -635,6 +635,10 @@ function operatingPatternKey(choice){if(choice.kind==='uk')return choice.pattern
   if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-ueno-'))
     return 'ueno:'+choice.throughServiceId;
 
+  // Evidence-backed Japanese express patterns share one type card for both directions.
+  if(selected?.countryId==='jp'&&/^jp-extra-\d+-.+-(?:forward|reverse)$/.test(String(choice.patternId||'')))
+    return String(choice.patternId).replace(/-(?:forward|reverse)$/,'');
+
   // Display opposite directions as one service family.
   if(choice.kind==='journey'&&choice.patternId?.startsWith('jr-shonan-'))
     return 'shonan:'+choice.throughServiceId+':'+(choice.trainType?.id||'');
