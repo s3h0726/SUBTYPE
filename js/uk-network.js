@@ -34,7 +34,7 @@ export function ukPatternRoute(owner,pattern){
 export function ukOperatingChoices(route){
  if(!route?.playable||!route.geometryReady||route.lazy)return[];
  ukPresentation(route);const stations=new Map(route.stationCatalog.map(s=>[s.id,s]));
- return(route.patterns||[]).map(p=>({kind:'uk',id:p.id,patternId:p.familyId||p.id,legacyServiceId:p.id,originId:p.stationIds[0],destinationId:p.stationIds.at(-1),originNames:stations.get(p.stationIds[0]),destinationNames:stations.get(p.stationIds.at(-1)),patternName:{ko:ukNameEdits.services?.[p.id]||[stations.get(p.stationIds[0]).ko,stations.get(p.stationIds.at(-1)).ko].sort().join(' ↔ ')+(p.viaStationId?' · '+stations.get(p.viaStationId).ko+' 경유':''),en:p.nameEn},direction:p.id}));
+ return(route.patterns||[]).map(p=>({kind:'uk',id:p.id,patternId:p.familyId||p.id,legacyServiceId:p.id,originId:p.stationIds[0],destinationId:p.stationIds.at(-1),originNames:stations.get(p.stationIds[0]),destinationNames:stations.get(p.stationIds.at(-1)),patternName:{ko:ukNameEdits.services?.[p.id]||(route.id==='uk-glasgow-subway'?p.nameKo:[stations.get(p.stationIds[0]).ko,stations.get(p.stationIds.at(-1)).ko].sort().join(' ↔ ')+(p.viaStationId?' · '+stations.get(p.viaStationId).ko+' 경유':'')),en:p.nameEn},direction:p.id,directionLabel:route.id==='uk-glasgow-subway'?p.nameKo:null}));
 }
 export function resolveUKChoice(choice,owner){
  const pattern=owner?.patterns?.find(p=>p.id===choice.id);if(!pattern||!owner.playable||!(pattern.validation?.officialSequence||pattern.validation?.reviewedRegionalSequence)||!pattern.validation?.trackContinuity)throw Error('UK_UNVERIFIED_PATTERN');

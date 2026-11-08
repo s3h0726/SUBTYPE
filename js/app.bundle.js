@@ -65,7 +65,7 @@ function ukPatternRoute(owner,pattern){
 function ukOperatingChoices(route){
  if(!route?.playable||!route.geometryReady||route.lazy)return[];
  ukPresentation(route);const stations=new Map(route.stationCatalog.map(s=>[s.id,s]));
- return(route.patterns||[]).map(p=>({kind:'uk',id:p.id,patternId:p.familyId||p.id,legacyServiceId:p.id,originId:p.stationIds[0],destinationId:p.stationIds.at(-1),originNames:stations.get(p.stationIds[0]),destinationNames:stations.get(p.stationIds.at(-1)),patternName:{ko:ukNameEdits.services?.[p.id]||[stations.get(p.stationIds[0]).ko,stations.get(p.stationIds.at(-1)).ko].sort().join(' ↔ ')+(p.viaStationId?' · '+stations.get(p.viaStationId).ko+' 경유':''),en:p.nameEn},direction:p.id}));
+ return(route.patterns||[]).map(p=>({kind:'uk',id:p.id,patternId:p.familyId||p.id,legacyServiceId:p.id,originId:p.stationIds[0],destinationId:p.stationIds.at(-1),originNames:stations.get(p.stationIds[0]),destinationNames:stations.get(p.stationIds.at(-1)),patternName:{ko:ukNameEdits.services?.[p.id]||(route.id==='uk-glasgow-subway'?p.nameKo:[stations.get(p.stationIds[0]).ko,stations.get(p.stationIds.at(-1)).ko].sort().join(' ↔ ')+(p.viaStationId?' · '+stations.get(p.viaStationId).ko+' 경유':'')),en:p.nameEn},direction:p.id,directionLabel:route.id==='uk-glasgow-subway'?p.nameKo:null}));
 }
 function resolveUKChoice(choice,owner){
  const pattern=owner?.patterns?.find(p=>p.id===choice.id);if(!pattern||!owner.playable||!(pattern.validation?.officialSequence||pattern.validation?.reviewedRegionalSequence)||!pattern.validation?.trackContinuity)throw Error('UK_UNVERIFIED_PATTERN');
@@ -875,7 +875,7 @@ function isKorailOperatedRoute(route,station){
 }
 
 function resolveTransportStopTemplate(route,station){
-  if(route?.countryId==='uk'){const style=route.category==='subway'?'uk-underground':route.category==='tram'?'uk-tram':route.category==='light_rail'?'uk-metro':'uk-national-rail';return{key:style,style,family:'uk-bilingual',referenceSource:'SUBTYPE original bilingual railway learning layout; no official logos'}}
+  if(route?.countryId==='uk'){const style=route.id==='uk-glasgow-subway'?'uk-metro':route.category==='subway'?'uk-underground':route.category==='tram'?'uk-tram':route.category==='light_rail'?'uk-metro':'uk-national-rail';return{key:style,style,family:'uk-bilingual',referenceSource:'SUBTYPE original bilingual railway learning layout; no official logos'}}
   if(route?.countryId==='hk'){const mode=route.mode||route.category,style=mode==='light_rail'?'hk-light-rail':mode==='tram'?'hk-tram':mode==='funicular'?'hk-funicular':mode==='high_speed_rail'?'hk-hsr':'hk-mtr';return{key:style,style,family:style,referenceSource:route.sourceUrl||'Hong Kong transport learning layout; not an official sign'}}
   if(route?.countryId!=='kr')return resolveJapaneseTemplate(route);
   const key=route.mode==='river_bus'?'krRiver':['bus','village_bus','express_bus','brt'].includes(route.mode)?'krBus':route.operatorId==='kr-shinbundang'?'krShinbundang':isKorailOperatedRoute(route,station)?'krKorail':route.operatorId==='kr-seoul-metro'||route.operatorId==='kr-seoulmetro-korail'?'krSeoulMetro':'krGenericRail';
@@ -4702,7 +4702,7 @@ function operatingPatternLabel(choice){if(choice.kind==='uk')return choice.patte
   const section=String(route?.line?.ko||'').match(/\(([^)]+)\)/)?.[1];
   return koreanRouteDisplayText(section?`${section.replace('~',' ↔ ')} 운행`:journeyLabel(choice.patternName)||journeyLabel(choice.trainType)||'기본 운행계통',route)
 }
-function operatingDirectionLabel(choice){if(choice.kind==='thailand')return thailandNameText(choice.originNames)+' → '+thailandNameText(choice.destinationNames)+(choice.trainNumbers?.length?' · '+choice.trainNumbers.join(', ')+'호':'');if(choice.kind==='taiwan')return taiwanDirectionNames(choice).ko+(choice.patternName?.zh?.includes('時針')?' · '+getTaiwanDisplayNames(choice.patternName).ko:'');
+function operatingDirectionLabel(choice){if(choice.kind==='uk'&&choice.directionLabel)return choice.directionLabel;if(choice.kind==='thailand')return thailandNameText(choice.originNames)+' → '+thailandNameText(choice.destinationNames)+(choice.trainNumbers?.length?' · '+choice.trainNumbers.join(', ')+'호':'');if(choice.kind==='taiwan')return taiwanDirectionNames(choice).ko+(choice.patternName?.zh?.includes('時針')?' · '+getTaiwanDisplayNames(choice.patternName).ko:'');
   if(choice.line1UiDirection)return choice.line1UiDirection==='up'?'상행':'하행';
   if(choice.sourceRouteId==='kr-metro-2')return choice.direction==='reverse'?'내선순환':'외선순환';
   const origin=journeyStationDisplayName(choice.originNames),destination=journeyStationDisplayName(choice.destinationNames);

@@ -676,7 +676,7 @@ function operatingPatternLabel(choice){if(choice.kind==='uk')return choice.patte
   const section=String(route?.line?.ko||'').match(/\(([^)]+)\)/)?.[1];
   return koreanRouteDisplayText(section?`${section.replace('~',' ↔ ')} 운행`:journeyLabel(choice.patternName)||journeyLabel(choice.trainType)||'기본 운행계통',route)
 }
-function operatingDirectionLabel(choice){if(choice.kind==='thailand')return thailandNameText(choice.originNames)+' → '+thailandNameText(choice.destinationNames)+(choice.trainNumbers?.length?' · '+choice.trainNumbers.join(', ')+'호':'');if(choice.kind==='taiwan')return taiwanDirectionNames(choice).ko+(choice.patternName?.zh?.includes('時針')?' · '+getTaiwanDisplayNames(choice.patternName).ko:'');
+function operatingDirectionLabel(choice){if(choice.kind==='uk'&&choice.directionLabel)return choice.directionLabel;if(choice.kind==='thailand')return thailandNameText(choice.originNames)+' → '+thailandNameText(choice.destinationNames)+(choice.trainNumbers?.length?' · '+choice.trainNumbers.join(', ')+'호':'');if(choice.kind==='taiwan')return taiwanDirectionNames(choice).ko+(choice.patternName?.zh?.includes('時針')?' · '+getTaiwanDisplayNames(choice.patternName).ko:'');
   if(choice.line1UiDirection)return choice.line1UiDirection==='up'?'상행':'하행';
   if(choice.sourceRouteId==='kr-metro-2')return choice.direction==='reverse'?'내선순환':'외선순환';
   const origin=journeyStationDisplayName(choice.originNames),destination=journeyStationDisplayName(choice.destinationNames);

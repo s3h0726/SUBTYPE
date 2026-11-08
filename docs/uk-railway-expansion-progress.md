@@ -5,7 +5,7 @@ Updated: 2026-11-08 (Asia/Seoul). Status: **partial implementation, not a comple
 ## Repository and validation snapshot
 
 - Feature branch: `feature/uk-railway-expansion`.
-- Inspected/reported Git HEAD: `e1771623bbb9854ed430d366389e53f223bd20e7`. The final report commit may follow this snapshot; use Git history for that commit's own SHA.
+- Inspected/reported Git HEAD: `a63eb76cdf647e6b2812519df1d9e09e99d58e7d`. The final report commit may follow this snapshot; use Git history for that commit's own SHA.
 - Base inspected before implementation: `e1771623bbb9854ed430d366389e53f223bd20e7`.
 - Main integration / production status: see `reports/uk/release-status.json`. Do not infer deployment from a local test.
 
