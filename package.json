@@ -1,5 +1,9 @@
 {
+  "name": "subtype",
+  "version": "0.9.0",
+  "private": true,
   "scripts": {
+    "test:version": "node tools/test-app-version.cjs",
     "test:kr-bus-latin-display": "node tools/test-kr-bus-latin-display.cjs",
     "audit:recovery": "node tools/audit-data-recovery.js",
     "build:data": "node tools/audit-data-recovery.js && node tools/build-static.js && node tools/test-single-source.js",
