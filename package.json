@@ -88,7 +88,8 @@
     "build:uk": "node tools/build-uk-regional.cjs",
     "test:uk": "node --test tools/test-uk-track-graph.cjs && node tools/test-uk-rail.cjs",
     "test:uk:browser": "node tools/test-uk-browser.cjs",
-    "test:jp-extra-services": "node tools/test-japan-extra-operating-patterns.cjs"
+    "test:jp-extra-services": "node tools/test-japan-extra-operating-patterns.cjs",
+    "test:jp-nameplates": "node tools/test-jp-operator-nameplates.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",
