@@ -303,3 +303,118 @@
  #screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-neighbor b{font-size:clamp(12px,3dvh,23px)!important}
  #screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-neighbor .station-neighbor-ko{font-size:10px!important}
 }
+
+
+/* 2026-11-08: typing visibility hotfix.
+   Previous styles hid the real input in BOTH modes, even though free-drive
+   hides #ko-progress by design. Put a readable progress line on route-play
+   signs, and restore the actual text field for free-drive. Keep decorative
+   rail bars from intercepting characters or pointer focus. */
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-sign-strip{z-index:1!important;pointer-events:none!important}
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-current{z-index:7!important}
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #prompt-main,
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #prompt-kana,
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #prompt-sub,
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #prompt-ko{
+  z-index:8!important;
+  flex-shrink:0!important;
+}
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress,
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress{
+  position:absolute!important;
+  inset:auto 5px 8px 5px!important;
+  z-index:20!important;
+  order:initial!important;
+  box-sizing:border-box!important;
+  display:flex!important;flex:0 0 auto!important;
+  align-items:center!important;justify-content:center!important;
+  gap:2px!important;
+  width:auto!important;max-width:none!important;
+  height:30px!important;min-height:30px!important;
+  padding:4px 5px!important;margin:0!important;
+  overflow:hidden!important;
+  border:1px solid color-mix(in srgb,var(--sign-ink) 22%,transparent)!important;
+  border-radius:4px!important;
+  background:var(--sign-face,#fff)!important;
+  color:var(--sign-ink,#18202a)!important;
+  box-shadow:0 2px 5px #0001!important;
+  isolation:isolate!important;
+}
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress .input-cell{
+  position:relative!important;
+  display:grid!important;place-items:center!important;
+  flex:1 1 17px!important;
+  width:auto!important;min-width:0!important;max-width:24px!important;
+  height:20px!important;min-height:20px!important;
+  margin:0!important;padding:0!important;
+  overflow:visible!important;
+  font:850 clamp(10px,1.3vw,16px)/1 "Noto Sans KR","Malgun Gothic",sans-serif!important;
+  color:var(--sign-ink,#18202a)!important;
+  -webkit-text-fill-color:currentColor!important;
+  border-bottom:2px solid currentColor!important;
+  opacity:1!important;
+  text-align:center!important;
+}
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress .input-cell.done,
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress .input-cell.fixed{
+  color:var(--sign-ink,#18202a)!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress .input-cell.wrong{
+  color:#d73232!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+#screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-sign-input{pointer-events:none!important}
+
+/* Free drive requires visible IME entry: the old free-drive stylesheet hides
+   the mirror and the new 16-operator sheet accidentally hid the actual input. */
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress{display:none!important}
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-current .station-sign-input{
+  position:absolute!important;inset:auto 8px 8px 8px!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+  grid-column:auto!important;grid-row:auto!important;
+  order:initial!important;
+  box-sizing:border-box!important;
+  flex:none!important;
+  width:auto!important;max-width:none!important;min-width:0!important;
+  height:42px!important;min-height:42px!important;max-height:42px!important;
+  margin:0!important;padding:0!important;
+  border:1px solid #9ba9b6!important;
+  border-bottom:3px solid var(--sign-accent,#2267ab)!important;
+  border-radius:4px!important;
+  background:#fff!important;color:#172335!important;
+  opacity:1!important;visibility:visible!important;
+  overflow:visible!important;clip:auto!important;clip-path:none!important;
+  pointer-events:auto!important;transform:none!important;
+  z-index:21!important;
+}
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-current .station-sign-input input{
+  display:block!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  box-sizing:border-box!important;
+  margin:0!important;padding:6px 10px!important;
+  border:0!important;outline:0!important;
+  background:#fff!important;color:#172335!important;
+  -webkit-text-fill-color:#172335!important;
+  caret-color:#172335!important;
+  opacity:1!important;visibility:visible!important;
+  font:700 18px/1.25 "Noto Sans KR","Malgun Gothic",sans-serif!important;
+  pointer-events:auto!important;
+}
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-current .station-sign-input #input-status{
+  display:grid!important;place-items:center!important;
+  padding:0 7px!important;
+  font:700 9px/1.2 Arial,sans-serif!important;
+  color:#425468!important;
+}
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #prompt-main,
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #prompt-kana,
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #prompt-sub,
+#screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #prompt-ko{position:relative!important;z-index:8!important}
+
+@media(max-width:760px){
+  #screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress{inset:auto 3px 7px 3px!important;height:26px!important;min-height:26px!important;padding:2px 3px!important;gap:1px!important}
+  #screen-game.active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) #ko-progress .input-cell{flex:1 1 10px!important;max-width:17px!important;height:18px!important;min-height:18px!important;font-size:clamp(10px,2.3vw,13px)!important}
+  #screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-current .station-sign-input{inset:auto 4px 5px 4px!important;height:37px!important;min-height:37px!important;max-height:37px!important}
+  #screen-game.active.free-drive-active .station-sign:is([data-sign-style="tobu"],[data-sign-style="seibu"],[data-sign-style="keisei"],[data-sign-style="keio"],[data-sign-style="keikyu"],[data-sign-style="sotetsu"],[data-sign-style="meitetsu"],[data-sign-style="kintetsu"],[data-sign-style="nankai"],[data-sign-style="keihan"],[data-sign-style="hankyu"],[data-sign-style="hanshin"],[data-operator-id="nishinihontetsudo"]) .station-current .station-sign-input input{font-size:16px!important;padding:5px 8px!important}
+}
