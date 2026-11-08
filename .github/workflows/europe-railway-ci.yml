@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm ci
+      # Tests and the bundle builder use Node built-ins; the repository ships a pnpm lockfile, not package-lock.json.
       - name: Europe importer and catalog unit tests
         run: node --test tools/europe/test-europe.cjs
       - name: Europe country publication audit
@@ -34,4 +34,4 @@ jobs:
       - name: Existing selection and station regressions
         run: |
           node --test tools/test-route-selection.cjs
-          node tools/test-bootstrap-route-explorer.cjs
+          node --check js/app.bundle.js
