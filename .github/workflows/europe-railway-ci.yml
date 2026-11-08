@@ -35,3 +35,10 @@ jobs:
         run: |
           node --test tools/test-route-selection.cjs
           node --check js/app.bundle.js
+      - name: Asia country data regressions
+        run: |
+          node tools/test-hk-route-selector.cjs
+          node tools/test-thailand.cjs
+          node --test tools/test-taiwan.cjs
+          node tools/test-kr-bus-latin-display.cjs
+          node tools/test-japanese-route-color-order.cjs
