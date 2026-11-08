@@ -1,0 +1,37 @@
+name: Europe railway verification
+on:
+  push:
+    branches: [feature/europe-railway-expansion]
+  pull_request:
+    paths:
+      - 'data/eu/**'
+      - 'js/europe-network.js'
+      - 'js/data-loader.js'
+      - 'js/app.js'
+      - 'tools/europe/**'
+      - 'tools/build-app-bundle.js'
+      - '.github/workflows/europe-railway-ci.yml'
+permissions:
+  contents: read
+jobs:
+  europe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Europe importer and catalog unit tests
+        run: node --test tools/europe/test-europe.cjs
+      - name: Europe country publication audit
+        run: node tools/europe/validate.cjs
+      - name: Build deployed game and check bundle syntax
+        run: |
+          npm run build:app
+          node --check js/app.bundle.js
+      - name: Existing selection and station regressions
+        run: |
+          node --test tools/test-route-selection.cjs
+          node tools/test-bootstrap-route-explorer.cjs
