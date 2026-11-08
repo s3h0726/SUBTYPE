@@ -2,8 +2,21 @@
   "checkedAt": "2026-11-08",
   "baseSha": "e1771623bbb9854ed430d366389e53f223bd20e7",
   "branch": "feature/uk-railway-expansion",
-  "mainIntegration": "awaiting final revision checks",
-  "productionDeployment": "not yet checked for this branch",
+  "mainIntegration": "merged",
+  "productionDeployment": {
+    "status": "success",
+    "runId": 42480716525,
+    "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42480716525",
+    "site": "https://s3h0726.github.io/SUBTYPE/",
+    "checkedAt": "2026-11-08T12:37:08.131Z",
+    "actualUIPlaythrough": "PASS",
+    "typedStations": [
+      "워털루",
+      "뱅크"
+    ],
+    "publishedGeometryMatchesRepository": true,
+    "bundleSha256": "0e3a5630e13b4c48c0dd97a1bc5f88fdb4158aab800358a7ba544bc5a3a6f822"
+  },
   "leaderboardBackend": {
     "migration": "allow_uk_ranking_country",
     "applied": true,
@@ -20,5 +33,21 @@
     "status": "success",
     "runId": 42479741348,
     "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42479741348"
+  },
+  "verifiedCodeCommit": "6aef4042b5348f516b0ae10f9069cb6cd80280fb",
+  "mergeCommit": "97d34ea5f9abf854645c5d2579b72faec4d8232e",
+  "commits": [
+    "a63eb76cdf647e6b2812519df1d9e09e99d58e7d",
+    "821e5d61facb17163d1d3156ac97742e869e1f57",
+    "6aef4042b5348f516b0ae10f9069cb6cd80280fb"
+  ],
+  "finalUKCI": {
+    "status": "success",
+    "runId": 42480247754,
+    "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42480247754"
+  },
+  "sourceSnapshotChecksums": {
+    "verified": 238,
+    "failed": 0
   }
 }

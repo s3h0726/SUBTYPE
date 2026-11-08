@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('fs'),path=require('path'),cp=require('child_process'),root=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const v=read('data/uk/generated/validation.json'),b=read('reports/uk/browser-tests.json'),index=read('data/uk/generated/index.json');
+const release=read('reports/uk/release-status.json');
 const head=cp.execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
 const text=`# United Kingdom railway expansion progress
 
@@ -11,7 +12,8 @@ Updated: 2026-11-08 (Asia/Seoul). Status: **partial implementation, not a comple
 - Feature branch: \`feature/uk-railway-expansion\`.
 - Inspected/reported Git HEAD: \`${head}\`. The final report commit may follow this snapshot; use Git history for that commit's own SHA.
 - Base inspected before implementation: \`e1771623bbb9854ed430d366389e53f223bd20e7\`.
-- Main integration / production status: see \`reports/uk/release-status.json\`. Do not infer deployment from a local test.
+- Main integration: ${release.mainIntegration}; verified merge commit: \`${release.mergeCommit||'pending'}\`.
+- Actual production: ${release.productionDeployment?.status||'pending'}; public-site UI playthrough: ${release.productionDeployment?.actualUIPlaythrough||'pending'}. See \`reports/uk/production-verification.json\` and \`reports/uk/release-status.json\` for the observed deployment commit, timestamp and bundle hash.
 
 ## Released, playable inventory
 
