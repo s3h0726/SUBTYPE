@@ -10,6 +10,11 @@ assert(loader.includes(start)&&loader.includes(end),'Korean bus normalization so
 const code=loader.slice(loader.indexOf(start),loader.indexOf(end)).replace(/\bexport\s+/g,'');
 assert(bundle.includes(code),'built gameplay must contain the same restoration code');
 const {restoreKrBusLatinStation:stop,restoreKrBusLatinRoute:route}=new Function(code+'\nreturn {restoreKrBusLatinStation,restoreKrBusLatinRoute};')();
+// A source-backed code with a hyphen previously threw a Unicode RegExp
+// syntax error and stopped the entire Korean catalog from loading.
+assert.equal(route({id:'kr-bus-hyphen',countryId:'kr',mode:'bus',routeNumber:'500-1A',line:{ko:'경기 500-1에이번'}}).line.ko,'경기 500-1A번');
+const catalog=JSON.parse(fs.readFileSync(path.join(root,'data/kr/generated/index.json'),'utf8'));
+for(const item of catalog.routes||[]) assert.doesNotThrow(()=>route(item),'Korean catalog route '+item.id);
 for(const [official,previous,expected] of [
  ['A동','에이동','A동'],
  ['B','비','B'],
