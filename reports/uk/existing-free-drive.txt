@@ -1,0 +1,30 @@
+✔ Abukuma free drive advances one station per correct answer, never two (17.9665ms)
+✔ stale transition source cannot skip stops or change history (4.2267ms)
+✔ jp: next station sign matches actual typing answer (2.1198ms)
+✔ kr: next station sign matches actual typing answer (0.223ms)
+✔ hk: next station sign matches actual typing answer (1.2128ms)
+✔ tw: next station sign matches actual typing answer (0.2095ms)
+✔ clicking a destination selects it but never moves the graph (0.2552ms)
+✔ departure typing cannot be skipped; selected reverse destination is retained (0.5154ms)
+✔ invalid or arriving selections are rejected without changing target (0.1657ms)
+✔ game UI changes selected typing target instead of calling moveTo directly (1.6233ms)
+✔ Abukuma Express station order is continuous: Fukushima -> Oroshimachi -> Fukushima-Gakuinmae (2.6198ms)
+✔ free-drive current station label is the actual station rather than its predecessor (2.0866ms)
+✔ free-drive route startup ignores previously selected index from another line (1.3484ms)
+✔ next station UI is outside the sign: options cannot push station name over its header (1.6305ms)
+✔ stale IME completion cannot submit the next station after departure (0.3904ms)
+✔ route-choice renderer cannot silently change typing destination (1.813ms)
+✔ free-drive desktop and short-screen CSS preserve separate input and station rows (0.8998ms)
+✔ only explicitly confirmed Korean station pairs transfer; selection preserves position and history (3.5901ms)
+✔ directional Korean service never manufactures a reverse edge at its terminus (1.1187ms)
+✔ three or more connected Japanese lines remain individually selectable (1.4487ms)
+✔ stopping free drive removes Japanese choices before a Korean typing session starts (3.7834ms)
+✔ named Hong Kong links retain separate names, actual stop coordinates and keep pending links disabled (13.0213ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 225.9175

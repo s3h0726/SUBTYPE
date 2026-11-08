@@ -85,7 +85,7 @@ create table if not exists public.ranking_runs (
  route_name text not null,
  service_key text not null default 'legacy',
  service_name text not null default '기존 기록 · 계통 미분류',
- country_id text not null check (country_id in ('jp','kr')),
+ country_id text not null check (country_id in ('jp','kr','uk')),
  cpm integer not null check (cpm between 1 and 1200),
  accuracy numeric(5,2) not null check (accuracy between 50 and 100),
  elapsed_ms bigint not null check (elapsed_ms between 3000 and 7200000),
@@ -115,7 +115,7 @@ create policy "ranking public read" on public.ranking_runs for select to anon,au
  using (route_integrity is true and completed >= 2 and cpm between 1 and 1200 and accuracy between 50 and 100);
 create policy "ranking own insert" on public.ranking_runs for insert to authenticated
  with check (user_id=(select auth.uid()) and route_integrity is true and completed >= 2
-    and country_id in ('jp','kr') and cpm between 1 and 1200 and accuracy between 50 and 100
+    and country_id in ('jp','kr','uk') and cpm between 1 and 1200 and accuracy between 50 and 100
     and elapsed_ms between 3000 and 7200000 and length(route_id) between 1 and 140
     and length(route_name) between 1 and 150 and length(service_key) between 1 and 480 and length(service_name) between 1 and 250);
 -- Users cannot UPDATE or DELETE ranking rows through the Data API.

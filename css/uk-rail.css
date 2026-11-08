@@ -1,0 +1,14 @@
+/* Original learning-game designs. No TfL roundel or National Rail logo. */
+.station-sign[data-sign-style^="uk-"]{font-family:Arial,'Noto Sans KR',sans-serif;border-radius:2px;background:#fff;color:#122957}
+.station-sign[data-sign-style^="uk-"] .station-sign-main{grid-template-columns:minmax(110px,.7fr) minmax(0,2.6fr) minmax(110px,.7fr)}
+.station-sign[data-sign-style^="uk-"] .station-current{grid-template-columns:minmax(0,1fr);gap:8px;padding:24px clamp(12px,3vw,42px)}
+.station-sign[data-sign-style^="uk-"] .station-current h1,.station-sign[data-sign-style^="uk-"] .station-current .prompt-ko,.station-sign[data-sign-style^="uk-"] .station-current .prompt-romaji,.station-sign[data-sign-style^="uk-"] .station-current .prompt-kana{grid-column:1;white-space:normal;overflow-wrap:anywhere;line-height:1.2;text-overflow:clip}
+.station-sign[data-sign-style^="uk-"] .station-badge{display:none}
+.station-sign[data-sign-style^="uk-"] .station-neighbor{background:#edf1f7}
+.station-sign[data-sign-style^="uk-"] .station-neighbor b,.station-sign[data-sign-style^="uk-"] .station-neighbor span{white-space:normal;overflow-wrap:anywhere}
+.station-sign[data-sign-style="uk-underground"]{border:3px solid #122957}
+.station-sign[data-sign-style="uk-underground"] .station-sign-brand{background:#122957;color:white}
+.station-sign[data-sign-style="uk-underground"] .station-sign-brand span{color:white}
+.station-sign[data-sign-style="uk-national-rail"] .station-current{border-top:8px solid #122957}
+.station-sign[data-sign-style="uk-metro"] .station-sign-strip,.station-sign[data-sign-style="uk-tram"] .station-sign-strip{height:14px;background:var(--route-color)}
+@media(max-width:650px){.station-sign[data-sign-style^="uk-"] .station-sign-main{grid-template-columns:minmax(0,1fr)}.station-sign[data-sign-style^="uk-"] .station-current{grid-row:1}.station-sign[data-sign-style^="uk-"] .station-neighbor{display:none}.station-sign[data-sign-style^="uk-"] .station-sign-brand{gap:8px;flex-wrap:wrap}.station-sign[data-sign-style^="uk-"] .station-sign-brand span{white-space:normal}}

@@ -1,0 +1,4 @@
+const test=require('node:test'),assert=require('node:assert/strict'),{UKTrackGraph}=require('./lib/uk-track-graph.cjs');
+test('graph joins shared real nodes and preserves their source relations',()=>{const g=new UKTrackGraph;g.add([1,2,3],[[51,0],[51.001,0],[51.002,0]],11);g.add([3,4,5],[[51.002,0],[51.003,0],[51.004,0]],22);const p=g.path([{id:1,d:0}],[{id:5,d:0}],1);assert.deepEqual(p.refs,[1,2,3,4,5]);assert.deepEqual(p.relationIds.sort(),[11,22])});
+test('nearby disconnected tracks are never joined by a synthetic connector',()=>{const g=new UKTrackGraph;g.add([1,2],[[51,0],[51.001,0]],1);g.add([3,4],[[51.001001,0],[51.002,0]],2);assert.throws(()=>g.path([{id:1,d:0}],[{id:4,d:0}],1),/no-connected/)});
+test('opposite operating direction cannot be invented from a directed track',()=>{const g=new UKTrackGraph;g.add([1,2],[[51,0],[51.001,0]],1);assert.throws(()=>g.path([{id:2,d:0}],[{id:1,d:0}],1),/no-connected/)});

@@ -4,7 +4,7 @@
 const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'_site');
 if(fs.existsSync(out))throw Error('_site already exists; use a fresh staging directory');
-const excluded=['.git','.github','node_modules','_site','tools','reports','data/kr/canonical','data/kr/v2','data/th/source','data/th/normalized','data/th/cache'];
+const excluded=['.git','.github','node_modules','_site','tools','reports','data/kr/canonical','data/kr/v2','data/uk/source','data/th/source','data/th/normalized','data/th/cache'];
 const options={recursive:true,filter:source=>{
  const rel=path.relative(root,source).split(path.sep).join('/');
  return !excluded.some(p=>rel===p||rel.startsWith(p+'/'));
