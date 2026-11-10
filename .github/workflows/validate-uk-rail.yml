@@ -16,7 +16,7 @@ jobs:
         with: {node-version: '22'}
       - run: node tools/build-uk-regional.cjs > /tmp/uk-build.json
       - run: git diff --exit-code -- data/uk/generated
-      - run: node --test tools/test-uk-track-graph.cjs tools/test-uk-osm.cjs
+      - run: node --test tools/test-uk-track-graph.cjs tools/test-uk-osm.cjs tools/test-uk-free-drive.cjs
       - run: node tools/test-uk-rail.cjs && node tools/test-uk-leaderboard.cjs
       - run: node tools/build-app-bundle.js && node --check js/app.bundle.js
       - name: Install pinned browser test harness
