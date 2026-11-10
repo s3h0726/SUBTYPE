@@ -19,6 +19,12 @@ body[data-current-screen="home"] {
   display:flex;
   flex-direction:column;
 }
+.country-first-home [hidden] {display:none!important}
+.country-first-home .home-brand-copy {display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;row-gap:2px}
+.country-first-home .home-brand-copy b {flex-basis:100%}
+.country-first-home .home-brand-copy small:not([hidden]) {display:inline-block}
+.country-first-home .home-brand-copy .home-version-badge {margin-left:4px;align-self:center}
+
 .country-first-home .rail-atmosphere {
   z-index:0;
   opacity:.22;
