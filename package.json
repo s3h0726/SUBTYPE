@@ -86,7 +86,7 @@
     "test:thailand": "node tools/test-thailand.cjs && node tools/test-thailand-records.cjs && node --test tools/test-thailand-source.cjs",
     "test:thailand:browser": "node tools/test-thailand-browser.cjs",
     "build:uk": "node tools/build-uk-regional.cjs",
-    "test:uk": "node --test tools/test-uk-track-graph.cjs && node tools/test-uk-rail.cjs",
+    "test:uk": "node --test tools/test-uk-track-graph.cjs tools/test-uk-osm.cjs && node tools/test-uk-rail.cjs",
     "test:uk:browser": "node tools/test-uk-browser.cjs",
     "test:jp-extra-services": "node tools/test-japan-extra-operating-patterns.cjs",
     "test:jp-nameplates": "node tools/test-jp-operator-nameplates.cjs"

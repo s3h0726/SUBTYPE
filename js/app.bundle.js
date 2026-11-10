@@ -30,7 +30,8 @@ const debounce=(fn,wait=120)=>{let t;return(...args)=>{clearTimeout(t);t=setTime
 
 
 // UK physical lines, operating patterns and shared railway geometry are distinct.
-const UK_CATEGORIES=[['all','전체'],['subway','지하철'],['commuter_rail','광역철도'],['light_rail','경전철'],['tram','트램'],['rail','내셔널 레일'],['custom','커스텀']];
+const UK_CATEGORIES=[['all','전체'],['uk-underground','런던 지하철'],['uk-overground','런던 오버그라운드'],['uk-elizabeth','엘리자베스선'],['uk-dlr','DLR'],['rail','내셔널 레일'],['subway','지역 지하철'],['light_rail','메트로·경전철'],['tram','트램'],['custom','커스텀']];
+function ukCategory(route){return route.operatorId==='uk-london-underground'?'uk-underground':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-elizabeth'?'uk-elizabeth':route.id==='uk-dlr'?'uk-dlr':route.category}
 let ukNameEdits={operators:{},lines:{},stations:{},services:{}},ukSharedStationEdits=new Map(),ukStationGroups=new Map(),ukGroupEdits=new Map();
 function configureUKNames(edits={},stationIndex=[]){
  ukNameEdits=edits;ukSharedStationEdits=new Map();
@@ -65,7 +66,7 @@ function ukPatternRoute(owner,pattern){
 function ukOperatingChoices(route){
  if(!route?.playable||!route.geometryReady||route.lazy)return[];
  ukPresentation(route);const stations=new Map(route.stationCatalog.map(s=>[s.id,s]));
- return(route.patterns||[]).map(p=>({kind:'uk',id:p.id,patternId:p.familyId||p.id,legacyServiceId:p.id,originId:p.stationIds[0],destinationId:p.stationIds.at(-1),originNames:stations.get(p.stationIds[0]),destinationNames:stations.get(p.stationIds.at(-1)),patternName:{ko:ukNameEdits.services?.[p.id]||(route.id==='uk-glasgow-subway'?p.nameKo:[stations.get(p.stationIds[0]).ko,stations.get(p.stationIds.at(-1)).ko].sort().join(' ↔ ')+(p.viaStationId?' · '+stations.get(p.viaStationId).ko+' 경유':'')),en:p.nameEn},direction:p.id,directionLabel:route.id==='uk-glasgow-subway'?p.nameKo:null}));
+ return(route.patterns||[]).map(p=>({kind:'uk',id:p.id,patternId:p.familyId||p.id,legacyServiceId:p.id,originId:p.stationIds[0],destinationId:p.stationIds.at(-1),originNames:stations.get(p.stationIds[0]),destinationNames:stations.get(p.stationIds.at(-1)),patternName:{ko:ukNameEdits.services?.[p.id]||(route.id==='uk-glasgow-subway'?p.nameKo:[stations.get(p.stationIds[0]).ko,stations.get(p.stationIds.at(-1)).ko].sort().join(' ↔ ')+(p.viaStationId?' · '+stations.get(p.viaStationId).ko+' 경유':'')+(p.showStoppingPattern?' · '+p.stationIds.length+'개 역 · '+p.stationIds.slice(1,-1).map(id=>stations.get(id).ko).sort().join('·'):'')),en:p.nameEn},direction:p.id,directionLabel:route.id==='uk-glasgow-subway'?p.nameKo:null}));
 }
 function resolveUKChoice(choice,owner){
  const pattern=owner?.patterns?.find(p=>p.id===choice.id);if(!pattern||!owner.playable||!(pattern.validation?.officialSequence||pattern.validation?.reviewedRegionalSequence)||!pattern.validation?.trackContinuity)throw Error('UK_UNVERIFIED_PATTERN');
@@ -875,7 +876,7 @@ function isKorailOperatedRoute(route,station){
 }
 
 function resolveTransportStopTemplate(route,station){
-  if(route?.countryId==='uk'){const style=route.id==='uk-glasgow-subway'?'uk-metro':route.category==='subway'?'uk-underground':route.category==='tram'?'uk-tram':route.category==='light_rail'?'uk-metro':'uk-national-rail';return{key:style,style,family:'uk-bilingual',referenceSource:'SUBTYPE original bilingual railway learning layout; no official logos'}}
+  if(route?.countryId==='uk'){const style=route.id==='uk-metrolink'?'uk-metrolink':route.id==='uk-elizabeth'?'uk-elizabeth':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-dlr'?'uk-dlr':route.id==='uk-glasgow-subway'?'uk-metro':route.category==='subway'?'uk-underground':route.category==='tram'?'uk-tram':route.category==='light_rail'?'uk-metro':'uk-national-rail';return{key:style,style,family:'uk-bilingual',referenceSource:'SUBTYPE original bilingual railway learning layout; no official logos'}}
   if(route?.countryId==='hk'){const mode=route.mode||route.category,style=mode==='light_rail'?'hk-light-rail':mode==='tram'?'hk-tram':mode==='funicular'?'hk-funicular':mode==='high_speed_rail'?'hk-hsr':'hk-mtr';return{key:style,style,family:style,referenceSource:route.sourceUrl||'Hong Kong transport learning layout; not an official sign'}}
   if(route?.countryId!=='kr')return resolveJapaneseTemplate(route);
   const key=route.mode==='river_bus'?'krRiver':['bus','village_bus','express_bus','brt'].includes(route.mode)?'krBus':route.operatorId==='kr-shinbundang'?'krShinbundang':isKorailOperatedRoute(route,station)?'krKorail':route.operatorId==='kr-seoul-metro'||route.operatorId==='kr-seoulmetro-korail'?'krSeoulMetro':'krGenericRail';
@@ -4273,7 +4274,7 @@ function refreshRoutes(){
 function refreshFeatureCounts(){document.querySelectorAll('#feature-viewport [data-feature-route]').forEach(button=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),target=button.closest('article')?.querySelector('[data-feature-stations]');if(route&&target)target.textContent=`${route.stationCount||route.stations.length}개 ${stopWord(route)}`})}
 function searchable(r){if(r.countryId==='th')return normalize([thailandNameText(r.operator,'operators'),thailandNameText(r.line,'lines'),...(r.searchStations||[]),...(r.stations||[]).map(s=>thailandNameText(s))].join(' '));if(r.countryId==='tw')return normalize([taiwanNameText(r.operator,{english:true}),taiwanNameText(r.line,{english:true}),...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[taiwanNameText(s,{english:true}),...(s.koAliases||[])])].join(' '));return normalize([r.operator.ja,r.operator.en,r.operator.ko,r.line.ja,r.line.en,r.line.ko,...(r.airportNamesKo||[]),...(r.line.aliases||[]),...(r.searchStations||[]),...(r.stations||[]).flatMap(s=>[s.ja,s.kana,s.romaji,s.ko,...(s.koAliases||[])])].join(' '))}
 function searchVariants(value){const base=normalize(value),variants=new Set([base]);for(const [from,to]of [['구마가와','쿠마가와'],['쿠마가와 철도','쿠마가와테츠도우']])if(base.includes(from))variants.add(base.replaceAll(from,to));return[...variants]}
-function routeGroup(route){if(route.category==='custom')return'custom';if(countryId==='jp'&&(route.id==='line-11328'||route.dataKind==='trainService'||route.famousExpress))return'limited-express';if(route.category==='shinkansen')return'shinkansen';if(countryId==='jp'&&(route.mode==='monorail'||/モノレール/.test(route.line?.ja||'')))return'monorail';return route.category}
+function routeGroup(route){if(route.category==='custom')return'custom';if(route.countryId==='uk')return ukCategory(route);if(countryId==='jp'&&(route.id==='line-11328'||route.dataKind==='trainService'||route.famousExpress))return'limited-express';if(route.category==='shinkansen')return'shinkansen';if(countryId==='jp'&&(route.mode==='monorail'||/モノレール/.test(route.line?.ja||'')))return'monorail';return route.category}
 function routeTransportGroup(route){if(route.category==='custom')return'custom';if(['bus','village_bus','express_bus','brt'].includes(route.mode))return'bus';if(['river_bus','ferry'].includes(route.mode))return'water';if(['rail','subway','commuter_rail','high_speed_rail','light_rail','monorail','tram','airport_rail'].includes(route.mode))return'rail';return'other'}
 // A route serving an airport is not necessarily an airport bus.
 // The Korean airport catalogue explicitly differentiates airport_bus /

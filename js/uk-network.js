@@ -1,5 +1,6 @@
 // UK physical lines, operating patterns and shared railway geometry are distinct.
-export const UK_CATEGORIES=[['all','전체'],['subway','지하철'],['commuter_rail','광역철도'],['light_rail','경전철'],['tram','트램'],['rail','내셔널 레일'],['custom','커스텀']];
+export const UK_CATEGORIES=[['all','전체'],['uk-underground','런던 지하철'],['uk-overground','런던 오버그라운드'],['uk-elizabeth','엘리자베스선'],['uk-dlr','DLR'],['rail','내셔널 레일'],['subway','지역 지하철'],['light_rail','메트로·경전철'],['tram','트램'],['custom','커스텀']];
+export function ukCategory(route){return route.operatorId==='uk-london-underground'?'uk-underground':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-elizabeth'?'uk-elizabeth':route.id==='uk-dlr'?'uk-dlr':route.category}
 let ukNameEdits={operators:{},lines:{},stations:{},services:{}},ukSharedStationEdits=new Map(),ukStationGroups=new Map(),ukGroupEdits=new Map();
 export function configureUKNames(edits={},stationIndex=[]){
  ukNameEdits=edits;ukSharedStationEdits=new Map();
@@ -34,7 +35,7 @@ export function ukPatternRoute(owner,pattern){
 export function ukOperatingChoices(route){
  if(!route?.playable||!route.geometryReady||route.lazy)return[];
  ukPresentation(route);const stations=new Map(route.stationCatalog.map(s=>[s.id,s]));
- return(route.patterns||[]).map(p=>({kind:'uk',id:p.id,patternId:p.familyId||p.id,legacyServiceId:p.id,originId:p.stationIds[0],destinationId:p.stationIds.at(-1),originNames:stations.get(p.stationIds[0]),destinationNames:stations.get(p.stationIds.at(-1)),patternName:{ko:ukNameEdits.services?.[p.id]||(route.id==='uk-glasgow-subway'?p.nameKo:[stations.get(p.stationIds[0]).ko,stations.get(p.stationIds.at(-1)).ko].sort().join(' ↔ ')+(p.viaStationId?' · '+stations.get(p.viaStationId).ko+' 경유':'')),en:p.nameEn},direction:p.id,directionLabel:route.id==='uk-glasgow-subway'?p.nameKo:null}));
+ return(route.patterns||[]).map(p=>({kind:'uk',id:p.id,patternId:p.familyId||p.id,legacyServiceId:p.id,originId:p.stationIds[0],destinationId:p.stationIds.at(-1),originNames:stations.get(p.stationIds[0]),destinationNames:stations.get(p.stationIds.at(-1)),patternName:{ko:ukNameEdits.services?.[p.id]||(route.id==='uk-glasgow-subway'?p.nameKo:[stations.get(p.stationIds[0]).ko,stations.get(p.stationIds.at(-1)).ko].sort().join(' ↔ ')+(p.viaStationId?' · '+stations.get(p.viaStationId).ko+' 경유':'')+(p.showStoppingPattern?' · '+p.stationIds.length+'개 역 · '+p.stationIds.slice(1,-1).map(id=>stations.get(id).ko).sort().join('·'):'')),en:p.nameEn},direction:p.id,directionLabel:route.id==='uk-glasgow-subway'?p.nameKo:null}));
 }
 export function resolveUKChoice(choice,owner){
  const pattern=owner?.patterns?.find(p=>p.id===choice.id);if(!pattern||!owner.playable||!(pattern.validation?.officialSequence||pattern.validation?.reviewedRegionalSequence)||!pattern.validation?.trackContinuity)throw Error('UK_UNVERIFIED_PATTERN');

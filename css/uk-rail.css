@@ -12,3 +12,7 @@
 .station-sign[data-sign-style="uk-national-rail"] .station-current{border-top:8px solid #122957}
 .station-sign[data-sign-style="uk-metro"] .station-sign-strip,.station-sign[data-sign-style="uk-tram"] .station-sign-strip{height:14px;background:var(--route-color)}
 @media(max-width:650px){.station-sign[data-sign-style^="uk-"] .station-sign-main{grid-template-columns:minmax(0,1fr)}.station-sign[data-sign-style^="uk-"] .station-current{grid-row:1}.station-sign[data-sign-style^="uk-"] .station-neighbor{display:none}.station-sign[data-sign-style^="uk-"] .station-sign-brand{gap:8px;flex-wrap:wrap}.station-sign[data-sign-style^="uk-"] .station-sign-brand span{white-space:normal}}
+.station-sign[data-sign-style="uk-metrolink"]{color:#202020;border:2px solid #555}
+.station-sign[data-sign-style="uk-metrolink"] .station-sign-brand{background:#f8c300;color:#202020}
+.station-sign[data-sign-style="uk-metrolink"] .station-sign-brand span{color:#202020}
+.station-sign:is([data-sign-style="uk-overground"],[data-sign-style="uk-elizabeth"],[data-sign-style="uk-dlr"]) .station-current{border-top:8px solid var(--route-color)}

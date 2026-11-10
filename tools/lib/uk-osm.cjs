@@ -9,9 +9,19 @@ function assembleTrack(relation,elements){
  }
  const refs=oriented.flatMap((a,i)=>i?a.slice(1):a),geometry=refs.map(id=>{const n=nodes.get(id);if(!n)throw Error('missing-node:'+id);return[n.lat,n.lon]});return{refs,geometry,nodes,ways};
 }
-function assemble(relation,elements){
- const track=assembleTrack(relation,elements),stops=relation.members.filter(m=>m.type==='node'&&m.role.startsWith('stop')).map(m=>track.nodes.get(m.ref));
+function assemble(relation,elements,options={}){
+ const track=assembleTrack(relation,elements),stops=options.reviewedTrackStops?track.refs.map(id=>track.nodes.get(id)).filter(n=>n.tags?.railway==='tram_stop'):relation.members.filter(m=>m.type==='node'&&m.role.startsWith('stop')).map(m=>track.nodes.get(m.ref));
  if(stops.length<2||stops.some(s=>!s))throw Error('no-ordered-stop-nodes');let cursor=0;
  const aligned=stops.map(s=>{const index=track.refs.indexOf(s.id,cursor);if(index<0)throw Error('stop-not-on-track:'+s.id);cursor=index+1;return index});return{...track,stops,aligned};
 }
-module.exports={assembleTrack,assemble};
+function assembleCalls(relation,elements,calls){
+ const track=assembleTrack(relation,elements),normalize=s=>(s||'').toLowerCase().replace(/newcastle central/,'newcastle').replace(/[^a-z0-9]/g,'');let cursor=0;
+ const aligned=[],stops=[];
+ for(const call of calls){const key=normalize(call);let found=-1;
+  for(let i=cursor;i<track.refs.length;i++){const node=track.nodes.get(track.refs[i]);if(normalize(node.tags?.name)===key&&['stop','tram_stop','station'].includes(node.tags?.railway)||normalize(node.tags?.name)===key&&node.tags?.public_transport==='stop_position'){found=i;break}}
+  if(found<0)throw Error('official-call-not-on-ordered-track:'+call);
+  aligned.push(found);stops.push({...track.nodes.get(track.refs[found]),tags:{...track.nodes.get(track.refs[found]).tags,name:call}});cursor=found+1;
+ }
+ return{...track,aligned,stops};
+}
+module.exports={assembleTrack,assemble,assembleCalls};
