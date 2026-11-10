@@ -3,6 +3,13 @@ const fs=require('fs'),path=require('path'),assert=require('node:assert/strict')
 const root=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(root,p))),index=read('data/uk/generated/index.json'),segments=read('data/uk/generated/geometry.json').segments;
 const baseline=JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(root,'data/uk/source/released-baseline-20261108.json.gz'))));
 for(const old of baseline.routes){const current=read('data/uk/generated/routes/'+old.id+'.json');for(const p of old.patterns){const preserved=current.patterns.find(q=>q.id===p.id);assert(preserved,'published pattern removed: '+p.id);assert.deepEqual(preserved.stationIds,p.stationIds);assert.deepEqual(preserved.segmentIds,p.segmentIds)}}
+if(index.routes.every(r=>r.geometryFiles)){
+ const files=[...new Set(index.routes.flatMap(r=>r.geometryFiles))],stored=new Set();
+ for(const file of files)for(const [id,s]of Object.entries(read(file).segments)){assert(!stored.has(id),'segment duplicated across geometry partitions');stored.add(id);assert.deepEqual(s,segments[id])}
+ for(const meta of index.routes){const available=new Set(meta.geometryFiles.flatMap(file=>Object.keys(read(file).segments))),route=read(meta.lazySource);assert.deepEqual(route.geometryFiles,meta.geometryFiles);for(const p of route.patterns)for(const id of p.segmentIds)assert(available.has(id),'lazy partition omits '+id)}
+}
+const metrolink=index.routes.find(r=>r.id==='uk-metrolink');if(metrolink)assert.equal(metrolink.stationCount,99,'TfGM publishes 99 Metrolink stops');
+const net=index.routes.filter(r=>r.operatorId==='uk-net');if(net.length)assert.equal(new Set(net.flatMap(r=>r.stationSequence)).size,50,'NET network has 50 physical stops');
 (async()=>{
  const uk=await import(pathToFileURL(path.join(root,'js/uk-network.js'))),integrity=await import(pathToFileURL(path.join(root,'js/route-integrity.js'))),{buildTypingModel}=await import(pathToFileURL(path.join(root,'js/typing-model.js'))),{FreeDrive}=await import(pathToFileURL(path.join(root,'js/free-drive.js')));
  const sourceEdges=new Set,sourceNodes=new Map;

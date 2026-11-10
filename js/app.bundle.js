@@ -3644,8 +3644,11 @@ function integrateKoreanLine1Index(published,preview){
   const operators=[...new Map([...(published.operators||[]),...(preview.operators||[])].map(operator=>[operator.id,operator])).values()];
   return{...published,routes,operators,integratedLine1:{researchServices:merged.length,replacedLegacySections:legacy.filter(isOldLine1).length,releaseStatus:'research',officialReleased:0}};
 }
-let ukGeometryPromise;
-async function loadUKGeometry(){if(!ukGeometryPromise)ukGeometryPromise=fetchJson(new URL('data/uk/generated/geometry.json',document.baseURI)).then(d=>d.segments).catch(e=>{ukGeometryPromise=null;throw e});return ukGeometryPromise}
+const ukGeometryRequests=new Map(),ukGeometrySegments={};
+async function loadUKGeometry(files=['data/uk/generated/geometry.json']){
+ await Promise.all(files.map(file=>{if(!/^data\/uk\/generated\/(?:geometry\.json|geometry\/\d+_-?\d+(?:_long)?\.json)$/.test(file))throw Error('UK_GEOMETRY_SOURCE');if(!ukGeometryRequests.has(file))ukGeometryRequests.set(file,fetchJson(new URL(file,document.baseURI)).then(d=>{Object.assign(ukGeometrySegments,d.segments)}).catch(e=>{ukGeometryRequests.delete(file);throw e}));return ukGeometryRequests.get(file)}));
+ return ukGeometrySegments;
+}
 async function loadTransportData(countryId='jp',koreaMode='released'){
   if(countryId==='uk'){
     await loadEditorNameOverrides();
@@ -3709,7 +3712,7 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
 }
 async function hydrateRailLine(route){if(!route?.lazy)return route;
  if(route.countryId==='uk'){
-  const [raw,segments]=await Promise.all([fetchJson(new URL(route.lazySource,document.baseURI)),loadUKGeometry()]);
+  const [raw,segments]=await Promise.all([fetchJson(new URL(route.lazySource,document.baseURI)),loadUKGeometry(route.geometryFiles)]);
   if(raw.countryId!=='uk'||raw.id!==route.id||!raw.patterns?.length)throw Error('UK_ROUTE_IDENTITY');
   const owner=ukPresentation(normalizeLine({...raw,ukGeometry:segments}));
   const first=ukPatternRoute(owner,owner.patterns[0]);return{...first,services:owner.services,patterns:owner.patterns,stationCatalog:owner.stationCatalog};

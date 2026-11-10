@@ -6,7 +6,7 @@ const hook='globalThis.__UK_QA__={game,go,chooseRoute,openSetup,actualOperatingC
 const server=http.createServer((req,res)=>{const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\//,'')||'index.html',file=path.resolve(root,name);if(!file.startsWith(root+path.sep))return res.writeHead(403).end();try{let body=fs.readFileSync(file);if(name==='js/app.bundle.js')body=Buffer.from(body.toString().replace('\n})().catch(error=>','\n'+hook+'})().catch(error=>'));res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png'})[path.extname(file)]||'application/octet-stream');res.end(body)}catch{res.writeHead(404).end()}});
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port,browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe'}),report={status:'FAIL',runs:[],errors:[],regressions:[],freeDrive:[]};
 try{
- const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>report.errors.push(e.message));await page.addInitScript(()=>localStorage.setItem('trt-country','uk'));await page.goto(base);await page.waitForFunction(()=>globalThis.__UK_QA__&&document.querySelector('[data-route="uk-bakerloo"]'),{},{timeout:60000});
+ const page=await browser.newPage({viewport:{width:1440,height:1000}}),geometryRequests=[];page.on('request',r=>{const p=new URL(r.url()).pathname;if(p.startsWith('/data/uk/generated/geometry'))geometryRequests.push(p)});page.on('pageerror',e=>report.errors.push(e.message));await page.addInitScript(()=>localStorage.setItem('trt-country','uk'));await page.goto(base);await page.waitForFunction(()=>globalThis.__UK_QA__&&document.querySelector('[data-route="uk-bakerloo"]'),{},{timeout:60000});
  await page.evaluate(()=>__UK_QA__.go('rail-map'));assert.equal(await page.locator('button[data-country="uk"]').innerText(),'영국');await page.screenshot({path:path.join(out,'catalog-desktop.png'),fullPage:true});
  const ids=await page.evaluate(()=>__UK_QA__.routes().map(r=>r.id));
  for(const id of ids){
@@ -28,10 +28,15 @@ try{
    },{id,choice});report.runs.push(result);
   }
  }
+ if(JSON.parse(fs.readFileSync(path.join(root,'data/uk/generated/index.json'))).routes.every(r=>r.geometryFiles)){
+  assert(!geometryRequests.includes('/data/uk/generated/geometry.json'),'full UK geometry pool fetched during line selection');assert.equal(geometryRequests.length,new Set(geometryRequests).size,'shared geometry partition requested more than once');
+  report.geometryLoading={status:'PASS',files:geometryRequests.length,wholePoolRequested:false,duplicateRequests:0};
+ }
  // Full UK network loads lazily only when free driving is requested.
  await page.evaluate(async()=>{const q=__UK_QA__;q.go('rail-map');await q.chooseRoute('uk-bakerloo');await q.startFreeDrive(q.routes().find(r=>r.id==='uk-bakerloo'))});
  report.freeDrive.push(await page.evaluate(()=>{const q=__UK_QA__,before=q.freeDrive.snapshot();if(!before?.edges?.length)throw Error('NO_FREE_DRIVE_EDGES');const edge=before.edges.find(e=>e.direction>0)||before.edges[0],moved=q.freeDrive.moveTo(edge.to,edge.routeId,edge.fromKey);if(!moved)throw Error('FREE_DRIVE_MOVE_FAILED');return{status:'PASS',routes:q.freeDrive.routes.length,edgeCount:before.edges.length}}));
  await page.screenshot({path:path.join(out,'free-drive-desktop.png'),fullPage:true});
+ report.freeDriveProgression=await page.evaluate(()=>{const f=__UK_QA__.freeDrive,render=f.render,emit=f.emit;let directions=0,transitions=0;try{f.render=()=>{};f.emit=()=>{};for(const route of f.routes){if(route.countryId!=='uk')continue;if(!f.start(route))throw Error('FREE_DRIVE_START:'+route.id);for(let i=1;i<route.stations.length;i++){const edge=f.current()?.edges.find(e=>e.routeId===route.id&&e.direction===1&&e.index===i);if(!edge||!f.moveTo(edge.to,route.id,f.currentKey))throw Error('FREE_DRIVE_SEQUENCE:'+route.id+':'+i);if(f.snapshot().station.id!==route.stations[i].id)throw Error('FREE_DRIVE_TARGET:'+route.id+':'+i);transitions++}directions++}return{status:'PASS',directions,transitions}}finally{f.render=render;f.emit=emit}});
  // Name editing uses the existing country table, and every station is listed.
  await page.goto(base+'/reports/korean-names/editor.html?country=uk');await page.waitForFunction(()=>document.querySelector('#table tbody tr'));await page.waitForFunction(()=>[...document.querySelectorAll('#table input')].some(i=>i.value==='런던 지하철'));
  await page.locator('[data-file="stations-by-line"]').click();await page.locator('#route-filter').selectOption('uk-circle');await page.waitForFunction(()=>[...document.querySelectorAll('#table input')].some(i=>i.value==='패딩턴'));await page.screenshot({path:path.join(out,'name-editor.png'),fullPage:true});

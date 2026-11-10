@@ -1,11 +1,166 @@
 {
-  "checkedAt":"2026-11-08",
-  "note":"Passenger networks and concession operators are independent identities. No Arriva/MTR operator identity is carried forward beyond its verified concession dates.",
-  "operators":{
-    "uk-first-rail-london":{"network":"London Overground","effectiveFrom":"2026-05-03","url":"https://www.firstraillondon.co.uk/"},
-    "uk-gts-rail-operations":{"network":"Elizabeth line","effectiveFrom":"2025-05-25","url":"https://tfl-newsroom.prgloo.com/news/gts-rail-operations-limited-announced-as-new-operator-for-the-elizabeth-line"},
-    "uk-keolisamey-docklands":{"network":"Docklands Light Railway","effectiveFrom":"2025-04-01","url":"https://tfl-newsroom.prgloo.com/news/keolisamey-retains-the-franchise-to-operate-the-dlr"},
-    "uk-tram-operations":{"network":"London Trams","url":"https://tfl.gov.uk/corporate/about-tfl/what-we-do"},
-    "uk-london-underground":{"network":"London Underground","url":"https://tfl.gov.uk/corporate/about-tfl/what-we-do"}
+  "checkedAt": "2026-11-11",
+  "note": "Passenger networks and concession operators are independent identities. No Arriva/MTR operator identity is carried forward beyond its verified concession dates.",
+  "operators": {
+    "uk-first-rail-london": {
+      "network": "London Overground",
+      "effectiveFrom": "2026-05-03",
+      "url": "https://www.firstraillondon.co.uk/"
+    },
+    "uk-gts-rail-operations": {
+      "network": "Elizabeth line",
+      "effectiveFrom": "2025-05-25",
+      "url": "https://tfl-newsroom.prgloo.com/news/gts-rail-operations-limited-announced-as-new-operator-for-the-elizabeth-line"
+    },
+    "uk-keolisamey-docklands": {
+      "network": "Docklands Light Railway",
+      "effectiveFrom": "2025-04-01",
+      "url": "https://tfl-newsroom.prgloo.com/news/keolisamey-retains-the-franchise-to-operate-the-dlr"
+    },
+    "uk-tram-operations": {
+      "network": "London Trams",
+      "url": "https://tfl.gov.uk/corporate/about-tfl/what-we-do"
+    },
+    "uk-london-underground": {
+      "network": "London Underground",
+      "url": "https://tfl.gov.uk/corporate/about-tfl/what-we-do"
+    },
+    "uk-edinburgh-trams": {
+      "organisation": "Edinburgh Trams",
+      "networks": [
+        "Edinburgh Trams"
+      ],
+      "url": "https://edinburghtrams.com/plan-journey/route-maps-stops"
+    },
+    "uk-glasgow-subway": {
+      "organisation": "Strathclyde Partnership for Transport",
+      "networks": [
+        "Glasgow Subway"
+      ],
+      "url": "https://www.spt.co.uk/travel-with-spt/subway/maps-stations/"
+    },
+    "uk-nexus": {
+      "organisation": "Nexus",
+      "networks": [
+        "Tyne and Wear Metro Green line",
+        "Tyne and Wear Metro Yellow line"
+      ],
+      "url": "https://www.northeast-ca.gov.uk/downloads/2597/north-east-rail-and-metro-strategy.pdf"
+    },
+    "uk-supertram": {
+      "organisation": "South Yorkshire Supertram",
+      "networks": [
+        "Supertram Yellow route",
+        "Supertram Blue route",
+        "Supertram Purple route",
+        "Supertram Tram Train"
+      ],
+      "url": "https://www.travelsouthyorkshire.com/en-GB/supertram/supertram-network-and-routes"
+    },
+    "uk-blackpool-tramway": {
+      "organisation": "Blackpool Transport",
+      "networks": [
+        "Blackpool Tramway"
+      ],
+      "url": "https://images.blackpooltransport.com/downloads/Tramway_Digital_Timetable_May26.pdf"
+    },
+    "uk-lumo": {
+      "organisation": "Lumo",
+      "networks": [
+        "East Coast Main Line · Lumo"
+      ],
+      "url": "https://www.lumo.co.uk/plan-your-journey/our-timetable"
+    },
+    "uk-west-midlands-metro": {
+      "organisation": "Midland Metro Limited",
+      "networks": [
+        "West Midlands Metro"
+      ],
+      "url": "https://www.westmidlandsmetro.com/maps/"
+    },
+    "uk-keolisamey-metrolink": {
+      "organisation": "KeolisAmey Metrolink",
+      "networks": [
+        "Manchester Metrolink"
+      ],
+      "url": "https://tfgm.com/plan-a-journey/schedules/tram-schedule",
+      "identityEvidence": "https://assets.ctfassets.net/nv7y93idf4jq/3iKkXmyS1cZvbfyK1tyd9r/95ec92fa075e8378b6ed91787d2d6250/25-0207_Annual_Report_Draft_Interactive_V7.pdf"
+    },
+    "uk-merseyrail": {
+      "organisation": "Merseyrail",
+      "networks": [
+        "Merseyrail Northern line",
+        "Merseyrail Wirral line"
+      ],
+      "url": "https://www.merseyrail.org/media/dsoltun1/northern-line-booklet-17may26-compressed.pdf"
+    },
+    "uk-scotrail": {
+      "organisation": "ScotRail",
+      "networks": [
+        "Neilston line",
+        "East Kilbride line",
+        "Paisley Canal line",
+        "Shotts line",
+        "Edinburgh–Glasgow via Carstairs",
+        "Cathcart Circle",
+        "Newton line via Langside"
+      ],
+      "url": "https://www.scotrail.co.uk/media/98822/download"
+    },
+    "uk-lner": {
+      "organisation": "London North Eastern Railway",
+      "networks": [
+        "East Coast Main Line · LNER"
+      ],
+      "url": "https://assets.ctfassets.net/mxack5k9p2sw/7jQOjS38muWdVQbPCRGxyV/809f4c4fe0a29fcd38233147ab0f48ac/LNER_May-Dec_2026_Timetable_Guide_Web.pdf"
+    },
+    "uk-net": {
+      "organisation": "Nottingham Trams Limited",
+      "networks": [
+        "Hucknall–Toton Lane line",
+        "Phoenix Park–Clifton South line"
+      ],
+      "url": "https://www.thetram.net/network-information",
+      "identityEvidence": "https://find-and-update.company-information.service.gov.uk/company/07644670"
+    },
+    "uk-avanti-west-coast": {
+      "organisation": "Avanti West Coast",
+      "networks": [
+        "West Coast Main Line via Trent Valley",
+        "West Coast Main Line via Birmingham",
+        "West Coast Main Line Manchester branches",
+        "West Coast Main Line Liverpool branch"
+      ],
+      "url": "https://www.avantiwestcoast.co.uk/travel-information/our-routes/our-route-map"
+    },
+    "uk-greater-thameslink-railway": {
+      "organisation": "Greater Thameslink Railway",
+      "networks": [
+        "Great Northern East Coast Main Line",
+        "Great Northern Cambridge line",
+        "Great Northern Fen line",
+        "Thameslink Midland and Brighton Main Lines",
+        "Thameslink Cambridge–Brighton corridor",
+        "Thameslink East Coast and Arun Valley"
+      ],
+      "url": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/",
+      "effectiveFrom": "2026-05-31",
+      "identityEvidence": "https://gtr.delta-esourcing.com/about-us/",
+      "transferEvidence": "https://www.gov.uk/government/news/britains-biggest-train-operators-services-enter-public-ownership-this-weekend"
+    },
+    "uk-gwr": {
+      "organisation": "Great Western Railway",
+      "networks": [
+        "Great Western Main Line to Didcot"
+      ],
+      "url": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/"
+    },
+    "uk-heathrow-express": {
+      "organisation": "Heathrow Express",
+      "networks": [
+        "Heathrow Express"
+      ],
+      "url": "https://www.heathrow.com/transport-and-directions/by-rail-or-train/heathrow-express"
+    }
   }
 }

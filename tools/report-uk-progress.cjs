@@ -28,6 +28,7 @@ ${index.operators.map(o=>'- '+o.names.en+' — '+o.names.ko).join('\n')}
 ## Implementation batches and preserved baseline
 
 - PR #33 introduced 9 organisations, 28 lines, 73 families, 129 directions, 657 station IDs, 605 physical groups and 1,504 segments. Report commit: 55fda6a9161e7138cfef42b76daf87908707d63c. Merge: 97d34ea5f9abf854645c5d2579b72faec4d8232e.
+- Regional/intercity batch commit: 8931d5535. UK free-drive repeated-visit repair: 10a6e94ff.
 - London repair commit: 26abc3946. All 12 previously blocked TfL directions were restored. The original 129 pattern IDs, station sequences and segment references remain frozen and automatically checked.
 - Repairs: import real track edges independently of incomplete stop membership; backtrack failed platform choices; consider 128 candidate vertices within the original 300 metre gate; explicitly anchor Heathrow T5 to documented OSM platform nodes 1508864707/254350058. No synthetic junctions or straight-line railway segments were added.
 - Fresh District, DLR, Elizabeth and Northern TfL stopping sequences matched the preserved official source sequences on November 10. No London regular sequence remains blocked: ${(v.unresolvedOfficialPatterns||[]).length}.
@@ -41,14 +42,15 @@ ${index.operators.map(o=>'- '+o.names.en+' — '+o.names.ko).join('\n')}
 - Gameplay runs completed in reports/uk/browser-tests.json: ${b.runs.length}; report status: ${b.status}. ${b.error?'The full run completed its gameplay list but stopped on an additional UI assertion: '+b.error.split('\n')[0]+'. The corrected independent UI run has status '+ui?.status+'.':'All recorded game runs and UI assertions passed.'}
 - No new browser runtime errors recorded: ${b.errors.length===0?'yes':'no'}.
 - Existing country switch regression: ${b.regressions.map(r=>r.country+' '+r.routes+' '+r.status).join('; ')}.
-- Free driving, edit propagation, English/Korean nameboards and mobile checks are recorded in the browser reports. Regional nameboard checks: ${(b.regionalNameboards||ui?.regionalNameboards||[]).length}.
+- Full UK free-drive progression: ${JSON.stringify(ui?.freeDriveProgression||b.freeDriveProgression||'pending')}. Geometry loading: ${JSON.stringify(ui?.geometryLoading||b.geometryLoading||'pending')}.
+- Edit propagation, English/Korean nameboards and mobile checks are recorded in the browser reports. Regional nameboard checks: ${(b.regionalNameboards||ui?.regionalNameboards||[]).length}.
 - UK ranking identity test uses isolated guest data. No authenticated fabricated score is uploaded.
 - Known pre-existing global issues remain separate: 267 legacy station-master duplicates, 40 previously blocked route-audit cases, and missing Ueno payload line-11229--jobansen-totte-iwaki.json. These are not claimed fixed by this expansion.
 
 ## Source accuracy and licensing
 
 - Source archive and SHA-256 checksums: data/uk/source/manifest.json. OSM track geometry and station records: ODbL-1.0, © OpenStreetMap contributors. TfL official sequences retain their source attribution.
-- Per-service evidence, expected calls, reviewed source relations and official URLs: data/uk/source/regional/release-evidence.json. Source geometry is shared by node-sequence hash. The existing lazy country/line loader and cached geometry pool are retained.
+- Per-service evidence, expected calls, reviewed source relations and official URLs: data/uk/source/regional/release-evidence.json. Source geometry is shared by node-sequence hash. The lazy country/line loader fetches cached geographic geometry partitions, preserving one canonical runtime copy of each segment.
 - LNER source call/track exclusions remain in data/uk/source/timetables/lner-track-review.json. Excluded records are not catalogue entries. No HS2, Eurostar or unverified cross-border service has been released.
 
 ## Git and deployment

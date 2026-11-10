@@ -27,7 +27,7 @@ for(const network of evidence.networks){
     pool.segments[key]??={geometry:points,nodeIds,stationPairs:[],sourceRelationId:id};if(!pool.segments[key].stationPairs.includes(pair))pool.segments[key].stationPairs.push(pair);segmentIds.push(key);
    }
    const first=stationMap.get(stationIds[0]),last=stationMap.get(stationIds.at(-1)),patternId='uk-osm-'+id+(spec.idSuffix?'-'+spec.idSuffix:''),familyId='uk-pattern-'+crypto.createHash('sha256').update([stationIds.join(','),stationIds.slice().reverse().join(',')].sort()[0]).digest('hex').slice(0,16);
-   patterns.push({id:patternId,stationIds,segmentIds,sourceRelationId:id,sourceRelationIds:spec.graphRelations||[id],timetablePage:spec.timetablePage,timetableColumn:spec.timetableColumn,showStoppingPattern:!!spec.timetablePage,familyId,nameKo:network.id==='glasgow-subway'?(id===225658?'외선순환 · 시계방향':'내선순환 · 반시계방향'):first.ko+' → '+last.ko,viaStationId:network.id==='blackpool-tramway'&&stops.some(s=>s.tags.name==='North Station')?stationIds[stops.findIndex(s=>s.tags.name==='North Station')]:spec.calls?.includes('MediaCityUK')&&![first.en,last.en].includes('MediaCityUK')?stationIds[spec.calls.indexOf('MediaCityUK')]:undefined,nameEn:spec.calls?first.en+' → '+last.en:r.tags.name,sourceName:r.tags.name,validation:{reviewedRegionalSequence:true,officialSequence:false,trackContinuity:true,stationIdentity:true,maxStationOffsetKm:assembled.maxStationOffsetKm||0},evidence:{officialUrl:network.officialUrl,osmUrl:'https://www.openstreetmap.org/relation/'+id,osmVersion:r.version,osmTimestamp:r.timestamp,checkedAt:evidence.checkedAt}});
+   patterns.push({id:patternId,stationIds,segmentIds,sourceRelationId:id,sourceRelationIds:spec.graphRelations||[id],timetablePage:spec.timetablePage,timetableColumn:spec.timetableColumn,showStoppingPattern:!!spec.timetablePage,familyId,nameKo:network.id==='glasgow-subway'?(id===225658?'외선순환 · 시계방향':'내선순환 · 반시계방향'):first.ko+' → '+last.ko,viaStationId:spec.via?stationIds[stops.findIndex(s=>s.tags.name===spec.via)]:network.id==='blackpool-tramway'&&stops.some(s=>s.tags.name==='North Station')?stationIds[stops.findIndex(s=>s.tags.name==='North Station')]:spec.calls?.includes('MediaCityUK')&&![first.en,last.en].includes('MediaCityUK')?stationIds[spec.calls.indexOf('MediaCityUK')]:undefined,nameEn:spec.calls?first.en+' → '+last.en:r.tags.name,sourceName:r.tags.name,validation:{reviewedRegionalSequence:true,officialSequence:false,trackContinuity:true,stationIdentity:true,maxStationOffsetKm:assembled.maxStationOffsetKm||0},evidence:{officialUrl:network.officialUrl,osmUrl:'https://www.openstreetmap.org/relation/'+id,osmVersion:r.version,osmTimestamp:r.timestamp,checkedAt:evidence.checkedAt}});
    regionalResults.push({lineId:routeId,relationId:id,status:'PASS',stops:stops.length});
   }catch(error){regionalResults.push({lineId:routeId,relationId:id,status:'BLOCKED',reason:error.message})}
  }
@@ -49,7 +49,15 @@ for(const s of routes.flatMap(r=>r.stationCatalog).sort((a,b)=>Number(publishedI
  if(near&&!publishedIds.has(s.id))s.physicalStationId=near.physicalStationId||near.stationMasterId;
  if(!groups.has(key))groups.set(key,[]);groups.get(key).push(s);
 }
-for(const r of routes){const byId=new Map(r.stationCatalog.map(s=>[s.id,s]));r.stations=r.stations.map(s=>({...s,...byId.get(s.id)}));write('generated/routes/'+r.id+'.json',r)}
+const geometryBuckets=new Map(),segmentBucket=new Map();
+for(const [id,segment]of Object.entries(pool.segments)){
+ const [lat,lon]=segment.geometry[0],file='data/uk/generated/geometry/'+Math.floor(lat*4)+'_'+Math.floor(lon*4)+(segment.nodeIds.length>400?'_long':'')+'.json';
+ if(!geometryBuckets.has(file))geometryBuckets.set(file,{segments:{}});geometryBuckets.get(file).segments[id]=segment;segmentBucket.set(id,file);
+}
+fs.mkdirSync(path.join(dir,'generated/geometry'),{recursive:true});
+for(const name of fs.readdirSync(path.join(dir,'generated/geometry'))){const file='data/uk/generated/geometry/'+name;if(/^\d+_-?\d+(?:_long)?\.json$/.test(name)&&!geometryBuckets.has(file))fs.unlinkSync(path.join(root,file))}
+for(const [file,payload]of geometryBuckets)fs.writeFileSync(path.join(root,file),JSON.stringify(payload)+'\n');
+for(const r of routes){const byId=new Map(r.stationCatalog.map(s=>[s.id,s]));r.stations=r.stations.map(s=>({...s,...byId.get(s.id)}));r.geometryFiles=[...new Set(r.patterns.flatMap(p=>p.segmentIds).map(id=>segmentBucket.get(id)))].sort();index.routes.find(meta=>meta.id===r.id).geometryFiles=r.geometryFiles;write('generated/routes/'+r.id+'.json',r)}
 const stationIds=new Set(routes.flatMap(r=>r.stationCatalog.map(s=>s.id))),physicalIds=new Set(routes.flatMap(r=>r.stationCatalog.map(s=>s.physicalStationId||s.stationMasterId)));
 index.stationNameIndex=[...new Map(routes.flatMap(r=>r.stationCatalog).map(s=>[s.id,{id:s.id,nameGroup:(s.physicalStationId||s.stationMasterId)+'::'+s.ko}])).values()];
 write('generated/index.json',index);write('generated/geometry.json',pool);

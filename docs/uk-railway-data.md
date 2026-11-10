@@ -7,8 +7,8 @@ The UK catalogue is part of the existing SUBTYPE application. It does not replac
 - An operator is an operating organisation. First Rail London, GTS Rail Operations and KeolisAmey Docklands are separate from the Overground, Elizabeth line and DLR network brands. Operator evidence and effective dates are in `data/uk/operator-evidence.json`.
 - A catalogue route is a physical passenger line or metro/tram route. Its `patterns` contain independently verified ordered passenger calls. `familyId` groups matching opposite stopping sequences; a direction remains an explicit selectable service ID.
 - `stationCatalog` contains the line's complete released station inventory. A resolved playable route's `stations` contain only the selected direction's ordered calls, including repeated visits where necessary.
-- `stationMasterId` is the stable naming identity. TfL `physicalStationId`/hub references supply explicit interchange relationships, instead of merging stations by similar names or geographic grid cells.
-- Only the small index loads on country selection. The selected line loads on demand. One cached geometry promise serves every line. Patterns refer to shared OSM node paths; they do not copy the entire infrastructure into the index.
+- `stationMasterId` is the stable naming identity. TfL `physicalStationId`/hub references supply explicit interchange relationships. New national records with the same normalized official English name and Korean name may reuse an existing group only within 500 metres; matching names in different cities remain separate. Differently named station complexes require explicit source evidence.
+- Only the small index loads on country selection. The selected line loads on demand. Geometry is partitioned by quarter-degree source tile and segment size. Each partition is fetched once per browser document and reused across operators; the full pool remains an offline validation artifact. Patterns refer to shared OSM node paths; they do not copy the entire infrastructure into the index.
 - The existing production renderer is Leaflet. This expansion preserves that renderer rather than introducing a separate MapLibre application. Track geometry is resolved before entering the existing typing/movement engine.
 
 ## Sources and licences
@@ -44,3 +44,11 @@ The existing Korean name editing table is `reports/korean-names/editor.html?coun
 ## Leaderboard
 
 UK guest-history entries and active-line ranking filters retain country ID `uk`. The production database migration `allow_uk_ranking_country` extends the existing ranking constraint and INSERT policy to `uk`, preserving ownership, score bounds, RLS and the prohibition on anonymous inserts. Schema/policy verification passed; no fabricated score was inserted into the production leaderboard. Authenticated score upload was not tested with a real user session.
+
+## November 2026 completion batches
+
+The measured inventory and deployment state are maintained in `docs/uk-railway-expansion-progress.md`. The original 129 directions remain immutable baseline inputs; all twelve previously blocked London directions now have real source-edge paths. Current regional coverage includes Metrolink (99 stops), NET (50 stops), and coastal/North Station Blackpool variants. National Rail has distinct operators, physical corridors and calling patterns; it is not represented by one generic line.
+
+Further timetable comparison was stopped on user instruction. Existing LNER review artifacts are retained as completed provenance, while subsequent services use individually reviewed OSM passenger relations and official network maps. These latter patterns are not represented as timetable-certified. Technical stops, unfinished lines and unverified international alignments remain excluded.
+
+The UK free-drive engine records station occurrences separately from physical interchange keys. Revisiting Paddington on the Circle line therefore keeps the correct platform, next station and Korean typing target. Closed circular patterns can continue into another circuit. Other countries keep their existing progression rules.

@@ -3236,8 +3236,8 @@
     },
     {
       "id": "net-hucknall-toton",
-      "operatorKo": "노팅엄 익스프레스 트랜싯",
-      "operatorEn": "Nottingham Express Transit",
+      "operatorKo": "노팅엄 트램스",
+      "operatorEn": "Nottingham Trams Limited",
       "category": "tram",
       "lineKo": "허크널–토턴 레인선",
       "lineEn": "Hucknall–Toton Lane line",
@@ -3407,8 +3407,8 @@
     },
     {
       "id": "net-phoenix-clifton",
-      "operatorKo": "노팅엄 익스프레스 트랜싯",
-      "operatorEn": "Nottingham Express Transit",
+      "operatorKo": "노팅엄 트램스",
+      "operatorEn": "Nottingham Trams Limited",
       "category": "tram",
       "lineKo": "피닉스 파크–클리프턴 사우스선",
       "lineEn": "Phoenix Park–Clifton South line",
@@ -3551,6 +3551,638 @@
         }
       ],
       "operatorId": "uk-net"
+    },
+    {
+      "id": "avanti-west-coast-trent",
+      "lineKo": "서해안 본선 · 트렌트 밸리 경유",
+      "lineEn": "West Coast Main Line via Trent Valley",
+      "operatorId": "uk-avanti-west-coast",
+      "operatorKo": "아반티 웨스트 코스트",
+      "operatorEn": "Avanti West Coast",
+      "category": "rail",
+      "color": "#004354",
+      "officialUrl": "https://www.avantiwestcoast.co.uk/travel-information/our-routes/our-route-map",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 6346230,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Glasgow Central",
+            "Carlisle",
+            "Penrith (North Lakes)",
+            "Oxenholme Lake District",
+            "Lancaster",
+            "Preston",
+            "Wigan North Western",
+            "Warrington Bank Quay",
+            "London Euston"
+          ]
+        },
+        {
+          "relationId": 6346231,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "London Euston",
+            "Warrington Bank Quay",
+            "Wigan North Western",
+            "Preston",
+            "Lancaster",
+            "Oxenholme Lake District",
+            "Penrith (North Lakes)",
+            "Carlisle",
+            "Glasgow Central"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avanti-west-coast-birmingham",
+      "lineKo": "서해안 본선 · 버밍엄 경유",
+      "lineEn": "West Coast Main Line via Birmingham",
+      "operatorId": "uk-avanti-west-coast",
+      "operatorKo": "아반티 웨스트 코스트",
+      "operatorEn": "Avanti West Coast",
+      "category": "rail",
+      "color": "#004354",
+      "officialUrl": "https://www.avantiwestcoast.co.uk/travel-information/our-routes/our-route-map",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 6345995,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Glasgow Central",
+            "Motherwell",
+            "Carlisle",
+            "Penrith (North Lakes)",
+            "Oxenholme Lake District",
+            "Lancaster",
+            "Preston",
+            "Wigan North Western",
+            "Warrington Bank Quay",
+            "Crewe",
+            "Stafford",
+            "Wolverhampton",
+            "Sandwell and Dudley",
+            "Birmingham New Street",
+            "Birmingham International",
+            "Coventry",
+            "London Euston"
+          ]
+        },
+        {
+          "relationId": 6346029,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "London Euston",
+            "Coventry",
+            "Birmingham International",
+            "Birmingham New Street",
+            "Sandwell and Dudley",
+            "Wolverhampton",
+            "Stafford",
+            "Crewe",
+            "Warrington Bank Quay",
+            "Wigan North Western",
+            "Preston",
+            "Lancaster",
+            "Oxenholme Lake District",
+            "Penrith (North Lakes)",
+            "Carlisle",
+            "Motherwell",
+            "Glasgow Central"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avanti-manchester",
+      "lineKo": "서해안 본선 · 맨체스터 지선",
+      "lineEn": "West Coast Main Line Manchester branches",
+      "operatorId": "uk-avanti-west-coast",
+      "operatorKo": "아반티 웨스트 코스트",
+      "operatorEn": "Avanti West Coast",
+      "category": "rail",
+      "color": "#004354",
+      "officialUrl": "https://www.avantiwestcoast.co.uk/travel-information/our-routes/our-route-map",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 6343608,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Stockport",
+            "Wilmslow",
+            "Crewe",
+            "London Euston"
+          ],
+          "via": "Crewe"
+        },
+        {
+          "relationId": 6343609,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Stockport",
+            "Macclesfield",
+            "Stoke-on-Trent",
+            "London Euston"
+          ],
+          "via": "Macclesfield"
+        },
+        {
+          "relationId": 6343610,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Stockport",
+            "Stoke-on-Trent",
+            "Milton Keynes Central",
+            "London Euston"
+          ],
+          "via": "Milton Keynes Central"
+        }
+      ]
+    },
+    {
+      "id": "avanti-liverpool",
+      "lineKo": "서해안 본선 · 리버풀 지선",
+      "lineEn": "West Coast Main Line Liverpool branch",
+      "operatorId": "uk-avanti-west-coast",
+      "operatorKo": "아반티 웨스트 코스트",
+      "operatorEn": "Avanti West Coast",
+      "category": "rail",
+      "color": "#004354",
+      "officialUrl": "https://www.avantiwestcoast.co.uk/travel-information/our-routes/our-route-map",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 6346053,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Liverpool Lime Street",
+            "Runcorn",
+            "Crewe",
+            "Stafford",
+            "London Euston"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "great-northern-peterborough",
+      "lineKo": "그레이트 노던 · 동해안 본선",
+      "lineEn": "Great Northern East Coast Main Line",
+      "operatorId": "uk-greater-thameslink-railway",
+      "operatorKo": "그레이터 템스링크 철도",
+      "operatorEn": "Greater Thameslink Railway",
+      "category": "rail",
+      "color": "#532E63",
+      "officialUrl": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 6368113,
+          "expectedStops": 6,
+          "expectedCalls": [
+            "Peterborough",
+            "Huntingdon",
+            "St Neots",
+            "Biggleswade",
+            "Stevenage",
+            "London King's Cross"
+          ]
+        },
+        {
+          "relationId": 6369579,
+          "expectedStops": 6,
+          "expectedCalls": [
+            "London King's Cross",
+            "Stevenage",
+            "Biggleswade",
+            "St Neots",
+            "Huntingdon",
+            "Peterborough"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "great-northern-cambridge",
+      "lineKo": "그레이트 노던 · 케임브리지선",
+      "lineEn": "Great Northern Cambridge line",
+      "operatorId": "uk-greater-thameslink-railway",
+      "operatorKo": "그레이터 템스링크 철도",
+      "operatorEn": "Greater Thameslink Railway",
+      "category": "rail",
+      "color": "#532E63",
+      "officialUrl": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 6370443,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Cambridge",
+            "Foxton",
+            "Shepreth",
+            "Meldreth",
+            "Royston",
+            "Baldock",
+            "Letchworth Garden City",
+            "Hitchin",
+            "Stevenage",
+            "Knebworth",
+            "Welwyn North",
+            "Welwyn Garden City",
+            "Hatfield",
+            "Potters Bar",
+            "Alexandra Palace",
+            "Finsbury Park",
+            "London King's Cross"
+          ]
+        },
+        {
+          "relationId": 6370445,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "London King's Cross",
+            "Finsbury Park",
+            "Alexandra Palace",
+            "Potters Bar",
+            "Hatfield",
+            "Welwyn Garden City",
+            "Welwyn North",
+            "Knebworth",
+            "Stevenage",
+            "Hitchin",
+            "Letchworth Garden City",
+            "Baldock",
+            "Royston",
+            "Meldreth",
+            "Shepreth",
+            "Foxton",
+            "Cambridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "great-northern-fen",
+      "lineKo": "그레이트 노던 · 펜선",
+      "lineEn": "Great Northern Fen line",
+      "operatorId": "uk-greater-thameslink-railway",
+      "operatorKo": "그레이터 템스링크 철도",
+      "operatorEn": "Greater Thameslink Railway",
+      "category": "rail",
+      "color": "#532E63",
+      "officialUrl": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 6370444,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "London King's Cross",
+            "Cambridge",
+            "Cambridge North",
+            "Waterbeach",
+            "Ely",
+            "Littleport",
+            "Downham Market",
+            "Watlington",
+            "King's Lynn"
+          ]
+        },
+        {
+          "relationId": 6370467,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "King's Lynn",
+            "Watlington",
+            "Downham Market",
+            "Littleport",
+            "Ely",
+            "Waterbeach",
+            "Cambridge North",
+            "Cambridge",
+            "London King's Cross"
+          ]
+        },
+        {
+          "relationId": 16179431,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Ely",
+            "Waterbeach",
+            "Cambridge North",
+            "Cambridge",
+            "London King's Cross"
+          ]
+        },
+        {
+          "relationId": 16179432,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "London King's Cross",
+            "Cambridge",
+            "Cambridge North",
+            "Waterbeach",
+            "Ely"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thameslink-bedford-brighton",
+      "lineKo": "템스링크 · 미들랜드–브라이턴 본선",
+      "lineEn": "Thameslink Midland and Brighton Main Lines",
+      "operatorId": "uk-greater-thameslink-railway",
+      "operatorKo": "그레이터 템스링크 철도",
+      "operatorEn": "Greater Thameslink Railway",
+      "category": "rail",
+      "color": "#E31C79",
+      "officialUrl": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 6421539,
+          "expectedStops": 24,
+          "expectedCalls": [
+            "Bedford",
+            "Flitwick",
+            "Harlington",
+            "Leagrave",
+            "Luton",
+            "Luton Airport Parkway",
+            "Harpenden",
+            "St Albans City",
+            "West Hampstead Thameslink",
+            "London St Pancras",
+            "Farringdon",
+            "City Thameslink",
+            "London Blackfriars",
+            "London Bridge",
+            "East Croydon",
+            "Gatwick Airport",
+            "Three Bridges",
+            "Balcombe",
+            "Haywards Heath",
+            "Wivelsfield",
+            "Burgess Hill",
+            "Hassocks",
+            "Preston Park",
+            "Brighton"
+          ]
+        },
+        {
+          "relationId": 6421540,
+          "expectedStops": 24,
+          "expectedCalls": [
+            "Brighton",
+            "Preston Park",
+            "Hassocks",
+            "Burgess Hill",
+            "Wivelsfield",
+            "Haywards Heath",
+            "Balcombe",
+            "Three Bridges",
+            "Gatwick Airport",
+            "East Croydon",
+            "London Bridge",
+            "London Blackfriars",
+            "City Thameslink",
+            "Farringdon",
+            "London St Pancras",
+            "West Hampstead Thameslink",
+            "St Albans City",
+            "Harpenden",
+            "Luton Airport Parkway",
+            "Luton",
+            "Leagrave",
+            "Harlington",
+            "Flitwick",
+            "Bedford"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thameslink-cambridge-brighton",
+      "lineKo": "템스링크 · 케임브리지–브라이턴",
+      "lineEn": "Thameslink Cambridge–Brighton corridor",
+      "operatorId": "uk-greater-thameslink-railway",
+      "operatorKo": "그레이터 템스링크 철도",
+      "operatorEn": "Greater Thameslink Railway",
+      "category": "rail",
+      "color": "#E31C79",
+      "officialUrl": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 17541294,
+          "expectedStops": 21,
+          "expectedCalls": [
+            "Cambridge",
+            "Royston",
+            "Ashwell & Morden",
+            "Baldock",
+            "Letchworth Garden City",
+            "Hitchin",
+            "Stevenage",
+            "Finsbury Park",
+            "London St Pancras",
+            "Farringdon",
+            "City Thameslink",
+            "London Blackfriars",
+            "London Bridge",
+            "East Croydon",
+            "Gatwick Airport",
+            "Three Bridges",
+            "Balcombe",
+            "Haywards Heath",
+            "Wivelsfield",
+            "Burgess Hill",
+            "Brighton"
+          ]
+        },
+        {
+          "relationId": 17541309,
+          "expectedStops": 21,
+          "expectedCalls": [
+            "Brighton",
+            "Burgess Hill",
+            "Wivelsfield",
+            "Haywards Heath",
+            "Balcombe",
+            "Three Bridges",
+            "Gatwick Airport",
+            "East Croydon",
+            "London Bridge",
+            "London Blackfriars",
+            "City Thameslink",
+            "Farringdon",
+            "London St Pancras",
+            "Finsbury Park",
+            "Stevenage",
+            "Hitchin",
+            "Letchworth Garden City",
+            "Baldock",
+            "Ashwell & Morden",
+            "Royston",
+            "Cambridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thameslink-peterborough-horsham",
+      "lineKo": "템스링크 · 피터버러–호셤",
+      "lineEn": "Thameslink East Coast and Arun Valley",
+      "operatorId": "uk-greater-thameslink-railway",
+      "operatorKo": "그레이터 템스링크 철도",
+      "operatorEn": "Greater Thameslink Railway",
+      "category": "rail",
+      "color": "#E31C79",
+      "officialUrl": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 17541371,
+          "expectedStops": 26,
+          "expectedCalls": [
+            "Peterborough",
+            "Huntingdon",
+            "St Neots",
+            "Sandy",
+            "Biggleswade",
+            "Arlesey",
+            "Hitchin",
+            "Stevenage",
+            "Finsbury Park",
+            "London St Pancras",
+            "Farringdon",
+            "City Thameslink",
+            "London Blackfriars",
+            "London Bridge",
+            "East Croydon",
+            "Coulsdon South",
+            "Merstham",
+            "Redhill",
+            "Horley",
+            "Gatwick Airport",
+            "Three Bridges",
+            "Crawley",
+            "Ifield",
+            "Faygate",
+            "Littlehaven",
+            "Horsham"
+          ]
+        },
+        {
+          "relationId": 17541417,
+          "expectedStops": 26,
+          "expectedCalls": [
+            "Horsham",
+            "Littlehaven",
+            "Faygate",
+            "Ifield",
+            "Crawley",
+            "Three Bridges",
+            "Gatwick Airport",
+            "Horley",
+            "Redhill",
+            "Merstham",
+            "Coulsdon South",
+            "East Croydon",
+            "London Bridge",
+            "London Blackfriars",
+            "City Thameslink",
+            "Farringdon",
+            "London St Pancras",
+            "Finsbury Park",
+            "Stevenage",
+            "Hitchin",
+            "Arlesey",
+            "Biggleswade",
+            "Sandy",
+            "St Neots",
+            "Huntingdon",
+            "Peterborough"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-didcot",
+      "lineKo": "그레이트 웨스턴 본선 · 디드콧",
+      "lineEn": "Great Western Main Line to Didcot",
+      "operatorId": "uk-gwr",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "operatorEn": "Great Western Railway",
+      "category": "rail",
+      "color": "#0A493E",
+      "officialUrl": "https://www.nationalrail.co.uk/travel-information/maps-of-the-national-rail-network/",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 16657382,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Didcot Parkway",
+            "Cholsey",
+            "Goring & Streatley",
+            "Pangbourne",
+            "Tilehurst",
+            "Reading",
+            "Twyford",
+            "Maidenhead",
+            "Slough",
+            "London Paddington"
+          ]
+        },
+        {
+          "relationId": 16657383,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "London Paddington",
+            "Slough",
+            "Maidenhead",
+            "Twyford",
+            "Reading",
+            "Tilehurst",
+            "Pangbourne",
+            "Goring & Streatley",
+            "Cholsey",
+            "Didcot Parkway"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heathrow-express",
+      "lineKo": "히스로 익스프레스",
+      "lineEn": "Heathrow Express",
+      "operatorId": "uk-heathrow-express",
+      "operatorKo": "히스로 익스프레스",
+      "operatorEn": "Heathrow Express",
+      "category": "rail",
+      "color": "#532C5F",
+      "officialUrl": "https://www.heathrow.com/transport-and-directions/by-rail-or-train/heathrow-express",
+      "sequenceEvidence": "Official network map and individually reviewed ordered OSM passenger route; no additional timetable comparison",
+      "patterns": [
+        {
+          "relationId": 9917743,
+          "expectedStops": 3,
+          "expectedCalls": [
+            "Heathrow Terminal 5",
+            "Heathrow Terminals 2 & 3",
+            "London Paddington"
+          ]
+        }
+      ]
     }
   ]
 }
