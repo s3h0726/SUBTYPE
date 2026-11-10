@@ -8,7 +8,7 @@ class Heap{
 class UKTrackGraph{
  constructor(){this.nodes=new Map;this.edges=new Map}
  add(refs,geometry,relationId){for(let i=0;i<refs.length;i++){this.nodes.set(refs[i],geometry[i]);if(i){const from=refs[i-1],to=refs[i];if(!this.edges.has(from))this.edges.set(from,new Map);this.edges.get(from).set(to,{km:distance(geometry[i-1],geometry[i]),relationId})}}}
- candidates(station){const point=[station.lat,station.lon];return [...this.nodes].map(([id,p])=>({id,d:distance(point,p)})).filter(p=>p.d<=0.3).sort((a,b)=>a.d-b.d).slice(0,24)}
+ candidates(station){const point=[station.lat,station.lon];if(station.osmAnchorNodeIds){const anchors=station.osmAnchorNodeIds.filter(id=>this.nodes.has(id));if(!anchors.length)throw Error('explicit-station-anchor-missing');return anchors.map(id=>({id,d:distance(point,this.nodes.get(id))}))}return [...this.nodes].map(([id,p])=>({id,d:distance(point,p)})).filter(p=>p.d<=0.3).sort((a,b)=>a.d-b.d).slice(0,128)}
  path(sources,targets,maxKm){
   const targetMap=new Map(targets.map(t=>[t.id,t])),cost=new Map,parent=new Map,heap=new Heap;
   for(const s of sources){const value=s.d*4;if(value<(cost.get(s.id)??Infinity)){cost.set(s.id,value);heap.push([value,s.id])}}
@@ -24,9 +24,18 @@ class UKTrackGraph{
  }
  resolve(stations){
   const candidates=stations.map(s=>this.candidates(s));if(candidates.some(c=>!c.length))throw Error('station-outside-mapped-track');
-  const segments=[];let sources=candidates[0];
-  for(let i=0;i<stations.length-1;i++){const maxKm=distance([stations[i].lat,stations[i].lon],[stations[i+1].lat,stations[i+1].lon])*4+0.5,part=this.path(sources,candidates[i+1],maxKm);segments.push(part);sources=[{id:part.refs.at(-1),d:0}]}
-  return segments;
+  const limit=i=>distance([stations[i].lat,stations[i].lon],[stations[i+1].lat,stations[i+1].lon])*4+0.5;
+  const segments=[];let sources=candidates[0],original;
+  try{for(let i=0;i<stations.length-1;i++){let part;try{part=this.path(sources,candidates[i+1],limit(i))}catch(e){e.details={from:stations[i].name,to:stations[i+1].name,sourceNodes:sources.map(s=>s.id),targetNodes:candidates[i+1].map(s=>s.id)};throw e}segments.push(part);sources=[{id:part.refs.at(-1),d:0}]}return segments}catch(e){original=e}
+  // Keep the already published greedy paths stable. For a failed pattern,
+  // backtrack platform-node choices globally instead of fixing the first
+  // locally closest platform and losing a valid downstream junction.
+  const failed=new Set(),cache=new Map();
+  const search=(i,node)=>{if(i===stations.length-1)return[];const key=i+':'+node;if(failed.has(key))return null;const options=[];
+   for(const target of candidates[i+1]){const pair=key+':'+target.id;let part=cache.get(pair);if(part===undefined){try{part=this.path([{id:node,d:0}],[target],limit(i))}catch{part=null}cache.set(pair,part)}if(part){let km=0;for(let j=1;j<part.geometry.length;j++)km+=distance(part.geometry[j-1],part.geometry[j]);options.push({part,score:km+target.d*4})}}
+   options.sort((a,b)=>a.score-b.score);for(const {part}of options){const rest=search(i+1,part.refs.at(-1));if(rest)return[part,...rest]}failed.add(key);return null;
+  };
+  for(const start of candidates[0]){const path=search(0,start.id);if(path)return path}throw original;
  }
 }
 module.exports={UKTrackGraph};

@@ -1,0 +1,9 @@
+{
+  "910GHTRWTM5": {
+    "osmNodeIds": [1508864707, 254350058],
+    "expectedEnglishName": "Heathrow Terminal 5",
+    "sourceRelations": [12843954, 12843955],
+    "reason": "TfL's passenger station reference coordinate is outside the underground railway platform location. Both named OSM stop_position nodes are on the surveyed Terminal 5 railway tracks (platforms 3 and 4, level -3). Preserve the TfL identity/coordinate; anchor routing to these explicit platform nodes instead of relaxing the global proximity gate.",
+    "checkedAt": "2026-11-10"
+  }
+}

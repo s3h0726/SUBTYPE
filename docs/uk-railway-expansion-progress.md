@@ -115,3 +115,21 @@ The TfL Route Sequence endpoint is not an exhaustive timetable: peak-only short 
 4. For regional additions, review both the official service evidence and complete OSM stopping calls, then explicitly update the release evidence and dictionaries.
 5. Run `npm run build:uk`, `npm run test:uk`, `node tools/test-uk-leaderboard.cjs`, `npm run build:app`, and the full UK Playwright batch. Commit validated batches and update this report.
 6. Check CI and the actual production site before changing integration/deployment status. Existing-country baseline failures must remain visible until separately repaired.
+
+## Completion project — London repairs, 2026-11-10
+
+Branch: `feature/uk-railway-completion`, based on main `f628f0cd8`.
+
+All 12 previously blocked regular TfL directions now pass the original geometric gates. Current local inventory is 9 organisations, 28 lines, 79 pattern families, 141 directions, 658 station IDs and 1,525 shared segments. This is a verified local batch; production remains the previous release until the new deployment is checked.
+
+- Track-only OSM relations now contribute real edges even when their stop members are incomplete.
+- Failed greedy platform selection retries connected platform choices across the complete station sequence. It creates no track edges and does not reverse directed edges.
+- DLR candidate density was addressed by considering 128 vertices within the unchanged 300 metre station gate.
+- Heathrow Terminal 5 explicitly anchors to named underground platform nodes 1508864707 and 254350058 in OSM relations 12843954/12843955. The original TfL station coordinate and ID remain unchanged.
+- All 129 previously released direction IDs, station sequences and segment references are frozen in a reproducible baseline and checked automatically.
+- Fresh official TfL sequences for District, DLR, Elizabeth and Northern were fetched on November 10 and exactly match the source stopping sequences used by this batch.
+- Data/source-edge tests: PASS, 141 directions. Track-graph tests: 5/5 PASS. Leaderboard identity tests: PASS.
+- Real Chrome full Korean gameplay: 141/141 PASS, including all 12 restored directions. Free driving, Korean edit propagation and mobile nameboard checks: PASS. Country switching: Japan 606, Korea 8275, Hong Kong 105, Thailand 23, Taiwan 46 — PASS.
+- National Rail and the four missing regional systems remain in progress. Collected OSM relations alone are not release evidence.
+
+Commit: consult the commit containing this section; subsequent batch entries record their predecessor SHA to avoid self-referential hashes.

@@ -12,34 +12,22 @@ const names=Object.fromEntries(fs.readFileSync(path.join(dir,'station-names-ko.t
 const lineKo={bakerloo:'베이컬루선',central:'센트럴선',circle:'서클선',district:'디스트릭트선','hammersmith-city':'해머스미스 앤드 시티선',jubilee:'주빌리선',metropolitan:'메트로폴리탄선',northern:'노던선',piccadilly:'피카딜리선',victoria:'빅토리아선','waterloo-city':'워털루 앤드 시티선',elizabeth:'엘리자베스선',liberty:'리버티선',lioness:'라이어니스선',mildmay:'마일드메이선',suffragette:'서프러제트선',weaver:'위버선',windrush:'윈드러시선',dlr:'도클랜즈 경전철',tram:'런던 트램'};
 const color={bakerloo:'#B36305',central:'#E32017',circle:'#FFD300',district:'#00782A','hammersmith-city':'#F3A9BB',jubilee:'#A0A5A9',metropolitan:'#9B0056',northern:'#222222',piccadilly:'#003688',victoria:'#0098D4','waterloo-city':'#95CDBA',elizabeth:'#6950A1',liberty:'#61686B',lioness:'#FAA61A',mildmay:'#006FBB',suffragette:'#18A95D',weaver:'#9B0058',windrush:'#EF7B10',dlr:'#00A4A7',tram:'#84B817'};
 const groups={tube:['uk-london-underground','런던 지하철','London Underground','subway'],overground:['uk-first-rail-london','퍼스트 레일 런던','First Rail London','commuter_rail'],'elizabeth-line':['uk-gts-rail-operations','GTS 레일 오퍼레이션스','GTS Rail Operations','commuter_rail'],dlr:['uk-keolisamey-docklands','케올리스아메이 도클랜즈','KeolisAmey Docklands','light_rail'],tram:['uk-tram-operations','트램 오퍼레이션스','Tram Operations Limited','tram']};
-const tfl=read('source/tfl/lines.json'),catalog=new Map(),stationRegistry=new Map();
+const tfl=read('source/tfl/lines.json'),catalog=new Map(),stationRegistry=new Map(),trackAnchors=read('source/station-track-anchors.json');
 for(const line of tfl){const data=read('source/tfl/'+line.id+'.json'),g=groups[line.modeName];
  const stations=new Map((data.stations||[]).map(s=>[s.id,s]));
  for(const seq of data.stopPointSequences||[])for(const s of seq.stopPoint||[])if(!stations.has(s.id))stations.set(s.id,s);
+ for(const s of stations.values())if(trackAnchors[s.id])s.osmAnchorNodeIds=trackAnchors[s.id].osmNodeIds;
  catalog.set(line.id,{line,data,stations,g,patterns:[],graph:new UKTrackGraph});
  for(const s of stations.values()){const en=strip(s.name),ko=names[en];if(!ko)throw Error('Missing Korean dictionary entry: '+en);
   const key='uk-'+s.id;if(!stationRegistry.has(key))stationRegistry.set(key,{id:key,stationMasterId:key,physicalStationId:'uk-'+(s.topMostParentId||s.parentId||s.id),countryId:'uk',ja:en,en,romaji:en,ko,kana:'',latitude:s.lat,longitude:s.lon,koVerified:false,koSource:'SUBTYPE editorial Korean dictionary (reviewable)',koSourceUrl:'data/uk/station-names-ko.txt',sourceId:s.id});
  }
 }
-const segmentStore={},rejected=[],sourceFiles=[],seen=new Set();
+const baseline=read('source/released-baseline-20261108.json.gz');
+const segmentStore={...baseline.geometry.segments},rejected=[],sourceFiles=[],seen=new Set();
+for(const route of baseline.routes){const c=catalog.get(route.id.replace(/^uk-/,''));if(!c)continue;for(const p of route.patterns){c.patterns.push(p);seen.add(c.line.id+':'+p.stationIds.join(','))}}
 const norm=s=>String(s||'').toLowerCase().replace(/ platform \d+$/,'').replace(/&amp;/g,'and').replace(/&/g,'and').replace(/station|underground|airport|terminal|london| ell\b|\([^)]*\)|[^a-z0-9]/g,'');
-function assemble(relation,elements){
- const nodes=new Map(elements.filter(e=>e.type==='node').map(e=>[e.id,e]));
- const ways=new Map(elements.filter(e=>e.type==='way').map(e=>[e.id,e]));
- const members=relation.members.filter(m=>m.type==='way'&&!m.role.includes('platform')&&!m.role.startsWith('stop'));
- if(!members.length)throw Error('no-track-ways');
- const oriented=[];
- for(let i=0;i<members.length;i++){const m=members[i],w=ways.get(m.ref);if(!w)throw Error('missing-way:'+m.ref);let ids=w.nodes.slice();
-  if(i===0){const next=ways.get(members[1]?.ref)?.nodes||[];if(!next.includes(ids.at(-1))&&next.includes(ids[0]))ids.reverse()}
-  else {const end=oriented.at(-1).at(-1);if(ids.at(-1)===end)ids.reverse();if(ids[0]!==end)throw Error('disconnected-track-way:'+m.ref)}
-  oriented.push(ids);
- }
- const refs=oriented.flatMap((a,i)=>i?a.slice(1):a),geometry=refs.map(id=>{const n=nodes.get(id);if(!n)throw Error('missing-node:'+id);return[n.lat,n.lon]});
- const stops=relation.members.filter(m=>m.type==='node'&&m.role.startsWith('stop')).map(m=>nodes.get(m.ref));
- if(stops.length<2||stops.some(s=>!s))throw Error('no-ordered-stop-nodes');
- let cursor=0;const aligned=stops.map(s=>{let index=refs.indexOf(s.id,cursor);if(index<0)throw Error('stop-not-on-track:'+s.id);if(index<cursor)throw Error('non-monotonic-stops');cursor=index+1;return index});
- return{geometry,stops,aligned,refs};
-}
+const {assemble,assembleTrack}=require('./lib/uk-osm.cjs');
+
 for(const file of fs.readdirSync(path.join(dir,'source/osm')).sort()){
  const data=read('source/osm/'+file),id=Number(file.replace(/\.json(?:\.gz)?$/,'')),r=data.elements.find(e=>e.type==='relation'&&e.id===id);
  if(!r||r.tags?.type!=='route'||!['subway','train','light_rail','tram'].includes(r.tags.route))continue;
@@ -50,8 +38,8 @@ for(const file of fs.readdirSync(path.join(dir,'source/osm')).sort()){
  if(!lineId&&tag.route==='tram'&&/^(London Trams|Tramlink|Croydon Tramlink)$/i.test(tag.network||''))lineId='tram';
  if(!lineId){rejected.push({relationId:id,reason:'unmapped-line',name:tag.name});continue;}
  try{
-  const {geometry,stops,refs}=assemble(r,data.elements),c=catalog.get(lineId);
-  c.graph.add(refs,geometry,id);
+  const c=catalog.get(lineId),track=assembleTrack(r,data.elements);c.graph.add(track.refs,track.geometry,id);
+  const {geometry,stops,refs}=assemble(r,data.elements);
   const identity=(s,n)=>{const a=norm(strip(s.name)),b=norm(n);return b&&a===b};
   const official=(c.data.orderedLineRoutes||[]).filter(p=>p.serviceType==='Regular').map(p=>({p,stations:p.naptanIds.map(s=>c.stations.get(s))})).filter(p=>p.stations.every(Boolean));
   // Official TfL calls are authoritative. Some OSM relations omit a stop member
@@ -90,7 +78,7 @@ for(const file of fs.readdirSync(path.join(dir,'source/osm')).sort()){
   seen.add(dedupe);
   c.patterns.push({id:patternId,stationIds,segmentIds,sourceRelationId:id,nameKo:origin.ko+' → '+destination.ko,nameEn:origin.en+' → '+destination.en,direction:match.p.direction||'forward',sourceName:tag.name,validation:{officialSequence:true,stationIdentity:true,trackContinuity:true,maxStationOffsetKm:Math.max(...match.offsets)}});
   sourceFiles.push({path:'data/uk/source/osm/'+file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(dir,'source/osm',file))).digest('hex'),relationId:id,version:r.version,timestamp:r.timestamp});
- }catch(error){rejected.push({lineId,relationId:id,name:tag.name,reason:error.message})}
+ }catch(error){rejected.push({lineId,relationId:id,name:tag.name,reason:error.message,details:error.details})}
 }
 // Complete additional CURRENT TfL patterns from the shared, directed OSM track
 // graph. Every edge is an original pair of OSM nodes; no connector is invented.
@@ -107,7 +95,7 @@ for(const[lineId,c]of catalog)for(const official of c.data.orderedLineRoutes||[]
   const sourceRelationIds=[...new Set(parts.flatMap(p=>p.relationIds))],origin=stationRegistry.get(stationIds[0]),destination=stationRegistry.get(stationIds.at(-1)),patternId='uk-tfl-'+lineId+'-'+crypto.createHash('sha256').update(stationIds.join(',')).digest('hex').slice(0,12);
   c.patterns.push({id:patternId,stationIds,segmentIds,sourceRelationId:sourceRelationIds[0],sourceRelationIds,nameKo:origin.ko+' → '+destination.ko,nameEn:origin.en+' → '+destination.en,direction:'forward',sourceName:official.name,validation:{officialSequence:true,stationIdentity:true,trackContinuity:true,directedOSMGraph:true,maxStationOffsetKm:Math.max(...stations.map((s,i)=>distance([s.lat,s.lon],i<parts.length?parts[i].geometry[0]:parts.at(-1).geometry.at(-1))))}});
   seen.add(key);
- }catch(error){unresolvedOfficialPatterns.push({lineId,name:official.name,stationIds,reason:error.message})}
+ }catch(error){unresolvedOfficialPatterns.push({lineId,name:official.name,stationIds,reason:error.message,details:error.details})}
 }
 const routes=[],operators=new Map();
 for(const [lineId,c]of catalog){if(!c.patterns.length)continue;const [operatorId,ko,en,category]=c.g,operator={ja:en,ko,en},routeId='uk-'+lineId;
