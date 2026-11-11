@@ -7,6 +7,7 @@ on:
       - tools/apply-uk-verified-shortturns.cjs
       - tools/test-uk-verified-shortturns.cjs
       - tools/build-uk-regional.cjs
+      - tools/report-uk-operator-timetable-coverage.cjs
       - .github/workflows/uk-timetable-shortturns.yml
   workflow_dispatch:
 
@@ -28,11 +29,15 @@ jobs:
         run: node tools/apply-uk-verified-shortturns.cjs
       - name: Check original route, real geometry, runtime selection, source time and idempotency
         run: node --test tools/test-uk-verified-shortturns.cjs
+      - name: Validate all UK directions against real OSM tracks
+        run: node tools/test-uk-rail.cjs
+      - name: Publish UK operator timetable coverage matrix
+        run: node tools/report-uk-operator-timetable-coverage.cjs
       - name: Publish route data and UK validation report
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/uk/generated/routes/uk-edinburgh-trams.json data/uk/generated/routes/uk-net-hucknall-toton.json data/uk/generated/routes/uk-net-phoenix-clifton.json data/uk/generated/index.json data/uk/generated/validation.json
+          git add data/uk/generated/routes/uk-edinburgh-trams.json data/uk/generated/routes/uk-net-hucknall-toton.json data/uk/generated/routes/uk-net-phoenix-clifton.json data/uk/generated/index.json data/uk/generated/validation.json docs/timetable-audit/UK_ROUTE_AUDIT_56.csv
           if ! git diff --cached --quiet; then
             git commit -m "feat(uk): publish seven operator-confirmed short-turn services"
             git push origin HEAD:audit/six-country-timetables

@@ -58,6 +58,19 @@ test('published UK short turns resolve and pass route-integrity on the actual tr
  }
 });
 
+test('SPT Glasgow official 15-stop outer and inner circle orders match game data',()=>{
+ const r=read('data/uk/generated/routes/uk-glasgow-subway.json');
+ const st=new Map(r.stationCatalog.map(s=>[s.id,s.en]));
+ const outer=['Govan','Partick','Kelvinhall','Hillhead','Kelvinbridge','St Georges Cross',
+   'Cowcaddens','Buchanan Street','St Enoch','Bridge Street','West Street','Shields Road',
+   'Kinning Park','Cessnock','Ibrox','Govan'];
+ const inner=['Govan','Ibrox','Cessnock','Kinning Park','Shields Road','West Street',
+   'Bridge Street','St Enoch','Buchanan Street','Cowcaddens','St Georges Cross',
+   'Kelvinbridge','Hillhead','Kelvinhall','Partick','Govan'];
+ assert.deepEqual(r.patterns.find(p=>p.id==='uk-osm-225658').stationIds.map(x=>st.get(x)),outer);
+ assert.deepEqual(r.patterns.find(p=>p.id==='uk-osm-7734172').stationIds.map(x=>st.get(x)),inner);
+});
+
 test('rerunning the short turn builder is idempotent',()=>{
  const before=SHORT_TURNS.map(s=>read('data/uk/generated/routes/'+s.routeId+'.json').patterns.length);
  applyShortTurns(path.join(root,'data/uk'),index);

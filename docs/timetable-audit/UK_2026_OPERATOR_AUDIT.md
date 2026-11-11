@@ -1,6 +1,6 @@
 # UK railway operating timetable audit — 2026-11-12
 
-Branch: audit/six-country-timetables. **UK baseline: 56 route cards, 284 playable directions.**
+Branch: audit/six-country-timetables. **UK baseline before this batch: 56 route cards, 284 playable directions.** After the verified short-turn implementation: **56 cards, 291 playable directions, 183 service families**.
 This report documents source evidence and actual implementation, not complete schedule certification. The UK catalogue is independent from Korean road buses (excluded from the six-country audit).
 
 ## Checked against current official operator data
@@ -32,6 +32,12 @@ Source time is **first/last departure from the named origin** in the operator's 
 The pattern generator slices verified **existing forward train track sequences** and reuses exact OSM segment IDs. It creates no new route coordinates. The operator source, observed first/last time, origin, direction, and provenance are embedded in each new pattern.
 
 **Important:** A route's status is not upgraded to fully VERIFIED solely from a terminal or selected first/last departure comparison. Other UK patterns and all calendar exceptions remain subject to further checks. For the overall six-country audit, the 11 fully verified records remain unchanged until complete audited evidence is available.
+
+## UK 56-route audit register
+
+The CSV [UK_ROUTE_AUDIT_56.csv](UK_ROUTE_AUDIT_56.csv) lists every currently registered UK route: **7 operator-reviewed/partially compared route cards** and **49 still requiring operator-timetable comparison**. This is a conservative status matrix, not a claim that all 56 routes were schedule verified.
+
+TfL's [current 17 May–12 December 2026 Elizabeth line timetable](https://content.tfl.gov.uk/elizabeth-line-17-may-12-december-2026.pdf) was located and scoped. Exact per-train stopping patterns and weekdays/holiday exceptions remain unverified; 19 existing Elizabeth patterns remain unchanged.
 
 ## Reproducibility and release rules
 
