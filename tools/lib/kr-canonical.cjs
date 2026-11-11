@@ -53,7 +53,14 @@ function validateRoute(route){
  }
  return [...new Set(errors)];
 }
-function readBatches(root){const dir=path.join(root,'data/kr/canonical');return fs.existsSync(dir)?fs.readdirSync(dir).filter(n=>n.endsWith('-batch.json')).sort().map(n=>require('./kr-shared-geometry.cjs').shareGeometry({name:n,...JSON.parse(fs.readFileSync(path.join(dir,n),'utf8'))})):[]}
+function readBatches(root){
+ const dir=path.join(root,'data/kr/canonical');
+ if(!fs.existsSync(dir))return[];
+ const batches=fs.readdirSync(dir).filter(n=>n.endsWith('-batch.json')).sort().map(n=>require('./kr-shared-geometry.cjs').shareGeometry({name:n,...JSON.parse(fs.readFileSync(path.join(dir,n),'utf8'))}));
+ const arexTimetable=path.join(dir,'arex-short-turns.json');
+ if(fs.existsSync(arexTimetable))require('./kr-arex-timetable.cjs').applyArexShortTurns(batches,JSON.parse(fs.readFileSync(arexTimetable,'utf8')));
+ return batches;
+}
 function assembleCanonicalRoutes(batches){
  const byId=new Map,rejected=[],inputIds=new Set,merges=[];
  for(const batch of batches)for(const route of batch.routes||[]){
