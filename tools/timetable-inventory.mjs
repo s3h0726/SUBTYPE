@@ -12,6 +12,10 @@ const option = name => process.argv.find(value => value.startsWith(name + '='))?
 const snapshotDir = option('--snapshot');
 const snapshot = snapshotDir && pathToFileURL(path.resolve(snapshotDir) + path.sep);
 const base = option('--base');
+const excludeKoreanBuses = process.argv.includes('--exclude-korean-buses');
+const isKoreanRoadBus = (id, raw) => /^kr-bus-/i.test(id) ||
+  /(^|[^a-z])bus([^a-z]|$)/i.test(String(raw.mode || raw.category || '')) ||
+  /버스/.test(String(raw.mode || raw.category || ''));
 if (base && (!snapshot || !/^[a-f0-9]{40}$/.test(base))) throw Error('--base requires a full commit and --snapshot');
 if (base) {
   // Korean timetable validity gates use the audit date even on later reruns.
@@ -114,11 +118,15 @@ for (const country of countries) {
     }
   }
 
-  console.log(country, registered.size, 'registered,', current.size, 'visible');
+  // The opt-in timetable snapshot skips Korean buses before hydration/route checks.
+  // Normal catalog integrity and baseline comparisons are unchanged.
+  const entries = [...registered].filter(([id, raw]) =>
+    !(excludeKoreanBuses && country === 'kr' && isKoreanRoadBus(id, raw)));
+  console.log(country, entries.length, 'in snapshot,', registered.size - entries.length, 'excluded,', current.size, 'visible');
   const pending = snapshot && new URL(country + '.jsonl.tmp', snapshot);
   const writer = pending && await open(pending, 'w');
   try {
-  for (const [position, [id, raw]] of [...registered].entries()) {
+  for (const [position, [id, raw]] of entries.entries()) {
     if (position && position % 1000 === 0) console.log(country, position, 'routes checked');
     const record = {
       country: country.toUpperCase(), route_id: id, operator: labels(raw.operator) || raw.operatorId || '',

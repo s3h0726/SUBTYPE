@@ -6,10 +6,27 @@ from zipfile import ZipFile
 
 from timetable_audit.compare import compare, index_feed
 from timetable_audit.gtfs import read_feed, seconds
+from timetable_audit.scope import in_audit_scope
 from timetable_audit.tra_ods import extract_locals
 
 
 class ScheduleAudit(unittest.TestCase):
+    def test_korean_road_bus_excluded_without_hiding_rail_or_other_countries(self):
+        for identifier, mode in (
+            ("kr-bus-seoul-100100025", ""),
+            ("kr-bus-airport-001", "airport"),
+            ("kr-test-001", "city_bus"),
+            ("kr-test-002", "광역버스"),
+        ):
+            self.assertFalse(in_audit_scope({"country": "KR", "route_id": identifier, "mode": mode}))
+        for identifier, mode in (
+            ("kr-rail-national-airport", "rail"),
+            ("kr-metro-001", "subway"),
+            ("kr-river-001", "ferry"),
+        ):
+            self.assertTrue(in_audit_scope({"country": "KR", "route_id": identifier, "mode": mode}))
+        self.assertTrue(in_audit_scope({"country": "JP", "route_id": "jp-bus-001", "mode": "bus"}))
+
     def test_gtfs_overnight_frequency_and_exceptions(self):
         tables = {
             "agency": [["agency_id"], ["a"]],

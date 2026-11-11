@@ -20,6 +20,7 @@ from xml.etree.ElementTree import ParseError
 
 from timetable_audit.compare import binding, compare, index_feed
 from timetable_audit.gtfs import read_feed
+from timetable_audit.scope import in_audit_scope
 from timetable_audit.tra_ods import compare_tra, read_tra_section
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -143,8 +144,6 @@ def load_feeds(config, cache, first, last, fetch_missing):
 def next_source(route, source_rows):
     country = route["country"]
     candidates = [row for row in source_rows if row["country"] == country and row["status"] == "DISCOVERED"]
-    if country == "KR" and "bus" in route["mode"]:
-        return next(row["url"] for row in candidates if row["scope"] == "Scheduled bus")
     if country == "HK" and "high-speed" in route["route_id"]:
         return next(row["url"] for row in candidates if row["scope"].startswith("Airport"))
     if country == "TW" and not route["route_id"].startswith("tw-tra-"):
@@ -270,12 +269,19 @@ def main():
     ], sources)
 
     all_routes, all_results = [], []
+    excluded_counts = {}
+    baseline = json.loads((REPORT / "baseline.json").read_text(encoding="utf-8"))
     code_hashes = [digest(file) for file in [Path(__file__), *sorted(Path(__file__).parent.glob("timetable_audit/*.py")),
                                             ROOT / "data/tw/generated/network.json"]]
     for country in COUNTRIES:
         snapshot = cache / "baseline" / (country.lower() + ".jsonl")
         with snapshot.open(encoding="utf-8") as stream:
-            routes = [json.loads(line) for line in stream]
+            snapshot_routes = [json.loads(line) for line in stream]
+        routes = [route for route in snapshot_routes if in_audit_scope(route)]
+        original_count = baseline["countries"][country.lower()]["registered"]
+        if original_count < len(snapshot_routes):
+            raise ValueError(f"{country}: snapshot exceeds pinned baseline")
+        excluded_counts[country] = original_count - len(routes)
         fingerprint = hashlib.sha256(json_text([digest(snapshot), code_hashes, config, previous, str(args.as_of),
                                                str(last), sources]).encode()).hexdigest()
         checkpoint = cache / (country.lower() + "-checkpoint.json")
@@ -288,20 +294,25 @@ def main():
                 for field in ("station_records", "sequence", "runtime_patterns", "catalog_patterns", "catalog_journeys"):
                     result.pop(field, None)
             save_json(checkpoint, {"fingerprint": fingerprint, "results": results})
+        if len(results) != len(routes) or any(not in_audit_scope(result) for result in results):
+            raise ValueError(f"{country}: checkpoint contains excluded routes or wrong route count")
         all_routes.extend(routes)
         all_results.extend(results)
-        print(country, len(results), dict(Counter(result["status"] for result in results)), flush=True)
+        print(country, len(results), "audited,", excluded_counts[country], "excluded,",
+              dict(Counter(result["status"] for result in results)), flush=True)
 
     ids = [route["route_id"] for route in all_routes]
     if len(ids) != len(set(ids)) or set(ids) != {result["route_id"] for result in all_results}:
-        raise ValueError("Route IDs must be unique and every baseline route must have an audit record")
+        raise ValueError("Route IDs must be unique and every in-scope route must have an audit record")
     inventory = ["baseline_commit", "country", "operator_id", "operator", "route_id", "name", "mode", "infrastructure",
                  "passenger_service", "selectable", "playable", "official_code", "legacy_alias_target", "directions",
                  "branches", "through_services", "sequence", "runtime_patterns", "catalog_journeys", "catalog_patterns"]
     inventory_rows = ({**route, "baseline_commit": BASE, **{
         key: json_text(route[key]) for key in inventory[-4:]
     }} for route in all_routes)
-    csv_file(REPORT / "ALL_ROUTES_INVENTORY.csv", inventory, inventory_rows, immutable=True)
+    # Retain the original full baseline as an archival source, not as the audit denominator.
+    # The audit-specific inventory excludes Korean road buses (also when reading old snapshots).
+    csv_file(REPORT / "AUDITED_ROUTES_INVENTORY.csv", inventory, inventory_rows)
     sequence_groups = defaultdict(list)
     for route in all_routes:
         stops = tuple(route["sequence"])
@@ -327,7 +338,7 @@ def main():
     csv_file(REPORT / "MASS_AUDIT_RESULTS.csv", fields, all_results)
     csv_file(REPORT / "UNVERIFIED_ROUTES.csv", fields, (r for r in all_results if r["status"] != "VERIFIED"))
     summary = ["# 국가별 시간표 감사 범위", "",
-               "검증률의 분모는 기준 카탈로그의 등록 레코드다. 홍콩은 방향별 레코드를 포함한다.",
+               "검증률 분모는 감사 대상 레코드이며 한국 도로 버스는 제외한다. 홍콩은 방향별 레코드를 포함한다.",
                "추가 계통 수는 기준 main 대비 PR 전체이며, 이번 배치의 신규 계통은 일본 2방향이다.", "",
                "| Country | Total Routes | Fully Verified | Partial/Unverified | Patterns Added | Patterns Corrected | Routes Merged | Verification % |",
                "|---|---:|---:|---:|---:|---:|---:|---:|"]
@@ -339,10 +350,19 @@ def main():
         added, corrected, merged = (sum(r[key] for r in records) for key in ("added", "corrected", "merged"))
         summary.append(f"| {country} | {total:,} | {verified:,} | {total-verified:,} | {added} | {corrected} | {merged} | {verified/total:.3%} |")
         checkpoint_rows[country] = dict(counts)
-    summary += ["", "모든 등록 노선은 [감사 CSV](MASS_AUDIT_RESULTS.csv)에 있으며, 미검증 ID는 [별도 CSV](UNVERIFIED_ROUTES.csv)에 있다."]
+    summary += ["", f"기준 전체 {sum(row['registered'] for row in baseline['countries'].values()):,}개 중 "
+                f"한국 도로 버스 {excluded_counts['KR']:,}개를 감사 대상에서 제외했다. "
+                "제외 노선은 미검증 수와 중복·통합 후보에 포함하지 않는다.",
+                "감사 대상 목록은 [AUDITED_ROUTES_INVENTORY.csv](AUDITED_ROUTES_INVENTORY.csv), "
+                "상태별 결과는 [MASS_AUDIT_RESULTS.csv](MASS_AUDIT_RESULTS.csv), "
+                "미검증은 [UNVERIFIED_ROUTES.csv](UNVERIFIED_ROUTES.csv)를 참조한다. "
+                "기존 ALL_ROUTES_INVENTORY.csv는 필터링 이전의 보존용 기준 목록이다."]
     (REPORT / "COVERAGE_BY_COUNTRY.md").write_text("\n".join(summary) + "\n", encoding="utf-8")
     save_json(REPORT / "MASS_CHECKPOINTS.json", {
         "baseline_commit": BASE, "baseline_sha256": digest(REPORT / "ALL_ROUTES_INVENTORY.csv"),
+        "scope": "six-country rail and other existing non-road services; Korean road buses excluded",
+        "excluded_counts": {**excluded_counts, "TOTAL": sum(excluded_counts.values())},
+        "audit_scope_sha256": digest(REPORT / "AUDITED_ROUTES_INVENTORY.csv"),
         "window": [str(args.as_of), str(last)], "status_counts": checkpoint_rows,
         "country_snapshot_sha256": {country: digest(cache / "baseline" / (country.lower() + ".jsonl")) for country in COUNTRIES},
     })

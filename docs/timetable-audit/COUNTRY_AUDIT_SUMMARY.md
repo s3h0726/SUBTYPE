@@ -1,5 +1,8 @@
 # 6개국 운행계통 감사
 
+> **범위 변경 알림:** 이 파일의 아래 숫자는 한국 버스를 포함한 기존 실행 결과다. 신규 감사 실행에서는 한국 도로 버스를 제외한다. 최신 수치는 `AUDITED_ROUTES_INVENTORY.csv` 및 재생성된 `COVERAGE_BY_COUNTRY.md`를 기준으로 확인해야 한다.
+
+
 기준 커밋은 `ea4696898cf2fcb17d3278eda13766e9a1540e23`이며 공식 자료 확인일은 2026-11-11이다. 아래에서 Routes Audited는 카탈로그 인벤토리에 기록한 레코드 수다. Timetables Verified는 공식 운행 정보와 대조를 마친 레코드 수다. 운행계통 추가만 확인한 노선은 완전 검증 집계에서 제외했다.
 
 | Country | Routes Audited | Timetables Verified | Patterns Added | Patterns Corrected | Routes Merged | Unverified |

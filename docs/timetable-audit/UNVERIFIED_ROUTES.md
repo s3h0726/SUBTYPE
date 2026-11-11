@@ -1,5 +1,8 @@
 # 미검증 및 부분 검증 노선
 
+> **범위 변경 알림:** 이 파일의 아래 숫자는 한국 버스를 포함한 기존 실행 결과다. 신규 감사 실행에서는 한국 도로 버스를 제외한다. 최신 수치는 `AUDITED_ROUTES_INVENTORY.csv` 및 재생성된 `COVERAGE_BY_COUNTRY.md`를 기준으로 확인해야 한다.
+
+
 전체 미검증 목록은 [ROUTE_TIMETABLE_AUDIT.csv](ROUTE_TIMETABLE_AUDIT.csv)의 `status != VERIFIED` 레코드 9,127건이다. `NEW_PATTERN`은 새 계통에 대한 확인이며 해당 노선의 전체 시간표에 대한 판단은 보류 상태다. `REQUIRES_REVIEW`는 현행 시간표 대조 대기이며, 기존 출처가 있어도 자동으로 승격하지 않았다.
 
 | 국가 | 미검증 | 확인이 남은 항목 |
