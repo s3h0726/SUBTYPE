@@ -1,0 +1,39 @@
+name: Verify UK operator short-turn services
+
+on:
+  push:
+    branches: [audit/six-country-timetables]
+    paths:
+      - tools/apply-uk-verified-shortturns.cjs
+      - tools/test-uk-verified-shortturns.cjs
+      - tools/build-uk-regional.cjs
+      - .github/workflows/uk-timetable-shortturns.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/six-country-timetables
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply seven reviewed UK services to the real game data
+        run: node tools/apply-uk-verified-shortturns.cjs
+      - name: Check original route, real geometry, runtime selection, source time and idempotency
+        run: node --test tools/test-uk-verified-shortturns.cjs
+      - name: Publish route data and UK validation report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/uk/generated/routes/uk-edinburgh-trams.json data/uk/generated/routes/uk-net-hucknall-toton.json data/uk/generated/routes/uk-net-phoenix-clifton.json data/uk/generated/index.json data/uk/generated/validation.json
+          if ! git diff --cached --quiet; then
+            git commit -m "feat(uk): publish seven operator-confirmed short-turn services"
+            git push origin HEAD:audit/six-country-timetables
+          fi
