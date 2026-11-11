@@ -1,0 +1,18 @@
+{
+  "patterns": [
+    {
+      "id": "jp-toyama-3008",
+      "routeId": "line-toyama-city-2",
+      "operatorId": "toyamachihotetsudo",
+      "names": {"ja": "富山駅・富山大学前 区間運転", "ko": "도야마역·도야마대학앞 구간운행", "en": "Toyama Station–Toyama University short turn"},
+      "stationIds": ["station-1140501", "station-9941314", "station-9941315", "station-9941316", "station-9941317", "station-9941318", "station-9941319", "station-9941320"],
+      "originNames": {"ja": "富山駅", "ko": "도야마역", "en": "Toyama Station"},
+      "destinationNames": {"ja": "富山大学前", "ko": "도야마다이가쿠마에", "en": "Toyama University"},
+      "directions": {"forward": "市内軌道線(3008-1)", "reverse": "市内軌道線(3008-2)"},
+      "serviceClass": "local",
+      "calendar": {"serviceId": "平日", "validFrom": "2026-03-14", "validTo": "2027-03-13", "exceptions": "GTFS calendar_dates.txt"},
+      "sourceUrl": "https://api.gtfs-data.jp/v2/organizations/chitetsu/feeds/chitetsushinaidensha/files/feed.zip",
+      "accessedAt": "2026-11-11"
+    }
+  ]
+}

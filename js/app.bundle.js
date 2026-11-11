@@ -1034,8 +1034,11 @@ function prepareThroughPart(route,config={}){
     geometry=geometry.slice().reverse();
     stations=stations.slice().reverse().map(station=>({...station,geometryIndex:Math.max(0,geometry.length-1-(station.geometryIndex??0))}))
   }
-  const start=config.startStationId?stations.findIndex(station=>stationKey(station)===String(config.startStationId)):config.startStationJa?stations.findIndex(station=>station.ja===config.startStationJa):0;
+  let start=config.startStationId?stations.findIndex(station=>stationKey(station)===String(config.startStationId)):config.startStationJa?stations.findIndex(station=>station.ja===config.startStationJa):0;
   const end=config.endStationId?stations.findIndex(station=>stationKey(station)===String(config.endStationId)):config.endStationJa?stations.findIndex(station=>station.ja===config.endStationJa):stations.length-1;
+  if(config.trimRepeatedOrigin&&start>=0){
+    while(start<end&&stationKey(stations[start+1])===stationKey(stations[start]))start++;
+  }
   if(start<0||end<start)throw new Error(`Invalid service range ${route.id}: ${config.startStationId||config.startStationJa||'*'} -> ${config.endStationId||config.endStationJa||'*'}`);
   const selected=stations.slice(start,end+1),firstGeometry=selected[0]?.geometryIndex??0,lastGeometry=selected.at(-1)?.geometryIndex??geometry.length-1;
   return{...route,geometry:geometry.slice(firstGeometry,lastGeometry+1),stations:selected.map(station=>({...station,geometryIndex:(station.geometryIndex??firstGeometry)-firstGeometry}))}
@@ -1273,9 +1276,10 @@ function resolveServiceSelection({baseRoute,servicePatternId,directionId='forwar
   let route=baseRoute;
   if(pattern.throughServiceId){const spec=(globalThis.TRT_RAIL_SYSTEM?.throughServices||[]).find(item=>item.id===pattern.throughServiceId);route=buildThroughServiceRoute(spec,getRoute,pattern.directionId||directionId)}
   else if(pattern.branchId)route=buildBranchServiceRoute(pattern,baseRoute,getRoute);
-  else route=prepareThroughPart(route,{direction:pattern.directionId||directionId,startStationId:pattern.originStationId,endStationId:pattern.destinationStationId});
+  else route=prepareThroughPart(route,{direction:pattern.directionId||directionId,startStationId:pattern.originStationId,endStationId:pattern.destinationStationId,trimRepeatedOrigin:pattern.trimRepeatedOrigin===true});
   const routeIdsSet=new Set(route.stations.map(stationKey)),stops=(pattern.stopStationIds?.length?pattern.stopStationIds:route.stations.map(stationKey)).map(String);
   for(const id of stops)if(!routeIdsSet.has(id))throw new Error(`${pattern.id}: stop ${id} is outside the resolved route`);
+  if(pattern.requireExactCalls&&JSON.stringify(stops)!==JSON.stringify(route.stations.map(stationKey)))throw new Error(`${pattern.id}: exact timetable calls do not match the clipped track`);
   const service={id:pattern.id,nameJa:pattern.names.ja,nameKo:pattern.names.ko,nameEn:pattern.names.en,stops,trainTypeId:pattern.trainTypeId,destinationStationId:pattern.destinationStationId,throughServiceId:pattern.throughServiceId||null};
   // A directional through route is already assembled in travel order. Passing
   // "reverse" to the game would reverse it a second time.

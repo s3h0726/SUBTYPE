@@ -28,6 +28,8 @@ const server = http.createServer(async (req, res) => {
 
 const samples = [
  ['jp', 'jp-disney-resort-line'],
+ ['jp', 'line-toyama-city-2', 'journey:journey-jp-toyama-3008-forward', 8, 'journey-jp-toyama-3008-forward'],
+ ['jp', 'line-toyama-city-2', 'journey:journey-jp-toyama-3008-reverse', 8, 'journey-jp-toyama-3008-reverse'],
  ['kr', 'kr-rail-national-airport', 'kr-arex-seoul-geomam-local', 8],
  ['kr', 'kr-rail-national-airport', 'kr-arex-t2-dmc-local', 11],
  ['kr', 'kr-bus-seoul-100100012'],
@@ -43,7 +45,7 @@ async function main() {
  const url = 'http://127.0.0.1:' + server.address().port;
  const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_PATH });
  try {
-  for (const [country, routeId, choiceId, stops] of samples) {
+  for (const [country, routeId, choiceId, stops, serviceId = choiceId] of samples) {
    const page = await browser.newPage();
    try {
     const errors = [];
@@ -78,6 +80,9 @@ async function main() {
       if (!choice) throw Error('Missing runtime choice ' + choiceId);
       const base = choices.find(item => item.id === destination.value);
       const baseName = base?.patternName?.ko || '';
+      if (routeId === 'line-toyama-city-2' && base?.kind !== 'legacy') {
+       throw Error('Toyama default should be the full-length ordinary service');
+      }
       if (routeId === 'kr-rail-national-airport' && !/^(서울역 → 인천공항2터미널|인천공항2터미널 → 서울역) 일반$/.test(baseName)) {
        throw Error('AREX default should be a full-length ordinary service');
       }
@@ -97,7 +102,7 @@ async function main() {
      return { calls: game.sequence.length, serviceId: game.options.serviceJourneyId || game.service.id,
       destination: game.sequence.at(-1)?.ko, geometryPoints: game.mapRoute.geometry.length };
     });
-    if (choiceId) assert.equal(result.serviceId, choiceId);
+    if (choiceId) assert.equal(result.serviceId, serviceId);
     if (stops) assert.equal(result.calls, stops);
     assert(result.destination && result.geometryPoints > 1);
     assert.deepEqual(errors, [], routeId);
