@@ -108,7 +108,7 @@ Station IDs count source records. Physical station groups reuse published TfL hu
 - Repairs: import real track edges independently of incomplete stop membership; backtrack failed platform choices; consider 128 candidate vertices within the original 300 metre gate; explicitly anchor Heathrow T5 to documented OSM platform nodes 1508864707/254350058. No synthetic junctions or straight-line railway segments were added.
 - Fresh District, DLR, Elizabeth and Northern TfL stopping sequences matched the preserved official source sequences on November 10. No London regular sequence remains blocked: 0.
 - Regional expansion: Manchester Metrolink covers all 99 stops and current regular/part-day routes, including the Trafford Centre–Crumpsall service and Eccles variants. NET includes both lines, all 50 stops, and different northbound/southbound city loops. Blackpool includes direct coastal and North Station variants. West Midlands Metro includes both Wolverhampton termini; Millennium Point through-running remains excluded pending sufficient route evidence.
-- National expansion includes Lumo, Merseyrail Northern/Wirral branches, seven ScotRail corridors, and LNER stopping patterns individually connected to real track nodes. Further operators are inventoried in the table above as they are released.
+- National Rail includes 8 operating organisations, 23 corridors and 111 directions: Lumo, Merseyrail, ScotRail, LNER, Avanti West Coast, Greater Thameslink Railway (Great Northern and Thameslink), GWR and Heathrow Express.
 - Additional timetable comparison was stopped at the user's request. Previously completed LNER evidence remains reproducible reference data. Further expansion uses official network maps and source OSM route relations, with geometry and gameplay checks; it does not claim timetable certification.
 
 ## Validation actually observed
@@ -120,6 +120,7 @@ Station IDs count source records. Physical station groups reuse published TfL hu
 - Full UK free-drive progression: {"status":"PASS","directions":284,"transitions":4871}. Geometry loading: {"status":"PASS","files":109,"wholePoolRequested":false,"duplicateRequests":0}.
 - Edit propagation, English/Korean nameboards and mobile checks are recorded in the browser reports. Regional nameboard checks: 6.
 - UK ranking identity test uses isolated guest data. No authenticated fabricated score is uploaded.
+- Linux GitHub Actions full UK run: PASS — https://github.com/s3h0726/SUBTYPE/actions/runs/42844680157. On Windows, the Node entry points in the requested npm scripts were run directly because an npm executable was unavailable.
 - Known pre-existing global issues remain separate: 267 legacy station-master duplicates, 40 previously blocked route-audit cases, and missing Ueno payload line-11229--jobansen-totte-iwaki.json. These are not claimed fixed by this expansion.
 
 ## Source accuracy and licensing
@@ -131,16 +132,18 @@ Station IDs count source records. Physical station groups reuse published TfL hu
 ## Git and deployment
 
 - Working branch: feature/uk-railway-completion.
-- Report predecessor HEAD: 10a6e94ffb4bc4fdb398a8e08fa81f423bc377a2. The report's own commit can be found in Git history.
-- Main integration of this expansion: pending.
-- Production verification for this expansion: pending; actual public UI: pending.
+- Verified implementation commit: 324c9b45e8e3efbb6ccd1dde38b8696ba1965efa.
+- Report predecessor HEAD: 8bbd05b5954e767e83841f13f912926e71b027f5. The report's own commit can be found in Git history.
+- Main integration of this expansion: pushed directly to main; verified implementation remains in its history.
+- Production verification for this expansion: success; actual public UI: PASS.
+- Observed production: 2026-11-11T13:55:59.160Z; workflow https://github.com/s3h0726/SUBTYPE/actions/runs/42844679896. Representative completions: uk-waterloo-city (2 stops), uk-heathrow-express (3 stops), uk-metrolink (33 stops). Production bundle SHA-256: 16cd9bffe27977e5bd1e2794477f6eaf5e4a746287ab43bad9ab594f71383a44.
 - This section reflects reports/uk/release-status.json. The November 8 deployment is stored separately as previousRelease and is not evidence of this expansion's deployment.
 
 ## Precise remaining work
 
 1. West Midlands Millennium Point services: source relations 20439814/20439815 exist, but complete passenger through-running and reversal assumptions are not released. Do not treat all track stop nodes as a certified stopping pattern.
 2. Manchester early/late depot and short-turn variants beyond published regular services; Blackpool additional turnbacks; Edinburgh short turns; additional Tyne/Wear and Sheffield variants.
-3. Remaining National Rail corridors/operators: South Western Railway, Southern, Southeastern, Greater Anglia, c2c, Chiltern, East Midlands Railway, West Midlands Railway/London Northwestern Railway, CrossCountry, Northern, TransPennine Express, Transport for Wales, Hull Trains, Grand Central and all unlisted branches of operators already present. Check the current inventory before adding any duplicate.
+3. Remaining National Rail corridors/operators: South Western Railway, Southern, Southeastern, Greater Anglia, c2c, Chiltern, East Midlands Railway, West Midlands Railway/London Northwestern Railway, CrossCountry, Northern, TransPennine Express, Transport for Wales, Hull Trains, Grand Central and Caledonian Sleeper. Among the operators already present, the opposite directions for the three Avanti Manchester variants, Avanti Liverpool and Heathrow Express need independently verified track sources. The Sleeper's archived Highland relations predate the Birmingham International change; confirm commercial calls on the Lowland services before using their source relations. Check the inventory before adding any duplicate.
 4. Remaining high-speed/international coverage: Southeastern HS1, Eurostar complete UK/Channel Tunnel/continental alignments, and international station localization. HS2 remains excluded until actual passenger operations are evidenced.
 5. Continue Korean editorial review against established Korean references, preserve existing overrides, and add explicitly evidenced interchanges whose official English station names differ.
 6. For each additional batch, preserve stable IDs, assemble only source railway node edges, run full direction gameplay and regressions, commit, push main and verify the public site. Source OSM API parent discovery returned HTTP 429 during this session; do not treat unavailable source data as permission to invent a route.

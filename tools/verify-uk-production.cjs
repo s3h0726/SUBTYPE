@@ -4,9 +4,10 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'reports/uk'),base='h
 (async()=>{const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe'}),report={url:base,checkedAt:new Date().toISOString(),status:'FAIL',pageErrors:[],journeys:[]};
 try{
  const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>report.pageErrors.push(e.message));await page.addInitScript(()=>localStorage.setItem('trt-country','uk'));
- await page.goto(base+'?uk-verify='+Date.now()+'#rail-map');await page.waitForFunction(n=>document.querySelectorAll('[data-route^="uk-"]').length===n,Math.min(96,expected.lines),{timeout:90000});
+ await page.goto(base+'?uk-verify='+Date.now()+'#rail-map');await page.waitForSelector('[data-route="uk-bakerloo"]',{timeout:45000});
  const data=await page.evaluate(async()=>(await fetch('data/uk/generated/index.json',{cache:'no-store'})).json());
  Object.assign(report,{operators:data.operators.length,lines:data.routes.length,directions:data.routes.reduce((n,r)=>n+r.serviceCount,0),stationIds:data.stationNameIndex.length});
+ report.routeCards=await page.locator('[data-route^="uk-"]').count();console.log('Public UK catalogue:',report.routeCards,'cards,',report.directions,'directions');
  assert.equal(report.operators,expected.operators);assert.equal(report.lines,expected.lines);assert.equal(report.directions,expected.playableDirections);assert.equal(report.stationIds,expected.uniqueStations);
  await page.screenshot({path:path.join(out,'production-catalog.png'),fullPage:true});
  // Use the real settings form to keep representative full-route checks quick.
@@ -17,8 +18,10 @@ try{
   const selectedId=await page.locator('#journey-destination').inputValue(),owner=JSON.parse(fs.readFileSync(path.join(root,data.routes.find(r=>r.id===lineId).lazySource))),pattern=owner.patterns.find(p=>p.id===selectedId);assert(pattern,'production choice not in repository');
   const wanted=pattern.stationIds.map(id=>owner.stationCatalog.find(s=>s.id===id).ko),typed=[];
   assert.equal(await page.locator('#game-map-mode').inputValue(),'geographic');await page.locator('#setup-form button[type="submit"]').click();await page.waitForFunction(()=>document.body.dataset.currentScreen==='game');
+  console.log('Public playthrough:',lineId,wanted.length,'stops');
   for(let i=0;i<wanted.length+2;i++){
    if(await page.evaluate(()=>document.body.dataset.currentScreen==='result'))break;
+   await page.waitForFunction(()=>{const e=document.querySelector('#typing-input');return e&&!e.readOnly&&!e.disabled});
    const answer=await page.locator('#prompt-ko').innerText();assert.equal(answer.replace(/\s/g,''),wanted[typed.length].replace(/\s/g,''));typed.push(answer);
    await page.evaluate(answer=>{const input=document.querySelector('#typing-input');input.dispatchEvent(new CompositionEvent('compositionstart',{bubbles:true}));input.value=answer.replace(/\s/g,'');input.dispatchEvent(new InputEvent('input',{bubbles:true,isComposing:true,inputType:'insertCompositionText'}));input.dispatchEvent(new CompositionEvent('compositionend',{bubbles:true,data:input.value}))},answer);
    await page.waitForFunction(old=>document.body.dataset.currentScreen==='result'||document.querySelector('#prompt-ko')?.textContent!==old,answer,{timeout:30000});

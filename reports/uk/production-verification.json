@@ -1,21 +1,77 @@
 {
   "url": "https://s3h0726.github.io/SUBTYPE/",
-  "checkedAt": "2026-11-08T12:37:08.131Z",
+  "checkedAt": "2026-11-11T13:55:59.160Z",
   "status": "PASS",
   "pageErrors": [],
-  "routeCards": 28,
-  "operators": 9,
-  "lines": 28,
-  "directions": 129,
-  "stationIds": 657,
-  "directionOptions": 2,
-  "typedStations": [
-    "워털루",
-    "뱅크"
+  "journeys": [
+    {
+      "lineId": "uk-waterloo-city",
+      "patternId": "uk-osm-102762",
+      "typedStations": [
+        "워털루",
+        "뱅크"
+      ],
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-heathrow-express",
+      "patternId": "uk-osm-9917743",
+      "typedStations": [
+        "히스로공항 제5터미널",
+        "히스로공항 제2·3터미널",
+        "패딩턴"
+      ],
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-metrolink",
+      "patternId": "uk-osm-9332228",
+      "typedStations": [
+        "로치데일 타운 센터",
+        "로치데일 철도역",
+        "뉴볼드",
+        "킹스웨이 비즈니스 파크",
+        "밀른로",
+        "뉴헤이",
+        "쇼 앤드 크롬프턴",
+        "더커",
+        "올덤 멈프스",
+        "올덤 센트럴",
+        "올덤 킹 스트리트",
+        "웨스트우드",
+        "프리홀드",
+        "사우스 채더턴",
+        "홀린우드",
+        "페일즈워스",
+        "뉴턴 히스 앤드 모스턴",
+        "센트럴 파크",
+        "몬솔",
+        "빅토리아",
+        "익스체인지 스퀘어",
+        "세인트 피터스 스퀘어",
+        "딘스게이트 캐슬필드",
+        "콘브루크",
+        "트래퍼드 바",
+        "퍼스우드",
+        "촐턴",
+        "세인트 워버그스 로드",
+        "위딩턴",
+        "버턴 로드",
+        "웨스트 디즈버리",
+        "디즈버리 빌리지",
+        "이스트 디즈버리"
+      ],
+      "status": "PASS"
+    }
   ],
+  "operators": 21,
+  "lines": 56,
+  "directions": 284,
+  "stationIds": 1146,
+  "routeCards": 56,
   "gameplay": "PASS",
   "leaderboardCountry": "uk",
-  "bundle": "./js/app.bundle.js?v=0e3a5630e13b",
-  "bundleSha256": "0e3a5630e13b4c48c0dd97a1bc5f88fdb4158aab800358a7ba544bc5a3a6f822",
+  "bundle": "./js/app.bundle.js?v=16cd9bffe279",
+  "bundleSha256": "16cd9bffe27977e5bd1e2794477f6eaf5e4a746287ab43bad9ab594f71383a44",
   "geometryMatchesRepository": true
 }

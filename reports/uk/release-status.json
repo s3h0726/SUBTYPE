@@ -1,10 +1,146 @@
 {
-  "checkedAt": "2026-11-11",
+  "checkedAt": "2026-11-11T13:55:59.160Z",
   "branch": "feature/uk-railway-completion",
-  "mainIntegration": "pending",
+  "baseSha": "f628f0cd8",
+  "sourceCommit": "324c9b45e8e3efbb6ccd1dde38b8696ba1965efa",
+  "mainBeforeReport": "8bbd05b5954e767e83841f13f912926e71b027f5",
+  "mainIntegration": "pushed directly to main; verified implementation remains in its history",
+  "commits": {
+    "london": "26abc3946",
+    "regionalAndIntercity": "8931d5535",
+    "freeDrive": "10a6e94ff",
+    "nationalRailAndGeometry": "324c9b45e8e3efbb6ccd1dde38b8696ba1965efa"
+  },
+  "inventory": {
+    "operators": 21,
+    "lines": 56,
+    "servicePatterns": 176,
+    "playableDirections": 284,
+    "uniqueStations": 1146,
+    "uniquePhysicalStationGroups": 1065,
+    "koreanNamedStations": 1146,
+    "sharedSegments": 2588
+  },
+  "validation": {
+    "data": "PASS",
+    "ukUnitTests": 11,
+    "legacyFreeDriveUnitTests": 17,
+    "leaderboardIdentity": "PASS",
+    "gameplayDirections": 284,
+    "freeDrive": {
+      "status": "PASS",
+      "directions": 284,
+      "transitions": 4871
+    },
+    "geometryLoading": {
+      "status": "PASS",
+      "files": 109,
+      "wholePoolRequested": false,
+      "duplicateRequests": 0
+    },
+    "existingCountries": [
+      {
+        "country": "jp",
+        "status": "PASS",
+        "routes": 606
+      },
+      {
+        "country": "kr",
+        "status": "PASS",
+        "routes": 8275
+      },
+      {
+        "country": "hk",
+        "status": "PASS",
+        "routes": 105
+      },
+      {
+        "country": "th",
+        "status": "PASS",
+        "routes": 23
+      },
+      {
+        "country": "tw",
+        "status": "PASS",
+        "routes": 46
+      }
+    ],
+    "mobileBoards": [
+      {
+        "lineId": "uk-metrolink",
+        "style": "uk-metrolink",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-west-midlands-metro",
+        "style": "uk-tram",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-blackpool-tramway",
+        "style": "uk-tram",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-net-hucknall-toton",
+        "style": "uk-tram",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-lner-east-coast",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-scotrail-shotts",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      }
+    ],
+    "ci": {
+      "status": "PASS",
+      "runId": 42844680157,
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42844680157",
+      "testedCommit": "324c9b45e8e3efbb6ccd1dde38b8696ba1965efa"
+    }
+  },
   "productionDeployment": {
-    "status": "pending",
-    "actualUIPlaythrough": "pending"
+    "status": "success",
+    "runId": 42844679896,
+    "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42844679896",
+    "site": "https://s3h0726.github.io/SUBTYPE/",
+    "observedImplementationCommit": "324c9b45e8e3efbb6ccd1dde38b8696ba1965efa",
+    "checkedAt": "2026-11-11T13:55:59.160Z",
+    "actualUIPlaythrough": "PASS",
+    "routes": [
+      {
+        "lineId": "uk-waterloo-city",
+        "stops": 2
+      },
+      {
+        "lineId": "uk-heathrow-express",
+        "stops": 3
+      },
+      {
+        "lineId": "uk-metrolink",
+        "stops": 33
+      }
+    ],
+    "bundleSha256": "16cd9bffe27977e5bd1e2794477f6eaf5e4a746287ab43bad9ab594f71383a44",
+    "geometryMatchesRepository": true,
+    "leaderboardCountry": "uk"
   },
   "previousRelease": {
     "checkedAt": "2026-11-08",
