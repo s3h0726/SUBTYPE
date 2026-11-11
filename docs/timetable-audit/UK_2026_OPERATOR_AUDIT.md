@@ -44,6 +44,47 @@ TfL's [current 17 May–12 December 2026 Elizabeth line timetable](https://conte
 
 Heathrow Express official timetable states trains operate **London Paddington → Heathrow Terminals 2 & 3 → Heathrow Terminal 5**, as well as **Heathrow Terminal 5 → Heathrow Terminals 2 & 3 → London Paddington**. The current SUBTYPE `uk-heathrow-express` route has only `uk-osm-9917743` for the second of those directions. An actual Paddington→Heathrow track relation/platform alignment must be sourced and tested before release. Creating a purely reversed geometry without source-edge proof would violate the existing UK railway integrity rules.
 
+## 추가 대조: 맨체스터 메트로링크 20방향·엘리자베스선 실제 열차 1편성
+
+검토일: 2026-11-12. 원문은 [TfGM Metrolink 운영시간·운행구간](https://tfgm.com/plan-a-journey/schedules/tram-schedule), [TfGM 공식 노선도](https://tfgm.com/ways-to-travel/tram/network-map), [TfL 2026-05-17~2026-12-12 Elizabeth line 공식 시간표 PDF](https://content.tfl.gov.uk/elizabeth-line-17-may-12-december-2026.pdf)를 이용했다.
+
+### TfGM: 20개 기존 계통에 공식 운행 시간대 규칙 반영
+
+- **전일 운행 10방향**: Rochdale–East Didsbury, Manchester Airport–Victoria, Bury–Ashton, Altrincham–Etihad Campus, Trafford Centre–Crumpsall (5개 왕복 계통)
+- **부분 시간대 6방향**: Altrincham–Bury, Shaw and Crompton–East Didsbury, MediaCityUK–Piccadilly (평일 07:00–20:00, 토 09:00–18:30, 일·공휴일 정규 운행 없음)
+- **Eccles–Piccadilly 비경유 2방향**: 같은 부분 시간대에 MediaCityUK를 경유하지 않음
+- **Eccles–Piccadilly 경유 2방향**: 상기 시간대 밖에 MediaCityUK 경유
+- TfGM 일반 운행 시간(월~목 06:00–24:00, 금·토 06:00–익일 01:00, 일·공휴일 07:00–24:00)과 계통당 기본 15분 간격은 **운영 안내값**이다. 출발 열차별 확정 시각은 아니다.
+
+기존 게임의 역·노선·20방향은 그대로 두고 각 실제 운영패턴과 선택 서비스에 \`officialSchedule\`을 기입했다. 실운행 요일, 구간운행 여부, 미디어시티 경유 조건을 나중에 게임 UI가 사용할 수 있는 구조지만 **현 단계에서 현재 시각에 따라 선택권을 제한하지 않는다**.
+
+### TfL: 실제 평일 열차 정차 시각 대조
+
+2026-05-17~2026-12-12 적용 공식 PDF 인쇄 **2쪽**, 'Elizabeth line – Westbound – Mondays to Fridays' 표에 있는 04:44 Shenfield 출발 → 05:27 Liverpool St (surface platforms 15–17) 도착 열차:
+
+| 역 | 공식 시간 |
+|---|---|
+| Shenfield | 04:44 |
+| Brentwood | 04:48 |
+| Harold Wood | 04:52 |
+| Gidea Park | 04:55 |
+| Romford | 04:58 |
+| Chadwell Heath | 05:01 |
+| Goodmayes | 05:03 |
+| Seven Kings | 05:05 |
+| Ilford | 05:09 |
+| Manor Park | 05:11 |
+| Forest Gate | 05:15 |
+| Maryland | 05:17 |
+| Stratford | 05:19 |
+| Liverpool Street (surface) | 05:27 |
+
+SUBTYPE \`uk-osm-5793620\` 14역 정차 순서와 **14/14 일치**. 해당 1개 운행 증거를 \`officialTrainSample\`로 기록하고 실제 시각을 정차역 이름에 결합했다. 나머지 18개 방향과 날짜별 전체 열차 시간표는 아직 일치 판정을 내리지 않았다.
+
+### 검증 범위의 제한
+
+이번 결과로 영국 전체 노선 56개 중 운영사 시간표와 일부 대조한 노선은 9개다. 47개는 별도 일정 확보가 필요하다. **완전 시간표 검증(전 열차·전 운행일·예외일)은 영국 56개 중 0개**이며 기존 6개국 전체 11 VERIFIED 기록은 변경하지 않았다. 기존 영국 **291개 방향**과 인프라를 모두 유지한다.
+
 ## Reproducibility and release rules
 
 - Run: \`node tools/apply-uk-verified-shortturns.cjs\`.

@@ -8,6 +8,10 @@ on:
       - tools/test-uk-verified-shortturns.cjs
       - tools/build-uk-regional.cjs
       - tools/report-uk-operator-timetable-coverage.cjs
+      - tools/apply-uk-audited-operating-calendars.cjs
+      - tools/test-uk-audited-operating-calendars.cjs
+      - data/uk/source/timetables/metrolink-2026-operator-windows.json
+      - data/uk/source/timetables/elizabeth-2026-sampled-journey.json
       - .github/workflows/uk-timetable-shortturns.yml
   workflow_dispatch:
 
@@ -27,8 +31,12 @@ jobs:
           node-version: '22'
       - name: Apply seven reviewed UK services to the real game data
         run: node tools/apply-uk-verified-shortturns.cjs
+      - name: Apply official TfGM calendars and TfL published train column
+        run: node tools/apply-uk-audited-operating-calendars.cjs
       - name: Check original route, real geometry, runtime selection, source time and idempotency
         run: node --test tools/test-uk-verified-shortturns.cjs
+      - name: Validate Metrolink operating windows and TfL sampled train against game stops
+        run: node --test tools/test-uk-audited-operating-calendars.cjs
       - name: Validate all UK directions against real OSM tracks
         run: node tools/test-uk-rail.cjs
       - name: Publish UK operator timetable coverage matrix
@@ -37,7 +45,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/uk/generated/routes/uk-edinburgh-trams.json data/uk/generated/routes/uk-net-hucknall-toton.json data/uk/generated/routes/uk-net-phoenix-clifton.json data/uk/generated/index.json data/uk/generated/validation.json docs/timetable-audit/UK_ROUTE_AUDIT_56.csv
+          git add data/uk/generated/routes/uk-edinburgh-trams.json data/uk/generated/routes/uk-net-hucknall-toton.json data/uk/generated/routes/uk-net-phoenix-clifton.json data/uk/generated/index.json data/uk/generated/validation.json docs/timetable-audit/UK_ROUTE_AUDIT_56.csv data/uk/generated/routes/uk-metrolink.json data/uk/generated/routes/uk-elizabeth.json
           if ! git diff --cached --quiet; then
             git commit -m "feat(uk): publish seven operator-confirmed short-turn services"
             git push origin HEAD:audit/six-country-timetables
