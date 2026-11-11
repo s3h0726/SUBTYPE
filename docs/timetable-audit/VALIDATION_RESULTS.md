@@ -1,5 +1,23 @@
 # 빌드 및 검증 결과
 
+## 일괄 시간표 배치
+
+| 검사 | 결과 | 범위 |
+|---|---|---|
+| `python tools/test_mass_timetable_audit.py` | 통과, 2개 | 자정 이후 시간, 달력 예외, 빈도 템플릿, 정차 순서 중복 제거, 동명 정류장 보류 및 TRA 구간 추출 |
+| `python tools/mass-timetable-audit.py --resume` | 통과 | GTFS 3개, GTFS 레코드 4,163건, TRA ODS 23개 및 구간 레코드 1,854건. 기준 ID 9,128개와 감사 결과의 ID 집합 일치 |
+| `node --max-old-space-size=6000 tools/timetable-inventory.mjs --compare-baseline` | 통과 | 6개국의 기존 등록·선택·경로 해석 수치와 기존 오류 15건이 기준과 일치 |
+| `node tools/build-timetable-patterns.cjs`, `node tools/build-app-bundle.js` 및 JS 문법 검사 | 통과 | 신규 도야마 운행계통 생성과 앱 번들 재생성 |
+| `node tools/test-timetable-browser.cjs` | 통과, 11개 | 6개국, 도야마 평일 구간운행 양방향 8역과 실제 선형, 전체 구간 각역정차 기본값 |
+| 타이핑·IME·Free Drive·서비스 리졸버 회귀 | 통과, 21개 | 신규 계통 외 기존 지상·수상·철도 운행과 공통 게임 동작 |
+| 전체 저장소 필수 빌드와 테스트 | 실패 | 기준 main에 있던 `validate-data.js` 오류 267건이 재현됨. 한국 버스 이름 검사는 통과한 뒤 같은 데이터 검사에서 중단됨 |
+
+도야마 브라우저 검사에서 첫 시도는 중복 플랫폼 경계 때문에 정차역이 9개였다. 신규 계통의 선로 구간을 자르는 시점에 같은 출발역 ID의 연속 경계를 처리하고, 공식 정차열과 일치할 때만 해당 계통이 시작되도록 변경했다. 양방향 모두 정차역 8개와 실제 선형 30점을 확인했다.
+
+2026-11-12 운영 Pages는 HTTP 200이었다. 운영 HTML에는 새 도야마 계통 스크립트가 없었다. 감사 PR을 초안으로 유지했다.
+
+## 이전 감사 배치
+
 | 검사 | 결과 | 범위 |
 |---|---|---|
 | `node --max-old-space-size=6000 tools/timetable-inventory.mjs --compare-baseline` | 통과 | 6개국과 9,128개 레코드. 기존 경로 해석 실패 15건과 국가별 등록·선택·주행 수가 기준과 같다. 한국 정규 공개 계통 및 대만·태국·영국에서는 선택 계통별 기종점과 정차열을 런타임 경로와 비교했다. 일본·홍콩 인벤토리의 해석은 대표 방향을 사용했다. |

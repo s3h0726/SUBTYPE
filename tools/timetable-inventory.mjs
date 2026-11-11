@@ -1,13 +1,36 @@
 import assert from 'node:assert/strict';
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, open, readFile, rename, writeFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import vm from 'node:vm';
 
 const root = new URL('../', import.meta.url);
-const file = path => readFile(new URL(path, root), 'utf8');
+const option = name => process.argv.find(value => value.startsWith(name + '='))?.slice(name.length + 1);
+const snapshotDir = option('--snapshot');
+const snapshot = snapshotDir && pathToFileURL(path.resolve(snapshotDir) + path.sep);
+const base = option('--base');
+if (base && (!snapshot || !/^[a-f0-9]{40}$/.test(base))) throw Error('--base requires a full commit and --snapshot');
+if (base) {
+  // Korean timetable validity gates use the audit date even on later reruns.
+  const auditInstant = new Date('2026-11-11T12:00:00+09:00').getTime();
+  const HostDate = globalThis.Date;
+  globalThis.Date = class extends HostDate {
+    constructor(...args) { super(...(args.length ? args : [auditInstant])); }
+    static now() { return auditInstant; }
+  };
+}
+const git = args => execFileSync('git', args, { cwd: fileURLToPath(root), maxBuffer: 120 * 1024 * 1024 });
+const changed = new Set(base ? git(['diff', '--name-only', base, '--', 'data', 'js', 'index.html']).toString().trim().split(/\r?\n/) : []);
+const bytesFor = async name => changed.has(name) ? git(['show', base + ':' + name]) : readFile(new URL(name, root));
+const file = async name => (await bytesFor(name)).toString('utf8');
 const json = async path => JSON.parse(await file(path));
-const countries = ['jp', 'kr', 'hk', 'tw', 'th', 'uk'];
+const allCountries = ['jp', 'kr', 'hk', 'tw', 'th', 'uk'];
+const countries = option('--country') ? [option('--country').toLowerCase()] : allCountries;
+assert(countries.every(country => allCountries.includes(country)) && (snapshot || countries.length === 6));
+if (snapshot) await mkdir(snapshot, { recursive: true });
 const countryIndexes = {
   kr: 'data/kr/generated/index.json',
   hk: 'data/hk/generated/index.json',
@@ -19,7 +42,7 @@ const countryIndexes = {
 // Run the shipped data scripts in HTML order, including the catalog patches.
 const page = await file('index.html');
 globalThis.window = globalThis;
-const runtimeData = /^(?:hong-kong-index-data|japan-lite-index|japan-route-.*-patch|jr-hokkaido-hakodate-split|meitetsu-mikawa-sections-patch|tosakuroshio-nakamura-sukumo-patch|dedupe-toyama-line3|korea-index-data|service-data|japan-.*(?:operating-patterns|pattern-expansion.*)|line-theme-data|rail-system-data|nationwide-service-catalog|disney-resort-line-data)\.js$/;
+const runtimeData = /^(?:hong-kong-index-data|japan-lite-index|japan-route-.*-patch|jr-hokkaido-hakodate-split|meitetsu-mikawa-sections-patch|tosakuroshio-nakamura-sukumo-patch|dedupe-toyama-line3|korea-index-data|service-data|japan-timetable-audit-patterns|japan-.*(?:operating-patterns|pattern-expansion.*)|line-theme-data|rail-system-data|nationwide-service-catalog|disney-resort-line-data)\.js$/;
 for (const [, path] of page.matchAll(/<script\b[^>]*src="\.\/js\/([^"?]+)/g)) {
   if (runtimeData.test(path)) vm.runInThisContext(await file('js/' + path), { filename: path });
 }
@@ -29,7 +52,7 @@ globalThis.fetch = async input => {
   const url = new URL(input, root);
   assert.equal(url.protocol, 'file:');
   try {
-    const bytes = await readFile(url);
+    const bytes = await bytesFor(decodeURIComponent(url.pathname.slice(root.pathname.length)));
     const response = new Response(bytes);
     response.json = async () => {
       const data = JSON.parse(bytes);
@@ -67,6 +90,10 @@ const idOf = station => String(station.id ?? station.station_id);
 const signatures = new Map();
 const rows = [];
 const totals = {};
+const stationRecord = station => [idOf(station), [
+  station.officialCode, station.stationCode, station.sourceName, station.ja, station.zh, station.th,
+  station.en, station.romaji, station.ko, ...Object.values(station.names || {})
+].filter(name => typeof name === 'string' && name), station.latitude ?? station.lat, station.longitude ?? station.lon];
 
 for (const country of countries) {
   const index = countryIndexes[country];
@@ -88,6 +115,9 @@ for (const country of countries) {
   }
 
   console.log(country, registered.size, 'registered,', current.size, 'visible');
+  const pending = snapshot && new URL(country + '.jsonl.tmp', snapshot);
+  const writer = pending && await open(pending, 'w');
+  try {
   for (const [position, [id, raw]] of [...registered].entries()) {
     if (position && position % 1000 === 0) console.log(country, position, 'routes checked');
     const record = {
@@ -106,6 +136,7 @@ for (const country of countries) {
     if (findings) Object.assign(record, findings);
 
     let route = raw;
+    const patternRecords = [], stationsById = new Map();
     const visible = current.get(id);
     if (visible) {
       try {
@@ -120,6 +151,13 @@ for (const country of countries) {
           try {
             const selected = choice ? adapter[1](choice, route) : { route, direction: 'forward', service: route.services?.[0] };
             const run = resolvePlayableRoute(selected.route, selected);
+            if (writer) {
+              for (const station of run.stations) stationsById.set(idOf(station), stationRecord(station));
+              patternRecords.push({id: choice?.id || selected.service?.id || id,
+                direction: choice?.direction || selected.direction,
+                name: labels(choice?.patternName || selected.service?.nameKo),
+                stops: run.stations.map(idOf)});
+            }
             if (choice) {
               assert.equal(idOf(run.stations[0]), String(choice.originId), 'Origin differs from selector');
               assert.equal(idOf(run.stations.at(-1)), String(choice.destinationId), 'Terminus differs from selector');
@@ -158,7 +196,25 @@ for (const country of countries) {
       peers.push(record);
       signatures.set(key, peers);
     }
+    if (writer) {
+      for (const station of route.stations || []) stationsById.set(idOf(station), stationRecord(station));
+      await writer.write(JSON.stringify({
+        ...record, operator_id: raw.operatorId || route.operatorId || '',
+        official_code: raw.code || route.code || '', service_label: raw.serviceLabel || '',
+        sequence: route.stations?.map(idOf) || raw.stationSequence || [],
+        station_records: [...stationsById.values()],
+        runtime_patterns: patternRecords,
+        catalog_journeys: journeys.map(journey => ({id: journey.id, direction: journey.directionId,
+          origin: journey.originStationId, destination: journey.destinationStationId, pattern: journey.servicePatternId})),
+        catalog_patterns: servicePatterns.map(pattern => ({id: pattern.id, direction: pattern.directionId,
+          stops: pattern.stopStationIds || pattern.stationSequence || [], branch: pattern.branchId,
+          through: pattern.throughServiceId}))
+      }) + '\n');
+    }
     rows.push(record);
+  }
+  } finally {
+    if (writer) await writer.close();
   }
   const group = rows.filter(row => row.country === country.toUpperCase());
   totals[country] = {
@@ -173,7 +229,10 @@ for (const country of countries) {
     merged: group.reduce((sum, row) => sum + row.merged, 0)
   };
   console.log(country, JSON.stringify(totals[country]));
+  if (pending) await rename(pending, new URL(country + '.jsonl', snapshot));
 }
+
+if (snapshot) process.exit(0);
 
 for (const group of signatures.values()) {
   if (group.length < 2) continue;

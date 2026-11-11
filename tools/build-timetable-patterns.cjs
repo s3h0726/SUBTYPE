@@ -26,7 +26,7 @@ function registerTimetablePatterns(catalog, definitions) {
       catalog.servicePatterns.push({
         ...common, id, stopStationIds: stops, names: entry.names, trimRepeatedOrigin: true, requireExactCalls: true,
         serviceClass: entry.serviceClass, calendar: entry.calendar,
-        sources: [{type: 'official-gtfs', url: entry.sourceUrl, officialRouteId, checkedAt: entry.accessedAt}]
+        sources: [{type: 'official-gtfs', url: entry.sourceUrl, sha256: entry.sourceRevision, officialRouteId, checkedAt: entry.accessedAt}]
       });
       catalog.serviceJourneys.push({...common, id: 'journey-' + id, servicePatternId: id});
     }
