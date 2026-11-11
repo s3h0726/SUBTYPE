@@ -110,6 +110,19 @@ const airport=bySource.get('tymc:A');if(airport){both(airport,'보통',[{line:ai
  for(const [name,indexes] of [['공항 급행',[0,2,7,11,12]],['환베이 급행',[0,2,7,11,12,17,20]]]){
   const calls=indexes.map(i=>stations[i].networkKey),end=indexes.at(-1);addPattern(airport,name,[{line:airport,a:0,b:end}],calls);addPattern(airport,name,[{line:airport,a:end,b:0}],calls,{direction:'reverse'})}
  addPattern(airport,'공항행 보통',[{line:airport,a:0,b:12}]);addPattern(airport,'공항행 보통',[{line:airport,a:21,b:11}],null,{direction:'reverse'});
+ // Taoyuan Metro's weekday 07:00 northbound skip-stop commuter starts at A21.
+ // Its omitted stops remain in the physical path for animation and Free Drive.
+ const peakCodes=['A21','A18','A13','A12','A9','A8','A7','A6','A5','A4','A3','A2','A1'];
+ const peakIndices=peakCodes.map(code=>stations.findIndex(station=>station.officialCode===code));
+ if(peakIndices.some((index,i)=>index<0||(i>0&&index>=peakIndices[i-1])))throw Error('Taoyuan peak commuter station order changed');
+ addPattern(airport,'평일 아침 통과 보통',[{line:airport,a:peakIndices[0],b:peakIndices.at(-1)}],
+  peakIndices.map(index=>stations[index].networkKey),{
+   direction:'reverse',
+   nameZh:'平日上午跳站普通車',
+   evidence:'https://www.tymetro.com.tw/tymetro-new/en/_pages/travel-guide/timetable-A13',
+   validWhen:{days:'weekdays',departureLocalTime:'07:00',effectiveDate:'2025-10-16',accessedDate:'2026-11-11',
+    sourceUrl:'https://www.tymetro.com.tw/tymetro-new/tw/_pages/travel-guide/departure.php?station=A18'}
+  });
 }
 // THSR calls are timetable calls only: pass points have stop:false.
 const hsr=bySource.get('thsr_track:THSR');if(hsr){for(const t of JSON.parse(fs.readFileSync('data/tw/source/completion/thsr-official.json')).trains){const calls=t.stops.filter(s=>s.stop!==false).map(s=>'thsr:'+norm(s.name));const idx=calls.map(n=>hsr.stations.findIndex(s=>s.networkKey===n));if(idx.some(i=>i<0)||idx.length<2)continue;const ascending=idx.at(-1)>idx[0];if(idx.some((v,i)=>i&&(ascending?v<=idx[i-1]:v>=idx[i-1])))continue;addPattern(hsr,calls.length===12?'각역정차':calls.length<=6?'직통형 급행':'준급행',[{line:hsr,a:idx[0],b:idx.at(-1)}],calls,{trainNumber:t.train,direction:ascending?'forward':'reverse',evidence:'data/tw/source/completion/thsr-official.json; '+officialSources.thsr})}}

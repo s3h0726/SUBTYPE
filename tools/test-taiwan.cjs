@@ -8,6 +8,20 @@ test('every service resolves over actual retained tracks in timetable order',()=
 test('Korean is mandatory in every display slot and station IDs are line specific',()=>{for(const l of lines){assert(/[가-힣]/.test(l.line.ja));assert(/[가-힣]/.test(l.operator.ja));assert(/[\p{Script=Han}]/u.test(l.operator.zh),'Missing operator Traditional Chinese: '+l.id);for(const s of l.stations){assert.equal(s.id,s.station_id);assert(s.line_id===l.id);assert(!('mlit_station_id'in s));assert(/[가-힣]/.test(s.ko));assert.equal(s.ja,s.ko);assert(!/[\p{Script=Han}]/u.test(s.ko));assert(s.zh);}}});
 test('THSR has all 12 stations and express passes are excluded from prompts',()=>{const l=publicLines.find(l=>l.operatorId==='tw-thsr');assert.equal(l.stations.length,12);assert.equal(l.stations[0].ko,'난강');assert.equal(l.stations.at(-1).ko,'쭤잉');const choices=api.taiwanOperatingChoices(l);const patterns=choices.map(x=>api.resolveTaiwanChoice(x,l));assert(patterns.some(r=>r.service.stops.length===12));assert(patterns.some(r=>r.service.stops.length<=6));for(const r of patterns){const route=api.resolvePlayableRoute(r.route,{service:r.service});assert.equal(route.stations.length,r.service.stops.length)}});
 test('Airport express stops, excluded construction stations and unilateral short turns',()=>{const l=publicLines.find(l=>l.id==='tw-tymc-airport');assert.equal(l.stations.length,22);assert(!l.stations.some(s=>['A14','A23'].includes(s.officialCode)));const choices=api.taiwanOperatingChoices(l);const express=choices.find(x=>x.patternName.ko==='공항 급행');const r=api.resolveTaiwanChoice(express,l);assert.deepEqual(Array.from(r.service.stops,id=>r.route.stations.find(s=>s.id===id).officialCode),['A1','A3','A8','A12','A13']);assert.equal(choices.filter(x=>x.patternName.ko==='공항행 보통').length,2)});
+test('Taoyuan weekday peak commuter is northbound only and skips prompts over retained tracks',()=>{
+ const airport=publicLines.find(line=>line.id==='tw-tymc-airport');
+ const choices=api.taiwanOperatingChoices(airport);
+ const peak=choices.filter(choice=>choice.patternName.ko==='평일 아침 통과 보통');
+ assert.equal(peak.length,1);
+ assert.equal(peak[0].direction,'reverse');
+ assert.equal(choices[0].patternName.ko,'보통');
+ const selected=api.resolveTaiwanChoice(peak[0],airport);
+ const run=api.resolvePlayableRoute(selected.route,selected);
+ assert.deepEqual(Array.from(run.stations,station=>station.officialCode),['A21','A18','A13','A12','A9','A8','A7','A6','A5','A4','A3','A2','A1']);
+ assert.equal(run.canonicalStations.length,21);
+ assert.equal(run.geometry.length,selected.route.geometry.length);
+ assert(!run.fallbackGeometry);
+});
 test('Circular light rail retains its closing curve and one arrival-only boundary',()=>{const l=publicLines.find(l=>l.id==='tw-krtc-circular-light-rail');assert(l.loopClosingGeometry.length>2);for(const choice of api.taiwanOperatingChoices(l)){const r=api.resolveTaiwanChoice(choice,l),p=api.resolvePlayableRoute(r.route,{service:r.service});assert.equal(p.stations.length,39);assert.equal(p.stations.filter(s=>s.loopArrivalOnly).length,1);assert.equal(new Set(p.stations.filter(s=>!s.loopArrivalOnly).map(s=>s.zh)).size,38);assert.deepEqual(Array.from(p.geometry[0]),Array.from(p.geometry.at(-1)));assert(p.segments.at(-1).geometry.length>2)}});
 test('same-named platforms retain coordinates and unapproved transfers cannot merge',()=>{const same=lines.flatMap(l=>l.stations).filter(s=>s.zh==='板橋');assert(same.length>=3);assert(new Set(same.map(s=>s.latitude+','+s.longitude)).size>=3);assert.equal(new Set(same.map(s=>s.id)).size,same.length);const far=lines.flatMap(l=>l.stations).filter(s=>s.zh==='頂埔');assert(new Set(far.map(s=>s.latitude.toFixed(2))).size>=2);assert(network.transferGroups.length>5)});
 test('Alishan retains thousands of original mountain vertices and no yard tracks as cards',()=>{const l=publicLines.find(l=>l.id==='tw-afr-main');assert(l.geometry.length>5000);assert.equal(publicLines.filter(l=>l.operatorId==='tw-afr').length,4);assert(!publicLines.some(l=>l.id.includes('YARD')));assert(api.taiwanOperatingChoices(l).some(c=>c.destinationNames.ko==='아리산'))});
