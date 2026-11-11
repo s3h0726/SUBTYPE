@@ -36,9 +36,9 @@ The pattern generator slices verified **existing forward train track sequences**
 
 ## UK 56-route audit register
 
-The CSV [UK_ROUTE_AUDIT_56.csv](UK_ROUTE_AUDIT_56.csv) lists every currently registered UK route: **8 operator-reviewed/partially compared route cards** and **48 still requiring operator-timetable comparison**. This is a conservative status matrix, not a claim that all 56 routes were schedule verified.
+The CSV [UK_ROUTE_AUDIT_56.csv](UK_ROUTE_AUDIT_56.csv) lists every currently registered UK route: **9 operator-reviewed/partially compared route cards** and **47 still requiring operator-timetable comparison**. This is a conservative status matrix, not a claim that all 56 routes were schedule verified.
 
-TfL's [current 17 May–12 December 2026 Elizabeth line timetable](https://content.tfl.gov.uk/elizabeth-line-17-may-12-december-2026.pdf) was located and scoped. Exact per-train stopping patterns and weekdays/holiday exceptions remain unverified; 19 existing Elizabeth patterns remain unchanged.
+TfL's [current 17 May–12 December 2026 Elizabeth line timetable](https://content.tfl.gov.uk/elizabeth-line-17-may-12-december-2026.pdf) was located and scoped. One published weekday train's complete 14-stop timing column now matches game direction `uk-osm-5793620`. The other 18 directions and all remaining individual trains/holiday exceptions are not yet verified; the 19 original Elizabeth pattern identities remain unchanged.
 
 ## Confirmed but not yet implemented: Heathrow Express return direction
 
