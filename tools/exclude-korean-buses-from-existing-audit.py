@@ -8,6 +8,7 @@ The original ALL_ROUTES_INVENTORY.csv remains untouched as baseline evidence.
 import csv
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -16,6 +17,7 @@ from timetable_audit.scope import in_audit_scope
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "docs" / "timetable-audit"
 COUNTRIES = ("JP", "KR", "HK", "TW", "TH", "UK")
+csv.field_size_limit(sys.maxsize)  # Generated inventories embed large serialized route patterns.
 
 
 def read_csv(name):
