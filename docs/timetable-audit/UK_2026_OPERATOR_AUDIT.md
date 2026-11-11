@@ -12,6 +12,7 @@ This report documents source evidence and actual implementation, not complete sc
 | Edinburgh Trams | 2 normal directions, 23 stops | https://edinburghtrams.com/plan-journey/timetables | Early 04:26 Gyle Centre → Newhaven trip; daytime full-length runs also present | Add one early service |
 | Glasgow Subway | Inner and Outer loop, 15 stops | https://www.spt.co.uk/travel-with-spt/subway/maps-stations/ and https://www.spt.co.uk/subway/subway-timetables/ | Current game patterns match official 15-stop clockwise Outer and anticlockwise Inner circles; published Sunday opening differs from Mon–Sat | No added patterns; timetable reviewed (not full day-by-day verification) |
 | Elizabeth line | 19 patterns | https://tfl.gov.uk/plan-a-journey/timetables/elizabeth-line-timetables | TfL official Heathrow branch: 6 trains/h, 4 T4 and 2 T5. Precise train-by-train calendar and all 19 game patterns not yet compared | Retain partial status; do not invent short turns |
+| Heathrow Express | 1 registered direction | https://www.heathrowexpress.com/timetable | The operator publishes regular Paddington ↔ Heathrow T5 in both directions; game has Heathrow T5 → Paddington only | **Confirmed missing Paddington → Heathrow direction**; do not reverse unverified one-way OSM track |
 | Tyne and Wear Metro Green | 2 directions | https://www-azure.nexus.org.uk/metro/timetables-and-stations/airport/timetable | Airport departure board confirms scheduled South Hylton trains | Terminal verified only; train-specific calls pending |
 | South Yorkshire Supertram Yellow | 2 directions | https://www.travelsouthyorkshire.com/en-gb/timetabledetails/1996d28e-8689-453a-8426-328cde2a1f4c | Official route endpoints Middlewood and Meadowhall Interchange match game; October 24–31 2026 temporary changes are historical as of this audit date | Normal route kept; dates of diversions tracked |
 
@@ -35,9 +36,13 @@ The pattern generator slices verified **existing forward train track sequences**
 
 ## UK 56-route audit register
 
-The CSV [UK_ROUTE_AUDIT_56.csv](UK_ROUTE_AUDIT_56.csv) lists every currently registered UK route: **7 operator-reviewed/partially compared route cards** and **49 still requiring operator-timetable comparison**. This is a conservative status matrix, not a claim that all 56 routes were schedule verified.
+The CSV [UK_ROUTE_AUDIT_56.csv](UK_ROUTE_AUDIT_56.csv) lists every currently registered UK route: **8 operator-reviewed/partially compared route cards** and **48 still requiring operator-timetable comparison**. This is a conservative status matrix, not a claim that all 56 routes were schedule verified.
 
 TfL's [current 17 May–12 December 2026 Elizabeth line timetable](https://content.tfl.gov.uk/elizabeth-line-17-may-12-december-2026.pdf) was located and scoped. Exact per-train stopping patterns and weekdays/holiday exceptions remain unverified; 19 existing Elizabeth patterns remain unchanged.
+
+## Confirmed but not yet implemented: Heathrow Express return direction
+
+Heathrow Express official timetable states trains operate **London Paddington → Heathrow Terminals 2 & 3 → Heathrow Terminal 5**, as well as **Heathrow Terminal 5 → Heathrow Terminals 2 & 3 → London Paddington**. The current SUBTYPE `uk-heathrow-express` route has only `uk-osm-9917743` for the second of those directions. An actual Paddington→Heathrow track relation/platform alignment must be sourced and tested before release. Creating a purely reversed geometry without source-edge proof would violate the existing UK railway integrity rules.
 
 ## Reproducibility and release rules
 

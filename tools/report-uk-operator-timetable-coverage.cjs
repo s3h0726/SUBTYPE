@@ -13,12 +13,17 @@ const statuses={
  'uk-glasgow-subway':['OFFICIAL_DIRECTION_SEQUENCE_MATCH',glasgow,'15 stations and both clockwise/anticlockwise loops match SPT, first/last sample checked'],
  'uk-elizabeth':['PARTIAL_SOURCE_REVIEW','https://content.tfl.gov.uk/elizabeth-line-17-may-12-december-2026.pdf','2026-05-17 to 2026-12-12 TfL schedule located; all 19 stored patterns require train/day-specific reconciliation'],
  'uk-tyne-wear-green':['PARTIAL_TERMINUS_CHECK','https://www-azure.nexus.org.uk/metro/timetables-and-stations/airport/timetable','Airport platform confirms trains toward South Hylton; intermediate trips not audited'],
- 'uk-sheffield-yellow':['PARTIAL_TERMINUS_CHECK','https://www.travelsouthyorkshire.com/en-gb/timetabledetails/1996d28e-8689-453a-8426-328cde2a1f4c','Meadowhall Interchange to Middlewood normal terminals confirmed; past October temporary diversion separate']
+ 'uk-sheffield-yellow':['PARTIAL_TERMINUS_CHECK','https://www.travelsouthyorkshire.com/en-gb/timetabledetails/1996d28e-8689-453a-8426-328cde2a1f4c','Meadowhall Interchange to Middlewood normal terminals confirmed; past October temporary diversion separate'],
+ 'uk-heathrow-express':['MISSING_REVERSE_DIRECTION_CONFIRMED','https://www.heathrowexpress.com/timetable','Official operator runs Paddington to Heathrow T5 and Heathrow T5 to Paddington every 15 minutes; game publishes only Heathrow T5 to Paddington. Reverse real track geometry must be verified before adding.']
 };
 const esc=x=>'"'+String(x??'').replaceAll('"','""')+'"';
 const fields=['country','route_id','operator_id','line_name','registered_directions','audit_status','checked_official_source','finding','next_source'];
 const csv=[fields.join(',')];
 assert.equal(index.routes.length,56);
+const heathrow=read('data/uk/generated/routes/uk-heathrow-express.json');
+const heathrowNames=new Map(heathrow.stationCatalog.map(s=>[s.id,s.en]));
+assert.equal(heathrow.patterns.length,1,'Heathrow Express direction count changed; reassess the official omission');
+assert.deepEqual(heathrow.patterns[0].stationIds.map(x=>heathrowNames.get(x)),['Heathrow Terminal 5','Heathrow Terminals 2 & 3','London Paddington']);
 let completed=0;
 for(const entry of index.routes){
  const result=statuses[entry.id];
