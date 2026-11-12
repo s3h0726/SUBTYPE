@@ -7,7 +7,8 @@ const write=(p,d)=>fs.writeFileSync(path.join(dir,p),JSON.stringify(d)+'\n');
 const names=Object.fromEntries(['expansion-station-names-ko.txt','station-names-ko.txt','regional-station-names-ko.txt'].flatMap(f=>fs.readFileSync(path.join(dir,f),'utf8').split(/\r?\n/).filter(s=>s&&!s.startsWith('#')).map(s=>s.split('='))));
 const nameFileByEnglish=Object.fromEntries(['expansion-station-names-ko.txt','station-names-ko.txt','regional-station-names-ko.txt'].flatMap(file=>fs.readFileSync(path.join(dir,file),'utf8').split(/\r?\n/).filter(s=>s&&!s.startsWith('#')).map(s=>[s.split('=')[0],file])));
 const index=read('generated/index.json'),pool=read('generated/geometry.json'),evidence=read('source/regional/release-evidence.json'),validation=read('generated/validation.json'),regionalResults=[];
-for(const network of evidence.networks){
+const national=read('source/national/expansion-ii.json');
+for(const network of [...evidence.networks,...national.networks]){
  const routeId='uk-'+network.id,operatorId=network.operatorId||routeId,operator={ko:network.operatorKo,en:network.operatorEn,ja:network.operatorEn},stationMap=new Map(),patterns=[];
  const specs=network.patterns||network.relations.map((relationId,n)=>({relationId,expectedStops:network.expectedStops[n],expectedCalls:network.expectedCalls?.[n]}));
  for(const spec of specs){
