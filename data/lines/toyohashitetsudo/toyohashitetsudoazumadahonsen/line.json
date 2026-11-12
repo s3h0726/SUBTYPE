@@ -7,8 +7,8 @@
   "names": {
     "ja": "豊橋鉄道東田本線",
     "kana": "とよはしてつどうあずまだほんせん",
-    "ko": "토요하시철도아즈마다본선",
-    "en": "ToyohashitetsudōAzumadahonsen"
+    "ko": "아즈마다 본선",
+    "en": "Toyohashi Railway Azumada Main Line"
   },
   "code": "",
   "color": "#BE2D36",
@@ -30,11 +30,58 @@
   },
   "loop": false,
   "stationSignTemplate": "toyohashitetsudo",
-  "services": [],
-  "throughServiceIds": [],
+  "services": [
+    {
+      "id": "toyotetsu-azumada-akaiwaguchi-local",
+      "names": {
+        "ja": "普通 駅前〜赤岩口",
+        "ko": "각역정차 · 에키마에~아카이와구치",
+        "en": "Ekimae–Akaiwaguchi Local"
+      },
+      "stopPattern": [
+        "station-1141301",
+        "station-9952102",
+        "station-9952103",
+        "station-9952104",
+        "station-9952105",
+        "station-9952106",
+        "station-9952107",
+        "station-9952108",
+        "station-9952109",
+        "station-9952110",
+        "station-9952111",
+        "station-9952112",
+        "station-9952113"
+      ]
+    },
+    {
+      "id": "toyotetsu-azumada-keirinjo-local",
+      "names": {
+        "ja": "普通 駅前〜競輪場前",
+        "ko": "각역정차 · 에키마에~케이린조마에",
+        "en": "Ekimae–Keirinjo-mae Local"
+      },
+      "stopPattern": [
+        "station-1141301",
+        "station-9952102",
+        "station-9952103",
+        "station-9952104",
+        "station-9952105",
+        "station-9952106",
+        "station-9952107",
+        "station-9952108",
+        "station-9952109",
+        "station-9952110",
+        "station-9952111"
+      ]
+    }
+  ],
+  "throughServiceIds": [
+    "toyotetsu-azumada-park-local"
+  ],
   "sources": {
-    "official": "",
-    "korean": "",
+    "official": "https://www.toyotetsu.com/shinaisen/timetable01.html",
+    "korean": "https://www.toyotetsu.com/shinaisen/timetable01.html",
     "geometry": "MLIT-N02-2025",
     "koreanName": {
       "family": "namuwiki",
@@ -49,11 +96,12 @@
       "verifiedDate": null,
       "status": "REVIEW_REQUIRED",
       "canonicalPolicy": "namuwiki"
-    }
+    },
+    "timetable": "https://www.toyotetsu.com/shinaisen/timetable12.html"
   },
   "legacy": {
     "origin": "nationwide",
-    "coverage": "nationwide-source-line",
+    "coverage": "verified-actual-tram-track",
     "dataKind": "physicalRoute"
   },
   "officialKoSource": null
