@@ -1,20 +1,21 @@
 {
   "schemaVersion": 1,
   "description": "Line-specific station names at interchanges sharing a canonical station ID. Keep shared ID/track coordinates independent.",
-  "sources": [
-    "https://subway.osakametro.co.jp/station_guide/index.php",
-    "https://www.hankyu.co.jp/station/umeda.html",
-    "https://www.kintetsu.co.jp/foreign/english/about/station/yard/nagoya.html",
-    "https://www.hankyu.co.jp/en/station/transit/index.html",
-    "https://www.city.sapporo.jp/st/time/",
-    "https://www.city.sendai.jp/kokyo/kurashi/machi/kotsu/annai/noritsugi.html",
-    "https://www.hiroden.co.jp/train/route-guide/stop-guide/m01.html",
-    "https://www.chitetsu.co.jp/?page_id=18873",
-    "https://www.hokutetsu.co.jp/railway/asanogawasen",
-    "https://www.city.hakodate.hokkaido.jp/docs/2014012100939/",
-    "https://okayama-kido.co.jp/tram/tram-status-info/post-2575/",
-    "https://www.sanyo-railway.co.jp/railway/station/himeji.html"
-  ],
+  "sources": {
+    "0": "https://subway.osakametro.co.jp/station_guide/index.php",
+    "1": "https://www.hankyu.co.jp/station/umeda.html",
+    "2": "https://www.kintetsu.co.jp/foreign/english/about/station/yard/nagoya.html",
+    "3": "https://www.hankyu.co.jp/en/station/transit/index.html",
+    "4": "https://www.city.sapporo.jp/st/time/",
+    "5": "https://www.city.sendai.jp/kokyo/kurashi/machi/kotsu/annai/noritsugi.html",
+    "6": "https://www.hiroden.co.jp/train/route-guide/stop-guide/m01.html",
+    "7": "https://www.chitetsu.co.jp/?page_id=18873",
+    "8": "https://www.hokutetsu.co.jp/railway/asanogawasen",
+    "9": "https://www.city.hakodate.hokkaido.jp/docs/2014012100939/",
+    "10": "https://okayama-kido.co.jp/tram/tram-status-info/post-2575/",
+    "11": "https://www.sanyo-railway.co.jp/railway/station/himeji.html",
+    "toyotetsuAzumada": "https://www.toyotetsu.com/shinaisen/timetable01.html"
+  },
   "routes": {
     "line-99618": {
       "station-1160214": {
@@ -450,6 +451,93 @@
         "en": "Gunchuko",
         "namuwikiVerified": true,
         "namuwikiUrl": "https://namu.moe/w/이요%20철도%20군츄선"
+      }
+    },
+    "line-99521": {
+      "station-1141301": {
+        "ja": "駅前",
+        "kana": "えきまえ",
+        "ko": "에키마에",
+        "en": "Ekimae",
+        "transferStationId": "station-1141301"
+      },
+      "station-9952102": {
+        "ja": "駅前大通",
+        "kana": "えきまえおおどおり",
+        "ko": "에키마에오도리",
+        "en": "Ekimae-odori"
+      },
+      "station-9952103": {
+        "ja": "新川",
+        "kana": "しんかわ",
+        "ko": "신카와",
+        "en": "Shinkawa"
+      },
+      "station-9952104": {
+        "ja": "札木",
+        "kana": "ふだぎ",
+        "ko": "후다기",
+        "en": "Fudagi"
+      },
+      "station-9952105": {
+        "ja": "市役所前",
+        "kana": "しやくしょまえ",
+        "ko": "시야쿠쇼마에",
+        "en": "Shiyakusho-mae"
+      },
+      "station-9952106": {
+        "ja": "豊橋公園前",
+        "kana": "とよはしこうえんまえ",
+        "ko": "토요하시코엔마에",
+        "en": "Toyohashi-koen-mae"
+      },
+      "station-9952107": {
+        "ja": "東八町",
+        "kana": "ひがしはっちょう",
+        "ko": "히가시핫초",
+        "en": "Higashi-hatcho"
+      },
+      "station-9952108": {
+        "ja": "前畑",
+        "kana": "まえはた",
+        "ko": "마에하타",
+        "en": "Maehata"
+      },
+      "station-9952109": {
+        "ja": "東田坂上",
+        "kana": "あずまださかうえ",
+        "ko": "아즈마다사카우에",
+        "en": "Azumada-sakaue"
+      },
+      "station-9952110": {
+        "ja": "東田",
+        "kana": "あずまだ",
+        "ko": "아즈마다",
+        "en": "Azumada"
+      },
+      "station-9952111": {
+        "ja": "競輪場前",
+        "kana": "けいりんじょうまえ",
+        "ko": "케이린조마에",
+        "en": "Keirinjo-mae"
+      },
+      "station-9952112": {
+        "ja": "井原",
+        "kana": "いはら",
+        "ko": "이하라",
+        "en": "Ihara"
+      },
+      "station-9952113": {
+        "ja": "赤岩口",
+        "kana": "あかいわぐち",
+        "ko": "아카이와구치",
+        "en": "Akaiwaguchi"
+      },
+      "station-9952202": {
+        "ja": "運動公園前",
+        "kana": "うんどうこうえんまえ",
+        "ko": "운도코엔마에",
+        "en": "Undokoen-mae"
       }
     }
   }
