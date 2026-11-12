@@ -122,7 +122,7 @@ body[data-current-screen="home"]{overflow:hidden}
   padding:8px 16px;
 }
 #screen-home.world-home .world-map-plane{
-  width:min(100%,calc((100dvh - 340px) * 2));
+  width:min(100%,max(260px,calc((100dvh - 340px) * 2)));
   aspect-ratio:2 / 1;
   position:relative;
   flex:0 1 auto;
@@ -349,6 +349,9 @@ body[data-current-screen="home"]{overflow:hidden}
   display:flex;
   flex:0 0 auto;
   min-height:0;
+  max-height:30px;
+  overflow:hidden;
+  flex-wrap:nowrap;
   justify-content:flex-start;
   gap:6px;
   margin:0;
@@ -379,7 +382,7 @@ body[data-current-screen="home"]{overflow:hidden}
     grid-template-columns:minmax(0,1fr);
     grid-template-rows:minmax(0, .83fr) minmax(0, 1.17fr);
   }
-  #screen-home.world-home .world-map-plane{width:min(100%,calc((100dvh - 410px) * 2))}
+  #screen-home.world-home .world-map-plane{width:min(100%,max(260px,calc((100dvh - 410px) * 2)))}
   #screen-home.world-home .country-board.world-country-panel{padding:11px}
   #screen-home.world-home .country-switch.country-card-grid{
     display:grid;
@@ -419,7 +422,7 @@ body[data-current-screen="home"]{overflow:hidden}
   #screen-home.world-home .world-map-breadcrumb{display:none}
   #screen-home.world-home .world-map-heading small{font-size:9px}
   #screen-home.world-home .world-map-viewport{padding:0 4px}
-  #screen-home.world-home .world-map-plane{width:min(100%,calc((100dvh - 500px) * 2))}
+  #screen-home.world-home .world-map-plane{width:min(100%,max(220px,calc((100dvh - 500px) * 2)))}
   #screen-home.world-home .world-map-coordinates{left:9px;bottom:7px;font-size:8px}
   #screen-home.world-home .world-map-coordinates span{display:none}
   #screen-home.world-home .world-map-footer{min-height:26px;padding:6px 10px;font-size:9px}
@@ -466,3 +469,18 @@ body[data-current-screen="home"]{overflow:hidden}
   #screen-home.world-home .world-map-marker .world-pin-label{transition:none}
 }
 body.reduce-motion #screen-home.world-home .world-map-marker{transition:none}
+
+/* Keep crowded East Asian dots individually reachable on narrow viewports. */
+@media(max-width:620px){
+  #screen-home.world-home .world-map-marker[data-map-country="hk"]{margin-left:-7px;margin-top:9px}
+  #screen-home.world-home .world-map-marker[data-map-country="tw"]{margin-left:8px;margin-top:-8px}
+  #screen-home.world-home .world-map-marker[data-map-country="kr"]{margin-left:-7px;margin-top:-9px}
+  #screen-home.world-home .world-map-marker[data-map-country="jp"]{margin-left:8px;margin-top:-8px}
+  #screen-home.world-home .world-map-marker .world-pin-label{font-size:10px;padding:4px 6px}
+}
+/* A screen physically shorter than the controls gets an accessible fallback. */
+@media(max-height:490px){
+  body[data-current-screen="home"]{overflow:auto}
+  #screen-home.world-home{height:auto;min-height:490px;overflow:visible}
+  #screen-home.world-home .home-stage{min-height:410px}
+}
