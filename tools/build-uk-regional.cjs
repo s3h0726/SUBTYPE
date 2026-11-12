@@ -7,7 +7,8 @@ const write=(p,d)=>fs.writeFileSync(path.join(dir,p),JSON.stringify(d)+'\n');
 const names=Object.fromEntries(['expansion-station-names-ko.txt','station-names-ko.txt','regional-station-names-ko.txt'].flatMap(f=>fs.readFileSync(path.join(dir,f),'utf8').split(/\r?\n/).filter(s=>s&&!s.startsWith('#')).map(s=>s.split('='))));
 const nameFileByEnglish=Object.fromEntries(['expansion-station-names-ko.txt','station-names-ko.txt','regional-station-names-ko.txt'].flatMap(file=>fs.readFileSync(path.join(dir,file),'utf8').split(/\r?\n/).filter(s=>s&&!s.startsWith('#')).map(s=>[s.split('=')[0],file])));
 const index=read('generated/index.json'),pool=read('generated/geometry.json'),evidence=read('source/regional/release-evidence.json'),validation=read('generated/validation.json'),regionalResults=[];
-for(const network of evidence.networks){
+const national=read('source/national/expansion-ii.json');
+for(const network of [...evidence.networks,...national.networks]){
  const routeId='uk-'+network.id,operatorId=network.operatorId||routeId,operator={ko:network.operatorKo,en:network.operatorEn,ja:network.operatorEn},stationMap=new Map(),patterns=[];
  const specs=network.patterns||network.relations.map((relationId,n)=>({relationId,expectedStops:network.expectedStops[n],expectedCalls:network.expectedCalls?.[n]}));
  for(const spec of specs){
@@ -16,7 +17,15 @@ for(const network of evidence.networks){
    const graphElements=spec.graphRelations?[...new Map(spec.graphRelations.flatMap(id=>read('source/osm/'+id+'.json').elements).map(e=>[e.type+e.id,e])).values()]:d.elements;
    const graphRelations=spec.graphRelations?spec.graphRelations.map(id=>graphElements.find(e=>e.type==='relation'&&e.id===id)):[r];
    const assembled=spec.reviewedGraph?require('./lib/uk-reviewed-graph.cjs').assembleReviewedGraph(graphRelations,graphElements,spec.calls,spec.aliases):spec.calls?require('./lib/uk-osm.cjs').assembleCalls(r,d.elements,spec.calls):assemble(r,d.elements,{reviewedTrackStops:network.reviewedTrackStops});
-   const {geometry,refs}=assembled,stops=assembled.stops.slice(spec.fromIndex||0,spec.toIndex===undefined?undefined:spec.toIndex+1),aligned=assembled.aligned.slice(spec.fromIndex||0,spec.toIndex===undefined?undefined:spec.toIndex+1);
+   const {geometry,refs}=assembled;
+   const stopSlice=assembled.stops.slice(spec.fromIndex||0,spec.toIndex===undefined?undefined:spec.toIndex+1);
+   const stops=stopSlice.map(stop=>{
+    const reviewedName=spec.unnamedStops?.[stop.id];
+    if(!reviewedName)return stop;
+    if(stop.tags?.name&&stop.tags.name!==reviewedName)throw Error('source-stop-name-changed:'+stop.id);
+    return {...stop,tags:{...stop.tags,name:reviewedName}};
+   });
+   const aligned=assembled.aligned.slice(spec.fromIndex||0,spec.toIndex===undefined?undefined:spec.toIndex+1);
    if(stops.length!==spec.expectedStops)throw Error('reviewed-stop-count-mismatch');
    if(spec.expectedCalls&&JSON.stringify(stops.map(s=>s.tags.name))!==JSON.stringify(spec.expectedCalls))throw Error('reviewed-stop-sequence-mismatch');
    const stationIds=stops.map(s=>{const en=s.tags.name,ko=names[en];if(!ko)throw Error('missing-Korean-name:'+en);const key='uk-'+(network.operatorId||network.id)+'-'+crypto.createHash('sha256').update(en.toLowerCase().replace(/[^a-z0-9]/g,'')).digest('hex').slice(0,12);if(!stationMap.has(key))stationMap.set(key,{id:key,stationMasterId:key,physicalStationId:key,countryId:'uk',ja:en,en,romaji:en,ko,kana:'',latitude:s.lat,longitude:s.lon,koVerified:false,koSource:'SUBTYPE editorial Korean dictionary (reviewable)',koSourceUrl:'data/uk/'+nameFileByEnglish[en],osmNodeId:s.id});return key});
@@ -27,7 +36,7 @@ for(const network of evidence.networks){
     pool.segments[key]??={geometry:points,nodeIds,stationPairs:[],sourceRelationId:id};if(!pool.segments[key].stationPairs.includes(pair))pool.segments[key].stationPairs.push(pair);segmentIds.push(key);
    }
    const first=stationMap.get(stationIds[0]),last=stationMap.get(stationIds.at(-1)),patternId='uk-osm-'+id+(spec.idSuffix?'-'+spec.idSuffix:''),familyId='uk-pattern-'+crypto.createHash('sha256').update([stationIds.join(','),stationIds.slice().reverse().join(',')].sort()[0]).digest('hex').slice(0,16);
-   patterns.push({id:patternId,stationIds,segmentIds,sourceRelationId:id,sourceRelationIds:spec.graphRelations||[id],timetablePage:spec.timetablePage,timetableColumn:spec.timetableColumn,showStoppingPattern:!!spec.timetablePage,familyId,nameKo:network.id==='glasgow-subway'?(id===225658?'외선순환 · 시계방향':'내선순환 · 반시계방향'):first.ko+' → '+last.ko,viaStationId:spec.via?stationIds[stops.findIndex(s=>s.tags.name===spec.via)]:network.id==='blackpool-tramway'&&stops.some(s=>s.tags.name==='North Station')?stationIds[stops.findIndex(s=>s.tags.name==='North Station')]:spec.calls?.includes('MediaCityUK')&&![first.en,last.en].includes('MediaCityUK')?stationIds[spec.calls.indexOf('MediaCityUK')]:undefined,nameEn:spec.calls?first.en+' → '+last.en:r.tags.name,sourceName:r.tags.name,validation:{reviewedRegionalSequence:true,officialSequence:false,trackContinuity:true,stationIdentity:true,maxStationOffsetKm:assembled.maxStationOffsetKm||0},evidence:{officialUrl:network.officialUrl,osmUrl:'https://www.openstreetmap.org/relation/'+id,osmVersion:r.version,osmTimestamp:r.timestamp,checkedAt:evidence.checkedAt}});
+   patterns.push({id:patternId,stationIds,segmentIds,sourceRelationId:id,sourceRelationIds:spec.graphRelations||[id],timetablePage:spec.timetablePage,timetableColumn:spec.timetableColumn,showStoppingPattern:!!(spec.timetablePage||spec.showStoppingPattern),familyId,nameKo:network.id==='glasgow-subway'?(id===225658?'외선순환 · 시계방향':'내선순환 · 반시계방향'):first.ko+' → '+last.ko,viaStationId:spec.via?stationIds[stops.findIndex(s=>s.tags.name===spec.via)]:network.id==='blackpool-tramway'&&stops.some(s=>s.tags.name==='North Station')?stationIds[stops.findIndex(s=>s.tags.name==='North Station')]:spec.calls?.includes('MediaCityUK')&&![first.en,last.en].includes('MediaCityUK')?stationIds[spec.calls.indexOf('MediaCityUK')]:undefined,nameEn:spec.calls?first.en+' → '+last.en:r.tags.name,sourceName:r.tags.name,validation:{reviewedRegionalSequence:true,officialSequence:false,trackContinuity:true,stationIdentity:true,maxStationOffsetKm:assembled.maxStationOffsetKm||0},evidence:{officialUrl:spec.officialUrl||network.officialUrl,osmUrl:'https://www.openstreetmap.org/relation/'+id,osmVersion:r.version,osmTimestamp:r.timestamp,checkedAt:network.checkedAt||evidence.checkedAt}});
    regionalResults.push({lineId:routeId,relationId:id,status:'PASS',stops:stops.length});
   }catch(error){regionalResults.push({lineId:routeId,relationId:id,status:'BLOCKED',reason:error.message})}
  }

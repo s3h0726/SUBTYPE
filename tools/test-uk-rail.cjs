@@ -2,6 +2,16 @@ const zlib=require('zlib');
 const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),{pathToFileURL}=require('url');
 const root=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(root,p))),index=read('data/uk/generated/index.json'),segments=read('data/uk/generated/geometry.json').segments;
 const baseline=JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(root,'data/uk/source/released-baseline-20261108.json.gz'))));
+const expansionBaseline=read('data/uk/source/expansion-ii-baseline.json');
+const hashPattern=p=>require('node:crypto').createHash('sha256').update(JSON.stringify([p.familyId,p.stationIds,p.segmentIds])).digest('hex');
+for(const old of expansionBaseline.routes){
+ const current=read('data/uk/generated/routes/'+old.id+'.json');
+ assert.equal(current.operatorId,old.operatorId);
+ const stations=new Set(current.stationCatalog.map(s=>s.id));
+ const patterns=new Map(current.patterns.map(p=>[p.id,p]));
+ for(const station of old.stations)assert(stations.has(station),'published station removed: '+station);
+ for(const [id,hash] of old.patterns){assert(patterns.has(id),'published pattern removed: '+id);assert.equal(hashPattern(patterns.get(id)),hash,id)}
+}
 for(const old of baseline.routes){const current=read('data/uk/generated/routes/'+old.id+'.json');for(const p of old.patterns){const preserved=current.patterns.find(q=>q.id===p.id);assert(preserved,'published pattern removed: '+p.id);assert.deepEqual(preserved.stationIds,p.stationIds);assert.deepEqual(preserved.segmentIds,p.segmentIds)}}
 if(index.routes.every(r=>r.geometryFiles)){
  const files=[...new Set(index.routes.flatMap(r=>r.geometryFiles))],stored=new Set();
