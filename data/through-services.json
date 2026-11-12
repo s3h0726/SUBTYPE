@@ -2878,6 +2878,63 @@
         "line-99601",
         "line-99602"
       ]
+    },
+    {
+      "id": "toyotetsu-azumada-park-local",
+      "nameJa": "普通 駅前〜運動公園前",
+      "nameKo": "각역정차 · 에키마에 ↔ 운도코엔마에",
+      "nameEn": "Ekimae–Undokoen-mae Local",
+      "participatingOperatorIds": [
+        "toyohashitetsudo"
+      ],
+      "participatingLineIds": [
+        "line-99521",
+        "line-toyotetsu-azumada-park-branch"
+      ],
+      "routeIds": [
+        "line-99521",
+        "line-toyotetsu-azumada-park-branch"
+      ],
+      "boundaryStations": [
+        "井原"
+      ],
+      "allowedDestinations": [
+        "駅前",
+        "運動公園前"
+      ],
+      "boundarySnapToleranceKm": 0.02,
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99521",
+            "direction": "forward",
+            "startStationJa": "駅前",
+            "endStationJa": "井原"
+          },
+          {
+            "routeId": "line-toyotetsu-azumada-park-branch",
+            "direction": "forward",
+            "startStationJa": "井原",
+            "endStationJa": "運動公園前"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-toyotetsu-azumada-park-branch",
+            "direction": "reverse",
+            "startStationJa": "運動公園前",
+            "endStationJa": "井原"
+          },
+          {
+            "routeId": "line-99521",
+            "direction": "reverse",
+            "startStationJa": "井原",
+            "endStationJa": "駅前"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.toyotetsu.com/shinaisen/timetable12.html",
+      "verifiedDate": "2026-11-13"
     }
   ],
   "inventoryScope": "Tokyo Metro and Toei current reciprocal through services",
