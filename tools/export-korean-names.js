@@ -35,7 +35,7 @@ const taiwanFile=path.join(root,'data/tw/generated/network.json');
 const taiwan=fs.existsSync(taiwanFile)?load(taiwanFile):{operators:[],lines:[]};
 operators.push(...taiwan.operators.map(meta=>({file:taiwanFile,meta})));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
-  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103' && x.meta.id!=='line-99809' && x.meta.id!=='line-99601');
+  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103' && x.meta.id!=='line-99809' && x.meta.id!=='line-99601' && x.meta.id!=='line-toyotetsu-azumada-park-branch');
 
 lines.push(...taiwan.lines.map(route=>({file:taiwanFile,meta:{id:route.id,operatorId:route.operatorId,names:route.line,color:route.lineColor,visibility:route.visibility}})));
 // Ohmi Railway's physical Main Line is displayed as three nickname sections.
