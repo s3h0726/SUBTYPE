@@ -35,9 +35,32 @@ const taiwanFile=path.join(root,'data/tw/generated/network.json');
 const taiwan=fs.existsSync(taiwanFile)?load(taiwanFile):{operators:[],lines:[]};
 operators.push(...taiwan.operators.map(meta=>({file:taiwanFile,meta})));
 const lines=walk(path.join(root,'data/lines'),'line.json').map(file=>({file,meta:load(file)}))
-  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103' && x.meta.id!=='line-99809');
+  .filter(x=>x.meta.legacy?.retiredDuplicate!==true && x.meta.visibility!=='hidden' && x.meta.id!=='line-30005' && x.meta.id!=='line-11103' && x.meta.id!=='line-99809' && x.meta.id!=='line-99601');
 
 lines.push(...taiwan.lines.map(route=>({file:taiwanFile,meta:{id:route.id,operatorId:route.operatorId,names:route.line,color:route.lineColor,visibility:route.visibility}})));
+// Ohmi Railway's physical Main Line is displayed as three nickname sections.
+// Export exactly the public nicknames (not the hidden unified line-99601);
+// preserve the separate Taga and Yokaichi branch workspaces unchanged.
+const ohmiNicknameIds=[
+ 'line-ohmi-hikone-taga','line-ohmi-koto-omiji','line-ohmi-minakuchi-gamono'
+];
+const ohmiNicknameSources=new Map();
+for(const id of ohmiNicknameIds){
+ const file=path.join(root,'data/generated/routes',id+'.json');
+ if(!fs.existsSync(file))throw Error('Missing playable Ohmi nickname route: '+id);
+ const route=load(file).route;
+ if(route?.id!==id||route.operatorId!=='omitetsudo'||route.stations?.length<2||
+   route.geometryReady!==true||!route.stations.every(station=>station.id&&station.ko))
+   throw Error('Invalid Ohmi nickname route: '+id);
+ if(lines.some(x=>x.meta.id===id))throw Error('Duplicate Ohmi nickname in name editor: '+id);
+ ohmiNicknameSources.set(id,{file,route});
+ lines.push({file,meta:{
+   id,operatorId:route.operatorId,
+   names:{ja:route.line.ja,ko:route.line.ko,en:route.line.en},
+   color:route.lineColor,visibility:'public'
+ }});
+}
+
 // The Disney route and operator are authored in the runtime source rather than
 // canonical workspaces. Export the actual four-stop loop plus the return stop.
 if(!lines.some(x=>x.meta.id===disney.id)){
@@ -113,6 +136,7 @@ const byId=new Map();
 if(fs.existsSync(generatedDir))for(const name of fs.readdirSync(generatedDir).filter(n=>n.endsWith('.json'))){try{const route=load(path.join(generatedDir,name)).route; if(route?.id)byId.set(route.id,route)}catch(e){console.warn('skipped',name,e.message)}}
 for(const [id,{route}] of publishedSectionRoutes)byId.set(id,route);
 for(const id of matsuyamaLoopIds)byId.set(id,load(path.join(generatedDir,id+'.json')).route);
+for(const [id,{route}] of ohmiNicknameSources)byId.set(id,route);
 for(const route of taiwan.lines)byId.set(route.id,route);
 byId.set(disney.id,disney);
 const stationRows=[];const missing=[];
