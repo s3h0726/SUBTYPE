@@ -47,6 +47,12 @@ for(const network of [...evidence.networks,...national.networks]){
  index.routes.push({...route,stations:undefined,stationCatalog:undefined,patterns:undefined,services:undefined,lazy:true,lazySource:'data/uk/generated/routes/'+routeId+'.json',stationCount:stations.length,stationSequence:stations.map(s=>s.id),searchStations:stations.flatMap(s=>[s.ko,s.en])});
  if(!index.operators.some(o=>o.id===operatorId))index.operators.push({id:operatorId,names:operator});
 }
+const {applyShortTurns}=require('./apply-uk-verified-shortturns.cjs');
+applyShortTurns(dir,index);
+const {applyPublishedWindows}=require('./apply-uk-audited-operating-calendars.cjs');
+applyPublishedWindows(dir);
+const {apply:applyUKServiceDayRules}=require('./apply-uk-service-day-rules.cjs');
+applyUKServiceDayRules(dir);
 const routes=index.routes.map(r=>read('generated/routes/'+r.id+'.json'));
 const published=read('source/released-baseline-20261108.json'),publishedIds=new Set(published.routes.flatMap(r=>r.stationCatalog.map(s=>s.id))),groups=new Map();
 const normalizedName=s=>s.en.toLowerCase().replace(/^london /,'').replace(/[^a-z0-9]/g,'');

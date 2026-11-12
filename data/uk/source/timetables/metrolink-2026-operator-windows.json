@@ -1,0 +1,124 @@
+{
+  "sourceUrl": "https://tfgm.com/plan-a-journey/schedules/tram-schedule",
+  "networkMapUrl": "https://tfgm.com/ways-to-travel/tram/network-map",
+  "checkedAt": "2026-11-12",
+  "sourceStatement": "All-day services operate from beginning to end of service; part-day 07:00-20:00 Monday-Friday and 09:00-18:30 Saturday. Eccles-Piccadilly calls at MediaCityUK outside those part-day windows; MediaCityUK-Piccadilly is a distinct part-day shuttle. The frequency/opening hours are operator guides, not actual departure times.",
+  "generalFrequencyGuide": "15 minutes per route (some shared sections more frequent), subject to timetable alterations",
+  "operatingHoursGuide": {
+    "monThu": "06:00–24:00",
+    "friSat": "06:00–01:00 next day",
+    "sunAndPublicHoliday": "07:00–24:00"
+  },
+  "partDayWindows": {
+    "monFri": "07:00–20:00",
+    "sat": "09:00–18:30",
+    "sunAndPublicHoliday": "not regularly scheduled"
+  },
+  "offPeakWindows": {
+    "monFri": "before 07:00 / after 20:00",
+    "sat": "before 09:00 / after 18:30",
+    "sunAndPublicHoliday": "all operating hours"
+  },
+  "groups": [
+    {
+      "id": "ROCHDALE_EAST_DIDSBURY",
+      "category": "ALL_DAY",
+      "officialRoute": "Rochdale Town Centre – East Didsbury via Exchange Square",
+      "via": "Exchange Square",
+      "patternIds": [
+        "uk-osm-9332228",
+        "uk-osm-9446820"
+      ]
+    },
+    {
+      "id": "BURY_ALTRINCHAM",
+      "category": "PART_DAY",
+      "officialRoute": "Altrincham – Bury via Market Street",
+      "via": "Market Street",
+      "patternIds": [
+        "uk-osm-65667",
+        "uk-osm-9446762"
+      ]
+    },
+    {
+      "id": "VICTORIA_AIRPORT",
+      "category": "ALL_DAY",
+      "officialRoute": "Manchester Airport – Victoria via Market Street",
+      "via": "Market Street",
+      "patternIds": [
+        "uk-osm-1380620",
+        "uk-osm-9426439"
+      ]
+    },
+    {
+      "id": "SHAW_EAST_DIDSBURY",
+      "category": "PART_DAY",
+      "officialRoute": "East Didsbury – Shaw and Crompton via Exchange Square",
+      "via": "Exchange Square",
+      "patternIds": [
+        "uk-osm-5861742",
+        "uk-osm-9446823"
+      ]
+    },
+    {
+      "id": "BURY_ASHTON",
+      "category": "ALL_DAY",
+      "officialRoute": "Bury – Ashton-under-Lyne",
+      "via": "Piccadilly",
+      "patternIds": [
+        "uk-osm-64307-bury-ashton-outbound",
+        "uk-osm-64307-bury-ashton-inbound"
+      ]
+    },
+    {
+      "id": "ALTRINCHAM_ETIHAD",
+      "category": "ALL_DAY",
+      "officialRoute": "Altrincham – Etihad Campus",
+      "via": "Piccadilly",
+      "patternIds": [
+        "uk-osm-64307-altrincham-etihad-outbound",
+        "uk-osm-64307-altrincham-etihad-inbound"
+      ]
+    },
+    {
+      "id": "ECCLES_PICCADILLY_DIRECT",
+      "category": "PEAK_DIRECT",
+      "officialRoute": "Piccadilly – Eccles (without MediaCityUK during part-day window)",
+      "via": "",
+      "patternIds": [
+        "uk-osm-64307-eccles-piccadilly-outbound",
+        "uk-osm-64307-eccles-piccadilly-inbound"
+      ]
+    },
+    {
+      "id": "ECCLES_PICCADILLY_MEDIACITY",
+      "category": "OFF_PEAK_VIA_MEDIACITY",
+      "officialRoute": "Piccadilly – Eccles via MediaCityUK outside part-day window",
+      "via": "MediaCityUK",
+      "patternIds": [
+        "uk-osm-64307-eccles-piccadilly-mediacity-outbound",
+        "uk-osm-64307-eccles-piccadilly-mediacity-inbound"
+      ]
+    },
+    {
+      "id": "MEDIACITY_PICCADILLY",
+      "category": "PART_DAY",
+      "officialRoute": "MediaCityUK – Piccadilly",
+      "via": "",
+      "patternIds": [
+        "uk-osm-64307-mediacity-piccadilly-outbound",
+        "uk-osm-64307-mediacity-piccadilly-inbound"
+      ]
+    },
+    {
+      "id": "TRAFFORD_CRUMPSALL",
+      "category": "ALL_DAY",
+      "officialRoute": "The Trafford Centre – Crumpsall via Exchange Square",
+      "via": "Exchange Square",
+      "patternIds": [
+        "uk-osm-64307-trafford-crumpsall-outbound",
+        "uk-osm-64307-trafford-crumpsall-inbound"
+      ]
+    }
+  ]
+}

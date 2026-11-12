@@ -1,0 +1,83 @@
+name: Reconcile latest main before timetable audit merge
+
+on:
+  push:
+    branches: [audit/six-country-timetables]
+    paths:
+      - .github/workflows/reconcile-audit-main.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/six-country-timetables
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Merge all newer main commits, with safe main-geometry preference
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo 'Latest main is already included'
+            exit 0
+          fi
+          if ! git merge --no-commit --no-ff origin/main; then
+            git diff --name-only --diff-filter=U > /tmp/conflicts.txt
+            cat /tmp/conflicts.txt
+            while IFS= read -r p; do
+              case "$p" in
+                data/uk/generated/geometry.json|data/uk/generated/geometry/*|data/uk/generated/index.json|data/uk/generated/validation.json)
+                  git checkout --theirs -- "$p"
+                  git add -- "$p"
+                  ;;
+                *)
+                  echo "::error::Non-geometry merge conflict requires manual review: $p"
+                  exit 1
+                  ;;
+              esac
+            done < /tmp/conflicts.txt
+            if test -n "$(git diff --name-only --diff-filter=U)"; then
+              echo 'Unresolved conflict after preferred source-geometry resolution'
+              exit 1
+            fi
+          fi
+          # Main now has 90 UK lines (34 added since the 56-line audit).
+          # Preserve all newest main route IDs and source OSM geometry, then
+          # re-align only the three PR short-turn route counts to actual payloads.
+          node - <<'NODE'
+          const fs=require('fs');
+          const dir='data/uk/generated/';
+          const idx=JSON.parse(fs.readFileSync(dir+'index.json','utf8'));
+          const val=JSON.parse(fs.readFileSync(dir+'validation.json','utf8'));
+          if(idx.routes.length<90)throw Error('Latest main UK expansion unexpectedly missing');
+          const routeDir=id=>JSON.parse(fs.readFileSync(dir+'routes/'+id+'.json','utf8'));
+          for(const meta of idx.routes){
+            const source=routeDir(meta.id);
+            meta.serviceCount=source.patterns.length;
+            if(!val.linesDetail)val.linesDetail=[];
+            const row=val.linesDetail.find(r=>r.id===meta.id);
+            if(row)row.directions=meta.serviceCount;
+          }
+          val.lines=idx.routes.length;
+          val.playableDirections=idx.routes.reduce((n,r)=>n+r.serviceCount,0);
+          val.servicePatterns=idx.routes.reduce((n,r)=>n+new Set(routeDir(r.id).patterns.map(p=>p.familyId)).size,0);
+          if(val.playableDirections<431)throw Error('Existing UK 424 directions + reviewed 7 short-turns missing: '+val.playableDirections);
+          fs.writeFileSync(dir+'index.json',JSON.stringify(idx)+'\n');
+          fs.writeFileSync(dir+'validation.json',JSON.stringify(val)+'\n');
+          console.log('Reconciled UK: '+val.lines+' lines, '+val.playableDirections+' directions, '+val.servicePatterns+' families');
+          NODE
+          git add data/uk/generated/index.json data/uk/generated/validation.json
+          git commit -m 'Merge latest main into timetable audit preserving updated UK track geometry'
+          git push origin HEAD:audit/six-country-timetables
+      - name: Print published audit revision
+        run: git rev-parse HEAD

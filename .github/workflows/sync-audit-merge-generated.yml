@@ -1,0 +1,47 @@
+name: Synchronize generated railway data before audit merge
+
+on:
+  push:
+    branches: [audit/six-country-timetables]
+    paths:
+      - .github/workflows/sync-audit-merge-generated.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/six-country-timetables
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild railway overrides from reviewed source geometry
+        run: |
+          node tools/build-meitetsu-mikawa-sections.cjs
+          node tools/build-tosakuroshio-merged.cjs
+          node tools/build-uk-regional.cjs > /tmp/uk-rebuild-merge.json
+      - name: Rebuild again and check deterministic generated outputs
+        run: |
+          node tools/build-meitetsu-mikawa-sections.cjs --check
+          node tools/build-tosakuroshio-merged.cjs --check
+          node tools/build-uk-regional.cjs > /tmp/uk-rebuild-merge-second.json
+          git status --short
+      - name: Test UK real tracks, trips and official timetable audit
+        run: |
+          node --test tools/test-uk-verified-shortturns.cjs tools/test-uk-audited-operating-calendars.cjs
+          node tools/test-uk-all-56.cjs
+      - name: Commit only reproducibly generated material
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/uk/generated data/route-overrides/meitetsu-mikawa-umi.json data/route-overrides/meitetsu-mikawa-yama.json data/route-overrides/tosakuroshio-nakamura-sukumo.json docs/timetable-audit/UK_ROUTE_AUDIT_56.csv docs/timetable-audit/UK_TIMETABLE_AUDIT_291_DIRECTIONS.csv docs/timetable-audit/UK_OFFICIAL_TRAIN_TIME_SAMPLES.csv docs/timetable-audit/UK_ALL_56_TIMETABLE_AUDIT.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(audit): synchronize UK timetable and Japanese railway generated artifacts"
+            git push origin HEAD:audit/six-country-timetables
+          fi

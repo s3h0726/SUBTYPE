@@ -394,7 +394,7 @@ export async function loadTransportData(countryId='jp',koreaMode='released'){
       ...(typeof editorNameOverrides.operators[operator.id]==='string'&&editorNameOverrides.operators[operator.id].trim()?{ko:editorNameOverrides.operators[operator.id].trim()}:{})}
   }));
   if(countryId==='tw'){
-    const data=await fetchJson(new URL('data/tw/generated/network.json?v=tw-completion-20261101',document.baseURI));
+    const data=await fetchJson(new URL('data/tw/generated/network.json?v=tw-timetable-20261111',document.baseURI));
     const all=data.lines.map(raw=>taiwanKoreanPresentation(normalizeLine(raw)));
     const patterns=(data.patterns||[]).map(pattern=>{
       const nameKo=editorNameOverrides.services[pattern.id];

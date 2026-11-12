@@ -1,0 +1,130 @@
+{
+  "sources": [
+    {
+      "id": "jp-toyama",
+      "country": "JP",
+      "scope": "Toyama Chihō Railway city tram",
+      "url": "https://api.gtfs-data.jp/v2/organizations/chitetsu/feeds/chitetsushinaidensha/files/feed.zip",
+      "reference": "https://gtfs-data.jp/search?target_feed=chitetsu%2Achitetsushinaidensha",
+      "adapter": "gtfs",
+      "license": "CC0-1.0",
+      "mode": "tram"
+    },
+    {
+      "id": "hk-td",
+      "country": "HK",
+      "scope": "Hong Kong Tramways and Peak Tram in TD headway dataset",
+      "url": "https://static.data.gov.hk/td/pt-headway-en/gtfs.zip",
+      "reference": "https://data.gov.hk/en-data/dataset/hk-td-tis_11-pt-headway-en",
+      "adapter": "gtfs",
+      "license": "DATA.GOV.HK terms, attribution to Transport Department",
+      "agency_ids": [
+        "TRAM",
+        "PTRAM"
+      ],
+      "mode": "tram/funicular"
+    },
+    {
+      "id": "th-otp",
+      "country": "TH",
+      "scope": "Thailand OTP Namtang rail and metro",
+      "url": "https://namtang-api.otp.go.th/download/namtang-gtfs.zip",
+      "reference": "https://namtang-api.otp.go.th/download/namtang-gtfs.zip",
+      "adapter": "gtfs",
+      "license": "CC-BY-4.0, attribution to OTP",
+      "agency_ids": [
+        "BTSC",
+        "BEM",
+        "SRTET",
+        "MRTA",
+        "SRT"
+      ],
+      "route_types": [
+        "0",
+        "1",
+        "2"
+      ],
+      "mode": "rail/metro"
+    }
+  ],
+  "discovery": [
+    [
+      "JP",
+      "Other rail operators",
+      "https://developer.odpt.org/",
+      "Official feeds for selected operators require registration and consumer keys"
+    ],
+    [
+      "JP",
+      "Regional operators",
+      "https://gtfs-data.jp/",
+      "Repository discovery, per-feed coverage and route crosswalk still required"
+    ],
+    [
+      "KR",
+      "Nationwide public transport",
+      "https://www.ktdb.go.kr/www/selectBbsNttView.do?bbsNo=2&key=45&nttNo=3825",
+      "Application required; March 2025 representative weekday is historical rather than a current timetable"
+    ],
+    [
+      "KR",
+      "SRT and conventional rail",
+      "https://etk.srail.kr/cms/archive.do?pageId=TK0402050000",
+      "Official September 2026 schedule links identified; direct archive request returned HTTP 400; attachment retrieval and route bindings outstanding"
+    ],
+    [
+      "HK",
+      "MTR metro and Light Rail",
+      "https://www.mtr.com.hk/en/customer/services/schedule_index.html",
+      "Government GTFS has no MTR metro or Light Rail trips; operator schedule and service exception sources required"
+    ],
+    [
+      "HK",
+      "Airport, Ocean Park and high speed rail",
+      "https://www.highspeed.mtr.com.hk/en/ticket/timetable.html",
+      "Separate official operator schedules; identity and geometry verification outstanding"
+    ],
+    [
+      "TW",
+      "TRA",
+      "https://www.railway.gov.tw/tra-tip-web/tip/tip00C/tipC21/view?proCode=8ae4cac3756b7b41017572e9077f1790&subCode=8ae4cac3756b7b41017573e352ae18f8",
+      "Official ODS/PDF matrices are section-based; do not count partial journeys as end-to-end runs"
+    ],
+    [
+      "TW",
+      "THSR, TRA and Metro",
+      "https://tdx.transportdata.tw/api-service/swagger",
+      "Operator-wide structured timetables require authorized access where applicable"
+    ],
+    [
+      "TW",
+      "THSR",
+      "https://www.thsrc.com.tw/ArticleContent/a3b630bb-1066-4352-a1ef-58c7b4e8ef7c",
+      "Regular table was compared earlier; special calendars require independent matching"
+    ],
+    [
+      "TH",
+      "State Railway of Thailand",
+      "https://www.railway.co.th/",
+      "Verify current dates, train classes and uncovered runs against operator schedules"
+    ],
+    [
+      "UK",
+      "Network Rail",
+      "https://www.networkrail.co.uk/industry-and-commercial/the-timetable/electronic-national-rail-timetable/",
+      "Official network-wide PDF edition, route/table crosswalk and holiday overlays outstanding"
+    ],
+    [
+      "UK",
+      "London TfL",
+      "https://tfl.gov.uk/info-for/open-data-users/our-open-data",
+      "Bulk timetable catalogue identified; public Elizabeth line Abbey Wood timetable API probe returned HTTP 404"
+    ],
+    [
+      "UK",
+      "Regional trams and metros",
+      "https://www.gov.uk/government/publications/bus-open-data-implementation-guide/bus-open-data-implementation-guide",
+      "Use local operator timetables for rail and tram, BODS for in-scope buses"
+    ]
+  ]
+}

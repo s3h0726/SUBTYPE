@@ -1,0 +1,40 @@
+name: Recalculate timetable audit scope without Korean buses
+
+on:
+  push:
+    branches:
+      - audit/six-country-timetables
+    paths:
+      - tools/exclude-korean-buses-from-existing-audit.py
+      - tools/timetable_audit/scope.py
+      - .github/workflows/timetable-audit-scope.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  recalculate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/six-country-timetables
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test exclusion rules
+        run: python tools/test_mass_timetable_audit.py
+      - name: Regenerate audited-scope reports without downloading schedules
+        run: python tools/exclude-korean-buses-from-existing-audit.py
+      - name: Commit scoped reports
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/timetable-audit/MASS_AUDIT_RESULTS.csv docs/timetable-audit/UNVERIFIED_ROUTES.csv docs/timetable-audit/AUDITED_ROUTES_INVENTORY.csv docs/timetable-audit/ROUTE_DUPLICATE_CANDIDATES.csv docs/timetable-audit/COVERAGE_BY_COUNTRY.md docs/timetable-audit/MASS_CHECKPOINTS.json docs/timetable-audit/UNVERIFIED_ROUTES.md
+          if ! git diff --cached --quiet; then
+            git commit -m "audit: regenerate reports excluding Korean road buses"
+            git push origin HEAD:audit/six-country-timetables
+          fi

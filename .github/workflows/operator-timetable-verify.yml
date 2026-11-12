@@ -1,0 +1,38 @@
+name: Check operator timetable against SUBTYPE route data
+
+on:
+  push:
+    branches:
+      - audit/six-country-timetables
+    paths:
+      - tools/verify-operator-timetables.py
+      - data/hk/official-tram-timetable-2026.json
+      - data/jp/official-toyama-timetable-2026.json
+      - .github/workflows/operator-timetable-verify.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/six-country-timetables
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compare reviewed official timetable evidence against game route files
+        run: python tools/verify-operator-timetables.py
+      - name: Commit factual comparison report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/timetable-audit/OPERATOR_TIMETABLE_REVIEW.md
+          if ! git diff --cached --quiet; then
+            git commit -m "audit: publish route-level operator timetable comparisons"
+            git push origin HEAD:audit/six-country-timetables
+          fi
