@@ -20,6 +20,49 @@
       "nameKo": "인천공항2터미널 → 디지털미디어시티 일반",
       "sourceId": "arex-station-board-110-B040",
       "url": "https://www.airportrailroad.com/train/normal/info/110/0"
+    },
+    {
+      "id": "kr-arex-geomam-seoul-local",
+      "parentJourneyId": "kr-national-urban-2911378",
+      "fromStation": "검암",
+      "toStation": "서울역",
+      "nameKo": "검암 → 서울역 일반",
+      "sourceId": "arex-geomam-station-board-070-up-0530",
+      "url": "https://www.airportrailroad.com/train/normal/info/070",
+      "serviceDay": "weekday",
+      "observedDeparture": "05:30",
+      "corroborationUrl": "https://pat.im/1852",
+      "evidenceExplanation": "05:30 departure at Geomam toward Seoul; earlier than any train from the airport can reach Geomam from first published airport departure; secondary 2026-10-23 chart explicitly labels Geomam-origin Seoul-bound trains",
+      "checkedAt": "2026-11-12"
+    },
+    {
+      "id": "kr-arex-geomam-t2-local",
+      "parentJourneyId": "kr-national-urban-7919000",
+      "fromStation": "검암",
+      "toStation": "인천공항2터미널",
+      "nameKo": "검암 → 인천공항2터미널 일반",
+      "sourceId": "arex-geomam-station-board-070-down-0508",
+      "url": "https://www.airportrailroad.com/train/normal/info/070",
+      "serviceDay": "weekday",
+      "observedDeparture": "05:08",
+      "corroborationUrl": "https://pat.im/1852",
+      "evidenceExplanation": "05:08 airport-bound departure from Geomam is earlier than first Seoul Station airport-bound departure 05:20, proving a western short-turn start on official station board",
+      "checkedAt": "2026-11-12"
+    },
+    {
+      "id": "kr-arex-dmc-seoul-local",
+      "parentJourneyId": "kr-national-urban-2911378",
+      "fromStation": "디지털미디어시티",
+      "toStation": "서울역",
+      "nameKo": "디지털미디어시티 → 서울역 일반",
+      "sourceId": "arex-dmc-station-board-040-up-0530",
+      "url": "https://www.airportrailroad.com/train/normal/info/040",
+      "serviceDay": "weekday",
+      "observedDeparture": "05:30",
+      "checkedAt": "2026-11-12",
+      "corroborationUrl": "https://makka.co.kr/subway/airport/A04",
+      "evidenceExplanation": "DMC 05:30 toward Seoul is published by AREX, while first upstream Geomam departure 05:30 cannot reach DMC until much later. Independent station page marks 05:30 as DMC-to-Seoul origin."
     }
-  ]
+  ],
+  "evidenceScope": "Official AREX station board identifies termini and departure times at Geomam, corroborated by 2026-10-23 operating chart; no invented intermediate stations, trip clocks or reverse geometry"
 }

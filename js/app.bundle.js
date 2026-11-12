@@ -765,7 +765,6 @@ function wikimediaLineAsset(route,code,lineName){
   if(op==='keisei')return verifiedAsset(WM.keisei,'https://commons.wikimedia.org/wiki/File:Number_prefix_Keisei.svg');
 
   if(id==='line-hanshin-kobe-kosoku')return verifiedAsset(WM.hanshin,'https://commons.wikimedia.org/wiki/File:Number_prefix_Hanshin_line.svg');
-  if(op==='kobekosokutetsudo')return null;
 
   if(route?.category==='shinkansen'||/新幹線|신칸센|Shinkansen/i.test(name)){
     const key={ 'jr-east':'shinkansenJre','jr-central':'shinkansenJrc','jr-west':'shinkansenJrw','jr-hokkaido':'shinkansenJrh','jr-kyushu':'shinkansenJrk'}[op];

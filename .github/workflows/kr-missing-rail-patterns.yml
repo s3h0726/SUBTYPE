@@ -1,0 +1,57 @@
+name: Add verified missing AREX timetable short turns
+
+on:
+  push:
+    branches: [feature/kr-official-missing-rail-patterns-20261112]
+    paths:
+      - .github/workflows/kr-missing-rail-patterns.yml
+      - data/kr/canonical/arex-short-turns.json
+      - tools/lib/kr-arex-timetable.cjs
+      - tools/test-kr-arex-missing-patterns.cjs
+      - tools/report-kr-missing-patterns.cjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-verified-patterns:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/kr-official-missing-rail-patterns-20261112
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate official AREX Geomam short turns with real OSM segments
+        run: node --test tools/test-kr-arex-missing-patterns.cjs
+      - name: Compare public rail service patterns against SeoulMetro 65 research patterns
+        run: node tools/report-kr-missing-patterns.cjs
+      - name: Publish only source-backed canonical railway updates
+        run: node tools/build-kr-canonical.cjs --publish
+      - name: Verify 8277 canonical routes and all playable paths
+        run: node tools/test-kr-canonical.cjs
+      - name: Confirm exact added directions and no Korean bus changes
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const index=JSON.parse(fs.readFileSync('data/kr/generated/index.json','utf8'));
+          const r=index.routes.find(x=>x.id==='kr-rail-national-airport');
+          if(!r)throw Error('Airport railway missing');
+          const b=JSON.parse(fs.readFileSync('data/kr/canonical/arex-short-turns.json','utf8'));
+          if(b.patterns.length!==5)throw Error('AREX pattern count');
+          console.log('Published airport railway: '+r.serviceCount+' patterns');
+          console.log('Total public routes: '+index.routes.length);
+          if(index.routes.length!==8277)throw Error('Bus/card population changed');
+          NODE
+      - name: Commit only generated railway/index and audit files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/kr/generated/routes/kr-rail-national-airport.json data/kr/generated/index.json js/korea-index-data.js reports/kr-rebuild/catalog-validation.json reports/kr-rebuild/runtime-tests.json docs/timetable-audit/KR_MISSING_RAIL_PATTERNS_20261112.md docs/timetable-audit/KR_MISSING_SEOULMETRO_PATTERN_CANDIDATES.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "feat(kr): publish three verified Geomam and DMC airport railway patterns"
+            git push origin HEAD:feature/kr-official-missing-rail-patterns-20261112
+          fi
