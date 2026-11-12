@@ -54,7 +54,7 @@ const lines=[
  ...Object.entries(counts).map(([k,v])=>'| '+k+' | '+v+' |'),
  '',
  '- [65개 연구용 시각표와 공개 계통의 대조 결과](KR_MISSING_SEOULMETRO_PATTERN_CANDIDATES.csv)',
- '- [공항철도 4개 공식 계통 근거 데이터](../../data/kr/canonical/arex-short-turns.json)',
+ '- [공항철도 5개 공식 계통 근거 데이터](../../data/kr/canonical/arex-short-turns.json)',
  '- [실제 생성 소스](../../tools/lib/kr-arex-timetable.cjs)',
  '',
  '이 자료에서 신규 추가 계통은 **3개**이며, 연구용 65계통 전체를 공개하거나 검증 승격하지 않았다. 대중교통 버스는 검사·수정하지 않았다.'

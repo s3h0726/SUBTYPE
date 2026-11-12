@@ -86,6 +86,7 @@
   <link rel="stylesheet" href="./css/japan-all-operator-nameplates.css?v=20261108-jp-phase1-operators">
   <link rel="stylesheet" href="./css/app-version.css?v=0.9.0">
   <link rel="stylesheet" href="./css/country-home.css?v=20261112-country-directory-v2">
+  <link rel="stylesheet" href="./css/world-home.css?v=20261112-atlas-v1">
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -103,7 +104,7 @@
   </header>
 
   <main id="main">
-    <section id="screen-home" data-screen="home" class="screen active night-home country-first-home" aria-labelledby="country-home-title">
+    <section id="screen-home" data-screen="home" class="screen active night-home country-first-home world-home" aria-labelledby="country-home-title">
       <div class="rail-atmosphere free-drive-home-network" aria-hidden="true">
         <canvas id="home-network-canvas"></canvas>
       </div>
@@ -114,25 +115,40 @@
         </button>
         <div class="home-status"><b id="clock">--:--</b><span id="home-country-status" hidden>일본</span><div class="auth-state" data-auth-state></div></div>
       </header>
-      <div class="home-stage">
-        <div class="home-menu">
-          <p class="home-kicker">세계의 노선을 탐험하는 새로운 방법</p>
-          <h1 id="country-home-title">다음 역은,<br><span>어느 나라일까요?</span></h1>
-          <p class="home-description">국가를 선택하고, 원하는 노선을 찾아보세요.<br>익숙한 도시부터 아직 가보지 못한 곳까지 이어집니다.</p>
-          <div class="home-steps" aria-label="이용 순서"><span>01 국가 선택</span><span>02 노선 선택</span><span>03 운행 시작</span></div>
-          <div id="hero-title" hidden aria-hidden="true"></div>
-          <div id="home-intro" hidden aria-hidden="true"></div>
-          <nav class="launch-menu home-quick-menu" aria-label="게임 시작 메뉴">
-            <button class="home-play-button" data-nav="rail-map"><span>01</span><b>노선 찾아보기</b><small>선택한 국가의 철도와 교통 노선 살펴보기</small><i>↗</i></button>
+      <div class="home-stage world-home-stage">
+        <div class="world-home-head">
+          <div class="world-home-heading">
+            <p class="world-home-kicker"><span class="world-live-indicator" aria-hidden="true"></span> SUBTYPE WORLD ATLAS</p>
+            <h1 id="country-home-title">세계 지도에서 <span>국가를 선택하세요.</span></h1>
+            <p>지도의 표시를 누르거나 국가 목록에서 선택한 뒤 노선을 찾아보세요.</p>
+          </div>
+          <nav class="launch-menu home-quick-menu" aria-label="기타 메뉴">
+            <button class="home-play-button" data-nav="rail-map"><span>01</span><b>노선 찾아보기</b><small>선택 국가의 노선</small><i>↗</i></button>
             <button data-nav="custom-list"><span>02</span><b>노선 만들기</b><small>나만의 노선</small><i>→</i></button>
-            <button data-nav="records"><span>03</span><b>운행 기록</b><small>플레이 기록</small><i>→</i></button>
+            <button data-nav="records"><span>03</span><b>운행 기록</b><small>기록 확인</small><i>→</i></button>
             <button data-nav="settings"><span>04</span><b>설정</b><small>환경 설정</small><i>→</i></button>
           </nav>
-          <div id="recent-list" class="home-recent" aria-live="polite"></div>
+          <div id="hero-title" hidden aria-hidden="true"></div>
+          <div id="home-intro" hidden aria-hidden="true"></div>
         </div>
-        <section class="country-board" aria-labelledby="country-board-title">
+        <div class="world-home-layout">
+          <section class="world-map-panel" aria-label="세계 국가 선택 지도">
+            <header class="world-map-heading">
+              <div><span class="world-map-pulse" aria-hidden="true"></span><b>WORLD NETWORK</b><span class="world-map-breadcrumb">/ 선택 가능한 국가</span></div>
+              <small>지도 위 표시를 선택하세요</small>
+            </header>
+            <div class="world-map-viewport">
+              <div class="world-map-plane" role="group" aria-label="지도에서 국가 선택">
+                <img class="world-map-image" src="./assets/world-atlas.svg?v=20261112" alt="세계 대륙과 국가 경계를 표시한 지도" draggable="false">
+                <div id="world-map-markers" class="world-map-markers" aria-label="국가별 선택 지점"></div>
+              </div>
+              <div class="world-map-coordinates" aria-hidden="true">GLOBAL OVERVIEW <span>180°W — 180°E</span></div>
+            </div>
+            <footer class="world-map-footer"><span><i class="world-map-foot-dot" aria-hidden="true"></i> 표시된 국가를 선택하면 목록과 연동됩니다</span><span>Map data: D3 Graph Gallery</span></footer>
+          </section>
+        <section class="country-board world-country-panel" aria-labelledby="country-board-title">
           <header class="country-board-heading">
-            <div><p>네트워크 둘러보기</p><h2 id="country-board-title">어디로 떠날까요?</h2></div>
+            <div><p>국가 목록</p><h2 id="country-board-title">운행 국가</h2></div>
             <small id="country-total-count" aria-live="polite">6개 국가</small>
           </header>
           <div class="country-toolbar">
@@ -197,6 +213,8 @@
           </div>
           <p class="country-board-note">선택한 국가는 자동 저장됩니다. 국가를 바꿔도 기록은 유지됩니다.</p>
         </section>
+        </div>
+        <div id="recent-list" class="home-recent" aria-live="polite"></div>
         <aside class="route-feature country-legacy-features" hidden aria-hidden="true" aria-labelledby="today-route-title">
           <div class="feature-head"><p><i></i> TODAY'S ROUTE</p><span id="feature-counter">01 / 03</span></div>
           <div class="feature-viewport" id="feature-viewport">
@@ -460,6 +478,7 @@
     <script defer src="./js/disney-resort-line-data.js?v=20261102-namuwiki-name-rules"></script>
   <script defer src="./js/app.bundle.js?v=7bf6d672e4fd"></script>
   <script defer src="./js/country-home.js?v=20261112-country-directory-v2"></script>
+  <script defer src="./js/world-home.js?v=20261112-atlas-v1"></script>
 
 </body>
 </html>
