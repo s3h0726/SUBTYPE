@@ -68,6 +68,23 @@ let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0,loadSequence=0;
 const routeSelection={kr:'',hk:'',th:'',uk:''},indexCache={};
 const routeBar=document.querySelector('#route-filter-bar'),routePicker=document.querySelector('#route-filter');
 const DATA_VERSION='20261102-nationwide-revalidated'; // Keep existing drafts; changes are matched by stable route/station IDs.
+const OHMI_NICKNAME_IDS=[
+ 'line-ohmi-hikone-taga','line-ohmi-koto-omiji','line-ohmi-minakuchi-gamono'
+];
+// Only the unified Ohmi Main Line was split. Taga and Yokaichi remain separate.
+async function ohmiNicknameRoutes(){
+ const routes=await Promise.all(OHMI_NICKNAME_IDS.map(async id=>{
+  const routePath='data/generated/routes/'+id+'.json';
+  const response=await fetch('../../'+routePath+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
+  if(!response.ok)throw Error('오미 철도 애칭 노선 자료 '+id+': HTTP '+response.status);
+  const payload=await response.json(),route=payload.route||payload;
+  if(route.id!==id||route.operatorId!=='omitetsudo'||!Array.isArray(route.stations)||route.stations.length<2)
+   throw Error('오미 철도 애칭 노선 자료가 일치하지 않습니다: '+id);
+  return {...route,lazySource:routePath};
+ }));
+ return routes;
+}
+
 let FRESH_DATA_QUERY='ts='+Date.now();
 const EDIT_BRANCH=new URLSearchParams(location.search).get('branch')||'main';
 const size=100,table=document.querySelector('#table'),status=document.querySelector('#status');
@@ -145,6 +162,11 @@ async function serviceRows(){
    }
   }
  }catch(error){console.warn('Through services unavailable to name editor',error)}
+ // Each published Ohmi nickname segment exposes its own editable local service.
+ for(const route of await ohmiNicknameRoutes())for(const service of route.services||[]){
+  result.push([service.id,'각역정차',route.id,service.nameJa||'普通',
+   service.nameKo||'각역정차',service.nameEn||'Local',route.operator?.ko||'오미 철도',route.line?.ko||'']);
+ }
  return result;
 }
 async function koreaLineRows(){
@@ -271,6 +293,19 @@ async function countryTable(name){
   const arr=parseCSV(await res.text()),header=arr.shift();
   const keyCol=name==='operators'?0:name==='lines'?2:name==='stations-by-line'?2:6;
   const filtered=arr.filter(r=>String(r[keyCol]||'').startsWith('tw-')===(country==='tw'));
+  if(country==='jp'&&name==='stations-by-line'){
+   // Supersede the old unified Main Line and any stale nickname CSV rows.
+   const hidden=new Set(['line-99601',...OHMI_NICKNAME_IDS]);
+   const base=filtered.filter(r=>!hidden.has(r[2]));
+   const nicknameRows=(await ohmiNicknameRoutes()).flatMap(route=>routeStationRows(route));
+   return [header,...base,...nicknameRows];
+  }
+  if(country==='jp'&&name==='stations-unique'){
+   // The physical stations are unchanged; remap only the example line label.
+   const owners=new Map((await ohmiNicknameRoutes()).flatMap(route=>
+    route.stations.map(station=>[String(station.stationMasterId||station.id),route.id])));
+   for(const row of filtered)if(row[6]==='line-99601')row[6]=owners.get(String(row[0]))||row[6];
+  }
   if(country==='tw'){
    if(name==='operators')header[2]='원어명(번체중문)';
    if(name==='lines')header[4]='노선 원어명';
