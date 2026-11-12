@@ -89,7 +89,8 @@
     "test:uk": "node --test tools/test-uk-track-graph.cjs tools/test-uk-osm.cjs tools/test-uk-free-drive.cjs && node tools/test-uk-rail.cjs",
     "test:uk:browser": "node tools/test-uk-browser.cjs",
     "test:jp-extra-services": "node tools/test-japan-extra-operating-patterns.cjs",
-    "test:jp-nameplates": "node tools/test-jp-operator-nameplates.cjs"
+    "test:jp-nameplates": "node tools/test-jp-operator-nameplates.cjs",
+    "test:ohmi": "node tools/test-ohmi-rebuild.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",

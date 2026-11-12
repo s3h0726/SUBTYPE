@@ -7,10 +7,10 @@
   "names": {
     "ja": "近江鉄道八日市線",
     "kana": "おうみてつどうようかいちせん",
-    "ko": "오미철도요카이치선",
-    "en": "ōMitetsudōYōKaichisen"
+    "ko": "요카이치선",
+    "en": "Ohmi Railway Yokaichi Line"
   },
-  "code": "",
+  "code": "OR",
   "color": "#2DBEB7",
   "symbol": {
     "asset": null,
@@ -30,24 +30,36 @@
   },
   "loop": false,
   "stationSignTemplate": "omitetsudo",
-  "services": [],
-  "throughServiceIds": [],
+  "services": [
+    {
+      "id": "ohmi-yokaichi-all-stops",
+      "names": {
+        "ja": "普通",
+        "ko": "보통 · 전역정차",
+        "en": "Local (all stops)"
+      },
+      "stopPattern": []
+    }
+  ],
+  "throughServiceIds": [
+    "ohmi-maibara-omihachiman-local",
+    "ohmi-kibukawa-omihachiman-local"
+  ],
   "sources": {
-    "official": "",
-    "korean": "",
+    "official": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+    "korean": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
     "geometry": "MLIT-N02-2025",
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 近江鉄道八日市線 오우미테츠도우요우카이치선 노선",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "direct-mirror-review",
+      "type": "namuwiki-mirror",
+      "url": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
+      "sourceAccess": "mirror",
+      "namuwikiStatus": "reviewed",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-11-12",
+      "status": "REVIEWED",
       "canonicalPolicy": "namuwiki"
     }
   },
