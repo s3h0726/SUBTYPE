@@ -1,0 +1,43 @@
+name: Synchronize deployed game bundle for new Korea railway services
+
+on:
+  push:
+    branches: [feature/kr-official-missing-rail-patterns-20261112]
+    paths:
+      - .github/workflows/sync-kr-rail-asset-bundle.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/kr-official-missing-rail-patterns-20261112
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate runtime bundle and deterministic cache hash
+        run: |
+          node tools/build-app-bundle.js
+          node --check js/app.bundle.js
+          node tools/build-app-bundle.js
+          git diff --stat -- js/app.bundle.js index.html
+      - name: Preserve latest map design and checked source paths
+        run: |
+          grep -q 'js/world-home.js?v=' index.html
+          grep -q 'js/korea-index-data.js?v=' index.html
+          test -s js/app.bundle.js
+      - name: Commit real built asset updates
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/app.bundle.js index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "build: synchronize Korea route selector bundle and deployed cache hashes"
+            git push origin HEAD:feature/kr-official-missing-rail-patterns-20261112
+          fi
