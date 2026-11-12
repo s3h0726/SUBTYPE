@@ -1,0 +1,232 @@
+{
+  "route": {
+    "id": "line-toyotetsu-azumada-park-branch",
+    "legacyId": "line-toyotetsu-azumada-park-branch",
+    "category": "tram",
+    "operatorId": "toyohashitetsudo",
+    "operator": {
+      "ja": "豊橋鉄道",
+      "ko": "토요하시 철도",
+      "en": "Toyohashi Railway"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 豊橋鉄道 토요하시테츠도우 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "東田本線運動公園前支線",
+      "kana": "あずまだほんせんうんどうこうえんまえしせん",
+      "ko": "아즈마다 본선 운동공원앞 지선",
+      "en": "Azumada Main Line Undokoen-mae Branch"
+    },
+    "koreanNameSource": {
+      "family": "official-operator",
+      "method": "timetable-station-list",
+      "type": "operator-website",
+      "url": "https://www.toyotetsu.com/shinaisen/timetable01.html",
+      "verified": true,
+      "verifiedDate": "2026-11-13"
+    },
+    "code": "",
+    "lineColor": "#076BAF",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 豊橋鉄道東田本線 토요하시테츠도우아즈마다혼선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "officialSymbolExists": false,
+    "loop": false,
+    "stationSignTemplate": "toyohashitetsudo",
+    "services": [],
+    "throughServiceIds": [
+      "toyotetsu-azumada-park-local"
+    ],
+    "throughOperations": [],
+    "routeInfo": null,
+    "stations": [
+      {
+        "id": "station-9952112",
+        "internalId": "station-9952112",
+        "stationMasterId": "station-9952112",
+        "sourceId": "station-9952112",
+        "ja": "井原",
+        "kana": "いはら",
+        "ko": "이하라",
+        "romaji": "Ihara",
+        "koAliases": [],
+        "latitude": 34.76413,
+        "longitude": 137.42208,
+        "order": 1,
+        "officialCode": "12",
+        "stationCode": "12",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-operator-stop-number",
+          "url": "https://www.toyotetsu.com/shinaisen/timetable01.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "toyotetsu-official",
+        "koSourceUrl": "https://www.toyotetsu.com/shinaisen/timetable01.html",
+        "koSearchReference": "site:namu.wiki 井原駅 이하라 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": true,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 0,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-9952202",
+        "internalId": "station-9952202",
+        "stationMasterId": "station-9952202",
+        "sourceId": "station-9952202",
+        "ja": "運動公園前",
+        "kana": "うんどうこうえんまえ",
+        "ko": "운도코엔마에",
+        "romaji": "Undokoen-mae",
+        "koAliases": [],
+        "latitude": 34.75826,
+        "longitude": 137.4224,
+        "order": 2,
+        "officialCode": "14",
+        "stationCode": "14",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-operator-stop-number",
+          "url": "https://www.toyotetsu.com/shinaisen/timetable14.html",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "toyotetsu-official",
+        "koSourceUrl": "https://www.toyotetsu.com/shinaisen/timetable14.html",
+        "koSearchReference": "site:namu.wiki 運動公園前駅 운도우코우엔마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": true,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 4,
+        "coordinateSource": "line-track-geometry"
+      }
+    ],
+    "geometry": [
+      [
+        34.76413,
+        137.42208
+      ],
+      [
+        34.76387,
+        137.4222
+      ],
+      [
+        34.76123,
+        137.4223
+      ],
+      [
+        34.75876,
+        137.42239
+      ],
+      [
+        34.75826,
+        137.4224
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-9952112",
+        "toStationId": "station-9952202",
+        "geometry": [
+          [
+            34.76413,
+            137.42208
+          ],
+          [
+            34.76387,
+            137.4222
+          ],
+          [
+            34.76123,
+            137.4223
+          ],
+          [
+            34.75876,
+            137.42239
+          ],
+          [
+            34.75826,
+            137.4224
+          ]
+        ],
+        "source": "MLIT-N02-2025 (Ihara→Undokoen-mae exact branch, removed Akaiwaguchi backtrack)",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [],
+    "workspace": {
+      "folder": "data/lines/toyohashitetsudo/toyohashitetsudoazumadaparkbranch",
+      "linePath": "data/lines/toyohashitetsudo/toyohashitetsudoazumadaparkbranch/line.json",
+      "stationsPath": "data/lines/toyohashitetsudo/toyohashitetsudoazumadaparkbranch/stations.json",
+      "geometryPath": "data/lines/toyohashitetsudo/toyohashitetsudoazumadaparkbranch/geometry.json"
+    },
+    "sources": {
+      "official": "https://www.toyotetsu.com/shinaisen/timetable14.html",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 豊橋鉄道東田本線 토요하시테츠도우아즈마다혼선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      },
+      "timetable": "https://www.toyotetsu.com/shinaisen/timetable12.html"
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "verified-branch-track",
+    "visibility": "internal"
+  }
+}
