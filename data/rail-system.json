@@ -2004,6 +2004,178 @@
       ],
       "sourceUrl": "https://www.tokyometro.jp/lang_en/corporate/ir/library/factbook/pdf/factbook_2026.pdf",
       "verifiedDate": "2026-08-22"
+    },
+    {
+      "id": "ohmi-maibara-omihachiman-local",
+      "nameJa": "普通 米原⇔近江八幡",
+      "nameKo": "보통 · 마이바라 ↔ 오미하치만",
+      "nameEn": "Maibara–Omihachiman Local",
+      "participatingOperatorIds": [
+        "omitetsudo"
+      ],
+      "participatingLineIds": [
+        "line-99601",
+        "line-99603"
+      ],
+      "boundaryStations": [
+        "八日市"
+      ],
+      "allowedDestinations": [
+        "米原",
+        "近江八幡"
+      ],
+      "boundarySnapToleranceKm": 0.08,
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99601",
+            "direction": "forward",
+            "startStationJa": "米原",
+            "endStationJa": "八日市"
+          },
+          {
+            "routeId": "line-99603",
+            "direction": "forward",
+            "startStationJa": "八日市",
+            "endStationJa": "近江八幡"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-99603",
+            "direction": "reverse",
+            "startStationJa": "近江八幡",
+            "endStationJa": "八日市"
+          },
+          {
+            "routeId": "line-99601",
+            "direction": "reverse",
+            "startStationJa": "八日市",
+            "endStationJa": "米原"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.ohmitetudo.co.jp/file.jsp?id=18048",
+      "verifiedDate": "2026-11-12",
+      "routeIds": [
+        "line-99601",
+        "line-99603"
+      ]
+    },
+    {
+      "id": "ohmi-kibukawa-omihachiman-local",
+      "nameJa": "普通 貴生川⇔近江八幡",
+      "nameKo": "보통 · 키부카와 ↔ 오미하치만",
+      "nameEn": "Kibukawa–Omihachiman Local",
+      "participatingOperatorIds": [
+        "omitetsudo"
+      ],
+      "participatingLineIds": [
+        "line-99601",
+        "line-99603"
+      ],
+      "boundaryStations": [
+        "八日市"
+      ],
+      "allowedDestinations": [
+        "貴生川",
+        "近江八幡"
+      ],
+      "boundarySnapToleranceKm": 0.08,
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99601",
+            "direction": "reverse",
+            "startStationJa": "貴生川",
+            "endStationJa": "八日市"
+          },
+          {
+            "routeId": "line-99603",
+            "direction": "forward",
+            "startStationJa": "八日市",
+            "endStationJa": "近江八幡"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-99603",
+            "direction": "reverse",
+            "startStationJa": "近江八幡",
+            "endStationJa": "八日市"
+          },
+          {
+            "routeId": "line-99601",
+            "direction": "forward",
+            "startStationJa": "八日市",
+            "endStationJa": "貴生川"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.ohmitetudo.co.jp/file.jsp?id=18048",
+      "verifiedDate": "2026-11-12",
+      "routeIds": [
+        "line-99601",
+        "line-99603"
+      ]
+    },
+    {
+      "id": "ohmi-hikone-taga-local",
+      "nameJa": "普通 彦根⇔多賀大社前",
+      "nameKo": "보통 · 히코네 ↔ 타가타이샤마에",
+      "nameEn": "Hikone–Taga Taisha-mae Local",
+      "participatingOperatorIds": [
+        "omitetsudo"
+      ],
+      "participatingLineIds": [
+        "line-99601",
+        "line-99602"
+      ],
+      "boundaryStations": [
+        "高宮"
+      ],
+      "allowedDestinations": [
+        "彦根",
+        "多賀大社前"
+      ],
+      "boundarySnapToleranceKm": 0.09,
+      "directionVariants": {
+        "forward": [
+          {
+            "routeId": "line-99601",
+            "direction": "forward",
+            "startStationJa": "彦根",
+            "endStationJa": "高宮"
+          },
+          {
+            "routeId": "line-99602",
+            "direction": "forward",
+            "startStationJa": "高宮",
+            "endStationJa": "多賀大社前"
+          }
+        ],
+        "reverse": [
+          {
+            "routeId": "line-99602",
+            "direction": "reverse",
+            "startStationJa": "多賀大社前",
+            "endStationJa": "高宮"
+          },
+          {
+            "routeId": "line-99601",
+            "direction": "reverse",
+            "startStationJa": "高宮",
+            "endStationJa": "彦根"
+          }
+        ]
+      },
+      "sourceUrl": "https://www.ohmitetudo.co.jp/file.jsp?id=18048",
+      "verifiedDate": "2026-11-12",
+      "operatingNotes": "2026-03-14 timetable: weekday evening through operation to/from Hikone.",
+      "routeIds": [
+        "line-99601",
+        "line-99602"
+      ]
     }
   ],
   "shinkansenRoutes": [
@@ -2128,7 +2300,7 @@
     "physicalLines": 97,
     "passengerRoutes": 2,
     "trainServices": 1,
-    "throughServices": 1,
+    "throughServices": 4,
     "shinkansen": 10,
     "geometryMatched": 103,
     "geometryMissing": []

@@ -7,7 +7,7 @@
     "operator": {
       "ja": "近江鉄道",
       "ko": "오미 철도",
-      "en": "ōMitetsudō"
+      "en": "Ohmi Railway"
     },
     "operatorSource": {
       "family": "namuwiki",
@@ -27,8 +27,8 @@
     "line": {
       "ja": "近江鉄道八日市線",
       "kana": "おうみてつどうようかいちせん",
-      "ko": "오미철도요카이치선",
-      "en": "ōMitetsudōYōKaichisen"
+      "ko": "요카이치선",
+      "en": "Ohmi Railway Yokaichi Line"
     },
     "koreanNameSource": {
       "family": "namuwiki",
@@ -44,7 +44,7 @@
       "status": "REVIEW_REQUIRED",
       "canonicalPolicy": "namuwiki"
     },
-    "code": "",
+    "code": "OR",
     "lineColor": "#2DBEB7",
     "symbolAsset": null,
     "symbolMeta": {
@@ -66,8 +66,27 @@
     "officialSymbolExists": false,
     "loop": false,
     "stationSignTemplate": "omitetsudo",
-    "services": [],
-    "throughServiceIds": [],
+    "services": [
+      {
+        "id": "ohmi-yokaichi-all-stops",
+        "nameJa": "普通",
+        "nameKo": "보통 · 전역정차",
+        "nameEn": "Local (all stops)",
+        "stops": [
+          "station-9960112",
+          "station-9960302",
+          "station-9960303",
+          "station-9960304",
+          "station-9960305",
+          "station-9960306",
+          "station-1160108"
+        ]
+      }
+    ],
+    "throughServiceIds": [
+      "ohmi-maibara-omihachiman-local",
+      "ohmi-kibukawa-omihachiman-local"
+    ],
     "throughOperations": [],
     "routeInfo": null,
     "stations": [
@@ -84,15 +103,15 @@
         "latitude": 35.11449,
         "longitude": 136.19465,
         "order": 1,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "OR15",
+        "stationCode": "OR15",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
         },
         "distanceKm": null,
         "location": null,
@@ -122,15 +141,15 @@
         "latitude": 35.11025,
         "longitude": 136.19112,
         "order": 2,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "OR16",
+        "stationCode": "OR16",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
         },
         "distanceKm": null,
         "location": null,
@@ -153,37 +172,40 @@
         "stationMasterId": "station-9960303",
         "sourceId": "station-9960303",
         "ja": "太郎坊宮前",
-        "kana": "たろぼうみやまえ",
-        "ko": "타로보미야마에",
-        "romaji": "TarobōMiyamae",
-        "koAliases": [],
+        "kana": "たろぼうぐうまえ",
+        "ko": "타로보구마에",
+        "romaji": "Tarobogu-mae",
+        "koAliases": [
+          "타로보미야마에"
+        ],
         "latitude": 35.10845,
         "longitude": 136.18355,
         "order": 3,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "OR17",
+        "stationCode": "OR17",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-review",
+        "koSourceUrl": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
         "koSearchReference": "site:namu.wiki 太郎坊宮前駅 타로보우미야마에 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
         "geometryIndex": 17,
-        "coordinateSource": "line-track-geometry"
+        "coordinateSource": "line-track-geometry",
+        "nameSource": "official-2026-station-directory"
       },
       {
         "id": "station-9960304",
@@ -198,15 +220,15 @@
         "latitude": 35.10394,
         "longitude": 136.166,
         "order": 4,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "OR18",
+        "stationCode": "OR18",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
         },
         "distanceKm": null,
         "location": null,
@@ -236,15 +258,15 @@
         "latitude": 35.11031,
         "longitude": 136.14631,
         "order": 5,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "OR19",
+        "stationCode": "OR19",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
         },
         "distanceKm": null,
         "location": null,
@@ -267,37 +289,40 @@
         "stationMasterId": "station-9960306",
         "sourceId": "station-9960306",
         "ja": "武佐",
-        "kana": "たけたすく",
-        "ko": "타케타스쿠",
-        "romaji": "Taketasuku",
-        "koAliases": [],
+        "kana": "むさ",
+        "ko": "무사",
+        "romaji": "Musa",
+        "koAliases": [
+          "타케타스쿠"
+        ],
         "latitude": 35.11469,
         "longitude": 136.131,
         "order": 6,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "OR20",
+        "stationCode": "OR20",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-unresolved",
-        "koSourceUrl": "",
+        "koSource": "namuwiki-review",
+        "koSourceUrl": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
         "koSearchReference": "site:namu.wiki 武佐駅 타케타스쿠 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
-        "koVerified": false,
+        "koVerified": true,
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
         "geometryIndex": 95,
-        "coordinateSource": "line-track-geometry"
+        "coordinateSource": "line-track-geometry",
+        "nameSource": "official-2026-station-directory"
       },
       {
         "id": "station-1160108",
@@ -312,15 +337,15 @@
         "latitude": 35.12242,
         "longitude": 136.10306,
         "order": 7,
-        "officialCode": "",
-        "stationCode": "",
-        "hasOfficialStationCode": false,
+        "officialCode": "OR21",
+        "stationCode": "OR21",
+        "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "none",
-          "url": "",
-          "verified": false,
-          "confidence": null,
-          "status": "NO_OFFICIAL_CODE"
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
         },
         "distanceKm": null,
         "location": null,
@@ -1340,7 +1365,7 @@
       "geometryPath": "data/lines/omitetsudo/omitetsudoyokaichisen/geometry.json"
     },
     "sources": {
-      "official": "",
+      "official": "https://www.ohmitetudo.co.jp/railway/ride/station/",
       "korean": "",
       "geometry": "MLIT-N02-2025",
       "koreanName": {
@@ -1356,7 +1381,9 @@
         "verifiedDate": null,
         "status": "REVIEW_REQUIRED",
         "canonicalPolicy": "namuwiki"
-      }
+      },
+      "namuwiki": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
+      "timetable": "https://www.ohmitetudo.co.jp/railway/ride/timetable/"
     },
     "dataKind": "physicalRoute",
     "coverage": "nationwide-source-line"

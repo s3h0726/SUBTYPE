@@ -7,10 +7,10 @@
   "names": {
     "ja": "近江鉄道多賀線",
     "kana": "おうみてつどうたがせん",
-    "ko": "오미철도타가선",
-    "en": "ōMitetsudōTagasen"
+    "ko": "타가선",
+    "en": "Ohmi Railway Taga Line"
   },
-  "code": "",
+  "code": "OR",
   "color": "#2DBEB4",
   "symbol": {
     "asset": null,
@@ -30,24 +30,39 @@
   },
   "loop": false,
   "stationSignTemplate": "omitetsudo",
-  "services": [],
-  "throughServiceIds": [],
+  "services": [
+    {
+      "id": "ohmi-taga-all-stops",
+      "names": {
+        "ja": "普通",
+        "ko": "보통 · 전역정차",
+        "en": "Local (all stops)"
+      },
+      "stopPattern": [
+        "station-9960106",
+        "station-9960203",
+        "station-9960202"
+      ]
+    }
+  ],
+  "throughServiceIds": [
+    "ohmi-hikone-taga-local"
+  ],
   "sources": {
-    "official": "",
-    "korean": "",
+    "official": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+    "korean": "https://namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EA%B0%80%EC%84%A0",
     "geometry": "MLIT-N02-2025",
     "koreanName": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 近江鉄道多賀線 오우미테츠도우타가선 노선",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "direct-mirror-review",
+      "type": "namuwiki-mirror",
+      "url": "https://namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EA%B0%80%EC%84%A0",
+      "sourceAccess": "mirror",
+      "namuwikiStatus": "reviewed",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-11-12",
+      "status": "REVIEWED",
       "canonicalPolicy": "namuwiki"
     }
   },
