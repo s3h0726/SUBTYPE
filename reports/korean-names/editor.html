@@ -32,7 +32,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <button class="country active" data-country="jp" aria-pressed="true">🇯🇵 일본</button>
 <button class="country" data-country="kr" aria-pressed="false">🇰🇷 대한민국</button>
 <button class="country" data-country="hk" aria-pressed="false">🇭🇰 홍콩</button>
-<button class="country" data-country="th" aria-pressed="false">🇹🇭 태국</button><button class="country" data-country="uk" aria-pressed="false">🇬🇧 영국</button><button class="country" data-country="tw" aria-pressed="false">🇹🇼 대만</button>
+<button class="country" data-country="th" aria-pressed="false">🇹🇭 태국</button><button class="country" data-country="fr" aria-pressed="false">🇫🇷 프랑스</button><button class="country" data-country="uk" aria-pressed="false">🇬🇧 영국</button><button class="country" data-country="tw" aria-pressed="false">🇹🇼 대만</button>
 </div>
 <div class="toolbar" id="tabs">
 <button class="tab active" data-file="operators">운영사 <span id="count-operators">…</span></button>
@@ -62,10 +62,10 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <script>
 'use strict';
 const FILES=['operators','lines','services','stations-by-line','stations-unique'];
-const COUNTRIES={jp:'일본',kr:'대한민국',hk:'홍콩',th:'태국',tw:'대만',uk:'영국'};
-let country=['jp','kr','hk','th','tw','uk'].includes(new URLSearchParams(location.search).get('country'))?new URLSearchParams(location.search).get('country'):'jp';
+const COUNTRIES={jp:'일본',kr:'대한민국',hk:'홍콩',th:'태국',tw:'대만',uk:'영국',fr:'프랑스'};
+let country=['jp','kr','hk','th','tw','uk','fr'].includes(new URLSearchParams(location.search).get('country'))?new URLSearchParams(location.search).get('country'):'jp';
 let file=FILES[0],heads=[],rows=[],original=[],visible=[],page=0,loadSequence=0;
-const routeSelection={kr:'',hk:'',th:'',uk:''},indexCache={};
+const routeSelection={kr:'',hk:'',th:'',uk:'',fr:''},indexCache={};
 const routeBar=document.querySelector('#route-filter-bar'),routePicker=document.querySelector('#route-filter');
 const DATA_VERSION='20261102-nationwide-revalidated'; // Keep existing drafts; changes are matched by stable route/station IDs.
 let FRESH_DATA_QUERY='ts='+Date.now();
@@ -113,7 +113,7 @@ function saveCSV(data,name){const blob=new Blob([makeCSV(data)],{type:'text/csv;
 function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 // Preserve draft edits by stable route/station identity, not by row number.
 function rowKey(r){if(file==='operators')return r[0];if(file==='lines'||file==='korea-lines')return r[2];if(file==='services')return r[0];if(file==='stations-by-line')return r[2]+'::'+r[4];if(file==='stations-unique')return r[0]||r[2]+'::'+r[3];return JSON.stringify(r)}
-function draftKey(){return 'metrot-korean-edit-'+DATA_VERSION+'-'+country+'-'+file+((country==='kr'||country==='hk'||country==='th'||country==='uk')&&['stations-by-line','stations-unique','services'].includes(file)?'-'+(routeSelection[country]||'none'):'')}
+function draftKey(){return 'metrot-korean-edit-'+DATA_VERSION+'-'+country+'-'+file+((country==='kr'||country==='hk'||country==='th'||country==='uk'||country==='fr')&&['stations-by-line','stations-unique','services'].includes(file)?'-'+(routeSelection[country]||'none'):'')}
 function persist(){try{const changes={};rows.forEach((r,i)=>{if(isChanged(i))changes[rowKey(r)]=r});localStorage.setItem(draftKey(),JSON.stringify(changes))}catch(e){status.textContent='브라우저 저장 공간이 부족합니다. 지금 CSV로 저장하세요.'}}
 function applyDraft(){try{
  const old='metrot-korean-edit-'+DATA_VERSION+'-'+(country==='kr'&&file==='lines'?'korea-lines':file);
@@ -170,7 +170,7 @@ async function koreanBusDisplayRoute(route){
 }
 async function countryIndex(requestedCountry=country){
  if(indexCache[requestedCountry])return indexCache[requestedCountry];
- const path={kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json',th:'data/th/generated/index.json',uk:'data/uk/generated/index.json'}[requestedCountry];
+ const path={kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json',th:'data/th/generated/index.json',uk:'data/uk/generated/index.json',fr:'data/fr/generated/index.json'}[requestedCountry];
  if(!path)throw Error('국가별 데이터 없음: '+requestedCountry);
  const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
  if(!response.ok)throw Error(path+' HTTP '+response.status);
@@ -193,7 +193,7 @@ async function routeDoc(index){
  if(!meta)throw Error('선택한 노선 ID가 현재 목록에 없습니다: '+id);
  if(Array.isArray(meta.stations)&&meta.stations.length)return meta;
  const path=String(meta.lazySource||'').replace(/^\.\//,'');
- if(!/^data\/(kr|hk|uk)\/generated\/routes\/[a-zA-Z0-9._-]+\.json$/.test(path)||!path.startsWith('data/'+country+'/'))throw Error('노선 데이터 경로 오류: '+path);
+ if(!/^data\/(kr|hk|uk|fr)\/generated\/routes\/[a-zA-Z0-9._-]+\.json$/.test(path)||!path.startsWith('data/'+country+'/'))throw Error('노선 데이터 경로 오류: '+path);
  const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
  if(!response.ok)throw Error('역명 상세 자료 '+response.status+': '+id);
  // 게임과 같은 무손실 압축 해석기를 사용해 한국 노선 전체를 편집한다.
@@ -203,12 +203,12 @@ async function routeDoc(index){
 }
 function stationName(s,field){
  return String(field==='ko'?(s.ko||s.nameKo||s.names?.ko||''):
- field==='source'?(s.zh||s.nameZhHant||s.nameZh||s.names?.zh||s.ja||s.nameJa||''):
+ field==='source'?(s.fr||s.zh||s.nameZhHant||s.nameZh||s.names?.zh||s.ja||s.nameJa||''):
  (s.en||s.nameEn||s.names?.en||s.romaji||''));
 }
 function routeStationRows(route){
  const path=route.lazySource||'data/'+country+'/generated/routes/'+route.id+'.json';
- const seen=new Set,source=country==='kr'&&route.verifiedJourneys?.length?route.verifiedJourneys.flatMap(j=>j.stations||[]):(country==='uk'?route.stationCatalog:route.stations)||[];
+ const seen=new Set,source=country==='kr'&&route.verifiedJourneys?.length?route.verifiedJourneys.flatMap(j=>j.stations||[]):(['uk','fr'].includes(country)?route.stationCatalog:route.stations)||[];
  return source.filter(st=>{if(seen.has(st.id))return false;seen.add(st.id);return true}).map((st,i)=>[
    route.operatorId||'',route.operator?.ko||'',route.id,route.line?.ko||'',
    String(st.id||st.stationId||route.id+'-stop-'+i),String(st.stationMasterId||st.physicalStationId||st.networkKey||''),
@@ -286,7 +286,7 @@ async function countryTable(name){
  throw Error('지원하지 않는 탭: '+name);
 }
 async function updateRouteSelector(){
- const visibleSelector=(country==='kr'||country==='hk'||country==='th'||country==='uk')&&['services','stations-by-line','stations-unique'].includes(file);
+ const visibleSelector=(country==='kr'||country==='hk'||country==='th'||country==='uk'||country==='fr')&&['services','stations-by-line','stations-unique'].includes(file);
  routeBar.hidden=!visibleSelector;if(!visibleSelector)return;
  const index=await countryIndex();
  routePicker.innerHTML='<option value="">노선을 선택하세요</option>'+(index.routes||[]).map(r=>
