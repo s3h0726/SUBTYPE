@@ -1,0 +1,10 @@
+'use strict';
+const assert=require('node:assert/strict'),{apply}=require('./apply-uk-service-day-rules.cjs'),{audit}=require('./audit-uk-all-56.cjs');
+assert.deepEqual(apply(),{changed:2});
+const result=audit();
+assert.equal(result.routes,56);
+assert.equal(result.directions,291);
+assert.equal(result.officialSources,56);
+assert.equal(result.timedTrainSamples,6);
+assert.equal(result.fullyVerified,0);
+console.log('PASS UK full inventory and bounded official timetable sample audit');

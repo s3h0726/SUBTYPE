@@ -42,6 +42,8 @@ const {applyShortTurns}=require('./apply-uk-verified-shortturns.cjs');
 applyShortTurns(dir,index);
 const {applyPublishedWindows}=require('./apply-uk-audited-operating-calendars.cjs');
 applyPublishedWindows(dir);
+const {apply:applyUKServiceDayRules}=require('./apply-uk-service-day-rules.cjs');
+applyUKServiceDayRules(dir);
 const routes=index.routes.map(r=>read('generated/routes/'+r.id+'.json'));
 const published=read('source/released-baseline-20261108.json'),publishedIds=new Set(published.routes.flatMap(r=>r.stationCatalog.map(s=>s.id))),groups=new Map();
 const normalizedName=s=>s.en.toLowerCase().replace(/^london /,'').replace(/[^a-z0-9]/g,'');
