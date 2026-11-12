@@ -1,0 +1,2685 @@
+{
+  "asOf": "2026-11-12",
+  "catalogSha256": "06e8230e4641181bfc7fa8f94900c4d97cc3d99b3c075ae17ffa094dc505a795",
+  "catalogUrl": "https://transport.data.gouv.fr/api/datasets",
+  "infrastructureSources": [
+    {
+      "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
+      "datasetId": "formes-des-lignes-du-rfn",
+      "datasetUrl": "https://ressources.data.sncf.com/explore/dataset/formes-des-lignes-du-rfn/",
+      "downloadUrl": "https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets/formes-des-lignes-du-rfn/exports/geojson",
+      "featureCount": 1638,
+      "infrastructureLineCodes": 886,
+      "license": "odc-odbl",
+      "publishedAt": "2026-02-19",
+      "publisher": "SNCF Réseau",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "INFRASTRUCTURE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "f6c7aa225384ecd1e63329581a757ff663f4d1730075cb5425f298bb949ed42e",
+      "datasetId": "fichier-de-formes-des-voies-du-reseau-ferre-national",
+      "datasetUrl": "https://ressources.data.sncf.com/explore/dataset/fichier-de-formes-des-voies-du-reseau-ferre-national/",
+      "downloadUrl": "https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets/fichier-de-formes-des-voies-du-reseau-ferre-national/exports/geojson",
+      "featureCount": 9956,
+      "infrastructureLineCodes": 879,
+      "license": "odc-odbl",
+      "publishedAt": "2026-08-12",
+      "publisher": "SNCF Réseau",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "INFRASTRUCTURE_INVENTORIED"
+    }
+  ],
+  "scheduleSources": [
+    {
+      "archiveSha256": "b121b900d21d1b8bd9197b252590cc50bac02038241ed5b2e29bc8690a8ef2fa",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/9ae758ec-cd7a-40cd-a890-bb3963224942",
+      "coveredArea": [
+        {
+          "insee": "FR",
+          "nom": "France",
+          "type": "pays"
+        }
+      ],
+      "datasetId": "6853c089b3ed5781f6adfdf7",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-sncf",
+      "downloadUrl": "https://eu.ftp.opendatasoft.com/sncf/plandata/Export_OpenData_SNCF_GTFS_NewTripId.zip",
+      "license": "odc-odbl",
+      "lineRecords": 613,
+      "overseas": false,
+      "publishedAt": "2026-11-09T20:46:55.000000Z",
+      "publisher": {
+        "id": "534fffb0a3a7292c64a78115",
+        "name": "SNCF",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "rail",
+        "tramway"
+      ],
+      "resourceId": 83582,
+      "slug": "horaires-sncf",
+      "stationGroups": 2558,
+      "validFrom": "2026-11-11",
+      "validTo": "2027-04-30",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "ef5bf00e3ad8f1945f7408ff29d5354cabfab2af2c6a70c986fdef9afd33df94",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/413988ed-d340-467b-8be2-7b999fcd207a",
+      "coveredArea": [
+        {
+          "insee": "11",
+          "nom": "Île-de-France",
+          "type": "region"
+        }
+      ],
+      "datasetId": "6449c52caeceb71273a42dd3",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-urbain-et-interurbain-dile-de-france-mobilites",
+      "downloadUrl": "https://eu.ftp.opendatasoft.com/stif/GTFS/IDFM-gtfs.zip",
+      "license": "mobility-licence",
+      "lineRecords": 58,
+      "overseas": false,
+      "publishedAt": "2026-11-11T06:24:06.000000Z",
+      "publisher": {
+        "id": "568e5e9488ee38033aaf0bf4",
+        "name": "Île-de-France Mobilités",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "funicular",
+        "gondola",
+        "rail",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 80921,
+      "slug": "reseau-urbain-et-interurbain-dile-de-france-mobilites",
+      "stationGroups": 992,
+      "validFrom": "2026-11-09",
+      "validTo": "2026-12-11",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "d22d0286cd6484b6e9eade3e93e4221562ae7e606c736fa423b7f45ee46265ac",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/30d94e83-48a4-4c44-8a96-c082377f5221",
+      "coveredArea": [
+        {
+          "insee": "FR",
+          "nom": "France",
+          "type": "pays"
+        }
+      ],
+      "datasetId": "5c6ad5248b4c411c3d7ae435",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/flixbus-horaires-theoriques-du-reseau-europeen-1",
+      "downloadUrl": "https://gtfs.gis.flix.tech/gtfs_generic_eu.zip",
+      "license": "odc-odbl",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-11-08T21:07:47.000000Z",
+      "publisher": {
+        "id": "5c6a90fc8b4c4153071dfa20",
+        "name": "Flixbus France",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "rail"
+      ],
+      "resourceId": 11681,
+      "slug": "flixbus-horaires-theoriques-du-reseau-europeen-1",
+      "stationGroups": 40,
+      "validFrom": "2026-11-08",
+      "validTo": "2027-05-08",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/300108a3-f8c1-4bc8-873e-f1243d49716b",
+      "coveredArea": [
+        {
+          "insee": "73024",
+          "nom": "Les Avanchers-Valmorel",
+          "type": "commune"
+        }
+      ],
+      "datasetId": "5e3c29156f444172fa4ec754",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-theoriques-et-temps-reel-de-la-station-de-ski-valmorel-gtfs-gtfs-rt",
+      "downloadUrl": "https://zenbus.net/gtfs/static/download.zip?dataset=valmorel",
+      "license": "odc-odbl",
+      "overseas": false,
+      "publishedAt": "2026-09-15T09:04:20.000000Z",
+      "publisher": {
+        "id": "5cf67b0d6f44413baf79652d",
+        "name": "Zenbus",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 12616,
+      "slug": "horaires-theoriques-et-temps-reel-de-la-station-de-ski-valmorel-gtfs-gtfs-rt",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/2a189c2d-7ccd-4b2e-bca0-40df0734fe0a",
+      "coveredArea": [
+        {
+          "insee": "65059",
+          "nom": "Bagnères-de-Bigorre",
+          "type": "commune"
+        },
+        {
+          "insee": "65481",
+          "nom": "Barèges",
+          "type": "commune"
+        },
+        {
+          "insee": "65123",
+          "nom": "Campan",
+          "type": "commune"
+        }
+      ],
+      "datasetId": "5f7d7f3750a9afcf4af57f88",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-theoriques-et-temps-reel-des-navettes-de-la-ligne-bagneres-la-mongie-gtfs-gtfs-rt",
+      "downloadUrl": "https://zenbus.net/gtfs/static/download.zip?dataset=bigorre-mongie",
+      "license": "odc-odbl",
+      "overseas": false,
+      "publishedAt": "2026-04-02T02:00:00.000000Z",
+      "publisher": {
+        "id": "5cf67b0d6f44413baf79652d",
+        "name": "Zenbus",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 14652,
+      "slug": "horaires-theoriques-et-temps-reel-des-navettes-de-la-ligne-bagneres-la-mongie-gtfs-gtfs-rt",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/f72c946b-b798-4013-ab1c-05f98bea8230",
+      "coveredArea": [
+        {
+          "insee": "200067064",
+          "nom": "CC Decazeville Communauté",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5e2071886f44414fdba2b300",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/transport-urbain-du-bassin",
+      "downloadUrl": "https://static.data.gouv.fr/resources/transport-urbain-du-bassin/20200805-161154/transports-urbains-du-bassin-version-1-3-gtfs-2020-07-30-17-59-13.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2020-08-05T16:12:27.931000Z",
+      "publisher": {
+        "id": "5e2067046f444136d7dd0c1e",
+        "name": "DECAZEVILLE COMMUNAUTE",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 22408,
+      "slug": "transport-urbain-du-bassin",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "11caa69f0c33cdb023cb1a1570a4247bd93a83e7b6b3bb8c28646c57567553bc",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/7eef6ec9-9ebb-44f2-becb-2efc522522d6",
+      "coveredArea": [
+        {
+          "insee": "200054807",
+          "nom": "Métropole d'Aix-Marseille-Provence",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5b3b3de988ee38708ada1789",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseaux-de-transports-en-commun-de-la-metropole-daix-marseille-provence-et-des-bouches-du-rhone",
+      "downloadUrl": "https://app.mecatran.com/utw/ws/gtfsfeed/static/mamp-rtm?apiKey=16421b08630a7d065c6d250051780f484b673659",
+      "license": "lov2",
+      "lineRecords": 5,
+      "overseas": false,
+      "publishedAt": "2026-11-11T05:35:17.648303Z",
+      "publisher": {
+        "id": "59afbe7cc751df1980d8d1b5",
+        "name": "Métropole d'Aix-Marseille-Provence",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "ferry",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 39589,
+      "slug": "reseaux-de-transports-en-commun-de-la-metropole-daix-marseille-provence-et-des-bouches-du-rhone",
+      "stationGroups": 150,
+      "validFrom": "2026-11-11",
+      "validTo": "2027-01-10",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "bd6a559c83d2c4e5891caf2a8215335c04675384debf091abdb280c3ddd950b1",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/cde22673-d7e4-4cbd-837f-3c8bd9fb2f9b",
+      "coveredArea": [
+        {
+          "insee": "200054807",
+          "nom": "Métropole d'Aix-Marseille-Provence",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5b3b3de988ee38708ada1789",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseaux-de-transports-en-commun-de-la-metropole-daix-marseille-provence-et-des-bouches-du-rhone",
+      "downloadUrl": "https://app.mecatran.com/utw/ws/gtfsfeed/static/mamp-aub?apiKey=5d154e7479302217113b0146044950783f2e7f72",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-10-30T01:29:18.673949Z",
+      "publisher": {
+        "id": "59afbe7cc751df1980d8d1b5",
+        "name": "Métropole d'Aix-Marseille-Provence",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 39598,
+      "slug": "reseaux-de-transports-en-commun-de-la-metropole-daix-marseille-provence-et-des-bouches-du-rhone",
+      "stationGroups": 12,
+      "validFrom": "2026-09-28",
+      "validTo": "2027-01-03",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "842eab736e0849e8b135de27a7d9c48f3ee790bcabb2b8d1ddff0cb225df89a2",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/583d1419-058b-481b-b378-449cab744c82",
+      "coveredArea": [
+        {
+          "insee": "242900314",
+          "nom": "Brest Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "55ffbe0888ee387348ccb97d",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-theoriques-et-temps-reel-des-bus-et-tramways-circulant-sur-le-territoire-de-brest-metropole",
+      "downloadUrl": "https://s3.eu-west-1.amazonaws.com/files.orchestra.ratpdev.com/networks/bibus/exports/medias.zip",
+      "license": "lov2",
+      "lineRecords": 2,
+      "overseas": false,
+      "publishedAt": "2026-11-09T11:35:18.000000Z",
+      "publisher": {
+        "id": "534fff5ba3a7292c64a77d19",
+        "name": "Brest métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "gondola",
+        "tramway"
+      ],
+      "resourceId": 43286,
+      "slug": "horaires-theoriques-et-temps-reel-des-bus-et-tramways-circulant-sur-le-territoire-de-brest-metropole",
+      "stationGroups": 74,
+      "validFrom": "2026-11-09",
+      "validTo": "2026-12-20",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "f6a73704564d821f8c2c734e0e03f75b06995f9ff537d86c29e7df35ebd6dfdc",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/c0ebcf01-954a-4d24-b2d8-a00333ffe937",
+      "coveredArea": [
+        {
+          "insee": "200023414",
+          "nom": "Métropole Rouen Normandie",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5cd4321f8b4c4137d1244318",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/donnees-statiques-et-temps-reel-du-reseau-astuce-metropole-rouen-normandie",
+      "downloadUrl": "https://api.mrn.cityway.fr/dataflow/offre-tc/download?provider=ASTUCE&dataFormat=gtfs&dataProfil=ASTUCE",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-11-11T14:23:45.000000Z",
+      "publisher": {
+        "id": "5a0467d188ee38711f65672c",
+        "name": "Métropole Rouen Normandie",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "ferry",
+        "subway"
+      ],
+      "resourceId": 64973,
+      "slug": "donnees-statiques-et-temps-reel-du-reseau-astuce-metropole-rouen-normandie",
+      "stationGroups": 31,
+      "validFrom": "2026-11-12",
+      "validTo": "2027-08-29",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/2f1e1bfc-d378-4e3d-a175-e26f14abc3e6",
+      "coveredArea": [
+        {
+          "insee": "200040590",
+          "nom": "CA Villefranche Beaujolais Saône",
+          "type": "epci"
+        },
+        {
+          "insee": "200040566",
+          "nom": "CA de l'Ouest Rhodanien",
+          "type": "epci"
+        },
+        {
+          "insee": "200040574",
+          "nom": "CC Beaujolais Pierres Dorées",
+          "type": "epci"
+        },
+        {
+          "insee": "200067817",
+          "nom": "CC Saône-Beaujolais",
+          "type": "epci"
+        },
+        {
+          "insee": "246900575",
+          "nom": "CC de l'Est Lyonnais (CCEL)",
+          "type": "epci"
+        },
+        {
+          "insee": "246900757",
+          "nom": "CC de la Vallée du Garon (CCVG)",
+          "type": "epci"
+        },
+        {
+          "insee": "200066587",
+          "nom": "CC des Monts du Lyonnais",
+          "type": "epci"
+        },
+        {
+          "insee": "246900724",
+          "nom": "CC des Vallons du Lyonnais (CCVL)",
+          "type": "epci"
+        },
+        {
+          "insee": "246900740",
+          "nom": "CC du Pays Mornantais (COPAMO)",
+          "type": "epci"
+        },
+        {
+          "insee": "246900625",
+          "nom": "CC du Pays de l'Arbresle (CCPA)",
+          "type": "epci"
+        },
+        {
+          "insee": "246900765",
+          "nom": "CC du Pays de l'Ozon",
+          "type": "epci"
+        },
+        {
+          "insee": "200046977",
+          "nom": "Métropole de Lyon",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5de42c4d8b4c417a10e62ec9",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-theoriques-du-reseau-transports-en-commun-lyonnais",
+      "downloadUrl": "https://download.data.grandlyon.com/files/rdata/tcl_sytral.tcltheorique/GTFS_TCL.ZIP",
+      "license": "mobility-licence",
+      "overseas": false,
+      "publishedAt": "2025-01-22T23:07:31.267000Z",
+      "publisher": {
+        "id": "68e3b9ef0e29271b26914921",
+        "name": "SYTRAL Mobilités",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "funicular",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 65812,
+      "slug": "horaires-theoriques-du-reseau-transports-en-commun-lyonnais",
+      "validFrom": "2022-04-14",
+      "validTo": "2022-07-12",
+      "verificationStatus": "MISSING"
+    },
+    {
+      "archiveSha256": "07f0fdfbf6690a0505ce0b02d6fd27ee55089faaf0dc46ed788cf5f90192f70e",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/1a1eb5ee-6895-4895-a18e-e87827fff0be",
+      "coveredArea": [
+        {
+          "insee": "11",
+          "nom": "Île-de-France",
+          "type": "region"
+        }
+      ],
+      "datasetId": "563dd039b5950814b0588710",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-des-lignes-transilien-1",
+      "downloadUrl": "https://eu.ftp.opendatasoft.com/sncf/gtfs/transilien-gtfs.zip",
+      "license": "odc-odbl",
+      "lineRecords": 24,
+      "overseas": false,
+      "publishedAt": "2026-11-11T05:09:02.000000Z",
+      "publisher": {
+        "id": "534fffb0a3a7292c64a78115",
+        "name": "SNCF",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "rail"
+      ],
+      "resourceId": 67595,
+      "slug": "horaires-des-lignes-transilien-1",
+      "stationGroups": 471,
+      "validFrom": "2026-11-09",
+      "validTo": "2026-12-11",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/c3fa69f0-f8b1-4324-be67-be72baf80ceb",
+      "coveredArea": [
+        {
+          "insee": "38191",
+          "nom": "Huez",
+          "type": "commune"
+        }
+      ],
+      "datasetId": "61fd29da29ea95c7bc0e1211",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-theoriques-et-temps-reel-des-navettes-hivernales-de-lalpe-dhuez-gtfs-gtfs-rt",
+      "downloadUrl": "https://zenbus.net/gtfs/static/download.zip?dataset=alpe-huez",
+      "license": "odc-odbl",
+      "overseas": false,
+      "publishedAt": "2026-09-01T02:00:00.000000Z",
+      "publisher": {
+        "id": "5cf67b0d6f44413baf79652d",
+        "name": "Zenbus",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 78387,
+      "slug": "horaires-theoriques-et-temps-reel-des-navettes-hivernales-de-lalpe-dhuez-gtfs-gtfs-rt",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/231acea2-40cf-4c06-b2eb-646274e0b853",
+      "coveredArea": [
+        {
+          "insee": "84",
+          "nom": "Auvergne-Rhône-Alpes",
+          "type": "region"
+        }
+      ],
+      "datasetId": "61f7b4f89e4131deaf48fe02",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/agregat-oura",
+      "downloadUrl": "https://api.oura3.cityway.fr/dataflow/offre-tc/download?provider=OURA&dataFormat=GTFS&dataProfil=OPENDATA",
+      "license": "odc-odbl",
+      "overseas": false,
+      "publishedAt": "2026-10-29T12:47:02.000000Z",
+      "publisher": {
+        "id": "61a4f97a13ece510797ede50",
+        "name": "Oùra",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "funicular",
+        "rail"
+      ],
+      "resourceId": 78904,
+      "slug": "agregat-oura",
+      "validFrom": "2026-11-12",
+      "validTo": "2028-06-30",
+      "verificationStatus": "MISSING"
+    },
+    {
+      "archiveSha256": "e5a32f0bb1d1b059cd25c5eb78468b9c03899cc943c9f53134ecefe17ead5e76",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/eeea9e52-4f8a-459e-aef5-a093a3b05356",
+      "coveredArea": [
+        {
+          "insee": "246700488",
+          "nom": "Eurométropole de Strasbourg",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5ae1715488ee384c8ba0342b",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/donnees-theoriques-gtfs-et-temps-reel-siri-lite-du-reseau-cts",
+      "downloadUrl": "https://opendata.cts-strasbourg.eu/google_transit.zip",
+      "license": "lov2",
+      "lineRecords": 6,
+      "overseas": false,
+      "publishedAt": "2026-10-15T11:45:57.000000Z",
+      "publisher": {
+        "id": "5ae16ff988ee3848de337bb3",
+        "name": "CTS - Compagnie des Transports Strasbourgeois",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 79220,
+      "slug": "donnees-theoriques-gtfs-et-temps-reel-siri-lite-du-reseau-cts",
+      "stationGroups": 188,
+      "validFrom": "2026-11-10",
+      "validTo": "2027-05-09",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/360ad21a-9f4b-41bc-8bbe-a9299eb0f453",
+      "coveredArea": [
+        {
+          "insee": "200071413",
+          "nom": "CA Privas Centre Ardèche",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5cb42b2a8b4c4178f85e4a16",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-urbain-interurbain-et-scolaire-de-la-communaute-dagglomeration-privas-centre-ardeche",
+      "downloadUrl": "https://static.data.gouv.fr/resources/reseau-urbain-interurbain-et-scolaire-de-la-communaute-dagglomeration-privas-centre-ardeche/20240830-054117/t-cap-dsp24-gtfs-2024-08-30-07-35-58.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2024-08-30T07:41:17.619000Z",
+      "publisher": {
+        "id": "5cadb863634f41514da8fa0c",
+        "name": "Communauté d'Agglomération Privas Centre Ardèche",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 79274,
+      "slug": "reseau-urbain-interurbain-et-scolaire-de-la-communaute-dagglomeration-privas-centre-ardeche",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/cf277982-b61f-4ba0-b47a-5f6df5394d38",
+      "coveredArea": [
+        {
+          "insee": "243400470",
+          "nom": "CA du Pays de l'Or",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5c419aaa8b4c4144b27a82f3",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/offre-transport-en-commun-du-reseau-transpor-gtfs",
+      "downloadUrl": "https://static.data.gouv.fr/resources/offre-transport-en-commun-du-reseau-transpor-gtfs/20220701-115247/transp-or-ete-v1-gtfs-2022-06-30-17-38-32.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2022-07-01T11:53:02.413000Z",
+      "publisher": {
+        "id": "5c0f9f618b4c41745fb43104",
+        "name": "Transp'Or - Pays de l'Or Agglomération",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 79551,
+      "slug": "offre-transport-en-commun-du-reseau-transpor-gtfs",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "01cf2cdbef48b8a0d280121910c47a79ef695ed7464068197cd64141174c6cba",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/c0bd9ff1-97f9-43f8-aca4-8e80d7728324",
+      "coveredArea": [
+        {
+          "insee": "52",
+          "nom": "Pays de la Loire",
+          "type": "region"
+        }
+      ],
+      "datasetId": "632b2a8a8bf5b436bed4f8df",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/arrets-horaires-et-circuits-des-lignes-de-transports-en-commun-en-pays-de-la-loire-gtfs-destineo-reseaux-aom-aleop-1",
+      "downloadUrl": "https://mobi-iti-pdl.okina.fr/static/mobiiti_technique/gtfs_global.zip",
+      "license": "odc-odbl",
+      "lineRecords": 53,
+      "overseas": false,
+      "publishedAt": "2026-10-28T23:38:18.000000Z",
+      "publisher": {
+        "id": "534fffa7a3a7292c64a780c5",
+        "name": "Région des Pays de la Loire",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "ferry",
+        "rail",
+        "tramway"
+      ],
+      "resourceId": 79818,
+      "slug": "arrets-horaires-et-circuits-des-lignes-de-transports-en-commun-en-pays-de-la-loire-gtfs-destineo-reseaux-aom-aleop-1",
+      "stationGroups": 416,
+      "validFrom": "2026-11-10",
+      "validTo": "2027-11-11",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "9a37b30bdf929df83f6e0fff898aa3f9f777f6dd470be67a46d04ff637f0a589",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/32f30b64-33f7-43bb-9b6f-34c21c2f83a3",
+      "coveredArea": [
+        {
+          "insee": "244900015",
+          "nom": "CU Angers Loire Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "6178cee254e3b3f0744a1318",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/angers-loire-metropole-reseau-irigo-gtfs-gtfs-rt-siri",
+      "downloadUrl": "https://chouette.enroute.mobi/api/v1/datas/Irigo/gtfs.zip",
+      "license": "odc-odbl",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-11-11T01:02:08.000000Z",
+      "publisher": {
+        "id": "538346d6a3a72906c7ec5c36",
+        "name": "Angers Loire Métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 80036,
+      "slug": "angers-loire-metropole-reseau-irigo-gtfs-gtfs-rt-siri",
+      "stationGroups": 85,
+      "validFrom": "2026-10-28",
+      "validTo": "2027-07-02",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/7242620a-b4af-4be5-bfa4-b1f684442552",
+      "coveredArea": [
+        {
+          "insee": "200067064",
+          "nom": "CC Decazeville Communauté",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5e2071886f44414fdba2b300",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/transport-urbain-du-bassin",
+      "downloadUrl": "https://static.data.gouv.fr/resources/transport-urbain-du-bassin/20230102-111115/transports-urbains-du-bassin-version-2-4-gtfs-2023-01-02-10-36-49.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2023-01-02T11:11:30.765000Z",
+      "publisher": {
+        "id": "5e2067046f444136d7dd0c1e",
+        "name": "DECAZEVILLE COMMUNAUTE",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 80253,
+      "slug": "transport-urbain-du-bassin",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/046eac2f-8af9-4e42-9a2e-aae1745176d2",
+      "coveredArea": [
+        {
+          "insee": "249720053",
+          "nom": "CA de l'Espace Sud de la Martinique",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "636a9af02a03225c607bc19e",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/gtfs-urbain-de-la-zone-sud",
+      "downloadUrl": "https://static.data.gouv.fr/resources/gtfs-urbain-de-la-zone-sud/20230109-181149/gtfs-sud-sudlib.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2023-01-09T18:15:10.261000Z",
+      "publisher": {
+        "id": "632cb36b83c044c66c64539b",
+        "name": "Martinique Transport",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 80394,
+      "slug": "gtfs-urbain-de-la-zone-sud",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "2f4b9be50fa73bb549010025865c56b4b82da09d406ef9fcd6d53a56a8363513",
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/80437/download",
+      "coveredArea": [
+        {
+          "insee": "200066058",
+          "nom": "CA Saint-Louis Agglomération",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "63b4c3d22989785f7e9dde9d",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/fr-200052264-t0017-0000-1",
+      "downloadUrl": "https://api.grandest2.cityway.fr/exs/GTFS?Key=OPENDATA&OperatorCode=CC3F",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-09-16T19:10:51.000000Z",
+      "publisher": {
+        "id": "5d823fd98b4c411e38e820b4",
+        "name": "Fluo Grand Est",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 80437,
+      "slug": "fr-200052264-t0017-0000-1",
+      "stationGroups": 26,
+      "validFrom": "2026-09-16",
+      "validTo": "2027-08-31",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "9ab40715fb7da8b7103e19c94bb957906dcb230469e87d8ad3af2f680b3feda0",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/7db50c2d-3fe4-4d3d-9942-57ac37c93a8d",
+      "coveredArea": [
+        {
+          "insee": "200066009",
+          "nom": "CA Mulhouse Alsace Agglomération",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "63c02bbf4059d43863de0c81",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/offre-de-transport-solea-et-tram-train-en-format-gtfs-1",
+      "downloadUrl": "https://eu.ftp.opendatasoft.com/mulhouse/TRANSPORT_GTFS/SOLEA.GTFS_current.zip",
+      "license": "lov2",
+      "lineRecords": 4,
+      "overseas": false,
+      "publishedAt": "2026-10-09T10:28:06.000000Z",
+      "publisher": {
+        "id": "5be06c41634f4158c956b300",
+        "name": "Mulhouse Alsace Agglomération",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 80492,
+      "slug": "offre-de-transport-solea-et-tram-train-en-format-gtfs-1",
+      "stationGroups": 37,
+      "validFrom": "2026-10-27",
+      "validTo": "2027-06-25",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "379284230c1a66a48ee42a2b5de99534335f6f9e2d0d92e209918703a7f96e90",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/e18e0aeb-8805-47fd-bcdb-c226d21c96fe",
+      "coveredArea": [
+        {
+          "insee": "242500361",
+          "nom": "CU Grand Besançon Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5b5b090988ee385b10198107",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/gtfs-et-siri-du-reseau-ginko-besancon-lignes-urbaines-et-periurbaines",
+      "downloadUrl": "https://api.ginko.voyage/gtfs-ginko.zip",
+      "license": "lov2",
+      "lineRecords": 4,
+      "overseas": false,
+      "publishedAt": "2026-11-10T02:05:13.000000Z",
+      "publisher": {
+        "id": "59196e9088ee38471c78dac6",
+        "name": "GRAND BESANCON METROPOLE",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 80590,
+      "slug": "gtfs-et-siri-du-reseau-ginko-besancon-lignes-urbaines-et-periurbaines",
+      "stationGroups": 31,
+      "validFrom": "2026-10-19",
+      "validTo": "2027-07-04",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "d52e11fdb93f76ecfd3156292c96033db90035fcc5841c1e8acd230844a0ce6b",
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/80594/download",
+      "coveredArea": [
+        {
+          "insee": "200067213",
+          "nom": "CU du Grand Reims",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "63b4c3d200fbf8e5ed9dde9a",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/offre-de-transport-du-reseau-grand-reims-mobilites-communaute-urbaine-du-grand-reims",
+      "downloadUrl": "https://api.grandest2.cityway.fr/exs/GTFS?Key=OPENDATA&OperatorCode=REI",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-11-05T23:03:07.000000Z",
+      "publisher": {
+        "id": "5d823fd98b4c411e38e820b4",
+        "name": "Fluo Grand Est",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "subway"
+      ],
+      "resourceId": 80594,
+      "slug": "offre-de-transport-du-reseau-grand-reims-mobilites-communaute-urbaine-du-grand-reims",
+      "stationGroups": 24,
+      "validFrom": "2026-11-11",
+      "validTo": "2026-11-30",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "48bb383a4d8210f62c3b5cbc253eb81031f2b4a86812358313adc8e758d2df9c",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/198b7602-5e74-4d88-b6bc-483af85a2430",
+      "coveredArea": [
+        {
+          "insee": "243700754",
+          "nom": "Tours Métropole Val de Loire",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "638157af7f6b7cd00e2908e1",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/fil-bleu-syndicat-des-mobilites-gtfs-gtfs-rt",
+      "downloadUrl": "https://data.tours-metropole.fr/api/v2/catalog/datasets/horaires-temps-reel-gtfsrt-reseau-filbleu-tmvl/alternative_exports/filbleu_gtfszip",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-11-07T19:32:55.071358Z",
+      "publisher": {
+        "id": "5cb6d4f78b4c4118e18f37d1",
+        "name": "Tours Métropole Val de Loire",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 80694,
+      "slug": "fil-bleu-syndicat-des-mobilites-gtfs-gtfs-rt",
+      "stationGroups": 29,
+      "validFrom": "2026-11-12",
+      "validTo": "2027-06-28",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "93feceb6935cfffe8907773a9b5cd17953e6be512ec65ff54f461647c46173ed",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/e0dbd217-15cd-4e28-9459-211a27511a34",
+      "coveredArea": [
+        {
+          "insee": "242100410",
+          "nom": "Dijon Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5d31d8b69ce2e703da90b699",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/gtfs-diviamobilites",
+      "downloadUrl": "https://static.data.gouv.fr/resources/gtfs-diviamobilites/20261112-103434/gtfs-diviamobilites-current.zip",
+      "license": "lov2",
+      "lineRecords": 2,
+      "overseas": false,
+      "publishedAt": "2026-11-06T09:21:59.286000Z",
+      "publisher": {
+        "id": "5d2f1e41634f417a1d33f173",
+        "name": "DiviaMobilités",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 80742,
+      "slug": "gtfs-diviamobilites",
+      "stationGroups": 72,
+      "validFrom": "2026-01-01",
+      "validTo": "2027-01-31",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "9acaa6da0bd62d42d071af8af7f278daa0e5338fc86ee271420fb67f8fe5c2f3",
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/80787/download",
+      "coveredArea": [
+        {
+          "insee": "200066009",
+          "nom": "CA Mulhouse Alsace Agglomération",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "63b4c3d300fbf8e5ed9dde9e",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/fr-200052264-t0014-0000-1",
+      "downloadUrl": "https://api.grandest2.cityway.fr/exs/GTFS?Key=OPENDATA&OperatorCode=SITRAM",
+      "license": "lov2",
+      "lineRecords": 4,
+      "overseas": false,
+      "publishedAt": "2026-10-09T18:55:17.000000Z",
+      "publisher": {
+        "id": "5d823fd98b4c411e38e820b4",
+        "name": "Fluo Grand Est",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 80787,
+      "slug": "fr-200052264-t0014-0000-1",
+      "stationGroups": 36,
+      "validFrom": "2026-10-27",
+      "validTo": "2027-06-25",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/d34a4b53-5d6d-41b5-9cd9-bb738637b7e9",
+      "coveredArea": [
+        {
+          "insee": "11",
+          "nom": "Île-de-France",
+          "type": "region"
+        }
+      ],
+      "datasetId": "6449c52caeceb71273a42dd3",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-urbain-et-interurbain-dile-de-france-mobilites",
+      "downloadUrl": "https://gtech-transit-prod.apigee.net/v1/google/gtfs/odbl/iledefrance_public.zip?apikey=BasyG6OFZXgXnzWdQLTwJFGcGmeOs204&secret=gNo6F5PhQpsGRBCK",
+      "license": "mobility-licence",
+      "overseas": false,
+      "publishedAt": "2023-11-17T13:28:28.705000Z",
+      "publisher": {
+        "id": "568e5e9488ee38033aaf0bf4",
+        "name": "Île-de-France Mobilités",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 80931,
+      "slug": "reseau-urbain-et-interurbain-dile-de-france-mobilites",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/fc66b270-658c-4678-9794-229a1a8a4938",
+      "coveredArea": [
+        {
+          "insee": "244200770",
+          "nom": "Saint-Étienne Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5c34c93f8b4c4104b817fb3a",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-du-reseau-stas",
+      "downloadUrl": "https://bus-prod.saint-etienne-metropole.fr/Public/stas/api/gtfs.aspx",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2026-11-10T13:30:14.000000Z",
+      "publisher": {
+        "id": "5c34c63a8b4c41718c8b236f",
+        "name": "Saint-Etienne Métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 81023,
+      "slug": "horaires-du-reseau-stas",
+      "validFrom": "2026-11-12",
+      "validTo": "2026-12-20",
+      "verificationStatus": "MISSING"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/eaeab898-582e-4554-b79a-845773f041f5",
+      "coveredArea": [
+        {
+          "insee": "249720053",
+          "nom": "CA de l'Espace Sud de la Martinique",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "636a9af02a03225c607bc19e",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/gtfs-urbain-de-la-zone-sud",
+      "downloadUrl": "https://static.data.gouv.fr/resources/gtfs-urbain-de-la-zone-sud/20230821-030926/gtfs-maritime-martinique.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2023-08-21T05:09:26.687000Z",
+      "publisher": {
+        "id": "632cb36b83c044c66c64539b",
+        "name": "Martinique Transport",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 81193,
+      "slug": "gtfs-urbain-de-la-zone-sud",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/7e14bf5c-6afb-452f-a469-02e6f44fcfdd",
+      "coveredArea": [
+        {
+          "insee": "243600327",
+          "nom": "CA Châteauroux Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "62bf8ab7cafeeffcada1f85d",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-de-bus-urbain-horizon",
+      "downloadUrl": "https://static.data.gouv.fr/resources/reseau-de-bus-urbain-horizon/20231109-153356/gtfs-20231109-115706.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2023-11-09T15:34:03.736000Z",
+      "publisher": {
+        "id": "5bf67a998b4c417eae692920",
+        "name": "CHATEAUROUX METROPOLE",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 81365,
+      "slug": "reseau-de-bus-urbain-horizon",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/fbc87265-7328-46a1-a202-4f11ed7b52b7",
+      "coveredArea": [
+        {
+          "insee": "200067437",
+          "nom": "CA Provence-Alpes-Agglomération",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "6357f252e8746ab0a790f68e",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-de-transport-urbains-dignois",
+      "downloadUrl": "https://static.data.gouv.fr/resources/reseau-de-transport-urbains-dignois/20240603-092831/rtud-v8-gtfs-2024-06-03-11-20-05.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2024-06-03T11:28:31.082000Z",
+      "publisher": {
+        "id": "623d7d93babf28e1b5663514",
+        "name": "PROVENCE-ALPES-AGGLOMERATION",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 81367,
+      "slug": "reseau-de-transport-urbains-dignois",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "679e89efb11d4bf15e47c101f3d8be196e69c773ba3e7c2b14e36ef278bdcaab",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/b7a835d4-7a93-4d8b-87bd-c657800fc29f",
+      "coveredArea": [
+        {
+          "insee": "53",
+          "nom": "Bretagne",
+          "type": "region"
+        }
+      ],
+      "datasetId": "658626a91554e836ebac182c",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/breizhgo-ter",
+      "downloadUrl": "https://www.korrigo.bzh/ftp/OPENDATA/BREIZHGO_TER.gtfs.zip",
+      "license": "odc-odbl",
+      "lineRecords": 91,
+      "overseas": false,
+      "publishedAt": "2026-11-08T05:33:06.000000Z",
+      "publisher": {
+        "id": "559a4970c751df46a9a453ba",
+        "name": "Région Bretagne",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "rail"
+      ],
+      "resourceId": 81474,
+      "slug": "breizhgo-ter",
+      "stationGroups": 396,
+      "validFrom": "2026-11-10",
+      "validTo": "2027-02-08",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "8d0f5e832f3b7b08d576c05b77c6b5cf5feb194fb089c9fcf2a673954e3caa7c",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/8c7b32d0-6481-4bb8-b903-c50a04c72fec",
+      "coveredArea": [
+        {
+          "insee": "53",
+          "nom": "Bretagne",
+          "type": "region"
+        }
+      ],
+      "datasetId": "65af92d12d38ceffacb04812",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/base-de-donnees-multimodale-transports-publics-en-bretagne-korrigo-gtfs",
+      "downloadUrl": "https://www.korrigo.bzh/ftp/OPENDATA/KORRIGOBRET.gtfs.zip",
+      "license": "odc-odbl",
+      "lineRecords": 95,
+      "overseas": false,
+      "publishedAt": "2026-11-10T16:06:22.000000Z",
+      "publisher": {
+        "id": "559a4970c751df46a9a453ba",
+        "name": "Région Bretagne",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "air",
+        "bus",
+        "coach",
+        "ferry",
+        "gondola",
+        "rail",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 81559,
+      "slug": "base-de-donnees-multimodale-transports-publics-en-bretagne-korrigo-gtfs",
+      "stationGroups": 498,
+      "validFrom": "2026-11-10",
+      "validTo": "2034-01-20",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "5f7e97e94ffb8c6b7b2dabd1a6b160167ff390659d9e9029c508fef250a2887b",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/bdecea2c-ebc9-4f22-812d-927e4a2e4bad",
+      "coveredArea": [
+        {
+          "insee": "FR",
+          "nom": "France",
+          "type": "pays"
+        }
+      ],
+      "datasetId": "64635525318cc75a9a8a771f",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-des-trains-trenitalia-france",
+      "downloadUrl": "https://thello.axelor.com/public/gtfs/gtfs.zip",
+      "license": "lov2",
+      "lineRecords": 31,
+      "overseas": false,
+      "publishedAt": "2026-11-10T16:05:04.000000Z",
+      "publisher": {
+        "id": "643ea16a8a200d21714dad13",
+        "name": "TRENITALIA FRANCE",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "rail"
+      ],
+      "resourceId": 81653,
+      "slug": "horaires-des-trains-trenitalia-france",
+      "stationGroups": 16,
+      "validFrom": "2026-11-11",
+      "validTo": "2026-12-11",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "c4214d7f9773b3cd1d4de71c26dbce78837c0014ec29f473e79426a6a0143316",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/64318177-f5b5-4144-a6be-2d0f22d26c77",
+      "coveredArea": [
+        {
+          "insee": "200068641",
+          "nom": "CA Le Muretain Agglo",
+          "type": "epci"
+        },
+        {
+          "insee": "243100633",
+          "nom": "CA du Sicoval",
+          "type": "epci"
+        },
+        {
+          "insee": "243100781",
+          "nom": "CC Le Grand Ouest Toulousain",
+          "type": "epci"
+        },
+        {
+          "insee": "243100815",
+          "nom": "CC des Coteaux Bellevue",
+          "type": "epci"
+        },
+        {
+          "insee": "243100518",
+          "nom": "Toulouse Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "56b0c2fba3a7294d39b88a86",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/tisseo-reseau-transport-urbain-toulousain",
+      "downloadUrl": "https://data.toulouse-metropole.fr/explore/dataset/tisseo-gtfs/files/fc1dda89077cf37e4f7521760e0ef4e9/download/",
+      "license": "odc-odbl",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-11-12T00:03:36.462422Z",
+      "publisher": {
+        "id": "534fffb3a3a7292c64a78129",
+        "name": "Toulouse métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "gondola",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 81678,
+      "slug": "tisseo-reseau-transport-urbain-toulousain",
+      "stationGroups": 60,
+      "validFrom": "2026-11-10",
+      "validTo": "2026-12-14",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "4982b6519db86dcbda799091ff8020ef91edd672cf0279d3bedcc3d9e9073f8a",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/941123b0-004e-4f48-81e7-8c62fb4f07aa",
+      "coveredArea": [
+        {
+          "insee": "200035715",
+          "nom": "CA Carcassonne Agglo",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "6661b213e00b47a6f617e471",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-rtca",
+      "downloadUrl": "https://static.data.gouv.fr/resources/reseau-rtca/20261102-085142/gtfs.zip",
+      "license": "lov2",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-11-02T08:51:43.956000Z",
+      "publisher": {
+        "id": "6661add9e951e47d563d181b",
+        "name": "Carcassonne Agglo",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 81876,
+      "slug": "reseau-rtca",
+      "stationGroups": 12,
+      "validFrom": "2026-11-02",
+      "validTo": "2027-01-03",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "262435e42622ddf25b27cec7f9001939b7e7fc7754663fd6d705fc2641c9241b",
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/81942/download",
+      "coveredArea": [
+        {
+          "insee": "28",
+          "nom": "Normandie",
+          "type": "region"
+        }
+      ],
+      "datasetId": "5ced52ed8b4c4177b679d377",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/base-de-donnees-multimodale-des-reseaux-de-transport-public-normands",
+      "downloadUrl": "https://static.data.gouv.fr/resources/base-de-donnees-multimodale-des-reseaux-de-transport-public-normands/20261112-131318/pt-th-offer-atoumod-gtfs-20261112-729-opendata.zip",
+      "license": "lov2",
+      "lineRecords": 35,
+      "overseas": false,
+      "publishedAt": "2026-11-09T09:34:20.444000Z",
+      "publisher": {
+        "id": "5cc844dd634f41078d8e2c8e",
+        "name": "Syndicat mixte Atoumod",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "ferry",
+        "funicular",
+        "rail",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 81942,
+      "slug": "base-de-donnees-multimodale-des-reseaux-de-transport-public-normands",
+      "stationGroups": 367,
+      "validFrom": "2026-11-12",
+      "validTo": "2028-10-30",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/abebedc6-28cf-4e2e-9c64-db57a40156f8",
+      "coveredArea": [
+        {
+          "insee": "200040590",
+          "nom": "CA Villefranche Beaujolais Saône",
+          "type": "epci"
+        },
+        {
+          "insee": "200040566",
+          "nom": "CA de l'Ouest Rhodanien",
+          "type": "epci"
+        },
+        {
+          "insee": "200040574",
+          "nom": "CC Beaujolais Pierres Dorées",
+          "type": "epci"
+        },
+        {
+          "insee": "200067817",
+          "nom": "CC Saône-Beaujolais",
+          "type": "epci"
+        },
+        {
+          "insee": "246900575",
+          "nom": "CC de l'Est Lyonnais (CCEL)",
+          "type": "epci"
+        },
+        {
+          "insee": "246900757",
+          "nom": "CC de la Vallée du Garon (CCVG)",
+          "type": "epci"
+        },
+        {
+          "insee": "200066587",
+          "nom": "CC des Monts du Lyonnais",
+          "type": "epci"
+        },
+        {
+          "insee": "246900724",
+          "nom": "CC des Vallons du Lyonnais (CCVL)",
+          "type": "epci"
+        },
+        {
+          "insee": "246900740",
+          "nom": "CC du Pays Mornantais (COPAMO)",
+          "type": "epci"
+        },
+        {
+          "insee": "246900625",
+          "nom": "CC du Pays de l'Arbresle (CCPA)",
+          "type": "epci"
+        },
+        {
+          "insee": "246900765",
+          "nom": "CC du Pays de l'Ozon",
+          "type": "epci"
+        },
+        {
+          "insee": "200046977",
+          "nom": "Métropole de Lyon",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5de42c4d8b4c417a10e62ec9",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-theoriques-du-reseau-transports-en-commun-lyonnais",
+      "downloadUrl": "https://gtech-transit-prod.apigee.net/v1/google/gtfs/odbl/lyon_tcl.zip?apikey=BasyG6OFZXgXnzWdQLTwJFGcGmeOs204&secret=gNo6F5PhQpsGRBCK",
+      "license": "mobility-licence",
+      "overseas": false,
+      "publishedAt": "2024-07-11T08:36:49.616000Z",
+      "publisher": {
+        "id": "68e3b9ef0e29271b26914921",
+        "name": "SYTRAL Mobilités",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 81943,
+      "slug": "horaires-theoriques-du-reseau-transports-en-commun-lyonnais",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "3a39b4ac3f82a1d11a1dc217af3c4a6b3a2203cc45dafa0a992cd7ded9995e47",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/0d9a808a-9a9b-4fa1-b04f-339bbf2cfeb1",
+      "coveredArea": [
+        {
+          "insee": "200054807",
+          "nom": "Métropole d'Aix-Marseille-Provence",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5b3b3de988ee38708ada1789",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseaux-de-transports-en-commun-de-la-metropole-daix-marseille-provence-et-des-bouches-du-rhone",
+      "downloadUrl": "https://app.mecatran.com/utw/ws/gtfsfeed/static/mamp?apiKey=60327e505a214c77303f52206f11483069257343",
+      "license": "lov2",
+      "lineRecords": 27,
+      "overseas": false,
+      "publishedAt": "2026-11-09T02:04:44.649366Z",
+      "publisher": {
+        "id": "59afbe7cc751df1980d8d1b5",
+        "name": "Métropole d'Aix-Marseille-Provence",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "ferry",
+        "rail",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 81969,
+      "slug": "reseaux-de-transports-en-commun-de-la-metropole-daix-marseille-provence-et-des-bouches-du-rhone",
+      "stationGroups": 290,
+      "validFrom": "2026-11-11",
+      "validTo": "2027-05-31",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "28b984b032334f207113d0dc8525066342577214633f9948493e655917c0dc7b",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/c9e5dd3f-8eed-4ad7-aec2-915240599cf6",
+      "coveredArea": [
+        {
+          "insee": "200093201",
+          "nom": "Métropole Européenne de Lille",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "665fe73f1da7949369f23bb5",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/ilevia-localisation-des-arrets-bus-metro-et-tram-gtfs",
+      "downloadUrl": "https://media.ilevia.fr/opendata/gtfs.zip",
+      "license": "lov2",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-11-11T00:19:11.000000Z",
+      "publisher": {
+        "id": "58b69c62c751df4b175dd7a4",
+        "name": "Métropole Européenne de Lille ",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 81995,
+      "slug": "ilevia-localisation-des-arrets-bus-metro-et-tram-gtfs",
+      "stationGroups": 93,
+      "validFrom": "2026-11-12",
+      "validTo": "2027-08-29",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "0a03088709f15c4dc2d67178eeb225ac3410ee58c15acfbb09f8f6636a79d85f",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/7cbb883b-d0cb-4bc7-b2e0-7537afdbc86e",
+      "coveredArea": [
+        {
+          "insee": "200067551",
+          "nom": "CA Thonon Agglomération",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "6371ee54c77b47381f77bed6",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/thonon-agglomeration-donnees-gtfs",
+      "downloadUrl": "https://static.data.gouv.fr/resources/thonon-agglomeration-donnees-gtfs/20260831-135752/2026.08.18-2026.12.18-gtfs-start.zip",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-08-31T13:57:52.823000Z",
+      "publisher": {
+        "id": "62022260def8ed25bb5ba4c1",
+        "name": "Thonon Agglomération",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "funicular"
+      ],
+      "resourceId": 82178,
+      "slug": "thonon-agglomeration-donnees-gtfs",
+      "stationGroups": 2,
+      "validFrom": "2026-08-17",
+      "validTo": "2026-12-20",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "06938d01fd735872c65b881bdee649417fabad2bcc86ab3aebddead923ce01a0",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/bfd97acd-63f3-4ea4-bfe8-70e4c7fd8d13",
+      "coveredArea": [
+        {
+          "insee": "FR",
+          "nom": "France",
+          "type": "pays"
+        }
+      ],
+      "datasetId": "63bc5f36f25deab1e855c0ff",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/eurostar-gtfs-plan-de-transport-et-temps-reel",
+      "downloadUrl": "https://integration-storage.dm.eurostar.com/gtfs-prod/gtfs_static_commercial_v2.zip",
+      "license": "lov2",
+      "lineRecords": 27,
+      "overseas": false,
+      "publishedAt": "2026-11-11T00:38:48.000000Z",
+      "publisher": {
+        "id": "6392053684f3ddbec9d2fa22",
+        "name": "Eurostar International Ltd.",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "rail"
+      ],
+      "resourceId": 82199,
+      "slug": "eurostar-gtfs-plan-de-transport-et-temps-reel",
+      "stationGroups": 23,
+      "validFrom": "2026-11-12",
+      "validTo": "2027-02-09",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "538662598953e89b981f8de80eb18504d02d0a17acffb7f43f0a0533ab37a9a4",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/1164d75b-4a9f-4c5a-b765-31d861b34fda",
+      "coveredArea": [
+        {
+          "insee": "93",
+          "nom": "Région Sud — Provence-Alpes-Côte d’Azur",
+          "type": "region"
+        }
+      ],
+      "datasetId": "668d0a08a847603d391cbed7",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/lignes-des-reseaux-transport-zou-provence-alpes-cote-d-azur-express-3-3",
+      "downloadUrl": "https://www.datasud.fr/fr/dataset/datasets/3743/resource/5153/download/",
+      "license": "lov2",
+      "lineRecords": 31,
+      "overseas": false,
+      "publishedAt": "2026-11-09T00:00:00.000000Z",
+      "publisher": {
+        "id": "534fffa8a3a7292c64a780d2",
+        "name": "Région Provence-Alpes-Côte-d'Azur",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "rail"
+      ],
+      "resourceId": 82285,
+      "slug": "lignes-des-reseaux-transport-zou-provence-alpes-cote-d-azur-express-3-3",
+      "stationGroups": 286,
+      "validFrom": "2026-11-08",
+      "validTo": "2027-05-09",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "c7d8818a71a927aa3a6c77e8b5dc7123f5ddcef5c284b06ed4bad8d3acc6dab1",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/e09ee736-ae5e-48c8-ac13-3839e3f2f74a",
+      "coveredArea": [
+        {
+          "insee": "75",
+          "nom": "Nouvelle-Aquitaine",
+          "type": "region"
+        }
+      ],
+      "datasetId": "6246416dbd6bdfe8bceb4ce1",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/arrets-horaires-et-parcours-theoriques-des-reseaux-nva-mobilite-agreges-1",
+      "downloadUrl": "https://www.pigma.org/public/opendata/nouvelle_aquitaine_mobilites/publication/naq-aggregated-gtfs.zip",
+      "license": "odc-odbl",
+      "lineRecords": 6,
+      "overseas": false,
+      "publishedAt": "2026-11-09T00:00:00.000000Z",
+      "publisher": {
+        "id": "5c52f0cc8b4c410915918eee",
+        "name": "Nouvelle-Aquitaine Mobilités",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "ferry",
+        "tramway"
+      ],
+      "resourceId": 82321,
+      "slug": "arrets-horaires-et-parcours-theoriques-des-reseaux-nva-mobilite-agreges-1",
+      "stationGroups": 135,
+      "validFrom": "2026-10-12",
+      "validTo": "2027-11-09",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "2c678cecc0d593475da5d9f1c0f5921af88bb0845e6da7866e0e4429cd7048ce",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/eae0fa46-087a-4018-ada9-d8add124e635",
+      "coveredArea": [
+        {
+          "insee": "FR",
+          "nom": "France",
+          "type": "pays"
+        }
+      ],
+      "datasetId": "6703a201386f775e01f4269b",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-ave-espagne-france",
+      "downloadUrl": "https://ssl.renfe.com/gtransit/Fichero_AV_INT/Renfe_AVE_Int.zip",
+      "license": "lov2",
+      "lineRecords": 10,
+      "overseas": false,
+      "publishedAt": "2026-11-12T00:05:31.000000Z",
+      "publisher": {
+        "id": "65f039ba99a5477e0f3c0728",
+        "name": "RENFE VIAJEROS SOCIEDAD MERCANTIL ESTATAL SA",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "rail"
+      ],
+      "resourceId": 82386,
+      "slug": "horaires-ave-espagne-france",
+      "stationGroups": 16,
+      "validFrom": "2026-11-11",
+      "validTo": "2027-01-24",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "9ddeda143095d0c7a6ee1f54e0a5495993d0417f3d68deef3f84a403f5404449",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/fa444b8c-c1c6-4015-ac50-f748c12764d3",
+      "coveredArea": [
+        {
+          "insee": "249740119",
+          "nom": "CA Intercommunale du Nord de la Réunion (CINOR)",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "67daaa80d0f0a30eef26b90f",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/citalis-telepherique-papang",
+      "downloadUrl": "https://static.data.gouv.fr/resources/citalis-telepherique-papang/20251229-113508/pap1-gtfs-2025-12-02-2028-03-01.zip",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2025-12-29T11:35:09.387000Z",
+      "publisher": {
+        "id": "67d95699c8bde60a00c0e281",
+        "name": "CITALIS",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "funicular"
+      ],
+      "resourceId": 82880,
+      "slug": "citalis-telepherique-papang",
+      "stationGroups": 5,
+      "validFrom": "2025-12-01",
+      "validTo": "2028-03-01",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "aa2972f21fac06cd6e01778f59ba0405505e19ed411b08084bcaa991f14fde5c",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/10b87ffe-e6bb-494d-93df-bb6019e223d9",
+      "coveredArea": [
+        {
+          "insee": "243300316",
+          "nom": "Bordeaux Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "67f5bad303325228295b7dff",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/offres-de-services-bus-tram-et-scolaire-au-format-gtfs-netex-gtfs-rt-siri-lite",
+      "downloadUrl": "https://bdx.mecatran.com/utw/ws/gtfsfeed/static/bordeaux?apiKey=opendata-bordeaux-metropole-flux-gtfs-rt",
+      "license": "fr-lo",
+      "lineRecords": 6,
+      "overseas": false,
+      "publishedAt": "2026-11-11T22:04:42.108191Z",
+      "publisher": {
+        "id": "5b0d11f688ee382af4b18c95",
+        "name": "Bordeaux Métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "ferry",
+        "tramway"
+      ],
+      "resourceId": 83024,
+      "slug": "offres-de-services-bus-tram-et-scolaire-au-format-gtfs-netex-gtfs-rt-siri-lite",
+      "stationGroups": 139,
+      "validFrom": "2026-11-02",
+      "validTo": "2027-07-02",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "c1979d9d2bae11361300acb0201e61283ca88f511434c0e15123c883befeab8d",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/f5678ab2-c863-4b48-ba1f-9021c7d97634",
+      "coveredArea": [
+        {
+          "insee": "200030195",
+          "nom": "Métropole Nice Côte d'Azur",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "685181f3733800e180c475fa",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/donnees-statiques-et-dynamiques-du-reseau-de-transport-lignes-dazur",
+      "downloadUrl": "https://chouette.enroute.mobi/api/v1/datas/OpendataRLA/gtfs.zip",
+      "license": "lov2",
+      "lineRecords": 4,
+      "overseas": false,
+      "publishedAt": "2026-11-06T23:16:39.000000Z",
+      "publisher": {
+        "id": "59aea226c751df38f3f6834b",
+        "name": "Métropole Nice Côte d'Azur",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 83178,
+      "slug": "donnees-statiques-et-dynamiques-du-reseau-de-transport-lignes-dazur",
+      "stationGroups": 47,
+      "validFrom": "2026-11-11",
+      "validTo": "2027-01-03",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "d5e42d2f035962f25f0d2b63bbb77c510c36f78fe49c19ad7f6b2014a0cee24c",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/0644f537-575e-4cce-9570-06165d6f3b27",
+      "coveredArea": [
+        {
+          "insee": "243500139",
+          "nom": "Rennes Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "580defb1a3a7292dcfa9d33f",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/versions-des-horaires-theoriques-des-lignes-de-bus-et-de-metro-du-reseau-star-dans-les-formats-gtfs-et-netex-ainsi-que-les-urls-dacces-au-gtfs-rt-1",
+      "downloadUrl": "https://eu.ftp.opendatasoft.com/star/gtfs/GTFS_STAR_BUS_METRO_EN_COURS.zip",
+      "license": "odc-odbl",
+      "lineRecords": 2,
+      "overseas": false,
+      "publishedAt": "2026-11-11T23:40:21.000000Z",
+      "publisher": {
+        "id": "5631e535c751df24cedcc3f1",
+        "name": "STAR",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "subway"
+      ],
+      "resourceId": 83281,
+      "slug": "versions-des-horaires-theoriques-des-lignes-de-bus-et-de-metro-du-reseau-star-dans-les-formats-gtfs-et-netex-ainsi-que-les-urls-dacces-au-gtfs-rt-1",
+      "stationGroups": 28,
+      "validFrom": "2026-11-12",
+      "validTo": "2026-12-21",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/ef4779c4-d066-40d8-b8d9-fb8c7eea8820",
+      "coveredArea": [
+        {
+          "insee": "243500139",
+          "nom": "Rennes Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "580defb1a3a7292dcfa9d33f",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/versions-des-horaires-theoriques-des-lignes-de-bus-et-de-metro-du-reseau-star-dans-les-formats-gtfs-et-netex-ainsi-que-les-urls-dacces-au-gtfs-rt-1",
+      "downloadUrl": "https://eu.ftp.opendatasoft.com/star/gtfs/GTFS_STAR_BUS_METRO_A_VENIR.zip",
+      "license": "odc-odbl",
+      "overseas": false,
+      "publishedAt": "2026-10-28T23:50:22.000000Z",
+      "publisher": {
+        "id": "5631e535c751df24cedcc3f1",
+        "name": "STAR",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "subway"
+      ],
+      "resourceId": 83282,
+      "slug": "versions-des-horaires-theoriques-des-lignes-de-bus-et-de-metro-du-reseau-star-dans-les-formats-gtfs-et-netex-ainsi-que-les-urls-dacces-au-gtfs-rt-1",
+      "validFrom": "2026-11-02",
+      "validTo": "2026-12-07",
+      "verificationStatus": "MISSING"
+    },
+    {
+      "archiveSha256": "e9f2b956eb45383d09d283ff244339b0606fd9293ca8311b7e18666b3efd0060",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/764d6d5b-d04e-4aa7-94b7-f8b2274d2964",
+      "coveredArea": [
+        {
+          "insee": "93",
+          "nom": "Région Sud — Provence-Alpes-Côte d’Azur",
+          "type": "region"
+        }
+      ],
+      "datasetId": "685baf2be31192d0ec7bcdc9",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/zou",
+      "downloadUrl": "https://www.data.gouv.fr/fr/datasets/r/30782be6-90aa-40bb-940a-cb881a95ad26",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-10-05T22:48:28.000000Z",
+      "publisher": {
+        "id": "685baa4b19d5fea0f1652b20",
+        "name": "Transdev Rail Sud Intermétropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "rail"
+      ],
+      "resourceId": 83448,
+      "slug": "zou",
+      "stationGroups": 10,
+      "validFrom": "2026-11-12",
+      "validTo": "2027-05-23",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "f9bd4dd04bb76968dea93f2e8a1197ffb88ee6a54178d5fd11bf1f75e146fe62",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/b6ec7ba4-09bc-46df-b9a1-79a2c2668cf2",
+      "coveredArea": [
+        {
+          "insee": "200040715",
+          "nom": "Grenoble-Alpes-Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5af03701b595081c1880a8a4",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-theoriques-du-reseau-tag",
+      "downloadUrl": "https://data.mobilites-m.fr/api/gtfs/SEM",
+      "license": "odc-odbl",
+      "lineRecords": 5,
+      "overseas": false,
+      "publishedAt": "2026-11-08T14:14:49.270287Z",
+      "publisher": {
+        "id": "575fc7f0c751df0e1dac31a0",
+        "name": "Syndicat Mixte des Mobilités de l'Aire Grenobloise",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 83459,
+      "slug": "horaires-theoriques-du-reseau-tag",
+      "stationGroups": 81,
+      "validFrom": "2026-11-03",
+      "validTo": "2026-12-31",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "3ec129c899b8e925d24eda12f47547bc08f7389e2b3c973c25762e821ca635a4",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/4e237a58-cd14-4746-b729-1337a40a8a7b",
+      "coveredArea": [
+        {
+          "insee": "246300701",
+          "nom": "Clermont Auvergne Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "6397c0fb7612df845fc8cd1f",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/syndicat-mixte-des-transports-en-commun-de-lagglomeration-clermontoise-smtc-ac-reseau-t2c-gtfs-gtfs-rt",
+      "downloadUrl": "https://opendata.clermontmetropole.eu/api/v2/catalog/datasets/gtfs-smtc/alternative_exports/gtfs",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-11-07T07:14:27.308181Z",
+      "publisher": {
+        "id": "5f60b2cb86bb3584d0f09f08",
+        "name": "Clermont Auvergne Métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 83465,
+      "slug": "syndicat-mixte-des-transports-en-commun-de-lagglomeration-clermontoise-smtc-ac-reseau-t2c-gtfs-gtfs-rt",
+      "stationGroups": 34,
+      "validFrom": "2026-09-01",
+      "validTo": "2026-12-31",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "b2b2d31bbbc596497d2c08938f77d40aa8c8a1329a28b727f50c245ae6b52346",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/a193c142-366b-4a7b-8afb-c0bdf23ca7ea",
+      "coveredArea": [
+        {
+          "insee": "24",
+          "nom": "Centre-Val de Loire",
+          "type": "region"
+        }
+      ],
+      "datasetId": "5e6435f59ce2e71b24f4c8c0",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/arrets-itineraires-et-horaires-theoriques-des-reseaux-de-transport-des-membres-de-jvmalin",
+      "downloadUrl": "https://fr.ftp.opendatasoft.com/centrevaldeloire/OKINAGTFS/GTFS_AGREGE/JVMALIN.zip",
+      "license": "odc-odbl",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-11-11T20:09:59.000000Z",
+      "publisher": {
+        "id": "5e26b9ab634f41621612b93c",
+        "name": "JVMALIN",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 83521,
+      "slug": "arrets-itineraires-et-horaires-theoriques-des-reseaux-de-transport-des-membres-de-jvmalin",
+      "stationGroups": 80,
+      "validFrom": "2026-11-09",
+      "validTo": "2027-11-11",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "e87c282cbac0e1adf443027871fd21a60391d2f46549d79bf3f940dbaedff336",
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/83620/download",
+      "coveredArea": [
+        {
+          "insee": "32",
+          "nom": "Hauts-de-France",
+          "type": "region"
+        }
+      ],
+      "datasetId": "69127d95821dea86547b9619",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/horaires-theoriques-de-loffre-du-reseau-ferre-regional-de-transport",
+      "downloadUrl": "https://geocatalogue.hautsdefrance.fr/gtfs/HDF_TER_GTFS_J___90_jours.zip",
+      "license": "notspecified",
+      "lineRecords": 69,
+      "overseas": false,
+      "publishedAt": "2026-11-11T07:00:02.000000Z",
+      "publisher": {
+        "id": "5df935d8634f414e69469492",
+        "name": "Région Hauts-de-France",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "rail"
+      ],
+      "resourceId": 83620,
+      "slug": "horaires-theoriques-de-loffre-du-reseau-ferre-regional-de-transport",
+      "stationGroups": 370,
+      "validFrom": "2026-11-11",
+      "validTo": "2027-02-09",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/9f5669e6-202f-4166-99e4-0e15586e1473",
+      "coveredArea": [
+        {
+          "insee": "73296",
+          "nom": "Tignes",
+          "type": "commune"
+        }
+      ],
+      "datasetId": "6798ab6ab1a98a9f0d4220c0",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/navettes-tignes",
+      "downloadUrl": "https://zenbus.net/gtfs/static/download.zip?dataset=tignes",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2026-10-20T13:05:43.000000Z",
+      "publisher": {
+        "id": "67977285fa5aa2951c512fb7",
+        "name": "Communauté de Communes Haute-Tarentaise",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 83627,
+      "slug": "navettes-tignes",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/d6c3eae8-fab6-4ff2-adc2-32bb2d213dd7",
+      "coveredArea": [
+        {
+          "insee": "73304",
+          "nom": "Val-d'Isère",
+          "type": "commune"
+        }
+      ],
+      "datasetId": "6798942abc43332729738b53",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/navettes-val-disere",
+      "downloadUrl": "https://zenbus.net/gtfs/static/download.zip?dataset=valdisere",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2026-10-20T13:05:43.000000Z",
+      "publisher": {
+        "id": "67977285fa5aa2951c512fb7",
+        "name": "Communauté de Communes Haute-Tarentaise",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 83629,
+      "slug": "navettes-val-disere",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "f7f330b4da5204d40df0c30b1173c4d3a7cc8569ed922ab67b8b1bcf55a22d94",
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/83634/download",
+      "coveredArea": [
+        {
+          "insee": "44",
+          "nom": "Grand Est",
+          "type": "region"
+        }
+      ],
+      "datasetId": "691758cb5dede017e972500f",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/agregat-des-reseaux-urbains-et-interurbains-en-region-grand-est",
+      "downloadUrl": "https://tsi.grandest2.cityway.fr/ftp/opendata/REGION_GRANDEST.gtfs.zip",
+      "license": "lov2",
+      "lineRecords": 108,
+      "overseas": false,
+      "publishedAt": "2026-11-11T19:31:25.000000Z",
+      "publisher": {
+        "id": "5d823fd98b4c411e38e820b4",
+        "name": "Fluo Grand Est",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "coach",
+        "ferry",
+        "rail",
+        "subway",
+        "tramway"
+      ],
+      "resourceId": 83634,
+      "slug": "agregat-des-reseaux-urbains-et-interurbains-en-region-grand-est",
+      "stationGroups": 696,
+      "validFrom": "2026-11-11",
+      "validTo": "2028-11-15",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "b0157b0da98bdac6e3b30e242bcd1f3e05c2eb45b4f1e2c1274ffb8858790bce",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/b2dfbaa3-47e9-4749-b6a4-750bebd760e7",
+      "coveredArea": [
+        {
+          "insee": "244500468",
+          "nom": "Orléans Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "61fb1b864ba517c310952886",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/gtfs-netex-et-gtfs-rt-reseau-tao-orleans-metropole",
+      "downloadUrl": "https://chouette.enroute.mobi/api/v1/datas/keolis_orleans/gtfs.zip",
+      "license": "lov2",
+      "lineRecords": 2,
+      "overseas": false,
+      "publishedAt": "2026-11-10T18:33:55.000000Z",
+      "publisher": {
+        "id": "57ed2fe9c751df236179df72",
+        "name": "Orléans Métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 83751,
+      "slug": "gtfs-netex-et-gtfs-rt-reseau-tao-orleans-metropole",
+      "stationGroups": 99,
+      "validFrom": "2026-10-02",
+      "validTo": "2027-01-03",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "6497de3cd1a8c322c3727ade42d6564a8c0b36f62ec930b644c4dfda56901dde",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/3b659ebb-8c17-46f4-a8ac-78c4129a4a29",
+      "coveredArea": [
+        {
+          "insee": "249740093",
+          "nom": "CA Intercommunale de la Réunion Est (CIREST)",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "64f045b4fab41cdd6b3edf36",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/jeu-de-donnee-spl-estival-2025",
+      "downloadUrl": "https://static.data.gouv.fr/resources/jeu-de-donnee-spl-estival-2025/20260127-034956/gtfs-esti-2026.zip",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-01-27T03:49:57.593000Z",
+      "publisher": {
+        "id": "64dca5a2c4d8d15d45d88734",
+        "name": "SPL Estival/ Cirest ",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 83774,
+      "slug": "jeu-de-donnee-spl-estival-2025",
+      "stationGroups": 43,
+      "validFrom": "2026-01-01",
+      "validTo": "2026-12-31",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/83820/download",
+      "coveredArea": [
+        {
+          "insee": "240200477",
+          "nom": "CA GrandSoissons Agglomération",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "69778e36410e185d9a8c873f",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/transport-a-la-demande-flexitus-1",
+      "downloadUrl": "https://static.data.gouv.fr/resources/transport-a-la-demande-flexitus-1/20260126-155430/flexitus-flexitus-version-v2-gtfs-2026-01-26-16-54-11.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2026-01-26T15:54:30.917000Z",
+      "publisher": {
+        "id": "64638ec011e963d7590bb623",
+        "name": "Syndicat intercommunal des Transports Urbains Soissonnais",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 83820,
+      "slug": "transport-a-la-demande-flexitus-1",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "aed0f2990ca1d9e8e72263ea703a129352f6d987a019398a6b3e88f8a64340c5",
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/83848/download",
+      "coveredArea": [
+        {
+          "insee": "73054",
+          "nom": "Bourg-Saint-Maurice",
+          "type": "commune"
+        }
+      ],
+      "datasetId": "699573585cec51215c157895",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/funiculaire-des-arcs",
+      "downloadUrl": "https://static.data.gouv.fr/resources/funiculaire-des-arcs/20261013-070047/gtfs-22-09-2026-funiculaire-ads.zip",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-10-13T07:00:48.127000Z",
+      "publisher": {
+        "id": "67977285fa5aa2951c512fb7",
+        "name": "Communauté de Communes Haute-Tarentaise",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "funicular"
+      ],
+      "resourceId": 83848,
+      "slug": "funiculaire-des-arcs",
+      "stationGroups": 4,
+      "validFrom": "2026-12-12",
+      "validTo": "2027-04-25",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "174f02baf645bec0e311c7776f4d1d46c068890b61e2ce450cb58a335c9d04c0",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/a1867718-7921-42a6-b672-c53b8c583aa3",
+      "coveredArea": [
+        {
+          "insee": "244400644",
+          "nom": "CA de la Région Nazairienne et de l'Estuaire (CARENE)",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "66fb3be4370262b757436db9",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/yceo-arrets-horaires-et-lignes-urbaines-et-scolaires-gtfs-1",
+      "downloadUrl": "https://app.mecatran.com/utw/ws/gtfsfeed/static/stran-merge?apiKey=2e6071036d276153761f0c090b4a45420e047612",
+      "license": "lov2",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-11-11T13:27:11.755864Z",
+      "publisher": {
+        "id": "5733009988ee3843a3d1b934",
+        "name": "Saint-Nazaire agglo - La CARENE",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "rail"
+      ],
+      "resourceId": 83881,
+      "slug": "yceo-arrets-horaires-et-lignes-urbaines-et-scolaires-gtfs-1",
+      "stationGroups": 41,
+      "validFrom": "2026-10-11",
+      "validTo": "2027-07-02",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "ef9b46d1f9b708286d73de044039179a975ac2c6d4297a4a46302cdf6959924d",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/69c3db8a-a5fd-471f-b59f-46b9faded381",
+      "coveredArea": [
+        {
+          "insee": "94",
+          "nom": "Corse",
+          "type": "region"
+        }
+      ],
+      "datasetId": "6425def83ddb5f9cfd9652b2",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/gtfs-transport-horaires-chemins-de-fer-corse-1",
+      "downloadUrl": "https://static.data.gouv.fr/resources/gtfs-transport-horaires-chemins-de-fer-corse-1/20260303-151209/chemin-de-fer-de-la-corse.zip",
+      "license": "lov2",
+      "lineRecords": 6,
+      "overseas": false,
+      "publishedAt": "2026-03-03T15:12:28.288000Z",
+      "publisher": {
+        "id": "537d58eea3a72973a2dc026c",
+        "name": "Collectivité de Corse",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "rail"
+      ],
+      "resourceId": 83882,
+      "slug": "gtfs-transport-horaires-chemins-de-fer-corse-1",
+      "stationGroups": 0,
+      "validFrom": "2026-03-03",
+      "validTo": "2026-03-09",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/0bdd928a-c207-4d69-9a0b-cd520e870d7f",
+      "coveredArea": [
+        {
+          "insee": "200073419",
+          "nom": "CA du Puy-en-Velay",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "654d7323492eed0ae612b365",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/fichier-gtfs-des-transports-urbains-de-la-communaute-dagglomeration-du-puy-en-velay",
+      "downloadUrl": "https://geoportail.lepuyenvelay.fr/data/gtfs/urbain/gtfs/",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2026-10-16T15:09:54.046467Z",
+      "publisher": {
+        "id": "5cd531978b4c41605df23b89",
+        "name": "Communauté d'Agglomération du Puy-en-Velay",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 83905,
+      "slug": "fichier-gtfs-des-transports-urbains-de-la-communaute-dagglomeration-du-puy-en-velay",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/78d8705c-bcb9-40aa-98b7-2486ffe9fee5",
+      "coveredArea": [
+        {
+          "insee": "200069037",
+          "nom": "CA du Pays de Saint-Omer",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5ed7997e20371802a7ee1400",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/transports-en-commun-audomarois-1",
+      "downloadUrl": "https://static.data.gouv.fr/resources/transports-en-commun-audomarois-1/20260424-185310/20-04-2026.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2026-04-24T18:53:11.075000Z",
+      "publisher": {
+        "id": "5e848e61eed811f6b7cdc220",
+        "name": "Communauté d'Agglomération du Pays de Saint-Omer",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 83988,
+      "slug": "transports-en-commun-audomarois-1",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "9dcf2f6b03c29c7a2ec3dfef3a40de3f4ed3389e1f49276a7cbbda346409ed1a",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/0a554ecc-a9b7-490c-a4ad-bbd8a0dc0ded",
+      "coveredArea": [
+        {
+          "insee": "93",
+          "nom": "Région Sud — Provence-Alpes-Côte d’Azur",
+          "type": "region"
+        }
+      ],
+      "datasetId": "69e2cd307123972d45a21d49",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/trains-zou-en-provence-alpes-cote-dazur",
+      "downloadUrl": "https://proxy-data.zou.maregionsud.fr/GTFS/GTFS_SIBR_zou_ferre_datasud.zip",
+      "license": "lov2",
+      "lineRecords": 29,
+      "overseas": false,
+      "publishedAt": "2026-04-17T00:00:00.000000Z",
+      "publisher": {
+        "id": "534fffa8a3a7292c64a780d2",
+        "name": "Région Provence-Alpes-Côte-d'Azur",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "rail"
+      ],
+      "resourceId": 83990,
+      "slug": "trains-zou-en-provence-alpes-cote-dazur",
+      "stationGroups": 240,
+      "validFrom": "2026-11-09",
+      "validTo": "2027-05-10",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "ec5e604c708fe6a3b26801d5ef86dfb8902cca9c3bdd1e10e3c39ec612000059",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/2178bfa8-9fe0-4633-8223-8c151728ef28",
+      "coveredArea": [
+        {
+          "insee": "200084952",
+          "nom": "CU Le Havre Seine Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "617c12b7f9aaa6853cf6d303",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-de-transport-en-commun-lia-gtfs-siri",
+      "downloadUrl": "https://opendata.transports-lia.fr/gtfs/GTFS.zip",
+      "license": "odc-odbl",
+      "lineRecords": 2,
+      "overseas": false,
+      "publishedAt": "2026-11-10T21:05:20.000000Z",
+      "publisher": {
+        "id": "5cdd6a658b4c4129c70cbc44",
+        "name": "Réseau de transport en commun Le Havre Seine Métropole LiA",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 84037,
+      "slug": "reseau-de-transport-en-commun-lia-gtfs-siri",
+      "stationGroups": 46,
+      "validFrom": "2026-11-11",
+      "validTo": "2027-01-03",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "5f82c89d1a989759fe284a289c85d4e958c6a61345b8eee7317e045a7c3067cb",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/65bdd7e4-a8e7-4a54-893a-808e71c34d68",
+      "coveredArea": [
+        {
+          "insee": "244400404",
+          "nom": "Nantes Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "685d9000ec5a7481ab634360",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-de-transports-collectifs-naolib",
+      "downloadUrl": "https://data.nantesmetropole.fr/explore/dataset/244400404_transports_commun_naolib_nantes_metropole_gtfs/files/0cc0469a72de54ee045cb66d1a21de9e/download/",
+      "license": "lov2",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-11-06T23:51:48.351481Z",
+      "publisher": {
+        "id": "534fff98a3a7292c64a78012",
+        "name": "Nantes Métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "ferry",
+        "tramway"
+      ],
+      "resourceId": 84101,
+      "slug": "reseau-de-transports-collectifs-naolib",
+      "stationGroups": 84,
+      "validFrom": "2026-11-06",
+      "validTo": "2027-02-07",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://transport.data.gouv.fr/resources/84108/download",
+      "coveredArea": [
+        {
+          "insee": "200067551",
+          "nom": "CA Thonon Agglomération",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "6a32489a813e6bb04d3f5c27",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/start-horaires-du-reseau-de-lagglomeration-de-thonon",
+      "downloadUrl": "https://api.oura3.cityway.fr/dataflow/offre-tc/download?provider=THONON&dataFormat=GTFS&dataProfil=OPENDATA",
+      "license": "odc-odbl",
+      "overseas": false,
+      "publishedAt": "2026-08-31T22:21:14.000000Z",
+      "publisher": {
+        "id": "61a4f97a13ece510797ede50",
+        "name": "Oùra",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "funicular"
+      ],
+      "resourceId": 84108,
+      "slug": "start-horaires-du-reseau-de-lagglomeration-de-thonon",
+      "validFrom": "2026-09-01",
+      "validTo": "2026-12-20",
+      "verificationStatus": "MISSING"
+    },
+    {
+      "archiveSha256": "90d0a795aeac37a127f0dd6df846197fc40068b42ba1f586a9fa8d90a4e405b0",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/40b26c33-9be2-47ea-a46c-8bda9f63273e",
+      "coveredArea": [
+        {
+          "insee": "248400251",
+          "nom": "CA du Grand Avignon (COGA)",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5ae2e01d88ee381811e691b5",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/reseau-orizo-grand-avignon",
+      "downloadUrl": "https://api.maas-fr.cityway.fr/dataflow/offre-tc/download?provider=ORIZO&dataFormat=GTFS&dataProfil=OPENDATA",
+      "license": "lov2",
+      "lineRecords": 1,
+      "overseas": false,
+      "publishedAt": "2026-10-08T10:04:00.000000Z",
+      "publisher": {
+        "id": "5a7ad2b1c751df27e7d1190c",
+        "name": "Grand Avignon",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 84115,
+      "slug": "reseau-orizo-grand-avignon",
+      "stationGroups": 20,
+      "validFrom": "2026-11-02",
+      "validTo": "2026-12-20",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "2099b0ca9d526438cd3a0414343b72a36c9eabd7586d128816fd403d473c190d",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/982e0826-4118-42d9-9b73-c3d3b455cd4f",
+      "coveredArea": [
+        {
+          "insee": "245901160",
+          "nom": "CA Valenciennes Métropole",
+          "type": "epci"
+        },
+        {
+          "insee": "200042190",
+          "nom": "CA de la Porte du Hainaut",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "63eb6d550f2b31a8efe618fe",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/simouv-horaires-theoriques-format-gtfs-et-temps-reel-format-siri-transvilles-valenciennes",
+      "downloadUrl": "https://static.data.gouv.fr/resources/simouv-horaires-theoriques-format-gtfs-et-temps-reel-format-siri-transvilles-valenciennes/20261029-104003/google-transit.zip",
+      "license": "lov2",
+      "lineRecords": 2,
+      "overseas": false,
+      "publishedAt": "2026-10-29T10:40:09.575000Z",
+      "publisher": {
+        "id": "5d9c9b688b4c410f098b6b1c",
+        "name": "Syndicat Intercommunal de Mobilité et d'Organisation Urbaine du Valenciennois",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 84121,
+      "slug": "simouv-horaires-theoriques-format-gtfs-et-temps-reel-format-siri-transvilles-valenciennes",
+      "stationGroups": 48,
+      "validFrom": "2026-10-29",
+      "validTo": "2027-08-31",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "e33379b227410dabf2d2aebee8de3a6e2298735b9889e358bbbe5f82d583c5da",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/dee9adc5-044c-4f68-9cd3-eefbdf7a6abd",
+      "coveredArea": [
+        {
+          "insee": "247200132",
+          "nom": "CU Le Mans Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5acb75f0c751df341652c886",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/gtfs-du-reseau-des-transports-bus-et-tramway-setram-circulant-sur-le-territoire-le-mans-metropole",
+      "downloadUrl": "https://eur.mecatran.com/utw/ws/gtfsfeed/static/lemans?apiKey=73334a124f3a1654141d6979113106450f291d15&type=gtfs_setram_urbsco",
+      "license": "lov2",
+      "lineRecords": 2,
+      "overseas": false,
+      "publishedAt": "2026-11-12T00:27:47.953805Z",
+      "publisher": {
+        "id": "5acb71b4c751df234a194bdb",
+        "name": "SETRAM",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 84170,
+      "slug": "gtfs-du-reseau-des-transports-bus-et-tramway-setram-circulant-sur-le-territoire-le-mans-metropole",
+      "stationGroups": 35,
+      "validFrom": "2026-11-04",
+      "validTo": "2027-02-21",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/307f2911-39a3-42a6-85ee-2b742955836a",
+      "coveredArea": [
+        {
+          "insee": "200023414",
+          "nom": "Métropole Rouen Normandie",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "5cd4321f8b4c4137d1244318",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/donnees-statiques-et-temps-reel-du-reseau-astuce-metropole-rouen-normandie",
+      "downloadUrl": "https://gtfs.bus-tracker.fr/astuce-global.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2026-09-28T20:43:21.963000Z",
+      "publisher": {
+        "id": "5a0467d188ee38711f65672c",
+        "name": "Métropole Rouen Normandie",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 84182,
+      "slug": "donnees-statiques-et-temps-reel-du-reseau-astuce-metropole-rouen-normandie",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    },
+    {
+      "archiveSha256": "3b68e871a4eec1ac15db41ab2370cd8b861ef25aa812a0ecbdc774e878802802",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/93a29ce2-cfc8-44ff-b712-bcfd814b7f00",
+      "coveredArea": [
+        {
+          "insee": "243400017",
+          "nom": "Montpellier Méditerranée Métropole",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "662ba9a3f7d9ff84a3060d0a",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/offre-de-transport-tam-en-temps-reel-gtfs-rt-urbain-et-suburbain",
+      "downloadUrl": "https://gtfsproxy.e-tam.fr/COMMON/GTFS.zip",
+      "license": "odc-odbl",
+      "lineRecords": 5,
+      "overseas": false,
+      "publishedAt": "2026-11-08T02:18:48.000000Z",
+      "publisher": {
+        "id": "5847cb5cc751df5d58c0bb7e",
+        "name": "Montpellier Méditerranée Métropole",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 84199,
+      "slug": "offre-de-transport-tam-en-temps-reel-gtfs-rt-urbain-et-suburbain",
+      "stationGroups": 220,
+      "validFrom": "2026-11-09",
+      "validTo": "2027-01-03",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "885817e860f408e80c2c34a776e36f1833d7492095b67527d422fba3d459e75f",
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/a5a8f046-e282-4010-91c5-82bc1f70ff73",
+      "coveredArea": [
+        {
+          "insee": "200065597",
+          "nom": "CU Caen la Mer",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "6a6be5976a05df136d48fb7a",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/caen-la-mer-reseau-twisto-gtfs-siri-3",
+      "downloadUrl": "https://twisto-caen.opendatasoft.com/api/v2/catalog/datasets/fichier-gtfs-du-reseau-twisto/alternative_exports/gtfs_twisto_zip",
+      "license": "notspecified",
+      "lineRecords": 3,
+      "overseas": false,
+      "publishedAt": "2026-09-08T16:19:36.178568Z",
+      "publisher": {
+        "id": "5c09189f8b4c414a8d02298e",
+        "name": "Twisto",
+        "type": "organization"
+      },
+      "reportedModes": [
+        "bus",
+        "tramway"
+      ],
+      "resourceId": 84255,
+      "slug": "caen-la-mer-reseau-twisto-gtfs-siri-3",
+      "stationGroups": 37,
+      "validFrom": "2026-08-11",
+      "validTo": "2026-12-31",
+      "verificationStatus": "SCHEDULE_INVENTORIED"
+    },
+    {
+      "catalogDownloadUrl": "https://www.data.gouv.fr/api/1/datasets/r/d69ee565-f06f-4f12-b604-8f3db9fa66a9",
+      "coveredArea": [
+        {
+          "insee": "200039022",
+          "nom": "CA Vitré Communauté",
+          "type": "epci"
+        }
+      ],
+      "datasetId": "6ad5cb9119b05c9e577a85e2",
+      "datasetUrl": "https://transport.data.gouv.fr/datasets/mova-ensemble-de-loffre-de-transport-collectif",
+      "downloadUrl": "https://gtfs.bus-tracker.fr/vitre.zip",
+      "license": "lov2",
+      "overseas": false,
+      "publishedAt": "2026-10-23T18:08:41.645000Z",
+      "publisher": {
+        "id": "625553db8c0896acd7d3a900",
+        "name": "VITRE COMMUNAUTE",
+        "type": "organization"
+      },
+      "reportedModes": [],
+      "resourceId": 84269,
+      "slug": "mova-ensemble-de-loffre-de-transport-collectif",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "UNVERIFIABLE"
+    }
+  ],
+  "schemaVersion": 1
+}

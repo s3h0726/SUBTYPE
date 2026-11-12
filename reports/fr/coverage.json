@@ -1,0 +1,774 @@
+{
+  "asOf": "2026-11-12",
+  "baselineRef": "520e00ec0f00e114005b7a616dff16f049a7b148",
+  "nationalCoveragePercent": null,
+  "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
+  "discoveredSourcePatternRecords": 12443,
+  "coveredSourcePatternRecords": 29,
+  "verifiedSourcePatternRecords": 29,
+  "remainingSourcePatternRecords": 12414,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.23306276621393554,
+  "existingFranceLinesOnBaseline": 0,
+  "catalogLines": 11,
+  "operators": 2,
+  "catalogServiceFamilies": 15,
+  "playableDirections": 27,
+  "verifiedPlayableDirections": 27,
+  "koreanNamedStations": 101,
+  "stationIds": 101,
+  "physicalStationGroups": 100,
+  "sharedPhysicalWays": 3950,
+  "uniquePhysicalWays": 8766,
+  "physicalInfrastructure": [
+    {
+      "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
+      "datasetId": "formes-des-lignes-du-rfn",
+      "datasetUrl": "https://ressources.data.sncf.com/explore/dataset/formes-des-lignes-du-rfn/",
+      "downloadUrl": "https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets/formes-des-lignes-du-rfn/exports/geojson",
+      "featureCount": 1638,
+      "infrastructureLineCodes": 886,
+      "license": "odc-odbl",
+      "publishedAt": "2026-02-19",
+      "publisher": "SNCF Réseau",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "INFRASTRUCTURE_INVENTORIED"
+    },
+    {
+      "archiveSha256": "f6c7aa225384ecd1e63329581a757ff663f4d1730075cb5425f298bb949ed42e",
+      "datasetId": "fichier-de-formes-des-voies-du-reseau-ferre-national",
+      "datasetUrl": "https://ressources.data.sncf.com/explore/dataset/fichier-de-formes-des-voies-du-reseau-ferre-national/",
+      "downloadUrl": "https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets/fichier-de-formes-des-voies-du-reseau-ferre-national/exports/geojson",
+      "featureCount": 9956,
+      "infrastructureLineCodes": 879,
+      "license": "odc-odbl",
+      "publishedAt": "2026-08-12",
+      "publisher": "SNCF Réseau",
+      "validFrom": null,
+      "validTo": null,
+      "verificationStatus": "INFRASTRUCTURE_INVENTORIED"
+    }
+  ],
+  "sourcesByStatus": {
+    "SCHEDULE_INVENTORIED": 54,
+    "UNVERIFIABLE": 20,
+    "MISSING": 5
+  },
+  "trackRelations": {
+    "examined": 74,
+    "matched": 42,
+    "blocked": 32
+  },
+  "byFamily": [
+    {
+      "family": "funicular",
+      "sourcePatternRecords": 15,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "high-speed",
+      "sourcePatternRecords": 1049,
+      "catalogLines": 7,
+      "playableDirections": 19,
+      "testedDirections": 19
+    },
+    {
+      "family": "intercites",
+      "sourcePatternRecords": 97,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "intercites-night",
+      "sourcePatternRecords": 38,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "international",
+      "sourcePatternRecords": 156,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "rail",
+      "sourcePatternRecords": 4639,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "rer",
+      "sourcePatternRecords": 700,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "subway",
+      "sourcePatternRecords": 167,
+      "catalogLines": 4,
+      "playableDirections": 8,
+      "testedDirections": 8
+    },
+    {
+      "family": "ter",
+      "sourcePatternRecords": 4175,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "tram-train",
+      "sourcePatternRecords": 12,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "tramway",
+      "sourcePatternRecords": 795,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    },
+    {
+      "family": "transilien-review",
+      "sourcePatternRecords": 600,
+      "catalogLines": 0,
+      "playableDirections": 0,
+      "testedDirections": 0
+    }
+  ],
+  "lines": [
+    {
+      "id": "fr-tgv-paris-valenciennes",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "32"
+      ],
+      "sourceRouteId": "FR:Line::BFA34945-1B58-4DF6-887D-D07AD8DC34B5:",
+      "sourceLineId": "fr-line-170d2cba38787bbca43edaa1",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 3,
+      "remainingSourcePatternIds": [
+        "fr-pattern-33e1c7366a465a474466c4d0",
+        "fr-pattern-598d217fae8723bdc2d7b863"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a1c2690be5645095ed031f63",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-045842d6e7f07004743cdd5e",
+            "fr-pattern-c9d7a26b79bc95e5be335a51"
+          ],
+          "relationId": 5926413,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-9411be251ce754924ace2155",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3238283e92a1cd746e8e12c9"
+          ],
+          "relationId": 12028196,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-paris-dunkerque",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "32"
+      ],
+      "sourceRouteId": "FR:Line::409E20F1-3A95-426A-B174-0008A078BE1F:",
+      "sourceLineId": "fr-line-23533cfdf347a3022773fee7",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 9,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-13c2ab88003d65c9688d4ab2",
+        "fr-pattern-270f085e72684dcdd3bdf774",
+        "fr-pattern-30ea078621eabb9fc073cfad",
+        "fr-pattern-6f7fd1aa7a9eda20c54520fd",
+        "fr-pattern-8c6580f99ac67e38d85ebb52",
+        "fr-pattern-fbef27c1b3a0dbab083d83bb",
+        "fr-pattern-fce670e4461ad6729f94aad5"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-2139a817feebb820a5fdedad",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b31a525a5a9ae3685f025383"
+          ],
+          "relationId": 5926450,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-03eb18518a593781911c4a21",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f07fec609f96f1fb7c5ca1f3"
+          ],
+          "relationId": 11961075,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-paris-rang-du-fliers",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "32"
+      ],
+      "sourceRouteId": "FR:Line::69ABADD2-325C-47DC-BC61-D74DD87C5E3C:",
+      "sourceLineId": "fr-line-0aa19989b55e8a382c6b51f9",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-7e0dedc20ccf32ff3b5c36d5",
+        "fr-pattern-8269654fb3328ea408383856",
+        "fr-pattern-ce3f587a039eeeaa444833f2",
+        "fr-pattern-d9b38e3f1d6bb63abb1de29f"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-b42e8087ec7d53355231c3b7",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0cd0ead5df067e18c765ca4d"
+          ],
+          "relationId": 5926451,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-47ccf57c9f527381162c0684",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bdf64c43e775a7fe77392994"
+          ],
+          "relationId": 11950388,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-paris-besancon",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "27"
+      ],
+      "sourceRouteId": "FR:Line::7f1e0c14-f26c-49fa-9d55-e16999a63328:",
+      "sourceLineId": "fr-line-4bfb4f96c13eb62b7a652a8d",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 4,
+      "remainingSourcePatternIds": [
+        "fr-pattern-78ca15ff6bf7f7b478983ebf",
+        "fr-pattern-c10650a56a2f03992dc15ad9",
+        "fr-pattern-f06155a8a669e8ea068e2d11",
+        "fr-pattern-ff482a1fe53dba8631c2f8f3"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-722feec466909b14565fd70c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-803e98b4e318ec5497602e44"
+          ],
+          "relationId": 6363004,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4df2cc53f48fb1e46fe6aae9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-eb527c6b77e6316c7f238636"
+          ],
+          "relationId": 6363326,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ffea2797e44d49a195432d3b",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-2e9f35002225d27e1b25ea26"
+          ],
+          "relationId": 6364727,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-d606706d9aa5fc1f65109ee7",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-4df27fa96731bc5e42c992e6"
+          ],
+          "relationId": 6363999,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-paris-mulhouse",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "27",
+        "44"
+      ],
+      "sourceRouteId": "FR:Line::4CB6B094-7310-4CD4-AE43-FC6F3C2EA917:",
+      "sourceLineId": "fr-line-f5ea57f70606078ef505ff99",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-3e22c207db6b2704a447a85a",
+        "fr-pattern-504efc20a46196ce6c399789"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-ac706d6e874208617203d488",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9ae864234d5799703b7d6b29"
+          ],
+          "relationId": 6365150,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-6cdba699f053b92399495214",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-a120a531ae2950d889b33ee3"
+          ],
+          "relationId": 6365686,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-paris-perpignan",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "27",
+        "84",
+        "76"
+      ],
+      "sourceRouteId": "FR:Line::8EDA0FF6-311A-4C83-8C18-63D890856B43:",
+      "sourceLineId": "fr-line-fd335910875a7a3def639bad",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 3,
+      "discoveredSchedulePatterns": 12,
+      "coveredSchedulePatterns": 6,
+      "remainingSourcePatternIds": [
+        "fr-pattern-05a1815cddd3a4baf2065867",
+        "fr-pattern-5697912b6b4df58a1c262f8d",
+        "fr-pattern-65b34695952aa8727a88dd20",
+        "fr-pattern-728c13f7e5c96cafe0515a3c",
+        "fr-pattern-862fc2353270ae8e0518eab0",
+        "fr-pattern-f8738bb2d80e5dafc65bf527"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-625b54f8a6f369157758e373",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-783e38e04db6b9bbdfc4a641"
+          ],
+          "relationId": 11748391,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-7e4cc2f0001a92feca4c71b0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6e8f7b5fb7573ddfa04ca268"
+          ],
+          "relationId": 11748382,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-f42f6e61bf13fb41a18c6256",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0e001eaa824aec22d874f30e",
+            "fr-pattern-e54559ebe6a328afa2401728"
+          ],
+          "relationId": 11748395,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-dccdef4db08713ca36978d6c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0e5493cddf33bac52f59920d"
+          ],
+          "relationId": 11748383,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-beaecf7e55235b49be17bb30",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-04da76c377ac11ae7ad01d74"
+          ],
+          "relationId": 11748389,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-strasbourg-bordeaux",
+      "category": "high_speed_rail",
+      "regions": [
+        "44",
+        "11",
+        "24",
+        "75"
+      ],
+      "sourceRouteId": "FR:Line::6D267C2D-7D54-4578-9380-B2C7C75C7010:",
+      "sourceLineId": "fr-line-3d3bfe2569e0c20b4743344a",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 11,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-27452c21abb8139f766ed07e",
+        "fr-pattern-3aac43f6aa03fc8a526e3629",
+        "fr-pattern-647ee07f1c1adadad97b43dc",
+        "fr-pattern-7677b488fe8762c1d9540c87",
+        "fr-pattern-8313338bc13f2208f8b036f7",
+        "fr-pattern-8cca6fd6bcf62b309770a252",
+        "fr-pattern-ba9102c26450aac8e6f547ef",
+        "fr-pattern-bdc3c937fcdf98cddbc2aba9",
+        "fr-pattern-e15fffac38e19292fe72c798"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-aadde960ead2a6cba6f5d0ba",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-d7ac693f091c0fd5c79533b1"
+          ],
+          "relationId": 5935098,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-833e32394162f26bff9c9e69",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c584d14d5a2d96355a779b44"
+          ],
+          "relationId": 6786083,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-paris-metro-1",
+      "category": "subway",
+      "regions": [
+        "11"
+      ],
+      "sourceRouteId": "IDFM:C01371",
+      "sourceLineId": "fr-line-cbaa95dfad0feaab4467b7ca",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-1de4ceb5de170a28af6987a3",
+        "fr-pattern-25d4492d39ee3fbc4f734e74",
+        "fr-pattern-6b1ea0ffb18922cfbb425df7",
+        "fr-pattern-c532c3e125b6c5e8a9ba5b0a",
+        "fr-pattern-e691d59b7caa66da7c9960cb",
+        "fr-pattern-fece67412a872f3ba737318a"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-c4fc1c1a800d2c719e180e36",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-471a5483a6c170438071f0e7"
+          ],
+          "relationId": 3328692,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-a1de76d0b19fdddbfa7633dd",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-a28db7c448a4cc9e99ca2dc0"
+          ],
+          "relationId": 123784,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-paris-metro-2",
+      "category": "subway",
+      "regions": [
+        "11"
+      ],
+      "sourceRouteId": "IDFM:C01372",
+      "sourceLineId": "fr-line-3144d7e41c2420767c9e0d5d",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-07ebdd63a374e3781e14b1ac",
+        "fr-pattern-3226180b4c05a05426131934",
+        "fr-pattern-418b4c5e41669a6efeb0264d",
+        "fr-pattern-621675707a99c2d49de2f5d0",
+        "fr-pattern-97ce1529c25aa6de78eacb1a",
+        "fr-pattern-a865d160caf29adb3026f337"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-6ceae4d1688ac26ff95c4b8a",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-f4d01a3a6b1efd68ef09bde8"
+          ],
+          "relationId": 4728208,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-cbfce7e70f561fa6f660db0c",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-96e0d36bcdeb56e08ff7cd3e"
+          ],
+          "relationId": 123917,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-paris-metro-3bis",
+      "category": "subway",
+      "regions": [
+        "11"
+      ],
+      "sourceRouteId": "IDFM:C01386",
+      "sourceLineId": "fr-line-0fb732457301d5c1d7253bf9",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-71667a702a1b7c321f7af438",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-168118d01273e6f4f2dc56b6"
+          ],
+          "relationId": 5456573,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-3d6d608a3d1dbdafffd7ab2a",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-ee7c47b1cadc2a162065acd9"
+          ],
+          "relationId": 123802,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-paris-metro-7bis",
+      "category": "subway",
+      "regions": [
+        "11"
+      ],
+      "sourceRouteId": "IDFM:C01387",
+      "sourceLineId": "fr-line-ce2a5c2f4f18f3ae969677a1",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-70e28d7c539cbebe22bfdb4e",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-f38d3226021f81fcdef556fb"
+          ],
+          "relationId": 2554093,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-88d22290d1b5f10be6ff10ff",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-bb1763ff34096834a7e3c45c"
+          ],
+          "relationId": 20704033,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    }
+  ],
+  "regionalCoverage": [
+    {
+      "code": "11",
+      "name": "Île-de-France",
+      "regionalFeedIds": [
+        67595,
+        80921
+      ],
+      "catalogLineIds": [
+        "fr-tgv-paris-valenciennes",
+        "fr-tgv-paris-dunkerque",
+        "fr-tgv-paris-rang-du-fliers",
+        "fr-tgv-paris-besancon",
+        "fr-tgv-paris-mulhouse",
+        "fr-tgv-paris-perpignan",
+        "fr-tgv-strasbourg-bordeaux",
+        "fr-paris-metro-1",
+        "fr-paris-metro-2",
+        "fr-paris-metro-3bis",
+        "fr-paris-metro-7bis"
+      ]
+    },
+    {
+      "code": "24",
+      "name": "Centre-Val de Loire",
+      "regionalFeedIds": [
+        83521
+      ],
+      "catalogLineIds": [
+        "fr-tgv-strasbourg-bordeaux"
+      ]
+    },
+    {
+      "code": "27",
+      "name": "Bourgogne-Franche-Comté",
+      "regionalFeedIds": [],
+      "catalogLineIds": [
+        "fr-tgv-paris-besancon",
+        "fr-tgv-paris-mulhouse",
+        "fr-tgv-paris-perpignan"
+      ]
+    },
+    {
+      "code": "28",
+      "name": "Normandie",
+      "regionalFeedIds": [
+        81942
+      ],
+      "catalogLineIds": []
+    },
+    {
+      "code": "32",
+      "name": "Hauts-de-France",
+      "regionalFeedIds": [
+        83620
+      ],
+      "catalogLineIds": [
+        "fr-tgv-paris-valenciennes",
+        "fr-tgv-paris-dunkerque",
+        "fr-tgv-paris-rang-du-fliers"
+      ]
+    },
+    {
+      "code": "44",
+      "name": "Grand Est",
+      "regionalFeedIds": [
+        83634
+      ],
+      "catalogLineIds": [
+        "fr-tgv-paris-mulhouse",
+        "fr-tgv-strasbourg-bordeaux"
+      ]
+    },
+    {
+      "code": "52",
+      "name": "Pays de la Loire",
+      "regionalFeedIds": [
+        79818
+      ],
+      "catalogLineIds": []
+    },
+    {
+      "code": "53",
+      "name": "Bretagne",
+      "regionalFeedIds": [
+        81474,
+        81559
+      ],
+      "catalogLineIds": []
+    },
+    {
+      "code": "75",
+      "name": "Nouvelle-Aquitaine",
+      "regionalFeedIds": [
+        82321
+      ],
+      "catalogLineIds": [
+        "fr-tgv-strasbourg-bordeaux"
+      ]
+    },
+    {
+      "code": "76",
+      "name": "Occitanie",
+      "regionalFeedIds": [],
+      "catalogLineIds": [
+        "fr-tgv-paris-perpignan"
+      ]
+    },
+    {
+      "code": "84",
+      "name": "Auvergne-Rhône-Alpes",
+      "regionalFeedIds": [],
+      "catalogLineIds": [
+        "fr-tgv-paris-perpignan"
+      ]
+    },
+    {
+      "code": "93",
+      "name": "Provence-Alpes-Côte d’Azur",
+      "regionalFeedIds": [
+        82285,
+        83448,
+        83990
+      ],
+      "catalogLineIds": []
+    },
+    {
+      "code": "94",
+      "name": "Corse",
+      "regionalFeedIds": [
+        83882
+      ],
+      "catalogLineIds": []
+    }
+  ],
+  "overseasSources": []
+}
