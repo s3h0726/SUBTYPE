@@ -56,8 +56,9 @@
     if(total)total.textContent=availability.all+'개 국가';
     if(empty)empty.hidden=visible!==0;
     const selected=list.find(card=>card.classList.contains('active')&&!card.hidden&&!card.disabled);
-    if(selectedName)selectedName.textContent=selected?name(selected):'국가를 선택하세요';
-    if(continueButton)continueButton.disabled=!selected;
+    const selectedVisible=selected&&!selected.classList.contains('is-filtered-out');
+    if(selectedName)selectedName.textContent=selectedVisible?name(selected):'국가를 선택하세요';
+    if(continueButton)continueButton.disabled=!selectedVisible;
   }
   for(const filter of filters){
     filter.addEventListener('click',()=>{
