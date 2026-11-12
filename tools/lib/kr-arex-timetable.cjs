@@ -9,7 +9,8 @@ function applyArexShortTurns(batches, evidence) {
   if (!parent) throw Error('AREX parent journey missing: ' + pattern.parentJourneyId);
   const from = parent.stations.findIndex(station => station.ko === pattern.fromStation);
   const to = parent.stations.findIndex(station => station.ko === pattern.toStation);
-  if (from < 0 || to <= from || to >= parent.stations.length - 1) throw Error('AREX short-turn termini: ' + pattern.id);
+  if (from < 0 || to <= from || (from === 0 && to === parent.stations.length - 1)) throw Error('AREX short-turn termini: ' + pattern.id);
+  if (route.verifiedJourneys.some(j => j.id === pattern.id)) throw Error('Duplicate AREX short-turn ID: ' + pattern.id);
 
   const start = parent.stations[from].geometryIndex;
   const end = parent.stations[to].geometryIndex;
@@ -18,11 +19,16 @@ function applyArexShortTurns(batches, evidence) {
    geometryIndex: station.geometryIndex - start
   }));
   const geometry = parent.geometry.slice(start, end + 1);
+  if (route.verifiedJourneys.some(j => JSON.stringify(j.stations.map(s=>s.id)) === JSON.stringify(stations.map(s=>s.id)))) throw Error('Existing AREX pattern already covers requested station sequence: ' + pattern.id);
   const timetableEvidence = {
    url: pattern.url,
    checkedAt: evidence.checkedAt,
    operatorNotice: evidence.operatorNotice,
-   sourceId: pattern.sourceId
+   sourceId: pattern.sourceId,
+   ...(pattern.serviceDay ? { serviceDay:pattern.serviceDay } : {}),
+   ...(pattern.observedDeparture ? { observedDeparture:pattern.observedDeparture } : {}),
+   ...(pattern.corroborationUrl ? { corroborationUrl:pattern.corroborationUrl } : {}),
+   ...(pattern.evidenceExplanation ? { evidenceExplanation:pattern.evidenceExplanation } : {})
   };
   const service = {
    id: pattern.id,
