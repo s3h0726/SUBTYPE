@@ -78,7 +78,6 @@ const fixes={
 'data/lines/kitaosakakyukodentetsu/kitaosakakyukodentetsu/line.json':'키타오사카 급행전철',
 'data/lines/kobedentetsu/koentoshisen/line.json':'고엔토시선',
 'data/lines/kobekosokutetsudo/kobekosokunambokusen/line.json':'고베 고속 난보쿠선',
-'data/lines/kobekosokutetsudo/kobekosokutozaisen/line.json':'고베 고속 도자이선',
 'data/lines/kobeshikotsukyoku/kobeshieichikatetsuseishinsen/line.json':'고베 시영 지하철 세이신선',
 'data/lines/kobeshikotsukyoku/kobeshieichikatetsuyamatesen/line.json':'고베 시영 지하철 야마테선',
 'data/lines/kobeshinkotsu/rokkoraina/line.json':'롯코 라이너',
