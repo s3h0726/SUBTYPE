@@ -22,7 +22,7 @@ function applyArexShortTurns(batches, evidence) {
   if (route.verifiedJourneys.some(j => JSON.stringify(j.stations.map(s=>s.id)) === JSON.stringify(stations.map(s=>s.id)))) throw Error('Existing AREX pattern already covers requested station sequence: ' + pattern.id);
   const timetableEvidence = {
    url: pattern.url,
-   checkedAt: evidence.checkedAt,
+   checkedAt: pattern.checkedAt || evidence.checkedAt,
    operatorNotice: evidence.operatorNotice,
    sourceId: pattern.sourceId,
    ...(pattern.serviceDay ? { serviceDay:pattern.serviceDay } : {}),
