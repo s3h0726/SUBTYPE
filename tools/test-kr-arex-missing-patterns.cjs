@@ -8,7 +8,7 @@ const arex=routes.find(r=>r.id===config.routeId);
 test('All 4 operator-backed AREX short-turn paths are valid, without any new geometry',()=>{
  assert(arex,'published airport rail route');
  assert.deepEqual(rejected,[],'canonical validation');
- assert.equal(config.patterns.length,4);
+ assert.equal(config.patterns.length,5);
  const used=new Set();
  for(const source of config.patterns){
   const p=arex.verifiedJourneys.find(j=>j.id===source.id);
@@ -29,10 +29,12 @@ test('All 4 operator-backed AREX short-turn paths are valid, without any new geo
  assert.deepEqual(validateRoute(arex),[]);
 });
 test('Only 2 new operator-backed station-board cases, with real weekday times and provenance',()=>{
- const next=config.patterns.filter(p=>p.id.startsWith('kr-arex-geomam-'));
- assert.equal(next.length,2);
- assert.deepEqual(next.map(x=>x.observedDeparture),['05:30','05:08']);
- assert(next.every(x=>x.url.startsWith('https://www.airportrailroad.com/train/normal/info/070')));
+ const next=config.patterns.filter(p=>p.id.startsWith('kr-arex-geomam-')||p.id==='kr-arex-dmc-seoul-local');
+ assert.equal(next.length,3);
+ assert.deepEqual(next.map(x=>x.observedDeparture),['05:30','05:08','05:30']);
+ assert(next.every(x=>x.url.startsWith('https://www.airportrailroad.com/train/normal/info/')));
  assert(next.every(x=>x.serviceDay==='weekday'));
  assert(next.every(x=>x.corroborationUrl));
+ assert(next.every(x=>x.checkedAt==='2026-11-12'));
+ for(const x of next){const p=arex.verifiedJourneys.find(y=>y.id===x.id);assert.equal(p.timetableEvidence.checkedAt,x.checkedAt);}
 });

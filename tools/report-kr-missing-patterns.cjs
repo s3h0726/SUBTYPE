@@ -38,13 +38,13 @@ const counts=rows.reduce((m,r)=>(m[r.public_status]=(m[r.public_status]||0)+1,m)
 const arex=JSON.parse(fs.readFileSync(path.join(root,'data/kr/canonical/arex-short-turns.json'),'utf8'));
 const lines=[
  '# 대한민국 철도 시간표 누락 운행계통 추가 — 2026-11-12','',
- '## 공항철도 검암 출발 구간운행 2개 추가','',
- '공항철도 공식 [검암역 운행시각표](https://www.airportrailroad.com/train/normal/info/070)에서 서울역 방면 05:30, 공항2터미널 방면 05:08 출발편을 확인했다. 기존 공개 노선에는 검암 출발 전용 선택 계통이 없어 신규 파생했다.',
+ '## 공항철도 검암·디지털미디어시티 출발 구간운행 3개 추가','',
+ '공항철도 공식 [검암역 운행시각표](https://www.airportrailroad.com/train/normal/info/070)에서 서울역 방면 05:30, 공항2터미널 방면 05:08 출발편을 확인했다. [디지털미디어시티역 공식 시각표](https://www.airportrailroad.com/train/normal/info/040)에서도 서울역 방면 05:30 출발을 확인했다. 인접역 첫 출발 시각과 제3자 시각표의 명시된 기점을 교차 검토했다.',
  '이 구간은 기존 인천공항철도의 같은 방향 OSM 실선로/역 ID/정차역을 slice하여 생성한다. 원본 선형과 기존 운행계통은 불변.',
  '',
  '| 추가한 운행계통 | 평일 공식 출발시각 | 실제 궤도 출처 |',
  '|---|---|---|',
- ...arex.patterns.filter(p=>p.id.startsWith('kr-arex-geomam-')).map(p=>'| '+p.nameKo+' | '+p.observedDeparture+' | 기존 '+p.parentJourneyId+' |'),
+ ...arex.patterns.filter(p=>p.id.startsWith('kr-arex-geomam-')||p.id==='kr-arex-dmc-seoul-local').map(p=>'| '+p.nameKo+' | '+p.observedDeparture+' | 기존 '+p.parentJourneyId+' |'),
  '',
  '## 서울교통공사 65개 연구용 계통과 정식 공개 계통 대조','',
  '연구/v2 2026-09-01 공식 시각표 65개와 정식 공개 철도 55개 카드에 포함된 실제 정차열을 문자 단위로 비교했다. 정확히 일치하거나 정차열이 같은 모체구간만 자동 구분했으며, 그 외는 **후속 선로·운영사 대조 필요**로 표시했다. 65개를 전부 새로 추가했다고 주장하지 않는다.',
@@ -57,7 +57,7 @@ const lines=[
  '- [공항철도 4개 공식 계통 근거 데이터](../../data/kr/canonical/arex-short-turns.json)',
  '- [실제 생성 소스](../../tools/lib/kr-arex-timetable.cjs)',
  '',
- '이 자료에서 신규 추가 계통은 **2개**이며, 연구용 65계통 전체를 공개하거나 검증 승격하지 않았다. 대중교통 버스는 검사·수정하지 않았다.'
+ '이 자료에서 신규 추가 계통은 **3개**이며, 연구용 65계통 전체를 공개하거나 검증 승격하지 않았다. 대중교통 버스는 검사·수정하지 않았다.'
 ];
 fs.writeFileSync(path.join(root,'docs/timetable-audit/KR_MISSING_RAIL_PATTERNS_20261112.md'),lines.join('\n')+'\n');
-console.log(JSON.stringify({railRoutes:routes.length,railDirections:compiledJourneys.length,arexShortTurns:arex.patterns.length,addedArexDirections:2,seoulResearchPatterns:bindings.length,candidateClassifications:counts},null,2));
+console.log(JSON.stringify({railRoutes:routes.length,railDirections:compiledJourneys.length,arexShortTurns:arex.patterns.length,addedArexDirections:3,seoulResearchPatterns:bindings.length,candidateClassifications:counts},null,2));
