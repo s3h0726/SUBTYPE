@@ -142,7 +142,7 @@ for (const spec of specs) {
   const operator = isMetro ? ratp : sncf;
   const route = {id: spec.id, countryId: 'fr', operatorId: isMetro ? 'fr-ratp' : 'fr-sncf-voyageurs',
     operator, line: {ko: spec.ko, fr: spec.fr, ja: spec.fr, en: spec.fr}, code: spec.code,
-    lineColor: color, category: isMetro ? 'subway' : 'high_speed_rail', mode: 'rail',
+    lineColor: color, category: isMetro ? 'subway' : spec.international ? 'international' : 'high_speed_rail', mode: 'rail',
     playable: true, geometryReady: true, geometryStatus: 'verified-osm-track',
     geometrySource: {type: 'openstreetmap', license: 'ODbL-1.0', attribution: '© OpenStreetMap contributors'},
     sourceUrl: sourceUrls[spec.sourceId], sourceRouteId: officialLineId, regionCodes: spec.regionCodes,

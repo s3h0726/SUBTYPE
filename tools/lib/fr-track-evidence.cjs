@@ -22,10 +22,11 @@ function readTrack(relation, elements) {
 
 function stationDistance(station, node) {
   if (station.latitude === '' || station.longitude === '') return Infinity;
-  const latitude = Number(station.latitude);
-  const longitude = Number(station.longitude);
-  return Math.hypot((latitude - node.lat) * 111.2,
-    (longitude - node.lon) * 111.2 * Math.cos(latitude * Math.PI / 180));
+  const coordinates = [[Number(station.latitude), Number(station.longitude)],
+    ...Object.values(station.platformLocations || {})];
+  return Math.min(...coordinates.map(([latitude, longitude]) =>
+    Math.hypot((latitude - node.lat) * 111.2,
+      (longitude - node.lon) * 111.2 * Math.cos(latitude * Math.PI / 180))));
 }
 
 function identifyCalls(track, stations, aliases, mode) {

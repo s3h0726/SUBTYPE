@@ -3,22 +3,22 @@
   "baselineRef": "520e00ec0f00e114005b7a616dff16f049a7b148",
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
-  "discoveredSourcePatternRecords": 12443,
-  "coveredSourcePatternRecords": 29,
-  "verifiedSourcePatternRecords": 29,
-  "remainingSourcePatternRecords": 12414,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.23306276621393554,
+  "discoveredSourcePatternRecords": 13358,
+  "coveredSourcePatternRecords": 41,
+  "verifiedSourcePatternRecords": 41,
+  "remainingSourcePatternRecords": 13317,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.30693217547537055,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 11,
+  "catalogLines": 17,
   "operators": 2,
-  "catalogServiceFamilies": 15,
-  "playableDirections": 27,
-  "verifiedPlayableDirections": 27,
-  "koreanNamedStations": 101,
-  "stationIds": 101,
-  "physicalStationGroups": 100,
-  "sharedPhysicalWays": 3950,
-  "uniquePhysicalWays": 8766,
+  "catalogServiceFamilies": 23,
+  "playableDirections": 39,
+  "verifiedPlayableDirections": 39,
+  "koreanNamedStations": 184,
+  "stationIds": 184,
+  "physicalStationGroups": 183,
+  "sharedPhysicalWays": 5953,
+  "uniquePhysicalWays": 10851,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -50,19 +50,20 @@
     }
   ],
   "sourcesByStatus": {
-    "SCHEDULE_INVENTORIED": 54,
-    "UNVERIFIABLE": 20,
-    "MISSING": 5
+    "SCHEDULE_INVENTORIED": 72,
+    "MISSING": 5,
+    "BLOCKED": 1,
+    "UNVERIFIABLE": 1
   },
   "trackRelations": {
-    "examined": 74,
-    "matched": 42,
-    "blocked": 32
+    "examined": 133,
+    "matched": 63,
+    "blocked": 70
   },
   "byFamily": [
     {
       "family": "funicular",
-      "sourcePatternRecords": 15,
+      "sourcePatternRecords": 21,
       "catalogLines": 0,
       "playableDirections": 0,
       "testedDirections": 0
@@ -70,9 +71,9 @@
     {
       "family": "high-speed",
       "sourcePatternRecords": 1049,
-      "catalogLines": 7,
-      "playableDirections": 19,
-      "testedDirections": 19
+      "catalogLines": 8,
+      "playableDirections": 21,
+      "testedDirections": 21
     },
     {
       "family": "intercites",
@@ -91,9 +92,9 @@
     {
       "family": "international",
       "sourcePatternRecords": 156,
-      "catalogLines": 0,
-      "playableDirections": 0,
-      "testedDirections": 0
+      "catalogLines": 2,
+      "playableDirections": 4,
+      "testedDirections": 4
     },
     {
       "family": "rail",
@@ -104,17 +105,17 @@
     },
     {
       "family": "rer",
-      "sourcePatternRecords": 700,
+      "sourcePatternRecords": 1050,
       "catalogLines": 0,
       "playableDirections": 0,
       "testedDirections": 0
     },
     {
       "family": "subway",
-      "sourcePatternRecords": 167,
-      "catalogLines": 4,
-      "playableDirections": 8,
-      "testedDirections": 8
+      "sourcePatternRecords": 296,
+      "catalogLines": 7,
+      "playableDirections": 14,
+      "testedDirections": 14
     },
     {
       "family": "ter",
@@ -132,14 +133,14 @@
     },
     {
       "family": "tramway",
-      "sourcePatternRecords": 795,
+      "sourcePatternRecords": 999,
       "catalogLines": 0,
       "playableDirections": 0,
       "testedDirections": 0
     },
     {
       "family": "transilien-review",
-      "sourcePatternRecords": 600,
+      "sourcePatternRecords": 826,
       "catalogLines": 0,
       "playableDirections": 0,
       "testedDirections": 0
@@ -485,6 +486,144 @@
       ]
     },
     {
+      "id": "fr-tgv-strasbourg-quimper",
+      "category": "high_speed_rail",
+      "regions": [
+        "44",
+        "11",
+        "52",
+        "53"
+      ],
+      "sourceRouteId": "FR:Line::A7628FC9-CF66-4A89-B2C2-9924DD8DCD89:",
+      "sourceLineId": "fr-line-bc7b278adcff065e75abf3ed",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 12,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-012498243531e128980229db",
+        "fr-pattern-4bab73b231482fe69e9e5f28",
+        "fr-pattern-61d99609895cd4de899ac31a",
+        "fr-pattern-b838e94977e9afcf1ba22017",
+        "fr-pattern-cc064dfa3895983812840235",
+        "fr-pattern-e2e592c4934581d9e8e8f168",
+        "fr-pattern-ec9b7b3d113deedd7f2f47a3",
+        "fr-pattern-eca3389b0c9b654d54420d5e",
+        "fr-pattern-f41cf5d2c93dd63417ef004e",
+        "fr-pattern-f4e20374f77776aa830b7bf8"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-b5fa6e9d72e3dd4d0e1446c4",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-185f261772fbe57e9681f04e"
+          ],
+          "relationId": 21162679,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ff7a26b4a12a48d19106545d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-8334550b38c4ad500093d252"
+          ],
+          "relationId": 21162680,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-strasbourg-brussels",
+      "category": "international",
+      "regions": [
+        "44",
+        "11",
+        "32"
+      ],
+      "sourceRouteId": "FR:Line::53F2E1D2-2532-4CBF-9213-90D7962D5212:",
+      "sourceLineId": "fr-line-785e77cb67e9acb22d36aab4",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-3e79c3bcfb246bffd78dc882",
+        "fr-pattern-afea6e07d7aad5181ecbf07f",
+        "fr-pattern-fb8bb0c756e14ad0858c016c"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-7607733414b589ce2cb69bcc",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6dcb795a51954ffedfaf6475"
+          ],
+          "relationId": 11889376,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-6d75bbf1c6feeec10b4218e8",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-8d0f02b8669b5ea248c8a7e7"
+          ],
+          "relationId": 5935099,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-nantes-brussels",
+      "category": "international",
+      "regions": [
+        "52",
+        "11",
+        "32"
+      ],
+      "sourceRouteId": "FR:Line::CB8AE7F1-0F5A-4DDE-B53D-4CFE739A713F:",
+      "sourceLineId": "fr-line-9d3c8a13e6c587912b6a99a1",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 15,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0647f50510af3cfd3357913a",
+        "fr-pattern-2226d17e1ef9069653f595a7",
+        "fr-pattern-40ee3f441fc386d6b1a7af29",
+        "fr-pattern-46d5b60dbcb5439937ddf540",
+        "fr-pattern-4771d44db82901129f53ed62",
+        "fr-pattern-7832119b0e12265d82b7bbd6",
+        "fr-pattern-888629f956ea384103071ff8",
+        "fr-pattern-8b19f1a73915a276a048f662",
+        "fr-pattern-d02d796242310ea77279ec0d",
+        "fr-pattern-d2d07abc6b9b70de581c3b6f",
+        "fr-pattern-f47d5530c0efb395dd3ebc04",
+        "fr-pattern-f9515b6bfffa05b360799d33",
+        "fr-pattern-fd6bc8498427eb972251fc3e"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-d8ae3e9cd90f06fa1fd8c9fc",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-74e44a53ae5441a054b37d3f"
+          ],
+          "relationId": 12027955,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-a6f751fbbb09fd69b01260d7",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-617d440b4c6162acae90d405"
+          ],
+          "relationId": 5936705,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
       "id": "fr-paris-metro-1",
       "category": "subway",
       "regions": [
@@ -633,6 +772,130 @@
           "status": "VERIFIED_ADDED"
         }
       ]
+    },
+    {
+      "id": "fr-paris-metro-6",
+      "category": "subway",
+      "regions": [
+        "11"
+      ],
+      "sourceRouteId": "IDFM:C01376",
+      "sourceLineId": "fr-line-ba4c6797f9500606e0a467a3",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 11,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-075fc2d95116a3453bdf40f6",
+        "fr-pattern-0a62c5cb79bd30e2847325e0",
+        "fr-pattern-2f29185f4cedd21a746e6742",
+        "fr-pattern-3d628081f35e8819a3ae2974",
+        "fr-pattern-8f5cf75b30c39519bf6523d8",
+        "fr-pattern-9d587005ebb80ab9ec3282eb",
+        "fr-pattern-b09ef327b460826390e1e8ad",
+        "fr-pattern-d09a4a889fb6093edf644f60",
+        "fr-pattern-d2072268357bd7e24b862905"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-7280c68712c6f022c693ddf4",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-0b9403fdec0bf2ad52a37886"
+          ],
+          "relationId": 123912,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c1801824c0fa05224c993137",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-8bc4dbe8ba6c1ee7a29dbc9c"
+          ],
+          "relationId": 3328764,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-paris-metro-9",
+      "category": "subway",
+      "regions": [
+        "11"
+      ],
+      "sourceRouteId": "IDFM:C01379",
+      "sourceLineId": "fr-line-cf681a7a1fa3bb9fabfa6790",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 10,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-14ec56864e51a0638aeca7f7",
+        "fr-pattern-184bcd198f38e55046f2c8c6",
+        "fr-pattern-378724338cd4a2773125a96b",
+        "fr-pattern-58e4b1ce8a85bf9ce2d8953b",
+        "fr-pattern-795a4b723bea879c8486f460",
+        "fr-pattern-8cb9700e67eed17b8dfcb511",
+        "fr-pattern-ad8831c98e59ce87627860d4",
+        "fr-pattern-bc239983351f7b7b71286c1a"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-135380fcd70222eee62041cf",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-3c5c448a7fa1350d49e0660e"
+          ],
+          "relationId": 123782,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1405943c214a83436ecd34c4",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-a7bfddccdc283ff1fc8e8444"
+          ],
+          "relationId": 3328716,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-paris-metro-11",
+      "category": "subway",
+      "regions": [
+        "11"
+      ],
+      "sourceRouteId": "IDFM:C01381",
+      "sourceLineId": "fr-line-f7b535df10d41cbee564e5da",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-e592b925e21782e257078ce2",
+        "fr-pattern-f818ac1212ffda5efef28e97"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-bfadc4e50b089557cfb57eda",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-645652aef6fdd1a27694e438"
+          ],
+          "relationId": 123792,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-498ab07bd4f0e162095a42f0",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-98b9b449d7673817da971b98"
+          ],
+          "relationId": 5456634,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
     }
   ],
   "regionalCoverage": [
@@ -641,7 +904,8 @@
       "name": "Île-de-France",
       "regionalFeedIds": [
         67595,
-        80921
+        80921,
+        80931
       ],
       "catalogLineIds": [
         "fr-tgv-paris-valenciennes",
@@ -651,10 +915,16 @@
         "fr-tgv-paris-mulhouse",
         "fr-tgv-paris-perpignan",
         "fr-tgv-strasbourg-bordeaux",
+        "fr-tgv-strasbourg-quimper",
+        "fr-tgv-strasbourg-brussels",
+        "fr-tgv-nantes-brussels",
         "fr-paris-metro-1",
         "fr-paris-metro-2",
         "fr-paris-metro-3bis",
-        "fr-paris-metro-7bis"
+        "fr-paris-metro-7bis",
+        "fr-paris-metro-6",
+        "fr-paris-metro-9",
+        "fr-paris-metro-11"
       ]
     },
     {
@@ -694,7 +964,9 @@
       "catalogLineIds": [
         "fr-tgv-paris-valenciennes",
         "fr-tgv-paris-dunkerque",
-        "fr-tgv-paris-rang-du-fliers"
+        "fr-tgv-paris-rang-du-fliers",
+        "fr-tgv-strasbourg-brussels",
+        "fr-tgv-nantes-brussels"
       ]
     },
     {
@@ -705,7 +977,9 @@
       ],
       "catalogLineIds": [
         "fr-tgv-paris-mulhouse",
-        "fr-tgv-strasbourg-bordeaux"
+        "fr-tgv-strasbourg-bordeaux",
+        "fr-tgv-strasbourg-quimper",
+        "fr-tgv-strasbourg-brussels"
       ]
     },
     {
@@ -714,7 +988,10 @@
       "regionalFeedIds": [
         79818
       ],
-      "catalogLineIds": []
+      "catalogLineIds": [
+        "fr-tgv-strasbourg-quimper",
+        "fr-tgv-nantes-brussels"
+      ]
     },
     {
       "code": "53",
@@ -723,7 +1000,9 @@
         81474,
         81559
       ],
-      "catalogLineIds": []
+      "catalogLineIds": [
+        "fr-tgv-strasbourg-quimper"
+      ]
     },
     {
       "code": "75",

@@ -40,7 +40,8 @@ const verifiedSchedulePatterns = new Set(verified.flatMap(direction => direction
 const discovered = inventory.scheduleTotals.blockedDirections;
 const byFamily = Object.entries(inventory.patternsByFamily).map(([family, count]) => {
   const published = lines.filter(line => (family === 'high-speed' && line.category === 'high_speed_rail') ||
-    (family === 'subway' && line.category === 'subway'));
+    (family === 'subway' && line.category === 'subway') ||
+    (family === 'international' && line.category === 'international'));
   return {family, sourcePatternRecords:count, catalogLines:published.length,
     playableDirections:published.flatMap(line => line.directions).length,
     testedDirections:published.flatMap(line => line.directions).filter(direction => direction.status === 'VERIFIED_ADDED').length};

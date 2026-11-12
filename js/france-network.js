@@ -2,7 +2,7 @@ export const FRANCE_CATEGORIES = [
   ['all', '전체'], ['high_speed_rail', '고속철도'], ['intercity', '도시간 철도'],
   ['regional_rail', '지역철도'], ['rer', '광역급행철도'], ['commuter_rail', '교외철도'],
   ['subway', '지하철'], ['tram', '트램'], ['light_rail', '경전철'], ['funicular', '케이블 철도'],
-  ['custom', '커스텀'],
+  ['international', '국제철도'], ['custom', '커스텀'],
 ];
 
 let franceEdits = new Map();

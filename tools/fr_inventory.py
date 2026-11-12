@@ -269,7 +269,15 @@ def import_feed(feed, source, start):
                 stations[station_id] = {"id": station_id, "name": row["stop_name"],
                                         "latitude": row.get("stop_lat"), "longitude": row.get("stop_lon"),
                                         "platformIds": set()}
+                if source_id == 80921:
+                    stations[station_id]["platformLocations"] = {}
             stations[station_id]["platformIds"].add(stop_id)
+            if source_id == 80921 and stop_id not in stations[station_id]["platformLocations"]:
+                platform = stops[stop_id]
+                if platform.get("stop_lat") and platform.get("stop_lon"):
+                    stations[station_id]["platformLocations"][stop_id] = [
+                        float(platform["stop_lat"]), float(platform["stop_lon"]),
+                    ]
     line_inventory = []
     for route_id, route in sorted(routes.items()):
         variants = sorted(patterns[route_id].values(), key=lambda p: p["id"])
@@ -330,7 +338,8 @@ def inventory_source(task):
             inventory = json_read(destination) if destination.exists() else {}
         except (UnicodeDecodeError, json.JSONDecodeError):
             inventory = {}
-        identity = {"asOf": start.isoformat(), "archiveSha256": archive_hash, "schemaVersion": 1}
+        identity = {"asOf": start.isoformat(), "archiveSha256": archive_hash,
+                    "schemaVersion": 2 if source_id == 80921 else 1}
         if inventory.get("snapshot") != identity:
             with zipfile.ZipFile(archive) as zip_file:
                 inventory = import_feed(Feed(zip_file), source, start)

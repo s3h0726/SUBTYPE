@@ -175,6 +175,24 @@ async function run() {
       }, line.id));
     }
     if (!publicBase) {
+      report.interchange = await page.evaluate(async () => {
+        const qa = globalThis.__FRANCE_QA__;
+        qa.game.stop(false);
+        qa.go('rail-map');
+        await qa.chooseRoute('fr-paris-metro-1');
+        await qa.startFreeDrive(qa.routes().find(route => route.id === 'fr-paris-metro-1'));
+        const drive = qa.freeDrive;
+        const line = drive.routes.find(route => route.id === 'fr-paris-metro-1');
+        const gare = line.stations.findIndex(station => station.physicalStationId === 'fr-gare-de-lyon');
+        if (gare < 0 || !drive.start(line, gare)) throw new Error('Cannot board at Gare de Lyon');
+        const state = drive.snapshot();
+        const connection = state.edges.find(edge => edge.route.physicalLineId === 'fr-tgv-paris-besancon');
+        if (!connection || !drive.moveTo(connection.to, connection.routeId, drive.currentKey)) {
+          throw new Error('Gare de Lyon metro-to-TGV transfer unavailable');
+        }
+        if (drive.snapshot().station.ko !== '몽바르') throw new Error('Transfer selected the wrong train path');
+        return {station:'리옹역', destination:'몽바르', status:'PASS'};
+      });
       for (const country of ['jp', 'kr', 'hk', 'tw', 'th', 'uk', 'fr']) {
         await page.evaluate(() => {const qa = globalThis.__FRANCE_QA__; qa.game.stop(false); qa.go('home');});
         await page.locator('button[data-country="' + country + '"]').click();
