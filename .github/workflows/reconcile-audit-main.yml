@@ -1,0 +1,59 @@
+name: Reconcile latest main before timetable audit merge
+
+on:
+  push:
+    branches: [audit/six-country-timetables]
+    paths:
+      - .github/workflows/reconcile-audit-main.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/six-country-timetables
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Merge all newer main commits, with safe main-geometry preference
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo 'Latest main is already included'
+            exit 0
+          fi
+          if ! git merge --no-commit --no-ff origin/main; then
+            git diff --name-only --diff-filter=U > /tmp/conflicts.txt
+            cat /tmp/conflicts.txt
+            while IFS= read -r p; do
+              case "$p" in
+                data/uk/generated/geometry.json|data/uk/generated/geometry/*)
+                  git checkout --theirs -- "$p"
+                  git add -- "$p"
+                  ;;
+                *)
+                  echo "::error::Non-geometry merge conflict requires manual review: $p"
+                  exit 1
+                  ;;
+              esac
+            done < /tmp/conflicts.txt
+            if test -n "$(git diff --name-only --diff-filter=U)"; then
+              echo 'Unresolved conflict after preferred source-geometry resolution'
+              exit 1
+            fi
+          fi
+          node --test tools/test-uk-verified-shortturns.cjs tools/test-uk-audited-operating-calendars.cjs
+          node tools/test-uk-all-56.cjs
+          git commit -m 'Merge latest main into timetable audit preserving updated UK track geometry'
+          git push origin HEAD:audit/six-country-timetables
+      - name: Print published audit revision
+        run: git rev-parse HEAD
