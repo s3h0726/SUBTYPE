@@ -1,0 +1,1389 @@
+{
+  "route": {
+    "id": "line-ohmi-hikone-taga",
+    "legacyId": "line-ohmi-hikone-taga",
+    "category": "private",
+    "operatorId": "omitetsudo",
+    "operator": {
+      "ja": "近江鉄道",
+      "ko": "오미 철도",
+      "en": "Ohmi Railway"
+    },
+    "operatorSource": {
+      "family": "namuwiki",
+      "method": "unresolved",
+      "type": "namuwiki-unresolved",
+      "url": "",
+      "searchReference": "site:namu.wiki 近江鉄道 오우미테츠도우 운영사",
+      "sourceAccess": "blocked",
+      "namuwikiStatus": "access-blocked",
+      "verified": false,
+      "confidence": "LOW",
+      "verifiedDate": null,
+      "status": "REVIEW_REQUIRED",
+      "canonicalPolicy": "namuwiki"
+    },
+    "operatorAsset": null,
+    "line": {
+      "ja": "彦根・多賀大社線",
+      "kana": "",
+      "ko": "히코네·타가타이샤선",
+      "en": "Hikone–Taga Taisha Line"
+    },
+    "koreanNameSource": {
+      "family": "namuwiki",
+      "method": "archived-article-and-prefecture-crosscheck",
+      "sourceUrl": "https://www.readonly.wiki/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EB%B3%B8%EC%84%A0",
+      "verified": true,
+      "verifiedDate": "2026-11-13"
+    },
+    "code": "OR",
+    "lineColor": "#DC5055",
+    "symbolAsset": null,
+    "symbolMeta": {
+      "asset": null,
+      "officialSymbolExists": false,
+      "source": "",
+      "verified": false,
+      "identificationSource": "namuwiki-unresolved",
+      "identificationUrl": "",
+      "identificationSearch": "site:namu.wiki 近江鉄道本線 오우미테츠도우혼선 노선 심볼",
+      "sourceAccess": "blocked",
+      "assetSource": "none",
+      "assetSourceUrl": "",
+      "licenseVerified": false,
+      "identificationFamily": "namuwiki",
+      "identificationMethod": "unresolved",
+      "identificationVerified": false
+    },
+    "officialSymbolExists": false,
+    "loop": false,
+    "stationSignTemplate": "omitetsudo",
+    "services": [
+      {
+        "id": "ohmi-hikone-taga-local",
+        "nameJa": "普通",
+        "nameKo": "각역정차",
+        "nameEn": "Local",
+        "stops": [
+          "station-1141501",
+          "station-9960102",
+          "station-9960103",
+          "station-1160102",
+          "station-9960125",
+          "station-9960105",
+          "station-9960106",
+          "station-9960203",
+          "station-9960202"
+        ]
+      }
+    ],
+    "throughServiceIds": [],
+    "throughOperations": [],
+    "routeInfo": null,
+    "stations": [
+      {
+        "id": "station-1141501",
+        "internalId": "station-1141501",
+        "stationMasterId": "station-1141501",
+        "sourceId": "station-1141501",
+        "ja": "米原",
+        "kana": "まいばら",
+        "ko": "마이바라",
+        "romaji": "Maibara",
+        "koAliases": [],
+        "latitude": 35.314393,
+        "longitude": 136.290406,
+        "order": 1,
+        "officialCode": "OR01",
+        "stationCode": "OR01",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-route-table",
+        "koSourceUrl": "https://namu.wiki/w/%EB%8F%84%EC%B9%B4%EC%9D%B4%EB%8F%84%20%EB%B3%B8%EC%84%A0",
+        "koSearchReference": "site:namu.wiki 米原駅 마이바라 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "HIGH",
+        "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
+        "geometryIndex": 0,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-9960102",
+        "internalId": "station-9960102",
+        "stationMasterId": "station-9960102",
+        "sourceId": "station-9960102",
+        "ja": "フジテック前",
+        "kana": "ふじてっくまえ",
+        "ko": "후지테크마에",
+        "romaji": "Fujitec-mae",
+        "koAliases": [
+          "후지텟쿠마에"
+        ],
+        "latitude": 35.29456,
+        "longitude": 136.28541,
+        "order": 2,
+        "officialCode": "OR02",
+        "stationCode": "OR02",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-review",
+        "koSourceUrl": "https://www.namu.moe/w/%ED%9B%84%EC%A7%80%ED%85%8C%ED%81%AC%EB%A7%88%EC%97%90%EC%97%AD",
+        "koSearchReference": "site:namu.wiki フジテック前駅 후지텠쿠마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": true,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEWED",
+        "geometryIndex": 11,
+        "coordinateSource": "line-track-geometry",
+        "nameSource": "official-2026-station-directory"
+      },
+      {
+        "id": "station-9960103",
+        "internalId": "station-9960103",
+        "stationMasterId": "station-9960103",
+        "sourceId": "station-9960103",
+        "ja": "鳥居本",
+        "kana": "とりいもと",
+        "ko": "토리이모토",
+        "romaji": "Toriimoto",
+        "koAliases": [],
+        "latitude": 35.28513,
+        "longitude": 136.28318,
+        "order": 3,
+        "officialCode": "OR03",
+        "stationCode": "OR03",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 鳥居本駅 토리이모토 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 15,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-1160102",
+        "internalId": "station-1160102",
+        "stationMasterId": "station-1160102",
+        "sourceId": "station-1160102",
+        "ja": "彦根",
+        "kana": "ひこね",
+        "ko": "히코네",
+        "romaji": "Hikone",
+        "koAliases": [],
+        "latitude": 35.27166,
+        "longitude": 136.26358,
+        "order": 4,
+        "officialCode": "OR04",
+        "stationCode": "OR04",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-route-table",
+        "koSourceUrl": "https://namu.wiki/w/%EB%B9%84%EC%99%80%EC%BD%94%EC%84%A0",
+        "koSearchReference": "site:namu.wiki 彦根駅 히코네 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "HIGH",
+        "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
+        "geometryIndex": 30,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-9960125",
+        "internalId": "station-9960125",
+        "stationMasterId": "station-9960125",
+        "sourceId": "station-9960125",
+        "ja": "ひこね芹川",
+        "kana": "ひこねせりかわ",
+        "ko": "히코네세리카와",
+        "romaji": "Hikoneserikawa",
+        "koAliases": [],
+        "latitude": 35.262358,
+        "longitude": 136.261232,
+        "order": 5,
+        "officialCode": "OR05",
+        "stationCode": "OR05",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki ひこね芹川駅 히코네세리카와 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 34,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-9960105",
+        "internalId": "station-9960105",
+        "stationMasterId": "station-9960105",
+        "sourceId": "station-9960105",
+        "ja": "彦根口",
+        "kana": "ひこねぐち",
+        "ko": "히코네구치",
+        "romaji": "Hikoneguchi",
+        "koAliases": [],
+        "latitude": 35.25488,
+        "longitude": 136.25843,
+        "order": 6,
+        "officialCode": "OR06",
+        "stationCode": "OR06",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 彦根口駅 히코네구치 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 39,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-9960106",
+        "internalId": "station-9960106",
+        "stationMasterId": "station-9960106",
+        "sourceId": "station-9960106",
+        "ja": "高宮",
+        "kana": "たかみや",
+        "ko": "타카미야",
+        "romaji": "Takamiya",
+        "koAliases": [],
+        "latitude": 35.23678,
+        "longitude": 136.26056,
+        "order": 7,
+        "officialCode": "OR07",
+        "stationCode": "OR07",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 高宮駅 타카미야 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 63,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-9960203",
+        "internalId": "station-9960203",
+        "stationMasterId": "station-9960203",
+        "sourceId": "station-9960203",
+        "ja": "スクリーン",
+        "kana": "すくりーん",
+        "ko": "스크린",
+        "romaji": "SukurīN",
+        "koAliases": [
+          "스쿠린",
+          "스크린"
+        ],
+        "latitude": 35.23317,
+        "longitude": 136.26742,
+        "order": 8,
+        "officialCode": "OR08",
+        "stationCode": "OR08",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-review",
+        "koSourceUrl": "https://www.namu.moe/w/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%97%AD",
+        "koSearchReference": "site:namu.wiki スクリーン駅 스쿠린 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": true,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEWED",
+        "geometryIndex": 73,
+        "coordinateSource": "line-track-geometry"
+      },
+      {
+        "id": "station-9960202",
+        "internalId": "station-9960202",
+        "stationMasterId": "station-9960202",
+        "sourceId": "station-9960202",
+        "ja": "多賀大社前",
+        "kana": "たがたいしゃまえ",
+        "ko": "타가타이샤마에",
+        "romaji": "Tagataishamae",
+        "koAliases": [],
+        "latitude": 35.22647,
+        "longitude": 136.28403,
+        "order": 9,
+        "officialCode": "OR09",
+        "stationCode": "OR09",
+        "hasOfficialStationCode": true,
+        "stationCodeSource": {
+          "type": "official-network-map",
+          "url": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+          "verified": true,
+          "confidence": "HIGH",
+          "status": "VERIFIED"
+        },
+        "distanceKm": null,
+        "location": null,
+        "transfers": [],
+        "serviceStops": null,
+        "koSource": "namuwiki-unresolved",
+        "koSourceUrl": "",
+        "koSearchReference": "site:namu.wiki 多賀大社前駅 타가타이샤마에 역",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "koVerified": false,
+        "koConfidence": "LOW",
+        "koReviewStatus": "REVIEW_REQUIRED",
+        "geometryIndex": 101,
+        "coordinateSource": "line-track-geometry"
+      }
+    ],
+    "geometry": [
+      [
+        35.314393,
+        136.290406
+      ],
+      [
+        35.313568,
+        136.290088
+      ],
+      [
+        35.311207,
+        136.289159
+      ],
+      [
+        35.308331,
+        136.287994
+      ],
+      [
+        35.305206,
+        136.286723
+      ],
+      [
+        35.304499,
+        136.286471
+      ],
+      [
+        35.302102,
+        136.285986
+      ],
+      [
+        35.30121,
+        136.28588
+      ],
+      [
+        35.2987,
+        136.2857
+      ],
+      [
+        35.29735,
+        136.2856
+      ],
+      [
+        35.29519,
+        136.28546
+      ],
+      [
+        35.29456,
+        136.28541
+      ],
+      [
+        35.29245,
+        136.28524
+      ],
+      [
+        35.29099,
+        136.28503
+      ],
+      [
+        35.28895,
+        136.2844
+      ],
+      [
+        35.28513,
+        136.28318
+      ],
+      [
+        35.28397,
+        136.28267
+      ],
+      [
+        35.28242,
+        136.28124
+      ],
+      [
+        35.28155,
+        136.27983
+      ],
+      [
+        35.28113,
+        136.27872
+      ],
+      [
+        35.28055,
+        136.27692
+      ],
+      [
+        35.2802,
+        136.27554
+      ],
+      [
+        35.27991,
+        136.2738
+      ],
+      [
+        35.27947,
+        136.27217
+      ],
+      [
+        35.27753,
+        136.26896
+      ],
+      [
+        35.27691,
+        136.26783
+      ],
+      [
+        35.27576,
+        136.26567
+      ],
+      [
+        35.27502,
+        136.26467
+      ],
+      [
+        35.27421,
+        136.26411
+      ],
+      [
+        35.27269,
+        136.26381
+      ],
+      [
+        35.27166,
+        136.26358
+      ],
+      [
+        35.27057,
+        136.26329
+      ],
+      [
+        35.26819,
+        136.26264
+      ],
+      [
+        35.26311,
+        136.26142
+      ],
+      [
+        35.262358,
+        136.261232
+      ],
+      [
+        35.261939,
+        136.261127
+      ],
+      [
+        35.25935,
+        136.26048
+      ],
+      [
+        35.25746,
+        136.25985
+      ],
+      [
+        35.2555,
+        136.25875
+      ],
+      [
+        35.25488,
+        136.25843
+      ],
+      [
+        35.25407,
+        136.25808
+      ],
+      [
+        35.2529,
+        136.25779
+      ],
+      [
+        35.25203,
+        136.25784
+      ],
+      [
+        35.25179,
+        136.25789
+      ],
+      [
+        35.2512,
+        136.25805
+      ],
+      [
+        35.25056,
+        136.25829
+      ],
+      [
+        35.24957,
+        136.25874
+      ],
+      [
+        35.24939,
+        136.25881
+      ],
+      [
+        35.24827,
+        136.25929
+      ],
+      [
+        35.24778,
+        136.25945
+      ],
+      [
+        35.24668,
+        136.25973
+      ],
+      [
+        35.24564,
+        136.25986
+      ],
+      [
+        35.24546,
+        136.25988
+      ],
+      [
+        35.24451,
+        136.25995
+      ],
+      [
+        35.24421,
+        136.25997
+      ],
+      [
+        35.2431,
+        136.26004
+      ],
+      [
+        35.24204,
+        136.26013
+      ],
+      [
+        35.24126,
+        136.26019
+      ],
+      [
+        35.2408,
+        136.26023
+      ],
+      [
+        35.24011,
+        136.26029
+      ],
+      [
+        35.23899,
+        136.26039
+      ],
+      [
+        35.23827,
+        136.26044
+      ],
+      [
+        35.23777,
+        136.26049
+      ],
+      [
+        35.23678,
+        136.26056
+      ],
+      [
+        35.23587,
+        136.26149
+      ],
+      [
+        35.2355,
+        136.26211
+      ],
+      [
+        35.2353,
+        136.26266
+      ],
+      [
+        35.23503,
+        136.26346
+      ],
+      [
+        35.23485,
+        136.26406
+      ],
+      [
+        35.2346,
+        136.2647
+      ],
+      [
+        35.23434,
+        136.26522
+      ],
+      [
+        35.23416,
+        136.26558
+      ],
+      [
+        35.23365,
+        136.26653
+      ],
+      [
+        35.23317,
+        136.26742
+      ],
+      [
+        35.23277,
+        136.26815
+      ],
+      [
+        35.23249,
+        136.26897
+      ],
+      [
+        35.23247,
+        136.26938
+      ],
+      [
+        35.23245,
+        136.26992
+      ],
+      [
+        35.23243,
+        136.27077
+      ],
+      [
+        35.23243,
+        136.27145
+      ],
+      [
+        35.23239,
+        136.27235
+      ],
+      [
+        35.23226,
+        136.27299
+      ],
+      [
+        35.23216,
+        136.27329
+      ],
+      [
+        35.23202,
+        136.27364
+      ],
+      [
+        35.23188,
+        136.27394
+      ],
+      [
+        35.23162,
+        136.27443
+      ],
+      [
+        35.23143,
+        136.27476
+      ],
+      [
+        35.23116,
+        136.27526
+      ],
+      [
+        35.23086,
+        136.27583
+      ],
+      [
+        35.23031,
+        136.27687
+      ],
+      [
+        35.23001,
+        136.27743
+      ],
+      [
+        35.22971,
+        136.27799
+      ],
+      [
+        35.22953,
+        136.27833
+      ],
+      [
+        35.22937,
+        136.27862
+      ],
+      [
+        35.22903,
+        136.27926
+      ],
+      [
+        35.22896,
+        136.2794
+      ],
+      [
+        35.22848,
+        136.28031
+      ],
+      [
+        35.22798,
+        136.28124
+      ],
+      [
+        35.22757,
+        136.28199
+      ],
+      [
+        35.22703,
+        136.28294
+      ],
+      [
+        35.22663,
+        136.28372
+      ],
+      [
+        35.22647,
+        136.28403
+      ]
+    ],
+    "directedSegments": [
+      {
+        "fromStationId": "station-1141501",
+        "toStationId": "station-9960102",
+        "geometry": [
+          [
+            35.314393,
+            136.290406
+          ],
+          [
+            35.313568,
+            136.290088
+          ],
+          [
+            35.311207,
+            136.289159
+          ],
+          [
+            35.308331,
+            136.287994
+          ],
+          [
+            35.305206,
+            136.286723
+          ],
+          [
+            35.304499,
+            136.286471
+          ],
+          [
+            35.302102,
+            136.285986
+          ],
+          [
+            35.30121,
+            136.28588
+          ],
+          [
+            35.2987,
+            136.2857
+          ],
+          [
+            35.29735,
+            136.2856
+          ],
+          [
+            35.29519,
+            136.28546
+          ],
+          [
+            35.29456,
+            136.28541
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9960102",
+        "toStationId": "station-9960103",
+        "geometry": [
+          [
+            35.29456,
+            136.28541
+          ],
+          [
+            35.29245,
+            136.28524
+          ],
+          [
+            35.29099,
+            136.28503
+          ],
+          [
+            35.28895,
+            136.2844
+          ],
+          [
+            35.28513,
+            136.28318
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9960103",
+        "toStationId": "station-1160102",
+        "geometry": [
+          [
+            35.28513,
+            136.28318
+          ],
+          [
+            35.28397,
+            136.28267
+          ],
+          [
+            35.28242,
+            136.28124
+          ],
+          [
+            35.28155,
+            136.27983
+          ],
+          [
+            35.28113,
+            136.27872
+          ],
+          [
+            35.28055,
+            136.27692
+          ],
+          [
+            35.2802,
+            136.27554
+          ],
+          [
+            35.27991,
+            136.2738
+          ],
+          [
+            35.27947,
+            136.27217
+          ],
+          [
+            35.27753,
+            136.26896
+          ],
+          [
+            35.27691,
+            136.26783
+          ],
+          [
+            35.27576,
+            136.26567
+          ],
+          [
+            35.27502,
+            136.26467
+          ],
+          [
+            35.27421,
+            136.26411
+          ],
+          [
+            35.27269,
+            136.26381
+          ],
+          [
+            35.27166,
+            136.26358
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-1160102",
+        "toStationId": "station-9960125",
+        "geometry": [
+          [
+            35.27166,
+            136.26358
+          ],
+          [
+            35.27057,
+            136.26329
+          ],
+          [
+            35.26819,
+            136.26264
+          ],
+          [
+            35.26311,
+            136.26142
+          ],
+          [
+            35.262358,
+            136.261232
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9960125",
+        "toStationId": "station-9960105",
+        "geometry": [
+          [
+            35.262358,
+            136.261232
+          ],
+          [
+            35.261939,
+            136.261127
+          ],
+          [
+            35.25935,
+            136.26048
+          ],
+          [
+            35.25746,
+            136.25985
+          ],
+          [
+            35.2555,
+            136.25875
+          ],
+          [
+            35.25488,
+            136.25843
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9960105",
+        "toStationId": "station-9960106",
+        "geometry": [
+          [
+            35.25488,
+            136.25843
+          ],
+          [
+            35.25407,
+            136.25808
+          ],
+          [
+            35.2529,
+            136.25779
+          ],
+          [
+            35.25203,
+            136.25784
+          ],
+          [
+            35.25179,
+            136.25789
+          ],
+          [
+            35.2512,
+            136.25805
+          ],
+          [
+            35.25056,
+            136.25829
+          ],
+          [
+            35.24957,
+            136.25874
+          ],
+          [
+            35.24939,
+            136.25881
+          ],
+          [
+            35.24827,
+            136.25929
+          ],
+          [
+            35.24778,
+            136.25945
+          ],
+          [
+            35.24668,
+            136.25973
+          ],
+          [
+            35.24564,
+            136.25986
+          ],
+          [
+            35.24546,
+            136.25988
+          ],
+          [
+            35.24451,
+            136.25995
+          ],
+          [
+            35.24421,
+            136.25997
+          ],
+          [
+            35.2431,
+            136.26004
+          ],
+          [
+            35.24204,
+            136.26013
+          ],
+          [
+            35.24126,
+            136.26019
+          ],
+          [
+            35.2408,
+            136.26023
+          ],
+          [
+            35.24011,
+            136.26029
+          ],
+          [
+            35.23899,
+            136.26039
+          ],
+          [
+            35.23827,
+            136.26044
+          ],
+          [
+            35.23777,
+            136.26049
+          ],
+          [
+            35.23678,
+            136.26056
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9960106",
+        "toStationId": "station-9960203",
+        "geometry": [
+          [
+            35.23678,
+            136.26056
+          ],
+          [
+            35.23587,
+            136.26149
+          ],
+          [
+            35.2355,
+            136.26211
+          ],
+          [
+            35.2353,
+            136.26266
+          ],
+          [
+            35.23503,
+            136.26346
+          ],
+          [
+            35.23485,
+            136.26406
+          ],
+          [
+            35.2346,
+            136.2647
+          ],
+          [
+            35.23434,
+            136.26522
+          ],
+          [
+            35.23416,
+            136.26558
+          ],
+          [
+            35.23365,
+            136.26653
+          ],
+          [
+            35.23317,
+            136.26742
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      },
+      {
+        "fromStationId": "station-9960203",
+        "toStationId": "station-9960202",
+        "geometry": [
+          [
+            35.23317,
+            136.26742
+          ],
+          [
+            35.23277,
+            136.26815
+          ],
+          [
+            35.23249,
+            136.26897
+          ],
+          [
+            35.23247,
+            136.26938
+          ],
+          [
+            35.23245,
+            136.26992
+          ],
+          [
+            35.23243,
+            136.27077
+          ],
+          [
+            35.23243,
+            136.27145
+          ],
+          [
+            35.23239,
+            136.27235
+          ],
+          [
+            35.23226,
+            136.27299
+          ],
+          [
+            35.23216,
+            136.27329
+          ],
+          [
+            35.23202,
+            136.27364
+          ],
+          [
+            35.23188,
+            136.27394
+          ],
+          [
+            35.23162,
+            136.27443
+          ],
+          [
+            35.23143,
+            136.27476
+          ],
+          [
+            35.23116,
+            136.27526
+          ],
+          [
+            35.23086,
+            136.27583
+          ],
+          [
+            35.23031,
+            136.27687
+          ],
+          [
+            35.23001,
+            136.27743
+          ],
+          [
+            35.22971,
+            136.27799
+          ],
+          [
+            35.22953,
+            136.27833
+          ],
+          [
+            35.22937,
+            136.27862
+          ],
+          [
+            35.22903,
+            136.27926
+          ],
+          [
+            35.22896,
+            136.2794
+          ],
+          [
+            35.22848,
+            136.28031
+          ],
+          [
+            35.22798,
+            136.28124
+          ],
+          [
+            35.22757,
+            136.28199
+          ],
+          [
+            35.22703,
+            136.28294
+          ],
+          [
+            35.22663,
+            136.28372
+          ],
+          [
+            35.22647,
+            136.28403
+          ]
+        ],
+        "source": "MLIT-N02-2025",
+        "verified": true
+      }
+    ],
+    "geometryReady": true,
+    "missingSegments": [],
+    "reusedSegments": [],
+    "workspace": null,
+    "sources": {
+      "official": "https://www.ohmitetudo.co.jp/railway/ride/station/",
+      "korean": "",
+      "geometry": "MLIT-N02-2025",
+      "koreanName": {
+        "family": "namuwiki",
+        "method": "unresolved",
+        "type": "namuwiki-unresolved",
+        "url": "",
+        "searchReference": "site:namu.wiki 近江鉄道本線 오우미테츠도우혼선 노선",
+        "sourceAccess": "blocked",
+        "namuwikiStatus": "access-blocked",
+        "verified": false,
+        "confidence": "LOW",
+        "verifiedDate": null,
+        "status": "REVIEW_REQUIRED",
+        "canonicalPolicy": "namuwiki"
+      },
+      "namuwiki": "https://www.readonly.wiki/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EB%B3%B8%EC%84%A0",
+      "timetable": "https://www.ohmitetudo.co.jp/railway/ride/timetable/",
+      "aliasEvidence": "https://www.pref.shiga.lg.jp/file/attachment/5142458.pdf"
+    },
+    "dataKind": "physicalRoute",
+    "coverage": "verified-nickname-section",
+    "countryId": "jp",
+    "mode": "rail",
+    "nicknameSegment": {
+      "sourceAlias": "namuwiki",
+      "parentPhysicalLineIds": [
+        "line-99601",
+        "line-99602"
+      ],
+      "segmentLabel": "히코네·타가타이샤선",
+      "segmentStartStationJa": "米原",
+      "segmentEndStationJa": "多賀大社前",
+      "segmentDistanceKm": 12.4,
+      "physicalTrackPreserved": true
+    }
+  }
+}
