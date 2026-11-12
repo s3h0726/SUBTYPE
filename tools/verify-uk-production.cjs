@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'reports/uk'),base='h
 (async()=>{const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe'}),report={url:base,checkedAt:new Date().toISOString(),status:'FAIL',pageErrors:[],journeys:[]};
 try{
  const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>report.pageErrors.push(e.message));await page.addInitScript(()=>localStorage.setItem('trt-country','uk'));
- await page.goto(base+'?uk-verify='+Date.now()+'#rail-map');await page.waitForSelector('[data-route="uk-bakerloo"]',{timeout:45000});
+ await page.goto(base+'?uk-verify='+Date.now()+'#rail-map',{waitUntil:'domcontentloaded'});await page.waitForSelector('[data-route="uk-bakerloo"]',{timeout:45000});
  const data=await page.evaluate(async()=>(await fetch('data/uk/generated/index.json',{cache:'no-store'})).json());
  Object.assign(report,{operators:data.operators.length,lines:data.routes.length,directions:data.routes.reduce((n,r)=>n+r.serviceCount,0),stationIds:data.stationNameIndex.length});
  report.routeCards=await page.locator('[data-route^="uk-"]').count();console.log('Public UK catalogue:',report.routeCards,'cards,',report.directions,'directions');
@@ -12,10 +12,13 @@ try{
  await page.screenshot({path:path.join(out,'production-catalog.png'),fullPage:true});
  // Use the real settings form to keep representative full-route checks quick.
  await page.evaluate(()=>document.querySelector('[data-nav="settings"]').click());await page.locator('#settings-form input[name="motion"]').uncheck();await page.locator('#settings-form').evaluate(e=>e.requestSubmit());
- for(const lineId of ['uk-waterloo-city','uk-heathrow-express','uk-metrolink']){
-  if(!data.routes.some(r=>r.id===lineId))continue;
-  await page.evaluate(()=>document.querySelector('[data-nav="rail-map"]').click());await page.locator('[data-route="'+lineId+'"]').click();await page.locator('[data-selected-play="'+lineId+'"]').click();await page.waitForFunction(()=>document.body.dataset.currentScreen==='game-setup');
-  const selectedId=await page.locator('#journey-destination').inputValue(),owner=JSON.parse(fs.readFileSync(path.join(root,data.routes.find(r=>r.id===lineId).lazySource))),pattern=owner.patterns.find(p=>p.id===selectedId);assert(pattern,'production choice not in repository');
+ const lineIds=process.argv.slice(2);
+ for(const lineId of lineIds.length?lineIds:['uk-lnwr-west-coast','uk-scotrail-borders','uk-tfw-cambrian-coast']){
+  const route=data.routes.find(r=>r.id===lineId);assert(route,'missing public route: '+lineId);
+  await page.evaluate(()=>document.querySelector('[data-nav="rail-map"]').click());
+  await page.locator('#route-search').fill(route.line.en);
+  await page.locator('[data-route="'+lineId+'"]').click();await page.locator('[data-selected-play="'+lineId+'"]').click();await page.waitForFunction(()=>document.body.dataset.currentScreen==='game-setup');
+  const selectedId=await page.locator('#journey-destination').inputValue(),owner=JSON.parse(fs.readFileSync(path.join(root,route.lazySource))),pattern=owner.patterns.find(p=>p.id===selectedId);assert(pattern,'production choice not in repository');
   const wanted=pattern.stationIds.map(id=>owner.stationCatalog.find(s=>s.id===id).ko),typed=[];
   assert.equal(await page.locator('#game-map-mode').inputValue(),'geographic');await page.locator('#setup-form button[type="submit"]').click();await page.waitForFunction(()=>document.body.dataset.currentScreen==='game');
   console.log('Public playthrough:',lineId,wanted.length,'stops');
