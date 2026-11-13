@@ -4,21 +4,21 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 69,
-  "verifiedSourcePatternRecords": 69,
-  "remainingSourcePatternRecords": 13217,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.5193436700286015,
+  "coveredSourcePatternRecords": 77,
+  "verifiedSourcePatternRecords": 77,
+  "remainingSourcePatternRecords": 13209,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.5795574288724974,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 27,
-  "operators": 2,
-  "catalogServiceFamilies": 37,
-  "playableDirections": 67,
-  "verifiedPlayableDirections": 67,
-  "koreanNamedStations": 380,
-  "stationIds": 380,
-  "physicalStationGroups": 379,
-  "sharedPhysicalWays": 7835,
-  "uniquePhysicalWays": 12958,
+  "catalogLines": 31,
+  "operators": 3,
+  "catalogServiceFamilies": 41,
+  "playableDirections": 75,
+  "verifiedPlayableDirections": 75,
+  "koreanNamedStations": 422,
+  "stationIds": 422,
+  "physicalStationGroups": 421,
+  "sharedPhysicalWays": 7844,
+  "uniquePhysicalWays": 13029,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -56,8 +56,8 @@
     "UNVERIFIABLE": 1
   },
   "trackRelations": {
-    "examined": 133,
-    "matched": 89,
+    "examined": 145,
+    "matched": 101,
     "blocked": 44
   },
   "byFamily": [
@@ -120,9 +120,9 @@
     {
       "family": "subway",
       "sourcePatternRecords": 296,
-      "catalogLines": 16,
-      "playableDirections": 36,
-      "testedDirections": 36
+      "catalogLines": 20,
+      "playableDirections": 44,
+      "testedDirections": 44
     },
     {
       "family": "ter",
@@ -1392,6 +1392,149 @@
           "status": "VERIFIED_ADDED"
         }
       ]
+    },
+    {
+      "id": "fr-lyon-metro-a",
+      "category": "subway",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "A",
+      "sourceLineId": "fr-line-ea61f4ffdb0290bdd4f3c017",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-d35187aae09273e07422c526",
+          "scheduleResourceId": 81943,
+          "sourcePatterns": [
+            "fr-pattern-f2676d9e0b9818c3907b49bd"
+          ],
+          "relationId": 153123,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-a21324894dd8a12b9e25ea10",
+          "scheduleResourceId": 81943,
+          "sourcePatterns": [
+            "fr-pattern-96633117cc810a31ce82cefe"
+          ],
+          "relationId": 3687319,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-lyon-metro-b",
+      "category": "subway",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "B",
+      "sourceLineId": "fr-line-136ef14c2de599951e2a9c01",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-0393b230e59fdff8a627688c",
+          "scheduleResourceId": 81943,
+          "sourcePatterns": [
+            "fr-pattern-c9fadca2ed269d931e4a36cf"
+          ],
+          "relationId": 113907,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5b5fa669fa5047cedf97eb2a",
+          "scheduleResourceId": 81943,
+          "sourcePatterns": [
+            "fr-pattern-52b767d9f5af0edcd71bb469"
+          ],
+          "relationId": 3687320,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-lyon-metro-c",
+      "category": "subway",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "C",
+      "sourceLineId": "fr-line-20099bab51eeb3dfa592e0c8",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 3,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-1879dda47904c81b2b96804b"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-271676d1a61cdc20bdd580e7",
+          "scheduleResourceId": 81943,
+          "sourcePatterns": [
+            "fr-pattern-3bc5c9a2efc383f81bcd063e"
+          ],
+          "relationId": 113906,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-cfa9297bd4030108bf74a70a",
+          "scheduleResourceId": 81943,
+          "sourcePatterns": [
+            "fr-pattern-c4b6bf7cb91e190c210bf9e1"
+          ],
+          "relationId": 3687321,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-lyon-metro-d",
+      "category": "subway",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "D",
+      "sourceLineId": "fr-line-6389427c0d5f6f8eb6384f1c",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-5cc75efbffc33aff4ff83be3",
+        "fr-pattern-7a751449ed6e4e951ee80f33",
+        "fr-pattern-ac239d429541ffe57652b8b6",
+        "fr-pattern-fbcef4df6076359ddd4c935e"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a00dccdf59bb35f23fa042b4",
+          "scheduleResourceId": 81943,
+          "sourcePatterns": [
+            "fr-pattern-9a7946de1dfc3beb9963fac6"
+          ],
+          "relationId": 113903,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4e89433db706f6adaf291746",
+          "scheduleResourceId": 81943,
+          "sourcePatterns": [
+            "fr-pattern-e03ddcdc88a941697b4bf487"
+          ],
+          "relationId": 3687322,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
     }
   ],
   "regionalCoverage": [
@@ -1534,7 +1677,11 @@
       "name": "Auvergne-Rhône-Alpes",
       "regionalFeedIds": [],
       "catalogLineIds": [
-        "fr-tgv-paris-perpignan"
+        "fr-tgv-paris-perpignan",
+        "fr-lyon-metro-a",
+        "fr-lyon-metro-b",
+        "fr-lyon-metro-c",
+        "fr-lyon-metro-d"
       ]
     },
     {
