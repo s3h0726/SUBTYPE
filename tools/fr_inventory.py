@@ -208,7 +208,9 @@ def service_family(mode, brand, source, route):
         if route["route_short_name"] in {"A", "B", "C", "D", "E"} and mode == "rail":
             return "rer"
         if mode == "rail":
-            return "transilien-review"
+            if route["route_short_name"] in {"H", "J", "K", "L", "N", "P", "R", "U", "V"}:
+                return "transilien"
+            return "ile-de-france-rail-review"
     return mode
 
 
@@ -289,16 +291,27 @@ def import_feed(feed, source, start):
             pattern["directionIds"] = sorted(pattern["directionIds"])
             pattern["shapeTripCounts"] = dict(pattern["shapeTripCounts"])
         agency = agencies.get(route.get("agency_id", "")) or (next(iter(agencies.values())) if len(agencies) == 1 else {})
+        excluded_from_scope = source_id in {11681, 82880}
+        expired = bool(source.get("validTo") and source["validTo"] < start.isoformat())
+        if excluded_from_scope:
+            reason = "no-French-passenger-rail-calls" if source_id == 11681 else "aerial-cableway"
+            status = "OUT_OF_SCOPE"
+        elif variants:
+            status = "BLOCKED"
+            reason = "track-alignment-and-korean-localization-unverified"
+        elif expired or invalid[route_id]:
+            status = "UNVERIFIABLE"
+            reason = "expired-snapshot" if expired else "invalid-passenger-call-data"
+        else:
+            status = "NOT_OPERATIONAL"
+            reason = "replacement-coach-only" if excluded[route_id] else "no-active-trip-in-snapshot"
         line_inventory.append({
             "id": "fr-line-" + stable_id(source["slug"], route_id), "sourceRouteId": route_id,
             "agencyId": agency.get("agency_id"), "operator": agency.get("agency_name"),
             "shortName": route["route_short_name"], "longName": route["route_long_name"],
             "mode": gtfs_mode(route["route_type"]), "routeType": route["route_type"],
             "invalidTrips": invalid[route_id], "excludedBusTrips": excluded[route_id], "patterns": variants,
-            "status": "BLOCKED" if variants else "UNVERIFIABLE" if invalid[route_id] else "NOT_OPERATIONAL",
-            "reason": ("track-alignment-and-korean-localization-unverified" if variants else
-                       "invalid-passenger-call-data" if invalid[route_id] else
-                       "replacement-coach-only" if excluded[route_id] else "no-active-trip-in-snapshot"),
+            "status": status, "reason": reason,
         })
     for station in stations.values():
         station["platformIds"] = sorted(station["platformIds"])
@@ -339,7 +352,7 @@ def inventory_source(task):
         except (UnicodeDecodeError, json.JSONDecodeError):
             inventory = {}
         identity = {"asOf": start.isoformat(), "archiveSha256": archive_hash,
-                    "schemaVersion": 2 if source_id == 80921 else 1}
+                    "schemaVersion": 3 if source_id in {11681, 82880, 83882, 80921, 80931, 67595} else 1}
         if inventory.get("snapshot") != identity:
             with zipfile.ZipFile(archive) as zip_file:
                 inventory = import_feed(Feed(zip_file), source, start)
@@ -355,6 +368,8 @@ def inventory_source(task):
     for line in inventory["lines"]:
         totals["lineRecords"] += 1
         totals[line["status"]] += 1
+        if line["status"] == "OUT_OF_SCOPE":
+            continue
         for pattern in line["patterns"]:
             families[pattern["family"]] += 1
             totals["blockedDirections"] += 1
