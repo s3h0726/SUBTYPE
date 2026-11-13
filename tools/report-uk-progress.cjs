@@ -1,78 +1,87 @@
 'use strict';
-const fs=require('fs'),cp=require('child_process');
-const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-const v=read('data/uk/generated/validation.json'),index=read('data/uk/generated/index.json'),b=read('reports/uk/browser-tests.json'),ui=fs.existsSync('reports/uk/browser-ui-tests.json')?read('reports/uk/browser-ui-tests.json'):null,release=read('reports/uk/release-status.json');
-const head=cp.execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
-const routes=index.routes.map(r=>read(r.lazySource));
-const national=routes.filter(r=>r.category==='rail');
-const counts=Object.fromEntries(['operators','lines','servicePatterns','playableDirections','uniqueStations','uniquePhysicalStationGroups','koreanNamedStations','sharedSegments'].map(k=>[k,v[k]]));
-const txt=`# United Kingdom railway expansion progress
 
-Updated: 2026-11-11 (Asia/Seoul). **Substantial partial implementation; the full UK railway network is not complete.**
+const fs = require('node:fs');
+const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
+const baseline = read('data/uk/source/expansion-ii-baseline.json');
+const validation = read('data/uk/generated/validation.json');
+const index = read('data/uk/generated/index.json');
+const expansion = read('data/uk/source/national/expansion-ii.json');
+const queue = read('data/uk/source/national/expansion-ii-queue.json');
+const release = read('reports/uk/release-status.json');
+const browser = read('reports/uk/browser-tests.json');
+const validBrowser = browser.status === 'PASS' && browser.runs.length === validation.playableDirections;
+const published = release.productionDeployment;
+const regionalResults = new Map(validation.regionalResults.map(row => [row.relationId, row]));
+const metrics = {
+  operators: 'Operating organisations',
+  lines: 'Lines / corridors',
+  servicePatterns: 'Service pattern families',
+  playableDirections: 'Playable directions',
+  uniqueStations: 'Station IDs',
+  uniquePhysicalStationGroups: 'Physical station groups',
+  sharedSegments: 'Shared track segments'
+};
 
-## Current measured inventory
-
-| Metric | Repository value |
-| --- | ---: |
-${Object.entries(counts).map(([k,n])=>'| '+k+' | '+n+' |').join('\n')}
-
-Station IDs count source records. Physical station groups reuse published TfL hubs and merge new identically named, identically localized records only within 500 metres. Different cities' stations with the same name remain separate. Korean coverage is editorial coverage, not a claim of official Korean translations.
-
-| Line / passenger corridor | Source station IDs | Playable directions |
-| --- | ---: | ---: |
-${v.linesDetail.map(r=>'| '+r.name+' | '+r.stationCount+' | '+r.directions+' |').join('\n')}
-
-## Operating organisations
-
-${index.operators.map(o=>'- '+o.names.en+' — '+o.names.ko).join('\n')}
-
-## Implementation batches and preserved baseline
-
-- PR #33 introduced 9 organisations, 28 lines, 73 families, 129 directions, 657 station IDs, 605 physical groups and 1,504 segments. Report commit: 55fda6a9161e7138cfef42b76daf87908707d63c. Merge: 97d34ea5f9abf854645c5d2579b72faec4d8232e.
-- Regional/intercity batch commit: 8931d5535. UK free-drive repeated-visit repair: 10a6e94ff.
-- London repair commit: 26abc3946. All 12 previously blocked TfL directions were restored. The original 129 pattern IDs, station sequences and segment references remain frozen and automatically checked.
-- Repairs: import real track edges independently of incomplete stop membership; backtrack failed platform choices; consider 128 candidate vertices within the original 300 metre gate; explicitly anchor Heathrow T5 to documented OSM platform nodes 1508864707/254350058. No synthetic junctions or straight-line railway segments were added.
-- Fresh District, DLR, Elizabeth and Northern TfL stopping sequences matched the preserved official source sequences on November 10. No London regular sequence remains blocked: ${(v.unresolvedOfficialPatterns||[]).length}.
-- Regional expansion: Manchester Metrolink covers all 99 stops and current regular/part-day routes, including the Trafford Centre–Crumpsall service and Eccles variants. NET includes both lines, all 50 stops, and different northbound/southbound city loops. Blackpool includes direct coastal and North Station variants. West Midlands Metro includes both Wolverhampton termini; Millennium Point through-running remains excluded pending sufficient route evidence.
-- National Rail includes ${new Set(national.map(r=>r.operatorId)).size} operating organisations, ${national.length} corridors and ${national.reduce((n,r)=>n+r.patterns.length,0)} directions: Lumo, Merseyrail, ScotRail, LNER, Avanti West Coast, Greater Thameslink Railway (Great Northern and Thameslink), GWR and Heathrow Express.
-- Additional timetable comparison was stopped at the user's request. Previously completed LNER evidence remains reproducible reference data. Further expansion uses official network maps and source OSM route relations, with geometry and gameplay checks; it does not claim timetable certification.
-
-## Validation actually observed
-
-- Source-node/edge integrity, station coordinates, Korean names, service selection, endpoints and preserved baseline: see reports/uk/data-tests.json.
-- Gameplay runs completed in reports/uk/browser-tests.json: ${b.runs.length}; report status: ${b.status}. ${b.error?'The full run completed its gameplay list but stopped on an additional UI assertion: '+b.error.split('\n')[0]+'. The corrected independent UI run has status '+ui?.status+'.':'All recorded game runs and UI assertions passed.'}
-- No new browser runtime errors recorded: ${b.errors.length===0?'yes':'no'}.
-- Existing country switch regression: ${b.regressions.map(r=>r.country+' '+r.routes+' '+r.status).join('; ')}.
-- Full UK free-drive progression: ${JSON.stringify(ui?.freeDriveProgression||b.freeDriveProgression||'pending')}. Geometry loading: ${JSON.stringify(ui?.geometryLoading||b.geometryLoading||'pending')}.
-- Edit propagation, English/Korean nameboards and mobile checks are recorded in the browser reports. Regional nameboard checks: ${(b.regionalNameboards||ui?.regionalNameboards||[]).length}.
-- UK ranking identity test uses isolated guest data. No authenticated fabricated score is uploaded.
-- Linux GitHub Actions full UK run: ${release.validation?.ci?.status||'pending'}${release.validation?.ci?.url?' — '+release.validation.ci.url:''}. On Windows, the Node entry points in the requested npm scripts were run directly because an npm executable was unavailable.
-- Known pre-existing global issues remain separate: 267 legacy station-master duplicates, 40 previously blocked route-audit cases, and missing Ueno payload line-11229--jobansen-totte-iwaki.json. These are not claimed fixed by this expansion.
-
-## Source accuracy and licensing
-
-- Source archive and SHA-256 checksums: data/uk/source/manifest.json. OSM track geometry and station records: ODbL-1.0, © OpenStreetMap contributors. TfL official sequences retain their source attribution.
-- Per-service evidence, expected calls, reviewed source relations and official URLs: data/uk/source/regional/release-evidence.json. Source geometry is shared by node-sequence hash. The lazy country/line loader fetches cached geographic geometry partitions, preserving one canonical runtime copy of each segment.
-- LNER source call/track exclusions remain in data/uk/source/timetables/lner-track-review.json. Excluded records are not catalogue entries. No HS2, Eurostar or unverified cross-border service has been released.
-
-## Git and deployment
-
-- Working branch: feature/uk-railway-completion.
-- Verified implementation commit: ${release.sourceCommit||'pending'}.
-- Report predecessor HEAD: ${head}. The report's own commit can be found in Git history.
-- Main integration of this expansion: ${release.mainIntegration}.
-- Production verification for this expansion: ${release.productionDeployment?.status||'pending'}; actual public UI: ${release.productionDeployment?.actualUIPlaythrough||'pending'}.
-- Observed production: ${release.productionDeployment?.checkedAt||'pending'}; workflow ${release.productionDeployment?.url||'pending'}. Representative completions: ${release.productionDeployment?.routes?.map(r=>r.lineId+' ('+r.stops+' stops)').join(', ')||'pending'}. Production bundle SHA-256: ${release.productionDeployment?.bundleSha256||'pending'}.
-- This section reflects reports/uk/release-status.json. The November 8 deployment is stored separately as previousRelease and is not evidence of this expansion's deployment.
-
-## Precise remaining work
-
-1. West Midlands Millennium Point services: source relations 20439814/20439815 exist, but complete passenger through-running and reversal assumptions are not released. Do not treat all track stop nodes as a certified stopping pattern.
-2. Manchester early/late depot and short-turn variants beyond published regular services; Blackpool additional turnbacks; Edinburgh short turns; additional Tyne/Wear and Sheffield variants.
-3. Remaining National Rail corridors/operators: South Western Railway, Southern, Southeastern, Greater Anglia, c2c, Chiltern, East Midlands Railway, West Midlands Railway/London Northwestern Railway, CrossCountry, Northern, TransPennine Express, Transport for Wales, Hull Trains, Grand Central and Caledonian Sleeper. Among the operators already present, the opposite directions for the three Avanti Manchester variants, Avanti Liverpool and Heathrow Express need independently verified track sources. The Sleeper's archived Highland relations predate the Birmingham International change; confirm commercial calls on the Lowland services before using their source relations. Check the inventory before adding any duplicate.
-4. Remaining high-speed/international coverage: Southeastern HS1, Eurostar complete UK/Channel Tunnel/continental alignments, and international station localization. HS2 remains excluded until actual passenger operations are evidenced.
-5. Continue Korean editorial review against established Korean references, preserve existing overrides, and add explicitly evidenced interchanges whose official English station names differ.
-6. For each additional batch, preserve stable IDs, assemble only source railway node edges, run full direction gameplay and regressions, commit, push main and verify the public site. Source OSM API parent discovery returned HTTP 429 during this session; do not treat unavailable source data as permission to invent a route.
-`;
-fs.writeFileSync('docs/uk-railway-expansion-progress.md',txt);
-console.log(JSON.stringify(counts));
+const report = [
+  '# United Kingdom railway expansion progress',
+  '',
+  '## National Railway Mega Expansion II',
+  '',
+  'Source review: ' + expansion.checkedAt + '. This is a partial British railway catalogue.',
+  'Baseline: ' + baseline.commit + ' (all ' + baseline.metrics.playableDirections + ' directions checked for preserved route, station and geometry references).',
+  '',
+  '| Metric | Before | Added | Final |',
+  '| --- | ---: | ---: | ---: |',
+  ...Object.entries(metrics).map(([key, label]) =>
+    '| ' + label + ' | ' + baseline.metrics[key] + ' | ' + (validation[key] - baseline.metrics[key]) + ' | ' + validation[key] + ' |'),
+  '',
+  'Korean localisation: ' + validation.koreanNamedStations + '/' + validation.uniqueStations + ' station IDs. These are editable Korean editorial names. Original English names and existing user overrides are preserved.',
+  'Physical groups include nearby records that share the same reviewed English and Korean names and existing TfL interchange identifiers. Track geometry is reused by its original OSM node sequence and loaded in cached geographic partitions.',
+  '',
+  '## Current operating organisations',
+  '',
+  ...index.operators.map(o => '- ' + o.names.en + ' — ' + o.names.ko),
+  '',
+  '## This phase by operator and corridor',
+  '',
+  '| Operating organisation | Added or extended corridor | Direction IDs added |',
+  '| --- | --- | ---: |',
+  ...expansion.networks.map(n => '| ' + n.operatorEn + ' | ' + n.lineEn + ' | ' +
+    n.patterns.filter(p => regionalResults.get(p.relationId)?.status === 'PASS').length + ' |'),
+  '',
+  '## Validation and production',
+  '',
+  '- Route resolver, stable IDs, Korean names, geographical station bounds, directional endpoints and original OSM edges: ' + (release.validation?.data || 'pending') + '.',
+  '- Browser: ' + (validBrowser ? browser.runs.length + ' complete directions, including all baseline directions; ' + browser.errors.length + ' runtime errors.' : 'A complete passing run for this catalogue is pending.'),
+  '- Free driving: ' + (validBrowser ? browser.freeDriveProgression.directions + ' directions, ' + browser.freeDriveProgression.transitions + ' station transitions.' : 'pending.'),
+  '- Other countries: ' + (validBrowser ? browser.regressions.map(r => r.country + ' ' + r.routes + ' ' + r.status).join(', ') : 'pending.') + '.',
+  '- Leaderboard identity: ' + (release.validation?.leaderboardIdentity || 'pending') + '.',
+  '- Implementation commit: ' + (release.sourceCommit || 'pending') + '. Batches: ' + Object.values(release.commits || {}).join(', ') + '.',
+  '- UK GitHub Actions: ' + (release.validation?.ci?.status || 'pending') + (release.validation?.ci?.url ? ' — ' + release.validation.ci.url : '') + '.',
+  '- Main integration: ' + release.mainIntegration + '.',
+  '- GitHub Pages: ' + (published?.status || 'pending') + (published?.checkedAt ? ', checked ' + published.checkedAt : '') + (published?.url ? ' — ' + published.url : '') + '.',
+  '- Public browser journeys: ' + (published?.routes?.map(r => r.lineId + ' (' + r.stops + ' stops)').join(', ') || 'pending') + '.',
+  '',
+  '## Sources and reproducibility',
+  '',
+  '- Completed service IDs, ordered calls and operator evidence are in data/uk/source/national/expansion-ii.json. Operator identities are recorded in data/uk/operator-evidence.json.',
+  '- Archived OSM snapshots and their uncompressed SHA-256 checksums are in data/uk/source/manifest.json. Geofabrik extracts retain OSM node IDs, way IDs, versions and ordered relation membership. © OpenStreetMap contributors, ODbL-1.0.',
+  '- Services use individually reviewed passenger relations and official operator or authority maps. This expansion did not repeat an exhaustive timetable comparison.',
+  '- The existing UK selection, typing, editable Korean names, ranking, regional nameboards and free drive remain in the same application.',
+  '',
+  '## Remaining candidate queue',
+  '',
+  'Resume from data/uk/source/national/expansion-ii-queue.json. Only candidates represented in the generated catalogue are playable.',
+  '',
+  '| Priority | Operator / network | Remaining corridor | State and next verification |',
+  '| --- | --- | --- | --- |',
+  ...queue.items.map(x => '| ' + [x.priority, x.operator, x.corridor, x.status + ' — ' + x.next].join(' | ') + ' |'),
+  '',
+  '## Earlier releases',
+  '',
+  '- PR #33 introduced 129 directions. London recovery 26abc3946 restored all 12 previously blocked official TfL patterns. Regional expansion 8931d5535 added the four major tram systems and intercity coverage.',
+  '- Previous production release: ea4696898cf2fcb17d3278eda13766e9a1540e23. The baseline stores its 284 directions independently of the new batches.',
+  ''
+].join('\n');
+fs.writeFileSync('docs/uk-railway-expansion-progress.md', report);
+console.log(JSON.stringify(Object.fromEntries(Object.keys(metrics).map(k => [k, validation[k]]))));

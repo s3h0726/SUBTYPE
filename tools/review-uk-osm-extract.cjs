@@ -3,7 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const zlib = require('node:zlib');
-const {assemble} = require('./build-uk-rail.cjs');
+const {assemble} = require('./lib/uk-osm.cjs');
 
 const directory = process.argv[2];
 if (!directory) throw new Error('Usage: node tools/review-uk-osm-extract.cjs <extract-directory>');
@@ -18,7 +18,7 @@ for (const record of inventory) {
   const {elements} = JSON.parse(zlib.gunzipSync(fs.readFileSync(file)));
   const relation = elements.find(element => element.type === 'relation' && element.id === record.id);
   try {
-    const result = assemble(relation, elements);
+    const result = assemble(relation, elements, {activeRailOnly: true});
     record.calls = result.stops.map(stop => stop.tags?.name || '#' + stop.id);
   } catch (error) {
     record.error = error.message;

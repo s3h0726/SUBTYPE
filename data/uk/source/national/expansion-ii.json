@@ -1028,9 +1028,9 @@
       "id": "lumo-stirling",
       "lineEn": "Lumo · Stirling–London",
       "lineKo": "루모 스털링–런던",
-      "operatorId": "uk-lumo",
-      "operatorEn": "Lumo",
-      "operatorKo": "루모",
+      "operatorId": "uk-first-rail-stirling",
+      "operatorEn": "Lumo (First Rail Stirling)",
+      "operatorKo": "루모 (퍼스트 레일 스털링)",
       "color": "#2271ad",
       "officialUrl": "https://accountapi.lumo.co.uk/plan-your-journey/our-timetable",
       "category": "rail",
@@ -1083,7 +1083,8 @@
             "Stirling"
           ]
         }
-      ]
+      ],
+      "stationIdNamespace": "uk-lumo"
     },
     {
       "id": "scotrail-maryhill",
@@ -3187,6 +3188,5200 @@
             "Lamphey",
             "Pembroke",
             "Pembroke Dock"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeastern-grove-park",
+      "lineEn": "South Eastern Main Line · Grove Park corridor",
+      "lineKo": "사우스이스턴 본선 그로브파크 회랑",
+      "operatorId": "uk-southeastern",
+      "operatorEn": "Southeastern",
+      "operatorKo": "사우스이스턴",
+      "color": "#25478a",
+      "officialUrl": "https://www.southeasternrailway.co.uk/-/media/goahead/southeastern/documents/timetables/december-timetables-2022/southeastern-grove-park-line-route-map.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8649474,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Orpington",
+            "Petts Wood",
+            "Chislehurst",
+            "Elmstead Woods",
+            "Grove Park",
+            "Hither Green",
+            "Lewisham",
+            "St Johns",
+            "New Cross",
+            "London Bridge",
+            "Cannon Street"
+          ]
+        },
+        {
+          "relationId": 8649475,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Cannon Street",
+            "London Bridge",
+            "New Cross",
+            "St Johns",
+            "Lewisham",
+            "Hither Green",
+            "Grove Park",
+            "Elmstead Woods",
+            "Chislehurst",
+            "Petts Wood",
+            "Orpington"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeastern-bromley-north",
+      "lineEn": "Bromley North Line",
+      "lineKo": "브롬리 노스선",
+      "operatorId": "uk-southeastern",
+      "operatorEn": "Southeastern",
+      "operatorKo": "사우스이스턴",
+      "color": "#25478a",
+      "officialUrl": "https://www.southeasternrailway.co.uk/-/media/goahead/southeastern/documents/timetables/december-timetables-2022/southeastern-grove-park-line-route-map.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 19348549,
+          "expectedStops": 3,
+          "expectedCalls": [
+            "Bromley North",
+            "Sundridge Park",
+            "Grove Park"
+          ]
+        },
+        {
+          "relationId": 19348550,
+          "expectedStops": 3,
+          "expectedCalls": [
+            "Grove Park",
+            "Sundridge Park",
+            "Bromley North"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swr-south-west-main",
+      "lineEn": "South West Main Line",
+      "lineKo": "사우스웨스트 본선",
+      "operatorId": "uk-south-western-railway",
+      "operatorEn": "South Western Railway",
+      "operatorKo": "사우스웨스턴 철도",
+      "color": "#276285",
+      "officialUrl": "https://www.southwesternrailway.com/-/media/files/plan-my-journey/our-network/swr-network-map-may-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 13193170,
+          "expectedStops": 20,
+          "expectedCalls": [
+            "London Waterloo",
+            "Clapham Junction",
+            "Basingstoke",
+            "Winchester",
+            "Southampton Airport Parkway",
+            "Southampton Central",
+            "Brockenhurst",
+            "New Milton",
+            "Christchurch",
+            "Pokesdown",
+            "Bournemouth",
+            "Poole",
+            "Hamworthy",
+            "Holton Heath",
+            "Wareham",
+            "Wool",
+            "Moreton",
+            "Dorchester South",
+            "Upwey",
+            "Weymouth"
+          ]
+        },
+        {
+          "relationId": 13193207,
+          "expectedStops": 20,
+          "expectedCalls": [
+            "Weymouth",
+            "Upwey",
+            "Dorchester South",
+            "Moreton",
+            "Wool",
+            "Wareham",
+            "Holton Heath",
+            "Hamworthy",
+            "Poole",
+            "Bournemouth",
+            "Pokesdown",
+            "Christchurch",
+            "New Milton",
+            "Brockenhurst",
+            "Southampton Central",
+            "Southampton Airport Parkway",
+            "Winchester",
+            "Basingstoke",
+            "Clapham Junction",
+            "London Waterloo"
+          ]
+        },
+        {
+          "relationId": 13459408,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London Waterloo",
+            "Woking",
+            "Basingstoke",
+            "Winchester",
+            "Southampton Airport Parkway",
+            "Southampton Central",
+            "Brockenhurst",
+            "Bournemouth",
+            "Branksome",
+            "Parkstone",
+            "Poole"
+          ]
+        },
+        {
+          "relationId": 13459410,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Poole",
+            "Parkstone",
+            "Branksome",
+            "Bournemouth",
+            "Brockenhurst",
+            "Southampton Central",
+            "Southampton Airport Parkway",
+            "Winchester",
+            "Basingstoke",
+            "Woking",
+            "London Waterloo"
+          ]
+        },
+        {
+          "relationId": 13459407,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Winchester",
+            "Shawford",
+            "Eastleigh",
+            "Southampton Airport Parkway",
+            "Southampton Central",
+            "Totton",
+            "Ashurst New Forest",
+            "Beaulieu Road",
+            "Brockenhurst",
+            "Sway",
+            "New Milton",
+            "Hinton Admiral",
+            "Christchurch",
+            "Pokesdown",
+            "Bournemouth"
+          ]
+        },
+        {
+          "relationId": 13459409,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Bournemouth",
+            "Pokesdown",
+            "Christchurch",
+            "Hinton Admiral",
+            "New Milton",
+            "Sway",
+            "Brockenhurst",
+            "Beaulieu Road",
+            "Ashurst New Forest",
+            "Totton",
+            "Southampton Central",
+            "Southampton Airport Parkway",
+            "Eastleigh",
+            "Shawford",
+            "Winchester"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swr-portsmouth-direct",
+      "lineEn": "Portsmouth Direct Line",
+      "lineKo": "포츠머스 직통선",
+      "operatorId": "uk-south-western-railway",
+      "operatorEn": "South Western Railway",
+      "operatorKo": "사우스웨스턴 철도",
+      "color": "#276285",
+      "officialUrl": "https://www.southwesternrailway.com/-/media/files/plan-my-journey/our-network/swr-network-map-may-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8845717,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "London Waterloo",
+            "Woking",
+            "Guildford",
+            "Godalming",
+            "Haslemere"
+          ]
+        },
+        {
+          "relationId": 11582371,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Haslemere",
+            "Godalming",
+            "Guildford",
+            "Woking",
+            "London Waterloo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swr-lymington",
+      "lineEn": "Lymington Branch Line",
+      "lineKo": "리밍턴 지선",
+      "operatorId": "uk-south-western-railway",
+      "operatorEn": "South Western Railway",
+      "operatorKo": "사우스웨스턴 철도",
+      "color": "#276285",
+      "officialUrl": "https://www.southwesternrailway.com/-/media/files/plan-my-journey/our-network/swr-network-map-may-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 168242,
+          "expectedStops": 3,
+          "expectedCalls": [
+            "Brockenhurst",
+            "Lymington Town",
+            "Lymington Pier"
+          ]
+        },
+        {
+          "relationId": 13370640,
+          "expectedStops": 3,
+          "expectedCalls": [
+            "Lymington Pier",
+            "Lymington Town",
+            "Brockenhurst"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swr-west-of-england",
+      "lineEn": "West of England Main Line",
+      "lineKo": "웨스트오브잉글랜드 본선",
+      "operatorId": "uk-south-western-railway",
+      "operatorEn": "South Western Railway",
+      "operatorKo": "사우스웨스턴 철도",
+      "color": "#276285",
+      "officialUrl": "https://www.southwesternrailway.com/-/media/files/plan-my-journey/our-network/swr-network-map-may-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8846254,
+          "expectedStops": 20,
+          "expectedCalls": [
+            "London Waterloo",
+            "Clapham Junction",
+            "Woking",
+            "Basingstoke",
+            "Andover",
+            "Salisbury",
+            "Tisbury",
+            "Gillingham",
+            "Templecombe",
+            "Sherborne",
+            "Yeovil Junction",
+            "Crewkerne",
+            "Axminster",
+            "Honiton",
+            "Feniton",
+            "Whimple",
+            "Cranbrook",
+            "Pinhoe",
+            "Exeter Central",
+            "Exeter St Davids"
+          ]
+        },
+        {
+          "relationId": 8848748,
+          "expectedStops": 20,
+          "expectedCalls": [
+            "Exeter St Davids",
+            "Exeter Central",
+            "Pinhoe",
+            "Cranbrook",
+            "Whimple",
+            "Feniton",
+            "Honiton",
+            "Axminster",
+            "Crewkerne",
+            "Yeovil Junction",
+            "Sherborne",
+            "Templecombe",
+            "Gillingham",
+            "Tisbury",
+            "Salisbury",
+            "Andover",
+            "Basingstoke",
+            "Woking",
+            "Clapham Junction",
+            "London Waterloo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swr-alton",
+      "lineEn": "Alton Line",
+      "lineKo": "올턴선",
+      "operatorId": "uk-south-western-railway",
+      "operatorEn": "South Western Railway",
+      "operatorKo": "사우스웨스턴 철도",
+      "color": "#276285",
+      "officialUrl": "https://www.southwesternrailway.com/-/media/files/plan-my-journey/our-network/swr-network-map-may-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8845995,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London Waterloo",
+            "Clapham Junction",
+            "Surbiton",
+            "West Byfleet",
+            "Woking",
+            "Brookwood",
+            "Ash Vale",
+            "Aldershot",
+            "Farnham",
+            "Bentley",
+            "Alton"
+          ]
+        },
+        {
+          "relationId": 8845997,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Alton",
+            "Bentley",
+            "Farnham",
+            "Aldershot",
+            "Ash Vale",
+            "Brookwood",
+            "Woking",
+            "Surbiton",
+            "Clapham Junction",
+            "London Waterloo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swr-shepperton",
+      "lineEn": "Shepperton Branch Line",
+      "lineKo": "셰퍼턴 지선",
+      "operatorId": "uk-south-western-railway",
+      "operatorEn": "South Western Railway",
+      "operatorKo": "사우스웨스턴 철도",
+      "color": "#276285",
+      "officialUrl": "https://www.southwesternrailway.com/-/media/files/plan-my-journey/our-network/swr-network-map-may-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8864020,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "London Waterloo",
+            "Vauxhall",
+            "Clapham Junction",
+            "Earlsfield",
+            "Wimbledon",
+            "Raynes Park",
+            "New Malden",
+            "Norbiton",
+            "Kingston",
+            "Hampton Wick",
+            "Teddington",
+            "Fulwell",
+            "Hampton",
+            "Kempton Park",
+            "Sunbury",
+            "Upper Halliford",
+            "Shepperton"
+          ]
+        },
+        {
+          "relationId": 8864019,
+          "expectedStops": 16,
+          "expectedCalls": [
+            "Shepperton",
+            "Upper Halliford",
+            "Sunbury",
+            "Kempton Park",
+            "Hampton",
+            "Fulwell",
+            "Teddington",
+            "Hampton Wick",
+            "Kingston",
+            "Norbiton",
+            "New Malden",
+            "Raynes Park",
+            "Earlsfield",
+            "Clapham Junction",
+            "Vauxhall",
+            "London Waterloo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swr-ascot-aldershot",
+      "lineEn": "Ascot–Aldershot corridor",
+      "lineKo": "애스컷–올더숏 회랑",
+      "operatorId": "uk-south-western-railway",
+      "operatorEn": "South Western Railway",
+      "operatorKo": "사우스웨스턴 철도",
+      "color": "#276285",
+      "officialUrl": "https://www.southwesternrailway.com/-/media/files/plan-my-journey/our-network/swr-network-map-may-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8790593,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Ascot",
+            "Bagshot",
+            "Camberley",
+            "Ash Vale",
+            "Aldershot"
+          ]
+        },
+        {
+          "relationId": 8790594,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Aldershot",
+            "Ash Vale",
+            "Camberley",
+            "Bagshot",
+            "Ascot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southern-uckfield",
+      "lineEn": "Southern · Uckfield Line",
+      "lineKo": "서던 억필드선",
+      "operatorId": "uk-greater-thameslink-railway",
+      "operatorEn": "Greater Thameslink Railway",
+      "operatorKo": "그레이터 템스링크 철도",
+      "color": "#138342",
+      "officialUrl": "https://www.southernrailway.com/travel-information/plan-your-journey/route-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8645096,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "London Bridge",
+            "East Croydon",
+            "Oxted",
+            "Hurst Green",
+            "Edenbridge Town",
+            "Hever",
+            "Cowden",
+            "Ashurst",
+            "Eridge",
+            "Crowborough",
+            "Buxted",
+            "Uckfield"
+          ]
+        },
+        {
+          "relationId": 8645097,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Uckfield",
+            "Buxted",
+            "Crowborough",
+            "Eridge",
+            "Ashurst",
+            "Cowden",
+            "Hever",
+            "Edenbridge Town",
+            "Hurst Green",
+            "Oxted",
+            "East Croydon",
+            "London Bridge"
+          ]
+        },
+        {
+          "relationId": 20971522,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Oxted",
+            "Hurst Green",
+            "Edenbridge Town",
+            "Hever",
+            "Cowden",
+            "Ashurst",
+            "Eridge",
+            "Crowborough",
+            "Buxted",
+            "Uckfield"
+          ]
+        },
+        {
+          "relationId": 20971523,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Uckfield",
+            "Buxted",
+            "Crowborough",
+            "Eridge",
+            "Ashurst",
+            "Cowden",
+            "Hever",
+            "Edenbridge Town",
+            "Hurst Green",
+            "Oxted"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeastern-hayes",
+      "lineEn": "Hayes Line",
+      "lineKo": "헤이스선",
+      "operatorId": "uk-southeastern",
+      "operatorEn": "Southeastern",
+      "operatorKo": "사우스이스턴",
+      "color": "#25478a",
+      "officialUrl": "https://www.southeasternrailway.co.uk/-/media/goahead/southeastern/documents/network-map/se-network-metro-map.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8648634,
+          "expectedStops": 14,
+          "expectedCalls": [
+            "Cannon Street",
+            "London Bridge",
+            "New Cross",
+            "St Johns",
+            "Lewisham",
+            "Ladywell",
+            "Catford Bridge",
+            "Lower Sydenham",
+            "New Beckenham",
+            "Clock House",
+            "Elmers End",
+            "Eden Park",
+            "West Wickham",
+            "Hayes"
+          ]
+        },
+        {
+          "relationId": 8648633,
+          "expectedStops": 14,
+          "expectedCalls": [
+            "Hayes",
+            "West Wickham",
+            "Eden Park",
+            "Elmers End",
+            "Clock House",
+            "New Beckenham",
+            "Lower Sydenham",
+            "Catford Bridge",
+            "Ladywell",
+            "Lewisham",
+            "St Johns",
+            "New Cross",
+            "London Bridge",
+            "Cannon Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeastern-hastings",
+      "lineEn": "Hastings Line",
+      "lineKo": "헤이스팅스선",
+      "operatorId": "uk-southeastern",
+      "operatorEn": "Southeastern",
+      "operatorKo": "사우스이스턴",
+      "color": "#25478a",
+      "officialUrl": "https://www.southeasternrailway.co.uk/-/media/goahead/southeastern/documents/network-map/se-network-metro-map.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 6490906,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "London Charing Cross",
+            "Orpington",
+            "Sevenoaks",
+            "Hildenborough",
+            "Tonbridge",
+            "High Brooms",
+            "Tunbridge Wells",
+            "Frant",
+            "Wadhurst",
+            "Stonegate",
+            "Etchingham",
+            "Robertsbridge",
+            "Battle",
+            "Crowhurst",
+            "West St Leonards",
+            "St Leonards Warrior Square",
+            "Hastings"
+          ]
+        },
+        {
+          "relationId": 6490907,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Hastings",
+            "St Leonards Warrior Square",
+            "West St Leonards",
+            "Crowhurst",
+            "Battle",
+            "Robertsbridge",
+            "Etchingham",
+            "Stonegate",
+            "Wadhurst",
+            "Frant",
+            "Tunbridge Wells",
+            "High Brooms",
+            "Tonbridge",
+            "Hildenborough",
+            "Sevenoaks",
+            "Orpington",
+            "London Charing Cross"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeastern-chatham",
+      "lineEn": "Chatham Main Line",
+      "lineKo": "채텀 본선",
+      "operatorId": "uk-southeastern",
+      "operatorEn": "Southeastern",
+      "operatorKo": "사우스이스턴",
+      "color": "#25478a",
+      "officialUrl": "https://www.southeasternrailway.co.uk/-/media/goahead/southeastern/documents/network-map/se-network-metro-map.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9897307,
+          "expectedStops": 21,
+          "expectedCalls": [
+            "London Victoria",
+            "Bromley South",
+            "Longfield",
+            "Meopham",
+            "Rochester",
+            "Chatham",
+            "Gillingham",
+            "Rainham",
+            "Newington",
+            "Sittingbourne",
+            "Teynham",
+            "Faversham",
+            "Selling",
+            "Canterbury East",
+            "Bekesbourne",
+            "Adisham",
+            "Aylesham",
+            "Snowdown",
+            "Shepherdswell",
+            "Kearsney",
+            "Dover Priory"
+          ]
+        },
+        {
+          "relationId": 9892126,
+          "expectedStops": 21,
+          "expectedCalls": [
+            "Dover Priory",
+            "Kearsney",
+            "Shepherdswell",
+            "Snowdown",
+            "Aylesham",
+            "Adisham",
+            "Bekesbourne",
+            "Canterbury East",
+            "Selling",
+            "Faversham",
+            "Teynham",
+            "Sittingbourne",
+            "Newington",
+            "Rainham",
+            "Gillingham",
+            "Chatham",
+            "Rochester",
+            "Meopham",
+            "Longfield",
+            "Bromley South",
+            "London Victoria"
+          ]
+        },
+        {
+          "relationId": 9964793,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "London Victoria",
+            "Bromley South",
+            "Rochester",
+            "Chatham",
+            "Gillingham",
+            "Rainham",
+            "Sittingbourne",
+            "Faversham",
+            "Whitstable",
+            "Chestfield & Swalecliffe",
+            "Herne Bay",
+            "Birchington-on-Sea",
+            "Westgate-on-Sea",
+            "Margate",
+            "Broadstairs",
+            "Dumpton Park",
+            "Ramsgate"
+          ]
+        },
+        {
+          "relationId": 9964794,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Ramsgate",
+            "Dumpton Park",
+            "Broadstairs",
+            "Margate",
+            "Westgate-on-Sea",
+            "Birchington-on-Sea",
+            "Herne Bay",
+            "Chestfield & Swalecliffe",
+            "Whitstable",
+            "Faversham",
+            "Sittingbourne",
+            "Rainham",
+            "Gillingham",
+            "Chatham",
+            "Rochester",
+            "Bromley South",
+            "London Victoria"
+          ]
+        },
+        {
+          "relationId": 9964892,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Dover Priory",
+            "Kearsney",
+            "Shepherdswell",
+            "Snowdown",
+            "Aylesham",
+            "Adisham",
+            "Bekesbourne",
+            "Canterbury East",
+            "Selling",
+            "Faversham"
+          ]
+        },
+        {
+          "relationId": 9964893,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Faversham",
+            "Selling",
+            "Canterbury East",
+            "Bekesbourne",
+            "Adisham",
+            "Aylesham",
+            "Snowdown",
+            "Shepherdswell",
+            "Kearsney",
+            "Dover Priory"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeastern-kent-main",
+      "lineEn": "South Eastern Main Line · Kent",
+      "lineKo": "사우스이스턴 본선 켄트 회랑",
+      "operatorId": "uk-southeastern",
+      "operatorEn": "Southeastern",
+      "operatorKo": "사우스이스턴",
+      "color": "#25478a",
+      "officialUrl": "https://www.southeasternrailway.co.uk/-/media/goahead/southeastern/documents/network-map/se-network-metro-map.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9890976,
+          "expectedStops": 16,
+          "expectedCalls": [
+            "London Charing Cross",
+            "Waterloo East",
+            "London Bridge",
+            "Sevenoaks",
+            "Tonbridge",
+            "Paddock Wood",
+            "Marden",
+            "Staplehurst",
+            "Headcorn",
+            "Pluckley",
+            "Ashford International",
+            "Westenhanger",
+            "Sandling",
+            "Folkestone West",
+            "Folkestone Central",
+            "Dover Priory"
+          ]
+        },
+        {
+          "relationId": 9890974,
+          "expectedStops": 16,
+          "expectedCalls": [
+            "Dover Priory",
+            "Folkestone Central",
+            "Folkestone West",
+            "Sandling",
+            "Westenhanger",
+            "Ashford International",
+            "Pluckley",
+            "Headcorn",
+            "Staplehurst",
+            "Marden",
+            "Paddock Wood",
+            "Tonbridge",
+            "Sevenoaks",
+            "London Bridge",
+            "Waterloo East",
+            "London Charing Cross"
+          ]
+        },
+        {
+          "relationId": 9890977,
+          "expectedStops": 18,
+          "expectedCalls": [
+            "London Charing Cross",
+            "Waterloo East",
+            "London Bridge",
+            "Sevenoaks",
+            "Tonbridge",
+            "Paddock Wood",
+            "Marden",
+            "Staplehurst",
+            "Headcorn",
+            "Pluckley",
+            "Ashford International",
+            "Wye",
+            "Chilham",
+            "Chartham",
+            "Canterbury West",
+            "Sturry",
+            "Minster",
+            "Ramsgate"
+          ]
+        },
+        {
+          "relationId": 9890975,
+          "expectedStops": 18,
+          "expectedCalls": [
+            "Ramsgate",
+            "Minster",
+            "Sturry",
+            "Canterbury West",
+            "Chartham",
+            "Chilham",
+            "Wye",
+            "Ashford International",
+            "Pluckley",
+            "Headcorn",
+            "Staplehurst",
+            "Marden",
+            "Paddock Wood",
+            "Tonbridge",
+            "Sevenoaks",
+            "London Bridge",
+            "Waterloo East",
+            "London Charing Cross"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeastern-medway-valley",
+      "lineEn": "Medway Valley Line",
+      "lineKo": "메드웨이 계곡선",
+      "operatorId": "uk-southeastern",
+      "operatorEn": "Southeastern",
+      "operatorKo": "사우스이스턴",
+      "color": "#25478a",
+      "officialUrl": "https://www.southeasternrailway.co.uk/-/media/goahead/southeastern/documents/network-map/se-network-metro-map.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9891057,
+          "expectedStops": 13,
+          "expectedCalls": [
+            "Paddock Wood",
+            "Beltring",
+            "Yalding",
+            "Wateringbury",
+            "East Farleigh",
+            "Maidstone West",
+            "Maidstone Barracks",
+            "Aylesford",
+            "New Hythe",
+            "Snodland",
+            "Halling",
+            "Cuxton",
+            "Strood"
+          ]
+        },
+        {
+          "relationId": 9891058,
+          "expectedStops": 13,
+          "expectedCalls": [
+            "Strood",
+            "Cuxton",
+            "Halling",
+            "Snodland",
+            "New Hythe",
+            "Aylesford",
+            "Maidstone Barracks",
+            "Maidstone West",
+            "East Farleigh",
+            "Wateringbury",
+            "Yalding",
+            "Beltring",
+            "Paddock Wood"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeastern-hs1",
+      "lineEn": "High Speed 1 · Kent Javelin",
+      "lineKo": "고속철도 1호선 켄트 재블린",
+      "operatorId": "uk-southeastern",
+      "operatorEn": "Southeastern",
+      "operatorKo": "사우스이스턴",
+      "color": "#25478a",
+      "officialUrl": "https://www.southeasternrailway.co.uk/tickets/more-ways-to-travel/highspeed",
+      "category": "high_speed_rail",
+      "patterns": [
+        {
+          "relationId": 452778,
+          "expectedStops": 6,
+          "expectedCalls": [
+            "London St Pancras",
+            "Stratford International",
+            "Ebbsfleet International",
+            "Ashford International",
+            "Canterbury West",
+            "Ramsgate"
+          ]
+        },
+        {
+          "relationId": 9894577,
+          "expectedStops": 6,
+          "expectedCalls": [
+            "Ramsgate",
+            "Canterbury West",
+            "Ashford International",
+            "Ebbsfleet International",
+            "Stratford International",
+            "London St Pancras"
+          ]
+        },
+        {
+          "relationId": 13110981,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "London St Pancras",
+            "Stratford International",
+            "Ebbsfleet International",
+            "Ashford International",
+            "Folkestone West",
+            "Folkestone Central",
+            "Dover Priory"
+          ]
+        },
+        {
+          "relationId": 12648799,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Dover Priory",
+            "Folkestone Central",
+            "Folkestone West",
+            "Ashford International",
+            "Ebbsfleet International",
+            "Stratford International",
+            "London St Pancras"
+          ]
+        },
+        {
+          "relationId": 452775,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London St Pancras",
+            "Stratford International",
+            "Ebbsfleet International",
+            "Gravesend",
+            "Strood",
+            "Rochester",
+            "Chatham",
+            "Gillingham",
+            "Rainham",
+            "Sittingbourne",
+            "Faversham"
+          ]
+        },
+        {
+          "relationId": 3906308,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Faversham",
+            "Sittingbourne",
+            "Rainham",
+            "Gillingham",
+            "Chatham",
+            "Rochester",
+            "Strood",
+            "Gravesend",
+            "Ebbsfleet International (domestic)",
+            "Stratford International",
+            "London St Pancras"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "greater-anglia-great-eastern",
+      "lineEn": "Great Eastern Main Line",
+      "lineKo": "그레이트이스턴 본선",
+      "operatorId": "uk-greater-anglia",
+      "operatorEn": "Greater Anglia",
+      "operatorKo": "그레이터 앵글리아",
+      "color": "#b9283e",
+      "officialUrl": "https://www.greateranglia.co.uk/media/15865/download?inline=",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 10078130,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "London Liverpool Street",
+            "Colchester",
+            "Manningtree",
+            "Ipswich",
+            "Stowmarket",
+            "Diss",
+            "Norwich"
+          ]
+        },
+        {
+          "relationId": 10078128,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Norwich",
+            "Diss",
+            "Stowmarket",
+            "Ipswich",
+            "Manningtree",
+            "Colchester",
+            "London Liverpool Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "greater-anglia-stansted",
+      "lineEn": "Stansted Express",
+      "lineKo": "스탠스테드 익스프레스",
+      "operatorId": "uk-greater-anglia",
+      "operatorEn": "Greater Anglia",
+      "operatorKo": "그레이터 앵글리아",
+      "color": "#b9283e",
+      "officialUrl": "https://www.greateranglia.co.uk/media/15865/download?inline=",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9107186,
+          "expectedStops": 4,
+          "expectedCalls": [
+            "London Liverpool Street",
+            "Tottenham Hale",
+            "Harlow Town",
+            "Stansted Airport"
+          ]
+        },
+        {
+          "relationId": 9107185,
+          "expectedStops": 4,
+          "expectedCalls": [
+            "Stansted Airport",
+            "Harlow Town",
+            "Tottenham Hale",
+            "London Liverpool Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "greater-anglia-west-anglia",
+      "lineEn": "West Anglia Main Line",
+      "lineKo": "웨스트앵글리아 본선",
+      "operatorId": "uk-greater-anglia",
+      "operatorEn": "Greater Anglia",
+      "operatorKo": "그레이터 앵글리아",
+      "color": "#b9283e",
+      "officialUrl": "https://www.greateranglia.co.uk/media/15865/download?inline=",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9940823,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Stratford",
+            "Lea Bridge",
+            "Tottenham Hale",
+            "Waltham Cross",
+            "Cheshunt",
+            "Broxbourne",
+            "Harlow Town",
+            "Sawbridgeworth",
+            "Bishop's Stortford"
+          ]
+        },
+        {
+          "relationId": 9940824,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Bishop's Stortford",
+            "Sawbridgeworth",
+            "Harlow Town",
+            "Broxbourne",
+            "Cheshunt",
+            "Waltham Cross",
+            "Tottenham Hale",
+            "Lea Bridge",
+            "Stratford"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "greater-anglia-east-suffolk",
+      "lineEn": "East Suffolk Line",
+      "lineKo": "이스트서퍽선",
+      "operatorId": "uk-greater-anglia",
+      "operatorEn": "Greater Anglia",
+      "operatorKo": "그레이터 앵글리아",
+      "color": "#b9283e",
+      "officialUrl": "https://www.greateranglia.co.uk/media/15865/download?inline=",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 11815092,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Ipswich",
+            "Woodbridge",
+            "Melton",
+            "Wickham Market",
+            "Saxmundham",
+            "Darsham",
+            "Halesworth",
+            "Brampton",
+            "Beccles",
+            "Oulton Broad South",
+            "Lowestoft"
+          ]
+        },
+        {
+          "relationId": 11818828,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Lowestoft",
+            "Oulton Broad South",
+            "Beccles",
+            "Brampton",
+            "Halesworth",
+            "Darsham",
+            "Saxmundham",
+            "Wickham Market",
+            "Melton",
+            "Woodbridge",
+            "Ipswich"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "greater-anglia-breckland",
+      "lineEn": "Breckland Line",
+      "lineKo": "브레클랜드선",
+      "operatorId": "uk-greater-anglia",
+      "operatorEn": "Greater Anglia",
+      "operatorKo": "그레이터 앵글리아",
+      "color": "#b9283e",
+      "officialUrl": "https://www.greateranglia.co.uk/media/15865/download?inline=",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9940827,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Cambridge",
+            "Cambridge North",
+            "Ely",
+            "Brandon",
+            "Thetford",
+            "Eccles Road",
+            "Attleborough",
+            "Wymondham",
+            "Norwich"
+          ]
+        },
+        {
+          "relationId": 9940828,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Norwich",
+            "Wymondham",
+            "Attleborough",
+            "Eccles Road",
+            "Thetford",
+            "Brandon",
+            "Ely",
+            "Cambridge North",
+            "Cambridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c2c-london-tilbury-southend",
+      "lineEn": "London, Tilbury and Southend line",
+      "lineKo": "런던·틸버리·사우스엔드선",
+      "operatorId": "uk-c2c",
+      "operatorEn": "c2c",
+      "operatorKo": "C2C",
+      "color": "#973f93",
+      "officialUrl": "https://www.c2c-online.co.uk/stations-and-services/before-your-journey/our-routes-and-stations/",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9950698,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "London Fenchurch Street",
+            "Limehouse",
+            "West Ham",
+            "Barking",
+            "Upminster",
+            "West Horndon",
+            "Laindon",
+            "Basildon",
+            "Pitsea",
+            "Benfleet",
+            "Leigh-on-Sea",
+            "Chalkwell",
+            "Westcliff",
+            "Southend Central",
+            "Southend East",
+            "Thorpe Bay",
+            "Shoeburyness"
+          ]
+        },
+        {
+          "relationId": 9950697,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Shoeburyness",
+            "Thorpe Bay",
+            "Southend East",
+            "Southend Central",
+            "Westcliff",
+            "Chalkwell",
+            "Leigh-on-Sea",
+            "Benfleet",
+            "Pitsea",
+            "Basildon",
+            "Laindon",
+            "West Horndon",
+            "Upminster",
+            "Barking",
+            "West Ham",
+            "Limehouse",
+            "London Fenchurch Street"
+          ]
+        },
+        {
+          "relationId": 9953201,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "London Fenchurch Street",
+            "Limehouse",
+            "West Ham",
+            "Barking",
+            "Upminster",
+            "Ockendon",
+            "Chafford Hundred",
+            "Grays",
+            "Tilbury Town",
+            "East Tilbury",
+            "Stanford-le-Hope",
+            "Pitsea",
+            "Benfleet",
+            "Leigh-on-Sea",
+            "Chalkwell",
+            "Westcliff",
+            "Southend Central"
+          ]
+        },
+        {
+          "relationId": 9953200,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Southend Central",
+            "Westcliff",
+            "Chalkwell",
+            "Leigh-on-Sea",
+            "Benfleet",
+            "Pitsea",
+            "Stanford-le-Hope",
+            "East Tilbury",
+            "Tilbury Town",
+            "Grays",
+            "Chafford Hundred",
+            "Ockendon",
+            "Upminster",
+            "Barking",
+            "West Ham",
+            "Limehouse",
+            "London Fenchurch Street"
+          ]
+        },
+        {
+          "relationId": 9953359,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "London Fenchurch Street",
+            "Limehouse",
+            "West Ham",
+            "Barking",
+            "Dagenham Dock",
+            "Rainham",
+            "Purfleet",
+            "Grays"
+          ]
+        },
+        {
+          "relationId": 9953358,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Grays",
+            "Purfleet",
+            "Rainham",
+            "Dagenham Dock",
+            "Barking",
+            "West Ham",
+            "Limehouse",
+            "London Fenchurch Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chiltern-main",
+      "lineEn": "Chiltern Main Line",
+      "lineKo": "칠턴 본선",
+      "operatorId": "uk-chiltern-railways",
+      "operatorEn": "Chiltern Railways",
+      "operatorKo": "칠턴 철도",
+      "color": "#177eaa",
+      "officialUrl": "https://www.chilternrailways.co.uk/smart-ticketing",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 167209,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London Marylebone",
+            "High Wycombe",
+            "Bicester North",
+            "Banbury",
+            "Leamington Spa",
+            "Warwick",
+            "Warwick Parkway",
+            "Dorridge",
+            "Solihull",
+            "Birmingham Moor Street",
+            "Birmingham Snow Hill"
+          ]
+        },
+        {
+          "relationId": 20656651,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Birmingham Snow Hill",
+            "Birmingham Moor Street",
+            "Solihull",
+            "Dorridge",
+            "Warwick Parkway",
+            "Warwick",
+            "Leamington Spa",
+            "Banbury",
+            "Bicester North",
+            "High Wycombe",
+            "London Marylebone"
+          ]
+        },
+        {
+          "relationId": 20656701,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London Marylebone",
+            "High Wycombe",
+            "Haddenham and Thame Parkway",
+            "Bicester North",
+            "Banbury",
+            "Leamington Spa",
+            "Warwick",
+            "Warwick Parkway",
+            "Dorridge",
+            "Solihull",
+            "Birmingham Moor Street"
+          ]
+        },
+        {
+          "relationId": 20656700,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Birmingham Moor Street",
+            "Solihull",
+            "Dorridge",
+            "Warwick Parkway",
+            "Warwick",
+            "Leamington Spa",
+            "Banbury",
+            "Bicester North",
+            "Haddenham and Thame Parkway",
+            "High Wycombe",
+            "London Marylebone"
+          ]
+        },
+        {
+          "relationId": 20656528,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London Marylebone",
+            "Wembley Stadium",
+            "Sudbury Hill Harrow",
+            "Northolt Park",
+            "South Ruislip",
+            "Denham",
+            "Denham Golf Club",
+            "Gerrards Cross",
+            "Seer Green and Jordans",
+            "Beaconsfield",
+            "High Wycombe"
+          ]
+        },
+        {
+          "relationId": 20656527,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "High Wycombe",
+            "Beaconsfield",
+            "Seer Green and Jordans",
+            "Gerrards Cross",
+            "Denham Golf Club",
+            "Denham",
+            "South Ruislip",
+            "Northolt Park",
+            "Sudbury Hill Harrow",
+            "Wembley Stadium",
+            "London Marylebone"
+          ]
+        },
+        {
+          "relationId": 20656530,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London Marylebone",
+            "Wembley Stadium",
+            "Sudbury Hill Harrow",
+            "Northolt Park",
+            "South Ruislip",
+            "West Ruislip",
+            "Denham",
+            "Gerrards Cross",
+            "Seer Green and Jordans",
+            "Beaconsfield",
+            "High Wycombe"
+          ]
+        },
+        {
+          "relationId": 20656529,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "High Wycombe",
+            "Beaconsfield",
+            "Seer Green and Jordans",
+            "Gerrards Cross",
+            "Denham",
+            "West Ruislip",
+            "South Ruislip",
+            "Northolt Park",
+            "Sudbury Hill Harrow",
+            "Wembley Stadium",
+            "London Marylebone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chiltern-oxford",
+      "lineEn": "Oxford–Bicester corridor",
+      "lineKo": "옥스퍼드–비스터 회랑",
+      "operatorId": "uk-chiltern-railways",
+      "operatorEn": "Chiltern Railways",
+      "operatorKo": "칠턴 철도",
+      "color": "#177eaa",
+      "officialUrl": "https://www.chilternrailways.co.uk/smart-ticketing",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20657967,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "London Marylebone",
+            "Wembley Stadium",
+            "Denham",
+            "Gerrards Cross",
+            "Seer Green and Jordans",
+            "Beaconsfield",
+            "High Wycombe",
+            "Bicester Village",
+            "Oxford Parkway",
+            "Oxford"
+          ]
+        },
+        {
+          "relationId": 20657966,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Oxford",
+            "Oxford Parkway",
+            "Bicester Village",
+            "High Wycombe",
+            "Beaconsfield",
+            "Seer Green and Jordans",
+            "Gerrards Cross",
+            "Denham",
+            "Wembley Stadium",
+            "London Marylebone"
+          ]
+        },
+        {
+          "relationId": 20657969,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "London Marylebone",
+            "Gerrards Cross",
+            "Beaconsfield",
+            "High Wycombe",
+            "Princes Risborough",
+            "Haddenham and Thame Parkway",
+            "Bicester Village",
+            "Islip",
+            "Oxford Parkway",
+            "Oxford"
+          ]
+        },
+        {
+          "relationId": 20657968,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Oxford",
+            "Oxford Parkway",
+            "Islip",
+            "Bicester Village",
+            "Haddenham and Thame Parkway",
+            "Princes Risborough",
+            "High Wycombe",
+            "Beaconsfield",
+            "Gerrards Cross",
+            "London Marylebone"
+          ]
+        },
+        {
+          "relationId": 20657971,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "London Marylebone",
+            "Gerrards Cross",
+            "Beaconsfield",
+            "High Wycombe",
+            "Princes Risborough",
+            "Haddenham and Thame Parkway",
+            "Bicester Village",
+            "Oxford Parkway",
+            "Oxford"
+          ]
+        },
+        {
+          "relationId": 20657970,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Oxford",
+            "Oxford Parkway",
+            "Bicester Village",
+            "Haddenham and Thame Parkway",
+            "Princes Risborough",
+            "High Wycombe",
+            "Beaconsfield",
+            "Gerrards Cross",
+            "London Marylebone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chiltern-aylesbury",
+      "lineEn": "London–Aylesbury lines",
+      "lineKo": "런던–에일즈베리선",
+      "operatorId": "uk-chiltern-railways",
+      "operatorEn": "Chiltern Railways",
+      "operatorKo": "칠턴 철도",
+      "color": "#177eaa",
+      "officialUrl": "https://www.chilternrailways.co.uk/smart-ticketing",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 17887866,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London Marylebone",
+            "Harrow-on-the-Hill",
+            "Rickmansworth",
+            "Chorleywood",
+            "Chalfont & Latimer",
+            "Amersham",
+            "Great Missenden",
+            "Wendover",
+            "Stoke Mandeville",
+            "Aylesbury",
+            "Aylesbury Vale Parkway"
+          ]
+        },
+        {
+          "relationId": 17887867,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Aylesbury Vale Parkway",
+            "Aylesbury",
+            "Stoke Mandeville",
+            "Wendover",
+            "Great Missenden",
+            "Amersham",
+            "Chalfont & Latimer",
+            "Chorleywood",
+            "Rickmansworth",
+            "Harrow-on-the-Hill",
+            "London Marylebone"
+          ]
+        },
+        {
+          "relationId": 20656435,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London Marylebone",
+            "Wembley Stadium",
+            "Northolt Park",
+            "West Ruislip",
+            "Denham",
+            "Gerrards Cross",
+            "High Wycombe",
+            "Princes Risborough",
+            "Monks Risborough",
+            "Little Kimble",
+            "Aylesbury"
+          ]
+        },
+        {
+          "relationId": 571753,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Aylesbury",
+            "Little Kimble",
+            "Monks Risborough",
+            "Princes Risborough",
+            "High Wycombe",
+            "Gerrards Cross",
+            "Denham",
+            "West Ruislip",
+            "Northolt Park",
+            "Wembley Stadium",
+            "London Marylebone"
+          ]
+        },
+        {
+          "relationId": 17887897,
+          "expectedStops": 4,
+          "expectedCalls": [
+            "Princes Risborough",
+            "Monks Risborough",
+            "Little Kimble",
+            "Aylesbury"
+          ]
+        },
+        {
+          "relationId": 17887899,
+          "expectedStops": 4,
+          "expectedCalls": [
+            "Aylesbury",
+            "Little Kimble",
+            "Monks Risborough",
+            "Princes Risborough"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chiltern-stratford",
+      "lineEn": "Stratford-upon-Avon branch",
+      "lineKo": "스트랫퍼드어폰에이번 지선",
+      "operatorId": "uk-chiltern-railways",
+      "operatorEn": "Chiltern Railways",
+      "operatorKo": "칠턴 철도",
+      "color": "#177eaa",
+      "officialUrl": "https://www.chilternrailways.co.uk/smart-ticketing",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20658050,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Leamington Spa",
+            "Warwick",
+            "Hatton",
+            "Claverdon",
+            "Bearley",
+            "Wilmcote",
+            "Stratford-upon-Avon Parkway",
+            "Stratford-upon-Avon"
+          ]
+        },
+        {
+          "relationId": 20658049,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Stratford-upon-Avon",
+            "Stratford-upon-Avon Parkway",
+            "Wilmcote",
+            "Bearley",
+            "Claverdon",
+            "Hatton",
+            "Warwick",
+            "Leamington Spa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emr-midland-main",
+      "lineEn": "Midland Main Line",
+      "lineKo": "미들랜드 본선",
+      "operatorId": "uk-east-midlands-railway",
+      "operatorEn": "East Midlands Railway",
+      "operatorKo": "이스트미들랜즈 철도",
+      "color": "#742c59",
+      "officialUrl": "https://www.eastmidlandsrailway.co.uk/timetables-updates/route-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 6396490,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "London St Pancras",
+            "Leicester",
+            "Loughborough",
+            "East Midlands Parkway",
+            "Long Eaton",
+            "Derby",
+            "Chesterfield",
+            "Sheffield"
+          ]
+        },
+        {
+          "relationId": 6396491,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Sheffield",
+            "Chesterfield",
+            "Derby",
+            "Long Eaton",
+            "East Midlands Parkway",
+            "Loughborough",
+            "Leicester",
+            "London St Pancras"
+          ]
+        },
+        {
+          "relationId": 6397710,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "London St Pancras",
+            "Luton Airport Parkway",
+            "Bedford",
+            "Wellingborough",
+            "Kettering",
+            "Market Harborough",
+            "Leicester",
+            "Loughborough",
+            "East Midlands Parkway",
+            "Beeston",
+            "Nottingham"
+          ]
+        },
+        {
+          "relationId": 6397711,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Nottingham",
+            "Beeston",
+            "East Midlands Parkway",
+            "Loughborough",
+            "Leicester",
+            "Market Harborough",
+            "Kettering",
+            "Bedford",
+            "Luton Airport Parkway",
+            "London St Pancras"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emr-liverpool-norwich",
+      "lineEn": "Liverpool–Norwich corridor",
+      "lineKo": "리버풀–노리치 회랑",
+      "operatorId": "uk-east-midlands-railway",
+      "operatorEn": "East Midlands Railway",
+      "operatorKo": "이스트미들랜즈 철도",
+      "color": "#742c59",
+      "officialUrl": "https://www.eastmidlandsrailway.co.uk/timetables-updates/route-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9498839,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Norwich",
+            "Ely",
+            "Peterborough",
+            "Grantham",
+            "Nottingham",
+            "Alfreton",
+            "Chesterfield",
+            "Sheffield",
+            "Stockport",
+            "Manchester Piccadilly",
+            "Manchester Oxford Road",
+            "Warrington Central",
+            "Widnes",
+            "Liverpool South Parkway",
+            "Liverpool Lime Street"
+          ]
+        },
+        {
+          "relationId": 9499296,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Liverpool Lime Street",
+            "Liverpool South Parkway",
+            "Widnes",
+            "Warrington Central",
+            "Manchester Oxford Road",
+            "Manchester Piccadilly",
+            "Stockport",
+            "Sheffield",
+            "Chesterfield",
+            "Alfreton",
+            "Nottingham",
+            "Grantham",
+            "Peterborough",
+            "Ely",
+            "Norwich"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emr-skegness",
+      "lineEn": "Poacher Line",
+      "lineKo": "포처선",
+      "operatorId": "uk-east-midlands-railway",
+      "operatorEn": "East Midlands Railway",
+      "operatorKo": "이스트미들랜즈 철도",
+      "color": "#742c59",
+      "officialUrl": "https://www.eastmidlandsrailway.co.uk/timetables-updates/route-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 15727760,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Nottingham",
+            "Bingham",
+            "Bottesford",
+            "Grantham",
+            "Sleaford",
+            "Heckington",
+            "Boston",
+            "Skegness"
+          ]
+        },
+        {
+          "relationId": 15727759,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Skegness",
+            "Boston",
+            "Heckington",
+            "Sleaford",
+            "Grantham",
+            "Bottesford",
+            "Bingham",
+            "Nottingham"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emr-derwent-valley",
+      "lineEn": "Derwent Valley Line",
+      "lineKo": "더웬트 계곡선",
+      "operatorId": "uk-east-midlands-railway",
+      "operatorEn": "East Midlands Railway",
+      "operatorKo": "이스트미들랜즈 철도",
+      "color": "#742c59",
+      "officialUrl": "https://www.eastmidlandsrailway.co.uk/timetables-updates/route-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9499981,
+          "expectedStops": 20,
+          "expectedCalls": [
+            "Newark Castle",
+            "Rolleston",
+            "Fiskerton",
+            "Bleasby",
+            "Thurgarton",
+            "Lowdham",
+            "Burton Joyce",
+            "Carlton",
+            "Nottingham",
+            "Beeston",
+            "Attenborough",
+            "Long Eaton",
+            "Derby",
+            "Duffield",
+            "Belper",
+            "Ambergate",
+            "Whatshandwell",
+            "Cromford",
+            "Matlock Bath",
+            "Matlock"
+          ]
+        },
+        {
+          "relationId": 9499982,
+          "expectedStops": 19,
+          "expectedCalls": [
+            "Matlock",
+            "Matlock Bath",
+            "Cromford",
+            "Whatshandwell",
+            "Ambergate",
+            "Belper",
+            "Duffield",
+            "Derby",
+            "Long Eaton",
+            "Attenborough",
+            "Beeston",
+            "Nottingham",
+            "Carlton",
+            "Burton Joyce",
+            "Lowdham",
+            "Thurgarton",
+            "Fiskerton",
+            "Rolleston",
+            "Newark Castle"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emr-lincolnshire",
+      "lineEn": "Lincolnshire regional corridors",
+      "lineKo": "링컨셔 지역 회랑",
+      "operatorId": "uk-east-midlands-railway",
+      "operatorEn": "East Midlands Railway",
+      "operatorKo": "이스트미들랜즈 철도",
+      "color": "#742c59",
+      "officialUrl": "https://www.eastmidlandsrailway.co.uk/timetables-updates/route-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 4130640,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Grimsby Town",
+            "Habrough",
+            "Barnetby",
+            "Market Rasen",
+            "Lincoln",
+            "Hykeham",
+            "Swinderby",
+            "Collingham",
+            "Newark Northgate"
+          ]
+        },
+        {
+          "relationId": 4130641,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Newark Northgate",
+            "Collingham",
+            "Swinderby",
+            "Hykeham",
+            "Lincoln",
+            "Market Rasen",
+            "Barnetby",
+            "Habrough",
+            "Grimsby Town"
+          ]
+        },
+        {
+          "relationId": 4153780,
+          "expectedStops": 4,
+          "expectedCalls": [
+            "Doncaster",
+            "Gainsborough Lea Road",
+            "Saxilby",
+            "Lincoln"
+          ]
+        },
+        {
+          "relationId": 4153781,
+          "expectedStops": 4,
+          "expectedCalls": [
+            "Lincoln",
+            "Saxilby",
+            "Gainsborough Lea Road",
+            "Doncaster"
+          ]
+        },
+        {
+          "relationId": 9499979,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Lincoln",
+            "Newark Castle",
+            "Nottingham",
+            "Beeston",
+            "East Midlands Parkway",
+            "Barrow-upon-Soar",
+            "Sileby",
+            "Syston",
+            "Leicester"
+          ]
+        },
+        {
+          "relationId": 9499980,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Leicester",
+            "Syston",
+            "Sileby",
+            "Barrow-upon-Soar",
+            "Loughborough",
+            "East Midlands Parkway",
+            "Beeston",
+            "Nottingham",
+            "Newark Castle",
+            "Lincoln"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wmr-cross-city",
+      "lineEn": "Cross-City Line",
+      "lineKo": "크로스시티선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 167785,
+          "expectedStops": 22,
+          "expectedCalls": [
+            "Bromsgrove",
+            "Longbridge",
+            "Northfield",
+            "Kings Norton",
+            "Bournville",
+            "Selly Oak",
+            "University",
+            "Five Ways",
+            "Birmingham New Street",
+            "Duddeston",
+            "Aston",
+            "Gravelly Hill",
+            "Erdington",
+            "Chester Road",
+            "Wylde Green",
+            "Sutton Coldfield",
+            "Four Oaks",
+            "Butlers Lane",
+            "Blake Street",
+            "Shenstone",
+            "Lichfield City",
+            "Lichfield Trent Valley (High Level)"
+          ]
+        },
+        {
+          "relationId": 9819944,
+          "expectedStops": 22,
+          "expectedCalls": [
+            "Lichfield Trent Valley (High Level)",
+            "Lichfield City",
+            "Shenstone",
+            "Blake Street",
+            "Butlers Lane",
+            "Four Oaks",
+            "Sutton Coldfield",
+            "Wylde Green",
+            "Chester Road",
+            "Erdington",
+            "Gravelly Hill",
+            "Aston",
+            "Duddeston",
+            "Birmingham New Street",
+            "Five Ways",
+            "University",
+            "Selly Oak",
+            "Bournville",
+            "Kings Norton",
+            "Northfield",
+            "Longbridge",
+            "Bromsgrove"
+          ]
+        },
+        {
+          "relationId": 20155255,
+          "expectedStops": 18,
+          "expectedCalls": [
+            "Four Oaks",
+            "Sutton Coldfield",
+            "Wylde Green",
+            "Chester Road",
+            "Erdington",
+            "Gravelly Hill",
+            "Aston",
+            "Birmingham New Street",
+            "Five Ways",
+            "University",
+            "Selly Oak",
+            "Bournville",
+            "Kings Norton",
+            "Northfield",
+            "Longbridge",
+            "Barnt Green",
+            "Alvechurch",
+            "Redditch"
+          ]
+        },
+        {
+          "relationId": 20155256,
+          "expectedStops": 18,
+          "expectedCalls": [
+            "Redditch",
+            "Alvechurch",
+            "Barnt Green",
+            "Longbridge",
+            "Northfield",
+            "Kings Norton",
+            "Bournville",
+            "Selly Oak",
+            "University",
+            "Five Ways",
+            "Birmingham New Street",
+            "Aston",
+            "Gravelly Hill",
+            "Erdington",
+            "Chester Road",
+            "Wylde Green",
+            "Sutton Coldfield",
+            "Four Oaks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wmr-stourbridge",
+      "lineEn": "Stourbridge Town branch",
+      "lineKo": "스타워브리지 타운 지선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 2773296,
+          "expectedStops": 2,
+          "expectedCalls": [
+            "Stourbridge Junction",
+            "Stourbridge Town"
+          ]
+        },
+        {
+          "relationId": 17721218,
+          "expectedStops": 2,
+          "expectedCalls": [
+            "Stourbridge Town",
+            "Stourbridge Junction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lnwr-abbey",
+      "lineEn": "Abbey Line",
+      "lineKo": "애비선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 11568083,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Watford Junction",
+            "Watford North",
+            "Garston",
+            "Bricket Wood",
+            "How Wood",
+            "Park Street",
+            "St Albans Abbey"
+          ]
+        },
+        {
+          "relationId": 11568082,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "St Albans Abbey",
+            "Park Street",
+            "How Wood",
+            "Bricket Wood",
+            "Garston",
+            "Watford North",
+            "Watford Junction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lnwr-marston-vale",
+      "lineEn": "Marston Vale Line",
+      "lineKo": "마스턴 베일선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 3004709,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Bletchley",
+            "Fenny Stratford",
+            "Bow Brickhill",
+            "Woburn Sands",
+            "Aspley Guise",
+            "Ridgmont",
+            "Lidlington",
+            "Millbrook",
+            "Stewartby",
+            "Kempston Hardwick",
+            "Bedford St Johns",
+            "Bedford"
+          ]
+        },
+        {
+          "relationId": 17929414,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Bedford",
+            "Bedford St Johns",
+            "Kempston Hardwick",
+            "Stewartby",
+            "Millbrook",
+            "Lidlington",
+            "Ridgmont",
+            "Aspley Guise",
+            "Woburn Sands",
+            "Bow Brickhill",
+            "Fenny Stratford",
+            "Bletchley"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crosscountry-stansted",
+      "lineEn": "CrossCountry · Birmingham–Stansted corridor",
+      "lineKo": "크로스컨트리 버밍엄–스탠스테드 회랑",
+      "operatorId": "uk-crosscountry",
+      "operatorEn": "CrossCountry",
+      "operatorKo": "크로스컨트리",
+      "color": "#9b203c",
+      "officialUrl": "https://www.crosscountrytrains.co.uk/routes-destinations/routes",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 6426332,
+          "expectedStops": 13,
+          "expectedCalls": [
+            "Birmingham New Street",
+            "Coleshill Parkway",
+            "Nuneaton",
+            "Leicester",
+            "Melton Mowbray",
+            "Oakham",
+            "Stamford",
+            "Peterborough",
+            "March",
+            "Ely",
+            "Cambridge",
+            "Audley End",
+            "Stansted Airport"
+          ]
+        },
+        {
+          "relationId": 6426334,
+          "expectedStops": 13,
+          "expectedCalls": [
+            "Stansted Airport",
+            "Audley End",
+            "Cambridge",
+            "Ely",
+            "March",
+            "Peterborough",
+            "Stamford",
+            "Oakham",
+            "Melton Mowbray",
+            "Leicester",
+            "Nuneaton",
+            "Coleshill Parkway",
+            "Birmingham New Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crosscountry-nottingham-cardiff",
+      "lineEn": "CrossCountry · Nottingham–Cardiff corridor",
+      "lineKo": "크로스컨트리 노팅엄–카디프 회랑",
+      "operatorId": "uk-crosscountry",
+      "operatorEn": "CrossCountry",
+      "operatorKo": "크로스컨트리",
+      "color": "#9b203c",
+      "officialUrl": "https://www.crosscountrytrains.co.uk/routes-destinations/routes",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9837231,
+          "expectedStops": 16,
+          "expectedCalls": [
+            "Nottingham",
+            "Beeston",
+            "Long Eaton",
+            "Derby",
+            "Burton-on-Trent",
+            "Tamworth (High Level)",
+            "Birmingham New Street",
+            "University",
+            "Worcestershire Parkway",
+            "Cheltenham Spa",
+            "Gloucester",
+            "Lydney",
+            "Chepstow",
+            "Caldicot",
+            "Newport",
+            "Cardiff Central"
+          ]
+        },
+        {
+          "relationId": 9837230,
+          "expectedStops": 16,
+          "expectedCalls": [
+            "Cardiff Central",
+            "Newport",
+            "Caldicot",
+            "Chepstow",
+            "Lydney",
+            "Gloucester",
+            "Cheltenham Spa",
+            "Worcestershire Parkway",
+            "University",
+            "Birmingham New Street",
+            "Tamworth (High Level)",
+            "Burton-upon-Trent",
+            "Derby",
+            "Long Eaton",
+            "Beeston",
+            "Nottingham"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crosscountry-manchester-bournemouth",
+      "lineEn": "CrossCountry · Manchester–Bournemouth corridor",
+      "lineKo": "크로스컨트리 맨체스터–본머스 회랑",
+      "operatorId": "uk-crosscountry",
+      "operatorEn": "CrossCountry",
+      "operatorKo": "크로스컨트리",
+      "color": "#9b203c",
+      "officialUrl": "https://www.crosscountrytrains.co.uk/routes-destinations/routes",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9818982,
+          "expectedStops": 19,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Stockport",
+            "Macclesfield",
+            "Stoke-on-Trent",
+            "Stafford",
+            "Wolverhampton",
+            "Birmingham New Street",
+            "Birmingham International",
+            "Coventry",
+            "Leamington Spa",
+            "Banbury",
+            "Oxford",
+            "Reading",
+            "Basingstoke",
+            "Winchester",
+            "Southampton Airport Parkway",
+            "Southampton Central",
+            "Brockenhurst",
+            "Bournemouth"
+          ]
+        },
+        {
+          "relationId": 9819112,
+          "expectedStops": 19,
+          "expectedCalls": [
+            "Bournemouth",
+            "Brockenhurst",
+            "Southampton Central",
+            "Southampton Airport Parkway",
+            "Winchester",
+            "Basingstoke",
+            "Reading",
+            "Oxford",
+            "Banbury",
+            "Leamington Spa",
+            "Coventry",
+            "Birmingham International",
+            "Birmingham New Street",
+            "Wolverhampton",
+            "Stafford",
+            "Stoke-on-Trent",
+            "Macclesfield",
+            "Stockport",
+            "Manchester Piccadilly"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-tyne-valley",
+      "lineEn": "Tyne Valley Line",
+      "lineKo": "타인 계곡선",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 6485338,
+          "expectedStops": 16,
+          "expectedCalls": [
+            "Carlisle",
+            "Wetheral",
+            "Brampton",
+            "Haltwhistle",
+            "Bardon Mill",
+            "Haydon Bridge",
+            "Hexham",
+            "Corbridge",
+            "Riding Mill",
+            "Stocksfield",
+            "Prudhoe",
+            "Wylam",
+            "Blaydon",
+            "Metro Centre",
+            "Dunston",
+            "Newcastle"
+          ]
+        },
+        {
+          "relationId": 6485339,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Newcastle",
+            "Metro Centre",
+            "Blaydon",
+            "Wylam",
+            "Prudhoe",
+            "Stocksfield",
+            "Riding Mill",
+            "Corbridge",
+            "Hexham",
+            "Haydon Bridge",
+            "Bardon Mill",
+            "Haltwhistle",
+            "Brampton",
+            "Wetheral",
+            "Carlisle"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-tees-valley",
+      "lineEn": "Tees Valley Line",
+      "lineKo": "티스 계곡선",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 6428857,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Bishop Auckland",
+            "Shildon",
+            "Newton Aycliffe",
+            "Heighington",
+            "North Road",
+            "Darlington",
+            "Dinsdale",
+            "Allens West",
+            "Eaglescliffe",
+            "Thornaby",
+            "Middlesbrough",
+            "South Bank",
+            "Redcar Central",
+            "Redcar East",
+            "Longbeck",
+            "Marske",
+            "Saltburn"
+          ]
+        },
+        {
+          "relationId": 6428859,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Saltburn",
+            "Marske",
+            "Longbeck",
+            "Redcar East",
+            "Redcar Central",
+            "South Bank",
+            "Middlesbrough",
+            "Thornaby",
+            "Eaglescliffe",
+            "Allens West",
+            "Dinsdale",
+            "Darlington",
+            "North Road",
+            "Heighington",
+            "Newton Aycliffe",
+            "Shildon",
+            "Bishop Auckland"
+          ]
+        },
+        {
+          "relationId": 6428858,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Darlington",
+            "Dinsdale",
+            "Allens West",
+            "Eaglescliffe",
+            "Thornaby",
+            "Middlesbrough",
+            "Redcar Central",
+            "Redcar East",
+            "Longbeck",
+            "Marske",
+            "Saltburn"
+          ]
+        },
+        {
+          "relationId": 6428860,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Saltburn",
+            "Marske",
+            "Longbeck",
+            "Redcar East",
+            "Redcar Central",
+            "South Bank",
+            "Middlesbrough",
+            "Thornaby",
+            "Eaglescliffe",
+            "Allens West",
+            "Dinsdale",
+            "Darlington"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-esk-valley",
+      "lineEn": "Esk Valley Line",
+      "lineKo": "에스크 계곡선",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 7532463,
+          "expectedStops": 18,
+          "expectedCalls": [
+            "Middlesbrough",
+            "James Cook",
+            "Marton",
+            "Gypsy Lane",
+            "Nunthorpe",
+            "Great Ayton",
+            "Battersby",
+            "Kildale",
+            "Commondale",
+            "Castleton Moor",
+            "Danby",
+            "Lealholm",
+            "Glaisdale",
+            "Egton",
+            "Grosmont",
+            "Sleights",
+            "Ruswarp",
+            "Whitby"
+          ]
+        },
+        {
+          "relationId": 7589234,
+          "expectedStops": 18,
+          "expectedCalls": [
+            "Whitby",
+            "Ruswarp",
+            "Sleights",
+            "Grosmont",
+            "Egton",
+            "Glaisdale",
+            "Lealholm",
+            "Danby",
+            "Castleton Moor",
+            "Commondale",
+            "Kildale",
+            "Battersby",
+            "Great Ayton",
+            "Nunthorpe",
+            "Gypsy Lane",
+            "Marton",
+            "James Cook",
+            "Middlesbrough"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-cumbrian-coast",
+      "lineEn": "Cumbrian Coast and Furness lines",
+      "lineKo": "컴브리아 해안·퍼니스선",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 11247948,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Barrow-in-Furness",
+            "Roose",
+            "Dalton",
+            "Ulverston",
+            "Cark and Cartmel",
+            "Kents Bank",
+            "Grange-over-Sands",
+            "Arnside",
+            "Silverdale",
+            "Carnforth",
+            "Lancaster"
+          ]
+        },
+        {
+          "relationId": 2313359,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Lancaster",
+            "Carnforth",
+            "Silverdale",
+            "Arnside",
+            "Grange-over-Sands",
+            "Kents Bank",
+            "Cark and Cartmel",
+            "Ulverston",
+            "Dalton",
+            "Roose",
+            "Barrow-in-Furness"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-windermere",
+      "lineEn": "Windermere branch",
+      "lineKo": "윈더미어 지선",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 8027458,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Oxenholme Lake District",
+            "Kendal",
+            "Burneside",
+            "Staveley",
+            "Windermere"
+          ]
+        },
+        {
+          "relationId": 8027459,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Windermere",
+            "Staveley",
+            "Burneside",
+            "Kendal",
+            "Oxenholme Lake District"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-liverpool-manchester",
+      "lineEn": "Liverpool–Manchester via Earlestown",
+      "lineKo": "얼스타운 경유 리버풀–맨체스터선",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20684478,
+          "expectedStops": 23,
+          "expectedCalls": [
+            "Liverpool Lime Street",
+            "Edge Hill",
+            "Wavertree Technology Park",
+            "Broad Green",
+            "Roby",
+            "Huyton",
+            "Whiston",
+            "Rainhill",
+            "Lea Green",
+            "St Helens Junction",
+            "Earlestown",
+            "Newton-le-Willows",
+            "Patricroft",
+            "Eccles",
+            "Deansgate",
+            "Manchester Oxford Road",
+            "Manchester Piccadilly",
+            "Mauldeth Road",
+            "Burnage",
+            "East Didsbury",
+            "Gatley",
+            "Heald Green",
+            "Manchester Airport"
+          ]
+        },
+        {
+          "relationId": 20684477,
+          "expectedStops": 23,
+          "expectedCalls": [
+            "Manchester Airport",
+            "Heald Green",
+            "Gatley",
+            "East Didsbury",
+            "Burnage",
+            "Mauldeth Road",
+            "Manchester Piccadilly",
+            "Manchester Oxford Road",
+            "Deansgate",
+            "Eccles",
+            "Patricroft",
+            "Newton-le-Willows",
+            "Earlestown",
+            "St Helens Junction",
+            "Lea Green",
+            "Rainhill",
+            "Whiston",
+            "Huyton",
+            "Roby",
+            "Broad Green",
+            "Wavertree Technology Park",
+            "Edge Hill",
+            "Liverpool Lime Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-crewe-manchester",
+      "lineEn": "Crewe–Manchester corridor",
+      "lineKo": "크루–맨체스터 회랑",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20726898,
+          "expectedStops": 13,
+          "expectedCalls": [
+            "Crewe",
+            "Sandbach",
+            "Holmes Chapel",
+            "Goostrey",
+            "Chelford",
+            "Alderley Edge",
+            "Wilmslow",
+            "Handforth",
+            "Cheadle Hulme",
+            "Stockport",
+            "Heaton Chapel",
+            "Levenshulme",
+            "Manchester Piccadilly"
+          ]
+        },
+        {
+          "relationId": 20726899,
+          "expectedStops": 13,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Levenshulme",
+            "Heaton Chapel",
+            "Stockport",
+            "Cheadle Hulme",
+            "Handforth",
+            "Wilmslow",
+            "Alderley Edge",
+            "Chelford",
+            "Goostrey",
+            "Holmes Chapel",
+            "Sandbach",
+            "Crewe"
+          ]
+        },
+        {
+          "relationId": 20726894,
+          "expectedStops": 13,
+          "expectedCalls": [
+            "Crewe",
+            "Sandbach",
+            "Holmes Chapel",
+            "Alderley Edge",
+            "Wilmslow",
+            "Styal",
+            "Manchester Airport",
+            "Heald Green",
+            "Gatley",
+            "East Didsbury",
+            "Burnage",
+            "Mauldeth Road",
+            "Manchester Piccadilly"
+          ]
+        },
+        {
+          "relationId": 20726895,
+          "expectedStops": 13,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Mauldeth Road",
+            "Burnage",
+            "East Didsbury",
+            "Gatley",
+            "Heald Green",
+            "Manchester Airport",
+            "Styal",
+            "Wilmslow",
+            "Alderley Edge",
+            "Holmes Chapel",
+            "Sandbach",
+            "Crewe"
+          ]
+        },
+        {
+          "relationId": 20726896,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Alderley Edge",
+            "Wilmslow",
+            "Handforth",
+            "Cheadle Hulme",
+            "Stockport",
+            "Heaton Chapel",
+            "Levenshulme",
+            "Manchester Piccadilly"
+          ]
+        },
+        {
+          "relationId": 20726897,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Levenshulme",
+            "Heaton Chapel",
+            "Stockport",
+            "Cheadle Hulme",
+            "Handforth",
+            "Wilmslow",
+            "Alderley Edge"
+          ]
+        },
+        {
+          "relationId": 9491244,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Stoke-on-Trent",
+            "Kidsgrove",
+            "Congleton",
+            "Macclesfield",
+            "Prestbury",
+            "Adlington (Cheshire)",
+            "Poynton",
+            "Bramhall",
+            "Cheadle Hulme",
+            "Stockport",
+            "Heaton Chapel",
+            "Manchester Piccadilly"
+          ]
+        },
+        {
+          "relationId": 9491512,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Heaton Chapel",
+            "Stockport",
+            "Cheadle Hulme",
+            "Bramhall",
+            "Poynton",
+            "Adlington (Cheshire)",
+            "Prestbury",
+            "Macclesfield",
+            "Congleton",
+            "Kidsgrove",
+            "Stoke-on-Trent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-south-fylde",
+      "lineEn": "South Fylde Line",
+      "lineKo": "사우스파일드선",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 21206637,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Preston",
+            "Salwick",
+            "Kirkham and Wesham",
+            "Moss Side",
+            "Lytham",
+            "Ansdell & Fairhaven",
+            "St Annes-on-the-Sea",
+            "Squires Gate",
+            "Blackpool Pleasure Beach",
+            "Blackpool South"
+          ]
+        },
+        {
+          "relationId": 21206634,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Blackpool South",
+            "Blackpool Pleasure Beach",
+            "Squires Gate",
+            "St Annes-on-the-Sea",
+            "Ansdell & Fairhaven",
+            "Lytham",
+            "Moss Side",
+            "Kirkham and Wesham",
+            "Salwick",
+            "Preston"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tfw-heart-of-wales",
+      "lineEn": "Heart of Wales Line",
+      "lineKo": "하트오브웨일스선",
+      "operatorId": "uk-transport-for-wales",
+      "operatorEn": "Transport for Wales",
+      "operatorKo": "트랜스포트 포 웨일스",
+      "color": "#ac252d",
+      "officialUrl": "https://tfw.wales/places/our-network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 287180,
+          "expectedStops": 34,
+          "expectedCalls": [
+            "Swansea",
+            "Gowerton",
+            "Llanelli",
+            "Bynea",
+            "Llangennech",
+            "Pontarddulais",
+            "Pantyffynnon",
+            "Ammanford",
+            "Llandybie",
+            "Ffairfach",
+            "Llandeilo",
+            "Llangadog",
+            "Llanwrda",
+            "Llandovery",
+            "Cynghordy",
+            "Sugar Loaf",
+            "Llanwrtyd",
+            "Llangammarch",
+            "Garth",
+            "Cilmeri",
+            "Builth Road",
+            "Llandrindod",
+            "Pen-y-Bont",
+            "Dolau",
+            "Llanbister Road",
+            "Llangynllo",
+            "Knucklas",
+            "Knighton",
+            "Bucknell",
+            "Hopton Heath",
+            "Broome",
+            "Craven Arms",
+            "Church Stretton",
+            "Shrewsbury"
+          ]
+        },
+        {
+          "relationId": 1858352,
+          "expectedStops": 34,
+          "expectedCalls": [
+            "Shrewsbury",
+            "Church Stretton",
+            "Craven Arms",
+            "Broome",
+            "Hopton Heath",
+            "Bucknell",
+            "Knighton",
+            "Knucklas",
+            "Llangynllo",
+            "Llanbister Road",
+            "Dolau",
+            "Pen-y-Bont",
+            "Llandrindod",
+            "Builth Road",
+            "Cilmeri",
+            "Garth",
+            "Llangammarch",
+            "Llanwrtyd",
+            "Sugar Loaf",
+            "Cynghordy",
+            "Llandovery",
+            "Llanwrda",
+            "Llangadog",
+            "Llandeilo",
+            "Ffairfach",
+            "Llandybie",
+            "Ammanford",
+            "Pantyffynnon",
+            "Pontarddulais",
+            "Llangennech",
+            "Bynea",
+            "Llanelli",
+            "Gowerton",
+            "Swansea"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tfw-cambrian-main",
+      "lineEn": "Cambrian Main Line",
+      "lineKo": "캄브리아 본선",
+      "operatorId": "uk-transport-for-wales",
+      "operatorEn": "Transport for Wales",
+      "operatorKo": "트랜스포트 포 웨일스",
+      "color": "#ac252d",
+      "officialUrl": "https://tfw.wales/places/our-network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20626995,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Shrewsbury",
+            "Welshpool",
+            "Newtown",
+            "Caersws",
+            "Machynlleth",
+            "Dovey Junction",
+            "Borth",
+            "Bow Street",
+            "Aberystwyth"
+          ]
+        },
+        {
+          "relationId": 20626996,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Aberystwyth",
+            "Bow Street",
+            "Borth",
+            "Dovey Junction",
+            "Machynlleth",
+            "Caersws",
+            "Newtown",
+            "Welshpool",
+            "Shrewsbury"
+          ]
+        },
+        {
+          "relationId": 20626997,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Birmingham International",
+            "Birmingham New Street",
+            "Sandwell and Dudley",
+            "Wolverhampton",
+            "Telford Central",
+            "Wellington",
+            "Shrewsbury",
+            "Welshpool",
+            "Newtown",
+            "Caersws",
+            "Machynlleth",
+            "Dovey Junction",
+            "Borth",
+            "Bow Street",
+            "Aberystwyth"
+          ]
+        },
+        {
+          "relationId": 454579,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Aberystwyth",
+            "Bow Street",
+            "Borth",
+            "Dovey Junction",
+            "Machynlleth",
+            "Caersws",
+            "Newtown",
+            "Welshpool",
+            "Shrewsbury",
+            "Wellington",
+            "Telford Central",
+            "Wolverhampton",
+            "Sandwell and Dudley",
+            "Birmingham New Street",
+            "Birmingham International"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tfw-north-wales-coast",
+      "lineEn": "North Wales Coast Line",
+      "lineKo": "노스웨일스 해안선",
+      "operatorId": "uk-transport-for-wales",
+      "operatorEn": "Transport for Wales",
+      "operatorKo": "트랜스포트 포 웨일스",
+      "color": "#ac252d",
+      "officialUrl": "https://tfw.wales/places/our-network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 18463271,
+          "expectedStops": 28,
+          "expectedCalls": [
+            "Cardiff Central",
+            "Newport",
+            "Cwmbran",
+            "Pontypool and New Inn",
+            "Abergavenny",
+            "Hereford",
+            "Leominster",
+            "Ludlow",
+            "Craven Arms",
+            "Church Stretton",
+            "Shrewsbury",
+            "Gobowen",
+            "Chirk",
+            "Ruabon",
+            "Wrexham General",
+            "Chester",
+            "Flint",
+            "Prestatyn",
+            "Rhyl",
+            "Colwyn Bay",
+            "Llandudno Junction",
+            "Bangor",
+            "Llanfairpwll",
+            "Bodorgan",
+            "Ty Croes",
+            "Rhosneigr",
+            "Y Fali",
+            "Holyhead"
+          ]
+        },
+        {
+          "relationId": 18463270,
+          "expectedStops": 28,
+          "expectedCalls": [
+            "Holyhead",
+            "Y Fali",
+            "Rhosneigr",
+            "Ty Croes",
+            "Bodorgan",
+            "Llanfairpwll",
+            "Bangor",
+            "Llandudno Junction",
+            "Colwyn Bay",
+            "Rhyl",
+            "Prestatyn",
+            "Flint",
+            "Chester",
+            "Wrexham General",
+            "Ruabon",
+            "Chirk",
+            "Gobowen",
+            "Shrewsbury",
+            "Church Stretton",
+            "Craven Arms",
+            "Ludlow",
+            "Leominster",
+            "Hereford",
+            "Abergavenny",
+            "Pontypool and New Inn",
+            "Cwmbran",
+            "Newport",
+            "Cardiff Central"
+          ]
+        },
+        {
+          "relationId": 20623974,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Liverpool Lime Street",
+            "Liverpool South Parkway",
+            "Runcorn",
+            "Frodsham",
+            "Helsby",
+            "Chester",
+            "Shotton",
+            "Flint",
+            "Prestatyn",
+            "Rhyl",
+            "Abergele and Pensarn",
+            "Colwyn Bay",
+            "Llandudno Junction",
+            "Deganwy",
+            "Llandudno"
+          ]
+        },
+        {
+          "relationId": 20623975,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Llandudno",
+            "Deganwy",
+            "Llandudno Junction",
+            "Colwyn Bay",
+            "Abergele and Pensarn",
+            "Rhyl",
+            "Prestatyn",
+            "Flint",
+            "Shotton",
+            "Chester",
+            "Helsby",
+            "Frodsham",
+            "Runcorn",
+            "Liverpool South Parkway",
+            "Liverpool Lime Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tfw-marches",
+      "lineEn": "Welsh Marches Line",
+      "lineKo": "웨일스 마치스선",
+      "operatorId": "uk-transport-for-wales",
+      "operatorEn": "Transport for Wales",
+      "operatorKo": "트랜스포트 포 웨일스",
+      "color": "#ac252d",
+      "officialUrl": "https://tfw.wales/places/our-network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20636913,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Cardiff Central",
+            "Newport",
+            "Cwmbran",
+            "Abergavenny",
+            "Hereford",
+            "Leominster",
+            "Ludlow",
+            "Shrewsbury",
+            "Crewe",
+            "Wilmslow",
+            "Stockport",
+            "Manchester Piccadilly"
+          ]
+        },
+        {
+          "relationId": 20636914,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Stockport",
+            "Wilmslow",
+            "Crewe",
+            "Shrewsbury",
+            "Ludlow",
+            "Leominster",
+            "Hereford",
+            "Abergavenny",
+            "Cwmbran",
+            "Newport",
+            "Cardiff Central"
+          ]
+        },
+        {
+          "relationId": 20636915,
+          "expectedStops": 16,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Stockport",
+            "Wilmslow",
+            "Crewe",
+            "Nantwich",
+            "Whitchurch",
+            "Shrewsbury",
+            "Church Stretton",
+            "Craven Arms",
+            "Ludlow",
+            "Leominster",
+            "Hereford",
+            "Abergavenny",
+            "Cwmbran",
+            "Newport",
+            "Cardiff Central"
+          ]
+        },
+        {
+          "relationId": 20636916,
+          "expectedStops": 16,
+          "expectedCalls": [
+            "Cardiff Central",
+            "Newport",
+            "Cwmbran",
+            "Abergavenny",
+            "Hereford",
+            "Leominster",
+            "Ludlow",
+            "Craven Arms",
+            "Church Stretton",
+            "Shrewsbury",
+            "Whitchurch",
+            "Nantwich",
+            "Crewe",
+            "Wilmslow",
+            "Stockport",
+            "Manchester Piccadilly"
+          ]
+        },
+        {
+          "relationId": 20640509,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Crewe",
+            "Nantwich",
+            "Wrenbury",
+            "Whitchurch",
+            "Prees",
+            "Wem",
+            "Yorton",
+            "Shrewsbury"
+          ]
+        },
+        {
+          "relationId": 20640510,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Shrewsbury",
+            "Yorton",
+            "Wem",
+            "Prees",
+            "Whitchurch",
+            "Wrenbury",
+            "Nantwich",
+            "Crewe"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tfw-severn-estuary",
+      "lineEn": "Severn Estuary Line",
+      "lineKo": "세번 하구선",
+      "operatorId": "uk-transport-for-wales",
+      "operatorEn": "Transport for Wales",
+      "operatorKo": "트랜스포트 포 웨일스",
+      "color": "#ac252d",
+      "officialUrl": "https://tfw.wales/places/our-network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 165541,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Cardiff Central",
+            "Newport",
+            "Severn Tunnel Junction",
+            "Caldicot",
+            "Chepstow",
+            "Lydney",
+            "Gloucester",
+            "Cheltenham Spa"
+          ]
+        },
+        {
+          "relationId": 20641282,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Cheltenham Spa",
+            "Gloucester",
+            "Lydney",
+            "Chepstow",
+            "Caldicot",
+            "Severn Tunnel Junction",
+            "Newport",
+            "Cardiff Central"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tfw-west-wales",
+      "lineEn": "West Wales Lines · Fishguard and Milford Haven",
+      "lineKo": "웨스트웨일스선 피시가드·밀퍼드헤이븐 회랑",
+      "operatorId": "uk-transport-for-wales",
+      "operatorEn": "Transport for Wales",
+      "operatorKo": "트랜스포트 포 웨일스",
+      "color": "#ac252d",
+      "officialUrl": "https://tfw.wales/places/our-network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20655744,
+          "expectedStops": 31,
+          "expectedCalls": [
+            "Fishguard Harbour",
+            "Fishguard and Goodwick",
+            "Clarbeston Road",
+            "Clunderwen",
+            "Whitland",
+            "Carmarthen",
+            "Ferryside",
+            "Kidwelly",
+            "Pembrey and Burry Port",
+            "Llanelli",
+            "Gowerton",
+            "Swansea",
+            "Neath",
+            "Port Talbot Parkway",
+            "Bridgend",
+            "Cardiff Central",
+            "Newport",
+            "Cwmbran",
+            "Abergavenny",
+            "Hereford",
+            "Leominster",
+            "Ludlow",
+            "Craven Arms",
+            "Church Stretton",
+            "Shrewsbury",
+            "Whitchurch",
+            "Nantwich",
+            "Crewe",
+            "Wilmslow",
+            "Stockport",
+            "Manchester Piccadilly"
+          ]
+        },
+        {
+          "relationId": 20655745,
+          "expectedStops": 31,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Stockport",
+            "Wilmslow",
+            "Crewe",
+            "Nantwich",
+            "Whitchurch",
+            "Shrewsbury",
+            "Church Stretton",
+            "Craven Arms",
+            "Ludlow",
+            "Leominster",
+            "Hereford",
+            "Abergavenny",
+            "Cwmbran",
+            "Newport",
+            "Cardiff Central",
+            "Bridgend",
+            "Port Talbot Parkway",
+            "Neath",
+            "Swansea",
+            "Gowerton",
+            "Llanelli",
+            "Pembrey and Burry Port",
+            "Kidwelly",
+            "Ferryside",
+            "Carmarthen",
+            "Whitland",
+            "Clunderwen",
+            "Clarbeston Road",
+            "Fishguard and Goodwick",
+            "Fishguard Harbour"
+          ]
+        },
+        {
+          "relationId": 20655746,
+          "expectedStops": 32,
+          "expectedCalls": [
+            "Manchester Piccadilly",
+            "Stockport",
+            "Wilmslow",
+            "Crewe",
+            "Nantwich",
+            "Whitchurch",
+            "Shrewsbury",
+            "Church Stretton",
+            "Craven Arms",
+            "Ludlow",
+            "Leominster",
+            "Hereford",
+            "Abergavenny",
+            "Cwmbran",
+            "Newport",
+            "Cardiff Central",
+            "Bridgend",
+            "Port Talbot Parkway",
+            "Neath",
+            "Swansea",
+            "Gowerton",
+            "Llanelli",
+            "Pembrey and Burry Port",
+            "Kidwelly",
+            "Ferryside",
+            "Carmarthen",
+            "Whitland",
+            "Clunderwen",
+            "Clarbeston Road",
+            "Haverfordwest",
+            "Johnston",
+            "Milford Haven"
+          ]
+        },
+        {
+          "relationId": 20655747,
+          "expectedStops": 32,
+          "expectedCalls": [
+            "Milford Haven",
+            "Johnston",
+            "Haverfordwest",
+            "Clarbeston Road",
+            "Clunderwen",
+            "Whitland",
+            "Carmarthen",
+            "Ferryside",
+            "Kidwelly",
+            "Pembrey and Burry Port",
+            "Llanelli",
+            "Gowerton",
+            "Swansea",
+            "Neath",
+            "Port Talbot Parkway",
+            "Bridgend",
+            "Cardiff Central",
+            "Newport",
+            "Cwmbran",
+            "Abergavenny",
+            "Hereford",
+            "Leominster",
+            "Ludlow",
+            "Craven Arms",
+            "Church Stretton",
+            "Shrewsbury",
+            "Whitchurch",
+            "Nantwich",
+            "Crewe",
+            "Wilmslow",
+            "Stockport",
+            "Manchester Piccadilly"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-great-western-intercity",
+      "lineEn": "Great Western Main Line · Bristol and South Wales",
+      "lineKo": "그레이트웨스턴 본선 브리스틀·사우스웨일스 회랑",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 183757,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "London Paddington",
+            "Reading",
+            "Didcot Parkway",
+            "Swindon",
+            "Chippenham",
+            "Bath Spa",
+            "Bristol Temple Meads"
+          ]
+        },
+        {
+          "relationId": 9773637,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Bristol Temple Meads",
+            "Bath Spa",
+            "Chippenham",
+            "Swindon",
+            "Didcot Parkway",
+            "Reading",
+            "London Paddington"
+          ]
+        },
+        {
+          "relationId": 2832312,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "London Paddington",
+            "Reading",
+            "Swindon",
+            "Bristol Parkway",
+            "Newport",
+            "Cardiff Central",
+            "Bridgend",
+            "Port Talbot Parkway",
+            "Neath",
+            "Swansea"
+          ]
+        },
+        {
+          "relationId": 9773638,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Swansea",
+            "Neath",
+            "Port Talbot Parkway",
+            "Bridgend",
+            "Cardiff Central",
+            "Newport",
+            "Bristol Parkway",
+            "Swindon",
+            "Reading",
+            "London Paddington"
+          ]
+        },
+        {
+          "relationId": 9773909,
+          "expectedStops": 6,
+          "expectedCalls": [
+            "London Paddington",
+            "Reading",
+            "Swindon",
+            "Bristol Parkway",
+            "Newport",
+            "Cardiff Central"
+          ]
+        },
+        {
+          "relationId": 166378,
+          "expectedStops": 6,
+          "expectedCalls": [
+            "Cardiff Central",
+            "Newport",
+            "Bristol Parkway",
+            "Swindon",
+            "Reading",
+            "London Paddington"
+          ]
+        },
+        {
+          "relationId": 18476203,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "London Paddington",
+            "Reading",
+            "Didcot Parkway",
+            "Swindon",
+            "Kemble",
+            "Stroud",
+            "Stonehouse",
+            "Gloucester",
+            "Cheltenham Spa"
+          ],
+          "unnamedStops": {
+            "9695199351": "Stroud"
+          }
+        },
+        {
+          "relationId": 18476201,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Cheltenham Spa",
+            "Gloucester",
+            "Stonehouse",
+            "Stroud",
+            "Kemble",
+            "Swindon",
+            "Didcot Parkway",
+            "Reading",
+            "London Paddington"
+          ],
+          "unnamedStops": {
+            "9695199352": "Stroud"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gwr-reading-taunton",
+      "lineEn": "Reading–Taunton line · Penzance and Frome",
+      "lineKo": "레딩–톤턴선 펜잰스·프룸 회랑",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 125414,
+          "expectedStops": 18,
+          "expectedCalls": [
+            "London Paddington",
+            "Reading",
+            "Taunton",
+            "Tiverton Parkway",
+            "Exeter St Davids",
+            "Newton Abbot",
+            "Totnes",
+            "Plymouth",
+            "Liskeard",
+            "Bodmin Parkway",
+            "Lostwithiel",
+            "Par",
+            "St Austell",
+            "Truro",
+            "Redruth",
+            "Camborne",
+            "St Erth",
+            "Penzance"
+          ]
+        },
+        {
+          "relationId": 9774000,
+          "expectedStops": 18,
+          "expectedCalls": [
+            "Penzance",
+            "St Erth",
+            "Camborne",
+            "Redruth",
+            "Truro",
+            "St Austell",
+            "Par",
+            "Lostwithiel",
+            "Bodmin Parkway",
+            "Liskeard",
+            "Plymouth",
+            "Totnes",
+            "Newton Abbot",
+            "Exeter St Davids",
+            "Tiverton Parkway",
+            "Taunton",
+            "Reading",
+            "London Paddington"
+          ]
+        },
+        {
+          "relationId": 9774001,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "London Paddington",
+            "Twyford",
+            "Reading",
+            "Theale",
+            "Thatcham",
+            "Newbury",
+            "Kintbury",
+            "Hungerford",
+            "Bedwyn",
+            "Pewsey",
+            "Westbury",
+            "Frome"
+          ]
+        },
+        {
+          "relationId": 9774892,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Frome",
+            "Westbury",
+            "Pewsey",
+            "Bedwyn",
+            "Hungerford",
+            "Kintbury",
+            "Newbury",
+            "Thatcham",
+            "Theale",
+            "Reading",
+            "Twyford",
+            "London Paddington"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-cotswold",
+      "lineEn": "Cotswold Line",
+      "lineKo": "코츠월드선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 9786303,
+          "expectedStops": 20,
+          "expectedCalls": [
+            "London Paddington",
+            "Slough",
+            "Reading",
+            "Oxford",
+            "Hanborough",
+            "Charlbury",
+            "Shipton",
+            "Kingham",
+            "Moreton-in-Marsh",
+            "Honeybourne",
+            "Evesham",
+            "Pershore",
+            "Worcestershire Parkway",
+            "Worcester Shrub Hill",
+            "Worcester Foregate Street",
+            "Malvern Link",
+            "Great Malvern",
+            "Colwall",
+            "Ledbury",
+            "Hereford"
+          ]
+        },
+        {
+          "relationId": 9786302,
+          "expectedStops": 19,
+          "expectedCalls": [
+            "Hereford",
+            "Ledbury",
+            "Colwall",
+            "Great Malvern",
+            "Malvern Link",
+            "Worcester Foregate Street",
+            "Worcester Shrub Hill",
+            "Worcestershire Parkway",
+            "Pershore",
+            "Evesham",
+            "Honeybourne",
+            "Moreton-in-Marsh",
+            "Kingham",
+            "Shipton",
+            "Charlbury",
+            "Hanborough",
+            "Oxford",
+            "Reading",
+            "London Paddington"
+          ]
+        },
+        {
+          "relationId": 9786305,
+          "expectedStops": 14,
+          "expectedCalls": [
+            "London Paddington",
+            "Slough",
+            "Reading",
+            "Oxford",
+            "Hanborough",
+            "Charlbury",
+            "Shipton",
+            "Kingham",
+            "Moreton-in-Marsh",
+            "Evesham",
+            "Worcester Shrub Hill",
+            "Worcester Foregate Street",
+            "Malvern Link",
+            "Great Malvern"
+          ]
+        },
+        {
+          "relationId": 9786304,
+          "expectedStops": 14,
+          "expectedCalls": [
+            "Great Malvern",
+            "Malvern Link",
+            "Worcester Foregate Street",
+            "Worcester Shrub Hill",
+            "Evesham",
+            "Moreton-in-Marsh",
+            "Kingham",
+            "Shipton",
+            "Charlbury",
+            "Hanborough",
+            "Oxford",
+            "Reading",
+            "Slough",
+            "London Paddington"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-north-downs",
+      "lineEn": "North Downs Line",
+      "lineKo": "노스다운스선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 11579264,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Reading",
+            "Wokingham",
+            "Blackwater",
+            "North Camp",
+            "Guildford",
+            "Dorking Deepdene",
+            "Reigate",
+            "Redhill",
+            "Gatwick Airport"
+          ]
+        },
+        {
+          "relationId": 172989,
+          "expectedStops": 9,
+          "expectedCalls": [
+            "Gatwick Airport",
+            "Redhill",
+            "Reigate",
+            "Dorking Deepdene",
+            "Guildford",
+            "North Camp",
+            "Blackwater",
+            "Wokingham",
+            "Reading"
+          ]
+        },
+        {
+          "relationId": 11579262,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Reading",
+            "Wokingham",
+            "Crowthorne",
+            "Sandhurst",
+            "Blackwater",
+            "Farnborough North",
+            "North Camp",
+            "Ash",
+            "Guildford",
+            "Shalford",
+            "Chilworth",
+            "Gomshall",
+            "Dorking West",
+            "Dorking Deepdene",
+            "Betchworth",
+            "Reigate",
+            "Redhill"
+          ]
+        },
+        {
+          "relationId": 11579263,
+          "expectedStops": 17,
+          "expectedCalls": [
+            "Redhill",
+            "Reigate",
+            "Betchworth",
+            "Dorking Deepdene",
+            "Dorking West",
+            "Gomshall",
+            "Chilworth",
+            "Shalford",
+            "Guildford",
+            "Ash",
+            "North Camp",
+            "Farnborough North",
+            "Blackwater",
+            "Sandhurst",
+            "Crowthorne",
+            "Wokingham",
+            "Reading"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-reading-basingstoke",
+      "lineEn": "Reading–Basingstoke Line",
+      "lineKo": "레딩–베이싱스토크선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 11105017,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Reading",
+            "Reading West",
+            "Mortimer",
+            "Bramley",
+            "Basingstoke"
+          ]
+        },
+        {
+          "relationId": 11105018,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Basingstoke",
+            "Bramley",
+            "Mortimer",
+            "Reading West",
+            "Reading"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-west-ealing-greenford",
+      "lineEn": "Greenford Branch Line",
+      "lineKo": "그린퍼드 지선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 17891198,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "West Ealing",
+            "Drayton Green",
+            "Castle Bar Park",
+            "South Greenford",
+            "Greenford"
+          ]
+        },
+        {
+          "relationId": 17891199,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Greenford",
+            "South Greenford",
+            "Castle Bar Park",
+            "Drayton Green",
+            "West Ealing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-maidenhead-marlow",
+      "lineEn": "Marlow Branch Line",
+      "lineKo": "말로 지선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 17891215,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Maidenhead",
+            "Furze Platt",
+            "Cookham",
+            "Bourne End",
+            "Marlow"
+          ]
+        },
+        {
+          "relationId": 17891221,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Marlow",
+            "Bourne End",
+            "Cookham",
+            "Furze Platt",
+            "Maidenhead"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-slough-windsor",
+      "lineEn": "Slough–Windsor branch",
+      "lineKo": "슬라우–윈저 지선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 173259,
+          "expectedStops": 2,
+          "expectedCalls": [
+            "Slough",
+            "Windsor and Eton Central"
+          ]
+        },
+        {
+          "relationId": 11579252,
+          "expectedStops": 2,
+          "expectedCalls": [
+            "Windsor and Eton Central",
+            "Slough"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-avocet-riviera",
+      "lineEn": "Avocet and Riviera lines",
+      "lineKo": "애버셋·리비에라선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 124041,
+          "expectedStops": 21,
+          "expectedCalls": [
+            "Exmouth",
+            "Lympstone Village",
+            "Lympstone Commando",
+            "Exton",
+            "Topsham",
+            "Newcourt",
+            "Digby & Sowton",
+            "Polsloe Bridge",
+            "St James' Park",
+            "Exeter Central",
+            "Exeter St Davids",
+            "Exeter St Thomas",
+            "Marsh Barton",
+            "Starcross",
+            "Dawlish Warren",
+            "Dawlish",
+            "Teignmouth",
+            "Newton Abbot",
+            "Torre",
+            "Torquay",
+            "Paignton"
+          ]
+        },
+        {
+          "relationId": 15419216,
+          "expectedStops": 21,
+          "expectedCalls": [
+            "Paignton",
+            "Torquay",
+            "Torre",
+            "Newton Abbot",
+            "Teignmouth",
+            "Dawlish",
+            "Dawlish Warren",
+            "Starcross",
+            "Marsh Barton",
+            "Exeter St Thomas",
+            "Exeter St Davids",
+            "Exeter Central",
+            "St James' Park",
+            "Polsloe Bridge",
+            "Digby & Sowton",
+            "Newcourt",
+            "Topsham",
+            "Exton",
+            "Lympstone Commando",
+            "Lympstone Village",
+            "Exmouth"
+          ]
+        },
+        {
+          "relationId": 122126,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Exmouth",
+            "Lympstone Village",
+            "Lympstone Commando",
+            "Exton",
+            "Topsham",
+            "Digby & Sowton",
+            "Polsloe Bridge",
+            "St James' Park",
+            "Exeter Central",
+            "Exeter St Davids"
+          ]
+        },
+        {
+          "relationId": 13618356,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Exeter St Davids",
+            "Exeter Central",
+            "St James' Park",
+            "Polsloe Bridge",
+            "Digby & Sowton",
+            "Topsham",
+            "Exton",
+            "Lympstone Commando",
+            "Lympstone Village",
+            "Exmouth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-dartmoor",
+      "lineEn": "Dartmoor Line",
+      "lineKo": "다트무어선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 276920,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Exeter Central",
+            "Exeter St Davids",
+            "Crediton",
+            "Okehampton Interchange",
+            "Okehampton"
+          ]
+        },
+        {
+          "relationId": 15463958,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Okehampton",
+            "Okehampton Interchange",
+            "Crediton",
+            "Exeter St Davids",
+            "Exeter Central"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gwr-tarka",
+      "lineEn": "Tarka Line",
+      "lineKo": "타카선",
+      "operatorId": "uk-gwr",
+      "operatorEn": "Great Western Railway",
+      "operatorKo": "그레이트 웨스턴 철도",
+      "color": "#126448",
+      "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/about-gwr/our-business/passengers-charter/GWR-Passengers-Charter-2025.pdf",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 275887,
+          "expectedStops": 14,
+          "expectedCalls": [
+            "Exeter Central",
+            "Exeter St Davids",
+            "Newton St Cyres",
+            "Crediton",
+            "Yeoford",
+            "Copplestone",
+            "Morchard Road",
+            "Lapford",
+            "Eggesford",
+            "Kings Nympton",
+            "Portsmouth Arms",
+            "Umberleigh",
+            "Chapelton",
+            "Barnstaple"
+          ]
+        },
+        {
+          "relationId": 15462093,
+          "expectedStops": 14,
+          "expectedCalls": [
+            "Barnstaple",
+            "Chapelton",
+            "Umberleigh",
+            "Portsmouth Arms",
+            "Kings Nympton",
+            "Eggesford",
+            "Lapford",
+            "Morchard Road",
+            "Copplestone",
+            "Yeoford",
+            "Crediton",
+            "Newton St Cyres",
+            "Exeter St Davids",
+            "Exeter Central"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caledonian-lowland",
+      "lineEn": "Lowland Sleeper",
+      "lineKo": "로랜드 슬리퍼",
+      "operatorId": "uk-caledonian-sleeper",
+      "operatorEn": "Caledonian Sleeper",
+      "operatorKo": "칼레도니언 슬리퍼",
+      "color": "#22665c",
+      "officialUrl": "https://www.sleeper.scot/travel-updates/all-timetables/timetable-detail/?from=EUS&to=GLC",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 6389383,
+          "expectedStops": 6,
+          "expectedCalls": [
+            "London Euston",
+            "Watford Junction",
+            "Carlisle",
+            "Carstairs",
+            "Motherwell",
+            "Glasgow Central"
+          ]
+        },
+        {
+          "relationId": 6389381,
+          "expectedStops": 6,
+          "expectedCalls": [
+            "Glasgow Central",
+            "Motherwell",
+            "Carstairs",
+            "Carlisle",
+            "Watford Junction",
+            "London Euston"
+          ]
+        },
+        {
+          "relationId": 6389382,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "London Euston",
+            "Watford Junction",
+            "Carlisle",
+            "Carstairs",
+            "Edinburgh Waverley"
+          ],
+          "officialUrl": "https://www.sleeper.scot/travel-updates/all-timetables/timetable-detail/?from=EUS&to=EDB"
+        },
+        {
+          "relationId": 6389380,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Edinburgh Waverley",
+            "Carstairs",
+            "Carlisle",
+            "Watford Junction",
+            "London Euston"
+          ],
+          "officialUrl": "https://www.sleeper.scot/travel-updates/all-timetables/timetable-detail/?from=EUS&to=EDB"
+        }
+      ]
+    },
+    {
+      "id": "wmr-camp-hill",
+      "lineEn": "Camp Hill Line",
+      "lineKo": "캠프힐선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.wmca.org.uk/news/400-000-passengers-and-national-award-for-west-midlands-five-new-railway-stations/",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20629922,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Birmingham New Street",
+            "Moseley Village",
+            "Kings Heath",
+            "Pineapple Road",
+            "Kings Norton"
+          ]
+        },
+        {
+          "relationId": 20629921,
+          "expectedStops": 5,
+          "expectedCalls": [
+            "Kings Norton",
+            "Pineapple Road",
+            "Kings Heath",
+            "Moseley Village",
+            "Birmingham New Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wmr-snow-hill",
+      "lineEn": "Snow Hill Lines",
+      "lineKo": "스노힐선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20154882,
+          "expectedStops": 20,
+          "expectedCalls": [
+            "Worcester Foregate Street",
+            "Droitwich Spa",
+            "Hartlebury",
+            "Kidderminster",
+            "Blakedown",
+            "Hagley",
+            "Stourbridge Junction",
+            "Cradley Heath",
+            "Rowley Regis",
+            "Smethwick Galton Bridge",
+            "The Hawthorns",
+            "Jewellery Quarter",
+            "Birmingham Snow Hill",
+            "Birmingham Moor Street",
+            "Tyseley",
+            "Acocks Green",
+            "Olton",
+            "Solihull",
+            "Widney Manor",
+            "Dorridge"
+          ]
+        },
+        {
+          "relationId": 20154883,
+          "expectedStops": 20,
+          "expectedCalls": [
+            "Dorridge",
+            "Widney Manor",
+            "Solihull",
+            "Olton",
+            "Acocks Green",
+            "Tyseley",
+            "Birmingham Moor Street",
+            "Birmingham Snow Hill",
+            "Jewellery Quarter",
+            "The Hawthorns",
+            "Smethwick Galton Bridge",
+            "Rowley Regis",
+            "Cradley Heath",
+            "Stourbridge Junction",
+            "Hagley",
+            "Blakedown",
+            "Kidderminster",
+            "Hartlebury",
+            "Droitwich Spa",
+            "Worcester Foregate Street"
+          ]
+        },
+        {
+          "relationId": 20154884,
+          "expectedStops": 24,
+          "expectedCalls": [
+            "Worcester Foregate Street",
+            "Worcester Shrub Hill",
+            "Droitwich Spa",
+            "Hartlebury",
+            "Kidderminster",
+            "Blakedown",
+            "Hagley",
+            "Stourbridge Junction",
+            "Cradley Heath",
+            "Rowley Regis",
+            "Smethwick Galton Bridge",
+            "The Hawthorns",
+            "Jewellery Quarter",
+            "Birmingham Snow Hill",
+            "Birmingham Moor Street",
+            "Small Heath",
+            "Acocks Green",
+            "Olton",
+            "Solihull",
+            "Widney Manor",
+            "Dorridge",
+            "Lapworth",
+            "Stratford-upon-Avon Parkway",
+            "Stratford-upon-Avon"
+          ]
+        },
+        {
+          "relationId": 20154885,
+          "expectedStops": 24,
+          "expectedCalls": [
+            "Stratford-upon-Avon",
+            "Stratford-upon-Avon Parkway",
+            "Lapworth",
+            "Dorridge",
+            "Widney Manor",
+            "Solihull",
+            "Olton",
+            "Acocks Green",
+            "Small Heath",
+            "Birmingham Moor Street",
+            "Birmingham Snow Hill",
+            "Jewellery Quarter",
+            "The Hawthorns",
+            "Smethwick Galton Bridge",
+            "Rowley Regis",
+            "Cradley Heath",
+            "Stourbridge Junction",
+            "Hagley",
+            "Blakedown",
+            "Kidderminster",
+            "Hartlebury",
+            "Droitwich Spa",
+            "Worcester Shrub Hill",
+            "Worcester Foregate Street"
+          ]
+        },
+        {
+          "relationId": 20154886,
+          "expectedStops": 19,
+          "expectedCalls": [
+            "Whitlocks End",
+            "Shirley",
+            "Yardley Wood",
+            "Hall Green",
+            "Spring Road",
+            "Tyseley",
+            "Small Heath",
+            "Birmingham Moor Street",
+            "Birmingham Snow Hill",
+            "Jewellery Quarter",
+            "The Hawthorns",
+            "Smethwick Galton Bridge",
+            "Langley Green",
+            "Rowley Regis",
+            "Old Hill",
+            "Cradley Heath",
+            "Lye",
+            "Stourbridge Junction",
+            "Kidderminster"
+          ]
+        },
+        {
+          "relationId": 20154887,
+          "expectedStops": 19,
+          "expectedCalls": [
+            "Kidderminster",
+            "Stourbridge Junction",
+            "Lye",
+            "Cradley Heath",
+            "Old Hill",
+            "Rowley Regis",
+            "Langley Green",
+            "Smethwick Galton Bridge",
+            "The Hawthorns",
+            "Jewellery Quarter",
+            "Birmingham Snow Hill",
+            "Birmingham Moor Street",
+            "Small Heath",
+            "Tyseley",
+            "Spring Road",
+            "Hall Green",
+            "Yardley Wood",
+            "Shirley",
+            "Whitlocks End"
+          ]
+        },
+        {
+          "relationId": 20154888,
+          "expectedStops": 29,
+          "expectedCalls": [
+            "Stratford-upon-Avon",
+            "Stratford-upon-Avon Parkway",
+            "Wilmcote",
+            "Wootton Wawen",
+            "Henley-in-Arden",
+            "Danzey",
+            "Wood End",
+            "The Lakes",
+            "Earlswood",
+            "Wythall",
+            "Whitlocks End",
+            "Shirley",
+            "Yardley Wood",
+            "Hall Green",
+            "Spring Road",
+            "Tyseley",
+            "Small Heath",
+            "Birmingham Moor Street",
+            "Birmingham Snow Hill",
+            "Jewellery Quarter",
+            "The Hawthorns",
+            "Smethwick Galton Bridge",
+            "Langley Green",
+            "Rowley Regis",
+            "Old Hill",
+            "Cradley Heath",
+            "Lye",
+            "Stourbridge Junction",
+            "Kidderminster"
+          ]
+        },
+        {
+          "relationId": 20154889,
+          "expectedStops": 29,
+          "expectedCalls": [
+            "Kidderminster",
+            "Stourbridge Junction",
+            "Lye",
+            "Cradley Heath",
+            "Old Hill",
+            "Rowley Regis",
+            "Langley Green",
+            "Smethwick Galton Bridge",
+            "The Hawthorns",
+            "Jewellery Quarter",
+            "Birmingham Snow Hill",
+            "Birmingham Moor Street",
+            "Small Heath",
+            "Tyseley",
+            "Spring Road",
+            "Hall Green",
+            "Yardley Wood",
+            "Shirley",
+            "Whitlocks End",
+            "Wythall",
+            "Earlswood",
+            "The Lakes",
+            "Wood End",
+            "Danzey",
+            "Henley-in-Arden",
+            "Wootton Wawen",
+            "Wilmcote",
+            "Stratford-upon-Avon Parkway",
+            "Stratford-upon-Avon"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wmr-chase",
+      "lineEn": "Chase Line",
+      "lineKo": "체이스선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20188634,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Rugeley Trent Valley",
+            "Rugeley Town",
+            "Hednesford",
+            "Cannock",
+            "Landywood",
+            "Bloxwich North",
+            "Bloxwich",
+            "Walsall",
+            "Tame Bridge Parkway",
+            "Birmingham New Street",
+            "Adderley Park",
+            "Stechford",
+            "Lea Hall",
+            "Marston Green",
+            "Birmingham International"
+          ]
+        },
+        {
+          "relationId": 20188635,
+          "expectedStops": 15,
+          "expectedCalls": [
+            "Birmingham International",
+            "Marston Green",
+            "Lea Hall",
+            "Stechford",
+            "Adderley Park",
+            "Birmingham New Street",
+            "Tame Bridge Parkway",
+            "Walsall",
+            "Bloxwich",
+            "Bloxwich North",
+            "Landywood",
+            "Cannock",
+            "Hednesford",
+            "Rugeley Town",
+            "Rugeley Trent Valley"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wmr-birmingham-shrewsbury",
+      "lineEn": "Birmingham–Shrewsbury line",
+      "lineKo": "버밍엄–슈루즈베리선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20189878,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Shrewsbury",
+            "Wellington",
+            "Telford Central",
+            "Shifnal",
+            "Wolverhampton",
+            "Smethwick Galton Bridge",
+            "Birmingham New Street"
+          ]
+        },
+        {
+          "relationId": 20189882,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Birmingham New Street",
+            "Smethwick Galton Bridge",
+            "Wolverhampton",
+            "Shifnal",
+            "Telford Central",
+            "Wellington",
+            "Shrewsbury"
+          ]
+        },
+        {
+          "relationId": 20189877,
+          "expectedStops": 14,
+          "expectedCalls": [
+            "Shrewsbury",
+            "Wellington",
+            "Oakengates",
+            "Telford Central",
+            "Shifnal",
+            "Cosford",
+            "Albrighton",
+            "Codsall",
+            "Bilbrook",
+            "Wolverhampton",
+            "Willenhall",
+            "Darlaston",
+            "Tame Bridge Parkway",
+            "Birmingham New Street"
+          ]
+        },
+        {
+          "relationId": 20189881,
+          "expectedStops": 14,
+          "expectedCalls": [
+            "Birmingham New Street",
+            "Tame Bridge Parkway",
+            "Darlaston",
+            "Willenhall",
+            "Wolverhampton",
+            "Bilbrook",
+            "Codsall",
+            "Albrighton",
+            "Cosford",
+            "Shifnal",
+            "Telford Central",
+            "Oakengates",
+            "Wellington",
+            "Shrewsbury"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wmr-birmingham-hereford",
+      "lineEn": "Birmingham–Hereford via Worcester",
+      "lineKo": "우스터 경유 버밍엄–헤리퍼드선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20157076,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Birmingham New Street",
+            "University",
+            "Barnt Green",
+            "Bromsgrove",
+            "Droitwich Spa",
+            "Worcester Foregate Street",
+            "Malvern Link",
+            "Great Malvern"
+          ]
+        },
+        {
+          "relationId": 20157075,
+          "expectedStops": 8,
+          "expectedCalls": [
+            "Great Malvern",
+            "Malvern Link",
+            "Worcester Foregate Street",
+            "Droitwich Spa",
+            "Bromsgrove",
+            "Barnt Green",
+            "University",
+            "Birmingham New Street"
+          ]
+        },
+        {
+          "relationId": 20157078,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Birmingham New Street",
+            "University",
+            "Bromsgrove",
+            "Droitwich Spa",
+            "Worcester Foregate Street",
+            "Malvern Link",
+            "Great Malvern",
+            "Colwall",
+            "Ledbury",
+            "Hereford"
+          ]
+        },
+        {
+          "relationId": 20157077,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Hereford",
+            "Ledbury",
+            "Colwall",
+            "Great Malvern",
+            "Malvern Link",
+            "Worcester Foregate Street",
+            "Droitwich Spa",
+            "Bromsgrove",
+            "University",
+            "Birmingham New Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wmr-coventry",
+      "lineEn": "Coventry–Leamington and Coventry–Nuneaton lines",
+      "lineKo": "코번트리·레밍턴·너니턴선",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.westmidlandsrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20201418,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Leamington Spa",
+            "Kenilworth",
+            "Coventry",
+            "Coventry Arena",
+            "Bedworth",
+            "Bermuda Park",
+            "Nuneaton"
+          ]
+        },
+        {
+          "relationId": 20201419,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Nuneaton",
+            "Bermuda Park",
+            "Bedworth",
+            "Coventry Arena",
+            "Coventry",
+            "Kenilworth",
+            "Leamington Spa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lnwr-liverpool-birmingham",
+      "lineEn": "London Northwestern · Liverpool–Birmingham corridor",
+      "lineKo": "런던 노스웨스턴 리버풀–버밍엄 회랑",
+      "operatorId": "uk-west-midlands-trains",
+      "operatorEn": "West Midlands Trains",
+      "operatorKo": "웨스트미들랜즈 트레인스",
+      "color": "#207f77",
+      "officialUrl": "https://www.londonnorthwesternrailway.co.uk/travel-information/our-network",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 20686441,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Liverpool Lime Street",
+            "Liverpool South Parkway",
+            "Runcorn",
+            "Acton Bridge",
+            "Hartford",
+            "Winsford",
+            "Crewe",
+            "Stafford",
+            "Penkridge",
+            "Wolverhampton",
+            "Smethwick Galton Bridge",
+            "Birmingham New Street"
+          ]
+        },
+        {
+          "relationId": 20686442,
+          "expectedStops": 12,
+          "expectedCalls": [
+            "Birmingham New Street",
+            "Smethwick Galton Bridge",
+            "Wolverhampton",
+            "Penkridge",
+            "Stafford",
+            "Crewe",
+            "Winsford",
+            "Hartford",
+            "Acton Bridge",
+            "Runcorn",
+            "Liverpool South Parkway",
+            "Liverpool Lime Street"
+          ]
+        },
+        {
+          "relationId": 20686443,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Liverpool Lime Street",
+            "Mossley Hill",
+            "Liverpool South Parkway",
+            "Runcorn",
+            "Crewe",
+            "Stafford",
+            "Penkridge",
+            "Wolverhampton",
+            "Coseley",
+            "Birmingham New Street"
+          ]
+        },
+        {
+          "relationId": 20686451,
+          "expectedStops": 10,
+          "expectedCalls": [
+            "Birmingham New Street",
+            "Coseley",
+            "Wolverhampton",
+            "Penkridge",
+            "Stafford",
+            "Crewe",
+            "Runcorn",
+            "Liverpool South Parkway",
+            "Mossley Hill",
+            "Liverpool Lime Street"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northern-sheffield-lincoln",
+      "lineEn": "Sheffield–Lincoln line",
+      "lineKo": "셰필드–링컨선",
+      "operatorId": "uk-northern",
+      "operatorEn": "Northern",
+      "operatorKo": "노던",
+      "color": "#202c75",
+      "officialUrl": "https://www.northernrailway.co.uk/travel/network-map",
+      "category": "rail",
+      "patterns": [
+        {
+          "relationId": 4150222,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Sheffield",
+            "Darnall",
+            "Woodhouse",
+            "Kiveton Bridge",
+            "Kiveton Park",
+            "Shireoaks",
+            "Worksop",
+            "Retford",
+            "Gainsborough Lea Road",
+            "Saxilby",
+            "Lincoln"
+          ]
+        },
+        {
+          "relationId": 4150221,
+          "expectedStops": 11,
+          "expectedCalls": [
+            "Lincoln",
+            "Saxilby",
+            "Gainsborough Lea Road",
+            "Retford",
+            "Worksop",
+            "Shireoaks",
+            "Kiveton Park",
+            "Kiveton Bridge",
+            "Woodhouse",
+            "Darnall",
+            "Sheffield"
           ]
         }
       ]

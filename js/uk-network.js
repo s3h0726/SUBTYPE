@@ -1,5 +1,5 @@
 // UK physical lines, operating patterns and shared railway geometry are distinct.
-export const UK_CATEGORIES=[['all','전체'],['uk-underground','런던 지하철'],['uk-overground','런던 오버그라운드'],['uk-elizabeth','엘리자베스선'],['uk-dlr','DLR'],['rail','내셔널 레일'],['subway','지역 지하철'],['light_rail','메트로·경전철'],['tram','트램'],['custom','커스텀']];
+export const UK_CATEGORIES=[['all','전체'],['uk-underground','런던 지하철'],['uk-overground','런던 오버그라운드'],['uk-elizabeth','엘리자베스선'],['uk-dlr','DLR'],['rail','내셔널 레일'],['high_speed_rail','고속철도'],['subway','지역 지하철'],['light_rail','메트로·경전철'],['tram','트램'],['custom','커스텀']];
 export function ukCategory(route){return route.operatorId==='uk-london-underground'?'uk-underground':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-elizabeth'?'uk-elizabeth':route.id==='uk-dlr'?'uk-dlr':route.category}
 let ukNameEdits={operators:{},lines:{},stations:{},services:{}},ukSharedStationEdits=new Map(),ukStationGroups=new Map(),ukGroupEdits=new Map();
 export function configureUKNames(edits={},stationIndex=[]){

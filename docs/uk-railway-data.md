@@ -17,9 +17,11 @@ London calls and station coordinates come from the [TfL Unified API](https://api
 
 Every released geometry coordinate and every consecutive track edge is traceable to the downloaded [OpenStreetMap](https://www.openstreetmap.org/copyright) node/way data. © OpenStreetMap contributors, [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). The UK OSM-derived database remains available under ODbL, independently of the repository's application-code licence. Compressed source snapshots and their original SHA-256 checksums are in `data/uk/source/manifest.json`. Source archives remain in Git and are excluded from the Pages runtime.
 
-The initial source investigation also inspected TubeCreature, but its geometry is **not included** in the released dataset. Released paths are derived directly from the OSM API.
+Released track geometry comes from OpenStreetMap API snapshots and Geofabrik extracts of OpenStreetMap. Both retain the original railway way membership and node sequences. The source manifest records each archive's origin and uncompressed SHA-256 digest.
 
 Regional release evidence is explicitly enumerated in `data/uk/source/regional/release-evidence.json`. OSM supplies ordered calls and track nodes. Operator/authority maps cross-check the reviewed services. Regional evidence is not labelled as a TfL-verified sequence.
+
+The second National Rail expansion keeps reviewed directions in `data/uk/source/national/expansion-ii.json`, per-relation extract provenance in `osm-extract-sources.json`, and unfinished candidates in `expansion-ii-queue.json` in the same directory. To inspect additional OSM passenger routes, use `tools/extract-uk-osm-relations.py` with pyosmium and regional PBFs from the same publication, then run `node tools/review-uk-osm-extract.cjs <extract-directory>`. Review the endpoints and ordered calls against the operator evidence before adding a relation to the release list.
 
 Korean names are an explicit, editable editorial dictionary. They are not represented as official operator translations or as verified Namuwiki readings. English source names remain intact. Shared station IDs and interchange naming groups propagate saved overrides across affected UK lines. Distinct named stations in a common complex, such as Bank and Monument, retain their distinct names.
 

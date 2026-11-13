@@ -1,82 +1,24 @@
 # United Kingdom railway expansion progress
 
-Updated: 2026-11-11 (Asia/Seoul). **Substantial partial implementation; the full UK railway network is not complete.**
+## National Railway Mega Expansion II
 
-## Current measured inventory
+Source review: 2026-11-12. This is a partial British railway catalogue.
+Baseline: 520e00ec0 (all 284 directions checked for preserved route, station and geometry references).
 
-| Metric | Repository value |
-| --- | ---: |
-| operators | 21 |
-| lines | 56 |
-| servicePatterns | 176 |
-| playableDirections | 284 |
-| uniqueStations | 1146 |
-| uniquePhysicalStationGroups | 1065 |
-| koreanNamedStations | 1146 |
-| sharedSegments | 2588 |
+| Metric | Before | Added | Final |
+| --- | ---: | ---: | ---: |
+| Operating organisations | 21 | 14 | 35 |
+| Lines / corridors | 56 | 106 | 162 |
+| Service pattern families | 176 | 209 | 385 |
+| Playable directions | 284 | 379 | 663 |
+| Station IDs | 1146 | 1389 | 2535 |
+| Physical station groups | 1065 | 1169 | 2234 |
+| Shared track segments | 2588 | 3124 | 5712 |
 
-Station IDs count source records. Physical station groups reuse published TfL hubs and merge new identically named, identically localized records only within 500 metres. Different cities' stations with the same name remain separate. Korean coverage is editorial coverage, not a claim of official Korean translations.
+Korean localisation: 2535/2535 station IDs. These are editable Korean editorial names. Original English names and existing user overrides are preserved.
+Physical groups include nearby records that share the same reviewed English and Korean names and existing TfL interchange identifiers. Track geometry is reused by its original OSM node sequence and loaded in cached geographic partitions.
 
-| Line / passenger corridor | Source station IDs | Playable directions |
-| --- | ---: | ---: |
-| Bakerloo | 25 | 2 |
-| Central | 49 | 10 |
-| Circle | 36 | 2 |
-| District | 60 | 14 |
-| DLR | 45 | 10 |
-| Elizabeth line | 43 | 19 |
-| Hammersmith & City | 29 | 2 |
-| Jubilee | 27 | 2 |
-| Liberty | 3 | 2 |
-| Lioness | 19 | 2 |
-| Metropolitan | 35 | 8 |
-| Mildmay | 29 | 4 |
-| Northern | 52 | 16 |
-| Piccadilly | 53 | 6 |
-| Suffragette | 13 | 2 |
-| Tram | 39 | 6 |
-| Victoria | 16 | 2 |
-| Waterloo & City | 2 | 2 |
-| Weaver | 25 | 6 |
-| Windrush | 29 | 8 |
-| Edinburgh Trams | 23 | 2 |
-| Glasgow Subway | 15 | 2 |
-| Tyne and Wear Metro Green line | 31 | 2 |
-| Tyne and Wear Metro Yellow line | 41 | 2 |
-| Supertram Yellow route | 25 | 2 |
-| Supertram Blue route | 33 | 2 |
-| Supertram Purple route | 14 | 2 |
-| Supertram Tram Train | 15 | 2 |
-| Blackpool Tramway | 40 | 4 |
-| East Coast Main Line · Lumo | 8 | 8 |
-| West Midlands Metro | 33 | 4 |
-| Manchester Metrolink | 99 | 20 |
-| Merseyrail Northern line | 37 | 6 |
-| Merseyrail Wirral line | 34 | 8 |
-| Neilston line | 12 | 2 |
-| East Kilbride line | 10 | 2 |
-| Paisley Canal line | 7 | 2 |
-| Shotts line | 20 | 2 |
-| Edinburgh–Glasgow via Carstairs | 7 | 2 |
-| Cathcart Circle | 11 | 2 |
-| Newton line via Langside | 11 | 2 |
-| East Coast Main Line · LNER | 27 | 50 |
-| Hucknall–Toton Lane line | 36 | 2 |
-| Phoenix Park–Clifton South line | 30 | 2 |
-| West Coast Main Line via Trent Valley | 9 | 2 |
-| West Coast Main Line via Birmingham | 17 | 2 |
-| West Coast Main Line Manchester branches | 8 | 3 |
-| West Coast Main Line Liverpool branch | 5 | 1 |
-| Great Northern East Coast Main Line | 6 | 2 |
-| Great Northern Cambridge line | 17 | 2 |
-| Great Northern Fen line | 9 | 4 |
-| Thameslink Midland and Brighton Main Lines | 24 | 2 |
-| Thameslink Cambridge–Brighton corridor | 21 | 2 |
-| Thameslink East Coast and Arun Valley | 26 | 2 |
-| Great Western Main Line to Didcot | 10 | 2 |
-| Heathrow Express | 3 | 1 |
-
-## Operating organisations
+## Current operating organisations
 
 - London Underground — 런던 지하철
 - KeolisAmey Docklands — 케올리스아메이 도클랜즈
@@ -99,51 +41,182 @@ Station IDs count source records. Physical station groups reuse published TfL hu
 - Greater Thameslink Railway — 그레이터 템스링크 철도
 - Great Western Railway — 그레이트 웨스턴 철도
 - Heathrow Express — 히스로 익스프레스
+- West Midlands Trains — 웨스트미들랜즈 트레인스
+- TransPennine Express — 트랜스페나인 익스프레스
+- Grand Central — 그랜드 센트럴
+- Lumo (First Rail Stirling) — 루모 (퍼스트 레일 스털링)
+- Transport for Wales — 트랜스포트 포 웨일스
+- Southeastern — 사우스이스턴
+- South Western Railway — 사우스웨스턴 철도
+- Greater Anglia — 그레이터 앵글리아
+- c2c — C2C
+- Chiltern Railways — 칠턴 철도
+- East Midlands Railway — 이스트미들랜즈 철도
+- CrossCountry — 크로스컨트리
+- Northern — 노던
+- Caledonian Sleeper — 칼레도니언 슬리퍼
 
-## Implementation batches and preserved baseline
+## This phase by operator and corridor
 
-- PR #33 introduced 9 organisations, 28 lines, 73 families, 129 directions, 657 station IDs, 605 physical groups and 1,504 segments. Report commit: 55fda6a9161e7138cfef42b76daf87908707d63c. Merge: 97d34ea5f9abf854645c5d2579b72faec4d8232e.
-- Regional/intercity batch commit: 8931d5535. UK free-drive repeated-visit repair: 10a6e94ff.
-- London repair commit: 26abc3946. All 12 previously blocked TfL directions were restored. The original 129 pattern IDs, station sequences and segment references remain frozen and automatically checked.
-- Repairs: import real track edges independently of incomplete stop membership; backtrack failed platform choices; consider 128 candidate vertices within the original 300 metre gate; explicitly anchor Heathrow T5 to documented OSM platform nodes 1508864707/254350058. No synthetic junctions or straight-line railway segments were added.
-- Fresh District, DLR, Elizabeth and Northern TfL stopping sequences matched the preserved official source sequences on November 10. No London regular sequence remains blocked: 0.
-- Regional expansion: Manchester Metrolink covers all 99 stops and current regular/part-day routes, including the Trafford Centre–Crumpsall service and Eccles variants. NET includes both lines, all 50 stops, and different northbound/southbound city loops. Blackpool includes direct coastal and North Station variants. West Midlands Metro includes both Wolverhampton termini; Millennium Point through-running remains excluded pending sufficient route evidence.
-- National Rail includes 8 operating organisations, 23 corridors and 111 directions: Lumo, Merseyrail, ScotRail, LNER, Avanti West Coast, Greater Thameslink Railway (Great Northern and Thameslink), GWR and Heathrow Express.
-- Additional timetable comparison was stopped at the user's request. Previously completed LNER evidence remains reproducible reference data. Further expansion uses official network maps and source OSM route relations, with geometry and gameplay checks; it does not claim timetable certification.
+| Operating organisation | Added or extended corridor | Direction IDs added |
+| --- | --- | ---: |
+| West Midlands Trains | London Northwestern · West Coast Main Line | 4 |
+| West Midlands Trains | London Northwestern · Northampton and Coventry corridor | 4 |
+| ScotRail | Inverclyde Line | 4 |
+| ScotRail | Ayrshire Coast Line | 6 |
+| ScotRail | Argyle Line | 10 |
+| ScotRail | Glasgow–Lanark Line | 2 |
+| ScotRail | Glasgow South Western Line | 10 |
+| TransPennine Express | TransPennine · Anglo-Scottish corridor | 4 |
+| Grand Central | Grand Central · North East route | 2 |
+| Lumo (First Rail Stirling) | Lumo · Stirling–London | 2 |
+| ScotRail | Maryhill Line | 2 |
+| ScotRail | North Clyde Line | 8 |
+| ScotRail | Far North Line | 2 |
+| ScotRail | Kyle of Lochalsh Line | 2 |
+| ScotRail | Aberdeen–Inverness Line | 4 |
+| ScotRail | West Highland Line | 4 |
+| ScotRail | East Lothian corridor | 4 |
+| ScotRail | Cumbernauld–Falkirk corridor | 4 |
+| ScotRail | Dunblane Line | 2 |
+| ScotRail | Alloa Line | 2 |
+| ScotRail | Edinburgh–Glasgow via Falkirk High | 2 |
+| ScotRail | Fife and Tay corridors | 10 |
+| ScotRail | East Coast Main Line · Edinburgh and Aberdeen | 8 |
+| ScotRail | Glasgow–Dundee–Aberdeen corridor | 4 |
+| ScotRail | Highland Main Line | 4 |
+| ScotRail | Borders Railway | 2 |
+| Transport for Wales | Ebbw Valley and Maesteg lines | 4 |
+| Transport for Wales | Conwy Valley Line | 4 |
+| Transport for Wales | Cardiff Bay Line | 4 |
+| Transport for Wales | Rhymney and Vale of Glamorgan lines | 8 |
+| Transport for Wales | Coryton and Penarth lines | 2 |
+| Transport for Wales | Rhondda Line | 2 |
+| Transport for Wales | Cambrian Coast Line | 2 |
+| Transport for Wales | West Wales Lines · Pembroke Dock | 2 |
+| Southeastern | South Eastern Main Line · Grove Park corridor | 2 |
+| Southeastern | Bromley North Line | 2 |
+| South Western Railway | South West Main Line | 6 |
+| South Western Railway | Portsmouth Direct Line | 2 |
+| South Western Railway | Lymington Branch Line | 2 |
+| South Western Railway | West of England Main Line | 2 |
+| South Western Railway | Alton Line | 2 |
+| South Western Railway | Shepperton Branch Line | 2 |
+| South Western Railway | Ascot–Aldershot corridor | 2 |
+| Greater Thameslink Railway | Southern · Uckfield Line | 4 |
+| Southeastern | Hayes Line | 2 |
+| Southeastern | Hastings Line | 2 |
+| Southeastern | Chatham Main Line | 6 |
+| Southeastern | South Eastern Main Line · Kent | 4 |
+| Southeastern | Medway Valley Line | 2 |
+| Southeastern | High Speed 1 · Kent Javelin | 6 |
+| Greater Anglia | Great Eastern Main Line | 2 |
+| Greater Anglia | Stansted Express | 2 |
+| Greater Anglia | West Anglia Main Line | 2 |
+| Greater Anglia | East Suffolk Line | 2 |
+| Greater Anglia | Breckland Line | 2 |
+| c2c | London, Tilbury and Southend line | 6 |
+| Chiltern Railways | Chiltern Main Line | 8 |
+| Chiltern Railways | Oxford–Bicester corridor | 6 |
+| Chiltern Railways | London–Aylesbury lines | 6 |
+| Chiltern Railways | Stratford-upon-Avon branch | 2 |
+| East Midlands Railway | Midland Main Line | 4 |
+| East Midlands Railway | Liverpool–Norwich corridor | 2 |
+| East Midlands Railway | Poacher Line | 2 |
+| East Midlands Railway | Derwent Valley Line | 2 |
+| East Midlands Railway | Lincolnshire regional corridors | 6 |
+| West Midlands Trains | Cross-City Line | 4 |
+| West Midlands Trains | Stourbridge Town branch | 2 |
+| West Midlands Trains | Abbey Line | 2 |
+| West Midlands Trains | Marston Vale Line | 2 |
+| CrossCountry | CrossCountry · Birmingham–Stansted corridor | 2 |
+| CrossCountry | CrossCountry · Nottingham–Cardiff corridor | 2 |
+| CrossCountry | CrossCountry · Manchester–Bournemouth corridor | 2 |
+| Northern | Tyne Valley Line | 2 |
+| Northern | Tees Valley Line | 4 |
+| Northern | Esk Valley Line | 2 |
+| Northern | Cumbrian Coast and Furness lines | 2 |
+| Northern | Windermere branch | 2 |
+| Northern | Liverpool–Manchester via Earlestown | 2 |
+| Northern | Crewe–Manchester corridor | 8 |
+| Northern | South Fylde Line | 2 |
+| Transport for Wales | Heart of Wales Line | 2 |
+| Transport for Wales | Cambrian Main Line | 4 |
+| Transport for Wales | North Wales Coast Line | 4 |
+| Transport for Wales | Welsh Marches Line | 6 |
+| Transport for Wales | Severn Estuary Line | 2 |
+| Transport for Wales | West Wales Lines · Fishguard and Milford Haven | 4 |
+| Great Western Railway | Great Western Main Line · Bristol and South Wales | 8 |
+| Great Western Railway | Reading–Taunton line · Penzance and Frome | 4 |
+| Great Western Railway | Cotswold Line | 4 |
+| Great Western Railway | North Downs Line | 4 |
+| Great Western Railway | Reading–Basingstoke Line | 2 |
+| Great Western Railway | Greenford Branch Line | 2 |
+| Great Western Railway | Marlow Branch Line | 2 |
+| Great Western Railway | Slough–Windsor branch | 2 |
+| Great Western Railway | Avocet and Riviera lines | 4 |
+| Great Western Railway | Dartmoor Line | 2 |
+| Great Western Railway | Tarka Line | 2 |
+| Caledonian Sleeper | Lowland Sleeper | 4 |
+| West Midlands Trains | Camp Hill Line | 2 |
+| West Midlands Trains | Snow Hill Lines | 8 |
+| West Midlands Trains | Chase Line | 2 |
+| West Midlands Trains | Birmingham–Shrewsbury line | 4 |
+| West Midlands Trains | Birmingham–Hereford via Worcester | 4 |
+| West Midlands Trains | Coventry–Leamington and Coventry–Nuneaton lines | 2 |
+| West Midlands Trains | London Northwestern · Liverpool–Birmingham corridor | 4 |
+| Northern | Sheffield–Lincoln line | 2 |
 
-## Validation actually observed
+## Validation and production
 
-- Source-node/edge integrity, station coordinates, Korean names, service selection, endpoints and preserved baseline: see reports/uk/data-tests.json.
-- Gameplay runs completed in reports/uk/browser-tests.json: 284; report status: PASS. All recorded game runs and UI assertions passed.
-- No new browser runtime errors recorded: yes.
-- Existing country switch regression: jp 606 PASS; kr 8275 PASS; hk 105 PASS; th 23 PASS; tw 46 PASS.
-- Full UK free-drive progression: {"status":"PASS","directions":284,"transitions":4871}. Geometry loading: {"status":"PASS","files":109,"wholePoolRequested":false,"duplicateRequests":0}.
-- Edit propagation, English/Korean nameboards and mobile checks are recorded in the browser reports. Regional nameboard checks: 6.
-- UK ranking identity test uses isolated guest data. No authenticated fabricated score is uploaded.
-- Linux GitHub Actions full UK run: PASS — https://github.com/s3h0726/SUBTYPE/actions/runs/42844680157. On Windows, the Node entry points in the requested npm scripts were run directly because an npm executable was unavailable.
-- Known pre-existing global issues remain separate: 267 legacy station-master duplicates, 40 previously blocked route-audit cases, and missing Ueno payload line-11229--jobansen-totte-iwaki.json. These are not claimed fixed by this expansion.
+- Route resolver, stable IDs, Korean names, geographical station bounds, directional endpoints and original OSM edges: PASS.
+- Browser: A complete passing run for this catalogue is pending.
+- Free driving: pending.
+- Other countries: pending..
+- Leaderboard identity: PASS.
+- Implementation commit: pending. Batches: 2276e770a, 192f36c99, aaf49fee3.
+- UK GitHub Actions: PASS for the 424-direction main release — https://github.com/s3h0726/SUBTYPE/actions/runs/43236546597.
+- Main integration: 424 directions integrated at aaf49fee3; main subsequently added seven directions in PR #36. Third batch awaiting full browser validation..
+- GitHub Pages: PASS for 431 directions, checked 2026-11-13T14:14:07.742Z — https://s3h0726.github.io/SUBTYPE/.
+- Public browser journeys: uk-lnwr-west-coast (13 stops), uk-scotrail-borders (10 stops), uk-tfw-cambrian-coast (27 stops).
 
-## Source accuracy and licensing
+## Sources and reproducibility
 
-- Source archive and SHA-256 checksums: data/uk/source/manifest.json. OSM track geometry and station records: ODbL-1.0, © OpenStreetMap contributors. TfL official sequences retain their source attribution.
-- Per-service evidence, expected calls, reviewed source relations and official URLs: data/uk/source/regional/release-evidence.json. Source geometry is shared by node-sequence hash. The lazy country/line loader fetches cached geographic geometry partitions, preserving one canonical runtime copy of each segment.
-- LNER source call/track exclusions remain in data/uk/source/timetables/lner-track-review.json. Excluded records are not catalogue entries. No HS2, Eurostar or unverified cross-border service has been released.
+- Completed service IDs, ordered calls and operator evidence are in data/uk/source/national/expansion-ii.json. Operator identities are recorded in data/uk/operator-evidence.json.
+- Archived OSM snapshots and their uncompressed SHA-256 checksums are in data/uk/source/manifest.json. Geofabrik extracts retain OSM node IDs, way IDs, versions and ordered relation membership. © OpenStreetMap contributors, ODbL-1.0.
+- Services use individually reviewed passenger relations and official operator or authority maps. This expansion did not repeat an exhaustive timetable comparison.
+- The existing UK selection, typing, editable Korean names, ranking, regional nameboards and free drive remain in the same application.
 
-## Git and deployment
+## Remaining candidate queue
 
-- Working branch: feature/uk-railway-completion.
-- Verified implementation commit: 324c9b45e8e3efbb6ccd1dde38b8696ba1965efa.
-- Report predecessor HEAD: 8bbd05b5954e767e83841f13f912926e71b027f5. The report's own commit can be found in Git history.
-- Main integration of this expansion: pushed directly to main; verified implementation remains in its history.
-- Production verification for this expansion: success; actual public UI: PASS.
-- Observed production: 2026-11-11T13:55:59.160Z; workflow https://github.com/s3h0726/SUBTYPE/actions/runs/42844679896. Representative completions: uk-waterloo-city (2 stops), uk-heathrow-express (3 stops), uk-metrolink (33 stops). Production bundle SHA-256: 16cd9bffe27977e5bd1e2794477f6eaf5e4a746287ab43bad9ab594f71383a44.
-- This section reflects reports/uk/release-status.json. The November 8 deployment is stored separately as previousRelease and is not evidence of this expansion's deployment.
+Resume from data/uk/source/national/expansion-ii-queue.json. Only candidates represented in the generated catalogue are playable.
 
-## Precise remaining work
+| Priority | Operator / network | Remaining corridor | State and next verification |
+| --- | --- | --- | --- |
+| A1 | South Western Railway | Windsor, Kingston, Chessington, Island Line and Portsmouth variants | pending — Chessington relation 8646998 ends at Tolworth; Portsmouth Harbour fast pair has conflicting calls at Farncombe. Review operator-specific source |
+| A1 | Southern / Gatwick Express | Brighton Main Line, Coastway, Sussex and London branches | pending — Uckfield added. Other passenger service relations lack both ordered directions in the archive |
+| A1 | Southeastern | More London Metro and Kent patterns | pending — Hayes–Charing Cross snapshot omits Waterloo East; Victoria–Orpington relations truncate at Herne Hill. Main line and other branches added |
+| A1 | Greater Anglia / Stansted Express | Hertford East, rural branches, other regular airport calls | pending — Stratford–Meridian Water track ways disconnected; Hertford East reverse still to resolve |
+| A1 | c2c | Other distinct regular variants | pending — All three operator route families added, via Basildon, Ockendon and Rainham |
+| A1 | Chiltern Railways | Further through-running and express variants | pending — Main, Aylesbury, Oxford and Stratford corridors added; retain separate verified stopping patterns |
+| A2 | East Midlands Railway | Remaining regional branches | pending — Main intercity and key east–west/regional corridors added |
+| A2 | West Midlands Railway / London Northwestern Railway | Further local branches and express variants | pending — Main regional corridors added. Walsall–Wolverhampton 20188633 has unnamed stop 1870159460 and asymmetric calls |
+| A2 | CrossCountry | North East–South West, Birmingham–Stansted and Wales | pending — Check exact calls of archived relations 21116357 and 21116358. Leeds stop nodes lack names; connect only source track |
+| A3 | Northern | Northumberland, Settle–Carlisle, Hope Valley, Manchester and other branches | pending — Northumberland relations omit new stations; Settle–Carlisle relations use unnamed Leeds stop nodes. Cumbrian Coast pairs reference a crossing and an untagged node as calls |
+| A3 | TransPennine Express | South TransPennine and remaining North routes | pending — South pair 237386/4234434 marks an untagged node and a buffer stop as passenger stops; locate active platform anchors |
+| A3 | Hull Trains / Grand Central | Hull and Bradford branches | pending — Verify both directions and their real ordered calls from an operator-supported source |
+| A4 | Transport for Wales | Borderlands and remaining valley variants | pending — Major cross-border links added. Aberdare–Merthyr 195448/20622496 still needs current through-service evidence |
+| A4 | Great Western Railway | Further local and night services | pending — Falmouth Maritime relation 19902608 includes disused siding 300616008. Require a continuous active path |
+| A5 | ScotRail | Remaining routes and regional variants | pending — Fife circle relation 20044083 and minor short workings need distinct regular commercial evidence |
+| A5 | Caledonian Sleeper | Highland services | pending — Lowland Glasgow and Edinburgh added. Archived Highland passenger calls predate the Birmingham International change |
+| A6 | Avanti / Heathrow Express / LNER / Lumo | Missing reverse and branch patterns | pending — Baseline Avanti Manchester/Liverpool and Heathrow Express opposite directions require independent source track; extend only genuine current services |
+| C | Southeastern HS1 | Further through journeys beyond Kent branches | pending — Six directions via Ashford or the Medway towns added. Check Dover/Ramsgate through workings and peak-only variants separately |
+| C | Eurostar | St Pancras–Channel Tunnel–continental destinations | blocked — Twelve Eurostar relations in Britain extract miss continental members. Download matching continental extracts and validate complete cross-border paths |
+| C | HS2 | Commercial passenger service | blocked — Exclude until passenger operation is officially established |
+| D | West Midlands Metro | Wolverhampton through-running via Millennium Point | blocked — Official April 2026 opening and service evidence verified. OSM 20439814/20439815 cover Millennium Point–Edgbaston section; find complete through-track and preserve the reversal |
+| D | Existing regional light rail | Metrolink, Edinburgh, Blackpool, Tyne and Wear, Sheffield | pending — Existing regular service catalogue preserved; verify additional distinct operating patterns after major National Rail gaps |
 
-1. West Midlands Millennium Point services: source relations 20439814/20439815 exist, but complete passenger through-running and reversal assumptions are not released. Do not treat all track stop nodes as a certified stopping pattern.
-2. Manchester early/late depot and short-turn variants beyond published regular services; Blackpool additional turnbacks; Edinburgh short turns; additional Tyne/Wear and Sheffield variants.
-3. Remaining National Rail corridors/operators: South Western Railway, Southern, Southeastern, Greater Anglia, c2c, Chiltern, East Midlands Railway, West Midlands Railway/London Northwestern Railway, CrossCountry, Northern, TransPennine Express, Transport for Wales, Hull Trains, Grand Central and Caledonian Sleeper. Among the operators already present, the opposite directions for the three Avanti Manchester variants, Avanti Liverpool and Heathrow Express need independently verified track sources. The Sleeper's archived Highland relations predate the Birmingham International change; confirm commercial calls on the Lowland services before using their source relations. Check the inventory before adding any duplicate.
-4. Remaining high-speed/international coverage: Southeastern HS1, Eurostar complete UK/Channel Tunnel/continental alignments, and international station localization. HS2 remains excluded until actual passenger operations are evidenced.
-5. Continue Korean editorial review against established Korean references, preserve existing overrides, and add explicitly evidenced interchanges whose official English station names differ.
-6. For each additional batch, preserve stable IDs, assemble only source railway node edges, run full direction gameplay and regressions, commit, push main and verify the public site. Source OSM API parent discovery returned HTTP 429 during this session; do not treat unavailable source data as permission to invent a route.
+## Earlier releases
+
+- PR #33 introduced 129 directions. London recovery 26abc3946 restored all 12 previously blocked official TfL patterns. Regional expansion 8931d5535 added the four major tram systems and intercity coverage.
+- Previous production release: ea4696898cf2fcb17d3278eda13766e9a1540e23. The baseline stores its 284 directions independently of the new batches.

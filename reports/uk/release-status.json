@@ -1,198 +1,64 @@
 {
-  "checkedAt": "2026-11-11T13:55:59.160Z",
+  "checkedAt": "2026-11-13T14:20:52.697Z",
   "branch": "feature/uk-railway-completion",
-  "baseSha": "f628f0cd8",
-  "sourceCommit": "324c9b45e8e3efbb6ccd1dde38b8696ba1965efa",
-  "mainBeforeReport": "8bbd05b5954e767e83841f13f912926e71b027f5",
-  "mainIntegration": "pushed directly to main; verified implementation remains in its history",
+  "baseSha": "520e00ec0",
+  "mainIntegration": "424 directions integrated at aaf49fee3; main subsequently added seven directions in PR #36. Third batch awaiting full browser validation.",
   "commits": {
-    "london": "26abc3946",
-    "regionalAndIntercity": "8931d5535",
-    "freeDrive": "10a6e94ff",
-    "nationalRailAndGeometry": "324c9b45e8e3efbb6ccd1dde38b8696ba1965efa"
+    "westCoastAndScotland": "2276e770a",
+    "scotlandAndWales": "192f36c99",
+    "mainIntegration": "aaf49fee3"
   },
   "inventory": {
-    "operators": 21,
-    "lines": 56,
-    "servicePatterns": 176,
-    "playableDirections": 284,
-    "uniqueStations": 1146,
-    "uniquePhysicalStationGroups": 1065,
-    "koreanNamedStations": 1146,
-    "sharedSegments": 2588
+    "operators": 35,
+    "lines": 162,
+    "servicePatterns": 385,
+    "playableDirections": 663,
+    "uniqueStations": 2535,
+    "koreanNamedStations": 2535,
+    "sharedSegments": 5712,
+    "uniquePhysicalStationGroups": 2234
   },
   "validation": {
     "data": "PASS",
-    "ukUnitTests": 11,
-    "legacyFreeDriveUnitTests": 17,
     "leaderboardIdentity": "PASS",
-    "gameplayDirections": 284,
-    "freeDrive": {
-      "status": "PASS",
-      "directions": 284,
-      "transitions": 4871
-    },
-    "geometryLoading": {
-      "status": "PASS",
-      "files": 109,
-      "wholePoolRequested": false,
-      "duplicateRequests": 0
-    },
-    "existingCountries": [
-      {
-        "country": "jp",
-        "status": "PASS",
-        "routes": 606
-      },
-      {
-        "country": "kr",
-        "status": "PASS",
-        "routes": 8275
-      },
-      {
-        "country": "hk",
-        "status": "PASS",
-        "routes": 105
-      },
-      {
-        "country": "th",
-        "status": "PASS",
-        "routes": 23
-      },
-      {
-        "country": "tw",
-        "status": "PASS",
-        "routes": 46
-      }
-    ],
-    "mobileBoards": [
-      {
-        "lineId": "uk-metrolink",
-        "style": "uk-metrolink",
-        "clipped": false,
-        "overlap": false,
-        "status": "PASS"
-      },
-      {
-        "lineId": "uk-west-midlands-metro",
-        "style": "uk-tram",
-        "clipped": false,
-        "overlap": false,
-        "status": "PASS"
-      },
-      {
-        "lineId": "uk-blackpool-tramway",
-        "style": "uk-tram",
-        "clipped": false,
-        "overlap": false,
-        "status": "PASS"
-      },
-      {
-        "lineId": "uk-net-hucknall-toton",
-        "style": "uk-tram",
-        "clipped": false,
-        "overlap": false,
-        "status": "PASS"
-      },
-      {
-        "lineId": "uk-lner-east-coast",
-        "style": "uk-national-rail",
-        "clipped": false,
-        "overlap": false,
-        "status": "PASS"
-      },
-      {
-        "lineId": "uk-scotrail-shotts",
-        "style": "uk-national-rail",
-        "clipped": false,
-        "overlap": false,
-        "status": "PASS"
-      }
-    ],
     "ci": {
-      "status": "PASS",
-      "runId": 42844680157,
-      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42844680157",
-      "testedCommit": "324c9b45e8e3efbb6ccd1dde38b8696ba1965efa"
+      "status": "PASS for the 424-direction main release",
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/43236546597"
     }
   },
   "productionDeployment": {
-    "status": "success",
-    "runId": 42844679896,
-    "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42844679896",
-    "site": "https://s3h0726.github.io/SUBTYPE/",
-    "observedImplementationCommit": "324c9b45e8e3efbb6ccd1dde38b8696ba1965efa",
-    "checkedAt": "2026-11-11T13:55:59.160Z",
+    "status": "PASS for 431 directions",
+    "checkedAt": "2026-11-13T14:14:07.742Z",
+    "url": "https://s3h0726.github.io/SUBTYPE/",
     "actualUIPlaythrough": "PASS",
+    "geometryMatchesRepository": true,
+    "bundleSha256": "36227ea64a89f28baeb3246645a3c710a8c527c707e421de4357414dea9b4643",
     "routes": [
       {
-        "lineId": "uk-waterloo-city",
-        "stops": 2
+        "lineId": "uk-lnwr-west-coast",
+        "stops": 13
       },
       {
-        "lineId": "uk-heathrow-express",
-        "stops": 3
+        "lineId": "uk-scotrail-borders",
+        "stops": 10
       },
       {
-        "lineId": "uk-metrolink",
-        "stops": 33
+        "lineId": "uk-tfw-cambrian-coast",
+        "stops": 27
       }
-    ],
-    "bundleSha256": "16cd9bffe27977e5bd1e2794477f6eaf5e4a746287ab43bad9ab594f71383a44",
-    "geometryMatchesRepository": true,
-    "leaderboardCountry": "uk"
+    ]
   },
   "previousRelease": {
-    "checkedAt": "2026-11-08",
-    "baseSha": "e1771623bbb9854ed430d366389e53f223bd20e7",
-    "branch": "feature/uk-railway-expansion",
-    "mainIntegration": "merged",
-    "productionDeployment": {
-      "status": "success",
-      "runId": 42480716525,
-      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42480716525",
-      "site": "https://s3h0726.github.io/SUBTYPE/",
-      "checkedAt": "2026-11-08T12:37:08.131Z",
-      "actualUIPlaythrough": "PASS",
-      "typedStations": [
-        "워털루",
-        "뱅크"
-      ],
-      "publishedGeometryMatchesRepository": true,
-      "bundleSha256": "0e3a5630e13b4c48c0dd97a1bc5f88fdb4158aab800358a7ba544bc5a3a6f822"
-    },
-    "leaderboardBackend": {
-      "migration": "allow_uk_ranking_country",
-      "applied": true,
-      "ukCountryAllowed": true,
-      "ownershipPolicyPreserved": true,
-      "rlsEnabled": true,
-      "anonymousInsertAllowed": false,
-      "authenticatedScoreUploadTested": false
-    },
-    "implementationCommit": "a63eb76cdf647e6b2812519df1d9e09e99d58e7d",
-    "featureBranchPushed": true,
-    "pullRequest": "https://github.com/s3h0726/SUBTYPE/pull/33",
-    "initialUKCI": {
-      "status": "success",
-      "runId": 42479741348,
-      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42479741348"
-    },
-    "verifiedCodeCommit": "6aef4042b5348f516b0ae10f9069cb6cd80280fb",
-    "mergeCommit": "97d34ea5f9abf854645c5d2579b72faec4d8232e",
-    "commits": [
-      "a63eb76cdf647e6b2812519df1d9e09e99d58e7d",
-      "821e5d61facb17163d1d3156ac97742e869e1f57",
-      "6aef4042b5348f516b0ae10f9069cb6cd80280fb"
-    ],
-    "finalUKCI": {
-      "status": "success",
-      "runId": 42480247754,
-      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/42480247754"
-    },
-    "sourceSnapshotChecksums": {
-      "verified": 238,
-      "failed": 0
+    "commit": "ea4696898cf2fcb17d3278eda13766e9a1540e23",
+    "inventory": {
+      "operators": 21,
+      "lines": 56,
+      "servicePatterns": 176,
+      "playableDirections": 284,
+      "uniqueStations": 1146,
+      "uniquePhysicalStationGroups": 1065,
+      "koreanNamedStations": 1146,
+      "sharedSegments": 2588
     }
   }
 }

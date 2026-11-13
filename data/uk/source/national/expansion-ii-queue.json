@@ -1,0 +1,160 @@
+{
+  "checkedAt": "2026-11-13",
+  "completedInventory": "data/uk/source/national/expansion-ii.json",
+  "items": [
+    {
+      "priority": "A1",
+      "operator": "South Western Railway",
+      "corridor": "Windsor, Kingston, Chessington, Island Line and Portsmouth variants",
+      "status": "pending",
+      "next": "Chessington relation 8646998 ends at Tolworth; Portsmouth Harbour fast pair has conflicting calls at Farncombe. Review operator-specific source"
+    },
+    {
+      "priority": "A1",
+      "operator": "Southern / Gatwick Express",
+      "corridor": "Brighton Main Line, Coastway, Sussex and London branches",
+      "status": "pending",
+      "next": "Uckfield added. Other passenger service relations lack both ordered directions in the archive"
+    },
+    {
+      "priority": "A1",
+      "operator": "Southeastern",
+      "corridor": "More London Metro and Kent patterns",
+      "status": "pending",
+      "next": "Hayes–Charing Cross snapshot omits Waterloo East; Victoria–Orpington relations truncate at Herne Hill. Main line and other branches added"
+    },
+    {
+      "priority": "A1",
+      "operator": "Greater Anglia / Stansted Express",
+      "corridor": "Hertford East, rural branches, other regular airport calls",
+      "status": "pending",
+      "next": "Stratford–Meridian Water track ways disconnected; Hertford East reverse still to resolve"
+    },
+    {
+      "priority": "A1",
+      "operator": "c2c",
+      "corridor": "Other distinct regular variants",
+      "status": "pending",
+      "next": "All three operator route families added, via Basildon, Ockendon and Rainham"
+    },
+    {
+      "priority": "A1",
+      "operator": "Chiltern Railways",
+      "corridor": "Further through-running and express variants",
+      "status": "pending",
+      "next": "Main, Aylesbury, Oxford and Stratford corridors added; retain separate verified stopping patterns"
+    },
+    {
+      "priority": "A2",
+      "operator": "East Midlands Railway",
+      "corridor": "Remaining regional branches",
+      "status": "pending",
+      "next": "Main intercity and key east–west/regional corridors added"
+    },
+    {
+      "priority": "A2",
+      "operator": "West Midlands Railway / London Northwestern Railway",
+      "corridor": "Further local branches and express variants",
+      "status": "pending",
+      "next": "Main regional corridors added. Walsall–Wolverhampton 20188633 has unnamed stop 1870159460 and asymmetric calls"
+    },
+    {
+      "priority": "A2",
+      "operator": "CrossCountry",
+      "corridor": "North East–South West, Birmingham–Stansted and Wales",
+      "status": "pending",
+      "next": "Check exact calls of archived relations 21116357 and 21116358. Leeds stop nodes lack names; connect only source track"
+    },
+    {
+      "priority": "A3",
+      "operator": "Northern",
+      "corridor": "Northumberland, Settle–Carlisle, Hope Valley, Manchester and other branches",
+      "status": "pending",
+      "next": "Northumberland relations omit new stations; Settle–Carlisle relations use unnamed Leeds stop nodes. Cumbrian Coast pairs reference a crossing and an untagged node as calls"
+    },
+    {
+      "priority": "A3",
+      "operator": "TransPennine Express",
+      "corridor": "South TransPennine and remaining North routes",
+      "status": "pending",
+      "next": "South pair 237386/4234434 marks an untagged node and a buffer stop as passenger stops; locate active platform anchors"
+    },
+    {
+      "priority": "A3",
+      "operator": "Hull Trains / Grand Central",
+      "corridor": "Hull and Bradford branches",
+      "status": "pending",
+      "next": "Verify both directions and their real ordered calls from an operator-supported source"
+    },
+    {
+      "priority": "A4",
+      "operator": "Transport for Wales",
+      "corridor": "Borderlands and remaining valley variants",
+      "status": "pending",
+      "next": "Major cross-border links added. Aberdare–Merthyr 195448/20622496 still needs current through-service evidence"
+    },
+    {
+      "priority": "A4",
+      "operator": "Great Western Railway",
+      "corridor": "Further local and night services",
+      "status": "pending",
+      "next": "Falmouth Maritime relation 19902608 includes disused siding 300616008. Require a continuous active path"
+    },
+    {
+      "priority": "A5",
+      "operator": "ScotRail",
+      "corridor": "Remaining routes and regional variants",
+      "status": "pending",
+      "next": "Fife circle relation 20044083 and minor short workings need distinct regular commercial evidence"
+    },
+    {
+      "priority": "A5",
+      "operator": "Caledonian Sleeper",
+      "corridor": "Highland services",
+      "status": "pending",
+      "next": "Lowland Glasgow and Edinburgh added. Archived Highland passenger calls predate the Birmingham International change"
+    },
+    {
+      "priority": "A6",
+      "operator": "Avanti / Heathrow Express / LNER / Lumo",
+      "corridor": "Missing reverse and branch patterns",
+      "status": "pending",
+      "next": "Baseline Avanti Manchester/Liverpool and Heathrow Express opposite directions require independent source track; extend only genuine current services"
+    },
+    {
+      "priority": "C",
+      "operator": "Southeastern HS1",
+      "corridor": "Further through journeys beyond Kent branches",
+      "status": "pending",
+      "next": "Six directions via Ashford or the Medway towns added. Check Dover/Ramsgate through workings and peak-only variants separately"
+    },
+    {
+      "priority": "C",
+      "operator": "Eurostar",
+      "corridor": "St Pancras–Channel Tunnel–continental destinations",
+      "status": "blocked",
+      "next": "Twelve Eurostar relations in Britain extract miss continental members. Download matching continental extracts and validate complete cross-border paths"
+    },
+    {
+      "priority": "C",
+      "operator": "HS2",
+      "corridor": "Commercial passenger service",
+      "status": "blocked",
+      "next": "Exclude until passenger operation is officially established"
+    },
+    {
+      "priority": "D",
+      "operator": "West Midlands Metro",
+      "corridor": "Wolverhampton through-running via Millennium Point",
+      "status": "blocked",
+      "next": "Official April 2026 opening and service evidence verified. OSM 20439814/20439815 cover Millennium Point–Edgbaston section; find complete through-track and preserve the reversal"
+    },
+    {
+      "priority": "D",
+      "operator": "Existing regional light rail",
+      "corridor": "Metrolink, Edinburgh, Blackpool, Tyne and Wear, Sheffield",
+      "status": "pending",
+      "next": "Existing regular service catalogue preserved; verify additional distinct operating patterns after major National Rail gaps"
+    }
+  ]
+}
