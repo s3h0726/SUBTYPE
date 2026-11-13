@@ -31,7 +31,7 @@ for(const trip of official.trips.filter(t=>t.sheet==='호남선')){
 }
 for(const [key,p] of patterns){
  const id='kr-highspeed-honam-'+crypto.createHash('sha256').update(key).digest('hex').slice(0,14),start=p.stops[0].geometryIndex,end=p.stops.at(-1).geometryIndex,geometry=aligned.geometry.slice(start,end+1),stations=p.stops.map(s=>({...s,geometryIndex:s.geometryIndex-start}));
- const trainTypes=[...new Set(p.trips.map(t=>t.trainType))],types=trainTypes.map(t=>t.replace(/KTX/g,'케이티엑스'));
+ const trainTypes=[...new Set(p.trips.map(t=>t.trainType))],types=trainTypes.map(t=>t.replace(/케이티엑스/g,'KTX'));
  const name='용산 → 목포 '+types.join('·')+' '+stations.length+'개역 정차';
  const service={id,nameKo:name,nameJa:name,nameEn:name,stops:stations.map(s=>s.id)};
  const journey={id,patternId:id,patternName:{ko:name},directionId:'honam-down',tripIds:p.trips.map(t=>t.id),officialTrainNumbers:p.trips.map(t=>t.trainNumber),operatingCalendars:[...new Set(p.trips.map(t=>t.calendar))],service,stations,geometry,directedSegments:stations.slice(0,-1).map((s,i)=>({fromStationId:s.id,toStationId:stations[i+1].id,geometry:geometry.slice(s.geometryIndex,stations[i+1].geometryIndex+1),geometryStatus:'ready'}))};
