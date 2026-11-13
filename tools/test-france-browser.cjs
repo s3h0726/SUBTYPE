@@ -126,7 +126,7 @@ async function run() {
     const index = require('../data/fr/generated/index.json');
     const lines = publicBase ? index.routes.filter(route =>
       ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels',
-        'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b'].includes(route.id))
+        'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b', 'fr-rennes-metro-b'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);

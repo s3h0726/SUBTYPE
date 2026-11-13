@@ -4,21 +4,21 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 77,
-  "verifiedSourcePatternRecords": 77,
-  "remainingSourcePatternRecords": 13209,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.5795574288724974,
+  "coveredSourcePatternRecords": 81,
+  "verifiedSourcePatternRecords": 81,
+  "remainingSourcePatternRecords": 13205,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.6096643082944453,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 31,
-  "operators": 3,
-  "catalogServiceFamilies": 41,
-  "playableDirections": 75,
-  "verifiedPlayableDirections": 75,
-  "koreanNamedStations": 422,
-  "stationIds": 422,
-  "physicalStationGroups": 421,
-  "sharedPhysicalWays": 7844,
-  "uniquePhysicalWays": 13029,
+  "catalogLines": 33,
+  "operators": 4,
+  "catalogServiceFamilies": 43,
+  "playableDirections": 79,
+  "verifiedPlayableDirections": 79,
+  "koreanNamedStations": 450,
+  "stationIds": 450,
+  "physicalStationGroups": 449,
+  "sharedPhysicalWays": 7846,
+  "uniquePhysicalWays": 13199,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -120,9 +120,9 @@
     {
       "family": "subway",
       "sourcePatternRecords": 296,
-      "catalogLines": 20,
-      "playableDirections": 44,
-      "testedDirections": 44
+      "catalogLines": 22,
+      "playableDirections": 48,
+      "testedDirections": 48
     },
     {
       "family": "ter",
@@ -1535,6 +1535,74 @@
           "status": "VERIFIED_ADDED"
         }
       ]
+    },
+    {
+      "id": "fr-rennes-metro-a",
+      "category": "subway",
+      "regions": [
+        "53"
+      ],
+      "sourceRouteId": "7-1001",
+      "sourceLineId": "fr-line-1f7ef043416f21603ea44beb",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-d6e1cafec036d92467b8b78d",
+          "scheduleResourceId": 83281,
+          "sourcePatterns": [
+            "fr-pattern-e51b35d2172e52b063dbf3f7"
+          ],
+          "relationId": 23518,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-990273f063ae9f72568c74b2",
+          "scheduleResourceId": 83281,
+          "sourcePatterns": [
+            "fr-pattern-da91566a030ebaae78962d3a"
+          ],
+          "relationId": 3889840,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-rennes-metro-b",
+      "category": "subway",
+      "regions": [
+        "53"
+      ],
+      "sourceRouteId": "7-1002",
+      "sourceLineId": "fr-line-85b94338e60824c2b9228e14",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-0a9e7e17757fc66e7e23a37f",
+          "scheduleResourceId": 83281,
+          "sourcePatterns": [
+            "fr-pattern-b46f04b49d83e82d563b8390"
+          ],
+          "relationId": 4521994,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-04f1a5890bab75af8cd4cc67",
+          "scheduleResourceId": 83281,
+          "sourcePatterns": [
+            "fr-pattern-337558a1f91eefb71ce4daa1"
+          ],
+          "relationId": 6659012,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
     }
   ],
   "regionalCoverage": [
@@ -1649,7 +1717,9 @@
         81559
       ],
       "catalogLineIds": [
-        "fr-tgv-strasbourg-quimper"
+        "fr-tgv-strasbourg-quimper",
+        "fr-rennes-metro-a",
+        "fr-rennes-metro-b"
       ]
     },
     {
