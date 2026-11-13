@@ -16,6 +16,12 @@
   color: #fff;
 }
 
+.station-sign[data-sign-style="fr-star"] {
+  border-top: .45rem solid var(--route-color, #429854);
+  background: #26365a;
+  color: #fff;
+}
+
 .station-sign[data-template-family="fr-korean-first"] :is(#prompt-main, #prompt-sub, #station-line-label, #station-operator-mark) {
   color: #fff;
 }

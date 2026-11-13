@@ -22,10 +22,12 @@ const inventories = new Map([...new Set(specs.map(spec => spec.sourceId))].map(i
 const ratp = {ko: '파리 교통공사', fr: 'Régie autonome des transports parisiens', en: 'RATP'};
 const sncf = {ko: '프랑스국철 여객', fr: 'SNCF Voyageurs', en: 'SNCF Voyageurs'};
 const lyon = {ko: '파리 교통공사 개발 리옹', fr: 'RATP Dev Lyon', en: 'RATP Dev Lyon'};
+const rennes = {ko: '케올리스 렌 메트로폴', fr: 'Keolis Rennes Métropole', en: 'Keolis Rennes Métropole'};
 const sourceUrls = {
   83582: 'https://transport.data.gouv.fr/datasets/horaires-sncf',
   80921: 'https://transport.data.gouv.fr/datasets/reseau-urbain-et-interurbain-dile-de-france-mobilites',
   81943: 'https://transport.data.gouv.fr/datasets/horaires-theoriques-du-reseau-transports-en-commun-lyonnais',
+  83281: 'https://transport.data.gouv.fr/resources/83281',
 };
 const geometryTiles = new Map();
 const usedWays = new Map();
@@ -85,7 +87,8 @@ function connectedLegs(relation, track, files) {
 for (const spec of specs) {
   const inventory = inventories.get(spec.sourceId);
   const isLyon = spec.sourceId === 81943;
-  const isMetro = spec.sourceId === 80921 || isLyon;
+  const isRennes = spec.sourceId === 83281;
+  const isMetro = spec.sourceId === 80921 || isLyon || isRennes;
   const stationCatalog = new Map();
   const files = new Set();
   const patterns = [];
@@ -96,7 +99,8 @@ for (const spec of specs) {
     const relation = elements.find(element => element.type === 'relation' && element.id === relationId);
     // Lyon’s old OSM operator label remains useful for track identity. TCL
     // confirms RATP Dev took over metro operation on 2025-01-01.
-    const operatorMatches = isLyon ? relation?.tags?.network === 'TCL' :
+    const operatorMatches = isRennes ? relation?.tags?.network === 'FR:STAR' :
+      isLyon ? relation?.tags?.network === 'TCL' :
       relation?.tags?.operator === (isMetro ? 'RATP' : 'SNCF Voyageurs');
     if (!operatorMatches) {
       throw new Error('Unexpected operator for relation ' + relationId);
@@ -148,14 +152,16 @@ for (const spec of specs) {
     });
   }
   const stations = [...stationCatalog.values()];
-  const operator = isLyon ? lyon : isMetro ? ratp : sncf;
-  const route = {id: spec.id, countryId: 'fr', operatorId: isLyon ? 'fr-ratp-dev-lyon' : isMetro ? 'fr-ratp' : 'fr-sncf-voyageurs',
+  const operator = isRennes ? rennes : isLyon ? lyon : isMetro ? ratp : sncf;
+  const operatorId = isRennes ? 'fr-keolis-rennes' : isLyon ? 'fr-ratp-dev-lyon' : isMetro ? 'fr-ratp' : 'fr-sncf-voyageurs';
+  const route = {id: spec.id, countryId: 'fr', operatorId,
     operator, line: {ko: spec.ko, fr: spec.fr, ja: spec.fr, en: spec.fr}, code: spec.code,
     lineColor: color, category: isMetro ? 'subway' : spec.category || (spec.international ? 'international' : 'high_speed_rail'), mode: 'rail',
     playable: true, geometryReady: true, geometryStatus: 'verified-osm-track',
     geometrySource: {type: 'openstreetmap', license: 'ODbL-1.0', attribution: '© OpenStreetMap contributors'},
     sourceUrl: sourceUrls[spec.sourceId], sourceRouteId: officialLineId, regionCodes: spec.regionCodes,
     ...(isLyon ? {operatorSourceUrl: 'https://www.tcl.fr/a-propos/offres-demploi'} : {}),
+    ...(isRennes ? {operatorSourceUrl: 'https://www.star.fr/foire-aux-questions?question=qui-exploite-le-reseau-star'} : {}),
     stationCatalog: stations, stations, patterns, geometryFiles: [...files].sort(),
     services: patterns.map(pattern => ({id: pattern.id, nameKo: pattern.nameKo, nameEn: pattern.nameFr,
       nameJa: pattern.nameFr, stops: pattern.stationIds})), serviceCount: patterns.length,
@@ -175,7 +181,7 @@ const operators = [...new Map(routes.map(route => [route.operatorId, {id:route.o
 write('data/fr/generated/index.json', {
   country: {id: 'fr', names: {ko: '프랑스', fr: 'France', en: 'France'}},
   operators, routes: indexRoutes,
-  sourceNotice: '운행 정보: 프랑스국철 여객·일드프랑스 모빌리테·시트랄 모빌리테 · 선로: © OpenStreetMap 기여자 (ODbL)',
+  sourceNotice: '운행 정보: 프랑스국철 여객·일드프랑스 모빌리테·시트랄 모빌리테·렌 스타 · 선로: © OpenStreetMap 기여자 (ODbL)',
 });
 write('reports/fr/playable-catalog.json', {
   operators: operators.length, serviceLines: routes.length,
