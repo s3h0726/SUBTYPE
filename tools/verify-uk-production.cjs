@@ -5,10 +5,12 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'reports/uk'),base='h
 try{
  const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>report.pageErrors.push(e.message));await page.addInitScript(()=>localStorage.setItem('trt-country','uk'));
  await page.goto(base+'?uk-verify='+Date.now()+'#rail-map',{waitUntil:'domcontentloaded'});await page.waitForSelector('[data-route="uk-bakerloo"]',{timeout:45000});
+ const releaseRef=process.env.UK_PRODUCTION_REF;
  const data=await page.evaluate(async()=>(await fetch('data/uk/generated/index.json',{cache:'no-store'})).json());
  Object.assign(report,{operators:data.operators.length,lines:data.routes.length,directions:data.routes.reduce((n,r)=>n+r.serviceCount,0),stationIds:data.stationNameIndex.length});
  report.routeCards=await page.locator('[data-route^="uk-"]').count();console.log('Public UK catalogue:',report.routeCards,'cards,',report.directions,'directions');
- assert.equal(report.operators,expected.operators);assert.equal(report.lines,expected.lines);assert.equal(report.directions,expected.playableDirections);assert.equal(report.stationIds,expected.uniqueStations);
+ const expectedRelease=releaseRef?JSON.parse(require('node:child_process').execFileSync('git',['show',releaseRef+':data/uk/generated/validation.json'],{cwd:root,maxBuffer:64*1024*1024})):expected;
+ assert.equal(report.operators,expectedRelease.operators);assert.equal(report.lines,expectedRelease.lines);assert.equal(report.directions,expectedRelease.playableDirections);assert.equal(report.stationIds,expectedRelease.uniqueStations);
  await page.screenshot({path:path.join(out,'production-catalog.png'),fullPage:true});
  // Use the real settings form to keep representative full-route checks quick.
  await page.evaluate(()=>document.querySelector('[data-nav="settings"]').click());await page.locator('#settings-form input[name="motion"]').uncheck();await page.locator('#settings-form').evaluate(e=>e.requestSubmit());
@@ -33,7 +35,10 @@ try{
  }
  report.gameplay='PASS';await page.screenshot({path:path.join(out,'production-result.png'),fullPage:true});await page.locator('#result-open-ranking').click();await page.waitForFunction(()=>window.TRTLeaderboard?.currentLine()?.countryId==='uk');report.leaderboardCountry='uk';
  report.bundle=await page.locator('script[src*="app.bundle.js"]').getAttribute('src');const body=await page.evaluate(async src=>(await fetch(src,{cache:'no-store'})).text(),report.bundle);report.bundleSha256=crypto.createHash('sha256').update(body).digest('hex');assert(body.includes('ukGeometryRequests'));assert(body.includes('function ukOperatingChoices('));
- const geometry=await page.evaluate(async()=>(await fetch('data/uk/generated/geometry.json',{cache:'no-store'})).json());assert.deepEqual(geometry,JSON.parse(fs.readFileSync(path.join(root,'data/uk/generated/geometry.json'))));report.geometryMatchesRepository=true;
+ const geometry=await page.evaluate(async()=>(await fetch('data/uk/generated/geometry.json',{cache:'no-store'})).json());
+ const geometryFile='data/uk/generated/geometry.json';
+ const expectedGeometry=releaseRef?require('node:child_process').execFileSync('git',['show',releaseRef+':'+geometryFile],{cwd:root,maxBuffer:64*1024*1024}):fs.readFileSync(path.join(root,geometryFile));
+ assert.deepEqual(geometry,JSON.parse(expectedGeometry));report.geometryMatchesRepository=true;
  assert.equal(report.pageErrors.length,0);report.status='PASS';
 }catch(e){report.error=e.stack;process.exitCode=1}finally{fs.writeFileSync(path.join(out,'production-verification.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));await browser.close()}
 })();
