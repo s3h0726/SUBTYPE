@@ -10,6 +10,12 @@
   color: #fff;
 }
 
+.station-sign[data-sign-style="fr-tcl"] {
+  border-top: .45rem solid var(--route-color, #dc1423);
+  background: #252428;
+  color: #fff;
+}
+
 .station-sign[data-template-family="fr-korean-first"] :is(#prompt-main, #prompt-sub, #station-line-label, #station-operator-mark) {
   color: #fff;
 }
