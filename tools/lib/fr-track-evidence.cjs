@@ -7,7 +7,7 @@ const gtfsModes = {train: 'rail', subway: 'subway', tram: 'tramway', light_rail:
 const plain = name => String(name || '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 const stationKey = name => plain(name).replace(/^gare (?:de |d['’])?/, '').replace(/[^a-z0-9]+/g, '');
 
-function readTrack(relation, elements) {
+function readTrack(relation, elements, excludedCalls = []) {
   const ways = new Map(elements.filter(element => element.type === 'way').map(way => [way.id, way]));
   const members = relation.members.filter(member => member.type === 'way' &&
     !member.role.includes('platform') && !member.role.startsWith('stop'));
@@ -17,7 +17,16 @@ function readTrack(relation, elements) {
       throw new Error('Unverified railway way ' + member.ref);
     }
   }
-  return assemble(relation, elements);
+  const track = assemble(relation, elements);
+  for (const name of excludedCalls) {
+    if (track.stops.filter(stop => stop.tags?.name === name).length !== 1) {
+      throw new Error('Unverified non-passenger track waypoint ' + name);
+    }
+  }
+  const retained = track.stops.map((stop,index) => ({stop,index}))
+    .filter(({stop}) => !excludedCalls.includes(stop.tags?.name));
+  return {...track, stops:retained.map(({stop}) => stop),
+    aligned:retained.map(({index}) => track.aligned[index])};
 }
 
 function stationDistance(station, node) {
