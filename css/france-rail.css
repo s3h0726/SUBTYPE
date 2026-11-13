@@ -22,6 +22,24 @@
   color: #fff;
 }
 
+.station-sign[data-sign-style="fr-tisseo"] {
+  border-top: .45rem solid var(--route-color, #c72c49);
+  background: #30303a;
+  color: #fff;
+}
+
+.station-sign[data-sign-style="fr-ilevia"] {
+  border-top: .45rem solid var(--route-color, #e2231a);
+  background: #242a31;
+  color: #fff;
+}
+
+.station-sign[data-sign-style="fr-rtm"] {
+  border-top: .45rem solid var(--route-color, #1981bf);
+  background: #133548;
+  color: #fff;
+}
+
 .station-sign[data-template-family="fr-korean-first"] :is(#prompt-main, #prompt-sub, #station-line-label, #station-operator-mark) {
   color: #fff;
 }

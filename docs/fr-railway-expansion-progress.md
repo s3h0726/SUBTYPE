@@ -4,7 +4,7 @@ The baseline is SUBTYPE `main` at `520e00ec0f00e114005b7a616dff16f049a7b148`. It
 
 ## Playable batch
 
-France has 33 selectable routes, 79 directions, and 450 Korean-localized station IDs. The catalog includes eight domestic TGV INOUI corridors, two cross-border TGV INOUI corridors, the Bordeaux–Marseille daytime Intercités, and the regular full-length services of all Paris, Lyon and Rennes Métro lines. Paris lines 7 and 13 include both branches. The two Métro 7 bis directions preserve their distinct stops on the terminal loop. A temporary works closure through 13 November was published for 7 bis. The schedule evidence covers its operating dates after that closure. [RATP service notice](https://www.ratp.fr/infos-trafic/metro/7B)
+France has 39 selectable routes, 91 directions, and 610 Korean-localized station IDs. The catalog includes eight domestic TGV INOUI corridors, two cross-border TGV INOUI corridors, the Bordeaux–Marseille daytime Intercités, and the regular full-length services of all Paris, Lyon, Rennes, Toulouse, Lille and Marseille Métro lines. Paris lines 7 and 13 include both branches. The two Métro 7 bis directions preserve their distinct stops on the terminal loop. A temporary works closure through 13 November was published for 7 bis. The schedule evidence covers its operating dates after that closure. [RATP service notice](https://www.ratp.fr/infos-trafic/metro/7B)
 
 - TGV INOUI includes Paris Nord–Valenciennes, Paris Nord–Dunkerque, Paris Nord–Rang-du-Fliers, Paris Lyon–Besançon, Paris Lyon–Mulhouse, Paris Lyon–Perpignan, Strasbourg–Bordeaux, Strasbourg–Quimper, Strasbourg–Brussels and Nantes–Brussels.
 - France route cards, destination and service selection, station lists, station signs, gameplay answers and free drive use Korean as the primary language. French names remain in the underlying records and secondary displays. The existing Korean-name editor can edit every playable France station. Rare station names use an editorial Korean rendering and can be corrected through the editor.
@@ -28,7 +28,7 @@ Use Python 3.12 and Node.js 22 or newer. A cache can be outside the checkout. Ke
 ```sh
 python -B tools/fr_fetch.py --cache ../fr-cache --include-unknown-mode
 python -B tools/fr_inventory.py --cache ../fr-cache --as-of 2026-11-12 --baseline 520e00ec0f00e114005b7a616dff16f049a7b148
-node tools/audit-fr-track-evidence.cjs ../fr-cache 83582 80921 81943 83281
+node tools/audit-fr-track-evidence.cjs ../fr-cache 83582 80921 81943 83281 81678 81995 39589
 node tools/build-fr.cjs
 node tools/test-france-data.cjs
 node tools/build-app-bundle.js

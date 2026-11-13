@@ -13,7 +13,8 @@ async function run() {
   const runtime = await import(pathToFileURL(path.join(root, 'js/france-network.js')));
   const index = read('data/fr/generated/index.json');
   const exclusions = read('data/fr/source/track-call-exclusions.json');
-  const official = new Map([83582,80921,81943,83281].map(resource => [
+  const specifications = read('data/fr/source/release-lines.json');
+  const official = new Map([...new Set(specifications.map(spec => spec.sourceId))].map(resource => [
     resource, read('data/fr/source/schedules/' + resource + '.json'),
   ]));
   const korean = /[가-힣]/;
@@ -61,7 +62,7 @@ async function run() {
       assert.equal(journey.originStationId, pattern.stationIds[0]);
       assert.equal(journey.destinationStationId, pattern.stationIds.at(-1));
       assert.deepEqual(playable.stations.map(station => station.id), pattern.stationIds);
-      endpoints.add(journey.originStationId + ':' + journey.destinationStationId);
+      endpoints.add(playable.stations[0].physicalStationId + ':' + playable.stations.at(-1).physicalStationId);
       const evidence = pattern.evidence;
       const line = official.get(evidence.scheduleResourceId).lines.find(line => line.sourceRouteId === route.sourceRouteId);
       const sourcePatterns = line.patterns.filter(pattern => evidence.sourcePatterns.includes(pattern.id));
@@ -88,6 +89,14 @@ async function run() {
   assert.equal(runtime.franceStationPresentation(station).fr, station.fr);
   assert.deepEqual(runtime.franceSearchNames({searchStations:[station.fr],stationSequence:[station.id]}),
     [station.fr,'한국어 수정 이름']);
+  const grouped = Object.entries(index.stationNameGroups || {});
+  const repeatedGroup = grouped.find(([id, group]) => grouped.some(([other, value]) => id !== other && value === group));
+  if (repeatedGroup) {
+    const [id, group] = repeatedGroup;
+    const [other] = grouped.find(([other, value]) => id !== other && value === group);
+    runtime.configureFranceNames({stations:{'fr-marseille-metro-1':{[id]:'수정된 공통 역명'}}}, index.stationNameGroups);
+    assert.equal(runtime.franceStationPresentation(stationDefinitions.get(other)).ko, '수정된 공통 역명');
+  }
   console.log(JSON.stringify({lines:index.routes.length, directions:directionIds.size, stationIds:stationDefinitions.size}));
 }
 

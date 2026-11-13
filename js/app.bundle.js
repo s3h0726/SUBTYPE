@@ -84,14 +84,16 @@ const FRANCE_CATEGORIES = [
 ];
 
 let franceEdits = new Map();
+let franceNameGroups = new Map();
 
-function configureFranceNames(edits) {
+function configureFranceNames(edits, stationNameGroups = {}) {
   franceEdits = new Map();
+  franceNameGroups = new Map(Object.entries(stationNameGroups));
   for (const [line, stations] of Object.entries(edits.stations || {}).sort()) {
     if (!line.startsWith('fr-')) continue;
     for (const [id, name] of Object.entries(stations)) {
       if (id.startsWith('fr-stop-') && typeof name === 'string' && name.trim()) {
-        franceEdits.set(id, name.trim());
+        franceEdits.set(franceNameGroups.get(id) || id, name.trim());
       }
     }
   }
@@ -99,14 +101,14 @@ function configureFranceNames(edits) {
 
 function franceStationPresentation(station) {
   return {
-    ...station, ko: franceEdits.get(station.id) || station.ko, kana: '',
+    ...station, ko: franceEdits.get(franceNameGroups.get(station.id) || station.id) || station.ko, kana: '',
     routeSpecificStationName: true,
   };
 }
 
 function franceSearchNames(route) {
   return [...new Set([...route.searchStations,
-    ...route.stationSequence.map(id => franceEdits.get(id)).filter(Boolean)])];
+    ...route.stationSequence.map(id => franceEdits.get(franceNameGroups.get(id) || id)).filter(Boolean)])];
 }
 
 function francePatternRoute(owner, pattern) {
@@ -985,7 +987,8 @@ function isKorailOperatedRoute(route,station){
 
 function resolveTransportStopTemplate(route,station){
   if(route?.countryId==='fr'){
-    const style=({'fr-ratp':'fr-ratp','fr-ratp-dev-lyon':'fr-tcl','fr-keolis-rennes':'fr-star'})[route.operatorId]||'fr-sncf';
+    const style=({'fr-ratp':'fr-ratp','fr-ratp-dev-lyon':'fr-tcl','fr-keolis-rennes':'fr-star',
+      'fr-tisseo':'fr-tisseo','fr-ilevia':'fr-ilevia','fr-rtm':'fr-rtm'})[route.operatorId]||'fr-sncf';
     return {key:style,style,family:'fr-korean-first',referenceSource:route.sourceUrl};
   }
   if(route?.countryId==='uk'){const style=route.id==='uk-metrolink'?'uk-metrolink':route.id==='uk-elizabeth'?'uk-elizabeth':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-dlr'?'uk-dlr':route.id==='uk-glasgow-subway'?'uk-metro':route.category==='subway'?'uk-underground':route.category==='tram'?'uk-tram':route.category==='light_rail'?'uk-metro':'uk-national-rail';return{key:style,style,family:'uk-bilingual',referenceSource:'SUBTYPE original bilingual railway learning layout; no official logos'}}
@@ -3784,7 +3787,7 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
     await loadEditorNameOverrides();
     const data=await fetchJson(new URL('data/fr/generated/index.json',document.baseURI));
     if(data.country?.id!=='fr')throw Error('프랑스 노선 목록을 확인할 수 없습니다.');
-    configureFranceNames(editorNameOverrides);
+    configureFranceNames(editorNameOverrides,data.stationNameGroups);
     const lines=data.routes.filter(route=>route.playable&&route.geometryReady&&route.serviceCount>0).map(raw=>{
       const route=normalizeLazyLine(raw);
       return {...route,searchStations:franceSearchNames(route)};
