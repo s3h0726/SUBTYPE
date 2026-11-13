@@ -52,7 +52,7 @@ function shortest(graph,start,end){
 const existing=[...read(out,'rail-batch').routes,...read(out,'rail-highspeed-batch').routes];
 const existingPatterns=new Map(existing.map(r=>[r.id,new Set(r.verifiedJourneys.map(j=>JSON.stringify(j.stations.map(s=>keyName(s.ko)))))]));
 const metro=read(base,'seoulmetro-trip-candidates').map(t=>({id:t.id,sourceId:t.sourceId,sourceDate:'2026-09-01',sheet:t.officialLineCode,trainType:t.express?'급행':'일반',calendar:t.calendarLabel,calls:t.calls.map(c=>({ko:c.operationalStationName,time:c.arrival||c.departure})),origin:t.originOperationalName,destination:t.destinationOperationalName}));
-const korail=read(base,'timetable-candidates').tripCandidates.map(t=>({...t,origin:t.originOperationalName,destination:t.destinationOperationalName,trainType:/ITX/.test(t.sheet)?'아이티엑스 청춘':/급행/.test(t.calendarLabel||'')?'급행':'일반',calls:t.calls.map(c=>({ko:display(c.operationalStationName),time:c.arrival||c.departure}))}));
+const korail=read(base,'timetable-candidates').tripCandidates.map(t=>({...t,origin:t.originOperationalName,destination:t.destinationOperationalName,trainType:/ITX/.test(t.sheet)?'ITX-청춘':/급행/.test(t.calendarLabel||'')?'급행':'일반',calls:t.calls.map(c=>({ko:display(c.operationalStationName),time:c.arrival||c.departure}))}));
 const groups=[];
 const lineIds={1:'8691899',2:'7625892',3:'7879839',4:'7625893',5:'7879871',6:'7919154',7:'7922930',8:'7919019'};
 for(const [n,id] of Object.entries(lineIds))groups.push({id:'metro-'+n,label:`수도권 전철 ${n}호선`,mode:'subway',region:'수도권',target:'kr-rail-seoul-'+n,services:data.services.filter(s=>s.passengerLineId==='kr-osm-line-'+id),trips:metro.filter(t=>t.sheet===n),sourceUrl:'https://www.data.go.kr/data/15098251/fileData.do'});
@@ -98,7 +98,7 @@ for(const group of groups){
   if(reason){queue.push({groupId:group.id,patternId:hash(key).slice(0,16),reason,calls:p.names,tripIds:p.trips.map(t=>t.id),unbound:p.names.filter(n=>!graph.bindings.has(n))});continue}
   const geometry=ids.map(id=>graph.coords.get(id)),jid='kr-expansion-pattern-'+hash(group.id+'|'+key).slice(0,16);
   const stations=p.names.map((name,i)=>{const b=bindings[i];return{id:'kr-rail-node-'+b.node.id,ko:name,ja:name,kana:name,romaji:name,latitude:b.node.lat,longitude:b.node.lon,geometryIndex:stopIndices[i],sourceNodeId:b.node.id,sourceTrackOffsetMeters:Math.round(b.offset*1000),sourceBindingKind:b.edge?'original-segment-linear-reference':'original-rail-node'}});
-  const types=[...new Set(p.trips.map(t=>String(t.trainType||'일반').replace(/KTX/g,'케이티엑스').replace(/ITX/g,'아이티엑스')))];
+  const types=[...new Set(p.trips.map(t=>String(t.trainType||'일반').replace(/케이티엑스/g,'KTX').replace(/아이티엑스/g,'ITX')))];
   const name=stations[0].ko+' → '+stations.at(-1).ko+' '+types.join('·')+' '+stations.length+'개역 정차';
   const service={id:jid,nameKo:name,nameJa:name,nameEn:name,stops:stations.map(s=>s.id)};
   const journey={id:jid,patternId:jid,patternName:{ko:name},directionId:group.id+'-'+hash(stations[0].ko+'|'+stations.at(-1).ko).slice(0,8),tripIds:p.trips.map(t=>t.id),officialTrainNumbers:[...new Set(p.trips.map(t=>t.trainNumber).filter(Boolean))],calendarLabels:[...new Set(p.trips.map(t=>t.calendar||t.calendarLabel).filter(Boolean))],stations,geometry,service,directedSegments:stations.slice(0,-1).map((s,i)=>({fromStationId:s.id,toStationId:stations[i+1].id,geometry:geometry.slice(s.geometryIndex,stations[i+1].geometryIndex+1),geometryStatus:'ready'})),sourceEdgeRefs:ids.slice(1).map((id,i)=>graph.edgeProof.get(ids[i]+'|'+id))};

@@ -3665,8 +3665,34 @@ function restoreKrBusLatinRoute(raw){
  }):original;
  return{...raw,stations:correct(raw.stations),verifiedJourneys:journeys};
 }
+const KR_RAIL_TRAIN_ACRONYMS={케이티엑스:'KTX',아이티엑스:'ITX',에스알티:'SRT',지티엑스:'GTX',에이알이엑스:'AREX',이엠유:'EMU',디엠유:'DMU'};
+function restoreKrRailTrainLabel(value){
+ if(typeof value!=='string')return value;
+ return value.replace(/케이티엑스|아이티엑스|에스알티|지티엑스|에이알이엑스|이엠유|디엠유/gu,part=>KR_RAIL_TRAIN_ACRONYMS[part]||part);
+}
+function isKoreanRailRoute(raw){
+ return raw?.countryId==='kr'&&(/rail|metro|subway|tram/i.test(String(raw.mode||'')+' '+String(raw.category||''))||String(raw.id||'').startsWith('kr-rail-'));
+}
+// The imported source may contain phonetic spellings of official train acronyms.
+// Keep IDs, official timetable evidence, stations and source data unchanged.
+function restoreKrRailServiceNames(raw){
+ if(!isKoreanRailRoute(raw))return raw;
+ const rename=(object,keys)=>{
+  if(!object)return object;
+  const result={...object};
+  for(const key of keys)if(typeof result[key]==='string')result[key]=restoreKrRailTrainLabel(result[key]);
+  return result;
+ };
+ return {...raw,
+  services:Array.isArray(raw.services)?raw.services.map(service=>rename(service,['nameKo','nameJa','nameEn','ko','ja','en'])):raw.services,
+  verifiedJourneys:Array.isArray(raw.verifiedJourneys)?raw.verifiedJourneys.map(journey=>({
+   ...journey,patternName:rename(journey.patternName,['ko','ja','en']),
+   service:rename(journey.service,['nameKo','nameJa','nameEn','ko','ja','en'])
+  })):raw.verifiedJourneys
+ };
+}
 function normalizeLine(raw={},defaults={}){
-  raw=restoreKrBusLatinRoute(raw);
+  raw=restoreKrRailServiceNames(restoreKrBusLatinRoute(raw));
   if(raw.countryId==='kr'&&raw.canonicalContract==='kr-canonical-v1')raw={...raw,line:{...raw.line,ja:raw.line?.ko,en:raw.line?.ko},operator:{...raw.operator,ja:raw.operator?.ko,en:raw.operator?.ko}};
   const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
@@ -3680,7 +3706,7 @@ function normalizeLine(raw={},defaults={}){
   const serviceSource=Array.isArray(raw.services)?raw.services:globalThis.TRT_SERVICE_CATALOG?.[id];
   const allStationIds=stations.map(station=>station.id),services=[];
   const serviceStationPool=raw.countryId==='kr'&&raw.schemaVersion===2?[...stations,...(raw.verifiedJourneys||[]).flatMap(j=>j.stations||[])]:stations;
-  if(Array.isArray(serviceSource))for(let index=0;index<serviceSource.length;index++){const service=serviceSource[index],stops=[];let invalid=false;if(Array.isArray(service.stops))for(const stop of service.stops){const station=serviceStationPool.find(item=>item.id===stop||item.sourceId===stop);if(!station){console.error(`${id}/${service.id||index}: service stop not found`,stop);invalid=true;break}stops.push(station.id)}if(!invalid&&stops.length>=2)services.push({id:text(service.id)||`service-${index+1}`,nameJa:text(service.nameJa,service.ja)||'各駅停車',nameKo:text(editorNameOverrides.services[service.id],editorNameOverrides.services['legacy:'+id+':'+service.id],service.nameKo,service.ko)||'각역정차',nameEn:text(service.nameEn,service.en)||'Local',...(raw.countryId==='tw'?{nameZh:service.nameZh||service.names?.zh||raw.line?.zh||''}:{}),stops})}
+  if(Array.isArray(serviceSource))for(let index=0;index<serviceSource.length;index++){const service=serviceSource[index],stops=[];let invalid=false;if(Array.isArray(service.stops))for(const stop of service.stops){const station=serviceStationPool.find(item=>item.id===stop||item.sourceId===stop);if(!station){console.error(`${id}/${service.id||index}: service stop not found`,stop);invalid=true;break}stops.push(station.id)}if(!invalid&&stops.length>=2)services.push({id:text(service.id)||`service-${index+1}`,nameJa:text(service.nameJa,service.ja)||'各駅停車',nameKo:(isKoreanRailRoute(raw)?restoreKrRailTrainLabel(text(editorNameOverrides.services[service.id],editorNameOverrides.services['legacy:'+id+':'+service.id],service.nameKo,service.ko)):text(editorNameOverrides.services[service.id],editorNameOverrides.services['legacy:'+id+':'+service.id],service.nameKo,service.ko))||'각역정차',nameEn:text(service.nameEn,service.en)||'Local',...(raw.countryId==='tw'?{nameZh:service.nameZh||service.names?.zh||raw.line?.zh||''}:{}),stops})}
   const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if((raw.countryId!=='tw'||raw.category==='custom')&&raw.countryId!=='hk'&&raw.countryId!=='th'&&(raw.countryId!=='fr'||raw.category==='custom')&&!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:raw.countryId==='tw'?'각역정차':'各駅停車',nameKo:'각역정차',nameEn:'Local',...(raw.countryId==='tw'?{nameZh:raw.line?.zh||'自訂路線'}:{}),stops:allStationIds});
   // 한국 이름 편집은 대표 경로뿐 아니라 분기·급행·반대 방향의 모든 정차지에 적용한다.
   const verifiedJourneys=Array.isArray(raw.verifiedJourneys)?raw.verifiedJourneys.map(journey=>{
@@ -3694,7 +3720,8 @@ function normalizeLine(raw={},defaults={}){
       journey={...journey,stations:calls,patternName:{...journey.patternName,ko:fix(journey.patternName?.ko)},service:journey.service?{...journey.service,nameKo:fix(journey.service.nameKo)}:journey.service};}
     const override=editorNameOverrides.services[journey.service?.id]||editorNameOverrides.services[journey.id];
     if(typeof override!=='string'||!override.trim())return journey;
-    return {...journey,patternName:{...(journey.patternName||{}),ko:override.trim()},service:journey.service?{...journey.service,nameKo:override.trim()}:journey.service};
+    const displayName=isKoreanRailRoute(raw)?restoreKrRailTrainLabel(override.trim()):override.trim();
+    return {...journey,patternName:{...(journey.patternName||{}),ko:displayName},service:journey.service?{...journey.service,nameKo:displayName}:journey.service};
   }):raw.verifiedJourneys;
   const lineTheme=verifiedTheme||{code:resolvedCode,color:text(raw.lineColor,raw.color)||'#777777',style:category==='jr'?'jr':category==='subway'?'metro':'private',operatorMark:text(operatorRaw.en,operatorRaw.ja)||'RAILWAY',colorVerified:false,colorSource:raw.colorSource||'Imported source data'};
   const editorLine=editorNameOverrides.lines[id]||{};
