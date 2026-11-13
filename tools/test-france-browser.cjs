@@ -114,6 +114,10 @@ async function run() {
   try {
     const page = await browser.newPage({viewport:{width:1440, height:1000}, reducedMotion:'reduce'});
     page.on('pageerror', error => report.errors.push(error.message));
+    if (!publicBase) {
+      await page.route('**/*', route => new URL(route.request().url()).origin === new URL(base).origin
+        ? route.continue() : route.abort());
+    }
     if (publicBase) {
       await page.route('**/js/app.bundle.js*', async route => {
         const response = await route.fetch();
@@ -121,12 +125,13 @@ async function run() {
       });
     }
     await page.addInitScript(() => localStorage.setItem('trt-country', 'fr'));
-    await page.goto(base);
+    await page.goto(base, {waitUntil:'domcontentloaded', timeout:60000});
     await page.waitForFunction(() => globalThis.__FRANCE_QA__?.routes().some(route => route.countryId === 'fr'));
     const index = require('../data/fr/generated/index.json');
     const lines = publicBase ? index.routes.filter(route =>
       ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels',
-        'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b', 'fr-rennes-metro-b'].includes(route.id))
+        'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b', 'fr-rennes-metro-b',
+        'fr-toulouse-metro-b', 'fr-lille-metro-2', 'fr-marseille-metro-2'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);
@@ -204,7 +209,7 @@ async function run() {
         }, country, {timeout:60000});
         report.countries.push(country);
       }
-      await page.goto(new URL('reports/korean-names/editor.html?country=fr', base).href);
+      await page.goto(new URL('reports/korean-names/editor.html?country=fr', base).href, {waitUntil:'domcontentloaded'});
       await page.locator('[data-file="stations-by-line"]').click();
       await page.locator('#route-filter').selectOption('fr-paris-metro-3bis');
       await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '강베타'));

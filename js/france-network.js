@@ -6,14 +6,16 @@ export const FRANCE_CATEGORIES = [
 ];
 
 let franceEdits = new Map();
+let franceNameGroups = new Map();
 
-export function configureFranceNames(edits) {
+export function configureFranceNames(edits, stationNameGroups = {}) {
   franceEdits = new Map();
+  franceNameGroups = new Map(Object.entries(stationNameGroups));
   for (const [line, stations] of Object.entries(edits.stations || {}).sort()) {
     if (!line.startsWith('fr-')) continue;
     for (const [id, name] of Object.entries(stations)) {
       if (id.startsWith('fr-stop-') && typeof name === 'string' && name.trim()) {
-        franceEdits.set(id, name.trim());
+        franceEdits.set(franceNameGroups.get(id) || id, name.trim());
       }
     }
   }
@@ -21,14 +23,14 @@ export function configureFranceNames(edits) {
 
 export function franceStationPresentation(station) {
   return {
-    ...station, ko: franceEdits.get(station.id) || station.ko, kana: '',
+    ...station, ko: franceEdits.get(franceNameGroups.get(station.id) || station.id) || station.ko, kana: '',
     routeSpecificStationName: true,
   };
 }
 
 export function franceSearchNames(route) {
   return [...new Set([...route.searchStations,
-    ...route.stationSequence.map(id => franceEdits.get(id)).filter(Boolean)])];
+    ...route.stationSequence.map(id => franceEdits.get(franceNameGroups.get(id) || id)).filter(Boolean)])];
 }
 
 export function francePatternRoute(owner, pattern) {

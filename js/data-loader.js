@@ -402,7 +402,7 @@ export async function loadTransportData(countryId='jp',koreaMode='released'){
     await loadEditorNameOverrides();
     const data=await fetchJson(new URL('data/fr/generated/index.json',document.baseURI));
     if(data.country?.id!=='fr')throw Error('프랑스 노선 목록을 확인할 수 없습니다.');
-    configureFranceNames(editorNameOverrides);
+    configureFranceNames(editorNameOverrides,data.stationNameGroups);
     const lines=data.routes.filter(route=>route.playable&&route.geometryReady&&route.serviceCount>0).map(raw=>{
       const route=normalizeLazyLine(raw);
       return {...route,searchStations:franceSearchNames(route)};

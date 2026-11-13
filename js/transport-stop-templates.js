@@ -35,7 +35,8 @@ export function isKorailOperatedRoute(route,station){
 
 export function resolveTransportStopTemplate(route,station){
   if(route?.countryId==='fr'){
-    const style=({'fr-ratp':'fr-ratp','fr-ratp-dev-lyon':'fr-tcl','fr-keolis-rennes':'fr-star'})[route.operatorId]||'fr-sncf';
+    const style=({'fr-ratp':'fr-ratp','fr-ratp-dev-lyon':'fr-tcl','fr-keolis-rennes':'fr-star',
+      'fr-tisseo':'fr-tisseo','fr-ilevia':'fr-ilevia','fr-rtm':'fr-rtm'})[route.operatorId]||'fr-sncf';
     return {key:style,style,family:'fr-korean-first',referenceSource:route.sourceUrl};
   }
   if(route?.countryId==='uk'){const style=route.id==='uk-metrolink'?'uk-metrolink':route.id==='uk-elizabeth'?'uk-elizabeth':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-dlr'?'uk-dlr':route.id==='uk-glasgow-subway'?'uk-metro':route.category==='subway'?'uk-underground':route.category==='tram'?'uk-tram':route.category==='light_rail'?'uk-metro':'uk-national-rail';return{key:style,style,family:'uk-bilingual',referenceSource:'SUBTYPE original bilingual railway learning layout; no official logos'}}

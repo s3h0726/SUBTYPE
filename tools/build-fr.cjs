@@ -23,11 +23,30 @@ const ratp = {ko: '파리 교통공사', fr: 'Régie autonome des transports par
 const sncf = {ko: '프랑스국철 여객', fr: 'SNCF Voyageurs', en: 'SNCF Voyageurs'};
 const lyon = {ko: '파리 교통공사 개발 리옹', fr: 'RATP Dev Lyon', en: 'RATP Dev Lyon'};
 const rennes = {ko: '케올리스 렌 메트로폴', fr: 'Keolis Rennes Métropole', en: 'Keolis Rennes Métropole'};
+const toulouse = {ko: '티세오 여객', fr: 'Tisséo Voyageurs', en: 'Tisséo Voyageurs'};
+const lille = {ko: '케올리스 릴 일레비아', fr: 'Keolis Lille ilévia', en: 'Keolis Lille ilévia'};
+const marseille = {ko: '마르세유 광역교통공사', fr: 'Régie des Transports Métropolitains', en: 'RTM'};
+const metroSources = {
+  80921: {operator:ratp, id:'fr-ratp', tag:'operator', value:'RATP'},
+  81943: {operator:lyon, id:'fr-ratp-dev-lyon', tag:'network', value:'TCL',
+    operatorUrl:'https://www.tcl.fr/a-propos/offres-demploi'},
+  83281: {operator:rennes, id:'fr-keolis-rennes', tag:'network', value:'FR:STAR',
+    operatorUrl:'https://www.star.fr/foire-aux-questions?question=qui-exploite-le-reseau-star'},
+  81678: {operator:toulouse, id:'fr-tisseo', tag:'network', value:'Tisséo',
+    operatorUrl:'https://projetsmetro.tisseo.fr/sites/default/files/media/downloads/tisseo-ra-2023_web.pdf'},
+  81995: {operator:lille, id:'fr-ilevia', tag:'network', value:'Ilévia',
+    operatorUrl:'https://lillemetropole.fr/communique-de-presse/metro-ligne-1-le-president-de-la-mel-obtient-des-engagements-dalstom-et-de'},
+  39589: {operator:marseille, id:'fr-rtm', tag:'network', value:'RTM',
+    operatorUrl:'https://www.rtm.fr/bus-relais-m1m2'},
+};
 const sourceUrls = {
   83582: 'https://transport.data.gouv.fr/datasets/horaires-sncf',
   80921: 'https://transport.data.gouv.fr/datasets/reseau-urbain-et-interurbain-dile-de-france-mobilites',
   81943: 'https://transport.data.gouv.fr/datasets/horaires-theoriques-du-reseau-transports-en-commun-lyonnais',
   83281: 'https://transport.data.gouv.fr/resources/83281',
+  81678: 'https://transport.data.gouv.fr/resources/81678',
+  81995: 'https://transport.data.gouv.fr/resources/81995',
+  39589: 'https://transport.data.gouv.fr/resources/39589',
 };
 const geometryTiles = new Map();
 const usedWays = new Map();
@@ -35,6 +54,21 @@ const allStations = new Map();
 const routes = [];
 // RATP's Gare de Lyon interchange and SNCF's halls share one station complex.
 const gareDeLyon = new Set(['80921:IDFM:73626', '83582:StopArea:OCE87686006']);
+const marseilleGroups = new Map();
+
+function physicalGroup(sourceId, call, id) {
+  if (gareDeLyon.has(sourceId + ':' + call.id)) return 'fr-gare-de-lyon';
+  if (sourceId !== 39589) return id;
+  // RTM assigns separate stop IDs to opposing platforms without a parent.
+  const latitude = Number(call.latitude), longitude = Number(call.longitude);
+  const current = marseilleGroups.get(call.name);
+  if (current && Math.hypot((current.latitude - latitude) * 111.2,
+      (current.longitude - longitude) * 111.2 * Math.cos(latitude * Math.PI / 180)) > 0.25) {
+    throw new Error('Ambiguous RTM station group ' + call.name);
+  }
+  if (!current) marseilleGroups.set(call.name, {latitude, longitude});
+  return 'fr-rtm-station-' + stable(call.name);
+}
 
 function tileWay(way, nodes) {
   const points = way.nodes.map(id => {
@@ -86,9 +120,8 @@ function connectedLegs(relation, track, files) {
 
 for (const spec of specs) {
   const inventory = inventories.get(spec.sourceId);
-  const isLyon = spec.sourceId === 81943;
-  const isRennes = spec.sourceId === 83281;
-  const isMetro = spec.sourceId === 80921 || isLyon || isRennes;
+  const metro = metroSources[spec.sourceId];
+  const isMetro = Boolean(metro);
   const stationCatalog = new Map();
   const files = new Set();
   const patterns = [];
@@ -99,9 +132,8 @@ for (const spec of specs) {
     const relation = elements.find(element => element.type === 'relation' && element.id === relationId);
     // Lyon’s old OSM operator label remains useful for track identity. TCL
     // confirms RATP Dev took over metro operation on 2025-01-01.
-    const operatorMatches = isRennes ? relation?.tags?.network === 'FR:STAR' :
-      isLyon ? relation?.tags?.network === 'TCL' :
-      relation?.tags?.operator === (isMetro ? 'RATP' : 'SNCF Voyageurs');
+    const operatorMatches = metro ? relation?.tags?.[metro.tag] === metro.value :
+      relation?.tags?.operator === 'SNCF Voyageurs';
     if (!operatorMatches) {
       throw new Error('Unexpected operator for relation ' + relationId);
     }
@@ -121,7 +153,7 @@ for (const spec of specs) {
       const id = 'fr-stop-' + stable(spec.sourceId, call.id);
       const ko = names[call.name];
       if (!/[가-힣]/.test(ko || '')) throw new Error('Missing reviewed Korean name for ' + call.name);
-      const physicalStationId = gareDeLyon.has(spec.sourceId + ':' + call.id) ? 'fr-gare-de-lyon' : id;
+      const physicalStationId = physicalGroup(spec.sourceId, call, id);
       const station = {id, stationMasterId: id, physicalStationId, countryId: 'fr',
         sourceId: call.id, ko, fr: call.name, ja: call.name, en: call.name, romaji: call.name,
         latitude: Number(call.latitude), longitude: Number(call.longitude),
@@ -152,16 +184,15 @@ for (const spec of specs) {
     });
   }
   const stations = [...stationCatalog.values()];
-  const operator = isRennes ? rennes : isLyon ? lyon : isMetro ? ratp : sncf;
-  const operatorId = isRennes ? 'fr-keolis-rennes' : isLyon ? 'fr-ratp-dev-lyon' : isMetro ? 'fr-ratp' : 'fr-sncf-voyageurs';
+  const operator = metro?.operator || sncf;
+  const operatorId = metro?.id || 'fr-sncf-voyageurs';
   const route = {id: spec.id, countryId: 'fr', operatorId,
     operator, line: {ko: spec.ko, fr: spec.fr, ja: spec.fr, en: spec.fr}, code: spec.code,
     lineColor: color, category: isMetro ? 'subway' : spec.category || (spec.international ? 'international' : 'high_speed_rail'), mode: 'rail',
     playable: true, geometryReady: true, geometryStatus: 'verified-osm-track',
     geometrySource: {type: 'openstreetmap', license: 'ODbL-1.0', attribution: '© OpenStreetMap contributors'},
     sourceUrl: sourceUrls[spec.sourceId], sourceRouteId: officialLineId, regionCodes: spec.regionCodes,
-    ...(isLyon ? {operatorSourceUrl: 'https://www.tcl.fr/a-propos/offres-demploi'} : {}),
-    ...(isRennes ? {operatorSourceUrl: 'https://www.star.fr/foire-aux-questions?question=qui-exploite-le-reseau-star'} : {}),
+    ...(metro?.operatorUrl ? {operatorSourceUrl: metro.operatorUrl} : {}),
     stationCatalog: stations, stations, patterns, geometryFiles: [...files].sort(),
     services: patterns.map(pattern => ({id: pattern.id, nameKo: pattern.nameKo, nameEn: pattern.nameFr,
       nameJa: pattern.nameFr, stops: pattern.stationIds})), serviceCount: patterns.length,
@@ -178,10 +209,13 @@ const indexRoutes = routes.map(({stations, stationCatalog, patterns, services, .
   searchStations: [...new Set(stationCatalog.flatMap(station => [station.ko, station.fr]))],
 }));
 const operators = [...new Map(routes.map(route => [route.operatorId, {id:route.operatorId,names:route.operator}])).values()];
+const stationNameGroups = Object.fromEntries([...allStations.values()]
+  .filter(station => station.physicalStationId.startsWith('fr-rtm-station-'))
+  .map(station => [station.id, station.physicalStationId]));
 write('data/fr/generated/index.json', {
   country: {id: 'fr', names: {ko: '프랑스', fr: 'France', en: 'France'}},
-  operators, routes: indexRoutes,
-  sourceNotice: '운행 정보: 프랑스국철 여객·일드프랑스 모빌리테·시트랄 모빌리테·렌 스타 · 선로: © OpenStreetMap 기여자 (ODbL)',
+  operators, routes: indexRoutes, stationNameGroups,
+  sourceNotice: '운행 정보: 프랑스국철 여객·일드프랑스 모빌리테·시트랄 모빌리테·렌 스타·티세오·일레비아·마르세유 광역교통공사 · 선로: © OpenStreetMap 기여자 (ODbL)',
 });
 write('reports/fr/playable-catalog.json', {
   operators: operators.length, serviceLines: routes.length,

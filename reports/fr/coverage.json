@@ -4,21 +4,21 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 81,
-  "verifiedSourcePatternRecords": 81,
-  "remainingSourcePatternRecords": 13205,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.6096643082944453,
+  "coveredSourcePatternRecords": 93,
+  "verifiedSourcePatternRecords": 93,
+  "remainingSourcePatternRecords": 13193,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.699984946560289,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 33,
-  "operators": 4,
-  "catalogServiceFamilies": 43,
-  "playableDirections": 79,
-  "verifiedPlayableDirections": 79,
-  "koreanNamedStations": 450,
-  "stationIds": 450,
-  "physicalStationGroups": 449,
+  "catalogLines": 39,
+  "operators": 7,
+  "catalogServiceFamilies": 49,
+  "playableDirections": 91,
+  "verifiedPlayableDirections": 91,
+  "koreanNamedStations": 610,
+  "stationIds": 610,
+  "physicalStationGroups": 577,
   "sharedPhysicalWays": 7846,
-  "uniquePhysicalWays": 13199,
+  "uniquePhysicalWays": 13489,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -56,9 +56,9 @@
     "UNVERIFIABLE": 1
   },
   "trackRelations": {
-    "examined": 145,
-    "matched": 101,
-    "blocked": 44
+    "examined": 158,
+    "matched": 113,
+    "blocked": 45
   },
   "byFamily": [
     {
@@ -120,9 +120,9 @@
     {
       "family": "subway",
       "sourcePatternRecords": 296,
-      "catalogLines": 22,
-      "playableDirections": 48,
-      "testedDirections": 48
+      "catalogLines": 28,
+      "playableDirections": 60,
+      "testedDirections": 60
     },
     {
       "family": "ter",
@@ -1603,6 +1603,216 @@
           "status": "VERIFIED_ADDED"
         }
       ]
+    },
+    {
+      "id": "fr-toulouse-metro-a",
+      "category": "subway",
+      "regions": [
+        "76"
+      ],
+      "sourceRouteId": "line:61",
+      "sourceLineId": "fr-line-67981dca1eb40f037bbb9da7",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-7bf67a8e772a023bbc2e39f5",
+          "scheduleResourceId": 81678,
+          "sourcePatterns": [
+            "fr-pattern-95642fd32f20cbaaa727c898"
+          ],
+          "relationId": 179515,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c654c7a4ceb649957d404ac1",
+          "scheduleResourceId": 81678,
+          "sourcePatterns": [
+            "fr-pattern-0384d638db9a2d622a99a616"
+          ],
+          "relationId": 1557126,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-toulouse-metro-b",
+      "category": "subway",
+      "regions": [
+        "76"
+      ],
+      "sourceRouteId": "line:69",
+      "sourceLineId": "fr-line-5292ac10f18e1af16c60f73d",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-d173df85826318e38b83f42c",
+          "scheduleResourceId": 81678,
+          "sourcePatterns": [
+            "fr-pattern-a78a5480cd4b0e1d191d7e21"
+          ],
+          "relationId": 179514,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-d2aecbe741b140b8c360a1a9",
+          "scheduleResourceId": 81678,
+          "sourcePatterns": [
+            "fr-pattern-608e44fad6d2a071312af150"
+          ],
+          "relationId": 1557171,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-lille-metro-1",
+      "category": "subway",
+      "regions": [
+        "32"
+      ],
+      "sourceRouteId": "ME1",
+      "sourceLineId": "fr-line-270517f544548176a91890ba",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-fbdca455f1c1476614172710",
+          "scheduleResourceId": 81995,
+          "sourcePatterns": [
+            "fr-pattern-1acb73a2b04348cd2654982b"
+          ],
+          "relationId": 171691,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-38daa13dc4a7fb11e33d2e05",
+          "scheduleResourceId": 81995,
+          "sourcePatterns": [
+            "fr-pattern-9cc7c1c8d47685fb644c179f"
+          ],
+          "relationId": 7786750,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-lille-metro-2",
+      "category": "subway",
+      "regions": [
+        "32"
+      ],
+      "sourceRouteId": "ME2",
+      "sourceLineId": "fr-line-1eec0227fcd03d72459812e5",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 7,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-15096ef58e0135ae57b3a290",
+        "fr-pattern-6d3e38ee0caadc931e0c8340",
+        "fr-pattern-6f4069034e2fc3a46a72e578",
+        "fr-pattern-8c256249d447df7c7771ba12",
+        "fr-pattern-8d31a45941337508bc99690e"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-d00a17c8338d835e8de3970b",
+          "scheduleResourceId": 81995,
+          "sourcePatterns": [
+            "fr-pattern-da07af2336ec3173b71be0ac"
+          ],
+          "relationId": 449485,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4c711ea6b528ae513e93ca6d",
+          "scheduleResourceId": 81995,
+          "sourcePatterns": [
+            "fr-pattern-c5fee7482efd583d1a2ad0c3"
+          ],
+          "relationId": 7786749,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-marseille-metro-1",
+      "category": "subway",
+      "regions": [
+        "93"
+      ],
+      "sourceRouteId": "RTM-116",
+      "sourceLineId": "fr-line-ed1ee484538568fce77e7b90",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-02d3ae53d9a280c7f02b3cbc",
+          "scheduleResourceId": 39589,
+          "sourcePatterns": [
+            "fr-pattern-e3ca6c1d80477849a8dd7b06"
+          ],
+          "relationId": 6274530,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5b8c89d818820b656866190e",
+          "scheduleResourceId": 39589,
+          "sourcePatterns": [
+            "fr-pattern-a33a546d5556d7a93f18e5ab"
+          ],
+          "relationId": 6274531,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-marseille-metro-2",
+      "category": "subway",
+      "regions": [
+        "93"
+      ],
+      "sourceRouteId": "RTM-125",
+      "sourceLineId": "fr-line-067bdc488d58f0074d5318c8",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-66b84c22f027f3d494b77f38",
+          "scheduleResourceId": 39589,
+          "sourcePatterns": [
+            "fr-pattern-61d4887ae8f4c7bef2fe7f72"
+          ],
+          "relationId": 6274532,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1100d75154229573061038d6",
+          "scheduleResourceId": 39589,
+          "sourcePatterns": [
+            "fr-pattern-d8f3bdbbf5adb27506e7a65b"
+          ],
+          "relationId": 6274533,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
     }
   ],
   "regionalCoverage": [
@@ -1682,7 +1892,9 @@
         "fr-tgv-paris-dunkerque",
         "fr-tgv-paris-rang-du-fliers",
         "fr-tgv-strasbourg-brussels",
-        "fr-tgv-nantes-brussels"
+        "fr-tgv-nantes-brussels",
+        "fr-lille-metro-1",
+        "fr-lille-metro-2"
       ]
     },
     {
@@ -1739,7 +1951,9 @@
       "regionalFeedIds": [],
       "catalogLineIds": [
         "fr-tgv-paris-perpignan",
-        "fr-intercites-bordeaux-marseille"
+        "fr-intercites-bordeaux-marseille",
+        "fr-toulouse-metro-a",
+        "fr-toulouse-metro-b"
       ]
     },
     {
@@ -1763,7 +1977,9 @@
         83990
       ],
       "catalogLineIds": [
-        "fr-intercites-bordeaux-marseille"
+        "fr-intercites-bordeaux-marseille",
+        "fr-marseille-metro-1",
+        "fr-marseille-metro-2"
       ]
     },
     {
