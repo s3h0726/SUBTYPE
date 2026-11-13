@@ -4,7 +4,11 @@
 .station-sign[data-sign-style^="uk-"] .station-current{grid-template-columns:minmax(0,1fr);gap:8px;padding:24px clamp(12px,3vw,42px)}
 .station-sign[data-sign-style^="uk-"] .station-current h1,.station-sign[data-sign-style^="uk-"] .station-current .prompt-ko,.station-sign[data-sign-style^="uk-"] .station-current .prompt-romaji,.station-sign[data-sign-style^="uk-"] .station-current .prompt-kana{grid-column:1;white-space:normal;overflow-wrap:anywhere;line-height:1.2;text-overflow:clip}
 .station-sign[data-sign-style^="uk-"] .station-current #prompt-main{white-space:normal}
-@media(max-width:650px){.station-sign[data-sign-style^="uk-"] .station-current #prompt-main{font-size:clamp(22px,6vw,30px)}}
+@media(max-width:820px){
+ .station-sign[data-sign-style^="uk-"] .station-current #prompt-main,
+ .station-sign[data-sign-style^="uk-"] .station-current .prompt-ko{white-space:normal!important;text-overflow:clip!important}
+ .station-sign[data-sign-style^="uk-"] .station-current #prompt-main{font-size:clamp(22px,6vw,30px)!important}
+}
 .station-sign[data-sign-style^="uk-"] .station-badge{display:none}
 .station-sign[data-sign-style^="uk-"] .station-neighbor{background:#edf1f7}
 .station-sign[data-sign-style^="uk-"] .station-neighbor b,.station-sign[data-sign-style^="uk-"] .station-neighbor span{white-space:normal;overflow-wrap:anywhere}

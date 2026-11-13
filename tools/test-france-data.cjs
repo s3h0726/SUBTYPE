@@ -13,7 +13,7 @@ async function run() {
   const runtime = await import(pathToFileURL(path.join(root, 'js/france-network.js')));
   const index = read('data/fr/generated/index.json');
   const exclusions = read('data/fr/source/track-call-exclusions.json');
-  const official = new Map([83582,80921,81943].map(resource => [
+  const official = new Map([83582,80921,81943,83281].map(resource => [
     resource, read('data/fr/source/schedules/' + resource + '.json'),
   ]));
   const korean = /[가-힣]/;
