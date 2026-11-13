@@ -33,6 +33,7 @@ try{
   }
   assert.equal(await page.evaluate(()=>document.body.dataset.currentScreen),'result');assert.equal(typed.length,wanted.length);report.journeys.push({lineId,patternId:pattern.id,typedStations:typed,status:'PASS'});
  }
+ assert(report.journeys.length>0,'no public journeys completed');
  report.gameplay='PASS';await page.screenshot({path:path.join(out,'production-result.png'),fullPage:true});await page.locator('#result-open-ranking').click();await page.waitForFunction(()=>window.TRTLeaderboard?.currentLine()?.countryId==='uk');report.leaderboardCountry='uk';
  report.bundle=await page.locator('script[src*="app.bundle.js"]').getAttribute('src');const body=await page.evaluate(async src=>(await fetch(src,{cache:'no-store'})).text(),report.bundle);report.bundleSha256=crypto.createHash('sha256').update(body).digest('hex');assert(body.includes('ukGeometryRequests'));assert(body.includes('function ukOperatingChoices('));
  const geometry=await page.evaluate(async()=>(await fetch('data/uk/generated/geometry.json',{cache:'no-store'})).json());

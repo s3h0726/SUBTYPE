@@ -8569,6 +8569,119 @@
           }
         }
       ]
+    },
+    {
+      "id": "eurostar-london-brussels",
+      "lineEn": "Eurostar · London–Brussels via the Channel Tunnel",
+      "lineKo": "유로스타 런던–브뤼셀 채널터널선",
+      "operatorId": "uk-eurostar",
+      "operatorEn": "Eurostar",
+      "operatorKo": "유로스타",
+      "color": "#1b365d",
+      "officialUrl": "https://www.eurostar.com/uk-en/train/london-to-brussels",
+      "category": "international",
+      "checkedAt": "2026-11-13",
+      "patterns": [
+        {
+          "relationId": 2905886,
+          "expectedStops": 2,
+          "expectedCalls": [
+            "London St Pancras International",
+            "Bruxelles-Midi / Brussel-Zuid"
+          ],
+          "stationNames": {
+            "3101677941": {
+              "source": "London St Pancras",
+              "official": "London St Pancras International"
+            },
+            "4211136012": {
+              "source": "Bruxelles-Midi - Brussel-Zuid",
+              "official": "Bruxelles-Midi / Brussel-Zuid"
+            }
+          }
+        },
+        {
+          "relationId": 112662,
+          "expectedStops": 2,
+          "expectedCalls": [
+            "Bruxelles-Midi / Brussel-Zuid",
+            "London St Pancras International"
+          ],
+          "stationNames": {
+            "3101677943": {
+              "source": "London St Pancras",
+              "official": "London St Pancras International"
+            },
+            "4211136007": {
+              "source": "Bruxelles-Midi - Brussel-Zuid",
+              "official": "Bruxelles-Midi / Brussel-Zuid"
+            }
+          },
+          "officialUrl": "https://www.eurostar.com/uk-en/train/brussels-to-london"
+        }
+      ]
+    },
+    {
+      "id": "eurostar-london-amsterdam",
+      "lineEn": "Eurostar · London–Amsterdam via Brussels and Rotterdam",
+      "lineKo": "유로스타 브뤼셀·로테르담 경유 런던–암스테르담선",
+      "operatorId": "uk-eurostar",
+      "operatorEn": "Eurostar",
+      "operatorKo": "유로스타",
+      "color": "#1b365d",
+      "officialUrl": "https://www.eurostar.com/uk-en/train/netherlands",
+      "category": "international",
+      "checkedAt": "2026-11-13",
+      "patterns": [
+        {
+          "relationId": 8214799,
+          "expectedStops": 4,
+          "expectedCalls": [
+            "London St Pancras International",
+            "Bruxelles-Midi / Brussel-Zuid",
+            "Rotterdam Centraal",
+            "Amsterdam Centraal"
+          ],
+          "stationNames": {
+            "3101677943": {
+              "source": "London St Pancras",
+              "official": "London St Pancras International"
+            },
+            "4211136016": {
+              "source": "Bruxelles-Midi - Brussel-Zuid",
+              "official": "Bruxelles-Midi / Brussel-Zuid"
+            }
+          },
+          "officialUrl": "https://www.eurostar.com/uk-en/voyage/horaires/7015400/8814001/londres-st-pancras-intl/bruxelles-midi"
+        },
+        {
+          "relationId": 12109814,
+          "expectedStops": 4,
+          "expectedCalls": [
+            "Amsterdam Centraal",
+            "Rotterdam Centraal",
+            "Bruxelles-Midi / Brussel-Zuid",
+            "London St Pancras International"
+          ],
+          "calls": [
+            "Amsterdam Centraal",
+            "Rotterdam Centraal",
+            "Bruxelles-Midi - Brussel-Zuid",
+            "London St Pancras"
+          ],
+          "stationNames": {
+            "3101677943": {
+              "source": "London St Pancras",
+              "official": "London St Pancras International"
+            },
+            "4211136018": {
+              "source": "Bruxelles-Midi - Brussel-Zuid",
+              "official": "Bruxelles-Midi / Brussel-Zuid"
+            }
+          },
+          "officialUrl": "https://www.eurostar.com/us-en/travel-info/timetable/8814001/7015400/-/-"
+        }
+      ]
     }
   ]
 }

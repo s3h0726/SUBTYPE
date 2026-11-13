@@ -20,14 +20,18 @@ if(index.routes.every(r=>r.geometryFiles)){
 }
 const metrolink=index.routes.find(r=>r.id==='uk-metrolink');if(metrolink)assert.equal(metrolink.stationCount,99,'TfGM publishes 99 Metrolink stops');
 const net=index.routes.filter(r=>r.operatorId==='uk-net');if(net.length)assert.equal(new Set(net.flatMap(r=>r.stationSequence)).size,50,'NET network has 50 physical stops');
-const eurostar=index.routes.find(r=>r.id==='uk-eurostar-london-paris');
-if(eurostar){
+const internationalTermini={
+ 'uk-eurostar-london-paris':'Paris Gare du Nord',
+ 'uk-eurostar-london-brussels':'Bruxelles-Midi / Brussel-Zuid'
+};
+const eurostarAmsterdam='uk-eurostar-london-amsterdam';
+for(const eurostar of index.routes.filter(r=>r.operatorId==='uk-eurostar')){
  const route=read(eurostar.lazySource);
  const names=new Map(route.stationCatalog.map(station=>[station.id,station.en]));
- assert.deepEqual(route.patterns.map(p=>p.stationIds.map(id=>names.get(id))),[
-  ['London St Pancras International','Paris Gare du Nord'],
-  ['Paris Gare du Nord','London St Pancras International']
- ]);
+ const terminus=internationalTermini[eurostar.id];
+ const london='London St Pancras International';
+ const outward=eurostar.id===eurostarAmsterdam?[london,'Bruxelles-Midi / Brussel-Zuid','Rotterdam Centraal','Amsterdam Centraal']:[london,terminus];
+ assert.deepEqual(route.patterns.map(p=>p.stationIds.map(id=>names.get(id))),[outward,outward.slice().reverse()]);
  for(const pattern of route.patterns){
   const snapshot=path.join(root,'data/uk/source/osm',pattern.sourceRelationId+'.json.gz');
   const source=JSON.parse(zlib.gunzipSync(fs.readFileSync(snapshot)));
@@ -43,7 +47,21 @@ if(eurostar){
  for(const [id,segment]of Object.entries(segments)){assert.equal(segment.nodeIds.length,segment.geometry.length,id);for(let i=0;i<segment.nodeIds.length;i++){assert.deepEqual(segment.geometry[i],sourceNodes.get(segment.nodeIds[i]),'invented coordinate: '+id);if(i)assert(sourceEdges.has(segment.nodeIds[i-1]+'::'+segment.nodeIds[i]),'invented track edge: '+id)}}
  const ids=new Set,stations=new Map,results=[];let directions=0;
  for(const meta of index.routes){assert(!ids.has(meta.id),'duplicate physical line ID');ids.add(meta.id);const route=read(meta.lazySource);route.ukGeometry=segments;
-  for(const station of route.stationCatalog){assert(Number.isFinite(station.latitude)&&Number.isFinite(station.longitude));const isParis=meta.category==='international'&&station.en==='Paris Gare du Nord'&&station.latitude>48.87&&station.latitude<48.89&&station.longitude>2.34&&station.longitude<2.37;assert(isParis||station.latitude>49&&station.latitude<61&&station.longitude>-9&&station.longitude<3,station.en);assert(/[가-힣]/.test(station.ko));assert(buildTypingModel(station.ko).inputText.length);if(stations.has(station.stationMasterId))assert.equal(stations.get(station.stationMasterId),station.ko);stations.set(station.stationMasterId,station.ko)}
+  for(const station of route.stationCatalog){
+   const {latitude,longitude,en}=station;
+   assert(Number.isFinite(latitude)&&Number.isFinite(longitude));
+   const ukBounds=latitude>49&&latitude<61&&longitude>-9&&longitude<3;
+   const continentalBounds=meta.category==='international'&&(
+    en==='Paris Gare du Nord'&&latitude>48.87&&latitude<48.89&&longitude>2.34&&longitude<2.37||
+    en==='Bruxelles-Midi / Brussel-Zuid'&&latitude>50.82&&latitude<50.85&&longitude>4.31&&longitude<4.36||
+    en==='Rotterdam Centraal'&&latitude>51.91&&latitude<51.94&&longitude>4.45&&longitude<4.49||
+    en==='Amsterdam Centraal'&&latitude>52.36&&latitude<52.40&&longitude>4.88&&longitude<4.92
+   );
+   assert(ukBounds||continentalBounds,en);
+   assert(/[가-힣]/.test(station.ko));assert(buildTypingModel(station.ko).inputText.length);
+   if(stations.has(station.stationMasterId))assert.equal(stations.get(station.stationMasterId),station.ko);
+   stations.set(station.stationMasterId,station.ko);
+  }
   const choices=uk.ukOperatingChoices(route);assert.equal(choices.length,meta.serviceCount);
   for(const choice of choices){assert(!ids.has(choice.id),'duplicate service ID');ids.add(choice.id);const resolved=uk.resolveUKChoice(choice,route),p=resolved.route,audit=integrity.auditRouteIntegrity(p);assert(audit.pass,JSON.stringify(audit.errors));assert.equal(audit.geometryEndpointMismatch,0);assert.equal(p.stations[0].id,choice.originId);assert.equal(p.stations.at(-1).id,choice.destinationId);assert.equal(p.directedSegments.length,p.stations.length-1);const playable=integrity.resolvePlayableRoute(p,{service:resolved.service});assert.deepEqual(playable.stations.map(s=>s.id),p.stations.map(s=>s.id));assert(!playable.fallbackGeometry);results.push({lineId:meta.id,patternId:choice.id,stations:p.stations.length,geometryPoints:p.geometry.length,status:'PASS'});directions++}
  }
