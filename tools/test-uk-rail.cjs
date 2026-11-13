@@ -20,6 +20,22 @@ if(index.routes.every(r=>r.geometryFiles)){
 }
 const metrolink=index.routes.find(r=>r.id==='uk-metrolink');if(metrolink)assert.equal(metrolink.stationCount,99,'TfGM publishes 99 Metrolink stops');
 const net=index.routes.filter(r=>r.operatorId==='uk-net');if(net.length)assert.equal(new Set(net.flatMap(r=>r.stationSequence)).size,50,'NET network has 50 physical stops');
+const eurostar=index.routes.find(r=>r.id==='uk-eurostar-london-paris');
+if(eurostar){
+ const route=read(eurostar.lazySource);
+ const names=new Map(route.stationCatalog.map(station=>[station.id,station.en]));
+ assert.deepEqual(route.patterns.map(p=>p.stationIds.map(id=>names.get(id))),[
+  ['London St Pancras International','Paris Gare du Nord'],
+  ['Paris Gare du Nord','London St Pancras International']
+ ]);
+ for(const pattern of route.patterns){
+  const snapshot=path.join(root,'data/uk/source/osm',pattern.sourceRelationId+'.json.gz');
+  const source=JSON.parse(zlib.gunzipSync(fs.readFileSync(snapshot)));
+  const routeNodes=new Set(pattern.segmentIds.flatMap(id=>segments[id].nodeIds));
+  const tunnel=source.elements.filter(e=>e.type==='way'&&e.tags?.railway==='rail'&&e.tags?.tunnel==='yes'&&/Channel Tunnel/.test(e.tags?.name));
+  assert(tunnel.length>0&&tunnel.every(w=>w.nodes.every(id=>routeNodes.has(id))),'Channel Tunnel rail ways must appear in '+pattern.id);
+ }
+}
 (async()=>{
  const uk=await import(pathToFileURL(path.join(root,'js/uk-network.js'))),integrity=await import(pathToFileURL(path.join(root,'js/route-integrity.js'))),{buildTypingModel}=await import(pathToFileURL(path.join(root,'js/typing-model.js'))),{FreeDrive}=await import(pathToFileURL(path.join(root,'js/free-drive.js')));
  const sourceEdges=new Set,sourceNodes=new Map;
@@ -27,7 +43,7 @@ const net=index.routes.filter(r=>r.operatorId==='uk-net');if(net.length)assert.e
  for(const [id,segment]of Object.entries(segments)){assert.equal(segment.nodeIds.length,segment.geometry.length,id);for(let i=0;i<segment.nodeIds.length;i++){assert.deepEqual(segment.geometry[i],sourceNodes.get(segment.nodeIds[i]),'invented coordinate: '+id);if(i)assert(sourceEdges.has(segment.nodeIds[i-1]+'::'+segment.nodeIds[i]),'invented track edge: '+id)}}
  const ids=new Set,stations=new Map,results=[];let directions=0;
  for(const meta of index.routes){assert(!ids.has(meta.id),'duplicate physical line ID');ids.add(meta.id);const route=read(meta.lazySource);route.ukGeometry=segments;
-  for(const station of route.stationCatalog){assert(Number.isFinite(station.latitude)&&Number.isFinite(station.longitude));assert(station.latitude>49&&station.latitude<61);assert(station.longitude>-9&&station.longitude<3);assert(/[가-힣]/.test(station.ko));assert(buildTypingModel(station.ko).inputText.length);if(stations.has(station.stationMasterId))assert.equal(stations.get(station.stationMasterId),station.ko);stations.set(station.stationMasterId,station.ko)}
+  for(const station of route.stationCatalog){assert(Number.isFinite(station.latitude)&&Number.isFinite(station.longitude));const isParis=meta.category==='international'&&station.en==='Paris Gare du Nord'&&station.latitude>48.87&&station.latitude<48.89&&station.longitude>2.34&&station.longitude<2.37;assert(isParis||station.latitude>49&&station.latitude<61&&station.longitude>-9&&station.longitude<3,station.en);assert(/[가-힣]/.test(station.ko));assert(buildTypingModel(station.ko).inputText.length);if(stations.has(station.stationMasterId))assert.equal(stations.get(station.stationMasterId),station.ko);stations.set(station.stationMasterId,station.ko)}
   const choices=uk.ukOperatingChoices(route);assert.equal(choices.length,meta.serviceCount);
   for(const choice of choices){assert(!ids.has(choice.id),'duplicate service ID');ids.add(choice.id);const resolved=uk.resolveUKChoice(choice,route),p=resolved.route,audit=integrity.auditRouteIntegrity(p);assert(audit.pass,JSON.stringify(audit.errors));assert.equal(audit.geometryEndpointMismatch,0);assert.equal(p.stations[0].id,choice.originId);assert.equal(p.stations.at(-1).id,choice.destinationId);assert.equal(p.directedSegments.length,p.stations.length-1);const playable=integrity.resolvePlayableRoute(p,{service:resolved.service});assert.deepEqual(playable.stations.map(s=>s.id),p.stations.map(s=>s.id));assert(!playable.fallbackGeometry);results.push({lineId:meta.id,patternId:choice.id,stations:p.stations.length,geometryPoints:p.geometry.length,status:'PASS'});directions++}
  }
