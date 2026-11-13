@@ -13,6 +13,7 @@ const save=runs=>{try{localStorage.setItem(historyKey(),JSON.stringify(runs.slic
 const sorted=list=>[...list].sort((a,b)=>Number(b.cpm)-Number(a.cpm)||Number(b.accuracy)-Number(a.accuracy)||Number(a.elapsed_ms)-Number(b.elapsed_ms));
 const valid=result=>{
  if(!result||result.options?.mode!=='complete'||result.options?.researchPreview||result.route?.playStatus==='RESEARCH_PLAYABLE')return false;
+ if(result.route?.countryId==='fr')return false;
  if(result.routeIntegrity!==true||Number(result.completed)<2)return false;
  if(result.route?.isCustom||String(result.routeId||'').startsWith('custom')||result.route?.countryId==='custom')return false;
  const cpm=Number(result.cpm),accuracy=Number(result.accuracy),elapsed=Number(result.elapsed);

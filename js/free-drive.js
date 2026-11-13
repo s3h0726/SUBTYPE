@@ -638,7 +638,7 @@ const japaneseLoopClosure=route=>{
     &&jpTransferDistanceKm(coords(first),coords(last))<=0.15;
 };
 const freeDriveStationKey=s=>{
-  if(s?.countryId==='uk')return String(s.physicalStationId||s.stationMasterId||s.id);
+  if(s?.countryId==='uk'||s?.countryId==='fr')return String(s.physicalStationId||s.stationMasterId||s.id);
   if(s?.countryId==='th')return String(s.thTransferKey||s.station_id||s.stationMasterId||s.id);
   if(s?.countryId==='hk')return String(s.hkTransferKey||s.stationMasterId||s.sourceStationId||s.id);
   if(s?.operator_id?.startsWith('tw-'))return s.twTransferKey||s.station_id||s.id;
@@ -854,7 +854,7 @@ export class FreeDrive{
   updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
     if(!this.startRoute)return;
-    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=freeDriveStationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];this.ukVisit=this.startRoute.countryId==='uk'?{routeId:this.startRoute.id,index}:null;
+    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=freeDriveStationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];this.ukVisit=['uk','fr'].includes(this.startRoute.countryId)?{routeId:this.startRoute.id,index}:null;
     const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();this.emit();
   }
   move(encoded){
@@ -868,13 +868,13 @@ export class FreeDrive{
     if(!node?.stationsByRoute?.has(routeId)||!this.availableRouteIds().includes(routeId))return false;
     if(this.currentRouteId===routeId)return true;
     this.currentRouteId=routeId;
-    this.ukVisit=this.routes.find(r=>r.id===routeId)?.countryId==='uk'?{routeId,index:node.stationsByRoute.get(routeId).index}:null;
+    this.ukVisit=['uk','fr'].includes(this.routes.find(r=>r.id===routeId)?.countryId)?{routeId,index:node.stationsByRoute.get(routeId).index}:null;
     this.render();this.emit();
     return true
   }
   moveTo(to,routeId,expectedFromKey=null){
     if(!to||!routeId||(expectedFromKey!==null&&expectedFromKey!==this.currentKey))return false;
-    const node=this.graph.get(this.currentKey),targetRoute=this.routes.find(r=>r.id===routeId),edge=(targetRoute?.countryId==='uk'?this.edges():node?.edges)?.find(e=>e.to===to&&e.routeId===routeId);
+    const node=this.graph.get(this.currentKey),targetRoute=this.routes.find(r=>r.id===routeId),edge=(['uk','fr'].includes(targetRoute?.countryId)?this.edges():node?.edges)?.find(e=>e.to===to&&e.routeId===routeId);
     if(!edge||!this.availableRouteIds().includes(routeId))return false;
     // No keyboard event, stale animation or interchange may jump over a station.
     const fromIndex=this.ukVisit?.routeId===routeId?this.ukVisit.index:node.stationsByRoute?.get(routeId)?.index;
@@ -885,13 +885,13 @@ export class FreeDrive{
       if(distance!==1&&!loopWrap)return false;
     }
     this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
-    this.ukVisit=targetRoute?.countryId==='uk'?{routeId,index:edge.index===targetRoute.stations.length-1&&targetRoute.stations[0].id===targetRoute.stations.at(-1).id?0:edge.index}:null;
+    this.ukVisit=['uk','fr'].includes(targetRoute?.countryId)?{routeId,index:edge.index===targetRoute.stations.length-1&&targetRoute.stations[0].id===targetRoute.stations.at(-1).id?0:edge.index}:null;
     this.render();this.emit();return true
   }
   switchRouteAtCurrentStation(routeId){
     const node=this.current(),route=this.routes.find(r=>r.id===routeId);
     if(!node||!route||routeId===this.currentRouteId||!this.availableRouteIds().includes(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
-    this.currentRouteId=routeId;this.ukVisit=route.countryId==='uk'?{routeId,index:node.stationsByRoute.get(routeId).index}:null;this.render();this.emit();return true;
+    this.currentRouteId=routeId;this.ukVisit=['uk','fr'].includes(route.countryId)?{routeId,index:node.stationsByRoute.get(routeId).index}:null;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
   availableRouteIds(){const node=this.current(),from=this.routes.find(r=>r.id===this.currentRouteId);return[...(node?.routeIds||[])].filter(id=>(from?.countryId!=='hk'||id===this.currentRouteId||node.edges.some(e=>e.routeId===id))&&hongKongTransferAllowed(from,this.routes.find(r=>r.id===id),this.currentKey))}
@@ -906,7 +906,7 @@ export class FreeDrive{
   edges(){
     const node=this.current();if(!node)return[];
     const seen=new Set;
-    const available=this.availableRouteIds();return node.edges.filter(e=>{if(!available.includes(e.routeId))return false;if(e.route.countryId==='uk'){const from=this.ukVisit?.routeId===e.routeId?this.ukVisit.index:node.stationsByRoute.get(e.routeId)?.index;if(e.index!==from+e.direction)return false}const k=`${e.to}|${e.routeId}`;if(seen.has(k))return false;seen.add(k);return true})
+    const available=this.availableRouteIds();return node.edges.filter(e=>{if(!available.includes(e.routeId))return false;if(['uk','fr'].includes(e.route.countryId)){const from=this.ukVisit?.routeId===e.routeId?this.ukVisit.index:node.stationsByRoute.get(e.routeId)?.index;if(e.index!==from+e.direction)return false}const k=`${e.to}|${e.routeId}`;if(seen.has(k))return false;seen.add(k);return true})
       .sort((a,b)=>(a.routeId===this.currentRouteId?-1:0)-(b.routeId===this.currentRouteId?-1:0)||routeName(a.route).localeCompare(routeName(b.route),'ko'));
   }
   render(){
