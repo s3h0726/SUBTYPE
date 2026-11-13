@@ -36,6 +36,8 @@ jobs:
         run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
       - name: 태국 공개 계통과 원자료 무결성 검증
         run: npm run test:thailand
+      - name: Validate France timetable, track, and Korean station identities
+        run: node tools/test-france-data.cjs
       - name: Check responsive station sign with Chrome before publishing
         run: node --test tools/test-free-drive-layout-browser.cjs
       - name: Prevent clipped Korean station nameplates in production

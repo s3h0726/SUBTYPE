@@ -1,0 +1,37 @@
+.station-sign[data-sign-style="fr-ratp"] {
+  border-top: .45rem solid var(--route-color, #0055c8);
+  background: #102b50;
+  color: #fff;
+}
+
+.station-sign[data-sign-style="fr-sncf"] {
+  border-top: .45rem solid #a21557;
+  background: #18354f;
+  color: #fff;
+}
+
+.station-sign[data-template-family="fr-korean-first"] :is(#prompt-main, #prompt-sub, #station-line-label, #station-operator-mark) {
+  color: #fff;
+}
+
+html[data-country="fr"] #screen-game #station-sign :is(#prompt-main, #prompt-sub) {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: keep-all !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 560px) {
+  html[data-country="fr"] #screen-game #station-sign #prompt-main {
+    font-size: clamp(22px, 6.4vw, 34px) !important;
+    line-height: 1.14 !important;
+  }
+}
+
+.station-sign[data-template-family="fr-korean-first"] #prompt-ko:not(.memory-hidden) {
+  display: none;
+}
+
+.country-card[data-country="fr"] .country-card-art {
+  background: linear-gradient(90deg, #123778 33.33%, #fff 33.33% 66.66%, #d32f41 66.66%);
+}
