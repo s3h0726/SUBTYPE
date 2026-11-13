@@ -422,6 +422,13 @@ export async function loadTransportData(countryId='jp',koreaMode='released'){
     return{country:data.country,operators:data.operators.map(o=>({...o,names:{...o.names,ko:editorNameOverrides.operators[o.id]||o.names.ko}})),lines,stations:[],assets:{},errors:[],counts:lines.reduce((m,r)=>(m[r.category]=(m[r.category]||0)+1,m),{}),source:'uk-verified-lazy-network',sourceNotice:data.sourceNotice};
   }
 
+  if(countryId==='mo'){
+    await loadEditorNameOverrides();
+    const data=await fetchJson(new URL('data/mo/generated/network.json',document.baseURI));
+    if(data.country?.id!=='mo'||!Array.isArray(data.routes))throw Error('마카오 경전철 데이터 식별자가 올바르지 않습니다.');
+    const lines=data.routes.filter(route=>route.operationalStatus==='OPERATIONAL'&&route.playable&&route.geometryReady).map(normalizeLine);
+    return{country:data.country,operators:data.operators,lines,stations:[],assets:{},errors:[],counts:{light_rail:lines.length},source:'macau-operational-lrt',sourceNotice:data.sourceNotice};
+  }
   if(countryId==='th'){
     await loadEditorNameOverrides();
     // 선택적 보정표가 없어도 기존 태국 노선은 계속 불러온다.

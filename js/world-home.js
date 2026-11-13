@@ -10,7 +10,7 @@
   /* Approximate geographic centres of available transit networks (longitude,latitude).
    * Non-existent/unsupported countries are never added to the selector by this map. */
   const centres={
-    kr:[127.5,36.5],jp:[139.3,36.2],hk:[114.17,22.3],
+    kr:[127.5,36.5],jp:[139.3,36.2],hk:[114.17,22.3],mo:[113.55,22.16],
     tw:[121,23.7],th:[101,15.4],uk:[-2.5,54],
     gb:[-2.5,54],fr:[2.3,46.6],de:[10.5,51],es:[-4,40],
     it:[12.5,42.7],ch:[8.2,46.8],nl:[5.2,52.2],at:[14.5,47.6],
@@ -36,6 +36,7 @@
     button.type='button';
     button.className='world-map-marker';
     button.dataset.mapCountry=country;
+    if(country==='mo')button.style.marginTop='18px';
     button.style.left=((coordinate[0]+180)/360*100).toFixed(3)+'%';
     button.style.top=((90-coordinate[1])/180*100).toFixed(3)+'%';
     core.className='world-pin-core';
