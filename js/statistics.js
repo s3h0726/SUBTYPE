@@ -8,7 +8,7 @@ import{canonicalRouteId,isCountryEnabled}from'./feature-flags.js';
 const indexedKoreanLineName=id=>globalThis.TRT_KOREA_INDEX?.routes?.find(route=>route.id===id)?.line?.ko||globalThis.TRT_KOREA_INDEX?.routes?.find(route=>route.id===id)?.names?.ko||'';
 
 
-const recordCatalogPaths={jp:'data/nationwide/index.json',kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json',th:'data/th/generated/index.json',uk:'data/uk/generated/index.json'};
+const recordCatalogPaths={jp:'data/nationwide/index.json',kr:'data/kr/generated/index.json',hk:'data/hk/generated/index.json',tw:'data/tw/generated/network.json',th:'data/th/generated/index.json',uk:'data/uk/generated/index.json',fr:'data/fr/generated/index.json'};
 const recordRouteMetadata=new Map(),recordCatalogRequests=new Set();
 function ensureRecordCatalog(countryId){
   const path=recordCatalogPaths[countryId];

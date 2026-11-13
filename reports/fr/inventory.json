@@ -1,0 +1,130 @@
+{
+  "asOf": "2026-11-12",
+  "baselineRef": "520e00ec0f00e114005b7a616dff16f049a7b148",
+  "denominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
+  "mainlandRegions": [
+    {
+      "code": "11",
+      "name": "Île-de-France",
+      "regionalFeedIds": [
+        67595,
+        80921,
+        80931
+      ]
+    },
+    {
+      "code": "24",
+      "name": "Centre-Val de Loire",
+      "regionalFeedIds": [
+        83521
+      ]
+    },
+    {
+      "code": "27",
+      "name": "Bourgogne-Franche-Comté",
+      "regionalFeedIds": []
+    },
+    {
+      "code": "28",
+      "name": "Normandie",
+      "regionalFeedIds": [
+        81942
+      ]
+    },
+    {
+      "code": "32",
+      "name": "Hauts-de-France",
+      "regionalFeedIds": [
+        83620
+      ]
+    },
+    {
+      "code": "44",
+      "name": "Grand Est",
+      "regionalFeedIds": [
+        83634
+      ]
+    },
+    {
+      "code": "52",
+      "name": "Pays de la Loire",
+      "regionalFeedIds": [
+        79818
+      ]
+    },
+    {
+      "code": "53",
+      "name": "Bretagne",
+      "regionalFeedIds": [
+        81474,
+        81559
+      ]
+    },
+    {
+      "code": "75",
+      "name": "Nouvelle-Aquitaine",
+      "regionalFeedIds": [
+        82321
+      ]
+    },
+    {
+      "code": "76",
+      "name": "Occitanie",
+      "regionalFeedIds": []
+    },
+    {
+      "code": "84",
+      "name": "Auvergne-Rhône-Alpes",
+      "regionalFeedIds": []
+    },
+    {
+      "code": "93",
+      "name": "Provence-Alpes-Côte d’Azur",
+      "regionalFeedIds": [
+        82285,
+        83448,
+        83990
+      ]
+    },
+    {
+      "code": "94",
+      "name": "Corse",
+      "regionalFeedIds": [
+        83882
+      ]
+    }
+  ],
+  "nationalCoveragePercent": null,
+  "overseas": [],
+  "patternsByFamily": {
+    "funicular": 19,
+    "high-speed": 1049,
+    "ile-de-france-rail-review": 160,
+    "intercites": 97,
+    "intercites-night": 38,
+    "international": 156,
+    "rail": 4569,
+    "rer": 1050,
+    "subway": 296,
+    "ter": 4175,
+    "tram-train": 12,
+    "tramway": 999,
+    "transilien": 666
+  },
+  "releaseBlockers": [
+    "cross-feed service identity",
+    "physical track path per direction",
+    "reviewed Korean station and service names",
+    "gameplay and production tests"
+  ],
+  "scheduleTotals": {
+    "BLOCKED": 1461,
+    "OUT_OF_SCOPE": 4,
+    "UNVERIFIABLE": 7,
+    "blockedDirections": 13286,
+    "feedStationGroups": 11456,
+    "feedsScanned": 72,
+    "lineRecords": 1472
+  },
+  "verifiedPlayableDirections": 0
+}

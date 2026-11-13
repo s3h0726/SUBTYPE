@@ -1,6 +1,7 @@
 import{thailandPresentation,decodeThailandPayload,setThailandNameEvidence}from'./thailand-network.js';
 import{decodeRoutePayload}from'./route-payload.js';
 import{configureUKNames,ukPresentation,ukPatternRoute}from'./uk-network.js';
+import{configureFranceNames,francePatternRoute,franceSearchNames,franceStationPresentation}from'./france-network.js';
 import{configureTaiwanNetwork,taiwanKoreanPresentation}from'./taiwan-network.js';
 import{hongKongRouteBlockReason}from'./hong-kong-policy.js';
 import{koreanServiceIsCurrent}from'./korean-service-resolver.js';
@@ -268,7 +269,7 @@ export function normalizeLine(raw={},defaults={}){
   const allStationIds=stations.map(station=>station.id),services=[];
   const serviceStationPool=raw.countryId==='kr'&&raw.schemaVersion===2?[...stations,...(raw.verifiedJourneys||[]).flatMap(j=>j.stations||[])]:stations;
   if(Array.isArray(serviceSource))for(let index=0;index<serviceSource.length;index++){const service=serviceSource[index],stops=[];let invalid=false;if(Array.isArray(service.stops))for(const stop of service.stops){const station=serviceStationPool.find(item=>item.id===stop||item.sourceId===stop);if(!station){console.error(`${id}/${service.id||index}: service stop not found`,stop);invalid=true;break}stops.push(station.id)}if(!invalid&&stops.length>=2)services.push({id:text(service.id)||`service-${index+1}`,nameJa:text(service.nameJa,service.ja)||'各駅停車',nameKo:text(editorNameOverrides.services[service.id],editorNameOverrides.services['legacy:'+id+':'+service.id],service.nameKo,service.ko)||'각역정차',nameEn:text(service.nameEn,service.en)||'Local',...(raw.countryId==='tw'?{nameZh:service.nameZh||service.names?.zh||raw.line?.zh||''}:{}),stops})}
-  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if((raw.countryId!=='tw'||raw.category==='custom')&&raw.countryId!=='hk'&&raw.countryId!=='th'&&!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:raw.countryId==='tw'?'각역정차':'各駅停車',nameKo:'각역정차',nameEn:'Local',...(raw.countryId==='tw'?{nameZh:raw.line?.zh||'自訂路線'}:{}),stops:allStationIds});
+  const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if((raw.countryId!=='tw'||raw.category==='custom')&&raw.countryId!=='hk'&&raw.countryId!=='th'&&(raw.countryId!=='fr'||raw.category==='custom')&&!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:raw.countryId==='tw'?'각역정차':'各駅停車',nameKo:'각역정차',nameEn:'Local',...(raw.countryId==='tw'?{nameZh:raw.line?.zh||'自訂路線'}:{}),stops:allStationIds});
   // 한국 이름 편집은 대표 경로뿐 아니라 분기·급행·반대 방향의 모든 정차지에 적용한다.
   const verifiedJourneys=Array.isArray(raw.verifiedJourneys)?raw.verifiedJourneys.map(journey=>{
     const calls=raw.countryId==='kr'?(journey.stations||[]).map(station=>{
@@ -370,6 +371,21 @@ async function loadUKGeometry(files=['data/uk/generated/geometry.json']){
  return ukGeometrySegments;
 }
 export async function loadTransportData(countryId='jp',koreaMode='released'){
+  if(countryId==='fr'){
+    await loadEditorNameOverrides();
+    const data=await fetchJson(new URL('data/fr/generated/index.json',document.baseURI));
+    if(data.country?.id!=='fr')throw Error('프랑스 노선 목록을 확인할 수 없습니다.');
+    configureFranceNames(editorNameOverrides);
+    const lines=data.routes.filter(route=>route.playable&&route.geometryReady&&route.serviceCount>0).map(raw=>{
+      const route=normalizeLazyLine(raw);
+      return {...route,searchStations:franceSearchNames(route)};
+    });
+    const operators=data.operators.map(operator=>({...operator,names:{...operator.names,
+      ko:text(editorNameOverrides.operators[operator.id],operator.names.ko)}}));
+    return {country:data.country,operators,lines,stations:[],assets:{},errors:[],
+      counts:lines.reduce((counts,line)=>(counts[line.category]=(counts[line.category]||0)+1,counts),{}),
+      source:'france-verified-lazy-network',sourceNotice:data.sourceNotice};
+  }
   if(countryId==='uk'){
     await loadEditorNameOverrides();
     const data=await fetchJson(new URL('data/uk/generated/index.json',document.baseURI));
@@ -430,7 +446,37 @@ export async function loadTransportData(countryId='jp',koreaMode='released'){
   const lines=(data.routes||[]).filter(route=>(!route.serviceWindows||route.serviceWindows.some(koreanServiceIsCurrent))&&route.releaseStatus!=='research'&&route.playStatus!=='RESEARCH_PLAYABLE'&&!route.previewContract&&!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators:withEditorOperators(operators),lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
 }
+const franceGeometryRequests=new Map();
+function franceGeometryFile(file){
+  if(!/^data\/fr\/generated\/geometry\/-?\d+_-?\d+\.json$/.test(file))throw Error('프랑스 선로 자료 경로가 잘못되었습니다.');
+  if(franceGeometryRequests.has(file)){
+    const previous=franceGeometryRequests.get(file);
+    franceGeometryRequests.delete(file);
+    franceGeometryRequests.set(file,previous);
+    return previous;
+  }
+  const pending=fetchJson(new URL(file,document.baseURI)).catch(error=>{
+    if(franceGeometryRequests.get(file)===pending)franceGeometryRequests.delete(file);
+    throw error;
+  });
+  franceGeometryRequests.set(file,pending);
+  if(franceGeometryRequests.size>32)franceGeometryRequests.delete(franceGeometryRequests.keys().next().value);
+  return pending;
+}
 export async function hydrateRailLine(route){if(!route?.lazy)return route;
+ if(route.countryId==='fr'){
+  if(!/^data\/fr\/generated\/routes\/[a-z0-9-]+\.json$/.test(route.lazySource))throw Error('프랑스 노선 자료 경로가 잘못되었습니다.');
+  const [raw,tiles]=await Promise.all([
+    fetchJson(new URL(route.lazySource,document.baseURI)),
+    Promise.all(route.geometryFiles.map(franceGeometryFile)),
+  ]);
+  if(raw.countryId!=='fr'||raw.id!==route.id||!raw.patterns?.length)throw Error('프랑스 노선 자료가 일치하지 않습니다.');
+  const owner=normalizeLine(raw);
+  owner.franceWays=Object.assign({},...tiles.map(tile=>tile.ways));
+  owner.stationCatalog=raw.stationCatalog.map((station,index)=>franceStationPresentation(normalizeStation(station,index,owner.code)));
+  const first=francePatternRoute(owner,owner.patterns[0]);
+  return {...first,services:owner.services};
+ }
  if(route.countryId==='uk'){
   const [raw,segments]=await Promise.all([fetchJson(new URL(route.lazySource,document.baseURI)),loadUKGeometry(route.geometryFiles)]);
   if(raw.countryId!=='uk'||raw.id!==route.id||!raw.patterns?.length)throw Error('UK_ROUTE_IDENTITY');
