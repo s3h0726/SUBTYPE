@@ -15,6 +15,7 @@ const write = (file, data) => {
 const stable = (...values) => createHash('sha256').update(JSON.stringify(values)).digest('hex').slice(0, 24);
 const names = read('data/fr/source/station-names-ko.json');
 const aliases = read('data/fr/source/station-aliases.json');
+const exclusions = read('data/fr/source/track-call-exclusions.json');
 const specs = read('data/fr/source/release-lines.json');
 const inventories = new Map([...new Set(specs.map(spec => spec.sourceId))].map(id =>
   [id, read('data/fr/source/schedules/' + id + '.json')]));
@@ -93,7 +94,7 @@ for (const spec of specs) {
     if (!relation || relation.tags.operator !== (isMetro ? 'RATP' : 'SNCF Voyageurs')) {
       throw new Error('Unexpected operator for relation ' + relationId);
     }
-    const track = readTrack(relation, elements);
+    const track = readTrack(relation, elements, exclusions[relationId]);
     const matches = findMatches(relation, track, [inventory], aliases).filter(match =>
       spec.routeId ? match.line.sourceRouteId === spec.routeId : match.pattern.brand === spec.brand);
     if (!matches.length) throw new Error('No current timetable match for ' + relationId);
@@ -128,7 +129,8 @@ for (const spec of specs) {
     const familyId = isMetro ? spec.id + '-local' : 'fr-service-' + stable(spec.id, directionless);
     patterns.push({
       id: 'fr-play-' + stable(spec.id, stationIds), familyId, stationIds, legs, viaStationId: via,
-      nameKo: isMetro ? '각역정차' : '테제베 이누이', nameFr: isMetro ? 'Métro' : spec.brand,
+      nameKo: isMetro ? '각역정차' : spec.serviceKo || '테제베 이누이',
+      nameFr: isMetro ? 'Métro' : spec.brand,
       evidence: {
         relationId, version: relation.version, timestamp: relation.timestamp, maxStationOffsetKm,
         stationNodes: track.stops.map(stop => stop.id),
@@ -142,7 +144,7 @@ for (const spec of specs) {
   const operator = isMetro ? ratp : sncf;
   const route = {id: spec.id, countryId: 'fr', operatorId: isMetro ? 'fr-ratp' : 'fr-sncf-voyageurs',
     operator, line: {ko: spec.ko, fr: spec.fr, ja: spec.fr, en: spec.fr}, code: spec.code,
-    lineColor: color, category: isMetro ? 'subway' : spec.international ? 'international' : 'high_speed_rail', mode: 'rail',
+    lineColor: color, category: isMetro ? 'subway' : spec.category || (spec.international ? 'international' : 'high_speed_rail'), mode: 'rail',
     playable: true, geometryReady: true, geometryStatus: 'verified-osm-track',
     geometrySource: {type: 'openstreetmap', license: 'ODbL-1.0', attribution: '© OpenStreetMap contributors'},
     sourceUrl: sourceUrls[spec.sourceId], sourceRouteId: officialLineId, regionCodes: spec.regionCodes,

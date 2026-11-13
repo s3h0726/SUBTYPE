@@ -125,7 +125,8 @@ async function run() {
     await page.waitForFunction(() => globalThis.__FRANCE_QA__?.routes().some(route => route.countryId === 'fr'));
     const index = require('../data/fr/generated/index.json');
     const lines = publicBase ? index.routes.filter(route =>
-      ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels'].includes(route.id))
+      ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels',
+        'fr-intercites-bordeaux-marseille'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);

@@ -11,6 +11,7 @@ if (!cache) throw new Error('Usage: node tools/audit-fr-track-evidence.cjs <sour
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const inventories = ['83582.json', '80921.json'].map(file => read(path.join(scheduleDir, file)));
 const aliases = read(path.join(repo, 'data/fr/source/station-aliases.json'));
+const exclusions = read(path.join(repo, 'data/fr/source/track-call-exclusions.json'));
 const outcomes = [];
 
 for (const file of fs.readdirSync(cache).filter(file => /^fr-osm-\d+\.json$/.test(file)).sort()) {
@@ -20,7 +21,7 @@ for (const file of fs.readdirSync(cache).filter(file => /^fr-osm-\d+\.json$/.tes
   if (relation?.tags?.type !== 'route') continue;
   const result = {relationId, name: relation.tags.name, reference: relation.tags.ref};
   try {
-    const track = readTrack(relation, elements);
+    const track = readTrack(relation, elements, exclusions[relationId]);
     result.trackCalls = track.stops.map(stop => stop.tags?.name || null);
     result.matches = findMatches(relation, track, inventories, aliases).map(match => ({
       sourceId: match.sourceId, routeId: match.line.sourceRouteId, brand: match.pattern.brand,

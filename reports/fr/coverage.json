@@ -4,21 +4,21 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 63,
-  "verifiedSourcePatternRecords": 63,
-  "remainingSourcePatternRecords": 13223,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.47418335089567965,
+  "coveredSourcePatternRecords": 69,
+  "verifiedSourcePatternRecords": 69,
+  "remainingSourcePatternRecords": 13217,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.5193436700286015,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 26,
+  "catalogLines": 27,
   "operators": 2,
-  "catalogServiceFamilies": 32,
-  "playableDirections": 61,
-  "verifiedPlayableDirections": 61,
-  "koreanNamedStations": 373,
-  "stationIds": 373,
-  "physicalStationGroups": 372,
-  "sharedPhysicalWays": 6090,
-  "uniquePhysicalWays": 11311,
+  "catalogServiceFamilies": 37,
+  "playableDirections": 67,
+  "verifiedPlayableDirections": 67,
+  "koreanNamedStations": 380,
+  "stationIds": 380,
+  "physicalStationGroups": 379,
+  "sharedPhysicalWays": 7835,
+  "uniquePhysicalWays": 12958,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -57,8 +57,8 @@
   },
   "trackRelations": {
     "examined": 133,
-    "matched": 83,
-    "blocked": 50
+    "matched": 89,
+    "blocked": 44
   },
   "byFamily": [
     {
@@ -85,9 +85,9 @@
     {
       "family": "intercites",
       "sourcePatternRecords": 97,
-      "catalogLines": 0,
-      "playableDirections": 0,
-      "testedDirections": 0
+      "catalogLines": 1,
+      "playableDirections": 6,
+      "testedDirections": 6
     },
     {
       "family": "intercites-night",
@@ -626,6 +626,95 @@
             "fr-pattern-617d440b4c6162acae90d405"
           ],
           "relationId": 5936705,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-intercites-bordeaux-marseille",
+      "category": "intercity",
+      "regions": [
+        "75",
+        "76",
+        "93"
+      ],
+      "sourceRouteId": "FR:Line::3418b67d-a81f-4dde-b3b0-60cc96ed86f4:",
+      "sourceLineId": "fr-line-a3dfde509634a52e86a72399",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 5,
+      "discoveredSchedulePatterns": 22,
+      "coveredSchedulePatterns": 6,
+      "remainingSourcePatternIds": [
+        "fr-pattern-01d0f2c9cfe156d3c49e1cb6",
+        "fr-pattern-055c7f957a7c4e077eb74cce",
+        "fr-pattern-0a811c5c868c7946e67af176",
+        "fr-pattern-0be4df67761ad90a5796269f",
+        "fr-pattern-203a2627f45ee5360e7ad7fd",
+        "fr-pattern-27d5177256a2cd2c0042dc2d",
+        "fr-pattern-2b85c6b6729040f7a3f275bb",
+        "fr-pattern-3f1208c5233c6bdc8def7958",
+        "fr-pattern-af2cbd9fe5ac7286f3fba87d",
+        "fr-pattern-ba6da42915d776db719d6ada",
+        "fr-pattern-c2bc452ef3e90d9ca9ecf74d",
+        "fr-pattern-d1984865ffa6f4e5de49efc0",
+        "fr-pattern-d37611bf306f0bebe4196c05",
+        "fr-pattern-daa04cce9bda03493cb47c39",
+        "fr-pattern-f1942b2cd6501038d5709a8e",
+        "fr-pattern-fd56b4716ef0c75e27bbcdf1"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-e0d01ceefe99cda9980ee9c7",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-7034a409602df5b00a851a1d"
+          ],
+          "relationId": 11757760,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5f8f06c0edc97ce4727be98c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-eb5fcb55561a692e9e0ed850"
+          ],
+          "relationId": 11757762,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-8b2a0a75b00ec7472d3f12df",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-1b66ceafff96f30f6626e811"
+          ],
+          "relationId": 11757764,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-06b43c2738612c61fd2fa651",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-cbfb0073316a4768cef2bc6b"
+          ],
+          "relationId": 11757765,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c8ff7b40333d775518164595",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6e252c01dd444654e8779b77"
+          ],
+          "relationId": 11757766,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-d4575c383ec92bd2212fa95e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-d51f3f00cf08180a7852f086"
+          ],
+          "relationId": 11757768,
           "status": "VERIFIED_ADDED"
         }
       ]
@@ -1427,7 +1516,8 @@
         82321
       ],
       "catalogLineIds": [
-        "fr-tgv-strasbourg-bordeaux"
+        "fr-tgv-strasbourg-bordeaux",
+        "fr-intercites-bordeaux-marseille"
       ]
     },
     {
@@ -1435,7 +1525,8 @@
       "name": "Occitanie",
       "regionalFeedIds": [],
       "catalogLineIds": [
-        "fr-tgv-paris-perpignan"
+        "fr-tgv-paris-perpignan",
+        "fr-intercites-bordeaux-marseille"
       ]
     },
     {
@@ -1454,7 +1545,9 @@
         83448,
         83990
       ],
-      "catalogLineIds": []
+      "catalogLineIds": [
+        "fr-intercites-bordeaux-marseille"
+      ]
     },
     {
       "code": "94",
