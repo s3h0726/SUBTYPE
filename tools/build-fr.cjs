@@ -21,9 +21,11 @@ const inventories = new Map([...new Set(specs.map(spec => spec.sourceId))].map(i
   [id, read('data/fr/source/schedules/' + id + '.json')]));
 const ratp = {ko: '파리 교통공사', fr: 'Régie autonome des transports parisiens', en: 'RATP'};
 const sncf = {ko: '프랑스국철 여객', fr: 'SNCF Voyageurs', en: 'SNCF Voyageurs'};
+const lyon = {ko: '파리 교통공사 개발 리옹', fr: 'RATP Dev Lyon', en: 'RATP Dev Lyon'};
 const sourceUrls = {
   83582: 'https://transport.data.gouv.fr/datasets/horaires-sncf',
   80921: 'https://transport.data.gouv.fr/datasets/reseau-urbain-et-interurbain-dile-de-france-mobilites',
+  81943: 'https://transport.data.gouv.fr/datasets/horaires-theoriques-du-reseau-transports-en-commun-lyonnais',
 };
 const geometryTiles = new Map();
 const usedWays = new Map();
@@ -82,7 +84,8 @@ function connectedLegs(relation, track, files) {
 
 for (const spec of specs) {
   const inventory = inventories.get(spec.sourceId);
-  const isMetro = spec.sourceId === 80921;
+  const isLyon = spec.sourceId === 81943;
+  const isMetro = spec.sourceId === 80921 || isLyon;
   const stationCatalog = new Map();
   const files = new Set();
   const patterns = [];
@@ -91,7 +94,11 @@ for (const spec of specs) {
   for (const relationId of spec.relations) {
     const {elements} = read('data/fr/source/osm/' + relationId + '.json');
     const relation = elements.find(element => element.type === 'relation' && element.id === relationId);
-    if (!relation || relation.tags.operator !== (isMetro ? 'RATP' : 'SNCF Voyageurs')) {
+    // Lyon’s old OSM operator label remains useful for track identity. TCL
+    // confirms RATP Dev took over metro operation on 2025-01-01.
+    const operatorMatches = isLyon ? relation?.tags?.network === 'TCL' :
+      relation?.tags?.operator === (isMetro ? 'RATP' : 'SNCF Voyageurs');
+    if (!operatorMatches) {
       throw new Error('Unexpected operator for relation ' + relationId);
     }
     const track = readTrack(relation, elements, exclusions[relationId]);
@@ -141,13 +148,14 @@ for (const spec of specs) {
     });
   }
   const stations = [...stationCatalog.values()];
-  const operator = isMetro ? ratp : sncf;
-  const route = {id: spec.id, countryId: 'fr', operatorId: isMetro ? 'fr-ratp' : 'fr-sncf-voyageurs',
+  const operator = isLyon ? lyon : isMetro ? ratp : sncf;
+  const route = {id: spec.id, countryId: 'fr', operatorId: isLyon ? 'fr-ratp-dev-lyon' : isMetro ? 'fr-ratp' : 'fr-sncf-voyageurs',
     operator, line: {ko: spec.ko, fr: spec.fr, ja: spec.fr, en: spec.fr}, code: spec.code,
     lineColor: color, category: isMetro ? 'subway' : spec.category || (spec.international ? 'international' : 'high_speed_rail'), mode: 'rail',
     playable: true, geometryReady: true, geometryStatus: 'verified-osm-track',
     geometrySource: {type: 'openstreetmap', license: 'ODbL-1.0', attribution: '© OpenStreetMap contributors'},
     sourceUrl: sourceUrls[spec.sourceId], sourceRouteId: officialLineId, regionCodes: spec.regionCodes,
+    ...(isLyon ? {operatorSourceUrl: 'https://www.tcl.fr/a-propos/offres-demploi'} : {}),
     stationCatalog: stations, stations, patterns, geometryFiles: [...files].sort(),
     services: patterns.map(pattern => ({id: pattern.id, nameKo: pattern.nameKo, nameEn: pattern.nameFr,
       nameJa: pattern.nameFr, stops: pattern.stationIds})), serviceCount: patterns.length,
@@ -163,13 +171,14 @@ const indexRoutes = routes.map(({stations, stationCatalog, patterns, services, .
   transferStationIds: [...new Set(stationCatalog.map(station => station.physicalStationId))],
   searchStations: [...new Set(stationCatalog.flatMap(station => [station.ko, station.fr]))],
 }));
+const operators = [...new Map(routes.map(route => [route.operatorId, {id:route.operatorId,names:route.operator}])).values()];
 write('data/fr/generated/index.json', {
   country: {id: 'fr', names: {ko: '프랑스', fr: 'France', en: 'France'}},
-  operators: [{id: 'fr-ratp', names: ratp}, {id: 'fr-sncf-voyageurs', names: sncf}], routes: indexRoutes,
-  sourceNotice: '운행 정보: 프랑스국철 여객·일드프랑스 모빌리테 · 선로: © OpenStreetMap 기여자 (ODbL)',
+  operators, routes: indexRoutes,
+  sourceNotice: '운행 정보: 프랑스국철 여객·일드프랑스 모빌리테·시트랄 모빌리테 · 선로: © OpenStreetMap 기여자 (ODbL)',
 });
 write('reports/fr/playable-catalog.json', {
-  operators: 2, serviceLines: routes.length,
+  operators: operators.length, serviceLines: routes.length,
   playableDirections: routes.reduce((total, route) => total + route.patterns.length, 0),
   stationIds: allStations.size, koreanNamedStations: allStations.size,
   physicalStationGroups: new Set([...allStations.values()].map(station => station.physicalStationId)).size,

@@ -9,7 +9,11 @@ const scheduleDir = path.join(repo, 'data/fr/source/schedules');
 const cache = process.argv[2];
 if (!cache) throw new Error('Usage: node tools/audit-fr-track-evidence.cjs <source-cache>');
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
-const inventories = ['83582.json', '80921.json'].map(file => read(path.join(scheduleDir, file)));
+const requestedSources = process.argv.slice(3);
+const inventories = (requestedSources.length ? requestedSources : ['83582', '80921']).map(source => {
+  if (!/^\d+$/.test(source)) throw new Error('Invalid source resource ID: ' + source);
+  return read(path.join(scheduleDir, source + '.json'));
+});
 const aliases = read(path.join(repo, 'data/fr/source/station-aliases.json'));
 const exclusions = read(path.join(repo, 'data/fr/source/track-call-exclusions.json'));
 const outcomes = [];
