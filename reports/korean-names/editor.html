@@ -248,9 +248,10 @@ function tableForRoute(route,name){
    if(id&&!services.some(s=>s.id===id))services.push({...service,id,nameKo:service.nameKo||journey.patternName?.ko||'',
      nameJa:service.nameJa||journey.patternName?.ko||'',nameEn:service.nameEn||''});
   }
+  const latinKoreanService=value=>country==='kr'&&typeof value==='string'?value.replace(/케이티엑스|아이티엑스|에스알티|지티엑스|에이알이엑스|이엠유|디엠유/gu,part=>({케이티엑스:'KTX',아이티엑스:'ITX',에스알티:'SRT',지티엑스:'GTX',에이알이엑스:'AREX',이엠유:'EMU',디엠유:'DMU'})[part]||part):value;
   return [HEADERS.services,...services.map(s=>[
    String(s.id||''),'운행계통',route.id,s.nameZh||s.nameJa||s.ja||'',
-   s.nameKo||s.ko||'',s.nameEn||s.en||'',route.operator?.ko||'',route.line?.ko||''
+   latinKoreanService(s.nameKo||s.ko||''),s.nameEn||s.en||'',route.operator?.ko||'',route.line?.ko||''
   ]).filter(r=>r[0])];
  }
  const stationRecords=routeStationRows(route);
