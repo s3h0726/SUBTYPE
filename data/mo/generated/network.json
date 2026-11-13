@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 1,
+  "country": {
+    "id": "mo",
+    "isoCode": "MO",
+    "nameKo": "마카오",
+    "nameEn": "Macau",
+    "nameZhHant": "澳門"
+  },
+  "checkedAt": "2026-11-14",
+  "sourceNotice": "2026년 11월 현재 영업 중인 3개 노선만 포함. 동선은 건설 중이므로 제외. 공식 정차역 순서·한국어 역명을 대조했으며, 실제 선로 형상은 Citylines 공개 지리 데이터에서 간소화해 사용. 좌표는 선로상 근삿값.",
+  "operators": [
+    {
+      "id": "mo-lrt",
+      "names": {
+        "ja": "澳門輕軌",
+        "ko": "마카오경전철유한공사",
+        "en": "Macao Light Rapid Transit"
+      },
+      "sourceUrl": "https://www.mlm.com.mo/en/route.html"
+    }
+  ],
+  "routes": [
+    {
+      "id": "mo-lrt-taipa",
+      "countryId": "mo",
+      "schemaVersion": 1,
+      "operatorId": "mo-lrt",
+      "operator": {
+        "ja": "澳門輕軌",
+        "ko": "마카오경전철유한공사",
+        "en": "Macao Light Rapid Transit"
+      },
+      "line": {
+        "ja": "氹仔線",
+        "ko": "타이파선",
+        "en": "Taipa Line"
+      },
+      "category": "light_rail",
+      "mode": "light_rail",
+      "code": "TL",
+      "lineColor": "#299b54",
+      "loop": false,
+      "playable": true,
+      "releaseStatus": "ready",
+      "operationalStatus": "OPERATIONAL",
+      "geometryReady": true,
+      "geometryStatus": "source-traced-simplified",
+      "geometrySource": "https://www.citylines.co/api/macau/raw_source/sections",
+      "sourceUrl": "https://www.mlm.com.mo/en/route.html",
+      "stationNameSource": "https://www.namu.moe/w/마카오%20경전철%20타이파선",
+      "geometry": [
+        [
+          22.18442,
+          113.5293
+        ],
+        [
+          22.1829,
+          113.52943
+        ],
+        [
+          22.18216,
+          113.52968
+        ],
+        [
+          22.18147,
+          113.53016
+        ],
+        [
+          22.18049,
+          113.53169
+        ],
+        [
+          22.17946,
+          113.53263
+        ],
+        [
+          22.16695,
+          113.53896
+        ],
+        [
+          22.16505,
+          113.53976
+        ],
+        [
+          22.16379,
+          113.54012
+        ],
+        [
+          22.16225,
+          113.54049
+        ],
+        [
+          22.15962,
+          113.5408
+        ],
+        [
+          22.15843,
+          113.5411
+        ],
+        [
+          22.15649,
+          113.5418
+        ],
+        [
+          22.15609,
+          113.54241
+        ],
+        [
+          22.1567,
+          113.54339
+        ],
+        [
+          22.15709,
+          113.54935
+        ],
+        [
+          22.15702,
+          113.55087
+        ],
+        [
+          22.15675,
+          113.55194
+        ],
+        [
+          22.15614,
+          113.55301
+        ],
+        [
+          22.15532,
+          113.5524
+        ],
+        [
+          22.15308,
+          113.55122
+        ],
+        [
+          22.15211,
+          113.5516
+        ],
+        [
+          22.15069,
+          113.55497
+        ],
+        [
+          22.15007,
+          113.55716
+        ],
+        [
+          22.14889,
+          113.55802
+        ],
+        [
+          22.14321,
+          113.55775
+        ],
+        [
+          22.14066,
+          113.5577
+        ],
+        [
+          22.14018,
+          113.5582
+        ],
+        [
+          22.1398,
+          113.55956
+        ],
+        [
+          22.13891,
+          113.56055
+        ],
+        [
+          22.13874,
+          113.56293
+        ],
+        [
+          22.13857,
+          113.56619
+        ],
+        [
+          22.13891,
+          113.56751
+        ],
+        [
+          22.14051,
+          113.56845
+        ],
+        [
+          22.14198,
+          113.56856
+        ],
+        [
+          22.14671,
+          113.5692
+        ],
+        [
+          22.14854,
+          113.56908
+        ],
+        [
+          22.14959,
+          113.56885
+        ],
+        [
+          22.15006,
+          113.56921
+        ],
+        [
+          22.15128,
+          113.57135
+        ],
+        [
+          22.15269,
+          113.5709
+        ],
+        [
+          22.15488,
+          113.56956
+        ],
+        [
+          22.1559,
+          113.56984
+        ],
+        [
+          22.15661,
+          113.57144
+        ],
+        [
+          22.15821,
+          113.57424
+        ],
+        [
+          22.1591,
+          113.57457
+        ],
+        [
+          22.16058,
+          113.57504
+        ],
+        [
+          22.16223,
+          113.57547
+        ],
+        [
+          22.16278,
+          113.57494
+        ],
+        [
+          22.16331,
+          113.57274
+        ]
+      ],
+      "stations": [
+        {
+          "id": "mo-lrt-barra",
+          "ja": "媽閣",
+          "romaji": "Barra",
+          "ko": "바라",
+          "koAliases": [
+            "마각"
+          ],
+          "latitude": 22.18442,
+          "longitude": 113.5293,
+          "geometryIndex": 0,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-ocean",
+          "ja": "海洋",
+          "romaji": "Ocean",
+          "ko": "해양",
+          "koAliases": [
+            "오션"
+          ],
+          "latitude": 22.15843,
+          "longitude": 113.5411,
+          "geometryIndex": 11,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-jockey-club",
+          "ja": "馬會",
+          "romaji": "Jockey Club",
+          "ko": "자키클럽",
+          "koAliases": [
+            "마회"
+          ],
+          "latitude": 22.15609,
+          "longitude": 113.54241,
+          "geometryIndex": 13,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-stadium",
+          "ja": "運動場",
+          "romaji": "Stadium",
+          "ko": "경기장",
+          "koAliases": [
+            "스타디움"
+          ],
+          "latitude": 22.15709,
+          "longitude": 113.54935,
+          "geometryIndex": 15,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-pai-kok",
+          "ja": "排角",
+          "romaji": "Pai Kok",
+          "ko": "파이꼭",
+          "koAliases": [
+            "파이콕"
+          ],
+          "latitude": 22.15614,
+          "longitude": 113.55301,
+          "geometryIndex": 18,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-cotai-west",
+          "ja": "路氹西",
+          "romaji": "Cotai West",
+          "ko": "코타이웨스트",
+          "koAliases": [
+            "코타이서"
+          ],
+          "latitude": 22.15069,
+          "longitude": 113.55497,
+          "geometryIndex": 22,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-lotus",
+          "ja": "蓮花",
+          "romaji": "Lotus",
+          "ko": "로터스",
+          "koAliases": [
+            "연화"
+          ],
+          "latitude": 22.1398,
+          "longitude": 113.55956,
+          "geometryIndex": 28,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-union-hospital",
+          "ja": "協和醫院",
+          "romaji": "Union Hospital",
+          "ko": "유니언병원",
+          "koAliases": [
+            "협화병원"
+          ],
+          "latitude": 22.13874,
+          "longitude": 113.56293,
+          "geometryIndex": 30,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-east-asian-games",
+          "ja": "東亞運",
+          "romaji": "East Asian Games",
+          "ko": "동아시안게임",
+          "koAliases": [
+            "동아시아게임"
+          ],
+          "latitude": 22.14051,
+          "longitude": 113.56845,
+          "geometryIndex": 33,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-cotai-east",
+          "ja": "路氹東",
+          "romaji": "Cotai East",
+          "ko": "코타이이스트",
+          "koAliases": [
+            "코타이동"
+          ],
+          "latitude": 22.14854,
+          "longitude": 113.56908,
+          "geometryIndex": 36,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-must",
+          "ja": "科大",
+          "romaji": "MUST",
+          "ko": "마카오과학기술대학교",
+          "koAliases": [
+            "마카오과기대"
+          ],
+          "latitude": 22.15269,
+          "longitude": 113.5709,
+          "geometryIndex": 40,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-airport",
+          "ja": "機場",
+          "romaji": "Airport",
+          "ko": "공항",
+          "koAliases": [
+            "마카오국제공항"
+          ],
+          "latitude": 22.15821,
+          "longitude": 113.57424,
+          "geometryIndex": 44,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-taipa-ferry-terminal",
+          "ja": "氹仔碼頭",
+          "romaji": "Taipa Ferry Terminal",
+          "ko": "타이파페리터미널",
+          "koAliases": [
+            "타이파부두"
+          ],
+          "latitude": 22.16331,
+          "longitude": 113.57274,
+          "geometryIndex": 49,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        }
+      ],
+      "services": [
+        {
+          "id": "mo-taipa-local",
+          "nameJa": "普通",
+          "nameKo": "각역정차",
+          "nameEn": "Local",
+          "stops": [
+            "mo-lrt-barra",
+            "mo-lrt-ocean",
+            "mo-lrt-jockey-club",
+            "mo-lrt-stadium",
+            "mo-lrt-pai-kok",
+            "mo-lrt-cotai-west",
+            "mo-lrt-lotus",
+            "mo-lrt-union-hospital",
+            "mo-lrt-east-asian-games",
+            "mo-lrt-cotai-east",
+            "mo-lrt-must",
+            "mo-lrt-airport",
+            "mo-lrt-taipa-ferry-terminal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mo-lrt-seac-pai-van",
+      "countryId": "mo",
+      "schemaVersion": 1,
+      "operatorId": "mo-lrt",
+      "operator": {
+        "ja": "澳門輕軌",
+        "ko": "마카오경전철유한공사",
+        "en": "Macao Light Rapid Transit"
+      },
+      "line": {
+        "ja": "石排灣線",
+        "ko": "섹파이완선",
+        "en": "Seac Pai Van Line"
+      },
+      "category": "light_rail",
+      "mode": "light_rail",
+      "code": "SPV",
+      "lineColor": "#8562ac",
+      "loop": false,
+      "playable": true,
+      "releaseStatus": "ready",
+      "operationalStatus": "OPERATIONAL",
+      "geometryReady": true,
+      "geometryStatus": "source-traced-simplified",
+      "geometrySource": "https://www.citylines.co/api/macau/raw_source/sections",
+      "sourceUrl": "https://www.mlm.com.mo/en/route.html",
+      "stationNameSource": "https://www.namu.moe/w/마카오%20경전철%20타이파선",
+      "geometry": [
+        [
+          22.13818,
+          113.56326
+        ],
+        [
+          22.13506,
+          113.5631
+        ],
+        [
+          22.13367,
+          113.56304
+        ],
+        [
+          22.13226,
+          113.56296
+        ],
+        [
+          22.13196,
+          113.56294
+        ],
+        [
+          22.1316,
+          113.56271
+        ],
+        [
+          22.13141,
+          113.56226
+        ],
+        [
+          22.13143,
+          113.56193
+        ]
+      ],
+      "stations": [
+        {
+          "id": "mo-lrt-union-hospital",
+          "ja": "協和醫院",
+          "romaji": "Union Hospital",
+          "ko": "유니언병원",
+          "koAliases": [
+            "협화병원"
+          ],
+          "latitude": 22.13818,
+          "longitude": 113.56326,
+          "geometryIndex": 0,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-seac-pai-van",
+          "ja": "石排灣",
+          "romaji": "Seac Pai Van",
+          "ko": "섹파이완",
+          "koAliases": [
+            "석배만"
+          ],
+          "latitude": 22.13143,
+          "longitude": 113.56193,
+          "geometryIndex": 7,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        }
+      ],
+      "services": [
+        {
+          "id": "mo-seac-pai-van-local",
+          "nameJa": "普通",
+          "nameKo": "각역정차",
+          "nameEn": "Local",
+          "stops": [
+            "mo-lrt-union-hospital",
+            "mo-lrt-seac-pai-van"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mo-lrt-hengqin",
+      "countryId": "mo",
+      "schemaVersion": 1,
+      "operatorId": "mo-lrt",
+      "operator": {
+        "ja": "澳門輕軌",
+        "ko": "마카오경전철유한공사",
+        "en": "Macao Light Rapid Transit"
+      },
+      "line": {
+        "ja": "橫琴線",
+        "ko": "헝친선",
+        "en": "Hengqin Line"
+      },
+      "category": "light_rail",
+      "mode": "light_rail",
+      "code": "HQ",
+      "lineColor": "#d45554",
+      "loop": false,
+      "playable": true,
+      "releaseStatus": "ready",
+      "operationalStatus": "OPERATIONAL",
+      "geometryReady": true,
+      "geometryStatus": "source-traced-simplified",
+      "geometrySource": "https://www.citylines.co/api/macau/raw_source/sections",
+      "sourceUrl": "https://www.mlm.com.mo/en/route.html",
+      "stationNameSource": "https://www.namu.moe/w/마카오%20경전철%20타이파선",
+      "geometry": [
+        [
+          22.13913,
+          113.55924
+        ],
+        [
+          22.13929,
+          113.5571
+        ],
+        [
+          22.13943,
+          113.55429
+        ],
+        [
+          22.1394,
+          113.5532
+        ],
+        [
+          22.13816,
+          113.54789
+        ],
+        [
+          22.13804,
+          113.54644
+        ],
+        [
+          22.1384,
+          113.54552
+        ],
+        [
+          22.13947,
+          113.54521
+        ],
+        [
+          22.1405,
+          113.54509
+        ],
+        [
+          22.14342,
+          113.54495
+        ]
+      ],
+      "stations": [
+        {
+          "id": "mo-lrt-lotus",
+          "ja": "蓮花",
+          "romaji": "Lotus",
+          "ko": "로터스",
+          "koAliases": [
+            "연화"
+          ],
+          "latitude": 22.13913,
+          "longitude": 113.55924,
+          "geometryIndex": 0,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        },
+        {
+          "id": "mo-lrt-hengqin",
+          "ja": "橫琴",
+          "romaji": "Hengqin",
+          "ko": "헝친",
+          "koAliases": [
+            "횡금"
+          ],
+          "latitude": 22.14342,
+          "longitude": 113.54495,
+          "geometryIndex": 9,
+          "koSource": "namuwiki-macao-lrt",
+          "coordinateSource": "citylines-simplified-track-anchor"
+        }
+      ],
+      "services": [
+        {
+          "id": "mo-hengqin-local",
+          "nameJa": "普通",
+          "nameKo": "각역정차",
+          "nameEn": "Local",
+          "stops": [
+            "mo-lrt-lotus",
+            "mo-lrt-hengqin"
+          ]
+        }
+      ]
+    }
+  ]
+}

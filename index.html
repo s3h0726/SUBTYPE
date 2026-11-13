@@ -150,13 +150,13 @@
         <section class="country-board world-country-panel" aria-labelledby="country-board-title">
           <header class="country-board-heading">
             <div><p>국가 목록</p><h2 id="country-board-title">운행 국가</h2></div>
-            <small id="country-total-count" aria-live="polite">6개 국가</small>
+            <small id="country-total-count" aria-live="polite">8개 국가</small>
           </header>
           <div class="country-toolbar">
             <div class="country-region-filters" role="group" aria-label="지역 필터">
-              <button type="button" class="country-region-filter active" data-region-filter="all" aria-pressed="true">전체 <span data-region-count="all">6</span></button>
-              <button type="button" class="country-region-filter" data-region-filter="asia" aria-pressed="false">아시아 <span data-region-count="asia">5</span></button>
-              <button type="button" class="country-region-filter" data-region-filter="europe" aria-pressed="false">유럽 <span data-region-count="europe">1</span></button>
+              <button type="button" class="country-region-filter active" data-region-filter="all" aria-pressed="true">전체 <span data-region-count="all">8</span></button>
+              <button type="button" class="country-region-filter" data-region-filter="asia" aria-pressed="false">아시아 <span data-region-count="asia">6</span></button>
+              <button type="button" class="country-region-filter" data-region-filter="europe" aria-pressed="false">유럽 <span data-region-count="europe">2</span></button>
             </div>
             <label class="country-search" for="country-search-input">
               <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.7"/><path d="m16 16 4.7 4.7"/></svg>
@@ -181,6 +181,12 @@
               <span class="country-card-top"><span class="country-card-index">03</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
               <span class="country-card-art" aria-hidden="true"><i></i><i></i><i></i></span>
               <span class="country-card-content"><strong>홍콩</strong><small>도시철도 · 트램</small></span>
+              <span class="country-card-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="country-card" type="button" data-country="mo" data-region="asia" aria-pressed="false" aria-label="마카오 선택">
+              <span class="country-card-top"><span class="country-card-index">04</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
+              <span class="country-card-art" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="country-card-content"><strong>마카오</strong><small>경전철 · 타이파선 · 섹파이완선 · 헝친선</small></span>
               <span class="country-card-arrow" aria-hidden="true">↗</span>
             </button>
             <button class="country-card" type="button" data-country="tw" data-region="asia" aria-pressed="false" aria-label="대만 선택">

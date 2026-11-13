@@ -13,7 +13,7 @@ export const FEATURE_FLAGS=Object.freeze({
 const LEGACY_ROUTE_ALIASES=Object.freeze({'line-28002-honancho-branch':'line-28002','line-99422':'line-toyama-city-3','line-99815':'line-99814','line-11317--hachikosen-hachioji-komagawa':'line-11317','line-11229--jobansen-totte-iwaki':'line-11229','line-11320--jobansen-ueno-totte':'line-11320'});
 export const canonicalRouteId=routeId=>{const id=String(routeId||'');const former=id.match(/^kr-preview-(\d+)$/);return former?'kr-service-'+former[1]:LEGACY_ROUTE_ALIASES[id]||id};
 
-export const isCountryEnabled=countryId=>countryId==='fr'||countryId==='uk'||countryId==='th'||countryId==='tw'||countryId==='jp'||(countryId==='kr'&&FEATURE_FLAGS.korea)||(countryId==='hk'&&FEATURE_FLAGS.hongKong);
+export const isCountryEnabled=countryId=>countryId==='fr'||countryId==='uk'||countryId==='th'||countryId==='tw'||countryId==='jp'||countryId==='mo'||(countryId==='kr'&&FEATURE_FLAGS.korea)||(countryId==='hk'&&FEATURE_FLAGS.hongKong);
 
 export function isRouteVisible(route){
   if(FEATURE_FLAGS.koreaRoutesReset&&route?.countryId==='kr')return false;
