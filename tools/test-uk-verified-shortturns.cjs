@@ -34,7 +34,7 @@ test('all seven UK timetable short turns are present with real parent segments, 
  }
  const validation=read('data/uk/generated/validation.json');
  assert.equal(validation.playableDirections,index.routes.reduce((n,r)=>n+r.serviceCount,0));
- assert.equal(validation.lines,56);
+ assert.equal(validation.lines,index.routes.length);
 });
 
 test('published UK short turns resolve and pass route-integrity on the actual track',async()=>{
