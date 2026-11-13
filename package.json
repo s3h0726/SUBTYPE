@@ -5,6 +5,7 @@
   "scripts": {
     "test:version": "node tools/test-app-version.cjs",
     "test:kr-bus-latin-display": "node tools/test-kr-bus-latin-display.cjs",
+    "test:kr-rail-acronyms": "node tools/test-kr-rail-acronyms.cjs",
     "audit:recovery": "node tools/audit-data-recovery.js",
     "build:data": "node tools/audit-data-recovery.js && node tools/build-static.js && node tools/test-single-source.js",
     "build:korea": "node tools/build-korea-data.js",
