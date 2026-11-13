@@ -8519,6 +8519,56 @@
           "via": "Hastings"
         }
       ]
+    },
+    {
+      "id": "eurostar-london-paris",
+      "lineEn": "Eurostar · London–Paris via the Channel Tunnel",
+      "lineKo": "유로스타 런던–파리 채널터널선",
+      "operatorId": "uk-eurostar",
+      "operatorEn": "Eurostar",
+      "operatorKo": "유로스타",
+      "color": "#1b365d",
+      "officialUrl": "https://www.eurostar.com/uk-en/travel-info/eurostar-experience/the-channel-tunnel",
+      "category": "international",
+      "checkedAt": "2026-11-13",
+      "patterns": [
+        {
+          "relationId": 2905896,
+          "expectedStops": 2,
+          "expectedCalls": [
+            "London St Pancras International",
+            "Paris Gare du Nord"
+          ],
+          "stationNames": {
+            "1279432079": {
+              "source": "Paris Gare du Nord - Voie 6",
+              "official": "Paris Gare du Nord"
+            },
+            "3101677941": {
+              "source": "London St Pancras",
+              "official": "London St Pancras International"
+            }
+          }
+        },
+        {
+          "relationId": 2905798,
+          "expectedStops": 2,
+          "expectedCalls": [
+            "Paris Gare du Nord",
+            "London St Pancras International"
+          ],
+          "stationNames": {
+            "1279432104": {
+              "source": "Paris Gare du Nord - Voie 5",
+              "official": "Paris Gare du Nord"
+            },
+            "3101677943": {
+              "source": "London St Pancras",
+              "official": "London St Pancras International"
+            }
+          }
+        }
+      ]
     }
   ]
 }

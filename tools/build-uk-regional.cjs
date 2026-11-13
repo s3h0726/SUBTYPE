@@ -20,6 +20,11 @@ for(const network of [...evidence.networks,...national.networks]){
    const {geometry,refs}=assembled;
    const stopSlice=assembled.stops.slice(spec.fromIndex||0,spec.toIndex===undefined?undefined:spec.toIndex+1);
    const stops=stopSlice.map(stop=>{
+    const stationName=spec.stationNames?.[stop.id];
+    if(stationName){
+     if(stop.tags?.name!==stationName.source)throw Error('source-stop-name-changed:'+stop.id);
+     return {...stop,tags:{...stop.tags,name:stationName.official}};
+    }
     const reviewedName=spec.unnamedStops?.[stop.id];
     if(!reviewedName)return stop;
     if(stop.tags?.name&&stop.tags.name!==reviewedName)throw Error('source-stop-name-changed:'+stop.id);
