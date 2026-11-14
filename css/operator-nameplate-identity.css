@@ -1,0 +1,62 @@
+/* SUBTYPE original visual identities for otherwise shared railway nameplates.
+ * Official/photo-based signs are excluded by the runtime and selectors.
+ * The horizontal route-color highlight remains visible in all variants.
+ * Does not position, hide, or restyle the Korean typing input.
+ */
+
+/* Japan: retain the established 2026-11-08 station-sign family layout,
+ * but provide a recognizable edge, surface and line treatment per operator.
+ * Family and individual photo templates take priority over this layer. */
+html[data-country="jp"] #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="0"]{
+  border-left:9px solid var(--route-color,#2677a1)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="1"]{
+  border-top:7px solid var(--route-color,#2677a1)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="2"]{
+  border-right:9px solid var(--route-color,#2677a1)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="3"]{
+  border-bottom:7px solid var(--route-color,#2677a1)!important;
+}
+html[data-country="jp"] #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="4"]{
+  box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--route-color,#2677a1) 48%,white)!important;
+}
+
+/* Shared sign families outside Japan keep their existing language order,
+ * background, and type sizes. A restrained colored edge distinguishes
+ * different operators using the same family without pretending to be a
+ * reproduction of a real-world nameboard. */
+html:not([data-country="jp"]) #screen-game.active #station-sign[data-operator-design="subtype"]:not([data-photo-sign]) .station-sign-brand{
+  position:relative;
+}
+html:not([data-country="jp"]) #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="0"]:not([data-photo-sign]) .station-sign-brand{
+  box-shadow:inset 0 -4px var(--route-color,#2677a1)!important;
+}
+html:not([data-country="jp"]) #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="1"]:not([data-photo-sign]) .station-sign-brand{
+  box-shadow:inset 5px 0 var(--route-color,#2677a1)!important;
+}
+html:not([data-country="jp"]) #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="2"]:not([data-photo-sign]) .station-sign-brand{
+  box-shadow:inset -5px 0 var(--route-color,#2677a1)!important;
+}
+html:not([data-country="jp"]) #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="3"]:not([data-photo-sign]) .station-sign-brand{
+  box-shadow:inset 0 4px var(--route-color,#2677a1)!important;
+}
+html:not([data-country="jp"]) #screen-game.active #station-sign[data-operator-design="subtype"][data-operator-edge="4"]:not([data-photo-sign]) .station-sign-brand{
+  box-shadow:inset 0 -2px var(--route-color,#2677a1),inset 0 -6px color-mix(in srgb,var(--route-color,#2677a1) 28%,white)!important;
+}
+
+/* No new layer above the input; preserve the main highlight and its click-
+ * through behavior for desktop and mobile Korean IME typing. */
+#screen-game.active #station-sign[data-operator-design="subtype"] .station-sign-main::before{
+  pointer-events:none!important;
+}
+@media(max-width:760px){
+  html[data-country="jp"] #screen-game.active #station-sign[data-operator-design="subtype"]{
+    max-width:100%;
+    min-width:0;
+  }
+  html[data-country="jp"] #screen-game.active #station-sign[data-operator-design="subtype"] .station-neighbor{
+    min-width:0!important;
+  }
+}
