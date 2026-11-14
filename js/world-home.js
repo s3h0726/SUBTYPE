@@ -61,7 +61,7 @@
     if(cards.some(card=>grouped.has(card.dataset.country)))keys.add('sar');
     for(const card of cards)
       if(!grouped.has(card.dataset.country))createPin(card.dataset.country,countryName(card));
-    if(keys.has('sar'))createPin('sar','홍콩 · 마카오');
+    if(keys.has('sar'))createPin('sar','홍콩·마카오');
 
     for(const [key,pin] of availablePins){
       if(!keys.has(key)){pin.remove();availablePins.delete(key);continue;}
@@ -72,7 +72,7 @@
       const filtered=!available.some(card=>!card.classList.contains('is-filtered-out'));
       const unavailable=available.length===0;
       const selected=available.some(card=>card.classList.contains('active'));
-      const label=key==='sar'?'홍콩 · 마카오':countryName(members[0]);
+      const label=key==='sar'?'홍콩·마카오':countryName(members[0]);
       pin.classList.toggle('is-filtered-out',filtered);
       pin.classList.toggle('active',selected);
       pin.disabled=unavailable||filtered;
