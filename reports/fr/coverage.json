@@ -4,21 +4,21 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 109,
-  "verifiedSourcePatternRecords": 109,
-  "remainingSourcePatternRecords": 13177,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.8204124642480807,
+  "coveredSourcePatternRecords": 113,
+  "verifiedSourcePatternRecords": 113,
+  "remainingSourcePatternRecords": 13173,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.8505193436700286,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 46,
+  "catalogLines": 48,
   "operators": 7,
-  "catalogServiceFamilies": 57,
-  "playableDirections": 107,
-  "verifiedPlayableDirections": 107,
-  "koreanNamedStations": 670,
-  "stationIds": 670,
-  "physicalStationGroups": 637,
-  "sharedPhysicalWays": 8300,
-  "uniquePhysicalWays": 15418,
+  "catalogServiceFamilies": 59,
+  "playableDirections": 111,
+  "verifiedPlayableDirections": 111,
+  "koreanNamedStations": 683,
+  "stationIds": 683,
+  "physicalStationGroups": 650,
+  "sharedPhysicalWays": 8455,
+  "uniquePhysicalWays": 15579,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -56,9 +56,9 @@
     "UNVERIFIABLE": 1
   },
   "trackRelations": {
-    "examined": 190,
-    "matched": 136,
-    "blocked": 54
+    "examined": 222,
+    "matched": 140,
+    "blocked": 82
   },
   "byFamily": [
     {
@@ -127,9 +127,9 @@
     {
       "family": "ter",
       "sourcePatternRecords": 4175,
-      "catalogLines": 6,
-      "playableDirections": 14,
-      "testedDirections": 14
+      "catalogLines": 8,
+      "playableDirections": 18,
+      "testedDirections": 18
     },
     {
       "family": "tram-train",
@@ -154,6 +154,77 @@
     }
   ],
   "lines": [
+    {
+      "id": "fr-ter-nantes-pornic",
+      "category": "regional_rail",
+      "regions": [
+        "52"
+      ],
+      "sourceRouteId": "FR:Line::3BFEB21D-85AF-409B-9346-ED10CA3D8ED0:",
+      "sourceLineId": "fr-line-b944f1990e755edba6c55f68",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-090dcd736099ad5dc065fef9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bfe296991d255348e389581f"
+          ],
+          "relationId": 398897,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ffbb9f165233680caf02abb6",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f709e12312215b82d201934a"
+          ],
+          "relationId": 2827895,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-nantes-saint-gilles",
+      "category": "regional_rail",
+      "regions": [
+        "52"
+      ],
+      "sourceRouteId": "FR:Line::576E2F4E-738A-4830-A235-A3BAAA706745:",
+      "sourceLineId": "fr-line-181a1cf717136cf19d9f2503",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-17526736ce0826a018a3e546",
+        "fr-pattern-263a0314ed5f2190df106082"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-7fb7bedcc36ae7309c0d457b",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-373536ee0c15c1f96afc44e0"
+          ],
+          "relationId": 399775,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c2a9924f1f5c971a850f19dc",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-d588875bdeee85d3b76858e2"
+          ],
+          "relationId": 2834330,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
     {
       "id": "fr-ter-lyon-chambery",
       "category": "regional_rail",
@@ -2209,6 +2280,8 @@
         79818
       ],
       "catalogLineIds": [
+        "fr-ter-nantes-pornic",
+        "fr-ter-nantes-saint-gilles",
         "fr-tgv-strasbourg-quimper",
         "fr-tgv-nantes-brussels"
       ]

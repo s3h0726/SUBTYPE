@@ -132,7 +132,8 @@ async function run() {
       ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels',
         'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b', 'fr-rennes-metro-b',
         'fr-toulouse-metro-b', 'fr-lille-metro-2', 'fr-marseille-metro-2',
-        'fr-ter-grenoble-rives', 'fr-ter-lyon-brignais', 'fr-ter-macon-valence'].includes(route.id))
+        'fr-ter-grenoble-rives', 'fr-ter-lyon-brignais', 'fr-ter-macon-valence',
+        'fr-ter-nantes-pornic', 'fr-ter-nantes-saint-gilles'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);
@@ -201,8 +202,15 @@ async function run() {
         if (drive.snapshot().station.ko !== '몽바르') throw new Error('Transfer selected the wrong train path');
         return {station:'리옹역', destination:'몽바르', status:'PASS'};
       });
-      for (const country of ['jp', 'kr', 'hk', 'tw', 'th', 'uk', 'fr']) {
+      for (const country of ['jp', 'kr', 'hk', 'mo', 'tw', 'th', 'uk', 'fr']) {
         await page.evaluate(() => {const qa = globalThis.__FRANCE_QA__; qa.game.stop(false); qa.go('home');});
+        if (country === 'hk' || country === 'mo') {
+          const group = page.locator('button[data-country-group="sar"]');
+          if (await group.getAttribute('aria-expanded') !== 'true') await group.click();
+        } else {
+          const back = page.locator('button[data-country-group-back="sar"]');
+          if (await back.isVisible()) await back.click();
+        }
         await page.locator('button[data-country="' + country + '"]').click();
         await page.waitForFunction(country => {
           const lines = globalThis.__FRANCE_QA__?.routes();

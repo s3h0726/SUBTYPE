@@ -16,6 +16,7 @@ const inventories = (requestedSources.length ? requestedSources : ['83582', '809
 });
 const aliases = read(path.join(repo, 'data/fr/source/station-aliases.json'));
 const exclusions = read(path.join(repo, 'data/fr/source/track-call-exclusions.json'));
+const corrections = read(path.join(repo, 'data/fr/source/track-stop-corrections.json'));
 const outcomes = [];
 
 for (const file of fs.readdirSync(cache).filter(file => /^fr-osm-\d+\.json$/.test(file)).sort()) {
@@ -25,7 +26,7 @@ for (const file of fs.readdirSync(cache).filter(file => /^fr-osm-\d+\.json$/.tes
   if (relation?.tags?.type !== 'route') continue;
   const result = {relationId, name: relation.tags.name, reference: relation.tags.ref};
   try {
-    const track = readTrack(relation, elements, exclusions[relationId]);
+    const track = readTrack(relation, elements, exclusions[relationId], corrections[relationId]);
     result.trackCalls = track.stops.map(stop => stop.tags?.name || null);
     result.matches = findMatches(relation, track, inventories, aliases).map(match => ({
       sourceId: match.sourceId, routeId: match.line.sourceRouteId, brand: match.pattern.brand,

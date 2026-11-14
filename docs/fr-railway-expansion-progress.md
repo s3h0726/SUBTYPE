@@ -4,13 +4,15 @@ The baseline is SUBTYPE `main` at `520e00ec0f00e114005b7a616dff16f049a7b148`. It
 
 ## Playable batch
 
-France has 46 selectable routes, 107 directions, and 670 Korean-localized station IDs. The catalog includes eight domestic TGV INOUI corridors, two cross-border TGV INOUI corridors, the Bordeaux–Marseille daytime Intercités, and the regular full-length services of all Paris, Lyon, Rennes, Toulouse, Lille and Marseille Métro lines. Paris lines 7 and 13 include both branches. The two Métro 7 bis directions preserve their distinct stops on the terminal loop. A temporary works closure through 13 November was published for 7 bis. The schedule evidence covers its operating dates after that closure. [RATP service notice](https://www.ratp.fr/infos-trafic/metro/7B)
+France has 48 selectable routes, 111 directions, and 683 Korean-localized station IDs. The catalog includes eight domestic TGV INOUI corridors, two cross-border TGV INOUI corridors, the Bordeaux–Marseille daytime Intercités, and the regular full-length services of all Paris, Lyon, Rennes, Toulouse, Lille and Marseille Métro lines. Paris lines 7 and 13 include both branches. The two Métro 7 bis directions preserve their distinct stops on the terminal loop. A temporary works closure through 13 November was published for 7 bis. The schedule evidence covers its operating dates after that closure. [RATP service notice](https://www.ratp.fr/infos-trafic/metro/7B)
 
 The first Auvergne-Rhône-Alpes batch covers Clermont-Ferrand–Thiers (C10), Lyon–Annecy (K23), Grenoble–Chambéry (C1), the Saint-André-le-Gaz and Rives workings to Grenoble Universités–Gières (C6), Lyon–Chambéry (K16), Mâcon–Lyon–Valence (K64), and the Lyon Saint-Paul–Brignais tram-train (C9). Several source routes overlap in the SNCF snapshot. The release binds each playable service to its reviewed source route ID. [SNCF TER Auvergne-Rhône-Alpes](https://www.ter.sncf.com/auvergne-rhone-alpes/lignes)
 
+Pays de la Loire adds the Nantes–Pornic and Nantes–Saint-Gilles-Croix-de-Vie Aléop branches. Both directions match the ordered SNCF passenger calls. The reverse Pornic relation lists Rezé out of order. The reverse Saint-Gilles relation lists a same-name station node on a neighboring track, about four metres from the node on the mapped way. The two reviewed stop bindings are recorded in `data/fr/source/track-stop-corrections.json`. [Nantes–Pornic](https://www.ter.sncf.com/pays-de-la-loire/trajet-nantes-pornic), [Nantes–Saint-Gilles-Croix-de-Vie](https://www.ter.sncf.com/pays-de-la-loire/trajet-nantes-saint-gilles-croix-de-vie)
+
 - TGV INOUI includes Paris Nord–Valenciennes, Paris Nord–Dunkerque, Paris Nord–Rang-du-Fliers, Paris Lyon–Besançon, Paris Lyon–Mulhouse, Paris Lyon–Perpignan, Strasbourg–Bordeaux, Strasbourg–Quimper, Strasbourg–Brussels and Nantes–Brussels.
 - France route cards, destination and service selection, station lists, station signs, gameplay answers and free drive use Korean as the primary language. French names remain in the underlying records and secondary displays. The existing Korean-name editor can edit every playable France station. Rare station names use an editorial Korean rendering and can be corrected through the editor.
-- See the [browser results](../reports/fr/browser-gameplay.json) for completed desktop, 390 px mobile, and directed free-drive checks. The country-switch test exercised Japan, Korea, Hong Kong, Taiwan, Thailand, the United Kingdom and France. Free drive also passed a Métro-to-TGV transfer at Gare de Lyon. The editor test verified that the France station list opens and exposes its Korean names.
+- See the [browser results](../reports/fr/browser-gameplay.json) for desktop, 390 px mobile, directed free-drive, country selection, and Korean-name editor results. The country-switch test exercises Japan, Korea, Hong Kong, Macau, Taiwan, Thailand, the United Kingdom and France. The free-drive transfer check connects Métro and TGV at Gare de Lyon.
 - Geometry uses ordered OpenStreetMap way and node IDs, tied to the official timetable by ordered station identity and a geographic check. Shared ways are stored once in geographic tiles. Route detail and relevant tiles are fetched on demand. The Paris Gare de Lyon metro and main-line stations share a transfer group. [RATP station information](https://www.ratp.fr/en/vos-lignes/vos-stations/gare-de-lyon)
 
 ## Coverage and evidence
@@ -30,7 +32,7 @@ Use Python 3.12 and Node.js 22 or newer. A cache can be outside the checkout. Ke
 ```sh
 python -B tools/fr_fetch.py --cache ../fr-cache --include-unknown-mode
 python -B tools/fr_inventory.py --cache ../fr-cache --as-of 2026-11-12 --baseline 520e00ec0f00e114005b7a616dff16f049a7b148
-node tools/audit-fr-track-evidence.cjs ../fr-cache 83582 80921 81943 83281 81678 81995 39589 81474
+node tools/audit-fr-track-evidence.cjs ../fr-cache 83582 80921 81943 83281 81678 81995 39589 81474 79818
 node tools/build-fr.cjs
 node tools/test-france-data.cjs
 node tools/build-app-bundle.js

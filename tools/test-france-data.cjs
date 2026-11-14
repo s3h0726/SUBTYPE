@@ -13,6 +13,7 @@ async function run() {
   const runtime = await import(pathToFileURL(path.join(root, 'js/france-network.js')));
   const index = read('data/fr/generated/index.json');
   const exclusions = read('data/fr/source/track-call-exclusions.json');
+  const corrections = read('data/fr/source/track-stop-corrections.json');
   const specifications = read('data/fr/source/release-lines.json');
   const official = new Map([...new Set(specifications.map(spec => spec.sourceId))].map(resource => [
     resource, read('data/fr/source/schedules/' + resource + '.json'),
@@ -72,7 +73,7 @@ async function run() {
       }
       const {elements} = read('data/fr/source/osm/' + evidence.relationId + '.json');
       const relation = elements.find(element => element.type === 'relation' && element.id === evidence.relationId);
-      const track = readTrack(relation, elements, exclusions[evidence.relationId]);
+      const track = readTrack(relation, elements, exclusions[evidence.relationId], corrections[evidence.relationId]);
       assert.deepEqual(track.stops.map(stop => stop.id), evidence.stationNodes);
       assert.deepEqual(playable.geometry, track.geometry.slice(track.aligned[0],track.aligned.at(-1)+1));
       assert.equal(playable.directedSegments.length, playable.stations.length - 1);
