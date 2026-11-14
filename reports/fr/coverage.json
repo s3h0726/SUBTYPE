@@ -4,21 +4,22 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 130,
-  "verifiedSourcePatternRecords": 130,
-  "remainingSourcePatternRecords": 13156,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.9784735812133072,
+  "coveredSourcePatternRecords": 134,
+  "verifiedSourcePatternRecords": 134,
+  "remainingSourcePatternRecords": 13152,
+  "verifiedShareOfSourcePatternRecordsPercent": 1.008580460635255,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 54,
+  "catalogLines": 55,
   "operators": 8,
-  "catalogServiceFamilies": 71,
-  "playableDirections": 127,
-  "verifiedPlayableDirections": 127,
-  "koreanNamedStations": 721,
-  "stationIds": 721,
-  "physicalStationGroups": 688,
-  "sharedPhysicalWays": 10951,
-  "uniquePhysicalWays": 19732,
+  "catalogServiceFamilies": 73,
+  "playableDirections": 131,
+  "verifiedPlayableDirections": 131,
+  "catalogDirectionsPendingVerification": 0,
+  "koreanNamedStations": 727,
+  "stationIds": 727,
+  "physicalStationGroups": 694,
+  "sharedPhysicalWays": 12601,
+  "uniquePhysicalWays": 21382,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -57,8 +58,8 @@
   },
   "trackRelations": {
     "examined": 223,
-    "matched": 145,
-    "blocked": 78
+    "matched": 147,
+    "blocked": 76
   },
   "byFamily": [
     {
@@ -104,12 +105,12 @@
     {
       "family": "intercites-night",
       "sourcePatternRecords": 38,
-      "catalogLines": 0,
-      "coveredSourcePatternRecords": 0,
-      "verifiedSourcePatternRecords": 0,
-      "remainingSourcePatternRecords": 38,
-      "playableDirections": 0,
-      "testedDirections": 0
+      "catalogLines": 1,
+      "coveredSourcePatternRecords": 4,
+      "verifiedSourcePatternRecords": 4,
+      "remainingSourcePatternRecords": 34,
+      "playableDirections": 4,
+      "testedDirections": 4
     },
     {
       "family": "international",
@@ -193,6 +194,64 @@
     }
   ],
   "lines": [
+    {
+      "id": "fr-intercites-night-paris-toulouse",
+      "category": "intercity",
+      "regions": [
+        "11",
+        "24",
+        "75",
+        "76"
+      ],
+      "sourceRouteId": "FR:Line::7c00cf1f-74fd-4fda-a4e5-c2b1acb937a9:",
+      "sourceLineId": "fr-line-0e91989e5b1a232fbbc4f07d",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 4,
+      "remainingSourcePatternIds": [
+        "fr-pattern-8b6c6e2725c1a766ece99fc3",
+        "fr-pattern-b8b03bd9b7b07550135426d6"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-27c0fb6aff99b11d47fcb55a",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-4731f80748dba2cb6ae517e2"
+          ],
+          "relationId": 11783094,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-66490c68d30bdcd62e93a5d0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-91be46ad3ba2467ed4dd8935"
+          ],
+          "relationId": 11783094,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-dd1b46767385cbf832713ae3",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-d2e223d971e71980e6cdbad3"
+          ],
+          "relationId": 5945361,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-8c14d6b98f797aed6e5c09fa",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-20850b081e5948b2e2edaf65"
+          ],
+          "relationId": 5945361,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
     {
       "id": "fr-lyria-paris-lausanne",
       "category": "international",
@@ -2551,7 +2610,9 @@
         80921,
         80931
       ],
+      "catalogLines": 28,
       "catalogLineIds": [
+        "fr-intercites-night-paris-toulouse",
         "fr-lyria-paris-lausanne",
         "fr-tgv-paris-valenciennes",
         "fr-tgv-paris-dunkerque",
@@ -2579,7 +2640,9 @@
         "fr-paris-metro-12",
         "fr-paris-metro-13",
         "fr-paris-metro-14"
-      ]
+      ],
+      "playableDirections": 69,
+      "verifiedPlayableDirections": 69
     },
     {
       "code": "24",
@@ -2587,14 +2650,19 @@
       "regionalFeedIds": [
         83521
       ],
+      "catalogLines": 2,
       "catalogLineIds": [
+        "fr-intercites-night-paris-toulouse",
         "fr-tgv-strasbourg-bordeaux"
-      ]
+      ],
+      "playableDirections": 6,
+      "verifiedPlayableDirections": 6
     },
     {
       "code": "27",
       "name": "Bourgogne-Franche-Comté",
       "regionalFeedIds": [],
+      "catalogLines": 7,
       "catalogLineIds": [
         "fr-lyria-paris-lausanne",
         "fr-tgv-strasbourg-nice",
@@ -2603,7 +2671,9 @@
         "fr-tgv-paris-besancon",
         "fr-tgv-paris-mulhouse",
         "fr-tgv-paris-perpignan"
-      ]
+      ],
+      "playableDirections": 21,
+      "verifiedPlayableDirections": 21
     },
     {
       "code": "28",
@@ -2611,7 +2681,10 @@
       "regionalFeedIds": [
         81942
       ],
-      "catalogLineIds": []
+      "catalogLines": 0,
+      "catalogLineIds": [],
+      "playableDirections": 0,
+      "verifiedPlayableDirections": 0
     },
     {
       "code": "32",
@@ -2619,6 +2692,7 @@
       "regionalFeedIds": [
         83620
       ],
+      "catalogLines": 7,
       "catalogLineIds": [
         "fr-tgv-paris-valenciennes",
         "fr-tgv-paris-dunkerque",
@@ -2627,7 +2701,9 @@
         "fr-tgv-nantes-brussels",
         "fr-lille-metro-1",
         "fr-lille-metro-2"
-      ]
+      ],
+      "playableDirections": 14,
+      "verifiedPlayableDirections": 14
     },
     {
       "code": "44",
@@ -2635,13 +2711,16 @@
       "regionalFeedIds": [
         83634
       ],
+      "catalogLines": 5,
       "catalogLineIds": [
         "fr-tgv-strasbourg-nice",
         "fr-tgv-paris-mulhouse",
         "fr-tgv-strasbourg-bordeaux",
         "fr-tgv-strasbourg-quimper",
         "fr-tgv-strasbourg-brussels"
-      ]
+      ],
+      "playableDirections": 10,
+      "verifiedPlayableDirections": 10
     },
     {
       "code": "52",
@@ -2649,12 +2728,15 @@
       "regionalFeedIds": [
         79818
       ],
+      "catalogLines": 4,
       "catalogLineIds": [
         "fr-ter-nantes-pornic",
         "fr-ter-nantes-saint-gilles",
         "fr-tgv-strasbourg-quimper",
         "fr-tgv-nantes-brussels"
-      ]
+      ],
+      "playableDirections": 8,
+      "verifiedPlayableDirections": 8
     },
     {
       "code": "53",
@@ -2663,11 +2745,14 @@
         81474,
         81559
       ],
+      "catalogLines": 3,
       "catalogLineIds": [
         "fr-tgv-strasbourg-quimper",
         "fr-rennes-metro-a",
         "fr-rennes-metro-b"
-      ]
+      ],
+      "playableDirections": 6,
+      "verifiedPlayableDirections": 6
     },
     {
       "code": "75",
@@ -2675,26 +2760,35 @@
       "regionalFeedIds": [
         82321
       ],
+      "catalogLines": 3,
       "catalogLineIds": [
+        "fr-intercites-night-paris-toulouse",
         "fr-tgv-strasbourg-bordeaux",
         "fr-intercites-bordeaux-marseille"
-      ]
+      ],
+      "playableDirections": 12,
+      "verifiedPlayableDirections": 12
     },
     {
       "code": "76",
       "name": "Occitanie",
       "regionalFeedIds": [],
+      "catalogLines": 5,
       "catalogLineIds": [
+        "fr-intercites-night-paris-toulouse",
         "fr-tgv-paris-perpignan",
         "fr-intercites-bordeaux-marseille",
         "fr-toulouse-metro-a",
         "fr-toulouse-metro-b"
-      ]
+      ],
+      "playableDirections": 19,
+      "verifiedPlayableDirections": 19
     },
     {
       "code": "84",
       "name": "Auvergne-Rhône-Alpes",
       "regionalFeedIds": [],
+      "catalogLines": 17,
       "catalogLineIds": [
         "fr-tgv-strasbourg-nice",
         "fr-ter-saint-marcellin-grenoble",
@@ -2713,7 +2807,9 @@
         "fr-lyon-metro-b",
         "fr-lyon-metro-c",
         "fr-lyon-metro-d"
-      ]
+      ],
+      "playableDirections": 41,
+      "verifiedPlayableDirections": 41
     },
     {
       "code": "93",
@@ -2723,6 +2819,7 @@
         83448,
         83990
       ],
+      "catalogLines": 6,
       "catalogLineIds": [
         "fr-tgv-strasbourg-nice",
         "fr-ter-lyon-part-dieu-avignon",
@@ -2730,7 +2827,9 @@
         "fr-intercites-bordeaux-marseille",
         "fr-marseille-metro-1",
         "fr-marseille-metro-2"
-      ]
+      ],
+      "playableDirections": 18,
+      "verifiedPlayableDirections": 18
     },
     {
       "code": "94",
@@ -2738,7 +2837,10 @@
       "regionalFeedIds": [
         83882
       ],
-      "catalogLineIds": []
+      "catalogLines": 0,
+      "catalogLineIds": [],
+      "playableDirections": 0,
+      "verifiedPlayableDirections": 0
     }
   ],
   "overseasSources": []

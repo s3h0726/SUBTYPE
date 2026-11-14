@@ -46,7 +46,8 @@ const byFamily = Object.entries(inventory.patternsByFamily).map(([family, count]
   const published = lines.filter(line => (family === 'high-speed' && line.category === 'high_speed_rail') ||
     (family === 'subway' && line.category === 'subway') ||
     (family === 'international' && line.category === 'international') ||
-    (family === 'intercites' && line.category === 'intercity') ||
+    ((family === 'intercites' || family === 'intercites-night') && line.category === 'intercity' &&
+      line.directions.some(direction => direction.sourcePatterns.some(id => scheduleFamilies.get(id) === family))) ||
     (family === 'ter' && line.category === 'regional_rail') ||
     (family === 'tram-train' && line.category === 'tram_train'));
   const covered = [...scheduleFamilies].filter(([, sourceFamily]) => sourceFamily === family);
@@ -66,6 +67,7 @@ const coverage = {
   existingFranceLinesOnBaseline:0, catalogLines:lines.length, operators:catalog.operators,
   catalogServiceFamilies:lines.reduce((total,line) => total+line.serviceFamilies,0),
   playableDirections:catalog.playableDirections, verifiedPlayableDirections:verified.length,
+  catalogDirectionsPendingVerification:catalog.playableDirections-verified.length,
   koreanNamedStations:catalog.koreanNamedStations, stationIds:catalog.stationIds,
   physicalStationGroups:catalog.physicalStationGroups, sharedPhysicalWays:catalog.sharedPhysicalWays,
   uniquePhysicalWays:catalog.uniquePhysicalWays, physicalInfrastructure:manifest.infrastructureSources,
@@ -76,9 +78,13 @@ const coverage = {
   trackRelations:{examined:track.length, matched:track.filter(candidate => candidate.status === 'MATCHED').length,
     blocked:track.filter(candidate => candidate.status === 'BLOCKED').length},
   byFamily, lines,
-  regionalCoverage:inventory.mainlandRegions.map(region => ({
-    ...region, catalogLineIds:lines.filter(line => line.regions.includes(region.code)).map(line => line.id),
-  })),
+  regionalCoverage:inventory.mainlandRegions.map(region => {
+    const regionalLines = lines.filter(line => line.regions.includes(region.code));
+    const directions = regionalLines.flatMap(line => line.directions);
+    return {...region, catalogLines:regionalLines.length, catalogLineIds:regionalLines.map(line => line.id),
+      playableDirections:directions.length,
+      verifiedPlayableDirections:directions.filter(direction => direction.status === 'VERIFIED_ADDED').length};
+  }),
   overseasSources:inventory.overseas,
 };
 fs.writeFileSync(path.join(root, 'reports/fr/coverage.json'), JSON.stringify(coverage,null,2)+'\n');

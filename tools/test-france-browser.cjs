@@ -135,7 +135,8 @@ async function run() {
         'fr-ter-grenoble-rives', 'fr-ter-lyon-brignais', 'fr-ter-macon-valence',
         'fr-ter-nantes-pornic', 'fr-ter-nantes-saint-gilles', 'fr-lyria-paris-lausanne',
         'fr-tgv-strasbourg-nice', 'fr-ter-saint-marcellin-grenoble', 'fr-ter-lyon-part-dieu-avignon',
-        'fr-ter-lyon-perrache-avignon', 'fr-ter-lyon-besancon'].includes(route.id))
+        'fr-ter-lyon-perrache-avignon', 'fr-ter-lyon-besancon',
+        'fr-intercites-night-paris-toulouse'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);
@@ -207,13 +208,11 @@ async function run() {
       for (const country of ['jp', 'kr', 'hk', 'mo', 'tw', 'th', 'uk', 'fr']) {
         await page.evaluate(() => {const qa = globalThis.__FRANCE_QA__; qa.game.stop(false); qa.go('home');});
         if (country === 'hk' || country === 'mo') {
-          const group = page.locator('button[data-country-group="sar"]');
-          if (await group.getAttribute('aria-expanded') !== 'true') await group.click();
+          await page.locator('button[data-country-group="sar"]').click();
+          await page.locator('#hk-mo-country-picker [data-hk-mo-choice="' + country + '"]').click();
         } else {
-          const back = page.locator('button[data-country-group-back="sar"]');
-          if (await back.isVisible()) await back.click();
+          await page.locator('button[data-country="' + country + '"]').click();
         }
-        await page.locator('button[data-country="' + country + '"]').click();
         await page.waitForFunction(country => {
           const lines = globalThis.__FRANCE_QA__?.routes();
           return lines?.length && lines.every(line => line.countryId === country);
