@@ -484,3 +484,72 @@ body.reduce-motion #screen-home.world-home .world-map-marker{transition:none}
   #screen-home.world-home{height:auto;min-height:490px;overflow:visible}
   #screen-home.world-home .home-stage{min-height:410px}
 }
+
+/* Hong Kong and Macau share one directory category, not one transport dataset. */
+#screen-home.world-home .country-card-grid .country-group-card{
+  --accent:#68d8ba;--accent-rgb:104,216,186;
+}
+#screen-home.world-home .country-card-grid .country-group-card .country-card-arrow{
+  font-size:24px;
+}
+#screen-home.world-home .country-card-grid.subgroup-open > .country-card{
+  display:none!important;
+}
+#screen-home.world-home .country-subgroup[hidden]{display:none!important}
+#screen-home.world-home .country-subgroup{
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  min-width:0;min-height:0;width:100%;
+  gap:10px;
+  grid-column:1/-1;
+}
+#screen-home.world-home .country-subgroup-header{
+  flex:0 0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:8px;
+  color:#d7f6ed;
+  font-size:12px;
+}
+#screen-home.world-home .country-subgroup-header strong{
+  font-size:12px;font-weight:800;
+  white-space:nowrap;
+}
+#screen-home.world-home .country-subgroup-back{
+  background:#183746;
+  border:1px solid #3e6674;
+  border-radius:8px;
+  color:#d6f4ec;
+  min-height:34px;padding:7px 11px;
+  font:700 12px/1.3 inherit;
+  cursor:pointer;
+}
+#screen-home.world-home .country-subgroup-back:hover,
+#screen-home.world-home .country-subgroup-back:focus-visible{
+  background:#265063;border-color:#79d9c2;outline-offset:2px;
+}
+#screen-home.world-home .country-subgroup-list{
+  display:flex;flex-direction:column;
+  flex:1 1 auto;min-height:0;
+  gap:7px;overflow-y:auto;
+}
+#screen-home.world-home .country-subgroup-list .country-card[data-country="mo"]{
+  --accent:#86bcff;--accent-rgb:134,188,255;
+}
+#screen-home.world-home .world-map-marker[data-map-country="sar"] .world-pin-label{
+  font-size:11px;
+}
+@media(max-width:860px){
+  #screen-home.world-home .country-subgroup-list{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    align-content:start;
+  }
+}
+@media(max-width:620px){
+  #screen-home.world-home .country-subgroup-list{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  #screen-home.world-home .country-subgroup-header strong{font-size:11px}
+  #screen-home.world-home .country-subgroup-back{font-size:11px;padding:5px 8px}
+  #screen-home.world-home .world-map-marker[data-map-country="sar"]{margin-left:-7px;margin-top:9px}
+}
