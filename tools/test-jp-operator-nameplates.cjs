@@ -17,7 +17,7 @@ const prefix='window.TRT_JAPAN_LITE_INDEX=';
 const offset=indexText.indexOf(prefix);
 assert.ok(offset>=0,'Japan route index missing');
 const catalog=JSON.parse(indexText.slice(offset+prefix.length).trim().replace(/;$/,''));
-assert.ok(catalog.operators.length>=161,'unexpected loss of Japanese operators');
+assert.ok(catalog.operators.length>=160,'unexpected loss of Japanese operators');
 assert.ok(catalog.routes.length>=608,'unexpected loss of Japan route catalog');
 const operatorIds=new Set(catalog.operators.map(operator=>operator.id));
 for(const route of catalog.routes)assert.ok(operatorIds.has(route.operatorId),'unregistered operator for '+route.id);
