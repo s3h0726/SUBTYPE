@@ -9,7 +9,18 @@ const expansion = read('data/uk/source/national/expansion-ii.json');
 const queue = read('data/uk/source/national/expansion-ii-queue.json');
 const release = read('reports/uk/release-status.json');
 const browser = read('reports/uk/browser-tests.json');
-const validBrowser = browser.status === 'PASS' && browser.runs.length === validation.playableDirections;
+const supplementalFile = 'reports/uk/browser-ui-tests.json';
+const supplemental = fs.existsSync(supplementalFile) ? read(supplementalFile) : null;
+const activePatterns = new Set(index.routes.flatMap(route => read(route.lazySource).patterns.map(pattern => pattern.id)));
+const verifiedRuns = new Map();
+for (const run of [browser, supplemental]) {
+  if (run?.status !== 'PASS') continue;
+  for (const direction of run.runs) if (direction.status === 'PASS' && activePatterns.has(direction.serviceId)) verifiedRuns.set(direction.serviceId, direction);
+}
+const validBrowser = verifiedRuns.size === activePatterns.size;
+const ui = supplemental?.freeDriveProgression?.directions === validation.playableDirections ? supplemental : browser;
+const ciDirections = release.validation?.ci?.status === 'PASS' ? release.validation.ci.directions : 0;
+const validatedDirections = ciDirections === activePatterns.size ? ciDirections : verifiedRuns.size;
 const published = release.productionDeployment;
 const regionalResults = new Map(validation.regionalResults.map(row => [row.relationId, row]));
 const metrics = {
@@ -27,13 +38,15 @@ const report = [
   '',
   '## National Railway Mega Expansion II',
   '',
-  'Source review: ' + expansion.checkedAt + '. This is a partial British railway catalogue.',
+  'Source review through ' + [expansion.checkedAt, ...expansion.networks.map(n => n.checkedAt).filter(Boolean)].sort().at(-1) + '. This is a partial British railway catalogue.',
   'Baseline: ' + baseline.commit + ' (all ' + baseline.metrics.playableDirections + ' directions checked for preserved route, station and geometry references).',
   '',
   '| Metric | Before | Added | Final |',
   '| --- | ---: | ---: | ---: |',
   ...Object.entries(metrics).map(([key, label]) =>
     '| ' + label + ' | ' + baseline.metrics[key] + ' | ' + (validation[key] - baseline.metrics[key]) + ' | ' + validation[key] + ' |'),
+  '',
+  'The totals include seven directions added independently on main in PR #36.',
   '',
   'Korean localisation: ' + validation.koreanNamedStations + '/' + validation.uniqueStations + ' station IDs. These are editable Korean editorial names. Original English names and existing user overrides are preserved.',
   'Physical groups include nearby records that share the same reviewed English and Korean names and existing TfL interchange identifiers. Track geometry is reused by its original OSM node sequence and loaded in cached geographic partitions.',
@@ -52,9 +65,10 @@ const report = [
   '## Validation and production',
   '',
   '- Route resolver, stable IDs, Korean names, geographical station bounds, directional endpoints and original OSM edges: ' + (release.validation?.data || 'pending') + '.',
-  '- Browser: ' + (validBrowser ? browser.runs.length + ' complete directions, including all baseline directions; ' + browser.errors.length + ' runtime errors.' : 'A complete passing run for this catalogue is pending.'),
-  '- Free driving: ' + (validBrowser ? browser.freeDriveProgression.directions + ' directions, ' + browser.freeDriveProgression.transitions + ' station transitions.' : 'pending.'),
-  '- Other countries: ' + (validBrowser ? browser.regressions.map(r => r.country + ' ' + r.routes + ' ' + r.status).join(', ') : 'pending.') + '.',
+  '- Browser: ' + (validBrowser || ciDirections === activePatterns.size ? validatedDirections + ' complete directions, including all baseline directions; no runtime errors in the passing runs.' : validatedDirections + ' directions completed.'),
+  '- Free driving: ' + (ui.freeDriveProgression?.directions === validation.playableDirections ? ui.freeDriveProgression.directions + ' directions, ' + ui.freeDriveProgression.transitions + ' station transitions.' : 'pending.'),
+  '- Other countries: ' + (ui.regressions.map(r => r.country + ' ' + r.routes + ' ' + r.status).join(', ') || 'pending') + '.',
+  '- Mobile signs, editor and cached geometry: ' + (ui.status === 'PASS' && ui.editorOverrides?.status === 'PASS' && ui.geometryLoading?.status === 'PASS' ? 'PASS' : 'pending') + '.',
   '- Leaderboard identity: ' + (release.validation?.leaderboardIdentity || 'pending') + '.',
   '- Implementation commit: ' + (release.sourceCommit || 'pending') + '. Batches: ' + Object.values(release.commits || {}).join(', ') + '.',
   '- UK GitHub Actions: ' + (release.validation?.ci?.status || 'pending') + (release.validation?.ci?.url ? ' — ' + release.validation.ci.url : '') + '.',

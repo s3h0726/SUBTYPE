@@ -2,20 +2,22 @@
 
 ## National Railway Mega Expansion II
 
-Source review: 2026-11-12. This is a partial British railway catalogue.
+Source review through 2026-11-13. This is a partial British railway catalogue.
 Baseline: 520e00ec0 (all 284 directions checked for preserved route, station and geometry references).
 
 | Metric | Before | Added | Final |
 | --- | ---: | ---: | ---: |
-| Operating organisations | 21 | 14 | 35 |
-| Lines / corridors | 56 | 106 | 162 |
-| Service pattern families | 176 | 209 | 385 |
-| Playable directions | 284 | 379 | 663 |
-| Station IDs | 1146 | 1389 | 2535 |
-| Physical station groups | 1065 | 1169 | 2234 |
-| Shared track segments | 2588 | 3124 | 5712 |
+| Operating organisations | 21 | 15 | 36 |
+| Lines / corridors | 56 | 111 | 167 |
+| Service pattern families | 176 | 214 | 390 |
+| Playable directions | 284 | 389 | 673 |
+| Station IDs | 1146 | 1423 | 2569 |
+| Physical station groups | 1065 | 1199 | 2264 |
+| Shared track segments | 2588 | 3190 | 5778 |
 
-Korean localisation: 2535/2535 station IDs. These are editable Korean editorial names. Original English names and existing user overrides are preserved.
+The totals include seven directions added independently on main in PR #36.
+
+Korean localisation: 2569/2569 station IDs. These are editable Korean editorial names. Original English names and existing user overrides are preserved.
 Physical groups include nearby records that share the same reviewed English and Korean names and existing TfL interchange identifiers. Track geometry is reused by its original OSM node sequence and loaded in cached geographic partitions.
 
 ## Current operating organisations
@@ -55,6 +57,7 @@ Physical groups include nearby records that share the same reviewed English and 
 - CrossCountry — 크로스컨트리
 - Northern — 노던
 - Caledonian Sleeper — 칼레도니언 슬리퍼
+- Eurostar — 유로스타
 
 ## This phase by operator and corridor
 
@@ -166,19 +169,25 @@ Physical groups include nearby records that share the same reviewed English and 
 | West Midlands Trains | Coventry–Leamington and Coventry–Nuneaton lines | 2 |
 | West Midlands Trains | London Northwestern · Liverpool–Birmingham corridor | 4 |
 | Northern | Sheffield–Lincoln line | 2 |
+| Transport for Wales | Borderlands Line | 2 |
+| Greater Thameslink Railway | Southern · Marshlink and East Coastway | 2 |
+| Eurostar | Eurostar · London–Paris via the Channel Tunnel | 2 |
+| Eurostar | Eurostar · London–Brussels via the Channel Tunnel | 2 |
+| Eurostar | Eurostar · London–Amsterdam via Brussels and Rotterdam | 2 |
 
 ## Validation and production
 
 - Route resolver, stable IDs, Korean names, geographical station bounds, directional endpoints and original OSM edges: PASS.
-- Browser: A complete passing run for this catalogue is pending.
-- Free driving: pending.
-- Other countries: pending..
+- Browser: 673 complete directions, including all baseline directions; no runtime errors in the passing runs.
+- Free driving: 673 directions, 9411 station transitions.
+- Other countries: jp 607 PASS, kr 8275 PASS, hk 105 PASS, th 23 PASS, tw 46 PASS, fr 39 PASS.
+- Mobile signs, editor and cached geometry: PASS.
 - Leaderboard identity: PASS.
-- Implementation commit: pending. Batches: 2276e770a, 192f36c99, aaf49fee3.
-- UK GitHub Actions: PASS for the 424-direction main release — https://github.com/s3h0726/SUBTYPE/actions/runs/43236546597.
-- Main integration: 424 directions integrated at aaf49fee3; main subsequently added seven directions in PR #36. Third batch awaiting full browser validation..
-- GitHub Pages: PASS for 431 directions, checked 2026-11-13T14:14:07.742Z — https://s3h0726.github.io/SUBTYPE/.
-- Public browser journeys: uk-lnwr-west-coast (13 stops), uk-scotrail-borders (10 stops), uk-tfw-cambrian-coast (27 stops).
+- Implementation commit: 1803d538686c28cc66c78e9ba47fab4d92bb84b5. Batches: 2276e770a, 192f36c99, d16f67c33, 3a078e5a8, 63334e03f, 1803d5386, 485d7a8890675d3d940f7a9feafa1a99365aa0e9.
+- UK GitHub Actions: PASS — https://github.com/s3h0726/SUBTYPE/actions/runs/43449431332.
+- Main integration: 673 directions integrated at 485d7a889 and preserved in subsequent main commits.
+- GitHub Pages: PASS, checked 2026-11-14T22:59:34.350Z — https://s3h0726.github.io/SUBTYPE/.
+- Public browser journeys: uk-eurostar-london-paris (2 stops), uk-eurostar-london-brussels (2 stops), uk-eurostar-london-amsterdam (4 stops), uk-southeastern-hs1 (6 stops).
 
 ## Sources and reproducibility
 
@@ -194,7 +203,7 @@ Resume from data/uk/source/national/expansion-ii-queue.json. Only candidates rep
 | Priority | Operator / network | Remaining corridor | State and next verification |
 | --- | --- | --- | --- |
 | A1 | South Western Railway | Windsor, Kingston, Chessington, Island Line and Portsmouth variants | pending — Chessington relation 8646998 ends at Tolworth; Portsmouth Harbour fast pair has conflicting calls at Farncombe. Review operator-specific source |
-| A1 | Southern / Gatwick Express | Brighton Main Line, Coastway, Sussex and London branches | pending — Uckfield added. Other passenger service relations lack both ordered directions in the archive |
+| A1 | Southern / Gatwick Express | Brighton Main Line, Gatwick Express and Coastway branches | pending — Uckfield and Marshlink/East Coastway added. Remaining source relationships need complete ordered directions and passenger stops. |
 | A1 | Southeastern | More London Metro and Kent patterns | pending — Hayes–Charing Cross snapshot omits Waterloo East; Victoria–Orpington relations truncate at Herne Hill. Main line and other branches added |
 | A1 | Greater Anglia / Stansted Express | Hertford East, rural branches, other regular airport calls | pending — Stratford–Meridian Water track ways disconnected; Hertford East reverse still to resolve |
 | A1 | c2c | Other distinct regular variants | pending — All three operator route families added, via Basildon, Ockendon and Rainham |
@@ -203,15 +212,15 @@ Resume from data/uk/source/national/expansion-ii-queue.json. Only candidates rep
 | A2 | West Midlands Railway / London Northwestern Railway | Further local branches and express variants | pending — Main regional corridors added. Walsall–Wolverhampton 20188633 has unnamed stop 1870159460 and asymmetric calls |
 | A2 | CrossCountry | North East–South West, Birmingham–Stansted and Wales | pending — Check exact calls of archived relations 21116357 and 21116358. Leeds stop nodes lack names; connect only source track |
 | A3 | Northern | Northumberland, Settle–Carlisle, Hope Valley, Manchester and other branches | pending — Northumberland relations omit new stations; Settle–Carlisle relations use unnamed Leeds stop nodes. Cumbrian Coast pairs reference a crossing and an untagged node as calls |
-| A3 | TransPennine Express | South TransPennine and remaining North routes | pending — South pair 237386/4234434 marks an untagged node and a buffer stop as passenger stops; locate active platform anchors |
+| A3 | TransPennine Express | South TransPennine and remaining North routes | pending — 237386/4234434 have connected tracks and valid Cleethorpes/Dore platform nodes. Chinley is absent from the current operator station directory, so verify a current calling pattern before release. |
 | A3 | Hull Trains / Grand Central | Hull and Bradford branches | pending — Verify both directions and their real ordered calls from an operator-supported source |
-| A4 | Transport for Wales | Borderlands and remaining valley variants | pending — Major cross-border links added. Aberdare–Merthyr 195448/20622496 still needs current through-service evidence |
+| A4 | Transport for Wales | Remaining valley variants and local branches | pending — Borderlands and major cross-border links added. Aberdare–Merthyr 195448/20622496 still needs current through-service evidence. |
 | A4 | Great Western Railway | Further local and night services | pending — Falmouth Maritime relation 19902608 includes disused siding 300616008. Require a continuous active path |
 | A5 | ScotRail | Remaining routes and regional variants | pending — Fife circle relation 20044083 and minor short workings need distinct regular commercial evidence |
 | A5 | Caledonian Sleeper | Highland services | pending — Lowland Glasgow and Edinburgh added. Archived Highland passenger calls predate the Birmingham International change |
 | A6 | Avanti / Heathrow Express / LNER / Lumo | Missing reverse and branch patterns | pending — Baseline Avanti Manchester/Liverpool and Heathrow Express opposite directions require independent source track; extend only genuine current services |
 | C | Southeastern HS1 | Further through journeys beyond Kent branches | pending — Six directions via Ashford or the Medway towns added. Check Dover/Ramsgate through workings and peak-only variants separately |
-| C | Eurostar | St Pancras–Channel Tunnel–continental destinations | blocked — Twelve Eurostar relations in Britain extract miss continental members. Download matching continental extracts and validate complete cross-border paths |
+| C | Eurostar | Lille Europe stopping variants | blocked — London–Paris, London–Brussels and London–Amsterdam via Rotterdam and Brussels are implemented. Source relations for these services omit Lille Europe or use its bypass; obtain a verified station-platform path for a Lille-calling service. |
 | C | HS2 | Commercial passenger service | blocked — Exclude until passenger operation is officially established |
 | D | West Midlands Metro | Wolverhampton through-running via Millennium Point | blocked — Official April 2026 opening and service evidence verified. OSM 20439814/20439815 cover Millennium Point–Edgbaston section; find complete through-track and preserve the reversal |
 | D | Existing regional light rail | Metrolink, Edinburgh, Blackpool, Tyne and Wear, Sheffield | pending — Existing regular service catalogue preserved; verify additional distinct operating patterns after major National Rail gaps |

@@ -1,50 +1,181 @@
 {
-  "checkedAt": "2026-11-13T14:20:52.697Z",
-  "branch": "feature/uk-railway-completion",
+  "checkedAt": "2026-11-14T22:59:34.350Z",
+  "branch": "main",
   "baseSha": "520e00ec0",
-  "mainIntegration": "424 directions integrated at aaf49fee3; main subsequently added seven directions in PR #36. Third batch awaiting full browser validation.",
+  "sourceCommit": "1803d538686c28cc66c78e9ba47fab4d92bb84b5",
+  "mainIntegration": "673 directions integrated at 485d7a889 and preserved in subsequent main commits",
   "commits": {
     "westCoastAndScotland": "2276e770a",
     "scotlandAndWales": "192f36c99",
-    "mainIntegration": "aaf49fee3"
+    "nationalRailAndHS1": "d16f67c33",
+    "borderlandsAndMarshlink": "3a078e5a8",
+    "eurostarParis": "63334e03f",
+    "eurostarBenelux": "1803d5386",
+    "mainIntegration": "485d7a8890675d3d940f7a9feafa1a99365aa0e9"
   },
   "inventory": {
-    "operators": 35,
-    "lines": 162,
-    "servicePatterns": 385,
-    "playableDirections": 663,
-    "uniqueStations": 2535,
-    "koreanNamedStations": 2535,
-    "sharedSegments": 5712,
-    "uniquePhysicalStationGroups": 2234
+    "operators": 36,
+    "lines": 167,
+    "servicePatterns": 390,
+    "playableDirections": 673,
+    "uniqueStations": 2569,
+    "koreanNamedStations": 2569,
+    "sharedSegments": 5778,
+    "uniquePhysicalStationGroups": 2264
   },
   "validation": {
     "data": "PASS",
+    "unitTests": 20,
     "leaderboardIdentity": "PASS",
     "ci": {
-      "status": "PASS for the 424-direction main release",
-      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/43236546597"
-    }
+      "status": "PASS",
+      "directions": 673,
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/43449431332"
+    },
+    "gameplayDirections": 673,
+    "freeDrive": {
+      "status": "PASS",
+      "directions": 673,
+      "transitions": 9411
+    },
+    "geometryLoading": {
+      "status": "PASS",
+      "files": 437,
+      "wholePoolRequested": false,
+      "duplicateRequests": 0
+    },
+    "existingCountries": [
+      {
+        "country": "jp",
+        "status": "PASS",
+        "routes": 607
+      },
+      {
+        "country": "kr",
+        "status": "PASS",
+        "routes": 8275
+      },
+      {
+        "country": "hk",
+        "status": "PASS",
+        "routes": 105
+      },
+      {
+        "country": "th",
+        "status": "PASS",
+        "routes": 23
+      },
+      {
+        "country": "tw",
+        "status": "PASS",
+        "routes": 46
+      },
+      {
+        "country": "fr",
+        "status": "PASS",
+        "routes": 39
+      }
+    ],
+    "mobileBoards": [
+      {
+        "lineId": "uk-metrolink",
+        "style": "uk-metrolink",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-west-midlands-metro",
+        "style": "uk-tram",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-blackpool-tramway",
+        "style": "uk-tram",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-net-hucknall-toton",
+        "style": "uk-tram",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-lner-east-coast",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-scotrail-shotts",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-southeastern-hs1",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-eurostar-london-paris",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-eurostar-london-brussels",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-eurostar-london-amsterdam",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      }
+    ],
+    "browserRuntimeErrors": 0
   },
   "productionDeployment": {
-    "status": "PASS for 431 directions",
-    "checkedAt": "2026-11-13T14:14:07.742Z",
+    "status": "PASS",
+    "workflow": "https://github.com/s3h0726/SUBTYPE/actions/runs/43449430926",
+    "commit": "485d7a8890675d3d940f7a9feafa1a99365aa0e9",
+    "directions": 673,
+    "checkedAt": "2026-11-14T22:59:34.350Z",
     "url": "https://s3h0726.github.io/SUBTYPE/",
     "actualUIPlaythrough": "PASS",
     "geometryMatchesRepository": true,
-    "bundleSha256": "36227ea64a89f28baeb3246645a3c710a8c527c707e421de4357414dea9b4643",
+    "bundleSha256": "02d2afc3c520bc32e8af59325cfffa43fac74df56ba150e2d047c16756164683",
     "routes": [
       {
-        "lineId": "uk-lnwr-west-coast",
-        "stops": 13
+        "lineId": "uk-eurostar-london-paris",
+        "stops": 2
       },
       {
-        "lineId": "uk-scotrail-borders",
-        "stops": 10
+        "lineId": "uk-eurostar-london-brussels",
+        "stops": 2
       },
       {
-        "lineId": "uk-tfw-cambrian-coast",
-        "stops": 27
+        "lineId": "uk-eurostar-london-amsterdam",
+        "stops": 4
+      },
+      {
+        "lineId": "uk-southeastern-hs1",
+        "stops": 6
       }
     ]
   },
