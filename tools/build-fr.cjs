@@ -139,7 +139,8 @@ for (const spec of specs) {
     }
     const track = readTrack(relation, elements, exclusions[relationId]);
     const matches = findMatches(relation, track, [inventory], aliases).filter(match =>
-      spec.routeId ? match.line.sourceRouteId === spec.routeId : match.pattern.brand === spec.brand);
+      (!spec.routeId || match.line.sourceRouteId === spec.routeId) &&
+      (!spec.brand || match.pattern.brand === spec.brand));
     if (!matches.length) throw new Error('No current timetable match for ' + relationId);
     const {calls, line, maxStationOffsetKm} = matches[0];
     if (officialLineId && officialLineId !== line.sourceRouteId ||

@@ -131,7 +131,8 @@ async function run() {
     const lines = publicBase ? index.routes.filter(route =>
       ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels',
         'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b', 'fr-rennes-metro-b',
-        'fr-toulouse-metro-b', 'fr-lille-metro-2', 'fr-marseille-metro-2'].includes(route.id))
+        'fr-toulouse-metro-b', 'fr-lille-metro-2', 'fr-marseille-metro-2',
+        'fr-ter-grenoble-rives', 'fr-ter-lyon-brignais', 'fr-ter-macon-valence'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);

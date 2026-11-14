@@ -42,7 +42,9 @@ const byFamily = Object.entries(inventory.patternsByFamily).map(([family, count]
   const published = lines.filter(line => (family === 'high-speed' && line.category === 'high_speed_rail') ||
     (family === 'subway' && line.category === 'subway') ||
     (family === 'international' && line.category === 'international') ||
-    (family === 'intercites' && line.category === 'intercity'));
+    (family === 'intercites' && line.category === 'intercity') ||
+    (family === 'ter' && line.category === 'regional_rail') ||
+    (family === 'tram-train' && line.category === 'tram_train'));
   return {family, sourcePatternRecords:count, catalogLines:published.length,
     playableDirections:published.flatMap(line => line.directions).length,
     testedDirections:published.flatMap(line => line.directions).filter(direction => direction.status === 'VERIFIED_ADDED').length};

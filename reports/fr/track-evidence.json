@@ -1119,9 +1119,36 @@
       "Colmar",
       "Strasbourg"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::19ea029b-6782-421a-8481-7470f5718e47:",
+        "brand": "TGV INOUI",
+        "patternId": "fr-pattern-ac2e2bfee41e8c6afc8252fe",
+        "calls": [
+          "Nice-Ville",
+          "Antibes",
+          "Cannes",
+          "Saint-Raphaël Valescure",
+          "Les Arcs - Draguignan",
+          "Toulon",
+          "Marseille Saint-Charles",
+          "Aix-en-Provence TGV",
+          "Avignon TGV",
+          "Lyon Part Dieu",
+          "Mâcon",
+          "Beaune",
+          "Dijon",
+          "Besançon Franche-Comté TGV",
+          "Belfort - Montbéliard TGV",
+          "Mulhouse",
+          "Colmar",
+          "Strasbourg"
+        ],
+        "maxStationOffsetKm": 0.14461498513723328
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 11775028,
@@ -1148,9 +1175,37 @@
       "Strasbourg",
       "Nancy"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::19ea029b-6782-421a-8481-7470f5718e47:",
+        "brand": "TGV INOUI",
+        "patternId": "fr-pattern-841e28f96508b99f226239cf",
+        "calls": [
+          "Nice-Ville",
+          "Antibes",
+          "Cannes",
+          "Saint-Raphaël Valescure",
+          "Les Arcs - Draguignan",
+          "Toulon",
+          "Marseille Saint-Charles",
+          "Aix-en-Provence TGV",
+          "Avignon TGV",
+          "Lyon Part Dieu",
+          "Mâcon",
+          "Beaune",
+          "Dijon",
+          "Besançon Franche-Comté TGV",
+          "Belfort - Montbéliard TGV",
+          "Mulhouse",
+          "Colmar",
+          "Strasbourg",
+          "Nancy"
+        ],
+        "maxStationOffsetKm": 0.14461498513723328
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 11783093,
@@ -2774,6 +2829,72 @@
     "status": "MATCHED"
   },
   {
+    "relationId": 16340898,
+    "name": "C10 : Thiers → Clermont",
+    "reference": "C10",
+    "trackCalls": [
+      "Thiers",
+      "Pont-de-Dore",
+      "Lezoux",
+      "Vertaizon",
+      "Pont-du-Château",
+      "Aulnat Aéroport",
+      "Clermont-Ferrand"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::BAED427A-994D-4D73-B568-A7553E01CD3C:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-235215931608ba09a681c0ff",
+        "calls": [
+          "Thiers",
+          "Pont de Dore",
+          "Lezoux",
+          "Vertaizon",
+          "Pont-du-Château",
+          "Aulnat Aéroport",
+          "Clermont-Ferrand"
+        ],
+        "maxStationOffsetKm": 0.0465231746162111
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 16340899,
+    "name": "C10 : Clermont → Thiers",
+    "reference": "C10",
+    "trackCalls": [
+      "Clermont-Ferrand",
+      "Aulnat Aéroport",
+      "Pont-du-Château",
+      "Vertaizon",
+      "Lezoux",
+      "Pont-de-Dore",
+      "Thiers"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::BAED427A-994D-4D73-B568-A7553E01CD3C:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-caf6921c7081ac3f15a11b85",
+        "calls": [
+          "Clermont-Ferrand",
+          "Aulnat Aéroport",
+          "Pont-du-Château",
+          "Vertaizon",
+          "Lezoux",
+          "Pont de Dore",
+          "Thiers"
+        ],
+        "maxStationOffsetKm": 0.0465231746162111
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
     "relationId": 171691,
     "name": "Métro Ligne 1 : Quatre Cantons – Stade Pierre Mauroy → CHU – Eurasanté",
     "reference": "1",
@@ -3260,6 +3381,1024 @@
       "Saint-Pierre-des-Corps - Voie 1",
       "Niort",
       "La Rochelle"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 21752100,
+    "name": "K23 : Lyon → Annecy",
+    "reference": "K23",
+    "trackCalls": [
+      "Lyon Part-Dieu",
+      "Ambérieu-en-Bugey",
+      "Aix-les-Bains - Le Revard",
+      "Rumilly",
+      "Annecy"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::6F1D7ABC-B729-498A-B3BD-DE55587C60E2:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-de71f2a4f979af4d5307436a",
+        "calls": [
+          "Lyon Part Dieu",
+          "Ambérieu-en-Bugey",
+          "Aix-les-Bains le Revard",
+          "Rumilly",
+          "Annecy"
+        ],
+        "maxStationOffsetKm": 0.11161398589511783
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21752102,
+    "name": "K23 : Annecy → Lyon",
+    "reference": "K23",
+    "trackCalls": [
+      "Annecy",
+      "Rumilly",
+      "Aix-les-Bains - Le Revard",
+      "Ambérieu-en-Bugey",
+      "Lyon Part-Dieu"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::6F1D7ABC-B729-498A-B3BD-DE55587C60E2:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-c32c8a918ab42f96ed20151e",
+        "calls": [
+          "Annecy",
+          "Rumilly",
+          "Aix-les-Bains le Revard",
+          "Ambérieu-en-Bugey",
+          "Lyon Part Dieu"
+        ],
+        "maxStationOffsetKm": 0.11161398589511783
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21778512,
+    "name": "K21 : Annecy → Valence",
+    "reference": "K21",
+    "trackCalls": [
+      "Annecy",
+      "Rumilly",
+      "Aix-les-Bains - Le Revard",
+      "Chambéry - Challes-les-Eaux",
+      "Montmélian",
+      "Pontcharra sur Bréda",
+      "Grenoble Universités - Gières",
+      "Grenoble",
+      "Saint-Marcellin",
+      "Saint-Hilaire - Saint-Nazaire",
+      "Romans - Bourg-de-Péage",
+      "Valence-Rhône-Alpes-Sud TGV",
+      "Valence-Ville"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 21778513,
+    "name": "C11 : Saint-Marcellin → Grenoble Univ Gières",
+    "reference": "C11",
+    "trackCalls": [
+      "Saint-Marcellin",
+      "Vinay",
+      "Poliénas",
+      "Tullins-Fures",
+      "Moirans-Galifette",
+      "Moirans",
+      "Saint-Égrève-Saint-Robert",
+      "Grenoble",
+      "Échirolles",
+      "Grenoble Universités - Gières"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::BF117DF3-52D4-480E-BA33-EE64D381EB84:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-0952c968efb7d3514829b001",
+        "calls": [
+          "Saint-Marcellin",
+          "Vinay",
+          "Poliénas",
+          "Tullins Fures",
+          "Moirans la Galifette",
+          "Moirans",
+          "Saint-Égrève Saint-Robert",
+          "Grenoble",
+          "Échirolles",
+          "Grenoble Universités - Gières"
+        ],
+        "maxStationOffsetKm": 0.0988223999156019
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21785478,
+    "name": "C9 : Lyon-Saint-Paul → Brignais",
+    "reference": "C9",
+    "trackCalls": [
+      "Lyon-Saint-Paul",
+      "Lyon-Gorge-de-Loup",
+      "Écully la Demi-Lune",
+      "Alaï",
+      "Francheville",
+      "Chaponost",
+      "Brignais"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::06C24CB9-71E3-4CC4-BB31-E6285EB38AE1:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-336390ca37e7cca2caf7b27e",
+        "calls": [
+          "Lyon Saint-Paul",
+          "Lyon Gorge de Loup",
+          "Écully la Demi-Lune",
+          "Alaï",
+          "Francheville",
+          "Chaponost",
+          "Brignais"
+        ],
+        "maxStationOffsetKm": 0.060913246506858316
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21785479,
+    "name": "C9 : Brignais → Lyon-Saint-Paul",
+    "reference": "C9",
+    "trackCalls": [
+      "Brignais",
+      "Chaponost",
+      "Francheville",
+      "Alaï",
+      "Écully la Demi-Lune",
+      "Lyon-Gorge-de-Loup",
+      "Lyon-Saint-Paul"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::06C24CB9-71E3-4CC4-BB31-E6285EB38AE1:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-fba9ae0c1e90a8a6a63d8b29",
+        "calls": [
+          "Brignais",
+          "Chaponost",
+          "Francheville",
+          "Alaï",
+          "Écully la Demi-Lune",
+          "Lyon Gorge de Loup",
+          "Lyon Saint-Paul"
+        ],
+        "maxStationOffsetKm": 0.060913246506858316
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21836514,
+    "name": "K14 : Avignon → Lyon Part-Dieu",
+    "reference": "K14",
+    "trackCalls": [
+      "Avignon-Centre",
+      "Sorgues - Châteauneuf-du-Pape",
+      "Bédarrides",
+      "Courthézon",
+      "Orange",
+      "Bollène - La Croisière",
+      "Pierrelatte",
+      "Donzère",
+      "Montélimar",
+      "Loriol",
+      "Livron",
+      "Valence-Ville",
+      "Tain l'Hermitage - Tournon",
+      "Saint-Vallier-sur-Rhône",
+      "Saint-Rambert-d'Albon",
+      "Le Péage-de-Roussillon",
+      "Saint-Clair - Les Roches",
+      "Vienne",
+      "Lyon Part-Dieu"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::5CE372B6-CE7D-4780-B4F8-F5979FED5405:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-5d05d992625b754c55f3c595",
+        "calls": [
+          "Avignon Centre",
+          "Sorgues - Châteauneuf-du-Pape",
+          "Bédarrides",
+          "Courthézon",
+          "Orange",
+          "Bollène la Croisière",
+          "Pierrelatte",
+          "Donzère",
+          "Montélimar",
+          "Loriol",
+          "Livron",
+          "Valence Ville",
+          "Tain-l'Hermitage - Tournon",
+          "Saint-Vallier sur Rhône",
+          "Saint-Rambert-d'Albon",
+          "Le Péage-de-Roussillon",
+          "Saint-Clair - Les Roches",
+          "Vienne",
+          "Lyon Part Dieu"
+        ],
+        "maxStationOffsetKm": 0.2157524363203443
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21836515,
+    "name": "K14 : Lyon Part-Dieu → Avignon",
+    "reference": "K14",
+    "trackCalls": [
+      "Lyon Part-Dieu",
+      "Vienne",
+      "Saint-Clair - Les Roches",
+      "Le Péage-de-Roussillon",
+      "Saint-Rambert-d'Albon",
+      "Saint-Vallier-sur-Rhône",
+      "Tain l'Hermitage - Tournon",
+      "Valence-Ville",
+      "Livron",
+      "Loriol",
+      "Montélimar",
+      "Donzère",
+      "Pierrelatte",
+      "Bollène - La Croisière",
+      "Orange",
+      "Courthézon",
+      "Bédarrides",
+      "Sorgues - Châteauneuf-du-Pape",
+      "Avignon-Centre"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 21837526,
+    "name": "K24 : Lyon Perrache → Avignon",
+    "reference": "K24",
+    "trackCalls": [
+      "Lyon Perrache",
+      "Lyon Jean Macé",
+      "Vienne",
+      "Saint-Clair - Les Roches",
+      "Le Péage-de-Roussillon",
+      "Saint-Rambert-d'Albon",
+      "Saint-Vallier-sur-Rhône",
+      "Tain l'Hermitage - Tournon",
+      "Valence-Ville",
+      "Livron",
+      "Loriol",
+      "Montélimar",
+      "Donzère",
+      "Pierrelatte",
+      "Bollène - La Croisière",
+      "Orange",
+      "Courthézon",
+      "Bédarrides",
+      "Sorgues - Châteauneuf-du-Pape",
+      "Avignon-Centre"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::5B616F3E-D726-494F-80C2-7EB8355C3177:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-134a3356abc001bc804130de",
+        "calls": [
+          "Lyon Perrache",
+          "Lyon Jean Macé",
+          "Vienne",
+          "Saint-Clair - Les Roches",
+          "Le Péage-de-Roussillon",
+          "Saint-Rambert-d'Albon",
+          "Saint-Vallier sur Rhône",
+          "Tain-l'Hermitage - Tournon",
+          "Valence Ville",
+          "Livron",
+          "Loriol",
+          "Montélimar",
+          "Donzère",
+          "Pierrelatte",
+          "Bollène la Croisière",
+          "Orange",
+          "Courthézon",
+          "Bédarrides",
+          "Sorgues - Châteauneuf-du-Pape",
+          "Avignon Centre"
+        ],
+        "maxStationOffsetKm": 0.2199825122446543
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21837527,
+    "name": "K24 : Avignon → Lyon-Perrache",
+    "reference": "K24",
+    "trackCalls": [
+      "Avignon-Centre",
+      "Sorgues - Châteauneuf-du-Pape",
+      "Bédarrides",
+      "Courthézon",
+      "Orange",
+      "Bollène - La Croisière",
+      "Pierrelatte",
+      "Donzère",
+      "Montélimar",
+      "Loriol",
+      "Livron",
+      "Valence-Ville",
+      "Tain l'Hermitage - Tournon",
+      "Saint-Vallier-sur-Rhône",
+      "Saint-Rambert-d'Albon",
+      "Le Péage-de-Roussillon",
+      "Saint-Clair - Les Roches",
+      "Vienne",
+      "Lyon Jean Macé",
+      "Lyon Perrache"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 21839378,
+    "name": "K64 : Valence → Mâcon",
+    "reference": "K64",
+    "trackCalls": [
+      "Valence-Ville",
+      "Tain l'Hermitage - Tournon",
+      "Saint-Vallier-sur-Rhône",
+      "Saint-Rambert-d'Albon",
+      "Le Péage-de-Roussillon",
+      "Saint-Clair - Les Roches",
+      "Vienne",
+      "Lyon Jean Macé",
+      "Lyon Perrache",
+      "Lyon Vaise",
+      "Saint-Germain-au-Mont-d'Or",
+      "Anse",
+      "Villefranche-sur-Saône",
+      "Saint-Georges-de-Reneins",
+      "Belleville-sur-Saône",
+      "Romanèche-Thorins",
+      "Pontanevaux-La-Chapelle",
+      "Crêches-sur-Saône",
+      "Mâcon-Ville"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::5B616F3E-D726-494F-80C2-7EB8355C3177:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-0e597395a4fe4529f218f6b1",
+        "calls": [
+          "Valence Ville",
+          "Tain-l'Hermitage - Tournon",
+          "Saint-Vallier sur Rhône",
+          "Saint-Rambert-d'Albon",
+          "Le Péage-de-Roussillon",
+          "Saint-Clair - Les Roches",
+          "Vienne",
+          "Lyon Jean Macé",
+          "Lyon Perrache",
+          "Lyon Vaise",
+          "Saint-Germain-au-Mont-d'Or",
+          "Anse",
+          "Villefranche-sur-Saône",
+          "Saint-Georges-de-Reneins",
+          "Belleville sur Sâone",
+          "Romanèche-Thorins-Maison Blanche",
+          "Pontanevaux",
+          "Crêches-sur-Saône",
+          "Mâcon"
+        ],
+        "maxStationOffsetKm": 0.2157524363203443
+      },
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::d1bc94ff-90a2-45c6-9617-258fb5f8f54a:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-5e6a2347ed5992b3744bb5da",
+        "calls": [
+          "Valence Ville",
+          "Tain-l'Hermitage - Tournon",
+          "Saint-Vallier sur Rhône",
+          "Saint-Rambert-d'Albon",
+          "Le Péage-de-Roussillon",
+          "Saint-Clair - Les Roches",
+          "Vienne",
+          "Lyon Jean Macé",
+          "Lyon Perrache",
+          "Lyon Vaise",
+          "Saint-Germain-au-Mont-d'Or",
+          "Anse",
+          "Villefranche-sur-Saône",
+          "Saint-Georges-de-Reneins",
+          "Belleville sur Sâone",
+          "Romanèche-Thorins-Maison Blanche",
+          "Pontanevaux",
+          "Crêches-sur-Saône",
+          "Mâcon"
+        ],
+        "maxStationOffsetKm": 0.2157524363203443
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21839379,
+    "name": "K64 : Mâcon → Valence",
+    "reference": "K64",
+    "trackCalls": [
+      "Mâcon-Ville",
+      "Crêches-sur-Saône",
+      "Pontanevaux-La-Chapelle",
+      "Romanèche-Thorins",
+      "Belleville-sur-Saône",
+      "Saint-Georges-de-Reneins",
+      "Villefranche-sur-Saône",
+      "Anse",
+      "Saint-Germain-au-Mont-d'Or",
+      "Lyon Vaise",
+      "Lyon Perrache",
+      "Lyon Jean Macé",
+      "Vienne",
+      "Saint-Clair - Les Roches",
+      "Le Péage-de-Roussillon",
+      "Saint-Rambert-d'Albon",
+      "Saint-Vallier-sur-Rhône",
+      "Tain l'Hermitage - Tournon",
+      "Valence-Ville"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::d1bc94ff-90a2-45c6-9617-258fb5f8f54a:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-a68f401bcb3364e8b45b8e5e",
+        "calls": [
+          "Mâcon",
+          "Crêches-sur-Saône",
+          "Pontanevaux",
+          "Romanèche-Thorins-Maison Blanche",
+          "Belleville sur Sâone",
+          "Saint-Georges-de-Reneins",
+          "Villefranche-sur-Saône",
+          "Anse",
+          "Saint-Germain-au-Mont-d'Or",
+          "Lyon Vaise",
+          "Lyon Perrache",
+          "Lyon Jean Macé",
+          "Vienne",
+          "Saint-Clair - Les Roches",
+          "Le Péage-de-Roussillon",
+          "Saint-Rambert-d'Albon",
+          "Saint-Vallier sur Rhône",
+          "Tain-l'Hermitage - Tournon",
+          "Valence Ville"
+        ],
+        "maxStationOffsetKm": 0.2199825122446543
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21841211,
+    "name": "K16 : Chambéry → Lyon Part-Dieu via Bourgoin-Jallieu",
+    "reference": "K16",
+    "trackCalls": [
+      "Chambéry - Challes-les-Eaux",
+      "Lépin le Lac - La Bauche",
+      "Le Pont-de-Beauvoisin",
+      "La Tour-du-Pin",
+      "Bourgoin-Jallieu",
+      "Lyon Part-Dieu"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::2993074B-2B66-490B-B4C2-5593D87237FB:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-a3b06f914096f174de51b8e8",
+        "calls": [
+          "Chambéry - Challes-les-Eaux",
+          "Lépin-le-Lac - La Bauche",
+          "Pont-de-Beauvoisin",
+          "La Tour-du-Pin",
+          "Bourgoin-Jallieu",
+          "Lyon Part Dieu"
+        ],
+        "maxStationOffsetKm": 0.11659852866798757
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21841212,
+    "name": "K16 : Lyon Part-Dieu → Chambéry via Bourgoin-Jallieu",
+    "reference": "K16",
+    "trackCalls": [
+      "Lyon Part-Dieu",
+      "Bourgoin-Jallieu",
+      "La Tour-du-Pin",
+      "Le Pont-de-Beauvoisin",
+      "Lépin le Lac - La Bauche",
+      "Chambéry - Challes-les-Eaux"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::2993074B-2B66-490B-B4C2-5593D87237FB:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-34947dd9fb7ccbb7b14da098",
+        "calls": [
+          "Lyon Part Dieu",
+          "Bourgoin-Jallieu",
+          "La Tour-du-Pin",
+          "Pont-de-Beauvoisin",
+          "Lépin-le-Lac - La Bauche",
+          "Chambéry - Challes-les-Eaux"
+        ],
+        "maxStationOffsetKm": 0.11659852866798757
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21844544,
+    "name": "K13 : Besançon → Bourg-en-Bresse → Lyon",
+    "reference": "K13",
+    "trackCalls": [
+      "Besançon Viotte",
+      "Arc-et-Senans",
+      "Mouchard",
+      "Arbois",
+      "Poligny",
+      "Lons-le-Saunier",
+      "Cousance",
+      "Saint-Amour",
+      "Bourg-en-Bresse",
+      "Ambérieu-en-Bugey",
+      "Lyon Part-Dieu",
+      "Lyon Perrache"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 21844545,
+    "name": "K13 : Lyon → Bourg-en-Bresse → Besançon",
+    "reference": "K13",
+    "trackCalls": [
+      "Lyon Perrache",
+      "Lyon Part-Dieu",
+      "Ambérieu-en-Bugey",
+      "Bourg-en-Bresse",
+      "Saint-Amour",
+      "Cousance",
+      "Lons-le-Saunier",
+      "Poligny",
+      "Arbois",
+      "Mouchard",
+      "Arc-et-Senans",
+      "Besançon Viotte"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::27A3C9CC-526E-4121-8CF9-7C00D4652BCC:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-a117941bd9d03edc57442908",
+        "calls": [
+          "Lyon Perrache",
+          "Lyon Part Dieu",
+          "Ambérieu-en-Bugey",
+          "Bourg-en-Bresse",
+          "Saint-Amour",
+          "Cousance",
+          "Lons-le-Saunier",
+          "Poligny",
+          "Arbois",
+          "Mouchard",
+          "Arc-et-Senans",
+          "Besançon Viotte"
+        ],
+        "maxStationOffsetKm": 0.040293327008559796
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21853879,
+    "name": "C6 : Rives → Grenoble Universités - Gières",
+    "reference": "C6",
+    "trackCalls": [
+      "Rives",
+      "Réaumont-Saint-Cassien",
+      "Voiron",
+      "Moirans",
+      "Voreppe",
+      "Grenoble",
+      "Échirolles",
+      "Grenoble Universités - Gières"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::DAF77CAA-444E-43F9-A7EC-1FFEF4C462CD:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-7ebac9b9cd880ac632170614",
+        "calls": [
+          "Rives",
+          "Réaumont - Saint-Cassien",
+          "Voiron",
+          "Moirans",
+          "Voreppe",
+          "Grenoble",
+          "Échirolles",
+          "Grenoble Universités - Gières"
+        ],
+        "maxStationOffsetKm": 0.0988223999156019
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21853880,
+    "name": "C6 : Grenoble Universités - Gières → Rives",
+    "reference": "C6",
+    "trackCalls": [
+      "Grenoble Universités - Gières",
+      "Échirolles",
+      "Grenoble",
+      "Voreppe",
+      "Moirans",
+      "Voiron",
+      "Réaumont-Saint-Cassien",
+      "Rives"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::DAF77CAA-444E-43F9-A7EC-1FFEF4C462CD:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-98438b9e04e3e785ffde79e8",
+        "calls": [
+          "Grenoble Universités - Gières",
+          "Échirolles",
+          "Grenoble",
+          "Voreppe",
+          "Moirans",
+          "Voiron",
+          "Réaumont - Saint-Cassien",
+          "Rives"
+        ],
+        "maxStationOffsetKm": 0.03782612416707328
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21853881,
+    "name": "C6 : Saint-André-le-Gaz → Grenoble Universités - Gières",
+    "reference": "C6",
+    "trackCalls": [
+      "Saint-André-le-Gaz",
+      "Virieu-sur-Bourbre",
+      "Châbons",
+      "Le Grand-Lemps",
+      "Rives",
+      "Réaumont-Saint-Cassien",
+      "Voiron",
+      "Moirans",
+      "Voreppe",
+      "Grenoble",
+      "Échirolles",
+      "Grenoble Universités - Gières"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::DAF77CAA-444E-43F9-A7EC-1FFEF4C462CD:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-a3879fd6ab0a30c38b45e8f3",
+        "calls": [
+          "Saint-André-le-Gaz",
+          "Virieu sur Bourbre",
+          "Châbons",
+          "Le Grand-Lemps",
+          "Rives",
+          "Réaumont - Saint-Cassien",
+          "Voiron",
+          "Moirans",
+          "Voreppe",
+          "Grenoble",
+          "Échirolles",
+          "Grenoble Universités - Gières"
+        ],
+        "maxStationOffsetKm": 0.0988223999156019
+      },
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::a6442ac3-6f55-438e-92b9-bc368cfaff20:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-39d454fd37fbebdd96b8984e",
+        "calls": [
+          "Saint-André-le-Gaz",
+          "Virieu sur Bourbre",
+          "Châbons",
+          "Le Grand-Lemps",
+          "Rives",
+          "Réaumont - Saint-Cassien",
+          "Voiron",
+          "Moirans",
+          "Voreppe",
+          "Grenoble",
+          "Échirolles",
+          "Grenoble Universités - Gières"
+        ],
+        "maxStationOffsetKm": 0.0988223999156019
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21853882,
+    "name": "C6 : Grenoble Universités - Gières → Saint-André-le-Gaz",
+    "reference": "C6",
+    "trackCalls": [
+      "Grenoble Universités - Gières",
+      "Échirolles",
+      "Grenoble",
+      "Voreppe",
+      "Moirans",
+      "Voiron",
+      "Réaumont-Saint-Cassien",
+      "Rives",
+      "Le Grand-Lemps",
+      "Châbons",
+      "Virieu-sur-Bourbre",
+      "Saint-André-le-Gaz"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::DAF77CAA-444E-43F9-A7EC-1FFEF4C462CD:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-b301a2cf461175f7fdd1c653",
+        "calls": [
+          "Grenoble Universités - Gières",
+          "Échirolles",
+          "Grenoble",
+          "Voreppe",
+          "Moirans",
+          "Voiron",
+          "Réaumont - Saint-Cassien",
+          "Rives",
+          "Le Grand-Lemps",
+          "Châbons",
+          "Virieu sur Bourbre",
+          "Saint-André-le-Gaz"
+        ],
+        "maxStationOffsetKm": 0.03782612416707328
+      },
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::a6442ac3-6f55-438e-92b9-bc368cfaff20:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-984dd70180d64e9cb55611fd",
+        "calls": [
+          "Grenoble Universités - Gières",
+          "Échirolles",
+          "Grenoble",
+          "Voreppe",
+          "Moirans",
+          "Voiron",
+          "Réaumont - Saint-Cassien",
+          "Rives",
+          "Le Grand-Lemps",
+          "Châbons",
+          "Virieu sur Bourbre",
+          "Saint-André-le-Gaz"
+        ],
+        "maxStationOffsetKm": 0.03782612416707328
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21859201,
+    "name": "C1 : Chambéry → Grenoble",
+    "reference": "C1",
+    "trackCalls": [
+      "Chambéry - Challes-les-Eaux",
+      "Montmélian",
+      "Pontcharra sur Bréda",
+      "Goncelin",
+      "Brignoud",
+      "Lancey",
+      "Grenoble Universités - Gières",
+      "Échirolles",
+      "Grenoble"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::05C666F4-3B26-4DB6-A4A8-F3C6D6150B76:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-8745910352ccadde7beb981a",
+        "calls": [
+          "Chambéry - Challes-les-Eaux",
+          "Montmélian",
+          "Pontcharra sur Bréda",
+          "Goncelin",
+          "Brignoud",
+          "Lancey",
+          "Grenoble Universités - Gières",
+          "Échirolles",
+          "Grenoble"
+        ],
+        "maxStationOffsetKm": 0.05027392157742001
+      },
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::DAF77CAA-444E-43F9-A7EC-1FFEF4C462CD:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-1ec108302cb1f0a2909938a3",
+        "calls": [
+          "Chambéry - Challes-les-Eaux",
+          "Montmélian",
+          "Pontcharra sur Bréda",
+          "Goncelin",
+          "Brignoud",
+          "Lancey",
+          "Grenoble Universités - Gières",
+          "Échirolles",
+          "Grenoble"
+        ],
+        "maxStationOffsetKm": 0.05027392157742001
+      },
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::a6442ac3-6f55-438e-92b9-bc368cfaff20:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-3ac2d78846fd735ce5973339",
+        "calls": [
+          "Chambéry - Challes-les-Eaux",
+          "Montmélian",
+          "Pontcharra sur Bréda",
+          "Goncelin",
+          "Brignoud",
+          "Lancey",
+          "Grenoble Universités - Gières",
+          "Échirolles",
+          "Grenoble"
+        ],
+        "maxStationOffsetKm": 0.05027392157742001
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21859202,
+    "name": "C1 : Grenoble → Chambéry",
+    "reference": "C1",
+    "trackCalls": [
+      "Grenoble",
+      "Échirolles",
+      "Grenoble Universités - Gières",
+      "Lancey",
+      "Brignoud",
+      "Goncelin",
+      "Pontcharra sur Bréda",
+      "Montmélian",
+      "Chambéry - Challes-les-Eaux"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::05C666F4-3B26-4DB6-A4A8-F3C6D6150B76:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-16808bc8a9f6deb51bfeb54a",
+        "calls": [
+          "Grenoble",
+          "Échirolles",
+          "Grenoble Universités - Gières",
+          "Lancey",
+          "Brignoud",
+          "Goncelin",
+          "Pontcharra sur Bréda",
+          "Montmélian",
+          "Chambéry - Challes-les-Eaux"
+        ],
+        "maxStationOffsetKm": 0.0988223999156019
+      },
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::a6442ac3-6f55-438e-92b9-bc368cfaff20:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-38a2efbe0aa8782958d446ae",
+        "calls": [
+          "Grenoble",
+          "Échirolles",
+          "Grenoble Universités - Gières",
+          "Lancey",
+          "Brignoud",
+          "Goncelin",
+          "Pontcharra sur Bréda",
+          "Montmélian",
+          "Chambéry - Challes-les-Eaux"
+        ],
+        "maxStationOffsetKm": 0.0988223999156019
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 21955413,
+    "name": "K34 : Valence → Marseille",
+    "reference": "K34",
+    "trackCalls": [
+      "Valence-Ville",
+      "Livron",
+      "Loriol",
+      "Montélimar",
+      "Donzère",
+      "Pierrelatte",
+      "Bollène - La Croisière",
+      "Orange",
+      "Courthézon",
+      "Bédarrides",
+      "Sorgues - Châteauneuf-du-Pape",
+      "Avignon-Centre",
+      "Arles",
+      "Saint-Martin-de-Crau",
+      "Miramas",
+      "Saint-Chamas",
+      "Rognac",
+      "Vitrolles Aéroport Marseille Provence",
+      "Pas-des-Lanciers",
+      "L'Estaque",
+      "Marseille Saint-Charles"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 21955415,
+    "name": "K34 : Marseille → Valence",
+    "reference": "K34",
+    "trackCalls": [
+      "Marseille Saint-Charles",
+      "L'Estaque",
+      "Pas-des-Lanciers",
+      "Vitrolles Aéroport Marseille Provence",
+      "Rognac",
+      "Saint-Chamas",
+      "Miramas",
+      "Saint-Martin-de-Crau",
+      "Arles",
+      "Avignon-Centre",
+      "Sorgues - Châteauneuf-du-Pape",
+      "Bédarrides",
+      "Courthézon",
+      "Orange",
+      "Bollène - La Croisière",
+      "Pierrelatte",
+      "Donzère",
+      "Montélimar",
+      "Loriol",
+      "Livron",
+      "Valence-Ville"
     ],
     "matches": [],
     "status": "BLOCKED",
@@ -4328,6 +5467,13 @@
     "reason": "Unverified railway way 729375345"
   },
   {
+    "relationId": 402637,
+    "name": "TER 2 : Rennes - Quimper",
+    "reference": "TER 2",
+    "status": "BLOCKED",
+    "reason": "disconnected-track-way:28673184"
+  },
+  {
     "relationId": 406826,
     "name": "Intercités 4655 : Bordeaux-Saint-Jean → Marseille-Saint-Charles",
     "reference": "4655",
@@ -4347,6 +5493,13 @@
     "matches": [],
     "status": "BLOCKED",
     "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 417536,
+    "name": "TER 1 : Rennes -> Brest",
+    "reference": "TER 1",
+    "status": "BLOCKED",
+    "reason": "disconnected-track-way:1549068541"
   },
   {
     "relationId": 442788,
@@ -5747,6 +6900,62 @@
     "status": "MATCHED"
   },
   {
+    "relationId": 6385258,
+    "name": "K13 : Belfort → Besançon → Bourg-en-Bresse → Lyon",
+    "reference": "K13",
+    "trackCalls": [
+      "Belfort",
+      "Héricourt",
+      "Montbéliard",
+      "L'Isle-sur-le-Doubs",
+      "Clerval",
+      "Baume-les-Dames",
+      "Besançon Viotte",
+      "Arc-et-Senans",
+      "Mouchard",
+      "Arbois",
+      "Poligny",
+      "Lons-le-Saunier",
+      "Cousance",
+      "Saint-Amour",
+      "Bourg-en-Bresse",
+      "Ambérieu-en-Bugey",
+      "Lyon Part-Dieu",
+      "Lyon Perrache"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 6386064,
+    "name": "K13 : Lyon → Bourg-en-Bresse → Besançon → Belfort",
+    "reference": "K13",
+    "trackCalls": [
+      "Lyon Perrache",
+      "Lyon Part-Dieu",
+      "Ambérieu-en-Bugey",
+      "Bourg-en-Bresse",
+      "Saint-Amour",
+      "Cousance",
+      "Lons-le-Saunier",
+      "Poligny",
+      "Arbois",
+      "Mouchard",
+      "Arc-et-Senans",
+      "Besançon Viotte",
+      "Baume-les-Dames",
+      "Clerval",
+      "L'Isle-sur-le-Doubs",
+      "Montbéliard",
+      "Héricourt",
+      "Belfort"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
+  },
+  {
     "relationId": 6659012,
     "name": "Métro Rennes Ligne b Direction Saint-Jacques-de-la-Lande (Gaîté)",
     "reference": "b",
@@ -6528,5 +7737,67 @@
       }
     ],
     "status": "MATCHED"
+  },
+  {
+    "relationId": 9755790,
+    "name": "C11 : Grenoble Univ Gières → Saint-Marcellin",
+    "reference": "C11",
+    "trackCalls": [
+      "Grenoble Universités - Gières",
+      "Échirolles",
+      "Grenoble",
+      "Saint-Égrève-Saint-Robert",
+      "Moirans",
+      "Moirans-Galifette",
+      "Tullins-Fures",
+      "Poliénas",
+      "Vinay",
+      "Saint-Marcellin"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::BF117DF3-52D4-480E-BA33-EE64D381EB84:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-7573eca68af64b1d56235c8b",
+        "calls": [
+          "Grenoble Universités - Gières",
+          "Échirolles",
+          "Grenoble",
+          "Saint-Égrève Saint-Robert",
+          "Moirans",
+          "Moirans la Galifette",
+          "Tullins Fures",
+          "Poliénas",
+          "Vinay",
+          "Saint-Marcellin"
+        ],
+        "maxStationOffsetKm": 0.0911181816178088
+      }
+    ],
+    "status": "MATCHED"
+  },
+  {
+    "relationId": 9755791,
+    "name": "K21 : Valence → Annecy",
+    "reference": "K21",
+    "trackCalls": [
+      "Valence-Ville",
+      "Valence-Rhône-Alpes-Sud TGV",
+      "Romans - Bourg-de-Péage",
+      "Saint-Hilaire - Saint-Nazaire",
+      "Saint-Marcellin",
+      "Grenoble",
+      "Grenoble Universités - Gières",
+      "Pontcharra sur Bréda",
+      "Montmélian",
+      "Chambéry - Challes-les-Eaux",
+      "Aix-les-Bains - Le Revard",
+      "Rumilly",
+      "Annecy"
+    ],
+    "matches": [],
+    "status": "BLOCKED",
+    "reason": "No independently verified ordered timetable match"
   }
 ]

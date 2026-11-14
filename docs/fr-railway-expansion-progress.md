@@ -4,11 +4,13 @@ The baseline is SUBTYPE `main` at `520e00ec0f00e114005b7a616dff16f049a7b148`. It
 
 ## Playable batch
 
-France has 39 selectable routes, 91 directions, and 610 Korean-localized station IDs. The catalog includes eight domestic TGV INOUI corridors, two cross-border TGV INOUI corridors, the Bordeaux–Marseille daytime Intercités, and the regular full-length services of all Paris, Lyon, Rennes, Toulouse, Lille and Marseille Métro lines. Paris lines 7 and 13 include both branches. The two Métro 7 bis directions preserve their distinct stops on the terminal loop. A temporary works closure through 13 November was published for 7 bis. The schedule evidence covers its operating dates after that closure. [RATP service notice](https://www.ratp.fr/infos-trafic/metro/7B)
+France has 46 selectable routes, 107 directions, and 670 Korean-localized station IDs. The catalog includes eight domestic TGV INOUI corridors, two cross-border TGV INOUI corridors, the Bordeaux–Marseille daytime Intercités, and the regular full-length services of all Paris, Lyon, Rennes, Toulouse, Lille and Marseille Métro lines. Paris lines 7 and 13 include both branches. The two Métro 7 bis directions preserve their distinct stops on the terminal loop. A temporary works closure through 13 November was published for 7 bis. The schedule evidence covers its operating dates after that closure. [RATP service notice](https://www.ratp.fr/infos-trafic/metro/7B)
+
+The first Auvergne-Rhône-Alpes batch covers Clermont-Ferrand–Thiers (C10), Lyon–Annecy (K23), Grenoble–Chambéry (C1), the Saint-André-le-Gaz and Rives workings to Grenoble Universités–Gières (C6), Lyon–Chambéry (K16), Mâcon–Lyon–Valence (K64), and the Lyon Saint-Paul–Brignais tram-train (C9). Several source routes overlap in the SNCF snapshot. The release binds each playable service to its reviewed source route ID. [SNCF TER Auvergne-Rhône-Alpes](https://www.ter.sncf.com/auvergne-rhone-alpes/lignes)
 
 - TGV INOUI includes Paris Nord–Valenciennes, Paris Nord–Dunkerque, Paris Nord–Rang-du-Fliers, Paris Lyon–Besançon, Paris Lyon–Mulhouse, Paris Lyon–Perpignan, Strasbourg–Bordeaux, Strasbourg–Quimper, Strasbourg–Brussels and Nantes–Brussels.
 - France route cards, destination and service selection, station lists, station signs, gameplay answers and free drive use Korean as the primary language. French names remain in the underlying records and secondary displays. The existing Korean-name editor can edit every playable France station. Rare station names use an editorial Korean rendering and can be corrected through the editor.
-- See the [browser results](../reports/fr/browser-gameplay.json) for completed desktop, 390 px mobile, and directed free-drive checks. The country-switch test exercised all six existing countries and France in the redesigned directory. Free drive also passed a Métro-to-TGV transfer at Gare de Lyon. The editor test verified that the France station list opens and exposes its Korean names.
+- See the [browser results](../reports/fr/browser-gameplay.json) for completed desktop, 390 px mobile, and directed free-drive checks. The country-switch test exercised Japan, Korea, Hong Kong, Taiwan, Thailand, the United Kingdom and France. Free drive also passed a Métro-to-TGV transfer at Gare de Lyon. The editor test verified that the France station list opens and exposes its Korean names.
 - Geometry uses ordered OpenStreetMap way and node IDs, tied to the official timetable by ordered station identity and a geographic check. Shared ways are stored once in geographic tiles. Route detail and relevant tiles are fetched on demand. The Paris Gare de Lyon metro and main-line stations share a transfer group. [RATP station information](https://www.ratp.fr/en/vos-lignes/vos-stations/gare-de-lyon)
 
 ## Coverage and evidence
@@ -28,7 +30,7 @@ Use Python 3.12 and Node.js 22 or newer. A cache can be outside the checkout. Ke
 ```sh
 python -B tools/fr_fetch.py --cache ../fr-cache --include-unknown-mode
 python -B tools/fr_inventory.py --cache ../fr-cache --as-of 2026-11-12 --baseline 520e00ec0f00e114005b7a616dff16f049a7b148
-node tools/audit-fr-track-evidence.cjs ../fr-cache 83582 80921 81943 83281 81678 81995 39589
+node tools/audit-fr-track-evidence.cjs ../fr-cache 83582 80921 81943 83281 81678 81995 39589 81474
 node tools/build-fr.cjs
 node tools/test-france-data.cjs
 node tools/build-app-bundle.js
@@ -48,5 +50,6 @@ The Corsica GTFS snapshot expired in March 2026. The operator independently publ
 - Île-de-France Mobilités schedule extracts retain the [Licence Mobilité](https://prim.iledefrance-mobilites.fr/fr/licences). The France game credits name the producer. [Île-de-France Mobilités schedules](https://prim.iledefrance-mobilites.fr/jeux-de-donnees/offre-horaires-tc-gtfs-idfm)
 - Lyon schedules are published by SYTRAL Mobilités. The local network identifies RATP Dev as its metro operator. [TCL operator information](https://www.tcl.fr/a-propos/offres-demploi)
 - STAR timetable extracts use ODbL. Keolis Rennes Métropole operates the metro for Rennes Métropole. [STAR operator information](https://www.star.fr/foire-aux-questions?question=qui-exploite-le-reseau-star)
+- Toulouse, Lille and Marseille use the Tisséo, Ilévia and RTM timetable resources listed in the source manifest. [Tisséo](https://transport.data.gouv.fr/resources/81678), [Ilévia](https://transport.data.gouv.fr/resources/81995), [RTM](https://transport.data.gouv.fr/resources/39589)
 - Track geometry © OpenStreetMap contributors, [ODbL](https://www.openstreetmap.org/copyright). The corresponding raw relation snapshots and build code are available in this repository.
 - Source schedule files from other operators retain the dataset-specific licenses in the source manifest.

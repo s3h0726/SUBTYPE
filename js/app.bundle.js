@@ -80,7 +80,7 @@ const FRANCE_CATEGORIES = [
   ['all', '전체'], ['high_speed_rail', '고속철도'], ['intercity', '도시간 철도'],
   ['regional_rail', '지역철도'], ['rer', '광역급행철도'], ['commuter_rail', '교외철도'],
   ['subway', '지하철'], ['tram', '트램'], ['light_rail', '경전철'], ['funicular', '케이블 철도'],
-  ['international', '국제철도'], ['custom', '커스텀'],
+  ['tram_train', '트램트레인'], ['international', '국제철도'], ['custom', '커스텀'],
 ];
 
 let franceEdits = new Map();
@@ -157,13 +157,17 @@ function francePatternRoute(owner, pattern) {
 function franceOperatingChoices(route) {
   if (route?.lazy || !route?.playable || !route.geometryReady) return [];
   const stations = new Map(route.stationCatalog.map(station => [station.id, station]));
+  const regionalVariants = route.category === 'regional_rail' &&
+    new Set(route.patterns.map(pattern => pattern.familyId)).size > 1;
   return route.patterns.map(pattern => {
     const originId = pattern.stationIds[0], destinationId = pattern.stationIds.at(-1);
     const via = pattern.viaStationId ? ' · ' + stations.get(pattern.viaStationId).ko + ' 경유 · ' + pattern.stationIds.length + '개 역' : '';
     const service = route.services.find(item => item.id === pattern.id);
     return {kind: 'france', id: pattern.id, patternId: pattern.familyId, legacyServiceId: pattern.id,
       originId, destinationId, originNames: stations.get(originId), destinationNames: stations.get(destinationId),
-      patternName: {ko: service.nameKo + via, fr: pattern.nameFr}, direction: pattern.id};
+      patternName: {ko: service.nameKo + (regionalVariants
+        ? ' · ' + [stations.get(originId).ko, stations.get(destinationId).ko].sort().join(' ↔ ')
+        : via), fr: pattern.nameFr}, direction: pattern.id};
   });
 }
 
