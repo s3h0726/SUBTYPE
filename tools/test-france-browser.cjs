@@ -135,7 +135,8 @@ async function run() {
         'fr-ter-grenoble-rives', 'fr-ter-lyon-brignais', 'fr-ter-macon-valence',
         'fr-ter-nantes-pornic', 'fr-ter-nantes-saint-gilles', 'fr-lyria-paris-lausanne',
         'fr-tgv-strasbourg-nice', 'fr-ter-saint-marcellin-grenoble', 'fr-ter-lyon-part-dieu-avignon',
-        'fr-ter-lyon-perrache-avignon', 'fr-ter-lyon-besancon'].includes(route.id))
+        'fr-ter-lyon-perrache-avignon', 'fr-ter-lyon-besancon',
+        'fr-intercites-night-paris-toulouse'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);

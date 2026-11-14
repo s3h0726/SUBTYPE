@@ -1234,12 +1234,55 @@
       "Cahors",
       "Caussade",
       "Montauban-Ville-Bourbon",
-      "Lacourtensourt",
       "Toulouse-Matabiau"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::7c00cf1f-74fd-4fda-a4e5-c2b1acb937a9:",
+        "brand": "INTERCITES de nuit",
+        "patternId": "fr-pattern-4731f80748dba2cb6ae517e2",
+        "calls": [
+          "Paris Austerlitz",
+          "Les Aubrais",
+          "Souillac",
+          "Gourdon",
+          "Cahors",
+          "Caussade",
+          "Montauban Ville Bourbon",
+          "Toulouse Matabiau"
+        ],
+        "maxStationOffsetKm": 0.16269612187465313
+      }
+    ],
+    "variants": [
+      {
+        "excludedCalls": [
+          "Lacourtensourt",
+          "Souillac",
+          "Gourdon",
+          "Caussade"
+        ],
+        "serviceKo": "앵테르시테 야간열차 · 일부역 통과",
+        "matches": [
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::7c00cf1f-74fd-4fda-a4e5-c2b1acb937a9:",
+            "brand": "INTERCITES de nuit",
+            "patternId": "fr-pattern-91be46ad3ba2467ed4dd8935",
+            "calls": [
+              "Paris Austerlitz",
+              "Les Aubrais",
+              "Cahors",
+              "Montauban Ville Bourbon",
+              "Toulouse Matabiau"
+            ],
+            "maxStationOffsetKm": 0.16269612187465313
+          }
+        ]
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 11783095,
@@ -7161,18 +7204,7 @@
     "name": "Intercités 3730 : Cerbère → Cahors → Paris-Austerlitz",
     "reference": "3730",
     "trackCalls": [
-      "Cerbère",
-      "Banyuls-sur-Mer",
-      "Port-Vendres",
-      "Collioure",
-      "Argelès-sur-Mer",
-      "Elne",
-      "Perpignan",
-      "Lézignan-Corbières",
-      "Carcassonne",
-      "Castelnaudary",
       "Toulouse-Matabiau",
-      "Lacourtensourt",
       "Montauban-Ville-Bourbon",
       "Caussade",
       "Cahors",
@@ -7181,9 +7213,63 @@
       "Les Aubrais - Voie 2",
       "Paris Austerlitz - Voie 14"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::7c00cf1f-74fd-4fda-a4e5-c2b1acb937a9:",
+        "brand": "INTERCITES de nuit",
+        "patternId": "fr-pattern-d2e223d971e71980e6cdbad3",
+        "calls": [
+          "Toulouse Matabiau",
+          "Montauban Ville Bourbon",
+          "Caussade",
+          "Cahors",
+          "Gourdon",
+          "Souillac",
+          "Les Aubrais",
+          "Paris Austerlitz"
+        ],
+        "maxStationOffsetKm": 0.1707682122038925
+      }
+    ],
+    "variants": [
+      {
+        "excludedCalls": [
+          "Cerbère",
+          "Banyuls-sur-Mer",
+          "Port-Vendres",
+          "Collioure",
+          "Argelès-sur-Mer",
+          "Elne",
+          "Perpignan",
+          "Lézignan-Corbières",
+          "Carcassonne",
+          "Castelnaudary",
+          "Lacourtensourt",
+          "Souillac",
+          "Gourdon",
+          "Caussade"
+        ],
+        "serviceKo": "앵테르시테 야간열차 · 일부역 통과",
+        "matches": [
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::7c00cf1f-74fd-4fda-a4e5-c2b1acb937a9:",
+            "brand": "INTERCITES de nuit",
+            "patternId": "fr-pattern-20850b081e5948b2e2edaf65",
+            "calls": [
+              "Toulouse Matabiau",
+              "Montauban Ville Bourbon",
+              "Cahors",
+              "Les Aubrais",
+              "Paris Austerlitz"
+            ],
+            "maxStationOffsetKm": 0.1707682122038925
+          }
+        ]
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 5946426,
