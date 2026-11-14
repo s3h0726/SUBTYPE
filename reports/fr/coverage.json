@@ -4,21 +4,21 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 113,
-  "verifiedSourcePatternRecords": 113,
-  "remainingSourcePatternRecords": 13173,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.8505193436700286,
+  "coveredSourcePatternRecords": 130,
+  "verifiedSourcePatternRecords": 130,
+  "remainingSourcePatternRecords": 13156,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.9784735812133072,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 48,
-  "operators": 7,
-  "catalogServiceFamilies": 59,
-  "playableDirections": 111,
-  "verifiedPlayableDirections": 111,
-  "koreanNamedStations": 683,
-  "stationIds": 683,
-  "physicalStationGroups": 650,
-  "sharedPhysicalWays": 8455,
-  "uniquePhysicalWays": 15579,
+  "catalogLines": 54,
+  "operators": 8,
+  "catalogServiceFamilies": 71,
+  "playableDirections": 127,
+  "verifiedPlayableDirections": 127,
+  "koreanNamedStations": 721,
+  "stationIds": 721,
+  "physicalStationGroups": 688,
+  "sharedPhysicalWays": 10951,
+  "uniquePhysicalWays": 19732,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -56,29 +56,38 @@
     "UNVERIFIABLE": 1
   },
   "trackRelations": {
-    "examined": 222,
-    "matched": 140,
-    "blocked": 82
+    "examined": 223,
+    "matched": 145,
+    "blocked": 78
   },
   "byFamily": [
     {
       "family": "funicular",
       "sourcePatternRecords": 19,
       "catalogLines": 0,
+      "coveredSourcePatternRecords": 0,
+      "verifiedSourcePatternRecords": 0,
+      "remainingSourcePatternRecords": 19,
       "playableDirections": 0,
       "testedDirections": 0
     },
     {
       "family": "high-speed",
       "sourcePatternRecords": 1049,
-      "catalogLines": 8,
-      "playableDirections": 21,
-      "testedDirections": 21
+      "catalogLines": 9,
+      "coveredSourcePatternRecords": 29,
+      "verifiedSourcePatternRecords": 29,
+      "remainingSourcePatternRecords": 1020,
+      "playableDirections": 23,
+      "testedDirections": 23
     },
     {
       "family": "ile-de-france-rail-review",
       "sourcePatternRecords": 160,
       "catalogLines": 0,
+      "coveredSourcePatternRecords": 0,
+      "verifiedSourcePatternRecords": 0,
+      "remainingSourcePatternRecords": 160,
       "playableDirections": 0,
       "testedDirections": 0
     },
@@ -86,6 +95,9 @@
       "family": "intercites",
       "sourcePatternRecords": 97,
       "catalogLines": 1,
+      "coveredSourcePatternRecords": 6,
+      "verifiedSourcePatternRecords": 6,
+      "remainingSourcePatternRecords": 91,
       "playableDirections": 6,
       "testedDirections": 6
     },
@@ -93,20 +105,29 @@
       "family": "intercites-night",
       "sourcePatternRecords": 38,
       "catalogLines": 0,
+      "coveredSourcePatternRecords": 0,
+      "verifiedSourcePatternRecords": 0,
+      "remainingSourcePatternRecords": 38,
       "playableDirections": 0,
       "testedDirections": 0
     },
     {
       "family": "international",
       "sourcePatternRecords": 156,
-      "catalogLines": 2,
-      "playableDirections": 4,
-      "testedDirections": 4
+      "catalogLines": 3,
+      "coveredSourcePatternRecords": 5,
+      "verifiedSourcePatternRecords": 5,
+      "remainingSourcePatternRecords": 151,
+      "playableDirections": 8,
+      "testedDirections": 8
     },
     {
       "family": "rail",
       "sourcePatternRecords": 4569,
       "catalogLines": 0,
+      "coveredSourcePatternRecords": 0,
+      "verifiedSourcePatternRecords": 0,
+      "remainingSourcePatternRecords": 4569,
       "playableDirections": 0,
       "testedDirections": 0
     },
@@ -114,6 +135,9 @@
       "family": "rer",
       "sourcePatternRecords": 1050,
       "catalogLines": 0,
+      "coveredSourcePatternRecords": 0,
+      "verifiedSourcePatternRecords": 0,
+      "remainingSourcePatternRecords": 1050,
       "playableDirections": 0,
       "testedDirections": 0
     },
@@ -121,20 +145,29 @@
       "family": "subway",
       "sourcePatternRecords": 296,
       "catalogLines": 28,
+      "coveredSourcePatternRecords": 60,
+      "verifiedSourcePatternRecords": 60,
+      "remainingSourcePatternRecords": 236,
       "playableDirections": 60,
       "testedDirections": 60
     },
     {
       "family": "ter",
       "sourcePatternRecords": 4175,
-      "catalogLines": 8,
-      "playableDirections": 18,
-      "testedDirections": 18
+      "catalogLines": 12,
+      "coveredSourcePatternRecords": 30,
+      "verifiedSourcePatternRecords": 30,
+      "remainingSourcePatternRecords": 4145,
+      "playableDirections": 28,
+      "testedDirections": 28
     },
     {
       "family": "tram-train",
       "sourcePatternRecords": 12,
       "catalogLines": 1,
+      "coveredSourcePatternRecords": 0,
+      "verifiedSourcePatternRecords": 0,
+      "remainingSourcePatternRecords": 12,
       "playableDirections": 2,
       "testedDirections": 2
     },
@@ -142,6 +175,9 @@
       "family": "tramway",
       "sourcePatternRecords": 999,
       "catalogLines": 0,
+      "coveredSourcePatternRecords": 0,
+      "verifiedSourcePatternRecords": 0,
+      "remainingSourcePatternRecords": 999,
       "playableDirections": 0,
       "testedDirections": 0
     },
@@ -149,11 +185,340 @@
       "family": "transilien",
       "sourcePatternRecords": 666,
       "catalogLines": 0,
+      "coveredSourcePatternRecords": 0,
+      "verifiedSourcePatternRecords": 0,
+      "remainingSourcePatternRecords": 666,
       "playableDirections": 0,
       "testedDirections": 0
     }
   ],
   "lines": [
+    {
+      "id": "fr-lyria-paris-lausanne",
+      "category": "international",
+      "regions": [
+        "11",
+        "27"
+      ],
+      "sourceRouteId": "FR:Line::37ac13d7-de6b-4d05-837f-891191140e19:",
+      "sourceLineId": "fr-line-b68a846fa3c7ba3d9659dc09",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 5,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-9f701376eca1a121ffefb089",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6eafcc52de5c9e3825897de2"
+          ],
+          "relationId": 331730,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-0ad1f865680237e7b12564ac",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-db54748e156240e894260ce2"
+          ],
+          "relationId": 331730,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-6d1382f38e33fcbfbd8d57eb",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-586c36a94e1dc57a28b3b918"
+          ],
+          "relationId": 6166346,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-49631bdd19cc045819288220",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ab2f72277c20caed622077be",
+            "fr-pattern-c6abd492e1be9154995388d9"
+          ],
+          "relationId": 6166346,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-tgv-strasbourg-nice",
+      "category": "high_speed_rail",
+      "regions": [
+        "44",
+        "27",
+        "84",
+        "93"
+      ],
+      "sourceRouteId": "FR:Line::19ea029b-6782-421a-8481-7470f5718e47:",
+      "sourceLineId": "fr-line-afe9fee0e08d4c346f6a0c98",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 30,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-01fb08cf827a1dd0b9b96b5f",
+        "fr-pattern-1358462783a10ea0233989b2",
+        "fr-pattern-191023757065a5c201f7b9d4",
+        "fr-pattern-1bba3ac4dbef41160dc5b6b3",
+        "fr-pattern-22f838f2e8b17158ff02c143",
+        "fr-pattern-2cf44e2cb3305ccc6c3e6dad",
+        "fr-pattern-333c7aa71edebbaf4e802358",
+        "fr-pattern-3ab8b57c20489d5d17206de9",
+        "fr-pattern-4a285c3933fec602751626ee",
+        "fr-pattern-5fe2bd52a1c311f831eb2225",
+        "fr-pattern-61c55019f326cf02fbe4dde2",
+        "fr-pattern-6258810b6c415a3ad56ae6dc",
+        "fr-pattern-70503d9128131dcc3a5ef5a3",
+        "fr-pattern-75a233e76c358c7f95d5944e",
+        "fr-pattern-7cfa0e7faaef33712ddd5dd2",
+        "fr-pattern-841e28f96508b99f226239cf",
+        "fr-pattern-8757ae6ef8a062787b0a3bff",
+        "fr-pattern-8bda827eab9fb30985cae5c8",
+        "fr-pattern-a026f961cad8c7c6b856cf52",
+        "fr-pattern-aea2345f593316da252eded8",
+        "fr-pattern-b69d458007a5ae9a7ac8206e",
+        "fr-pattern-b7d472deb02dfde76092d44b",
+        "fr-pattern-cfb7c12d92be86cbb91e8393",
+        "fr-pattern-d8d57937517d72a9beeec5b2",
+        "fr-pattern-dd5a8c0805b31225ad03b48d",
+        "fr-pattern-e7ed3d802d3129f1486ac11b",
+        "fr-pattern-e8d612c921b806596c3dd7bf",
+        "fr-pattern-edcaa043ec680928fcc1b777"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-4a75de796bfba64823a1a868",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bbe23fe74fcbd37e6438a9dd"
+          ],
+          "relationId": 21161913,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-06ae52d21dd7ae197b805935",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ac2e2bfee41e8c6afc8252fe"
+          ],
+          "relationId": 11775025,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-saint-marcellin-grenoble",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "FR:Line::BF117DF3-52D4-480E-BA33-EE64D381EB84:",
+      "sourceLineId": "fr-line-ed7e3b698b13dab4159c483c",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-28f14936f6e46109ebde048e",
+        "fr-pattern-32f4becd8dc9eaa202c9bb51",
+        "fr-pattern-86a54350766dab2db0e4a3b5",
+        "fr-pattern-cf250a5957b2ab8d3fe212d1",
+        "fr-pattern-d50d58bd4aa42d0b145f370e",
+        "fr-pattern-d854ba7c9fb2c02767b005cb"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-75981cbb6f3f7647757bd99e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0952c968efb7d3514829b001"
+          ],
+          "relationId": 21778513,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-fe205772528f08d93d0a6f74",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-7573eca68af64b1d56235c8b"
+          ],
+          "relationId": 9755790,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-lyon-part-dieu-avignon",
+      "category": "regional_rail",
+      "regions": [
+        "84",
+        "93"
+      ],
+      "sourceRouteId": "FR:Line::5CE372B6-CE7D-4780-B4F8-F5979FED5405:",
+      "sourceLineId": "fr-line-e6ac3c562151f0512413b92d",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 3,
+      "discoveredSchedulePatterns": 18,
+      "coveredSchedulePatterns": 4,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0b2b64ba11e6d4f2e6265fb8",
+        "fr-pattern-0f280ef0c4eda28df2f75c6c",
+        "fr-pattern-230de69a4df8948ce33c6f5b",
+        "fr-pattern-2cd76eb789fe653ca842d879",
+        "fr-pattern-423a7ad5398c96a2997f4e53",
+        "fr-pattern-4b8f550366ce0be9d5cc46cb",
+        "fr-pattern-5a4d24cfdfe4748be8a4b2da",
+        "fr-pattern-73d605482a615e68ca9331ce",
+        "fr-pattern-740ef9a43c51891abb908499",
+        "fr-pattern-74f7dd77d63c0b58153d7b50",
+        "fr-pattern-ca605687e3414ecfda72550f",
+        "fr-pattern-d391d66ab638b994552af693",
+        "fr-pattern-dd6e5354de934c401f0a19ef",
+        "fr-pattern-e724d79ead78f6bb5a92142a"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-9981cc888c4fe561d0caef91",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-5d05d992625b754c55f3c595"
+          ],
+          "relationId": 21836514,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-a386f48dfa5259d41f4b2fa7",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-7e64c9be9fff4f363d3ebaa1"
+          ],
+          "relationId": 21836514,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-da4532f81f1333cde54916e1",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-412307d3c4ca426fbb1a251a"
+          ],
+          "relationId": 21836515,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1758a2ded1c7c49d74c1e5e9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-4d1a839e9d778bc993b441ba"
+          ],
+          "relationId": 21836515,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-lyon-perrache-avignon",
+      "category": "regional_rail",
+      "regions": [
+        "84",
+        "93"
+      ],
+      "sourceRouteId": "FR:Line::5B616F3E-D726-494F-80C2-7EB8355C3177:",
+      "sourceLineId": "fr-line-d00ca8549fa1f93b1a768fb5",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0e597395a4fe4529f218f6b1",
+        "fr-pattern-1157b8016955e3d7af1562fd",
+        "fr-pattern-5b0381a55b0d0d78444f4f92",
+        "fr-pattern-9c768c31b82d54e619124f5f",
+        "fr-pattern-adb5e148b0929c819946e1e7",
+        "fr-pattern-fe554303ad139598e0711f33"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-ec375c0756cc1e5cf91f3ee8",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-134a3356abc001bc804130de"
+          ],
+          "relationId": 21837526,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-802a66ffebc0aedb34e4b4b0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-7791397094dea49702893af9"
+          ],
+          "relationId": 21837527,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-lyon-besancon",
+      "category": "regional_rail",
+      "regions": [
+        "84",
+        "27"
+      ],
+      "sourceRouteId": "FR:Line::27A3C9CC-526E-4121-8CF9-7C00D4652BCC:",
+      "sourceLineId": "fr-line-5bb401f571542462bf03fbc2",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 21,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-09c403c11fef23fc04455f23",
+        "fr-pattern-0d9a6ab5f6cbc2b5bd028683",
+        "fr-pattern-21c7a6817a6c5d19f6d924dc",
+        "fr-pattern-22f537fee54f2b2a25c94dff",
+        "fr-pattern-3cf75d066bc64d56e7f415c0",
+        "fr-pattern-48aaebd6f6c97fe599dbae29",
+        "fr-pattern-5cda2c702d609149a32ebae0",
+        "fr-pattern-60179a3227c0264b71bc84e0",
+        "fr-pattern-6d099adbe7c672e8a728400a",
+        "fr-pattern-9462c0898a652b0407275656",
+        "fr-pattern-a89294f354046107fa3785a9",
+        "fr-pattern-b3bafaa6138aeb6360fc3543",
+        "fr-pattern-bd70d17072b53ea794231c7f",
+        "fr-pattern-c66a9f37bad2531d2a0f7aad",
+        "fr-pattern-da681991bee4f77a257e1f92",
+        "fr-pattern-dbfc95cbd9f26190a789d7cc",
+        "fr-pattern-e4e68ebcfad342ddf4b93f45",
+        "fr-pattern-e7e4ac0ed4f8024cfc77fd8c",
+        "fr-pattern-f8d71b27dfb8d11105eb742c"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-d4b4935422d146a1ed8073da",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-a117941bd9d03edc57442908"
+          ],
+          "relationId": 21844545,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1b8cbd3d29480ca11c240334",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-94ec39b21a6634e6e697e040"
+          ],
+          "relationId": 21844544,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
     {
       "id": "fr-ter-nantes-pornic",
       "category": "regional_rail",
@@ -2187,6 +2552,7 @@
         80931
       ],
       "catalogLineIds": [
+        "fr-lyria-paris-lausanne",
         "fr-tgv-paris-valenciennes",
         "fr-tgv-paris-dunkerque",
         "fr-tgv-paris-rang-du-fliers",
@@ -2230,6 +2596,9 @@
       "name": "Bourgogne-Franche-Comté",
       "regionalFeedIds": [],
       "catalogLineIds": [
+        "fr-lyria-paris-lausanne",
+        "fr-tgv-strasbourg-nice",
+        "fr-ter-lyon-besancon",
         "fr-ter-macon-valence",
         "fr-tgv-paris-besancon",
         "fr-tgv-paris-mulhouse",
@@ -2267,6 +2636,7 @@
         83634
       ],
       "catalogLineIds": [
+        "fr-tgv-strasbourg-nice",
         "fr-tgv-paris-mulhouse",
         "fr-tgv-strasbourg-bordeaux",
         "fr-tgv-strasbourg-quimper",
@@ -2326,6 +2696,11 @@
       "name": "Auvergne-Rhône-Alpes",
       "regionalFeedIds": [],
       "catalogLineIds": [
+        "fr-tgv-strasbourg-nice",
+        "fr-ter-saint-marcellin-grenoble",
+        "fr-ter-lyon-part-dieu-avignon",
+        "fr-ter-lyon-perrache-avignon",
+        "fr-ter-lyon-besancon",
         "fr-ter-lyon-chambery",
         "fr-ter-macon-valence",
         "fr-ter-lyon-brignais",
@@ -2349,6 +2724,9 @@
         83990
       ],
       "catalogLineIds": [
+        "fr-tgv-strasbourg-nice",
+        "fr-ter-lyon-part-dieu-avignon",
+        "fr-ter-lyon-perrache-avignon",
         "fr-intercites-bordeaux-marseille",
         "fr-marseille-metro-1",
         "fr-marseille-metro-2"

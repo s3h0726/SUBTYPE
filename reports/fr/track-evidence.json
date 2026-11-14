@@ -3364,9 +3364,7 @@
       "Besançon Franche-Comté TGV",
       "Dijon-Ville",
       "Beaune",
-      "Mâcon-Ville",
       "Lyon Part-Dieu",
-      "Valence-Rhône-Alpes-Sud TGV",
       "Avignon TGV",
       "Aix-en-Provence TGV",
       "Marseille Saint-Charles",
@@ -3377,9 +3375,35 @@
       "Antibes",
       "Nice-Ville"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::19ea029b-6782-421a-8481-7470f5718e47:",
+        "brand": "TGV INOUI",
+        "patternId": "fr-pattern-bbe23fe74fcbd37e6438a9dd",
+        "calls": [
+          "Strasbourg",
+          "Colmar",
+          "Mulhouse",
+          "Belfort - Montbéliard TGV",
+          "Besançon Franche-Comté TGV",
+          "Dijon",
+          "Beaune",
+          "Lyon Part Dieu",
+          "Avignon TGV",
+          "Aix-en-Provence TGV",
+          "Marseille Saint-Charles",
+          "Toulon",
+          "Les Arcs - Draguignan",
+          "Saint-Raphaël Valescure",
+          "Cannes",
+          "Antibes",
+          "Nice-Ville"
+        ],
+        "maxStationOffsetKm": 0.14599527272654336
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 21161915,
@@ -3851,6 +3875,65 @@
         "maxStationOffsetKm": 0.2157524363203443
       }
     ],
+    "variants": [
+      {
+        "excludedCalls": [
+          "Sorgues - Châteauneuf-du-Pape",
+          "Bédarrides",
+          "Courthézon",
+          "Donzère",
+          "Loriol",
+          "Livron"
+        ],
+        "serviceKo": "리브롱·로리올·동제르 통과",
+        "matches": [
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::5CE372B6-CE7D-4780-B4F8-F5979FED5405:",
+            "brand": "Train TER",
+            "patternId": "fr-pattern-7e64c9be9fff4f363d3ebaa1",
+            "calls": [
+              "Avignon Centre",
+              "Orange",
+              "Bollène la Croisière",
+              "Pierrelatte",
+              "Montélimar",
+              "Valence Ville",
+              "Tain-l'Hermitage - Tournon",
+              "Saint-Vallier sur Rhône",
+              "Saint-Rambert-d'Albon",
+              "Le Péage-de-Roussillon",
+              "Saint-Clair - Les Roches",
+              "Vienne",
+              "Lyon Part Dieu"
+            ],
+            "maxStationOffsetKm": 0.2157524363203443
+          },
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::C333995A-51A2-4A1C-ABC7-55A7460AB17B:",
+            "brand": "Train TER",
+            "patternId": "fr-pattern-989acf2b227f0772cf426455",
+            "calls": [
+              "Avignon Centre",
+              "Orange",
+              "Bollène la Croisière",
+              "Pierrelatte",
+              "Montélimar",
+              "Valence Ville",
+              "Tain-l'Hermitage - Tournon",
+              "Saint-Vallier sur Rhône",
+              "Saint-Rambert-d'Albon",
+              "Le Péage-de-Roussillon",
+              "Saint-Clair - Les Roches",
+              "Vienne",
+              "Lyon Part Dieu"
+            ],
+            "maxStationOffsetKm": 0.2157524363203443
+          }
+        ]
+      }
+    ],
     "status": "MATCHED"
   },
   {
@@ -3873,14 +3956,97 @@
       "Pierrelatte",
       "Bollène - La Croisière",
       "Orange",
-      "Courthézon",
-      "Bédarrides",
       "Sorgues - Châteauneuf-du-Pape",
       "Avignon-Centre"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::5CE372B6-CE7D-4780-B4F8-F5979FED5405:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-412307d3c4ca426fbb1a251a",
+        "calls": [
+          "Lyon Part Dieu",
+          "Vienne",
+          "Saint-Clair - Les Roches",
+          "Le Péage-de-Roussillon",
+          "Saint-Rambert-d'Albon",
+          "Saint-Vallier sur Rhône",
+          "Tain-l'Hermitage - Tournon",
+          "Valence Ville",
+          "Livron",
+          "Loriol",
+          "Montélimar",
+          "Donzère",
+          "Pierrelatte",
+          "Bollène la Croisière",
+          "Orange",
+          "Sorgues - Châteauneuf-du-Pape",
+          "Avignon Centre"
+        ],
+        "maxStationOffsetKm": 0.2199825122446543
+      }
+    ],
+    "variants": [
+      {
+        "excludedCalls": [
+          "Livron",
+          "Loriol",
+          "Donzère",
+          "Courthézon",
+          "Bédarrides",
+          "Sorgues - Châteauneuf-du-Pape"
+        ],
+        "serviceKo": "리브롱·로리올·동제르 통과",
+        "matches": [
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::5CE372B6-CE7D-4780-B4F8-F5979FED5405:",
+            "brand": "Train TER",
+            "patternId": "fr-pattern-4d1a839e9d778bc993b441ba",
+            "calls": [
+              "Lyon Part Dieu",
+              "Vienne",
+              "Saint-Clair - Les Roches",
+              "Le Péage-de-Roussillon",
+              "Saint-Rambert-d'Albon",
+              "Saint-Vallier sur Rhône",
+              "Tain-l'Hermitage - Tournon",
+              "Valence Ville",
+              "Montélimar",
+              "Pierrelatte",
+              "Bollène la Croisière",
+              "Orange",
+              "Avignon Centre"
+            ],
+            "maxStationOffsetKm": 0.2199825122446543
+          },
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::C333995A-51A2-4A1C-ABC7-55A7460AB17B:",
+            "brand": "Train TER",
+            "patternId": "fr-pattern-a5e13832b6aa68d8432a2c4e",
+            "calls": [
+              "Lyon Part Dieu",
+              "Vienne",
+              "Saint-Clair - Les Roches",
+              "Le Péage-de-Roussillon",
+              "Saint-Rambert-d'Albon",
+              "Saint-Vallier sur Rhône",
+              "Tain-l'Hermitage - Tournon",
+              "Valence Ville",
+              "Montélimar",
+              "Pierrelatte",
+              "Bollène la Croisière",
+              "Orange",
+              "Avignon Centre"
+            ],
+            "maxStationOffsetKm": 0.2199825122446543
+          }
+        ]
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 21837526,
@@ -3948,7 +4114,6 @@
     "trackCalls": [
       "Avignon-Centre",
       "Sorgues - Châteauneuf-du-Pape",
-      "Bédarrides",
       "Courthézon",
       "Orange",
       "Bollène - La Croisière",
@@ -3967,9 +4132,37 @@
       "Lyon Jean Macé",
       "Lyon Perrache"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::5B616F3E-D726-494F-80C2-7EB8355C3177:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-7791397094dea49702893af9",
+        "calls": [
+          "Avignon Centre",
+          "Sorgues - Châteauneuf-du-Pape",
+          "Courthézon",
+          "Orange",
+          "Bollène la Croisière",
+          "Pierrelatte",
+          "Donzère",
+          "Montélimar",
+          "Loriol",
+          "Livron",
+          "Valence Ville",
+          "Tain-l'Hermitage - Tournon",
+          "Saint-Vallier sur Rhône",
+          "Saint-Rambert-d'Albon",
+          "Le Péage-de-Roussillon",
+          "Saint-Clair - Les Roches",
+          "Vienne",
+          "Lyon Jean Macé",
+          "Lyon Perrache"
+        ],
+        "maxStationOffsetKm": 0.2157524363203443
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 21839378,
@@ -4186,16 +4379,35 @@
       "Arbois",
       "Poligny",
       "Lons-le-Saunier",
-      "Cousance",
       "Saint-Amour",
       "Bourg-en-Bresse",
       "Ambérieu-en-Bugey",
       "Lyon Part-Dieu",
       "Lyon Perrache"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::27A3C9CC-526E-4121-8CF9-7C00D4652BCC:",
+        "brand": "Train TER",
+        "patternId": "fr-pattern-94ec39b21a6634e6e697e040",
+        "calls": [
+          "Besançon Viotte",
+          "Arc-et-Senans",
+          "Mouchard",
+          "Arbois",
+          "Poligny",
+          "Lons-le-Saunier",
+          "Saint-Amour",
+          "Bourg-en-Bresse",
+          "Ambérieu-en-Bugey",
+          "Lyon Part Dieu",
+          "Lyon Perrache"
+        ],
+        "maxStationOffsetKm": 0.03800640537276524
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 21844545,
@@ -4882,6 +5094,31 @@
           "Lausanne"
         ],
         "maxStationOffsetKm": 0.0557712252996165
+      }
+    ],
+    "variants": [
+      {
+        "excludedCalls": [
+          "Mouchard"
+        ],
+        "serviceKo": "테제베 리리아 · 무샤르 통과",
+        "matches": [
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::37ac13d7-de6b-4d05-837f-891191140e19:",
+            "brand": "Lyria",
+            "patternId": "fr-pattern-db54748e156240e894260ce2",
+            "calls": [
+              "Paris Gare de Lyon Hall 1 - 2",
+              "Dijon",
+              "Dole",
+              "Frasne",
+              "Vallorbe",
+              "Lausanne"
+            ],
+            "maxStationOffsetKm": 0.0557712252996165
+          }
+        ]
       }
     ],
     "status": "MATCHED"
@@ -7069,6 +7306,79 @@
     "matches": [],
     "status": "BLOCKED",
     "reason": "No independently verified ordered timetable match"
+  },
+  {
+    "relationId": 6166346,
+    "name": "TGV Lyria 612E : Lausanne → Dole → Dijon-Ville → Paris Gare de Lyon",
+    "reference": "612E",
+    "trackCalls": [
+      "Lausanne",
+      "Vallorbe",
+      "Frasne",
+      "Mouchard",
+      "Dole",
+      "Dijon-Ville",
+      "Paris Gare de Lyon"
+    ],
+    "matches": [
+      {
+        "sourceId": 83582,
+        "routeId": "FR:Line::37ac13d7-de6b-4d05-837f-891191140e19:",
+        "brand": "Lyria",
+        "patternId": "fr-pattern-586c36a94e1dc57a28b3b918",
+        "calls": [
+          "Lausanne",
+          "Vallorbe",
+          "Frasne",
+          "Mouchard",
+          "Dole",
+          "Dijon",
+          "Paris Gare de Lyon Hall 1 - 2"
+        ],
+        "maxStationOffsetKm": 0.09254363340105502
+      }
+    ],
+    "variants": [
+      {
+        "excludedCalls": [
+          "Mouchard"
+        ],
+        "serviceKo": "테제베 리리아 · 무샤르 통과",
+        "matches": [
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::37ac13d7-de6b-4d05-837f-891191140e19:",
+            "brand": "Lyria",
+            "patternId": "fr-pattern-ab2f72277c20caed622077be",
+            "calls": [
+              "Lausanne",
+              "Vallorbe",
+              "Frasne",
+              "Dole",
+              "Dijon",
+              "Paris Gare de Lyon Hall 1 - 2"
+            ],
+            "maxStationOffsetKm": 0.09254363340105502
+          },
+          {
+            "sourceId": 83582,
+            "routeId": "FR:Line::37ac13d7-de6b-4d05-837f-891191140e19:",
+            "brand": "Lyria",
+            "patternId": "fr-pattern-c6abd492e1be9154995388d9",
+            "calls": [
+              "Lausanne",
+              "Vallorbe",
+              "Frasne",
+              "Dole",
+              "Dijon",
+              "Paris Gare de Lyon Hall 1 - 2"
+            ],
+            "maxStationOffsetKm": 0.09254363340105502
+          }
+        ]
+      }
+    ],
+    "status": "MATCHED"
   },
   {
     "relationId": 6274530,

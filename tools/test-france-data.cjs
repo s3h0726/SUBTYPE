@@ -73,7 +73,7 @@ async function run() {
       }
       const {elements} = read('data/fr/source/osm/' + evidence.relationId + '.json');
       const relation = elements.find(element => element.type === 'relation' && element.id === evidence.relationId);
-      const track = readTrack(relation, elements, exclusions[evidence.relationId], corrections[evidence.relationId]);
+      const track = readTrack(relation, elements, evidence.excludedCalls || exclusions[evidence.relationId], corrections[evidence.relationId]);
       assert.deepEqual(track.stops.map(stop => stop.id), evidence.stationNodes);
       assert.deepEqual(playable.geometry, track.geometry.slice(track.aligned[0],track.aligned.at(-1)+1));
       assert.equal(playable.directedSegments.length, playable.stations.length - 1);

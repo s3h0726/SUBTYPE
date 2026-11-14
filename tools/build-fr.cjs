@@ -16,12 +16,15 @@ const stable = (...values) => createHash('sha256').update(JSON.stringify(values)
 const names = read('data/fr/source/station-names-ko.json');
 const aliases = read('data/fr/source/station-aliases.json');
 const exclusions = read('data/fr/source/track-call-exclusions.json');
+const callVariants = read('data/fr/source/track-call-variants.json');
 const corrections = read('data/fr/source/track-stop-corrections.json');
 const specs = read('data/fr/source/release-lines.json');
 const inventories = new Map([...new Set(specs.map(spec => spec.sourceId))].map(id =>
   [id, read('data/fr/source/schedules/' + id + '.json')]));
 const ratp = {ko: '파리 교통공사', fr: 'Régie autonome des transports parisiens', en: 'RATP'};
 const sncf = {ko: '프랑스국철 여객', fr: 'SNCF Voyageurs', en: 'SNCF Voyageurs'};
+const lyria = {operator:{ko:'테제베 리리아', fr:'TGV Lyria', en:'TGV Lyria'}, id:'fr-tgv-lyria',
+  tag:'operator', value:'TGV Lyria', operatorUrl:'https://www.tgv-lyria.com/fr/fr/a-propos/partenaires-ferroviaires'};
 const lyon = {ko: '파리 교통공사 개발 리옹', fr: 'RATP Dev Lyon', en: 'RATP Dev Lyon'};
 const rennes = {ko: '케올리스 렌 메트로폴', fr: 'Keolis Rennes Métropole', en: 'Keolis Rennes Métropole'};
 const toulouse = {ko: '티세오 여객', fr: 'Tisséo Voyageurs', en: 'Tisséo Voyageurs'};
@@ -123,22 +126,29 @@ for (const spec of specs) {
   const inventory = inventories.get(spec.sourceId);
   const metro = metroSources[spec.sourceId];
   const isMetro = Boolean(metro);
+  const railway = metro || (spec.brand === 'Lyria' ? lyria : null);
   const stationCatalog = new Map();
   const files = new Set();
   const patterns = [];
   let officialLineId;
   let color;
-  for (const relationId of spec.relations) {
+  const trackSpecs = spec.relations.flatMap(relationId => [
+    {relationId, excludedCalls:exclusions[relationId]},
+    ...(callVariants[relationId] || []).map(variant => ({relationId, ...variant})),
+  ]);
+  for (const {relationId, excludedCalls, serviceKo} of trackSpecs) {
     const {elements} = read('data/fr/source/osm/' + relationId + '.json');
     const relation = elements.find(element => element.type === 'relation' && element.id === relationId);
     // Lyon’s old OSM operator label remains useful for track identity. TCL
     // confirms RATP Dev took over metro operation on 2025-01-01.
-    const operatorMatches = metro ? relation?.tags?.[metro.tag] === metro.value :
+    const operatorMatches = railway ? relation?.tags?.[railway.tag] === railway.value :
       relation?.tags?.operator === 'SNCF Voyageurs';
-    if (!operatorMatches) {
+    const publishedRailService = spec.osmOperatorUnspecified && spec.routeId &&
+      !relation?.tags?.operator && relation?.tags?.ref === spec.code;
+    if (!operatorMatches && !publishedRailService) {
       throw new Error('Unexpected operator for relation ' + relationId);
     }
-    const track = readTrack(relation, elements, exclusions[relationId], corrections[relationId]);
+    const track = readTrack(relation, elements, excludedCalls, corrections[relationId]);
     const matches = findMatches(relation, track, [inventory], aliases).filter(match =>
       (!spec.routeId || match.line.sourceRouteId === spec.routeId) &&
       (!spec.brand || match.pattern.brand === spec.brand));
@@ -174,11 +184,12 @@ for (const spec of specs) {
     const familyId = isMetro ? spec.id + '-local' : 'fr-service-' + stable(spec.id, directionless);
     patterns.push({
       id: 'fr-play-' + stable(spec.id, stationIds), familyId, stationIds, legs, viaStationId: via,
-      nameKo: isMetro ? '각역정차' : spec.serviceKo || '테제베 이누이',
+      nameKo: isMetro ? '각역정차' : serviceKo || spec.serviceKo || '테제베 이누이',
       nameFr: isMetro ? 'Métro' : spec.brand,
       evidence: {
         relationId, version: relation.version, timestamp: relation.timestamp, maxStationOffsetKm,
         stationNodes: track.stops.map(stop => stop.id),
+        ...(serviceKo ? {excludedCalls} : {}),
         sourcePatterns: matches.map(match => match.pattern.id), scheduleResourceId: spec.sourceId,
         firstDate: matches.map(match => match.pattern.firstDate).sort()[0],
         lastDate: matches.map(match => match.pattern.lastDate).sort().at(-1),
@@ -186,15 +197,15 @@ for (const spec of specs) {
     });
   }
   const stations = [...stationCatalog.values()];
-  const operator = metro?.operator || sncf;
-  const operatorId = metro?.id || 'fr-sncf-voyageurs';
+  const operator = railway?.operator || sncf;
+  const operatorId = railway?.id || 'fr-sncf-voyageurs';
   const route = {id: spec.id, countryId: 'fr', operatorId,
     operator, line: {ko: spec.ko, fr: spec.fr, ja: spec.fr, en: spec.fr}, code: spec.code,
     lineColor: color, category: isMetro ? 'subway' : spec.category || (spec.international ? 'international' : 'high_speed_rail'), mode: 'rail',
     playable: true, geometryReady: true, geometryStatus: 'verified-osm-track',
     geometrySource: {type: 'openstreetmap', license: 'ODbL-1.0', attribution: '© OpenStreetMap contributors'},
     sourceUrl: sourceUrls[spec.sourceId], sourceRouteId: officialLineId, regionCodes: spec.regionCodes,
-    ...(metro?.operatorUrl ? {operatorSourceUrl: metro.operatorUrl} : {}),
+    ...(railway?.operatorUrl ? {operatorSourceUrl: railway.operatorUrl} : {}),
     stationCatalog: stations, stations, patterns, geometryFiles: [...files].sort(),
     services: patterns.map(pattern => ({id: pattern.id, nameKo: pattern.nameKo, nameEn: pattern.nameFr,
       nameJa: pattern.nameFr, stops: pattern.stationIds})), serviceCount: patterns.length,
