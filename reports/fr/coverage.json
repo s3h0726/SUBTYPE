@@ -4,21 +4,21 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 93,
-  "verifiedSourcePatternRecords": 93,
-  "remainingSourcePatternRecords": 13193,
-  "verifiedShareOfSourcePatternRecordsPercent": 0.699984946560289,
+  "coveredSourcePatternRecords": 109,
+  "verifiedSourcePatternRecords": 109,
+  "remainingSourcePatternRecords": 13177,
+  "verifiedShareOfSourcePatternRecordsPercent": 0.8204124642480807,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 39,
+  "catalogLines": 46,
   "operators": 7,
-  "catalogServiceFamilies": 49,
-  "playableDirections": 91,
-  "verifiedPlayableDirections": 91,
-  "koreanNamedStations": 610,
-  "stationIds": 610,
-  "physicalStationGroups": 577,
-  "sharedPhysicalWays": 7846,
-  "uniquePhysicalWays": 13489,
+  "catalogServiceFamilies": 57,
+  "playableDirections": 107,
+  "verifiedPlayableDirections": 107,
+  "koreanNamedStations": 670,
+  "stationIds": 670,
+  "physicalStationGroups": 637,
+  "sharedPhysicalWays": 8300,
+  "uniquePhysicalWays": 15418,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -56,9 +56,9 @@
     "UNVERIFIABLE": 1
   },
   "trackRelations": {
-    "examined": 158,
-    "matched": 113,
-    "blocked": 45
+    "examined": 190,
+    "matched": 136,
+    "blocked": 54
   },
   "byFamily": [
     {
@@ -127,16 +127,16 @@
     {
       "family": "ter",
       "sourcePatternRecords": 4175,
-      "catalogLines": 0,
-      "playableDirections": 0,
-      "testedDirections": 0
+      "catalogLines": 6,
+      "playableDirections": 14,
+      "testedDirections": 14
     },
     {
       "family": "tram-train",
       "sourcePatternRecords": 12,
-      "catalogLines": 0,
-      "playableDirections": 0,
-      "testedDirections": 0
+      "catalogLines": 1,
+      "playableDirections": 2,
+      "testedDirections": 2
     },
     {
       "family": "tramway",
@@ -154,6 +154,297 @@
     }
   ],
   "lines": [
+    {
+      "id": "fr-ter-lyon-chambery",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "FR:Line::2993074B-2B66-490B-B4C2-5593D87237FB:",
+      "sourceLineId": "fr-line-59649cfa819f0f57a35bfb42",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-4ba8d41259d9072ac0b4c9a5",
+        "fr-pattern-5fb2e86318952776156c1366",
+        "fr-pattern-bbe1e0e5f8512ab7fc21dcb4"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-e43486a26366ae58f3241913",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-34947dd9fb7ccbb7b14da098"
+          ],
+          "relationId": 21841212,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-32a8d1b9dfdce721700185cf",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-a3b06f914096f174de51b8e8"
+          ],
+          "relationId": 21841211,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-macon-valence",
+      "category": "regional_rail",
+      "regions": [
+        "27",
+        "84"
+      ],
+      "sourceRouteId": "FR:Line::d1bc94ff-90a2-45c6-9617-258fb5f8f54a:",
+      "sourceLineId": "fr-line-79f63a896b85b772a4b11948",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 12,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0a59a59ce92020601b448dc5",
+        "fr-pattern-2cc35fa423290dc086b3c8a0",
+        "fr-pattern-30ae89b540883f69085e7391",
+        "fr-pattern-3b949f7b48d24402f630ba4a",
+        "fr-pattern-42b847684f2be9b6cd9cadba",
+        "fr-pattern-55ac96626c21fc00b6d85d2a",
+        "fr-pattern-55e74a61329f1733b2657a56",
+        "fr-pattern-610b7e971498f823c986913b",
+        "fr-pattern-b758891bbe2a466d87be5586",
+        "fr-pattern-dd1cfc5434b2d428c3f4a750"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-47a80b32aaf6f71edcf39753",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-a68f401bcb3364e8b45b8e5e"
+          ],
+          "relationId": 21839379,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-758a5b90d5e0df951ff35b15",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-5e6a2347ed5992b3744bb5da"
+          ],
+          "relationId": 21839378,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-lyon-brignais",
+      "category": "tram_train",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "FR:Line::06C24CB9-71E3-4CC4-BB31-E6285EB38AE1:",
+      "sourceLineId": "fr-line-42c3b4f7e52d9a52988de9b6",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-4e24486d807d873db0d481d6",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-336390ca37e7cca2caf7b27e"
+          ],
+          "relationId": 21785478,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-a1377bf8c716cfec4fc2cf58",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-fba9ae0c1e90a8a6a63d8b29"
+          ],
+          "relationId": 21785479,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-clermont-thiers",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "FR:Line::BAED427A-994D-4D73-B568-A7553E01CD3C:",
+      "sourceLineId": "fr-line-0d8e0ab3e5e88d2dd1286f40",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-940de3db524a6414e34cbb6d",
+        "fr-pattern-c44031689d1646b12b736d67"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-6e5a4798a46c50b3f6e83f58",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-caf6921c7081ac3f15a11b85"
+          ],
+          "relationId": 16340899,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-cdd123f8f1e682f728dc7f96",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-235215931608ba09a681c0ff"
+          ],
+          "relationId": 16340898,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-lyon-annecy",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "FR:Line::6F1D7ABC-B729-498A-B3BD-DE55587C60E2:",
+      "sourceLineId": "fr-line-ff998df2b2c89733858b826e",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 10,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-10e171fdb39ebdb0bbbe3a12",
+        "fr-pattern-1f186e3069972bb53555e1e4",
+        "fr-pattern-21d07498281c8a49de4948f3",
+        "fr-pattern-a5a4dcfaeea8df84953bc800",
+        "fr-pattern-c7bd32cb7bfc949f86b90a38",
+        "fr-pattern-eb63787935827fab7d44cddc",
+        "fr-pattern-efe102a2aca1b238d8d31432",
+        "fr-pattern-fd566ae06ffe6e0889caa1f7"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a6c9df90ffb00211f7eff1c0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-de71f2a4f979af4d5307436a"
+          ],
+          "relationId": 21752100,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-0537553d81643a2a5e42eb7a",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c32c8a918ab42f96ed20151e"
+          ],
+          "relationId": 21752102,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-grenoble-rives",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "FR:Line::DAF77CAA-444E-43F9-A7EC-1FFEF4C462CD:",
+      "sourceLineId": "fr-line-c59fac9c5d3454ad7c1edfb0",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 10,
+      "coveredSchedulePatterns": 4,
+      "remainingSourcePatternIds": [
+        "fr-pattern-010531696ec067e9cfbbd247",
+        "fr-pattern-0e84f3c773f21e30525e485f",
+        "fr-pattern-1ec108302cb1f0a2909938a3",
+        "fr-pattern-27ca4850fe8f77e65d7f306b",
+        "fr-pattern-37766d9ca4736834c59f3485",
+        "fr-pattern-7d92cd30fb5c9bd3aa4aa530"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-08f6d7b82a7cc165424bcebd",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-a3879fd6ab0a30c38b45e8f3"
+          ],
+          "relationId": 21853881,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-b8e584b2517ca346a57a27ba",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b301a2cf461175f7fdd1c653"
+          ],
+          "relationId": 21853882,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5babf4c605c912b58ea0b7e3",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-7ebac9b9cd880ac632170614"
+          ],
+          "relationId": 21853879,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-e9fa7b38125ad28421000f74",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-98438b9e04e3e785ffde79e8"
+          ],
+          "relationId": 21853880,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-ter-grenoble-chambery",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "sourceRouteId": "FR:Line::05C666F4-3B26-4DB6-A4A8-F3C6D6150B76:",
+      "sourceLineId": "fr-line-a77593a83b67b27a97fcbefe",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-2beaca2838e3e2d25cac1761",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-16808bc8a9f6deb51bfeb54a"
+          ],
+          "relationId": 21859202,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-580e41189835809556fda01f",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-8745910352ccadde7beb981a"
+          ],
+          "relationId": 21859201,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
     {
       "id": "fr-tgv-paris-valenciennes",
       "category": "high_speed_rail",
@@ -1868,6 +2159,7 @@
       "name": "Bourgogne-Franche-Comté",
       "regionalFeedIds": [],
       "catalogLineIds": [
+        "fr-ter-macon-valence",
         "fr-tgv-paris-besancon",
         "fr-tgv-paris-mulhouse",
         "fr-tgv-paris-perpignan"
@@ -1961,6 +2253,13 @@
       "name": "Auvergne-Rhône-Alpes",
       "regionalFeedIds": [],
       "catalogLineIds": [
+        "fr-ter-lyon-chambery",
+        "fr-ter-macon-valence",
+        "fr-ter-lyon-brignais",
+        "fr-ter-clermont-thiers",
+        "fr-ter-lyon-annecy",
+        "fr-ter-grenoble-rives",
+        "fr-ter-grenoble-chambery",
         "fr-tgv-paris-perpignan",
         "fr-lyon-metro-a",
         "fr-lyon-metro-b",
