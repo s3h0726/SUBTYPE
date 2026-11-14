@@ -34,7 +34,7 @@
   function refresh(){
     const list=cards(),availability={all:0,asia:0,europe:0};
     const needle=query.trim().toLocaleLowerCase('ko');
-    const labelMatch=!!needle&&'중국 특별행정구 특별행정구'.includes(needle);
+    const labelMatch=!!needle&&['홍콩·마카오','홍콩 마카오','홍콩','마카오','hong kong macau','hongkong macau'].some(term=>term.includes(needle));
     let visible=0;
 
     for(const card of list){
