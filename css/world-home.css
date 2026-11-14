@@ -553,3 +553,68 @@ body.reduce-motion #screen-home.world-home .world-map-marker{transition:none}
   #screen-home.world-home .country-subgroup-back{font-size:11px;padding:5px 8px}
   #screen-home.world-home .world-map-marker[data-map-country="sar"]{margin-left:-7px;margin-top:9px}
 }
+
+/* Region picker lives in the browser top layer, never under map/list overflow. */
+.hk-mo-country-picker:not([open]){display:none!important}
+.hk-mo-country-picker{
+  width:min(460px,calc(100vw - 28px));
+  max-width:calc(100vw - 28px);
+  max-height:min(560px,calc(100dvh - 32px));
+  margin:auto;padding:0;overflow:auto;
+  border:1px solid #4e7a83;border-radius:20px;
+  background:#102735;color:#effcf7;
+  box-shadow:0 28px 90px rgba(0,0,0,.62);
+  font-family:'Noto Sans KR',system-ui,sans-serif;
+}
+.hk-mo-country-picker::backdrop{
+  background:rgba(4,13,22,.76);
+  backdrop-filter:blur(5px);
+}
+.hk-mo-picker-content{padding:24px}
+.hk-mo-picker-heading{
+  display:flex;justify-content:space-between;align-items:start;gap:12px;
+}
+.hk-mo-picker-heading small{
+  display:block;margin-bottom:8px;
+  color:#81dcc7;font-size:11px;font-weight:750;letter-spacing:.06em;
+}
+.hk-mo-picker-heading h2{
+  margin:0;color:#f2fff9;font-size:28px;font-weight:850;line-height:1.2;
+}
+.hk-mo-picker-close{
+  flex:0 0 36px;width:36px;height:36px;
+  border:1px solid #4b7280;border-radius:9px;
+  background:#213f4e;color:#eefbf7;
+  cursor:pointer;font-size:24px;line-height:1;
+}
+.hk-mo-picker-hint{
+  margin:11px 0 21px;color:#a7bec9;font-size:13px;
+}
+.hk-mo-picker-options{display:grid;gap:10px}
+.hk-mo-picker-options button{
+  position:relative;
+  display:flex;flex-direction:column;align-items:start;
+  width:100%;min-height:81px;padding:16px 44px 16px 16px;
+  border:1px solid #395d6b;border-radius:12px;
+  background:#1a3444;color:#eefbf6;
+  text-align:left;cursor:pointer;
+}
+.hk-mo-picker-options button:hover,
+.hk-mo-picker-options button:focus-visible{
+  border-color:#8ee7d2;background:#214b56;outline-offset:2px;
+}
+.hk-mo-picker-options strong{
+  font-size:19px;font-weight:850;line-height:1.3;
+}
+.hk-mo-picker-options small{
+  margin-top:5px;color:#aac3cc;font-size:12px;line-height:1.4;
+}
+.hk-mo-picker-options button span{
+  position:absolute;right:18px;top:27px;
+  color:#8ce9d1;font-size:22px;
+}
+@media(max-width:480px){
+  .hk-mo-picker-content{padding:18px}
+  .hk-mo-picker-heading h2{font-size:23px}
+  .hk-mo-picker-options button{padding:14px 40px 14px 13px}
+}
