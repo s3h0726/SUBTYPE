@@ -13,6 +13,7 @@ const tested = new Set(browser.testedDirections.map(direction => direction.id));
 const mobile = new Set(browser.mobileDirections.map(direction => direction.id));
 const freeDrive = new Set(browser.freeDrive.map(direction => direction.id));
 const servicePatterns = new Set();
+const scheduleFamilies = new Map();
 const lines = [];
 
 for (const line of catalog.lines) {
@@ -26,6 +27,9 @@ for (const line of catalog.lines) {
   const source = read('data/fr/source/schedules/' + line.patterns[0].scheduleResourceId + '.json');
   const official = source.lines.find(candidate => candidate.sourceRouteId === line.sourceRouteId);
   const implemented = new Set(directions.flatMap(direction => direction.sourcePatterns));
+  for (const pattern of official.patterns) {
+    if (implemented.has(pattern.id)) scheduleFamilies.set(pattern.id, pattern.family);
+  }
   const remaining = official.patterns.filter(pattern => !implemented.has(pattern.id));
   lines.push({id:line.id, category:line.category, regions:line.regions,
     sourceRouteId:line.sourceRouteId, sourceLineId:official.id,
@@ -36,7 +40,7 @@ for (const line of catalog.lines) {
     remainingSourcePatternIds:remaining.map(pattern => pattern.id), directions});
 }
 const verified = lines.flatMap(line => line.directions).filter(direction => direction.status === 'VERIFIED_ADDED');
-const verifiedSchedulePatterns = new Set(verified.flatMap(direction => direction.sourcePatterns)).size;
+const verifiedSourcePatterns = new Set(verified.flatMap(direction => direction.sourcePatterns));
 const discovered = inventory.scheduleTotals.blockedDirections;
 const byFamily = Object.entries(inventory.patternsByFamily).map(([family, count]) => {
   const published = lines.filter(line => (family === 'high-speed' && line.category === 'high_speed_rail') ||
@@ -45,16 +49,20 @@ const byFamily = Object.entries(inventory.patternsByFamily).map(([family, count]
     (family === 'intercites' && line.category === 'intercity') ||
     (family === 'ter' && line.category === 'regional_rail') ||
     (family === 'tram-train' && line.category === 'tram_train'));
+  const covered = [...scheduleFamilies].filter(([, sourceFamily]) => sourceFamily === family);
+  const verifiedRecords = covered.filter(([id]) => verifiedSourcePatterns.has(id)).length;
   return {family, sourcePatternRecords:count, catalogLines:published.length,
+    coveredSourcePatternRecords:covered.length, verifiedSourcePatternRecords:verifiedRecords,
+    remainingSourcePatternRecords:count-covered.length,
     playableDirections:published.flatMap(line => line.directions).length,
     testedDirections:published.flatMap(line => line.directions).filter(direction => direction.status === 'VERIFIED_ADDED').length};
 });
 const coverage = {
   asOf:inventory.asOf, baselineRef:inventory.baselineRef, nationalCoveragePercent:null,
   sourceDenominator:inventory.denominator, discoveredSourcePatternRecords:discovered,
-  coveredSourcePatternRecords:servicePatterns.size, verifiedSourcePatternRecords:verifiedSchedulePatterns,
+  coveredSourcePatternRecords:servicePatterns.size, verifiedSourcePatternRecords:verifiedSourcePatterns.size,
   remainingSourcePatternRecords:discovered-servicePatterns.size,
-  verifiedShareOfSourcePatternRecordsPercent:100*verifiedSchedulePatterns/discovered,
+  verifiedShareOfSourcePatternRecordsPercent:100*verifiedSourcePatterns.size/discovered,
   existingFranceLinesOnBaseline:0, catalogLines:lines.length, operators:catalog.operators,
   catalogServiceFamilies:lines.reduce((total,line) => total+line.serviceFamilies,0),
   playableDirections:catalog.playableDirections, verifiedPlayableDirections:verified.length,

@@ -133,7 +133,9 @@ async function run() {
         'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b', 'fr-rennes-metro-b',
         'fr-toulouse-metro-b', 'fr-lille-metro-2', 'fr-marseille-metro-2',
         'fr-ter-grenoble-rives', 'fr-ter-lyon-brignais', 'fr-ter-macon-valence',
-        'fr-ter-nantes-pornic', 'fr-ter-nantes-saint-gilles'].includes(route.id))
+        'fr-ter-nantes-pornic', 'fr-ter-nantes-saint-gilles', 'fr-lyria-paris-lausanne',
+        'fr-tgv-strasbourg-nice', 'fr-ter-saint-marcellin-grenoble', 'fr-ter-lyon-part-dieu-avignon',
+        'fr-ter-lyon-perrache-avignon', 'fr-ter-lyon-besancon'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);
