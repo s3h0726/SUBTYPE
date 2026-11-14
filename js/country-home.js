@@ -60,13 +60,17 @@
     if(!groupVisible)subgroupOpen=false;
     const selected=list.find(card=>card.classList.contains('active')&&!card.hidden&&!card.disabled);
     if(groupButton){
-      groupButton.hidden=!groupVisible||subgroupOpen;
-      groupButton.classList.toggle('active',!!selected&&special.has(selected.dataset.country));
-      groupButton.setAttribute('aria-pressed',String(!!selected&&special.has(selected.dataset.country)));
+      const hideGroup=!groupVisible||subgroupOpen;
+      const groupSelected=!!selected&&special.has(selected.dataset.country);
+      if(groupButton.hidden!==hideGroup)groupButton.hidden=hideGroup;
+      if(groupButton.classList.contains('active')!==groupSelected)
+        groupButton.classList.toggle('active',groupSelected);
+      groupButton.setAttribute('aria-pressed',String(groupSelected));
       groupButton.setAttribute('aria-expanded',String(subgroupOpen));
     }
-    if(subgroup)subgroup.hidden=!subgroupOpen;
-    board.classList.toggle('subgroup-open',subgroupOpen);
+    if(subgroup&&subgroup.hidden===subgroupOpen)subgroup.hidden=!subgroupOpen;
+    if(board.classList.contains('subgroup-open')!==subgroupOpen)
+      board.classList.toggle('subgroup-open',subgroupOpen);
 
     for(const filter of filters){
       const active=filter.dataset.regionFilter===selectedRegion;
