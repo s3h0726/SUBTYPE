@@ -50,6 +50,10 @@ const combinations = new Set();
 for (const operator of catalog.operators) {
   sign.dataset.operatorId = operator.id;
   refresh(sign);
+  if (operator.id === 'nishinihontetsudo') {
+    assert.equal(sign.dataset.operatorDesign, undefined, 'Nishitetsu original must stay untouched');
+    continue;
+  }
   assert.equal(sign.dataset.operatorDesign, 'subtype', 'Missing design: ' + operator.id);
   assert.ok(styles.has('--jp-board-line-bg'), 'Missing highlight: ' + operator.id);
   const key = [sign.dataset.operatorLayout, sign.dataset.operatorEdge,
@@ -57,7 +61,7 @@ for (const operator of catalog.operators) {
   assert.ok(!combinations.has(key), 'Repeated Japan operator identity: ' + operator.id);
   combinations.add(key);
 }
-assert.equal(combinations.size, catalog.operators.length);
+assert.equal(combinations.size, catalog.operators.length - 1);
 // Actual photo-based operator boards and the documented Nishitetsu layout
 // must not be overwritten by this generated layer.
 attrs.add('data-photo-sign');
