@@ -1,0 +1,27 @@
+name: Operator nameplate coverage
+
+on:
+  pull_request:
+    paths:
+      - 'js/operator-nameplate-identity.js'
+      - 'css/operator-nameplate-identity.css'
+      - 'tools/test-all-operator-nameplates.cjs'
+      - 'tools/test-jp-operator-nameplates.cjs'
+      - 'index.html'
+      - 'package.json'
+      - '.github/workflows/operator-nameplates.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  operator-signs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify operator nameplate coverage and exclusions
+        run: npm run test:all-nameplates

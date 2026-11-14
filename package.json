@@ -91,7 +91,8 @@
     "test:uk:browser": "node tools/test-uk-browser.cjs",
     "test:jp-extra-services": "node tools/test-japan-extra-operating-patterns.cjs",
     "test:jp-nameplates": "node tools/test-jp-operator-nameplates.cjs",
-    "test:ohmi": "node tools/test-ohmi-rebuild.cjs"
+    "test:ohmi": "node tools/test-ohmi-rebuild.cjs",
+    "test:all-nameplates": "node tools/test-all-operator-nameplates.cjs && npm run test:jp-nameplates"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",
