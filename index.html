@@ -87,7 +87,7 @@
   <link rel="stylesheet" href="./css/japan-all-operator-nameplates.css?v=20261108-jp-phase1-operators">
   <link rel="stylesheet" href="./css/app-version.css?v=0.9.0">
   <link rel="stylesheet" href="./css/country-home.css?v=20261112-country-directory-v2">
-  <link rel="stylesheet" href="./css/world-home.css?v=20261112-atlas-v1">
+  <link rel="stylesheet" href="./css/world-home.css?v=20261115-special-regions">
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -120,8 +120,8 @@
         <div class="world-home-head">
           <div class="world-home-heading">
             <p class="world-home-kicker"><span class="world-live-indicator" aria-hidden="true"></span> SUBTYPE WORLD ATLAS</p>
-            <h1 id="country-home-title">세계 지도에서 <span>국가를 선택하세요.</span></h1>
-            <p>지도의 표시를 누르거나 국가 목록에서 선택한 뒤 노선을 찾아보세요.</p>
+            <h1 id="country-home-title">세계 지도에서 <span>국가·지역을 선택하세요.</span></h1>
+            <p>지도의 표시를 누르거나 국가·지역 목록에서 선택한 뒤 노선을 찾아보세요.</p>
           </div>
           <nav class="launch-menu home-quick-menu" aria-label="기타 메뉴">
             <button class="home-play-button" data-nav="rail-map"><span>01</span><b>노선 찾아보기</b><small>선택 국가의 노선</small><i>↗</i></button>
@@ -149,7 +149,7 @@
           </section>
         <section class="country-board world-country-panel" aria-labelledby="country-board-title">
           <header class="country-board-heading">
-            <div><p>국가 목록</p><h2 id="country-board-title">운행 국가</h2></div>
+            <div><p>국가·지역 목록</p><h2 id="country-board-title">운행 국가·지역</h2></div>
             <small id="country-total-count" aria-live="polite">8개 국가</small>
           </header>
           <div class="country-toolbar">
@@ -164,7 +164,7 @@
               <kbd aria-hidden="true">/</kbd>
             </label>
           </div>
-          <div class="country-switch country-card-grid" role="group" aria-label="국가 선택">
+          <div class="country-switch country-card-grid" role="group" aria-label="국가·지역 선택">
             <button class="country-card" type="button" data-country="kr" data-region="asia" aria-pressed="false" aria-label="대한민국 선택">
               <span class="country-card-top"><span class="country-card-index">01</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
               <span class="country-card-art" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -177,18 +177,32 @@
               <span class="country-card-content"><strong>일본</strong><small>JR · 지하철 · 사철</small></span>
               <span class="country-card-arrow" aria-hidden="true">↗</span>
             </button>
-            <button class="country-card" type="button" data-country="hk" data-region="asia" aria-pressed="false" aria-label="홍콩 선택">
+            <button class="country-card country-group-card" type="button" data-country-group="sar" data-region="asia" aria-expanded="false" aria-controls="country-subgroup-sar" aria-label="중국 특별행정구, 홍콩과 마카오 선택">
               <span class="country-card-top"><span class="country-card-index">03</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
+              <span class="country-card-art" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="country-card-content"><strong>중국 특별행정구</strong><small>홍콩 · 마카오</small></span>
+              <span class="country-card-arrow" aria-hidden="true">›</span>
+            </button>
+            <div class="country-subgroup" id="country-subgroup-sar" data-country-subgroup="sar" aria-label="중국 특별행정구 지역 선택" hidden>
+              <div class="country-subgroup-header">
+                <button type="button" class="country-subgroup-back" data-country-group-back="sar" aria-label="국가·지역 목록으로 돌아가기">‹ 전체 국가·지역</button>
+                <strong>중국 특별행정구</strong>
+              </div>
+              <div class="country-subgroup-list" role="group" aria-label="홍콩 또는 마카오 선택">
+            <button class="country-card" type="button" data-country="hk" data-region="asia" aria-pressed="false" aria-label="홍콩 선택">
+              <span class="country-card-top"><span class="country-card-index">01</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
               <span class="country-card-art" aria-hidden="true"><i></i><i></i><i></i></span>
               <span class="country-card-content"><strong>홍콩</strong><small>도시철도 · 트램</small></span>
               <span class="country-card-arrow" aria-hidden="true">↗</span>
             </button>
             <button class="country-card" type="button" data-country="mo" data-region="asia" aria-pressed="false" aria-label="마카오 선택">
-              <span class="country-card-top"><span class="country-card-index">04</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
+              <span class="country-card-top"><span class="country-card-index">02</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
               <span class="country-card-art" aria-hidden="true"><i></i><i></i><i></i></span>
               <span class="country-card-content"><strong>마카오</strong><small>경전철 · 타이파선 · 섹파이완선 · 헝친선</small></span>
               <span class="country-card-arrow" aria-hidden="true">↗</span>
             </button>
+              </div>
+            </div>
             <button class="country-card" type="button" data-country="tw" data-region="asia" aria-pressed="false" aria-label="대만 선택">
               <span class="country-card-top"><span class="country-card-index">04</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
               <span class="country-card-art" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -208,13 +222,13 @@
               <span class="country-card-arrow" aria-hidden="true">↗</span>
             </button>
             <button class="country-card" type="button" data-country="fr" data-region="europe" aria-pressed="false" aria-label="프랑스 선택">
-              <span class="country-card-top"><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
+              <span class="country-card-top"><span class="country-card-index">07</span><span class="country-card-choice" aria-hidden="true">선택됨</span></span>
               <span class="country-card-art" aria-hidden="true"><i></i><i></i><i></i></span>
               <span class="country-card-content"><strong>프랑스</strong><small>고속철도 · 지하철</small></span>
               <span class="country-card-arrow" aria-hidden="true">↗</span>
             </button>
           </div>
-          <p id="country-search-empty" class="country-search-empty" role="status" hidden>일치하는 국가가 없습니다. 검색어나 지역 필터를 바꿔보세요.</p>
+          <p id="country-search-empty" class="country-search-empty" role="status" hidden>일치하는 국가·지역이 없습니다. 검색어나 지역 필터를 바꿔보세요.</p>
           <div class="country-selection-summary">
             <div class="country-selection-details">
               <span class="country-selected-indicator" aria-hidden="true"></span>
@@ -490,8 +504,8 @@
   <script type="module" src="./js/result-journey-map.js?v=13b109860bbd"></script>
     <script defer src="./js/disney-resort-line-data.js?v=20261102-namuwiki-name-rules"></script>
   <script defer src="./js/app.bundle.js?v=02d2afc3c520"></script>
-  <script defer src="./js/country-home.js?v=20261112-country-directory-v2"></script>
-  <script defer src="./js/world-home.js?v=20261112-atlas-v1"></script>
+  <script defer src="./js/country-home.js?v=20261115-special-regions"></script>
+  <script defer src="./js/world-home.js?v=20261115-special-regions"></script>
 
 </body>
 </html>
