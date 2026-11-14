@@ -16,6 +16,7 @@ const stable = (...values) => createHash('sha256').update(JSON.stringify(values)
 const names = read('data/fr/source/station-names-ko.json');
 const aliases = read('data/fr/source/station-aliases.json');
 const exclusions = read('data/fr/source/track-call-exclusions.json');
+const corrections = read('data/fr/source/track-stop-corrections.json');
 const specs = read('data/fr/source/release-lines.json');
 const inventories = new Map([...new Set(specs.map(spec => spec.sourceId))].map(id =>
   [id, read('data/fr/source/schedules/' + id + '.json')]));
@@ -137,7 +138,7 @@ for (const spec of specs) {
     if (!operatorMatches) {
       throw new Error('Unexpected operator for relation ' + relationId);
     }
-    const track = readTrack(relation, elements, exclusions[relationId]);
+    const track = readTrack(relation, elements, exclusions[relationId], corrections[relationId]);
     const matches = findMatches(relation, track, [inventory], aliases).filter(match =>
       (!spec.routeId || match.line.sourceRouteId === spec.routeId) &&
       (!spec.brand || match.pattern.brand === spec.brand));
