@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.2] — 2026-11-15
+
+- deploy(kr): bust app bundle cache for Suseo–Pyeongtaek HSR track routing
+
 ## [v0.11.1] — 2026-11-15
 
 - test(kr): audit all KTX high-speed service geometry and reject unsafe reroutes * test(kr): audit KTX path geometry against physical high-speed tracks * test(kr): cover KTX high-spe
