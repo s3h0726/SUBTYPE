@@ -39,7 +39,7 @@ const html=fs.readFileSync('index.html','utf8'),game=fs.readFileSync('js/game.js
 for(const token of ['css/korail-nameplate.css','korail-sign-wordmark','korail-previous-badge','korail-next-badge'])assert.ok(html.includes(token),'missing HTML '+token);
 assert.ok(game.includes('applyKorailNameplateNames(station,previous,following,hard)'),'normal game nameboard not applied');
 assert.ok(game.includes('resolveTransportStopTemplate(active,station)'),'game must resolve per-station operator');
-assert.ok(game.includes('applyKorailNameplateNames(station,this.currentStation(),station)'),'free-drive target not styled');
+assert.ok(game.includes('applyKorailNameplateNames(station,this.currentStation(),following)'),'free-drive target or following station not styled');
 assert.ok(game.includes('applyKorailNameplateNames(station,station,next)'),'free-drive current station not styled');
 assert.ok(css.includes('data-sign-style="kr-korail"'),'Korail scoped CSS missing');
 assert.ok(css.includes('--korail-board-navy:#061b4a')&&css.includes('--korail-board-orange:#f47b1b'));
