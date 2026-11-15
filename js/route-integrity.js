@@ -93,6 +93,16 @@ export function resolvePlayableRoute(route,{direction='forward',service=null,boa
     return{canonicalStations:canonical.slice(),stations,segments:[],geometry:[],canonicalSegments:[],direction,serviceApplied:applyStopPattern,sequenceOnly:true,unverifiedRailGeometry:true,renderKey:`${route.id}::${direction}::${service?.id||'all'}::stations-only::${stations.map(stationId).join('>')}`};
   }
 
+  // Four official GTX-A southern calls are playable in station-order mode,
+  // without implying verified tunnel geometry or drawing invented rail tracks.
+  const gtxSouth=route?.countryId==='kr'&&route.id==='kr-rail-national-gtx-a'&&route.gtxSouthStationOnly===true&&route.geometryReady===false&&
+    Array.isArray(route.geometry)&&route.geometry.length===0&&canonical.length===4&&
+    ['kr-gtx-a-x108','kr-gtx-a-x109','kr-gtx-a-x110','kr-gtx-a-x111'].every(id=>fullIds.has(id));
+  if(gtxSouth){
+    const stations=selectedStations.map(s=>({...s,geometryIndex:null}));
+    return{canonicalStations:canonical.slice(),stations,segments:[],geometry:[],canonicalSegments:[],direction,serviceApplied:applyStopPattern,sequenceOnly:true,unverifiedRailGeometry:true,renderKey:`${route.id}::gtx-a-south::${stations.map(stationId).join('>')}`};
+  }
+
   if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2){if(!permitsApproximateGeometry(route))throw new Error(`${route.id}: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다.`);return straightLineFallback('missing railway geometry')}
 
   try{
