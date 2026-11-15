@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.0] — 2026-11-15
+
+- Merge PR #68: 자유주행 공항 이동 시스템 feat: 자유주행 공항 간 이동 시스템 (7개 공항)
+
 ## [v0.10.3] — 2026-11-15
 
 - Merge pull request #69 from s3h0726/feature/france-rer-bc Add verified Paris RER B and C directions
