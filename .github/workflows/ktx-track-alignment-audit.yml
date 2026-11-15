@@ -1,13 +1,21 @@
 name: Audit all Korean KTX track alignments
 on:
   push:
-    branches: [fix/ktx-track-alignment-audit-20261115]
+    branches: [main, fix/ktx-track-alignment-audit-20261115]
     paths:
       - 'tools/audit-kr-ktx-track-alignment.cjs'
       - 'tools/test-kr-ktx-track-alignment.cjs'
       - 'tools/diagnose-kr-ktx-corridors.cjs'
       - 'tools/repair-kr-ktx-suseo-pyeongtaek.cjs'
       - '.github/workflows/ktx-track-alignment-audit.yml'
+      - 'data/kr/canonical/rail-*-batch.json'
+      - 'data/kr/v2/source/osm-ways.json'
+  pull_request:
+    paths:
+      - 'data/kr/canonical/rail-*-batch.json'
+      - 'data/kr/v2/source/osm-ways.json'
+      - 'tools/audit-kr-ktx-track-alignment.cjs'
+      - 'tools/repair-kr-ktx-suseo-pyeongtaek.cjs'
   workflow_dispatch:
 permissions:
   contents: read
