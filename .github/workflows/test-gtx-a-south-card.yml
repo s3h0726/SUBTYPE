@@ -3,6 +3,8 @@ on:
   push:
     branches: [main, feature/gtx-a-suseo-dongtan-existing-card]
     paths:
+      - 'js/gtx-a-south-track-data.js'
+      - 'tools/build-gtx-a-srt-geometry.cjs'
       - 'js/gtx-a-south-service.js'
       - 'js/app.js'
       - 'js/app.bundle.js'
@@ -13,6 +15,8 @@ on:
       - '.github/workflows/test-gtx-a-south-card.yml'
   pull_request:
     paths:
+      - 'js/gtx-a-south-track-data.js'
+      - 'tools/build-gtx-a-srt-geometry.cjs'
       - 'js/gtx-a-south-service.js'
       - 'js/app.js'
       - 'js/app.bundle.js'
@@ -33,10 +37,14 @@ jobs:
           node-version: '22'
       - name: Check JavaScript syntax
         run: |
+          node --check js/gtx-a-south-track-data.js
           node --check js/gtx-a-south-service.js
+          node --check tools/build-gtx-a-srt-geometry.cjs
           node --check js/app.bundle.js
           node --check js/route-integrity.js
           node --check js/route-renderer.js
           node --check tools/test-gtx-a-south-card.cjs
+      - name: Verify pinned OSM geometry builder
+        run: node tools/build-gtx-a-srt-geometry.cjs
       - name: Verify the existing GTX-A card and both southern directions
         run: node tools/test-gtx-a-south-card.cjs
