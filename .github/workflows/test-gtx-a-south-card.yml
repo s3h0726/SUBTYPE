@@ -1,0 +1,42 @@
+name: GTX-A existing card and south service regression
+on:
+  push:
+    branches: [main, feature/gtx-a-suseo-dongtan-existing-card]
+    paths:
+      - 'js/gtx-a-south-service.js'
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'js/route-integrity.js'
+      - 'js/route-renderer.js'
+      - 'index.html'
+      - 'tools/test-gtx-a-south-card.cjs'
+      - '.github/workflows/test-gtx-a-south-card.yml'
+  pull_request:
+    paths:
+      - 'js/gtx-a-south-service.js'
+      - 'js/app.js'
+      - 'js/app.bundle.js'
+      - 'js/route-integrity.js'
+      - 'js/route-renderer.js'
+      - 'index.html'
+      - 'tools/test-gtx-a-south-card.cjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gtx-south:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check js/gtx-a-south-service.js
+          node --check js/app.bundle.js
+          node --check js/route-integrity.js
+          node --check js/route-renderer.js
+          node --check tools/test-gtx-a-south-card.cjs
+      - name: Verify the existing GTX-A card and both southern directions
+        run: node tools/test-gtx-a-south-card.cjs
