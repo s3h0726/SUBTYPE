@@ -52,6 +52,7 @@ const routes=assembleCanonicalRoutes(readBatches(root)).routes;
 const targets=[
  ['kr-rail-expansion-gyeongbu-highspeed','수서','평택지제'],
  ['kr-rail-expansion-gyeongbu-highspeed','대전','동대구'],
+ ['kr-rail-highspeed-honam','평택지제','수서'],
  ['kr-rail-highspeed-honam','광주송정','정읍'],
  ['kr-rail-highspeed-honam','정읍','익산'],
  ['kr-rail-highspeed-honam','오송','익산'],
@@ -70,5 +71,14 @@ for(const [routeId,from,to]of targets){
   const got=shortest(x.id,y.id,1300);if(!got)continue;
   if(!best||got.weightedKm<best.weightedKm)best={...got,snapStart:x.km,snapEnd:y.km};
  }
- console.log('PATH_DIAG '+JSON.stringify({routeId,from,to,originalKm:+source.reduce((sum,p,i)=>i?sum+distance(source[i-1],p):sum,0).toFixed(2),start:{lat:start.latitude,lon:start.longitude},end:{lat:end.latitude,lon:end.longitude},nearestStart:a.slice(0,2),nearestEnd:b.slice(0,2),best:best&&{weightedKm:best.weightedKm,actualKm:best.actualKm,fastShare:best.fastShare,points:best.points,snapStart:best.snapStart,snapEnd:best.snapEnd,parts:best.parts}}));
+ let adjacent=[];
+ if(best){for(const [side,geom,nodes] of [
+  ['before',candidate.j.directedSegments[candidate.i-1]?.geometry||[],best.ids.slice(0,45)],
+  ['after',candidate.j.directedSegments[candidate.i+1]?.geometry||[],best.ids.slice(-45)]
+ ]){
+  let candidateMin={km:Infinity};const sample=side==='before'?geom.slice(-100):geom.slice(0,100);
+  for(let i=0;i<sample.length;i++)for(const id of nodes){const d=distance(sample[i],points.get(id));if(d<candidateMin.km)candidateMin={km:d,nodeId:id,adjacentIndex:i}}
+  adjacent.push({side,bestMatch:candidateMin.km<Infinity?{km:+candidateMin.km.toFixed(4),nodeId:candidateMin.nodeId,adjacentIndex:candidateMin.adjacentIndex}:null})
+ }}
+ console.log('PATH_DIAG '+JSON.stringify({adjacent,routeId,from,to,originalKm:+source.reduce((sum,p,i)=>i?sum+distance(source[i-1],p):sum,0).toFixed(2),start:{lat:start.latitude,lon:start.longitude},end:{lat:end.latitude,lon:end.longitude},nearestStart:a.slice(0,2),nearestEnd:b.slice(0,2),best:best&&{weightedKm:best.weightedKm,actualKm:best.actualKm,fastShare:best.fastShare,points:best.points,snapStart:best.snapStart,snapEnd:best.snapEnd,parts:best.parts}}));
 }
