@@ -10,7 +10,7 @@
     {code:'NRT',countryId:'jp',name:'나리타 국제공항',city:'도쿄',lat:35.7720,lon:140.3929,radius:4.5,aliases:['나리타공항','나리타 공항','成田空港','空港第2ビル','공항 제2빌딩','Narita Airport','Airport Terminal 2']},
     {code:'HND',countryId:'jp',name:'하네다 국제공항',city:'도쿄',lat:35.5494,lon:139.7798,radius:4.5,aliases:['하네다공항','羽田空港','Haneda Airport','羽田空港第1','羽田空港第2','羽田空港第3']},
     {code:'KIX',countryId:'jp',name:'간사이 국제공항',city:'오사카',lat:34.4347,lon:135.2440,radius:3.5,aliases:['간사이공항','関西空港','Kansai Airport']},
-    {code:'HKG',countryId:'hk',name:'홍콩 국제공항',city:'홍콩',lat:22.3080,lon:113.9185,radius:4,aliases:['홍콩공항','홍콩국제공항','機場','Airport','Hong Kong International Airport']},
+    {code:'HKG',countryId:'hk',name:'홍콩 국제공항',city:'홍콩',lat:22.3080,lon:113.9185,radius:4,aliases:['홍콩공항','홍콩국제공항','공항','機場','Airport','Hong Kong International Airport']},
     {code:'TPE',countryId:'tw',name:'타오위안 국제공항',city:'타오위안',lat:25.0797,lon:121.2342,radius:4,aliases:['타오위안공항','공항 제1터미널','공항 제2터미널','機場第一航廈','機場第二航廈','Airport Terminal 1','Airport Terminal 2','桃園機場']}
   ]);
   const byCode=new Map(AIRPORTS.map(airport=>[airport.code,airport]));
@@ -120,7 +120,7 @@
     dialog.querySelector('#airport-transfer-journey').textContent=previous.length?'이전 항공 이동 기록 '+previous.length+'회 · 이 브라우저에 저장됨':'첫 항공 이동을 시작해 보세요.';
     renderSelection();
   }
-  function close(){if(dialog)dialog.hidden=true;selected=null}
+  function close(){if(dialog)dialog.hidden=true;selected=null;if(current)document.querySelector('#typing-input')?.focus()}
   function update(state){
     initialize();
     current=detect(state);
