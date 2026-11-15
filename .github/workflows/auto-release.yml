@@ -51,10 +51,12 @@ jobs:
               fi
               if git cat-file -e "$before^{commit}" 2>/dev/null; then
                 changed="$(git diff --name-only "$before" "$GITHUB_SHA")"
-                if grep -qx 'package.json' <<< "$changed"; then
+                previous_version="$(git show "$before:package.json" | node -e "let s='';process.stdin.on('data',c=>s+=c).on('end',()=>console.log(JSON.parse(s).version))")"
+                current_version="$(node -p "require('./package.json').version")"
+                if [[ "$previous_version" != "$current_version" ]]; then
                   # A manually selected version should not be bumped again.
                   level=sync
-                elif grep -Eq '^(index\.html$|css/|js/|data/|tools/|editor/|supabase/|assets/|custom-routes/|\.github/workflows/)' <<< "$changed"; then
+                elif grep -Eq '^(package\.json$|index\.html$|css/|js/|data/|tools/|editor/|supabase/|assets/|custom-routes/|\.github/workflows/)' <<< "$changed"; then
                   level=patch
                   if git log "$before..$GITHUB_SHA" --pretty=format:%s | grep -Eq '^feat(\([^)]*\))?!?:|^release: minor'; then
                     level=minor
