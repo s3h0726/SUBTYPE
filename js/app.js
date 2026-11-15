@@ -549,7 +549,7 @@ function operatingChoiceStatus(choice,route){
   // Japanese operating pattern merely because assembling its tracks failed.
   if(choice.catalogUnavailableReason)return{playable:false,reason:choice.catalogUnavailableReason};
   // A displayable JR physical card is not a playable train when its track is discontinuous.
-  if(route?.geometryReady===false||route?.playable===false)
+  if((route?.geometryReady===false&&!(route?.countryId==='jp'&&route.id==='line-hanshin-kobe-kosoku'&&Array.isArray(route.missingSegments)&&route.missingSegments.length>0))||route?.playable===false)
     return{playable:false,reason:'실제 선로가 연결되지 않았거나 선형 검증이 완료되지 않았습니다.'};
   try{
     const resolved=resolveOperatingChoice(choice,route,{preview:true}),resolvedRoute=resolved?.route;
@@ -792,6 +792,7 @@ function configureJourneyPicker(){
     const from=display(choice.originNames),to=display(choice.destinationNames),type=journeyLabel(choice.trainType);
     const trackNote=choice.patternId?.startsWith('jr-ueno-joban-')?' · 닛포리~우에노 잠정 선형':'';
     summary.textContent=operatingPatternLabel(choice)+' · '+operatingDirectionLabel(choice)+' · '+from+' → '+to+(type?' · '+type:'')+(choice.throughServiceId?' · 직통운행':'')+trackNote+(japan?(state.playable?' · 플레이 가능':' · 실행 불가: '+(state.reason||'선로 검증 필요'))+' (등록 '+total+'개 / 실행 가능 '+ready+'개)':'');
+    if(selected?.id==='line-hanshin-kobe-kosoku'&&state.playable)summary.textContent+=' · 선로 미검증 구간은 지도에 표시하지 않습니다.';
     if(submit){submit.disabled=japan&&!state.playable;submit.textContent=japan&&!state.playable?'선로 미검증 · 실행 불가':'운행 시작 →';}
     if(selectedCard)selectedCard.innerHTML='<span class="operating-selected-label">'+(koreanSurface?'선택한 운행':'선택한 열차')+' · '+(state.playable?'운행 준비 완료':'선로 검증 필요')+'</span><div class="operating-selected-route"><strong>'+escapeHtml(from)+'</strong><span aria-hidden="true">→</span><strong>'+escapeHtml(to)+'</strong></div><p>'+escapeHtml(operatingPatternLabel(choice))+(type?' · '+escapeHtml(type):'')+(choice.throughServiceId?' · 직통':'')+'</p>'+(state.playable?'':'<small>'+escapeHtml(state.reason||'선로가 검증되지 않아 시작할 수 없습니다.')+'</small>');
     const endpoints=$('#setup-route .route-endpoints');
