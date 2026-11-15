@@ -1,0 +1,47 @@
+name: Audit all Korean KTX track alignments
+on:
+  push:
+    branches: [main, fix/ktx-track-alignment-audit-20261115]
+    paths:
+      - 'tools/audit-kr-ktx-track-alignment.cjs'
+      - 'tools/test-kr-ktx-track-alignment.cjs'
+      - 'tools/diagnose-kr-ktx-corridors.cjs'
+      - 'tools/repair-kr-ktx-suseo-pyeongtaek.cjs'
+      - '.github/workflows/ktx-track-alignment-audit.yml'
+      - 'data/kr/canonical/rail-*-batch.json'
+      - 'data/kr/v2/source/osm-ways.json'
+  pull_request:
+    paths:
+      - 'data/kr/canonical/rail-*-batch.json'
+      - 'data/kr/v2/source/osm-ways.json'
+      - 'tools/audit-kr-ktx-track-alignment.cjs'
+      - 'tools/repair-kr-ktx-suseo-pyeongtaek.cjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-ktx:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test KTX corridor rules and OSM track snapping
+        run: node --test tools/test-kr-ktx-track-alignment.cjs
+      - name: Audit every canonical KTX service and station-to-station geometry
+        run: node tools/audit-kr-ktx-track-alignment.cjs
+      - name: Diagnose shortest source-backed high-speed corridor alternatives
+        run: node tools/diagnose-kr-ktx-corridors.cjs
+      - name: Dry-run exact-node Suseo-Pyeongtaek KTX rerouting
+        run: node tools/repair-kr-ktx-suseo-pyeongtaek.cjs
+      - name: Upload complete report with suspicious coordinates
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-ktx-geometry-audit
+          path: |
+            reports/kr-ktx-track-alignment.json
+            reports/kr-ktx-suseo-correction.json
