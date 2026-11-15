@@ -727,7 +727,7 @@ export function drawNetworkCanvas(canvas,routes,{bounds=null,alpha=.28,transferN
 }
 
 export class FreeDrive{
-  constructor({onExit,onChange}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.onExit=onExit;this.onChange=onChange;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
+  constructor({onExit,onChange}={}){this.routes=[];this.graph=new Map;this.currentKey=null;this.currentRouteId=null;this.history=[];this.startRoute=null;this.travelDirection=1;this.onExit=onExit;this.onChange=onChange;this.canvas=$('#free-drive-canvas');this.viewMode='local';this.bind()}
   bind(){
     const handleEdge=e=>{const b=e.target.closest('[data-free-edge]');if(b)this.move(decodeURIComponent(b.dataset.freeEdge))};$('#free-drive-options')?.addEventListener('click',handleEdge);
     $('#free-drive-start-station')?.addEventListener('change',e=>this.restartAt(+e.target.value));
@@ -841,7 +841,7 @@ export class FreeDrive{
   }
   start(route,index=0){
     if(!route?.stations?.length)return false;
-    this.startRoute=route;this.currentRouteId=route.id;this.history=[];this.populateStartStations(route);
+    this.startRoute=route;this.currentRouteId=route.id;this.travelDirection=1;this.history=[];this.populateStartStations(route);
     this.restartAt(Math.max(0,Math.min(index,route.stations.length-1)));return true;
   }
   populateStartStations(route){
@@ -854,7 +854,7 @@ export class FreeDrive{
   updateMapToggle(){const b=$('#free-drive-map-toggle');if(b)b.textContent=this.viewMode==='local'?'전국망 보기':'현재역 주변 보기'}
   restartAt(index=0){
     if(!this.startRoute)return;
-    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=freeDriveStationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];this.ukVisit=['uk','fr'].includes(this.startRoute.countryId)?{routeId:this.startRoute.id,index}:null;
+    const station=this.startRoute.stations[index]||this.startRoute.stations[0];this.currentKey=freeDriveStationKey(station);this.currentRouteId=this.startRoute.id;this.history=[this.currentKey];this.travelDirection=index>=this.startRoute.stations.length-1?-1:1;this.ukVisit=['uk','fr'].includes(this.startRoute.countryId)?{routeId:this.startRoute.id,index}:null;
     const select=$('#free-drive-start-station');if(select)select.value=String(Math.max(0,index));this.viewMode='local';this.updateMapToggle();this.render();this.emit();
   }
   move(encoded){
@@ -868,6 +868,7 @@ export class FreeDrive{
     if(!node?.stationsByRoute?.has(routeId)||!this.availableRouteIds().includes(routeId))return false;
     if(this.currentRouteId===routeId)return true;
     this.currentRouteId=routeId;
+    this.travelDirection=1; // Explicit line change resets the preferred travel direction.
     this.ukVisit=['uk','fr'].includes(this.routes.find(r=>r.id===routeId)?.countryId)?{routeId,index:node.stationsByRoute.get(routeId).index}:null;
     this.render();this.emit();
     return true
@@ -886,12 +887,18 @@ export class FreeDrive{
     }
     this.currentKey=edge.to;this.currentRouteId=edge.routeId;this.history.push(edge.to);
     this.ukVisit=['uk','fr'].includes(targetRoute?.countryId)?{routeId,index:edge.index===targetRoute.stations.length-1&&targetRoute.stations[0].id===targetRoute.stations.at(-1).id?0:edge.index}:null;
+    // Keep the direction chosen by the player at every intermediate station.
+    // Only reverse at a true endpoint when this SAME line has a legal
+    // opposite-direction edge; never invent a reverse one-way service.
+    this.travelDirection=edge.direction;
+    const onward=this.edges().filter(option=>option.routeId===this.currentRouteId);
+    if(onward.length&&!onward.some(option=>option.direction===this.travelDirection)&&onward.some(option=>option.direction===-this.travelDirection))this.travelDirection=-this.travelDirection;
     this.render();this.emit();return true
   }
   switchRouteAtCurrentStation(routeId){
     const node=this.current(),route=this.routes.find(r=>r.id===routeId);
     if(!node||!route||routeId===this.currentRouteId||!this.availableRouteIds().includes(routeId)||!route.stations.some(s=>freeDriveStationKey(s)===this.currentKey))return false;
-    this.currentRouteId=routeId;this.ukVisit=['uk','fr'].includes(route.countryId)?{routeId,index:node.stationsByRoute.get(routeId).index}:null;this.render();this.emit();return true;
+    this.currentRouteId=routeId;this.travelDirection=1;this.ukVisit=['uk','fr'].includes(route.countryId)?{routeId,index:node.stationsByRoute.get(routeId).index}:null;this.render();this.emit();return true;
   }
   current(){return this.graph.get(this.currentKey)||null}
   availableRouteIds(){const node=this.current(),from=this.routes.find(r=>r.id===this.currentRouteId);return[...(node?.routeIds||[])].filter(id=>(from?.countryId!=='hk'||id===this.currentRouteId||node.edges.some(e=>e.routeId===id))&&hongKongTransferAllowed(from,this.routes.find(r=>r.id===id),this.currentKey))}
@@ -900,7 +907,7 @@ export class FreeDrive{
     if(!node||!route)return null;
     const indexedStop=node.stationsByRoute?.get(this.currentRouteId);
     const stationIndex=this.ukVisit?.routeId===this.currentRouteId?this.ukVisit.index:indexedStop?.index??Math.max(0,route.stations.findIndex(station=>freeDriveStationKey(station)===this.currentKey));
-    const availableRouteIds=this.availableRouteIds(),transferCount=route.countryId==='hk'?new Set(availableRouteIds.map(id=>this.routes.find(r=>r.id===id)?.canonicalLineId).filter(id=>id&&id!==route.canonicalLineId)).size:Math.max(0,availableRouteIds.length-1);return{node,availableRouteIds,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),historyLength:this.history.length,transferCount}
+    const availableRouteIds=this.availableRouteIds(),transferCount=route.countryId==='hk'?new Set(availableRouteIds.map(id=>this.routes.find(r=>r.id===id)?.canonicalLineId).filter(id=>id&&id!==route.canonicalLineId)).size:Math.max(0,availableRouteIds.length-1);return{node,availableRouteIds,station:route.stations[stationIndex]||indexedStop?.station||node.station,route,routeId:this.currentRouteId,stationIndex,edges:this.edges(),travelDirection:this.travelDirection===-1?-1:1,historyLength:this.history.length,transferCount}
   }
   emit(){const state=this.snapshot();if(state)this.onChange?.(state);return state}
   edges(){

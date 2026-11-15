@@ -30,7 +30,11 @@ export function renderTaiwanGameDisplay(game){
  const memory=game.options?.inputMode==='memory';
  set('prompt-main',n.zh||n.en||(memory?'번체중문 역명 미등록':n.ko));set('prompt-ko',memory?'정답 비공개':n.ko);document.getElementById('prompt-ko')?.classList.toggle('memory-hidden',memory);
  set('prompt-kana','');set('prompt-sub',game.options?.difficulty==='hard'?'한국어 역 이름을 입력하세요':n.en);
- const currentIndex=game.freeDriveMode?game.index:game.sequence?.indexOf(station),previous=game.freeDriveMode?game.sequence?.[game.index-1]:game.boarding?null:game.currentStation(),next=game.sequence?.[(currentIndex??0)+1];
+ const currentIndex=game.freeDriveMode?game.index:game.sequence?.indexOf(station);
+ const previous=game.freeDriveMode?game.freeDriveState?.station:game.boarding?null:game.currentStation();
+ const preferred=game.freeDriveMode?(game.freeDriveState?.edges||[]).filter(edge=>edge.routeId===game.freeDriveState?.routeId).find(edge=>edge.direction===(game.freeDriveState?.travelDirection===-1?-1:1))||null:null;
+ const departureNeighbor=preferred?.station||(game.freeDriveState?.edges||[]).find(edge=>edge.routeId===game.freeDriveState?.routeId)?.station||null;
+ const next=game.freeDriveMode?(game.freeDriveTarget?.kind==='start'?departureNeighbor:game.freeDriveTarget?.following||null):game.sequence?.[(currentIndex??0)+1];
  for(const [prefix,s]of[['previous',previous],['next',next]]){const v=getTaiwanDisplayNames(s);set(prefix+'-station-name',v.ko|| (prefix==='previous'?'출발지':'종착지'));set(prefix+'-station-romaji',[v.zh,v.en].filter(Boolean).join(' · '));}
  // Match Japan/Hong Kong: preserve the common line badge and add Taiwan labels.
  const lineHeading=document.getElementById('game-line-name');
