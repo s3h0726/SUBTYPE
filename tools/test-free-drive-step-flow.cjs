@@ -94,3 +94,45 @@ test('stale transition source cannot skip stops or change history',()=>{
   assert.equal(drive.snapshot().station.ja,'卸町');
   assert.equal(drive.history.length,2);
 });
+
+test('terminal automatically reverses and keeps that direction until an explicit change',()=>{
+  const {drive,live}=fixture();
+  const last=live.stations.length-1;
+  assert(last>=4,'fixture needs a route with multiple stops');
+  drive.restartAt(last-2);
+  for(const index of [last-1,last]){
+    const edge=drive.edges().find(edge=>edge.routeId===live.id&&edge.index===index);
+    assert(edge,'forward connection to stop '+index);
+    assert(drive.moveTo(edge.to,edge.routeId,drive.currentKey));
+  }
+  assert.equal(drive.snapshot().station.id,live.stations[last].id);
+  assert.equal(drive.snapshot().travelDirection,-1,'arrival at final terminus must switch direction');
+  for(const index of [last-1,last-2]){
+    const state=drive.snapshot();
+    assert.equal(state.travelDirection,-1,'reverse direction persists between stations');
+    const edge=state.edges.find(edge=>edge.routeId===live.id&&edge.direction===-1&&edge.index===index);
+    assert(edge,'must offer adjacent station in the reverse direction');
+    assert(drive.moveTo(edge.to,edge.routeId,drive.currentKey));
+    assert.equal(drive.snapshot().station.id,live.stations[index].id);
+  }
+  assert.equal(drive.snapshot().travelDirection,-1,'intermediate station must not snap forward');
+  const explicitlyForward=drive.edges().find(edge=>edge.routeId===live.id&&edge.direction===1);
+  assert(explicitlyForward,'user can manually select the opposite direction');
+  assert(drive.moveTo(explicitlyForward.to,explicitlyForward.routeId,drive.currentKey));
+  assert.equal(drive.snapshot().travelDirection,1,'manual choice overrides the auto-reversed direction');
+});
+
+test('one-way routes keep their verified boundary without a fictional reverse edge',()=>{
+  const {drive,live}=fixture();
+  const directional={...structuredClone(live),id:'one-way-proof',countryId:'kr',schemaVersion:2,
+    geometryReady:true,oneWay:true,stations:live.stations.slice(0,3)};
+  drive.onChange=()=>{};
+  drive.setNetwork([directional]);
+  drive.start(drive.routes[0],0);
+  for(let i=1;i<directional.stations.length;i++){
+    const edge=drive.edges().find(edge=>edge.index===i);
+    assert(edge);
+    assert(drive.moveTo(edge.to,edge.routeId,drive.currentKey));
+  }
+  assert.equal(drive.edges().length,0,'do not fabricate opposite-direction Korean service');
+});
