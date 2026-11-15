@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.1] — 2026-11-15
+
+- test(kr): audit all KTX high-speed service geometry and reject unsafe reroutes * test(kr): audit KTX path geometry against physical high-speed tracks * test(kr): cover KTX high-spe
+
 ## [v0.11.0] — 2026-11-15
 
 - Merge PR #68: 자유주행 공항 이동 시스템 feat: 자유주행 공항 간 이동 시스템 (7개 공항)
