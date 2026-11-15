@@ -58,6 +58,12 @@ for(const countryId of ['jp','kr','hk','tw'])test(countryId+': next station sign
   assert.equal($('#prompt-main').textContent,countryId==='kr'?'다음역':'次駅');
   assert.equal($('#prompt-ko').textContent,'다음역');
   assert.equal(game.acceptedAnswers[0],'다음역');
+  // The right neighbor is the station AFTER the typed target. At a
+  // bidirectional terminus it previews the return leg; a one-way HK
+  // service must not invent an unauthorized reverse direction.
+  const expected=countryId==='hk'?'종착역':'출발역';
+  assert.equal($('#next-station-name').textContent,expected);
+  assert.notEqual($('#next-station-name').textContent,$('#prompt-ko').textContent);
 });
 
 test('clicking a destination selects it but never moves the graph',()=>{
@@ -136,7 +142,7 @@ test('free-drive current station label is the actual station rather than its pre
   game.renderFreeDriveState(state);
   assert.equal($('#previous-station-name').textContent,'세노우에','CURRENT must show Senoue, not Fukushima-Gakuinmae');
   assert.equal($('#prompt-main').textContent,'向瀬上','next prompt follows current station');
-  assert.equal($('#next-station-name').textContent,'무카이세노우에');
+  assert.equal($('#next-station-name').textContent,route.stations[5].ko,'right-hand label must be the station after the typed stop');
   assert.equal($('#following-stop-label').textContent,'다음 역');
 });
 
