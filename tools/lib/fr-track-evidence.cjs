@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('node:fs');
+const path = require('node:path');
 const {assemble} = require('./uk-osm.cjs');
 
 const railKinds = new Set(['rail', 'subway', 'light_rail', 'tram', 'narrow_gauge', 'funicular', 'monorail']);
@@ -7,19 +9,45 @@ const gtfsModes = {train: 'rail', subway: 'subway', tram: 'tramway', light_rail:
 const plain = name => String(name || '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 const stationKey = name => plain(name).replace(/^gare (?:de |d['’])?/, '').replace(/[^a-z0-9]+/g, '');
 
-function readTrack(relation, elements, excludedCalls = [], correction) {
-  const ways = new Map(elements.filter(element => element.type === 'way').map(way => [way.id, way]));
-  const members = relation.members.filter(member => member.type === 'way' &&
-    !member.role.includes('platform') && !member.role.startsWith('stop'));
-  for (const member of members) {
-    const way = ways.get(member.ref);
-    if (!railKinds.has(way?.tags?.railway) || way.tags.service === 'yard') {
-      throw new Error('Unverified railway way ' + member.ref);
-    }
+function loadTrackCorrections(sourceDir) {
+  const read = file => JSON.parse(fs.readFileSync(path.join(sourceDir, file), 'utf8'));
+  const corrections = read('track-stop-corrections.json');
+  for (const correction of Object.values(corrections)) {
+    correction.supplementalElements = (correction.insertWays || []).flatMap(([, id]) => {
+      const {elements} = read('osm/way-' + id + '.json');
+      if (!elements.some(element => element.type === 'way' && element.id === id)) {
+        throw new Error('Missing supplemental way ' + id);
+      }
+      return elements;
+    });
   }
+  return corrections;
+}
+
+function readTrack(relation, elements, excludedCalls = [], correction) {
   let reviewed = relation;
   if (correction) {
     const members = relation.members.map(member => ({...member}));
+    const supplementalElements = correction.supplementalElements || [];
+    if (supplementalElements.length) {
+      const combined = new Map(elements.map(element => [element.type + ':' + element.id, element]));
+      for (const item of supplementalElements) {
+        const key = item.type + ':' + item.id;
+        const previous = combined.get(key);
+        if (item.type === 'node' && previous && (previous.lat !== item.lat || previous.lon !== item.lon)) {
+          throw new Error('Conflicting supplemental track node ' + item.id);
+        }
+        if (!previous) combined.set(key, item);
+      }
+      elements = [...combined.values()];
+    }
+    for (const [after, id] of correction.insertWays || []) {
+      const index = members.findIndex(member => member.type === 'way' && member.ref === after);
+      if (index < 0 || members.some(member => member.type === 'way' && member.ref === id)) {
+        throw new Error('Invalid supplemental way placement ' + id);
+      }
+      members.splice(index + 1, 0, {type:'way', ref:id, role:''});
+    }
     const stopIndex = ref => {
       const index = members.findIndex(member => member.type === 'node' &&
         member.role.startsWith('stop') && member.ref === ref);
@@ -43,6 +71,15 @@ function readTrack(relation, elements, excludedCalls = [], correction) {
     }
     reviewed = {...relation, members};
   }
+  const ways = new Map(elements.filter(element => element.type === 'way').map(way => [way.id, way]));
+  const members = reviewed.members.filter(member => member.type === 'way' &&
+    !member.role.includes('platform') && !member.role.startsWith('stop'));
+  for (const member of members) {
+    const way = ways.get(member.ref);
+    if (!railKinds.has(way?.tags?.railway) || way.tags.service === 'yard') {
+      throw new Error('Unverified railway way ' + member.ref);
+    }
+  }
   const track = assemble(reviewed, elements);
   for (const name of excludedCalls) {
     if (track.stops.filter(stop => stop.tags?.name === name).length !== 1) {
@@ -51,7 +88,7 @@ function readTrack(relation, elements, excludedCalls = [], correction) {
   }
   const retained = track.stops.map((stop,index) => ({stop,index}))
     .filter(({stop}) => !excludedCalls.includes(stop.tags?.name));
-  return {...track, stops:retained.map(({stop}) => stop),
+  return {...track, members, stops:retained.map(({stop}) => stop),
     aligned:retained.map(({index}) => track.aligned[index])};
 }
 
@@ -64,12 +101,13 @@ function stationDistance(station, node) {
       (longitude - node.lon) * 111.2 * Math.cos(latitude * Math.PI / 180))));
 }
 
-function identifyCalls(track, stations, aliases, mode) {
+function identifyCalls(track, stations, aliases, mode, family) {
   if (track.stops.length !== stations.length) return null;
   const offsets = stations.map((station, index) => {
     const node = track.stops[index];
     const official = stationKey(station.name);
-    const mapped = stationKey(aliases[node.tags?.name] || node.tags?.name);
+    const name = node.tags?.name;
+    const mapped = stationKey((family === 'rer' && aliases.rer?.[name]) || aliases[name] || name);
     if (!official || official !== mapped) return Infinity;
     return stationDistance(station, node);
   });
@@ -86,7 +124,7 @@ function findMatches(relation, track, inventories, aliases) {
       for (const pattern of line.patterns) {
         if (pattern.brand && /^(car|bus) /i.test(pattern.brand)) continue;
         const calls = pattern.stationIds.map(id => stations.get(id));
-        const maxStationOffsetKm = identifyCalls(track, calls, aliases, line.mode);
+        const maxStationOffsetKm = identifyCalls(track, calls, aliases, line.mode, pattern.family);
         if (maxStationOffsetKm !== null) {
           matches.push({sourceId: inventory.sourceId, line, pattern, calls, maxStationOffsetKm});
         }
@@ -96,4 +134,4 @@ function findMatches(relation, track, inventories, aliases) {
   return matches;
 }
 
-module.exports = {findMatches, readTrack, stationKey};
+module.exports = {findMatches, loadTrackCorrections, readTrack, stationKey};

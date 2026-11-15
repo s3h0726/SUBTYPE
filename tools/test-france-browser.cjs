@@ -136,7 +136,7 @@ async function run() {
         'fr-ter-nantes-pornic', 'fr-ter-nantes-saint-gilles', 'fr-lyria-paris-lausanne',
         'fr-tgv-strasbourg-nice', 'fr-ter-saint-marcellin-grenoble', 'fr-ter-lyon-part-dieu-avignon',
         'fr-ter-lyon-perrache-avignon', 'fr-ter-lyon-besancon',
-        'fr-intercites-night-paris-toulouse'].includes(route.id))
+        'fr-intercites-night-paris-toulouse', 'fr-rer-a', 'fr-rer-b', 'fr-rer-d', 'fr-rer-e'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);
@@ -203,7 +203,14 @@ async function run() {
           throw new Error('Gare de Lyon metro-to-TGV transfer unavailable');
         }
         if (drive.snapshot().station.ko !== '몽바르') throw new Error('Transfer selected the wrong train path');
-        return {station:'리옹역', destination:'몽바르', status:'PASS'};
+        const rer = drive.routes.find(route => route.physicalLineId === 'fr-rer-a');
+        const rerGare = rer?.stations.findIndex(station => station.physicalStationId === 'fr-gare-de-lyon');
+        if (!(rerGare >= 0) || !drive.start(rer, rerGare)) throw new Error('Cannot board RER at Gare de Lyon');
+        const metro = drive.snapshot().edges.find(edge => edge.route.physicalLineId === 'fr-paris-metro-1');
+        if (!metro || !drive.moveTo(metro.to, metro.routeId, drive.currentKey)) {
+          throw new Error('Gare de Lyon RER-to-metro transfer unavailable');
+        }
+        return {station:'리옹역', destination:'몽바르', rerToMetro:'PASS', status:'PASS'};
       });
       for (const country of ['jp', 'kr', 'hk', 'mo', 'tw', 'th', 'uk', 'fr']) {
         await page.evaluate(() => {const qa = globalThis.__FRANCE_QA__; qa.game.stop(false); qa.go('home');});
@@ -223,6 +230,8 @@ async function run() {
       await page.locator('[data-file="stations-by-line"]').click();
       await page.locator('#route-filter').selectOption('fr-paris-metro-3bis');
       await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '강베타'));
+      await page.locator('#route-filter').selectOption('fr-rer-e');
+      await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '오스만 생라자르'));
       report.editor = 'PASS';
     }
     assert.deepEqual(report.errors, []);

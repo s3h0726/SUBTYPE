@@ -45,6 +45,7 @@ const discovered = inventory.scheduleTotals.blockedDirections;
 const byFamily = Object.entries(inventory.patternsByFamily).map(([family, count]) => {
   const published = lines.filter(line => (family === 'high-speed' && line.category === 'high_speed_rail') ||
     (family === 'subway' && line.category === 'subway') ||
+    (family === 'rer' && line.category === 'rer') ||
     (family === 'international' && line.category === 'international') ||
     ((family === 'intercites' || family === 'intercites-night') && line.category === 'intercity' &&
       line.directions.some(direction => direction.sourcePatterns.some(id => scheduleFamilies.get(id) === family))) ||

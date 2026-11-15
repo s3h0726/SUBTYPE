@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const {pathToFileURL} = require('node:url');
-const {readTrack} = require('./lib/fr-track-evidence.cjs');
+const {loadTrackCorrections, readTrack} = require('./lib/fr-track-evidence.cjs');
 
 const root = path.resolve(__dirname, '..');
 const read = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
@@ -13,7 +13,7 @@ async function run() {
   const runtime = await import(pathToFileURL(path.join(root, 'js/france-network.js')));
   const index = read('data/fr/generated/index.json');
   const exclusions = read('data/fr/source/track-call-exclusions.json');
-  const corrections = read('data/fr/source/track-stop-corrections.json');
+  const corrections = loadTrackCorrections(path.join(root, 'data/fr/source'));
   const specifications = read('data/fr/source/release-lines.json');
   const official = new Map([...new Set(specifications.map(spec => spec.sourceId))].map(resource => [
     resource, read('data/fr/source/schedules/' + resource + '.json'),
@@ -63,6 +63,10 @@ async function run() {
       assert.equal(journey.originStationId, pattern.stationIds[0]);
       assert.equal(journey.destinationStationId, pattern.stationIds.at(-1));
       assert.deepEqual(playable.stations.map(station => station.id), pattern.stationIds);
+      for (let stop = 1; stop < playable.stations.length; stop++) {
+        assert.notEqual(playable.stations[stop].physicalStationId, playable.stations[stop - 1].physicalStationId,
+          'Adjacent calls must stay separate in free drive for ' + pattern.id);
+      }
       endpoints.add(playable.stations[0].physicalStationId + ':' + playable.stations.at(-1).physicalStationId);
       const evidence = pattern.evidence;
       const line = official.get(evidence.scheduleResourceId).lines.find(line => line.sourceRouteId === route.sourceRouteId);

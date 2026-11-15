@@ -79,7 +79,7 @@ export function francePatternRoute(owner, pattern) {
 export function franceOperatingChoices(route) {
   if (route?.lazy || !route?.playable || !route.geometryReady) return [];
   const stations = new Map(route.stationCatalog.map(station => [station.id, station]));
-  const regionalVariants = route.category === 'regional_rail' &&
+  const regionalVariants = ['regional_rail', 'rer'].includes(route.category) &&
     new Set(route.patterns.map(pattern => pattern.familyId)).size > 1;
   return route.patterns.map(pattern => {
     const originId = pattern.stationIds[0], destinationId = pattern.stationIds.at(-1);

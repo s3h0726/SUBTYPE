@@ -157,7 +157,7 @@ function francePatternRoute(owner, pattern) {
 function franceOperatingChoices(route) {
   if (route?.lazy || !route?.playable || !route.geometryReady) return [];
   const stations = new Map(route.stationCatalog.map(station => [station.id, station]));
-  const regionalVariants = route.category === 'regional_rail' &&
+  const regionalVariants = ['regional_rail', 'rer'].includes(route.category) &&
     new Set(route.patterns.map(pattern => pattern.familyId)).size > 1;
   return route.patterns.map(pattern => {
     const originId = pattern.stationIds[0], destinationId = pattern.stationIds.at(-1);
@@ -991,6 +991,7 @@ function isKorailOperatedRoute(route,station){
 
 function resolveTransportStopTemplate(route,station){
   if(route?.countryId==='fr'){
+    if(route.category==='rer')return {key:'fr-rer',style:'fr-rer',family:'fr-korean-first',referenceSource:route.sourceUrl};
     const style=({'fr-ratp':'fr-ratp','fr-ratp-dev-lyon':'fr-tcl','fr-keolis-rennes':'fr-star',
       'fr-tisseo':'fr-tisseo','fr-ilevia':'fr-ilevia','fr-rtm':'fr-rtm','fr-tgv-lyria':'fr-lyria'})[route.operatorId]||'fr-sncf';
     return {key:style,style,family:'fr-korean-first',referenceSource:route.sourceUrl};

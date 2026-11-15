@@ -2,7 +2,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const {findMatches, readTrack} = require('./lib/fr-track-evidence.cjs');
+const {findMatches, loadTrackCorrections, readTrack} = require('./lib/fr-track-evidence.cjs');
 
 const repo = path.resolve(__dirname, '..');
 const scheduleDir = path.join(repo, 'data/fr/source/schedules');
@@ -17,7 +17,7 @@ const inventories = (requestedSources.length ? requestedSources : ['83582', '809
 const aliases = read(path.join(repo, 'data/fr/source/station-aliases.json'));
 const exclusions = read(path.join(repo, 'data/fr/source/track-call-exclusions.json'));
 const callVariants = read(path.join(repo, 'data/fr/source/track-call-variants.json'));
-const corrections = read(path.join(repo, 'data/fr/source/track-stop-corrections.json'));
+const corrections = loadTrackCorrections(path.join(repo, 'data/fr/source'));
 const outcomes = [];
 const describeMatches = (relation, track) => findMatches(relation, track, inventories, aliases).map(match => ({
   sourceId: match.sourceId, routeId: match.line.sourceRouteId, brand: match.pattern.brand,
