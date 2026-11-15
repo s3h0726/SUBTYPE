@@ -116,6 +116,14 @@ async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
   if(route.geometryReady===false&&!validCoordinates(route)){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='역 좌표 미확보 · 위치 표시 제한';return}
   if(!validCoordinates(route)){showKoreanTrainFallback(route,index,target);if(status)status.textContent=route.countryId==='kr'?'좌표 미확보 · 열차 위치(개략)':'좌표가 없는 노선입니다';return}
+  // The Kobe Rapid line's unverified spans must never render as a straight
+  // rail connection. Its station-name game remains usable while GIS is missing.
+  if(route.sequenceOnly===true&&route.id==='line-hanshin-kobe-kosoku'){
+    if(gameRail?.map)clearRouteLayers(gameRail);
+    showKoreanTrainFallback(route,index,target);
+    if(status)status.textContent='선로 일부 미검증 · 역명 타이핑 전용';
+    return;
+  }
   hideKoreanTrainFallback(target);
   if((route.countryId==='kr'||route.countryId==='hk')&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));

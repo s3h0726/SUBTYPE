@@ -85,6 +85,14 @@ export function resolvePlayableRoute(route,{direction='forward',service=null,boa
     return{canonicalStations:canonical.slice(),stations,segments,geometry,canonicalSegments:segments.slice(),direction,serviceApplied:applyStopPattern,sequenceOnly:true,fallbackGeometry:true,fallbackReason:reason,renderKey:`${route.id}::${direction}::${service?.id||'all'}::fallback::${stations.map(stationId).join('>')}`};
   };
 
+  // The existing Hanshin Kobe Kosoku line has verified stations but three
+  // unsurveyed underground spans. Allow station-name typing without drawing
+  // invented straight railway tracks. This exception creates no new route.
+  if(route?.id==='line-hanshin-kobe-kosoku'&&route.countryId==='jp'&&route.geometryReady===false&&Array.isArray(route.missingSegments)&&route.missingSegments.length>0){
+    const stations=selectedStations.map(station=>({...station,geometryIndex:null}));
+    return{canonicalStations:canonical.slice(),stations,segments:[],geometry:[],canonicalSegments:[],direction,serviceApplied:applyStopPattern,sequenceOnly:true,unverifiedRailGeometry:true,renderKey:`${route.id}::${direction}::${service?.id||'all'}::stations-only::${stations.map(stationId).join('>')}`};
+  }
+
   if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2){if(!permitsApproximateGeometry(route))throw new Error(`${route.id}: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다.`);return straightLineFallback('missing railway geometry')}
 
   try{
