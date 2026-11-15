@@ -1,0 +1,102 @@
+name: Auto-release SUBTYPE version
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release_level:
+        description: 'Version change (none: only verify/tag, patch, minor, major)'
+        required: true
+        default: none
+        type: choice
+        options: [none, patch, minor, major]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: subtype-version-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Determine version change
+        id: plan
+        shell: bash
+        env:
+          PUSH_BEFORE: ${{ github.event.before }}
+          MANUAL_LEVEL: ${{ inputs.release_level || 'none' }}
+        run: |
+          set -euo pipefail
+          level=none
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            level="$MANUAL_LEVEL"
+          elif [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
+            subject="$(git log -1 --pretty=%s)"
+            if [[ "$subject" != "chore(release):"* ]]; then
+              before="$PUSH_BEFORE"
+              if [[ ! "$before" =~ ^[a-f0-9]{40}$ ]] || [[ "$before" =~ ^0{40}$ ]]; then
+                before="$(git rev-parse HEAD^)"
+              fi
+              if git cat-file -e "$before^{commit}" 2>/dev/null; then
+                changed="$(git diff --name-only "$before" "$GITHUB_SHA")"
+                previous_version="$(git show "$before:package.json" | node -e "let s='';process.stdin.on('data',c=>s+=c).on('end',()=>console.log(JSON.parse(s).version))")"
+                current_version="$(node -p "require('./package.json').version")"
+                if [[ "$previous_version" != "$current_version" ]]; then
+                  # A manually selected version should not be bumped again.
+                  level=sync
+                elif grep -Eq '^(package\.json$|index\.html$|css/|js/|data/|tools/|editor/|supabase/|assets/|custom-routes/|\.github/workflows/)' <<< "$changed"; then
+                  level=patch
+                  if git log "$before..$GITHUB_SHA" --pretty=format:%s | grep -Eq '^feat(\([^)]*\))?!?:|^release: minor'; then
+                    level=minor
+                  fi
+                fi
+              fi
+            fi
+          fi
+          echo "level=$level" >> "$GITHUB_OUTPUT"
+          echo "Version operation: $level"
+
+      - name: Update package, website, README and changelog
+        if: steps.plan.outputs.level != 'none'
+        env:
+          SUBTYPE_RELEASE_SUMMARY: ${{ github.event.head_commit.message || 'Manual release version update' }}
+        run: node tools/release-version.cjs "${{ steps.plan.outputs.level }}"
+
+      - name: Validate version synchronization and bump behavior
+        run: |
+          npm run test:version
+          npm run test:release-version
+
+      - name: Commit synchronized metadata and tag release
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json index.html README.md CHANGELOG.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(release): v$(node -p "require('./package.json').version")"
+            # Never force-push over a concurrent update.
+            git push origin HEAD:main
+          fi
+          tag="v$(node -p "require('./package.json').version")"
+          git fetch origin --tags
+          if git show-ref --verify --quiet "refs/tags/$tag"; then
+            echo "Tag $tag exists; leaving immutable release unchanged."
+          else
+            git tag -a "$tag" -m "SUBTYPE $tag"
+            git push origin "refs/tags/$tag"
+            echo "Created tag $tag."
+          fi

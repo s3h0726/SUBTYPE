@@ -14,6 +14,7 @@ assert(labels.every(label=>label==='v'+version),'All visible version labels must
 assert(html.includes('<meta name="application-version" content="'+version+'">'),'Application version meta tag mismatch');
 assert(html.includes('./css/app-version.css?v='+version),'Version stylesheet cache key mismatch');
 assert(read('CHANGELOG.md').includes('## [v'+version+']'),'Changelog must contain the current version');
+assert(read('README.md').includes('**현재 버전: v'+version+' (개발 중)**'),'README version banner mismatch');
 const script=read('tools/build-app-bundle.js');
 assert(script.includes("const appVersion=JSON.parse(read('package.json')).version"),'Bundle build must source version from package.json');
 console.log('PASS: SUBTYPE v'+version+' matched package.json, HTML, CSS and changelog');

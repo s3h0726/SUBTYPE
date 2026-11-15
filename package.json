@@ -1,9 +1,10 @@
 {
   "name": "subtype",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "private": true,
   "scripts": {
     "test:version": "node tools/test-app-version.cjs",
+    "test:release-version": "node tools/test-release-version.cjs",
     "test:kr-bus-latin-display": "node tools/test-kr-bus-latin-display.cjs",
     "test:kr-rail-acronyms": "node tools/test-kr-rail-acronyms.cjs",
     "audit:recovery": "node tools/audit-data-recovery.js",

@@ -1,10 +1,8 @@
 name: Publish SUBTYPE runtime to Pages
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
   workflow_run:
-    workflows: ['Publish updated Hangang east canonical data']
+    workflows: ['Publish updated Hangang east canonical data', 'Auto-release SUBTYPE version']
     types: [completed]
 permissions:
   contents: read
@@ -22,6 +20,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with: {ref: main}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - name: Check Hangang other-bus category is clean

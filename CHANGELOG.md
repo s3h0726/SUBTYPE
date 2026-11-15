@@ -2,6 +2,14 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.9.1] — 2026-11-15
+
+### 버전 관리 개선
+- `main` 변경 사항의 자동 PATCH 버전 증가 및 `feat:` 커밋의 MINOR 버전 구분 도입.
+- 웹 화면·README·CHANGELOG·`package.json`·Git 태그 자동 동기화.
+- GitHub Pages 배포를 자동 릴리스 성공 후 실행하도록 변경.
+- 국가 선택 화면의 메인 문구 및 프로젝트 README 리뉴얼 반영.
+
 ## [v0.9.0] — 2026-11-08
 
 개발 중인 SUBTYPE에 통일된 버전 번호를 도입한 첫 버전입니다.
