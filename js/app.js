@@ -1140,7 +1140,7 @@ function renderHome(){syncHomeFeatured();const recordRouteId=record=>canonicalRo
 async function flyFreeDriveToAirport(airport){
   const controller=globalThis.TRTAirportSystem;
   if(!controller||!airport||!isCountryEnabled(airport.countryId))throw new Error('목적지 국가가 지원되지 않습니다.');
-  const previousCountry=countryId,previousState=freeDrive?.snapshot();
+  const previousCountry=countryId,previousState=freeDrive?.snapshot(),previousHistory=[...(freeDrive?.history||[])];
   if(!previousState?.station)throw new Error('현재 자유주행 위치를 찾을 수 없습니다.');
   const switched=previousCountry!==airport.countryId;
   try{
@@ -1185,24 +1185,25 @@ async function flyFreeDriveToAirport(airport){
     freeDriveTabIndex=0;renderGameFreeDriveOptions(state);go('game');controller.update(state);
     return{station:koreanStationDisplayName(state.station?.ko||state.station?.ja||'',countryId,state.route),route:state.route?.line?.ko||state.route?.id};
   }catch(error){
-    if(switched){
-      try{
+    try{
+      if(switched){
         countryId=previousCountry;localStorage.setItem('trt-country',countryId);
         applyCountryUi();refreshCountryCopy();await reloadRailData();
         renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();
-        freeDrive.setNetwork(freeDriveNetworkRoutes());
-        const former=freeDrive.routes.find(route=>route.id===previousState.routeId);
-        if(former){
-          const index=Math.max(0,Math.min(previousState.stationIndex||0,former.stations.length-1));
-          freeDrive.start(former,index);
-          // A failed air transfer must not count as a visited railway station.
-          freeDrive.history=[...((previousState.historyLength||1)>1
-            ?[previousState.node.key]:[previousState.node.key])];
-          const restored=freeDrive.snapshot();
-          if(restored&&game.startFreeDrive(restored)){renderGameFreeDriveOptions(restored);go('game');controller.update(restored)}
+      }
+      freeDrive.setNetwork(freeDriveNetworkRoutes());
+      const former=freeDrive.routes.find(route=>route.id===previousState.routeId);
+      if(former){
+        const index=Math.max(0,Math.min(previousState.stationIndex||0,former.stations.length-1));
+        freeDrive.start(former,index);
+        // Failed air travel must not erase earlier railway visits.
+        freeDrive.history=previousHistory.length?previousHistory:[previousState.node.key];
+        const restored=freeDrive.snapshot();
+        if(restored&&game.startFreeDrive(restored)){
+          renderGameFreeDriveOptions(restored);go('game');controller.update(restored);
         }
-      }catch(restoreError){console.error('Airport rollback failed:',restoreError)}
-    }
+      }
+    }catch(restoreError){console.error('Airport rollback failed:',restoreError)}
     throw error;
   }
 }
