@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.10.2] — 2026-11-15
+
+- fix: correct free-drive next stop and auto-reverse at terminals * fix: preserve free-drive direction and reverse automatically at bidirectional terminals * fix: show station after 
+
 ## [v0.10.1] — 2026-11-15
 
 - fix: make route card list denser * fix: show more route cards at once with compact grid * fix: bust cached route card CSS for compact layout
