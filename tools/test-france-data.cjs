@@ -4,16 +4,19 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const {pathToFileURL} = require('node:url');
-const {loadTrackCorrections, readTrack} = require('./lib/fr-track-evidence.cjs');
+const {loadTrackCorrections, readServiceTrack} = require('./lib/fr-track-evidence.cjs');
 
 const root = path.resolve(__dirname, '..');
 const read = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+const readRelation = id => read('data/fr/source/osm/' + id + '.json');
 
 async function run() {
   const runtime = await import(pathToFileURL(path.join(root, 'js/france-network.js')));
   const index = read('data/fr/generated/index.json');
   const exclusions = read('data/fr/source/track-call-exclusions.json');
   const corrections = loadTrackCorrections(path.join(root, 'data/fr/source'));
+  assert.throws(() => readServiceTrack([3019054,3019053], readRelation, [], corrections),
+    /do not meet at the same stop node/, 'Different Champ de Mars platforms must not bridge a through service');
   const specifications = read('data/fr/source/release-lines.json');
   const official = new Map([...new Set(specifications.map(spec => spec.sourceId))].map(resource => [
     resource, read('data/fr/source/schedules/' + resource + '.json'),
@@ -75,9 +78,8 @@ async function run() {
       for (const source of sourcePatterns) {
         assert.deepEqual(playable.stations.map(station => station.sourceId), source.stationIds);
       }
-      const {elements} = read('data/fr/source/osm/' + evidence.relationId + '.json');
-      const relation = elements.find(element => element.type === 'relation' && element.id === evidence.relationId);
-      const track = readTrack(relation, elements, evidence.excludedCalls || exclusions[evidence.relationId], corrections[evidence.relationId]);
+      const {track} = readServiceTrack(evidence.relationIds || [evidence.relationId],
+        readRelation, evidence.excludedCalls || exclusions[evidence.relationId], corrections, evidence);
       assert.deepEqual(track.stops.map(stop => stop.id), evidence.stationNodes);
       assert.deepEqual(playable.geometry, track.geometry.slice(track.aligned[0],track.aligned.at(-1)+1));
       assert.equal(playable.directedSegments.length, playable.stations.length - 1);

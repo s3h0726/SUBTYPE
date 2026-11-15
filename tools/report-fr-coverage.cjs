@@ -20,7 +20,8 @@ for (const line of catalog.lines) {
   const directions = line.patterns.map(pattern => {
     for (const source of pattern.sourcePatterns) servicePatterns.add(source);
     return {id:pattern.id, scheduleResourceId:pattern.scheduleResourceId, sourcePatterns:pattern.sourcePatterns,
-      relationId:pattern.relationId, status:tested.has(pattern.id)&&mobile.has(pattern.id)&&freeDrive.has(pattern.id)
+      relationId:pattern.relationId, ...(pattern.relationIds ? {relationIds:pattern.relationIds} : {}),
+      status:tested.has(pattern.id)&&mobile.has(pattern.id)&&freeDrive.has(pattern.id)
         ? 'VERIFIED_ADDED' : 'PARTIALLY_IMPLEMENTED'};
   });
   const detail = read('data/fr/generated/routes/' + line.id + '.json');
@@ -78,6 +79,8 @@ const coverage = {
   }, {}),
   trackRelations:{examined:track.length, matched:track.filter(candidate => candidate.status === 'MATCHED').length,
     blocked:track.filter(candidate => candidate.status === 'BLOCKED').length},
+  reviewedTrackServices:track.flatMap(candidate => candidate.reviewedServices || [])
+    .filter(service => service.status === 'MATCHED').length,
   byFamily, lines,
   regionalCoverage:inventory.mainlandRegions.map(region => {
     const regionalLines = lines.filter(line => line.regions.includes(region.code));
