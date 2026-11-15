@@ -6,6 +6,7 @@ on:
       - 'tools/audit-kr-ktx-track-alignment.cjs'
       - 'tools/test-kr-ktx-track-alignment.cjs'
       - 'tools/diagnose-kr-ktx-corridors.cjs'
+      - 'tools/repair-kr-ktx-suseo-pyeongtaek.cjs'
       - '.github/workflows/ktx-track-alignment-audit.yml'
   workflow_dispatch:
 permissions:
@@ -27,8 +28,12 @@ jobs:
         run: node tools/audit-kr-ktx-track-alignment.cjs
       - name: Diagnose shortest source-backed high-speed corridor alternatives
         run: node tools/diagnose-kr-ktx-corridors.cjs
+      - name: Dry-run exact-node Suseo-Pyeongtaek KTX rerouting
+        run: node tools/repair-kr-ktx-suseo-pyeongtaek.cjs
       - name: Upload complete report with suspicious coordinates
         uses: actions/upload-artifact@v4
         with:
           name: all-ktx-geometry-audit
-          path: reports/kr-ktx-track-alignment.json
+          path: |
+            reports/kr-ktx-track-alignment.json
+            reports/kr-ktx-suseo-correction.json
