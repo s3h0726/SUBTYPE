@@ -136,7 +136,7 @@ async function run() {
         'fr-ter-nantes-pornic', 'fr-ter-nantes-saint-gilles', 'fr-lyria-paris-lausanne',
         'fr-tgv-strasbourg-nice', 'fr-ter-saint-marcellin-grenoble', 'fr-ter-lyon-part-dieu-avignon',
         'fr-ter-lyon-perrache-avignon', 'fr-ter-lyon-besancon',
-        'fr-intercites-night-paris-toulouse', 'fr-rer-a', 'fr-rer-b', 'fr-rer-d', 'fr-rer-e'].includes(route.id))
+        'fr-intercites-night-paris-toulouse', 'fr-rer-a', 'fr-rer-b', 'fr-rer-c', 'fr-rer-d', 'fr-rer-e'].includes(route.id))
       : index.routes;
     for (const line of lines) {
       await openRoute(page, line.id);
@@ -210,7 +210,18 @@ async function run() {
         if (!metro || !drive.moveTo(metro.to, metro.routeId, drive.currentKey)) {
           throw new Error('Gare de Lyon RER-to-metro transfer unavailable');
         }
-        return {station:'리옹역', destination:'몽바르', rerToMetro:'PASS', status:'PASS'};
+        qa.game.stop(false);
+        qa.go('rail-map');
+        await qa.chooseRoute('fr-rer-c');
+        await qa.startFreeDrive(qa.routes().find(route => route.id === 'fr-rer-c'));
+        const rerC = drive.routes.find(route => route.physicalLineId === 'fr-rer-c');
+        const austerlitz = rerC?.stations.findIndex(station => station.physicalStationId === 'fr-gare-dausterlitz');
+        if (!(austerlitz >= 0) || !drive.start(rerC, austerlitz)) throw new Error('Cannot board RER C at Austerlitz');
+        const intercity = drive.snapshot().edges.find(edge => edge.route.physicalLineId === 'fr-intercites-night-paris-toulouse');
+        if (!intercity || !drive.moveTo(intercity.to, intercity.routeId, drive.currentKey)) {
+          throw new Error('Austerlitz RER-to-Intercites transfer unavailable');
+        }
+        return {station:'리옹역', destination:'몽바르', rerToMetro:'PASS', rerToIntercity:'PASS', status:'PASS'};
       });
       for (const country of ['jp', 'kr', 'hk', 'mo', 'tw', 'th', 'uk', 'fr']) {
         await page.evaluate(() => {const qa = globalThis.__FRANCE_QA__; qa.game.stop(false); qa.go('home');});
@@ -230,8 +241,8 @@ async function run() {
       await page.locator('[data-file="stations-by-line"]').click();
       await page.locator('#route-filter').selectOption('fr-paris-metro-3bis');
       await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '강베타'));
-      await page.locator('#route-filter').selectOption('fr-rer-e');
-      await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '오스만 생라자르'));
+      await page.locator('#route-filter').selectOption('fr-rer-c');
+      await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '두르당 라포레'));
       report.editor = 'PASS';
     }
     assert.deepEqual(report.errors, []);

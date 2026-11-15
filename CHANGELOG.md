@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.10.3] — 2026-11-15
+
+- Merge pull request #69 from s3h0726/feature/france-rer-bc Add verified Paris RER B and C directions
+
 ## [v0.10.2] — 2026-11-15
 
 - fix: correct free-drive next stop and auto-reverse at terminals * fix: preserve free-drive direction and reverse automatically at bidirectional terminals * fix: show station after 

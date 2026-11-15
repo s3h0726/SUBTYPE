@@ -3,10 +3,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {createHash} = require('node:crypto');
-const {findMatches, loadTrackCorrections, readTrack} = require('./lib/fr-track-evidence.cjs');
+const {findMatches, loadTrackCorrections, readServiceTrack} = require('./lib/fr-track-evidence.cjs');
 
 const root = path.resolve(__dirname, '..');
 const read = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+const readRelation = id => read('data/fr/source/osm/' + id + '.json');
 const write = (file, data) => {
   const destination = path.join(root, file);
   fs.mkdirSync(path.dirname(destination), {recursive: true});
@@ -60,6 +61,7 @@ const allStations = new Map();
 const routes = [];
 // Distinct stop areas can share a signed interchange without sharing a name.
 const interchanges = new Map(Object.entries({
+  'fr-gare-dausterlitz': ['80921:IDFM:71135','83582:StopArea:OCE87547000'],
   'fr-gare-de-lyon': ['80921:IDFM:73626', '83582:StopArea:OCE87686006'],
   'fr-gare-du-nord': ['80921:IDFM:71410', '80921:IDFM:478733', '83582:StopArea:OCE87271007'],
   'fr-chatelet-les-halles': ['80921:IDFM:474151', '80921:IDFM:73794'],
@@ -143,26 +145,28 @@ for (const spec of specs) {
   const patterns = [];
   let officialLineId;
   let color;
-  const trackSpecs = spec.relations.flatMap(relationId => [
-    {relationId, excludedCalls:exclusions[relationId]},
-    ...(callVariants[relationId] || []).map(variant => ({relationId, ...variant})),
+  const trackSpecs = (spec.relations || []).flatMap(relationId => [
+    {relations:[relationId], excludedCalls:exclusions[relationId]},
+    ...(callVariants[relationId] || []).map(variant => ({relations:[relationId], ...variant})),
   ]);
-  for (const {relationId, excludedCalls, serviceKo} of trackSpecs) {
-    const {elements} = read('data/fr/source/osm/' + relationId + '.json');
-    const relation = elements.find(element => element.type === 'relation' && element.id === relationId);
+  trackSpecs.push(...(spec.compositions || []));
+  for (const {relations:relationIds, excludedCalls, serviceKo, startNode, endNode} of trackSpecs) {
+    const {relations,track} = readServiceTrack(relationIds, readRelation, excludedCalls, corrections, {startNode,endNode});
+    const [relation] = relations;
+    const relationId = relation.id;
     // Lyon’s old OSM operator label remains useful for track identity. TCL
     // confirms RATP Dev took over metro operation on 2025-01-01.
-    const tags = relation?.tags;
-    const operatorMatches = isRer
+    const operatorMatches = tags => isRer
       ? tags?.network === 'RER' && tags.ref === spec.code &&
         (spec.jointOperator ? rerOperators.has(tags.operator) : tags.operator === 'SNCF Voyageurs')
       : railway ? tags?.[railway.tag] === railway.value : tags?.operator === 'SNCF Voyageurs';
-    const publishedRailService = spec.osmOperatorUnspecified && spec.routeId &&
-      !relation?.tags?.operator && relation?.tags?.ref === spec.code;
-    if (!operatorMatches && !publishedRailService) {
-      throw new Error('Unexpected operator for relation ' + relationId);
+    const publishedRailService = tags => spec.osmOperatorUnspecified && spec.routeId &&
+      !tags?.operator && tags?.ref === spec.code;
+    for (const part of relations) {
+      if (!operatorMatches(part.tags) && !publishedRailService(part.tags)) {
+        throw new Error('Unexpected operator for relation ' + part.id);
+      }
     }
-    const track = readTrack(relation, elements, excludedCalls, corrections[relationId]);
     const matches = findMatches(relation, track, [inventory], aliases).filter(match =>
       (!spec.routeId || match.line.sourceRouteId === spec.routeId) &&
       (!spec.brand || match.pattern.brand === spec.brand));
@@ -202,8 +206,10 @@ for (const spec of specs) {
       nameFr: isMetro ? 'Métro' : isRer ? spec.fr : spec.brand,
       evidence: {
         relationId, version: relation.version, timestamp: relation.timestamp, maxStationOffsetKm,
+        ...(relations.length > 1 ? {relationIds} : {}),
+        ...(startNode === undefined ? {} : {startNode,endNode}),
         stationNodes: track.stops.map(stop => stop.id),
-        ...(serviceKo ? {excludedCalls} : {}),
+        ...(serviceKo || relations.length > 1 ? {excludedCalls} : {}),
         sourcePatterns: matches.map(match => match.pattern.id), scheduleResourceId: spec.sourceId,
         firstDate: matches.map(match => match.pattern.firstDate).sort()[0],
         lastDate: matches.map(match => match.pattern.lastDate).sort().at(-1),

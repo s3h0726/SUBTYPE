@@ -20,6 +20,15 @@ function loadTrackCorrections(sourceDir) {
       }
       return elements;
     });
+    if (correction.stopArea) {
+      const {elements} = read('osm/stop-area-' + correction.stopArea + '.json');
+      const area = elements.find(element => element.type === 'relation' && element.id === correction.stopArea);
+      if (area?.tags?.public_transport !== 'stop_area' || !area.tags.name) {
+        throw new Error('Unverified station stop area ' + correction.stopArea);
+      }
+      correction.stopAreaMembers = new Map(area.members.filter(member =>
+        member.type === 'node' && member.role.startsWith('stop')).map(member => [member.ref, area.tags.name]));
+    }
   }
   return corrections;
 }
@@ -54,6 +63,14 @@ function readTrack(relation, elements, excludedCalls = [], correction) {
       if (index < 0) throw new Error('Reviewed OSM stop member missing: ' + ref);
       return index;
     };
+    if (correction.prependStop) {
+      const node = elements.find(element => element.type === 'node' && element.id === correction.prependStop);
+      if (node?.tags?.public_transport !== 'stop_position' || !node.tags.name ||
+          members.some(member => member.type === 'node' && member.role.startsWith('stop') && member.ref === node.id)) {
+        throw new Error('Unverified first stop ' + correction.prependStop);
+      }
+      members.unshift({type:'node', role:'stop', ref:node.id});
+    }
     if (correction.moveStopBefore) {
       const [stop, next] = correction.moveStopBefore;
       const [member] = members.splice(stopIndex(stop), 1);
@@ -81,6 +98,16 @@ function readTrack(relation, elements, excludedCalls = [], correction) {
     }
   }
   const track = assemble(reviewed, elements);
+  if (correction?.stopAreaMembers) {
+    track.stops = track.stops.map(stop => {
+      const name = correction.stopAreaMembers.get(stop.id);
+      return name && !stop.tags?.name ? {...stop,tags:{...stop.tags,name}} : stop;
+    });
+  }
+  return excludeCalls({...track,members}, excludedCalls);
+}
+
+function excludeCalls(track, excludedCalls) {
   for (const name of excludedCalls) {
     if (track.stops.filter(stop => stop.tags?.name === name).length !== 1) {
       throw new Error('Unverified non-passenger track waypoint ' + name);
@@ -88,8 +115,61 @@ function readTrack(relation, elements, excludedCalls = [], correction) {
   }
   const retained = track.stops.map((stop,index) => ({stop,index}))
     .filter(({stop}) => !excludedCalls.includes(stop.tags?.name));
-  return {...track, members, stops:retained.map(({stop}) => stop),
+  return {...track, stops:retained.map(({stop}) => stop),
     aligned:retained.map(({index}) => track.aligned[index])};
+}
+
+function boundCalls(track, startNode, endNode) {
+  if (startNode === undefined && endNode === undefined) return track;
+  const start = track.stops.findIndex(stop => stop.id === startNode);
+  const end = track.stops.findIndex(stop => stop.id === endNode);
+  if (start < 0 || end <= start) {
+    throw new Error('Invalid passenger bounds ' + startNode + '–' + endNode);
+  }
+  return {...track, stops:track.stops.slice(start,end + 1), aligned:track.aligned.slice(start,end + 1)};
+}
+
+function readServiceTrack(relationIds, readRelation, excludedCalls = [], corrections = {}, {startNode,endNode} = {}) {
+  const parts = relationIds.map(id => {
+    const {elements} = readRelation(id);
+    const relation = elements.find(element => element.type === 'relation' && element.id === id);
+    return {relation, track:readTrack(relation, elements, [], corrections[id])};
+  });
+  if (parts.length === 1) {
+    return {relations:[parts[0].relation], track:excludeCalls(boundCalls(parts[0].track, startNode, endNode), excludedCalls)};
+  }
+  const joined = {refs:[],geometry:[],nodes:new Map(),ways:new Map(),members:[],stops:[],aligned:[]};
+  for (const {relation,track} of parts) {
+    const first = track.aligned[0], last = track.aligned.at(-1);
+    const overlap = joined.refs.length ? 1 : 0;
+    if (overlap && (joined.refs.at(-1) !== track.refs[first] ||
+        !joined.geometry.at(-1).every((coord, index) => coord === track.geometry[first][index]))) {
+      throw new Error('Rail sections do not meet at the same stop node before ' + relation.id);
+    }
+    const offset = joined.refs.length - overlap - first;
+    joined.refs.push(...track.refs.slice(first + overlap, last + 1));
+    joined.geometry.push(...track.geometry.slice(first + overlap, last + 1));
+    joined.stops.push(...track.stops.slice(overlap));
+    joined.aligned.push(...track.aligned.slice(overlap).map(index => index + offset));
+    for (const member of track.members) {
+      const way = track.ways.get(member.ref), previous = joined.ways.get(member.ref);
+      if (previous && JSON.stringify(previous.nodes) !== JSON.stringify(way.nodes)) {
+        throw new Error('Conflicting shared rail way ' + member.ref);
+      }
+      if (!previous) {
+        joined.ways.set(member.ref, way);
+        joined.members.push(member);
+      }
+      for (const id of way.nodes) {
+        const node = track.nodes.get(id), existing = joined.nodes.get(id);
+        if (existing && (node.lat !== existing.lat || node.lon !== existing.lon)) {
+          throw new Error('Conflicting shared rail node ' + id);
+        }
+        if (!existing) joined.nodes.set(id, node);
+      }
+    }
+  }
+  return {relations:parts.map(part => part.relation), track:excludeCalls(boundCalls(joined, startNode, endNode), excludedCalls)};
 }
 
 function stationDistance(station, node) {
@@ -134,4 +214,4 @@ function findMatches(relation, track, inventories, aliases) {
   return matches;
 }
 
-module.exports = {findMatches, loadTrackCorrections, readTrack, stationKey};
+module.exports = {findMatches, loadTrackCorrections, readServiceTrack, readTrack, stationKey};

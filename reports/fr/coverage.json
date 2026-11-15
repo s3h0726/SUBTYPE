@@ -4,22 +4,22 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 166,
-  "verifiedSourcePatternRecords": 166,
-  "remainingSourcePatternRecords": 13120,
-  "verifiedShareOfSourcePatternRecordsPercent": 1.2494354960108385,
+  "coveredSourcePatternRecords": 186,
+  "verifiedSourcePatternRecords": 186,
+  "remainingSourcePatternRecords": 13100,
+  "verifiedShareOfSourcePatternRecordsPercent": 1.399969893120578,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 59,
+  "catalogLines": 60,
   "operators": 9,
-  "catalogServiceFamilies": 89,
-  "playableDirections": 163,
-  "verifiedPlayableDirections": 163,
+  "catalogServiceFamilies": 102,
+  "playableDirections": 183,
+  "verifiedPlayableDirections": 183,
   "catalogDirectionsPendingVerification": 0,
-  "koreanNamedStations": 872,
-  "stationIds": 872,
-  "physicalStationGroups": 832,
-  "sharedPhysicalWays": 13855,
-  "uniquePhysicalWays": 23426,
+  "koreanNamedStations": 931,
+  "stationIds": 931,
+  "physicalStationGroups": 890,
+  "sharedPhysicalWays": 14682,
+  "uniquePhysicalWays": 24174,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -58,9 +58,10 @@
   },
   "trackRelations": {
     "examined": 289,
-    "matched": 183,
-    "blocked": 106
+    "matched": 185,
+    "blocked": 104
   },
+  "reviewedTrackServices": 15,
   "byFamily": [
     {
       "family": "funicular",
@@ -135,12 +136,12 @@
     {
       "family": "rer",
       "sourcePatternRecords": 1050,
-      "catalogLines": 4,
-      "coveredSourcePatternRecords": 32,
-      "verifiedSourcePatternRecords": 32,
-      "remainingSourcePatternRecords": 1018,
-      "playableDirections": 32,
-      "testedDirections": 32
+      "catalogLines": 5,
+      "coveredSourcePatternRecords": 52,
+      "verifiedSourcePatternRecords": 52,
+      "remainingSourcePatternRecords": 998,
+      "playableDirections": 52,
+      "testedDirections": 52
     },
     {
       "family": "subway",
@@ -398,9 +399,9 @@
       "sourceRouteId": "IDFM:C01743",
       "sourceLineId": "fr-line-fbb7fb79a33a9bacc489c34a",
       "status": "PARTIALLY_IMPLEMENTED",
-      "serviceFamilies": 3,
+      "serviceFamilies": 7,
       "discoveredSchedulePatterns": 77,
-      "coveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 12,
       "remainingSourcePatternIds": [
         "fr-pattern-02ae3b0452ec24c2e315be33",
         "fr-pattern-03a04ae28b84f63035b615eb",
@@ -410,15 +411,12 @@
         "fr-pattern-0b4432497471d94f34530ae9",
         "fr-pattern-0b910df677b3ba81b9dd3e94",
         "fr-pattern-0bf47fe11146c7852a22ecee",
-        "fr-pattern-173497d6d51e4704165fc9a2",
         "fr-pattern-17d72dccd1433e9b8889abfb",
-        "fr-pattern-1818b0c3d3266e4cdd31fbe5",
         "fr-pattern-2accb517ee792f8382ea30bf",
         "fr-pattern-2db4a3656367f674d7cdd612",
         "fr-pattern-301e28702332ada78744a08e",
         "fr-pattern-36ab11d1b4ccc36e4b434214",
         "fr-pattern-3bd1148263f074c372420a50",
-        "fr-pattern-5dac297b5d2f39f826d5e150",
         "fr-pattern-680f8339ef492565c91b14dc",
         "fr-pattern-6a5bf22e58b51970cdb676c1",
         "fr-pattern-6b76dd4748d5c31ae234f405",
@@ -446,12 +444,9 @@
         "fr-pattern-a70d44125558d001e5e7d911",
         "fr-pattern-ac7033bfb3d269bab39ea407",
         "fr-pattern-b79453ca348348506db7eb82",
-        "fr-pattern-bbf297821e3d38320645352b",
         "fr-pattern-bfa170e27d8a465972eb745e",
-        "fr-pattern-c4928ccaf66d4a95e8495baf",
         "fr-pattern-c65a66fa903cd579fed66596",
         "fr-pattern-c7e21a88830a7a1d2cf74165",
-        "fr-pattern-cce98153e8f129d971de088d",
         "fr-pattern-ce1ff140c88a50664ed5f711",
         "fr-pattern-d35a77e5238bd487c684bac5",
         "fr-pattern-d39d5ea7c5f7e60c95c2f516",
@@ -527,6 +522,362 @@
             "fr-pattern-a83560ad4baba30efb92c10a"
           ],
           "relationId": 8537193,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-90688d6576cd0e2caf8fcce3",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-cce98153e8f129d971de088d"
+          ],
+          "relationId": 8537192,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4ffc7173cce64c67c33a4f1d",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-5dac297b5d2f39f826d5e150"
+          ],
+          "relationId": 8536959,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-e2a3ca544f5a170ca4eb93c3",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-c4928ccaf66d4a95e8495baf"
+          ],
+          "relationId": 8537341,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4a15934c21d3a90f7a61dbee",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-173497d6d51e4704165fc9a2"
+          ],
+          "relationId": 8537343,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-264ec5eb4ab008665413ff29",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-bbf297821e3d38320645352b"
+          ],
+          "relationId": 8537342,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-dc6b2141c519d2a9c7d048b3",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-1818b0c3d3266e4cdd31fbe5"
+          ],
+          "relationId": 8537340,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-rer-c",
+      "category": "rer",
+      "regions": [
+        "11"
+      ],
+      "sourceRouteId": "IDFM:C01727",
+      "sourceLineId": "fr-line-2032e020b2633a8498e3dbce",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 9,
+      "discoveredSchedulePatterns": 103,
+      "coveredSchedulePatterns": 14,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0046b92e7586e367683914f8",
+        "fr-pattern-0d9c29d3d20eaeeb691ac4db",
+        "fr-pattern-1271dece2f5ae5ef97068523",
+        "fr-pattern-1476db4d3e834082e29ddc4b",
+        "fr-pattern-16ba98104c8ade50797e76ad",
+        "fr-pattern-199840e28ada5afd9d9fa6cf",
+        "fr-pattern-19e9055431ce7b1717ce0ce8",
+        "fr-pattern-1aa692b8137f905a98f21eec",
+        "fr-pattern-1b74bfa2c0c0be855e9c1df9",
+        "fr-pattern-1f9205f2869c5d8b05b96949",
+        "fr-pattern-1f9d66c8954149cc3fadefbc",
+        "fr-pattern-209f5f4d95504f8b0d2c681f",
+        "fr-pattern-2407e97a0cb1cf97e5869ce5",
+        "fr-pattern-25aed060c8cea8d270d84772",
+        "fr-pattern-2a4c345c0e4ca6c026128c83",
+        "fr-pattern-2c6d6da401cf819b48a2186b",
+        "fr-pattern-387f1e069b0bdbc96c768491",
+        "fr-pattern-3b75e7c62ab844178fd1d71c",
+        "fr-pattern-3d65ab3a5e4e03e1e2e91bd8",
+        "fr-pattern-3ec0f1d5baa2d1c3d2bd6823",
+        "fr-pattern-3fe2fb0f683d3bd80d766cf0",
+        "fr-pattern-45c147bbcc633cbc4009f5ae",
+        "fr-pattern-463c875a84c1e7581adc8d9f",
+        "fr-pattern-46d420953e9f13c5d3dd138e",
+        "fr-pattern-47b7c37d14f9f0af145325d6",
+        "fr-pattern-4b0bd3c78d25047b5dae4f70",
+        "fr-pattern-5418e6a6251242b506819dbd",
+        "fr-pattern-542e30e2b436eb267507431d",
+        "fr-pattern-554ddb3ccc021786b66bc6e6",
+        "fr-pattern-55782eb152199c5847c7e4d8",
+        "fr-pattern-57ee16f88b7e0ee491391bc6",
+        "fr-pattern-58fa4bca5f403b6ff0706a81",
+        "fr-pattern-5fd7195bb91dbc0cc6bdffa1",
+        "fr-pattern-5fdf0fdec14845eb38089197",
+        "fr-pattern-61710c7e36a4193a4d927e99",
+        "fr-pattern-651facdc8a3394abeb6799c6",
+        "fr-pattern-670f8a3851b06848b5908382",
+        "fr-pattern-67630645965c8b488fa99a04",
+        "fr-pattern-697bd3b588ab601aec01cb69",
+        "fr-pattern-69c9abb16abe8f164d8c39f5",
+        "fr-pattern-6a6951b601314f96f5937078",
+        "fr-pattern-6b1616941150e092c37ef679",
+        "fr-pattern-6b89005ae63b700946e5972d",
+        "fr-pattern-72fc51e79272d65f075c13a8",
+        "fr-pattern-77ebf2d916358344b55620d7",
+        "fr-pattern-7dcdaa6f0a723703a5cfcf4b",
+        "fr-pattern-7f68ba18dd073d6cb46b0029",
+        "fr-pattern-7f9d063d0e4f19c78eabf80e",
+        "fr-pattern-8069c315b25a513cef7263da",
+        "fr-pattern-81012633143fa527a385d7f3",
+        "fr-pattern-81c59e4a07682218412aa81a",
+        "fr-pattern-849753710c2d970486d03d1e",
+        "fr-pattern-85fd5fceeeab72270a01d039",
+        "fr-pattern-87c6c7f765135d0f507c2623",
+        "fr-pattern-8a2a70ee05dbff79230ee694",
+        "fr-pattern-8d50fa871cc82febb79a65d6",
+        "fr-pattern-8f3e880cc10207eb2bad555b",
+        "fr-pattern-980f6993d44c426d47a47260",
+        "fr-pattern-99bfeea966b772365ac6c43c",
+        "fr-pattern-9e2c2c0068ccd843b12c48ae",
+        "fr-pattern-9f4756cd605890c3350d6b6d",
+        "fr-pattern-9f76d1dfb996555379bae36b",
+        "fr-pattern-a219448eb5258ac24b344607",
+        "fr-pattern-a2cb1f36847d38ee1871b9ba",
+        "fr-pattern-a851cca4f18551f5ef44b77f",
+        "fr-pattern-ab21373d5d679fe6b55557c7",
+        "fr-pattern-ae63aafe557c616c0b42c4ee",
+        "fr-pattern-af34d772ddd591b5e9cb6b99",
+        "fr-pattern-b2db85f10feba5439e30d94f",
+        "fr-pattern-b6a0e29d01752d645630c8d2",
+        "fr-pattern-c39ceeedbc223a2897d5d9c3",
+        "fr-pattern-d0bf477de73353e9b818b3da",
+        "fr-pattern-d209eadcb4b98ee69d993ea5",
+        "fr-pattern-d551b813b291e3fd6fec3ed7",
+        "fr-pattern-db8b796f1577c015ed5f4834",
+        "fr-pattern-db9ba75050748875d6cc3e48",
+        "fr-pattern-dc633d6b5052f9f73379a8dc",
+        "fr-pattern-dfcb6ce7770ab6781d50503d",
+        "fr-pattern-e3cc45991915410a301d553c",
+        "fr-pattern-e6541c00f39ca0f41685e859",
+        "fr-pattern-e87341da437d9aaad51b9be6",
+        "fr-pattern-ebde75d86cd848b86f23101c",
+        "fr-pattern-ed465084ac2764182a575e4f",
+        "fr-pattern-f7336bff8a6838e829a23136",
+        "fr-pattern-f7a286968d925ddb0e57a537",
+        "fr-pattern-f7c044bfc7b47b9965ceb55f",
+        "fr-pattern-f8208a29f09faa914ad2364f",
+        "fr-pattern-fc48255746d0906bbb25527b",
+        "fr-pattern-fe47fa8a9b50559ef7aea2b3"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-5004eab5aa8a6e38342b974e",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-576532cb2f8ffb1d8ae75309"
+          ],
+          "relationId": 3046871,
+          "relationIds": [
+            3046871,
+            3019053,
+            3019746
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ae56041a4dac0175eb31170b",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-68961cf9fe934950d6c27f3a"
+          ],
+          "relationId": 3046871,
+          "relationIds": [
+            3046871,
+            3019053,
+            3006270
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-080d926471ba4c6e7bb4308e",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-53816373ded5db5fa3cb5eed"
+          ],
+          "relationId": 3006693,
+          "relationIds": [
+            3006693,
+            3019054,
+            3047780
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-77bf3b5d0eb837db147b2157",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-a6f47e9385983609ea9fce2c"
+          ],
+          "relationId": 3006271,
+          "relationIds": [
+            3006271,
+            3019054,
+            3047780
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-0f1265c3aa22a142b06aab56",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-12d909c73694d5f3ce024383"
+          ],
+          "relationId": 3049201,
+          "relationIds": [
+            3049201,
+            3019053,
+            3019746
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c393de34d9a574418cbd3b98",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-dbb4c904733ffa516f5b9672"
+          ],
+          "relationId": 3006693,
+          "relationIds": [
+            3006693,
+            3019054,
+            3049185
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ad0fd5da6913c203e4d3ab03",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-6de4a93435e894f153d149bf"
+          ],
+          "relationId": 3046871,
+          "relationIds": [
+            3046871,
+            3019053,
+            3019746
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ee0ac622134a75f4e3541a29",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-1170ab346420ef3fbb6e4898"
+          ],
+          "relationId": 3006693,
+          "relationIds": [
+            3006693,
+            3019054,
+            3047780
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ea70da5b6ce5620b33bd7c68",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-6df2c4c1f3ff32a3129306f3"
+          ],
+          "relationId": 3046871,
+          "relationIds": [
+            3046871,
+            3019053,
+            3019746
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-7053b66f148f3da548e3ce21",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-a0b8c56e6782364f7bb5f013"
+          ],
+          "relationId": 3006693,
+          "relationIds": [
+            3006693,
+            3019054,
+            3047780
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-2a63e3ed2faf2f17515a31b9",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-332010c2ac022af988adbb5d"
+          ],
+          "relationId": 3006693,
+          "relationIds": [
+            3006693,
+            3019054,
+            3047780
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-32b645463d9031c86bcd5ed5",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-81d6afe7f2a5779cfbc9e0e7"
+          ],
+          "relationId": 3046871,
+          "relationIds": [
+            3046871,
+            3019053,
+            3019746
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-7573173bf2f96531a1f2b190",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-d35dc3f607c693736954a699"
+          ],
+          "relationId": 3046871,
+          "relationIds": [
+            3046871,
+            3019053,
+            3019746
+          ],
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-137528c580e13d80b9f203cf",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-62168caac0c0b3760b773715"
+          ],
+          "relationId": 3006693,
+          "relationIds": [
+            3006693,
+            3019054,
+            3047780
+          ],
           "status": "VERIFIED_ADDED"
         }
       ]
@@ -3183,10 +3534,11 @@
         80921,
         80931
       ],
-      "catalogLines": 32,
+      "catalogLines": 33,
       "catalogLineIds": [
         "fr-rer-a",
         "fr-rer-b",
+        "fr-rer-c",
         "fr-rer-d",
         "fr-rer-e",
         "fr-intercites-night-paris-toulouse",
@@ -3218,8 +3570,8 @@
         "fr-paris-metro-13",
         "fr-paris-metro-14"
       ],
-      "playableDirections": 101,
-      "verifiedPlayableDirections": 101
+      "playableDirections": 121,
+      "verifiedPlayableDirections": 121
     },
     {
       "code": "24",

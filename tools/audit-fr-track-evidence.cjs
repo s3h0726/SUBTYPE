@@ -2,7 +2,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const {findMatches, loadTrackCorrections, readTrack} = require('./lib/fr-track-evidence.cjs');
+const {findMatches, loadTrackCorrections, readServiceTrack, readTrack} = require('./lib/fr-track-evidence.cjs');
 
 const repo = path.resolve(__dirname, '..');
 const scheduleDir = path.join(repo, 'data/fr/source/schedules');
@@ -18,6 +18,7 @@ const aliases = read(path.join(repo, 'data/fr/source/station-aliases.json'));
 const exclusions = read(path.join(repo, 'data/fr/source/track-call-exclusions.json'));
 const callVariants = read(path.join(repo, 'data/fr/source/track-call-variants.json'));
 const corrections = loadTrackCorrections(path.join(repo, 'data/fr/source'));
+const specifications = read(path.join(repo, 'data/fr/source/release-lines.json'));
 const outcomes = [];
 const describeMatches = (relation, track) => findMatches(relation, track, inventories, aliases).map(match => ({
   sourceId: match.sourceId, routeId: match.line.sourceRouteId, brand: match.pattern.brand,
@@ -47,6 +48,27 @@ for (const file of fs.readdirSync(cache).filter(file => /^fr-osm-\d+\.json$/.tes
   outcomes.push(result);
 }
 const report = path.join(repo, 'reports/fr/track-evidence.json');
+const byRelation = new Map(outcomes.map(outcome => [outcome.relationId,outcome]));
+for (const spec of specifications) {
+  for (const service of spec.compositions || []) {
+    const row = byRelation.get(service.relations[0]);
+    if (!row) continue;
+    const result = {line:spec.id,relationIds:service.relations,
+      ...(service.startNode === undefined ? {} : {startNode:service.startNode,endNode:service.endNode})};
+    try {
+      const {relations,track} = readServiceTrack(service.relations,
+        id => read(path.join(cache, 'fr-osm-' + id + '.json')), service.excludedCalls, corrections, service);
+      result.matches = describeMatches(relations[0], track)
+        .filter(match => match.sourceId === spec.sourceId && match.routeId === spec.routeId);
+      result.status = result.matches.length ? 'MATCHED' : 'BLOCKED';
+      if (!result.matches.length) result.reason = 'No independently verified ordered timetable match';
+    } catch (error) {
+      result.status = 'BLOCKED';
+      result.reason = error.message;
+    }
+    (row.reviewedServices ||= []).push(result);
+  }
+}
 fs.mkdirSync(path.dirname(report), {recursive: true});
 fs.writeFileSync(report, JSON.stringify(outcomes, null, 2) + '\n');
 console.log(JSON.stringify({checked: outcomes.length, matched: outcomes.filter(result => result.status === 'MATCHED').length}));
