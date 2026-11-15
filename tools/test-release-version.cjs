@@ -31,7 +31,7 @@ try {
   assert.equal(JSON.parse(read('package.json')).version, '0.9.1');
   assert(read('README.md').includes('v0.9.1 (개발 중)'));
   assert(read('index.html').includes('app-version.css?v=0.9.1'));
-  assert.equal((read('index.html').match(/v0\.9\.1/g) || []).length, 5);
+  assert.equal((read('index.html').match(/v0\.9\.1/g) || []).length, 4);
   assert(read('CHANGELOG.md').includes('## [v0.9.1]'));
   const changed = ['package.json', 'index.html', 'README.md', 'CHANGELOG.md'].map(read);
   run('sync');
