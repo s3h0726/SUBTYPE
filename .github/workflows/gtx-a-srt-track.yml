@@ -1,0 +1,33 @@
+name: GTX-A SRT source geometry investigation
+on:
+  push:
+    branches: [fix/gtx-a-srt-actual-track]
+    paths:
+      - 'tools/diagnose-gtx-a-srt.cjs'
+      - 'tools/build-gtx-a-srt-geometry.cjs'
+      - '.github/workflows/gtx-a-srt-track.yml'
+  pull_request:
+    paths:
+      - 'tools/diagnose-gtx-a-srt.cjs'
+      - 'tools/build-gtx-a-srt-geometry.cjs'
+      - '.github/workflows/gtx-a-srt-track.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-investigation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect OSM SRT shared-track geometry
+        run: node tools/diagnose-gtx-a-srt.cjs
+      - name: Reconstruct GTX-A passenger tracks from pinned OSM relations
+        run: node tools/build-gtx-a-srt-geometry.cjs
+      - name: Verify both GTX-A service directions and in-game map segments
+        run: |
+          node --check js/gtx-a-south-track-data.js
+          node --check js/gtx-a-south-service.js
+          node tools/test-gtx-a-south-card.cjs

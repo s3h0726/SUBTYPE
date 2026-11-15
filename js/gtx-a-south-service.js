@@ -1,8 +1,10 @@
 /* GTX-A south operating section on the existing GTX-A route card.
  * Four active stops confirmed by KOTI/CPPR:
  * https://cppr.koti.re.kr/site/railwyDetail?railwyId=RID241201000009
- * Station coordinates are geographic labels, NOT verified tunnel track.
- * The unrecovered original OSM service alignments are never invented.
+ * Actual southbound and northbound tracks are read from pinned OSM GTX-A
+ * passenger service relations and their original OSM nodes, including
+ * platform tracks that may carry the OSM siding tag.
+ * Source and geometry checks: tools/build-gtx-a-srt-geometry.cjs
  */
 (function (root) {
   'use strict';
@@ -27,13 +29,43 @@
   function resolve(choice,route){
     const approved=choices(route).find(item=>item.id===choice?.id&&item.originId===choice.originId&&item.destinationId===choice.destinationId);
     if(!approved)throw new Error('GTX-A 수서–동탄의 공식 운행 방향을 확인할 수 없습니다.');
-    const stations=ordered(approved.direction).map(s=>({...s,ja:s.ko,kana:s.ko,romaji:s.ko,officialCode:s.stationCode,hasOfficialStationCode:true}));
+    const dataset=root.TRT_GTX_A_SOUTH_TRACKS,track=dataset?.directions?.[approved.direction];
+    if(dataset?.routeId!==ROUTE||!track||track.sourceRelationId!==(approved.direction==='forward'?'17413294':'17413296')||
+      track.geometry?.length<90||track.stations?.length!==4||track.sourceWays?.length!==9||
+      !track.stations.every((anchor,i)=>anchor.id===ordered(approved.direction)[i].id&&Number.isInteger(anchor.geometryIndex)&&
+        anchor.geometryIndex>=0&&anchor.geometryIndex<track.geometry.length&&
+        anchor.latitude===track.geometry[anchor.geometryIndex][0]&&anchor.longitude===track.geometry[anchor.geometryIndex][1]))
+      throw new Error('GTX-A 남부 실제 OSM 선로 자료를 검증할 수 없습니다. 다시 새로고침해 주세요.');
+    const geometry=track.geometry.map(point=>[point[0],point[1]]);
+    const stations=ordered(approved.direction).map((s,i)=>{
+      const anchor=track.stations[i];
+      return{...s,ja:s.ko,kana:s.ko,romaji:s.ko,officialCode:s.stationCode,hasOfficialStationCode:true,
+        latitude:anchor.latitude,longitude:anchor.longitude,geometryIndex:anchor.geometryIndex,
+        sourceStopId:anchor.sourceStopId,sourceNodeId:anchor.sourceNodeId};
+    });
+    if(stations[0].geometryIndex!==0||stations.at(-1).geometryIndex!==geometry.length-1||
+      stations.some((station,i)=>i>0&&station.geometryIndex<=stations[i-1].geometryIndex))
+      throw new Error('GTX-A 남부 역별 선로 위치가 일치하지 않습니다.');
+    const directedSegments=stations.slice(0,-1).map((station,i)=>({
+      fromStationId:station.id,toStationId:stations[i+1].id,
+      geometry:geometry.slice(station.geometryIndex,stations[i+1].geometryIndex+1),geometryStatus:'ready',
+      source:{kind:'osm-pinned-gtx-a-passenger-relation',relationId:track.sourceRelationId}
+    }));
     const label=stations[0].ko+' → '+stations.at(-1).ko+' (GTX-A 남부)';
     const service={id:approved.id,nameKo:label,nameJa:label,nameEn:label,stops:stations.map(s=>s.id)};
-    const line={...route,gtxSouthStationOnly:true,geometryReady:false,geometryStatus:'missing',
-      stations,geometry:[],directedSegments:[],services:[service],
-      missingSegments:['수서–성남','성남–구성','구성–동탄'],selectedDirectionId:approved.direction,
-      serviceNote:'남부 4개 역의 순서 타이핑 전용 — 실제 선로 선형 미검증'};
+    const line={...route,gtxSouthStationOnly:false,geometryReady:true,geometryStatus:'ready',
+      stations,geometry,directedSegments,services:[service],missingSegments:[],
+      selectedDirectionId:approved.direction,
+      geometrySource:'osm-source-node-contiguous-gtx-a-passenger-service',
+      gtxSouthTrackEvidence:{sourceRelationId:track.sourceRelationId,sourceServiceId:track.sourceServiceId,
+        geometrySha256:track.geometrySha256,sourceWays:track.sourceWays,distanceKm:track.distanceKm,
+        note:'2026-10-14 pinned OSM original nodes; shared SRT rail and platform approaches'},
+      sourceRefs:[...(route.sourceRefs||[]),{
+        url:'https://www.openstreetmap.org/relation/'+track.sourceRelationId,
+        sourceDate:'2026-10-14',license:'ODbL-1.0',
+        attribution:'© OpenStreetMap contributors',sourceWayIds:track.sourceWays.map(w=>w.id)
+      }],
+      serviceNote:'수서평택고속선·GTX-A 전용 구간의 실제 OSM 선형 사용'};
     return{route:line,service,direction:'forward',journeyId:approved.id,
       journey:{id:approved.id,baseRouteId:route.id,originStationId:stations[0].id,destinationStationId:stations.at(-1).id,directionId:approved.direction},
       pattern:{id:'kr-gtx-a-south',names:approved.patternName},trainType:null,destinationStationId:stations.at(-1).id,trainTypeContexts:[]};
