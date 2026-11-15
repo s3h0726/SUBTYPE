@@ -1092,6 +1092,14 @@ function resolvePlayableRoute(route,{direction='forward',service=null,boardingSt
     return{canonicalStations:canonical.slice(),stations,segments,geometry,canonicalSegments:segments.slice(),direction,serviceApplied:applyStopPattern,sequenceOnly:true,fallbackGeometry:true,fallbackReason:reason,renderKey:`${route.id}::${direction}::${service?.id||'all'}::fallback::${stations.map(stationId).join('>')}`};
   };
 
+  // The existing Hanshin Kobe Kosoku line has verified stations but three
+  // unsurveyed underground spans. Allow station-name typing without drawing
+  // invented straight railway tracks. This exception creates no new route.
+  if(route?.id==='line-hanshin-kobe-kosoku'&&route.countryId==='jp'&&route.geometryReady===false&&Array.isArray(route.missingSegments)&&route.missingSegments.length>0){
+    const stations=selectedStations.map(station=>({...station,geometryIndex:null}));
+    return{canonicalStations:canonical.slice(),stations,segments:[],geometry:[],canonicalSegments:[],direction,serviceApplied:applyStopPattern,sequenceOnly:true,unverifiedRailGeometry:true,renderKey:`${route.id}::${direction}::${service?.id||'all'}::stations-only::${stations.map(stationId).join('>')}`};
+  }
+
   if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2){if(!permitsApproximateGeometry(route))throw new Error(`${route.id}: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다.`);return straightLineFallback('missing railway geometry')}
 
   try{
@@ -1861,6 +1869,14 @@ async function renderOsm(route,index,options){
   const target=$('#provider-basemap'),status=$('#basemap-status');if(!target)return;
   if(route.geometryReady===false&&!validCoordinates(route)){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='역 좌표 미확보 · 위치 표시 제한';return}
   if(!validCoordinates(route)){showKoreanTrainFallback(route,index,target);if(status)status.textContent=route.countryId==='kr'?'좌표 미확보 · 열차 위치(개략)':'좌표가 없는 노선입니다';return}
+  // The Kobe Rapid line's unverified spans must never render as a straight
+  // rail connection. Its station-name game remains usable while GIS is missing.
+  if(route.sequenceOnly===true&&route.id==='line-hanshin-kobe-kosoku'){
+    if(gameRail?.map)clearRouteLayers(gameRail);
+    showKoreanTrainFallback(route,index,target);
+    if(status)status.textContent='선로 일부 미검증 · 역명 타이핑 전용';
+    return;
+  }
   hideKoreanTrainFallback(target);
   if((route.countryId==='kr'||route.countryId==='hk')&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
@@ -1941,7 +1957,7 @@ class Game{
     if(!route||!Array.isArray(route.stations)||route.stations.length<2){console.error('Cannot start invalid line:',route?.id||route);toast('플레이하려면 역이 2개 이상인 노선이 필요합니다.');return false}
     this.route=route;this.options={mode:'complete',difficulty:'normal',display:'ja',input:'ko',direction:'forward',stationAdvance:'auto',mapMode:'geographic',stationLabel:'ja',mapLabels:'normal',motion:true,...options};this.service=route.services?.find(service=>service.id===this.options.service)||route.services?.find(service=>service.id==='local')||route.services?.[0]||{id:'local',nameJa:'各駅停車',nameKo:'각역정차',nameEn:'Local',stops:route.stations.map(station=>station.id)};this.servicePattern=this.options.servicePattern||null;this.serviceJourney=this.options.serviceJourney||route.serviceJourney||null;this.trainType=this.options.trainType||null;this.trainTypeContexts=this.options.trainTypeContexts||route.trainTypeContexts||[];this.destinationStationId=this.options.destinationStationId||this.service.destinationStationId||null;
     try{this.resolvedRoute=resolvePlayableRoute(route,{direction:this.options.direction,service:this.service,boardingStationId:this.options.boardingStationId??null});if(route.dataKind==='trainService'&&this.resolvedRoute.fallbackGeometry)throw new Error('특급열차에는 실제 철도 선형이 필요합니다.')}catch(error){console.error('Route integrity blocked game start:',error);toast(`노선 무결성 오류: ${error.message}`);return false}
-    this.sessionId=(this.sessionId||0)+1;this.serviceStations=this.resolvedRoute.stations;this.serviceStops=new Set(this.serviceStations.map(station=>station.id));this.mapRoute={...route,stations:this.resolvedRoute.stations.map(s=>route.countryId==='hk'&&this.options.inputMode==='memory'?{...s,ko:''}:s),geometry:this.resolvedRoute.geometry,directedSegments:this.resolvedRoute.segments,renderKey:`${this.resolvedRoute.renderKey}::session-${this.sessionId}`};this.sequence=this.makeSequence();this.index=0;this.boarding=true;this.typedStationIds=[];this.visitedStationIds=[];this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.started=performance.now();this.stats.reset(this.started);this.pausedTotal=0;this.pausedAt=0;this.finished=false;this.paused=false;this.phase='TYPING';
+    this.sessionId=(this.sessionId||0)+1;this.serviceStations=this.resolvedRoute.stations;this.serviceStops=new Set(this.serviceStations.map(station=>station.id));this.mapRoute={...route,stations:this.resolvedRoute.stations.map(s=>route.countryId==='hk'&&this.options.inputMode==='memory'?{...s,ko:''}:s),geometry:this.resolvedRoute.geometry,directedSegments:this.resolvedRoute.segments,sequenceOnly:this.resolvedRoute.sequenceOnly===true,renderKey:`${this.resolvedRoute.renderKey}::session-${this.sessionId}`};this.sequence=this.makeSequence();this.index=0;this.boarding=true;this.typedStationIds=[];this.visitedStationIds=[];this.errors=0;this.combo=0;this.maxCombo=0;this.comboPrefixUnits=0;this.started=performance.now();this.stats.reset(this.started);this.pausedTotal=0;this.pausedAt=0;this.finished=false;this.paused=false;this.phase='TYPING';
     const sign=$('#station-sign'),template=resolveTransportStopTemplate(route);sign.dataset.signStyle=template.style;sign.dataset.templateFamily=template.family;sign.dataset.templateSource=template.referenceSource;const stopNoun=transportStopNoun(route),serviceLabel=this.serviceLabel();$('#typing-stop-label').textContent=`한국어 ${stopNoun} 이름 입력`;$('#typing-input').placeholder=`한국어 ${stopNoun} 이름을 입력하세요`;$('#previous-stop-label').textContent=`이전 ${stopNoun}`;$('#following-stop-label').textContent=`다음 ${stopNoun}`;$('#target-stop-label').textContent=`목표 ${stopNoun}`;this.applyActiveBrand(this.sequence[0]);$('#station-service-footer').textContent=`${serviceLabel} 운행`;$('#game-service-name').textContent=`${serviceLabel}${this.service.nameJa&&this.route.countryId!=='fr'?` · ${koreanRouteDisplayText(this.service.nameJa,this.route)}`:''}`;const origin=this.sequence[0],destination=this.sequence.at(-1);$('#service-origin-ja').textContent=['kr','fr'].includes(this.route.countryId)?this.stationKoDisplay(origin.ko):origin.ja;$('#service-origin-ko').textContent=this.stationKoDisplay(origin.ko);$('#service-destination-ja').textContent=['kr','fr'].includes(this.route.countryId)?this.stationKoDisplay(destination.ko):destination.ja;$('#service-destination-ko').textContent=this.stationKoDisplay(destination.ko);$('#service-stop-count').textContent=`${this.sequence.filter(s=>!s.loopArrivalOnly).length}개 ${transportStopNoun(route)}`;$('#service-route-summary').textContent=`${koreanRouteDisplayText(route.line.ko,route)} · ${serviceLabel}`;$('#service-direction-summary').textContent=`${this.stationKoDisplay(origin.ko)} → ${this.stationKoDisplay(destination.ko)}`;this.showDeparture();this.renderStation();this.updateHud();this.timer=setInterval(()=>this.tick(),50);this.typing.focus();return true
   }
   startFreeDrive(state){
@@ -4835,7 +4851,7 @@ function operatingChoiceStatus(choice,route){
   // Japanese operating pattern merely because assembling its tracks failed.
   if(choice.catalogUnavailableReason)return{playable:false,reason:choice.catalogUnavailableReason};
   // A displayable JR physical card is not a playable train when its track is discontinuous.
-  if(route?.geometryReady===false||route?.playable===false)
+  if((route?.geometryReady===false&&!(route?.countryId==='jp'&&route.id==='line-hanshin-kobe-kosoku'&&Array.isArray(route.missingSegments)&&route.missingSegments.length>0))||route?.playable===false)
     return{playable:false,reason:'실제 선로가 연결되지 않았거나 선형 검증이 완료되지 않았습니다.'};
   try{
     const resolved=resolveOperatingChoice(choice,route,{preview:true}),resolvedRoute=resolved?.route;
@@ -5078,6 +5094,7 @@ function configureJourneyPicker(){
     const from=display(choice.originNames),to=display(choice.destinationNames),type=journeyLabel(choice.trainType);
     const trackNote=choice.patternId?.startsWith('jr-ueno-joban-')?' · 닛포리~우에노 잠정 선형':'';
     summary.textContent=operatingPatternLabel(choice)+' · '+operatingDirectionLabel(choice)+' · '+from+' → '+to+(type?' · '+type:'')+(choice.throughServiceId?' · 직통운행':'')+trackNote+(japan?(state.playable?' · 플레이 가능':' · 실행 불가: '+(state.reason||'선로 검증 필요'))+' (등록 '+total+'개 / 실행 가능 '+ready+'개)':'');
+    if(selected?.id==='line-hanshin-kobe-kosoku'&&state.playable)summary.textContent+=' · 선로 미검증 구간은 지도에 표시하지 않습니다.';
     if(submit){submit.disabled=japan&&!state.playable;submit.textContent=japan&&!state.playable?'선로 미검증 · 실행 불가':'운행 시작 →';}
     if(selectedCard)selectedCard.innerHTML='<span class="operating-selected-label">'+(koreanSurface?'선택한 운행':'선택한 열차')+' · '+(state.playable?'운행 준비 완료':'선로 검증 필요')+'</span><div class="operating-selected-route"><strong>'+escapeHtml(from)+'</strong><span aria-hidden="true">→</span><strong>'+escapeHtml(to)+'</strong></div><p>'+escapeHtml(operatingPatternLabel(choice))+(type?' · '+escapeHtml(type):'')+(choice.throughServiceId?' · 직통':'')+'</p>'+(state.playable?'':'<small>'+escapeHtml(state.reason||'선로가 검증되지 않아 시작할 수 없습니다.')+'</small>');
     const endpoints=$('#setup-route .route-endpoints');
