@@ -1131,9 +1131,81 @@ async function startFreeDrive(route){
   const startIndex=0;
   if(!freeDrive?.start(networkStart,startIndex))return toast('자유주행을 시작하지 못했습니다.');
   const state=freeDrive.snapshot();if(!state||!game.startFreeDrive(state))return toast('자유주행 화면을 준비하지 못했습니다.');
-  freeDriveTabIndex=0;renderGameFreeDriveOptions(state);go('game');
+  freeDriveTabIndex=0;renderGameFreeDriveOptions(state);go('game');globalThis.TRTAirportSystem?.update(state);
 }
 function renderHome(){syncHomeFeatured();const recordRouteId=record=>canonicalRouteId(record.lineId||record.routeId);const recent=storage.recent().filter(record=>routes.some(route=>route.id===recordRouteId(record)));document.querySelectorAll('#feature-viewport [data-feature-route]').forEach((button,index)=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),card=button.closest('article'),slot=card?.querySelector('.feature-number');if(!route||!card)return;if(slot){slot.innerHTML=lineBadgeMarkup(route);slot.hidden=!slot.innerHTML}const operator=card.querySelector('[data-feature-operator]'),lineKo=card.querySelector('[data-feature-line-ko]'),lineSecondary=card.querySelector('[data-feature-line-secondary]'),stations=card.querySelector('[data-feature-stations]');if(operator)operator.innerHTML=`${lineSurfaceOperatorLogo(route,'feature-operator-logo')}<span>${route.countryId==='tw'?escapeHtml(getTaiwanDisplayNames(route.operator).ko):escapeHtml(route.operator.ko)} · ${route.loop?'순환 운행':'도심 운행'}</span>`;if(lineKo)lineKo.textContent=route.line.ko;if(lineSecondary)lineSecondary.textContent=countryId==='tw'?`${getTaiwanDisplayNames(route.line).zh} · ${route.line.en}`:countryId==='kr'?route.line.en:`${route.line.ja} · ${route.line.en}`;if(stations)stations.textContent=`${route.stationCount||route.stations.length}개 역`;const dot=$$('[data-slide-to]')[index];if(dot)dot.setAttribute('aria-label',route.line.ko)});$('#recent-list').innerHTML=recent.length?recent.slice(0,3).map(record=>{const routeId=recordRouteId(record),route=routes.find(item=>item.id===routeId),name=route?.line.ko||record.routeName||routeId;return`<button class="recent-chip" data-feature-route="${escapeHtml(routeId)}" style="--route-color:${record.color}"><span><b>${route?.countryId==='tw'?taiwanNameMarkup(route.line):escapeHtml(name)}</b><small>${formatTime(record.elapsed)} · ${record.accuracy.toFixed(1)}%</small></span></button>`}).join(''):'<p class="muted">아직 운행 기록이 없습니다.</p>'}
+/* Airport connections are separate from rail graph edges: never allow a flight
+ * to bypass the adjacent-station typing rules or fabricate a railway segment. */
+async function flyFreeDriveToAirport(airport){
+  const controller=globalThis.TRTAirportSystem;
+  if(!controller||!airport||!isCountryEnabled(airport.countryId))throw new Error('목적지 국가가 지원되지 않습니다.');
+  const previousCountry=countryId,previousState=freeDrive?.snapshot(),previousHistory=[...(freeDrive?.history||[])];
+  if(!previousState?.station)throw new Error('현재 자유주행 위치를 찾을 수 없습니다.');
+  const switched=previousCountry!==airport.countryId;
+  try{
+    if(switched){
+      countryId=airport.countryId;localStorage.setItem('trt-country',countryId);
+      transportGroup='all';category='all';regionFilter='all';operatorFilter='all';
+      routeSelectionRevision++;selected=null;selectedGroup=null;
+      applyCountryUi();refreshCountryCopy();
+      await reloadRailData();
+      renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();
+    }
+    const options=routes.filter(route=>controller.candidate(route,airport))
+      .sort((a,b)=>{
+        const score=route=>(route.lazy?2:0)+(/airport|공항|空港|機場/i.test([route.line?.ko,route.line?.en,route.line?.ja].join(' '))?0:1);
+        return score(a)-score(b);
+      });
+    let destination=null;
+    for(const route of options.slice(0,24)){
+      let detail=route;
+      if(route.lazy){
+        try{detail=railDataRepository.resolveRoute(await hydrateRailLine(route))}
+        catch(error){console.warn('Airport arrival rail route unavailable:',route.id,error);continue}
+      }
+      const index=controller.findStation(detail,airport);
+      if(index<0)continue;
+      destination={route:detail,index};
+      if(route.lazy){
+        const found=builtin.findIndex(item=>item.id===route.id);
+        if(found>=0)builtin[found]=detail;
+        refreshRoutes();
+      }
+      break;
+    }
+    if(!destination)throw new Error(airport.name+'과 연결된 검증 가능한 철도역을 찾지 못했습니다.');
+    freeDrive.setNetwork(freeDriveNetworkRoutes());
+    const live=freeDrive.routes.find(route=>route.id===destination.route.id);
+    const arrivalIndex=live?controller.findStation(live,airport):-1;
+    if(!live||arrivalIndex<0)throw new Error('도착역을 자유주행 선로망에 연결할 수 없습니다.');
+    if(!freeDrive.start(live,arrivalIndex))throw new Error('공항역에서 자유주행을 시작하지 못했습니다.');
+    const state=freeDrive.snapshot();
+    if(!state||!game.startFreeDrive(state))throw new Error('공항 도착 주행 화면을 열지 못했습니다.');
+    freeDriveTabIndex=0;renderGameFreeDriveOptions(state);go('game');controller.update(state);
+    return{station:koreanStationDisplayName(state.station?.ko||state.station?.ja||'',countryId,state.route),route:state.route?.line?.ko||state.route?.id};
+  }catch(error){
+    try{
+      if(switched){
+        countryId=previousCountry;localStorage.setItem('trt-country',countryId);
+        applyCountryUi();refreshCountryCopy();await reloadRailData();
+        renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();
+      }
+      freeDrive.setNetwork(freeDriveNetworkRoutes());
+      const former=freeDrive.routes.find(route=>route.id===previousState.routeId);
+      if(former){
+        const index=Math.max(0,Math.min(previousState.stationIndex||0,former.stations.length-1));
+        freeDrive.start(former,index);
+        // Failed air travel must not erase earlier railway visits.
+        freeDrive.history=previousHistory.length?previousHistory:[previousState.node.key];
+        const restored=freeDrive.snapshot();
+        if(restored&&game.startFreeDrive(restored)){
+          renderGameFreeDriveOptions(restored);go('game');controller.update(restored);
+        }
+      }
+    }catch(restoreError){console.error('Airport rollback failed:',restoreError)}
+    throw error;
+  }
+}
 function renderCustomLibrary(){const list=storage.routes().filter(route=>(route.countryId||'jp')===countryId),target=$('#custom-route-library');target.innerHTML=list.length?list.map(r=>`<article class="library-card" style="--route-color:${r.lineColor}" data-library-route="${r.id}"><span class="library-code">${escapeHtml(r.code||'CT')} · ${r.stations.length} STATIONS</span><h3>${r.countryId==='tw'?taiwanNameMarkup(r.line):escapeHtml(r.line.ko)}</h3><p>${escapeHtml(r.line.ja)} · ${escapeHtml(r.line.en)}</p><footer><button class="btn primary" data-library-play>PLAY</button><button class="btn ghost" data-library-free-drive>FREE DRIVE</button><button class="btn ghost" data-library-edit>EDIT</button><button class="btn text" data-library-delete aria-label="${escapeHtml(r.line.ko)} 삭제">×</button></footer></article>`).join(''):`<div class="library-empty"><b>아직 만든 노선이 없습니다.</b><p>첫 노선을 만들고 원하는 역 순서로 달려보세요.</p><button class="btn primary" data-action="custom-new">＋ CREATE NEW ROUTE</button></div>`}
 function showResult(result){
  let isRecord=false;
@@ -1158,8 +1230,9 @@ function showResult(result){
 }
 const game=new Game({onFinish:showResult,onQuit:()=>go('select'),onFreeDriveMove:(to,routeId,fromKey)=>freeDrive?.moveTo(to,routeId,fromKey)});
 const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomLibrary()},onPlay:openSetup,onSaved:()=>go('custom-list')});
-freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state)}}});
-$('#free-drive-custom')?.addEventListener('click',()=>{const route=editor.route;if(!route?.stations||route.stations.length<2)return toast('자유주행에는 역이 2개 이상 필요합니다.');startFreeDrive(route)});
+freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state);globalThis.TRTAirportSystem?.update(state)}}});
+globalThis.TRTAirportSystem?.configure({flyTo:flyFreeDriveToAirport});
+ $('#free-drive-custom')?.addEventListener('click',()=>{const route=editor.route;if(!route?.stations||route.stations.length<2)return toast('자유주행에는 역이 2개 이상 필요합니다.');startFreeDrive(route)});
 let currentScreen=document.body.dataset.currentScreen||'home';
 let koreaEditorLoading=false;
 let hongKongEditorLoading=false;
