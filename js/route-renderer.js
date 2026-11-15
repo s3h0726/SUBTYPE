@@ -124,6 +124,12 @@ async function renderOsm(route,index,options){
     if(status)status.textContent='선로 일부 미검증 · 역명 타이핑 전용';
     return;
   }
+  if(route?.countryId==='kr'&&route.id==='kr-rail-national-gtx-a'&&route.gtxSouthStationOnly===true){
+    if(gameRail?.map)clearRouteLayers(gameRail);
+    showKoreanTrainFallback(route,index,target);
+    if(status)status.textContent='GTX-A 남부 · 역명 타이핑 전용 (선로 미검증)';
+    return;
+  }
   hideKoreanTrainFallback(target);
   if((route.countryId==='kr'||route.countryId==='hk')&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
