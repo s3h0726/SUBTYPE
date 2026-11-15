@@ -70,9 +70,11 @@ function replaceSuseoConsecutiveSegments(item,track){
 export function applySuseoTrack(raw,track=globalThis.TRT_KR_SUSEO_PYEONGTAEK_TRACK){
  if(!track||raw?.countryId!=='kr'||raw?.schemaVersion!==2||
     !/high.speed/i.test(String(raw.mode)+' '+String(raw.category)))return raw;
- const journeys=Array.isArray(raw.verifiedJourneys)?
-   raw.verifiedJourneys.map(j=>replaceSuseoConsecutiveSegments(j,track)):raw.verifiedJourneys;
+ const previousJourneys=raw.verifiedJourneys;
+ const journeys=Array.isArray(previousJourneys)?
+   previousJourneys.map(j=>replaceSuseoConsecutiveSegments(j,track)):previousJourneys;
+ const journeysChanged=Array.isArray(previousJourneys)&&journeys.some((journey,i)=>journey!==previousJourneys[i]);
  const main=replaceSuseoConsecutiveSegments(raw,track);
- if(main===raw&&journeys===raw.verifiedJourneys)return raw;
- return {...main,verifiedJourneys:journeys};
+ if(main===raw&&!journeysChanged)return raw;
+ return {...main,verifiedJourneys:journeysChanged?journeys:previousJourneys};
 }
