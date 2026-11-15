@@ -3486,7 +3486,7 @@ let suseoTrackSourcePromise;
 const suseoStationName=station=>String(station?.ko||station?.names?.ko||station?.nameKo||'').trim();
 const suseoClose=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&Math.hypot(
   (a[0]-b[0])*111.195,(a[1]-b[1])*88)<0.35;
-const reverseSuseoGeometry=geometry=>geometry.map(point=>[...point]).reverseSuseoGeometry();
+const reverseSuseoGeometry=geometry=>geometry.map(point=>[...point]).reverse();
 const concatSuseoSegments=segments=>segments.flatMap((part,i)=>i?part.geometry.slice(1):part.geometry);
 function verifySuseoTrack(record){
  if(record?.id!=='kr-physical-suseo-pyeongtaek-highspeed'||
