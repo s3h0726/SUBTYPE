@@ -1101,6 +1101,16 @@ function resolvePlayableRoute(route,{direction='forward',service=null,boardingSt
     return{canonicalStations:canonical.slice(),stations,segments:[],geometry:[],canonicalSegments:[],direction,serviceApplied:applyStopPattern,sequenceOnly:true,unverifiedRailGeometry:true,renderKey:`${route.id}::${direction}::${service?.id||'all'}::stations-only::${stations.map(stationId).join('>')}`};
   }
 
+  // Four official GTX-A southern calls are playable in station-order mode,
+  // without implying verified tunnel geometry or drawing invented rail tracks.
+  const gtxSouth=route?.countryId==='kr'&&route.id==='kr-rail-national-gtx-a'&&route.gtxSouthStationOnly===true&&route.geometryReady===false&&
+    Array.isArray(route.geometry)&&route.geometry.length===0&&canonical.length===4&&
+    ['kr-gtx-a-x108','kr-gtx-a-x109','kr-gtx-a-x110','kr-gtx-a-x111'].every(id=>fullIds.has(id));
+  if(gtxSouth){
+    const stations=selectedStations.map(s=>({...s,geometryIndex:null}));
+    return{canonicalStations:canonical.slice(),stations,segments:[],geometry:[],canonicalSegments:[],direction,serviceApplied:applyStopPattern,sequenceOnly:true,unverifiedRailGeometry:true,renderKey:`${route.id}::gtx-a-south::${stations.map(stationId).join('>')}`};
+  }
+
   if(route?.geometryStatus==='missing'||!Array.isArray(route?.geometry)||route.geometry.length<2){if(!permitsApproximateGeometry(route))throw new Error(`${route.id}: 실제 선로 선형이 없어 직선 경로 플레이를 차단했습니다.`);return straightLineFallback('missing railway geometry')}
 
   try{
@@ -1876,6 +1886,12 @@ async function renderOsm(route,index,options){
     if(gameRail?.map)clearRouteLayers(gameRail);
     showKoreanTrainFallback(route,index,target);
     if(status)status.textContent='선로 일부 미검증 · 역명 타이핑 전용';
+    return;
+  }
+  if(route?.countryId==='kr'&&route.id==='kr-rail-national-gtx-a'&&route.gtxSouthStationOnly===true){
+    if(gameRail?.map)clearRouteLayers(gameRail);
+    showKoreanTrainFallback(route,index,target);
+    if(status)status.textContent='GTX-A 남부 · 역명 타이핑 전용 (선로 미검증)';
     return;
   }
   hideKoreanTrainFallback(target);
@@ -4816,7 +4832,7 @@ function buildCatalogResolved(choice){
 }
 function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
-  if(choice.kind==='france')return resolveFranceChoice(choice,route);if(choice.kind==='uk')return resolveUKChoice(choice,route);if(choice.kind==='thailand')return resolveThailandChoice(choice,route);if(choice.kind==='taiwan')return resolveTaiwanChoice(choice,route);
+  if(choice.kind==='gtxSouth')return globalThis.TRT_GTX_A_SOUTH.resolve(choice,route);if(choice.kind==='france')return resolveFranceChoice(choice,route);if(choice.kind==='uk')return resolveUKChoice(choice,route);if(choice.kind==='thailand')return resolveThailandChoice(choice,route);if(choice.kind==='taiwan')return resolveTaiwanChoice(choice,route);
   if(choice.kind==='hongKongLine')return resolveHongKongLineChoice(choice,route);
   if(choice.kind==='hongKongTram')return resolveHongKongTramChoice(choice,route);
   if(choice.kind==='hongKong'){const reason=hongKongRouteBlockReason(route);if(reason)throw new Error(reason);return{route,service:route.services[0],direction:'forward',pattern:null,trainType:null,destinationStationId:route.stations.at(-1)?.id,trainTypeContexts:[]}}
@@ -4878,7 +4894,7 @@ function actualOperatingChoices(route){if(route?.countryId==='fr'&&route.categor
   // N'EX requires separate Ofuna/Shinjuku paths: never offer legacy chained local/fallback choices.
   if(route?.id==='line-11328')return nexOperatingChoices(route);
   if(route?.famousExpress)return famousLimitedExpressChoices(route);
-  if(route?.countryId==='kr'&&route.schemaVersion===2)return koreanVerifiedChoices(route);
+  if(route?.countryId==='kr'&&route.schemaVersion===2)return [...koreanVerifiedChoices(route),...(globalThis.TRT_GTX_A_SOUTH?.choices(route)||[])];
   const journeys=serviceJourneysForRoute(route?.id),patterns=servicePatternsForRoute(route?.id),stationMap=new Map((route?.stations||[]).map(station=>[String(station.id),station])),choices=[],seen=new Set;
   const add=choice=>{const key=[choice.kind==='catalog'?choice.id:(choice.kind||''),choice.patternId||'',choice.journeyId||'',choice.throughSpecId||'',choice.legacyServiceId||'',choice.originId,choice.destinationId,choice.trainType?.id||'',choice.direction||''].join('::');if(!seen.has(key)){seen.add(key);choices.push(choice)}};
   for(const item of journeys)add({kind:'journey',id:`journey:${item.id}`,originId:String(item.originStationId),destinationId:String(item.destinationStationId),originNames:item.originNames,destinationNames:item.destinationNames,trainType:trainTypeFor(item.trainTypeId),journeyId:item.id,patternId:item.servicePatternId||null,patternName:item.names||null,throughServiceId:item.throughServiceId||null,direction:item.directionId||'forward'});
@@ -5103,6 +5119,11 @@ function configureJourneyPicker(){
     if(selected?.countryId==='hk'){const serviceRoute=builtin.find(r=>r.id===(choice.sourceRouteId||choice.id));if(serviceRoute)renderHongKongSetupRoute(serviceRoute,choice);}
     if(choice.kind==='france'){const resolved=resolveFranceChoice(choice,selected),list=$('#setup-route .setup-stations');if(list)list.innerHTML=resolved.route.stations.map(s=>'<li><b>'+escapeHtml(s.ko)+'</b><span lang="fr">'+escapeHtml(s.fr)+'</span></li>').join('');}
     if(choice.kind==='uk'){const resolved=resolveUKChoice(choice,selected),list=$('#setup-route .setup-stations');if(list)list.innerHTML=resolved.route.stations.map(s=>'<li><b>'+escapeHtml(s.en||s.ja)+'</b><span>'+escapeHtml(s.ko)+'</span></li>').join('');}
+    if(choice.kind==='gtxSouth'){
+      const result=globalThis.TRT_GTX_A_SOUTH.resolve(choice,selected),stops=result.route.stations,list=$('#setup-route .setup-stations');
+      if(list)list.innerHTML=stops.map(s=>'<li><b>'+escapeHtml(s.ko)+'</b><span>'+escapeHtml(s.stationCode)+'</span></li>').join('');
+      const description=$('#setup-route > p');if(description)description.textContent='GTX-A · 수서–동탄 · 4개 역 · 지하 선로 미검증';
+    }
     if(choice.kind==='koreanVerified'){
       const resolved=resolveKoreanVerifiedChoice(choice,selected),stops=resolved.route.stations,list=$('#setup-route .setup-stations');
       if(list)list.innerHTML=stops.map(s=>'<li><b>'+escapeHtml(s.ko)+'</b></li>').join('');
