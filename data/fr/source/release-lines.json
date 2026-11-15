@@ -1,6 +1,25 @@
 [
   {"id":"fr-rer-a","sourceId":80921,"routeId":"IDFM:C01742","category":"rer","serviceKo":"각역정차","relations":[2333439,2333438,2333441,2333440,2333436,3012957,2333444,2333447,2333437,2333445,2333443,2333442],"regionCodes":["11"],"ko":"광역급행철도 A선","fr":"RER A","code":"A","jointOperator":true},
-  {"id":"fr-rer-b","sourceId":80921,"routeId":"IDFM:C01743","category":"rer","serviceKo":"각역정차","relations":[8537026,8537194,8537024,8537191,8537025,8537193],"regionCodes":["11"],"ko":"광역급행철도 B선","fr":"RER B","code":"B","jointOperator":true},
+  {"id":"fr-rer-b","sourceId":80921,"routeId":"IDFM:C01743","category":"rer","serviceKo":"각역정차","relations":[8537026,8537194,8537024,8537191,8537025,8537193,8537192,8536959,8537341,8537343,8537342],"compositions":[{"relations":[8537340],"excludedCalls":["Parc de Sceaux","Fontaine-Michalon","Les Baconnets","Massy - Verrières"],"serviceKo":"일부 역 통과"}],"regionCodes":["11"],"ko":"광역급행철도 B선","fr":"RER B","code":"B","jointOperator":true},
+  {
+    "id":"fr-rer-c","sourceId":80921,"routeId":"IDFM:C01727","category":"rer","serviceKo":"일부 역 통과","regionCodes":["11"],"ko":"광역급행철도 C선","fr":"RER C","code":"C",
+    "compositions":[
+      {"relations":[3046871,3019053,3019746],"excludedCalls":["Ivry-sur-Seine - Voie 1B","Vitry-sur-Seine","Les Ardoines","Choisy-le-Roi - Voie 1B","Villeneuve-le-Roi - Voie 1B","Ablon","Athis-Mons"]},
+      {"relations":[3046871,3019053,3006270],"excludedCalls":["Ivry-sur-Seine - Voie 1B","Vitry-sur-Seine","Les Ardoines","Choisy-le-Roi - Voie 1B","Villeneuve-le-Roi - Voie 1B","Ablon","Athis-Mons"]},
+      {"relations":[3006693,3019054,3047780],"excludedCalls":["Athis-Mons","Ablon","Villeneuve-le-Roi - Voie 2B","Choisy-le-Roi - Voie 2B","Les Ardoines","Vitry-sur-Seine","Ivry-sur-Seine - Voie 2B"]},
+      {"relations":[3006271,3019054,3047780],"excludedCalls":["Athis-Mons","Ablon","Villeneuve-le-Roi - Voie 2B","Choisy-le-Roi - Voie 2B","Les Ardoines","Vitry-sur-Seine","Ivry-sur-Seine - Voie 2B"]},
+      {"relations":[3049201,3019053,3019746],"startNode":1044936701,"endNode":2356416884,"excludedCalls":["Ivry-sur-Seine - Voie 1B","Vitry-sur-Seine"],"serviceKo":"일부 역 통과"},
+      {"relations":[3006693,3019054,3049185],"startNode":2356416886,"endNode":1044938138,"excludedCalls":["Vitry-sur-Seine","Ivry-sur-Seine - Voie 2B"],"serviceKo":"일부 역 통과"},
+      {"relations":[3046871,3019053,3019746],"startNode":2367270147,"endNode":3467942204,"excludedCalls":[],"serviceKo":"각역정차"},
+      {"relations":[3006693,3019054,3047780],"startNode":3467942201,"endNode":2367253648,"excludedCalls":[],"serviceKo":"각역정차"},
+      {"relations":[3046871,3019053,3019746],"startNode":11053126931,"endNode":960560748,"excludedCalls":["Villeneuve-le-Roi - Voie 1B","Ablon","Athis-Mons"],"serviceKo":"일부 역 통과"},
+      {"relations":[3006693,3019054,3047780],"startNode":1095051929,"endNode":11053126930,"excludedCalls":["Athis-Mons","Ablon","Villeneuve-le-Roi - Voie 2B","Les Ardoines"],"serviceKo":"일부 역 통과"},
+      {"relations":[3006693,3019054,3047780],"startNode":1096502954,"endNode":11053126930,"excludedCalls":["Athis-Mons","Ablon","Villeneuve-le-Roi - Voie 2B","Choisy-le-Roi - Voie 2B","Les Ardoines","Vitry-sur-Seine","Ivry-sur-Seine - Voie 2B"],"serviceKo":"일부 역 통과"},
+      {"relations":[3046871,3019053,3019746],"startNode":11053126931,"endNode":1449171094,"excludedCalls":["Ivry-sur-Seine - Voie 1B","Vitry-sur-Seine","Les Ardoines","Choisy-le-Roi - Voie 1B","Villeneuve-le-Roi - Voie 1B","Ablon","Athis-Mons"],"serviceKo":"일부 역 통과"},
+      {"relations":[3046871,3019053,3019746],"startNode":1018663002,"endNode":1449171094,"excludedCalls":["Ivry-sur-Seine - Voie 1B","Vitry-sur-Seine","Les Ardoines","Choisy-le-Roi - Voie 1B","Villeneuve-le-Roi - Voie 1B","Ablon","Athis-Mons","Savigny-sur-Orge","Épinay-sur-Orge - Voie 1B","Sainte-Geneviève-des-Bois - Voie 1B","Saint-Michel-sur-Orge - Voie 1B"],"serviceKo":"일부 역 통과"},
+      {"relations":[3006693,3019054,3047780],"startNode":1096502954,"endNode":2367205974,"excludedCalls":["Saint-Michel-sur-Orge - Voie 2B","Sainte-Geneviève-des-Bois - Voie 2B","Athis-Mons","Ablon","Villeneuve-le-Roi - Voie 2B","Choisy-le-Roi - Voie 2B","Les Ardoines","Vitry-sur-Seine","Ivry-sur-Seine - Voie 2B"],"serviceKo":"일부 역 통과"}
+    ]
+  },
   {"id":"fr-rer-d","sourceId":80921,"routeId":"IDFM:C01728","category":"rer","serviceKo":"광역열차","relations":[17137748,17136685,17141054,17143402,17152126,17153001,17169822,17169572,17177489,17177399],"regionCodes":["11","24","32"],"ko":"광역급행철도 D선","fr":"RER D","code":"D"},
   {"id":"fr-rer-e","sourceId":80921,"routeId":"IDFM:C01729","category":"rer","serviceKo":"각역정차","relations":[7271952,9488692,65456,9488694],"regionCodes":["11"],"ko":"광역급행철도 E선","fr":"RER E","code":"E"},
   {"id":"fr-intercites-night-paris-toulouse","sourceId":83582,"routeId":"FR:Line::7c00cf1f-74fd-4fda-a4e5-c2b1acb937a9:","brand":"INTERCITES de nuit","serviceKo":"앵테르시테 야간열차 · 카오르 경유","category":"intercity","relations":[11783094,5945361],"regionCodes":["11","24","75","76"],"ko":"파리 오스테를리츠역–툴루즈 야간열차","fr":"Intercités de nuit Paris Austerlitz – Toulouse Matabiau"},
