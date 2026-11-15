@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.10.1] — 2026-11-15
+
+- fix: make route card list denser * fix: show more route cards at once with compact grid * fix: bust cached route card CSS for compact layout
+
 ## [v0.10.0] — 2026-11-15
 
 - feat: add Suseo–Dongtan services to the existing GTX-A card * feat(gtx-a): define four official south stops as directions on existing card * feat(gtx-a): show south service directi
