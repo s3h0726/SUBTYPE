@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.9.2] — 2026-11-15
+
+- style: refresh SUBTYPE route selection cards * style: redesign route selection cards across countries * style: load refreshed route cards after country styles
+
 ## [v0.9.1] — 2026-11-15
 
 ### 버전 관리 개선
