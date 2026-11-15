@@ -50,11 +50,28 @@ class Game{
     $('#station-context').textContent='출발역 입력 · 자유주행';$('#input-status').textContent=this.route?.countryId==='kr'?'입력':'TYPE';$('#input-status').style.color='';$('#next-station-button').hidden=true;
     if(this.route?.countryId==='th')renderThailandGameDisplay(this);if(this.route?.countryId==='tw')renderTaiwanGameDisplay(this);this.typing.setTarget(this.answerValues(station));this.renderKoreanProgress();if(!this.paused)this.typing.focus()
   }
+  freeDriveFollowingStation(edge){
+    const stops=edge?.route?.stations;
+    if(!Array.isArray(stops)||!Number.isInteger(edge.index))return null;
+    const direction=edge.direction===-1?-1:1;
+    // The right-hand station is AFTER the typed destination, not the
+    // destination currently shown in the centre of the sign.
+    const next=stops[edge.index+direction];
+    if(next)return next;
+    if(direction>0&&stops.length>2&&stops[0]?.id===stops.at(-1)?.id)return stops[1];
+    if(edge.route.loop&&stops.length>2)return stops[direction>0?0:stops.length-1]||null;
+    // At a bidirectional terminus the train will turn back onto the same
+    // verified line; do not suggest an unverified reverse one-way journey.
+    const reverseAllowed=edge.route.countryId!=='hk'&&!edge.route.oneWay&&
+      !(edge.route.countryId==='kr'&&edge.route.schemaVersion===2);
+    return reverseAllowed?stops[edge.index-direction]||null:null;
+  }
   setFreeDriveTypingTarget(edge,station){
     if(!this.freeDriveMode||!edge||!station)return;
     const serving=edge.route||this.route;
     if(serving?.countryId==='kr'&&['bus','village_bus','express_bus','brt'].includes(serving.mode))station=restoreKrBusLatinStation(station);
-    this.freeDriveTarget={to:edge.to,routeId:edge.routeId,index:edge.index,station,fromKey:this.freeDriveState?.node?.key||null};
+    const following=this.freeDriveFollowingStation(edge);
+    this.freeDriveTarget={to:edge.to,routeId:edge.routeId,index:edge.index,station,following,fromKey:this.freeDriveState?.node?.key||null};
     // Every country must show the station the player is actually typing.
     // Previously only Hong Kong updated the sign; Japan/Korea/Taiwan showed the previous station.
     const ko=this.stationKoDisplay(station.ko)||station.ja||'';
@@ -66,12 +83,15 @@ class Game{
     $('#station-context').textContent='다음역 입력 · 자유주행';
     const badge=$('#station-badge');badge.textContent=station.hasOfficialStationCode?station.officialCode:'';badge.hidden=!badge.textContent;
     const destination=edge.direction<0?edge.route.stations[0]:edge.route.stations.at(-1);
-    $('#next-station-name').textContent=ko||'—';$('#next-station-ko').textContent=ko||'';$('#next-station-romaji').textContent=this.route?.countryId==='kr'?ko:`${station.ja||''} · ${station.romaji||''}`;$('#next-station').textContent=ko||'';
+    const nextKo=this.stationKoDisplay(following?.ko)||'';
+    $('#next-station-name').textContent=nextKo||'종착역';$('#next-station-ko').textContent=nextKo;
+    $('#next-station-romaji').textContent=following?(this.route?.countryId==='kr'?nextKo:[following.ja||'',following.romaji||''].filter(Boolean).join(' · ')):'';
+    $('#next-station').textContent=ko||'';
     $('#service-destination-ja').textContent=['kr','fr'].includes(this.route.countryId)?this.stationKoDisplay(destination.ko):destination.ja||'';
     $('#service-destination-ko').textContent=this.stationKoDisplay(destination.ko)||'';
     $('#service-direction-summary').textContent=`${this.stationKoDisplay(this.currentStation()?.ko||'')} → ${this.stationKoDisplay(destination.ko||'')}`;
     this.applyActiveBrand(station);
-    this.applyKorailNameplateNames(station,this.currentStation(),station);this.applyEnodenNameplate(station,this.currentStation(),station);this.applyTokyoMetroNameplate(station,this.currentStation(),station,{freeDrive:true});this.applyFourOperatorPhotoSign(station,this.currentStation(),edge?.route?.stations?.[edge.index+(edge.direction>0?1:-1)]||null,{freeDrive:true});
+    this.applyKorailNameplateNames(station,this.currentStation(),following);this.applyEnodenNameplate(station,this.currentStation(),following);this.applyTokyoMetroNameplate(station,this.currentStation(),following,{freeDrive:true});this.applyFourOperatorPhotoSign(station,this.currentStation(),following,{freeDrive:true});
     if(this.mapRoute)this.mapReady=renderGameMap(this.mapRoute,this.index,{motion:true,nextRouteIndex:edge.index});
     this.phase='TYPING';this.comboPrefixUnits=0;
     const input=$('#typing-input');input.readOnly=false;input.disabled=this.paused;input.closest('.typing-box').hidden=false;input.closest('.typing-box').classList.remove('waiting');
@@ -113,7 +133,7 @@ class Game{
     $('#next-station').textContent='이동할 역 선택';$('#station-service-footer').textContent='자유주행';
     $('#game-service-name').textContent=route.countryId==='fr'?'자유주행':'FREE DRIVE · 自由走行';$('#service-origin-ja').textContent=['kr','fr'].includes(route.countryId)?this.stationKoDisplay(station.ko):station.ja||'';$('#service-origin-ko').textContent=this.stationKoDisplay(station.ko)||'';$('#service-destination-ja').textContent=route.countryId==='fr'?'자유주행':'自由';$('#service-destination-ko').textContent='자유주행';$('#service-stop-count').textContent=`${state.historyLength||1}개 역 이동`;$('#service-route-summary').textContent=`${route.line?.ko||route.line?.ja||''} · 자유주행`;$('#service-direction-summary').textContent='앞·뒤 역을 선택해 자유롭게 이동';
     $('#hud-progress').textContent=`${state.historyLength||1} VISITED`;$('#hud-cpm').textContent='—';$('#hud-accuracy').textContent='—';$('#hud-combo').textContent=`환승 ${state.transferCount||0}`;
-    const defaultEdge=sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0);
+    const defaultEdge=sameRoute.find(edge=>edge.direction===(state.travelDirection===-1?-1:1))||sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0);
     if(this.freeDriveAwaitingStart)this.setFreeDriveStartTarget(station);
     else if(defaultEdge){const targetStation=defaultEdge.route?.stations?.[defaultEdge.index]||null;if(targetStation)this.setFreeDriveTypingTarget(defaultEdge,targetStation)}else{this.freeDriveTarget=null;this.phase='AT_TERMINAL';$('#typing-input').readOnly=true;$('#station-context').textContent='종착역 도착 · 환승 노선을 선택하세요';$('#input-status').textContent='ARRIVED';}
     if(this.route?.countryId==='tw')renderTaiwanGameDisplay(this);if(route.countryId==='fr')this.fitPrompt();this.mapReady=renderGameMap(this.mapRoute,this.index,{mapMode:'geographic',stationLabel:this.route?.countryId==='fr'?'ko':'ja-ko',mapLabels:'normal',motion:true,serviceStops:[...this.serviceStops],previousRouteIndex:Math.max(0,this.index-1),nextRouteIndex:this.freeDriveTarget?.index??Math.min(this.mapRoute.stations.length-1,this.index+1)});
@@ -398,7 +418,7 @@ class Game{
       const target=this.freeDriveTarget;this.phase='ARRIVING';this.stats.complete();this.typedStationIds.push(target.station?.id||target.to);this.playTone();this.typing.clear?.();
       if(target.kind==='start'){
         this.freeDriveAwaitingStart=false;
-        const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),preferred=this.freeDriveSelectedEdge,edge=sameRoute.find(item=>item.to===preferred?.to&&item.routeId===preferred?.routeId)||sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0);this.freeDriveSelectedEdge=null;
+        const state=this.freeDriveState,sameRoute=(state?.edges||[]).filter(edge=>edge.routeId===state.routeId),preferred=this.freeDriveSelectedEdge,edge=sameRoute.find(item=>item.to===preferred?.to&&item.routeId===preferred?.routeId)||sameRoute.find(edge=>edge.direction===(state?.travelDirection===-1?-1:1))||sameRoute.find(edge=>edge.direction>0)||sameRoute.find(edge=>edge.direction<0);this.freeDriveSelectedEdge=null;
         if(edge){const station=edge.route?.stations?.[edge.index]||null;if(station){$('#station-context').textContent='다음역 입력 · 자유주행';this.setFreeDriveTypingTarget(edge,station);return}}
         this.renderFreeDriveState(state);return
       }
