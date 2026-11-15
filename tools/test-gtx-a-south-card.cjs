@@ -36,7 +36,11 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
     assert.ok(script.includes('[...koreanVerifiedChoices(route),...(globalThis.TRT_GTX_A_SOUTH?.choices(route)||[])]'),'append to existing north choices');
     assert.ok(script.includes("if(choice.kind==='gtxSouth')return globalThis.TRT_GTX_A_SOUTH.resolve(choice,route)"),'play southern journeys');
     assert.ok(script.includes("if(choice.kind==='gtxSouth'){"),'show correct southern stop list');
-    assert.ok(script.includes("unverifiedRailGeometry:true"),'avoid false geometry in game');
+  }
+  for(const script of [read('js/route-integrity.js'),bundle]){
+    assert.ok(script.includes('unverifiedRailGeometry:true'),'avoid false geometry in game');
+  }
+  for(const script of [renderer,bundle]){
     assert.ok(script.includes('GTX-A 남부 · 역명 타이핑 전용 (선로 미검증)'),'honest map status');
   }
   assert.ok(renderer.includes('gtxSouthStationOnly===true'),'renderer must suppress a fictitious track');
