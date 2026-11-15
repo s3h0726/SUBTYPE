@@ -30,7 +30,7 @@
       station?.names?.en,station?.names?.zh,station?.canonicalStationNames?.ja,
       station?.canonicalStationNames?.ko].filter(Boolean);
   }
-  const shortAlias=alias=>normalize(alias).length<=7||['airport','機場'].includes(normalize(alias));
+  const shortAlias=alias=>['airport','機場','공항'].includes(normalize(alias));
   function matchesStation(station,route,airport){
     if(!station||!route||!airport||route.countryId!==airport.countryId)return false;
     const names=stationNames(station).map(normalize);
@@ -60,7 +60,7 @@
     if(matches(route.searchStations||[]))return true;
     if(matches(route.stationCatalog||[]))return true;
     const line=[route?.line?.ko,route?.line?.en,route?.line?.ja,route?.nameKo].join(' ');
-    const keywords={ICN:/공항철도|airport railroad|incheon airport/i,GMP:/공항철도|airport railroad|airport railway/i,NRT:/成田|나리타|narita/i,HND:/羽田|하네다|haneda|空港線/i,KIX:/関西空港|간사이공항|kansai airport/i,HKG:/airport express|機場快|공항철도/i,TPE:/機場捷運|공항철도|airport mrt/i};
+    const keywords={ICN:/공항철도|airport railroad|incheon airport/i,GMP:/공항철도|airport railroad|airport railway/i,NRT:/成田|나리타|narita/i,HND:/羽田|하네다|haneda/i,KIX:/関西空港|간사이공항|kansai airport/i,HKG:/airport express|機場快|공항철도/i,TPE:/機場捷運|공항철도|airport mrt/i};
     return keywords[airport.code].test(line);
   }
   const findStation=(route,airport)=>(route?.stations||[]).findIndex(station=>matchesStation(station,route,airport));
@@ -110,7 +110,7 @@
   function open(){
     if(!bridge||!current||busy)return;
     initialize();if(!dialog)return;
-    selected=null;dialog.hidden=false;
+    selected=null;dialog.hidden=false;dialog.querySelector('#airport-transfer-close').textContent='×';
     dialog.querySelector('#airport-transfer-origin').textContent='출발 '+current.name+' ('+current.code+')';
     const target=dialog.querySelector('#airport-transfer-destinations');
     target.innerHTML=AIRPORTS.filter(airport=>airport.code!==current.code).map(airport=>
