@@ -33,7 +33,7 @@ const read=file=>fs.readFileSync(path.join(root,file),'utf8');
   const context={window:{}};
   vm.runInNewContext(read('js/japan-lite-index.js'),context,{timeout:4000});
   const indexed=context.window.TRT_JAPAN_LITE_INDEX.routes.filter(r=>r.operatorId==='hanshindentetsu');
-  assert.deepEqual(indexed.map(r=>r.id).slice().sort(),ids.slice().sort(),'no new or missing Hanshin lines');
+  assert.deepEqual(Array.from(indexed,r=>r.id).sort(),ids.slice().sort(),'no new or missing Hanshin lines');
   assert.match(indexed.find(r=>r.id===kobe.id).lazySource,/data\/generated\/routes\/line-hanshin-kobe-kosoku\.json/,'hydrate the actual existing route');
   for(const file of ['js/app.js','js/app.bundle.js']){
     const content=read(file);
