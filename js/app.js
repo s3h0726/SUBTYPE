@@ -1235,7 +1235,7 @@ const customForeignRailCache=new Map();
 async function customForeignRailIndex(targetCountry){
  if(!isCountryEnabled(targetCountry))throw new Error('지원하지 않는 목적지 국가입니다.');
  if(!customForeignRailCache.has(targetCountry)){
-  const pending=loadTransportData(targetCountry,koreaPlayMode).then(loaded=>{
+  const pending=(targetCountry===countryId&&builtin.length?Promise.resolve({lines:builtin}):loadTransportData(targetCountry,koreaPlayMode)).then(loaded=>{
    const available=(loaded.lines||[]).filter(route=>route.countryId===targetCountry&&
     route.category!=='custom'&&route.playable!==false&&route.visibility!=='internal'&&
     !['bus','village_bus','express_bus','brt','river_bus','ferry'].includes(route.mode));
