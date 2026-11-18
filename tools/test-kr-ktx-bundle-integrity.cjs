@@ -9,7 +9,7 @@ test('the actual shipped game bundle defines KTX reference and map-fix functions
  assert.ok(bundle.indexOf('function loadKtxMapReference(){')<bundle.indexOf('loadKtxMapReference().catch('));
  assert.ok(bundle.indexOf('function mapOnlyKtxJourneySegments(')<bundle.indexOf('mapOnlyKtxJourneySegments(route,'));
  assert.ok(bundle.includes('mapDisplaySegments:displaySegments'),'real game journey route must use corrected map-only segments');
- assert.ok(bundle.includes("const directed=Array.isArray(route.mapDisplaySegments)?route.mapDisplaySegments:route.directedSegments"),'map renderer must draw actual corrected segments');
+ assert.ok(bundle.includes("directed=Array.isArray(route.mapDisplaySegments)?route.mapDisplaySegments:route.directedSegments"),'map renderer must draw actual corrected segments');
 });
 test('the production HTML references precisely the freshly built bundled code',()=>{
  const html=read('index.html');
