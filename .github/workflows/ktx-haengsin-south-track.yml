@@ -1,0 +1,27 @@
+name: Diagnose Haengsin KTX and Gyeongbu high-speed south of Daejeon
+on:
+  push:
+    branches: [fix/ktx-haengsin-south-gyeongbu-geometry-20261118]
+    paths:
+      - 'tools/diagnose-kr-ktx-haengsin-south.cjs'
+      - 'tools/fix-kr-ktx-haengsin-gyeongbu-track.cjs'
+      - '.github/workflows/ktx-haengsin-south-track.yml'
+permissions:
+  contents: write
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Diagnose actual KTX railway map line geometry
+        run: |
+          node --check tools/diagnose-kr-ktx-haengsin-south.cjs
+          node tools/diagnose-kr-ktx-haengsin-south.cjs
