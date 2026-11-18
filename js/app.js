@@ -1359,7 +1359,30 @@ let koreaEditorLoading=false;
 let hongKongEditorLoading=false;
 async function loadHongKongEditorNetwork(){
  if(hongKongEditorLoading)return;hongKongEditorLoading=true;
- try{const pending=builtin.filter(r=>r.countryId==='hk'&&r.lazy&&!hongKongRouteBlockReason(r));for(const route of pending){const detail=railDataRepository.resolveRoute(await hydrateRailLine(route));if(countryId!=='hk')return;const i=builtin.findIndex(r=>r.id===route.id);if(i>=0)builtin[i]=detail}if(countryId==='hk'){refreshRoutes();const hk=builtin.filter(r=>r.countryId==='hk'&&!hongKongRouteBlockReason(r)&&!r.lazy);editor.setRailNetwork(hk,{countryId:'hk'});editor.setStationMaster([...new Map(hk.flatMap(r=>r.stations).map(s=>[s.stationMasterId||s.id,s])).values()],{countryId:'hk'})}}catch(error){toast('홍콩 편집기 노선 로딩 실패: '+error.message)}finally{hongKongEditorLoading=false}
+ try{
+  const pending=builtin.filter(r=>r.countryId==='hk'&&r.lazy&&!hongKongRouteBlockReason(r));
+  let failed=0;
+  for(let offset=0;offset<pending.length;offset+=6){
+   await Promise.all(pending.slice(offset,offset+6).map(async route=>{
+    try{
+     const detail=railDataRepository.resolveRoute(await hydrateRailLine(route));
+     if(countryId!=='hk')return;
+     const index=builtin.findIndex(r=>r.id===route.id);
+     if(index>=0)builtin[index]=detail;
+    }catch(error){failed++;console.warn('Hong Kong editor route load failed:',route.id,error)}
+   }));
+   if(countryId!=='hk')return;
+   // Offer first results early; complete the remaining rail network in batches.
+   if(offset>0&&offset+6<pending.length)continue;
+   const hk=builtin.filter(r=>r.countryId==='hk'&&!r.lazy&&r.stations?.length>=2&&!hongKongRouteBlockReason(r));
+   const previous=editor.countryNetworks.get('hk')||{};
+   const merged=[...new Map([...(previous.routes||[]),...hk].map(r=>[r.id,r])).values()];
+   editor.setRailNetwork(merged,{countryId:'hk'});
+   editor.setStationMaster([...new Map([...(previous.stations||[]),...merged.flatMap(r=>r.stations||[])]
+    .filter(station=>station?.id).map(station=>[station.stationMasterId||station.sourceStationId||station.id,{...station,countryId:'hk'}])).values()],{countryId:'hk'});
+  }
+  if(failed)console.warn('Hong Kong custom station partial loading:',failed,'unavailable routes');
+ }finally{hongKongEditorLoading=false}
 }
 async function loadKoreanEditorNetwork(){
  if(koreaEditorLoading)return;koreaEditorLoading=true;
