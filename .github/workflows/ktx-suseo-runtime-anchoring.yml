@@ -5,6 +5,7 @@ on:
     paths:
       - 'js/korea-suseo-pyeongtaek.js'
       - 'tools/test-kr-ktx-runtime-display.cjs'
+      - 'tools/diagnose-kr-suseo-ktx-feeder.cjs'
       - '.github/workflows/ktx-suseo-runtime-anchoring.yml'
 permissions:
   contents: write
@@ -23,6 +24,8 @@ jobs:
         run: node tools/test-kr-suseo-pyeongtaek.cjs
       - name: Verify all real KTX journeys and exact source station positions
         run: node tools/test-kr-ktx-runtime-display.cjs
+      - name: Trace two unresolved KTX feeder tracks to actual SR physical junction vertices
+        run: node tools/diagnose-kr-suseo-ktx-feeder.cjs
       - name: Rebuild bundled runtime with station-position correction
         run: node tools/build-app-bundle.js
       - name: Check bundled source syntax
