@@ -91,6 +91,7 @@
   <link rel="stylesheet" href="./css/country-home.css?v=20261112-country-directory-v2">
   <link rel="stylesheet" href="./css/world-home.css?v=20261115-hk-mo-dialog-fix">
   <link rel="stylesheet" href="./css/route-card-refresh.css?v=20261115-route-card-compact">
+  <link rel="stylesheet" href="./css/custom-route-studio.css?v=20261118-shortest-path">
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -406,20 +407,22 @@
     </section>
 
     <section id="screen-custom-list" data-screen="custom-list" class="screen custom-library" aria-labelledby="custom-list-title">
-      <div class="section-head"><div><p class="eyebrow">CUSTOM ROUTE LIBRARY</p><h2 id="custom-list-title">나만의 노선</h2><p class="section-sub">직접 만든 역을 연결하고, 저장한 노선을 바로 플레이하세요.</p></div><button class="btn text" data-nav="home">← HOME</button></div>
+      <div class="section-head"><div><p class="eyebrow">CUSTOM ROUTE LIBRARY</p><h2 id="custom-list-title">나만의 노선</h2><p class="section-sub">출발역과 목적지만 고르면, 등록된 철도망을 따라 최단 경로가 완성됩니다.</p></div><button class="btn text" data-nav="home">← HOME</button></div>
+      <div class="custom-intro"><span>01 · 출발역 선택</span><span>02 · 목적지 검색</span><span>03 · 최단 경로 생성</span></div>
       <div class="library-actions"><button class="btn primary" data-action="custom-new">＋ CREATE NEW ROUTE</button><label class="btn ghost file-button">JSON 가져오기<input id="library-import" type="file" accept="application/json,.json"></label></div>
       <div id="custom-route-library" class="custom-route-library" aria-live="polite"></div>
     </section>
 
     <section id="screen-custom" data-screen="custom-editor" class="screen" aria-labelledby="custom-title">
-      <div class="section-head"><div><p class="eyebrow">CUSTOM ROUTE STUDIO</p><h2 id="custom-title">나만의 노선 만들기</h2></div><button class="btn text" data-nav="custom-list">← MY ROUTES</button></div>
+      <div class="section-head"><div><p class="eyebrow">CUSTOM ROUTE STUDIO</p><h2 id="custom-title">나만의 노선 만들기</h2><p class="section-sub">실제 철도망의 최단거리 자동 연결과 인접역 수동 편집을 지원합니다.</p></div><button class="btn text" data-nav="custom-list">← MY ROUTES</button></div>
       <div class="custom-toolbar"><button id="new-route" class="btn ghost">＋ 새 여정</button><button id="save-route" class="btn primary">COMPLETE · 완료/저장</button><button id="play-custom" class="btn ghost">▶ 바로 플레이</button><button id="free-drive-custom" class="btn ghost" type="button">↗ 자유주행</button><button id="export-route" class="btn ghost">JSON 내보내기</button><label class="btn ghost file-button">JSON 가져오기<input id="import-route" type="file" accept="application/json,.json"></label></div>
+      <div class="custom-progress" aria-live="polite"><span class="custom-progress-icon">↗</span><span id="custom-route-summary">현재 0개 역 · 출발역을 검색하세요</span></div>
       <div class="editor-layout">
         <form id="route-form" class="editor-form">
-          <section class="station-master-search" aria-labelledby="station-search-title"><p class="eyebrow">START STATION / RAIL NETWORK</p><h3 id="station-search-title">출발역 검색</h3><p>첫 역을 선택한 뒤 실제 철도망의 인접역과 환승 노선으로 경로를 이어갑니다.</p><label class="station-search-box">역 검색<input id="station-master-search" type="search" autocomplete="off" placeholder="예: 신주쿠 / 新宿 / Shinjuku"></label><div id="station-search-results" class="station-search-results" aria-live="polite"><p>출발역 이름을 입력하세요.</p></div></section>
+          <section class="station-master-search" aria-labelledby="station-search-title"><p class="eyebrow">ROUTE BUILDER / SHORTEST PATH</p><h3 id="station-search-title">역 검색 · 최단거리 연결</h3><p>첫 역을 선택한 뒤 목적지를 검색해 <b>최단거리 연결</b>을 누르세요. 경유지를 순서대로 추가하거나, 바로 아래 인접역 목록에서 직접 연결할 수도 있습니다.</p><label class="station-search-box">역 검색<input id="station-master-search" type="search" autocomplete="off" placeholder="예: 신주쿠 / 新宿 / Shinjuku"></label><div id="station-search-results" class="station-search-results" aria-live="polite"><p>출발역 이름을 입력하세요.</p></div></section>
           <section id="journey-options" class="journey-options" aria-live="polite"><p>출발역을 선택하면 이용 가능한 노선이 표시됩니다.</p></section>
           <h3>노선 정보</h3><div class="form-grid"><label>운영사<input name="operator" maxlength="60" required></label><label>노선 코드<input name="code" maxlength="8" placeholder="CT"></label><label>日本語<input name="lineJa" maxlength="60" required></label><label>한국어<input name="lineKo" maxlength="60" required></label><label>English<input name="lineEn" maxlength="60" required></label><label>노선 색상<input name="color" type="color" value="#e84747"></label></div><label class="check"><input name="loop" type="checkbox"> 순환선</label>
-          <div class="editor-heading"><h3>선택한 실제 역 <small id="station-count">0 / 300</small></h3><button id="add-station" type="button" class="btn ghost">＋ 고급: 가상역</button></div><div id="station-editor" class="station-editor"></div>
+          <div class="editor-heading"><h3>선택한 실제 역 <small id="station-count">0 / 300</small></h3><div class="custom-editor-actions"><button id="custom-clear-stops" type="button" class="btn ghost">↶ 역 목록 초기화</button><button id="add-station" type="button" class="btn ghost">＋ 고급: 가상역</button></div></div><div id="station-editor" class="station-editor"></div>
         </form>
         <aside class="map-editor"><div class="map-editor-head"><h3>실제 좌표 미리보기</h3><span class="map-preview-label">OPENSTREETMAP</span></div><div id="schematic-editor" hidden><div id="custom-map" class="custom-map"></div></div><div id="geo-editor"><p class="hint">검색해 추가한 역의 실제 좌표가 자동으로 연결됩니다.</p><div id="custom-geo-map" class="custom-geo-map"></div><p id="geo-map-status" class="map-status">지도를 준비하고 있습니다…</p></div><h3>저장된 노선</h3><div id="saved-routes" class="saved-routes"></div></aside>
       </div>
