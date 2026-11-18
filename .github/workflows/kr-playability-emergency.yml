@@ -7,6 +7,7 @@ on:
       - '.github/workflows/kr-playability-emergency.yml'
       - 'js/app.js'
       - 'js/data-loader.js'
+      - 'tools/test-kr-emergency-browser.cjs'
   workflow_dispatch:
 permissions:
   contents: read
@@ -23,3 +24,7 @@ jobs:
         run: node tools/diagnose-kr-playability-emergency.cjs
       - name: Validate Korean browser bundle parses
         run: node --check js/app.bundle.js
+      - name: Install browser runner
+        run: npm install --no-save --ignore-scripts playwright-core@1.56.1
+      - name: Test actual Korean 3-line card and game in Chrome
+        run: node tools/test-kr-emergency-browser.cjs
