@@ -32,7 +32,15 @@ for(const route of routes){
   eligible++;
   if(ok)patched++;else unchanged++;
   detail.push({routeId:route.id,journeyId:j.id,direction:j.stations[index].ko+' → '+j.stations[index+1].ko,
-   patched:ok,oldNodes:j.directedSegments[index].geometry.length,newNodes:section?.geometry.length||0});
+   patched:ok,oldNodes:j.directedSegments[index].geometry.length,newNodes:section?.geometry.length||0,
+   stationFrom:[j.stations[index].latitude,j.stations[index].longitude],
+   stationTo:[j.stations[index+1].latitude,j.stations[index+1].longitude],
+   adjacentBefore:j.directedSegments[index-1]?{
+     stop:j.stations[index-1]?.ko,
+     end:j.directedSegments[index-1].geometry.at(-1),
+     physicalEnd:track.srt.segments[1].geometry.at(-1),
+     includesJunction:j.directedSegments[index-1].geometry.some(p=>p[0]===track.srt.segments[2].geometry.at(-1)[0]&&p[1]===track.srt.segments[2].geometry.at(-1)[1])
+   }:null});
  }
 }
 console.log('KTX_SUSEO_RUNTIME '+JSON.stringify({eligible,patched,unchanged,detail}));
