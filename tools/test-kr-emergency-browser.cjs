@@ -1,0 +1,54 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),http=require('node:http');
+const {chromium}=require('playwright-core');
+const root=path.resolve(__dirname,'..');
+const chrome=['/usr/bin/google-chrome','/usr/bin/google-chrome-stable','/usr/bin/chromium','/usr/bin/chromium-browser'].find(fs.existsSync);
+if(!chrome)throw Error('CHROME_NOT_INSTALLED');
+const contentType={'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.svg':'image/svg+xml'};
+let server,browser;
+(async()=>{
+ server=http.createServer((req,res)=>{
+  const file=path.resolve(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\\//,'')||'index.html');
+  if(!file.startsWith(root+path.sep))return res.writeHead(403).end();
+  try{const body=fs.readFileSync(file);res.setHeader('Content-Type',contentType[path.extname(file)]||'application/octet-stream');res.end(body)}
+  catch{return res.writeHead(404).end()}
+ });
+ await new Promise(done=>server.listen(0,'127.0.0.1',done));
+ browser=await chromium.launch({headless:true,executablePath:chrome,args:['--no-sandbox','--disable-dev-shm-usage']});
+ const page=await browser.newPage({viewport:{width:1280,height:900}});
+ const errors=[];
+ page.on('pageerror',e=>errors.push('PAGE: '+e.message));
+ page.on('console',m=>{if(m.type()==='error')errors.push('CONSOLE: '+m.text().slice(0,500))});
+ page.on('requestfailed',r=>{if(!/tile.openstreetmap|unpkg|fonts.googleapis/.test(r.url()))errors.push('REQUEST: '+r.url().slice(0,200)+' '+r.failure()?.errorText)});
+ await page.addInitScript(()=>{localStorage.setItem('trt-country','kr')});
+ await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#route-count')?.textContent.includes('개 노선'),{timeout:120000});
+ const state=()=>page.evaluate(()=>({screen:document.body.dataset.currentScreen,country:document.documentElement.dataset.country,count:document.querySelector('#route-count')?.textContent,summary:document.querySelector('#data-summary')?.textContent,toast:document.querySelector('#toast')?.textContent,errors:globalThis.__TRT_RUNTIME_ERRORS__,disabled:document.querySelectorAll('.line-card.unplayable').length,enabled:document.querySelectorAll('.line-card[data-route]:not([disabled])').length,setupCount:document.querySelector('#operating-available-count')?.textContent,submit:document.querySelector('#setup-form button[type=submit]')?.outerHTML.slice(0,300)}));
+ console.log('KR_BROWSER_HOME '+JSON.stringify(await state()));
+ const search=page.locator('#route-search');
+ await page.locator('[data-nav="rail-map"]:visible').first().click();
+ await search.fill('3호선');
+ await page.waitForTimeout(1000);
+ console.log('KR_BROWSER_SEARCH '+JSON.stringify(await state()));
+ const card=page.locator('[data-route="kr-rail-seoul-3"]');
+ console.log('KR_BROWSER_CARD '+JSON.stringify({count:await card.count(),disabled:await card.first().isDisabled().catch(()=>null),html:(await card.first().evaluate(e=>e.outerHTML).catch(()=>'' )).slice(0,600)}));
+ if(!await card.count()||await card.first().isDisabled())throw Error('KR_CARD_UNPLAYABLE');
+ await card.first().click();
+ await page.waitForTimeout(1200);
+ console.log('KR_BROWSER_SELECTED '+JSON.stringify(await state()));
+ const play=page.locator('[data-selected-play="kr-rail-seoul-3"]');
+ console.log('KR_BROWSER_PLAY_CONTROL '+JSON.stringify({count:await play.count(),html:(await play.first().evaluate(e=>e.outerHTML).catch(()=>'' )).slice(0,450)}));
+ if(!await play.count())throw Error('KR_SELECTED_PLAY_MISSING');
+ await play.first().click();
+ await page.waitForTimeout(3000);
+ console.log('KR_BROWSER_SETUP '+JSON.stringify(await state()));
+ if((await state()).screen!=='game-setup')throw Error('KR_SETUP_NOT_REACHED');
+ const btn=page.locator('#setup-form button[type=submit]');
+ if(await btn.isDisabled())throw Error('KR_GAME_SUBMIT_DISABLED');
+ await btn.click();
+ await page.waitForTimeout(1000);
+ console.log('KR_BROWSER_GAME '+JSON.stringify(await state()));
+ if((await state()).screen!=='game')throw Error('KR_GAME_NOT_STARTED');
+ console.log('KR_BROWSER_ERRORS '+JSON.stringify(errors.slice(0,18)));
+ await browser.close();server.close();
+})().catch(async e=>{console.error('KR_BROWSER_FAIL',e.stack||e);try{console.log('KR_BROWSER_FINAL_ERRORS '+JSON.stringify(globalThis.__errors))}catch{}try{await browser?.close()}catch{}try{server?.close()}catch{}process.exitCode=1});
