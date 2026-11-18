@@ -35,6 +35,36 @@ if(process.argv.includes('--publish')&&!rejected.length){
   routeId==='kr-hangang-east'&&correctedEastIds.has(oldJourney.id)
   &&newJourney.sourceWayIds?.includes(1443233864)
   &&JSON.stringify(withoutGeometry(oldJourney))===JSON.stringify(withoutGeometry(newJourney));
+ // Suseo HSR platforms are not co-located with the legacy metropolitan
+ // station anchor. The shift is permitted ONLY to exact source-proven OSM
+ // rail-track positions, with the same passenger station IDs and stop order.
+ const approvedSuseoPlatformShift=(oldJourney,newJourney)=>{
+  const anchors=newJourney.ktxTrackCorrection?.platformAnchors;
+  if(!Array.isArray(anchors)||anchors.length!==2)return false;
+  const src=JSON.parse(fs.readFileSync(path.join(root,'data/kr/physical/suseo-pyeongtaek.json'),'utf8'));
+  const physical=new Map(src.srt.stations.map(s=>[s.ko,s]));
+  const a=withoutGeometry(oldJourney),b=withoutGeometry(newJourney);
+  if(a.stations?.length!==b.stations?.length)return false;
+  let shifts=0;
+  for(let i=0;i<a.stations.length;i++){
+   const original=a.stations[i],updated=b.stations[i];
+   if(original.id!==updated.id||original.ko!==updated.ko)return false;
+   const anchor=anchors.find(x=>x.id===updated.id);
+   if(!anchor)continue;
+   if(!['수서','평택지제'].includes(anchor.ko)||anchor.ko!==updated.ko)return false;
+   const actual=physical.get(anchor.ko);
+   if(!actual||!Array.isArray(anchor.coordinate)||anchor.coordinate.length!==2||
+      !Number.isFinite(anchor.coordinate[0])||!Number.isFinite(anchor.coordinate[1])||
+      updated.latitude!==anchor.coordinate[0]||updated.longitude!==anchor.coordinate[1])return false;
+   const km=Math.hypot((updated.latitude-actual.latitude)*111.195,
+      (updated.longitude-actual.longitude)*Math.cos(updated.latitude*Math.PI/180)*111.195);
+   if(km>.035||!newJourney.sourceEdgeRefs.some(ref=>String(ref.wayId)===String(anchor.sourceWayId)))return false;
+   if(original.latitude!==updated.latitude||original.longitude!==updated.longitude)shifts++;
+   original.latitude=updated.latitude;original.longitude=updated.longitude;
+  }
+  if(shifts!==2||!anchors.every(x=>b.stations.some(s=>s.id===x.id)))return false;
+  return JSON.stringify(a)===JSON.stringify(b);
+ };
  // The publish gate permits explicitly proven KTX geometry corrections only.
  // Stop names, order, timetable metadata and the full service definition remain immutable.
  const approvedKtxCorrection=(routeId,oldJourney,newJourney)=>
@@ -44,7 +74,7 @@ if(process.argv.includes('--publish')&&!rejected.length){
   &&newJourney.ktxTrackCorrection.legs.every(leg=>Array.isArray(leg.wayIds)&&leg.wayIds.length>0)
   &&newJourney.ktxTrackCorrection.sourceProofsRebuilt==='all geometry edges proven against consecutive original OSM way nodes'
   &&newJourney.sourceEdgeRefs?.length===newJourney.geometry?.length-1
-  &&JSON.stringify(withoutGeometry(oldJourney))===JSON.stringify(withoutGeometry(newJourney));
+  &&(JSON.stringify(withoutGeometry(oldJourney))===JSON.stringify(withoutGeometry(newJourney))||approvedSuseoPlatformShift(oldJourney,newJourney));
  // Restore only verified pre-repair source-node geometry after an unsafe
  // KTX detour correction. All operational metadata must remain immutable.
  const approvedKtxRollback=(routeId,oldJourney,newJourney)=>

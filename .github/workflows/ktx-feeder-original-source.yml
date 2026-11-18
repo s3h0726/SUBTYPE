@@ -1,0 +1,22 @@
+name: Diagnose Suseo three KTX feeder connections using original OSM nodes
+on:
+  push:
+    branches: [fix/ktx-suseo-feeder-reconnection-20261118]
+    paths:
+      - 'tools/diagnose-kr-suseo-feeder-graph.cjs'
+      - '.github/workflows/ktx-feeder-original-source.yml'
+permissions:
+  contents: read
+jobs:
+  examine-feeders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check direct physical platform-to-feeder railway continuity for three KTX routes
+        run: node tools/diagnose-kr-suseo-feeder-graph.cjs
