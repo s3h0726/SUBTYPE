@@ -1690,7 +1690,6 @@ function resolveFamousLimitedExpressChoice(route,choice){
 }
 
 
-
 // A v2 journey is already directional and contains only timetable stopping calls.
 // Geometry between calls includes every non-stopping station and track curve.
 function koreanServiceIsCurrent(window={}){
@@ -1708,11 +1707,7 @@ function resolveKoreanVerifiedChoice(choice,route){
  if(!journey||!journey.tripIds?.length||journey.stations?.length<2||journey.geometry?.length<2)throw Error('확인된 실제 운행계통이 아닙니다.');
  if(choice.originId!==journey.stations[0].id||choice.destinationId!==journey.stations.at(-1).id)throw Error('실제 운행하지 않는 기점·종점 조합입니다.');
  const segments=journey.directedSegments.map(segment=>({...segment,geometryStatus:'ready'}));
- const displaySegments=typeof mapOnlyKtxJourneySegments==='function'
-  ?mapOnlyKtxJourneySegments(route,{...journey,directedSegments:segments}):null;
- const resolved={...route,stations:journey.stations,geometry:journey.geometry,directedSegments:segments,
-  ...(displaySegments?{mapDisplaySegments:displaySegments,mapGeometryCorrection:'verified-reference-centerline-visual-only'}:{}),
-  services:[journey.service],selectedDirectionId:journey.directionId};
+ const resolved={...route,stations:journey.stations,geometry:journey.geometry,directedSegments:segments,services:[journey.service],selectedDirectionId:journey.directionId};
  const context={id:journey.id,baseRouteId:route.id,originStationId:journey.stations[0].id,destinationStationId:journey.stations.at(-1).id,originNames:journey.stations[0],destinationNames:journey.stations.at(-1),directionId:journey.directionId};
  return{route:resolved,service:journey.service,journey:context,journeyId:journey.id,direction:'forward',travelDirectionId:journey.directionId,pattern:{id:journey.patternId,names:journey.patternName},trainType:null,destinationStationId:journey.stations.at(-1).id,trainTypeContexts:[]};
 }
@@ -1788,9 +1783,7 @@ const geometryPoints=route=>Array.isArray(route.geometry)&&route.geometry.length
 const permitsApproximateMapGeometry=route=>route?.category==='custom'||['bus','village_bus','express_bus','river_bus','ferry'].includes(route?.mode);
 function travelGeometry(route){
   if(!Array.isArray(route?.stations)||route.stations.length<2)return null;
-  // Game-map corrections are display-only; keep canonical OSM source proofs
-  // and operational stop order unchanged for the gameplay route.
-  const stations=route.stations,directed=Array.isArray(route.mapDisplaySegments)?route.mapDisplaySegments:route.directedSegments,points=[],offsets=[];
+  const stations=route.stations,directed=route.directedSegments,points=[],offsets=[];
   if(route.countryId==='kr'&&(route.geometryReady!==true||!Array.isArray(directed)||directed.length!==stations.length-1||!directed.every(segment=>segment.geometryStatus==='ready'&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)))return null;
   if(Array.isArray(directed)&&directed.length===stations.length-1&&directed.every((segment,i)=>segment.fromStationId===stations[i].id&&segment.toStationId===stations[i+1].id&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)){
     for(let i=0;i<directed.length;i++){
@@ -3621,7 +3614,6 @@ function applySuseoTrack(raw,track=globalThis.TRT_KR_SUSEO_PYEONGTAEK_TRACK){
 
 
 
-
 const text=(...values)=>String(values.find(value=>typeof value==='string'&&value.trim())||'').normalize('NFC').trim();
 const cleanDisplayLineName=value=>text(value).replace(/^JR/,'').replace(/^東京メトロ/,'').replace(/^都営/,'').replace(/^大阪メトロ/,'');
 // The editor saves a small JSON file independently of the generated catalog.
@@ -4090,10 +4082,7 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
   }
   if(FEATURE_FLAGS.koreaRoutesReset)return{country:{id:'kr',names:{ko:'대한민국',en:'South Korea'}},operators:[],lines:[],stations:[],assets:{operators:{},lines:{}},errors:[],counts:{},fallbackUsed:false,source:'korea-reset'};
   // Preload OSM high-speed track before the synchronous GTX-A choice resolver runs.
-  await Promise.all([
-   loadSuseoTrack().catch(error=>console.warn('수서평택고속선 실선형 로딩 실패',error)),
-   loadKtxMapReference().catch(error=>console.warn('KTX 고속선 지도 참조 로딩 실패',error))
-  ]);
+  await loadSuseoTrack().catch(error=>console.warn('수서평택고속선 실선형 로딩 실패',error));
   const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
   const lines=(data.routes||[]).filter(route=>(!route.serviceWindows||route.serviceWindows.some(koreanServiceIsCurrent))&&route.releaseStatus!=='research'&&route.playStatus!=='RESEARCH_PLAYABLE'&&!route.previewContract&&!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators:withEditorOperators(operators),lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
@@ -5624,7 +5613,7 @@ async function startFreeDrive(route){
 function renderHome(){syncHomeFeatured();const recordRouteId=record=>canonicalRouteId(record.lineId||record.routeId);const recent=storage.recent().filter(record=>routes.some(route=>route.id===recordRouteId(record)));document.querySelectorAll('#feature-viewport [data-feature-route]').forEach((button,index)=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),card=button.closest('article'),slot=card?.querySelector('.feature-number');if(!route||!card)return;if(slot){slot.innerHTML=lineBadgeMarkup(route);slot.hidden=!slot.innerHTML}const operator=card.querySelector('[data-feature-operator]'),lineKo=card.querySelector('[data-feature-line-ko]'),lineSecondary=card.querySelector('[data-feature-line-secondary]'),stations=card.querySelector('[data-feature-stations]');if(operator)operator.innerHTML=`${lineSurfaceOperatorLogo(route,'feature-operator-logo')}<span>${route.countryId==='tw'?escapeHtml(getTaiwanDisplayNames(route.operator).ko):escapeHtml(route.operator.ko)} · ${route.loop?'순환 운행':'도심 운행'}</span>`;if(lineKo)lineKo.textContent=route.line.ko;if(lineSecondary)lineSecondary.textContent=countryId==='tw'?`${getTaiwanDisplayNames(route.line).zh} · ${route.line.en}`:countryId==='kr'?route.line.en:`${route.line.ja} · ${route.line.en}`;if(stations)stations.textContent=`${route.stationCount||route.stations.length}개 역`;const dot=$$('[data-slide-to]')[index];if(dot)dot.setAttribute('aria-label',route.line.ko)});$('#recent-list').innerHTML=recent.length?recent.slice(0,3).map(record=>{const routeId=recordRouteId(record),route=routes.find(item=>item.id===routeId),name=route?.line.ko||record.routeName||routeId;return`<button class="recent-chip" data-feature-route="${escapeHtml(routeId)}" style="--route-color:${record.color}"><span><b>${route?.countryId==='tw'?taiwanNameMarkup(route.line):escapeHtml(name)}</b><small>${formatTime(record.elapsed)} · ${record.accuracy.toFixed(1)}%</small></span></button>`}).join(''):'<p class="muted">아직 운행 기록이 없습니다.</p>'}
 /* Airport connections are separate from rail graph edges: never allow a flight
  * to bypass the adjacent-station typing rules or fabricate a railway segment. */
-async function flyFreeDriveToAirport(airport){
+async function flyFreeDriveToAirport(airport,portalId){
   const controller=globalThis.TRTAirportSystem;
   if(!controller||!airport||!isCountryEnabled(airport.countryId))throw new Error('목적지 국가가 지원되지 않습니다.');
   const previousCountry=countryId,previousState=freeDrive?.snapshot(),previousHistory=[...(freeDrive?.history||[])];
@@ -5639,19 +5628,19 @@ async function flyFreeDriveToAirport(airport){
       await reloadRailData();
       renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();
     }
-    const options=routes.filter(route=>controller.candidate(route,airport))
+    const options=routes.filter(route=>controller.candidate(route,airport,portalId))
       .sort((a,b)=>{
         const score=route=>(route.lazy?2:0)+(/airport|공항|空港|機場/i.test([route.line?.ko,route.line?.en,route.line?.ja].join(' '))?0:1);
         return score(a)-score(b);
       });
     let destination=null;
-    for(const route of options.slice(0,24)){
+    for(const route of options.slice(0,64)){
       let detail=route;
       if(route.lazy){
         try{detail=railDataRepository.resolveRoute(await hydrateRailLine(route))}
         catch(error){console.warn('Airport arrival rail route unavailable:',route.id,error);continue}
       }
-      const index=controller.findStation(detail,airport);
+      const index=controller.findStation(detail,airport,portalId);
       if(index<0)continue;
       destination={route:detail,index};
       if(route.lazy){
@@ -5661,10 +5650,10 @@ async function flyFreeDriveToAirport(airport){
       }
       break;
     }
-    if(!destination)throw new Error(airport.name+'과 연결된 검증 가능한 철도역을 찾지 못했습니다.');
+    if(!destination)throw new Error(airport.name+'의 선택한 터미널에 연결된 등록 철도역을 찾지 못했습니다. 다른 터미널역을 선택해 주세요.');
     freeDrive.setNetwork(freeDriveNetworkRoutes());
     const live=freeDrive.routes.find(route=>route.id===destination.route.id);
-    const arrivalIndex=live?controller.findStation(live,airport):-1;
+    const arrivalIndex=live?controller.findStation(live,airport,portalId):-1;
     if(!live||arrivalIndex<0)throw new Error('도착역을 자유주행 선로망에 연결할 수 없습니다.');
     if(!freeDrive.start(live,arrivalIndex))throw new Error('공항역에서 자유주행을 시작하지 못했습니다.');
     const state=freeDrive.snapshot();
