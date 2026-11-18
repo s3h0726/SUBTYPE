@@ -4,6 +4,7 @@ on:
     branches: [fix/ktx-haengsin-south-gyeongbu-geometry-20261118]
     paths:
       - 'tools/diagnose-kr-ktx-haengsin-south.cjs'
+      - 'tools/diagnose-kr-ktx-south-node-topology.cjs'
       - 'tools/fix-kr-ktx-haengsin-gyeongbu-track.cjs'
       - '.github/workflows/ktx-haengsin-south-track.yml'
 permissions:
@@ -25,3 +26,4 @@ jobs:
         run: |
           node --check tools/diagnose-kr-ktx-haengsin-south.cjs
           node tools/diagnose-kr-ktx-haengsin-south.cjs
+          node tools/diagnose-kr-ktx-south-node-topology.cjs
