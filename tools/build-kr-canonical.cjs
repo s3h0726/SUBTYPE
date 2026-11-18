@@ -24,6 +24,8 @@ if(process.argv.includes('--publish')&&!rejected.length){
   delete copy.geometry;
   delete copy.directedSegments;
   delete copy.ktxTrackCorrection;
+  // Provenance array is regenerated when geometry vertices change.
+  delete copy.sourceEdgeRefs;
   delete copy.sourceWayIds;
   copy.stations=(copy.stations||[]).map(({geometryIndex,stopOffsetMeters,...stop})=>stop);
   return copy;
@@ -39,6 +41,8 @@ if(process.argv.includes('--publish')&&!rejected.length){
   &&newJourney.ktxTrackCorrection?.method==='source-backed-rail-graph-realignment'
   &&newJourney.ktxTrackCorrection.legs?.length>0
   &&newJourney.ktxTrackCorrection.legs.every(leg=>Array.isArray(leg.wayIds)&&leg.wayIds.length>0)
+  &&newJourney.ktxTrackCorrection.sourceProofsRebuilt==='all geometry edges proven against consecutive original OSM way nodes'
+  &&newJourney.sourceEdgeRefs?.length===newJourney.geometry?.length-1
   &&JSON.stringify(withoutGeometry(oldJourney))===JSON.stringify(withoutGeometry(newJourney));
  const unchangedPayloads=new Set;
  const oldFile=path.join(root,'data/kr/generated/index.json');
