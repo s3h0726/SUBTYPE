@@ -4,6 +4,7 @@ on:
     branches: [fix/ktx-haengsin-daejeon-south-20261118]
     paths:
       - 'tools/diagnose-kr-ktx-haengsin-south.cjs'
+      - 'tools/diagnose-kr-ktx-hsr-components.cjs'
       - '.github/workflows/ktx-haengsin-south.yml'
 permissions:
   contents: read
@@ -20,3 +21,5 @@ jobs:
           node-version: '22'
       - name: Diagnose station-to-station original KTX rail way geometry
         run: node tools/diagnose-kr-ktx-haengsin-south.cjs
+      - name: Identify disconnected southern Gyeongbu high-speed OSM source components
+        run: node tools/diagnose-kr-ktx-hsr-components.cjs
