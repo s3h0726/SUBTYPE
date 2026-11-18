@@ -1,0 +1,25 @@
+name: Emergency KR playability diagnostics
+on:
+  push:
+    branches: [fix/korean-playability-emergency-20261118]
+    paths:
+      - 'tools/diagnose-kr-playability-emergency.cjs'
+      - '.github/workflows/kr-playability-emergency.yml'
+      - 'js/app.js'
+      - 'js/data-loader.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Summarize live public Korean catalog and selected route metadata
+        run: node tools/diagnose-kr-playability-emergency.cjs
+      - name: Validate Korean browser bundle parses
+        run: node --check js/app.bundle.js
