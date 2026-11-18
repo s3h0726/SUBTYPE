@@ -1,0 +1,17 @@
+name: Retrieve missing official OSM Gyeongbu HSR route relation
+on:
+  push:
+    branches: [diag/gyeongbu-ktx-osm-route-relation-full-20261118]
+    paths:
+      - 'tools/diag-live-ktx-gyeongbu-osm-relation.py'
+      - '.github/workflows/ktx-live-osm-relation-check.yml'
+permissions:
+  contents: read
+jobs:
+  inspect-relation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect OSM original Gyeongbu HSR mainline relation geometry missing from snapshot
+        run: python3 tools/diag-live-ktx-gyeongbu-osm-relation.py
