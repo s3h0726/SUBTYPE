@@ -692,7 +692,7 @@
   const coord=station=>{
     const lat=Number(station?.latitude??station?.lat??station?.coordinates?.lat);
     const lon=Number(station?.longitude??station?.lon??station?.lng??station?.coordinates?.lng);
-    return Number.isFinite(lat)&&Number.isFinite(lon)&&Math.abs(lat)>0&&Math.abs(lon)>0?[lat,lon]:null;
+    return Number.isFinite(lat)&&Number.isFinite(lon)&&(lat!==0||lon!==0)?[lat,lon]:null;
   };
   const kilometers=(a,b)=>{
     const rad=Math.PI/180,p1=a[0]*rad,p2=b[0]*rad,dl=(b[1]-a[1])*rad,dp=(b[0]-a[0])*rad;
