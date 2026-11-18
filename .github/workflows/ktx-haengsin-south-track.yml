@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/diagnose-kr-ktx-haengsin-south.cjs'
       - 'tools/diagnose-kr-ktx-south-node-topology.cjs'
+      - 'tools/diagnose-ktx-reverse-reference.cjs'
       - 'tools/fix-kr-ktx-haengsin-gyeongbu-track.cjs'
       - '.github/workflows/ktx-haengsin-south-track.yml'
 permissions:
@@ -27,3 +28,4 @@ jobs:
           node --check tools/diagnose-kr-ktx-haengsin-south.cjs
           node tools/diagnose-kr-ktx-haengsin-south.cjs
           node tools/diagnose-kr-ktx-south-node-topology.cjs
+          node tools/diagnose-ktx-reverse-reference.cjs
