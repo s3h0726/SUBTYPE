@@ -8,7 +8,7 @@ const contentType={'.html':'text/html','.js':'text/javascript','.json':'applicat
 let server,browser;
 (async()=>{
  server=http.createServer((req,res)=>{
-  const file=path.resolve(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\\//,'')||'index.html');
+  const file=path.resolve(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\//,'')||'index.html');
   if(!file.startsWith(root+path.sep))return res.writeHead(403).end();
   try{const body=fs.readFileSync(file);res.setHeader('Content-Type',contentType[path.extname(file)]||'application/octet-stream');res.end(body)}
   catch{return res.writeHead(404).end()}
