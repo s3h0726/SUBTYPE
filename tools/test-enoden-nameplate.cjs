@@ -53,7 +53,7 @@ nodes['#station-badge'].textContent='unmodified';
 probe.applyEnodenNameplate(yug,hase,wada);
 assert.equal(nodes['#station-badge'].textContent,'unmodified','non-Enoden template must be left unchanged');
 
-for(const snippet of ['this.applyEnodenNameplate(station,previous,following)','this.applyEnodenNameplate(station,station,next)','this.applyEnodenNameplate(station,this.currentStation(),station)'])assert.ok(source.includes(snippet),'runtime call missing: '+snippet);
+for(const snippet of ['this.applyEnodenNameplate(station,previous,following)','this.applyEnodenNameplate(station,station,next)','this.applyEnodenNameplate(station,this.currentStation(),following)'])assert.ok(source.includes(snippet),'runtime call missing: '+snippet);
 const css=read('css/enoden-nameplate.css'),html=read('index.html');
 // 캐시 버전은 배포마다 바뀌므로 실제 스타일시트 연결을 검사한다.
 assert.match(html,/<link\b[^>]*href=["'](?:\.\/)?css\/enoden-nameplate\.css(?:\?[^"']*)?["'][^>]*>/,'에노덴 스타일시트가 실제 HTML에 연결되어야 함');
