@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.3] — 2026-11-18
+
+- Merge pull request #73 from s3h0726/fix/pages-enoden-following-regression Fix Pages Enoden check after free-drive following-station update
+
 ## [v0.11.2] — 2026-11-15
 
 - deploy(kr): bust app bundle cache for Suseo–Pyeongtaek HSR track routing
