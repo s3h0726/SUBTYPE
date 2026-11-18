@@ -1253,7 +1253,7 @@ async function customHydrateForeignRoutes(targetCountry,candidates,limit=12){
   for(let i=0;i<results.length;i++)if(results[i].status==='fulfilled'){
    const route=results[i].value;
    if(route.countryId===targetCountry&&route.stations?.length>=2&&route.playable!==false&&
-    !hongKongRouteBlockReason(route)&&!koreanRouteBlockReason(route))cache.ready.set(route.id,route);
+    !hongKongRouteBlockReason(route)&&!koreanRouteBlockReason(route))cache.ready.set(pending[offset+i].id,route);
   }
  }
  return cache;
