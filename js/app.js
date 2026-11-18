@@ -1247,7 +1247,7 @@ async function customForeignRailIndex(targetCountry){
 }
 // The index lists every station, while UK/FR lazy payloads return only the
 // first service pattern. Keep all verified pattern variants for search and rail traversal.
-function customSearchValue(value){return String(value??'').normalize('NFKC').toLocaleLowerCase().replace(/[\\s\\-_·・.\u2019'()（）\[\]]/g,'')}
+function customSearchValue(value){return String(value??'').normalize('NFKC').toLocaleLowerCase().replace(/[\s._\-·・'’()（）\[\]]/g,'')}
 function customSearchTerms(value){
  if(typeof value==='string')return[value];
  if(!value||typeof value!=='object')return[];
