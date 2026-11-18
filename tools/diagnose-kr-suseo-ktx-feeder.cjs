@@ -38,3 +38,32 @@ for(const batch of readBatches(root)){
  }
 }
 if(found!==2)throw Error('Expected exactly two unlinked Suseo inbound KTX patterns; found '+found);
+let outbound=0;
+for(const batch of readBatches(root))for(const route of batch.routes||[])for(const j of route.verifiedJourneys||[]){
+ if(j.id!=='kr-continuity-pattern-29f666f34d1ea522')continue;
+ outbound++;
+ const index=j.stations.findIndex((st,i)=>st.ko==='수서'&&j.stations[i+1]?.ko==='평택지제');
+ if(index<0||index+1>=j.directedSegments.length)throw Error('EXPECTED_OUTBOUND_PYEONGTAEK_NEXT_LEG');
+ const next=j.directedSegments[index+1].geometry;
+ const shared=next.map((p,k)=>({k,source:lookup.get(exact(p))})).filter(x=>x.source);
+ let near={km:Infinity};
+ for(let k=0;k<next.length;k++)for(let l=0;l<physical.length;l++){
+  const km=distance(next[k],physical[l].p);
+  if(km<near.km)near={km:+km.toFixed(6),outboundIndex:k,physicalSection:physical[l].segment,
+   physicalIndex:physical[l].k,outboundPoint:next[k],physicalPoint:physical[l].p};
+ }
+ const junc=track.srt.segments[2].geometry.at(-1);
+ const best=next.map((p,k)=>({k,p,km:distance(p,junc)})).sort((a,b)=>a.km-b.km)[0];
+ const refs=j.sourceEdgeRefs?.slice(j.stations[index+1].geometryIndex,j.stations[index+2].geometryIndex)||[];
+ const overlap=new Set(track.srt.segments.flatMap(x=>x.wayIds).map(String));
+ const sourceWayMatches=[...new Set(refs.filter(x=>overlap.has(String(x.wayId))).map(x=>String(x.wayId)))];
+ console.log('SUSEO_OUTBOUND_FEEDER_DIAG '+JSON.stringify({
+  journey:j.id,route:route.id,nextStop:j.stations[index+2].ko,
+  nextPoints:next.length,sharedCount:shared.length,sharedFirst:shared.slice(0,8),
+  closestPhysical:near,closestJunction:{point:best.p,index:best.k,km:+best.km.toFixed(6)},
+  sourceWayMatches,legacyStopCoord:[j.stations[index+1].latitude,j.stations[index+1].longitude],
+  physicalStopCoord:[track.srt.stations[2].latitude,track.srt.stations[2].longitude]
+ }));
+}
+if(outbound!==1)throw Error('Expected one outbound feeder case, found '+outbound);
+
