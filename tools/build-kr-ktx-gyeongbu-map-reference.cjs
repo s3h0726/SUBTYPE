@@ -18,6 +18,20 @@ const take=(journey,from,to)=>{
  if(i<0)throw Error('KTX_SOURCE_LEG_MISSING '+from+'/'+to);
  return journey.directedSegments[i].geometry.map(p=>[p[0],p[1]]);
 };
+// Subdivide ONLY the same verified original source edge for Leaflet motion.
+// No new bend, fictional branch or station connection is introduced.
+function displaySampling(geometry,maxKm=1.25){
+ const out=[geometry[0]];
+ for(let i=1;i<geometry.length;i++){
+  const a=geometry[i-1],b=geometry[i];
+  const n=Math.max(1,Math.ceil(distance(a,b)/maxKm));
+  for(let k=1;k<=n;k++){
+   const t=k/n;
+   out.push(k===n?b:[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]);
+  }
+ }
+ return out;
+}
 const refs=[
  {key:'haengsinToSeoul',id:'kr-continuity-pattern-ce3c807f4962c1fb',
   from:'행신',to:'서울역',reverse:false,corridor:'경의선·경부선',
@@ -33,6 +47,7 @@ for(const ref of refs){
  if(errors.length)throw Error('INVALID_DISPLAY_REFERENCE '+ref.id+' '+errors.join(';'));
  let geometry=take(journey,ref.from,ref.to);
  if(ref.reverse)geometry=geometry.reverse();
+ geometry=displaySampling(geometry);
  const km=geometry.reduce((n,p,i)=>i?n+distance(geometry[i-1],p):n,0);
  if(!geometry.every(p=>p.length===2&&p.every(Number.isFinite))||km>180||km<10)throw Error('BAD_REFERENCE_GEOMETRY '+ref.key);
  tracks[ref.key]={displayFrom:ref.reverse?ref.to:ref.from,displayTo:ref.reverse?ref.from:ref.to,
