@@ -5,6 +5,8 @@ on:
       - 'js/game.js'
       - 'js/free-drive.js'
       - 'js/app.js'
+      - 'js/route-editor.js'
+      - 'tools/test-custom-country-station-loading.cjs'
       - 'css/free-drive.css'
       - 'index.html'
       - 'tools/test-free-drive-step-flow.cjs'
@@ -37,5 +39,7 @@ jobs:
         run: node --test tools/test-free-drive-layout-browser.cjs
       - name: Check existing transfer policies
         run: node --test tools/test-free-drive-transfers.cjs
+      - name: Verify country-aware station search and custom route regressions
+        run: npm run test:custom
       - name: Verify production bundle syntax
         run: node --check js/app.bundle.js
