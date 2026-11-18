@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/diagnose-kr-ktx-haengsin-south.cjs'
       - 'tools/diagnose-kr-ktx-hsr-components.cjs'
+      - 'tools/diagnose-kr-ktx-south-bidirectional.cjs'
       - '.github/workflows/ktx-haengsin-south.yml'
 permissions:
   contents: read
@@ -23,3 +24,5 @@ jobs:
         run: node tools/diagnose-kr-ktx-haengsin-south.cjs
       - name: Identify disconnected southern Gyeongbu high-speed OSM source components
         run: node tools/diagnose-kr-ktx-hsr-components.cjs
+      - name: Compare actual high-speed-only track path with existing conventional detours
+        run: node tools/diagnose-kr-ktx-south-bidirectional.cjs
