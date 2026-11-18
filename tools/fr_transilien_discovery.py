@@ -97,8 +97,8 @@ def main():
                                      if row["relationId"] == relation_id), None)
                     if previous and saved.exists() and read(saved) == data:
                         candidate["status"] = ("ALREADY_IMPLEMENTED" if previous["status"] == "VERIFIED_ADDED"
-                                               else "PARTIALLY_IMPLEMENTED")
-                        candidate["reason"] = "Identical saved source; consult the persistent gameplay and track outcomes"
+                                               else previous["status"])
+                        candidate["reason"] = previous["outcome"]
                 except (OSError, ValueError, KeyError, StopIteration) as error:
                     candidate.update(status="UNVERIFIABLE", reason=str(error) or "Requested relation missing from source export")
             item["status"] = "DISCOVERED"
