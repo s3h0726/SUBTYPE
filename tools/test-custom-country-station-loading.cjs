@@ -60,6 +60,7 @@ test('app bootstraps eager station masters and rail graphs for non-lazy countrie
  const end=app.indexOf('refreshRoutes();renderHome();',start);
  assert(start>=0&&end>start,'eager station bootstrap must exist');
  const bootstrap=app.slice(start,end);
+ const policy=app.slice(app.indexOf('const customForeignRailCache=new Map();'),app.indexOf('async function customForeignRailIndex('));
  const run=(countryId,builtin,stations=[])=>{
   const calls={};
   const editor={
@@ -67,7 +68,7 @@ test('app bootstraps eager station masters and rail graphs for non-lazy countrie
    setRailNetwork(routes,options){calls.routes=routes;calls.routeCountry=options.countryId},
    setStationMaster(data,options){calls.stations=data;calls.stationCountry=options.countryId}
   };
-  vm.runInNewContext(bootstrap,{countryId,builtin,stations,editor});
+  vm.runInNewContext(policy+bootstrap,{countryId,builtin,stations,editor});
   return calls;
  };
  const macau={id:'mo-lrt',countryId:'mo',mode:'light_rail',stations:[
