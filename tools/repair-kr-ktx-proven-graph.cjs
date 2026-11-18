@@ -231,6 +231,12 @@ function run(){
    for(let ji=0;ji<(route.verifiedJourneys||[]).length;ji++){
     const j=route.verifiedJourneys[ji];if(!isKtx(route,j))continue;checkedJourneys++;
     const names=j.stations.map(x=>x.ko);
+    // Some legacy KTX routes predate per-edge source provenance. Without
+    // complete proofs there is no safe anchor or immutable full-trip source.
+    if(!Array.isArray(j.sourceEdgeRefs)||j.sourceEdgeRefs.length!==j.geometry.length-1){
+     events.push({routeId:route.id,journeyId:j.id,reason:'LEGACY_MISSING_FULL_TRIP_OSM_PROOF'});
+     continue;
+    }
     const geomParts=j.directedSegments.map(x=>x.geometry),refs=[];
     for(let i=0;i<geomParts.length;i++){
      const a=j.stations[i].geometryIndex,b=j.stations[i+1].geometryIndex;
@@ -241,7 +247,10 @@ function run(){
      const corridor=expectedCorridor(names[i],names[i+1],names);
      if(!corridor)continue;checkedLegs++;
      const old=geomParts[i],oldRefs=refs[i];
-     if(oldRefs.length!==old.length-1||!oldRefs.length)throw Error('UNPROVEN_BASELINE '+j.id+' '+i);
+     if(oldRefs.length!==old.length-1||!oldRefs.length){
+      events.push({routeId:route.id,journeyId:j.id,from:names[i],to:names[i+1],corridor,reason:'LEGACY_MISSING_LEG_OSM_PROOF'});
+      continue;
+     }
      const oldCoverage=coverage(old,corridor,tracks),oldKm=L(old),direct=distance(old[0],old.at(-1));
      const suspicious=oldCoverage.value<.73||oldKm>direct*1.6;
      if(!suspicious)continue;
