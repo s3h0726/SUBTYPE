@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const source=file=>fs.readFileSync(path.join(__dirname,'..','js',file),'utf8')
-  .replace(/\\bimport(?=\\s|\\{)[^;]+;/g,'').replace(/\\bexport\\s+/g,'');
+  .replace(/\bimport(?=\s|\{)[^;]+;/g,'').replace(/\bexport\s+/g,'');
 const context=vm.createContext({});
 vm.runInContext(source('utils.js')+';globalThis.customNames=customStationNames;globalThis.displayKorean=koreanStationDisplayName;',context);
 const names=context.customNames;
