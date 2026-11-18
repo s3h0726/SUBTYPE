@@ -46,7 +46,7 @@ test('Haengsin-origin KTX detour and Daejeon-to-Dongdaegu are corrected ONLY in 
    assert.deepEqual(Array.from(out[i].geometry[0]),Array.from(j.directedSegments[i].geometry[0]));
    assert.deepEqual(Array.from(out[i].geometry.at(-1)),Array.from(j.directedSegments[i].geometry.at(-1)));
    good[from+'-'+to]=[+len(j.directedSegments[i].geometry).toFixed(2),+len(out[i].geometry).toFixed(2)];
-  }else assert.deepEqual(out[i].geometry,j.directedSegments[i].geometry);
+  }else assert.equal(JSON.stringify(out[i].geometry),JSON.stringify(j.directedSegments[i].geometry));
  }
  assert.ok(good['행신-서울역'][0]>=18&&good['행신-서울역'][1]<16.5);
  assert.ok(good['대전-동대구'][0]>150&&good['대전-동대구'][1]<130);
@@ -59,7 +59,7 @@ test('already-correct Haengsin source track is not changed; reverse trains uncha
  const out=mapOnlyKtxJourneySegments(a.route,a.j,record);
  const hi=a.j.stations.findIndex((s,i)=>s.ko==='행신'&&a.j.stations[i+1]?.ko==='서울역');
  assert.ok(out);
- assert.deepEqual(out[hi].geometry,a.j.directedSegments[hi].geometry);
+ assert.equal(JSON.stringify(out[hi].geometry),JSON.stringify(a.j.directedSegments[hi].geometry));
  const b=find('kr-continuity-pattern-59b7693515160112');
  assert.equal(mapOnlyKtxJourneySegments(b.route,b.j,record),null);
 });
@@ -70,6 +70,6 @@ test('map-only overlay never changes via-station order or name and skips all non
  const result=mapOnlyKtxJourneySegments(a.route,a.j,record);
  for(let i=1;i<result.length;i++){
   const x=result[i-1].geometry.at(-1),y=result[i].geometry[0];
-  assert.deepEqual(x,y,'visual track must be connected at timetable calls');
+  assert.equal(JSON.stringify(x),JSON.stringify(y),'visual track must be connected at timetable calls');
  }
 });
