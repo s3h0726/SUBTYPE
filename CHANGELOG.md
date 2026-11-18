@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.10] — 2026-11-18
+
+- fix(kr): restore KTX paths without verified OSM source edges and enforce provenance * fix(kr): regenerate exact OSM source-edge references for corrected KTX geometries * fix(kr): r
+
 ## [v0.11.9] — 2026-11-18
 
 - fix(kr): correct 67 KTX track leg geometries on verified OSM rail corridors * feat(kr): add source-backed all-KTX railway geometry repair engine * fix(kr): permit provenance-checke
