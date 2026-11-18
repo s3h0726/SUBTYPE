@@ -1,0 +1,62 @@
+name: Resolve all KTX high-speed rail track defects with proven OSM source edges
+on:
+  push:
+    branches: [fix/ktx-verified-edge-routing-final-20261118]
+    paths:
+      - 'tools/repair-kr-ktx-proven-graph.cjs'
+      - 'tools/test-kr-ktx-proven-graph.cjs'
+      - '.github/workflows/ktx-proven-graph-final.yml'
+permissions:
+  contents: write
+jobs:
+  check-fix-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-only routing, original node connectivity, reverse one-way and source proofs
+        run: |
+          node --check tools/repair-kr-ktx-proven-graph.cjs
+          node --test tools/test-kr-ktx-proven-graph.cjs tools/test-kr-ktx-all-alignments.cjs tools/test-kr-ktx-track-alignment.cjs
+      - name: Discover and apply only physically proven improved KTX paths
+        run: node tools/repair-kr-ktx-proven-graph.cjs --write
+      - name: Validate exact original OSM edge proof and immutable official timetable for all affected railway batches
+        run: |
+          node tools/test-kr-rail-expansion.cjs --batch=rail-continuity-recovery-batch.json
+          node tools/test-kr-rail-expansion.cjs --batch=rail-national-recovery-batch.json
+          node tools/test-kr-rail-expansion.cjs --batch=rail-network-recovery-batch.json
+          node tools/test-kr-canonical.cjs
+      - name: Rebuild actual published routes if changed and audit all KTX services
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet -- data/kr/canonical; then
+            node tools/build-kr-canonical.cjs --publish
+          fi
+          node tools/audit-kr-ktx-track-alignment.cjs
+      - name: Commit only solutions that pass every source proof and complete service test
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/kr/canonical/rail-*-batch.json data/kr/generated/routes/ data/kr/generated/index.json js/korea-index-data.js reports/kr-ktx-proven-source-routing.json reports/kr-ktx-track-alignment.json reports/kr-rebuild/catalog-validation.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(kr): apply only source-node-proven KTX route geometry corrections"
+            git push origin HEAD:fix/ktx-verified-edge-routing-final-20261118
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ktx-original-source-proven-track-repair
+          path: |
+            reports/kr-ktx-proven-source-routing.json
+            reports/kr-ktx-track-alignment.json
+          if-no-files-found: warn
