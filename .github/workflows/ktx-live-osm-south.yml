@@ -1,0 +1,27 @@
+name: Inspect live OSM physical railway tracks Gyeongju to Busan
+on:
+  push:
+    branches: [fix/ktx-gyeongju-busan-physical-osm-20261118]
+    paths:
+      - 'tools/diagnose-kr-live-osm-south.cjs'
+      - '.github/workflows/ktx-live-osm-south.yml'
+permissions:
+  contents: read
+jobs:
+  fetch-and-inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read live OSM rail ways with source geometries
+        shell: bash
+        run: |
+          set -euo pipefail
+          q='[out:json][timeout:60];(way["railway"="rail"]["name"~"경부고속선"](35.0,128.7,35.9,129.5);way["railway"="rail"]["name"~"Gyeongbu"](35.0,128.7,35.9,129.5););out geom;'
+          for host in https://overpass.kumi.systems/api/interpreter https://overpass-api.de/api/interpreter https://overpass.private.coffee/api/interpreter; do
+            echo "Querying $host"
+            if curl --retry 1 --retry-delay 2 --connect-timeout 12 --max-time 100 --fail --silent --show-error --data-urlencode "data=$q" "$host" -o /tmp/ktx-osm-south.json; then
+              node tools/diagnose-kr-live-osm-south.cjs /tmp/ktx-osm-south.json && exit 0
+            fi
+          done
+          echo "LIVE_OSM_QUERY_UNAVAILABLE"
