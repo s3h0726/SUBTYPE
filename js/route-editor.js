@@ -48,6 +48,22 @@ export class RouteEditor{
   if(!force&&this.activeCountryId!==countryId)return;
   this.master=Array.isArray(stations)?stations:[];this.renderSearch($('#station-master-search')?.value||'');this.renderJourneyOptions();this.renderAirportOptions();
  }
+ // Keep the search country aligned with the global selector for a blank draft.
+ // Never discard stations from an in-progress international itinerary.
+ syncCountry(countryId){
+  if(!countryId||this.route.stations.length)return false;
+  if(this.route.countryId!==countryId){
+   this.route.countryId=countryId;
+   this.lastForeignSearchKey='';this.stationSearchStatus=null;this.searchResultLimit=30;
+  }
+  if(this.useCountry(countryId))return true;
+  this.activeCountryId=countryId;
+  this.master=[];this.railRoutes=[];this.stationGraph=new Map();
+  this.shortestPath.setRoutes([]);
+  this.renderSearch($('#station-master-search')?.value||'');
+  this.renderJourneyOptions();this.renderAirportOptions();
+  return true;
+ }
  useCountry(countryId){
   const cached=this.countryNetworks.get(countryId);
   if(!cached)return false;
@@ -60,6 +76,10 @@ export class RouteEditor{
  async restoreLastCountry(){
   const current=this.route.stations.at(-1),country=current?.countryId||this.route.countryId;
   if(this.useCountry(country))return;
+  // Do not leave the previous country's station master or graph selectable.
+  this.activeCountryId=country;this.master=[];this.railRoutes=[];this.stationGraph=new Map();
+  this.shortestPath.setRoutes([]);
+  this.renderSearch($('#station-master-search')?.value||'');
   const previousFlight=[...this.route.stations].reverse().find(station=>station.airportIncomingTransfer?.toCountryId===country);
   if(previousFlight&&this.onLoadAirportNetwork){
    try{
@@ -70,15 +90,15 @@ export class RouteEditor{
   }
  }
 
- createNew(){this.route=this.fresh();this.activeCountryId=this.route.countryId;this.useCountry(this.activeCountryId);this.latestPath=null;this.render();$('#station-master-search')?.focus()}
+ createNew(){this.route=this.fresh();this.lastForeignSearchKey='';this.stationSearchStatus=null;this.searchResultLimit=30;const search=$('#station-master-search');if(search)search.value='';this.syncCountry(this.route.countryId);this.latestPath=null;this.render();search?.focus()}
  loadRoute(route){if(!route||koreanRouteBlockReason(route))return;this.route=structuredClone(route);this.latestPath=null;this.route.geometry ||= [];this.route.segments ||= [];this.route.airportTransfers ||= [];this.useCountry(this.route.stations.at(-1)?.countryId||this.route.countryId);this.render();void this.restoreLastCountry()}
  bind(){
   $('#new-route').addEventListener('click',()=>this.createNew());$('#add-station').addEventListener('click',()=>this.addStation());$('#save-route').addEventListener('click',()=>this.save());$('#play-custom').addEventListener('click',()=>{if(this.validate())this.onPlay(this.route)});$('#export-route').addEventListener('click',()=>this.export());$('#import-route').addEventListener('change',e=>this.import(e.target.files[0]));
   $('#station-master-search').addEventListener('input',debounce(e=>{this.searchResultLimit=30;this.renderSearch(e.target.value)},70));$('#station-search-results').addEventListener('click',e=>{if(e.target.closest('[data-search-more]')){this.searchResultLimit+=50;this.renderSearch($('#station-master-search').value);return}const button=e.target.closest('[data-add-master]');if(button)this.addMasterStation(button.dataset.addMaster);const shortest=e.target.closest('[data-route-to]');if(shortest)this.connectShortestPath(shortest.dataset.routeTo)});$('#journey-options').addEventListener('click',e=>{const button=e.target.closest('[data-journey-edge]');if(button)this.addGraphEdge(button.dataset.journeyEdge)});$('#custom-airport-choices')?.addEventListener('click',e=>{const button=e.target.closest('[data-airport-choice]');if(button)void this.addAirportTransfer(button.dataset.airportChoice)});$('#custom-clear-stops')?.addEventListener('click',()=>{if(!this.route.stations.length)return;this.sync();this.resetTrack();this.latestPath=null;this.render();toast('역 목록을 초기화했습니다. 노선 정보는 유지됩니다.')});document.addEventListener('keydown',e=>{if(e.key==='Tab'&&!e.isComposing&&document.body.dataset.currentScreen==='custom-editor'&&this.route.stations.length){const options=this.currentEdges();if(new Set(options.map(edge=>edge.route.id)).size>1){e.preventDefault();$('#journey-options').classList.toggle('transfer-open');$('#journey-options').focus?.()}}});
   this.form.addEventListener('input',debounce(()=>{this.sync();this.draw()},60));this.list.addEventListener('click',e=>this.action(e));this.list.addEventListener('dragstart',e=>{const row=e.target.closest('.station-row');if(row){this.dragIndex=+row.dataset.index;row.classList.add('dragging')}});this.list.addEventListener('dragend',e=>e.target.closest('.station-row')?.classList.remove('dragging'));this.list.addEventListener('dragover',e=>e.preventDefault());this.list.addEventListener('drop',e=>{e.preventDefault();const to=+e.target.closest('.station-row')?.dataset.index;if(Number.isInteger(to)&&to!==this.dragIndex){this.sync();const stops=this.route.stations.map(station=>structuredClone(station));const[m]=stops.splice(this.dragIndex,1);stops.splice(to,0,m);this.retraceEditedStops(stops)}});
-  $('#saved-routes').addEventListener('click',e=>{const id=e.target.closest('[data-id]')?.dataset.id;if(!id)return;if(e.target.matches('[data-delete]')){if(confirm('이 노선을 삭제할까요?')){storage.deleteRoute(id);this.renderSaved();this.onRoutesChanged()}}else{const found=storage.routes().find(r=>r.id===id);if(found){this.route=structuredClone(found);this.render()}}})
+  $('#saved-routes').addEventListener('click',e=>{const id=e.target.closest('[data-id]')?.dataset.id;if(!id)return;if(e.target.matches('[data-delete]')){if(confirm('이 노선을 삭제할까요?')){storage.deleteRoute(id);this.renderSaved();this.onRoutesChanged()}}else{const found=storage.routes().find(r=>r.id===id);if(found){this.route=structuredClone(found);this.render();void this.restoreLastCountry()}}})
  }
- async activate(){await this.restoreLastCountry();await this.switchEditorView('map');setTimeout(()=>$('#station-master-search')?.focus(),80)}
+ async activate(){if(!this.route.stations.length)this.syncCountry(document.documentElement.dataset.country||this.route.countryId);await this.restoreLastCountry();await this.switchEditorView('map');setTimeout(()=>$('#station-master-search')?.focus(),80)}
  async searchForeignStations(value){
   if(!this.onSearchForeignRail)return;
   const q=normalize(value),country=this.activeCountryId;
