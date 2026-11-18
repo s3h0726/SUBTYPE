@@ -38,7 +38,7 @@ export class RouteEditor{
  bind(){
   $('#new-route').addEventListener('click',()=>this.createNew());$('#add-station').addEventListener('click',()=>this.addStation());$('#save-route').addEventListener('click',()=>this.save());$('#play-custom').addEventListener('click',()=>{if(this.validate())this.onPlay(this.route)});$('#export-route').addEventListener('click',()=>this.export());$('#import-route').addEventListener('change',e=>this.import(e.target.files[0]));
   $('#station-master-search').addEventListener('input',debounce(e=>this.renderSearch(e.target.value),70));$('#station-search-results').addEventListener('click',e=>{const button=e.target.closest('[data-add-master]');if(button)this.addMasterStation(button.dataset.addMaster);const shortest=e.target.closest('[data-route-to]');if(shortest)this.connectShortestPath(shortest.dataset.routeTo)});$('#journey-options').addEventListener('click',e=>{const button=e.target.closest('[data-journey-edge]');if(button)this.addGraphEdge(button.dataset.journeyEdge)});$('#custom-clear-stops')?.addEventListener('click',()=>{if(!this.route.stations.length)return;this.sync();this.resetTrack();this.latestPath=null;this.render();toast('역 목록을 초기화했습니다. 노선 정보는 유지됩니다.')});document.addEventListener('keydown',e=>{if(e.key==='Tab'&&!e.isComposing&&document.body.dataset.currentScreen==='custom-editor'&&this.route.stations.length){const options=this.currentEdges();if(new Set(options.map(edge=>edge.route.id)).size>1){e.preventDefault();$('#journey-options').classList.toggle('transfer-open');$('#journey-options').focus?.()}}});
-  this.form.addEventListener('input',debounce(()=>{this.sync();this.draw()},60));this.list.addEventListener('click',e=>this.action(e));this.list.addEventListener('dragstart',e=>{const row=e.target.closest('.station-row');if(row){this.dragIndex=+row.dataset.index;row.classList.add('dragging')}});this.list.addEventListener('dragend',e=>e.target.closest('.station-row')?.classList.remove('dragging'));this.list.addEventListener('dragover',e=>e.preventDefault());this.list.addEventListener('drop',e=>{e.preventDefault();const to=+e.target.closest('.station-row')?.dataset.index;if(Number.isInteger(to)&&to!==this.dragIndex){this.sync();const[m]=this.route.stations.splice(this.dragIndex,1);this.route.stations.splice(to,0,m);this.render()}});
+  this.form.addEventListener('input',debounce(()=>{this.sync();this.draw()},60));this.list.addEventListener('click',e=>this.action(e));this.list.addEventListener('dragstart',e=>{const row=e.target.closest('.station-row');if(row){this.dragIndex=+row.dataset.index;row.classList.add('dragging')}});this.list.addEventListener('dragend',e=>e.target.closest('.station-row')?.classList.remove('dragging'));this.list.addEventListener('dragover',e=>e.preventDefault());this.list.addEventListener('drop',e=>{e.preventDefault();const to=+e.target.closest('.station-row')?.dataset.index;if(Number.isInteger(to)&&to!==this.dragIndex){this.sync();const[m]=this.route.stations.splice(this.dragIndex,1);this.route.stations.splice(to,0,m);this.retraceEditedStops(this.route.stations.map(station=>({...station})))}});
   $('#saved-routes').addEventListener('click',e=>{const id=e.target.closest('[data-id]')?.dataset.id;if(!id)return;if(e.target.matches('[data-delete]')){if(confirm('이 노선을 삭제할까요?')){storage.deleteRoute(id);this.renderSaved();this.onRoutesChanged()}}else{const found=storage.routes().find(r=>r.id===id);if(found){this.route=structuredClone(found);this.render()}}})
  }
  async activate(){await this.switchEditorView('map');setTimeout(()=>$('#station-master-search')?.focus(),80)}
@@ -65,7 +65,7 @@ export class RouteEditor{
   const km=(path.distanceMeters/1000).toFixed(2),note=path.approximateEdges?' · 일부 구간은 역 간 직선거리 추정':'';
   toast(`최단 경로 ${path.edges.length}개 구간 · 약 ${km} km · 환승 ${path.transferCount}회${note}`);
  }
- resetTrack(){this.route.stations=[];this.route.geometry=[];this.route.segments=[];this.route.directedSegments=[];this.route.geometryReady=false}
+ resetTrack(){this.route.stations=[];this.route.geometry=[];this.route.segments=[];this.route.directedSegments=[];this.route.geometryReady=false;delete this.route.releaseStatus;delete this.route.playable}
  addMasterStation(id){const source=this.master.find(station=>station.id===id);if(!source)return;if(!this.route.stations.length)return this.appendStation(source,null);const edge=this.currentEdges().find(item=>item.to===id);if(!edge)return toast('현재 역과 실제 선로로 인접한 역만 추가할 수 있습니다. 아래 노선별 다음 역을 선택하세요.');this.addGraphEdge(this.edgeToken(edge))}
  currentEdges(){
   const current=this.route.stations.at(-1);
@@ -96,8 +96,11 @@ export class RouteEditor{
   }
   let segment=null;
   if(edge){
-   const route=edge.route,a=route.stations[edge.fromIndex],b=route.stations[edge.toIndex],from=a.geometryIndex??0,to=b.geometryIndex??0;
-   let points=from<=to?route.geometry.slice(from,to+1):route.geometry.slice(to,from+1).reverse();
+   const route=edge.route,a=route.stations[edge.fromIndex],b=route.stations[edge.toIndex],from=a.geometryIndex,to=b.geometryIndex;
+   const sourceGeometry=Array.isArray(route.geometry)?route.geometry:[];
+   const directed=route.directedSegments?.[Math.min(edge.fromIndex,edge.toIndex)]?.geometry;
+   let points=Array.isArray(directed)&&directed.length>1?(edge.fromIndex<edge.toIndex?directed:[...directed].reverse()):Number.isInteger(from)&&Number.isInteger(to)&&sourceGeometry.length?(from<=to?sourceGeometry.slice(from,to+1):sourceGeometry.slice(to,from+1).reverse()):[];
+   if(points.length<2&&[a.latitude,a.longitude,b.latitude,b.longitude].every(Number.isFinite))points=[[a.latitude,a.longitude],[b.latitude,b.longitude]];
    if(this.route.geometry.length&&points.length&&this.route.geometry.at(-1)[0]===points[0][0]&&this.route.geometry.at(-1)[1]===points[0][1])points=points.slice(1);
    const start=this.route.stations.length-1,offset=this.route.geometry.length;
    this.route.geometry.push(...points);
@@ -116,7 +119,42 @@ export class RouteEditor{
  renumber(){this.route.stations.forEach((station,i)=>station.id=`${this.route.code||'CT'}${String(i+1).padStart(2,'0')}`)}
  sync(){const f=new FormData(this.form);this.route.operator={...(this.route.countryId==='tw'?{zh:this.route.operator.zh}:{}),ja:f.get('operator')||'Custom Railway',en:this.route.countryId==='tw'?(this.route.operator.en||f.get('operator')||'Custom Railway'):(f.get('operator')||'Custom Railway'),ko:f.get('operator')||'커스텀 철도'};this.route.code=String(f.get('code')||'CT').toUpperCase();this.route.line={...(this.route.countryId==='tw'?{zh:f.get('lineJa')||this.route.line.zh||''}:{}),ja:f.get('lineJa')||'',ko:f.get('lineKo')||'',en:f.get('lineEn')||''};this.route.lineColor=f.get('color')||'#e84747';this.route.loop=f.get('loop')==='on';$$('.station-row',this.list).forEach((row,i)=>{if(!this.route.stations[i]?.customStation)return;this.route.stations[i]={...this.route.stations[i],...Object.fromEntries($$('input[data-field]',row).map(el=>[el.dataset.field,el.value.normalize('NFC')]))}});this.renumber()}
  render(){const f=this.form.elements;if(this.route.countryId==='tw'&&!this.taiwanOriginalLabels)this.taiwanOriginalLabels={label:f.lineJa.closest('label').firstChild.textContent,aria:f.lineJa.getAttribute('aria-label'),placeholder:f.lineJa.getAttribute('placeholder'),search:$('#station-master-search').placeholder};f.operator.value=this.route.operator.ko||this.route.operator.en||'';f.code.value=this.route.code||'CT';f.lineJa.value=this.route.countryId==='tw'?this.route.line.zh||'':this.route.line.ja||'';if(this.route.countryId==='tw'){f.lineJa.setAttribute('aria-label','번체중문 노선명');f.lineJa.placeholder='번체중문 노선명';f.lineJa.closest('label').firstChild.textContent='번체중문 / 繁體中文';$('#station-master-search').placeholder='한국어 / 繁體中文 / English';}else if(this.taiwanOriginalLabels){const prior=this.taiwanOriginalLabels;f.lineJa.closest('label').firstChild.textContent=prior.label;for(const [name,value]of[['aria-label',prior.aria],['placeholder',prior.placeholder]]){if(value===null)f.lineJa.removeAttribute(name);else f.lineJa.setAttribute(name,value)}$('#station-master-search').placeholder=prior.search;this.taiwanOriginalLabels=null;}f.lineKo.value=this.route.line.ko||'';f.lineEn.value=this.route.line.en||'';f.color.value=this.route.lineColor||'#e84747';f.loop.checked=!!this.route.loop;this.renumber();this.list.innerHTML=this.route.stations.length?this.route.stations.map((station,i)=>station.sourceStationId?`<div class="station-row master-row" draggable="true" data-index="${i}"><span class="drag-handle" aria-label="드래그하여 이동">☰</span><div class="master-station-copy"><b>${String(i+1).padStart(2,'0')} · ${this.route.countryId==='tw'?taiwanNameMarkup(station):escapeHtml(this.route.countryId==='kr'?this.stationDisplay(station):station.ja)}</b><span>${escapeHtml(this.stationDisplay(station))}</span><small>${escapeHtml(station.romaji)} · ${escapeHtml((station.operators||[]).join(' · '))}</small></div><span class="row-actions"><button type="button" data-up aria-label="위로">↑</button><button type="button" data-down aria-label="아래로">↓</button><button type="button" data-remove aria-label="삭제">×</button></span></div>`:`<div class="station-row" draggable="true" data-index="${i}"><span class="drag-handle">☰</span><input data-field="id" value="${escapeHtml(station.id)}" aria-label="역 번호"><input data-field="ja" value="${escapeHtml(station.ja)}" placeholder="공식 원문 역명" aria-label="공식 원문 역명"><input data-field="kana" value="${escapeHtml(station.kana)}" placeholder="ひらがな"><input data-field="romaji" value="${escapeHtml(station.romaji)}" placeholder="Romaji"><input data-field="ko" value="${escapeHtml(station.ko)}" placeholder="한국어 공식 원본 역명" aria-label="공식 원본 역명"><small class="station-coord">${Number.isFinite(station.latitude)?`${station.latitude.toFixed(5)}, ${station.longitude.toFixed(5)}`:'지도에서 좌표 지정 필요'}</small><span class="row-actions"><button type="button" data-up>↑</button><button type="button" data-down>↓</button><button type="button" data-remove>×</button></span></div>`).join(''):'<p class="muted">위 검색창에서 실제 역을 2개 이상 추가하세요.</p>';$('#station-count').textContent=`${this.route.stations.length} / ${MAX}`;this.draw();this.renderSaved();this.renderSearch($('#station-master-search')?.value||'');const status=$('#custom-route-summary');if(status){const n=this.route.stations.length,p=this.latestPath;status.textContent=p?`전체 ${n}개 역 · 최근 자동 연결 ${(p.distanceMeters/1000).toFixed(2)} km · 환승 ${p.transferCount}회${p.approximateEdges?' · 일부 거리 추정':''}`:`현재 ${n}개 역 · 인접역 수동 추가 또는 목적지 최단거리 연결`}}
- action(e){const row=e.target.closest('.station-row');if(!row)return;const i=+row.dataset.index;this.sync();if(e.target.matches('[data-remove]'))this.route.stations.splice(i,1);else if(e.target.matches('[data-up]')&&i>0)[this.route.stations[i-1],this.route.stations[i]]=[this.route.stations[i],this.route.stations[i-1]];else if(e.target.matches('[data-down]')&&i<this.route.stations.length-1)[this.route.stations[i+1],this.route.stations[i]]=[this.route.stations[i],this.route.stations[i+1]];else return;this.renumber();this.render()}
+ retraceEditedStops(stops){
+  const previous=structuredClone(this.route);
+  this.resetTrack();
+  if(stops.some(station=>!station.sourceStationId)){
+    this.route.stations=stops;this.renumber();this.latestPath=null;this.render();
+    toast('가상역이 포함된 목록을 수정하여 기존 자동 선형을 초기화했습니다.');return true;
+  }
+  const sourceFor=station=>this.master.find(item=>item.id===station.sourceStationId)||{...station,id:station.sourceStationId};
+  try{
+    if(stops.length&&!this.appendStation(sourceFor(stops[0]),null,true))throw Error('첫 역 복원 실패');
+    for(let i=1;i<stops.length;i++){
+      const from=CustomShortestPath.stationKey({sourceStationId:this.route.stations.at(-1)?.sourceStationId,twTransferKey:this.route.stations.at(-1)?.twTransferKey});
+      const to=CustomShortestPath.stationKey(sourceFor(stops[i]));
+      const path=this.shortestPath.find(from,to,{maxEdges:MAX-this.route.stations.length});
+      if(!path)throw Error('역 사이의 연결 선로를 찾지 못했습니다.');
+      for(const edge of path.edges){
+        const next=edge.route.stations[edge.toIndex];
+        const source=this.master.find(item=>CustomShortestPath.stationKey(item)===edge.to)||{...next,id:next.stationMasterId||next.sourceStationId||next.id};
+        if(!this.appendStation(source,edge,true))throw Error('허용되지 않는 방향 또는 미검증 환승입니다.');
+      }
+    }
+    this.latestPath=null;this.render();return true;
+  }catch(error){
+    this.route=previous;this.render();toast('역 순서 변경을 취소했습니다: '+error.message);return false;
+  }
+ }
+ action(e){
+  const row=e.target.closest('.station-row');if(!row)return;
+  const i=+row.dataset.index;this.sync();
+  const stops=this.route.stations.map(station=>structuredClone(station));
+  if(e.target.matches('[data-remove]'))stops.splice(i,1);
+  else if(e.target.matches('[data-up]')&&i>0)[stops[i-1],stops[i]]=[stops[i],stops[i-1]];
+  else if(e.target.matches('[data-down]')&&i<stops.length-1)[stops[i+1],stops[i]]=[stops[i],stops[i+1]];
+  else return;
+  this.retraceEditedStops(stops);
+ }
  draw(){if(this.route.countryId==='hk'&&this.route.stations.length>=2){try{this.route=buildHongKongCustomRoute(this.route)}catch{this.route.geometryReady=false;this.route.geometry=[];this.route.directedSegments=[];this.route.playable=false;this.route.releaseStatus='INCOMPLETE'}}this.renderJourneyOptions();renderSvg($('#custom-map'),this.route);this.geo?.render(this.route)}
  async switchEditorView(){if(!this.geo){this.geo=new CustomGeoMap($('#custom-geo-map'),$('#geo-map-status'),point=>this.addStation(point),(i,point)=>{Object.assign(this.route.stations[i],point);this.render()});await this.geo.init(this.route)}this.geo.render(this.route);this.geo.show()}
  validate(){this.sync();if(this.route.countryId==='hk'){try{this.route=normalizeLine(buildHongKongCustomRoute(this.route));return true}catch(error){toast(error.message);return false}}if(!this.route.line.ja&&!this.route.line.ko&&!this.route.line.en)return toast('노선명을 입력하세요.'),false;if(this.route.stations.length<2)return toast('실제 역을 최소 2개 추가해 주세요.'),false;if(this.route.stations.some(station=>!station.ja||!station.ko))return toast('모든 역에 일본어와 한국어 이름이 필요합니다.'),false;if(this.route.stations.some(station=>!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))return toast('모든 역에 실제 지도 좌표가 필요합니다.'),false;if(!/^#[0-9a-f]{6}$/i.test(this.route.lineColor))return toast('노선 색상이 올바르지 않습니다.'),false;this.route=normalizeLine({...this.route,custom:true,category:'custom'},{category:'custom'});return true}
