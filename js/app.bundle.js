@@ -1690,6 +1690,7 @@ function resolveFamousLimitedExpressChoice(route,choice){
 }
 
 
+
 // A v2 journey is already directional and contains only timetable stopping calls.
 // Geometry between calls includes every non-stopping station and track curve.
 function koreanServiceIsCurrent(window={}){
@@ -1707,7 +1708,11 @@ function resolveKoreanVerifiedChoice(choice,route){
  if(!journey||!journey.tripIds?.length||journey.stations?.length<2||journey.geometry?.length<2)throw Error('확인된 실제 운행계통이 아닙니다.');
  if(choice.originId!==journey.stations[0].id||choice.destinationId!==journey.stations.at(-1).id)throw Error('실제 운행하지 않는 기점·종점 조합입니다.');
  const segments=journey.directedSegments.map(segment=>({...segment,geometryStatus:'ready'}));
- const resolved={...route,stations:journey.stations,geometry:journey.geometry,directedSegments:segments,services:[journey.service],selectedDirectionId:journey.directionId};
+ const displaySegments=typeof mapOnlyKtxJourneySegments==='function'
+  ?mapOnlyKtxJourneySegments(route,{...journey,directedSegments:segments}):null;
+ const resolved={...route,stations:journey.stations,geometry:journey.geometry,directedSegments:segments,
+  ...(displaySegments?{mapDisplaySegments:displaySegments,mapGeometryCorrection:'verified-reference-centerline-visual-only'}:{}),
+  services:[journey.service],selectedDirectionId:journey.directionId};
  const context={id:journey.id,baseRouteId:route.id,originStationId:journey.stations[0].id,destinationStationId:journey.stations.at(-1).id,originNames:journey.stations[0],destinationNames:journey.stations.at(-1),directionId:journey.directionId};
  return{route:resolved,service:journey.service,journey:context,journeyId:journey.id,direction:'forward',travelDirectionId:journey.directionId,pattern:{id:journey.patternId,names:journey.patternName},trainType:null,destinationStationId:journey.stations.at(-1).id,trainTypeContexts:[]};
 }
@@ -1783,7 +1788,9 @@ const geometryPoints=route=>Array.isArray(route.geometry)&&route.geometry.length
 const permitsApproximateMapGeometry=route=>route?.category==='custom'||['bus','village_bus','express_bus','river_bus','ferry'].includes(route?.mode);
 function travelGeometry(route){
   if(!Array.isArray(route?.stations)||route.stations.length<2)return null;
-  const stations=route.stations,directed=route.directedSegments,points=[],offsets=[];
+  // Game-map corrections are display-only; keep canonical OSM source proofs
+  // and operational stop order unchanged for the gameplay route.
+  const stations=route.stations,directed=Array.isArray(route.mapDisplaySegments)?route.mapDisplaySegments:route.directedSegments,points=[],offsets=[];
   if(route.countryId==='kr'&&(route.geometryReady!==true||!Array.isArray(directed)||directed.length!==stations.length-1||!directed.every(segment=>segment.geometryStatus==='ready'&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)))return null;
   if(Array.isArray(directed)&&directed.length===stations.length-1&&directed.every((segment,i)=>segment.fromStationId===stations[i].id&&segment.toStationId===stations[i+1].id&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)){
     for(let i=0;i<directed.length;i++){
@@ -3614,6 +3621,7 @@ function applySuseoTrack(raw,track=globalThis.TRT_KR_SUSEO_PYEONGTAEK_TRACK){
 
 
 
+
 const text=(...values)=>String(values.find(value=>typeof value==='string'&&value.trim())||'').normalize('NFC').trim();
 const cleanDisplayLineName=value=>text(value).replace(/^JR/,'').replace(/^東京メトロ/,'').replace(/^都営/,'').replace(/^大阪メトロ/,'');
 // The editor saves a small JSON file independently of the generated catalog.
@@ -4082,7 +4090,10 @@ async function loadTransportData(countryId='jp',koreaMode='released'){
   }
   if(FEATURE_FLAGS.koreaRoutesReset)return{country:{id:'kr',names:{ko:'대한민국',en:'South Korea'}},operators:[],lines:[],stations:[],assets:{operators:{},lines:{}},errors:[],counts:{},fallbackUsed:false,source:'korea-reset'};
   // Preload OSM high-speed track before the synchronous GTX-A choice resolver runs.
-  await loadSuseoTrack().catch(error=>console.warn('수서평택고속선 실선형 로딩 실패',error));
+  await Promise.all([
+   loadSuseoTrack().catch(error=>console.warn('수서평택고속선 실선형 로딩 실패',error)),
+   loadKtxMapReference().catch(error=>console.warn('KTX 고속선 지도 참조 로딩 실패',error))
+  ]);
   const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
   const lines=(data.routes||[]).filter(route=>(!route.serviceWindows||route.serviceWindows.some(koreanServiceIsCurrent))&&route.releaseStatus!=='research'&&route.playStatus!=='RESEARCH_PLAYABLE'&&!route.previewContract&&!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators:withEditorOperators(operators),lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
