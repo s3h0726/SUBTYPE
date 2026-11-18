@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.11] — 2026-11-18
+
+- fix(kr): enforce exact source-connected directional rail geometry for KTX audits * fix(kr): require exact original OSM track edges and respect rail direction during KTX rerouting *
+
 ## [v0.11.10] — 2026-11-18
 
 - fix(kr): restore KTX paths without verified OSM source edges and enforce provenance * fix(kr): regenerate exact OSM source-edge references for corrected KTX geometries * fix(kr): r
