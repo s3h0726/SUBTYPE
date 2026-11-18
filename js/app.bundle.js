@@ -4135,15 +4135,15 @@ async function loadStationMaster(){const workspaceData=globalThis.TRT_EMBEDDED_L
 
 // Weighted station-to-station railway routing for the CUSTOM studio.
 // Only registered adjacent stops are connected; no proximity or straight-line shortcuts.
-const rad = value => value * Math.PI / 180;
+const customRad = value => value * Math.PI / 180;
 function customRailDistance(a,b){
   const lat1=Number(Array.isArray(a)?a[0]:a?.latitude),lon1=Number(Array.isArray(a)?a[1]:a?.longitude);
   const lat2=Number(Array.isArray(b)?b[0]:b?.latitude),lon2=Number(Array.isArray(b)?b[1]:b?.longitude);
   if(![lat1,lon1,lat2,lon2].every(Number.isFinite)||Math.abs(lat1)>90||Math.abs(lat2)>90)return null;
-  const dLat=rad(lat2-lat1),dLon=rad(lon2-lon1),h=Math.sin(dLat/2)**2+Math.cos(rad(lat1))*Math.cos(rad(lat2))*Math.sin(dLon/2)**2;
+  const dLat=customRad(lat2-lat1),dLon=customRad(lon2-lon1),h=Math.sin(dLat/2)**2+Math.cos(customRad(lat1))*Math.cos(customRad(lat2))*Math.sin(dLon/2)**2;
   return 12742000*Math.asin(Math.min(1,Math.sqrt(h)));
 }
-const polylineLength=points=>{
+const customPolylineLength=points=>{
   if(!Array.isArray(points)||points.length<2)return null;
   let length=0;
   for(let i=1;i<points.length;i++){
@@ -4158,25 +4158,25 @@ function customTrackLength(route,fromIndex,toIndex){
   if(!a||!b)return null;
   const directed=route.directedSegments?.[Math.min(fromIndex,toIndex)];
   if(Array.isArray(directed?.geometry)&&directed.geometry.length>1){
-    const length=polylineLength(directed.geometry);
+    const length=customPolylineLength(directed.geometry);
     if(length!==null)return{metres:length,approximate:false};
   }
   const from=a.geometryIndex,to=b.geometryIndex,geo=route.geometry;
   if(Number.isInteger(from)&&Number.isInteger(to)&&from!==to&&Array.isArray(geo)){
     const lo=Math.min(from,to),hi=Math.max(from,to);
     if(lo>=0&&hi<geo.length){
-      const length=polylineLength(geo.slice(lo,hi+1));
+      const length=customPolylineLength(geo.slice(lo,hi+1));
       if(length!==null)return{metres:length,approximate:false};
     }
   }
   const fallback=customRailDistance(a,b);
   return fallback===null?null:{metres:fallback,approximate:true};
 }
-const better=(a,b)=>!b||a.cost<b.cost-0.001||(Math.abs(a.cost-b.cost)<=0.001&&(a.transfers<b.transfers||a.transfers===b.transfers&&a.hops<b.hops));
-class MinHeap{
+const customCandidateBetter=(a,b)=>!b||a.cost<b.cost-0.001||(Math.abs(a.cost-b.cost)<=0.001&&(a.transfers<b.transfers||a.transfers===b.transfers&&a.hops<b.hops));
+class CustomRouteMinHeap{
   constructor(){this.items=[]}
-  push(value){const a=this.items;let i=a.length;a.push(value);while(i){const p=(i-1)>>1;if(!better(value,a[p]))break;a[i]=a[p];i=p}a[i]=value}
-  pop(){const a=this.items,top=a[0],last=a.pop();if(a.length){let i=0;while(2*i+1<a.length){let k=2*i+1;if(k+1<a.length&&better(a[k+1],a[k]))k++;if(!better(a[k],last))break;a[i]=a[k];i=k}a[i]=last}return top}
+  push(value){const a=this.items;let i=a.length;a.push(value);while(i){const p=(i-1)>>1;if(!customCandidateBetter(value,a[p]))break;a[i]=a[p];i=p}a[i]=value}
+  pop(){const a=this.items,top=a[0],last=a.pop();if(a.length){let i=0;while(2*i+1<a.length){let k=2*i+1;if(k+1<a.length&&customCandidateBetter(a[k+1],a[k]))k++;if(!customCandidateBetter(a[k],last))break;a[i]=a[k];i=k}a[i]=last}return top}
   get length(){return this.items.length}
 }
 class CustomShortestPath{
@@ -4206,7 +4206,7 @@ class CustomShortestPath{
     if(!origin||!target||origin===target||!this.graph.has(origin))return null;
     const key=(station,route)=>station+'\u0000'+route;
     const first={station:origin,routeId:'',cost:0,transfers:0,hops:0,approximate:0,previous:null,edge:null};
-    const heap=new MinHeap(),best=new Map([[key(origin,''),first]]);heap.push(first);
+    const heap=new CustomRouteMinHeap(),best=new Map([[key(origin,''),first]]);heap.push(first);
     while(heap.length){
       const state=heap.pop();
       if(best.get(key(state.station,state.routeId))!==state)continue;
@@ -4224,21 +4224,12 @@ class CustomShortestPath{
           hops:state.hops+1,approximate:state.approximate+(edge.approximate?1:0),
           previous:state,edge};
         const nextKey=key(next.station,next.routeId);
-        if(better(next,best.get(nextKey))){best.set(nextKey,next);heap.push(next)}
+        if(customCandidateBetter(next,best.get(nextKey))){best.set(nextKey,next);heap.push(next)}
       }
     }
     return null;
   }
 }
-
-
-
-
-
-
-
-
-
 
 
 const MAX=300;
