@@ -1436,7 +1436,20 @@ async function reloadRailData(){const summary=$('#data-summary');dataLoading=tru
       if(typeof name==='string'&&name.trim())spec.nameKo=name.trim();
     }
     const loaded=await loadTransportData(countryId,koreaPlayMode);railDataRepository.configure({operators:loaded.operators,lines:loaded.lines,stations:loaded.stations,assets:loaded.assets});builtin=loaded.lines.map(route=>railDataRepository.resolveRoute(route)).filter(route=>route.id!=='line-11301--tokaidohonsen-tokyo-atami'); // Canonical JR East Tokyo–Atami is line-11301; exclude stale bundled duplicate.
-    if(countryId==='jp')builtin.push(...buildFamousLimitedExpressRoutes(builtin));stations=[...railDataRepository.stations.values()].map(station=>({id:station.id,stationMasterId:station.id,sourceStationId:station.id,ja:station.names.ja,kana:station.names.kana,ko:station.names.ko,romaji:station.names.en,latitude:station.coordinates.lat,longitude:station.coordinates.lng}));stations=stations.filter(station=>FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area'||!globalThis.TRT_TOKYO_AREA||countryId==='kr'||globalThis.TRT_TOKYO_AREA.stationIds.includes(station.id));if(countryId==='th')stations=builtin.flatMap(r=>r.stations.map(s=>({...s,countryId:'th'})));if(countryId==='tw')stations=builtin.flatMap(r=>r.stations.map(s=>({...s,countryId:'tw'})));editor.setStationMaster(stations,{countryId});refreshRoutes();renderHome();if(countryId==='kr'){
+    if(countryId==='jp')builtin.push(...buildFamousLimitedExpressRoutes(builtin));stations=[...railDataRepository.stations.values()].map(station=>({id:station.id,stationMasterId:station.id,sourceStationId:station.id,ja:station.names.ja,kana:station.names.kana,ko:station.names.ko,romaji:station.names.en,latitude:station.coordinates.lat,longitude:station.coordinates.lng}));stations=stations.filter(station=>FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area'||!globalThis.TRT_TOKYO_AREA||countryId==='kr'||globalThis.TRT_TOKYO_AREA.stationIds.includes(station.id));if(countryId==='th')stations=builtin.flatMap(r=>r.stations.map(s=>({...s,countryId:'th'})));if(countryId==='tw')stations=builtin.flatMap(r=>r.stations.map(s=>({...s,countryId:'tw'})));
+    // Non-lazy countries (Taiwan/Macau and preloaded Japan) must provide a
+    // traversable railway graph as well as a searchable station list.
+    // Lazy countries continue to hydrate indexed route payloads on search.
+    const eagerRail=builtin.filter(route=>route.countryId===countryId&&route.category!=='custom'&&
+      route.playable!==false&&route.visibility!=='internal'&&!route.lazy&&
+      Array.isArray(route.stations)&&route.stations.length>=2&&
+      !['bus','village_bus','express_bus','brt','river_bus','ferry'].includes(route.mode));
+    editor.syncCountry(countryId);
+    editor.setRailNetwork(eagerRail,{countryId});
+    const stationKey=station=>String(station.twTransferKey||station.stationMasterId||station.sourceStationId||station.id||'');
+    const editorStations=[...new Map([...stations,...eagerRail.flatMap(route=>route.stations)]
+      .filter(station=>stationKey(station)).map(station=>[stationKey(station),{...station,countryId}])).values()];
+    editor.setStationMaster(editorStations,{countryId});refreshRoutes();renderHome();if(countryId==='kr'){
   summary.textContent=`대한민국 대중교통 · ${builtin.length}개 노선·운행방향 · 실제 선형 기반 노선 선택 및 주행`;
 }else if(countryId==='hk'){summary.textContent=`홍콩 철도 · ${builtin.filter(r=>r.playable===true&&r.releaseStatus==='ready').length}개 플레이 가능 방향 · 고속철도 제외 · 실제 선형 검증`;
 
