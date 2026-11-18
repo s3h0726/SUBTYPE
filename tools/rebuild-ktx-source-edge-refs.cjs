@@ -21,7 +21,7 @@ for(const w of ways){
   const dy=b[0]-a[0],dx=b[1]-a[1];
   if((dx*dx+dy*dy)<1e-20)continue;
   const id=edges.length;
-  const edge={a,b,wayId:String(w.id),fromNodeId:String(ids[k-1]),toNodeId:String(ids[k]),oneway:tags.oneway};
+  const edge={a,b,wayId:String(w.id),fromNodeId:String(ids[k-1]),toNodeId:String(ids[k]),oneway:tags.oneway,name:tags['name:ko']||tags.name||''};
   edges.push(edge);
   const ya=Math.floor(Math.min(a[0],b[0])/cell),yb=Math.floor(Math.max(a[0],b[0])/cell);
   const xa=Math.floor(Math.min(a[1],b[1])/cell),xb=Math.floor(Math.max(a[1],b[1])/cell);
@@ -29,6 +29,20 @@ for(const w of ways){
    const grid=y+':'+x;if(!index.has(grid))index.set(grid,[]);index.get(grid).push(id);
   }
  }
+}
+function nearbyEdges(p){
+ const [y,x]=key(p[0],p[1]).split(':').map(Number);
+ const list=[],seen=new Set();
+ for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+  for(const id of index.get((y+dy)+':'+(x+dx))||[]){
+   if(seen.has(id))continue;seen.add(id);
+   const e=edges[id],match=projection(p,e.a,e.b);
+   if(match.offset>.25)continue;
+   list.push({wayId:e.wayId,fromNodeId:e.fromNodeId,toNodeId:e.toNodeId,
+    name:e.name,offsetKm:+match.offset.toFixed(5),point:match.point});
+  }
+ }
+ return list.sort((a,b)=>a.offsetKm-b.offsetKm).slice(0,8);
 }
 const proofCache=new Map();
 function refFor(a,b){
@@ -94,6 +108,8 @@ fs.mkdirSync(path.join(root,'reports'),{recursive:true});
 fs.writeFileSync(path.join(root,'reports/kr-ktx-source-edge-proofs-20261118.json'),JSON.stringify(report,null,2)+'\n');
 console.log('KTX_PROVENANCE_REPAIR '+JSON.stringify(summary));
 for(const x of missing)console.error('NO_VERIFIED_OSM_EDGE '+JSON.stringify(x));
+for(const x of [...new Map(missing.map(v=>[JSON.stringify([v.from,v.to]),v])).values()].slice(0,4))
+ console.error('TRACK_GAP_DIAG '+JSON.stringify({from:x.from,to:x.to,nearFrom:nearbyEdges(x.from),nearTo:nearbyEdges(x.to)}));
 if(missing.length){process.exitCode=1}
 else if(process.argv.includes('--write')){
  for(const batch of changedBatches){
