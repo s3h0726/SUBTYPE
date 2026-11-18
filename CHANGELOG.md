@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.7] — 2026-11-18
+
+- Merge pull request #77 from s3h0726/feature/france-transilien-r-complete Add verified Transilien J and R branches; pass 300 France directions
+
 ## [v0.11.6] — 2026-11-18
 
 - test(kr): cover SRT through-service physical junction and reject unverified joins
