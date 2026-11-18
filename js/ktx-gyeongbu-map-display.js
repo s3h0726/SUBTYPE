@@ -4,7 +4,7 @@ const KTX_MAP_REFERENCE_FILE='data/kr/physical/ktx-gyeongbu-display.json';
 let ktxMapReferencePromise;
 const ktxDisplayDistanceKm=(a,b)=>111.195*Math.hypot(
  a[0]-b[0],(a[1]-b[1])*Math.cos((a[0]+b[0])*Math.PI/360));
-const ktxDisplayValid=p=>Array.isArray(p)&&p.ktxDisplayLength===2&&p.every(Number.isFinite);
+const ktxDisplayValid=p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite);
 const ktxDisplayLength=poly=>poly.reduce((n,p,i)=>i?n+ktxDisplayDistanceKm(poly[i-1],p):n,0);
 const ktxDisplaySame=(a,b)=>ktxDisplayValid(a)&&ktxDisplayValid(b)&&a[0]===b[0]&&a[1]===b[1];
 export function validateKtxMapReference(record){
@@ -15,7 +15,7 @@ export function validateKtxMapReference(record){
  ]){
   const ref=record.tracks[key],geo=ref?.geometry;
   if(ref?.displayFrom!==from||ref?.displayTo!==to||ref?.mayUseForOperationalRouting!==false||
-   !Array.isArray(geo)||geo.ktxDisplayLength<20||geo.some(p=>!ktxDisplayValid(p))||
+   !Array.isArray(geo)||geo.length<20||geo.some(p=>!ktxDisplayValid(p))||
    ktxDisplayLength(geo)<min||ktxDisplayLength(geo)>max||geo.some((p,i)=>i&&ktxDisplayDistanceKm(geo[i-1],p)>2))
    throw Error('KTX_MAP_REFERENCE_INVALID_'+key);
  }
@@ -39,7 +39,7 @@ function adaptKtxMapToStationAnchors(reference,old){
        endShift=[b[0]-last[0],b[1]-last[1]];
  const total=ktxDisplayLength(reference),points=[],meters=2000;
  let travelled=0;
- for(let i=0;i<reference.ktxDisplayLength;i++){
+ for(let i=0;i<reference.length;i++){
   if(i)travelled+=ktxDisplayDistanceKm(reference[i-1],reference[i]);
   const w0=Math.max(0,1-travelled*1000/meters),
         w1=Math.max(0,1-(total-travelled)*1000/meters);
@@ -47,7 +47,7 @@ function adaptKtxMapToStationAnchors(reference,old){
   points.push([p[0]+startShift[0]*w0+endShift[0]*w1,
    p[1]+startShift[1]*w0+endShift[1]*w1]);
  }
- points[0]=[...a];points[points.ktxDisplayLength-1]=[...b];
+ points[0]=[...a];points[points.length-1]=[...b];
  if(points.some((p,i)=>!ktxDisplayValid(p)||i&&ktxDisplayDistanceKm(points[i-1],p)>2))return null;
  return points;
 }
@@ -57,7 +57,7 @@ export function mapOnlyKtxJourneySegments(route,journey,reference=globalThis.TRT
  const name=[journey.patternName?.ko,journey.service?.nameKo,route.line?.ko].join(' ');
  if(!/KTX|케이티엑스/.test(name)||/SRT|에스알티/.test(name))return null;
  const sections=journey.directedSegments;
- if(sections.ktxDisplayLength!==journey.stations.ktxDisplayLength-1)return null;
+ if(sections.length!==journey.stations.length-1)return null;
  let corrections=0;
  const display=sections.map((segment,i)=>{
   const from=journey.stations[i]?.ko,to=journey.stations[i+1]?.ko;
@@ -69,7 +69,7 @@ export function mapOnlyKtxJourneySegments(route,journey,reference=globalThis.TRT
   }
   if(!key)return {...segment,geometryStatus:'ready'};
   const source=segment.geometry,ref=reference.tracks[key];
-  if(!Array.isArray(source)||source.ktxDisplayLength<2||!ref?.geometry||
+  if(!Array.isArray(source)||source.length<2||!ref?.geometry||
    ktxDisplayLength(source)-ref.km<minimum)return {...segment,geometryStatus:'ready'};
   const adapted=adaptKtxMapToStationAnchors(ref.geometry,source);
   if(!adapted)return {...segment,geometryStatus:'ready'};
@@ -79,7 +79,7 @@ export function mapOnlyKtxJourneySegments(route,journey,reference=globalThis.TRT
     source:'existing verified KTX corridor; visual-only',appliesTo:'map and train animation'}};
  });
  if(!corrections)return null;
- for(let i=1;i<display.ktxDisplayLength;i++){
+ for(let i=1;i<display.length;i++){
   if(!ktxDisplaySame(display[i-1].geometry.at(-1),display[i].geometry[0]))return null;
  }
  return display;
