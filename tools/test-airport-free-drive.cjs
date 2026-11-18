@@ -81,13 +81,13 @@ test('published app retains airport initialization and handles flight as a separ
   const app=fs.readFileSync(path.join(__dirname,'../js/app.js'),'utf8');
   const bundle=fs.readFileSync(path.join(__dirname,'../js/app.bundle.js'),'utf8');
   const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
-  assert.match(app,/async function flyFreeDriveToAirport\(airport\)/);
-  assert.match(bundle,/async function flyFreeDriveToAirport\(airport\)/);
+  assert.match(app,/async function flyFreeDriveToAirport\(airport,portalId\)/);
+  assert.match(bundle,/async function flyFreeDriveToAirport\(airport,portalId\)/);
   assert.match(app,/TRTAirportSystem\?\.configure\(\{flyTo:flyFreeDriveToAirport\}\)/);
   assert.match(app,/TRTAirportSystem\?\.update\(state\)/);
   assert(html.indexOf('js/airport-free-drive.js')>=0);
   assert(html.indexOf('js/airport-free-drive.js')<html.indexOf('js/app.bundle.js'));
   assert(html.includes('css/airport-free-drive.css'));
-  assert.match(app,/controller\\.findStation\\(live,airport,portalId\\)/);
-  assert.match(bundle,/controller\\.findStation\\(live,airport,portalId\\)/);
+  assert.match(app,/controller\.findStation\(live,airport,portalId\)/);
+  assert.match(bundle,/controller\.findStation\(live,airport,portalId\)/);
 });
