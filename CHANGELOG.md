@@ -2,6 +2,14 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.12.0] — 2026-11-18
+
+- feat(custom): 기존 철도 구간·운행 방향을 기준으로 목적지 최단거리 자동 연결(Dijkstra)
+- feat(custom): 한국어 역명 검색, 중간 경유지 연결, 거리·환승·추정 거리 요약
+- style(custom): 모바일 대응 커스텀 노선 라이브러리·편집 화면 개편
+- fix(custom): 역 삭제·순서 변경 시 경로 재탐색, 불연결 시 원복, 선형 데이터 누락 보호
+- test(custom): 거리 가중치, 환승 식별, 단방향, 미연결·이동 한계 검증
+
 ## [v0.11.14] — 2026-11-18
 
 - fix(kr): connect two KTX Suseo high-speed feeder journeys on exact original OSM railway nodes * diagnose(kr): source-proven feeder OSM rail routes for three unresolved Suseo KTX pa
