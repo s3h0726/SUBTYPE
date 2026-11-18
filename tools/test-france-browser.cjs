@@ -8,6 +8,7 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
 const root = path.resolve(__dirname, '..');
 const publicBase = process.env.FRANCE_PUBLIC_URL;
+const uiOnly = process.env.FRANCE_UI_ONLY === '1';
 const marker = '\n})().catch(error=>';
 const hook = '\nglobalThis.__FRANCE_QA__={game,go,chooseRoute,openSetup,actualOperatingChoices,resolveOperatingChoice,operatingPatternKey,startFreeDrive,freeDrive,franceFreeDriveRoutes,buildTypingModel,routes:()=>routes};\n';
 const mime = {'.html':'text/html', '.js':'text/javascript', '.json':'application/json',
@@ -128,7 +129,7 @@ async function run() {
     await page.goto(base, {waitUntil:'domcontentloaded', timeout:60000});
     await page.waitForFunction(() => globalThis.__FRANCE_QA__?.routes().some(route => route.countryId === 'fr'));
     const index = require('../data/fr/generated/index.json');
-    const lines = publicBase ? index.routes.filter(route =>
+    const lines = uiOnly ? [] : publicBase ? index.routes.filter(route => route.category === 'commuter_rail' ||
       ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels',
         'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b', 'fr-rennes-metro-b',
         'fr-toulouse-metro-b', 'fr-lille-metro-2', 'fr-marseille-metro-2',
@@ -185,6 +186,8 @@ async function run() {
           drive.emit = emit;
         }
       }, line.id));
+      console.log(JSON.stringify({line:line.id, desktop:report.testedDirections.length,
+        mobile:report.mobileDirections.length, freeDrive:report.freeDrive.length}));
     }
     if (!publicBase) {
       report.interchange = await page.evaluate(async () => {
@@ -229,7 +232,18 @@ async function run() {
         if (!rerB || !drive.moveTo(rerB.to, rerB.routeId, drive.currentKey)) {
           throw new Error('Massy RER C-to-B transfer unavailable');
         }
-        return {station:'리옹역', destination:'몽바르', rerToMetro:'PASS', rerToIntercity:'PASS', massyRerTransfer:'PASS', status:'PASS'};
+        qa.game.stop(false);
+        qa.go('rail-map');
+        await qa.chooseRoute('fr-transilien-v');
+        await qa.startFreeDrive(qa.routes().find(route => route.id === 'fr-transilien-v'));
+        const suburban = drive.routes.find(route => route.physicalLineId === 'fr-transilien-v');
+        const massy = suburban?.stations.findIndex(station => station.fr === 'Massy - Palaiseau');
+        if (!(massy >= 0) || !drive.start(suburban, massy)) throw new Error('Cannot board Transilien V at Massy');
+        const rerCTransfer = drive.snapshot().edges.find(edge => edge.route.physicalLineId === 'fr-rer-c');
+        if (!rerCTransfer || !drive.moveTo(rerCTransfer.to, rerCTransfer.routeId, drive.currentKey)) {
+          throw new Error('Massy Transilien V-to-RER C transfer unavailable');
+        }
+        return {station:'리옹역', destination:'몽바르', rerToMetro:'PASS', rerToIntercity:'PASS', massyRerTransfer:'PASS', transilienTransfer:'PASS', status:'PASS'};
       });
       for (const country of ['jp', 'kr', 'hk', 'mo', 'tw', 'th', 'uk', 'fr']) {
         await page.evaluate(() => {const qa = globalThis.__FRANCE_QA__; qa.game.stop(false); qa.go('home');});
@@ -251,6 +265,16 @@ async function run() {
       await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '강베타'));
       await page.locator('#route-filter').selectOption('fr-rer-c');
       await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '퐁투아즈'));
+      report.transilienEditor = [];
+      for (const line of index.routes.filter(route => route.category === 'commuter_rail')) {
+        const detail = JSON.parse(fs.readFileSync(path.join(root, line.lazySource), 'utf8'));
+        await page.locator('#route-filter').selectOption(line.id);
+        await page.waitForFunction(names => {
+          const values = new Set([...document.querySelectorAll('#table input')].map(input => input.value));
+          return names.every(name => values.has(name));
+        }, detail.stationCatalog.map(station => station.ko));
+        report.transilienEditor.push({id:line.id, stations:detail.stationCatalog.length, status:'PASS'});
+      }
       report.editor = 'PASS';
     }
     assert.deepEqual(report.errors, []);
@@ -259,7 +283,7 @@ async function run() {
     report.error = error.stack;
     process.exitCode = 1;
   } finally {
-    const name = publicBase ? 'production-gameplay.json' : 'browser-gameplay.json';
+    const name = uiOnly ? 'ui-gameplay.json' : publicBase ? 'production-gameplay.json' : 'browser-gameplay.json';
     fs.writeFileSync(path.join(root, 'reports/fr', name), JSON.stringify(report, null, 2) + '\n');
     console.log(JSON.stringify({status:report.status, desktop:report.testedDirections.length,
       mobile:report.mobileDirections.length, freeDrive:report.freeDrive.length, error:report.error}));

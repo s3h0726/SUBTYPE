@@ -137,7 +137,8 @@ function connectedLegs(track, files) {
 for (const spec of specs) {
   const inventory = inventories.get(spec.sourceId);
   const isRer = spec.category === 'rer';
-  const metro = isRer ? null : metroSources[spec.sourceId];
+  const isSuburban = spec.category === 'commuter_rail';
+  const metro = isRer || isSuburban ? null : metroSources[spec.sourceId];
   const isMetro = Boolean(metro);
   const railway = metro || (spec.brand === 'Lyria' ? lyria : null);
   const stationCatalog = new Map();
@@ -156,7 +157,10 @@ for (const spec of specs) {
     const relationId = relation.id;
     // Lyon’s old OSM operator label remains useful for track identity. TCL
     // confirms RATP Dev took over metro operation on 2025-01-01.
-    const operatorMatches = tags => isRer
+    const operatorMatches = tags => isSuburban
+      ? tags?.network === 'Transilien' && tags.ref === spec.code &&
+        ['SNCF Voyageurs','Transilien SNCF'].includes(tags.operator)
+      : isRer
       ? tags?.network === 'RER' && tags.ref === spec.code &&
         (spec.jointOperator ? rerOperators.has(tags.operator) : tags.operator === 'SNCF Voyageurs')
       : railway ? tags?.[railway.tag] === railway.value : tags?.operator === 'SNCF Voyageurs';
@@ -203,7 +207,7 @@ for (const spec of specs) {
     patterns.push({
       id: 'fr-play-' + stable(spec.id, stationIds), familyId, stationIds, legs, viaStationId: via,
       nameKo: isMetro ? '각역정차' : serviceKo || spec.serviceKo || '테제베 이누이',
-      nameFr: isMetro ? 'Métro' : isRer ? spec.fr : spec.brand,
+      nameFr: isMetro ? 'Métro' : isRer || isSuburban ? spec.fr : spec.brand,
       evidence: {
         relationId, version: relation.version, timestamp: relation.timestamp, maxStationOffsetKm,
         ...(relations.length > 1 ? {relationIds} : {}),

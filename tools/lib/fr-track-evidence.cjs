@@ -71,6 +71,14 @@ function readTrack(relation, elements, excludedCalls = [], correction) {
       }
       members.unshift({type:'node', role:'stop', ref:node.id});
     }
+    if (correction.appendStop) {
+      const node = elements.find(element => element.type === 'node' && element.id === correction.appendStop);
+      if (node?.tags?.public_transport !== 'stop_position' || !node.tags.name ||
+          members.some(member => member.type === 'node' && member.role.startsWith('stop') && member.ref === node.id)) {
+        throw new Error('Unverified final stop ' + correction.appendStop);
+      }
+      members.push({type:'node',role:'stop',ref:node.id});
+    }
     if (correction.insertStopBefore) {
       const [id,next] = correction.insertStopBefore;
       const node = elements.find(element => element.type === 'node' && element.id === id);
@@ -208,7 +216,7 @@ function identifyCalls(track, stations, aliases, mode, family) {
     const node = track.stops[index];
     const official = stationKey(station.name);
     const name = node.tags?.name;
-    const mapped = stationKey((family === 'rer' && aliases.rer?.[name]) || aliases[name] || name);
+    const mapped = stationKey(aliases[family]?.[name] || aliases[name] || name);
     if (!official || official !== mapped) return Infinity;
     return stationDistance(station, node);
   });

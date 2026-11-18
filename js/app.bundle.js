@@ -157,7 +157,7 @@ function francePatternRoute(owner, pattern) {
 function franceOperatingChoices(route) {
   if (route?.lazy || !route?.playable || !route.geometryReady) return [];
   const stations = new Map(route.stationCatalog.map(station => [station.id, station]));
-  const regionalVariants = ['regional_rail', 'rer'].includes(route.category) &&
+  const regionalVariants = ['regional_rail', 'rer', 'commuter_rail'].includes(route.category) &&
     new Set(route.patterns.map(pattern => pattern.familyId)).size > 1;
   return route.patterns.map(pattern => {
     const originId = pattern.stationIds[0], destinationId = pattern.stationIds.at(-1);
@@ -167,7 +167,8 @@ function franceOperatingChoices(route) {
       originId, destinationId, originNames: stations.get(originId), destinationNames: stations.get(destinationId),
       patternName: {ko: service.nameKo + (regionalVariants
         ? ' · ' + [stations.get(originId).ko, stations.get(destinationId).ko].sort().join(' ↔ ')
-        : via), fr: pattern.nameFr}, direction: pattern.id};
+        : via) + (route.category === 'commuter_rail' ? ' · ' + pattern.stationIds.length + '개 역' : ''),
+        fr: pattern.nameFr}, direction: pattern.id};
   });
 }
 
@@ -995,6 +996,7 @@ function isKorailOperatedRoute(route,station){
 
 function resolveTransportStopTemplate(route,station){
   if(route?.countryId==='fr'){
+    if(route.category==='commuter_rail')return {key:'fr-transilien',style:'fr-transilien',family:'fr-korean-first',referenceSource:route.sourceUrl};
     if(route.category==='rer')return {key:'fr-rer',style:'fr-rer',family:'fr-korean-first',referenceSource:route.sourceUrl};
     const style=({'fr-ratp':'fr-ratp','fr-ratp-dev-lyon':'fr-tcl','fr-keolis-rennes':'fr-star',
       'fr-tisseo':'fr-tisseo','fr-ilevia':'fr-ilevia','fr-rtm':'fr-rtm','fr-tgv-lyria':'fr-lyria'})[route.operatorId]||'fr-sncf';

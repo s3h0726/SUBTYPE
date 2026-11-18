@@ -79,7 +79,7 @@ export function francePatternRoute(owner, pattern) {
 export function franceOperatingChoices(route) {
   if (route?.lazy || !route?.playable || !route.geometryReady) return [];
   const stations = new Map(route.stationCatalog.map(station => [station.id, station]));
-  const regionalVariants = ['regional_rail', 'rer'].includes(route.category) &&
+  const regionalVariants = ['regional_rail', 'rer', 'commuter_rail'].includes(route.category) &&
     new Set(route.patterns.map(pattern => pattern.familyId)).size > 1;
   return route.patterns.map(pattern => {
     const originId = pattern.stationIds[0], destinationId = pattern.stationIds.at(-1);
@@ -89,7 +89,8 @@ export function franceOperatingChoices(route) {
       originId, destinationId, originNames: stations.get(originId), destinationNames: stations.get(destinationId),
       patternName: {ko: service.nameKo + (regionalVariants
         ? ' · ' + [stations.get(originId).ko, stations.get(destinationId).ko].sort().join(' ↔ ')
-        : via), fr: pattern.nameFr}, direction: pattern.id};
+        : via) + (route.category === 'commuter_rail' ? ' · ' + pattern.stationIds.length + '개 역' : ''),
+        fr: pattern.nameFr}, direction: pattern.id};
   });
 }
 
