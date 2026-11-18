@@ -1,0 +1,57 @@
+name: Fix two KTX Suseo/Pyeongtaek physical feeder junctions
+on:
+  push:
+    branches: [fix/ktx-suseo-feeder-reconnection-20261118]
+    paths:
+      - 'tools/fix-kr-ktx-suseo-feeder-source-graph.cjs'
+      - 'tools/build-kr-canonical.cjs'
+      - '.github/workflows/ktx-suseo-feeder-verify.yml'
+permissions:
+  contents: write
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate syntax and high-speed graph safeguards
+        run: |
+          node --check tools/fix-kr-ktx-suseo-feeder-source-graph.cjs
+          node --check tools/build-kr-canonical.cjs
+          node --test tools/test-kr-ktx-proven-graph.cjs
+      - name: Repair two source-connected real KTX Pyeongtaek feeder routes
+        run: node tools/fix-kr-ktx-suseo-feeder-source-graph.cjs --write
+      - name: Verify all adjusted rail edges and official full-timetable station sequences
+        run: |
+          node tools/test-kr-rail-expansion.cjs --batch=rail-continuity-recovery-batch.json
+          node tools/test-kr-canonical.cjs
+      - name: Publish revised canonical service geometry and complete KTX audit
+        run: |
+          node tools/build-kr-canonical.cjs --publish
+          node tools/audit-kr-ktx-track-alignment.cjs
+      - name: Commit only source-proven and checked live railway routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/kr/canonical/rail-continuity-recovery-batch.json data/kr/generated/routes/ data/kr/generated/index.json js/korea-index-data.js reports/kr-ktx-suseo-feeder-real-track.json reports/kr-ktx-track-alignment.json reports/kr-rebuild/catalog-validation.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(kr): connect two KTX Suseo feeders to exact original HSR OSM nodes"
+            git push origin HEAD:fix/ktx-suseo-feeder-reconnection-20261118
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ktx-suseo-feeder-source-verified
+          path: |
+            reports/kr-ktx-suseo-feeder-real-track.json
+            reports/kr-ktx-track-alignment.json
+          if-no-files-found: warn
