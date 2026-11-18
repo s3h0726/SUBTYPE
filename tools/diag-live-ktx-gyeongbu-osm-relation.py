@@ -58,8 +58,8 @@ goals=[('경주→부산',(35.79820124687369,129.13983712406198),(35.11557961224
        ('동대구→부산',(35.8799722,128.6300202),(35.115579612248546,129.04249896695902)),
        ('대전→동대구',(36.3305619,127.4359359),(35.8799722,128.6300202))]
 for name,start,end in goals:
-    candidates_a=sorted(((km(pos,start),id) for id,pos in nodes.items() if id in adj))[:12]
-    candidates_b=sorted(((km(pos,end),id) for id,pos in nodes.items() if id in adj))[:12]
+    candidates_a=sorted(((km(pos,start),id) for id,pos in nodes.items() if id in adj))[:150]
+    candidates_b=sorted(((km(pos,end),id) for id,pos in nodes.items() if id in adj))[:150]
     dist={};prior={};queue=[];ends={n:dist for dist,n in candidates_b if dist<.7}
     for delta,node in candidates_a:
         if delta>.7:continue
