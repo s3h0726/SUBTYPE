@@ -1,0 +1,67 @@
+name: Repair all source-verifiable Korean KTX railway paths
+on:
+  push:
+    branches: [fix/ktx-all-osm-track-routes-20261118]
+    paths:
+      - 'tools/repair-kr-ktx-all-alignments.cjs'
+      - 'tools/test-kr-ktx-all-alignments.cjs'
+      - 'tools/build-kr-canonical.cjs'
+      - '.github/workflows/ktx-full-alignment-fix.yml'
+permissions:
+  contents: write
+jobs:
+  repair-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test graph routing, physical connectivity and station preservation
+        run: |
+          node --check tools/repair-kr-ktx-all-alignments.cjs
+          node --check tools/build-kr-canonical.cjs
+          node --test tools/test-kr-ktx-all-alignments.cjs tools/test-kr-ktx-track-alignment.cjs
+      - name: Correct all verifiable faulty KTX station-to-station paths
+        run: node tools/repair-kr-ktx-all-alignments.cjs --write
+      - name: Recompile changed Korean service geometries and release catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet -- data/kr/canonical; then
+            node tools/build-kr-canonical.cjs --publish
+          else
+            echo "NO_SOURCE_PROVEN_FIXES; leave existing published geometry untouched"
+          fi
+      - name: Re-run all KTX geometry checks
+        run: node tools/audit-kr-ktx-track-alignment.cjs
+      - name: Validate full canonical route contract
+        run: node tools/test-kr-canonical.cjs
+      - name: Commit safe geometries and audit output to the review branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/kr/canonical/rail-*-batch.json data/kr/generated/index.json data/kr/generated/routes/ js/korea-index-data.js data/kr/publication-policy.json reports/kr-ktx-realignment-20261118.json reports/kr-ktx-track-alignment.json reports/kr-rebuild/catalog-validation.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(kr): apply graph-verified KTX track alignments and publish corrected geometries"
+            git push origin HEAD:fix/ktx-all-osm-track-routes-20261118
+          else
+            echo "No improvements passed the physical-track safety gate"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ktx-all-realignment-20261118
+          path: |
+            reports/kr-ktx-realignment-20261118.json
+            reports/kr-ktx-track-alignment.json
+            reports/kr-rebuild/catalog-validation.json
+          if-no-files-found: warn
