@@ -6,9 +6,11 @@ on:
       - 'tools/diagnose-kr-ktx-haengsin-south.cjs'
       - 'tools/diagnose-kr-ktx-hsr-components.cjs'
       - 'tools/diagnose-kr-ktx-south-bidirectional.cjs'
+      - 'tools/build-app-bundle.js'
+      - 'tools/test-kr-ktx-bundle-integrity.cjs'
       - '.github/workflows/ktx-haengsin-south.yml'
 permissions:
-  contents: read
+  contents: write
 jobs:
   diagnose:
     runs-on: ubuntu-latest
@@ -26,3 +28,23 @@ jobs:
         run: node tools/diagnose-kr-ktx-hsr-components.cjs
       - name: Compare actual high-speed-only track path with existing conventional detours
         run: node tools/diagnose-kr-ktx-south-bidirectional.cjs
+      - name: Validate existing physical KTX reference and 151 service audit
+        run: |
+          node --test tools/test-kr-ktx-gyeongbu-map-display.cjs
+          node tools/audit-kr-ktx-track-alignment.cjs
+      - name: Rebuild the actually deployed browser game with Hangsin and Gyeongbu corrections
+        run: |
+          node tools/build-app-bundle.js
+          node --check js/app.bundle.js
+          node --test tools/test-kr-ktx-bundle-integrity.cjs
+      - name: Commit the real production bundle and updated asset fingerprint
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/app.bundle.js index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(kr): deploy KTX Hangsin and south-of-Daejeon physical map corrections"
+            git push origin HEAD:fix/ktx-haengsin-daejeon-south-20261118
+          fi
