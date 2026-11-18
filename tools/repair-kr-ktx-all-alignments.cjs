@@ -46,7 +46,10 @@ function graphFromWays(ways){
   for(let i=1;i<c.length;i++){
    const a=c[i-1],b=c[i];if(!Array.isArray(a)||!Array.isArray(b))continue;
    const km=distance(a,b);if(km<=.000001||km>5)continue;
-   const ak=geoKey(a),bk=geoKey(b);
+   // Use the OSM source node identities when present: coincident bridges
+   // must not become a fabricated junction merely because coordinates match.
+   const ak=w.nodeIds?.[i-1]!=null?String(w.nodeIds[i-1]):geoKey(a);
+   const bk=w.nodeIds?.[i]!=null?String(w.nodeIds[i]):geoKey(b);
    nodes.set(ak,a);nodes.set(bk,b);
    const entry={km,wayId:String(w.id),...kind};
    // Rail direction tags are not a ban on reverse operations. Train service
@@ -95,11 +98,13 @@ function subdivideSourceEdges(points,maxKm=1.5){
  }
  return out;
 }
-function graphRoute(graph,from,to,corridor,oldKm){
+function graphRoute(graph,from,to,corridor,oldKm,stationSite=null){
  // A terminal KTX station may have several platforms: only here may the
  // source-mapped platform rail be up to 140 metres from the legacy shape.
  const snapMeters=corridor==='수서평택고속선'?140:corridor==='경부고속선'?100:8;
- const starts=graph.snaps(from,snapMeters,corridor),ends=graph.snaps(to,snapMeters,corridor);
+ const startSite=snapMeters>8&&stationSite?.from||from;
+ const endSite=snapMeters>8&&stationSite?.to||to;
+ const starts=graph.snaps(startSite,snapMeters,corridor),ends=graph.snaps(endSite,snapMeters,corridor);
  if(!starts.length||!ends.length)return {reason:'NO_SOURCE_EDGE_SNAP',startCandidates:starts.length,endCandidates:ends.length};
  const endNodes=new Map();
  for(const e of ends)for(const id of [e.edge.ak,e.edge.bk]){
@@ -218,14 +223,15 @@ function main(){
      const corridor=expectedCorridor(names[i],names[i+1],names);
      if(!corridor)continue;
      tested++;
-     const geom=segmentGeoms[i],key=JSON.stringify([corridor,geom[0],geom.at(-1)]);
+     const geom=segmentGeoms[i],key=JSON.stringify([corridor,geom[0],geom.at(-1),j.stations[i].id,j.stations[i+1].id]);
      if(!cache.has(key)){
       const originalKm=len(geom),straightKm=distance(geom[0],geom.at(-1));
       const e=evidence(geom,corridor,tracks);
       const suspected=originalKm>straightKm*1.58&&originalKm-straightKm>9
        ||e.density>=.6&&e.coverage<.65
        ||e.density<.6&&(originalKm>straightKm*1.28||(originalKm>30&&e.coverage<.5));
-      const replacement=suspected?graphRoute(graph,geom[0],geom.at(-1),corridor,originalKm):{reason:'EXISTING_WITHIN_TOLERANCE'};
+      const stationSite={from:[j.stations[i].latitude,j.stations[i].longitude],to:[j.stations[i+1].latitude,j.stations[i+1].longitude]};
+      const replacement=suspected?graphRoute(graph,geom[0],geom.at(-1),corridor,originalKm,stationSite):{reason:'EXISTING_WITHIN_TOLERANCE'};
       cache.set(key,{replacement,decision:decide(geom,replacement,corridor,tracks)});
      }
      const {replacement,decision}=cache.get(key);
