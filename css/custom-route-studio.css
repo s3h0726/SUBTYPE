@@ -63,3 +63,8 @@
 #screen-custom .custom-airport-choices button small{font-size:11px;color:var(--muted);line-height:1.4}
 #screen-custom .custom-airport-note{font-size:11px;line-height:1.6;color:var(--muted);margin:12px 0 0}
 #screen-custom .station-row .custom-airport-arrival{border-radius:6px;padding:3px 6px;background:color-mix(in srgb,#ffc478 17%,var(--surface));font-size:10px;font-weight:800;color:#a66a15}
+
+/* Cross-border flight choices make the loading/verification step explicit. */
+#screen-custom .custom-airport-choices button:disabled{opacity:.55;cursor:progress}
+#screen-custom .custom-airport-choices button small{overflow-wrap:anywhere}
+#screen-custom .custom-airport-choices{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));max-height:350px}
