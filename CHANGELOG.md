@@ -2,6 +2,13 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.13.1] — 2026-11-18
+
+- feat(custom): 검증된 공항 접근 철도역에서 같은 국가의 공항으로 가상 항공·터미널 환승 구간 추가
+- feat(custom): 공항 코드 및 터미널별 선택, 점선 항공 구간, JSON 저장·역 편집 시 유효성 유지
+- fix(custom): 가상 공항 이동이 철도 최단거리 그래프에 유입되지 않도록 분리
+- test(custom): 공항역 매칭·터미널 식별·타국 연결 차단·철도 최단거리 보호 검사
+
 ## [v0.13.0] — 2026-11-18
 
 - feat(custom): 기존 철도 구간·운행 방향을 기준으로 목적지 최단거리 자동 연결(Dijkstra)
