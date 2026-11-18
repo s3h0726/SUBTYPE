@@ -1,0 +1,22 @@
+name: Trace CheonanAsan–Suseo remaining KTX feeder source
+on:
+  push:
+    branches: [fix/ktx-cheonanasan-suseo-last-feeder-20261118]
+    paths:
+      - 'tools/diagnose-ktx-cheonanasan-suseo-feeder.cjs'
+      - '.github/workflows/ktx-cheonanasan-source-diagnostic.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect exact source platform and candidate KTX feeder rail path
+        run: node tools/diagnose-ktx-cheonanasan-suseo-feeder.cjs
