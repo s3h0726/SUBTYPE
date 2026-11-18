@@ -60,7 +60,7 @@ function graphFromWays(ways){
    }
   }
  }
- const snaps=(p,maxMeters=8)=>{
+ const snaps=(p,maxMeters=8,corridor=null)=>{
   const y=Math.floor(p[0]/cell),x=Math.floor(p[1]/cell),hits=[];
   const visited=new Set();
   for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
@@ -70,8 +70,9 @@ function graphFromWays(ways){
     if(match.offset*1000<=maxMeters)hits.push({edge,...match});
    }
   }
-  hits.sort((a,b)=>a.offset-b.offset);
-  return hits.slice(0,16);
+  const priority=e=>e.edge.corridor===corridor?0:e.edge.fast?1:2;
+  hits.sort((a,b)=>priority(a)-priority(b)||a.offset-b.offset);
+  return hits.slice(0,maxMeters>8?64:16);
  };
  return {nodes,adj,edges,snaps,coord};
 }
@@ -95,7 +96,10 @@ function subdivideSourceEdges(points,maxKm=1.5){
  return out;
 }
 function graphRoute(graph,from,to,corridor,oldKm){
- const starts=graph.snaps(from),ends=graph.snaps(to);
+ // A terminal KTX station may have several platforms: only here may the
+ // source-mapped platform rail be up to 140 metres from the legacy shape.
+ const snapMeters=corridor==='수서평택고속선'?140:8;
+ const starts=graph.snaps(from,snapMeters,corridor),ends=graph.snaps(to,snapMeters,corridor);
  if(!starts.length||!ends.length)return {reason:'NO_SOURCE_EDGE_SNAP',startCandidates:starts.length,endCandidates:ends.length};
  const endNodes=new Map();
  for(const e of ends)for(const id of [e.edge.ak,e.edge.bk]){
@@ -144,7 +148,7 @@ function graphRoute(graph,from,to,corridor,oldKm){
  if(unique.length<2)return {reason:'EMPTY_PATH'};
  const finalGeometry=subdivideSourceEdges(unique);
  const finalKm=len(finalGeometry);
- return {geometry:finalGeometry,km:finalKm,fastShare:fast/Math.max(total,.001),namedShare:named/Math.max(total,.001),wayIds:[...wayIds],sourceSnapMaxMeters:8};
+ return {geometry:finalGeometry,km:finalKm,fastShare:fast/Math.max(total,.001),namedShare:named/Math.max(total,.001),wayIds:[...wayIds],sourceSnapMaxMeters:snapMeters};
 }
 function evidence(points,corridor,tracks){
  const sample=samples(points,1.6).slice(1,-1);
