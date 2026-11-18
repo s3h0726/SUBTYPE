@@ -4,6 +4,7 @@ const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const {readBatches,distance}=require('./lib/kr-canonical.cjs');
 const {makeGraph,sourceRoute}=require('./repair-kr-ktx-proven-graph.cjs');
+const {projection}=require('./lib/kr-road-binding.cjs');
 const ways=JSON.parse(fs.readFileSync(path.join(root,'data/kr/v2/source/osm-ways.json'),'utf8'));
 const physical=JSON.parse(fs.readFileSync(path.join(root,'data/kr/physical/suseo-pyeongtaek.json'),'utf8'));
 const graph=makeGraph(ways);
@@ -11,8 +12,8 @@ const platform=[physical.srt.stations[2].latitude,physical.srt.stations[2].longi
 const exact=(a,b)=>a[0]===b[0]&&a[1]===b[1];
 const terminalEdges=[...graph.byWay.values()].flatMap(x=>[...x.values()])
  .map(e=>{
-   const a=distance(e.a,platform),b=distance(e.b,platform);
-   return {...e,nearestKm:Math.min(a,b),nearPoint:a<=b?e.a:e.b};
+   const projected=projection(platform,e.a,e.b);
+   return {...e,nearestKm:projected.offset,nearPoint:projected.point};
  })
  .filter(e=>e.nearestKm<.035)
  .sort((a,b)=>(Number(b.fast)-Number(a.fast))||a.nearestKm-b.nearestKm)
