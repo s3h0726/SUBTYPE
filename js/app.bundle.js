@@ -4507,6 +4507,22 @@ class RouteEditor{
   if(!force&&this.activeCountryId!==countryId)return;
   this.master=Array.isArray(stations)?stations:[];this.renderSearch($('#station-master-search')?.value||'');this.renderJourneyOptions();this.renderAirportOptions();
  }
+ // Keep the search country aligned with the global selector for a blank draft.
+ // Never discard stations from an in-progress international itinerary.
+ syncCountry(countryId){
+  if(!countryId||this.route.stations.length)return false;
+  if(this.route.countryId!==countryId){
+   this.route.countryId=countryId;
+   this.lastForeignSearchKey='';this.stationSearchStatus=null;this.searchResultLimit=30;
+  }
+  if(this.useCountry(countryId))return true;
+  this.activeCountryId=countryId;
+  this.master=[];this.railRoutes=[];this.stationGraph=new Map();
+  this.shortestPath.setRoutes([]);
+  this.renderSearch($('#station-master-search')?.value||'');
+  this.renderJourneyOptions();this.renderAirportOptions();
+  return true;
+ }
  useCountry(countryId){
   const cached=this.countryNetworks.get(countryId);
   if(!cached)return false;
@@ -4519,6 +4535,10 @@ class RouteEditor{
  async restoreLastCountry(){
   const current=this.route.stations.at(-1),country=current?.countryId||this.route.countryId;
   if(this.useCountry(country))return;
+  // Do not leave the previous country's station master or graph selectable.
+  this.activeCountryId=country;this.master=[];this.railRoutes=[];this.stationGraph=new Map();
+  this.shortestPath.setRoutes([]);
+  this.renderSearch($('#station-master-search')?.value||'');
   const previousFlight=[...this.route.stations].reverse().find(station=>station.airportIncomingTransfer?.toCountryId===country);
   if(previousFlight&&this.onLoadAirportNetwork){
    try{
@@ -4529,15 +4549,15 @@ class RouteEditor{
   }
  }
 
- createNew(){this.route=this.fresh();this.activeCountryId=this.route.countryId;this.useCountry(this.activeCountryId);this.latestPath=null;this.render();$('#station-master-search')?.focus()}
+ createNew(){this.route=this.fresh();this.lastForeignSearchKey='';this.stationSearchStatus=null;this.searchResultLimit=30;const search=$('#station-master-search');if(search)search.value='';this.syncCountry(this.route.countryId);this.latestPath=null;this.render();search?.focus()}
  loadRoute(route){if(!route||koreanRouteBlockReason(route))return;this.route=structuredClone(route);this.latestPath=null;this.route.geometry ||= [];this.route.segments ||= [];this.route.airportTransfers ||= [];this.useCountry(this.route.stations.at(-1)?.countryId||this.route.countryId);this.render();void this.restoreLastCountry()}
  bind(){
   $('#new-route').addEventListener('click',()=>this.createNew());$('#add-station').addEventListener('click',()=>this.addStation());$('#save-route').addEventListener('click',()=>this.save());$('#play-custom').addEventListener('click',()=>{if(this.validate())this.onPlay(this.route)});$('#export-route').addEventListener('click',()=>this.export());$('#import-route').addEventListener('change',e=>this.import(e.target.files[0]));
   $('#station-master-search').addEventListener('input',debounce(e=>{this.searchResultLimit=30;this.renderSearch(e.target.value)},70));$('#station-search-results').addEventListener('click',e=>{if(e.target.closest('[data-search-more]')){this.searchResultLimit+=50;this.renderSearch($('#station-master-search').value);return}const button=e.target.closest('[data-add-master]');if(button)this.addMasterStation(button.dataset.addMaster);const shortest=e.target.closest('[data-route-to]');if(shortest)this.connectShortestPath(shortest.dataset.routeTo)});$('#journey-options').addEventListener('click',e=>{const button=e.target.closest('[data-journey-edge]');if(button)this.addGraphEdge(button.dataset.journeyEdge)});$('#custom-airport-choices')?.addEventListener('click',e=>{const button=e.target.closest('[data-airport-choice]');if(button)void this.addAirportTransfer(button.dataset.airportChoice)});$('#custom-clear-stops')?.addEventListener('click',()=>{if(!this.route.stations.length)return;this.sync();this.resetTrack();this.latestPath=null;this.render();toast('역 목록을 초기화했습니다. 노선 정보는 유지됩니다.')});document.addEventListener('keydown',e=>{if(e.key==='Tab'&&!e.isComposing&&document.body.dataset.currentScreen==='custom-editor'&&this.route.stations.length){const options=this.currentEdges();if(new Set(options.map(edge=>edge.route.id)).size>1){e.preventDefault();$('#journey-options').classList.toggle('transfer-open');$('#journey-options').focus?.()}}});
   this.form.addEventListener('input',debounce(()=>{this.sync();this.draw()},60));this.list.addEventListener('click',e=>this.action(e));this.list.addEventListener('dragstart',e=>{const row=e.target.closest('.station-row');if(row){this.dragIndex=+row.dataset.index;row.classList.add('dragging')}});this.list.addEventListener('dragend',e=>e.target.closest('.station-row')?.classList.remove('dragging'));this.list.addEventListener('dragover',e=>e.preventDefault());this.list.addEventListener('drop',e=>{e.preventDefault();const to=+e.target.closest('.station-row')?.dataset.index;if(Number.isInteger(to)&&to!==this.dragIndex){this.sync();const stops=this.route.stations.map(station=>structuredClone(station));const[m]=stops.splice(this.dragIndex,1);stops.splice(to,0,m);this.retraceEditedStops(stops)}});
-  $('#saved-routes').addEventListener('click',e=>{const id=e.target.closest('[data-id]')?.dataset.id;if(!id)return;if(e.target.matches('[data-delete]')){if(confirm('이 노선을 삭제할까요?')){storage.deleteRoute(id);this.renderSaved();this.onRoutesChanged()}}else{const found=storage.routes().find(r=>r.id===id);if(found){this.route=structuredClone(found);this.render()}}})
+  $('#saved-routes').addEventListener('click',e=>{const id=e.target.closest('[data-id]')?.dataset.id;if(!id)return;if(e.target.matches('[data-delete]')){if(confirm('이 노선을 삭제할까요?')){storage.deleteRoute(id);this.renderSaved();this.onRoutesChanged()}}else{const found=storage.routes().find(r=>r.id===id);if(found){this.route=structuredClone(found);this.render();void this.restoreLastCountry()}}})
  }
- async activate(){await this.restoreLastCountry();await this.switchEditorView('map');setTimeout(()=>$('#station-master-search')?.focus(),80)}
+ async activate(){if(!this.route.stations.length)this.syncCountry(document.documentElement.dataset.country||this.route.countryId);await this.restoreLastCountry();await this.switchEditorView('map');setTimeout(()=>$('#station-master-search')?.focus(),80)}
  async searchForeignStations(value){
   if(!this.onSearchForeignRail)return;
   const q=normalize(value),country=this.activeCountryId;
@@ -6531,7 +6551,20 @@ async function reloadRailData(){const summary=$('#data-summary');dataLoading=tru
       if(typeof name==='string'&&name.trim())spec.nameKo=name.trim();
     }
     const loaded=await loadTransportData(countryId,koreaPlayMode);railDataRepository.configure({operators:loaded.operators,lines:loaded.lines,stations:loaded.stations,assets:loaded.assets});builtin=loaded.lines.map(route=>railDataRepository.resolveRoute(route)).filter(route=>route.id!=='line-11301--tokaidohonsen-tokyo-atami'); // Canonical JR East Tokyo–Atami is line-11301; exclude stale bundled duplicate.
-    if(countryId==='jp')builtin.push(...buildFamousLimitedExpressRoutes(builtin));stations=[...railDataRepository.stations.values()].map(station=>({id:station.id,stationMasterId:station.id,sourceStationId:station.id,ja:station.names.ja,kana:station.names.kana,ko:station.names.ko,romaji:station.names.en,latitude:station.coordinates.lat,longitude:station.coordinates.lng}));stations=stations.filter(station=>FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area'||!globalThis.TRT_TOKYO_AREA||countryId==='kr'||globalThis.TRT_TOKYO_AREA.stationIds.includes(station.id));if(countryId==='th')stations=builtin.flatMap(r=>r.stations.map(s=>({...s,countryId:'th'})));if(countryId==='tw')stations=builtin.flatMap(r=>r.stations.map(s=>({...s,countryId:'tw'})));editor.setStationMaster(stations,{countryId});refreshRoutes();renderHome();if(countryId==='kr'){
+    if(countryId==='jp')builtin.push(...buildFamousLimitedExpressRoutes(builtin));stations=[...railDataRepository.stations.values()].map(station=>({id:station.id,stationMasterId:station.id,sourceStationId:station.id,ja:station.names.ja,kana:station.names.kana,ko:station.names.ko,romaji:station.names.en,latitude:station.coordinates.lat,longitude:station.coordinates.lng}));stations=stations.filter(station=>FEATURE_FLAGS.visibleJapanRegion!=='tokyo-area'||!globalThis.TRT_TOKYO_AREA||countryId==='kr'||globalThis.TRT_TOKYO_AREA.stationIds.includes(station.id));if(countryId==='th')stations=builtin.flatMap(r=>r.stations.map(s=>({...s,countryId:'th'})));if(countryId==='tw')stations=builtin.flatMap(r=>r.stations.map(s=>({...s,countryId:'tw'})));
+    // Non-lazy countries (Taiwan/Macau and preloaded Japan) must provide a
+    // traversable railway graph as well as a searchable station list.
+    // Lazy countries continue to hydrate indexed route payloads on search.
+    const eagerRail=builtin.filter(route=>route.countryId===countryId&&route.category!=='custom'&&
+      route.playable!==false&&route.visibility!=='internal'&&!route.lazy&&
+      Array.isArray(route.stations)&&route.stations.length>=2&&
+      !['bus','village_bus','express_bus','brt','river_bus','ferry'].includes(route.mode));
+    editor.syncCountry(countryId);
+    editor.setRailNetwork(eagerRail,{countryId});
+    const stationKey=station=>String(station.twTransferKey||station.stationMasterId||station.sourceStationId||station.id||'');
+    const editorStations=[...new Map([...stations,...eagerRail.flatMap(route=>route.stations)]
+      .filter(station=>stationKey(station)).map(station=>[stationKey(station),{...station,countryId}])).values()];
+    editor.setStationMaster(editorStations,{countryId});refreshRoutes();renderHome();if(countryId==='kr'){
   summary.textContent=`대한민국 대중교통 · ${builtin.length}개 노선·운행방향 · 실제 선형 기반 노선 선택 및 주행`;
 }else if(countryId==='hk'){summary.textContent=`홍콩 철도 · ${builtin.filter(r=>r.playable===true&&r.releaseStatus==='ready').length}개 플레이 가능 방향 · 고속철도 제외 · 실제 선형 검증`;
 
