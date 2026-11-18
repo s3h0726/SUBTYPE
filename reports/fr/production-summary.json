@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-11-18T03:18:13.058Z",
+  "scope": "Recorded production tests across identified releases; current catalog ID coverage, not a rerun of the whole latest catalog",
+  "nationalCoveragePercent": null,
+  "catalogLines": 69,
+  "catalogDirections": 300,
+  "uniqueRecordedProductionDirections": 227,
+  "catalogDirectionsWithoutRecordedProductionRun": 73,
+  "transilienDirections": 99,
+  "transilienDirectionsWithRecordedProductionRun": 99,
+  "runs": [
+    {
+      "file": "reports/fr/production-gameplay.json",
+      "deployment": {
+        "releaseRef": "3d8426d030fa258895d30ba5778119004bcd777c",
+        "workflowRunId": 44225735983,
+        "catalogLines": 69,
+        "catalogDirections": 288,
+        "verifiedDate": "2026-11-18"
+      },
+      "testedDirectionsPerMode": 215
+    },
+    {
+      "file": "reports/fr/production-focused-gameplay.json",
+      "deployment": {
+        "releaseRef": "afea304ec9aada43612aac6c7ab08095911ee905",
+        "workflowRunId": 44229048828,
+        "catalogLines": 69,
+        "catalogDirections": 300,
+        "verifiedDate": "2026-11-18"
+      },
+      "testedDirectionsPerMode": 27
+    }
+  ]
+}
