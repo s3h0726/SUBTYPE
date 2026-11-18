@@ -40,3 +40,27 @@ test('saved custom virtual legs do not become shortest path rail edges',()=>{
  assert.equal(graph.find('ICN-T1','GMP'),null);
  assert(graph.find('ICN-T1','ICN-T2'));
 });
+
+test('international airports are listed as unresolved choices until the foreign railway has loaded',()=>{
+ const first=customAirportOptions({...icn1,countryId:'kr'},'kr',routes,airports,{allowForeign:true});
+ const japan=first.filter(item=>item.toCode==='NRT');
+ assert(japan.some(item=>item.portalId==='t1'&&item.loadRequired===true));
+ assert(japan.some(item=>item.portalId==='t23'&&item.loadRequired===true));
+ const nrt={id:'NRT-1',stationMasterId:'NRT-1',ja:'成田空港',countryId:'jp',latitude:35.765,longitude:140.39};
+ const foreignRoute={id:'narita',countryId:'jp',mode:'rail',line:{ja:'成田空港線'},stations:[nrt,{id:'NRT-2',ja:'空港第2ビル',latitude:35.772,longitude:140.39}]};
+ const ready=customAirportOptions({...icn1,countryId:'kr'},'kr',[...routes,foreignRoute],airports,{allowForeign:true});
+ const arrival=ready.find(item=>item.toCode==='NRT'&&item.portalId==='t1');
+ assert(arrival&&arrival.loadRequired===false);
+ assert.equal(arrival.toCountryId,'jp');
+ assert.equal(arrival.targetStationKey,'NRT-1');
+});
+test('international airport record validates both countries and real terminal',()=>{
+ const icn={...icn1,countryId:'kr'};
+ const nrt={id:'NRT-1',stationMasterId:'NRT-1',ja:'成田空港',countryId:'jp',latitude:35.765,longitude:140.39};
+ const foreignRoute={id:'narita',countryId:'jp',mode:'rail',line:{ja:'成田空港線'},stations:[nrt,{id:'NRT-2',ja:'空港第2ビル',countryId:'jp',latitude:35.772,longitude:140.39}]};
+ const meta={kind:'virtual-flight',fromCode:'ICN',toCode:'NRT',portalId:'t1',fromCountryId:'kr',toCountryId:'jp'};
+ assert.equal(customAirportTransferValid(icn,nrt,meta,'kr',[...routes,foreignRoute],airports),true);
+ assert.equal(customAirportTransferValid(icn,nrt,{...meta,toCountryId:'kr'},'kr',[...routes,foreignRoute],airports),false);
+ assert.equal(customAirportTransferValid(icn,nrt,{...meta,portalId:'t23'},'kr',[...routes,foreignRoute],airports),false);
+ assert.equal(customAirportTransferValid(icn,{...nrt,latitude:37.447,longitude:126.45},meta,'kr',[...routes,foreignRoute],airports),false);
+});
