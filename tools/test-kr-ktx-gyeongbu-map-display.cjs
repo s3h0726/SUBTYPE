@@ -65,7 +65,7 @@ test('already-correct Haengsin source track is not changed; reverse trains uncha
 });
 test('map-only overlay never changes via-station order or name and skips all non-KTX routes',()=>{
  const a=find('kr-network-pattern-3404bcd3714767b5');
- const original={...a.j,patternName:{ko:'ITX 세마을'}};
+ const original={...a.j,patternName:{ko:'ITX 새마을'},service:{...a.j.service,nameKo:'ITX 새마을'}};
  assert.equal(mapOnlyKtxJourneySegments(a.route,original,record),null);
  const result=mapOnlyKtxJourneySegments(a.route,a.j,record);
  for(let i=1;i<result.length;i++){
