@@ -161,7 +161,10 @@ for(const batch of batches){
      sourceProofsRebuilt:'all geometry edges proven against consecutive original OSM way nodes',
      legs:j.ktxTrackCorrection.legs.filter(x=>accepted.some(a=>a.index===x.index))};
     keptJourneys++;
-   }else rolledBackJourneys++;
+   }else{
+    rolledBackJourneys++;
+    result.ktxTrackRollback={method:'restore-verified-pre-repair-osm-edges',baseline:ORIGINAL_REF};
+   }
    route.verifiedJourneys[ji]=result;
    dirty=true;
   }
