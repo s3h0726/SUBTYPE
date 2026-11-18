@@ -61,6 +61,27 @@ for(let names of [['수서','동탄','평택지제'],['평택지제','동탄','�
  assert.equal(result.geometry[0][0]>(names[0]==='수서'?37:36),
    true);
 }
+// Non-stop SRT services join only at the actual recorded SR junction node.
+const junction=track.srt.segments.at(-1).geometry.at(-1);
+const beforeJunction=[36.92,127.08],afterJunction=[36.91,127.09];
+const through=makeRoute(['수서','천안아산']);
+through.directedSegments[0].geometry=[
+ track.srt.segments[0].geometry[0],junction,afterJunction
+];
+const routed=api.applySuseoTrack(through,track);
+assert.notEqual(routed,through,'non-stop through SRT must use the Suseo corridor');
+assert.deepEqual(Array.from(routed.geometry.at(-1)),afterJunction);
+assert.deepEqual(Array.from(routed.geometry.at(-2)),Array.from(junction));
+assert(routed.geometry.length>100,'actual Suseo corridor vertices retained');
+const disconnected=makeRoute(['수서','천안아산']);
+assert.equal(api.applySuseoTrack(disconnected,track),disconnected,
+ 'non-stop train without exact SR junction must never gain a fictitious connection');
+const reverse=makeRoute(['천안아산','수서']);
+reverse.directedSegments[0].geometry=[beforeJunction,junction,track.srt.segments[0].geometry[0]];
+const returned=api.applySuseoTrack(reverse,track);
+assert.notEqual(returned,reverse,'northbound train must take the physical SR corridor');
+assert.deepEqual(Array.from(returned.geometry[0]),beforeJunction);
+assert.deepEqual(Array.from(returned.geometry.at(-1)),Array.from(track.srt.segments[0].geometry[0]));
 for(let names of [['서울','광명','천안아산'],['수서','성남','구성']]){
  const unchanged=makeRoute(names);
  if(names[0]==='수서')unchanged.mode=unchanged.category='commuter_rail';
