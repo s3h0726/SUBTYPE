@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.13] — 2026-11-18
+
+- fix(kr): replace seven Honam KTX Iksan–Osong detours with OSM node-proven high-speed paths * feat(kr): solve all KTX corridor defects with source-node Dijkstra and exact original-w
+
 ## [v0.11.12] — 2026-11-18
 
 - fix(kr): anchor verified KTX Suseo–Pyeongtaek station coordinates to actual railway platforms * fix(kr): anchor KTX Suseo station locations to actual OSM HSR platform and reject ne
