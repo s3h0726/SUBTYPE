@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.13.2] — 2026-11-18
+
+- Merge remote-tracking branch 'origin/main'
+
 ## [v0.13.1] — 2026-11-18
 
 - feat(custom): 검증된 공항 접근 철도역에서 같은 국가의 공항으로 가상 항공·터미널 환승 구간 추가
