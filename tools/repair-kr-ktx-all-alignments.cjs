@@ -237,7 +237,7 @@ function main(){
     if(!diffs.length)continue;
     try{
      const candidate=rebuild(j,segmentGeoms);
-     candidate.ktxTrackCorrection={method:'source-backed-rail-graph-realignment',checkedAt:'2026-11-18',legs:diffs};
+     candidate.ktxTrackCorrection={method:'source-backed-rail-graph-realignment',checkedAt:'2026-11-18',legs:[...(j.ktxTrackCorrection?.legs||[]),...diffs]};
      const probe={...route,verifiedJourneys:[candidate]};
      const errors=validateRoute(probe);
      if(errors.length)throw Error(errors.join(' | '));
