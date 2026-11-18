@@ -1,0 +1,22 @@
+name: Diagnose all unresolved KTX original OSM platform node candidates
+on:
+  push:
+    branches: [fix/ktx-final-source-platform-bridge-audit-20261118]
+    paths:
+      - 'tools/diagnose-ktx-platform-source-nodes.cjs'
+      - '.github/workflows/ktx-platform-node-research.yml'
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Investigate all unresolved KTX stop-to-track geometry against source OSM
+        run: node tools/diagnose-ktx-platform-source-nodes.cjs
