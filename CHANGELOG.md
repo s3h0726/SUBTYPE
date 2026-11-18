@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.9] — 2026-11-18
+
+- fix(kr): correct 67 KTX track leg geometries on verified OSM rail corridors * feat(kr): add source-backed all-KTX railway geometry repair engine * fix(kr): permit provenance-checke
+
 ## [v0.11.8] — 2026-11-18
 
 - Merge pull request #79 from s3h0726/feature/france-production-evidence Record successful production gameplay for all released Transilien directions
