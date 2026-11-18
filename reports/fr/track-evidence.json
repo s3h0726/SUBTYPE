@@ -72,8 +72,82 @@
     "relationId": 10352122,
     "name": "Transilien R (GAMO) : Gare de Lyon → Montargis",
     "reference": "R",
-    "status": "BLOCKED",
-    "reason": "disconnected-track-way:120248893"
+    "trackCalls": [
+      "Paris Gare de Lyon",
+      "Melun",
+      "Bois-le-Roi",
+      "Fontainebleau - Avon",
+      "Thomery",
+      "Moret - Veneux-les-Sablons",
+      "Montigny-sur-Loing",
+      "Bourron-Marlotte - Grez",
+      "Nemours - Saint-Pierre",
+      "Bagneaux-sur-Loing",
+      "Souppes - Château-Landon",
+      "Dordives",
+      "Ferrières - Fontenay",
+      "Montargis"
+    ],
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01731",
+        "brand": null,
+        "patternId": "fr-pattern-031a8eba1ee5af52a9317292",
+        "calls": [
+          "Gare de Lyon",
+          "Melun",
+          "Bois-le-Roi",
+          "Fontainebleau - Avon",
+          "Thomery",
+          "Moret - Veneux-les-Sablons",
+          "Montigny-sur-Loing",
+          "Bourron-Marlotte - Grez",
+          "Nemours - Saint-Pierre",
+          "Bagneaux-sur-Loing",
+          "Souppes - Château-Landon",
+          "Dordives",
+          "Ferrières - Fontenay",
+          "Montargis"
+        ],
+        "maxStationOffsetKm": 0.14452735722922977
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-r",
+        "relationIds": [
+          10352122
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01731",
+            "brand": null,
+            "patternId": "fr-pattern-031a8eba1ee5af52a9317292",
+            "calls": [
+              "Gare de Lyon",
+              "Melun",
+              "Bois-le-Roi",
+              "Fontainebleau - Avon",
+              "Thomery",
+              "Moret - Veneux-les-Sablons",
+              "Montigny-sur-Loing",
+              "Bourron-Marlotte - Grez",
+              "Nemours - Saint-Pierre",
+              "Bagneaux-sur-Loing",
+              "Souppes - Château-Landon",
+              "Dordives",
+              "Ferrières - Fontenay",
+              "Montargis"
+            ],
+            "maxStationOffsetKm": 0.14452735722922977
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 113903,
@@ -3655,21 +3729,167 @@
         "maxStationOffsetKm": 0.2753157631096874
       }
     ],
-    "status": "MATCHED"
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-r",
+        "relationIds": [
+          14075880
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01731",
+            "brand": null,
+            "patternId": "fr-pattern-9bb0080c35ec9d8716d74bea",
+            "calls": [
+              "Montargis",
+              "Ferrières - Fontenay",
+              "Dordives",
+              "Souppes - Château-Landon",
+              "Bagneaux-sur-Loing",
+              "Nemours - Saint-Pierre",
+              "Bourron-Marlotte - Grez",
+              "Montigny-sur-Loing",
+              "Moret - Veneux-les-Sablons",
+              "Thomery",
+              "Fontainebleau - Avon",
+              "Bois-le-Roi",
+              "Melun",
+              "Gare de Lyon"
+            ],
+            "maxStationOffsetKm": 0.2753157631096874
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 14075881,
     "name": "Transilien R (PUMA) : Montereau → Gare de Lyon",
     "reference": "R",
-    "status": "BLOCKED",
-    "reason": "disconnected-track-way:120248892"
+    "trackCalls": [
+      "Montereau",
+      "Saint-Mammès",
+      "Moret - Veneux-les-Sablons",
+      "Fontainebleau - Avon",
+      "Bois-le-Roi",
+      "Melun",
+      "Paris Gare de Lyon"
+    ],
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01731",
+        "brand": null,
+        "patternId": "fr-pattern-1d1693e052cc3f7d8127cf38",
+        "calls": [
+          "Montereau",
+          "Saint-Mammès",
+          "Moret - Veneux-les-Sablons",
+          "Fontainebleau - Avon",
+          "Bois-le-Roi",
+          "Melun",
+          "Gare de Lyon"
+        ],
+        "maxStationOffsetKm": 0.09376981751557202
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-r",
+        "relationIds": [
+          14075881
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01731",
+            "brand": null,
+            "patternId": "fr-pattern-1d1693e052cc3f7d8127cf38",
+            "calls": [
+              "Montereau",
+              "Saint-Mammès",
+              "Moret - Veneux-les-Sablons",
+              "Fontainebleau - Avon",
+              "Bois-le-Roi",
+              "Melun",
+              "Gare de Lyon"
+            ],
+            "maxStationOffsetKm": 0.09376981751557202
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 14076171,
     "name": "Transilien R (GAMO) : Gare de Lyon → Montargis (rapide)",
     "reference": "R",
-    "status": "BLOCKED",
-    "reason": "disconnected-track-way:120248893"
+    "trackCalls": [
+      "Paris Gare de Lyon",
+      "Melun",
+      "Bois-le-Roi",
+      "Fontainebleau - Avon",
+      "Thomery",
+      "Moret - Veneux-les-Sablons",
+      "Nemours - Saint-Pierre",
+      "Souppes - Château-Landon",
+      "Montargis"
+    ],
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01731",
+        "brand": null,
+        "patternId": "fr-pattern-d07da3e3ca72c46df01be1f5",
+        "calls": [
+          "Gare de Lyon",
+          "Melun",
+          "Bois-le-Roi",
+          "Fontainebleau - Avon",
+          "Thomery",
+          "Moret - Veneux-les-Sablons",
+          "Nemours - Saint-Pierre",
+          "Souppes - Château-Landon",
+          "Montargis"
+        ],
+        "maxStationOffsetKm": 0.07293776668859077
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-r",
+        "relationIds": [
+          14076171
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01731",
+            "brand": null,
+            "patternId": "fr-pattern-d07da3e3ca72c46df01be1f5",
+            "calls": [
+              "Gare de Lyon",
+              "Melun",
+              "Bois-le-Roi",
+              "Fontainebleau - Avon",
+              "Thomery",
+              "Moret - Veneux-les-Sablons",
+              "Nemours - Saint-Pierre",
+              "Souppes - Château-Landon",
+              "Montargis"
+            ],
+            "maxStationOffsetKm": 0.07293776668859077
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 14076172,
@@ -3706,7 +3926,36 @@
         "maxStationOffsetKm": 0.07315803006404256
       }
     ],
-    "status": "MATCHED"
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-r",
+        "relationIds": [
+          14076172
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01731",
+            "brand": null,
+            "patternId": "fr-pattern-04511ad9a15fe9ac9b368f4b",
+            "calls": [
+              "Montargis",
+              "Souppes - Château-Landon",
+              "Nemours - Saint-Pierre",
+              "Moret - Veneux-les-Sablons",
+              "Thomery",
+              "Fontainebleau - Avon",
+              "Bois-le-Roi",
+              "Melun",
+              "Gare de Lyon"
+            ],
+            "maxStationOffsetKm": 0.07315803006404256
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 153123,
@@ -5574,15 +5823,163 @@
     "relationId": 21213576,
     "name": "Transilien J (JOLE) : Paris Saint-Lazare → Vernon Giverny",
     "reference": "J",
-    "status": "BLOCKED",
-    "reason": "disconnected-track-way:171704165"
+    "trackCalls": [
+      "Paris Saint-Lazare",
+      "Houilles Carrières-sur-Seine",
+      "Poissy",
+      "Villennes-Sur-Seine",
+      "Vernouillet Verneuil",
+      "Les Clairières de Verneuil",
+      "Les Mureaux",
+      "Aubergenville Élisabethville",
+      "Épône - Mézières - Voie 1",
+      "Mantes Station",
+      "Mantes-la-Jolie - Voie C",
+      "Rosny-sur-Seine",
+      "Bonnières",
+      "Vernon - Giverny"
+    ],
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01739",
+        "brand": null,
+        "patternId": "fr-pattern-16ff7b2cf7d167d0a7479e20",
+        "calls": [
+          "Gare Saint-Lazare",
+          "Houilles - Carrières-sur-Seine",
+          "Poissy",
+          "Villennes-sur-Seine",
+          "Vernouillet - Verneuil",
+          "Les Clairières de Verneuil",
+          "Les Mureaux",
+          "Aubergenville Élisabethville",
+          "Épône - Mézières",
+          "Mantes Station",
+          "Mantes-la-Jolie",
+          "Rosny-sur-Seine",
+          "Bonnières",
+          "Vernon - Giverny"
+        ],
+        "maxStationOffsetKm": 0.08254607005066122
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-j",
+        "relationIds": [
+          21213576
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01739",
+            "brand": null,
+            "patternId": "fr-pattern-16ff7b2cf7d167d0a7479e20",
+            "calls": [
+              "Gare Saint-Lazare",
+              "Houilles - Carrières-sur-Seine",
+              "Poissy",
+              "Villennes-sur-Seine",
+              "Vernouillet - Verneuil",
+              "Les Clairières de Verneuil",
+              "Les Mureaux",
+              "Aubergenville Élisabethville",
+              "Épône - Mézières",
+              "Mantes Station",
+              "Mantes-la-Jolie",
+              "Rosny-sur-Seine",
+              "Bonnières",
+              "Vernon - Giverny"
+            ],
+            "maxStationOffsetKm": 0.08254607005066122
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 21213711,
     "name": "Transilien J (POLO) : Vernon Giverny → Paris Saint-Lazare",
     "reference": "J",
-    "status": "BLOCKED",
-    "reason": "disconnected-track-way:184220046"
+    "trackCalls": [
+      "Vernon - Giverny",
+      "Bonnières",
+      "Rosny-sur-Seine",
+      "Mantes-la-Jolie - Voie B",
+      "Mantes Station - Voie C",
+      "Épône - Mézières- Voie 2",
+      "Aubergenville Élisabethville",
+      "Les Mureaux",
+      "Les Clairières de Verneuil",
+      "Vernouillet Verneuil",
+      "Villennes-Sur-Seine",
+      "Poissy",
+      "Houilles Carrières-sur-Seine",
+      "Paris Saint-Lazare"
+    ],
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01739",
+        "brand": null,
+        "patternId": "fr-pattern-b03010b8061a0fdd29f8564c",
+        "calls": [
+          "Vernon - Giverny",
+          "Bonnières",
+          "Rosny-sur-Seine",
+          "Mantes-la-Jolie",
+          "Mantes Station",
+          "Épône - Mézières",
+          "Aubergenville Élisabethville",
+          "Les Mureaux",
+          "Les Clairières de Verneuil",
+          "Vernouillet - Verneuil",
+          "Villennes-sur-Seine",
+          "Poissy",
+          "Houilles - Carrières-sur-Seine",
+          "Gare Saint-Lazare"
+        ],
+        "maxStationOffsetKm": 0.08254607005066122
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-j",
+        "relationIds": [
+          21213711
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01739",
+            "brand": null,
+            "patternId": "fr-pattern-b03010b8061a0fdd29f8564c",
+            "calls": [
+              "Vernon - Giverny",
+              "Bonnières",
+              "Rosny-sur-Seine",
+              "Mantes-la-Jolie",
+              "Mantes Station",
+              "Épône - Mézières",
+              "Aubergenville Élisabethville",
+              "Les Mureaux",
+              "Les Clairières de Verneuil",
+              "Vernouillet - Verneuil",
+              "Villennes-sur-Seine",
+              "Poissy",
+              "Houilles - Carrières-sur-Seine",
+              "Gare Saint-Lazare"
+            ],
+            "maxStationOffsetKm": 0.08254607005066122
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 21282183,
@@ -5775,9 +6172,54 @@
       "Houilles Carrières-sur-Seine",
       "Paris Saint-Lazare"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01739",
+        "brand": null,
+        "patternId": "fr-pattern-c76b851acc3050b7f8bd0c24",
+        "calls": [
+          "Mantes-la-Jolie",
+          "Mantes Station",
+          "Épône - Mézières",
+          "Aubergenville Élisabethville",
+          "Les Mureaux",
+          "Vernouillet - Verneuil",
+          "Houilles - Carrières-sur-Seine",
+          "Gare Saint-Lazare"
+        ],
+        "maxStationOffsetKm": 0.08577457453980525
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-j",
+        "relationIds": [
+          21282398
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01739",
+            "brand": null,
+            "patternId": "fr-pattern-c76b851acc3050b7f8bd0c24",
+            "calls": [
+              "Mantes-la-Jolie",
+              "Mantes Station",
+              "Épône - Mézières",
+              "Aubergenville Élisabethville",
+              "Les Mureaux",
+              "Vernouillet - Verneuil",
+              "Houilles - Carrières-sur-Seine",
+              "Gare Saint-Lazare"
+            ],
+            "maxStationOffsetKm": 0.08577457453980525
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 21282559,
@@ -11156,8 +11598,61 @@
     "relationId": 369441,
     "name": "Transilien R (KUMO) : Gare de Lyon → Montereau",
     "reference": "R",
-    "status": "BLOCKED",
-    "reason": "disconnected-track-way:120248893"
+    "trackCalls": [
+      "Paris Gare de Lyon",
+      "Melun",
+      "Bois-le-Roi",
+      "Fontainebleau - Avon",
+      "Moret - Veneux-les-Sablons",
+      "Saint-Mammès",
+      "Montereau"
+    ],
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01731",
+        "brand": null,
+        "patternId": "fr-pattern-6505268d2cc1790372366724",
+        "calls": [
+          "Gare de Lyon",
+          "Melun",
+          "Bois-le-Roi",
+          "Fontainebleau - Avon",
+          "Moret - Veneux-les-Sablons",
+          "Saint-Mammès",
+          "Montereau"
+        ],
+        "maxStationOffsetKm": 0.09593729830539385
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-r",
+        "relationIds": [
+          369441
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01731",
+            "brand": null,
+            "patternId": "fr-pattern-6505268d2cc1790372366724",
+            "calls": [
+              "Gare de Lyon",
+              "Melun",
+              "Bois-le-Roi",
+              "Fontainebleau - Avon",
+              "Moret - Veneux-les-Sablons",
+              "Saint-Mammès",
+              "Montereau"
+            ],
+            "maxStationOffsetKm": 0.09593729830539385
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 370597,
@@ -13991,9 +14486,60 @@
       "Houilles Carrières-sur-Seine",
       "Paris Saint-Lazare"
     ],
-    "matches": [],
-    "status": "BLOCKED",
-    "reason": "No independently verified ordered timetable match"
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01739",
+        "brand": null,
+        "patternId": "fr-pattern-b59d755ef6d5edb82edf0f65",
+        "calls": [
+          "Mantes-la-Jolie",
+          "Mantes Station",
+          "Épône - Mézières",
+          "Aubergenville Élisabethville",
+          "Les Mureaux",
+          "Les Clairières de Verneuil",
+          "Vernouillet - Verneuil",
+          "Villennes-sur-Seine",
+          "Poissy",
+          "Houilles - Carrières-sur-Seine",
+          "Gare Saint-Lazare"
+        ],
+        "maxStationOffsetKm": 0.08577457453980525
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-j",
+        "relationIds": [
+          6949496
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01739",
+            "brand": null,
+            "patternId": "fr-pattern-b59d755ef6d5edb82edf0f65",
+            "calls": [
+              "Mantes-la-Jolie",
+              "Mantes Station",
+              "Épône - Mézières",
+              "Aubergenville Élisabethville",
+              "Les Mureaux",
+              "Les Clairières de Verneuil",
+              "Vernouillet - Verneuil",
+              "Villennes-sur-Seine",
+              "Poissy",
+              "Houilles - Carrières-sur-Seine",
+              "Gare Saint-Lazare"
+            ],
+            "maxStationOffsetKm": 0.08577457453980525
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 7271952,
@@ -18198,15 +18744,109 @@
     "relationId": 8001252,
     "name": "Transilien J (VERN) : Paris Saint-Lazare → Vernon Giverny",
     "reference": "J",
-    "status": "BLOCKED",
-    "reason": "disconnected-track-way:171704165"
+    "trackCalls": [
+      "Paris Saint-Lazare",
+      "Mantes-la-Jolie - Voie C",
+      "Rosny-sur-Seine",
+      "Bonnières",
+      "Vernon - Giverny"
+    ],
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01739",
+        "brand": null,
+        "patternId": "fr-pattern-51c53d7ff5df913e151ddb8f",
+        "calls": [
+          "Gare Saint-Lazare",
+          "Mantes-la-Jolie",
+          "Rosny-sur-Seine",
+          "Bonnières",
+          "Vernon - Giverny"
+        ],
+        "maxStationOffsetKm": 0.08254607005066122
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-j",
+        "relationIds": [
+          8001252
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01739",
+            "brand": null,
+            "patternId": "fr-pattern-51c53d7ff5df913e151ddb8f",
+            "calls": [
+              "Gare Saint-Lazare",
+              "Mantes-la-Jolie",
+              "Rosny-sur-Seine",
+              "Bonnières",
+              "Vernon - Giverny"
+            ],
+            "maxStationOffsetKm": 0.08254607005066122
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 8001253,
     "name": "Transilien J (PAVE) : Vernon Giverny → Paris Saint-Lazare",
     "reference": "J",
-    "status": "BLOCKED",
-    "reason": "disconnected-track-way:184220046"
+    "trackCalls": [
+      "Vernon - Giverny",
+      "Bonnières",
+      "Rosny-sur-Seine",
+      "Mantes-la-Jolie - Voie B",
+      "Paris Saint-Lazare"
+    ],
+    "matches": [
+      {
+        "sourceId": 80921,
+        "routeId": "IDFM:C01739",
+        "brand": null,
+        "patternId": "fr-pattern-ba457b7dab6fe2f0d55e6e1a",
+        "calls": [
+          "Vernon - Giverny",
+          "Bonnières",
+          "Rosny-sur-Seine",
+          "Mantes-la-Jolie",
+          "Gare Saint-Lazare"
+        ],
+        "maxStationOffsetKm": 0.08254607005066122
+      }
+    ],
+    "status": "MATCHED",
+    "reviewedServices": [
+      {
+        "line": "fr-transilien-j",
+        "relationIds": [
+          8001253
+        ],
+        "matches": [
+          {
+            "sourceId": 80921,
+            "routeId": "IDFM:C01739",
+            "brand": null,
+            "patternId": "fr-pattern-ba457b7dab6fe2f0d55e6e1a",
+            "calls": [
+              "Vernon - Giverny",
+              "Bonnières",
+              "Rosny-sur-Seine",
+              "Mantes-la-Jolie",
+              "Gare Saint-Lazare"
+            ],
+            "maxStationOffsetKm": 0.08254607005066122
+          }
+        ],
+        "status": "MATCHED"
+      }
+    ]
   },
   {
     "relationId": 8536959,
