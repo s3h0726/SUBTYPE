@@ -47,6 +47,24 @@ function customStationNames(station={},fallbackCountry='jp'){
 }
 
 
+// Country-aware stop names for mixed-nationality custom routes. Never invent translations.
+function customStationNames(station={},fallbackCountry='jp'){
+ const countryId=station.countryId||fallbackCountry,names=station.names||{};
+ const has=value=>typeof value==='string'&&!!value.trim()&&value!=='MISSING_KOREAN_NAME';
+ const choose=(...values)=>values.find(has)?.trim()||'';
+ const korean=choose(station.ko,names.ko,station.nameKo);
+ const local=countryId==='tw'||countryId==='hk'||countryId==='mo'
+  ?choose(station.zh,names.zh,station.nameZh,station.ja,names.ja,station.romaji,names.en)
+  :countryId==='th'?choose(station.th,names.th,station.nameTh,station.ja,names.ja,station.romaji,names.en)
+  :countryId==='fr'?choose(station.fr,names.fr,station.nameFr,station.ja,names.ja,station.romaji,names.en)
+  :countryId==='uk'?choose(station.en,names.en,station.romaji,station.ja,names.ja)
+  :countryId==='kr'?choose(korean,station.ja,names.ja,station.romaji)
+  :choose(station.ja,names.ja,station.romaji,names.en,station.zh,names.zh);
+ return{countryId,korean:korean||local||choose(station.name,station.id)||'역명 미등록',
+  local:local||korean||choose(station.name,station.id)||'역명 미등록',hasKorean:!!korean};
+}
+
+
 // UK physical lines, operating patterns and shared railway geometry are distinct.
 const UK_CATEGORIES=[['all','전체'],['uk-underground','런던 지하철'],['uk-overground','런던 오버그라운드'],['uk-elizabeth','엘리자베스선'],['uk-dlr','DLR'],['rail','내셔널 레일'],['high_speed_rail','고속철도'],['international','국제철도'],['subway','지역 지하철'],['light_rail','메트로·경전철'],['tram','트램'],['custom','커스텀']];
 function ukCategory(route){return route.operatorId==='uk-london-underground'?'uk-underground':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-elizabeth'?'uk-elizabeth':route.id==='uk-dlr'?'uk-dlr':route.category}
@@ -1983,22 +2001,6 @@ function renderSvg(container,route,{editable=false,onMove}={}){const stations=ro
  const flightPaths=points.slice(1).map((p,i)=>flightIndexes.has(i+1)?`<path d="M ${points[i].x} ${points[i].y} L ${p.x} ${p.y}" fill="none" stroke="#ffc478" stroke-width="7" stroke-dasharray="10 12"/><text x="${(points[i].x+p.x)/2}" y="${p.y-18}" font-size="19" text-anchor="middle">✈</text>`:'').join('');container.innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${escapeHtml(route.line?.ko||'커스텀 노선')} 노선도"><path d="${path}" fill="none" stroke="${route.lineColor}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>${flightPaths}${points.map((p,i)=>`<g class="svg-station" data-index="${i}" transform="translate(${p.x} ${p.y})" tabindex="${editable?0:-1}"><circle r="13" fill="#fff" stroke="${route.lineColor}" stroke-width="6"/><text y="32" text-anchor="middle" font-size="13" font-weight="700">${escapeHtml(route.category==='custom'?customStationNames(stations[i],route.countryId).korean:route.category==='custom'?customStationNames(stations[i],route.countryId).local:route.countryId==='tw'?stations[i].ko:stations[i].ja||stations[i].ko||`역 ${i+1}`)}</text>${route.category==='custom'?`<text y="54" text-anchor="middle" font-size="12">${escapeHtml(customStationNames(stations[i],route.countryId).local)}</text>`:route.category==='custom'?`<text y="54" text-anchor="middle" font-size="12" lang="ko">${escapeHtml(customStationNames(stations[i],route.countryId).korean)}</text>`:route.countryId==='tw'?`<text y="54" text-anchor="middle" font-size="14" lang="zh-Hant">${escapeHtml(stations[i].zh||stations[i].names?.zh||'')}</text>`:''}</g>`).join('')}</svg>`;if(!editable)return;const svg=container.querySelector('svg');let active=null;svg.addEventListener('pointerdown',e=>{const g=e.target.closest('.svg-station');if(!g)return;active=+g.dataset.index;g.setPointerCapture(e.pointerId)});svg.addEventListener('pointermove',e=>{if(active===null)return;const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());onMove(active,{x:Math.round(p.x),y:Math.round(p.y)})});svg.addEventListener('pointerup',()=>active=null);svg.addEventListener('pointercancel',()=>active=null)}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const transportStopNoun=route=>route?.mode==='river_bus'?'선착장':['bus','village_bus','express_bus','brt'].includes(route?.mode)?'정류장':'역';
 const operatorVariantIndex=value=>{let hash=2166136261;for(const ch of String(value||'')){hash^=ch.codePointAt(0);hash=Math.imul(hash,16777619)}return Math.abs(hash>>>0)%6};
 class Game{
@@ -2445,8 +2447,6 @@ class Game{
   stop(notify=false){clearInterval(this.timer);clearTimeout(this.moveTimer);clearTimeout(this.departureTimer);this.timer=null;this.arrivalPromise=null;this.pendingFreeDriveMove=null;this.finished=true;this.phase='IDLE';this.paused=false;this.freeDriveMode=false;this.freeDriveAwaitingStart=false;this.freeDriveState=null;this.freeDriveTarget=null;this.freeDriveSelectedEdge=null;this.hkTimedAdvance=null;for(const selector of ['#game-free-drive-options','#game-free-drive-tabs']){const controls=$(selector);if(controls){controls.hidden=true;controls.innerHTML='';if(controls.dataset)controls.dataset.transferOpen='false';controls.classList?.remove?.('has-transfer')}}document.body.dataset.freeDrive='false';$('#screen-game')?.classList.remove('free-drive-active');$('#pause-overlay').hidden=true;$('#departure-overlay').hidden=true;$('#typing-input').disabled=false;$('#typing-input').readOnly=false;$('#typing-input').closest('.typing-box').hidden=false;$('#ko-progress').hidden=false;$('#pause-button').hidden=false;if(notify)this.onQuit?.()}
 
 }
-
-
 
 
 const KR_CONFIRMED_TRANSFERS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-main","kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
@@ -4723,7 +4723,6 @@ class RouteEditor{
   return route;
  }
 }
-
 
 
 const SESSION_KEY='trt:supabase.session.v1';
