@@ -66,7 +66,7 @@ function replaceSuseoConsecutiveSegments(item,track){
  if(!item||!Array.isArray(item.stations)||item.stations.length<2||
     !Array.isArray(item.directedSegments)||item.directedSegments.length!==item.stations.length-1)return item;
  const names=item.stations.map(suseoStationName);
- if(!names.includes('수서')||(!names.includes('동탄')&&!names.includes('평택지제')))return item;
+ if(!names.includes('수서'))return item;
  const next=[],indices=[0];let didChange=false;
  for(let i=0;i<item.directedSegments.length;i++){
   const old=item.directedSegments[i],candidate=suseoPathBetween(track,names[i],names[i+1]);
