@@ -116,7 +116,7 @@ export class RouteEditor{
   if(!q){target.innerHTML=this.activeCountryId==='tw'?'<p>한국어·繁體中文·English 역 이름을 입력하세요.</p>':'<p>한국어·현지어·English 역 이름을 입력하세요.</p>';return}
   const namesFor=station=>[station.zh,station.names?.zh,station.ja,station.kana,station.romaji,station.ko,station.en,station.th,station.fr,station.name,
     station.names?.en,station.names?.ko,station.displayNames?.ko,station.displayNames?.en,...(station.koAliases||[])];
-  const folded=v=>normalize(v).normalize('NFKC').replace(/[\\s\\-_·・.\u2019'()（）\[\]]/g,'');
+  const folded=v=>normalize(v).normalize('NFKC').replace(/[\s._\-·・'’()（）\[\]]/g,'');
   const term=folded(q);
   const matches=this.master.map(station=>{
    const names=namesFor(station).map(folded),all=folded([names.join(' '),...(station.operators||[]),...(station.lines||[]).flatMap(line=>[line.lineJa,line.lineKo,line.operatorJa])].join(' '));
