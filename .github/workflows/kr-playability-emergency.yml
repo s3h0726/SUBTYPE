@@ -28,3 +28,7 @@ jobs:
         run: npm install --no-save --ignore-scripts playwright-core@1.56.1
       - name: Test actual Korean 3-line card and game in Chrome
         run: node tools/test-kr-emergency-browser.cjs
+      - name: Test deployed Pages Korean 3-line game in Chrome
+        env:
+          SUBTYPE_TEST_URL: https://s3h0726.github.io/SUBTYPE/
+        run: node tools/test-kr-emergency-browser.cjs
