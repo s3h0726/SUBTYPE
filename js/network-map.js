@@ -1,6 +1,6 @@
 import{thailandNameMarkup}from'./thailand-network.js';
 import{taiwanNameMarkup,taiwanNameText,getTaiwanDisplayNames}from'./taiwan-display.js';
-import{escapeHtml,normalize,koreanStationDisplayName}from'./utils.js';
+import{escapeHtml,normalize,koreanStationDisplayName,customStationNames}from'./utils.js';
 let leafletPromise;
 export function ensureLeaflet(){if(window.L)return Promise.resolve(window.L);if(leafletPromise)return leafletPromise;leafletPromise=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';script.crossOrigin='anonymous';script.onload=()=>resolve(window.L);script.onerror=()=>reject(new Error('Leaflet unavailable'));document.head.append(script);setTimeout(()=>window.L?resolve(window.L):reject(new Error('Leaflet timeout')),8000)});return leafletPromise}
 const tokyoBounds=[[35.49,138.94],[35.92,140.12]];
@@ -65,6 +65,6 @@ export class CustomGeoMap{
       opacity:air?0.86:1
     }).addTo(this.layer);
     if(air)line.bindTooltip('✈ '+air.fromCode+' → '+air.toCode+' · '+(air.kind==='terminal-transfer'?'가상 터미널 이동':'가상 항공 이동'));
-   }route.stations.forEach((s,i)=>{if(!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude))return;const marker=this.L.marker([s.latitude,s.longitude],{draggable:true,title:koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`}).addTo(this.layer);marker.bindTooltip(route.countryId==='tw'?taiwanNameMarkup(s):koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`);marker.on('dragend',e=>{const p=e.target.getLatLng();this.onMove(i,{latitude:+p.lat.toFixed(6),longitude:+p.lng.toFixed(6)})});this.markers.push(marker)})}
+   }route.stations.forEach((s,i)=>{if(!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude))return;const marker=this.L.marker([s.latitude,s.longitude],{draggable:true,title:customStationNames(s,route.countryId).korean||`역 ${i+1}`}).addTo(this.layer);const names=customStationNames(s,route.countryId);marker.bindTooltip(escapeHtml(names.korean)+' · '+escapeHtml(names.local)+' ('+escapeHtml(names.countryId.toUpperCase())+')');marker.on('dragend',e=>{const p=e.target.getLatLng();this.onMove(i,{latitude:+p.lat.toFixed(6),longitude:+p.lng.toFixed(6)})});this.markers.push(marker)})}
  show(){if(this.map)setTimeout(()=>this.map.invalidateSize(),50)}
 }
