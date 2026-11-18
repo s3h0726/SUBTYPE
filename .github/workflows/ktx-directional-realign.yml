@@ -1,0 +1,60 @@
+name: Verify source-connected directional Korean KTX track fixes
+on:
+  push:
+    branches: [fix/ktx-directional-osm-proven-tracks-20261118]
+    paths:
+      - 'tools/repair-kr-ktx-all-alignments.cjs'
+      - 'tools/test-kr-ktx-all-alignments.cjs'
+      - '.github/workflows/ktx-directional-realign.yml'
+permissions:
+  contents: write
+jobs:
+  directional-rail-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact OSM source topology and one-way direction safeguards
+        run: |
+          node --check tools/repair-kr-ktx-all-alignments.cjs
+          node --test tools/test-kr-ktx-all-alignments.cjs tools/test-kr-ktx-track-alignment.cjs
+      - name: Calculate directional source-backed KTX correction candidates
+        run: node tools/repair-kr-ktx-all-alignments.cjs --write
+      - name: Check each candidate against original track-edge provenance or restore old source geometry
+        run: node tools/rebuild-ktx-source-edge-refs.cjs --write
+      - name: Publish only fully proven KTX leg changes
+        run: node tools/build-kr-canonical.cjs --publish
+      - name: Test every rail recovery batch against original source edges and official station order
+        run: |
+          node tools/test-kr-rail-expansion.cjs --batch=rail-continuity-recovery-batch.json
+          node tools/test-kr-rail-expansion.cjs --batch=rail-national-recovery-batch.json
+          node tools/test-kr-rail-expansion.cjs --batch=rail-network-recovery-batch.json
+          node tools/test-kr-canonical.cjs
+      - name: Re-audit all 151 KTX journeys
+        run: node tools/audit-kr-ktx-track-alignment.cjs
+      - name: Commit corrections only after source and timetable tests pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/kr/canonical/rail-*-batch.json data/kr/generated/routes/ data/kr/generated/index.json js/korea-index-data.js reports/kr-ktx-realignment-20261118.json reports/kr-ktx-source-edge-proofs-20261118.json reports/kr-ktx-track-alignment.json reports/kr-rebuild/catalog-validation.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(kr): publish only one-way-correct source-proven KTX track corrections"
+            git push origin HEAD:fix/ktx-directional-osm-proven-tracks-20261118
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ktx-directional-track-audit
+          path: |
+            reports/kr-ktx-realignment-20261118.json
+            reports/kr-ktx-source-edge-proofs-20261118.json
+            reports/kr-ktx-track-alignment.json

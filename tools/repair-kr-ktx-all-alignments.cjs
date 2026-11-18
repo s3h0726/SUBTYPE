@@ -51,10 +51,11 @@ function graphFromWays(ways){
    const ak=w.nodeIds?.[i-1]!=null?String(w.nodeIds[i-1]):geoKey(a);
    const bk=w.nodeIds?.[i]!=null?String(w.nodeIds[i]):geoKey(b);
    nodes.set(ak,a);nodes.set(bk,b);
-   const entry={km,wayId:String(w.id),...kind};
+   const entry={km,wayId:String(w.id),oneway:tags.oneway,...kind};
    // Rail direction tags are not a ban on reverse operations. Train service
    // direction is retained from the original timetable.
-   insert(ak,bk,entry);insert(bk,ak,entry);
+   if(tags.oneway!=='-1')insert(ak,bk,entry);
+   if(tags.oneway!=='yes')insert(bk,ak,entry);
    const edge={ak,bk,a,b,...entry},index=edges.length;edges.push(edge);
    const aY=Math.floor(Math.min(a[0],b[0])/cell),bY=Math.floor(Math.max(a[0],b[0])/cell);
    const aX=Math.floor(Math.min(a[1],b[1])/cell),bX=Math.floor(Math.max(a[1],b[1])/cell);
@@ -98,23 +99,23 @@ function subdivideSourceEdges(points,maxKm=1.5){
  }
  return out;
 }
-function graphRoute(graph,from,to,corridor,oldKm,stationSite=null){
- // A terminal KTX station may have several platforms: only here may the
- // source-mapped platform rail be up to 140 metres from the legacy shape.
- const snapMeters=corridor==='수서평택고속선'?140:corridor==='경부고속선'?100:8;
- const startSite=snapMeters>8&&stationSite?.from||from;
- const endSite=snapMeters>8&&stationSite?.to||to;
- const starts=graph.snaps(startSite,snapMeters,corridor),ends=graph.snaps(endSite,snapMeters,corridor);
+function graphRoute(graph,from,to,corridor,oldKm){
+ // The existing terminal coordinate must lie ON an original OSM source edge.
+ // Never attach a new track to a nearby platform using a shortcut chord.
+ const snapMeters=0.0001;
+ const starts=graph.snaps(from,snapMeters,corridor),ends=graph.snaps(to,snapMeters,corridor);
  if(!starts.length||!ends.length)return {reason:'NO_SOURCE_EDGE_SNAP',startCandidates:starts.length,endCandidates:ends.length};
  const endNodes=new Map();
  for(const e of ends)for(const id of [e.edge.ak,e.edge.bk]){
   const km=distance(e.point,graph.coord(id))+e.offset;
+  if(km>1e-9&&(id===e.edge.ak&&e.edge.oneway==='-1'||id===e.edge.bk&&e.edge.oneway==='yes'))continue;
   const cost=km*edgePenalty(e.edge,corridor);
   if(!endNodes.has(id)||cost<endNodes.get(id).cost)endNodes.set(id,{cost,km,wayId:e.edge.wayId,fast:e.edge.fast,corridor:e.edge.corridor});
  }
  const dist=new Map(),prior=new Map(),heap=new Heap();
  for(const s of starts)for(const id of [s.edge.ak,s.edge.bk]){
   const km=distance(s.point,graph.coord(id))+s.offset;
+  if(km>1e-9&&(id===s.edge.ak&&s.edge.oneway==='yes'||id===s.edge.bk&&s.edge.oneway==='-1'))continue;
   const cost=km*edgePenalty(s.edge,corridor);
   if(cost>=(dist.get(id)??Infinity))continue;
   dist.set(id,cost);prior.set(id,{from:null,km,fast:s.edge.fast,corridor:s.edge.corridor,wayId:s.edge.wayId});
@@ -230,8 +231,7 @@ function main(){
       const suspected=originalKm>straightKm*1.58&&originalKm-straightKm>9
        ||e.density>=.6&&e.coverage<.65
        ||e.density<.6&&(originalKm>straightKm*1.28||(originalKm>30&&e.coverage<.5));
-      const stationSite={from:[j.stations[i].latitude,j.stations[i].longitude],to:[j.stations[i+1].latitude,j.stations[i+1].longitude]};
-      const replacement=suspected?graphRoute(graph,geom[0],geom.at(-1),corridor,originalKm,stationSite):{reason:'EXISTING_WITHIN_TOLERANCE'};
+      const replacement=suspected?graphRoute(graph,geom[0],geom.at(-1),corridor,originalKm):{reason:'EXISTING_WITHIN_TOLERANCE'};
       cache.set(key,{replacement,decision:decide(geom,replacement,corridor,tracks)});
      }
      const {replacement,decision}=cache.get(key);
