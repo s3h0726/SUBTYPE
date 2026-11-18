@@ -16,7 +16,9 @@ async function run() {
   const exclusions = read('data/fr/source/track-call-exclusions.json');
   const corrections = loadTrackCorrections(path.join(root, 'data/fr/source'));
   assert.throws(() => readServiceTrack([3019054,3019053], readRelation, [], corrections),
-    /do not meet at the same stop node/, 'Different Champ de Mars platforms must not bridge a through service');
+    /do not meet at the same track node/, 'Different Champ de Mars platforms must not bridge a through service');
+  assert.throws(() => readServiceTrack([3019054,3019053], readRelation, [], corrections,
+    {joinNodes:[-1]}), /Invalid track junction/, 'A missing node must not bridge rail sections');
   const specifications = read('data/fr/source/release-lines.json');
   const official = new Map([...new Set(specifications.map(spec => spec.sourceId))].map(resource => [
     resource, read('data/fr/source/schedules/' + resource + '.json'),

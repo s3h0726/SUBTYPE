@@ -71,6 +71,15 @@ function readTrack(relation, elements, excludedCalls = [], correction) {
       }
       members.unshift({type:'node', role:'stop', ref:node.id});
     }
+    if (correction.insertStopBefore) {
+      const [id,next] = correction.insertStopBefore;
+      const node = elements.find(element => element.type === 'node' && element.id === id);
+      if (node?.tags?.public_transport !== 'stop_position' || !node.tags.name ||
+          members.some(member => member.type === 'node' && member.role.startsWith('stop') && member.ref === id)) {
+        throw new Error('Unverified intermediate stop ' + id);
+      }
+      members.splice(stopIndex(next), 0, {type:'node',role:'stop',ref:id});
+    }
     if (correction.moveStopBefore) {
       const [stop, next] = correction.moveStopBefore;
       const [member] = members.splice(stopIndex(stop), 1);
@@ -129,7 +138,10 @@ function boundCalls(track, startNode, endNode) {
   return {...track, stops:track.stops.slice(start,end + 1), aligned:track.aligned.slice(start,end + 1)};
 }
 
-function readServiceTrack(relationIds, readRelation, excludedCalls = [], corrections = {}, {startNode,endNode} = {}) {
+function readServiceTrack(relationIds, readRelation, excludedCalls = [], corrections = {}, {startNode,endNode,joinNodes} = {}) {
+  if (joinNodes && joinNodes.length !== relationIds.length - 1) {
+    throw new Error('Incorrect number of track junction nodes');
+  }
   const parts = relationIds.map(id => {
     const {elements} = readRelation(id);
     const relation = elements.find(element => element.type === 'relation' && element.id === id);
@@ -139,18 +151,27 @@ function readServiceTrack(relationIds, readRelation, excludedCalls = [], correct
     return {relations:[parts[0].relation], track:excludeCalls(boundCalls(parts[0].track, startNode, endNode), excludedCalls)};
   }
   const joined = {refs:[],geometry:[],nodes:new Map(),ways:new Map(),members:[],stops:[],aligned:[]};
-  for (const {relation,track} of parts) {
-    const first = track.aligned[0], last = track.aligned.at(-1);
+  for (const [partIndex,{relation,track}] of parts.entries()) {
+    const first = joinNodes && partIndex > 0
+      ? track.refs.indexOf(joinNodes[partIndex - 1]) : track.aligned[0];
+    const last = joinNodes && partIndex < parts.length - 1
+      ? track.refs.indexOf(joinNodes[partIndex], first) : track.aligned.at(-1);
+    if (first < 0 || last <= first) throw new Error('Invalid track junction on relation ' + relation.id);
     const overlap = joined.refs.length ? 1 : 0;
     if (overlap && (joined.refs.at(-1) !== track.refs[first] ||
         !joined.geometry.at(-1).every((coord, index) => coord === track.geometry[first][index]))) {
-      throw new Error('Rail sections do not meet at the same stop node before ' + relation.id);
+      throw new Error('Rail sections do not meet at the same track node before ' + relation.id);
     }
     const offset = joined.refs.length - overlap - first;
     joined.refs.push(...track.refs.slice(first + overlap, last + 1));
     joined.geometry.push(...track.geometry.slice(first + overlap, last + 1));
-    joined.stops.push(...track.stops.slice(overlap));
-    joined.aligned.push(...track.aligned.slice(overlap).map(index => index + offset));
+    for (const [index,stop] of track.stops.entries()) {
+      const aligned = track.aligned[index];
+      if (aligned < first || aligned > last) continue;
+      if (joined.aligned.at(-1) === aligned + offset && joined.stops.at(-1)?.id === stop.id) continue;
+      joined.stops.push(stop);
+      joined.aligned.push(aligned + offset);
+    }
     for (const member of track.members) {
       const way = track.ways.get(member.ref), previous = joined.ways.get(member.ref);
       if (previous && JSON.stringify(previous.nodes) !== JSON.stringify(way.nodes)) {

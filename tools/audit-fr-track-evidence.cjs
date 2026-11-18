@@ -54,6 +54,7 @@ for (const spec of specifications) {
     const row = byRelation.get(service.relations[0]);
     if (!row) continue;
     const result = {line:spec.id,relationIds:service.relations,
+      ...(service.joinNodes ? {joinNodes:service.joinNodes} : {}),
       ...(service.startNode === undefined ? {} : {startNode:service.startNode,endNode:service.endNode})};
     try {
       const {relations,track} = readServiceTrack(service.relations,
