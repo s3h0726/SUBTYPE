@@ -30,7 +30,22 @@ for(const route of routes){
   const section=fixed?.directedSegments[index];
   const ok=section?.trackCorridorId===track.id;
   eligible++;
-  if(ok)patched++;else unchanged++;
+  if(ok){
+   patched++;
+   // A replaced station marker must be anchored to its original OSM HSR
+   // platform, not the imported commuter-rail coordinate.
+   for(const stop of fixed.stations){
+    const src=track.srt.stations.find(x=>x.ko===stop.ko);
+    if(!src)continue;
+    const p=fixed.geometry[stop.geometryIndex];
+    if(!p||p[0]!==src.latitude||p[1]!==src.longitude)throw Error('SUSEO_RUNTIME_PLATFORM_GEOMETRY '+j.id+' '+stop.ko);
+    if(stop.latitude!==src.latitude||stop.longitude!==src.longitude)throw Error('SUSEO_RUNTIME_PLATFORM_COORDINATE '+j.id+' '+stop.ko);
+   }
+   for(let k=1;k<fixed.directedSegments.length;k++){
+    const before=fixed.directedSegments[k-1].geometry.at(-1),after=fixed.directedSegments[k].geometry[0];
+    if(before[0]!==after[0]||before[1]!==after[1])throw Error('SUSEO_RUNTIME_FICTITIOUS_JUNCTION '+j.id+' '+k);
+   }
+  }else unchanged++;
   detail.push({routeId:route.id,journeyId:j.id,direction:j.stations[index].ko+' → '+j.stations[index+1].ko,
    patched:ok,oldNodes:j.directedSegments[index].geometry.length,newNodes:section?.geometry.length||0,
    stationFrom:[j.stations[index].latitude,j.stations[index].longitude],
@@ -53,4 +68,4 @@ for(const route of routes){
  }
 }
 console.log('KTX_SUSEO_RUNTIME '+JSON.stringify({eligible,patched,unchanged,detail}));
-if(eligible===0)throw Error('NO_ELIGIBLE_SUSEO_KTX_FOUND');
+if(eligible===0||patched===0)throw Error('NO_VERIFIED_SUSEO_KTX_FIX_FOUND');
